@@ -858,64 +858,64 @@
 				<p><strong>Look for groups and build relationships</strong></p>
 				<p>Tree relationships can be made simply via the <abbr title="Document Object Model">DOM</abbr> and logical structure of the page. A tree element will be the main container encompassing all other elements in the tree. Each selectable item in the tree will be a treeitem.</p>
 				<p>When a treeitem contains an embedded list of treeitems they will be all be embedded in a group. A group should be contained inside the tree item that is the parent item.</p>
-				<pre class="example highlight"><span class="tag">&lt;h1 id=<span class="str">&quot;treelabel&quot;</span>&gt;</span>WAI-ARIA Tree Example<span class="tag">&lt;/h1&gt;</span>
-<span class="tag">&lt;ul role=<span class="str">&quot;tree&quot;</span> aria-labelledby=<span class="str">&quot;treelabel&quot;</span> aria-activedescendant=<span class="str">&quot;example_id&quot;</span> tabindex=<span class="str">&quot;0&quot;</span>&gt;</span>
-  <span class="tag">&lt;li role=<span class="str">&quot;treeitem&quot;</span> aria-expanded=<span class="str">&quot;true&quot;</span>&gt;</span>Animals
-    <span class="tag">&lt;ul role=<span class="str">&quot;group&quot;</span>&gt;</span>
-      <span class="tag">&lt;li role=<span class="str">&quot;treeitem&quot;</span>&gt;</span>Birds<span class="tag">&lt;/li&gt;</span>
-      <span class="tag">&lt;li role=<span class="str">&quot;treeitem&quot;</span> aria-expanded=<span class="str">&quot;false&quot;</span>&gt;</span>Cats
-        <span class="tag">&lt;ul role=<span class="str">&quot;group&quot;</span>&gt;</span>
-          <span class="tag">&lt;li role=<span class="str">&quot;treeitem&quot;</span>&gt;</span>Siamese<span class="tag">&lt;/li&gt;</span>
-          <span class="tag">&lt;li role=<span class="str">&quot;treeitem&quot;</span>&gt;</span>Tabby<span class="tag">&lt;/li&gt;</span>
-        <span class="tag">&lt;/ul&gt;</span>
-      <span class="tag">&lt;/li&gt;</span>
-      <span class="tag">&lt;li role=<span class="str">&quot;treeitem&quot;</span> aria-expanded=<span class="str">&quot;true&quot;</span>&gt;</span>Dogs
-        <span class="tag">&lt;ul role=<span class="str">&quot;group&quot;</span>&gt;</span>
-          <span class="tag">&lt;li role=<span class="str">&quot;treeitem&quot;</span> aria-expanded=<span class="str">&quot;true&quot;</span>&gt;</span>Small Breeds
-            <span class="tag">&lt;ul role=<span class="str">&quot;group&quot;</span>&gt;</span>
-              <span class="tag">&lt;li role=<span class="str">&quot;treeitem&quot;</span>&gt;</span>Chihuahua<span class="tag">&lt;/li&gt;</span>
-              <span class="tag">&lt;li role=<span class="str">&quot;treeitem&quot;</span> id=<span class="str">&quot;example_id&quot;</span>&gt;</span>Italian Greyhound<span class="tag">&lt;/li&gt;</span>
-              <span class="tag">&lt;li role=<span class="str">&quot;treeitem&quot;</span>&gt;</span>Japanese Chin<span class="tag">&lt;/li&gt;</span>
-            <span class="tag">&lt;/ul&gt;</span>
-          <span class="tag">&lt;/li&gt;</span>
-          <span class="tag">&lt;li role=<span class="str">&quot;treeitem&quot;</span> aria-expanded=<span class="str">&quot;false&quot;</span>&gt;</span>Medium Breeds
-            <span class="tag">&lt;ul role=<span class="str">&quot;group&quot;</span>&gt;</span>
-              <span class="tag">&lt;li role=<span class="str">&quot;treeitem&quot;</span>&gt;</span>Beagle<span class="tag">&lt;/li&gt;</span>
-              <span class="tag">&lt;li role=<span class="str">&quot;treeitem&quot;</span>&gt;</span>Cocker Spaniel<span class="tag">&lt;/li&gt;</span>
-              <span class="tag">&lt;li role=<span class="str">&quot;treeitem&quot;</span>&gt;</span>Pit Bull<span class="tag">&lt;/li&gt;</span>
-            <span class="tag">&lt;/ul&gt;</span>
-          <span class="tag">&lt;/li&gt;</span>
-          <span class="tag">&lt;li role=<span class="str">&quot;treeitem&quot;</span> aria-expanded=<span class="str">&quot;false&quot;</span>&gt;</span>Large Breeds
-            <span class="tag">&lt;ul role=<span class="str">&quot;group&quot;</span>&gt;</span>
-              <span class="tag">&lt;li role=<span class="str">&quot;treeitem&quot;</span>&gt;</span>Afghan<span class="tag">&lt;/li&gt;</span>
-              <span class="tag">&lt;li role=<span class="str">&quot;treeitem&quot;</span>&gt;</span>Great Dane<span class="tag">&lt;/li&gt;</span>
-              <span class="tag">&lt;li role=<span class="str">&quot;treeitem&quot;</span>&gt;</span>Mastiff<span class="tag">&lt;/li&gt;</span>
-            <span class="tag">&lt;/ul&gt;</span>
-          <span class="tag">&lt;/li&gt;</span>
-        <span class="tag">&lt;/ul&gt;</span>
-      <span class="tag">&lt;/li&gt;</span>
-    <span class="tag">&lt;/ul&gt;</span>
-  <span class="tag">&lt;/li&gt;</span>
-  <span class="tag">&lt;li role=<span class="str">&quot;treeitem&quot;</span> aria-expanded=<span class="str">&quot;true&quot;</span>&gt;</span>Minerals
-    <span class="tag">&lt;ul role=<span class="str">&quot;group&quot;</span>&gt;</span>
-      <span class="tag">&lt;li role=<span class="str">&quot;treeitem&quot;</span>&gt;</span>Zinc<span class="tag">&lt;/li&gt;</span>
-      <span class="tag">&lt;li role=<span class="str">&quot;treeitem&quot;</span> aria-expanded=<span class="str">&quot;false&quot;</span>&gt;</span>Gold
-        <span class="tag">&lt;ul role=<span class="str">&quot;group&quot;</span>&gt;</span>
-          <span class="tag">&lt;li role=<span class="str">&quot;treeitem&quot;</span>&gt;</span>Yellow Gold<span class="tag">&lt;/li&gt;</span>
-          <span class="tag">&lt;li role=<span class="str">&quot;treeitem&quot;</span>&gt;</span>White Gold<span class="tag">&lt;/li&gt;</span>
-        <span class="tag">&lt;/ul&gt;</span>
-      <span class="tag">&lt;/li&gt;</span>
-      <span class="tag">&lt;li role=<span class="str">&quot;treeitem&quot;</span>&gt;</span>Silver<span class="tag">&lt;/li&gt;</span>
-    <span class="tag">&lt;/ul&gt;</span>
-  <span class="tag">&lt;/li&gt;</span>
-  <span class="tag">&lt;li role=<span class="str">&quot;treeitem&quot;</span> aria-expanded=<span class="str">&quot;true&quot;</span>&gt;</span>Vegetables
-    <span class="tag">&lt;ul role=<span class="str">&quot;group&quot;</span>&gt;</span>
-      <span class="tag">&lt;li role=<span class="str">&quot;treeitem&quot;</span>&gt;</span>Carrot<span class="tag">&lt;/li&gt;</span>
-      <span class="tag">&lt;li role=<span class="str">&quot;treeitem&quot;</span>&gt;</span>Tomato<span class="tag">&lt;/li&gt;</span>
-      <span class="tag">&lt;li role=<span class="str">&quot;treeitem&quot;</span>&gt;</span>Lettuce<span class="tag">&lt;/li&gt;</span>
-    <span class="tag">&lt;/ul&gt;</span>
-  <span class="tag">&lt;/li&gt;</span>
-<span class="tag">&lt;/ul&gt;</span></pre>
+				<pre class="example highlight">&lt;h1 id=&quot;treelabel&quot;&gt;WAI-ARIA Tree Example&lt;/h1&gt;
+&lt;ul role=&quot;tree&quot; aria-labelledby=&quot;treelabel&quot; aria-activedescendant=&quot;example_id&quot; tabindex=&quot;0&quot;&gt;
+  &lt;li role=&quot;treeitem&quot; aria-expanded=&quot;true&quot;&gt;Animals
+    &lt;ul role=&quot;group&quot;&gt;
+      &lt;li role=&quot;treeitem&quot;&gt;Birds&lt;/li&gt;
+      &lt;li role=&quot;treeitem&quot; aria-expanded=&quot;false&quot;&gt;Cats
+        &lt;ul role=&quot;group&quot;&gt;
+          &lt;li role=&quot;treeitem&quot;&gt;Siamese&lt;/li&gt;
+          &lt;li role=&quot;treeitem&quot;&gt;Tabby&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li role=&quot;treeitem&quot; aria-expanded=&quot;true&quot;&gt;Dogs
+        &lt;ul role=&quot;group&quot;&gt;
+          &lt;li role=&quot;treeitem&quot; aria-expanded=&quot;true&quot;&gt;Small Breeds
+            &lt;ul role=&quot;group&quot;&gt;
+              &lt;li role=&quot;treeitem&quot;&gt;Chihuahua&lt;/li&gt;
+              &lt;li role=&quot;treeitem&quot; id=&quot;example_id&quot;&gt;Italian Greyhound&lt;/li&gt;
+              &lt;li role=&quot;treeitem&quot;&gt;Japanese Chin&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li role=&quot;treeitem&quot; aria-expanded=&quot;false&quot;&gt;Medium Breeds
+            &lt;ul role=&quot;group&quot;&gt;
+              &lt;li role=&quot;treeitem&quot;&gt;Beagle&lt;/li&gt;
+              &lt;li role=&quot;treeitem&quot;&gt;Cocker Spaniel&lt;/li&gt;
+              &lt;li role=&quot;treeitem&quot;&gt;Pit Bull&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+          &lt;li role=&quot;treeitem&quot; aria-expanded=&quot;false&quot;&gt;Large Breeds
+            &lt;ul role=&quot;group&quot;&gt;
+              &lt;li role=&quot;treeitem&quot;&gt;Afghan&lt;/li&gt;
+              &lt;li role=&quot;treeitem&quot;&gt;Great Dane&lt;/li&gt;
+              &lt;li role=&quot;treeitem&quot;&gt;Mastiff&lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li role=&quot;treeitem&quot; aria-expanded=&quot;true&quot;&gt;Minerals
+    &lt;ul role=&quot;group&quot;&gt;
+      &lt;li role=&quot;treeitem&quot;&gt;Zinc&lt;/li&gt;
+      &lt;li role=&quot;treeitem&quot; aria-expanded=&quot;false&quot;&gt;Gold
+        &lt;ul role=&quot;group&quot;&gt;
+          &lt;li role=&quot;treeitem&quot;&gt;Yellow Gold&lt;/li&gt;
+          &lt;li role=&quot;treeitem&quot;&gt;White Gold&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li role=&quot;treeitem&quot;&gt;Silver&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li role=&quot;treeitem&quot; aria-expanded=&quot;true&quot;&gt;Vegetables
+    &lt;ul role=&quot;group&quot;&gt;
+      &lt;li role=&quot;treeitem&quot;&gt;Carrot&lt;/li&gt;
+      &lt;li role=&quot;treeitem&quot;&gt;Tomato&lt;/li&gt;
+      &lt;li role=&quot;treeitem&quot;&gt;Lettuce&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;</pre>
 				<p>The use of <code>aria-expanded</code> should mirror that which is visibly expanded on screen, so authors may wish to use <abbr title="Cascading Style Sheets">CSS</abbr> attribute selectors to toggle visibility or style of an item based on the <a href="#def_value" class="termref">value</a> of an <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> <a href="#def_state" class="termref">state</a> or <a href="#def_property" class="termref">property</a>. The following example would hide the sub-level groups of a collapsed tree node.</p>
 				<pre class="example highlight">[aria-expanded=&quot;false&quot;] [role=&quot;group&quot;] { display: none; }</pre>
 				<p class="note">
@@ -923,25 +923,25 @@
 					At the time of this writing, this <abbr title="Cascading Style Sheets">CSS</abbr> example, while technically correct, will not redraw styles properly in some browsers if the attribute's value is changed dynamically. It may be necessary to toggle a class name, or otherwise force the browser to redraw the styles properly.</p>
 				<p>Sometimes a tree structure is not explicit via the <abbr title="Document Object Model">DOM</abbr> and logical structure of a page. In such cases the relationships must still be made explicit using the states and properties. In the following example, the <a class="property-reference" href="#aria-owns">aria-owns</a> attribute indicates that the <code>div</code> with id &quot;external_treeitem&quot; should be considered a child of the <code>ul</code> element with the attribute, even though it is not a child in the <abbr title="Document Object Model">DOM</abbr>.</p>
 				<pre class="example highlight">...
-<span class="tag">&lt;li role=<span class="str">&quot;treeitem&quot;</span> aria-expanded=<span class="str">&quot;true&quot;</span> aria-owns=<span class="str">&quot;external_group&quot;</span>&gt;</span>Vegetables<span class="tag">&lt;/li&gt;</span>
+&lt;li role=&quot;treeitem&quot; aria-expanded=&quot;true&quot; aria-owns=&quot;external_group&quot;&gt;Vegetables&lt;/li&gt;
 ...
-<span class="tag">&lt;ul role=<span class="str">&quot;group&quot;</span> id=<span class="str">&quot;external_group&quot;</span>&gt;</span>
-  <span class="tag">&lt;li role=<span class="str">&quot;treeitem&quot;</span>&gt;</span>Carrot<span class="tag">&lt;/li&gt;</span>
-  <span class="tag">&lt;li role=<span class="str">&quot;treeitem&quot;</span>&gt;</span>Tomato<span class="tag">&lt;/li&gt;</span>
-  <span class="tag">&lt;li role=<span class="str">&quot;treeitem&quot;</span>&gt;</span>Lettuce<span class="tag">&lt;/li&gt;</span>
-<span class="tag">&lt;/ul&gt;</span>
+&lt;ul role=&quot;group&quot; id=&quot;external_group&quot;&gt;
+  &lt;li role=&quot;treeitem&quot;&gt;Carrot&lt;/li&gt;
+  &lt;li role=&quot;treeitem&quot;&gt;Tomato&lt;/li&gt;
+  &lt;li role=&quot;treeitem&quot;&gt;Lettuce&lt;/li&gt;
+&lt;/ul&gt;
 ...</pre>
 				<p>Sometimes trees (and other lists or grids) cannot be completed represented in the <abbr title="Document Object Model">DOM</abbr> due to performance limitations of the browser. For example, an application interface may only need to display 100 items out of a set of 100,000. Including all 100,000 items in the DOM could cause performance problems on both the client and server machines.</p>
 				<p>If items in a managed widget are loaded, for example, via the XMLHttpRequest object, and not present in the <abbr title="Document Object Model">DOM</abbr> at all times, authors should use <code class="property-reference">aria-level</code>, <code class="property-reference">aria-posinset</code> and <code class="property-reference">aria-setsize</code>, and  ensure that <code class="property-reference">aria-owns</code> is not required to convey membership with the widget.</p>
 				<pre class="example highlight">...
-<span class="tag">&lt;li role=<span class="str">&quot;treeitem&quot;</span> aria-level=<span class="str">&quot;1&quot;</span> aria-posinset=<span class="str">&quot;3&quot;</span> aria-expanded=<span class="str">&quot;true&quot;</span> aria-setsize=<span class="str">&quot;3&quot;</span>&gt;</span>
+&lt;li role=&quot;treeitem&quot; aria-level=&quot;1&quot; aria-posinset=&quot;3&quot; aria-expanded=&quot;true&quot; aria-setsize=&quot;3&quot;&gt;
   Vegetables
-  <span class="tag">&lt;ul role=<span class="str">&quot;group&quot;</span>&gt;</span>
-    <span class="tag">&lt;li role=<span class="str">&quot;treeitem&quot;</span> aria-level=<span class="str">&quot;2&quot;</span> aria-posinset=<span class="str">&quot;6&quot;</span> aria-setsize=<span class="str">&quot;8&quot;</span>&gt;</span>Carrot<span class="tag">&lt;/li&gt;</span>
-    <span class="tag">&lt;li role=<span class="str">&quot;treeitem&quot;</span> aria-level=<span class="str">&quot;2&quot;</span> aria-posinset=<span class="str">&quot;7&quot;</span> aria-setsize=<span class="str">&quot;8&quot;</span>&gt;</span>Tomato<span class="tag">&lt;/li&gt;</span>
-    <span class="tag">&lt;li role=<span class="str">&quot;treeitem&quot;</span> aria-level=<span class="str">&quot;2&quot;</span> aria-posinset=<span class="str">&quot;8&quot;</span> aria-setsize=<span class="str">&quot;8&quot;</span>&gt;</span>Lettuce<span class="tag">&lt;/li&gt;</span>
-  <span class="tag">&lt;/ul&gt;</span>
-<span class="tag">&lt;li&gt;</span>
+  &lt;ul role=&quot;group&quot;&gt;
+    &lt;li role=&quot;treeitem&quot; aria-level=&quot;2&quot; aria-posinset=&quot;6&quot; aria-setsize=&quot;8&quot;&gt;Carrot&lt;/li&gt;
+    &lt;li role=&quot;treeitem&quot; aria-level=&quot;2&quot; aria-posinset=&quot;7&quot; aria-setsize=&quot;8&quot;&gt;Tomato&lt;/li&gt;
+    &lt;li role=&quot;treeitem&quot; aria-level=&quot;2&quot; aria-posinset=&quot;8&quot; aria-setsize=&quot;8&quot;&gt;Lettuce&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;li&gt;
 ...</pre>
 			</li>
 			<li>
@@ -992,7 +992,7 @@
     <li>
       <p><strong>Pick the widget type (role) from the WAI-ARIA taxonomy</strong></p>
       <p>WAI-ARIA provides a <a href="../aria/roles.html">role taxonomy</a> ([[WAI-ARIA]], Section 3.4) constituting  the most common UI component types. Choose the role type from the provided table. If your desire was to create a toolbar set the role to toolbar:</p>
-      <pre class="example highlight"><span class="tag">&lt;div role=<span class="str">"toolbar"</span>&gt;</span></pre>
+      <pre class="example highlight">&lt;div role="toolbar"&gt;</pre>
     </li>
     <li><strong>From the role, get the list of supported states and properties</strong>
       <p> Once you have chosen the role of your widget, consult the [[WAI-ARIA]] for an in-depth definition for the role to find the supported states, properties, and other attributes. For example, the <a class="role-reference" href="../aria/#toolbar">toolbar</a> role definition includes:</p>
@@ -1011,19 +1011,19 @@
         <dd>These are states and properties which apply to all host language components regardless of whether a role is set or not. You may use these as well. </dd>
       </dl>
       <p>Once you have chosen the states and properties that apply to your widget you must set those properties you will use to set their initial values. Note: You do not need to use all the states and properties available for your role. In our case we shall use:</p>
-      <pre class="example highlight"><span class="tag">&lt;div role=<span class="str">"toolbar"</span> id=<span class="str">"customToolbar"</span> tabindex=<span class="str">"0"</span> aria-activedescendant=<span class="str">"button1"</span>
-      onkeydown=<span class="str">"return optionKeyEvent(event);"</span>
-      onkeypress=<span class="str">"return optionKeyEvent(event);"</span>
-      onblur=<span class="str">"hideFocus();"</span>
-      onfocus=<span class="str">"showFocus();"</span>
-      &gt;</span> 
-      <span class="tag">&lt;img src=<span class="str">"img/btn1.gif"</span> title=<span class="str">"Home"</span> alt=<span class="str">"Home"</span> role=<span class="str">"button"</span> id=<span class="str">&quot;button1&quot;</span>
-           onclick=<span class="str">"updateText('Home was invoked');"</span>&gt;</span>
-      <span class="tag">&lt;img src=<span class="str">"img/btn2.gif"</span> title=<span class="str">"Refresh"</span> alt=<span class="str">"Refresh"</span> role=<span class="str">"button"</span> id=<span class="str">&quot;button2&quot;</span>
-           onclick=<span class="str">"updateText('Refresh was invoked');"</span>&gt;</span>
-      <span class="tag">&lt;img src=<span class="str">"img/btn3.gif"</span> title=<span class="str">"Help"</span> alt=<span class="str">"Help"</span> role=<span class="str">"button"</span> id=<span class="str">&quot;button3&quot;</span>
-           onclick=<span class="str">"updateText('Help was invoked');"</span>&gt;</span> 
-<span class="tag">&lt;/div&gt;</span>  
+      <pre class="example highlight">&lt;div role="toolbar" id="customToolbar" tabindex="0" aria-activedescendant="button1"
+      onkeydown="return optionKeyEvent(event);"
+      onkeypress="return optionKeyEvent(event);"
+      onblur="hideFocus();"
+      onfocus="showFocus();"
+      &gt; 
+      &lt;img src="img/btn1.gif" title="Home" alt="Home" role="button" id=&quot;button1&quot;
+           onclick="updateText('Home was invoked');"&gt;
+      &lt;img src="img/btn2.gif" title="Refresh" alt="Refresh" role="button" id=&quot;button2&quot;
+           onclick="updateText('Refresh was invoked');"&gt;
+      &lt;img src="img/btn3.gif" title="Help" alt="Help" role="button" id=&quot;button3&quot;
+           onclick="updateText('Help was invoked');"&gt; 
+&lt;/div&gt;  
 </pre>
       <p>By setting tabindex=0 on the toolbar, the toolbar will receive focus in the document order. It is necessary then to use script and the aria-activedescendant property to manage virtual focus among the buttons. The details are given in step five, below.</p>
       <div class="note">
@@ -1033,19 +1033,19 @@
     </li>
     <li><strong>Establish the widget structure in the markup (parent/child)</strong>
       <p>Assistive technologies are very dependent on the structure of widgets as well as general document structure. Structure provides context to the user. A toolbar is a collection of common functions made available to the user. Therefore, all functions you would like in the toolbar must  be contained within it. This can be determined by using the [[dom]] tree structure created by the browser when parsing the host language. By using the parent child relationship of the DOM, an assistive technology can determine all the related toolbar widgets associated with the toolbar. The toolbar widgets would be DOM children of the "toolbar" container. For our purposes we will define three image buttons for cut, copy, and paste.</p>
-      <pre class="example highlight"><span class="tag">&lt;div role=<span class="str">"toolbar"</span> tabindex=<span class="str">"0"</span> aria-activedescendant=<span class="str">"button1"</span>&gt;</span>
-  <span class="tag">&lt;img src=<span class="str">&quot;buttoncut.png&quot;</span> alt=<span class="str">&quot;cut&quot;</span> id=<span class="str">&quot;button1&quot;</span>&gt;</span>
-  <span class="tag">&lt;img src=<span class="str">&quot;buttoncopy.png&quot;</span> alt=<span class="str">&quot;copy&quot;</span> id=<span class="str">&quot;button2&quot;</span>&gt;</span>
-  <span class="tag">&lt;img src=<span class="str">&quot;buttonpaste.png&quot;</span> alt=<span class="str">&quot;paste&quot;</span> id=<span class="str">&quot;button3&quot;</span>&gt;</span>
-<span class="tag">&lt;/div&gt;</span>  </pre>
+      <pre class="example highlight">&lt;div role="toolbar" tabindex="0" aria-activedescendant="button1"&gt;
+  &lt;img src=&quot;buttoncut.png&quot; alt=&quot;cut&quot; id=&quot;button1&quot;&gt;
+  &lt;img src=&quot;buttoncopy.png&quot; alt=&quot;copy&quot; id=&quot;button2&quot;&gt;
+  &lt;img src=&quot;buttonpaste.png&quot; alt=&quot;paste&quot; id=&quot;button3&quot;&gt;
+&lt;/div&gt;  </pre>
     </li>
     <li><strong>Repeat steps 1-3 for the children of the parent</strong>
       <p>We now need to assign the roles and states for each of the children. However, we shall save the detailed navigation for step 5.</p>
-      <pre class="example highlight"><span class="tag">&lt;div role=<span class="str">"toolbar"</span> tabindex=<span class="str">"0"</span> aria-activedescendant=<span class="str">"button1"</span>&gt;</span>
-  <span class="tag">&lt;img src=<span class="str">"buttoncut.png"</span> alt=<span class="str">"cut"</span> role=<span class="str">"button"</span> id=<span class="str">"button1"</span>&gt;</span>
-  <span class="tag">&lt;img src=<span class="str">"buttoncopy.png"</span> alt=<span class="str">"copy"</span> role=<span class="str">"button"</span> id=<span class="str">"button2"</span>&gt;</span>
-  <span class="tag">&lt;img src=<span class="str">"buttonpaste.png"</span> alt=<span class="str">"paste"</span> role=<span class="str">"button"</span> id=<span class="str">"button3"</span>&gt;</span>
-<span class="tag">&lt;/div&gt;</span>
+      <pre class="example highlight">&lt;div role="toolbar" tabindex="0" aria-activedescendant="button1"&gt;
+  &lt;img src="buttoncut.png" alt="cut" role="button" id="button1"&gt;
+  &lt;img src="buttoncopy.png" alt="copy" role="button" id="button2"&gt;
+  &lt;img src="buttonpaste.png" alt="paste" role="button" id="button3"&gt;
+&lt;/div&gt;
 </pre>
       <p>The process of setting roles and states may be a recursive procedure if the children themselves have children, such as in the case of an expandable/collapsible <a class="role-reference" href="../aria/#tree">tree</a> widget.</p>
     </li>
@@ -1054,8 +1054,8 @@
     	<p>It is very important that  your widget be keyboard accessible. In fact, there must be a keyboard equivalent for every mouse operation. Where possible you should refer to the <a href="#aria_ex">WAI-ARIA examples</a> in this guide for tips on how to implement keyboard navigation for your widget. If you find that an example is not provided, you should follow standard keyboard bindings for UI components such as those used for the <!--<a href="http://www.dinf.ne.jp/doc/english/Us_Eu/conf/csun_98/csun98_051_jfckeys95.htm">Java Foundation Classes for Windows 95/NT</a>-->Java Foundation Classes for Windows 95/NT.</p>
       <p class="ednote">Commented out link to conference paper, which a) was broken, and b) we should have more canonical references than conference papers for things like this.</p>
       <p>For our toolbar, we have chosen to have the toolbar manage the focus for its children and through the use of the <a class="property-reference" href="../aria/#activedescendant">aria-activedescendant</a> property. We have also chosen to have the toolbar receive focus based on the tab order by using <code>tabindex</code>. In order to use <a class="property-reference" href="../aria/#activedescendant">aria-activedescendant</a>, each focusable descendant must have an assigned ID. </p>
-      <pre class="example highlight"> <span class="tag">&lt;head&gt;</span>
- <span class="tag">&lt;script&gt;</span>
+      <pre class="example highlight"> &lt;head&gt;
+ &lt;script&gt;
     &hellip; 
     function optionKeyEvent(event)
       {
@@ -1093,15 +1093,15 @@
         &hellip;
       }
     }  
-<span class="tag">&lt;/script&gt;</span>
+&lt;/script&gt;
 
-<span class="tag">&lt;div role=<span class="str">"toolbar"</span> tabindex=<span class="str">"0"</span> aria-activedescendant=<span class="str">"button1"</span> id=<span class="str">"tb1"</span> 
-  onkeydown=<span class="str">"return optionKeyEvent(event);"</span>
-  onkeypress=<span class="str">"return optionKeyEvent(event);"</span>&gt;</span>
-  <span class="tag">&lt;img src=<span class="str">"buttoncut.png"</span> alt=<span class="str">"cut"</span> role=<span class="str">"button"</span> id=<span class="str">"button1"</span>&gt;</span>
-  <span class="tag">&lt;img src=<span class="str">"buttoncopy.png"</span> alt=<span class="str">"copy"</span> role=<span class="str">"button"</span> id=<span class="str">"button2"</span>&gt;</span>
-  <span class="tag">&lt;img src=<span class="str">"buttonpaste.png"</span> alt=<span class="str">"paste"</span> role=<span class="str">"button"</span> id=<span class="str">"button3"</span>&gt;</span>
-<span class="tag">&lt;/div&gt;</span></pre>
+&lt;div role="toolbar" tabindex="0" aria-activedescendant="button1" id="tb1" 
+  onkeydown="return optionKeyEvent(event);"
+  onkeypress="return optionKeyEvent(event);"&gt;
+  &lt;img src="buttoncut.png" alt="cut" role="button" id="button1"&gt;
+  &lt;img src="buttoncopy.png" alt="copy" role="button" id="button2"&gt;
+  &lt;img src="buttonpaste.png" alt="paste" role="button" id="button3"&gt;
+&lt;/div&gt;</pre>
       <p>The details of implementing keyboard navigation are described in <a href="#keyboard">Keyboard and Structural Navigation</a> section of this document.</p>
       <p class="note">You must also show the visual focus for each element that has focus. </p>
     </li>
@@ -1171,18 +1171,18 @@
 
 &hellip;
 
-<span class="tag">&lt;div role=<span class="str">"button"</span> aria-haspopup=<span class="str">"true"</span> aria-owns=<span class="str">"mypopupmenu"</span>&gt;</span>
-<span class="tag">&lt;div role=<span class="str">"menu"</span> aria-hidden=<span class="str">"true"</span> id=<span class="str">"mypopupmenu"</span>&gt;</span>&hellip;<span class="tag">&lt;/div&gt;</span></pre>
+&lt;div role="button" aria-haspopup="true" aria-owns="mypopupmenu"&gt;
+&lt;div role="menu" aria-hidden="true" id="mypopupmenu"&gt;&hellip;&lt;/div&gt;</pre>
     </li>
     <li><strong>Support basic accessibility, such as alternative text on images</strong>
       <p>When an image is used to represent information within a component, such as  image buttons, you need to set the alternative text on those images. This is then mapped by the user agent to the accessible name in the platform accessibility API. Using our example:</p>
-      <pre class="example highlight"><span class="tag">&lt;div role=<span class="str">"toolbar"</span> tabindex=<span class="str">"0"</span> aria-activedescendant=<span class="str">"button1"</span> id=<span class="str">"tb1"</span> 
-     onkeydown=<span class="str">"return optionKeyEvent(event);"</span>      
-     onkeypress=<span class="str">"return optionKeyEvent(event);"</span>&gt;</span>    
-   <span class="tag">&lt;img src=<span class="str">"buttoncut"</span> role=<span class="str">"button"</span> id=<span class="str">"button1"</span> alt=<span class="str">"cut"</span>&gt;</span>
-   <span class="tag">&lt;img src=<span class="str">"buttoncopy"</span> role=<span class="str">"button"</span> id=<span class="str">"button2"</span> alt=<span class="str">"copy"</span>&gt;</span>
-   <span class="tag">&lt;img src=<span class="str">"buttonpaste"</span> role=<span class="str">"button"</span> id=<span class="str">"button3"</span> alt=<span class="str">"paste"</span>&gt;</span>      
-<span class="tag">&lt;/div&gt;</span></pre>
+      <pre class="example highlight">&lt;div role="toolbar" tabindex="0" aria-activedescendant="button1" id="tb1" 
+     onkeydown="return optionKeyEvent(event);"      
+     onkeypress="return optionKeyEvent(event);"&gt;    
+   &lt;img src="buttoncut" role="button" id="button1" alt="cut"&gt;
+   &lt;img src="buttoncopy" role="button" id="button2" alt="copy"&gt;
+   &lt;img src="buttonpaste" role="button" id="button3" alt="paste"&gt;      
+&lt;/div&gt;</pre>
     </li>
     <li><strong>Establish WAI-ARIA relationships between this widget and others</strong>
       <p>Once you have made the basic widget accessible you may then need to establish its relationship to other widgets. Examples of this are <a class="property-reference" href="../aria/#labelledby">aria-labelledby</a>, <a class="property-reference" href="../aria/#controls">aria-controls</a>, <a class="property-reference" href="../aria/#aria-describedby">aria-describedby</a> and <a class="property-reference" href="../aria/#flowto">aria-flowto</a>. The details of using these relationships are described in the <a href="#relations">Relationships</a> section of this document. </p>
@@ -1343,9 +1343,9 @@ the assistive technology, resulting in undesirable results. Should an alternativ
   of the week, then you should accompany the aria-valuenow with an appropriate
   aria-valuetext equivalent such as in this example: </p>
 <pre>
-<span class="tag">&lt;div role=<span class="str">&quot;slider&quot;</span> aria-valuenow=<span class="str">&quot;1&quot;</span> 
-	aria-valuemin=<span class="str">&quot;1&quot;</span> aria-valuemax=<span class="str">&quot;7&quot;</span>
-	aria-valuetext=<span class="str">&quot;Sunday&quot;</span>&gt;</span>
+&lt;div role=&quot;slider&quot; aria-valuenow=&quot;1&quot; 
+	aria-valuemin=&quot;1&quot; aria-valuemax=&quot;7&quot;
+	aria-valuetext=&quot;Sunday&quot;&gt;
 </pre>
 <p>
 Here the values 1 through 7 represent the days of the week and
@@ -1421,11 +1421,11 @@ Here the values 1 through 7 represent the days of the week and
         </li>
         <li>
         	<p><em>Prevent used key events from performing browser functions</em> - If a key such as an arrow key is used, prevent the browser from using the key to do something (such as scrolling) by using code like the following:</p>
-        	<pre class="example highlight"><span class="tag">&lt;span tabindex=<span class="str">&quot;-1&quot;</span> onkeypress=<span class="str">&quot;return  handleKeyPress();&quot;</span>&gt;</span> </pre>
+        	<pre class="example highlight">&lt;span tabindex=&quot;-1&quot; onkeypress=&quot;return  handleKeyPress();&quot;&gt; </pre>
         	<p>If handleKeyDown() returns false, the event will be consumed, preventing the browser from performing any action based on the keystroke.  In addition to the return value the browser must call the event methods that will prevent the default action, for IE this is setting the event property &quot;returnValue=false&quot;, and for other browsers supporting the W3C event model this means calling the &quot;preventDefault&quot; method of the event object.</p>
         	</li>
         <li>
-        	<pre class="example highlight"><span class="tag">&lt;span tabindex=<span class="str">"-1"</span> onkeydown=<span class="str">"return handleKeyDown();"</span>&gt;</span>   </pre>
+        	<pre class="example highlight">&lt;span tabindex="-1" onkeydown="return handleKeyDown();"&gt;   </pre>
         	<p>If handleKeyDown() returns false, the event will be consumed, preventing the browser from performing any action based on the keystroke. </p>
         	</li>
         <li>
@@ -1481,35 +1481,35 @@ Here the values 1 through 7 represent the days of the week and
         <h3> Supporting Tooltips with the Keyboard</h3>
         <p>A <a class="role-reference" href="../aria/#tooltip">tooltip</a> is a  popup messages typically triggered by moving a mouse over a control or widget causing a small popup window to appear with additional information about the control. To provide simple text tooltips, the <a href="http://www.w3.org/TR/1999/REC-html401-19991224/struct/global.html#h-7.4.3">HTML title attribute</a> should more than suffice because the user agent will render it for tooltips. When creating a <a class="role-reference" href="../aria/#tooltip">tooltip</a>, it is essential that  the user be able to activate it using the keyboard. When a form control or widget receives keyboard focus, the <a class="role-reference" href="../aria/#tooltip">tooltip</a> must display. When the form control or widget loses focus, the tooltip must disappear. Browsers do not currently support this functionality. </p>
         <p>The following code snippet from the <a href="http://test.cita.uiuc.edu/aria/tooltip/tooltip1.php" title="iCITA"><abbr title="Illinois Center for Information Technology Accessibility">iCITA</abbr></a> site shows the use of a <span class="example highlight">onfocus=&quot;tooltipShow();&quot;</span> function to display the tooltip when focus is placed on an element. </p>
-        <pre class="example higlight" id="line1"><span class="tag">&lt;html lang=<span class="str">"en-us"</span>"&gt;</span>  
-<span class="tag">&lt;head&gt;</span>    
-   <span class="tag">&lt;title&gt;</span>inline: Tooltip Example 1<span class="tag">&lt;/title&gt;</span>      
-   <span class="tag">&lt;link rel=<span class="str">"stylesheet"</span> href=<span class="str">"css/tooltip1_inline.css"</span>  type=<span class="str">"text/css"</span>&gt;</span>    
-   <span class="tag">&lt;script type=<span class="str">"text/javascript"</span> src=<span class="str">"js/tooltip1_inline.js"</span>&gt;</span><span class="tag">&lt;/script&gt;</span>    
-   <span class="tag">&lt;script type=<span class="str">"text/javascript"</span> src=<span class="str">"../js/widgets_inline.js"</span>&gt;</span><span class="tag">&lt;/script&gt;</span>
-   <span class="tag">&lt;script type=<span class="str">"text/javascript"</span> src=<span class="str">"../js/globals.js"</span>&gt;</span><span class="tag">&lt;/script&gt;</span>          
-   <span class="tag">&lt;link rel=<span class="str">"icon"</span> href=<span class="str">"http://www.cites.uiuc.edu/favicon.ico"</span> type=<span class="str">"image/x-icon"</span>&gt;</span>    
-   <span class="tag">&lt;link rel=<span class="str">"shortcut icon"</span> href=<span class="str">"http://www.cites.uiuc.edu/favicon.ico"</span> type=<span class="str">"image/x-icon"</span>&gt;</span> 
-<span class="tag">&lt;/head&gt;</span>
+        <pre class="example higlight" id="line1">&lt;html lang="en-us""&gt;  
+&lt;head&gt;    
+   &lt;title&gt;inline: Tooltip Example 1&lt;/title&gt;      
+   &lt;link rel="stylesheet" href="css/tooltip1_inline.css"  type="text/css"&gt;    
+   &lt;script type="text/javascript" src="js/tooltip1_inline.js"&gt;&lt;/script&gt;    
+   &lt;script type="text/javascript" src="../js/widgets_inline.js"&gt;&lt;/script&gt;
+   &lt;script type="text/javascript" src="../js/globals.js"&gt;&lt;/script&gt;          
+   &lt;link rel="icon" href="http://www.cites.uiuc.edu/favicon.ico" type="image/x-icon"&gt;    
+   &lt;link rel="shortcut icon" href="http://www.cites.uiuc.edu/favicon.ico" type="image/x-icon"&gt; 
+&lt;/head&gt;
    &hellip;   
 
-   <span class="tag">&lt;body onload=<span class="str">"initApp()"</span>&gt;</span>
+   &lt;body onload="initApp()"&gt;
 
-   <span class="tag">&lt;div id=<span class="str">"container"</span>&gt;</span>
+   &lt;div id="container"&gt;
 
-   <span class="tag">&lt;h1&gt;</span>Tooltip Example 1<span class="tag">&lt;/h1&gt;</span>
-     <span class="tag">&lt;h2&gt;</span>Create Account<span class="tag">&lt;/h2&gt;</span>
-   <span class="tag">&lt;div class=<span class="str">"text"</span>&gt;</span>
-   <span class="tag">&lt;label for=<span class="str">"first"</span>&gt;</span>First Name:<span class="tag">&lt;/label&gt;</span> 
+   &lt;h1&gt;Tooltip Example 1&lt;/h1&gt;
+     &lt;h2&gt;Create Account&lt;/h2&gt;
+   &lt;div class="text"&gt;
+   &lt;label for="first"&gt;First Name:&lt;/label&gt; 
 
-   <span class="tag">&lt;input type=<span class="str">"text"</span>  id=<span class="str">"first"</span> name=<span class="str">"first"</span> size=<span class="str">"20"</span> 
-          onmouseover=<span class="str">"tooltipShow(event, this, 'tp1');"</span>     
-          onfocus=<span class="str">&quot;tooltipShow(event, this,  'tp1');&quot;</span> 
-          aria-describedby=<span class="str">"tp1"</span>  		 
-          aria-required=<span class="str">"false"</span>/&gt;</span>
+   &lt;input type="text"  id="first" name="first" size="20" 
+          onmouseover="tooltipShow(event, this, 'tp1');"     
+          onfocus=&quot;tooltipShow(event, this,  'tp1');&quot; 
+          aria-describedby="tp1"  		 
+          aria-required="false"/&gt;
 
-   <span class="tag">&lt;div id=<span class="str">"tp1"</span> role=<span class="str">"tooltip"</span> aria-hidden=<span class="str">"true"</span>&gt;</span>Your first name is optional. <span class="tag">&lt;/div&gt;</span>    
-   <span class="tag">&lt;/div&gt;</span>
+   &lt;div id="tp1" role="tooltip" aria-hidden="true"&gt;Your first name is optional. &lt;/div&gt;    
+   &lt;/div&gt;
   &hellip;
             </pre>
       </section>
@@ -1582,19 +1582,19 @@ Represents a region of the page representing a unique software unit executing a 
               <dd>The search tool of a Web document. </dd>
             </dl>
             <p>To set a landmark in your page: </p>
-            <pre class="example higlight"><span class="tag">&lt;div role=<span class="str">"navigation"</span> title=<span class="str">"Table of Contents"</span>&gt;</span> &hellip; <span class="tag">&lt;/div&gt;</span> 
-<span class="tag">&lt;div role=<span class="str">"main"</span> title=<span class="str">"Game Statistics"</span>&gt;</span> &hellip; <span class="tag">&lt;/div&gt;</span></pre>
+            <pre class="example higlight">&lt;div role="navigation" title="Table of Contents"&gt; &hellip; &lt;/div&gt; 
+&lt;div role="main" title="Game Statistics"&gt; &hellip; &lt;/div&gt;</pre>
           </li>
           <li id="kbd_layout_static"><strong>For application landmarks with static prose</strong>
        <p>
-       If you have a regional landmark of type application and static descriptive text is available, then on the application landmark, include an aria-describedby reference to associate the application and the static text as shown here:</p><pre><span class="tag">&lt;div role=<span class="str">"applicaton"</span> aria-labelledby=<span class="str">"calendar"</span> aria-describedby=<span class="str">"info"</span>&gt;</span>
-<span class="tag">&lt;h1 id=<span class="str">"calendar"</span>&gt;</span>Calendar<span class="tag">&lt;h1&gt;</span>
-<span class="tag">&lt;p id=<span class="str">"info"</span>&gt;</span>
+       If you have a regional landmark of type application and static descriptive text is available, then on the application landmark, include an aria-describedby reference to associate the application and the static text as shown here:</p><pre>&lt;div role="applicaton" aria-labelledby="calendar" aria-describedby="info"&gt;
+&lt;h1 id="calendar"&gt;Calendar&lt;h1&gt;
+&lt;p id="info"&gt;
 This calendar shows the game schedule for the Boston Red Sox.
-<span class="tag">&lt;/p&gt;</span>
-<span class="tag">&lt;div role=<span class="str">"grid"</span>&gt;</span>
+&lt;/p&gt;
+&lt;div role="grid"&gt;
 &hellip;
-<span class="tag">&lt;/div&gt;</span></pre>
+&lt;/div&gt;</pre>
        </li>
           <li id="kbd_layout_landmark_rebel"><strong>For  landmarks unsuited to specialized region WAI-ARIA roles</strong>
             <p>You can create custom regional landmarks by using a generic <a class="role-reference" href="../aria/#region">region</a>. While it is not essential to label these specialized regions with a header, you should provide a title to ensure that the region name is accessible to all users, just as you would the <a href="#kbd_layout_landmark_XHTML">standard regional landmarks</a>. See <a href="#kbd_layout_nesting_vs_level">Header levels versus Nesting levels</a> for directions on how to label the region.</p>
@@ -1652,16 +1652,16 @@ This calendar shows the game schedule for the Boston Red Sox.
           <h5> Header Levels Versus Nesting Levels </h5>
           <p>The <a class="role-reference" href="../aria/#heading">heading</a> role value signifies a heading for a section of the document instance. Use of the heading role indicates that a specific object serves as a header. The <a class="role-reference" href="../aria/#region">region</a> of the document to which the heading pertains to should be marked with the <a class="property-reference" href="../aria/#labelledby">aria-labelledby</a> property containing the value of the id for the header. If you have a heading and there is no element containing the content that it heads, wrap the content in a &lt;div&gt; bearing this <a class="property-reference" href="../aria/#labelledby">aria-labelledby</a> attribute. If headings are organized into a logical outline, the <a class="property-reference" href="../aria/#level">aria-level</a> property can be used to indicate the nesting level. Here is an example with and without ARIA. Note that the preferred way is using native semantics without ARIA, but the approach with ARIA is shown first to demonstrate use of the heading role:</p>
           <pre class="example highlight">Using ARIA:
-<span class="tag">&lt;div role=<span class="str">"main"</span> aria-labelledby=<span class="str">"page_title"</span>&gt;</span>
-  <span class="tag">&lt;p id=<span class="str">"page_title"</span> role=<span class="str">"heading"</span> aria-level=<span class="str">&quot;1&quot;</span>&gt;</span>Top News Stories<span class="tag">&lt;/p&gt;</span>
+&lt;div role="main" aria-labelledby="page_title"&gt;
+  &lt;p id="page_title" role="heading" aria-level=&quot;1&quot;&gt;Top News Stories&lt;/p&gt;
    … main page contents here …
-<span class="tag">&lt;/div&gt;</span>
+&lt;/div&gt;
 
 Using native markup:
-<span class="tag">&lt;div role=<span class="str">"main"</span> aria-labelledby=<span class="str">"page_title"</span>&gt;</span>
-  <span class="tag">&lt;h1 id=<span class="str">"page_title"</span>&gt;</span>Top News Stories<span class="tag">&lt;/h1&gt;</span>
+&lt;div role="main" aria-labelledby="page_title"&gt;
+  &lt;h1 id="page_title"&gt;Top News Stories&lt;/h1&gt;
    … main page contents here …
-<span class="tag">&lt;/div&gt;</span>
+&lt;/div&gt;
 </pre>
         </section>
           <section id="kbd_layout_nesting_owns">
@@ -1777,17 +1777,17 @@ Using native markup:
           <p>
           The <a href="../aria/#aria-describedby" class="property-reference">aria-describedby</a> property allows for the text of <a class="termref" href="../aria/terms#def_hidden">hidden</a> elements to be used for accessible descriptions.  Some screen reader vendors have used non-standard attributes to provide hidden help text for <code>form</code> elements.  In order to standardize this feature, hidden text is exposed in the description property of <a class="termref" href="../aria/terms#def_accessibility_api">Accessibility API</a> objects when referenced by <a href="../aria/#aria-describedby" class="property-reference">aria-describedby</a>.
           </p>
-          <pre class="example highlight"><span class="tag">&lt;img src=<span class="str">"foo"</span> alt=<span class="str">"abbreviated name"</span> aria-describedby=<span class="str">"prose1"</span>&gt;</span>
+          <pre class="example highlight">&lt;img src="foo" alt="abbreviated name" aria-describedby="prose1"&gt;
 
-<span class="tag">&lt;div id=<span class="str">"prose1"</span>&gt;</span>
+&lt;div id="prose1"&gt;
    The prose in this div describes the image foo in detail.
-<span class="tag">&lt;/div&gt;</span></pre>
+&lt;/div&gt;</pre>
           <p> This is the preferred vehicle for providing long descriptions for elements in your document.</p>
           <p> When the author does not desire the entire descriptive text to be located on the main page, aria-describedby can also be used to point to a link to another page. </p>
-          <pre class="example highlight"><span class="tag">&lt;div id=<span class="str">"figuretitle"</span>&gt;</span>Figure 1-1: Entity Relationship Diagram showing EMP and DEPT<span class="tag">&lt;/div&gt;</span>
-  <span class="tag">&lt;img src=<span class="str">"foo"</span> aria-labelledby=<span class="str">"figuretitle"</span> aria-describedby=<span class="str">"link1"</span>&gt;</span>
-  <span class="tag">&lt;a href=<span class="str">"descriptionLocation.html"</span> id=<span class="str">"link1"</span>&gt;</span>Description of Figure 1-1: Entity Relationship Diagram showing EMP and DEPT<span class="tag">&lt;/a&gt;</span>
-<span class="tag">&lt;/div&gt;</span></pre>
+          <pre class="example highlight">&lt;div id="figuretitle"&gt;Figure 1-1: Entity Relationship Diagram showing EMP and DEPT&lt;/div&gt;
+  &lt;img src="foo" aria-labelledby="figuretitle" aria-describedby="link1"&gt;
+  &lt;a href="descriptionLocation.html" id="link1"&gt;Description of Figure 1-1: Entity Relationship Diagram showing EMP and DEPT&lt;/a&gt;
+&lt;/div&gt;</pre>
         </section>
         <p>It is not good practice to use the above pattern when the describing element&mdash;the <code>&lt;a&gt;</code> tag with <code>@id='link1'</code>&mdash;is <a class="termref" href="../aria/terms#def_hidden">hidden</a>, since there is no way for a user to navigate to and activate the link.  Use the technique only when the description is not hidden. </p>
       </section>
@@ -1940,10 +1940,10 @@ helper.stopEvent(evt); //stop the event if not a tab keypress
       <h4>Labeling</h4>
      When using one element to label another use the  <a href="../aria/#aria-labelledby" class="property-reference">aria-labelledby</a> by attribute. A label should provide the user with the essence of what the object does. For example, you could have a dialog box erected from HTML <code>&lt;div&gt;</code> and you need to assocate a label for the dialog. With a WAI-ARIA role of dialog, you can indicate its widget type and define a label using an HTML header and then associate that label with the dialog using the <a href="../aria/#aria-labelledby" class="property-reference">aria-labelledby</a> relationship.
      <pre>
-	<span class="tag">&lt;div role=<span class="str">"dialog"</span> aria-labelledby=<span class="str">"dialogheader"</span>&gt;</span>
-	<span class="tag">&lt;h2 id=<span class="str">"dialogheader"</span>&gt;Choose a File&lt;/h2&gt;</span>
+	&lt;div role="dialog" aria-labelledby="dialogheader"&gt;
+	&lt;h2 id="dialogheader"&gt;Choose a File&lt;/h2&gt;
 	&hellip; Dialog contents
-	<span class="tag">&lt;/div&gt;</span>
+	&lt;/div&gt;
 	</pre>
       <p>The section doing the labeling might be referenced by multiple  widgets or objects as these need only reference the same id, so contextual description may not always be viable. The labelledby attribute can have multiple ids specified as a space separated list much like applying multiple classes to a single DOM object.</p>
       <p>The <a href="../aria/#aria-labelledby" class="property-reference">aria-labelledby</a> property can be used to label all visual objects, however it should be noted that (X)HTML provides a @<code>for</code> attribute on the <code><a href="http://www.w3.org/TR/1999/REC-html401-19991224/interact/forms.html#h-17.9">label</a></code> element which is used to label form controls. Use this attribute where possible and valid. Because the aria-labelledby attribute accepts multiple IDREFs, it is recommended that authors use aria-labelledby for labeling elements that require more than one label string.</p>
@@ -1955,11 +1955,11 @@ helper.stopEvent(evt); //stop the event if not a tab keypress
         <section id="Descriptions_describedby">
       	<h4>Using aria-describedby</h4>
       	<p>When one element  describes another, use the <a href="../aria/#aria-describedby" class="property-reference">aria-describedby</a> attribute. An <a href="../aria/#aria-describedby" class="property-reference">aria-describedby</a> section provides further information about a given object or widget,  which may not be intuitively obvious from the context, content or other  attributes. For example, a fake window is a common widget used in Web  applications and is often constructed using a div absolute  positioned in a layer above other content. To simulate common window  behavior look and feel there is often an X box in the corner which,  when activated, dismisses the window widget. One common way to make  this X box is to simply make a link whose content is an X. This doesn't  give a non-visual user much to go on and belies the real purpose of the  X link. To help we add more descriptive text stored elsewhere in the  page like this: </p>
-      	<pre class="example highlight"><span class="tag">&lt;button aria-label=<span class="str">"Close"</span> aria-describedby=<span class="str">"descriptionClose"</span> 
-    onclick=<span class="str">"myDialog.close();"</span>&gt;</span>X<span class="tag">&lt;/button&gt;</span></pre>
+      	<pre class="example highlight">&lt;button aria-label="Close" aria-describedby="descriptionClose" 
+    onclick="myDialog.close();"&gt;X&lt;/button&gt;</pre>
       	and then elsewhere in the HTML
-      	<pre class="example highlight"><span class="tag">&lt;div id=<span class="str">"descriptionClose"</span>&gt;</span>Closing this window will discard any information entered and 
-return you back to the main page<span class="tag">&lt;/div&gt;</span></pre>
+      	<pre class="example highlight">&lt;div id="descriptionClose"&gt;Closing this window will discard any information entered and 
+return you back to the main page&lt;/div&gt;</pre>
       	Like labelledby, describedby can accept multiple ids to point to other regions of the page using a space separated list. It is also limited to ids for defining these sets. In our contrived example we would also want a good labelledby  section to fully explain what the window does and how closing will  effect the task being worked on. If an object or widget lacks describedby the user agent or AT may try to extract information from the label or th tags, if present. The label and th tags have limited use in that they can only be applied to forms or tables, respectively.
       	</section>
         <section id="Descriptions_tooltip">
@@ -1967,37 +1967,37 @@ return you back to the main page<span class="tag">&lt;/div&gt;</span></pre>
       	<p>WAI-ARIA also defines the <a class="role-reference" href="../aria/#tooltip">tooltip</a> role to which <a class="property-reference" href="../aria/#aria-describedby">aria-describedby</a> may reference an author defined tooltip. The assistive  technology  can tell from the type of object describing the document  element what  the purpose of that element is. For example, a screen  reader could announce the tooltip without the user having to wave the mouse over the element by following the describedby relationship to a  document area with a <a class="role-reference" href="../aria/#tooltip">tooltip</a> role. The <a class="property-reference" href="../aria/#aria-describedby">aria-describedby</a> property is also useful for describing <a class="role-reference" href="../aria/#group">group</a>s. </p>
       	<p>Here is a code snippet showing a set of the tooltip: </p>
       	<pre class="example highlight">&hellip;    
-  <span class="tag">&lt;div class=<span class="str">"text"</span>&gt;</span>
-    <span class="tag">&lt;label for=<span class="str">"first"</span>&gt;</span>First Name:<span class="tag">&lt;/label&gt;</span>
-      <span class="tag">&lt;input type=<span class="str">"text"</span>               
-          id=<span class="str">"first"</span>           
-          name=<span class="str">"first"</span>            
-          size=<span class="str">"20"</span>           
-          onfocus=<span class="str">"tooltipShow(tooltip1);"</span>          
-          onblur=<span class="str">"tooltipHide(tooltip1);"</span>
-          onmouseover=<span class="str">"tooltipShow(tooltip1);"</span>           
-          onmouseout=<span class="str">"tooltipHide(tooltip1);"</span>           
-          aria-describedby=<span class="str">"tp1"</span>
-      /&gt;</span>
-  <span class="tag">&lt;div id=<span class="str">"tp1"</span> class=<span class="str">"tooltip"</span> role=<span class="str">"tooltip"</span>&gt;</span>Your first name is optional<span class="tag">&lt;/div&gt;</span>    
-  <span class="tag">&lt;/div&gt;</span>    
+  &lt;div class="text"&gt;
+    &lt;label for="first"&gt;First Name:&lt;/label&gt;
+      &lt;input type="text"               
+          id="first"           
+          name="first"            
+          size="20"           
+          onfocus="tooltipShow(tooltip1);"          
+          onblur="tooltipHide(tooltip1);"
+          onmouseover="tooltipShow(tooltip1);"           
+          onmouseout="tooltipHide(tooltip1);"           
+          aria-describedby="tp1"
+      /&gt;
+  &lt;div id="tp1" class="tooltip" role="tooltip"&gt;Your first name is optional&lt;/div&gt;    
+  &lt;/div&gt;    
 &hellip;  </pre>
       		</section>
         <section id="Descriptions_external">
 		<h4>Descriptions on external pages</h4>
     	<p>The <code class="property-reference">aria-describedby</code> property is not designed to reference descriptions on an external resource&mdash;since it is an IDREF, it must reference an element in the same DOM document. This is different from the HTML <code>longdesc</code> attribute, which accepts any URI. In general, the preferred pattern for WAI-ARIA applications is to include all relevant resources in the same DOM, But if you wish to reference an external resource with <code class="property-reference">aria-describedby</code>, you can reference a link that in turn references the external resource. This requires the user to follow two steps, first following the <code class="property-reference">aria-describedby</code> arc, then following the link, but does address the use case. The following example demonstrates this:</p>
-    	<pre class="example highlight"><span class="tag">&lt;p&gt;</span>
-   <span class="tag">&lt;img
-       src=<span class="str">"images/histogram.png"</span>
-       alt=<span class="str">"Histogram of Blackberry tree heights"</span>
-       width=<span class="str">"40%"</span>
-       aria-describedby=<span class="str">"longdesc1"</span>
-   /&gt;</span>
-<span class="tag">&lt;/p&gt;</span>
+    	<pre class="example highlight">&lt;p&gt;
+   &lt;img
+       src="images/histogram.png"
+       alt="Histogram of Blackberry tree heights"
+       width="40%"
+       aria-describedby="longdesc1"
+   /&gt;
+&lt;/p&gt;
 
-<span class="tag">&lt;p&gt;</span>
-    <span class="tag">&lt;a id=<span class="str">"longdesc1"</span> href=<span class="str">"blackberry-description.html"</span> target=<span class="str">"_description"</span>&gt;</span>Data for Blackberry Histogram<span class="tag">&lt;/a&gt;</span>
-<span class="tag">&lt;/p&gt;</span></pre>
+&lt;p&gt;
+    &lt;a id="longdesc1" href="blackberry-description.html" target="_description"&gt;Data for Blackberry Histogram&lt;/a&gt;
+&lt;/p&gt;</pre>
     </section>
     </section>
     <p>It is not good practice to use the above pattern when the describing element&mdash;the <code>&lt;a&gt;</code> tag with <code>@id='longdesc1'</code>&mdash;is <a class="termref" href="../aria/terms#def_hidden">hidden</a>, since there is no way for a user to navigate to and activate the link.  Use the technique only when the description is not hidden. </p>
@@ -2101,12 +2101,12 @@ consistent with their visual rendering. Rather than setting  size only on a cont
     <p>(X)HTML suffers from a number of disadvantages in  keyboard navigation today. One such example is the restriction of  navigation to the tabbing order. This is a common problem with  presentations in office suites where the logical, perceivable,  navigation order of a slide may not match the tabbing order. Sighted  users may see a logical navigation process (such as visual steps in the  process for assembling a lawn mower). This "flow" is not conveyed by  the tab order. The user might tab from step 1 and land on step 4.  Another problem is the construction of model-based authoring tools on a  Web page. In a model-based authoring tool, a visual object may provide  a number of paths that the user can take, such as a multiplexor, which  may have output that logically flows to a number of optional electronic  components in a drawing. In Web 2.0, developers are actually creating  drawings like this to perform tasks such as visually model a work flow.  In this scenario, the user will want to decide which object they will  navigate their screen reader or alternate input device to next. </p>
     <p>Although it is  recommended that Tab order follow the reading flow, there may be instances  where this is not possible. For these reasons, WAI-ARIA provides a relationship property, called <a class="property-reference" href="../aria/#flowto">aria-flowto</a>. This allows the author to provide an assistive technology with alternative navigation flows through the document that best represents the author's intent and which is more logical for people with disabilities. <a class="property-reference" href="../aria/#flowto">aria-flowto</a> establishes the recommended reading order of content, so that the an assistive may overriding the default of reading in document order to its user. <a class="property-reference" href="../aria/#flowto">aria-flowto</a> does not change the keyboard navigation order of the browser.</p>
     <p>Consider the first case of changing a basic reading flow to circumvent (X)HTML  tabbing. A good example of this is a logical reading flow in a portal  with landmarks. In the future, the user may wish to change the reading  flow based on the order of priority with which they navigate a  personalized Web application<!-- like <a href="http://www.myspace.com/">   MySpace</a> or <a href="http://my.yahoo.com/">MyYahoo</a>-->.  In the following example, the navigation would follow the order of "Top  News Stories", "television listings", "stock quotes", and "messages  from friends" by following (X)HTML document reading order. However, the author or end user may determine that the main content is most  important, followed by "stock quotes", "messages from friends", and  then "TV listings."  The end user can change the order if the web page or assistive technology provides an interface for such personalization.</p>
-    <pre class="example highlight"><span class="tag">&lt;html&gt;</span>  
+    <pre class="example highlight">&lt;html&gt;  
 &hellip;  
-<span class="tag">&lt;div role=<span class="str">"main"</span> title=<span class="str">"Top News Stories"</span> id=<span class="str">"main"</span> aria-flowto=<span class="str">"stock"</span>&gt;</span><span class="tag">&lt;/div&gt;</span>  
-<span class="tag">&lt;div role=<span class="str">"complementary"</span> title=<span class="str">"television listings"</span> id=<span class="str">"tv"</span>&gt;</span><span class="tag">&lt;/div&gt;</span>
-<span class="tag">&lt;div role=<span class="str">"complementary"</span> title=<span class="str">"stock quotes"</span> id=<span class="str">"stock"</span> aria-flowto=<span class="str">"messages"</span>&gt;</span><span class="tag">&lt;/div&gt;</span>
-<span class="tag">&lt;div role=<span class="str">"complementary"</span> title=<span class="str">"messages from friends"</span> id=<span class="str">"messages"</span> aria-flowto=<span class="str">"tv"</span>&gt;</span><span class="tag">&lt;/div&gt;</span>  </pre>
+&lt;div role="main" title="Top News Stories" id="main" aria-flowto="stock"&gt;&lt;/div&gt;  
+&lt;div role="complementary" title="television listings" id="tv"&gt;&lt;/div&gt;
+&lt;div role="complementary" title="stock quotes" id="stock" aria-flowto="messages"&gt;&lt;/div&gt;
+&lt;div role="complementary" title="messages from friends" id="messages" aria-flowto="tv"&gt;&lt;/div&gt;  </pre>
     <p>The  second use case is such that the Web developer may wish to circumvent  the flow by branching to multiple paths in the Web page, requiring the  assistive technology to present a collection of options where the user  could go next. This is important for work flows or business process  management applications<!-- as shown in this <a href="http://www.skelta.com/products/screenshot-gallery/screens.aspx#ProcessDesigner">Process Designer Tool</a>-->.  More of these applications are becoming Web based, and a vehicle is  required to tell the user how to get through the work flow. The flowto  property takes multiple idrefs, allowing the author to define each  object the user could flow to. To implement this technique do the  following. </p>
     <ul>
       <li>
@@ -2149,39 +2149,39 @@ consistent with their visual rendering. Rather than setting  size only on a cont
 		
 		<p>The following html fragment shows the use of <span class="property-reference">aria-haspopup</span> with a menubar, its menus, and submenus. All of the menuitems associated with the menubar have <span class="property-reference">aria-haspopup</span> set to 'true'. Also, the "Zoom" menuitem of the "View" menu has an <span class="property-reference">aria-haspopup</span> property as it leads to a submenu.</p>
 		
-		<pre class="example highlight"><span class="tag">&lt;div role=<span class="str">"menubar"</span>&gt;</span>
-  <span class="comment">&lt;!--
+		<pre class="example highlight">&lt;div role="menubar"&gt;
+  &lt;!--
     File menu: File menuitem has an aria-haspopup attribute set to 'true'.
     That popup div follows immediately below.
-  --&gt;</span>
-  <span class="tag">&lt;div role=<span class="str">"menuitem"</span> <em>aria-haspopup=<span class="str">"true"</span></em> id=<span class="str">"fileMenu"</span>&gt;</span>File<span class="tag">&lt;/div&gt;</span>
-  <span class="tag">&lt;div role=<span class="str">"menu"</span> aria-labelledby=<span class="str">"fileMenu"</span>&gt;</span>
-    <span class="tag">&lt;div role=<span class="str">"menuitem"</span>&gt;</span>Open<span class="tag">&lt;/div&gt;</span>
-    <span class="tag">&lt;div role=<span class="str">"menuitem"</span>&gt;</span>Save<span class="tag">&lt;/div&gt;</span>
-    <span class="tag">&lt;div role=<span class="str">"menuitem"</span>&gt;</span>Save as &hellip;<span class="tag">&lt;/div&gt;</span>
+  --&gt;
+  &lt;div role="menuitem" <em>aria-haspopup="true"</em> id="fileMenu"&gt;File&lt;/div&gt;
+  &lt;div role="menu" aria-labelledby="fileMenu"&gt;
+    &lt;div role="menuitem"&gt;Open&lt;/div&gt;
+    &lt;div role="menuitem"&gt;Save&lt;/div&gt;
+    &lt;div role="menuitem"&gt;Save as &hellip;&lt;/div&gt;
     &hellip;
-  <span class="tag">&lt;/div&gt;</span>
-  <span class="comment">&lt;!--
+  &lt;/div&gt;
+  &lt;!--
     View menu:
-  --&gt;</span>  
-  <span class="tag">&lt;div role=<span class="str">"menuitem"</span> <em>aria-haspopup=<span class="str">"true"</span></em> id=<span class="str">"viewMenu"</span>&gt;</span>View<span class="tag">&lt;/div&gt;</span>
-  <span class="tag">&lt;div role=<span class="str">"menu"</span> aria-labelledby=<span class="str">"viewMenu"</span>&gt;</span>
-    <span class="tag">&lt;div role=<span class="str">"menuitem"</span>&gt;</span>Normal<span class="tag">&lt;/div&gt;</span>
-    <span class="tag">&lt;div role=<span class="str">"menuitem"</span>&gt;</span>Outline<span class="tag">&lt;/div&gt;</span>
-    <span class="comment">&lt;!--
+  --&gt;  
+  &lt;div role="menuitem" <em>aria-haspopup="true"</em> id="viewMenu"&gt;View&lt;/div&gt;
+  &lt;div role="menu" aria-labelledby="viewMenu"&gt;
+    &lt;div role="menuitem"&gt;Normal&lt;/div&gt;
+    &lt;div role="menuitem"&gt;Outline&lt;/div&gt;
+    &lt;!--
       The View's Zoom menuitem has aria-haspopup='true' as it leads to a
       submenu.
-    --&gt;</span>
-    <span class="tag">&lt;div role=<span class="str">"menuitem"</span> <em>aria-haspopup=<span class="str">"true"</span></em> id=<span class="str">"zoomSubMenu"</span>&gt;</span>Zoom<span class="tag">&lt;/div&gt;</span>
-    <span class="tag">&lt;div role=<span class="str">"menu"</span> aria-labelledby=<span class="str">"zoomSubMenu"</span>&gt;</span>
-      <span class="tag">&lt;div role=<span class="str">"menuitem"</span>&gt;</span>50%<span class="tag">&lt;/div&gt;</span>
-      <span class="tag">&lt;div role=<span class="str">"menuitem"</span>&gt;</span>75%<span class="tag">&lt;/div&gt;</span>
-      <span class="tag">&lt;div role=<span class="str">"menuitem"</span>&gt;</span>100%<span class="tag">&lt;/div&gt;</span>
-      <span class="tag">&lt;div role=<span class="str">"menuitem"</span>&gt;</span>150%<span class="tag">&lt;/div&gt;</span>
-      <span class="tag">&lt;div role=<span class="str">"menuitem"</span>&gt;</span>200%<span class="tag">&lt;/div&gt;</span>
-    <span class="tag">&lt;/div&gt;</span>
-  <span class="tag">&lt;/div&gt;</span>
-<span class="tag">&lt;/div&gt;</span></pre>
+    --&gt;
+    &lt;div role="menuitem" <em>aria-haspopup="true"</em> id="zoomSubMenu"&gt;Zoom&lt;/div&gt;
+    &lt;div role="menu" aria-labelledby="zoomSubMenu"&gt;
+      &lt;div role="menuitem"&gt;50%&lt;/div&gt;
+      &lt;div role="menuitem"&gt;75%&lt;/div&gt;
+      &lt;div role="menuitem"&gt;100%&lt;/div&gt;
+      &lt;div role="menuitem"&gt;150%&lt;/div&gt;
+      &lt;div role="menuitem"&gt;200%&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
 	</section>
 </section>
   <section id="docmgt">
@@ -2299,18 +2299,18 @@ consistent with their visual rendering. Rather than setting  size only on a cont
         <p><a href="../aria/states_and_properties#attrs_liveregions">live region</a> - If you have some other live area use case, WAI-ARIA allows you to mark an area using the <a class="property-reference" href="../aria/#live">aria-live</a> attribute. This accompanied by the collection of attributes which support the live property allow you to create your own custom live area on your Web page. For more details regarding live regions refer to the <a href="#LiveRegions">live region</a> section of this guide.</p>
     </blockquote>
     <p>Live region roles that are applied to elements having strong native semantics are not mapped consistently to the platform accessibility API.  An example is the <code>TABLE</code> element.  It is recommended that authors apply live regions to <code>DIV</code> and <code>SPAN</code> containers.  For example: </p>
-                    <pre class="example highlight"><span class="comment">&lt;!-- Live region 'log' role used with TABLE element:  the 'log' role is not consistently mapped to platform AAPI. --&gt;</span>
-<span class="comment">&lt;!-- Do not use. --&gt;</span>
-<span class="tag">&lt;table role=<span class="str">"log"</span> &hellip; &gt;</span>
+                    <pre class="example highlight">&lt;!-- Live region 'log' role used with TABLE element:  the 'log' role is not consistently mapped to platform AAPI. --&gt;
+&lt;!-- Do not use. --&gt;
+&lt;table role="log" &hellip; &gt;
   &hellip;
-<span class="tag">&lt;/table&gt;</span>
+&lt;/table&gt;
 
-<span class="comment">&lt;!-- Wrap the TABLE element in a DIV with role 'log' instead: --&gt;</span>
-<span class="tag">&lt;div role=<span class="str">"log"</span> &hellip; &gt;</span>
-  <span class="tag">&lt;table &hellip; &gt;</span>
+&lt;!-- Wrap the TABLE element in a DIV with role 'log' instead: --&gt;
+&lt;div role="log" &hellip; &gt;
+  &lt;table &hellip; &gt;
     &hellip;
-  <span class="tag">&lt;/table&gt;</span>
-<span class="tag">&lt;/div&gt;</span>
+  &lt;/table&gt;
+&lt;/div&gt;
 </pre>
 
   </section>
@@ -2325,18 +2325,18 @@ consistent with their visual rendering. Rather than setting  size only on a cont
     <p class="note">It is important to separate content and presentation. CSS 3 has introduced new table layout functionality to allow a user agent to layout content using CSS. There are many advantages to using this feature of CSS such as browser style sheet caching and improved adaptability to mobile devices with limited screen real estate. There are, however, cases where presentational markup cannot be avoided. In such instances, authors are counseled to consult <a href="http://www.w3.org/TR/WCAG20/" title="Web Content Accessibility Guidelines (WCAG) 2.0">WCAG 2.0</a> for more detailed guidance.</p>
     <p>WAI-ARIA introduces the <a class="role-reference" href="../aria/#presentation">presentation</a> role as a general device for marking elements as presentational.  The <a class="role-reference" href="../aria/#presentation">presentation</a> role overrides the element's native implicit role, and informs the user agent to not publish the element to the accessiblity API.  In fact, the preferred way to mark <code>&lt;img&gt;</code> elements as decorative is to use a <code>role="presentation"</code> attribute instead of (or in addition to) an empty <code>alt</code> attribute.  Here is a code fragment sample:</p>
     
-<pre xml:space="preserve"><span class="comment">&lt;!-- [role="presentation"] informs the user agent that the spacer images are for layout only. --&gt;</span>
+<pre xml:space="preserve">&lt;!-- [role="presentation"] informs the user agent that the spacer images are for layout only. --&gt;
 &hellip;
-<span class="tag">&lt;h2&gt;</span>Other Histories of Architecture<span class="tag">&lt;/h1&gt;</span>
-<span class="tag">&lt;p&gt;</span>
-  <span class="tag">&lt;a href=<span class="str">"www.somewhere.com"</span>&gt;</span>Ancient Roman Architecture<span class="tag">&lt;/a&gt;</span>
-  <span class="tag">&lt;img src=<span class="str">"spacer.png"</span> role=<span class="str">"presentation"</span>&gt;</span>
-  <span class="tag">&lt;a href=<span class="str">"somewhere.else.com"</span>&gt;</span>19th Century Italian Architecture<span class="tag">&lt;/a&gt;</span>
-  <span class="tag">&lt;img src=<span class="str">"spacer.png"</span> role=<span class="str">"presentation"</span>&gt;</span>
-  <span class="tag">&lt;a href=<span class="str">"www.elsewhere.com"</span>&gt;</span>Modern Buildings more than 100 Years Old<span class="tag">&lt;/a&gt;</span>
-<span class="tag">&lt;/p&gt;</span>
+&lt;h2&gt;Other Histories of Architecture&lt;/h1&gt;
+&lt;p&gt;
+  &lt;a href="www.somewhere.com"&gt;Ancient Roman Architecture&lt;/a&gt;
+  &lt;img src="spacer.png" role="presentation"&gt;
+  &lt;a href="somewhere.else.com"&gt;19th Century Italian Architecture&lt;/a&gt;
+  &lt;img src="spacer.png" role="presentation"&gt;
+  &lt;a href="www.elsewhere.com"&gt;Modern Buildings more than 100 Years Old&lt;/a&gt;
+&lt;/p&gt;
 
-<span class="tag">&lt;h2&gt;</span>Modern Building Design<span class="tag">&lt;/h1&gt;</span>
+&lt;h2&gt;Modern Building Design&lt;/h1&gt;
 &hellip;
 </pre>
     <p>The resulting accessible tree is shown below.  Note that none of the spacer <code>&lt;img&gt;</code> elements are present:</p>
@@ -2382,14 +2382,14 @@ consistent with their visual rendering. Rather than setting  size only on a cont
     <h3>Inheritance of Presentation by Parent Element's Children</h3>
       <p>In general, the presentation role is not inherited by an element's children.  The exceptions are elements whose role entails that the element has <a href="../aria/#mustContain" class="specref">required owned children</a>.  Examples include the <code>&lt;table&gt;</code> element and <a class="role-reference" href="../aria/#list">list</a> role, and these exceptions are discussed further below.  For all other elements, only the element marked presentational is eliminated from the accessible tree.  Note, however, that its contents are published; in particular, the element's textual content is published, but any attributes of the element that may form a text-equivalent are not. For example, a header element with a presentation role would not appear in the accessible tree, but its text does.  An image with a role of presentation is not exposed in the accessible tree, nor is the contents of its <code>alt</code> attribute.  This is shown in the following code fragment:</p>
       
-<pre class="example highlight" xml:space="preserve"><span class="comment">&lt;!-- 1. [role="presentation"] negates the implicit 'heading' role semantics but does not affect the contents. --&gt;</span>
+<pre class="example highlight" xml:space="preserve">&lt;!-- 1. [role="presentation"] negates the implicit 'heading' role semantics but does not affect the contents. --&gt;
   
-<span class="tag">&lt;h1 role=<span class="str">"presentation"</span>&gt;</span>Presentation role overrides Header role<span class="tag">&lt;/h1&gt;</span>
-<span class="tag">&lt;h1&gt;</span>Another header<span class="tag">&lt;/h1&gt;</span>
+&lt;h1 role="presentation"&gt;Presentation role overrides Header role&lt;/h1&gt;
+&lt;h1&gt;Another header&lt;/h1&gt;
   
-<span class="comment">&lt;!-- 2. [role="presentation"] hides the image from the accessibility API and does not publish the alt attribute contents. --&gt;</span>
+&lt;!-- 2. [role="presentation"] hides the image from the accessibility API and does not publish the alt attribute contents. --&gt;
   
-<span class="tag">&lt;img role=<span class="str">"presentation"</span> alt=<span class="str">"This text will not appear in the Accessibility API"</span> src=<span class="str">"&hellip;"</span>&gt;</span>
+&lt;img role="presentation" alt="This text will not appear in the Accessibility API" src="&hellip;"&gt;
   
 </pre>
       <p>The first header element is absent from the accessible tree for the above example, but its text appears.  The second header element is present as a <a class="role-reference" href="../aria/#heading">heading</a>.  The <code>img</code> element is not exposed at all:</p>
@@ -2410,14 +2410,14 @@ consistent with their visual rendering. Rather than setting  size only on a cont
       <p>Be aware that the markup <code>&lt;img role="presentation" alt="non-empty alt text"&hellip;&gt;</code> is in fact contradictory:  Declaring a role of presentation says that the image is for layout, is decorative and meaningless, whereas the non-empty alt text implies that the image is meaningful.  It is recommended that authors instead use empty <code>alt</code> text (<code>alt=""</code>) where they use <code>role="presentation"</code>.</p>
       <p>Earlier it was noted that the <a class="role-reference" href="../aria/#presentation">presentation</a> role is not generally inherited by an element's children.  The exception are roles that have <a href="../aria/#mustContain" class="specref">required owned elements</a>.  Examples include the <code>&lt;table&gt;</code> element, and the <a class="role-reference" href="../aria/#list">list</a> and <a class="role-reference" href="../aria/#tree">tree</a> roles.  A <a class="role-reference" href="../aria/#list">list</a> is required to have  <a class="role-reference" href="../aria/#listitem">listitem</a> children; a <a class="role-reference" href="../aria/#tree">tree</a>, <a class="role-reference" href="../aria/#treeitem">treeitem</a> children.  The <code>&lt;table&gt;</code> element's child components are <code>&lt;tbody&gt;</code>, <code>&lt;thead&gt;</code>, <code>&lt;tfoot&gt;</code>, <code>&lt;th&gt;</code>, <code>&lt;tr&gt;</code>, <code>&lt;td&gt;</code>, and <code>&lt;caption&gt;</code>.  These component elements would not appear in the markup without the enclosing <code>&lt;table&gt;</code> root element.  Thus, when a table is used for layout, it follows that all of its component elements are present in the markup for layout as well.  Since annotating all the required child elements with <code>role=&quot;presentation&quot;</code> is error prone and difficult to maintain, it is sufficient to mark the table root element as presentational.  The presentation role propagates to all the table component elements.  However, as before, the contents of the table elements do appear in the accessible tree.  Here is an example:</p>
         
-<pre class="example highlight" xml:space="preserve"><span class="comment">&lt;!-- Layout table marked with [role="presentation"]. --&gt;</span>
+<pre class="example highlight" xml:space="preserve">&lt;!-- Layout table marked with [role="presentation"]. --&gt;
 
-<span class="tag">&lt;table role=<span class="str">"presentation"</span>&gt;</span>
-  <span class="tag">&lt;tbody&gt;</span>
-    <span class="tag">&lt;tr&gt;</span> <span class="tag">&lt;td&gt;</span>Some text<span class="tag">&lt;/td&gt;</span> <span class="tag">&lt;td&gt;</span><span class="tag">&lt;p&gt;</span>Paragraph<span class="tag">&lt;/p&gt;</span><span class="tag">&lt;/td&gt;</span> <span class="tag">&lt;/tr&gt;</span>
-    <span class="tag">&lt;tr&gt;</span> <span class="tag">&lt;td&gt;</span><span class="tag">&lt;a href=<span class="str">"www.somewhere.com"</span>&gt;</span>Link text<span class="tag">&lt;/a&gt;</span><span class="tag">&lt;/td&gt;</span> <span class="tag">&lt;td&gt;</span><span class="tag">&lt;img src=<span class="str">"meaningful.jpg"</span> alt=<span class="str">"meaningful image"</span>&gt;</span><span class="tag">&lt;/td&gt;</span> <span class="tag">&lt;/tr&gt;</span>
-  <span class="tag">&lt;/tbody&gt;</span>
-<span class="tag">&lt;/table&gt;</span>
+&lt;table role="presentation"&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt; &lt;td&gt;Some text&lt;/td&gt; &lt;td&gt;&lt;p&gt;Paragraph&lt;/p&gt;&lt;/td&gt; &lt;/tr&gt;
+    &lt;tr&gt; &lt;td&gt;&lt;a href="www.somewhere.com"&gt;Link text&lt;/a&gt;&lt;/td&gt; &lt;td&gt;&lt;img src="meaningful.jpg" alt="meaningful image"&gt;&lt;/td&gt; &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
 </pre>
     <p>All table specific elements (table, tr, td, etc.) are eliminated from the tree by inheriting the presentation role, but other elements and textual content in the table cells are exposed:</p>
     <ul>
@@ -2969,7 +2969,7 @@ navigation  recommended  here, it should be documented on the page.</p>
             <td class="widget-aria">
               <ul>
                 <li>The node containing all elements of the dialog, including the alert message and any dialog buttons, has an <a class="role-reference" href="../aria/#alertdialog">alertdialog</a> role. </li>
-                <li>Message areas have role <a class="role-reference" href="../aria/#document">document</a> and tabindex=<span class="str">"0"</span>. </li>
+                <li>Message areas have role <a class="role-reference" href="../aria/#document">document</a> and tabindex="0". </li>
                 <li>The Alert dialog has an <a href="../aria/#aria-labelledby" class="property-reference">aria-labelledby</a> that references the title of the dialog. If there is not a visible title, use an appropriate <a href="../aria/#aria-labelledby" class="property-reference">aria-label</a> instead. </li>
                 <li>The element with role alertdialog has an <a href="../aria/#aria-labelledby" class="property-reference">aria-describedby</a> referring to the message element that has role <a class="role-reference" href="../aria/#document">document</a>. </li>
               </ul>
