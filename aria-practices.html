@@ -117,7 +117,7 @@
   <p>This section is <em>informative.</em></p>
   <p>The WAI-ARIA Authoring Practices Guide is intended to provide readers with an understanding of how to use WAI-ARIA to create an accessible Rich Internet Application. As explained in the <a href="../aria-primer/">WAI-ARIA Primer</a>, accessibility deficiencies in today's markup render rich internet applications  unusable by people who use assistive technologies (AT) or who rely on keyboard navigation. The W3C Web Accessibility Initiative's (WAI) Protocols and Formats working group (PFWG) plans to address these deficiencies through several W3C standards efforts, with a focus on the WAI-ARIA specifications. </p>
   <p>For an introduction to WAI-ARIA, see the <a href="http://www.w3.org/WAI/intro/aria.php">Accessible Rich Internet   Applications Suite (WAI-ARIA) Overview</a>. The WAI-ARIA Authoring Practices Guide is part of a set of resources that support the WAI-ARIA specification. The practices describe recommended usage patterns for web content developers, and the [[WAI-ARIA-PRIMER]] provides a basic introduction to the concepts behind and reason for WAI-ARIA. The WAI-ARIA suite fills gaps identified by the [[WAI-ARIA-ROADMAP]].  These documents serve as important places of clarification where topics appear to be unclear.</p>
-  <p class="note">Note: Most of the JavaScript examples are written to be understandable by all readers, including novice and intermediate JavaScripters. For example, most modern rich web applications use DOM Level 2 event listener assignment now, but some source code examples in this document use DOM Level 1 assignment (e.g. <code>el.onclick = foo;</code> or <code>&lt;el onclick="foo()"&gt;</code>) because it is easier for all readers to understand. Expert JavaScripters are encouraged to use modern JavaScript best practices when developing accessible rich internet applications.</p>
+  <p class="note">Most of the JavaScript examples are written to be understandable by all readers, including novice and intermediate JavaScripters. For example, most modern rich web applications use DOM Level 2 event listener assignment now, but some source code examples in this document use DOM Level 1 assignment (e.g. <code>el.onclick = foo;</code> or <code>&lt;el onclick="foo()"&gt;</code>) because it is easier for all readers to understand. Expert JavaScripters are encouraged to use modern JavaScript best practices when developing accessible rich internet applications.</p>
   <p>With the conceptual basis provided in the WAI-ARIA Primer, you should have a good understanding of how WAI-ARIA provides for interoperability with assistive technologies and support for a more usable, accessible experience. This guide begins  by providing some general steps for building an accessible widget  using WAI-ARIA, script, and CSS.  It then extends your knowledge of WAI-ARIA with detailed guidance on how to make rich internet applications keyboard accessible. Next, the scope widens to include the full application, addressing necessary layout and structural semantics within the Web page. These semantics are critical to enable assistive technologies to provide a usable experience when processing rich internet applications with rich documents on the same page. It includes guidance on dynamic document management; use of WAI-ARIA Form properties; WAI-ARIA Drag and Drop; and then the creation of WAI-ARIA-enabled alerts and dialogs. The  appendix provides substantial reference information including code samples for developers of user agents, assistive technologies, and Web pages. </p>
   <p class="note">WAI-ARIA markup is currently not included in (X)HTML. The W3C WAI PF working   group will be creating DTDs for XHTML 1.0 and HTML 4.01 for those wishing to   validate their markup with WAI-ARIA embedded into these host languages. </p>
   <section>
@@ -427,13 +427,10 @@
 			<p>Each platform accessibility API has the notion of a "role" for a
 				GUI object. This is the case for [[JAPI]], [[MSAA]]], [[AXAPI]], and the [[ATK]], or [[UIAUTOMATION]] (called content type in UI Automation). The WAI-ARIA specifications are based on XHTML 1.X and include the role attribute. The "role" attribute takes a qname, enabling authors to reference the role attribute from the WAI-ARIA Roles. In
 				the following example, we use qname to reference the menu role  in the WAI-ARIA specification. </p>
-			<div class="exampleOuter">
-				<div class="exampleHead">
-					<p>Example: Use of WAI-ARIA to  incorporate
-						role information information into XHTML 1.x</p>
-				</div>
-				<div class="exampleInner">
-					<pre>
+			<div class="example">
+				<p>Example: Use of WAI-ARIA to  incorporate
+						role information into XHTML 1.x</p>
+				<pre class="highlight">
 <span class="pi">&lt;?xml version="1.1" encoding="us-ascii"?&gt;</span>
 <span class="doctype">&lt;!DOCTYPE html PUBLIC "Accessible Adaptive Applications//EN" 
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;</span>
@@ -447,7 +444,6 @@
     &lt;/body&gt;
 &lt;/html&gt;
 </pre>
-				</div>
 			</div>
 			<p>WAI used RDF/OWL to model our taxonomy for WAI-ARIA. In fact, if a host language sought to use namespaces or qnames, they could do so to reference the WAI-ARIA role taxonomy. The WAI-ARIA role taxonomy could be used by authoring tool developers to ensure that states and properties assigned to a given role are accurate.</p>
 		</section>
@@ -460,12 +456,9 @@
 				defined previously. This specification was created based on an
 				analysis of the accessibility properties defined in <abbr title="Microsoft Active Accessibility">MSAA</abbr> and <abbr title="Accessibility Toolkit">ATK</abbr>.
 				The following example extends the previous approach by adding the <a class="property-reference" href="../aria/#haspopup">aria-haspopup</a> accessibility property.</p>
-			<div class="exampleOuter">
-				<div class="exampleHead">
-					<p>Example: Use of WAI-ARIA to incorporate accessible state information information into XHTML 1.x</p>
-				</div>
-				<div class="exampleInner">
-					<pre>
+			<div class="example">
+				<p>Example: Use of WAI-ARIA to incorporate accessible state information information into XHTML 1.x</p>
+				<pre class="highlight">
 <span class="pi">&lt;?xml version="1.1" encoding="us-ascii"?&gt;</span>
 <span class="doctype">&lt;!DOCTYPE html PUBLIC "Accessible Adaptive Applications//EN" 
     http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;</span>
@@ -480,7 +473,6 @@
     &lt;/body&gt;
 &lt;/html&gt;
 </pre>
-				</div>
 			</div>
 			<p>A Windows user agent may now map this property to the Microsoft
 				Active Accessibility state of <code>STATE_SYSTEM_HASPOPUP</code>. Adding or
@@ -549,13 +541,10 @@
 			</table>
 			<p>The following example shows the introduction of <code>TABINDEX</code> to
 				provide focus to a <code>DIV</code> having the new accessibility meta data:</p>
-			<div class="exampleOuter">
-				<div class="exampleHead">
-					<p>Example: Use of tabindex to give non-form
+			<div class="example">
+				<p>Example: Use of tabindex to give non-form
 						and anchor elements focus in XHTML 1.x</p>
-				</div>
-				<div class="exampleInner">
-					<pre>
+				<pre class="highlight">
 <span class="pi">&lt;?xml version="1.1" encoding="us-ascii"?&gt;</span>
 <span class="doctype">   &lt;!DOCTYPE html PUBLIC "Accessible Adaptive Applications//EN" 
     http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;</span>
@@ -570,18 +559,14 @@
     &lt;/body&gt;
 &lt;/html&gt;
 </pre>
-				</div>
 			</div>
 		</section>
       <section id="ariahtml">
 			<h4> Supporting WAI-ARIA in XHTML and HTML 4.01</h4>
 			<p>Unlike XHTML, HTML 4.01 is non-extensible in that it is not possible to extend HTML 4 through the use of namespaces. That said, members of the working group have worked with the HTML working group to agree on  a vehicle that does not use namespaces, which at this time is supported by XHTML and HTML which will be supported in  HTML 5 when it becomes recommendation. Firefox 3 is leading the way to implement this, and other browser manufacturers are working to support it as well. The technique allows all role values specified in WAI-ARIA (including those specified by the XHTML Role attribute module) to be specified without a namespace prefix. Additionally, WAI-ARIA states and properties shall be represented as aria- followed by the concatenated WAI-ARIA state or property. </p>
-			<div class="exampleOuter">
-				<div class="exampleHead">
-					<p>Example: Browser supported HTML technique for the tabindex example in section 5.1.3</p>
-				</div>
-				<div class="exampleInner1">
-					<pre>
+			<div class="example">
+				<p>Example: Browser supported HTML technique for the tabindex example in section 5.1.3</p>
+				<pre class="highlight">
 
 &lt;html lang="en"&gt;
   &lt;head&gt;<br/>    &lt;meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"&gt;<br/>  &lt;/head&gt;
@@ -592,7 +577,6 @@
     &lt;/body&gt;
 &lt;/html&gt;
                         </pre>
-				</div>
 			</div>
 			<p>In order to validate these extended attributes for HTML and XHTML the WAI-PF working group will investigate the creation of an enhanced schema or DTD for each host language. <br/>
 			</p>
@@ -610,13 +594,10 @@
 			improve the usability. These may be used as attributes in XHTML 1.x
 			by applying them to sections of the document as shown in this
 			example. Note: since these roles are a part of XHTML they do not need to be namespace qualified.</p>
-		<div class="exampleOuter">
-			<div class="exampleHead">
-				<p>Example: Use of XHTML navigation role to define a landmark for the
+		<div class="example">
+			<p>Example: Use of XHTML navigation role to define a landmark for the
 					navigation section in an XHTML 1.X document</p>
-			</div>
-			<div class="exampleInner">
-				<pre>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"&gt;    
+				<pre class="highlight">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"&gt;    
 &lt;html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"&gt;
 &lt;head&gt;    
   &lt;title&gt;application/xhtml+xml: Navigation Roles Example 1&lt;/title&gt;        
@@ -644,7 +625,6 @@
 ...
 
 &lt;/body&gt;</pre>
-			</div>
 		</div>
 		<p>The example above was taken from the header from the <a href="http://test.cita.uiuc.edu/aria/nav/nav1.php">Career Center Web page at the University of Illinois at
 			Urbana-Champaign</a>. Students from this university, under  Jon
@@ -878,7 +858,7 @@
 				<p><strong>Look for groups and build relationships</strong></p>
 				<p>Tree relationships can be made simply via the <abbr title="Document Object Model">DOM</abbr> and logical structure of the page. A tree element will be the main container encompassing all other elements in the tree. Each selectable item in the tree will be a treeitem.</p>
 				<p>When a treeitem contains an embedded list of treeitems they will be all be embedded in a group. A group should be contained inside the tree item that is the parent item.</p>
-				<pre class="example"><span class="tag">&lt;h1 id=<span class="str">&quot;treelabel&quot;</span>&gt;</span>WAI-ARIA Tree Example<span class="tag">&lt;/h1&gt;</span>
+				<pre class="example highlight"><span class="tag">&lt;h1 id=<span class="str">&quot;treelabel&quot;</span>&gt;</span>WAI-ARIA Tree Example<span class="tag">&lt;/h1&gt;</span>
 <span class="tag">&lt;ul role=<span class="str">&quot;tree&quot;</span> aria-labelledby=<span class="str">&quot;treelabel&quot;</span> aria-activedescendant=<span class="str">&quot;example_id&quot;</span> tabindex=<span class="str">&quot;0&quot;</span>&gt;</span>
   <span class="tag">&lt;li role=<span class="str">&quot;treeitem&quot;</span> aria-expanded=<span class="str">&quot;true&quot;</span>&gt;</span>Animals
     <span class="tag">&lt;ul role=<span class="str">&quot;group&quot;</span>&gt;</span>
@@ -937,12 +917,12 @@
   <span class="tag">&lt;/li&gt;</span>
 <span class="tag">&lt;/ul&gt;</span></pre>
 				<p>The use of <code>aria-expanded</code> should mirror that which is visibly expanded on screen, so authors may wish to use <abbr title="Cascading Style Sheets">CSS</abbr> attribute selectors to toggle visibility or style of an item based on the <a href="#def_value" class="termref">value</a> of an <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> <a href="#def_state" class="termref">state</a> or <a href="#def_property" class="termref">property</a>. The following example would hide the sub-level groups of a collapsed tree node.</p>
-				<pre class="example">[aria-expanded=&quot;false&quot;] [role=&quot;group&quot;] { display: none; }</pre>
+				<pre class="example highlight">[aria-expanded=&quot;false&quot;] [role=&quot;group&quot;] { display: none; }</pre>
 				<p class="note">
 					<!-- keep this note synced with other CSS examples using attribute selectors -->
-					Note: At the time of this writing, this <abbr title="Cascading Style Sheets">CSS</abbr> example, while technically correct, will not redraw styles properly in some browsers if the attribute's value is changed dynamically. It may be necessary to toggle a class name, or otherwise force the browser to redraw the styles properly.</p>
+					At the time of this writing, this <abbr title="Cascading Style Sheets">CSS</abbr> example, while technically correct, will not redraw styles properly in some browsers if the attribute's value is changed dynamically. It may be necessary to toggle a class name, or otherwise force the browser to redraw the styles properly.</p>
 				<p>Sometimes a tree structure is not explicit via the <abbr title="Document Object Model">DOM</abbr> and logical structure of a page. In such cases the relationships must still be made explicit using the states and properties. In the following example, the <a class="property-reference" href="#aria-owns">aria-owns</a> attribute indicates that the <code>div</code> with id &quot;external_treeitem&quot; should be considered a child of the <code>ul</code> element with the attribute, even though it is not a child in the <abbr title="Document Object Model">DOM</abbr>.</p>
-				<pre class="example">...
+				<pre class="example highlight">...
 <span class="tag">&lt;li role=<span class="str">&quot;treeitem&quot;</span> aria-expanded=<span class="str">&quot;true&quot;</span> aria-owns=<span class="str">&quot;external_group&quot;</span>&gt;</span>Vegetables<span class="tag">&lt;/li&gt;</span>
 ...
 <span class="tag">&lt;ul role=<span class="str">&quot;group&quot;</span> id=<span class="str">&quot;external_group&quot;</span>&gt;</span>
@@ -953,7 +933,7 @@
 ...</pre>
 				<p>Sometimes trees (and other lists or grids) cannot be completed represented in the <abbr title="Document Object Model">DOM</abbr> due to performance limitations of the browser. For example, an application interface may only need to display 100 items out of a set of 100,000. Including all 100,000 items in the DOM could cause performance problems on both the client and server machines.</p>
 				<p>If items in a managed widget are loaded, for example, via the XMLHttpRequest object, and not present in the <abbr title="Document Object Model">DOM</abbr> at all times, authors should use <code class="property-reference">aria-level</code>, <code class="property-reference">aria-posinset</code> and <code class="property-reference">aria-setsize</code>, and  ensure that <code class="property-reference">aria-owns</code> is not required to convey membership with the widget.</p>
-				<pre class="example">...
+				<pre class="example highlight">...
 <span class="tag">&lt;li role=<span class="str">&quot;treeitem&quot;</span> aria-level=<span class="str">&quot;1&quot;</span> aria-posinset=<span class="str">&quot;3&quot;</span> aria-expanded=<span class="str">&quot;true&quot;</span> aria-setsize=<span class="str">&quot;3&quot;</span>&gt;</span>
   Vegetables
   <span class="tag">&lt;ul role=<span class="str">&quot;group&quot;</span>&gt;</span>
@@ -1012,7 +992,7 @@
     <li>
       <p><strong>Pick the widget type (role) from the WAI-ARIA taxonomy</strong></p>
       <p>WAI-ARIA provides a <a href="../aria/roles.html">role taxonomy</a> ([[WAI-ARIA]], Section 3.4) constituting  the most common UI component types. Choose the role type from the provided table. If your desire was to create a toolbar set the role to toolbar:</p>
-      <pre class="example"><span class="tag">&lt;div role=<span class="str">"toolbar"</span>&gt;</span></pre>
+      <pre class="example highlight"><span class="tag">&lt;div role=<span class="str">"toolbar"</span>&gt;</span></pre>
     </li>
     <li><strong>From the role, get the list of supported states and properties</strong>
       <p> Once you have chosen the role of your widget, consult the [[WAI-ARIA]] for an in-depth definition for the role to find the supported states, properties, and other attributes. For example, the <a class="role-reference" href="../aria/#toolbar">toolbar</a> role definition includes:</p>
@@ -1031,7 +1011,7 @@
         <dd>These are states and properties which apply to all host language components regardless of whether a role is set or not. You may use these as well. </dd>
       </dl>
       <p>Once you have chosen the states and properties that apply to your widget you must set those properties you will use to set their initial values. Note: You do not need to use all the states and properties available for your role. In our case we shall use:</p>
-      <pre class="example"><span class="tag">&lt;div role=<span class="str">"toolbar"</span> id=<span class="str">"customToolbar"</span> tabindex=<span class="str">"0"</span> aria-activedescendant=<span class="str">"button1"</span>
+      <pre class="example highlight"><span class="tag">&lt;div role=<span class="str">"toolbar"</span> id=<span class="str">"customToolbar"</span> tabindex=<span class="str">"0"</span> aria-activedescendant=<span class="str">"button1"</span>
       onkeydown=<span class="str">"return optionKeyEvent(event);"</span>
       onkeypress=<span class="str">"return optionKeyEvent(event);"</span>
       onblur=<span class="str">"hideFocus();"</span>
@@ -1053,7 +1033,7 @@
     </li>
     <li><strong>Establish the widget structure in the markup (parent/child)</strong>
       <p>Assistive technologies are very dependent on the structure of widgets as well as general document structure. Structure provides context to the user. A toolbar is a collection of common functions made available to the user. Therefore, all functions you would like in the toolbar must  be contained within it. This can be determined by using the [[dom]] tree structure created by the browser when parsing the host language. By using the parent child relationship of the DOM, an assistive technology can determine all the related toolbar widgets associated with the toolbar. The toolbar widgets would be DOM children of the "toolbar" container. For our purposes we will define three image buttons for cut, copy, and paste.</p>
-      <pre class="example"><span class="tag">&lt;div role=<span class="str">"toolbar"</span> tabindex=<span class="str">"0"</span> aria-activedescendant=<span class="str">"button1"</span>&gt;</span>
+      <pre class="example highlight"><span class="tag">&lt;div role=<span class="str">"toolbar"</span> tabindex=<span class="str">"0"</span> aria-activedescendant=<span class="str">"button1"</span>&gt;</span>
   <span class="tag">&lt;img src=<span class="str">&quot;buttoncut.png&quot;</span> alt=<span class="str">&quot;cut&quot;</span> id=<span class="str">&quot;button1&quot;</span>&gt;</span>
   <span class="tag">&lt;img src=<span class="str">&quot;buttoncopy.png&quot;</span> alt=<span class="str">&quot;copy&quot;</span> id=<span class="str">&quot;button2&quot;</span>&gt;</span>
   <span class="tag">&lt;img src=<span class="str">&quot;buttonpaste.png&quot;</span> alt=<span class="str">&quot;paste&quot;</span> id=<span class="str">&quot;button3&quot;</span>&gt;</span>
@@ -1061,7 +1041,7 @@
     </li>
     <li><strong>Repeat steps 1-3 for the children of the parent</strong>
       <p>We now need to assign the roles and states for each of the children. However, we shall save the detailed navigation for step 5.</p>
-      <pre class="example"><span class="tag">&lt;div role=<span class="str">"toolbar"</span> tabindex=<span class="str">"0"</span> aria-activedescendant=<span class="str">"button1"</span>&gt;</span>
+      <pre class="example highlight"><span class="tag">&lt;div role=<span class="str">"toolbar"</span> tabindex=<span class="str">"0"</span> aria-activedescendant=<span class="str">"button1"</span>&gt;</span>
   <span class="tag">&lt;img src=<span class="str">"buttoncut.png"</span> alt=<span class="str">"cut"</span> role=<span class="str">"button"</span> id=<span class="str">"button1"</span>&gt;</span>
   <span class="tag">&lt;img src=<span class="str">"buttoncopy.png"</span> alt=<span class="str">"copy"</span> role=<span class="str">"button"</span> id=<span class="str">"button2"</span>&gt;</span>
   <span class="tag">&lt;img src=<span class="str">"buttonpaste.png"</span> alt=<span class="str">"paste"</span> role=<span class="str">"button"</span> id=<span class="str">"button3"</span>&gt;</span>
@@ -1071,9 +1051,10 @@
     </li>
     <li>
       <p><strong>Establish keyboard navigation of the widget and plan for how it will be navigated to within the document</strong></p>
-    	<p>It is very important that  your widget be keyboard accessible. In fact, there must be a keyboard equivalent for every mouse operation. Where possible you should refer to the <a href="#aria_ex">WAI-ARIA examples</a> in this guide for tips on how to implement keyboard navigation for your widget. If you find that an example is not provided, you should follow standard keyboard bindings for UI components such as those used for the <!--<a href="http://www.dinf.ne.jp/doc/english/Us_Eu/conf/csun_98/csun98_051_jfckeys95.htm">Java Foundation Classes for Windows 95/NT</a>-->Java Foundation Classes for Windows 95/NT.<span class="todo">Commented out link to conference paper, which a) was broken, and b) we should have more canonical references than conference papers for things like this.</span></p>
+    	<p>It is very important that  your widget be keyboard accessible. In fact, there must be a keyboard equivalent for every mouse operation. Where possible you should refer to the <a href="#aria_ex">WAI-ARIA examples</a> in this guide for tips on how to implement keyboard navigation for your widget. If you find that an example is not provided, you should follow standard keyboard bindings for UI components such as those used for the <!--<a href="http://www.dinf.ne.jp/doc/english/Us_Eu/conf/csun_98/csun98_051_jfckeys95.htm">Java Foundation Classes for Windows 95/NT</a>-->Java Foundation Classes for Windows 95/NT.</p>
+      <p class="ednote">Commented out link to conference paper, which a) was broken, and b) we should have more canonical references than conference papers for things like this.</p>
       <p>For our toolbar, we have chosen to have the toolbar manage the focus for its children and through the use of the <a class="property-reference" href="../aria/#activedescendant">aria-activedescendant</a> property. We have also chosen to have the toolbar receive focus based on the tab order by using <code>tabindex</code>. In order to use <a class="property-reference" href="../aria/#activedescendant">aria-activedescendant</a>, each focusable descendant must have an assigned ID. </p>
-      <pre class="example"> <span class="tag">&lt;head&gt;</span>
+      <pre class="example highlight"> <span class="tag">&lt;head&gt;</span>
  <span class="tag">&lt;script&gt;</span>
     &hellip; 
     function optionKeyEvent(event)
@@ -1122,7 +1103,7 @@
   <span class="tag">&lt;img src=<span class="str">"buttonpaste.png"</span> alt=<span class="str">"paste"</span> role=<span class="str">"button"</span> id=<span class="str">"button3"</span>&gt;</span>
 <span class="tag">&lt;/div&gt;</span></pre>
       <p>The details of implementing keyboard navigation are described in <a href="#keyboard">Keyboard and Structural Navigation</a> section of this document.</p>
-      <p class="note">Note: You must also show the visual focus for each element that has focus. </p>
+      <p class="note">You must also show the visual focus for each element that has focus. </p>
     </li>
     <li>
       <p><strong>Apply and  manage needed WAI-ARIA states in response to user input events</strong></p>
@@ -1130,14 +1111,14 @@
     </li>
     <li>
       <p><strong>Synchronize the visual UI with accessibility states and properties for supporting user agents</strong></p>
-      <p class="todo">Thomas comment: is confusing that the example switches from toolbar to treeitem.  Maybe the best overall sample is to do a tree because it demonstrates each of the points you want to make? </p>
+      <p class="ednote">Thomas comment: is confusing that the example switches from toolbar to treeitem.  Maybe the best overall sample is to do a tree because it demonstrates each of the points you want to make? </p>
       <p>You should consider binding  user interface changes directly to changes in WAI-ARIA states and properties, such as through  the use of <a href="http://www.w3.org/TR/1998/REC-CSS2-19980512/selector.html#attribute-selectors">CSS attribute selectors</a>. For example, the setting of the <a class="state-reference" href="../aria/#selected">aria-selected</a> state may change the background of a selected <a class="role-reference" href="../aria/#treeitem">treeitem</a> in a <a class="role-reference" href="../aria/#tree">tree</a>. This may also be done with JavaScript.</p>
-      <pre class="example">
+      <pre class="example highlight">
 .treeitem[role="treeitem"][aria-selected="true"] {color: white; background-color: #222222;}
 
 .treeitem[role="treeitem"][aria-selected="false"] {color: white; background-color: beige;}        </pre>
       <p>Authors should be aware that CSS attribute selectors are not supported in some browsers, such as Internet Explorer 6. A consistent way to apply styling to reflect WAI-ARIA semantics would be to assign an element a class name based on the WAI-ARIA attribute being set using script as shown here:</p>
-      <pre class="example">function setSelectedOption(menuItem)
+      <pre class="example highlight">function setSelectedOption(menuItem)
      {
         if (menuItem.getAttribute("role") != "menuitem") {
            return;
@@ -1170,7 +1151,7 @@
         </li>
       </ol>
       <p>Some assistive technologies may use the DOM directly to determine these when pop-up occurs. In this case, the first mechanism of writing a section to the DOM would work using the DOM events as demonstrated here. </p>
-      <pre class="example">
+      <pre class="example highlight">
 	  // create new table row with table cell and div
 	  var newTr = document.createElement('TR');
 	  var newTd = document.createElement('TD');
@@ -1186,7 +1167,7 @@
 	  //remove theNode selected
 	  container.removeChild(theNode);"</pre>
       <p>However, if you are using CSS to show and hide sections of the DOM (2) it is essential that you set the corresponding WAI-ARIA <a class="state-reference" href="../aria/#hidden">aria-hidden</a> property to indicate that the section is visible or hidden and synchronize it with your CSS styling as shown here: </p>
-      <pre class="example">[aria-hidden=true] {visibility: hidden;}
+      <pre class="example highlight">[aria-hidden=true] {visibility: hidden;}
 
 &hellip;
 
@@ -1195,7 +1176,7 @@
     </li>
     <li><strong>Support basic accessibility, such as alternative text on images</strong>
       <p>When an image is used to represent information within a component, such as  image buttons, you need to set the alternative text on those images. This is then mapped by the user agent to the accessible name in the platform accessibility API. Using our example:</p>
-      <pre class="example"><span class="tag">&lt;div role=<span class="str">"toolbar"</span> tabindex=<span class="str">"0"</span> aria-activedescendant=<span class="str">"button1"</span> id=<span class="str">"tb1"</span> 
+      <pre class="example highlight"><span class="tag">&lt;div role=<span class="str">"toolbar"</span> tabindex=<span class="str">"0"</span> aria-activedescendant=<span class="str">"button1"</span> id=<span class="str">"tb1"</span> 
      onkeydown=<span class="str">"return optionKeyEvent(event);"</span>      
      onkeypress=<span class="str">"return optionKeyEvent(event);"</span>&gt;</span>    
    <span class="tag">&lt;img src=<span class="str">"buttoncut"</span> role=<span class="str">"button"</span> id=<span class="str">"button1"</span> alt=<span class="str">"cut"</span>&gt;</span>
@@ -1345,7 +1326,8 @@ function detectHiContrast() {
           <td>If no button is checked, check the last radio button. If the first radio button is checked, check the last radio button. Otherwise, move the check from the current radio button to the previous radio button. </td>
         </tr>
       </table>
-    	<p>In this Radio Group example, the <code>tabindex</code> of the first and last radio button elements has a <code>tabindex="0"</code> (assuming none of the radio buttons is checked), the remaining radio elements have <code>tabindex="-1"</code>.  As soon as the first or the last radio button receives focus it changes the <code>tabindex</code> value of the other radio button to -1.  If none of the radio buttons is selected the and the keyboard focus leaves the group the first and the last radio buttons have their <code>tabindex</code> values set to 0. <span class="todo">Todo: should you discuss what happens when the user tabs to the radio group and no button is checked?  </span></p>
+    	<p>In this Radio Group example, the <code>tabindex</code> of the first and last radio button elements has a <code>tabindex="0"</code> (assuming none of the radio buttons is checked), the remaining radio elements have <code>tabindex="-1"</code>.  As soon as the first or the last radio button receives focus it changes the <code>tabindex</code> value of the other radio button to -1.  If none of the radio buttons is selected the and the keyboard focus leaves the group the first and the last radio buttons have their <code>tabindex</code> values set to 0. </p>
+        <p class="ednote">Todo: should you discuss what happens when the user tabs to the radio group and no button is checked?  </p>
     </section>
       <section id="kbd_general_other">
       <h4> Other Widget Authoring Practices</h4>
@@ -1416,7 +1398,7 @@ Here the values 1 through 7 represent the days of the week and
       <ul>
       	<li>
       		<p><em>Use focus and blur events (or event delegation) to monitor changes to the current focus</em> - <code>focus</code> and <code>blur</code> events can now be used with every element. Modern browsers now support an <code>activeElement</code> property on the document object to get the focused element. Don't assume that all focus changes will come via key and mouse events, because assistive technologies such as screen readers can set the focus to any focusable element, and that needs to be handled elegantly by the JavaScript widget. Techniques such as &quot;event delegation&quot; (for example, intercepting events on a list rather than on every listitem) can greatly increase web application performance and code maintainability, and authors are encouraged to use JavaScript best practices whenever possible. </p>
-      		<p class="note">Note: The <code>activeElement</code> property is now standard in HTML 5.</p>
+      		<p class="note">The <code>activeElement</code> property is now standard in HTML 5.</p>
       	</li>
         <li>
         	<p><em>Follow keydowns to move focus</em> - A keydown event handler can determine the next object to receive focus and call that element's focus() method. </p>
@@ -1439,16 +1421,16 @@ Here the values 1 through 7 represent the days of the week and
         </li>
         <li>
         	<p><em>Prevent used key events from performing browser functions</em> - If a key such as an arrow key is used, prevent the browser from using the key to do something (such as scrolling) by using code like the following:</p>
-        	<pre class="example"><span class="tag">&lt;span tabindex=<span class="str">&quot;-1&quot;</span> onkeypress=<span class="str">&quot;return  handleKeyPress();&quot;</span>&gt;</span> </pre>
+        	<pre class="example highlight"><span class="tag">&lt;span tabindex=<span class="str">&quot;-1&quot;</span> onkeypress=<span class="str">&quot;return  handleKeyPress();&quot;</span>&gt;</span> </pre>
         	<p>If handleKeyDown() returns false, the event will be consumed, preventing the browser from performing any action based on the keystroke.  In addition to the return value the browser must call the event methods that will prevent the default action, for IE this is setting the event property &quot;returnValue=false&quot;, and for other browsers supporting the W3C event model this means calling the &quot;preventDefault&quot; method of the event object.</p>
         	</li>
         <li>
-        	<pre class="example"><span class="tag">&lt;span tabindex=<span class="str">"-1"</span> onkeydown=<span class="str">"return handleKeyDown();"</span>&gt;</span>   </pre>
+        	<pre class="example highlight"><span class="tag">&lt;span tabindex=<span class="str">"-1"</span> onkeydown=<span class="str">"return handleKeyDown();"</span>&gt;</span>   </pre>
         	<p>If handleKeyDown() returns false, the event will be consumed, preventing the browser from performing any action based on the keystroke. </p>
         	</li>
         <li>
           	<p><em>Use key event handlers to enable activation of the element</em> - For every mouse event handler, a keyboard event handler is required. For example, if you have an <em>onclick="doSomething()"</em> you may also need <em>onkeydown="return event.keyCode != 13 || doSomething();" </em>in order to allow the <kbd>Enter</kbd> key to activate that element. </p>
-        	<p class="note">Note: There are <a href="https://developer.mozilla.org/en-US/docs/Accessibility/Keyboard-navigable_JavaScript_widgets" title="Keyboard-navigable JavaScript widgets - MDN" target="_blank">user agent-specific considerations</a> for key event handling.</p>
+        	<p class="note">There are <a href="https://developer.mozilla.org/en-US/docs/Accessibility/Keyboard-navigable_JavaScript_widgets" title="Keyboard-navigable JavaScript widgets - MDN" target="_blank">user agent-specific considerations</a> for key event handling.</p>
         </li>
         <li>
         	<p>Consider using a "<a href="#kbd_general_within">roving</a>" tabindex for complex widgets if you are not using the <a class="property-reference" href="../aria/#activedescendant">aria-activedescendant</a> property. </p>
@@ -1459,9 +1441,7 @@ Here the values 1 through 7 represent the days of the week and
       <h4> Using activedescendant to Manage Focus for Widget Children</h4>
       <p>In addition to tabindex, WAI-ARIA provides  the <a class="property-reference" href="../aria/#activedescendant">aria-activedescendant</a> property  for managing the focus of child elements within a widget. Widgets like <a class="role-reference" href="../aria/#grid">grid</a> and <a class="role-reference" href="../aria/#tree">tree</a> typically manage their children. The root element of the widget should have a <code>tabindex</code> value greater than or equal to "0" to ensure that the widget is in the document tabbing order. Rather than setting a key event handler on each element within a larger component, the event handler can be set on the parent element such as the tree. It is then the job of the parent element to manage the focus of the children. </p>
       <p> The parent may use the <a class="property-reference" href="../aria/#activedescendant">aria-activedescendant</a> property to indicate the active child. For example, the container element with the role of tree can provide an onkeydown event handler so that each individual tree item within the tree does not need to be focusable and to listen for the keydown event. The container object, in this case the tree, needs to maintain the point of regard and manage which individual child item must be perceived as active.</p>
-      <div class="note">
-        <p><em>Important: For a given container widget where activedescendant must cause focus events to be fired to ATs, the actual focus must be on the container widget itself. In HTML this is done by putting tabindex="0" on the container widget.</em></p>
-      </div>
+        <p class="note"><em>Important: For a given container widget where activedescendant must cause focus events to be fired to ATs, the actual focus must be on the container widget itself. In HTML this is done by putting tabindex="0" on the container widget.</em></p>
       <p>The key handler on the parent captures the keystrokes and determines what item becomes active next and updates the <a class="property-reference" href="../aria/#activedescendant">aria-activedescendant</a> property with the ID of the appropriate, next active child element. The browser takes that ID information and generates the focus event to the assistive technology. Each individual element does not have to be made focusable via a <code>tabindex</code> value of -1, but it must be styled using CSS to indicate the active status.</p>
       <p>As active status is moved to the next descendant, ensure that it is scrolled into view using <code>scrollIntoView()</code>.  See section <a href="#scrollintoview">Managing Focus with Scroll</a> below for more information.</p>
     </section>
@@ -1500,8 +1480,8 @@ Here the values 1 through 7 represent the days of the week and
         <section id="kbd_tooltips">
         <h3> Supporting Tooltips with the Keyboard</h3>
         <p>A <a class="role-reference" href="../aria/#tooltip">tooltip</a> is a  popup messages typically triggered by moving a mouse over a control or widget causing a small popup window to appear with additional information about the control. To provide simple text tooltips, the <a href="http://www.w3.org/TR/1999/REC-html401-19991224/struct/global.html#h-7.4.3">HTML title attribute</a> should more than suffice because the user agent will render it for tooltips. When creating a <a class="role-reference" href="../aria/#tooltip">tooltip</a>, it is essential that  the user be able to activate it using the keyboard. When a form control or widget receives keyboard focus, the <a class="role-reference" href="../aria/#tooltip">tooltip</a> must display. When the form control or widget loses focus, the tooltip must disappear. Browsers do not currently support this functionality. </p>
-        <p>The following code snippet from the <a href="http://test.cita.uiuc.edu/aria/tooltip/tooltip1.php" title="iCITA"><abbr title="Illinois Center for Information Technology Accessibility">iCITA</abbr></a> site shows the use of a <span class="example">onfocus=&quot;tooltipShow();&quot;</span> function to display the tooltip when focus is placed on an element. </p>
-        <pre class="example" id="line1"><span class="tag">&lt;html lang=<span class="str">"en-us"</span>"&gt;</span>  
+        <p>The following code snippet from the <a href="http://test.cita.uiuc.edu/aria/tooltip/tooltip1.php" title="iCITA"><abbr title="Illinois Center for Information Technology Accessibility">iCITA</abbr></a> site shows the use of a <span class="example highlight">onfocus=&quot;tooltipShow();&quot;</span> function to display the tooltip when focus is placed on an element. </p>
+        <pre class="example higlight" id="line1"><span class="tag">&lt;html lang=<span class="str">"en-us"</span>"&gt;</span>  
 <span class="tag">&lt;head&gt;</span>    
    <span class="tag">&lt;title&gt;</span>inline: Tooltip Example 1<span class="tag">&lt;/title&gt;</span>      
    <span class="tag">&lt;link rel=<span class="str">"stylesheet"</span> href=<span class="str">"css/tooltip1_inline.css"</span>  type=<span class="str">"text/css"</span>&gt;</span>    
@@ -1602,7 +1582,7 @@ Represents a region of the page representing a unique software unit executing a 
               <dd>The search tool of a Web document. </dd>
             </dl>
             <p>To set a landmark in your page: </p>
-            <pre class="example"><span class="tag">&lt;div role=<span class="str">"navigation"</span> title=<span class="str">"Table of Contents"</span>&gt;</span> &hellip; <span class="tag">&lt;/div&gt;</span> 
+            <pre class="example higlight"><span class="tag">&lt;div role=<span class="str">"navigation"</span> title=<span class="str">"Table of Contents"</span>&gt;</span> &hellip; <span class="tag">&lt;/div&gt;</span> 
 <span class="tag">&lt;div role=<span class="str">"main"</span> title=<span class="str">"Game Statistics"</span>&gt;</span> &hellip; <span class="tag">&lt;/div&gt;</span></pre>
           </li>
           <li id="kbd_layout_static"><strong>For application landmarks with static prose</strong>
@@ -1618,7 +1598,7 @@ This calendar shows the game schedule for the Boston Red Sox.
        </li>
           <li id="kbd_layout_landmark_rebel"><strong>For  landmarks unsuited to specialized region WAI-ARIA roles</strong>
             <p>You can create custom regional landmarks by using a generic <a class="role-reference" href="../aria/#region">region</a>. While it is not essential to label these specialized regions with a header, you should provide a title to ensure that the region name is accessible to all users, just as you would the <a href="#kbd_layout_landmark_XHTML">standard regional landmarks</a>. See <a href="#kbd_layout_nesting_vs_level">Header levels versus Nesting levels</a> for directions on how to label the region.</p>
-            <pre class="example">&lt;div role="main"&gt; &hellip; &lt;div role="region" title="weather"&gt;  
+            <pre class="example highlight">&lt;div role="main"&gt; &hellip; &lt;div role="region" title="weather"&gt;  
 </pre>
             <p>Note: the <a class="role-reference" href="../aria/#region">region</a> role is generic and should only be used when a more specific role is not applicable.</p>
           </li>
@@ -1640,7 +1620,7 @@ This calendar shows the game schedule for the Boston Red Sox.
             <p id="kbd_layout_impact_approle"><strong>Set the Application Role</strong></p>
             <p>After you have divided your Web page into regions through the use of role landmarks and custom regions, you must make a decision: Is your Web page an application or not? If the majority of the content is application-like the default interaction mode should be set to <span class="role-reference">application</span>, with <span class="role-reference">document</span> regions embedded within the application if applicable. Otherwise the default interaction mode is document-like and therefore should not be overridden by the use of a global role of <span class="role-reference">application</span>. In this case the <span class="role-reference">application</span> role can be placed on discrete regions within the document if applicable. </p>
 			<p>If it is, set the role of <a class="role-reference" href="../aria/#application">application</a> on the body tag as follows: </p>
-            <pre class="example">&lt;body role="application"&gt; </pre>
+            <pre class="example highlight">&lt;body role="application"&gt; </pre>
             <p> When using <a class="role-reference" href="../aria/#application">application</a>, all static text must be associated with widgets, groups or panes via using the <a class="property-reference" href="../aria/#labelledby">aria-labelledby</a> and <a class="property-reference" href="../aria/#aria-describedby">aria-describedby</a> properties, otherwise it will not be read by the screen reader when the user navigates to the related widget or group.</p>
             <p>Special Considerations: </p>
             <ul>
@@ -1661,7 +1641,7 @@ This calendar shows the game schedule for the Boston Red Sox.
         <blockquote>
           <p>The default mode for a screen reader to be processing an HTML Web page is document browse mode. This is equivalent to having a role of document on the HTML <code>&lt;body&gt;</code> tag. If you have already specified a role of application on the body tag there may be times in which you tell the screen reader to switch into "document browse mode" and start stealing the necessary keys to browse a document section of your Web page. These keys are the typical keys used by WAI-ARIA widgets and to provide this level of navigation the keys must be stolen from your browser. </p>
           <p>To mark areas of your page to tell the assistive technology when to switch into document browse mode, look at the regions/landmarks you have defined and determine which ones must be browsed as a document or navigated as an application. For each region which must be browsed in document browse mode, embed a div element within it with the role of <a class="role-reference" href="../aria/#document">document</a> as follows: </p>
-          <pre class="example">&lt;div role="document"&gt; </pre>
+          <pre class="example higlight">&lt;div role="document"&gt; </pre>
           <p>Now, when a screen reader encounters this region, it will change its interaction model to that of  document browsing mode. </p>
         </blockquote>
       </section>
@@ -1671,7 +1651,7 @@ This calendar shows the game schedule for the Boston Red Sox.
           <section id="kbd_layout_nesting_vs_level">
           <h5> Header Levels Versus Nesting Levels </h5>
           <p>The <a class="role-reference" href="../aria/#heading">heading</a> role value signifies a heading for a section of the document instance. Use of the heading role indicates that a specific object serves as a header. The <a class="role-reference" href="../aria/#region">region</a> of the document to which the heading pertains to should be marked with the <a class="property-reference" href="../aria/#labelledby">aria-labelledby</a> property containing the value of the id for the header. If you have a heading and there is no element containing the content that it heads, wrap the content in a &lt;div&gt; bearing this <a class="property-reference" href="../aria/#labelledby">aria-labelledby</a> attribute. If headings are organized into a logical outline, the <a class="property-reference" href="../aria/#level">aria-level</a> property can be used to indicate the nesting level. Here is an example with and without ARIA. Note that the preferred way is using native semantics without ARIA, but the approach with ARIA is shown first to demonstrate use of the heading role:</p>
-          <pre class="example">Using ARIA:
+          <pre class="example highlight">Using ARIA:
 <span class="tag">&lt;div role=<span class="str">"main"</span> aria-labelledby=<span class="str">"page_title"</span>&gt;</span>
   <span class="tag">&lt;p id=<span class="str">"page_title"</span> role=<span class="str">"heading"</span> aria-level=<span class="str">&quot;1&quot;</span>&gt;</span>Top News Stories<span class="tag">&lt;/p&gt;</span>
    … main page contents here …
@@ -1706,7 +1686,7 @@ Using native markup:
           <section id="kbd_layout_directories">
           <h5> Directories and Their Applicability </h5>
           <p>The WAI-ARIA role, <a class="role-reference" href="../aria/#directory">directory</a>, allows authors to mark static table of content sections of a document. Prior to WAI-ARIA, the user would need to guess if an area of a document actually pertained to the table of contents. Authors should mark these sections within a document with a role of  directory.</p>
-          <pre class="example">&lt;div role="directory"&gt;
+          <pre class="example highlight">&lt;div role="directory"&gt;
    &lt;ul&gt;
       &lt;li&gt;Global Warming Causes
           &lt;ul&gt;
@@ -1767,7 +1747,7 @@ Using native markup:
           <section id="kbd_layout_remaining_tabular">
           <h5> Tabular Structure-Related Roles Supporting Tabular Widgets</h5>
           <p>A number of structural roles support the tabular widgets, <a class="role-reference" href="../aria/#grid">grid</a> and <a class="role-reference" href="../aria/#treegrid">treegrid</a>. These structural roles indicate additional keyboard navigation as well as the ability to select rows and/or columns. Typically, you would apply these roles to an underlying table in the base markup as shown here:</p>
-          <pre class="example">&lt;table role="grid"&gt;		</pre>
+          <pre class="example highlight">&lt;table role="grid"&gt;		</pre>
           <p>However, that may not work for the developer in all instances, such as when the developer has need for a &lt;div&gt; or &lt;span&gt; or when additional semantics are needed. To assist, the following roles are provided to support tabular widgets:</p>
           <ul>
             <li><a class="role-reference" href="../aria/#columnheader">columnheader</a> </li>
@@ -1778,7 +1758,7 @@ Using native markup:
             <li><a class="role-reference" href="../aria/#treegrid">treegrid</a></li>
           </ul>
           <p>When constructing a <a class="role-reference" href="../aria/#grid">grid </a>or <a class="role-reference" href="../aria/#treegrid">treegrid</a> the author must use <a class="role-reference" href="../aria/#gridcell">gridcell</a>s for the actual cells:</p>
-          <pre class="example">&lt;table role="grid"&gt;
+          <pre class="example highlight">&lt;table role="grid"&gt;
    &lt;tr&gt;
       &lt;td role= "columnheader"&gt;Apples&lt;/td&gt;&lt;td role= "columnheader"&gt;Oranges&lt;/td&gt;
    &lt;/tr&gt;
@@ -1797,14 +1777,14 @@ Using native markup:
           <p>
           The <a href="../aria/#aria-describedby" class="property-reference">aria-describedby</a> property allows for the text of <a class="termref" href="../aria/terms#def_hidden">hidden</a> elements to be used for accessible descriptions.  Some screen reader vendors have used non-standard attributes to provide hidden help text for <code>form</code> elements.  In order to standardize this feature, hidden text is exposed in the description property of <a class="termref" href="../aria/terms#def_accessibility_api">Accessibility API</a> objects when referenced by <a href="../aria/#aria-describedby" class="property-reference">aria-describedby</a>.
           </p>
-          <pre class="example"><span class="tag">&lt;img src=<span class="str">"foo"</span> alt=<span class="str">"abbreviated name"</span> aria-describedby=<span class="str">"prose1"</span>&gt;</span>
+          <pre class="example highlight"><span class="tag">&lt;img src=<span class="str">"foo"</span> alt=<span class="str">"abbreviated name"</span> aria-describedby=<span class="str">"prose1"</span>&gt;</span>
 
 <span class="tag">&lt;div id=<span class="str">"prose1"</span>&gt;</span>
    The prose in this div describes the image foo in detail.
 <span class="tag">&lt;/div&gt;</span></pre>
           <p> This is the preferred vehicle for providing long descriptions for elements in your document.</p>
           <p> When the author does not desire the entire descriptive text to be located on the main page, aria-describedby can also be used to point to a link to another page. </p>
-          <pre class="example"><span class="tag">&lt;div id=<span class="str">"figuretitle"</span>&gt;</span>Figure 1-1: Entity Relationship Diagram showing EMP and DEPT<span class="tag">&lt;/div&gt;</span>
+          <pre class="example highlight"><span class="tag">&lt;div id=<span class="str">"figuretitle"</span>&gt;</span>Figure 1-1: Entity Relationship Diagram showing EMP and DEPT<span class="tag">&lt;/div&gt;</span>
   <span class="tag">&lt;img src=<span class="str">"foo"</span> aria-labelledby=<span class="str">"figuretitle"</span> aria-describedby=<span class="str">"link1"</span>&gt;</span>
   <span class="tag">&lt;a href=<span class="str">"descriptionLocation.html"</span> id=<span class="str">"link1"</span>&gt;</span>Description of Figure 1-1: Entity Relationship Diagram showing EMP and DEPT<span class="tag">&lt;/a&gt;</span>
 <span class="tag">&lt;/div&gt;</span></pre>
@@ -1816,20 +1796,20 @@ Using native markup:
         <p>In order to synchronize with the XHTML Role Attribute module, WAI-ARIA includes two XHTML roles which are neither landmarks nor widgets of any kind. These roles were incorporated to replace standard elements found in host languages. These roles are <a class="role-reference" href="../aria/#definition">definition</a> and <a class="role-reference" href="../aria/#note">note</a>. If either role has a corresponding element in the host language, it is recommended that authors use the corresponding element in the host language.</p>
         <p>The <a class="role-reference" href="../aria/#definition">definition</a> role indicates a definition statement in your document. For HTML developers implementing lists of definitions, we recommend    you using the DL, DT, and DD elements rather than marking an arbitrary    element with a role of definition. An arbitrary element would be    appropriate for inline definitions used in conjunction with the DFN    element. </p>
         <p>Example of an inline definition with an explicit labelledby relationship:</p>
-        <pre class="example">
+        <pre class="example highlight">
 &lt;p&gt;The doctor explained it had been a &lt;dfn id="placebo"&gt;placebo&lt;/dfn&gt;, &lt;span role="definition" aria-labelledby="placebo"&gt;  
 an inert preparation prescribed more for the mental relief of the patient than for its actual effect on a disorder.&lt;/span&gt;
 &lt;/p&gt;</pre>
-        <p><span class="example">Example of an inline definition with an implicit labelledby relationship    determined by nesting:</span></p>
-        <pre class="example">&lt;p&gt;The doctor explained it had been a &lt;span role="definition"&gt;
+        <p>Example of an inline definition with an implicit labelledby relationship    determined by nesting:</p>
+        <pre class="example highlight">&lt;p&gt;The doctor explained it had been a &lt;span role="definition"&gt;
 &lt;dfn&gt;placebo&lt;/dfn&gt;, an inert preparation prescribed more for the mental relief of the patient than for its actual effect on a disorder.&lt;/span&gt;
 &lt;/p&gt;</pre>
         <p>Note: In the case where host language semantics do not allow for    implicit nesting of definitions terms inside definition roles, authors    should explicitly use the aria-labelledby attribute, even when the    definition term is nested in the definition as shown here:</p>
-        <pre class="example">&lt;p&gt;The doctor explained it had been a &lt;span role="definition" aria-labelledby="placebo"&gt;
+        <pre class="example highlight">&lt;p&gt;The doctor explained it had been a &lt;span role="definition" aria-labelledby="placebo"&gt;
 &lt;dfn id="placebo"&gt;placebo&lt;/dfn&gt;, an inert preparation prescribed more for the mental relief of the patient than for its actual effect on a disorder.&lt;/span&gt;
 &lt;/p&gt;</pre>
         <p>The following is an example using a definition list:</p>
-        <pre class="example">&lt;dl&gt;
+        <pre class="example highlight">&lt;dl&gt;
  &lt;dt id="anathema"&gt;anthema&lt;/dt&gt;
  &lt;dd role="definition" aria-labelledby="anathema"&gt;a ban or curse solemnly pronounced by ecclesiastical authority and accompanied by  
 excommunication&lt;/dd&gt;
@@ -1841,7 +1821,7 @@ excommunication&lt;/dd&gt;
 
 &lt;/dl&gt;</pre>
         <p>The <a class="role-reference" href="../aria/#note">note</a> role defines a parenthetic or ancillary remark to the <a class="role-reference" href="../aria/#main">main</a> content of the resource. It also allows assistive technologies to skip over this section of the document unless more information is requested about the main content.</p>
-        <pre class="example">&lt;div role="main" aria-labelledby="foo"&gt;
+        <pre class="example highlight">&lt;div role="main" aria-labelledby="foo"&gt;
    &lt;h1 id="foo"&gt;Wild fires spread across the San Diego Hills&lt;/h1&gt;
    Strong winds expand fires ignited by high temperatures &hellip;
 &lt;/div&gt;
@@ -1975,10 +1955,10 @@ helper.stopEvent(evt); //stop the event if not a tab keypress
         <section id="Descriptions_describedby">
       	<h4>Using aria-describedby</h4>
       	<p>When one element  describes another, use the <a href="../aria/#aria-describedby" class="property-reference">aria-describedby</a> attribute. An <a href="../aria/#aria-describedby" class="property-reference">aria-describedby</a> section provides further information about a given object or widget,  which may not be intuitively obvious from the context, content or other  attributes. For example, a fake window is a common widget used in Web  applications and is often constructed using a div absolute  positioned in a layer above other content. To simulate common window  behavior look and feel there is often an X box in the corner which,  when activated, dismisses the window widget. One common way to make  this X box is to simply make a link whose content is an X. This doesn't  give a non-visual user much to go on and belies the real purpose of the  X link. To help we add more descriptive text stored elsewhere in the  page like this: </p>
-      	<pre class="example"><span class="tag">&lt;button aria-label=<span class="str">"Close"</span> aria-describedby=<span class="str">"descriptionClose"</span> 
+      	<pre class="example highlight"><span class="tag">&lt;button aria-label=<span class="str">"Close"</span> aria-describedby=<span class="str">"descriptionClose"</span> 
     onclick=<span class="str">"myDialog.close();"</span>&gt;</span>X<span class="tag">&lt;/button&gt;</span></pre>
       	and then elsewhere in the HTML
-      	<pre class="example"><span class="tag">&lt;div id=<span class="str">"descriptionClose"</span>&gt;</span>Closing this window will discard any information entered and 
+      	<pre class="example highlight"><span class="tag">&lt;div id=<span class="str">"descriptionClose"</span>&gt;</span>Closing this window will discard any information entered and 
 return you back to the main page<span class="tag">&lt;/div&gt;</span></pre>
       	Like labelledby, describedby can accept multiple ids to point to other regions of the page using a space separated list. It is also limited to ids for defining these sets. In our contrived example we would also want a good labelledby  section to fully explain what the window does and how closing will  effect the task being worked on. If an object or widget lacks describedby the user agent or AT may try to extract information from the label or th tags, if present. The label and th tags have limited use in that they can only be applied to forms or tables, respectively.
       	</section>
@@ -1986,7 +1966,7 @@ return you back to the main page<span class="tag">&lt;/div&gt;</span></pre>
       	<h4>Using a tooltip as a description</h4>
       	<p>WAI-ARIA also defines the <a class="role-reference" href="../aria/#tooltip">tooltip</a> role to which <a class="property-reference" href="../aria/#aria-describedby">aria-describedby</a> may reference an author defined tooltip. The assistive  technology  can tell from the type of object describing the document  element what  the purpose of that element is. For example, a screen  reader could announce the tooltip without the user having to wave the mouse over the element by following the describedby relationship to a  document area with a <a class="role-reference" href="../aria/#tooltip">tooltip</a> role. The <a class="property-reference" href="../aria/#aria-describedby">aria-describedby</a> property is also useful for describing <a class="role-reference" href="../aria/#group">group</a>s. </p>
       	<p>Here is a code snippet showing a set of the tooltip: </p>
-      	<pre class="example">&hellip;    
+      	<pre class="example highlight">&hellip;    
   <span class="tag">&lt;div class=<span class="str">"text"</span>&gt;</span>
     <span class="tag">&lt;label for=<span class="str">"first"</span>&gt;</span>First Name:<span class="tag">&lt;/label&gt;</span>
       <span class="tag">&lt;input type=<span class="str">"text"</span>               
@@ -2006,7 +1986,7 @@ return you back to the main page<span class="tag">&lt;/div&gt;</span></pre>
         <section id="Descriptions_external">
 		<h4>Descriptions on external pages</h4>
     	<p>The <code class="property-reference">aria-describedby</code> property is not designed to reference descriptions on an external resource&mdash;since it is an IDREF, it must reference an element in the same DOM document. This is different from the HTML <code>longdesc</code> attribute, which accepts any URI. In general, the preferred pattern for WAI-ARIA applications is to include all relevant resources in the same DOM, But if you wish to reference an external resource with <code class="property-reference">aria-describedby</code>, you can reference a link that in turn references the external resource. This requires the user to follow two steps, first following the <code class="property-reference">aria-describedby</code> arc, then following the link, but does address the use case. The following example demonstrates this:</p>
-    	<pre class="example"><span class="tag">&lt;p&gt;</span>
+    	<pre class="example highlight"><span class="tag">&lt;p&gt;</span>
    <span class="tag">&lt;img
        src=<span class="str">"images/histogram.png"</span>
        alt=<span class="str">"Histogram of Blackberry tree heights"</span>
@@ -2121,7 +2101,7 @@ consistent with their visual rendering. Rather than setting  size only on a cont
     <p>(X)HTML suffers from a number of disadvantages in  keyboard navigation today. One such example is the restriction of  navigation to the tabbing order. This is a common problem with  presentations in office suites where the logical, perceivable,  navigation order of a slide may not match the tabbing order. Sighted  users may see a logical navigation process (such as visual steps in the  process for assembling a lawn mower). This "flow" is not conveyed by  the tab order. The user might tab from step 1 and land on step 4.  Another problem is the construction of model-based authoring tools on a  Web page. In a model-based authoring tool, a visual object may provide  a number of paths that the user can take, such as a multiplexor, which  may have output that logically flows to a number of optional electronic  components in a drawing. In Web 2.0, developers are actually creating  drawings like this to perform tasks such as visually model a work flow.  In this scenario, the user will want to decide which object they will  navigate their screen reader or alternate input device to next. </p>
     <p>Although it is  recommended that Tab order follow the reading flow, there may be instances  where this is not possible. For these reasons, WAI-ARIA provides a relationship property, called <a class="property-reference" href="../aria/#flowto">aria-flowto</a>. This allows the author to provide an assistive technology with alternative navigation flows through the document that best represents the author's intent and which is more logical for people with disabilities. <a class="property-reference" href="../aria/#flowto">aria-flowto</a> establishes the recommended reading order of content, so that the an assistive may overriding the default of reading in document order to its user. <a class="property-reference" href="../aria/#flowto">aria-flowto</a> does not change the keyboard navigation order of the browser.</p>
     <p>Consider the first case of changing a basic reading flow to circumvent (X)HTML  tabbing. A good example of this is a logical reading flow in a portal  with landmarks. In the future, the user may wish to change the reading  flow based on the order of priority with which they navigate a  personalized Web application<!-- like <a href="http://www.myspace.com/">   MySpace</a> or <a href="http://my.yahoo.com/">MyYahoo</a>-->.  In the following example, the navigation would follow the order of "Top  News Stories", "television listings", "stock quotes", and "messages  from friends" by following (X)HTML document reading order. However, the author or end user may determine that the main content is most  important, followed by "stock quotes", "messages from friends", and  then "TV listings."  The end user can change the order if the web page or assistive technology provides an interface for such personalization.</p>
-    <pre class="example"><span class="tag">&lt;html&gt;</span>  
+    <pre class="example highlight"><span class="tag">&lt;html&gt;</span>  
 &hellip;  
 <span class="tag">&lt;div role=<span class="str">"main"</span> title=<span class="str">"Top News Stories"</span> id=<span class="str">"main"</span> aria-flowto=<span class="str">"stock"</span>&gt;</span><span class="tag">&lt;/div&gt;</span>  
 <span class="tag">&lt;div role=<span class="str">"complementary"</span> title=<span class="str">"television listings"</span> id=<span class="str">"tv"</span>&gt;</span><span class="tag">&lt;/div&gt;</span>
@@ -2132,7 +2112,7 @@ consistent with their visual rendering. Rather than setting  size only on a cont
       <li>
         <p id="step1_obj_accessible">Make each object in the work flow accessible</p>
         <p>This  will require assigning a title or WAI-ARIA label for each object and a  unique HTML id. Also, if the html element is repurposed assign it a  WAI-ARIA role. </p>
-        <pre class="example">&lt;html&gt;
+        <pre class="example highlight">&lt;html&gt;
 
 &hellip;  
 &lt;img src="foo.jpg" id="331" title="What is the Invoice Value?"&gt;  
@@ -2142,7 +2122,7 @@ consistent with their visual rendering. Rather than setting  size only on a cont
       </li>
       <li id="step2_flowto">Assign the flowto properties
         <p>For each visual object that will flow to one or more other objects assign  the flowto property the list of IDs to which it flows. </p>
-        <pre class="example">&lt;html&gt;  
+        <pre class="example highlight">&lt;html&gt;  
 &hellip;  
 &lt;img src="foo.jpg" id="331" title="What is the Invoice Value?" aria-flowto="333 334"&gt;  
 &lt;img src="foo.jpg" id="333" title="Finance Manager Approval"&gt;  
@@ -2152,7 +2132,7 @@ consistent with their visual rendering. Rather than setting  size only on a cont
       </li>
       <li id="step3_keyboard">Make sure visual objects are keyboard accessible
         <p>Use tabindex to enable objects to receive focus. Actually setting focus to them may be performed by an assistive technology, such as an alternative input device. This example places each drawing object in  document order with respect to the tab sequence. </p>
-        <pre class="example">&lt;img src="foo.jpg" id="331" title="What is the Invoice Value?"
+        <pre class="example highlight">&lt;img src="foo.jpg" id="331" title="What is the Invoice Value?"
     aria-flowto="333 334" tabindex="0"&gt;
 &lt;img src="foo.jpg" id="333"  title="Finance Manager Approval" tabindex="0"&gt;
 &lt;img src="foo.jpg" id="334" title="Sales Manager Approval" tabindex="0"&gt;
@@ -2169,7 +2149,7 @@ consistent with their visual rendering. Rather than setting  size only on a cont
 		
 		<p>The following html fragment shows the use of <span class="property-reference">aria-haspopup</span> with a menubar, its menus, and submenus. All of the menuitems associated with the menubar have <span class="property-reference">aria-haspopup</span> set to 'true'. Also, the "Zoom" menuitem of the "View" menu has an <span class="property-reference">aria-haspopup</span> property as it leads to a submenu.</p>
 		
-		<pre class="example"><span class="tag">&lt;div role=<span class="str">"menubar"</span>&gt;</span>
+		<pre class="example highlight"><span class="tag">&lt;div role=<span class="str">"menubar"</span>&gt;</span>
   <span class="comment">&lt;!--
     File menu: File menuitem has an aria-haspopup attribute set to 'true'.
     That popup div follows immediately below.
@@ -2290,7 +2270,7 @@ consistent with their visual rendering. Rather than setting  size only on a cont
       </dl>
       <p> This example shows two live regions. If both regions update  simultaneously, liveRegionA should be spoken first because its message has a  higher priority than liveRegionB.      </p>
       <blockquote>
-        <pre class="example">&lt;div id=&quot;liveRegionA&quot; aria-live=&quot;assertive&quot;&gt;         
+        <pre class="example highlight">&lt;div id=&quot;liveRegionA&quot; aria-live=&quot;assertive&quot;&gt;         
 &lt;/div&gt;         
 &lt;div id=&quot;liveRegionB&quot; aria-live=&quot;polite&gt;         
 &lt;/div&gt;</pre>
@@ -2306,7 +2286,7 @@ consistent with their visual rendering. Rather than setting  size only on a cont
       <p><a class="role-reference" href="../aria/#timer">timer</a> - You must use a timer role when you want to mark an area which indicates an amount of elapsed time from a start  point, or the time remaining until an end point. The text encapsulated within the timer indicates the current time  measurement, and are updated as that amount changes. However, the timer value is not necessarily machine parsable.  The text contents <strong>MUST</strong> be updated at fixed intervals, except when the timer is paused or reaches an  end-point. </p>
       <p><a class="role-reference" href="../aria/#marquee">marquee</a>- You must use a marquee role when you need to mark an area with scrolling text such as a stock ticker. The latest text of the scrolled area must be available in the DOM. A marquee behaves like a <a href="#liveprops">live region</a>, with an assumed default <a class="property-reference" href="../aria/#live">aria-live</a> property value of "polite."</p>
       <p><a class="role-reference" href="../aria/#log">log</a> - You must use log if you have a live area where new information is added, like a scrolling chat log of text. Unlike other regions, implied semantics indicate the arrival of new items and the reading order. The log  contains a meaningful sequence and new information is added only to the  end of the log, not at arbitrary points. If you have a chat text entry area you should indicate that it also controls the aria log aria like so:</p>
-      <pre class="example">&lt;div contenteditable="true" role="log" id="chatlog"&gt;
+      <pre class="example highlight">&lt;div contenteditable="true" role="log" id="chatlog"&gt;
 &lt;/div&gt;
 
 
@@ -2319,7 +2299,7 @@ consistent with their visual rendering. Rather than setting  size only on a cont
         <p><a href="../aria/states_and_properties#attrs_liveregions">live region</a> - If you have some other live area use case, WAI-ARIA allows you to mark an area using the <a class="property-reference" href="../aria/#live">aria-live</a> attribute. This accompanied by the collection of attributes which support the live property allow you to create your own custom live area on your Web page. For more details regarding live regions refer to the <a href="#LiveRegions">live region</a> section of this guide.</p>
     </blockquote>
     <p>Live region roles that are applied to elements having strong native semantics are not mapped consistently to the platform accessibility API.  An example is the <code>TABLE</code> element.  It is recommended that authors apply live regions to <code>DIV</code> and <code>SPAN</code> containers.  For example: </p>
-                    <pre class="example"><span class="comment">&lt;!-- Live region 'log' role used with TABLE element:  the 'log' role is not consistently mapped to platform AAPI. --&gt;</span>
+                    <pre class="example highlight"><span class="comment">&lt;!-- Live region 'log' role used with TABLE element:  the 'log' role is not consistently mapped to platform AAPI. --&gt;</span>
 <span class="comment">&lt;!-- Do not use. --&gt;</span>
 <span class="tag">&lt;table role=<span class="str">"log"</span> &hellip; &gt;</span>
   &hellip;
@@ -2342,7 +2322,7 @@ consistent with their visual rendering. Rather than setting  size only on a cont
     <h3>Rationale</h3>
     <p>Authors devote a good deal of effort to the appearance of their web pages, and this is especially true in the case of scripted web applications.  To this end authors employ various elements purely for visual presentation.  For example, <code>&lt;img&gt;</code> elements are used for spacing and decoration; and <code>&lt;table&gt;</code>s are used to create a column based layout.  Elements used strictly for presentation are semantically neutral and irrelevant in terms of accessibility.  It is necessary to mark such elements as presentational so that they do not appear in the <a href="../aria-implementation/#intro_treetypes">accessible tree</a> created by the user agent.  For example, a current technique used with spacer images is to provide blank <code>alt</code> text to indicate that the image is not meaningful.  User agents will not publish any information about images with blank <code>alt</code> text to the platform accessibility API.</p>
     <p>There are elements other than <code>&lt;img&gt;</code> and <code>&lt;table&gt;</code> that are used solely for visual presentation.  Any element is a potential candidate for presentation, and, if so used, these elements also need to be marked as semantically neutral.</p>
-    <p class="note">Note: It is important to separate content and presentation. CSS 3 has introduced new table layout functionality to allow a user agent to layout content using CSS. There are many advantages to using this feature of CSS such as browser style sheet caching and improved adaptability to mobile devices with limited screen real estate. There are, however, cases where presentational markup cannot be avoided. In such instances, authors are counseled to consult <a href="http://www.w3.org/TR/WCAG20/" title="Web Content Accessibility Guidelines (WCAG) 2.0">WCAG 2.0</a> for more detailed guidance.</p>
+    <p class="note">It is important to separate content and presentation. CSS 3 has introduced new table layout functionality to allow a user agent to layout content using CSS. There are many advantages to using this feature of CSS such as browser style sheet caching and improved adaptability to mobile devices with limited screen real estate. There are, however, cases where presentational markup cannot be avoided. In such instances, authors are counseled to consult <a href="http://www.w3.org/TR/WCAG20/" title="Web Content Accessibility Guidelines (WCAG) 2.0">WCAG 2.0</a> for more detailed guidance.</p>
     <p>WAI-ARIA introduces the <a class="role-reference" href="../aria/#presentation">presentation</a> role as a general device for marking elements as presentational.  The <a class="role-reference" href="../aria/#presentation">presentation</a> role overrides the element's native implicit role, and informs the user agent to not publish the element to the accessiblity API.  In fact, the preferred way to mark <code>&lt;img&gt;</code> elements as decorative is to use a <code>role="presentation"</code> attribute instead of (or in addition to) an empty <code>alt</code> attribute.  Here is a code fragment sample:</p>
     
 <pre xml:space="preserve"><span class="comment">&lt;!-- [role="presentation"] informs the user agent that the spacer images are for layout only. --&gt;</span>
@@ -2402,7 +2382,7 @@ consistent with their visual rendering. Rather than setting  size only on a cont
     <h3>Inheritance of Presentation by Parent Element's Children</h3>
       <p>In general, the presentation role is not inherited by an element's children.  The exceptions are elements whose role entails that the element has <a href="../aria/#mustContain" class="specref">required owned children</a>.  Examples include the <code>&lt;table&gt;</code> element and <a class="role-reference" href="../aria/#list">list</a> role, and these exceptions are discussed further below.  For all other elements, only the element marked presentational is eliminated from the accessible tree.  Note, however, that its contents are published; in particular, the element's textual content is published, but any attributes of the element that may form a text-equivalent are not. For example, a header element with a presentation role would not appear in the accessible tree, but its text does.  An image with a role of presentation is not exposed in the accessible tree, nor is the contents of its <code>alt</code> attribute.  This is shown in the following code fragment:</p>
       
-<pre class="example" xml:space="preserve"><span class="comment">&lt;!-- 1. [role="presentation"] negates the implicit 'heading' role semantics but does not affect the contents. --&gt;</span>
+<pre class="example highlight" xml:space="preserve"><span class="comment">&lt;!-- 1. [role="presentation"] negates the implicit 'heading' role semantics but does not affect the contents. --&gt;</span>
   
 <span class="tag">&lt;h1 role=<span class="str">"presentation"</span>&gt;</span>Presentation role overrides Header role<span class="tag">&lt;/h1&gt;</span>
 <span class="tag">&lt;h1&gt;</span>Another header<span class="tag">&lt;/h1&gt;</span>
@@ -2430,7 +2410,7 @@ consistent with their visual rendering. Rather than setting  size only on a cont
       <p>Be aware that the markup <code>&lt;img role="presentation" alt="non-empty alt text"&hellip;&gt;</code> is in fact contradictory:  Declaring a role of presentation says that the image is for layout, is decorative and meaningless, whereas the non-empty alt text implies that the image is meaningful.  It is recommended that authors instead use empty <code>alt</code> text (<code>alt=""</code>) where they use <code>role="presentation"</code>.</p>
       <p>Earlier it was noted that the <a class="role-reference" href="../aria/#presentation">presentation</a> role is not generally inherited by an element's children.  The exception are roles that have <a href="../aria/#mustContain" class="specref">required owned elements</a>.  Examples include the <code>&lt;table&gt;</code> element, and the <a class="role-reference" href="../aria/#list">list</a> and <a class="role-reference" href="../aria/#tree">tree</a> roles.  A <a class="role-reference" href="../aria/#list">list</a> is required to have  <a class="role-reference" href="../aria/#listitem">listitem</a> children; a <a class="role-reference" href="../aria/#tree">tree</a>, <a class="role-reference" href="../aria/#treeitem">treeitem</a> children.  The <code>&lt;table&gt;</code> element's child components are <code>&lt;tbody&gt;</code>, <code>&lt;thead&gt;</code>, <code>&lt;tfoot&gt;</code>, <code>&lt;th&gt;</code>, <code>&lt;tr&gt;</code>, <code>&lt;td&gt;</code>, and <code>&lt;caption&gt;</code>.  These component elements would not appear in the markup without the enclosing <code>&lt;table&gt;</code> root element.  Thus, when a table is used for layout, it follows that all of its component elements are present in the markup for layout as well.  Since annotating all the required child elements with <code>role=&quot;presentation&quot;</code> is error prone and difficult to maintain, it is sufficient to mark the table root element as presentational.  The presentation role propagates to all the table component elements.  However, as before, the contents of the table elements do appear in the accessible tree.  Here is an example:</p>
         
-<pre class="example" xml:space="preserve"><span class="comment">&lt;!-- Layout table marked with [role="presentation"]. --&gt;</span>
+<pre class="example highlight" xml:space="preserve"><span class="comment">&lt;!-- Layout table marked with [role="presentation"]. --&gt;</span>
 
 <span class="tag">&lt;table role=<span class="str">"presentation"</span>&gt;</span>
   <span class="tag">&lt;tbody&gt;</span>
@@ -2552,7 +2532,7 @@ field. </p>
 	meaningful.</p>
 	<p>Use of generic HTML to approximate a visual rendering
 	of a mathematical expression:</p>
-	<p><code class="example">&lt;i&gt;a&lt;/i&gt;&lt;i&gt;x&lt;/i&gt;&lt;sup&gt;2&lt;/sup&gt; + &lt;i&gt;b&lt;/i&gt;&lt;i&gt;x&lt;/i&gt; + &lt;i&gt;c&lt;/i&gt; = 0</code> </p>
+	<p><code class="example highlight">&lt;i&gt;a&lt;/i&gt;&lt;i&gt;x&lt;/i&gt;&lt;sup&gt;2&lt;/sup&gt; + &lt;i&gt;b&lt;/i&gt;&lt;i&gt;x&lt;/i&gt; + &lt;i&gt;c&lt;/i&gt; = 0</code> </p>
 	<p>Accessible example of the same function, using the math role, appropriate label, and MathML rendering:</p>
 	<pre class="example">&lt;div role=&quot;math&quot; aria-label=&quot;a times x squared plus b times x plus c equals 0&quot;&gt;
   &lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;
@@ -2585,7 +2565,8 @@ field. </p>
 &lt;i&gt;f&lt;/i&gt;(&lt;i&gt;x&lt;/i&gt;)
  = &lt;i&gt;x&lt;/i&gt;&lt;sup&gt;2&lt;/sup&gt; + &lt;i&gt;x&lt;/i&gt; - 2
 </code></p>
-	<p>Accessible example of the same function, using the math role, appropriate label, and MathML rendering: <span class="todo">Todo: add aria-label here also</span></p>
+	<p>Accessible example of the same function, using the math role, appropriate label, and MathML rendering: </p>
+    <p class="ednote">Todo: add aria-label here also</p>
 	<pre>&lt;div role=&quot;math&quot;&gt;
   &lt;math xmlns='http://www.w3.org/1998/Math/MathML'&gt;
     &lt;mrow&gt;
@@ -2652,7 +2633,7 @@ used to define a noncontiguous set.  As each object is selected, its
 to what has been grabbed.  It is recommended that <kbd>Control+M</kbd> be supported 
 to indicate that all objects have been selected for drag.</p>
 <p class="note">
-Note: Selection of the objects to be dragged may differ depending on 
+Selection of the objects to be dragged may differ depending on 
 their type. For example, a list of emails might be selected one at a time or many at a time in contiguous or non-contiguous manner using the <kbd>Space</kbd> key as indicated above. However, text in 
 a document might better be selected by positioning the cursor at the 
 beginning of a word and holding down the <kbd>Control</kbd> key while using the 
@@ -2793,7 +2774,7 @@ navigation  recommended  here, it should be documented on the page.</p>
   <h2>Design Patterns</h2>
   <p>For these widgets and structures, this document  describes the keyboard interaction and identifies the relevant WAI-ARIA roles, states, and properties. </p>
 <p>If the host language does not define key mappings, such as hot keys, and the author defines key mappings other than those described here or in <a href="#dragdrop">Drag-and-Drop Support</a>, then the author must provide documentation of those key mappings. These mappings can be provided in the contents of the web page, or in the case of a more complex application, within the help file documentation and training materials.</p>
-<p class="note">Note: Although users of Mac OS X are familiar with using the <kbd>Command</kbd> key instead of the <kbd>Control</kbd> key, the <kbd>Command</kbd> key is typically reserved for desktop applications and OS-level integration. Until device and platform independence can be addressed in WAI-ARIA 2.0, the primary <kbd>Control</kbd> modifier key for WAI-ARIA widget interaction is specified as <kbd>Control</kbd> on all platforms, including Mac OS X.</p>
+<p class="note">Although users of Mac OS X are familiar with using the <kbd>Command</kbd> key instead of the <kbd>Control</kbd> key, the <kbd>Command</kbd> key is typically reserved for desktop applications and OS-level integration. Until device and platform independence can be addressed in WAI-ARIA 2.0, the primary <kbd>Control</kbd> modifier key for WAI-ARIA widget interaction is specified as <kbd>Control</kbd> on all platforms, including Mac OS X.</p>
 <p class="miniindex">Placeholder for Local Index</p>
   <div id="aria_ex_widget">
     <h4>Global Recommendations </h4>
@@ -3497,10 +3478,10 @@ navigation  recommended  here, it should be documented on the page.</p>
               <li><kbd>Tab</kbd> Focus must be held within the dialog until it is cancelled or submitted. As the user presses tab to move within items in the dialog, pressing tab with focus on the last focusable item in the dialog will move focus back to the first focusable item in the dialog.</li>
               <li><kbd>Shift+Tab</kbd> Likewise, if the user is shift-tabbing through elements in the dialog, pressing shift-tab with focus on the first focusable item in the dialog will move focus to the last item in the dialog.</li>
             </ul>
-            <p class="note">Note: It is modal because focus is trapped within the dialog as the user navigates via the <kbd>Tab</kbd> and <kbd>Shift+Tab</kbd> key.</p>
-            <p class="note">Note: Unlike a true modal dialog, the user can click outside of the dialog, however in that case the tooltip dialog is immediately closed.</p>
-            <p class="note">Note: A tooltip dialog can not be moved/dragged.</p>
-            <p class="note">Note: Other than the close and move behavior, all other behaviors of a modal dialog are implemented by the tooltip dialog.</p>
+            <p class="note">It is modal because focus is trapped within the dialog as the user navigates via the <kbd>Tab</kbd> and <kbd>Shift+Tab</kbd> key.</p>
+            <p class="note">Unlike a true modal dialog, the user can click outside of the dialog, however in that case the tooltip dialog is immediately closed.</p>
+            <p class="note">A tooltip dialog can not be moved/dragged.</p>
+            <p class="note">Other than the close and move behavior, all other behaviors of a modal dialog are implemented by the tooltip dialog.</p>
           </td>
         </tr>
         <tr>
@@ -3733,7 +3714,7 @@ navigation  recommended  here, it should be documented on the page.</p>
           <tr>
             <td class="widget-keyboard-head">Example: </td>
             <td class="widget-keyboard">
-              <p class="todo">Add link to example</p>
+              <p class="ednote">Add link to example</p>
             </td>
           </tr>
         </tbody>
@@ -3793,7 +3774,7 @@ navigation  recommended  here, it should be documented on the page.</p>
          <tr>
             <td class="widget-keyboard-head">Example: </td>
             <td class="widget-keyboard">
-              <p class="todo">Add link to example</p>
+              <p class="ednote">Add link to example</p>
             </td>
           </tr>
         </tbody>
@@ -3820,7 +3801,7 @@ navigation  recommended  here, it should be documented on the page.</p>
         </tr>
         <tr>
           <td class="widget-example-head" scope="row">Example: </td>
-          <td class="widget-example"><p class="todo">Add link to example</p></td>
+          <td class="widget-example"><p class="ednote">Add link to example</p></td>
         </tr>
       </tbody>
     </table>
@@ -4167,7 +4148,7 @@ navigation  recommended  here, it should be documented on the page.</p>
         </tr>
         <tr>
           <td class="widget-example-head" scope="row">Example: </td>
-          <td class="widget-example"><p class="todo">Add link to example (20 Oct 2011 &mdash; no examples found). </p></td>
+          <td class="widget-example"><p class="ednote">Add link to example (20 Oct 2011 &mdash; no examples found). </p></td>
         </tr>
       </tbody>
     </table>
@@ -4366,7 +4347,7 @@ navigation  recommended  here, it should be documented on the page.</p>
         </tr>
         <tr>
           <td class="widget-example-head" scope="row">Example: </td>
-          <td class="widget-example"><p class="todo">Add link to example</p></td>
+          <td class="widget-example"><p class="ednote">Add link to example</p></td>
         </tr>
       </tbody>
     </table>
@@ -4439,7 +4420,7 @@ navigation  recommended  here, it should be documented on the page.</p>
         </tr>
         <tr>
           <td class="widget-example-head" scope="row">Example: </td>
-          <td class="widget-example"><p class="todo">Add link to example</p></td>
+          <td class="widget-example"><p class="ednote">Add link to example</p></td>
         </tr>
       </tbody>
     </table>
@@ -4727,9 +4708,9 @@ navigation  recommended  here, it should be documented on the page.</p>
         <tr>
           <td class="widget-keyboard-head" scope="row">Keyboard Interaction: </td>
           <td class="widget-keyboard"><p><kbd>Escape</kbd>: Dismisses the Tooltip. </p>
-		  	<p class="note">Note: The trigger element to which the tooltip is attached,   e.g., a link, should never actually lose input focus. </p>
-		  	<p class="note">Note: If the tooltip is invoked when the trigger element   gets focus, then it should be dismissed when it no longer has focus (onBlur). If   the tooltip is invoked with mouseIn, then it should be dismissed with a   mouseOut. </p>		  	
-		  	<p class="note">Note: If more then one widget uses the same keys, e.g.,   <kbd>Escape</kbd>, then they should be handled in a Last In First Out (LIFO) manner. For example, an editable grid contains gridcells which contain date fields. The user invokes Actionable mode on the grid and then interacts with the Date Field to invoke the Date Picker. At this point the first press of the <kbd>Escape</kbd> key will close the Date Picker, the second press will exit Actionable mode and return to Navigation mode.</p></td>
+		  	<p class="note">The trigger element to which the tooltip is attached,   e.g., a link, should never actually lose input focus. </p>
+		  	<p class="note">If the tooltip is invoked when the trigger element   gets focus, then it should be dismissed when it no longer has focus (onBlur). If   the tooltip is invoked with mouseIn, then it should be dismissed with a   mouseOut. </p>		  	
+		  	<p class="note">If more then one widget uses the same keys, e.g.,   <kbd>Escape</kbd>, then they should be handled in a Last In First Out (LIFO) manner. For example, an editable grid contains gridcells which contain date fields. The user invokes Actionable mode on the grid and then interacts with the Date Field to invoke the Date Picker. At this point the first press of the <kbd>Escape</kbd> key will close the Date Picker, the second press will exit Actionable mode and return to Navigation mode.</p></td>
         </tr>
         <tr>
           <td class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </td>
@@ -4807,9 +4788,9 @@ Characteristics:
           
           </ul>
           
-          <p class="note">Note: The author may choose to indent child nodes visually. This should be done with an appropriate number of spacer cells marked as presentation in order to keep the headers aligned. </p>
+          <p class="note">The author may choose to indent child nodes visually. This should be done with an appropriate number of spacer cells marked as presentation in order to keep the headers aligned. </p>
           
-          <p class="note">Note: If cells are used for padding or layout of the hierarchy, navigation to those presentational cells should be prevented. </p>
+          <p class="note">If cells are used for padding or layout of the hierarchy, navigation to those presentational cells should be prevented. </p>
           
           <ul>
           
@@ -4958,9 +4939,9 @@ Characteristics:
               <li><kbd>Shift+Control+F6</kbd> optionally reverses the direction   rotating backwards through additional splitters located on the page. </li>
             </ul>
             
-          <p class="note">Note: Fixed size splitter simply omits implementation of the arrow keys. </p>
-          <p class="note">Note: The group recommends unique naming of the window   splitter to avoid the confusion that could be created by multiple splitters   located on the same window. </p>
-          <p class="note">Note:  The group recommends that a splitter "default position restore" option be available in a context menu. </p>
+          <p class="note">Fixed size splitter simply omits implementation of the arrow keys. </p>
+          <p class="note">The group recommends unique naming of the window   splitter to avoid the confusion that could be created by multiple splitters   located on the same window. </p>
+          <p class="note">The group recommends that a splitter "default position restore" option be available in a context menu. </p>
           <p>&nbsp;</p></td>
         </tr>
         <tr>
@@ -5047,11 +5028,6 @@ Characteristics:
 </section>
   <section id="appendices" class="appendix">
     <h2>Appendices</h2>
-    <section id="appendices_references">
-      <h3>References</h3>
-      <p>This section is <a class="termref" href="#def_informative">informative</a>.</p>
-      <p>Placeholder for references</p>
-    </section>
     <div data-include='../common/acknowledgements.html' data-include-replace='true'></div>
   </section>
 </body>
