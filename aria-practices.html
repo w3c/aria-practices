@@ -5,7 +5,6 @@
 	<title>WAI-ARIA 1.1 Authoring Practices</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <script src="https://www.w3.org/Tools/respec/respec-w3c-common" class="remove"></script>
-    <script class="remove" src="aria.js"></script>
     <script class="remove">
       var respecConfig = {
           // embed RDFa data in the output
@@ -18,7 +17,7 @@
           //crEnd:                "2012-04-30",
           //perEnd:               "2013-07-23",
           //publishDate:          "2013-08-22",
-          //diffTool:             "http://www.aptest.com/standards/htmldiff/htmldiff.pl",
+          diffTool:             "http://www.aptest.com/standards/htmldiff/htmldiff.pl",
           
           // the specifications short name, as in http://www.w3.org/TR/short-name/
           shortName:            "wai-aria-practices",
@@ -68,6 +67,7 @@
           //      company: "Your Company", companyURI: "http://example.com/" },
           //],
 
+/*
           alternateFormats: [
                 { uri: 'aria-practices-diff.html',
                   label: "Diff from Previous Recommendation" } ,
@@ -76,6 +76,7 @@
                 { uri: 'aria-practices.pdf',
                   label: "PDF version" }
                 ],
+*/
 
           // errata: 'http://www.w3.org/2010/02/rdfa/errata.html',
           
@@ -98,7 +99,7 @@
           //preProcess: [ preProc ], 
       };
 </script>
-    <link href="spec.css" rel="stylesheet" type="text/css"/>
+    <link href="../spec/spec.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <section id="abstract">
@@ -424,7 +425,7 @@
       <section id="role">
 			<h4> Provision of the Role Attribute: "What is the Object?"</h4>
 			<p>Each platform accessibility API has the notion of a "role" for a
-				GUI object. This is the case for [[JAPI]], [[MSAA]]], [[AXAPI]], and the [[ATK]], or [[UIAUTOMATION]] (called content type in UI Automation). The WAI-ARIA specifications are based on XHTML 1.X and include the role attribute. The "role" attribute takes a qname, enabling authors to reference the role attribute from the <abbr>WAI-ARIA</abbr> Roles. In
+				GUI object. This is the case for [[JAPI]], [[MSAA]]], [[AXAPI]], and the [[ATK]], or [[UIAUTOMATION]] (called content type in UI Automation). The WAI-ARIA specifications are based on XHTML 1.X and include the role attribute. The "role" attribute takes a qname, enabling authors to reference the role attribute from the WAI-ARIA Roles. In
 				the following example, we use qname to reference the menu role  in the WAI-ARIA specification. </p>
 			<div class="exampleOuter">
 				<div class="exampleHead">
@@ -599,7 +600,7 @@
 	</section>
     <section id="landmark-navigation">
 		<h3> Use of XHTML Role Landmarks to Improve Document Navigation</h3>
-		<p>In addition to the common roles which will reside in <abbr>WAI-ARIA</abbr> Roles, both XHTML 2.0, and the <a href="../role-attribute/#s_role_module_attributes">XHTML Role attribute module</a> ([<a href="#ref_ROLE">ROLE</a>], Section 4) defines a collection of common role, regional, landmarks that define pertinent parts of a
+		<p>In addition to the common roles which will reside in WAI-ARIA Roles, both XHTML 2.0, and the <a href="../role-attribute/#s_role_module_attributes">XHTML Role attribute module</a> ([<a href="#ref_ROLE">ROLE</a>], Section 4) defines a collection of common role, regional, landmarks that define pertinent parts of a
 			document for the purpose of accessibility. User agents may
 			incorporate device equivalents, such as key mappings in the case of
 			a desktop user agent, to navigate to these sections of a document
@@ -720,7 +721,7 @@
 				<figcaption>DHTML Example</figcaption>
         </figure>
 			<p id="desc_fig5"> Accessible role and state
-				meta data from the WAI-<abbr>WAI-ARIA</abbr> Roles, States, and Properties specification,  are added as attributes to
+				meta data from the WAI-WAI-ARIA Roles, States, and Properties specification,  are added as attributes to
 				each of the XHTML elements repurposed as GUI widgets dynamically.
 				The user agent, in this case Firefox, maps this information to the
 				platform accessibility API. <a href="#fig6"></a> shows
