@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <title>Link design pattern</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="css/basic.css" />
+    <link rel="stylesheet" type="text/css" href="css/link.css" />
+    <script src="js/link.js"></script>
+</head>
+
+<body>
+    <h1>Link design pattern</h1>
+
+    <p>The example on this page is based on the Link design pattern in the <a href="https://rawgit.com/w3c/aria/master/practices/aria-practices.html">ARIA 1.1 Authoring Practices Guide</a>.</p>
+
+    <p><strong>Note:</strong> When using HTML use the <code>&lt;a&gt;</code> element. Do not re-purpose other elements to create links.</p>
+
+    <h2>Example</h2>
+
+    <div id="example">
+        <span tabindex="0" role="link" id="link">W3C website</span>
+    </div>
+
+    <h2>Code</h2>
+
+    <h3>HTML</h3>
+    <pre>
+<code>
+&lt;span tabindex=&quot;0&quot; role=&quot;link&quot; id=&quot;link&quot;&gt;W3C website&lt;/span&gt;
+</code>
+</pre>
+
+    <h2>JavaScript</h2>
+    <pre>
+<code>
+function init()
+{
+        document.getElementById(&quot;link&quot;).addEventListener(&quot;click&quot;, fetchResource);
+        document.getElementById(&quot;link&quot;).addEventListener(&quot;keydown&quot;, fetchResource);
+}
+
+function fetchResource(event)
+{
+        var type = event.type;
+        
+        if (type === &quot;keydown&quot; &amp;&amp; event.keyCode !== 13)
+        {
+                return true
+        }
+
+        window.location.href = &#39;http://w3.org/&#39;;
+        event.preventDefault();
+}
+
+window.onload = init;
+</code>
+</pre>
+
+    <h2>Notes</h2>
+
+    <p>Uses the ARIA <a href="http://www.w3.org/TR/wai-aria/roles">role attribute</a> with a value of <a href="http://www.w3.org/TR/wai-aria/roles#link">link</a>. This informs the browser that it should expose the link as a link through its accessibility API.</p>
+
+    <p>Uses the HTML <a href="http://www.paciellogroup.com/blog/2014/08/using-the-tabindex-attribute/">tabindex attribute</a> with a value of 0. This places the link into the tab order based on its location in the source order. The visual appearance of the link also changes when focus moves to it.</p>
+
+    <p>Keyboard interaction for the link is provided through scripting. The enter key event is captured, and used to trigger the link&#39;s expected behaviour.</p>
+</body>
+</html>

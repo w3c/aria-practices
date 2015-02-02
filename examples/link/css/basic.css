@@ -59,3 +59,13 @@ img
     border: none;
 }
 
+code
+{
+    font: bold "Courier new", Courier, Monospace;
+}
+
+#example
+{
+    margin-top: 1em;
+    margin-bottom: 2em;
+}

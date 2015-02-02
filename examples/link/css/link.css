@@ -1,11 +1,11 @@
-[role="link"]
+span
 {
     color: #009;
     background: transparent;
 	text-decoration: underline;
 }
 
-[role="link"]:hover, [role="link"]:focus, [role="link"]:active
+span:hover, span:focus, span:active
 {
     color:#000;
     background-color: #fc0;
