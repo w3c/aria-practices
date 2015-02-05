@@ -160,7 +160,7 @@
         <li>When combined with script and cascading style sheets (CSS), HTML can be repurposed to create dynamic custom components without providing a means to convey semantic  information to native accessibility architectures designed to support  dynamic graphical user interface (GUI) content. </li>
         <li>Custom components built from common HTML elements often are not keyboard accessible. </li>
       </ol>
-      <p>Authors of JavaScript-generated content do not want to limit themselves to using standard tag elements that  define the actual user interface element such as tables, ordered lists,  etc. Rather, they make extensive use of  elements such as <code>DIV</code> tags in  which they dynamically apply a <abbr title="user interface">user interface (UI)</abbr> through the use of style sheets and  dynamic content changes. HTML <code>DIV</code> tags provide no semantic information.  For example, authors may define a <code>DIV</code> as the start of a pop-up menu or  even an ordered list. However, no HTML mechanism exists to: </p>
+      <p>Authors of JavaScript-generated content do not want to limit themselves to using standard tag elements that  define the actual user interface element such as tables, ordered lists,  etc. Rather, they make extensive use of  elements such as <code>DIV</code> tags in  which they dynamically apply a user interface (<abbr title="user interface">UI</abbr>) through the use of style sheets and  dynamic content changes. HTML <code>DIV</code> tags provide no semantic information.  For example, authors may define a <code>DIV</code> as the start of a pop-up menu or  even an ordered list. However, no HTML mechanism exists to: </p>
       <ul>
         <li>Identify the role of the <code>DIV</code> as a pop-up menu </li>
         <li>Alert assistive technology when these elements have focus </li>
@@ -169,7 +169,7 @@
       </ul>
       <p>In short, JavaScript needs an accessibility architecture to write to such that a solution can be mapped to the accessibility
         frameworks on the native platform by the user agent.</p>
-      <p>The following diagram illustrates a typical <abbr title="Document Object Model"><abbr title="Document Object Model">document object model (DOM)</abbr></abbr> node in
+      <p>The following diagram illustrates a typical document object model (<abbr title="Document Object Model">DOM</abbr>) node in
         a Model-View-Controller architecture. Accessibility information surfaced to assitive technologies is provided only by the HTML element's tag name, with only the accessibility attributes that tag can provide.</p>
       <p><a href="#fig1"></a> shows that on the node, data, or the
         "Model", which should include semantic information, is separated
