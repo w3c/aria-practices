@@ -1,0 +1,116 @@
+* CSS Document */
+
+.label {
+  margin: 0;
+  padding: 0;
+  margin-top: 2em;
+  margin-bottom: .5em;  
+  clear: both;
+  font-weight: bold;
+}
+
+div.hslider {
+  margin: 50px;
+  padding: 0;
+  width: 540px;
+  height: 20px;
+  background-color: #eef;
+  border: 2px solid black;
+}
+
+.hsliderHandle  {
+  margin: 0;
+  padding: 7px 2px;
+  width: 24px;
+  height: 12px;
+  background-color: #808080;
+
+  position: absolute;
+  left: -300em;
+  top: -30em;
+  z-index: 10;
+
+  border: 1px solid black;
+  -webkit-border-radius: 5px; /* Safari and Chrome rounded corners */
+  -moz-border-radius: 5px; /* Firefox rounded corners */
+  border-radius: 5px; /* Opera rounded corners */
+
+}
+
+.hsliderValue  {
+  margin: 24px 0 0 0;
+  padding: 5px;
+  width: 30px;
+  height: 15px;
+  text-align: center;
+  font-weight: bold;
+
+  position: absolute;
+  left: -30em;
+  top: -30em;
+  z-index: 10;
+}
+
+div.vslider {
+  margin: 50px;
+  padding: 0;
+  height: 540px;
+  width: 20px;
+  background-color: #eef;
+  border: 2px solid black;
+}
+
+.vsliderHandle  {
+  margin: 0;
+  padding: 2px 7px;
+  width: 12px;
+  height: 24px;
+  background-color: #808080;
+
+  position: absolute;
+  left: -300em;
+  top: -30em;
+  z-index: 10;
+
+  border: 1px solid black;
+  -webkit-border-radius: 5px; /* Safari and Chrome rounded corners */
+  -moz-border-radius: 5px; /* Firefox rounded corners */
+  border-radius: 5px; /* Opera rounded corners */
+}
+
+.vsliderValue  {
+  margin: 0 0 0 30px;
+  padding: 5px;
+  width: 30px;
+  height: 15px;
+  text-align: center;
+  font-weight: bold;
+
+  position: absolute;
+  left: -30em;
+  top: -30em;
+  z-index: 10;
+}
+
+div.sliderRange {
+  margin: 2px;
+  padding: 0;
+  width: 1px;
+  height: 1px;
+  background-color: #00f;
+
+  position: absolute;
+  left: -300em;
+  top: -30em;
+  z-index: 0;
+}
+
+.hidden {
+  position: absolute;
+  top: -20em;
+  left: -200em;
+}
+
+.focus {
+  background-color: #eee !important;
+}
