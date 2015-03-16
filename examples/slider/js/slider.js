@@ -171,7 +171,7 @@ aria.widget.slider.prototype.initSlider = function() {
 
   this.thumb.style.height = this.thumbHeight + "px";
   this.thumb.style.width  = this.thumbWidth + "px";
-  this.thumb.style.top    = (-1 * (this.thumbHeight/2 + 4)) + "px";
+  this.thumb.style.top    = (-1 * this.thumbHeight/2) + "px";
   
   this.value.style.top    = (this.rail.offsetTop - (this.value.offsetHeight / 2) + 2) + "px";
   this.value.style.left   = (this.rail.offsetLeft + this.rail.offsetWidth + 5) + "px";
@@ -188,9 +188,13 @@ aria.widget.slider.prototype.initSlider = function() {
     slider.eventMouseDown(event, slider);
   };
   
+  var eventClick = function (event) {
+    slider.eventClick(event, slider);
+  };
   
   this.thumb.addEventListener('keydown', eventKeyDown);
   this.thumb.addEventListener('mousedown', eventMouseDown);
+  this.container.addEventListener('click', eventClick);
   
   this.updateThumbPosition();
 
@@ -282,29 +286,32 @@ aria.widget.slider.prototype.eventKeyDown = function(event, slider) {
 
 aria.widget.slider.prototype.eventMouseDown = function(event, slider) {
 
-  // Set focus to the clicked handle
-  event.target.focus();
+  if (event.target === slider.thumb) {
   
-  var mouseMove = function (event) {
-    slider.eventMouseMove(event, slider);
-  }
-
-  slider.mouseMove = mouseMove;
-
-  var mouseUp = function (event) {
-    slider.eventMouseUp(event, slider);
-  }
-
-  slider.mouseUp = mouseUp;
-
-  // bind a mousemove event handler to move pointer
-  document.addEventListener('mousemove', slider.mouseMove);
-
-  // bind a mouseup event handler to stop tracking mouse movements
-  document.addEventListener('mouseup', slider.mouseUp);
+    // Set focus to the clicked handle
+    event.target.focus();
   
-  event.preventDefault();
-  event.stopPropagation();
+    var mouseMove = function (event) {
+      slider.eventMouseMove(event, slider);
+    }
+
+    slider.mouseMove = mouseMove;
+
+    var mouseUp = function (event) {
+      slider.eventMouseUp(event, slider);
+    }
+
+    slider.mouseUp = mouseUp;
+
+    // bind a mousemove event handler to move pointer
+    document.addEventListener('mousemove', slider.mouseMove);
+
+    // bind a mouseup event handler to stop tracking mouse movements
+    document.addEventListener('mouseup', slider.mouseUp);
+  
+    event.preventDefault();
+    event.stopPropagation();
+  }  
 
 };
 
@@ -321,9 +328,7 @@ aria.widget.slider.prototype.eventMouseDown = function(event, slider) {
 aria.widget.slider.prototype.eventMouseMove = function(event, slider) {
 
   var diffX = event.pageX - slider.rail.offsetLeft;
-  
   slider.valueNow = parseInt(((slider.valueMax - slider.valueMin) * diffX) / slider.sliderWidth);
-  
   slider.updateThumbPosition();
   
   event.preventDefault();
@@ -346,6 +351,29 @@ aria.widget.slider.prototype.eventMouseUp = function(event, slider) {
   document.removeEventListener('mousemove', slider.mouseMove);
   document.removeEventListener('mouseup',   slider.mouseUp);
 
+  event.preventDefault();
+  event.stopPropagation();
+  
+};
+
+/**
+ * @method eventClick
+ *
+ * @memberOf aria.widget.slider
+ *
+ * @desc  Click event handler for slider Object
+ *        NOTE: The slider parameter is needed to provide a reference to the specific
+ *               slider to change the value on
+ */
+
+aria.widget.slider.prototype.eventClick = function(event, slider) {
+
+  if (event.target === slider.thumb) return;
+  
+  var diffX = event.pageX - slider.rail.offsetLeft;
+  slider.valueNow = parseInt(((slider.valueMax - slider.valueMin) * diffX) / slider.sliderWidth);
+  slider.updateThumbPosition();
+  
   event.preventDefault();
   event.stopPropagation();
   
