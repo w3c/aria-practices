@@ -1,6 +1,8 @@
 /* CSS Document */
 
 div.aria-widget-slider {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
   height: 4em;
 }
 
@@ -9,6 +11,8 @@ div.aria-widget-slider .rail {
   padding: 0;
   background-color: #eee;
   border: 1px solid #888;
+  position: relative;
+  top: 2em;
 }
 
 div.aria-widget-slider .thumb  {
