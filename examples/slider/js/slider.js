@@ -120,21 +120,26 @@ aria.widget.slider = function(node, inc, jump, width) {
   this.thumbHeight  = 28;
   this.thumbWidth   = 8;
   
-  var width = window.getComputedStyle(this.rail).getPropertyValue("width");
-
-  if ((typeof width === 'string') && (width.length > 2)) {
-    this.sliderWidth  = parseInt(width.slice(0,-2));
+  if (typeof width !== 'number') {
+    width = window.getComputedStyle(this.rail).getPropertyValue("width");
+    if ((typeof width === 'string') && (width.length > 2)) {
+      width = parseInt(width.slice(0,-2));
+    }
   }
-  
-  if (typeof this.sliderWidth !== 'number' || (this.sliderWidth < 50)) {
+
+  if (typeof width === 'number') this.sliderWidth = width;
+  else this.sliderWidth = 200;
+
+  if (this.sliderWidth < 50) {
     this.sliderWidth  = 50;
   }  
   
-  this.valueInc     = 1;
-  this.valueJump    = 10;
+  if (typeof inc !== 'number') inc = 1;
+  if (typeof jump !== 'number') jump = 10;
 
-  if (typeof inc    === 'Number') this.valueInc     = inc;
-  if (typeof jump   === 'Number') this.valueJump    = jump;
+  this.valueInc  = inc;
+  this.valueJump = jump;
+  
   if (typeof height === 'Number') this.sliderHeight = height;
   if (typeof width  === 'Number') this.sliderWidth  = width;
   
@@ -235,42 +240,38 @@ aria.widget.slider.prototype.updateThumbPosition = function() {
 
 aria.widget.slider.prototype.eventKeyDown = function(event, slider) {
 
-  var update = false;
+  function updateValue(value) {
+    slider.valueNow = value;
+    slider.updateThumbPosition();
+    
+    event.preventDefault();
+    event.stopPropagation();
+  }
 
   switch(event.keyCode) {
   
   case slider.keyCode.left:
   case slider.keyCode.down:
-    slider.valueNow = slider.valueNow - slider.valueInc;
-    update = true;
+    updateValue(slider.valueNow-slider.valueInc);
     break;
   
   case slider.keyCode.right:
   case slider.keyCode.up:
-    slider.valueNow = slider.valueNow + slider.valueInc;
-    update = true;
+    updateValue(slider.valueNow+slider.valueInc);
     break;
 
   case slider.keyCode.pageDown:
-    slider.valueNow = slider.valueNow - slider.valueJump;
-    update = true;
+    updateValue(slider.valueNow-slider.valueJump);
     break;
 
   case slider.keyCode.pageUp:
-    slider.valueNow = slider.valueNow + slider.valueJump;
-    update = true;
+    updateValue(slider.valueNow+slider.valueJump);
     break;
-  
   
   default:
     break;
   }
   
-  if (update) {
-    slider.updateThumbPosition();
-    event.preventDefault();
-    event.stopPropagation();
-  }
   
 };
 
