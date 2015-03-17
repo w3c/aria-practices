@@ -152,6 +152,7 @@ aria.widget.slider = function(node, inc, jump, width) {
   this.valueNow = parseInt(this.thumb.getAttribute('aria-valuenow'));
   if (isNaN(this.valueNow)) this.valueNow = Math.round((this.valueMax - this.valueMin) / 2);
 
+  this.thumb.setAttribute('role', 'slider');
   this.thumb.setAttribute('aria-valuenow', this.valueNow);
   this.thumb.setAttribute('aria-valuemin', this.valueMin);
   this.thumb.setAttribute('aria-valuemax', this.valueMax);
