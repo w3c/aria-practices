@@ -4,6 +4,7 @@
   <meta charset="utf-8" />
   <title>ARIA Examples: Slider</title>
   <meta name="generator" content="BBEdit 10.5" />
+  <link href="../css/table.css" rel="stylesheet">
   <link href="css/slider.css" rel="stylesheet">
   <script src="js/slider.js" type="text/javascript"></script>
 </head>
@@ -14,6 +15,7 @@
     <div role="application">
 
       <h2>Example 1: Simple Sliders</h2>
+      
 
       <div class="aria-widget-slider">
         <div class="rail" style="width: 300px">
@@ -29,6 +31,135 @@
         <div class="value">0</div>
       </div>
     </div>
+    
+    <h2 id="id_kbd">Keyboard Support</h2>
+
+    <table aria-labelledby="id_kbd"> 
+      <thead>
+        <tr>
+          <th>Key</th>
+          <th>Function</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Left and Up Arrow</td>
+          <td>Increase slide value by increment value</td>
+        </tr>
+        <tr>
+          <td>Right and Down Arrow</td>
+          <td>Decrease slide value by increment value</td>
+        </tr>
+        <tr>
+          <td>Page Up Arrow</td>
+          <td>Increase slide value by jump value</td>
+        </tr>
+        <tr>
+          <td>Page Down Arrow</td>
+          <td>Decrease slide value by jump value</td>
+        </tr>
+        <tr>
+          <td>Home</td>
+          <td>Set slider to minimum value</td>
+        </tr>
+        <tr>
+          <td>End</td>
+          <td>Set slider to maximum value</td>
+        </tr>
+      </tbody>
+    </table>
+    
+    <h2 id="id_rps">ARIA Roles, Properties and States</h2>
+
+    <table aria-labelledby="id_rps"> 
+      <thead>
+        <tr>
+          <th>Role</th>
+          <th>Property/State</th>
+          <th>Element</th>
+          <th>Usage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>slider</td>
+          <td></td>
+          <td>thumb</td>
+          <td>Identify the widget as a slider</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>aria-valuemax</td>
+          <td>thumb</td>
+          <td>Maximum value of the slider</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>aria-valuemin</td>
+          <td>thumb</td>
+          <td>Minimum value of the slider</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>aria-valuenow</td>
+          <td>thumb</td>
+          <td>Current value of the slider</td>
+        </tr>
+      </tbody>
+    </table>
+    
+    
+    <h2 id="id_kbd">AT Testing Results</h2>
+
+    <table aria-labelledby="id_rps"> 
+      <thead>
+        <tr>
+          <th>Browser</th>
+          <th>Browser Version</th>
+          <th>Assistive Technology (AT)</th>
+          <th>AT Version</th>
+          <th>Result</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Internet Explorer</td>
+          <td>11</td>
+          <td>JAWS</td>
+          <td>15</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Firefox</td>
+          <td>36</td>
+          <td>NVDA</td>
+          <td>2105.1</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Chrome</td>
+          <td></td>
+          <td>Chromevox</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>Safari</td>
+          <td></td>
+          <td>Voice Over</td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>GNOME</td>
+          <td></td>
+          <td>Orca</td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+    
   </main>
 </body>
 </html>

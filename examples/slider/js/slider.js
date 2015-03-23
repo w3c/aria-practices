@@ -80,12 +80,6 @@ aria.widget = aria.widget || {};
 aria.widget.slider = function(node, inc, jump, width) {
 
    this.keyCode = Object.freeze({
-     "backspace" : 8,
-     "tab" : 9,
-     "enter" : 13,
-     "esc" : 27,
-
-     "space" : 32,
      "pageUp" : 33,
      "pageDown" : 34,
      "end" : 35,
@@ -194,14 +188,25 @@ aria.widget.slider.prototype.initSlider = function() {
     slider.eventMouseDown(event, slider);
   };
   
+  var eventFocus = function (event) {
+    slider.eventFocus(event, slider);
+  };
+  
+  var eventBlur = function (event) {
+    slider.eventBlur(event, slider);
+  };
+  
+  this.thumb.addEventListener('keydown',   eventKeyDown);
+  this.thumb.addEventListener('mousedown', eventMouseDown);
+  this.thumb.addEventListener('focus', eventFocus);
+  this.thumb.addEventListener('blur',  eventBlur);
+  
   var eventClick = function (event) {
     slider.eventClick(event, slider);
   };
-  
-  this.thumb.addEventListener('keydown', eventKeyDown);
-  this.thumb.addEventListener('mousedown', eventMouseDown);
+
   this.container.addEventListener('click', eventClick);
-  
+
   this.updateThumbPosition();
 
 };
@@ -269,6 +274,14 @@ aria.widget.slider.prototype.eventKeyDown = function(event, slider) {
     updateValue(slider.valueNow+slider.valueJump);
     break;
   
+  case slider.keyCode.home:
+    updateValue(slider.valueMin);
+    break;
+
+  case slider.keyCode.end:
+    updateValue(slider.valueMax);
+    break;
+
   default:
     break;
   }
@@ -375,6 +388,45 @@ aria.widget.slider.prototype.eventClick = function(event, slider) {
   var diffX = event.pageX - slider.rail.offsetLeft;
   slider.valueNow = parseInt(((slider.valueMax - slider.valueMin) * diffX) / slider.sliderWidth);
   slider.updateThumbPosition();
+  
+  event.preventDefault();
+  event.stopPropagation();
+  
+};
+
+
+/**
+ * @method eventFocus
+ *
+ * @memberOf aria.widget.slider
+ *
+ * @desc  Focus event handler for slider Object
+ *        NOTE: The slider parameter is needed to provide a reference to the specific
+ *               slider to change the value on
+ */
+
+aria.widget.slider.prototype.eventFocus = function(event, slider) {
+
+  slider.container.className = "aria-widget-slider focus";
+  
+  event.preventDefault();
+  event.stopPropagation();
+  
+};
+
+/**
+ * @method eventBlur
+ *
+ * @memberOf aria.widget.slider
+ *
+ * @desc  Focus event handler for slider Object
+ *        NOTE: The slider parameter is needed to provide a reference to the specific
+ *               slider to change the value on
+ */
+
+aria.widget.slider.prototype.eventBlur = function(event, slider) {
+
+  slider.container.className = "aria-widget-slider";
   
   event.preventDefault();
   event.stopPropagation();
