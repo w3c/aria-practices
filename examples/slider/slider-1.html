@@ -20,36 +20,38 @@
     
     <div role="region" aria-label="Example">
 
-      <div id="idRed" class="label">Red</div>
-      <div class="aria-widget-slider">
-        <div class="rail" style="width: 300px">
-          <div id="idRedValue" class="thumb" aria-valuemin="0" aria-valuenow="100" aria-valuemax="255" aria-labelledby="idRed"></div>
+      <div id="idSliders">
+        <div id="idRed" class="label">Red</div>
+        <div class="aria-widget-slider">
+          <div class="rail" style="width: 300px">
+            <div id="idRedValue" class="thumb" aria-valuemin="0" aria-valuenow="100" aria-valuemax="255" aria-labelledby="idRed"></div>
+          </div>
+          <div class="value">0</div>
         </div>
-        <div class="value">0</div>
-      </div>
 
-      <div id="idGreen" class="label">Green</div>
-      <div class="aria-widget-slider">
-        <div class="rail" style="width: 300px">
-          <div id="idGreenValue" class="thumb" aria-valuemin="0" aria-valuenow="100" aria-valuemax="255" aria-labelledby="idGreen"></div>
+        <div id="idGreen" class="label">Green</div>
+        <div class="aria-widget-slider">
+          <div class="rail" style="width: 300px">
+            <div id="idGreenValue" class="thumb" aria-valuemin="0" aria-valuenow="100" aria-valuemax="255" aria-labelledby="idGreen"></div>
+          </div>
+          <div class="value">0</div>
         </div>
-        <div class="value">0</div>
-      </div>
       
-      <div id="idBlue" class="label">Blue</div>
-      <div class="aria-widget-slider">
-        <div class="rail" style="width: 300px">
-          <div id="idBlueValue" class="thumb" aria-valuemin="0" aria-valuenow="100" aria-valuemax="255" aria-labelledby="idBlue"></div>
+        <div id="idBlue" class="label">Blue</div>
+        <div class="aria-widget-slider">
+          <div class="rail" style="width: 300px">
+            <div id="idBlueValue" class="thumb" aria-valuemin="0" aria-valuenow="100" aria-valuemax="255" aria-labelledby="idBlue"></div>
+          </div>
+          <div class="value">0</div>
         </div>
-        <div class="value">0</div>
-      </div>
+      </div>  
       
+      <div id="idColorInfo">
+        <div id="idColorBox"></div>
+        <label>Color (HEX): <input type="text" readonly id="idColorValueHex" value=""></label>
+        <label>Color (RGB): <input type="text" readonly id="idColorValueRGB" value=""></label>
+      </div>
     </div>
-    
-    <div id="idColorBox">
-    </div>
-    <label>Color (HEX): <input type="text" readonly id="idColorValueHex" value=""></label>
-    <label>Color (RGB): <input type="text" readonly id="idColorValueRGB" value=""></label>
     
     
     <h2 id="id_kbd">Keyboard Support</h2>
@@ -171,10 +173,15 @@
         </tr>
         <tr>
           <td>Safari</td>
-          <td></td>
+          <td>7.14</td>
           <td>Voice Over</td>
           <td></td>
-          <td></td>
+          <td>
+            <ul>
+              <li>Speaks accessible name and the percentage of slider position when thumb receives focus</li>
+              <li>Speaks percentage of slider position as you move focus</li>
+            </ul>  
+          </td>
         </tr>
         <tr>
           <td>GNOME</td>

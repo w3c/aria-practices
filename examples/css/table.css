@@ -1,17 +1,17 @@
 table { 
  color: #333;
  font-family: Helvetica, Arial, sans-serif;
- width: 640px; 
- border-collapse: 
- collapse; border-spacing: 0; 
+ border-collapse: collapse; 
+ border-spacing: 0; 
 }
  
 td, th { 
  border: 1px solid transparent; /* No more visible border */
- height: 30px; 
  transition: all 0.3s;  /* Simple transition for hover effect */
  text-align: left;
- padding-left: 0.5em;
+ vertical-align: top;
+ padding: 0.5em;
+ padding-right: 2em;
 }
  
 th {
@@ -19,10 +19,17 @@ th {
  font-weight: bold;
  border-bottom: solid black thin;
 }
- 
-td {
- background: #FAFAFA;
+
+td ul {
+  margin: 0;
+  padding: 0;
 }
+
+td ul li {
+  padding-bottom: 0.25em;
+}
+ 
+ 
 
 /* Cells in even rows (2,4,6...) are one color */ 
 tr:nth-child(even) td { background: #F1F1F1; }   

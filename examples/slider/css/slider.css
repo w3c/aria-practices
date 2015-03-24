@@ -40,12 +40,27 @@ div.focus .rail {
 }
 
 #idColorBox {
-  height: 200px;
   width: 200px;
+  height: 200px;
   border: black solid medium;
   text-align: center;
   padding: 0.25em;
 }
+
+#idSliders {
+  float: left;
+  width: 350px;
+}
+
+#idColorInfo {
+  padding-top: 5px;
+  margin-left: 370px;
+}
+
+#id_kbd {
+  clear: both;
+}
+
 
 label {
   display: block;
