@@ -232,6 +232,8 @@ aria.widget.slider.prototype.updateThumbPosition = function() {
   
   this.value.innerHTML = this.valueNow.toString();
   
+  aria.widget.slider.updateColorBox();
+  
 };
 
 /**
@@ -432,3 +434,51 @@ aria.widget.slider.prototype.eventBlur = function(event, slider) {
   event.stopPropagation();
   
 };
+
+
+/* ---------------------------------------------------------------- */
+/*                  Change color of the Box                         */
+/* ---------------------------------------------------------------- */
+
+aria.widget.slider.updateColorBox = function() {
+
+  function getColorHex() {
+    var r = parseInt(document.getElementById("idRedValue").getAttribute("aria-valuenow")).toString(16)
+    var g = parseInt(document.getElementById("idGreenValue").getAttribute("aria-valuenow")).toString(16)
+    var b = parseInt(document.getElementById("idBlueValue").getAttribute("aria-valuenow")).toString(16)
+  
+    if (r.length === 1) r = "0" + r
+    if (g.length === 1) g = "0" + g
+    if (b.length === 1) b = "0" + b
+    
+    return "#" + r + g + b;
+  }
+
+  function getColorRGB() {
+    var r = document.getElementById("idRedValue").getAttribute("aria-valuenow")
+    var g = document.getElementById("idGreenValue").getAttribute("aria-valuenow")
+    var b = document.getElementById("idBlueValue").getAttribute("aria-valuenow")
+  
+    return r + ", " + g + ", " + b;
+  }
+  
+  
+
+  var node = document.getElementById("idColorBox")
+
+  
+  if (node) {
+  
+    var color = getColorHex()
+  
+    node.style.backgroundColor = color;
+
+    node = document.getElementById("idColorValueHex")
+    node.value = color
+
+    node = document.getElementById("idColorValueRGB")
+    node.value = getColorRGB()
+
+  }
+
+} 

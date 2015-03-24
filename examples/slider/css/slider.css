@@ -39,3 +39,17 @@ div.focus .rail {
   background-color: #CCC;
 }
 
+#idColorBox {
+  height: 200px;
+  width: 200px;
+  border: black solid medium;
+  text-align: center;
+  padding: 0.25em;
+}
+
+label {
+  display: block;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
