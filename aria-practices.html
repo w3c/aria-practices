@@ -135,7 +135,9 @@
   <p class="note">Most of the JavaScript examples are written to be understandable by all readers, including novice and intermediate JavaScripters. For example, most modern rich web applications use DOM Level 2 event listener assignment now, but some source code examples in this document use DOM Level 1 assignment (e.g. <code>el.onclick = foo;</code> or <code>&lt;el onclick="foo()"&gt;</code>) because it is easier for all readers to understand. Expert JavaScripters are encouraged to use modern JavaScript best practices when developing accessible rich internet applications.</p>
   <p>With the conceptual basis provided in the WAI-ARIA Primer, you should have a good understanding of how WAI-ARIA provides for interoperability with assistive technologies and support for a more usable, accessible experience. This guide begins  by providing some general steps for building an accessible widget  using WAI-ARIA, script, and CSS.  It then extends your knowledge of WAI-ARIA with detailed guidance on how to make rich internet applications keyboard accessible. Next, the scope widens to include the full application, addressing necessary layout and structural semantics within the Web page. These semantics are critical to enable assistive technologies to provide a usable experience when processing rich internet applications with rich documents on the same page. It includes guidance on dynamic document management; use of WAI-ARIA Form properties; WAI-ARIA Drag and Drop; and then the creation of WAI-ARIA-enabled alerts and dialogs. The  appendix provides substantial reference information including code samples for developers of user agents, assistive technologies, and Web pages. </p>
   <p class="note">WAI-ARIA markup is currently not included in (X)HTML. The W3C WAI PF working   group will be creating DTDs for XHTML 1.0 and HTML 4.01 for those wishing to   validate their markup with WAI-ARIA embedded into these host languages. </p>
-  <section>
+  
+</section>
+<section>
     <h2>Background on WAI-ARIA</h2>
     <p>According to the <a href="http://www.securityspace.com/s_survey/data/man.200607/techpen.html">SecuritySpace Technology Penetration Report</a>, more than 55% of all Web sites today contain JavaScript,  dramatically affecting the ability for persons with disabilities to  access Web content. New Rich Internet Applications (RIAs) render custom  widgets, modeling rich desktop components to perform UI updates  without having to reload the entire page - much like a graphical user  interface (GUI). Legacy GUI accessibility frameworks address these  issues through a comprehensive accessibility application programming  interface (API) and infrastructure to foster interoperability with  assistive technologies. These APIs constitute a contract between  applications and assistive technologies, such as screen readers, to  enable them to access rich dynamic content with the appropriate  semantics needed to produce a usable alternative. No such contract  exists between modern RIAs and assistive technologies, creating an  accessibility gap for persons with disabilities.</p>
     <p>Unfortunately, HTML and other markup languages do not provide adequate
@@ -393,7 +395,7 @@
       </table>
     </section>
   </section>
-</section>
+  
   <section id="Fill">
 	<h2> Filling the Gaps for Content Delivered to Desktop Browsers</h2>
 	<p>At this time,W3C WAI Protocols and
