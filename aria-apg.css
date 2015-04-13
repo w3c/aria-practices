@@ -1,0 +1,189 @@
+
+* { 
+	/* add default line-height so different fonts don't affect the rhythm of line-box height */
+	line-height:1.2; /* [sic] unitless multiplier, not EM size */
+}
+ol{ list-style:decimal; }
+ol ol{ list-style:upper-alpha; }
+ol ol ol{ list-style:lower-roman; }
+ol ol ol ol{ list-style:lower-alpha; }
+
+.role, .state, .property, .widget, .design-pattern {
+	margin-left: 2em;
+	margin-bottom: 4ex;
+}
+.role-name, .state-name, .property-name, .widget-name, .design-pattern-name {
+	margin-left: -2em;
+	font-size: 100%;
+	font-weight: bold;
+	font-style: normal;
+	font-variant: normal;
+}
+.widget-description-head, .widget-keyboard-head, .widget-mouse-head, .widget-styling-head, .widget-aria-head, .widget-example-head {
+	width: 20em;
+}
+table.widget-features, table.widget-features tbody tr td, table.widget-features tbody tr th {
+	border: 1px solid #000000;
+}
+table{
+	border:solid 2px #999;
+	border-width:1px 0 0 1px;
+	margin:0.1em 0 1em;
+	padding:0;
+	border-spacing:0;
+	border-collapse:collapse;
+}
+th, td{
+	border:solid 2px #999;
+	border-width:0 1px 1px 0;
+	padding:0.15em 0.3em 0.1em;
+	min-width:20em;
+	vertical-align:top;
+	text-align:left;
+}
+th+th, td+td{
+	width:auto;
+}
+th{
+	background-color:#eee;
+}
+caption{
+	text-align:left;
+	color:#555;
+	font-style:normal;
+	margin:1em 0 0.1em;
+	padding:0 0 0 0.3em;
+}
+html code, html pre, html kbd{ /* more specific selector than the default W3C style sheet */
+	/* Most browsers default 'monospace' to Courier, which has an ex-height of about 60% normal size. */
+	/* Monaco has a normal ex-height so font sizes appear more consistent with surrounding non-monospaced text. */
+	font-family: "Monaco", "Courier New", "Courier", monospace;
+	font-family: "Monaco", "Courier New", "Courier"; /* declare as separate rule to account for browser font-size inconsistencies, monospace fallback from previous rule should still work in the [almost non-existant] case that a user system does not have Courier */
+	font-size:0.9em;
+}
+html pre { /* more specific selector than the default W3C style sheet */
+	border: solid 1px #999;
+	background-color: #fcfcfc;
+	margin:1em 0;
+	padding:0.5em 0.8em;
+	font-size:0.75em; /* text in blocks code blocks looked too big now that font is back to normal size */
+	line-height:1.4; /* [sic] unitless multiplier, not EM size */
+}
+pre .tag, code .tag, code.tag{
+	color:#00c; /* blue */
+}
+pre .str, code .str, code.str{
+	color:#090; /* green */
+}
+pre .comment, code .comment, code.comment, .comment .str, .comment .tag{
+	color:#777; /* gray */
+}
+/*
+.role-reference, .role-reference:link, .role-reference:visited {
+	background-color: #eee;
+}
+.state-reference, .state-reference:link, .state-reference:visited {
+	background-color: #ffc;
+}
+.property-reference, .property-reference:link, .property-reference:visited {
+	background-color: #ccf;
+}
+.widget-reference, .widget-reference:link, .widget-reference:visited {
+	background-color: #9f6;
+}
+*/
+.role-reference, .state-reference, .property-reference, .widget-reference, .design-pattern-reference {}
+.termref, a.termref:link {
+	color:#006400;
+	text-decoration:none;
+	font-style:italic;
+}
+a.termref:visited {
+	color:inherit;
+}
+a.termref:hover, a.termref:focus {
+	background-color: #fafad2;
+	color: #006400;
+}
+.empty {
+	display: none;
+}
+.note {
+	color:#444;
+	border:solid 1px #ccc;
+	margin:1em 0;
+	padding:1em 2em;
+}
+.ednote {
+	border:solid 3px #cca;
+	background-color:#ffd;
+	padding:0 0.8em;
+}
+.role-screenshot {
+	float: right;
+	margin-left: 1em;
+	margin-bottom: 1ex;
+}
+.role-screenshot p {
+	text-align: center;
+	font-size: smaller;
+}
+.image {
+	text-align: center;
+}
+.img {
+	margin-left: auto;
+	margin-right: auto;
+}
+.img p {
+	text-align: center;
+	font-weight: bold;
+	font-size: smaller;
+}
+.img-caption {
+	font-weight: bold;
+}
+/*
+dl.runin dt {
+	display: run-in;
+}
+dl.runin dt:after {
+	content: ": ";
+}
+*/
+dl.compact dt {
+	font-weight:normal;
+}
+/*
+dl.compact dd {
+	margin-left: 5em;
+}
+*/
+.rfc2119 {
+	font-weight: bold;
+	text-transform: uppercase;
+}
+.tocnum {}
+.section {}
+.todo {
+	background-color:#f99;
+}
+.issue {
+	background-color:#0c0;
+	text-transform:uppercase;
+}
+
+/* Permalinks */
+.permalink {
+	float: right;
+	margin-top: -2.5em;
+	/*color:#333 !important;*/
+}
+.permalink a, .permalink a:link, .permalink a:visited, .permalink a:hover, .permalink a:focus, .permalink a:active 
+{
+	background:transparent !important;
+	text-decoration:none;
+}
+.permalink abbr {
+	border:0;
+}
