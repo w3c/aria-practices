@@ -147,11 +147,8 @@
 <section id="aria_ex">
   <h2>Design Patterns</h2>
   <p>This section demonstrates how to make common rich internet application widgets accessible by applying WAI-ARIA roles, states, and properties and implementing keyboard support.</p>
-<p>If the host language does not define key mappings, such as hot keys, and the author defines key mappings other than those described here or in <a href="#dragdrop">Drag-and-Drop Support</a>, then the author must provide documentation of those key mappings. These mappings can be provided in the contents of the web page, or in the case of a more complex application, within the help file documentation and training materials.</p>
 <p class="note">Although users of Mac OS X are familiar with using the <kbd>Command</kbd> key instead of the <kbd>Control</kbd> key, the <kbd>Command</kbd> key is typically reserved for desktop applications and OS-level integration. Until device and platform independence can be addressed in WAI-ARIA 2.0, the primary <kbd>Control</kbd> modifier key for WAI-ARIA widget interaction is specified as <kbd>Control</kbd> on all platforms, including Mac OS X.</p>
-<p class="note">Most of the JavaScript examples are written to be understandable by all readers, including novice and intermediate JavaScripters. For example, most modern rich web applications now use DOM Level 2 event listener assignment, but some source code examples in this document use DOM Level 1 assignment (e.g. <code>el.onclick = foo;</code> or <code>&lt;el onclick="foo()"&gt;</code>) because it is easier for all readers to understand. Expert JavaScripters are encouraged to use modern JavaScript best practices when developing accessible rich internet applications.</p>
-<p class="miniindex">Placeholder for Local Index</p>
-  <div id="aria_ex_widget">
+  <section id="aria_ex_widget">
     <h3>Global Recommendations </h3>
     <p>The following may apply to some or all widgets. </p>
     <ul>
@@ -163,9 +160,9 @@
       <li><kbd>Shift+F10</kbd> is used to bring up an associated <a href="#popupmenu">Popup Menu</a> </li>
       <li><strong>Widgets within Widgets</strong> The general navigation model is for   a user to tab to a widget, interact with the controls in that widget and then   tab to move focus to the next widget in the tab order. By extension, when the   construct of a widget contains another widget, tab will move focus to the   contained widget because it is the next item in the tab order. This continues   down the layers of widgets until the last widget is reached. For example: We   have two widgets A and B on a page. Widget A contains within it Widget C and   Widget C contains within it Widget D. When tabbing, focus would land on Widget   A, then another tab would focus on C and then another tab would focus on widget   D. Because D is the last widget in C and C is the last widget in A one more   tab would move focus to B. </li>
     </ul>
-</div>
+</section>
     <hr />
-    <div class="widget" id="accordion">
+    <section class="widget" id="accordion">
     <h3 class="widget-name">Accordion</h3>
       <table cellspacing="0" class="widget-features">
         <caption>
@@ -278,9 +275,9 @@
           </tr>
         </tbody>
       </table>
-</div>
+</section>
     <hr />
-    <div class="widget" id="alert">
+    <section class="widget" id="alert">
       <h3 class="widget-name">Alert</h3>
       <table cellspacing="0" class="widget-features">
         <caption>
@@ -305,9 +302,9 @@
           </tr>
         </tbody>
       </table>
-    </div>
+    </section>
     <hr />
-    <div class="widget" id="alertdialog">
+    <section class="widget" id="alertdialog">
       <h3 class="widget-name">Alert or Message Dialog</h3>
       <table cellspacing="0" class="widget-features">
         <caption>
@@ -356,9 +353,9 @@
           </tr>
         </tbody>
       </table>
-    </div>
+    </section>
     <hr />
-<div class="widget" id="autocomplete">
+<section class="widget" id="autocomplete">
       <h3 class="widget-name">Auto Complete</h3>
       <table cellspacing="0" class="widget-features">
         <caption>
@@ -422,9 +419,9 @@
           </tr>
         </tbody>
       </table>
-    </div>
+    </section>
 <hr />
-<div class="widget" id="button">
+<section class="widget" id="button">
   <h3 class="widget-name">Button</h3>
       <table cellspacing="0" class="widget-features">
         <caption>
@@ -467,8 +464,9 @@
         </tbody>
       </table>
       <hr/>
-    </div>
-    <div class="widget" id="checkbox">
+    </section>
+		<hr />
+		<section class="widget" id="checkbox">
       <h3 class="widget-name">Check Box</h3>
     <table cellspacing="0" class="widget-features">
       <caption>
@@ -544,10 +542,9 @@
         </tr>
       </tbody>
     </table>
-
-    </div>
+    </section>
     <hr/>
-    <div class="widget" id="combobox">
+    <section class="widget" id="combobox">
       <h3 class="widget-name">Combo Box</h3>
         <table cellspacing="0" class="widget-features">
       <caption>
@@ -624,7 +621,7 @@
         </tr>
       </tbody>
     </table>
-</div>
+</section>
 <hr />
     <div class="widget" id="datepicker">
         <h3 class="widget-name">Date Picker</h3>
@@ -742,7 +739,7 @@
 
   </div>
       <hr/>
-    <div class="widget" id="dialog_modal">
+    <section class="widget" id="dialog_modal">
       <h3  class="widget-name"> Dialog (Modal) </h3>
         <table cellspacing="0" class="widget-features">
       <caption>
@@ -793,9 +790,9 @@
         </tr>
       </tbody>
     </table>
-</div>
+</section>
     <hr/>
-    <div class="widget" id="dialog_nonmodal">
+    <section class="widget" id="dialog_nonmodal">
       <h3  class="widget-name"> Dialog (Non-Modal) </h3>
     <table cellspacing="0" class="widget-features">
       <caption>
@@ -832,9 +829,9 @@
         </tr>
       </tbody>
     </table>
-    </div>
+    </section>
     <hr/>
-    <div class="widget" id="dialog_tooltip">
+    <section class="widget" id="dialog_tooltip">
       <h3  class="widget-name"> Dialog (Tooltip) </h3>
     <table cellspacing="0" class="widget-features">
       <caption>
@@ -869,9 +866,9 @@
         </tr>
       </tbody>
     </table>
-    </div>
+    </section>
     <hr/>
-    <div class="design-pattern" id="draganddrop">
+    <section class="design-pattern" id="draganddrop">
       <h3  class="design-pattern-name"> Drag &amp; Drop </h3>
     <table cellspacing="0" class="widget-features">
       <caption>
@@ -911,7 +908,7 @@
         </tr>
       </tbody>
     </table>
-    </div>
+    </section>
     <hr/>
 <div class="widget" id="grid">
       <h3 class="widget-name">Grid (Simple Data Tables)</h3>
