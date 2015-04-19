@@ -152,15 +152,18 @@
 <p class="note">Although users of Mac OS X are familiar with using the <kbd>Command</kbd> key instead of the <kbd>Control</kbd> key, the <kbd>Command</kbd> key is typically reserved for desktop applications and OS-level integration. Until device and platform independence can be addressed in WAI-ARIA 2.0, the primary <kbd>Control</kbd> modifier key for WAI-ARIA widget interaction is specified as <kbd>Control</kbd> on all platforms, including Mac OS X.</p>
   <section id="aria_ex_widget">
     <h3>Global Recommendations </h3>
-    <p>The following may apply to some or all widgets. </p>
+    <p>The following recommendations are applicable to many of the patterns described in subsequent sections. </p>
     <ul>
-      <li><kbd>Control+Z</kbd> Optionally a developer may choose to implement   undo functionality as needed. It is recommended that Control + Z be used. </li>
-      <li><kbd>Control+Y</kbd> Optionally a developer may choose to implement   redo functionality as needed. It is recommended that Control + Y be used. </li>
+    <li><strong>Widgets within Widgets</strong> The general navigation model is for   a user to tab to a widget, interact with the controls in that widget and then   tab to move focus to the next widget in the tab order. 
+    By extension, when the   construct of a widget contains another widget, tab will move focus to the   contained widget because it is the next item in the tab order. 
+    This continues   down the layers of widgets until the last widget is reached. 
+    For example: We   have two widgets A and B on a page. Widget A contains within it Widget C and   Widget C contains within it Widget D. When tabbing, focus would land on Widget   A, then another tab would focus on C and then another tab would focus on widget   D. Because D is the last widget in C and C is the last widget in A one more   tab would move focus to B. </li>
+    <li><kbd>Shift+F10</kbd> is used to bring up an associated <a href="#popupmenu">Popup Menu</a> </li>
       <li><kbd>Control+C</kbd> Copies to clipboard </li>
       <li><kbd>Control+V</kbd> Pastes from clipboard </li>
       <li><kbd>Control+X</kbd> Copies to clipboard and cuts </li>
-      <li><kbd>Shift+F10</kbd> is used to bring up an associated <a href="#popupmenu">Popup Menu</a> </li>
-      <li><strong>Widgets within Widgets</strong> The general navigation model is for   a user to tab to a widget, interact with the controls in that widget and then   tab to move focus to the next widget in the tab order. By extension, when the   construct of a widget contains another widget, tab will move focus to the   contained widget because it is the next item in the tab order. This continues   down the layers of widgets until the last widget is reached. For example: We   have two widgets A and B on a page. Widget A contains within it Widget C and   Widget C contains within it Widget D. When tabbing, focus would land on Widget   A, then another tab would focus on C and then another tab would focus on widget   D. Because D is the last widget in C and C is the last widget in A one more   tab would move focus to B. </li>
+      <li><kbd>Control+Z</kbd> Optionally a developer may choose to implement   undo functionality as needed. It is recommended that Control + Z be used. </li>
+      <li><kbd>Control+Y</kbd> Optionally a developer may choose to implement   redo functionality as needed. It is recommended that Control + Y be used. </li>
     </ul>
 </section>
     <hr />
