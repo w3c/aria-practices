@@ -1918,7 +1918,11 @@
       <tbody>
         <tr>
           <td class="widget-description-head" scope="row">Description: </td>
-          <td class="widget-description"><p>A widget that allows users to select from a range of values. A spinbutton typically provides the use of an up and down button on the keyboard. Visibly, the value is   incremented or decremented until a maximum or minimum value is reached.  A spinbutton usually includes a text field to display the current value and allow users to edit the value directly. </p> </td>
+          <td class="widget-description"><p>A widget that allows users to choose a value from a set, or range, of discrete values. For example, select a number from 1 to 59 for the minute of an hour when setting an alarm.</p>
+
+<p>A spin button provides ways to easily increment and decrement the value. If the range is large, it may support changing the value by both a single step and by multiple steps at once. For instance, in the alarm example, the user may be able to move by 1 minute with the arrow keys and by 10 minutes with PageUp and PageDown.</p>
+
+<p>A spinbutton usually includes a text field that displays the current value and allows users to directly edit it.</p> </td>
         </tr>
         <tr>
           <td class="widget-keyboard-head" scope="row">Keyboard Interaction: </td>
@@ -1932,7 +1936,7 @@
             <li><kbd>Tab</kbd> key moves into and out of the widget. </li>
             </ul>          
             <p class="note">Focus should remain on the edit field </p>
-          <p class="note">Localization for right to left languages may wish to   reverse the left and right arrows. </p>         </td>
+      </td>
         </tr>
         <tr>
           <td class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </td>
