@@ -2297,27 +2297,25 @@ Characteristics:
       <tbody>
         <tr>
           <td class="widget-description-head" scope="row">Description: </td>
-          <td class="widget-description">Visible separator between sections of a Window that is used to modify the size of the panes.</td>
+          <td class="widget-description"><p>Visible separator between sections of a Window that is used to modify the size of the panes.</p><p>A Window Splitter can take one of two forms, namely, fixed size and variable size.
+              </p>
+			  <p class="note">The group recommends unique naming of the window   splitter to avoid the confusion that could be created by multiple splitters   located on the same window. </p>
+</td>
         </tr>
         <tr>
           <td class="widget-keyboard-head" scope="row">Keyboard Interaction: </td>
-          <td class="widget-keyboard"><p>A Window Splitter can take one of two forms, namely, fixed size and variable size.
-              </p>
+          <td class="widget-keyboard">
             <ul>
-              <li><kbd>Tab</kbd> - Like other widgets, the tab key is used to move focus   to the splitter. It should appear in the normal tab order of the page. A second   tab will move focus to the next tabbable item on the page. </li>
+              <li><kbd>Tab</kbd> Like other widgets, the tab key is used to move focus   to the splitter. It should appear in the normal tab order of the page. A second   tab will move focus to the next tabbable item on the page. </li>
               <li><kbd>Left Arrow</kbd> and <kbd>Right Arrow</kbd> - In the case of a vertical splitter these keys will move the splitter to the left and to the right.</li>
               <li><kbd>Up Arrow</kbd> and <kbd>Down Arrow</kbd> - In the case of a horizontal splitter these keys will move the splitter up and down.</li>
-              <li><kbd>End</kbd> - Moves splitter to the maximum size of the region. </li>
-              <li><kbd>Home</kbd> - Moves splitter to the minimum size of the region. </li>
-              <li><kbd>Enter</kbd> Restore splitter to previous position (undo Home or End). </li>
+              <li><kbd>Enter</kbd> If pane controlled by the splitter is not collapsed, then collapse the pane. If the pane is collapsed then restore the splitter to its previous position. </li>
+              <li><kbd>End</kbd> Optionally moves splitter so the associated pane is the largest allowed size. </li>
+              <li><kbd>Home</kbd> Optionally moves splitter so the associated pane is the smallest allowed size. In many cases this will collapse the pane completely. </li>			  
               <li><kbd>F6</kbd> Optionally is recommended to rotate through the window   panes. </li>
-              <li><kbd>Control+F6</kbd> Optionally brings focus directly to the   splitter. Pressing <kbd>Control+F6</kbd> again would rotate forward through additional   splitters located on the page. </li>
-              <li><kbd>Shift+Control+F6</kbd> optionally reverses the direction   rotating backwards through additional splitters located on the page. </li>
             </ul>
             
           <p class="note">Fixed size splitter simply omits implementation of the arrow keys. </p>
-          <p class="note">The group recommends unique naming of the window   splitter to avoid the confusion that could be created by multiple splitters   located on the same window. </p>
-          <p class="note">The group recommends that a splitter "default position restore" option be available in a context menu. </p>
           <p>&nbsp;</p></td>
         </tr>
         <tr>
@@ -2326,7 +2324,7 @@ Characteristics:
           	<ul>
           		<li>Most window splitters are expandable and collapsible. Ensure that the splitter's <span class="state-reference">aria-expanded</span> state is updated accordingly.</li>
           		<li>As there may be multiple splitters, use
-          		    <span class="property-reference">aria-label</span>, <span class="property-reference">aria-labelledby</span>, or the <code>title</code> attribute, to label text on the splitter in order that an accessible name is computed by the user agent. The assistive technology can then convey to users which window splitter they are controlling.</li>
+          		    <span class="property-reference">aria-label</span>, <span class="property-reference">aria-labelledby</span>, or the <code>title</code> attribute, to label the splitter in order that an accessible name is computed by the user agent. The assistive technology can then convey to users which window splitter they are controlling.</li>
           		<li>Authors should set the <span class="property-reference">aria-controls</span> attribute of the element having the <span class="role-reference">separator</span> role. Its value should be the IDs of the panes whose sizes it controls. An assistive technology can then provide navigation among the panes.</li>
           	</ul></td>
         </tr>
