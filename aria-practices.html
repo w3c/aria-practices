@@ -729,19 +729,19 @@
            <li>The current month has a label representing the month and year. It is advisable
            to use a role <a href="#heading" class="role-reference">heading</a> but is not essential. This "label" should have a unique ID.</li>
            <li>If the author would like to ensure that a label is announced by a screen reader, as the label changes, include live region properties
-           with the label element:  <a href="../#aria-live" class="property-reference">aria-live</a><code>="assertive"</code> and <a href="../#aria-atomic" class="property-reference">aria-atomic</a><code>="true"</code>. </li>
+           with the label element:  <a href="#aria-live" class="property-reference">aria-live</a><code>="assertive"</code> and <a href="#aria-atomic" class="property-reference">aria-atomic</a><code>="true"</code>. </li>
            <li>The container for the day of week headers and numeric days of the week has a role of <a href="#grid" class="role-reference">grid</a>. </li>
-           <li>The grid has an <a href="../#aria-labelledby" class="property-reference">aria-labelledby</a> property with a value equivalent to the id of the label for the grid. </li>
+           <li>The grid has an <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> property with a value equivalent to the id of the label for the grid. </li>
            <li>Each name for the day of the week has a role <a href="#columnheader" class="role-reference">columnheader</a> and
            is not navigable via the keyboard.</li>
            <li>Each numeric day of the week has the role <a href="#gridcell" class="role-reference">gridcell</a>.</li>
-           <li>When a day is selected its <a href="../#aria-selected" class="state-reference">aria-selected</a> is set to <code>true</code>, otherwise it is set to <code>false</code> or removed.</li>
+           <li>When a day is selected its <a href="#aria-selected" class="state-reference">aria-selected</a> is set to <code>true</code>, otherwise it is set to <code>false</code> or removed.</li>
            <li>Changes in aria states, identified here, as well as focus, are clearly styled to show the user where their point of regard is and what days are selected.</li>
         </ul> 
         <p>
         When the datepicker is active a calender day of the week always has focus. This can be achieved
         by setting the tabindex on that day as appropriate and then using script to give it focus. Alternatively,
-        the grid container could set <a href="../#aria-activedescendant" class="property-reference">aria-activedescendant</a> to the id of the currently focused gridcell. Keep
+        the grid container could set <a href="#aria-activedescendant" class="property-reference">aria-activedescendant</a> to the id of the currently focused gridcell. Keep
         in mind that older browsers may not support aria-activedescendant. </p>    </td>
 </tr>
 <tr>
@@ -1253,7 +1253,7 @@
             <li>A menuitem within a menu or menubar may appear in the tab order only if it   is not within a popup menu. </li>
             <li>Each menuitem is usually a DOM child of its menu or menubar in the DOM tree. </li>
             <li>A menuitem that is not a DOM child of the menu or menubar is referenced  by the menu or menubar using <a href="#aria-owns" class="property-reference">aria-owns</a> and will appear in order at the end of   the list of menuitems. Therefore, ensure that navigation to each menuitem follows this order. </li>
-            <li>Grouping of menuitems in a <a href="../#menu" class="role-reference">menu</a> or <a href="../#menubar" class="role-reference">menubar</a> is performed by introducing an element with the role of <a href="../#separator" class="role-reference">separator</a>. A <a href="../#separator" class="role-reference">separator</a> delineates groups of menu items within a <a href="../#menu" class="role-reference">menu</a> or <a href="../#menubar" class="role-reference">menubar</a>. A <a href="../#separator" class="role-reference">separator</a> is not placed in the navigation order and it is in no way interactive. Authors provide an <a href="../#aria-orientation" class="property-reference">aria-orientation</a> consistent with the separator's orientation in the menu or menubar. Since the separator is not navigable it does not support the <a href="../#aria-expanded" class="state-reference">aria-expanded</a> state. It is recommended that when grouping menu items of type <a href="../#menuitemradio" class="role-reference">menuitemradio</a> that they all be grouped together preceding or following a separator. </li></ul></td>
+            <li>Grouping of menuitems in a <a href="#menu" class="role-reference">menu</a> or <a href="#menubar" class="role-reference">menubar</a> is performed by introducing an element with the role of <a href="#separator" class="role-reference">separator</a>. A <a href="#separator" class="role-reference">separator</a> delineates groups of menu items within a <a href="#menu" class="role-reference">menu</a> or <a href="#menubar" class="role-reference">menubar</a>. A <a href="#separator" class="role-reference">separator</a> is not placed in the navigation order and it is in no way interactive. Authors provide an <a href="#aria-orientation" class="property-reference">aria-orientation</a> consistent with the separator's orientation in the menu or menubar. Since the separator is not navigable it does not support the <a href="#aria-expanded" class="state-reference">aria-expanded</a> state. It is recommended that when grouping menu items of type <a href="#menuitemradio" class="role-reference">menuitemradio</a> that they all be grouped together preceding or following a separator. </li></ul></td>
         </tr>
         <tr>
           <td class="widget-example-head" scope="row">Example: </td>
