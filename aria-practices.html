@@ -2079,14 +2079,15 @@
       <tbody>
         <tr>
           <td class="widget-description-head" scope="row">Description: </td>
-          <td class="widget-description">Popup that displays a description for an element when a user passes over or   rests on that element. Supplement to the normal tooltip processing of the user   agent. It should popup automatically when the user gives input focus to the widget or   element with which it is associated. The tooltip widget can be dismissed by pressing the <kbd>Escape</kbd>   key or by other methods noted below. The tooltip widget differs from the <a href="#dialog_tooltip">Dialog (Tooltip)</a> in that it does not receive focus at   any time. </td>
+          <td class="widget-description">Popup that displays a description for an element when a user hovers over or focuses on that element. It should popup automatically when the user gives input focus to the widget or   element with which it is associated. The tooltip widget can be dismissed by pressing the <kbd>Escape</kbd>   key or by other methods noted below. The tooltip widget differs from the <a href="#dialog_tooltip">Dialog (Tooltip)</a> in that it does not receive focus at   any time.
+          <p class="note">The tooltip may appear immediately or there may be a small delay before the tooltip appears.</p>		  </td>
         </tr>
         <tr>
           <td class="widget-keyboard-head" scope="row">Keyboard Interaction: </td>
           <td class="widget-keyboard"><p><kbd>Escape</kbd>: Dismisses the Tooltip. </p>
 		  	<p class="note">The trigger element to which the tooltip is attached,   e.g., a link, should never actually lose input focus. </p>
 		  	<p class="note">If the tooltip is invoked when the trigger element   gets focus, then it should be dismissed when it no longer has focus (onBlur). If   the tooltip is invoked with mouseIn, then it should be dismissed with a   mouseOut. </p>		  	
-		  	<p class="note">If more then one widget uses the same keys, e.g.,   <kbd>Escape</kbd>, then they should be handled in a Last In First Out (LIFO) manner. For example, an editable grid contains gridcells which contain date fields. The user invokes Actionable mode on the grid and then interacts with the Date Field to invoke the Date Picker. At this point the first press of the <kbd>Escape</kbd> key will close the Date Picker, the second press will exit Actionable mode and return to Navigation mode.</p></td>
+		  	<p class="note">If nested widgets use the same keys, e.g.,   <kbd>Escape</kbd>, then they should be handled in a Last In First Out (LIFO) manner. For example, an editable grid contains gridcells which contain date fields. The user invokes Actionable mode on the grid and then interacts with the Date Field to invoke the Date Picker. At this point the first press of the <kbd>Escape</kbd> key will close the Date Picker, the second press will exit Actionable mode and return to Navigation mode.</p></td>
         </tr>
         <tr>
           <td class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </td>
