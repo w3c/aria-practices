@@ -4471,8 +4471,8 @@ navigation  recommended  here, it should be documented on the page.</p>
       </table>
     </section>
   </section>
-  
-  <section id="Fill">
+ 
+  <section class="appendix" id="Fill">
 	<h2> Filling the Gaps for Content Delivered to Desktop Browsers</h2>
 	<p>At this time,W3C WAI Protocols and
 		Formats working group's primary focus is on extensions to HTML 4.01 and XHTML 1.X by extending the host language to include WAI-ARIA with a migration path to HTML 5. This will require the creation of new hybrid document type definitions (DTDs) that incorporate the extensions.  This work will be in the [[WAI-ARIA]] specification. WAI-ARIA will constitute
@@ -4871,7 +4871,7 @@ navigation  recommended  here, it should be documented on the page.</p>
 		<h3> HTML 5 - A Look Ahead</h3>
 		HTML 5 and the "serialized" XHTML version of HTML 5 are years away from standardization. We have preliminary consensus to add the WAI-ARIA states and properties, role, and tabindex changes needed for WAI-ARIA in HTML 5 as demonstrated in section <a href="#ariahtml">5.1.4</a>. This is subject to change between now and when the specification goes to recommendation. In HTML 5, we will see many more standard controls that developers may choose to use and that should be used in preference to WAI-ARIA features. We shall continue to promote WAI-ARIA's use and adoption in industry to ensure that there continues to be the ability to provide support accessibility of new types of controls. A number of gaps remain, such as named event handlers and enhancements for access key, that we need to address. This work is in progress. </section>
 </section>
-  <section id="buildingaccessibleapplications">
+  <section class="appendix"  id="buildingaccessibleapplications">
 	<h3>Building Accessible Applications with <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr></h3>
 	<p>This section provides a brief introduction to the process of making applications accessible using <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr>. The choice and usage of <a href="#def_role" class="termref">roles</a> can be complex and context dependent. It is beyond the scope of this document to explain implementations for all the possible <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> use cases. WAI-ARIA Authoring Practices provides detailed guidance on <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> implementation methodology as well as references to sample code.</p>
 	<p>First steps to making an application accessible:</p>
@@ -5044,7 +5044,7 @@ navigation  recommended  here, it should be documented on the page.</p>
 		</ol>
 	</section>
 </section>
-  <section id="reasons">
+  <section class="appendix" id="reasons">
 	<h2> Reasons for Adopting WAI-ARIA </h2>
 	<p>By adopting WAI-ARIA, both developers of static web  sites and of dynamic Internet applications can improve the usability, accessibility, and scalability of their products. Developers of  static web content can continue to follow the 1999 WCAG 1.0 standards, while improving usability and accessibility through the use of WAI-ARIA <a href="#landmark_roles">landmark roles</a>, <a class="property-reference" href="#aria-labelledby">aria-labelledby</a> relationships, and  properties like <a class="state-reference" href="#aria-invalid">aria-invalid</a> and <a class="property-reference" href="#aria-required">aria-required</a> that can apply to HTML form controls. In richer, dynamic content, developers create custom widgets like calendars and spreadsheets based on technologies such as Ajax and CSS; to achieve accessibility, they need to use WCAG 2.0. Previously, when delivering rich Internet applications to users, to comply with WCAG 1.0, developers resorted to providing alternative, static content. While such measures met the WCAG 1.0 requirements,  people using assistive technologies were not provided the richer user experience. When tables are used for layout, rather than CSS absolute positioning, historically, they have been problematic for assistive technologies to interpret. When the WAI-ARIA role of <a class="role-reference" href="#presentation">presentation</a> is used on such tables, the assistive technology ignores the table structure, providing a more accessible experience without requiring major recoding. </p>
     <section id="tech_reasons">
@@ -5078,9 +5078,7 @@ navigation  recommended  here, it should be documented on the page.</p>
 		</ul>
 	</section>
 </section>
-<section>
     <div data-include='../common/acknowledgements.html' data-include-replace='true'></div>
-	</section>
   </section>
 </body>
 </html>
