@@ -549,54 +549,69 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
       <tbody>
         <tr>
           <td class="widget-description-head" scope="row">Description: </td>
-          <td class="widget-description">A widget that has three possible values: <code>true</code>, <code>false</code>, or <code>mixed</code>.
-          <p>Many checkboxes do not use the <code>mixed</code> value, and thus are effectively   dual state checkboxes. However, the <a href="#aria-checked" class="state-reference">aria-checked</a> state supports the mixed value to   handle cases, such as installers, where an option has been partially installed. </p>
-          <p>A tristate checkbox is frequently associated with a set of dual state checkboxes.  The relationships between the tristate and dual state checkboxes are: </p>
-          <ol>
-            <li>tristate unchecked (<code>aria-checked=&quot;false&quot;</code>): none of the dual state checkboxes are checked. </li>
-            <li>tristate checked (<code>aria-checked=&quot;true&quot;</code>):  all of the dual state checkboxes are checked. </li>
-            <li>tristate mixed (<code>aria-checked=&quot;mixed&quot;</code>):  some of the dual state checkboxes are checked. </li>
-          </ol>
-          <p>If the tristate checkbox is currently unchecked and is clicked with the mouse, then it changes to checked <em>and</em> all of the dual state checkboxes are also set to checked.  If the tristate checkbox is checked and is clicked, then it changes to unchecked <em>and</em> all of the dual state checkboxes are switched to unchecked. The behavior is the same if using the keyboard:  if the tristate checkbox has focus, then <kbd>Space</kbd> switches between checked and unchecked states.</p>
-          <p>A tristate checkbox changes to the mixed state by interacting with the dual state checkboxes associated with it, such that only some of them are in a checked state.  The effect is achieved using the mouse or keyboard by navigating among the dual state checkboxes, switching their checked state such that only some are checked while the rest are unchecked.</p>
-          <p>Although it requires effort, it is sometimes more user friendly to track which of the dual state checkboxes are checked.  If that information is stored, then for the tristate checkbox, repeated clicking or pressing <kbd>Space</kbd> cycles through checked, unchecked, and mixed states.  The associated dual state checkboxes correspondingly switch among all checked, all unchecked, and a checked subset -- the subset that the tristate's mixed state represents.</p>
-        </td>
-        </tr>
+            <td class="widget-description">
+              <p>
+                WAI-ARIA supports two types of <a href="#checkbox" class=role-reference">checkbox</a>
+                widgets:
+              </p>
+              <ol>
+                <li>Dual-state: The most common type of checkbox, it allows the user
+                  to toggle between two choices -- checked and not checked.</li>
+                <li>Tri-state: This type of checkbox supports an additional third
+                  state known as partially checked.</li>
+              </ol>
+              <p>One common use of a tri-state checkbox can be found in software installers 
+              where a single tri-state checkbox is used to represent and control the state of an entire group of install options. 
+              And, Each option in the group can be individually turned on or off with a dual sate checkbox.</p>
+              <ul>
+                <li>If all options in the group are checked, the overall state is                  represented by the tri-state checkbox displaying as checked .</li>
+                <li>If some of the options in the group are checked, the overall state is represented with the tri-state checkbox displaying as partially checked.</li>
+                <li>If none of the options in the group are checked, the overall state of the group is represented with the tri-state checkbox displaying as not checked.</li>
+              </ul>
+              <p>The user can use the tri-state checkbox to change all options in the
+                group with a single action:</p>
+              <ul>
+                <li>Checking the overall checkbox checks all options in the group.</li>
+                <li>Unchecking the overall checkbox unchecks all options in the
+                  group.</li>
+                <li>And, In some implementations, the system may remember which
+                  options were checked the last time the overall status was partially
+                  checked. If this feature is provided, activating the overall checkbox a
+                  third time recreates that partially checked state where only some
+                  options in the group are checked.</li>
+              </ul>
+            </td>
+          </tr>
         <tr>
           <td class="widget-keyboard-head" scope="row">Keyboard Interaction: </td>
-          <td class="widget-keyboard"><p>Dual State Check Box
-              </p>
-            <ul>
-              <li><kbd>Space</kbd> key toggles the selection, checking or unchecking   the box. </li>
-            </ul>
-            <p>Tristate Check Box
-            </p>
-            <ul>
-              <li>If not checked, <kbd>Space</kbd>:
-                <ul>
-                  <li>Mixed state unknown:  checks the check box. </li>
-                  <li>Mixed state known:  reinstates the mixed state. </li>
-                </ul>
-              </li>
-              <li>If checked, <kbd>Space</kbd> unchecks the check box.</li>
-              <li>If mixed, <kbd>Space</kbd> checks the check box. </li> 
-            </ul>
+          <td class="widget-keyboard">
+              <p>When the checkbox has focus, pressing the <kbd>Space</kbd> key changes the state of the chekbox. </p>
           </td>
         </tr>
         <tr>
           <td class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </td>
-          <td class="widget-aria"><ul>
-            <li>The checkbox should have a role of <a href="#checkbox" class="role-reference">checkbox</a>. </li>
-            <li>If  checked it should have the state <a href="#aria-checked" class="state-reference">aria-checked</a>=&quot;true&quot;. </li>
-            <li>If not checked it should have the state <a href="#aria-checked" class="state-reference">aria-checked</a>=&quot;false&quot;. </li>
-            <li>If partially checked, it should have the state <a href="#aria-checked" class="state-reference">aria-checked</a>=&quot;mixed&quot;.</li>
-            <li>If you use an image to render the state of a checkbox, it should not appear   in the accessibility API mapping. This can be accomplished using CSS to render   it or setting a role of presentation on the image. </li>
-            <li>Put the checkbox in the tab order, such as by setting its <code>tabindex=&quot;0&quot;</code>. </li>
-            <li>Checkboxes having a logical grouping should be children of a DOM element   whose role is <a href="#group" class="role-reference">group</a>. </li>
-            <li>The group should assign a label that is visible and referenced through the   <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> property set to the ID of the label. </li>
-            <li>Use an <a href="#aria-describedby" class="property-reference">aria-describedby</a> property to add additional help information   to the checkbox or grouping. </li>
-          </ul></td>
-        </tr>
+            <td class="widget-aria"><ul>
+                <li>The checkbox has role <a href="#checkbox" class="role-reference">checkbox</a>.
+                </li>
+                <li>The checkbox has an accessible label, preferably provided by a
+                  visible label associated using <a href="#aria-labelledby" class="property-reference" >aria-labelledby</a>.
+                </li>
+                <li>When checked, the checkbox element has the state <a href="#aria-checked" class="state-reference" >aria-checked</a>=&quot;true&quot;.
+                </li>
+                <li>When not checked, it has the state <a href="#aria-checked" class="state-reference" >aria-checked</a>=&quot;false&quot;.
+                </li>
+                <li>When partially checked, it has the state <a href="#aria-checked" class="state-reference" >aria-checked</a>=&quot;mixed&quot;.
+                </li>
+                <li>If a set of checkboxes is presented as a logical group with a visible
+                  label, the checkboxes are included in an element with role <a href="#group" class="role-reference" >group</a> 
+                  that has the property <a href="#aria-labelledby" class="property-reference" >aria-labelledby</a> set to the ID of the element containing the label.
+                </li>
+                <li>If the presentation includes additional descriptive static text relevant to a checkbox or checkbox group, the checkbox or checkbox group
+                  has the property <a href="#aria-describedby" class="property-reference">aria-describedby</a>
+                  set to the ID of the element containing the description.
+                </li>
+              </ul></td>
+          </tr>
         <tr>
           <td class="widget-example-head" scope="row">Examples: </td>
           <td class="widget-example"><ul>
