@@ -306,8 +306,8 @@
           <tr>
             <td class="widget-description-head" scope="row">Description: </td>
             <td class="widget-description">
-            <p>An <a class="role-reference" href="#alert">alert</a> is an element that displays a brief, important message in a way that attracts the user's attention without interrupting the user's task. Alerts are automatically announced by most screen readers, and in some operating systems, they may trigger an alert sound.</p>
-<p>Because an alert is intended to provide important and potentially time-sensitive information without interfering with the user's ability to continue working, authors should ensure alerts do not effect the keyboard focus. 
+            <p>An <a class="role-reference" href="#alert">alert</a> is an element that displays a brief, important message in a way that attracts the user's attention without interrupting the user's task. Dynamically rendered alerts are automatically announced by most screen readers, and in some operating systems, they may trigger an alert sound. It is important to note that, at this time, screen readers do not inform users of alerts that are present on the page before page load completes.</p>
+<p>Because an alert is intended to provide important and potentially time-sensitive information without interfering with the user's ability to continue working, authors should ensure alerts do not affect the keyboard focus. 
 If there is a need to interrupt work flow, consider using an <a href="#alertdialog">alert dialog</a></p>
 <p>In most circumstances, authors should avoid making alerts disappear automatically. 
 An alert that disappears too quickly can lead to failure to meet <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits-no-exceptions.html">WCAG 2.0 success criterion 2.2.3</a>. 
@@ -317,7 +317,7 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
           </tr>
           <tr>
             <td class="widget-keyboard-head" scope="row">Keyboard Interaction: </td>
-            <td class="widget-keyboard"><p>An alert (WAI-ARIA live region) does not require any keyboard shortcuts</p></td>
+            <td class="widget-keyboard"><p>An alert (WAI-ARIA live region) does not require any keyboard interaction.</p></td>
           </tr>
           <tr>
             <td class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </td>
@@ -332,7 +332,7 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
     </section>
     <hr />
     <section class="widget" id="alertdialog">
-      <h3 class="widget-name">Alert or Message Dialog</h3>
+      <h3 class="widget-name">Alert Dialog or Message Dialog</h3>
       <table cellspacing="0" class="widget-features">
         <caption>
         Characteristics:
