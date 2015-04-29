@@ -494,10 +494,27 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
           </tr>
           <tr>
             <td class="widget-keyboard-head" scope="row">Keyboard Interaction: </td>
-            <td class="widget-keyboard"><p>With focus on the button, pressing <kbd>Space</kbd> or <kbd>Enter</kbd> keys executes the action for that button.</p>
+            <td class="widget-keyboard"><p>With focus on the button, pressing the <kbd>Space</kbd> key or <kbd>Enter</kbd> key activates the button.</p>
               <ul>
-                <li>If the button activation closes the containing entity or launches another entity, then focus moves to the newly opened entity. </li>
-                <li>If  the button activation does not close or dismiss the containing entity,  then focus remains on the button. An example might be an Apply or  Recalculate button. </li>
+                <li>If activating the button opens a dialog, the focus moves inside
+                  the dialog.</li>
+                <li>If activating the button closes a dialog, typically focus should
+                  return to the button that opened the dialog unless the function performed
+                  in the dialog context logically leads to a different element. For
+                  example, activating a cancel button in a dialog should always return
+                  focus to the button that opened the dialog. However, if the dialog is
+                  confirming a delete action that deletes the page from which it was
+                  opened, the focus must logically move to a new context.</li>
+                <li>If activating the button does not dismiss the current context,
+                  then focus should typically remain on the button after activation, e.g.,
+                  an Apply or Recalculate button.</li>
+                <li>If the button is activated with a shortcut key, the focus should
+                  usually remain in the context from which the shortcut key was activated.
+                  For example, if <kbd>Alt</kbd>+<kbd>U</kbd> were assigned to an
+                  &quot;Up&quot; button that moves the current focused item in a list up
+                  one place in the list, pressing <kbd>Alt</kbd>+<kbd>U</kbd> when the
+                  focus is in the list should not move the focus from the list.
+                </li>
               </ul></td>
           </tr>
           <tr>
