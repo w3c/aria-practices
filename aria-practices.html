@@ -1547,7 +1547,7 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
     </table>
 </section>
   <hr/>
-<section class="widget" id="radiobutton"><h3 class="widget-name">Radio Button</h3>
+<section class="widget" id="radiobutton"><h3 class="widget-name">Radio Group</h3>
     <table cellspacing="0" class="widget-features">
       <caption>
       Characteristics:
@@ -1559,16 +1559,18 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
         </tr>
         <tr>
           <td class="widget-keyboard-head" scope="row">Keyboard Interaction: </td>
-          <td class="widget-keyboard"><ul>
+          <td class="widget-keyboard">
+		  <p class="note">The Tab behaviour below differs from some native browser behaviors where Shift+Tab sometimes moves to the last button in the group, if none are selected.</p>
+		  <ul>
             <li><kbd>Tab</kbd> key will enter the radio group.
               <ul>
-                  <li>When <kbd>Tab</kbd> or <kbd>Shift+Tab</kbd> into a radio group, focus goes to the selected radio button. If none is selected, focus goes to the first radio button if <kbd>Tab</kbd> was pressed, or the last radio bottom if <kbd>Shift+Tab</kbd> was pressed. </li>
+                  <li>When <kbd>Tab</kbd> or <kbd>Shift+Tab</kbd> into a radio group, focus goes to the selected radio button. If none is selected, focus goes to the first radio button. </li>
                   <li>When focus is on any radio button, <kbd>Tab</kbd> or <kbd>Shift+Tab</kbd> will exit the radio group. </li>
               </ul>
             </li>
+			
             <li><kbd>Up Arrow</kbd> and <kbd>Left Arrow</kbd>  moves focus to the previous radio button in the group, and selects that button. If focus is on the first item, then focus wraps to last item. </li>
             <li><kbd>Down Arrow</kbd> and  <kbd>Right Arrow</kbd> moves focus to the next radio button in the group, and selects that button. If focus is on the last item, then focus wraps to first item. </li>
-            <li><kbd>Control+Arrow</kbd> moves through the options without updating content or selecting the button. </li>
             <li><kbd>Space</kbd> selects the radio button with focus and de-selects other radio buttons in the group. </li>
           </ul>          </td>
         </tr>
@@ -1580,8 +1582,7 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
               <li>An individual radio button has a role of <a href="#radio" class="role-reference">radio</a>.  </li>
               <li>If selected, the radio button has the state <a href="#aria-checked" class="state-reference" >aria-checked</a><code>="true"</code>.  </li>
               <li>If not selected, it has the state <a href="#aria-checked" class="state-reference">aria-checked</a><code>="false"</code>.  </li>
-              <li>If an image is used to render the state of a radio button, the image element does not appear in the accessibility API mapping. This is accomplished using CSS to render the image as a background image, or by setting <code>role="presentation"</code> on the image.  </li>
-              <li>It is recommended that the <a href="#radiogroup" class="role-reference">radiogroup</a> has a label that is visible and referenced using the <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> property.  </li>
+              <li>It is recommended that both the <a href="#radiogroup" class="role-reference">radiogroup</a> and the <a href="#radio" class="role-reference">radio button</a> have a label that is visible and referenced using the <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> property.  </li>
               <li>Use an <a href="#aria-describedby" class="property-reference" >aria-describedby</a> property to add additional information to the radio buttons or radiogroup.  </li>
             </ul>
           </td>
