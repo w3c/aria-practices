@@ -472,7 +472,7 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
               <p>A <a class="role-reference" href="#button">button</a> is a widget that enables users to trigger an action or event, such as submitting a form, opening a dialog, cancelling an action, or performing a delete operation. WAI-ARIA supports 3 types of buttons:</p>
               <ul>
                 <li>Toggle button: A two-state button that can be either off (not
-                  pressed) or on (pressed. To tell assistive technologies that a button is
+                  pressed) or on (pressed). To tell assistive technologies that a button is
                   a toggle button, specify a value for the attribute <a
                   href="#aria-pressed" class="state-reference"
                 >aria-pressed</a>. For example, a button labeled mute in an audio player
@@ -493,8 +493,8 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
               <p class="note">The types of actions performed by buttons are distinctly
                 different from the function of a link (see <a href="#link">link pattern</a>). It is important that the
                 role of a widget matches the function it provides. Ideally, the
-                role of the element also matches its visual appearance. But, occasionally,an
-                element may be visually styled as an icon or link but perform the action of abutton.
+                role of the element also matches its visual appearance. But, occasionally an
+                element may be visually styled as an icon or link but perform the action of a button.
                 In these cases, the element should be given a button role. The Designers
                 should work to avoid conflicts between visual appearance and WAI-ARIA
                 semantics.</p>
@@ -527,9 +527,13 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
           </tr>
           <tr>
             <td class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </td>
-            <td class="widget-aria"><ul>
-                <li>The button receives a role of <a class="role-reference" href="#button">button</a>. </li>
-                <li>The button description is given by its <a href="#aria-describedby" class="property-reference">aria-describedby</a> property. </li>
+            <td class="widget-aria">
+            <ul>
+                <li>The button has role of <a class="role-reference" href="#button">button</a>. </li>
+                <li>An accessible label is required. By default, the accessible name is computed from any text content inside the button element. However, it can also be provided with 
+                <a href="#aria-labelledby" class="property-reference">aria-labelledby"</a> or <a href="#aria-label" class="property-reference">aria-label</a>.</li>
+                <li>If a description of the button's function is present, 
+                the button element has <a href="#aria-describedby" class="property-reference">aria-describedby</a> set to the ID of the element containing the description.</li>
                 <li>When the action associated with a button is unavailable, the button displays in a <a class="state-reference" href="#disabled">aria-disabled</a> state. </li>
                 <li>If the button is a toggle button, it has an <a href="#aria-pressed" class="state-reference">aria-pressed</a> state.  When the button is toggled, the value of this state is <code>true</code>, and when not toggled, the state is <code>false</code>. </li>
               </ul></td>
@@ -571,7 +575,7 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
               </ol>
               <p>One common use of a tri-state checkbox can be found in software installers 
               where a single tri-state checkbox is used to represent and control the state of an entire group of install options. 
-              And, Each option in the group can be individually turned on or off with a dual sate checkbox.</p>
+              And, each option in the group can be individually turned on or off with a dual sate checkbox.</p>
               <ul>
                 <li>If all options in the group are checked, the overall state is                  represented by the tri-state checkbox displaying as checked .</li>
                 <li>If some of the options in the group are checked, the overall state is represented with the tri-state checkbox displaying as partially checked.</li>
@@ -3641,7 +3645,7 @@ consistent with their visual rendering. Rather than setting  size only on a cont
 </section>
   <section id="docmgt">
   <h2>Managing Dynamic Changes</h2>
-  <p><strong>Editor's note:</strong> This section has not been updated since it was integrated from APG version 1.0 -- an APG taskforce review is pending.</p>
+  <p><strong>Editor's note:</strong> This section has had only minor edits since it was integrated from APG version 1.0 -- a complete APG taskforce review is pending.</p>
     <section id="ContentPresChanges">
     <h3> Managing Content and Presentational Changes </h3>
     <p>General rules for managing content and displaying information</p>
