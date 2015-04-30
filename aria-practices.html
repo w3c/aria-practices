@@ -1189,23 +1189,30 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
         <tbody>
           <tr>
             <td class="widget-description-head">Description: </td>
-            <td class="widget-description">The <code>Link</code> widget provides an interactive reference to a resource either locally in the application or to an external resource. </td>
+            <td class="widget-description">
+            <p>A <a href="#link" class="role-reference">link</a> widget provides an interactive reference to a resource either locally in the application or to an external resource.</p> 
+            <p class="note">Authors are strongly encouraged to use a native host language link element, such as an HTML <code>&lt;A&gt;</code> tag. As with other WAI-ARIA widget roles, applying the link role to an element will not cause browsers to enhance the element with standard link behaviors such as navigation to the link target or context menu actions. </p>
+            </td>
           </tr>
           <tr>
             <td class="widget-keyboard-head">Keyboard Interaction: </td>
-            <td class="widget-keyboard"><p>The Link is in the tab chain defined with the tabindex attribute. </p>
-              <ul>
-                <li><kbd>Tab</kbd> moves focus to the Link. A second tab moves focus to   the next focusable item. </li>
-                <li><kbd>Enter</kbd> executes the link. </li>
-                <li><kbd>Shift+F10</kbd> is used to bring up an associated Popup Menu. </li>
-            </ul></td>
+            <ul>
+              <li><kbd>Enter</kbd> or <kbd>Space</kbd> executes the link and moves focus to the link target.</li>
+              <li><kbd>Shift+F10</kbd> opens associated context menu.</li>
+            </ul>
+            </td>
           </tr>
        <tr>
           <td class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </td>
-          <td class="widget-aria">Set a role of <a href="#link" class="role-reference">link</a> on the element containing the text of the link.</td>
+          <td class="widget-aria">
+          <ul>
+          <li>The element containing the link text has role of <a href="#link" class="role-reference">link</a>.</li>
+          <li>The link element is focusable. It is either included in the tab sequence by having tabindex of 0 or greater (see <a href="#kbd_general_between">Keyboard Navigation between Widgets</a>), 
+          or it is contained within a composite widget, such as a toolbar or grid, and is made focusable by having tabindex of -1 (see <a href="#kbd_general_within">Keyboard Navigation within Widgets</a>).
+          </li>
+                    </ul>
+                    </td>
         </tr>
-		  
-		  
           <tr>
             <td class="widget-keyboard-head">Example: </td>
             <td class="widget-keyboard">
@@ -1214,7 +1221,6 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
           </tr>
         </tbody>
       </table>
-      <p>&nbsp;</p>
   </section>
     <hr/>
     <section class="widget" id="Listbox">
