@@ -1320,20 +1320,23 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
         <tr>
           <td class="widget-description-head" scope="row">Description: </td>
           <td class="widget-description">
-             <p>A menu type of widget that offers the user a list of choices. It is often a list of links to important sections of a document or a   site. The menu role is appropriate when the list of links is presented in a   manner similar to a menu on a desktop application. A menubar is also considered   a form of menu. A menu should manage the focus of its descendants. </p>
+             <p>A menu is a type of widget that offers a list of choices to the user. A menu is often a list of common actions or functions that the user can invoke. The menu role is appropriate when a list of menu items is presented in a manner similar to a menu on a desktop application. </p>
+			 <p>A menubar is a presentation of a menu that usually remains visible and is usually presented horizontally.
+             The menubar role is used to create a menu bar similar to those found in Windows, Mac, and Gnome desktop applications. A menu bar is used to create a consistent set of frequently used commands.
+			 <p>A menu or menubar should manage the focus of its descendants. </p>
              <p>Sometimes a menu item will launch a dialog box.  This is indicated using &quot;&hellip;&quot; (ellipsis) at the end of the menu item label.  An example is &quot;Save as &hellip;&quot;.</p>
-             <p>When presenting a menu, ensure that it is completely visible on screen.</p>
           </td>
         </tr>
         <tr>
           <td class="widget-keyboard-head" scope="row">Keyboard Interaction: </td>
-          <td class="widget-keyboard"><ul>
-            <li>If a menu bar item has focus and the menu is not open, then:
+          <td class="widget-keyboard">
+		    <ul><li>For a menu bar which is presented horizontally</li>
               <ul>
                 <li><kbd>Enter</kbd>, <kbd>Space</kbd>, and the <kbd>up down</kbd> arrow keys opens the   menu and places focus on the first menu item in the opened menu or child menu   bar. </li>
                 <li>Left or right arrow keys move focus to the adjacent menu   bar item. </li>
               </ul>
-            </li>
+			<li>For menus presented vertically</li>
+			<ul>
             <li>When a menu is open and focus is on a menu item in that open menu, then
               <ul>
                 <li><kbd>Enter</kbd> or <kbd>Space</kbd> invokes that menu action (which may be to   open a submenu). </li>
@@ -1348,6 +1351,24 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
                 <li><kbd>Escape</kbd> or the <kbd>Left Arrow</kbd>  key closes the submenu and returns   focus to the parent menu item. </li>
               </ul>
             </li>
+			</ul>
+			<li>For menus presented horizontally (not very common)</li>
+			<ul>
+            <li>When a menu is open and focus is on a menu item in that open menu, then
+              <ul>
+                <li><kbd>Enter</kbd> or <kbd>Space</kbd> invokes that menu action (which may be to   open a submenu). </li>
+                <li><kbd>Left Arrow</kbd> or <kbd>Right Arrow</kbd> keys cycle focus through the items in   that menu. </li>
+                <li><kbd>Escape</kbd> closes the open menu or submenu and returns focus to   the parent menu item. </li>
+                <li>If the menu item with focus has a submenu, pressing <kbd>Enter</kbd>, <kbd>Space</kbd>,   or the down arrow key opens the submenu and puts focus on the first   submenu item. </li>
+              </ul>
+            </li>
+            <li>When a submenu is open and focus is on a menu item in that submenu:
+              <ul>
+                <li><kbd>Left Arrow</kbd> or <kbd>Right Arrow</kbd> keys cycle through the submenu items   (behaves the same as open menu). </li>
+                <li><kbd>Escape</kbd> or the <kbd>Up Arrow</kbd>  key closes the submenu and returns   focus to the parent menu item. </li>
+              </ul>
+            </li>
+			</ul>			
             <li>Typing a letter (printable character) key moves focus to   the next instance of a visible node whose title begins with that printable   letter. </li>
             <li>First item in menu bar should be in the tab order (tabindex=0). </li>
             <li>Disabled menu items receive focus but have no action when <kbd>Enter</kbd> or <kbd>Left Arrow</kbd>/<kbd>Right Arrow</kbd> is pressed. It is important that the state of the menu   item be clearly communicated to the user. </li>
@@ -1365,6 +1386,7 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
             <li>The menu contains elements with roles: <a href="#menuitem" class="role-reference">menuitem</a>,   <a href="#menuitemcheckbox" class="role-reference">menuitemcheckbox</a>, or <a href="#menuitemradio" class="role-reference">menuitemradio</a> depending on your implementation. </li>
             <li>If activation of a <a href="#menuitem" class="role-reference">menuitem</a> produces a popup menu, then the menuitem has <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set to &quot;true&quot; so that an assistive technology knows that the menuitem has a sub menu.</li>
             <li><a href="#menuitemcheckbox" class="role-reference">menuitemcheckbox</a> and <a href="#menuitemradio" class="role-reference">menuitemradio</a> set <a href="#aria-checked" class="property-reference">aria-checked</a> to &quot;true&quot; when   checked. </li>
+			<li>If a menu item is disabled then set <a href="#aria-disabled" class="state-reference">aria-disabled</a> to &quot;true&quot;</li>
             <li>Menu focus is managed by the menu using <code>tabindex</code> or <a href="#aria-activedescendant" class="property-reference">aria-activedescendant</a>. </li>
             <li>A menuitem within a menu or menubar may appear in the tab order only if it   is not within a popup menu. </li>
             <li>Each menuitem is usually a DOM child of its menu or menubar in the DOM tree. </li>
@@ -1396,7 +1418,6 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
           <td class="widget-description">
             <p>A menu button is a push button that is used to invoke a menu.  It appears as a normal button typically with a downward pointing arrow or triangle as a visual cue that it triggers the display of a menu. </p>
             <p>Menu buttons are used in situations where authors want to provide a single menu without having to construct a complete menu bar. </p>
-            <p>When presenting the menu, ensure that it is completely visible on screen.</p>
           </td>
         </tr>
         <tr>
