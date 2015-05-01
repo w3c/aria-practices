@@ -1232,18 +1232,29 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
         <tbody>
           <tr>
             <td class="widget-description-head">Description: </td>
-            <td class="widget-description">A widget that allows the user to select one or more items from a   list of choices. (<a href="#listbox" class="role-reference">listbox</a>). </td>
+            <td class="widget-description">
+            <p>A <a href="#listbox" class="role-reference">listbox</a> widget allows a user to select one or more items from a   list of choices or options.
+            A listbox that allows a single option to be chosen is a single-select listbox; one that allows multiple options to be selected is a multi-select listbox.</p>
+<p>The options in a WAI-ARIA listbox are static. That is, a listbox widget is not designed to contain a list of interactive elements, such as links, buttons, or sliders. For each option in the list, assistive technologies only have access to a name and selection state. The name of each option is a static text string.</p>
+<p>When a screen reader user navigates the options in a list box, each static option name is spoken by the screen reader is a single piece of information. For this reason, authors should avoid creating options with very long names that contain more information than can be easily understood when spoken as a single unit of speech. Most screen reader users will not have a simple way of re-reading through the option name by character, word, or phrase if they did not understand it. See the examples for recommended ways of designing around this limitation. (Editor's note: examples are not yet coded.)</p>
+<p>Authors should also avoid creating a large number of consecutive options that all start with the same word or phrase. Otherwise, finding a specific option can be very time consuming for a screen reader user who must listen to the repeated word or phrase while scrolling through the list. For example, if a listbox contains a list of cities where each option includes both city name and country name, and if there are 5 or more cities from each country, it would be very difficult for a screen reader user to find a city within a country if the country name precedes the city name in each option. In most cases, it would be better to have 2 list boxes, one for country and one for city, but where that is not feasible, it would typically be better to put the city name first in each option.</p>
+            </td>
           </tr>
           <tr>
             <td class="widget-keyboard-head">Keyboard Interaction: </td>
-            <td class="widget-keyboard"><ul>
-                <li><kbd>Tab</kbd>: When a list is tabbed to, select the first item if   nothing else is already selected. A second tab will take the user out of the   widget to the next tab stop on the page. </li>
+            <td class="widget-keyboard">
+            <ul>
+            <li>The listbox element is focusable. It is either included in the tab sequence by having tabindex of 0 or greater (see <a href="#kbd_general_between">Keyboard Navigation between Widgets</a>), 
+          or it is contained within a composite widget, such as a toolbar or grid, and is made focusable by having tabindex of -1 (see <a href="#kbd_general_within">Keyboard Navigation within Widgets</a>).
+          </li>
+                <li>When a listbox receives focus, select the first item if   nothing else is already selected.
+                 </li>
                 <li>Up/down arrows navigate up and down the list. </li>
-                <li><kbd>Shift+Up Arrow</kbd> and <kbd>Shift+Down Arrow</kbd> move and extend the selection. </li>
                 <li>Typing letter or several letters to navigate (same letter   goes to each item starting with that, different letters go to first item   starting with that entire string). </li>
                 <li><kbd>Shift+F10</kbd>: If the current item has an associated context   menu, then this key combination will launch that menu. </li>
                 <li><strong>Selection</strong>
                   <ul>
+                  <li><kbd>Shift+Up Arrow</kbd> and <kbd>Shift+Down Arrow</kbd> move and extend the selection. </li>
                     <li>Checkbox - <kbd>Space</kbd> toggles <a href="#checkbox">checkboxes</a>, if the list items are checkable </li>
                     <li>Selectable List Items
                       <ul>
