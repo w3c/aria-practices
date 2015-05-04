@@ -1235,7 +1235,9 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
             <td class="widget-description">
             <p>A <a href="#listbox" class="role-reference">listbox</a> widget allows a user to select one or more items from a   list of choices or options.
             A listbox that allows a single option to be chosen is a single-select listbox; one that allows multiple options to be selected is a multi-select listbox.</p>
-<p>The options in a WAI-ARIA listbox are static. That is, a listbox widget is not designed to contain a list of interactive elements, such as links, buttons, or sliders. For each option in the list, assistive technologies only have access to a name and selection state. The name of each option is a static text string.</p>
+<p>The options in a WAI-ARIA listbox are static. That is, a listbox widget is not designed to contain a list of interactive elements, such as links, buttons, or sliders. 
+This is because browser accessibility APIs do not support child elements contained inside the list options; they provide assistive technologies only with an accessible name, which is a plain text string,  and a selection state for each option. 
+</p>
 <p>When a screen reader user navigates the options in a list box, each static option name is spoken by the screen reader is a single piece of information. For this reason, authors should avoid creating options with very long names that contain more information than can be easily understood when spoken as a single unit of speech. Most screen reader users will not have a simple way of re-reading through the option name by character, word, or phrase if they did not understand it. See the examples for recommended ways of designing around this limitation. (Editor's note: examples are not yet coded.)</p>
 <p>Authors should also avoid creating a large number of consecutive options that all start with the same word or phrase. Otherwise, finding a specific option can be very time consuming for a screen reader user who must listen to the repeated word or phrase while scrolling through the list. For example, if a listbox contains a list of cities where each option includes both city name and country name, and if there are 5 or more cities from each country, it would be very difficult for a screen reader user to find a city within a country if the country name precedes the city name in each option. In most cases, it would be better to have 2 list boxes, one for country and one for city, but where that is not feasible, it would typically be better to put the city name first in each option.</p>
             </td>
@@ -1247,18 +1249,45 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
             <li>The listbox element is focusable. It is either included in the tab sequence by having tabindex of 0 or greater (see <a href="#kbd_general_between">Keyboard Navigation between Widgets</a>), 
           or it is contained within a composite widget, such as a toolbar or grid, and is made focusable by having tabindex of -1 (see <a href="#kbd_general_within">Keyboard Navigation within Widgets</a>).
           </li>
-                <li>When a listbox receives focus, select the first item if   nothing else is already selected.
-                 </li>
-                <li>Up/down arrows navigate up and down the list. </li>
-                <li>Typing letter or several letters to navigate (same letter   goes to each item starting with that, different letters go to first item   starting with that entire string). </li>
-                <li><kbd>Shift+F10</kbd>: If the current item has an associated context   menu, then this key combination will launch that menu. </li>
-                <li><strong>Selection</strong>
+                <li>When a single-select listbox receives focus:
+                <ul>
+                <li>If none of the options are selected, the first option receives focus. Optionally, it may be automatically selected.</li>
+                <li>If an option is selected, before the listbox receives focus, focus is set on the selected item when the listbox receives focus.</li>
+                </ul>
+                </li>
+                <li>When a multi-select listbox receives focus:
+                <ul>
+                <li>If none of the options are selected, focus is set on the first option. The option should not be selected when it receives focus.</li>
+                <li>If one or more options are selected, focus is set on the first option in the list that is selected.</li>
+                </ul>
+                </li>
+                <li><kbd>Up</kbd> and <kbd>Down</kbd> move focus up and down the list. If it is a single-select listbox, the selection state moves with the focus.</li>
+                <li>Type-ahead is recommended for all lists and required for long lists (typically more than 5 items):
+                <ul>
+                    <li>Type a character: focus moves to the next item with a name
+                      that starts with the typed character.</li>
+                    <li>Type multiple characters in rapid succession: focus moves to
+                      the next item with a name that starts with the string of characters
+                      typed.</li>
+                  </ul>
+                </li>
+                <li><kbd>Shift+F10</kbd>: opens the context menu for the currently focused option if a context menu is available</li>
+                <li><strong>Multiple Selection</strong>: In multi-select listboxes, the author may choose between 2 types of selection models. One model requires a modifier key, e.g., shift or control, to change the selection state, and the other does not.
+                  <ul>
+                  <li>Selection model 1 (modifiers not required):
+                  <ul>
+                  <li><kbd>Space</kbd>: toggles selection state of option with focus.</li>
+                  <li><kbd>Shift+Up Arrow</kbd> and <kbd>Shift+Down Arrow</kbd> move and extend the selection. </li>
+                  <li><kbd>Control</kbd>+<kbd>Shift</kbd>+<kbd>Home</kbd>: select the option with focus and all options up to the beginning of the list.</li>
+                  <li><kbd>Control</kbd>+<kbd>Shift</kbd>+<kbd>End</kbd>: select the option with focus and all options down to the end of the list.</li>
+                  <li><kbd>Control</kbd>+<kbd>&47;</kbd>: select all options</li>
+                  <li><kbd>Control</kbd>+<kbd>&92;</kbd>: unselect all options</li>
+                  <li><kbd>Control</kbd>+<kbd>&47;</kbd>: select all options</li>
+                  </ul>
+                  </li>
+                  <li>Selection model 2 (modifier keys required):
                   <ul>
                   <li><kbd>Shift+Up Arrow</kbd> and <kbd>Shift+Down Arrow</kbd> move and extend the selection. </li>
-                    <li>Checkbox - <kbd>Space</kbd> toggles <a href="#checkbox">checkboxes</a>, if the list items are checkable </li>
-                    <li>Selectable List Items
-                      <ul>
-                        <li><kbd>Space</kbd> acts as a toggle to select and deselect the current   item. If previous items have been selected, it also deselects them and selects   the current item. </li>
                         <li><kbd>Shift+Space</kbd> selects contiguous items from the last   selected item to the current item. </li>
                         <li><kbd>Control+Arrow</kbd> moves without selecting. </li>
                         <li><kbd>Control+Space</kbd> toggles selection of non-contiguous items, adding or removing the current item from the set of selected items. </li>
@@ -1266,9 +1295,10 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
                       </ul>
                     </li>
                   </ul>
-                </li>
-              </ul>
-              <p class="note">It is recommended the developer use different styling for   the selection when the list is not focused (hint: non-active selection is often   shown with a lighter background color). </p></td>
+                  </li>
+                  </ul>
+              <p class="note">It is recommended the developer use different styling for   the selection when the list is not focused (hint: non-active selection is often   shown with a lighter background color). </p>
+              </td>
           </tr>
         <tr>
           <td class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </td>
