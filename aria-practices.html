@@ -469,8 +469,7 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
           <tr>
             <td class="widget-description-head" scope="row">Description: </td>
             <td class="widget-description">
-              <p>A <a class="role-reference" href="#button">button</a> is a widget that enables users to trigger an action or event, such as submitting a form, opening a dialog, cancelling an action, or performing a delete operation.</p>
-			  <p>A common convention for informing users that a button launches a dialog is to append &quot;&hellip;&quot; (ellipsis) to the button label, e.g., .&quot;Save as &hellip;&quot;.</p>
+              <p>A <a class="role-reference" href="#button">button</a> is a widget that enables users to trigger an action or event, such as submitting a form, opening a dialog, cancelling an action, or performing a delete operation. A common convention for informing users that a button launches a dialog is to append &quot;&hellip;&quot; (ellipsis) to the button label, e.g., .&quot;Save as &hellip;&quot;.</p>
 			  <p>In addition to the ordinary button widget, WAI-ARIA supports 2 other types of buttons:</p>
               <ul>
                 <li>Toggle button: A two-state button that can be either off (not
@@ -501,10 +500,10 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
           </tr>
           <tr>
             <td class="widget-keyboard-head" scope="row">Keyboard Interaction: </td>
-            <td class="widget-keyboard"><p>With focus on the button, pressing the <kbd>Space</kbd> key or <kbd>Enter</kbd> key activates the button.</p>
+            <td class="widget-keyboard"><p>With focus on the button, pressing the <kbd>Space</kbd> key or <kbd>Enter</kbd> key activates the button. Focus should behave appropriately for the type of action being performed. For example: </p>
               <ul>
                 <li>If activating the button opens a dialog, the focus moves inside
-                  the dialog.</li>
+                  the dialog. (see <a href="#dialog">dialog pattern</a>)</li>
                 <li>If activating the button closes a dialog, typically focus should
                   return to the button that opened the dialog unless the function performed
                   in the dialog context logically leads to a different element. For
@@ -515,6 +514,7 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
                 <li>If activating the button does not dismiss the current context,
                   then focus should typically remain on the button after activation, e.g.,
                   an Apply or Recalculate button.</li>
+				<li>If the button action indicates a context change, such as move to next step in a wizard or add another search criteria, then it may be appropriate to move focus to the starting point for that action.</li> 			  
                 <li>If the button is activated with a shortcut key, the focus should
                   usually remain in the context from which the shortcut key was activated.
                   For example, if <kbd>Alt</kbd>+<kbd>U</kbd> were assigned to an
