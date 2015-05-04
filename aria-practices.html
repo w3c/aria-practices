@@ -1190,14 +1190,14 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
             <td class="widget-description-head">Description: </td>
             <td class="widget-description">
             <p>A <a href="#link" class="role-reference">link</a> widget provides an interactive reference to a resource either locally in the application or to an external resource.</p> 
-            <p class="note">Authors are strongly encouraged to use a native host language link element, such as an HTML <code>&lt;A&gt;</code> tag. As with other WAI-ARIA widget roles, applying the link role to an element will not cause browsers to enhance the element with standard link behaviors such as navigation to the link target or context menu actions. Providing these features of the element is the author's responsibility.</p>
+            <p class="note">Authors are strongly encouraged to use a native host language link element, such as an HTML <code>&lt;A&gt;</code> element with <code>href</code> attribute. As with other WAI-ARIA widget roles, applying the link role to an element will not cause browsers to enhance the element with standard link behaviors such as navigation to the link target or context menu actions. Providing these features of the element is the author's responsibility.</p>
             </td>
           </tr>
           <tr>
             <td class="widget-keyboard-head">Keyboard Interaction: </td>
           	<td>
             <ul>
-              <li><kbd>Enter</kbd> or <kbd>Space</kbd> executes the link and moves focus to the link target.</li>
+              <li><kbd>Enter</kbd> executes the link and moves focus to the link target.</li>
               <li><kbd>Shift+F10</kbd> opens associated context menu.</li>
             </ul>
             </td>
@@ -1207,9 +1207,6 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
           <td class="widget-aria">
           <ul>
           <li>The element containing the link text has role of <a href="#link" class="role-reference">link</a>.</li>
-          <li>The link element is focusable. It is either included in the tab sequence by having tabindex of 0 or greater (see <a href="#kbd_general_between">Keyboard Navigation between Widgets</a>), 
-          or it is contained within a composite widget, such as a toolbar or grid, and is made focusable by having tabindex of -1 (see <a href="#kbd_general_within">Keyboard Navigation within Widgets</a>).
-          </li>
                     </ul>
                     </td>
         </tr>
@@ -1280,9 +1277,9 @@ This is because browser accessibility APIs do not support child elements contain
                   <li><kbd>Shift+Up Arrow</kbd> and <kbd>Shift+Down Arrow</kbd> move and extend the selection. </li>
                   <li><kbd>Control</kbd>+<kbd>Shift</kbd>+<kbd>Home</kbd>: select the option with focus and all options up to the beginning of the list.</li>
                   <li><kbd>Control</kbd>+<kbd>Shift</kbd>+<kbd>End</kbd>: select the option with focus and all options down to the end of the list.</li>
-                  <li><kbd>Control</kbd>+<kbd>&47;</kbd>: select all options</li>
-                  <li><kbd>Control</kbd>+<kbd>&92;</kbd>: unselect all options</li>
-                  <li><kbd>Control</kbd>+<kbd>&47;</kbd>: select all options</li>
+                  <li><kbd>Control</kbd>+<kbd>&#47;</kbd>: select all options</li>
+                  <li><kbd>Control</kbd>+<kbd>&#92;</kbd>: unselect all options</li>
+                  <li><kbd>Control</kbd>+<kbd>&#47;</kbd>: select all options</li>
                   </ul>
                   </li>
                   <li>Selection model 2 (modifier keys required):
@@ -1307,7 +1304,7 @@ This is because browser accessibility APIs do not support child elements contain
             <li>Each entry in the listbox should have a role <a href="#option" class="role-reference">option</a> and should be DOM  children of <a href="#listbox" class="role-reference">listbox</a>.</li>
             <li>If is not a DOM child of listbox, then it should be referenced in the listbox by   <a href="#aria-owns" class="property-reference">aria-owns</a>.</li>
             <li>If all items in the listbox are not DOM children of the listbox, then  set their <a href="#aria-setsize" class="property-reference">aria-setsize</a> and <a href="#aria-posinset" class="property-reference">aria-posinset</a> accordingly; otherwise, this information cannot  be computed for context by the user agent.</li>
-            <li>If the listbox is not part of another widget, then it should have a visible <a href="#aria-label" class="property-reference">aria-label</a> referenced on the listbox by <br />
+            <li>If the listbox is not part of another widget, then it should have a visible label referenced on the listbox by 
 <a href="#aria-labelledby" class="property-reference">aria-labelledby</a>.</li>
             <li>Each selected list item should have <a href="#aria-selected" class="property-reference">aria-selected</a>=&quot;true&quot;.</li>
             
