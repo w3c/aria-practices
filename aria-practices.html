@@ -156,6 +156,22 @@
 	          "http://www.w3.org/WAI/PF/"
 	        ]
 	      },
+	      "CORE-AAM": {
+	        "title": "Core Accessibility API Mappings 1.1",
+	        "href": "http://www.w3.org/TR/core-aam-1.1/",
+	        "status": "WD",
+	        "publisher": "W3C",
+	        "authors": [
+	          "Joseph Scheuhammer",
+	          "Michael Cooper",
+	          "Andi Snow-Weaver",
+	          "Aaron Leventhal"
+	        ],
+	        "etAl": true,
+	        "deliveredBy": [
+	          "http://www.w3.org/WAI/PF/"
+	        ]
+	      },
         },
 
 	preProcess: [ linkCrossReferences ]      
@@ -1909,7 +1925,7 @@ This is because browser accessibility APIs do not support child elements contain
             </ul>
             <p>Option 3: Menu bar containing menuitemradio elements</p>
             <ul>
-              <li>To build a tabbed style navigator using a <a href="../aria#menubar" class="role-reference">menubar</a>, implement the <a href="#menu">Menu bar design pattern</a> with a group containing one <a href="#menuitemradio" class="role-reference">menuitemradio</a> element in the menubar for each navigation item. Note that this pattern can not be overloaded with non-navigation functions. The menubar and menuitemradio elements should have the following states, properties, and behaviors.</li>
+              <li>To build a tabbed style navigator using a <a href="#menubar" class="role-reference">menubar</a>, implement the <a href="#menu">Menu bar design pattern</a> with a group containing one <a href="#menuitemradio" class="role-reference">menuitemradio</a> element in the menubar for each navigation item. Note that this pattern can not be overloaded with non-navigation functions. The menubar and menuitemradio elements should have the following states, properties, and behaviors.</li>
               <li><a class="property-reference" href="#aria-label">aria-label</a> or <a class="property-reference" href="#aria-labelledby">aria-labelledby</a>: If the navigator has a visual label that briefly and adequately describes the scope of navigation, the element with role <a href="#menubar" class="role-reference">menubar</a> should have aria-labelledby set with a value that refers to the element containing that label. Otherwise, aria-label should be used to provide an appropriate label. See <a href="#Site_Navigator_General">Site Navigator</a> for more details on appropriate labelling of a navigation widget. If multiple navigators are used to support a hierarchy, then a navigator containing elements that are controlled by a parent navigator should have aria-labelledby set to a value that refers to the currently active navigation item in the parent navigator.</li>
               <li><a class="property-reference" href="#aria-controls">aria-controls</a>: The element with role menubar should have aria-controls set with a value that refers to the content region controlled by the navigator. Typically, this is the element with role <a class="role-reference" href="#main">main</a>. If multiple menubars are used to support a hierarchy, then menubars that control another menubar should have aria-controls set with a value that refers to the controlled menubar.</li>
               <li><a class="property-reference" href="#aria-checked">aria-checked</a>: The menuitemradio element for the page or content that is currently displayed should be indicated by setting aria-checked <code>true</code> and all other menuitemradio elements in the menubar should have aria-checked set to <code>false</code>.</li>
@@ -2545,7 +2561,7 @@ Characteristics:
   <ol>
     <li>
       <p><strong>Pick the widget type (role) from the WAI-ARIA taxonomy</strong></p>
-      <p>WAI-ARIA provides a <a href="../aria/roles.html">role taxonomy</a> ([[WAI-ARIA]], Section 3.4) constituting  the most common UI component types. Choose the role type from the provided table. If your desire was to create a toolbar set the role to toolbar:</p>
+      <p>WAI-ARIA provides a <a href="#roles" class="specref">role taxonomy</a> ([[WAI-ARIA]], Section 3.4) constituting  the most common UI component types. Choose the role type from the provided table. If your desire was to create a toolbar set the role to toolbar:</p>
       <pre class="example highlight">&lt;div role="toolbar"&gt;</pre>
     </li>
     <li><strong>From the role, get the list of supported states and properties</strong>
@@ -3330,7 +3346,7 @@ Using native markup:
           A new feature of WAI-ARIA is the ability to associate descriptive text with a section, drawing, form element, picture, and so on using the <a href="#aria-describedby" class="property-reference">aria-describedby</a> property.  The use case for <a href="#aria-describedby" class="property-reference">aria-describedby</a> is to reference the local <code>id</code> of the long description.  The most common use case for <code>longdesc</code> is for the author to create a separate file to describe a picture.  It is prefereable to have the descriptive text in prose as well so that it is readily available to all users.  This is useful for authors who do not want to create a separate document that contains the description, and for cognitively impaired users who can be confused by context changes when having to go to another page for the description. Yet, like <code>longdesc</code>, descriptive text is treated separately from the short name provided by the <code>title</code> or <code>alt</code> attributes in HTML.
           </p>
           <p>
-          The <a href="#aria-describedby" class="property-reference">aria-describedby</a> property allows for the text of <a class="termref" href="../aria/terms#def_hidden">hidden</a> elements to be used for accessible descriptions.  Some screen reader vendors have used non-standard attributes to provide hidden help text for <code>form</code> elements.  In order to standardize this feature, hidden text is exposed in the description property of <a class="termref" href="../aria/terms#def_accessibility_api">Accessibility API</a> objects when referenced by <a href="#aria-describedby" class="property-reference">aria-describedby</a>.
+          The <a href="#aria-describedby" class="property-reference">aria-describedby</a> property allows for the text of <a class="specref termref" href="#def_hidden">hidden</a> elements to be used for accessible descriptions.  Some screen reader vendors have used non-standard attributes to provide hidden help text for <code>form</code> elements.  In order to standardize this feature, hidden text is exposed in the description property of <a class="specref termref" href="#def_accessibility_api">Accessibility API</a> objects when referenced by <a href="#aria-describedby" class="property-reference">aria-describedby</a>.
           </p>
           <pre class="example highlight">&lt;img src="foo" alt="abbreviated name" aria-describedby="prose1"&gt;
 
@@ -3344,7 +3360,7 @@ Using native markup:
   &lt;a href="descriptionLocation.html" id="link1"&gt;Description of Figure 1-1: Entity Relationship Diagram showing EMP and DEPT&lt;/a&gt;
 &lt;/div&gt;</pre>
         </section>
-        <p>It is not good practice to use the above pattern when the describing element&#8212;the <code>&lt;a&gt;</code> tag with <code>@id='link1'</code>&#8212;is <a class="termref" href="../aria/terms#def_hidden">hidden</a>, since there is no way for a user to navigate to and activate the link.  Use the technique only when the description is not hidden. </p>
+        <p>It is not good practice to use the above pattern when the describing element&#8212;the <code>&lt;a&gt;</code> tag with <code>@id='link1'</code>&#8212;is <a class="specref termref" href="#def_hidden">hidden</a>, since there is no way for a user to navigate to and activate the link.  Use the technique only when the description is not hidden. </p>
       </section>
         <section id="misc_xhtml2_roles">
         <h4> Miscellaneous XHTML Section Roles</h4>
@@ -3556,7 +3572,7 @@ return you back to the main page&lt;/div&gt;</pre>
 &lt;/p&gt;</pre>
     </section>
     </section>
-    <p>It is not good practice to use the above pattern when the describing element&#8212;the <code>&lt;a&gt;</code> tag with <code>@id='longdesc1'</code>&#8212;is <a class="termref" href="../aria/terms#def_hidden">hidden</a>, since there is no way for a user to navigate to and activate the link.  Use the technique only when the description is not hidden. </p>
+    <p>It is not good practice to use the above pattern when the describing element&#8212;the <code>&lt;a&gt;</code> tag with <code>@id='longdesc1'</code>&#8212;is <a class="specref termref" href="#def_hidden">hidden</a>, since there is no way for a user to navigate to and activate the link.  Use the technique only when the description is not hidden. </p>
   </section>
     <section id="relations_owning">
     <h3> Owning and Controlling</h3>
@@ -3755,7 +3771,7 @@ consistent with their visual rendering. Rather than setting  size only on a cont
   </section>
     <section id="LiveRegions">
     <h3> Implementing Live Regions </h3>
-    <p><a href="../aria/states_and_properties#attrs_liveregions">Live regions</a> are parts of a Web page that the author expects to change.  Examples of live regions include dynamically updated  content (sports stats, stock information), logs where new information  is being added (chat transcript logs), notification areas (status,  alerts), etc. </p>
+    <p><a href="#attrs_liveregions" class="specref">Live regions</a> are parts of a Web page that the author expects to change.  Examples of live regions include dynamically updated  content (sports stats, stock information), logs where new information  is being added (chat transcript logs), notification areas (status,  alerts), etc. </p>
     <p>Live  regions enable assistive technologies, such as screen readers, to be  informed of updates without losing the users' place in the content.  Live region settings provide hints to assistive technologies about how  to process updates. Note that the assistive technology is responsible  for handling these updates and enabling users to override these hints. </p>
     <p>The section on <a href="#liveprops">Live Region Properties</a> and how to use them gives the details of how to apply live region properties. This  process will help rich internet application (RIA) developers to set  live region settings that will provide a good user experience for  most assistive technology users with little configuration on their  part. When applying these live region properties, it is recommended that you conduct user testing. If the <abbr title="assistive technology">AT</abbr> supports scripting of the response to live regions you may wish to customize the response, such as through a screen reader script for your Web page.</p>
     <ol>
@@ -3853,7 +3869,7 @@ consistent with their visual rendering. Rather than setting  size only on a cont
      contenteditable="true" 
      aria-labelledby="gettext"&gt;
 &lt;/div</pre>
-        <p><a href="../aria/states_and_properties#attrs_liveregions">live region</a> - If you have some other live area use case, WAI-ARIA allows you to mark an area using the <a class="property-reference" href="#aria-live">aria-live</a> attribute. This accompanied by the collection of attributes which support the live property allow you to create your own custom live area on your Web page. For more details regarding live regions refer to the <a href="#LiveRegions">live region</a> section of this guide.</p>
+        <p><a href="#attrs_liveregions" class="specref">live region</a> - If you have some other live area use case, WAI-ARIA allows you to mark an area using the <a class="property-reference" href="#aria-live">aria-live</a> attribute. This accompanied by the collection of attributes which support the live property allow you to create your own custom live area on your Web page. For more details regarding live regions refer to the <a href="#LiveRegions">live region</a> section of this guide.</p>
     </blockquote>
     <p>Live region roles that are applied to elements having strong native semantics are not mapped consistently to the platform accessibility API.  An example is the <code>TABLE</code> element.  It is recommended that authors apply live regions to <code>DIV</code> and <code>SPAN</code> containers.  For example: </p>
                     <pre class="example highlight">&lt;!-- Live region 'log' role used with TABLE element:  the 'log' role is not consistently mapped to platform AAPI. --&gt;
@@ -3878,7 +3894,7 @@ consistent with their visual rendering. Rather than setting  size only on a cont
   <p>This section describes the presentation role, including the conditions under which it is inherited by an element's children.</p>
     <section id="presentation_intro">
     <h3>Rationale</h3>
-    <p>Authors devote a good deal of effort to the appearance of their web pages, and this is especially true in the case of scripted web applications.  To this end authors employ various elements purely for visual presentation.  For example, <code>&lt;img&gt;</code> elements are used for spacing and decoration; and <code>&lt;table&gt;</code>s are used to create a column based layout.  Elements used strictly for presentation are semantically neutral and irrelevant in terms of accessibility.  It is necessary to mark such elements as presentational so that they do not appear in the <a href="../aria-implementation/#intro_treetypes">accessible tree</a> created by the user agent.  For example, a current technique used with spacer images is to provide blank <code>alt</code> text to indicate that the image is not meaningful.  User agents will not publish any information about images with blank <code>alt</code> text to the platform accessibility API.</p>
+    	<p>Authors devote a good deal of effort to the appearance of their web pages, and this is especially true in the case of scripted web applications.  To this end authors employ various elements purely for visual presentation.  For example, <code>&lt;img&gt;</code> elements are used for spacing and decoration; and <code>&lt;table&gt;</code>s are used to create a column based layout.  Elements used strictly for presentation are semantically neutral and irrelevant in terms of accessibility.  It is necessary to mark such elements as presentational so that they do not appear in the <a href="#intro_treetypes" class="core-mapping">accessible tree</a> created by the user agent.  For example, a current technique used with spacer images is to provide blank <code>alt</code> text to indicate that the image is not meaningful.  User agents will not publish any information about images with blank <code>alt</code> text to the platform accessibility API.</p>
     <p>There are elements other than <code>&lt;img&gt;</code> and <code>&lt;table&gt;</code> that are used solely for visual presentation.  Any element is a potential candidate for presentation, and, if so used, these elements also need to be marked as semantically neutral.</p>
     <p class="note">It is important to separate content and presentation. CSS 3 has introduced new table layout functionality to allow a user agent to layout content using CSS. There are many advantages to using this feature of CSS such as browser style sheet caching and improved adaptability to mobile devices with limited screen real estate. There are, however, cases where presentational markup cannot be avoided. In such instances, authors are counseled to consult <a href="http://www.w3.org/TR/WCAG20/" title="Web Content Accessibility Guidelines (WCAG) 2.0">WCAG 2.0</a> for more detailed guidance.</p>
     <p>WAI-ARIA introduces the <a class="role-reference" href="#presentation">presentation</a> role as a general device for marking elements as presentational.  The <a class="role-reference" href="#presentation">presentation</a> role overrides the element's native implicit role, and informs the user agent to not publish the element to the accessiblity API.  In fact, the preferred way to mark <code>&lt;img&gt;</code> elements as decorative is to use a <code>role="presentation"</code> attribute instead of (or in addition to) an empty <code>alt</code> attribute.  Here is a code fragment sample:</p>
@@ -4006,7 +4022,7 @@ consistent with their visual rendering. Rather than setting  size only on a cont
   </section>
     <section id="presentation_overrides">
     <h3>Overriding Presentation</h3>
-    <p>The presentation role is overridden in some circumstances.  Recall that the presentation role informs user agents that certain elements are semantically neutral, and are irrelevant for accessibility.  If, however, there is an aspect of an element that makes it meaningful, it is no longer neutral, and cannot simultaneously be presentational.  The <a href="http://www.w3.org/WAI/PF/aria-implementation/Overview.html#include_elements" title="">User Agent Implementation Guide describes the cases</a> where this occurs:</p>
+    <p>The presentation role is overridden in some circumstances.  Recall that the presentation role informs user agents that certain elements are semantically neutral, and are irrelevant for accessibility.  If, however, there is an aspect of an element that makes it meaningful, it is no longer neutral, and cannot simultaneously be presentational.  The <a href="#include_elements" class="core-mapping">Core Accessibility API Mappings describes the cases</a> where this occurs:</p>
     <ul>
     <li>element is focusable.</li>
     <li>element has a global WAI-ARIA attribute, other than <a href="#aria-hidden" class="property-reference">aria-hidden</a>.</li>
@@ -4172,7 +4188,7 @@ user may not be aware if the desired drop operation is supported or what
 source objects can be selected for dragging. The end result can be a 
 very unproductive and frustrating experience.
  </p>
-  <p>WAI-ARIA introduces two new <a href="../aria/states_and_properties#attrs_dragdrop">Drag and Drop properties</a> that aide Web application authors with the drag and drop process, called <em>aria-grabbed</em> and <em>aria-dropeffect.</em> The property <a class="state-reference" href="#aria-grabbed">aria-grabbed</a> is applied to the source(s) being dragged, while <a class="state-reference" href="#dropeffect">aria-dropeffect</a> is applied to the target(s). Use of these  properties--combined with best practices for enabling the user to select the appropriate drag operations and for assigning appropriate keyboard operations for dragging and dropping--will vastly improve the accessibility of drag and drop functionality. The following steps will guide you through the process. </p>
+  <p>WAI-ARIA introduces two new <a href="#attrs_dragdrop" class="specref">Drag and Drop properties</a> that aide Web application authors with the drag and drop process, called <em>aria-grabbed</em> and <em>aria-dropeffect.</em> The property <a class="state-reference" href="#aria-grabbed">aria-grabbed</a> is applied to the source(s) being dragged, while <a class="state-reference" href="#dropeffect">aria-dropeffect</a> is applied to the target(s). Use of these  properties--combined with best practices for enabling the user to select the appropriate drag operations and for assigning appropriate keyboard operations for dragging and dropping--will vastly improve the accessibility of drag and drop functionality. The following steps will guide you through the process. </p>
   <ol>
     <li>
       <p><strong>Identify draggable objects</strong></p>
@@ -4290,7 +4306,7 @@ navigation  recommended  here, it should be documented on the page.</p>
   <section id="aria-write">
   <h2>States and Properties, and Assistive Technologies</h2>
   <p class="note">This section has not been updated since it was integrated from APG version 1.0 -- an APG taskforce review is pending.</p>
-  <p>Assistive Technologies (AT) access WAI-ARIA state and properties via a platform accessibility API.  An example of such an API is Linux's AT-SPI.  The user agent is responsible for publishing WAI-ARIA roles, states, and properties and relevant changes via the accessibility API.  For more information, see the <a href="#ref_ARIA-IMPLEMENTATION">User Agent Implementation Guide</a>.</p>
+  <p>Assistive Technologies (AT) access WAI-ARIA state and properties via a platform accessibility API.  An example of such an API is Linux's AT-SPI.  The user agent is responsible for publishing WAI-ARIA roles, states, and properties and relevant changes via the accessibility API.  For more information, see the <a href="#" class="core-mapping">Core Accessibility API Mappings</a> [[CORE-AAM]].</p>
   <p>With respect to desktop applications, the interaction between the platform accessibility API and an AT is bidirectional.  The application sends information to the AT using the accessibility API, and the AT can request a change in the accessible state of an application through the same accessibility API.  However, with respect to ARIA 1.0, the flow of information is one way only from WAI-ARIA to the accessibility API.  There is no provision, currently, to go the other way.  An AT cannot use an accessibility API to alter any WAI-ARIA information in the DOM.</p>
   <p>The reason is that there is no consistent cross-browser implementation of a mutation event that web applications can rely on to detect when a WAI-ARIA state or property has changed.  Web applications use WAI-ARIA information for rendering their components.  For example, if the web application includes a DHTML checkbox as part of its interface, then the web app renders the visual appearance of the checkbox based on its aria-checked state.  If an outside agent were to change the state of that checkbox without the web app receiving any notification, then the checked state of the checkbox is no longer in agreement with its visual appearance.  It is likely that the behaviour of the web app will suffer.</p>
   <p>W3C is investigating device-independent interfaces to allow web applications to receive notification of changes to WAI-ARIA states and properties.  When this is available, WAI-ARIA will be bidirectional with respect to the platform accessibility API, allowing Assistive Technologies to alter WAI-ARIA states and properties.  Even so, the set of states and properties that an Assistive Technology is likely to change is limited to the following:</p>
@@ -5009,21 +5025,21 @@ navigation  recommended  here, it should be documented on the page.</p>
   <section class="appendix"  id="buildingaccessibleapplications">
 	<h3>Building Accessible Applications with <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr></h3>
 	<p class="note">This section has not been updated since it was integrated from the ARIA 1.0 Primer -- an APG taskforce review is pending.</p>
-	<p>This section provides a brief introduction to the process of making applications accessible using <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr>. The choice and usage of <a href="#def_role" class="termref">roles</a> can be complex and context dependent. It is beyond the scope of this document to explain implementations for all the possible <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> use cases. WAI-ARIA Authoring Practices provides detailed guidance on <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> implementation methodology as well as references to sample code.</p>
+	<p>This section provides a brief introduction to the process of making applications accessible using <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr>. The choice and usage of <a href="#def_role" class="specref termref">roles</a> can be complex and context dependent. It is beyond the scope of this document to explain implementations for all the possible <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> use cases. WAI-ARIA Authoring Practices provides detailed guidance on <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> implementation methodology as well as references to sample code.</p>
 	<p>First steps to making an application accessible:</p>
 	<ol>
-		<li>Each <a href="#def_element" class="termref">element</a> or <a href="#def_widget" class="termref">widget</a> has correct and complete <a href="#def_semantics" class="termref">semantics</a> that fully describe its behavior (using element names or roles);</li>
-		<li>The <a href="#def_relationship" class="termref">relationships</a> between elements and groups are defined;</li>
-		<li><a href="#def_state" class="termref">States</a>, <a href="#def_property" class="termref">properties</a>, and container relationships are valid for each element's behavior and are accessible via the [[dom]] and the platform <a href="#def_accessibility_api" class="termref">accessibility <abbr title="Application Programming Interfaces">API</abbr></a>; and</li>
+		<li>Each <a href="#def_element" class="specref termref">element</a> or <a href="#def_widget" class="specref termref">widget</a> has correct and complete <a href="#def_semantics" class="specref termref">semantics</a> that fully describe its behavior (using element names or roles);</li>
+		<li>The <a href="#def_relationship" class="specref termref">relationships</a> between elements and groups are defined;</li>
+		<li><a href="#def_state" class="specref termref">States</a>, <a href="#def_property" class="specref termref">properties</a>, and container relationships are valid for each element's behavior and are accessible via the [[dom]] and the platform <a href="#def_accessibility_api" class="specref termref">accessibility <abbr title="Application Programming Interfaces">API</abbr></a>; and</li>
 		<li>Keyboard focus should be maintained for the duration of the user's interaction with the application.</li>
-		<li>All interactive components should be <a href="#def_keyboard_accessible" class="termref">keyboard operable</a>.</li>
+		<li>All interactive components should be <a href="#def_keyboard_accessible" class="specref termref">keyboard operable</a>.</li>
 	</ol>
-	<p><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> provides authors with the means to make the different elements in a web application semantically rich. <a href="#def_useragent" class="termref">User agents</a> use the role semantics to understand how to handle each element. Roles convey additional information that the <a href="#def_at" class="termref">assistive technologies</a> need to anticipate the behavior of the elements inside the application such as how to present the corresponding <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> states and properties to the user. The user agent will use the accessibility semantics from the host language and WAI-ARIA accessibility semantics (which may augment or override those of the host language) and present them to assistive technologies through the Document Object Model or the platform accessibility <abbr title="Application Programming Interfaces">API</abbr>. The user agent will create an accessible representation of each element in the web page, and will use the appropriate accessibility <abbr title="Application Programming Interfaces">API</abbr> to notify assistive technologies of changes to the semantics of those elements.</p>
+	<p><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> provides authors with the means to make the different elements in a web application semantically rich. <a href="#def_useragent" class="specref termref">User agents</a> use the role semantics to understand how to handle each element. Roles convey additional information that the <a href="#def_at" class="specref termref">assistive technologies</a> need to anticipate the behavior of the elements inside the application such as how to present the corresponding <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> states and properties to the user. The user agent will use the accessibility semantics from the host language and WAI-ARIA accessibility semantics (which may augment or override those of the host language) and present them to assistive technologies through the Document Object Model or the platform accessibility <abbr title="Application Programming Interfaces">API</abbr>. The user agent will create an accessible representation of each element in the web page, and will use the appropriate accessibility <abbr title="Application Programming Interfaces">API</abbr> to notify assistive technologies of changes to the semantics of those elements.</p>
 	<p>The following steps are recommended when <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> is applied to content:</p>
 	<ol>
 		<li>
 			<p><strong>Use native markup when possible.</strong></p>
-			<p>Use the semantic elements that are defined in the host markup language. For example, with <abbr title="Hypertext Markup Language">HTML</abbr> or <abbr title="Extensible Hypertext Markup Language">XHTML</abbr>, it is better to use the native checkbox than to use a div element with role <code class="role-reference">checkbox</code> as these should already be accessible through your browser. There may also be cases where <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> can augment an existing element in the host language. For example, a <code class="role-reference">grid</code> and <code class="role-reference">gridcell</code> elements can reuse the functionality of a table when overlaying it. <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> roles, states, and properties are best used when the markup language does not support all the semantics required. When a role <a href="#def_attribute" class="termref">attribute</a> is added to an element, the semantics and behavior of the element are augmented or overridden by the role behavior.</p>
+			<p>Use the semantic elements that are defined in the host markup language. For example, with <abbr title="Hypertext Markup Language">HTML</abbr> or <abbr title="Extensible Hypertext Markup Language">XHTML</abbr>, it is better to use the native checkbox than to use a div element with role <code class="role-reference">checkbox</code> as these should already be accessible through your browser. There may also be cases where <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> can augment an existing element in the host language. For example, a <code class="role-reference">grid</code> and <code class="role-reference">gridcell</code> elements can reuse the functionality of a table when overlaying it. <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> roles, states, and properties are best used when the markup language does not support all the semantics required. When a role <a href="#def_attribute" class="specref termref">attribute</a> is added to an element, the semantics and behavior of the element are augmented or overridden by the role behavior.</p>
 		</li>
 		<li>
 			<p><strong>Apply the appropriate roles.</strong></p>
@@ -5040,12 +5056,12 @@ navigation  recommended  here, it should be documented on the page.</p>
 		</li>
 		<li>
 			<p><strong>Build relationships.</strong></p>
-			<p>Look for <a href="#def_relationship" class="termref">relationships</a> between elements, and mark them using the most appropriate <a href="#def_property" class="termref">property</a> or attribute. For example, if a page contains both a search form and search results region, mark each container as a <code class="role-reference">region</code> and set the <a class="property-reference" href="#aria-controls">aria-controls</a> attribute of the search form to reference the search results. See <a href="#attrs_relationships">relationships in <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr></a>.</p>
+			<p>Look for <a href="#def_relationship" class="specref termref">relationships</a> between elements, and mark them using the most appropriate <a href="#def_property" class="specref termref">property</a> or attribute. For example, if a page contains both a search form and search results region, mark each container as a <code class="role-reference">region</code> and set the <a class="property-reference" href="#aria-controls">aria-controls</a> attribute of the search form to reference the search results. See <a href="#attrs_relationships">relationships in <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr></a>.</p>
 			<p>Some relationships are determined automatically from the host language, like <code>label</code> elements associated with <code>input</code> elements in <abbr title="Hypertext Markup Language">HTML</abbr>.</p>
 		</li>
 		<li>
 			<p><strong>Set states and properties in response to events.</strong></p>
-			<p>Once the role for an element has been set, change states and properties as appropriate during the element's life cycle, usually in response to user input <a href="#def_event" class="termref">events</a>. Only use attributes supported for the chosen role or element.</p>
+			<p>Once the role for an element has been set, change states and properties as appropriate during the element's life cycle, usually in response to user input <a href="#def_event" class="specref termref">events</a>. Only use attributes supported for the chosen role or element.</p>
 			<p>User agents should notify assistive technologies of state changes. Conversely, assistive technologies' notification of property changes depends on the method by which assistive technologies communicate with the user agent. For example, the <a class="property-reference" href="#aria-multiline">aria-multiline</a> attribute (a property) is not something that changes frequently, whereas the <a class="state-reference" href="#aria-checked">aria-checked</a> attribute (a state) changes frequently in response to user input.</p>
 		</li>
 		<li>
@@ -5054,7 +5070,7 @@ navigation  recommended  here, it should be documented on the page.</p>
 		</li>
 		<li>
 			<p><strong>Synchronize the visual interface with the accessible interface.</strong></p>
-			<p>This will allow the state of your <abbr title="User Interface">UI</abbr> to be <a href="#def_perceivable" class="termref">perceivable</a> to the user as well as assistive technologies. For example, the author should use the appropriate WAI-ARIA attribute on a form element that is visually styled to appear required (<code class="property-reference">aria-required</code>) or a gridcell that is visually styled to appear selected (<code class="state-reference">aria-selected</code>). Authors may choose to achieve visual synchronization of these interface elements by using a script or by using <a href="http://www.w3.org/TR/1998/REC-CSS2-19980512/selector.html#attribute-selectors"><abbr title="Cascading Style Sheets">CSS</abbr> attribute selectors.</a></p>
+			<p>This will allow the state of your <abbr title="User Interface">UI</abbr> to be <a href="#def_perceivable" class="specref termref">perceivable</a> to the user as well as assistive technologies. For example, the author should use the appropriate WAI-ARIA attribute on a form element that is visually styled to appear required (<code class="property-reference">aria-required</code>) or a gridcell that is visually styled to appear selected (<code class="state-reference">aria-selected</code>). Authors may choose to achieve visual synchronization of these interface elements by using a script or by using <a href="http://www.w3.org/TR/1998/REC-CSS2-19980512/selector.html#attribute-selectors"><abbr title="Cascading Style Sheets">CSS</abbr> attribute selectors.</a></p>
 		</li>
 	</ol>
     <section id="exampletree">
@@ -5063,20 +5079,20 @@ navigation  recommended  here, it should be documented on the page.</p>
 		<p>A basic tree view allows the user to select different list items and expand and collapse embedded lists. Arrow keys are used to navigate through a tree, including left/right to collapse/expand sub trees. Clicking the visible expander button with the mouse also toggles expansion. Further keyboard implementation details for tree widgets may found in the <a href="#aria_ex"></a>.</p>
 		<p>To make this feature accessible we need to:</p>
 		<ul>
-			<li>Inform <a href="#def_at" class="termref">assistive technologies</a> about the <a href="#def_role" class="termref">role</a> of each <a href="#def_element" class="termref">element</a>;</li>
-			<li>Inform assistive technologies about the <a href="#def_relationship" class="termref">relationships</a> between tree items;</li>
+			<li>Inform <a href="#def_at" class="specref termref">assistive technologies</a> about the <a href="#def_role" class="specref termref">role</a> of each <a href="#def_element" class="specref termref">element</a>;</li>
+			<li>Inform assistive technologies about the <a href="#def_relationship" class="specref termref">relationships</a> between tree items;</li>
 			<li>Give a clear keyboard focus that will not confuse users with disabilities; and</li>
-			<li>Expose the changing <a href="#def_state" class="termref">states</a> (expanded and collapsed) of the tree items.</li>
+			<li>Expose the changing <a href="#def_state" class="specref termref">states</a> (expanded and collapsed) of the tree items.</li>
 		</ul>
 		<p>Following the steps below:</p>
 		<ol>
 			<li>
 				<p><strong>Look at the native markup language</strong></p>
-				<p>Although standard list behavior is supported by the native <code>ul</code> and <code>li</code> elements in <abbr title="Hypertext Markup Language">HTML</abbr>, there is no element that natively supports list expansion and selection. Since there is not, we will need to use <a href="#def_role" class="termref">roles</a>.</p>
+				<p>Although standard list behavior is supported by the native <code>ul</code> and <code>li</code> elements in <abbr title="Hypertext Markup Language">HTML</abbr>, there is no element that natively supports list expansion and selection. Since there is not, we will need to use <a href="#def_role" class="specref termref">roles</a>.</p>
 			</li>
 			<li>
 				<p><strong>Finding the right roles</strong></p>
-				<p>Since there is no native tree element in <abbr title="Hypertext Markup Language">HTML</abbr>, we need to add roles from the <a href="#def_taxonomy" class="termref">taxonomy</a> that support the additional states and properties needed. The roles that support tree behavior are:</p>
+				<p>Since there is no native tree element in <abbr title="Hypertext Markup Language">HTML</abbr>, we need to add roles from the <a href="#def_taxonomy" class="specref termref">taxonomy</a> that support the additional states and properties needed. The roles that support tree behavior are:</p>
 				<ul>
 					<li><code class="role-reference">tree</code>: A tree is the main container element for our tree. It is a form of a <code class="role-reference">select</code> where sub-level groups of treeitems may be collapsed and expanded.</li>
 					<li><code class="role-reference">treeitem</code>: A treeitem is an option item of a tree. This is an element within a tree; sub-level groups of treeitems may be expanded or collapsed.</li>
@@ -5145,7 +5161,7 @@ navigation  recommended  here, it should be documented on the page.</p>
     &lt;/ul&gt;
   &lt;/li&gt;
 &lt;/ul&gt;</pre>
-				<p>The use of <code>aria-expanded</code> should mirror that which is visibly expanded on screen, so authors may wish to use <abbr title="Cascading Style Sheets">CSS</abbr> attribute selectors to toggle visibility or style of an item based on the <a href="#def_value" class="termref">value</a> of an <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> <a href="#def_state" class="termref">state</a> or <a href="#def_property" class="termref">property</a>. The following example would hide the sub-level groups of a collapsed tree node.</p>
+				<p>The use of <code>aria-expanded</code> should mirror that which is visibly expanded on screen, so authors may wish to use <abbr title="Cascading Style Sheets">CSS</abbr> attribute selectors to toggle visibility or style of an item based on the <a href="#def_value" class="specref termref">value</a> of an <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> <a href="#def_state" class="specref termref">state</a> or <a href="#def_property" class="specref termref">property</a>. The following example would hide the sub-level groups of a collapsed tree node.</p>
 				<pre class="example highlight">[aria-expanded=&quot;false&quot;] [role=&quot;group&quot;] { display: none; }</pre>
 				<p class="note">
 					<!-- keep this note synced with other CSS examples using attribute selectors -->
@@ -5175,7 +5191,7 @@ navigation  recommended  here, it should be documented on the page.</p>
 			</li>
 			<li>
 			  <p id="exampletree_states"><strong>Use states and properties in response to events</strong></p>
-				<p>Control the behavior of the element in response to user input <a href="#def_event" class="termref">events</a> such as from the keyboard and the mouse, which includes maintaining the current states and properties for that element. For example, a tree control will need to respond to click events on the expand/collapse triggers, and key events on the currently active descendant. Use device-independent events with supporting JavaScript to handle user interaction. For detailed examples of this please refer to the <a href="../aria-practices/#aria_ex">Design Patterns section of the <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Authoring Practices</a> [<a href="#ref_ARIA-PRACTICES">ARIA-PRACTICES</a>].</p>
+				<p>Control the behavior of the element in response to user input <a href="#def_event" class="specref termref">events</a> such as from the keyboard and the mouse, which includes maintaining the current states and properties for that element. For example, a tree control will need to respond to click events on the expand/collapse triggers, and key events on the currently active descendant. Use device-independent events with supporting JavaScript to handle user interaction. For detailed examples of this please refer to the <a href="#aria_ex">Design Patterns section of the <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Authoring Practices</a> [<a href="#ref_ARIA-PRACTICES">ARIA-PRACTICES</a>].</p>
 			</li>
 		</ol>
 	</section>
