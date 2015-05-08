@@ -125,7 +125,41 @@
           // Team Contact.
           wgPatentURI:  "http://www.w3.org/2004/01/pp-impl/32212/status",
           maxTocLevel: 4,
-          preProcess: [ linkCrossReferences ]      };
+
+          localBiblio: {
+	      "WAI-ARIA": {
+	        "title": "Accessible Rich Internet Applications (WAI-ARIA) 1.1",
+	        "href": "http://www.w3.org/TR/wai-aria-1.1/",
+	        "status": "WD",
+	        "publisher": "W3C",
+	        "authors": [
+	          "James Craig",
+	          "Michael Cooper",
+	          "Shane McCarron"
+	        ],
+	        "etAl": true,
+	        "deliveredBy": [
+	          "http://www.w3.org/WAI/PF/"
+	        ]
+	      },
+	      "WAI-ARIA-10": {
+	        "authors": [
+	          "James Craig",
+	          "Michael Cooper"
+	        ],
+	        "etAl": true,
+	        "href": "http://www.w3.org/TR/wai-aria/",
+	        "title": "Accessible Rich Internet Applications (WAI-ARIA) 1.0",
+	        "status": "REC",
+	        "publisher": "W3C",
+	        "deliveredBy": [
+	          "http://www.w3.org/WAI/PF/"
+	        ]
+	      },
+        },
+
+	preProcess: [ linkCrossReferences ]      
+	};
 </script>
     <link href="../common/css/common.css" rel="stylesheet" type="text/css"/>
 	<link href="aria-apg.css" rel="stylesheet" type="text/css"/>
