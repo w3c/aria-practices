@@ -1,0 +1,49 @@
+
+
+
+.design-pattern {
+	margin-left: 2em;
+	margin-bottom: 4ex;
+}
+.design-pattern-name {
+	margin-left: -2em;
+	font-size: 100%;
+	font-weight: bold;
+	font-style: normal;
+	font-variant: normal;
+}
+.widget-description-head, .widget-keyboard-head, .widget-mouse-head, .widget-styling-head, .widget-aria-head, .widget-example-head {
+	width: 20em;
+}
+table.widget-features, table.widget-features tbody tr td, table.widget-features tbody tr th {
+	border: 1px solid #000000;
+}
+
+th, td{
+	border:solid 2px #999;
+	border-width:0 1px 1px 0;
+	padding:0.15em 0.3em 0.1em;
+	min-width:20em;
+	vertical-align:top;
+	text-align:left;
+}
+th+th, td+td{
+	width:auto;
+}
+
+
+
+/* Permalinks */
+.permalink {
+	float: right;
+	margin-top: -2.5em;
+	/*color:#333 !important;*/
+}
+.permalink a, .permalink a:link, .permalink a:visited, .permalink a:hover, .permalink a:focus, .permalink a:active 
+{
+	background:transparent !important;
+	text-decoration:none;
+}
+.permalink abbr {
+	border:0;
+}
