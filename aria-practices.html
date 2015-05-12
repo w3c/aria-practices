@@ -3899,7 +3899,7 @@ consistent with their visual rendering. Rather than setting  size only on a cont
     <p class="note">It is important to separate content and presentation. CSS 3 has introduced new table layout functionality to allow a user agent to layout content using CSS. There are many advantages to using this feature of CSS such as browser style sheet caching and improved adaptability to mobile devices with limited screen real estate. There are, however, cases where presentational markup cannot be avoided. In such instances, authors are counseled to consult <a href="http://www.w3.org/TR/WCAG20/" title="Web Content Accessibility Guidelines (WCAG) 2.0">WCAG 2.0</a> for more detailed guidance.</p>
     <p>WAI-ARIA introduces the <a class="role-reference" href="#presentation">presentation</a> role as a general device for marking elements as presentational.  The <a class="role-reference" href="#presentation">presentation</a> role overrides the element's native implicit role, and informs the user agent to not publish the element to the accessiblity API.  In fact, the preferred way to mark <code>&lt;img&gt;</code> elements as decorative is to use a <code>role="presentation"</code> attribute instead of (or in addition to) an empty <code>alt</code> attribute.  Here is a code fragment sample:</p>
     
-<pre xml:space="preserve">&lt;!-- [role="presentation"] informs the user agent that the spacer images are for layout only. --&gt;
+<pre>&lt;!-- [role="presentation"] informs the user agent that the spacer images are for layout only. --&gt;
 &#8230;
 &lt;h2&gt;Other Histories of Architecture&lt;/h1&gt;
 &lt;p&gt;
@@ -3956,7 +3956,7 @@ consistent with their visual rendering. Rather than setting  size only on a cont
     <h3>Inheritance of Presentation by Parent Element's Children</h3>
       <p>In general, the presentation role is not inherited by an element's children.  The exceptions are elements whose role entails that the element has <a href="#mustContain" class="specref">required owned children</a>.  Examples include the <code>&lt;table&gt;</code> element and <a class="role-reference" href="#list">list</a> role, and these exceptions are discussed further below.  For all other elements, only the element marked presentational is eliminated from the accessible tree.  Note, however, that its contents are published; in particular, the element's textual content is published, but any attributes of the element that may form a text-equivalent are not. For example, a header element with a presentation role would not appear in the accessible tree, but its text does.  An image with a role of presentation is not exposed in the accessible tree, nor is the contents of its <code>alt</code> attribute.  This is shown in the following code fragment:</p>
       
-<pre class="example highlight" xml:space="preserve">&lt;!-- 1. [role="presentation"] negates the implicit 'heading' role semantics but does not affect the contents. --&gt;
+<pre class="example highlight">&lt;!-- 1. [role="presentation"] negates the implicit 'heading' role semantics but does not affect the contents. --&gt;
   
 &lt;h1 role="presentation"&gt;Presentation role overrides Header role&lt;/h1&gt;
 &lt;h1&gt;Another header&lt;/h1&gt;
@@ -3984,7 +3984,7 @@ consistent with their visual rendering. Rather than setting  size only on a cont
       <p>Be aware that the markup <code>&lt;img role="presentation" alt="non-empty alt text"&#8230;&gt;</code> is in fact contradictory:  Declaring a role of presentation says that the image is for layout, is decorative and meaningless, whereas the non-empty alt text implies that the image is meaningful.  It is recommended that authors instead use empty <code>alt</code> text (<code>alt=""</code>) where they use <code>role="presentation"</code>.</p>
       <p>Earlier it was noted that the <a class="role-reference" href="#presentation">presentation</a> role is not generally inherited by an element's children.  The exception are roles that have <a href="#mustContain" class="specref">required owned elements</a>.  Examples include the <code>&lt;table&gt;</code> element, and the <a class="role-reference" href="#list">list</a> and <a class="role-reference" href="#tree">tree</a> roles.  A <a class="role-reference" href="#list">list</a> is required to have  <a class="role-reference" href="#listitem">listitem</a> children; a <a class="role-reference" href="#tree">tree</a>, <a class="role-reference" href="#treeitem">treeitem</a> children.  The <code>&lt;table&gt;</code> element's child components are <code>&lt;tbody&gt;</code>, <code>&lt;thead&gt;</code>, <code>&lt;tfoot&gt;</code>, <code>&lt;th&gt;</code>, <code>&lt;tr&gt;</code>, <code>&lt;td&gt;</code>, and <code>&lt;caption&gt;</code>.  These component elements would not appear in the markup without the enclosing <code>&lt;table&gt;</code> root element.  Thus, when a table is used for layout, it follows that all of its component elements are present in the markup for layout as well.  Since annotating all the required child elements with <code>role=&quot;presentation&quot;</code> is error prone and difficult to maintain, it is sufficient to mark the table root element as presentational.  The presentation role propagates to all the table component elements.  However, as before, the contents of the table elements do appear in the accessible tree.  Here is an example:</p>
         
-<pre class="example highlight" xml:space="preserve">&lt;!-- Layout table marked with [role="presentation"]. --&gt;
+<pre class="example highlight">&lt;!-- Layout table marked with [role="presentation"]. --&gt;
 
 &lt;table role="presentation"&gt;
   &lt;tbody&gt;
@@ -4497,7 +4497,7 @@ navigation  recommended  here, it should be documented on the page.</p>
         address the problem. In the right column, table cells that are empty
         or that indicate a limitation represent accessibility gaps in HTML
         and XHTML.</p>
-      <table border="1" id="t1">
+      <table id="t1">
         <caption>
           Table 1.0 Platform Gap Analysis
           for Accessible Dynamic Web Content for HTML and XHTML
@@ -4746,7 +4746,7 @@ navigation  recommended  here, it should be documented on the page.</p>
 				give an element focus without placing it in the tab order: The
 				following table describes these changes that will be incorporated
 				into the new Accessible Adaptive Application specification.</p>
-			<table border="1">
+			<table>
 				<caption>
 				Accessible Adaptive Application Changes to Support Use of <code>tabindex</code> to give Element Focus
 				</caption>
