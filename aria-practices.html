@@ -230,13 +230,13 @@
     <section class="widget" id="accordion">
     <h3 class="widget-name">Accordion</h3>
     <p class="note">This section has not been updated since it was integrated from APG version 1.0 -- an APG taskforce review is pending.</p>
-      <table cellspacing="0" class="widget-features">
+      <table class="widget-features">
         <caption>
         Characteristics:
         </caption>
         <tbody>
           <tr>
-            <td class="widget-description-head" scope="row">Description: </td>
+            <th class="widget-description-head" scope="row">Description: </th>
             <td class="widget-description"><p>An accordion component is a collection of expandable panels associated with a common outer container. Panels consist of a header and an associated content region or panel. The primary use of an Accordion is to present multiple sections of content on a single page without scrolling, where all of the sections are peers in the application or object hierarchy. The general look is similar to a tree where each root tree node is an expandable accordion header. The user navigates and makes the contents of each panel visible (or not) by interacting with the Accordion Header. Terms for understanding accordions include:</p>
 <dl>
 <dt>accordion component:</dt><dd>Collection of panels within a common outer pane.</dd>
@@ -248,7 +248,7 @@
             </td>
           </tr>
           <tr>
-            <td class="widget-keyboard-head" scope="row">Keyboard Interaction: </td>
+            <th class="widget-keyboard-head" scope="row">Keyboard Interaction: </th>
             <td class="widget-keyboard"><ul>
               <li><kbd>Tab</kbd> - When focus is on an accordion header, pressing the <kbd>Tab</kbd> key moves focus in the following manner:
 <ol>
@@ -323,7 +323,7 @@
             </ul>            </td>
           </tr>
           <tr>
-            <td class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </td>
+            <th class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </th>
             <td class="widget-aria"><ul>
               <li>The accordion component must have a role of <a href="#tablist" class="role-reference">tablist</a> and have   <a href="#aria-multiselectable" class="property-reference">aria-multiselectable</a>=&quot;true&quot; This will enable an assistive technology, such as   screen reader, to convey that the tablist is an accordion or a multiselectable   tablist. This will also tell the user that the keyboard navigation matches an   accordion and not a tablist. </li>
               <li>Contained within the tablist is a set of tab/tabpanel pairs. </li>
@@ -336,7 +336,7 @@
             </ul>              </td>
           </tr>
           <tr>
-            <td class="widget-example-head" scope="row">Example: </td>
+            <th class="widget-example-head" scope="row">Example: </th>
             <td class="widget-example">
             <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG taskforce is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
             <p><a href="http://www.oaa-accessibility.org/examplep/accordian1/" target="_blank" title="Tab Panel: Accordian1">Open Ajax Alliance Accordion</a></p></td>
@@ -347,13 +347,13 @@
     <hr />
     <section class="widget" id="alert">
       <h3 class="widget-name">Alert</h3>
-      <table cellspacing="0" class="widget-features">
+      <table class="widget-features">
         <caption>
         Characteristics:
         </caption>
         <tbody>
           <tr>
-            <td class="widget-description-head" scope="row">Description: </td>
+            <th class="widget-description-head" scope="row">Description: </th>
             <td class="widget-description">
             <p>An <a class="role-reference" href="#alert">alert</a> is an element that displays a brief, important message in a way that attracts the user's attention without interrupting the user's task. Dynamically rendered alerts are automatically announced by most screen readers, and in some operating systems, they may trigger an alert sound. It is important to note that, at this time, screen readers do not inform users of alerts that are present on the page before page load completes.</p>
 <p>Because an alert is intended to provide important and potentially time-sensitive information without interfering with the user's ability to continue working, authors should ensure alerts do not affect the keyboard focus. 
@@ -365,15 +365,15 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
             </td>
           </tr>
           <tr>
-            <td class="widget-keyboard-head" scope="row">Keyboard Interaction: </td>
+            <th class="widget-keyboard-head" scope="row">Keyboard Interaction: </th>
             <td class="widget-keyboard"><p>An alert (WAI-ARIA live region) does not require any keyboard interaction.</p></td>
           </tr>
           <tr>
-            <td class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </td>
+            <th class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </th>
             <td class="widget-aria"><p> The widget has a role of <a class="role-reference" href="#alert">alert</a>. </p></td>
           </tr>
           <tr>
-            <td class="widget-example-head" scope="row">Example: </td>
+            <th class="widget-example-head" scope="row">Example: </th>
             <td class="widget-example">
             <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG taskforce is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
             <p><a href="http://www.oaa-accessibility.org/examplep/alert1/" title="Alert role example using an ARIA alert box" target="_blank">Open Ajax Alliance</a></p></td>
@@ -385,13 +385,13 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
     <section class="widget" id="alertdialog">
       <h3 class="widget-name">Alert Dialog or Message Dialog</h3>
       <p class="note">This section has had only minor edits since it was integrated from APG version 1.0 -- a complete APG taskforce review is pending.</p>
-      <table cellspacing="0" class="widget-features">
+      <table class="widget-features">
         <caption>
         Characteristics:
         </caption>
         <tbody>
           <tr>
-            <td class="widget-description-head" scope="row">Description: </td>
+            <th class="widget-description-head" scope="row">Description: </th>
             <td class="widget-description">
               <p>A dialog with the primary purpose of communicating a message and acquiring a user response to that message. Examples include action confirmation prompts, warning messages, or help for an invalid form entry. The dialog should be modal. Keyboard focus is set on an element in the dialog. The element that has initial focus will depend on the nature of the information conveyed in the dialog. Simple message dialogs, as described below, have their initial focus set to the confirmation button (e.g., the OK button). Detail message dialogs have their initial focus set on the element containing the message. </p>
               <p>A detail message dialog conveys a message that has any one of the following attributes: </p>
@@ -405,7 +405,7 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
             </td>
           </tr>
           <tr>
-            <td class="widget-keyboard-head" scope="row">Keyboard Interaction: </td>
+            <th class="widget-keyboard-head" scope="row">Keyboard Interaction: </th>
             <td class="widget-keyboard">
               <p><a href="#dialog_modal">See Dialog (Modal)</a>. </p>
               <ul>
@@ -416,7 +416,7 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
             </td>
           </tr>
           <tr>
-            <td class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </td>
+            <th class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </th>
             <td class="widget-aria">
               <ul>
                 <li>The node containing all elements of the dialog, including the alert message and any dialog buttons, has an <a class="role-reference" href="#alertdialog">alertdialog</a> role. </li>
@@ -427,7 +427,7 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
             </td>
           </tr>
           <tr>
-            <td class="widget-example-head" scope="row">Example: </td>
+            <th class="widget-example-head" scope="row">Example: </th>
             <td class="widget-example">
             <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG taskforce is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
             <p><a href="http://www.oaa-accessibility.org/examplep/alertdialog1/" title="Example 2 - Alert example using a modal ARIA dialog box" target="_blank">Open Ajax Alliance</a></p></td>
@@ -439,17 +439,17 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
 <section class="widget" id="autocomplete">
       <h3 class="widget-name">Auto Complete</h3>
       <p class="note">This section has not been updated since it was integrated from APG version 1.0 -- an APG taskforce review is pending.</p>
-      <table cellspacing="0" class="widget-features">
+      <table class="widget-features">
         <caption>
         Characteristics:
         </caption>
         <tbody>
           <tr>
-            <td class="widget-description-head" scope="row">Description: </td>
+            <th class="widget-description-head" scope="row">Description: </th>
             <td class="widget-description"><p>A textbox and an associated   drop-down list of choices where the choices offered are filtered based on the information typed   into the box. Typically, an icon associated with the textbox   triggers the display of the drop-down list of choices. An editable auto-complete accepts text entry of choices that are not in the list. An example of an editable auto-complete is the URL field in the   browsers. </p></td>
           </tr>
           <tr>
-            <td class="widget-keyboard-head" scope="row">Keyboard Interaction: </td>
+            <th class="widget-keyboard-head" scope="row">Keyboard Interaction: </th>
             <td class="widget-keyboard"><ul>
                 <li>With focus in an empty textbox, press <kbd>Down Arrow</kbd>, <kbd>Up Arrow</kbd>,   <kbd>Alt+Down Arrow</kbd>, or <kbd>Alt+Up Arrow</kbd> to display the entire list of choices. Focus remains in the textbox and no choice is highlighted. 
                   <ul>
@@ -486,7 +486,7 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
          </td>
           </tr>
           <tr>
-            <td class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </td>
+            <th class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </th>
             <td class="widget-aria">
               <ul>
                 <li>The widget has a role of <a class="role-reference" href="#combobox">combobox</a>. </li>
@@ -496,7 +496,7 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
             </td>
           </tr>
           <tr>
-            <td class="widget-example-head" scope="row">Example: </td>
+            <th class="widget-example-head" scope="row">Example: </th>
             <td class="widget-example">
             <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG taskforce is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
             <a href="http://archive.dojotoolkit.org/nightly/dojotoolkit/dijit/tests/form/_autoComplete.html" title="dijit.form.ComboBox Unit Test" rel="nofollow">Dojo autocomplete</a></td>
@@ -507,13 +507,13 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
 <hr />
 <section class="widget" id="button">
   <h3 class="widget-name">Button</h3>
-      <table cellspacing="0" class="widget-features">
+      <table class="widget-features">
         <caption>
         Characteristics:
         </caption>
         <tbody>
           <tr>
-            <td class="widget-description-head" scope="row">Description: </td>
+            <th class="widget-description-head" scope="row">Description: </th>
             <td class="widget-description">
               <p>A <a class="role-reference" href="#button">button</a> is a widget that enables users to trigger an action or event, such as submitting a form, opening a dialog, cancelling an action, or performing a delete operation. A common convention for informing users that a button launches a dialog is to append &quot;&#8230;&quot; (ellipsis) to the button label, e.g., .&quot;Save as &#8230;&quot;.</p>
 			  <p>In addition to the ordinary button widget, WAI-ARIA supports 2 other types of buttons:</p>
@@ -545,7 +545,7 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
             </td>
           </tr>
           <tr>
-            <td class="widget-keyboard-head" scope="row">Keyboard Interaction: </td>
+            <th class="widget-keyboard-head" scope="row">Keyboard Interaction: </th>
             <td class="widget-keyboard"><p>With focus on the button, pressing the <kbd>Space</kbd> key or <kbd>Enter</kbd> key activates the button. Focus should behave appropriately for the type of action being performed. For example: </p>
               <ul>
                 <li>If activating the button opens a dialog, the focus moves inside
@@ -571,7 +571,7 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
               </ul></td>
           </tr>
           <tr>
-            <td class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </td>
+            <th class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </th>
             <td class="widget-aria">
             <ul>
                 <li>The button has role of <a class="role-reference" href="#button">button</a>. </li>
@@ -584,7 +584,7 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
               </ul></td>
           </tr>
           <tr>
-            <td class="widget-example-head" scope="row">Example: </td>
+            <th class="widget-example-head" scope="row">Example: </th>
             <td class="widget-example">
             <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG taskforce is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
               <ul>
@@ -599,13 +599,13 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
 		<hr />
 		<section class="widget" id="checkbox">
       <h3 class="widget-name">Checkbox</h3>
-    <table cellspacing="0" class="widget-features">
+    <table class="widget-features">
       <caption>
       Characteristics:
       </caption>
       <tbody>
         <tr>
-          <td class="widget-description-head" scope="row">Description: </td>
+          <th class="widget-description-head" scope="row">Description: </th>
             <td class="widget-description">
               <p>
                 WAI-ARIA supports two types of <a href="#checkbox" class="role-reference">checkbox</a>
@@ -640,13 +640,13 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
             </td>
           </tr>
         <tr>
-          <td class="widget-keyboard-head" scope="row">Keyboard Interaction: </td>
+          <th class="widget-keyboard-head" scope="row">Keyboard Interaction: </th>
           <td class="widget-keyboard">
               <p>When the checkbox has focus, pressing the <kbd>Space</kbd> key changes the state of the checkbox. </p>
           </td>
         </tr>
         <tr>
-          <td class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </td>
+          <th class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </th>
             <td class="widget-aria"><ul>
                 <li>The checkbox has role <a href="#checkbox" class="role-reference">checkbox</a>.
                 </li>
@@ -670,7 +670,7 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
               </ul></td>
           </tr>
         <tr>
-          <td class="widget-example-head" scope="row">Examples: </td>
+          <th class="widget-example-head" scope="row">Examples: </th>
           <td class="widget-example">
           <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG taskforce is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
           <ul>
@@ -695,17 +695,17 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
     <section class="widget" id="combobox">
       <h3 class="widget-name">Combo Box</h3>
       <p class="note">This section has not been updated since it was integrated from APG version 1.0 -- an APG taskforce review is pending.</p>
-        <table cellspacing="0" class="widget-features">
+        <table class="widget-features">
       <caption>
       Characteristics:
       </caption>
       <tbody>
         <tr>
-          <td class="widget-description-head" scope="row">Description: </td>
+          <th class="widget-description-head" scope="row">Description: </th>
           <td class="widget-description">A combo box enables the user to type in a field and at the same time chose a   predefined value from a list. By using the keyboard the user can select an item   from the list. After selection she will be able to type further characters in   the field.</td>
         </tr>
         <tr>
-          <td class="widget-keyboard-head" scope="row">Keyboard Interaction: </td>
+          <th class="widget-keyboard-head" scope="row">Keyboard Interaction: </th>
           <td class="widget-keyboard"><ul>
               <li><kbd>Left Arrow</kbd> or <kbd>Right Arrow</kbd> move the caret within the edit field. </li>
               <li><kbd>Alt+Up/Down Arrow</kbd> opens and closes the list. </li>
@@ -718,7 +718,7 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
           <p>For combo boxes that implement <a href="#aria-autocomplete" class="state-reference">aria-autocomplete</a>, see the <a href="#autocomplete">autocomplete design pattern</a>.</p></td>
         </tr>
         <tr>
-          <td class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </td>
+          <th class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </th>
           <td class="widget-aria">
             <p>A combobox can be implemented using either of two design patterns:</p>
             <ol>
@@ -751,7 +751,7 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
           </td>
         </tr>
         <tr>
-          <td class="widget-example-head" scope="row">Example: </td>
+          <th class="widget-example-head" scope="row">Example: </th>
           <td class="widget-example">
           <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG taskforce is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
             <p>First design pattern -- container element with role <a href="#combobox" class="role-reference">combobox</a> :</p>
@@ -776,7 +776,7 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
     <section class="widget" id="datepicker">
         <h3 class="widget-name">Date Picker</h3>
         <p class="note">This section has not been updated since it was integrated from APG version 1.0 -- an APG taskforce review is pending.</p>
-        <table cellspacing="0" class="widget-features">
+        <table class="widget-features">
           <caption>
           Characteristics:
           </caption>
@@ -893,17 +893,17 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
     <section class="widget" id="dialog_modal">
       <h3  class="widget-name"> Dialog (Modal) </h3>
       <p class="note">This section has not been updated since it was integrated from APG version 1.0 -- an APG taskforce review is pending.</p>
-        <table cellspacing="0" class="widget-features">
+        <table class="widget-features">
       <caption>
       Characteristics:
       </caption>
       <tbody>
         <tr>
-          <td class="widget-description-head" scope="row">Description: </td>
+          <th class="widget-description-head" scope="row">Description: </th>
           <td class="widget-description"><p>A dialog is a small application window that sits above the application and is designed to interrupt the current processing of an application in order to   prompt the user to enter information or require a response (<a href="#dialog" class="role-reference">dialog</a>). A modal dialog is a dialog that takes and holds focus until the dialog is closed or submitted.   A specific kind of modal dialog is the <a href="#alertdialog" class="role-reference">alertdialog</a>, that is used to convey a short message to the user. See the &quot;<a href="#alertdialog">Alert Dialog</a>&quot; design pattern.</p></td>
         </tr>
         <tr>
-          <td class="widget-keyboard-head" scope="row">Keyboard Interaction: </td>
+          <th class="widget-keyboard-head" scope="row">Keyboard Interaction: </th>
           <td class="widget-keyboard"><p>Keyboard navigation within a modal dialog includes these aspects:</p>
             <ul>
               <li><kbd>Enter</kbd> If the purpose of the dialog is to gather   information, the dialog should have a mechanism to submit the data gathered   usually via a keyboard accessible button. The <kbd>Enter</kbd> key should serve as the   default submit action. </li>
@@ -924,7 +924,7 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
           </td>
         </tr>
         <tr>
-          <td class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </td>
+          <th class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </th>
           <td class="widget-aria"><ul>
             <li>Generally, a modal dialog has a role of <a href="#dialog" class="role-reference">dialog</a>.</li>
             <li>If it is a simple dialog with a message that alerts, warns, or requests confirmation (e.g., "Are you sure you want quit?"), then authors are advised to use the <a href="#alertdialog" class="role-reference">alertdialog</a> role. See the &quot;<a href="#alertdialog">Alert Dialog</a>&quot; design pattern for more information.</li>
@@ -933,7 +933,7 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
         </td>
         </tr>
         <tr>
-          <td class="widget-example-head" scope="row">Example: </td>
+          <th class="widget-example-head" scope="row">Example: </th>
           <td class="widget-example">
           <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG taskforce is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
           <ul>
@@ -949,18 +949,18 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
     <section class="widget" id="dialog_nonmodal">
       <h3  class="widget-name"> Dialog (Non-Modal) </h3>
       <p class="note">This section has not been updated since it was integrated from APG version 1.0 -- an APG taskforce review is pending.</p>
-    <table cellspacing="0" class="widget-features">
+    <table class="widget-features">
       <caption>
       Characteristics:
       </caption>
       <tbody>
         <tr>
-          <td class="widget-description-head" scope="row">Description: </td>
+          <th class="widget-description-head" scope="row">Description: </th>
           <td class="widget-description"><p>A dialog is a small application window that sits above the application and is   designed to interrupt the current processing of an application in order to   prompt the user to enter information or require a response (<a href="#dialog" class="role-reference">dialog</a>). </p>
           <p>A non-modal dialog is one which is displayed and focusable at the same time   as the application which invoked it. Also like the modal dialog, focus via the   tab and shift-tab key must be maintained within the dialog. However, a non-modal   dialog should have a keyboard mechanism to return focus to the application while   leaving the dialog open. </p></td>
         </tr>
         <tr>
-          <td class="widget-keyboard-head" scope="row">Keyboard Interaction: </td>
+          <th class="widget-keyboard-head" scope="row">Keyboard Interaction: </th>
           <td class="widget-keyboard"><ul>
             <li><kbd>Escape</kbd> cancels the dialog without taking any action </li>
             <li><kbd>Enter</kbd> submits any data gathered in the dialog. </li>
@@ -975,11 +975,11 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
           </ul> </td>
         </tr>
         <tr>
-          <td class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </td>
+          <th class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </th>
           <td class="widget-aria"><p><a href="#dialog_modal">See Dialog (Modal).</a></p></td>
         </tr>
         <tr>
-          <td class="widget-example-head" scope="row">Example: </td>
+          <th class="widget-example-head" scope="row">Example: </th>
           <td class="widget-example">
           <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG taskforce is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
           <p><a href="http://archive.dojotoolkit.org/nightly/dojotoolkit/dojox/layout/tests/test_FloatingPane.html" title="dojox.layout.FloatPane - a crude non-modal Floating Window" target="_blank">Experimental dojo floating non-modal pane</a></p></td>
@@ -990,17 +990,17 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
     <hr/>
     <section class="widget" id="dialog_tooltip">
       <h3  class="widget-name"> Dialog (Tooltip) </h3>
-    <table cellspacing="0" class="widget-features">
+    <table class="widget-features">
       <caption>
       Characteristics:
       </caption>
       <tbody>
         <tr>
-          <td class="widget-description-head" scope="row">Description: </td>
+          <th class="widget-description-head" scope="row">Description: </th>
           <td class="widget-description"><p>A tooltip dialog is a modal dialog that is rendered near the invoking element and visually connected via a cartoon bubble-like protrusion.  It is displayed when the mouse passes over or rests on that element.</p></td>
         </tr>
         <tr>
-          <td class="widget-keyboard-head" scope="row">Keyboard Interaction: </td>
+          <th class="widget-keyboard-head" scope="row">Keyboard Interaction: </th>
           <td class="widget-keyboard">
             <ul>
               <li><kbd>Escape</kbd> The tooltip dialog is closed by pressing the escape key when focus is within the dialog, mouse clicking on a close icon, or mouse clicking outside of the dialog onto the application.</li>
@@ -1014,11 +1014,11 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
           </td>
         </tr>
         <tr>
-          <td class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </td>
+          <th class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </th>
           <td class="widget-aria"><p><a href="#dialog_modal">See Dialog (Modal).</a></p></td>
         </tr>
         <tr>
-          <td class="widget-example-head" scope="row">Example: </td>
+          <th class="widget-example-head" scope="row">Example: </th>
           <td class="widget-example">
           <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG taskforce is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
           <p><a href="http://archive.dojotoolkit.org/nightly/dojotoolkit/dijit/tests/test_TooltipDialog.html" title="TooltipDialog Widget Tests" target="_blank">Dojo nightly</a></p></td>
@@ -1030,21 +1030,21 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
     <section class="design-pattern" id="draganddrop">
       <h3  class="design-pattern-name"> Drag &amp; Drop </h3>
       <p class="note">This section has not been updated since it was integrated from APG version 1.0 -- an APG taskforce review is pending.</p>
-    <table cellspacing="0" class="widget-features">
+    <table class="widget-features">
       <caption>
       Characteristics:
       </caption>
       <tbody>
         <tr>
-          <td class="widget-description-head" scope="row">Description: </td>
+          <th class="widget-description-head" scope="row">Description: </th>
           <td class="widget-description">A drag and drop operation can occur in contexts that support selection of objects, including single and multiple selection models. An example is a <a href="#Treeview" class="role-reference">tree</a> view. The tree is a container of objects that are potentially draggable.</td>
         </tr>
         <tr>
-          <td class="widget-keyboard-head" scope="row">Keyboard Interaction: </td>
+          <th class="widget-keyboard-head" scope="row">Keyboard Interaction: </th>
           <td class="widget-keyboard"><p>See <a href="#dragdrop">Drag and Drop Support</a>, above.</p></td>
         </tr>
         <tr>
-          <td class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </td>
+          <th class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </th>
           <td class="widget-aria">
             <ul>
               <li>Draggable objects are identified using the <a href="#aria-grabbed" class="property-reference">aria-grabbed</a> state.
@@ -1060,7 +1060,7 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
             </td>
         </tr>
         <tr>
-          <td class="widget-example-head" scope="row">Example: </td>
+          <th class="widget-example-head" scope="row">Example: </th>
           <td class="widget-example">
           <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG taskforce is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
           <ul>
@@ -1075,20 +1075,20 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
 <section class="widget" id="grid">
       <h3 class="widget-name">Grid (Simple Data Tables)</h3>
       <p class="note">This section has not been updated since it was integrated from APG version 1.0 -- an APG taskforce review is pending.</p>
-    <table cellspacing="0" class="widget-features">
+    <table class="widget-features">
       <caption>
       Characteristics:
       </caption>
       <tbody>
         <tr>
-          <td class="widget-description-head" scope="row">Description: </td>
+          <th class="widget-description-head" scope="row">Description: </th>
           <td class="widget-description"><p>Unlike an HTML table, which is display only, a grid presents tabular data in   rows and columns that are navigable via the keyboard, and allows for cells to   be selected in the grid. The user moves focus through each data cell having a   role of gridcell, through the use of arrow keys. Each column has an associated   element with the role columnheader. Data cells carry the role gridcell. A grid   may also contain hierarchical rows. In this case the role of the grid container   should be treegrid rather than grid. This design pattern, and corresponding examples, reflect a basic two-dimensional grid without grids embedded within a gridcell. </p>
             <p>WAI-ARIA grids are not meant to replace the full functionality of a table. Consequently, there may be instances when you need to have cells span multiple columns or rows for which WAI-ARIA does not provide semantics. This can be achieved by overlaying grid and gridcell semantics onto  an HTML table to provide appropriate column and row span semantics. Authors should ensure that headers are properly marked using a native header tag or WAI-ARIA columnheader or rowheader semantics. The connection between gridcell and header can be achieved using standard HTML attribute header. In HTML, multiple column or row headers for one data cell can be identified through the use of a space separated list of header ids in the headers attribute. </p>
             <p>If a WAI-ARIA grid is not overlayed on a table, authors should mark the rowheader, columnheader, and gridcell roles on the appropriate elements. For gridcells that span multiple columns or have multiple headers, the author should apply the aria-labelledby property to the cell to the space delimited list of corresponding row or column header element IDs. Gridcells that span multiple rows or columns should be reflected in the keyboard navigation.</p>
 <p>If a grid contains editable data, it should have both an editable mode and a navigation  mode.</p></td>
         </tr>
         <tr>
-          <td class="widget-keyboard-head" scope="row">Keyboard Interaction: </td>
+          <th class="widget-keyboard-head" scope="row">Keyboard Interaction: </th>
           <td class="widget-keyboard"><p>There are two modes of keyboard interaction, namely, navigation mode and actionable mode. </p>
             <p>Navigation Mode (Read-Only) is the default mode, and allows quick   and intuitive navigation around the grid.</p>
             <ul>
@@ -1125,7 +1125,7 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
             <p class="note">It is recommended the developer use different styling for the selection when the grid is not focused (hint: non-active selection is   often shown with a lighter background color). </p></td>
         </tr>
         <tr>
-          <td class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </td>
+          <th class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </th>
           <td class="widget-aria"><ul>
             <li>The DOM representation of the grid should follow the HTML DOM structure,   although it will be possible to use <a href="#aria-owns" class="property-reference">aria-owns</a> to add a row or table cell. This   is an edge case and may not be supported by assistive technologies. </li>
             <li>The grid container should have a role of <a href="#grid" class="role-reference">grid</a>. </li>
@@ -1138,7 +1138,7 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
           </ul></td>
         </tr>
         <tr>
-          <td class="widget-example-head" scope="row">Example: </td>
+          <th class="widget-example-head" scope="row">Example: </th>
           <td class="widget-example">
           <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG taskforce is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
             <ul>
@@ -1155,32 +1155,32 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
 <section class="widget" id="sortablegrid">
       <h3 class="widget-name">Actionable, Sortable Column Header in a Grid </h3>
       <p class="note">This section has not been updated since it was integrated from APG version 1.0 -- an APG taskforce review is pending.</p>
-    <table cellspacing="0" class="widget-features">
+    <table class="widget-features">
       <caption>
       Characteristics:
       </caption>
       <tbody>
         <tr>
-          <td class="widget-description-head" scope="row">Description: </td>
+          <th class="widget-description-head" scope="row">Description: </th>
           <td class="widget-description"><p>An example of a grid whose headers are sortable in either ascending or descending order based on the name in the grid column headers.</p>
             <p>This design pattern matches that of the <a href="#grid" class="widget-description">grid design pattern</a> where, specifically, the author has included use of the arrow keys to permit navigation to the row or column headers that contain a button for sorting the rows of the table.  Sorting is based on the data cell contents in the column being sorted, the name in the column header, and whether the contents of the column are sorted in ascending or descending order. As the order of the cells change in the column the corresponding rows move in position with respect to that sort.</p>
           </td>
         </tr>
         <tr>
-          <td class="widget-keyboard-head" scope="row">Keyboard Interaction: </td>
+          <th class="widget-keyboard-head" scope="row">Keyboard Interaction: </th>
           <td class="widget-keyboard">
             <p>Keyboard navigation is identical to grid with the exceptions that: arrow key navigation includes the headers; you are not required to enter actionable mode to toggle the sort of a row or column when on the corresponding header; and content selection does not affect the selected state of row or column headers. </p>
             <p>Simply pressing the space bar while focus is on a row or column header toggles the ascending/descending sort of the corresponding row or column. </p>
           <p class="note">It is recommended the developer use different styling   for the selection when the grid is not focused (hint: non-active selection is   often shown with a lighter background color). </p></td>
         </tr>
         <tr>
-          <td class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </td>
+          <th class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </th>
           <td class="widget-aria"><ul>
             <li>The same as the grid design pattern with the exception that each row or column header, signified by a role of <a href="#columnheader" class="role-reference">columnheader</a> and <a href="#rowheader" class="role-reference">rowheader</a> respectively, has an <a href="#aria-sort" class="property-reference">aria-sort</a> value that reflects the current state for sort for the associated row or column. If another row or column header adjusts the sort of the grid the remaining row or column header aria-sort values must reflect their sorting impact on the grid.  </li>
           </ul></td>
         </tr>
         <tr>
-          <td class="widget-example-head" scope="row">Example: </td>
+          <th class="widget-example-head" scope="row">Example: </th>
           <td class="widget-example">
           <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG taskforce is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
             <ul>
@@ -1195,25 +1195,25 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
     <section class="widget" id="landmarks">
       <h3  class="widget-name"> Landmark Navigation </h3>
       <p class="note">This section has not been updated since it was integrated from APG version 1.0 -- an APG taskforce review is pending.</p>
-    <table cellspacing="0" class="widget-features">
+    <table class="widget-features">
       <caption>
       Characteristics:
       </caption>
       <tbody>
         <tr>
-          <td class="widget-description-head" scope="row">Description: </td>
+          <th class="widget-description-head" scope="row">Description: </th>
           <td class="widget-description">&#160;</td>
         </tr>
         <tr>
-          <td class="widget-keyboard-head" scope="row">Keyboard Interaction: </td>
+          <th class="widget-keyboard-head" scope="row">Keyboard Interaction: </th>
           <td class="widget-keyboard"><p>&#160;</p></td>
         </tr>
         <tr>
-          <td class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </td>
+          <th class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </th>
           <td class="widget-aria"><p>Provide the appropriate landmark for the role attribute. See the <a href="#kbd_layout_landmark_XHTML">section describing landmark use</a>. </p></td>
         </tr>
         <tr>
-          <td class="widget-example-head" scope="row">Example: </td>
+          <th class="widget-example-head" scope="row">Example: </th>
           <td class="widget-example">
           <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG taskforce is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
           <ul>
@@ -1227,7 +1227,7 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
     <hr/>
     <section class="widget" id="link">
       <h3 class="widget-name">Link</h3>
-      <table cellspacing="0" class="widget-features">
+      <table class="widget-features">
         <caption>
         Characteristics:
         </caption>
@@ -1249,7 +1249,7 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
             </td>
           </tr>
        <tr>
-          <td class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </td>
+          <th class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </th>
           <td class="widget-aria">
           <ul>
           <li>The element containing the link text has role of <a href="#link" class="role-reference">link</a>.</li>
@@ -1269,7 +1269,7 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
     <section class="widget" id="Listbox">
     <h3 class="widget-name">Listbox</h3>
     <p class="note">This section has been partially revised and reviewed since it was integrated from APG version 1.0 -- a complete APG taskforce review is pending.</p>
-      <table cellspacing="0" class="widget-features">
+      <table class="widget-features">
         <caption>
         Characteristics:
         </caption>
@@ -1345,7 +1345,7 @@ This is because browser accessibility APIs do not support child elements contain
               </td>
           </tr>
         <tr>
-          <td class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </td>
+          <th class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </th>
           <td class="widget-aria"><ul>
             <li>The listbox container  has a role of <a href="#listbox" class="role-reference">listbox</a>.</li>
             <li>Each entry in the listbox should have a role <a href="#option" class="role-reference">option</a> and should be DOM  children of <a href="#listbox" class="role-reference">listbox</a>.</li>
@@ -1370,25 +1370,25 @@ This is because browser accessibility APIs do not support child elements contain
 <section class="widget" id="mediaplayer">
 <h3 class="widget-name">Media Player</h3>
 <p class="note">This section has not been updated since it was integrated from APG version 1.0 -- an APG taskforce review is pending.</p>
-    <table cellspacing="0" class="widget-features">
+    <table class="widget-features">
       <caption>
       Characteristics:
       </caption>
       <tbody>
         <tr>
-          <td class="widget-description-head" scope="row">Description: </td>
+          <th class="widget-description-head" scope="row">Description: </th>
           <td class="widget-description">&#160;</td>
         </tr>
         <tr>
-          <td class="widget-keyboard-head" scope="row">Keyboard Interaction: </td>
+          <th class="widget-keyboard-head" scope="row">Keyboard Interaction: </th>
           <td class="widget-keyboard"><p>&#160;</p></td>
         </tr>
         <tr>
-          <td class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </td>
+          <th class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </th>
           <td class="widget-aria">&#160;</td>
         </tr>
         <tr>
-          <td class="widget-example-head" scope="row">Example: </td>
+          <th class="widget-example-head" scope="row">Example: </th>
           <td class="widget-example">
           <p class="ednote">Add link to example</p></td>
         </tr>
@@ -1398,13 +1398,13 @@ This is because browser accessibility APIs do not support child elements contain
   <hr/>
 <section class="widget" id="menu"><h3 class="widget-name">Menu or Menu bar</h3>
 <p class="note">This section has been partially revised and reviewed since it was integrated from APG version 1.0 -- a complete APG taskforce review is pending.</p>
-    <table cellspacing="0" class="widget-features">
+    <table class="widget-features">
       <caption>
       Characteristics:
       </caption>
       <tbody>
         <tr>
-          <td class="widget-description-head" scope="row">Description: </td>
+          <th class="widget-description-head" scope="row">Description: </th>
           <td class="widget-description">
              <p>A menu is a type of widget that offers a list of choices to the user. A menu is often a list of common actions or functions that the user can invoke. The menu role is appropriate when a list of menu items is presented in a manner similar to a menu on a desktop application. </p>
 			 <p>A menubar is a presentation of a menu that usually remains visible and is usually presented horizontally.
@@ -1414,14 +1414,14 @@ This is because browser accessibility APIs do not support child elements contain
           </td>
         </tr>
         <tr>
-          <td class="widget-keyboard-head" scope="row">Keyboard Interaction: </td>
+          <th class="widget-keyboard-head" scope="row">Keyboard Interaction: </th>
           <td class="widget-keyboard">
-		    <ul><li>For a menu bar which is presented horizontally</li>
+		    <ul><li>For a menu bar which is presented horizontally
               <ul>
                 <li><kbd>Enter</kbd>, <kbd>Space</kbd>, and the <kbd>up down</kbd> arrow keys opens the   menu and places focus on the first menu item in the opened menu or child menu   bar. </li>
                 <li>Left or right arrow keys move focus to the adjacent menu   bar item. </li>
-              </ul>
-			<li>For menus presented vertically</li>
+              </ul></li>
+			<li>For menus presented vertically
 			<ul>
             <li>When a menu is open and focus is on a menu item in that open menu, then
               <ul>
@@ -1437,8 +1437,8 @@ This is because browser accessibility APIs do not support child elements contain
                 <li><kbd>Escape</kbd> or the <kbd>Left Arrow</kbd>  key closes the submenu and returns   focus to the parent menu item. </li>
               </ul>
             </li>
-			</ul>
-			<li>For menus presented horizontally (not very common)</li>
+			</ul></li>
+			<li>For menus presented horizontally (not very common)
 			<ul>
             <li>When a menu is open and focus is on a menu item in that open menu, then
               <ul>
@@ -1454,7 +1454,7 @@ This is because browser accessibility APIs do not support child elements contain
                 <li><kbd>Escape</kbd> or the <kbd>Up Arrow</kbd>  key closes the submenu and returns   focus to the parent menu item. </li>
               </ul>
             </li>
-			</ul>			
+			</ul>			</li>
             <li>Typing a letter (printable character) key moves focus to   the next instance of a visible node whose title begins with that printable   letter. </li>
             <li>First item in menu bar should be in the tab order (tabindex=0). </li>
             <li>Disabled menu items receive focus but have no action when <kbd>Enter</kbd> or <kbd>Left Arrow</kbd>/<kbd>Right Arrow</kbd> is pressed. It is important that the state of the menu   item be clearly communicated to the user. </li>
@@ -1466,7 +1466,7 @@ This is because browser accessibility APIs do not support child elements contain
           </ul></td>
         </tr>
         <tr>
-          <td class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </td>
+          <th class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </th>
           <td class="widget-aria"><ul>
             <li>A menu is a container of options. The container may have a role of <a href="#menu" class="role-reference">menu</a> or   <a href="#menubar" class="role-reference">menubar</a> depending on your implementation. A menubar is usually rendered horizontally. </li>
             <li>The menu contains elements with roles: <a href="#menuitem" class="role-reference">menuitem</a>,   <a href="#menuitemcheckbox" class="role-reference">menuitemcheckbox</a>, or <a href="#menuitemradio" class="role-reference">menuitemradio</a> depending on your implementation. </li>
@@ -1480,7 +1480,7 @@ This is because browser accessibility APIs do not support child elements contain
             <li>Grouping of menuitems in a <a href="#menu" class="role-reference">menu</a> or <a href="#menubar" class="role-reference">menubar</a> is performed by introducing an element with the role of <a href="#separator" class="role-reference">separator</a>. A <a href="#separator" class="role-reference">separator</a> delineates groups of menu items within a <a href="#menu" class="role-reference">menu</a> or <a href="#menubar" class="role-reference">menubar</a>. A <a href="#separator" class="role-reference">separator</a> is not placed in the navigation order and it is in no way interactive. Authors provide an <a href="#aria-orientation" class="property-reference">aria-orientation</a> consistent with the separator's orientation in the menu or menubar. Since the separator is not navigable it does not support the <a href="#aria-expanded" class="state-reference">aria-expanded</a> state. It is recommended that when grouping menu items of type <a href="#menuitemradio" class="role-reference">menuitemradio</a> that they all be grouped together preceding or following a separator. </li></ul></td>
         </tr>
         <tr>
-          <td class="widget-example-head" scope="row">Example: </td>
+          <th class="widget-example-head" scope="row">Example: </th>
           <td class="widget-example">
           <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG taskforce is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
           <ul>
@@ -1495,20 +1495,20 @@ This is because browser accessibility APIs do not support child elements contain
   <hr/>
 <section class="widget" id="menubutton"><h3 class="widget-name">Menu Button</h3>
 <p class="note">This section has not been updated since it was integrated from APG version 1.0 -- an APG taskforce review is pending.</p>
-    <table cellspacing="0" class="widget-features">
+    <table class="widget-features">
       <caption>
       Characteristics:
       </caption>
       <tbody>
         <tr>
-          <td class="widget-description-head" scope="row">Description: </td>
+          <th class="widget-description-head" scope="row">Description: </th>
           <td class="widget-description">
             <p>A menu button is a push button that is used to invoke a menu.  It appears as a normal button typically with a downward pointing arrow or triangle as a visual cue that it triggers the display of a menu. </p>
             <p>Menu buttons are used in situations where authors want to provide a single menu without having to construct a complete menu bar. </p>
           </td>
         </tr>
         <tr>
-          <td class="widget-keyboard-head" scope="row">Keyboard Interaction: </td>
+          <th class="widget-keyboard-head" scope="row">Keyboard Interaction: </th>
           <td class="widget-keyboard"><ul>
               <li><kbd>Space</kbd> or <kbd>Enter</kbd> - With focus on the button pressing <kbd>Space</kbd> or <kbd>Enter</kbd> will toggle the display of the drop-down menu. Focus remains on the button. </li>
               <li><kbd>Down Arrow</kbd> - 
@@ -1530,7 +1530,7 @@ This is because browser accessibility APIs do not support child elements contain
           </td>
         </tr>
         <tr>
-          <td class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </td>
+          <th class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </th>
           <td class="widget-aria">
             <ul>
                <li>The menu button itself has a role of <a href="#button" class="role-reference">button</a>.</li>
@@ -1540,7 +1540,7 @@ This is because browser accessibility APIs do not support child elements contain
           </td>
         </tr>
         <tr>
-          <td class="widget-example-head" scope="row">Example: </td>
+          <th class="widget-example-head" scope="row">Example: </th>
           <td class="widget-example">
           <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG taskforce is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
           <ul>
@@ -1555,17 +1555,17 @@ This is because browser accessibility APIs do not support child elements contain
 <section class="widget" id="popuphelp">
 <h3 class="widget-name">Popup Help (aka Bubble Help)</h3>
 <p class="note">This section has not been updated since it was integrated from APG version 1.0 -- an APG taskforce review is pending.</p>
-    <table cellspacing="0" class="widget-features">
+    <table class="widget-features">
       <caption>
       Characteristics:
       </caption>
       <tbody>
         <tr>
-          <td class="widget-description-head" scope="row">Description: </td>
+          <th class="widget-description-head" scope="row">Description: </th>
           <td class="widget-description"><p>Popup Help contains more descriptive, or actionable, help-like text and elements. It may contain, and was designed to handle, interactive elements such as a button, link, or text field. It is essentially a Popup Menu with un-necessary keystrokes turned off. The key sequence for posting Popup Help was to take advantage of F1's tie to the Help paradigm (F1 calls up application Help for example). </p></td>
         </tr>
         <tr>
-          <td class="widget-keyboard-head" scope="row">Keyboard Interaction: </td>
+          <th class="widget-keyboard-head" scope="row">Keyboard Interaction: </th>
           <td class="widget-keyboard">
               <ul>
               <li><kbd>Control+F1</kbd>
@@ -1643,11 +1643,11 @@ This is because browser accessibility APIs do not support child elements contain
           </td>
         </tr>
         <tr>
-          <td class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </td>
+          <th class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </th>
           <td class="widget-aria"><p>See <a href="#dialog_modal">Dialog (Modal)</a> and/or <a href="#dialog_nonmodal">Dialog (Non-Modal)</a> and/or <a href="#dialog_tooltip">Dialog (tooltip)</a>. </p></td>
         </tr>
         <tr>
-          <td class="widget-example-head" scope="row">Example: </td>
+          <th class="widget-example-head" scope="row">Example: </th>
           <td class="widget-example">
           <p class="ednote">Add link to example.</p></td>
         </tr>
@@ -1656,17 +1656,17 @@ This is because browser accessibility APIs do not support child elements contain
 </section>
   <hr/>
 <section class="widget" id="radiobutton"><h3 class="widget-name">Radio Group</h3>
-    <table cellspacing="0" class="widget-features">
+    <table class="widget-features">
       <caption>
       Characteristics:
       </caption>
       <tbody>
         <tr>
-          <td class="widget-description-head" scope="row">Description: </td>
+          <th class="widget-description-head" scope="row">Description: </th>
           <td class="widget-description">An option in single-select list</td>
         </tr>
         <tr>
-          <td class="widget-keyboard-head" scope="row">Keyboard Interaction: </td>
+          <th class="widget-keyboard-head" scope="row">Keyboard Interaction: </th>
           <td class="widget-keyboard">
 		  <p class="note">The Tab behaviour below differs from some native browser behaviors where Shift+Tab sometimes moves to the last button in the group, if none are selected.</p>
 		  <ul>
@@ -1683,7 +1683,7 @@ This is because browser accessibility APIs do not support child elements contain
           </ul>          </td>
         </tr>
         <tr>
-          <td class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </td>
+          <th class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </th>
           <td class="widget-aria">
             <ul>
               <li>Use a container with a role <a href="#radiogroup" class="role-reference">radiogroup</a> for the set of radio buttons.  </li>
@@ -1696,7 +1696,7 @@ This is because browser accessibility APIs do not support child elements contain
           </td>
         </tr>
         <tr>
-          <td class="widget-example-head" scope="row">Example: </td>
+          <th class="widget-example-head" scope="row">Example: </th>
           <td class="widget-example">
           <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG taskforce is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
           <ul>
@@ -1713,17 +1713,17 @@ This is because browser accessibility APIs do not support child elements contain
 <section class="widget" id="richtext">
 <h3 class="widget-name">Rich Text Editor</h3>
 <p class="note">This section has not been updated since it was integrated from APG version 1.0 -- an APG taskforce review is pending.</p>
-    <table cellspacing="0" class="widget-features">
+    <table class="widget-features">
       <caption>
       Characteristics:
       </caption>
       <tbody>
         <tr>
-          <td class="widget-description-head" scope="row">Description: </td>
+          <th class="widget-description-head" scope="row">Description: </th>
           <td class="widget-description">Input control that accepts free-form text as its value. </td>
         </tr>
         <tr>
-          <td class="widget-keyboard-head" scope="row">Keyboard Interaction: </td>
+          <th class="widget-keyboard-head" scope="row">Keyboard Interaction: </th>
           <td class="widget-keyboard"><ul>
             <li>The edit control is provided by the browser; it provides the keyboard support for navigating, adding, removing and   selecting text, so that behavior is not defined by the rich internet application. </li>
             <li>The browser should also provide a keyboard mechanism   for navigating into and out of the edit control. Within most browsers the edit   control is put into the tab order of the page and can be navigated into, out of,   and through using the tab and shift-tab keys like any standard form control. </li>
@@ -1748,11 +1748,11 @@ This is because browser accessibility APIs do not support child elements contain
           </ul>            <p>&#160;</p></td>
         </tr>
         <tr>
-          <td class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </td>
+          <th class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </th>
           <td class="widget-aria"><p class="widget-description">Authors are advised to not use ARIA for rich text editors, but to rely on native HTML markup.  Current rich text editors typically use an <code>iframe</code> element for editable content.  As a result, the editable content is implicitly mapped to a document role in accessibility APIs.  If using HTML5, it is recommended that authors use the <code>designMode</code> or <code>contentEditable</code> attributes.  </p></td>
         </tr>
         <tr>
-          <td class="widget-example-head" scope="row">Example:</td>
+          <th class="widget-example-head" scope="row">Example:</th>
           <td class="widget-example">
           <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG taskforce is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
             <ul>
@@ -1769,13 +1769,13 @@ This is because browser accessibility APIs do not support child elements contain
 <section class="widget" id="Site_Navigator_General">
 <h3 class="widget-name">Site Navigator - General</h3>
 <p class="note">This section has not been updated since it was integrated from APG version 1.0 -- an APG taskforce review is pending.</p>
-    <table cellspacing="0" class="widget-features">
+    <table class="widget-features">
       <caption>
       Characteristics:
       </caption>
       <tbody>
         <tr>
-          <td class="widget-description-head" scope="row">Description: </td>
+          <th class="widget-description-head" scope="row">Description: </th>
           <td class="widget-description">
             <p>A collection of links, buttons, or tabs, usually presented in a region on the left or top of a page, that is persistent across most pages of the site. It provides quick access to the primary sections or functions of the site. It may also communicate the structure or hierarchy of the site, allowing the user to quickly drill down to a desired page. It often provides orientation information similar to that of bread crumbs by indicating which page is currently displayed and what its relationship is to the other pages shown in the navigator. Some navigators are overloaded with support for other functions, e.g., reordering pages in a wiki.</p>
             <p>Multiple navigators may be present on a page. For example, there may be a top-level navigator presented as tabs across the top and a second level navigator presented as sub tabs either on the top or left.</p>
@@ -1783,11 +1783,11 @@ This is because browser accessibility APIs do not support child elements contain
           </td>
         </tr>
         <tr>
-          <td class="widget-keyboard-head" scope="row">Keyboard Interaction: </td>
+          <th class="widget-keyboard-head" scope="row">Keyboard Interaction: </th>
           <td class="widget-keyboard"><p>See the <a href="#Site_Navigator_Tree">Site Navigator Tree</a> and <a href="#Site_Navigator_Tabbed_Style">Site Navigator Tabbed Style</a> sections for more detail.</p></td>
         </tr>
         <tr>
-          <td class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </td>
+          <th class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </th>
           <td class="widget-aria">
             <p>An ARIA-enabled site navigator is made up of a container widget that enables interaction with the navigation items. The widget is wrapped in a navigation region. The requirements for the navigation widget, items, and region are as follows.</p>
             <ol>
@@ -1812,7 +1812,7 @@ This is because browser accessibility APIs do not support child elements contain
           </td>
         </tr>
         <tr>
-          <td class="widget-example-head" scope="row">Example: </td>
+          <th class="widget-example-head" scope="row">Example: </th>
           <td class="widget-example">
           <p>See the <a href="#Site_Navigator_Tree">Site Navigator Tree</a> and <a href="#Site_Navigator_Tabbed_Style">Site Navigator Tabbed Style</a> sections for examples.</p></td>
         </tr>
@@ -1823,27 +1823,27 @@ This is because browser accessibility APIs do not support child elements contain
 <section class="widget" id="Site_Navigator_Tree">
 <h3 class="widget-name">Site Navigator - Tree</h3>
 <p class="note">This section has not been updated since it was integrated from APG version 1.0 -- an APG taskforce review is pending.</p>
-    <table cellspacing="0" class="widget-features">
+    <table class="widget-features">
       <caption>
       Characteristics:
       </caption>
       <tbody>
         <tr>
-          <td class="widget-description-head" scope="row">Description: </td>
+          <th class="widget-description-head" scope="row">Description: </th>
           <td class="widget-description">
            <p>A <a href="#Site_Navigator_General">site navigator</a> implemented using a <a class="role-reference" href="#tree">tree</a> widget that provides navigation for a hierarchical set of pages, content containers or application functions. For example, a tree-based navigator is appropriate for the typical left-hand web site navigator that has an outline-like structure where activating a link displays the target of that link in the main content area and displays the pages that are children of the current page in the navigator. Unlike the typical static left-hand navigator, a dynamic tree widget could also provide the ability for the user to explore the hierarchy of the site without having to load a parent page in order to see the titles of the children. This would improve the navigation efficiency for all users by reducing the number of page loads.</p>
            <p>Some sites or applications may provide support for hierarchical navigation using tabbed style navigation by providing a tab set for each level of the hierarchy.</p>
         </td>
         </tr>
         <tr>
-          <td class="widget-keyboard-head" scope="row">Keyboard Interaction: </td>
+          <th class="widget-keyboard-head" scope="row">Keyboard Interaction: </th>
           <td class="widget-keyboard">
             <p>The tree should implement keyboard navigation consistent with the <a href="#TreeView">Tree View design pattern</a> with one exception. When enter is pressed, the default action can be activated on any node containing a link even if it is not an end node. Note that the user can still use left and right arrow to expand and collapse nodes. Note that selection keys should not be implemented unless <a class="property-reference" href="#aria-multiselectable">aria-multiselectable</a> is <code>true</code>. If aria-multi-selectable is <code>false</code>, the default action should be to display the content associated with that item, and if possible, move the focus to the beginning of the controlled region. If aria-multiselectable is <code>true</code> and <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> is <code>true</code> for the current node, then enter should open a pop-up menu that provides options for navigating to the target specified by the current node and for performing supported non-navigation operations on the currently selected items.</p>
             <p>Focus: When the tree receives focus, the item in the tree that is marked as currently displayed should receive focus.</p>
           </td>
         </tr>
         <tr>
-          <td class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </td>
+          <th class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </th>
           <td class="widget-aria">
             <p>To build a site navigator tree, build a <a class="role-reference" href="#tree">tree</a> where each <a class="role-reference" href="#treeitem">treeitem</a> contains a <a class="role-reference" href="#link">link</a>. The states and properties of the tree and tree items should be set as follows.</p>
             <ul>
@@ -1858,7 +1858,7 @@ This is because browser accessibility APIs do not support child elements contain
           </td>
         </tr>
         <tr>
-          <td class="widget-example-head" scope="row">Example: </td>
+          <th class="widget-example-head" scope="row">Example: </th>
           <td class="widget-example">
           <p class="ednote">Add link to example</p></td>
         </tr>
@@ -1869,20 +1869,20 @@ This is because browser accessibility APIs do not support child elements contain
 <section class="widget" id="Site_Navigator_Tabbed_Style">
 <h3 class="widget-name">Site Navigator - Tabbed Style</h3>
 <p class="note">This section has not been updated since it was integrated from APG version 1.0 -- an APG taskforce review is pending.</p>
-    <table cellspacing="0" class="widget-features">
+    <table class="widget-features">
       <caption>
       Characteristics:
       </caption>
       <tbody>
         <tr>
-          <td class="widget-description-head" scope="row">Description: </td>
+          <th class="widget-description-head" scope="row">Description: </th>
           <td class="widget-description">
             <p>A <a href="#Site_Navigator_General">site navigator</a> that provides navigation for a small "sibling" set of pages, content containers or application functions. All the pages in the set are at the same logical level in the site navigation scheme, i.e., there are no parent/child relationships. It will often have a look and feel similar to a <a class="role-reference" href="#tabpanel">tabpanel</a>.</p>
             <p>Some sites or applications may provide support for hierarchical navigation using tabbed style navigation by providing a tab set for each level of the hierarchy.</p>
           </td>
         </tr>
         <tr>
-          <td class="widget-keyboard-head" scope="row">Keyboard Interaction: </td>
+          <th class="widget-keyboard-head" scope="row">Keyboard Interaction: </th>
           <td class="widget-keyboard">
             <p>Option 1: Listbox containing links</p>
             <ul>
@@ -1902,7 +1902,7 @@ This is because browser accessibility APIs do not support child elements contain
           </td>
         </tr>
         <tr>
-          <td class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </td>
+          <th class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </th>
           <td class="widget-aria">
             <p>Option 1: Listbox containing links</p>
             <ul>
@@ -1934,7 +1934,7 @@ This is because browser accessibility APIs do not support child elements contain
           </td>
         </tr>
         <tr>
-          <td class="widget-example-head" scope="row">Example: </td>
+          <th class="widget-example-head" scope="row">Example: </th>
           <td class="widget-example">
           <p class="ednote">Add link to example</p></td>
         </tr>
@@ -1944,17 +1944,17 @@ This is because browser accessibility APIs do not support child elements contain
   <hr/>
 <section class="widget" id="slider">
       <h3 class="widget-name">Slider</h3>
-      <table cellspacing="0" class="widget-features">
+      <table class="widget-features">
         <caption>
         Characteristics:
         </caption>
         <tbody>
           <tr>
-            <td class="widget-description-head" scope="row">Description: </td>
+            <th class="widget-description-head" scope="row">Description: </th>
             <td class="widget-description"> A slider is user input where the user selects a value from within a given range. Sliders typically have a slider thumb that when moved will change the current value within the bar or track. The thumb must be keyboard accessible.</td>
           </tr>
           <tr>
-            <td class="widget-keyboard-head" scope="row">Keyboard Interaction: </td>
+            <th class="widget-keyboard-head" scope="row">Keyboard Interaction: </th>
             <td class="widget-keyboard"><ul>
                 <li><kbd>Right Arrow</kbd> and <kbd>Up Arrow</kbd> increase the value of the slider.</li>
                 <li><kbd>Left Arrow</kbd> and <kbd>Down Arrow</kbd> decrease the value of the slider.</li>
@@ -1966,7 +1966,7 @@ This is because browser accessibility APIs do not support child elements contain
               <p class="note">There are cases where an author may wish up/down and home/end to move the slider thumb in the opposite direction from this note. The author can do this if they think this results in a better user experience.</p></td>
           </tr>
           <tr>
-            <td class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </td>
+            <th class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </th>
             <td class="widget-aria">
               <ul>
                 <li>The slider control has the role <a class="role-reference" href="#slider">slider</a>.  </li>
@@ -1978,7 +1978,7 @@ This is because browser accessibility APIs do not support child elements contain
             </td>
           </tr>
           <tr>
-            <td class="widget-example-head" scope="row">Example: </td>
+            <th class="widget-example-head" scope="row">Example: </th>
             <td class="widget-example">
             <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG taskforce is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
             <ul>
@@ -1995,17 +1995,17 @@ This is because browser accessibility APIs do not support child elements contain
     <hr/>
     <section class="widget" id="slidertwothumb">
       <h3 class="widget-name">Slider (Multi-Thumb)</h3>
-      <table cellspacing="0" class="widget-features">
+      <table class="widget-features">
         <caption>
         Characteristics:
         </caption>
         <tbody>
           <tr>
-            <td class="widget-description-head" scope="row">Description: </td>
+            <th class="widget-description-head" scope="row">Description: </th>
             <td class="widget-description"> A multi-thumb slider is a slider with multiple slider thumbs designed to change 2 or more different values for an object it controls. In most cases the user is selecting a maximum and minimum value to create a range, but in some cases the 2 (or more) values selected are completely independent.</td>
           </tr>
           <tr>
-            <td class="widget-keyboard-head" scope="row">Keyboard Interaction: </td>
+            <th class="widget-keyboard-head" scope="row">Keyboard Interaction: </th>
             <td class="widget-keyboard"><p>This range slider allows author to modify multiple values for an object.</p>
               <ul>
                 <li><kbd>Tab</kbd> to the first slider thumb.</li>
@@ -2027,7 +2027,7 @@ This is because browser accessibility APIs do not support child elements contain
 			  <p class="note">There are cases where an author may wish up/down and home/end to move the slider thumb in the opposite direction from this note. The author can do this if they think this results in a better user experience.</p></td>
           </tr>
           <tr>
-            <td class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </td>
+            <th class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </th>
             <td class="widget-aria">              <ul>
                 <li>Each slider control has the role <a class="role-reference" href="#slider">slider</a>.  </li>
                 <li>Each slider requires the <a class="property-reference" href="#aria-valuemin">aria-valuemin</a>, <a class="property-reference" href="#aria-valuemax">aria-valuemax</a>, and <a class="property-reference" href="#aria-valuenow">aria-valuenow</a> properties representing the minimum possible value of the slider, the maximum possible value, and the current value.  All of these are decimal numbers.  The maximum of the lower slider limits the minimum of the upper slider and vice versa.  </li>
@@ -2037,7 +2037,7 @@ This is because browser accessibility APIs do not support child elements contain
             </td>
           </tr>
           <tr>
-            <td class="widget-example-head" scope="row">Example: </td>
+            <th class="widget-example-head" scope="row">Example: </th>
             <td class="widget-example">
             <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG taskforce is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
             <ul>
@@ -2053,13 +2053,13 @@ This is because browser accessibility APIs do not support child elements contain
 <hr/>
   <section class="widget" id="spinbutton">
     <h3 class="widget-name">Spinbutton</h3>
-    <table cellspacing="0" class="widget-features">
+    <table class="widget-features">
       <caption>
       Characteristics:
       </caption>
       <tbody>
         <tr>
-          <td class="widget-description-head" scope="row">Description: </td>
+          <th class="widget-description-head" scope="row">Description: </th>
           <td class="widget-description"><p>A widget that allows users to choose a value from a set, or range, of discrete values. For example, select a number from 1 to 59 for the minute of an hour when setting an alarm.</p>
 
 <p>A spin button provides ways to easily increment and decrement the value. If the range is large, it may support changing the value by both a single step and by multiple steps at once. For instance, in the alarm example, the user may be able to move by 1 minute with the arrow keys and by 10 minutes with PageUp and PageDown.</p>
@@ -2067,7 +2067,7 @@ This is because browser accessibility APIs do not support child elements contain
 <p>A spinbutton usually includes a text field that displays the current value and allows users to directly edit it.</p> </td>
         </tr>
         <tr>
-          <td class="widget-keyboard-head" scope="row">Keyboard Interaction: </td>
+          <th class="widget-keyboard-head" scope="row">Keyboard Interaction: </th>
           <td class="widget-keyboard">
           <p>The associated text field generally supports standard text entry operations such as selection of characters, deletions, insertions, and caret movement using the <kbd>Right Arrow</kbd> and <kbd>Left Arrow</kbd> keys.  The exception is when the spinbutton's value space is restricted and the associated script limits the characters.  For example, an hour-and-minute spinner would allow only the digits 1-59, the colon ':', and the characters 'AM' and 'PM'.  If the user typed any other character, it would not change the contents of the text field nor the value of the spinbutton. </p>
           <ul>
@@ -2081,7 +2081,7 @@ This is because browser accessibility APIs do not support child elements contain
       </td>
         </tr>
         <tr>
-          <td class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </td>
+          <th class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </th>
           <td class="widget-aria">
             <ul>
               <li>The widget has the role <a class="role-reference" href="#spinbutton">spinbutton</a>.  </li>
@@ -2091,7 +2091,7 @@ This is because browser accessibility APIs do not support child elements contain
          </td>
         </tr>
         <tr>
-          <td class="widget-example-head" scope="row">Example: </td>
+          <th class="widget-example-head" scope="row">Example: </th>
           <td class="widget-example">
           <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG taskforce is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
             <ul>
@@ -2107,13 +2107,13 @@ This is because browser accessibility APIs do not support child elements contain
   <section class="widget" id="tabpanel">
     <h3 class="widget-name">Tab Panel</h3>
     <p class="note">This section has not been updated since it was integrated from APG version 1.0 -- an APG taskforce review is pending.</p>
-         <table cellspacing="0" class="widget-features">
+         <table class="widget-features">
           <caption>
           Characteristics:
           </caption>
           <tbody>
             <tr>
-              <td class="widget-description-head" scope="row">Description: </td>
+              <th class="widget-description-head" scope="row">Description: </th>
               <td class="widget-description"><p>A tabbed interface component is a container for resources associated with a tab. It is a set of layered pages where only one page is displayed at a time. The general look is similar to a file folder with a "tab" that contains the title of the folder. The tabs are arranged along one of the edges of the contents but most commonly are found at the top of the page. The user navigates and makes the contents of each page visible by interacting with the title "tab" of the page. Sometimes referred to as a tab container or tab panel. Terms for understanding Tab Panels include:</p>
                 <dl>
                   <dt>tabbed interface component</dt>
@@ -2128,7 +2128,7 @@ This is because browser accessibility APIs do not support child elements contain
                 <p>When the user activates a tab, the contents of the corresponding tab panel is made visible. The tab is considered "active". The tab remains active until another tab is activated. The active tab is placed into the tab order. Only the active tab should be in the tab order. A default tab is specified that is active when the tabbed interface component is initialized. A collection of tabs and their associated tab panels is a complex widget, because it performs show/hide actions as well as moving the user's point of regard around within the content. </p></td>
             </tr>
             <tr>
-              <td class="widget-keyboard-head" scope="row">Keyboard Interaction: </td>
+              <th class="widget-keyboard-head" scope="row">Keyboard Interaction: </th>
               <td class="widget-keyboard"><ul>
                   <li><kbd>Tab</kbd> - only the active tab is in the tab order. The user reaches the tabbed  panel component by pressing the tab key until the active tab title  receives focus. </li>
                   <li><kbd>Left Arrow</kbd> - with focus on a tab, pressing the left arrow will move focus to the  previous tab in the tab list and activate that tab. Pressing the left  arrow when the focus is on the first tab in the tab list will move  focus and activate the last tab in the list. </li>
@@ -2143,7 +2143,7 @@ This is because browser accessibility APIs do not support child elements contain
                 <p>Regarding <kbd>Control+PageUp</kbd>/<kbd>Control+PageDown</kbd>. This is currently implemented in Firefox to move  between browser tabs. Firefox also supports <kbd>Control+Tab</kbd> and <kbd>Control+Shift+Tab</kbd>  to move between tabs. Internet Explorer 7 also uses <kbd>Control+Tab</kbd> and  <kbd>Control+Shift+Tab</kbd>. There may be advantages to using <kbd>Control+PageUp</kbd>/<kbd>Control+PageDown</kbd> as the keys to change tabs since it is a recognizable keystroke to at  least Firefox users and is also supported by the Windows operating  system to move between panels in a tabbed dialog. The problem is that  if the user is within a tabbed interface control on a Web page, they  can not easily switch browser tabs without first moving focus outside  of the tabbed interface control. This may be acceptable. The other  issue is if the entire Web page is a tabbed interface control - in that  case the user could not ever switch browser tabs unless the control on  the Web page ignored the <kbd>Control+PageUp</kbd>/<kbd>Control+PageDown</kbd> keypress (and thus  letting the browser access it) when the first or last tab was reached. </p></td>
             </tr>
             <tr>
-              <td class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </td>
+              <th class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </th>
               <td class="widget-aria"><ul>
                   <li>The tabbed interface component contains tabs and their associated content panels.</li>
                   <li>The content panel uses the role <a class="role-reference" href="#tabpanel">tabpanel</a>. </li>
@@ -2154,7 +2154,7 @@ This is because browser accessibility APIs do not support child elements contain
                 </ul></td>
             </tr>
             <tr>
-              <td class="widget-example-head" scope="row">Example: </td>
+              <th class="widget-example-head" scope="row">Example: </th>
               <td class="widget-example">
               <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG taskforce is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
               <ul>
@@ -2170,17 +2170,17 @@ This is because browser accessibility APIs do not support child elements contain
   <section class="widget" id="toolbar">
     <h3 class="widget-name">Tool Bar</h3>
     <p class="note">This section has not been updated since it was integrated from APG version 1.0 -- an APG taskforce review is pending.</p>
-    <table cellspacing="0" class="widget-features">
+    <table class="widget-features">
       <caption>
       Characteristics:
       </caption>
       <tbody>
         <tr>
-          <td class="widget-description-head" scope="row">Description: </td>
+          <th class="widget-description-head" scope="row">Description: </th>
           <td class="widget-description"><p>A <a class="role-reference" href="#toolbar">toolbar</a> is a flat non-hierarchical collection of controls that provides quick access to a subset of the functions found in the <a class="role-reference" href="#menubar">menubar</a>/<a class="role-reference" href="#menu">menu</a> hierarchy.  Its purpose is to reduce effort in using these functions.  There should neither be too few nor too many controls within a toolbar.  When creating toolbars try to limit the number of items to approximately seven, as forcing users to navigate through an excessive number of items is a usability concern. Since navigation between toolbars is accomplished using a <kbd>Tab</kbd> keystroke, too few controls within a toolbar also creates a usability issue as it requires numerous <kbd>Tab</kbd> keystrokes to navigate between toolbars.</p><p>Authors must supply an <a class="property-reference" href="#aria-label">aria-label</a> property on each toolbar when their application contains more than one toolbar. The label provides information about the purpose of each toolbar; for example, an "Edit" toolbar that contains cut, copy, paste, clear, undo, and redo controls.  If the application has many toolbars, it is recommended that they be placed inside a container element with a role of <a class="role-reference" href="#group">group</a> to allow for keyboard navigation to the entire collection of toolbars.  It is recommended that authors provide a documented key combination that allows a user to move focus quickly to the tool bar from elsewhere within the web application, placing keyboard focus on a tool within the tool bar.</p><p>It is further recommended that authors provide access to these functions via a <a class="role-reference" href="#menubar">menubar</a> and <a class="role-reference" href="#menu">menu</a>s to avoid cluttering the user interface with a surplus of toolbars.</p></td>
         </tr>
         <tr>
-          <td class="widget-keyboard-head" scope="row">Keyboard Interaction: </td>
+          <th class="widget-keyboard-head" scope="row">Keyboard Interaction: </th>
           <td class="widget-keyboard"><ul>
             <li><kbd>Tab</kbd> moves focus to the first enabled toolbar button. </li>
             <li>A subsequent <kbd>Tab</kbd> moves focus out of the toolbar </li>
@@ -2198,7 +2198,7 @@ This is because browser accessibility APIs do not support child elements contain
               </ul></div></td>
         </tr>
         <tr>
-          <td class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </td>
+          <th class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </th>
           <td class="widget-aria">
             <ul>
               <li>The element has the role <a class="role-reference" href="#toolbar">toolbar</a>.  </li>
@@ -2209,7 +2209,7 @@ This is because browser accessibility APIs do not support child elements contain
           </td>
         </tr>
         <tr>
-          <td class="widget-example-head" scope="row">Example: </td>
+          <th class="widget-example-head" scope="row">Example: </th>
         	<td class="widget-example">
           <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG taskforce is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
         	    <ul>
@@ -2224,25 +2224,25 @@ This is because browser accessibility APIs do not support child elements contain
   <hr/>
   <section class="widget" id="tooltip">
     <h3 class="widget-name">Tooltip Widget</h3>
-     <table cellspacing="0" class="widget-features">
+     <table class="widget-features">
       <caption>
       Characteristics:
       </caption>
       <tbody>
         <tr>
-          <td class="widget-description-head" scope="row">Description: </td>
+          <th class="widget-description-head" scope="row">Description: </th>
           <td class="widget-description">Popup that displays a description for an element when a user hovers over or focuses on that element. It should popup automatically when the user gives input focus to the widget or   element with which it is associated. The tooltip widget can be dismissed by pressing the <kbd>Escape</kbd>   key or by other methods noted below. The tooltip widget differs from the <a href="#dialog_tooltip">Dialog (Tooltip)</a> in that it does not receive focus at   any time.
           <p class="note">The tooltip may appear immediately or there may be a small delay before the tooltip appears.</p>		  </td>
         </tr>
         <tr>
-          <td class="widget-keyboard-head" scope="row">Keyboard Interaction: </td>
+          <th class="widget-keyboard-head" scope="row">Keyboard Interaction: </th>
           <td class="widget-keyboard"><p><kbd>Escape</kbd>: Dismisses the Tooltip. </p>
 		  	<p class="note">The trigger element to which the tooltip is attached,   e.g., a link, should never actually lose input focus. </p>
 		  	<p class="note">If the tooltip is invoked when the trigger element   gets focus, then it should be dismissed when it no longer has focus (onBlur). If   the tooltip is invoked with mouseIn, then it should be dismissed with a   mouseOut. </p>		  	
 		  	<p class="note">If nested widgets use the same keys, e.g.,   <kbd>Escape</kbd>, then they should be handled in a Last In First Out (LIFO) manner. For example, an editable grid contains gridcells which contain date fields. The user invokes Actionable mode on the grid and then interacts with the Date Field to invoke the Date Picker. At this point the first press of the <kbd>Escape</kbd> key will close the Date Picker, the second press will exit Actionable mode and return to Navigation mode.</p></td>
         </tr>
         <tr>
-          <td class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </td>
+          <th class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </th>
           <td class="widget-aria">
             <ul>
               <li>Uses the WAI-ARIA role <span class="widget-description"><a href="#tooltip" class="role-reference">tooltip</a></span>. </li>
@@ -2251,7 +2251,7 @@ This is because browser accessibility APIs do not support child elements contain
           </td>
         </tr>
         <tr>
-          <td class="widget-example-head" scope="row">Example: </td>
+          <th class="widget-example-head" scope="row">Example: </th>
           <td class="widget-example">
           <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG taskforce is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
           <ul>
@@ -2268,17 +2268,17 @@ This is because browser accessibility APIs do not support child elements contain
   <section class="widget" id="treegrid">
     <h3 class="widget-name">Tree Grid</h3>
     <p class="note">This section has not been updated since it was integrated from APG version 1.0 -- an APG taskforce review is pending.</p>
-    <table cellspacing="0" class="widget-features">
+    <table class="widget-features">
     <caption>
 Characteristics:
     </caption>
     <tbody>
       <tr>
-        <td class="widget-description-head" scope="row">Description: </td>
+        <th class="widget-description-head" scope="row">Description: </th>
         <td class="widget-description">A grid whose rows can be expanded and collapsed in the same manner as for a tree. A Tree Grid is a combination of a Treeview and a Table with rows that are   expandable</td>
       </tr>
       <tr>
-        <td class="widget-keyboard-head" scope="row">Keyboard Interaction: </td>
+        <th class="widget-keyboard-head" scope="row">Keyboard Interaction: </th>
         <td class="widget-keyboard"><p>There are two modes of keyboard interaction: </p>
           <ul>
             
@@ -2341,7 +2341,7 @@ Characteristics:
      </td>
       </tr>
       <tr>
-        <td class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </td>
+        <th class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </th>
         <td class="widget-aria"><p>Uses the WAI-ARIA role <a href="#treegrid" class="role-reference">treegrid</a>, and requires the child element <a href="#row" class="role-reference">row</a>. By default a treegrid is considered to be editable, meaning all gridcells     are editable. </p>
           <ul>
             <li>To make a treegrid read-only, set <code>aria-readonly=&quot;true&quot;</code> on the document element having a     <code>role=&quot;treegrid.&quot;</code> This will make all gridcells read-only. </li>
@@ -2349,7 +2349,7 @@ Characteristics:
           </ul>          </td>
       </tr>
       <tr>
-        <td class="widget-example-head" scope="row">Example: </td>
+        <th class="widget-example-head" scope="row">Example: </th>
         <td class="widget-example">
         <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG taskforce is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
         <ul>
@@ -2364,13 +2364,13 @@ Characteristics:
   <section class="widget" id="TreeView">
 		<h3 class="widget-name">Tree View</h3>
 		<p class="note">This section has not been updated since it was integrated from APG version 1.0 -- an APG taskforce review is pending.</p>
-  	<table class="widget-features" cellspacing="0">
+  	<table class="widget-features">
 			<caption>
 				Characteristics:
 			</caption>
   		<tbody>
 				<tr>
-					<td class="widget-description-head" scope="row">Description: </td>
+					<th class="widget-description-head" scope="row">Description: </th>
 					<td class="widget-description"><p>A
 						tree view is a component to navigate hierarchical lists. It is made up
 						of one or more top level nodes. A node may have children or it may be
@@ -2408,7 +2408,7 @@ Characteristics:
 						</ul></td>
 				</tr>
 				<tr>
-					<td class="widget-keyboard-head" scope="row">Keyboard Interaction: </td>
+					<th class="widget-keyboard-head" scope="row">Keyboard Interaction: </th>
 					<td class="widget-keyboard"><ul>
 							<li> <kbd>Up Arrow</kbd> and <kbd>Down arrow</kbd> keys move between visible nodes. </li>
 						<li> <kbd>Left arrow</kbd> key on an expanded node closes the node. </li>
@@ -2428,13 +2428,13 @@ Characteristics:
 					</ul></td>
 				</tr>
 				<tr>
-					<td class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </td>
+					<th class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </th>
 					<td class="widget-aria">A tree view uses the WAI-ARIA role <a class="role-reference" href="#tree">tree</a>,
 						where tree is a main container element. A tree can itself contain
 						subtrees that may be collapsed and expanded; these have the role <a class="role-reference" href="#treeitem">treeitem</a>. A collection of treeitems to be expanded and collapsed are enclosed in a group. See the XHTML example in the [[WAI-ARIA]] specification.</td>
 				</tr>
 				<tr>
-					<td class="widget-example-head" scope="row">Example: </td>
+					<th class="widget-example-head" scope="row">Example: </th>
 					<td class="widget-example">
           <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG taskforce is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
           <ul>
@@ -2451,20 +2451,20 @@ Characteristics:
   <hr/>
   <section class="widget" id="windowsplitter">
     <h3 class="widget-name">Window Splitter</h3>
-     <table cellspacing="0" class="widget-features">
+     <table class="widget-features">
       <caption>
       Characteristics:
       </caption>
       <tbody>
         <tr>
-          <td class="widget-description-head" scope="row">Description: </td>
+          <th class="widget-description-head" scope="row">Description: </th>
           <td class="widget-description"><p>Visible separator between sections of a Window that is used to modify the size of the panes.</p><p>A Window Splitter can take one of two forms, namely, fixed size and variable size.
               </p>
 			  <p class="note">The group recommends unique naming of the window   splitter to avoid the confusion that could be created by multiple splitters   located on the same window. </p>
 </td>
         </tr>
         <tr>
-          <td class="widget-keyboard-head" scope="row">Keyboard Interaction: </td>
+          <th class="widget-keyboard-head" scope="row">Keyboard Interaction: </th>
           <td class="widget-keyboard">
             <ul>
               <li><kbd>Tab</kbd> - Like other widgets, the tab key is used to move focus   to the splitter. It should appear in the normal tab order of the page. A second   tab will move focus to the next tabbable item on the page. </li>
@@ -2480,7 +2480,7 @@ Characteristics:
           <p>&#160;</p></td>
         </tr>
         <tr>
-          <td class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </td>
+          <th class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </th>
           <td class="widget-aria"><p>Uses the WAI-ARIA role <span class="role-reference">separator</span>.</p>
           	<ul>
           		<li>Most window splitters are expandable and collapsible. Ensure that the splitter's <span class="state-reference">aria-expanded</span> state is updated accordingly.</li>
@@ -2490,7 +2490,7 @@ Characteristics:
           	</ul></td>
         </tr>
         <tr>
-          <td class="widget-example-head" scope="row">Example: </td>
+          <th class="widget-example-head" scope="row">Example: </th>
           <td class="widget-example">
           <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG taskforce is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
             <ul>
@@ -2506,17 +2506,17 @@ Characteristics:
   <section class="widget" id="wizard">
     <h3 class="widget-name">Wizard</h3>
     <p class="note">This section has not been updated since it was integrated from APG version 1.0 -- an APG taskforce review is pending.</p>
-     <table cellspacing="0" class="widget-features">
+     <table class="widget-features">
       <caption>
       Characteristics:
       </caption>
       <tbody>
         <tr>
-          <td class="widget-description-head" scope="row">Description: </td>
+          <th class="widget-description-head" scope="row">Description: </th>
           <td class="widget-description">A sequence of dialogs or panels guiding the user through performing a task. </td>
         </tr>
         <tr>
-          <td class="widget-keyboard-head" scope="row">Keyboard Interaction: </td>
+          <th class="widget-keyboard-head" scope="row">Keyboard Interaction: </th>
           <td class="widget-keyboard"><p>A Wizard can be done in several ways. Either is valid. </p>
             <ul>
               <li>Method 1: Like a <a href="#toolbar">Tool Bar</a> </li>
@@ -2541,11 +2541,11 @@ Characteristics:
           </td>
         </tr>
         <tr>
-          <td class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </td>
+          <th class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </th>
           <td class="widget-aria">&#160;</td>
         </tr>
         <tr>
-          <td class="widget-example-head" scope="row">Example: </td>
+          <th class="widget-example-head" scope="row">Example: </th>
           <td class="widget-example">
           <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG taskforce is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
           <p><a href="http://archive.dojotoolkit.org/nightly/dojotoolkit/dijit/tests/layout/StackContainer.html" title="StackContainer Demo" target="_blank" rel="nofollow">Dojo nightly</a></p></td>
@@ -2932,7 +2932,6 @@ Here the values 1 through 7 represent the days of the week and
       <h4> Using Tabindex to Manage Focus among Widgets</h4>
       <p>One requirement for supporting the keyboard is to allow focus to be set to any element. The <a href="http://www.w3.org/TR/html401/interact/forms.html#adef-tabindex" title="HTML4 tabindex attribute ">tabindex</a> attribute can be used to include additional elements in the tab order and to set programmatic focus to them. Originally implemented in Internet Explorer 5, the feature has been extended to Opera, Gecko-based user agents such as Firefox, and WebKit-based user agents such as Safari. The following table outlines the use of the tabindex attribute: </p>
       <div>
-        <table border="1" cellspacing="0" summary="three-column table with one heading row where column one lists the Tabindex attribute, column two indicates how the element takes focus, and column three describes the tab navigation">
           <caption>
           Use of the Tabindex Attribute
           </caption>
