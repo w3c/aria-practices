@@ -96,6 +96,12 @@
       "FPWD": "http://www.w3.org/TR/accname-aam-1.1/",
       "REC": "http://www.w3.org/TR/accname-aam-1.1/"
     },
+    coreMappingURLs: {
+      "ED": "http://w3c.github.io/aria/core-aam/core-aam.html",
+      "WD" : "http://www.w3.org/TR/core-aam-1.1/",
+      "FPWD": "http://www.w3.org/TR/core-aam-1.1/",
+      "REC": "http://www.w3.org/TR/core-aam-1.1/"
+    },
 /*
           alternateFormats: [
                 { uri: 'aria-practices-diff.html',
@@ -549,7 +555,7 @@ Frequent interruptions inhibit usability for people with visual and cognitive di
             <td class="widget-keyboard"><p>With focus on the button, pressing the <kbd>Space</kbd> key or <kbd>Enter</kbd> key activates the button. Focus should behave appropriately for the type of action being performed. For example: </p>
               <ul>
                 <li>If activating the button opens a dialog, the focus moves inside
-                  the dialog. (see <a href="#dialog">dialog pattern</a>)</li>
+                  the dialog. (see <a href="#dialog_nonmodal">dialog pattern</a>)</li>
                 <li>If activating the button closes a dialog, typically focus should
                   return to the button that opened the dialog unless the function performed
                   in the dialog context logically leads to a different element. For
@@ -4406,7 +4412,7 @@ navigation  recommended  here, it should be documented on the page.</p>
         behavior of the element. The user agent's default behavior at the
         document element forms the controller. </p>
       <figure id="fig1">
-        <img alt="Accessibility infomation mapped to a DOM element in the Document Object Model" height="512" longdesc="#ld_fig1" src="img/accessibleelement.png" width="640"/> 
+        <img alt="Accessibility infomation mapped to a DOM element in the Document Object Model" height="512" longdesc="#desc_fig1" src="img/accessibleelement.png" width="640"/> 
         <figcaption>Accessibility Interoperability at a <abbr title="document object model">DOM</abbr> Node without JavaScript</figcaption>
       </figure>
       <p id="desc_fig1">The box between the DOM node
@@ -4419,7 +4425,7 @@ navigation  recommended  here, it should be documented on the page.</p>
         information, and relations). For HTML and other W3C markup, the
         accessibility information provided solely depends upon what the element's tag name and any accessibility attributes that map to that tag provides. For  example, the accessible role of a table is <code>table</code>. The author provides  an accessible description by assigning a <code>title</code> attribute.</p>
       <p>In contrast, with JavaScript, user actions can trigger updates in the data and presentation, but the default accessibility information available in the element tags is no longer valid.</p>
-      <figure id="fig2"><img alt="DOM Element with JavaScript controller" height="502" longdesc="#ld_fig2" src="img/accessibleJSelement.png" width="476"/>
+      <figure id="fig2"><img alt="DOM Element with JavaScript controller" height="502" longdesc="#desc_fig2" src="img/accessibleJSelement.png" width="476"/>
         <figcaption>Accessibility
         Interoperability at a DOM Node with JavaScript</figcaption></figure>
       <p id="desc_fig2"> <a href="#fig2"></a> shows the same DOM node provided
@@ -4628,7 +4634,7 @@ navigation  recommended  here, it should be documented on the page.</p>
 	<p>At this time,W3C WAI Protocols and
 		Formats working group's primary focus is on extensions to HTML 4.01 and XHTML 1.X by extending the host language to include WAI-ARIA with a migration path to HTML 5. This will require the creation of new hybrid document type definitions (DTDs) that incorporate the extensions.  This work will be in the [[WAI-ARIA]] specification. WAI-ARIA will constitute
 		extensions  to fill most of the gaps needed to support
-		accessibility API infrastructures and dynamic (X)HTML content. The   comprehensive gap analysis of (X)HTML, used to form WAI-ARIA is found in <a href="#gapanalysishtml">Table 1.0</a> and how WAI-ARIA fills those gaps. In the future we hope to incorporate WAI-ARIA into many host languages to improve their accessibility. The critical extensions needed to make accessible dynamic Web content accessible, through rich interoperability with assistive technologies,
+		accessibility API infrastructures and dynamic (X)HTML content. The   comprehensive gap analysis of (X)HTML, used to form WAI-ARIA is found in <a href="#t1">Table 1.0</a> and how WAI-ARIA fills those gaps. In the future we hope to incorporate WAI-ARIA into many host languages to improve their accessibility. The critical extensions needed to make accessible dynamic Web content accessible, through rich interoperability with assistive technologies,
 		are summarized here: </p>
 	<blockquote>
 		<p> States, and Property attributes - This is the set of attribute  modifications to (X)HTML necessary to provide full keyboard focus and states and properties that may be mapped directly or indirectly to platform accessibility APIs to ensure full interoperability with assistive technologies for WAI-ARIA. </p>
@@ -5056,7 +5062,7 @@ navigation  recommended  here, it should be documented on the page.</p>
 		</li>
 		<li>
 			<p><strong>Build relationships.</strong></p>
-			<p>Look for <a href="#def_relationship" class="specref termref">relationships</a> between elements, and mark them using the most appropriate <a href="#def_property" class="specref termref">property</a> or attribute. For example, if a page contains both a search form and search results region, mark each container as a <code class="role-reference">region</code> and set the <a class="property-reference" href="#aria-controls">aria-controls</a> attribute of the search form to reference the search results. See <a href="#attrs_relationships">relationships in <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr></a>.</p>
+			<p>Look for <a href="#def_relationship" class="specref termref">relationships</a> between elements, and mark them using the most appropriate <a href="#def_property" class="specref termref">property</a> or attribute. For example, if a page contains both a search form and search results region, mark each container as a <code class="role-reference">region</code> and set the <a class="property-reference" href="#aria-controls">aria-controls</a> attribute of the search form to reference the search results. See <a href="#attrs_relationships" class="specref">relationships in <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr></a>.</p>
 			<p>Some relationships are determined automatically from the host language, like <code>label</code> elements associated with <code>input</code> elements in <abbr title="Hypertext Markup Language">HTML</abbr>.</p>
 		</li>
 		<li>
@@ -5191,7 +5197,7 @@ navigation  recommended  here, it should be documented on the page.</p>
 			</li>
 			<li>
 			  <p id="exampletree_states"><strong>Use states and properties in response to events</strong></p>
-				<p>Control the behavior of the element in response to user input <a href="#def_event" class="specref termref">events</a> such as from the keyboard and the mouse, which includes maintaining the current states and properties for that element. For example, a tree control will need to respond to click events on the expand/collapse triggers, and key events on the currently active descendant. Use device-independent events with supporting JavaScript to handle user interaction. For detailed examples of this please refer to the <a href="#aria_ex">Design Patterns section of the <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Authoring Practices</a> [<a href="#ref_ARIA-PRACTICES">ARIA-PRACTICES</a>].</p>
+				<p>Control the behavior of the element in response to user input <a href="#def_event" class="specref termref">events</a> such as from the keyboard and the mouse, which includes maintaining the current states and properties for that element. For example, a tree control will need to respond to click events on the expand/collapse triggers, and key events on the currently active descendant. Use device-independent events with supporting JavaScript to handle user interaction. For detailed examples of this please refer to the <a href="#aria_ex">Design Patterns section</a>.</p>
 			</li>
 		</ol>
 	</section>
@@ -5199,7 +5205,7 @@ navigation  recommended  here, it should be documented on the page.</p>
   <section class="appendix" id="reasons">
 	<h2> Reasons for Adopting WAI-ARIA </h2>
 	<p class="note">This section has not been updated since it was integrated from the ARIA 1.0 Primer -- an APG taskforce review is pending.</p>
-	<p>By adopting WAI-ARIA, both developers of static web  sites and of dynamic Internet applications can improve the usability, accessibility, and scalability of their products. Developers of  static web content can continue to follow the 1999 WCAG 1.0 standards, while improving usability and accessibility through the use of WAI-ARIA <a href="#landmark_roles">landmark roles</a>, <a class="property-reference" href="#aria-labelledby">aria-labelledby</a> relationships, and  properties like <a class="state-reference" href="#aria-invalid">aria-invalid</a> and <a class="property-reference" href="#aria-required">aria-required</a> that can apply to HTML form controls. In richer, dynamic content, developers create custom widgets like calendars and spreadsheets based on technologies such as Ajax and CSS; to achieve accessibility, they need to use WCAG 2.0. Previously, when delivering rich Internet applications to users, to comply with WCAG 1.0, developers resorted to providing alternative, static content. While such measures met the WCAG 1.0 requirements,  people using assistive technologies were not provided the richer user experience. When tables are used for layout, rather than CSS absolute positioning, historically, they have been problematic for assistive technologies to interpret. When the WAI-ARIA role of <a class="role-reference" href="#presentation">presentation</a> is used on such tables, the assistive technology ignores the table structure, providing a more accessible experience without requiring major recoding. </p>
+	<p>By adopting WAI-ARIA, both developers of static web  sites and of dynamic Internet applications can improve the usability, accessibility, and scalability of their products. Developers of  static web content can continue to follow the 1999 WCAG 1.0 standards, while improving usability and accessibility through the use of WAI-ARIA <a href="#landmark_roles" class="specref">landmark roles</a>, <a class="property-reference" href="#aria-labelledby">aria-labelledby</a> relationships, and  properties like <a class="state-reference" href="#aria-invalid">aria-invalid</a> and <a class="property-reference" href="#aria-required">aria-required</a> that can apply to HTML form controls. In richer, dynamic content, developers create custom widgets like calendars and spreadsheets based on technologies such as Ajax and CSS; to achieve accessibility, they need to use WCAG 2.0. Previously, when delivering rich Internet applications to users, to comply with WCAG 1.0, developers resorted to providing alternative, static content. While such measures met the WCAG 1.0 requirements,  people using assistive technologies were not provided the richer user experience. When tables are used for layout, rather than CSS absolute positioning, historically, they have been problematic for assistive technologies to interpret. When the WAI-ARIA role of <a class="role-reference" href="#presentation">presentation</a> is used on such tables, the assistive technology ignores the table structure, providing a more accessible experience without requiring major recoding. </p>
     <section id="tech_reasons">
 		<h3> Technical Benefits </h3>
 		<p>Consider a rich Internet application where developers   attempt to achieve keyboard accessibility using markup language. Without WAI-ARIA, results may be keyboard accessible but not highly usable; consider a user having to press Tab thirty times to put focus on a checkbox. To achieve keyboard accessibility in HTML without WAI-ARIA, developers must code active elements either as a link or as a form element. Accordingly, this means that no additional semantics are required or provided, other than that provided by the host language. In addition, WCAG 1.0 requires that content be renderable with Cascading Style Sheets turned off in the browser. This approach creates the following general usability problems:</p>
