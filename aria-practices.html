@@ -1266,6 +1266,7 @@ This is because browser accessibility APIs do not support child elements contain
                 <li>If one or more options are selected, focus is set on the first option in the list that is selected.</li>
                 </ul>
                 </li>
+                <li>Note that if browser focus is set to the container with role listbox then aria-activedescendant must be used to refer to the option with visual focus.</li>
                 <li><kbd>Up</kbd> and <kbd>Down</kbd> move focus up and down the list. If it is a single-select listbox, the selection state moves with the focus.</li>
                 <li>Type-ahead is recommended for all lists and required for long lists (typically more than 5 items):
                 <ul>
@@ -1285,9 +1286,6 @@ This is because browser accessibility APIs do not support child elements contain
                   <li><kbd>Shift+Up Arrow</kbd> and <kbd>Shift+Down Arrow</kbd> move and extend the selection. </li>
                   <li><kbd>Control</kbd>+<kbd>Shift</kbd>+<kbd>Home</kbd>: select the option with focus and all options up to the beginning of the list.</li>
                   <li><kbd>Control</kbd>+<kbd>Shift</kbd>+<kbd>End</kbd>: select the option with focus and all options down to the end of the list.</li>
-                  <li><kbd>Control</kbd>+<kbd>&#47;</kbd>: select all options</li>
-                  <li><kbd>Control</kbd>+<kbd>&#92;</kbd>: unselect all options</li>
-                  <li><kbd>Control</kbd>+<kbd>&#47;</kbd>: select all options</li>
                   </ul>
                   </li>
                   <li>Selection model 2 (modifier keys required):
