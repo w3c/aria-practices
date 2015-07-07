@@ -1,0 +1,20 @@
+[role="button"] {
+  display: inline-block;
+  padding: 5px 10px;
+  border: 2px solid #555;
+  border-radius: 5px;
+  color: #000;
+  background: #ddd;
+}
+
+[role="button"]:hover, 
+[role="button"]:focus, 
+[role="button"]:active {
+  background-color: #eee;
+	cursor: default;
+}
+
+[role="button"][aria-pressed="true"] {
+  color: #fff;
+  background: #333;
+}

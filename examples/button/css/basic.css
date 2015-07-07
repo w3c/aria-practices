@@ -1,0 +1,71 @@
+html, body
+{
+    font: normal 95% Helvetica, Verdana, Arial, sans-serif;
+    color: #000;
+    padding: 0;
+    margin: 0;
+}
+
+body
+{
+    padding: 0.5em 0.7em;
+    margin: 0 4em 0 1em;
+    max-width: 55em;
+    background: #fff;
+}
+
+h1, h2, h3
+{
+    font: normal 170%/100% Garamond, "Times New Roman", serif;
+    margin-bottom: 0;
+    color: 630;
+    background: transparent;
+}
+
+h1
+{
+    padding: 0.2em;
+}
+
+h2
+{
+    font: normal 150%/100% Garamond, "Times New Roman", serif;
+}
+
+h3 {
+    font: normal 140%/120% Garamond, "Times New Roman", serif;
+}
+
+a
+{
+    color: #009;
+    background: transparent;
+}
+
+a:visited
+{
+    color:#360;
+    background:transparent;
+}
+
+a:hover, a:focus, a:active
+{
+    color:#000;
+    background-color: #fc0;
+}
+
+img
+{
+    border: none;
+}
+
+code
+{
+    font: bold "Courier new", Courier, Monospace;
+}
+
+#example
+{
+    margin-top: 1em;
+    margin-bottom: 2em;
+}
