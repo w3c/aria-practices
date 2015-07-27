@@ -14,14 +14,23 @@
 
     <p>The example on this page is based on the Button design pattern in the <a href="https://rawgit.com/w3c/aria/master/practices/aria-practices.html">ARIA 1.1 Authoring Practices Guide</a>.</p>
 
-    <p><strong>Note:</strong> When using HTML use the <code>&lt;button&gt;</code> element. Do not re-purpose other elements to create buttons.</p>
+    <p><strong>Note:</strong> When using HTML use the <code>&lt;button&gt;</code> element. You <strong>should not</strong> re-purpose other elements to create buttons.</p>
 
     <h2>Examples</h2>
+    
+    <p>The following examples are composed by a native <code>&lt;button&gt;</code> element, a <code>&lt;div&gt;</code> functioning as a native button, and a <code>&lt;span&gt;</code> element that functions as a <a href="">toggle button</a>.</p>
 
-    <div id="example">
-        <button id="print">Print page …</button>
-        <span tabindex="0" role="button" id="toggle" aria-pressed="false">Mute</span>
-    </div>
+    <ul id="example">
+        <li>
+            <button id="print">Print page …</button>
+        </li>
+        <li>
+            <span tabindex="0" role="button" id="toggle" aria-pressed="false">Mute</span>
+        </li>
+        <li>
+            <div tabindex="0" role="button" id="button">Show alert</div>
+        </li>
+    </ul>
 
     <h2>Code</h2>
 
@@ -29,6 +38,9 @@
     <pre>
 <code>
 &lt;button id="print"&gt;Print page …&lt;/button&gt;
+
+&lt;div tabindex="0" role="button" id="button"&gt;Show alert&lt;/div&gt;
+
 &lt;span tabindex="0" role="button" id="toggle" aria-pressed="false"&gt;Mute&lt;/span&gt;
 </code>
 </pre>
@@ -36,58 +48,87 @@
     <h3>JavaScript</h3>
     <pre>
 <code>
-function init() {
-  var printButton = document.getElementById('print');
-  var toggleButton = document.getElementById('toggle');
-  
-  printButton.addEventListener('click', printButtonEventHandler);
-  printButton.addEventListener('keydown', printButtonEventHandler);
-  
-  toggleButton.addEventListener('click', toggleButtonEventHandler);
-  toggleButton.addEventListener('keydown', toggleButtonEventHandler);
-}
+  function init() {
+    // Create variables for the various buttons
+    var printButton = document.getElementById('print');
+    var alertButton =  document.getElementById('button');
+    var toggleButton = document.getElementById('toggle');
 
-function printButtonEventHandler(event) {
-  var type = event.type;
-  
-  if (type === 'keydown') {
-    if (event.keyCode === 13 || event.keyCode === 32) {
+    // Add event listeners to the various buttons
+    printButton.addEventListener('click', printButtonEventHandler);
+    printButton.addEventListener('keydown', printButtonEventHandler);
+
+    alertButton.addEventListener('click', alertButtonEventHandler);
+    alertButton.addEventListener('keydown', alertButtonEventHandler);
+
+    toggleButton.addEventListener('click', toggleButtonEventHandler);
+    toggleButton.addEventListener('keydown', toggleButtonEventHandler);
+  }
+
+  function printButtonEventHandler(event) {
+    var type = event.type;
+
+    // Grab the keydown and click events
+    if (type === 'keydown') {
+      // If either enter or space is pressed, execute the funtion
+      if (event.keyCode === 13 || event.keyCode === 32) {
+        window.print();
+
+        event.preventDefault();
+      }
+    } else if (type === 'click') {
       window.print();
-      
-      event.preventDefault();
     }
-  } else if (type === 'click') {
-    window.print();
   }
-}
 
-function toggleButtonEventHandler(event) {
-  var type = event.type;
-  
-  if (type === 'keydown') {
-    if (event.keyCode === 13 || event.keyCode === 32) {
+  function alertButtonEventHandler(event) {
+    var type = event.type;
+    var message = 'Hej, hello, ciao, こんにちは';
+
+    // Grab the keydown and click events
+    if (type === 'keydown') {
+      // If either enter or space is pressed, execute the funtion
+      if (event.keyCode === 13 || event.keyCode === 32) {
+        alert(message);
+
+        event.preventDefault();
+      }
+    } else if (type === 'click') {
+      alert(message);
+    }
+  }
+
+  function toggleButtonEventHandler(event) {
+    var type = event.type;
+
+    // Grab the keydown and click events
+    if (type === 'keydown') {
+      // If either enter or space is pressed, execute the funtion
+      if (event.keyCode === 13 || event.keyCode === 32) {
+        toggleButtonState(event);
+
+        event.preventDefault();
+      }
+    } else if (type === 'click') {
       toggleButtonState(event);
-      
-      event.preventDefault();
     }
-  } else if (type === 'click') {
-    toggleButtonState(event);
   }
-}
 
-function toggleButtonState(event) {
-  var button = event.target;
-  var currentState = button.getAttribute('aria-pressed');
-  var newState = 'true';
-  
-  if (currentState === 'true') {
-    newState = 'false';
+  function toggleButtonState(event) {
+    var button = event.target;
+    var currentState = button.getAttribute('aria-pressed');
+    var newState = 'true';
+
+    // If aria-pressed is set to true, set newState to false
+    if (currentState === 'true') {
+      newState = 'false';
+    }
+
+    // Set the new aria-pressed state on the button
+    button.setAttribute('aria-pressed', newState);
   }
-  
-  button.setAttribute('aria-pressed', newState);
-}
 
-window.onload = init;
+  window.onload = init;
 </code>
 </pre>
 

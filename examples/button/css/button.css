@@ -7,11 +7,14 @@
   background: #ddd;
 }
 
-[role="button"]:hover, 
-[role="button"]:focus, 
-[role="button"]:active {
+[role="button"]:hover,
+[role="button"]:focus {
   background-color: #eee;
 	cursor: default;
+}
+
+[role="button"]:active {
+  background-color: #bbb;
 }
 
 [role="button"][aria-pressed="true"] {
