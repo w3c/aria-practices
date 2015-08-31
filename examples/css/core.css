@@ -19,7 +19,7 @@ h3 {
   font: normal 170%/100% Helvetica, Verdana, Arial, sans-serif;
   margin-top: 1em;
   margin-bottom: 0;
-  color: 630;
+  color: #630;
   background: transparent;
 }
 
@@ -59,11 +59,12 @@ img {
 }
 
 code {
-  font: bold "Courier new", Courier, Monospace;
+  font-family: "Courier new", Courier, Monospace;
+  font-weight: bold;
 }
 
 .sourcecode {
-  font: bold "Courier new", Courier, Monospace;
+  font-family: "Courier new", Courier, Monospace;
   margin: 0;
   padding: 1em;
   border: thin solid black;

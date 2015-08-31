@@ -82,6 +82,16 @@ aria.widget.SourceCode.prototype.make = function() {
  
 aria.widget.SourceCode.prototype.createCode = function(location, spaces, node) {
 
+  function hasText(s) {
+    if (typeof s !== 'string') return false;
+  
+    for(var i = 0; i < s.length; i++) {
+      var c = s[i]
+      if (c !== ' ' && c !== '\n' && c !== '\r') return true;
+    }
+    return false;
+  }
+
   var i;
 
   var node_name = node.nodeName.toLowerCase();
@@ -93,7 +103,7 @@ aria.widget.SourceCode.prototype.createCode = function(location, spaces, node) {
      if( !(((node_name == "script" ) || (node_name = "style")) && (node.attributes[i].nodeName.toLowerCase() == "id") ) ) { 
           
        location.innerHTML = location.innerHTML + "&nbsp;" + node.attributes[i].nodeName + "=\"";
-       location.innerHTML = location.innerHTML + node.attributes[i].nodeValue + "\"";
+       location.innerHTML = location.innerHTML + node.attributes[i].value + "\"";
      
        if( ((i + 1) != node.attributes.length) && (node.attributes.length > 2 ) ) {
 
@@ -114,17 +124,19 @@ aria.widget.SourceCode.prototype.createCode = function(location, spaces, node) {
 
   for(i=0; i < node.childNodes.length; i++ ) {
   
-    switch( node.childNodes[i].nodeType ) {
+    var n = node.childNodes[i];
+  
+    switch( n.nodeType ) {
     
       case Node.ELEMENT_NODE:
-
-         this.createCode( location, spaces + "&nbsp;&nbsp;", node.childNodes[i]);
+         this.createCode( location, spaces + "&nbsp;&nbsp;", n);
            count++;
          break;
 
       case Node.TEXT_NODE:
-
-           location.innerHTML = location.innerHTML + "<br/>" + spaces + "&nbsp;&nbsp;" + node.childNodes[i].nodeValue;
+           if (hasText(n.nodeValue)) {
+             location.innerHTML = location.innerHTML + "<br/>" + spaces + "&nbsp;&nbsp;" + n.nodeValue;
+           }  
            count++;
          break;
 
