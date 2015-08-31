@@ -16,7 +16,8 @@ body {
 h1,
 h2,
 h3 {
-  font: normal 170%/100% Garamond, "Times New Roman", serif;
+  font: normal 170%/100% Helvetica, Verdana, Arial, sans-serif;
+  margin-top: 1em;
   margin-bottom: 0;
   color: 630;
   background: transparent;
@@ -27,11 +28,12 @@ h1 {
 }
 
 h2 {
-  font: normal 150%/100% Garamond, "Times New Roman", serif;
+  font: normal 150%/100% Helvetica, Verdana, Arial, sans-serif;
+  margin-top: 2em;
 }
 
 h3 {
-  font: normal 140%/120% Garamond, "Times New Roman", serif;
+  font: normal 140%/120% Helvetica, Verdana, Arial, sans-serif;
 }
 
 a {
@@ -58,6 +60,15 @@ img {
 
 code {
   font: bold "Courier new", Courier, Monospace;
+}
+
+.sourcecode {
+  font: bold "Courier new", Courier, Monospace;
+  margin: 0;
+  padding: 1em;
+  border: thin solid black;
+  background: #EEEEEE;
+  font-size: 120%;
 }
 
 #example {
