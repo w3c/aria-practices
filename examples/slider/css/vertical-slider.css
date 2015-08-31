@@ -1,21 +1,21 @@
 /* CSS Document */
 
-div.aria-widget-slider {
+div.aria-widget-vertical-slider {
   margin-top: 0.5em;
   margin-bottom: 0.5em;
-  height: 4em;
 }
 
-div.aria-widget-slider .rail {
+div.aria-widget-vertical-slider .rail {
   margin: 2px;
   padding: 1px;
   background-color: #eee;
   border: 1px solid #888;
   position: relative;
-  top: 2em;
+  left: 3.8em;
+  
 }
 
-div.aria-widget-slider .thumb  {
+div.aria-widget-vertical-slider .thumb  {
   border: 1px solid #888;
   border-top-color:  #666;
   border-left-color: #666;
@@ -23,11 +23,14 @@ div.aria-widget-slider .thumb  {
   position: relative;
 }
 
-div.aria-widget-slider .value  {
-  width:      2em;
-  text-align: right;
-  position: absolute;
+div.aria-widget-vertical-slider .label,
+div.aria-widget-vertical-slider .value  {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  text-align: center;
+  width: 8em;
 }
+
 
 div.focus .thumb  {
   border: 1px solid #444;
@@ -37,14 +40,16 @@ div.focus .thumb  {
 
 div.focus .rail {
   background-color: #CCC;
+  width: 8px;
 }
 
+.label {
+  font-weight: bold;
+  font-size: 110%;
+}
 
-
-label {
-  display: block;
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
+#id_kbd {
+  clear: both;
 }
 
 
