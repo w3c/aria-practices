@@ -2,13 +2,13 @@ span
 {
     color: #009;
     background: transparent;
-	text-decoration: underline;
+    text-decoration: underline;
 }
 
 span:hover, span:focus, span:active
 {
     color:#000;
     background-color: #fc0;
-	cursor: pointer;
+    cursor: pointer;
 }
 
