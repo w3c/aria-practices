@@ -1,14 +1,22 @@
-span
+[role="link"]
 {
     color: #009;
     background: transparent;
     text-decoration: underline;
+    border: thin solid transparent;
 }
 
-span:hover, span:focus, span:active
+[role="link"]:hover, [role="link"]:focus, [role="link"]:active
 {
     color:#000;
-    background-color: #fc0;
+    border-color: #fc0;
     cursor: pointer;
 }
 
+[role="link"].w3c {
+  display: block;
+  background-repeat: no-repeat;
+  background-image: url('../images/w3c-logo.png');
+  width:151px;
+  height:102px; 
+}

@@ -20,36 +20,81 @@
 
     <p><strong>Note:</strong> When using HTML use the <code>&lt;a&gt;</code> element. It is recommended that authors not re-purpose other elements to create links.</p>
 
-    <h2>Example Links</h2>
+    <h2 id="id1">Example Links</h2>
 
     <div id="example">
     
-      <ul>
-        <li>
-          <span tabindex="0" 
+    <table aria-labelledby="id1">
+      <thead>
+        <tr>
+          <th>Technique</th> 
+          <th>Link</th>
+          <th>Accessibility Features</th>
+        </tr>  
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>span</code> element with text content</td>
+          <td>
+            <span tabindex="0" 
+                role="link" 
+                onclick="goToLink(event, 'http://www.w3.org/')" 
+                onKeyDown="goToLink(event, 'http://www.w3.org/')">
+              W3C website
+            </span>
+          </td>
+         <td>
+            <ul>
+              <li><code>span</code> element with <code>role="link"</code>.</li>
+              <li><code>span</code> element has <code>onclick</code> event to handle mouse clicks.</li>
+              <li><code>span</code> element has <code>onkeydown</code> event to handle keyboard support.</li>
+              <li><code>span</code> element has <code>tabindex="0"</code> to become part of tab order of the page.</li>
+              <li>Accessible name (e.g. what a screen reader will say) from child text content of <code>span</code> element.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+        <td><code>img</code> element</td>
+        <td>
+          <img tabindex="0" 
+          onclick="goToLink(event, 'http://www.w3.org/')" 
+          onKeyDown="goToLink(event, 'http://www.w3.org/')"
+          role="link" 
+          src="images/w3c-logo.png" alt="W3C Website">
+        </td>
+        <td>
+        <ul>
+              <li><code>img</code> element with <code>alt</code> attribute.</li>
+              <li><code>img</code> element has <code>onclick</code> event to handle mouse clicks.</li>
+              <li><code>img</code> element has <code>onkeydown</code> event to handle keyboard support.</li>
+              <li><code>img</code> element has <code>tabindex="0"</code> to become part of tab order of the page.</li>
+              <li>Accessible name from <code>alt</code> attribute.</li>
+        </ul>
+        </td>
+        </tr>
+        <tr>
+          <td>Background image</td>
+          <td>
+              <span aria-label="W3C website"
+              tabindex="0" 
               role="link" 
-              onclick="goToLink(event, 'http://www.w3.org/')" 
-              onKeyDown="goToLink(event, 'http://www.w3.org/')">
-            W3C website
-          </span>
-        </li>
-        <li>
-          <span tabindex="0" 
-              role="link" 
-              onclick="goToLink(event, 'http://www.w3.org/TR/wai-aria')" 
-              onKeyDown="goToLink(event, 'http://www.w3.org/TR/wai-aria')">
-            W3C ARIA Specification
-          </span>
-        </li>  
-        <li>
-          <span tabindex="0" 
-              role="link" 
+              class="w3c"
               onclick="goToLink(event, 'http://www.w3.org/TR/wai-aria-practices/')" 
               onKeyDown="goToLink(event, 'http://www.w3.org/TR/wai-aria-practices/')">
-            W3C ARIA Authoring Practices
           </span>
-        </li>  
-      </ul> 
+          </td>
+          <td>
+            <ul>
+              <li><code>span</code> element with background image and with <code>role="link"</code>.</li>
+              <li><code>span</code> element has <code>onclick</code> event to handle mouse clicks.</li>
+              <li><code>span</code> element has <code>onkeydown</code> event to handle keyboard support.</li>
+              <li><code>span</code> element has <code>tabindex="0"</code> to become part of tab order of the page.</li>
+              <li>Accessible name from <code>aria-label</code> attribute.</li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>  
     </div>
 
     <h2 id="id_kbd">Keyboard Support</h2>
@@ -87,6 +132,13 @@
           <td>span</td>
           <td>Identify element with the link behavior</td>
         </tr>
+        <tr>
+          <td></td>
+          <td>aria-label</td>
+          <td>span</td>
+          <td>Define accessible name for link.</td>
+        </tr>
+        
       </tbody>
     </table>
     
