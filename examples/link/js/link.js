@@ -1,20 +1,12 @@
-function init()
-{
-	document.getElementById("link").addEventListener("click", fetchResource);
-	document.getElementById("link").addEventListener("keydown", fetchResource);
+function goToLink(event, url) {
+  var type = event.type
+
+  if ((type === 'click') || 
+      (type === "keydown" && event.keyCode === 13)) {
+      
+    window.location.href = url 
+
+    event.preventDefault()
+    event.stopPropagation()
+  }
 }
-
-function fetchResource(event)
-{
-	var type = event.type;
-	
-	if (type === "keydown" && event.keyCode !== 13)
-	{
-		return true
-	}
-
-	window.location.href = 'http://w3.org/';
-	event.preventDefault();
-}
-
-window.onload = init;
