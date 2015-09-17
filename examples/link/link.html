@@ -73,12 +73,33 @@
         </td>
         </tr>
         <tr>
-          <td>Background image</td>
+          <td>Content</td>
           <td>
               <span aria-label="W3C website"
               tabindex="0" 
               role="link" 
-              class="w3c"
+              class="w3c1"
+              onclick="goToLink(event, 'http://www.w3.org/TR/wai-aria-practices/')" 
+              onKeyDown="goToLink(event, 'http://www.w3.org/TR/wai-aria-practices/')">
+          </span>
+          </td>
+          <td>
+            <ul>
+              <li><code>span</code> element with background image and with <code>role="link"</code>.</li>
+              <li><code>span</code> element has <code>onclick</code> event to handle mouse clicks.</li>
+              <li><code>span</code> element has <code>onkeydown</code> event to handle keyboard support.</li>
+              <li><code>span</code> element has <code>tabindex="0"</code> to become part of tab order of the page.</li>
+              <li>Accessible name from <code>aria-label</code> attribute.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>Background Image</td>
+          <td>
+              <span aria-label="W3C website"
+              tabindex="0" 
+              role="link" 
+              class="w3c2"
               onclick="goToLink(event, 'http://www.w3.org/TR/wai-aria-practices/')" 
               onKeyDown="goToLink(event, 'http://www.w3.org/TR/wai-aria-practices/')">
           </span>
