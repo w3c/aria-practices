@@ -1,18 +1,24 @@
 function init() {
   // Create variables for the various buttons
   var printButton = document.getElementById('print');
-  var alertButton =  document.getElementById('button');
   var toggleButton = document.getElementById('toggle');
+  var alert1Button =  document.getElementById('alert1');
+  var alert2Button =  document.getElementById('alert2');
 
   // Add event listeners to the various buttons
   printButton.addEventListener('click', printButtonEventHandler);
   printButton.addEventListener('keydown', printButtonEventHandler);
 
-  alertButton.addEventListener('click', alertButtonEventHandler);
-  alertButton.addEventListener('keydown', alertButtonEventHandler);
-
   toggleButton.addEventListener('click', toggleButtonEventHandler);
   toggleButton.addEventListener('keydown', toggleButtonEventHandler);
+
+  alert1Button.addEventListener('click', alertButtonEventHandler);
+  alert1Button.addEventListener('keydown', alertButtonEventHandler);
+
+  alert2Button.addEventListener('click', alertButtonEventHandler);
+  alert2Button.addEventListener('keydown', alertButtonEventHandler);
+
+  
 }
 
 function printButtonEventHandler(event) {
