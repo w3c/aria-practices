@@ -1362,7 +1362,6 @@ This is because browser accessibility APIs do not support child elements contain
 </section>
   <hr/>
 <section class="widget" id="menu"><h3 class="widget-name">Menu or Menu bar</h3>
-<p class="note">This section has been partially revised and reviewed since it was integrated from APG version 1.0 -- a complete APG taskforce review is pending.</p>
     <table class="widget-features">
       <caption>
       Characteristics:
@@ -1381,7 +1380,7 @@ This is because browser accessibility APIs do not support child elements contain
           <td class="widget-keyboard">
 			<p>When a menu opens and its items are arranged vertically:</p>
               <ul>
-              <li>Keyboard focus is placed on the first item. All items in a menu are focusable as described in <a href="#kbd_general_within"></a></li>
+              <li>Keyboard focus is placed on the first item. All items in a menu are focusable as described in <a href="#kbd_general_within"></a>.</li>
                 <li><kbd>Enter</kbd> and optionally <kbd>Space</kbd>: activate the menu item with focus (perform the  command or open the submenu associated with the menu item). </li>
                 <li><kbd>Down Arrow</kbd> and <kbd>Up Arrow</kbd>: move focus to the next and previous items, respectively, wrapping from last to first and vice versa. </li>
                 <li><kbd>Right Arrow</kbd>: Perform the first of the following actions that applies:
@@ -1419,16 +1418,34 @@ This is because browser accessibility APIs do not support child elements contain
         <tr>
           <th class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </th>
           <td class="widget-aria"><ul>
-            <li>A menu is a container of options. The container may have a role of <a href="#menu" class="role-reference">menu</a> or   <a href="#menubar" class="role-reference">menubar</a> depending on your implementation. A menubar is usually rendered horizontally. </li>
-            <li>The menu contains elements with roles: <a href="#menuitem" class="role-reference">menuitem</a>,   <a href="#menuitemcheckbox" class="role-reference">menuitemcheckbox</a>, or <a href="#menuitemradio" class="role-reference">menuitemradio</a> depending on your implementation. </li>
-            <li>If activation of a <a href="#menuitem" class="role-reference">menuitem</a> produces a popup menu, then the menuitem has <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set to &quot;true&quot; so that an assistive technology knows that the menuitem has a sub menu.</li>
-            <li><a href="#menuitemcheckbox" class="role-reference">menuitemcheckbox</a> and <a href="#menuitemradio" class="role-reference">menuitemradio</a> set <a href="#aria-checked" class="property-reference">aria-checked</a> to &quot;true&quot; when   checked. </li>
-			<li>If a menu item is disabled then set <a href="#aria-disabled" class="state-reference">aria-disabled</a> to &quot;true&quot;</li>
-            <li>Menu focus is managed by the menu using <code>tabindex</code> or <a href="#aria-activedescendant" class="property-reference">aria-activedescendant</a>. </li>
-            <li>A menuitem within a menu or menubar may appear in the tab order only if it   is not within a popup menu. </li>
-            <li>Each menuitem is usually a DOM child of its menu or menubar in the DOM tree. </li>
-            <li>A menuitem that is not a DOM child of the menu or menubar is referenced  by the menu or menubar using <a href="#aria-owns" class="property-reference">aria-owns</a> and will appear in order at the end of   the list of menuitems. Therefore, ensure that navigation to each menuitem follows this order. </li>
-            <li>Grouping of menuitems in a <a href="#menu" class="role-reference">menu</a> or <a href="#menubar" class="role-reference">menubar</a> is performed by introducing an element with the role of <a href="#separator" class="role-reference">separator</a>. A <a href="#separator" class="role-reference">separator</a> delineates groups of menu items within a <a href="#menu" class="role-reference">menu</a> or <a href="#menubar" class="role-reference">menubar</a>. A <a href="#separator" class="role-reference">separator</a> is not placed in the navigation order and it is in no way interactive. Authors provide an <a href="#aria-orientation" class="property-reference">aria-orientation</a> consistent with the separator's orientation in the menu or menubar. Since the separator is not navigable it does not support the <a href="#aria-expanded" class="state-reference">aria-expanded</a> state. It is recommended that when grouping menu items of type <a href="#menuitemradio" class="role-reference">menuitemradio</a> that they all be grouped together preceding or following a separator. </li></ul></td>
+            <li>A menu is a container of items that represent choices. The element serving as the menu has a role of either <a href="#menu" class="role-reference">menu</a> or   <a href="#menubar" class="role-reference">menubar</a>. </li>
+            <li>The items contained in a menu are child elements of the containing menu or menubar and have any of the following roles:
+            <ul>
+             <li><a href="#menuitem" class="role-reference">menuitem</a></li>
+             <li><a href="#menuitemcheckbox" class="role-reference">menuitemcheckbox</a></li>
+             <li><a href="#menuitemradio" class="role-reference">menuitemradio</a></li>
+                         </ul>
+             </li> One of the following approaches is used to enable scripts to move focus among items in a menu as described in <a href="#kbd_general_within"></a>:
+             <ul>
+<li>The menu container has <code>tabindex</code> set to &quot;-1&quot; and <a href="#aria-activedescendant" class="property-reference">aria-activedescendant</a> set to the ID of the focused item. </li>
+<li>Each item in the menu has <code>tabindex</code> set to &quot;-1&quot;, except in a menubar, where the first item has <code>tabindex</code> set to &quot;0&quot;. </li>
+</ul>              
+             </li>
+            <li>If activating a <a href="#menuitem" class="role-reference">menuitem</a> opens a submenu, the menuitem has <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set to &quot;true&quot;. </li>
+            <li>When a <a href="#menuitemcheckbox" class="role-reference">menuitemcheckbox</a> or <a href="#menuitemradio" class="role-reference">menuitemradio</a> is checked, <a href="#aria-checked" class="property-reference">aria-checked</a> is set &quot;true&quot;. </li>
+			<li>When a menu item is disabled, <a href="#aria-disabled" class="state-reference">aria-disabled</a> is set &quot;true&quot;.</li>
+            <li>A menuitem that is not a DOM child of the menu or menubar is referenced  by the menu or menubar using <a href="#aria-owns" class="property-reference">aria-owns</a> and will appear in order at the end of   the list of menuitems. 
+            Therefore, ensure that navigation to each menuitem follows this order. 
+            </li>
+            <li>Grouping of menuitems in a <a href="#menu" class="role-reference">menu</a> or <a href="#menubar" class="role-reference">menubar</a> is performed by introducing an element with the role of <a href="#separator" class="role-reference">separator</a>.
+             A <a href="#separator" class="role-reference">separator</a> delineates groups of menu items within a <a href="#menu" class="role-reference">menu</a> or <a href="#menubar" class="role-reference">menubar</a>.
+              A <a href="#separator" class="role-reference">separator</a> is not placed in the navigation order and it is in no way interactive.
+               Authors provide an <a href="#aria-orientation" class="property-reference">aria-orientation</a> consistent with the separator's orientation in the menu or menubar. 
+               Since the separator is not navigable it does not support the <a href="#aria-expanded" class="state-reference">aria-expanded</a> state.
+                It is recommended that when grouping menu items of type <a href="#menuitemradio" class="role-reference">menuitemradio</a> that they all be grouped together preceding or following a separator. 
+                </li>
+                </ul>
+                </td>
         </tr>
         <tr>
           <th class="widget-example-head" scope="row">Example: </th>
