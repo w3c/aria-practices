@@ -1403,9 +1403,9 @@ This is because browser accessibility APIs do not support child elements contain
                 <li><kbd>Shift</kbd>+<kbd>Tab</kbd>: Close the menu and all open parent menus and move focus to the previous element in the tab sequence.</li>
               </ul>
           <ol class="note">
+          <li>The keyboard behaviors of a menubar are the same as other menus except that a menubar is typically visually persistent so the first item is in the tab sequence and <kbd>Escape</kbd>, <kbd>Tab</kbd>, and <kbd>Shift</kbd>+<kbd>Tab</kbd> do not close it. </li>
           <li>If the items in a menu or menubar are arranged horizontally:
           <ol>
-          <li>The keyboard behaviors of a menubar are the same as other menus except that a menubar is typically visually persistent so the first item is in the tab sequence and <kbd>Escape</kbd>, <kbd>Tab</kbd>, and <kbd>Shift</kbd>+<kbd>Tab</kbd> do not close it. </li>
           <li> <kbd>Right Arrow</kbd> performs as <kbd>Down Arrow</kbd> is described above and vice versa. </li>
           <li> <kbd>Left Arrow</kbd> performs as <kbd>Up Arrow</kbd> is described above and vice versa. </li>
           </ol>
@@ -1425,25 +1425,19 @@ This is because browser accessibility APIs do not support child elements contain
              <li><a href="#menuitemcheckbox" class="role-reference">menuitemcheckbox</a></li>
              <li><a href="#menuitemradio" class="role-reference">menuitemradio</a></li>
                          </ul>
-             </li> One of the following approaches is used to enable scripts to move focus among items in a menu as described in <a href="#kbd_general_within"></a>:
+             </li>
+              <li>One of the following approaches is used to enable scripts to move focus among items in a menu as described in <a href="#kbd_general_within"></a>:
              <ul>
 <li>The menu container has <code>tabindex</code> set to &quot;-1&quot; and <a href="#aria-activedescendant" class="property-reference">aria-activedescendant</a> set to the ID of the focused item. </li>
 <li>Each item in the menu has <code>tabindex</code> set to &quot;-1&quot;, except in a menubar, where the first item has <code>tabindex</code> set to &quot;0&quot;. </li>
 </ul>              
              </li>
+             <li>If <a href="#aria-owns" class="property-reference">aria-owns</a> is set on the menu container to include elements that are not DOM children of the container, those elements will appear in the reading order in the sequence they are referenced and after any items that are DOM children. Scripts that manage focus need to ensure the visual focus order matches this assistive technology reading order. </li>
             <li>If activating a <a href="#menuitem" class="role-reference">menuitem</a> opens a submenu, the menuitem has <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set to &quot;true&quot;. </li>
             <li>When a <a href="#menuitemcheckbox" class="role-reference">menuitemcheckbox</a> or <a href="#menuitemradio" class="role-reference">menuitemradio</a> is checked, <a href="#aria-checked" class="property-reference">aria-checked</a> is set &quot;true&quot;. </li>
 			<li>When a menu item is disabled, <a href="#aria-disabled" class="state-reference">aria-disabled</a> is set &quot;true&quot;.</li>
-            <li>A menuitem that is not a DOM child of the menu or menubar is referenced  by the menu or menubar using <a href="#aria-owns" class="property-reference">aria-owns</a> and will appear in order at the end of   the list of menuitems. 
-            Therefore, ensure that navigation to each menuitem follows this order. 
-            </li>
-            <li>Grouping of menuitems in a <a href="#menu" class="role-reference">menu</a> or <a href="#menubar" class="role-reference">menubar</a> is performed by introducing an element with the role of <a href="#separator" class="role-reference">separator</a>.
-             A <a href="#separator" class="role-reference">separator</a> delineates groups of menu items within a <a href="#menu" class="role-reference">menu</a> or <a href="#menubar" class="role-reference">menubar</a>.
-              A <a href="#separator" class="role-reference">separator</a> is not placed in the navigation order and it is in no way interactive.
-               Authors provide an <a href="#aria-orientation" class="property-reference">aria-orientation</a> consistent with the separator's orientation in the menu or menubar. 
-               Since the separator is not navigable it does not support the <a href="#aria-expanded" class="state-reference">aria-expanded</a> state.
-                It is recommended that when grouping menu items of type <a href="#menuitemradio" class="role-reference">menuitemradio</a> that they all be grouped together preceding or following a separator. 
-                </li>
+            <li>Items in a menu may be divided into groups by placing an element with a role of <a href="#separator" class="role-reference">separator</a> between groups. For example, this technique should be used when a menu contains a set of <a href="#menuitemradio" class="role-reference">menuitemradio</a> items. </li>
+              <li>A <a href="#separator" class="role-reference">separator</a> in a menu is not focusable or interactive and should have <a href="#aria-orientation" class="property-reference">aria-orientation</a> consistent with the separator's orientation. </li>
                 </ul>
                 </td>
         </tr>
