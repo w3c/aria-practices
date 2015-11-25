@@ -1432,13 +1432,13 @@ This is because browser accessibility APIs do not support child elements contain
 <li>Each item in the menu has <code>tabindex</code> set to &quot;-1&quot;, except in a menubar, where the first item has <code>tabindex</code> set to &quot;0&quot;. </li>
 </ul>              
              </li>
-             <li>If <a href="#aria-owns" class="property-reference">aria-owns</a> is set on the menu container to include elements that are not DOM children of the container, those elements will appear in the reading order in the sequence they are referenced and after any items that are DOM children. Scripts that manage focus need to ensure the visual focus order matches this assistive technology reading order. </li>
             <li>If activating a <a href="#menuitem" class="role-reference">menuitem</a> opens a submenu, the menuitem has <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set to &quot;true&quot;. </li>
             <li>When a <a href="#menuitemcheckbox" class="role-reference">menuitemcheckbox</a> or <a href="#menuitemradio" class="role-reference">menuitemradio</a> is checked, <a href="#aria-checked" class="property-reference">aria-checked</a> is set &quot;true&quot;. </li>
 			<li>When a menu item is disabled, <a href="#aria-disabled" class="state-reference">aria-disabled</a> is set &quot;true&quot;.</li>
             <li>Items in a menu may be divided into groups by placing an element with a role of <a href="#separator" class="role-reference">separator</a> between groups. For example, this technique should be used when a menu contains a set of <a href="#menuitemradio" class="role-reference">menuitemradio</a> items. </li>
               <li>A <a href="#separator" class="role-reference">separator</a> in a menu is not focusable or interactive and should have <a href="#aria-orientation" class="property-reference">aria-orientation</a> consistent with the separator's orientation. </li>
                 </ul>
+                <p class="note">If <a href="#aria-owns" class="property-reference">aria-owns</a> is set on the menu container to include elements that are not DOM children of the container, those elements will appear in the reading order in the sequence they are referenced and after any items that are DOM children. Scripts that manage focus need to ensure the visual focus order matches this assistive technology reading order. </p>
                 </td>
         </tr>
         <tr>
