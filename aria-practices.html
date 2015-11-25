@@ -1464,15 +1464,19 @@ This is because browser accessibility APIs do not support child elements contain
         <tr>
           <th class="widget-description-head" scope="row">Description: </th>
           <td class="widget-description">
-            <p>A menu button is a <a href="#button">button</a> that opens a <a href="#menu">menu</a>. It is often styled as a typical push button with a downward pointing arrow or triangle as an indicator it displays a menu. </p>
+            <p>A menu button is a <a href="#button">button</a> that opens a <a href="#menu">menu</a>. It is often styled as a typical push button with a downward pointing arrow or triangle to hint that activating the button will display a menu. </p>
           </td>
         </tr>
         <tr>
           <th class="widget-keyboard-head" scope="row">Keyboard Interaction: </th>
           <td class="widget-keyboard">
           <ul>
-              <li><kbd>Space</kbd> and <kbd>Enter</kbd> with focus on the button: open the menu and place focus on the first menu item. </li>
-                  <li>(Optional) <kbd>Down Arrow</kbd> with focus on the button:                   opens the menu and moves focus to the first menu item. </li>
+          <li>With focus on the button:
+          <ul>
+              <li><kbd>Space</kbd> and <kbd>Enter</kbd>: open the menu and place focus on the first menu item. </li>
+                  <li>(Optional) <kbd>Down Arrow</kbd>: opens the menu and moves focus to the first menu item. </li>
+                  </ul>
+                  </li>
                   <li>The keyboard behaviors needed after the menu is open are described in <a href="#menu"></a>.</li>
             </ul>
           </td>
