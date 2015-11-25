@@ -1456,7 +1456,6 @@ This is because browser accessibility APIs do not support child elements contain
 </section>
   <hr/>
 <section class="widget" id="menubutton"><h3 class="widget-name">Menu Button</h3>
-<p class="note">This section has not been updated since it was integrated from APG version 1.0 -- an APG taskforce review is pending.</p>
     <table class="widget-features">
       <caption>
       Characteristics:
@@ -1465,29 +1464,16 @@ This is because browser accessibility APIs do not support child elements contain
         <tr>
           <th class="widget-description-head" scope="row">Description: </th>
           <td class="widget-description">
-            <p>A menu button is a push button that is used to invoke a menu.  It appears as a normal button typically with a downward pointing arrow or triangle as a visual cue that it triggers the display of a menu. </p>
-            <p>Menu buttons are used in situations where authors want to provide a single menu without having to construct a complete menu bar. </p>
+            <p>A menu button is a <a href="#button">button</a> that opens a <a href="#menu">menu</a>. It is often styled as a typical push button with a downward pointing arrow or triangle as an indicator it displays a menu. </p>
           </td>
         </tr>
         <tr>
           <th class="widget-keyboard-head" scope="row">Keyboard Interaction: </th>
-          <td class="widget-keyboard"><ul>
-              <li><kbd>Space</kbd> or <kbd>Enter</kbd> - With focus on the button pressing <kbd>Space</kbd> or <kbd>Enter</kbd> will toggle the display of the drop-down menu. Focus remains on the button. </li>
-              <li><kbd>Down Arrow</kbd> - 
-                <ul>
-                  <li>With focus on the button and no drop-down menu displayed, pressing <kbd>Down Arrow</kbd> will open the drop-down menu and move focus into the menu and onto the first menu item. </li>
-                  <li>With focus on the button and the drop-down menu open, pressing <kbd>Down Arrow</kbd> will move focus into the menu onto the first menu item.</li>
-                </ul>
-              </li>
-              <li><kbd>Up</kbd> and <kbd>Down Arrow</kbd> - With focus on the drop-down menu, the <kbd>Up</kbd> and <kbd>Down Arrow</kbd> keys move focus within the menu items, "wrapping" at the top and bottom.  </li>
-              <li><kbd>Escape</kbd> - With focus on the drop-down menu, pressing <kbd>Escape</kbd> closes the menu and returns focus to the button.  </li>
-              <li><kbd>Tab</kbd> -
-                <ul>
-                  <li>With focus on the button pressing the <kbd>Tab</kbd> key will take the user to the next tab focusable item on the page. </li>
-                  <li>With focus on the drop-down menu, pressing the <kbd>Tab</kbd> key will take the user to the next tab focusable item on the page. Note that this may be difficult to achieve on a web page. </li>
-                </ul>
-              </li>
-              <li>Typing a letter (printable character) key moves focus to the next instance of a visible node whose title begins with that printable letter. </li>
+          <td class="widget-keyboard">
+          <ul>
+              <li><kbd>Space</kbd> and <kbd>Enter</kbd> with focus on the button: open the menu and place focus on the first menu item. </li>
+                  <li>(Optional) <kbd>Down Arrow</kbd> with focus on the button:                   opens the menu and moves focus to the first menu item. </li>
+                  <li>The keyboard behaviors needed after the menu is open are described in <a href="#menu"></a>.</li>
             </ul>
           </td>
         </tr>
@@ -1495,9 +1481,9 @@ This is because browser accessibility APIs do not support child elements contain
           <th class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </th>
           <td class="widget-aria">
             <ul>
-               <li>The menu button itself has a role of <a href="#button" class="role-reference">button</a>.</li>
-               <li>The menu button has an <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> property, set to <code>true</code>.</li>
-               <li>See the <a href="#menu">Menu</a> design pattern for information about the WAI-ARIA roles, states, and properties of the associated menu invoked via the menu button.</li>
+               <li>The element that opens the menu has role <a href="#button" class="role-reference">button</a>.</li>
+               <li>The element with role <code>button</code> has <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set <code>true</code>.</li>
+               <li>The roles, states, and properties needed for the menu opened by the button are described in <a href="#menu"></a>. </li>
             </ul>
           </td>
         </tr>
