@@ -1379,8 +1379,7 @@ This is because browser accessibility APIs do not support child elements contain
         <tr>
           <th class="widget-keyboard-head" scope="row">Keyboard Interaction: </th>
           <td class="widget-keyboard">
-		    <ul>
-			<li>When a menu opens and its items are arranged vertically:
+			<p>When a menu opens and its items are arranged vertically:</p>
               <ul>
               <li>Keyboard focus is placed on the first item.</li>
                 <li><kbd>Enter</kbd> and optionally <kbd>Space</kbd>: activate the menu item with focus (perform the  command or open the submenu associated with the menu item). </li>
@@ -1400,19 +1399,10 @@ This is because browser accessibility APIs do not support child elements contain
                 </ul>
                 </li>
                 <li>Any key that corresponds to a printable character: Move focus to   the next menu item in the current menu whose label begins with that printable character. </li>
-                <li><kbd>Escape</kbd>: Close the menu and return focus to   the element, e.g., menu button or parent menu item, from which the menu was opened. </li>
+                <li><kbd>Escape</kbd>: Close the menu and return focus to   the element or context, e.g., menu button or parent menu item, from which the menu was opened. </li>
                 <li><kbd>Tab</kbd>: Close the menu an all open parent menus and move focus to the next element in the tab sequence.</li>
                 <li><kbd>Shift</kbd>+<kbd>Tab</kbd>: Close the menu and all open parent menus and move focus to the previous element in the tab sequence.</li>
               </ul>
-            </li>
-			<li>A menubar is the same as above except that:
-			<ul>
-			<li>The menu is persistently open and the first item is in the tab sequence. </li>
-			<li><kbd>Escape</kbd>: does not close the menubar and may return focus to   the context from which the menubar was invoked. For example, a rich text editor may have a menubar that receives focus when a shortcut key, e.g., <kbd>alt</kbd>+<kbd>F10</kbd>, is pressed while editing. In this case, <kbd>Escape</kbd> may return focus to the editor. </li>
-                <li><kbd>Tab</kbd>: When focus is on an item in the menubar, moves focus to the element in the tab sequence after the menubar.</li>
-                <li><kbd>Shift</kbd>+<kbd>Tab</kbd>: When focus is on an item in the menubar, moves focus to the element in the tab sequence before the menubar.</li>
-						</ul>
-          </ul>
           <ol class="note">
           <li>If the items in a menu or menubar are arranged horizontally:
           <ol>
@@ -1421,6 +1411,8 @@ This is because browser accessibility APIs do not support child elements contain
           </ol>
           </li>
           <li>Disabled menu items should be focusable but can not be activated. </li>
+          <li>The keyboard behaviors of a menubar are the same as other menus except that a menubar is typically visually persistent so the first item is in the tab sequence and <kbd>Escape</kbd>, <kbd>Tab</kbd>, and <kbd>Shift</kbd>+<kbd>Tab</kbd> do not close it. </li>
+			<li>If a menu is opened or a menubar receives focus as a result of a context action, <kbd>Escape</kbd> may return focus to   the invoking context. For example, a rich text editor may have a menubar that receives focus when a shortcut key, e.g., <kbd>alt</kbd>+<kbd>F10</kbd>, is pressed while editing. In this case, <kbd>Escape</kbd> may return focus to the editor. </li>
           </ol>
           </td>
         </tr>
