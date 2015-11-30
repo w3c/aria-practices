@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>ARIA Alert Role Example</title>
+    <link href="../css/core.css" rel="stylesheet">
+    <link href="../css/table.css" rel="stylesheet">
+    <link href="alert.css" rel="stylesheet">
+    <script src="alert.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <script type="text/template" id="alert-template">
+      <div role="alert">
+        <p>Hej, hello, ciao, こんにちは, 안녕</p>
+      </div>
+    </script>
+
+    <main role="main">
+      <h1>ARIA <code>alert</code> Role Example</h1>
+
+      <p>This example shows a simple alert after you click the button.</p>
+
+      <p><a href="../../aria-practices.html#alert">More information on alert pattern</a></p>
+
+      <button id="alert-trigger">Trigger an alert</button>
+
+      <div id="example">
+
+      </div>
+
+      <h2 id="id_a11yfeature">Accessibility Feature</h2>
+
+      <ul>
+        <li><code>role=alert</code> identifies an element as an alert which is a specialized form of the <code>status</code> role.</li>
+      </ul>
+
+      <h2 id="id_kbd">Keyboard Support</h2>
+
+      <p>No keyboard interaction needed.</p>
+
+      <h2 id="id_rps">ARIA Roles, Properties and States</h2>
+
+      <table aria-labelledby="id_rps">
+        <thead>
+          <tr>
+            <th>Role</th>
+            <th>Property/State</th>
+            <th>Usage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>alert</td>
+            <td></td>
+            <td>
+              Identify element as Alert widget
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><a href="http://www.w3.org/TR/wai-aria-1.1/#aria-live"><code>aria-live</code></a> with implicit value of assertive</td>
+            <td>
+              Announces alert when it is displayed.
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><a href="http://www.w3.org/TR/wai-aria-1.1/#aria-atomic"><code>aria-atomic</code></a> with implicit value of true</td>
+            <td>
+              Tells assistive technologies to announce all content.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <script src="../js/examples.js" type="text/javascript"></script>
+
+      <h2>Source Code</h2>
+
+      <ul>
+        <li>CSS: <a href="alert.css" type="tex/css">alert.css</a></li>
+        <li>Javascript: <a href="alert.js" type="text/javascript">alert.js</a></li>
+      </ul>
+
+  </body>
+</html>
