@@ -1382,7 +1382,8 @@ This is because browser accessibility APIs do not support child elements contain
               <ul>
               <li>Keyboard focus is placed on the first item. All items in a menu are focusable as described in <a href="#kbd_general_within"></a>.</li>
                 <li><kbd>Enter</kbd> and optionally <kbd>Space</kbd>: activate the menu item with focus (perform the  command or open the submenu associated with the menu item). </li>
-                <li><kbd>Down Arrow</kbd> and <kbd>Up Arrow</kbd>: move focus to the next and previous items, respectively, optionally wrapping from last to first and vice versa. If wrapping is not supported, <kbd>Home</kbd> and <kbd>End</kbd> move focus to first and last items.</li>
+                <li><kbd>Down Arrow</kbd> and <kbd>Up Arrow</kbd>: move focus to the next and previous items, respectively, optionally wrapping from last to first and vice versa. </li>
+                 <li><kbd>Home</kbd> and <kbd>End</kbd>: If arrow key wrapping is not supported, move focus to first and last items.</li>
                 <li><kbd>Right Arrow</kbd>: Perform the first of the following actions that applies:
                 <ul>
                 <li>If the menu item with focus opens a submenu, open the submenu and place focus on the first item in the submenu. </li>
@@ -1411,6 +1412,7 @@ This is because browser accessibility APIs do not support child elements contain
           </ol>
           </li>
           <li>Disabled menu items should be focusable but can not be activated. </li>
+          <li>A <a href="#separator" class="role-reference">separator</a> in a menu is not focusable or interactive.</li>
 			<li>If a menu is opened or a menubar receives focus as a result of a context action, <kbd>Escape</kbd> may return focus to   the invoking context. For example, a rich text editor may have a menubar that receives focus when a shortcut key, e.g., <kbd>alt</kbd>+<kbd>F10</kbd>, is pressed while editing. In this case, <kbd>Escape</kbd> may return focus to the editor. </li>
           </ol>
           </td>
@@ -1436,7 +1438,7 @@ This is because browser accessibility APIs do not support child elements contain
             <li>When a <a href="#menuitemcheckbox" class="role-reference">menuitemcheckbox</a> or <a href="#menuitemradio" class="role-reference">menuitemradio</a> is checked, <a href="#aria-checked" class="property-reference">aria-checked</a> is set to <code>true</code>. </li>
 			<li>When a menu item is disabled, <a href="#aria-disabled" class="state-reference">aria-disabled</a> is set to <code>true</code>.</li>
             <li>Items in a menu may be divided into groups by placing an element with a role of <a href="#separator" class="role-reference">separator</a> between groups. For example, this technique should be used when a menu contains a set of <a href="#menuitemradio" class="role-reference">menuitemradio</a> items. </li>
-              <li>A <a href="#separator" class="role-reference">separator</a> in a menu is not focusable or interactive and should have <a href="#aria-orientation" class="property-reference">aria-orientation</a> consistent with the separator's orientation. </li>
+              <li>All <role href="#separator" class="role-reference">separators</a> should have <a href="#aria-orientation" class="property-reference">aria-orientation</a> consistent with the separator's orientation. </li>
                 </ul>
                 <p class="note">If <a href="#aria-owns" class="property-reference">aria-owns</a> is set on the menu container to include elements that are not DOM children of the container, those elements will appear in the reading order in the sequence they are referenced and after any items that are DOM children. Scripts that manage focus need to ensure the visual focus order matches this assistive technology reading order. </p>
                 </td>
