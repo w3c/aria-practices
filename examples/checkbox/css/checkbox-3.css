@@ -19,3 +19,13 @@ label:hover {
 label.focus {
    border-color: black;
 }
+.checkbox{
+   padding-left: 10px;
+}
+#ex1, #ex2, #ex3 {
+   background-color: #F1F1F1 ;
+   padding:10px;
+}
+fieldset {
+   border-style: none;
+}
