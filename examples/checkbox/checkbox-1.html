@@ -11,21 +11,19 @@
 </head>
 <body>
   <header role="banner">
-    <h1>ARIA Example: <code>Checkbox</code> role</h1>
+    <h1>ARIA <code>Checkbox</code> </h1>
   </header>
   
   <main role="main">
 
-    <h1>Checkbox 1: Simple Checkbox</h1>
-    <h2 id="id_example">Coding Example</h2>
-    <div id="example">
-       <div role="checkbox" aria-checked="false"  tabindex= "0" onkeydown="toggleCheckbox(event)" onclick="toggleCheckbox(event)" onfocus="focusCheckbox(event)" onblur="blurCheckbox(event)"><img src="./images/checkbox-unchecked-black.png" role="presentation"> Label 1</div> 
-       <div role="checkbox" aria-checked="true" tabindex= "0" onkeydown="toggleCheckbox(event)" onclick="toggleCheckbox(event)" onfocus="focusCheckbox(event)" onblur="blurCheckbox(event)"><img src="./images/checkbox-checked-black.png" role="presentation"> Label 2</div> 
-       <div role="checkbox" aria-checked="false" tabindex= "0" onkeydown="toggleCheckbox(event)" onclick="toggleCheckbox(event)" onfocus="focusCheckbox(event)" onblur="blurCheckbox(event)"><img src="./images/checkbox-unchecked-black.png" role="presentation"> Label 3</div> 
-
-        
-      </div>
-
+    <h1>Simple Checkbox</h1>
+    <p> <a href="../../aria-practices.html#h-checkbox">WAI-ARIA 1.1 : Checkbox pattern </a></p>
+    <h2 id="id_example">Simple Checkbox Example</h2>
+        <div id="example">
+           <div role="checkbox" aria-checked="false"  tabindex= "0" onkeydown="toggleCheckbox(event)" onclick="toggleCheckbox(event)" onfocus="focusCheckbox(event)" onblur="blurCheckbox(event)"><img src="./images/checkbox-unchecked-black.png" role="presentation"> Label 1</div> 
+           <div role="checkbox" aria-checked="true" tabindex= "0" onkeydown="toggleCheckbox(event)" onclick="toggleCheckbox(event)" onfocus="focusCheckbox(event)" onblur="blurCheckbox(event)"><img src="./images/checkbox-checked-black.png" role="presentation"> Label 2</div> 
+           <div role="checkbox" aria-checked="false" tabindex= "0" onkeydown="toggleCheckbox(event)" onclick="toggleCheckbox(event)" onfocus="focusCheckbox(event)" onblur="blurCheckbox(event)"><img src="./images/checkbox-unchecked-black.png" role="presentation"> Label 3</div> 
+          </div>
     <h2 id="id_a11yfeature">Accessibility Feature</h2>
     <ul>
               <li><code>div</code> element with <code>role="checkbox"</code>.</li>

@@ -37,4 +37,7 @@ tr:nth-child(even) td { background: #F1F1F1; }
 /* Cells in odd rows (1,3,5...) are another (excludes header cells)  */ 
 tr:nth-child(odd) td { background: #FEFEFE; }  
  
-tr td:hover { background: #666; color: #FFF; } /* Hover cell effect! */
+td .sourcecode {
+	border: none;
+	background-color: transparent;
+}
