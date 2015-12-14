@@ -1,0 +1,24 @@
+[role=radio] {
+   margin: 0;
+   padding: 0;    
+   border: 2px transparent solid;
+   margin-bottom: .5em;
+   margin-top: .5em;
+}
+[role=radio] {
+   display: block;
+   border: thin transparent solid;
+   margin-left: 18px;
+}  
+[role=radio]:hover {
+   border-color: #777;
+}
+
+[role=radio].focus {
+   border-color: black;
+}
+
+#codeex{
+   background-color: #F1F1F1 ;
+   padding:10px;
+}
