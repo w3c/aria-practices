@@ -1,32 +1,34 @@
 [role=radio] {
   display: block;
-  margin: 0.5em 0 0.5em 18px;
-  padding: 0;
+  position: relative;
+  margin: 0.5em;
+  padding-left: 20px;
   border: thin transparent solid;
 }
 
 /* This creates the visuals for the radio buttons */
-[role=radio]::before {
-  display: inline-block;
-  width: 13px;
-  height: 13px;
-  border: 1px solid #000;
+[role=radio]::before,
+[role=radio]::after {
+  display: block;
+  position: absolute;
   border-radius: 50%;
-  background: #fff;
   content: '';
 }
 
-[role=radio][aria-checked=true]::before {
-  box-shadow: inset 0 0 0 1px #fff;
-  background: #000;
+[role=radio]::before {
+  top: 0;
+  left: 0;
+  width: 14px;
+  height: 14px;
+  border: 1px solid #000;
+  background: #fff;
 }
 
-[role=radio]:hover {
-  border-color: #777;
-}
-
-[role=radio].focus {
-  border-color: black;
+[role=radio][aria-checked=true]::after {
+  top: 3px;
+  left: 3px;
+  border: 5px solid #000;
+  content: '';
 }
 
 #codeex{
