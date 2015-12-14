@@ -1,24 +1,35 @@
 [role=radio] {
-   margin: 0;
-   padding: 0;    
-   border: 2px transparent solid;
-   margin-bottom: .5em;
-   margin-top: .5em;
+  display: block;
+  margin: 0.5em 0 0.5em 18px;
+  padding: 0;
+  border: thin transparent solid;
 }
-[role=radio] {
-   display: block;
-   border: thin transparent solid;
-   margin-left: 18px;
-}  
+
+/* This creates the visuals for the radio buttons */
+[role=radio]::before {
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  border: 1px solid #000;
+  border-radius: 50%;
+  background: #fff;
+  content: '';
+}
+
+[role=radio][aria-checked=true]::before {
+  box-shadow: inset 0 0 0 1px #fff;
+  background: #000;
+}
+
 [role=radio]:hover {
-   border-color: #777;
+  border-color: #777;
 }
 
 [role=radio].focus {
-   border-color: black;
+  border-color: black;
 }
 
 #codeex{
-   background-color: #F1F1F1 ;
-   padding:10px;
+  background-color: #F1F1F1 ;
+  padding:10px;
 }
