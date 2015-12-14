@@ -2,7 +2,7 @@
   <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>ARIA Radio Group Example</title>
+    <title>ARIA Radio Group and Radio Example</title>
     <meta name="generator" content="BBEdit 10.5" />
     <link href="../css/core.css" rel="stylesheet">
     <link href="../css/table.css" rel="stylesheet">
@@ -11,8 +11,9 @@
   </head>
   <body>
     <main role="main">
-      <h1>ARIA <code>radiogroup</code> Example</h1>
-      <p> <a href="../../aria-practices.html#h-radiobutton">WAI-ARIA 1.1 : Radio group pattern </a></p>
+      <h1>ARIA <code>radiogroup</code> and <code>radio</code> Example</h1>
+
+      <p> <a href="../../aria-practices.html#h-radiobutton">WAI-ARIA 1.1 : Radio Group</a></p>
       <ul>
           <li>The <code>radiogroup</code> role defines a container for a set of ARIA radio buttons.</li>
           <li>The radio button that is currently selected is identified using <code>aria-checked=“true”.</code></li>
@@ -20,6 +21,9 @@
           <li>The label for the radio group is defined using <code>aria-labelledby</code> attribute. (e.g. “Pizza Crust”)</li>
           <li>The labels for the radio buttons are defined by the text nodes of each radio button. (e.g. “Regular Crust”, “Deep Dish”…)</li>
       </ul>
+
+      <h2>Radio Example</h2>
+
       <div id="codeex">
           <div  role="radiogroup" aria-labelledby="gdesc1" id="example">
               <h3 id="gdesc1">Pizza Crust</h3>

@@ -10,14 +10,14 @@
   <script src="js/checkbox-1.js" type="text/javascript"></script>
 </head>
 <body>
-  <header role="banner">
+    
     <h1>ARIA <code>Checkbox</code> </h1>
-  </header>
   
   <main role="main">
 
-    <h1>Simple Checkbox</h1>
-    <p> <a href="../../aria-practices.html#h-checkbox">WAI-ARIA 1.1 : Checkbox pattern </a></p>
+    <h2>Simple Checkbox</h2>
+ 
+    <p> <a href="../../aria-practices.html#h-checkbox">WAI-ARIA 1.1 : Checkbox</a></p>
     <h2 id="id_example">Simple Checkbox Example</h2>
         <div id="example">
            <div role="checkbox" aria-checked="false"  tabindex= "0" onkeydown="toggleCheckbox(event)" onclick="toggleCheckbox(event)" onfocus="focusCheckbox(event)" onblur="blurCheckbox(event)"><img src="./images/checkbox-unchecked-black.png" role="presentation"> Label 1</div> 
@@ -34,11 +34,6 @@
                <li><code>toggleCheckbox(event)</code> uses <code>aria-checked</code> state to make sure the ARIA and visual state (e.g. <code>img </code>element) of the checkbox stay synchronizd. </li>
                <li><code>focus</code> <code>blur </code> events are used to provide visual styling of keyboard focus. </li>
             </ul>
-
-
-    
-
-
 
     <h2 id="id_kbd">Keyboard Support</h2>
 
