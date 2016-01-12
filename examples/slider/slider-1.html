@@ -18,27 +18,33 @@
 
     #idColorInfo {
       padding-top: 5px;
-    }  
+    }
   </style>
 </head>
 <body>
-  <header role="banner">
+  <header>
     <h1>ARIA Example: Horizontal Sliders using <code>aria-valuenow</code></h1>
   </header>
-  
-  <main role="main">
+
+  <main>
 
     <h1>Color Picker Using Slider Widgets</h1>
     <p>Change sliders to update the background color of box (note: the box is visually left of the 3 slider controls), with the HEX color value in a form control.</p>
-    
+
     <h2 id="example1_h2">Horizontal Sliders</h2>
-    <div id="example1" class="example" role="region" aria-labelledby="example1_h2>
+    <div id="example1" class="example" role="region" aria-labelledby="example1_h2">
 
       <div id="idSliders">
         <div id="idRed" class="label">Red</div>
         <div class="aria-widget-slider">
           <div class="rail" style="width: 300px">
-            <div id="idRedValue" class="thumb" aria-valuemin="0" aria-valuenow="100" aria-valuemax="255" aria-labelledby="idRed"></div>
+            <div id="idRedValue"
+                 role="slider"
+                 class="thumb"
+                 aria-valuemin="0"
+                 aria-valuenow="100"
+                 aria-valuemax="255"
+                 aria-labelledby="idRed"></div>
           </div>
           <div class="value">0</div>
         </div>
@@ -46,20 +52,32 @@
         <div id="idGreen" class="label">Green</div>
         <div class="aria-widget-slider">
           <div class="rail" style="width: 300px">
-            <div id="idGreenValue" class="thumb" aria-valuemin="0" aria-valuenow="100" aria-valuemax="255" aria-labelledby="idGreen"></div>
+            <div id="idGreenValue"
+                 role="slider"
+                 class="thumb"
+                 aria-valuemin="0"
+                 aria-valuenow="100"
+                 aria-valuemax="255"
+                 aria-labelledby="idGreen"></div>
           </div>
           <div class="value">0</div>
         </div>
-      
+
         <div id="idBlue" class="label">Blue</div>
         <div class="aria-widget-slider">
           <div class="rail" style="width: 300px">
-            <div id="idBlueValue" class="thumb" aria-valuemin="0" aria-valuenow="100" aria-valuemax="255" aria-labelledby="idBlue"></div>
+            <div id="idBlueValue"
+                 role="slider"
+                 class="thumb"
+                 aria-valuemin="0"
+                 aria-valuenow="100"
+                 aria-valuemax="255"
+                 aria-labelledby="idBlue"></div>
           </div>
           <div class="value">0</div>
         </div>
-      </div>  
-      
+      </div>
+
       <h2>Color Box</h2>
       <div id="idColorInfo">
         <div id="idColorBox"></div>
@@ -67,11 +85,11 @@
         <label>Color (RGB): <input type="text" readonly id="idColorValueRGB" value=""></label>
       </div>
     </div>
-    
-    
+
+
     <h2 id="id_kbd">Keyboard Support</h2>
 
-    <table aria-labelledby="id_kbd"> 
+    <table aria-labelledby="id_kbd">
       <thead>
         <tr>
           <th>Key</th>
@@ -105,10 +123,10 @@
         </tr>
       </tbody>
     </table>
-    
+
     <h2 id="id_rps">ARIA Roles, Properties and States</h2>
 
-    <table aria-labelledby="id_rps"> 
+    <table aria-labelledby="id_rps">
       <thead>
         <tr>
           <th>Role</th>
@@ -150,27 +168,27 @@
         </tr>
       </tbody>
     </table>
-    
-    
+
+
     <script src="../js/examples.js" type="text/javascript"></script>
-    
+
     <h2>Source Code</h2>
-    
+
     <ul>
       <li>CSS: <a href="css/slider.css" type="tex/css">slider.css</a></li>
       <li>Javascript: <a href="js/slider.js" type="text/javascript">slider.js</a></li>
     </ul>
-    
+
     <div id="sc1">
-    
+
     </div>
-    
-    
+
+
     <script>
       sourceCode.add('sc1', 'example1')
       sourceCode.make()
     </script>
-    
+
   </main>
   <script src="js/slider.js" type="text/javascript"></script>
 </body>
