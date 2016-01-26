@@ -2887,7 +2887,6 @@ function detectHiContrast() {
         </tr>
       </table>
       <p>In this Radio Group example, the <code>tabindex</code> of the first and last radio button elements has a <code>tabindex="0"</code> (assuming none of the radio buttons is checked), the remaining radio elements have <code>tabindex="-1"</code>.  As soon as the first or the last radio button receives focus it changes the <code>tabindex</code> value of the other radio button to -1.  If none of the radio buttons is selected the and the keyboard focus leaves the group the first and the last radio buttons have their <code>tabindex</code> values set to 0. </p>
-        <p class="ednote">Todo: should you discuss what happens when the user tabs to the radio group and no button is checked?  </p>
     </section>
       <section id="kbd_general_other">
       <h4> Other Widget Authoring Practices</h4>
@@ -2903,8 +2902,10 @@ the assistive technology, resulting in undesirable results. Should an alternativ
   of the week, then you should accompany the aria-valuenow with an appropriate
   aria-valuetext equivalent such as in this example: </p>
 <pre>
-&lt;div role=&quot;slider&quot; aria-valuenow=&quot;1&quot;
-  aria-valuemin=&quot;1&quot; aria-valuemax=&quot;7&quot;
+&lt;div role=&quot;slider&quot;
+  aria-valuenow=&quot;1&quot;
+  aria-valuemin=&quot;1&quot;
+  aria-valuemax=&quot;7&quot;
   aria-valuetext=&quot;Sunday&quot;&gt;
 </pre>
 <p>
