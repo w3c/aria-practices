@@ -208,7 +208,9 @@
       <p class="note">The following guidance on nested widgets will be moved to another section.</p>
       <p><strong>Widgets within Widgets</strong> The general navigation model is for a user to tab to a widget, interact with the controls in that widget and then tab to move focus to the next widget in the tab order. By extension, when the construct of a widget contains another widget, tab will move focus to the contained widget because it is the next item in the tab order. This continues down the layers of widgets until the last widget is reached. For example, if there are two widgets A and B on a page where widget A contains within it Widget A1 and   Widget A1 contains within it Widget A2, the focus sequence when pressing the tab key would be A1, A2, A3, B.</p>
     </section>
+
     <hr>
+
     <section class="widget" id="accordion">
       <h3 class="widget-name">Accordion</h3>
       <p class="note">This section has not been updated since it was integrated from the WAI-ARIA Authoring Practices Guide (<abbr title="Authoring Practices Guide">APG</abbr>) version 1.0 -- an APG taskforce review is pending.</p>
@@ -342,7 +344,9 @@
         </tbody>
       </table>
     </section>
+
     <hr>
+
     <section class="widget" id="alert">
       <h3 class="widget-name">Alert</h3>
       <table class="widget-features">
@@ -376,20 +380,27 @@
         </tbody>
       </table>
     </section>
+
     <hr>
+
     <section class="widget" id="alertdialog">
       <h3 class="widget-name">Alert Dialog or Message Dialog</h3>
       <p class="note">This section has had only minor edits since it was integrated from APG version 1.0 -- a complete APG taskforce review is pending.</p>
       <table class="widget-features">
-        <caption>
-        Characteristics:
-        </caption>
+        <caption>Characteristics:</caption>
         <tbody>
           <tr>
-            <th class="widget-description-head" scope="row">Description: </th>
+            <th class="widget-description-head" scope="row">Description:</th>
             <td class="widget-description">
-              <p>A dialog with the primary purpose of communicating a message and acquiring a user response to that message. Examples include action confirmation prompts, warning messages, or help for an invalid form entry. The dialog should be modal. Keyboard focus is set on an element in the dialog. The element that has initial focus will depend on the nature of the information conveyed in the dialog. Simple message dialogs, as described below, have their initial focus set to the confirmation button (e.g., the OK button). Detail message dialogs have their initial focus set on the element containing the message. </p>
-              <p>A detail message dialog conveys a message that has any one of the following attributes: </p>
+              <p>
+                A dialog with the primary purpose of communicating a message and acquiring a user response to that message.
+                Examples include action confirmation prompts, warning messages, or help for an invalid form entry.
+                The dialog should be modal. Keyboard focus is set on an element in the dialog.
+                The element that has initial focus will depend on the nature of the information conveyed in the dialog.
+                Simple message dialogs, as described below, have their initial focus set to the confirmation button (e.g., the OK button).
+                Detail message dialogs have their initial focus set on the element containing the message.
+              </p>
+              <p>A detail message dialog conveys a message that has any one of the following attributes:</p>
               <ul>
                 <li>Is more than one sentence in length;</li>
                 <li>Contains information where punctuation is an essential part of the message, such as syntax of a required date format;</li>
@@ -400,77 +411,82 @@
             </td>
           </tr>
           <tr>
-            <th class="widget-keyboard-head" scope="row">Keyboard Interaction: </th>
+            <th class="widget-keyboard-head" scope="row">Keyboard Interaction:</th>
             <td class="widget-keyboard">
-              <p><a href="#dialog_modal">See Dialog (Modal)</a>. </p>
+              <p><a href="#dialog_modal">See Dialog (Modal)</a>.</p>
               <ul>
-                <li>Content authors make alert dialogs modal by ensuring that, while the alertdialog is shown, keyboard and mouse interactions only operate within the dialog. </li>
-                <li>The message area of a detail message dialog is focusable and has a <a class="role-reference" href="#document">document</a> role so screen reader users will have complete access to the message content, e.g., the screen reader can read it by character, word, or line. </li>
+                <li>Content authors make alert dialogs modal by ensuring that, while the alertdialog is shown, keyboard and mouse interactions only operate within the dialog.</li>
+                <li>The message area of a detail message dialog is focusable and has a <a class="role-reference" href="#document">document</a> role so screen reader users will have complete access to the message content, e.g., the screen reader can read it by character, word, or line.</li>
                 <li>When the message area of a dialog is focusable and has focus, a visual focus indicator is required, and it is recommended that the indicator encompass the complete message.</li>
               </ul>
             </td>
           </tr>
           <tr>
-            <th class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </th>
+            <th class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties:</th>
             <td class="widget-aria">
               <ul>
-                <li>The node containing all elements of the dialog, including the alert message and any dialog buttons, has an <a class="role-reference" href="#alertdialog">alertdialog</a> role. </li>
-                <li>Message areas have role <a class="role-reference" href="#document">document</a> and tabindex="0". </li>
-                <li>The Alert dialog has an <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> that references the title of the dialog. If there is not a visible title, use an appropriate <a href="#aria-labelledby" class="property-reference">aria-label</a> instead. </li>
-                <li>The element with role alertdialog has an <a href="#aria-labelledby" class="property-reference">aria-describedby</a> referring to the message element that has role <a class="role-reference" href="#document">document</a>. </li>
+                <li>The node containing all elements of the dialog, including the alert message and any dialog buttons, has an <a class="role-reference" href="#alertdialog">alertdialog</a> role.</li>
+                <li>Message areas have role <a class="role-reference" href="#document">document</a> and tabindex="0".</li>
+                <li>The Alert dialog has an <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> that references the title of the dialog. If there is not a visible title, use an appropriate <a href="#aria-labelledby" class="property-reference">aria-label</a> instead.</li>
+                <li>The element with role alertdialog has an <a href="#aria-labelledby" class="property-reference">aria-describedby</a> referring to the message element that has role <a class="role-reference" href="#document">document</a>.</li>
               </ul>
             </td>
           </tr>
           <tr>
-            <th class="widget-example-head" scope="row">Example: </th>
+            <th class="widget-example-head" scope="row">Example:</th>
             <td class="widget-example">
-            <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG taskforce is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
-            <p><a href="http://www.oaa-accessibility.org/examplep/alertdialog1/" title="Example 2 - Alert example using a modal ARIA dialog box" target="_blank">Open Ajax Alliance</a></p></td>
+              <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG taskforce is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
+              <p><a href="http://www.oaa-accessibility.org/examplep/alertdialog1/" title="Example 2 - Alert example using a modal ARIA dialog box" target="_blank">Open Ajax Alliance</a></p>
+            </td>
           </tr>
         </tbody>
       </table>
     </section>
+
     <hr>
-<section class="widget" id="autocomplete">
+
+    <section class="widget" id="autocomplete">
       <h3 class="widget-name">Auto Complete</h3>
       <p class="note">This section has not been updated since it was integrated from APG version 1.0 -- an APG taskforce review is pending.</p>
       <table class="widget-features">
-        <caption>
-        Characteristics:
-        </caption>
+        <caption>Characteristics:</caption>
         <tbody>
           <tr>
             <th class="widget-description-head" scope="row">Description:</th>
-            <td class="widget-description"><p>A text box and an associated drop-down list of choices where the choices offered are filtered based on the information typed into the box. Typically, an icon associated with the text box triggers the display of the drop-down list of choices. An editable auto-complete accepts text entry of choices that are not in the list. An example of an editable auto-complete is the URL field in the browsers.</p></td>
+            <td class="widget-description">
+              <p>A text box and an associated drop-down list of choices where the choices offered are filtered based on the information typed into the box. Typically, an icon associated with the text box triggers the display of the drop-down list of choices. An editable auto-complete accepts text entry of choices that are not in the list. An example of an editable auto-complete is the URL field in the browsers.</p>
+            </td>
           </tr>
           <tr>
             <th class="widget-keyboard-head" scope="row">Keyboard Interaction:</th>
             <td class="widget-keyboard"><ul>
-                <li>With focus in an empty text box, press <kbd>Down Arrow</kbd>, <kbd>Up Arrow</kbd>,   <kbd>Alt+Down Arrow</kbd>, or <kbd>Alt+Up Arrow</kbd> to display the entire list of choices. Focus remains in the text box and no choice is highlighted.
+                <li>With focus in an empty text box, press <kbd>Down Arrow</kbd>, <kbd>Up Arrow</kbd>, <kbd>Alt+Down Arrow</kbd>, or <kbd>Alt+Up Arrow</kbd> to display the entire list of choices. Focus remains in the text box and no choice is highlighted.
                   <ul>
-                    <li>Press the <kbd>Down Arrow</kbd> to highlight the first choice in the list. </li>
-                    <li>Press the <kbd>Down Arrow</kbd> and <kbd>Up Arrow</kbd> keys to highlight the desired choice in the list. </li>
-                    <li>Note that the arrows will wrap through the text box when the top or bottom of the list is reached. For example, pressing the down arrow when the last choice is highlighted will move focus back to the text box, pressing down again will move focus to the first item in the list. Likewise, with focus in the text box and the list displayed, pressing up arrow will move focus to the last item in the list. </li>
+                    <li>Press the <kbd>Down Arrow</kbd> to highlight the first choice in the list.</li>
+                    <li>Press the <kbd>Down Arrow</kbd> and <kbd>Up Arrow</kbd> keys to highlight the desired choice in the list.</li>
+                    <li>Note that the arrows will wrap through the text box when the top or bottom of the list is reached. For example, pressing the down arrow when the last choice is highlighted will move focus back to the text box, pressing down again will move focus to the first item in the list. Likewise, with focus in the text box and the list displayed, pressing up arrow will move focus to the last item in the list.</li>
                     <li>When a choice is highlighted using the arrow keys, the highlighted choice is displayed in the text box.</li>
-                    <li>Press <kbd>Enter</kbd> to select the highlighted choice and close the drop-down list. This mimics the behavior of the HTML select element. </li>
+                    <li>Press <kbd>Enter</kbd> to select the highlighted choice and close the drop-down list. This mimics the behavior of the HTML select element.</li>
                   </ul>
                 </li>
-                <li>With the drop-down list of choices displayed, move the mouse pointer over an item in the list to highlight it. The text box value is not modified when the mouse is used to highlight a choice. Clicking on the highlighted choice will close the drop-down and update the text box with the selected choice. This mimics the behavior of the HTML select element. </li>
-                <li>With focus in an empty text box, type <strong>any letter</strong>. If any of the available choices begin with the letter typed, those choices are displayed in a drop down. If the letter typed does not match any of the available choices the drop-down list is not displayed. </li>
+                <li>With the drop-down list of choices displayed, move the mouse pointer over an item in the list to highlight it. The text box value is not modified when the mouse is used to highlight a choice. Clicking on the highlighted choice will close the drop-down and update the text box with the selected choice. This mimics the behavior of the HTML select element.</li>
+                <li>With focus in an empty text box, type <strong>any letter</strong>. If any of the available choices begin with the letter typed, those choices are displayed in a drop down. If the letter typed does not match any of the available choices the drop-down list is not displayed.</li>
                 <li>With focus in text box with an existing value type <strong>additional letters.</strong> As the user types letters the list of choices is filtered so that only those that begin with the typed letters are displayed.
                   <ul>
                     <li>Until the user presses the arrow keys to highlight a particular choice, only the typed letters are displayed in the text box.</li>
                     <li>In an editable auto-complete, if no choices match the letter(s) typed, the drop down list closes.</li>
-                    <li>In a non-editable auto-complete, any letters that do not result in a match from   the list are ignored, the drop down list of choices remains static until the   user presses <kbd>Escape</kbd> to clear the text field, Backspace to remove some of the   letters previously typed, or types an additional letter that results in a valid   list of choices.</li>
-                    <li>Navigation through the list of choices and display of the highlighted choice in the text box works as described above.<br />
-                      <em>Optional: When a choice is highlighted via arrow key navigation, the input cursor is left at the end of the typed entry and the highlighted choice is displayed in the text box with the characters after the input cursor selected. Typing an   additional character will remove the auto-completed portion and append the newly   typed character to the end of the previously typed characters. The list will be   filtered based on the additional character(s) typed.</em></li>
+                    <li>In a non-editable auto-complete, any letters that do not result in a match from the list are ignored, the drop down list of choices remains static until the user presses <kbd>Escape</kbd> to clear the text field, Backspace to remove some of the letters previously typed, or types an additional letter that results in a valid list of choices.</li>
+                    <li>
+                      Navigation through the list of choices and display of the highlighted choice in the text box works as described above.<br>
+                      <em>Optional: When a choice is highlighted via arrow key navigation, the input cursor is left at the end of the typed entry and the highlighted choice is displayed in the text box with the characters after the input cursor selected. Typing an additional character will remove the auto-completed portion and append the newly typed character to the end of the previously typed characters. The list will be filtered based on the additional character(s) typed.</em>
+                    </li>
                   </ul>
                 </li>
                 <li>With focus in a text box, press <kbd>Escape</kbd>
                   <ul>
                     <li>If there is no text in the text box, pressing <kbd>Escape</kbd> closes the drop-down if it is displayed.</li>
-                    <li>For an editable autocomplete that has text in the text box that was both typed by the user and auto-completed by highlighting a choice using the keyboard, the auto-completed portion of the text is cleared and the user typed characters remain in the text box. The drop-down list is closed. To completely clear the text box contents the user must use the backspace key to remove the typed characters. This is how the Google search box in the Firefox UI works. <em>Recommend that pressing the <kbd>Escape</kbd> key again completely clears the text box rather than relying on only the backspace   key.</em></li>
-                    <li>For a non-editable auto-complete that has text in the text box that was both   typed by the user and auto-completed by highlighting a choice using the keyboard, pressing <kbd>Escape</kbd> closes the drop-down list and leaves the current choice in the text box. </li>
+                    <li>For an editable autocomplete that has text in the text box that was both typed by the user and auto-completed by highlighting a choice using the keyboard, the auto-completed portion of the text is cleared and the user typed characters remain in the text box. The drop-down list is closed. To completely clear the text box contents the user must use the backspace key to remove the typed characters. This is how the Google search box in the Firefox UI works. <em>Recommend that pressing the <kbd>Escape</kbd> key again completely clears the text box rather than relying on only the backspace key.</em></li>
+                    <li>For a non-editable auto-complete that has text in the text box that was both typed by the user and auto-completed by highlighting a choice using the keyboard, pressing <kbd>Escape</kbd> closes the drop-down list and leaves the current choice in the text box. </li>
                     <li>For an editable or non-editable auto complete with text in the text box that was typed by the user and the mouse is highlighting a choice in the drop down (keyboard navigation was NOT used), pressing <kbd>Escape</kbd> closes the drop down and leaves the typed text displayed in the text box. Need to consider if pressing <kbd>Escape</kbd> again should clear the typed text. The user must press the <kbd>Down</kbd> arrow or <kbd>Alt+Down</kbd> arrow or click the associated icon to invoke the drop-down list of choices again.</li>
                   </ul>
                 </li>
@@ -478,20 +494,20 @@
                 <li>Moving focus out of an auto complete field that does not contain a valid entry should either invoke an error or if a default value was initially assigned, reset the value to the default value. </li>
               </ul>
               <p class="note">It is good practice to limit the number of matching items in the drop down to a reasonable number. The reasonable number is determined by the task at hand. A list of the 50 US States is probably reasonable, but a list containing all of the office numbers in a building is probably not appropriate. </p>
-         </td>
+            </td>
           </tr>
           <tr>
-            <th class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </th>
+            <th class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties:</th>
             <td class="widget-aria">
               <ul>
-                <li>The widget has a role of <a class="role-reference" href="#combobox">combobox</a>. </li>
+                <li>The widget has a role of <a class="role-reference" href="#combobox">combobox</a>.</li>
                 <li>The combobox has an <a href="#aria-autocomplete" class="property-reference">aria-autocomplete</a> property set to one of <code>'inline'</code>, <code>'list'</code>, or <code>'both'</code>.</li>
-                <li>For more information, see the <a href="#combobox">combobox</a> design pattern. </li>
+                <li>For more information, see the <a href="#combobox">combobox</a> design pattern.</li>
               </ul>
             </td>
           </tr>
           <tr>
-            <th class="widget-example-head" scope="row">Example: </th>
+            <th class="widget-example-head" scope="row">Example:</th>
             <td class="widget-example">
             <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG taskforce is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
             <a href="http://archive.dojotoolkit.org/nightly/dojotoolkit/dijit/tests/form/_autoComplete.html" title="dijit.form.ComboBox Unit Test" rel="nofollow">Dojo autocomplete</a></td>
@@ -499,87 +515,52 @@
         </tbody>
       </table>
     </section>
-<hr>
-<section class="widget" id="button">
-  <h3 class="widget-name">Button</h3>
+
+    <hr>
+
+    <section class="widget" id="button">
+      <h3 class="widget-name">Button</h3>
       <table class="widget-features">
-        <caption>
-        Characteristics:
-        </caption>
+        <caption>Characteristics:</caption>
         <tbody>
           <tr>
-            <th class="widget-description-head" scope="row">Description: </th>
+            <th class="widget-description-head" scope="row">Description:</th>
             <td class="widget-description">
               <p>A <a class="role-reference" href="#button">button</a> is a widget that enables users to trigger an action or event, such as submitting a form, opening a dialog, canceling an action, or performing a delete operation. A common convention for informing users that a button launches a dialog is to append &quot;&#8230;&quot; (ellipsis) to the button label, e.g., .&quot;Save as &#8230;&quot;.</p>
-        <p>In addition to the ordinary button widget, WAI-ARIA supports 2 other types of buttons:</p>
+              <p>In addition to the ordinary button widget, WAI-ARIA supports 2 other types of buttons:</p>
               <ul>
-                <li>Toggle button: A two-state button that can be either off (not
-                  pressed) or on (pressed). To tell assistive technologies that a button is
-                  a toggle button, specify a value for the attribute <a
-                  href="#aria-pressed" class="state-reference"
-                >aria-pressed</a>. For example, a button labeled mute in an audio player
-                  could indicate that sound is muted by setting the pressed state true. <strong>Important:</strong>
-                      the label on a toggle button should never change when the state
-                      changes. In this example, when the pressed state is true, the label
-                      should not change to &quot;Unmute"&quot; or &quot;Muted.&quot;
-                </li>
-                <li>Menu button: as described in the <a href="#menubutton">menu
-                    button pattern</a>, a button will be revealed to assistive technologies as
-                  a menu button if it has the property <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set true.
-                </li>
+                <li>Toggle button: A two-state button that can be either off (not pressed) or on (pressed). To tell assistive technologies that a button is a toggle button, specify a value for the attribute <a href="#aria-pressed" class="state-reference">aria-pressed</a>. For example, a button labeled mute in an audio player could indicate that sound is muted by setting the pressed state true. <strong>Important:</strong> the label on a toggle button should never change when the state changes. In this example, when the pressed state is true, the label should not change to &quot;Unmute"&quot; or &quot;Muted.&quot;</li>
+                <li>Menu button: as described in the <a href="#menubutton">menu button pattern</a>, a button will be revealed to assistive technologies as a menu button if it has the property <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set true.</li>
               </ul>
-
-              <p class="note">The types of actions performed by buttons are distinctly
-                different from the function of a link (see <a href="#link">link pattern</a>). It is important that the
-                role of a widget matches the function it provides. Ideally, the
-                role of the element also matches its visual appearance. But, occasionally an
-                element may be visually styled as an icon or link but perform the action of a button.
-                In these cases, the element should be given a button role. The Designers
-                should work to avoid conflicts between visual appearance and WAI-ARIA
-                semantics.</p>
+              <p class="note">The types of actions performed by buttons are distinctly different from the function of a link (see <a href="#link">link pattern</a>). It is important that the role of a widget matches the function it provides. Ideally, the role of the element also matches its visual appearance. But, occasionally an element may be visually styled as an icon or link but perform the action of a button. In these cases, the element should be given a button role. The Designers should work to avoid conflicts between visual appearance and WAI-ARIA semantics.</p>
             </td>
           </tr>
           <tr>
-            <th class="widget-keyboard-head" scope="row">Keyboard Interaction: </th>
-            <td class="widget-keyboard"><p>With focus on the button, pressing the <kbd>Space</kbd> key or <kbd>Enter</kbd> key activates the button. Focus should behave appropriately for the type of action being performed. For example: </p>
+            <th class="widget-keyboard-head" scope="row">Keyboard Interaction:</th>
+            <td class="widget-keyboard"><p>With focus on the button, pressing the <kbd>Space</kbd> key or <kbd>Enter</kbd> key activates the button. Focus should behave appropriately for the type of action being performed. For example:</p>
               <ul>
-                <li>If activating the button opens a dialog, the focus moves inside
-                  the dialog. (see <a href="#dialog_nonmodal">dialog pattern</a>)</li>
-                <li>If activating the button closes a dialog, typically focus should
-                  return to the button that opened the dialog unless the function performed
-                  in the dialog context logically leads to a different element. For
-                  example, activating a cancel button in a dialog should always return
-                  focus to the button that opened the dialog. However, if the dialog is
-                  confirming a delete action that deletes the page from which it was
-                  opened, the focus must logically move to a new context.</li>
-                <li>If activating the button does not dismiss the current context,
-                  then focus should typically remain on the button after activation, e.g.,
-                  an Apply or Recalculate button.</li>
-        <li>If the button action indicates a context change, such as move to next step in a wizard or add another search criteria, then it may be appropriate to move focus to the starting point for that action.</li>
-                <li>If the button is activated with a shortcut key, the focus should
-                  usually remain in the context from which the shortcut key was activated.
-                  For example, if <kbd>Alt</kbd>+<kbd>U</kbd> were assigned to an
-                  &quot;Up&quot; button that moves the currently focused item in a list
-                  one position higher in the list, pressing <kbd>Alt</kbd>+<kbd>U</kbd> when the
-                  focus is in the list should not move the focus from the list.
-                </li>
-              </ul></td>
+                <li>If activating the button opens a dialog, the focus moves inside the dialog. (see <a href="#dialog_nonmodal">dialog pattern</a>)</li>
+                <li>If activating the button closes a dialog, typically focus should return to the button that opened the dialog unless the function performed in the dialog context logically leads to a different element. For example, activating a cancel button in a dialog should always return focus to the button that opened the dialog. However, if the dialog is confirming a delete action that deletes the page from which it was opened, the focus must logically move to a new context.</li>
+                <li>If activating the button does not dismiss the current context, then focus should typically remain on the button after activation, e.g., an Apply or Recalculate button.</li>
+                <li>If the button action indicates a context change, such as move to next step in a wizard or add another search criteria, then it may be appropriate to move focus to the starting point for that action.</li>
+                <li>If the button is activated with a shortcut key, the focus should usually remain in the context from which the shortcut key was activated. For example, if <kbd>Alt</kbd>+<kbd>U</kbd> were assigned to an &quot;Up&quot; button that moves the currently focused item in a list one position higher in the list, pressing <kbd>Alt</kbd>+<kbd>U</kbd> when the focus is in the list should not move the focus from the list.</li>
+              </ul>
+            </td>
           </tr>
           <tr>
-            <th class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </th>
+            <th class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties:</th>
             <td class="widget-aria">
-            <ul>
+              <ul>
                 <li>The button has role of <a class="role-reference" href="#button">button</a>. </li>
-                <li>An accessible label is required. By default, the accessible name is computed from any text content inside the button element. However, it can also be provided with
-                <a href="#aria-labelledby" class="property-reference">aria-labelledby"</a> or <a href="#aria-label" class="property-reference">aria-label</a>.</li>
-                <li>If a description of the button's function is present,
-                the button element has <a href="#aria-describedby" class="property-reference">aria-describedby</a> set to the ID of the element containing the description.</li>
+                <li>An accessible label is required. By default, the accessible name is computed from any text content inside the button element. However, it can also be provided with <a href="#aria-labelledby" class="property-reference">aria-labelledby"</a> or <a href="#aria-label" class="property-reference">aria-label</a>.</li>
+                <li>If a description of the button's function is present, the button element has <a href="#aria-describedby" class="property-reference">aria-describedby</a> set to the ID of the element containing the description.</li>
                 <li>When the action associated with a button is unavailable, the button displays in a <a class="state-reference" href="#aria-disabled">aria-disabled</a> state. </li>
                 <li>If the button is a toggle button, it has an <a href="#aria-pressed" class="state-reference">aria-pressed</a> state.  When the button is toggled, the value of this state is <code>true</code>, and when not toggled, the state is <code>false</code>. </li>
-              </ul></td>
+              </ul>
+            </td>
           </tr>
           <tr>
-            <th class="widget-example-head" scope="row">Example: </th>
+            <th class="widget-example-head" scope="row">Example:</th>
             <td class="widget-example">
             <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG taskforce is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
               <ul>
@@ -592,7 +573,9 @@
         </tbody>
       </table>
     </section>
+
     <hr>
+
     <section class="widget" id="checkbox">
       <h3 class="widget-name">Checkbox</h3>
     <table class="widget-features">
