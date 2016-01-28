@@ -578,297 +578,259 @@
 
     <section class="widget" id="checkbox">
       <h3 class="widget-name">Checkbox</h3>
-    <table class="widget-features">
-      <caption>
-      Characteristics:
-      </caption>
-      <tbody>
-        <tr>
-          <th class="widget-description-head" scope="row">Description: </th>
+      <table class="widget-features">
+        <caption>Characteristics:</caption>
+        <tbody>
+          <tr>
+            <th class="widget-description-head" scope="row">Description:</th>
             <td class="widget-description">
-              <p>
-                WAI-ARIA supports two types of <a href="#checkbox" class="role-reference">checkbox</a>
-                widgets:
-              </p>
+              <p>WAI-ARIA supports two types of <a href="#checkbox" class="role-reference">checkbox</a> widgets:</p>
               <ol>
-                <li>Dual-state: The most common type of checkbox, it allows the user
-                  to toggle between two choices -- checked and not checked.</li>
-                <li>Tri-state: This type of checkbox supports an additional third
-                  state known as partially checked.</li>
+                <li>Dual-state: The most common type of checkbox, it allows the user to toggle between two choices -- checked and not checked.</li>
+                <li>Tri-state: This type of checkbox supports an additional third state known as partially checked.</li>
               </ol>
-              <p>One common use of a tri-state checkbox can be found in software installers
-              where a single tri-state checkbox is used to represent and control the state of an entire group of install options.
-              And, each option in the group can be individually turned on or off with a dual state checkbox.</p>
+              <p>One common use of a tri-state checkbox can be found in software installers where a single tri-state checkbox is used to represent and control the state of an entire group of install options. And, each option in the group can be individually turned on or off with a dual state checkbox.</p>
               <ul>
-                <li>If all options in the group are checked, the overall state is                  represented by the tri-state checkbox displaying as checked .</li>
+                <li>If all options in the group are checked, the overall state is represented by the tri-state checkbox displaying as checked.</li>
                 <li>If some of the options in the group are checked, the overall state is represented with the tri-state checkbox displaying as partially checked.</li>
                 <li>If none of the options in the group are checked, the overall state of the group is represented with the tri-state checkbox displaying as not checked.</li>
               </ul>
-              <p>The user can use the tri-state checkbox to change all options in the
-                group with a single action:</p>
+              <p>The user can use the tri-state checkbox to change all options in the group with a single action:</p>
               <ul>
                 <li>Checking the overall checkbox checks all options in the group.</li>
-                <li>Unchecking the overall checkbox will uncheck all options in the
-                  group.</li>
-                <li>And, In some implementations, the system may remember which
-                  options were checked the last time the overall status was partially
-                  checked. If this feature is provided, activating the overall checkbox a
-                  third time recreates that partially checked state where only some
-                  options in the group are checked.</li>
+                <li>Unchecking the overall checkbox will uncheck all options in the group.</li>
+                <li>And, In some implementations, the system may remember which options were checked the last time the overall status was partially checked. If this feature is provided, activating the overall checkbox a third time recreates that partially checked state where only some options in the group are checked.</li>
               </ul>
             </td>
           </tr>
-        <tr>
-          <th class="widget-keyboard-head" scope="row">Keyboard Interaction: </th>
-          <td class="widget-keyboard">
-              <p>When the checkbox has focus, pressing the <kbd>Space</kbd> key changes the state of the checkbox. </p>
-          </td>
-        </tr>
-        <tr>
-          <th class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </th>
-            <td class="widget-aria"><ul>
-                <li>The checkbox has role <a href="#checkbox" class="role-reference">checkbox</a>.
-                </li>
-                <li>The checkbox has an accessible label, preferably provided by a
-                  visible label associated using <a href="#aria-labelledby" class="property-reference" >aria-labelledby</a>.
-                </li>
-                <li>When checked, the checkbox element has the state <a href="#aria-checked" class="state-reference" >aria-checked</a>=&quot;true&quot;.
-                </li>
-                <li>When not checked, it has the state <a href="#aria-checked" class="state-reference" >aria-checked</a>=&quot;false&quot;.
-                </li>
-                <li>When partially checked, it has the state <a href="#aria-checked" class="state-reference" >aria-checked</a>=&quot;mixed&quot;.
-                </li>
-                <li>If a set of checkboxes is presented as a logical group with a visible
-                  label, the checkboxes are included in an element with role <a href="#group" class="role-reference" >group</a>
-                  that has the property <a href="#aria-labelledby" class="property-reference" >aria-labelledby</a> set to the ID of the element containing the label.
-                </li>
-                <li>If the presentation includes additional descriptive static text relevant to a checkbox or checkbox group, the checkbox or checkbox group
-                  has the property <a href="#aria-describedby" class="property-reference">aria-describedby</a>
-                  set to the ID of the element containing the description.
-                </li>
-              </ul></td>
+          <tr>
+            <th class="widget-keyboard-head" scope="row">Keyboard Interaction:</th>
+            <td class="widget-keyboard">
+              <p>When the checkbox has focus, pressing the <kbd>Space</kbd> key changes the state of the checkbox.</p>
+            </td>
           </tr>
-        <tr>
-          <th class="widget-example-head" scope="row">Examples: </th>
-          <td class="widget-example">
-          <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG taskforce is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
-          <ul>
-            <li>Examples that use images to depict the state of the checkbox.  The images have <code>role=&quot;<a href="#presentation" class="role-reference">presentation</a>&quot;</code> to remove them from the accessibility tree.
+          <tr>
+            <th class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties:</th>
+            <td class="widget-aria">
               <ul>
-                <li><a href="http://www.oaa-accessibility.org/examplep/checkbox1/" title="Checkboxes using IMG elements for visual state" target="_blank">Open Ajax Alliance Two-State checkbox</a></li>
-                <li><a href="http://www.oaa-accessibility.org/examplep/checkbox2/" title="Checkbox group using IMG elements for visual state" target="_blank">Open Ajax Alliance Tri-State checkbox</a> (also illustrates use of the <a class="role-reference" href="#group">group</a> role)</li>
+                <li>The checkbox has role <a href="#checkbox" class="role-reference">checkbox</a>.</li>
+                <li>The checkbox has an accessible label, preferably provided by a visible label associated using <a href="#aria-labelledby" class="property-reference" >aria-labelledby</a>.</li>
+                <li>When checked, the checkbox element has the state <a href="#aria-checked" class="state-reference" >aria-checked</a>=&quot;true&quot;.</li>
+                <li>When not checked, it has the state <a href="#aria-checked" class="state-reference" >aria-checked</a>=&quot;false&quot;.</li>
+                <li>When partially checked, it has the state <a href="#aria-checked" class="state-reference" >aria-checked</a>=&quot;mixed&quot;.</li>
+                <li>If a set of checkboxes is presented as a logical group with a visible label, the checkboxes are included in an element with role <a href="#group" class="role-reference" >group</a> that has the property <a href="#aria-labelledby" class="property-reference" >aria-labelledby</a> set to the ID of the element containing the label.</li>
+                <li>If the presentation includes additional descriptive static text relevant to a checkbox or checkbox group, the checkbox or checkbox group has the property <a href="#aria-describedby" class="property-reference">aria-describedby</a> set to the ID of the element containing the description.</li>
               </ul>
-            </li>
-            <li>Examples that use background images or CSS selectors to depict the state of the checkbox.
+            </td>
+          </tr>
+          <tr>
+            <th class="widget-example-head" scope="row">Examples:</th>
+            <td class="widget-example">
+              <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG taskforce is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
               <ul>
-                <li><a href="http://www.oaa-accessibility.org/examplep/checkbox3/" title="Checkbox group using background images for visual state" target="_blank">Open Ajax Alliance Tri-State checkbox</a> (background images)</li>
-                <li><a href="http://www.oaa-accessibility.org/examplep/checkbox4/" title="Checkbox group using ARIA CSS selectors for visual state" target="_blank">Open Ajax Alliance Tri-State checkbox</a> (CSS selectors)</li>
+                <li>Examples that use images to depict the state of the checkbox.  The images have <code>role=&quot;<a href="#presentation" class="role-reference">presentation</a>&quot;</code> to remove them from the accessibility tree.
+                  <ul>
+                    <li><a href="http://www.oaa-accessibility.org/examplep/checkbox1/" title="Checkboxes using IMG elements for visual state" target="_blank">Open Ajax Alliance Two-State checkbox</a></li>
+                    <li><a href="http://www.oaa-accessibility.org/examplep/checkbox2/" title="Checkbox group using IMG elements for visual state" target="_blank">Open Ajax Alliance Tri-State checkbox</a> (also illustrates use of the <a class="role-reference" href="#group">group</a> role)</li>
+                  </ul>
+                </li>
+                <li>Examples that use background images or CSS selectors to depict the state of the checkbox.
+                  <ul>
+                    <li><a href="http://www.oaa-accessibility.org/examplep/checkbox3/" title="Checkbox group using background images for visual state" target="_blank">Open Ajax Alliance Tri-State checkbox</a> (background images)</li>
+                    <li><a href="http://www.oaa-accessibility.org/examplep/checkbox4/" title="Checkbox group using ARIA CSS selectors for visual state" target="_blank">Open Ajax Alliance Tri-State checkbox</a> (CSS selectors)</li>
+                  </ul>
+                </li>
               </ul>
-            </li>
-          </ul></td>
-        </tr>
-      </tbody>
-    </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </section>
+
     <hr>
+
     <section class="widget" id="combobox">
       <h3 class="widget-name">Combo Box</h3>
       <p class="note">This section has not been updated since it was integrated from APG version 1.0 -- an APG taskforce review is pending.</p>
-        <table class="widget-features">
-      <caption>
-      Characteristics:
-      </caption>
-      <tbody>
-        <tr>
-          <th class="widget-description-head" scope="row">Description: </th>
-          <td class="widget-description">A combo box enables the user to type in a field and at the same time chose a   predefined value from a list. By using the keyboard the user can select an item   from the list. After selection she will be able to type further characters in   the field.</td>
-        </tr>
-        <tr>
-          <th class="widget-keyboard-head" scope="row">Keyboard Interaction: </th>
-          <td class="widget-keyboard"><ul>
-              <li><kbd>Left Arrow</kbd> or <kbd>Right Arrow</kbd> move the caret within the edit field. </li>
-              <li><kbd>Alt+Up/Down Arrow</kbd> opens and closes the list. </li>
-              <li><kbd>Up Arrow</kbd> and <kbd>Down Arrow</kbd> moves focus up and down the list. As focus moves inside the dropdown list, the edit field is updated. </li>
-              <li><kbd>Page Up</kbd>/<kbd>Page Down</kbd> selects the next/previous pages item depending   on the lists size. </li>
-              <li><kbd>Escape</kbd> closes the dropdown list, returns focus to the edit field, and does not change the current selection.</li>
-              <li><kbd>Enter</kbd> selects the current item on the list, updates the edit field, highlights the selected item in the dropdown list, closes the dropdown list, and returns focus to the input field. </li>
-              <li><kbd>Typing a letter (printable character) key</kbd> moves focus to the next instance of a visible node whose title begins with that printable letter.</li>
-          </ul>
-          <p>For combo boxes that implement <a href="#aria-autocomplete" class="state-reference">aria-autocomplete</a>, see the <a href="#autocomplete">autocomplete design pattern</a>.</p></td>
-        </tr>
-        <tr>
-          <th class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </th>
-          <td class="widget-aria">
-            <p>A combobox can be implemented using either of two design patterns:</p>
-            <ol>
-              <li>As a combination of text field, which may be editable, a displayable list of items, and a drop button   to toggle the display of that list; all   wrapped in the form of a single widget with role of combobox. </li>
-              <li>As a combobox, which behaves like a textfield and may be editable, with a displayable list of items, and a drop button to toggle the display of that list;  </li>
-            </ol>
-            <p>Like text fields a combobox should be   labeled to convey the purpose of the widget. Keyboard focus within the widget   must be managed by the widget. Comboboxes are used extensively in graphical user   interfaces and the design pattern for the widget should be semantically correct. </p>
-            <p>For the first combobox design pattern: </p>
-            <ul>
-              <li>The container element that wraps the combobox has a role of <a href="#combobox" class="role-reference">combobox</a>. </li>
-              <li>The first element within the combobox is an <code>input</code> text field and is   responsible for managing the keyboard focus between the text field and the list   as well as displaying the list. The text field is in the tab order. If   you create a text field without using a standard HTML text field form control then  ensure that it is in the tab order. </li>
-              <li>If the text field is not editable it must have have <a href="#aria-readonly" class="property-reference">aria-readonly</a> = <code>true</code>. </li>
-              <li>The combobox must have <a href="#aria-expanded" class="property-reference">aria-expanded</a> = <code>true</code> if the list is displayed or <a href="#aria-expanded" class="property-reference">aria-expanded</a> = <code>false</code> when it is not. </li>
-              <li>The next element is an html <code>&lt;button&gt;</code>, or another element with a role of <a href="#button" class="role-reference">button</a>.  This element is used to toggle the display of the combobox's drop down list. </li>
-              <li>The next element has a <a href="#listbox" class="role-reference">listbox</a> role and represents the drop down   list.  It manages keyboard navigation among list items and  navigating back to the text field if necessary. </li>
-              <li>Each item in the listbox is an <a href="#option" class="role-reference">option</a>. Options are not   in the tab order. </li>
-              <li>Provide a label for the combobox by referencing the   text field in the combobox. You can use an <a href="#aria-label" class="property-reference">aria-label</a> to associate this label   with the combobox or you may use the HTML <code>&lt;label&gt;</code> element and its <code>for</code>   attribute to reference the text field. </li>
-            </ul>
-            <p>For the second combobox design pattern: </p>
-            <ul>
-              <li>The first element for the combobox has a role of combobox and behaves like an input text field and is responsible for managing the keyboard focus between the combobox and the list as well as displaying the list. The text field is in the tab order. If you create a text field without using a standard HTML text field form control then ensure that it is in the tab order.  </li>
-              <li>If the combobox is not editable it must have have <a href="#aria-readonly" class="property-reference">aria-readonly</a> = <code>true</code> . </li>
-              <li>The combobox must have <a href="#aria-expanded" class="property-reference">aria-expanded</a> = <code>true</code> if the list is displayed or <a href="#aria-expanded" class="property-reference">aria-expanded</a> = <code>false</code> when it is not. </li>
-              <li>The next element is an html <code>&lt;button&gt;</code>, or another element with a role of <a href="#button" class="role-reference">button</a>.  This element is used to toggle the display of the combobox's drop down list. </li>
-              <li>The next element has a <a href="#listbox" class="role-reference">listbox</a> role and represents the drop down   list.  It manages keyboard navigation among list items and  navigating back to the text field if necessary. </li>
-              <li>Each item in the listbox is an <a href="#option" class="role-reference">option</a>. Options are not   in the tab order. </li>
-              <li>Provide a label for the combobox by referencing the   text field in the combobox. You can use an <a href="#aria-label" class="property-reference">aria-label</a> to associate this label   with the combobox or you may use the HTML <code>&lt;label&gt;</code> element and its <code>for</code>   attribute to reference the text field. </li>
-            </ul>
-            <p>For each combobox pattern the button <em>need not</em> be in the tab order <em>if</em> there is an appropriate keystroke associated with the <code>input</code> element such that when focus is on the <code>input</code>, the keystroke triggers display of the associated drop down list. In this case, a <kbd>Tab</kbd> to focus the button is unnecessary. This is the same behavior as the <code>select</code> element. </p>
-          </td>
-        </tr>
-        <tr>
-          <th class="widget-example-head" scope="row">Example: </th>
-          <td class="widget-example">
-          <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG taskforce is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
-            <p>First design pattern -- container element with role <a href="#combobox" class="role-reference">combobox</a> :</p>
-            <ul>
-              <li><a href="http://www.oaa-accessibility.org/examplep/combobox5/" title="Combobox with aria-autocomplete='inline' and role='combobox' on wrapping div" target="_blank">Open Ajax Combobox - autocomplete='inline'</a></li>
-              <li><a href="http://www.oaa-accessibility.org/examplep/combobox6/" title="Combobox with aria-autocomplete='list' and role='combobox' on wrapping div" target="_blank">Open Ajax Combobox - autocomplete='list'</a></li>
-              <li><a href="http://archive.dojotoolkit.org/nightly/dojotoolkit/dijit/tests/form/_autoComplete.html?testWidget=dijit.form.ComboBox" title="dijit.form.ComboBox Unit Test" target="_blank">Dojo/dijit nightly build combobox</a></li>
-              <li><a href="http://archive.dojotoolkit.org/nightly/dojotoolkit/dijit/tests/form/_autoComplete.html?testWidget=dijit.form.FilteringSelect" title="dijit.form.FilteringSelect Unit Test" target="_blank">Dojo nightly build combobox with autocomplete</a></li>
-            </ul>
-            <p>Second pattern -- text field with role <a href="#combobox" class="role-reference">combobox</a> :</p>
-            <ul>
-              <li><a href="http://www.oaa-accessibility.org/examplep/combobox1/" title="Example 9 - Combobox with aria-autocomplete='none'" target="_blank">Open Ajax Combobox - no autocomplete</a></li>
-              <li><a href="http://www.oaa-accessibility.org/examplep/combobox2/" title="Combobox with aria-autocomplete='inline'" target="_blank">Open Ajax Combobox - autocomplete='inline'</a></li>
-              <li><a href="http://www.oaa-accessibility.org/examplep/combobox3/" title="Combobox with aria-autocomplete='list'" target="_blank">Open Ajax Combobox - autocomplete='list'</a></li>
-            </ul>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-</section>
-<hr>
-    <section class="widget" id="datepicker">
-        <h3 class="widget-name">Date Picker</h3>
-        <p class="note">This section has not been updated since it was integrated from APG version 1.0 -- an APG taskforce review is pending.</p>
-        <table class="widget-features">
-          <caption>
-          Characteristics:
-          </caption>
-          <tbody>
-  <tr>
-    <td class="widget-description-head">Description: </td>
-    <td class="widget-description">The date picker
-      widget allows the user to select a date or date ranges.
-        The date picker shows one month at least. All navigation that is described
-        below depends on the application. If no range selection is possible, the relevant keystroke interaction
-        can be ignored. Also navigation to the past might be optional. Each week might be
-        labeled with the corresponding calendar week number.
-      <p>
-      As a general rule the actual calendar portion of the date picker follows a table
-      structure where days of the week and calendar day numbers are laid out in table cells. This
-      provides context so an assistive technology can render the day of the week; its corresponding
-      numeric calendar day, and week number if necessary. Consequently, it is best to start
-      with an HTML table and apply WAI-ARIA semantics for a grid. However, should the author
-      wish to uses a div or span to represent the cells then the DOM structure for a table is
-      duplicated with rows marked with <code>role="<a href="#row" class="role-reference">row</a></code>."
-      </p>
-      <p>The calendar portion can be displayed in a numbers of ways, including as a popup associated with another widget, or as a static region of a page.  </p>
-    </td></tr>
-  <tr>
-    <td class="widget-keyboard-head">Keyboard Interaction: </td>
-    <td class="widget-keyboard">
-        <p>
-            Keyboard navigation on days that are not included the currently displayed month
-            should move to the month automatically and lead to the day in the next or previous
-            month.
-        </p>
-        <ul>
-            <li><kbd>Tab</kbd> - Like other widgets, the date picker widget receives focus by tabbing into it. Once focus is received, focus is repositioned on today's date in a grid of days and weeks. A second tab will take the user out of the date picker widget. Focus initially is placed on today's date.</li>
-
-            <li><kbd>Shift+Tab</kbd> - reverses the direction of the tab order. Once in the widget, a Shift+Tab will take the user to the previous focusable element in the tab order.</li>
-
-            <li><kbd>Up Arrow</kbd> and <kbd>Down Arrow</kbd> - goes to the same day of the week in the previous or next week respectively. If the user advances past the end of the month they continue into the next or previous month as appropriate.</li>
-
-            <li><kbd>Left Arrow</kbd> and <kbd>Right Arrow</kbd> - advances one day to the next, also in a continuum. Visually focus is moved from day to day and wraps from row to row in a grid of days and weeks.</li>
-
-            <li><kbd>Control+Page Up</kbd> - Moves to the same date in the previous year.</li>
-
-            <li><kbd>Control+Page Down</kbd> - Moves to the same date in the next year.</li>
-
-            <li><kbd>Space</kbd> -
-
-                <ul>
-
-                  <li>Singleton Mode: acts as a toggle either selecting or deselecting the date.</li>
-
-                  <li>Contiguous Mode: Similar to selecting a range of text. <kbd>Space</kbd> selects the first date. <kbd>Shift+Arrow</kbd>s add to the selection. Pressing <kbd>Space</kbd> again deselects the previous selections and selects the current focused date.</li>
-
-                </ul>
-            </li>
-
-            <li><kbd>Home</kbd> - Moves to the first day of the current month.</li>
-
-            <li><kbd>End</kbd> - Moves to the last day of the current month.</li>
-
-            <li><kbd>Page Up</kbd> - Moves to the same date in the previous month.</li>
-
-            <li><kbd>Page Down</kbd> - Moves to the same date in the next month.</li>
-
-            <li><kbd>Enter</kbd> -
+      <table class="widget-features">
+        <caption>Characteristics:</caption>
+        <tbody>
+          <tr>
+            <th class="widget-description-head" scope="row">Description:</th>
+            <td class="widget-description">A combo box enables the user to type in a field and at the same time chose a predefined value from a list. By using the keyboard the user can select an item from the list. After selection she will be able to type further characters in the field.</td>
+          </tr>
+          <tr>
+            <th class="widget-keyboard-head" scope="row">Keyboard Interaction:</th>
+            <td class="widget-keyboard">
               <ul>
-                <li>If the the calendar is a popup attached to some other widget (e.g., a text field), then <kbd>Enter</kbd> dismisses the popup, and the selected date(s) are shown in the associated widget. </li>
-                <li>If the calendar is a static region on the page, then <kbd>Enter</kbd> confirms the selected date(s). </li>
+                <li><kbd>Left Arrow</kbd> or <kbd>Right Arrow</kbd> move the caret within the edit field.</li>
+                <li><kbd>Alt+Up/Down Arrow</kbd> opens and closes the list.</li>
+                <li><kbd>Up Arrow</kbd> and <kbd>Down Arrow</kbd> moves focus up and down the list. As focus moves inside the dropdown list, the edit field is updated.</li>
+                <li><kbd>Page Up</kbd>/<kbd>Page Down</kbd> selects the next/previous pages item depending   on the lists size.</li>
+                <li><kbd>Escape</kbd> closes the dropdown list, returns focus to the edit field, and does not change the current selection.</li>
+                <li><kbd>Enter</kbd> selects the current item on the list, updates the edit field, highlights the selected item in the dropdown list, closes the dropdown list, and returns focus to the input field.</li>
+                <li><kbd>Typing a letter (printable character) key</kbd> moves focus to the next instance of a visible node whose title begins with that printable letter.</li>
               </ul>
-            </li>
+              <p>For combo boxes that implement <a href="#aria-autocomplete" class="state-reference">aria-autocomplete</a>, see the <a href="#autocomplete">autocomplete design pattern</a>.</p>
+            </td>
+          </tr>
+          <tr>
+            <th class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties:</th>
+            <td class="widget-aria">
+              <p>A combobox can be implemented using either of two design patterns:</p>
+              <ol>
+                <li>As a combination of text field, which may be editable, a displayable list of items, and a drop button to toggle the display of that list; all wrapped in the form of a single widget with role of combobox.</li>
+                <li>As a combobox, which behaves like a textfield and may be editable, with a displayable list of items, and a drop button to toggle the display of that list;</li>
+              </ol>
+              <p>Like text fields a combobox should be labeled to convey the purpose of the widget. Keyboard focus within the widget must be managed by the widget. Comboboxes are used extensively in graphical user interfaces and the design pattern for the widget should be semantically correct.</p>
+              <p>For the first combobox design pattern: </p>
+              <ul>
+                <li>The container element that wraps the combobox has a role of <a href="#combobox" class="role-reference">combobox</a>. </li>
+                <li>The first element within the combobox is an <code>input</code> text field and is responsible for managing the keyboard focus between the text field and the list as well as displaying the list. The text field is in the tab order. If you create a text field without using a standard HTML text field form control then ensure that it is in the tab order.</li>
+                <li>If the text field is not editable it must have have <a href="#aria-readonly" class="property-reference">aria-readonly</a> = <code>true</code>.</li>
+                <li>The combobox must have <a href="#aria-expanded" class="property-reference">aria-expanded</a> = <code>true</code> if the list is displayed or <a href="#aria-expanded" class="property-reference">aria-expanded</a> = <code>false</code> when it is not.</li>
+                <li>The next element is an html <code>&lt;button&gt;</code>, or another element with a role of <a href="#button" class="role-reference">button</a>. This element is used to toggle the display of the combobox's drop down list.</li>
+                <li>The next element has a <a href="#listbox" class="role-reference">listbox</a> role and represents the drop down list. It manages keyboard navigation among list items and navigating back to the text field if necessary.</li>
+                <li>Each item in the listbox is an <a href="#option" class="role-reference">option</a>. Options are not in the tab order.</li>
+                <li>Provide a label for the combobox by referencing the text field in the combobox. You can use an <a href="#aria-label" class="property-reference">aria-label</a> to associate this label with the combobox or you may use the HTML <code>&lt;label&gt;</code> element and its <code>for</code> attribute to reference the text field.</li>
+              </ul>
+              <p>For the second combobox design pattern:</p>
+              <ul>
+                <li>The first element for the combobox has a role of combobox and behaves like an input text field and is responsible for managing the keyboard focus between the combobox and the list as well as displaying the list. The text field is in the tab order. If you create a text field without using a standard HTML text field form control then ensure that it is in the tab order.</li>
+                <li>If the combobox is not editable it must have have <a href="#aria-readonly" class="property-reference">aria-readonly</a> = <code>true</code> . </li>
+                <li>The combobox must have <a href="#aria-expanded" class="property-reference">aria-expanded</a> = <code>true</code> if the list is displayed or <a href="#aria-expanded" class="property-reference">aria-expanded</a> = <code>false</code> when it is not.</li>
+                <li>The next element is an html <code>&lt;button&gt;</code>, or another element with a role of <a href="#button" class="role-reference">button</a>.  This element is used to toggle the display of the combobox's drop down list.</li>
+                <li>The next element has a <a href="#listbox" class="role-reference">listbox</a> role and represents the drop down   list.  It manages keyboard navigation among list items and  navigating back to the text field if necessary.</li>
+                <li>Each item in the listbox is an <a href="#option" class="role-reference">option</a>. Options are not   in the tab order. </li>
+                <li>Provide a label for the combobox by referencing the   text field in the combobox. You can use an <a href="#aria-label" class="property-reference">aria-label</a> to associate this label   with the combobox or you may use the HTML <code>&lt;label&gt;</code> element and its <code>for</code> attribute to reference the text field.</li>
+              </ul>
+              <p>For each combobox pattern the button <em>need not</em> be in the tab order <em>if</em> there is an appropriate keystroke associated with the <code>input</code> element such that when focus is on the <code>input</code>, the keystroke triggers display of the associated drop down list. In this case, a <kbd>Tab</kbd> to focus the button is unnecessary. This is the same behavior as the <code>select</code> element.</p>
+            </td>
+          </tr>
+          <tr>
+            <th class="widget-example-head" scope="row">Example:</th>
+            <td class="widget-example">
+              <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG taskforce is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
+              <p>First design pattern -- container element with role <a href="#combobox" class="role-reference">combobox</a>:</p>
+              <ul>
+                <li><a href="http://www.oaa-accessibility.org/examplep/combobox5/" title="Combobox with aria-autocomplete='inline' and role='combobox' on wrapping div" target="_blank">Open Ajax Combobox - autocomplete='inline'</a></li>
+                <li><a href="http://www.oaa-accessibility.org/examplep/combobox6/" title="Combobox with aria-autocomplete='list' and role='combobox' on wrapping div" target="_blank">Open Ajax Combobox - autocomplete='list'</a></li>
+                <li><a href="http://archive.dojotoolkit.org/nightly/dojotoolkit/dijit/tests/form/_autoComplete.html?testWidget=dijit.form.ComboBox" title="dijit.form.ComboBox Unit Test" target="_blank">Dojo/dijit nightly build combobox</a></li>
+                <li><a href="http://archive.dojotoolkit.org/nightly/dojotoolkit/dijit/tests/form/_autoComplete.html?testWidget=dijit.form.FilteringSelect" title="dijit.form.FilteringSelect Unit Test" target="_blank">Dojo nightly build combobox with autocomplete</a></li>
+              </ul>
+              <p>Second pattern -- text field with role <a href="#combobox" class="role-reference">combobox</a>:</p>
+              <ul>
+                <li><a href="http://www.oaa-accessibility.org/examplep/combobox1/" title="Example 9 - Combobox with aria-autocomplete='none'" target="_blank">Open Ajax Combobox - no autocomplete</a></li>
+                <li><a href="http://www.oaa-accessibility.org/examplep/combobox2/" title="Combobox with aria-autocomplete='inline'" target="_blank">Open Ajax Combobox - autocomplete='inline'</a></li>
+                <li><a href="http://www.oaa-accessibility.org/examplep/combobox3/" title="Combobox with aria-autocomplete='list'" target="_blank">Open Ajax Combobox - autocomplete='list'</a></li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
 
-            <li><kbd>Escape</kbd> - in the case of a popup date picker, closes the widget without any action.</li>
-</ul>
-        <p class="note">Navigation into the past is optional</p>
-        <p class="note">
-        Do not implement keyboard navigation schemes that would place more than one calendar
-        day in the tab order at any time as this impacts the usability of keyboard navigation.
-        For example, using HTML anchors for the gridcells places them all in the tab order impacting
-        the usability of keyboard navigation.</p>
-</td></tr>
-<tr>
-    <td class="widget-keyboard-head">WAI-ARIA Roles, States, and Properties: </td>
-    <td class="widget-keyboard">
-        <ul>
-           <li>The current month has a label representing the month and year. It is advisable
-           to use a role <a href="#heading" class="role-reference">heading</a> but is not essential. This "label" should have a unique ID.</li>
-           <li>If the author would like to ensure that a label is announced by a screen reader, as the label changes, include live region properties
-           with the label element:  <a href="#aria-live" class="property-reference">aria-live</a><code>="assertive"</code> and <a href="#aria-atomic" class="property-reference">aria-atomic</a><code>="true"</code>. </li>
-           <li>The container for the day of week headers and numeric days of the week has a role of <a href="#grid" class="role-reference">grid</a>. </li>
-           <li>The grid has an <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> property with a value equivalent to the id of the label for the grid. </li>
-           <li>Each name for the day of the week has a role <a href="#columnheader" class="role-reference">columnheader</a> and
-           is not navigable via the keyboard.</li>
-           <li>Each numeric day of the week has the role <a href="#gridcell" class="role-reference">gridcell</a>.</li>
-           <li>When a day is selected its <a href="#aria-selected" class="state-reference">aria-selected</a> is set to <code>true</code>, otherwise it is set to <code>false</code> or removed.</li>
-           <li>Changes in aria states, identified here, as well as focus, are clearly styled to show the user where their point of regard is and what days are selected.</li>
-        </ul>
-        <p>
-        When the date picker is active a calendar day of the week always has focus. This can be achieved
-        by setting the tabindex on that day as appropriate and then using script to give it focus. Alternatively,
-        the grid container could set <a href="#aria-activedescendant" class="property-reference">aria-activedescendant</a> to the id of the currently focused gridcell. Keep
-        in mind that older browsers may not support aria-activedescendant. </p>    </td>
-</tr>
-<tr>
-    <td class="widget-keyboard-head">Example: </td>
-    <td class="widget-keyboard">
-      <ul>
-        <li><a href="http://www.oaa-accessibility.org/examplep/datepicker1/" title="" target="_blank">Open Ajax Alliance Date picker</a></li>
-        <li><a href="http://dojotoolkit.org/reference-guide/dijit/form/DateTextBox.html" target="_blank">Dojo/dijit</a></li>
-      </ul>
-    </td></tr>
-</tbody></table>
+    <hr>
 
-  </section>
-      <hr>
+    <section class="widget" id="datepicker">
+      <h3 class="widget-name">Date Picker</h3>
+      <p class="note">This section has not been updated since it was integrated from APG version 1.0 -- an APG taskforce review is pending.</p>
+      <table class="widget-features">
+        <caption>Characteristics:</caption>
+        <tbody>
+          <tr>
+            <td class="widget-description-head">Description:</td>
+            <td class="widget-description">
+              <p>
+                The date picker widget allows the user to select a date or date ranges.
+                The date picker shows one month at least. All navigation that is described below depends on the application.
+                If no range selection is possible, the relevant keystroke interaction can be ignored.
+                Also navigation to the past might be optional.
+                Each week might be labeled with the corresponding calendar week number.
+              </p>
+              <p>
+                As a general rule the actual calendar portion of the date picker follows a table structure where days of the week and calendar day numbers are laid out in table cells.
+                This provides context so an assistive technology can render the day of the week; its corresponding numeric calendar day, and week number if necessary.
+                Consequently, it is best to start with an HTML table and apply WAI-ARIA semantics for a grid.
+                However, should the author wish to uses a div or span to represent the cells then the DOM structure for a table is duplicated with rows marked with <code>role="<a href="#row" class="role-reference">row</a>"</code>.
+              </p>
+              <p>The calendar portion can be displayed in a numbers of ways, including as a popup associated with another widget, or as a static region of a page.</p>
+            </td>
+          </tr>
+          <tr>
+            <td class="widget-keyboard-head">Keyboard Interaction:</td>
+            <td class="widget-keyboard">
+              <p>Keyboard navigation on days that are not included the currently displayed month should move to the month automatically and lead to the day in the next or previous month.</p>
+              <ul>
+                <li><kbd>Tab</kbd> - Like other widgets, the date picker widget receives focus by tabbing into it. Once focus is received, focus is repositioned on today's date in a grid of days and weeks. A second tab will take the user out of the date picker widget. Focus initially is placed on today's date.</li>
+                <li><kbd>Shift+Tab</kbd> - reverses the direction of the tab order. Once in the widget, a Shift+Tab will take the user to the previous focusable element in the tab order.</li>
+                <li><kbd>Up Arrow</kbd> and <kbd>Down Arrow</kbd> - goes to the same day of the week in the previous or next week respectively. If the user advances past the end of the month they continue into the next or previous month as appropriate.</li>
+                <li><kbd>Left Arrow</kbd> and <kbd>Right Arrow</kbd> - advances one day to the next, also in a continuum. Visually focus is moved from day to day and wraps from row to row in a grid of days and weeks.</li>
+                <li><kbd>Control+Page Up</kbd> - Moves to the same date in the previous year.</li>
+                <li><kbd>Control+Page Down</kbd> - Moves to the same date in the next year.</li>
+                <li>
+                  <kbd>Space</kbd> -
+                  <ul>
+                    <li>Singleton Mode: acts as a toggle either selecting or deselecting the date.</li>
+                    <li>Contiguous Mode: Similar to selecting a range of text. <kbd>Space</kbd> selects the first date. <kbd>Shift+Arrow</kbd>s add to the selection. Pressing <kbd>Space</kbd> again deselects the previous selections and selects the current focused date.</li>
+                  </ul>
+                </li>
+                <li><kbd>Home</kbd> - Moves to the first day of the current month.</li>
+                <li><kbd>End</kbd> - Moves to the last day of the current month.</li>
+                <li><kbd>Page Up</kbd> - Moves to the same date in the previous month.</li>
+                <li><kbd>Page Down</kbd> - Moves to the same date in the next month.</li>
+                <li>
+                  <kbd>Enter</kbd> -
+                  <ul>
+                    <li>If the the calendar is a popup attached to some other widget (e.g., a text field), then <kbd>Enter</kbd> dismisses the popup, and the selected date(s) are shown in the associated widget.</li>
+                    <li>If the calendar is a static region on the page, then <kbd>Enter</kbd> confirms the selected date(s).</li>
+                  </ul>
+                </li>
+                <li><kbd>Escape</kbd> - in the case of a popup date picker, closes the widget without any action.</li>
+              </ul>
+              <p class="note">Navigation into the past is optional</p>
+              <p class="note">
+                Do not implement keyboard navigation schemes that would place more than one calendar day in the tab order at any time as this impacts the usability of keyboard navigation.
+                For example, using HTML anchors for the gridcells places them all in the tab order impacting the usability of keyboard navigation.
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td class="widget-keyboard-head">WAI-ARIA Roles, States, and Properties:</td>
+            <td class="widget-keyboard">
+              <ul>
+                 <li>The current month has a label representing the month and year. It is advisable to use a role <a href="#heading" class="role-reference">heading</a> but is not essential. This "label" should have a unique ID.</li>
+                 <li>If the author would like to ensure that a label is announced by a screen reader, as the label changes, include live region properties with the label element:  <a href="#aria-live" class="property-reference">aria-live</a><code>="assertive"</code> and <a href="#aria-atomic" class="property-reference">aria-atomic</a><code>="true"</code>.</li>
+                 <li>The container for the day of week headers and numeric days of the week has a role of <a href="#grid" class="role-reference">grid</a>.</li>
+                 <li>The grid has an <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> property with a value equivalent to the id of the label for the grid.</li>
+                 <li>Each name for the day of the week has a role <a href="#columnheader" class="role-reference">columnheader</a> and is not navigable via the keyboard.</li>
+                 <li>Each numeric day of the week has the role <a href="#gridcell" class="role-reference">gridcell</a>.</li>
+                 <li>When a day is selected its <a href="#aria-selected" class="state-reference">aria-selected</a> is set to <code>true</code>, otherwise it is set to <code>false</code> or removed.</li>
+                 <li>Changes in aria states, identified here, as well as focus, are clearly styled to show the user where their point of regard is and what days are selected.</li>
+              </ul>
+              <p>
+                When the date picker is active a calendar day of the week always has focus.
+                This can be achieved by setting the tabindex on that day as appropriate and then using script to give it focus.
+                Alternatively, the grid container could set <a href="#aria-activedescendant" class="property-reference">aria-activedescendant</a> to the id of the currently focused gridcell.
+                Keep in mind that older browsers may not support aria-activedescendant.
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td class="widget-keyboard-head">Example:</td>
+            <td class="widget-keyboard">
+              <ul>
+                <li><a href="http://www.oaa-accessibility.org/examplep/datepicker1/" title="" target="_blank">Open Ajax Alliance Date picker</a></li>
+                <li><a href="http://dojotoolkit.org/reference-guide/dijit/form/DateTextBox.html" target="_blank">Dojo/dijit</a></li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <hr>
+
     <section class="widget" id="dialog_modal">
       <h3  class="widget-name"> Dialog (Modal) </h3>
       <p class="note">This section has not been updated since it was integrated from APG version 1.0 -- an APG taskforce review is pending.</p>
@@ -3018,7 +2980,7 @@ Here the values 1 through 7 represent the days of the week and
     </section>
       <section id="AuthDefKeys">
       <h4> Author-Defined Keyboard Short-Cuts or Mnemonics </h4>
-      <p>Author-defined keyboard short-cuts or mnemonics present a high risk for assistive technology users. Because they are device-, browser-, and AT-dependent, conflicts among key bindings are highly probable. Therefore, if you needed to use <a href="http://www.w3.org/TR/1999/REC-html401-19991224/interact/forms.html#h-17.11.2">accesskey</a>,  you should be aware that  it will behave differently in <br/>
+      <p>Author-defined keyboard short-cuts or mnemonics present a high risk for assistive technology users. Because they are device-, browser-, and AT-dependent, conflicts among key bindings are highly probable. Therefore, if you needed to use <a href="http://www.w3.org/TR/1999/REC-html401-19991224/interact/forms.html#h-17.11.2">accesskey</a>,  you should be aware that  it will behave differently in <br>
         different browsers. It also may not work with small devices so it is still advisable to ensure that all features are accessible with the  basic keys like <kbd>Tab/Shift+Tab</kbd>, arrow, <kbd>Enter</kbd>, <kbd>Space</kbd> and <kbd>Escape</kbd>. </p>
       <p>The XHTML 2 Working Group is currently developing a new <a href="http://www.w3.org/TR/xhtml-access/">Access Module</a> to address this issue and we hope to have it or a feature like it in future versions of (X)HTML.  Refer to <a href="#aria_ex">Section 9: Implementation Guidance</a>. </p>
         <section id="kbd_tooltips">
@@ -3636,7 +3598,7 @@ consistent with their visual rendering. Rather than setting  size only on a cont
       <h4> The Controls Relationship</h4>
       <p>In rich internet applications document elements may control the behavior on another part of Web page outside themselves. The <a class="property-reference" href="#aria-controls">aria-controls</a> attribute indicates cause-and-effect relationships between document  elements. </p>
       <p>An example might be a group of <a class="role-reference" href="#radio">radio</a> buttons that "control" contents of a <a class="role-reference" href="#listbox">listbox</a> in another part of the page. Here, you would want the radio group to assign a <a class="property-reference" href="#aria-controls">aria-controls</a> relationship to the <a class="role-reference" href="#listbox">listbox</a> which will be updating without a page reload. The user, through their assistive technology, can then navigate to the <a class="role-reference" href="#listbox">listbox</a> by following the <a class="property-reference" href="#aria-controls">aria-controls</a> relationship when a different radio is selected, to see how the contents changed in the <a class="role-reference" href="#listbox">listbox</a>. The ability to update parts of a page without a page reload is a common practice of applications making use of Ajax. Without the <a class="property-reference" href="#aria-controls">aria-controls</a> attribute, a user would be unable to effectively use these types of Web pages as assistive technologies often will not make the user aware of what is happening outside the context of the element the user is currently operating.</p>
-      <p>With the <a class="property-reference" href="#aria-controls">aria-controls</a> attribute the user may use the assistive technology to follow the relationship to the object it is controlling. It is extremely important for an assistive technology to present changes in the document in response to user input. Therefore, an assistive technology immediately presents changes to a live region when the controlling widget is the one which has user keyboard focus. For example, if a tree view controls a help document pane, each time<br/>
+      <p>With the <a class="property-reference" href="#aria-controls">aria-controls</a> attribute the user may use the assistive technology to follow the relationship to the object it is controlling. It is extremely important for an assistive technology to present changes in the document in response to user input. Therefore, an assistive technology immediately presents changes to a live region when the controlling widget is the one which has user keyboard focus. For example, if a tree view controls a help document pane, each time<br>
         the tree item changes the new tree item and then the new help contents should also be read. In the case of a screen reader, the amount of information  read in the target live region is dependent on <a href="#liveprops">how the live region is configured</a>. </p>
       <p>The <a class="property-reference" href="#aria-controls">aria-controls</a> attribute takes one or more ids which refer to the document element. If this relationship is not implied by the host  language semantics, then the controlling element must be given a controls attribute with the IDs of the other elements where the changes will  show up listed in the attribute value.</p>
     </section>
@@ -4786,7 +4748,7 @@ navigation  recommended  here, it should be documented on the page.</p>
         <pre class="highlight">
 
 &lt;html lang="en"&gt;
-  &lt;head&gt;<br/>    &lt;meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"&gt;<br/>  &lt;/head&gt;
+  &lt;head&gt;<br>    &lt;meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"&gt;<br>  &lt;/head&gt;
     &lt;body&gt;
         &lt;div role="menu" aria-haspopup="true" tabindex=-1&gt;
             File
@@ -4795,7 +4757,7 @@ navigation  recommended  here, it should be documented on the page.</p>
 &lt;/html&gt;
                         </pre>
       </div>
-      <p>In order to validate these extended attributes for HTML and XHTML the WAI-PF working group will investigate the creation of an enhanced schema or DTD for each host language. <br/>
+      <p>In order to validate these extended attributes for HTML and XHTML the WAI-PF working group will investigate the creation of an enhanced schema or DTD for each host language. <br>
       </p>
     </section>
   </section>
