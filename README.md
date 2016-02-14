@@ -25,3 +25,4 @@ that supports [EditorConfig](http://editorconfig.org/).
 6. Open `aria-practices.html` in your preferred editor
 7. Overwrite contents of `aria-practices.html` with the snapshot copy you saved
 8. Commit and push changes
+9. Review changes at [GitHub pages APG snapshot](http://w3c.github.io/aria/practices/aria-practices.html)
