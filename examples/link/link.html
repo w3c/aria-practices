@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>ARIA Example: link role</title>
+  <meta name="generator" content="BBEdit 10.5" />
+  <link href="../css/core.css" rel="stylesheet">
+  <link href="../css/table.css" rel="stylesheet">
+  <link href="css/link.css" rel="stylesheet">
+  <script src="js/link.js" type="text/javascript"></script>
+</head>
+<body>
+
+    <h1>ARIA Example: <code>link</code> role</h1>
+
+  <main>
+
+    <h2>Creating links using <code>role=link</code></h2>
+
+    <p> <a href="../../aria-practices.html#h-link">Authoring Practice Design Patten for Link</a></p>
+    <p><strong>Note:</strong> When using HTML use the <code>&lt;a&gt;</code> element. It is recommended that authors not re-purpose other elements to create links.</p>
+    <h2 id="id1">Example Links</h2>
+    <div id="example">
+    <table aria-labelledby="id1">
+      <thead>
+        <tr>
+          <th>Technique</th>
+          <th>Link</th>
+          <th>Accessibility Features</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>span</code> element with text content</td>
+          <td>
+          <div id="ex1">
+            <span tabindex="0"
+                role="link"
+                onclick="goToLink(event, 'http://www.w3.org/')"
+                onKeyDown="goToLink(event, 'http://www.w3.org/')">
+              W3C website
+            </span>
+            </div>
+          </td>
+         <td>
+            <ul>
+              <li><code>span</code> element with <code>role="link"</code>.</li>
+              <li><code>span</code> element has <code>onclick</code> event to handle mouse clicks.</li>
+              <li><code>span</code> element has <code>onkeydown</code> event to handle keyboard support.</li>
+              <li><code>span</code> element has <code>tabindex="0"</code> to become part of tab order of the page.</li>
+              <li>Accessible name (e.g. what a screen reader will say) from child text content of <code>span</code> element.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+        <td><code>img</code> element</td>
+        <td>
+          <div id="ex2">
+            <img tabindex="0"
+            onclick="goToLink(event, 'http://www.w3.org/')"
+            onKeyDown="goToLink(event, 'http://www.w3.org/')"
+            role="link"
+            src="images/w3c-logo.png" alt="W3C Website">
+          </div>
+        </td>
+        <td>
+        <ul>
+              <li><code>img</code> element with <code>alt</code> attribute.</li>
+              <li><code>img</code> element has <code>onclick</code> event to handle mouse clicks.</li>
+              <li><code>img</code> element has <code>onkeydown</code> event to handle keyboard support.</li>
+              <li><code>img</code> element has <code>tabindex="0"</code> to become part of tab order of the page.</li>
+              <li>Accessible name from <code>alt</code> attribute.</li>
+        </ul>
+        </td>
+        </tr>
+        <tr>
+          <td>Content</td>
+          <td>
+              <div id="ex3">
+                <span aria-label="W3C website"
+                tabindex="0"
+                role="link"
+                class="w3c1"
+                onclick="goToLink(event, 'http://www.w3.org/TR/wai-aria-practices/')"
+                onKeyDown="goToLink(event, 'http://www.w3.org/TR/wai-aria-practices/')">
+                </span>
+              </div>
+          </td>
+          <td>
+            <ul>
+              <li><code>span</code> element with background image and with <code>role="link"</code>.</li>
+              <li><code>span</code> element has <code>onclick</code> event to handle mouse clicks.</li>
+              <li><code>span</code> element has <code>onkeydown</code> event to handle keyboard support.</li>
+              <li><code>span</code> element has <code>tabindex="0"</code> to become part of tab order of the page.</li>
+              <li>Accessible name from <code>aria-label</code> attribute.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>Background Image</td>
+          <td>
+              <div id="ex4">
+                <span aria-label="W3C website"
+                tabindex="0"
+                role="link"
+                class="w3c2"
+                onclick="goToLink(event, 'http://www.w3.org/TR/wai-aria-practices/')"
+                onKeyDown="goToLink(event, 'http://www.w3.org/TR/wai-aria-practices/')">
+                </span>
+              </div>
+          </td>
+          <td>
+            <ul>
+              <li><code>span</code> element with background image and with <code>role="link"</code>.</li>
+              <li><code>span</code> element has <code>onclick</code> event to handle mouse clicks.</li>
+              <li><code>span</code> element has <code>onkeydown</code> event to handle keyboard support.</li>
+              <li><code>span</code> element has <code>tabindex="0"</code> to become part of tab order of the page.</li>
+              <li>Accessible name from <code>aria-label</code> attribute.</li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <h2 id="id_kbd">Keyboard Support</h2>
+
+    <table aria-labelledby="id_kbd">
+      <thead>
+        <tr>
+          <th>Key</th>
+          <th>Function</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Enter/Return</td>
+          <td>Activate link</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 id="id_rps">ARIA Roles, Properties and States</h2>
+
+    <table aria-labelledby="id_rps">
+      <thead>
+        <tr>
+          <th>Role</th>
+          <th>Property/State</th>
+          <th>Component</th>
+          <th>Usage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>link</td>
+          <td></td>
+          <td>span</td>
+          <td>Identify element with the link behavior</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>aria-label</td>
+          <td>span</td>
+          <td>Define accessible name for link.</td>
+        </tr>
+
+      </tbody>
+    </table>
+
+    <script src="../js/examples.js" type="text/javascript"></script>
+
+    <h2>Source Code</h2>
+
+    <ul>
+      <li>CSS: <a href="css/link.css" type="tex/css">link.css</a></li>
+      <li>Javascript: <a href="js/link.js" type="text/javascript">link.js</a></li>
+    </ul>
+
+    <h3>HTML Code</h3>
+      <p class="annotate">HTML source code is generated by scripting using ID references.</p>
+      <h4>First Example: <code>span</code> element with text content </h4>
+      <div id="sc1"></div>
+
+      <h4>Second Example: <code>img</code> element</h4>
+      <div id="sc2"></div>
+
+      <h4>Third Example: Content </h4>
+      <div id="sc3"></div>
+
+       <h4>Fourth Example: Background image</h4>
+       <div id="sc4"></div>
+
+    <script>
+          sourceCode.add('sc1', 'ex1')
+          sourceCode.add('sc2', 'ex2')
+          sourceCode.add('sc3', 'ex3')
+          sourceCode.add('sc4', 'ex4')
+          sourceCode.make()
+
+    </script>
+  </main>
+</body>
+</html>

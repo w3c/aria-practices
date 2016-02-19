@@ -1,0 +1,27 @@
+# EditorConfig helps developers define and maintain consistent coding styles
+# between different editors and IDEs.
+
+# EditorConig has support in a wide range of text editors. You can view a
+# complete list—or download a plugin—at the EditorConfig website:
+# http://editorconfig.org/#download
+
+# More about editorconfig files on their website: http://EditorConfig.org
+
+# For now, this is the topmost editor config file.
+# Set to false if aria repo gets one.
+root = true
+
+
+# Unix-style newlines with a newline ending every file
+[*]
+charset = "utf-8"
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.{html,css,js}]
+indent_style = space
+indent_size = 2
+
+[*.md]
+trim_trailing_whitespace = false

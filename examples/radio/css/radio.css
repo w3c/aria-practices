@@ -1,0 +1,37 @@
+[role=radio] {
+  display: block;
+  position: relative;
+  margin: 0.5em;
+  padding-left: 20px;
+  border: thin transparent solid;
+}
+
+/* This creates the visuals for the radio buttons */
+[role=radio]::before,
+[role=radio]::after {
+  display: block;
+  position: absolute;
+  border-radius: 50%;
+  content: '';
+}
+
+[role=radio]::before {
+  top: 0;
+  left: 0;
+  width: 14px;
+  height: 14px;
+  border: 1px solid #000;
+  background: #fff;
+}
+
+[role=radio][aria-checked=true]::after {
+  top: 3px;
+  left: 3px;
+  border: 5px solid #000;
+  content: '';
+}
+
+#codeex{
+  background-color: #F1F1F1 ;
+  padding:10px;
+}

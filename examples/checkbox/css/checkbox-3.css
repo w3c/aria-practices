@@ -1,0 +1,31 @@
+.group div[role=checkbox] {
+   margin: 0;
+   padding: 0;    
+   border: 2px transparent solid;
+   margin-bottom: .5em;
+   margin-top: .5em;
+}
+.group label{
+   display: block;
+   border: thin transparent solid;
+   margin-left: 18px;
+}  
+.group div[role=checkbox]:hover,
+label:hover {
+   border-color: #777;
+}
+
+.group div[role=checkbox].focus,
+label.focus {
+   border-color: black;
+}
+.checkbox{
+   padding-left: 10px;
+}
+#ex1, #ex2, #ex3 {
+   background-color: #F1F1F1 ;
+   padding:10px;
+}
+fieldset {
+   border-style: none;
+}

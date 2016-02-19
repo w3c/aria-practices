@@ -1,0 +1,29 @@
+[role="link"]
+{
+    color: #009;
+    background: transparent;
+    text-decoration: underline;
+    border: thin solid transparent;
+}
+
+[role="link"]:hover, [role="link"]:focus, [role="link"]:active
+{
+    color:#000;
+    border-color: #fc0;
+    cursor: pointer;
+}
+
+[role="link"].w3c1 {
+  display: block;
+  content: url('../images/w3c-logo.png');
+  width:153px;
+  height:104px; 
+}
+
+[role="link"].w3c2 {
+  display: block;
+  background-repeat: no-repeat;
+  background-image: url('../images/w3c-logo.png');
+  width:153px;
+  height:104px; 
+}
