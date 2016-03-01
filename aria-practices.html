@@ -2382,7 +2382,6 @@ This is because browser accessibility APIs do not support child elements contain
   </section>
   <section class="widget" id="toolbar">
     <h3 class="widget-name">Toolbar</h3>
-    <p class="note">This section has not been updated since it was integrated from APG version 1.0 -- an APG task force review is pending.</p>
     <table class="widget-features">
       <caption>
       Characteristics:
@@ -2390,25 +2389,30 @@ This is because browser accessibility APIs do not support child elements contain
       <tbody>
         <tr>
           <th class="widget-description-head" scope="row">Description: </th>
-          <td class="widget-description"><p>A <a class="role-reference" href="#toolbar">toolbar</a> is a flat non-hierarchical collection of controls that provides quick access to a subset of the functions found in the <a class="role-reference" href="#menubar">menubar</a>/<a class="role-reference" href="#menu">menu</a> hierarchy.  Its purpose is to reduce effort in using these functions.  There should neither be too few nor too many controls within a toolbar.  When creating toolbars try to limit the number of items to approximately seven, as forcing users to navigate through an excessive number of items is a usability concern. Since navigation between toolbars is accomplished using a <kbd>Tab</kbd> keystroke, too few controls within a toolbar also creates a usability issue as it requires numerous <kbd>Tab</kbd> keystrokes to navigate between toolbars.</p><p>Authors must supply an <a class="property-reference" href="#aria-label">aria-label</a> property on each toolbar when their application contains more than one toolbar. The label provides information about the purpose of each toolbar; for example, an "Edit" toolbar that contains cut, copy, paste, clear, undo, and redo controls.  If the application has many toolbars, it is recommended that they be placed inside a container element with a role of <a class="role-reference" href="#group">group</a> to allow for keyboard navigation to the entire collection of toolbars.  It is recommended that authors provide a documented key combination that allows a user to move focus quickly to the toolbar from elsewhere within the web application, placing keyboard focus on a tool within the toolbar.</p><p>It is further recommended that authors provide access to these functions via a <a class="role-reference" href="#menubar">menubar</a> and <a class="role-reference" href="#menu">menu</a>s to avoid cluttering the user interface with a surplus of toolbars.</p></td>
-        </tr>
+            <td class="widget-description">
+            <p> A <a class="role-reference" href="#toolbar">toolbar</a> is a container for grouping a set of controls, such as buttons, menubuttons, or checkboxes.</p>
+                <p>When a set of 3 or more controls is visually presented as a group, the <code>toolbar</code> role can be used to communicate the presence and purpose of the grouping to screen reader users.</p>
+                <p>When designing and implementing toolbars, it is strongly recommended that authors:</p>
+                <ol>
+                <li>Implement focus management for a toolbar so there is one stop in the keyboard tab sequence for the toolbar and arrow keys move focus among the contained controls.</li>
+                <li>Avoid including controls that require arrow keys to operate, such as textbox or radio group. If unavoidable, include only one such control and make it the last element .</li>
+                </ol>
+                <p>Grouping controls in toolbars can be an effective way of reducing the number of tab stops in the keyboard interface. </p>
+              </td>
+          </tr>
         <tr>
           <th class="widget-keyboard-head" scope="row">Keyboard Interaction: </th>
-          <td class="widget-keyboard"><ul>
-            <li><kbd>Tab</kbd> moves focus to the first enabled toolbar button. </li>
-            <li>A subsequent <kbd>Tab</kbd> moves focus out of the toolbar </li>
-            <li><kbd>Left Arrow</kbd> and <kbd>Right Arrow</kbd> keys navigate to the enabled buttons   in the toolbar </li>
+          <td class="widget-keyboard">
+          <ul>
+            <li><kbd>Tab</kbd>: Moves focus into and out of the toolbar. When focus moves into the toolbar, the first enabled control receives focus. Optionally, if the toolbar has previously contained focus, the control that last had focus may receive focus. </li>
+            <li><kbd>Left Arrow</kbd> and <kbd>Right Arrow</kbd>: move focus among controls in the toolbar. </li>
             </ul>
-            <p class="note">Direction may need to be adjusted for Right to Left   languages </p>
-            <p class="note">Recommended: provide a documented keystroke that allows users to move focus quickly to the toolbar from elsewhere within the web application, placing focus on a tool within the toolbar.</p>
-            <div class="note">
-              <p>There is debate concerning the treatment of disabled toolbar buttons -- should they be focusable or not?  Visually, disabled buttons are grayed-out, and typically not placed in the navigation order.  This invites an issue about how a screen reader user discovers these buttons if they are not keyboard navigable.  Several ways of handling this include:</p>
-              <ul>
-                <li>In software applications like Microsoft® Word, the toolbars themselves are not reachable by the   keyboard user, but the features are available on one of the drop-down menus. </li>
-                <li>Users set a preference indicating whether they want disabled buttons focusable.</li>
-                <li>Disabled buttons are not focusable until they are enabled.  This is the way toolbars currently work.</li>
-                <li>Disabled buttons are focusable, but read by the screen reader as disabled.</li>
-              </ul></div></td>
+            <ol class="note">
+            <li>In general disabled elements are not focusable when navigating with a keyboard. However, in circumstances where discoverability of a function is crucial, authors may choose to make them focusable so screen reader users are more likely to be aware of their presence. </li>
+            <li>In applications where quick access to a toolbar is important, such as accessing an editor's toolbar from its text area, it is recommended that authors provide a shortcut key for moving focus from the relevant context to the appropriate toolbar.
+            </li>
+                   </ol>
+              </td>
         </tr>
         <tr>
           <th class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </th>
