@@ -2322,7 +2322,6 @@ This is because browser accessibility APIs do not support child elements contain
   </section>
   <section class="widget" id="tabpanel">
     <h3 class="widget-name">Tab Panel</h3>
-    <p class="note">This section has not been updated since it was integrated from APG version 1.0 -- an APG task force review is pending.</p>
          <table class="widget-features">
           <caption>
           Characteristics:
@@ -2330,16 +2329,16 @@ This is because browser accessibility APIs do not support child elements contain
           <tbody>
             <tr>
               <th class="widget-description-head" scope="row">Description: </th>
-              <td class="widget-description"><p>A tabbed interface component is a container for resources associated with a tab. It is a set of layered pages where only one page is displayed at a time. The general look is similar to a file folder with a "tab" that contains the title of the folder. The tabs are arranged along one of the edges of the contents but most commonly are found at the top of the page. The user navigates and makes the contents of each page visible by interacting with the title "tab" of the page. Sometimes referred to as a tab container or tab panel. Terms for understanding Tab Panels include:</p>
+              <td class="widget-description"><p>A tabbed interface component is a set of layered areas, known as tab panels, where only one area is displayed at a time. The tabs are arranged along one of the edges of the contents but most commonly are found at the top. The user navigates and makes the contents of each area visible by interacting with the title "tab". Terms for understanding Tab Panels include:</p>
                 <dl>
                   <dt>tabbed interface component</dt>
                   <dd> a set of tabs and associated tab panels </dd>
+                  <dt>tab list</dt>
+                  <dd>the set of tabs</dd> 
+                  <dt>tab</dt>
+                  <dd>the label/title area of the tab panel. This is where you click to activate a tab panel </dd>                  
                   <dt>tab panel</dt>
                   <dd>contents area that is associated with a tab</dd>
-                  <dt>tab</dt>
-                  <dd>the label/title area of the tab panel. This is where you click to activate a tab panel </dd>
-                  <dt>tablist</dt>
-                  <dd>the set of tabs</dd>
                 </dl>
                 <p>When the user activates a tab, the contents of the corresponding tab panel is made visible. The tab is considered "active". The tab remains active until another tab is activated. The active tab is placed into the tab order. Only the active tab should be in the tab order. A default tab is specified that is active when the tabbed interface component is initialized. A collection of tabs and their associated tab panels is a complex widget, because it performs show/hide actions as well as moving the user's point of regard around within the content. </p></td>
             </tr>
@@ -2347,16 +2346,14 @@ This is because browser accessibility APIs do not support child elements contain
               <th class="widget-keyboard-head" scope="row">Keyboard Interaction: </th>
               <td class="widget-keyboard"><ul>
                   <li><kbd>Tab</kbd> - only the active tab is in the tab order. The user reaches the tabbed  panel component by pressing the tab key until the active tab title  receives focus. </li>
-                  <li><kbd>Left Arrow</kbd> - with focus on a tab, pressing the left arrow will move focus to the  previous tab in the tab list and activate that tab. Pressing the left  arrow when the focus is on the first tab in the tab list will move  focus and activate the last tab in the list. </li>
-                  <li><kbd>Right Arrow</kbd> - with focus on a tab, pressing the right arrow will move focus to the  next tab in the tab list and activate that tab. Pressing the right  arrow when the focus is on the last tab in the tab list will move focus  to and activate the first tab in the list. </li>
+                  <li><kbd>Left Arrow</kbd> - with focus on a tab, pressing the left arrow will move focus to the previous tab in the tab list. Normally the newly focussed tab will automatically activate, but in some instances this will not happen and <kbd>space or enter</kbd> will be needed to activate the tab. Pressing the left  arrow when the focus is on the first tab in the tab list will move  focus and activate the last tab in the list. </li>
+                  <li><kbd>Right Arrow</kbd> - with focus on a tab, pressing the right arrow will move focus to the  next tab in the tab list. Normally the newly focussed tab will automatically activate, but in some instances this will not happen and <kbd>space or enter</kbd> will be needed to activate the tab. Pressing the right  arrow when the focus is on the last tab in the tab list will move focus  to and activate the first tab in the list. </li>
+                  <li><kbd>Space or Enter</kbd> - with focus on a tab, <kbd>space or enter</kbd> will activate the tab if the tab does not activate automatically.</li>
                   <li><kbd>Up arrow</kbd> - behaves the same as left arrow in order to support vertical tabs </li>
                   <li><kbd>Down arrow</kbd> - behaves the same as right arrow in order to support vertical tabs </li>
-                  <li><kbd>Control + Up Arrow</kbd> - with focus anywhere within the tab panel, pressing <kbd>Control + Up Arrow</kbd>  will  move focus to the tab for that panel. This is not standard behavior -  is this something we want to implement? Is it necessary if we provide a  mechanism to change the active tab? Similar to  <kbd>Control + Page Up</kbd>/<kbd>Control + Page Down</kbd> in  Firefox to switch tabs? </li>
-                  <li><kbd>Alt + Delete</kbd> - When deletion is allowed, with focus anywhere within the tab panel,  pressing <kbd>Alt + Delete</kbd> will delete the current tab and tab panel from the  tabbed interface control. If additional tabs remain in the tabbed  interface, focus goes to the next tab in the tab list. An alternative  to providing a keystroke to close a tab is to provide a context menu  that is associated with the tab title. When focus is on the tab,  pressing <kbd>Shift + F10</kbd> or pressing the right mouse button will open a  context menu with the close choice </li>
-                  <li><kbd>Control + Page Up</kbd> - When focus is inside of a tab panel, pressing <kbd>Control + Page Up</kbd> moves focus  to the tab of the previous tab in the tab list and activates that tab.  When focus is in the first tab panel in the tab list, pressing  <kbd>Control + Page Up</kbd> will move focus to the last tab in the tab list and  activate that tab. </li>
-                  <li><kbd>Control + PageDown</kbd> When focus is inside of a tab panel, pressing <kbd>Control + Page Down</kbd> moves  focus to the tab of the next tab in the tab list and activates that  tab. When focus is in the last tab panel in the tab list, pressing  <kbd>Control + Page Up</kbd> will move focus to the first tab in the tab list and  activate that tab. </li>
+                  <li><kbd>Delete</kbd> - When deletion is allowed, with focus on the tab <kbd>Delete</kbd> will delete the current tab and tab panel from the  tabbed interface control. If additional tabs remain in the tabbed  interface, focus goes to the next tab in the tab list. An alternative  to providing a keystroke to close a tab is to provide a context menu  that is associated with the tab title. When focus is on the tab,  pressing <kbd>Shift + F10</kbd> or pressing the right mouse button will open a  context menu with the close choice </li>
                 </ul>
-                <p>Regarding <kbd>Control + Page Up</kbd>/<kbd>Control + Page Down</kbd>. This is currently implemented in Firefox to move  between browser tabs. Firefox also supports <kbd>Control + Tab</kbd> and <kbd>Control + Shift + Tab</kbd>  to move between tabs. Internet Explorer 7 also uses <kbd>Control + Tab</kbd> and  <kbd>Control + Shift + Tab</kbd>. There may be advantages to using <kbd>Control + Page Up</kbd>/<kbd>Control + Page Down</kbd> as the keys to change tabs since it is a recognizable keystroke to at  least Firefox users and is also supported by the Windows operating  system to move between panels in a tabbed dialog. The problem is that  if the user is within a tabbed interface control on a Web page, they  can not easily switch browser tabs without first moving focus outside  of the tabbed interface control. This may be acceptable. The other  issue is if the entire Web page is a tabbed interface control - in that  case the user could not ever switch browser tabs unless the control on  the Web page ignored the <kbd>Control + Page Up</kbd>/<kbd>Control + Page Down</kbd> keypress (and thus  letting the browser access it) when the first or last tab was reached. </p></td>
+              </td>
             </tr>
             <tr>
               <th class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </th>
