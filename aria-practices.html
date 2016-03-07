@@ -2393,13 +2393,14 @@ This is because browser accessibility APIs do not support child elements contain
           <th class="widget-description-head" scope="row">Description: </th>
             <td class="widget-description">
             <p> A <a class="role-reference" href="#toolbar">toolbar</a> is a container for grouping a set of controls, such as buttons, menubuttons, or checkboxes.</p>
-                <p>When a set of 3 or more controls is visually presented as a group, the <code>toolbar</code> role can be used to communicate the presence and purpose of the grouping to screen reader users.</p>
+                <p>When a set of controls is visually presented as a group, the <code>toolbar</code> role can be used to communicate the presence and purpose of the grouping to screen reader users.
+                Grouping controls into toolbars can also be an effective way of reducing the number of tab stops in the keyboard interface. </p>
                 <p>When designing and implementing toolbars, it is strongly recommended that authors:</p>
                 <ol>
-                <li>Implement focus management for a toolbar so there is one stop in the keyboard tab sequence for the toolbar and arrow keys move focus among the contained controls.</li>
+                <li>Implement focus management so there is one stop in the keyboard tab sequence for the toolbar and arrow keys move focus among the contained controls.</li>
                 <li>Avoid including controls that require arrow keys to operate, such as textbox or radio group. If unavoidable, include only one such control and make it the last element .</li>
+                <li>Use toolbar as a grouping element only if the group contains 3 or more controls.</li>
                 </ol>
-                <p>Grouping controls in toolbars can be an effective way of reducing the number of tab stops in the keyboard interface. </p>
               </td>
           </tr>
         <tr>
@@ -2407,12 +2408,11 @@ This is because browser accessibility APIs do not support child elements contain
           <td class="widget-keyboard">
           <ul>
             <li><kbd>Tab</kbd>: Moves focus into and out of the toolbar. When focus moves into the toolbar, the first enabled control receives focus. Optionally, if the toolbar has previously contained focus, the control that last had focus may receive focus. </li>
-            <li><kbd>Left Arrow</kbd> and <kbd>Right Arrow</kbd>: move focus among controls in the toolbar. </li>
+            <li><kbd>Left Arrow</kbd> and <kbd>Right Arrow</kbd>: move focus among controls in the toolbar. Optionally, focus movement may wrap from the last element to the first element and vice versa. </li>
             </ul>
             <ol class="note">
-            <li>In general disabled elements are not focusable when navigating with a keyboard. However, in circumstances where discoverability of a function is crucial, authors may choose to make them focusable so screen reader users are more likely to be aware of their presence. </li>
-            <li>In applications where quick access to a toolbar is important, such as accessing an editor's toolbar from its text area, it is recommended that authors provide a shortcut key for moving focus from the relevant context to the appropriate toolbar.
-            </li>
+            <li>Typically, disabled elements are not focusable when navigating with a keyboard. However, in circumstances where discoverability of a function is crucial, authors may choose to make disabled controls focusable so screen reader users are more likely to be aware of their presence. </li>
+            <li>In applications where quick access to a toolbar is important, such as accessing an editor's toolbar from its text area, it is recommended that authors provide a documented shortcut key for moving focus from the relevant context to its corresponding toolbar. </li>
                    </ol>
               </td>
         </tr>
