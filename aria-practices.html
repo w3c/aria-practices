@@ -1266,50 +1266,6 @@
       </tbody>
     </table>
     </section>
-    <section class="design-pattern" id="draganddrop">
-      <h3  class="design-pattern-name"> Drag &amp; Drop </h3>
-      <p class="note">This section has not been updated since it was integrated from APG version 1.0 -- an APG task force review is pending.</p>
-    <table class="widget-features">
-      <caption>
-      Characteristics:
-      </caption>
-      <tbody>
-        <tr>
-          <th class="widget-description-head" scope="row">Description: </th>
-          <td class="widget-description">A drag and drop operation can occur in contexts that support selection of objects, including single and multiple selection models. An example is a <a href="#tree" class="role-reference">tree</a> view. The tree is a container of objects that are potentially draggable.</td>
-        </tr>
-        <tr>
-          <th class="widget-keyboard-head" scope="row">Keyboard Interaction: </th>
-          <td class="widget-keyboard"><p>See <a href="#dragdrop">Drag and Drop Support</a>, above.</p></td>
-        </tr>
-        <tr>
-          <th class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </th>
-          <td class="widget-aria">
-            <ul>
-              <li>Draggable objects are identified using the <a href="#aria-grabbed" class="property-reference">aria-grabbed</a> state.
-                <ul>
-                  <li>If the aria-grabbed state is absent, or if it has the value <code>undefined</code>, then the object cannot partake in a drag and drop operation. </li>
-                  <li>If aria-grabbed is <code>false</code>, the object is draggable, but currently not being dragged. </li>
-                  <li>If aria-grabbed is <code>true</code>, the object is both draggable and currently being dragged. </li>
-                 </ul>
-              </li>
-              <li>Other objects are potential drop targets. Drop targets are identified using the <a href="#aria-dropeffect" class="property-reference">aria-dropeffect</a> property. </li>
-            </ul>
-            <p>See <a href="#dragdrop">Drag and Drop Support</a> for more detail.</p>
-            </td>
-        </tr>
-        <tr>
-          <th class="widget-example-head" scope="row">Example: </th>
-          <td class="widget-example">
-          <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG task force is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
-          <ul>
-            <li><a href="http://www.oaa-accessibility.org/examplep/draganddrop1/" title="Drag and Drop" target="_blank" rel="nofollow">Tic tac toe (Open Ajax)</a></li>
-            <li><a href="http://www.oaa-accessibility.org/examplep/draganddrop2/" title="Drag and Drop: aria-activedescendant" target="_blank" rel="nofollow">Slide show (Open Ajax)</a></li>
-          </ul></td>
-        </tr>
-      </tbody>
-    </table>
-    </section>
 <section class="widget" id="grid">
       <h3 class="widget-name">Grid (Simple Data Tables)</h3>
       <p class="note">This section has not been updated since it was integrated from APG version 1.0 -- an APG task force review is pending.</p>
@@ -2572,7 +2528,6 @@ Characteristics:
   </section>
   <section class="widget" id="TreeView">
     <h3 class="widget-name">Tree View</h3>
-    <p class="note">This section has not been updated since it was integrated from APG version 1.0 -- an APG task force review is pending.</p>
     <table class="widget-features">
       <caption>
         Characteristics:
@@ -2604,20 +2559,24 @@ Characteristics:
               <dt>end node</dt>
               <dd>Node with no children </dd>
             </dl>
-            <p>General behavior for tree views follows:</p>
-            <ul>
-                <li>On first load of the tree component, the top level node is in the tab order. </li>
-              <li>One and only one node of the tree component is in the tab order of the page at any time. </li>
-              <li>The last visited node in the tree control is retained in the tab order when the user navigates away from the tree control. </li>
-              <li>Nodes can be focused and/or selected. There must be visual distinction between focused and selected nodes. </li>
-              <li>Arrowing
-                to an item with the keyboard or clicking on an item with the mouse will
-                focus and select the node. Any previous selections are cleared </li>
+
+              <p>Nodes can be focused and/or selected. There must be visual distinction between focused and selected nodes. </p>
+              
             </ul></td>
         </tr>
         <tr>
           <th class="widget-keyboard-head" scope="row">Keyboard Interaction: </th>
-          <td class="widget-keyboard"><ul>
+          <td class="widget-keyboard">
+                      <p>General behavior for tree views follows:</p>
+             <ul>
+                <li>On first load of the tree component, the top level node is in the tab order. </li>
+              <li>One and only one node of the tree component is in the tab order of the page at any time. </li>
+              <li>The last visited node in the tree control is retained in the tab order when the user navigates away from the tree control. </li>    
+             <li>Arrowing
+                to an item with the keyboard will
+                focus and select the node. Any previous selections are cleared </li></ul>
+                <ul>              
+          
               <li> <kbd>Up Arrow</kbd> and <kbd>Down arrow</kbd> keys move between visible nodes. </li>
             <li> <kbd>Left arrow</kbd> key on an expanded node closes the node. </li>
             <li> <kbd>Left arrow</kbd> key on a closed or end node moves focus to the node's parent. </li>
@@ -2631,15 +2590,21 @@ Characteristics:
             <li> <kbd>Shift + Up Arrow</kbd> extends selection up one node. </li>
             <li> <kbd>Shift + Down Arrow</kbd> extends selection down one node. </li>
             <li> <kbd>Shift + Home</kbd> extends selection up to the top-most node. </li>
-            <li> <kbd>Shift + PageDown</kbd> extends selection down to the last node. </li>
-            <li> <kbd>*</kbd>(asterisk) on keypad expands all nodes. </li>
+            <li> <kbd>Shift + End</kbd> extends selection down to the last node. </li>
+            <li> <kbd>*</kbd>(asterisk) - on numeric keypad (optional) expands all siblings at the current node's level. </li>
           </ul></td>
         </tr>
         <tr>
           <th class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </th>
-          <td class="widget-aria">A tree view uses the WAI-ARIA role <a class="role-reference" href="#tree">tree</a>,
-            where tree is a main container element. A tree can itself contain
-            subtrees that may be collapsed and expanded; these have the role <a class="role-reference" href="#treeitem">treeitem</a>. A collection of treeitems to be expanded and collapsed are enclosed in a group. See the XHTML example in the [[WAI-ARIA]] specification.</td>
+          <td class="widget-aria"><ul><li>The tree view container has a role of <a class="role-reference" href="#tree">tree</a>.</li>
+          <li>Each node in a tree has the role <a class="role-reference" href="#treeitem">treeitem</a> and should be a DOM child of tree.</li>
+          <li>If is not a DOM child of tree, then it should be referenced by <a href="#aria-owns" class="property-reference">aria-owns</a> from its logical parent node.</li>  
+          <li>If all nodes in the tree are not DOM children of the tree, then set their <a href="#aria-level" class="property-reference">aria-level</a>, <a href="#aria-setsize" class="property-reference">aria-setsize</a> and <a href="#aria-posinset" class="property-reference">aria-posinset</a> accordingly; otherwise, this information cannot be computed for context by the user agent.</li>          
+          <li>A collection of treeitems to be expanded and collapsed are enclosed in a <a class="role-reference" href="#group">group</a>.</li> 
+          <li>Each tree node which can be expanded should have <a class="property-reference" href="#aria-expanded">aria-expanded</a> set to <code>false</code></li>
+          <li>Each tree node which is expanded should have <a class="property-reference" href="#aria-expanded">aria-expanded</a> set to <code>true</code></li>
+          <li>Leaf nodes should not have <a class="property-reference" href="#aria-expanded">aria-expanded</a> set</li></td>
+          <li>If <a class="property-reference" href="#aria-multiselectable">aria-multiselectable</a> is set to <code>true</code> on the tree, then each selectable tree node should have <a class="property-reference" href="#aria-selected">aria-selected</a> set to either <code>true</code> or <code>false</code> depending on the current selection.</li>
         </tr>
         <tr>
           <th class="widget-example-head" scope="row">Example: </th>
