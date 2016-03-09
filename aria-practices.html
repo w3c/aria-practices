@@ -2408,9 +2408,20 @@ This is because browser accessibility APIs do not support child elements contain
           <td class="widget-keyboard">
           <ul>
             <li><kbd>Tab</kbd>: Moves focus into and out of the toolbar. When focus moves into the toolbar, the first enabled control receives focus. Optionally, if the toolbar has previously contained focus, the control that last had focus may receive focus. </li>
-            <li><kbd>Left Arrow</kbd> and <kbd>Right Arrow</kbd>: move focus among controls in the toolbar. Optionally, focus movement may wrap from the last element to the first element and vice versa. </li>
+            <li>For a horizontal toolbar (the default):
+            <ul>
+            <li><kbd>Left Arrow</kbd>: Moves focus to the previous control.  Optionally, focus movement may wrap from the first element to the last element. </li>
+            <li><kbd>Right Arrow</kbd>: Moves focus to the next control.  Optionally, focus movement may wrap from the last element to the first element. </li>
+            </ul>
+            </li>
             </ul>
             <ol class="note">
+            <li>If the items in a toolbar are arranged vertically:
+          <ol>
+          <li> <kbd>Down Arrow</kbd> performs as <kbd>Right Arrow</kbd> is described above. </li>
+          <li> <kbd>Up Arrow</kbd> performs as <kbd>Left Arrow</kbd> is described above. </li>
+          </ol>
+          </li>
             <li>Typically, disabled elements are not focusable when navigating with a keyboard. However, in circumstances where discoverability of a function is crucial, authors may choose to make disabled controls focusable so screen reader users are more likely to be aware of their presence. </li>
             <li>In applications where quick access to a toolbar is important, such as accessing an editor's toolbar from its text area, it is recommended that authors provide a documented shortcut key for moving focus from the relevant context to its corresponding toolbar. </li>
                    </ol>
@@ -2422,6 +2433,7 @@ This is because browser accessibility APIs do not support child elements contain
             <ul>
               <li>The element has the role <a class="role-reference" href="#toolbar">toolbar</a>.  </li>
               <li>Labeling with <a href="#aria-label" class="property-reference">aria-label</a> is recommended, especially if the user interface includes multiple toolbars. </li>
+              <li>If the controls are arranged vertically, the toolbar element has <a href="#aria-orientation" class="property-reference">aria-orientation</a> set to <code>vertical</code>. The default orientation is horizontal.</li>
             </ul>
           </td>
         </tr>
