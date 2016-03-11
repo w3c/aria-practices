@@ -1631,7 +1631,7 @@ This is because browser accessibility APIs do not support child elements contain
             <li>When a <a href="#menuitemcheckbox" class="role-reference">menuitemcheckbox</a> or <a href="#menuitemradio" class="role-reference">menuitemradio</a> is checked, <a href="#aria-checked" class="property-reference">aria-checked</a> is set to <code>true</code>. </li>
       <li>When a menu item is disabled, <a href="#aria-disabled" class="state-reference">aria-disabled</a> is set to <code>true</code>.</li>
             <li>Items in a menu may be divided into groups by placing an element with a role of <a href="#separator" class="role-reference">separator</a> between groups. For example, this technique should be used when a menu contains a set of <a href="#menuitemradio" class="role-reference">menuitemradio</a> items. </li>
-              <li>All <role href="#separator" class="role-reference">separators</a> should have <a href="#aria-orientation" class="property-reference">aria-orientation</a> consistent with the separator's orientation. </li>
+              <li>All <a href="#separator" class="role-reference">separators</a> should have <a href="#aria-orientation" class="property-reference">aria-orientation</a> consistent with the separator's orientation. </li>
                 </ul>
                 <p class="note">If <a href="#aria-owns" class="property-reference">aria-owns</a> is set on the menu container to include elements that are not DOM children of the container, those elements will appear in the reading order in the sequence they are referenced and after any items that are DOM children. Scripts that manage focus need to ensure the visual focus order matches this assistive technology reading order. </p>
                 </td>
@@ -2540,7 +2540,7 @@ Characteristics:
 
               <p>Nodes can be focused and/or selected. There must be visual distinction between focused and selected nodes. </p>
               
-            </ul></td>
+            </td>
         </tr>
         <tr>
           <th class="widget-keyboard-head" scope="row">Keyboard Interaction: </th>
@@ -2572,7 +2572,8 @@ Characteristics:
         </tr>
         <tr>
           <th class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </th>
-          <td class="widget-aria"><ul><li>The tree view container has a role of <a class="role-reference" href="#tree">tree</a>.</li>
+          <td class="widget-aria"><ul><li>The tree view container has a role of <a class="role-reference" href="#tree">tree</a>.
+          <ul>
           <li>Each node in a tree has the role <a class="role-reference" href="#treeitem">treeitem</a> and should be a DOM child of tree.</li>
           <li>If is not a DOM child of tree, then it should be referenced by <a href="#aria-owns" class="property-reference">aria-owns</a> from its logical parent node.</li>  
           <li>If all nodes in the tree are not DOM children of the tree, then set their <a href="#aria-level" class="property-reference">aria-level</a>, <a href="#aria-setsize" class="property-reference">aria-setsize</a> and <a href="#aria-posinset" class="property-reference">aria-posinset</a> accordingly; otherwise, this information cannot be computed for context by the user agent.</li>          
@@ -2580,7 +2581,7 @@ Characteristics:
           <li>Each tree node which can be expanded should have <a class="property-reference" href="#aria-expanded">aria-expanded</a> set to <code>false</code></li>
           <li>Each tree node which is expanded should have <a class="property-reference" href="#aria-expanded">aria-expanded</a> set to <code>true</code></li>
           <li>Leaf nodes should not have <a class="property-reference" href="#aria-expanded">aria-expanded</a> set</li>
-          <li>If <a class="property-reference" href="#aria-multiselectable">aria-multiselectable</a> is set to <code>true</code> on the tree, then each selectable tree node should have <a class="property-reference" href="#aria-selected">aria-selected</a> set to either <code>true</code> or <code>false</code> depending on the current selection.</li></td>
+          <li>If <a class="property-reference" href="#aria-multiselectable">aria-multiselectable</a> is set to <code>true</code> on the tree, then each selectable tree node should have <a class="property-reference" href="#aria-selected">aria-selected</a> set to either <code>true</code> or <code>false</code> depending on the current selection.</li></ul></td>
         </tr>
         <tr>
           <th class="widget-example-head" scope="row">Example: </th>
