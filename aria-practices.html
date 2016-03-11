@@ -2198,10 +2198,13 @@ This is because browser accessibility APIs do not support child elements contain
                   </ul>
                 </li>
               </ul>
-              <p class="note">Focus is placed on one of the thumbs of the slider.</p>
-              <p class="note">All thumbs are in the tab order.</p>
-              <p class="note">If the current value of a slider crosses over one of the other sliders, the tab order remains the same.  Example.  If a high range slider is moved so that its current value is below the current value of a low range slider, the thumb will visually appear to be before the low range slider.  This should not change the tab order of the slider. </p>
-        <p class="note">There are cases where an author may wish up/down and home/end to move the slider thumb in the opposite direction from this note. The author can do this if they think this results in a better user experience.</p></td>
+              <ol class="note">
+              <li>Focus is placed on one of the thumbs of the slider.</li>
+              <li>All thumbs are in the tab order.</li>
+              <li>If the current value of a slider crosses over one of the other sliders, the tab order remains the same.  Example.  If a high range slider is moved so that its current value is below the current value of a low range slider, the thumb will visually appear to be before the low range slider.  This should not change the tab order of the slider. </li>
+              <li>In some circumstances, an author may reverse the direction of the value change for the keys specified above, e.g., make <kbd>Up Arrow</kbd> decrease the value, if the author is certain doing so will result in a better user experience. </li>
+              </ol>
+        </td>
           </tr>
           <tr>
             <th class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </th>
