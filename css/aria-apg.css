@@ -18,6 +18,9 @@
 table.widget-features, table.widget-features tbody tr td, table.widget-features tbody tr th {
 	border: 1px solid #000000;
 }
+table.widget-features tbody tr th {
+  text-align: left !important;
+}
 
 th, td{
 	border:solid 2px #999;
@@ -33,17 +36,3 @@ th+th, td+td{
 
 
 
-/* Permalinks */
-.permalink {
-	float: right;
-	margin-top: -2.5em;
-	/*color:#333 !important;*/
-}
-.permalink a, .permalink a:link, .permalink a:visited, .permalink a:hover, .permalink a:focus, .permalink a:active 
-{
-	background:transparent !important;
-	text-decoration:none;
-}
-.permalink abbr {
-	border:0;
-}

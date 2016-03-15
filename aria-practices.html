@@ -2251,9 +2251,9 @@ This is because browser accessibility APIs do not support child elements contain
                   <dt>tabbed interface component</dt>
                   <dd> a set of tabs and associated tab panels </dd>
                   <dt>tab list</dt>
-                  <dd>the set of tabs</dd> 
+                  <dd>the set of tabs</dd>
                   <dt>tab</dt>
-                  <dd>the label/title area of the tab panel. This is where you click to activate a tab panel </dd>                  
+                  <dd>the label/title area of the tab panel. This is where you click to activate a tab panel </dd>
                   <dt>tab panel</dt>
                   <dd>contents area that is associated with a tab</dd>
                 </dl>
@@ -2539,7 +2539,7 @@ Characteristics:
             </dl>
 
               <p>Nodes can be focused and/or selected. There must be visual distinction between focused and selected nodes. </p>
-              
+
             </td>
         </tr>
         <tr>
@@ -2548,11 +2548,11 @@ Characteristics:
              <ul>
                 <li>On first load of the tree component, the top level node is in the tab order. </li>
               <li>One and only one node of the tree component is in the tab order of the page at any time. </li>
-              <li>The last visited node in the tree control is retained in the tab order when the user navigates away from the tree control. </li>    
+              <li>The last visited node in the tree control is retained in the tab order when the user navigates away from the tree control. </li>
              <li>Arrowing
                 to an item with the keyboard will
                 focus and select the node. Any previous selections are cleared </li>
-          
+
               <li> <kbd>Up Arrow</kbd> and <kbd>Down arrow</kbd> keys move between visible nodes. </li>
             <li> <kbd>Left arrow</kbd> key on an expanded node closes the node. </li>
             <li> <kbd>Left arrow</kbd> key on a closed or end node moves focus to the node's parent. </li>
@@ -2574,9 +2574,9 @@ Characteristics:
           <th class="widget-aria-head" scope="row">WAI-ARIA Roles, States, and Properties: </th>
           <td class="widget-aria"><ul><li>The tree view container has a role of <a class="role-reference" href="#tree">tree</a>.</li>
           <li>Each node in a tree has the role <a class="role-reference" href="#treeitem">treeitem</a> and should be a DOM child of tree.</li>
-          <li>If is not a DOM child of tree, then it should be referenced by <a href="#aria-owns" class="property-reference">aria-owns</a> from its logical parent node.</li>  
-          <li>If all nodes in the tree are not DOM children of the tree, then set their <a href="#aria-level" class="property-reference">aria-level</a>, <a href="#aria-setsize" class="property-reference">aria-setsize</a> and <a href="#aria-posinset" class="property-reference">aria-posinset</a> accordingly; otherwise, this information cannot be computed for context by the user agent.</li>          
-          <li>A collection of treeitems to be expanded and collapsed are enclosed in a <a class="role-reference" href="#group">group</a>.</li> 
+          <li>If is not a DOM child of tree, then it should be referenced by <a href="#aria-owns" class="property-reference">aria-owns</a> from its logical parent node.</li>
+          <li>If all nodes in the tree are not DOM children of the tree, then set their <a href="#aria-level" class="property-reference">aria-level</a>, <a href="#aria-setsize" class="property-reference">aria-setsize</a> and <a href="#aria-posinset" class="property-reference">aria-posinset</a> accordingly; otherwise, this information cannot be computed for context by the user agent.</li>
+          <li>A collection of treeitems to be expanded and collapsed are enclosed in a <a class="role-reference" href="#group">group</a>.</li>
           <li>Each tree node which can be expanded should have <a class="property-reference" href="#aria-expanded">aria-expanded</a> set to <code>false</code></li>
           <li>Each tree node which is expanded should have <a class="property-reference" href="#aria-expanded">aria-expanded</a> set to <code>true</code></li>
           <li>Leaf nodes should not have <a class="property-reference" href="#aria-expanded">aria-expanded</a> set</li>
@@ -4323,7 +4323,7 @@ field. </p>
   <section id="dragdrop">
   <h2> Drag-and-Drop Support </h2>
   <p class="note">aria-grabbed and aria-dropeffect have been deprecated in ARIA 1.1 - as such this section has been removed. Advice for implementing drag and drop will be added to a future version of the Authoring Practices Guide.</p>
-  
+
 </section>
   <section id="aria-write">
   <h2>States and Properties, and Assistive Technologies</h2>
