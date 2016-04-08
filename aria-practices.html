@@ -964,8 +964,6 @@
 
     <section class="widget" id="dialog_modal">
       <h3>Dialog (Modal)</h3>
-      <p class="note">This section has not been updated since it was integrated from APG version 1.0 -- an APG task force review is pending.</p>
-
       <p>
         A dialog is a small application window that sits above the application and is designed to interrupt the current processing of an application in order to prompt the user to enter information or require a response (<a href="#dialog" class="role-reference">dialog</a>).
         A modal dialog is a dialog that takes and holds focus until the dialog is closed or submitted.
@@ -976,7 +974,6 @@
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
 
-        <p>Keyboard navigation within a modal dialog includes these aspects:</p>
         <ul>
           <li>
             <kbd>Enter</kbd> - If the purpose of the dialog is to gather information, the dialog should have a mechanism to submit the data gathered usually via a keyboard accessible button.
@@ -997,33 +994,17 @@
         <p><strong>Notes:</strong></p>
         <ul>
           <li>If the current focus item has <kbd>Escape</kbd> key behavior, the press of the <kbd>Escape</kbd> will be handled by the current item and the user may have to press <kbd>Escape</kbd> an additional time to close the dialog.</li>
-          <li>Even if the user clicks outside of the dialog on the application which invoked the dialog, focus remains in the dialog.</li>
-          <li>Because the dialog is modal and the user can not interact with the invoking application while the dialog is displayed, there is no requirement to make the dialog moveable via the mouse although this behavior is recommended.</li>
-          <li>
-            When the dialog is closed or cancelled focus should return to the element in the application which had focus before the dialog is invoked.
-            This is usually the control which opened the dialog.
-          </li>
-          <li>
-            When a modal dialog opens focus goes to the first focusable item in the dialog.
-            Determining the first focusable item must take into account elements which receive focus by default (form fields and links) as well as items which may have a tabindex attribute with a positive value.
-            If there is no focusable item in the dialog, focus is placed on the dialog container element.
-          </li>
-          <li>
-            Authors should take care when using <kbd>Enter</kbd> to trigger default actions since <kbd>Enter</kbd> might be connected to and trigger some other user interface element, or it might trigger the focused element.
-            Authors should ensure that <kbd>Enter</kbd> activates only the widget they intend.
-          </li>
+          <li> When the dialog is closed or cancelled focus should return to the element in the application which had focus before the dialog is invoked. This is usually the control which opened the dialog. </li>
+          <li> When a modal dialog opens focus goes to the first focusable item in the dialog. Determining the first focusable item must take into account elements which receive focus by default (form fields and links) as well as items which may have a tabindex attribute with a positive value. </li>
         </ul>
       </section>
 
       <section class="notoc">
         <h4>WAI-ARIA Roles, States, and Properties</h4>
         <ul>
-          <li>Generally, a modal dialog has a role of <a href="#dialog" class="role-reference">dialog</a>.</li>
-          <li>
-            If it is a simple dialog with a message that alerts, warns, or requests confirmation (e.g., "Are you sure you want quit?"), then authors are advised to use the <a href="#alertdialog" class="role-reference">alertdialog</a> role.
-            See the &quot;<a href="#alertdialog">Alert Dialog</a>&quot; design pattern for more information.
-          </li>
+          <li>The element containing the dialog has a role of <a href="#dialog" class="role-reference">dialog</a>.</li>
           <li>The dialog box title is provided by either the <a href="#aria-label" class="property-reference">aria-label</a> or the <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> property.</li>
+          <li> The <a href="#aria-describedby" class="property-reference">aria-describedby</a> property may be set on the element with the <code>dialog</code> role to indicate which element or elements in the dialog contain content that describes the primary purpose or message of the dialog. Screen readers may automatically announce the specified description along with the dialog title and initially focused element when the dialog opens. </li>
         </ul>
       </section>
 
