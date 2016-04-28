@@ -964,35 +964,19 @@
 
     <section class="widget" id="dialog_modal">
       <h3>Dialog (Modal)</h3>
-      <p>
-        A dialog is a small application window that sits above the application and is designed to interrupt the current processing of an application in order to prompt the user to enter information or require a response (<a href="#dialog" class="role-reference">dialog</a>).
-        A modal dialog is a dialog that takes and holds focus until the dialog is closed or submitted.
-        A specific kind of modal dialog is the <a href="#alertdialog" class="role-reference">alertdialog</a>, that is used to convey a short message to the user.
-        See the &quot;<a href="#alertdialog">Alert Dialog</a>&quot; design pattern.
+      <p> A <a href="#dialog" class="role-reference">dialog</a> is a window overlayed on the primary window. 
+      A modal dialog is designed to interrupt the user to, for example, prompt the user to confirm an action or enter information, and it traps or contains keyboard focus until the dialog is closed.
+        ARIA has a special role for modal dialogs that convey a brief, import message to the user -- the <a href="#alertdialog" class="role-reference">alertdialog</a> ( See the <a href="#alertdialog">Alert Dialog</a> design pattern).
       </p>
-
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
-
         <ul>
-          <li>
-            <kbd>Enter</kbd> - If the purpose of the dialog is to gather information, the dialog should have a mechanism to submit the data gathered usually via a keyboard accessible button.
-            The <kbd>Enter</kbd> key should serve as the default submit action.</li>
-          <li>
-            <kbd>Escape</kbd> - There should be a method to close the dialog without taking any action.
-            This could be implemented via a cancel button which is keyboard accessible.
-            It is recommended that a dialog also be cancelled by pressing the <kbd>Escape</kbd> key with focus on any item.
-          </li>
-          <li>
-            <kbd>Tab</kbd> - Focus must be held within the dialog until it is cancelled or submitted.
-            As the user presses tab to move within items in the dialog, pressing tab with focus on the last focusable item in the dialog will move focus back to the first focusable item in the dialog.
-          </li>
-          <li>
-            <kbd>Shift + Tab</kbd> - Likewise, if the user is shift-tabbing through elements in the dialog, pressing shift-tab with focus on the first focusable item in the dialog will move focus to the last item in the dialog.
-          </li>
+        <li><kbd>Tab</kbd>: Moves focus to the next focusable element inside the dialog. Pressing tab with focus on the last focusable element in the dialog moves focus to the first focusable element in the dialog. </li>
+          <li><kbd>Shift + Tab</kbd>: Moves focus to the previous focusable element inside the dialog. Pressing shift-tab with focus on the first focusable element in the dialog moves focus to the last focusable element in the dialog. </li>
+          <li><kbd>Escape</kbd>: Closes the dialog without taking any action. </li>
+          <li> <kbd>Enter</kbd>: Serves as the default submit action key if if the primary purpose of the dialog is to gather information </li>
         </ul>
-        <p><strong>Notes:</strong></p>
-        <ul>
+        <ul class="note">
           <li>If the current focus item has <kbd>Escape</kbd> key behavior, the press of the <kbd>Escape</kbd> will be handled by the current item and the user may have to press <kbd>Escape</kbd> an additional time to close the dialog.</li>
           <li> When the dialog is closed or cancelled focus should return to the element in the application which had focus before the dialog is invoked. This is usually the control which opened the dialog. </li>
           <li> When a modal dialog opens focus goes to the first focusable item in the dialog. Determining the first focusable item must take into account elements which receive focus by default (form fields and links) as well as items which may have a tabindex attribute with a positive value. </li>
