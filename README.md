@@ -17,12 +17,12 @@ that supports [EditorConfig](http://editorconfig.org/).
 
 ## How to update document snapshot
 
-1. Go to the [editors draft on rawgit](http://rawgit.com/w3c/aria/master/practices/aria-practices.html)
+1. Go to the [editors draft on rawgit](https://cdn.rawgit.com/w3c/aria-practices/master/aria-practices.html)
 2. Press the ReSpec button (top right hand corner)
 3. Select 'Save snapshot'
 4. Select 'Save as HTML'
-5. Open the gh-pages branch of the ARIA repository
-6. Open `aria-practices.html` in your preferred editor
-7. Overwrite contents of `aria-practices.html` with the snapshot copy you saved
+5. Open the gh-pages branch of the `aria-practices` repository
+6. Open `index.html` in your preferred editor
+7. Overwrite contents of `index.html` with the snapshot copy you saved
 8. Commit and push changes
-9. Review changes at [GitHub pages APG snapshot](http://w3c.github.io/aria/practices/aria-practices.html)
+9. Review changes at [GitHub pages APG snapshot](http://w3c.github.io/aria-practices/)
