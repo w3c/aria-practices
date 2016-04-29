@@ -4,8 +4,8 @@
   <title>WAI-ARIA Authoring Practices 1.1</title>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <script src="https://www.w3.org/Tools/respec/respec-w3c-common" class="remove"></script>
-  <script src="../common/script/resolveReferences.js" class="remove"></script>
-  <script src="../common/biblio.js" class="remove"></script>
+  <script src="common/script/resolveReferences.js" class="remove"></script>
+  <script src="common/biblio.js" class="remove"></script>
   <script class="remove">
     var respecConfig = {
       // Embed RDFa data in the output.
@@ -166,7 +166,7 @@
       preProcess: [ linkCrossReferences ]
     };
   </script>
-  <link href="../common/css/common.css" rel="stylesheet" type="text/css"/>
+  <link href="common/css/common.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
   <section id="abstract">
@@ -308,7 +308,7 @@
 
       <ul>
         <li>If a specific landmark role is used more than once on a web page, it should have a unique label.</li>
-        
+
         <li>If a landmark is only used once on the page it may not require a label. See Landmark Roles section below. </li>
 
         <li>If an area begins with a heading element (e.g. <code>h1-h6</code>) it can be used as the label for the area using the
@@ -334,7 +334,7 @@
         spans the full width.</p>
 
 
- 
+
           <ul>
             <li>Each page may have one <code>banner</code> landmark.</li>
 
@@ -384,7 +384,7 @@
             <h5>ARIA Techniques</h5>
             <p>If the HTML5 <code>header</code> element technique is not being used, a <code>role=&quot;banner&quot;</code>
             attribute should be used to define a <code>banner</code> landmark.</p>
-          
+
         </section>
       </section>
 
@@ -533,7 +533,7 @@
             <p>A <a href="https://www.w3.org/TR/wai-aria-1.1/#main"><code>main</code></a> landmark identifies the primary content
             of the page.</p>
 
- 
+
               <ul>
                 <li>Each page should have one <code>main</code> landmark.</li>
 
@@ -550,7 +550,7 @@
 
               <h5>HTML5 Technique</h5>
 
-              
+
                 <p>Use the HTML5 <code>main</code> element to define a <code>main</code> landmark.</p>
               <h5>ARIA Technique</h5>
 
@@ -638,8 +638,8 @@
       </section>
     </section>
 
-  
-  
+
+
   <section id="aria_ex">
     <h2>Design Patterns and Widgets</h2>
     <p>This section demonstrates how to make common rich internet application widgets and patterns accessible by applying WAI-ARIA roles, states, and properties and implementing keyboard support.</p>
@@ -1401,7 +1401,7 @@
 
     <section class="widget" id="dialog_modal">
       <h3>Dialog (Modal)</h3>
-      <p> A <a href="#dialog" class="role-reference">dialog</a> is a window overlayed on the primary window. 
+      <p> A <a href="#dialog" class="role-reference">dialog</a> is a window overlayed on the primary window.
       A modal dialog is designed to interrupt the user to, for example, prompt the user to confirm an action or enter information, and it traps or contains keyboard focus until the dialog is closed.
         ARIA has a special role for modal dialogs that convey a brief, important message to the user -- the <a href="#alertdialog" class="role-reference">alertdialog</a> ( See the <a href="#alertdialog">Alert Dialog</a> design pattern).
       </p>
@@ -5415,7 +5415,7 @@ field. </p>
     </ul>
   </section>
 </section>
-    <div data-include='../common/acknowledgements.html' data-include-replace='true'></div>
+    <div data-include='common/acknowledgements.html' data-include-replace='true'></div>
   </section>
 </body>
 </html>

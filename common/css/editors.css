@@ -1,0 +1,36 @@
+.todo {
+	background-color: #FF9999;
+}
+/* Placeholder elements */
+.placeholder, .toc, .miniindex, .role-children, .role-inherited, .namerequired-inherited, .presentation-inherited, .property-descendants, .state-descendants, #index_role, #index_state, #index_property, #acknowledgements, #references {
+	color: #666666;
+}
+.section, .role, .state, .property {
+	border-left: medium solid #666666;
+	padding-left: 1ex;
+	margin-left: 0;
+}
+.role-name, .state-name, .property-name {
+	margin-left: 0;
+}
+.role-reference, .role-reference:link, .role-reference:visited {
+	background-color: #eee;
+	text-decoration: underline;
+	color: blue;
+}
+.state-reference, .state-reference:link, .state-reference:visited {
+	background-color: #ffc;
+	text-decoration: underline;
+	color: blue;
+}
+.property-reference, .property-reference:link, .property-reference:visited {
+	background-color: #ccf;
+	text-decoration: underline;
+	color: blue;
+}
+.widget-reference, .widget-reference:link, .widget-reference:visited,
+.design-pattern-reference, .design-pattern-reference:link, .design-pattern-reference:visited {
+	background-color: #9f6;
+	text-decoration: underline;
+	color: blue;
+}

@@ -1,0 +1,146 @@
+/* Navigation styles taken from Understanding WCAG 2.0 */
+#slices_maincontent{
+	clear:both;
+}
+#slices_navigation {
+	padding: 3px 0 0.5em 0;
+	margin: 0 0 0.5em;
+	border-bottom: 2px solid #778;
+	float: left;
+	width: 100%;
+	clear: both;
+}
+#slices_navigation li {
+	list-style: none;
+	margin: 0;
+	display: inline;
+	float: left;
+	font-size: 0.8125em;
+}
+#slices_navigation li a {
+	padding: 3px 0.5em;
+	margin-right: 3px;
+	border: 1px solid #778;
+	background: #dde;
+	text-decoration: none;
+	float: left;
+}
+#slices_navigation li a:link {
+	color: #404040
+}
+#slices_navigation li a:visited {
+	color: #404040
+}
+#slices_navigation li a:hover, #slices_navigation li a:focus, #slices_navigation li a:active {
+	color: #000;
+	background: #aae;
+	border-color: #227;
+	float: left;
+}
+#slices_navigationbottom {
+	padding: .5em 0 0 0;
+	margin: 2em 0 10px 0;
+	border-top: 2px solid #778;
+	float: right;
+	width: 100%;
+} /* top, right, bottom, left */
+#slices_navigationbottom li {
+	list-style: none;
+	margin: 0;
+	display: inline;
+	float: left;
+	font-size: 0.8125em;
+}
+#slices_navigationbottom li a {
+	padding: 3px 0.5em;
+	margin-left: 3px;
+	border: 1px solid #778;
+	background: #dde;
+	text-decoration: none;
+	float: left
+}
+#slices_navigationbottom li a:link {
+	color: #404040
+}
+#slices_navigationbottom li a:visited {
+	color: #404040
+}
+#slices_navigationbottom li a:hover, #slices_navigationbottom li a:focus, #slices_navigationbottom li a:active {
+	color: #000;
+	background: #aae;
+	border-color: #227;
+	float: left
+}
+div.slices_footer {
+	margin-top: 1em;
+}
+* html .slices_skipnav {
+	display: block
+} /*Switch on for IE6 and below*/
+*+html .slices_skipnav {
+	display: block
+} /*Switch on for IE7*/
+:root .slices_skipnav {
+	display: block
+} /*Switch on for Moz, FF and Safari*/
+.slices_skipnav p {
+	margin: 5px 0 0 0;
+	padding: 0;
+	position: absolute;
+	font-size: 2em
+}
+.slices_skipnav a {
+	width: 26em;
+	display:block;
+	color: #fff;
+	background: #333;
+	text-decoration: none;
+	padding: 5px;
+	position: absolute;
+	left: -1000em;
+	top: 0;
+	font-weight: bold
+}
+.slices_skipnav a:visited {
+	color: #fff
+}
+.slices_skipnav a:focus, .slices_skipnav a:active {
+	z-index: 99;
+	top: -3em;
+	left: 0;
+	border: solid #777 2px;
+	color: #fff;
+	background: #333 !important
+} /*Note IE bug that requires use of :active to mimic effect of :focus*/
+.slices_skipnav a:hover {
+	cursor: default
+}
+#slices_masthead {
+	margin-top:-.5em;
+	position: relative;
+	display: block;
+}
+p.slices_collectiontitle {
+	text-align: right;
+	font-size: 135%;
+	font-style: oblique;
+	color: #005A9C;
+	padding-top: .5em;
+}
+p.slices_collectiontitle a {
+	text-decoration:none;
+	color:#005A9C;
+	border-bottom:dotted #585858 1px;/* glossary ref */
+	background-color: #FFFFFF;
+}
+p.slices_collectiontitle a:hover, p.slices_collectiontitle a:focus {
+	text-decoration:none;
+	color:#005A9C;
+	border-bottom:dotted #585858 1px;/* glossary ref */
+	background-color: inherit;
+}
+p.slices_logo {
+	float: left;
+	margin: 0;
+	margin-bottom: .5em;
+}

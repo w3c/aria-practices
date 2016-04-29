@@ -1,0 +1,55 @@
+body {line-height: 1.4;}
+caption {
+    text-align:left;
+    font-size: 120%;
+    font-weight:bold;
+    margin-bottom: 0.25em;
+}
+table {
+    width:100%;
+    border-collapse: collapse;
+    border: 1px solid #630;
+}
+th, td {
+    text-align: left;
+    vertical-align: top;
+    padding: 0.3em;
+    border-collapse: collapse;
+    border: 1px solid #630;
+}
+th code, td code {font-size: 123%;}
+
+a[href|="#el"], a[href|="#att"] {color: #D93B00;}
+
+.warning {color: #990000; font-size: x-large; font-weight: normal;}
+.map-table, .details {clear: left; margin-bottom: 2em;}
+.map-table thead {background-color: #ddd;}
+.map-table tr:nth-child(2n+2) {background-color: #fafafa;}
+.map-table tbody th {max-width: 200px;}
+details, summary {display: block;}
+details {border-bottom: 1px solid #ccc; padding: 0.5em;}
+summary {padding: 0.25em;background: #fff url(../img/rightArrow.png) no-repeat 0.5em center; padding: 0.25em 0.25em 0.25em 2em;}
+summary::-webkit-details-marker {display: none;}
+.open summary, details[open] summary {background-color: #f5f5f5; background-image: url(../img/downArrow.png);}
+summary .el-context {display: inline;}
+summary:hover, summary:focus, details[open] summary:hover, details[open] summary:focus {background-color: #eee;}
+.map table {margin: 0.5em 1% 1%; width: 98%;}
+.map th span {font-weight: normal;}
+.map th {width: 18%;}
+.switch-view {font-size: 100%; margin-bottom: 1.5em;}
+.show-hide-cols {border: 1px solid #ccc; float: left; margin-bottom: 0.5em; padding: 10px;}
+.show-hide-cols span {margin: 0.25em 0; vertical-align: middle;}
+.show-hide-cols button {font-size: 80%; margin: 0 5px; padding-right: 15px;}
+.show-hide-cols .action {position: absolute; left: -9999em;}
+.show-col {background: #eee; border-style: inset;}
+.hide-col {background: #ddd; border-style: outset;}
+
+.general, .role, .states, .name, .actions, .objattrs, .textattrs, .relations,
+.ifaces, .children, .ctrltype, .ctrlpattern, .properties, .subrole, .roledesc {
+    margin: 0 0 6px;
+    line-height: 1.3;
+}
+
+.type {
+  font-weight: bold;
+}
