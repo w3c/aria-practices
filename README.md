@@ -15,6 +15,13 @@ future ARIA features we need to implement.
 * To keep code in this repository consistent; editors should use a text editor
 that supports [EditorConfig](http://editorconfig.org/).
 
+### Editorial documentation
+
+General documentation for editing ARIA deliverables is available in the 
+[ARIA repository](https://github.com/w3c/aria/).
+Some of that documentation covers technical procedures not needed 
+for this specification.
+
 ## How to update document snapshot
 
 1. Go to the [editors draft on rawgit](https://cdn.rawgit.com/w3c/aria-practices/master/aria-practices.html)
