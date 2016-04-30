@@ -1,289 +1,343 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    lang="en-US"
+    xml:lang="en-US">
 <head>
-  <title>WAI-ARIA Authoring Practices 1.1</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  <script src="https://www.w3.org/Tools/respec/respec-w3c-common" class="remove"></script>
-  <script src="common/script/resolveReferences.js" class="remove"></script>
-  <script src="common/biblio.js" class="remove"></script>
-  <script class="remove">
-    var respecConfig = {
-      // Embed RDFa data in the output.
-      doRDFa: '1.1',
-      includePermalinks: true,
-      permalinkEdge: true,
-      permalinkHide: false,
-      // Specification status (e.g., WD, LC, NOTE, etc.). If in doubt use ED.
-      specStatus: "ED",
-      // crEnd: "2012-04-30",
-      // perEnd: "2013-07-23",
-      // publishDate: "2013-08-22",
-      noRecTrack: true,
-      diffTool: "http://www.aptest.com/standards/htmldiff/htmldiff.pl",
+<title>WAI-ARIA Authoring Practices 1.1</title>
+<meta
+    http-equiv="Content-Type"
+    content="text/html; charset=UTF-8" />
+<script
+    src="https://www.w3.org/Tools/respec/respec-w3c-common"
+    class="remove"></script>
+<script
+    src="common/script/resolveReferences.js"
+    class="remove"></script>
+<script
+    src="common/biblio.js"
+    class="remove"></script>
+<script class="remove">
+	var respecConfig = {
+		// Embed RDFa data in the output.
+		doRDFa : '1.1',
+		includePermalinks : true,
+		permalinkEdge : true,
+		permalinkHide : false,
+		// Specification status (e.g., WD, LC, NOTE, etc.). If in doubt use ED.
+		specStatus : "ED",
+		// crEnd: "2012-04-30",
+		// perEnd: "2013-07-23",
+		// publishDate: "2013-08-22",
+		noRecTrack : true,
+		diffTool : "http://www.aptest.com/standards/htmldiff/htmldiff.pl",
 
-      // The specifications short name, as in http://www.w3.org/TR/short-name/
-      shortName: "wai-aria-practices-1.1",
+		// The specifications short name, as in http://www.w3.org/TR/short-name/
+		shortName : "wai-aria-practices-1.1",
 
+		// If you wish the publication date to be other than today,
+		// set publishDate.
+		// publishDate: "2009-08-06",
+		copyrightStart : "2015",
 
-      // If you wish the publication date to be other than today,
-      // set publishDate.
-      // publishDate: "2009-08-06",
-      copyrightStart: "2015",
+		// If there is a previously published draft, uncomment this
+		// and set its YYYY-MM-DD date and its maturity status.
+		//
+		// previousPublishDate:  "",
+		// previousMaturity:  "",
+		// prevRecURI: "",
+		// previousDiffURI: "",
 
-      // If there is a previously published draft, uncomment this
-      // and set its YYYY-MM-DD date and its maturity status.
-      //
-      // previousPublishDate:  "",
-      // previousMaturity:  "",
-      // prevRecURI: "",
-      // previousDiffURI: "",
+		// If there a publicly available Editors Draft, this is the link
+		edDraftURI : "http://w3c.github.io/aria-practices/",
 
+		// If this is a LCWD, uncomment and set the end of its review period
+		// lcEnd: "2012-02-21",
 
-      // If there a publicly available Editors Draft, this is the link
-      edDraftURI: "http://w3c.github.io/aria-practices/",
+		// Editors, add as many as you like.
+		// “name” is the only required field.
+		editors : [ {
+			name : "Matt King",
+			mailto : "mck@fb.com",
+			company : "Facebook",
+			companyURI : "http://www.facebook.com/"
+		}, {
+			name : "James Nurthen",
+			mailto : "james.nurthen@oracle.com",
+			company : "Oracle Corporation",
+			companyURI : "http://www.oracle.com/"
+		}, {
+			name : "Michael Cooper",
+			url : 'http://www.w3.org/People/cooper/',
+			mailto : "cooper@w3.org",
+			company : "W3C",
+			companyURI : "http://www.w3.org/"
+		}, {
+			name : "Michiel Bijl",
+			mailto : "mbijl@paciellogroup.com",
+			company : "The Paciello Group",
+			companyURI : "https://www.paciellogroup.com/"
+		}, {
+			name : "Joseph Scheuhammer",
+			company : "Inclusive Design Research Centre, OCAD University",
+			companyURI : "http://idrc.ocad.ca/",
+			note : "Previous Editor"
+		}, {
+			name : "Lisa Pappas",
+			company : "SAS",
+			companyURI : "http://www.sas.com/",
+			note : "Previous Editor"
+		}, {
+			name : "Rich Schwerdtfeger",
+			company : "IBM Corporation",
+			companyURI : "http://ibm.com/",
+			note : "Previous Editor"
+		}, ],
 
-      // If this is a LCWD, uncomment and set the end of its review period
-      // lcEnd: "2012-02-21",
+		// Authors, add as many as you like.
+		// This is optional, uncomment if you have authors as well as editors.
+		// Same format and requirements as editors.
 
-      // Editors, add as many as you like.
-      // “name” is the only required field.
-      editors: [
-        {
-          name: "Matt King",
-          mailto: "mck@fb.com",
-          company: "Facebook",
-          companyURI: "http://www.facebook.com/"
-        },
-        {
-          name: "James Nurthen",
-          mailto: "james.nurthen@oracle.com",
-          company: "Oracle Corporation",
-          companyURI: "http://www.oracle.com/"
-        },
-        {
-          name: "Michael Cooper",
-          url: 'http://www.w3.org/People/cooper/',
-          mailto: "cooper@w3.org",
-          company: "W3C",
-          companyURI: "http://www.w3.org/"
-        },
-        {
-          name: "Michiel Bijl",
-          mailto: "mbijl@paciellogroup.com",
-          company: "The Paciello Group",
-          companyURI: "https://www.paciellogroup.com/"
-        },
-        {
-          name: "Joseph Scheuhammer",
-          company: "Inclusive Design Research Centre, OCAD University",
-          companyURI: "http://idrc.ocad.ca/",
-          note: "Previous Editor"
-        },
-        {
-          name: "Lisa Pappas",
-          company: "SAS",
-          companyURI: "http://www.sas.com/",
-          note: "Previous Editor"
-        },
-        {
-          name: "Rich Schwerdtfeger",
-          company: "IBM Corporation",
-          companyURI: "http://ibm.com/",
-          note: "Previous Editor"
-        },
-      ],
+		// authors: [
+		//   {
+		//     name: "Your Name",
+		//     url: "http://example.org/",
+		//     company: "Your Company",
+		//     companyURI: "http://example.com/"
+		//   },
+		// ],
 
-      // Authors, add as many as you like.
-      // This is optional, uncomment if you have authors as well as editors.
-      // Same format and requirements as editors.
+		// Spec URLs
+		ariaSpecURLs : {
+			"ED" : "http://w3c.github.io/aria/aria/aria.html",
+			"FPWD" : "http://www.w3.org/TR/wai-aria-1.1/",
+			"WD" : "http://www.w3.org/TR/wai-aria-1.1/",
+			"REC" : "http://www.w3.org/TR/wai-aria/"
+		},
+		accNameURLs : {
+			"ED" : "http://w3c.github.io/aria/accname-aam/accname-aam.html",
+			"WD" : "http://www.w3.org/TR/accname-aam-1.1/",
+			"FPWD" : "http://www.w3.org/TR/accname-aam-1.1/",
+			"REC" : "http://www.w3.org/TR/accname-aam-1.1/"
+		},
+		coreMappingURLs : {
+			"ED" : "http://w3c.github.io/aria/core-aam/core-aam.html",
+			"WD" : "http://www.w3.org/TR/core-aam-1.1/",
+			"FPWD" : "http://www.w3.org/TR/core-aam-1.1/",
+			"REC" : "http://www.w3.org/TR/core-aam-1.1/"
+		},
 
-      // authors: [
-      //   {
-      //     name: "Your Name",
-      //     url: "http://example.org/",
-      //     company: "Your Company",
-      //     companyURI: "http://example.com/"
-      //   },
-      // ],
+		// alternateFormats: [
+		//   {
+		//     uri: 'aria-practices-diff.html',
+		//     label: "Diff from Previous Recommendation"
+		//   },
+		//   {
+		//     uri: 'aria-practices.ps',
+		//     label: "PostScript version"
+		//   },
+		//   {
+		//     uri: 'aria-practices.pdf',
+		//     label: "PDF version"
+		//   }
+		// ],
 
-      // Spec URLs
-      ariaSpecURLs: {
-        "ED": "http://w3c.github.io/aria/aria/aria.html",
-        "FPWD" : "http://www.w3.org/TR/wai-aria-1.1/",
-        "WD" : "http://www.w3.org/TR/wai-aria-1.1/",
-        "REC": "http://www.w3.org/TR/wai-aria/"
-      },
-      accNameURLs: {
-        "ED": "http://w3c.github.io/aria/accname-aam/accname-aam.html",
-        "WD" : "http://www.w3.org/TR/accname-aam-1.1/",
-        "FPWD": "http://www.w3.org/TR/accname-aam-1.1/",
-        "REC": "http://www.w3.org/TR/accname-aam-1.1/"
-      },
-      coreMappingURLs: {
-        "ED": "http://w3c.github.io/aria/core-aam/core-aam.html",
-        "WD" : "http://www.w3.org/TR/core-aam-1.1/",
-        "FPWD": "http://www.w3.org/TR/core-aam-1.1/",
-        "REC": "http://www.w3.org/TR/core-aam-1.1/"
-      },
+		// errata: 'http://www.w3.org/2010/02/rdfa/errata.html',
 
-      // alternateFormats: [
-      //   {
-      //     uri: 'aria-practices-diff.html',
-      //     label: "Diff from Previous Recommendation"
-      //   },
-      //   {
-      //     uri: 'aria-practices.ps',
-      //     label: "PostScript version"
-      //   },
-      //   {
-      //     uri: 'aria-practices.pdf',
-      //     label: "PDF version"
-      //   }
-      // ],
+		// name of the WG
+		wg : "Accessible Rich Internet Applications Working Group",
 
-      // errata: 'http://www.w3.org/2010/02/rdfa/errata.html',
+		// URI of the public WG page
+		wgURI : "http://www.w3.org/WAI/ARIA/",
 
-      // name of the WG
-      wg:           "Accessible Rich Internet Applications Working Group",
+		// Name (without the @w3c.org) of the public mailing
+		// to which comments are due.
+		wgPublicList : "public-aria",
 
-      // URI of the public WG page
-      wgURI:        "http://www.w3.org/WAI/ARIA/",
+		// URI of the patent status for this WG, for Rec-track documents
+		// !!!! IMPORTANT !!!!
+		// This is important for Rec-track documents, do not copy a patent URI
+		// from a random document unless you know what you're doing.
+		// If in doubt ask your friendly neighbourhood Team Contact.
+		wgPatentURI : "http://www.w3.org/2004/01/pp-impl/83726/status",
+		maxTocLevel : 4,
 
-      // Name (without the @w3c.org) of the public mailing
-      // to which comments are due.
-      wgPublicList: "public-aria",
+		localBiblio : biblio,
 
-      // URI of the patent status for this WG, for Rec-track documents
-      // !!!! IMPORTANT !!!!
-      // This is important for Rec-track documents, do not copy a patent URI
-      // from a random document unless you know what you're doing.
-      // If in doubt ask your friendly neighbourhood Team Contact.
-      wgPatentURI:  "http://www.w3.org/2004/01/pp-impl/83726/status",
-      maxTocLevel: 4,
-
-      localBiblio: biblio,
-
-      preProcess: [ linkCrossReferences ]
-    };
-  </script>
-  <link href="common/css/common.css" rel="stylesheet" type="text/css"/>
+		preProcess : [ linkCrossReferences ]
+	};
+</script>
+<link
+    href="common/css/common.css"
+    rel="stylesheet"
+    type="text/css" />
 </head>
 <body>
-  <section id="abstract">
-    <p>
-      This document provides readers with an understanding of how to use <cite><a href="http://www.w3.org/TR/wai-aria-1.1/"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> 1.1</a></cite> [[WAI-ARIA]] to create accessible rich internet applications.
-      It describes considerations that might not be evident to most authors from the WAI-ARIA specification alone and recommends approaches to make widgets, navigation, and behaviors accessible using WAI-ARIA roles, states, and properties.
-      This document is directed primarily to Web application developers, but the guidance is also useful for user agent and assistive technology developers.
-    </p>
-    <p>This document is part of the WAI-ARIA suite described in the <a href="http://www.w3.org/WAI/intro/aria.php">WAI-ARIA Overview</a>.</p>
-  </section>
-  <section id="sotd"></section>
-  <section id="intro">
-    <h2>Introduction</h2>
-    <p>This section is <em>informative.</em></p>
-    <p>
-      The WAI-ARIA Authoring Practices Guide is intended to provide an understanding of how to use WAI-ARIA to create an accessible Rich Internet Application.
-      It describes recommended WAI-ARIA usage patterns and provides an introduction to the concepts behind them.
-    </p>
-    <p>
-      This guide is one part of a suite of resources that support the WAI-ARIA specification.
-      The WAI-ARIA suite fills accessibility gaps identified by the [[WAI-ARIA-ROADMAP]].
-    </p>
-    <p>
-      As explained in <a href="#ariaBackground">Background on WAI-ARIA</a>, languages used to create rich and dynamic web sites, e.g., HTML, Javascript, CSS, and SVG, do not natively include all the features required to make sites usable by people who use assistive technologies (AT) or who rely on keyboard navigation.
-      The W3C Web Accessibility Initiative's (WAI) Protocols and Formats working group (PFWG) is addressing these deficiencies through several W3C standards efforts, with a focus on the WAI-ARIA specifications.
-      For an introduction to WAI-ARIA, see the <a href="http://www.w3.org/WAI/intro/aria.php">Accessible Rich Internet Applications Suite (WAI-ARIA) Overview</a>.
-    </p>
-    <p>
-      With the understanding many prefer to learn from examples, the guide begins with a section that demonstrates how to make common widgets accessible with descriptions of expected behaviors supported by working code.
-      Where it is helpful to do so, the examples refer to detailed explanations of supporting concepts in subsequent sections.
-      The sections that follow the examples first provide background that helps build understanding of how WAI-ARIA works and how it fits into the larger web technology picture.
-      Next, the guide covers general steps for building an accessible widget using WAI-ARIA, JavaScript, and CSS, including detailed guidance on how to make rich internet applications keyboard accessible.
-      The scope then widens to include the full application, addressing the page layout and structural semantics critical to enabling a usable experience with assistive technologies on pages containing both rich applications and rich documents.
-      It includes guidance on dynamic document management, use of WAI-ARIA Form properties, and the creation of WAI-ARIA-enabled alerts and dialogs.
-    </p>
-  </section>
-  <section class="widget" id="aria_landmark">
-    <h2>Landmark Roles Design Patterns</h2>
-
-    <p>Landmarks provide a powerful way to identify the organization and structure of a web page. The structural information
-    conveyed visually to users should be represented programmatically in the markup using landmark roles. The use of landmark
-    roles supports keyboard navigation to the structure of a web page for screen reader users, and can be used as targets for author
-    supplied &quot;skip links&quot; and browser extensions for enhanced keyboard navigation.</p>
-
-    <p>This section is intended to assist designers, developers and quality assurance staff in defining and understanding the
-    importance of logical, usable, and accessible layout for assistive technologies using HTML5 sectioning elements and ARIA
-    landmark roles.</p>
-
-    <section>
-      <h3>HTML5 Sectioning Elements</h3>
-
-      <p>It is important to understand that many HTML5 sectioning elements by default define ARIA landmarks. If HTML5 sectioning
-      elements are used without understanding the associated landmark structure, assistive technology users will most likely be
-      confused and less efficient in accessing content and interacting with web pages. <a href=
-      "https://www.w3.org/TR/html-aria/">More information on HTML5 element role mapping</a>.</p>
-
-      <table class="widget-features">
-        <caption>
-          Default landmark roles for HTML5 sectioning elements
-        </caption>
-
-        <thead>
-          <tr>
-            <th>HTML5 Element</th>
-
-            <th>Default Landmark Role</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr>
-            <td><code>aside</code></td>
-
-            <td><code>complementary</code></td>
-          </tr>
-
-          <tr>
-            <td><code>footer</code></td>
-
-            <td><code>contentinfo</code> when in context of the <code>body</code> element</td>
-          </tr>
-
-          <tr>
-            <td><code>header</code></td>
-
-            <td><code>banner</code> when in context of the <code>body</code> element</td>
-          </tr>
-
-          <tr>
-            <td><code>main</code></td>
-
-            <td><code>main</code></td>
-          </tr>
-
-          <tr>
-            <td><code>nav</code></td>
-
-            <td><code>navigation</code></td>
-          </tr>
-
-          <tr>
-            <td><code>section</code></td>
-
-            <td><code>region</code> when it has an accessible name using <code>aria-labelledby</code> or
-            <code>aria-label</code></td>
-          </tr>
-        </tbody>
-      </table>
+    <section id="abstract">
+        <p>
+            This document provides readers with an understanding of how to use <cite><a
+                    href="http://www.w3.org/TR/wai-aria-1.1/">
+                    <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr>
+                    1.1
+                </a></cite> [[WAI-ARIA]] to create accessible rich internet applications.
+            It describes considerations that might not be evident to most
+            authors from the WAI-ARIA specification alone and recommends
+            approaches to make widgets, navigation, and behaviors accessible
+            using WAI-ARIA roles, states, and properties. This document is
+            directed primarily to Web application developers, but the guidance
+            is also useful for user agent and assistive technology developers.
+        </p>
+        <p>
+            This document is part of the WAI-ARIA suite described in the
+            <a href="http://www.w3.org/WAI/intro/aria.php">WAI-ARIA Overview</a>
+            .
+        </p>
     </section>
+    <section id="sotd"></section>
+    <section id="intro">
+        <h2>Introduction</h2>
+        <p>
+            This section is <em>informative.</em>
+        </p>
+        <p>The WAI-ARIA Authoring Practices Guide is intended to provide an
+            understanding of how to use WAI-ARIA to create an accessible Rich
+            Internet Application. It describes recommended WAI-ARIA usage
+            patterns and provides an introduction to the concepts behind them.</p>
+        <p>This guide is one part of a suite of resources that support the
+            WAI-ARIA specification. The WAI-ARIA suite fills accessibility gaps
+            identified by the [[WAI-ARIA-ROADMAP]].</p>
+        <p>
+            As explained in
+            <a href="#ariaBackground">Background on WAI-ARIA</a>
+            , languages used to create rich and dynamic web sites, e.g., HTML,
+            Javascript, CSS, and SVG, do not natively include all the features
+            required to make sites usable by people who use assistive
+            technologies (AT) or who rely on keyboard navigation. The W3C Web
+            Accessibility Initiative's (WAI) Protocols and Formats working group
+            (PFWG) is addressing these deficiencies through several W3C
+            standards efforts, with a focus on the WAI-ARIA specifications. For
+            an introduction to WAI-ARIA, see the
+            <a href="http://www.w3.org/WAI/intro/aria.php">Accessible Rich
+                Internet Applications Suite (WAI-ARIA) Overview</a>
+            .
+        </p>
+        <p>With the understanding many prefer to learn from examples, the
+            guide begins with a section that demonstrates how to make common
+            widgets accessible with descriptions of expected behaviors supported
+            by working code. Where it is helpful to do so, the examples refer to
+            detailed explanations of supporting concepts in subsequent sections.
+            The sections that follow the examples first provide background that
+            helps build understanding of how WAI-ARIA works and how it fits into
+            the larger web technology picture. Next, the guide covers general
+            steps for building an accessible widget using WAI-ARIA, JavaScript,
+            and CSS, including detailed guidance on how to make rich internet
+            applications keyboard accessible. The scope then widens to include
+            the full application, addressing the page layout and structural
+            semantics critical to enabling a usable experience with assistive
+            technologies on pages containing both rich applications and rich
+            documents. It includes guidance on dynamic document management, use
+            of WAI-ARIA Form properties, and the creation of WAI-ARIA-enabled
+            alerts and dialogs.</p>
+    </section>
+    <section
+        class="widget"
+        id="aria_landmark">
+        <h2>Landmark Roles Design Patterns</h2>
 
-    <section>
-      <h3>General Principles of Landmark Design</h3>
+        <p>Landmarks provide a powerful way to identify the organization and
+            structure of a web page. The structural information conveyed
+            visually to users should be represented programmatically in the
+            markup using landmark roles. The use of landmark roles supports
+            keyboard navigation to the structure of a web page for screen reader
+            users, and can be used as targets for author supplied &quot;skip
+            links&quot; and browser extensions for enhanced keyboard navigation.</p>
 
-      <p>Due to the complexity of todays web content, if using landmarks, <strong>all content</strong> should reside in a
-      semantically meaningful landmark in order that content is not missed by the user.</p>
+        <p>This section is intended to assist designers, developers and
+            quality assurance staff in defining and understanding the importance
+            of logical, usable, and accessible layout for assistive technologies
+            using HTML5 sectioning elements and ARIA landmark roles.</p>
 
-      <p style="font-weight: bold">Step 1: Identify the logical structure</p>
+        <section>
+            <h3>HTML5 Sectioning Elements</h3>
+
+            <p>
+                It is important to understand that many HTML5 sectioning
+                elements by default define ARIA landmarks. If HTML5 sectioning
+                elements are used without understanding the associated landmark
+                structure, assistive technology users will most likely be
+                confused and less efficient in accessing content and interacting
+                with web pages.
+                <a href="https://www.w3.org/TR/html-aria/">More information
+                    on HTML5 element role mapping</a>
+                .
+            </p>
+
+            <table class="widget-features">
+                <caption>Default landmark roles for HTML5 sectioning
+                    elements</caption>
+
+                <thead>
+                    <tr>
+                        <th>HTML5 Element</th>
+
+                        <th>Default Landmark Role</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td><code>aside</code></td>
+
+                        <td><code>complementary</code></td>
+                    </tr>
+
+                    <tr>
+                        <td><code>footer</code></td>
+
+                        <td><code>contentinfo</code> when in context of the
+                            <code>body</code> element</td>
+                    </tr>
+
+                    <tr>
+                        <td><code>header</code></td>
+
+                        <td><code>banner</code> when in context of the <code>body</code>
+                            element</td>
+                    </tr>
+
+                    <tr>
+                        <td><code>main</code></td>
+
+                        <td><code>main</code></td>
+                    </tr>
+
+                    <tr>
+                        <td><code>nav</code></td>
+
+                        <td><code>navigation</code></td>
+                    </tr>
+
+                    <tr>
+                        <td><code>section</code></td>
+
+                        <td><code>region</code> when it has an accessible
+                            name using <code>aria-labelledby</code> or <code>aria-label</code></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section>
+            <h3>General Principles of Landmark Design</h3>
+
+            <p>
+                Due to the complexity of todays web content, if using landmarks,
+                <strong>all content</strong> should reside in a semantically
+                meaningful landmark in order that content is not missed by the
+                user.
+            </p>
+
+            <p style="font-weight: bold">Step 1: Identify the logical structure</p>
 
       <ul>
         <li>Break the page into perceivable areas of content which designers typically indicate visually using alignment and spacing.</li>
@@ -1710,20 +1764,19 @@
       <h3>Listbox</h3>
 
       <p>
-        A <a href="#listbox" class="role-reference">listbox</a> widget allows a user to select one or more items from a list of choices or options.
+        A <a href="#listbox" class="role-reference">listbox</a> widget allows a user to select one or more items from a list of options.
         A listbox that allows a single option to be chosen is a single-select listbox; one that allows multiple options to be selected is a multi-select listbox.
       </p>
       <p>
-        The options in a WAI-ARIA listbox are static.
-        That is, a listbox widget is not designed to contain a list of interactive elements, such as links, buttons, or sliders.
-        This is because browser accessibility APIs do not support child elements contained inside the list options; they provide assistive technologies only with an accessible name, which is a plain text string, and a selection state for each option.
+        WAI-ARIA defines options in a listbox as static.
+        That is, the contents of <code>option</code> elements in a <code>listbox</code> are reduced by browsers to static text strings that become the accessible names of the options.
+        So, <code>options</code> in a <code>listbox</code> should not contain interactive elements, such as links, buttons, or checkboxes.
+        To create a list of interactive elements, see the <a href="#grid">grid</a> pattern.
       </p>
       <p>
-        When a screen reader user navigates the options in a list box, each static option name is spoken by the screen reader is a single piece of information.
-        For this reason, authors should avoid creating options with very long names that contain more information than can be easily understood when spoken as a single unit of speech.
-        Most screen reader users will not have a simple way of re-reading through the option name by character, word, or phrase if they did not understand it.
-        See the examples for recommended ways of designing around this limitation.
-        (Editor's note: examples are not yet coded.)
+      Authors should avoid creating options with very long names that contain more information than could be easily understood when spoken by a screen reader as a single unit of speech.
+      If screen reader announcement of an option is interrupted, the user will typically have to re-read the entire option. 
+        And, if the user does not understand what is spoken, re-reading of a listbox option name by character, word, or phrase may be a difficult operation for some screen reader users because the screen reader is in an interactive mode, rather than a reading mode, when operating a widget like a listbox.
       </p>
       <p>
         Authors should also avoid creating a large number of consecutive options that all start with the same word or phrase.
