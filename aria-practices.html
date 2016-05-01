@@ -2468,24 +2468,34 @@
     </section>
 
     <section class="widget" id="tabpanel">
-      <h3>Tab Panel</h3>
+      <h3>Tabs</h3>
       <p>
-        A tabbed interface component is a set of layered areas, known as tab panels, where only one area is displayed at a time.
-        The tabs are arranged along one of the edges of the contents but most commonly are found at the top.
-        The user navigates and makes the contents of each area visible by interacting with the title "tab".
+        A tabbed interface is a set of layered sections of content, known as tab panels, that displays one panel of content at a time.
+        Each tab panel has a tab associated with it, that when activated, displays the panel.
+        The list of tabs is arranged along one edge of the currently displayed panel, most commonly the top edge.
+        </p>
+        <p>
         Terms for understanding Tab Panels include:
       </p>
       <dl>
-        <dt>tabbed interface component</dt>
-        <dd> a set of tabs and associated tab panels </dd>
-        <dt>tab list</dt>
-        <dd>the set of tabs</dd>
+        <dt>Tabbed interface</dt>
+        <dd>A set of tabs and associated tab panels </dd>
+        <dt>Tab list</dt>
+        <dd>The set of tabs</dd>
         <dt>tab</dt>
-        <dd>the label/title area of the tab panel. This is where you click to activate a tab panel </dd>
-        <dt>tab panel</dt>
-        <dd>contents area that is associated with a tab</dd>
+        <dd>An element in the tab list that serves as a label for one of the tab panels and can be activated to display that panel. </dd>
+        <dt>Tab panel</dt>
+        <dd>The element that contains the content associated with a tab</dd>
       </dl>
-      <p>When the user activates a tab, the contents of the corresponding tab panel is made visible. The tab is considered "active". The tab remains active until another tab is activated. The active tab is placed into the tab order. Only the active tab should be in the tab order. A default tab is specified that is active when the tabbed interface component is initialized. A collection of tabs and their associated tab panels is a complex widget, because it performs show/hide actions as well as moving the user's point of regard around within the content. </p></td>
+      <p>
+      When the user activates a tab, the contents of the corresponding tab panel is made visible. 
+      The tab is considered "active". 
+      The tab remains active until another tab is activated. 
+      The active tab is placed into the tab order. 
+      Only the active tab should be in the tab order. 
+      A default tab is specified that is active when the tabbed interface component is initialized. 
+      A collection of tabs and their associated tab panels is a complex widget, because it performs show/hide actions as well as moving the user's point of regard around within the content. 
+      </p>
 
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
