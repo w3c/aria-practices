@@ -1801,18 +1801,18 @@
             </ul>
           </li>
           <li><kbd>Up Arrow</kbd> and <kbd>Down Arrow</kbd>: Move focus to the previous and next option, respectively. If it is a single-select listbox, the selection state moves with the focus.</li>
-           <li><kbd>Home</kbd> and <kbd>End</kbd> (Optional): Move focus to first and last option, respectively. If it is a single-select listbox, the selection state moves with the focus. Strongly recommended for lists with more than 5 options.</li>
-          <li>Type-ahead is strongly recommended for all lists, but  essential for long lists (typically more than 5 options):
+           <li><kbd>Home</kbd> and <kbd>End</kbd> (Optional): Move focus to first and last option, respectively. If it is a single-select listbox, the selection state moves with the focus. Strongly recommended for lists with more than five options.</li>
+          <li>Type-ahead is strongly recommended for all lists, but  essential for long lists (typically more than five options):
             <ul>
               <li>Type a character: focus moves to the next item with a name that starts with the typed character.</li>
               <li>Type multiple characters in rapid succession: focus moves to the next item with a name that starts with the string of characters typed.</li>
             </ul>
           </li>
           <li><strong>Multiple Selection</strong>: 
-          Authors may implement either of two interaction models to support multiple selection: 
-          one that does not require modifier keys, e.g., <kbd>Shift</kbd> or <kbd>Control</kbd>, (recommended) or one that does require modifier keys to be held down to maintain the selection states.
+          Authors may implement either of two interaction models to support multiple selection: a recommended model that does not require the user to hold a modifier key, such as <kbd>Shift</kbd> or <kbd>Control</kbd>, while navigating the list
+          or an alternative model that does require modifier keys to be held while navigating in order to avoid losing selection states.
             <ul>
-              <li>Selection model 1 -- modifiers not required:
+              <li>Recommended selection model -- holding modifier keys is not necessary:
                 <ul>
                   <li><kbd>Space</kbd>: changes the selection state of the focused option .</li>
                   <li><kbd>Shift + Up Arrow</kbd> and <kbd>Shift + Down Arrow</kbd> (optional): move focus to and select the previous and next option, respectively.</li>
@@ -1822,7 +1822,7 @@
                   <li><kbd>Control + A</kbd> (optional): selects all options in the list.</li>
                 </ul>
               </li>
-              <li>Selection model 2 (modifier keys must be held down to maintain selected states when navigating):
+              <li>Alternative selection model -- modifier keys must be held down to maintain selected states when navigating):
                 <ul>
                   <li><kbd>Shift + Up Arrow</kbd> and <kbd>Shift + Down Arrow</kbd>: move focus to and select the previous and next option, respectively.</li>
                   <li><kbd>Control + Up Arrow</kbd> and <kbd>Control + Down Arrow</kbd>: Without changing the selection state, move focus to the previous and next option, respectively. </li>
