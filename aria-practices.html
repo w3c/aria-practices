@@ -1779,60 +1779,57 @@
         And, if the user does not understand what is spoken, re-reading of a listbox option name by character, word, or phrase may be a difficult operation for some screen reader users because the screen reader is in an interactive mode, rather than a reading mode, when operating a widget like a listbox.
       </p>
       <p>
-        Authors should also avoid creating a large number of consecutive options that all start with the same word or phrase.
-        Otherwise, finding a specific option can be very time consuming for a screen reader user who must listen to the repeated word or phrase while scrolling through the list.
-        For example, if a listbox contains a list of cities where each option includes both city name and country name, and if there are 5 or more cities from each country, it would be very difficult for a screen reader user to find a city within a country if the country name precedes the city name in each option.
-        In most cases, it would be better to have 2 list boxes, one for country and one for city, but where that is not feasible, it would typically be better to put the city name first in each option.
+        Authors should also avoid creating a set of several consecutive options that start with the same word or phrase.
+        Otherwise, scrolling through the list to find a specific option becomes inordinately time consuming for a screen reader user who must listen to that word or phrase repeated before hearing what is unique about each option.
+        For example, if a listbox for choosing a city were to contain options where each city name were preceded by a country name, and if many cities were listed for each country, a screen reader user would have to listen to the country name before hearing each city name.
+        In such a scenario, it would be better to have 2 list boxes, one for country and one for city.
       </p>
 
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
         <ul>
-          <li>
-            The listbox element is focusable.
-            It is either included in the tab sequence by having tabindex of 0 or greater (see <a href="#kbd_general_between">Keyboard Navigation between Widgets</a>), or it is contained within a composite widget, such as a toolbar or grid, and is made focusable by having tabindex of -1 (see <a href="#kbd_general_within">Keyboard Navigation within Widgets</a>).
-          </li>
-          <li>
-            When a listbox receives focus, visual focus is set on an option inside the listbox.
-            If browser focus is set to the container with role listbox then aria-activedescendant must be used to refer to the option with visual focus.
-          </li>
-          <li>When a single-select listbox receives focus:
+          <li> When a single-select listbox receives focus:
             <ul>
-              <li>If none of the options are selected, the first option receives focus. Optionally, it may be automatically selected.</li>
-              <li>If an option is selected before the listbox receives focus, focus is set on the selected item when the listbox receives focus.</li>
+              <li>If none of the options are selected before the listbox receives focus, the first option receives focus. Optionally, the option may be automatically selected.</li>
+              <li>If an option is selected before the listbox receives focus, focus is set on the selected option. </li>
             </ul>
           </li>
           <li>When a multi-select listbox receives focus:
             <ul>
-              <li>If none of the options are selected, focus is set on the first option. The option should not be selected when it receives focus.</li>
-              <li>If one or more options are selected, focus is set on the first option in the list that is selected.</li>
+              <li>If none of the options are selected before the listbox receives focus, focus is set on the first option. The option should not be selected when it receives focus.</li>
+              <li>If one or more options are selected before the listbox receives focus, focus is set on the first option in the list that is selected.</li>
             </ul>
           </li>
-          <li><kbd>Up</kbd> and <kbd>Down</kbd> move focus up and down the list. If it is a single-select listbox, the selection state moves with the focus.</li>
-          <li>Type-ahead is strongly recommended for all lists and essential for long lists (typically more than 5 items):
+          <li><kbd>Up Arrow</kbd> and <kbd>Down Arrow</kbd>: Move focus to the previous and next option, respectively. If it is a single-select listbox, the selection state moves with the focus.</li>
+           <li><kbd>Home</kbd> and <kbd>End</kbd> (Optional): Move focus to first and last option, respectively. If it is a single-select listbox, the selection state moves with the focus. Strongly recommended for lists with more than 5 options.</li>
+          <li>Type-ahead is strongly recommended for all lists, but  essential for long lists (typically more than 5 options):
             <ul>
               <li>Type a character: focus moves to the next item with a name that starts with the typed character.</li>
               <li>Type multiple characters in rapid succession: focus moves to the next item with a name that starts with the string of characters typed.</li>
             </ul>
           </li>
-          <li><kbd>Shift + F10</kbd>: opens the context menu for the currently focused option if a context menu is available</li>
-          <li><strong>Multiple Selection</strong>: In multi-select listboxes, the author may implement either of two interaction models: one that does not require modifier keys, e.g., <kbd>Shift</kbd> or <kbd>Control</kbd>, (recommended) and one that does.
+          <li><strong>Multiple Selection</strong>: 
+          Authors may implement either of two interaction models to support multiple selection: 
+          one that does not require modifier keys, e.g., <kbd>Shift</kbd> or <kbd>Control</kbd>, (recommended) or one that does require modifier keys to be held down to maintain the selection states.
             <ul>
               <li>Selection model 1 -- modifiers not required:
                 <ul>
                   <li><kbd>Space</kbd>: changes the selection state of the focused option .</li>
-                  <li><kbd>Control + A</kbd> (optional): selects all options in the list.</li>
-                  <li><kbd>Shift + Down Arrow</kbd> and <kbd>Shift + Up Arrow</kbd> (optional): move the focus and select the next or previous option.</li>
+                  <li><kbd>Shift + Up Arrow</kbd> and <kbd>Shift + Down Arrow</kbd> (optional): move focus to and select the previous and next option, respectively.</li>
+                  <li><kbd>Shift + Space</kbd> (optional): selects contiguous items from the last   selected item to the current item. </li>
                   <li><kbd>Control + Shift + Home</kbd> (optional): selects the option with focus and all options up to the beginning of the list.</li>
                   <li><kbd>Control + Shift + End</kbd> (optional): selects the option with focus and all options down to the end of the list.</li>
+                  <li><kbd>Control + A</kbd> (optional): selects all options in the list.</li>
                 </ul>
               </li>
-              <li>Selection model 2 (modifier keys required):
+              <li>Selection model 2 (modifier keys must be held down to maintain selected states when navigating):
                 <ul>
-                  <li><kbd>Shift + Down Arrow</kbd> and <kbd>Shift + Up Arrow</kbd>: move the focus and select the next or previous option.</li>
-                  <li><kbd>Shift + Space</kbd> (optional): selects contiguous items from the last   selected item to the current item. </li>
-                  <li><kbd>Control + Down Arrow</kbd> or <kbd>Control + Up Arrow</kbd>: move the focus without changing the selection state. </li>
+                  <li><kbd>Shift + Up Arrow</kbd> and <kbd>Shift + Down Arrow</kbd>: move focus to and select the previous and next option, respectively.</li>
+                  <li><kbd>Control + Up Arrow</kbd> and <kbd>Control + Down Arrow</kbd>: Without changing the selection state, move focus to the previous and next option, respectively. </li>
                   <li><kbd>Control + Space</kbd> Changes the selection state of the focused option. </li>
+                  <li><kbd>Up Arrow</kbd> and <kbd>Down Arrow</kbd>: Remove all selected states and move focus to the previous and next option, respectively. </li>
+                  <li><kbd>Home</kbd> and <kbd>End</kbd> (Optional): Remove all selected states and move focus to the first and last option, respectively. </li>
+                  <li><kbd>Shift + Space</kbd> (optional): selects contiguous items from the last   selected item to the current item. </li>
                   <li><kbd>Control + Shift + Home</kbd> (optional): selects the option with focus and all options up to the beginning of the list.</li>
                   <li><kbd>Control + Shift + End</kbd> (optional): selects the option with focus and all options down to the end of the list.</li>
                   <li><kbd>Control + A</kbd> (optional): selects all options in the list.</li>
@@ -1841,18 +1838,27 @@
             </ul>
           </li>
         </ul>
-        <p class="note">It is recommended the developer use different styling for the selection when the list is not focused (hint: non-active selection is often shown with a lighter background color).</p>
+        <ol class="note">
+        <li>Focus (the active element) is different from the selected state. See <a href="#focus_vs_selection">to be written</a>. </li>
+        <li>The listbox role supports the <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property, which provides an alternative to moving DOM focus among options when scrolling. For details, see <a href="#using_activedescendant">to be written</a>. </li>
+        </ol>
       </section>
 
       <section class="notoc">
         <h4>WAI-ARIA Roles, States, and Properties</h4>
         <ul>
-          <li>The listbox container  has a role of <a href="#listbox" class="role-reference">listbox</a>.</li>
-          <li>Each entry in the listbox should have a role <a href="#option" class="role-reference">option</a> and should be DOM  children of <a href="#listbox" class="role-reference">listbox</a>.</li>
-          <li>If is not a DOM child of listbox, then it should be referenced in the listbox by   <a href="#aria-owns" class="property-reference">aria-owns</a>.</li>
-          <li>If all items in the listbox are not DOM children of the listbox, then  set their <a href="#aria-setsize" class="property-reference">aria-setsize</a> and <a href="#aria-posinset" class="property-reference">aria-posinset</a> accordingly; otherwise, this information cannot  be computed for context by the user agent.</li>
+          <li>An element that contains or owns all the listbox options has role <a href="#listbox" class="role-reference">listbox</a>.</li>
+          <li>Each option in the listbox has role <a href="#option" class="role-reference">option</a> and is a DOM  child of the element with role <a href="#listbox" class="role-reference">listbox</a or is referenced by the <a href="#aria-owns" class="property-reference">aria-owns</a> property on the listbox element.</li>
           <li>If the listbox is not part of another widget, then it should have a visible label referenced on the listbox by <a href="#aria-labelledby" class="property-reference">aria-labelledby</a>.</li>
-          <li>Each selected list item should have <a href="#aria-selected" class="property-reference">aria-selected</a>=&quot;true&quot;.</li>
+          <li>Each selected option has <a href="#aria-selected" class="property-reference">aria-selected</a> set to <code>true</code> </li>
+          <li>if the listbox supports multiple selection:
+          <ul>
+          <li> The element with role <code>listbox</code> has <a href="#aria-multiselectable" class="property-reference">aria-multiselectable</a> set to <code>true</code>. </li>
+          <li>All selected options have <a href="#aria-selected" class="state-reference">aria-selected</a> set to <code>true</code>. </li>
+          <li>All options that are not selected have <a href="#aria-selected" class="state-reference">aria-selected</a> set to <code>false</code>. </li>
+          </ul>
+          <li>If all options are not present in the DOM due to dynamic loading, their <a href="#aria-setsize" class="property-reference">aria-setsize</a> and <a href="#aria-posinset" class="property-reference">aria-posinset</a> are set appropriately. Otherwise, this information cannot  be computed for context by the user agent.</li>
+          </li>
         </ul>
       </section>
 
