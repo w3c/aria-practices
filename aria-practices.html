@@ -1774,12 +1774,14 @@
         To create a list of interactive elements, see the <a href="#grid">grid</a> pattern.
       </p>
       <p>
-      Authors should avoid creating options with very long names that contain more information than could be easily understood when spoken by a screen reader as a single unit of speech.
-      If screen reader announcement of an option is interrupted, the user will typically have to re-read the entire option. 
+      Authors should avoid creating options with very long names.
+       Each option name is spoken by a screen reader as a single unit of speech when the user navigates the list.
+       When a large amount information is spoken as the result of a single key press, it can be difficult to understand.
+      If the speaking of an option is interrupted, the user will typically have to re-read the entire option. 
         And, if the user does not understand what is spoken, re-reading of a listbox option name by character, word, or phrase may be a difficult operation for some screen reader users because the screen reader is in an interactive mode, rather than a reading mode, when operating a widget like a listbox.
       </p>
       <p>
-        Authors should also avoid creating a set of several consecutive options that start with the same word or phrase.
+        Authors should also avoid creating sets of options where each option name starts with the same word or phrase.
         Otherwise, scrolling through the list to find a specific option becomes inordinately time consuming for a screen reader user who must listen to that word or phrase repeated before hearing what is unique about each option.
         For example, if a listbox for choosing a city were to contain options where each city name were preceded by a country name, and if many cities were listed for each country, a screen reader user would have to listen to the country name before hearing each city name.
         In such a scenario, it would be better to have 2 list boxes, one for country and one for city.
