@@ -1768,8 +1768,7 @@
         A listbox that allows a single option to be chosen is a single-select listbox; one that allows multiple options to be selected is a multi-select listbox.
       </p>
       <p>
-        WAI-ARIA defines options in a listbox as static.
-        That is, the contents of <code>option</code> elements in a <code>listbox</code> are reduced by browsers to static text strings that become the accessible names of the options.
+        The contents of <code>option</code> elements in a <code>listbox</code> are reduced by browsers to static text strings that become the accessible names of the options.
         So, <code>options</code> in a <code>listbox</code> should not contain interactive elements, such as links, buttons, or checkboxes.
         To create a list of interactive elements, see the <a href="#grid">grid</a> pattern.
       </p>
@@ -1792,7 +1791,7 @@
         <ul>
           <li> When a single-select listbox receives focus:
             <ul>
-              <li>If none of the options are selected before the listbox receives focus, the first option receives focus. Optionally, the option may be automatically selected.</li>
+              <li>If none of the options are selected before the listbox receives focus, the first option receives focus. The author may choose to have the first option automatically selected. </li>
               <li>If an option is selected before the listbox receives focus, focus is set on the selected option. </li>
             </ul>
           </li>
@@ -1818,10 +1817,10 @@
                 <ul>
                   <li><kbd>Space</kbd>: changes the selection state of the focused option .</li>
                   <li><kbd>Shift + Up Arrow</kbd> and <kbd>Shift + Down Arrow</kbd> (optional): move focus to and select the previous and next option, respectively.</li>
-                  <li><kbd>Shift + Space</kbd> (optional): selects contiguous items from the last   selected item to the current item. </li>
-                  <li><kbd>Control + Shift + Home</kbd> (optional): selects the option with focus and all options up to the beginning of the list.</li>
-                  <li><kbd>Control + Shift + End</kbd> (optional): selects the option with focus and all options down to the end of the list.</li>
-                  <li><kbd>Control + A</kbd> (optional): selects all options in the list.</li>
+                  <li><kbd>Shift + Space</kbd> (Optional): selects contiguous items from the last   selected item to the current item. </li>
+                  <li><kbd>Control + Shift + Home</kbd> (Optional): selects the option with focus and all options up to the beginning of the list.</li>
+                  <li><kbd>Control + Shift + End</kbd> (Optional): selects the option with focus and all options down to the end of the list.</li>
+                  <li><kbd>Control + A</kbd> (Optional): selects all options in the list.</li>
                 </ul>
               </li>
               <li>Alternative selection model -- modifier keys must be held down to maintain selected states when navigating):
@@ -1831,16 +1830,17 @@
                   <li><kbd>Control + Space</kbd> Changes the selection state of the focused option. </li>
                   <li><kbd>Up Arrow</kbd> and <kbd>Down Arrow</kbd>: Remove all selected states and move focus to the previous and next option, respectively. </li>
                   <li><kbd>Home</kbd> and <kbd>End</kbd> (Optional): Remove all selected states and move focus to the first and last option, respectively. </li>
-                  <li><kbd>Shift + Space</kbd> (optional): selects contiguous items from the last   selected item to the current item. </li>
-                  <li><kbd>Control + Shift + Home</kbd> (optional): selects the option with focus and all options up to the beginning of the list.</li>
-                  <li><kbd>Control + Shift + End</kbd> (optional): selects the option with focus and all options down to the end of the list.</li>
-                  <li><kbd>Control + A</kbd> (optional): selects all options in the list.</li>
+                  <li><kbd>Shift + Space</kbd> (Optional): selects contiguous items from the last   selected item to the current item. </li>
+                  <li><kbd>Control + Shift + Home</kbd> (Optional): selects the option with focus and all options up to the beginning of the list.</li>
+                  <li><kbd>Control + Shift + End</kbd> (Optional): selects the option with focus and all options down to the end of the list.</li>
+                  <li><kbd>Control + A</kbd> (Optional): selects all options in the list.</li>
                 </ul>
               </li>
             </ul>
           </li>
         </ul>
         <ol class="note">
+        <li>If the ability to select or deselect all options may be commonly needed, it is recommended that the author add separate controls to perform these actions. </li>
         <li>Focus (the active element) is different from the selected state. See <a href="#focus_vs_selection">to be written</a>. </li>
         <li>The listbox role supports the <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property, which provides an alternative to moving DOM focus among options when scrolling. For details, see <a href="#using_activedescendant">to be written</a>. </li>
         </ol>
