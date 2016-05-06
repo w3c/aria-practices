@@ -1,0 +1,33 @@
+a[role=button] {
+  margin: .25em;
+  padding: .25em;
+  text-decoration: none;
+  display: block;
+  border-style: solid;
+  text-align: center;
+  width: 12em;
+  color: black;
+  background-color: #EEEEEE;
+  border: 2px outset #AAAAAA;
+  font-size: 115%;
+}
+
+[role="menu"] {
+  padding: 0;
+  border: thin solid black;
+  background-color: #EEEEEE;
+
+}
+
+[role="menuitem"] {
+  padding: 0.5em;
+  display: block;
+  text-decoration: none; 
+}
+
+[role="menuitem"]:focus,
+[role="menuitem"]:hover {
+  background-color: #FFFFFF;
+  border:2px solid #009;
+  display: block;
+}

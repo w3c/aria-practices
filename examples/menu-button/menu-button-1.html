@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>ARIA Menu Button Example: Button Element</title>
+    <meta name="generator" content="BBEdit 10.5">
+    <link href="../css/core.css" rel="stylesheet">
+    <link href="../css/table.css" rel="stylesheet">
+    <link href="css/menu-button.css" rel="stylesheet">
+    <script src="../js/examples.js" type="text/javascript"></script>
+    <script src="js/menu-button-1.js" type="text/javascript"></script> 
+  </head>
+  <body>
+    <main>
+      <h1>ARIA Menu Button Example: Button Element</h1>
+ 
+      <p><a href="../../aria-practices.html#h-menubutton">Authoring Practice Design Patten for Menu Button</a></p>
+
+      <section id="code-ex-1">
+        <h2>Menu Button using a <code>button</code> element</h2>
+        <p>This example provides a menu of actions for changing the state in a web application.</p>
+
+        <p>
+          <button 
+              id="mb1"
+              aria-haspopup="true" 
+              aria-controls="menu1"
+              >
+            Actions
+           </button>
+
+           <label>Last Action: <input id="action_output" value=""></label>
+         </p>
+
+            <ul id="menu1" role="menu" aria-labelledby="mb1">
+              <li role="menuitem"  onclick="updateLastAction(event)">Action 1</li>
+              <li role="menuitem"  onclick="updateLastAction(event)">Action 2</li>
+              <li role="menuitem"  onclick="updateLastAction(event)">Action 3</li>
+              <li role="menuitem"  onclick="updateLastAction(event)">Action 4</li>
+            </ul>
+
+
+      </section>    
+
+      <script type="text/javascript">
+
+        document.getElementById("action_output").value = "none";
+
+        function updateLastAction(event) {
+
+          document.getElementById("action_output").value = event.currentTarget.innerHTML;
+
+        }
+
+      </script>
+
+      <h2 id="id_a11yfeature">Accessibility Features</h2>
+             <ul>
+                <li>The <code>aria-haspopup="true"</code> attribute on the <code>button</code> element identifies that activating the button will result in either a menu or dialog box opening.</li>
+                <li>The <code>aria-controls</code> attribute on the <code>button</code> element identifies the content that will be opened when the button is activated.</li>
+                <li>The <code>role="menu"</code> attribute on the <code>ul</code> element identifies the element as a container for a list of menu items.</li>
+                <li>The <code>aria-labelledby</code> attribute of the <code>ul[role=menu]</code> elements defines an accessible name for the menu.</li>
+                <li>The <code>role="menuitem"</code> on the <code>li</code> elements identifies the element as an item in the menu .</li>
+                <li>The child text content of the <code>li[role=menuitem]</code> elements defines the accessible name for each of the menu items.</li>
+                <li>The <code>button[aria-haspopup=true]</code> element has a <code>keydown</code> event to handle opening and closing the menu and moving focus to the menu.</li>
+                <li>The <code>button[aria-haspopup=true]</code> element has a <code>click</code> event to open the menu and move focus to the first menu item to support assitive technology that emulates click event for button elements.</li>
+                <li>Each of the <code>li[role=menuitem]</code> elements has a <code>keydown</code> event to handle navigation between menu items, closing the menu and activating the function of the menu item.</li>
+                <li>Each of the <code>li[role=menuitem]</code> element has a <code>focus</code> event to handle highlighting the menu item with keyboard focus.</li>
+              </ul>
+
+      <h2 id="id_kbd">Keyboard Support</h2>
+
+      <h3 id="id_kbd1">Menu Button</h3>
+      <table aria-labelledby="id_kbd id_kbd1"> 
+        <thead>
+          <tr>
+            <th>Key</th>
+            <th>Function</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Space or Enter Key</td>
+            <td>Open menu and move focus to first menu item</td>
+          </tr>
+          <tr>
+            <td>Up Arrow Key</td>
+            <td>Open menu and moves focus to last menu item</td>
+          </tr>
+           <tr>
+            <td>Down Arrow Key</td>
+            <td>Open menu and moves focus to first menu item</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 id="id_kbd2">Menu</h3>
+      <table aria-labelledby="id_kbd id_kbd2"> 
+        <thead>
+          <tr>
+            <th>Key</th>
+            <th>Function</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Space or Enter Keys</td>
+            <td>
+              <ul id="list">
+                <li>Applies the styling associated with the menu item with focus</li>
+                <li>Closes menu and moves focus back to menu button</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>Up or Left Arrow Key </td>
+            <td>Move focus to previous menu item</td>
+          </tr>
+          <tr>
+            <td>Down or Right Arrow Key </td>
+            <td>Move focus to next menu item</td>
+          </tr>
+          <tr>
+            <td>Escape Key</td>
+            <td> Close menu and move focus back to menu button</td>
+          </tr>
+        </tbody>
+      </table>
+      <h2 id="id_rps">ARIA Roles, Properties and States</h2>
+
+      <table aria-labelledby="id_rps"> 
+        <thead>
+          <tr>
+            <th>Role</th>
+            <th>Property/State</th>
+            <th>Usage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>menu</code></td>
+            <td></td>
+            <td>Identifies the <code>ul</code> element as a menu widget</td>
+          </tr>
+          <tr> 
+            <td><code>menuitem</code></td>
+            <td></td>
+            <td>Identifies the <code>li</code> element as a menu item widget</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><code>aria-haspopup</code></td>
+            <td>Identifies the <code>button</code> element as a menu button widget when the value is <code>true</code></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><code>aria-controls</code></td>
+            <td>Identfies the content on the page (e.g. using IDREFs) that this menu button controls</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><code>aria-labelledby</code></td>
+            <td>Use to provide a label the menu widget</td>
+          </tr>
+        </tbody>
+      </table>
+      
+
+      <section aria-labelledby="sc-ex1">
+        <h2 id="sc-ex1">Source Code: Example 1</h2>
+      
+        <ul>
+          <li>CSS: <a href="css/menu-button.css" type="text/css">menu-button.css</a></li>
+          <li>Javascript: <a href="js/menu-button-1.js" type="text/javascript">menu-button-1.js</a></li>
+        </ul>
+      
+        <div id="sc1">
+       
+        </div>
+      </section>
+
+
+      <script>
+        sourceCode.add('sc1', 'code-ex-1')
+        sourceCode.make()
+      </script>
+    </main>
+  </body>
+  </html>
