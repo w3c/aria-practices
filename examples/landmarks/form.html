@@ -1,0 +1,172 @@
+<!DOCTYPE html >
+<html lang="en">
+  <head>
+    <title>Form Landmark: ARIA Landmarks Example</title>
+    <meta charset="utf-8">
+    <link href="css/bootstrap.css" rel="stylesheet" media="screen"/>
+    <link href="css/bootstrap-theme.css" rel="stylesheet" media="screen"/>
+    <link href="css/bootstrap-accessibility.css" rel="stylesheet" media="screen"/>
+    <link href="css/bootstrap-accessibility.css" rel="stylesheet" media="screen"/>
+    <link href="css/visua11y.css" rel="stylesheet" media="screen"/>
+    <link href="css/common.css" rel="stylesheet" media="screen"/>
+    <script src="js/tabs.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <div class="container">
+      <header class="row">
+        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-2">
+          <img src="images/w3c.png" alt="W3C Logo" />
+        </div>
+        <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
+          <h1>ARIA Landmarks Example</h1>
+        </div>
+      </header>
+      <div class="row">
+        <div class="col-xs-12 col-sm-3 col-md-3 col-lg-2">
+          <nav aria-labelledby="nav2">
+            <h2 id="nav2" class="sr-only">Main</h2>
+            <ul class="nav nav-pills nav-stacked">
+              <li><a href="index.html">Principles</a></li>
+              <li><a href="HTML5.html">HTML5</a></li>
+              <li><a href="banner.html">Banner</a></li>
+              <li><a href="complementary.html">Complementary</a></li>
+              <li><a href="contentinfo.html">Contentinfo</a></li>
+              <li class="active"><a href="form.html">Form</a></li>
+              <li><a href="main.html">Main</a></li>
+              <li><a href="navigation.html">Navigation</a></li>
+              <li><a href="region.html">Region</a></li>
+              <li><a href="search.html">Search</a></li>
+              <li><a href="at.html" aria-label="Assitive Technology">Asst. Tech.</a></li>
+              <li><a href="resources.html">Resources</a></li>
+            </ul>
+          </nav>
+        </div>
+        <div class="col-xs-12 col-sm-9 col-md-6 col-lg-7">
+          <main>
+            <h1 id="id1"> Form Landmark</h1>
+            <p> A <code>form</code> landmark identifies a region that contains a collection of items and objects that, as a whole, combine to create a form when no other named landmark is appropriate (e.g. main or search). </p>
+             <p> ARIA 1.1 Specification: <a href="https://www.w3.org/TR/wai-aria-1.1/#form"><code>form</code> landmark</a></p>
+            <h2>Design Patterns</h2>
+            <ul>
+              <li>Use the <code>search</code> landmark instead of the <code>form</code> landmark when the form is used for search functionality.</li>
+              <li>A <code>form</code> landmark should have a label to help users understand the purpose of the form.</li>
+              <li>A label for the <code>form</code> landmark should be visible to all users (e.g. an <code>h1-h6</code> element).</li>
+              <li>If a page includes more than one <code>form</code> landmark, each should have a unique label.</li>
+              <li>
+                Whenever possible, controls contained in a <code>form</code> landmark in an HTML document should use native host semantics:
+                <ul>
+                  <li><code>button</code></li>
+                  <li><code>input</code></li>
+                  <li><code>select</code></li>
+                  <li><code>textarea</code></li>
+                </ul>
+                </li>
+            </ul>
+            <div>
+              <ul class="nav nav-tabs" role="tablist">
+                <li class="active"><a href="#aria-techniques" aria-controls="aria-techniques" role="tab" data-toggle="tab">ARIA Techniques</a></li>
+                <li><a href="#html5-techniques" aria-controls="html5-techniques" role="tab" data-toggle="tab">HTML5 Techniques</a></li>
+              </ul>
+              <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="aria-techniques">
+                  <ul>
+                    <li>The <code>role="form"</code> attribute defines a form landmark.</li>
+                    <li>Use the <code>role="form"</code> to identify a region of the page; do not use it to identify every form field.</li>
+                  </ul>
+
+                  <h3>ARIA Example</h3>
+                  <div class="code">
+                    &nbsp;&nbsp;&lt;div <strong>role="form" aria-labelledby="form1"</strong>&gt;
+                    <br>
+                    <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;h2 <strong>id="form1"</strong>&gt;title for form area &lt;/h2&gt;
+                    <br>
+                    <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;... <em>controls and content for form area</em> ...
+                    <br>
+                    <br>
+                    &nbsp;&nbsp;&lt;/div&gt;
+                    <br>
+                  </div>
+
+                </div>
+                <div role="tabpanel" class="tab-pane" id="html5-techniques">
+                  <p>If a <code>form</code> element has an accessible name it is considered <code>form</code> landmark.</p>
+
+                  <h3>HTML5 Example</h3>
+                  <div class="code">
+                    &nbsp;&nbsp;<strong>&lt;form aria-labelledby="form1"</strong>&gt;
+                    <br>
+                    <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&lt;h2 <strong>id="form1"</strong>&gt;title for form area &lt;/h2&gt;
+                    <br>
+                    <br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;... <em>controls and content for form area</em> ...
+                    <br>
+                    <br>
+                    &nbsp;&nbsp;<strong>&lt;/form&gt;</strong>
+                    <br>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </main>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+          <aside aria-labelledby="id4">
+            <h2 id="id4">Landmarks</h2>
+            <p>The following are landmarks defined on the page:</p>
+            <ul>
+              <li>Banner</li>
+              <li>Navigation</li>
+              <li>Complementary(3)</li>
+              <li>Main</li>
+              <li>Contentinfo</li>
+            </ul>
+            <p id="highlight_inst" class="inst">Visually outline the landmarks and/or headings on the page using the following buttons.</p>
+            <button onclick="showLandmarks(event)" aria-describedby="highlight_inst">Show Landmarks</button>
+            <button onclick="showHeadings(event)" aria-describedby="highlight_inst">Show Headings</button>
+          </aside>
+          <aside aria-labelledby="id3">
+            <h2 id="id3">Related W3C Specs</h2>
+            <ul>
+              <li><a href="http://www.w3.org/TR/WCAG">WCAG 2.0</a></li>
+              <li><a href="http://www.w3.org/TR/html5">HTML5</a></li>
+              <li><a href="http://www.w3.org/TR/wai-aria">ARIA</a></li>
+              <li><a href="https://www.w3.org/TR/wai-aria-practices/">ARIA Authoring Practices</a></li>
+              <li><a href="https://www.w3.org/TR/accname-aam-1.1/">ARIA Accessible Name Calc</a></li>
+              <li><a href="https://www.w3.org/TR/aria-in-html/">ARIA in HTML5</a></li>
+            </ul>
+          </aside>
+        </div>
+      </div>
+      <div class="well well-sm">
+        <footer class="row">
+          <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
+            W3C ARIA Authoring Practices Guide Working Group
+          </div>
+          <div class="col-xs-12 col-sm-3 col-md-3 col-lg-2">
+            Copyright 2016
+          </div>
+        </footer>
+      </div>
+    </div>
+    <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>        
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>        
+    <script type="text/javascript" src="js/bootstrap-accessibility.min.js"></script>        
+    <script type="text/javascript" src="js/visua11y.js"></script>        
+    <script type="text/javascript" src="js/show.js"></script>        
+    <script type="text/javascript" >
+      // Use the SkipTo defaults, but just showing custom configuration
+      var SkipToConfig =
+      {
+        "settings": {
+          "skipTo": {
+            "headings": "h1, h2"
+          }
+        }
+      };
+    </script>
+    <script type="text/javascript" src="js/SkipTo.min.js"></script>      
+  </body>
+</html>
