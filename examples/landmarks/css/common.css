@@ -102,6 +102,15 @@ nav li {
     border-bottom-right-radius: 6px;
 }
 
+section[aria-labelledby] {
+    margin-bottom: 4em;
+}
+
+section[aria-labelledby] p {
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
 aside {
     margin: 0;
     padding: 0;
