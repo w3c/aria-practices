@@ -3184,53 +3184,89 @@ function detectHiContrast() {
   </ol>
 </section>
   <section id="keyboard">
-  <h2> Keyboard and Structural Navigation</h2>
-  <p class="note">This section has not been updated since it was integrated from APG version 1.0 -- an APG task force review is pending.</p>
-  <p>Providing an effective navigation experience to the user is critical for usability. This section starts with guidance on how to provide effective keyboard navigation for widgets in a Rich Internet Application environment. This includes a discussion on how to manage keyboard focus and the specifics on providing keyboard navigation for tooltips. This is is followed by a broader discussion on how to convey structural semantics for the entire Web page. These semantics help  an assistive technology  provide  additional navigation, increase user productivity, and render the page in an alternative formats. This rendering may be in different forms, including but not limited to speech, page restructuring, and alternative input solutions.</p>
+  <h2> Developing a Keyboard Interface</h2>
+  <p>
+  Unlike native HTML form elements, browsers do not provide keyboard support for graphical user interface (GUI) components that are made accessible with ARIA; authors must provide the keyboard support in their code.
+  This section describes how to make the functionality of a web page that includes ARIA widgets, such as menus and grids,  as wel ass interactive components, such as toolbars and dialogs, operable with a keyboard. 
+  It starts by explaining the basics of focus management among and within widgets and then offers guidance toward the objective of providing people who rely on a keyboard experiences that are as efficient and enjoyable as the those available to others.
+  </p>
     <section id="kbd_generalnav">
-    <h3>Providing Keyboard Navigation for Widgets</h3>
+    <h3>Keyboard Navigation for Widgets</h3>
       <section id="kbd_general_binding">
-      <h4>WAI-ARIA Keyboard Bindings and Behaviors</h4>
-      <p> Essential to accessible Web 2.0 widgets is keyboard support to provide full operation and functionality of a widget through keyboard-only events. Unlike traditional HTML form controls, Web 2.0 widgets, typically, have no inherent keyboard support. The developer must enable keyboard support for the widgets they create or use widget libraries with keyboard support. The model for keyboard support for Web 2.0 widgets are graphical user interface (GUI) operating systems like Microsoft Windows, Mac OS X; and other desktop operating systems like GNOME and GTK. Basic accessibility requirements for keyboard focus include: </p>
-      <ul>
-        <li>Support users who cannot use pointing devices due to physical or visual impairment to access the full functionality of the Web application. </li>
-        <li>All major software and Web accessibility guidelines for people with disabilities require keyboard-only operation of the interface for accessibility. </li>
-        <li>Communicate accessibility information to assistive technologies on the type of widget and its associated state and properties. </li>
-      </ul>
-      <p>For example, if a screen reader user hears a tree announced, they know that pressing the right arrow key will expand  a node. Similarly, when they hear a grid announced, they know they can use their screen reader's table reading commands. </p>
+      <h4>WAI-ARIA Keyboard Conventions</h4>
+      <p>
+      To help make keyboard interfaces easy to learn and efficient, the WAI-ARIA design patterns borrow user expectations and keyboard conventions from popular desktop GUIs, including Microsoft Windows, Mac OS X, and GNOME.
+      For sighted keyboard users,visual styling that resembles components users find in a desktop application can help them understand how to operate a component in a web GUI.
+      Similarly, a screen reader user will hear information, based on the screen reader's interpretation of the ARIA role, states, and properties, that makes the component sound like its desktop counterpart.
+      For example, when screen reader users hear that a tree has focus, they know that pressing the right arrow key will expand  a node. 
+      </p>
     </section>
       <section id="kbd_general_between">
       <h4> Keyboard Navigation between Widgets (tabindex)</h4>
-      <p> The <code>tabindex</code> attribute enables focus to be moved via keyboard to HTML elements. For standard <a href="http://www.w3.org/TR/html401/">HTML 4.01</a>, tabindex was limited to form and anchor elements. For WAI-ARIA, the <code>tabindex</code> attribute is now applicable to all renderable HTML elements with additional functionality designed to help the author produce keyboard accessible  Web 2.0 widgets. </p>
+      <p> 
+      The primary keyboard interaction pattern of a web page is 
+      For example, pressing the <kbd>tab</kbd> key moves focus from a link to a radio group to a select list listbox, but movement of focus inside the radio group or select is done with the arrow keys.
+      ARIA patterns extend that pattern in the same way that desktop GUIs do.
+      consists of a tab sequence that moves focus between coomponents and other keys, such as the arrow keys, move focus inside of components.
+      high-level tab key is used 
+      In HTML, the default tab sequence of a web page includes only links and HTML form elements.
+      It is possible to add any other element to the tab sequence by applying the <code>tabindex</code> attribute to the element and giving it a value of 0 or greater. 
+      However, Authors are advised to avoid values greater than 0.
+      It is also possible to remove an element from the tab sequence, including a link or form element, by giving it a tabindex value of -1. 
+      </p>
       <ul>
         <li><kbd>Tab</kbd> and <kbd>Shift + Tab</kbd> key move focus among widgets and standard HTML controls. </li>
         <li>Widgets with tabindex=0 will be added to the tab sequence based on document order </li>
         <li>Widgets with tabindex&gt;0 will be added to the tab sequence based on the TABINDEX value </li>
         <li>Widgets with tabindex&lt;0 will not be added to the tab sequence but are enabled to receive keyboard focus. </li>
       </ul>
-      <p>Once a widget has keyboard focus, arrow keys, <kbd>Space</kbd>, <kbd>Enter</kbd> key, or other keyboard commands can be used to navigate the options of the widget, change its state, or trigger an application function associated with the widget. </p>
+      <p>
+      Once a widget has keyboard focus, arrow keys, <kbd>Space</kbd>, <kbd>Enter</kbd> key, or other keyboard commands can be used to navigate the options of the widget, change its state, or trigger an application function associated with the widget. 
+      </p>
     </section>
       <section id="kbd_general_within">
       <h4> Keyboard Navigation within Widgets</h4>
-      <p> Each element that receives keyboard focus needs to have a <code>tabindex</code> attribute set to its current active descendant element and itself if an active descendant does not exist. The element with keyboard focus is essential because it communicates information about the widget to assistive technologies like screen readers and magnifiers through operating specific accessibility APIs like Microsoft Active Accessibility (MSAA), the Apple AX APIs, and the ATK Accessibility Toolkit. The TAB key moves keyboard focus to the widget, and other keys operate the features of the widget, typically cursor keys, <kbd>Enter</kbd> key and <kbd>Space</kbd>. The actual keys are up to the developer, but best practices recommend using the same key bindings that are used to control similar widgets in common GUI operating systems like Microsoft Windows, Mac OS X and other desktop operating systems like GNOME and GTK. </p>
-      <p> Authors can use either the JavaScript <code>focus()</code> method to move focus to the appropriate element in the widget, or they can use a WAI-ARIA property called <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> on the actual widget container to indicate which descendant element in the widget has focus. Use the following procedure when focus is completely dependent on the use of tabindex to provide focus in a widget:</p>
+      <p> Each element that receives keyboard focus needs to have a <code>tabindex</code> attribute set to its current active descendant element and itself if an active descendant does not exist. 
+      The element with keyboard focus is essential because it communicates information about the widget to assistive technologies like screen readers and magnifiers through operating specific accessibility APIs like Microsoft Active Accessibility (MSAA), the Apple AX APIs, and the ATK Accessibility Toolkit. 
+      The TAB key moves keyboard focus to the widget, and other keys operate the features of the widget, typically cursor keys, <kbd>Enter</kbd> key and <kbd>Space</kbd>. 
+      The actual keys are up to the developer, but best practices recommend using the same key bindings that are used to control similar widgets in common GUI operating systems like Microsoft Windows, Mac OS X and other desktop operating systems like GNOME and GTK. 
+      </p>
+      <p>
+       Authors can use either the JavaScript <code>focus()</code> method to move focus to the appropriate element in the widget, or they can use a WAI-ARIA property called <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> on the actual widget container to indicate which descendant element in the widget has focus. 
+       Use the following procedure when focus is completely dependent on the use of tabindex to provide focus in a widget:
+       </p>
       <ul>
         <li>Set <code>tabindex="0"</code> on the current active descendant in the container widget while setting <code>tabindex="-1"</code> on all the other descendant elements of the widget.</li>
         <li>As the user navigates (e.g., arrows) away from an item, set <code>tabindex="-1"</code> on the old item, and <code>tabindex="0"</code> on the new.</li>
         <li>Use the JavaScript <code>focus()</code> method to put focus on the new item, whose <code>tabindex="0"</code>.</li>
       </ul>
-        <p id="roving">This procedure creates a <em>roving</em> tabindex. If the user TAB navigates away and then TABs back to the widget, the same last active descendant becomes active again. This relieves the author from having to compute and set the focus to the last active descendant. </p>
-      <p>Conversely, if you use the WAI-ARI <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property: </p>
+        <p id="roving">
+        This procedure creates a <em>roving</em> tabindex. 
+        If the user TAB navigates away and then TABs back to the widget, the same last active descendant becomes active again. 
+        This relieves the author from having to compute and set the focus to the last active descendant. 
+        </p>
+      <p> Conversely, if you use the WAI-ARI <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property: </p>
       <ul>
         <li>Set <code>tabindex="0"</code> on the element which is the composite widget, and set its <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property to the id of the descendant element you wish to be active,</li>
         <li>As the user navigates (e.g., arrows) away from an item in the widget, refresh the <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property on the containing widget to the id of the new active descendant element. </li>
       </ul>
-      <p>In this scenario, the browser manages focus changes; however, the author manages changes to the <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property. For greater detail, see <a href="#focus_tabindex">Using Tabindex to Manage Focus Among Widgets</a>. In both scenarios authors indicate which element in the widget has focus or is active through styling and/or markup. </p>
+      <p>
+      In this scenario, the browser manages focus changes; however, the author manages changes to the <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property. 
+      For greater detail, see <a href="#focus_tabindex">Using Tabindex to Manage Focus Among Widgets</a>. 
+      In both scenarios authors indicate which element in the widget has focus or is active through styling and/or markup. 
+      </p>
     </section>
       <section id="kbd_shortcuts">
       <h4>Keyboard Shortcuts for Widgets</h4>
-      <p>It is useful to provide keyboard access to widgets, to focus a widget directly and to activate the features within the widget. These may be &quot;mnemonics&quot; that use a letter from the label of the control, as well as other special keys that perform familiar operations on the system. When providing non-standard key commands, document them so the user knows how to use them.</p>
-      <p>When localizing the user interface, it may be necessary to localize keyboard mnemonics as well in order to keep them apparent. Be sure not to introduce key conflicts when doing this, and ensure that the correct key commands remain apparent to the user.</p>
+      <p>
+      It is useful to provide keyboard access to widgets, to focus a widget directly and to activate the features within the widget. 
+      These may be &quot;mnemonics&quot; that use a letter from the label of the control, as well as other special keys that perform familiar operations on the system. 
+      When providing non-standard key commands, document them so the user knows how to use them.
+      </p>
+      <p>
+      When localizing the user interface, it may be necessary to localize keyboard mnemonics as well in order to keep them apparent. 
+      Be sure not to introduce key conflicts when doing this, and ensure that the correct key commands remain apparent to the user.
+      </p>
     </section>
       <section id="kbd_general_ex">
       <h4> Example Keyboard Operation: Radio Group/Radio </h4>
@@ -3260,11 +3296,18 @@ function detectHiContrast() {
           <td>If no button is checked, check the last radio button. If the first radio button is checked, check the last radio button. Otherwise, move the check from the current radio button to the previous radio button. </td>
         </tr>
       </table>
-      <p>In this Radio Group example, the <code>tabindex</code> of the first and last radio button elements has a <code>tabindex="0"</code> (assuming none of the radio buttons is checked), the remaining radio elements have <code>tabindex="-1"</code>.  As soon as the first or the last radio button receives focus it changes the <code>tabindex</code> value of the other radio button to -1.  If none of the radio buttons is selected the and the keyboard focus leaves the group the first and the last radio buttons have their <code>tabindex</code> values set to 0. </p>
+      <p>
+      In this Radio Group example, the <code>tabindex</code> of the first and last radio button elements has a <code>tabindex="0"</code> (assuming none of the radio buttons is checked), the remaining radio elements have <code>tabindex="-1"</code>. 
+       As soon as the first or the last radio button receives focus it changes the <code>tabindex</code> value of the other radio button to -1. 
+        If none of the radio buttons is selected the and the keyboard focus leaves the group the first and the last radio buttons have their <code>tabindex</code> values set to 0. 
+        </p>
     </section>
       <section id="kbd_general_other">
       <h4> Other Widget Authoring Practices</h4>
-      <p>The <a href="#aria_ex_widget">Common Widget Design Patterns</a> section of this document contains best  practices, such as keyboard navigation, for creating common widgets found on the Web. This section contains miscellaneous authoring practices that you should also consider.</p>
+      <p>
+      The <a href="#aria_ex_widget">Common Widget Design Patterns</a> section of this document contains best  practices, such as keyboard navigation, for creating common widgets found on the Web. 
+      This section contains miscellaneous authoring practices that you should also consider.
+      </p>
         <section id="kbd_general_valuenow">
       <h5>Maintain a valid format for aria-valuenow</h5>
 <p>
@@ -3290,11 +3333,27 @@ Here the values 1 through 7 represent the days of the week and
   </section>
     <section id="kbd_focus">
     <h3> Providing Keyboard Focus</h3>
-    <p>One way to provide keyboard support in (X)HTML is with form and list elements that accept keyboard focus by default. With the <kbd>Tab</kbd> key, the user can navigate to these types of elements. However, when building sophisticated widgets, it's necessary to be able to control keyboard navigation exactly. Authors may require or prefer to use host language elements that do not have built-in keyboard navigation features. For example, the author may wish to provide keyboard navigation without altering the tab order. Navigating within large composite widgets such as tree views, menubars, and spreadsheets can be very tedious and is inconsistent with what users are familiar with in their desktop counterparts. The solution is to provide full keyboard support using the arrow keys to provide more intuitive navigation within the widget, while allowing Tab and <kbd>Shift + Tab</kbd> to move focus out of the widget to the next place in the tab order. </p>
-<p> A tenet of keyboard accessibility is reliable, persistent indication of focus. The author is responsible, in the scripts, for maintaining visual and programmatic focus and observing accessible behavior rules. Screen readers and keyboard-only users rely on focus to operate rich internet applications with the keyboard. </p>
+    <p>
+    One way to provide keyboard support in (X)HTML is with form and list elements that accept keyboard focus by default
+With the <kbd>Tab</kbd> key, the user can navigate to these types of elements. 
+However, when building sophisticated widgets, it's necessary to be able to control keyboard navigation exactly. 
+Authors may require or prefer to use host language elements that do not have built-in keyboard navigation features. 
+For example, the author may wish to provide keyboard navigation without altering the tab order. 
+Navigating within large composite widgets such as tree views, menubars, and spreadsheets can be very tedious and is inconsistent with what users are familiar with in their desktop counterparts. 
+The solution is to provide full keyboard support using the arrow keys to provide more intuitive navigation within the widget, while allowing Tab and <kbd>Shift + Tab</kbd> to move focus out of the widget to the next place in the tab order. 
+</p>
+<p>
+A tenet of keyboard accessibility is reliable, persistent indication of focus. 
+The author is responsible, in the scripts, for maintaining visual and programmatic focus and observing accessible behavior rules. 
+Screen readers and keyboard-only users rely on focus to operate rich internet applications with the keyboard. 
+</p>
       <section id="focus_tabindex">
       <h4> Using Tabindex to Manage Focus among Widgets</h4>
-      <p>One requirement for supporting the keyboard is to allow focus to be set to any element. The <a href="http://www.w3.org/TR/html401/interact/forms.html#adef-tabindex" title="HTML4 tabindex attribute ">tabindex</a> attribute can be used to include additional elements in the tab order and to set programmatic focus to them. Originally implemented in Internet Explorer 5, the feature has been extended to Opera, Gecko-based user agents such as Firefox, and WebKit-based user agents such as Safari. The following table outlines the use of the tabindex attribute: </p>
+      <p>
+      One requirement for supporting the keyboard is to allow focus to be set to any element. 
+      The <a href="http://www.w3.org/TR/html401/interact/forms.html#adef-tabindex" title="HTML4 tabindex attribute ">tabindex</a> attribute can be used to include additional elements in the tab order and to set programmatic focus to them. 
+      Originally implemented in Internet Explorer 5, the feature has been extended to Opera, Gecko-based user agents such as Firefox, and WebKit-based user agents such as Safari. 
+      The following table outlines the use of the tabindex attribute: </p>
       <div>
         <table>
           <caption>
@@ -3329,17 +3388,31 @@ Here the values 1 through 7 represent the days of the week and
           </tbody>
         </table>
       </div>
-      <p>Setting a tabindex value of -1 to an element enables the element to receive focus via JavaScript using the element.focus() method. This method is used to enable arrow key navigation to elements. Each element that can be navigated to via arrow keys must have a tabindex of -1 to enable it to receive focus. Here are just a few additional tips  to help you with managing keyboard focus:</p>
+      <p>
+      Setting a tabindex value of -1 to an element enables the element to receive focus via JavaScript using the element.focus() method. 
+      This method is used to enable arrow key navigation to elements. 
+      Each element that can be navigated to via arrow keys must have a tabindex of -1 to enable it to receive focus. 
+      Here are just a few additional tips  to help you with managing keyboard focus:
+      </p>
       <ul>
         <li>
-          <p><em>Use focus and blur events (or event delegation) to monitor changes to the current focus</em> - <code>focus</code> and <code>blur</code> events can now be used with every element. Modern browsers now support an <code>activeElement</code> property on the document object to get the focused element. Don't assume that all focus changes will come via key and mouse events, because assistive technologies such as screen readers can set the focus to any focusable element, and that needs to be handled elegantly by the JavaScript widget. Techniques such as &quot;event delegation&quot; (for example, intercepting events on a list rather than on every listitem) can greatly increase web application performance and code maintainability, and authors are encouraged to use JavaScript best practices whenever possible. </p>
+          <p>
+          <em>Use focus and blur events (or event delegation) to monitor changes to the current focus</em> - <code>focus</code> and <code>blur</code> events can now be used with every element. 
+          Modern browsers now support an <code>activeElement</code> property on the document object to get the focused element. 
+          Don't assume that all focus changes will come via key and mouse events, because assistive technologies such as screen readers can set the focus to any focusable element, and that needs to be handled elegantly by the JavaScript widget. 
+          Techniques such as &quot;event delegation&quot; (for example, intercepting events on a list rather than on every listitem) can greatly increase web application performance and code maintainability, and authors are encouraged to use JavaScript best practices whenever possible. 
+          </p>
           <p class="note">The <code>activeElement</code> property is now standard in HTML 5.</p>
         </li>
         <li>
-          <p><em>Follow keydowns to move focus</em> - A keydown event handler can determine the next object to receive focus and call that element's focus() method. </p>
+          <p>
+          <em>Follow keydowns to move focus</em> - A keydown event handler can determine the next object to receive focus and call that element's focus() method. 
+          </p>
         </li>
         <li>
-          <p><em>Use onkeydown to trap key events, not onkeypress</em> - Key press events do not fire for all keys and they vary across browsers. </p>
+          <p>
+          <em>Use onkeydown to trap key events, not onkeypress</em> - Key press events do not fire for all keys and they vary across browsers. 
+          </p>
         </li>
         <li>
           <p><em>Dynamically change focusability using the tabIndex property</em> - You may want to update tabindex values if a custom control becomes disabled or enabled. Disabled controls should not be in the tab order. However, you can typically arrow to them if they're part of grouped navigation widget.  When an element receives focus, it should change the tabindex value to 0 to make an element the default element of the widget.  This is important if the user leaves the widget and returns to the widget again so focus is on the last element of the widget the user was on.  If other elements of a widget can receive keyboard focus, only one element of the widget should have a tabindex value of 0.</p>
@@ -3368,22 +3441,53 @@ Here the values 1 through 7 represent the days of the week and
           <p class="note">There are <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/Keyboard-navigable_JavaScript_widgets" title="Keyboard-navigable JavaScript widgets - MDN" target="_blank">user agent-specific considerations</a> for key event handling.</p>
         </li>
         <li>
-          <p>Consider using a "<a href="#kbd_general_within">roving</a>" tabindex for complex widgets if you are not using the <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property. </p>
+          <p>
+          Consider using a "<a href="#kbd_general_within">roving</a>" tabindex for complex widgets if you are not using the <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property. 
+          </p>
         </li>
       </ul>
     </section>
       <section id="focus_activedescendant">
       <h4> Using activedescendant to Manage Focus for Widget Children</h4>
-      <p>In addition to tabindex, WAI-ARIA provides  the <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property  for managing the focus of child elements within a widget. Widgets like <a class="role-reference" href="#grid">grid</a> and <a class="role-reference" href="#tree">tree</a> typically manage their children. The root element of the widget should have a <code>tabindex</code> value greater than or equal to "0" to ensure that the widget is in the document tabbing order. Rather than setting a key event handler on each element within a larger component, the event handler can be set on the parent element such as the tree. It is then the job of the parent element to manage the focus of the children. </p>
-      <p> The parent may use the <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property to indicate the active child. For example, the container element with the role of tree can provide an onkeydown event handler so that each individual tree item within the tree does not need to be focusable and to listen for the keydown event. The container object, in this case the tree, needs to maintain the point of regard and manage which individual child item must be perceived as active.</p>
-        <p class="note"><em>Important: For a given container widget where activedescendant must cause focus events to be fired to ATs, the actual focus must be on the container widget itself. In HTML this is done by putting tabindex="0" on the container widget.</em></p>
-      <p>The key handler on the parent captures the keystrokes and determines what item becomes active next and updates the <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property with the ID of the appropriate, next active child element. The browser takes that ID information and generates the focus event to the assistive technology. Each individual element does not have to be made focusable via a <code>tabindex</code> value of -1, but it must be styled using CSS to indicate the active status.</p>
-      <p>As active status is moved to the next descendant, ensure that it is scrolled into view using <code>scrollIntoView()</code>.  See section <a href="#scrollintoview">Managing Focus with Scroll</a> below for more information.</p>
+      <p>
+      In addition to tabindex, WAI-ARIA provides  the <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property  for managing the focus of child elements within a widget. 
+      Widgets like <a class="role-reference" href="#grid">grid</a> and <a class="role-reference" href="#tree">tree</a> typically manage their children. 
+      The root element of the widget should have a <code>tabindex</code> value greater than or equal to "0" to ensure that the widget is in the document tabbing order. 
+      Rather than setting a key event handler on each element within a larger component, the event handler can be set on the parent element such as the tree. 
+      It is then the job of the parent element to manage the focus of the children. 
+      </p>
+      <p>
+      The parent may use the <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property to indicate the active child. 
+      For example, the container element with the role of tree can provide an onkeydown event handler so that each individual tree item within the tree does not need to be focusable and to listen for the keydown event. 
+      The container object, in this case the tree, needs to maintain the point of regard and manage which individual child item must be perceived as active.
+      </p>
+        <p class="note">
+        <em>Important: For a given container widget where activedescendant must cause focus events to be fired to ATs, the actual focus must be on the container widget itself. 
+        In HTML this is done by putting tabindex="0" on the container widget.</em>
+        </p>
+      <p>
+      The key handler on the parent captures the keystrokes and determines what item becomes active next and updates the <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property with the ID of the appropriate, next active child element. 
+      The browser takes that ID information and generates the focus event to the assistive technology. 
+      Each individual element does not have to be made focusable via a <code>tabindex</code> value of -1, but it must be styled using CSS to indicate the active status.
+      </p>
+      <p>
+      As active status is moved to the next descendant, ensure that it is scrolled into view using <code>scrollIntoView()</code>.  
+      See section <a href="#scrollintoview">Managing Focus with Scroll</a> below for more information.
+      </p>
     </section>
       <section id="visualfocus">
       <h5>Managing Visual Focus with tabindex Alone </h5>
-      <p>An alternative to using activedescendant is to have the parent element, in response to the same keyboard input, move focus to its children by first removing <code>tabindex</code> from children that do not have focus, which removes them from the tab order. This would be followed by setting the <code>tabindex</code> to "-1" on the element that is to receive focus and then using script to set focus on the element to receive focus. As with <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a>, this omits managed children from the tabbing order. It enables browsers that do not yet support <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> to maintain keyboard navigation, and it provides notification to many assistive technologies like screen magnifiers to move visual focus without relying on other WAI-ARIA properties. Today, this technique will work in most user agents, but in the long run <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> will require less work by the developer.</p>
-      <p>Although not always ideal based on the widget you are creating, one benefit of using tabindex to manage focus on an element is that the user agent will scroll the element into view when focus is set to the it. This is not the case for <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a>. When setting or updating the <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property, e.g. <code>aria-activedescendant="cell23"</code>, authors must ensure that the   element with <code>id="cell23"</code> is in view. In either case, consider positioning your widget in the visible area of your browser to maximize usability. This can be achieved using available JavaScript scrolling functions.</p>
+      <p>
+      An alternative to using activedescendant is to have the parent element, in response to the same keyboard input, move focus to its children by first removing <code>tabindex</code> from children that do not have focus, which removes them from the tab order. 
+      This would be followed by setting the <code>tabindex</code> to "-1" on the element that is to receive focus and then using script to set focus on the element to receive focus. 
+      As with <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a>, this omits managed children from the tabbing order. 
+      It enables browsers that do not yet support <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> to maintain keyboard navigation, and it provides notification to many assistive technologies like screen magnifiers to move visual focus without relying on other WAI-ARIA properties. 
+      Today, this technique will work in most user agents, but in the long run <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> will require less work by the developer.</p>
+      <p>Although not always ideal based on the widget you are creating, one benefit of using tabindex to manage focus on an element is that the user agent will scroll the element into view when focus is set to the it. 
+      This is not the case for <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a>. 
+      When setting or updating the <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property, e.g. 
+      <code>aria-activedescendant="cell23"</code>, authors must ensure that the   element with <code>id="cell23"</code> is in view. 
+      In either case, consider positioning your widget in the visible area of your browser to maximize usability. This can be achieved using available JavaScript scrolling functions.</p>
     </section>
       <section id="scrollintoview">
       <h5>Managing Focus with Scroll</h5>
@@ -3405,17 +3509,38 @@ Here the values 1 through 7 represent the days of the week and
     </section>
       <section id="dualfocus">
       <h4>Managing the Perception of a Dual Focus</h4>
-      <p>Often applications give the  perception of having a dual focus. Two examples of this are multi-selection list boxes and selected tabs, within a tablist, when focus is in a tabpanel. In the case of a multi-selection list box a developer may gray selected items as they move focus to list box items to toggle their selected state. In the case of a <span class="role-reference">tabpanel</span> the user selects a tab but then navigates to a focused item in the corresponding <span class="role-reference">tabpanel</span> the tab appears to also have focus. In reality, only one element may have focus in an application. In these scenarios authors should ensure keyboard focus is set on the current element that visibly receives keyboard user input while ensuring other &quot;highlighted&quot; elements have an aria-selected state of &quot;true&quot; until de-selected. When the de-selection occurs, such as when a multi-select item is de-selected or a user moves to a new tab and de-select the old tab, the author should ensure that the visible selection of the de-selected item is removed.</p>
+      <p>
+      Often applications give the  perception of having a dual focus. 
+      Two examples of this are multi-selection list boxes and selected tabs, within a tablist, when focus is in a tabpanel. 
+      In the case of a multi-selection list box a developer may gray selected items as they move focus to list box items to toggle their selected state. 
+      In the case of a <span class="role-reference">tabpanel</span> the user selects a tab but then navigates to a focused item in the corresponding <span class="role-reference">tabpanel</span> the tab appears to also have focus. 
+      In reality, only one element may have focus in an application. 
+      In these scenarios authors should ensure keyboard focus is set on the current element that visibly receives keyboard user input while ensuring other &quot;highlighted&quot; elements have an aria-selected state of &quot;true&quot; until de-selected. 
+      When the de-selection occurs, such as when a multi-select item is de-selected or a user moves to a new tab and de-select the old tab, the author should ensure that the visible selection of the de-selected item is removed.
+      </p>
     </section>
       <section id="AuthDefKeys">
       <h4> Author-Defined Keyboard Short-Cuts or Mnemonics </h4>
-      <p>Author-defined keyboard short-cuts or mnemonics present a high risk for assistive technology users. Because they are device-, browser-, and AT-dependent, conflicts among key bindings are highly probable. Therefore, if you needed to use <a href="http://www.w3.org/TR/1999/REC-html401-19991224/interact/forms.html#h-17.11.2">accesskey</a>,  you should be aware that  it will behave differently in <br>
-        different browsers. It also may not work with small devices so it is still advisable to ensure that all features are accessible with the  basic keys like <kbd>Tab/Shift + Tab</kbd>, arrow, <kbd>Enter</kbd>, <kbd>Space</kbd> and <kbd>Escape</kbd>. </p>
-      <p>The XHTML 2 Working Group is currently developing a new <a href="http://www.w3.org/TR/xhtml-access/">Access Module</a> to address this issue and we hope to have it or a feature like it in future versions of (X)HTML.  Refer to <a href="#aria_ex">Section 9: Implementation Guidance</a>. </p>
+      <p>
+      Author-defined keyboard short-cuts or mnemonics present a high risk for assistive technology users. 
+      Because they are device-, browser-, and AT-dependent, conflicts among key bindings are highly probable. 
+      Therefore, if you needed to use <a href="http://www.w3.org/TR/1999/REC-html401-19991224/interact/forms.html#h-17.11.2">accesskey</a>,  you should be aware that  it will behave differently in different browsers.
+        It also may not work with small devices so it is still advisable to ensure that all features are accessible with the  basic keys like <kbd>Tab/Shift + Tab</kbd>, arrow, <kbd>Enter</kbd>, <kbd>Space</kbd> and <kbd>Escape</kbd>. 
+        </p>
+      
         <section id="kbd_tooltips">
         <h3> Supporting Tooltips with the Keyboard</h3>
-        <p>A <a class="role-reference" href="#tooltip">tooltip</a> is a  popup messages typically triggered by moving a mouse over a control or widget causing a small popup window to appear with additional information about the control. To provide simple text tooltips, the <a href="http://www.w3.org/TR/1999/REC-html401-19991224/struct/global.html#h-7.4.3">HTML title attribute</a> should more than suffice because the user agent will render it for tooltips. When creating a <a class="role-reference" href="#tooltip">tooltip</a>, it is essential that  the user be able to activate it using the keyboard. When a form control or widget receives keyboard focus, the <a class="role-reference" href="#tooltip">tooltip</a> must display. When the form control or widget loses focus, the tooltip must disappear. Browsers do not currently support this functionality. </p>
-          <p>The following code snippet from the <a href="http://oaa-accessibility.org/examplep/tooltip1/" title="iCITA"><abbr title="Illinois Center for Information Technology Accessibility">iCITA</abbr></a> site shows the use of a <span class="example highlight">onfocus=&quot;tooltipShow();&quot;</span> function to display the tooltip when focus is placed on an element. </p>
+        <p>
+        A <a class="role-reference" href="#tooltip">tooltip</a> is a  popup messages typically triggered by moving a mouse over a control or widget causing a small popup window to appear with additional information about the control. 
+        To provide simple text tooltips, the <a href="http://www.w3.org/TR/1999/REC-html401-19991224/struct/global.html#h-7.4.3">HTML title attribute</a> should more than suffice because the user agent will render it for tooltips. 
+        When creating a <a class="role-reference" href="#tooltip">tooltip</a>, it is essential that  the user be able to activate it using the keyboard. 
+        When a form control or widget receives keyboard focus, the <a class="role-reference" href="#tooltip">tooltip</a> must display. 
+        When the form control or widget loses focus, the tooltip must disappear. 
+        Browsers do not currently support this functionality. 
+        </p>
+          <p>
+          The following code snippet from the <a href="http://oaa-accessibility.org/examplep/tooltip1/" title="iCITA"><abbr title="Illinois Center for Information Technology Accessibility">iCITA</abbr></a> site shows the use of a <span class="example highlight">onfocus=&quot;tooltipShow();&quot;</span> function to display the tooltip when focus is placed on an element. 
+          </p>
         <pre class="example higlight" id="line1">&lt;html lang="en-us""&gt;
 &lt;head&gt;
    &lt;title&gt;inline: Tooltip Example 1&lt;/title&gt;
@@ -3451,15 +3576,23 @@ Here the values 1 through 7 represent the days of the week and
         <section id="kbd_stolen_keys">
         <h3>When Keyboard Handlers Shortcuts Steal the Keys</h3>
         <p>
-        Similar to the tip specified in <a href="#focus_tabindex">Using Tabindex to Manage Focus on Widgets</a>, a web application should cancel (or swallow) the keyboard event in the keyboard handler to prevent the key from being used outside the web application. For example if the user presses Control+PageDown in a tab panel in a web application, this keyboard event should not also go to the user agent, which would cycle the active browser tab, confusing the user.
+        Similar to the tip specified in <a href="#focus_tabindex">Using Tabindex to Manage Focus on Widgets</a>, a web application should cancel (or swallow) the keyboard event in the keyboard handler to prevent the key from being used outside the web application. 
+        For example if the user presses Control+PageDown in a tab panel in a web application, this keyboard event should not also go to the user agent, which would cycle the active browser tab, confusing the user.
         </p>
       </section>
 
     </section>
       <section id="kbd_layout">
       <h3>Providing Navigable Structure within Web Pages</h3>
-      <p>This section takes a broader look at the Web page. It is intended to assist you in conveying a logical, usable, and accessible layout to an assistive technology or adaptive system designed to modify the visual layout to meet the users needs. </p>
-      <p>One of the deficiencies of (X)HTML for disabled users has been the  usability of keyboard navigation. Users dependent on a keyboard for  navigation have been forced to tab everywhere in the document, as the  only keyboard accessible document elements are form and  anchor elements. This has forced developers to make most everything a  link to make it keyboard accessible, and to get to each link you have  to tab to it. With the advent of portals and other content aggregation  means Web pages are divided into visible regions and there has been no  vehicle to get to them other than perhaps to do things such as: </p>
+      <p>
+      This section takes a broader look at the Web page. 
+      It is intended to assist you in conveying a logical, usable, and accessible layout to an assistive technology or adaptive system designed to modify the visual layout to meet the users needs. 
+      </p>
+      <p>
+      One of the deficiencies of (X)HTML for disabled users has been the  usability of keyboard navigation. 
+      Users dependent on a keyboard for  navigation have been forced to tab everywhere in the document, as the  only keyboard accessible document elements are form and  anchor elements. 
+      This has forced developers to make most everything a  link to make it keyboard accessible, and to get to each link you have  to tab to it. 
+      With the advent of portals and other content aggregation  means Web pages are divided into visible regions and there has been no  vehicle to get to them other than perhaps to do things such as: </p>
       <ul>
         <li>Create a skip link at the top of the page to the main content </li>
         <li>Make the head of each perceivable region (search bar, stock quote, TV Listing, etc.) an <code>&lt;H1&gt;</code> tag </li>
@@ -3471,10 +3604,15 @@ Here the values 1 through 7 represent the days of the week and
         <li>The semantics are limited to main content and a section</li>
         <li>Neither  convey the need for the  rich internet application developer to control keyboard navigation to an assistive technology</li>
       </ul>
-      <p>This remainder of this section provides the author with a playbook for using WAI-ARIA to add semantically rich navigation structure in a Web page so that an assistive technology may provide an effective  user experience and avoid these shortcomings.</p>
+      <p>
+      This remainder of this section provides the author with a playbook for using WAI-ARIA to add semantically rich navigation structure in a Web page so that an assistive technology may provide an effective  user experience and avoid these shortcomings.
+      </p>
         <section id="kbd_layout_landmarks">
         <h4> Steps for Defining a Logical Navigational Structure</h4>
-        <p><strong>Due to the complexity of today's web content, it is imperative that all content reside in a navigation landmark.</strong> Sight and mobility impaired users must be able to quickly access a list of landmarks for a web page, to be used as a table of contents.  This allows the user to quickly navigate to important sections of the page without "endless" TAB navigation.  If this is not done, then content will be orphaned and missed by the user.  In fact many of today's accessibility test tools have built-in rules to flag this issue as a compliance error.  This section defines how to create these navigable regions of the page:  </p>
+        <p>
+        
+        <strong>Due to the complexity of today's web content, it is imperative that all content reside in a navigation landmark.</strong> Sight and mobility impaired users must be able to quickly access a list of landmarks for a web page, to be used as a table of contents.  
+        This allows the user to quickly navigate to important sections of the page without "endless" TAB navigation.  If this is not done, then content will be orphaned and missed by the user.  In fact many of today's accessibility test tools have built-in rules to flag this issue as a compliance error.  This section defines how to create these navigable regions of the page:  </p>
         <ol>
           <li>
             <p id="kbd_layout_landmark_IDRegions"><strong>Identify the logical structure of your page</strong></p>
