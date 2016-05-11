@@ -3210,8 +3210,11 @@ function detectHiContrast() {
       After pressing the <kbd>tab</kbd> key moves focus to a radio button in the group, pressing arrow keys moves focus among the radio buttons in the group, and pressing the <kbd>tab</kbd> moves focus out of the radio group to the next element in the tab sequence.
       </p>
       <p>
-      Para about importance of visible focus ring and communicating focus ...
+      Paragraph about importance of visible focus ring and communicating focus ... following is some unedited content moved here from elsewhere: 
       The element with keyboard focus is essential because it communicates information about the widget to assistive technologies like screen readers and magnifiers through operating specific accessibility APIs like Microsoft Active Accessibility (MSAA), the Apple AX APIs, and the ATK Accessibility Toolkit.
+A tenet of keyboard accessibility is reliable, persistent indication of focus. 
+The author is responsible, in the scripts, for maintaining visual and programmatic focus and observing accessible behavior rules. 
+Screen readers and keyboard-only users rely on focus to operate rich internet applications with the keyboard. 
       </p>
       </section>
       <section id="kbd_general_between">
@@ -3228,100 +3231,6 @@ function detectHiContrast() {
         <li>Widgets with tabindex&gt;0 will be added to the tab sequence based on the TABINDEX value </li>
         <li>Widgets with tabindex&lt;0 will not be added to the tab sequence but are enabled to receive keyboard focus. </li>
       </ul>
-    </section>
-      <section id="kbd_general_within">
-      <h3> Keyboard Navigation within Widgets</h3>
-      <p> Each element that receives keyboard focus needs to have a <code>tabindex</code> attribute set to its current active descendant element and itself if an active descendant does not exist. 
-      The TAB key moves keyboard focus to the widget, and other keys operate the features of the widget, typically cursor keys, <kbd>Enter</kbd> key and <kbd>Space</kbd>. 
-      The actual keys are up to the developer, but best practices recommend using the same key bindings that are used to control similar widgets in common GUI operating systems like Microsoft Windows, Mac OS X and other desktop operating systems like GNOME and GTK. 
-      </p>
-      <p>
-       Authors can use either the JavaScript <code>focus()</code> method to move focus to the appropriate element in the widget, or they can use a WAI-ARIA property called <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> on the actual widget container to indicate which descendant element in the widget has focus. 
-       Use the following procedure when focus is completely dependent on the use of tabindex to provide focus in a widget:
-       </p>
-      <ul>
-        <li>Set <code>tabindex="0"</code> on the current active descendant in the container widget while setting <code>tabindex="-1"</code> on all the other descendant elements of the widget.</li>
-        <li>As the user navigates (e.g., arrows) away from an item, set <code>tabindex="-1"</code> on the old item, and <code>tabindex="0"</code> on the new.</li>
-        <li>Use the JavaScript <code>focus()</code> method to put focus on the new item, whose <code>tabindex="0"</code>.</li>
-      </ul>
-        <p id="roving">
-        This procedure creates a <em>roving</em> tabindex. 
-        If the user TAB navigates away and then TABs back to the widget, the same last active descendant becomes active again. 
-        This relieves the author from having to compute and set the focus to the last active descendant. 
-        </p>
-      <p> Conversely, if you use the WAI-ARI <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property: </p>
-      <ul>
-        <li>Set <code>tabindex="0"</code> on the element which is the composite widget, and set its <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property to the id of the descendant element you wish to be active,</li>
-        <li>As the user navigates (e.g., arrows) away from an item in the widget, refresh the <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property on the containing widget to the id of the new active descendant element. </li>
-      </ul>
-      <p>
-      In this scenario, the browser manages focus changes; however, the author manages changes to the <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property. 
-      For greater detail, see <a href="#focus_tabindex">Using Tabindex to Manage Focus Among Widgets</a>. 
-      In both scenarios authors indicate which element in the widget has focus or is active through styling and/or markup. 
-      </p>
-    </section>
-      <section id="kbd_shortcuts">
-      <h3>Keyboard Shortcuts for Widgets</h3>
-      <p>
-      It is useful to provide keyboard access to widgets, to focus a widget directly and to activate the features within the widget. 
-      These may be &quot;mnemonics&quot; that use a letter from the label of the control, as well as other special keys that perform familiar operations on the system. 
-      When providing non-standard key commands, document them so the user knows how to use them.
-      </p>
-      <p>
-      When localizing the user interface, it may be necessary to localize keyboard mnemonics as well in order to keep them apparent. 
-      Be sure not to introduce key conflicts when doing this, and ensure that the correct key commands remain apparent to the user.
-      </p>
-    </section>
-      <section id="kbd_general_ex">
-      <h3> Example Keyboard Operation: Radio Group/Radio </h3>
-        <p> See working <a href="http://oaa-accessibility.org/examplep/radio1/" title="CITA Radio Button Examples">Radio button examples</a> from the University of Illinois.</p>
-      <table>
-        <caption>
-        Key Bindings for Radio Group Behavior - Example
-        </caption>
-        <tr>
-          <th>Key</th>
-          <th>Description of Radio Group Behavior</th>
-        </tr>
-        <tr>
-          <td>Tab Key</td>
-          <td> If no radio button is checked, focus moves to the first radio button in the group, but the radio button remains unchecked. If one radio button is checked, focus moves to the checked radio button. If SHIFT+TAB is pressed, focus moves to the last radio button in the group, but the radio button remains unchecked. </td>
-        </tr>
-        <tr>
-          <td>Space Bar</td>
-          <td> Checks the radio button with keyboard focus (this is a special case when using tab and no radio buttons have been marked as checked). </td>
-        </tr>
-        <tr>
-          <td>Down Arrow</td>
-          <td>If no button is checked, check the first radio button. If the last radio button is checked, check the first radio button. Otherwise, move the check from the current radio button to the next radio button. </td>
-        </tr>
-        <tr>
-          <td>Up Arrow</td>
-          <td>If no button is checked, check the last radio button. If the first radio button is checked, check the last radio button. Otherwise, move the check from the current radio button to the previous radio button. </td>
-        </tr>
-      </table>
-      <p>
-      In this Radio Group example, the <code>tabindex</code> of the first and last radio button elements has a <code>tabindex="0"</code> (assuming none of the radio buttons is checked), the remaining radio elements have <code>tabindex="-1"</code>. 
-       As soon as the first or the last radio button receives focus it changes the <code>tabindex</code> value of the other radio button to -1. 
-        If none of the radio buttons is selected the and the keyboard focus leaves the group the first and the last radio buttons have their <code>tabindex</code> values set to 0. 
-        </p>
-    </section>
-    <section id="kbd_focus">
-    <h3> Providing Keyboard Focus</h3>
-    <p>
-    One way to provide keyboard support in (X)HTML is with form and list elements that accept keyboard focus by default
-With the <kbd>Tab</kbd> key, the user can navigate to these types of elements. 
-However, when building sophisticated widgets, it's necessary to be able to control keyboard navigation exactly. 
-Authors may require or prefer to use host language elements that do not have built-in keyboard navigation features. 
-For example, the author may wish to provide keyboard navigation without altering the tab order. 
-Navigating within large composite widgets such as tree views, menubars, and spreadsheets can be very tedious and is inconsistent with what users are familiar with in their desktop counterparts. 
-The solution is to provide full keyboard support using the arrow keys to provide more intuitive navigation within the widget, while allowing Tab and <kbd>Shift + Tab</kbd> to move focus out of the widget to the next place in the tab order. 
-</p>
-<p>
-A tenet of keyboard accessibility is reliable, persistent indication of focus. 
-The author is responsible, in the scripts, for maintaining visual and programmatic focus and observing accessible behavior rules. 
-Screen readers and keyboard-only users rely on focus to operate rich internet applications with the keyboard. 
-</p>
       <section id="focus_tabindex">
       <h4> Using Tabindex to Manage Focus among Widgets</h4>
       <p>
@@ -3422,6 +3331,51 @@ Screen readers and keyboard-only users rely on focus to operate rich internet ap
         </li>
       </ul>
     </section>
+    </section>
+      <section id="kbd_general_within">
+      <h3> Keyboard Navigation within Widgets</h3>
+      <p> Each element that receives keyboard focus needs to have a <code>tabindex</code> attribute set to its current active descendant element and itself if an active descendant does not exist. 
+      The TAB key moves keyboard focus to the widget, and other keys operate the features of the widget, typically cursor keys, <kbd>Enter</kbd> key and <kbd>Space</kbd>. 
+      The actual keys are up to the developer, but best practices recommend using the same key bindings that are used to control similar widgets in common GUI operating systems like Microsoft Windows, Mac OS X and other desktop operating systems like GNOME and GTK. 
+      </p>
+      <p>
+       Authors can use either the JavaScript <code>focus()</code> method to move focus to the appropriate element in the widget, or they can use a WAI-ARIA property called <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> on the actual widget container to indicate which descendant element in the widget has focus. 
+       Use the following procedure when focus is completely dependent on the use of tabindex to provide focus in a widget:
+       </p>
+      <ul>
+        <li>Set <code>tabindex="0"</code> on the current active descendant in the container widget while setting <code>tabindex="-1"</code> on all the other descendant elements of the widget.</li>
+        <li>As the user navigates (e.g., arrows) away from an item, set <code>tabindex="-1"</code> on the old item, and <code>tabindex="0"</code> on the new.</li>
+        <li>Use the JavaScript <code>focus()</code> method to put focus on the new item, whose <code>tabindex="0"</code>.</li>
+      </ul>
+        <p id="roving">
+        This procedure creates a <em>roving</em> tabindex. 
+        If the user TAB navigates away and then TABs back to the widget, the same last active descendant becomes active again. 
+        This relieves the author from having to compute and set the focus to the last active descendant. 
+        </p>
+      <p> Conversely, if you use the WAI-ARI <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property: </p>
+      <ul>
+        <li>Set <code>tabindex="0"</code> on the element which is the composite widget, and set its <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property to the id of the descendant element you wish to be active,</li>
+        <li>As the user navigates (e.g., arrows) away from an item in the widget, refresh the <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property on the containing widget to the id of the new active descendant element. </li>
+      </ul>
+      <p>
+      In this scenario, the browser manages focus changes; however, the author manages changes to the <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property. 
+      For greater detail, see <a href="#focus_tabindex">Using Tabindex to Manage Focus Among Widgets</a>. 
+      In both scenarios authors indicate which element in the widget has focus or is active through styling and/or markup. 
+      </p>
+      <section id="visualfocus">
+      <h5>Managing Visual Focus with tabindex Alone </h5>
+      <p>
+      An alternative to using activedescendant is to have the parent element, in response to the same keyboard input, move focus to its children by first removing <code>tabindex</code> from children that do not have focus, which removes them from the tab order. 
+      This would be followed by setting the <code>tabindex</code> to "-1" on the element that is to receive focus and then using script to set focus on the element to receive focus. 
+      As with <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a>, this omits managed children from the tabbing order. 
+      It enables browsers that do not yet support <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> to maintain keyboard navigation, and it provides notification to many assistive technologies like screen magnifiers to move visual focus without relying on other WAI-ARIA properties. 
+      Today, this technique will work in most user agents, but in the long run <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> will require less work by the developer.</p>
+      <p>Although not always ideal based on the widget you are creating, one benefit of using tabindex to manage focus on an element is that the user agent will scroll the element into view when focus is set to the it. 
+      This is not the case for <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a>. 
+      When setting or updating the <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property, e.g. 
+      <code>aria-activedescendant="cell23"</code>, authors must ensure that the   element with <code>id="cell23"</code> is in view. 
+      In either case, consider positioning your widget in the visible area of your browser to maximize usability. This can be achieved using available JavaScript scrolling functions.</p>
+    </section>
       <section id="focus_activedescendant">
       <h4> Using activedescendant to Manage Focus for Widget Children</h4>
       <p>
@@ -3450,21 +3404,7 @@ Screen readers and keyboard-only users rely on focus to operate rich internet ap
       See section <a href="#scrollintoview">Managing Focus with Scroll</a> below for more information.
       </p>
     </section>
-      <section id="visualfocus">
-      <h5>Managing Visual Focus with tabindex Alone </h5>
-      <p>
-      An alternative to using activedescendant is to have the parent element, in response to the same keyboard input, move focus to its children by first removing <code>tabindex</code> from children that do not have focus, which removes them from the tab order. 
-      This would be followed by setting the <code>tabindex</code> to "-1" on the element that is to receive focus and then using script to set focus on the element to receive focus. 
-      As with <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a>, this omits managed children from the tabbing order. 
-      It enables browsers that do not yet support <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> to maintain keyboard navigation, and it provides notification to many assistive technologies like screen magnifiers to move visual focus without relying on other WAI-ARIA properties. 
-      Today, this technique will work in most user agents, but in the long run <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> will require less work by the developer.</p>
-      <p>Although not always ideal based on the widget you are creating, one benefit of using tabindex to manage focus on an element is that the user agent will scroll the element into view when focus is set to the it. 
-      This is not the case for <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a>. 
-      When setting or updating the <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property, e.g. 
-      <code>aria-activedescendant="cell23"</code>, authors must ensure that the   element with <code>id="cell23"</code> is in view. 
-      In either case, consider positioning your widget in the visible area of your browser to maximize usability. This can be achieved using available JavaScript scrolling functions.</p>
-    </section>
-      <section id="scrollintoview">
+    <section id="scrollintoview">
       <h5>Managing Focus with Scroll</h5>
       <p>In some browsers, a JavaScript call to <code> scrollIntoView()</code> on this element should suffice, but in browsers where   this is unreliable, authors should explicitly set the <code>scrollTop</code> and <code>scrollLeft</code> properties of the "cell23" element and its ancestors to scroll the element into view. <code>scrollTop</code> and <code>scrollLeft</code> adjust the node positions by the amounts(pixels) needed to scroll a node into view.  Scrolling values are adjusted by the amounts(pixels) needed
         to scroll a node into view. This is done by comparing the sizes of the nodes
@@ -3482,7 +3422,7 @@ Screen readers and keyboard-only users rely on focus to operate rich internet ap
         Browsers (including Firefox3) force the node either to the top or the bottom of the screen (as defined by the single Boolean parameter) even if its already in view. This is problematic when you only need to scroll horizontally to see the element. It is also problematic when  the node is partially off the bottom of the screen and the parameter is (true) which forces the node all the way to the top, and vice versa with the top going to the bottom on (false). IE forces the node to the left of the client area (or right in right-to-left mode) even if it's horizontally in view already. </p>
       <p>The <code>scrollTop</code> and<code> scrollLeft</code> functions create some challenges. <code>scrollTop</code> is always accurate but misleading with respect to inner (nested) scrollbars.<code> scrollLeft</code> cannot be relied on in right-to-left languages because it is sometimes negative and sometimes positive especially with respect to inner (nested) scrollbars. Different browsers handle right-to-left completely differently. </p>
     </section>
-      <section id="dualfocus">
+    <section id="dualfocus">
       <h4>Managing the Perception of a Dual Focus</h4>
       <p>
       Often applications give the  perception of having a dual focus. 
@@ -3494,6 +3434,18 @@ Screen readers and keyboard-only users rely on focus to operate rich internet ap
       When the de-selection occurs, such as when a multi-select item is de-selected or a user moves to a new tab and de-select the old tab, the author should ensure that the visible selection of the de-selected item is removed.
       </p>
     </section>
+    </section>
+      <section id="kbd_shortcuts">
+      <h3>Keyboard Shortcuts for Widgets</h3>
+      <p>
+      It is useful to provide keyboard access to widgets, to focus a widget directly and to activate the features within the widget. 
+      These may be &quot;mnemonics&quot; that use a letter from the label of the control, as well as other special keys that perform familiar operations on the system. 
+      When providing non-standard key commands, document them so the user knows how to use them.
+      </p>
+      <p>
+      When localizing the user interface, it may be necessary to localize keyboard mnemonics as well in order to keep them apparent. 
+      Be sure not to introduce key conflicts when doing this, and ensure that the correct key commands remain apparent to the user.
+      </p>
       <section id="AuthDefKeys">
       <h4> Author-Defined Keyboard Short-Cuts or Mnemonics </h4>
       <p>
@@ -3555,9 +3507,42 @@ Screen readers and keyboard-only users rely on focus to operate rich internet ap
         For example if the user presses Control+PageDown in a tab panel in a web application, this keyboard event should not also go to the user agent, which would cycle the active browser tab, confusing the user.
         </p>
       </section>
-
     </section>
-  </section>
+    </section>
+      <section id="kbd_general_ex">
+      <h3> Example Keyboard Operation: Radio Group/Radio </h3>
+        <p> See working <a href="http://oaa-accessibility.org/examplep/radio1/" title="CITA Radio Button Examples">Radio button examples</a> from the University of Illinois.</p>
+      <table>
+        <caption>
+        Key Bindings for Radio Group Behavior - Example
+        </caption>
+        <tr>
+          <th>Key</th>
+          <th>Description of Radio Group Behavior</th>
+        </tr>
+        <tr>
+          <td>Tab Key</td>
+          <td> If no radio button is checked, focus moves to the first radio button in the group, but the radio button remains unchecked. If one radio button is checked, focus moves to the checked radio button. If SHIFT+TAB is pressed, focus moves to the last radio button in the group, but the radio button remains unchecked. </td>
+        </tr>
+        <tr>
+          <td>Space Bar</td>
+          <td> Checks the radio button with keyboard focus (this is a special case when using tab and no radio buttons have been marked as checked). </td>
+        </tr>
+        <tr>
+          <td>Down Arrow</td>
+          <td>If no button is checked, check the first radio button. If the last radio button is checked, check the first radio button. Otherwise, move the check from the current radio button to the next radio button. </td>
+        </tr>
+        <tr>
+          <td>Up Arrow</td>
+          <td>If no button is checked, check the last radio button. If the first radio button is checked, check the last radio button. Otherwise, move the check from the current radio button to the previous radio button. </td>
+        </tr>
+      </table>
+      <p>
+      In this Radio Group example, the <code>tabindex</code> of the first and last radio button elements has a <code>tabindex="0"</code> (assuming none of the radio buttons is checked), the remaining radio elements have <code>tabindex="-1"</code>. 
+       As soon as the first or the last radio button receives focus it changes the <code>tabindex</code> value of the other radio button to -1. 
+        If none of the radio buttons is selected the and the keyboard focus leaves the group the first and the last radio buttons have their <code>tabindex</code> values set to 0. 
+        </p>
+    </section>
     <section id="modal_dialog">
  <h3 id="make_modal">Making a Dialog Modal</h3>
 <p>
@@ -3659,6 +3644,9 @@ helper.stopEvent(evt); //stop the event if not a tab keypress
 </section>
 <section id="kbd_general_other">
       <h2> Other Widget Authoring Practices</h2>
+      <p class="note">
+      MCK: Setting this content aside to determine whether we will remove or rewrite it.
+      </p>
       <p>
       The <a href="#aria_ex_widget">Common Widget Design Patterns</a> section of this document contains best  practices, such as keyboard navigation, for creating common widgets found on the Web. 
       This section contains miscellaneous authoring practices that you should also consider.
