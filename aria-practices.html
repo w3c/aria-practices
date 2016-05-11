@@ -3306,34 +3306,6 @@ function detectHiContrast() {
         If none of the radio buttons is selected the and the keyboard focus leaves the group the first and the last radio buttons have their <code>tabindex</code> values set to 0. 
         </p>
     </section>
-      <section id="kbd_general_other">
-      <h3> Other Widget Authoring Practices</h3>
-      <p>
-      The <a href="#aria_ex_widget">Common Widget Design Patterns</a> section of this document contains best  practices, such as keyboard navigation, for creating common widgets found on the Web. 
-      This section contains miscellaneous authoring practices that you should also consider.
-      </p>
-        <section id="kbd_general_valuenow">
-      <h5>Maintain a valid format for aria-valuenow</h5>
-<p>
-It is essential that application vendors maintain a valid format for
-<a href="#aria-valuenow" class="property-reference">aria-valuenow</a>, and aria-valuenow should
-accurately represent the value of the widget.The value must be within range of <a href="#aria-valuemax" class="property-reference">aria-valuemin</a> and <a href="#aria-valuemin" class="property-reference">aria-valuemin</a>, where the value of aria-valuemin is less than or equal to the value of aria-valuemax, throughout the life cycle of your widget. If aria-valuemin is not less than or equal to the value of aria-valuemax, or if the aria-valuemax is indeterminate, this creates an error condition that will be handled by
-the assistive technology, resulting in undesirable results. Should an alternative text
-  equivalent be needed to properly represent the aria-valuenow, such as a day
-  of the week, then you should accompany the aria-valuenow with an appropriate
-  aria-valuetext equivalent such as in this example: </p>
-<pre>
-&lt;div role=&quot;slider&quot;
-  aria-valuenow=&quot;1&quot;
-  aria-valuemin=&quot;1&quot;
-  aria-valuemax=&quot;7&quot;
-  aria-valuetext=&quot;Sunday&quot;&gt;
-</pre>
-<p>
-Here the values 1 through 7 represent the days of the week and
-  aria-valuenow of 1 is equivalent to the first day of the week or Sunday.  When aria-valuetext is made available aria-valuenow should also be treated as an   index which is 1 based. </p>
-</section>
-    </section>
     <section id="kbd_focus">
     <h3> Providing Keyboard Focus</h3>
     <p>
@@ -3685,6 +3657,34 @@ helper.stopEvent(evt); //stop the event if not a tab keypress
 
   </section>
 </section>
+<section id="kbd_general_other">
+      <h2> Other Widget Authoring Practices</h2>
+      <p>
+      The <a href="#aria_ex_widget">Common Widget Design Patterns</a> section of this document contains best  practices, such as keyboard navigation, for creating common widgets found on the Web. 
+      This section contains miscellaneous authoring practices that you should also consider.
+      </p>
+        <section id="kbd_general_valuenow">
+      <h5>Maintain a valid format for aria-valuenow</h5>
+<p>
+It is essential that application vendors maintain a valid format for
+<a href="#aria-valuenow" class="property-reference">aria-valuenow</a>, and aria-valuenow should
+accurately represent the value of the widget.The value must be within range of <a href="#aria-valuemax" class="property-reference">aria-valuemin</a> and <a href="#aria-valuemin" class="property-reference">aria-valuemin</a>, where the value of aria-valuemin is less than or equal to the value of aria-valuemax, throughout the life cycle of your widget. If aria-valuemin is not less than or equal to the value of aria-valuemax, or if the aria-valuemax is indeterminate, this creates an error condition that will be handled by
+the assistive technology, resulting in undesirable results. Should an alternative text
+  equivalent be needed to properly represent the aria-valuenow, such as a day
+  of the week, then you should accompany the aria-valuenow with an appropriate
+  aria-valuetext equivalent such as in this example: </p>
+<pre>
+&lt;div role=&quot;slider&quot;
+  aria-valuenow=&quot;1&quot;
+  aria-valuemin=&quot;1&quot;
+  aria-valuemax=&quot;7&quot;
+  aria-valuetext=&quot;Sunday&quot;&gt;
+</pre>
+<p>
+Here the values 1 through 7 represent the days of the week and
+  aria-valuenow of 1 is equivalent to the first day of the week or Sunday.  When aria-valuetext is made available aria-valuenow should also be treated as an   index which is 1 based. </p>
+</section>
+    </section>
 <section id="kbd_layout">
       <h2>Providing Navigable Structure within Web Pages</h2>
       <p class="note">
