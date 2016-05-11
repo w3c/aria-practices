@@ -3585,8 +3585,113 @@ Screen readers and keyboard-only users rely on focus to operate rich internet ap
       </section>
 
     </section>
-      <section id="kbd_layout">
-      <h3>Providing Navigable Structure within Web Pages</h3>
+  </section>
+    <section id="modal_dialog">
+ <h3 id="make_modal">Making a Dialog Modal</h3>
+<p>
+WAI-ARIA provides for two dialog roles - dialog and alertdialog. When authors simulate dialogs on a web page they often limit their interaction considerations to the mouse. Unlike Graphical User Interface dialog boxes on a desktop computer, a user during keyboard navigation could accidentally navigate outside the dialog box and become disoriented. This can happen when the user is tabbing in the dialog. A modal dialog prevents the user from setting focus outside of the dialog until the dialog is closed. Mouse clicks outside of the dialog must be ignored and the user must not be able to tab into or out of the dialog itself. All WAI-ARIA enabled dialog boxes should be modal. This section describes how.
+</p>
+<p>
+Mouse clicks outside of the dialog can be prevented by creating a CSS positioned element that is the size of the viewport to append as a child of the body element. Set the CSS z-index of this element so that it is above all other elements on the page except for the dialog element. Set the tabindex of the underlay element to tabindex="-1" to prevent it from receiving focus via a keyboard event or mouse click. You may lower the opacity of the underlay element in order to emphasize that the dialog itself is modal and has focus.
+</p>
+<p>
+Depending upon the action to be performed by the dialog, the object with focus before the dialog box is opened should be saved. This will allow restoring focus to this element when the dialog box is closed. When the dialog box is opened, focus should be set to the first tab focusable element within the dialog. If there is no tab focusable element within the dialog box contents, set the focus to the item that is used to cancel or close the dialog. There must be some element within the dialog which can accept focus in order for the screen reader to speak the dialog title and information when it is opened. In order to prevent keyboard focus from leaving the dialog, determine the first and last tab focusable elements in the dialog and trap keyboard events within the document.
+</p>
+<p>
+Search the contents of the dialog container to find the first and last tab focusable elements. This can be implemented by walking the DOM tree of the dialog container to find all visible and enabled anchor elements, input elements, and all elements that have a tabindex value greater than or equal to 0. Remember that elements with a tabindex > 0 will appear in the tab order before all other focusable elements in ascending order by tabindex. Store the first and last tab focusable items within variables in the scope of the dialog box code.
+</p>
+<p>
+Before the dialog is shown, create and display the dialog underlay. Connect an onkeypress event handler to the DOM document.documentElement. This will catch all keystrokes on the document and allow trapping keyboard focus within the dialog. Size and position the dialog box in the viewport above the underlay, make it visible and set focus to the first tab focusable item in the dialog box.
+</p>
+      <section id="trap_focus_div">
+<h4 id="trap_focus">Trapping Focus</h4>
+<p>
+The onkeypress handler will catch all key presses within the document. This onkeypress event handler should be within the scope of the dialog box code so that it has access to the first and last tab focusable elements within the dialog. In the onkeypress handler determine the target of the keypress event. In addition, determine if there is only a single focusable item within the dialog box. In this instance the first tab navigable object will equal the last tab navigable object. If key presses within the dialog box may create, destroy, enable, disable, or change the visibility of tab focusable elements, then determine the first and last tab-focusable items each time a keypress is received. Based on the event target and the key pressed take the following actions:
+</p>
+<ul>
+<li>
+If the keypress is a <kbd>Shift + Tab</kbd> key and the target == the first tab navigable object, then set focus to the last tab-navigable object and stop the key press event. If there is only a single tab focusable item, then focus does not have to be set, but the key press event must be stopped.
+</li>
+<li>
+If the keypress is a <kbd>Tab</kbd> key and the target == the last tab navigable object, then set focus to the first tab-navigable object and stop the keypress event. If there is only a single tab-focusable item, then focus does not have to be set but the keypress event must must be stopped.
+</li>
+<li>
+If the keypress is an <kbd>Escape</kbd> key and the target node is the container node for the dialog box, then close the dialog box and hide or destroy the dialog underlay.
+</li>
+</ul>
+<p>
+Determine if the target node of the keypress is within the dialog box container. This can be done using a while loop to walk the parent chain of the target node until the container node of the dialog box is found. Other than those outlined above, all key presses from within the dialog box should be allowed to execute so that the user can interact with the controls in the dialog box.
+</p>
+<p>
+If the target node is not within the dialog box, the keypress is from the documentElement and the keypress event should be stopped unless it is a <kbd>Tab</kbd> key press. Allowing a <kbd>Tab</kbd> key press from the document element will enable tabbing back into the dialog box if, for some reason, focus on the dialog box is lost. This can happen due to timing issues when the dialog box is first loaded and focus does not properly get set to the first tab-focusable item within the dialog.
+</p>
+<p>
+The dialog box itself should contain buttons or other mechanisms to cancel the dialog box or execute the dialog box functions and close the dialog box.
+</p>
+<p>
+Here is a pseudo code onkeypress handler for a modal dialog box. Pseudo code is used to focus on the actions in the handler rather than on the differences in browser event handling. Assume that the event object, evt, has been normalized between browsers and the helper object is a library of functions that handle browser differences. The keys object is a set of key definition variables. Dialog is the dialog box object, which has a function to cancel the dialog.
+</p>
+<pre>
+_onKey: function(/*Normalized Event*/ evt){
+// summary:
+// Handles the keyboard events for accessibility reasons
+if(evt.charOrCode){
+var node = evt.target; // get the target node of the keypress event
+if (evt.charOrCode === keys.TAB){
+// find the first and last tab focusable items in the hierarchy of the dialog container node
+// do this every time if the items may be added / removed from the the dialog may change visibility or state
+var focusItemsArray = helper.getFocusItems(dialogContainerNode);
+dialog.firstFocusItem = focusItemsArray[0];
+dialog.lastFocusItem = focusItemsArray[focusItemsArray.length-1];
+}
+// assumes firstFocusItem and lastFocusItem maintained by dialog object
+var singleFocusItem = (dialog.firstFocusItem == dialog.lastFocusItem);
+
+// see if we are shift-tabbing from first focusable item on dialog
+if(node == dialog.firstFocusItem &amp;&amp; evt.shiftKey &amp;&amp; evt.charOrCode === keys.TAB){
+if(!singleFocusItem){
+dialog.lastFocusItem.focus(); // send focus to last item in dialog
+}
+helper.stopEvent(evt); //stop the tab keypress event
+}
+// see if we are tabbing from the last focusable item
+else if(node == dialog.lastFocusItem &amp;&amp; evt.charOrCode === keys.TAB &amp;&amp; !evt.shiftKey){
+if (!singleFocusItem){
+dialog.firstFocusItem).focus(); // send focus to first item in dialog
+}
+helper.stopEvent(evt); //stop the tab keypress event
+}
+else{
+// see if the key is for the dialog
+while(node){
+if(node == dialogContainerNode){ // if this is the container node of the dialog
+if(evt.charOrCode == keys.ESCAPE){ // and the escape key was pressed
+dialog.cancel(); // cancel the dialog
+}else{
+return; // just let it go
+}
+}
+node = node.parentNode;
+}
+// this key is for the document window
+if(evt.charOrCode !== keys.TAB){ // allow tabbing into the dialog
+helper.stopEvent(evt); //stop the event if not a tab keypress
+}
+} // end of if evt.charOrCode
+} // end of function
+</pre>
+
+  </section>
+
+  </section>
+</section>
+<section id="kbd_layout">
+      <h2>Providing Navigable Structure within Web Pages</h2>
+      <p class="note">
+      MCK: Now that we have a new landmarks section, this appears to be a mostly redundant section.
+      It was previously part of the keyboard section. 
+      I am setting it aside for later review to mine for potential nuggets of helpful info.
+      </p>
       <p>
       This section takes a broader look at the Web page. 
       It is intended to assist you in conveying a logical, usable, and accessible layout to an assistive technology or adaptive system designed to modify the visual layout to meet the users needs. 
@@ -3907,106 +4012,6 @@ excommunication&lt;/dd&gt;
 &lt;/div&gt;</pre>
       </section>
     </section>
-  </section>
-    <section id="modal_dialog">
- <h3 id="make_modal">Making a Dialog Modal</h3>
-<p>
-WAI-ARIA provides for two dialog roles - dialog and alertdialog. When authors simulate dialogs on a web page they often limit their interaction considerations to the mouse. Unlike Graphical User Interface dialog boxes on a desktop computer, a user during keyboard navigation could accidentally navigate outside the dialog box and become disoriented. This can happen when the user is tabbing in the dialog. A modal dialog prevents the user from setting focus outside of the dialog until the dialog is closed. Mouse clicks outside of the dialog must be ignored and the user must not be able to tab into or out of the dialog itself. All WAI-ARIA enabled dialog boxes should be modal. This section describes how.
-</p>
-<p>
-Mouse clicks outside of the dialog can be prevented by creating a CSS positioned element that is the size of the viewport to append as a child of the body element. Set the CSS z-index of this element so that it is above all other elements on the page except for the dialog element. Set the tabindex of the underlay element to tabindex="-1" to prevent it from receiving focus via a keyboard event or mouse click. You may lower the opacity of the underlay element in order to emphasize that the dialog itself is modal and has focus.
-</p>
-<p>
-Depending upon the action to be performed by the dialog, the object with focus before the dialog box is opened should be saved. This will allow restoring focus to this element when the dialog box is closed. When the dialog box is opened, focus should be set to the first tab focusable element within the dialog. If there is no tab focusable element within the dialog box contents, set the focus to the item that is used to cancel or close the dialog. There must be some element within the dialog which can accept focus in order for the screen reader to speak the dialog title and information when it is opened. In order to prevent keyboard focus from leaving the dialog, determine the first and last tab focusable elements in the dialog and trap keyboard events within the document.
-</p>
-<p>
-Search the contents of the dialog container to find the first and last tab focusable elements. This can be implemented by walking the DOM tree of the dialog container to find all visible and enabled anchor elements, input elements, and all elements that have a tabindex value greater than or equal to 0. Remember that elements with a tabindex > 0 will appear in the tab order before all other focusable elements in ascending order by tabindex. Store the first and last tab focusable items within variables in the scope of the dialog box code.
-</p>
-<p>
-Before the dialog is shown, create and display the dialog underlay. Connect an onkeypress event handler to the DOM document.documentElement. This will catch all keystrokes on the document and allow trapping keyboard focus within the dialog. Size and position the dialog box in the viewport above the underlay, make it visible and set focus to the first tab focusable item in the dialog box.
-</p>
-      <section id="trap_focus_div">
-<h4 id="trap_focus">Trapping Focus</h4>
-<p>
-The onkeypress handler will catch all key presses within the document. This onkeypress event handler should be within the scope of the dialog box code so that it has access to the first and last tab focusable elements within the dialog. In the onkeypress handler determine the target of the keypress event. In addition, determine if there is only a single focusable item within the dialog box. In this instance the first tab navigable object will equal the last tab navigable object. If key presses within the dialog box may create, destroy, enable, disable, or change the visibility of tab focusable elements, then determine the first and last tab-focusable items each time a keypress is received. Based on the event target and the key pressed take the following actions:
-</p>
-<ul>
-<li>
-If the keypress is a <kbd>Shift + Tab</kbd> key and the target == the first tab navigable object, then set focus to the last tab-navigable object and stop the key press event. If there is only a single tab focusable item, then focus does not have to be set, but the key press event must be stopped.
-</li>
-<li>
-If the keypress is a <kbd>Tab</kbd> key and the target == the last tab navigable object, then set focus to the first tab-navigable object and stop the keypress event. If there is only a single tab-focusable item, then focus does not have to be set but the keypress event must must be stopped.
-</li>
-<li>
-If the keypress is an <kbd>Escape</kbd> key and the target node is the container node for the dialog box, then close the dialog box and hide or destroy the dialog underlay.
-</li>
-</ul>
-<p>
-Determine if the target node of the keypress is within the dialog box container. This can be done using a while loop to walk the parent chain of the target node until the container node of the dialog box is found. Other than those outlined above, all key presses from within the dialog box should be allowed to execute so that the user can interact with the controls in the dialog box.
-</p>
-<p>
-If the target node is not within the dialog box, the keypress is from the documentElement and the keypress event should be stopped unless it is a <kbd>Tab</kbd> key press. Allowing a <kbd>Tab</kbd> key press from the document element will enable tabbing back into the dialog box if, for some reason, focus on the dialog box is lost. This can happen due to timing issues when the dialog box is first loaded and focus does not properly get set to the first tab-focusable item within the dialog.
-</p>
-<p>
-The dialog box itself should contain buttons or other mechanisms to cancel the dialog box or execute the dialog box functions and close the dialog box.
-</p>
-<p>
-Here is a pseudo code onkeypress handler for a modal dialog box. Pseudo code is used to focus on the actions in the handler rather than on the differences in browser event handling. Assume that the event object, evt, has been normalized between browsers and the helper object is a library of functions that handle browser differences. The keys object is a set of key definition variables. Dialog is the dialog box object, which has a function to cancel the dialog.
-</p>
-<pre>
-_onKey: function(/*Normalized Event*/ evt){
-// summary:
-// Handles the keyboard events for accessibility reasons
-if(evt.charOrCode){
-var node = evt.target; // get the target node of the keypress event
-if (evt.charOrCode === keys.TAB){
-// find the first and last tab focusable items in the hierarchy of the dialog container node
-// do this every time if the items may be added / removed from the the dialog may change visibility or state
-var focusItemsArray = helper.getFocusItems(dialogContainerNode);
-dialog.firstFocusItem = focusItemsArray[0];
-dialog.lastFocusItem = focusItemsArray[focusItemsArray.length-1];
-}
-// assumes firstFocusItem and lastFocusItem maintained by dialog object
-var singleFocusItem = (dialog.firstFocusItem == dialog.lastFocusItem);
-
-// see if we are shift-tabbing from first focusable item on dialog
-if(node == dialog.firstFocusItem &amp;&amp; evt.shiftKey &amp;&amp; evt.charOrCode === keys.TAB){
-if(!singleFocusItem){
-dialog.lastFocusItem.focus(); // send focus to last item in dialog
-}
-helper.stopEvent(evt); //stop the tab keypress event
-}
-// see if we are tabbing from the last focusable item
-else if(node == dialog.lastFocusItem &amp;&amp; evt.charOrCode === keys.TAB &amp;&amp; !evt.shiftKey){
-if (!singleFocusItem){
-dialog.firstFocusItem).focus(); // send focus to first item in dialog
-}
-helper.stopEvent(evt); //stop the tab keypress event
-}
-else{
-// see if the key is for the dialog
-while(node){
-if(node == dialogContainerNode){ // if this is the container node of the dialog
-if(evt.charOrCode == keys.ESCAPE){ // and the escape key was pressed
-dialog.cancel(); // cancel the dialog
-}else{
-return; // just let it go
-}
-}
-node = node.parentNode;
-}
-// this key is for the document window
-if(evt.charOrCode !== keys.TAB){ // allow tabbing into the dialog
-helper.stopEvent(evt); //stop the event if not a tab keypress
-}
-} // end of if evt.charOrCode
-} // end of function
-</pre>
-
-  </section>
-
-  </section>
-</section>
   <section id="relations">
   <h2> Relationships</h2>
   <p class="note">This section has not been updated since it was integrated from APG version 1.0 -- an APG task force review is pending.</p>
