@@ -3188,27 +3188,35 @@ function detectHiContrast() {
   <p>
   Unlike native HTML form elements, browsers do not provide keyboard support for graphical user interface (GUI) components that are made accessible with ARIA; authors must provide the keyboard support in their code.
   This section describes how to make the functionality of a web page that includes ARIA widgets, such as menus and grids,  as wel ass interactive components, such as toolbars and dialogs, operable with a keyboard. 
-  It starts by explaining the basics of focus management among and within widgets and then offers guidance toward the objective of providing people who rely on a keyboard experiences that are as efficient and enjoyable as the those available to others.
+  It starts by explaining the basics of focus management between and within widgets and then offers guidance toward the objective of providing people who rely on a keyboard experiences that are as efficient and enjoyable as the those available to others.
   </p>
     <section id="kbd_generalnav">
-    <h3>Keyboard Navigation for Widgets</h3>
-      <section id="kbd_general_binding">
-      <h4>WAI-ARIA Keyboard Conventions</h4>
+    <h3>Keyboard Navigation Overview</h3>
       <p>
-      To help make keyboard interfaces easy to learn and efficient, the WAI-ARIA design patterns borrow user expectations and keyboard conventions from popular desktop GUIs, including Microsoft Windows, Mac OS X, and GNOME.
-      For sighted keyboard users,visual styling that resembles components users find in a desktop application can help them understand how to operate a component in a web GUI.
-      Similarly, a screen reader user will hear information, based on the screen reader's interpretation of the ARIA role, states, and properties, that makes the component sound like its desktop counterpart.
-      For example, when screen reader users hear that a tree has focus, they know that pressing the right arrow key will expand  a node. 
+      ARIA components model GUI components from popular desktop GUIs, including Microsoft Windows, Mac OS X, and GNOME.
+      So, to facilitate easy learning and efficient operation of keyboard interfaces , the ARIA design patterns borrow user expectations and keyboard conventions from those platforms.
+      Similar to how familiar visual styling helps users learn how to operate a component, ARIA attributes enable screen readers to give components the sound and feel of their desktop counterparts.
+      For example, when screen reader users hear that a tree has focus, they will expect that pressing the right arrow key will expand  a collapsed node. 
       </p>
-    </section>
+      <p>
+      The primary keyboard navigation convention common across all platforms is that the <kbdd>tab</kbdd> and <kbd>shift+tab</kbd> keys move focus from one component or widget to another while other keys, primarily the arrow keys, move focus inside of components that include multiple focusable elements.
+      The path that the focus follows when pressing the <kbd>tab</kbd> key is known as the tab sequence or tab ring.
+      </p>
+      <p>
+      A component that contains multiple focusable elements is a composite. 
+      Common examples of composite elements are radio groups, tablists, and grids.
+      A radio group, for example, contains multiple radio buttons. 
+      Only one radio button is included in the tab sequence. 
+      After pressing the <kbd>tab</kbd> key moves focus to a radio button in the group, pressing arrow keys moves focus among the radio buttons in the group, and pressing the <kbd>tab</kbd> moves focus out of the radio group to the next element in the tab sequence.
+      </p>
+      <p>
+      Para about importance of visible focus ring and communicating focus ...
+      The element with keyboard focus is essential because it communicates information about the widget to assistive technologies like screen readers and magnifiers through operating specific accessibility APIs like Microsoft Active Accessibility (MSAA), the Apple AX APIs, and the ATK Accessibility Toolkit.
+      </p>
+      </section>
       <section id="kbd_general_between">
-      <h4> Keyboard Navigation between Widgets (tabindex)</h4>
+      <h3> Keyboard Navigation between Widgets (tabindex)</h3>
       <p> 
-      The primary keyboard interaction pattern of a web page is 
-      For example, pressing the <kbd>tab</kbd> key moves focus from a link to a radio group to a select list listbox, but movement of focus inside the radio group or select is done with the arrow keys.
-      ARIA patterns extend that pattern in the same way that desktop GUIs do.
-      consists of a tab sequence that moves focus between coomponents and other keys, such as the arrow keys, move focus inside of components.
-      high-level tab key is used 
       In HTML, the default tab sequence of a web page includes only links and HTML form elements.
       It is possible to add any other element to the tab sequence by applying the <code>tabindex</code> attribute to the element and giving it a value of 0 or greater. 
       However, Authors are advised to avoid values greater than 0.
@@ -3220,14 +3228,10 @@ function detectHiContrast() {
         <li>Widgets with tabindex&gt;0 will be added to the tab sequence based on the TABINDEX value </li>
         <li>Widgets with tabindex&lt;0 will not be added to the tab sequence but are enabled to receive keyboard focus. </li>
       </ul>
-      <p>
-      Once a widget has keyboard focus, arrow keys, <kbd>Space</kbd>, <kbd>Enter</kbd> key, or other keyboard commands can be used to navigate the options of the widget, change its state, or trigger an application function associated with the widget. 
-      </p>
     </section>
       <section id="kbd_general_within">
-      <h4> Keyboard Navigation within Widgets</h4>
+      <h3> Keyboard Navigation within Widgets</h3>
       <p> Each element that receives keyboard focus needs to have a <code>tabindex</code> attribute set to its current active descendant element and itself if an active descendant does not exist. 
-      The element with keyboard focus is essential because it communicates information about the widget to assistive technologies like screen readers and magnifiers through operating specific accessibility APIs like Microsoft Active Accessibility (MSAA), the Apple AX APIs, and the ATK Accessibility Toolkit. 
       The TAB key moves keyboard focus to the widget, and other keys operate the features of the widget, typically cursor keys, <kbd>Enter</kbd> key and <kbd>Space</kbd>. 
       The actual keys are up to the developer, but best practices recommend using the same key bindings that are used to control similar widgets in common GUI operating systems like Microsoft Windows, Mac OS X and other desktop operating systems like GNOME and GTK. 
       </p>
@@ -3257,7 +3261,7 @@ function detectHiContrast() {
       </p>
     </section>
       <section id="kbd_shortcuts">
-      <h4>Keyboard Shortcuts for Widgets</h4>
+      <h3>Keyboard Shortcuts for Widgets</h3>
       <p>
       It is useful to provide keyboard access to widgets, to focus a widget directly and to activate the features within the widget. 
       These may be &quot;mnemonics&quot; that use a letter from the label of the control, as well as other special keys that perform familiar operations on the system. 
@@ -3269,7 +3273,7 @@ function detectHiContrast() {
       </p>
     </section>
       <section id="kbd_general_ex">
-      <h4> Example Keyboard Operation: Radio Group/Radio </h4>
+      <h3> Example Keyboard Operation: Radio Group/Radio </h3>
         <p> See working <a href="http://oaa-accessibility.org/examplep/radio1/" title="CITA Radio Button Examples">Radio button examples</a> from the University of Illinois.</p>
       <table>
         <caption>
@@ -3303,7 +3307,7 @@ function detectHiContrast() {
         </p>
     </section>
       <section id="kbd_general_other">
-      <h4> Other Widget Authoring Practices</h4>
+      <h3> Other Widget Authoring Practices</h3>
       <p>
       The <a href="#aria_ex_widget">Common Widget Design Patterns</a> section of this document contains best  practices, such as keyboard navigation, for creating common widgets found on the Web. 
       This section contains miscellaneous authoring practices that you should also consider.
@@ -3330,7 +3334,6 @@ Here the values 1 through 7 represent the days of the week and
   aria-valuenow of 1 is equivalent to the first day of the week or Sunday.  When aria-valuetext is made available aria-valuenow should also be treated as an   index which is 1 based. </p>
 </section>
     </section>
-  </section>
     <section id="kbd_focus">
     <h3> Providing Keyboard Focus</h3>
     <p>
