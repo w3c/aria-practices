@@ -3223,8 +3223,8 @@ function detectHiContrast() {
       After pressing the <kbd>Tab</kbd> key moves focus to a radio button in the group, pressing arrow keys moves focus among the radio buttons in the group, and pressing the <kbd>Tab</kbd> key moves focus out of the radio group to the next element in the tab sequence.
       </p>
       </section>
-      <section id="keyboard_focus_visible_predictable">
-      <h3>Visible and Predictable Focus </h3>
+      <section id="keyboard_focus_discernable_predictable">
+      <h3>Discernable and Predictable Keyboard Focus </h3>
       <p>
       When operating with a keyboard, two essentials of a good experience are the ability to easily discern where the keyboard focus is at any time and the ability to easily discover where it has moved after a navigation key has been pressed.
       The following factors affect to what extent a web page affords users these capabilities.
@@ -3232,7 +3232,7 @@ function detectHiContrast() {
       <ol>
       <li>Visibility of the focus indicator: Users need to be able to easily distinguish the keyboard focus indicator from other features of the visual design. 
       Just as a mouse user may move the mouse to help find the mouse pointer, a keyboard user may press a navigation key to watch for movement. 
-      If changes are subtle, users will remain lost. 
+      If visual changes in response to focus movement are subtle, many users will lose track of focus and be unable to operate.
       Authors are advised to rely on the default focus indicators provided by browsers. 
       If overriding the default, consider:
       <ul>
@@ -3240,129 +3240,49 @@ function detectHiContrast() {
       <li>... other considerations to be added ... </li>
       </ul>
       </li>
-      <li>Persistence of visibility: The focus indicator should always be visible.
+      <li>Persistence of focus: It is essential that there is always a component within the user interface that is active (document.activeElement is not null or is not the body element) 
+      and that the active element has a visual focus indicator. 
       Authors need to ensure all events that could effect the currently active element are properly managed.
-      For example, if the active element is hidden or removed from the DOM, browsers may move focus to the body element, causing the focus indicator to disappear. 
+      For example, if the active element is hidden or removed from the DOM, browsers may move focus to the body element, affectively causing a loss of focus within the user interface.
       This can also make the result of pressing a navigation key indeterminant, causing head aches not only for visual keyboard users but screen reader users as well.
       </li>
-      <li>Predictability of movement:... to be written ... 
-      </li>
+      <li>Predictability of movement:... to be written ... sequence controlled by DOM order. 
+      <ul>
+      <li>... generally left to right top to bottom ... </li>
+      <li>... take into account sections .. not jumping back and forth between left nav to main kind of thing ... </li>
+      <li>Initial typically at top, but may be in some logical starting point some cases </li>
+      </ul>
       </ol>
       </section>
       <section id="kbd_general_between">
       <h3> Keyboard Navigation between Widgets (tabindex)</h3>
       <p> 
-      In HTML, the default tab sequence of a web page includes only links and HTML form elements.
-      It is possible to add any other element to the tab sequence by applying the <code>tabindex</code> attribute to the element and giving it a value of 0 or greater. 
-      However, Authors are advised to avoid values greater than 0.
-      It is also possible to remove an element from the tab sequence, including a link or form element, by giving it a tabindex value of -1. 
+      The <a href="https://www.w3.org/TR/html5/editing.html#attr-tabindex">HTML tabindex</a>
+      and <a href="https://www.w3.org/TR/SVG2/struct.html#tabindexattribute">SVG tabindex</a>
+      attributes can be used to add and remove elements from sequential focus navigation.
+      The value of tabindex can also influence the order of sequential focus navigation, although authors are strongly advised not to use tabindex for that purpose.
       </p>
-      <ul>
-        <li><kbd>Tab</kbd> and <kbd>Shift + Tab</kbd> key move focus among widgets and standard HTML controls. </li>
-        <li>Widgets with tabindex=0 will be added to the tab sequence based on document order </li>
-        <li>Widgets with tabindex&gt;0 will be added to the tab sequence based on the TABINDEX value </li>
-        <li>Widgets with tabindex&lt;0 will not be added to the tab sequence but are enabled to receive keyboard focus. </li>
-      </ul>
-      <section id="focus_tabindex">
-      <h4> Using Tabindex to Manage Focus among Widgets</h4>
       <p>
-      One requirement for supporting the keyboard is to allow focus to be set to any element. 
-      The <a href="http://www.w3.org/TR/html401/interact/forms.html#adef-tabindex" title="HTML4 tabindex attribute ">tabindex</a> attribute can be used to include additional elements in the tab order and to set programmatic focus to them. 
-      Originally implemented in Internet Explorer 5, the feature has been extended to Opera, Gecko-based user agents such as Firefox, and WebKit-based user agents such as Safari. 
-      The following table outlines the use of the tabindex attribute: </p>
-      <div>
-        <table>
-          <caption>
-          Use of the Tabindex Attribute
-          </caption>
-          <tbody>
-            <tr>
-              <th>Tabindex Attribute</th>
-              <th>Focusable with mouse or JavaScript via element.focus()</th>
-              <th>Tab Navigation</th>
-            </tr>
-            <tr>
-              <td><p>not present</p></td>
-              <td>Follows default behavior of element (only form controls and anchors can receive focus.)</td>
-              <td>Follows default behavior of element</td>
-            </tr>
-            <tr>
-              <td><p>zero - tabindex="0"</p></td>
-              <td>yes</td>
-              <td>In tab order relative to element's position in document</td>
-            </tr>
-            <tr>
-              <td><p>Positive - tabindex="X" (where X is a positive integer between 1 and 32768)</p></td>
-              <td>yes</td>
-              <td>Tabindex value directly specifies where this element is positioned in the tab order.</td>
-            </tr>
-            <tr>
-              <td><p>Negative - tabindex="-1"</p></td>
-              <td>yes</td>
-              <td>No, author must focus it with element.focus() as a result of arrow or other key press</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      Sequential focus navigation refers to the sequence of elements that receive focus when the <kbd>Tab</kbd> key is pressed.
+      In HTML, the default tab sequence of a web page includes only links and HTML form elements, except In Mac OS, where it includes only form elements.
+     Mac OS system preferences include a keyboard setting that enables the tab key to move focus to all focusable elements.
+     </p>
+      <dl>
+              <dt>No tabindex attribute</dt>
+              <dd>Follows default behavior of element (only form controls and anchors can receive focus.)</dd>
+              <dt>tabindex="0"</dt>
+              <dd>In tab order relative to element's position in document</dd>
+              <dt>tabindex="X" (where X is a positive integer between 1 and 32768)</dd>
+              <dd>Tabindex value directly specifies where this element is positioned in the tab order.</dd>
+              <dt>tabindex="-1"</p></dt>
+              <dd>focusable with element.focus() </dd>
+              </dl>
       <p>
-      Setting a tabindex value of -1 to an element enables the element to receive focus via JavaScript using the element.focus() method. 
-      This method is used to enable arrow key navigation to elements. 
-      Each element that can be navigated to via arrow keys must have a tabindex of -1 to enable it to receive focus. 
-      Here are just a few additional tips  to help you with managing keyboard focus:
+     The default order of elements in the tab sequence is the order of elements in the DOM.
+     The DOM order also determines screen reader reading order.
+     It is important to keep the keyboard tab sequence and the screen reader reading order aligned. 
+     So, the preferred way of manipulating the order of the tab sequence is rearranging elements in the DOM.
       </p>
-      <ul>
-        <li>
-          <p>
-          <em>Use focus and blur events (or event delegation) to monitor changes to the current focus</em> - <code>focus</code> and <code>blur</code> events can now be used with every element. 
-          Modern browsers now support an <code>activeElement</code> property on the document object to get the focused element. 
-          Don't assume that all focus changes will come via key and mouse events, because assistive technologies such as screen readers can set the focus to any focusable element, and that needs to be handled elegantly by the JavaScript widget. 
-          Techniques such as &quot;event delegation&quot; (for example, intercepting events on a list rather than on every listitem) can greatly increase web application performance and code maintainability, and authors are encouraged to use JavaScript best practices whenever possible. 
-          </p>
-          <p class="note">The <code>activeElement</code> property is now standard in HTML 5.</p>
-        </li>
-        <li>
-          <p>
-          <em>Follow keydowns to move focus</em> - A keydown event handler can determine the next object to receive focus and call that element's focus() method. 
-          </p>
-        </li>
-        <li>
-          <p>
-          <em>Use onkeydown to trap key events, not onkeypress</em> - Key press events do not fire for all keys and they vary across browsers. 
-          </p>
-        </li>
-        <li>
-          <p><em>Dynamically change focusability using the tabIndex property</em> - You may want to update tabindex values if a custom control becomes disabled or enabled. Disabled controls should not be in the tab order. However, you can typically arrow to them if they're part of grouped navigation widget.  When an element receives focus, it should change the tabindex value to 0 to make an element the default element of the widget.  This is important if the user leaves the widget and returns to the widget again so focus is on the last element of the widget the user was on.  If other elements of a widget can receive keyboard focus, only one element of the widget should have a tabindex value of 0.</p>
-        </li>
-        <li>
-          <p><em>Use element.focus() to set focus</em> - Do not use createEvent(), initEvent() and dispatchEvent() to send focus to an element, because these functions do not change the focus.  DOM focus events are informational only, generated by the user agent after an element has acquired focus, but not used themselves to set focus.</p>
-        </li>
-        <li>
-          <p>The use of :focus pseudo-class selectors to style the keyboard focus is not supported in many versions of Internet Explorer. Authors should use the :active pseudo-class (which older versions of IE treat like :focus) in conjunction with the :focus pseudo-class. Example: a:focus, a:active { text-decoration: underline; } </p>
-      <p>If the related CSS pseudo-classes are not appropriate or not supported in all browsers, authors can use JavaScript techniques to indicate an appropriate focus alternative, such as using focus and blur events to toggle a classname on an element.</p>
-        </li>
-        <li>
-          <p><em>Always draw the focus for tabindex="-1" items and elements that receive focus programmatically when supporting versions of Internet Explorer older than 8</em> - Choose between changing the background  color via something like this.style.backgroundColor = "gray"; or add a dotted border via this.style.border = "1px dotted invert".  In the dotted border case, you will need to make sure those elements  have an invisible 1px border to start with, so that the element doesn't  grow when the border style is applied (borders take up space, and IE  doesn't implement CSS outlines). </p>
-        </li>
-        <li>
-          <p><em>Prevent used key events from performing browser functions</em> - If a key such as an arrow key is used, prevent the browser from using the key to do something (such as scrolling) by using code like the following:</p>
-          <pre class="example highlight">&lt;span tabindex=&quot;-1&quot; onkeypress=&quot;return  handleKeyPress();&quot;&gt; </pre>
-          <p>If handleKeyDown() returns false, the event will be consumed, preventing the browser from performing any action based on the keystroke.  In addition to the return value the browser must call the event methods that will prevent the default action, for IE this is setting the event property &quot;returnValue=false&quot;, and for other browsers supporting the W3C event model this means calling the &quot;preventDefault&quot; method of the event object.</p>
-          </li>
-        <li>
-          <pre class="example highlight">&lt;span tabindex="-1" onkeydown="return handleKeyDown();"&gt;   </pre>
-          <p>If handleKeyDown() returns false, the event will be consumed, preventing the browser from performing any action based on the keystroke. </p>
-          </li>
-        <li>
-            <p><em>Use key event handlers to enable activation of the element</em> - For every mouse event handler, a keyboard event handler is required. For example, if you have an <em>onclick="doSomething()"</em> you may also need <em>onkeydown="return event.keyCode != 13 || doSomething();" </em>in order to allow the <kbd>Enter</kbd> key to activate that element. </p>
-          <p class="note">There are <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/Keyboard-navigable_JavaScript_widgets" title="Keyboard-navigable JavaScript widgets - MDN" target="_blank">user agent-specific considerations</a> for key event handling.</p>
-        </li>
-        <li>
-          <p>
-          Consider using a "<a href="#kbd_general_within">roving</a>" tabindex for complex widgets if you are not using the <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property. 
-          </p>
-        </li>
-      </ul>
-    </section>
     </section>
       <section id="kbd_general_within">
       <h3> Keyboard Navigation within Widgets</h3>
@@ -3466,6 +3386,49 @@ function detectHiContrast() {
       When the de-selection occurs, such as when a multi-select item is de-selected or a user moves to a new tab and de-select the old tab, the author should ensure that the visible selection of the de-selected item is removed.
       </p>
     </section>
+    <secttion id="keyboard_js_tips">
+    <H4>Focus Management Programming Tips</H4>
+    <ul>
+        <li>
+          <em>Use focus and blur events (or event delegation) to monitor changes to the current focus</em> - <code>focus</code> and <code>blur</code> events can now be used with every element. 
+          Don't assume that all focus changes will come via key and mouse events, because assistive technologies such as screen readers can set the focus to any focusable element, and that needs to be handled elegantly by the JavaScript widget. 
+          Techniques such as &quot;event delegation&quot; (for example, intercepting events on a list rather than on every listitem) can improve performance.
+        </li>
+        <li>
+          <em>Follow keydowns to move focus</em> - A keydown event handler can determine the next object to receive focus and call that element's focus() method. 
+        </li>
+        <li>
+          <em>Use onkeydown to trap key events, not onkeypress</em> - Key press events do not fire for all keys and they vary across browsers. 
+        </li>
+<li>
+          <em>Use element.focus() to set focus</em> - Do not use createEvent(), initEvent() and dispatchEvent() to send focus to an element, because these functions do not change the focus.  DOM focus events are informational only, generated by the user agent after an element has acquired focus, but not used themselves to set focus.
+        </li>
+<li>
+          <em>Dynamically change focusability using the tabIndex property</em> - You may want to update tabindex values if a custom control becomes disabled or enabled. Disabled controls should not be in the tab order. However, you can typically arrow to them if they're part of grouped navigation widget.  When an element receives focus, it should change the tabindex value to 0 to make an element the default element of the widget.  This is important if the user leaves the widget and returns to the widget again so focus is on the last element of the widget the user was on.  If other elements of a widget can receive keyboard focus, only one element of the widget should have a tabindex value of 0.
+        </li>
+<li>
+          The use of :focus pseudo-class selectors to style the keyboard focus is not supported in many versions of Internet Explorer. Authors should use the :active pseudo-class (which older versions of IE treat like :focus) in conjunction with the :focus pseudo-class. Example: a:focus, a:active { text-decoration: underline; } 
+      If the related CSS pseudo-classes are not appropriate or not supported in all browsers, authors can use JavaScript techniques to indicate an appropriate focus alternative, such as using focus and blur events to toggle a classname on an element.
+        </li>
+        <li>
+          <em>Always draw the focus for tabindex="-1" items and elements that receive focus programmatically when supporting versions of Internet Explorer older than 8</em> - Choose between changing the background  color via something like this.style.backgroundColor = "gray"; or add a dotted border via this.style.border = "1px dotted invert".  In the dotted border case, you will need to make sure those elements  have an invisible 1px border to start with, so that the element doesn't  grow when the border style is applied (borders take up space, and IE  doesn't implement CSS outlines). 
+        </li>
+        <li>
+          <p><em>Prevent used key events from performing browser functions</em> - If a key such as an arrow key is used, prevent the browser from using the key to do something (such as scrolling) by using code like the following:</p>
+          <pre class="example highlight">&lt;span tabindex=&quot;-1&quot; onkeypress=&quot;return  handleKeyPress();&quot;&gt; </pre>
+          <p>If handleKeyDown() returns false, the event will be consumed, preventing the browser from performing any action based on the keystroke.  In addition to the return value the browser must call the event methods that will prevent the default action, for IE this is setting the event property &quot;returnValue=false&quot;, and for other browsers supporting the W3C event model this means calling the &quot;preventDefault&quot; method of the event object.</p>
+          </li>
+        <li>
+          <pre class="example highlight">&lt;span tabindex="-1" onkeydown="return handleKeyDown();"&gt;   </pre>
+          <p>If handleKeyDown() returns false, the event will be consumed, preventing the browser from performing any action based on the keystroke. </p>
+          </li>
+        <li>
+            <em>Use key event handlers to enable activation of the element</em> - For every mouse event handler, a keyboard event handler is required. 
+            For example, if you have an <em>onclick="doSomething()"</em> you may also need <em>onkeydown="return event.keyCode != 13 || doSomething();" </em>in order to allow the <kbd>Enter</kbd> key to activate that element. 
+          There are <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/Keyboard-navigable_JavaScript_widgets" title="Keyboard-navigable JavaScript widgets - MDN" target="_blank">user agent-specific considerations</a> for key event handling.
+        </li>
+      </ul>
+      </secttion>
     </section>
       <section id="kbd_shortcuts">
       <h3>Keyboard Shortcuts for Widgets</h3>
