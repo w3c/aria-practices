@@ -3186,7 +3186,7 @@ function detectHiContrast() {
   <section id="keyboard">
   <h2> Developing a Keyboard Interface</h2>
   <p>
-  Unlike native HTML form elements, browsers do not provide keyboard support for graphical user interface (GUI) components that are made accessible with ARIA; authors must provide the keyboard support in their code.
+  Unlike native HTML form elements, browsers do not provide keyboard support for graphical user interface (GUI) components that are made accessible with ARIA; authors have to provide the keyboard support in their code.
   This section describes the principles and methods for making the functionality of a web page that includes ARIA widgets, such as menus and grids,  as wel ass interactive components, such as toolbars and dialogs, operable with a keyboard. 
   Along with the basics of focus management, this section offers guidance toward the objective of providing experiences to people who rely on a keyboard that are as efficient and enjoyable as the experiences available to others. 
   It covers:
@@ -3220,7 +3220,7 @@ function detectHiContrast() {
       Common examples of UI components that contain multiple focusable elements are radio groups, tablists, menus, and grids.
       A radio group, for example, contains multiple radio buttons, each of which is focusable. 
       However, only one of the radio buttons is included in the tab sequence. 
-      After pressing tnhe <kbd>Tab</kbd> key moves focus to a radio button in the group, pressing arrow keys moves focus among the radio buttons in the group, and pressing the <kbd>Tab</kbd> key moves focus out of the radio group to the next element in the tab sequence.
+      After pressing the <kbd>Tab</kbd> key moves focus to a radio button in the group, pressing arrow keys moves focus among the radio buttons in the group, and pressing the <kbd>Tab</kbd> key moves focus out of the radio group to the next element in the tab sequence.
       </p>
       <p>
       The ARIA specification refers to a discrete UI component that contains multiple focusable elements as a <a href="#composite" class="role-reference">composite</a> widget.
@@ -3274,7 +3274,7 @@ function detectHiContrast() {
       <section id="kbd_general_between">
       <h3> Keyboard Navigation between Widgets (tabindex)</h3>
       <p> 
-      As explained in section <a href="#keyboard_generalnav"></a>, all widgets need to be in a page's tab sequence. 
+      As explained in section <a href="#kbd_generalnav"></a>, all widgets need to be in a page's tab sequence. 
       The <a href="https://www.w3.org/TR/html5/editing.html#attr-tabindex">HTML tabindex</a>
       and <a href="https://www.w3.org/TR/SVG2/struct.html#tabindexattribute">SVG tabindex</a>
       attributes can be used to add and remove elements from the tab sequence.
@@ -3305,7 +3305,7 @@ function detectHiContrast() {
       <section id="kbd_general_within">
       <h3> Keyboard Navigation within Widgets</h3>
       <p>
-      As described in section <a href="#keyboard_generalnav"></a>, the tab sequence should include only one focusable descendant of a composite widget.
+      As described in section <a href="#kbd_generalnav"></a>, the tab sequence should include only one focusable descendant of a composite widget.
       Once a composite widget contains focus, keys other than <kbd>Tab</kbd> and <kbe>Shift+Tab</kbe> enable the user to move focus among the focusable elements of the composite.
       Authors are free to choose which keys move focus inside of a composite, but they are strongly advised to use the same key bindings as similar widgets in common GUI operating systems as demonstrated in <a href="#aria_ex"></a>.
       </p>
