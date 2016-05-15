@@ -3207,7 +3207,8 @@ function detectHiContrast() {
       Similarly, ARIA design patterns borrow user expectations and keyboard conventions from those platforms, consistently incorporating common conventions with the aim of facilitating easy learning and efficient operation of keyboard interfaces across the web.
       </p>
       <p>
-      Consistent application of common GUI keyboard interface conventions is particularly important for assistive technology users. 
+      To be accessible, all interactive elements must be accessible via the keyboard.
+      In addition, consistent application of the common GUI keyboard interface conventions described in the <a href="#aria_ex">ARIA design patterns</a> is particularly important for assistive technology users. 
       For instance, just as familiar visual styling helps users discover how to operate a component with a mouse, ARIA attributes enable screen readers to give components the sound and feel of their desktop counterparts.
       For example, when screen reader users hear that a tree has focus, they will commonly expect that pressing the right arrow key will expand  a collapsed node. 
       </p>
@@ -3216,17 +3217,33 @@ function detectHiContrast() {
       The path that the focus follows when pressing the <kbd>tab</kbd> key is known as the tab sequence or tab ring.
       </p>
       <p>
-      A component that contains multiple focusable elements is a composite. 
-      Common examples of composite elements are radio groups, tablists, menus, and grids.
-      A radio group, for example, contains multiple radio buttons. 
-      Only one radio button is included in the tab sequence. 
-      After pressing the <kbd>Tab</kbd> key moves focus to a radio button in the group, pressing arrow keys moves focus among the radio buttons in the group, and pressing the <kbd>Tab</kbd> key moves focus out of the radio group to the next element in the tab sequence.
+      Common examples of UI components that contain multiple focusable elements are radio groups, tablists, menus, and grids.
+      A radio group, for example, contains multiple radio buttons, each of which is focusable. 
+      However, only one of the radio buttons is included in the tab sequence. 
+      After pressing tnhe <kbd>Tab</kbd> key moves focus to a radio button in the group, pressing arrow keys moves focus among the radio buttons in the group, and pressing the <kbd>Tab</kbd> key moves focus out of the radio group to the next element in the tab sequence.
       </p>
+      <p>
+      The ARIA specification refers to a discrete UI component that contains multiple focusable elements as a <a href="#composite" class="role-reference">composite</a> widget.
+      The process of controlling focus movement inside a composite is called managing focus. 
+      The ARIA design patterns that demonstrate focus management include all the composite widget roles plus toolbars and dialogs: 
+      </p>
+      <ul>
+      <li><a href="#combobox">Combobox</a></li>
+      <li><a href="#dialogs">Dialogs</a></li>
+      <li><a href="#grid">Grid</a></li>
+      <li><a href="Listbox">Listbox</a></li>
+      <li><a href="#menu">Menu or menu bar</a></li>
+      <li><a href="#radiobutton">Radiogroup</a></li>
+      <li><a href="#tabpanel">Tabs</a></li>
+      <li><a href="#toolbar">Toolbar</a></li>
+      <li><a href="#treegrid">Tree Grid</a></li>
+      <li><a href="#TreeView">Tree View</a></li>
+            </ul>
       </section>
       <section id="keyboard_focus_discernable_predictable">
       <h3>Discernable and Predictable Keyboard Focus </h3>
       <p>
-      When operating with a keyboard, two essentials of a good experience are the abilities to easily discern where the keyboard focus is at any time and discover where it has moved after a navigation key has been pressed.
+      When operating with a keyboard, two essentials of a good experience are the abilities to easily discern the location of the keyboard focus and to discover where focus landed after a navigation key has been pressed.
       The following factors affect to what extent a web page affords users these capabilities.
       </p>
       <ol>
@@ -3257,13 +3274,13 @@ function detectHiContrast() {
       <section id="kbd_general_between">
       <h3> Keyboard Navigation between Widgets (tabindex)</h3>
       <p> 
+      As explained in section <a href="#keyboard_generalnav"></a>, all widgets need to be in a page's tab sequence. 
       The <a href="https://www.w3.org/TR/html5/editing.html#attr-tabindex">HTML tabindex</a>
       and <a href="https://www.w3.org/TR/SVG2/struct.html#tabindexattribute">SVG tabindex</a>
-      attributes can be used to add and remove elements from sequential focus navigation.
-      The value of tabindex can also influence the order of sequential focus navigation, although authors are strongly advised not to use tabindex for that purpose.
+      attributes can be used to add and remove elements from the tab sequence.
+      The value of tabindex can also influence the order of the tab sequence, although authors are strongly advised not to use tabindex for that purpose.
       </p>
       <p>
-      Sequential focus navigation refers to the sequence of elements that receive focus when the <kbd>Tab</kbd> key is pressed.
       In HTML, the default tab sequence of a web page includes only links and HTML form elements, except In Mac OS, where it includes only form elements.
      Mac OS system preferences include a keyboard setting that enables the tab key to move focus to all focusable elements.
      </p>
@@ -3287,33 +3304,32 @@ function detectHiContrast() {
     </section>
       <section id="kbd_general_within">
       <h3> Keyboard Navigation within Widgets</h3>
-      <p> Each element that receives keyboard focus needs to have a <code>tabindex</code> attribute set to its current active descendant element and itself if an active descendant does not exist. 
-      The TAB key moves keyboard focus to the widget, and other keys operate the features of the widget, typically cursor keys, <kbd>Enter</kbd> key and <kbd>Space</kbd>. 
-      The actual keys are up to the developer, but best practices recommend using the same key bindings that are used to control similar widgets in common GUI operating systems like Microsoft Windows, Mac OS X and other desktop operating systems like GNOME and GTK. 
+      <p>
+      As described in section <a href="#keyboard_generalnav"></a>, the tab sequence should include only one focusable descendant of a composite widget.
+      Once a composite widget contains focus, keys other than <kbd>Tab</kbd> and <kbe>Shift+Tab</kbe> enable the user to move focus among the focusable elements of the composite.
+      Authors are free to choose which keys move focus inside of a composite, but they are strongly advised to use the same key bindings as similar widgets in common GUI operating systems as demonstrated in <a href="#aria_ex"></a>.
       </p>
       <p>
-       Authors can use either the JavaScript <code>focus()</code> method to move focus to the appropriate element in the widget, or they can use a WAI-ARIA property called <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> on the actual widget container to indicate which descendant element in the widget has focus. 
-       Use the following procedure when focus is completely dependent on the use of tabindex to provide focus in a widget:
-       </p>
+      The convention for which focusable element within a composite that is included in the tab sequence depends on the type of composite.
+      It is typically one of the following.
+      </p>
       <ul>
-        <li>Set <code>tabindex="0"</code> on the current active descendant in the container widget while setting <code>tabindex="-1"</code> on all the other descendant elements of the widget.</li>
-        <li>As the user navigates (e.g., arrows) away from an item, set <code>tabindex="-1"</code> on the old item, and <code>tabindex="0"</code> on the new.</li>
-        <li>Use the JavaScript <code>focus()</code> method to put focus on the new item, whose <code>tabindex="0"</code>.</li>
-      </ul>
-        <p id="roving">
-        This procedure creates a <em>roving</em> tabindex. 
-        If the user TAB navigates away and then TABs back to the widget, the same last active descendant becomes active again. 
-        This relieves the author from having to compute and set the focus to the last active descendant. 
-        </p>
-      <p> Conversely, if you use the WAI-ARI <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property: </p>
-      <ul>
-        <li>Set <code>tabindex="0"</code> on the element which is the composite widget, and set its <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property to the id of the descendant element you wish to be active,</li>
-        <li>As the user navigates (e.g., arrows) away from an item in the widget, refresh the <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property on the containing widget to the id of the new active descendant element. </li>
+      <li>
+      The element that had focus the last time the composite contained focus. 
+      Or, if the composite has not yet contained the focus, the first element.
+      Widgets that are most likely to follow this pattern include grid and tree grid.
+      </li>
+      <li>
+      The selected element. Or, if there is no selected element, the first element.
+      Widgets that commonly use this pattern include radio groups, tabs, list boxes, and trees.
+      </li>
+      <li>
+      The first element.
+      Widgets that usually follow this pattern include menubars and toolbars.
+      </li>
       </ul>
       <p>
-      In this scenario, the browser manages focus changes; however, the author manages changes to the <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property. 
-      For greater detail, see <a href="#focus_tabindex">Using Tabindex to Manage Focus Among Widgets</a>. 
-      In both scenarios authors indicate which element in the widget has focus or is active through styling and/or markup. 
+      The following sections explain the two strategies for managing focus in composite widgets: creating a roving tabindex and using the <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property. 
       </p>
       <section id="visualfocus">
       <h5>Managing Visual Focus with tabindex Alone </h5>
@@ -3321,8 +3337,12 @@ function detectHiContrast() {
       An alternative to using activedescendant is to have the parent element, in response to the same keyboard input, move focus to its children by first removing <code>tabindex</code> from children that do not have focus, which removes them from the tab order. 
       This would be followed by setting the <code>tabindex</code> to "-1" on the element that is to receive focus and then using script to set focus on the element to receive focus. 
       As with <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a>, this omits managed children from the tabbing order. 
-      It enables browsers that do not yet support <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> to maintain keyboard navigation, and it provides notification to many assistive technologies like screen magnifiers to move visual focus without relying on other WAI-ARIA properties. 
-      Today, this technique will work in most user agents, but in the long run <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> will require less work by the developer.</p>
+      </p>
+      <ul>
+        <li>Set <code>tabindex="0"</code> on the current active descendant in the container widget while setting <code>tabindex="-1"</code> on all the other descendant elements of the widget.</li>
+        <li>As the user navigates (e.g., arrows) away from an item, set <code>tabindex="-1"</code> on the old item, and <code>tabindex="0"</code> on the new.</li>
+        <li>Use the JavaScript <code>focus()</code> method to put focus on the new item, whose <code>tabindex="0"</code>.</li>
+      </ul>
       <p>Although not always ideal based on the widget you are creating, one benefit of using tabindex to manage focus on an element is that the user agent will scroll the element into view when focus is set to the it. 
       This is not the case for <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a>. 
       When setting or updating the <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property, e.g. 
@@ -3343,9 +3363,9 @@ function detectHiContrast() {
       For example, the container element with the role of tree can provide an onkeydown event handler so that each individual tree item within the tree does not need to be focusable and to listen for the keydown event. 
       The container object, in this case the tree, needs to maintain the point of regard and manage which individual child item must be perceived as active.
       </p>
-        <p class="note">
-        <em>Important: For a given container widget where activedescendant must cause focus events to be fired to ATs, the actual focus must be on the container widget itself. 
-        In HTML this is done by putting tabindex="0" on the container widget.</em>
+        <p>
+        Important: For a given container widget where activedescendant must cause focus events to be fired to ATs, the actual focus must be on the container widget itself. 
+        In HTML this is done by putting tabindex="0" on the container widget.
         </p>
       <p>
       The key handler on the parent captures the keystrokes and determines what item becomes active next and updates the <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property with the ID of the appropriate, next active child element. 
