@@ -3288,7 +3288,7 @@ function detectHiContrast() {
      The default order of elements in the tab sequence is the order of elements in the DOM.
      The DOM order also determines screen reader reading order.
      It is important to keep the keyboard tab sequence and the screen reader reading order aligned. 
-     Thus, the preferred way of manipulating the order of the tab sequence is rearranging elements in the DOM.
+     Thus, the most robust method of manipulating the order of the tab sequence that is currently available is to rearrange elements in the DOM.
       </p>
      <p>The values of the tabindex attribute have the following effects. </p>
       <dl>
@@ -3322,6 +3322,7 @@ function detectHiContrast() {
       <li>
       The selected element. Or, if there is no selected element, the first element.
       Widgets that commonly use this pattern include radio groups, tabs, list boxes, and trees.
+      Note: For radio groups, this pattern is referring to the checked radio button; the selected state is not supported for radio buttons.
       </li>
       <li>
       The first element.
@@ -3331,23 +3332,25 @@ function detectHiContrast() {
       <p>
       The following sections explain the two strategies for managing focus in composite widgets: creating a roving tabindex and using the <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property. 
       </p>
-      <section id="visualfocus">
-      <h5>Managing Visual Focus with tabindex Alone </h5>
+      <section id="kbd_roving_tabindex">
+      <h5>Managing Focus in Composites with tabindex (Roving tabindex) </h5>
       <p>
-      An alternative to using activedescendant is to have the parent element, in response to the same keyboard input, move focus to its children by first removing <code>tabindex</code> from children that do not have focus, which removes them from the tab order. 
-      This would be followed by setting the <code>tabindex</code> to "-1" on the element that is to receive focus and then using script to set focus on the element to receive focus. 
-      As with <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a>, this omits managed children from the tabbing order. 
+      When using roving tabindex to manage focus in a composite widget, the descendant element that is to be included in the tab sequence has tabindex of "0" and all other focusable elements contained in the composite have tabindex of "-1".
+      The algorythm for the roving tabindex strategy is as follows. 
       </p>
       <ul>
-        <li>Set <code>tabindex="0"</code> on the current active descendant in the container widget while setting <code>tabindex="-1"</code> on all the other descendant elements of the widget.</li>
-        <li>As the user navigates (e.g., arrows) away from an item, set <code>tabindex="-1"</code> on the old item, and <code>tabindex="0"</code> on the new.</li>
-        <li>Use the JavaScript <code>focus()</code> method to put focus on the new item, whose <code>tabindex="0"</code>.</li>
+        <li>When the composite widget is loaded or created, set <code>tabindex="0"</code> on the descendant that should be active and set <code>tabindex="-1"</code> on all other focusable elements contained in the widget.</li>
+        <li>When the composite widget contains focus and the user presses a navigation key that moves focus within the widget, such as an arrow key:
+        <ul>
+                            <li>set <code>tabindex="-1"</code> on the element that has <code>tabindex="0"</code>.</li>
+                            <li>Set <code>tabindex="0"</code> on the element that should become active based on the key that was pressed.</li>
+                            <li>Set focus, <code>element.focus()</code>, on the element that has <code>tabindex="0"</code>.</li>
+                        </ul>
+                    </li>
       </ul>
-      <p>Although not always ideal based on the widget you are creating, one benefit of using tabindex to manage focus on an element is that the user agent will scroll the element into view when focus is set to the it. 
-      This is not the case for <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a>. 
-      When setting or updating the <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property, e.g. 
-      <code>aria-activedescendant="cell23"</code>, authors must ensure that the   element with <code>id="cell23"</code> is in view. 
-      In either case, consider positioning your widget in the visible area of your browser to maximize usability. This can be achieved using available JavaScript scrolling functions.</p>
+      <p>
+      One benefit of using roving tabindex rather than aria-activedescendant to manage focus is that the user agent will scroll the newly focused element into view.
+      </p>
     </section>
       <section id="focus_activedescendant">
       <h4> Using activedescendant to Manage Focus for Widget Children</h4>
@@ -3371,6 +3374,12 @@ function detectHiContrast() {
       The key handler on the parent captures the keystrokes and determines what item becomes active next and updates the <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property with the ID of the appropriate, next active child element. 
       The browser takes that ID information and generates the focus event to the assistive technology. 
       Each individual element does not have to be made focusable via a <code>tabindex</code> value of -1, but it must be styled using CSS to indicate the active status.
+      </p>
+      <p>
+      One benefit of using tabindex to manage focus on an element is that the user agent will scroll the element into view when focus is set to the it. 
+      This is not the case for <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a>. 
+      When setting or updating the <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property, e.g. 
+      <code>aria-activedescendant="cell23"</code>, authors must ensure that the   element with <code>id="cell23"</code> is in view. 
       </p>
       <p>
       As active status is moved to the next descendant, ensure that it is scrolled into view using <code>scrollIntoView()</code>.  
