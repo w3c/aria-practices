@@ -3226,7 +3226,7 @@ function detectHiContrast() {
       <section id="keyboard_focus_discernable_predictable">
       <h3>Discernable and Predictable Keyboard Focus </h3>
       <p>
-      When operating with a keyboard, two essentials of a good experience are the ability to easily discern where the keyboard focus is at any time and the ability to easily discover where it has moved after a navigation key has been pressed.
+      When operating with a keyboard, two essentials of a good experience are the abilities to easily discern where the keyboard focus is at any time and discover where it has moved after a navigation key has been pressed.
       The following factors affect to what extent a web page affords users these capabilities.
       </p>
       <ol>
@@ -3242,9 +3242,9 @@ function detectHiContrast() {
       </li>
       <li>Persistence of focus: It is essential that there is always a component within the user interface that is active (document.activeElement is not null or is not the body element) 
       and that the active element has a visual focus indicator. 
-      Authors need to ensure all events that could effect the currently active element are properly managed.
-      For example, if the active element is hidden or removed from the DOM, browsers may move focus to the body element, affectively causing a loss of focus within the user interface.
-      This can also make the result of pressing a navigation key indeterminant, causing head aches not only for visual keyboard users but screen reader users as well.
+      Authors need to manage events that effect the currently active element so focus remains visible and moves logically.
+      For example, if the user closes a dialog or performs a destructive operation like deleting an item from a list, the active element may be hidden or removed from the DOM.
+      If such events are not managed to set focus on the button that triggered the dialog or on the list item following the deleted item, browsers move focus to the body element, affectively causing a loss of focus within the user interface.
       </li>
       <li>Predictability of movement:... to be written ... sequence controlled by DOM order. 
       <ul>
@@ -3267,22 +3267,23 @@ function detectHiContrast() {
       In HTML, the default tab sequence of a web page includes only links and HTML form elements, except In Mac OS, where it includes only form elements.
      Mac OS system preferences include a keyboard setting that enables the tab key to move focus to all focusable elements.
      </p>
-      <dl>
-              <dt>No tabindex attribute</dt>
-              <dd>Follows default behavior of element (only form controls and anchors can receive focus.)</dd>
-              <dt>tabindex="0"</dt>
-              <dd>In tab order relative to element's position in document</dd>
-              <dt>tabindex="X" (where X is a positive integer between 1 and 32768)</dd>
-              <dd>Tabindex value directly specifies where this element is positioned in the tab order.</dd>
-              <dt>tabindex="-1"</p></dt>
-              <dd>focusable with element.focus() </dd>
-              </dl>
-      <p>
+     <p>
      The default order of elements in the tab sequence is the order of elements in the DOM.
      The DOM order also determines screen reader reading order.
      It is important to keep the keyboard tab sequence and the screen reader reading order aligned. 
-     So, the preferred way of manipulating the order of the tab sequence is rearranging elements in the DOM.
+     Thus, the preferred way of manipulating the order of the tab sequence is rearranging elements in the DOM.
       </p>
+     <p>The values of the tabindex attribute have the following effects. </p>
+      <dl>
+              <dt>tabindex is not present or does not have a valid value</dt>
+              <dd>The element has its default focus behavior. In HTML, only form controls and anchors with an HREF attribute are included in the tab sequence.</dd>
+              <dt>tabindex="0"</dt>
+              <dd>The element is included in the tab sequence based on its position in the DOM.</dd>
+              <dt>tabindex="-1"</dt>
+              <dd>The element is not included in the tab sequence but is focusable with element.focus().</dd>
+              <dt>tabindex="X" where X is an integer in the range 1 &lt;= X &lt;= 32767</dd>
+              <dd>Authors are strongly advised NOT to use these values. The element is placed in the tab sequence based on the value of tabindex. Elements with a tabindex value of 0 and elements that are focusable by default will be in the sequence after elements with a tabindex value of 1 or greater. </dd>
+              </dl>
     </section>
       <section id="kbd_general_within">
       <h3> Keyboard Navigation within Widgets</h3>
