@@ -3217,7 +3217,7 @@ function detectHiContrast() {
       All this is only possible if the tree implements the GUI keyboard conventions as described in the <a href="#TreeView">ARIA tree pattern</a>.
       </p>
       <p>
-      A primary keyboard navigation convention common across all platforms is that the <kbdd>tab</kbdd> and <kbd>shift+tab</kbd> keys move focus from one component or widget to another while other keys, primarily the arrow keys, move focus inside of components that include multiple focusable elements.
+      A primary keyboard navigation convention common across all platforms is that the <kbdd>tab</kbdd> and <kbd>shift+tab</kbd> keys move focus from one UI component to another while other keys, primarily the arrow keys, move focus inside of components that include multiple focusable elements.
       The path that the focus follows when pressing the <kbd>tab</kbd> key is known as the tab sequence or tab ring.
       </p>
       <p>
@@ -3229,7 +3229,7 @@ function detectHiContrast() {
       <p>
       The ARIA specification refers to a discrete UI component that contains multiple focusable elements as a <a href="#composite" class="role-reference">composite</a> widget.
       The process of controlling focus movement inside a composite is called managing focus. 
-      Following are ARIA design patterns that demonstrate focus management:
+      Following are some ARIA design patterns with example implementations that demonstrate focus management:
       </p>
       <ul>
       <li><a href="#combobox">Combobox</a></li>
@@ -3243,7 +3243,7 @@ function detectHiContrast() {
       <li><a href="#TreeView">Tree View</a></li>
             </ul>
       </section>
-      <section id="keyboard_focus_discernable_predictable">
+      <section id="kbd_focus_discernable_predictable">
       <h3>Discernable and Predictable Keyboard Focus </h3>
       <p>
       When operating with a keyboard, two essentials of a good experience are the abilities to easily discern the location of the keyboard focus and to discover where focus landed after a navigation key has been pressed.
@@ -3275,9 +3275,13 @@ function detectHiContrast() {
       </ol>
       </section>
       <section id="kbd_general_between">
-      <h3> Keyboard Navigation between Widgets (tabindex)</h3>
+      <h3> Keyboard Navigation Between Components (The Tab Sequence)</h3>
       <p> 
-      As explained in section <a href="#kbd_generalnav"></a>, all widgets need to be in a page's tab sequence. 
+      As explained in section <a href="#kbd_generalnav"></a>, all interactive UI components need to be reachable vai the keyboard. 
+      This is best achieved by either including them in the tab sequence or by making them accessible from a component that is in the tab sequence, e.g., as part of a composite component. 
+      This section addresses building and managing the tab sequence, and subsequent sections cover making focusable elements that are contained within components keyboard accessible.
+      </p>
+      <p>
       The <a href="https://www.w3.org/TR/html5/editing.html#attr-tabindex">HTML tabindex</a>
       and <a href="https://www.w3.org/TR/SVG2/struct.html#tabindexattribute">SVG tabindex</a>
       attributes can be used to add and remove elements from the tab sequence.
@@ -3290,8 +3294,8 @@ function detectHiContrast() {
      <p>
      The default order of elements in the tab sequence is the order of elements in the DOM.
      The DOM order also determines screen reader reading order.
-     It is important to keep the keyboard tab sequence and the screen reader reading order aligned. 
-     Thus, the most robust method of manipulating the order of the tab sequence that is currently available in all browsers is rearranging elements in the DOM.
+     It is important to keep the keyboard tab sequence and the screen reader reading order aligned, logical, and predictable as described in <a href="#kbd_focus_discernable_predictable"></a>.
+     The most robust method of manipulating the order of the tab sequence while also maintaining alignment with the reading order that is currently available in all browsers is rearranging elements in the DOM.
       </p>
      <p>The values of the tabindex attribute have the following effects. </p>
       <dl>
@@ -3306,9 +3310,9 @@ function detectHiContrast() {
               </dl>
     </section>
       <section id="kbd_general_within">
-      <h3> Keyboard Navigation within Widgets</h3>
+      <h3> Keyboard Navigation Inside Components</h3>
       <p>
-      As described in section <a href="#kbd_generalnav"></a>, the tab sequence should include only one focusable descendant of a composite component.
+      As described in section <a href="#kbd_generalnav"></a>, the tab sequence should include only one focusable element of a composite UI component.
       Once a composite contains focus, keys other than <kbd>Tab</kbd> and <kbe>Shift+Tab</kbe> enable the user to move focus among its focusable elements.
       Authors are free to choose which keys move focus inside of a composite, but they are strongly advised to use the same key bindings as similar components in common GUI operating systems as demonstrated in <a href="#aria_ex"></a>.
       </p>
@@ -3333,24 +3337,24 @@ function detectHiContrast() {
       </li>
       </ul>
       <p>
-      The following sections explain two strategies for managing focus in composite widgets: creating a roving tabindex and using the aria-activedescendant property. 
+      The following sections explain two strategies for managing focus inside composite elements: creating a roving tabindex and using the aria-activedescendant property. 
       </p>
       <section id="kbd_roving_tabindex">
-      <h4>Managing Focus in Composites with tabindex (Roving tabindex) </h4>
+      <h4>Managing Focus Within Components Using a Roving tabindex</h4>
       <p>
-      When using roving tabindex to manage focus in a composite widget, the descendant element that is to be included in the tab sequence has tabindex of "0" and all other focusable elements contained in the composite have tabindex of "-1".
+      When using roving tabindex to manage focus in a composite UI component, the element that is to be included in the tab sequence has tabindex of "0" and all other focusable elements contained in the composite have tabindex of "-1".
       The algorythm for the roving tabindex strategy is as follows. 
       </p>
       <ul>
-        <li>When the composite widget is loaded or created, set <code>tabindex="0"</code> on the descendant that should be active and set <code>tabindex="-1"</code> on all other focusable elements contained in the widget.</li>
-        <li>When the composite widget contains focus and the user presses a navigation key that moves focus within the widget, such as an arrow key:
+        <li>When the component container is loaded or created, set <code>tabindex="0"</code> on the element that will initially be included in the tab sequence and set <code>tabindex="-1"</code> on all other focusable elements it contains.</li>
+        <li>When the component contains focus and the user presses a navigation key that moves focus within the component, such as an arrow key:
         <ul>
                             <li>set <code>tabindex="-1"</code> on the element that has <code>tabindex="0"</code>.</li>
-                            <li>Set <code>tabindex="0"</code> on the element that should become active based on the key that was pressed.</li>
+                            <li>Set <code>tabindex="0"</code> on the element that will become focused as a result of the key event.</li>
                             <li>Set focus, <code>element.focus()</code>, on the element that has <code>tabindex="0"</code>.</li>
                         </ul>
                     </li>
-                    <li>If the design calls for a specific element to be focused when the user moves focus into the composite with <kbd>Tab<kbd> or <kbd>Shift+Tab</kbd>,
+                    <li>If the design calls for a specific element to be focused the next time the user moves focus into the composite with <kbd>Tab<kbd> or <kbd>Shift+Tab</kbd>,
                     check if that target element has <code>tabindex="0"</code> when the composite loses focus. 
                      If it does not, set <code>tabindex="0"</code> on the target element and set <code>tabindex="-1"</code> on the element that previously had <code>tabindex="0"</code>.
                     </li>
@@ -3360,7 +3364,7 @@ function detectHiContrast() {
       </p>
     </section>
       <section id="kbd_focus_activedescendant">
-      <h4>Managing Focus in Composites with aria-activedescendant</h4>
+      <h4>Managing Focus in Composites Using aria-activedescendant</h4>
       <p>
       If a component container has an ARIA role that supports the <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property, it is not necessary to manipulate the tabindex attribute and move DOM focus among focusable elements within the container.
       Instead, only the container element needs to be included in the tab sequence. When the container has DOM focus, the value of aria-activedescendant on the container tells assistive technologies which element is active within the widget.
@@ -3385,13 +3389,13 @@ function detectHiContrast() {
       <li>Move the visual focus indicator and, if necessary,  scrolled the active element into view.</li>
       </ul>
       </li>
-      <li>If the design calls for a specific element to be focused when the user moves focus into the composite with <kbd>Tab<kbd> or <kbd>Shift+Tab</kbd>,
+      <li>If the design calls for a specific element to be focused the next time a user moves focus into the composite with <kbd>Tab<kbd> or <kbd>Shift+Tab</kbd>,
                     check if aria-activedescendant is referring to that target element when the container loses focus. 
                      If it is not, set aria-activedescendant to refer to the target element.
                     </li>
       </ul>
       <p>
-      The <a href="#aria-activedescendant" class="property-reference">specification for aria-activedescendant</a> places important restrictions on the DOM relationship between the focused element that has the aria-adtivedescendant attribute and the element referenced as active by the value of the attribute.
+      The <a href="#aria-activedescendant" class="property-reference">specification for aria-activedescendant</a> places important restrictions on the DOM relationship between the focused element that has the aria-activedescendant attribute and the element referenced as active by the value of the attribute.
       One of the following three conditions must be met.
       </p>
       <ol>
@@ -3406,13 +3410,14 @@ function detectHiContrast() {
       </ol>
     </section>
     <section id="kbd_nested_components">
-    <h4>Nested Components - Composites and Toolbars That Contain Composites</h4>
+    <h4>Nested Composite Components - Composites and Toolbars That Contain Composites</h4>
     <p>
     to be written
     </p>
     </section>
     <section id="scrollintoview">
       <h5>Managing Focus with Scroll</h5>
+      <p class="note">Not yet edited ... considering what should be written/included. We don't want to write a javascript book.</p>
       <p>In some browsers, a JavaScript call to <code> scrollIntoView()</code> on this element should suffice, but in browsers where   this is unreliable, authors should explicitly set the <code>scrollTop</code> and <code>scrollLeft</code> properties of the "cell23" element and its ancestors to scroll the element into view. <code>scrollTop</code> and <code>scrollLeft</code> adjust the node positions by the amounts(pixels) needed to scroll a node into view.  Scrolling values are adjusted by the amounts(pixels) needed
         to scroll a node into view. This is done by comparing the sizes of the nodes
         using available measurements such as scroll+offset+clientWidth/Height/Left/Top. It's important to note that you have to adjust a node so that it's viewable within
