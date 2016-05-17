@@ -3197,6 +3197,7 @@ function detectHiContrast() {
   <li>Managing movement of keyboard focus between components, e.g., how the focus moves when the <kbd>Tab</kbd> and <kbd>Shift+Tab</kbd> keys are pressed.</li>
   <li>Managing movement of keyboard focus inside components that contain multiple focusable elements, e.g., two different methods for programatically exposing focus inside widgets like radio groups, menus, listboxes, trees, and grids.</li>
   <li>Managing focus for modal and non-modal dialogs.</li>
+  <li>Guidance on when to remove the focusability of disabled interactive elements. </li>
   <li>Assigning and revealing keyboard shortcuts, including guidance on how to avoid problematic conflicts with keyboard commands of assistive technologies, browsers, and operating systems.</li>
   <li>Addressing macro navigation concerns, i.e., methods for enabling efficient keyboard access to different sections of a page or site.</li>
   </ol>
@@ -3347,23 +3348,23 @@ function detectHiContrast() {
       Authors are free to choose which keys move focus inside of a composite, but they are strongly advised to use the same key bindings as similar components in common GUI operating systems as demonstrated in <a href="#aria_ex"></a>.
       </p>
       <p>
-      The convention for which focusable element within a composite that is included in the tab sequence depends on the type of composite.
+      The convention for where focus lands in a composite when it recieves focus as a result of a <kbd>Tab</kbd> key event depends on the type of composite.
       It is typically one of the following.
       </p>
       <ul>
       <li>
       The element that had focus the last time the composite contained focus. 
       Or, if the composite has not yet contained the focus, the first element.
-      Widgets that are most likely to follow this pattern include grid and tree grid.
+      Widgets that usually employ this pattern include grid and tree grid.
       </li>
       <li>
       The selected element. Or, if there is no selected element, the first element.
-      Widgets that commonly use this pattern include radio groups, tabs, list boxes, and trees.
+      Widgets where this pattern is commonly implemented include radio groups, tabs, list boxes, and trees.
       Note: For radio groups, this pattern is referring to the checked radio button; the selected state is not supported for radio buttons.
       </li>
       <li>
       The first element.
-      Components that usually follow this pattern include menubars and toolbars.
+      Components that typically follow this pattern include menubars and toolbars.
       </li>
       </ul>
       <p>
@@ -3373,7 +3374,7 @@ function detectHiContrast() {
       <h4>Managing Focus Within Components Using a Roving tabindex</h4>
       <p>
       When using roving tabindex to manage focus in a composite UI component, the element that is to be included in the tab sequence has tabindex of "0" and all other focusable elements contained in the composite have tabindex of "-1".
-      The algorythm for the roving tabindex strategy is as follows. 
+      The algorithm for the roving tabindex strategy is as follows. 
       </p>
       <ul>
         <li>When the component container is loaded or created, set <code>tabindex="0"</code> on the element that will initially be included in the tab sequence and set <code>tabindex="-1"</code> on all other focusable elements it contains.</li>
@@ -3567,17 +3568,17 @@ helper.stopEvent(evt); //stop the event if not a tab keypress
     <h3>Focusability of disabled controls</h3>
     <p>
     By default, disabled HTML input elements are removed from the tab sequence.  
-    In most contexts, the normal expectation is that interactive elements that are disabled are not focusable. 
+    In most contexts, the normal expectation is that disabled interactive elements are not focusable. 
     However, there are some contexts where it is common for disabled elements to be focusable, especially inside of composite widgets.  
     For example, as demonstrated in the <a href="#menu"></a> pattern, disabled items are focusable when navigating through a menu with the arrow keys.
     </p>
     <p>
-    Removing focusability from disabled elements can offer both advantages and disadvantages to users.
+    Removing focusability from disabled elements can offer users both advantages and disadvantages.
     Allowing keyboard users to skip disabled elements usually reduces the number of key presses required to complete a task.
     However, preventing focus from moving to disabled elements can hide their presence from screen reader users who "see" by moving the focus. 
     </p>
     <p>
-    Authors are encouraged to adopt a consistent set of conventions. 
+    Authors are encouraged to adopt a consistent set of conventions for the focusability of disabled elements. 
     The examples in this guide adopt the following conventions, which both reflect common practice and attempt to balance competing concerns.
     </p>
     <ol>
