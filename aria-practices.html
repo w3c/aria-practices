@@ -3274,20 +3274,34 @@ function detectHiContrast() {
       </ul>
       </ol>
       </section>
-      <section id="dualfocus">
+      <section id="kbd_focus_vs_selection">
       <h3>Focus VS Selection and the Perception of Dual Focus</h3>
-      <p class="note">
-      Repurposed old content -- not yet edited.
+      <p>
+      Occasionally, it may appear as if two elements on the page have focus at the same time.
+      For example, in a multi-select list box, when an option is selected it may be greyed.
+      Yet, the focus indicator can still be moved to other options, which may also be selected.
+      Similarly, when a user activates a tab in a tablist, the selected state is set on the tab and its visual appearance changes.
+      However, the user can still navigate, moving the focus indicator elsewhere on the page while the tab retains its selected appearance and state.
       </p>
       <p>
-      Often applications give the  perception of having a dual focus. 
-      Two examples of this are multi-selection list boxes and selected tabs, within a tablist, when focus is in a tabpanel. 
-      In the case of a multi-selection list box a developer may gray selected items as they move focus to list box items to toggle their selected state. 
-      In the case of a <span class="role-reference">tabpanel</span> the user selects a tab but then navigates to a focused item in the corresponding <span class="role-reference">tabpanel</span> the tab appears to also have focus. 
-      In reality, only one element may have focus in an application. 
-      In these scenarios authors should ensure keyboard focus is set on the current element that visibly receives keyboard user input while ensuring other &quot;highlighted&quot; elements have an aria-selected state of &quot;true&quot; until de-selected. 
-      When the de-selection occurs, such as when a multi-select item is de-selected or a user moves to a new tab and de-select the old tab, the author should ensure that the visible selection of the de-selected item is removed.
+      Focus and selection are quite different.
+      From the keyboard user's perspective, focus is a pointer, like a mouse pointer; it tracks the path of navigation.
+      There is only one point of focus at any time and all operations take place at the point of focus.
+      On the other hand, selection is an operation that can be performed in some widgets, such as list boxes, trees, and tablists. 
+      If a widget supports only single selection, then only one item can be selected and very often the selected state will simply follow the focus when focus is moved inside of the widget.
+      That is, in some widgets, moving focus may also perform the select operation.
+      However, if the widget supports multiple selection, then more than one item can be in a selected state, and keys for moving focus do not perform selection.
+      Some multi-select widgets do support key commands that both move focus and change selection, but those keys are different from the normal navigation keys.
       </p>
+      <p>
+      From the developer's perspective, the difference is simple -- the focused element is the active element (document.activeElement).
+      Selected elements are elements that have <code>aria-selected="true"</code>.
+      </p>
+      <p>The most important considerations for designers and developers are: </p>
+      <ul>
+      <li>The visual focus indicator must always be visible.</li>
+      <li>The selected state must be visually distinct from the the focus indicator. </li>
+      </ul>
     </section>
       <section id="kbd_general_between">
       <h3> Keyboard Navigation Between Components (The Tab Sequence)</h3>
