@@ -3292,12 +3292,13 @@ function detectHiContrast() {
       That is, in some widgets, moving focus may also perform the select operation.
       However, if the widget supports multiple selection, then more than one item can be in a selected state, and keys for moving focus do not perform selection.
       Some multi-select widgets do support key commands that both move focus and change selection, but those keys are different from the normal navigation keys.
+      Finally, when focus leaves a widget that includes a selected element, the selected state persists.
       </p>
       <p>
       From the developer's perspective, the difference is simple -- the focused element is the active element (document.activeElement).
       Selected elements are elements that have <code>aria-selected="true"</code>.
       </p>
-      <p>The most important considerations for designers and developers are: </p>
+      <p>With respect to focus and the selected state, the most important considerations for designers and developers are: </p>
       <ul>
       <li>The visual focus indicator must always be visible.</li>
       <li>The selected state must be visually distinct from the the focus indicator. </li>
