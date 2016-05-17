@@ -3563,6 +3563,51 @@ helper.stopEvent(evt); //stop the event if not a tab keypress
   </section>
 
   </section>
+  <section id="kbd_disabled_controls">
+    <h3>Focusability of disabled controls</h3>
+    <p>
+    By default, disabled HTML input elements are removed from the tab sequence.  
+    In most contexts, the normal expectation is that interactive elements that are disabled are not focusable. 
+    However, there are some contexts where it is common for disabled elements to be focusable, especially inside of composite widgets.  
+    For example, as demonstrated in the <a href="#menu"></a> pattern, disabled items are focusable when navigating through a menu with the arrow keys.
+    </p>
+    <p>
+    Removing focusability from disabled elements can offer both advantages and disadvantages to users.
+    Allowing keyboard users to skip disabled elements usually reduces the number of key presses required to complete a task.
+    However, preventing focus from moving to disabled elements can hide their presence from screen reader users who "see" by moving the focus. 
+    </p>
+    <p>
+    Authors are encouraged to adopt a consistent set of conventions. 
+    The examples in this guide adopt the following conventions, which both reflect common practice and attempt to balance competing concerns.
+    </p>
+    <ol>
+    <li>For elements that are in the tab sequence when enabled, remove them from the tab sequence when disabled. </li>
+    <li>For the following composite widget elements, keep them focusable when disabled:
+    <ul>
+      <li>Options in a <a href="Listbox">Listbox</a></li>
+      <li>Menu items in a <a href="#menu">Menu or menu bar</a></li>
+      <li>Tab elements in a set of <a href="#tabpanel">Tabs</a></li>
+      <li>Tree items in a <a href="#TreeView">Tree View</a></li>
+            </ul>
+    </li>
+    <li>For elements contained in a toolbar, make them focusable if discoverability is a concern. Here are two examples to aid with this judgment.
+    <ol>
+    <li>
+    A toolbar with buttons for moving, removing, and adding items in a list includes buttons for &quot;Up&quot;, &quot;Down&quot;, &Quot;Add&quot;, and &quot;Remove&quot;. 
+    The &quot;Up&quot; button is disabled and its focusability is removed when the first item in the list is selected. 
+    Given the  presence of the &quot;Down&quot; button, discoverability of the &quot;Up&quot; button is not a concern.
+    </li>
+    <li>
+    A toolbar in an editor contains a set of special smart paste functions that are disabled when the clipboard is empty or when the function is not applicable to the current content of the clipboard. 
+    It could be helpful to keep the disabled buttons focusable if the ability to discover their functionality is primarily via their presence on the toolbar.
+    </li>
+    </ol>
+    </li>
+    </ol>
+    <p>
+    One design technique for mitigating the impact of including disabled elements in the path of keyboard focus is employing appropriate keyboard shortcuts as described in <a href="#kbd_shortcuts"></a>.
+    </p>
+    </section>
       <section id="kbd_shortcuts">
       <h3>Keyboard Shortcuts for Widgets</h3>
       <p>
@@ -3582,7 +3627,7 @@ helper.stopEvent(evt); //stop the event if not a tab keypress
         </p>
     </section>
   <section id="keyboard_js_tips">
-    <H3>Other Focus Management Tips</H3>
+    <H3>Other Keyboard Interface Development Tips</H3>
     <p class="note">
     MCK: this section is a collection of keyboard related old content with a yet undecided fate.
     </p>
