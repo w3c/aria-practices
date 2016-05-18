@@ -3258,6 +3258,7 @@ function detectHiContrast() {
       If overriding the default, consider:
       <ul>
       <li>something about ... Colors and gradients can disappear in high contrast modes.</li>
+      <li>Users need to be able to easily distinguish between focus and selection as described in <a href="#kbd_focus_vs_selection"></a>, especially when a component that contains selected elements does not contain the focus. </li>
       <li>... other considerations to be added ... </li>
       </ul>
       </li>
@@ -3267,11 +3268,27 @@ function detectHiContrast() {
       For example, if the user closes a dialog or performs a destructive operation like deleting an item from a list, the active element may be hidden or removed from the DOM.
       If such events are not managed to set focus on the button that triggered the dialog or on the list item following the deleted item, browsers move focus to the body element, affectively causing a loss of focus within the user interface.
       </li>
-      <li>Predictability of movement:... to be written ... sequence controlled by DOM order. 
+      <li>Predictability of movement: Usability of a keyboard interface is heavily influenced by how readily users can guess where focus will land after a navigation key is pressed. 
+      Some possible approaches to optimizing predictability include:
       <ul>
-      <li>... generally left to right top to bottom ... </li>
-      <li>... take into account sections .. not jumping back and forth between left nav to main kind of thing ... </li>
-      <li>Initial typically at top, but may be in some logical starting point some cases </li>
+      <li>
+      Move focus in a pattern that matches the reading order of the page's language. 
+      In left to right languages, for example, create a tab sequence that moves focus left to right and then top to bottom. 
+      </li>
+      <li>
+      Incorporate all elements of a section of the page in the tab sequence before moving focus to another section. 
+      For instance, in a page with multiple columns that has content in a left side bar, center region, and right side bar, build a tab sequence that covers all elements in the left sidebar before focus moves to the first focusable element in the center column. 
+      </li>
+      <li>
+      When the distance between two consecutive elements in the tab sequence is significant, avoid movement that would be perceived as backward. 
+      For example, a jump from the last element in the bottom right of the main content to the top element in a left-hand sidebar in a left to right language is likely to be less predictable and more difficult to follow, especially for users with a narrow field of view. 
+      </li>
+      <li> Do not set initial focus when the page loads except in cases where:
+      <ul>
+      <li>The page offers a single, primary function that nearly all users employ immediately after page load.</li>
+      <li>Any given user is likely to use the page often.</li>
+      </ul>
+      </li>
       </ul>
       </ol>
       </section>
@@ -3594,7 +3611,7 @@ helper.stopEvent(evt); //stop the event if not a tab keypress
     <li>For elements contained in a toolbar, make them focusable if discoverability is a concern. Here are two examples to aid with this judgment.
     <ol>
     <li>
-    A toolbar with buttons for moving, removing, and adding items in a list includes buttons for &quot;Up&quot;, &quot;Down&quot;, &Quot;Add&quot;, and &quot;Remove&quot;. 
+    A toolbar with buttons for moving, removing, and adding items in a list includes buttons for &quot;Up&quot;, &quot;Down&quot;, &quot;Add&quot;, and &quot;Remove&quot;. 
     The &quot;Up&quot; button is disabled and its focusability is removed when the first item in the list is selected. 
     Given the  presence of the &quot;Down&quot; button, discoverability of the &quot;Up&quot; button is not a concern.
     </li>
