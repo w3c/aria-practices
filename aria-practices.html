@@ -3283,6 +3283,10 @@ function detectHiContrast() {
       When the distance between two consecutive elements in the tab sequence is significant, avoid movement that would be perceived as backward. 
       For example, on a page with a left to right language, a jump from the last element in the bottom right of the main content to the top element in a left-hand sidebar is likely to be less predictable and more difficult to follow, especially for users with a narrow field of view. 
       </li>
+      <li>
+      Follow consistent patterns across a site.
+      The keyboard experience is more predictable when similar pages have similar focus movement patterns.
+      </li>
       <li> Do not set initial focus when the page loads except in cases where:
       <ul>
       <li>The page offers a single, primary function that nearly all users employ immediately after page load.</li>
@@ -3484,7 +3488,10 @@ function detectHiContrast() {
     </section>
     </section>
     <section id="modal_dialog">
- <h3 id="make_modal">Making a Dialog Modal</h3>
+ <h3>Managing Focus in Dialogs</h3>
+ <p class="note">
+ MCK: unedited content pulled together from the old guide that needs a significant re-write.
+ </p>
 <p>
 WAI-ARIA provides for two dialog roles - dialog and alertdialog. When authors simulate dialogs on a web page they often limit their interaction considerations to the mouse. Unlike Graphical User Interface dialog boxes on a desktop computer, a user during keyboard navigation could accidentally navigate outside the dialog box and become disoriented. This can happen when the user is tabbing in the dialog. A modal dialog prevents the user from setting focus outside of the dialog until the dialog is closed. Mouse clicks outside of the dialog must be ignored and the user must not be able to tab into or out of the dialog itself. All WAI-ARIA enabled dialog boxes should be modal. This section describes how.
 </p>
