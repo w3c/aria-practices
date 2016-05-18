@@ -3192,12 +3192,12 @@ function detectHiContrast() {
   It covers:
   </p>
   <ol>
-  <li>An overview of fundamental principles of focus movement conventions used in ARIA design patterns.</li>
+  <li>Understanding fundamental principles of focus movement conventions used in ARIA design patterns.</li>
   <li>Maintaining visible focus, predictable focus movement, and distinguishing between keyboard focus and the selected state.</li>
   <li>Managing movement of keyboard focus between components, e.g., how the focus moves when the <kbd>Tab</kbd> and <kbd>Shift+Tab</kbd> keys are pressed.</li>
   <li>Managing movement of keyboard focus inside components that contain multiple focusable elements, e.g., two different methods for programatically exposing focus inside widgets like radio groups, menus, listboxes, trees, and grids.</li>
   <li>Managing focus for modal and non-modal dialogs.</li>
-  <li>Guidance on when to remove the focusability of disabled interactive elements. </li>
+  <li>Determining when to make disabled interactive elements focusable. </li>
   <li>Assigning and revealing keyboard shortcuts, including guidance on how to avoid problematic conflicts with keyboard commands of assistive technologies, browsers, and operating systems.</li>
   <li>Addressing macro navigation concerns, i.e., methods for enabling efficient keyboard access to different sections of a page or site.</li>
   </ol>
@@ -3281,7 +3281,7 @@ function detectHiContrast() {
       </li>
       <li>
       When the distance between two consecutive elements in the tab sequence is significant, avoid movement that would be perceived as backward. 
-      For example, a jump from the last element in the bottom right of the main content to the top element in a left-hand sidebar in a left to right language is likely to be less predictable and more difficult to follow, especially for users with a narrow field of view. 
+      For example, on a page with a left to right language, a jump from the last element in the bottom right of the main content to the top element in a left-hand sidebar is likely to be less predictable and more difficult to follow, especially for users with a narrow field of view. 
       </li>
       <li> Do not set initial focus when the page loads except in cases where:
       <ul>
