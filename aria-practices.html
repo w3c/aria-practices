@@ -3653,6 +3653,7 @@ helper.stopEvent(evt); //stop the event if not a tab keypress
       </li>
       <li>Balancing efficiency and cognitive load: lack of a shortcut can reduce efficiency while too many shortcuts can increase cognitive load and clutter the experience. </li>
       </ol>
+      <section id="kbd_shortcuts_design_basic">
       <h5>Ensure Basic Access Via Navigation </h5>
       <p>
       Before assigning keyboard shortcuts, it is essential to ensure the features and functions to which shortcuts may be assigned are keyboard accessible without a keyboard shortcut.
@@ -3671,6 +3672,8 @@ This is essential to full keyboard access because:
 <li>If people who rely on the keyboard have to read documentation to learn which keys are required to use an interface, the interface may technically meet some accessibility standards but in practice is only accessible to the small subset of them who have the knowledge that such documentation exists, have the extra time available, and the ability to retain the necessary information. </li>
 <li>Not all devices that depend on keyboard interfaces can support keyboard shortcuts. </li>
 </ol>
+</section>
+<section id="kbd_shortcuts_design_choose_behavior">
 <h5>Choose Appropriate Shortcut Behavior</h5>
 <p>The following conventions may help identify the most advantageous behavior for a keyboard shortcut. </p>
 <ul>
@@ -3692,6 +3695,8 @@ Move focus and activate when the target of the shortcut has a single function an
 This behavior is typical when a shortcut is assigned to a button that opens a menu or dialog, to a checkbox, or to a navigation link or button.
 </li>
 </ul>
+</section>
+<section id="kbd_shortcuts_design_where">
 <h5>Choose Where to Add Shortcuts </h5>
 <p>
 The first goal when designing a keyboard interface is simple, efficient, and and intuitive operation with only basic keyboard navigation support.
@@ -3702,16 +3707,47 @@ And, in user interfaces with too many keyboard shortcuts, the excess shortcuts c
 </p>
 <p>Consider the following when deciding where to assign keyboard shortcuts: </p>
 <ol>
-</ol>
 <li>To be written ... stream of consciousness includes frequency of use, repetitive operations, amount of benefit (key presses saved), minimizing the number with placement, e.g., focus on a menubar with first letter nav vs assigning shortcuts to individual menuitems.</li>
+</ol>
+</section>
       </section>
       <section id="kbd_shortcuts_assigning">
       <h4>Assigning Keyboard Shortcuts</h4>
-      <p>
-      These may be &quot;mnemonics&quot; that use a letter from the label of the control, as well as other special keys that perform familiar operations on the system.
-      When localizing the user interface, localize keyboard mnemonics as well.
-      </p>
-      </section>
+      <p>When choosing the keys to assign to a shortcut, there are many factors to consider.</p>
+      <ul>
+      <li>Making the shortcut easy to learn and remember by using a mnemonic (e.g., "S" for "Save") or following a logical or spacial pattern.</li>
+      <li> Localizing the interface, including for differences in which keys are available and how they behave and for language considerations that could impact mnemonics. </li>
+      <li>Avoiding and managing conflicts with key assignments used by an assistive technology, the browser, or the operating system.</li>
+      </ul>
+                <p>
+                Methods for designing a key shortcut scheme that supports learning and memory is beyond the scope of this guide. 
+                Unless the key shortcut scheme is extensive, it is likely sufficient to mimic concepts that are familiar from common desktop software, such as browsers. 
+                Similarly, while localization is important, describing how to address it is left to other resources that specialize in that topic.
+                </p>
+                <p>
+                The remainder of this section provides guidance balancing requirements and concerns related to key assignment conflicts.
+                It is typically ideal if key assignments do not conflict with keys that are assigned to functions in the user's operating system, browser, or assistive technology.
+                    Conflicts can block efficient access to functions that are essential to the user, and a perfect storm of conflicts can trap a user. 
+                    At the same time, there are some circumstances where intentional conflicts are useful.
+                    And, Given the vast array of operating system, browser, and assistive technology keys, it is almost impossible to be certain conflicts do not exist.
+                    So it is also important to employ strategies that mitigate the impact of conflicts whether they are intentional or unknown. 
+                    </p>
+                <section id="kbd_shortcuts_assignments_opsys_conflicts">
+                    <h5>Avoiding operating system conflicts</h5>
+                </section>
+                <section id="kbd_shortcuts_assignments_assistivetech_conflicts">
+                    <h5>Avoiding Assistive Technology Key Connflicts</h5>
+                </section>
+                <section id="kbd_shortcuts_assignments_browser_conflicts">
+                    <h5>Avoiding Browser Key Connflicts</h5>
+                </section>
+                <section id="kbd_shortcuts_assignments_mitigating_conflicts">
+                    <h5>Mitigating Key Connflict Likelihood and Impact</h5>
+                </section>
+                <section id="kbd_shortcuts_assignments_intentional_conflicts">
+                    <h5>Intentional Key Conflicts</h5>
+                </section>
+            </section>
       <section id="kbd_shortcuts_exposing">
       <h4>Exposing and Documenting Keyboard Shortcuts</h4>
       <p>
