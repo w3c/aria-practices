@@ -3644,7 +3644,7 @@ helper.stopEvent(evt); //stop the event if not a tab keypress
       <p>This section explains the following factors when determining which elements and features to assign keyboard shortcuts and what behavior to give each shortcut:</p>
       <ol>
       <li>Ensuring discovery through navigation; keyboard shortcuts enhance, not replace, standard keyboard access.</li>
-      <li>Effectively choosing from among the following possible behaviors:
+      <li>Effectively choosing from among the following behaviors:
       <ol>
       <li>Navigation: Moving focus to an element. </li>
       <li>Activation: Performing an operation associated with an element that does not have focus and might not be visible.</li>
@@ -3732,20 +3732,80 @@ And, in user interfaces with too many keyboard shortcuts, the excess shortcuts c
                     And, Given the vast array of operating system, browser, and assistive technology keys, it is almost impossible to be certain conflicts do not exist.
                     So it is also important to employ strategies that mitigate the impact of conflicts whether they are intentional or unknown. 
                     </p>
+                    <p class="note">
+                    In the following sections, <kbd>meta</kbd> key refers to the <kbd>Windows</kbd> key on Windows-compatible keyboards and the <kbd>Command</kbd> key on MacOS-compatible keyboards. 
+                    </p>
                 <section id="kbd_shortcuts_assignments_opsys_conflicts">
-                    <h5>Avoiding operating system conflicts</h5>
+                    <h5>Operating System Key Conflicts</h5>
+                    <p>
+                    It is essential to avoid conflicts with keys that perform system level functions, such as appplication and window management and display and sound control. 
+                    In general, this can be achieved by refraining from the following types of assignments.
+                    </p>
+                    <ol>
+                    <li>Any modifier keys + any of <kbd>Tab</kbd>, <kbd>Enter</kbd>, <kbd>Space</kbd>, or <kbd>Escape</kbd>. </li>
+                    <li><kbd>Meta</kbd> key + any other single key (There are exceptions, but they can be risky as these keys can change across versions of operating systems) </li>
+                    <li><kbd>Alt</kbd> + a function key </li>
+                    </ol>
+                    <p>
+                    In addition, there are some important application level features that most applications, including browsers, generally support.
+                    These include:
+                    </p>
+                    <ol>
+                    <li>Zoom</li>
+                    <li>Copy/Paste</li>
+                    <li> ... to be continued ... </li>
+                    </ol>
                 </section>
                 <section id="kbd_shortcuts_assignments_assistivetech_conflicts">
-                    <h5>Avoiding Assistive Technology Key Connflicts</h5>
+                    <h5>Assistive Technology Key Connflicts</h5>
+                    <p>
+                    Even though assistive technologies have collectively taken thousands of key assignments, avoiding conflicts is relatively easy.
+                    This is because assistive technologies have had to develop key assignment schemes that avoid conflicts with both operating systems and applications.
+                    They do this by hijacking specific keys as modifiers that uniquely define their key commands.
+                    For example, many assistive technologies use the <kbd>Caps Lock</kbd> key as a modifier.
+                    </p>
+                    <p>Deflect assistive technology key conflicts by steering clear of the following types of assignments. </p>
+                    <ol>
+                    <li><kbd>Caps Lock</kbd> + any other combination of keys.</li>
+                    <li><kbd>Insert</kbd> + any combination of other keys.</li>
+                    <li><kbd>Scroll Lock</kbd> + any combination of other keys.</li>
+                    <li>Mac OS only: <kbd>Control+Option</kbd> + any combination of other keys.</li>
+                    </ol>
                 </section>
                 <section id="kbd_shortcuts_assignments_browser_conflicts">
-                    <h5>Avoiding Browser Key Connflicts</h5>
+                    <h5>Browser Key Connflicts</h5>
+                    <p>
+                    While there is considerable similarity among browser keyboard schemes, the patterns within the schemes are less homogenious.
+                    Consequently, it is more difficult to avoid conflicts with browser key assignments.
+                    While the impact of conflicts is sometimes mitigated by the availability of two paths to nearly every function -- keyboard accessible menus and keyboard shortcuts, avoiding conflicts with shortcuts to heavily used functions is nonetheless important.
+                    Pay special attention to avoiding conflicts with shortcuts to:
+                    </p>
+                    <ol>
+                    <li>Address or location bar</li>
+                    <li>Notification bar</li>
+                    <li>Page refresh</li>
+                    <li>Bookmark and history functions</li>
+                    <li>Find functions</li>
+                    </ol>
                 </section>
                 <section id="kbd_shortcuts_assignments_mitigating_conflicts">
                     <h5>Mitigating Key Connflict Likelihood and Impact</h5>
                 </section>
                 <section id="kbd_shortcuts_assignments_intentional_conflicts">
                     <h5>Intentional Key Conflicts</h5>
+                    <p>While avoiding key conflicts is usually desirable, there are
+                        circumstances where intentionally conflicting with a browser function is
+                        acceptable or even desirable. This can occur when the following combination
+                        of conditions arises:</p>
+                    <ul>
+                        <li>A web application has a frequently used function that is similar to
+                            a browser function.</li>
+                        <li>Users will often want to execute the web application function.</li>
+                        <li>Users will rarely execute the browser function.</li>
+                        <li>There is an efficient, alternative path to the browser function.</li>
+                    </ul>
+                    <p>For example, consider a save function that is available when the focus is
+                        in an editor. Most browsers use</p>
                 </section>
             </section>
       <section id="kbd_shortcuts_exposing">
