@@ -140,8 +140,13 @@ code.prettyprint {
  * Robin Berjon - http://berjon.com/
  *****************************************************************/
 
+/* Override code highlighter background */
+.hljs {
+    background: transparent !important;
+}
+
 /* --- INLINES --- */
-em.rfc2119 { 
+em.rfc2119 {
     text-transform:     lowercase;
     font-variant:       small-caps;
     font-style:         normal;
@@ -598,7 +603,7 @@ table.simple {
             <a class="logo" href="http://www.w3.org/"><img width="72" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" alt="W3C"></a>
   </p>
   <h1 class="title p-name" id="title" property="dcterms:title"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Authoring Practices 1.1</h1>
-  <h2 id="w3c-editor-s-draft-09-may-2016"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2016-05-09">09 May 2016</time></h2>
+  <h2 id="w3c-editor-s-draft-25-may-2016"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2016-05-25">25 May 2016</time></h2>
   <dl>
       <dt>This version:</dt>
       <dd><a class="u-url" href="http://w3c.github.io/aria-practices/">http://w3c.github.io/aria-practices/</a></dd>
@@ -3894,7 +3899,6 @@ Here the values 1 through 7 represent the days of the week and
       <h4 id="h-authdefkeys" resource="#h-authdefkeys"><span property="xhv:role" resource="xhv:heading"><span class="secno">5.2.6 </span> Author-Defined Keyboard Short-Cuts or Mnemonics <span class="permalink" typeof="bookmark"><a href="#AuthDefKeys" aria-label="Permalink for 5.2.6  Author-Defined Keyboard Short-Cuts or Mnemonics " title="Permalink for 5.2.6  Author-Defined Keyboard Short-Cuts or Mnemonics " property="url"><span property="title" content="5.2.6  Author-Defined Keyboard Short-Cuts or Mnemonics ">§</span></a></span></span></h4>
       <p>Author-defined keyboard short-cuts or mnemonics present a high risk for assistive technology users. Because they are device-, browser-, and <abbr title="assistive technology">AT</abbr>-dependent, conflicts among key bindings are highly probable. Therefore, if you needed to use <a href="http://www.w3.org/TR/1999/REC-html401-19991224/interact/forms.html#h-17.11.2">accesskey</a>,  you should be aware that  it will behave differently in <br>
         different browsers. It also may not work with small devices so it is still advisable to ensure that all features are accessible with the  basic keys like <kbd>Tab/Shift + Tab</kbd>, arrow, <kbd>Enter</kbd>, <kbd>Space</kbd> and <kbd>Escape</kbd>. </p>
-      <p>The <abbr title="Extensible Hypertext Markup Language">XHTML</abbr> 2 Working Group is currently developing a new <a href="http://www.w3.org/TR/xhtml-access/">Access Module</a> to address this issue and we hope to have it or a feature like it in future versions of (X)<abbr title="Hypertext Markup Language">HTML</abbr>.  Refer to <a href="#aria_ex">Section 9: Implementation Guidance</a>. </p>
         <section id="kbd_tooltips" typeof="bibo:Chapter" resource="#kbd_tooltips" property="bibo:hasPart">
         <h5 id="h-kbd_tooltips" resource="#h-kbd_tooltips"><span property="xhv:role" resource="xhv:heading"><span class="secno">5.2.6.1 </span> Supporting Tooltips with the Keyboard<span class="permalink" typeof="bookmark"><a href="#kbd_tooltips" aria-label="Permalink for 5.2.6.1  Supporting Tooltips with the Keyboard" title="Permalink for 5.2.6.1  Supporting Tooltips with the Keyboard" property="url"><span property="title" content="5.2.6.1  Supporting Tooltips with the Keyboard">§</span></a></span></span></h5>
         <p>A <a class="role-reference" href="http://w3c.github.io/aria/aria/aria.html#tooltip">tooltip</a> is a  popup messages typically triggered by moving a mouse over a control or widget causing a small popup window to appear with additional information about the control. To provide simple text tooltips, the <a href="http://www.w3.org/TR/1999/REC-html401-19991224/struct/global.html#h-7.4.3"><abbr title="Hypertext Markup Language">HTML</abbr> title attribute</a> should more than suffice because the user agent will render it for tooltips. When creating a <a class="role-reference" href="http://w3c.github.io/aria/aria/aria.html#tooltip">tooltip</a>, it is essential that  the user be able to activate it using the keyboard. When a form control or widget receives keyboard focus, the <a class="role-reference" href="http://w3c.github.io/aria/aria/aria.html#tooltip">tooltip</a> must display. When the form control or widget loses focus, the tooltip must disappear. Browsers do not currently support this functionality. </p>
