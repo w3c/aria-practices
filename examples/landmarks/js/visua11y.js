@@ -1,4 +1,21 @@
-"use strict";
+/*
+ * Copyright 2011-2014 University of Illinois
+ * Authors: Thomas Foltz and Jon Gunderson
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+ "use strict";
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
 
@@ -10,7 +27,12 @@ function initHeadings() {
 
   addPolyfills();
 
-  var targetList = [{ selector: "h1", color: "navy", label: "h1" }, { selector: "h2", color: "olive", label: "h2" }, { selector: "h3", color: "purple", label: "h3" }, { selector: "h4", color: "green", label: "h4" }, { selector: "h5", color: "gray", label: "h5" }, { selector: "h6", color: "brown", label: "h6" }];
+  var targetList = [{ selector: "h1", color: "navy",   label: "h1" }, 
+                    { selector: "h2", color: "olive",  label: "h2" }, 
+                    { selector: "h3", color: "purple", label: "h3" }, 
+                    { selector: "h4", color: "green",  label: "h4" }, 
+                    { selector: "h5", color: "gray",   label: "h5" }, 
+                    { selector: "h6", color: "brown",  label: "h6" }];
 
   var selectors = targetList.map(function (tgt) {
     return tgt.selector;
@@ -62,7 +84,17 @@ function initLandmarks() {
     return false;
   }
 
-  var targetList = [{ selector: 'aside:not([role]), [role~="complementary"], [role~="COMPLEMENTARY"]', color: "maroon", label: "complementary" }, { selector: 'footer, [role~="contentinfo"], [role~="CONTENTINFO"]', filter: isContentinfo, color: "olive", label: "contentinfo" }, { selector: '[role~="application"], [role~="APPLICATION"]', color: "black", label: "application" }, { selector: 'nav, [role~="navigation"], [role~="NAVIGATION"]', color: "green", label: "navigation" }, { selector: '[role~="region"][aria-labelledby], [role~="REGION"][aria-labelledby]', color: "teal", label: "region" }, { selector: '[role~="region"][aria-label], [role~="REGION"][aria-label]', color: "teal", label: "region" }, { selector: 'section[aria-labelledby], section[aria-label]', color: "teal", label: "region" }, { selector: 'header, [role~="banner"], [role~="BANNER"]', filter: isBanner, color: "gray", label: "banner" }, { selector: '[role~="search"], [role~="SEARCH"]', color: "purple", label: "search" }, { selector: 'main, [role~="main"], [role~="MAIN"]', color: "navy", label: "main" }];
+  var targetList = [{ selector: 'aside:not([role]), [role~="complementary"], [role~="COMPLEMENTARY"]', color: "maroon", label: "complementary" }, 
+                    { selector: 'form[aria-labelledby], form[aria-label], form[title], [role~="form"], [role~="form"]', color: "maroon", label: "form" }, 
+                    { selector: 'footer, [role~="contentinfo"], [role~="CONTENTINFO"]', filter: isContentinfo, color: "olive", label: "contentinfo" }, 
+                    { selector: '[role~="application"], [role~="APPLICATION"]', color: "black", label: "application" }, 
+                    { selector: 'nav, [role~="navigation"], [role~="NAVIGATION"]', color: "green", label: "navigation" }, 
+                    { selector: '[role~="region"][aria-labelledby], [role~="REGION"][aria-labelledby]', color: "teal", label: "region" }, 
+                    { selector: '[role~="region"][aria-label], [role~="REGION"][aria-label]', color: "teal", label: "region" }, 
+                    { selector: 'section[aria-labelledby], section[aria-label]', color: "teal", label: "region" }, 
+                    { selector: 'header, [role~="banner"], [role~="BANNER"]', filter: isBanner, color: "gray", label: "banner" }, 
+                    { selector: '[role~="search"], [role~="SEARCH"]', color: "purple", label: "search" }, 
+                    { selector: 'main, [role~="main"], [role~="MAIN"]', color: "navy", label: "main" }];
 
   var selectors = targetList.map(function (tgt) {
     return '<li>' + tgt.selector + '</li>';
@@ -130,6 +162,8 @@ Bookmarklet.prototype.run = function () {
   } else {
     removeNodes(this.cssClass);
   }
+
+  return this.show;
 };
 
 /*

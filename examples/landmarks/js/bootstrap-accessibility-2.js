@@ -1,6 +1,6 @@
 /*
- * Copyright 2011-2014 University of Illinois
- * Authors: Thomas Foltz and Jon Gunderson
+ * Copyright 2016 University of Illinois
+ * Authors: Jon Gunderson
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
- $('#myTabs a').click(function (e) {
-  e.preventDefault()
-  $(this).tab('show')
-})
+// Removes the "tablist" role from bootstrap.js "nav" class objects
+ $(document).ready(function (e) {
+        $('ul.nav-stacked').removeAttr('role');
+ });

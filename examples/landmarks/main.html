@@ -19,12 +19,14 @@
         </div>
         <div class="col-xs-12 col-sm-9 col-md-9 col-lg-10">
           <h1>ARIA Landmarks Example</h1>
+          <p id="inst" class="inst">Visually outline the landmarks and/or headings on the page using the following buttons.</p>
+          <button onclick="showLandmarks(event)" aria-describedby="inst">Show Landmarks</button>
+          <button onclick="showHeadings(event)"  aria-describedby="inst">Show Headings</button>
         </div>
       </header>
       <div class="row">
         <div class="col-xs-12 col-sm-3 col-md-3 col-lg-2">
-          <nav aria-labelledby="nav2">
-            <h2 id="nav2" class="sr-only">Main</h2>
+          <nav>
             <ul class="nav nav-pills nav-stacked">
               <li><a href="index.html">Principles</a></li>
               <li><a href="HTML5.html">HTML5</a></li>
@@ -32,11 +34,11 @@
               <li><a href="complementary.html">Complementary</a></li>
               <li><a href="contentinfo.html">Contentinfo</a></li>
               <li><a href="form.html">Form</a></li>
-              <li class="active"><a href="main.html">Main</a></li>
+              <li class="active"><a href="main.html" aria-current="page">Main</a></li>
               <li><a href="navigation.html">Navigation</a></li>
               <li><a href="region.html">Region</a></li>
               <li><a href="search.html">Search</a></li>
-              <li><a href="at.html" aria-label="Assitive Technology">Asst. Tech.</a></li>
+              <li><a href="at.html" aria-label="Assistive Technology">Asst. Tech.</a></li>
               <li><a href="resources.html">Resources</a></li>
             </ul>
           </nav>
@@ -55,18 +57,18 @@
               </li>
               <li>If a page includes more than one <code>main</code> landmark, each should have a unique label.</li>
             </ul>
-            <div>
+            <section aria-label="Coding Techniques">
               <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active"><a href="#aria-techniques" aria-controls="aria-techniques" role="tab" data-toggle="tab">ARIA Techniques</a></li>
-                <li role="presentation"><a href="#html5-techniques" aria-controls="html5-techniques" role="tab" data-toggle="tab">HTML5 Techniques</a></li>
+                <li role="presentation" class="active"><a id="tab1" href="#tabpanel1" aria-controls="tabpanel1" role="tab" data-toggle="tab">ARIA Techniques</a></li>
+                <li role="presentation"><a id="tab2" href="#tabpanel2" aria-controls="tabpanel2" role="tab" data-toggle="tab">HTML5 Techniques</a></li>
               </ul>
               <div class="tab-content">
-                <div role="tabpanel" class="tab-pane active" id="aria-techniques">
+                <div id="tabpanel1" aria-labelledby="tab1" role="tabpanel" class="tab-pane active">
                   <p>A <code>role="main"</code> attribute is used to define a <code>main</code> landmark.</p>
 
                   <h3>ARIA Example: One Main Landmark</h3>
 
-                  <p>When only one main landmark on a page, a label is optional.</p>
+                  <p>When only one main landmark exists on a page, a label is optional.</p>
 
                   <div class="code">
                     &lt;div <strong>role="main"&gt;</strong>
@@ -81,7 +83,7 @@
 
                   <h3>ARIA Example: Multiple Main Landmarks</h3>
 
-                  <p>When there is more than one main landmark on a page, each should have a unique a label.</p>
+                  <p>When there is more than one main landmark on a page, each should have a unique label.</p>
 
                   <div class="code">
                     &lt;div <strong>role="main"  aria-labelledby="<em>title1</em>"</strong>&gt;
@@ -109,7 +111,7 @@
                   </div>
 
                 </div>
-                <div role="tabpanel" class="tab-pane" id="html5-techniques">
+                <div id="tabpanel2" aria-labelledby="tab2" role="tabpanel" class="tab-pane">
 
                   <p>Use the HTML5 <code>main</code> element to define a <code>main</code> landmark.</p>
 
@@ -130,7 +132,7 @@
                   
                   <h3>HTML5 Example: Multiple Main Landmarks</h3>
 
-                  <p>When there is more than one main landmark on a page, each should have a unique a label.</p>
+                  <p>When there is more than one main landmark on a page, each should have a unique label.</p>
 
                   <div class="code">
                     <strong>&lt;main  aria-labelledby="<em>title1</em>"&gt;</strong>
@@ -158,7 +160,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </section>
           </main>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
@@ -167,24 +169,23 @@
             <p>The following are landmarks defined on the page:</p>
             <ul>
               <li>Banner</li>
-              <li>Navigation</li>
-              <li>Complementary(3)</li>
-              <li>Main</li>
+              <li>Complementary</li>
               <li>Contentinfo</li>
+              <li>Main</li>
+              <li>Navigation</li>
             </ul>
-            <p id="highlight_inst" class="inst">Visually outline the landmarks and/or headings on the page using the following buttons.</p>
-            <button onclick="showLandmarks(event)" aria-describedby="highlight_inst">Show Landmarks</button>
-            <button onclick="showHeadings(event)" aria-describedby="highlight_inst">Show Headings</button>
           </aside>
           <aside aria-labelledby="id3">
             <h2 id="id3">Related W3C Specs</h2>
             <ul>
-              <li><a href="http://www.w3.org/TR/WCAG">WCAG 2.0</a></li>
-              <li><a href="http://www.w3.org/TR/html5">HTML5</a></li>
-              <li><a href="http://www.w3.org/TR/wai-aria">ARIA</a></li>
+              <li><a href="http://www.w3.org/TR/WCAG">WCAG 2.0 Specification</a></li>
+              <li><a href="http://www.w3.org/TR/html5">HTML5 Specification</a></li>
+              <li><a href="http://www.w3.org/TR/wai-aria">ARIA Specification</a></li>
               <li><a href="https://www.w3.org/TR/wai-aria-practices/">ARIA Authoring Practices</a></li>
               <li><a href="https://www.w3.org/TR/accname-aam-1.1/">ARIA Accessible Name Calc</a></li>
               <li><a href="https://www.w3.org/TR/aria-in-html/">ARIA in HTML5</a></li>
+              <li><a href="https://www.w3.org/TR/2016/WD-core-aam-1.1-20160317/">Core Accessibility API Mappings 1.1</a></li>
+              <li><a href="https://www.w3.org/TR/html-aam-1.0/">HTML Accessibility API Mappings 1.0</a></li>
             </ul>
           </aside>
         </div>
@@ -202,7 +203,8 @@
     </div>
     <script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>        
     <script type="text/javascript" src="js/bootstrap.min.js"></script>        
-    <script type="text/javascript" src="js/bootstrap-accessibility.min.js"></script>        
+    <script type="text/javascript" src="js/bootstrap-accessibility.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-accessibility-2.js"></script>       
     <script type="text/javascript" src="js/visua11y.js"></script>        
     <script type="text/javascript" src="js/show.js"></script>        
     <script type="text/javascript" >
@@ -211,7 +213,8 @@
       {
         "settings": {
           "skipTo": {
-            "headings": "h1, h2"
+            "headings": "h1, h2",
+            "attachElement": "header"
           }
         }
       };
