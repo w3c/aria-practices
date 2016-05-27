@@ -6,10 +6,8 @@
     <link href="css/bootstrap.css" rel="stylesheet" media="screen"/>
     <link href="css/bootstrap-theme.css" rel="stylesheet" media="screen"/>
     <link href="css/bootstrap-accessibility.css" rel="stylesheet" media="screen"/>
-    <link href="css/bootstrap-accessibility.css" rel="stylesheet" media="screen"/>
     <link href="css/visua11y.css" rel="stylesheet" media="screen"/>
     <link href="css/common.css" rel="stylesheet" media="screen"/>
-    <script src="js/tabs.js" type="text/javascript"></script>
   </head>
   <body>
     <div class="container">
@@ -54,7 +52,7 @@
               <li>If a <code>navigation</code> landmark has an identical set of links as another <code>navigation</code> landmark on the page, use the same label for each <code>navigation</code> landmark.</li>
             </ul>
             <section aria-label="Coding Techniques">
-              <ul class="nav nav-tabs" role="tablist">
+              <ul id="myTabs" class="nav nav-tabs" role="tablist">
                 <li class="active"><a id="tab1" href="#tabpanel1" aria-controls="tabpanel1" role="tab" data-toggle="tab">ARIA Techniques</a></li>
                 <li><a id="tab2" href="#tabpanel2" aria-controls="tabpanel2" role="tab" data-toggle="tab">HTML5 Techniques</a></li>
               </ul>
