@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>ARIA Tree View Example: Links</title>
+    <link href="../css/core.css" rel="stylesheet">
+    <link href="../css/table.css" rel="stylesheet">
+    <link href="css/treeview.css" rel="stylesheet">
+    <script type="text/javascript" src="http://www.oaa-accessibility.org/media/examples/js/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="../js/examples.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/treeview.js" type="text/javascript"></script>
+
+  </head>
+  <body>
+    <main>
+      <h1 id="id1">ARIA Tree View Example: Links</h1>
+        <p><a href="https://www.w3.org/TR/wai-aria-practices-1.1/#TreeView">WAI-ARIA 1.1: Tree View</a></p>
+      <div id="example">  
+        <section id="code-ex-1" aria-labelledby="id1">
+          <h2 id="tree1">Foods</h2>
+          <ul role="tree" aria-labelledby="tree1" >
+            <li role="treeitem" aria-expanded="true" aria-label="Fruits">
+              <span><a href="https://en.wikipedia.org/wiki/Fruit"> Fruits</a></span>
+              <ul>
+                <li role="treeitem"><a href="https://en.wikipedia.org/wiki/Orange_%28fruit%29">Oranges</a></li>
+                <li role="treeitem"><a href="https://en.wikipedia.org/wiki/Pineapple">Pineapple</a></li>
+                <li role="treeitem" aria-expanded="false" aria-label="Apples">
+                  <span><a href="https://en.wikipedia.org/wiki/Apple"> Apples</a></span>
+                  <ul>
+                    <li role="treeitem"><a href="https://en.wikipedia.org/wiki/McIntosh_%28apple%29">Macintosh</a></li>
+                    <li role="treeitem"><a href="https://en.wikipedia.org/wiki/Granny_Smith">Granny Smith</a></li>
+                    <li role="treeitem"><a href="https://en.wikipedia.org/wiki/Fuji_(apple)">Fuji</a></li>
+                  </ul>
+                </li>  
+                <li role="treeitem"><a href="https://en.wikipedia.org/wiki/Banana">Bananas</a></li>    
+                <li role="treeitem"  aria-expanded="false" aria-label="Pears">
+                  <span><a href="https://en.wikipedia.org/wiki/Pear">Pears</a></span>
+                  <ul>
+                    <li role="treeitem"><a href="https://en.wikipedia.org/wiki/D%27Anjou">Anjou</a></li>
+                    <li role="treeitem"><a href="https://en.wikipedia.org/wiki/Williams_pear">Bartlett</a></li>
+                    <li role="treeitem"><a href="https://en.wikipedia.org/wiki/Bosc_pear">Bosc</a></li>
+                    <li role="treeitem"><a href="https://en.wikipedia.org/wiki/Kosui_(pear)">Kosui</a></li>
+                  </ul>
+                </li>    
+              </ul>
+            </li>
+          </ul>
+        </section>
+      </div>  
+
+      <section aria-labelledby="id_kbd">
+
+        <h2 id="id_kbd">Keyboard Support</h2>
+      
+        <table aria-labelledby="id_kbd"> 
+          <thead>
+            <tr>
+              <th>Key</th>
+              <th>Function</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Up arrow Key</td>
+              <td>Moves focus to previous sibling <code>treeitem</code>. If no previous sibling, focus stays on current <code>treeitem</code>.</td>
+            </tr>
+            <tr>
+              <td>Down arrow Key</td>
+              <td>Moves focus to next sibling <code>treeitem</code>. If no next sibling, focus stays on current <code>treeitem</code>.</td>
+            </tr>
+            <tr>
+              <td>Left Arrow Key</td>
+              <td>
+                <ul>
+                  <li>For a <code>treeitem</code> that is in the expanded state (e.g. has <code>[aria-expanded=true]</code>) it toogles to the collapsed state.   Focus remains on the current <code>treeitem</code>.</li>
+                  <li>For a <code>treeitem</code> that is in the collapsed state or is not expandable/collapsable, focus moves to the parent <code>treeitem</code>.
+                    If no parent, focus stays on current <code>treeitem</code>.
+                  </li> 
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>Right Arrow Key</td>
+              <td>
+                <ul>
+                  <li>For a <code>treeitem</code> that is in the collapsed state (e.g. has <code>[aria-expanded=false]</code>) it toogles to the expanded state.   Focus remains on the current <code>treeitem</code>.</li>
+                  <li>For a <code>treeitem</code> is in the expanded state, focus moves to the first child <code>treeitem</code>.
+                    If no child, focus stays on current <code>treeitem</code>.
+                  </li> 
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>Return Key</td>
+              <td>Performs the default action (e.g. onclick event) on the <code>a</code> element that is a child of the current <code>treeitem</code>.</td>
+            </tr>
+            <tr>
+              <td>Space Key</td>
+              <td>Performs the default action (e.g. onclick event) on the <code>a</code> element that is a child of the current <code>treeitem</code>.</td>
+            </tr>
+            <tr>
+              <td>Home Key</td>
+              <td>Moves focus to first sibling of the current <code>treeitem</code>.</td>
+            </tr>
+            <tr>
+              <td>End Key</td>
+              <td>Moves focus to last sibling of the current <code>treeitem</code>.</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </section>    
+
+
+      <section aria-labelledby="id_roles">
+        <h2 id="id_roles">ARIA Roles</h2>
+
+        <table aria-labelledby="id_roles"> 
+          <thead>
+            <tr>
+              <th>Role</th>
+              <th>Usage</th>
+              <th>Accessible Name Source</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>tree</td>
+              <td>The tree view container has a <code>role=tree</code>.</td>
+              <td><code>aria-labelledby</code> to visible label.</td>
+            </tr>
+            <tr>
+              <td>treeitem</td>  
+              <td>Each node in a tree has the <code>role=treeitem</code> and should be a DOM child of tree.</td>
+              <td>
+                <ul>
+                  <li>Child text content of <code>treeitem</code>.</li>
+                  <li><code>aria-label</code> for <code>treeitem</code>s that expand and collapse.</li>
+                </ul>
+              </td>  
+            </tr>
+            <tr>
+              <td>group</td>
+              <td>A collection of <code>treeitem</code>s to be expanded and collapsed are enclosed in a element with <code>role=group</code>.  The <code>ul</code> element has the default role of <code>group</code>.</td>
+              <td>not needed</td>  
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      
+
+      <section aria-labelledby="id_props">
+
+        <h2 id="id_props">ARIA Properties and States</h2>
+
+        <table aria-labelledby="id_props"> 
+          <thead>
+            <tr>
+              <th>Property/State</th>
+              <th>Usage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>aria-expanded</td>
+              <td>
+                <ul>
+                  <li>Each element with <code>role=treeitem</code> that can be expanded or collapsed should have an <code>aria-expanded</code> attribute.</li>
+                  <li>Each element with <code>role=treeitem</code> which is expanded should have <code> aria-expanded="true"</code>.</li>
+                  <li>Each element with <code>role=treeitem</code> which is collapsed should have <code> aria-expanded="false"</code>.</li>           
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>aria-labelledby</td>
+              <td>Provides accessible name for the <code>tree</code> role.</td>
+            </tr>
+            <tr>
+              <td>aria-label</td>
+              <td>Provides accessible name for the <code>treeitem</code>s that are expandable and collapsable.</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </section>
+
+      <section aria-labelledby="id_tabindex">
+      
+        <h2 id="id_tabindex"><code>tabindex</code> values</h2>
+
+        <table aria-labelledby="id_tabindex"> 
+          <thead>
+            <tr>
+              <th style="min-width: 8em;" title="Element Selector">Elements</th>
+              <th style="min-width: 4em;">Values</th>
+              <th>Purpose</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>[role=treeitem]</td>
+              <td>0 or -1</td>
+              <td>The <code>treeitem</code> with the current focus should have tabindex=0, all other <code>treeitem</code>s should have a tabindex value of -1.</td>
+            </tr>
+            <tr>
+              <td>[role=treeitem] a</td>
+              <td>-1</td>
+              <td>Remove any links that are descendants of a <code>treeitem</code> from the default tab order of the page by changing tabindex value to -1 (e.g. the default value for a link is 0).</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </section>
+
+      <section aria-labelledby="id_events">
+
+        <h2 id="id_events">Events</h2>
+        <table aria-labelledby="id_events"> 
+          <thead>
+            <tr>
+              <th>Event</th>
+              <th>Element</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>keydown</td>
+              <td><code>[role=treeitem]</code></td>
+              <td>A <code>keydown</code> event listener is added to each element with <code>role=treeitem</code> to support moving focus between the <code>treeitem</code> with the keyboard.</td>
+            </tr>
+            <tr>
+              <td>click</td>
+              <td><code>[role=treeitem][aria-expanded]</code></td>
+              <td>Click event listener is added to each element with <code>role=treeitem</code> and <code>aria-expanded</code> to support opening and closing a branch of the tree with the mouse.</td>
+            </tr>
+            <tr>
+              <td>focus</td>
+              <td><code>[role=treeitem]</code></td>
+              <td>Focus event listener is added to each element with <code>role=treeitem</code> to support visual styling of the <code>treeitem</code> when it recieves focus.</td>
+            </tr>
+            <tr>
+              <td>blur</td>
+              <td><code>[role=treeitem]</code></td>
+              <td>Blur event listener is added to each element with <code>role=treeitem</code> to support visual styling of the <code>treeitem</code> when it does not have focus.</td>
+            </tr>
+          </tbody>
+        </table>    
+
+      </section>
+
+      <section aria-labelledby="id_focus">
+      
+        <h2 id="id_focus">Keyboard Focus Styling</h2>
+
+        <table aria-labelledby="id_focus"> 
+          <thead>
+            <tr>
+              <th style="min-width: 8em;" title="Element Selector">Elements</th>
+              <th>Focus Style</th>
+              <th>Focus Technique</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>[role=treeitem]</td>
+              <td>
+                <ul>
+                  <li>border</li>
+                  <li>background-color</li>
+                </ul>
+              </td>
+              <td><code>focus</code> and <code>blur</code> events are used to add and remove a "focus" class to the <code>treeitem</code> element.</td>
+            </tr>
+            <tr>
+              <td>[role=treeitem][aria-expanded]</td>
+              <td>
+                <ul>
+                  <li>border</li>
+                  <li>background-color</li>
+                </ul>
+              </td>
+              <td><code>focus</code> and <code>blur</code> events are used to add and remove a "focus" class to the first child element (e.g <code>span</code> element) of the <code>treeitem</code> element.</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </section>
+      <section aria-labelledby="sc-ex1">
+        <h2 id="sc-ex1">Source Code: Example</h2>
+      
+        <ul>
+          <li>CSS: <a href="css/treeview.css" type="tex/css">treeview.css</a></li>
+          <li>Javascript: <a href="js/treeview.js" type="text/javascript">treeview.js</a></li>
+        </ul>
+      
+        <div id="sc1">
+       
+        </div>
+      </section>
+
+
+      <script>
+        sourceCode.add('sc1', 'code-ex-1')
+        sourceCode.make()
+      </script>
+
+
+  </main>
+  </body>
+  </html>

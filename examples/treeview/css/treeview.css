@@ -1,0 +1,39 @@
+
+[role="treeitem"]:hover,
+[role="treeitem"]:focus {
+  border-color: #eee;
+  cursor: default;
+}
+
+[role="tree"]:active {
+  border-color: #bbb;
+}
+
+[role="treeitem"][aria-expanded="false"] > span:before {
+  content: url(../images/contracted.gif);
+}
+
+[role="treeitem"][aria-expanded="true"] > span:before {
+  content: url(../images/expanded.gif);
+}
+
+li[role="treeitem"],
+li[role="treeitem"] span {
+  list-style: none;
+  border: thin transparent solid;
+  padding: 0.125em;
+  display: block;
+}
+
+li[role="treeitem"].focus,
+li[role="treeitem"] span.focus {
+  border-color: black;
+  background-color: #EEEEEE;
+  width: 8em;
+}
+
+ul[role="tree"] {
+}
+ul.feature li{
+	list-style-type: disc;
+}
