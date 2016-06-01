@@ -29,7 +29,7 @@ li[role="treeitem"].focus,
 li[role="treeitem"] span.focus {
   border-color: black;
   background-color: #EEEEEE;
-  width: 8em;
+  width: 16em;
 }
 
 ul[role="tree"] {

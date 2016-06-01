@@ -501,8 +501,8 @@ Tree.prototype.handleClick = function (event) {
 Tree.prototype.handleFocus = function (event) {
   var ct = event.currentTarget;
   var node = ct.firstElementChild;
-  if (!node) node = ct;
-  node.classList.add('focus'); 
+  if (node && (typeof ct.getAttribute('aria-expanded') === 'string')) ct = node;
+  ct.classList.add('focus'); 
 };
 
 /*
@@ -516,8 +516,8 @@ Tree.prototype.handleFocus = function (event) {
 Tree.prototype.handleBlur = function (event) {
   var ct = event.currentTarget;
   var node = ct.firstElementChild;
-  if (!node) node = ct;
-  node.classList.remove('focus'); 
+  if (node && (typeof ct.getAttribute('aria-expanded') === 'string')) ct = node;
+  ct.classList.remove('focus'); 
 };
 
 

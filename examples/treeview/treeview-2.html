@@ -20,7 +20,7 @@
         <section id="code-ex-1" aria-labelledby="id1">
           <h2 id="tree1">Foods</h2>
           <ul role="tree" aria-labelledby="tree1" >
-            <li role="treeitem" aria-expanded="true" aria-label="Fruits">
+            <li role="treeitem" aria-expanded="false" aria-label="Fruits">
               <span><a href="https://en.wikipedia.org/wiki/Fruit"> Fruits</a></span>
               <ul>
                 <li role="treeitem"><a href="https://en.wikipedia.org/wiki/Orange_%28fruit%29">Oranges</a></li>
@@ -45,13 +45,75 @@
                 </li>    
               </ul>
             </li>
+            <li role="treeitem" aria-expanded="false" aria-label="Vegetables">
+              <span><a href="https://en.wikipedia.org/wiki/List_of_vegetables"> Vegetables</a></span>
+              <ul>
+                <li role="treeitem" aria-expanded="false" aria-label="Podded Vegetables">
+                  <span><a href="https://en.wikipedia.org/wiki/List_of_vegetables#Podded_vegetables"> Podded Vegetables</a></span>
+                  <ul>
+                    <li role="treeitem"><a href="https://en.wikipedia.org/wiki/Lentil"> Lentil</a></li>
+                    <li role="treeitem"><a href="https://en.wikipedia.org/wiki/Pea"> Pea</a></li>
+                    <li role="treeitem"><a href="https://en.wikipedia.org/wiki/Peanut"> Peanut</a></li>
+                  </ul>
+                </li>  
+                <li role="treeitem"  aria-expanded="false" aria-label="Bulb and Stem Vegetables">
+                  <span><a href="https://en.wikipedia.org/wiki/List_of_vegetables#Bulb_and_stem_vegetables"> Bulb and Stem Vegetables</a></span>
+                  <ul>
+                    <li role="treeitem"><a href="https://en.wikipedia.org/wiki/Asparagus"> Asparagus</a></li>
+                    <li role="treeitem"><a href="https://en.wikipedia.org/wiki/Celery"> Celery</a></li>
+                    <li role="treeitem"><a href="https://en.wikipedia.org/wiki/Leek"> Leek</a></li>
+                    <li role="treeitem"><a href="https://en.wikipedia.org/wiki/Onion"> Onion</a></li>
+                  </ul>
+                </li>    
+                <li role="treeitem"  aria-expanded="false" aria-label="Root and Tuberous Vegetables">
+                  <span><a href="https://en.wikipedia.org/wiki/List_of_vegetables#Root_and_tuberous_vegetables"> Root and Tuberous Vegetables</a></span>
+                  <ul>
+                    <li role="treeitem"><a href="https://en.wikipedia.org/wiki/Carrot"> Carrot</a></li>
+                    <li role="treeitem"><a href="https://en.wikipedia.org/wiki/Ginger"> Ginger</a></li>
+                    <li role="treeitem"><a href="https://en.wikipedia.org/wiki/Parsnip"> Parsnip</a></li>
+                    <li role="treeitem"><a href="https://en.wikipedia.org/wiki/Potato"> Patato</a></li>
+                  </ul>
+                </li>    
+              </ul>
+            </li>
+            <li role="treeitem" aria-expanded="false" aria-label=" Grains">
+              <span><a href="https://en.wikipedia.org/wiki/Grain"> Grains</a></span>
+              <ul>
+                <li role="treeitem" aria-expanded="false" aria-label="Cereal grains">
+                  <span><a href="https://en.wikipedia.org/wiki/Grain#Cereal_grains"> Cereal Grains</a></span>
+                  <ul>
+                    <li role="treeitem"><a href="https://en.wikipedia.org/wiki/Barley"> Barley</a></li>
+                    <li role="treeitem"><a href="https://en.wikipedia.org/wiki/Oats"> Oats</a></li>
+                    <li role="treeitem"><a href="https://en.wikipedia.org/wiki/Rice"> Rice</a></li>
+                  </ul>
+                </li>  
+                <li role="treeitem"  aria-expanded="false" aria-label="Pseudocereal grains">
+                  <span><a href="https://en.wikipedia.org/wiki/Grain#Pseudocereal_grains"> Pseudocereal Grains</a></span>
+                  <ul>
+                    <li role="treeitem"><a href="https://en.wikipedia.org/wiki/Amaranth"> Amaranth</a></li>
+                    <li role="treeitem"><a href="https://en.wikipedia.org/wiki/Buckwheat"> Buckwheat</a></li>
+                    <li role="treeitem"><a href="https://en.wikipedia.org/wiki/Salvia_hispanica"> Chia</a></li>
+                    <li role="treeitem"><a href="https://en.wikipedia.org/wiki/Quinoa"> Quinoa</a></li>
+                  </ul>
+                </li>    
+                <li role="treeitem"  aria-expanded="false" aria-label="Oilseeds">
+                  <span><a href="https://en.wikipedia.org/wiki/Grain#Oilseeds"> Oilseeds</a></span>
+                  <ul>
+                    <li role="treeitem"><a href="https://en.wikipedia.org/wiki/Brassica_juncea"> India Mustard</a></li>
+                    <li role="treeitem"><a href="https://en.wikipedia.org/wiki/Safflower"> Safflower</a></li>
+                    <li role="treeitem"><a href="https://en.wikipedia.org/wiki/Flax_seed"> Flax Seed</a></li>
+                    <li role="treeitem"><a href="https://en.wikipedia.org/wiki/Poppy_seed"> Poppy Seed</a></li>
+                  </ul>
+                </li>    
+              </ul>
+            </li>
           </ul>
         </section>
       </div>  
 
       <section aria-labelledby="id_kbd">
 
-        <h2 id="id_kbd">Keyboard Support</h2>
+        <h2 id="id_kbd">Keyboard Interaction and Focus Management</h2>
       
         <table aria-labelledby="id_kbd"> 
           <thead>
@@ -73,10 +135,10 @@
               <td>Left Arrow Key</td>
               <td>
                 <ul>
+                  <li>For a <code>treeitem</code> that is an end node (e.g. no child <code>treeitem</code>s) or is in the collapsed state (e.g. has <code>[aria-expanded=false]</code>), focus moves to the parent <code>treeitem</code>.
+                   If a top level <code>treeitem</code> (e.g. parent is <code>tree</code>), focus stays on current <code>treeitem</code>.
+                   </li> 
                   <li>For a <code>treeitem</code> that is in the expanded state (e.g. has <code>[aria-expanded=true]</code>) it toogles to the collapsed state.   Focus remains on the current <code>treeitem</code>.</li>
-                  <li>For a <code>treeitem</code> that is in the collapsed state or is not expandable/collapsable, focus moves to the parent <code>treeitem</code>.
-                    If no parent, focus stays on current <code>treeitem</code>.
-                  </li> 
                 </ul>
               </td>
             </tr>
@@ -84,7 +146,8 @@
               <td>Right Arrow Key</td>
               <td>
                 <ul>
-                  <li>For a <code>treeitem</code> that is in the collapsed state (e.g. has <code>[aria-expanded=false]</code>) it toogles to the expanded state.   Focus remains on the current <code>treeitem</code>.</li>
+                  <li>For a <code>treeitem</code> that is an end node (e.g. no child <code>treeitem</code>s) focus stays on current <code>treeitem</code>.</li>
+                  <li>For a <code>treeitem</code> that is in the collapsed state (e.g. has <code>[aria-expanded=false]</code>) it toogles to the expanded state and focus moves to the first child <code>treeitem</code>.  If no child, focus stays on current <code>treeitem</code>.</li>
                   <li>For a <code>treeitem</code> is in the expanded state, focus moves to the first child <code>treeitem</code>.
                     If no child, focus stays on current <code>treeitem</code>.
                   </li> 
@@ -101,11 +164,11 @@
             </tr>
             <tr>
               <td>Home Key</td>
-              <td>Moves focus to first sibling of the current <code>treeitem</code>.</td>
+              <td>Moves focus to first <code>treeitem</code> in the <code>tree</code>.</td>
             </tr>
             <tr>
               <td>End Key</td>
-              <td>Moves focus to last sibling of the current <code>treeitem</code>.</td>
+              <td>Moves focus to last visible <code>treeitem</code> (e.g. depth first) in the <code>tree</code>.</td>
             </tr>
           </tbody>
         </table>

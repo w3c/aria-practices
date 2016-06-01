@@ -58,6 +58,10 @@ img {
   border: none;
 }
 
+td ul li {
+  margin-left: 1em;
+}
+
 code {
   font-family: "Courier new", Courier, Monospace;
   font-weight: bold;
