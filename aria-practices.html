@@ -408,30 +408,14 @@
             <code>body</code> element.</li>
 
             <li>The HTML5 <code>header</code> element is not considered a <code>banner</code> landmark when it is descendant of any
-            of following elements:
+            of following elements (see <a href="http://w3c.github.io/aria/html-aam/html-aam.html">HTML Accessibility Mappings</a>):
 
               <ul>
-                <li><code>address</code></li>
-
                 <li><code>article</code></li>
-
                 <li><code>aside</code></li>
-
-                <li><code>blockquote</code></li>
-
-                <li><code>details</code></li>
-
-                <li><code>fieldset</code></li>
-
-                <li><code>figure</code></li>
-
                 <li><code>main</code></li>
-
                 <li><code>nav</code></li>
-
                 <li><code>section</code></li>
-
-                <li><code>table</code></li>
               </ul>
             </li>
             </ul>
@@ -440,6 +424,12 @@
             attribute should be used to define a <code>banner</code> landmark.</p>
 
         </section>
+
+        <section class="notoc">
+          <h5>Examples</h5>
+          <p><a href="examples/landmarks/banner.html">Banner Landmark Example</a></p>
+        </section>
+
       </section>
 
       <section id="aria_lh_complementary">
@@ -469,6 +459,12 @@
             <p>If the HTML5 <code>aside</code> element technique is not being used, use a
             <code>role=&quot;complementary&quot;</code> attribute to define a <code>complementary</code> landmark.</p>
         </section>
+
+        <section class="notoc">
+          <h5>Examples</h5>
+          <p><a href="examples/landmarks/complementary.html">Complementary Landmark Example</a></p>
+        </section>
+
       </section>
 
       <section id="aria_lh_contentinfo">
@@ -499,30 +495,14 @@
             <code>body</code> element.</li>
 
             <li>The HTML5 <code>footer</code> element is not considered a <code>contentinfo</code> landmark when it is descendant
-            of any of following elements:
+            of any of following elements (see <a href="http://w3c.github.io/aria/html-aam/html-aam.html">HTML Accessibility Mappings</a>):
 
               <ul>
-                <li><code>address</code></li>
-
                 <li><code>article</code></li>
-
                 <li><code>aside</code></li>
-
-                <li><code>blockquote</code></li>
-
-                <li><code>details</code></li>
-
-                <li><code>fieldset</code></li>
-
-                <li><code>figure</code></li>
-
                 <li><code>main</code></li>
-
                 <li><code>nav</code></li>
-
                 <li><code>section</code></li>
-
-                <li><code>table</code></li>
               </ul>
             </li>
             </ul>
@@ -531,6 +511,12 @@
             <p>If the HTML5 <code>footer</code> element technique is not being used, a <code>role=&quot;contentinfo&quot;</code>
             attribute should be used to define a <code>contentinfo</code> landmark.</p>
           </section>
+
+        <section class="notoc">
+          <h5>Examples</h5>
+          <p><a href="examples/landmarks/contentinfo.html">Contentinfo Landmark Example</a></p>
+        </section>
+
           </section>
 
           <section id="aria_lh_form">
@@ -570,15 +556,15 @@
 
               <h5>HTML5 Techniques</h5>
 
-              <ul>
-                <li>The <code>role=&quot;form&quot;</code> attribute defines a form landmark.</li>
-
-                <li>There is no HTML5 element that defines a <code>form</code> landmark.</li>
-                </ul>
+              <p>The HTML5 <code>form</code> element that defines a <code>form</code> landmark when it has an accessible name (e.g. <code>aria-labelledby</code>, <code>aria-label</code> or <code>title</code>).</p>
               <h5>ARIA Technique</h5>
                 <p>Use the <code>role=&quot;form&quot;</code> to identify a region of the page; do not use it to identify every
                 form field.</p>
             </section>
+        <section class="notoc">
+          <h5>Examples</h5>
+          <p><a href="examples/landmarks/form.html">Form Landmark Example</a></p>
+        </section>
           </section>
 
           <section id="aria_lh_main">
@@ -611,6 +597,11 @@
                 <p>If the HTML5 <code>main</code> element technique is not being used, use a <code>role=&quot;main&quot;</code>
                 attribute to define a <code>main</code> landmark.</p>
             </section>
+        <section class="notoc">
+          <h5>Examples</h5>
+          <p><a href="examples/landmarks/main.html">Main Landmark Example</a></p>
+        </section>
+
           </section>
 
           <section id="aria_lh_navigation">
@@ -637,6 +628,11 @@
                 <p>If the HTML5 <code>nav</code> element technique is not being used, use a
                 <code>role=&quot;navigation&quot;</code> attribute to define a <code>navigation</code> landmark.</p>
             </section>
+        <section class="notoc">
+          <h5>Examples</h5>
+          <p><a href="examples/landmarks/navigation.html">Navigation Landmark Example</a></p>
+        </section>
+
           </section>
 
           <section id="aria_lh_region">
@@ -665,6 +661,11 @@
                 <p>If the HTML5 <code>section</code> element technique is not being used, use a
                 <code>role=&quot;region&quot;</code> attribute to define a <code>region</code> landmark.</p>
             </section>
+        <section class="notoc">
+          <h5>Examples</h5>
+          <p><a href="examples/landmarks/region.html">Region Landmark Example</a></p>
+        </section>
+
           </section>
 
         <section id="aria_lh_search">
@@ -688,6 +689,11 @@
 
               <p>The <code>role=&quot;search&quot;</code> attribute defines a <code>search</code> landmark.</p>
           </section>
+        <section class="notoc">
+          <h5>Examples</h5>
+          <p><a href="examples/landmarks/search.html">Search Landmark Example</a></p>
+        </section>
+
         </section>
       </section>
     </section>
@@ -1776,7 +1782,7 @@
       Authors should avoid creating options with very long names.
        Each option name is spoken by a screen reader as a single unit of speech when the user navigates the list.
        When a large amount information is spoken as the result of a single key press, it can be difficult to understand.
-      If the speaking of an option is interrupted, the user will typically have to re-read the entire option. 
+      If the speaking of an option is interrupted, the user will typically have to re-read the entire option.
         And, if the user does not understand what is spoken, re-reading of a listbox option name by character, word, or phrase may be a difficult operation for some screen reader users because the screen reader is in an interactive mode, rather than a reading mode, when operating a widget like a listbox.
       </p>
       <p>
@@ -1809,7 +1815,7 @@
               <li>Type multiple characters in rapid succession: focus moves to the next item with a name that starts with the string of characters typed.</li>
             </ul>
           </li>
-          <li><strong>Multiple Selection</strong>: 
+          <li><strong>Multiple Selection</strong>:
           Authors may implement either of two interaction models to support multiple selection: a recommended model that does not require the user to hold a modifier key, such as <kbd>Shift</kbd> or <kbd>Control</kbd>, while navigating the list
           or an alternative model that does require modifier keys to be held while navigating in order to avoid losing selection states.
             <ul>
@@ -2510,54 +2516,66 @@
     <section class="widget" id="tabpanel">
       <h3>Tabs</h3>
       <p>
-        A tabbed interface is a set of layered sections of content, known as tab panels, that displays one panel of content at a time.
+        Tabs are a set of layered sections of content, known as tab panels, that display one panel of content at a time.
         Each tab panel has a tab associated with it, that when activated, displays the panel.
         The list of tabs is arranged along one edge of the currently displayed panel, most commonly the top edge.
-        </p>
-        <p>
-        Terms for understanding Tab Panels include:
+      </p>
+      <p>
+        Terms to understand Tabs include:
       </p>
       <dl>
-        <dt>Tabbed interface</dt>
-        <dd>A set of tabs and associated tab panels </dd>
+        <dt>Tabs or Tabbed interface</dt>
+        <dd>A set of tab elements and associated tab panels </dd>
         <dt>Tab list</dt>
-        <dd>The set of tabs</dd>
-        <dt>tab</dt>
+        <dd>The set of tab elements</dd>
+        <dt>Tab</dt>
         <dd>An element in the tab list that serves as a label for one of the tab panels and can be activated to display that panel. </dd>
         <dt>Tab panel</dt>
         <dd>The element that contains the content associated with a tab</dd>
       </dl>
       <p>
-      When the user activates a tab, the contents of the corresponding tab panel is made visible.
-      The tab is considered "active".
-      The tab remains active until another tab is activated.
-      The active tab is placed into the tab order.
-      Only the active tab should be in the tab order.
-      A default tab is specified that is active when the tabbed interface component is initialized.
-      A collection of tabs and their associated tab panels is a complex widget, because it performs show/hide actions as well as moving the user's point of regard around within the content.
+        When the user activates a tab element, the contents of the corresponding tab panel is made visible.
+        The tab element is considered "active".
+        The tab element remains active until another tab is activated.
+        The active tab element is placed into the tab order.
+        Only the active tab element should be in the tab order.
+        One tab element is active when the tabs are initialised.
       </p>
 
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
         <ul>
-          <li><kbd>Tab</kbd> - only the active tab is in the tab order. The user reaches the tabbed  panel component by pressing the tab key until the active tab title  receives focus. </li>
-          <li><kbd>Left Arrow</kbd> - with focus on a tab, pressing the left arrow will move focus to the previous tab in the tab list. Normally the newly focussed tab will automatically activate, but in some instances this will not happen and <kbd>space or enter</kbd> will be needed to activate the tab. Pressing the left  arrow when the focus is on the first tab in the tab list will move  focus and activate the last tab in the list. </li>
-          <li><kbd>Right Arrow</kbd> - with focus on a tab, pressing the right arrow will move focus to the  next tab in the tab list. Normally the newly focussed tab will automatically activate, but in some instances this will not happen and <kbd>space or enter</kbd> will be needed to activate the tab. Pressing the right  arrow when the focus is on the last tab in the tab list will move focus  to and activate the first tab in the list. </li>
-          <li><kbd>Space or Enter</kbd> - with focus on a tab, <kbd>space or enter</kbd> will activate the tab if the tab does not activate automatically.</li>
-          <li><kbd>Up arrow</kbd> - behaves the same as left arrow in order to support vertical tabs </li>
-          <li><kbd>Down arrow</kbd> - behaves the same as right arrow in order to support vertical tabs </li>
-          <li><kbd>Delete</kbd> - When deletion is allowed, with focus on the tab <kbd>Delete</kbd> will delete the current tab and tab panel from the  tabbed interface control. If additional tabs remain in the tabbed  interface, focus goes to the next tab in the tab list. An alternative  to providing a keystroke to close a tab is to provide a context menu  that is associated with the tab title. When focus is on the tab,  pressing <kbd>Shift + F10</kbd> or pressing the right mouse button will open a  context menu with the close choice </li>
+          <li><kbd>Tab</kbd> - Moves focus to the active tab element in the tab list.</li>
+          <li>
+            <kbd>Left Arrow</kbd> - with focus on a tab element, pressing the left arrow will move focus to the previous tab element in the tab list.
+            Normally the newly focussed tab element will automatically activate, but in some instances this will not happen and <kbd>space or enter</kbd> will be needed to activate the tab element.
+            Pressing the left arrow when the focus is on the first tab element in the tab element list will move focus and activate the last tab element in the list.
+          </li>
+          <li>
+            <kbd>Right Arrow</kbd> - with focus on a tab element, pressing the right arrow will move focus to the next tab element in the tab list.
+            Normally the newly focussed tab element will automatically activate, but in some instances this will not happen and <kbd>space or enter</kbd> will be needed to activate the tab element.
+            Pressing the right  arrow when the focus is on the last tab element in the tab list will move focus to and activate the first tab element in the list.
+          </li>
+          <li><kbd>Space or Enter</kbd> - with focus on a tab element, <kbd>space or enter</kbd> will activate the tab element if the tab element does not activate automatically.</li>
+          <li><kbd>Up arrow</kbd> - behaves the same as left arrow in order to support vertical tabs.</li>
+          <li><kbd>Down arrow</kbd> - behaves the same as right arrow in order to support vertical tabs.</li>
+          <li>
+            <kbd>Delete</kbd> - When deletion is allowed, with focus on the tab element, <kbd>Delete</kbd> will delete the current tab element and tab panel from the tabs.
+            If additional tab elements remain in the tabs, focus goes to the next tab element in the tab list.
+            An alternative to providing a keystroke to close a tab element is to provide a context menu that is associated with the tab element.
+            When focus is on the tab element, pressing <kbd>Shift + F10</kbd> or pressing the right mouse button will open a context menu with the close choice.
+          </li>
         </ul>
       </section>
 
       <section class="notoc">
         <h4>WAI-ARIA Roles, States, and Properties</h4>
         <ul>
-          <li>The tabbed interface component contains tabs and their associated content panels.</li>
+          <li>Tabs contain tab elements and their associated content panels.</li>
           <li>The content panel uses the role <a class="role-reference" href="#tabpanel">tabpanel</a>. </li>
-          <li>An element with role <a class="role-reference" href="#tab">tab</a> is used as a grouping label, providing a link for selecting the tabpanel to be rendered to the user. </li>
-          <li>Assign the <a href="#aria-controls" class="property-reference">aria-controls</a> relationship of a tab to the ID of its tabpanel. </li>
-          <li>Authors manage which tab is active by maintaining its <a href="#aria-selected" class="state-reference">aria-selected</a> state. </li>
+          <li>An element with role <a class="role-reference" href="#tab">tab</a> is used as a grouping label, providing a link for selecting the tab panel to be rendered to the user. </li>
+          <li>Assign the <a href="#aria-controls" class="property-reference">aria-controls</a> relationship of a tab element to the ID of its tabpanel. </li>
+          <li>Authors manage which tab element is active by maintaining its <a href="#aria-selected" class="state-reference">aria-selected</a> state. </li>
           <li>A <a class="role-reference" href="#tablist">tablist</a> is the container role for a set of elements with the role attribute set to <a class="role-reference" href="#tab">tab</a>. </li>
         </ul>
       </section>
@@ -2566,8 +2584,8 @@
         <h4>Example</h4>
         <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG task force is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
         <ul>
-          <li><a href="http://www.oaa-accessibility.org/examplep/tabpanel1/" title="Tab Panel" target="_blank" rel="nofollow">Open Ajax Alliance simple tab panel</a> </li>
-          <li><a href="http://www.oaa-accessibility.org/examplep/tabpanel2/" title="Tab Panel: ARIA CSS Selectors" target="_blank" rel="nofollow">Open Ajax Alliance tab panel using ARIA CSS selectors</a> </li>
+          <li><a href="http://www.oaa-accessibility.org/examplep/tabpanel1/" target="_blank" rel="nofollow">Open Ajax Alliance simple tab panel</a> </li>
+          <li><a href="http://www.oaa-accessibility.org/examplep/tabpanel2/" target="_blank" rel="nofollow">Open Ajax Alliance tab panel using ARIA CSS selectors</a> </li>
         </ul>
       </section>
     </section>
