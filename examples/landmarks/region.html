@@ -6,10 +6,8 @@
     <link href="css/bootstrap.css" rel="stylesheet" media="screen"/>
     <link href="css/bootstrap-theme.css" rel="stylesheet" media="screen"/>
     <link href="css/bootstrap-accessibility.css" rel="stylesheet" media="screen"/>
-    <link href="css/bootstrap-accessibility.css" rel="stylesheet" media="screen"/>
     <link href="css/visua11y.css" rel="stylesheet" media="screen"/>
     <link href="css/common.css" rel="stylesheet" media="screen"/>
-    <script src="js/tabs.js" type="text/javascript"></script>
   </head>
   <body>
     <div class="container">
@@ -57,12 +55,12 @@
             </ul>
 
             <section aria-label="Coding Techniques">
-              <ul class="nav nav-tabs" role="tablist">
+              <ul id="myTabs" class="nav nav-tabs" role="tablist">
                 <li class="active"><a id="tab1" href="#tabpanel1" aria-controls="tabpanel1" role="tab" data-toggle="tab">ARIA Techniques</a></li>
                 <li><a id="tab2" href="#tabpanel2" aria-controls="tabpanel2"  role="tab" data-toggle="tab">HTML5 Techniques</a></li>
               </ul>
 
-              <section ar>
+              <section aria-label="Coding Techniques">
                 <div id="tabpanel1" aria-labelledby="tab1" role="tabpanel" class="tab-pane active">
                   <p>A <code>role="region"</code> attribute is used to define a <code>region</code> landmark.</p>
 
@@ -210,7 +208,7 @@
                     &lt;/main&gt;
                   </div>
                 </div>
-              </div>
+              </section>
             </section>
           </main>
         </div>
@@ -226,9 +224,6 @@
               <li>Navigation</li>
               <li>Region</li>
             </ul>
-            <p id="highlight_inst" class="inst">Visually outline the landmarks and/or headings on the page using the following buttons.</p>
-            <button onclick="showLandmarks(event)" aria-describedby="highlight_inst">Show Landmarks</button>
-            <button onclick="showHeadings(event)" aria-describedby="highlight_inst">Show Headings</button>
           </aside>
           <aside aria-labelledby="id3">
             <h2 id="id3">Related W3C Specs</h2>
