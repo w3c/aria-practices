@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>ARIA Tree View using DOM Structure Example: Actions</title>
+    <link href="../css/core.css" rel="stylesheet">
+    <link href="../css/table.css" rel="stylesheet">
+    <link href="css/treeview.css" rel="stylesheet">
+    <script type="text/javascript" src="http://www.oaa-accessibility.org/media/examples/js/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="../js/examples.js"></script>
+    <script type="text/javascript" src="js/treeview.js"></script>
+    <script type="text/javascript" src="js/treeview-1-onclick.js"></script>
+
+  </head>
+  <body>
+    <main>
+      <h1 id="id1">ARIA Tree View using DOM Structure Example: Actions</h1>
+
+      <ul>
+        <li>In this example the ARIA treeview relationships (e.g. <code>tree</code>, <code>group</code> and <code>treeitem</code>) are defined in the parent child relationships defined int he DOM structure.</li>
+        <li>Pressing "space" or "enter" will trigger the click event added to each <code>treeitem</code>, which updates the "last action" textbox.</li>
+        <li>Example based on the <a href="https://www.w3.org/TR/wai-aria-practices-1.1/#TreeView">WAI-ARIA 1.1: Tree View authoring practices</a></li>
+      </ul>
+
+
+      <h2 id="ex_title">Example</h2>
+      
+      <section id="example" aria-labelledby="ex_title">  
+
+        <div id="code-ex-1">
+          <h3 id="tree1">Foods</h3>
+          <ul role="tree" aria-labelledby="tree1" >
+            <li role="treeitem"
+                aria-level="1" 
+                aria-setsize="3" 
+                aria-posinset="1" 
+                aria-expanded="false" 
+                aria-label="Fruits">
+              <span> Fruits</span>
+              <ul>
+                <li role="treeitem" aria-level="2" aria-setsize="5" aria-posinset="1"> Oranges</li>
+                <li role="treeitem" aria-level="2" aria-setsize="5" aria-posinset="2"> Pineapple</li>
+                <li role="treeitem" 
+                    aria-level="2" 
+                    aria-setsize="5" 
+                    aria-posinset="3"
+                    aria-expanded="false" 
+                    aria-label="Apples">
+                  <span> Apples</span>
+                  <ul>
+                    <li role="treeitem" aria-level="3" aria-setsize="3" aria-posinset="1"> Macintosh</li>
+                    <li role="treeitem" aria-level="3" aria-setsize="3" aria-posinset="2"> Granny Smith</li>
+                    <li role="treeitem" aria-level="3" aria-setsize="3" aria-posinset="3"> Fuji</li>
+                  </ul>
+                </li>  
+                <li role="treeitem" aria-level="2" aria-setsize="5" aria-posinset="4">Bananas</li>    
+                <li role="treeitem"
+                    aria-level="2" 
+                    aria-setsize="5" 
+                    aria-posinset="5"
+                    aria-expanded="false" 
+                    aria-label="Pears">
+                  <span> Pears</span>
+                  <ul>
+                    <li role="treeitem" aria-level="3" aria-setsize="6" aria-posinset="1"> Anjou</li>
+                    <li role="treeitem" aria-level="3" aria-setsize="6" aria-posinset="2"> Bartlett</li>
+                    <li role="treeitem" aria-level="3" aria-setsize="6" aria-posinset="3"> Bosc</li>
+                    <li role="treeitem" aria-level="3" aria-setsize="6" aria-posinset="4"> Concorde</li>
+                    <li role="treeitem" aria-level="3" aria-setsize="6" aria-posinset="5"> Seckel</li>
+                    <li role="treeitem" aria-level="3" aria-setsize="6" aria-posinset="6"> Starkrimson</li>
+                  </ul>
+                </li>    
+              </ul>
+            </li>
+           <li role="treeitem"
+                aria-level="1" 
+                aria-setsize="3" 
+                aria-posinset="2" 
+                aria-expanded="false" 
+                aria-label="Vegetables">
+              <span> Vegetables</span>
+              <ul>
+                <li role="treeitem" 
+                    aria-level="2" 
+                    aria-setsize="3" 
+                    aria-posinset="1"
+                    aria-expanded="false" 
+                    aria-label="Podded Vegetables">
+                  <span> Podded Vegetables</span>
+                  <ul>
+                    <li role="treeitem" aria-level="3" aria-setsize="3" aria-posinset="1"> Lentil</li>
+                    <li role="treeitem" aria-level="3" aria-setsize="3" aria-posinset="2"> Pea</li>
+                    <li role="treeitem" aria-level="3" aria-setsize="3" aria-posinset="3"> Peanut</li>
+                  </ul>
+                </li>  
+                <li role="treeitem"  
+                    aria-level="2" 
+                    aria-setsize="3" 
+                    aria-posinset="2"
+                    aria-expanded="false" 
+                    aria-label="Bulb and Stem Vegetables">
+                  <span> Bulb and Stem Vegetables</span>
+                  <ul>
+                    <li role="treeitem" aria-level="3" aria-setsize="4" aria-posinset="1"> Asparagus</li>
+                    <li role="treeitem" aria-level="3" aria-setsize="4" aria-posinset="2"> Celery</li>
+                    <li role="treeitem" aria-level="3" aria-setsize="4" aria-posinset="3"> Leek</li>
+                    <li role="treeitem" aria-level="3" aria-setsize="4" aria-posinset="4"> Onion</li>
+                  </ul>
+                </li>    
+                <li role="treeitem"  
+                    aria-level="2" 
+                    aria-setsize="3" 
+                    aria-posinset="3"
+                    aria-expanded="false" 
+                    aria-label="Root and Tuberous Vegetables">
+                  <span> Root and Tuberous Vegetables</span>
+                  <ul>
+                    <li role="treeitem" aria-level="3" aria-setsize="4" aria-posinset="1"> Carrot</li>
+                    <li role="treeitem" aria-level="3" aria-setsize="4" aria-posinset="2"> Ginger</li>
+                    <li role="treeitem" aria-level="3" aria-setsize="4" aria-posinset="3"> Parsnip</li>
+                    <li role="treeitem" aria-level="3" aria-setsize="4" aria-posinset="4"> Patato</li>
+                  </ul>
+                </li>    
+              </ul>
+            </li>
+            <li role="treeitem" 
+                aria-level="1" 
+                aria-setsize="3" 
+                aria-posinset="3" 
+                aria-expanded="false" 
+                aria-label=" Grains">
+              <span> Grains</span>
+              <ul>
+                <li role="treeitem" 
+                    aria-level="2" 
+                    aria-setsize="3" 
+                    aria-posinset="1"
+                    aria-expanded="false" 
+                    aria-label="Cereal grains">
+                  <span> Cereal Grains</span>
+                  <ul>
+                    <li role="treeitem" aria-level="3" aria-setsize="3" aria-posinset="1">Barle</li>
+                    <li role="treeitem" aria-level="3" aria-setsize="3" aria-posinset="2">Oat</li>
+                    <li role="treeitem" aria-level="3" aria-setsize="3" aria-posinset="3">Rice</li>
+                  </ul>
+                </li>  
+                <li role="treeitem"  
+                    aria-level="2" 
+                    aria-setsize="3" 
+                    aria-posinset="2"
+                    aria-expanded="false" 
+                    aria-label="Pseudocereal grains">
+                  <span> Pseudocereal Grains</span>
+                  <ul>
+                    <li role="treeitem" aria-level="3" aria-setsize="4" aria-posinset="1"> Amaranth</li>
+                    <li role="treeitem" aria-level="3" aria-setsize="4" aria-posinset="2"> Buckwheat</li>
+                    <li role="treeitem" aria-level="3" aria-setsize="4" aria-posinset="3"> Chia</li>
+                    <li role="treeitem" aria-level="3" aria-setsize="4" aria-posinset="4"> Quinoa</li>
+                  </ul>
+                </li>    
+                <li role="treeitem"  
+                    aria-level="2" 
+                    aria-setsize="3" 
+                    aria-posinset="3"
+                    aria-expanded="false" 
+                  aria-label="Oilseeds">
+                  <span> Oilseeds</span>
+                  <ul>
+                    <li role="treeitem" aria-level="3" aria-setsize="4" aria-posinset="1"> India Mustard</li>
+                    <li role="treeitem" aria-level="3" aria-setsize="4" aria-posinset="2"> Safflower</li>
+                    <li role="treeitem" aria-level="3" aria-setsize="4" aria-posinset="3"> Flax Seed</li>
+                    <li role="treeitem" aria-level="3" aria-setsize="4" aria-posinset="4"> Poppy Seed</li>
+                  </ul>
+                </li>    
+              </ul>
+            </li>
+          </ul>
+          <p><label>Last Action: <input id="last_action" type="output" size="15"></label></p>
+        </div>
+      </section>
+
+      <section aria-labelledby="id_kbd">
+
+        <h2 id="id_kbd">Keyboard Interaction and Focus Management</h2>
+      
+        <table aria-labelledby="id_kbd"> 
+          <thead>
+            <tr>
+              <th>Key</th>
+              <th>Function</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Up arrow Key</td>
+              <td>Moves focus to previous sibling <code>treeitem</code>. If no previous sibling, focus stays on current <code>treeitem</code>.</td>
+            </tr>
+            <tr>
+              <td>Down arrow Key</td>
+              <td>Moves focus to next sibling <code>treeitem</code>. If no next sibling, focus stays on current <code>treeitem</code>.</td>
+            </tr>
+            <tr>
+              <td>Left Arrow Key</td>
+              <td>
+                <ul>
+                  <li>For a <code>treeitem</code> that is an end node (e.g. no child <code>treeitem</code>s) or is in the collapsed state (e.g. has <code>[aria-expanded=false]</code>), focus moves to the parent <code>treeitem</code>.
+                    If a top level <code>treeitem</code> (e.g. parent is <code>tree</code>), focus stays on current <code>treeitem</code>.
+                  </li> 
+                  <li>For a <code>treeitem</code> that is in the expanded state (e.g. has <code>[aria-expanded=true]</code>) it toogles to the collapsed state.   Focus remains on the current <code>treeitem</code>.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>Right Arrow Key</td>
+              <td>
+                <ul>
+                  <li>For a <code>treeitem</code> that is an end node (e.g. no child <code>treeitem</code>s) focus stays on current <code>treeitem</code>.</li>
+                  <li>For a <code>treeitem</code> that is in the collapsed state (e.g. has <code>[aria-expanded=false]</code>) it toogles to the expanded state and focus moves to the first child <code>treeitem</code>.  If no child, focus stays on current <code>treeitem</code>.</li>
+                  <li>For a <code>treeitem</code> is in the expanded state, focus moves to the first child <code>treeitem</code>.
+                    If no child, focus stays on current <code>treeitem</code>.
+                  </li> 
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>Return Key</td>
+              <td>Performs the default action (e.g. onclick event) on the current <code>treeitem</code>.</td>
+            </tr>
+            <tr>
+              <td>Space Key</td>
+              <td>Performs the default action (e.g. onclick event) on the current <code>treeitem</code>.</td>
+            </tr>
+            <tr>
+              <td>Home Key</td>
+              <td>Moves focus to first <code>treeitem</code> in the <code>tree</code>.</td>
+            </tr>
+            <tr>
+              <td>End Key</td>
+              <td>Moves focus to last visible <code>treeitem</code> (e.g. depth first) in the <code>tree</code>.</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </section>    
+
+
+      <section aria-labelledby="id_roles">
+        <h2 id="id_roles">ARIA Roles</h2>
+
+        <table aria-labelledby="id_roles"> 
+          <thead>
+            <tr>
+              <th>Role</th>
+              <th>Usage</th>
+              <th>Accessible Name Source</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>tree</td>
+              <td>The tree view container has a <code>role=tree</code>.</td>
+              <td><code>aria-labelledby</code> to visible label.</td>
+            </tr>
+            <tr>
+              <td>treeitem</td>  
+              <td>Each node in a tree has the <code>role=treeitem</code> and should be a DOM child of tree.</td>
+              <td>
+                <ul>
+                  <li>Child text content of <code>treeitem</code>.</li>
+                  <li><code>aria-label</code> for <code>treeitem</code>s that expand and collapse.</li>
+                </ul>
+              </td>  
+            </tr>
+            <tr>
+              <td>group</td>
+              <td>A collection of <code>treeitem</code>s to be expanded and collapsed are enclosed in a element with <code>role=group</code>.  The <code>ul</code> element has the default role of <code>group</code>.</td>
+              <td>not needed</td>  
+            </tr>
+          </tbody>
+        </table>
+      </section>
+      
+
+      <section aria-labelledby="id_props">
+
+        <h2 id="id_props">ARIA Properties and States</h2>
+
+        <table aria-labelledby="id_props"> 
+          <thead>
+            <tr>
+              <th>Property/State</th>
+              <th>Usage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>aria-expanded</td>
+              <td>
+                <ul>
+                  <li>Each element with <code>role=treeitem</code> that can be expanded or collapsed should have an <code>aria-expanded</code> attribute.</li>
+                  <li>Each element with <code>role=treeitem</code> which is expanded should have <code> aria-expanded="true"</code>.</li>
+                  <li>Each element with <code>role=treeitem</code> which is collapsed should have <code> aria-expanded="false"</code>.</li>           
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>aria-labelledby</td>
+              <td>Provides accessible name for the <code>tree</code> role.</td>
+            </tr>
+            <tr>
+              <td>aria-label</td>
+              <td>Provides accessible name for the <code>treeitem</code>s that are expandable and collapsable.</td>
+            </tr>
+            <tr>
+              <td>aria-level</td>
+              <td>
+                <ul>
+                  <li>Provides level information on how <em>deep</em> a <code>treeitem</code> is the nested structure of the treeview.</li>
+                  <li>User agents are <strong>not</strong> required to compute the value of the <code>aria-level</code> property for a <code>treeitem</code> based on the nesting structure in the treeview, so authors must supply the <code>aria-level</code> value.</li>
+                  <li><code>aria-level</code> is important since keyboard navigation of the tree results in changing levels and assistive technologies need this information to inform users of the change in level.</li>
+                </ul>   
+              </td>
+            </tr>
+            <tr>
+              <td>aria-setsize</td>
+              <td>
+                <ul>
+                  <li>Provides information on the <em>number</em> of <code>treeitems</code> in the leaf of the tree.</li>
+                  <li>User agents are <strong>not</strong> required to automatically compute the value of the <code>aria-setsize</code> property for a <code>treeitem</code> based on the number of sibling <code>treeitem</code>s in the leaf of the treeview, so authors should supply the <code>aria-setsize</code> value based on the number of sibling <code>treeitem</code>s.</li>
+                  <li>Assistive technologies use <code>aria-setsize</code> information to inform the user of how may items are in the leaf of a treeview.</li>
+              </td>
+            </tr>
+            <tr>
+              <td>aria-posinset</td>
+              <td>
+                <ul>
+                  <li>Provides information on the <em>position</em> of a <code>treeitem</code> in the leaf of the tree.</li>
+                  <li>User agents are <strong>not</strong> required to automatically compute the value of the <code>aria-posinest</code> property for a <code>treeitem</code> based on the it position in the leaf of the treeview, so authors should supply the <code>aria-posinset</code> value based on the position of <code>treeitem</code>.</li>
+                  <li>Assistive technologies use <code>aria-posinset</code> information to inform the user of position of the <code>treeitem</code> in a leaf.</li>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+      </section>
+
+      <section aria-labelledby="id_tabindex">
+      
+        <h2 id="id_tabindex"><code>tabindex</code> values</h2>
+
+        <table aria-labelledby="id_tabindex"> 
+          <thead>
+            <tr>
+              <th style="min-width: 8em;" title="Element Selector">Elements</th>
+              <th style="min-width: 4em;">Values</th>
+              <th>Purpose</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>[role=treeitem]</td>
+              <td>0 or -1</td>
+              <td>The <code>treeitem</code> with the current focus should have <code>tabindex=0</code>, all other <code>treeitem</code>s should have a tabindex value of -1.</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </section>
+
+      <section aria-labelledby="id_events">
+
+        <h2 id="id_events">Events</h2>
+        <table aria-labelledby="id_events"> 
+          <thead>
+            <tr>
+              <th>Event</th>
+              <th>Element</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>keydown</td>
+              <td>[role=treeitem]</td>
+              <td>A <code>keydown</code> event listener is added to each element with <code>role=treeitem</code> to support moving focus between the <code>treeitem</code> with the keyboard.</td>
+            </tr>
+            <tr>
+              <td>click</td>
+              <td>[role=treeitem][aria-expanded]</td>
+              <td>
+                <ul>
+                  <li>Click event listener is added to each element with <code>role=treeitem</code> and <code>aria-expanded</code> to support opening and closing a branch of the tree with the mouse.</li>
+                  <li>Click triggers "action" event associated with the element with <code>role=treeitem</code>.</li>
+                </ul>  
+              </td>
+            </tr>
+            <tr>
+              <td>focus</td>
+              <td>[role=treeitem]</td>
+              <td>Focus event listener is added to each element with <code>role=treeitem</code> to support visual styling of the <code>treeitem</code> when it recieves focus.</td>
+            </tr>
+            <tr>
+              <td>blur</td>
+              <td>[role=treeitem]</td>
+              <td>Blur event listener is added to each element with <code>role=treeitem</code> to support visual styling of the <code>treeitem</code> when it does not have focus.</td>
+            </tr>
+          </tbody>
+        </table>    
+
+      </section>
+
+      <section aria-labelledby="id_focus">
+      
+        <h2 id="id_focus">Keyboard Focus Styling</h2>
+
+        <table aria-labelledby="id_focus"> 
+          <thead>
+            <tr>
+              <th style="min-width: 8em;" title="Element Selector">Elements</th>
+              <th>Focus Style</th>
+              <th>Focus Technique</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>[role=treeitem]</td>
+              <td>
+                <ul>
+                  <li>border</li>
+                  <li>background-color</li>
+                </ul>
+              </td>
+              <td><code>focus</code> and <code>blur</code> events are used to add and remove a "focus" class to the <code>treeitem</code> element.</td>
+            </tr>
+            <tr>
+              <td>[role=treeitem][aria-expanded]</td>
+              <td>
+                <ul>
+                  <li>border</li>
+                  <li>background-color</li>
+                </ul>
+              </td>
+              <td><code>focus</code> and <code>blur</code> events are used to add and remove a "focus" class to the first child element (e.g <code>span</code> element) of the <code>treeitem</code> element.</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </section>
+
+      <section aria-labelledby="id_sync">
+      
+        <h2 id="id_sync">Synchronization of Visual and ARIA States</h2>
+
+        <table aria-labelledby="id_sync"> 
+          <thead>
+            <tr>
+              <th style="min-width: 8em;" title="Element Selector">Elements</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>[role=treeitem][aria-expanded]</td>
+              <td>
+                <ul>
+                  <li>The <code>:before</code> psuedo selector for <code>[aria-expanded=false]</code> and <code>[aria-expanded=true]</code> are used to change a <code>content</code> property.</li>
+                  <li>The image source defined in the <code>content</code> property is used for visually indicating the expanded and collapsed states of an expandable <code>treeitem</code>.</li>
+                  <li>The <code>content</code> property is preferred since it supports rendering of the image in high contrast settings of browsers and operating systems.  Other CSS techniques like <code>background-image</code> are not supported in high contrast modes.</li> 
+                </ul>  
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+      </section>
+
+
+     <section aria-labelledby="sc-ex1">
+        <h2 id="sc-ex1">Source Code: Example</h2>
+      
+        <ul>
+          <li>CSS: <a href="css/treeview.css" type="tex/css">treeview.css</a></li>
+          <li>Javascript: <a href="js/treeview.js" type="text/javascript">treeview.js</a></li>
+          <li>Javascript: <a href="js/treeview-1-onclick.js" type="text/javascript">treeview-1-onclick.js</a></li>
+        </ul>
+      
+        <div id="sc1">
+       
+        </div>
+      </section>
+
+
+      <script>
+        sourceCode.add('sc1', 'code-ex-1')
+        sourceCode.make()
+      </script>
+
+
+  </main>
+  </body>
+  </html>
