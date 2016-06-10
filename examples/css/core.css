@@ -23,6 +23,7 @@ h3 {
   background: transparent;
 }
 
+
 h1 {
   padding: 0.2em;
 }
@@ -32,9 +33,19 @@ h2 {
   margin-top: 2em;
 }
 
-h3 {
-  font: normal 140%/120% Helvetica, Verdana, Arial, sans-serif;
+h2.widget {
+  border-bottom: thin solid #630;
 }
+
+
+h3 {
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  font: normal 120%/95% Helvetica, Verdana, Arial, sans-serif;
+
+}
+
+
 
 a {
   color: #009;
@@ -58,6 +69,10 @@ img {
   border: none;
 }
 
+td ul li {
+  margin-left: 1em;
+}
+
 code {
   font-family: "Courier new", Courier, Monospace;
   font-weight: bold;
@@ -73,9 +88,17 @@ code {
 }
 
 #example {
-  margin-top: 1em;
+  padding: 0.5em;
   margin-bottom: 2em;
+  border: thin solid #630;
 }
+
+#example h2,
+#example h3 {
+  margin: 0;
+  margin-top: 0.5em;
+}
+
 
 #example li + li {
   margin-top: .5em;
