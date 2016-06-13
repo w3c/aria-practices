@@ -248,6 +248,20 @@
               <td>End Key</td>
               <td>Moves focus to last visible <code>treeitem</code> (e.g. depth first) in the <code>tree</code>.</td>
             </tr>
+            <tr>
+              <td>a-z, A-Z</td>
+              <td>
+                <ul>
+                  <li>Moves focus to next visible <code>treeitem</code> that starts with letter character.</li>
+                  <li>Search wraps to first <code>treeitem</code> if not found after current <code>treeitem</code>.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>*</td>
+              <td>Opens all the expandable <code>treeitem</code>s in the current leaf (e.g. siblings and current <code>treeitem</code>s), keyboard focus does not change.
+              </td>
+            </tr>
           </tbody>
         </table>
 
@@ -321,6 +335,34 @@
               <td>aria-label</td>
               <td>Provides accessible name for the <code>treeitem</code>s that are expandable and collapsable.</td>
             </tr>
+            <tr>
+              <td>aria-level</td>
+              <td>
+                <ul>
+                  <li>Provides level information on how <em>deep</em> a <code>treeitem</code> is the nested structure of the treeview.</li>
+                  <li>User agents are <strong>not</strong> required to compute the value of the <code>aria-level</code> property for a <code>treeitem</code> based on the nesting structure in the treeview, so authors must supply the <code>aria-level</code> value.</li>
+                  <li><code>aria-level</code> is important since keyboard navigation of the tree results in changing levels and assistive technologies need this information to inform users of the change in level.</li>
+                </ul>   
+              </td>
+            </tr>
+            <tr>
+              <td>aria-setsize</td>
+              <td>
+                <ul>
+                  <li>Provides information on the <em>number</em> of <code>treeitems</code> in the leaf of the tree.</li>
+                  <li>User agents are <strong>not</strong> required to automatically compute the value of the <code>aria-setsize</code> property for a <code>treeitem</code> based on the number of sibling <code>treeitem</code>s in the leaf of the treeview, so authors should supply the <code>aria-setsize</code> value based on the number of sibling <code>treeitem</code>s.</li>
+                  <li>Assistive technologies use <code>aria-setsize</code> information to inform the user of how may items are in the leaf of a treeview.</li>
+              </td>
+            </tr>
+            <tr>
+              <td>aria-posinset</td>
+              <td>
+                <ul>
+                  <li>Provides information on the <em>position</em> of a <code>treeitem</code> in the leaf of the tree.</li>
+                  <li>User agents are <strong>not</strong> required to automatically compute the value of the <code>aria-posinest</code> property for a <code>treeitem</code> based on the it position in the leaf of the treeview, so authors should supply the <code>aria-posinset</code> value based on the position of <code>treeitem</code>.</li>
+                  <li>Assistive technologies use <code>aria-posinset</code> information to inform the user of position of the <code>treeitem</code> in a leaf.</li>
+              </td>
+            </tr>
           </tbody>
         </table>
 
@@ -367,10 +409,23 @@
           </thead>
           <tbody>
             <tr>
-              <td>keydown</td>
-              <td>[role=treeitem]</td>
-              <td>A <code>keydown</code> event listener is added to each element with <code>role=treeitem</code> to support moving focus between the <code>treeitem</code> with the keyboard.</td>
+              <td>
+                <ul>
+                  <li>A <code>keydown</code> event listener is added to each element with <code>role=treeitem</code> to support moving focus between the <code>treeitem</code> with the keyboard.</li>
+                  <li>The <code>keydown</code> event listener is useful for identifying the key codes associated with the <kbd>Left</kbd>, <kbd>Right</kbd>, <kbd>Up</kbd>, <kbd>Down</kbd>, <kbd>Home</kbd>, <kbd>End</kbd>, <kbd>Enter</kbd> and <kbd>space</kbd> keys.</li>
+                </ul>  
+              </td>
             </tr>
+            <tr>
+              <td>keypress</td>
+              <td>[role=treeitem]</td>
+              <td>
+                <ul>
+                  <li>A <code>keypress</code> event listener is added to each element with <code>role=treeitem</code> to support moving focus between the <code>treeitem</code> with the keyboard.</li>
+                  <li>The <code>keypress</code> event listener is useful for identifying the characters associated with the <kbd>a-z</kbd>, <kbd>A-Z</kbd> and <kbd>*</kbd> when typed by the user, since the <code>keypress</code> event computes a character based on the combination of the keys typed by the user.</li>
+                </ul>
+              </td>
+            </tr>  
             <tr>
               <td>click</td>
               <td>[role=treeitem][aria-expanded]</td>

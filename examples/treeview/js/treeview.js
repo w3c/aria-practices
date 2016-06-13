@@ -101,6 +101,10 @@ Tree.prototype.init = function () {
       that.handleKeydown(event);
     });
 
+    ti.addEventListener('keypress', function (event) {
+      that.handleKeypress(event);
+    });
+
     ti.addEventListener('focus', function (event) {
       that.handleFocus(event);
     });
@@ -339,6 +343,30 @@ Tree.prototype.getNextSiblingTreeitem = function(node) {
 
 /*
 *   @desc
+*       Get first sibling treeitem
+*
+*   @returns
+*       DOM node or False 
+*/
+
+Tree.prototype.getFirstSiblingTreeitem = function(node) {
+
+  var ti = node;
+  var first = false
+
+  while (ti) {
+    if (ti.getAttribute('role')  === 'treeitem') {
+      first = ti;
+    }
+    ti = ti.previousElementSibling;
+  }
+
+  return first;
+};
+
+
+/*
+*   @desc
 *       Get last sibling treeitem
 *
 *   @returns
@@ -382,7 +410,7 @@ Tree.prototype.getLastVisibleTreeitem = function() {
 
 /*
 *   @desc
-*       Get parent treeitem, if exists
+*       Get parent treeitem, unless top treeitem
 *
 *   @param node
 *       DOM node to start looking for parent treeitem
@@ -408,7 +436,69 @@ Tree.prototype.getParentTreeitem = function(node) {
 
 /*
 *   @desc
-*       Keyboard event handler for treeitems
+*       Returns the next treeitem, unless at last treeitem
+*
+*   @param treeitem
+*       False, or DOM node
+*/
+
+Tree.prototype.getNextTreeitem = function (node) {
+
+  var ti = false;
+
+  if (node) {
+    // if treeitem is expanded 
+    if (this.isExpanded(node)) {
+      ti = this.getFirstChildTreeitem(node);
+    }
+    else {
+      ti = this.getNextSiblingTreeitem(node);
+      pi = this.getParentTreeitem(node);
+
+      while (pi && !ti) {
+        ti = this.getNextSiblingTreeitem(pi);
+        pi = this.getParentTreeitem(pi);
+      }  
+    }
+  }
+
+  return ti;
+
+};
+
+/*
+*   @desc
+*       Test if first character of accessible name matches 
+*
+*   @param treeitem
+*       True or False
+*/
+
+Tree.prototype.compareFirstChar = function (node, char) {
+
+  function setFirstChar(name) {
+    if ((typeof node.firstChar !== 'string') &&
+        (typeof name === 'string')) {
+      name = name.trim();
+      if (name.length) node.firstChar = name[0].toLowerCase();
+    }
+  }  
+
+  if (typeof node.firstChar !== 'string') {
+    setFirstChar(node.getAttribute('aria-label'));
+    setFirstChar(node.innerText);
+    setFirstChar(node.getAttribute('title'));
+  }  
+
+  return node.firstChar === char.toLowerCase();
+
+};
+
+
+/*
+*   @desc
+*       Keydown event handler for treeitems
+*       Handles cursor keys, enter key
 *
 *   @param event
 *       DOM event object
@@ -488,7 +578,6 @@ Tree.prototype.handleKeydown = function (event) {
       flag = true;
       break;
 
-
     default:
       break;
   }
@@ -497,6 +586,39 @@ Tree.prototype.handleKeydown = function (event) {
     event.stopPropagation();
     event.preventDefault();
   }
+};
+
+/*
+*   @desc
+*       Keypress event handler for treeitems
+*       Used for letter keys and '*'
+*
+*   @param event
+*       DOM event object
+*/
+
+Tree.prototype.handleKeypress = function (event) {
+
+ var  ct = event.currentTarget,
+      flag = false,
+      char = event.key;
+ 
+  if ((char >= 'A' && char <= 'Z') || 
+      (char >= 'a' && char <= 'z')){
+    this.moveFocusToTreeitemUsingFirstChar(ct, char);
+    flag = true;
+  }
+
+  if (char === '*' ) {
+    this.expandSiblingTreeitems(ct);
+    flag = true;        
+  }
+
+  if (flag) {
+    event.stopPropagation();
+    event.preventDefault();
+  }
+
 };
 
 /*
@@ -676,23 +798,7 @@ Tree.prototype.moveFocusToPreviousTreeitem = function (treeitem) {
 
 Tree.prototype.moveFocusToNextTreeitem = function (treeitem) {
 
-  var ti = treeitem;
-
-  if (treeitem) {
-    // if treeitem is expanded 
-    if (this.isExpanded(treeitem)) {
-      ti = this.getFirstChildTreeitem(treeitem);
-    }
-    else {
-      ti = this.getNextSiblingTreeitem(treeitem);
-      pi = this.getParentTreeitem(treeitem);
-
-      while (pi && !ti) {
-        ti = this.getNextSiblingTreeitem(pi);
-        pi = this.getParentTreeitem(pi);
-      }  
-    }
-  }
+  var ti = this.getNextTreeitem(treeitem);
 
   if (ti) {
     ti.focus();
@@ -740,6 +846,55 @@ Tree.prototype.moveFocusToLastVisibleTreeitem = function (treeitem) {
     ti.focus();
     ti.tabIndex = 0;
     treeitem.tabIndex = -1;
+  }
+
+};
+
+/*
+*   @desc
+*       Finds the next visible treeitem that starts with character
+*
+*   @param treeitem
+*       DOM node to start looking for next treeitem
+*
+*   @returns
+*       True or False 
+*/
+
+Tree.prototype.moveFocusToTreeitemUsingFirstChar = function(treeitem, char) {
+  var ti = this.getNextTreeitem(treeitem);
+  if (!ti) ti = this.topTreeitem;
+
+  while (ti && (treeitem !== ti)) {
+    if (this.compareFirstChar(ti, char)) break;
+    ti = this.getNextTreeitem(ti);
+    // if at last item, go to top of tree
+    if (!ti) ti = this.topTreeitem;
+  }
+
+  if (ti) {
+    ti.focus();
+    ti.tabIndex = 0;
+    treeitem.tabIndex = -1;
+  }
+};
+
+/*
+*   @desc
+*       Expands all sibling treeitrems
+*
+*   @param treeitem
+*       DOM node to start looking for next treeitem
+*/
+
+Tree.prototype.expandSiblingTreeitems = function(treeitem) {
+
+  var ti = this.getFirstSiblingTreeitem(treeitem);
+  if (!ti) ti = treeitem;
+
+  while (ti) {
+    if (this.isExpandable(ti)) this.showChildTreeitems(ti);
+    ti = this.getNextSiblingTreeitem(ti);
   }
 
 };
