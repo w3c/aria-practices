@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Example 1b: ARIA Tree View using DOM Structure for Actions (ARIA Tree View Examples)</title>
+    <link href="../css/core.css" rel="stylesheet">
+    <link href="../css/table.css" rel="stylesheet">
+    <link href="css/treeview.css" rel="stylesheet">
+    <script type="text/javascript" src="http://www.oaa-accessibility.org/media/examples/js/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="../js/examples.js"></script>
+    <script type="text/javascript" src="js/treeview.js"></script>
+    <script type="text/javascript" src="js/treeview-1-onclick.js"></script>
+
+  </head>
+  <body>
+    <header>
+      <h1>ARIA Tree View Examples</h1>
+
+      <nav>
+        <ul>
+          <li><a href="treeviews.html">Overview</a></li>
+          <li><a href="treeview-1a.html">Treeview 1a</a></li>
+          <li class="active"><a href="treeview-1b.html" aria-current="page">Treeview 1b</a></li>
+        </ul>
+      </nav>
+
+    </header>
+
+    <main>
+      <h1 id="id1">Example 1b: Author supplied values for <code>aria-level</code>, <code>aria-setsize</code> and <code>aria-posinset</code></h1>
+
+      <ul>
+        <li>In this example the ARIA treeview relationships (e.g. <code>tree</code>, <code>group</code> and <code>treeitem</code>) are defined in the parent child relationships defined int he DOM structure.</li>
+        <li>This example the author specifies the values of <code>aria-level</code>, <code>aria-setsize</code> and <code>aria-posinset</code> for communication to accessibility APIs.  Therefore this example does not rely on the browser to compute the values.</li>
+        <li>Pressing "space" or "enter" will trigger the click event added to each <code>treeitem</code>, which updates the "last action" textbox.</li>
+        <li>Example based on the <a href="https://www.w3.org/TR/wai-aria-practices-1.1/#TreeView">WAI-ARIA 1.1: Tree View authoring practices</a></li>
+        <li><a href="treeviews.html#features">Details of Treeview accessibility features</a></li>
+      </ul>
+
+
+      <h2 id="ex_title">Example</h2>
+      
+      <section id="example" aria-labelledby="ex_title">  
+
+        <div id="code-ex-1">
+          <h3 id="tree1">Foods</h3>
+          <ul role="tree" aria-labelledby="tree1" >
+            <li role="treeitem"
+                aria-level="1" 
+                aria-setsize="3" 
+                aria-posinset="1" 
+                aria-expanded="false" 
+                aria-label="Fruits">
+              <span> Fruits</span>
+              <ul role="group">
+                <li role="treeitem" aria-level="2" aria-setsize="5" aria-posinset="1"> Oranges</li>
+                <li role="treeitem" aria-level="2" aria-setsize="5" aria-posinset="2"> Pineapple</li>
+                <li role="treeitem" 
+                    aria-level="2" 
+                    aria-setsize="5" 
+                    aria-posinset="3"
+                    aria-expanded="false" 
+                    aria-label="Apples">
+                  <span> Apples</span>
+                  <ul role="group">
+                    <li role="treeitem" aria-level="3" aria-setsize="3" aria-posinset="1"> Macintosh</li>
+                    <li role="treeitem" aria-level="3" aria-setsize="3" aria-posinset="2"> Granny Smith</li>
+                    <li role="treeitem" aria-level="3" aria-setsize="3" aria-posinset="3"> Fuji</li>
+                  </ul>
+                </li>  
+                <li role="treeitem" aria-level="2" aria-setsize="5" aria-posinset="4">Bananas</li>    
+                <li role="treeitem"
+                    aria-level="2" 
+                    aria-setsize="5" 
+                    aria-posinset="5"
+                    aria-expanded="false" 
+                    aria-label="Pears">
+                  <span> Pears</span>
+                  <ul role="group">
+                    <li role="treeitem" aria-level="3" aria-setsize="6" aria-posinset="1"> Anjou</li>
+                    <li role="treeitem" aria-level="3" aria-setsize="6" aria-posinset="2"> Bartlett</li>
+                    <li role="treeitem" aria-level="3" aria-setsize="6" aria-posinset="3"> Bosc</li>
+                    <li role="treeitem" aria-level="3" aria-setsize="6" aria-posinset="4"> Concorde</li>
+                    <li role="treeitem" aria-level="3" aria-setsize="6" aria-posinset="5"> Seckel</li>
+                    <li role="treeitem" aria-level="3" aria-setsize="6" aria-posinset="6"> Starkrimson</li>
+                  </ul>
+                </li>    
+              </ul>
+            </li>
+           <li role="treeitem"
+                aria-level="1" 
+                aria-setsize="3" 
+                aria-posinset="2" 
+                aria-expanded="false" 
+                aria-label="Vegetables">
+              <span> Vegetables</span>
+              <ul role="group">
+                <li role="treeitem" 
+                    aria-level="2" 
+                    aria-setsize="3" 
+                    aria-posinset="1"
+                    aria-expanded="false" 
+                    aria-label="Podded Vegetables">
+                  <span> Podded Vegetables</span>
+                  <ul role="group">
+                    <li role="treeitem" aria-level="3" aria-setsize="3" aria-posinset="1"> Lentil</li>
+                    <li role="treeitem" aria-level="3" aria-setsize="3" aria-posinset="2"> Pea</li>
+                    <li role="treeitem" aria-level="3" aria-setsize="3" aria-posinset="3"> Peanut</li>
+                  </ul>
+                </li>  
+                <li role="treeitem"  
+                    aria-level="2" 
+                    aria-setsize="3" 
+                    aria-posinset="2"
+                    aria-expanded="false" 
+                    aria-label="Bulb and Stem Vegetables">
+                  <span> Bulb and Stem Vegetables</span>
+                  <ul role="group">
+                    <li role="treeitem" aria-level="3" aria-setsize="4" aria-posinset="1"> Asparagus</li>
+                    <li role="treeitem" aria-level="3" aria-setsize="4" aria-posinset="2"> Celery</li>
+                    <li role="treeitem" aria-level="3" aria-setsize="4" aria-posinset="3"> Leek</li>
+                    <li role="treeitem" aria-level="3" aria-setsize="4" aria-posinset="4"> Onion</li>
+                  </ul>
+                </li>    
+                <li role="treeitem"  
+                    aria-level="2" 
+                    aria-setsize="3" 
+                    aria-posinset="3"
+                    aria-expanded="false" 
+                    aria-label="Root and Tuberous Vegetables">
+                  <span> Root and Tuberous Vegetables</span>
+                  <ul role="group">
+                    <li role="treeitem" aria-level="3" aria-setsize="4" aria-posinset="1"> Carrot</li>
+                    <li role="treeitem" aria-level="3" aria-setsize="4" aria-posinset="2"> Ginger</li>
+                    <li role="treeitem" aria-level="3" aria-setsize="4" aria-posinset="3"> Parsnip</li>
+                    <li role="treeitem" aria-level="3" aria-setsize="4" aria-posinset="4"> Patato</li>
+                  </ul>
+                </li>    
+              </ul>
+            </li>
+            <li role="treeitem" 
+                aria-level="1" 
+                aria-setsize="3" 
+                aria-posinset="3" 
+                aria-expanded="false" 
+                aria-label=" Grains">
+              <span> Grains</span>
+              <ul role="group">
+                <li role="treeitem" 
+                    aria-level="2" 
+                    aria-setsize="3" 
+                    aria-posinset="1"
+                    aria-expanded="false" 
+                    aria-label="Cereal grains">
+                  <span> Cereal Grains</span>
+                  <ul>
+                    <li role="treeitem" aria-level="3" aria-setsize="3" aria-posinset="1">Barle</li>
+                    <li role="treeitem" aria-level="3" aria-setsize="3" aria-posinset="2">Oat</li>
+                    <li role="treeitem" aria-level="3" aria-setsize="3" aria-posinset="3">Rice</li>
+                  </ul>
+                </li>  
+                <li role="treeitem"  
+                    aria-level="2" 
+                    aria-setsize="3" 
+                    aria-posinset="2"
+                    aria-expanded="false" 
+                    aria-label="Pseudocereal grains">
+                  <span> Pseudocereal Grains</span>
+                  <ul role="group">
+                    <li role="treeitem" aria-level="3" aria-setsize="4" aria-posinset="1"> Amaranth</li>
+                    <li role="treeitem" aria-level="3" aria-setsize="4" aria-posinset="2"> Buckwheat</li>
+                    <li role="treeitem" aria-level="3" aria-setsize="4" aria-posinset="3"> Chia</li>
+                    <li role="treeitem" aria-level="3" aria-setsize="4" aria-posinset="4"> Quinoa</li>
+                  </ul>
+                </li>    
+                <li role="treeitem"  
+                    aria-level="2" 
+                    aria-setsize="3" 
+                    aria-posinset="3"
+                    aria-expanded="false" 
+                  aria-label="Oilseeds">
+                  <span> Oilseeds</span>
+                  <ul role="group">
+                    <li role="treeitem" aria-level="3" aria-setsize="4" aria-posinset="1"> India Mustard</li>
+                    <li role="treeitem" aria-level="3" aria-setsize="4" aria-posinset="2"> Safflower</li>
+                    <li role="treeitem" aria-level="3" aria-setsize="4" aria-posinset="3"> Flax Seed</li>
+                    <li role="treeitem" aria-level="3" aria-setsize="4" aria-posinset="4"> Poppy Seed</li>
+                  </ul>
+                </li>    
+              </ul>
+            </li>
+          </ul>
+          <p><label>Last Action: <input id="last_action" type="output" size="15"></label></p>
+        </div>
+      </section>
+
+      <section aria-labelledby="sc-ex1">
+        <h2 id="sc-ex1">Source Code: Example</h2>
+      
+        <ul>
+          <li>CSS: <a href="css/treeview.css" type="tex/css">treeview.css</a></li>
+          <li>Javascript: <a href="js/treeview.js" type="text/javascript">treeview.js</a></li>
+          <li>Javascript: <a href="js/treeview-1-onclick.js" type="text/javascript">treeview-1-onclick.js</a></li>
+        </ul>
+      
+        <div id="sc1">
+       
+        </div>
+      </section>
+
+
+      <script>
+        sourceCode.add('sc1', 'code-ex-1')
+        sourceCode.make()
+      </script>
+
+
+  </main>
+  </body>
+  </html>
