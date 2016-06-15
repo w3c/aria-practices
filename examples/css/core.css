@@ -9,11 +9,72 @@ body {
 body {
   padding: 0.5em 0.7em;
   margin: 0 4em 0 1em;
-  max-width: 55em;
   background: #fff;
 }
 
-h1,
+header {
+  background-color: #630;
+  color: white;
+  padding: 0.25em;
+}
+
+header h1 {
+  margin: 0;
+  padding-top: 0.5em; 
+  padding-bottom: 0.5em;
+}
+
+header nav {
+    background-color: #630;
+}
+
+header nav ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background-color: #630;
+  color: white;
+}
+
+header nav li {
+  margin: 0;
+  padding: 0;
+  margin-right: 0.25em;
+  background-color: #630;
+  display: inline;
+}
+
+header nav li a {
+  padding: 0.25em;
+  padding-left: 0.75em;
+  padding-right: 0.75em;
+  color: white;
+}
+
+header nav li a:visited {
+  color: white;
+}
+
+header nav li.active {
+  background-color: white;
+  color: #630;
+}
+header nav li.active a {
+  text-decoration: none;
+  background-color: white;
+  color: #630;
+}
+
+header nav li.active a:hover {
+  text-decoration: underline;
+}
+
+main {
+  clear:  both;
+  margin-top: 3em;
+}
+
+main h1,
 h2,
 h3 {
   font: normal 170%/100% Helvetica, Verdana, Arial, sans-serif;
@@ -24,7 +85,7 @@ h3 {
 }
 
 
-h1 {
+main h1 {
   padding: 0.2em;
 }
 
@@ -103,3 +164,17 @@ code {
 #example li + li {
   margin-top: .5em;
 }
+
+td.computed {
+  color: green;
+}
+
+td.markup {
+  color: sienna;
+}
+
+td.nu:before {
+  color: gray;
+}
+
+
