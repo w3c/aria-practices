@@ -39,7 +39,7 @@ header nav ul {
 header nav li {
   margin: 0;
   padding: 0;
-  margin-right: 0.25em;
+  margin-left: 0.5em;
   background-color: #630;
   display: inline;
 }
