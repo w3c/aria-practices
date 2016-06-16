@@ -114,8 +114,7 @@ Tree.prototype.init = function () {
     });
 
     if (ti.getAttribute('aria-expanded')) {
-      var label = this.getExpandableTreeitemLabel(ti);
-      label.addEventListener('click', function (event) {
+      ti.addEventListener('click', function (event) {
         that.handleClick(event);
       });
     }
@@ -632,18 +631,20 @@ Tree.prototype.handleKeypress = function (event) {
 */
 
 Tree.prototype.handleClick = function (event) {
-  var ct = event.currentTarget.parentElement;
 
-  var expanded = ct.getAttribute('aria-expanded'); 
+  if (event.target.tagName.toLowerCase() === 'span') {
+    var ct = event.currentTarget;
+    var expanded = ct.getAttribute('aria-expanded'); 
 
-  if (expanded === 'true') {
-    ct.setAttribute('aria-expanded', 'false')
-    this.hideChildTreeitems(ct);
-  }
-  else {
-    ct.setAttribute('aria-expanded', 'true')
-    this.showChildTreeitems(ct);
-  }
+    if (expanded === 'true') {
+      ct.setAttribute('aria-expanded', 'false')
+      this.hideChildTreeitems(ct);
+    }
+    else {
+      ct.setAttribute('aria-expanded', 'true')
+      this.showChildTreeitems(ct);
+    }
+  }  
 
 };
 
