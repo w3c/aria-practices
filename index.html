@@ -244,11 +244,11 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     }
     /* --- DL --- */
     
-    .section dd > p:first-child {
+    .section dd> p:first-child {
       margin-top: 0;
     }
     
-    .section dd > p:last-child {
+    .section dd> p:last-child {
       margin-bottom: 0;
     }
     
@@ -365,10 +365,10 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       margin-bottom: 1em;
     }
     
-    .note > p:first-child,
-    .ednote > p:first-child,
-    .issue > p:first-child,
-    .warning > p:first-child {
+    .note> p:first-child,
+    .ednote> p:first-child,
+    .issue> p:first-child,
+    .warning> p:first-child {
       margin-top: 0
     }
     
@@ -840,7 +840,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <a class="logo" href="http://www.w3.org/"><img width="72" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" alt="W3C"></a>
     </p>
     <h1 class="title p-name" id="title" property="dcterms:title"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Authoring Practices 1.1</h1>
-    <h2 id="w3c-editor-s-draft-06-june-2016"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2016-06-06">06 June 2016</time></h2>
+    <h2 id="w3c-editor-s-draft-17-june-2016"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2016-06-17">17 June 2016</time></h2>
     <dl>
       <dt>This version:</dt>
       <dd><a class="u-url" href="http://w3c.github.io/aria-practices/">http://w3c.github.io/aria-practices/</a></dd>
@@ -888,15 +888,10 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   <section id="abstract" class="introductory" property="dc:abstract">
     <h2 id="h-abstract" resource="#h-abstract"><span property="xhv:role" resource="xhv:heading">Abstract</span></h2>
     <p>
-      This document provides readers with an understanding of how to use <cite><a href="http://www.w3.org/TR/wai-aria-1.1/">
-                    <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr>
-                    1.1
-                </a></cite> [<cite><a class="bibref" href="#bib-WAI-ARIA">WAI-ARIA</a></cite>] to create accessible rich internet applications. It describes considerations that might not be evident to most authors from the <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> specification alone and recommends approaches to make widgets, navigation, and behaviors accessible using <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> roles, states, and properties. This document is directed primarily to Web application developers, but the guidance is also useful for user agent and assistive technology developers.
+      This document provides readers with an understanding of how to use <cite><a href="http://www.w3.org/TR/wai-aria-1.1/"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> 1.1</a></cite> [<cite><a class="bibref" href="#bib-WAI-ARIA">WAI-ARIA</a></cite>] to create accessible rich internet applications. It describes considerations that might not be evident to most authors from the <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> specification alone and recommends approaches to make widgets, navigation, and behaviors accessible using <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> roles, states, and properties. This document is directed primarily to Web application developers, but the guidance is also useful for user agent and assistive technology developers.
     </p>
-    <p>
-      This document is part of the <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> suite described in the
-      <a href="http://www.w3.org/WAI/intro/aria.php"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Overview</a> .
-    </p>
+
+    <p>This document is part of the <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> suite described in the <a href="http://www.w3.org/WAI/intro/aria.php"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Overview</a>.</p>
   </section>
 
   <section id="sotd" class="introductory">
@@ -1233,29 +1228,38 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     </ul>
   </nav>
 
+
+
   <section id="intro" typeof="bibo:Chapter" resource="#intro" property="bibo:hasPart">
     <!--OddPage-->
     <h2 id="h-intro" resource="#h-intro"><span property="xhv:role" resource="xhv:heading"><span class="secno">1. </span>Introduction<span class="permalink" typeof="bookmark"><a href="#intro" aria-label="Permalink for 1. Introduction" title="Permalink for 1. Introduction" property="url"><span property="title" content="1. Introduction">§</span></a></span></span></h2>
+
+    <p>This section is <em>informative.</em></p>
+
     <p>
-      This section is <em>informative.</em>
+      The <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Authoring Practices Guide is intended to provide an understanding of how to use <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> to create an accessible Rich Internet Application. It describes recommended <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> usage patterns and provides an introduction to the concepts behind them.
     </p>
-    <p>The <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Authoring Practices Guide is intended to provide an understanding of how to use <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> to create an accessible Rich Internet Application. It describes recommended <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> usage patterns and provides an introduction to the concepts behind them.</p>
-    <p>This guide is one part of a suite of resources that support the
-      <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> specification. The <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> suite fills accessibility gaps identified by the [<cite><a class="bibref" href="#bib-WAI-ARIA-ROADMAP">WAI-ARIA-ROADMAP</a></cite>].</p>
+
     <p>
-      As explained in
-      <a href="#ariaBackground">Background on <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr></a> , languages used to create rich and dynamic web sites, e.g., <abbr title="Hypertext Markup Language">HTML</abbr>, Javascript, <abbr title="Cascading Style Sheets">CSS</abbr>, and SVG, do not natively include all the features required to make sites usable by people who use assistive technologies (<abbr title="assistive technology">AT</abbr>) or who rely on keyboard navigation. The <abbr title="World Wide Web Consortium">W3C</abbr> Web Accessibility Initiative's (<abbr title="Web Accessibility Initiative">WAI</abbr>) Protocols and Formats working group (PFWG) is addressing these deficiencies through several <abbr title="World Wide Web Consortium">W3C</abbr> standards efforts, with a focus on the <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> specifications. For an introduction to <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr>, see the
-      <a href="http://www.w3.org/WAI/intro/aria.php">Accessible Rich
-                Internet Applications Suite (<abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr>) Overview</a> .
+      This guide is one part of a suite of resources that support the <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> specification. The <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> suite fills accessibility gaps identified by the [<cite><a class="bibref" href="#bib-WAI-ARIA-ROADMAP">WAI-ARIA-ROADMAP</a></cite>].
     </p>
-    <p>With the understanding many prefer to learn from examples, the guide begins with a section that demonstrates how to make common widgets accessible with descriptions of expected behaviors supported by working code. Where it is helpful to do so, the examples refer to detailed explanations of supporting concepts in subsequent sections. The sections that follow the examples first provide background that helps build understanding of how <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> works and how it fits into the larger web technology picture. Next, the guide covers general steps for building an accessible widget using <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr>, JavaScript, and <abbr title="Cascading Style Sheets">CSS</abbr>, including detailed guidance on how to make rich internet applications keyboard accessible. The scope then widens to include the full application, addressing the page layout and structural semantics critical to enabling a usable experience with assistive technologies on pages containing both rich applications and rich documents. It includes guidance on dynamic document management, use of <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Form properties, and the creation of <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr>-enabled alerts and dialogs.</p>
+
+    <p>
+      As explained in <a href="#ariaBackground">Background on <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr></a>, languages used to create rich and dynamic web sites, e.g., <abbr title="Hypertext Markup Language">HTML</abbr>, Javascript, <abbr title="Cascading Style Sheets">CSS</abbr>, and SVG, do not natively include all the features required to make sites usable by people who use assistive technologies (<abbr title="assistive technology">AT</abbr>) or who rely on keyboard navigation. The <abbr title="World Wide Web Consortium">W3C</abbr> Web Accessibility Initiative's (<abbr title="Web Accessibility Initiative">WAI</abbr>) Accessible Rich Internet Applications working group (ARIA WG) is addressing these deficiencies through several <abbr title="World Wide Web Consortium">W3C</abbr> standards efforts, with a focus on the <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> specifications. For an introduction to <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr>, see the <a href="http://www.w3.org/WAI/intro/aria.php">Accessible Rich Internet Applications Suite (<abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr>) Overview</a>.
+    </p>
+
+    <p>
+      With the understanding many prefer to learn from examples, the guide begins with a section that demonstrates how to make common widgets accessible with descriptions of expected behaviors supported by working code. Where it is helpful to do so, the examples refer to detailed explanations of supporting concepts in subsequent sections. The sections that follow the examples first provide background that helps build understanding of how <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> works and how it fits into the larger web technology picture. Next, the guide covers general steps for building an accessible widget using <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr>, JavaScript, and <abbr title="Cascading Style Sheets">CSS</abbr>, including detailed guidance on how to make rich internet applications keyboard accessible. The scope then widens to include the full application, addressing the page layout and structural semantics critical to enabling a usable experience with assistive technologies on pages containing both rich applications and rich documents. It includes guidance on dynamic document management, use of <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Form properties, and the creation of <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr>-enabled alerts and dialogs.
+    </p>
   </section>
 
   <section class="widget" id="aria_landmark" typeof="bibo:Chapter" resource="#aria_landmark" property="bibo:hasPart">
     <!--OddPage-->
     <h2 id="h-aria_landmark" resource="#h-aria_landmark"><span property="xhv:role" resource="xhv:heading"><span class="secno">2. </span>Landmark Roles Design Patterns<span class="permalink" typeof="bookmark"><a href="#aria_landmark" aria-label="Permalink for 2. Landmark Roles Design Patterns" title="Permalink for 2. Landmark Roles Design Patterns" property="url"><span property="title" content="2. Landmark Roles Design Patterns">§</span></a></span></span></h2>
 
-    <p>Landmarks provide a powerful way to identify the organization and structure of a web page. The structural information conveyed visually to users should be represented programmatically in the markup using landmark roles. The use of landmark roles supports keyboard navigation to the structure of a web page for screen reader users, and can be used as targets for author supplied "skip links" and browser extensions for enhanced keyboard navigation.</p>
+    <p>
+      Landmarks provide a powerful way to identify the organization and structure of a web page. The structural information conveyed visually to users should be represented programmatically in the markup using landmark roles. The use of landmark roles supports keyboard navigation to the structure of a web page for screen reader users, and can be used as targets for author supplied "skip links" and browser extensions for enhanced keyboard navigation.
+    </p>
 
     <p>This section is intended to assist designers, developers and quality assurance staff in defining and understanding the importance of logical, usable, and accessible layout for assistive technologies using HTML5 sectioning elements and ARIA landmark roles.</p>
 
@@ -1264,13 +1268,11 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
       <p>
         It is important to understand that many HTML5 sectioning elements by default define ARIA landmarks. If HTML5 sectioning elements are used without understanding the associated landmark structure, assistive technology users will most likely be confused and less efficient in accessing content and interacting with web pages.
-        <a href="https://www.w3.org/TR/html-aria/">More information
-                    on HTML5 element role mapping</a> .
+        <a href="https://www.w3.org/TR/html-aria/">More information on HTML5 element role mapping</a>.
       </p>
 
       <table class="widget-features">
-        <caption>Default landmark roles for HTML5 sectioning elements
-        </caption>
+        <caption>Default landmark roles for HTML5 sectioning elements</caption>
 
         <thead>
           <tr>
@@ -1290,15 +1292,13 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <tr>
             <td><code>footer</code></td>
 
-            <td><code>contentinfo</code> when in context of the
-              <code>body</code> element</td>
+            <td><code>contentinfo</code> when in context of the <code>body</code> element</td>
           </tr>
 
           <tr>
             <td><code>header</code></td>
 
-            <td><code>banner</code> when in context of the <code>body</code> element
-            </td>
+            <td><code>banner</code> when in context of the <code>body</code> element</td>
           </tr>
 
           <tr>
@@ -1325,12 +1325,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     <section id="general-principles-of-landmark-design" typeof="bibo:Chapter" resource="#general-principles-of-landmark-design" property="bibo:hasPart">
       <h3 id="h-general-principles-of-landmark-design" resource="#h-general-principles-of-landmark-design"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.2 </span>General Principles of Landmark Design<span class="permalink" typeof="bookmark"><a href="#general-principles-of-landmark-design" aria-label="Permalink for 2.2 General Principles of Landmark Design" title="Permalink for 2.2 General Principles of Landmark Design" property="url"><span property="title" content="2.2 General Principles of Landmark Design">§</span></a></span></span></h3>
 
-      <p>
-        Due to the complexity of todays web content, if using landmarks,
-        <strong>all content</strong> should reside in a semantically meaningful landmark in order that content is not missed by the user.
-      </p>
+      <p>Due to the complexity of todays web content, if using landmarks, <strong>all content</strong> should reside in a semantically meaningful landmark in order that content is not missed by the user.</p>
 
-      <p style="font-weight: bold">Step 1: Identify the logical structure</p>
+      <p><strong>Step 1: Identify the logical structure</strong></p>
 
       <ul>
         <li>Break the page into perceivable areas of content which designers typically indicate visually using alignment and spacing.</li>
@@ -1340,7 +1337,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         <li>An example of a sub-area is a portlet in a portal application.</li>
       </ul>
 
-      <p style="font-weight: bold">Step 2: Assign landmark roles to each area</p>
+      <p><strong>Step 2: Assign landmark roles to each area</strong></p>
 
       <ul>
         <li>Assign landmark roles based on the type of content in the area.</li>
@@ -1350,7 +1347,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         <li>Landmark roles can be nested to identify parent/child relationships of the information being presented.</li>
       </ul>
 
-      <p style="font-weight: bold">Step 3: Label areas</p>
+      <p><strong>Step 3: Label areas</strong></p>
 
       <ul>
         <li>If a specific landmark role is used more than once on a web page, it should have a unique label.</li>
@@ -1362,7 +1359,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
         <li>If an area requires a label and does not have a heading element, provide a label using the <code>aria-label</code> attribute.</li>
 
-        <li>Do not use the landmark role as part of the label. For example, a navigation landmark with a label "Site Navigation" will be announced by a screen reader as "Site Navigation Navigation". The label should simply be "Site".
+        <li>
+          Do not use the landmark role as part of the label. For example, a navigation landmark with a label "Site Navigation" will be announced by a screen reader as "Site Navigation Navigation". The label should simply be "Site".
         </li>
       </ul>
     </section>
@@ -1373,9 +1371,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <section class="widget" id="aria_lh_banner" typeof="bibo:Chapter" resource="#aria_lh_banner" property="bibo:hasPart">
         <h4 class="widget-name" id="h-aria_lh_banner" resource="#h-aria_lh_banner"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.3.1 </span>Banner<span class="permalink" typeof="bookmark"><a href="#aria_lh_banner" aria-label="Permalink for 2.3.1 Banner" title="Permalink for 2.3.1 Banner" property="url"><span property="title" content="2.3.1 Banner">§</span></a></span></span></h4>
 
-        <p>A <a href="https://www.w3.org/TR/wai-aria-1.1/#banner"><code>banner</code></a> landmark identifies site-oriented content at the beginning of each page within a website. Site-oriented content typically includes things such as the logo or identity of the site sponsor, and site-specific search tool. A banner usually appears at the top of the page and typically spans the full width.</p>
-
-
+        <p>
+          A <a href="https://www.w3.org/TR/wai-aria-1.1/#banner"><code>banner</code></a> landmark identifies site-oriented content at the beginning of each page within a website. Site-oriented content typically includes things such as the logo or identity of the site sponsor, and site-specific search tool. A banner usually appears at the top of the page and typically spans the full width.
+        </p>
 
         <ul>
           <li>Each page may have one <code>banner</code> landmark.</li>
@@ -1384,18 +1382,16 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
           <li>When a page contains nested <code>document</code> and/or <code>application</code> roles (e.g. typically through the use of <code>iframe</code> and <code>frame</code> elements), each <code>document</code> or <code>application</code> role may have one <code>banner</code> landmark.</li>
 
-          <li>If a page includes more than one <code>banner</code> landmark, each should have a unique label (see Step 3 above).
-          </li>
+          <li>If a page includes more than one <code>banner</code> landmark, each should have a unique label (see Step 3 above).</li>
         </ul>
 
         <section class="notoc" typeof="bibo:Chapter" resource="#html5-techniques" property="bibo:hasPart">
           <h5 id="html5-techniques" resource="#html5-techniques"><span property="xhv:role" resource="xhv:heading">HTML5 Techniques</span></h5>
           <ul>
-            <li>The HTML5 <code>header</code> element defines a <code>banner</code> landmark when its context is the
-              <code>body</code> element.</li>
+            <li>The HTML5 <code>header</code> element defines a <code>banner</code> landmark when its context is the <code>body</code> element.</li>
 
-            <li>The HTML5 <code>header</code> element is not considered a <code>banner</code> landmark when it is descendant of any of following elements (see <a href="http://w3c.github.io/aria/html-aam/html-aam.html"><abbr title="Hypertext Markup Language">HTML</abbr> Accessibility Mappings</a>):
-
+            <li>
+              The HTML5 <code>header</code> element is not considered a <code>banner</code> landmark when it is descendant of any of following elements (see <a href="http://w3c.github.io/aria/html-aam/html-aam.html"><abbr title="Hypertext Markup Language">HTML</abbr> Accessibility Mappings</a>):
               <ul>
                 <li><code>article</code></li>
                 <li><code>aside</code></li>
@@ -1405,13 +1401,15 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
               </ul>
             </li>
           </ul>
-          <h5 id="aria-techniques">ARIA Techniques</h5>
-          <p>If the HTML5 <code>header</code> element technique is not being used, a <code>role="banner"</code> attribute should be used to define a <code>banner</code> landmark.</p>
 
+          <h5 id="aria-techniques">ARIA Techniques</h5>
+
+          <p>If the HTML5 <code>header</code> element technique is not being used, a <code>role="banner"</code> attribute should be used to define a <code>banner</code> landmark.</p>
         </section>
 
         <section class="notoc" typeof="bibo:Chapter" resource="#examples" property="bibo:hasPart">
           <h5 id="examples" resource="#examples"><span property="xhv:role" resource="xhv:heading">Examples</span></h5>
+
           <p><a href="examples/landmarks/banner.html">Banner Landmark Example</a></p>
         </section>
 
@@ -1423,32 +1421,28 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         <p>A <a href="https://www.w3.org/TR/wai-aria-1.1/#complementary"><code>complementary</code></a> landmark is a supporting section of the document, designed to be complementary to the main content at a similar level in the <abbr title="Document Object Model">DOM</abbr> hierarchy, but remains meaningful when separated from the main content.</p>
 
         <ul>
-          <li><code>complementary</code> landmarks should be top level landmarks (e.g. not contained within any other landmarks).
-          </li>
+          <li><code>complementary</code> landmarks should be top level landmarks (e.g. not contained within any other landmarks).</li>
 
-          <li>If the complementary content is not related to the main content, a more general role should be assigned (e.g.
-            <code>region</code>).</li>
+          <li>If the complementary content is not related to the main content, a more general role should be assigned (e.g. <code>region</code>).</li>
 
-          <li>If a page includes more than one <code>complementary</code> landmark, each should have a unique label (see Step 3 above).
-          </li>
+          <li>If a page includes more than one <code>complementary</code> landmark, each should have a unique label (see Step 3 above).</li>
         </ul>
 
         <section class="notoc" typeof="bibo:Chapter" resource="#html5-technique" property="bibo:hasPart">
-
           <h5 id="html5-technique" resource="#html5-technique"><span property="xhv:role" resource="xhv:heading">HTML5 Technique</span></h5>
 
           <p>Use the HTML5 <code>aside</code> element to define a <code>complementary</code> landmark.</p>
+
           <h5 id="aria-technique">ARIA Technique</h5>
 
-          <p>If the HTML5 <code>aside</code> element technique is not being used, use a
-            <code>role="complementary"</code> attribute to define a <code>complementary</code> landmark.</p>
+          <p>If the HTML5 <code>aside</code> element technique is not being used, use a <code>role="complementary"</code> attribute to define a <code>complementary</code> landmark.</p>
         </section>
 
         <section class="notoc" typeof="bibo:Chapter" resource="#examples-1" property="bibo:hasPart">
           <h5 id="examples-1" resource="#examples-1"><span property="xhv:role" resource="xhv:heading">Examples</span></h5>
+
           <p><a href="examples/landmarks/complementary.html">Complementary Landmark Example</a></p>
         </section>
-
       </section>
 
       <section id="aria_lh_contentinfo" typeof="bibo:Chapter" resource="#aria_lh_contentinfo" property="bibo:hasPart">
@@ -1463,8 +1457,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
           <li>When a page contains nested <code>document</code> and/or <code>application</code> roles (e.g. typically through the use of <code>iframe</code> and <code>frame</code> elements), each <code>document</code> or <code>application</code> role may have one <code>contentinfo</code> landmark.</li>
 
-          <li>If a page includes more than one <code>contentinfo</code> landmark, each should have a unique label (see Step 3 above).
-          </li>
+          <li>If a page includes more than one <code>contentinfo</code> landmark, each should have a unique label (see Step 3 above).</li>
         </ul>
 
         <section class="notoc" typeof="bibo:Chapter" resource="#html5-techniques-1" property="bibo:hasPart">
@@ -1472,11 +1465,10 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <h5 id="html5-techniques-1" resource="#html5-techniques-1"><span property="xhv:role" resource="xhv:heading">HTML5 Techniques</span></h5>
 
           <ul>
-            <li>The HTML5 <code>footer</code> element defines a <code>contentinfo</code> landmark when its context is the
-              <code>body</code> element.</li>
+            <li>The HTML5 <code>footer</code> element defines a <code>contentinfo</code> landmark when its context is the <code>body</code> element.</li>
 
-            <li>The HTML5 <code>footer</code> element is not considered a <code>contentinfo</code> landmark when it is descendant of any of following elements (see <a href="http://w3c.github.io/aria/html-aam/html-aam.html"><abbr title="Hypertext Markup Language">HTML</abbr> Accessibility Mappings</a>):
-
+            <li>
+              The HTML5 <code>footer</code> element is not considered a <code>contentinfo</code> landmark when it is descendant of any of following elements (see <a href="http://w3c.github.io/aria/html-aam/html-aam.html"><abbr title="Hypertext Markup Language">HTML</abbr> Accessibility Mappings</a>):
               <ul>
                 <li><code>article</code></li>
                 <li><code>aside</code></li>
@@ -1486,6 +1478,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
               </ul>
             </li>
           </ul>
+
           <h5 id="aria-technique-1">ARIA Technique</h5>
 
           <p>If the HTML5 <code>footer</code> element technique is not being used, a <code>role="contentinfo"</code> attribute should be used to define a <code>contentinfo</code> landmark.</p>
@@ -1495,7 +1488,6 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <h5 id="examples-2" resource="#examples-2"><span property="xhv:role" resource="xhv:heading">Examples</span></h5>
           <p><a href="examples/landmarks/contentinfo.html">Contentinfo Landmark Example</a></p>
         </section>
-
       </section>
 
       <section id="aria_lh_form" typeof="bibo:Chapter" resource="#aria_lh_form" property="bibo:hasPart">
@@ -1504,19 +1496,16 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         <p>A <a href="https://www.w3.org/TR/wai-aria-1.1/#form"><code>form</code></a> landmark identifies a region that contains a collection of items and objects that, as a whole, combine to create a form when no other named landmark is appropriate (e.g. main or search).</p>
 
         <ul>
-          <li>Use the <code>search</code> landmark instead of the <code>form</code> landmark when the form is used for search functionality.
-          </li>
+          <li>Use the <code>search</code> landmark instead of the <code>form</code> landmark when the form is used for search functionality.</li>
 
           <li>A <code>form</code> landmark should have a label to help users understand the purpose of the form.</li>
 
-          <li>A label for the <code>form</code> landmark should be visible to all users (e.g. an <code>h1-h6</code> element).
-          </li>
+          <li>A label for the <code>form</code> landmark should be visible to all users (e.g. an <code>h1-h6</code> element).</li>
 
-          <li>If a page includes more than one <code>form</code> landmark, each should have a unique label (see Step 3 above).
-          </li>
+          <li>If a page includes more than one <code>form</code> landmark, each should have a unique label (see Step 3 above).</li>
 
-          <li>Whenever possible, controls contained in a <code>form</code> landmark in an <abbr title="Hypertext Markup Language">HTML</abbr> document should use native host semantics:
-
+          <li>
+            Whenever possible, controls contained in a <code>form</code> landmark in an <abbr title="Hypertext Markup Language">HTML</abbr> document should use native host semantics:
             <ul>
               <li><code>button</code></li>
 
@@ -1530,16 +1519,18 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </ul>
 
         <section class="notoc" typeof="bibo:Chapter" resource="#html5-techniques-2" property="bibo:hasPart">
-
           <h5 id="html5-techniques-2" resource="#html5-techniques-2"><span property="xhv:role" resource="xhv:heading">HTML5 Techniques</span></h5>
 
           <p>The HTML5 <code>form</code> element that defines a <code>form</code> landmark when it has an accessible name (e.g. <code>aria-labelledby</code>, <code>aria-label</code> or <code>title</code>).</p>
+
           <h5 id="aria-technique-2">ARIA Technique</h5>
+
           <p>Use the <code>role="form"</code> to identify a region of the page; do not use it to identify every form field.</p>
         </section>
 
         <section class="notoc" typeof="bibo:Chapter" resource="#examples-3" property="bibo:hasPart">
           <h5 id="examples-3" resource="#examples-3"><span property="xhv:role" resource="xhv:heading">Examples</span></h5>
+
           <p><a href="examples/landmarks/form.html">Form Landmark Example</a></p>
         </section>
       </section>
@@ -1549,25 +1540,21 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
         <p>A <a href="https://www.w3.org/TR/wai-aria-1.1/#main"><code>main</code></a> landmark identifies the primary content of the page.</p>
 
-
         <ul>
           <li>Each page should have one <code>main</code> landmark.</li>
 
           <li>The <code>main</code> landmark should be a top-level landmark.</li>
 
-          <li>When a page contains nested <code>document</code> and/or <code>application</code> roles (e.g. typically through the use of <code>iframe</code> and <code>frame</code> elements), each <code>document</code> or
-            <code>application</code> role may have one <code>main</code> landmark.</li>
+          <li>When a page contains nested <code>document</code> and/or <code>application</code> roles (e.g. typically through the use of <code>iframe</code> and <code>frame</code> elements), each <code>document</code> or <code>application</code> role may have one <code>main</code> landmark.</li>
 
-          <li>If a page includes more than one <code>main</code> landmark, each should have a unique label (see Step 3 above).
-          </li>
+          <li>If a page includes more than one <code>main</code> landmark, each should have a unique label (see Step 3 above).</li>
         </ul>
 
         <section class="notoc" typeof="bibo:Chapter" resource="#html5-technique-1" property="bibo:hasPart">
-
           <h5 id="html5-technique-1" resource="#html5-technique-1"><span property="xhv:role" resource="xhv:heading">HTML5 Technique</span></h5>
 
-
           <p>Use the HTML5 <code>main</code> element to define a <code>main</code> landmark.</p>
+
           <h5 id="aria-technique-3">ARIA Technique</h5>
 
           <p>If the HTML5 <code>main</code> element technique is not being used, use a <code>role="main"</code> attribute to define a <code>main</code> landmark.</p>
@@ -1575,9 +1562,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
         <section class="notoc" typeof="bibo:Chapter" resource="#examples-4" property="bibo:hasPart">
           <h5 id="examples-4" resource="#examples-4"><span property="xhv:role" resource="xhv:heading">Examples</span></h5>
+
           <p><a href="examples/landmarks/main.html">Main Landmark Example</a></p>
         </section>
-
       </section>
 
       <section id="aria_lh_navigation" typeof="bibo:Chapter" resource="#aria_lh_navigation" property="bibo:hasPart">
@@ -1585,30 +1572,28 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
         <p><a href="https://www.w3.org/TR/wai-aria-1.1/#navigation"><code>Navigation</code></a> landmarks provide a way to identify groups (e.g. lists) of links that are intended to be used for website or page content navigation.</p>
 
-
         <ul>
-          <li>If a page includes more than one <code>navigation</code> landmark, each should have a unique label (see Step 3 above).
-          </li>
+          <li>If a page includes more than one <code>navigation</code> landmark, each should have a unique label (see Step 3 above).</li>
 
           <li>If a <code>navigation</code> landmark has an identical set of links as another <code>navigation</code> landmark on the page, use the same label for each <code>navigation</code> landmark.</li>
         </ul>
 
         <section class="notoc" typeof="bibo:Chapter" resource="#html5-technique-2" property="bibo:hasPart">
-
           <h5 id="html5-technique-2" resource="#html5-technique-2"><span property="xhv:role" resource="xhv:heading">HTML5 Technique</span></h5>
 
           <p>Use the HTML5 <code>nav</code> element to define a <code>navigation</code> landmark.</p>
+
           <h5 id="aria-technique-4">ARIA Technique</h5>
 
-          <p>If the HTML5 <code>nav</code> element technique is not being used, use a
-            <code>role="navigation"</code> attribute to define a <code>navigation</code> landmark.</p>
+          <p>If the HTML5 <code>nav</code> element technique is not being used, use a <code>role="navigation"</code> attribute to define a <code>navigation</code> landmark.</p>
+
         </section>
 
         <section class="notoc" typeof="bibo:Chapter" resource="#examples-5" property="bibo:hasPart">
           <h5 id="examples-5" resource="#examples-5"><span property="xhv:role" resource="xhv:heading">Examples</span></h5>
+
           <p><a href="examples/landmarks/navigation.html">Navigation Landmark Example</a></p>
         </section>
-
       </section>
 
       <section id="aria_lh_region" typeof="bibo:Chapter" resource="#aria_lh_region" property="bibo:hasPart">
@@ -1616,33 +1601,29 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
         <p>A <a href="https://www.w3.org/TR/wai-aria-1.1/#region"><code>region</code></a> landmark is a perceivable section of the page containing content that is sufficiently important for users to be able to navigate to the section.</p>
 
-
         <ul>
           <li>A <code>region</code> landmark must have a label.</li>
 
-          <li>If a page includes more than one <code>region</code> landmark, each should have a unique label (see Step 3 above).
-          </li>
+          <li>If a page includes more than one <code>region</code> landmark, each should have a unique label (see Step 3 above).</li>
 
-          <li>The <code>region</code> landmark can be used identify content that named landmarks do not appropriately describe.
-          </li>
+          <li>The <code>region</code> landmark can be used identify content that named landmarks do not appropriately describe.</li>
         </ul>
 
         <section class="notoc" typeof="bibo:Chapter" resource="#html5-technique-3" property="bibo:hasPart">
-
           <h5 id="html5-technique-3" resource="#html5-technique-3"><span property="xhv:role" resource="xhv:heading">HTML5 Technique</span></h5>
 
           <p>Use the HTML5 <code>section</code> element to define a <code>region</code> landmark.</p>
+
           <h5 id="aria-technique-5">ARIA Technique</h5>
 
-          <p>If the HTML5 <code>section</code> element technique is not being used, use a
-            <code>role="region"</code> attribute to define a <code>region</code> landmark.</p>
+          <p>If the HTML5 <code>section</code> element technique is not being used, use a <code>role="region"</code> attribute to define a <code>region</code> landmark.</p>
         </section>
 
         <section class="notoc" typeof="bibo:Chapter" resource="#examples-6" property="bibo:hasPart">
           <h5 id="examples-6" resource="#examples-6"><span property="xhv:role" resource="xhv:heading">Examples</span></h5>
+
           <p><a href="examples/landmarks/region.html">Region Landmark Example</a></p>
         </section>
-
       </section>
 
       <section id="aria_lh_search" typeof="bibo:Chapter" resource="#aria_lh_search" property="bibo:hasPart">
@@ -1651,17 +1632,15 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         <p>A <a href="https://www.w3.org/TR/wai-aria-1.1/#search"><code>search</code></a> landmark contains a collection of items and objects that, as a whole, combine to create search functionality.</p>
 
         <ul>
-          <li>Use the <code>search</code> landmark instead of the <code>form</code> landmark when the form is used for search functionality.
-          </li>
+          <li>Use the <code>search</code> landmark instead of the <code>form</code> landmark when the form is used for search functionality.</li>
 
-          <li>If a page includes more than one <code>search</code> landmark, each should have a unique label (see Step 3 above).
-          </li>
+          <li>If a page includes more than one <code>search</code> landmark, each should have a unique label (see Step 3 above).</li>
         </ul>
 
         <section class="notoc" typeof="bibo:Chapter" resource="#html5-technique-4" property="bibo:hasPart">
-
           <h5 id="html5-technique-4" resource="#html5-technique-4"><span property="xhv:role" resource="xhv:heading">HTML5 Technique</span></h5>
           <p>There is no HTML5 element that defines a <code>search</code> landmark.</p>
+
           <h5 id="aria-technique-6">ARIA Technique</h5>
 
           <p>The <code>role="search"</code> attribute defines a <code>search</code> landmark.</p>
@@ -1669,14 +1648,12 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
         <section class="notoc" typeof="bibo:Chapter" resource="#examples-7" property="bibo:hasPart">
           <h5 id="examples-7" resource="#examples-7"><span property="xhv:role" resource="xhv:heading">Examples</span></h5>
+
           <p><a href="examples/landmarks/search.html">Search Landmark Example</a></p>
         </section>
-
       </section>
     </section>
   </section>
-
-
 
   <section id="aria_ex" typeof="bibo:Chapter" resource="#aria_ex" property="bibo:hasPart">
     <!--OddPage-->
