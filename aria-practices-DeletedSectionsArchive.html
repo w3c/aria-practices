@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
 <head>
-	<title>WAI-ARIA Authoring Practices 1.1</title>
+	<title>Content Deleted From WAI-ARIA Authoring Practices 1.1</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<script src="https://www.w3.org/Tools/respec/respec-w3c-common" class="remove"></script>
 	<script src="common/script/resolveReferences.js" class="remove"></script>
@@ -165,8 +165,332 @@
     It allows reviewers to more easily see what was removed, and makes it easier to restore content.
     </p>
     </section>
+    <section id="kbd_layout">
+      <h2>Providing Navigable Structure within Web Pages</h2>
+      <p class="note">
+      Matt King: Removed on July 10 per discussion in <a href="https://www.w3.org/2016/05/23-aria-apg-minutes.html">May 23, 2016 meeting</a>. 
+      This section is redundant given the new landmark section.
+      The parts that are not redundant are either out-of-date or not necessary. The possible exceptions are content covering the group and directory roles.
+      </p>
+      <p>
+      This section takes a broader look at the Web page. 
+      It is intended to assist you in conveying a logical, usable, and accessible layout to an assistive technology or adaptive system designed to modify the visual layout to meet the users needs. 
+      </p>
+      <p>
+      One of the deficiencies of (X)HTML for disabled users has been the  usability of keyboard navigation. 
+      Users dependent on a keyboard for  navigation have been forced to tab everywhere in the document, as the  only keyboard accessible document elements are form and  anchor elements. 
+      This has forced developers to make most everything a  link to make it keyboard accessible, and to get to each link you have  to tab to it. 
+      With the advent of portals and other content aggregation  means Web pages are divided into visible regions and there has been no  vehicle to get to them other than perhaps to do things such as: </p>
+      <ul>
+        <li>Create a skip link at the top of the page to the main content </li>
+        <li>Make the head of each perceivable region (search bar, stock quote, TV Listing, etc.) an <code>&lt;H1&gt;</code> tag </li>
+      </ul>
+      <p>There are number of problems with this approach: </p>
+      <ul>
+        <li>Both force the user interface to change to support accessibility </li>
+        <li>In the case of using <code>&lt;H1&gt;</code> to mark your regions, this is not consistent across Web sites </li>
+        <li>The semantics are limited to main content and a section</li>
+        <li>Neither  convey the need for the  rich internet application developer to control keyboard navigation to an assistive technology</li>
+      </ul>
+      <p>
+      This remainder of this section provides the author with a playbook for using WAI-ARIA to add semantically rich navigation structure in a Web page so that an assistive technology may provide an effective  user experience and avoid these shortcomings.
+      </p>
+        <section id="kbd_layout_landmarks">
+        <h4> Steps for Defining a Logical Navigational Structure</h4>
+        <p>
+        
+        <strong>Due to the complexity of today's web content, it is imperative that all content reside in a navigation landmark.</strong> Sight and mobility impaired users must be able to quickly access a list of landmarks for a web page, to be used as a table of contents.  
+        This allows the user to quickly navigate to important sections of the page without "endless" TAB navigation.  If this is not done, then content will be orphaned and missed by the user.  In fact many of today's accessibility test tools have built-in rules to flag this issue as a compliance error.  This section defines how to create these navigable regions of the page:  </p>
+        <ol>
+          <li>
+            <p id="kbd_layout_landmark_IDRegions"><strong>Identify the logical structure of your page</strong></p>
+            <p>Break up your page into perceivable block areas which contain semantically associated information called "regions". You can further break down each region into logical regions as needed. This is a common process undertaken by portal developers who break the page into perceivable regions called portlets. Think about the user wanting to navigate to these logical block areas on your Web page. Write down a description of what you believe each region to be.</p>
+            <p> Depending on your Web application you may then need to break it into sub regions depending on the complexity of your Web application. This is a recursive process. A user will look at these perceivable areas like pealing an onion. You might have an outermost collection of perceivable regions or block areas and upon entering each region you may have a collection of regions within it. </p>
+          </li>
+          <li>
+            <p id="KBD_logicalstructuremarkup"><strong>Implement the logical structure in markup</strong></p>
+            <p>Implementing the block structure in markup often involves wrapping elements contained with a "region" such as a <code>&lt;div&gt;</code> or <code>&lt;iframe&gt;</code> with visible borders so that each region or block is perceivable to the user.</p>
+          </li>
+          <li>
+            <p id="KBD_layout_labelregion"><strong>Label each region</strong></p>
+            <p> Once you have broken up each region you need to label it. The start of each region must have a perceivable header and it should be used to label the region. For details on how to do this see section <a href="#kbd_layout_nesting_vs_level">3.4.3.1 Header Levels vs. nesting level</a> to create a header to label each region. If you're finding it difficult to come up with a label for the region, make sure at least to use one of the standard roles defined in the following step. The drawback of not providing a label is that users will not know the purpose of the region. By definition, regions would be included in a summary of a page. If an assistive technology were to summarize it would be unable to provide information about the section without a label.</p>
+          </li>
+          <li>
+            <p id="kbd_layout_landmark_XHTML"><strong>Assign landmark roles to each region</strong></p>
+            <p>Now that you labeled your regions, you need to assign them semantic navigation landmarks. Landmarks are a vast improvement over the rudimentary "skip to main content" technique employed prior to WAI-ARIA. If possible it is best to use these as landmarks. Skip to main content links may impact the placement of web application elements. This may be a consideration for developers that want to try to keep their web application in a specific visible area. Consequently, layout adjustments may need to be made to support skip to main content links. Also, skip to main content links are limited in that they only address only one main content area. WAI-ARIA provides a collection of landmarks which are applied to each of the regions you identified in step 2. </p>
+            <p>The presence of common, semantic, navigation  landmarks allows each site to support the same standard and allows your  assistive technology to provide a consistent navigation experience - an important feature for screen readers and alternate input solutions. For users with cognitive and learning disabilities the landmark information could be used to expand and collapse these regions of your page to aid in simplifying the user experience by allowing the user to manage the amount of information processed at any one time. </p>
+            <p>WAI-ARIA landmark roles that are applied to elements having strong native semantics are not mapped consistently to the platform accessibility API.  An example is the <code>TABLE</code> element.  For this reason, it is recommended that authors apply landmarks to <code>DIV</code> and <code>SPAN</code> containers. </p>
+            <p>There are also mainstream benefits of providing navigation landmarks. Your browser may assign key sequences to move focus to these sections as they can be set on every site. Navigation to these landmarks is device independent. A personal digital assistant (PDA) could assign a device key to get to them in your document. The common landmarks in WAI-ARIA include: </p>
+            <dl>
+            <dt><a href="#application" class="role-reference">application</a></dt>
+            <dd>
+Represents a region of the page representing a unique software unit executing a set of tasks for its users. It is an area where assistive technologies should also return browse navigation keys back over to the web application in this region.
+  <p class="note">If the entire web page has a role of application then it should not be treated as a navigational landmark by an assistive technology.</p>
+</dd>
+              <dt><a href="#banner" class="role-reference">banner</a> </dt>
+              <dd>A region that contains the prime heading or internal title of a page. </dd>
+              <dt><a href="#complementary" class="role-reference">complementary</a> </dt>
+              <dd>Any section of the document that supports but is separable from the main   content, but is meaningful on its own even when separated from it. </dd>
+              <dt><a href="#contentinfo" class="role-reference">contentinfo</a> </dt>
+              <dd>Meta information which applies to the first immediate ancestor whose role is   not presentation.</dd>
+              <dt><a href="#form" class="role-reference">form</a></dt>
+              <dd>A region of the document that represents a collection of form-associated elements, some of which can represent editable values that can be submitted to a server for processing.</dd>
+              <dt><a href="#main" class="role-reference">main</a> </dt>
+              <dd>Main content in a document. </dd>
+              <dt><a href="#navigation" class="role-reference">navigation</a> </dt>
+              <dd>A collection of links suitable for use when navigating the document or   related documents.</dd>
+              <dt><a href="#search" class="role-reference">search</a> </dt>
+              <dd>The search tool of a Web document. </dd>
+            </dl>
+            <p>To set a landmark in your page: </p>
+            <pre class="example higlight">&lt;div role="navigation" title="Table of Contents"&gt; &#8230; &lt;/div&gt;
+&lt;div role="main" title="Game Statistics"&gt; &#8230; &lt;/div&gt;</pre>
+          </li>
+          <li id="kbd_layout_static"><strong>For application landmarks with static prose</strong>
+       <p>
+       If you have a regional landmark of type application and static descriptive text is available, then on the application landmark, include an aria-describedby reference to associate the application and the static text as shown here:</p><pre>&lt;div role="application" aria-labelledby="calendar" aria-describedby="info"&gt;
+&lt;h1 id="calendar"&gt;Calendar&lt;h1&gt;
+&lt;p id="info"&gt;
+This calendar shows the game schedule for the Boston Red Sox.
+&lt;/p&gt;
+&lt;div role="grid"&gt;
+&#8230;
+&lt;/div&gt;</pre>
+       </li>
+          <li id="kbd_layout_landmark_rebel"><strong>For  landmarks unsuited to specialized region WAI-ARIA roles</strong>
+            <p>You can create custom regional landmarks by using a generic <a class="role-reference" href="#region">region</a>. While it is not essential to label these specialized regions with a header, you should provide a title to ensure that the region name is accessible to all users, just as you would the <a href="#kbd_layout_landmark_XHTML">standard regional landmarks</a>. See <a href="#kbd_layout_nesting_vs_level">Header levels versus Nesting levels</a> for directions on how to label the region.</p>
+            <pre class="example highlight">&lt;div role="main"&gt; &#8230; &lt;div role="region" title="weather"&gt;
+</pre>
+            <p>Note: the <a class="role-reference" href="#region">region</a> role is generic and should only be used when a more specific role is not applicable.</p>
+          </li>
+          <li>
+            <p><strong>Indicate to the assistive technology who controls the keyboard navigation</strong></p>
+            <p> Today's screen readers for the blind have been designed to give the user a "browsing" experience meaning the screen reader consumes  a number of keys to aid in the browsing experience. For example, the "up" and "down" arrow keys are used to read the next and previous line of text on your Web page. Accessible rich internet applications will use these keys in an application to navigate within "widgets" like a <a href="#TreeView">Tree View</a>.</p>
+            <p> Assistive technologies must be able to identify widgets which implement WAI-ARIA and allow them use of the keyboard. However, if you have used  numerous widgets to form an application you must set the role on the encompassing region to <a class="role-reference" href="#application">application</a>. Should you have regions which should be browsed as documents within the application region you should mark those regions with a <a class="role-reference" href="#document">document</a> role as needed. See section <a href="#kbd_layout_impact">3.4.2 Structural Roles used to facilitate assistive technology navigation</a>.          </p>
+          </li>
+        </ol>
+      </section>
+        <section id="kbd_layout_impact">
+        <h4> Structural Roles that Facilitate  Navigation with Assistive Technologies</h4>
+        While WAI-ARIA is designed to address many disabilities, this section is best described in terms of screen reader use. In desktop applications, screen readers typically treat widgets as discrete entities, reading and interacting with each widget one at a time. The user moves the point of focus from widget to widget using tab/shift tab, mnemonics, or accelerators, keyboard commands which are usually provided by the application or the operating system. We refer to this mode of interaction as "application mode."
+        <p>When viewing Web content however, screen readers often gather information about all the widgets in an area and present them in a document-like view which the user navigates using keyboard commands provided and controlled by the screen reader. Think of this mode as a virtual environment that presents Web content in a way that makes it convenient for adaptive technology users to navigate and read. This is sometimes called browse mode, or virtual mode. We refer to this as "document browse mode." </p>
+        <p>Because many screen readers provide document mode navigation support using single key mnemonics on the alpha-numeric keyboard, they may provide a third mode, called "forms mode," used to interact with form controls that are encountered in document mode. Behavior in forms mode is similar to that of application mode. The key feature of forms mode is that it can be toggled with document mode to make it easy to both interact with a specific widget, and read virtualized content of which the widget is a part. Since, as described above, a screen reader's perception of an area as either a document or an application greatly influences how the user reads and interacts with it, WAI-ARIA provides content authors a way to indicate whether their pages must be viewed as applications or documents by assistive technologies. </p>
+        <p>To set document or application mode follow these steps: </p>
+        <ol>
+          <li>
+            <p id="kbd_layout_impact_approle"><strong>Set the Application Role</strong></p>
+            <p>After you have divided your Web page into regions through the use of role landmarks and custom regions, you must make a decision: Is your Web page an application or not? If the majority of the content is application-like the default interaction mode should be set to <span class="role-reference">application</span>, with <span class="role-reference">document</span> regions embedded within the application if applicable. Otherwise the default interaction mode is document-like and therefore should not be overridden by the use of a global role of <span class="role-reference">application</span>. In this case the <span class="role-reference">application</span> role can be placed on discrete regions within the document if applicable. </p>
+      <p>If it is, set the role of <a class="role-reference" href="#application">application</a> on the body tag as follows: </p>
+            <pre class="example highlight">&lt;body role="application"&gt; </pre>
+            <p> When using <a class="role-reference" href="#application">application</a>, all static text must be associated with widgets, groups or panes via using the <a class="property-reference" href="#aria-labelledby">aria-labelledby</a> and <a class="property-reference" href="#aria-describedby">aria-describedby</a> properties, otherwise it will not be read by the screen reader when the user navigates to the related widget or group.</p>
+            <p>Special Considerations: </p>
+            <ul>
+              <li>If you have selected to have a role of application on the body tag, it is recommended that a widget have focus after the page is first loaded. There may be an instance when an application itself needs to receive focus, such as an application consisting solely of a scrollable editable text area. </li>
+              <li>If when your page loads and you should have  focus on a widget this is a strong indicator that your Web page should have role of <a class="role-reference" href="#application">application</a>.</li>
+              <li>If your page has only a few isolated widgets, like pop-up calendars located on a Web page, it is not necessary to expressly set the role of application on the body. Screen readers, based on widget roles, must be able to provide access to these widgets without recognizing the entire page as an application. </li>
+              <li>Also, browsers make use of a feature called the contenteditable attribute, which will be incorporated into HTML 5. Contenteditable allows an author to turn the browser section into a rich text editor, similar to a word processor. Any section which has contenteditable set to "true" is considered a widget. </li>
+              <li>If the body element has been given the role of application, please follow step 3. Otherwise, the Web page is considered a document, and no further action is required in this regard. </li>
+            </ul>
+          </li>
+          <li><strong>Dialogs and alert dialogs - special case application roles</strong>
+            <p> WAI-ARIA provides <a class="role-reference" href="#dialog">dialog</a> and <a class="role-reference" href="#alertdialog">alertdialog</a> roles that are to be treated as special case <a class="role-reference" href="#application">application</a> roles. Like application, screen readers will leave the main job of  keyboard navigation up the dialog. </p>
+            <p> When using <a class="role-reference" href="#dialog">dialog</a>, all static text must be associated with widgets, groups or panes using the <a class="property-reference" href="#aria-labelledby">aria-labelledby</a> and <a class="property-reference" href="#aria-describedby">aria-describedby</a> properties, otherwise it will not be read by the screen reader when the user navigates to the related widget or group. Unlike an application, your Web page is unlikely to start out as either of these two roles but rather the author is most likely to dynamically create dialogs or alertdialog sections within the Web page.</p>
+            <p> Unlike <a class="role-reference" href="#dialog">dialog</a>, descriptive text of the alert does not need to be associated via a relationship, as the contents of alert dialogs will be read automatically by the screen reader when the dialog opens.          </p>
+          </li>
+          <li><strong>Set the document role</strong> </li>
+        </ol>
+        <blockquote>
+          <p>The default mode for a screen reader to be processing an HTML Web page is document browse mode. This is equivalent to having a role of document on the HTML <code>&lt;body&gt;</code> tag. If you have already specified a role of application on the body tag there may be times in which you tell the screen reader to switch into "document browse mode" and start stealing the necessary keys to browse a document section of your Web page. These keys are the typical keys used by WAI-ARIA widgets and to provide this level of navigation the keys must be stolen from your browser. </p>
+          <p>To mark areas of your page to tell the assistive technology when to switch into document browse mode, look at the regions/landmarks you have defined and determine which ones must be browsed as a document or navigated as an application. For each region which must be browsed in document browse mode, embed a div element within it with the role of <a class="role-reference" href="#document">document</a> as follows: </p>
+          <pre class="example higlight">&lt;div role="document"&gt; </pre>
+          <p>Now, when a screen reader encounters this region, it will change its interaction model to that of  document browsing mode. </p>
+        </blockquote>
+      </section>
+        <section id="kbd_layout_nesting">
+        <h4> Implicit Nesting and Headings </h4>
+        <p>This section discusses the use of the <a class="role-reference" href="#heading">heading</a> role and nesting levels. </p>
+          <section id="kbd_layout_nesting_vs_level">
+          <h5> Header Levels Versus Nesting Levels </h5>
+          <p>The <a class="role-reference" href="#heading">heading</a> role value signifies a heading for a section of the document instance. Use of the heading role indicates that a specific object serves as a header. The <a class="role-reference" href="#region">region</a> of the document to which the heading pertains to should be marked with the <a class="property-reference" href="#aria-labelledby">aria-labelledby</a> property containing the value of the id for the header. If you have a heading and there is no element containing the content that it heads, wrap the content in a &lt;div&gt; bearing this <a class="property-reference" href="#aria-labelledby">aria-labelledby</a> attribute. If headings are organized into a logical outline, the <a class="property-reference" href="#aria-level">aria-level</a> property can be used to indicate the nesting level. Here is an example with and without ARIA. Note that the preferred way is using native semantics without ARIA, but the approach with ARIA is shown first to demonstrate use of the heading role:</p>
+          <pre class="example highlight">Using ARIA:
+&lt;div role="main" aria-labelledby="page_title"&gt;
+  &lt;p id="page_title" role="heading" aria-level=&quot;1&quot;&gt;Top News Stories&lt;/p&gt;
+   … main page contents here …
+&lt;/div&gt;
 
-    <section id="sotd"></section>
+Using native markup:
+&lt;div role="main" aria-labelledby="page_title"&gt;
+  &lt;h1 id="page_title"&gt;Top News Stories&lt;/h1&gt;
+   … main page contents here …
+&lt;/div&gt;
+</pre>
+        </section>
+          <section id="kbd_layout_nesting_owns">
+          <h5>Owns Repairs Nesting</h5>
+          <p>Assistive technology briefs users on the context where they are. When they arrive at a new page, a page summary may be given. When they move into a new context, some of the labeling from elements containing the new focus or reading location may be rendered by the assistive technology, to give context to the details to be read next. </p>
+          <p>The syntactic structure of a page provides the default nesting of contexts. If a paragraph is nested in a &lt;div&gt; or table cell, it is assumed that labels for the &lt;div&gt; or headers for the table cell are pertinent to what is in the paragraph. On the other hand, it is not possible to always flow the logical structure one-to-one into the parse structure. </p>
+          <p>The <a class="property-reference" href="#aria-owns">aria-owns</a> relationship is provided to annotate logical nesting where the logical child is not a syntactic descendant of the logical parent. In a Rich Internet Application, updates may be made to the document without updating the logical syntactic structure, yet elements may appear to be added to the document structure. From a DOM and accessibility hierarchy perspective <a class="property-reference" href="#aria-owns">aria-owns</a> is a fallback mechanism to using the tree hierarchy provided in the DOM. An example  of where <a class="property-reference" href="#aria-owns">aria-owns</a> is needed is a <a class="role-reference" href="#treeitem">treeitem</a>, where children in a folder subtree are added to a visible subtree but not reflected in the actual document subtree of the folder. The <a class="property-reference" href="#aria-owns">aria-owns</a> relationship can be used to associate the folder with the new "adopted" child. For more details on the use of <a class="property-reference" href="#aria-owns">aria-owns</a> see <a href="#relations_owning">section 4.2 Owning and Controlling</a>. The <a class="property-reference" href="#aria-owns">aria-owns</a> relationship is used to indicate to a user agent that a menu is an adopting parent of a sub <a class="role-reference" href="#menu">menu</a>.  Another use for <a class="property-reference" href="#aria-owns">aria-owns</a> is a hierarchical diagram  where the child nodes of the diagram are not be adequately represented using the DOM structure. </p>
+        </section>
+      </section>
+        <section id="kbd_layout_groupheading">
+        <h4> Directories, Groups, and Regions</h4>
+        <p>There are several WAI-ARIA roles used to indicate a collection of user interface objects, and each has a distinct purpose:</p>
+        <dl>
+          <dt> <a class="role-reference" href="#directory">directory</a> </dt>
+          <dd>Contains a static table of contents </dd>
+          <dt><a class="role-reference" href="#group">group</a></dt>
+          <dd>Small set of related user interface objects that would not be included in a page summary or table of contents by an assistive technology</dd>
+          <dt><a class="role-reference" href="#region">region</a></dt>
+          <dd>Section of related user interface objects that should be included in a page summary or table of contents. </dd>
+        </dl>
+        <p>The use of each is described below. </p>
+          <section id="kbd_layout_directories">
+          <h5> Directories and Their Applicability </h5>
+          <p>The WAI-ARIA role, <a class="role-reference" href="#directory">directory</a>, allows authors to mark static table of content sections of a document. Prior to WAI-ARIA, the user would need to guess if an area of a document actually pertained to the table of contents. Authors should mark these sections within a document with a role of  directory.</p>
+          <pre class="example highlight">&lt;div role="directory"&gt;
+   &lt;ul&gt;
+      &lt;li&gt;Global Warming Causes
+          &lt;ul&gt;
+             &lt;li&gt;CO2 Buildup&lt;/li&gt;
+             &lt;li&gt;Auto emissions&lt;li&gt;
+             &lt;li&gt;Factory emissions&lt;/li&gt;
+             &lt;li&gt;Destruction of rainforests&lt;/li&gt;
+          &lt;/ul&gt;
 
+      &lt;/li&gt;
+
+      &lt;li&gt;Tailoring CO2 buildup
+          &lt;ul&gt;
+             &lt;li&gt;Elimination of the incandescent light bulb&lt;/li&gt;
+             &lt;li&gt;Hydrogen fuel cells&lt;/li&gt;
+             &lt;li&gt;Solar energy&lt;/li&gt;
+             &lt;li&gt;Wind power&lt;/li&gt;
+          &lt;/ul&gt;
+
+      &lt;/li&gt;
+   &lt;/ul&gt;
+
+&lt;/div&gt;</pre>
+        </section>
+          <section id="kbd_layout_whatgroup">
+          <h5> Groups and Their Applicability </h5>
+          <p>Authors should use a role of <a class="role-reference" href="#group">group</a> to form logical collections of items with related functionality in a widget. A group should not be considered a major perceivable section on a page. A <a class="role-reference" href="#group">group</a> neither has a heading nor appears in the &quot;Table of Contents.&quot;  A <a class="role-reference" href="#group">group</a> may  delineate a set of <a class="role-reference" href="#treeitem">treeitem</a>s having the same level in the <a class="role-reference" href="#tree">tree</a> or it may be used to group a set of related checkboxes in a form. Other examples include: </p>
+          <ul>
+            <li>a <a class="role-reference" href="#row">row</a> in a grid (a row is a specialized group representing a row in a grid); </li>
+            <li>a <a class="role-reference" href="#group">group</a> of children in a tree widget forming a collection of siblings in a hierarchy; or </li>
+            <li>a <a class="role-reference" href="#group">group</a> of items having the same container in a directory </li>
+          </ul>
+          <p>Proper handling of a group by assistive technologies, therefore, is determined by the context in which it is provided. Group members that are outside the DOM subtree of the group need to have explicit relationships assigned for them in order to participate in the group. Groups may also be nested. </p>
+          <p>If an author believes that a section is significant enough in terms of the entire document instance, then the author must assign the section a role of <code class="role-reference">region</code> or one of the designated standard landmarks. The designated landmark roles are listed in the section <a href="#kbd_layout_landmarks">Regions and XHTML Role landmarks</a>.</p>
+        </section>
+          <section id="kbd_layout_whatregion">
+          <h5> Regions and Their Use </h5>
+          <p>When defining a region for a section of a document, authors must consider using standard document landmark roles defined in the <a href="http://www.w3.org/1999/xhtml/vocab/">XHTML Vocabulary</a>. This makes it possible for user agents and assistive technologies to treat roles as standard navigation landmarks. If the definition of these regions is inadequate, authors must use the WAI-ARIA <a class="role-reference" href="#region">region</a> role and provide the appropriate title text. </p>
+          <p>For more information on the use of region see <a href="#kbd_layout_landmarks">Regions and XHTML Role landmarks</a>.</p>
+          <p>&#160;</p>
+        </section>
+      </section>
+        <section id="kbd_layout_remaining">
+        <h4> Remaining Structural Roles</h4>
+        <ul>
+          <li><a class="role-reference" href="#columnheader">columnheader</a> </li>
+           <li><a class="role-reference" href="#directory">directory</a></li>
+          <li><a class="role-reference" href="#grid">grid</a> </li>
+          <li><a class="role-reference" href="#gridcell">gridcell</a></li>
+          <li><a class="role-reference" href="#img">img</a> </li>
+          <li><a class="role-reference" href="#list">list</a> </li>
+          <li><a class="role-reference" href="#listitem">listitem</a></li>
+          <li><a class="role-reference" href="#row">row</a> </li>
+          <li><a class="role-reference" href="#rowheader">rowheader</a></li>
+          <li><a class="role-reference" href="#separator">separator</a> </li>
+          <li><a class="role-reference" href="#treegrid">treegrid</a></li>
+        </ul>
+          <section id="kbd_layout_remaining_tabular">
+          <h5> Tabular Structure-Related Roles Supporting Tabular Widgets</h5>
+          <p>A number of structural roles support the tabular widgets, <a class="role-reference" href="#grid">grid</a> and <a class="role-reference" href="#treegrid">treegrid</a>. These structural roles indicate additional keyboard navigation as well as the ability to select rows and/or columns. Typically, you would apply these roles to an underlying table in the base markup as shown here:</p>
+          <pre class="example highlight">&lt;table role="grid"&gt;    </pre>
+          <p>However, that may not work for the developer in all instances, such as when the developer has need for a &lt;div&gt; or &lt;span&gt; or when additional semantics are needed. To assist, the following roles are provided to support tabular widgets:</p>
+          <ul>
+            <li><a class="role-reference" href="#columnheader">columnheader</a> </li>
+            <li><a class="role-reference" href="#grid">grid</a> </li>
+            <li><a class="role-reference" href="#gridcell">gridcell</a></li>
+            <li><a class="role-reference" href="#row">row</a> </li>
+            <li><a class="role-reference" href="#rowheader">rowheader</a></li>
+            <li><a class="role-reference" href="#treegrid">treegrid</a></li>
+          </ul>
+          <p>When constructing a <a class="role-reference" href="#grid">grid </a>or <a class="role-reference" href="#treegrid">treegrid</a> the author must use <a class="role-reference" href="#gridcell">gridcell</a>s for the actual cells:</p>
+          <pre class="example highlight">&lt;table role="grid"&gt;
+   &lt;tr&gt;
+      &lt;td role= "columnheader"&gt;Apples&lt;/td&gt;&lt;td role= "columnheader"&gt;Oranges&lt;/td&gt;
+   &lt;/tr&gt;
+   &lt;tr&gt;
+      &lt;td role="gridcell"&gt;Macintosh&lt;/td&gt;&lt;td role="gridcell"&gt;Valencia&lt;/td&gt;
+   &lt;/tr&gt;
+&lt;/table&gt;</pre>
+          <p>Unlike table cells within a table, authors should ensure a grid's  <a class="role-reference" href="#gridcell">gridcell</a>s are focusable through the use of tabindex (in HTML), or <a href="#aria-activedescendant" class="property-reference">aria-activedescendant</a> on the grid.They may also be editable, as is shown in the above example. </p>
+          <p>Treegrid's may require expanding and collapsing rows which may not be performed using a &lt;tr&gt;. In these instances authors will use an HTML <code>&lt;div&gt;</code>. WAI-ARIA provides a role of <a class="role-reference" href="#row">row</a> which may be assigned to the <code>&lt;div&gt;</code> to convey to the assistive technology that this is still a row. If you decide to not use the native HTML &lt;table&gt; elements and choose more flexible elements, such as <code>&lt;div&gt;</code> and <code>&lt;span&gt;</code>s, with applied WAI-ARIA roles in this section, you should structurally lay out your elements in line with what you would expect from HTML. All of your <a class="role-reference" href="#rowheader">rowheader</a>s should be in a <a class="role-reference" href="#row">row</a> and your <a class="role-reference" href="#gridcell">gridcell</a>s should be children of each subsequent row in the same format as HTML for <code>&lt;td&gt;</code>s and <code>&lt;th&gt;</code>s within <code>&lt;tr&gt;</code>s.</p>
+        </section>
+          <section id="kbd_layout_remaining_description">
+          <h5> Marking Descriptive Sections</h5>
+          <p>
+          A new feature of WAI-ARIA is the ability to associate descriptive text with a section, drawing, form element, picture, and so on using the <a href="#aria-describedby" class="property-reference">aria-describedby</a> property.  The use case for <a href="#aria-describedby" class="property-reference">aria-describedby</a> is to reference the local <code>id</code> of the long description.  The most common use case for <code>longdesc</code> is for the author to create a separate file to describe a picture.  It is preferable to have the descriptive text in prose as well so that it is readily available to all users.  This is useful for authors who do not want to create a separate document that contains the description, and for cognitively impaired users who can be confused by context changes when having to go to another page for the description. Yet, like <code>longdesc</code>, descriptive text is treated separately from the short name provided by the <code>title</code> or <code>alt</code> attributes in HTML.
+          </p>
+          <p>
+            The <a href="#aria-describedby" class="property-reference">aria-describedby</a> property allows for the text of <a class="specref termref" href="#dfn-hidden">hidden</a> elements to be used for accessible descriptions.  Some screen reader vendors have used non-standard attributes to provide hidden help text for <code>form</code> elements.  In order to standardize this feature, hidden text is exposed in the description property of <a class="specref termref" href="#dfn-accessibility-api">Accessibility API</a> objects when referenced by <a href="#aria-describedby" class="property-reference">aria-describedby</a>.
+          </p>
+          <pre class="example highlight">&lt;img src="foo" alt="abbreviated name" aria-describedby="prose1"&gt;
+
+&lt;div id="prose1"&gt;
+   The prose in this div describes the image foo in detail.
+&lt;/div&gt;</pre>
+          <p> This is the preferred vehicle for providing long descriptions for elements in your document.</p>
+          <p> When the author does not desire the entire descriptive text to be located on the main page, aria-describedby can also be used to point to a link to another page. </p>
+          <pre class="example highlight">&lt;div id="figuretitle"&gt;Figure 1-1: Entity Relationship Diagram showing EMP and DEPT&lt;/div&gt;
+  &lt;img src="foo" aria-labelledby="figuretitle" aria-describedby="link1"&gt;
+  &lt;a href="descriptionLocation.html" id="link1"&gt;Description of Figure 1-1: Entity Relationship Diagram showing EMP and DEPT&lt;/a&gt;
+&lt;/div&gt;</pre>
+        </section>
+        <p>It is not good practice to use the above pattern when the describing element&#8212;the <code>&lt;a&gt;</code> tag with <code>@id='link1'</code>&#8212;is <a class="specref termref" href="#dfn-hidden">hidden</a>, since there is no way for a user to navigate to and activate the link.  Use the technique only when the description is not hidden. </p>
+      </section>
+        <section id="misc_xhtml2_roles">
+        <h4> Miscellaneous XHTML Section Roles</h4>
+        <p>In order to synchronize with the XHTML Role Attribute module, WAI-ARIA includes two XHTML roles which are neither landmarks nor widgets of any kind. These roles were incorporated to replace standard elements found in host languages. These roles are <a class="role-reference" href="#definition">definition</a> and <a class="role-reference" href="#note">note</a>. If either role has a corresponding element in the host language, it is recommended that authors use the corresponding element in the host language.</p>
+        <p>The <a class="role-reference" href="#definition">definition</a> role indicates a definition statement in your document. For HTML developers implementing lists of definitions, we recommend    you using the DL, DT, and DD elements rather than marking an arbitrary    element with a role of definition. An arbitrary element would be    appropriate for inline definitions used in conjunction with the DFN    element. </p>
+        <p>Example of an inline definition with an explicit labelledby relationship:</p>
+        <pre class="example highlight">
+&lt;p&gt;The doctor explained it had been a &lt;dfn id="placebo"&gt;placebo&lt;/dfn&gt;, &lt;span role="definition" aria-labelledby="placebo"&gt;
+an inert preparation prescribed more for the mental relief of the patient than for its actual effect on a disorder.&lt;/span&gt;
+&lt;/p&gt;</pre>
+        <p>Example of an inline definition with an implicit labelledby relationship    determined by nesting:</p>
+        <pre class="example highlight">&lt;p&gt;The doctor explained it had been a &lt;span role="definition"&gt;
+&lt;dfn&gt;placebo&lt;/dfn&gt;, an inert preparation prescribed more for the mental relief of the patient than for its actual effect on a disorder.&lt;/span&gt;
+&lt;/p&gt;</pre>
+        <p>Note: In the case where host language semantics do not allow for    implicit nesting of definitions terms inside definition roles, authors    should explicitly use the aria-labelledby attribute, even when the    definition term is nested in the definition as shown here:</p>
+        <pre class="example highlight">&lt;p&gt;The doctor explained it had been a &lt;span role="definition" aria-labelledby="placebo"&gt;
+&lt;dfn id="placebo"&gt;placebo&lt;/dfn&gt;, an inert preparation prescribed more for the mental relief of the patient than for its actual effect on a disorder.&lt;/span&gt;
+&lt;/p&gt;</pre>
+        <p>The following is an example using a definition list:</p>
+        <pre class="example highlight">&lt;dl&gt;
+ &lt;dt id="anathema"&gt;anthema&lt;/dt&gt;
+ &lt;dd role="definition" aria-labelledby="anathema"&gt;a ban or curse solemnly pronounced by ecclesiastical authority and accompanied by
+excommunication&lt;/dd&gt;
+ &lt;dd role="definition" aria-labelledby="anathema"&gt;a vigorous denunciation : cursor&lt;/dd&gt;
+&lt;dt id="homily"&gt;homily&lt;/dt&gt;
+&lt;dd role="definition" aria-labelledby="homily"&gt;a usually short sermon&lt;/dd&gt;
+
+&lt;dd role="definition" aria-labelledby="homily"&gt;a lecture or discourse on or of a moral theme&lt;/dd&gt;
+
+&lt;/dl&gt;</pre>
+        <p>The <a class="role-reference" href="#note">note</a> role defines a parenthetic or ancillary remark to the <a class="role-reference" href="#main">main</a> content of the resource. It also allows assistive technologies to skip over this section of the document unless more information is requested about the main content.</p>
+        <pre class="example highlight">&lt;div role="main" aria-labelledby="foo"&gt;
+   &lt;h1 id="foo"&gt;Wild fires spread across the San Diego Hills&lt;/h1&gt;
+   Strong winds expand fires ignited by high temperatures &#8230;
+&lt;/div&gt;
+
+&lt;div role="note"&gt;
+   This article was last updated July 30, 2008 at 6:05PM.
+&lt;/div&gt;</pre>
+      </section>
+    </section>
 </body>
 </html>
