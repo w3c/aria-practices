@@ -1494,39 +1494,38 @@
     </section>
 
     <section class="widget" id="grid">
-      <h3>Grid (Simple Data Tables)</h3>
-      <p class="note">This section has not been updated since it was integrated from APG version 1.0 -- an APG task force review is pending.</p>
-
-      <p>
-        Unlike an HTML table, which is display only, a grid presents tabular data in rows and columns that are navigable via the keyboard, and allows for cells to be selected in the grid.
-        The user moves focus through each data cell having a role of gridcell, through the use of arrow keys.
-        Each column has an associated element with the role columnheader.
-        Data cells carry the role gridcell.
-        A grid may also contain hierarchical rows.
-        In this case the role of the grid container should be treegrid rather than grid.
-        This design pattern, and corresponding examples, reflect a basic two-dimensional grid without grids embedded within a gridcell.
-      </p>
-
-      <p>
-        WAI-ARIA grids are not meant to replace the full functionality of a table.
-        Consequently, there may be instances when you need to have cells span multiple columns or rows for which WAI-ARIA does not provide semantics.
-        This can be achieved by overlaying grid and gridcell semantics onto an HTML table to provide appropriate column and row span semantics.
-        Authors should ensure that headers are properly marked using a native header tag or WAI-ARIA columnheader or rowheader semantics.
-        The connection between gridcell and header can be achieved using standard HTML attribute header.
-        In HTML, multiple column or row headers for one data cell can be identified through the use of a space separated list of header ids in the headers attribute.
-      </p>
-
-      <p>
-        If a WAI-ARIA grid is not overlaid on a table, authors should mark the rowheader, columnheader, and gridcell roles on the appropriate elements.
-        For gridcells that span multiple columns or have multiple headers, the author should apply the aria-labelledby property to the cell to the space delimited list of corresponding row or column header element IDs.
-        Gridcells that span multiple rows or columns should be reflected in the keyboard navigation.
-      </p>
-
-      <p>If a grid contains editable data, it should have both an editable mode and a navigation  mode.</p>
-
-      <section class="notoc">
-        <h4>Keyboard Interaction</h4>
-        <p>There are two modes of keyboard interaction, namely, navigation mode and actionable mode.</p>
+      <h3>Grids: Interactive Data Tables and Layout Containers</h3>
+                <p>
+                A <a href="#grid" class="role-reference">grid</a> widget is a container that enables users to navigate the information or interactive elements it contains using the arrow keys.
+                It may be used for purposes as simple as grouping a collection of checkboxes or navigation links or as complex as creating a full-featured spreadsheet application.
+                While assistive technologies present the logical structure of elements with the <code>grid</code> role using row and column nomenclature, using the <code>grid</code> role does not necessarily imply the visual presentation is tabular.
+                </p>
+                <p> When content is tabular, consider the following factors when deciding whether to implement a a <a href="#grid" class="role-reference">grid</a> widget or use a <a href="#table" class="role-reference">table</a> structure.</p>
+                <ul>
+                <li>A <code>grid</code> is a composite widget so it:
+                <ul>
+                <li>Always contains multiple focusable elements. </li>
+                <li>Has only one focusable element in the tab sequence.</li>
+                <li>Requires the author to provide code that <a href="#kbd_general_within">manages focus movement inside it</a>.</li>
+                </ul>
+                </li>
+                <li>If a <code>table</code> contains focusable elements, each of those elements is in the tab sequence. </li>
+                </ul>
+                <section class="notoc">
+                <section id="dataGrid" class="notoc">
+                <h4>Data Grid</h4>
+                <p>
+                A data grid is used to present interactive, tabular information that has column titles, row titles, or both.
+                It may also support any or all of selection, cut, copy, paste, and an edit mode that allows data contained in a cell to be modified. 
+                </p>
+                <p>
+                Every data cell in a grid is focusable. 
+                And, if the headers, the cells containing column or row titles,  provide functionality, such as sort or filter, they are also focusable. 
+                </p>
+                </section>
+                <section class="notoc">
+        <h5>Keyboard Interaction</h5>
+        <p>There are two modes of keyboard interaction: navigation mode and actionable mode.</p>
         <p>Navigation Mode (Read-Only) is the default mode, and allows quick and intuitive navigation around the grid.</p>
         <ul>
           <li>The first <kbd>Tab</kbd> into the grid moves focus to the   first cell of the first row. </li>
@@ -1536,8 +1535,6 @@
           <li>Up/Down arrow keys navigate through the rows. There is no wrap   at the first or last rows. </li>
           <li><kbd>Home</kbd> moves the focus to the first cell of the current row. </li>
           <li><kbd>End</kbd> moves the focus to the last cell in the current row. </li>
-          <li><kbd>Page Up</kbd> moves the focus to the first cell in the current   column </li>
-          <li><kbd>Page Down</kbd> moves the focus to the last cell in the current   column </li>
           <li>Selecting Cells
             <ul>
               <li><kbd>Control + Space</kbd> selects the current column. </li>
@@ -1561,7 +1558,46 @@
         <p><em>Option</em>: the author may choose to implement <kbd>Enter</kbd> or <kbd>F2</kbd> as a toggle such that pressing these keys multiple times will enter and exit actionable mode. Opinion was divided on this point. Some thought this would be confusing while others found it intuitive. </p>
         <p class="note">It is recommended the developer use different styling for the selection when the grid is not focused (hint: non-active selection is   often shown with a lighter background color). </p>
       </section>
-
+                </section>
+                <section id="layoutGrid" class="notoc">
+                <h4>Layout Grid</h4>
+                <p>
+                A layout grid provides a way to group a set of interactive elements into a single tab stop. 
+                </p>
+                <section class="notoc">
+        <h5>Keyboard Interaction</h5>
+        <ul>
+          <li>The first <kbd>Tab</kbd> into the grid moves focus to the   first cell of the first row. </li>
+          <li>The second <kbd>Tab</kbd> leaves the grid and moves focus to the next   tabbable item on the page. </li>
+          <li>Subsequent <kbd>Tab</kbd>: Once focus has been moved inside the grid,   subsequent tab presses that re-enter the grid shall return focus to the cell that last   held focus. </li>
+          <li>Right/Left arrow keys navigate through the columns. There is no   wrap at the end or beginning of columns. </li>
+          <li>Up/Down arrow keys navigate through the rows. There is no wrap   at the first or last rows. </li>
+          <li><kbd>Home</kbd> moves the focus to the first cell of the current row. </li>
+          <li><kbd>End</kbd> moves the focus to the last cell in the current row. </li>
+          <li>Selecting Cells
+            <ul>
+              <li><kbd>Control + Space</kbd> selects the current column. </li>
+              <li><kbd>Shift + Space</kbd> selects the current row. </li>
+              <li><kbd>Control + A</kbd> selects the entire grid. </li>
+              <li><kbd>Shift + Arrow</kbd> selects contiguous cells. </li>
+              <li><kbd>Shift + F8</kbd> Allows additional cells to be added to a   previous selection to accomplish non-contiguous selection. </li>
+            </ul>
+            <p class="note">See <a href="#aria_ex_widget">Global Recommendations</a> for information on cut, copy and paste. </p>
+          </li>
+          <li><kbd>Enter</kbd> or <kbd>F2</kbd> pressed while focus is on a cell containing an actionable item enters Actionable Mode (see following).</li>
+          <li>Optionally, alphanumeric keys pressed while focus is on an actionable item enters Actionable Mode. Focus remains on the actionable item that has focus. </li>
+        </ul>
+        <p>Actionable Mode (Interactive) allows interaction with other   objects that might be found in the grid cells such as edit fields, links,  menu buttons, and so on.</p>
+        <ul>
+          <li><kbd>Tab</kbd> moves to the next actionable item in the grid and stays within the grid wrapping at the bottom. In this mode each tabbable object in each cell of the grid can be reached with the <kbd>Tab</kbd> key. If multiple   tabbable items are located inside a single grid cell, <kbd>Tab</kbd> stops at each   one. When the last tabbable item in a cell is reached the next <kbd>Tab</kbd> moves to   the next tabbable item in the grid, wrapping at the last tabbable item in the   grid.</li>
+          <li><kbd>Shift + Tab</kbd> moves to the previous actionable (tabbable) item   in the grid and stays within the grid, wrapping at the top. </li>
+          <li><kbd>Escape</kbd> exits Actionable mode (by which the user may enter text or perform an action to complete a operation) and returns to Navigation Mode (where the user is allowed to move focus among elements). If a widget is in the current grid cell that also uses the <kbd>Escape</kbd> key, then it should cancel the event propagation. A subsequent press of the <kbd>Escape</kbd> key returns focus to the parent widget.</li>
+        </ul>
+        <p><em>Option</em>: the author may choose to enable 'auto action' on a cell in order to avoid having to press <kbd>Enter</kbd> or <kbd>F2</kbd> a second time to activate the default behavior of the object contained in a cell. For example, if the cell contains a single link the author may want to have enter follow the link rather than just move focus to it. This auto action mode should be configurable on a per cell basis as its utility is dependent on each cell's content. For example, if the cell contains multiple links, auto action should be disabled as its behavior would be ambiguous.   </p>
+        <p><em>Option</em>: the author may choose to implement <kbd>Enter</kbd> or <kbd>F2</kbd> as a toggle such that pressing these keys multiple times will enter and exit actionable mode. Opinion was divided on this point. Some thought this would be confusing while others found it intuitive. </p>
+        <p class="note">It is recommended the developer use different styling for the selection when the grid is not focused (hint: non-active selection is   often shown with a lighter background color). </p>
+      </section>
+                </section>
       <section class="notoc">
         <h4>WAI-ARIA Roles, States, and Properties</h4>
         <ul>
@@ -1582,46 +1618,11 @@
         <ul>
           <li><a href="http://www.oaa-accessibility.org/examplep/grid1/" title="Grid Example: Reimbursement Form" target="_blank" rel="nofollow">Travel form (Open Ajax Alliance)</a></li>
           <li><a href="http://www.oaa-accessibility.org/examplep/grid2/" title="Grid: Email Application" target="_blank" rel="nofollow">Email client (Open Ajax Alliance)</a></li>
-        </ul>
-      </section>
-    </section>
-
-    <section class="widget" id="sortablegrid">
-      <h3>Actionable, Sortable Column Header in a Grid</h3>
-      <p class="note">This section has not been updated since it was integrated from APG version 1.0 -- an APG task force review is pending.</p>
-
-      <p>An example of a grid whose headers are sortable in either ascending or descending order based on the name in the grid column headers.</p>
-      <p>
-        This design pattern matches that of the <a href="#grid" class="widget-description">grid design pattern</a> where, specifically, the author has included use of the arrow keys to permit navigation to the row or column headers that contain a button for sorting the rows of the table.
-        Sorting is based on the data cell contents in the column being sorted, the name in the column header, and whether the contents of the column are sorted in ascending or descending order.
-        As the order of the cells change in the column the corresponding rows move in position with respect to that sort.
-      </p>
-
-      <section class="notoc">
-        <h4>Keyboard Interaction</h4>
-        <p>Keyboard navigation is identical to grid with the exceptions that: arrow key navigation includes the headers; you are not required to enter actionable mode to toggle the sort of a row or column when on the corresponding header; and content selection does not affect the selected state of row or column headers.</p>
-        <p>Simply pressing the space bar while focus is on a row or column header toggles the ascending/descending sort of the corresponding row or column.</p>
-        <p class="note">It is recommended the developer use different styling for the selection when the grid is not focused (hint: non-active selection is often shown with a lighter background color).</p>
-      </section>
-
-      <section class="notoc">
-        <h4>WAI-ARIA Roles, States, and Properties</h4>
-        <ul>
-          <li>
-            The same as the grid design pattern with the exception that each row or column header, signified by a role of <a href="#columnheader" class="role-reference">columnheader</a> and <a href="#rowheader" class="role-reference">rowheader</a> respectively, has an <a href="#aria-sort" class="property-reference">aria-sort</a> value that reflects the current state for sort for the associated row or column.
-            If another row or column header adjusts the sort of the grid the remaining row or column header aria-sort values must reflect their sorting impact on the grid.
-          </li>
-        </ul>
-      </section>
-
-      <section class="notoc">
-        <h4>Example</h4>
-        <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG task force is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
-        <ul>
           <li><a href="http://www.oaa-accessibility.org/examplep/grid2/" title="Grid: Email Application" target="_blank" rel="nofollow">Grid Email Application sortable by column headers</a></li>
         </ul>
       </section>
     </section>
+
 
     <section class="widget" id="landmarks">
       <h3 > Landmark Navigation </h3>
