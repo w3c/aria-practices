@@ -1517,14 +1517,14 @@
                 A <code>grid</code> can be used to present tabular information that has column titles, row titles, or both.
                 The <code>grid</code> pattern is particularly useful if the tabular information is editable or interactive. 
                 For example, if some data elements are links to more information, rather than presenting them in a static table and including the links in the tab sequence, implementing the <code>grid</code> pattern provides users with intuitive and efficient keyboard navigation of the grid contents as well as a much shorter tab sequence.
-                A grid may also offer functions, such as cell content editing, selection, cut, copy, and paste. 
+                A <code>grid</code> may also offer functions, such as cell content editing, selection, cut, copy, and paste. 
                 </p>
                 <p>
-                All cells or interactive elements in a grid that is used to present data are focusable, regardless of whether their content is editable or interactive. 
+                In a grid that presents tabular data, every cell contains a focusable element or is itself focusable, regardless of whether the cell content is editable or interactive. 
                 There is one exception: if column or row header cells do not provide functions, such as sort or filter, they do not need to be focusable.
                 One reason this is important is that screen readers need to be in their application reading mode, rather than their document reading mode, while the user is interacting with the grid. 
                 While in application reading mode, a screen reader user can only discover focusable elements and content that labels focusable elements.
-                So, a screen reader user may unknowningly overlook elements contained in a grid that are not focusable.
+                So, a screen reader user may unknowningly overlook elements contained in a grid that are either not focusable or not used to label a column or row.
                 For a more in depth description of this topic, see <a href="#ScreenReaderModes"></a>.
                 </p> 
                 </section>
@@ -1538,7 +1538,7 @@
                 </p>
                 <p>
                 Because arrow keys are used to move focus inside of a <code>grid</code>, a <code>grid</code> is both easier to build and use if the components it contains do not require the arrow keys to operate.
-                If a cell contains an element like a <a href="#listbox"></a>, then an extra key command to focus and activate the listbox is needed as well as a command for restoring the grid navigation functionality.
+                If a cell contains an element like a <a href="#Listbox"></a>, then an extra key command to focus and activate the listbox is needed as well as a command for restoring the grid navigation functionality.
                 </p>
                 </section>
                 <section class="notoc">
