@@ -1494,13 +1494,13 @@
     </section>
 
     <section class="widget" id="grid">
-      <h3>Grids: Interactive Data Tables and Layout Containers</h3>
+      <h3>Grids : Interactive Tabular Data and Layout Containers</h3>
                 <p>
                 A <a href="#grid" class="role-reference">grid</a> widget is a container that enables users to navigate the information or interactive elements it contains using the arrow keys.
                 It may be used for purposes as simple as grouping a collection of checkboxes or navigation links or as complex as creating a full-featured spreadsheet application.
                 While assistive technologies present the logical structure of elements with the <code>grid</code> role using row and column nomenclature, using the <code>grid</code> role does not necessarily imply that the visual presentation of the element is tabular.
                 </p>
-                <p> When deciding what type of container to use for content that is tabular, consider the following factors when choosing between implementing a <a href="#grid" class="role-reference">grid</a> widget or using a <a href="#table" class="role-reference">table</a> structure.</p>
+                <p> When deciding what type of container to use for content that is tabular, consider the following factors when choosing between implementing this <code>grid</code> patern or the <a href="#table">table</a> pattern.</p>
                 <ul>
                 <li>A <code>grid</code> is a composite widget so it:
                 <ul>
@@ -1516,9 +1516,15 @@
                 <p>
                 A data grid is used to present tabular information that has column titles, row titles, or both.
                 It is particularly useful if the information is editable or interactive. 
-                For example, if some data elements are links to more information, rather than presenting them in a static table and adding all those links to the tab sequence, implementing a data grid provides users with an intuitive and efficient keyboard experience.
+                For example, if some data elements are links to more information, rather than presenting them in a static table and including the links in the tab sequence, implementing a data grid provides users with intuitive and efficient keyboard navigation of the grid contents as well as a much shorter tab sequence.
                 A grid may also offer functions, such as cell content editing, selection, cut, copy, and paste. 
-                All cells in a data grid are focusable except for celles containing column or row headers, which are focusable if they provide functionality, such as sort or filter. 
+                </p>
+                <p>
+                All cells in a data grid are focusable, regardless of whether their content is editable or interactive. 
+                There is one exception: if column or row header cells do not provide functions, such as sort or filter, they do not need to be focusable.
+                One reason this is important is that screen readers need to be in their application reading mode, rather than their document reading mode, while the user is interacting with the grid. 
+                While in application reading mode, a screen reader user can only discover focusable elements and content that labels focusable elements.
+                For a more in depth description of this topic, see <a href="#ScreenReaderModes"></a>.
                 </p> 
                 <section class="notoc">
         <h5>Keyboard Interaction</h5>
@@ -4602,6 +4608,10 @@ field. </p>
 </section>
   <section id="appendices" class="appendix">
     <h2>Appendices</h2>
+    <section id="ScreenReaderModes">
+    <h3>Understanding Screen Reader Document Reading and Application Reading Modes</h3>
+    <p>Placeholder for a section covering this topic that is yet to be written.</p>
+    </section>
   <section class="appendix" id="ariaBackground">
     <h2>Background on WAI-ARIA</h2>
     <p class="note">This section has not been updated since it was integrated from the ARIA 1.0 Primer -- an APG task force review is pending.</p>
