@@ -1496,7 +1496,7 @@
     <section class="widget" id="grid">
       <h3>Grids : Interactive Tabular Data and Layout Containers</h3>
                 <p>
-                A <a href="#grid" class="role-reference">grid</a> widget is a container that enables users to navigate the information or interactive elements it contains using the arrow keys.
+                A <a href="#grid" class="role-reference">grid</a> widget is a container that enables users to navigate the information or interactive elements it contains using directional navigation keys, such as arrow keys, <kbd>Home</kbd>, and <kbd>End</kbd>.
                 It may be used for purposes as simple as grouping a collection of checkboxes or navigation links or as complex as creating a full-featured spreadsheet application.
                 While assistive technologies present the logical structure of elements with the <code>grid</code> role using row and column nomenclature, using the <code>grid</code> role does not necessarily imply that the visual presentation of the element is tabular.
                 </p>
@@ -1512,22 +1512,37 @@
                 <li>If a <code>table</code> contains focusable elements, each of those elements is in the tab sequence. </li>
                 </ul>
                 <section id="dataGrid" class="notoc">
-                <h4>Data Grid</h4>
+                <h4>Grids That Present Tabular Information</h4>
                 <p>
-                A data grid is used to present tabular information that has column titles, row titles, or both.
-                It is particularly useful if the information is editable or interactive. 
-                For example, if some data elements are links to more information, rather than presenting them in a static table and including the links in the tab sequence, implementing a data grid provides users with intuitive and efficient keyboard navigation of the grid contents as well as a much shorter tab sequence.
+                A <code>grid</code> can be used to present tabular information that has column titles, row titles, or both.
+                The <code>grid</code> pattern is particularly useful if the tabular information is editable or interactive. 
+                For example, if some data elements are links to more information, rather than presenting them in a static table and including the links in the tab sequence, implementing the <code>grid</code> pattern provides users with intuitive and efficient keyboard navigation of the grid contents as well as a much shorter tab sequence.
                 A grid may also offer functions, such as cell content editing, selection, cut, copy, and paste. 
                 </p>
                 <p>
-                All cells in a data grid are focusable, regardless of whether their content is editable or interactive. 
+                All cells or interactive elements in a grid that is used to present data are focusable, regardless of whether their content is editable or interactive. 
                 There is one exception: if column or row header cells do not provide functions, such as sort or filter, they do not need to be focusable.
                 One reason this is important is that screen readers need to be in their application reading mode, rather than their document reading mode, while the user is interacting with the grid. 
                 While in application reading mode, a screen reader user can only discover focusable elements and content that labels focusable elements.
+                So, a screen reader user may unknowningly overlook elements contained in a grid that are not focusable.
                 For a more in depth description of this topic, see <a href="#ScreenReaderModes"></a>.
                 </p> 
+                </section>
+                <section id="layoutGrid" class="notoc">
+                <h4>Grids That Layout and Group Widgets</h4>
+                <p>
+                The <code>grid</code> pattern  can be used to group a set of interactive elements into a single tab stop.
+                For example, a <code>grid</code> can dramatically reduce the number of tab stops on a page by using it to group a list of links or checkboxes.
+                And, if some of the elements in such a list have associated elements that appear on hover, the <code>grid</code> pattern is also useful for providing keyboard access to those contextual elements of the user interface.
+                Unlike grids used to present data, A <code>grid</</code> used for layout does not necessarily have header cells for labeling rows or columns and might contain only a single row or a single column.
+                </p>
+                <p>
+                Because arrow keys are used to move focus inside of a <code>grid</code>, a <code>grid</code> is both easier to build and use if the components it contains do not require the arrow keys to operate.
+                If a cell contains an element like a <a href="#listbox"></a>, then an extra key command to focus and activate the listbox is needed as well as a command for restoring the grid navigation functionality.
+                </p>
+                </section>
                 <section class="notoc">
-        <h5>Keyboard Interaction</h5>
+        <h4>Keyboard Interaction</h5>
         <p>There are two modes of keyboard interaction: navigation mode and actionable mode.</p>
         <p>Navigation Mode (Read-Only) is the default mode, and allows quick and intuitive navigation around the grid.</p>
         <ul>
@@ -1561,46 +1576,6 @@
         <p><em>Option</em>: the author may choose to implement <kbd>Enter</kbd> or <kbd>F2</kbd> as a toggle such that pressing these keys multiple times will enter and exit actionable mode. Opinion was divided on this point. Some thought this would be confusing while others found it intuitive. </p>
         <p class="note">It is recommended the developer use different styling for the selection when the grid is not focused (hint: non-active selection is   often shown with a lighter background color). </p>
       </section>
-                </section>
-                <section id="layoutGrid" class="notoc">
-                <h4>Layout Grid</h4>
-                <p>
-                A layout grid provides a way to group a set of interactive elements into a single tab stop. 
-                </p>
-                <section class="notoc">
-        <h5>Keyboard Interaction</h5>
-        <ul>
-          <li>The first <kbd>Tab</kbd> into the grid moves focus to the   first cell of the first row. </li>
-          <li>The second <kbd>Tab</kbd> leaves the grid and moves focus to the next   tabbable item on the page. </li>
-          <li>Subsequent <kbd>Tab</kbd>: Once focus has been moved inside the grid,   subsequent tab presses that re-enter the grid shall return focus to the cell that last   held focus. </li>
-          <li>Right/Left arrow keys navigate through the columns. There is no   wrap at the end or beginning of columns. </li>
-          <li>Up/Down arrow keys navigate through the rows. There is no wrap   at the first or last rows. </li>
-          <li><kbd>Home</kbd> moves the focus to the first cell of the current row. </li>
-          <li><kbd>End</kbd> moves the focus to the last cell in the current row. </li>
-          <li>Selecting Cells
-            <ul>
-              <li><kbd>Control + Space</kbd> selects the current column. </li>
-              <li><kbd>Shift + Space</kbd> selects the current row. </li>
-              <li><kbd>Control + A</kbd> selects the entire grid. </li>
-              <li><kbd>Shift + Arrow</kbd> selects contiguous cells. </li>
-              <li><kbd>Shift + F8</kbd> Allows additional cells to be added to a   previous selection to accomplish non-contiguous selection. </li>
-            </ul>
-            <p class="note">See <a href="#aria_ex_widget">Global Recommendations</a> for information on cut, copy and paste. </p>
-          </li>
-          <li><kbd>Enter</kbd> or <kbd>F2</kbd> pressed while focus is on a cell containing an actionable item enters Actionable Mode (see following).</li>
-          <li>Optionally, alphanumeric keys pressed while focus is on an actionable item enters Actionable Mode. Focus remains on the actionable item that has focus. </li>
-        </ul>
-        <p>Actionable Mode (Interactive) allows interaction with other   objects that might be found in the grid cells such as edit fields, links,  menu buttons, and so on.</p>
-        <ul>
-          <li><kbd>Tab</kbd> moves to the next actionable item in the grid and stays within the grid wrapping at the bottom. In this mode each tabbable object in each cell of the grid can be reached with the <kbd>Tab</kbd> key. If multiple   tabbable items are located inside a single grid cell, <kbd>Tab</kbd> stops at each   one. When the last tabbable item in a cell is reached the next <kbd>Tab</kbd> moves to   the next tabbable item in the grid, wrapping at the last tabbable item in the   grid.</li>
-          <li><kbd>Shift + Tab</kbd> moves to the previous actionable (tabbable) item   in the grid and stays within the grid, wrapping at the top. </li>
-          <li><kbd>Escape</kbd> exits Actionable mode (by which the user may enter text or perform an action to complete a operation) and returns to Navigation Mode (where the user is allowed to move focus among elements). If a widget is in the current grid cell that also uses the <kbd>Escape</kbd> key, then it should cancel the event propagation. A subsequent press of the <kbd>Escape</kbd> key returns focus to the parent widget.</li>
-        </ul>
-        <p><em>Option</em>: the author may choose to enable 'auto action' on a cell in order to avoid having to press <kbd>Enter</kbd> or <kbd>F2</kbd> a second time to activate the default behavior of the object contained in a cell. For example, if the cell contains a single link the author may want to have enter follow the link rather than just move focus to it. This auto action mode should be configurable on a per cell basis as its utility is dependent on each cell's content. For example, if the cell contains multiple links, auto action should be disabled as its behavior would be ambiguous.   </p>
-        <p><em>Option</em>: the author may choose to implement <kbd>Enter</kbd> or <kbd>F2</kbd> as a toggle such that pressing these keys multiple times will enter and exit actionable mode. Opinion was divided on this point. Some thought this would be confusing while others found it intuitive. </p>
-        <p class="note">It is recommended the developer use different styling for the selection when the grid is not focused (hint: non-active selection is   often shown with a lighter background color). </p>
-      </section>
-                </section>
       <section class="notoc">
         <h4>WAI-ARIA Roles, States, and Properties</h4>
         <ul>
