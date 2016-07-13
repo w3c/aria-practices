@@ -1500,7 +1500,7 @@
                 It may be used for purposes as simple as grouping a collection of checkboxes or navigation links or as complex as creating a full-featured spreadsheet application.
                 While assistive technologies present the logical structure of elements with the <code>grid</code> role using row and column nomenclature, using the <code>grid</code> role does not necessarily imply that the visual presentation of the element is tabular.
                 </p>
-                <p> When deciding what type of container to use for content that is tabular, consider the following factors when choosing between implementing this <code>grid</code> patern or the <a href="#table">table</a> pattern.</p>
+                <p>When presenting content that is tabular, consider the following factors when choosing between implementing this <code>grid</code> patern or the <a href="#table">table</a> pattern.</p>
                 <ul>
                 <li>A <code>grid</code> is a composite widget so it:
                 <ul>
@@ -1532,6 +1532,62 @@
                 So, a screen reader user may unknowningly overlook elements contained in a grid that are either not focusable or not used to label a column or row.
                 For a more in depth description of this topic, see <a href="#ScreenReaderModes"></a>.
                 </p> 
+                <section class="notoc">
+        <h5>Data Grid Keyboard Interaction</h5>
+        <p>The following keys provide grid navigation by moving focus among cells of the grid. These key commands are available by default after an element in the grid receives focus. </p>
+        <ul>
+          <li><kbd>Right Arrow</kbd>: Moves focus one cell to the right. If focus is on the right-most cell in the row, focus does not move.</li>
+          <li><kbd>Left Arrow</kbd>: Moves focus one cell to the left. If focus is on the left-most cell in the row, focus does not move.</li>
+          <li><kbd>Down Arrow</kbd>: Moves focus one cell down. If focus is on the bottom cell in the column, focus does not move.</li>
+          <li><kbd>Up Arrow</kbd>: Moves focus one cell Up. If focus is on the top cell in the column, focus does not move.</li>
+          <li><kbd>Page Down</kbd>: Moves focus down an author-determined number of rows, typically scrolling so the bottom row in the currently visible set of rows becomes one of the first visible rows. If focus is in the last row of the grid, focus does not move. </li>
+          <li><kbd>Page Up</kbd>: Moves focus up an author-determined number of rows, typically scrolling so the top row in the currently visible set of rows becomes one of the last visible rows. If focus is in the first row of the grid, focus does not move. </li>
+          <li><kbd>Home</kbd>: moves focus to the first cell in the row that contains focus. </li>
+          <li><kbd>End</kbd>: moves focus to the last cell in the row that contains focus. </li>
+          <li><kbd>Control+Home</kbd>: moves focus to the first cell in the first row. </li>
+          <li><kbd>Control+End</kbd>: moves focus to the last cell in the last row. </li>
+          </ul>
+          <p class="note">
+        If a grid cell contains a single interactive widget that does not consume arrow key presses, such as a <a href="#button"></a> or <a href="#checkbox"></a>, that widget receives focus when the user is using the above keys for navigating the grid.
+        However, if a cell contains either multiple interactive elements, a widget that is operable with arrow keys, or editable content, the above grid navigation keys place focus on the cell container instead of an element inside of the cell. 
+        In this case, it is necessary to provide a mechanism that moves focus inside of the cell and disables grid navigation so the user can navigate the cell contents with the arrow keys.
+        Following are common keyboard conventions for disabling and restoring grid navigation functions.  
+        </p>
+        <ul>
+        <li><kbd>Enter</kbd>: Disables grid navigation and:
+        <ul>
+        <li>If the cell contains editable content, places focus in an input field, such as a <a href="#textbox" class="role-reference"></a>. If the input is a single-line text field, a subsequent press of <kbd>Enter</kbd> may either restore grid navigation functions or move focus to an input field in a neighboring cell.</li> 
+        <li>If the cell contains one or more widgets, places focus on the first widget. </li>
+        </ul>
+        </li>
+        <li>kbd>F2</kbd>:
+        <ul>
+        <li>If the cell contains editable content, places focus in an input field, such as a <a href="#textbox" class="role-reference"></a>. A subsequent press of <kbd>F2</kbd> restores grid navigation functions. </li>
+        <li>If the cell contains one or more widgets, places focus on the first widget. A subsequent press of <kbd>F2</kbd> restores grid navigation functions. </li>
+        </ul>
+        </li>
+        <li>Alphanumeric keys: If the cell contains editable content, places focus in an input field, such as a <a href="#textbox" class="role-reference"></a>. </li>
+        </ul>
+        <p>When grid navigation is disabled, conventional changes to navigation behaviors include: </p>
+        <ul>
+        <li><kbd>Escape</kbd>: restores grid navigation. If content was being edited, it may also undo edits. </li>
+        <li><kbd>Right Arrow</kbd> or <kbd>Down Arrow</kbd>: If the cell contains multiple widgets, moves focus to the next widget inside the cell, optionally wrapping to the first widget if focus is on the last widget. Otherwise, passes the key event to the focused widget. </li>
+        <li><kbd>Left Arrow</kbd> or <kbd>Up Arrow</kbd>: If the cell contains multiple widgets, moves focus to the previous widget inside the cell, optionally wrapping to the first widget if focus is on the last widget. Otherwise, passes the key event to the focused widget. </li>
+          <li><kbd>Tab</kbd>: moves focus to the next widget in the grid. Optionally, the focus movement may wrap inside a single cell or within the grid itself. </li>
+          <li><kbd>Shift + Tab</kbd>: moves focus to the previous widget in the grid. Optionally, the focus movement may wrap inside a single cell or within the grid itself. </li>
+        </ul>
+          <p>If a grid supports selection of cells, rows, or columns, the following keyboard conventions may be used for these functions. </p>
+          <ul>
+              <li><kbd>Control + Space</kbd>: selects the column that contains the focus. </li>
+              <li><kbd>Shift + Space</kbd>: Selects the row that contains the focus. If the grid includes a column with checkboxes for selecting rows, this key can serve as a shortcut for checking the box when focus is not on the checkbox. </li>
+              <li><kbd>Control + A</kbd>: Selects all cells. </li>
+              <li><kbd>Shift + Rightt Arrow</kbd>: Extends selection one cell to the right. </li>
+              <li><kbd>Shift + Left Arrow</kbd>: Extends selection one cell to the left. </li>
+<li><kbd>Shift + Down Arrow</kbd>: Extends selection one cell down. </li>
+<li><kbd>Shift + Up Arrow</kbd>: Extends selection one cell Up. </li>
+            </ul>
+            <p class="note">See <a href="#aria_ex_widget">Global Recommendations</a> for cut, copy and paste key assignments. </p>
+      </section>
                 </section>
                 <section id="layoutGrid" class="notoc">
                 <h4>Layout Grids for Grouping Widgets</h4>
@@ -1546,47 +1602,6 @@
                 If a cell contains an element like a <a href="#Listbox">listbox</a>, then an extra key command to focus and activate the listbox is needed as well as a command for restoring the grid navigation functionality.
                 </p>
                 </section>
-                <section class="notoc">
-        <h4>Keyboard Interaction</h5>
-        <p>
-        If a grid has one or more cells that either contain multiple interactive elements, a widget that is operable with arrow keys, or editable content, it will need to support toggling between two keyboard interaction modes: a navigation mode for moving focus among cells with arrow keys and a cell interaction mode for interacting with widgets or editable content inside of a cell.
-        </p>
-        <p>The following key commands are used for grid navigation and should be available by default when keyboard focus moves inside a grid. </p>
-        <ul>
-          <li><kbd>Right Arrow</kbd>: Moves focus one cell to the right. If focus is on the right-most cell in the row, focus does not move.</li>
-          <li><kbd>Left Arrow</kbd>: Moves focus one cell to the left. If focus is on the left-most cell in the row, focus does not move.</li>
-          <li><kbd>Down Arrow</kbd>: Moves focus one cell down. If focus is on the bottom cell in the column, focus does not move.</li>
-          <li><kbd>Up Arrow</kbd>: Moves focus one cell Up. If focus is on the top cell in the column, focus does not move.</li>
-          <li><kbd>Page Down</kbd>: Moves focus down an author-determined number of rows, typically scrolling so the bottom row in the currently visible set of rows becomes one of the first visible rows. If focus is in the last row of the grid, focus does not move. </li>
-          <li><kbd>Page Up</kbd>: Moves focus up an author-determined number of rows, typically scrolling so the top row in the currently visible set of rows becomes one of the last visible rows. If focus is in the first row of the grid, focus does not move. </li>
-          <li><kbd>Home</kbd>: moves focus to the first cell in the row that contains focus. </li>
-          <li><kbd>End</kbd>: moves focus to the last cell in the row that contains focus. </li>
-          <li><kbd>Control+Home</kbd>: moves focus to the first cell in the first row. </li>
-          <li><kbd>Control+End</kbd>: moves focus to the last cell in the last row. </li>
-          </ul>
-          <ul>
-          <li>Selecting Cells
-            <ul>
-              <li><kbd>Control + Space</kbd> selects the current column. </li>
-              <li><kbd>Shift + Space</kbd> selects the current row. </li>
-              <li><kbd>Control + A</kbd> selects the entire grid. </li>
-              <li><kbd>Shift + Arrow</kbd> selects contiguous cells. </li>
-            </ul>
-            <p class="note">See <a href="#aria_ex_widget">Global Recommendations</a> for information on cut, copy and paste. </p>
-          </li>
-          <li><kbd>Enter</kbd> or <kbd>F2</kbd> pressed while focus is on a cell containing an actionable item enters Actionable Mode (see following).</li>
-          <li>Optionally, alphanumeric keys pressed while focus is on an actionable item enters Actionable Mode. Focus remains on the actionable item that has focus. </li>
-        </ul>
-        <p>Actionable Mode (Interactive) allows interaction with other   objects that might be found in the grid cells such as edit fields, links,  menu buttons, and so on.</p>
-        <ul>
-          <li><kbd>Tab</kbd> moves to the next actionable item in the grid and stays within the grid wrapping at the bottom. In this mode each tabbable object in each cell of the grid can be reached with the <kbd>Tab</kbd> key. If multiple   tabbable items are located inside a single grid cell, <kbd>Tab</kbd> stops at each   one. When the last tabbable item in a cell is reached the next <kbd>Tab</kbd> moves to   the next tabbable item in the grid, wrapping at the last tabbable item in the   grid.</li>
-          <li><kbd>Shift + Tab</kbd> moves to the previous actionable (tabbable) item   in the grid and stays within the grid, wrapping at the top. </li>
-          <li><kbd>Escape</kbd> exits Actionable mode (by which the user may enter text or perform an action to complete a operation) and returns to Navigation Mode (where the user is allowed to move focus among elements). If a widget is in the current grid cell that also uses the <kbd>Escape</kbd> key, then it should cancel the event propagation. A subsequent press of the <kbd>Escape</kbd> key returns focus to the parent widget.</li>
-        </ul>
-        <p><em>Option</em>: the author may choose to enable 'auto action' on a cell in order to avoid having to press <kbd>Enter</kbd> or <kbd>F2</kbd> a second time to activate the default behavior of the object contained in a cell. For example, if the cell contains a single link the author may want to have enter follow the link rather than just move focus to it. This auto action mode should be configurable on a per cell basis as its utility is dependent on each cell's content. For example, if the cell contains multiple links, auto action should be disabled as its behavior would be ambiguous.   </p>
-        <p><em>Option</em>: the author may choose to implement <kbd>Enter</kbd> or <kbd>F2</kbd> as a toggle such that pressing these keys multiple times will enter and exit actionable mode. Opinion was divided on this point. Some thought this would be confusing while others found it intuitive. </p>
-        <p class="note">It is recommended the developer use different styling for the selection when the grid is not focused (hint: non-active selection is   often shown with a lighter background color). </p>
-      </section>
       <section class="notoc">
         <h4>WAI-ARIA Roles, States, and Properties</h4>
         <ul>
