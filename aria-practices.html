@@ -1497,8 +1497,9 @@
       <h3>Grids : Interactive Tabular Data and Layout Containers</h3>
                 <p>
                 A <a href="#grid" class="role-reference">grid</a> widget is a container that enables users to navigate the information or interactive elements it contains using directional navigation keys, such as arrow keys, <kbd>Home</kbd>, and <kbd>End</kbd>.
-                It may be used for purposes as simple as grouping a collection of checkboxes or navigation links or as complex as creating a full-featured spreadsheet application.
-                While assistive technologies present the logical structure of elements with the <code>grid</code> role using row and column nomenclature, using the <code>grid</code> role does not necessarily imply that the visual presentation of the element is tabular.
+                As a generic container widget that offers flexible keyboard navigation, it can serve a wide variety of needs.
+                It can be used for purposes as simple as grouping a collection of checkboxes or navigation links or as complex as creating a full-featured spreadsheet application.
+                While ARIA properties and assistive technologies use row and column nomenclature when describing and presenting the logical structure of elements with the <code>grid</code> role, using the <code>grid</code> role on an element does not necessarily imply that its visual presentation is tabular.
                 </p>
                 <p>When presenting content that is tabular, consider the following factors when choosing between implementing this <code>grid</code> patern or the <a href="#table">table</a> pattern.</p>
                 <ul>
@@ -1512,9 +1513,9 @@
                 <li>If a <code>table</code> contains focusable elements, each of those elements is in the tab sequence. </li>
                 </ul>
                 <p>
-                <code>Grid</code> widgets have a wide variety of uses that broadly fall into two categories: presenting tabular information (data grids) and grouping other widgets (layout grids).
-                While both data grids and layout grids employ the same ARIA roles, states, and properties, factors that affect their keyboard interface design arise from the differences in their content and purpose.
-                To address these factors, the following sections describe separate design patterns for data and layout grids.
+                Uses of the <code>grid</code> pattern broadly fall into two categories: presenting tabular information (data grids) and grouping other widgets (layout grids).
+                While both data grids and layout grids employ the same ARIA roles, states, and properties, differences in their content and purpose surface factors that are important to consider in keyboard interaction design.
+                To address these factors, the following two sections describe separate keyboard interaction patterns for data and layout grids.
                 </p>
                 <section id="dataGrid" class="notoc">
                 <h4>Data Grids For Presenting Tabular Information</h4>
@@ -1530,10 +1531,10 @@
                 One reason this is important is that screen readers need to be in their application reading mode, rather than their document reading mode, while the user is interacting with the grid. 
                 While in application reading mode, a screen reader user can only discover focusable elements and content that labels focusable elements.
                 So, a screen reader user may unknowningly overlook elements contained in a grid that are either not focusable or not used to label a column or row.
-                For a more in depth description of this topic, see <a href="#ScreenReaderModes"></a>.
+                A more detailed description of this topic with examples is available in the section describing <a href="#ScreenReaderModes">screen reader document and application reading modes</a>.
                 </p> 
                 <section class="notoc">
-        <h5>Data Grid Keyboard Interaction</h5>
+        <h5>Keyboard Interaction For Data Grids</h5>
         <p>The following keys provide grid navigation by moving focus among cells of the grid. These key commands are available by default after an element in the grid receives focus. </p>
         <ul>
           <li><kbd>Right Arrow</kbd>: Moves focus one cell to the right. If focus is on the right-most cell in the row, focus does not move.</li>
@@ -1547,13 +1548,14 @@
           <li><kbd>Control+Home</kbd>: moves focus to the first cell in the first row. </li>
           <li><kbd>Control+End</kbd>: moves focus to the last cell in the last row. </li>
           </ul>
-          <p class="note">
-        If a grid cell contains a single interactive widget that does not consume arrow key presses, such as a <a href="#button"></a> or <a href="#checkbox"></a>, that widget receives focus when the user is using the above keys for navigating the grid.
-        However, if a cell contains either multiple interactive elements, a widget that is operable with arrow keys, or editable content, the above grid navigation keys place focus on the cell container instead of an element inside of the cell. 
-        In this case, it is necessary to provide a mechanism that moves focus inside of the cell and disables grid navigation so the user can navigate the cell contents with the arrow keys.
-        If this type of functionality is needed, see <a href="#gridNavModes">Keyboard Conventions For Changing Grid Navigation Modes</a>.
-        </p>
-          <p>If a grid supports selection of cells, rows, or columns, the following keyboard conventions may be used for these functions. </p>
+          <ul class="note">
+        <li>When the above grid navigation keys move focus, whether the focus is sett on an element inside the cell or the grid cell depends on cell content. See <a href="gridNav_focus">Whether to Focus on a Cell or an Element Inside It</a>.</li>
+        <li>
+        While navigation keys, such as arrow keys, are moving focus from cell to cell, they are not available to do something like operate a combobox or move an editing caret inside of a cell. 
+        If this functionality is needed, see <a href="#gridNav_inside"></a>.
+        </li>
+        </ul>
+          <p>If a grid supports selection of cells, rows, or columns, the following keys are commonly used for these functions. </p>
           <ul>
               <li><kbd>Control + Space</kbd>: selects the column that contains the focus. </li>
               <li><kbd>Shift + Space</kbd>: Selects the row that contains the focus. If the grid includes a column with checkboxes for selecting rows, this key can serve as a shortcut for checking the box when focus is not on the checkbox. </li>
@@ -1579,14 +1581,15 @@
                 If a cell contains an element like a <a href="#Listbox">listbox</a>, then an extra key command to focus and activate the listbox is needed as well as a command for restoring the grid navigation functionality.
                 </p>
                 </section>
-                <section class="notoc">
-                <h4 id="gridNavModes">Setting Keyboard Focus and Navigation Modes</h4>
+                <section id="gridNav" class="notoc">
+                <h4>Keyboard Interaction - Setting Focus and Navigating Inside Cells</h4>
                 <p> This section describes two important aspects of keyboard interaction design shared by both data and layout grid patterns:</p>
                 <ol>
                 <li>Choosing whether a cell or an element inside a cell receives focus in response to grid navigation key events.</li>
                 <li>Enabling grid navigation keys to be used to interact with elements inside of a cell.</li>
                 </ol>
-                <h5>Deciding - Focus on the Cell Or Something Inside IT?</h5>
+                <section id="gridNav_focus" class="notoc">
+                <h5>Whether to Focus on a Cell Or an Element Inside IT</h5>
                 <p>
                 For assistive technology users, the quality of experience when navigating a grid heavily depends on both what a cell contains and on where keyboard focus is set.
                 For example, if a cell contains a button and a grid navigation key places focus on the cell instead of the button, screen readers announce the button label but do not tell users a button is present.
@@ -1603,7 +1606,9 @@
                 While any combination of widgets, text, and graphics may be included in a single cell, grids that do not follow one of these two cell design and focus movement patterns add complexity for authors or users or both.
                 The reference implementations included in the example section below demonstrate some strategies for making other cell designs as accessible as possible, but the most widely accessible experiences are likely to come by applying the above two patterns.
                 </p>
-                <h5>Editing and Interacting With Cell Content</h5>
+                </section>
+                <section id="gridNav_inside" class="notoc">
+                <h5>Editing and Navigating Inside a Cell</h5>
                 <p>
                 While navigation keys, such as arrow keys, are moving focus from cell to cell, they are not available to do something like operate a combobox or move an editing caret inside of a cell.
                 The user may need keys that are used for grid navigation to operate elements inside a cell if a cell contains:
@@ -1637,6 +1642,7 @@
           <li><kbd>Tab</kbd>: moves focus to the next widget in the grid. Optionally, the focus movement may wrap inside a single cell or within the grid itself. </li>
           <li><kbd>Shift + Tab</kbd>: moves focus to the previous widget in the grid. Optionally, the focus movement may wrap inside a single cell or within the grid itself. </li>
         </ul>
+        </section>
                 </section>
       <section class="notoc">
         <h4>WAI-ARIA Roles, States, and Properties</h4>
