@@ -1506,11 +1506,11 @@
                 <li>A <code>grid</code> is a composite widget so it:
                 <ul>
                 <li>Always contains multiple focusable elements. </li>
-                <li>Has only one focusable element in the tab sequence.</li>
+                <li>Has only one focusable element in the page tab sequence.</li>
                 <li>Requires the author to provide code that <a href="#kbd_general_within">manages focus movement inside it</a>.</li>
                 </ul>
                 </li>
-                <li>If a <code>table</code> contains focusable elements, each of those elements is in the tab sequence. </li>
+                <li>All focusable elements contained in a table are included in the page tab sequence. </li>
                 </ul>
                 <p>
                 Uses of the <code>grid</code> pattern broadly fall into two categories: presenting tabular information (data grids) and grouping other widgets (layout grids).
@@ -1522,7 +1522,7 @@
                 <p>
                 A <code>grid</code> can be used to present tabular information that has column titles, row titles, or both.
                 The <code>grid</code> pattern is particularly useful if the tabular information is editable or interactive. 
-                For example, if some data elements are links to more information, rather than presenting them in a static table and including the links in the tab sequence, implementing the <code>grid</code> pattern provides users with intuitive and efficient keyboard navigation of the grid contents as well as a much shorter tab sequence.
+                For example, when data elements are links to more information, rather than presenting them in a static table and including the links in the tab sequence, implementing the <code>grid</code> pattern provides users with intuitive and efficient keyboard navigation of the grid contents as well as a much shorter tab sequence for the page.
                 A <code>grid</code> may also offer functions, such as cell content editing, selection, cut, copy, and paste. 
                 </p>
                 <p>
