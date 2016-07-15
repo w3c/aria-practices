@@ -1495,7 +1495,51 @@
     
         <section class="widget" id="grid">
             <h3>Grids : Interactive Tabular Data and Layout Containers</h3>
-
+                <p>
+                A <a href="#grid" class="role-reference">grid</a> widget is a container that enables users to navigate the information or interactive elements it contains using directional navigation keys, such as arrow keys, <kbd>Home</kbd>, and <kbd>End</kbd>.
+                As a generic container widget that offers flexible keyboard navigation, it can serve a wide variety of needs.
+                It can be used for purposes as simple as grouping a collection of checkboxes or navigation links or as complex as creating a full-featured spreadsheet application.
+                While ARIA properties and assistive technologies use row and column nomenclature when describing and presenting the logical structure of elements with the <code>grid</code> role, using the <code>grid</code> role on an element does not necessarily imply that its visual presentation is tabular.
+                </p>
+                <p>When presenting content that is tabular, consider the following factors when choosing between implementing this <code>grid</code> patern or the <a href="#table">table</a> pattern.</p>
+                <ul>
+                <li>A <code>grid</code> is a composite widget so it:
+                <ul>
+                <li>Always contains multiple focusable elements. </li>
+                <li>Has only one focusable element in the page tab sequence.</li>
+                <li>Requires the author to provide code that <a href="#kbd_general_within">manages focus movement inside it</a>.</li>
+                </ul>
+                </li>
+                <li>All focusable elements contained in a table are included in the page tab sequence. </li>
+                </ul>
+                <p>
+                Uses of the <code>grid</code> pattern broadly fall into two categories: presenting tabular information (data grids) and grouping other widgets (layout grids).
+                While both data grids and layout grids employ the same ARIA roles, states, and properties, differences in their content and purpose surface factors that are important to consider in keyboard interaction design.
+                To address these factors, the following two sections describe separate keyboard interaction patterns for data and layout grids.
+                </p>
+                <section class="notoc">
+        <h4>WAI-ARIA Roles, States, and Properties</h4>
+        <ul>
+          <li>The grid container has role <a href="#grid" class="role-reference">grid</a>. </li>
+          <li>Each row container has role <a href="#row" class="role-reference">row</a>. </li>
+          <li>Each cell has one of the following roles:
+          <ul>
+          <li><a href="#columnheader"  class="role-reference">columnheader</a> if the cell contains a title or header information for the column.</li>
+          <li><a href="#rowheader"  class="role-reference">rowheader</a> if the cell contains title or header information for the row.</li>
+          <li><a href="#gridcell" class="role-reference">gridcell</a> if the cell does not contain column or row header information.</li>
+          </ul>
+          </li>
+          <li>If the grid supports selection, cells or rows that are selected have <a href="#aria-selected" class="state-reference">aria-selected</a> set <code>true</code>. </li>
+          <li>If the grid provides content editing functionality and contains cells that may have edit capabilities disabled in certain conditions, <a href="#aria-readonly" class="state-reference">aria-readonly</a> may be set <code>true</code> on cells where editing is disabled. 
+          If edit functions are disabled for all cells, <code>aria-readonly</code> may be set <code>true</code> on the grid element.
+          Grids that do not provide editing functions do not include the <code>aria-readonly</code> attribute on any of their elements.
+          </li>
+        </ul>
+        <ul>
+        <li> a <code>&lt;TR&gt;</code> from HTML </li>
+        <li>Column and row headers may be represented by a <code>&lt;TH&gt;</code> if you are using an HTML   table or you may </li>
+        </ul>
+      </section>
             <section class="notoc">
                 <h4>Example</h4>
                 <p class="note">Any examples referenced here that are hosted outside www.w3.org
