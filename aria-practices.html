@@ -1579,12 +1579,19 @@
                 The <code>grid</code> pattern  can be used to group a set of interactive elements into a single tab stop.
                 For example, a <code>grid</code> can dramatically reduce the number of tab stops on a page by using it to group a list of links or checkboxes.
                 And, if some of the elements in such a list have associated elements that appear on hover, the <code>grid</code> pattern is also useful for providing keyboard access to those contextual elements of the user interface.
+                </p>
+                <p>
                 Unlike grids used to present data, A <code>grid</</code> used for layout does not necessarily have header cells for labeling rows or columns and might contain only a single row or a single column.
+                Even if it has multiple rows and columns, it may present a single, logically homogenous set of elements.
+                For example, a list of recipients for a message may be a grid where each cell contains a link that represents a recipient. 
+                The grid may initially have a single row but then wrap into multiple rows as recipients are added.
+                In such circumstances, grid navigation keys may also wrap so the user can read the list from beginning to end by pressing either <kbd>Right Arrow</kbd> or <kbd>Down Arrow</kbd>.
+                While This type of focus movement wrapping can be very helpful in a layout grid, it would be disorienting if used in a data grid, especially for users of assistive technologies.
                 </p>
                 <p>
                 Because arrow keys are used to move focus inside of a <code>grid</code>, a <code>grid</code> is both easier to build and use if the components it contains do not require the arrow keys to operate.
                 If a cell contains an element like a <a href="#Listbox">listbox</a>, then an extra key command to focus and activate the listbox is needed as well as a command for restoring the grid navigation functionality.
-                </p>
+                </p>  
                 <section class="notoc">
                     <h5>Keyboard Interaction For Layout Grids</h5>
                     <p>The following keys provide grid navigation by moving focus among cells of
