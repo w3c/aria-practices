@@ -1786,28 +1786,39 @@
                 </section>
             </section>
             <section class="notoc">
-        <h4>WAI-ARIA Roles, States, and Properties</h4>
-        <ul>
-          <li>The grid container has role <a href="#grid" class="role-reference">grid</a>. </li>
-          <li>Each row container has role <a href="#row" class="role-reference">row</a>. </li>
-          <li>Each cell has one of the following roles:
-          <ul>
-          <li><a href="#columnheader"  class="role-reference">columnheader</a> if the cell contains a title or header information for the column.</li>
-          <li><a href="#rowheader"  class="role-reference">rowheader</a> if the cell contains title or header information for the row.</li>
-          <li><a href="#gridcell" class="role-reference">gridcell</a> if the cell does not contain column or row header information.</li>
-          </ul>
-          </li>
-          <li>If the grid supports selection, cells or rows that are selected have <a href="#aria-selected" class="state-reference">aria-selected</a> set <code>true</code>. </li>
-          <li>If the grid provides content editing functionality and contains cells that may have edit capabilities disabled in certain conditions, <a href="#aria-readonly" class="state-reference">aria-readonly</a> may be set <code>true</code> on cells where editing is disabled. 
-          If edit functions are disabled for all cells, <code>aria-readonly</code> may be set <code>true</code> on the grid element.
-          Grids that do not provide editing functions do not include the <code>aria-readonly</code> attribute on any of their elements.
-          </li>
-        </ul>
-        <ul>
-        <li> a <code>&lt;TR&gt;</code> from HTML </li>
-        <li>Column and row headers may be represented by a <code>&lt;TH&gt;</code> if you are using an HTML   table or you may </li>
-        </ul>
-      </section>
+            <h4>WAI-ARIA Roles, States, and Properties</h4>
+            <ul>    
+                <li>The grid container has role <a href="#grid" class="role-reference">grid</a>. </li>
+                <li>Each row container has role <a href="#row" class="role-reference">row</a>. </li>
+                <li>Each cell has one of the following roles:
+                    <ul>
+                        <li><a href="#columnheader"  class="role-reference">columnheader</a> if the cell contains a title or header information for the column.</li>
+                        <li><a href="#rowheader"  class="role-reference">rowheader</a> if the cell contains title or header information for the row.</li>
+                        <li><a href="#gridcell" class="role-reference">gridcell</a> if the cell does not contain column or row header information.</li>
+                    </ul>
+                </li>
+                <li>If there is an element in the user interface that serves as a label for the grid, <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> is set on the grid element with a value that refers to the labeling element.
+                Otherwise, a label is specified for the grid element using <a href="#aria-label" class="property-reference">aria-label</a>.
+                </li>
+                <li> If the grid has a caption or description, <a href="#aria-describedby" class="property-reference">aria-describedby</a> is set on the grid element with a value refering to the element containing the description. </li>
+                <li>If the grid provides sort functions, <a href="#aria-sort" class="property-reference">aria-sort</a> is set to an appropriate value on the header cell element for the sorted column or row as described in the section on <a href="#gridAndTableProperties">grid and table properties</a>. </li>
+                <li>If the grid supports selection, when a cell or row is selected, it has <a href="#aria-selected" class="state-reference">aria-selected</a> set <code>true</code>. </li>
+                <li>If the grid provides content editing functionality and contains cells that may have edit capabilities disabled in certain conditions, <a href="#aria-readonly" class="state-reference">aria-readonly</a> may be set <code>true</code> on cells where editing is disabled. 
+                    If edit functions are disabled for all cells, <code>aria-readonly</code> may be set <code>true</code> on the grid element.
+                    Grids that do not provide editing functions do not include the <code>aria-readonly</code> attribute on any of their elements.
+                </li>
+                <li>If there are conditions where some rows or columns are hidden or not present in the DOM, e.g., data is dynamically loaded when scrolling or the grid provides functions for hiding rows or columns, the following properties are applied as described in the section on <a href="#gridAndTableProperties">grid and table properties</a>.
+                    <ul>
+                        <li><a href="#aria-colcount" class="property-reference">aria-colcount</a> or <a href="#aria-rowcount" class="property-reference">aria-rowcount</a> are set to the total number of columns or rows, respectively. </li>
+                        <li><a href="#aria-colindex" class="property-reference">aria-colindex</a> or <a href="#aria-rowindex" class="property-reference">aria-rowindex</a> are set to the position of a cell within a row or column, respectively. </li>
+                    </ul>
+                </li>
+            </ul>
+            <ul>
+                <li> a <code>&lt;TR&gt;</code> from HTML </li>
+                <li>Column and row headers may be represented by a <code>&lt;TH&gt;</code> if you are using an HTML   table or you may </li>
+            </ul>
+            </section>
             <section class="notoc">
                 <h4>Example</h4>
                 <p class="note">Any examples referenced here that are hosted outside www.w3.org
@@ -2631,10 +2642,22 @@
           <li><a href="http://www.oaa-accessibility.org/examplep/spinbutton1/" title="Spinbutton using IMG elements for buttons" rel="nofollow" target="_blank">Open Ajax Alliance Spinbutton</a></li>
           <li><a href="http://archive.dojotoolkit.org/nightly/dojotoolkit/dijit/tests/form/test_Spinner.html" title="Dojo Spinner Widget Test" rel="nofollow">dojo/dijit nightly build</a></li>
         </ul>
-      </section>
-    </section>
+            </section>
+        </section>
 
-    <section class="widget" id="tabpanel">
+        <section class="widget" id="table">
+        <h3>Table</h3>
+        <p>
+        [Place holder for a to-be-written section about data tables] 
+        While writing the grid pattern, the topic of data tables came up because the grid pattern has text clarifying when to use grid verses when to use table.
+        There was a suggestion to cover tables at the same time in the grid section.
+        That made the grid pattern section feel overwhelming so adding a placeholder for a potential table section here.
+        The grid pattern links to this section.
+        </p>
+        
+        </section>
+        
+        <section class="widget" id="tabpanel">
       <h3>Tabs</h3>
       <p>
         Tabs are a set of layered sections of content, known as tab panels, that display one panel of content at a time.
