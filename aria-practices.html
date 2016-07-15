@@ -1591,6 +1591,8 @@
                 <p>
                 Because arrow keys are used to move focus inside of a <code>grid</code>, a <code>grid</code> is both easier to build and use if the components it contains do not require the arrow keys to operate.
                 If a cell contains an element like a <a href="#Listbox">listbox</a>, then an extra key command to focus and activate the listbox is needed as well as a command for restoring the grid navigation functionality.
+                Aproaches to supporting this need are described in the section on 
+                <a href="#gridNav_inside">Editing and Navigating Inside a Cell</a>.
                 </p>  
                 <section class="notoc">
                     <h5>Keyboard Interaction For Layout Grids</h5>
@@ -1732,14 +1734,24 @@
       <section class="notoc">
         <h4>WAI-ARIA Roles, States, and Properties</h4>
         <ul>
-          <li>The DOM representation of the grid should follow the HTML DOM structure,   although it will be possible to use <a href="#aria-owns" class="property-reference">aria-owns</a> to add a row or table cell. This   is an edge case and may not be supported by assistive technologies. </li>
-          <li>The grid container should have a role of <a href="#grid" class="role-reference">grid</a>. </li>
-          <li>The data cells should have a role of <a href="#gridcell" class="role-reference">gridcell</a>.</li>
-          <li>Each row should be clearly marked using a <code>&lt;TR&gt;</code> from HTML and by using a role of <a href="#row" class="role-reference">row</a>.</li>
-          <li>Column and row headers may be represented by a <code>&lt;TH&gt;</code> if you are using an HTML   table or you may explicitly use an aria role of <a href="#columnheader"  class="role-reference">columnheader</a> and <a href="#rowheader"  class="role-reference">rowheader</a> respectively.</li>
-          <li>Whenever a <a href="#gridcell" class="role-reference">gridcell</a> is selected, set <code>aria-selected=&quot;true&quot;</code>. </li>
-          <li>Whenever a row is selected, set its role to <a href="#row" class="role-reference">row</a> and its   <code>aria-selected=&quot;true&quot;</code> allowing an AT to quickly determine that the entire row is selected. </li>
-          <li>By default a grid is considered to be editable, meaning all gridcells are editable. Should you want to make a grid read-only, set     <code>aria-readonly=&quot;true&quot;</code> on the document element having a <code>role=&quot;grid&quot;</code>. This     will make all grid cells read-only.     To override the read-only status on an individual grid cell, set its <span class="property-reference">aria-readonly</span> property to false. </li>
+          <li>The grid container has role <a href="#grid" class="role-reference">grid</a>. </li>
+          <li>Each row container has role <a href="#row" class="role-reference">row</a>. </li>
+          <li>Each cell has one of the following roles:
+          <ul>
+          <li><a href="#columnheader"  class="role-reference">columnheader</a> if the cell contains a title or header information for the column.</li>
+          <li><a href="#rowheader"  class="role-reference">rowheader</a> if the cell contains title or header information for the row.</li>
+          <li><a href="#gridcell" class="role-reference">gridcell</a> if the cell does not contain column or row header information.</li>
+          </ul>
+          </li>
+          <li>If the grid supports selection, cells or rows that are selected have <a href="#aria-selected" class="state-reference">aria-selected</a> set <code>true</code>. </li>
+          <li>If the grid provides content editing functionality and contains cells that may have edit capabilities disabled in certain conditions, <a href="#aria-readonly" class="state-reference">aria-readonly</a> may be set <code>true</code> on cells where editing is disabled. 
+          If edit functions are disabled for all cells, <code>aria-readonly</code> may be set <code>true</code> on the grid element.
+          Grids that do not provide editing functions do not include the <code>aria-readonly</code> attribute on any of their elements.
+          </li>
+        </ul>
+        <ul>
+        <li> a <code>&lt;TR&gt;</code> from HTML </li>
+        <li>Column and row headers may be represented by a <code>&lt;TH&gt;</code> if you are using an HTML   table or you may </li>
         </ul>
       </section>
 
