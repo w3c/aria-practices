@@ -1535,7 +1535,7 @@
                     sequence, implementing the
                     <code>grid</code>
                     pattern provides users with intuitive and efficient keyboard navigation of the
-                    grid contents as well as a much shorter tab sequence for the page. A
+                    grid contents as well as a shorter tab sequence for the page. A
                     <code>grid</code>
                     may also offer functions, such as cell content editing, selection, cut, copy,
                     and paste.
@@ -1630,9 +1630,10 @@
             <section id="layoutGrid" class="notoc">
                 <h4>Layout Grids for Grouping Widgets</h4>
                 <p>
-                The <code>grid</code> pattern  can be used to group a set of interactive elements into a single tab stop.
-                For example, a <code>grid</code> can dramatically reduce the number of tab stops on a page by using it to group a list of links or checkboxes.
-                And, if some of the elements in such a list have associated elements that appear on hover, the <code>grid</code> pattern is also useful for providing keyboard access to those contextual elements of the user interface.
+                The <code>grid</code> pattern  can be used to group a set of interactive elements, such as links, buttons,  or checkboxes.
+                Since only one element in the entire grid is included in the tab sequence, this grouping can dramatically reduce the number of tab stops on a page.
+                Such grouping is especially valuable if scrolling through the grouped elements dynamically loads more of the same kind of elements from a large data set, effectively creating a tab sequence that the user can not complete.
+                If any of the elements being grouped also have associated elements that appear on hover, the <code>grid</code> pattern is also useful for providing keyboard access to those contextual elements of the user interface.
                 </p>
                 <p>
                 Unlike grids used to present data, A <code>grid</code> used for layout does not necessarily have header cells for labeling rows or columns and might contain only a single row or a single column.
@@ -1659,9 +1660,9 @@
                             <li><kbd>Left Arrow</kbd>: Moves focus one cell to the left. Optionally, if focus
                             is on the left-most cell in the row, focus may move to the last cell in the previous row. If focus is on the first cell in the grid, focus does not move.</li>
                             <li><kbd>Down Arrow</kbd>: Moves focus one cell down. Optionally, if focus
-                            is on the bottom cell in the row, focus may move to the top cell in the following column. If focus is on the last cell in the grid, focus does not move.</li>
+                            is on the bottom cell in the column, focus may move to the top cell in the following column. If focus is on the last cell in the grid, focus does not move.</li>
                             <li><kbd>Up Arrow</kbd>: Moves focus one cell up. Optionally, if focus
-                            is on the top cell in the row, focus may move to the bottom cell in the previous column. If focus is on the first cell in the grid, focus does not move.</li>
+                            is on the top cell in the column, focus may move to the bottom cell in the previous column. If focus is on the first cell in the grid, focus does not move.</li>
                         <li><kbd>Page Down</kbd> (Optional): Moves focus down an author-determined number
                             of rows, typically scrolling so the bottom row in the currently visible
                             set of rows becomes one of the first visible rows. If focus is in the
@@ -1730,12 +1731,12 @@
                 <li>Enabling grid navigation keys to be used to interact with elements inside of a cell.</li>
                 </ol>
                 <section id="gridNav_focus" class="notoc">
-                <h5>Whether to Focus on a Cell Or an Element Inside IT</h5>
-                <p>
-                For assistive technology users, the quality of experience when navigating a grid heavily depends on both what a cell contains and on where keyboard focus is set.
-                For example, if a cell contains a button and a grid navigation key places focus on the cell instead of the button, screen readers announce the button label but do not tell users a button is present.
-                There are two optimal cell design and focus behavior combinations:
-                </p>
+                    <h5>Whether to Focus on a Cell Or an Element Inside IT</h5>
+                    <p>
+                        For assistive technology users, the quality of experience when navigating a grid heavily depends on both what a cell contains and on where keyboard focus is set.
+                        For example, if a cell contains a button and a grid navigation key places focus on the cell instead of the button, screen readers announce the button label but do not tell users a button is present.
+                    </p>
+                    <p>There are two optimal cell design and focus behavior combinations: </p>
                 <ol>
                 <li>
                 A cell contains one widget whose operation does not require arrow keys and grid navigation keys set focus on that widget.
@@ -1749,9 +1750,9 @@
                 </p>
                 </section>
                 <section id="gridNav_inside" class="notoc">
-                <h5>Editing and Navigating Inside a Cell</h5>
-                <p>
-                While navigation keys, such as arrow keys, are moving focus from cell to cell, they are not available to do something like operate a combobox or move an editing caret inside of a cell.
+                    <h5>Editing and Navigating Inside a Cell</h5>
+                    <p>
+                        While navigation keys, such as arrow keys, are moving focus from cell to cell, they are not available to perform actions like operate a combobox or move an editing caret inside of a cell.
                 The user may need keys that are used for grid navigation to operate elements inside a cell if a cell contains:
                 </p>
                 <ol>
@@ -1789,8 +1790,8 @@
             <h4>WAI-ARIA Roles, States, and Properties</h4>
             <ul>    
                 <li>The grid container has role <a href="#grid" class="role-reference">grid</a>. </li>
-                <li>Each row container has role <a href="#row" class="role-reference">row</a>. </li>
-                <li>Each cell has one of the following roles:
+                <li>Each row container has role <a href="#row" class="role-reference">row</a> and is either a DOM descendant of or owned by the <code>grid</code> element or an element with role <a href="#rowgroup" class="role-reference">rowgroup</a>. </li>
+                <li>Each cell is either a DOM descendant of or owned by a <code>row</code> element and has one of the following roles:
                     <ul>
                         <li><a href="#columnheader"  class="role-reference">columnheader</a> if the cell contains a title or header information for the column.</li>
                         <li><a href="#rowheader"  class="role-reference">rowheader</a> if the cell contains title or header information for the row.</li>
@@ -1802,21 +1803,32 @@
                 </li>
                 <li> If the grid has a caption or description, <a href="#aria-describedby" class="property-reference">aria-describedby</a> is set on the grid element with a value refering to the element containing the description. </li>
                 <li>If the grid provides sort functions, <a href="#aria-sort" class="property-reference">aria-sort</a> is set to an appropriate value on the header cell element for the sorted column or row as described in the section on <a href="#gridAndTableProperties">grid and table properties</a>. </li>
-                <li>If the grid supports selection, when a cell or row is selected, it has <a href="#aria-selected" class="state-reference">aria-selected</a> set <code>true</code>. </li>
+                <li>If the grid supports selection, when a cell or row is selected, the selected element has <a href="#aria-selected" class="state-reference">aria-selected</a> set <code>true</code>. </li>
                 <li>If the grid provides content editing functionality and contains cells that may have edit capabilities disabled in certain conditions, <a href="#aria-readonly" class="state-reference">aria-readonly</a> may be set <code>true</code> on cells where editing is disabled. 
                     If edit functions are disabled for all cells, <code>aria-readonly</code> may be set <code>true</code> on the grid element.
                     Grids that do not provide editing functions do not include the <code>aria-readonly</code> attribute on any of their elements.
                 </li>
                 <li>If there are conditions where some rows or columns are hidden or not present in the DOM, e.g., data is dynamically loaded when scrolling or the grid provides functions for hiding rows or columns, the following properties are applied as described in the section on <a href="#gridAndTableProperties">grid and table properties</a>.
                     <ul>
-                        <li><a href="#aria-colcount" class="property-reference">aria-colcount</a> or <a href="#aria-rowcount" class="property-reference">aria-rowcount</a> are set to the total number of columns or rows, respectively. </li>
-                        <li><a href="#aria-colindex" class="property-reference">aria-colindex</a> or <a href="#aria-rowindex" class="property-reference">aria-rowindex</a> are set to the position of a cell within a row or column, respectively. </li>
+                        <li><a href="#aria-colcount" class="property-reference">aria-colcount</a> or <a href="#aria-rowcount" class="property-reference">aria-rowcount</a> is set to the total number of columns or rows, respectively. </li>
+                        <li><a href="#aria-colindex" class="property-reference">aria-colindex</a> or <a href="#aria-rowindex" class="property-reference">aria-rowindex</a> is set to the position of a cell within a row or column, respectively. </li>
                     </ul>
                 </li>
+                <li>
+                    If the grid includes cells that span multiple rows or multiple columns, and if the <code>grid</code> role is NOT applied to an HTML <code>table</code> element, 
+                    then <a href="#aria-rowspan" class="property-reference">aria-rowspan</a> or <a href="#aria-colspan" class="property-reference">aria-colspan</a> is applied as described in <a href="#gridAndTableProperties">grid and table properties</a>. 
+                </li>
             </ul>
-            <ul>
-                <li> a <code>&lt;TR&gt;</code> from HTML </li>
-                <li>Column and row headers may be represented by a <code>&lt;TH&gt;</code> if you are using an HTML   table or you may </li>
+            <ul class="note">
+                <li>
+                    If the element with the <code>grid</code> role is an HTML <code>table</code> element, then it is not necessary to use ARIA roles for rows and cells because the HTML elements have implied ARIA semantics.
+                    For example, an HTML <code>&lt;TR&gt;</code> has an implied ARIA role of <code>row</code>. 
+                    A <code>grid</code> built from an HTML <code>table</code> that includes cells that span multiple rows or columns must use HTML <code>rowspan</code> and <code>colspan</code> and must not use <code>aria-rowspan</code> or <code>aria-colspan</code>.
+                </li>
+                <li>
+                    If rows or cells are included in a grid via <a href="#aria-owns" class="property-reference">aria-owns</a>, they will be presented to assistive technologies after the DOM descendants of the <code>grid</code> element unless the DOM descendants are also included in the <code>aria-owns</code> attribute.
+                    See <a href="#relations_owns">using aria-owns</a> for a detailed explaination.
+                </li>
             </ul>
             </section>
             <section class="notoc">
@@ -4104,7 +4116,14 @@ Here the values 1 through 7 represent the days of the week and
   aria-valuenow of 1 is equivalent to the first day of the week or Sunday.  When aria-valuetext is made available aria-valuenow should also be treated as an   index which is 1 based. </p>
 </section>
     </section>
-  <section id="relations">
+    <section id="gridAndTableProperties">
+        <h2>Grid and Table Properties</h2>
+        <p>
+        [placeholder ]. This section will cover colcount, rowcount, colindex, rowindex, colspan, rowspan, and sort. It will explain when they are useful and how to use them. It is referenced by the grid and table design patterns.
+        This section will refer readers to the grid and table design patterns for the basics of grid and table.
+        </p>
+    </section>
+    <section id="relations">
   <h2> Relationships</h2>
   <p class="note">This section has not been updated since it was integrated from APG version 1.0 -- an APG task force review is pending.</p>
     <section id="relations_labeling">
