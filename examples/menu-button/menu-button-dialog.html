@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>ARIA Menu Button Example: Opens Dialog Box</title>
+    <meta name="generator" content="BBEdit 10.5">
+    <link href="../css/core.css" rel="stylesheet">
+    <link href="../css/table.css" rel="stylesheet">
+    <link href="css/menu-button-2.css" rel="stylesheet">
+    <script src="../js/examples.js" type="text/javascript"></script>
+    <script src="js/menu-button-2.js" type="text/javascript"></script> 
+  </head>
+  <body>
+    <main role="main">
+      <h1>ARIA Menu Button Example: Opens Dialog Box</h1>
+ 
+      <p><a href="http://www.w3.org/TR/wai-aria-practices-1.1/#h-menubutton">Authoring Practice Design Patten for Menu Button</a></p>
+
+      <section id="code-ex-1">
+
+        <h2>Menu Button Example</h2>
+
+        <button id="mb1"
+            aria-haspopup="true" 
+            aria-controls="dialog1">
+          W3C Menu
+         </button>
+
+          <div id="dialog1" role="dialog" aria-labelledby="dh1">
+              <h1 id="dh1">W3C Links</h1>
+              <section class="col">
+
+
+
+              </section>
+              <section class="col">
+
+
+              </section>
+            <button class="close">Close</button>
+          </div>
+
+      </section>    
+      </script>
+
+      <h2 id="id_a11yfeature">Accessibility Features</h2>
+       <ul>
+        </ul>
+
+      <h2 id="id_kbd">Keyboard Support</h2>
+
+      <h3 id="id_kbd1">Menu Button</h3>
+      <table aria-labelledby="id_kbd id_kbd1"> 
+        <thead>
+          <tr>
+            <th>Key</th>
+            <th>Function</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Space or Enter Key</td>
+            <td>Open dialog box move focus to dialog box</td>
+          </tr>
+          <tr>
+            <td>Up Arrow Key</td>
+            <td>Open dialog box move focus to dialog box</td>
+          </tr>
+           <tr>
+            <td>Down Arrow Key</td>
+            <td>Open dialog box move focus to dialog box</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 id="id_kbd2">Dialog</h3>
+      <table aria-labelledby="id_kbd id_kbd2"> 
+        <thead>
+          <tr>
+            <th>Key</th>
+            <th>Function</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Escape Key</td>
+            <td> Close dialog and move focus back to menu button</td>
+          </tr>
+        </tbody>
+      </table>
+
+
+      <h2 id="id_rps">ARIA Roles, Properties and States</h2>
+
+      <table aria-labelledby="id_rps"> 
+        <thead>
+          <tr>
+            <th>Role</th>
+            <th>Property/State</th>
+            <th>Usage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>menu</code></td>
+            <td></td>
+            <td>Identifies the <code>ul</code> element as a menu widget</td>
+              <ul>
+               
+              </ul> 
+            </td>
+          </tr>
+          <tr> 
+            <td><code>menuitem</code></td>
+            <td></td>
+            <td>Identifies the <code>li</code> element as a menu item widget</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><code>aria-haspopup</code></td>
+            <td>Identifies the <code>button</code> element as a menu button widget when the value is <code>true</code></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><code>aria-controls</code></td>
+            <td>Identfies the content on the page (e.g. using IDREFs) that this menu button controls</td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><code>aria-labelledby</code></td>
+            <td>Use to provide a label the menu widget</td>
+          </tr>
+        </tbody>
+      </table>
+      
+
+      <section aria-labelledby="sc-ex1">
+        <h2 id="sc-ex1">Source Code: Example 1</h2>
+      
+        <ul>
+          <li>CSS: <a href="css/menu-button-2.css" type="tex/css">menu.css</a></li>
+          <li>Javascript: <a href="js/menu-button-2.js" type="text/javascript">menu.js</a></li>
+        </ul>
+      
+        <div id="sc1">
+       
+        </div>
+      </section>
+
+
+      <script>
+        sourceCode.add('sc1', 'code-ex-1')
+        sourceCode.make()
+      </script>
+
+
+  </main>
+  </body>
+  </html>

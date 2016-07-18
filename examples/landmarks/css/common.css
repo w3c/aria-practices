@@ -1,0 +1,176 @@
+body {
+    font-size: large;
+}
+
+h1, 
+h2,
+h3 {
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-size: 1.75em;
+    margin-bottom: 0.125em;
+}
+
+h2 {
+    font-size: 1.35em;
+    margin-bottom: 0.25em;
+}
+
+h3 {
+    margin-top: 2em;
+    font-size: 1.15em;
+}
+
+header {
+    margin-bottom: 1em;
+}
+
+header img {
+    height: 4em;   
+    margin: 0;
+    padding: 0;
+}
+
+header h1 {
+    padding-top: 0.125em;
+    margin-bottom: 0;
+    font-size: 2em;
+}
+
+main {
+    margin-bottom: 5em;
+}
+
+main p {
+    margin-bottom: 1em;
+}
+
+main ul {
+    margin-left :0;
+    padding-left: 1em;
+    margin-bottom: 1em;
+}
+
+main li,
+aside li {
+    padding-bottom: 0.25em;
+}
+
+main ul.nav-tabs li {
+    padding-bottom: 0;
+}
+
+main p a {
+    text-decoration: underline;
+}
+
+aside a {
+    text-decoration: underline;
+}
+
+main [role="tabpanel"] > p,
+main [role="tabpanel"] > ul {
+    margin-top: 0.5em;
+}
+
+main [role="tabpanel"] > h3 + p {
+    margin-top: 0;
+}
+
+main .code {
+    margin-top: 0.5em;
+    margin-bottom: 2em;
+    padding: 1em;
+}
+
+main .nav-tabs > li > a {
+    background-color: #EEEEEE;
+}
+
+nav {
+    margin: 0;
+    margin-bottom: 1em;
+}
+
+nav li {
+    margin-top: 0.45em;
+    border: solid thin #337ab7;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+section[aria-labelledby] {
+    margin-bottom: 4em;
+}
+
+section[aria-labelledby] p {
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+aside {
+    margin: 0;
+    padding: 0;
+    padding: 0.5em;
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+    background-color: #F4F4F4;
+    margin-right: 12em;
+    width: 100%;
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+aside h2 {
+    margin: 0;
+    padding: 0;
+}
+
+aside ul {
+    margin: 0;
+    padding: 0;
+    margin-left: 1.15em;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+header .inst {
+    margin: 0;
+    padding: 0;
+    font-size: 90%;
+    font-style: italic;
+}
+
+header button {
+    margin: 0;
+    text-align: center;
+    margin: 0.25em;
+    margin-left: -.125em;
+}
+
+aside .note {
+    font-size: 90%;
+    font-style: italic;
+}
+
+a:focus,
+a:hover {
+    text-decoration: underline;
+}
+
+.code {
+  font-family: courier, monosapce;
+  background: #F0F0F0;
+}
+
+form {
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
