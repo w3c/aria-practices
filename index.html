@@ -357,6 +357,10 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     code {
       color: #C83500;
     }
+    
+    th code {
+      color: inherit;
+    }
     /* --- TOC --- */
     
     .toc a,
@@ -823,7 +827,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <a class="logo" href="http://www.w3.org/"><img width="72" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" alt="W3C"></a>
     </p>
     <h1 class="title p-name" id="title" property="dcterms:title"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Authoring Practices 1.1</h1>
-    <h2 id="w3c-editor-s-draft-21-july-2016"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2016-07-21">21 July 2016</time></h2>
+    <h2 id="w3c-editor-s-draft-27-july-2016"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2016-07-27">27 July 2016</time></h2>
     <dl>
       <dt>This version:</dt>
       <dd><a class="u-url" href="http://w3c.github.io/aria-practices/">http://w3c.github.io/aria-practices/</a></dd>
@@ -959,92 +963,93 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <li class="tocline"><a href="#autocomplete" class="tocxref"><span class="secno">3.5 </span>Auto Complete</a>
             <ul class="toc"></ul>
           </li>
-          <li class="tocline"><a href="#button" class="tocxref"><span class="secno">3.6 </span>Button</a>
+          <li class="tocline"><a href="#breadcrumb" class="tocxref"><span class="secno">3.6 </span>Breadcrumb</a></li>
+          <li class="tocline"><a href="#button" class="tocxref"><span class="secno">3.7 </span>Button</a>
             <ul class="toc"></ul>
           </li>
-          <li class="tocline"><a href="#checkbox" class="tocxref"><span class="secno">3.7 </span>Checkbox</a>
+          <li class="tocline"><a href="#checkbox" class="tocxref"><span class="secno">3.8 </span>Checkbox</a>
             <ul class="toc"></ul>
           </li>
-          <li class="tocline"><a href="#combobox" class="tocxref"><span class="secno">3.8 </span>Combo Box</a>
+          <li class="tocline"><a href="#combobox" class="tocxref"><span class="secno">3.9 </span>Combo Box</a>
             <ul class="toc"></ul>
           </li>
-          <li class="tocline"><a href="#datepicker" class="tocxref"><span class="secno">3.9 </span>Date Picker</a>
+          <li class="tocline"><a href="#datepicker" class="tocxref"><span class="secno">3.10 </span>Date Picker</a>
             <ul class="toc"></ul>
           </li>
-          <li class="tocline"><a href="#dialog_modal" class="tocxref"><span class="secno">3.10 </span>Dialog (Modal)</a>
+          <li class="tocline"><a href="#dialog_modal" class="tocxref"><span class="secno">3.11 </span>Dialog (Modal)</a>
             <ul class="toc"></ul>
           </li>
-          <li class="tocline"><a href="#dialog_nonmodal" class="tocxref"><span class="secno">3.11 </span> Dialog (Non-Modal)</a>
+          <li class="tocline"><a href="#dialog_nonmodal" class="tocxref"><span class="secno">3.12 </span> Dialog (Non-Modal)</a>
             <ul class="toc"></ul>
           </li>
-          <li class="tocline"><a href="#dialog_tooltip" class="tocxref"><span class="secno">3.12 </span> Dialog (Tooltip) </a>
+          <li class="tocline"><a href="#dialog_tooltip" class="tocxref"><span class="secno">3.13 </span> Dialog (Tooltip) </a>
             <ul class="toc"></ul>
           </li>
-          <li class="tocline"><a href="#grid" class="tocxref"><span class="secno">3.13 </span>Grids : Interactive Tabular Data and Layout Containers</a>
+          <li class="tocline"><a href="#grid" class="tocxref"><span class="secno">3.14 </span>Grids : Interactive Tabular Data and Layout Containers</a>
             <ul class="toc"></ul>
           </li>
-          <li class="tocline"><a href="#landmarks" class="tocxref"><span class="secno">3.14 </span>Landmark Navigation</a>
+          <li class="tocline"><a href="#landmarks" class="tocxref"><span class="secno">3.15 </span>Landmark Navigation</a>
             <ul class="toc"></ul>
           </li>
-          <li class="tocline"><a href="#link" class="tocxref"><span class="secno">3.15 </span>Link</a>
+          <li class="tocline"><a href="#link" class="tocxref"><span class="secno">3.16 </span>Link</a>
             <ul class="toc"></ul>
           </li>
-          <li class="tocline"><a href="#Listbox" class="tocxref"><span class="secno">3.16 </span>Listbox</a>
+          <li class="tocline"><a href="#Listbox" class="tocxref"><span class="secno">3.17 </span>Listbox</a>
             <ul class="toc"></ul>
           </li>
-          <li class="tocline"><a href="#menu" class="tocxref"><span class="secno">3.17 </span>Menu or Menu bar</a>
+          <li class="tocline"><a href="#menu" class="tocxref"><span class="secno">3.18 </span>Menu or Menu bar</a>
             <ul class="toc"></ul>
           </li>
-          <li class="tocline"><a href="#menubutton" class="tocxref"><span class="secno">3.18 </span>Menu Button</a>
+          <li class="tocline"><a href="#menubutton" class="tocxref"><span class="secno">3.19 </span>Menu Button</a>
             <ul class="toc"></ul>
           </li>
-          <li class="tocline"><a href="#popuphelp" class="tocxref"><span class="secno">3.19 </span>Popup Help (aka Bubble Help)</a>
+          <li class="tocline"><a href="#popuphelp" class="tocxref"><span class="secno">3.20 </span>Popup Help (aka Bubble Help)</a>
             <ul class="toc"></ul>
           </li>
-          <li class="tocline"><a href="#radiobutton" class="tocxref"><span class="secno">3.20 </span>Radio Group</a>
+          <li class="tocline"><a href="#radiobutton" class="tocxref"><span class="secno">3.21 </span>Radio Group</a>
             <ul class="toc"></ul>
           </li>
-          <li class="tocline"><a href="#richtext" class="tocxref"><span class="secno">3.21 </span>Rich Text Editor</a>
+          <li class="tocline"><a href="#richtext" class="tocxref"><span class="secno">3.22 </span>Rich Text Editor</a>
             <ul class="toc"></ul>
           </li>
-          <li class="tocline"><a href="#Site_Navigator_General" class="tocxref"><span class="secno">3.22 </span>Site Navigator - General</a>
+          <li class="tocline"><a href="#Site_Navigator_General" class="tocxref"><span class="secno">3.23 </span>Site Navigator - General</a>
             <ul class="toc"></ul>
           </li>
-          <li class="tocline"><a href="#Site_Navigator_Tree" class="tocxref"><span class="secno">3.23 </span>Site Navigator - Tree</a>
+          <li class="tocline"><a href="#Site_Navigator_Tree" class="tocxref"><span class="secno">3.24 </span>Site Navigator - Tree</a>
             <ul class="toc"></ul>
           </li>
-          <li class="tocline"><a href="#Site_Navigator_Tabbed_Style" class="tocxref"><span class="secno">3.24 </span>Site Navigator - Tabbed Style</a>
+          <li class="tocline"><a href="#Site_Navigator_Tabbed_Style" class="tocxref"><span class="secno">3.25 </span>Site Navigator - Tabbed Style</a>
             <ul class="toc"></ul>
           </li>
-          <li class="tocline"><a href="#slider" class="tocxref"><span class="secno">3.25 </span>Slider</a>
+          <li class="tocline"><a href="#slider" class="tocxref"><span class="secno">3.26 </span>Slider</a>
             <ul class="toc"></ul>
           </li>
-          <li class="tocline"><a href="#slidertwothumb" class="tocxref"><span class="secno">3.26 </span>Slider (Multi-Thumb)</a>
+          <li class="tocline"><a href="#slidertwothumb" class="tocxref"><span class="secno">3.27 </span>Slider (Multi-Thumb)</a>
             <ul class="toc"></ul>
           </li>
-          <li class="tocline"><a href="#spinbutton" class="tocxref"><span class="secno">3.27 </span>Spinbutton</a>
+          <li class="tocline"><a href="#spinbutton" class="tocxref"><span class="secno">3.28 </span>Spinbutton</a>
             <ul class="toc"></ul>
           </li>
-          <li class="tocline"><a href="#table" class="tocxref"><span class="secno">3.28 </span>Table</a></li>
-          <li class="tocline"><a href="#tabpanel" class="tocxref"><span class="secno">3.29 </span>Tabs</a>
+          <li class="tocline"><a href="#table" class="tocxref"><span class="secno">3.29 </span>Table</a></li>
+          <li class="tocline"><a href="#tabpanel" class="tocxref"><span class="secno">3.30 </span>Tabs</a>
             <ul class="toc"></ul>
           </li>
-          <li class="tocline"><a href="#toolbar" class="tocxref"><span class="secno">3.30 </span>Toolbar</a>
+          <li class="tocline"><a href="#toolbar" class="tocxref"><span class="secno">3.31 </span>Toolbar</a>
             <ul class="toc"></ul>
           </li>
-          <li class="tocline"><a href="#tooltip" class="tocxref"><span class="secno">3.31 </span>Tooltip Widget</a>
+          <li class="tocline"><a href="#tooltip" class="tocxref"><span class="secno">3.32 </span>Tooltip Widget</a>
             <ul class="toc"></ul>
           </li>
-          <li class="tocline"><a href="#treegrid" class="tocxref"><span class="secno">3.32 </span>Tree Grid</a>
+          <li class="tocline"><a href="#treegrid" class="tocxref"><span class="secno">3.33 </span>Tree Grid</a>
             <ul class="toc"></ul>
           </li>
-          <li class="tocline"><a href="#TreeView" class="tocxref"><span class="secno">3.33 </span>Tree View</a>
+          <li class="tocline"><a href="#TreeView" class="tocxref"><span class="secno">3.34 </span>Tree View</a>
             <ul class="toc"></ul>
           </li>
-          <li class="tocline"><a href="#windowsplitter" class="tocxref"><span class="secno">3.34 </span>Window Splitter</a>
+          <li class="tocline"><a href="#windowsplitter" class="tocxref"><span class="secno">3.35 </span>Window Splitter</a>
             <ul class="toc"></ul>
           </li>
-          <li class="tocline"><a href="#wizard" class="tocxref"><span class="secno">3.35 </span>Wizard</a>
+          <li class="tocline"><a href="#wizard" class="tocxref"><span class="secno">3.36 </span>Wizard</a>
             <ul class="toc"></ul>
           </li>
         </ul>
@@ -1999,8 +2004,58 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </section>
     </section>
 
+    <section class="widget" id="breadcrumb" typeof="bibo:Chapter" resource="#breadcrumb" property="bibo:hasPart">
+      <h3 class="widget-name" id="h-breadcrumb" resource="#h-breadcrumb"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.6 </span>Breadcrumb<span class="permalink" typeof="bookmark"><a href="#breadcrumb" aria-label="Permalink for 3.6 Breadcrumb" title="Permalink for 3.6 Breadcrumb" property="url"><span property="title" content="3.6 Breadcrumb">§</span></a></span></span></h3>
+      <table class="widget-features">
+        <caption>Characteristics:</caption>
+        <tbody>
+          <tr>
+            <th class="widget-description-head" scope="row">Description:</th>
+            <td class="widget-description">
+              <p>
+                A breadcrumb consists of a list of links to the parent pages of the current page in hierachical order. These help users find their place within a website or web application. Breadcrumbs are often placed (horizontally) under a page's header.
+              </p>
+              <p>
+                It is recommended authors use an ordered list to structure the list of links. Visual seperators should be added through <abbr title="Cascading Style Sheets">CSS</abbr>.
+              </p>
+              <div class="ednote">
+                <div class="ednote-title marker" aria-level="4" role="heading" id="h-ednote1"><span>Editor's Note</span></div>
+                <p class="">Editors' note: ordered list makes the most sense from a semantic point of view and was voted most popular in the <a href="http://webaim.org/projects/screenreadersurvey5/#breadcrumb">WebAIM Screen Reader Survey 2014</a>.</p>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <th class="widget-keyboard-head" scope="row">Keyboard Interaction:</th>
+            <td class="widget-keyboard">
+              Not applicable.
+            </td>
+          </tr>
+          <tr>
+            <th class="widget-aria-head" scope="row"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties:</th>
+            <td class="widget-aria">
+              <ul>
+                <li>The widget should be labelled programmatically via a heading or via either <a href="http://w3c.github.io/aria/aria/aria.html#aria-label" class="property-reference">aria-label</a> or <a href="http://w3c.github.io/aria/aria/aria.html#aria-labelledby" class="property-reference">aria-labelledby</a>.
+                </li>
+                <li>The link to the current page has <a href="http://w3c.github.io/aria/aria/aria.html#aria-current" class="property-reference">aria-current</a> set to <code>page</code>.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <th class="widget-example-head" scope="row">Example:</th>
+            <td class="widget-example">
+              <ul>
+                <li>
+                  <a href="">Breadcrumb design pattern example</a>
+                </li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
     <section class="widget" id="button" typeof="bibo:Chapter" resource="#button" property="bibo:hasPart">
-      <h3 id="h-button" resource="#h-button"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.6 </span>Button<span class="permalink" typeof="bookmark"><a href="#button" aria-label="Permalink for 3.6 Button" title="Permalink for 3.6 Button" property="url"><span property="title" content="3.6 Button">§</span></a></span></span></h3>
+      <h3 id="h-button" resource="#h-button"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.7 </span>Button<span class="permalink" typeof="bookmark"><a href="#button" aria-label="Permalink for 3.7 Button" title="Permalink for 3.7 Button" property="url"><span property="title" content="3.7 Button">§</span></a></span></span></h3>
 
       <p>
         A <a class="role-reference" href="http://w3c.github.io/aria/aria/aria.html#button">button</a> is a widget that enables users to trigger an action or event, such as submitting a form, opening a dialog, canceling an action, or performing a delete operation. A common convention for informing users that a button launches a dialog is to append "…" (ellipsis) to the button label, e.g., "Save as…".
@@ -2062,7 +2117,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     </section>
 
     <section class="widget" id="checkbox" typeof="bibo:Chapter" resource="#checkbox" property="bibo:hasPart">
-      <h3 id="h-checkbox" resource="#h-checkbox"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.7 </span>Checkbox<span class="permalink" typeof="bookmark"><a href="#checkbox" aria-label="Permalink for 3.7 Checkbox" title="Permalink for 3.7 Checkbox" property="url"><span property="title" content="3.7 Checkbox">§</span></a></span></span></h3>
+      <h3 id="h-checkbox" resource="#h-checkbox"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.8 </span>Checkbox<span class="permalink" typeof="bookmark"><a href="#checkbox" aria-label="Permalink for 3.8 Checkbox" title="Permalink for 3.8 Checkbox" property="url"><span property="title" content="3.8 Checkbox">§</span></a></span></span></h3>
 
       <p><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> supports two types of <a href="http://w3c.github.io/aria/aria/aria.html#checkbox" class="role-reference">checkbox</a> widgets:</p>
       <ol>
@@ -2118,7 +2173,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     </section>
 
     <section class="widget" id="combobox" typeof="bibo:Chapter" resource="#combobox" property="bibo:hasPart">
-      <h3 id="h-combobox" resource="#h-combobox"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.8 </span>Combo Box<span class="permalink" typeof="bookmark"><a href="#combobox" aria-label="Permalink for 3.8 Combo Box" title="Permalink for 3.8 Combo Box" property="url"><span property="title" content="3.8 Combo Box">§</span></a></span></span></h3>
+      <h3 id="h-combobox" resource="#h-combobox"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.9 </span>Combo Box<span class="permalink" typeof="bookmark"><a href="#combobox" aria-label="Permalink for 3.9 Combo Box" title="Permalink for 3.9 Combo Box" property="url"><span property="title" content="3.9 Combo Box">§</span></a></span></span></h3>
       <div class="note">
         <div class="note-title marker" aria-level="4" role="heading" id="h-note11"><span>Note</span></div>
         <p class="">This section has not been updated since it was integrated from <abbr title="Authoring Practices Guide">APG</abbr> version 1.0 -- an <abbr title="Authoring Practices Guide">APG</abbr> task force review is pending.</p>
@@ -2225,7 +2280,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     </section>
 
     <section class="widget" id="datepicker" typeof="bibo:Chapter" resource="#datepicker" property="bibo:hasPart">
-      <h3 id="h-datepicker" resource="#h-datepicker"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.9 </span>Date Picker<span class="permalink" typeof="bookmark"><a href="#datepicker" aria-label="Permalink for 3.9 Date Picker" title="Permalink for 3.9 Date Picker" property="url"><span property="title" content="3.9 Date Picker">§</span></a></span></span></h3>
+      <h3 id="h-datepicker" resource="#h-datepicker"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.10 </span>Date Picker<span class="permalink" typeof="bookmark"><a href="#datepicker" aria-label="Permalink for 3.10 Date Picker" title="Permalink for 3.10 Date Picker" property="url"><span property="title" content="3.10 Date Picker">§</span></a></span></span></h3>
       <div class="note">
         <div class="note-title marker" aria-level="4" role="heading" id="h-note13"><span>Note</span></div>
         <p class="">This section has not been updated since it was integrated from <abbr title="Authoring Practices Guide">APG</abbr> version 1.0 -- an <abbr title="Authoring Practices Guide">APG</abbr> task force review is pending.</p>
@@ -2328,7 +2383,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     </section>
 
     <section class="widget" id="dialog_modal" typeof="bibo:Chapter" resource="#dialog_modal" property="bibo:hasPart">
-      <h3 id="h-dialog_modal" resource="#h-dialog_modal"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.10 </span>Dialog (Modal)<span class="permalink" typeof="bookmark"><a href="#dialog_modal" aria-label="Permalink for 3.10 Dialog (Modal)" title="Permalink for 3.10 Dialog (Modal)" property="url"><span property="title" content="3.10 Dialog (Modal)">§</span></a></span></span></h3>
+      <h3 id="h-dialog_modal" resource="#h-dialog_modal"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.11 </span>Dialog (Modal)<span class="permalink" typeof="bookmark"><a href="#dialog_modal" aria-label="Permalink for 3.11 Dialog (Modal)" title="Permalink for 3.11 Dialog (Modal)" property="url"><span property="title" content="3.11 Dialog (Modal)">§</span></a></span></span></h3>
       <p> A <a href="http://w3c.github.io/aria/aria/aria.html#dialog" class="role-reference">dialog</a> is a window overlayed on the primary window. A modal dialog is designed to interrupt the user to, for example, prompt the user to confirm an action or enter information, and it traps or contains keyboard focus until the dialog is closed. ARIA has a special role for modal dialogs that convey a brief, important message to the user -- the <a href="http://w3c.github.io/aria/aria/aria.html#alertdialog" class="role-reference">alertdialog</a> ( See the <a href="#alertdialog">Alert Dialog</a> design pattern).
       </p>
 
@@ -2376,7 +2431,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     </section>
 
     <section class="widget" id="dialog_nonmodal" typeof="bibo:Chapter" resource="#dialog_nonmodal" property="bibo:hasPart">
-      <h3 id="h-dialog_nonmodal" resource="#h-dialog_nonmodal"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.11 </span> Dialog (Non-Modal)<span class="permalink" typeof="bookmark"><a href="#dialog_nonmodal" aria-label="Permalink for 3.11  Dialog (Non-Modal)" title="Permalink for 3.11  Dialog (Non-Modal)" property="url"><span property="title" content="3.11  Dialog (Non-Modal)">§</span></a></span></span></h3>
+      <h3 id="h-dialog_nonmodal" resource="#h-dialog_nonmodal"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.12 </span> Dialog (Non-Modal)<span class="permalink" typeof="bookmark"><a href="#dialog_nonmodal" aria-label="Permalink for 3.12  Dialog (Non-Modal)" title="Permalink for 3.12  Dialog (Non-Modal)" property="url"><span property="title" content="3.12  Dialog (Non-Modal)">§</span></a></span></span></h3>
       <div class="note">
         <div class="note-title marker" aria-level="4" role="heading" id="h-note19"><span>Note</span></div>
         <p class="">This section has not been updated since it was integrated from <abbr title="Authoring Practices Guide">APG</abbr> version 1.0 -- an <abbr title="Authoring Practices Guide">APG</abbr> task force review is pending.</p>
@@ -2427,7 +2482,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     </section>
 
     <section class="widget" id="dialog_tooltip" typeof="bibo:Chapter" resource="#dialog_tooltip" property="bibo:hasPart">
-      <h3 id="h-dialog_tooltip" resource="#h-dialog_tooltip"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.12 </span> Dialog (Tooltip) <span class="permalink" typeof="bookmark"><a href="#dialog_tooltip" aria-label="Permalink for 3.12  Dialog (Tooltip) " title="Permalink for 3.12  Dialog (Tooltip) " property="url"><span property="title" content="3.12  Dialog (Tooltip) ">§</span></a></span></span></h3>
+      <h3 id="h-dialog_tooltip" resource="#h-dialog_tooltip"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.13 </span> Dialog (Tooltip) <span class="permalink" typeof="bookmark"><a href="#dialog_tooltip" aria-label="Permalink for 3.13  Dialog (Tooltip) " title="Permalink for 3.13  Dialog (Tooltip) " property="url"><span property="title" content="3.13  Dialog (Tooltip) ">§</span></a></span></span></h3>
       <div class="note">
         <div class="note-title marker" aria-level="4" role="heading" id="h-note21"><span>Note</span></div>
         <p class="">This section has not been updated since it was integrated from <abbr title="Authoring Practices Guide">APG</abbr> version 1.0 -- an <abbr title="Authoring Practices Guide">APG</abbr> task force review is pending.</p>
@@ -2476,7 +2531,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     </section>
 
     <section class="widget" id="grid" typeof="bibo:Chapter" resource="#grid" property="bibo:hasPart">
-      <h3 id="h-grid" resource="#h-grid"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.13 </span>Grids : Interactive Tabular Data and Layout Containers<span class="permalink" typeof="bookmark"><a href="#grid" aria-label="Permalink for 3.13 Grids : Interactive Tabular Data and Layout Containers" title="Permalink for 3.13 Grids : Interactive Tabular Data and Layout Containers" property="url"><span property="title" content="3.13 Grids : Interactive Tabular Data and Layout Containers">§</span></a></span></span></h3>
+      <h3 id="h-grid" resource="#h-grid"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.14 </span>Grids : Interactive Tabular Data and Layout Containers<span class="permalink" typeof="bookmark"><a href="#grid" aria-label="Permalink for 3.14 Grids : Interactive Tabular Data and Layout Containers" title="Permalink for 3.14 Grids : Interactive Tabular Data and Layout Containers" property="url"><span property="title" content="3.14 Grids : Interactive Tabular Data and Layout Containers">§</span></a></span></span></h3>
       <p>
         A <a href="http://w3c.github.io/aria/aria/aria.html#grid" class="role-reference">grid</a> widget is a container that enables users to navigate the information or interactive elements it contains using directional navigation keys, such as arrow keys, <kbd>Home</kbd> , and <kbd>End</kbd>. As a generic container widget that offers flexible keyboard navigation, it can serve a wide variety of needs. It can be used for purposes as simple as grouping a collection of checkboxes or navigation links or as complex as creating a full-featured spreadsheet application. While ARIA properties and assistive technologies use row and column nomenclature when describing and presenting the logical structure of elements with the <code>grid</code> role, using the <code>grid</code> role on an element does not necessarily imply that its visual presentation is tabular.
       </p>
@@ -2744,7 +2799,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     </section>
 
     <section class="widget" id="landmarks" typeof="bibo:Chapter" resource="#landmarks" property="bibo:hasPart">
-      <h3 id="h-landmarks" resource="#h-landmarks"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.14 </span>Landmark Navigation<span class="permalink" typeof="bookmark"><a href="#landmarks" aria-label="Permalink for 3.14 Landmark Navigation" title="Permalink for 3.14 Landmark Navigation" property="url"><span property="title" content="3.14 Landmark Navigation">§</span></a></span></span></h3>
+      <h3 id="h-landmarks" resource="#h-landmarks"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.15 </span>Landmark Navigation<span class="permalink" typeof="bookmark"><a href="#landmarks" aria-label="Permalink for 3.15 Landmark Navigation" title="Permalink for 3.15 Landmark Navigation" property="url"><span property="title" content="3.15 Landmark Navigation">§</span></a></span></span></h3>
       <div class="note">
         <div class="note-title marker" aria-level="4" role="heading" id="h-note33"><span>Note</span></div>
         <p class="">This section has not been updated since it was integrated from <abbr title="Authoring Practices Guide">APG</abbr> version 1.0 -- an <abbr title="Authoring Practices Guide">APG</abbr> task force review is pending.</p>
@@ -2773,7 +2828,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     </section>
 
     <section class="widget" id="link" typeof="bibo:Chapter" resource="#link" property="bibo:hasPart">
-      <h3 id="h-link" resource="#h-link"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.15 </span>Link<span class="permalink" typeof="bookmark"><a href="#link" aria-label="Permalink for 3.15 Link" title="Permalink for 3.15 Link" property="url"><span property="title" content="3.15 Link">§</span></a></span></span></h3>
+      <h3 id="h-link" resource="#h-link"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.16 </span>Link<span class="permalink" typeof="bookmark"><a href="#link" aria-label="Permalink for 3.16 Link" title="Permalink for 3.16 Link" property="url"><span property="title" content="3.16 Link">§</span></a></span></span></h3>
 
       <p>A <a href="http://w3c.github.io/aria/aria/aria.html#link" class="role-reference">link</a> widget provides an interactive reference to a resource either locally in the application or to an external resource.</p>
       <div class="note">
@@ -2806,7 +2861,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     </section>
 
     <section class="widget" id="Listbox" typeof="bibo:Chapter" resource="#Listbox" property="bibo:hasPart">
-      <h3 id="h-listbox" resource="#h-listbox"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.16 </span>Listbox<span class="permalink" typeof="bookmark"><a href="#Listbox" aria-label="Permalink for 3.16 Listbox" title="Permalink for 3.16 Listbox" property="url"><span property="title" content="3.16 Listbox">§</span></a></span></span></h3>
+      <h3 id="h-listbox" resource="#h-listbox"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.17 </span>Listbox<span class="permalink" typeof="bookmark"><a href="#Listbox" aria-label="Permalink for 3.17 Listbox" title="Permalink for 3.17 Listbox" property="url"><span property="title" content="3.17 Listbox">§</span></a></span></span></h3>
 
       <p>
         A <a href="http://w3c.github.io/aria/aria/aria.html#listbox" class="role-reference">listbox</a> widget allows a user to select one or more items from a list of options. A listbox that allows a single option to be chosen is a single-select listbox; one that allows multiple options to be selected is a multi-select listbox.
@@ -2904,14 +2959,14 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <section class="notoc" typeof="bibo:Chapter" resource="#example-13" property="bibo:hasPart">
         <h4 id="example-13" resource="#example-13"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
         <div class="ednote">
-          <div class="ednote-title marker" aria-level="5" role="heading" id="h-ednote1"><span>Editor's Note</span></div>
+          <div class="ednote-title marker" aria-level="5" role="heading" id="h-ednote2"><span>Editor's Note</span></div>
           <p class="">Add link to example</p>
         </div>
       </section>
     </section>
 
     <section class="widget" id="menu" typeof="bibo:Chapter" resource="#menu" property="bibo:hasPart">
-      <h3 id="h-menu" resource="#h-menu"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.17 </span>Menu or Menu bar<span class="permalink" typeof="bookmark"><a href="#menu" aria-label="Permalink for 3.17 Menu or Menu bar" title="Permalink for 3.17 Menu or Menu bar" property="url"><span property="title" content="3.17 Menu or Menu bar">§</span></a></span></span></h3>
+      <h3 id="h-menu" resource="#h-menu"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.18 </span>Menu or Menu bar<span class="permalink" typeof="bookmark"><a href="#menu" aria-label="Permalink for 3.18 Menu or Menu bar" title="Permalink for 3.18 Menu or Menu bar" property="url"><span property="title" content="3.18 Menu or Menu bar">§</span></a></span></span></h3>
       <p>
         A <a href="http://w3c.github.io/aria/aria/aria.html#menu" class="role-reference">menu</a> is a widget that offers a list of choices to the user, such as a set of actions or functions. A menu is usually opened, or made visible, by activating a <a href="#menubutton">menu button</a>, choosing an item in a menu that opens a sub menu, or by invoking a command, such as <kbd>Shift + F10</kbd> in Windows, that opens a context specific menu. When a user activates a choice in a menu, the menu usually closes unless the choice opened a submenu.
       </p>
@@ -3010,7 +3065,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     </section>
 
     <section class="widget" id="menubutton" typeof="bibo:Chapter" resource="#menubutton" property="bibo:hasPart">
-      <h3 id="h-menubutton" resource="#h-menubutton"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.18 </span>Menu Button<span class="permalink" typeof="bookmark"><a href="#menubutton" aria-label="Permalink for 3.18 Menu Button" title="Permalink for 3.18 Menu Button" property="url"><span property="title" content="3.18 Menu Button">§</span></a></span></span></h3>
+      <h3 id="h-menubutton" resource="#h-menubutton"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.19 </span>Menu Button<span class="permalink" typeof="bookmark"><a href="#menubutton" aria-label="Permalink for 3.19 Menu Button" title="Permalink for 3.19 Menu Button" property="url"><span property="title" content="3.19 Menu Button">§</span></a></span></span></h3>
       <p>A menu button is a <a href="#button">button</a> that opens a <a href="#menu">menu</a>. It is often styled as a typical push button with a downward pointing arrow or triangle to hint that activating the button will display a menu.</p>
 
       <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-15" property="bibo:hasPart">
@@ -3022,7 +3077,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
               <li>(Optional) <kbd>Down Arrow</kbd>: opens the menu and moves focus to the first menu item. </li>
             </ul>
           </li>
-          <li>The keyboard behaviors needed after the menu is open are described in <a href="#menu" class="sec-ref"><span class="secno">3.17</span> <span class="sec-title">Menu or Menu bar</span></a>.</li>
+          <li>The keyboard behaviors needed after the menu is open are described in <a href="#menu" class="sec-ref"><span class="secno">3.18</span> <span class="sec-title">Menu or Menu bar</span></a>.</li>
         </ul>
       </section>
 
@@ -3031,7 +3086,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         <ul>
           <li>The element that opens the menu has role <a href="http://w3c.github.io/aria/aria/aria.html#button" class="role-reference">button</a>.</li>
           <li>The element with role <code>button</code> has <a href="http://w3c.github.io/aria/aria/aria.html#aria-haspopup" class="property-reference">aria-haspopup</a> set to <code>true</code>.</li>
-          <li>The roles, states, and properties needed for the menu opened by the button are described in <a href="#menu" class="sec-ref"><span class="secno">3.17</span> <span class="sec-title">Menu or Menu bar</span></a>. </li>
+          <li>The roles, states, and properties needed for the menu opened by the button are described in <a href="#menu" class="sec-ref"><span class="secno">3.18</span> <span class="sec-title">Menu or Menu bar</span></a>. </li>
         </ul>
       </section>
 
@@ -3049,7 +3104,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     </section>
 
     <section class="widget" id="popuphelp" typeof="bibo:Chapter" resource="#popuphelp" property="bibo:hasPart">
-      <h3 id="h-popuphelp" resource="#h-popuphelp"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.19 </span>Popup Help (aka Bubble Help)<span class="permalink" typeof="bookmark"><a href="#popuphelp" aria-label="Permalink for 3.19 Popup Help (aka Bubble Help)" title="Permalink for 3.19 Popup Help (aka Bubble Help)" property="url"><span property="title" content="3.19 Popup Help (aka Bubble Help)">§</span></a></span></span></h3>
+      <h3 id="h-popuphelp" resource="#h-popuphelp"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.20 </span>Popup Help (aka Bubble Help)<span class="permalink" typeof="bookmark"><a href="#popuphelp" aria-label="Permalink for 3.20 Popup Help (aka Bubble Help)" title="Permalink for 3.20 Popup Help (aka Bubble Help)" property="url"><span property="title" content="3.20 Popup Help (aka Bubble Help)">§</span></a></span></span></h3>
       <div class="note">
         <div class="note-title marker" aria-level="4" role="heading" id="h-note41"><span>Note</span></div>
         <p class="">This section has not been updated since it was integrated from <abbr title="Authoring Practices Guide">APG</abbr> version 1.0 -- an <abbr title="Authoring Practices Guide">APG</abbr> task force review is pending.</p>
@@ -3144,14 +3199,14 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <section class="notoc" typeof="bibo:Chapter" resource="#example-16" property="bibo:hasPart">
         <h4 id="example-16" resource="#example-16"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
         <div class="ednote">
-          <div class="ednote-title marker" aria-level="5" role="heading" id="h-ednote2"><span>Editor's Note</span></div>
+          <div class="ednote-title marker" aria-level="5" role="heading" id="h-ednote3"><span>Editor's Note</span></div>
           <p class="">Add link to example.</p>
         </div>
       </section>
     </section>
 
     <section class="widget" id="radiobutton" typeof="bibo:Chapter" resource="#radiobutton" property="bibo:hasPart">
-      <h3 id="h-radiobutton" resource="#h-radiobutton"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.20 </span>Radio Group<span class="permalink" typeof="bookmark"><a href="#radiobutton" aria-label="Permalink for 3.20 Radio Group" title="Permalink for 3.20 Radio Group" property="url"><span property="title" content="3.20 Radio Group">§</span></a></span></span></h3>
+      <h3 id="h-radiobutton" resource="#h-radiobutton"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.21 </span>Radio Group<span class="permalink" typeof="bookmark"><a href="#radiobutton" aria-label="Permalink for 3.21 Radio Group" title="Permalink for 3.21 Radio Group" property="url"><span property="title" content="3.21 Radio Group">§</span></a></span></span></h3>
       <p>An option in single-select list</p>
 
       <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-17" property="bibo:hasPart">
@@ -3192,7 +3247,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     </section>
 
     <section class="widget" id="richtext" typeof="bibo:Chapter" resource="#richtext" property="bibo:hasPart">
-      <h3 id="h-richtext" resource="#h-richtext"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.21 </span>Rich Text Editor<span class="permalink" typeof="bookmark"><a href="#richtext" aria-label="Permalink for 3.21 Rich Text Editor" title="Permalink for 3.21 Rich Text Editor" property="url"><span property="title" content="3.21 Rich Text Editor">§</span></a></span></span></h3>
+      <h3 id="h-richtext" resource="#h-richtext"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.22 </span>Rich Text Editor<span class="permalink" typeof="bookmark"><a href="#richtext" aria-label="Permalink for 3.22 Rich Text Editor" title="Permalink for 3.22 Rich Text Editor" property="url"><span property="title" content="3.22 Rich Text Editor">§</span></a></span></span></h3>
       <div class="note">
         <div class="note-title marker" aria-level="4" role="heading" id="h-note43"><span>Note</span></div>
         <p class="">This section has not been updated since it was integrated from <abbr title="Authoring Practices Guide">APG</abbr> version 1.0 -- an <abbr title="Authoring Practices Guide">APG</abbr> task force review is pending.</p>
@@ -3247,7 +3302,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     </section>
 
     <section class="widget" id="Site_Navigator_General" typeof="bibo:Chapter" resource="#Site_Navigator_General" property="bibo:hasPart">
-      <h3 id="h-site_navigator_general" resource="#h-site_navigator_general"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.22 </span>Site Navigator - General<span class="permalink" typeof="bookmark"><a href="#Site_Navigator_General" aria-label="Permalink for 3.22 Site Navigator - General" title="Permalink for 3.22 Site Navigator - General" property="url"><span property="title" content="3.22 Site Navigator - General">§</span></a></span></span></h3>
+      <h3 id="h-site_navigator_general" resource="#h-site_navigator_general"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.23 </span>Site Navigator - General<span class="permalink" typeof="bookmark"><a href="#Site_Navigator_General" aria-label="Permalink for 3.23 Site Navigator - General" title="Permalink for 3.23 Site Navigator - General" property="url"><span property="title" content="3.23 Site Navigator - General">§</span></a></span></span></h3>
       <div class="note">
         <div class="note-title marker" aria-level="4" role="heading" id="h-note45"><span>Note</span></div>
         <p class="">This section has not been updated since it was integrated from <abbr title="Authoring Practices Guide">APG</abbr> version 1.0 -- an <abbr title="Authoring Practices Guide">APG</abbr> task force review is pending.</p>
@@ -3313,7 +3368,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     </section>
 
     <section class="widget" id="Site_Navigator_Tree" typeof="bibo:Chapter" resource="#Site_Navigator_Tree" property="bibo:hasPart">
-      <h3 id="h-site_navigator_tree" resource="#h-site_navigator_tree"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.23 </span>Site Navigator - Tree<span class="permalink" typeof="bookmark"><a href="#Site_Navigator_Tree" aria-label="Permalink for 3.23 Site Navigator - Tree" title="Permalink for 3.23 Site Navigator - Tree" property="url"><span property="title" content="3.23 Site Navigator - Tree">§</span></a></span></span></h3>
+      <h3 id="h-site_navigator_tree" resource="#h-site_navigator_tree"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.24 </span>Site Navigator - Tree<span class="permalink" typeof="bookmark"><a href="#Site_Navigator_Tree" aria-label="Permalink for 3.24 Site Navigator - Tree" title="Permalink for 3.24 Site Navigator - Tree" property="url"><span property="title" content="3.24 Site Navigator - Tree">§</span></a></span></span></h3>
       <div class="note">
         <div class="note-title marker" aria-level="4" role="heading" id="h-note46"><span>Note</span></div>
         <p class="">This section has not been updated since it was integrated from <abbr title="Authoring Practices Guide">APG</abbr> version 1.0 -- an <abbr title="Authoring Practices Guide">APG</abbr> task force review is pending.</p>
@@ -3345,14 +3400,14 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <section class="notoc" typeof="bibo:Chapter" resource="#example-20" property="bibo:hasPart">
         <h4 id="example-20" resource="#example-20"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
         <div class="ednote">
-          <div class="ednote-title marker" aria-level="5" role="heading" id="h-ednote3"><span>Editor's Note</span></div>
+          <div class="ednote-title marker" aria-level="5" role="heading" id="h-ednote4"><span>Editor's Note</span></div>
           <p class="">Add link to example</p>
         </div>
       </section>
     </section>
 
     <section class="widget" id="Site_Navigator_Tabbed_Style" typeof="bibo:Chapter" resource="#Site_Navigator_Tabbed_Style" property="bibo:hasPart">
-      <h3 id="h-site_navigator_tabbed_style" resource="#h-site_navigator_tabbed_style"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.24 </span>Site Navigator - Tabbed Style<span class="permalink" typeof="bookmark"><a href="#Site_Navigator_Tabbed_Style" aria-label="Permalink for 3.24 Site Navigator - Tabbed Style" title="Permalink for 3.24 Site Navigator - Tabbed Style" property="url"><span property="title" content="3.24 Site Navigator - Tabbed Style">§</span></a></span></span></h3>
+      <h3 id="h-site_navigator_tabbed_style" resource="#h-site_navigator_tabbed_style"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.25 </span>Site Navigator - Tabbed Style<span class="permalink" typeof="bookmark"><a href="#Site_Navigator_Tabbed_Style" aria-label="Permalink for 3.25 Site Navigator - Tabbed Style" title="Permalink for 3.25 Site Navigator - Tabbed Style" property="url"><span property="title" content="3.25 Site Navigator - Tabbed Style">§</span></a></span></span></h3>
       <div class="note">
         <div class="note-title marker" aria-level="4" role="heading" id="h-note47"><span>Note</span></div>
         <p class="">This section has not been updated since it was integrated from <abbr title="Authoring Practices Guide">APG</abbr> version 1.0 -- an <abbr title="Authoring Practices Guide">APG</abbr> task force review is pending.</p>
@@ -3415,14 +3470,14 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <section class="notoc" typeof="bibo:Chapter" resource="#example-21" property="bibo:hasPart">
         <h4 id="example-21" resource="#example-21"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
         <div class="ednote">
-          <div class="ednote-title marker" aria-level="5" role="heading" id="h-ednote4"><span>Editor's Note</span></div>
+          <div class="ednote-title marker" aria-level="5" role="heading" id="h-ednote5"><span>Editor's Note</span></div>
           <p class="">Add link to example</p>
         </div>
       </section>
     </section>
 
     <section class="widget" id="slider" typeof="bibo:Chapter" resource="#slider" property="bibo:hasPart">
-      <h3 id="h-slider" resource="#h-slider"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.25 </span>Slider<span class="permalink" typeof="bookmark"><a href="#slider" aria-label="Permalink for 3.25 Slider" title="Permalink for 3.25 Slider" property="url"><span property="title" content="3.25 Slider">§</span></a></span></span></h3>
+      <h3 id="h-slider" resource="#h-slider"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.26 </span>Slider<span class="permalink" typeof="bookmark"><a href="#slider" aria-label="Permalink for 3.26 Slider" title="Permalink for 3.26 Slider" property="url"><span property="title" content="3.26 Slider">§</span></a></span></span></h3>
 
       <p>A slider is an input where the user selects a value from within a given range. Sliders typically have a slider thumb that when moved will change the current value within the bar or track.</p>
 
@@ -3466,7 +3521,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     </section>
 
     <section class="widget" id="slidertwothumb" typeof="bibo:Chapter" resource="#slidertwothumb" property="bibo:hasPart">
-      <h3 id="h-slidertwothumb" resource="#h-slidertwothumb"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.26 </span>Slider (Multi-Thumb)<span class="permalink" typeof="bookmark"><a href="#slidertwothumb" aria-label="Permalink for 3.26 Slider (Multi-Thumb)" title="Permalink for 3.26 Slider (Multi-Thumb)" property="url"><span property="title" content="3.26 Slider (Multi-Thumb)">§</span></a></span></span></h3>
+      <h3 id="h-slidertwothumb" resource="#h-slidertwothumb"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.27 </span>Slider (Multi-Thumb)<span class="permalink" typeof="bookmark"><a href="#slidertwothumb" aria-label="Permalink for 3.27 Slider (Multi-Thumb)" title="Permalink for 3.27 Slider (Multi-Thumb)" property="url"><span property="title" content="3.27 Slider (Multi-Thumb)">§</span></a></span></span></h3>
 
       <p>
         A multi-thumb slider is a slider with multiple slider thumbs designed to change 2 or more different values for an object it controls. In most cases the user is selecting a maximum and minimum value to create a range, but in some cases the 2 (or more) values selected are completely independent.
@@ -3526,7 +3581,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     </section>
 
     <section class="widget" id="spinbutton" typeof="bibo:Chapter" resource="#spinbutton" property="bibo:hasPart">
-      <h3 id="h-spinbutton" resource="#h-spinbutton"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.27 </span>Spinbutton<span class="permalink" typeof="bookmark"><a href="#spinbutton" aria-label="Permalink for 3.27 Spinbutton" title="Permalink for 3.27 Spinbutton" property="url"><span property="title" content="3.27 Spinbutton">§</span></a></span></span></h3>
+      <h3 id="h-spinbutton" resource="#h-spinbutton"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.28 </span>Spinbutton<span class="permalink" typeof="bookmark"><a href="#spinbutton" aria-label="Permalink for 3.28 Spinbutton" title="Permalink for 3.28 Spinbutton" property="url"><span property="title" content="3.28 Spinbutton">§</span></a></span></span></h3>
       <p>A widget that allows users to choose a value from a set, or range, of discrete values. For example, select a number from 1 to 59 for the minute of an hour when setting an alarm.</p>
 
       <p>A spin button provides ways to easily increment and decrement the value. If the range is large, it may support changing the value by both a single step and by multiple steps at once. For instance, in the alarm example, the user may be able to move by 1 minute with the arrow keys and by 10 minutes with PageUp and PageDown.</p>
@@ -3573,7 +3628,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     </section>
 
     <section class="widget" id="table" typeof="bibo:Chapter" resource="#table" property="bibo:hasPart">
-      <h3 id="h-table" resource="#h-table"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.28 </span>Table<span class="permalink" typeof="bookmark"><a href="#table" aria-label="Permalink for 3.28 Table" title="Permalink for 3.28 Table" property="url"><span property="title" content="3.28 Table">§</span></a></span></span></h3>
+      <h3 id="h-table" resource="#h-table"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.29 </span>Table<span class="permalink" typeof="bookmark"><a href="#table" aria-label="Permalink for 3.29 Table" title="Permalink for 3.29 Table" property="url"><span property="title" content="3.29 Table">§</span></a></span></span></h3>
       <p>
         [Place holder for a to-be-written section about data tables] While writing the grid pattern, the topic of data tables came up because the grid pattern has text clarifying when to use grid verses when to use table. There was a suggestion to cover tables at the same time in the grid section. That made the grid pattern section feel overwhelming so adding a placeholder for a potential table section here. The grid pattern links to this section.
       </p>
@@ -3581,7 +3636,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     </section>
 
     <section class="widget" id="tabpanel" typeof="bibo:Chapter" resource="#tabpanel" property="bibo:hasPart">
-      <h3 id="h-tabpanel" resource="#h-tabpanel"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.29 </span>Tabs<span class="permalink" typeof="bookmark"><a href="#tabpanel" aria-label="Permalink for 3.29 Tabs" title="Permalink for 3.29 Tabs" property="url"><span property="title" content="3.29 Tabs">§</span></a></span></span></h3>
+      <h3 id="h-tabpanel" resource="#h-tabpanel"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.30 </span>Tabs<span class="permalink" typeof="bookmark"><a href="#tabpanel" aria-label="Permalink for 3.30 Tabs" title="Permalink for 3.30 Tabs" property="url"><span property="title" content="3.30 Tabs">§</span></a></span></span></h3>
       <p>
         Tabs are a set of layered sections of content, known as tab panels, that display one panel of content at a time. Each tab panel has a tab associated with it, that when activated, displays the panel. The list of tabs is arranged along one edge of the currently displayed panel, most commonly the top edge.
       </p>
@@ -3647,7 +3702,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     </section>
 
     <section class="widget" id="toolbar" typeof="bibo:Chapter" resource="#toolbar" property="bibo:hasPart">
-      <h3 id="h-toolbar" resource="#h-toolbar"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.30 </span>Toolbar<span class="permalink" typeof="bookmark"><a href="#toolbar" aria-label="Permalink for 3.30 Toolbar" title="Permalink for 3.30 Toolbar" property="url"><span property="title" content="3.30 Toolbar">§</span></a></span></span></h3>
+      <h3 id="h-toolbar" resource="#h-toolbar"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.31 </span>Toolbar<span class="permalink" typeof="bookmark"><a href="#toolbar" aria-label="Permalink for 3.31 Toolbar" title="Permalink for 3.31 Toolbar" property="url"><span property="title" content="3.31 Toolbar">§</span></a></span></span></h3>
 
       <p>A <a class="role-reference" href="http://w3c.github.io/aria/aria/aria.html#toolbar">toolbar</a> is a container for grouping a set of controls, such as buttons, menubuttons, or checkboxes.</p>
       <p>
@@ -3711,7 +3766,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     </section>
 
     <section class="widget" id="tooltip" typeof="bibo:Chapter" resource="#tooltip" property="bibo:hasPart">
-      <h3 id="h-tooltip" resource="#h-tooltip"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.31 </span>Tooltip Widget<span class="permalink" typeof="bookmark"><a href="#tooltip" aria-label="Permalink for 3.31 Tooltip Widget" title="Permalink for 3.31 Tooltip Widget" property="url"><span property="title" content="3.31 Tooltip Widget">§</span></a></span></span></h3>
+      <h3 id="h-tooltip" resource="#h-tooltip"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.32 </span>Tooltip Widget<span class="permalink" typeof="bookmark"><a href="#tooltip" aria-label="Permalink for 3.32 Tooltip Widget" title="Permalink for 3.32 Tooltip Widget" property="url"><span property="title" content="3.32 Tooltip Widget">§</span></a></span></span></h3>
       <p>
         Popup that displays a description for an element when a user hovers over or focuses on that element. It should popup automatically when the user gives input focus to the widget or element with which it is associated. The tooltip widget can be dismissed by pressing the <kbd>Escape</kbd> key or by other methods noted below. The tooltip widget differs from the <a href="#dialog_tooltip">Dialog (Tooltip)</a> in that it does not receive focus at any time.
       </p>
@@ -3754,7 +3809,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     </section>
 
     <section class="widget" id="treegrid" typeof="bibo:Chapter" resource="#treegrid" property="bibo:hasPart">
-      <h3 id="h-treegrid" resource="#h-treegrid"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.32 </span>Tree Grid<span class="permalink" typeof="bookmark"><a href="#treegrid" aria-label="Permalink for 3.32 Tree Grid" title="Permalink for 3.32 Tree Grid" property="url"><span property="title" content="3.32 Tree Grid">§</span></a></span></span></h3>
+      <h3 id="h-treegrid" resource="#h-treegrid"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.33 </span>Tree Grid<span class="permalink" typeof="bookmark"><a href="#treegrid" aria-label="Permalink for 3.33 Tree Grid" title="Permalink for 3.33 Tree Grid" property="url"><span property="title" content="3.33 Tree Grid">§</span></a></span></span></h3>
       <div class="note">
         <div class="note-title marker" aria-level="4" role="heading" id="h-note58"><span>Note</span></div>
         <p class="">This section has not been updated since it was integrated from <abbr title="Authoring Practices Guide">APG</abbr> version 1.0 -- an <abbr title="Authoring Practices Guide">APG</abbr> task force review is pending.</p>
@@ -3846,7 +3901,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     </section>
 
     <section class="widget" id="TreeView" typeof="bibo:Chapter" resource="#TreeView" property="bibo:hasPart">
-      <h3 id="h-treeview" resource="#h-treeview"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.33 </span>Tree View<span class="permalink" typeof="bookmark"><a href="#TreeView" aria-label="Permalink for 3.33 Tree View" title="Permalink for 3.33 Tree View" property="url"><span property="title" content="3.33 Tree View">§</span></a></span></span></h3>
+      <h3 id="h-treeview" resource="#h-treeview"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.34 </span>Tree View<span class="permalink" typeof="bookmark"><a href="#TreeView" aria-label="Permalink for 3.34 Tree View" title="Permalink for 3.34 Tree View" property="url"><span property="title" content="3.34 Tree View">§</span></a></span></span></h3>
       <p>
         A tree view is a component to navigate hierarchical lists. It is made up of one or more top level nodes. A node may have children or it may be an end node. Nodes with children can be expanded or collapsed - when expanded its child nodes are visible. When collapsed the children are not visible. There is generally some sort of visual indication whether a node has children and can be expanded. Any number of nodes can be expanded at a time and child nodes may contain children.
       </p>
@@ -3924,7 +3979,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     </section>
 
     <section class="widget" id="windowsplitter" typeof="bibo:Chapter" resource="#windowsplitter" property="bibo:hasPart">
-      <h3 id="h-windowsplitter" resource="#h-windowsplitter"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.34 </span>Window Splitter<span class="permalink" typeof="bookmark"><a href="#windowsplitter" aria-label="Permalink for 3.34 Window Splitter" title="Permalink for 3.34 Window Splitter" property="url"><span property="title" content="3.34 Window Splitter">§</span></a></span></span></h3>
+      <h3 id="h-windowsplitter" resource="#h-windowsplitter"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.35 </span>Window Splitter<span class="permalink" typeof="bookmark"><a href="#windowsplitter" aria-label="Permalink for 3.35 Window Splitter" title="Permalink for 3.35 Window Splitter" property="url"><span property="title" content="3.35 Window Splitter">§</span></a></span></span></h3>
       <p>Visible separator between sections of a Window that is used to modify the size of the panes.</p>
       <p>A Window Splitter can take one of two forms -- fixed size and variable size.</p>
 
@@ -3970,7 +4025,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     </section>
 
     <section class="widget" id="wizard" typeof="bibo:Chapter" resource="#wizard" property="bibo:hasPart">
-      <h3 id="h-wizard" resource="#h-wizard"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.35 </span>Wizard<span class="permalink" typeof="bookmark"><a href="#wizard" aria-label="Permalink for 3.35 Wizard" title="Permalink for 3.35 Wizard" property="url"><span property="title" content="3.35 Wizard">§</span></a></span></span></h3>
+      <h3 id="h-wizard" resource="#h-wizard"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.36 </span>Wizard<span class="permalink" typeof="bookmark"><a href="#wizard" aria-label="Permalink for 3.36 Wizard" title="Permalink for 3.36 Wizard" property="url"><span property="title" content="3.36 Wizard">§</span></a></span></span></h3>
       <div class="note">
         <div class="note-title marker" aria-level="4" role="heading" id="h-note66"><span>Note</span></div>
         <p class="">This section has not been updated since it was integrated from <abbr title="Authoring Practices Guide">APG</abbr> version 1.0 -- an <abbr title="Authoring Practices Guide">APG</abbr> task force review is pending.</p>
@@ -4094,7 +4149,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         <p>It is very important that your widget be keyboard accessible. In fact, there must be a keyboard equivalent for every mouse operation. Where possible you should refer to the <a href="#aria_ex"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> examples</a> in this guide for tips on how to implement keyboard navigation for your widget. If you find that an example is not provided, you should follow standard keyboard bindings for <abbr title="User Interface">UI</abbr> components such as those used for the
           <!--<a href="http://www.dinf.ne.jp/doc/english/Us_Eu/conf/csun_98/csun98_051_jfckeys95.htm">Java Foundation Classes for Windows 95/NT</a>-->Java Foundation Classes for Windows 95/NT.</p>
         <div class="ednote">
-          <div class="ednote-title marker" aria-level="3" role="heading" id="h-ednote5"><span>Editor's Note</span></div>
+          <div class="ednote-title marker" aria-level="3" role="heading" id="h-ednote6"><span>Editor's Note</span></div>
           <p class="">Commented out link to conference paper, which a) was broken, and b) we should have more canonical references than conference papers for things like this.</p>
         </div>
         <p>For our toolbar, we have chosen to have the toolbar manage the focus for its children and through the use of the <a class="property-reference" href="http://w3c.github.io/aria/aria/aria.html#aria-activedescendant">aria-activedescendant</a> property. We have also chosen to have the toolbar receive focus based on the tab order by using <code>tabindex</code>. In order to use <a class="property-reference" href="http://w3c.github.io/aria/aria/aria.html#aria-activedescendant">aria-activedescendant</a>, each focusable descendant must have an assigned ID. </p>
@@ -4160,7 +4215,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <li>
         <p><strong>Synchronize the visual <abbr title="User Interface">UI</abbr> with accessibility states and properties for supporting user agents</strong></p>
         <div class="ednote">
-          <div class="ednote-title marker" aria-level="3" role="heading" id="h-ednote6"><span>Editor's Note</span></div>
+          <div class="ednote-title marker" aria-level="3" role="heading" id="h-ednote7"><span>Editor's Note</span></div>
           <p class="">Thomas comment: is confusing that the example switches from toolbar to treeitem. Maybe the best overall sample is to do a tree because it demonstrates each of the points you want to make? </p>
         </div>
         <p>You should consider binding user interface changes directly to changes in <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> states and properties, such as through the use of <a href="http://www.w3.org/TR/1998/REC-CSS2-19980512/selector.html#attribute-selectors"><abbr title="Cascading Style Sheets">CSS</abbr> attribute selectors</a>. For example, the setting of the <a class="state-reference" href="http://w3c.github.io/aria/aria/aria.html#aria-selected">aria-selected</a> state may change the background of a selected <a class="role-reference" href="http://w3c.github.io/aria/aria/aria.html#treeitem">treeitem</a> in a <a class="role-reference" href="http://w3c.github.io/aria/aria/aria.html#tree">tree</a>. This may also be done with JavaScript.</p>
@@ -4658,7 +4713,7 @@ helper.stopEvent(evt); <span class="hljs-comment">//stop the event if not a tab 
     <section id="kbd_disabled_controls" typeof="bibo:Chapter" resource="#kbd_disabled_controls" property="bibo:hasPart">
       <h3 id="h-kbd_disabled_controls" resource="#h-kbd_disabled_controls"><span property="xhv:role" resource="xhv:heading"><span class="secno">5.7 </span>Focusability of disabled controls<span class="permalink" typeof="bookmark"><a href="#kbd_disabled_controls" aria-label="Permalink for 5.7 Focusability of disabled controls" title="Permalink for 5.7 Focusability of disabled controls" property="url"><span property="title" content="5.7 Focusability of disabled controls">§</span></a></span></span></h3>
       <p>
-        By default, disabled <abbr title="Hypertext Markup Language">HTML</abbr> input elements are removed from the tab sequence. In most contexts, the normal expectation is that disabled interactive elements are not focusable. However, there are some contexts where it is common for disabled elements to be focusable, especially inside of composite widgets. For example, as demonstrated in the <a href="#menu" class="sec-ref"><span class="secno">3.17</span> <span class="sec-title">Menu or Menu bar</span></a> pattern, disabled items are focusable when navigating through a menu with the arrow keys.
+        By default, disabled <abbr title="Hypertext Markup Language">HTML</abbr> input elements are removed from the tab sequence. In most contexts, the normal expectation is that disabled interactive elements are not focusable. However, there are some contexts where it is common for disabled elements to be focusable, especially inside of composite widgets. For example, as demonstrated in the <a href="#menu" class="sec-ref"><span class="secno">3.18</span> <span class="sec-title">Menu or Menu bar</span></a> pattern, disabled items are focusable when navigating through a menu with the arrow keys.
       </p>
       <p>
         Removing focusability from disabled elements can offer users both advantages and disadvantages. Allowing keyboard users to skip disabled elements usually reduces the number of key presses required to complete a task. However, preventing focus from moving to disabled elements can hide their presence from screen reader users who "see" by moving the focus.
@@ -5601,7 +5656,7 @@ My Radio Label
       <p class="">This section has not been updated since it was integrated from <abbr title="Authoring Practices Guide">APG</abbr> version 1.0 -- an <abbr title="Authoring Practices Guide">APG</abbr> task force review is pending.</p>
     </div>
     <div class="ednote">
-      <div class="ednote-title marker" aria-level="3" role="heading" id="h-ednote7"><span>Editor's Note</span></div>
+      <div class="ednote-title marker" aria-level="3" role="heading" id="h-ednote8"><span>Editor's Note</span></div>
       <p class="">Editors' note: This section was added as part of disposition of comment 4, but is very incomplete. The section needs to be reordered, so that instructions on how to use the math role properly appear before considerations of legacy content and negative examples (such as the use of generic <abbr title="Hypertext Markup Language">HTML</abbr> to approximate a visual representation of a mathematical expression). It needs more introductory text about how to use math. The examples need better introductions, and the positive examples should preceded the negative examples, which need to be explained more fully.</p>
     </div>
     <p>There exists significant amounts of legacy content that uses images and/or textual approximations to represent mathematical expressions. Examples of this include the use of ASCII art and/or the misuse of
@@ -5644,7 +5699,7 @@ My Radio Label
 </code></p>
     <p>Accessible example of the same function, using the math role, appropriate label, and MathML rendering: </p>
     <div class="ednote">
-      <div class="ednote-title marker" aria-level="3" role="heading" id="h-ednote8"><span>Editor's Note</span></div>
+      <div class="ednote-title marker" aria-level="3" role="heading" id="h-ednote9"><span>Editor's Note</span></div>
       <p class="">Todo: add aria-label here also</p>
     </div>
     <pre class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"math"</span>&gt;</span>
@@ -5792,8 +5847,7 @@ My Radio Label
         </ul>
         <p>In short, JavaScript needs an accessibility architecture to write to such that a solution can be mapped to the accessibility frameworks on the native platform by the user agent.</p>
         <p>The following diagram illustrates a typical document object model (<abbr title="Document Object Model">DOM</abbr>) node in a Model-View-Controller architecture. Accessibility information surfaced to assistive technologies is provided only by the <abbr title="Hypertext Markup Language">HTML</abbr> element's tag name, with only the accessibility attributes that tag can provide.</p>
-        <p>
-          <a href="#fig1" class="fig-ref"></a> shows that on the node, data, or the "Model", which should include semantic information, is separated from the user interface presentation, the "View." Here, the document element is managed by the user agent based on the default behavior of the element. The user agent's default behavior at the document element forms the controller. </p>
+        <p><a href="#fig1" class="fig-ref">Fig. <span class="figno">1</span> <span class="fig-title">Accessibility Interoperability at a <abbr title="document object model">DOM</abbr> Node without JavaScript</span></a> shows that on the node, data, or the "Model", which should include semantic information, is separated from the user interface presentation, the "View." Here, the document element is managed by the user agent based on the default behavior of the element. The user agent's default behavior at the document element forms the controller. </p>
         <figure id="fig1">
           <img alt="Accessibility information mapped to a DOM element in the Document Object Model" height="512" longdesc="#desc_fig1" src="img/accessibleelement.png" width="640">
           <figcaption>Fig. <span class="figno">1</span> <span class="fig-title">Accessibility Interoperability at a <abbr title="document object model">DOM</abbr> Node without JavaScript</span></figcaption>
@@ -5804,8 +5858,8 @@ My Radio Label
           <figcaption>Fig. <span class="figno">2</span> <span class="fig-title">Accessibility
         Interoperability at a <abbr title="Document Object Model">DOM</abbr> Node with JavaScript</span></figcaption>
         </figure>
-        <p id="desc_fig2">
-          <a href="#fig2" class="fig-ref"></a> shows the same <abbr title="Document Object Model">DOM</abbr> node provided in Figure 1.0 but with JavaScript acting as the new controller. JavaScript overrides the default user agent behavior at the <abbr title="Document Object Model">DOM</abbr> node. It manipulates the data, content, and style in response to events caused by user interaction to produce custom widgets. In this situation, the default accessibility information is no longer valid and, therefore, the contract is now invalid. Figure 2.0 shows the contract with asterisks in front of role, state, actions, value, event changes, and relations. These asterisks represent potential accessibility errors and gaps in the base markup. These gaps result from the author's inability to provide the new semantic data needed to support the contract.</p>
+        <p id="desc_fig2"> <a href="#fig2" class="fig-ref">Fig. <span class="figno">2</span> <span class="fig-title">Accessibility
+        Interoperability at a <abbr title="Document Object Model">DOM</abbr> Node with JavaScript</span></a> shows the same <abbr title="Document Object Model">DOM</abbr> node provided in Figure 1.0 but with JavaScript acting as the new controller. JavaScript overrides the default user agent behavior at the <abbr title="Document Object Model">DOM</abbr> node. It manipulates the data, content, and style in response to events caused by user interaction to produce custom widgets. In this situation, the default accessibility information is no longer valid and, therefore, the contract is now invalid. Figure 2.0 shows the contract with asterisks in front of role, state, actions, value, event changes, and relations. These asterisks represent potential accessibility errors and gaps in the base markup. These gaps result from the author's inability to provide the new semantic data needed to support the contract.</p>
       </section>
 
       <section id="requirements" typeof="bibo:Chapter" resource="#requirements" property="bibo:hasPart">
@@ -6155,8 +6209,7 @@ My Radio Label
         </div>
         <p>The example above was taken from the header from the <a href="http://courses.cita.illinois.edu/structure/slide12.html">Career Center Web page at the University of Illinois at
       Urbana-Champaign</a>. Students from this university, under Jon Gunderson's guidance created <a href="http://firefox.cita.uiuc.edu/">Accessibility
-      extensions for Mozilla/Firefox</a>, in part, to allow a page author or user to view a list of navigation landmarks. This tool, shown in
-          <a href="#fig3" class="fig-ref"></a>, lists the navigation sections on the page. Keyboard navigation of the list of navigation bars causes the corresponding document section to be highlighted. The title for each navigation region displays in the list.</p>
+      extensions for Mozilla/Firefox</a>, in part, to allow a page author or user to view a list of navigation landmarks. This tool, shown in <a href="#fig3" class="fig-ref">Fig. <span class="figno">3</span> <span class="fig-title">Table of Contents generated from navigation landmarks in the header</span></a>, lists the navigation sections on the page. Keyboard navigation of the list of navigation bars causes the corresponding document section to be highlighted. The title for each navigation region displays in the list.</p>
         <figure id="fig3"><img alt="Table of Contents from Landmarks" height="813" longdesc="#desc_fig3" src="img/navlandmark.jpg" title="Table of Contents from Landmarks" width="877">
           <figcaption>Fig. <span class="figno">3</span> <span class="fig-title">Table of Contents generated from navigation landmarks in the header</span></figcaption>
         </figure>
@@ -6191,8 +6244,8 @@ My Radio Label
           <figure id="fig5"><img alt="DHTML example of GUI-like notebook tab with a data grid" height="633" longdesc="#desc_fig5" src="img/DHTMLexample.png" title="DHTML Example" width="844">
             <figcaption>Fig. <span class="figno">5</span> <span class="fig-title">DHTML Example</span></figcaption>
           </figure>
-          <p id="desc_fig5"> Accessible role and state meta data from the <abbr title="Web Accessibility Initiative">WAI</abbr>-<abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties specification, are added as attributes to each of the <abbr title="Extensible Hypertext Markup Language">XHTML</abbr> elements repurposed as GUI widgets dynamically. The user agent, in this case Firefox, maps this information to the platform accessibility <abbr title="Application Programming Interfaces">API</abbr>.
-            <a href="#fig6" class="fig-ref"></a> shows the Microsoft Active Accessibility rendering of the new accessibility markup provided on the DataGrid page tab which has focus.
+          <p id="desc_fig5"> Accessible role and state meta data from the <abbr title="Web Accessibility Initiative">WAI</abbr>-<abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties specification, are added as attributes to each of the <abbr title="Extensible Hypertext Markup Language">XHTML</abbr> elements repurposed as GUI widgets dynamically. The user agent, in this case Firefox, maps this information to the platform accessibility <abbr title="Application Programming Interfaces">API</abbr>. <a href="#fig6" class="fig-ref">Fig. <span class="figno">6</span> <span class="fig-title">Microsoft Inspect Tool rendering of the page tab
+        DataGrid</span></a> shows the Microsoft Active Accessibility rendering of the new accessibility markup provided on the DataGrid page tab which has focus.
           </p>
           <figure id="fig6"><img alt="MSAA Inspect Tool diagnostics for Notebook page tab" height="647" longdesc="#desc_fig6" src="img/inspectofpagetab.png" title="MSAA Inspect Tool diagnostics for Notebook page tab" width="490">
             <figcaption>Fig. <span class="figno">6</span> <span class="fig-title">Microsoft Inspect Tool rendering of the page tab
@@ -6430,12 +6483,11 @@ My Radio Label
           <li><abbr title="Cascading Style Sheets">CSS</abbr> is used for absolute positioning. If you remove that capability, usability features of widgets like pop-up menus disappear. Imagine activating the file menu and the menu showing up at the bottom of the page. </li>
         </ul>
         <p><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> and WCAG 2.0 coding techniques are useful for developing content and applications that can scale across a variety of user agents, including those on mobile devices. </p>
-        <p>For all these reasons, adopting <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> makes good technical as well as business sense. For a further illustration, compare how accessibility is achieved with WCAG techniques without and with <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr>, as shown in
-          <a href="#fig7" class="fig-ref"></a>. </p>
+        <p>For all these reasons, adopting <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> makes good technical as well as business sense. For a further illustration, compare how accessibility is achieved with WCAG techniques without and with <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr>, as shown in <a href="#fig7" class="fig-ref">Fig. <span class="figno">7</span> <span class="fig-title">Usability of Tree Widget Using <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Semantics to Implement WCAG 2.0 Guidelines Compared to WCAG 1.0 Without <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr></span></a>. </p>
         <figure id="fig7">
           <!--<img alt="WAI-ARIA tree widget usability comparison" class="figure" src="img/style_aria.jpg" title="tree widget comparison"/>-->
           <div class="ednote">
-            <div class="ednote-title marker" aria-level="5" role="heading" id="h-ednote9"><span>Editor's Note</span></div>
+            <div class="ednote-title marker" aria-level="5" role="heading" id="h-ednote10"><span>Editor's Note</span></div>
             <p class="">Editor's Note: Figure 7, described as <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> tree widget usability comparison, refers to a resource that has not yet been found.</p>
           </div>
           <figcaption>Fig. <span class="figno">7</span> <span class="fig-title">Usability of Tree Widget Using <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Semantics to Implement WCAG 2.0 Guidelines Compared to WCAG 1.0 Without <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr></span></figcaption>
