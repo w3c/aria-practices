@@ -1,0 +1,38 @@
+nav.breadcrumb {
+  padding: 0.8em 1em;
+  border: 1px solid #f5f5f5;
+  border-radius: 4px;
+  background: #FCFBFC;
+}
+
+nav.breadcrumb ol {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+nav.breadcrumb li {
+  display: inline;
+}
+
+nav.breadcrumb li + li::before {
+  color: #333;
+  content: '/\00a0';
+}
+
+nav.breadcrumb a {
+  color: #2F72C8;
+  text-decoration: none;
+}
+
+nav.breadcrumb a:focus,
+nav.breadcrumb a:hover {
+  text-decoration: underline;
+  background: transparent;
+}
+
+nav.breadcrumb [aria-current="page"] {
+  color: #000;
+  font-weight: 700;
+  text-decoration: none;
+}
