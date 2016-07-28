@@ -827,7 +827,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <a class="logo" href="http://www.w3.org/"><img width="72" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" alt="W3C"></a>
     </p>
     <h1 class="title p-name" id="title" property="dcterms:title"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Authoring Practices 1.1</h1>
-    <h2 id="w3c-editor-s-draft-27-july-2016"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2016-07-27">27 July 2016</time></h2>
+    <h2 id="w3c-editor-s-draft-28-july-2016"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2016-07-28">28 July 2016</time></h2>
     <dl>
       <dt>This version:</dt>
       <dd><a class="u-url" href="http://w3c.github.io/aria-practices/">http://w3c.github.io/aria-practices/</a></dd>
@@ -1645,7 +1645,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   <section id="aria_ex" typeof="bibo:Chapter" resource="#aria_ex" property="bibo:hasPart">
     <!--OddPage-->
     <h2 id="h-aria_ex" resource="#h-aria_ex"><span property="xhv:role" resource="xhv:heading"><span class="secno">3. </span>Design Patterns and Widgets<span class="permalink" typeof="bookmark"><a href="#aria_ex" aria-label="Permalink for 3. Design Patterns and Widgets" title="Permalink for 3. Design Patterns and Widgets" property="url"><span property="title" content="3. Design Patterns and Widgets">§</span></a></span></span></h2>
+
     <p>This section demonstrates how to make common rich internet application widgets and patterns accessible by applying <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> roles, states, and properties and implementing keyboard support.</p>
+
     <div class="note">
       <div class="note-title marker" aria-level="3" role="heading" id="h-note1"><span>Note</span></div>
       <p class="">
@@ -1655,7 +1657,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
     <section id="aria_ex_widget" typeof="bibo:Chapter" resource="#aria_ex_widget" property="bibo:hasPart">
       <h3 id="h-aria_ex_widget" resource="#h-aria_ex_widget"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.1 </span>Generally Applicable Keyboard Recommendations <span class="permalink" typeof="bookmark"><a href="#aria_ex_widget" aria-label="Permalink for 3.1 Generally Applicable Keyboard Recommendations " title="Permalink for 3.1 Generally Applicable Keyboard Recommendations " property="url"><span property="title" content="3.1 Generally Applicable Keyboard Recommendations ">§</span></a></span></span></h3>
+
       <p>The following keyboard conventions are applicable to many of the patterns described in subsequent sections.</p>
+
       <ul>
         <li><kbd>Shift + F10</kbd> opens associated context menu</li>
         <li><kbd>Control + C</kbd> Copies to clipboard </li>
@@ -1664,10 +1668,12 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         <li><kbd>Control + Z</kbd> undo last action</li>
         <li><kbd>Control + Y</kbd> Redo action</li>
       </ul>
+
       <div class="note">
         <div class="note-title marker" aria-level="4" role="heading" id="h-note2"><span>Note</span></div>
         <p class="">The following guidance on nested widgets will be moved to another section.</p>
       </div>
+
       <p>
         <strong>Widgets within Widgets</strong> The general navigation model is for a user to tab to a widget, interact with the controls in that widget and then tab to move focus to the next widget in the tab order. By extension, when the construct of a widget contains another widget, tab will move focus to the contained widget because it is the next item in the tab order. This continues down the layers of widgets until the last widget is reached. For example, if there are two widgets A and B on a page where widget A contains within it Widget A1 and Widget A1 contains within it Widget A2, the focus sequence when pressing the tab key would be A, A1, A2, B.
       </p>
@@ -1696,6 +1702,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
       <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction" property="bibo:hasPart">
         <h4 id="keyboard-interaction" resource="#keyboard-interaction"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
+
         <ul>
           <li>
             <kbd>Tab</kbd> - When focus is on an accordion header, pressing the <kbd>Tab</kbd> key moves focus in the following manner:
@@ -1794,6 +1801,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
       <section class="notoc" typeof="bibo:Chapter" resource="#wai-aria-roles-states-and-properties" property="bibo:hasPart">
         <h4 id="wai-aria-roles-states-and-properties" resource="#wai-aria-roles-states-and-properties"><span property="xhv:role" resource="xhv:heading"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties:</span></h4>
+
         <ul>
           <li>
             The accordion component must have a role of <a href="http://w3c.github.io/aria/aria/aria.html#tablist" class="role-reference">tablist</a> and have <a href="http://w3c.github.io/aria/aria/aria.html#aria-multiselectable" class="property-reference">aria-multiselectable</a>="true" This will enable an assistive technology, such as screen reader, to convey that the tablist is an accordion or a multi selectable tablist. This will also tell the user that the keyboard navigation matches an accordion and not a tablist.
@@ -1810,12 +1818,14 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
       <section class="notoc" typeof="bibo:Chapter" resource="#example" property="bibo:hasPart">
         <h4 id="example" resource="#example"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
+
         <div class="note">
           <div class="note-title marker" aria-level="5" role="heading" id="h-note4"><span>Note</span></div>
           <p class="">
             Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The <abbr title="Authoring Practices Guide">APG</abbr> task force is developing examples for <abbr title="Authoring Practices Guide">APG</abbr> version 1.1 that will be directly incorporated into the guide.
           </p>
         </div>
+
         <p><a href="http://www.oaa-accessibility.org/examplep/accordian1/" target="_blank">Open Ajax Alliance Accordion</a></p>
       </section>
     </section>
@@ -2042,7 +2052,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
         <ul>
           <li>
-            <a href="">Breadcrumb design pattern example</a>
+            <a href="examples/breadcrumb/index.html">Breadcrumb design pattern example</a>
           </li>
         </ul>
       </section>
