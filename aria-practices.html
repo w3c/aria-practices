@@ -617,191 +617,202 @@
 		</section>
 	</section>
 
-  <section id="aria_ex">
-    <h2>Design Patterns and Widgets</h2>
-    <p>This section demonstrates how to make common rich internet application widgets and patterns accessible by applying WAI-ARIA roles, states, and properties and implementing keyboard support.</p>
-    <p class="note">
-      Although users of Mac OS X are familiar with using the <kbd>Command</kbd> key instead of the <kbd>Control</kbd> key, the <kbd>Command</kbd> key is typically reserved for desktop applications and OS-level integration.
-      Until device and platform independence can be addressed in WAI-ARIA 2.0, the primary <kbd>Control</kbd> modifier key for WAI-ARIA widget interaction is specified as <kbd>Control</kbd> on all platforms, including Mac OS X.
-    </p>
-    <section id="aria_ex_widget">
-      <h3>Generally Applicable Keyboard Recommendations </h3>
-      <p>The following keyboard conventions are applicable to many of the patterns described in subsequent sections.</p>
-      <ul>
-        <li><kbd>Shift + F10</kbd> opens associated context menu</li>
-        <li><kbd>Control + C</kbd> Copies to clipboard </li>
-        <li><kbd>Control + V</kbd> Pastes from clipboard </li>
-        <li><kbd>Control + X</kbd> Copies to clipboard and cuts </li>
-        <li><kbd>Control + Z</kbd> undo last action</li>
-        <li><kbd>Control + Y</kbd> Redo action</li>
-      </ul>
-      <p class="note">The following guidance on nested widgets will be moved to another section.</p>
-      <p>
-        <strong>Widgets within Widgets</strong>
-        The general navigation model is for a user to tab to a widget, interact with the controls in that widget and then tab to move focus to the next widget in the tab order.
-        By extension, when the construct of a widget contains another widget, tab will move focus to the contained widget because it is the next item in the tab order.
-        This continues down the layers of widgets until the last widget is reached.
-        For example, if there are two widgets A and B on a page where widget A contains within it Widget A1 and Widget A1 contains within it Widget A2, the focus sequence when pressing the tab key would be A, A1, A2, B.
-      </p>
-    </section>
+	<section id="aria_ex">
+    	<h2>Design Patterns and Widgets</h2>
 
-    <section class="widget" id="accordion">
-      <h3>Accordion</h3>
+    	<p>This section demonstrates how to make common rich internet application widgets and patterns accessible by applying WAI-ARIA roles, states, and properties and implementing keyboard support.</p>
 
-      <p class="note">This section has not been updated since it was integrated from the WAI-ARIA Authoring Practices Guide (<abbr title="Authoring Practices Guide">APG</abbr>) version 1.0 -- an APG task force review is pending.</p>
+    	<p class="note">
+			Although users of Mac OS X are familiar with using the <kbd>Command</kbd> key instead of the <kbd>Control</kbd> key, the <kbd>Command</kbd> key is typically reserved for desktop applications and OS-level integration.
+			Until device and platform independence can be addressed in WAI-ARIA 2.0, the primary <kbd>Control</kbd> modifier key for WAI-ARIA widget interaction is specified as <kbd>Control</kbd> on all platforms, including Mac OS X.
+		</p>
 
-      <p>
-        An accordion component is a collection of expandable panels associated with a common outer container.
-        Panels consist of a header and an associated content region or panel.
-        The primary use of an Accordion is to present multiple sections of content on a single page without scrolling, where all of the sections are peers in the application or object hierarchy.
-        The general look is similar to a tree where each root tree node is an expandable accordion header.
-        The user navigates and makes the contents of each panel visible (or not) by interacting with the Accordion Header.
-        Terms for understanding accordions include:
-      </p>
+		<section id="aria_ex_widget">
+			<h3>Generally Applicable Keyboard Recommendations </h3>
 
-      <dl>
-        <dt>accordion component:</dt>
-        <dd>Collection of panels within a common outer pane.</dd>
-        <dt>accordion header:</dt>
-        <dd>Label area of an accordion panel. This is where you find the control to expand or collapse the panels.</dd>
-        <dt>accordion panel:</dt>
-        <dd>Contents area associated with an accordion header.</dd>
-      </dl>
+			<p>The following keyboard conventions are applicable to many of the patterns described in subsequent sections.</p>
 
-      <section class="notoc">
-        <h4>Keyboard Interaction</h4>
-        <ul>
-          <li>
-            <kbd>Tab</kbd> - When focus is on an accordion header, pressing the <kbd>Tab</kbd> key moves focus in the following manner:
-            <ol>
-              <li>If interactive glyphs or menus are present in the accordion header, focus moves to each in order. </li>
-              <li>When the corresponding panel is expanded (its <a href="#aria-expanded" class="state-reference">aria-expanded</a> state is 'true'), then focus moves to the first focusable element in the panel. </li>
-              <li>If the  panel is collapsed (its aria-expanded state is 'false' or missing), OR, when the last interactive element of a panel is reached, the next <kbd>Tab</kbd> key press moves focus as follows:
-                <ul>
-                  <li>If a subsequent accordion panel is already expanded, focus moves to the first focusable element in this subsequent panel.</li>
-                  <li>If no subsequent accordion panel is expanded, focus moves to the first focusable element outside the accordion component.</li>
-                </ul>
-              </li>
-            </ol>
-          </li>
-          <li>
-            <kbd>Left arrow</kbd>
-            <ul>
-              <li>When focus is on the accordion header, a press of up/left arrow keys moves focus to the previous logical accordion header.</li>
-              <li>When focus reaches the first header, further up/left arrow key presses optionally wrap to the first header.</li>
-            </ul>
-          </li>
-          <li>
-            <kbd>Right arrow</kbd>
-            <ul>
-              <li>When focus is on the accordion header, a press of down/right moves focus to the next logical accordion header.</li>
-              <li>When focus reaches the last header, further down/right arrow key presses optionally wrap to the first header.</li>
-            </ul>
-          </li>
-          <li>
-            <kbd>Up arrow</kbd> - behaves the same as left arrow
-          </li>
-          <li>
-            <kbd>Down arrow</kbd> - behaves the same as right arrow
-          </li>
-          <li>
-            <kbd>Control + Up Arrow</kbd> - Moves focus from anywhere in the accordion content to its associated accordion header or tab respectively.
-          </li>
-          <li>
-            <kbd>Control + Page Up</kbd> -
-            <ul>
-              <li>When focus is inside of an accordion pane, pressing <kbd>Control + Page Up</kbd> moves focus to the accordion header of the previous accordion pane.</li>
-              <li>When focus is in the first accordion header content, pressing <kbd>Control + Page Up</kbd> optionally moves focus to the last accordion header.</li>
-              <li>Focus will simply move to the header and will require <kbd>Enter/Space</kbd> to expand/collapse the accordion pane.</li>
-            </ul>
-          </li>
-          <li>
-            <kbd>Control + Page Down</kbd> -
-            <ul>
-              <li>When focus is inside of an accordion pane, pressing <kbd>Control + Page Down</kbd> moves focus to the header of the accordion pane.</li>
-              <li>When focus is in the last accordion header content, pressing <kbd>Control + Page Down</kbd> optionally moves focus to the first accordion header.</li>
-              <li>In the case of an accordion, focus simply moves to the header and requires <kbd>Enter/Space</kbd> to expand/collapse the accordion pane.</li>
-            </ul>
-          </li>
-          <li>
-            <kbd>End</kbd> - When focus is on the accordion header, an <kbd>End</kbd> key press moves focus to the last accordion header.
-          </li>
-          <li>
-            <kbd>Home</kbd> - When focus is on the accordion header, a <kbd>Home</kbd> key press moves focus to the first accordion header.
-          </li>
-          <li>
-            <kbd>Enter/Space</kbd> - When focus is on an accordion header, pressing <kbd>Enter/Space</kbd> toggles the expansion of the corresponding panel.
-            <ul>
-              <li>If collapsed, the panel is expanded, and its aria-expanded state is set to 'true'.</li>
-              <li>If expanded, the panel is collapsed and its aria-expanded state is set to 'false'.</li>
-            </ul>
-          </li>
-          <li>
-            <kbd>Shift + Tab</kbd> - Generally the reverse of <kbd>Tab</kbd>.
-          </li>
-          <li>
-            <kbd>Alt + Delete</kbd> -
-            <ul>
-              <li>
-                When deletion is allowed, with focus anywhere within the tab panel or tab, pressing <kbd>Alt + Delete</kbd> will delete the current tab and tab panel from the tabbed interface control.
-                If additional tabs remain in the tabbed interface, focus goes to the next tab in the tab list.
-                If no additional tabs remain, then focus moves to the last place that held focus in the previous tab panel.
-              </li>
-              <li>
-                An alternative to providing a keystroke to close a tab is to provide a context menu that is associated with the tab title.
-                When focus is on the tab, pressing <kbd>Shift + F10</kbd> or pressing the right mouse button will open a context menu with the close choice.
-              </li>
-              <li>A warning should be given to the user before allowing the delete to occur.</li>
-            </ul>
-          </li>
-        </ul>
-        <p>
-          In Firefox, pressing <kbd>Control + Page Up</kbd> / <kbd>Control + Page Down</kbd> moves between browser tabs.
-          Firefox also supports <kbd>Control + Tab</kbd> and <kbd>Control + Shift + Tab</kbd> to move between tabs.
-          Internet Explorer 7 also uses <kbd>Control + Tab</kbd> and <kbd>Control + Shift + Tab</kbd>.
-          There may be advantages to using <kbd>Control + Page Up</kbd>/<kbd>Page Down</kbd> as the keys to change tabs; it is a recognizable keystroke to at least Firefox users and it is also supported by the Windows operating system to move between panels in a tabbed dialog.
-        </p>
-        <p>You should be aware of two issues with using <kbd>Control + Page Up</kbd>/<kbd>Page Down</kbd>:</p>
-        <ul>
-          <li>
-            The first arises when the user is within a tabbed interface control on a Web page.
-            Here they can not easily switch browser tabs without first moving focus outside of the tabbed interface control.
-            This may be acceptable.
-          </li>
-          <li>
-            The second arises when the entire web page is a tabbed interface control.
-            In this case the user could not switch browser tabs unless the control on the web page ignored the <kbd>Control + Page Up</kbd>/<kbd>Page Down</kbd> keypress (and thus letting the browser access it) when the first or last tab was reached.
-          </li>
-        </ul>
-      </section>
+			<ul>
+				<li><kbd>Shift + F10</kbd> opens associated context menu</li>
+				<li><kbd>Control + C</kbd> Copies to clipboard </li>
+				<li><kbd>Control + V</kbd> Pastes from clipboard </li>
+				<li><kbd>Control + X</kbd> Copies to clipboard and cuts </li>
+				<li><kbd>Control + Z</kbd> undo last action</li>
+				<li><kbd>Control + Y</kbd> Redo action</li>
+			</ul>
 
-      <section class="notoc">
-        <h4>WAI-ARIA Roles, States, and Properties:</h4>
-        <ul>
-          <li>
-            The accordion component must have a role of <a href="#tablist" class="role-reference">tablist</a> and have <a href="#aria-multiselectable" class="property-reference">aria-multiselectable</a>=&quot;true&quot;
-            This will enable an assistive technology, such as screen reader, to convey that the tablist is an accordion or a multi selectable tablist.
-            This will also tell the user that the keyboard navigation matches an accordion and not a tablist.
-          </li>
-          <li>Contained within the tablist is a set of tab/tabpanel pairs.</li>
-          <li>Each header tab in the tablist has a role of <a href="#tablist" class="role-reference">tab</a>.</li>
-          <li>The accordion panel uses the role <a href="#tabpanel" class="role-reference">tabpanel</a> and should have an <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> relationship referencing the corresponding header having a role of <a href="#tablist" class="role-reference">tab</a></li>
-          <li>The tabpanel is considered a grouping for all content consisting of that tabpanel.</li>
-          <li>An accordion should manage the expanded/collapsed state of each tab by maintaining its <a href="#aria-expanded" class="state-reference">aria-expanded</a> state.</li>
-          <li>An accordion should manage the selected state of each tab by maintaining its <code class="state-reference">aria-selected</code> state.</li>
-          <li>An accordion should convey the visibility of each tabpanel by maintaining its <a href="#aria-hidden" class="state-reference">aria-hidden</a> state.</li>
-        </ul>
-      </section>
+			<p class="note">The following guidance on nested widgets will be moved to another section.</p>
 
-      <section class="notoc">
-        <h4>Example</h4>
-        <p class="note">
-          Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section.
-          The APG task force is developing examples for APG version 1.1 that will be directly incorporated into the guide.
-        </p>
-        <p><a href="http://www.oaa-accessibility.org/examplep/accordian1/" target="_blank">Open Ajax Alliance Accordion</a></p>
-      </section>
-    </section>
+			<p>
+				<strong>Widgets within Widgets</strong>
+				The general navigation model is for a user to tab to a widget, interact with the controls in that widget and then tab to move focus to the next widget in the tab order.
+				By extension, when the construct of a widget contains another widget, tab will move focus to the contained widget because it is the next item in the tab order.
+				This continues down the layers of widgets until the last widget is reached.
+				For example, if there are two widgets A and B on a page where widget A contains within it Widget A1 and Widget A1 contains within it Widget A2, the focus sequence when pressing the tab key would be A, A1, A2, B.
+			</p>
+		</section>
+
+		<section class="widget" id="accordion">
+			<h3>Accordion</h3>
+
+			<p class="note">This section has not been updated since it was integrated from the WAI-ARIA Authoring Practices Guide (<abbr title="Authoring Practices Guide">APG</abbr>) version 1.0 -- an APG task force review is pending.</p>
+
+			<p>
+				An accordion component is a collection of expandable panels associated with a common outer container.
+				Panels consist of a header and an associated content region or panel.
+				The primary use of an Accordion is to present multiple sections of content on a single page without scrolling, where all of the sections are peers in the application or object hierarchy.
+				The general look is similar to a tree where each root tree node is an expandable accordion header.
+				The user navigates and makes the contents of each panel visible (or not) by interacting with the Accordion Header.
+				Terms for understanding accordions include:
+			</p>
+
+			<dl>
+				<dt>accordion component:</dt>
+				<dd>Collection of panels within a common outer pane.</dd>
+				<dt>accordion header:</dt>
+				<dd>Label area of an accordion panel. This is where you find the control to expand or collapse the panels.</dd>
+				<dt>accordion panel:</dt>
+				<dd>Contents area associated with an accordion header.</dd>
+			</dl>
+
+			<section class="notoc">
+				<h4>Keyboard Interaction</h4>
+
+				<ul>
+					<li>
+						<kbd>Tab</kbd> - When focus is on an accordion header, pressing the <kbd>Tab</kbd> key moves focus in the following manner:
+						<ol>
+							<li>If interactive glyphs or menus are present in the accordion header, focus moves to each in order. </li>
+							<li>When the corresponding panel is expanded (its <a href="#aria-expanded" class="state-reference">aria-expanded</a> state is 'true'), then focus moves to the first focusable element in the panel. </li>
+							<li>If the	panel is collapsed (its aria-expanded state is 'false' or missing), OR, when the last interactive element of a panel is reached, the next <kbd>Tab</kbd> key press moves focus as follows:
+								<ul>
+									<li>If a subsequent accordion panel is already expanded, focus moves to the first focusable element in this subsequent panel.</li>
+									<li>If no subsequent accordion panel is expanded, focus moves to the first focusable element outside the accordion component.</li>
+								</ul>
+							</li>
+						</ol>
+					</li>
+					<li>
+						<kbd>Left arrow</kbd>
+						<ul>
+							<li>When focus is on the accordion header, a press of up/left arrow keys moves focus to the previous logical accordion header.</li>
+							<li>When focus reaches the first header, further up/left arrow key presses optionally wrap to the first header.</li>
+						</ul>
+					</li>
+					<li>
+						<kbd>Right arrow</kbd>
+						<ul>
+							<li>When focus is on the accordion header, a press of down/right moves focus to the next logical accordion header.</li>
+							<li>When focus reaches the last header, further down/right arrow key presses optionally wrap to the first header.</li>
+						</ul>
+					</li>
+					<li>
+						<kbd>Up arrow</kbd> - behaves the same as left arrow
+					</li>
+					<li>
+						<kbd>Down arrow</kbd> - behaves the same as right arrow
+					</li>
+					<li>
+						<kbd>Control + Up Arrow</kbd> - Moves focus from anywhere in the accordion content to its associated accordion header or tab respectively.
+					</li>
+					<li>
+						<kbd>Control + Page Up</kbd> -
+						<ul>
+							<li>When focus is inside of an accordion pane, pressing <kbd>Control + Page Up</kbd> moves focus to the accordion header of the previous accordion pane.</li>
+							<li>When focus is in the first accordion header content, pressing <kbd>Control + Page Up</kbd> optionally moves focus to the last accordion header.</li>
+							<li>Focus will simply move to the header and will require <kbd>Enter/Space</kbd> to expand/collapse the accordion pane.</li>
+						</ul>
+					</li>
+					<li>
+						<kbd>Control + Page Down</kbd> -
+						<ul>
+							<li>When focus is inside of an accordion pane, pressing <kbd>Control + Page Down</kbd> moves focus to the header of the accordion pane.</li>
+							<li>When focus is in the last accordion header content, pressing <kbd>Control + Page Down</kbd> optionally moves focus to the first accordion header.</li>
+							<li>In the case of an accordion, focus simply moves to the header and requires <kbd>Enter/Space</kbd> to expand/collapse the accordion pane.</li>
+						</ul>
+					</li>
+					<li>
+						<kbd>End</kbd> - When focus is on the accordion header, an <kbd>End</kbd> key press moves focus to the last accordion header.
+					</li>
+					<li>
+						<kbd>Home</kbd> - When focus is on the accordion header, a <kbd>Home</kbd> key press moves focus to the first accordion header.
+					</li>
+					<li>
+						<kbd>Enter/Space</kbd> - When focus is on an accordion header, pressing <kbd>Enter/Space</kbd> toggles the expansion of the corresponding panel.
+						<ul>
+							<li>If collapsed, the panel is expanded, and its aria-expanded state is set to 'true'.</li>
+							<li>If expanded, the panel is collapsed and its aria-expanded state is set to 'false'.</li>
+						</ul>
+					</li>
+					<li>
+						<kbd>Shift + Tab</kbd> - Generally the reverse of <kbd>Tab</kbd>.
+					</li>
+					<li>
+						<kbd>Alt + Delete</kbd> -
+						<ul>
+							<li>
+								When deletion is allowed, with focus anywhere within the tab panel or tab, pressing <kbd>Alt + Delete</kbd> will delete the current tab and tab panel from the tabbed interface control.
+								If additional tabs remain in the tabbed interface, focus goes to the next tab in the tab list.
+								If no additional tabs remain, then focus moves to the last place that held focus in the previous tab panel.
+							</li>
+							<li>
+								An alternative to providing a keystroke to close a tab is to provide a context menu that is associated with the tab title.
+								When focus is on the tab, pressing <kbd>Shift + F10</kbd> or pressing the right mouse button will open a context menu with the close choice.
+							</li>
+							<li>A warning should be given to the user before allowing the delete to occur.</li>
+						</ul>
+					</li>
+				</ul>
+				<p>
+					In Firefox, pressing <kbd>Control + Page Up</kbd> / <kbd>Control + Page Down</kbd> moves between browser tabs.
+					Firefox also supports <kbd>Control + Tab</kbd> and <kbd>Control + Shift + Tab</kbd> to move between tabs.
+					Internet Explorer 7 also uses <kbd>Control + Tab</kbd> and <kbd>Control + Shift + Tab</kbd>.
+					There may be advantages to using <kbd>Control + Page Up</kbd>/<kbd>Page Down</kbd> as the keys to change tabs; it is a recognizable keystroke to at least Firefox users and it is also supported by the Windows operating system to move between panels in a tabbed dialog.
+				</p>
+				<p>You should be aware of two issues with using <kbd>Control + Page Up</kbd>/<kbd>Page Down</kbd>:</p>
+				<ul>
+					<li>
+						The first arises when the user is within a tabbed interface control on a Web page.
+						Here they can not easily switch browser tabs without first moving focus outside of the tabbed interface control.
+						This may be acceptable.
+					</li>
+					<li>
+						The second arises when the entire web page is a tabbed interface control.
+						In this case the user could not switch browser tabs unless the control on the web page ignored the <kbd>Control + Page Up</kbd>/<kbd>Page Down</kbd> keypress (and thus letting the browser access it) when the first or last tab was reached.
+					</li>
+				</ul>
+			</section>
+
+			<section class="notoc">
+				<h4>WAI-ARIA Roles, States, and Properties:</h4>
+
+				<ul>
+					<li>
+						The accordion component must have a role of <a href="#tablist" class="role-reference">tablist</a> and have <a href="#aria-multiselectable" class="property-reference">aria-multiselectable</a>=&quot;true&quot;
+						This will enable an assistive technology, such as screen reader, to convey that the tablist is an accordion or a multi selectable tablist.
+						This will also tell the user that the keyboard navigation matches an accordion and not a tablist.
+					</li>
+					<li>Contained within the tablist is a set of tab/tabpanel pairs.</li>
+					<li>Each header tab in the tablist has a role of <a href="#tablist" class="role-reference">tab</a>.</li>
+					<li>The accordion panel uses the role <a href="#tabpanel" class="role-reference">tabpanel</a> and should have an <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> relationship referencing the corresponding header having a role of <a href="#tablist" class="role-reference">tab</a></li>
+					<li>The tabpanel is considered a grouping for all content consisting of that tabpanel.</li>
+					<li>An accordion should manage the expanded/collapsed state of each tab by maintaining its <a href="#aria-expanded" class="state-reference">aria-expanded</a> state.</li>
+					<li>An accordion should manage the selected state of each tab by maintaining its <code class="state-reference">aria-selected</code> state.</li>
+					<li>An accordion should convey the visibility of each tabpanel by maintaining its <a href="#aria-hidden" class="state-reference">aria-hidden</a> state.</li>
+				</ul>
+			</section>
+
+			<section class="notoc">
+				<h4>Example</h4>
+
+				<p class="note">
+					Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section.
+					The APG task force is developing examples for APG version 1.1 that will be directly incorporated into the guide.
+				</p>
+
+				<p><a href="http://www.oaa-accessibility.org/examplep/accordian1/" target="_blank">Open Ajax Alliance Accordion</a></p>
+			</section>
+		</section>
 
     <section class="widget" id="alert">
       <h3>Alert</h3>
