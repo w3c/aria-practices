@@ -1024,17 +1024,10 @@
       <h3 class="widget-name">Breadcrumb</h3>
       
 	  <p>
-	    A breadcrumb consists of a list of links to the parent pages of the current page in hierachical order.
+	    A breadcrumb consists of a list of links to the parent pages of the current page in hierarchical order.
 	    These help users find their place within a website or web application.
-	    Breadcrumbs are often placed (horizontally) under a page's header.
+	    Breadcrumbs are often placed horizontally before a page's main content.
 	  </p>
-
-	  <p>
-	    It is recommended authors use an ordered list to structure the list of links.
-	    Visual seperators should be added through <abbr title="Cascading Style Sheets">CSS</abbr>.
-	  </p>
-
-	  <p class="ednote">Editors' note: ordered list makes the most sense from a semantic point of view and was voted most popular in the <a href="http://webaim.org/projects/screenreadersurvey5/#breadcrumb">WebAIM Screen Reader Survey 2014</a>.</p>
 	  
 	  <section class="notoc">
         <h4>Keyboard Interaction</h4>
@@ -1045,10 +1038,15 @@
       <section class="notoc">
         <h4>WAI-ARIA Roles, States, and Properties</h4>
 	    <ul>
+		  <li>Breadcrumb trail is contained within a navigation landmark.</li>
 	      <li>The widget should be labelled programmatically via a heading or via either <a href="#aria-label" class="property-reference">aria-label</a> or <a href="#aria-labelledby" class="property-reference">aria-labelledby</a>.
-	      <li>The link to the current page has <a href="#aria-current" class="property-reference">aria-current</a> set to <code>page</code>.</li>
+	      <li>
+		    The link to the current page has <a href="#aria-current" class="property-reference">aria-current</a> set to <code>page</code>.
+			If the element representing the current page is not a link, aria-current is optional.
+		  </li>
 	    </ul>
 	  </section>
+
       <section class="notoc">
 	    <h4>Example</h4>
 
