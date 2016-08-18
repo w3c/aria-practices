@@ -2187,58 +2187,85 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     <section class="widget" id="tabpanel" typeof="bibo:Chapter" resource="#tabpanel" property="bibo:hasPart">
       <h3 id="h-tabpanel" resource="#h-tabpanel"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.21 </span>Tabs<span class="permalink" typeof="bookmark"><a href="#tabpanel" aria-label="Permalink for 2.21 Tabs" title="Permalink for 2.21 Tabs" property="url"><span property="title" content="2.21 Tabs">§</span></a></span></span></h3>
       <p>
-        Tabs are a set of layered sections of content, known as tab panels, that display one panel of content at a time. Each tab panel has a tab associated with it, that when activated, displays the panel. The list of tabs is arranged along one edge of the currently displayed panel, most commonly the top edge.
+        Tabs are a set of layered sections of content, known as tab panels, that display one panel of content at a time. Each tab panel has an associated tab element, that when activated, displays the panel. The list of tab elements is arranged along one edge of the currently displayed panel, most commonly the top edge.
       </p>
-      <p>
-        Terms to understand Tabs include:
-      </p>
+      <p>Terms used to describe this design pattern include:</p>
       <dl>
-        <dt>Tabs or Tabbed interface</dt>
-        <dd>A set of tab elements and associated tab panels </dd>
-        <dt>Tab list</dt>
-        <dd>The set of tab elements</dd>
-        <dt>Tab</dt>
+        <dt>Tabs or Tabbed Interface</dt>
+        <dd>A set of tab elements and their associated tab panels.</dd>
+        <dt>Tab List</dt>
+        <dd>A set of tab elements contained in an <a href="http://w3c.github.io/aria/aria/aria.html#tablist" class="role-reference">Tablist</a> element.</dd>
+        <dt><a href="http://w3c.github.io/aria/aria/aria.html#tab" class="role-reference">tab</a></dt>
         <dd>An element in the tab list that serves as a label for one of the tab panels and can be activated to display that panel. </dd>
-        <dt>Tab panel</dt>
-        <dd>The element that contains the content associated with a tab</dd>
+        <dt><a href="http://w3c.github.io/aria/aria/aria.html#tabpanel" class="role-reference">tabpanel</a></dt>
+        <dd>The element that contains the content associated with a tab.</dd>
       </dl>
       <p>
-        When the user activates a tab element, the contents of the corresponding tab panel is made visible. The tab element is considered "active". The tab element remains active until another tab is activated. The active tab element is placed into the tab order. Only the active tab element should be in the tab order. One tab element is active when the tabs are initialised.
+        When a tabbed interface is initialized, One tab panel is displayed and its associated tab is styled to indicate that it is active. When the user activates one of the other tab elements, the previously displayed tab panel is hidden, the tab panel associated with the activated tab becomes visible, and the tab is considered "active".
       </p>
 
       <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-14" property="bibo:hasPart">
         <h4 id="keyboard-interaction-14" resource="#keyboard-interaction-14"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
+        <p>For the tab list:</p>
         <ul>
-          <li><kbd>Tab</kbd> - Moves focus to the active tab element in the tab list.</li>
           <li>
-            <kbd>Left Arrow</kbd> - with focus on a tab element, pressing the left arrow will move focus to the previous tab element in the tab list. Normally the newly focussed tab element will automatically activate, but in some instances this will not happen and <kbd>space or enter</kbd> will be needed to activate the tab element. Pressing the left arrow when the focus is on the first tab element in the tab element list will move focus and activate the last tab element in the list.
+            <kbd>Tab</kbd>: When the tab list is receiving focus, places focus on the active <code>tab</code> element . When the tab list contains the focus, moves focus to the next element in the page tab sequence outside the tablist, which is often either the first focusable element inside the tab panel or the tab panel itself.
           </li>
-          <li>
-            <kbd>Right Arrow</kbd> - with focus on a tab element, pressing the right arrow will move focus to the next tab element in the tab list. Normally the newly focussed tab element will automatically activate, but in some instances this will not happen and <kbd>space or enter</kbd> will be needed to activate the tab element. Pressing the right arrow when the focus is on the last tab element in the tab list will move focus to and activate the first tab element in the list.
-          </li>
-          <li><kbd>Space or Enter</kbd> - with focus on a tab element, <kbd>space or enter</kbd> will activate the tab element if the tab element does not activate automatically.</li>
-          <li><kbd>Up arrow</kbd> - behaves the same as left arrow in order to support vertical tabs.</li>
-          <li><kbd>Down arrow</kbd> - behaves the same as right arrow in order to support vertical tabs.</li>
-          <li>
-            <kbd>Delete</kbd> - When deletion is allowed, with focus on the tab element, <kbd>Delete</kbd> will delete the current tab element and tab panel from the tabs. If additional tab elements remain in the tabs, focus goes to the next tab element in the tab list. An alternative to providing a keystroke to close a tab element is to provide a context menu that is associated with the tab element. When focus is on the tab element, pressing <kbd>Shift + F10</kbd> or pressing the right mouse button will open a context menu with the close choice.
+          <li>When focus is on a tab element:
+            <ul>
+              <li><kbd>Left Arrow</kbd>: moves focus to the previous tab. If focus is on the first tab, moves focus to the last tab. Optionally, activates the newly focused tab (See note below).
+              </li>
+              <li>
+                <kbd>Right Arrow</kbd>: Moves focus to the next tab. If focus is on the last tab element, moves focus to the first tab. Optionally, activates the newly focused tab (See note below).
+              </li>
+              <li><kbd>Space or Enter</kbd>: Activates the tab if it was not activated automatically on focus.</li>
+              <li><kbd>Home</kbd> (Optional): Moves focus to the first tab</li>
+              <li><kbd>End</kbd>: Moves focus to the last tab.</li>
+              <li><kbd>Shift + F10</kbd>: If the tab has an associated pop-up menu, opens the menu. </li>
+              <li>
+                <kbd>Delete</kbd> (Optional): If deletion is allowed, deletes (closes) the current tab element and its associated tab panel. If any tabs remain, sets focus to the tab following the tab that was closed and activates the newly focused tab. Alternatively, or in addition, the delete function is available in a context menu.
+              </li>
+            </ul>
           </li>
         </ul>
+        <div class="note">
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note25"><span>Note</span></div>
+          <ol class="">
+            <li>
+              It is recommended that tabs activate automatically when they receive focus as long as their associated tab panels are displayed without noticeable latency. This typically requires tab panel content to be preloaded. Otherwise, automatic activation slows focus movement, which significantly hampers users' ability to navigate efficiently across the tab list.
+            </li>
+            <li>If the tabs in a tab list are arranged vertically:
+              <ol>
+                <li> <kbd>Down Arrow</kbd> performs as <kbd>Right Arrow</kbd> is described above.</li>
+                <li> <kbd>Up Arrow</kbd> performs as <kbd>Left Arrow</kbd> is described above.</li>
+              </ol>
+            </li>
+            <li>If the tab list is horizontal, it does not listen for <kbd>Down Arrow</kbd> or <kbd>Up Arrow</kbd> so those keys can provide their normal browser scrolling functions even when focus is inside the tab list.</li>
+          </ol>
+        </div>
       </section>
 
       <section class="notoc" typeof="bibo:Chapter" resource="#wai-aria-roles-states-and-properties-15" property="bibo:hasPart">
         <h4 id="wai-aria-roles-states-and-properties-15" resource="#wai-aria-roles-states-and-properties-15"><span property="xhv:role" resource="xhv:heading"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties</span></h4>
         <ul>
-          <li>Tabs contain tab elements and their associated content panels.</li>
-          <li>The content panel uses the role <a class="role-reference" href="http://w3c.github.io/aria/aria/aria.html#tabpanel">tabpanel</a>. </li>
-          <li>An element with role <a class="role-reference" href="http://w3c.github.io/aria/aria/aria.html#tab">tab</a> is used as a grouping label, providing a link for selecting the tab panel to be rendered to the user. </li>
-          <li>Assign the <a href="http://w3c.github.io/aria/aria/aria.html#aria-controls" class="property-reference">aria-controls</a> relationship of a tab element to the ID of its tabpanel. </li>
-          <li>Authors manage which tab element is active by maintaining its <a href="http://w3c.github.io/aria/aria/aria.html#aria-selected" class="state-reference">aria-selected</a> state. </li>
-          <li>A <a class="role-reference" href="http://w3c.github.io/aria/aria/aria.html#tablist">tablist</a> is the container role for a set of elements with the role attribute set to <a class="role-reference" href="http://w3c.github.io/aria/aria/aria.html#tab">tab</a>. </li>
+          <li>The element that serves as the container for the set of tabs has role <a class="role-reference" href="http://w3c.github.io/aria/aria/aria.html#tablist">tablist</a>. </li>
+          <li>Each element that serves as a tab has role <a class="role-reference" href="http://w3c.github.io/aria/aria/aria.html#tab">tab</a> and is contained within the element with role <code>tablist</code>.</li>
+          <li>Each element that contains the content panel for a <code>tab</code> has role <a class="role-reference" href="http://w3c.github.io/aria/aria/aria.html#tabpanel">tabpanel</a>.</li>
+          <li>Each element with role <code>tab</code> has the property <a href="http://w3c.github.io/aria/aria/aria.html#aria-controls" class="property-reference">aria-controls</a> referring to its associated <code>tabpanel</code> element.</li>
+          <li>The active <code>tab</code> element has the state <a href="http://w3c.github.io/aria/aria/aria.html#aria-selected" class="state-reference">aria-selected</a> set to <code>true</code> and all other <code>tab</code> elements have it set to <code>false</code>.</li>
+          <li>Each element with role <code>tabpanel</code> has the property <a href="http://w3c.github.io/aria/aria/aria.html#aria-labelledby" class="property-reference">aria-labelledby</a> referring to its associated <code>tab</code> element. </li>
+          <li>If a <code>tab</code> element has a pop-up menu, it has the property <a href="http://w3c.github.io/aria/aria/aria.html#aria-haspopup" class="property-reference">aria-haspopup</a> set to <code>true</code>. </li>
+          <li>
+            If the <code>tablist</code> element is vertically oriented, it has the property <a href="http://w3c.github.io/aria/aria/aria.html#aria-orientation" class="property-reference">aria-orientation</a> set to <code>vertical</code>. The default value of <code>aria-orientation</code> for a <code>tablist</code> element is <code>horizontal</code>.
+          </li>
         </ul>
       </section>
 
       <section class="notoc" typeof="bibo:Chapter" resource="#example-13" property="bibo:hasPart">
         <h4 id="example-13" resource="#example-13"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
+        <ul>
+          <li></li>
+        </ul>
       </section>
     </section>
 
@@ -2271,7 +2298,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           </li>
         </ul>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note25"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note26"><span>Note</span></div>
           <ol class="">
             <li>If the items in a toolbar are arranged vertically:
               <ol>
@@ -2297,7 +2324,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <section class="notoc" typeof="bibo:Chapter" resource="#example-14" property="bibo:hasPart">
         <h4 id="example-14" resource="#example-14"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note26"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note27"><span>Note</span></div>
           <p class="">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG task force is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
         </div>
         <ul>
@@ -2318,7 +2345,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
         <p><kbd>Escape</kbd>: Dismisses the Tooltip.</p>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note27"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note28"><span>Note</span></div>
           <ol class="">
             <li>The trigger element to which the tooltip is attached, e.g., a link, should never actually lose input focus. </li>
             <li>If the tooltip is invoked when the trigger element gets focus, then it should be dismissed when it no longer has focus (onBlur). If the tooltip is invoked with mouseIn, then it should be dismissed with a mouseOut. </li>
@@ -2338,7 +2365,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <section class="notoc" typeof="bibo:Chapter" resource="#example-15" property="bibo:hasPart">
         <h4 id="example-15" resource="#example-15"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note28"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note29"><span>Note</span></div>
           <p class="">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG task force is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
         </div>
         <ul>
@@ -2415,7 +2442,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <section class="notoc" typeof="bibo:Chapter" resource="#example-16" property="bibo:hasPart">
         <h4 id="example-16" resource="#example-16"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note29"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note30"><span>Note</span></div>
           <p class="">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG task force is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
         </div>
         <ul>
@@ -2446,7 +2473,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </ul>
 
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note30"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note31"><span>Note</span></div>
           <p class="">A fixed size splitter simply omits implementation of the arrow keys. </p>
         </div>
       </section>
@@ -2464,7 +2491,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <section class="notoc" typeof="bibo:Chapter" resource="#example-17" property="bibo:hasPart">
         <h4 id="example-17" resource="#example-17"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note31"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note32"><span>Note</span></div>
           <p class="">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG task force is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
         </div>
         <ul>
@@ -3107,7 +3134,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <section id="scrollintoview" typeof="bibo:Chapter" resource="#scrollintoview" property="bibo:hasPart">
         <h4 id="h-scrollintoview" resource="#h-scrollintoview"><span property="xhv:role" resource="xhv:heading"><span class="secno">4.5.4 </span>Managing Focus with Scroll<span class="permalink" typeof="bookmark"><a href="#scrollintoview" aria-label="Permalink for 4.5.4 Managing Focus with Scroll" title="Permalink for 4.5.4 Managing Focus with Scroll" property="url"><span property="title" content="4.5.4 Managing Focus with Scroll">§</span></a></span></span></h4>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note32"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note33"><span>Note</span></div>
           <p class="">Not yet edited ... considering what should be written/included. We don't want to write a javascript book.</p>
         </div>
         <p>In some browsers, a JavaScript call to <code> scrollIntoView()</code> on this element should suffice, but in browsers where this is unreliable, authors should explicitly set the <code>scrollTop</code> and <code>scrollLeft</code> properties of the "cell23" element and its ancestors to scroll the element into view. <code>scrollTop</code> and <code>scrollLeft</code> adjust the node positions by the amounts(pixels) needed to scroll a node into view. &nbsp;Scrolling values are adjusted by the amounts(pixels) needed to scroll a node into view. This is done by comparing the sizes of the nodes using available measurements such as scroll+offset+clientWidth/Height/Left/Top. It's important to note that you have to adjust a node so that it's viewable within the context of its parent node. &nbsp;Then you have to move up the DOM tree and make each parent node visible.</p>
@@ -3126,7 +3153,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     <section id="modal_dialog" typeof="bibo:Chapter" resource="#modal_dialog" property="bibo:hasPart">
       <h3 id="h-modal_dialog" resource="#h-modal_dialog"><span property="xhv:role" resource="xhv:heading"><span class="secno">4.6 </span>Managing Focus in Dialogs<span class="permalink" typeof="bookmark"><a href="#modal_dialog" aria-label="Permalink for 4.6 Managing Focus in Dialogs" title="Permalink for 4.6 Managing Focus in Dialogs" property="url"><span property="title" content="4.6 Managing Focus in Dialogs">§</span></a></span></span></h3>
       <div class="note">
-        <div class="note-title marker" aria-level="4" role="heading" id="h-note33"><span>Note</span></div>
+        <div class="note-title marker" aria-level="4" role="heading" id="h-note34"><span>Note</span></div>
         <p class="">
           MCK: unedited content pulled together from the old guide that needs a significant re-write. Please ignore this section for now.
         </p>
@@ -3347,7 +3374,7 @@ helper.stopEvent(evt); <span class="hljs-comment">//stop the event if not a tab 
           The remainder of this section provides guidance balancing requirements and concerns related to key assignment conflicts. It is typically ideal if key assignments do not conflict with keys that are assigned to functions in the user's operating system, browser, or assistive technology. Conflicts can block efficient access to functions that are essential to the user, and a perfect storm of conflicts can trap a user. At the same time, there are some circumstances where intentional conflicts are useful. And, given the vast array of operating system, browser, and assistive technology keys, it is almost impossible to be certain conflicts do not exist. So it is also important to employ strategies that mitigate the impact of conflicts whether they are intentional or unknown.
         </p>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note34"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note35"><span>Note</span></div>
           <p class="">
             In the following sections, <kbd>meta</kbd> key refers to the <kbd>Windows</kbd> key on Windows-compatible keyboards and the <kbd>Command</kbd> key on MacOS-compatible keyboards.
           </p>
@@ -3437,7 +3464,7 @@ helper.stopEvent(evt); <span class="hljs-comment">//stop the event if not a tab 
     <section id="keyboard_js_tips" typeof="bibo:Chapter" resource="#keyboard_js_tips" property="bibo:hasPart">
       <h3 id="h-keyboard_js_tips" resource="#h-keyboard_js_tips"><span property="xhv:role" resource="xhv:heading"><span class="secno">4.9 </span>Other Keyboard Interface Development Tips<span class="permalink" typeof="bookmark"><a href="#keyboard_js_tips" aria-label="Permalink for 4.9 Other Keyboard Interface Development Tips" title="Permalink for 4.9 Other Keyboard Interface Development Tips" property="url"><span property="title" content="4.9 Other Keyboard Interface Development Tips">§</span></a></span></span></h3>
       <div class="note">
-        <div class="note-title marker" aria-level="4" role="heading" id="h-note35"><span>Note</span></div>
+        <div class="note-title marker" aria-level="4" role="heading" id="h-note36"><span>Note</span></div>
         <p class="">
           MCK: this section is a collection of keyboard related old content with a yet undecided fate.
         </p>
