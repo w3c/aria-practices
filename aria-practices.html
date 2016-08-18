@@ -1370,71 +1370,94 @@
       <h3>Tabs</h3>
       <p>
         Tabs are a set of layered sections of content, known as tab panels, that display one panel of content at a time.
-        Each tab panel has a tab associated with it, that when activated, displays the panel.
-        The list of tabs is arranged along one edge of the currently displayed panel, most commonly the top edge.
+        Each tab panel has an associated tab element, that when activated, displays the panel.
+        The list of tab elements is arranged along one edge of the currently displayed panel, most commonly the top edge.
       </p>
-      <p>
-        Terms to understand Tabs include:
-      </p>
+      <p>Terms used to describe this design pattern include:</p>
       <dl>
-        <dt>Tabs or Tabbed interface</dt>
-        <dd>A set of tab elements and associated tab panels </dd>
-        <dt>Tab list</dt>
-        <dd>The set of tab elements</dd>
-        <dt>Tab</dt>
+        <dt>Tabs or Tabbed Interface</dt>
+        <dd>A set of tab elements and their associated tab panels.</dd>
+        <dt>Tab List</dt>
+        <dd>A set of tab elements contained in an <a href="#tablist" class="role-reference">Tablist</a> element.</dd>
+        <dt><a href="#tab" class="role-reference">tab</a></dt>
         <dd>An element in the tab list that serves as a label for one of the tab panels and can be activated to display that panel. </dd>
-        <dt>Tab panel</dt>
-        <dd>The element that contains the content associated with a tab</dd>
+        <dt><a href="#tabpanel" class="role-reference">tabpanel</a></dt>
+        <dd>The element that contains the content associated with a tab.</dd>
       </dl>
       <p>
-        When the user activates a tab element, the contents of the corresponding tab panel is made visible.
-        The tab element is considered "active".
-        The tab element remains active until another tab is activated.
-        The active tab element is placed into the tab order.
-        Only the active tab element should be in the tab order.
-        One tab element is active when the tabs are initialised.
+      When a tabbed interface is initialized, One tab panel is displayed and its associated tab is styled to indicate that it is active.
+        When the user activates one of the other tab elements, the previously displayed tab panel is hidden, the tab panel associated with the activated tab becomes visible, and the tab is considered "active".
       </p>
 
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
+        <p>For the tab list:</p>
         <ul>
-          <li><kbd>Tab</kbd> - Moves focus to the active tab element in the tab list.</li>
-          <li>
-            <kbd>Left Arrow</kbd> - with focus on a tab element, pressing the left arrow will move focus to the previous tab element in the tab list.
-            Normally the newly focussed tab element will automatically activate, but in some instances this will not happen and <kbd>space or enter</kbd> will be needed to activate the tab element.
-            Pressing the left arrow when the focus is on the first tab element in the tab element list will move focus and activate the last tab element in the list.
-          </li>
-          <li>
-            <kbd>Right Arrow</kbd> - with focus on a tab element, pressing the right arrow will move focus to the next tab element in the tab list.
-            Normally the newly focussed tab element will automatically activate, but in some instances this will not happen and <kbd>space or enter</kbd> will be needed to activate the tab element.
-            Pressing the right  arrow when the focus is on the last tab element in the tab list will move focus to and activate the first tab element in the list.
-          </li>
-          <li><kbd>Space or Enter</kbd> - with focus on a tab element, <kbd>space or enter</kbd> will activate the tab element if the tab element does not activate automatically.</li>
-          <li><kbd>Up arrow</kbd> - behaves the same as left arrow in order to support vertical tabs.</li>
-          <li><kbd>Down arrow</kbd> - behaves the same as right arrow in order to support vertical tabs.</li>
-          <li>
-            <kbd>Delete</kbd> - When deletion is allowed, with focus on the tab element, <kbd>Delete</kbd> will delete the current tab element and tab panel from the tabs.
-            If additional tab elements remain in the tabs, focus goes to the next tab element in the tab list.
-            An alternative to providing a keystroke to close a tab element is to provide a context menu that is associated with the tab element.
-            When focus is on the tab element, pressing <kbd>Shift + F10</kbd> or pressing the right mouse button will open a context menu with the close choice.
-          </li>
+            <li>
+                <kbd>Tab</kbd>: When the tab list is receiving focus, places focus on the active <code>tab</code> element . 
+                When the tab list contains the focus, moves focus to the next element in the page tab sequence outside the tablist, which is often either the first focusable element inside the tab panel or the tab panel itself.
+            </li>
+            <li>When focus is on a tab element:
+                <ul>
+                    <li><kbd>Left Arrow</kbd>: moves focus to the previous tab.
+                        If focus is on the first tab, moves focus to the last tab.
+                        Optionally, activates the newly focused tab (See note below).
+                    </li>
+                    <li>
+                        <kbd>Right Arrow</kbd>: Moves focus to the next tab.
+                        If focus is on the last tab element, moves focus to the first tab.
+                        Optionally, activates the newly focused tab (See note below).
+                    </li>
+                    <li><kbd>Space or Enter</kbd>: Activates the tab if it was not activated automatically on focus.</li> 
+                    <li><kbd>Home</kbd> (Optional): Moves focus to the first tab</li>
+                    <li><kbd>End</kbd>: Moves focus to the last tab.</li>
+                    <li><kbd>Shift + F10</kbd>: If the tab has an associated pop-up menu, opens the menu. </li>
+                    <li>
+                        <kbd>Delete</kbd> (Optional): If deletion is allowed, deletes (closes) the current tab element and its associated tab panel.
+                        If any tabs remain, sets focus to the tab following the tab that was closed and activates the newly focused tab.
+                        Alternatively, or in addition, the delete function is available in a context menu. 
+                    </li>
+                </ul>
+            </li>
         </ul>
-      </section>
+        <ol class="note">
+            <li>
+                It is recommended that tabs activate automatically when they receive focus as long as their associated tab panels are displayed without noticeable latency.
+                This typically requires tab panel content to be preloaded.
+                Otherwise, automatic activation slows focus movement, which significantly hampers users' ability to navigate efficiently across the tab list.
+            </li>
+            <li>If the tabs in a tab list are arranged vertically:
+            <ol>
+              <li> <kbd>Down Arrow</kbd> performs as <kbd>Right Arrow</kbd> is described above.</li>
+              <li> <kbd>Up Arrow</kbd> performs as <kbd>Left Arrow</kbd> is described above.</li>
+            </ol>
+          </li>
+          <li>If the tab list is horizontal, it does not listen for <kbd>Down Arrow</kbd> or <kbd>Up Arrow</kbd> so those keys can provide their normal browser scrolling functions even when focus is inside the tab list.</li>
+        </ol>
+    </section>
 
-      <section class="notoc">
+    <section class="notoc">
         <h4>WAI-ARIA Roles, States, and Properties</h4>
         <ul>
-          <li>Tabs contain tab elements and their associated content panels.</li>
-          <li>The content panel uses the role <a class="role-reference" href="#tabpanel">tabpanel</a>. </li>
-          <li>An element with role <a class="role-reference" href="#tab">tab</a> is used as a grouping label, providing a link for selecting the tab panel to be rendered to the user. </li>
-          <li>Assign the <a href="#aria-controls" class="property-reference">aria-controls</a> relationship of a tab element to the ID of its tabpanel. </li>
-          <li>Authors manage which tab element is active by maintaining its <a href="#aria-selected" class="state-reference">aria-selected</a> state. </li>
-          <li>A <a class="role-reference" href="#tablist">tablist</a> is the container role for a set of elements with the role attribute set to <a class="role-reference" href="#tab">tab</a>. </li>
+        <li>The element that serves as the container for the set of tabs has role  <a class="role-reference" href="#tablist">tablist</a>. </li>
+        <li>Each element that serves as a tab has role <a class="role-reference" href="#tab">tab</a> and is contained within the element with role <code>tablist</code>.</li>
+          <li>Each element that contains the content panel for a <code>tab</code> has role <a class="role-reference" href="#tabpanel">tabpanel</a>.</li>
+          <li>Each element with role <code>tab</code> has the property <a href="#aria-controls" class="property-reference">aria-controls</a> referring to its associated <code>tabpanel</code> element.</li>
+          <li>The active <code>tab</code> element has the state <a href="#aria-selected" class="state-reference">aria-selected</a> set to <code>true</code> and all other <code>tab</code> elements have it set to <code>false</code>.</li>
+          <li>Each element with role <code>tabpanel</code> has the property <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> referring to its associated <code>tab</code> element. </li>
+          <li>If a <code>tab</code> element has a pop-up menu, it has the property <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set to <code>true</code>. </li>
+          <li>
+            If the <code>tablist</code> element is vertically oriented, it has the property <a href="#aria-orientation" class="property-reference">aria-orientation</a> set to <code>vertical</code>.
+            The default value of <code>aria-orientation</code> for a <code>tablist</code> element is <code>horizontal</code>.
+        </li>
         </ul>
       </section>
 
       <section class="notoc">
         <h4>Example</h4>
+        <ul>
+            <li></li>
+        </ul>
       </section>
     </section>
 
