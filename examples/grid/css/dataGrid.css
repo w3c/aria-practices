@@ -1,0 +1,40 @@
+.annotate {
+	font-style: italic;
+	color: #366ED4;
+}
+
+.hidden {
+	display: none;
+}
+
+[role="button"] {
+	cursor: pointer;
+}
+
+[aria-sort="ascending"] {
+	position: relative;
+}
+
+[aria-sort="ascending"]::after {
+	content: " ";
+	border-bottom: 0.4em solid black;
+	border-left: 0.4em solid transparent;
+	border-right: 0.4em solid transparent;
+  position: absolute;
+  right: 1em;
+  top: 0.8em;
+}
+
+[aria-sort="descending"] {
+	position: relative;
+}
+
+[aria-sort="descending"]::after {
+	content: " ";
+	border-left: 0.4em solid transparent;
+	border-right: 0.4em solid transparent;
+	border-top: 0.4em solid black;
+  position: absolute;
+  right: 1em;
+  top: 0.8em;
+}
