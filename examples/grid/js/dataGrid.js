@@ -1,8 +1,16 @@
 /**
- * TODO: License stuff goes here
+ * TODO: Copyright and License stuff goes here
+ */
+
+/**
+ * @namespace aria
  */
 var aria = aria || {};
 
+/**
+ * @desc
+ *  Key code constants
+ */
 aria.Keys = {
   TAB: 9,
   RETURN: 13,
@@ -17,12 +25,20 @@ aria.Keys = {
   DOWN: 40,
 };
 
+/**
+ * @desc
+ *  Values for aria-sort
+ */
 aria.SortTypes = {
   ASCENDING: 'ascending',
   DESCENDING: 'descending',
   NONE: 'none',
 };
 
+/**
+ * @desc
+ *  CSS Class names
+ */
 aria.CSSClasses = {
   HIDDEN: 'hidden',
 };
@@ -94,16 +110,16 @@ aria.Grid.prototype.getFocusCells = function (row) {
 
   Array.prototype.forEach.call(
     row.querySelectorAll('th, td, [role="gridcell"]'),
-    function (cell) {
-      if (aria.isFocusable(cell)) {
+    (function (cell) {
+      if (this.isFocusable(cell)) {
         rowCells.push(cell);
       } else if (
         cell.children.length === 1 &&
-        aria.isFocusable(cell.children[0])
+        this.isFocusable(cell.children[0])
       ) {
         rowCells.push(cell.children[0]);
       }
-    }
+    }).bind(this)
   );
 
   return rowCells;
@@ -243,7 +259,7 @@ aria.Grid.prototype.checkFocusChange = function (event) {
   var colCaret = this.focusedCol;
   var currentNodeType = this.grid[rowCaret][colCaret].nodeName.toLowerCase();
 
-  if (currentNodeType === 'input') {
+  if (currentNodeType === 'input' || currentNodeType === 'select') {
     if (key === aria.Keys.RETURN) {
       this.navigationDisabled = !this.navigationDisabled;
       return;
