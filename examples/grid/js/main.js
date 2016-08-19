@@ -1,17 +1,31 @@
-function setupAriaGrids () {
-  var gridNodes = document.querySelectorAll('[role="grid"]');
-  var ariaGrids = [];
+/**
+ * ARIA Grid Examples
+ * @function onload
+ * @desc Initialize the grid examples once the page has loaded
+ */
 
-  Array.prototype.forEach.call(
-    gridNodes,
-    function (gridNode) {
-      ariaGrids.push(new aria.Grid(gridNode));
+window.addEventListener('load', function() {
+  var ex1 = document.getElementById('ex1');
+  var ex1Grid = new aria.Grid(ex1.querySelector('[role="grid"]'));
+
+  var ex2= document.getElementById('ex2');
+  var ex2Grid = new aria.Grid(ex2.querySelector('[role="grid"]'));
+
+  var ex3 = document.getElementById('ex3');
+  var ex3Grid = new aria.Grid(ex3.querySelector('[role="grid"]'));
+  var toggleButton = document.getElementById('toggle_column_btn');
+  var toggledOn = true;
+
+  toggleButton.addEventListener('click', function (event) {
+    toggledOn = !toggledOn;
+
+    ex3Grid.toggleColumn(1, toggledOn);
+    ex3Grid.toggleColumn(3, toggledOn);
+
+    if (toggledOn) {
+      toggleButton.innerText = 'Hide Type and Category';
+    } else {
+      toggleButton.innerText = 'Show Type and Category';
     }
-  );
-
-  console.log(ariaGrids);
-}
-
-window.onload = function() {
-  setupAriaGrids();
-}
+  });
+});

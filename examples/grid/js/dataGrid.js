@@ -1,7 +1,5 @@
 /**
- * Assumptions:
- * Produces a fully filled in mxn grid (with no holes)
- * All focusable cells have tabindex
+ * TODO: License stuff goes here
  */
 var aria = aria || {};
 
@@ -25,19 +23,46 @@ aria.SortTypes = {
   NONE: 'none',
 };
 
+aria.CSSClasses = {
+  HIDDEN: 'hidden',
+};
+
 aria.isFocusable = function (element) {
   return !isNaN(parseInt(element.getAttribute('tabindex')));
 };
 
+/**
+ * @constructor
+ *
+ * @desc
+ *  Grid object representing the state and interactions for a grid widget
+ *
+ *  Assumptions:
+ *  All focusable cells initially have tabindex="-1"
+ *  Produces a fully filled in mxn grid (with no holes)
+ *
+ * @param gridNode
+ *  The DOM node pointing to the grid
+ */
 aria.Grid = function (gridNode) {
   this.navigationDisabled = false;
   this.gridNode = gridNode;
+  this.paginationEnabled = this.gridNode.hasAttribute('data-per-page');
 
   this.setupFocusGrid();
   this.setFocusPointer(0, 0);
+
+  if (this.paginationEnabled) {
+    this.setupPagination();
+  }
+
   this.registerEvents();
 };
 
+/**
+ * @desc
+ *  Creates a 2D array of the focusable cells in the grid.
+ */
 aria.Grid.prototype.setupFocusGrid = function () {
   this.grid = [];
 
@@ -51,8 +76,23 @@ aria.Grid.prototype.setupFocusGrid = function () {
       }
     }).bind(this)
   );
+
+  if (this.paginationEnabled) {
+    this.setupIndices();
+  }
 };
 
+/**
+ * @desc
+ *  Gets the focusable elements in a row.
+ *
+ * @param row
+ *  A pointer to the row DOM element
+ *
+ * @returns
+ *  An array of the focusable elements found in the row. Each element is either
+ *  a cell or a single focusable item within a cell
+ */
 aria.Grid.prototype.getFocusCells = function (row) {
   var rowCells = [];
 
@@ -73,8 +113,25 @@ aria.Grid.prototype.getFocusCells = function (row) {
   return rowCells;
 };
 
+/**
+ * @desc
+ *  If possible, set focus pointer to the cell with the specified coordinates
+ *
+ * @param row
+ *  The index of the cell's row
+ *
+ * @param col
+ *  The index of the cell's column
+ *
+ * @returns
+ *  Returns whether or not the focus could be set on the cell.
+ */
 aria.Grid.prototype.setFocusPointer = function (row, col) {
   if (!this.isValidCell(row, col)) {
+    return false;
+  }
+
+  if (this.isHidden(row, col)) {
     return false;
   }
 
@@ -89,23 +146,52 @@ aria.Grid.prototype.setFocusPointer = function (row, col) {
   return true;
 };
 
+/**
+ * @param row
+ *  The index of the cell's row
+ *
+ * @param col
+ *  The index of the cell's column
+ *
+ * @returns
+ *  Returns whether or not the coordinates are within the grid's boundaries.
+ */
 aria.Grid.prototype.isValidCell = function (row, col) {
   return !isNaN(row) && !isNaN(col) &&
           row >= 0 && col >= 0 &&
           this.grid && this.grid.length &&
-          this.grid.length > row && this.grid[row].length > col;
+          row < this.grid.length && col < this.grid[row].length;
+};
+
+/**
+ * @param row
+ *  The index of the cell's row
+ *
+ * @param col
+ *  The index of the cell's column
+ *
+ * @returns
+ *  Returns whether or not the cell has been hidden.
+ */
+aria.Grid.prototype.isHidden = function (row, col) {
+  return (this.grid[row][col].offsetParent === null);
 };
 
 aria.Grid.prototype.clearEvents = function() {
-  this.gridNode.removeEventListener('keydown', this.onKeyDown.bind(this));
-  this.gridNode.removeEventListener('click', this.onClick.bind(this));
+  this.gridNode.removeEventListener('keydown', this.checkFocusChange.bind(this));
+  this.gridNode.removeEventListener('keydown', this.checkPageChange.bind(this));
+  this.gridNode.removeEventListener('click', this.checkSort.bind(this));
 };
 
 aria.Grid.prototype.registerEvents = function () {
   this.clearEvents();
 
-  this.gridNode.addEventListener('keydown', this.onKeyDown.bind(this));
-  this.gridNode.addEventListener('click', this.onClick.bind(this));
+  this.gridNode.addEventListener('keydown', this.checkFocusChange.bind(this));
+  this.gridNode.addEventListener('click', this.checkSort.bind(this));
+
+  if (this.paginationEnabled) {
+    this.gridNode.addEventListener('keydown', this.checkPageChange.bind(this));
+  }
 };
 
 aria.Grid.prototype.focusCell = function (row, col) {
@@ -114,7 +200,11 @@ aria.Grid.prototype.focusCell = function (row, col) {
   }
 };
 
-aria.Grid.prototype.onKeyDown = function (event) {
+/**
+ * Triggered on keydown. Checks if an arrow key was pressed, and (if possible)
+ * moves focus to the next valid cell in the direction of the arrow key.
+ */
+aria.Grid.prototype.checkFocusChange = function (event) {
   if (!event) {
     return;
   }
@@ -143,10 +233,10 @@ aria.Grid.prototype.onKeyDown = function (event) {
       rowCaret += 1;
       break;
     case aria.Keys.LEFT:
-      colCaret -= 1;
+      colCaret = this.getNextVisibleCol(-1);
       break;
     case aria.Keys.RIGHT:
-      colCaret += 1;
+      colCaret = this.getNextVisibleCol(1);
       break;
     case aria.Keys.HOME:
       if (event.ctrlKey) {
@@ -168,7 +258,11 @@ aria.Grid.prototype.onKeyDown = function (event) {
   event.preventDefault();
 };
 
-aria.Grid.prototype.onClick = function (event) {
+/**
+ * Triggered on click. Checks if user clicked on a header with aria-sort. If so,
+ * it sorts the column based on the aria-sort attribute.
+ */
+aria.Grid.prototype.checkSort = function (event) {
   if (event.target &&
       event.target.matches('[role="button"]') &&
       event.target.parentNode &&
@@ -177,6 +271,14 @@ aria.Grid.prototype.onClick = function (event) {
   }
 };
 
+/**
+ * Sorts the column below the header node, based on the aria-sort attribute.
+ * aria-sort="none" => aria-sort="ascending"
+ * aria-sort="ascending" => aria-sort="descending"
+ * All other headers with aria-sort are reset to "none"
+ *
+ * Note: This implementation assumes that there is no pagination on the grid.
+ */
 aria.Grid.prototype.handleSort = function (headerNode) {
   var columnIndex = headerNode.cellIndex;
   var sortType = headerNode.getAttribute('aria-sort');
@@ -225,4 +327,122 @@ aria.Grid.prototype.sortRows = function (compareFn) {
   dataRows.forEach((function (row) {
     rowWrapper.appendChild(row);
   }).bind(this));
+};
+
+aria.Grid.prototype.setupIndices = function () {
+  var rows = this.gridNode.querySelectorAll('tr');
+  for (var row = 0; row < rows.length; row++) {
+    var cols = rows[row].querySelectorAll('td, th');
+    for (var col = 0; col < cols.length; col++) {
+      cols[col].setAttribute('aria-rowindex', row);
+      cols[col].setAttribute('aria-colindex', col);
+    }
+  }
+};
+
+/**
+ * Determines the per page attribute of the grid, and shows/hides rows
+ * accordingly.
+ */
+aria.Grid.prototype.setupPagination = function () {
+  this.perPage = this.gridNode.getAttribute('data-per-page');
+  this.showPage(1);
+};
+
+aria.Grid.prototype.checkPageChange = function (event) {
+  if (!event) {
+    return;
+  }
+
+  var key = event.which || event.keyCode;
+
+  if (key === aria.Keys.PAGE_UP || key === aria.Keys.PAGE_DOWN) {
+    event.preventDefault();
+
+    if (key === aria.Keys.PAGE_UP) {
+      this.showPage(this.currentPage - 1);
+    } else {
+      this.showPage(this.currentPage + 1);
+    }
+  }
+};
+
+/**
+ * @desc
+ *  If a valid page is passed, show the cells for the corresponding page. Each
+ *  page starts with the last row from the previous page.
+ *
+ * @param page
+ *  Page (starting from 1) number to show
+ */
+aria.Grid.prototype.showPage = function (page) {
+  var rows = this.gridNode.querySelectorAll('tr, [role="row"]');
+  var dataRows = Array.prototype.slice.call(rows, 1);
+  var startIndex = (page - 1) * (this.perPage - 1);
+  var rowCount = 0;
+
+  if (page > 0 && startIndex < dataRows.length) {
+    for (var i = 0; i < dataRows.length; i++) {
+      if (i >= startIndex && i < startIndex + 5) {
+        dataRows[i].className = '';
+        rowCount++;
+      } else {
+        dataRows[i].className = aria.CSSClasses.HIDDEN;
+      }
+    }
+
+    this.focusCell(startIndex, this.focusedCol);
+    this.gridNode.setAttribute('aria-rowcount', rowCount);
+    this.currentPage = page;
+  }
+};
+
+/**
+ * @desc
+ *  Get next visible column to the right or left (direction)
+ *  of the focused cell
+ *
+ * @param direction
+ *  Direction for where to check for cells. +1 to check to the right, -1 to
+ *  check to the left
+ *
+ * @return
+ *  Index of the next visible column in the specified direction. Returns -1 if
+ *  no visible columns are found.
+ */
+aria.Grid.prototype.getNextVisibleCol = function (direction) {
+  var row = this.focusedRow;
+  var col = this.focusedCol + direction;
+
+  while (this.isValidCell(row, col)) {
+    if (!this.isHidden(row, col)) {
+      return col;
+    }
+    col = col + direction;
+  }
+
+  return -1;
+};
+
+/**
+ * @desc
+ *  Show or hide the cells in the specified column
+ *
+ * @param columnIndex
+ *  Index of the column to toggle
+ *
+ * @param isShown
+ *  Whether or not to show the column
+ */
+aria.Grid.prototype.toggleColumn = function (columnIndex, isShown) {
+  var cellSelector = '[aria-colindex="' + columnIndex + '"]';
+  var columnCells = this.gridNode.querySelectorAll(cellSelector);
+  var className = isShown ? '' : aria.CSSClasses.HIDDEN;
+
+  Array.prototype.forEach.call(
+    columnCells,
+    function (cell) {
+      cell.className = className;
+    }
+  );
 };

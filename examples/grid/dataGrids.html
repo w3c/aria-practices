@@ -103,7 +103,7 @@
                         <h4 id="grid2Label">Transactions January 1 through January 7</h4>
                         <table role="grid" aria-labelledby="grid2Label">
                             <tr>
-                                <th aria-sort="descending"><span tabindex="-1" role="button">Date</span></th>
+                                <th aria-sort="ascending"><span tabindex="-1" role="button">Date</span></th>
                                 <th tabindex="-1">Type</th>
                                 <th aria-sort="none"><span tabindex="-1" role="button">Description</span></th>
                                 <th tabindex="-1">Category</th>
@@ -225,7 +225,10 @@
                 <div  aria-labelledby="ex3_label" role="region">
                     <div id="ex3">
                         <h4 id="grid3Label">Transactions for January 1 through January 15</h4>
-                        <table role="grid" aria-labelledby="grid3Label" aria-rowcount="16" aria-colcount="8">
+                        <button id="toggle_column_btn" type="button" name="toggle_columns">
+                          Hide Type and Category
+                        </button>
+                        <table role="grid" aria-labelledby="grid3Label" aria-rowcount="16" aria-colcount="8" data-per-page="5">
                             <tr>
                                 <th>Date</th>
                                 <th>Type</th>
