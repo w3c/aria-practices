@@ -11,7 +11,7 @@ var aria = aria || {};
  * @desc
  *  Key code constants
  */
-aria.Keys = {
+aria.KeyCode = {
   TAB: 9,
   RETURN: 13,
   ESC: 27,
@@ -29,7 +29,7 @@ aria.Keys = {
  * @desc
  *  Values for aria-sort
  */
-aria.SortTypes = {
+aria.SortType = {
   ASCENDING: 'ascending',
   DESCENDING: 'descending',
   NONE: 'none',
@@ -39,7 +39,7 @@ aria.SortTypes = {
  * @desc
  *  CSS Class names
  */
-aria.CSSClasses = {
+aria.CSSClass = {
   HIDDEN: 'hidden',
 };
 
@@ -111,6 +111,7 @@ aria.Grid.prototype.getFocusCells = function (row) {
   Array.prototype.forEach.call(
     row.querySelectorAll('th, td, [role="gridcell"]'),
     (function (cell) {
+
       if (this.isFocusable(cell)) {
         rowCells.push(cell);
       } else if (
@@ -119,6 +120,7 @@ aria.Grid.prototype.getFocusCells = function (row) {
       ) {
         rowCells.push(cell.children[0]);
       }
+
     }).bind(this)
   );
 
@@ -260,7 +262,7 @@ aria.Grid.prototype.checkFocusChange = function (event) {
   var currentNodeType = this.grid[rowCaret][colCaret].nodeName.toLowerCase();
 
   if (currentNodeType === 'input' || currentNodeType === 'select') {
-    if (key === aria.Keys.RETURN) {
+    if (key === aria.KeyCode.RETURN) {
       this.navigationDisabled = !this.navigationDisabled;
       return;
     }
@@ -271,25 +273,25 @@ aria.Grid.prototype.checkFocusChange = function (event) {
   }
 
   switch (key) {
-    case aria.Keys.UP:
+    case aria.KeyCode.UP:
       rowCaret -= 1;
       break;
-    case aria.Keys.DOWN:
+    case aria.KeyCode.DOWN:
       rowCaret += 1;
       break;
-    case aria.Keys.LEFT:
+    case aria.KeyCode.LEFT:
       colCaret = this.getNextVisibleCol(-1);
       break;
-    case aria.Keys.RIGHT:
+    case aria.KeyCode.RIGHT:
       colCaret = this.getNextVisibleCol(1);
       break;
-    case aria.Keys.HOME:
+    case aria.KeyCode.HOME:
       if (event.ctrlKey) {
         rowCaret = 0;
       }
       colCaret = 0;
       break;
-    case aria.Keys.END:
+    case aria.KeyCode.END:
       if (event.ctrlKey) {
         rowCaret = this.grid.length - 1;
       }
@@ -316,7 +318,7 @@ aria.Grid.prototype.checkSort = function (event) {
       event.target.matches('[role="button"]') &&
       event.target.parentNode &&
       event.target.parentNode.matches('th[aria-sort]')) {
-    this.handleSort(event.target.parentNode);
+        this.handleSort(event.target.parentNode);
   }
 };
 
@@ -336,10 +338,10 @@ aria.Grid.prototype.handleSort = function (headerNode) {
   var columnIndex = headerNode.cellIndex;
   var sortType = headerNode.getAttribute('aria-sort');
 
-  if (sortType === aria.SortTypes.ASCENDING) {
-    sortType = aria.SortTypes.DESCENDING;
+  if (sortType === aria.SortType.ASCENDING) {
+    sortType = aria.SortType.DESCENDING;
   } else {
-    sortType = aria.SortTypes.ASCENDING;
+    sortType = aria.SortType.ASCENDING;
   }
 
   var comparator = function (row1, row2) {
@@ -347,11 +349,11 @@ aria.Grid.prototype.handleSort = function (headerNode) {
     var row2Value = row2.children[columnIndex].innerText;
 
     if (row1Value < row2Value) {
-      return (sortType === aria.SortTypes.ASCENDING) ? 1 : -1;
+      return (sortType === aria.SortType.ASCENDING) ? 1 : -1;
     }
 
     if (row1Value > row2Value) {
-      return (sortType === aria.SortTypes.ASCENDING) ? -1 : 1;
+      return (sortType === aria.SortType.ASCENDING) ? -1 : 1;
     }
 
     return 0;
@@ -363,7 +365,7 @@ aria.Grid.prototype.handleSort = function (headerNode) {
   Array.prototype.forEach.call(
     this.gridNode.querySelectorAll('th[aria-sort]'),
     function (headerCell) {
-      headerCell.setAttribute('aria-sort', aria.SortTypes.NONE);
+      headerCell.setAttribute('aria-sort', aria.SortType.NONE);
     }
   );
 
@@ -395,12 +397,15 @@ aria.Grid.prototype.sortRows = function (compareFn) {
  */
 aria.Grid.prototype.setupIndices = function () {
   var rows = this.gridNode.querySelectorAll('tr');
+
   for (var row = 0; row < rows.length; row++) {
     var cols = rows[row].querySelectorAll('td, th');
+
     for (var col = 0; col < cols.length; col++) {
       cols[col].setAttribute('aria-rowindex', row);
       cols[col].setAttribute('aria-colindex', col);
     }
+
   }
 };
 
@@ -428,14 +433,15 @@ aria.Grid.prototype.checkPageChange = function (event) {
 
   var key = event.which || event.keyCode;
 
-  if (key === aria.Keys.PAGE_UP || key === aria.Keys.PAGE_DOWN) {
+  if (key === aria.KeyCode.PAGE_UP || key === aria.KeyCode.PAGE_DOWN) {
     event.preventDefault();
 
-    if (key === aria.Keys.PAGE_UP) {
+    if (key === aria.KeyCode.PAGE_UP) {
       this.showPage(this.currentPage - 1);
     } else {
       this.showPage(this.currentPage + 1);
     }
+
   }
 };
 
@@ -454,13 +460,16 @@ aria.Grid.prototype.showPage = function (page) {
   var rowCount = 0;
 
   if (page > 0 && startIndex < dataRows.length) {
+
     for (var i = 0; i < dataRows.length; i++) {
+
       if (i >= startIndex && i < startIndex + 5) {
         dataRows[i].className = '';
         rowCount++;
       } else {
-        dataRows[i].className = aria.CSSClasses.HIDDEN;
+        dataRows[i].className = aria.CSSClass.HIDDEN;
       }
+
     }
 
     this.focusCell(startIndex, this.focusedCol);
@@ -487,9 +496,11 @@ aria.Grid.prototype.getNextVisibleCol = function (direction) {
   var col = this.focusedCol + direction;
 
   while (this.isValidCell(row, col)) {
+
     if (!this.isHidden(row, col)) {
       return col;
     }
+
     col = col + direction;
   }
 
@@ -509,7 +520,7 @@ aria.Grid.prototype.getNextVisibleCol = function (direction) {
 aria.Grid.prototype.toggleColumn = function (columnIndex, isShown) {
   var cellSelector = '[aria-colindex="' + columnIndex + '"]';
   var columnCells = this.gridNode.querySelectorAll(cellSelector);
-  var className = isShown ? '' : aria.CSSClasses.HIDDEN;
+  var className = isShown ? '' : aria.CSSClass.HIDDEN;
 
   Array.prototype.forEach.call(
     columnCells,
