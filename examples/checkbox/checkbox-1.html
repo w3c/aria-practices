@@ -2,29 +2,27 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>ARIA Example: Checkbox role</title>
-  <meta name="generator" content="BBEdit 10.5" />
+  <title>Simple Two-State Checkbox Example | WAI-ARIA Authoring Practices 1.1</title>
   <link href="../css/core.css" rel="stylesheet">
   <link href="../css/table.css" rel="stylesheet">
+  <script src="../js/examples.js" type="text/javascript"></script>
   <link href="css/checkbox-1.css" rel="stylesheet">
   <script src="js/checkbox-1.js" type="text/javascript"></script>
 </head>
 <body>
-
-    <h1>ARIA <code>Checkbox</code> </h1>
-
   <main>
-
-    <h2>Simple Checkbox</h2>
-
-    <p> <a href="../../aria-practices.html#h-checkbox">Authoring Practice Design Patten for Checkbox</a></p>
-    <h2 id="id_example">Simple Checkbox Example</h2>
+    <h1>Simple Two-State <code>Checkbox</code> Example</h1>
+    <p>Example of a simple two-state checkbox that implements the  <a href="../../#checkbox">design pattern for checkbox</a>.</p>
+    <h2 id="id_example">Example</h2>
+    <div role="region" aria-labelledby="id_example">
         <div id="example">
            <div role="checkbox" aria-checked="false"  tabindex= "0" onkeydown="toggleCheckbox(event)" onclick="toggleCheckbox(event)" onfocus="focusCheckbox(event)" onblur="blurCheckbox(event)"><img src="./images/checkbox-unchecked-black.png" alt=""> Label 1</div>
            <div role="checkbox" aria-checked="true" tabindex= "0" onkeydown="toggleCheckbox(event)" onclick="toggleCheckbox(event)" onfocus="focusCheckbox(event)" onblur="blurCheckbox(event)"><img src="./images/checkbox-checked-black.png" alt=""> Label 2</div>
            <div role="checkbox" aria-checked="false" tabindex= "0" onkeydown="toggleCheckbox(event)" onclick="toggleCheckbox(event)" onfocus="focusCheckbox(event)" onblur="blurCheckbox(event)"><img src="./images/checkbox-unchecked-black.png" alt=""> Label 3</div>
           </div>
-    <h2 id="id_a11yfeature">Accessibility Feature</h2>
+        </div>
+        
+    <h2 id="id_a11yfeature">Accessibility Features</h2>
     <ul>
               <li><code>div</code> element with <code>role="checkbox"</code>.</li>
               <li><code>div</code> element has <code>onclick</code> event to handle mouse clicks.</li>
@@ -36,7 +34,6 @@
             </ul>
 
     <h2 id="id_kbd">Keyboard Support</h2>
-
     <table aria-labelledby="id_kbd">
       <thead>
         <tr>
@@ -56,8 +53,7 @@
       </tbody>
     </table>
 
-    <h2 id="id_rps">ARIA Roles, Properties and States</h2>
-
+    <h2 id="id_rps">ARIA Roles, Properties, and States</h2>
     <table aria-labelledby="id_rps">
       <thead>
         <tr>
@@ -88,23 +84,28 @@
       </tbody>
     </table>
 
-    <script src="../js/examples.js" type="text/javascript"></script>
-
-    <h2>Source Code</h2>
-
+<section>
+      <h2>Javascript and CSS Source Code</h2>
     <ul>
       <li>CSS: <a href="css/checkbox-1.css" type="tex/css">checkbox.css</a></li>
       <li>Javascript: <a href="js/checkbox-1.js" type="text/javascript">checkbox.js</a></li>
-    </ul>
+    </ul>    
+    </section>
 
-    <div id="sc1">
-
-    </div>
-
-    <script>
-      sourceCode.add('sc1', 'example')
-      sourceCode.make()
-    </script>
+    <section>
+      <h2 id="sc1_label">HTML Source Code</h2>
+        <div id="sc1" aria-labelledby="sc1_label" role="region"></div>
+        <script>
+            sourceCode.add('sc1', 'example')
+            sourceCode.make()
+        </script>
+    </section>
+    
   </main>
+  
+  <nav>
+  <a href="../../#checkbox">Checkbox Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
+  </nav>
+  
 </body>
 </html>
