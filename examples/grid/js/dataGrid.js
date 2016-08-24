@@ -15,6 +15,7 @@ aria.KeyCode = {
   TAB: 9,
   RETURN: 13,
   ESC: 27,
+  SPACE: 32,
   PAGE_UP: 33,
   PAGE_DOWN: 34,
   END: 35,
@@ -60,12 +61,15 @@ aria.Grid = function (gridNode) {
   this.navigationDisabled = false;
   this.gridNode = gridNode;
   this.paginationEnabled = this.gridNode.hasAttribute('data-per-page');
+  this.topIndex = 0;
 
   this.setupFocusGrid();
   this.setFocusPointer(0, 0);
 
   if (this.paginationEnabled) {
     this.setupPagination();
+  } else {
+    this.perPage = this.grid.length;
   }
 
   this.registerEvents();
@@ -220,6 +224,7 @@ aria.Grid.prototype.registerEvents = function () {
   this.clearEvents();
 
   this.gridNode.addEventListener('keydown', this.checkFocusChange.bind(this));
+  this.gridNode.addEventListener('keydown', this.checkSort.bind(this));
   this.gridNode.addEventListener('click', this.checkSort.bind(this));
 
   if (this.paginationEnabled) {
@@ -301,6 +306,14 @@ aria.Grid.prototype.checkFocusChange = function (event) {
       return;
   }
 
+  if (rowCaret < this.topIndex) {
+    this.showFromRow(rowCaret, true);
+  }
+
+  if (rowCaret >= this.topIndex + this.perPage) {
+    this.showFromRow(rowCaret, false);
+  }
+
   this.focusCell(rowCaret, colCaret);
   event.preventDefault();
 };
@@ -314,10 +327,16 @@ aria.Grid.prototype.checkFocusChange = function (event) {
  *  Keydown event
  */
 aria.Grid.prototype.checkSort = function (event) {
+  var key = event.which || event.keyCode;
+  var sortKeyTriggered =
+      (key === aria.KeyCode.SPACE || key === aria.KeyCode.RETURN);
+
   if (event.target &&
       event.target.matches('[role="button"]') &&
       event.target.parentNode &&
-      event.target.parentNode.matches('th[aria-sort]')) {
+      event.target.parentNode.matches('th[aria-sort]') &&
+      (event.type === 'click' || sortKeyTriggered)) {
+        event.preventDefault();
         this.handleSort(event.target.parentNode);
   }
 };
@@ -415,8 +434,8 @@ aria.Grid.prototype.setupIndices = function () {
  *  accordingly.
  */
 aria.Grid.prototype.setupPagination = function () {
-  this.perPage = this.gridNode.getAttribute('data-per-page');
-  this.showPage(1);
+  this.perPage = parseInt(this.gridNode.getAttribute('data-per-page'));
+  this.showFromRow(0, true);
 };
 
 /**
@@ -432,56 +451,64 @@ aria.Grid.prototype.checkPageChange = function (event) {
   }
 
   var key = event.which || event.keyCode;
+  var startIndex;
 
   if (key === aria.KeyCode.PAGE_UP || key === aria.KeyCode.PAGE_DOWN) {
     event.preventDefault();
 
     if (key === aria.KeyCode.PAGE_UP) {
-      this.showPage(this.currentPage - 1);
+      startIndex = Math.max(this.perPage - 1, this.topIndex);
+      this.showFromRow(startIndex, false);
     } else {
-      this.showPage(this.currentPage + 1);
+      startIndex = this.topIndex + this.perPage - 1;
+      this.showFromRow(startIndex, true);
     }
 
+    this.focusCell(startIndex, this.focusedCol);
   }
 };
 
 /**
  * @desc
- *  If a valid page is passed, show the cells for the corresponding page. Each
- *  page starts with the last row from the previous page.
+ *  Scroll the specified row into view in the specified direction
  *
- * @param page
- *  Page (starting from 1) number to show
+ * @param startIndex
+ *  Row index to use as the start index
+ *
+ * @param scrollDown
+ *  Whether to scroll the new page above or below the row index
  */
-aria.Grid.prototype.showPage = function (page) {
+aria.Grid.prototype.showFromRow = function (startIndex, scrollDown) {
   var rows = this.gridNode.querySelectorAll('tr, [role="row"]');
   var dataRows = Array.prototype.slice.call(rows, 1);
-  var startIndex = (page - 1) * (this.perPage - 1);
   var rowCount = 0;
 
-  if (page > 0 && startIndex < dataRows.length) {
+  if (startIndex >= 0 && startIndex < dataRows.length) {
 
     for (var i = 0; i < dataRows.length; i++) {
 
-      if (i >= startIndex && i < startIndex + 5) {
+      if ((scrollDown && i >= startIndex && i < startIndex + this.perPage) ||
+          (!scrollDown && i <= startIndex && i > startIndex - this.perPage)) {
         dataRows[i].className = '';
         rowCount++;
+
+        if (rowCount === 1) {
+          this.topIndex = i;
+        }
       } else {
         dataRows[i].className = aria.CSSClass.HIDDEN;
       }
 
     }
 
-    this.focusCell(startIndex, this.focusedCol);
     this.gridNode.setAttribute('aria-rowcount', rowCount);
-    this.currentPage = page;
   }
 };
 
 /**
  * @desc
- *  Get next visible column to the right or left (direction)
- *  of the focused cell
+ *  Get next visible column to the right or left (direction) of the focused
+ *  cell. Assumes a visible column exists in the direction.
  *
  * @param direction
  *  Direction for where to check for cells. +1 to check to the right, -1 to
@@ -528,4 +555,9 @@ aria.Grid.prototype.toggleColumn = function (columnIndex, isShown) {
       cell.className = className;
     }
   );
+
+  if (!isShown && this.focusedCol === columnIndex) {
+    // If focus was set on the hidden column, shift focus to the left
+    this.setFocusPointer(this.focusedRow, this.getNextVisibleCol(-1));
+  }
 };
