@@ -1378,14 +1378,14 @@
         <dt>Tabs or Tabbed Interface</dt>
         <dd>A set of tab elements and their associated tab panels.</dd>
         <dt>Tab List</dt>
-        <dd>A set of tab elements contained in an <a href="#tablist" class="role-reference">Tablist</a> element.</dd>
+        <dd>A set of tab elements contained in a <a href="#tablist" class="role-reference">tablist</a> element.</dd>
         <dt><a href="#tab" class="role-reference">tab</a></dt>
         <dd>An element in the tab list that serves as a label for one of the tab panels and can be activated to display that panel. </dd>
         <dt><a href="#tabpanel" class="role-reference">tabpanel</a></dt>
         <dd>The element that contains the content associated with a tab.</dd>
       </dl>
       <p>
-      When a tabbed interface is initialized, One tab panel is displayed and its associated tab is styled to indicate that it is active.
+      When a tabbed interface is initialized, one tab panel is displayed and its associated tab is styled to indicate that it is active.
         When the user activates one of the other tab elements, the previously displayed tab panel is hidden, the tab panel associated with the activated tab becomes visible, and the tab is considered "active".
       </p>
 
@@ -1395,9 +1395,9 @@
         <ul>
             <li>
                 <kbd>Tab</kbd>: When the tab list is receiving focus, places focus on the active <code>tab</code> element . 
-                When the tab list contains the focus, moves focus to the next element in the page tab sequence outside the tablist, which is often either the first focusable element inside the tab panel or the tab panel itself.
+                When the tab list contains the focus, moves focus to the next element in the page tab sequence outside the tablist, which is typically either the first focusable element inside the tab panel or the tab panel itself.
             </li>
-            <li>When focus is on a tab element:
+            <li>When focus is on a tab element in a horizontal tab list:
                 <ul>
                     <li><kbd>Left Arrow</kbd>: moves focus to the previous tab.
                         If focus is on the first tab, moves focus to the last tab.
@@ -1408,9 +1408,13 @@
                         If focus is on the last tab element, moves focus to the first tab.
                         Optionally, activates the newly focused tab (See note below).
                     </li>
+                </ul>
+            </li>
+            <li>When focus is on a tab in a tablist with either horizontal or vertical orientation:
+                <ul>
                     <li><kbd>Space or Enter</kbd>: Activates the tab if it was not activated automatically on focus.</li> 
                     <li><kbd>Home</kbd> (Optional): Moves focus to the first tab</li>
-                    <li><kbd>End</kbd>: Moves focus to the last tab.</li>
+                    <li><kbd>End</kbd> (Optional): Moves focus to the last tab.</li>
                     <li><kbd>Shift + F10</kbd>: If the tab has an associated pop-up menu, opens the menu. </li>
                     <li>
                         <kbd>Delete</kbd> (Optional): If deletion is allowed, deletes (closes) the current tab element and its associated tab panel.
