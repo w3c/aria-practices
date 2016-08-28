@@ -245,8 +245,76 @@
 		</section>
 
         <section class="widget" id="accordion">
-            <h3>Accordion</h3>
-            <p>Drafting this section is <a href="https://github.com/w3c/aria-practices/issues/53">issue 53</a>. </p>
+                <h3>Accordion (Sections With Show/Hide Functionality)</h3>
+                <p class="note">This section is work in progress. Provide feedback in <a href="https://github.com/w3c/aria-practices/issues/53">issue 53</a>.</p>
+            <p>An accordion is a vertically stacked set of elements, such as labels or
+                thumbnails, that allow the user to toggle the display of sections of content. Each
+                labeling element can be expanded or collapsed to reveal or hide its associated
+                content. Accordions are commonly used to reduce the need to scroll when presenting
+                multiple sections of content on a single page.</p>
+            <p>Terms for understanding accordions include:</p>
+            <dl>
+<dt>Accordion Header:</dt>
+                    <dd>Label for or thumbnail representing a section of content that also serves as a control for showing, and in some implementations, hiding  the section of content. </dd>
+                    <dt>Accordion Panel:</dt>
+                    <dd>Section of content associated with an accordion header.</dd>
+                </dl>
+                <p>In some accordions, there are additional elements that are always visible adjacent to the accordion header. 
+                For instance, a menubutton may accompany each accordion header to provide access to actions that apply to that section.
+                And, in some cases, a snippet of the hidden content may also be visually persistent. </p>
+
+            <section class="notoc">
+                <h4>Keyboard Interaction</h4>
+                <ul>
+                    <li><kbd>Enter</kbd> or <kbd>Space</kbd>:
+                        <ul>
+                            <li>When focus is on the accordion header for a collapsed panel,
+                                expands its accordion panel. If the implementation allows only one
+                                panel to be expanded and another panel is expanded, collapses that
+                                panel.</li>
+                            <li>When focus is on the accordion header for an expanded panel,
+                                collapses the panel if the implementation supports collapsing. Some
+                                implementations require one panel to be expanded at all times and
+                                allow only one panel to be expanded; so, they do not support a
+                                collapse function.</li>
+                        </ul>
+                    <li><kbd>Control + Page Down</kbd> (Optional): If focus is inside an
+                        accordion panel or on an accordion header, moves focus to the next accordion
+                        header. If focus is in the last accordion header or panel, either does
+                        nothing or moves focus to the first accordion header.</li>
+                    <li><kbd>Control + Page Up</kbd> (Optional): If focus is inside an
+                        accordion panel, moves focus to the header for that panel. If focus is on an
+                        accordion header, moves focus to the previous accordion header. If focus is
+                        on the first accordion header, either does nothing or moves focus to the
+                        last accordion header.</li>
+                    <li><kbd>Home</kbd> (Optional): When focus is on an accordion header, moves
+                        focus to the first accordion header.</li>
+                    <li><kbd>End</kbd> (Optional): When focus is on an accordion header, moves
+                        focus to the last accordion header.</li>
+                </ul>
+            </section>
+
+            <section class="notoc">
+                <h4>WAI-ARIA Roles, States, and Properties:</h4>
+                <ul>
+                <li>Each accordion header is contained in an element with role <a href="#button" class="role-reference">button</a>. 
+                The button label is the label for the associated accordion panel.</li>
+                <li>The accordion header <code>button</code> element has <a href="aria-controls" class="property-reference">aria-controls</a> set to the ID of the element containing the accordion panel content. </li>
+                <li>If the accordion panel associated with an accordion header is visible, the header <code>button</code> element has <a href="#aria-expanded" class="state-reference">aria-expanded</a> set to <code>true</code>.
+                If the panel is not visible, <a href="#aria-expanded" class="state-reference">aria-expanded</a> is set to <code>false</code>. </li>
+                <li>If the accordion panel associated with an accordion header is visible, and if the accordion does not permit the panel to be collapsed,
+                the header <code>button</code> element has <a href="#aria-disabled" class="state-reference">aria-disabled</a> set to <code>true</code>. </li>
+                    <li>Each accordion header <code>button</code> is wrapped in an element with role <a href="#heading" class="role-reference">heading</a> that has a value set for <a href="#aria-level" class="property-reference">aria-level</a> that is appropriate for the information architecture of the page.
+                    If the native host language has an element with an implicit <code>heading</code> and <code>aria-level</code>, such as an HTML heading tag, a native host language element may be used. 
+                    The <code>button</code> element is the only element inside the <code>heading</code> element. 
+                    That is, if there are other visually persistent elements, they are not included inside the <code>heading</code> element. </li>
+                </ul>
+            </section>
+
+            <section class="notoc">
+                <h4>Example</h4>
+                <p><a href="examples/accordion/accordion1.html">Accordion Example</a>: demonstrates a form divided into three sections using an accordion to show one ssection at a time. </p>
+            </section>
         </section>
         
     <section class="widget" id="alert">
