@@ -85,7 +85,24 @@ aria.Grid.prototype.setupFocusGrid = function () {
   Array.prototype.forEach.call(
     this.gridNode.querySelectorAll('tr, [role="row"]'),
     (function (row) {
-      var rowCells = this.getFocusCells(row);
+      var rowCells = [];
+
+      Array.prototype.forEach.call(
+        row.querySelectorAll('th, td, [role="gridcell"]'),
+        (function (cell) {
+          var focusableSelector = '[tabindex]';
+
+          if (cell.matches(focusableSelector)) {
+            rowCells.push(cell);
+          } else {
+             var focusableCell = cell.querySelector(focusableSelector);
+
+             if (focusableCell) {
+               rowCells.push(focusableCell);
+             }
+          }
+        }).bind(this)
+      );
 
       if (rowCells.length) {
         this.grid.push(rowCells);
@@ -96,50 +113,6 @@ aria.Grid.prototype.setupFocusGrid = function () {
   if (this.paginationEnabled) {
     this.setupIndices();
   }
-};
-
-/**
- * @desc
- *  Gets the focusable elements in a row.
- *
- * @param row
- *  A pointer to the row DOM element
- *
- * @returns
- *  An array of the focusable elements found in the row. Each element is either
- *  a cell or a single focusable item within a cell
- */
-aria.Grid.prototype.getFocusCells = function (row) {
-  var rowCells = [];
-
-  Array.prototype.forEach.call(
-    row.querySelectorAll('th, td, [role="gridcell"]'),
-    (function (cell) {
-
-      if (this.isFocusable(cell)) {
-        rowCells.push(cell);
-      } else if (
-        cell.children.length === 1 &&
-        this.isFocusable(cell.children[0])
-      ) {
-        rowCells.push(cell.children[0]);
-      }
-
-    }).bind(this)
-  );
-
-  return rowCells;
-};
-
-/**
- * @desc
- *  Checks if the specified DOM element is focusable
- *
- * @param element
- *  DOM element to check
- */
-aria.Grid.prototype.isFocusable = function (element) {
-  return !isNaN(parseInt(element.getAttribute('tabindex')));
 };
 
 /**
@@ -167,6 +140,8 @@ aria.Grid.prototype.setFocusPointer = function (row, col) {
   if (!isNaN(this.focusedRow) && !isNaN(this.focusedCol)) {
     this.grid[this.focusedRow][this.focusedCol].setAttribute('tabindex', -1);
   }
+
+  this.navigationDisabled = this.grid[row][col].matches('.edit-text-input');
 
   this.grid[row][col].setAttribute('tabindex', 0);
   this.focusedRow = row;
@@ -213,7 +188,9 @@ aria.Grid.prototype.isHidden = function (row, col) {
 aria.Grid.prototype.clearEvents = function() {
   this.gridNode.removeEventListener('keydown', this.checkFocusChange.bind(this));
   this.gridNode.removeEventListener('keydown', this.checkPageChange.bind(this));
-  this.gridNode.removeEventListener('click', this.checkSort.bind(this));
+  this.gridNode.removeEventListener('keydown', this.checkIfButton.bind(this));
+  this.gridNode.removeEventListener('click', this.focusClickedCell.bind(this));
+  this.gridNode.removeEventListener('click', this.checkIfButton.bind(this));
 };
 
 /**
@@ -224,8 +201,9 @@ aria.Grid.prototype.registerEvents = function () {
   this.clearEvents();
 
   this.gridNode.addEventListener('keydown', this.checkFocusChange.bind(this));
-  this.gridNode.addEventListener('keydown', this.checkSort.bind(this));
-  this.gridNode.addEventListener('click', this.checkSort.bind(this));
+  this.gridNode.addEventListener('keydown', this.checkIfButton.bind(this));
+  this.gridNode.addEventListener('click', this.focusClickedCell.bind(this));
+  this.gridNode.addEventListener('click', this.checkIfButton.bind(this));
 
   if (this.paginationEnabled) {
     this.gridNode.addEventListener('keydown', this.checkPageChange.bind(this));
@@ -257,25 +235,13 @@ aria.Grid.prototype.focusCell = function (row, col) {
  *  Keydown event
  */
 aria.Grid.prototype.checkFocusChange = function (event) {
-  if (!event) {
+  if (!event || this.navigationDisabled) {
     return;
   }
 
   var key = event.which || event.keyCode;
   var rowCaret = this.focusedRow;
   var colCaret = this.focusedCol;
-  var currentNodeType = this.grid[rowCaret][colCaret].nodeName.toLowerCase();
-
-  if (currentNodeType === 'input' || currentNodeType === 'select') {
-    if (key === aria.KeyCode.RETURN) {
-      this.navigationDisabled = !this.navigationDisabled;
-      return;
-    }
-
-    if (this.navigationDisabled) {
-      return;
-    }
-  }
 
   switch (key) {
     case aria.KeyCode.UP:
@@ -320,25 +286,94 @@ aria.Grid.prototype.checkFocusChange = function (event) {
 
 /**
  * @desc
+ *  Triggered on click. Finds the cell that was clicked on and focuses on it.
+ *
+ * @param event
+ *  Keydown event
+ */
+aria.Grid.prototype.focusClickedCell = function (event) {
+  var clickedGridCell = this.findClosest(event.target, '[tabindex]');
+
+  for (var row = 0; row < this.grid.length; row++) {
+    for (var col = 0; col < this.grid[row].length; col++) {
+      if (this.grid[row][col] === clickedGridCell) {
+        this.setFocusPointer(row, col);
+
+        if (!clickedGridCell.matches('button[aria-haspopup]')) {
+          // Don't focus if it's a menu button (focus should be set to menu)
+          this.focusCell(row, col);
+        }
+
+        return;
+      }
+    }
+  }
+};
+
+/**
+ * @desc
  *  Triggered on click. Checks if user clicked on a header with aria-sort.
  *  If so, it sorts the column based on the aria-sort attribute.
  *
  * @param event
  *  Keydown event
  */
-aria.Grid.prototype.checkSort = function (event) {
+aria.Grid.prototype.checkIfButton = function (event) {
   var key = event.which || event.keyCode;
-  var sortKeyTriggered =
-      (key === aria.KeyCode.SPACE || key === aria.KeyCode.RETURN);
+  var target = event.target;
+  var buttonTriggered = (key === aria.KeyCode.SPACE || key === aria.KeyCode.RETURN);
 
-  if (event.target &&
-      event.target.matches('[role="button"]') &&
-      event.target.parentNode &&
-      event.target.parentNode.matches('th[aria-sort]') &&
-      (event.type === 'click' || sortKeyTriggered)) {
-        event.preventDefault();
-        this.handleSort(event.target.parentNode);
+  if (target && (event.type === 'click' || buttonTriggered)) {
+    if (target.parentNode && target.parentNode.matches('th[aria-sort]')) {
+
+      event.preventDefault();
+      this.handleSort(target.parentNode);
+
+    } else if (key !== aria.KeyCode.SPACE &&
+               target.matches('.editable-text, .edit-text-button')) {
+      event.preventDefault();
+      this.toggleEditMode(true, this.findClosest(target, '.editable-text'));
+    } else if (key === aria.KeyCode.RETURN &&
+               target.matches('.edit-text-input')) {
+      event.preventDefault();
+      this.toggleEditMode(false, this.findClosest(target, '.editable-text'));
+    }
   }
+};
+
+/**
+ * @desc
+ *  Toggles the mode of an editable cell between displaying the edit button
+ *  and displaying the editable input.
+ *
+ * @param toggleOn
+ *  Whether to show or hide edit input
+ */
+aria.Grid.prototype.toggleEditMode = function (toggleOn, editCell) {
+  var editButton, editInput;
+
+  editButton = editCell.querySelector('.edit-text-button');
+  editInput = editCell.querySelector('.edit-text-input');
+
+  if (toggleOn) {
+    editInput.value = editButton.innerText;
+    editButton.className = 'edit-text-button hidden';
+    editInput.className = 'edit-text-input';
+    editCell.setAttribute('tabindex', -1);
+    editInput.setAttribute('tabindex', 0);
+    editInput.focus();
+    this.grid[this.focusedRow][this.focusedCol] = editInput;
+  } else {
+    editButton.innerText = editInput.value;
+    editButton.className = 'edit-text-button';
+    editInput.className = 'edit-text-input hidden';
+    editInput.setAttribute('tabindex', -1);
+    editCell.setAttribute('tabindex', 0);
+    editCell.focus();
+    this.grid[this.focusedRow][this.focusedCol] = editCell;
+  }
+
+  this.navigationDisabled = toggleOn;
 };
 
 /**
@@ -364,18 +399,16 @@ aria.Grid.prototype.handleSort = function (headerNode) {
   }
 
   var comparator = function (row1, row2) {
-    var row1Value = row1.children[columnIndex].innerText;
-    var row2Value = row2.children[columnIndex].innerText;
+    var row1Text = row1.children[columnIndex].innerText;
+    var row2Text = row2.children[columnIndex].innerText;
+    var row1Value = parseInt(row1Text.replace(/[^0-9\.]+/g,""));
+    var row2Value = parseInt(row2Text.replace(/[^0-9\.]+/g,""));
 
-    if (row1Value < row2Value) {
-      return (sortType === aria.SortType.ASCENDING) ? 1 : -1;
+    if (sortType === aria.SortType.ASCENDING) {
+      return row1Value - row2Value;
+    } else {
+      return row2Value - row1Value;
     }
-
-    if (row1Value > row2Value) {
-      return (sortType === aria.SortType.ASCENDING) ? -1 : 1;
-    }
-
-    return 0;
   };
 
   this.sortRows(comparator);
@@ -560,4 +593,27 @@ aria.Grid.prototype.toggleColumn = function (columnIndex, isShown) {
     // If focus was set on the hidden column, shift focus to the left
     this.setFocusPointer(this.focusedRow, this.getNextVisibleCol(-1));
   }
+};
+
+/**
+ * @desc
+ *  Find the closest element matching the selector. Only checks parent and
+ *  direct children.
+ *
+ * @param element
+ *  Element to start searching from
+ *
+ * @param selector
+ *  Index of the column to toggle
+ */
+aria.Grid.prototype.findClosest = function (element, selector) {
+  if (element.matches(selector)) {
+    return element;
+  }
+
+  if (element.parentNode.matches(selector)) {
+    return element.parentNode;
+  }
+
+  return element.querySelector(selector);
 };
