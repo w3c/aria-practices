@@ -1247,45 +1247,98 @@
       </section>
     </section>
 
-    <section class="widget" id="radiobutton">
-      <h3>Radio Group</h3>
-      <p>An option in single-select list</p>
+        <section class="widget" id="radiobutton">
+            <h3>Radio Group</h3>
+            <p>A radio group is a set of checkable buttons, known as radio buttons, where only
+                one button in the set may be in a checked state.</p>
 
-      <section class="notoc">
-        <h4>Keyboard Interaction</h4>
-        <p class="note">The Tab behavior below differs from some native browser behaviors where Shift+Tab sometimes moves to the last button in the group, if none are selected.</p>
-        <ul>
-          <li><kbd>Tab</kbd> key will enter the radio group.
-            <ul>
-              <li>When <kbd>Tab</kbd> or <kbd>Shift + Tab</kbd> into a radio group, focus goes to the selected radio button. If none is selected, focus goes to the first radio button. </li>
-              <li>When focus is on any radio button, <kbd>Tab</kbd> or <kbd>Shift + Tab</kbd> will exit the radio group. </li>
-            </ul>
-          </li>
-          <li><kbd>Up Arrow</kbd> and <kbd>Left Arrow</kbd>  moves focus to the previous radio button in the group, and selects that button. If focus is on the first item, then focus wraps to last item. </li>
-          <li><kbd>Down Arrow</kbd> and  <kbd>Right Arrow</kbd> moves focus to the next radio button in the group, and selects that button. If focus is on the last item, then focus wraps to first item. </li>
-          <li><kbd>Space</kbd> selects the radio button with focus and de-selects other radio buttons in the group. </li>
-        </ul>
-      </section>
+            <section class="notoc">
+                <h4>Keyboard Interaction</h4>
+                <ul>
+                    <li>When a radio group is receiving focus:
+                        <ul>
+                            <li><kbd>Tab</kbd> and <kbd>Shift+Tab</kbd>: move focus to the
+                                checked radio button. If none of the radio buttons are checked, they
+                                move focus to the first radio button in the group.</li>
+                        </ul>
+                    <li>When focus is on a radio button in a radio group:
+                        <ul>
+                            <li><kbd>Tab</kbd>: moves focus to the element in the page tab
+                                sequence that follows the radio group.</li>
+                            <li><kbd>Shift+Tab</kbd>: moves focus to the element in the page
+                                tab sequence that precedes the radio group.</li>
+                            <li><kbd>Space</kbd>: checks the focussed radio button if it is not
+                                already checked.</li>
+                            <li><kbd>Right Arrow</kbd> and <kbd>Down Arrow</kbd>: move focus to
+                                the next radio button in the group, uncheck the previously focused
+                                button, and check the newly focused button. If focus is on the last
+                                button, focus moves to the first button.</li>
+                            <li><kbd>Left Arrow</kbd> and <kbd>Up Arrow</kbd>: move focus to
+                                the previous radio button in the group, uncheck the previously
+                                focused button, and check the newly focused button. If focus is on
+                                the first button, focus moves to the last button.</li>
+                        </ul>
+                </ul>
+                <p class="note">
+                    The behavior of the <kbd>Tab</kbd> key described above differs slightly from the
+                    behavior provided by some browsers for native HTML radio groups. In some
+                    browsers, if none of the radio buttons are selected, <kbd>Shift+Tab</kbd> places
+                    focus on the last radio button instead of the first radio button.
+                </p>
+            </section>
 
-      <section class="notoc">
-        <h4>WAI-ARIA Roles, States, and Properties</h4>
-        <ul>
-          <li>Use a container with a role <a href="#radiogroup" class="role-reference">radiogroup</a> for the set of radio buttons.  </li>
-          <li>An individual radio button has a role of <a href="#radio" class="role-reference">radio</a>.  </li>
-          <li>If selected, the radio button has the state <a href="#aria-checked" class="state-reference" >aria-checked</a><code>="true"</code>.  </li>
-          <li>If not selected, it has the state <a href="#aria-checked" class="state-reference">aria-checked</a><code>="false"</code>.  </li>
-          <li>It is recommended that both the <a href="#radiogroup" class="role-reference">radiogroup</a> and the <a href="#radio" class="role-reference">radio button</a> have a label that is visible and referenced using the <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> property.  </li>
-          <li>Use an <a href="#aria-describedby" class="property-reference" >aria-describedby</a> property to add additional information to the radio buttons or radiogroup.  </li>
-        </ul>
-      </section>
+            <section class="notoc">
+                <h4>WAI-ARIA Roles, States, and Properties</h4>
+                <ul>
+                    <li>
+                        The radio buttons are contained in or owned by an element with role
+                        <a href="#radiogroup" class="role-reference">radiogroup</a>
+                        .
+                    </li>
+                    <li>
+                        Each radio button element has role
+                        <a href="#radio" class="role-reference">radio</a>.
+                    </li>
+                    <li>
+                        If a radio button is checked, the <code>radio</code> element has
+                        <a href="#aria-checked" class="state-reference">aria-checked</a>
+                        set to <code>true</code>. If it is not checked, it has
+                        <a href="#aria-checked" class="state-reference">aria-checked</a>
+                        set to <code>false</code>.
+                    </li>
+                    <li>
+                        Each <code>radio</code> element is labeled by its content, has a visible
+                        label referenced by
+                        <a href="#aria-labelledby" class="property-reference">aria-labelledby</a>,
+                        or has a label specified with
+                        <a href="#aria-label" class="property-reference">aria-label</a>.
+                    </li>
+                    <li>
+                        The <code>radiogroup</code> element has a visible label referenced by
+                        <a href="#aria-labelledby" class="property-reference">aria-labelledby</a>
+                        or has a label specified with
+                        <a href="#aria-label" class="property-reference">aria-label</a>.
+                    </li>
+                    <li>
+                        If elements providing additional information about either the radio group or
+                        each radio button are present, those elements are referenced by the <code>radiogroup</code>
+                        element or <code>radio</code> elements with the 
+                        <a href="#aria-describedby" class="property-reference">aria-describedby</a>
+                        property.
+                    </li>
+                </ul>
+            </section>
 
-      <section class="notoc">
-        <h4>Example</h4>
-        <p><a href="examples/radio/radio.html">Radio role example</a></p>
-      </section>
-    </section>
+            <section class="notoc">
+                <h4>Example</h4>
+                <p>
+                    <a href="examples/radio/radio.html">Radio Group Examples</a>
+                </p>
+            </section>
 
-    <section class="widget" id="slider">
+        </section>
+
+        <section class="widget" id="slider">
       <h3>Slider</h3>
 
       <p>A slider is an input where the user selects a value from within a given range. Sliders typically have a slider thumb that when moved will change the current value within the bar or track.</p>
