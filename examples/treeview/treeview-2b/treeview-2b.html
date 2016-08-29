@@ -299,6 +299,82 @@
           </ul>
         </li>
       </ul>
+      <section aria-labelledby="id_kbd">
+       
+       <h3 id="id_kbd">Keyboard Interaction and Focus Management</h3>
+       
+       <table aria-labelledby="id_kbd">
+         <thead>
+           <tr>
+             <th>Key</th>
+             <th>Function</th>
+           </tr>
+         </thead>
+         <tbody>
+           <tr>
+             <td>Up arrow Key</td>
+             <td>Moves focus to previous visible sibling <code>treeitem</code> using a depth first algorithm on the visible <code>treeitems</code>. If on first <code>treeitem</code>, focus stays on first <code>treeitem</code>.</td>
+           </tr>
+           <tr>
+             <td>Down arrow Key</td>
+             <td>Moves focus to next visible sibling <code>treeitem</code> using a depth first algorithm on the visible <code>treeitems</code>. If on last <code>treeitem</code>, focus stays on the last <code>treeitem</code>.</td>
+           </tr>            <tr>
+             <td>Left Arrow Key</td>
+             <td>
+               <ul>
+                 <li>For a <code>treeitem</code> that is an end node (e.g. no child <code>treeitem</code>s) or is in the collapsed state (e.g. has <code>[aria-expanded=false]</code>), focus moves to the parent <code>treeitem</code>.
+                   If a top level <code>treeitem</code> (e.g. parent is <code>tree</code>), focus stays on current <code>treeitem</code>.
+                 </li>
+                 <li>For a <code>treeitem</code> that is in the expanded state (e.g. has <code>[aria-expanded=true]</code>) it toogles to the collapsed state.   Focus remains on the current <code>treeitem</code>.</li>
+               </ul>
+             </td>
+           </tr>
+           <tr>
+             <td>Right Arrow Key</td>
+             <td>
+               <ul>
+                 <li>For a <code>treeitem</code> that is an end node (e.g. no child <code>treeitem</code>s) focus stays on current <code>treeitem</code>.</li>
+                 <li>For a <code>treeitem</code> that is in the collapsed state (e.g. has <code>[aria-expanded=false]</code>) it toogles to the expanded state and focus moves to the first child <code>treeitem</code>.  If no child, focus stays on current <code>treeitem</code>.</li>
+                 <li>For a <code>treeitem</code> is in the expanded state, focus moves to the first child <code>treeitem</code>.
+                   If no child, focus stays on current <code>treeitem</code>.
+                 </li>
+               </ul>
+             </td>
+           </tr>
+           <tr>
+             <td>Return Key</td>
+             <td>Follows the link associated the current <code>treeitem</code> with keyboard focus.</td>
+           </tr>
+           <tr>
+             <td>Space Key</td>
+             <td>Follows the link associated the current <code>treeitem</code> with keyboard focus.</td>
+           </tr>
+           <tr>
+             <td>Home Key</td>
+             <td>Moves focus to first <code>treeitem</code> in the <code>tree</code>.</td>
+           </tr>
+           <tr>
+             <td>End Key</td>
+             <td>Moves focus to last visible <code>treeitem</code> (e.g. depth first) in the <code>tree</code>.</td>
+           </tr>
+           <tr>
+             <td>a-z, A-Z</td>
+             <td>
+               <ul>
+                 <li>Moves focus to next visible <code>treeitem</code> that starts with letter character.</li>
+                 <li>Search wraps to first <code>treeitem</code> if not found after current <code>treeitem</code>.</li>
+               </ul>
+             </td>
+           </tr>
+           <tr>
+             <td>*</td>
+             <td>Opens all the expandable <code>treeitem</code>s in the current leaf (e.g. siblings of the current <code>treeitem</code>), keyboard focus does not change.
+             </td>
+           </tr>
+         </tbody>
+       </table>
+       
+      </section>
     </main>
   </body>
 </html>
