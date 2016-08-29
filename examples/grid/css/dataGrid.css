@@ -4,7 +4,7 @@
 }
 
 .hidden {
-	display: none;
+	display: none !important;
 }
 
 [role="button"] {
@@ -37,4 +37,26 @@
   position: absolute;
   right: 1em;
   top: 0.8em;
+}
+
+.edit-text-button {
+	display: block;
+	position: relative;
+}
+
+.edit-text-button:hover {
+	opacity: 0.6;
+}
+
+.edit-text-button::after {
+	background-image: url('../imgs/pencil-icon.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 44px;
+	content: ' ';
+	height: 17px;
+	position: absolute;
+	right: -24px;
+	top: 0px;
+	width: 20px;
 }
