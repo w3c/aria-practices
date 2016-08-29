@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>ARIA Tree View using DOM Structure Example: Links</title>
+    <link href="treeview-2.css" rel="stylesheet">
+    <script type="text/javascript" src="treeview.js" type="text/javascript"></script>
+  </head>
+  
+  <body>
+    <main>
+      <h1>ARIA Tree View using DOM Structure Example: Links</h1>
+      <h2 id="tree1">Foods</h2>
+      <ul role="tree" aria-labelledby="tree1" >
+        <li role="treeitem"
+            aria-expanded="false" 
+            aria-label="Fruits">
+          <span>Fruits</span>
+          <ul>
+            <li>
+              <a role="treeitem"
+                 href="https://en.wikipedia.org/wiki/Orange_%28fruit%29"> 
+                  Oranges
+              </a>
+            </li>
+            <li>
+              <a role="treeitem"
+                 href="https://en.wikipedia.org/wiki/Pineapple"> 
+                  Pineapple
+              </a>
+            </li>
+            <li role="treeitem"
+                aria-expanded="false" 
+                aria-label="Apples">
+                <span>Apples</span>
+              <ul role="group">
+                <li>
+                  <a role="treeitem"
+                     href="https://en.wikipedia.org/wiki/McIntosh_%28apple%29"> 
+                      Macintosh
+                  </a>
+                </li>
+                <li>
+                  <a role="treeitem"
+                     href="https://en.wikipedia.org/wiki/Granny_Smith"> 
+                      Granny Smith
+                  </a>
+                </li>
+                <li >
+                  <a role="treeitem"
+                     href="https://en.wikipedia.org/wiki/Fuji_(apple)">
+                      Fuji
+                  </a>
+                </li>
+              </ul>
+            </li>  
+            <li >
+              <a role="treeitem"
+                 href="https://en.wikipedia.org/wiki/Banana">
+                  Bananas
+              </a>
+            </li>    
+            <li role="treeitem"
+                aria-expanded="false" 
+                aria-label="Pears">
+              <span> Pears </span>
+              <ul role="group">
+                <li>
+                  <a role="treeitem"
+                     href="https://en.wikipedia.org/wiki/D%27Anjou">
+                      Anjou
+                  </a>
+                </li>
+                <li>
+                  <a role="treeitem"
+                     href="https://en.wikipedia.org/wiki/Williams_pear">
+                      Bartlett
+                  </a>
+                </li>
+                <li>
+                  <a role="treeitem"
+                     href="https://en.wikipedia.org/wiki/Bosc_pear">
+                      Bosc
+                  </a>
+                </li>
+                <li>
+                  <a role="treeitem"
+                     href="https://en.wikipedia.org/wiki/Pyrus_communis">
+                      Concorde
+                  </a>
+                </li>
+                <li >
+                  <a role="treeitem"
+                     href="https://en.wikipedia.org/wiki/Pyrus_communis">
+                      Seckel
+                  </a>
+                </li>
+                <li >
+                  <a role="treeitem"
+                     href="https://en.wikipedia.org/wiki/Pyrus_communis">
+                      Starkrimson
+                  </a>
+                </li>
+              </ul>
+            </li>    
+          </ul>
+        </li>
+        <li role="treeitem"
+            aria-expanded="false" 
+            aria-label="Vegetables">
+          <span>Vegetables</span>
+          <ul role="group">
+            <li role="treeitem"
+                aria-expanded="false" 
+                aria-label="Podded Vegetables">
+              <span>Podded Vegetables</span>
+              <ul role="group">
+                <li>
+                    <a role="treeitem"
+                       href="https://en.wikipedia.org/wiki/Lentil">
+                        Lentil
+                    </a>
+                </li>
+                <li>
+                    <a role="treeitem"
+                       href="https://en.wikipedia.org/wiki/Pea">
+                        Pea
+                    </a>
+                </li>
+                <li>
+                    <a role="treeitem"
+                       href="https://en.wikipedia.org/wiki/Peanut">
+                        Peanut
+                    </a>
+                </li>
+              </ul>
+            </li>  
+            <li role="treeitem"
+                aria-expanded="false" 
+                aria-label="Bulb and Stem Vegetables">
+              <span>Bulb and Stem Vegetables</span>
+              <ul role="group">
+                <li>
+                  <a role="treeitem"
+                     href="https://en.wikipedia.org/wiki/Asparagus">
+                      Asparagus
+                  </a>
+                </li>
+                <li>
+                    <a role="treeitem"
+                       href="https://en.wikipedia.org/wiki/Celery">
+                        Celery
+                    </a>
+                </li>
+                <li>
+                    <a role="treeitem"
+                       href="https://en.wikipedia.org/wiki/Leek">
+                        Leek
+                    </a>
+                </li>
+                <li>
+                    <a role="treeitem"
+                       href="https://en.wikipedia.org/wiki/Onion">
+                        Onion
+                    </a>
+                </li>
+              </ul>
+            </li>    
+            <li role="treeitem"
+                aria-expanded="false" 
+                aria-label="Root and Tuberous Vegetables">
+              <span>Root and Tuberous Vegetables</span>
+              <ul role="group">
+                <li>
+                    <a role="treeitem"
+                       href="https://en.wikipedia.org/wiki/Carrot">
+                        Carrot
+                    </a>
+                </li>
+                <li>
+                    <a role="treeitem"
+                       href="https://en.wikipedia.org/wiki/Ginger">
+                        Ginger
+                    </a>
+                </li>
+                <li>
+                  <a role="treeitem"
+                     href="https://en.wikipedia.org/wiki/Parsnip">
+                      Parsnip
+                  </a>
+                </li>
+                <li>
+                  <a role="treeitem"
+                     href="https://en.wikipedia.org/wiki/Potato">
+                      Potato
+                  </a>
+                </li>
+              </ul>
+            </li>    
+          </ul>
+        </li>
+        <li role="treeitem"
+            aria-expanded="false" 
+            aria-label=" Grains">
+          <span>Grains</span>
+          <ul role="group">
+            <li role="treeitem"
+                aria-expanded="false"
+                aria-label="Cereal grains">
+              <span>Cereal Grains</span>
+              <ul role="group">
+                <li>
+                  <a role="treeitem"
+                     href="https://en.wikipedia.org/wiki/Barley">
+                      Barley
+                  </a>
+                </li>
+                <li>
+                  <a role="treeitem"
+                     href="https://en.wikipedia.org/wiki/Oats">
+                      Oats
+                  </a>
+                </li>
+                <li>
+                  <a role="treeitem"
+                     href="https://en.wikipedia.org/wiki/Rice">
+                      Rice
+                  </a>
+                </li>
+              </ul>
+            </li>  
+            <li role="treeitem"
+                aria-expanded="false" 
+                aria-label="Pseudocereal grains">
+              <span>Pseudocereal Grains</span>
+              <ul role="group">
+                <li>
+                  <a role="treeitem"
+                     href="https://en.wikipedia.org/wiki/Amaranth">
+                      Amaranth
+                  </a>
+                </li>
+                <li>
+                  <a role="treeitem"
+                     href="https://en.wikipedia.org/wiki/Buckwheat">
+                      Bucketwheat
+                  </a>
+                </li>
+                <li>
+                  <a role="treeitem"
+                     href="https://en.wikipedia.org/wiki/Salvia_hispanica">
+                      Chia
+                  </a>
+                </li>
+                <li>
+                  <a role="treeitem"
+                     href="https://en.wikipedia.org/wiki/Quinoa">
+                      Quinoa
+                  </a>
+                </li>
+              </ul>
+            </li>    
+            <li role="treeitem"
+                aria-expanded="false" 
+                aria-label="Oilseeds">
+              <span>Oilseeds</span>
+              <ul role="group">
+                <li>
+                  <a role="treeitem"
+                     href="https://en.wikipedia.org/wiki/Brassica_juncea">
+                      India Mustard
+                  </a>
+                </li>
+                <li>
+                  <a role="treeitem"
+                     href="https://en.wikipedia.org/wiki/Safflower">
+                      Safflower
+                  </a>
+                </li>
+                <li>
+                  <a role="treeitem"
+                     href="https://en.wikipedia.org/wiki/Flax_seed">
+                      Flax Seed
+                  </a>
+                </li>
+                <li>
+                  <a role="treeitem"
+                     href="https://en.wikipedia.org/wiki/Poppy_seed">
+                      Poppy Seed
+                  </a>
+                </li>
+              </ul>
+            </li>    
+          </ul>
+        </li>
+      </ul>
+    </main>    
+  </body>
+</html>
