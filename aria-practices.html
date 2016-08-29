@@ -1706,14 +1706,72 @@
       </section>
 
       <section class="notoc">
-        <h4>Example</h4>
-        <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG task force is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
-        <ul>
-          <li><a href="http://www.oaa-accessibility.org/examplep/treeview1/" target="_blank" rel="nofollow">Open Ajax Alliance treeview</a></li>
-          <li><a href="http://www.oaa-accessibility.org/examplep/treeview2/" target="_blank" rel="nofollow">Open Ajax Alliance treeview using aria-owns</a></li>
-          <li><a href="http://www.oaa-accessibility.org/examplep/treeview3/" target="_blank" rel="nofollow">Open Ajax Alliance treeview using ARIA CSS selectors</a></li>
-          <li><a href="http://archive.dojotoolkit.org/nightly/dojotoolkit/dijit/tests/tree/test_Tree.html" target="_blank" rel="nofollow">Dojo nightly</a></li>
-        </ul>
+        <h4>Examples</h4>
+
+          <table aria-label="Treeview examples"> 
+            <thead>
+              <tr>
+                <th style="min-width: 6em">Example ID</th>
+                <th>Action</th>
+                <th><code>aria-owns</code></th>
+                <th><code>aria-level</code></th>
+                <th><code>aria-setsize/<br/><code>aria-posinset</code></th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><a href="examples/treeview-1a/treeview-1a.html">Treeview 1a</a></td>
+                <td>Select a file</td>
+                <td class="nu">-</td>
+                <td class="computed">Computed</td>
+                <td class="computed">Computed</td>
+                <td>
+                  <ul>
+                    <li>Expects browser to compute values for <code>aria-level</code>, <code>aria-posinset</code> and <code>aria-setsize</code> based on DOM structure.</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td><a href="examples/treeview-1b/treeview-1b.html">Treeview 1b</a></td>
+                <td>Select a file</td>
+                <td class="nu">-</td>
+                <td class="markup">Markup</td>
+                <td class="markup">Markup</td>
+                <td>
+                  <ul>
+                    <li>Explicitly defines values of <code>aria-level</code>, <code>aria-posinset</code> and <code>aria-setsize</code></li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td><a href="examples/treeview-2a/treeview-2a.html">Treeview 2a</a></td>
+                <td>Follow a link</td>
+                <td class="nu">-</td>
+                <td class="computed">Computed</td>
+                <td class="computed">Computed</td>
+                <td>
+                  <ul>
+                    <li>Expects browser to compute values for <code>aria-level</code>, <code>aria-posinset</code> and <code>aria-setsize</code> based on DOM structure.</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td><a href="examples/treeview-2b/treeview-2b.html">Treeview 2b</a></td>
+                <td>Follow a link</td>
+                <td class="nu">-</td>
+                <td class="markup">Markup</td>
+                <td class="markup">Markup</td>
+                <td>
+                  <ul>
+                    <li>Explicitly defines values of <code>aria-level</code>, <code>aria-posinset</code> and <code>aria-setsize</code></li>
+                  </ul>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+
       </section>
     </section>
 
