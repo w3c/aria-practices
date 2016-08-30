@@ -246,7 +246,6 @@
 
         <section class="widget" id="accordion">
                 <h3>Accordion (Sections With Show/Hide Functionality)</h3>
-                <p class="note">This section is work in progress. Provide feedback in <a href="https://github.com/w3c/aria-practices/issues/53">issue 53</a>.</p>
             <p>An accordion is a vertically stacked set of elements, such as labels or
                 thumbnails, that allow the user to toggle the display of sections of content. Each
                 labeling element can be expanded or collapsed to reveal or hide its associated
@@ -266,11 +265,12 @@
             <section class="notoc">
                 <h4>Keyboard Interaction</h4>
                 <ul>
-                    <li><kbd>Enter</kbd> or <kbd>Space</kbd>:
+                    <li>
+                        <kbd>Enter</kbd> or <kbd>Space</kbd>:
                         <ul>
                             <li>When focus is on the accordion header for a collapsed panel,
-                                expands its accordion panel. If the implementation allows only one
-                                panel to be expanded and another panel is expanded, collapses that
+                                expands the associated panel. If the implementation allows only one
+                                panel to be expanded, and if another panel is expanded, collapses that
                                 panel.</li>
                             <li>When focus is on the accordion header for an expanded panel,
                                 collapses the panel if the implementation supports collapsing. Some
@@ -278,36 +278,79 @@
                                 allow only one panel to be expanded; so, they do not support a
                                 collapse function.</li>
                         </ul>
-                    <li><kbd>Control + Page Down</kbd> (Optional): If focus is inside an
-                        accordion panel or on an accordion header, moves focus to the next accordion
-                        header. If focus is in the last accordion header or panel, either does
-                        nothing or moves focus to the first accordion header.</li>
-                    <li><kbd>Control + Page Up</kbd> (Optional): If focus is inside an
-                        accordion panel, moves focus to the header for that panel. If focus is on an
-                        accordion header, moves focus to the previous accordion header. If focus is
-                        on the first accordion header, either does nothing or moves focus to the
-                        last accordion header.</li>
-                    <li><kbd>Home</kbd> (Optional): When focus is on an accordion header, moves
-                        focus to the first accordion header.</li>
-                    <li><kbd>End</kbd> (Optional): When focus is on an accordion header, moves
-                        focus to the last accordion header.</li>
+                        </li>
+                        <li>
+                            <kbd>Down Arrow</kbd> (Optional): If focus is on an accordion header, moves focus to the next accordion header.
+                        If focus is on the last accordion header, either does nothing or moves focus to the first accordion header.
+                        </li>
+                        <li>
+                            <kbd>Up Arrow</kbd> (Optional): If focus is on an accordion header, moves focus to the previous accordion header.
+                        If focus is on the first accordion header, either does nothing or moves focus to the last accordion header.
+                        </li>
+                        <kbd>Home</kbd> (Optional): When focus is on an accordion header, moves
+                        focus to the first accordion header.
+                    </li>
+                    <li>
+                        <kbd>End</kbd> (Optional): When focus is on an accordion header, moves focus
+                        to the last accordion header.
+                    </li>
+                    <li>
+                        <kbd>Control + Page Down</kbd> (Optional): If focus is inside an accordion
+                        panel or on an accordion header, moves focus to the next accordion header.
+                        If focus is in the last accordion header or panel, either does nothing or
+                        moves focus to the first accordion header.
+                    </li>
+                    <li>
+                        <kbd>Control + Page Up</kbd> (Optional): If focus is inside an accordion
+                        panel, moves focus to the header for that panel. If focus is on an accordion
+                        header, moves focus to the previous accordion header. If focus is on the
+                        first accordion header, either does nothing or moves focus to the last
+                        accordion header.
+                    </li>
                 </ul>
             </section>
 
             <section class="notoc">
                 <h4>WAI-ARIA Roles, States, and Properties:</h4>
                 <ul>
-                <li>Each accordion header is contained in an element with role <a href="#button" class="role-reference">button</a>. 
-                The button label is the label for the associated accordion panel.</li>
-                <li>The accordion header <code>button</code> element has <a href="aria-controls" class="property-reference">aria-controls</a> set to the ID of the element containing the accordion panel content. </li>
-                <li>If the accordion panel associated with an accordion header is visible, the header <code>button</code> element has <a href="#aria-expanded" class="state-reference">aria-expanded</a> set to <code>true</code>.
-                If the panel is not visible, <a href="#aria-expanded" class="state-reference">aria-expanded</a> is set to <code>false</code>. </li>
-                <li>If the accordion panel associated with an accordion header is visible, and if the accordion does not permit the panel to be collapsed,
-                the header <code>button</code> element has <a href="#aria-disabled" class="state-reference">aria-disabled</a> set to <code>true</code>. </li>
-                    <li>Each accordion header <code>button</code> is wrapped in an element with role <a href="#heading" class="role-reference">heading</a> that has a value set for <a href="#aria-level" class="property-reference">aria-level</a> that is appropriate for the information architecture of the page.
-                    If the native host language has an element with an implicit <code>heading</code> and <code>aria-level</code>, such as an HTML heading tag, a native host language element may be used. 
-                    The <code>button</code> element is the only element inside the <code>heading</code> element. 
-                    That is, if there are other visually persistent elements, they are not included inside the <code>heading</code> element. </li>
+                    <li>
+                        Each accordion header is contained in an element with role
+                        <a href="#button" class="role-reference">button</a>.
+                        The button label is the label for the associated accordion panel.
+                    </li>
+                    <li>
+                        Each accordion header <code>button</code> is wrapped in an element with role
+                        <a href="#heading" class="role-reference">heading</a>
+                        that has a value set for
+                        <a href="#aria-level" class="property-reference">aria-level</a>
+                        that is appropriate for the information architecture of the page. If the
+                        native host language has an element with an implicit <code>heading</code>
+                        and <code>aria-level</code>, such as an HTML heading tag, a native host
+                        language element may be used. The <code>button</code> element is the only
+                        element inside the <code>heading</code> element. That is, if there are other
+                        visually persistent elements, they are not included inside the <code>heading</code>
+                        element.
+                    </li>
+                    <li>
+                        If the accordion panel associated with an accordion header is visible, the
+                        header <code>button</code> element has
+                        <a href="#aria-expanded" class="state-reference">aria-expanded</a>
+                        set to <code>true</code>. If the panel is not visible,
+                        <a href="#aria-expanded" class="state-reference">aria-expanded</a>
+                        is set to <code>false</code>.
+                    </li>
+                    <li>
+                        The accordion header <code>button</code> element has
+                        <a href="aria-controls" class="property-reference">aria-controls</a>
+                        set to the ID of the element containing the accordion panel content.
+                    </li>
+                    <li>
+                        If the accordion panel associated with an accordion header is visible, and
+                        if the accordion does not permit the panel to be collapsed, the header <code>button</code>
+                        element has
+                        <a href="#aria-disabled" class="state-reference">aria-disabled</a>
+                        set to <code>true</code>.
+                    </li>
                 </ul>
             </section>
 
