@@ -19,8 +19,8 @@ window.addEventListener('load', function() {
   toggleButton.addEventListener('click', function (event) {
     toggledOn = !toggledOn;
 
-    ex3Grid.toggleColumn(1, toggledOn);
-    ex3Grid.toggleColumn(3, toggledOn);
+    ex3Grid.toggleColumn(2, toggledOn);
+    ex3Grid.toggleColumn(4, toggledOn);
 
     if (toggledOn) {
       toggleButton.innerText = 'Hide Type and Category';

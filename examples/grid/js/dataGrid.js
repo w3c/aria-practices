@@ -602,7 +602,7 @@ aria.Grid.prototype.toggleColumn = function (columnIndex, isShown) {
     }
   );
 
-  if (!isShown && this.focusedCol === columnIndex) {
+  if (!isShown && this.focusedCol === (columnIndex - 1)) {
     // If focus was set on the hidden column, shift focus to the left
     this.setFocusPointer(this.focusedRow, this.getNextVisibleCol(-1));
   }
