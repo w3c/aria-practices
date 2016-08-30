@@ -141,7 +141,8 @@ aria.Grid.prototype.setFocusPointer = function (row, col) {
     this.grid[this.focusedRow][this.focusedCol].setAttribute('tabindex', -1);
   }
 
-  this.navigationDisabled = this.grid[row][col].matches('.edit-text-input');
+  // Disable navigation if focused on an input
+  this.navigationDisabled = this.grid[row][col].matches('input');
 
   this.grid[row][col].setAttribute('tabindex', 0);
   this.focusedRow = row;
@@ -188,9 +189,9 @@ aria.Grid.prototype.isHidden = function (row, col) {
 aria.Grid.prototype.clearEvents = function() {
   this.gridNode.removeEventListener('keydown', this.checkFocusChange.bind(this));
   this.gridNode.removeEventListener('keydown', this.checkPageChange.bind(this));
-  this.gridNode.removeEventListener('keydown', this.checkIfButton.bind(this));
+  this.gridNode.removeEventListener('keydown', this.delegateButtonHandler.bind(this));
   this.gridNode.removeEventListener('click', this.focusClickedCell.bind(this));
-  this.gridNode.removeEventListener('click', this.checkIfButton.bind(this));
+  this.gridNode.removeEventListener('click', this.delegateButtonHandler.bind(this));
 };
 
 /**
@@ -201,9 +202,9 @@ aria.Grid.prototype.registerEvents = function () {
   this.clearEvents();
 
   this.gridNode.addEventListener('keydown', this.checkFocusChange.bind(this));
-  this.gridNode.addEventListener('keydown', this.checkIfButton.bind(this));
+  this.gridNode.addEventListener('keydown', this.delegateButtonHandler.bind(this));
   this.gridNode.addEventListener('click', this.focusClickedCell.bind(this));
-  this.gridNode.addEventListener('click', this.checkIfButton.bind(this));
+  this.gridNode.addEventListener('click', this.delegateButtonHandler.bind(this));
 
   if (this.paginationEnabled) {
     this.gridNode.addEventListener('keydown', this.checkPageChange.bind(this));
@@ -318,27 +319,40 @@ aria.Grid.prototype.focusClickedCell = function (event) {
  * @param event
  *  Keydown event
  */
-aria.Grid.prototype.checkIfButton = function (event) {
+aria.Grid.prototype.delegateButtonHandler = function (event) {
   var key = event.which || event.keyCode;
   var target = event.target;
-  var buttonTriggered = (key === aria.KeyCode.SPACE || key === aria.KeyCode.RETURN);
+  var isClickEvent = (event.type === 'click');
 
-  if (target && (event.type === 'click' || buttonTriggered)) {
-    if (target.parentNode && target.parentNode.matches('th[aria-sort]')) {
-
-      event.preventDefault();
-      this.handleSort(target.parentNode);
-
-    } else if (key !== aria.KeyCode.SPACE &&
-               target.matches('.editable-text, .edit-text-button')) {
-      event.preventDefault();
-      this.toggleEditMode(true, this.findClosest(target, '.editable-text'));
-    } else if (key === aria.KeyCode.RETURN &&
-               target.matches('.edit-text-input')) {
-      event.preventDefault();
-      this.toggleEditMode(false, this.findClosest(target, '.editable-text'));
-    }
+  if (!target) {
+    return;
   }
+
+  if (target.parentNode && target.parentNode.matches('th[aria-sort]') &&
+      (isClickEvent || key === aria.KeyCode.SPACE || key === aria.KeyCode.RETURN)) {
+        event.preventDefault();
+        this.handleSort(target.parentNode);
+      }
+
+  if (target.matches('.editable-text, .edit-text-button') &&
+      (isClickEvent || key === aria.KeyCode.RETURN)) {
+        event.preventDefault();
+        this.toggleEditMode(
+          this.findClosest(target, '.editable-text'),
+          true,
+          true
+        );
+      }
+
+  if (target.matches('.edit-text-input') &&
+      (key === aria.KeyCode.RETURN || key === aria.KeyCode.ESC)) {
+        event.preventDefault();
+        this.toggleEditMode(
+          this.findClosest(target, '.editable-text'),
+          false,
+          key === aria.KeyCode.RETURN
+        );
+      }
 };
 
 /**
@@ -346,33 +360,33 @@ aria.Grid.prototype.checkIfButton = function (event) {
  *  Toggles the mode of an editable cell between displaying the edit button
  *  and displaying the editable input.
  *
+ * @param editCell
+ *  Cell to toggle
+ *
  * @param toggleOn
  *  Whether to show or hide edit input
+ *
+ * @param updateText
+ *  Whether or not to update the button text with the input text
  */
-aria.Grid.prototype.toggleEditMode = function (toggleOn, editCell) {
-  var editButton, editInput;
-
-  editButton = editCell.querySelector('.edit-text-button');
-  editInput = editCell.querySelector('.edit-text-input');
+aria.Grid.prototype.toggleEditMode = function (editCell, toggleOn, updateText) {
+  var onClassName = toggleOn ? 'edit-text-input' : 'edit-text-button';
+  var offClassName = toggleOn ? 'edit-text-button' : 'edit-text-input';
+  var onNode = editCell.querySelector('.' + onClassName);
+  var offNode = editCell.querySelector('.' + offClassName);
 
   if (toggleOn) {
-    editInput.value = editButton.innerText;
-    editButton.className = 'edit-text-button hidden';
-    editInput.className = 'edit-text-input';
-    editCell.setAttribute('tabindex', -1);
-    editInput.setAttribute('tabindex', 0);
-    editInput.focus();
-    this.grid[this.focusedRow][this.focusedCol] = editInput;
-  } else {
-    editButton.innerText = editInput.value;
-    editButton.className = 'edit-text-button';
-    editInput.className = 'edit-text-input hidden';
-    editInput.setAttribute('tabindex', -1);
-    editCell.setAttribute('tabindex', 0);
-    editCell.focus();
-    this.grid[this.focusedRow][this.focusedCol] = editCell;
+    onNode.value = offNode.innerText;
+  } else if (updateText) {
+    onNode.innerText = offNode.value;
   }
 
+  offNode.className = offClassName + ' ' + aria.CSSClass.HIDDEN;
+  onNode.className = onClassName;
+  offNode.setAttribute('tabindex', -1);
+  onNode.setAttribute('tabindex', 0);
+  onNode.focus();
+  this.grid[this.focusedRow][this.focusedCol] = onNode;
   this.navigationDisabled = toggleOn;
 };
 
@@ -421,7 +435,7 @@ aria.Grid.prototype.handleSort = function (headerNode) {
     }
   );
 
-  event.target.parentNode.setAttribute('aria-sort', sortType);
+  headerNode.setAttribute('aria-sort', sortType);
 };
 
 /**
@@ -454,8 +468,8 @@ aria.Grid.prototype.setupIndices = function () {
     var cols = rows[row].querySelectorAll('td, th');
 
     for (var col = 0; col < cols.length; col++) {
-      cols[col].setAttribute('aria-rowindex', row);
-      cols[col].setAttribute('aria-colindex', col);
+      cols[col].setAttribute('aria-rowindex', row + 1);
+      cols[col].setAttribute('aria-colindex', col + 1);
     }
 
   }
