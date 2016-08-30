@@ -528,27 +528,26 @@ aria.Grid.prototype.checkPageChange = function (event) {
 aria.Grid.prototype.showFromRow = function (startIndex, scrollDown) {
   var rows = this.gridNode.querySelectorAll('tr, [role="row"]');
   var dataRows = Array.prototype.slice.call(rows, 1);
-  var rowCount = 0;
+  var reachedTop = false;
 
-  if (startIndex >= 0 && startIndex < dataRows.length) {
+  if (startIndex < 0 || startIndex >= dataRows.length) {
+    return;
+  }
 
-    for (var i = 0; i < dataRows.length; i++) {
+  for (var i = 0; i < dataRows.length; i++) {
 
-      if ((scrollDown && i >= startIndex && i < startIndex + this.perPage) ||
-          (!scrollDown && i <= startIndex && i > startIndex - this.perPage)) {
-        dataRows[i].className = '';
-        rowCount++;
+    if ((scrollDown && i >= startIndex && i < startIndex + this.perPage) ||
+        (!scrollDown && i <= startIndex && i > startIndex - this.perPage)) {
+          dataRows[i].className = '';
 
-        if (rowCount === 1) {
-          this.topIndex = i;
+          if (!reachedTop) {
+            this.topIndex = i;
+            reachedTop = true;
+          }
+        } else {
+          dataRows[i].className = aria.CSSClass.HIDDEN;
         }
-      } else {
-        dataRows[i].className = aria.CSSClass.HIDDEN;
-      }
 
-    }
-
-    this.gridNode.setAttribute('aria-rowcount', rowCount);
   }
 };
 
