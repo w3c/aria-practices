@@ -396,60 +396,56 @@
     </section>
 
     <section class="widget" id="alertdialog">
-      <h3>Alert Dialog or Message Dialog</h3>
+      <h3>Alert and Message Dialogs</h3>
       <p class="note">This section is partially revised. Planned changes are being discussed in <a href="https://github.com/w3c/aria-practices/issues/54">issue 54</a>.</p>
-
       <p>
-        A dialog with the primary purpose of communicating a message and acquiring a user response to that message.
-        Examples include action confirmation prompts, warning messages, or help for an invalid form entry.
-        The dialog should be modal.
-        Keyboard focus is set on an element in the dialog.
-        The element that has initial focus will depend on the nature of the information conveyed in the dialog.
-        Simple message dialogs, as described below, have their initial focus set to the confirmation button (e.g., the OK button).
-        Detail message dialogs have their initial focus set on the element containing the message.
+        An alert dialog  is a <a href="#dialog_modal">modal dialog</a> that interrupts the user's workflow to communicate an important message and acquire a response.
+        Examples include action confirmation prompts and error message confirmations.
+        The <a href="#alertdialog" class="role-reference">alertdialog</a> role enables assistive technologies and browsers to distinguish alert dialogs from other dialogs so they have the option of giving them special treatment, such as playing a system alert sound.
       </p>
-
-      <p>A detail message dialog conveys a message that has any one of the following attributes:</p>
-
-      <ul>
-        <li>Is more than one sentence in length;</li>
-        <li>Contains information where punctuation is an essential part of the message, such as syntax of a required date format;</li>
-        <li>Contains detail information the user may need to re-use, e.g., a phone number, e-mail address, error number, etc.;</li>
-        <li>Contains an interactive element, such as a link to a help resource.</li>
-      </ul>
-
-      <p>If the dialog is not a detail message dialog, one can consider it a simple message dialog.</p>
-
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
-        <p><a href="#dialog_modal">See Dialog (Modal)</a>.</p>
-        <ul>
-          <li>Content authors make alert dialogs modal by ensuring that, while the alertdialog is shown, keyboard and mouse interactions only operate within the dialog.</li>
-          <li>The message area of a detail message dialog is focusable and has a <a class="role-reference" href="#document">document</a> role so screen reader users will have complete access to the message content, e.g., the screen reader can read it by character, word, or line.</li>
-          <li>When the message area of a dialog is focusable and has focus, a visual focus indicator is required, and it is recommended that the indicator encompass the complete message.</li>
-        </ul>
+        <p>See the keyboard interaction section for the <a href="#dialog_modal">modal dialog pattern</a>.</p>
       </section>
-
-      <section class="notoc">
-        <h4>WAI-ARIA Roles, States, and Properties</h4>
-        <ul>
-          <li>The node containing all elements of the dialog, including the alert message and any dialog buttons, has an <a class="role-reference" href="#alertdialog">alertdialog</a> role.</li>
-          <li>Message areas have role <a class="role-reference" href="#document">document</a> and tabindex="0".</li>
-          <li>The Alert dialog has an <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> that references the title of the dialog. If there is not a visible title, use an appropriate <a href="#aria-labelledby" class="property-reference">aria-label</a> instead.</li>
-          <li>The element with role alertdialog has an <a href="#aria-labelledby" class="property-reference">aria-describedby</a> referring to the message element that has role <a class="role-reference" href="#document">document</a>.</li>
-        </ul>
-      </section>
-
-      <section class="notoc">
+            <section class="notoc">
+                <h4>WAI-ARIA Roles, States, and Properties</h4>
+                <ul>
+                    <li>
+                        The element that contains all elements of the dialog, including the alert
+                        message and any dialog buttons, has role
+                        <a class="role-reference" href="#alertdialog">alertdialog</a>.
+                    </li>
+                    <li>
+                        The element with role <code>alertdialog</code> has either:
+                        <ul>
+                            <li>
+                                A value for
+                                <a href="#aria-labelledby" class="property-reference">aria-labelledby</a>
+                                that refers to the element containing the title of the dialog if the
+                                dialog has a visible title.
+                            </li>
+                            <li>
+                                A value for
+                                <a href="#aria-label" class="property-reference">aria-label</a>
+                                if the dialog does not have a visible title.
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        The element with role <code>alertdialog</code> has a value set for
+                        <a href="#aria-describedby" class="property-reference">aria-describedby</a>
+                        that refers to the element containing the alert message.
+                    </li>
+                </ul>
+            </section>
+            <section class="notoc">
         <h4>Example</h4>
-        <p class="note">
-          Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section.
-          The APG task force is developing examples for APG version 1.1 that will be directly incorporated into the guide.
+        <p>
+        Developing an example implementation of this pattern is <a href="https://github.com/w3c/aria-practices/issues/101">issue 101</a>.
         </p>
-        <p><a href="http://www.oaa-accessibility.org/examplep/alertdialog1/" target="_blank">Open Ajax Alliance</a></p>
       </section>
     </section>
-
+    
     <section class="widget" id="breadcrumb">
       <h3 class="widget-name">Breadcrumb</h3>
       
