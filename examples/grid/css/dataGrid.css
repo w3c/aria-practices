@@ -40,12 +40,9 @@
 }
 
 .edit-text-button {
+	color: green;
 	display: block;
 	position: relative;
-}
-
-.edit-text-button:hover {
-	opacity: 0.6;
 }
 
 .edit-text-button::after {
@@ -55,8 +52,17 @@
 	background-size: 44px;
 	content: ' ';
 	height: 17px;
+	opacity: 0.6;
 	position: absolute;
 	right: -24px;
 	top: 0px;
 	width: 20px;
+}
+
+.edit-text-button:hover, .edit-text-button:focus {
+	color: black;
+}
+
+.edit-text-button:hover::after, .edit-text-button:focus::after {
+	opacity: 1;
 }
