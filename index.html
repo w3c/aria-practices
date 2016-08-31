@@ -828,7 +828,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <a class="logo" href="https://www.w3.org/"><img width="72" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" alt="W3C"></a>
     </p>
     <h1 class="title p-name" id="title" property="dcterms:title"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Authoring Practices 1.1</h1>
-    <h2 id="w3c-editor-s-draft-30-august-2016"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2016-08-30">30 August 2016</time></h2>
+    <h2 id="w3c-editor-s-draft-31-august-2016"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2016-08-31">31 August 2016</time></h2>
     <dl>
       <dt>This version:</dt>
       <dd><a class="u-url" href="http://w3c.github.io/aria-practices/">http://w3c.github.io/aria-practices/</a></dd>
@@ -924,7 +924,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <li class="tocline"><a href="#alert" class="tocxref"><span class="secno">2.3 </span>Alert</a>
             <ol class="toc"></ol>
           </li>
-          <li class="tocline"><a href="#alertdialog" class="tocxref"><span class="secno">2.4 </span>Alert Dialog or Message Dialog</a>
+          <li class="tocline"><a href="#alertdialog" class="tocxref"><span class="secno">2.4 </span>Alert and Message Dialogs</a>
             <ol class="toc"></ol>
           </li>
           <li class="tocline"><a href="#breadcrumb" class="tocxref"><span class="secno">2.5 </span>Breadcrumb</a>
@@ -1257,56 +1257,52 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     </section>
 
     <section class="widget" id="alertdialog" typeof="bibo:Chapter" resource="#alertdialog" property="bibo:hasPart">
-      <h3 id="h-alertdialog" resource="#h-alertdialog"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.4 </span>Alert Dialog or Message Dialog<span class="permalink" typeof="bookmark"><a href="#alertdialog" aria-label="Permalink for 2.4 Alert Dialog or Message Dialog" title="Permalink for 2.4 Alert Dialog or Message Dialog" property="url"><span property="title" content="2.4 Alert Dialog or Message Dialog">§</span></a></span></span></h3>
+      <h3 id="h-alertdialog" resource="#h-alertdialog"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.4 </span>Alert and Message Dialogs<span class="permalink" typeof="bookmark"><a href="#alertdialog" aria-label="Permalink for 2.4 Alert and Message Dialogs" title="Permalink for 2.4 Alert and Message Dialogs" property="url"><span property="title" content="2.4 Alert and Message Dialogs">§</span></a></span></span></h3>
       <div class="note">
         <div class="note-title marker" aria-level="4" role="heading" id="h-note3"><span>Note</span></div>
         <p class="">This section is partially revised. Planned changes are being discussed in <a href="https://github.com/w3c/aria-practices/issues/54">issue 54</a>.</p>
       </div>
-
       <p>
-        A dialog with the primary purpose of communicating a message and acquiring a user response to that message. Examples include action confirmation prompts, warning messages, or help for an invalid form entry. The dialog should be modal. Keyboard focus is set on an element in the dialog. The element that has initial focus will depend on the nature of the information conveyed in the dialog. Simple message dialogs, as described below, have their initial focus set to the confirmation button (e.g., the OK button). Detail message dialogs have their initial focus set on the element containing the message.
+        An alert dialog is a <a href="#dialog_modal">modal dialog</a> that interrupts the user's workflow to communicate an important message and acquire a response. Examples include action confirmation prompts and error message confirmations. The <a href="http://w3c.github.io/aria/aria/aria.html#alertdialog" class="role-reference">alertdialog</a> role enables assistive technologies and browsers to distinguish alert dialogs from other dialogs so they have the option of giving them special treatment, such as playing a system alert sound.
       </p>
-
-      <p>A detail message dialog conveys a message that has any one of the following attributes:</p>
-
-      <ul>
-        <li>Is more than one sentence in length;</li>
-        <li>Contains information where punctuation is an essential part of the message, such as syntax of a required date format;</li>
-        <li>Contains detail information the user may need to re-use, e.g., a phone number, e-mail address, error number, etc.;</li>
-        <li>Contains an interactive element, such as a link to a help resource.</li>
-      </ul>
-
-      <p>If the dialog is not a detail message dialog, one can consider it a simple message dialog.</p>
 
       <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-2" property="bibo:hasPart">
         <h4 id="keyboard-interaction-2" resource="#keyboard-interaction-2"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
-        <p><a href="#dialog_modal">See Dialog (Modal)</a>.</p>
-        <ul>
-          <li>Content authors make alert dialogs modal by ensuring that, while the alertdialog is shown, keyboard and mouse interactions only operate within the dialog.</li>
-          <li>The message area of a detail message dialog is focusable and has a <a class="role-reference" href="http://w3c.github.io/aria/aria/aria.html#document">document</a> role so screen reader users will have complete access to the message content, e.g., the screen reader can read it by character, word, or line.</li>
-          <li>When the message area of a dialog is focusable and has focus, a visual focus indicator is required, and it is recommended that the indicator encompass the complete message.</li>
-        </ul>
+        <p>See the keyboard interaction section for the <a href="#dialog_modal">modal dialog pattern</a>.</p>
       </section>
 
       <section class="notoc" typeof="bibo:Chapter" resource="#wai-aria-roles-states-and-properties-2" property="bibo:hasPart">
         <h4 id="wai-aria-roles-states-and-properties-2" resource="#wai-aria-roles-states-and-properties-2"><span property="xhv:role" resource="xhv:heading"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties</span></h4>
         <ul>
-          <li>The node containing all elements of the dialog, including the alert message and any dialog buttons, has an <a class="role-reference" href="http://w3c.github.io/aria/aria/aria.html#alertdialog">alertdialog</a> role.</li>
-          <li>Message areas have role <a class="role-reference" href="http://w3c.github.io/aria/aria/aria.html#document">document</a> and tabindex="0".</li>
-          <li>The Alert dialog has an <a href="http://w3c.github.io/aria/aria/aria.html#aria-labelledby" class="property-reference">aria-labelledby</a> that references the title of the dialog. If there is not a visible title, use an appropriate <a href="http://w3c.github.io/aria/aria/aria.html#aria-labelledby" class="property-reference">aria-label</a> instead.</li>
-          <li>The element with role alertdialog has an <a href="http://w3c.github.io/aria/aria/aria.html#aria-labelledby" class="property-reference">aria-describedby</a> referring to the message element that has role <a class="role-reference" href="http://w3c.github.io/aria/aria/aria.html#document">document</a>.</li>
+          <li>
+            The element that contains all elements of the dialog, including the alert message and any dialog buttons, has role
+            <a class="role-reference" href="http://w3c.github.io/aria/aria/aria.html#alertdialog">alertdialog</a>.
+          </li>
+          <li>
+            The element with role <code>alertdialog</code> has either:
+            <ul>
+              <li>
+                A value for
+                <a href="http://w3c.github.io/aria/aria/aria.html#aria-labelledby" class="property-reference">aria-labelledby</a> that refers to the element containing the title of the dialog if the dialog has a visible title.
+              </li>
+              <li>
+                A value for
+                <a href="http://w3c.github.io/aria/aria/aria.html#aria-label" class="property-reference">aria-label</a> if the dialog does not have a visible title.
+              </li>
+            </ul>
+          </li>
+          <li>
+            The element with role <code>alertdialog</code> has a value set for
+            <a href="http://w3c.github.io/aria/aria/aria.html#aria-describedby" class="property-reference">aria-describedby</a> that refers to the element containing the alert message.
+          </li>
         </ul>
       </section>
 
       <section class="notoc" typeof="bibo:Chapter" resource="#example-2" property="bibo:hasPart">
         <h4 id="example-2" resource="#example-2"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
-        <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note4"><span>Note</span></div>
-          <p class="">
-            Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG task force is developing examples for APG version 1.1 that will be directly incorporated into the guide.
-          </p>
-        </div>
-        <p><a href="http://www.oaa-accessibility.org/examplep/alertdialog1/" target="_blank">Open Ajax Alliance</a></p>
+        <p>
+          Developing an example implementation of this pattern is <a href="https://github.com/w3c/aria-practices/issues/101">issue 101</a>.
+        </p>
       </section>
     </section>
 
@@ -1361,7 +1357,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         <li>Menu button: as described in the <a href="#menubutton">menu button pattern</a>, a button will be revealed to assistive technologies as a menu button if it has the property <a href="http://w3c.github.io/aria/aria/aria.html#aria-haspopup" class="property-reference">aria-haspopup</a> set true.</li>
       </ul>
       <div class="note">
-        <div class="note-title marker" aria-level="4" role="heading" id="h-note5"><span>Note</span></div>
+        <div class="note-title marker" aria-level="4" role="heading" id="h-note4"><span>Note</span></div>
         <p class="">
           The types of actions performed by buttons are distinctly different from the function of a link (see <a href="#link">link pattern</a>). It is important that the role of a widget matches the function it provides. Ideally, the role of the element also matches its visual appearance. But, occasionally an element may be visually styled as an icon or link but perform the action of a button. In these cases, the element should be given a button role. Designers should work to avoid conflicts between visual appearance and <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> semantics.
         </p>
@@ -1472,7 +1468,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     <section class="widget" id="dialog_modal" typeof="bibo:Chapter" resource="#dialog_modal" property="bibo:hasPart">
       <h3 id="h-dialog_modal" resource="#h-dialog_modal"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.9 </span>Dialog (Modal)<span class="permalink" typeof="bookmark"><a href="#dialog_modal" aria-label="Permalink for 2.9 Dialog (Modal)" title="Permalink for 2.9 Dialog (Modal)" property="url"><span property="title" content="2.9 Dialog (Modal)">§</span></a></span></span></h3>
       <div class="note">
-        <div class="note-title marker" aria-level="4" role="heading" id="h-note6"><span>Note</span></div>
+        <div class="note-title marker" aria-level="4" role="heading" id="h-note5"><span>Note</span></div>
         <p class="">This section is partially revised. Planned changes are being discussed in <a href="https://github.com/w3c/aria-practices/issues/42">issue 42</a>.</p>
       </div>
       <p> A <a href="http://w3c.github.io/aria/aria/aria.html#dialog" class="role-reference">dialog</a> is a window overlayed on the primary window. A modal dialog is designed to interrupt the user to, for example, prompt the user to confirm an action or enter information, and it traps or contains keyboard focus until the dialog is closed. ARIA has a special role for modal dialogs that convey a brief, important message to the user -- the <a href="http://w3c.github.io/aria/aria/aria.html#alertdialog" class="role-reference">alertdialog</a> ( See the <a href="#alertdialog">Alert Dialog</a> design pattern).
@@ -1487,7 +1483,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <li> <kbd>Enter</kbd>: Serves as the default submit action key if if the primary purpose of the dialog is to gather information </li>
         </ul>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note7"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note6"><span>Note</span></div>
           <ul class="">
             <li>If the current focus item has <kbd>Escape</kbd> key behavior, the press of the <kbd>Escape</kbd> will be handled by the current item and the user may have to press <kbd>Escape</kbd> an additional time to close the dialog.</li>
             <li> When the dialog is closed or cancelled focus should return to the element in the application which had focus before the dialog is invoked. This is usually the control which opened the dialog. </li>
@@ -1508,7 +1504,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <section class="notoc" typeof="bibo:Chapter" resource="#example-5" property="bibo:hasPart">
         <h4 id="example-5" resource="#example-5"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note8"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note7"><span>Note</span></div>
           <p class="">
             Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG task force is developing examples for APG version 1.1 that will be directly incorporated into the guide.
           </p>
@@ -1577,7 +1573,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             </li>
           </ul>
           <div class="note">
-            <div class="note-title marker" aria-level="6" role="heading" id="h-note9"><span>Note</span></div>
+            <div class="note-title marker" aria-level="6" role="heading" id="h-note8"><span>Note</span></div>
             <ul class="">
               <li>When the above grid navigation keys move focus, whether the focus is set on an element inside the cell or the grid cell depends on cell content. See <a href="gridNav_focus">Whether to Focus on a Cell or an Element Inside It</a>.
               </li>
@@ -1602,7 +1598,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             <li><kbd>Shift + Up Arrow</kbd>: Extends selection one cell Up.</li>
           </ul>
           <div class="note">
-            <div class="note-title marker" aria-level="6" role="heading" id="h-note10"><span>Note</span></div>
+            <div class="note-title marker" aria-level="6" role="heading" id="h-note9"><span>Note</span></div>
             <p class="">
               See <a href="#aria_ex_widget">Global Recommendations</a> for cut, copy and paste key assignments.
             </p>
@@ -1641,7 +1637,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             </li>
           </ul>
           <div class="note">
-            <div class="note-title marker" aria-level="6" role="heading" id="h-note11"><span>Note</span></div>
+            <div class="note-title marker" aria-level="6" role="heading" id="h-note10"><span>Note</span></div>
             <ul class="">
               <li>When the above grid navigation keys move focus, whether the focus is sett on an element inside the cell or the grid cell depends on cell content. See <a href="gridNav_focus">Whether to Focus on a Cell or an Element Inside It</a>.
               </li>
@@ -1666,7 +1662,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             <li><kbd>Shift + Up Arrow</kbd>: Extends selection one cell Up.</li>
           </ul>
           <div class="note">
-            <div class="note-title marker" aria-level="6" role="heading" id="h-note12"><span>Note</span></div>
+            <div class="note-title marker" aria-level="6" role="heading" id="h-note11"><span>Note</span></div>
             <p class="">
               See <a href="#aria_ex_widget">Global Recommendations</a> for cut, copy and paste key assignments.
             </p>
@@ -1766,7 +1762,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           </li>
         </ul>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note13"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note12"><span>Note</span></div>
           <ul class="">
             <li>
               If the element with the <code>grid</code> role is an HTML <code>table</code> element, then it is not necessary to use ARIA roles for rows and cells because the HTML elements have implied ARIA semantics. For example, an HTML <code>&lt;TR&gt;</code> has an implied ARIA role of <code>row</code>. A <code>grid</code> built from an HTML <code>table</code> that includes cells that span multiple rows or columns must use HTML <code>rowspan</code> and <code>colspan</code> and must not use <code>aria-rowspan</code> or <code>aria-colspan</code>.
@@ -1791,7 +1787,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
       <p>A <a href="http://w3c.github.io/aria/aria/aria.html#link" class="role-reference">link</a> widget provides an interactive reference to a resource either locally in the application or to an external resource.</p>
       <div class="note">
-        <div class="note-title marker" aria-level="4" role="heading" id="h-note14"><span>Note</span></div>
+        <div class="note-title marker" aria-level="4" role="heading" id="h-note13"><span>Note</span></div>
         <p class="">Authors are strongly encouraged to use a native host language link element, such as an HTML <code>&lt;A&gt;</code> element with <code>href</code> attribute. As with other <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> widget roles, applying the link role to an element will not cause browsers to enhance the element with standard link behaviors such as navigation to the link target or context menu actions. Providing these features of the element is the author's responsibility.</p>
       </div>
 
@@ -1887,7 +1883,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           </li>
         </ul>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note15"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note14"><span>Note</span></div>
           <ol class="">
             <li>If the ability to select or deselect all options may be commonly needed, it is recommended that the author add separate controls to perform these actions. </li>
             <li>Focus (the active element) is different from the selected state. See <a href="#focus_vs_selection">to be written</a>. </li>
@@ -1964,7 +1960,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <li><kbd>Shift + Tab</kbd>: Close the menu and all open parent menus and move focus to the previous element in the tab sequence.</li>
         </ul>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note16"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note15"><span>Note</span></div>
           <ol class="">
             <li>The keyboard behaviors of a menubar are the same as other menus except that a menubar is typically visually persistent so the first item is in the tab sequence and <kbd>Escape</kbd>, <kbd>Tab</kbd>, and <kbd>Shift + Tab</kbd> do not close it. </li>
             <li>If the items in a menu or menubar are arranged horizontally:
@@ -2004,7 +2000,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <li>All <a href="http://w3c.github.io/aria/aria/aria.html#separator" class="role-reference">separators</a> should have <a href="http://w3c.github.io/aria/aria/aria.html#aria-orientation" class="property-reference">aria-orientation</a> consistent with the separator's orientation. </li>
         </ul>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note17"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note16"><span>Note</span></div>
           <p class="">If <a href="http://w3c.github.io/aria/aria/aria.html#aria-owns" class="property-reference">aria-owns</a> is set on the menu container to include elements that are not DOM children of the container, those elements will appear in the reading order in the sequence they are referenced and after any items that are DOM children. Scripts that manage focus need to ensure the visual focus order matches this assistive technology reading order. </p>
         </div>
       </section>
@@ -2012,7 +2008,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <section class="notoc" typeof="bibo:Chapter" resource="#example-8" property="bibo:hasPart">
         <h4 id="example-8" resource="#example-8"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note18"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note17"><span>Note</span></div>
           <p class="">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG task force is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
         </div>
 
@@ -2081,7 +2077,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           </li>
         </ul>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note19"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note18"><span>Note</span></div>
           <p class="">
             The behavior of the <kbd>Tab</kbd> key described above differs slightly from the behavior provided by some browsers for native HTML radio groups. In some browsers, if none of the radio buttons are selected, <kbd>Shift+Tab</kbd> places focus on the last radio button instead of the first radio button.
           </p>
@@ -2146,7 +2142,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </ul>
 
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note20"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note19"><span>Note</span></div>
           <ol class="">
             <li>Focus is placed on the slider (the visual object that the mouse user would move, also known as the thumb) </li>
             <li>In some circumstances, an author may reverse the direction of the value change for the keys specified above, e.g., make <kbd>Up Arrow</kbd> decrease the value, if the author is certain doing so will result in a better user experience. </li>
@@ -2200,7 +2196,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </ul>
 
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note21"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note20"><span>Note</span></div>
           <ol class="">
             <li>Focus is placed on one of the thumbs of the slider.</li>
             <li>All thumbs are in the tab order.</li>
@@ -2223,7 +2219,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <section class="notoc" typeof="bibo:Chapter" resource="#example-12" property="bibo:hasPart">
         <h4 id="example-12" resource="#example-12"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note22"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note21"><span>Note</span></div>
           <p class="">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG task force is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
         </div>
 
@@ -2254,7 +2250,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <li><kbd>Tab</kbd> key moves into and out of the widget. </li>
         </ul>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note23"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note22"><span>Note</span></div>
           <p class="">Focus should remain on the edit field </p>
         </div>
       </section>
@@ -2271,7 +2267,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <section class="notoc" typeof="bibo:Chapter" resource="#example-13" property="bibo:hasPart">
         <h4 id="example-13" resource="#example-13"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note24"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note23"><span>Note</span></div>
           <p class="">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG task force is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
         </div>
         <ul>
@@ -2338,7 +2334,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           </li>
         </ul>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note25"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note24"><span>Note</span></div>
           <ol class="">
             <li>
               It is recommended that tabs activate automatically when they receive focus as long as their associated tab panels are displayed without noticeable latency. This typically requires tab panel content to be preloaded. Otherwise, automatic activation slows focus movement, which significantly hampers users' ability to navigate efficiently across the tab list.
@@ -2407,7 +2403,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           </li>
         </ul>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note26"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note25"><span>Note</span></div>
           <ol class="">
             <li>If the items in a toolbar are arranged vertically:
               <ol>
@@ -2433,7 +2429,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <section class="notoc" typeof="bibo:Chapter" resource="#example-15" property="bibo:hasPart">
         <h4 id="example-15" resource="#example-15"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note27"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note26"><span>Note</span></div>
           <p class="">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG task force is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
         </div>
         <ul>
@@ -2454,7 +2450,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
         <p><kbd>Escape</kbd>: Dismisses the Tooltip.</p>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note28"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note27"><span>Note</span></div>
           <ol class="">
             <li>The trigger element to which the tooltip is attached, e.g., a link, should never actually lose input focus. </li>
             <li>If the tooltip is invoked when the trigger element gets focus, then it should be dismissed when it no longer has focus (onBlur). If the tooltip is invoked with mouseIn, then it should be dismissed with a mouseOut. </li>
@@ -2474,7 +2470,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <section class="notoc" typeof="bibo:Chapter" resource="#example-16" property="bibo:hasPart">
         <h4 id="example-16" resource="#example-16"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note29"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note28"><span>Note</span></div>
           <p class="">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG task force is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
         </div>
         <ul>
@@ -2551,7 +2547,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <section class="notoc" typeof="bibo:Chapter" resource="#example-17" property="bibo:hasPart">
         <h4 id="example-17" resource="#example-17"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note30"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note29"><span>Note</span></div>
           <p class="">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG task force is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
         </div>
         <ul>
@@ -2582,7 +2578,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </ul>
 
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note31"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note30"><span>Note</span></div>
           <p class="">A fixed size splitter simply omits implementation of the arrow keys. </p>
         </div>
       </section>
@@ -2600,7 +2596,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <section class="notoc" typeof="bibo:Chapter" resource="#example-18" property="bibo:hasPart">
         <h4 id="example-18" resource="#example-18"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note32"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note31"><span>Note</span></div>
           <p class="">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG task force is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
         </div>
         <ul>
@@ -3243,7 +3239,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <section id="scrollintoview" typeof="bibo:Chapter" resource="#scrollintoview" property="bibo:hasPart">
         <h4 id="h-scrollintoview" resource="#h-scrollintoview"><span property="xhv:role" resource="xhv:heading"><span class="secno">4.5.4 </span>Managing Focus with Scroll<span class="permalink" typeof="bookmark"><a href="#scrollintoview" aria-label="Permalink for 4.5.4 Managing Focus with Scroll" title="Permalink for 4.5.4 Managing Focus with Scroll" property="url"><span property="title" content="4.5.4 Managing Focus with Scroll">§</span></a></span></span></h4>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note33"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note32"><span>Note</span></div>
           <p class="">Not yet edited ... considering what should be written/included. We don't want to write a javascript book.</p>
         </div>
         <p>In some browsers, a JavaScript call to <code> scrollIntoView()</code> on this element should suffice, but in browsers where this is unreliable, authors should explicitly set the <code>scrollTop</code> and <code>scrollLeft</code> properties of the "cell23" element and its ancestors to scroll the element into view. <code>scrollTop</code> and <code>scrollLeft</code> adjust the node positions by the amounts(pixels) needed to scroll a node into view. &nbsp;Scrolling values are adjusted by the amounts(pixels) needed to scroll a node into view. This is done by comparing the sizes of the nodes using available measurements such as scroll+offset+clientWidth/Height/Left/Top. It's important to note that you have to adjust a node so that it's viewable within the context of its parent node. &nbsp;Then you have to move up the DOM tree and make each parent node visible.</p>
@@ -3262,7 +3258,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     <section id="modal_dialog" typeof="bibo:Chapter" resource="#modal_dialog" property="bibo:hasPart">
       <h3 id="h-modal_dialog" resource="#h-modal_dialog"><span property="xhv:role" resource="xhv:heading"><span class="secno">4.6 </span>Managing Focus in Dialogs<span class="permalink" typeof="bookmark"><a href="#modal_dialog" aria-label="Permalink for 4.6 Managing Focus in Dialogs" title="Permalink for 4.6 Managing Focus in Dialogs" property="url"><span property="title" content="4.6 Managing Focus in Dialogs">§</span></a></span></span></h3>
       <div class="note">
-        <div class="note-title marker" aria-level="4" role="heading" id="h-note34"><span>Note</span></div>
+        <div class="note-title marker" aria-level="4" role="heading" id="h-note33"><span>Note</span></div>
         <p class="">
           MCK: unedited content pulled together from the old guide that needs a significant re-write. Please ignore this section for now.
         </p>
@@ -3483,7 +3479,7 @@ helper.stopEvent(evt); <span class="hljs-comment">//stop the event if not a tab 
           The remainder of this section provides guidance balancing requirements and concerns related to key assignment conflicts. It is typically ideal if key assignments do not conflict with keys that are assigned to functions in the user's operating system, browser, or assistive technology. Conflicts can block efficient access to functions that are essential to the user, and a perfect storm of conflicts can trap a user. At the same time, there are some circumstances where intentional conflicts are useful. And, given the vast array of operating system, browser, and assistive technology keys, it is almost impossible to be certain conflicts do not exist. So it is also important to employ strategies that mitigate the impact of conflicts whether they are intentional or unknown.
         </p>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note35"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note34"><span>Note</span></div>
           <p class="">
             In the following sections, <kbd>meta</kbd> key refers to the <kbd>Windows</kbd> key on Windows-compatible keyboards and the <kbd>Command</kbd> key on MacOS-compatible keyboards.
           </p>
@@ -3573,7 +3569,7 @@ helper.stopEvent(evt); <span class="hljs-comment">//stop the event if not a tab 
     <section id="keyboard_js_tips" typeof="bibo:Chapter" resource="#keyboard_js_tips" property="bibo:hasPart">
       <h3 id="h-keyboard_js_tips" resource="#h-keyboard_js_tips"><span property="xhv:role" resource="xhv:heading"><span class="secno">4.9 </span>Other Keyboard Interface Development Tips<span class="permalink" typeof="bookmark"><a href="#keyboard_js_tips" aria-label="Permalink for 4.9 Other Keyboard Interface Development Tips" title="Permalink for 4.9 Other Keyboard Interface Development Tips" property="url"><span property="title" content="4.9 Other Keyboard Interface Development Tips">§</span></a></span></span></h3>
       <div class="note">
-        <div class="note-title marker" aria-level="4" role="heading" id="h-note36"><span>Note</span></div>
+        <div class="note-title marker" aria-level="4" role="heading" id="h-note35"><span>Note</span></div>
         <p class="">
           MCK: this section is a collection of keyboard related old content with a yet undecided fate.
         </p>
