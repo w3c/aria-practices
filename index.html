@@ -828,7 +828,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <a class="logo" href="https://www.w3.org/"><img width="72" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" alt="W3C"></a>
     </p>
     <h1 class="title p-name" id="title" property="dcterms:title"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Authoring Practices 1.1</h1>
-    <h2 id="w3c-editor-s-draft-01-september-2016"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2016-09-01">01 September 2016</time></h2>
+    <h2 id="w3c-editor-s-draft-12-september-2016"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2016-09-12">12 September 2016</time></h2>
     <dl>
       <dt>This version:</dt>
       <dd><a class="u-url" href="http://w3c.github.io/aria-practices/">http://w3c.github.io/aria-practices/</a></dd>
@@ -2544,18 +2544,74 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </ul>
       </section>
 
-      <section class="notoc" typeof="bibo:Chapter" resource="#example-17" property="bibo:hasPart">
-        <h4 id="example-17" resource="#example-17"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
-        <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note29"><span>Note</span></div>
-          <p class="">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG task force is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
-        </div>
-        <ul>
-          <li><a href="http://www.oaa-accessibility.org/examplep/treeview1/" target="_blank" rel="nofollow">Open Ajax Alliance treeview</a></li>
-          <li><a href="http://www.oaa-accessibility.org/examplep/treeview2/" target="_blank" rel="nofollow">Open Ajax Alliance treeview using aria-owns</a></li>
-          <li><a href="http://www.oaa-accessibility.org/examplep/treeview3/" target="_blank" rel="nofollow">Open Ajax Alliance treeview using ARIA CSS selectors</a></li>
-          <li><a href="http://archive.dojotoolkit.org/nightly/dojotoolkit/dijit/tests/tree/test_Tree.html" target="_blank" rel="nofollow">Dojo nightly</a></li>
-        </ul>
+      <section class="notoc" typeof="bibo:Chapter" resource="#examples-2" property="bibo:hasPart">
+        <h4 id="examples-2" resource="#examples-2"><span property="xhv:role" resource="xhv:heading">Examples</span></h4>
+
+        <table aria-label="Treeview examples">
+          <thead>
+            <tr>
+              <th style="min-width: 6em">Example ID</th>
+              <th>Action</th>
+              <th><code>aria-owns</code></th>
+              <th><code>aria-level</code></th>
+              <th><code>aria-setsize/<br><code>aria-posinset</code></code>
+              </th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><a href="examples/treeview/treeview-1a/treeview-1a.html">Treeview 1a</a></td>
+              <td>Select a file</td>
+              <td class="nu">-</td>
+              <td class="computed">Computed</td>
+              <td class="computed">Computed</td>
+              <td>
+                <ul>
+                  <li>Expects browser to compute values for <code>aria-level</code>, <code>aria-posinset</code> and <code>aria-setsize</code> based on DOM structure.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td><a href="examples/treeview/treeview-1b/treeview-1b.html">Treeview 1b</a></td>
+              <td>Select a file</td>
+              <td class="nu">-</td>
+              <td class="markup">Markup</td>
+              <td class="markup">Markup</td>
+              <td>
+                <ul>
+                  <li>Explicitly defines values of <code>aria-level</code>, <code>aria-posinset</code> and <code>aria-setsize</code></li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td><a href="examples/treeview/treeview-2a/treeview-2a.html">Treeview 2a</a></td>
+              <td>Follow a link</td>
+              <td class="nu">-</td>
+              <td class="computed">Computed</td>
+              <td class="computed">Computed</td>
+              <td>
+                <ul>
+                  <li>Expects browser to compute values for <code>aria-level</code>, <code>aria-posinset</code> and <code>aria-setsize</code> based on DOM structure.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td><a href="examples/treeview/treeview-2b/treeview-2b.html">Treeview 2b</a></td>
+              <td>Follow a link</td>
+              <td class="nu">-</td>
+              <td class="markup">Markup</td>
+              <td class="markup">Markup</td>
+              <td>
+                <ul>
+                  <li>Explicitly defines values of <code>aria-level</code>, <code>aria-posinset</code> and <code>aria-setsize</code></li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+
       </section>
     </section>
 
@@ -2578,7 +2634,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </ul>
 
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note30"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note29"><span>Note</span></div>
           <p class="">A fixed size splitter simply omits implementation of the arrow keys. </p>
         </div>
       </section>
@@ -2593,10 +2649,10 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </ul>
       </section>
 
-      <section class="notoc" typeof="bibo:Chapter" resource="#example-18" property="bibo:hasPart">
-        <h4 id="example-18" resource="#example-18"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
+      <section class="notoc" typeof="bibo:Chapter" resource="#example-17" property="bibo:hasPart">
+        <h4 id="example-17" resource="#example-17"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note31"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note30"><span>Note</span></div>
           <p class="">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG task force is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
         </div>
         <ul>
@@ -2761,8 +2817,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <p>If the HTML5 <code>header</code> element technique is not being used, a <code>role="banner"</code> attribute should be used to define a <code>banner</code> landmark.</p>
         </section>
 
-        <section class="notoc" typeof="bibo:Chapter" resource="#examples-2" property="bibo:hasPart">
-          <h5 id="examples-2" resource="#examples-2"><span property="xhv:role" resource="xhv:heading">Examples</span></h5>
+        <section class="notoc" typeof="bibo:Chapter" resource="#examples-3" property="bibo:hasPart">
+          <h5 id="examples-3" resource="#examples-3"><span property="xhv:role" resource="xhv:heading">Examples</span></h5>
 
           <p><a href="examples/landmarks/banner.html">Banner Landmark Example</a></p>
         </section>
@@ -2792,8 +2848,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <p>If the HTML5 <code>aside</code> element technique is not being used, use a <code>role="complementary"</code> attribute to define a <code>complementary</code> landmark.</p>
         </section>
 
-        <section class="notoc" typeof="bibo:Chapter" resource="#examples-3" property="bibo:hasPart">
-          <h5 id="examples-3" resource="#examples-3"><span property="xhv:role" resource="xhv:heading">Examples</span></h5>
+        <section class="notoc" typeof="bibo:Chapter" resource="#examples-4" property="bibo:hasPart">
+          <h5 id="examples-4" resource="#examples-4"><span property="xhv:role" resource="xhv:heading">Examples</span></h5>
 
           <p><a href="examples/landmarks/complementary.html">Complementary Landmark Example</a></p>
         </section>
@@ -2838,8 +2894,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <p>If the HTML5 <code>footer</code> element technique is not being used, a <code>role="contentinfo"</code> attribute should be used to define a <code>contentinfo</code> landmark.</p>
         </section>
 
-        <section class="notoc" typeof="bibo:Chapter" resource="#examples-4" property="bibo:hasPart">
-          <h5 id="examples-4" resource="#examples-4"><span property="xhv:role" resource="xhv:heading">Examples</span></h5>
+        <section class="notoc" typeof="bibo:Chapter" resource="#examples-5" property="bibo:hasPart">
+          <h5 id="examples-5" resource="#examples-5"><span property="xhv:role" resource="xhv:heading">Examples</span></h5>
           <p><a href="examples/landmarks/contentinfo.html">Contentinfo Landmark Example</a></p>
         </section>
       </section>
@@ -2882,8 +2938,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <p>Use the <code>role="form"</code> to identify a region of the page; do not use it to identify every form field.</p>
         </section>
 
-        <section class="notoc" typeof="bibo:Chapter" resource="#examples-5" property="bibo:hasPart">
-          <h5 id="examples-5" resource="#examples-5"><span property="xhv:role" resource="xhv:heading">Examples</span></h5>
+        <section class="notoc" typeof="bibo:Chapter" resource="#examples-6" property="bibo:hasPart">
+          <h5 id="examples-6" resource="#examples-6"><span property="xhv:role" resource="xhv:heading">Examples</span></h5>
 
           <p><a href="examples/landmarks/form.html">Form Landmark Example</a></p>
         </section>
@@ -2914,8 +2970,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <p>If the HTML5 <code>main</code> element technique is not being used, use a <code>role="main"</code> attribute to define a <code>main</code> landmark.</p>
         </section>
 
-        <section class="notoc" typeof="bibo:Chapter" resource="#examples-6" property="bibo:hasPart">
-          <h5 id="examples-6" resource="#examples-6"><span property="xhv:role" resource="xhv:heading">Examples</span></h5>
+        <section class="notoc" typeof="bibo:Chapter" resource="#examples-7" property="bibo:hasPart">
+          <h5 id="examples-7" resource="#examples-7"><span property="xhv:role" resource="xhv:heading">Examples</span></h5>
 
           <p><a href="examples/landmarks/main.html">Main Landmark Example</a></p>
         </section>
@@ -2943,8 +2999,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
         </section>
 
-        <section class="notoc" typeof="bibo:Chapter" resource="#examples-7" property="bibo:hasPart">
-          <h5 id="examples-7" resource="#examples-7"><span property="xhv:role" resource="xhv:heading">Examples</span></h5>
+        <section class="notoc" typeof="bibo:Chapter" resource="#examples-8" property="bibo:hasPart">
+          <h5 id="examples-8" resource="#examples-8"><span property="xhv:role" resource="xhv:heading">Examples</span></h5>
 
           <p><a href="examples/landmarks/navigation.html">Navigation Landmark Example</a></p>
         </section>
@@ -2973,8 +3029,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <p>If the HTML5 <code>section</code> element technique is not being used, use a <code>role="region"</code> attribute to define a <code>region</code> landmark.</p>
         </section>
 
-        <section class="notoc" typeof="bibo:Chapter" resource="#examples-8" property="bibo:hasPart">
-          <h5 id="examples-8" resource="#examples-8"><span property="xhv:role" resource="xhv:heading">Examples</span></h5>
+        <section class="notoc" typeof="bibo:Chapter" resource="#examples-9" property="bibo:hasPart">
+          <h5 id="examples-9" resource="#examples-9"><span property="xhv:role" resource="xhv:heading">Examples</span></h5>
 
           <p><a href="examples/landmarks/region.html">Region Landmark Example</a></p>
         </section>
@@ -3000,8 +3056,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <p>The <code>role="search"</code> attribute defines a <code>search</code> landmark.</p>
         </section>
 
-        <section class="notoc" typeof="bibo:Chapter" resource="#examples-9" property="bibo:hasPart">
-          <h5 id="examples-9" resource="#examples-9"><span property="xhv:role" resource="xhv:heading">Examples</span></h5>
+        <section class="notoc" typeof="bibo:Chapter" resource="#examples-10" property="bibo:hasPart">
+          <h5 id="examples-10" resource="#examples-10"><span property="xhv:role" resource="xhv:heading">Examples</span></h5>
 
           <p><a href="examples/landmarks/search.html">Search Landmark Example</a></p>
         </section>
@@ -3239,7 +3295,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <section id="scrollintoview" typeof="bibo:Chapter" resource="#scrollintoview" property="bibo:hasPart">
         <h4 id="h-scrollintoview" resource="#h-scrollintoview"><span property="xhv:role" resource="xhv:heading"><span class="secno">4.5.4 </span>Managing Focus with Scroll<span class="permalink" typeof="bookmark"><a href="#scrollintoview" aria-label="Permalink for 4.5.4 Managing Focus with Scroll" title="Permalink for 4.5.4 Managing Focus with Scroll" property="url"><span property="title" content="4.5.4 Managing Focus with Scroll">§</span></a></span></span></h4>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note32"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note31"><span>Note</span></div>
           <p class="">Not yet edited ... considering what should be written/included. We don't want to write a javascript book.</p>
         </div>
         <p>In some browsers, a JavaScript call to <code> scrollIntoView()</code> on this element should suffice, but in browsers where this is unreliable, authors should explicitly set the <code>scrollTop</code> and <code>scrollLeft</code> properties of the "cell23" element and its ancestors to scroll the element into view. <code>scrollTop</code> and <code>scrollLeft</code> adjust the node positions by the amounts(pixels) needed to scroll a node into view. &nbsp;Scrolling values are adjusted by the amounts(pixels) needed to scroll a node into view. This is done by comparing the sizes of the nodes using available measurements such as scroll+offset+clientWidth/Height/Left/Top. It's important to note that you have to adjust a node so that it's viewable within the context of its parent node. &nbsp;Then you have to move up the DOM tree and make each parent node visible.</p>
@@ -3258,7 +3314,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     <section id="modal_dialog" typeof="bibo:Chapter" resource="#modal_dialog" property="bibo:hasPart">
       <h3 id="h-modal_dialog" resource="#h-modal_dialog"><span property="xhv:role" resource="xhv:heading"><span class="secno">4.6 </span>Managing Focus in Dialogs<span class="permalink" typeof="bookmark"><a href="#modal_dialog" aria-label="Permalink for 4.6 Managing Focus in Dialogs" title="Permalink for 4.6 Managing Focus in Dialogs" property="url"><span property="title" content="4.6 Managing Focus in Dialogs">§</span></a></span></span></h3>
       <div class="note">
-        <div class="note-title marker" aria-level="4" role="heading" id="h-note33"><span>Note</span></div>
+        <div class="note-title marker" aria-level="4" role="heading" id="h-note32"><span>Note</span></div>
         <p class="">
           MCK: unedited content pulled together from the old guide that needs a significant re-write. Please ignore this section for now.
         </p>
@@ -3479,7 +3535,7 @@ helper.stopEvent(evt); <span class="hljs-comment">//stop the event if not a tab 
           The remainder of this section provides guidance balancing requirements and concerns related to key assignment conflicts. It is typically ideal if key assignments do not conflict with keys that are assigned to functions in the user's operating system, browser, or assistive technology. Conflicts can block efficient access to functions that are essential to the user, and a perfect storm of conflicts can trap a user. At the same time, there are some circumstances where intentional conflicts are useful. And, given the vast array of operating system, browser, and assistive technology keys, it is almost impossible to be certain conflicts do not exist. So it is also important to employ strategies that mitigate the impact of conflicts whether they are intentional or unknown.
         </p>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note34"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note33"><span>Note</span></div>
           <p class="">
             In the following sections, <kbd>meta</kbd> key refers to the <kbd>Windows</kbd> key on Windows-compatible keyboards and the <kbd>Command</kbd> key on MacOS-compatible keyboards.
           </p>
@@ -3569,7 +3625,7 @@ helper.stopEvent(evt); <span class="hljs-comment">//stop the event if not a tab 
     <section id="keyboard_js_tips" typeof="bibo:Chapter" resource="#keyboard_js_tips" property="bibo:hasPart">
       <h3 id="h-keyboard_js_tips" resource="#h-keyboard_js_tips"><span property="xhv:role" resource="xhv:heading"><span class="secno">4.9 </span>Other Keyboard Interface Development Tips<span class="permalink" typeof="bookmark"><a href="#keyboard_js_tips" aria-label="Permalink for 4.9 Other Keyboard Interface Development Tips" title="Permalink for 4.9 Other Keyboard Interface Development Tips" property="url"><span property="title" content="4.9 Other Keyboard Interface Development Tips">§</span></a></span></span></h3>
       <div class="note">
-        <div class="note-title marker" aria-level="4" role="heading" id="h-note35"><span>Note</span></div>
+        <div class="note-title marker" aria-level="4" role="heading" id="h-note34"><span>Note</span></div>
         <p class="">
           MCK: this section is a collection of keyboard related old content with a yet undecided fate.
         </p>

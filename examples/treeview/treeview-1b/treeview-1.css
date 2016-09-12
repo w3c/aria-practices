@@ -1,0 +1,45 @@
+
+[role="treeitem"]:hover,
+[role="treeitem"]:focus {
+  border-color: #eee;
+  cursor: default;
+}
+
+[role="tree"]:active {
+  border-color: #bbb;
+}
+
+
+[role="treeitem"].doc:before
+{
+    content: url(../images/file.png);
+}
+
+
+[role="treeitem"][aria-expanded="false"] > span:before {
+  content: url(../images/closed.png);
+}
+
+[role="treeitem"][aria-expanded="true"] > span:before {
+  content: url(../images/open.png);
+}
+
+[role="treeitem"],
+[role="treeitem"] span {
+  font-size: 15pt;
+  border: thin transparent solid;
+  padding: 0.125em;
+  display: block;
+  
+}
+
+[role="treeitem"].focus,
+[role="treeitem"] span.focus {
+  border-color: black;
+  background-color: #EEEEEE;
+  width: 16em;
+}
+
+ul[role="tree"] li {
+  list-style: none;
+}
