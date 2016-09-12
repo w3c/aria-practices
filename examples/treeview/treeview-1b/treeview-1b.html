@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
-    <title>Example 1b: Author supplied values for aria-level, aria-setsize and aria-posinset</title>
+    <title>ARIA Tree View Example 1b: File Viewer</title>
 
     <link href="../../css/core.css" rel="stylesheet"> 
     <link href="../../css/table.css" rel="stylesheet">
@@ -15,10 +15,15 @@
   
   <body>
     <main>
-      <h1>Example 1b: Author supplied values for aria-level, aria-setsize and aria-posinset</h1>
-      <h3 id="tree1">
-        File Viewer
-      </h3>
+      <h1>ARIA Tree View Example 1b: File Viewer</h1>
+      <ul>
+        <li>In this example the ARIA treeview relationships (e.g. <code>tree</code>, <code>group</code> and <code>treeitem</code>) are defined in the parent child relationships defined in the DOM structure.</li>
+        <li>This example the author specifies the values of <code>aria-level</code>, <code>aria-setsize</code> and <code>aria-posinset</code> for communication to accessibility APIs.  Therefore this example does not rely on the browser to compute these values.</li>
+        <li><a href="https://www.w3.org/TR/wai-aria-practices-1.1/#TreeView">WAI-ARIA 1.1: Tree View authoring practices</a></li>
+      </ul>
+
+      <h3 id="tree1">File Viewer</h3>
+
       <ul role="tree" aria-labelledby="tree1">
         <li role="treeitem"
           aria-level="1"
