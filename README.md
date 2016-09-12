@@ -15,6 +15,22 @@ future ARIA features we need to implement.
 * To keep code in this repository consistent; editors should use a text editor
 that supports [EditorConfig](http://editorconfig.org/).
 
+### Writing code examples
+
+- Choose a pattern from the
+  [Design Patterns Status](https://github.com/w3c/aria-practices/wiki/Design-Patterns-Status)
+  document that is missing a code example.
+- Via the command line, run:
+
+        $ bin/generate <name>
+
+  Where `<name>` is the dasherized name of the design pattern example. This
+  creates a new example directory and file with the same name, based on a
+  template.
+
+- Edit the new html file with an example corresponding to the description in
+  `aria-practices.html`
+
 ### Editorial documentation
 
 General documentation for editing ARIA deliverables is available in the 
