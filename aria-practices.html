@@ -245,8 +245,119 @@
 		</section>
 
         <section class="widget" id="accordion">
-            <h3>Accordion</h3>
-            <p>Drafting this section is <a href="https://github.com/w3c/aria-practices/issues/53">issue 53</a>. </p>
+                <h3>Accordion (Sections With Show/Hide Functionality)</h3>
+            <p>An accordion is a vertically stacked set of elements, such as labels or
+                thumbnails, that allow the user to toggle the display of sections of content. Each
+                labeling element can be expanded or collapsed to reveal or hide its associated
+                content. Accordions are commonly used to reduce the need to scroll when presenting
+                multiple sections of content on a single page.</p>
+            <p>Terms for understanding accordions include:</p>
+            <dl>
+<dt>Accordion Header:</dt>
+                    <dd>Label for or thumbnail representing a section of content that also serves as a control for showing, and in some implementations, hiding  the section of content. </dd>
+                    <dt>Accordion Panel:</dt>
+                    <dd>Section of content associated with an accordion header.</dd>
+                </dl>
+                <p>In some accordions, there are additional elements that are always visible adjacent to the accordion header. 
+                For instance, a menubutton may accompany each accordion header to provide access to actions that apply to that section.
+                And, in some cases, a snippet of the hidden content may also be visually persistent. </p>
+
+            <section class="notoc">
+                <h4>Keyboard Interaction</h4>
+                <ul>
+                    <li>
+                        <kbd>Enter</kbd> or <kbd>Space</kbd>:
+                        <ul>
+                            <li>When focus is on the accordion header for a collapsed panel,
+                                expands the associated panel. If the implementation allows only one
+                                panel to be expanded, and if another panel is expanded, collapses that
+                                panel.</li>
+                            <li>When focus is on the accordion header for an expanded panel,
+                                collapses the panel if the implementation supports collapsing. Some
+                                implementations require one panel to be expanded at all times and
+                                allow only one panel to be expanded; so, they do not support a
+                                collapse function.</li>
+                        </ul>
+                        </li>
+                        <li>
+                            <kbd>Down Arrow</kbd> (Optional): If focus is on an accordion header, moves focus to the next accordion header.
+                        If focus is on the last accordion header, either does nothing or moves focus to the first accordion header.
+                        </li>
+                        <li>
+                            <kbd>Up Arrow</kbd> (Optional): If focus is on an accordion header, moves focus to the previous accordion header.
+                        If focus is on the first accordion header, either does nothing or moves focus to the last accordion header.
+                        </li>
+                        <kbd>Home</kbd> (Optional): When focus is on an accordion header, moves
+                        focus to the first accordion header.
+                    </li>
+                    <li>
+                        <kbd>End</kbd> (Optional): When focus is on an accordion header, moves focus
+                        to the last accordion header.
+                    </li>
+                    <li>
+                        <kbd>Control + Page Down</kbd> (Optional): If focus is inside an accordion
+                        panel or on an accordion header, moves focus to the next accordion header.
+                        If focus is in the last accordion header or panel, either does nothing or
+                        moves focus to the first accordion header.
+                    </li>
+                    <li>
+                        <kbd>Control + Page Up</kbd> (Optional): If focus is inside an accordion
+                        panel, moves focus to the header for that panel. If focus is on an accordion
+                        header, moves focus to the previous accordion header. If focus is on the
+                        first accordion header, either does nothing or moves focus to the last
+                        accordion header.
+                    </li>
+                </ul>
+            </section>
+
+            <section class="notoc">
+                <h4>WAI-ARIA Roles, States, and Properties:</h4>
+                <ul>
+                    <li>
+                        Each accordion header is contained in an element with role
+                        <a href="#button" class="role-reference">button</a>.
+                        The button label is the label for the associated accordion panel.
+                    </li>
+                    <li>
+                        Each accordion header <code>button</code> is wrapped in an element with role
+                        <a href="#heading" class="role-reference">heading</a>
+                        that has a value set for
+                        <a href="#aria-level" class="property-reference">aria-level</a>
+                        that is appropriate for the information architecture of the page. If the
+                        native host language has an element with an implicit <code>heading</code>
+                        and <code>aria-level</code>, such as an HTML heading tag, a native host
+                        language element may be used. The <code>button</code> element is the only
+                        element inside the <code>heading</code> element. That is, if there are other
+                        visually persistent elements, they are not included inside the <code>heading</code>
+                        element.
+                    </li>
+                    <li>
+                        If the accordion panel associated with an accordion header is visible, the
+                        header <code>button</code> element has
+                        <a href="#aria-expanded" class="state-reference">aria-expanded</a>
+                        set to <code>true</code>. If the panel is not visible,
+                        <a href="#aria-expanded" class="state-reference">aria-expanded</a>
+                        is set to <code>false</code>.
+                    </li>
+                    <li>
+                        The accordion header <code>button</code> element has
+                        <a href="aria-controls" class="property-reference">aria-controls</a>
+                        set to the ID of the element containing the accordion panel content.
+                    </li>
+                    <li>
+                        If the accordion panel associated with an accordion header is visible, and
+                        if the accordion does not permit the panel to be collapsed, the header <code>button</code>
+                        element has
+                        <a href="#aria-disabled" class="state-reference">aria-disabled</a>
+                        set to <code>true</code>.
+                    </li>
+                </ul>
+            </section>
+
+            <section class="notoc">
+                <h4>Example</h4>
+                <p><a href="examples/accordion/accordion1.html">Accordion Example</a>: demonstrates a form divided into three sections using an accordion to show one ssection at a time. </p>
+            </section>
         </section>
         
     <section class="widget" id="alert">
@@ -285,60 +396,56 @@
     </section>
 
     <section class="widget" id="alertdialog">
-      <h3>Alert Dialog or Message Dialog</h3>
+      <h3>Alert and Message Dialogs</h3>
       <p class="note">This section is partially revised. Planned changes are being discussed in <a href="https://github.com/w3c/aria-practices/issues/54">issue 54</a>.</p>
-
       <p>
-        A dialog with the primary purpose of communicating a message and acquiring a user response to that message.
-        Examples include action confirmation prompts, warning messages, or help for an invalid form entry.
-        The dialog should be modal.
-        Keyboard focus is set on an element in the dialog.
-        The element that has initial focus will depend on the nature of the information conveyed in the dialog.
-        Simple message dialogs, as described below, have their initial focus set to the confirmation button (e.g., the OK button).
-        Detail message dialogs have their initial focus set on the element containing the message.
+        An alert dialog  is a <a href="#dialog_modal">modal dialog</a> that interrupts the user's workflow to communicate an important message and acquire a response.
+        Examples include action confirmation prompts and error message confirmations.
+        The <a href="#alertdialog" class="role-reference">alertdialog</a> role enables assistive technologies and browsers to distinguish alert dialogs from other dialogs so they have the option of giving them special treatment, such as playing a system alert sound.
       </p>
-
-      <p>A detail message dialog conveys a message that has any one of the following attributes:</p>
-
-      <ul>
-        <li>Is more than one sentence in length;</li>
-        <li>Contains information where punctuation is an essential part of the message, such as syntax of a required date format;</li>
-        <li>Contains detail information the user may need to re-use, e.g., a phone number, e-mail address, error number, etc.;</li>
-        <li>Contains an interactive element, such as a link to a help resource.</li>
-      </ul>
-
-      <p>If the dialog is not a detail message dialog, one can consider it a simple message dialog.</p>
-
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
-        <p><a href="#dialog_modal">See Dialog (Modal)</a>.</p>
-        <ul>
-          <li>Content authors make alert dialogs modal by ensuring that, while the alertdialog is shown, keyboard and mouse interactions only operate within the dialog.</li>
-          <li>The message area of a detail message dialog is focusable and has a <a class="role-reference" href="#document">document</a> role so screen reader users will have complete access to the message content, e.g., the screen reader can read it by character, word, or line.</li>
-          <li>When the message area of a dialog is focusable and has focus, a visual focus indicator is required, and it is recommended that the indicator encompass the complete message.</li>
-        </ul>
+        <p>See the keyboard interaction section for the <a href="#dialog_modal">modal dialog pattern</a>.</p>
       </section>
-
-      <section class="notoc">
-        <h4>WAI-ARIA Roles, States, and Properties</h4>
-        <ul>
-          <li>The node containing all elements of the dialog, including the alert message and any dialog buttons, has an <a class="role-reference" href="#alertdialog">alertdialog</a> role.</li>
-          <li>Message areas have role <a class="role-reference" href="#document">document</a> and tabindex="0".</li>
-          <li>The Alert dialog has an <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> that references the title of the dialog. If there is not a visible title, use an appropriate <a href="#aria-labelledby" class="property-reference">aria-label</a> instead.</li>
-          <li>The element with role alertdialog has an <a href="#aria-labelledby" class="property-reference">aria-describedby</a> referring to the message element that has role <a class="role-reference" href="#document">document</a>.</li>
-        </ul>
-      </section>
-
-      <section class="notoc">
+            <section class="notoc">
+                <h4>WAI-ARIA Roles, States, and Properties</h4>
+                <ul>
+                    <li>
+                        The element that contains all elements of the dialog, including the alert
+                        message and any dialog buttons, has role
+                        <a class="role-reference" href="#alertdialog">alertdialog</a>.
+                    </li>
+                    <li>
+                        The element with role <code>alertdialog</code> has either:
+                        <ul>
+                            <li>
+                                A value for
+                                <a href="#aria-labelledby" class="property-reference">aria-labelledby</a>
+                                that refers to the element containing the title of the dialog if the
+                                dialog has a visible title.
+                            </li>
+                            <li>
+                                A value for
+                                <a href="#aria-label" class="property-reference">aria-label</a>
+                                if the dialog does not have a visible title.
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        The element with role <code>alertdialog</code> has a value set for
+                        <a href="#aria-describedby" class="property-reference">aria-describedby</a>
+                        that refers to the element containing the alert message.
+                    </li>
+                </ul>
+            </section>
+            <section class="notoc">
         <h4>Example</h4>
-        <p class="note">
-          Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section.
-          The APG task force is developing examples for APG version 1.1 that will be directly incorporated into the guide.
+        <p>
+        Developing an example implementation of this pattern is <a href="https://github.com/w3c/aria-practices/issues/101">issue 101</a>.
         </p>
-        <p><a href="http://www.oaa-accessibility.org/examplep/alertdialog1/" target="_blank">Open Ajax Alliance</a></p>
       </section>
     </section>
-
+    
     <section class="widget" id="breadcrumb">
       <h3 class="widget-name">Breadcrumb</h3>
       
@@ -1179,45 +1286,98 @@
       </section>
     </section>
 
-    <section class="widget" id="radiobutton">
-      <h3>Radio Group</h3>
-      <p>An option in single-select list</p>
+        <section class="widget" id="radiobutton">
+            <h3>Radio Group</h3>
+            <p>A radio group is a set of checkable buttons, known as radio buttons, where only
+                one button in the set may be in a checked state.</p>
 
-      <section class="notoc">
-        <h4>Keyboard Interaction</h4>
-        <p class="note">The Tab behavior below differs from some native browser behaviors where Shift+Tab sometimes moves to the last button in the group, if none are selected.</p>
-        <ul>
-          <li><kbd>Tab</kbd> key will enter the radio group.
-            <ul>
-              <li>When <kbd>Tab</kbd> or <kbd>Shift + Tab</kbd> into a radio group, focus goes to the selected radio button. If none is selected, focus goes to the first radio button. </li>
-              <li>When focus is on any radio button, <kbd>Tab</kbd> or <kbd>Shift + Tab</kbd> will exit the radio group. </li>
-            </ul>
-          </li>
-          <li><kbd>Up Arrow</kbd> and <kbd>Left Arrow</kbd>  moves focus to the previous radio button in the group, and selects that button. If focus is on the first item, then focus wraps to last item. </li>
-          <li><kbd>Down Arrow</kbd> and  <kbd>Right Arrow</kbd> moves focus to the next radio button in the group, and selects that button. If focus is on the last item, then focus wraps to first item. </li>
-          <li><kbd>Space</kbd> selects the radio button with focus and de-selects other radio buttons in the group. </li>
-        </ul>
-      </section>
+            <section class="notoc">
+                <h4>Keyboard Interaction</h4>
+                <ul>
+                    <li>When a radio group is receiving focus:
+                        <ul>
+                            <li><kbd>Tab</kbd> and <kbd>Shift+Tab</kbd>: move focus to the
+                                checked radio button. If none of the radio buttons are checked, they
+                                move focus to the first radio button in the group.</li>
+                        </ul>
+                    <li>When focus is on a radio button in a radio group:
+                        <ul>
+                            <li><kbd>Tab</kbd>: moves focus to the element in the page tab
+                                sequence that follows the radio group.</li>
+                            <li><kbd>Shift+Tab</kbd>: moves focus to the element in the page
+                                tab sequence that precedes the radio group.</li>
+                            <li><kbd>Space</kbd>: checks the focussed radio button if it is not
+                                already checked.</li>
+                            <li><kbd>Right Arrow</kbd> and <kbd>Down Arrow</kbd>: move focus to
+                                the next radio button in the group, uncheck the previously focused
+                                button, and check the newly focused button. If focus is on the last
+                                button, focus moves to the first button.</li>
+                            <li><kbd>Left Arrow</kbd> and <kbd>Up Arrow</kbd>: move focus to
+                                the previous radio button in the group, uncheck the previously
+                                focused button, and check the newly focused button. If focus is on
+                                the first button, focus moves to the last button.</li>
+                        </ul>
+                </ul>
+                <p class="note">
+                    The behavior of the <kbd>Tab</kbd> key described above differs slightly from the
+                    behavior provided by some browsers for native HTML radio groups. In some
+                    browsers, if none of the radio buttons are selected, <kbd>Shift+Tab</kbd> places
+                    focus on the last radio button instead of the first radio button.
+                </p>
+            </section>
 
-      <section class="notoc">
-        <h4>WAI-ARIA Roles, States, and Properties</h4>
-        <ul>
-          <li>Use a container with a role <a href="#radiogroup" class="role-reference">radiogroup</a> for the set of radio buttons.  </li>
-          <li>An individual radio button has a role of <a href="#radio" class="role-reference">radio</a>.  </li>
-          <li>If selected, the radio button has the state <a href="#aria-checked" class="state-reference" >aria-checked</a><code>="true"</code>.  </li>
-          <li>If not selected, it has the state <a href="#aria-checked" class="state-reference">aria-checked</a><code>="false"</code>.  </li>
-          <li>It is recommended that both the <a href="#radiogroup" class="role-reference">radiogroup</a> and the <a href="#radio" class="role-reference">radio button</a> have a label that is visible and referenced using the <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> property.  </li>
-          <li>Use an <a href="#aria-describedby" class="property-reference" >aria-describedby</a> property to add additional information to the radio buttons or radiogroup.  </li>
-        </ul>
-      </section>
+            <section class="notoc">
+                <h4>WAI-ARIA Roles, States, and Properties</h4>
+                <ul>
+                    <li>
+                        The radio buttons are contained in or owned by an element with role
+                        <a href="#radiogroup" class="role-reference">radiogroup</a>
+                        .
+                    </li>
+                    <li>
+                        Each radio button element has role
+                        <a href="#radio" class="role-reference">radio</a>.
+                    </li>
+                    <li>
+                        If a radio button is checked, the <code>radio</code> element has
+                        <a href="#aria-checked" class="state-reference">aria-checked</a>
+                        set to <code>true</code>. If it is not checked, it has
+                        <a href="#aria-checked" class="state-reference">aria-checked</a>
+                        set to <code>false</code>.
+                    </li>
+                    <li>
+                        Each <code>radio</code> element is labeled by its content, has a visible
+                        label referenced by
+                        <a href="#aria-labelledby" class="property-reference">aria-labelledby</a>,
+                        or has a label specified with
+                        <a href="#aria-label" class="property-reference">aria-label</a>.
+                    </li>
+                    <li>
+                        The <code>radiogroup</code> element has a visible label referenced by
+                        <a href="#aria-labelledby" class="property-reference">aria-labelledby</a>
+                        or has a label specified with
+                        <a href="#aria-label" class="property-reference">aria-label</a>.
+                    </li>
+                    <li>
+                        If elements providing additional information about either the radio group or
+                        each radio button are present, those elements are referenced by the <code>radiogroup</code>
+                        element or <code>radio</code> elements with the 
+                        <a href="#aria-describedby" class="property-reference">aria-describedby</a>
+                        property.
+                    </li>
+                </ul>
+            </section>
 
-      <section class="notoc">
-        <h4>Example</h4>
-        <p><a href="examples/radio/radio.html">Radio role example</a></p>
-      </section>
-    </section>
+            <section class="notoc">
+                <h4>Example</h4>
+                <p>
+                    <a href="examples/radio/radio.html">Radio Group Examples</a>
+                </p>
+            </section>
 
-    <section class="widget" id="slider">
+        </section>
+
+        <section class="widget" id="slider">
       <h3>Slider</h3>
 
       <p>A slider is an input where the user selects a value from within a given range. Sliders typically have a slider thumb that when moved will change the current value within the bar or track.</p>
@@ -1638,14 +1798,72 @@
       </section>
 
       <section class="notoc">
-        <h4>Example</h4>
-        <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG task force is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
-        <ul>
-          <li><a href="http://www.oaa-accessibility.org/examplep/treeview1/" target="_blank" rel="nofollow">Open Ajax Alliance treeview</a></li>
-          <li><a href="http://www.oaa-accessibility.org/examplep/treeview2/" target="_blank" rel="nofollow">Open Ajax Alliance treeview using aria-owns</a></li>
-          <li><a href="http://www.oaa-accessibility.org/examplep/treeview3/" target="_blank" rel="nofollow">Open Ajax Alliance treeview using ARIA CSS selectors</a></li>
-          <li><a href="http://archive.dojotoolkit.org/nightly/dojotoolkit/dijit/tests/tree/test_Tree.html" target="_blank" rel="nofollow">Dojo nightly</a></li>
-        </ul>
+        <h4>Examples</h4>
+
+          <table aria-label="Treeview examples"> 
+            <thead>
+              <tr>
+                <th style="min-width: 6em">Example ID</th>
+                <th>Action</th>
+                <th><code>aria-owns</code></th>
+                <th><code>aria-level</code></th>
+                <th><code>aria-setsize/<br/><code>aria-posinset</code></th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><a href="examples/treeview/treeview-1a/treeview-1a.html">Treeview 1a</a></td>
+                <td>Select a file</td>
+                <td class="nu">-</td>
+                <td class="computed">Computed</td>
+                <td class="computed">Computed</td>
+                <td>
+                  <ul>
+                    <li>Expects browser to compute values for <code>aria-level</code>, <code>aria-posinset</code> and <code>aria-setsize</code> based on DOM structure.</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td><a href="examples/treeview/treeview-1b/treeview-1b.html">Treeview 1b</a></td>
+                <td>Select a file</td>
+                <td class="nu">-</td>
+                <td class="markup">Markup</td>
+                <td class="markup">Markup</td>
+                <td>
+                  <ul>
+                    <li>Explicitly defines values of <code>aria-level</code>, <code>aria-posinset</code> and <code>aria-setsize</code></li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td><a href="examples/treeview/treeview-2a/treeview-2a.html">Treeview 2a</a></td>
+                <td>Follow a link</td>
+                <td class="nu">-</td>
+                <td class="computed">Computed</td>
+                <td class="computed">Computed</td>
+                <td>
+                  <ul>
+                    <li>Expects browser to compute values for <code>aria-level</code>, <code>aria-posinset</code> and <code>aria-setsize</code> based on DOM structure.</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td><a href="examples/treeview/treeview-2b/treeview-2b.html">Treeview 2b</a></td>
+                <td>Follow a link</td>
+                <td class="nu">-</td>
+                <td class="markup">Markup</td>
+                <td class="markup">Markup</td>
+                <td>
+                  <ul>
+                    <li>Explicitly defines values of <code>aria-level</code>, <code>aria-posinset</code> and <code>aria-setsize</code></li>
+                  </ul>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+
       </section>
     </section>
 

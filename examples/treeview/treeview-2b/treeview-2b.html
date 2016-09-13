@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>ARIA Tree View using DOM Structure Example: Links</title>
+    
+    <link href="../../css/core.css" rel="stylesheet"> 
+    <link href="../../css/table.css" rel="stylesheet">
+    
+     <link href="treeview-2.css" rel="stylesheet">
+     <script type="text/javascript" src="treeview.js" type="text/javascript"></script>
+  </head>
+    
+  <body>
+    <main>
+      <h1 id="id1">ARIA Tree View using DOM Structure Example: Links</h1>
+      <h3 id="tree1">Foods</h3>
+      <ul role="tree" aria-labelledby="tree1" >
+        <li role="treeitem"
+          aria-expanded="false"
+          aria-label="Fruits">
+          <span>Fruits</span>
+          <ul>
+            <li>
+              <a role="treeitem"
+                href="https://en.wikipedia.org/wiki/Orange_%28fruit%29">
+                Oranges
+              </a>
+            </li>
+            <li>
+              <a role="treeitem"
+                href="https://en.wikipedia.org/wiki/Pineapple">
+                Pineapple
+              </a>
+            </li>
+            <li role="treeitem"
+              aria-expanded="false"
+              aria-label="Apples">
+              <span>Apples</span>
+              <ul role="group">
+                <li>
+                  <a role="treeitem"
+                    href="https://en.wikipedia.org/wiki/McIntosh_%28apple%29">
+                    Macintosh
+                  </a>
+                </li>
+                <li>
+                  <a role="treeitem"
+                    href="https://en.wikipedia.org/wiki/Granny_Smith">
+                    Granny Smith
+                  </a>
+                </li>
+                <li >
+                  <a role="treeitem"
+                    href="https://en.wikipedia.org/wiki/Fuji_(apple)">
+                    Fuji
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li >
+              <a role="treeitem"
+                href="https://en.wikipedia.org/wiki/Banana">
+                Bananas
+              </a>
+            </li>
+            <li role="treeitem"
+              aria-expanded="false"
+              aria-label="Pears">
+              <span> Pears </span>
+              <ul role="group">
+                <li>
+                  <a role="treeitem"
+                    href="https://en.wikipedia.org/wiki/D%27Anjou">
+                    Anjou
+                  </a>
+                </li>
+                <li>
+                  <a role="treeitem"
+                    href="https://en.wikipedia.org/wiki/Williams_pear">
+                    Bartlett
+                  </a>
+                </li>
+                <li>
+                  <a role="treeitem"
+                    href="https://en.wikipedia.org/wiki/Bosc_pear">
+                    Bosc
+                  </a>
+                </li>
+                <li>
+                  <a role="treeitem"
+                    href="https://en.wikipedia.org/wiki/Pyrus_communis">
+                    Concorde
+                  </a>
+                </li>
+                <li >
+                  <a role="treeitem"
+                    href="https://en.wikipedia.org/wiki/Pyrus_communis">
+                    Seckel
+                  </a>
+                </li>
+                <li >
+                  <a role="treeitem"
+                    href="https://en.wikipedia.org/wiki/Pyrus_communis">
+                    Starkrimson
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li role="treeitem"
+          aria-expanded="false"
+          aria-label="Vegetables">
+          <span>Vegetables</span>
+          <ul role="group">
+            <li role="treeitem"
+              aria-expanded="false"
+              aria-label="Podded Vegetables">
+              <span>Podded Vegetables</span>
+              <ul role="group">
+                <li>
+                  <a role="treeitem"
+                    href="https://en.wikipedia.org/wiki/Lentil">
+                    Lentil
+                  </a>
+                </li>
+                <li>
+                  <a role="treeitem"
+                    href="https://en.wikipedia.org/wiki/Pea">
+                    Pea
+                  </a>
+                </li>
+                <li>
+                  <a role="treeitem"
+                    href="https://en.wikipedia.org/wiki/Peanut">
+                    Peanut
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li role="treeitem"
+              aria-expanded="false"
+              aria-label="Bulb and Stem Vegetables">
+              <span>Bulb and Stem Vegetables</span>
+              <ul role="group">
+                <li>
+                  <a role="treeitem"
+                    href="https://en.wikipedia.org/wiki/Asparagus">
+                    Asparagus
+                  </a>
+                </li>
+                <li>
+                  <a role="treeitem"
+                    href="https://en.wikipedia.org/wiki/Celery">
+                    Celery
+                  </a>
+                </li>
+                <li>
+                  <a role="treeitem"
+                    href="https://en.wikipedia.org/wiki/Leek">
+                    Leek
+                  </a>
+                </li>
+                <li>
+                  <a role="treeitem"
+                    href="https://en.wikipedia.org/wiki/Onion">
+                    Onion
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li role="treeitem"
+              aria-expanded="false"
+              aria-label="Root and Tuberous Vegetables">
+              <span>Root and Tuberous Vegetables</span>
+              <ul role="group">
+                <li>
+                  <a role="treeitem"
+                    href="https://en.wikipedia.org/wiki/Carrot">
+                    Carrot
+                  </a>
+                </li>
+                <li>
+                  <a role="treeitem"
+                    href="https://en.wikipedia.org/wiki/Ginger">
+                    Ginger
+                  </a>
+                </li>
+                <li>
+                  <a role="treeitem"
+                    href="https://en.wikipedia.org/wiki/Parsnip">
+                    Parsnip
+                  </a>
+                </li>
+                <li>
+                  <a role="treeitem"
+                    href="https://en.wikipedia.org/wiki/Potato">
+                    Potato
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li role="treeitem"
+          aria-expanded="false"
+          aria-label=" Grains">
+          <span>Grains</span>
+          <ul role="group">
+            <li role="treeitem"
+              aria-expanded="false"
+              aria-label="Cereal grains">
+              <span>Cereal Grains</span>
+              <ul role="group">
+                <li>
+                  <a role="treeitem"
+                    href="https://en.wikipedia.org/wiki/Barley">
+                    Barley
+                  </a>
+                </li>
+                <li>
+                  <a role="treeitem"
+                    href="https://en.wikipedia.org/wiki/Oats">
+                    Oats
+                  </a>
+                </li>
+                <li>
+                  <a role="treeitem"
+                    href="https://en.wikipedia.org/wiki/Rice">
+                    Rice
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li role="treeitem"
+              aria-expanded="false"
+              aria-label="Pseudocereal grains">
+              <span>Pseudocereal Grains</span>
+              <ul role="group">
+                <li>
+                  <a role="treeitem"
+                    href="https://en.wikipedia.org/wiki/Amaranth">
+                    Amaranth
+                  </a>
+                </li>
+                <li>
+                  <a role="treeitem"
+                    href="https://en.wikipedia.org/wiki/Buckwheat">
+                    Bucketwheat
+                  </a>
+                </li>
+                <li>
+                  <a role="treeitem"
+                    href="https://en.wikipedia.org/wiki/Salvia_hispanica">
+                    Chia
+                  </a>
+                </li>
+                <li>
+                  <a role="treeitem"
+                    href="https://en.wikipedia.org/wiki/Quinoa">
+                    Quinoa
+                  </a>
+                </li>
+              </ul>
+            </li>
+            <li role="treeitem"
+              aria-expanded="false"
+              aria-label="Oilseeds">
+              <span>Oilseeds</span>
+              <ul role="group">
+                <li>
+                  <a role="treeitem"
+                    href="https://en.wikipedia.org/wiki/Brassica_juncea">
+                    India Mustard
+                  </a>
+                </li>
+                <li>
+                  <a role="treeitem"
+                    href="https://en.wikipedia.org/wiki/Safflower">
+                    Safflower
+                  </a>
+                </li>
+                <li>
+                  <a role="treeitem"
+                    href="https://en.wikipedia.org/wiki/Flax_seed">
+                    Flax Seed
+                  </a>
+                </li>
+                <li>
+                  <a role="treeitem"
+                    href="https://en.wikipedia.org/wiki/Poppy_seed">
+                    Poppy Seed
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <section aria-labelledby="id_kbd">
+       
+       <h3 id="id_kbd">Keyboard Interaction and Focus Management</h3>
+       
+       <table aria-labelledby="id_kbd">
+         <thead>
+           <tr>
+             <th>Key</th>
+             <th>Function</th>
+           </tr>
+         </thead>
+         <tbody>
+           <tr>
+             <td>Up arrow Key</td>
+             <td>Moves focus to previous visible sibling <code>treeitem</code> using a depth first algorithm on the visible <code>treeitems</code>. If on first <code>treeitem</code>, focus stays on first <code>treeitem</code>.</td>
+           </tr>
+           <tr>
+             <td>Down arrow Key</td>
+             <td>Moves focus to next visible sibling <code>treeitem</code> using a depth first algorithm on the visible <code>treeitems</code>. If on last <code>treeitem</code>, focus stays on the last <code>treeitem</code>.</td>
+           </tr>            <tr>
+             <td>Left Arrow Key</td>
+             <td>
+               <ul>
+                 <li>For a <code>treeitem</code> that is an end node (e.g. no child <code>treeitem</code>s) or is in the collapsed state (e.g. has <code>[aria-expanded=false]</code>), focus moves to the parent <code>treeitem</code>.
+                   If a top level <code>treeitem</code> (e.g. parent is <code>tree</code>), focus stays on current <code>treeitem</code>.
+                 </li>
+                 <li>For a <code>treeitem</code> that is in the expanded state (e.g. has <code>[aria-expanded=true]</code>) it toogles to the collapsed state.   Focus remains on the current <code>treeitem</code>.</li>
+               </ul>
+             </td>
+           </tr>
+           <tr>
+             <td>Right Arrow Key</td>
+             <td>
+               <ul>
+                 <li>For a <code>treeitem</code> that is an end node (e.g. no child <code>treeitem</code>s) focus stays on current <code>treeitem</code>.</li>
+                 <li>For a <code>treeitem</code> that is in the collapsed state (e.g. has <code>[aria-expanded=false]</code>) it toogles to the expanded state and focus moves to the first child <code>treeitem</code>.  If no child, focus stays on current <code>treeitem</code>.</li>
+                 <li>For a <code>treeitem</code> is in the expanded state, focus moves to the first child <code>treeitem</code>.
+                   If no child, focus stays on current <code>treeitem</code>.
+                 </li>
+               </ul>
+             </td>
+           </tr>
+           <tr>
+             <td>Return Key</td>
+             <td>Follows the link associated the current <code>treeitem</code> with keyboard focus.</td>
+           </tr>
+           <tr>
+             <td>Space Key</td>
+             <td>Follows the link associated the current <code>treeitem</code> with keyboard focus.</td>
+           </tr>
+           <tr>
+             <td>Home Key</td>
+             <td>Moves focus to first <code>treeitem</code> in the <code>tree</code>.</td>
+           </tr>
+           <tr>
+             <td>End Key</td>
+             <td>Moves focus to last visible <code>treeitem</code> (e.g. depth first) in the <code>tree</code>.</td>
+           </tr>
+           <tr>
+             <td>a-z, A-Z</td>
+             <td>
+               <ul>
+                 <li>Moves focus to next visible <code>treeitem</code> that starts with letter character.</li>
+                 <li>Search wraps to first <code>treeitem</code> if not found after current <code>treeitem</code>.</li>
+               </ul>
+             </td>
+           </tr>
+           <tr>
+             <td>*</td>
+             <td>Opens all the expandable <code>treeitem</code>s in the current leaf (e.g. siblings of the current <code>treeitem</code>), keyboard focus does not change.
+             </td>
+           </tr>
+         </tbody>
+       </table>
+       
+      </section>
+    </main>
+  </body>
+</html>
