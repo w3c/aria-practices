@@ -44,6 +44,28 @@ aria.CSSClass = {
   HIDDEN: 'hidden',
 };
 
+aria.Utils = aria.Utils || {};
+
+// Polyfill src https://developer.mozilla.org/en-US/docs/Web/API/Element/matches
+aria.Utils.matches = function(element, selector) {
+  if (!Element.prototype.matches) {
+    Element.prototype.matches =
+    Element.prototype.matchesSelector ||
+    Element.prototype.mozMatchesSelector ||
+    Element.prototype.msMatchesSelector ||
+    Element.prototype.oMatchesSelector ||
+    Element.prototype.webkitMatchesSelector ||
+    function(s) {
+        var matches = element.parentNode.querySelectorAll(s),
+            i = matches.length;
+        while (--i >= 0 && matches.item(i) !== this) {}
+        return i > -1;
+    };
+  }
+
+  return element.matches(selector);
+};
+
 /**
  * @constructor
  *
@@ -92,7 +114,7 @@ aria.Grid.prototype.setupFocusGrid = function () {
         (function (cell) {
           var focusableSelector = '[tabindex]';
 
-          if (cell.matches(focusableSelector)) {
+          if (aria.Utils.matches(cell, focusableSelector)) {
             rowCells.push(cell);
           } else {
              var focusableCell = cell.querySelector(focusableSelector);
@@ -142,7 +164,7 @@ aria.Grid.prototype.setFocusPointer = function (row, col) {
   }
 
   // Disable navigation if focused on an input
-  this.navigationDisabled = this.grid[row][col].matches('input');
+  this.navigationDisabled = aria.Utils.matches(this.grid[row][col], 'input');
 
   this.grid[row][col].setAttribute('tabindex', 0);
   this.focusedRow = row;
@@ -300,7 +322,7 @@ aria.Grid.prototype.focusClickedCell = function (event) {
       if (this.grid[row][col] === clickedGridCell) {
         this.setFocusPointer(row, col);
 
-        if (!clickedGridCell.matches('button[aria-haspopup]')) {
+        if (!aria.Utils.matches(clickedGridCell, 'button[aria-haspopup]')) {
           // Don't focus if it's a menu button (focus should be set to menu)
           this.focusCell(row, col);
         }
@@ -334,7 +356,7 @@ aria.Grid.prototype.delegateButtonHandler = function (event) {
         this.handleSort(target.parentNode);
       }
 
-  if (target.matches('.editable-text, .edit-text-button') &&
+  if (aria.Utils.matches(target, '.editable-text, .edit-text-button') &&
       (isClickEvent || key === aria.KeyCode.RETURN)) {
         event.preventDefault();
         this.toggleEditMode(
@@ -344,7 +366,7 @@ aria.Grid.prototype.delegateButtonHandler = function (event) {
         );
       }
 
-  if (target.matches('.edit-text-input') &&
+  if (aria.Utils.matches(target, '.edit-text-input') &&
       (key === aria.KeyCode.RETURN || key === aria.KeyCode.ESC)) {
         event.preventDefault();
         this.toggleEditMode(
@@ -620,11 +642,11 @@ aria.Grid.prototype.toggleColumn = function (columnIndex, isShown) {
  *  Index of the column to toggle
  */
 aria.Grid.prototype.findClosest = function (element, selector) {
-  if (element.matches(selector)) {
+  if (aria.Utils.matches(element, selector)) {
     return element;
   }
 
-  if (element.parentNode.matches(selector)) {
+  if (aria.Utils.matches(element.parentNode, selector)) {
     return element.parentNode;
   }
 

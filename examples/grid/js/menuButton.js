@@ -233,12 +233,7 @@ aria.widget.Menu.prototype.eventKeyDown = function(event, menu) {
 
   case menu.keyCode.SPACE:
   case menu.keyCode.RETURN:
-      var click_event = new MouseEvent('click', {
-        'view': window,
-        'bubbles': true,
-        'cancelable': true
-      });
-      ct.dispatchEvent(click_event);
+    menu.eventMouseClick(event, menu);
     menu.menuButton.closeMenu(true);
     flag = true;
     break;
