@@ -38,7 +38,7 @@ aria.widget.SourceCode = function () {
  * @desc  Adds source code
  */
 
-aria.widget.SourceCode.prototype.add = function ( location_id, code_id ) {
+aria.widget.SourceCode.prototype.add = function (location_id, code_id) {
   this.location[this.location.length] = location_id;
   this.code[this.code.length] = code_id;
 }
@@ -56,13 +56,13 @@ aria.widget.SourceCode.prototype.make = function () {
    var node_code;
    var node_location;
 
-   for(var i = 0; i < this.location.length; i++ ) {
+   for (var i = 0; i < this.location.length; i++) {
 
-     node_location = document.getElementById( this.location[i] );
-     node_code     = document.getElementById( this.code[i] );
+     node_location = document.getElementById(this.location[i]);
+     node_code     = document.getElementById(this.code[i]);
 
      node_location.className = 'sourcecode';
-     this.createCode( node_location, '', node_code );
+     this.createCode(node_location, '', node_code);
 
    } // endfor
 
@@ -85,7 +85,7 @@ aria.widget.SourceCode.prototype.createCode = function (location, spaces, node) 
   function hasText(s) {
     if (typeof s !== 'string') return false;
 
-    for(var i = 0; i < s.length; i++) {
+    for (var i = 0; i < s.length; i++) {
       var c = s[i]
       if (c !== ' ' && c !== '\n' && c !== '\r') return true;
     }
@@ -98,7 +98,7 @@ aria.widget.SourceCode.prototype.createCode = function (location, spaces, node) 
 
   location.innerHTML = location.innerHTML + '<br/>' + spaces + '&lt;' + node_name;
 
-  for(i=0; i < node.attributes.length; i++ ) {
+  for (i=0; i < node.attributes.length; i++) {
 
      if( !(((node_name == 'script' ) || (node_name = 'style')) && (node.attributes[i].nodeName.toLowerCase() == 'id') ) ) {
 
@@ -109,7 +109,7 @@ aria.widget.SourceCode.prototype.createCode = function (location, spaces, node) 
 
           location.innerHTML = location.innerHTML + '<br/>' + spaces;
 
-          for(var j=2; j <= node_name.length; j++ )
+          for (var j=2; j <= node_name.length; j++)
             location.innerHTML = location.innerHTML + '&nbsp;';
 
        } // endif
@@ -122,14 +122,14 @@ aria.widget.SourceCode.prototype.createCode = function (location, spaces, node) 
 
   var count = 0;
 
-  for(i=0; i < node.childNodes.length; i++ ) {
+  for (i=0; i < node.childNodes.length; i++) {
 
     var n = node.childNodes[i];
 
-    switch( n.nodeType ) {
+    switch(n.nodeType) {
 
       case Node.ELEMENT_NODE:
-         this.createCode( location, spaces + '&nbsp;&nbsp;', n);
+         this.createCode(location, spaces + '&nbsp;&nbsp;', n);
            count++;
          break;
 
@@ -146,7 +146,7 @@ aria.widget.SourceCode.prototype.createCode = function (location, spaces, node) 
 
   } // end for
 
-  if( count > 0 ) {
+  if (count > 0) {
     location.innerHTML = location.innerHTML + '<br/>' + spaces + '&lt;/' + node.nodeName.toLowerCase();
     location.innerHTML = location.innerHTML + '&gt;';
   } // end if

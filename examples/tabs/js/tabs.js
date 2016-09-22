@@ -23,7 +23,7 @@
   };
 
   // Bind listeners
-  for(i=0; i < tabs.length; ++i) {
+  for (i=0; i < tabs.length; ++i) {
     addListeners(i);
   };
 
@@ -120,12 +120,12 @@
 
   // Deactivate all tabs and tab panels
   function deactivateTabs() {
-    for(t=0; t < tabs.length; t++) {
+    for (t=0; t < tabs.length; t++) {
       tabs[t].setAttribute('tabindex', '-1');
       tabs[t].setAttribute('aria-selected', 'false');
     };
 
-    for(p=0; p < panels.length; p++) {
+    for (p=0; p < panels.length; p++) {
       panels[p].setAttribute('hidden', 'hidden');
     };
   };

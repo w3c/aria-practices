@@ -1,5 +1,3 @@
-
-
 /*
  * Copyright 2011-2016 University of Illinois
  *
@@ -15,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
 
 /**
  * ARIA Treeview example
@@ -23,12 +20,11 @@
  * @desc  after page has loaded initializ all treeitems based on the role=treeitem
  */
 
-
 window.addEventListener('load', function () {
 
   var trees = document.querySelectorAll('[role="tree"]');
 
-  for(var i = 0; i <trees.length; i++ ) {
+  for (var i = 0; i <trees.length; i++) {
     var t = new Tree(trees[i]);
     t.init();
 
@@ -37,10 +33,10 @@ window.addEventListener('load', function () {
 });
 
 /*
-*   @constructor 
+*   @constructor
 *
 *   @desc
-*       Tree item object for representing the state and user interactions for a 
+*       Tree item object for representing the state and user interactions for a
 *       tree widget
 *
 *   @param node
@@ -80,7 +76,6 @@ Tree.prototype.init = function () {
 
   this.initTreeitems(this.treeNode);
 
-
   var treeitems = this.getTreeitems(this.treeNode);
 
   var flag = true;
@@ -98,7 +93,7 @@ Tree.prototype.init = function () {
     }
     else {
       ti.tabIndex = -1;
-    }  
+    }
 
     ti.addEventListener('keydown', function (event) {
       that.handleKeydown(event);
@@ -134,7 +129,6 @@ Tree.prototype.init = function () {
 
 };
 
-
 /*
 *   @desc
 *       Finds all the descendant treeitems of the node
@@ -143,7 +137,7 @@ Tree.prototype.init = function () {
 *       DOM node to start looking for descendant treeitems
 *
 *   @returns
-*       Array of DOM nodes with role=treeitem 
+*       Array of DOM nodes with role=treeitem
 */
 
 Tree.prototype.getTreeitems = function (node) {
@@ -180,13 +174,13 @@ Tree.prototype.getTreeitems = function (node) {
 *       Parent treeitem
 *
 *   @returns
-*       Last treeitem node 
+*       Last treeitem node
 */
 
 Tree.prototype.initTreeitems = function (node, previous, parent) {
 
   var n = node.firstElementChild;
- 
+
   while (n) {
 
     if (n.getAttribute('role') === 'treeitem') {
@@ -198,11 +192,11 @@ Tree.prototype.initTreeitems = function (node, previous, parent) {
     }
 
     if (n.firstElementChild) {
-      if (n.getAttribute('role') === 'treeitem' && 
+      if (n.getAttribute('role') === 'treeitem' &&
           typeof n.getAttribute('aria-expanded') === 'string') previous = this.initTreeitems(n, n, n);
       else previous = this.initTreeitems(n, previous, parent);
     }
-      
+
     n = n.nextElementSibling;
   }
 
@@ -218,7 +212,7 @@ Tree.prototype.initTreeitems = function (node, previous, parent) {
 *       treeitem DOM node to start looking for child treeitems
 *
 *   @returns
-*       Array of treeitem DOM nodes 
+*       Array of treeitem DOM nodes
 */
 
 Tree.prototype.getChildTreeitems = function (treeitem) {
@@ -245,7 +239,7 @@ Tree.prototype.getChildTreeitems = function (treeitem) {
 *       treeitem DOM node to start looking for previous sibling
 *
 *   @returns
-*       True or False 
+*       True or False
 */
 
 Tree.prototype.isExpandable = function (treeitem) {
@@ -254,7 +248,7 @@ Tree.prototype.isExpandable = function (treeitem) {
      treeitem.nextTreeitem &&
      treeitem.nextTreeitem.parentTreeitem === treeitem) return true;
 
-  return false;  
+  return false;
 
 };
 
@@ -266,20 +260,19 @@ Tree.prototype.isExpandable = function (treeitem) {
 *       treeitem DOM node to start looking for previous sibling
 *
 *   @returns
-*       True or False 
+*       True or False
 */
 
 Tree.prototype.isExpanded = function (treeitem) {
 
-  if (treeitem.getAttribute('aria-expanded') && 
+  if (treeitem.getAttribute('aria-expanded') &&
      (treeitem.getAttribute('aria-expanded') === 'true') &&
      treeitem.nextTreeitem &&
      treeitem.nextTreeitem.parentTreeitem === treeitem) return true;
 
-  return false;  
+  return false;
 
 };
-
 
 /*
 *   @desc
@@ -289,7 +282,7 @@ Tree.prototype.isExpanded = function (treeitem) {
 *       treeitem DOM node to start looking for next sibling
 *
 *   @returns
-*       treeitem DOM node or False 
+*       treeitem DOM node or False
 */
 
 Tree.prototype.getNextSiblingTreeitem = function (treeitem) {
@@ -299,7 +292,7 @@ Tree.prototype.getNextSiblingTreeitem = function (treeitem) {
   while (ti) {
     if (ti.parentTreeitem === treeitem.parentTreeitem) return ti;
     ti = ti.nextTreeitem;
-  } 
+  }
 
   return false;
 };
@@ -312,7 +305,7 @@ Tree.prototype.getNextSiblingTreeitem = function (treeitem) {
 *       treeitem DOM node
 *
 *   @returns
-*       treeitem DOM node of treeitem or False 
+*       treeitem DOM node of treeitem or False
 */
 
 Tree.prototype.getFirstSiblingTreeitem = function (treeitem) {
@@ -333,7 +326,7 @@ Tree.prototype.getFirstSiblingTreeitem = function (treeitem) {
 *       Get last visible treeitem
 *
 *   @returns
-*       treeitem DOM node or False 
+*       treeitem DOM node or False
 */
 
 Tree.prototype.getLastVisibleTreeitem = function () {
@@ -345,7 +338,6 @@ Tree.prototype.getLastVisibleTreeitem = function () {
   return ti;
 };
 
-
 /*
 *   @desc
 *       Returns the previous visible treeitem, unless at first treeitem
@@ -354,14 +346,14 @@ Tree.prototype.getLastVisibleTreeitem = function () {
 *       treeitem DOM node
 *
 *   @returns
-*       treeitem DOM node or False 
+*       treeitem DOM node or False
 */
 
 Tree.prototype.getPreviousVisibleTreeitem = function (treeitem) {
 
   var ti = treeitem.previousTreeitem;
 
-  while (ti && 
+  while (ti &&
          ti.parentTreeitem &&
          ti.parentTreeitem.getAttribute('aria-expanded') === 'false') {
     ti = ti.previousTreeitem;
@@ -383,7 +375,7 @@ Tree.prototype.getNextVisibleTreeitem = function (treeitem) {
 
   var ti = treeitem.nextTreeitem;
 
-  while (ti && 
+  while (ti &&
          ti.parentTreeitem &&
          ti.parentTreeitem.getAttribute('aria-expanded') === 'false') {
     ti = ti.nextTreeitem;
@@ -395,7 +387,7 @@ Tree.prototype.getNextVisibleTreeitem = function (treeitem) {
 
 /*
 *   @desc
-*       Test if first character of accessible name matches 
+*       Test if first character of accessible name matches
 *
 *   @param treeitem
 *       True or False
@@ -409,18 +401,17 @@ Tree.prototype.compareFirstChar = function (node, char) {
       name = name.trim();
       if (name.length) node.firstChar = name[0].toLowerCase();
     }
-  }  
+  }
 
   if (typeof node.firstChar !== 'string') {
     setFirstChar(node.getAttribute('aria-label'));
     setFirstChar(node.innerText);
     setFirstChar(node.getAttribute('title'));
-  }  
+  }
 
   return node.firstChar === char.toLowerCase();
 
 };
-
 
 /*
 *   @desc
@@ -434,7 +425,6 @@ Tree.prototype.compareFirstChar = function (node, char) {
 Tree.prototype.handleKeydown = function (event) {
   var ct = event.currentTarget,
       flag = false;
-
 
   switch (event.keyCode) {
 
@@ -481,7 +471,7 @@ Tree.prototype.handleKeydown = function (event) {
       }
       else {
         this.moveFocusToParentTreeitem(ct);
-      } 
+      }
 
       flag = true;
       break;
@@ -538,11 +528,11 @@ Tree.prototype.handleKeypress = function (event) {
 
   if ('*'.indexOf(char) === 0) {
     this.expandSiblingTreeitems(ct);
-    flag = true;        
+    flag = true;
   }
 
   if (flag) {
- 
+
     event.stopPropagation();
     event.preventDefault();
   }
@@ -564,7 +554,7 @@ Tree.prototype.handleClick = function (event) {
   if (event.target.tagName.toLowerCase() === 'span') {
 
     var ct = event.currentTarget;
-    var expanded = ct.getAttribute('aria-expanded'); 
+    var expanded = ct.getAttribute('aria-expanded');
 
     if (expanded === 'true') {
       ct.setAttribute('aria-expanded', 'false')
@@ -576,9 +566,9 @@ Tree.prototype.handleClick = function (event) {
     }
 
     event.stopPropagation();
-    event.preventDefault();      
+    event.preventDefault();
 
-  }  
+  }
 
 };
 
@@ -596,7 +586,7 @@ Tree.prototype.handleFocus = function (event) {
 
   if (node && this.isExpandable(ct)) ct = node;
 
-  ct.classList.add('focus'); 
+  ct.classList.add('focus');
 };
 
 /*
@@ -611,23 +601,22 @@ Tree.prototype.handleBlur = function (event) {
   var ct = event.currentTarget;
   var node = ct.firstElementChild;
   if (node && this.isExpandable(ct)) ct = node;
-  ct.classList.remove('focus'); 
+  ct.classList.remove('focus');
 };
-
 
 /*
 *   @desc
 *       Hides child treeitems if aria-expanded=true (e.g. children are visible)
 *
 *   @param treeitem
-*       Treeitem with child treeitems 
+*       Treeitem with child treeitems
 */
 
 Tree.prototype.hideChildTreeitems = function (treeitem) {
 
   var treeitems = this.getChildTreeitems(treeitem);
 
-  for(var i = 0; i < treeitems.length; i++) {
+  for (var i = 0; i < treeitems.length; i++) {
     treeitems[i].style.display = 'none';
   }
   treeitem.setAttribute('aria-expanded', 'false');
@@ -639,14 +628,14 @@ Tree.prototype.hideChildTreeitems = function (treeitem) {
 *       Show child treeitems if aria-expanded=false (e.g. children are invisible)
 *
 *   @param treeitem
-*       Treeitem with child treeitems 
+*       Treeitem with child treeitems
 */
 
 Tree.prototype.showChildTreeitems = function (treeitem) {
 
   var treeitems = this.getChildTreeitems(treeitem);
 
-  for(var i = 0; i < treeitems.length; i++) {
+  for (var i = 0; i < treeitems.length; i++) {
     treeitems[i].style.display = 'block';
   }
   treeitem.setAttribute('aria-expanded', 'true');
@@ -693,7 +682,6 @@ Tree.prototype.moveFocusToFirstChildTreeitem = function (treeitem) {
   }
 
 };
-
 
 /*
 *   @desc
@@ -755,7 +743,6 @@ Tree.prototype.moveFocusToTopTreeitem = function (treeitem) {
 
 };
 
-
 /*
 *   @desc
 *       Moves focus to last visible treeitem,
@@ -784,7 +771,7 @@ Tree.prototype.moveFocusToLastVisibleTreeitem = function (treeitem) {
 *       DOM node to start looking for next treeitem
 *
 *   @returns
-*       True or False 
+*       True or False
 */
 
 Tree.prototype.moveFocusToTreeitemUsingFirstChar = function (treeitem, char) {

@@ -28,7 +28,7 @@ window.addEventListener('load', function () {
 
   var trees = document.querySelectorAll('[role="tree"]');
 
-  for(var i = 0; i <trees.length; i++ ) {
+  for (var i = 0; i <trees.length; i++) {
     var t = new Tree(trees[i]);
     t.init();
 
@@ -627,7 +627,7 @@ Tree.prototype.hideChildTreeitems = function (treeitem) {
 
   var treeitems = this.getChildTreeitems(treeitem);
 
-  for(var i = 0; i < treeitems.length; i++) {
+  for (var i = 0; i < treeitems.length; i++) {
     treeitems[i].style.display = 'none';
   }
   treeitem.setAttribute('aria-expanded', 'false');
@@ -646,7 +646,7 @@ Tree.prototype.showChildTreeitems = function (treeitem) {
 
   var treeitems = this.getChildTreeitems(treeitem);
 
-  for(var i = 0; i < treeitems.length; i++) {
+  for (var i = 0; i < treeitems.length; i++) {
     treeitems[i].style.display = 'block';
   }
   treeitem.setAttribute('aria-expanded', 'true');

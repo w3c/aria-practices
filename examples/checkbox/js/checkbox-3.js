@@ -2,7 +2,7 @@ window.addEventListener('load', function () {
 
   var checkboxes = document.querySelectorAll('input[type=checkbox]');
 
-  for(var i = 0; i < checkboxes.length; i++ ) {
+  for (var i = 0; i < checkboxes.length; i++) {
     var cb = checkboxes[i];
 
     cb.addEventListener('change', updateGroupCheckbox);

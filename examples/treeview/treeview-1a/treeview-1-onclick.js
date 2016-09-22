@@ -16,19 +16,17 @@
  * limitations under the License.
  */
 
-
 /**
  * ARIA Treeview example
  * @function onload
  * @desc  after page has loaded initializ all treeitems based on the role=treeitem
  */
 
-
 window.addEventListener('load', function () {
 
   var treeitems = document.querySelectorAll('[role="treeitem"]');
 
-  for(var i = 0; i <treeitems.length; i++ ) {
+  for (var i = 0; i <treeitems.length; i++) {
 
     treeitems[i].addEventListener('click', function (event) {
       var treeitem = event.currentTarget;
@@ -44,4 +42,3 @@ window.addEventListener('load', function () {
   }
 
 });
-

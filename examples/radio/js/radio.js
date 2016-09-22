@@ -10,7 +10,7 @@ window.addEventListener('load', function () {
 
   var radiobuttons = document.querySelectorAll('[role=radio]');
 
-  for(var i = 0; i < radiobuttons.length; i++ ) {
+  for (var i = 0; i < radiobuttons.length; i++) {
     var rb = radiobuttons[i];
 
     console.log(rb.tagName + ' ' + rb.id)
