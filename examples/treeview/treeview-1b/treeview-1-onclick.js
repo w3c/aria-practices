@@ -1,5 +1,3 @@
-
-
 /*
  * Copyright 2011-2016 University of Illinois
  *
@@ -16,13 +14,11 @@
  * limitations under the License.
  */
 
-
 /**
  * ARIA Treeview example
  * @function onload
  * @desc  after page has loaded initializ all treeitems based on the role=treeitem
  */
-
 
 window.addEventListener('load', function () {
 
@@ -44,4 +40,3 @@ window.addEventListener('load', function () {
   }
 
 });
-

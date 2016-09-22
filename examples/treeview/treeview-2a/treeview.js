@@ -1,5 +1,3 @@
-
-
 /*
  * Copyright 2011-2016 University of Illinois
  *
@@ -21,7 +19,6 @@
  * @function onload
  * @desc  after page has loaded initializ all treeitems based on the role=treeitem
  */
-
 
 window.addEventListener('load', function () {
 
@@ -78,7 +75,6 @@ Tree.prototype.init = function () {
   var that = this;
 
   this.initTreeitems(this.treeNode);
-
 
   var treeitems = this.getTreeitems(this.treeNode);
 
@@ -429,7 +425,6 @@ Tree.prototype.compareFirstChar = function (node, char) {
 Tree.prototype.handleKeydown = function (event) {
   var ct = event.currentTarget,
       flag = false;
-
 
   switch (event.keyCode) {
 

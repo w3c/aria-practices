@@ -1,5 +1,3 @@
-
-
 /*
  * Copyright 2011-2016 University of Illinois
  *
@@ -16,13 +14,11 @@
  * limitations under the License.
  */
 
-
 /**
  * ARIA Treeview example
  * @function onload
  * @desc  after page has loaded initializ all treeitems based on the role=treeitem
  */
-
 
 window.addEventListener('load', function () {
 
@@ -80,7 +76,6 @@ Tree.prototype.init = function () {
 
   this.initTreeitems(this.treeNode);
 
-
   var treeitems = this.getTreeitems(this.treeNode);
 
   var flag = true;
@@ -133,7 +128,6 @@ Tree.prototype.init = function () {
   }
 
 };
-
 
 /*
 *   @desc
@@ -280,7 +274,6 @@ Tree.prototype.isExpanded = function (treeitem) {
 
 };
 
-
 /*
 *   @desc
 *       Get next sibling treeitem, if exists
@@ -344,7 +337,6 @@ Tree.prototype.getLastVisibleTreeitem = function () {
 
   return ti;
 };
-
 
 /*
 *   @desc
@@ -421,7 +413,6 @@ Tree.prototype.compareFirstChar = function (node, char) {
 
 };
 
-
 /*
 *   @desc
 *       Keydown event handler for treeitems
@@ -434,7 +425,6 @@ Tree.prototype.compareFirstChar = function (node, char) {
 Tree.prototype.handleKeydown = function (event) {
   var ct = event.currentTarget,
       flag = false;
-
 
   switch (event.keyCode) {
 
@@ -614,7 +604,6 @@ Tree.prototype.handleBlur = function (event) {
   ct.classList.remove('focus');
 };
 
-
 /*
 *   @desc
 *       Hides child treeitems if aria-expanded=true (e.g. children are visible)
@@ -694,7 +683,6 @@ Tree.prototype.moveFocusToFirstChildTreeitem = function (treeitem) {
 
 };
 
-
 /*
 *   @desc
 *       Moves focus to previous sibling treeitem, if it exists
@@ -754,7 +742,6 @@ Tree.prototype.moveFocusToTopTreeitem = function (treeitem) {
   }
 
 };
-
 
 /*
 *   @desc
