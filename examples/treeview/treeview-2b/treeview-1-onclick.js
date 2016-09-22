@@ -15,7 +15,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 
 /**
  * ARIA Treeview example
@@ -35,10 +35,10 @@ window.addEventListener('load', function () {
       var label = treeitem.getAttribute('aria-label');
       if (!label) label = treeitem.innerHTML;
 
-      document.getElementById('last_action').value=label.trim(); 
+      document.getElementById('last_action').value=label.trim();
 
       event.stopPropagation();
-      event.preventDefault();      
+      event.preventDefault();
     });
 
   }

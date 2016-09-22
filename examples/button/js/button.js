@@ -18,7 +18,7 @@ function init() {
   alert2Button.addEventListener('click', alertButtonEventHandler);
   alert2Button.addEventListener('keydown', alertButtonEventHandler);
 
-  
+
 }
 
 function printButtonEventHandler(event) {

@@ -14,7 +14,7 @@ function toggleCheckbox(event) {
 
   var state = node.getAttribute('aria-checked').toLowerCase()
 
-  if (event.type === 'click' || 
+  if (event.type === 'click' ||
       (event.type === 'keydown' && event.keyCode === 32)
       ) {
           if (state === 'true') {
@@ -24,7 +24,7 @@ function toggleCheckbox(event) {
           else {
             node.setAttribute('aria-checked', 'true')
             image.src = './images/checkbox-checked-black.png'
-          }  
+          }
 
     event.preventDefault()
     event.stopPropagation()
