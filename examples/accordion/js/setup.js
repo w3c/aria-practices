@@ -5,7 +5,7 @@ Bryan Garaventa, 07/21/2016
 */
 
 // Execute when the page finishes loading
-bind(window, 'load', function(){
+bind(window, 'load', function (){
 
     // Configure optional functionality
 
@@ -16,14 +16,14 @@ bind(window, 'load', function(){
     allowMultiple = false;
 
     // Declare function for toggling the activated accordion toggle
-    var toggleAccordion = function(o){
+    var toggleAccordion = function (o){
 
         // Check if the current toggle is expanded.
         var isOpen = getAttr(o, 'aria-expanded') == 'true' ? true : false;
 
         if (!allowMultiple){
             // Close all previously open accordion toggles
-            forEach(toggles, function(i, p){
+            forEach(toggles, function (i, p){
                 // Hide all accordion sections, using aria-controls to specify the desired section
                 addClass(getEl(getAttr(p, 'aria-controls')), 'hidden');
                 // Set the expanded state on the triggering element
@@ -58,10 +58,10 @@ bind(window, 'load', function(){
     },
 
     // Create the array of toggle elements for the accordion group, using the shared 'accAccordion' class name
-    toggles = query('*.accAccordion', document, function(i, o){
+    toggles = query('*.accAccordion', document, function (i, o){
 
 // Create a click binding for mouse and touch device support, plus works for keyboard support on all native active elements like links and buttons
-        bind(o, 'click', function(ev){
+        bind(o, 'click', function (ev){
             toggleAccordion(this);
 
             if (ev.preventDefault)
@@ -74,7 +74,7 @@ bind(window, 'load', function(){
 // Now create a redundant keyDown binding to support all simulated elements such as all focusable divs and spans to provide the same functionality and accessibility
 // tabindex="0" is required on such simulated elements
 // Adding arrow key support here is okay, though all accordion toggles must also be in the regular tab order too.
-        bind(o, 'keydown', function(ev){
+        bind(o, 'keydown', function (ev){
             var k = ev.which || ev.keyCode;
 
             // 13 = Enter, 32 = Spacebar
@@ -91,7 +91,7 @@ bind(window, 'load', function(){
     });
 
     // Check for the presence of data-defaultopen="true" and automatically open that accordion if found
-    forEach(toggles, function(i, o){
+    forEach(toggles, function (i, o){
         if (getAttr(o, 'data-defaultopen') == 'true')
             toggleAccordion(o);
     });

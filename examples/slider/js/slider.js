@@ -24,7 +24,7 @@ window.addEventListener('load', function () {
 
   var sliders = document.getElementsByClassName('aria-widget-slider');
 
-  [].forEach.call(sliders, function(slider) {
+  [].forEach.call(sliders, function (slider) {
     if (slider && !slider.done) {
       var s = new aria.widget.slider(slider);
       s.initSlider();
@@ -77,7 +77,7 @@ aria.widget = aria.widget || {};
  * @property  valueNow  Integer  - Current value of the slider
  */
 
-aria.widget.slider = function(node, inc, jump, width) {
+aria.widget.slider = function (node, inc, jump, width) {
 
    this.keyCode = Object.freeze({
      'pageUp' : 33,
@@ -164,7 +164,7 @@ aria.widget.slider = function(node, inc, jump, width) {
  * @desc  Creates the HTML for the slider
  */
 
-aria.widget.slider.prototype.initSlider = function() {
+aria.widget.slider.prototype.initSlider = function () {
 
   this.rail.style.height = '1px';
   this.rail.style.width = this.sliderWidth + 'px';
@@ -219,7 +219,7 @@ aria.widget.slider.prototype.initSlider = function() {
  * @desc  Updates thumb position in slider div and aria-valuenow property
  */
 
-aria.widget.slider.prototype.updateThumbPosition = function() {
+aria.widget.slider.prototype.updateThumbPosition = function () {
 
   if (this.valueNow > this.valueMax) this.valueNow = this.valueMax;
   if (this.valueNow < this.valueMin) this.valueNow = this.valueMin;
@@ -246,7 +246,7 @@ aria.widget.slider.prototype.updateThumbPosition = function() {
  *               slider to change the value on
  */
 
-aria.widget.slider.prototype.eventKeyDown = function(event, slider) {
+aria.widget.slider.prototype.eventKeyDown = function (event, slider) {
 
   function updateValue(value) {
     slider.valueNow = value;
@@ -301,7 +301,7 @@ aria.widget.slider.prototype.eventKeyDown = function(event, slider) {
  *               slider to change the value on
  */
 
-aria.widget.slider.prototype.eventMouseDown = function(event, slider) {
+aria.widget.slider.prototype.eventMouseDown = function (event, slider) {
 
   if (event.target === slider.thumb) {
 
@@ -342,7 +342,7 @@ aria.widget.slider.prototype.eventMouseDown = function(event, slider) {
  *               slider to change the value on
  */
 
-aria.widget.slider.prototype.eventMouseMove = function(event, slider) {
+aria.widget.slider.prototype.eventMouseMove = function (event, slider) {
 
   var diffX = event.pageX - slider.rail.offsetLeft;
   slider.valueNow = parseInt(((slider.valueMax - slider.valueMin) * diffX) / slider.sliderWidth);
@@ -363,7 +363,7 @@ aria.widget.slider.prototype.eventMouseMove = function(event, slider) {
  *               slider to change the value on
  */
 
-aria.widget.slider.prototype.eventMouseUp = function(event, slider) {
+aria.widget.slider.prototype.eventMouseUp = function (event, slider) {
 
   document.removeEventListener('mousemove', slider.mouseMove);
   document.removeEventListener('mouseup',   slider.mouseUp);
@@ -383,7 +383,7 @@ aria.widget.slider.prototype.eventMouseUp = function(event, slider) {
  *               slider to change the value on
  */
 
-aria.widget.slider.prototype.eventClick = function(event, slider) {
+aria.widget.slider.prototype.eventClick = function (event, slider) {
 
   if (event.target === slider.thumb) return;
 
@@ -407,7 +407,7 @@ aria.widget.slider.prototype.eventClick = function(event, slider) {
  *               slider to change the value on
  */
 
-aria.widget.slider.prototype.eventFocus = function(event, slider) {
+aria.widget.slider.prototype.eventFocus = function (event, slider) {
 
   slider.container.className = 'aria-widget-slider focus';
 
@@ -426,7 +426,7 @@ aria.widget.slider.prototype.eventFocus = function(event, slider) {
  *               slider to change the value on
  */
 
-aria.widget.slider.prototype.eventBlur = function(event, slider) {
+aria.widget.slider.prototype.eventBlur = function (event, slider) {
 
   slider.container.className = 'aria-widget-slider';
 
@@ -440,7 +440,7 @@ aria.widget.slider.prototype.eventBlur = function(event, slider) {
 /*                  Change color of the Box                         */
 /* ---------------------------------------------------------------- */
 
-aria.widget.slider.updateColorBox = function() {
+aria.widget.slider.updateColorBox = function () {
 
   function getColorHex() {
     var r = parseInt(document.getElementById('idRedValue').getAttribute('aria-valuenow')).toString(16)

@@ -1,4 +1,4 @@
-(function(){
+(function (){
     var tablist = document.querySelectorAll('[role="tablist"]')[0];
     var tabs = document.querySelectorAll('[role="tab"]');
     var panels = document.querySelectorAll('[role="tabpanel"]');

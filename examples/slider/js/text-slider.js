@@ -24,7 +24,7 @@ window.addEventListener('load', function () {
 
   var sliders = document.getElementsByClassName('aria-widget-text-slider');
   
-  [].forEach.call(sliders, function(tslider) {
+  [].forEach.call(sliders, function (tslider) {
     if (tslider && !tslider.done) {
       var s = new aria.widget.tslider(tslider);
       s.initSlider();
@@ -73,7 +73,7 @@ aria.widget = aria.widget || {};
  * @property  valueNow  Integer  - Current value of the slider (e.g. current option)
  */
 
-aria.widget.tslider = function(node, options, width) {
+aria.widget.tslider = function (node, options, width) {
 
    this.keyCode = Object.freeze({
      'end' : 35,
@@ -154,7 +154,7 @@ aria.widget.tslider = function(node, options, width) {
  * @desc  Creates the HTML for the slider 
  */
 
-aria.widget.tslider.prototype.initSlider = function() {
+aria.widget.tslider.prototype.initSlider = function () {
 
   this.rail.style.height = '1px';
   this.rail.style.width = this.sliderWidth + 'px';
@@ -214,7 +214,7 @@ aria.widget.tslider.prototype.initSlider = function() {
  * @desc  Updates thumb position in slider div and aria-valuenow property
  */
 
-aria.widget.tslider.prototype.updateThumbPosition = function() {
+aria.widget.tslider.prototype.updateThumbPosition = function () {
 
   if (this.valueNow > this.valueMax) this.valueNow = this.valueMax;
   if (this.valueNow < this.valueMin) this.valueNow = this.valueMin;
@@ -237,7 +237,7 @@ aria.widget.tslider.prototype.updateThumbPosition = function() {
  *               slider to change the value on
  */
 
-aria.widget.tslider.prototype.eventKeyDown = function(event, slider) {
+aria.widget.tslider.prototype.eventKeyDown = function (event, slider) {
 
   function updateValue(value) {
     slider.valueNow = value;
@@ -284,7 +284,7 @@ aria.widget.tslider.prototype.eventKeyDown = function(event, slider) {
  *               slider to change the value on
  */
 
-aria.widget.tslider.prototype.eventMouseDown = function(event, slider) {
+aria.widget.tslider.prototype.eventMouseDown = function (event, slider) {
 
   if (event.target === slider.thumb) {
   
@@ -325,7 +325,7 @@ aria.widget.tslider.prototype.eventMouseDown = function(event, slider) {
  *               slider to change the value on
  */
 
-aria.widget.tslider.prototype.eventMouseMove = function(event, slider) {
+aria.widget.tslider.prototype.eventMouseMove = function (event, slider) {
 
   var diffX = event.pageX - slider.rail.offsetLeft;
   slider.valueNow = parseInt(((slider.valueMax - slider.valueMin) * diffX) / slider.sliderWidth);
@@ -346,7 +346,7 @@ aria.widget.tslider.prototype.eventMouseMove = function(event, slider) {
  *               slider to change the value on
  */
 
-aria.widget.tslider.prototype.eventMouseUp = function(event, slider) {
+aria.widget.tslider.prototype.eventMouseUp = function (event, slider) {
 
   document.removeEventListener('mousemove', slider.mouseMove);
   document.removeEventListener('mouseup',   slider.mouseUp);
@@ -366,7 +366,7 @@ aria.widget.tslider.prototype.eventMouseUp = function(event, slider) {
  *               slider to change the value on
  */
 
-aria.widget.tslider.prototype.eventClick = function(event, slider) {
+aria.widget.tslider.prototype.eventClick = function (event, slider) {
 
   if (event.target === slider.thumb) return;
   
@@ -390,7 +390,7 @@ aria.widget.tslider.prototype.eventClick = function(event, slider) {
  *               slider to change the value on
  */
 
-aria.widget.tslider.prototype.eventFocus = function(event, slider) {
+aria.widget.tslider.prototype.eventFocus = function (event, slider) {
 
   slider.container.className = 'aria-widget-text-slider focus';
   
@@ -409,7 +409,7 @@ aria.widget.tslider.prototype.eventFocus = function(event, slider) {
  *               slider to change the value on
  */
 
-aria.widget.tslider.prototype.eventBlur = function(event, slider) {
+aria.widget.tslider.prototype.eventBlur = function (event, slider) {
 
   slider.container.className = 'aria-widget-text-slider';
   

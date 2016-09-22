@@ -8,7 +8,6 @@
     "examples/landmarks/js/jquery-2.1.1.min.js"
   ],
   "disallowKeywords": ["with"],
-  "disallowKeywordsOnNewLine": ["else"],
   "disallowMixedSpacesAndTabs": true,
   "disallowMultipleLineBreaks": true,
   "disallowMultipleSpaces": true,
@@ -18,12 +17,6 @@
   "disallowSpaceAfterPrefixUnaryOperators": ["++", "--", "~", "!"],
   "disallowSpaceBeforePostfixUnaryOperators": ["++", "--"],
   "disallowSpacesInCallExpression": true,
-  "disallowSpacesInFunctionDeclaration": {
-    "beforeOpeningRoundBrace": true
-  },
-  "disallowSpacesInFunctionExpression": {
-    "beforeOpeningRoundBrace": true
-  },
   "disallowSpacesInsideArrayBrackets": "all",
   "disallowSpacesInsideObjectBrackets": "all",
   "disallowSpacesInsideParentheses": true,
@@ -59,6 +52,7 @@
     "catch"
   ],
   "requireDotNotation": true,
+  "requireKeywordsOnNewLine": ["else"],
   "requireLineFeedAtFileEnd": true,
   "requireLineBreakAfterVariableAssignment": true,
   "requireOperatorBeforeLineBreak": [
@@ -78,6 +72,7 @@
     "<="
   ],
   "requireParenthesesAroundIIFE": true,
+  "requireSemicolons": true,
   "requireSpaceAfterBinaryOperators": [
     "=",
     ",",
@@ -126,9 +121,11 @@
     "beforeAlternate": true
   },
   "requireSpacesInFunctionDeclaration": {
+    "beforeOpeningRoundBrace": true,
     "beforeOpeningCurlyBrace": true
   },
   "requireSpacesInFunctionExpression": {
+    "beforeOpeningRoundBrace": true,
     "beforeOpeningCurlyBrace": true
   },
   "requireSpacesInNamedFunctionExpression": {
@@ -136,7 +133,7 @@
     "beforeOpeningCurlyBrace": true
   },
   "safeContextKeyword": ["self", "that"],
-  "validateIndentation": 4,
+  "validateIndentation": 2,
   "validateQuoteMarks": "'",
   "validateParameterSeparator": ", "
 }

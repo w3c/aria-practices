@@ -13,34 +13,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 /**
  * ARIA Menu Button example
  * @function onload
  * @desc  after page has loaded initializ all menu buttons based on the selector "[aria-haspopup][aria-controls]"
  */
 
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
 
   var menuButtons = document.querySelectorAll('[aria-haspopup][aria-controls]');
 
-  [].forEach.call(menuButtons, function(menuButton) {
-      if (menuButton && 
+  [].forEach.call(menuButtons, function (menuButton) {
+      if (menuButton &&
           (menuButton.tagName.toLowerCase() === 'button') || (menuButton.getAttribute('role').toLowerCase() === 'button')) {
       var mb = new aria.widget.MenuButton(menuButton);
       mb.initMenuButton();
-    }  
+    }
   });
 });
 
-/** 
+/**
  * @namespace aria
  */
 
   var aria = aria || {};
 
 /* ---------------------------------------------------------------- */
-/*                  ARIA Utils Namespace                        */ 
+/*                  ARIA Utils Namespace                        */
 /* ---------------------------------------------------------------- */
 
 /**
@@ -53,10 +53,10 @@ window.addEventListener('load', function() {
 
 aria.Utils = aria.Utils || {};
 
-aria.Utils.findPos = function(element) {
+aria.Utils.findPos = function (element) {
     var xPosition = 0;
     var yPosition = 0;
-  
+
     while(element) {
         xPosition += (element.offsetLeft - element.scrollLeft + element.clientLeft);
         yPosition += (element.offsetTop - element.scrollTop + element.clientTop);
@@ -67,7 +67,7 @@ aria.Utils.findPos = function(element) {
 
 
 /* ---------------------------------------------------------------- */
-/*                  ARIA Widget Namespace                        */ 
+/*                  ARIA Widget Namespace                        */
 /* ---------------------------------------------------------------- */
 
 aria.widget = aria.widget || {};
@@ -82,10 +82,10 @@ aria.widget = aria.widget || {};
  *
  * @memberOf aria.Widget
  *
- * @desc  Creates a Menu Button widget using ARIA 
+ * @desc  Creates a Menu Button widget using ARIA
  */
 
-aria.widget.Menu = function(node, menuButton) {
+aria.widget.Menu = function (node, menuButton) {
 
    this.keyCode = Object.freeze({
      'TAB' : 9,
@@ -101,7 +101,7 @@ aria.widget.Menu = function(node, menuButton) {
      'RIGHT' : 39,
      'DOWN' : 40
   });
-  
+
   // Check fo DOM element node
   if (typeof node !== 'object' || !node.getElementsByClassName) return false;
 
@@ -123,7 +123,7 @@ aria.widget.Menu = function(node, menuButton) {
  * @desc  Adds event listeners to menu elements
  */
 
-aria.widget.Menu.prototype.initMenu = function() {
+aria.widget.Menu.prototype.initMenu = function () {
 
     var menu = this;
     var eventMouseOver = function (event) {
@@ -142,7 +142,7 @@ aria.widget.Menu.prototype.initMenu = function() {
       if (cn.nodeType === Node.ELEMENT_NODE) {
         if (cn.getAttribute('role')  === 'menuitem') {
           cn.tabIndex = -1;
-          if (!this.firstMenuItem) this.firstMenuItem = cn; 
+          if (!this.firstMenuItem) this.firstMenuItem = cn;
           this.lastMenuItem = cn;
 
           var eventKeyDown = function (event) {
@@ -162,17 +162,17 @@ aria.widget.Menu.prototype.initMenu = function() {
  *
  * @memberOf aria.widget.Menu
  *
- * @desc  Moves focus to next menuItem 
+ * @desc  Moves focus to next menuItem
  */
 
-aria.widget.Menu.prototype.nextMenuItem = function(currentMenuItem) {
+aria.widget.Menu.prototype.nextMenuItem = function (currentMenuItem) {
 
   var mi = currentMenuItem.nextSibling;
 
   console.log('[MENU][nextMenuItem]: ' + mi);
 
   while (mi) {
-    if ((mi.nodeType === Node.ELEMENT_NODE) && 
+    if ((mi.nodeType === Node.ELEMENT_NODE) &&
       (mi.getAttribute('role')  === 'menuitem')) {
       mi.focus();
       break;
@@ -190,10 +190,10 @@ aria.widget.Menu.prototype.nextMenuItem = function(currentMenuItem) {
  *
  * @memberOf aria.widget.Menu
  *
- * @desc  Moves focus to previous menuItem 
+ * @desc  Moves focus to previous menuItem
  */
 
-aria.widget.Menu.prototype.previousMenuItem = function(currentMenuItem) {
+aria.widget.Menu.prototype.previousMenuItem = function (currentMenuItem) {
 
   var mi = currentMenuItem.previousSibling;
 
@@ -218,10 +218,10 @@ aria.widget.Menu.prototype.previousMenuItem = function(currentMenuItem) {
  *
  * @desc  Keydown event handler for Menu Object
  *        NOTE: The menu parameter is needed to provide a reference to the specific
- *               menu 
+ *               menu
  */
 
-aria.widget.Menu.prototype.eventKeyDown = function(event, menu) {
+aria.widget.Menu.prototype.eventKeyDown = function (event, menu) {
 
   var ct = event.currentTarget;
   var flag = false;
@@ -242,7 +242,7 @@ aria.widget.Menu.prototype.eventKeyDown = function(event, menu) {
 
   case menu.keyCode.ESC:
     menu.menuButton.closeMenu();
-    menu.menuButton.buttonNode.focus();  
+    menu.menuButton.buttonNode.focus();
     flag = true;
     break;
 
@@ -266,12 +266,12 @@ aria.widget.Menu.prototype.eventKeyDown = function(event, menu) {
     break;
   }
 
-  
+
   if (flag) {
     event.stopPropagation();
     event.preventDefault();
-  }  
-  
+  }
+
 };
 
 /**
@@ -284,7 +284,7 @@ aria.widget.Menu.prototype.eventKeyDown = function(event, menu) {
  *               menu
  */
 
-aria.widget.Menu.prototype.eventMouseOver = function(event, menu) {
+aria.widget.Menu.prototype.eventMouseOver = function (event, menu) {
 
   menu.mouseInMenu = true;
   menu.menuButton.openMenu();
@@ -298,13 +298,13 @@ aria.widget.Menu.prototype.eventMouseOver = function(event, menu) {
  *
  * @desc  Closes the menu on mouseout
  *        NOTE: The menu parameter is needed to provide a reference to the specific
- *               menu 
+ *               menu
  */
 
-aria.widget.Menu.prototype.eventMouseOut = function(event, menu) {
+aria.widget.Menu.prototype.eventMouseOut = function (event, menu) {
 
   menu.mouseInMenu = false;
-  setTimeout(function(){ menu.menuButton.closeMenu() }, 500);
+  setTimeout(function (){ menu.menuButton.closeMenu() }, 500);
 
 };
 
@@ -317,10 +317,10 @@ aria.widget.Menu.prototype.eventMouseOut = function(event, menu) {
  *
  * @memberOf aria.Widget
  *
- * @desc  Creates a Menu Button widget using ARIA 
+ * @desc  Creates a Menu Button widget using ARIA
  */
 
-aria.widget.MenuButton = function(node) {
+aria.widget.MenuButton = function (node) {
 
   this.keyCode = Object.freeze({
      'TAB' : 9,
@@ -356,7 +356,7 @@ aria.widget.MenuButton = function(node) {
  * @desc  Adds event handlers to button elements
  */
 
-aria.widget.MenuButton.prototype.initMenuButton = function() {
+aria.widget.MenuButton.prototype.initMenuButton = function () {
 
   var id = this.buttonNode.getAttribute('aria-controls');
 
@@ -367,7 +367,7 @@ aria.widget.MenuButton.prototype.initMenuButton = function() {
       this.menu = new aria.widget.Menu(this.menuNode, this);
         this.menu.initMenu();
     }
-  }  
+  }
 
 
   this.closeMenu();
@@ -397,7 +397,7 @@ aria.widget.MenuButton.prototype.initMenuButton = function() {
  * @desc  Opens the menu
  */
 
-aria.widget.MenuButton.prototype.openMenu = function() {
+aria.widget.MenuButton.prototype.openMenu = function () {
 
   if (this.menuNode) {
     var pos = aria.Utils.findPos(this.buttonNode);
@@ -405,9 +405,9 @@ aria.widget.MenuButton.prototype.openMenu = function() {
 
     this.menuNode.style.display = 'block';
     this.menuNode.style.position = 'absolute';
-    this.menuNode.style.top  = (pos.y + br.height) + 'px'; 
+    this.menuNode.style.top  = (pos.y + br.height) + 'px';
     this.menuNode.style.left = pos.x + 'px'; ;
-  }  
+  }
 };
 
 /**
@@ -418,9 +418,9 @@ aria.widget.MenuButton.prototype.openMenu = function() {
  * @desc  Close the menu
  */
 
-aria.widget.MenuButton.prototype.closeMenu = function() {
+aria.widget.MenuButton.prototype.closeMenu = function () {
 
-  if (!this.mouseInMenuButton && 
+  if (!this.mouseInMenuButton &&
     !this.menu.mouseInMenu &&
     this.menuNode) {
       this.menuNode.style.display = 'none';
@@ -437,7 +437,7 @@ aria.widget.MenuButton.prototype.closeMenu = function() {
  * @desc  Close or open the menu depending on current state
  */
 
-aria.widget.MenuButton.prototype.toggleMenu = function() {
+aria.widget.MenuButton.prototype.toggleMenu = function () {
 
   if (this.menuNode) {
     if (this.menuNode.style.display === 'block') this.menuNode.style.display = 'none';
@@ -454,7 +454,7 @@ aria.widget.MenuButton.prototype.toggleMenu = function() {
  * @desc  Move keyboard focus to first menu item
  */
 
-aria.widget.MenuButton.prototype.moveFocusToFirstMenuItem = function() {
+aria.widget.MenuButton.prototype.moveFocusToFirstMenuItem = function () {
 
   if (this.menu.firstMenuItem) {
     this.openMenu();
@@ -471,7 +471,7 @@ aria.widget.MenuButton.prototype.moveFocusToFirstMenuItem = function() {
  * @desc  Move keyboard focus to first menu item
  */
 
-aria.widget.MenuButton.prototype.moveFocusToLastMenuItem = function() {
+aria.widget.MenuButton.prototype.moveFocusToLastMenuItem = function () {
 
   if (this.menu.lastMenuItem) {
     this.openMenu();
@@ -487,15 +487,15 @@ aria.widget.MenuButton.prototype.moveFocusToLastMenuItem = function() {
  *
  * @desc  Keydown event handler for MenuButton Object
  *        NOTE: The menuButton parameter is needed to provide a reference to the specific
- *               menuButton 
+ *               menuButton
  */
 
-aria.widget.MenuButton.prototype.eventKeyDown = function(event, menuButton) {
+aria.widget.MenuButton.prototype.eventKeyDown = function (event, menuButton) {
 
   var flag = false;
 
   switch(event.keyCode) {
-  
+
   case menuButton.keyCode.SPACE:
     menuButton.moveFocusToFirstMenuItem();
     flag = true;
@@ -523,11 +523,11 @@ aria.widget.MenuButton.prototype.eventKeyDown = function(event, menuButton) {
   default:
       break;
     }
-  
+
   if (flag) {
     event.stopPropagation();
     event.preventDefault();
-  }  
+  }
 
 };
 
@@ -538,10 +538,10 @@ aria.widget.MenuButton.prototype.eventKeyDown = function(event, menuButton) {
  *
  * @desc  Opens the menu on mouseover
  *        NOTE: The menuButton parameter is needed to provide a reference to the specific
- *               menuButton 
+ *               menuButton
  */
 
-aria.widget.MenuButton.prototype.eventMouseOver = function(event, menuButton) {
+aria.widget.MenuButton.prototype.eventMouseOver = function (event, menuButton) {
 
   menuButton.mouseInMenuButton = true;
   menuButton.openMenu();
@@ -555,15 +555,12 @@ aria.widget.MenuButton.prototype.eventMouseOver = function(event, menuButton) {
  *
  * @desc  Closes the menu on mouseout
  *        NOTE: The menuButton parameter is needed to provide a reference to the specific
- *               menuButton 
+ *               menuButton
  */
 
-aria.widget.MenuButton.prototype.eventMouseOut = function(event, menuButton) {
+aria.widget.MenuButton.prototype.eventMouseOut = function (event, menuButton) {
 
   menuButton.mouseInMenuButton = false;
-  setTimeout(function(){ menuButton.closeMenu() }, 500);
+  setTimeout(function (){ menuButton.closeMenu() }, 500);
 
 };
-
-
-

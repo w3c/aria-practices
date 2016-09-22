@@ -47,7 +47,7 @@ aria.CSSClass = {
 aria.Utils = aria.Utils || {};
 
 // Polyfill src https://developer.mozilla.org/en-US/docs/Web/API/Element/matches
-aria.Utils.matches = function(element, selector) {
+aria.Utils.matches = function (element, selector) {
   if (!Element.prototype.matches) {
     Element.prototype.matches =
     Element.prototype.matchesSelector ||
@@ -55,7 +55,7 @@ aria.Utils.matches = function(element, selector) {
     Element.prototype.msMatchesSelector ||
     Element.prototype.oMatchesSelector ||
     Element.prototype.webkitMatchesSelector ||
-    function(s) {
+    function (s) {
         var matches = element.parentNode.querySelectorAll(s),
             i = matches.length;
         while (--i >= 0 && matches.item(i) !== this) {}
@@ -208,7 +208,7 @@ aria.Grid.prototype.isHidden = function (row, col) {
  * @desc
  *  Clean up grid events
  */
-aria.Grid.prototype.clearEvents = function() {
+aria.Grid.prototype.clearEvents = function () {
   this.gridNode.removeEventListener('keydown', this.checkFocusChange.bind(this));
   this.gridNode.removeEventListener('keydown', this.checkPageChange.bind(this));
   this.gridNode.removeEventListener('keydown', this.delegateButtonHandler.bind(this));

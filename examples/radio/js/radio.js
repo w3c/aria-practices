@@ -6,7 +6,7 @@ var KEYCODE = {
     UP: 38
 }
 
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
 
   var radiobuttons = document.querySelectorAll('[role=radio]');
 

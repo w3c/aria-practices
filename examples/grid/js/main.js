@@ -4,7 +4,7 @@
  * @desc Initialize the grid examples once the page has loaded
  */
 
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
   var ex1 = document.getElementById('ex1');
   var ex1Grid = new aria.Grid(ex1.querySelector('[role="grid"]'));
 

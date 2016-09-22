@@ -25,7 +25,7 @@ aria.widget = aria.widget || {};
  * @property  code          Array  -  JQuery node object
  */
 
-aria.widget.SourceCode = function() {
+aria.widget.SourceCode = function () {
   this.location = new Array();
   this.code = new Array();
 }
@@ -38,7 +38,7 @@ aria.widget.SourceCode = function() {
  * @desc  Adds source code
  */
 
-aria.widget.SourceCode.prototype.add = function( location_id, code_id ) {
+aria.widget.SourceCode.prototype.add = function ( location_id, code_id ) {
   this.location[this.location.length] = location_id;
   this.code[this.code.length] = code_id;
 }
@@ -51,7 +51,7 @@ aria.widget.SourceCode.prototype.add = function( location_id, code_id ) {
  * @desc  Generates HTML content for source code
  */
 
-aria.widget.SourceCode.prototype.make = function() {
+aria.widget.SourceCode.prototype.make = function () {
 
    var node_code;
    var node_location;
@@ -80,7 +80,7 @@ aria.widget.SourceCode.prototype.make = function() {
  * @param  node       Object   - DOM Element node to use to generate the source code
  */
 
-aria.widget.SourceCode.prototype.createCode = function(location, spaces, node) {
+aria.widget.SourceCode.prototype.createCode = function (location, spaces, node) {
 
   function hasText(s) {
     if (typeof s !== 'string') return false;
@@ -146,7 +146,7 @@ aria.widget.SourceCode.prototype.createCode = function(location, spaces, node) {
 
   } // end for
 
-  if( count > 0 ) { 
+  if( count > 0 ) {
     location.innerHTML = location.innerHTML + '<br/>' + spaces + '&lt;/' + node.nodeName.toLowerCase();
     location.innerHTML = location.innerHTML + '&gt;';
   } // end if
