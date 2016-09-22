@@ -198,7 +198,7 @@ function keyDownRadioGroup(event) {
   var type = event.type;
   var next = false;
 
-  if(type === 'keydown'){
+  if(type === 'keydown') {
     var node = event.currentTarget;
 
     switch (event.keyCode) {

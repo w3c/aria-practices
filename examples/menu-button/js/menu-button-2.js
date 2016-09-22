@@ -304,7 +304,7 @@ aria.widget.Menu.prototype.eventMouseOver = function (event, menu) {
 aria.widget.Menu.prototype.eventMouseOut = function (event, menu) {
 
   menu.mouseInMenu = false;
-  setTimeout(function (){ menu.menuButton.closeMenu() }, 500);
+  setTimeout(function () { menu.menuButton.closeMenu() }, 500);
 
 };
 
@@ -561,6 +561,6 @@ aria.widget.MenuButton.prototype.eventMouseOver = function (event, menuButton) {
 aria.widget.MenuButton.prototype.eventMouseOut = function (event, menuButton) {
 
   menuButton.mouseInMenuButton = false;
-  setTimeout(function (){ menuButton.closeMenu() }, 500);
+  setTimeout(function () { menuButton.closeMenu() }, 500);
 
 };

@@ -302,7 +302,7 @@ aria.widget.Menu.prototype.eventMouseClick = function (event, menu) {
  */
 aria.widget.Menu.prototype.eventBlur = function (event, menu) {
   menu.menuHasFocus = false;
-  setTimeout(function (){
+  setTimeout(function () {
     if (!menu.menuHasFocus) {
       menu.menuButton.closeMenu(false, false);
     }

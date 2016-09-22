@@ -323,7 +323,7 @@ aria.widget.Menu.prototype.eventMouseOver = function (event, menu) {
 aria.widget.Menu.prototype.eventMouseOut = function (event, menu) {
 
   menu.mouseInMenu = false;
-  setTimeout(function (){ menu.menuButton.closeMenu() }, 500);
+  setTimeout(function () { menu.menuButton.closeMenu() }, 500);
 
 };
 
@@ -338,7 +338,7 @@ aria.widget.Menu.prototype.eventMouseOut = function (event, menu) {
  */
 aria.widget.Menu.prototype.eventBlur = function (event, menu) {
   menu.menuHasFocus = false;
-  setTimeout(function (){ menu.menuButton.closeMenu(false, false) }, 500);
+  setTimeout(function () { menu.menuButton.closeMenu(false, false) }, 500);
 };
 
 
