@@ -33,13 +33,11 @@ window.addEventListener('load', function () {
 
 });
 
-
 /**
  * @namespace aria
  */
 
 var aria = aria || {};
-
 
 /* ---------------------------------------------------------------- */
 /*                  ARIA Widget Namespace                        */
@@ -79,16 +77,15 @@ aria.widget = aria.widget || {};
 
 aria.widget.slider = function (node, inc, jump, width) {
 
-   this.keyCode = Object.freeze({
-     'pageUp' : 33,
-     'pageDown' : 34,
-     'end' : 35,
-     'home' : 36,
-
-     'left' : 37,
-     'up' : 38,
-     'right' : 39,
-     'down' : 40
+  this.keyCode = Object.freeze({
+    'pageUp': 33,
+    'pageDown': 34,
+    'end': 35,
+    'home': 36,
+    'left': 37,
+    'up': 38,
+    'right': 39,
+    'down': 40
   });
 
   this.done = true;
@@ -99,43 +96,63 @@ aria.widget.slider = function (node, inc, jump, width) {
   this.container = node;
 
   var rails = node.getElementsByClassName('rail');
-  if (rails) this.rail = rails[0];
-  else return false;
+  if (rails) {
+    this.rail = rails[0];
+  }
+  else {
+    return false;
+  }
 
   var thumbs = node.getElementsByClassName('thumb');
-  if (thumbs) this.thumb = thumbs[0];
-  else return false;
+  if (thumbs) {
+    this.thumb = thumbs[0];
+  }
+  else {
+    return false;
+  }
 
   var values = node.getElementsByClassName('value');
-  if (values) this.value = values[0];
-  else return false;
+  if (values) {
+    this.value = values[0];
+  }
+  else {
+    return false;
+  }
   this.value.innerHTML = '0';
 
-  this.thumbHeight  = 28;
-  this.thumbWidth   = 8;
+  this.thumbHeight = 28;
+  this.thumbWidth = 8;
 
   if (typeof width !== 'number') {
     width = window.getComputedStyle(this.rail).getPropertyValue('width');
     if ((typeof width === 'string') && (width.length > 2)) {
-      width = parseInt(width.slice(0,-2));
+      width = parseInt(width.slice(0, -2));
     }
   }
 
-  if (typeof width === 'number') this.sliderWidth = width;
-  else this.sliderWidth = 200;
-
-  if (this.sliderWidth < 50) {
-    this.sliderWidth  = 50;
+  if (typeof width === 'number') {
+    this.sliderWidth = width;
+  }
+  else {
+    this.sliderWidth = 200;
   }
 
-  if (typeof inc !== 'number') inc = 1;
-  if (typeof jump !== 'number') jump = 10;
+  if (this.sliderWidth < 50) {
+    this.sliderWidth = 50;
+  }
 
-  this.valueInc  = inc;
+  if (typeof inc !== 'number') {
+    inc = 1;
+  }
+  if (typeof jump !== 'number') {
+    jump = 10;
+  }
+
+  this.valueInc = inc;
   this.valueJump = jump;
 
   if (typeof height === 'Number') this.sliderHeight = height;
-  if (typeof width  === 'Number') this.sliderWidth  = width;
+  if (typeof width === 'Number') this.sliderWidth = width;
 
   this.valueMin = parseInt(this.thumb.getAttribute('aria-valuemin'));
   if (isNaN(this.valueMin)) this.valueMin = 0;
@@ -170,39 +187,39 @@ aria.widget.slider.prototype.initSlider = function () {
   this.rail.style.width = this.sliderWidth + 'px';
 
   this.thumb.style.height = this.thumbHeight + 'px';
-  this.thumb.style.width  = this.thumbWidth + 'px';
-  this.thumb.style.top    = (-1 * this.thumbHeight/2) + 'px';
+  this.thumb.style.width = this.thumbWidth + 'px';
+  this.thumb.style.top = (-1 * this.thumbHeight / 2) + 'px';
 
-  this.value.style.top    = (this.rail.offsetTop - (this.value.offsetHeight / 2) + 2) + 'px';
-  this.value.style.left   = (this.rail.offsetLeft + this.rail.offsetWidth + 5) + 'px';
+  this.value.style.top = (this.rail.offsetTop - (this.value.offsetHeight / 2) + 2) + 'px';
+  this.value.style.left = (this.rail.offsetLeft + this.rail.offsetWidth + 5) + 'px';
 
-  this.rangeLeftPos =  this.rail.offsetLeft;
+  this.rangeLeftPos = this.rail.offsetLeft;
 
-  var slider = this;
+  var self = this;
 
   var eventKeyDown = function (event) {
-    slider.eventKeyDown(event, slider);
+    self.eventKeyDown(event, self);
   };
 
   var eventMouseDown = function (event) {
-    slider.eventMouseDown(event, slider);
+    self.eventMouseDown(event, self);
   };
 
   var eventFocus = function (event) {
-    slider.eventFocus(event, slider);
+    self.eventFocus(event, self);
   };
 
   var eventBlur = function (event) {
-    slider.eventBlur(event, slider);
+    self.eventBlur(event, self);
   };
 
-  this.thumb.addEventListener('keydown',   eventKeyDown);
+  this.thumb.addEventListener('keydown', eventKeyDown);
   this.thumb.addEventListener('mousedown', eventMouseDown);
   this.thumb.addEventListener('focus', eventFocus);
-  this.thumb.addEventListener('blur',  eventBlur);
+  this.thumb.addEventListener('blur', eventBlur);
 
   var eventClick = function (event) {
-    slider.eventClick(event, slider);
+    self.eventClick(event, self);
   };
 
   this.rail.addEventListener('click', eventClick);
@@ -221,12 +238,18 @@ aria.widget.slider.prototype.initSlider = function () {
 
 aria.widget.slider.prototype.updateThumbPosition = function () {
 
-  if (this.valueNow > this.valueMax) this.valueNow = this.valueMax;
-  if (this.valueNow < this.valueMin) this.valueNow = this.valueMin;
+  if (this.valueNow > this.valueMax) {
+    this.valueNow = this.valueMax;
+  }
+  if (this.valueNow < this.valueMin) {
+    this.valueNow = this.valueMin;
+  }
 
   this.thumb.setAttribute('aria-valuenow', this.valueNow);
 
-  var pos = Math.round((this.valueNow * this.sliderWidth) / (this.valueMax - this.valueMin)) - (this.thumbWidth/2);
+  var pos = Math.round(
+    (this.valueNow * this.sliderWidth) / (this.valueMax - this.valueMin)
+  ) - (this.thumbWidth / 2);
 
   this.thumb.style.left = pos + 'px';
 
@@ -256,39 +279,36 @@ aria.widget.slider.prototype.eventKeyDown = function (event, slider) {
     event.stopPropagation();
   }
 
-  switch(event.keyCode) {
+  switch (event.keyCode) {
+    case slider.keyCode.left:
+    case slider.keyCode.down:
+      updateValue(slider.valueNow - slider.valueInc);
+      break;
 
-  case slider.keyCode.left:
-  case slider.keyCode.down:
-    updateValue(slider.valueNow-slider.valueInc);
-    break;
+    case slider.keyCode.right:
+    case slider.keyCode.up:
+      updateValue(slider.valueNow + slider.valueInc);
+      break;
 
-  case slider.keyCode.right:
-  case slider.keyCode.up:
-    updateValue(slider.valueNow+slider.valueInc);
-    break;
+    case slider.keyCode.pageDown:
+      updateValue(slider.valueNow - slider.valueJump);
+      break;
 
-  case slider.keyCode.pageDown:
-    updateValue(slider.valueNow-slider.valueJump);
-    break;
+    case slider.keyCode.pageUp:
+      updateValue(slider.valueNow + slider.valueJump);
+      break;
 
-  case slider.keyCode.pageUp:
-    updateValue(slider.valueNow+slider.valueJump);
-    break;
+    case slider.keyCode.home:
+      updateValue(slider.valueMin);
+      break;
 
-  case slider.keyCode.home:
-    updateValue(slider.valueMin);
-    break;
+    case slider.keyCode.end:
+      updateValue(slider.valueMax);
+      break;
 
-  case slider.keyCode.end:
-    updateValue(slider.valueMax);
-    break;
-
-  default:
-    break;
+    default:
+      break;
   }
-
-
 };
 
 /**
@@ -310,13 +330,13 @@ aria.widget.slider.prototype.eventMouseDown = function (event, slider) {
 
     var mouseMove = function (event) {
       slider.eventMouseMove(event, slider);
-    }
+    };
 
     slider.mouseMove = mouseMove;
 
     var mouseUp = function (event) {
       slider.eventMouseUp(event, slider);
-    }
+    };
 
     slider.mouseUp = mouseUp;
 
@@ -366,7 +386,7 @@ aria.widget.slider.prototype.eventMouseMove = function (event, slider) {
 aria.widget.slider.prototype.eventMouseUp = function (event, slider) {
 
   document.removeEventListener('mousemove', slider.mouseMove);
-  document.removeEventListener('mouseup',   slider.mouseUp);
+  document.removeEventListener('mouseup', slider.mouseUp);
 
   event.preventDefault();
   event.stopPropagation();
@@ -395,7 +415,6 @@ aria.widget.slider.prototype.eventClick = function (event, slider) {
   event.stopPropagation();
 
 };
-
 
 /**
  * @method eventFocus
@@ -435,7 +454,6 @@ aria.widget.slider.prototype.eventBlur = function (event, slider) {
 
 };
 
-
 /* ---------------------------------------------------------------- */
 /*                  Change color of the Box                         */
 /* ---------------------------------------------------------------- */
@@ -443,42 +461,44 @@ aria.widget.slider.prototype.eventBlur = function (event, slider) {
 aria.widget.slider.updateColorBox = function () {
 
   function getColorHex () {
-    var r = parseInt(document.getElementById('idRedValue').getAttribute('aria-valuenow')).toString(16)
-    var g = parseInt(document.getElementById('idGreenValue').getAttribute('aria-valuenow')).toString(16)
-    var b = parseInt(document.getElementById('idBlueValue').getAttribute('aria-valuenow')).toString(16)
+    var r = parseInt(document.getElementById('idRedValue').getAttribute('aria-valuenow')).toString(16);
+    var g = parseInt(document.getElementById('idGreenValue').getAttribute('aria-valuenow')).toString(16);
+    var b = parseInt(document.getElementById('idBlueValue').getAttribute('aria-valuenow')).toString(16);
 
-    if (r.length === 1) r = '0' + r
-    if (g.length === 1) g = '0' + g
-    if (b.length === 1) b = '0' + b
+    if (r.length === 1) {
+      r = '0' + r;
+    }
+    if (g.length === 1) {
+      g = '0' + g;
+    }
+    if (b.length === 1) {
+      b = '0' + b;
+    }
 
     return '#' + r + g + b;
   }
 
   function getColorRGB () {
-    var r = document.getElementById('idRedValue').getAttribute('aria-valuenow')
-    var g = document.getElementById('idGreenValue').getAttribute('aria-valuenow')
-    var b = document.getElementById('idBlueValue').getAttribute('aria-valuenow')
+    var r = document.getElementById('idRedValue').getAttribute('aria-valuenow');
+    var g = document.getElementById('idGreenValue').getAttribute('aria-valuenow');
+    var b = document.getElementById('idBlueValue').getAttribute('aria-valuenow');
 
     return r + ', ' + g + ', ' + b;
   }
 
-
-
-  var node = document.getElementById('idColorBox')
-
+  var node = document.getElementById('idColorBox');
 
   if (node) {
 
-    var color = getColorHex()
+    var color = getColorHex();
 
     node.style.backgroundColor = color;
 
-    node = document.getElementById('idColorValueHex')
-    node.value = color
+    node = document.getElementById('idColorValueHex');
+    node.value = color;
 
-    node = document.getElementById('idColorValueRGB')
-    node.value = getColorRGB()
+    node = document.getElementById('idColorValueRGB');
+    node.value = getColorRGB();
 
   }
-
-}
+};
