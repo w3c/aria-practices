@@ -88,18 +88,18 @@ aria.widget = aria.widget || {};
 aria.widget.Menu = function(node, menuButton) {
 
    this.keyCode = Object.freeze({
-     'TAB'      : 9,
-     'RETURN'   : 13,
-     'ESC'    : 27,
-     'SPACE'    : 32,
-     'PAGEUP'    : 33,
+     'TAB' : 9,
+     'RETURN' : 13,
+     'ESC' : 27,
+     'SPACE' : 32,
+     'PAGEUP' : 33,
      'PAGEDOWN' : 34,
-     'END'      : 35,
-     'HOME'     : 36,
-     'LEFT'  : 37,
-     'UP'    : 38,
+     'END' : 35,
+     'HOME' : 36,
+     'LEFT' : 37,
+     'UP' : 38,
      'RIGHT' : 39,
-     'DOWN'  : 40
+     'DOWN' : 40
   });
 
   // Check fo DOM element node
@@ -340,12 +340,12 @@ aria.widget.Menu.prototype.eventFocus = function(event, menu) {
 aria.widget.MenuButton = function(node) {
 
   this.keyCode = Object.freeze({
-     'TAB'    : 9,
+     'TAB' : 9,
      'RETURN' : 13,
-     'ESC'    : 27,
-     'SPACE'  : 32,
-     'UP'    : 38,
-     'DOWN'  : 40
+     'ESC' : 27,
+     'SPACE' : 32,
+     'UP' : 38,
+     'DOWN' : 40
   });
 
   // Check fo DOM element node
