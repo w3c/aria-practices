@@ -17,6 +17,12 @@
   "disallowSpaceAfterPrefixUnaryOperators": ["++", "--", "~", "!"],
   "disallowSpaceBeforePostfixUnaryOperators": ["++", "--"],
   "disallowSpacesInCallExpression": true,
+  "disallowSpacesInFunctionDeclaration": {
+    "beforeOpeningRoundBrace": true
+  },
+  "disallowSpacesInFunctionExpression": {
+    "beforeOpeningRoundBrace": true
+  },
   "disallowSpacesInsideArrayBrackets": "all",
   "disallowSpacesInsideObjectBrackets": "all",
   "disallowSpacesInsideParentheses": true,
@@ -120,11 +126,9 @@
     "beforeAlternate": true
   },
   "requireSpacesInFunctionDeclaration": {
-    "beforeOpeningRoundBrace": true,
     "beforeOpeningCurlyBrace": true
   },
   "requireSpacesInFunctionExpression": {
-    "beforeOpeningRoundBrace": true,
     "beforeOpeningCurlyBrace": true
   },
   "requireSpacesInNamedFunctionExpression": {
