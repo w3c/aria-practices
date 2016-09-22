@@ -1,12 +1,13 @@
 function goToLink (event, url) {
-  var type = event.type
+  var type = event.type;
 
-  if ((type === 'click') ||
-      (type === 'keydown' && event.keyCode === 13)) {
+  if (
+    (type === 'click') ||
+    (type === 'keydown' && event.keyCode === 13)
+  ) {
+    window.location.href = url;
 
-    window.location.href = url
-
-    event.preventDefault()
-    event.stopPropagation()
+    event.preventDefault();
+    event.stopPropagation();
   }
 }
