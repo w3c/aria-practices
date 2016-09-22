@@ -23,7 +23,7 @@
   };
 
   // Bind listeners
-  for (i=0; i < tabs.length; ++i) {
+  for (i = 0; i < tabs.length; ++i) {
     addListeners(i);
   };
 
@@ -56,23 +56,23 @@
     var key = event.keyCode;
 
     switch (key) {
-      case keys['end']:
+      case keys.end:
         event.preventDefault();
         focusLastTab();
         break;
-      case keys['home']:
+      case keys.home:
         event.preventDefault();
         focusFirstTab();
         break;
-      case keys['left']:
-      case keys['right']:
-        //switchTab(event);
-        //break;
-      case keys['up']:
-      case keys['down']:
+      case keys.left:
+      case keys.right:
+        // switchTab(event);
+        // break;
+      case keys.up:
+      case keys.down:
         determineOrientation(event);
         break;
-      case keys['delete']:
+      case keys.delete:
         detectDeletable(event);
         break;
     };
@@ -85,11 +85,12 @@
     var proceed = false;
 
     if (vertical) {
-      if (key === keys['up'] || key === keys['down']) {
+      if (key === keys.up || key === keys.down) {
         proceed = true;
       };
-    } else {
-      if (key === keys['left'] || key === keys['right']) {
+    }
+    else {
+      if (key === keys.left || key === keys.right) {
         proceed = true;
       };
     };
@@ -109,9 +110,11 @@
       if (target.index !== undefined) {
         if (tabs[target.index + direction[pressed]]) {
           tabs[target.index + direction[pressed]].focus();
-        } else if (pressed === keys['left'] || pressed === keys['up']) {
+        }
+        else if (pressed === keys.left || pressed === keys.up) {
           focusLastTab();
-        } else if (pressed === keys['right'] || pressed == keys['down']) {
+        }
+        else if (pressed === keys.right || pressed == keys.down) {
           focusFirstTab();
         };
       };
@@ -120,12 +123,12 @@
 
   // Deactivate all tabs and tab panels
   function deactivateTabs () {
-    for (t=0; t < tabs.length; t++) {
+    for (t = 0; t < tabs.length; t++) {
       tabs[t].setAttribute('tabindex', '-1');
       tabs[t].setAttribute('aria-selected', 'false');
     };
 
-    for (p=0; p < panels.length; p++) {
+    for (p = 0; p < panels.length; p++) {
       panels[p].setAttribute('hidden', 'hidden');
     };
   };
