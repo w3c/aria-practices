@@ -25,8 +25,11 @@ window.addEventListener('load', function () {
   var menuButtons = document.querySelectorAll('[aria-haspopup][aria-controls]');
 
   [].forEach.call(menuButtons, function (menuButton) {
-      if (menuButton &&
-          (menuButton.tagName.toLowerCase() === 'button') || (menuButton.getAttribute('role').toLowerCase() === 'button')) {
+    if (
+        menuButton &&
+        (menuButton.tagName.toLowerCase() === 'button') ||
+        (menuButton.getAttribute('role').toLowerCase() === 'button')
+    ) {
       var mb = new aria.widget.MenuButton(menuButton);
       mb.initMenuButton();
     }
@@ -37,7 +40,7 @@ window.addEventListener('load', function () {
  * @namespace aria
  */
 
-  var aria = aria || {};
+var aria = aria || {};
 
 /* ---------------------------------------------------------------- */
 /*                  ARIA Utils Namespace                        */
@@ -54,24 +57,22 @@ window.addEventListener('load', function () {
 aria.Utils = aria.Utils || {};
 
 aria.Utils.findPos = function (element) {
-    var xPosition = 0;
-    var yPosition = 0;
+  var xPosition = 0;
+  var yPosition = 0;
 
-    while(element) {
-        xPosition += (element.offsetLeft - element.scrollLeft + element.clientLeft);
-        yPosition += (element.offsetTop - element.scrollTop + element.clientTop);
-        element = element.offsetParent;
-    }
-    return { x: xPosition, y: yPosition };
+  while (element) {
+    xPosition += (element.offsetLeft - element.scrollLeft + element.clientLeft);
+    yPosition += (element.offsetTop - element.scrollTop + element.clientTop);
+    element = element.offsetParent;
+  }
+  return {x: xPosition, y: yPosition};
 };
-
 
 /* ---------------------------------------------------------------- */
 /*                  ARIA Widget Namespace                        */
 /* ---------------------------------------------------------------- */
 
 aria.widget = aria.widget || {};
-
 
 /* ---------------------------------------------------------------- */
 /*                  Menu Button Widget                           */
@@ -87,25 +88,25 @@ aria.widget = aria.widget || {};
 
 aria.widget.Menu = function (node, menuButton) {
 
-   this.keyCode = Object.freeze({
-     'TAB' : 9,
-     'RETURN' : 13,
-     'ESC' : 27,
-     'SPACE' : 32,
-     'PAGEUP' : 33,
-     'PAGEDOWN' : 34,
-     'END' : 35,
-     'HOME' : 36,
-     'LEFT' : 37,
-     'UP' : 38,
-     'RIGHT' : 39,
-     'DOWN' : 40
+  this.keyCode = Object.freeze({
+    'TAB': 9,
+    'RETURN': 13,
+    'ESC': 27,
+    'SPACE': 32,
+    'PAGEUP': 33,
+    'PAGEDOWN': 34,
+    'END': 35,
+    'HOME': 36,
+    'LEFT': 37,
+    'UP': 38,
+    'RIGHT': 39,
+    'DOWN': 40
   });
 
   // Check fo DOM element node
   if (typeof node !== 'object' || !node.getElementsByClassName) return false;
 
-  this.menuNode   = node;
+  this.menuNode = node;
   node.tabIndex = -1;
 
   this.menuButton = menuButton;
@@ -125,41 +126,41 @@ aria.widget.Menu = function (node, menuButton) {
 
 aria.widget.Menu.prototype.initMenu = function () {
 
-    var menu = this;
+  var self = this;
 
-    var cn = this.menuNode.firstChild;
+  var cn = this.menuNode.firstChild;
 
-    while (cn) {
-      if (cn.nodeType === Node.ELEMENT_NODE) {
-        if (cn.getAttribute('role')  === 'menuitem') {
-          cn.tabIndex = -1;
-          if (!this.firstMenuItem) this.firstMenuItem = cn;
-          this.lastMenuItem = cn;
+  while (cn) {
+    if (cn.nodeType === Node.ELEMENT_NODE) {
+      if (cn.getAttribute('role') === 'menuitem') {
+        cn.tabIndex = -1;
+        if (!this.firstMenuItem) this.firstMenuItem = cn;
+        this.lastMenuItem = cn;
 
-          var eventKeyDown = function (event) {
-            menu.eventKeyDown(event, menu);
-          };
-          cn.addEventListener('keydown', eventKeyDown);
+        var eventKeyDown = function (event) {
+          self.eventKeyDown(event, self);
+        };
+        cn.addEventListener('keydown', eventKeyDown);
 
-          var eventMouseClick = function (event) {
-            menu.eventMouseClick(event, menu);
-          };
-          cn.addEventListener('click', eventMouseClick);
+        var eventMouseClick = function (event) {
+          self.eventMouseClick(event, self);
+        };
+        cn.addEventListener('click', eventMouseClick);
 
-          var eventBlur = function (event) {
-            menu.eventBlur(event, menu);
-          };
-          cn.addEventListener('blur', eventBlur);
+        var eventBlur = function (event) {
+          self.eventBlur(event, self);
+        };
+        cn.addEventListener('blur', eventBlur);
 
-          var eventFocus = function (event) {
-            menu.eventFocus(event, menu);
-          };
-          cn.addEventListener('focus', eventFocus);
+        var eventFocus = function (event) {
+          self.eventFocus(event, self);
+        };
+        cn.addEventListener('focus', eventFocus);
 
-        }
       }
-      cn = cn.nextSibling;
     }
+    cn = cn.nextSibling;
+  }
 };
 
 /**
@@ -176,7 +177,7 @@ aria.widget.Menu.prototype.nextMenuItem = function (currentMenuItem) {
 
   while (mi) {
     if ((mi.nodeType === Node.ELEMENT_NODE) &&
-      (mi.getAttribute('role')  === 'menuitem')) {
+      (mi.getAttribute('role') === 'menuitem')) {
       mi.focus();
       break;
     }
@@ -201,7 +202,7 @@ aria.widget.Menu.prototype.previousMenuItem = function (currentMenuItem) {
   var mi = currentMenuItem.previousSibling;
 
   while (mi) {
-    if (mi.nodeType === Node.ELEMENT_NODE && mi.getAttribute('role')  === 'menuitem') {
+    if (mi.nodeType === Node.ELEMENT_NODE && mi.getAttribute('role') === 'menuitem') {
       mi.focus();
       break;
     }
@@ -212,7 +213,6 @@ aria.widget.Menu.prototype.previousMenuItem = function (currentMenuItem) {
     this.lastMenuItem.focus();
   }
 };
-
 
 /**
  * @method eventKeyDown
@@ -229,41 +229,40 @@ aria.widget.Menu.prototype.eventKeyDown = function (event, menu) {
   var ct = event.currentTarget;
   var flag = false;
 
-  switch(event.keyCode) {
+  switch (event.keyCode) {
 
-  case menu.keyCode.SPACE:
-  case menu.keyCode.RETURN:
-    menu.eventMouseClick(event, menu);
-    menu.menuButton.closeMenu(true);
-    flag = true;
-    break;
+    case menu.keyCode.SPACE:
+    case menu.keyCode.RETURN:
+      menu.eventMouseClick(event, menu);
+      menu.menuButton.closeMenu(true);
+      flag = true;
+      break;
 
-  case menu.keyCode.ESC:
-    menu.menuButton.closeMenu(true);
-    menu.menuButton.buttonNode.focus();
-    flag = true;
-    break;
+    case menu.keyCode.ESC:
+      menu.menuButton.closeMenu(true);
+      menu.menuButton.buttonNode.focus();
+      flag = true;
+      break;
 
-  case menu.keyCode.UP:
-  case menu.keyCode.LEFT:
-    menu.previousMenuItem(ct);
-    flag = true;
-    break;
+    case menu.keyCode.UP:
+    case menu.keyCode.LEFT:
+      menu.previousMenuItem(ct);
+      flag = true;
+      break;
 
-  case menu.keyCode.DOWN:
-  case menu.keyCode.RIGHT:
-    menu.nextMenuItem(ct);
-    flag = true;
-    break;
+    case menu.keyCode.DOWN:
+    case menu.keyCode.RIGHT:
+      menu.nextMenuItem(ct);
+      flag = true;
+      break;
 
-  case menu.keyCode.TAB:
-    menu.menuButton.closeMenu(true, false);
-    break;
+    case menu.keyCode.TAB:
+      menu.menuButton.closeMenu(true, false);
+      break;
 
-  default:
-    break;
+    default:
+      break;
   }
-
 
   if (flag) {
     event.stopPropagation();
@@ -290,7 +289,6 @@ aria.widget.Menu.prototype.eventMouseClick = function (event, menu) {
 
 };
 
-
 /**
  * @method eventBlur
  *
@@ -309,7 +307,6 @@ aria.widget.Menu.prototype.eventBlur = function (event, menu) {
   }, 200);
 };
 
-
 /**
  * @method eventFocus
  *
@@ -322,8 +319,6 @@ aria.widget.Menu.prototype.eventBlur = function (event, menu) {
 aria.widget.Menu.prototype.eventFocus = function (event, menu) {
   menu.menuHasFocus = true;
 };
-
-
 
 /* ---------------------------------------------------------------- */
 /*                  Menu Button Widget                           */
@@ -340,12 +335,12 @@ aria.widget.Menu.prototype.eventFocus = function (event, menu) {
 aria.widget.MenuButton = function (node) {
 
   this.keyCode = Object.freeze({
-     'TAB' : 9,
-     'RETURN' : 13,
-     'ESC' : 27,
-     'SPACE' : 32,
-     'UP' : 38,
-     'DOWN' : 40
+    'TAB': 9,
+    'RETURN': 13,
+    'ESC': 27,
+    'SPACE': 32,
+    'UP': 38,
+    'DOWN': 40
   });
 
   // Check fo DOM element node
@@ -375,8 +370,6 @@ aria.widget.MenuButton = function (node) {
  */
 
 aria.widget.MenuButton.prototype.initMenuButton = function () {
-
-
   var id = this.buttonNode.getAttribute('aria-controls');
 
   if (id) {
@@ -391,18 +384,17 @@ aria.widget.MenuButton.prototype.initMenuButton = function () {
 
   this.closeMenu();
 
-    var menuButton = this;
+  var self = this;
 
-    var eventKeyDown = function (event) {
-      menuButton.eventKeyDown(event, menuButton);
-    };
-    this.buttonNode.addEventListener('keydown',   eventKeyDown);
+  var eventKeyDown = function (event) {
+    self.eventKeyDown(event, self);
+  };
+  this.buttonNode.addEventListener('keydown', eventKeyDown);
 
-   var eventMouseClick = function (event) {
-      menuButton.eventMouseClick(event, menuButton);
-    };
-    this.buttonNode.addEventListener('click', eventMouseClick);
-
+  var eventMouseClick = function (event) {
+    self.eventMouseClick(event, self);
+  };
+  this.buttonNode.addEventListener('click', eventMouseClick);
 };
 
 /**
@@ -414,7 +406,6 @@ aria.widget.MenuButton.prototype.initMenuButton = function () {
  */
 
 aria.widget.MenuButton.prototype.openMenu = function () {
-
   if (this.menuNode) {
     this.menuNode.style.display = 'block';
     this.menuShowing = true;
@@ -429,20 +420,24 @@ aria.widget.MenuButton.prototype.openMenu = function () {
  * @desc  Close the menu
  */
 
-aria.widget.MenuButton.prototype.closeMenu = function (force, focus_menu_button) {
+aria.widget.MenuButton.prototype.closeMenu = function (force, focusMenuButton) {
 
   if (typeof force !== 'boolean') force = false;
-  if (typeof focus_menu_button !== 'boolean') focus_menu_button = true;
+  if (typeof focusMenuButton !== 'boolean') focusMenuButton = true;
 
-  if (force || (!this.mouseInMenuButton &&
-    this.menuNode &&
-    !this.menu.mouseInMenu &&
-    !this.menu.menuHasFocus)) {
-      this.menuNode.style.display = 'none';
-      if (focus_menu_button) this.buttonNode.focus();
-      this.menuShowing = false;
+  if (
+    force ||
+    (
+      !this.mouseInMenuButton &&
+      this.menuNode &&
+      !this.menu.mouseInMenu &&
+      !this.menu.menuHasFocus
+    )
+  ) {
+    this.menuNode.style.display = 'none';
+    if (focusMenuButton) this.buttonNode.focus();
+    this.menuShowing = false;
   }
-
 };
 
 /**
@@ -510,39 +505,39 @@ aria.widget.MenuButton.prototype.eventKeyDown = function (event, menuButton) {
 
   var flag = false;
 
-  switch(event.keyCode) {
+  switch (event.keyCode) {
 
-  case menuButton.keyCode.SPACE:
-    menuButton.moveFocusToFirstMenuItem();
-    flag = true;
-    break;
-
-  case menuButton.keyCode.RETURN:
-    menuButton.moveFocusToFirstMenuItem();
-      flag = true;
-    break;
-
-  case menuButton.keyCode.UP:
-    if (this.menuShowing) {
-      menuButton.moveFocusToLastMenuItem();
-      flag = true;
-    }
-    break;
-
-  case menuButton.keyCode.DOWN:
-    if (this.menuShowing) {
+    case menuButton.keyCode.SPACE:
       menuButton.moveFocusToFirstMenuItem();
       flag = true;
-    }
-    break;
-
-  case menuButton.keyCode.TAB:
-    menuButton.closeMenu(true, false);
-    break;
-
-  default:
       break;
-    }
+
+    case menuButton.keyCode.RETURN:
+      menuButton.moveFocusToFirstMenuItem();
+      flag = true;
+      break;
+
+    case menuButton.keyCode.UP:
+      if (this.menuShowing) {
+        menuButton.moveFocusToLastMenuItem();
+        flag = true;
+      }
+      break;
+
+    case menuButton.keyCode.DOWN:
+      if (this.menuShowing) {
+        menuButton.moveFocusToFirstMenuItem();
+        flag = true;
+      }
+      break;
+
+    case menuButton.keyCode.TAB:
+      menuButton.closeMenu(true, false);
+      break;
+
+    default:
+      break;
+  }
 
   if (flag) {
     event.stopPropagation();
@@ -560,6 +555,6 @@ aria.widget.MenuButton.prototype.eventKeyDown = function (event, menuButton) {
  *        NOTE: The menuButton parameter is needed to provide a reference to the specific
  *               menuButton
  */
-aria.widget.MenuButton.prototype.eventMouseClick= function (event, menuButton) {
- menuButton.moveFocusToFirstMenuItem();
+aria.widget.MenuButton.prototype.eventMouseClick = function (event, menuButton) {
+  menuButton.moveFocusToFirstMenuItem();
 };
