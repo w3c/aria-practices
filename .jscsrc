@@ -1,10 +1,14 @@
 {
+  "excludeFiles": [
+    "./**/*.min.js",
+    "examples/landmarks/js/visua11y.js"
+  ],
   "disallowKeywords": ["with"],
   "disallowMixedSpacesAndTabs": true,
   "disallowMultipleLineBreaks": true,
   "disallowMultipleSpaces": true,
   "disallowNewlineBeforeBlockStatements": true,
-  "disallowQuotedKeysInObjects": "allButReserved",
+  "disallowQuotedKeysInObjects": false,
   "disallowSpaceAfterObjectKeys": true,
   "disallowSpaceAfterPrefixUnaryOperators": ["++", "--", "~", "!"],
   "disallowSpaceBeforePostfixUnaryOperators": ["++", "--"],
@@ -125,6 +129,6 @@
   },
   "safeContextKeyword": ["self", "that"],
   "validateIndentation": 2,
-  "validateQuoteMarks": "\"",
+  "validateQuoteMarks": "'",
   "validateParameterSeparator": ", "
 }

@@ -41,7 +41,7 @@ return obj;
 unbind = function( obj, type, fn ) {
 if ( obj.detachEvent ) {
 obj.detachEvent( "on"+type, obj[type+fn] );
-		obj[type+fn] = null;
+        obj[type+fn] = null;
 } else if (obj.removeEventListener)
 obj.removeEventListener( type, fn, false );
 return obj;
