@@ -1,4 +1,4 @@
-function goToLink(event, url) {
+function goToLink (event, url) {
   var type = event.type
 
   if ((type === 'click') ||

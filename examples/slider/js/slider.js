@@ -248,7 +248,7 @@ aria.widget.slider.prototype.updateThumbPosition = function () {
 
 aria.widget.slider.prototype.eventKeyDown = function (event, slider) {
 
-  function updateValue(value) {
+  function updateValue (value) {
     slider.valueNow = value;
     slider.updateThumbPosition();
 
@@ -442,7 +442,7 @@ aria.widget.slider.prototype.eventBlur = function (event, slider) {
 
 aria.widget.slider.updateColorBox = function () {
 
-  function getColorHex() {
+  function getColorHex () {
     var r = parseInt(document.getElementById('idRedValue').getAttribute('aria-valuenow')).toString(16)
     var g = parseInt(document.getElementById('idGreenValue').getAttribute('aria-valuenow')).toString(16)
     var b = parseInt(document.getElementById('idBlueValue').getAttribute('aria-valuenow')).toString(16)
@@ -454,7 +454,7 @@ aria.widget.slider.updateColorBox = function () {
     return '#' + r + g + b;
   }
 
-  function getColorRGB() {
+  function getColorRGB () {
     var r = document.getElementById('idRedValue').getAttribute('aria-valuenow')
     var g = document.getElementById('idGreenValue').getAttribute('aria-valuenow')
     var b = document.getElementById('idBlueValue').getAttribute('aria-valuenow')

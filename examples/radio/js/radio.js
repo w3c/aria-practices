@@ -31,7 +31,7 @@ window.addEventListener('load', function () {
 * @param   {Object}  event  =  Standard W3C event object
 */
 
-function firstRadioButton(node) {
+function firstRadioButton (node) {
 
   var first = node.parentNode.firstChild;
 
@@ -53,7 +53,7 @@ function firstRadioButton(node) {
 * @param   {Object}  event  =  Standard W3C event object
 */
 
-function lastRadioButton(node) {
+function lastRadioButton (node) {
 
   var last = node.parentNode.lastChild;
 
@@ -75,7 +75,7 @@ function lastRadioButton(node) {
 * @param   {Object}  event  =  Standard W3C event object
 */
 
-function nextRadioButton(node) {
+function nextRadioButton (node) {
 
   var next = node.nextSibling;
 
@@ -97,7 +97,7 @@ function nextRadioButton(node) {
 * @param   {Object}  event  =  Standard W3C event object
 */
 
-function previousRadioButton(node) {
+function previousRadioButton (node) {
 
   var prev = node.previousSibling;
 
@@ -119,7 +119,7 @@ function previousRadioButton(node) {
 * @param   {Object}  event  =  Standard W3C event object
 */
 
-function getImage(node) {
+function getImage (node) {
 
   var child = node.firstChild;
 
@@ -142,7 +142,7 @@ function getImage(node) {
 *
 */
 
-function setRadioButton(node, state) {
+function setRadioButton (node, state) {
   var image = getImage(node);
 
   if (state == 'true') {
@@ -164,7 +164,7 @@ function setRadioButton(node, state) {
 * @param   {Object}  node  -  DOM node of updated group radio buttons
 */
 
-function clickRadioGroup(event) {
+function clickRadioGroup (event) {
   var type = event.type;
 
   if (type === 'click') {
@@ -194,7 +194,7 @@ function clickRadioGroup(event) {
 * @param   {Object}   node  -  DOM node of updated group radio buttons
 */
 
-function keyDownRadioGroup(event) {
+function keyDownRadioGroup (event) {
   var type = event.type;
   var next = false;
 
@@ -243,7 +243,7 @@ function keyDownRadioGroup(event) {
 * @param   {Object}  event  -  Standard W3C event object
 */
 
-function focusRadioButton(event) {
+function focusRadioButton (event) {
   event.currentTarget.className += ' focus';
 }
 
@@ -255,6 +255,6 @@ function focusRadioButton(event) {
 * @param   {Object}  event  -  Standard W3C event object
 */
 
-function blurRadioButton(event) {
+function blurRadioButton (event) {
    event.currentTarget.className = event.currentTarget.className.replace(' focus','');
 }

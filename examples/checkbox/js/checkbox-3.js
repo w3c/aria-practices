@@ -22,7 +22,7 @@ window.addEventListener('load', function () {
 *
 */
 
-function toggleGroupCheckbox(event) {
+function toggleGroupCheckbox (event) {
   var node = event.currentTarget
 
   var image = node.getElementsByTagName('img')[0]
@@ -60,7 +60,7 @@ function toggleGroupCheckbox(event) {
 *
 */
 
-function setCheckboxes(node, state) {
+function setCheckboxes (node, state) {
 
   var checkboxes = node.parentNode.querySelectorAll('input[type=checkbox]')
 
@@ -76,7 +76,7 @@ function setCheckboxes(node, state) {
 *
 * @param   {Object}   node  -  DOM node of updated group checkbox
 */
-function updateGroupCheckbox(event) {
+function updateGroupCheckbox (event) {
 
   var node = event.currentTarget;
 
@@ -112,7 +112,7 @@ function updateGroupCheckbox(event) {
 * @param   {Object}  event  -  Standard W3C event object
 */
 
-function focusCheckbox(event) { 
+function focusCheckbox (event) { 
   event.currentTarget.className += ' focus'
 }
 
@@ -124,7 +124,7 @@ function focusCheckbox(event) {
 * @param   {Object}  event  -  Standard W3C event object
 */
 
-function blurCheckbox(event) {
+function blurCheckbox (event) {
   event.currentTarget.className = event.currentTarget.className .replace(' focus','')
 }
 
@@ -136,7 +136,7 @@ function blurCheckbox(event) {
 * @param   {Object}  event  -  Standard W3C event object
 */
 
-function focusStandardCheckbox(event) {
+function focusStandardCheckbox (event) {
   event.currentTarget.parentNode.className += ' focus' ;
 }
 
@@ -148,6 +148,6 @@ function focusStandardCheckbox(event) {
 * @param   {Object}  event  -  Standard W3C event object
 */
 
-function blurStandardCheckbox(event) {
+function blurStandardCheckbox (event) {
   event.currentTarget.parentNode.className = event.currentTarget.parentNode.className .replace(' focus','');
 }

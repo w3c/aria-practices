@@ -27,7 +27,7 @@
     addListeners(i);
   };
 
-  function addListeners(index) {
+  function addListeners (index) {
     tabs[index].addEventListener('click', activateTab);
     tabs[index].addEventListener('keyup', keyEventListener);
     tabs[index].addEventListener('keydown', altKeyStuff);
@@ -36,12 +36,12 @@
   };
 
   // Activate a tab panel after 300 milliseconds
-  function focusTab(event) {
+  function focusTab (event) {
     setTimeout(activateTab, 300, event);
   };
 
   // Activates any given tab panel
-  function activateTab(event) {
+  function activateTab (event) {
     deactivateTabs();
 
     event.target.removeAttribute('tabindex');
@@ -52,7 +52,7 @@
   };
 
   // Handle key pressed on tabs
-  function keyEventListener(event) {
+  function keyEventListener (event) {
     var key = event.keyCode;
 
     switch (key) {
@@ -78,7 +78,7 @@
     };
   };
 
-  function determineOrientation(event) {
+  function determineOrientation (event) {
     var target = event.target;
     var key = event.keyCode;
     var vertical = tablist.getAttribute('aria-orientation') == 'vertical';
@@ -101,7 +101,7 @@
 
   // Either focus the next, previous, first, or last tab
   // depening on key pressed
-  function switchTab(event) {
+  function switchTab (event) {
     var pressed = event.keyCode;
 
     if (direction[pressed]) {
@@ -119,7 +119,7 @@
   };
 
   // Deactivate all tabs and tab panels
-  function deactivateTabs() {
+  function deactivateTabs () {
     for (t=0; t < tabs.length; t++) {
       tabs[t].setAttribute('tabindex', '-1');
       tabs[t].setAttribute('aria-selected', 'false');
@@ -131,17 +131,17 @@
   };
 
   // Make a guess
-  function focusFirstTab() {
+  function focusFirstTab () {
     tabs[0].focus();
   };
 
   // Make a guess
-  function focusLastTab() {
+  function focusLastTab () {
     tabs[tabs.length - 1].focus();
   };
 
   // Detect if a tab is deletable
-  function detectDeletable(event) {
+  function detectDeletable (event) {
     target = event.target;
     if (target.getAttribute('data-deletable') !== undefined) {
       deleteTab(event, target);
@@ -150,7 +150,7 @@
   };
 
   // Deletes a tab and its panel
-  function deleteTab(event) {
+  function deleteTab (event) {
     if (!target) {
       target = event.target;
     };
@@ -161,14 +161,14 @@
   };
 
   // Alt key stuff
-  function altKeyStuff(event) {
+  function altKeyStuff (event) {
     if (event.altKey && event.keyCode === 77) {
       focusPanel(event);
     };
   };
 
   // Focus panel
-  function focusPanel(event) {
+  function focusPanel (event) {
     var panelID = event.target.getAttribute('aria-controls');
 
     var panel = document.getElementById(panelID);

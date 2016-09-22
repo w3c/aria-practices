@@ -23,22 +23,22 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 *   headings.js: highlight heading elements
 */
 
-function initHeadings() {
+function initHeadings () {
 
   addPolyfills();
 
-  var targetList = [{ selector: "h1", color: "navy",   label: "h1" }, 
-                    { selector: "h2", color: "olive",  label: "h2" }, 
-                    { selector: "h3", color: "purple", label: "h3" }, 
-                    { selector: "h4", color: "green",  label: "h4" }, 
-                    { selector: "h5", color: "gray",   label: "h5" }, 
+  var targetList = [{ selector: "h1", color: "navy",   label: "h1" },
+                    { selector: "h2", color: "olive",  label: "h2" },
+                    { selector: "h3", color: "purple", label: "h3" },
+                    { selector: "h4", color: "green",  label: "h4" },
+                    { selector: "h5", color: "gray",   label: "h5" },
                     { selector: "h6", color: "brown",  label: "h6" }];
 
   var selectors = targetList.map(function (tgt) {
     return tgt.selector;
   }).join(', ');
 
-  function getInfo(element, target) {
+  function getInfo (element, target) {
     var info = new InfoObject(element, 'HEADING INFO');
     info.addProps('level ' + target.label.substring(1));
     return info;
@@ -60,7 +60,7 @@ function initHeadings() {
 *   landmarks.js: highlight ARIA landmarks
 */
 
-function initLandmarks() {
+function initLandmarks () {
 
   addPolyfills();
 
@@ -68,7 +68,7 @@ function initLandmarks() {
   // 'footer, [role="contentinfo"]'. It returns true for the following
   // conditions: (1) element IS NOT a footer element; (2) element IS a
   // footer element AND IS NOT a descendant of article or section.
-  function isContentinfo(element) {
+  function isContentinfo (element) {
     if (element.tagName.toLowerCase() !== 'footer') return true;
     if (!isDescendantOf(element, ['article', 'section'])) return true;
     return false;
@@ -78,29 +78,29 @@ function initLandmarks() {
   // 'header, [role="banner"]'. It returns true for the following
   // conditions: (1) element IS NOT a header element; (2) element IS a
   // header element AND IS NOT a descendant of article or section.
-  function isBanner(element) {
+  function isBanner (element) {
     if (element.tagName.toLowerCase() !== 'header') return true;
     if (!isDescendantOf(element, ['article', 'section'])) return true;
     return false;
   }
 
-  var targetList = [{ selector: 'aside:not([role]), [role~="complementary"], [role~="COMPLEMENTARY"]', color: "maroon", label: "complementary" }, 
-                    { selector: 'form[aria-labelledby], form[aria-label], form[title], [role~="form"], [role~="form"]', color: "maroon", label: "form" }, 
-                    { selector: 'footer, [role~="contentinfo"], [role~="CONTENTINFO"]', filter: isContentinfo, color: "olive", label: "contentinfo" }, 
-                    { selector: '[role~="application"], [role~="APPLICATION"]', color: "black", label: "application" }, 
-                    { selector: 'nav, [role~="navigation"], [role~="NAVIGATION"]', color: "green", label: "navigation" }, 
-                    { selector: '[role~="region"][aria-labelledby], [role~="REGION"][aria-labelledby]', color: "teal", label: "region" }, 
-                    { selector: '[role~="region"][aria-label], [role~="REGION"][aria-label]', color: "teal", label: "region" }, 
-                    { selector: 'section[aria-labelledby], section[aria-label]', color: "teal", label: "region" }, 
-                    { selector: 'header, [role~="banner"], [role~="BANNER"]', filter: isBanner, color: "gray", label: "banner" }, 
-                    { selector: '[role~="search"], [role~="SEARCH"]', color: "purple", label: "search" }, 
+  var targetList = [{ selector: 'aside:not([role]), [role~="complementary"], [role~="COMPLEMENTARY"]', color: "maroon", label: "complementary" },
+                    { selector: 'form[aria-labelledby], form[aria-label], form[title], [role~="form"], [role~="form"]', color: "maroon", label: "form" },
+                    { selector: 'footer, [role~="contentinfo"], [role~="CONTENTINFO"]', filter: isContentinfo, color: "olive", label: "contentinfo" },
+                    { selector: '[role~="application"], [role~="APPLICATION"]', color: "black", label: "application" },
+                    { selector: 'nav, [role~="navigation"], [role~="NAVIGATION"]', color: "green", label: "navigation" },
+                    { selector: '[role~="region"][aria-labelledby], [role~="REGION"][aria-labelledby]', color: "teal", label: "region" },
+                    { selector: '[role~="region"][aria-label], [role~="REGION"][aria-label]', color: "teal", label: "region" },
+                    { selector: 'section[aria-labelledby], section[aria-label]', color: "teal", label: "region" },
+                    { selector: 'header, [role~="banner"], [role~="BANNER"]', filter: isBanner, color: "gray", label: "banner" },
+                    { selector: '[role~="search"], [role~="SEARCH"]', color: "purple", label: "search" },
                     { selector: 'main, [role~="main"], [role~="MAIN"]', color: "navy", label: "main" }];
 
   var selectors = targetList.map(function (tgt) {
     return '<li>' + tgt.selector + '</li>';
   }).join('');
 
-  function getInfo(element, target) {
+  function getInfo (element, target) {
     return new InfoObject(element, 'LANDMARK INFO');
   }
 
@@ -121,11 +121,11 @@ function initLandmarks() {
 */
 
 /* eslint no-console: 0 */
-function logVersionInfo(appName) {
+function logVersionInfo (appName) {
   console.log(getTitle() + ' : v' + getVersion() + ' : ' + appName);
 }
 
-function Bookmarklet(params) {
+function Bookmarklet (params) {
   var globalName = getGlobalName(params.appName);
 
   // use singleton pattern
@@ -174,7 +174,7 @@ Bookmarklet.prototype.run = function () {
 *  nameIncludesDescription: Determine whether accName object's name
 *  property includes the accDesc object's name property content.
 */
-function nameIncludesDescription(accName, accDesc) {
+function nameIncludesDescription (accName, accDesc) {
   if (accName === null || accDesc === null) return false;
 
   var name = accName.name,
@@ -186,7 +186,7 @@ function nameIncludesDescription(accName, accDesc) {
   return false;
 }
 
-function InfoObject(element, title) {
+function InfoObject (element, title) {
   this.title = title;
   this.element = getElementInfo(element);
   this.grpLabels = getGroupingLabels(element);
@@ -215,7 +215,7 @@ Object.defineProperty(CONSTANTS, 'globalPrefix', { value: 'a11y' });
 Object.defineProperty(CONSTANTS, 'title', { value: 'oaa-tools/bookmarklets' });
 Object.defineProperty(CONSTANTS, 'version', { value: '0.2.2' });
 
-function getCssClass(appName) {
+function getCssClass (appName) {
   var prefix = CONSTANTS.classPrefix;
 
   switch (appName) {
@@ -236,14 +236,14 @@ function getCssClass(appName) {
   return 'unrecognizedName';
 }
 
-function getGlobalName(appName) {
+function getGlobalName (appName) {
   return CONSTANTS.globalPrefix + appName;
 }
 
-function getTitle() {
+function getTitle () {
   return CONSTANTS.title;
 }
-function getVersion() {
+function getVersion () {
   return CONSTANTS.version;
 }
 
@@ -256,7 +256,7 @@ function getVersion() {
 *   the width of the browser window. Called by functions resizeMessage and
 *   createMsgOverlay.
 */
-function setBoxGeometry(dialog) {
+function setBoxGeometry (dialog) {
   var width = window.innerWidth / 3.2;
   var left = window.innerWidth / 2 - width / 2;
   var scroll = getScrollOffsets();
@@ -271,7 +271,7 @@ function setBoxGeometry(dialog) {
 *   purpose is to alert the user when no target elements are found by
 *   a bookmarklet.
 */
-function createMsgDialog(cssClass, handler) {
+function createMsgDialog (cssClass, handler) {
   var dialog = document.createElement("div");
   var button = document.createElement("button");
 
@@ -288,14 +288,14 @@ function createMsgDialog(cssClass, handler) {
 /*
 *   deleteMsgDialog: Use reference to delete message dialog.
 */
-function deleteMsgDialog(dialog) {
+function deleteMsgDialog (dialog) {
   if (dialog) document.body.removeChild(dialog);
 }
 
 /*
 *   MessageDialog: Wrapper for show, hide and resize methods
 */
-function MessageDialog() {
+function MessageDialog () {
   this.GLOBAL_NAME = 'a11yMessageDialog';
   this.CSS_CLASS = 'oaa-message-dialog';
 }
@@ -349,9 +349,9 @@ MessageDialog.prototype.resize = function () {
 *   of its ancestors has properties set that affect its visibility. Called
 *   by addNodes function.
 */
-function isVisible(element) {
+function isVisible (element) {
 
-  function isVisibleRec(el) {
+  function isVisibleRec (el) {
     if (el.nodeType === Node.DOCUMENT_NODE) return true;
 
     var computedStyle = window.getComputedStyle(el, null);
@@ -374,7 +374,7 @@ function isVisible(element) {
 *   number of its child elements with tagName equal to one of the values
 *   in the tagNames array.
 */
-function countChildrenWithTagNames(element, tagNames) {
+function countChildrenWithTagNames (element, tagNames) {
   var count = 0;
 
   var child = element.firstElementChild;
@@ -390,7 +390,7 @@ function countChildrenWithTagNames(element, tagNames) {
 *   isDescendantOf: Determine whether element is a descendant of any
 *   element in the DOM with a tagName in the list of tagNames.
 */
-function isDescendantOf(element, tagNames) {
+function isDescendantOf (element, tagNames) {
   if (typeof element.closest === 'function') {
     return tagNames.some(function (name) {
       return element.closest(name) !== null;
@@ -403,7 +403,7 @@ function isDescendantOf(element, tagNames) {
 *   hasParentWithName: Determine whether element has a parent with
 *   tagName in the list of tagNames.
 */
-function hasParentWithName(element, tagNames) {
+function hasParentWithName (element, tagNames) {
   var parentTagName = element.parentElement.tagName.toLowerCase();
   if (parentTagName) {
     return tagNames.some(function (name) {
@@ -419,7 +419,7 @@ function hasParentWithName(element, tagNames) {
 *   Optionally, if getInfo is specified, add tooltip information;
 *   if dndFlag is set, add drag-and-drop functionality.
 */
-function addNodes(params) {
+function addNodes (params) {
   var targetList = params.targetList,
       cssClass = params.cssClass,
       getInfo = params.getInfo,
@@ -456,7 +456,7 @@ function addNodes(params) {
 *   removeNodes: Use the unique CSS class name supplied to addNodes
 *   to remove all instances of the overlay nodes.
 */
-function removeNodes(cssClass) {
+function removeNodes (cssClass) {
   var selector = "div." + cssClass;
   var elements = document.querySelectorAll(selector);
   Array.prototype.forEach.call(elements, function (element) {
@@ -473,7 +473,7 @@ function removeNodes(cssClass) {
 /*
 *   getInputValue: Get current value of 'input' or 'textarea' element.
 */
-function getInputValue(element) {
+function getInputValue (element) {
   return normalize(element.value);
 }
 
@@ -481,7 +481,7 @@ function getInputValue(element) {
 *   getRangeValue: Get current value of control with role 'spinbutton'
 *   or 'slider' (i.e., subclass of abstract 'range' role).
 */
-function getRangeValue(element) {
+function getRangeValue (element) {
   var value;
 
   value = getAttributeValue(element, 'aria-valuetext');
@@ -495,7 +495,7 @@ function getRangeValue(element) {
 
 // HELPER FUNCTIONS FOR SPECIFIC ROLES
 
-function getTextboxValue(element) {
+function getTextboxValue (element) {
   var inputTypes = ['email', 'password', 'search', 'tel', 'text', 'url'],
       tagName = element.tagName.toLowerCase(),
       type = element.type;
@@ -511,7 +511,7 @@ function getTextboxValue(element) {
   return '';
 }
 
-function getComboboxValue(element) {
+function getComboboxValue (element) {
   var inputTypes = ['email', 'search', 'tel', 'text', 'url'],
       tagName = element.tagName.toLowerCase(),
       type = element.type;
@@ -523,7 +523,7 @@ function getComboboxValue(element) {
   return '';
 }
 
-function getSliderValue(element) {
+function getSliderValue (element) {
   var tagName = element.tagName.toLowerCase(),
       type = element.type;
 
@@ -534,7 +534,7 @@ function getSliderValue(element) {
   return '';
 }
 
-function getSpinbuttonValue(element) {
+function getSpinbuttonValue (element) {
   var tagName = element.tagName.toLowerCase(),
       type = element.type;
 
@@ -545,7 +545,7 @@ function getSpinbuttonValue(element) {
   return '';
 }
 
-function getListboxValue(element) {
+function getListboxValue (element) {
   var tagName = element.tagName.toLowerCase();
 
   if (tagName === 'select') {
@@ -568,7 +568,7 @@ function getListboxValue(element) {
 *   isEmbeddedControl: Determine whether element has a role that corresponds
 *   to an HTML form control that could be embedded within text content.
 */
-function isEmbeddedControl(element) {
+function isEmbeddedControl (element) {
   var embeddedControlRoles = ['textbox', 'combobox', 'listbox', 'slider', 'spinbutton'];
   var role = getAriaRole(element);
 
@@ -579,7 +579,7 @@ function isEmbeddedControl(element) {
 *   getEmbeddedControlValue: Based on the role of element, use native semantics
 *   of HTML to get the corresponding text value of the embedded control.
 */
-function getEmbeddedControlValue(element) {
+function getEmbeddedControlValue (element) {
   var role = getAriaRole(element);
 
   switch (role) {
@@ -615,14 +615,14 @@ function getEmbeddedControlValue(element) {
 *   fieldset ancestors, starting with the closest (innermost).
 *   Return collection as a possibly empty array of strings.
 */
-function getFieldsetLegendLabels(element) {
+function getFieldsetLegendLabels (element) {
   var arrayOfStrings = [];
 
   if (typeof element.closest !== 'function') {
     return arrayOfStrings;
   }
 
-  function getLabelsRec(elem, arr) {
+  function getLabelsRec (elem, arr) {
     var fieldset = elem.closest('fieldset');
 
     if (fieldset) {
@@ -646,7 +646,7 @@ function getFieldsetLegendLabels(element) {
 *   getGroupingLabels: Return an array of grouping label objects for
 *   element, each with two properties: 'name' and 'source'.
 */
-function getGroupingLabels(element) {
+function getGroupingLabels (element) {
   // We currently only handle labelable elements as defined in HTML 5.1
   if (isLabelableElement(element)) {
     return getFieldsetLegendLabels(element);
@@ -663,7 +663,7 @@ function getGroupingLabels(element) {
 *   indicating that we are in a recursive aria-labelledby calculation, the
 *   nameFromContents method is used.
 */
-function nameFromNativeSemantics(element, recFlag) {
+function nameFromNativeSemantics (element, recFlag) {
   var tagName = element.tagName.toLowerCase(),
       ariaRole = getAriaRole(element),
       accName = null;
@@ -814,7 +814,7 @@ function nameFromNativeSemantics(element, recFlag) {
 *   with name property set to a string that is a space-separated concatena-
 *   tion of those results if any, otherwise return null.
 */
-function nameFromAttributeIdRefs(element, attribute) {
+function nameFromAttributeIdRefs (element, attribute) {
   var value = getAttributeValue(element, attribute);
   var idRefs,
       i,
@@ -847,7 +847,7 @@ function nameFromAttributeIdRefs(element, attribute) {
 *   (3) Use whatever method is specified by the native semantics of the
 *   element, which includes, as last resort, use of the title attribute.
 */
-function getAccessibleName(element, recFlag) {
+function getAccessibleName (element, recFlag) {
   var accName = null;
 
   if (!recFlag) accName = nameFromAttributeIdRefs(element, 'aria-labelledby');
@@ -863,7 +863,7 @@ function getAccessibleName(element, recFlag) {
 *   (1) Use aria-describedby, unless a traversal is already underway;
 *   (2) As last resort, use the title attribute.
 */
-function getAccessibleDesc(element, recFlag) {
+function getAccessibleDesc (element, recFlag) {
   var accDesc = null;
 
   if (!recFlag) accDesc = nameFromAttributeIdRefs(element, 'aria-describedby');
@@ -880,7 +880,7 @@ function getAccessibleDesc(element, recFlag) {
 *   getElementInfo: Extract tagName and other attribute information
 *   based on tagName and return as formatted string.
 */
-function getElementInfo(element) {
+function getElementInfo (element) {
   var tagName = element.tagName.toLowerCase(),
       elementInfo = tagName;
 
@@ -910,7 +910,7 @@ function getElementInfo(element) {
 /*
 *   formatInfo: Convert info properties into a string with line breaks.
 */
-function formatInfo(info) {
+function formatInfo (info) {
   var value = '';
   var title = info.title,
       element = info.element,
@@ -958,7 +958,7 @@ function formatInfo(info) {
 *   Mozilla documentation on String.prototype.trim polyfill. Handles
 *   BOM and NBSP characters.
 */
-function normalize(s) {
+function normalize (s) {
   var rtrim = /^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g;
   return s.replace(rtrim, '').replace(/\s+/g, ' ');
 }
@@ -967,7 +967,7 @@ function normalize(s) {
 *   getAttributeValue: Return attribute value if present on element,
 *   otherwise return empty string.
 */
-function getAttributeValue(element, attribute) {
+function getAttributeValue (element, attribute) {
   var value = element.getAttribute(attribute);
   return value === null ? '' : normalize(value);
 }
@@ -976,7 +976,7 @@ function getAttributeValue(element, attribute) {
 *   couldHaveAltText: Based on HTML5 specification, determine whether
 *   element could have an 'alt' attribute.
 */
-function couldHaveAltText(element) {
+function couldHaveAltText (element) {
   var tagName = element.tagName.toLowerCase();
 
   switch (tagName) {
@@ -994,7 +994,7 @@ function couldHaveAltText(element) {
 *   hasEmptyAltText: Determine whether the alt attribute is present
 *   and its value is the empty string.
 */
-function hasEmptyAltText(element) {
+function hasEmptyAltText (element) {
   var value = element.getAttribute('alt');
 
   // Attribute is present
@@ -1007,7 +1007,7 @@ function hasEmptyAltText(element) {
 *   isLabelableElement: Based on HTML5 specification, determine whether
 *   element can be associated with a label.
 */
-function isLabelableElement(element) {
+function isLabelableElement (element) {
   var tagName = element.tagName.toLowerCase(),
       type = element.type;
 
@@ -1036,7 +1036,7 @@ function isLabelableElement(element) {
 *   the double-quote character to the beginning and end of computed string
 *   values, the result cannot and will not be equal to 'none'.
 */
-function addCssGeneratedContent(element, contents) {
+function addCssGeneratedContent (element, contents) {
   var result = contents,
       prefix = getComputedStyle(element, ':before').content,
       suffix = getComputedStyle(element, ':after').content;
@@ -1055,7 +1055,7 @@ function addCssGeneratedContent(element, contents) {
 *   2. The forElem parameter is needed for label processing to avoid inclusion
 *      of an embedded control's value when the label is for the control itself.
 */
-function getNodeContents(node, forElem) {
+function getNodeContents (node, forElem) {
   var contents = '';
 
   if (node === forElem) return '';
@@ -1095,7 +1095,7 @@ function getNodeContents(node, forElem) {
 *   processing its element and text node descendants and then adding any CSS-
 *   generated content if present.
 */
-function getElementContents(element, forElement) {
+function getElementContents (element, forElement) {
   var result = '';
 
   if (element.hasChildNodes()) {
@@ -1117,7 +1117,7 @@ function getElementContents(element, forElement) {
 *   getContentsOfChildNodes: Using predicate function for filtering element
 *   nodes, collect text content from all child nodes of element.
 */
-function getContentsOfChildNodes(element, predicate) {
+function getContentsOfChildNodes (element, predicate) {
   var arr = [],
       content;
 
@@ -1145,7 +1145,7 @@ function getContentsOfChildNodes(element, predicate) {
 /*
 *   nameFromAttribute
 */
-function nameFromAttribute(element, attribute) {
+function nameFromAttribute (element, attribute) {
   var name;
 
   name = getAttributeValue(element, attribute);
@@ -1157,7 +1157,7 @@ function nameFromAttribute(element, attribute) {
 /*
 *   nameFromAltAttribute
 */
-function nameFromAltAttribute(element) {
+function nameFromAltAttribute (element) {
   var name = element.getAttribute('alt');
 
   // Attribute is present
@@ -1173,7 +1173,7 @@ function nameFromAltAttribute(element) {
 /*
 *   nameFromContents
 */
-function nameFromContents(element) {
+function nameFromContents (element) {
   var name;
 
   name = getElementContents(element);
@@ -1185,14 +1185,14 @@ function nameFromContents(element) {
 /*
 *   nameFromDefault
 */
-function nameFromDefault(name) {
+function nameFromDefault (name) {
   return name.length ? { name: name, source: 'default' } : null;
 }
 
 /*
 *   nameFromDescendant
 */
-function nameFromDescendant(element, tagName) {
+function nameFromDescendant (element, tagName) {
   var descendant = element.querySelector(tagName);
   if (descendant) {
     var name = getElementContents(descendant);
@@ -1205,7 +1205,7 @@ function nameFromDescendant(element, tagName) {
 /*
 *   nameFromLabelElement
 */
-function nameFromLabelElement(element) {
+function nameFromLabelElement (element) {
   var name, label;
 
   // label [for=id]
@@ -1235,10 +1235,10 @@ function nameFromLabelElement(element) {
 *   of element and all of its non-summary child elements. Otherwise, return
 *   only the contents of the first summary element descendant.
 */
-function nameFromDetailsOrSummary(element) {
+function nameFromDetailsOrSummary (element) {
   var name, summary;
 
-  function isExpanded(elem) {
+  function isExpanded (elem) {
     return elem.hasAttribute('open');
   }
 
@@ -1269,7 +1269,7 @@ var zIndex = 100000;
 *   createOverlay: Create overlay div with size and position based on the
 *   boundingRect properties of its corresponding target element.
 */
-function createOverlay(tgt, rect, cname) {
+function createOverlay (tgt, rect, cname) {
   var scrollOffsets = getScrollOffsets();
   var MINWIDTH = 68;
   var MINHEIGHT = 27;
@@ -1299,14 +1299,14 @@ function createOverlay(tgt, rect, cname) {
 *   addDragAndDrop: Add drag-and-drop and reposition functionality to an
 *   overlay div element created by the createOverlay function.
 */
-function addDragAndDrop(node) {
+function addDragAndDrop (node) {
 
-  function hoistZIndex(el) {
+  function hoistZIndex (el) {
     var incr = 100;
     el.style.zIndex = zIndex += incr;
   }
 
-  function repositionOverlay(el) {
+  function repositionOverlay (el) {
     el.style.left = el.startLeft;
     el.style.top = el.startTop;
   }
@@ -1337,7 +1337,7 @@ function addDragAndDrop(node) {
 *   2. an optgroup element that is a child of a select element
 *   3. a datalist element
 */
-function inListOfOptions(element) {
+function inListOfOptions (element) {
   var parent = element.parentElement,
       parentName = parent.tagName.toLowerCase(),
       parentOfParentName = parent.parentElement.tagName.toLowerCase();
@@ -1380,7 +1380,7 @@ var validRoles = [
 *   to find its match in the validRoles array. If a match is found, return
 *   it. Otherwise, return null.
 */
-function getValidRole(spaceSepList) {
+function getValidRole (spaceSepList) {
   var arr = spaceSepList.split(' ');
 
   for (var i = 0; i < arr.length; i++) {
@@ -1399,7 +1399,7 @@ function getValidRole(spaceSepList) {
 *   not specified, get the default role of element if it has one. Based on
 *   ARIA in HTML as of 21 October 2015.
 */
-function getAriaRole(element) {
+function getAriaRole (element) {
   var tagName = element.tagName.toLowerCase(),
       type = element.type;
 
@@ -1552,7 +1552,7 @@ function getAriaRole(element) {
 *   nameFromIncludesContents: Determine whether the ARIA role of element
 *   specifies that its 'name from' includes 'contents'.
 */
-function nameFromIncludesContents(element) {
+function nameFromIncludesContents (element) {
   var elementRole = getAriaRole(element);
   if (elementRole === null) return false;
 
@@ -1576,7 +1576,7 @@ function nameFromIncludesContents(element) {
 *   coordinates that take into account whether the page has been scrolled.
 *   From Mozilla Developer Network: Element.getBoundingClientRect()
 */
-function getScrollOffsets() {
+function getScrollOffsets () {
   var t;
 
   var xOffset = typeof window.pageXOffset === "undefined" ? (((t = document.documentElement) || (t = document.body.parentNode)) && typeof t.ScrollLeft === 'number' ? t : document.body).ScrollLeft : window.pageXOffset;
@@ -1591,7 +1591,7 @@ function getScrollOffsets() {
 *   as its mousedown handler. Depends upon getScrollOffsets function.
 *   From JavaScript: The Definitive Guide, 6th Edition (slightly modified)
 */
-function drag(elementToDrag, dragCallback, event) {
+function drag (elementToDrag, dragCallback, event) {
   var scroll = getScrollOffsets();
   var startX = event.clientX + scroll.x;
   var startY = event.clientY + scroll.y;
@@ -1618,7 +1618,7 @@ function drag(elementToDrag, dragCallback, event) {
 
   if (event.preventDefault) event.preventDefault();else event.returnValue = false;
 
-  function moveHandler(e) {
+  function moveHandler (e) {
     if (!e) e = window.event;
 
     var scroll = getScrollOffsets();
@@ -1630,7 +1630,7 @@ function drag(elementToDrag, dragCallback, event) {
     if (e.stopPropagation) e.stopPropagation();else e.cancelBubble = true;
   }
 
-  function upHandler(e) {
+  function upHandler (e) {
     if (!e) e = window.event;
 
     elementToDrag.style.cursor = "grab";
@@ -1657,7 +1657,7 @@ function drag(elementToDrag, dragCallback, event) {
 *   1. Array.prototype.find
 *   2. String.prototype.includes
 */
-function addPolyfills() {
+function addPolyfills () {
 
   // From https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find
   if (!Array.prototype.find) {

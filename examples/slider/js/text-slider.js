@@ -239,7 +239,7 @@ aria.widget.tslider.prototype.updateThumbPosition = function () {
 
 aria.widget.tslider.prototype.eventKeyDown = function (event, slider) {
 
-  function updateValue(value) {
+  function updateValue (value) {
     slider.valueNow = value;
     slider.updateThumbPosition();
     

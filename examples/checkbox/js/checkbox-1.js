@@ -7,7 +7,7 @@
 *
 */
 
-function toggleCheckbox(event) {
+function toggleCheckbox (event) {
 
   var node = event.currentTarget
   var image = node.getElementsByTagName('img')[0]
@@ -40,7 +40,7 @@ function toggleCheckbox(event) {
 * @param   {Object}  event  -  Standard W3C event object
 */
 
-function focusCheckbox(event) {
+function focusCheckbox (event) {
   event.currentTarget.className += ' focus'
 }
 
@@ -52,6 +52,6 @@ function focusCheckbox(event) {
 * @param   {Object}  event  -  Standard W3C event object
 */
 
-function blurCheckbox(event) {
+function blurCheckbox (event) {
   event.currentTarget.className = event.currentTarget.className .replace(' focus','')
 }

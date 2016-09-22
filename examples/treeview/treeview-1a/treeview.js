@@ -395,7 +395,7 @@ Tree.prototype.getNextVisibleTreeitem = function (treeitem) {
 
 Tree.prototype.compareFirstChar = function (node, char) {
 
-  function setFirstChar(name) {
+  function setFirstChar (name) {
     if ((typeof node.firstChar !== 'string') &&
         (typeof name === 'string')) {
       name = name.trim();

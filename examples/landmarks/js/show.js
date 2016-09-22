@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
- function showLandmarks(event) {
+ function showLandmarks (event) {
     if (typeof window[initLandmarks] !== 'function') {
         window[initLandmarks]    = initLandmarks();
     }
@@ -27,7 +27,7 @@
         event.target.innerHTML   = 'Show Landmarks';
 }
 
-function showHeadings(event) {
+function showHeadings (event) {
     if (typeof window[initHeadings] !== 'function')
         window[initHeadings] = initHeadings();
 
