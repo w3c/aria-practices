@@ -13,7 +13,7 @@ window.addEventListener('load', function() {
   for(var i = 0; i < radiobuttons.length; i++ ) {
     var rb = radiobuttons[i];
 
-    console.log(rb.tagName + " " + rb.id)
+    console.log(rb.tagName + ' ' + rb.id)
 
     rb.addEventListener('click', clickRadioGroup);
     rb.addEventListener('keydown', keyDownRadioGroup);
@@ -37,7 +37,7 @@ function firstRadioButton(node) {
 
   while(first) {
     if (first.nodeType === Node.ELEMENT_NODE) {
-      if (first.getAttribute("role") === 'radio') return first;
+      if (first.getAttribute('role') === 'radio') return first;
     }
     first = first.nextSibling;
   }
@@ -59,7 +59,7 @@ function lastRadioButton(node) {
 
   while(last) {
     if (last.nodeType === Node.ELEMENT_NODE) {
-      if (last.getAttribute("role") === 'radio') return last;
+      if (last.getAttribute('role') === 'radio') return last;
     }
     last = last.previousSibling;
   }
@@ -81,7 +81,7 @@ function nextRadioButton(node) {
 
   while(next) {
     if (next.nodeType === Node.ELEMENT_NODE) {
-      if (next.getAttribute("role") === 'radio') return next;
+      if (next.getAttribute('role') === 'radio') return next;
     }
     next = next.nextSibling;
   }
@@ -103,7 +103,7 @@ function previousRadioButton(node) {
 
   while(prev) {
     if (prev.nodeType === Node.ELEMENT_NODE) {
-      if (prev.getAttribute("role") === 'radio') return prev;
+      if (prev.getAttribute('role') === 'radio') return prev;
     }
     prev = prev.previousSibling;
   }
@@ -175,11 +175,11 @@ function clickRadioGroup(event) {
     var radioButton = firstRadioButton(node);
 
     while (radioButton) {
-      setRadioButton(radioButton, "false");
+      setRadioButton(radioButton, 'false');
       radioButton = nextRadioButton(radioButton);
     }
 
-    setRadioButton(node, "true");
+    setRadioButton(node, 'true');
 
     event.preventDefault();
     event.stopPropagation();
@@ -198,7 +198,7 @@ function keyDownRadioGroup(event) {
   var type = event.type;
   var next = false;
 
-  if(type === "keydown"){
+  if(type === 'keydown'){
     var node = event.currentTarget;
 
     switch (event.keyCode) {
@@ -223,11 +223,11 @@ function keyDownRadioGroup(event) {
       var radioButton = firstRadioButton(node);
 
       while (radioButton) {
-        setRadioButton(radioButton, "false");
+        setRadioButton(radioButton, 'false');
         radioButton = nextRadioButton(radioButton);
       }
 
-      setRadioButton(next, "true");
+      setRadioButton(next, 'true');
 
       event.preventDefault();
       event.stopPropagation();

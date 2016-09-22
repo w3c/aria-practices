@@ -22,9 +22,9 @@
     ;
 
     if (window[initLandmarks].run()) 
-        event.target.innerHTML  = "Hide Landmarks";
+        event.target.innerHTML  = 'Hide Landmarks';
     else 
-        event.target.innerHTML   = "Show Landmarks";
+        event.target.innerHTML   = 'Show Landmarks';
 }
 
 function showHeadings(event) {
@@ -32,7 +32,7 @@ function showHeadings(event) {
         window[initHeadings] = initHeadings();
 
     if (window[initHeadings].run())
-        event.target.innerHTML = "Hide Headings";
+        event.target.innerHTML = 'Hide Headings';
     else 
-        event.target.innerHTML = "Show Headings";
+        event.target.innerHTML = 'Show Headings';
 }

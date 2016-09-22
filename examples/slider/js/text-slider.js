@@ -76,13 +76,13 @@ aria.widget = aria.widget || {};
 aria.widget.tslider = function(node, options, width) {
 
    this.keyCode = Object.freeze({
-     "end" : 35,
-     "home" : 36,
+     'end' : 35,
+     'home' : 36,
 
-     "left" : 37,
-     "up" : 38,
-     "right" : 39,
-     "down" : 40
+     'left' : 37,
+     'up' : 38,
+     'right' : 39,
+     'down' : 40
   });
   
   this.done = true;
@@ -106,7 +106,7 @@ aria.widget.tslider = function(node, options, width) {
   this.thumbWidth   = 8;
   
   if (typeof width !== 'number') {
-    width = window.getComputedStyle(this.rail).getPropertyValue("width");
+    width = window.getComputedStyle(this.rail).getPropertyValue('width');
     if ((typeof width === 'string') && (width.length > 2)) {
       width = parseInt(width.slice(0,-2));
     }
@@ -142,7 +142,7 @@ aria.widget.tslider = function(node, options, width) {
   this.thumb.setAttribute('aria-valuemax', this.valueMax);
   
   this.thumb.tabIndex = 0;
-  this.thumb.innerHTML = "";
+  this.thumb.innerHTML = '';
   
 };
 
@@ -156,12 +156,12 @@ aria.widget.tslider = function(node, options, width) {
 
 aria.widget.tslider.prototype.initSlider = function() {
 
-  this.rail.style.height = "1px";
-  this.rail.style.width = this.sliderWidth + "px";
+  this.rail.style.height = '1px';
+  this.rail.style.width = this.sliderWidth + 'px';
 
-  this.thumb.style.height = this.thumbHeight + "px";
-  this.thumb.style.width  = this.thumbWidth + "px";
-  this.thumb.style.top    = (-1 * this.thumbHeight/2) + "px";
+  this.thumb.style.height = this.thumbHeight + 'px';
+  this.thumb.style.width  = this.thumbWidth + 'px';
+  this.thumb.style.top    = (-1 * this.thumbHeight/2) + 'px';
   
   this.rangeLeftPos =  this.rail.offsetLeft;
   
@@ -169,7 +169,7 @@ aria.widget.tslider.prototype.initSlider = function() {
   var diff = this.sliderWidth / (this.value_nodes.length - 1)
   for (var i = 0; this.value_nodes[i]; i++) {
     
-    this.value_nodes[i].style.left = (pos - (this.value_nodes[i].offsetWidth/2))  + "px";
+    this.value_nodes[i].style.left = (pos - (this.value_nodes[i].offsetWidth/2))  + 'px';
     pos = pos + diff;
   }
   
@@ -224,7 +224,7 @@ aria.widget.tslider.prototype.updateThumbPosition = function() {
   
   var pos = Math.round((this.valueNow * this.sliderWidth) / (this.valueMax - this.valueMin)) - (this.thumbWidth/2);
   
-  this.thumb.style.left = pos + "px";
+  this.thumb.style.left = pos + 'px';
 };
 
 /**
@@ -392,7 +392,7 @@ aria.widget.tslider.prototype.eventClick = function(event, slider) {
 
 aria.widget.tslider.prototype.eventFocus = function(event, slider) {
 
-  slider.container.className = "aria-widget-text-slider focus";
+  slider.container.className = 'aria-widget-text-slider focus';
   
   event.preventDefault();
   event.stopPropagation();
@@ -411,7 +411,7 @@ aria.widget.tslider.prototype.eventFocus = function(event, slider) {
 
 aria.widget.tslider.prototype.eventBlur = function(event, slider) {
 
-  slider.container.className = "aria-widget-text-slider";
+  slider.container.className = 'aria-widget-text-slider';
   
   event.preventDefault();
   event.stopPropagation();

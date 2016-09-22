@@ -61,8 +61,8 @@ aria.widget.SourceCode.prototype.make = function() {
      node_location = document.getElementById( this.location[i] );
      node_code     = document.getElementById( this.code[i] );
 
-     node_location.className = "sourcecode";
-     this.createCode( node_location, "", node_code );
+     node_location.className = 'sourcecode';
+     this.createCode( node_location, '', node_code );
 
    } // endfor
 
@@ -96,21 +96,21 @@ aria.widget.SourceCode.prototype.createCode = function(location, spaces, node) {
 
   var node_name = node.nodeName.toLowerCase();
 
-  location.innerHTML = location.innerHTML + "<br/>" + spaces + "&lt;" + node_name;
+  location.innerHTML = location.innerHTML + '<br/>' + spaces + '&lt;' + node_name;
 
   for(i=0; i < node.attributes.length; i++ ) {
 
-     if( !(((node_name == "script" ) || (node_name = "style")) && (node.attributes[i].nodeName.toLowerCase() == "id") ) ) {
+     if( !(((node_name == 'script' ) || (node_name = 'style')) && (node.attributes[i].nodeName.toLowerCase() == 'id') ) ) {
 
-       location.innerHTML = location.innerHTML + "&nbsp;" + node.attributes[i].nodeName + "=\"";
-       location.innerHTML = location.innerHTML + node.attributes[i].value + "\"";
+       location.innerHTML = location.innerHTML + '&nbsp;' + node.attributes[i].nodeName + '=\'';
+       location.innerHTML = location.innerHTML + node.attributes[i].value + '\'';
 
        if( ((i + 1) != node.attributes.length) && (node.attributes.length > 2 ) ) {
 
-          location.innerHTML = location.innerHTML + "<br/>" + spaces;
+          location.innerHTML = location.innerHTML + '<br/>' + spaces;
 
           for(var j=2; j <= node_name.length; j++ )
-            location.innerHTML = location.innerHTML + "&nbsp;";
+            location.innerHTML = location.innerHTML + '&nbsp;';
 
        } // endif
 
@@ -118,7 +118,7 @@ aria.widget.SourceCode.prototype.createCode = function(location, spaces, node) {
 
   }  // endfor
 
-  location.innerHTML = location.innerHTML + "&gt;";
+  location.innerHTML = location.innerHTML + '&gt;';
 
   var count = 0;
 
@@ -129,13 +129,13 @@ aria.widget.SourceCode.prototype.createCode = function(location, spaces, node) {
     switch( n.nodeType ) {
 
       case Node.ELEMENT_NODE:
-         this.createCode( location, spaces + "&nbsp;&nbsp;", n);
+         this.createCode( location, spaces + '&nbsp;&nbsp;', n);
            count++;
          break;
 
       case Node.TEXT_NODE:
            if (hasText(n.nodeValue)) {
-             location.innerHTML = location.innerHTML + "<br/>" + spaces + "&nbsp;&nbsp;" + n.nodeValue;
+             location.innerHTML = location.innerHTML + '<br/>' + spaces + '&nbsp;&nbsp;' + n.nodeValue;
            }
            count++;
          break;
@@ -147,8 +147,8 @@ aria.widget.SourceCode.prototype.createCode = function(location, spaces, node) {
   } // end for
 
   if( count > 0 ) { 
-    location.innerHTML = location.innerHTML + "<br/>" + spaces + "&lt;/" + node.nodeName.toLowerCase();
-    location.innerHTML = location.innerHTML + "&gt;";
+    location.innerHTML = location.innerHTML + '<br/>' + spaces + '&lt;/' + node.nodeName.toLowerCase();
+    location.innerHTML = location.innerHTML + '&gt;';
   } // end if
 
 }

@@ -30,9 +30,9 @@ return obj;
 
 bind = function( obj, type, fn ) {
 if ( obj.attachEvent ) {
-obj["e"+type+fn] = fn;
-obj[type+fn] = function() { obj["e"+type+fn]( window.event ); }
-obj.attachEvent( "on"+type, obj[type+fn] );
+obj['e'+type+fn] = fn;
+obj[type+fn] = function() { obj['e'+type+fn]( window.event ); }
+obj.attachEvent( 'on'+type, obj[type+fn] );
 } else if (obj.addEventListener)
 obj.addEventListener( type, fn, false );
 return obj;
@@ -40,7 +40,7 @@ return obj;
 
 unbind = function( obj, type, fn ) {
 if ( obj.detachEvent ) {
-obj.detachEvent( "on"+type, obj[type+fn] );
+obj.detachEvent( 'on'+type, obj[type+fn] );
         obj[type+fn] = null;
 } else if (obj.removeEventListener)
 obj.removeEventListener( type, fn, false );

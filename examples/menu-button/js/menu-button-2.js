@@ -88,18 +88,18 @@ aria.widget = aria.widget || {};
 aria.widget.Menu = function(node, menuButton) {
 
    this.keyCode = Object.freeze({
-     "TAB"      : 9,
-     "RETURN"   : 13,
-     "ESC"    : 27,
-     "SPACE"    : 32,
-     "PAGEUP"    : 33,
-     "PAGEDOWN" : 34,
-     "END"      : 35,
-     "HOME"     : 36,
-     "LEFT"  : 37,
-     "UP"    : 38,
-     "RIGHT" : 39,
-     "DOWN"  : 40
+     'TAB'      : 9,
+     'RETURN'   : 13,
+     'ESC'    : 27,
+     'SPACE'    : 32,
+     'PAGEUP'    : 33,
+     'PAGEDOWN' : 34,
+     'END'      : 35,
+     'HOME'     : 36,
+     'LEFT'  : 37,
+     'UP'    : 38,
+     'RIGHT' : 39,
+     'DOWN'  : 40
   });
   
   // Check fo DOM element node
@@ -323,12 +323,12 @@ aria.widget.Menu.prototype.eventMouseOut = function(event, menu) {
 aria.widget.MenuButton = function(node) {
 
   this.keyCode = Object.freeze({
-     "TAB"    : 9,
-     "RETURN" : 13,
-     "ESC"    : 27,
-     "SPACE"  : 32,
-     "UP"    : 38,
-     "DOWN"  : 40
+     'TAB'    : 9,
+     'RETURN' : 13,
+     'ESC'    : 27,
+     'SPACE'  : 32,
+     'UP'    : 38,
+     'DOWN'  : 40
   });
 
   // Check fo DOM element node
@@ -405,8 +405,8 @@ aria.widget.MenuButton.prototype.openMenu = function() {
 
     this.menuNode.style.display = 'block';
     this.menuNode.style.position = 'absolute';
-    this.menuNode.style.top  = (pos.y + br.height) + "px"; 
-    this.menuNode.style.left = pos.x + "px"; ;
+    this.menuNode.style.top  = (pos.y + br.height) + 'px'; 
+    this.menuNode.style.left = pos.x + 'px'; ;
   }  
 };
 

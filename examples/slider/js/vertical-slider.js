@@ -80,15 +80,15 @@ aria.widget = aria.widget || {};
 aria.widget.vslider = function(node, inc, jump, height) {
 
    this.keyCode = Object.freeze({
-     "pageUp" : 33,
-     "pageDown" : 34,
-     "end" : 35,
-     "home" : 36,
+     'pageUp' : 33,
+     'pageDown' : 34,
+     'end' : 35,
+     'home' : 36,
 
-     "left" : 37,
-     "up" : 38,
-     "right" : 39,
-     "down" : 40
+     'left' : 37,
+     'up' : 38,
+     'right' : 39,
+     'down' : 40
   });
   
   this.done = true;
@@ -109,13 +109,13 @@ aria.widget.vslider = function(node, inc, jump, height) {
   var values = node.getElementsByClassName('value');
   if (values) this.value = values[0];
   else return false;
-  this.value.innerHTML = "0";
+  this.value.innerHTML = '0';
 
   this.thumbHeight  = 8;
   this.thumbWidth   = 28;
   
   if (typeof height !== 'number') {
-    height = window.getComputedStyle(this.rail).getPropertyValue("height");
+    height = window.getComputedStyle(this.rail).getPropertyValue('height');
     if ((typeof height === 'string') && (height.length > 2)) {
       height = parseInt(height.slice(0,-2));
     }
@@ -153,7 +153,7 @@ aria.widget.vslider = function(node, inc, jump, height) {
   this.thumb.setAttribute('aria-valuemax'   , this.valueMax);
   
   this.thumb.tabIndex = 0;
-  this.thumb.innerHTML = "";
+  this.thumb.innerHTML = '';
   
 };
 
@@ -167,12 +167,12 @@ aria.widget.vslider = function(node, inc, jump, height) {
 
 aria.widget.vslider.prototype.initSlider = function() {
 
-  this.rail.style.height = this.sliderHeight + "px";
-  this.rail.style.width  = "1px";
+  this.rail.style.height = this.sliderHeight + 'px';
+  this.rail.style.width  = '1px';
 
-  this.thumb.style.height = this.thumbHeight + "px";
-  this.thumb.style.width  = this.thumbWidth + "px";
-  this.thumb.style.left   = (-1 * this.thumbWidth/2) + "px";
+  this.thumb.style.height = this.thumbHeight + 'px';
+  this.thumb.style.width  = this.thumbWidth + 'px';
+  this.thumb.style.left   = (-1 * this.thumbWidth/2) + 'px';
   
   var slider = this;
   
@@ -221,11 +221,11 @@ aria.widget.vslider.prototype.updateThumbPosition = function() {
   if (this.valueNow < this.valueMin) this.valueNow = this.valueMin;
 
   this.thumb.setAttribute('aria-valuenow', this.valueNow);   
-  this.thumb.setAttribute('aria-valuetext', this.valueNow + " degrees");   
+  this.thumb.setAttribute('aria-valuetext', this.valueNow + ' degrees');   
   
   var pos = Math.round(((this.valueMax - this.valueNow) * this.sliderHeight) / (this.valueMax - this.valueMin)) - (this.thumbHeight/2);
   
-  this.thumb.style.top = pos + "px";
+  this.thumb.style.top = pos + 'px';
   
   this.value.innerHTML = this.valueNow.toString();
   
@@ -403,7 +403,7 @@ aria.widget.vslider.prototype.eventClick = function(event, slider) {
 
 aria.widget.vslider.prototype.eventFocus = function(event, slider) {
 
-  slider.container.className = "aria-widget-vertical-slider focus";
+  slider.container.className = 'aria-widget-vertical-slider focus';
   
   event.preventDefault();
   event.stopPropagation();
@@ -422,7 +422,7 @@ aria.widget.vslider.prototype.eventFocus = function(event, slider) {
 
 aria.widget.vslider.prototype.eventBlur = function(event, slider) {
 
-  slider.container.className = "aria-widget-vertical-slider";
+  slider.container.className = 'aria-widget-vertical-slider';
   
   event.preventDefault();
   event.stopPropagation();

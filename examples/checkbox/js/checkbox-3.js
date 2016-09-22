@@ -80,7 +80,7 @@ function updateGroupCheckbox(event) {
 
   var node = event.currentTarget;
 
-  console.log(node.tagName + " " + node.id)
+  console.log(node.tagName + ' ' + node.id)
 
   var checkboxes = node.parentNode.parentNode.querySelectorAll('input[type=checkbox]')
 
