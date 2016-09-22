@@ -8,6 +8,7 @@
     "examples/landmarks/js/jquery-2.1.1.min.js"
   ],
   "disallowKeywords": ["with"],
+  "disallowKeywordsOnNewLine": ["else"],
   "disallowMixedSpacesAndTabs": true,
   "disallowMultipleLineBreaks": true,
   "disallowMultipleSpaces": true,
@@ -58,7 +59,6 @@
     "catch"
   ],
   "requireDotNotation": true,
-  "requireKeywordsOnNewLine": ["else"],
   "requireLineFeedAtFileEnd": true,
   "requireLineBreakAfterVariableAssignment": true,
   "requireOperatorBeforeLineBreak": [
@@ -136,7 +136,7 @@
     "beforeOpeningCurlyBrace": true
   },
   "safeContextKeyword": ["self", "that"],
-  "validateIndentation": 2,
+  "validateIndentation": 4,
   "validateQuoteMarks": "'",
   "validateParameterSeparator": ", "
 }
