@@ -31,7 +31,7 @@ window.addEventListener('load', function () {
       var label = treeitem.getAttribute('aria-label');
       if (!label) label = treeitem.innerHTML;
 
-      document.getElementById('last_action').value=label.trim();
+      document.getElementById('last_action').value = label.trim();
 
       event.stopPropagation();
       event.preventDefault();

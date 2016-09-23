@@ -50,18 +50,18 @@ var Tree = function (node) {
   this.treeNode = node;
 
   this.keyCode = Object.freeze({
-    'TAB' :  9,
-    'RETURN' : 13,
-    'ESC' : 27,
-    'SPACE' : 32,
-    'PAGEUP' : 33,
-    'PAGEDOWN' : 34,
-    'END' : 35,
-    'HOME' : 36,
-    'LEFT' : 37,
-    'UP' : 38,
-    'RIGHT' : 39,
-    'DOWN' : 40
+    TAB: 9,
+    RETURN: 13,
+    ESC: 27,
+    SPACE: 32,
+    PAGEUP: 33,
+    PAGEDOWN: 34,
+    END: 35,
+    HOME: 36,
+    LEFT: 37,
+    UP: 38,
+    RIGHT: 39,
+    DOWN: 40
   });
 };
 
@@ -82,12 +82,12 @@ Tree.prototype.init = function () {
 
   this.topTreeitem = false;
 
-  if (treeitems.length) this.topTreeitem =  treeitems[0];
+  if (treeitems.length) this.topTreeitem = treeitems[0];
 
   for (var i = 0; i < treeitems.length; i++) {
     var ti = treeitems[i];
 
-    if(flag) {
+    if (flag) {
       ti.tabIndex = 0;
       flag = false;
     }
@@ -244,12 +244,15 @@ Tree.prototype.getChildTreeitems = function (treeitem) {
 
 Tree.prototype.isExpandable = function (treeitem) {
 
-  if (treeitem.getAttribute('aria-expanded')  &&
-     treeitem.nextTreeitem &&
-     treeitem.nextTreeitem.parentTreeitem === treeitem) return true;
+  if (
+    treeitem.getAttribute('aria-expanded') &&
+    treeitem.nextTreeitem &&
+    treeitem.nextTreeitem.parentTreeitem === treeitem
+  ) {
+    return true;
+  }
 
   return false;
-
 };
 
 /*
@@ -333,7 +336,9 @@ Tree.prototype.getLastVisibleTreeitem = function () {
 
   var ti = this.topTreeitem;
 
-  while(this.getNextVisibleTreeitem(ti)) ti = this.getNextVisibleTreeitem(ti);
+  while (this.getNextVisibleTreeitem(ti)) {
+    ti = this.getNextVisibleTreeitem(ti);
+  }
 
   return ti;
 };
@@ -439,7 +444,7 @@ Tree.prototype.handleKeydown = function (event) {
           'cancelable': true
         });
       }
-      catch(err) {
+      catch (err) {
         if (document.createEvent) {
           // DOM Level 3 for IE 9+
           clickEvent = document.createEvent('MouseEvents');
@@ -517,9 +522,9 @@ Tree.prototype.handleKeydown = function (event) {
 
 Tree.prototype.handleKeypress = function (event) {
 
- var  ct = event.currentTarget,
-      flag = false,
-      char = event.key;
+  var ct = event.currentTarget,
+    flag = false,
+    char = event.key;
 
   if ('abcdefghijklmnopqrstuvABCDEFGHIJKLMNOPQRSTUVWXYZ'.indexOf(char) >= 0) {
     this.moveFocusToTreeitemUsingFirstChar(ct, char);
@@ -532,11 +537,9 @@ Tree.prototype.handleKeypress = function (event) {
   }
 
   if (flag) {
-
     event.stopPropagation();
     event.preventDefault();
   }
-
 };
 
 /*
@@ -557,11 +560,11 @@ Tree.prototype.handleClick = function (event) {
     var expanded = ct.getAttribute('aria-expanded');
 
     if (expanded === 'true') {
-      ct.setAttribute('aria-expanded', 'false')
+      ct.setAttribute('aria-expanded', 'false');
       this.hideChildTreeitems(ct);
     }
     else {
-      ct.setAttribute('aria-expanded', 'true')
+      ct.setAttribute('aria-expanded', 'true');
       this.showChildTreeitems(ct);
     }
 
