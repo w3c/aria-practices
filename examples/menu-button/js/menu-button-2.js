@@ -106,7 +106,9 @@ aria.widget.Menu = function (node, menuButton) {
   });
 
   // Check fo DOM element node
-  if (typeof node !== 'object' || !node.getElementsByClassName) return false;
+  if (typeof node !== 'object' || !node.getElementsByClassName) {
+    return false;
+  }
 
   this.menuNode = node;
   node.tabIndex = -1;
@@ -144,7 +146,9 @@ aria.widget.Menu.prototype.initMenu = function () {
     if (cn.nodeType === Node.ELEMENT_NODE) {
       if (cn.getAttribute('role') === 'menuitem') {
         cn.tabIndex = -1;
-        if (!this.firstMenuItem) this.firstMenuItem = cn;
+        if (!this.firstMenuItem) {
+          this.firstMenuItem = cn;
+        }
         this.lastMenuItem = cn;
 
         var eventKeyDown = function (event) {
@@ -172,8 +176,10 @@ aria.widget.Menu.prototype.nextMenuItem = function (currentMenuItem) {
   console.log('[MENU][nextMenuItem]: ' + mi);
 
   while (mi) {
-    if ((mi.nodeType === Node.ELEMENT_NODE) &&
-      (mi.getAttribute('role') === 'menuitem')) {
+    if (
+      (mi.nodeType === Node.ELEMENT_NODE) &&
+      (mi.getAttribute('role') === 'menuitem')
+    ) {
       mi.focus();
       break;
     }
@@ -198,7 +204,10 @@ aria.widget.Menu.prototype.previousMenuItem = function (currentMenuItem) {
   var mi = currentMenuItem.previousSibling;
 
   while (mi) {
-    if (mi.nodeType === Node.ELEMENT_NODE && mi.getAttribute('role') === 'menuitem') {
+    if (
+      mi.nodeType === Node.ELEMENT_NODE &&
+      mi.getAttribute('role') === 'menuitem'
+    ) {
       mi.focus();
       break;
     }
@@ -330,7 +339,9 @@ aria.widget.MenuButton = function (node) {
   });
 
   // Check fo DOM element node
-  if (typeof node !== 'object' || !node.getElementsByClassName) return false;
+  if (typeof node !== 'object' || !node.getElementsByClassName) {
+    return false;
+  }
 
   this.done = true;
   this.mouseInMouseButton = false;

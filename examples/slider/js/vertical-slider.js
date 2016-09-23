@@ -92,21 +92,35 @@ aria.widget.vslider = function (node, inc, jump, height) {
   this.done = true;
 
   // Check fo DOM element node
-  if (typeof node !== 'object' || !node.getElementsByClassName) return false;
+  if (typeof node !== 'object' || !node.getElementsByClassName) {
+    return false;
+  }
 
   this.container = node;
 
   var rails = node.getElementsByClassName('rail');
-  if (rails) this.rail = rails[0];
-  else return false;
+  if (rails) {
+    this.rail = rails[0];
+  }
+  else {
+    return false;
+  }
 
   var thumbs = node.getElementsByClassName('thumb');
-  if (thumbs) this.thumb = thumbs[0];
-  else return false;
+  if (thumbs) {
+    this.thumb = thumbs[0];
+  }
+  else {
+    return false;
+  }
 
   var values = node.getElementsByClassName('value');
-  if (values) this.value = values[0];
-  else return false;
+  if (values) {
+    this.value = values[0];
+  }
+  else {
+    return false;
+  }
   this.value.innerHTML = '0';
 
   this.thumbHeight = 8;
@@ -119,30 +133,48 @@ aria.widget.vslider = function (node, inc, jump, height) {
     }
   }
 
-  if (typeof height === 'number') this.sliderHeight = height;
-  else this.sliderHeight = 200;
+  if (typeof height === 'number') {
+    this.sliderHeight = height;
+  }
+  else {
+    this.sliderHeight = 200;
+  }
 
   if (this.sliderHeight < 50) {
     this.sliderHeight = 50;
   }
 
-  if (typeof inc !== 'number') inc = 1;
-  if (typeof jump !== 'number') jump = 10;
+  if (typeof inc !== 'number') {
+    inc = 1;
+  }
+  if (typeof jump !== 'number') {
+    jump = 10;
+  }
 
   this.valueInc = inc;
   this.valueJump = jump;
 
-  if (typeof height === 'Number') this.sliderHeight = height;
-  if (typeof width === 'Number') this.sliderWidth = width;
+  if (typeof height === 'Number') {
+    this.sliderHeight = height;
+  }
+  if (typeof width === 'Number') {
+    this.sliderWidth = width;
+  }
 
   this.valueMin = parseInt(this.thumb.getAttribute('aria-valuemin'));
-  if (isNaN(this.valueMin)) this.valueMin = 0;
+  if (isNaN(this.valueMin)) {
+    this.valueMin = 0;
+  }
 
   this.valueMax = parseInt(this.thumb.getAttribute('aria-valuemax'));
-  if (isNaN(this.valueMax)) this.valueMax = 100;
+  if (isNaN(this.valueMax)) {
+    this.valueMax = 100;
+  }
 
   this.valueNow = parseInt(this.thumb.getAttribute('aria-valuenow'));
-  if (isNaN(this.valueNow)) this.valueNow = Math.round((this.valueMax - this.valueMin) / 2);
+  if (isNaN(this.valueNow)) {
+    this.valueNow = Math.round((this.valueMax - this.valueMin) / 2);
+  }
 
   this.thumb.setAttribute('role', 'slider');
   this.thumb.setAttribute('aria-orientation', 'vertical');
@@ -215,8 +247,12 @@ aria.widget.vslider.prototype.initSlider = function () {
 
 aria.widget.vslider.prototype.updateThumbPosition = function () {
 
-  if (this.valueNow > this.valueMax) this.valueNow = this.valueMax;
-  if (this.valueNow < this.valueMin) this.valueNow = this.valueMin;
+  if (this.valueNow > this.valueMax) {
+    this.valueNow = this.valueMax;
+  }
+  if (this.valueNow < this.valueMin) {
+    this.valueNow = this.valueMin;
+  }
 
   this.thumb.setAttribute('aria-valuenow', this.valueNow);
   this.thumb.setAttribute('aria-valuetext', this.valueNow + ' degrees');
@@ -380,7 +416,9 @@ aria.widget.vslider.prototype.eventMouseUp = function (event, slider) {
 
 aria.widget.vslider.prototype.eventClick = function (event, slider) {
 
-  if (event.target === slider.thumb) return;
+  if (event.target === slider.thumb) {
+    return;
+  }
 
   var diffY = event.pageY - slider.rail.offsetTop;
   slider.valueNow = slider.valueMax - parseInt(((slider.valueMax - slider.valueMin) * diffY) / slider.sliderHeight);

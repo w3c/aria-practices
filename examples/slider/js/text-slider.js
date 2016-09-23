@@ -117,15 +117,23 @@ aria.widget.tslider = function (node, options, width) {
     }
   }
 
-  if (typeof width === 'number') this.sliderWidth = width;
-  else this.sliderWidth = 200;
+  if (typeof width === 'number') {
+    this.sliderWidth = width;
+  }
+  else {
+    this.sliderWidth = 200;
+  }
 
   if (this.sliderWidth < 50) {
     this.sliderWidth = 50;
   }
 
-  if (typeof height === 'Number') this.sliderHeight = height;
-  if (typeof width === 'Number') this.sliderWidth = width;
+  if (typeof height === 'Number') {
+    this.sliderHeight = height;
+  }
+  if (typeof width === 'Number') {
+    this.sliderWidth = width;
+  }
 
   this.values = [];
   this.value_nodes = node.getElementsByClassName('value');
@@ -223,8 +231,12 @@ aria.widget.tslider.prototype.initSlider = function () {
 
 aria.widget.tslider.prototype.updateThumbPosition = function () {
 
-  if (this.valueNow > this.valueMax) this.valueNow = this.valueMax;
-  if (this.valueNow < this.valueMin) this.valueNow = this.valueMin;
+  if (this.valueNow > this.valueMax) {
+    this.valueNow = this.valueMax;
+  }
+  if (this.valueNow < this.valueMin) {
+    this.valueNow = this.valueMin;
+  }
 
   this.thumb.setAttribute('aria-valuenow', this.valueNow);
   this.thumb.setAttribute('aria-valuetext', this.values[this.valueNow]);
@@ -375,7 +387,9 @@ aria.widget.tslider.prototype.eventMouseUp = function (event, slider) {
 
 aria.widget.tslider.prototype.eventClick = function (event, slider) {
 
-  if (event.target === slider.thumb) return;
+  if (event.target === slider.thumb) {
+    return;
+  }
 
   var diffX = event.pageX - slider.rail.offsetLeft;
   slider.valueNow = parseInt(((slider.valueMax - slider.valueMin) * diffX) / slider.sliderWidth);

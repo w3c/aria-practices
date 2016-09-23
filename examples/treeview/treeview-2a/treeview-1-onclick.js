@@ -29,7 +29,9 @@ window.addEventListener('load', function () {
     treeitems[i].addEventListener('click', function (event) {
       var treeitem = event.currentTarget;
       var label = treeitem.getAttribute('aria-label');
-      if (!label) label = treeitem.innerHTML;
+      if (!label) {
+        label = treeitem.innerHTML;
+      }
 
       document.getElementById('last_action').value = label.trim();
 

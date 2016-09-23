@@ -45,7 +45,9 @@ window.addEventListener('load', function () {
 
 var Tree = function (node) {
   // Check whether node is a DOM element
-  if (typeof node !== 'object') return;
+  if (typeof node !== 'object') {
+    return;
+  }
 
   this.treeNode = node;
 
@@ -125,7 +127,9 @@ Tree.prototype.init = function () {
 
     // if an treeitem contains a link set it's tabindex to -1
     var links = ti.getElementsByTagName('a');
-    if (links.length) links[0].tabIndex = -1;
+    if (links.length) {
+      links[0].tabIndex = -1;
+    }
 
   }
 
@@ -153,7 +157,9 @@ Tree.prototype.getTreeitems = function (node) {
       ti.push(n);
     }
 
-    if (n.firstElementChild) ti = ti.concat(this.getTreeitems(n));
+    if (n.firstElementChild) {
+      ti = ti.concat(this.getTreeitems(n));
+    }
 
     n = n.nextElementSibling;
   }
@@ -189,14 +195,22 @@ Tree.prototype.initTreeitems = function (node, previous, parent) {
       n.parentTreeitem = parent;
       n.previousTreeitem = previous;
       n.nextTreeitem = false;
-      if (previous) previous.nextTreeitem = n;
+      if (previous) {
+        previous.nextTreeitem = n;
+      }
       previous = n;
     }
 
     if (n.firstElementChild) {
-      if (n.getAttribute('role') === 'treeitem' &&
-          typeof n.getAttribute('aria-expanded') === 'string') previous = this.initTreeitems(n, n, n);
-      else previous = this.initTreeitems(n, previous, parent);
+      if (
+        n.getAttribute('role') === 'treeitem' &&
+        typeof n.getAttribute('aria-expanded') === 'string'
+      ) {
+        previous = this.initTreeitems(n, n, n);
+      }
+      else {
+        previous = this.initTreeitems(n, previous, parent);
+      }
     }
 
     n = n.nextElementSibling;
@@ -271,10 +285,14 @@ Tree.prototype.isExpandable = function (treeitem) {
 
 Tree.prototype.isExpanded = function (treeitem) {
 
-  if (treeitem.getAttribute('aria-expanded') &&
-     (treeitem.getAttribute('aria-expanded') === 'true') &&
-     treeitem.nextTreeitem &&
-     treeitem.nextTreeitem.parentTreeitem === treeitem) return true;
+  if (
+    treeitem.getAttribute('aria-expanded') &&
+    treeitem.getAttribute('aria-expanded') === 'true' &&
+    treeitem.nextTreeitem &&
+    treeitem.nextTreeitem.parentTreeitem === treeitem
+  ) {
+    return true;
+  }
 
   return false;
 
@@ -296,7 +314,9 @@ Tree.prototype.getNextSiblingTreeitem = function (treeitem) {
   var ti = treeitem.nextTreeitem;
 
   while (ti) {
-    if (ti.parentTreeitem === treeitem.parentTreeitem) return ti;
+    if (ti.parentTreeitem === treeitem.parentTreeitem) {
+      return ti;
+    }
     ti = ti.nextTreeitem;
   }
 
@@ -404,14 +424,20 @@ Tree.prototype.getNextVisibleTreeitem = function (treeitem) {
 Tree.prototype.compareFirstChar = function (node, char) {
 
   function setFirstChar (name) {
-    if ((typeof node.firstChar !== 'string') &&
-        (typeof name === 'string')) {
+    if (
+      (typeof node.firstChar !== 'string') &&
+      (typeof name === 'string')
+    ) {
       name = name.trim();
-      if (name.length) node.firstChar = name[0].toLowerCase();
+      if (name.length) {
+        node.firstChar = name[0].toLowerCase();
+      }
     }
   }
 
-  if (typeof node.firstChar !== 'string') {
+  if (
+    typeof node.firstChar !== 'string'
+  ) {
     setFirstChar(node.getAttribute('aria-label'));
     setFirstChar(node.innerText);
     setFirstChar(node.getAttribute('title'));
@@ -456,8 +482,12 @@ Tree.prototype.handleKeydown = function (event) {
       }
       // Id treeitem contains a link, dispatch the click event to the link
       var ce = ct.firstElementChild;
-      if (ce && (ce.tagName.toLowerCase() === 'a')) ce.dispatchEvent(clickEvent);
-      else ct.dispatchEvent(clickEvent);
+      if (ce && (ce.tagName.toLowerCase() === 'a')) {
+        ce.dispatchEvent(clickEvent);
+      }
+      else {
+        ct.dispatchEvent(clickEvent);
+      }
       flag = true;
       break;
 
@@ -474,8 +504,12 @@ Tree.prototype.handleKeydown = function (event) {
     case this.keyCode.LEFT:
 
       if (this.isExpandable(ct)) {
-        if (this.isExpanded(ct)) this.hideChildTreeitems(ct);
-        else this.moveFocusToParentTreeitem(ct);
+        if (this.isExpanded(ct)) {
+          this.hideChildTreeitems(ct);
+        }
+        else {
+          this.moveFocusToParentTreeitem(ct);
+        }
       }
       else {
         this.moveFocusToParentTreeitem(ct);
@@ -487,8 +521,12 @@ Tree.prototype.handleKeydown = function (event) {
     case this.keyCode.RIGHT:
 
       if (this.isExpandable(ct)) {
-        if (!this.isExpanded(ct)) this.showChildTreeitems(ct);
-        else this.moveFocusToFirstChildTreeitem(ct);
+        if (!this.isExpanded(ct)) {
+          this.showChildTreeitems(ct);
+        }
+        else {
+          this.moveFocusToFirstChildTreeitem(ct);
+        }
       }
 
       flag = true;
@@ -540,7 +578,6 @@ Tree.prototype.handleKeypress = function (event) {
   }
 
   if (flag) {
-
     event.stopPropagation();
     event.preventDefault();
   }
@@ -560,7 +597,6 @@ Tree.prototype.handleKeypress = function (event) {
 Tree.prototype.handleClick = function (event) {
 
   if (event.target.tagName.toLowerCase() === 'span') {
-
     var ct = event.currentTarget;
     var expanded = ct.getAttribute('aria-expanded');
 
@@ -592,7 +628,9 @@ Tree.prototype.handleFocus = function (event) {
   var ct = event.currentTarget;
   var node = ct.firstElementChild;
 
-  if (node && this.isExpandable(ct)) ct = node;
+  if (node && this.isExpandable(ct)) {
+    ct = node;
+  }
 
   ct.classList.add('focus');
 };
@@ -608,7 +646,9 @@ Tree.prototype.handleFocus = function (event) {
 Tree.prototype.handleBlur = function (event) {
   var ct = event.currentTarget;
   var node = ct.firstElementChild;
-  if (node && this.isExpandable(ct)) ct = node;
+  if (node && this.isExpandable(ct)) {
+    ct = node;
+  }
   ct.classList.remove('focus');
 };
 
@@ -784,13 +824,19 @@ Tree.prototype.moveFocusToLastVisibleTreeitem = function (treeitem) {
 
 Tree.prototype.moveFocusToTreeitemUsingFirstChar = function (treeitem, char) {
   var ti = this.getNextVisibleTreeitem(treeitem);
-  if (!ti) ti = this.topTreeitem;
+  if (!ti) {
+    ti = this.topTreeitem;
+  }
 
   while (ti && (treeitem !== ti)) {
-    if (this.compareFirstChar(ti, char)) break;
+    if (this.compareFirstChar(ti, char)) {
+      break;
+    }
     ti = this.getNextVisibleTreeitem(ti);
     // if at last item, go to top of tree
-    if (!ti) ti = this.topTreeitem;
+    if (!ti) {
+      ti = this.topTreeitem;
+    }
   }
 
   if (ti) {
@@ -811,11 +857,14 @@ Tree.prototype.moveFocusToTreeitemUsingFirstChar = function (treeitem, char) {
 Tree.prototype.expandSiblingTreeitems = function (treeitem) {
 
   var ti = this.getFirstSiblingTreeitem(treeitem);
-  if (!ti) ti = treeitem;
+  if (!ti) {
+    ti = treeitem;
+  }
 
   while (ti) {
-    console.log('TREEITEM: ' + ti + ' ' + ti.nextTreeitem);
-    if (this.isExpandable(ti)) this.showChildTreeitems(ti);
+    if (this.isExpandable(ti)) {
+      this.showChildTreeitems(ti);
+    }
     ti = this.getNextSiblingTreeitem(ti);
   }
 

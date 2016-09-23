@@ -80,7 +80,9 @@ aria.widget.SourceCode.prototype.make = function () {
 aria.widget.SourceCode.prototype.createCode = function (location, spaces, node) {
 
   function hasText (s) {
-    if (typeof s !== 'string') return false;
+    if (typeof s !== 'string') {
+      return false;
+    }
 
     for (var i = 0; i < s.length; i++) {
       var c = s[i];

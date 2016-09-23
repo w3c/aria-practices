@@ -91,7 +91,9 @@ aria.widget.slider = function (node, inc, jump, width) {
   this.done = true;
 
   // Check fo DOM element node
-  if (typeof node !== 'object' || !node.getElementsByClassName) return false;
+  if (typeof node !== 'object' || !node.getElementsByClassName) {
+    return false;
+  }
 
   this.container = node;
 
@@ -151,17 +153,27 @@ aria.widget.slider = function (node, inc, jump, width) {
   this.valueInc = inc;
   this.valueJump = jump;
 
-  if (typeof height === 'Number') this.sliderHeight = height;
-  if (typeof width === 'Number') this.sliderWidth = width;
+  if (typeof height === 'Number') {
+    this.sliderHeight = height;
+  }
+  if (typeof width === 'Number') {
+    this.sliderWidth = width;
+  }
 
   this.valueMin = parseInt(this.thumb.getAttribute('aria-valuemin'));
-  if (isNaN(this.valueMin)) this.valueMin = 0;
+  if (isNaN(this.valueMin)) {
+    this.valueMin = 0;
+  }
 
   this.valueMax = parseInt(this.thumb.getAttribute('aria-valuemax'));
-  if (isNaN(this.valueMax)) this.valueMax = 100;
+  if (isNaN(this.valueMax)) {
+    this.valueMax = 100;
+  }
 
   this.valueNow = parseInt(this.thumb.getAttribute('aria-valuenow'));
-  if (isNaN(this.valueNow)) this.valueNow = Math.round((this.valueMax - this.valueMin) / 2);
+  if (isNaN(this.valueNow)) {
+    this.valueNow = Math.round((this.valueMax - this.valueMin) / 2);
+  }
 
   this.thumb.setAttribute('role', 'slider');
   this.thumb.setAttribute('aria-valuenow', this.valueNow);
@@ -405,7 +417,9 @@ aria.widget.slider.prototype.eventMouseUp = function (event, slider) {
 
 aria.widget.slider.prototype.eventClick = function (event, slider) {
 
-  if (event.target === slider.thumb) return;
+  if (event.target === slider.thumb) {
+    return;
+  }
 
   var diffX = event.pageX - slider.rail.offsetLeft;
   slider.valueNow = parseInt(((slider.valueMax - slider.valueMin) * diffX) / slider.sliderWidth);

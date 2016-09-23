@@ -26,9 +26,9 @@ window.addEventListener('load', function () {
 
   [].forEach.call(menuButtons, function (menuButton) {
     if (
-        menuButton &&
-        (menuButton.tagName.toLowerCase() === 'button') ||
-        (menuButton.getAttribute('role').toLowerCase() === 'button')
+      menuButton &&
+      menuButton.tagName.toLowerCase() === 'button' ||
+      menuButton.getAttribute('role').toLowerCase() === 'button'
     ) {
       var mb = new aria.widget.MenuButton(menuButton);
       mb.initMenuButton();
@@ -104,7 +104,9 @@ aria.widget.Menu = function (node, menuButton) {
   });
 
   // Check fo DOM element node
-  if (typeof node !== 'object' || !node.getElementsByClassName) return false;
+  if (typeof node !== 'object' || !node.getElementsByClassName) {
+    return false;
+  }
 
   this.menuNode = node;
   node.tabIndex = -1;
@@ -134,7 +136,9 @@ aria.widget.Menu.prototype.initMenu = function () {
     if (cn.nodeType === Node.ELEMENT_NODE) {
       if (cn.getAttribute('role') === 'menuitem') {
         cn.tabIndex = -1;
-        if (!this.firstMenuItem) this.firstMenuItem = cn;
+        if (!this.firstMenuItem) {
+          this.firstMenuItem = cn;
+        }
         this.lastMenuItem = cn;
 
         var eventKeyDown = function (event) {
@@ -176,8 +180,10 @@ aria.widget.Menu.prototype.nextMenuItem = function (currentMenuItem) {
   var mi = currentMenuItem.nextSibling;
 
   while (mi) {
-    if ((mi.nodeType === Node.ELEMENT_NODE) &&
-      (mi.getAttribute('role') === 'menuitem')) {
+    if (
+      (mi.nodeType === Node.ELEMENT_NODE) &&
+      (mi.getAttribute('role') === 'menuitem')
+    ) {
       mi.focus();
       break;
     }
@@ -202,7 +208,10 @@ aria.widget.Menu.prototype.previousMenuItem = function (currentMenuItem) {
   var mi = currentMenuItem.previousSibling;
 
   while (mi) {
-    if (mi.nodeType === Node.ELEMENT_NODE && mi.getAttribute('role') === 'menuitem') {
+    if (
+      mi.nodeType === Node.ELEMENT_NODE &&
+      mi.getAttribute('role') === 'menuitem'
+    ) {
       mi.focus();
       break;
     }
@@ -344,7 +353,9 @@ aria.widget.MenuButton = function (node) {
   });
 
   // Check fo DOM element node
-  if (typeof node !== 'object' || !node.getElementsByClassName) return false;
+  if (typeof node !== 'object' || !node.getElementsByClassName) {
+    return false;
+  }
 
   this.done = true;
   this.mouseInMouseButton = false;
@@ -422,8 +433,12 @@ aria.widget.MenuButton.prototype.openMenu = function () {
 
 aria.widget.MenuButton.prototype.closeMenu = function (force, focusMenuButton) {
 
-  if (typeof force !== 'boolean') force = false;
-  if (typeof focusMenuButton !== 'boolean') focusMenuButton = true;
+  if (typeof force !== 'boolean') {
+    force = false;
+  }
+  if (typeof focusMenuButton !== 'boolean') {
+    focusMenuButton = true;
+  }
 
   if (
     force ||
@@ -435,7 +450,9 @@ aria.widget.MenuButton.prototype.closeMenu = function (force, focusMenuButton) {
     )
   ) {
     this.menuNode.style.display = 'none';
-    if (focusMenuButton) this.buttonNode.focus();
+    if (focusMenuButton) {
+      this.buttonNode.focus();
+    }
     this.menuShowing = false;
   }
 };
@@ -451,8 +468,12 @@ aria.widget.MenuButton.prototype.closeMenu = function (force, focusMenuButton) {
 aria.widget.MenuButton.prototype.toggleMenu = function () {
 
   if (this.menuNode) {
-    if (this.menuNode.style.display === 'block') this.menuNode.style.display = 'none';
-    else this.menuNode.style.display = 'block';
+    if (this.menuNode.style.display === 'block') {
+      this.menuNode.style.display = 'none';
+    }
+    else {
+      this.menuNode.style.display = 'block';
+    }
   }
 
 };
