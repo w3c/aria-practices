@@ -30,7 +30,6 @@
   function addListeners (index) {
     tabs[index].addEventListener('click', activateTab);
     tabs[index].addEventListener('keyup', keyEventListener);
-    tabs[index].addEventListener('keydown', altKeyStuff);
     tabs[index].addEventListener('focus', focusTab);
     tabs[index].index = index;
   };
@@ -66,8 +65,6 @@
         break;
       case keys.left:
       case keys.right:
-        // switchTab(event);
-        // break;
       case keys.up:
       case keys.down:
         determineOrientation(event);
@@ -161,13 +158,6 @@
 
     target.remove();
     panel.remove();
-  };
-
-  // Alt key stuff
-  function altKeyStuff (event) {
-    if (event.altKey && event.keyCode === 77) {
-      focusPanel(event);
-    };
   };
 
   // Focus panel
