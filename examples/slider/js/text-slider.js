@@ -13,36 +13,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 /*
  * ARIA Slider example
  * @function onload
- * @desc 
+ * @desc
  */
- 
+
 window.addEventListener('load', function () {
 
   var sliders = document.getElementsByClassName('aria-widget-text-slider');
-  
-  [].forEach.call(sliders, function(tslider) {
+
+  [].forEach.call(sliders, function (tslider) {
     if (tslider && !tslider.done) {
       var s = new aria.widget.tslider(tslider);
       s.initSlider();
-    }  
+    }
   });
 
 });
 
-
-/** 
+/**
  * @namespace aria
  */
 
 var aria = aria || {};
 
-
 /* ---------------------------------------------------------------- */
-/*                  ARIA Widget Namespace                        */ 
+/*                  ARIA Widget Namespace                        */
 /* ---------------------------------------------------------------- */
 
 aria.widget = aria.widget || {};
@@ -56,7 +54,7 @@ aria.widget = aria.widget || {};
  *
  * @memberOf aria.Widget
  *
- * @desc  Creates a slider widget using ARIA 
+ * @desc  Creates a slider widget using ARIA
  *
  * @param  node    DOM node  -  DOM node object
  * @param  options Array     - List of text values for the slider
@@ -73,77 +71,92 @@ aria.widget = aria.widget || {};
  * @property  valueNow  Integer  - Current value of the slider (e.g. current option)
  */
 
-aria.widget.tslider = function(node, options, width) {
+aria.widget.tslider = function (node, options, width) {
 
-   this.keyCode = Object.freeze({
-     "end" : 35,
-     "home" : 36,
-
-     "left" : 37,
-     "up" : 38,
-     "right" : 39,
-     "down" : 40
+  this.keyCode = Object.freeze({
+    'end': 35,
+    'home': 36,
+    'left': 37,
+    'up': 38,
+    'right': 39,
+    'down': 40
   });
-  
+
   this.done = true;
-  
+
   // Check fo DOM element node
-  if (typeof node !== 'object' || !node.getElementsByClassName) return false;
+  if (typeof node !== 'object' || !node.getElementsByClassName) {
+    return false;
+  }
 
   this.container = node;
 
   var rails = node.getElementsByClassName('rail');
-  if (rails) this.rail = rails[0];
-  else return false;
+  if (rails) {
+    this.rail = rails[0];
+  }
+  else {
+    return false;
+  }
 
   var thumbs = node.getElementsByClassName('thumb');
-  if (thumbs) this.thumb = thumbs[0];
-  else return false;
-  
+  if (thumbs) {
+    this.thumb = thumbs[0];
+  }
+  else {
+    return false;
+  }
 
+  this.thumbHeight = 28;
+  this.thumbWidth = 8;
 
-  this.thumbHeight  = 28;
-  this.thumbWidth   = 8;
-  
   if (typeof width !== 'number') {
-    width = window.getComputedStyle(this.rail).getPropertyValue("width");
+    width = window.getComputedStyle(this.rail).getPropertyValue('width');
     if ((typeof width === 'string') && (width.length > 2)) {
-      width = parseInt(width.slice(0,-2));
+      width = parseInt(width.slice(0, -2));
     }
   }
 
-  if (typeof width === 'number') this.sliderWidth = width;
-  else this.sliderWidth = 200;
+  if (typeof width === 'number') {
+    this.sliderWidth = width;
+  }
+  else {
+    this.sliderWidth = 200;
+  }
 
   if (this.sliderWidth < 50) {
-    this.sliderWidth  = 50;
-  }  
-  
-  if (typeof height === 'Number') this.sliderHeight = height;
-  if (typeof width  === 'Number') this.sliderWidth  = width;
+    this.sliderWidth = 50;
+  }
 
-  this.values      = [];
+  if (typeof height === 'Number') {
+    this.sliderHeight = height;
+  }
+  if (typeof width === 'Number') {
+    this.sliderWidth = width;
+  }
+
+  this.values = [];
   this.value_nodes = node.getElementsByClassName('value');
   for (var i = 0; this.value_nodes[i]; i++) {
     this.values.push(this.value_nodes[i].innerHTML);
   }
 
   this.valueMin = 0;
-  this.valueMax = (this.values.length-1);
+  this.valueMax = (this.values.length - 1);
 
   this.valueNow = 0;
   this.valueText = parseInt(this.values[this.valueNow]);
   this.valueInc = 1;
-  
+
   this.thumb.setAttribute('role', 'slider');
   this.thumb.setAttribute('aria-valuetext', this.valueText);
   this.thumb.setAttribute('aria-valuenow', this.valueNow);
   this.thumb.setAttribute('aria-valuemin', this.valueMin);
   this.thumb.setAttribute('aria-valuemax', this.valueMax);
-  
+
   this.thumb.tabIndex = 0;
-  this.thumb.innerHTML = "";
-  
+  this.thumb.innerHTML = '';
+
 };
 
 /**
@@ -151,53 +164,55 @@ aria.widget.tslider = function(node, options, width) {
  *
  * @memberOf aria.widget.tslider
  *
- * @desc  Creates the HTML for the slider 
+ * @desc  Creates the HTML for the slider
  */
 
-aria.widget.tslider.prototype.initSlider = function() {
+aria.widget.tslider.prototype.initSlider = function () {
 
-  this.rail.style.height = "1px";
-  this.rail.style.width = this.sliderWidth + "px";
+  this.rail.style.height = '1px';
+  this.rail.style.width = this.sliderWidth + 'px';
 
-  this.thumb.style.height = this.thumbHeight + "px";
-  this.thumb.style.width  = this.thumbWidth + "px";
-  this.thumb.style.top    = (-1 * this.thumbHeight/2) + "px";
-  
-  this.rangeLeftPos =  this.rail.offsetLeft;
-  
+  this.thumb.style.height = this.thumbHeight + 'px';
+  this.thumb.style.width = this.thumbWidth + 'px';
+  this.thumb.style.top = (-1 * this.thumbHeight / 2) + 'px';
+
+  this.rangeLeftPos = this.rail.offsetLeft;
+
   var pos = 0;
-  var diff = this.sliderWidth / (this.value_nodes.length - 1)
+  var diff = this.sliderWidth / (this.value_nodes.length - 1);
   for (var i = 0; this.value_nodes[i]; i++) {
-    
-    this.value_nodes[i].style.left = (pos - (this.value_nodes[i].offsetWidth/2))  + "px";
+
+    this.value_nodes[i].style.left = (
+      pos - (this.value_nodes[i].offsetWidth / 2)
+    ) + 'px';
     pos = pos + diff;
   }
-  
-  var slider = this;
-  
+
+  var self = this;
+
   var eventKeyDown = function (event) {
-    slider.eventKeyDown(event, slider);
+    self.eventKeyDown(event, self);
   };
 
   var eventMouseDown = function (event) {
-    slider.eventMouseDown(event, slider);
+    self.eventMouseDown(event, self);
   };
-  
+
   var eventFocus = function (event) {
-    slider.eventFocus(event, slider);
+    self.eventFocus(event, self);
   };
-  
+
   var eventBlur = function (event) {
-    slider.eventBlur(event, slider);
+    self.eventBlur(event, self);
   };
-  
-  this.thumb.addEventListener('keydown',   eventKeyDown);
+
+  this.thumb.addEventListener('keydown', eventKeyDown);
   this.thumb.addEventListener('mousedown', eventMouseDown);
   this.thumb.addEventListener('focus', eventFocus);
-  this.thumb.addEventListener('blur',  eventBlur);
-  
+  this.thumb.addEventListener('blur', eventBlur);
+
   var eventClick = function (event) {
-    slider.eventClick(event, slider);
+    self.eventClick(event, self);
   };
 
   this.rail.addEventListener('click', eventClick);
@@ -214,17 +229,23 @@ aria.widget.tslider.prototype.initSlider = function() {
  * @desc  Updates thumb position in slider div and aria-valuenow property
  */
 
-aria.widget.tslider.prototype.updateThumbPosition = function() {
+aria.widget.tslider.prototype.updateThumbPosition = function () {
 
-  if (this.valueNow > this.valueMax) this.valueNow = this.valueMax;
-  if (this.valueNow < this.valueMin) this.valueNow = this.valueMin;
+  if (this.valueNow > this.valueMax) {
+    this.valueNow = this.valueMax;
+  }
+  if (this.valueNow < this.valueMin) {
+    this.valueNow = this.valueMin;
+  }
 
-  this.thumb.setAttribute('aria-valuenow', this.valueNow);   
-  this.thumb.setAttribute('aria-valuetext', this.values[this.valueNow]);   
-  
-  var pos = Math.round((this.valueNow * this.sliderWidth) / (this.valueMax - this.valueMin)) - (this.thumbWidth/2);
-  
-  this.thumb.style.left = pos + "px";
+  this.thumb.setAttribute('aria-valuenow', this.valueNow);
+  this.thumb.setAttribute('aria-valuetext', this.values[this.valueNow]);
+
+  var pos = Math.round(
+    (this.valueNow * this.sliderWidth) / (this.valueMax - this.valueMin)
+  ) - (this.thumbWidth / 2);
+
+  this.thumb.style.left = pos + 'px';
 };
 
 /**
@@ -237,41 +258,39 @@ aria.widget.tslider.prototype.updateThumbPosition = function() {
  *               slider to change the value on
  */
 
-aria.widget.tslider.prototype.eventKeyDown = function(event, slider) {
+aria.widget.tslider.prototype.eventKeyDown = function (event, slider) {
 
-  function updateValue(value) {
+  function updateValue (value) {
     slider.valueNow = value;
     slider.updateThumbPosition();
-    
+
     event.preventDefault();
     event.stopPropagation();
   }
 
-  switch(event.keyCode) {
-  
-  case slider.keyCode.left:
-  case slider.keyCode.down:
-    updateValue(slider.valueNow-slider.valueInc);
-    break;
-  
-  case slider.keyCode.right:
-  case slider.keyCode.up:
-    updateValue(slider.valueNow+slider.valueInc);
-    break;
+  switch (event.keyCode) {
+    case slider.keyCode.left:
+    case slider.keyCode.down:
+      updateValue(slider.valueNow - slider.valueInc);
+      break;
 
-  case slider.keyCode.home:
-    updateValue(slider.valueMin);
-    break;
+    case slider.keyCode.right:
+    case slider.keyCode.up:
+      updateValue(slider.valueNow + slider.valueInc);
+      break;
 
-  case slider.keyCode.end:
-    updateValue(slider.valueMax);
-    break;
+    case slider.keyCode.home:
+      updateValue(slider.valueMin);
+      break;
 
-  default:
-    break;
+    case slider.keyCode.end:
+      updateValue(slider.valueMax);
+      break;
+
+    default:
+      break;
   }
-  
-  
+
 };
 
 /**
@@ -284,22 +303,22 @@ aria.widget.tslider.prototype.eventKeyDown = function(event, slider) {
  *               slider to change the value on
  */
 
-aria.widget.tslider.prototype.eventMouseDown = function(event, slider) {
+aria.widget.tslider.prototype.eventMouseDown = function (event, slider) {
 
   if (event.target === slider.thumb) {
-  
+
     // Set focus to the clicked handle
     event.target.focus();
-  
+
     var mouseMove = function (event) {
       slider.eventMouseMove(event, slider);
-    }
+    };
 
     slider.mouseMove = mouseMove;
 
     var mouseUp = function (event) {
       slider.eventMouseUp(event, slider);
-    }
+    };
 
     slider.mouseUp = mouseUp;
 
@@ -308,10 +327,10 @@ aria.widget.tslider.prototype.eventMouseDown = function(event, slider) {
 
     // bind a mouseup event handler to stop tracking mouse movements
     document.addEventListener('mouseup', slider.mouseUp);
-  
+
     event.preventDefault();
     event.stopPropagation();
-  }  
+  }
 
 };
 
@@ -325,15 +344,15 @@ aria.widget.tslider.prototype.eventMouseDown = function(event, slider) {
  *               slider to change the value on
  */
 
-aria.widget.tslider.prototype.eventMouseMove = function(event, slider) {
+aria.widget.tslider.prototype.eventMouseMove = function (event, slider) {
 
   var diffX = event.pageX - slider.rail.offsetLeft;
   slider.valueNow = parseInt(((slider.valueMax - slider.valueMin) * diffX) / slider.sliderWidth);
   slider.updateThumbPosition();
-  
+
   event.preventDefault();
   event.stopPropagation();
-  
+
 };
 
 /**
@@ -346,14 +365,14 @@ aria.widget.tslider.prototype.eventMouseMove = function(event, slider) {
  *               slider to change the value on
  */
 
-aria.widget.tslider.prototype.eventMouseUp = function(event, slider) {
+aria.widget.tslider.prototype.eventMouseUp = function (event, slider) {
 
   document.removeEventListener('mousemove', slider.mouseMove);
-  document.removeEventListener('mouseup',   slider.mouseUp);
+  document.removeEventListener('mouseup', slider.mouseUp);
 
   event.preventDefault();
   event.stopPropagation();
-  
+
 };
 
 /**
@@ -366,19 +385,20 @@ aria.widget.tslider.prototype.eventMouseUp = function(event, slider) {
  *               slider to change the value on
  */
 
-aria.widget.tslider.prototype.eventClick = function(event, slider) {
+aria.widget.tslider.prototype.eventClick = function (event, slider) {
 
-  if (event.target === slider.thumb) return;
-  
+  if (event.target === slider.thumb) {
+    return;
+  }
+
   var diffX = event.pageX - slider.rail.offsetLeft;
   slider.valueNow = parseInt(((slider.valueMax - slider.valueMin) * diffX) / slider.sliderWidth);
   slider.updateThumbPosition();
-  
+
   event.preventDefault();
   event.stopPropagation();
-  
-};
 
+};
 
 /**
  * @method eventFocus
@@ -390,13 +410,13 @@ aria.widget.tslider.prototype.eventClick = function(event, slider) {
  *               slider to change the value on
  */
 
-aria.widget.tslider.prototype.eventFocus = function(event, slider) {
+aria.widget.tslider.prototype.eventFocus = function (event, slider) {
 
-  slider.container.className = "aria-widget-text-slider focus";
-  
+  slider.container.className = 'aria-widget-text-slider focus';
+
   event.preventDefault();
   event.stopPropagation();
-  
+
 };
 
 /**
@@ -409,12 +429,11 @@ aria.widget.tslider.prototype.eventFocus = function(event, slider) {
  *               slider to change the value on
  */
 
-aria.widget.tslider.prototype.eventBlur = function(event, slider) {
+aria.widget.tslider.prototype.eventBlur = function (event, slider) {
 
-  slider.container.className = "aria-widget-text-slider";
-  
+  slider.container.className = 'aria-widget-text-slider';
+
   event.preventDefault();
   event.stopPropagation();
-  
-};
 
+};

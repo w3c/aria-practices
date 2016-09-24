@@ -1,5 +1,3 @@
-
-
 /*
  * Copyright 2011-2016 University of Illinois
  *
@@ -15,7 +13,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
 
 /**
  * ARIA Treeview example
@@ -23,25 +20,25 @@
  * @desc  after page has loaded initializ all treeitems based on the role=treeitem
  */
 
-
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
 
   var treeitems = document.querySelectorAll('[role="treeitem"]');
 
-  for(var i = 0; i <treeitems.length; i++ ) {
+  for (var i = 0; i <treeitems.length; i++) {
 
-    treeitems[i].addEventListener('click', function(event) {
+    treeitems[i].addEventListener('click', function (event) {
       var treeitem = event.currentTarget;
       var label = treeitem.getAttribute('aria-label');
-      if (!label) label = treeitem.innerHTML;
+      if (!label) {
+        label = treeitem.innerHTML;
+      }
 
-      document.getElementById('last_action').value=label.trim(); 
+      document.getElementById('last_action').value = label.trim();
 
       event.stopPropagation();
-      event.preventDefault();      
+      event.preventDefault();
     });
 
   }
 
 });
-

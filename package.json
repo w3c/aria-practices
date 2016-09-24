@@ -1,0 +1,26 @@
+{
+  "name": "aria-practices",
+  "version": "0.0.0",
+  "description": "This repository maintains the WAI-ARIA Authoring Practices Guide. This is developed by the [ARIA Working Group](http://www.w3.org/WAI/ARIA/). The staff contact is [Michael Cooper](http://www.w3.org/People/cooper/). Please do not provide commit access to this repository without coordination.",
+  "main": "index.js",
+  "directories": {
+    "example": "examples"
+  },
+  "scripts": {
+    "jscs": "jscs -c .jscsrc -m 1000 bin examples",
+    "test": "npm run jscs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/w3c/aria-practices.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/w3c/aria-practices/issues"
+  },
+  "homepage": "https://github.com/w3c/aria-practices#readme",
+  "devDependencies": {
+    "jscs": "^3.0.7"
+  }
+}

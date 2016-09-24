@@ -4,11 +4,11 @@
  * @desc Initialize the grid examples once the page has loaded
  */
 
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
   var ex1 = document.getElementById('ex1');
   var ex1Grid = new aria.Grid(ex1.querySelector('[role="grid"]'));
 
-  var ex2= document.getElementById('ex2');
+  var ex2 = document.getElementById('ex2');
   var ex2Grid = new aria.Grid(ex2.querySelector('[role="grid"]'));
 
   var ex3 = document.getElementById('ex3');
@@ -24,7 +24,8 @@ window.addEventListener('load', function() {
 
     if (toggledOn) {
       toggleButton.innerText = 'Hide Type and Category';
-    } else {
+    }
+    else {
       toggleButton.innerText = 'Show Type and Category';
     }
   });

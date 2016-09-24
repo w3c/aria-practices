@@ -13,36 +13,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
+
 /*
  * ARIA Slider example
  * @function onload
- * @desc 
+ * @desc
  */
- 
+
 window.addEventListener('load', function () {
 
   var sliders = document.getElementsByClassName('aria-widget-vertical-slider');
-  
-  [].forEach.call(sliders, function(slider) {
+
+  [].forEach.call(sliders, function (slider) {
     if (slider && !slider.done) {
       var s = new aria.widget.vslider(slider);
       s.initSlider();
-    }  
+    }
   });
 
 });
 
-
-/** 
+/**
  * @namespace aria
  */
 
 var aria = aria || {};
 
-
 /* ---------------------------------------------------------------- */
-/*                  ARIA Widget Namespace                        */ 
+/*                  ARIA Widget Namespace                        */
 /* ---------------------------------------------------------------- */
 
 aria.widget = aria.widget || {};
@@ -56,7 +54,7 @@ aria.widget = aria.widget || {};
  *
  * @memberOf aria.Widget
  *
- * @desc  Creates a slider widget using ARIA 
+ * @desc  Creates a slider widget using ARIA
  *
  * @param  node    DOM node  -  DOM node object
  * @param  inc     Integer   -  inc is the increment value for the slider (default 1)
@@ -77,84 +75,116 @@ aria.widget = aria.widget || {};
  * @property  valueNow  Integer  - Current value of the slider
  */
 
-aria.widget.vslider = function(node, inc, jump, height) {
+aria.widget.vslider = function (node, inc, jump, height) {
 
-   this.keyCode = Object.freeze({
-     "pageUp" : 33,
-     "pageDown" : 34,
-     "end" : 35,
-     "home" : 36,
+  this.keyCode = Object.freeze({
+    'pageUp': 33,
+    'pageDown': 34,
+    'end': 35,
+    'home': 36,
 
-     "left" : 37,
-     "up" : 38,
-     "right" : 39,
-     "down" : 40
+    'left': 37,
+    'up': 38,
+    'right': 39,
+    'down': 40
   });
-  
+
   this.done = true;
-  
+
   // Check fo DOM element node
-  if (typeof node !== 'object' || !node.getElementsByClassName) return false;
+  if (typeof node !== 'object' || !node.getElementsByClassName) {
+    return false;
+  }
 
   this.container = node;
 
   var rails = node.getElementsByClassName('rail');
-  if (rails) this.rail = rails[0];
-  else return false;
+  if (rails) {
+    this.rail = rails[0];
+  }
+  else {
+    return false;
+  }
 
   var thumbs = node.getElementsByClassName('thumb');
-  if (thumbs) this.thumb = thumbs[0];
-  else return false;
-  
-  var values = node.getElementsByClassName('value');
-  if (values) this.value = values[0];
-  else return false;
-  this.value.innerHTML = "0";
+  if (thumbs) {
+    this.thumb = thumbs[0];
+  }
+  else {
+    return false;
+  }
 
-  this.thumbHeight  = 8;
-  this.thumbWidth   = 28;
-  
+  var values = node.getElementsByClassName('value');
+  if (values) {
+    this.value = values[0];
+  }
+  else {
+    return false;
+  }
+  this.value.innerHTML = '0';
+
+  this.thumbHeight = 8;
+  this.thumbWidth = 28;
+
   if (typeof height !== 'number') {
-    height = window.getComputedStyle(this.rail).getPropertyValue("height");
+    height = window.getComputedStyle(this.rail).getPropertyValue('height');
     if ((typeof height === 'string') && (height.length > 2)) {
-      height = parseInt(height.slice(0,-2));
+      height = parseInt(height.slice(0, -2));
     }
   }
 
-  if (typeof height === 'number') this.sliderHeight = height;
-  else this.sliderHeight = 200;
+  if (typeof height === 'number') {
+    this.sliderHeight = height;
+  }
+  else {
+    this.sliderHeight = 200;
+  }
 
   if (this.sliderHeight < 50) {
-    this.sliderHeight  = 50;
-  }  
-  
-  if (typeof inc !== 'number') inc = 1;
-  if (typeof jump !== 'number') jump = 10;
+    this.sliderHeight = 50;
+  }
 
-  this.valueInc  = inc;
+  if (typeof inc !== 'number') {
+    inc = 1;
+  }
+  if (typeof jump !== 'number') {
+    jump = 10;
+  }
+
+  this.valueInc = inc;
   this.valueJump = jump;
-  
-  if (typeof height === 'Number') this.sliderHeight = height;
-  if (typeof width  === 'Number') this.sliderWidth  = width;
-  
+
+  if (typeof height === 'Number') {
+    this.sliderHeight = height;
+  }
+  if (typeof width === 'Number') {
+    this.sliderWidth = width;
+  }
+
   this.valueMin = parseInt(this.thumb.getAttribute('aria-valuemin'));
-  if (isNaN(this.valueMin)) this.valueMin = 0;
-  
+  if (isNaN(this.valueMin)) {
+    this.valueMin = 0;
+  }
+
   this.valueMax = parseInt(this.thumb.getAttribute('aria-valuemax'));
-  if (isNaN(this.valueMax)) this.valueMax = 100;
+  if (isNaN(this.valueMax)) {
+    this.valueMax = 100;
+  }
 
   this.valueNow = parseInt(this.thumb.getAttribute('aria-valuenow'));
-  if (isNaN(this.valueNow)) this.valueNow = Math.round((this.valueMax - this.valueMin) / 2);
+  if (isNaN(this.valueNow)) {
+    this.valueNow = Math.round((this.valueMax - this.valueMin) / 2);
+  }
 
   this.thumb.setAttribute('role', 'slider');
   this.thumb.setAttribute('aria-orientation', 'vertical');
-  this.thumb.setAttribute('aria-valuenow'   , this.valueNow);
-  this.thumb.setAttribute('aria-valuemin'   , this.valueMin);
-  this.thumb.setAttribute('aria-valuemax'   , this.valueMax);
-  
+  this.thumb.setAttribute('aria-valuenow', this.valueNow);
+  this.thumb.setAttribute('aria-valuemin', this.valueMin);
+  this.thumb.setAttribute('aria-valuemax', this.valueMax);
+
   this.thumb.tabIndex = 0;
-  this.thumb.innerHTML = "";
-  
+  this.thumb.innerHTML = '';
+
 };
 
 /**
@@ -162,43 +192,43 @@ aria.widget.vslider = function(node, inc, jump, height) {
  *
  * @memberOf aria.widget.vslider
  *
- * @desc  Creates the HTML for the slider 
+ * @desc  Creates the HTML for the slider
  */
 
-aria.widget.vslider.prototype.initSlider = function() {
+aria.widget.vslider.prototype.initSlider = function () {
 
-  this.rail.style.height = this.sliderHeight + "px";
-  this.rail.style.width  = "1px";
+  this.rail.style.height = this.sliderHeight + 'px';
+  this.rail.style.width = '1px';
 
-  this.thumb.style.height = this.thumbHeight + "px";
-  this.thumb.style.width  = this.thumbWidth + "px";
-  this.thumb.style.left   = (-1 * this.thumbWidth/2) + "px";
-  
-  var slider = this;
-  
+  this.thumb.style.height = this.thumbHeight + 'px';
+  this.thumb.style.width = this.thumbWidth + 'px';
+  this.thumb.style.left = (-1 * this.thumbWidth / 2) + 'px';
+
+  var self = this;
+
   var eventKeyDown = function (event) {
-    slider.eventKeyDown(event, slider);
+    self.eventKeyDown(event, self);
   };
 
   var eventMouseDown = function (event) {
-    slider.eventMouseDown(event, slider);
+    self.eventMouseDown(event, self);
   };
-  
+
   var eventFocus = function (event) {
-    slider.eventFocus(event, slider);
+    self.eventFocus(event, self);
   };
-  
+
   var eventBlur = function (event) {
-    slider.eventBlur(event, slider);
+    self.eventBlur(event, self);
   };
-  
-  this.thumb.addEventListener('keydown',   eventKeyDown);
+
+  this.thumb.addEventListener('keydown', eventKeyDown);
   this.thumb.addEventListener('mousedown', eventMouseDown);
   this.thumb.addEventListener('focus', eventFocus);
-  this.thumb.addEventListener('blur',  eventBlur);
-  
+  this.thumb.addEventListener('blur', eventBlur);
+
   var eventClick = function (event) {
-    slider.eventClick(event, slider);
+    self.eventClick(event, self);
   };
 
   this.rail.addEventListener('click', eventClick);
@@ -215,20 +245,28 @@ aria.widget.vslider.prototype.initSlider = function() {
  * @desc  Updates thumb position in slider div and aria-valuenow property
  */
 
-aria.widget.vslider.prototype.updateThumbPosition = function() {
+aria.widget.vslider.prototype.updateThumbPosition = function () {
 
-  if (this.valueNow > this.valueMax) this.valueNow = this.valueMax;
-  if (this.valueNow < this.valueMin) this.valueNow = this.valueMin;
+  if (this.valueNow > this.valueMax) {
+    this.valueNow = this.valueMax;
+  }
+  if (this.valueNow < this.valueMin) {
+    this.valueNow = this.valueMin;
+  }
 
-  this.thumb.setAttribute('aria-valuenow', this.valueNow);   
-  this.thumb.setAttribute('aria-valuetext', this.valueNow + " degrees");   
-  
-  var pos = Math.round(((this.valueMax - this.valueNow) * this.sliderHeight) / (this.valueMax - this.valueMin)) - (this.thumbHeight/2);
-  
-  this.thumb.style.top = pos + "px";
-  
+  this.thumb.setAttribute('aria-valuenow', this.valueNow);
+  this.thumb.setAttribute('aria-valuetext', this.valueNow + ' degrees');
+
+  var pos = Math.round(
+    (
+      (this.valueMax - this.valueNow) * this.sliderHeight
+    ) / (this.valueMax - this.valueMin)
+  ) - (this.thumbHeight / 2);
+
+  this.thumb.style.top = pos + 'px';
+
   this.value.innerHTML = this.valueNow.toString();
-  
+
 };
 
 /**
@@ -241,48 +279,47 @@ aria.widget.vslider.prototype.updateThumbPosition = function() {
  *               slider to change the value on
  */
 
-aria.widget.vslider.prototype.eventKeyDown = function(event, slider) {
+aria.widget.vslider.prototype.eventKeyDown = function (event, slider) {
 
-  function updateValue(value) {
+  function updateValue (value) {
     slider.valueNow = value;
     slider.updateThumbPosition();
-    
+
     event.preventDefault();
     event.stopPropagation();
   }
 
-  switch(event.keyCode) {
-  
-  case slider.keyCode.left:
-  case slider.keyCode.down:
-    updateValue(slider.valueNow-slider.valueInc);
-    break;
-  
-  case slider.keyCode.right:
-  case slider.keyCode.up:
-    updateValue(slider.valueNow+slider.valueInc);
-    break;
+  switch (event.keyCode) {
+    case slider.keyCode.left:
+    case slider.keyCode.down:
+      updateValue(slider.valueNow - slider.valueInc);
+      break;
 
-  case slider.keyCode.pageDown:
-    updateValue(slider.valueNow-slider.valueJump);
-    break;
+    case slider.keyCode.right:
+    case slider.keyCode.up:
+      updateValue(slider.valueNow + slider.valueInc);
+      break;
 
-  case slider.keyCode.pageUp:
-    updateValue(slider.valueNow+slider.valueJump);
-    break;
-  
-  case slider.keyCode.home:
-    updateValue(slider.valueMin);
-    break;
+    case slider.keyCode.pageDown:
+      updateValue(slider.valueNow - slider.valueJump);
+      break;
 
-  case slider.keyCode.end:
-    updateValue(slider.valueMax);
-    break;
+    case slider.keyCode.pageUp:
+      updateValue(slider.valueNow + slider.valueJump);
+      break;
 
-  default:
-    break;
+    case slider.keyCode.home:
+      updateValue(slider.valueMin);
+      break;
+
+    case slider.keyCode.end:
+      updateValue(slider.valueMax);
+      break;
+
+    default:
+      break;
   }
-  
+
 };
 
 /**
@@ -295,22 +332,22 @@ aria.widget.vslider.prototype.eventKeyDown = function(event, slider) {
  *               slider to change the value on
  */
 
-aria.widget.vslider.prototype.eventMouseDown = function(event, slider) {
+aria.widget.vslider.prototype.eventMouseDown = function (event, slider) {
 
   if (event.target === slider.thumb) {
-  
+
     // Set focus to the clicked handle
     event.target.focus();
-  
+
     var mouseMove = function (event) {
       slider.eventMouseMove(event, slider);
-    }
+    };
 
     slider.mouseMove = mouseMove;
 
     var mouseUp = function (event) {
       slider.eventMouseUp(event, slider);
-    }
+    };
 
     slider.mouseUp = mouseUp;
 
@@ -319,10 +356,10 @@ aria.widget.vslider.prototype.eventMouseDown = function(event, slider) {
 
     // bind a mouseup event handler to stop tracking mouse movements
     document.addEventListener('mouseup', slider.mouseUp);
-  
+
     event.preventDefault();
     event.stopPropagation();
-  }  
+  }
 
 };
 
@@ -336,15 +373,15 @@ aria.widget.vslider.prototype.eventMouseDown = function(event, slider) {
  *               slider to change the value on
  */
 
-aria.widget.vslider.prototype.eventMouseMove = function(event, slider) {
+aria.widget.vslider.prototype.eventMouseMove = function (event, slider) {
 
   var diffY = event.pageY - slider.rail.offsetTop;
   slider.valueNow = slider.valueMax - parseInt(((slider.valueMax - slider.valueMin) * diffY) / slider.sliderHeight);
   slider.updateThumbPosition();
-  
+
   event.preventDefault();
   event.stopPropagation();
-  
+
 };
 
 /**
@@ -357,14 +394,14 @@ aria.widget.vslider.prototype.eventMouseMove = function(event, slider) {
  *               slider to change the value on
  */
 
-aria.widget.vslider.prototype.eventMouseUp = function(event, slider) {
+aria.widget.vslider.prototype.eventMouseUp = function (event, slider) {
 
   document.removeEventListener('mousemove', slider.mouseMove);
-  document.removeEventListener('mouseup',   slider.mouseUp);
+  document.removeEventListener('mouseup', slider.mouseUp);
 
   event.preventDefault();
   event.stopPropagation();
-  
+
 };
 
 /**
@@ -377,19 +414,20 @@ aria.widget.vslider.prototype.eventMouseUp = function(event, slider) {
  *               slider to change the value on
  */
 
-aria.widget.vslider.prototype.eventClick = function(event, slider) {
+aria.widget.vslider.prototype.eventClick = function (event, slider) {
 
-  if (event.target === slider.thumb) return;
-  
+  if (event.target === slider.thumb) {
+    return;
+  }
+
   var diffY = event.pageY - slider.rail.offsetTop;
   slider.valueNow = slider.valueMax - parseInt(((slider.valueMax - slider.valueMin) * diffY) / slider.sliderHeight);
   slider.updateThumbPosition();
-  
+
   event.preventDefault();
   event.stopPropagation();
-  
-};
 
+};
 
 /**
  * @method eventFocus
@@ -401,13 +439,13 @@ aria.widget.vslider.prototype.eventClick = function(event, slider) {
  *               slider to change the value on
  */
 
-aria.widget.vslider.prototype.eventFocus = function(event, slider) {
+aria.widget.vslider.prototype.eventFocus = function (event, slider) {
 
-  slider.container.className = "aria-widget-vertical-slider focus";
-  
+  slider.container.className = 'aria-widget-vertical-slider focus';
+
   event.preventDefault();
   event.stopPropagation();
-  
+
 };
 
 /**
@@ -420,13 +458,11 @@ aria.widget.vslider.prototype.eventFocus = function(event, slider) {
  *               slider to change the value on
  */
 
-aria.widget.vslider.prototype.eventBlur = function(event, slider) {
+aria.widget.vslider.prototype.eventBlur = function (event, slider) {
 
-  slider.container.className = "aria-widget-vertical-slider";
-  
+  slider.container.className = 'aria-widget-vertical-slider';
+
   event.preventDefault();
   event.stopPropagation();
-  
+
 };
-
-
