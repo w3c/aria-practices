@@ -7,29 +7,29 @@
 *
 */
 
-function toggleCheckbox(event) {
+function toggleCheckbox (event) {
 
-  var node = event.currentTarget
-  var image = node.getElementsByTagName('img')[0]
+  var node = event.currentTarget;
+  var image = node.getElementsByTagName('img')[0];
 
-  var state = node.getAttribute('aria-checked').toLowerCase()
+  var state = node.getAttribute('aria-checked').toLowerCase();
 
-  if (event.type === 'click' || 
-      (event.type === 'keydown' && event.keyCode === 32)
-      ) {
-          if (state === 'true') {
-            node.setAttribute('aria-checked', 'false')
-            image.src = './images/checkbox-unchecked-black.png'
-          }
-          else {
-            node.setAttribute('aria-checked', 'true')
-            image.src = './images/checkbox-checked-black.png'
-          }  
+  if (
+    event.type === 'click' ||
+    (event.type === 'keydown' && event.keyCode === 32)
+  ) {
+    if (state === 'true') {
+      node.setAttribute('aria-checked', 'false');
+      image.src = './images/checkbox-unchecked-black.png';
+    }
+    else {
+      node.setAttribute('aria-checked', 'true');
+      image.src = './images/checkbox-checked-black.png';
+    }
 
-    event.preventDefault()
-    event.stopPropagation()
+    event.preventDefault();
+    event.stopPropagation();
   }
-
 }
 
 /*
@@ -40,8 +40,8 @@ function toggleCheckbox(event) {
 * @param   {Object}  event  -  Standard W3C event object
 */
 
-function focusCheckbox(event) {
-  event.currentTarget.className += ' focus'
+function focusCheckbox (event) {
+  event.currentTarget.className += ' focus';
 }
 
 /*
@@ -52,6 +52,6 @@ function focusCheckbox(event) {
 * @param   {Object}  event  -  Standard W3C event object
 */
 
-function blurCheckbox(event) {
-  event.currentTarget.className = event.currentTarget.className .replace(' focus','')
+function blurCheckbox (event) {
+  event.currentTarget.className = event.currentTarget.className .replace(' focus', '');
 }

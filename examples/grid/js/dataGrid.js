@@ -23,7 +23,7 @@ aria.KeyCode = {
   LEFT: 37,
   UP: 38,
   RIGHT: 39,
-  DOWN: 40,
+  DOWN: 40
 };
 
 /**
@@ -33,7 +33,7 @@ aria.KeyCode = {
 aria.SortType = {
   ASCENDING: 'ascending',
   DESCENDING: 'descending',
-  NONE: 'none',
+  NONE: 'none'
 };
 
 /**
@@ -41,26 +41,26 @@ aria.SortType = {
  *  CSS Class names
  */
 aria.CSSClass = {
-  HIDDEN: 'hidden',
+  HIDDEN: 'hidden'
 };
 
 aria.Utils = aria.Utils || {};
 
 // Polyfill src https://developer.mozilla.org/en-US/docs/Web/API/Element/matches
-aria.Utils.matches = function(element, selector) {
+aria.Utils.matches = function (element, selector) {
   if (!Element.prototype.matches) {
     Element.prototype.matches =
-    Element.prototype.matchesSelector ||
-    Element.prototype.mozMatchesSelector ||
-    Element.prototype.msMatchesSelector ||
-    Element.prototype.oMatchesSelector ||
-    Element.prototype.webkitMatchesSelector ||
-    function(s) {
+      Element.prototype.matchesSelector ||
+      Element.prototype.mozMatchesSelector ||
+      Element.prototype.msMatchesSelector ||
+      Element.prototype.oMatchesSelector ||
+      Element.prototype.webkitMatchesSelector ||
+      function (s) {
         var matches = element.parentNode.querySelectorAll(s),
             i = matches.length;
         while (--i >= 0 && matches.item(i) !== this) {}
         return i > -1;
-    };
+      };
   }
 
   return element.matches(selector);
@@ -90,7 +90,8 @@ aria.Grid = function (gridNode) {
 
   if (this.paginationEnabled) {
     this.setupPagination();
-  } else {
+  }
+  else {
     this.perPage = this.grid.length;
   }
 
@@ -116,12 +117,13 @@ aria.Grid.prototype.setupFocusGrid = function () {
 
           if (aria.Utils.matches(cell, focusableSelector)) {
             rowCells.push(cell);
-          } else {
-             var focusableCell = cell.querySelector(focusableSelector);
+          }
+          else {
+            var focusableCell = cell.querySelector(focusableSelector);
 
-             if (focusableCell) {
-               rowCells.push(focusableCell);
-             }
+            if (focusableCell) {
+              rowCells.push(focusableCell);
+            }
           }
         }).bind(this)
       );
@@ -208,7 +210,7 @@ aria.Grid.prototype.isHidden = function (row, col) {
  * @desc
  *  Clean up grid events
  */
-aria.Grid.prototype.clearEvents = function() {
+aria.Grid.prototype.clearEvents = function () {
   this.gridNode.removeEventListener('keydown', this.checkFocusChange.bind(this));
   this.gridNode.removeEventListener('keydown', this.checkPageChange.bind(this));
   this.gridNode.removeEventListener('keydown', this.delegateButtonHandler.bind(this));
@@ -350,31 +352,37 @@ aria.Grid.prototype.delegateButtonHandler = function (event) {
     return;
   }
 
-  if (target.parentNode && target.parentNode.matches('th[aria-sort]') &&
-      (isClickEvent || key === aria.KeyCode.SPACE || key === aria.KeyCode.RETURN)) {
-        event.preventDefault();
-        this.handleSort(target.parentNode);
-      }
+  if (
+    target.parentNode && target.parentNode.matches('th[aria-sort]') &&
+    (isClickEvent || key === aria.KeyCode.SPACE || key === aria.KeyCode.RETURN)
+  ) {
+    event.preventDefault();
+    this.handleSort(target.parentNode);
+  }
 
-  if (aria.Utils.matches(target, '.editable-text, .edit-text-button') &&
-      (isClickEvent || key === aria.KeyCode.RETURN)) {
-        event.preventDefault();
-        this.toggleEditMode(
-          this.findClosest(target, '.editable-text'),
-          true,
-          true
-        );
-      }
+  if (
+    aria.Utils.matches(target, '.editable-text, .edit-text-button') &&
+    (isClickEvent || key === aria.KeyCode.RETURN)
+  ) {
+    event.preventDefault();
+    this.toggleEditMode(
+      this.findClosest(target, '.editable-text'),
+      true,
+      true
+    );
+  }
 
-  if (aria.Utils.matches(target, '.edit-text-input') &&
-      (key === aria.KeyCode.RETURN || key === aria.KeyCode.ESC)) {
-        event.preventDefault();
-        this.toggleEditMode(
-          this.findClosest(target, '.editable-text'),
-          false,
-          key === aria.KeyCode.RETURN
-        );
-      }
+  if (
+    aria.Utils.matches(target, '.edit-text-input') &&
+    (key === aria.KeyCode.RETURN || key === aria.KeyCode.ESC)
+  ) {
+    event.preventDefault();
+    this.toggleEditMode(
+      this.findClosest(target, '.editable-text'),
+      false,
+      key === aria.KeyCode.RETURN
+    );
+  }
 };
 
 /**
@@ -399,7 +407,8 @@ aria.Grid.prototype.toggleEditMode = function (editCell, toggleOn, updateText) {
 
   if (toggleOn) {
     onNode.value = offNode.innerText;
-  } else if (updateText) {
+  }
+  else if (updateText) {
     onNode.innerText = offNode.value;
   }
 
@@ -430,19 +439,21 @@ aria.Grid.prototype.handleSort = function (headerNode) {
 
   if (sortType === aria.SortType.ASCENDING) {
     sortType = aria.SortType.DESCENDING;
-  } else {
+  }
+  else {
     sortType = aria.SortType.ASCENDING;
   }
 
   var comparator = function (row1, row2) {
     var row1Text = row1.children[columnIndex].innerText;
     var row2Text = row2.children[columnIndex].innerText;
-    var row1Value = parseInt(row1Text.replace(/[^0-9\.]+/g,""));
-    var row2Value = parseInt(row2Text.replace(/[^0-9\.]+/g,""));
+    var row1Value = parseInt(row1Text.replace(/[^0-9\.]+/g, ''));
+    var row2Value = parseInt(row2Text.replace(/[^0-9\.]+/g, ''));
 
     if (sortType === aria.SortType.ASCENDING) {
       return row1Value - row2Value;
-    } else {
+    }
+    else {
       return row2Value - row1Value;
     }
   };
@@ -528,7 +539,8 @@ aria.Grid.prototype.checkPageChange = function (event) {
     if (key === aria.KeyCode.PAGE_UP) {
       startIndex = Math.max(this.perPage - 1, this.topIndex);
       this.showFromRow(startIndex, false);
-    } else {
+    }
+    else {
       startIndex = this.topIndex + this.perPage - 1;
       this.showFromRow(startIndex, true);
     }
@@ -558,18 +570,20 @@ aria.Grid.prototype.showFromRow = function (startIndex, scrollDown) {
 
   for (var i = 0; i < dataRows.length; i++) {
 
-    if ((scrollDown && i >= startIndex && i < startIndex + this.perPage) ||
-        (!scrollDown && i <= startIndex && i > startIndex - this.perPage)) {
-          dataRows[i].className = '';
+    if (
+      (scrollDown && i >= startIndex && i < startIndex + this.perPage) ||
+      (!scrollDown && i <= startIndex && i > startIndex - this.perPage)
+    ) {
+      dataRows[i].className = '';
 
-          if (!reachedTop) {
-            this.topIndex = i;
-            reachedTop = true;
-          }
-        } else {
-          dataRows[i].className = aria.CSSClass.HIDDEN;
-        }
-
+      if (!reachedTop) {
+        this.topIndex = i;
+        reachedTop = true;
+      }
+    }
+    else {
+      dataRows[i].className = aria.CSSClass.HIDDEN;
+    }
   }
 };
 

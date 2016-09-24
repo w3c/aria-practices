@@ -1,9 +1,9 @@
-function init() {
+function init () {
   // Create variables for the various buttons
   var printButton = document.getElementById('print');
   var toggleButton = document.getElementById('toggle');
-  var alert1Button =  document.getElementById('alert1');
-  var alert2Button =  document.getElementById('alert2');
+  var alert1Button = document.getElementById('alert1');
+  var alert2Button = document.getElementById('alert2');
 
   // Add event listeners to the various buttons
   printButton.addEventListener('click', printButtonEventHandler);
@@ -18,10 +18,9 @@ function init() {
   alert2Button.addEventListener('click', alertButtonEventHandler);
   alert2Button.addEventListener('keydown', alertButtonEventHandler);
 
-  
 }
 
-function printButtonEventHandler(event) {
+function printButtonEventHandler (event) {
   var type = event.type;
 
   // Grab the keydown and click events
@@ -32,12 +31,13 @@ function printButtonEventHandler(event) {
 
       event.preventDefault();
     }
-  } else if (type === 'click') {
+  }
+  else if (type === 'click') {
     window.print();
   }
 }
 
-function alertButtonEventHandler(event) {
+function alertButtonEventHandler (event) {
   var type = event.type;
   var message = 'Hej, hello, ciao, こんにちは';
 
@@ -49,12 +49,13 @@ function alertButtonEventHandler(event) {
 
       event.preventDefault();
     }
-  } else if (type === 'click') {
+  }
+  else if (type === 'click') {
     alert(message);
   }
 }
 
-function toggleButtonEventHandler(event) {
+function toggleButtonEventHandler (event) {
   var type = event.type;
 
   // Grab the keydown and click events
@@ -65,12 +66,13 @@ function toggleButtonEventHandler(event) {
 
       event.preventDefault();
     }
-  } else if (type === 'click') {
+  }
+  else if (type === 'click') {
     toggleButtonState(event);
   }
 }
 
-function toggleButtonState(event) {
+function toggleButtonState (event) {
   var button = event.target;
   var currentState = button.getAttribute('aria-pressed');
   var newState = 'true';
