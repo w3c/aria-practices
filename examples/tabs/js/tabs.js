@@ -210,7 +210,8 @@
       var delayValue = tablist.getAttribute('data-delay');
       if (delayValue) {
         delay = delayValue;
-      } else {
+      }
+      else {
         // If no value is specified, default to 300ms
         delay = 300;
       };
@@ -227,7 +228,7 @@
   };
 
   // Only activate tab on focus if it still has focus after the delay
-  function checkTabFocus(target) {
+  function checkTabFocus (target) {
     focused = document.activeElement;
 
     if (target === focused) {
