@@ -3,7 +3,7 @@
 *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
 *
 *   
-*   File:   Menubar.js
+*   File:   MenubarLinks.js
 *
 *   Desc:   Menubar widget that implements ARIA Authoring Practices
 *
