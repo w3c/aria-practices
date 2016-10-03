@@ -1,3 +1,5 @@
+Travis: <img src="https://travis-ci.org/w3c/aria-practices.svg" alt="build:passed">
+
 # WAI-ARIA: Authoring Practices Guide
 
 This repository maintains the WAI-ARIA Authoring Practices Guide.
