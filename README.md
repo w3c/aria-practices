@@ -1,4 +1,4 @@
-Travis: <img src="https://travis-ci.org/w3c/aria-practices.svg" alt="build:passed">
+[![Build Status](https://travis-ci.org/w3c/aria-practices.svg?branch=master)](https://travis-ci.org/w3c/aria-practices)
 
 # WAI-ARIA: Authoring Practices Guide
 
