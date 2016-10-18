@@ -33,11 +33,42 @@ that supports [EditorConfig](http://editorconfig.org/).
 - Edit the new html file with an example corresponding to the description in
   `aria-practices.html`
 
+### Running JSCS, the code style checker
+
+1. Install node if necessary: [node installer](https://nodejs.org/en/download/)
+1. When you install Node, NPM is included.
+1. In a terminal window from the directory that contains the `aria-practices`
+repository, run `npm install`.
+1. Then, run `npm test`.
+
+If JSCS encounters any errors, it will report them in the console. The error report will
+contain the file name, line number and it will indicated the character or place
+in the line that raised the style violation. To fix an error, satisfy the change
+that the violation indicates.
+
+For example, here is an error for an invalid quotation mark. Quotation marks must
+be single quotation marks, not double.
+
+```
+validateQuoteMarks: Invalid quote mark found at examples/alert/js/alert.js :
+     1 |window.addEventListener('load', function () {
+     2 |
+     3 |  var button = document.getElementById("alert-trigger");
+-----------------------------------------------^
+     4 |
+     5 |  button.addEventListener('click', addAlert);
+```
+
+The error occurred in `examples/alert/js/alert.js`, on line 3 and the offending
+character is indicated by the underscore line and a caret pointing up. Change the
+double quotation mark to a single quotation mark in your source file to eliminate
+this error.
+
 ### Editorial documentation
 
-General documentation for editing ARIA deliverables is available in the 
+General documentation for editing ARIA deliverables is available in the
 [ARIA repository](https://github.com/w3c/aria/).
-Some of that documentation covers technical procedures not needed 
+Some of that documentation covers technical procedures not needed
 for this specification.
 
 ## How to update document snapshot
