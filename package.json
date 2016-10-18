@@ -7,8 +7,9 @@
     "example": "examples"
   },
   "scripts": {
-    "jscs": "jscs -c .jscsrc -m 1000 --fix bin examples",
-    "test": "npm run jscs"
+    "jscs": "jscs -c .jscsrc -m 1000 --fix bin examples" ,
+    "jscs-test": "jscs -c .jscsrc -m 1000 bin examples",
+    "test": "npm run jscs-test"
   },
   "repository": {
     "type": "git",
