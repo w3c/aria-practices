@@ -43,7 +43,9 @@ are developing in this project. Here is how you set it up.
 1. When you install Node, NPM is included.
 1. In a terminal window from the directory that contains the `aria-practices`
 repository, run `npm install`.
-1. Then, run `npm test`. Run this command any time you want to retest this project.
+1. Then, run `npm run jscs`. JSCS will attempt to fix any errors it finds. 
+1. If you would like to run JSCS without the autofixing behavior, you can invoke `npm test`
+at the command line instead. This will run JSCS without fixing errors that it finds.
 
 If JSCS encounters any errors, it will report them in the console. The error report will
 contain the file name, line number and it will indicated the character or place
