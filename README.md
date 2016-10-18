@@ -36,13 +36,14 @@ that supports [EditorConfig](http://editorconfig.org/).
 ### Running JSCS, the code style checker
 
 [JSCS](http://jscs.info/) is an automated code style checker. We use it to ensure
-common code styling practices in this repository.
+common code styling practices in this repository. You can run JSCS locally as you
+are developing in this project. Here is how you set it up.
 
 1. Install node if necessary: [node installer](https://nodejs.org/en/download/)
 1. When you install Node, NPM is included.
 1. In a terminal window from the directory that contains the `aria-practices`
 repository, run `npm install`.
-1. Then, run `npm test`.
+1. Then, run `npm test`. Run this command any time you want to retest this project.
 
 If JSCS encounters any errors, it will report them in the console. The error report will
 contain the file name, line number and it will indicated the character or place
