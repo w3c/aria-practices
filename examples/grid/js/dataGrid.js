@@ -50,17 +50,17 @@ aria.Utils = aria.Utils || {};
 aria.Utils.matches = function (element, selector) {
   if (!Element.prototype.matches) {
     Element.prototype.matches =
-      Element.prototype.matchesSelector ||
-      Element.prototype.mozMatchesSelector ||
-      Element.prototype.msMatchesSelector ||
-      Element.prototype.oMatchesSelector ||
-      Element.prototype.webkitMatchesSelector ||
-      function (s) {
-        var matches = element.parentNode.querySelectorAll(s),
-            i = matches.length;
-        while (--i >= 0 && matches.item(i) !== this) {}
-        return i > -1;
-      };
+      Element.prototype.matchesSelector
+      || Element.prototype.mozMatchesSelector
+      || Element.prototype.msMatchesSelector
+      || Element.prototype.oMatchesSelector
+      || Element.prototype.webkitMatchesSelector
+      || function (s) {
+          var matches = element.parentNode.querySelectorAll(s);
+          var i = matches.length;
+          while (--i >= 0 && matches.item(i) !== this) {}
+          return i > -1;
+        };
   }
 
   return element.matches(selector);
@@ -186,10 +186,16 @@ aria.Grid.prototype.setFocusPointer = function (row, col) {
  *  Returns whether or not the coordinates are within the grid's boundaries.
  */
 aria.Grid.prototype.isValidCell = function (row, col) {
-  return !isNaN(row) && !isNaN(col) &&
-          row >= 0 && col >= 0 &&
-          this.grid && this.grid.length &&
-          row < this.grid.length && col < this.grid[row].length;
+  return (
+    !isNaN(row)
+    && !isNaN(col)
+    && row >= 0
+    && col >= 0
+    && this.grid
+    && this.grid.length
+    && row < this.grid.length
+    && col < this.grid[row].length
+  );
 };
 
 /**
@@ -353,16 +359,24 @@ aria.Grid.prototype.delegateButtonHandler = function (event) {
   }
 
   if (
-    target.parentNode && target.parentNode.matches('th[aria-sort]') &&
-    (isClickEvent || key === aria.KeyCode.SPACE || key === aria.KeyCode.RETURN)
+    target.parentNode
+    && target.parentNode.matches('th[aria-sort]')
+    && (
+      isClickEvent
+      || key === aria.KeyCode.SPACE
+      || key === aria.KeyCode.RETURN
+    )
   ) {
     event.preventDefault();
     this.handleSort(target.parentNode);
   }
 
   if (
-    aria.Utils.matches(target, '.editable-text, .edit-text-button') &&
-    (isClickEvent || key === aria.KeyCode.RETURN)
+    aria.Utils.matches(target, '.editable-text, .edit-text-button')
+    && (
+      isClickEvent
+      || key === aria.KeyCode.RETURN
+    )
   ) {
     event.preventDefault();
     this.toggleEditMode(
@@ -373,8 +387,11 @@ aria.Grid.prototype.delegateButtonHandler = function (event) {
   }
 
   if (
-    aria.Utils.matches(target, '.edit-text-input') &&
-    (key === aria.KeyCode.RETURN || key === aria.KeyCode.ESC)
+    aria.Utils.matches(target, '.edit-text-input')
+    && (
+      key === aria.KeyCode.RETURN
+      || key === aria.KeyCode.ESC
+    )
   ) {
     event.preventDefault();
     this.toggleEditMode(
@@ -571,8 +588,15 @@ aria.Grid.prototype.showFromRow = function (startIndex, scrollDown) {
   for (var i = 0; i < dataRows.length; i++) {
 
     if (
-      (scrollDown && i >= startIndex && i < startIndex + this.perPage) ||
-      (!scrollDown && i <= startIndex && i > startIndex - this.perPage)
+      (
+        scrollDown
+        && i >= startIndex
+        && i < startIndex + this.perPage)
+        ||(
+          !scrollDown
+          && i <= startIndex
+          && i > startIndex - this.perPage
+        )
     ) {
       dataRows[i].className = '';
 

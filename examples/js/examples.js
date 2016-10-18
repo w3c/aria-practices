@@ -86,7 +86,11 @@ aria.widget.SourceCode.prototype.createCode = function (location, spaces, node) 
 
     for (var i = 0; i < s.length; i++) {
       var c = s[i];
-      if (c !== ' ' && c !== '\n' && c !== '\r') {
+      if (
+        c !== ' '
+        && c !== '\n'
+        && c !== '\r'
+      ) {
         return true;
       }
     }
@@ -102,9 +106,9 @@ aria.widget.SourceCode.prototype.createCode = function (location, spaces, node) 
   for (i = 0; i < node.attributes.length; i++) {
     if (
       !(
-        ((nodeName == 'script') ||
-        (nodeName = 'style')) &&
-        (node.attributes[i].nodeName.toLowerCase() == 'id')
+        ((nodeName == 'script')
+        || (nodeName = 'style'))
+        && (node.attributes[i].nodeName.toLowerCase() == 'id')
       )
     ) {
       location.innerHTML = location.innerHTML + '&nbsp;' + node.attributes[i].nodeName + '=\'';
