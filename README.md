@@ -11,7 +11,7 @@ Please do not provide commit access to this repository without coordination.
 
 ### Code conformance
 
-* All code should validate in the NU HTML Validator.
+* All HTML should validate in the NU HTML Validator.
 Exceptions to this rule are warnings and errors related to
 future ARIA features we need to implement.
 * To keep code in this repository consistent; editors should use a text editor
@@ -33,23 +33,35 @@ that supports [EditorConfig](http://editorconfig.org/).
 - Edit the new html file with an example corresponding to the description in
   `aria-practices.html`
 
-### Running JSCS, the code style checker
+### Running JSCS, the JavaScript code style checker
 
 [JSCS](http://jscs.info/) is an automated code style checker. We use it to ensure
-common code styling practices in this repository. You can run JSCS locally as you
-are developing in this project. Here is how you set it up.
+common code styling practices in this repository. 
+Pull requests with JSCS errors will not be merged.
 
-1. Install node if necessary: [node installer](https://nodejs.org/en/download/)
+### Setup JSCS so you can run it locally
+ 
+1. If you do not already have node.js installed, 
+ go to the [node installer](https://nodejs.org/en/download/)
 1. When you install Node, NPM is included.
 1. In a terminal window from the directory that contains the `aria-practices`
 repository, run `npm install`.
-1. Then, run `npm run jscs`. JSCS will attempt to fix any errors it finds. 
-1. If you would like to run JSCS without the autofixing behavior, you can invoke `npm test`
-at the command line instead. This will run JSCS without fixing errors that it finds.
+A successful install will display a tree of installed packages.
 
-If JSCS encounters any errors, it will report them in the console. The error report will
-contain the file name, line number and it will indicated the character or place
-in the line that raised the style violation. To fix an error, satisfy the change
+### Test and fix your code
+
+1. Open a terminal window to the directory that contains the `aria-practices` 
+repository
+1. The repository has a script defined that will test all JavaScript in the examples 
+directory. To run it, execute the command `npm test`.
+1. Many errors can be fixed automatically with the command `npm run jscs-fix`.
+1. After running fix, test again to see what you need to fix manually.
+  
+When JSCS encounters errors, it will report them in the console. 
+The error report will contain the file name and line number, 
+and it will indicate the character or place in the line 
+that raised the style violation. 
+To fix an error, satisfy the change
 that the violation indicates.
 
 For example, here is an error for an invalid quotation mark. Quotation marks must
@@ -66,12 +78,12 @@ validateQuoteMarks: Invalid quote mark found at examples/alert/js/alert.js :
 ```
 
 The error occurred in `examples/alert/js/alert.js`, on line 3 and the offending
-character is indicated by the underscore line and a caret pointing up. Change the
+character is indicated by the dashed line and a caret pointing up. Change the
 double quotation mark to a single quotation mark in your source file to eliminate
 this error.
 
-Check out the `.jscsrc` file in the root of the project for the complete list
-of style rules that are applied by JSCS.
+To see the complete list of style rules that are applied by JSCS,
+Check out the [.jscsrc](https://github.com/w3c/aria-practices/blob/master/.jscsrc) file in the root of the project. 
 
 ### Editorial documentation
 
@@ -82,6 +94,8 @@ for this specification.
 
 ## How to update document snapshot
 
+Note: These instructions are for editors of the APG who have repository commit access.
+ 
 1. Go to the [editors draft on rawgit](https://cdn.rawgit.com/w3c/aria-practices/master/aria-practices.html)
 2. Press the ReSpec button (top right hand corner)
 3. Select 'Save snapshot'
