@@ -35,6 +35,9 @@ that supports [EditorConfig](http://editorconfig.org/).
 
 ### Running JSCS, the code style checker
 
+[JSCS](http://jscs.info/) is an automated code style checker. We use it to ensure
+common code styling practices in this repository.
+
 1. Install node if necessary: [node installer](https://nodejs.org/en/download/)
 1. When you install Node, NPM is included.
 1. In a terminal window from the directory that contains the `aria-practices`
@@ -63,6 +66,9 @@ The error occurred in `examples/alert/js/alert.js`, on line 3 and the offending
 character is indicated by the underscore line and a caret pointing up. Change the
 double quotation mark to a single quotation mark in your source file to eliminate
 this error.
+
+Check out the `.jscsrc` file in the root of the project for the complete list
+of style rules that are applied by JSCS.
 
 ### Editorial documentation
 
