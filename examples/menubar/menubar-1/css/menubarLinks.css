@@ -1,0 +1,60 @@
+ul[role="menubar"] {
+  margin: 10px;
+  padding: 10px;
+  font-size: 110%;
+  list-style: none;
+  background-color: #EEEEEE;
+}
+
+ul[role="menubar"] [role="menuitem"],
+ul[role="menubar"] [role="separator"] {
+  padding: 0.25em;
+  background-color: #EEEEEE;
+  border: 2px solid #EEEEEE;
+}
+
+ul[role="menubar"] [role="separator"] {
+  padding-top: 0.15em;
+  background-image: url('../images/separator.png');
+  background-position: center;
+  background-repeat: repeat-x;
+}
+
+ul[role="menubar"] [role="menuitem"]:focus,
+ul[role="menubar"] [role="menuitem"]:hover,
+ul[role="menubar"] [role="separator"]:focus,
+ul[role="menubar"] [role="separator"]:hover {
+  background-color: black;
+  color: white;
+}
+
+ul[role="menubar"] a[role="menuitem"] {
+  text-decoration: none;
+  color: black;
+}
+
+ul[role="menubar"] li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+ul[role="menubar"] > li {
+  display: inline;
+}
+
+ul[role="menubar"] > li > a:after {
+  content: url('../images/pull-down-menu-icon.png');
+}
+
+ul[role="menubar"] ul[role="menu"] {
+  display: none;
+  position: absolute;
+  margin: 0;
+  padding: 0;
+}
+
+ul[role="menubar"] ul[role="menu"] li a {
+  display: block;
+}
+
