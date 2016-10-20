@@ -52,6 +52,7 @@ aria.widget.SourceCode.prototype.add = function (locationId, codeId) {
  */
 
 aria.widget.SourceCode.prototype.make = function () {
+
   var nodeCode;
   var nodeLocation;
 
@@ -62,7 +63,9 @@ aria.widget.SourceCode.prototype.make = function () {
 
     nodeLocation.className = 'sourcecode';
     this.createCode(nodeLocation, '', nodeCode);
+
   } // endfor
+
 };
 
 /**
@@ -80,48 +83,36 @@ aria.widget.SourceCode.prototype.make = function () {
 aria.widget.SourceCode.prototype.createCode = function (location, spaces, node) {
 
   function hasText (s) {
-    if (typeof s !== 'string') {
-      return false;
-    }
+    if (typeof s !== 'string') {return false;}
 
     for (var i = 0; i < s.length; i++) {
       var c = s[i];
-      if (
-        c !== ' '
-        && c !== '\n'
-        && c !== '\r'
-      ) {
-        return true;
-      }
+      if (c !== ' ' && c !== '\n' && c !== '\r') {return true;}
     }
     return false;
   }
 
   var i;
 
-  var nodeName = node.nodeName.toLowerCase();
+  var nodeNameStr = node.nodeName.toLowerCase();
 
-  location.innerHTML = location.innerHTML + '<br/>' + spaces + '&lt;' + nodeName;
+  location.innerHTML = location.innerHTML + '<br/>' + spaces + '&lt;' + nodeNameStr;
 
   for (i = 0; i < node.attributes.length; i++) {
-    if (
-      !(
-        ((nodeName == 'script')
-        || (nodeName = 'style'))
-        && (node.attributes[i].nodeName.toLowerCase() == 'id')
-      )
-    ) {
-      location.innerHTML = location.innerHTML + '&nbsp;' + node.attributes[i].nodeName + '=\'';
-      location.innerHTML = location.innerHTML + node.attributes[i].value + '\'';
 
-      if (((i + 1) != node.attributes.length) && (node.attributes.length > 2)) {
-        location.innerHTML = location.innerHTML + '<br/>' + spaces;
+    location.innerHTML = location.innerHTML + '&nbsp;' + node.attributes[i].nodeName + '="';
+    location.innerHTML = location.innerHTML + node.attributes[i].value + '"';
 
-        for (var j = 2; j <= nodeName.length; j++) {
-          location.innerHTML = location.innerHTML + '&nbsp;';
-        }
-      } // endif
+    if (((i + 1) != node.attributes.length) && (node.attributes.length > 2)) {
+
+      location.innerHTML = location.innerHTML + '<br/>' + spaces;
+
+      for (var j = 2; j <= nodeNameStr.length; j++) {
+        location.innerHTML = location.innerHTML + '&nbsp;';
+      }
+
     } // endif
+
   } // endfor
 
   location.innerHTML = location.innerHTML + '&gt;';
@@ -133,6 +124,7 @@ aria.widget.SourceCode.prototype.createCode = function (location, spaces, node) 
     var n = node.childNodes[i];
 
     switch (n.nodeType) {
+
       case Node.ELEMENT_NODE:
         this.createCode(location, spaces + '&nbsp;&nbsp;', n);
         count++;
@@ -144,13 +136,16 @@ aria.widget.SourceCode.prototype.createCode = function (location, spaces, node) 
         }
         count++;
         break;
+
     } // end switch
+
   } // end for
 
   if (count > 0) {
     location.innerHTML = location.innerHTML + '<br/>' + spaces + '&lt;/' + node.nodeName.toLowerCase();
     location.innerHTML = location.innerHTML + '&gt;';
   } // end if
+
 };
 
 var sourceCode = new aria.widget.SourceCode();
