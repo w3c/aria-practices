@@ -128,14 +128,14 @@ aria.widget.SourceCode.prototype.createCode = function (location, spaces, node) 
       case Node.ELEMENT_NODE:
         this.createCode(location, spaces + '&nbsp;&nbsp;', n);
         count++;
-      break;
+        break;
 
       case Node.TEXT_NODE:
         if (hasText(n.nodeValue)) {
           location.innerHTML = location.innerHTML + '<br/>' + spaces + '&nbsp;&nbsp;' + n.nodeValue;
         }
         count++;
-      break;
+        break;
 
     } // end switch
 
