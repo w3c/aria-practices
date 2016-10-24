@@ -43,46 +43,100 @@
   </p>
   <section>
     <h2>Examples</h2>
-
     <section>
       <h3 id="ex1_label">Example 1: Simple List of Links</h3>
+      <p>This example presents a list of links titled &quot;Related Documents&quot; in a grid. </p>
       <div aria-labelledby="ex1_label" role="region">
-        <div id="ex1"></div>
+        <div id="ex1">
+          <!-- 
+            @Tatiana: this is the group of links I would like to reflow into multiple columns, like a table, based on window or screen width.
+            The point is to demo a grid that restructures itself based on how CSS is filling the screen.
+            We could have the user resize the browser window to see the effect unless you think there is a better way to show the user the effect.  
+            However, the end game is to make the grid structure dependent on what the css does, ie, the css determines the number of columns.
+          -->
+          <h4 id="grid1_label">Related Documents</h4>
+          <div role="grid" aria-labelledby="grid1_label">
+            <div role="row">
+              <span role="gridcell"><a tabindex="-1" href="http://www.w3.org/TR/wai-aria-1.1/">ARIA 1.1 Specification</a></span>
+              <span role="gridcell"><a tabindex="-1" href="https://www.w3.org/TR/core-aam-1.1/">Core Accessibility API Mappings 1.1</a></span>
+              <span role="gridcell"><a tabindex="-1" href="https://www.w3.org/WAI/intro/aria.php">WAI-ARIA Overview</a></span>
+              <span role="gridcell"><a tabindex="-1" href="https://www.w3.org/WAI/intro/wcag">WCAG Overview</a></span>
+              <span role="gridcell"><a tabindex="-1" href="https://www.w3.org/TR/html5/">HTML 5 Specification</a></span>
+              <span role="gridcell"><a tabindex="-1" href="https://www.w3.org/TR/2015/WD-SVG2-20150915/">SVG 2 Specification</a></span>
+            </div>
+          </div>
+        </div>
       </div>
       <p>In this implementation:</p>
-      <ul>
+      <ol>
         <li>
-          Links can be focused using standard navigation keys, including directional arrows, <kbd>Home</kbd>,
-          <kbd>End</kbd>, <kbd>Control + Home</kbd>, and <kbd>Control + End</kbd>.
+          This grid dynamically restructures itself based on screen size. 
+          As the grid structure changes, the arrow key behavior adjusts accordingly.
         </li>
         <li>
-          The <kbd>Page Down</kbd> and <kbd>Page Up</kbd> keys are not supported since such
-          scroll-like functions are not useful with so few rows.
+          Since all the links are part of a single logical group, repeatedly pressing either the <kbd>Down Arrow</kbd> or <kbd>Right Arrow</kbd> key will move focus from the first link to the last link, 
+          but in different sequences that depend on the visual arrangement.
+        </li>
+        <li>
+          The <kbd>Left Arrow</kbd> and <kbd>Up Arrow</kbd> keys reverse <kbd>Right Arrow</kbd> and <kbd>Down Arrow</kbd focus movement, respectively.> 
+        </li>
+        <li>
+          The <kbd>Home</kbd> and <kbd>End</kbd> keys will move focus to the first and last links, respectively.
+        </li>
+        <li>
+          The <kbd>Page Down</kbd> and <kbd>Page Up</kbd> keys are not supported since 
+          scrolling or row skipping functions are not needed with so few rows.
         </li>
         <li>The links can be activated with the keyboard when focused.</li>
-      </ul>
+      </ol>
     </section>
-
     <section>
       <h3 id="ex2_label">Example 2: Pill List For Components Like a List of Message Recipients</h3>
-      <div aria-labelledby="ex2_label" role="region">
-        <div id="ex2"></div>
+      <p>Type a string in the &quot;Add Recipient&quot; field and press enter or activate the &quot;Add&quot; button to see how this grid behaves as the number of elements increases. <div aria-labelledby="ex2_label" role="region">
+        <div id="ex2">
+          <!-- 
+            @Tatiana: The user should be able to type a string in the input and either press enter or activate the add button and a row gets added to the grid.
+            The IDs provided in the following are just to demo the labeling; I assume most will be dynamically generated.
+            This should be styled so it is presented like a e-mail "To" field and wrap to new lines as it grows; tokens on a line will not necessarily align with tokens on a previous or following line.
+            I am assuming the remove icon buttons will be the typical X icon; I just put a letter X in the span as a placeholder.
+           -->
+          <span id="send_to_label">Send To:</span>
+          <div role="grid" aria-labelledby="send_to_label">
+            <div role="row">
+              <span role="gridcell"><a id="r1" tabindex="-1" href="#">Recipient Name 1</a></span>
+              <span role="gridcell"><span id="rb1" tabindex="-1" role="button" aria-label="Remove" aria-labelledby="rb1 r1"> X </span></span>
+            </div>
+            <div role="row">
+              <span role="gridcell"><a id="r2" tabindex="-1" href="#">Recipient Name 2</a></span>
+              <span role="gridcell"><span id="rb2" tabindex="-1" role="button" aria-label="Remove" aria-labelledby="rb2 r2"> X </span></span>
+            </div>
+          </div>        
+          <input type="text" aria-label="Add Recipient" placeholder="New Recipient Name">
+          <button>Add</</button>
+        </div>
       </div>
       <p>In this implementation:</p>
-      <ul>
-        <li>The navigation keys and functions are the same as example 1.</li>
-        <li>Since text inputs require arrow keys to operate, the implementation and user
-          experience are simplified by placing the input outside the grid.</li>
-      </ul>
+      <ol>
+        <li>As the number of recipients grows, the new elements wrap on to additional lines as needed.</li>
+        <li>Like in example 1, Keyboard users can navigate through every element from beginning to end with the <kbd>Right Arrow</kbd> key and vice versa with the <kbd>Left Arrow</kbd> key. </li>
+        <li>However, since elements are not vertically aligned, <kbd>Down Arrow</kbd> moves to the next logical row instead of to the next visual row. In this case, each row has two cells -- one with the recipient name and one with the remove icon (button) for that name. </li>
+        <li>
+          Since text inputs require arrow keys to operate, the implementation and user
+            experience are simplified by logically placing the input outside the grid.
+            That is, while the input field appears to be part of the structure, it is not a child of the grid element, and thus has its own place in the tab sequence.
+          </li>
+      </ol>
     </section>
-
     <section>
       <h3 id="ex3_label">Example 3: Scrollable Search Results</h3>
+      <p>
+        This example demonstrates how a grid can make moving through an infinitely large data set as easy and efficient for keyboard users as it is for people using a mouse.
+      </p>
       <div aria-labelledby="ex3_label" role="region">
         <div id="ex3"></div>
       </div>
       <p>In this implementation:</p>
-      <ul>
+      <ol>
         <li>
           In addition to the navigation keys supported in examples 1 and 2, <kbd>Page Down</kbd> and
           <kbd>Page Up</kbd> can scroll the grid.
@@ -92,7 +146,7 @@
           value of the row containing the focus informs the screen reader of the number of that row
           within the total set of rows.
         </li>
-      </ul>
+      </ol>
     </section>
 
   </section>
