@@ -11,10 +11,10 @@
 
 <!--  js and css for this example. -->
 <link href="css/menuButton.css" rel="stylesheet">
-<link href="css/dataGrid.css" rel="stylesheet">
+<link href="css/layoutGrids.css" rel="stylesheet">
 <script src="js/menuButton.js" type="text/javascript"></script>
 <script src="js/dataGrid.js" type="text/javascript"></script>
-<script src="js/main.js" type="text/javascript"></script>
+<script src="js/layoutGrids.js" type="text/javascript"></script>
 
 </head>
 <body>
@@ -28,7 +28,7 @@
   <p>
     Following are three example implementations of the
     <a href="../../#grid">design pattern for grid</a>
-    that demonstrate how a grid can be used to group a collection of interactive widgets into a single stop in the page tab sequence. 
+    that demonstrate how a grid can be used to group a collection of interactive widgets into a single stop in the page tab sequence.
     In these examples, each widget, such as a link or button,  is in a separate cell of the grid, and the user can navigate among them with the arrow keys.
     While navigating with the arrow keys, widgets receive keyboard focus and can be activated with <kbd>Space</kbd> or <kbd>Enter</kbd>.
   </p>
@@ -48,10 +48,10 @@
       <p>This example presents a list of links titled &quot;Related Documents&quot; in a grid. </p>
       <div aria-labelledby="ex1_label" role="region">
         <div id="ex1">
-          <!-- 
+          <!--
             @Tatiana: this is the group of links I would like to reflow into multiple columns, like a table, based on window or screen width.
             The point is to demo a grid that restructures itself based on how CSS is filling the screen.
-            We could have the user resize the browser window to see the effect unless you think there is a better way to show the user the effect.  
+            We could have the user resize the browser window to see the effect unless you think there is a better way to show the user the effect.
             However, the end game is to make the grid structure dependent on what the css does, ie, the css determines the number of columns.
           -->
           <h4 id="grid1_label">Related Documents</h4>
@@ -70,21 +70,21 @@
       <p>In this implementation:</p>
       <ol>
         <li>
-          This grid dynamically restructures itself based on screen size. 
+          This grid dynamically restructures itself based on screen size.
           As the grid structure changes, the arrow key behavior adjusts accordingly.
         </li>
         <li>
-          Since all the links are part of a single logical group, repeatedly pressing either the <kbd>Down Arrow</kbd> or <kbd>Right Arrow</kbd> key will move focus from the first link to the last link, 
+          Since all the links are part of a single logical group, repeatedly pressing either the <kbd>Down Arrow</kbd> or <kbd>Right Arrow</kbd> key will move focus from the first link to the last link,
           but in different sequences that depend on the visual arrangement.
         </li>
         <li>
-          The <kbd>Left Arrow</kbd> and <kbd>Up Arrow</kbd> keys reverse <kbd>Right Arrow</kbd> and <kbd>Down Arrow</kbd focus movement, respectively.> 
+          The <kbd>Left Arrow</kbd> and <kbd>Up Arrow</kbd> keys reverse <kbd>Right Arrow</kbd> and <kbd>Down Arrow</kbd focus movement, respectively.>
         </li>
         <li>
           The <kbd>Home</kbd> and <kbd>End</kbd> keys will move focus to the first and last links, respectively.
         </li>
         <li>
-          The <kbd>Page Down</kbd> and <kbd>Page Up</kbd> keys are not supported since 
+          The <kbd>Page Down</kbd> and <kbd>Page Up</kbd> keys are not supported since
           scrolling or row skipping functions are not needed with so few rows.
         </li>
         <li>The links can be activated with the keyboard when focused.</li>
@@ -94,25 +94,25 @@
       <h3 id="ex2_label">Example 2: Pill List For Components Like a List of Message Recipients</h3>
       <p>Type a string in the &quot;Add Recipient&quot; field and press enter or activate the &quot;Add&quot; button to see how this grid behaves as the number of elements increases. <div aria-labelledby="ex2_label" role="region">
         <div id="ex2">
-          <!-- 
+          <!--
             @Tatiana: The user should be able to type a string in the input and either press enter or activate the add button and a row gets added to the grid.
             The IDs provided in the following are just to demo the labeling; I assume most will be dynamically generated.
             This should be styled so it is presented like a e-mail "To" field and wrap to new lines as it grows; tokens on a line will not necessarily align with tokens on a previous or following line.
             I am assuming the remove icon buttons will be the typical X icon; I just put a letter X in the span as a placeholder.
            -->
           <span id="send_to_label">Send To:</span>
-          <div role="grid" aria-labelledby="send_to_label">
-            <div role="row">
-              <span role="gridcell"><a id="r1" tabindex="-1" href="#">Recipient Name 1</a></span>
-              <span role="gridcell"><span id="rb1" tabindex="-1" role="button" aria-label="Remove" aria-labelledby="rb1 r1"> X </span></span>
+          <div role="grid" class="pill-list" aria-labelledby="send_to_label"  data-wrap-cells="true">
+            <div role="row" class="pill-item" data-id="1">
+              <span role="gridcell"><a id="r1" class="pill-name" tabindex="-1" href="#">Recipient Name 1</a></span>
+              <span role="gridcell"><span id="rb1" class="pill-remove" tabindex="-1" role="button" aria-label="Remove" aria-labelledby="rb1 r1"> X </span></span>
             </div>
-            <div role="row">
-              <span role="gridcell"><a id="r2" tabindex="-1" href="#">Recipient Name 2</a></span>
-              <span role="gridcell"><span id="rb2" tabindex="-1" role="button" aria-label="Remove" aria-labelledby="rb2 r2"> X </span></span>
+            <div role="row" class="pill-item" data-id="2">
+              <span role="gridcell"><a id="r2" class="pill-name" tabindex="-1" href="#">Recipient Name 2</a></span>
+              <span role="gridcell"><span id="rb2" class="pill-remove" tabindex="-1" role="button" aria-label="Remove" aria-labelledby="rb2 r2"> X </span></span>
             </div>
-          </div>        
-          <input type="text" aria-label="Add Recipient" placeholder="New Recipient Name">
-          <button>Add</</button>
+          </div>
+          <input id="add-recipient-input" type="text" aria-label="Add Recipient" placeholder="New Recipient Name">
+          <button id="add-recipient-button">Add</</button>
         </div>
       </div>
       <p>In this implementation:</p>

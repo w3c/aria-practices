@@ -1,0 +1,31 @@
+.hidden {
+	display: none !important;
+}
+
+.pill-list {
+  margin-bottom: 5px;
+}
+
+.pill-item {
+  background: #eee;
+  border: 1px solid #acc1e4;
+  border-radius: 5px;
+  color: #acc1e4;
+  display: inline-block;
+  margin: 5px 5px 5px 0;
+  padding: .5em;
+}
+
+.pill-name {
+  color: green;
+  text-decoration: none;
+}
+
+.pill-remove {
+  cursor: default;
+  margin-left: 10px;
+}
+
+#add-recipient-input {
+  font-size: 14px;
+}
