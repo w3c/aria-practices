@@ -641,7 +641,9 @@ aria.Grid.prototype.getNextCell = function (currRow, currCol, direction) {
   var row = currRow;
   var col = currCol + direction;
 
-  if (!this.grid.length) return false;
+  if (!this.grid.length) {
+    return false;
+  }
 
   var colCount = this.grid[0].length;
 
@@ -662,16 +664,17 @@ aria.Grid.prototype.getNextCell = function (currRow, currCol, direction) {
       row: row,
       col: col
     };
-  } else if (this.isValidCell(currRow, currCol)) {
+  }
+  else if (this.isValidCell(currRow, currCol)) {
     return {
       row: currRow,
       col: currCol
     };
-  } else {
+  }
+  else {
     return false;
   }
 };
-
 
 /**
  * @desc
@@ -690,7 +693,9 @@ aria.Grid.prototype.getNextCell = function (currRow, currCol, direction) {
 aria.Grid.prototype.getNextVisibleCell = function (direction) {
   var nextCell = this.getNextCell(this.focusedRow, this.focusedCol, direction);
 
-  if (!nextCell) return false;
+  if (!nextCell) {
+    return false;
+  }
 
   var rowCount = this.grid.length;
   var colCount = this.grid[nextCell.row].length;

@@ -21,7 +21,7 @@ window.addEventListener('load', function () {
   );
 });
 
-function PillList(grid, input, submitButton) {
+function PillList (grid, input, submitButton) {
   // Hardcoded to work for example 2
   this.pillIDs = [1, 2];
   this.nextPillID = 3;
@@ -38,7 +38,9 @@ PillList.prototype.addPillItem = function () {
   var id = this.nextPillID;
   var recipientName = this.input.value;
 
-  if (!recipientName) return;
+  if (!recipientName) {
+    return;
+  }
 
   var newPillItem = document.createElement('div');
   newPillItem.setAttribute('role', 'row');
@@ -52,7 +54,7 @@ PillList.prototype.addPillItem = function () {
       + '</a>'
     + '</span>'
     + '<span role="gridcell">'
-      + '<span id="rb' + id+ '" class="pill-remove" tabindex="-1"'
+      + '<span id="rb' + id + '" class="pill-remove" tabindex="-1"'
         + 'aria-label="Remove" aria-labelledby="rb' + id + 'r' + id + '">'
         + 'X'
       + '</span>'
@@ -84,7 +86,8 @@ PillList.prototype.checkRemovePill = function (event) {
 
   if (event.target.className === 'pill-remove') {
     pillItem = event.target.parentNode.parentNode;
-  } else {
+  }
+  else {
     return;
   }
 
@@ -94,7 +97,8 @@ PillList.prototype.checkRemovePill = function (event) {
   if (this.grid.isValidCell(this.grid.focusedRow, this.grid.focusedCol)) {
     // First, try to focus on the next pill
     this.grid.focusCell(this.grid.focusedRow, this.grid.focusedCol);
-  } else if (this.grid.isValidCell(--this.grid.focusedRow, this.grid.focusedCol)) {
+  }
+  else if (this.grid.isValidCell(--this.grid.focusedRow, this.grid.focusedCol)) {
     // If there is no next pill, try to focus on the previous pill
     this.grid.focusCell(this.grid.focusedRow, this.grid.focusedCol);
   }
