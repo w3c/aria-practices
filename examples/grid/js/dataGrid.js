@@ -584,8 +584,8 @@ aria.Grid.prototype.checkPageChange = function (event) {
  *  Whether to scroll the new page above or below the row index
  */
 aria.Grid.prototype.showFromRow = function (startIndex, scrollDown) {
-  var rows = this.gridNode.querySelectorAll('tr, [role="row"]');
-  var dataRows = Array.prototype.slice.call(rows, 1);
+  var dataRows =
+    this.gridNode.querySelectorAll('tr:not([data-fixed]), [role="row"]');
   var reachedTop = false;
 
   if (startIndex < 0 || startIndex >= dataRows.length) {

@@ -2,6 +2,22 @@
 	display: none !important;
 }
 
+.list-links {
+  font-size: 0px;
+}
+
+.list-link {
+  background: #eee;
+  border: 1px solid #bbb;
+  display: inline-block;
+  font-size: 14px;
+  height: 40px;
+  margin: 5px 0 0 0;
+  padding: 5px;
+  vertical-align: middle;
+  width: 120px;
+}
+
 .pill-list {
   margin-bottom: 5px;
 }
@@ -9,7 +25,7 @@
 .pill-item {
   background: #eee;
   border: 1px solid #acc1e4;
-  border-radius: 5px;
+  border-radius: 2px;
   color: #acc1e4;
   display: inline-block;
   margin: 5px 5px 5px 0;
@@ -17,7 +33,6 @@
 }
 
 .pill-name {
-  color: green;
   text-decoration: none;
 }
 
