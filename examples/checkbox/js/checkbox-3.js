@@ -29,8 +29,11 @@ function toggleGroupCheckbox (event) {
   var state = node.getAttribute('aria-checked').toLowerCase();
 
   if (
-    event.type === 'click' ||
-    (event.type === 'keydown' && event.keyCode === 32)
+    event.type === 'click'
+    || (
+      event.type === 'keydown'
+      && event.keyCode === 32
+    )
   ) {
     if (state === 'false' || state === 'mixed') {
       node.setAttribute('aria-checked', 'true');

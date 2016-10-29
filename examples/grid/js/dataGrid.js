@@ -50,17 +50,17 @@ aria.Utils = aria.Utils || {};
 aria.Utils.matches = function (element, selector) {
   if (!Element.prototype.matches) {
     Element.prototype.matches =
-      Element.prototype.matchesSelector ||
-      Element.prototype.mozMatchesSelector ||
-      Element.prototype.msMatchesSelector ||
-      Element.prototype.oMatchesSelector ||
-      Element.prototype.webkitMatchesSelector ||
-      function (s) {
-        var matches = element.parentNode.querySelectorAll(s),
-            i = matches.length;
-        while (--i >= 0 && matches.item(i) !== this) {}
-        return i > -1;
-      };
+      Element.prototype.matchesSelector
+      || Element.prototype.mozMatchesSelector
+      || Element.prototype.msMatchesSelector
+      || Element.prototype.oMatchesSelector
+      || Element.prototype.webkitMatchesSelector
+      || function (s) {
+          var matches = element.parentNode.querySelectorAll(s);
+          var i = matches.length;
+          while (--i >= 0 && matches.item(i) !== this) {}
+          return i > -1;
+        };
   }
 
   return element.matches(selector);
@@ -83,6 +83,7 @@ aria.Grid = function (gridNode) {
   this.navigationDisabled = false;
   this.gridNode = gridNode;
   this.paginationEnabled = this.gridNode.hasAttribute('data-per-page');
+  this.shouldWrapCells = this.gridNode.hasAttribute('data-wrap-cells');
   this.topIndex = 0;
 
   this.setupFocusGrid();
@@ -186,10 +187,16 @@ aria.Grid.prototype.setFocusPointer = function (row, col) {
  *  Returns whether or not the coordinates are within the grid's boundaries.
  */
 aria.Grid.prototype.isValidCell = function (row, col) {
-  return !isNaN(row) && !isNaN(col) &&
-          row >= 0 && col >= 0 &&
-          this.grid && this.grid.length &&
-          row < this.grid.length && col < this.grid[row].length;
+  return (
+    !isNaN(row)
+    && !isNaN(col)
+    && row >= 0
+    && col >= 0
+    && this.grid
+    && this.grid.length
+    && row < this.grid.length
+    && col < this.grid[row].length
+  );
 };
 
 /**
@@ -276,10 +283,14 @@ aria.Grid.prototype.checkFocusChange = function (event) {
       rowCaret += 1;
       break;
     case aria.KeyCode.LEFT:
-      colCaret = this.getNextVisibleCol(-1);
+      var nextCell = this.getNextVisibleCell(-1);
+      rowCaret = nextCell.row;
+      colCaret = nextCell.col;
       break;
     case aria.KeyCode.RIGHT:
-      colCaret = this.getNextVisibleCol(1);
+      var nextCell = this.getNextVisibleCell(1);
+      rowCaret = nextCell.row;
+      colCaret = nextCell.col;
       break;
     case aria.KeyCode.HOME:
       if (event.ctrlKey) {
@@ -297,12 +308,14 @@ aria.Grid.prototype.checkFocusChange = function (event) {
       return;
   }
 
-  if (rowCaret < this.topIndex) {
-    this.showFromRow(rowCaret, true);
-  }
+  if (this.paginationEnabled) {
+    if (rowCaret < this.topIndex) {
+      this.showFromRow(rowCaret, true);
+    }
 
-  if (rowCaret >= this.topIndex + this.perPage) {
-    this.showFromRow(rowCaret, false);
+    if (rowCaret >= this.topIndex + this.perPage) {
+      this.showFromRow(rowCaret, false);
+    }
   }
 
   this.focusCell(rowCaret, colCaret);
@@ -353,16 +366,24 @@ aria.Grid.prototype.delegateButtonHandler = function (event) {
   }
 
   if (
-    target.parentNode && target.parentNode.matches('th[aria-sort]') &&
-    (isClickEvent || key === aria.KeyCode.SPACE || key === aria.KeyCode.RETURN)
+    target.parentNode
+    && target.parentNode.matches('th[aria-sort]')
+    && (
+      isClickEvent
+      || key === aria.KeyCode.SPACE
+      || key === aria.KeyCode.RETURN
+    )
   ) {
     event.preventDefault();
     this.handleSort(target.parentNode);
   }
 
   if (
-    aria.Utils.matches(target, '.editable-text, .edit-text-button') &&
-    (isClickEvent || key === aria.KeyCode.RETURN)
+    aria.Utils.matches(target, '.editable-text, .edit-text-button')
+    && (
+      isClickEvent
+      || key === aria.KeyCode.RETURN
+    )
   ) {
     event.preventDefault();
     this.toggleEditMode(
@@ -373,8 +394,11 @@ aria.Grid.prototype.delegateButtonHandler = function (event) {
   }
 
   if (
-    aria.Utils.matches(target, '.edit-text-input') &&
-    (key === aria.KeyCode.RETURN || key === aria.KeyCode.ESC)
+    aria.Utils.matches(target, '.edit-text-input')
+    && (
+      key === aria.KeyCode.RETURN
+      || key === aria.KeyCode.ESC
+    )
   ) {
     event.preventDefault();
     this.toggleEditMode(
@@ -560,8 +584,8 @@ aria.Grid.prototype.checkPageChange = function (event) {
  *  Whether to scroll the new page above or below the row index
  */
 aria.Grid.prototype.showFromRow = function (startIndex, scrollDown) {
-  var rows = this.gridNode.querySelectorAll('tr, [role="row"]');
-  var dataRows = Array.prototype.slice.call(rows, 1);
+  var dataRows =
+    this.gridNode.querySelectorAll('tr:not([data-fixed]), [role="row"]');
   var reachedTop = false;
 
   if (startIndex < 0 || startIndex >= dataRows.length) {
@@ -571,8 +595,15 @@ aria.Grid.prototype.showFromRow = function (startIndex, scrollDown) {
   for (var i = 0; i < dataRows.length; i++) {
 
     if (
-      (scrollDown && i >= startIndex && i < startIndex + this.perPage) ||
-      (!scrollDown && i <= startIndex && i > startIndex - this.perPage)
+      (
+        scrollDown
+        && i >= startIndex
+        && i < startIndex + this.perPage)
+        ||(
+          !scrollDown
+          && i <= startIndex
+          && i > startIndex - this.perPage
+        )
     ) {
       dataRows[i].className = '';
 
@@ -589,31 +620,99 @@ aria.Grid.prototype.showFromRow = function (startIndex, scrollDown) {
 
 /**
  * @desc
- *  Get next visible column to the right or left (direction) of the focused
- *  cell. Assumes a visible column exists in the direction.
+ *  Get next cell to the right or left (direction) of the focused
+ *  cell.
+ *
+ * @param currRow
+ *  Row index to start searching from
+ *
+ * @param currCol
+ *  Column index to start searching from
  *
  * @param direction
  *  Direction for where to check for cells. +1 to check to the right, -1 to
  *  check to the left
  *
  * @return
- *  Index of the next visible column in the specified direction. Returns -1 if
- *  no visible columns are found.
+ *  Indices of the next cell in the specified direction. Returns the focused
+ *  cell if none are found.
  */
-aria.Grid.prototype.getNextVisibleCol = function (direction) {
-  var row = this.focusedRow;
-  var col = this.focusedCol + direction;
+aria.Grid.prototype.getNextCell = function (currRow, currCol, direction) {
+  var row = currRow;
+  var col = currCol + direction;
 
-  while (this.isValidCell(row, col)) {
-
-    if (!this.isHidden(row, col)) {
-      return col;
-    }
-
-    col = col + direction;
+  if (!this.grid.length) {
+    return false;
   }
 
-  return -1;
+  var colCount = this.grid[0].length;
+
+  if (this.shouldWrapCells) {
+    if (col < 0) {
+      col = colCount - 1;
+      row--;
+    }
+
+    if (col >= colCount) {
+      col = 0;
+      row++;
+    }
+  }
+
+  if (this.isValidCell(row, col)) {
+    return {
+      row: row,
+      col: col
+    };
+  }
+  else if (this.isValidCell(currRow, currCol)) {
+    return {
+      row: currRow,
+      col: currCol
+    };
+  }
+  else {
+    return false;
+  }
+};
+
+/**
+ * @desc
+ *  Get next visible column to the right or left (direction) of the focused
+ *  cell.
+ *
+ * @param direction
+ *  Direction for where to check for cells. +1 to check to the right, -1 to
+ *  check to the left
+ *
+ * @return
+ *  Indices of the next visible cell in the specified direction. If no visible
+ *  cells are found, returns false if the current cell is hidden and returns
+ *  the current cell if it is not hidden.
+ */
+aria.Grid.prototype.getNextVisibleCell = function (direction) {
+  var nextCell = this.getNextCell(this.focusedRow, this.focusedCol, direction);
+
+  if (!nextCell) {
+    return false;
+  }
+
+  var rowCount = this.grid.length;
+  var colCount = this.grid[nextCell.row].length;
+
+  while (this.isHidden(nextCell.row, nextCell.col)) {
+    var currRow = nextCell.row;
+    var currCol = nextCell.col;
+
+    nextCell = this.getNextCell(currRow, currCol, direction);
+
+    if (currRow === nextCell.row && currCol === nextCell.col) {
+      // There are no more cells to try if getNextCell returns the current cell
+      return false;
+    }
+  }
+
+  return nextCell;
 };
 
 /**
@@ -640,7 +739,10 @@ aria.Grid.prototype.toggleColumn = function (columnIndex, isShown) {
 
   if (!isShown && this.focusedCol === (columnIndex - 1)) {
     // If focus was set on the hidden column, shift focus to the left
-    this.setFocusPointer(this.focusedRow, this.getNextVisibleCol(-1));
+    var nextCell = this.getNextVisibleCell(-1);
+    if (nextCell) {
+      this.setFocusPointer(nextCell.row, nextCell.col);
+    }
   }
 };
 
