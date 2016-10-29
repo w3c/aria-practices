@@ -55,7 +55,7 @@ PillList.prototype.addPillItem = function () {
     + '</span>'
     + '<span role="gridcell">'
       + '<span id="rb' + id + '" class="pill-remove" tabindex="-1"'
-        + 'aria-label="Remove" aria-labelledby="rb' + id + 'r' + id + '">'
+        + 'aria-label="Remove" aria-labelledby="rb' + id + ' r' + id + '">'
         + 'X'
       + '</span>'
     + '</span>';
