@@ -11,18 +11,14 @@
 
 /*
 *   @eventHandler setFontFamily
-*
 *   @desc
 *       Sets the CSS font-family property of the text content
 *       identified by the id and updates the menuitemradio
 *       group in the menu to indicate which font is selected
-*
 *   @param event
 *       Event object of menuitemradio in the radio group
-*
 *   @param id
 *       id property of the element to apply the styling
-*
 *   @param value
 *       value for the CSS font-family property
 *
@@ -32,17 +28,22 @@ function setFontFamily (event, id) {
 
   var value = event.target.innerHTML;
 
-  if (value) document.getElementById(id).style.fontFamily = value;
+  if (value) {
+    document.getElementById(id).style.fontFamily = value;
+  }
 
   var childElement = currentTarget.firstElementChild;
 
   while (childElement) {
-    if (childElement.innerHTML === value) childElement.setAttribute('aria-checked', 'true');
-    else childElement.setAttribute('aria-checked', 'false');
+    if (childElement.innerHTML === value) {
+      childElement.setAttribute('aria-checked', 'true');
+    }
+    else {
+      childElement.setAttribute('aria-checked', 'false');
+    }
     childElement = childElement.nextElementSibling;
   }
 };
-
 
 /*
 *   @eventHandler setTextDecoration
@@ -65,13 +66,19 @@ function setTextDecoration (event, id) {
 
   var value = event.target.innerHTML;
 
-  if (value) document.getElementById(id).style.textDecoration = value;
+  if (value) {
+    document.getElementById(id).style.textDecoration = value;
+  }
 
   var childElement = currentTarget.firstElementChild;
 
   while (childElement) {
-    if (childElement.innerHTML === value) childElement.setAttribute('aria-checked', 'true');
-    else childElement.setAttribute('aria-checked', 'false');
+    if (childElement.innerHTML === value) {
+      childElement.setAttribute('aria-checked', 'true');
+    }
+    else {
+      childElement.setAttribute('aria-checked', 'false');
+    }
     childElement = childElement.nextElementSibling;
   }
 };
@@ -96,13 +103,19 @@ function setTextAlign (event, id) {
 
   var value = event.target.innerHTML;
 
-  if (value) document.getElementById(id).style.textAlign = value;
+  if (value) {
+    document.getElementById(id).style.textAlign = value;
+  }
 
   var childElement = currentTarget.firstElementChild;
 
   while (childElement) {
-    if (childElement.innerHTML === value) childElement.setAttribute('aria-checked', 'true');
-    else childElement.setAttribute('aria-checked', 'false');
+    if (childElement.innerHTML === value) {
+      childElement.setAttribute('aria-checked', 'true');
+    }
+    else {
+      childElement.setAttribute('aria-checked', 'false');
+    }
     childElement = childElement.nextElementSibling;
   }
 };
@@ -134,8 +147,8 @@ function setFontSize (event, id) {
   var childElement;
   var flag;
   var i;
-  var disable_smaller;
-  var disable_larger;
+  var disableSmaller;
+  var disableLarger;
 
   value = target.innerHTML;
 
@@ -146,11 +159,17 @@ function setFontSize (event, id) {
     while (childElement) {
       flag = childElement.getAttribute('aria-checked');
       childElement = childElement.nextElementSibling;
-      if (flag === 'true') break;
+      if (flag === 'true') {
+        break;
+      }
     }
 
-    if (childElement) value = childElement.innerHTML;
-    else value = false;
+    if (childElement) {
+      value = childElement.innerHTML;
+    }
+    else {
+      value = false;
+    }
 
   }
   else {
@@ -161,11 +180,17 @@ function setFontSize (event, id) {
       while (childElement) {
         var flag = childElement.getAttribute('aria-checked');
         childElement = childElement.previousElementSibling;
-        if (flag === 'true') break;
+        if (flag === 'true') {
+          break;
+        }
       }
 
-      if (childElement) value = childElement.innerHTML;
-      else value = false;
+      if (childElement) {
+        value = childElement.innerHTML;
+      }
+      else {
+        value = false;
+      }
     }
   }
 
@@ -177,24 +202,40 @@ function setFontSize (event, id) {
     childElement = radioGroup.firstElementChild;
 
     while (childElement) {
-      if (childElement.innerHTML === value) childElement.setAttribute('aria-checked', 'true');
-      else childElement.setAttribute('aria-checked', 'false');
+      if (childElement.innerHTML === value) {
+        childElement.setAttribute('aria-checked', 'true');
+      }
+      else {
+        childElement.setAttribute('aria-checked', 'false');
+      }
       childElement = childElement.nextElementSibling;
+
     }
 
-    if (value === 'X-Small') disable_smaller = 'true';
-    else disable_smaller = 'false';
+    if (value === 'X-Small') {
+      disableSmaller = 'true';
+    }
+    else {
+      disableSmaller = 'false';
+    }
 
-    if (value === 'X-Large') disable_larger = 'true';
-    else disable_larger = 'false';
+    if (value === 'X-Large') {
+      disableLarger = 'true';
+    }
+    else {
+      disableLarger = 'false';
+    }
 
     childElement = currentTarget.firstElementChild;
 
     while (childElement) {
 
-      if (childElement.innerHTML === 'Smaller') childElement.setAttribute('aria-disabled', disable_smaller);
-
-      if (childElement.innerHTML === 'Larger') childElement.setAttribute('aria-disabled', disable_larger);
+      if (childElement.innerHTML === 'Smaller') {
+        childElement.setAttribute('aria-disabled', disableSmaller);
+      }
+      if (childElement.innerHTML === 'Larger') {
+        childElement.setAttribute('aria-disabled', disableLarger);
+      }
 
       childElement = childElement.nextElementSibling;
     }
@@ -226,19 +267,22 @@ function setColor (event, id, value) {
 
   var value = event.target.innerHTML;
 
-  if (value) document.getElementById(id).style.color = value;
+  if (value) {
+    document.getElementById(id).style.color = value;
+  }
 
   var childElement = currentTarget.firstElementChild;
 
   while (childElement) {
-    if (childElement.innerHTML === value) childElement.setAttribute('aria-checked', 'true');
-    else childElement.setAttribute('aria-checked', 'false');
+    if (childElement.innerHTML === value) {
+      childElement.setAttribute('aria-checked', 'true');
+    }
+    else {
+      childElement.setAttribute('aria-checked', 'false');
+    }
     childElement = childElement.nextElementSibling;
   }
-
 };
-
-
 
 /*
 *   @eventHandler toggleBold

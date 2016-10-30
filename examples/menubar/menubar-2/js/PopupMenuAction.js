@@ -51,8 +51,7 @@ var PopupMenuAction = function (domNode, controllerObj) {
   while (childElement) {
     var menuitem = childElement.firstElementChild;
     if (menuitem && menuitem === 'A') {
-      throw new Error(msgPrefix +
-        'has descendant elements that are not A elements.');
+      throw new Error(msgPrefix + 'has descendant elements that are not A elements.');
     }
     childElement = childElement.nextElementSibling;
   }
@@ -86,9 +85,7 @@ PopupMenuAction.prototype.init = function () {
 
   this.domNode.setAttribute('role', 'menu');
 
-  if (!this.domNode.getAttribute('aria-labelledby') &&
-      !this.domNode.getAttribute('aria-label') &&
-      !this.domNode.getAttribute('title')) {
+  if (!this.domNode.getAttribute('aria-labelledby') && !this.domNode.getAttribute('aria-label') && !this.domNode.getAttribute('title')) {
     label = this.controller.domNode.innerHTML;
     this.domNode.setAttribute('aria-label', label);
   }

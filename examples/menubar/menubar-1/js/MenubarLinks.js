@@ -21,26 +21,26 @@
 *       be an A element
 */
 
-var Menubar = function( domNode ) {
+var Menubar = function (domNode) {
   var elementChildren,
-      msgPrefix = "Menubar constructor argument menubarNode ";
+      msgPrefix = 'Menubar constructor argument menubarNode ';
 
   // Check whether menubarNode is a DOM element
-  if ( !domNode instanceof Element ) {
-    throw new TypeError( msgPrefix + "is not a DOM Element." );
+  if (!domNode instanceof Element) {
+    throw new TypeError(msgPrefix + 'is not a DOM Element.');
   }
 
   // Check whether menubarNode has descendant elements
-  if ( domNode.childElementCount === 0 ) {
-    throw new Error( msgPrefix + "has no element children." );
+  if (domNode.childElementCount === 0) {
+    throw new Error(msgPrefix + 'has no element children.');
   }
 
   // Check whether menubarNode has A elements
   e = domNode.firstElementChild;
-  while ( e ) {
+  while (e) {
     var menubarItem = e.firstElementChild;
-    if ( e && menubarItem && menubarItem.tagName !== "A" ) {
-      throw new Error( msgPrefix + "has child elements are note A elements." );
+    if (e && menubarItem && menubarItem.tagName !== 'A') {
+      throw new Error(msgPrefix + 'has child elements are note A elements.');
     }
     e = e.nextElementSibling;
   }
@@ -65,24 +65,24 @@ var Menubar = function( domNode ) {
 *       Traverse menubar children for A elements to configure each A element as a ARIA menuitem
 *       and populate menuitems array. Initialize firstItem and lastItem properties.
 */
-Menubar.prototype.init = function() {
+Menubar.prototype.init = function () {
   var menubarItem, childElement, menuElement, textContent, numItems;
 
-  this.domNode.setAttribute( "role", "menubar" );
+  this.domNode.setAttribute('role', 'menubar');
 
   // Traverse the element children of menubarNode: configure each with
   // menuitem role behavior and store reference in menuitems array.
   e = this.domNode.firstElementChild;
 
-  while ( e ) {
+  while (e) {
     var menuElement = e.firstElementChild;
 
-    if ( e && menuElement && menuElement.tagName === "A" ) {
-      menubarItem = new MenubarItem( menuElement, this );
+    if (e && menuElement && menuElement.tagName === 'A') {
+      menubarItem = new MenubarItem(menuElement, this);
       menubarItem.init();
-      this.menubarItems.push( menubarItem );
+      this.menubarItems.push(menubarItem);
       textContent = menuElement.textContent.trim();
-      this.firstChars.push( textContent.substring( 0, 1 ).toLowerCase() );
+      this.firstChars.push(textContent.substring(0, 1).toLowerCase());
     }
 
     e = e.nextElementSibling;
@@ -90,7 +90,7 @@ Menubar.prototype.init = function() {
 
   // Use populated menuitems array to initialize firstItem and lastItem.
   numItems = this.menubarItems.length;
-  if ( numItems > 0 ) {
+  if (numItems > 0) {
     this.firstItem = this.menubarItems[ 0 ];
     this.lastItem = this.menubarItems[ numItems - 1 ];
   }
@@ -99,70 +99,72 @@ Menubar.prototype.init = function() {
 
 /* FOCUS MANAGEMENT METHODS */
 
-Menubar.prototype.setFocusToFirstItem = function() {
+Menubar.prototype.setFocusToFirstItem = function () {
   this.firstItem.domNode.focus();
 };
 
-Menubar.prototype.setFocusToLastItem = function() {
+Menubar.prototype.setFocusToLastItem = function () {
   this.lastItem.domNode.focus();
 };
 
-Menubar.prototype.setFocusToPreviousItem = function( currentItem ) {
+Menubar.prototype.setFocusToPreviousItem = function (currentItem) {
   var index;
   currentItem.domNode.tabIndex = -1;
 
-  if ( currentItem === this.firstItem ) {
+  if (currentItem === this.firstItem) {
     this.lastItem.domNode.focus();
     this.lastItem.domNode.tabIndex = 0;
-  } else {
-    index = this.menubarItems.indexOf( currentItem );
+  }
+  else {
+    index = this.menubarItems.indexOf(currentItem);
     this.menubarItems[ index - 1 ].domNode.focus();
     this.menubarItems[ index - 1 ].domNode.tabIndex = 0;
   }
 };
 
-Menubar.prototype.setFocusToNextItem = function( currentItem ) {
+Menubar.prototype.setFocusToNextItem = function (currentItem) {
   var index;
   currentItem.domNode.tabIndex = -1;
 
-  if ( currentItem === this.lastItem ) {
+  if (currentItem === this.lastItem) {
     this.firstItem.domNode.focus();
     this.firstItem.domNode.tabIndex = 0;
-  } else {
-    index = this.menubarItems.indexOf( currentItem );
+  }
+  else {
+    index = this.menubarItems.indexOf(currentItem);
     this.menubarItems[ index + 1 ].domNode.focus();
     this.menubarItems[ index + 1 ].domNode.tabIndex = 0;
   }
 };
 
-Menubar.prototype.setFocusByFirstCharacter = function( currentItem, char ) {
+Menubar.prototype.setFocusByFirstCharacter = function (currentItem, char) {
   var start, index, char = char.toLowerCase();
 
   // Get start index for search based on position of currentItem
-  start = this.menubarItems.indexOf( currentItem ) + 1;
-  if ( start === this.menubarItems.length ) {
+  start = this.menubarItems.indexOf(currentItem) + 1;
+  if (start === this.menubarItems.length) {
     start = 0;
   }
 
   // Check remaining slots in the menu
-  index = this.getIndexFirstChars( start, char );
+  index = this.getIndexFirstChars(start, char);
 
   // If not found in remaining slots, check from beginning
-  if ( index === -1 ) {
-    index = this.getIndexFirstChars( 0, char );
+  if (index === -1) {
+    index = this.getIndexFirstChars(0, char);
   }
 
   // If match was found...
-  if ( index > -1 ) {
+  if (index > -1) {
     this.menubarItems[ index ].domNode.focus();
     this.menubarItems[ index ].domNode.tabIndex = 0;
     currentItem.tabIndex = -1;
   }
 };
 
-Menubar.prototype.getIndexFirstChars = function( startIndex, char ) {
-  for ( var i = startIndex; i < this.firstChars.length; i++ ) {
-    if ( char === this.firstChars[ i ] ) {
+Menubar.prototype.getIndexFirstChars = function (startIndex, char) {
+  for (var i = startIndex; i < this.firstChars.length; i++) {
+    if (char === this.firstChars[ i ]) {
       return i;
     }
   }
@@ -171,21 +173,21 @@ Menubar.prototype.getIndexFirstChars = function( startIndex, char ) {
 
 /* MENU DISPLAY METHODS */
 
-Menubar.prototype.getPosition = function( element ) {
+Menubar.prototype.getPosition = function (element) {
   var x = 0,
  y = 0;
 
-  while ( element ) {
-    x += ( element.offsetLeft - element.scrollLeft + element.clientLeft );
-    y += ( element.offsetTop - element.scrollTop + element.clientTop );
+  while (element) {
+    x += (element.offsetLeft - element.scrollLeft + element.clientLeft);
+    y += (element.offsetTop - element.scrollTop + element.clientTop);
     element = element.offsetParent;
   }
 
-  return { x: x, y: y };
+  return {x: x, y: y};
 };
 
-Menubar.prototype.open = function() {
+Menubar.prototype.open = function () {
 };
 
-Menubar.prototype.close = function( force ) {
+Menubar.prototype.close = function (force) {
 };
