@@ -1,0 +1,158 @@
+ul[role="menubar"] {
+  margin: 10px;
+  padding: 10px;
+  font-size: 110%;
+  list-style: none;
+  background-color: #EEEEEE;
+}
+
+ul[role="menubar"] ul[role="group"] {
+  margin: 0;
+  padding: 0;
+}  
+
+ul[role="menubar"] li[aria-disabled="true"] {
+  color: #666666;
+  text-decoration: line-through;
+}  
+
+ul[role="menubar"] [role="menuitem"],
+ul[role="menubar"] [role="menuitemcheckbox"],
+ul[role="menubar"] [role="menuitemradio"], 
+ul[role="menubar"] [role="separator"] {
+  padding: 0.25em;
+  background-color: #EEEEEE;
+  border: 2px solid #EEEEEE;
+}
+
+ul[role="menubar"] ul li[role="menuitem"],
+ul[role="menubar"] ul li[role="menuitemcheckbox"],
+ul[role="menubar"] ul li[role="menuitemradio"], 
+ul[role="menubar"] ul li[role="separator"] {
+  padding-left: 1.5em;
+}  
+
+
+ul[role="menubar"] [role="separator"] {
+  padding-top: 0.15em;
+  background-image: url('../images/separator.png');
+  background-position: center;
+  background-repeat: repeat-x;
+}
+
+ul[role="menubar"] [role="menuitem"]:focus,
+ul[role="menubar"] [role="menuitem"]:hover,
+ul[role="menubar"] [role="menuitemcheckbox"]:focus,
+ul[role="menubar"] [role="menuitemcheckbox"]:hover,
+ul[role="menubar"] [role="menuitemradio"]:focus,
+ul[role="menubar"] [role="menuitemradio"]:hover,
+ul[role="menubar"] [role="separator"]:focus,
+ul[role="menubar"] [role="separator"]:hover {
+  background-color: black;
+  color: white;
+}
+
+ul[role="menubar"] li[aria-checked='true']:before {
+  background-image: url('../images/checkmark.png');
+  background-repeat: no-repeat;
+  background-position: 0.1em 0.2em;
+}
+
+ul[role="menubar"] li[aria-checked='true']:hover,
+ul[role="menubar"] li[aria-checked='true']:focus {
+  background-image: url('../images/checkmark-inverse.png');
+  background-repeat: no-repeat;
+}
+
+ul[role="menubar"] li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+ul[role="menubar"] > li {
+  display: inline;
+}
+
+ul[role="menubar"] > li > span:after {
+/*  content: url('../images/pull-down-menu-icon.png'); */
+  content: " \25bc";
+  font-size: 80%;
+  color: gray;
+}
+
+ul[role="menubar"] ul[role="menu"] {
+  display: none;
+  position: absolute;
+  margin: 0;
+  padding: 0;
+}
+
+ul[role="menubar"] ul[role="menu"] li span {
+  display: block;
+}
+
+
+
+/*
+* checked, hover and focus styling
+*/
+
+
+li.checked {
+  font-weight: bold;
+  background-image: url('http://www.oaa-accessibility.org/media/examples/images/dot.png');
+  background-repeat: no-repeat;
+  background-position: 5px 10px;
+}
+
+.menu-hover {
+  background-color: #700 !important;
+  color: white !important;
+}
+
+.menu-hover-checked {
+  background-color: #700 !important;
+  color: white !important;
+  background-image: url('http://www.oaa-accessibility.org/media/examples/images/dot-selected.png') !important;
+}
+
+.menu-focus {
+  background-color: black;
+  font-weight: bold;
+  color: white !important;
+}
+
+li.menu-focus-checked {
+  background-color: black;
+  font-weight: bold;
+  color: white !important;
+  background-image: url('http://www.oaa-accessibility.org/media/examples/images/dot-selected.png') !important;
+}
+.hidden {
+   position: absolute;
+   left: -200em;
+   top: -20em;
+}
+
+
+/*
+* Text area styles
+*/
+.italic {
+  font-style: italic;
+}
+.bold {
+  font-weight: bold;
+}
+.underline {
+  text-decoration: underline;
+}
+#textarea1 {
+  padding: .5em;
+  border: 1px solid black;
+  height: 400px;
+  width: 70%;
+  font-size: medium;
+  font-family: sans-serif;
+}

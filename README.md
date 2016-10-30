@@ -54,7 +54,7 @@ A successful install will display a tree of installed packages.
 repository
 1. The repository has a script defined that will test all JavaScript in the examples 
 directory. To run it, execute the command `npm test`.
-1. Many errors can be fixed automatically with the command `npm run jscs-fix`.
+1. Many errors can be fixed automatically with the command `npm run jscs --fix`.
 1. After running fix, test again to see what you need to fix manually.
   
 When JSCS encounters errors, it will report them in the console. 
