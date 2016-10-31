@@ -1,8 +1,15 @@
 (function () {
   var tablist = document.querySelectorAll('[role="tablist"]')[0];
-  var tabs = document.querySelectorAll('[role="tab"]');
-  var panels = document.querySelectorAll('[role="tabpanel"]');
+  var tabs;
+  var panels;
   var delay = determineDelay();
+
+  generateArrays();
+
+  function generateArrays () {
+    tabs = document.querySelectorAll('[role="tab"]');
+    panels = document.querySelectorAll('[role="tabpanel"]');
+  };
 
   // For easy reference
   var keys = {
@@ -182,9 +189,13 @@
   // Detect if a tab is deletable
   function determineDeletable (event) {
     target = event.target;
-    if (target.getAttribute('data-deletable') !== undefined) {
+
+    if (target.getAttribute('data-deletable') !== null) {
       // Delete target tab
       deleteTab(event, target);
+
+      // Update arrays related to tabs widget
+      generateArrays();
 
       // Activate the first tab
       activateTab(tabs[0]);
