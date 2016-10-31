@@ -10,7 +10,7 @@
 	text-align: center;
 	background: #FFF;
 }
-	#accordionGroup dd img {width: 150px; vertical-align: middle;}
+#accordionGroup dd img {width: 150px; vertical-align: middle;}
 	
 #accordionGroup div.content {padding: 1rem;}
 
@@ -20,7 +20,9 @@
 	text-align: left;
 	text-decoration: none;
 	color: #000;
-	background: transparent url(../img/accordion/sprite.svg) right 0.35em no-repeat;
+	background-image: url(../img/accordion/sprite.svg);
+  background-position: right 0.35em;
+  background-repeat: no-repeat;
 	padding: 0.3em 0.5em;
 	cursor: pointer;
 }
@@ -28,3 +30,47 @@
 .accAccordion.open, .accAccordion.open:link, .accAccordion.open:visited {
     background-position: right -119px;
 }
+
+/* --- DEMO BLOCK --- */
+
+div.demo-block {
+	clear: both;
+	padding: 1rem 0;
+	margin-bottom: 2rem;
+	border-top: 2px dotted #63B7C2;
+	border-bottom: 2px dotted #63B7C2;
+}
+	
+div.demo-block h3 {margin: 0 0 0.5em;}
+	
+.hidden {display: none;}
+
+fieldset.flex p {
+  display: flex;
+  flex-wrap: wrap;
+  text-align: left;
+}
+
+fieldset.flex > p  > label
+{flex: 1 0 120px;
+  max-width: 220px;}
+  
+/* --------------------------------------------------------------------------- */
+/* ---------------------------------- QUERIES -------------------------------- */
+/* --------------------------------------------------------------------------- */
+
+
+@media screen and (min-width: 400px) {
+	.keyboard {padding: 0 0 0 80px;}
+	.keyboard p {padding: 1rem 0 0;}
+}
+
+
+@media screen and (min-width: 1200px) {
+	div.demo-block {width: 55%;}
+}
+
+*:focus {
+	color: #000;
+	background: #FC0;
+}  

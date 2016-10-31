@@ -36,25 +36,22 @@ body {overflow-y: scroll;}
 /* ----------------------------- DEFAULT VALUES ------------------------------ */
 /* --------------------------------------------------------------------------- */
 
-body {
-	font: 100%/1 Frutiger, "Frutiger Linotype", "Gill Sans", "Gill Sans MT", "DejaVu Sans Condensed", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
-	background-color: #2E3135;
-}
 
 h1 {
-	font: normal 5.5vw/1.2 Frutiger, "Frutiger Linotype", "Gill Sans", "Gill Sans MT", "DejaVu Sans Condensed", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font: normal 5.5vw/1.2;
 	text-transform: capitalize;
 	color: #CCC;
 }
-	h1 img {width: 50px; vertical-align: middle;}
-	h1 strong {
-		font-weight: normal;
-		color: #C13836;
+h1 img {width: 50px; vertical-align: middle;}
+
+h1 strong {
+	font-weight: normal;
+	color: #C13836;
 	}
-	h1 a, h1 a:link, h1 a:visited {
-		text-decoration: none;
-		color: #FFF;
-		background: transparent;
+h1 a, h1 a:link, h1 a:visited {
+	text-decoration: none;
+	color: #FFF;
+	background: transparent;
 	}
 
 h2 {
