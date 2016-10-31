@@ -1035,42 +1035,78 @@
 
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
-        <p>When a menu opens and its items are arranged vertically:</p>
+        <p class="note">
+          Significant revisions to this keyboard subsection were made on October 31. 
+          Please provide feedback in <a href="https://github.com/w3c/aria-practices/issues/120">issue 120</a>.
+        </p>
         <ul>
-          <li>Keyboard focus is placed on the first item. All items in a menu are focusable as described in <a href="#kbd_general_within"></a>.</li>
-          <li><kbd>Enter</kbd> and optionally <kbd>Space</kbd>: activate the menu item with focus (perform the  command or open the submenu associated with the menu item). </li>
-          <li><kbd>Down Arrow</kbd> and <kbd>Up Arrow</kbd>: move focus to the next and previous items, respectively, optionally wrapping from last to first and vice versa. </li>
-          <li><kbd>Home</kbd> and <kbd>End</kbd>: If arrow key wrapping is not supported, move focus to first and last items.</li>
-          <li><kbd>Right Arrow</kbd>: Perform the first of the following actions that applies:
+          <li>
+            When a <code>menu</code> opens, or when a <code>menubar</code> receives focus, 
+            keyboard focus is placed on the first <code>menuitem</code>.
+            All <code>menuitems</code> in a menu are focusable as described in <a href="#kbd_general_within"></a>.
+          </li>
+          <li><kbd>Enter</kbd>: 
             <ul>
-              <li>If the menu item with focus opens a submenu, open the submenu and place focus on the first item in the submenu. </li>
-              <li>If the menu item with focus is contained in a submenu opened from an item in a menubar, close the current menu and open the submenu associated with the next item in the menubar that has an associated submenu. </li>
-              <li>Either move focus to the next item in the current menu or do nothing. </li>
+              <li>If the focused <code>menuitem</code> has a submenu, opens the submenu and places focus on its first <code>menuitem</code>.</li>
+              <li>Otherwise, activates the focused <code>menuitem</code>, <code>menuitemcheckbox</code>, or <code>menuitemradio</code> and closes the menu.</li>
             </ul>
           </li>
-          <li><kbd>Left Arrow</kbd>: Perform the first of the following actions that applies:
+          <li><kbd>Space</kbd>: 
             <ul>
-              <li>If the menu item with focus is contained in a submenu opened from an item in a menubar, close the current menu and open the submenu associated with the previous item in the menubar that has an associated submenu. </li>
-              <li>If the menu item with focus is contained in a submenu, close the current menu and place focus on the menu item from which the submenu was opened. </li>
-              <li>Either move focus to the previous item in the current menu or do nothing. </li>
+              <li>If focus is on a <code>menuitemcheckbox</code>, changes the state without closing the menu.</li>
+              <li>If focus is on a <code>menuitemradio</code> that is not checked, without closing the menu, checks the focused <code>menuitemradio</code> and unchecks any other checked <code>menuitemradio</code> element in the same group.</li>
+              <li>Optionally, if the focused <code>menuitem</code> has a submenu, opens the submenu and places focus on its first <code>menuitem</code>.</li>
+              <li>Optionally, activates the focused <code>menuitem</code>.</li>
             </ul>
           </li>
-          <li>Any key that corresponds to a printable character: Move focus to   the next menu item in the current menu whose label begins with that printable character. </li>
-          <li><kbd>Escape</kbd>: Close the menu and return focus to   the element or context, e.g., menu button or parent menu item, from which the menu was opened. </li>
-          <li><kbd>Tab</kbd>: Close the menu and all open parent menus and move focus to the next element in the tab sequence.</li>
-          <li><kbd>Shift + Tab</kbd>: Close the menu and all open parent menus and move focus to the previous element in the tab sequence.</li>
+          <li><kbd>Down Arrow</kbd>:
+            <ul> 
+            <li>If the focused <code>menuitem</code> is in a vertical menu, moves focus to the next <code>menuitem</code>, optionally wrapping from the last to the first. </li>
+              <li>If the focused <code>menuitem</code> is in a horizontal menubar or menu and the <code>menuitem</code> has a submenu, opens the submenu and places focus on its first <code>menuitem</code>.</li>
+              <li>Otherwise, if the focused <code>menuitem</code> is in a horizontal submenu of a parent vertical menubar, closes the submenu and moves focus to the first <code>menuitem</code> contained in the submenu opened by the next <code>menuitem</code> in the parent menubar. </li>
+            </ul>
+          </li>
+          <li><kbd>Up Arrow</kbd>:
+            <ul> 
+            <li>If the focused <code>menuitem</code> is in a vertical menu, moves focus to the previous <code>menuitem</code>, optionally wrapping from the first to the last. </li>
+            <li>If the focused <code>menuitem</code> is in a horizontal submenu of a parent horizontal menu, closes the submenu and returns focus to the <code>menuitem</code> in the parent menu that opened the submenu. </li>
+            <li>Otherwise, if the focused <code>menuitem</code> is in a horizontal submenu of a parent vertical menubar, moves focus to the first <code>menuitem</code> contained in the submenu opened by the previous <code>menuitem</code> in the parent menubar. </li>
+            </ul>
+          </li>
+          <li><kbd>Right Arrow</kbd>: 
+            <ul>
+            <li>If the focused <code>menuitem</code> is in a horizontal menu, moves focus to the next <code>menuitem</code>, optionally wrapping from the last to the first. </li>
+              <li>If the focused <code>menuitem</code> is in a vertical menu and the <code>menuitem</code> has a submenu, opens the submenu and places focus on its first <code>menuitem</code>. </li>
+              <li>Otherwise, if the focused <code>menuitem</code> is in a vertical submenu of a parent horizontal menubar, closes the submenu and moves focus to the first <code>menuitem</code> contained in the submenu opened by the next <code>menuitem</code> in the parent menubar.</li>
+            </ul>
+          </li>
+          <li><kbd>Left Arrow</kbd>:
+          </li>
+          <ul>
+            <li>If the focused <code>menuitem</code> is in a horizontal menu, moves focus to the previous <code>menuitem</code>, optionally wrapping from the first to the last. </li>
+              <li>If the focused <code>menuitem</code> is in a vertical submenu of a parent vertical menu, closes the submenu and returns focus to the <code>menuitem</code> that opened the submenu.</li>
+              <li>Otherwise, if the focused <code>menuitem</code> is in a vertical submenu of a parent horizontal menubar, closes the submenu and moves focus to the first <code>menuitem</code> contained in the submenu opened by the previous <code>menuitem</code> in the parent menubar.</li>
+            </ul>
+          <li><kbd>Home</kbd>: If arrow key wrapping is not supported, moves focus to the first <code>menuitem</code> in the menu that contains focus.</li>
+          <li><kbd>End</kbd>: If arrow key wrapping is not supported, moves focus to the last <code>menuitem</code> in the menu that contains focus.</li>
+          <li>Any key that corresponds to a printable character: Move focus to   the next menu item in the current menu whose label begins with that printable character.</li>
+          <li><kbd>Escape</kbd>: Close the menu that contains focus and return focus to   the element or context, e.g., menu button or parent <code>menuitem</code>, from which the menu was opened. </li>
+          <li><kbd>Tab</kbd>: Moves focus to the next element in the tab sequence, and if the <code>menuitem</code> that had focus is not in a menubar, closes its menu and all open parent menus.</li>
+          <li><kbd>Shift + Tab</kbd>: Moves focus to the previous element in the tab sequence, and if the <code>menuitem</code> that had focus is not in a menubar, closes its menu and all open parent menus.</li>
         </ul>
         <ol class="note">
-          <li>The keyboard behaviors of a menubar are the same as other menus except that a menubar is typically visually persistent so the first item is in the tab sequence and <kbd>Escape</kbd>, <kbd>Tab</kbd>, and <kbd>Shift + Tab</kbd> do not close it. </li>
-          <li>If the items in a menu or menubar are arranged horizontally:
-            <ol>
-              <li> <kbd>Right Arrow</kbd> performs as <kbd>Down Arrow</kbd> is described above and vice versa. </li>
-              <li> <kbd>Left Arrow</kbd> performs as <kbd>Up Arrow</kbd> is described above and vice versa. </li>
-            </ol>
-          </li>
           <li>Disabled menu items should be focusable but can not be activated. </li>
           <li>A <a href="#separator" class="role-reference">separator</a> in a menu is not focusable or interactive.</li>
-          <li>If a menu is opened or a menubar receives focus as a result of a context action, <kbd>Escape</kbd> may return focus to   the invoking context. For example, a rich text editor may have a menubar that receives focus when a shortcut key, e.g., <kbd>alt + F10</kbd>, is pressed while editing. In this case, <kbd>Escape</kbd> may return focus to the editor. </li>
+          <li>
+            If a menu is opened or a menubar receives focus as a result of a context action, <kbd>Escape</kbd> or <kbd>Enter</kbd> may return focus to   the invoking context. 
+            For example, a rich text editor may have a menubar that receives focus when a shortcut key, e.g., <kbd>alt + F10</kbd>, is pressed while editing. 
+            In this case, <kbd>Escape</kbd> or activating a command from the menu may return focus to the editor.
+          </li>
+          <li>
+            Although it is recommended that authors avoid doing so, some implementations of navigation menubars may have <code>menuitem</code> elements that both perform a function and open a submenu.
+            In such implementations, <kbd>enter</kbd> and <kbd>Space</kbd> perform a navigation function, e.g., load new content,
+            while <kbd>Down Arrow</kbd>, in a horizontal menubar, opens the submenu associated with that same <code>menuitem</code>.
+          </li>
         </ol>
       </section>
 
