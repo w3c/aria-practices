@@ -574,7 +574,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/W3C-ED">
   <!--[if lt IE 9]><script src='https://www.w3.org/2008/site/js/html5shiv.js'></script><![endif]-->
   <link rel="canonical" href="https://www.w3.org/TR/wai-aria-practices-1.1/">
-  <meta name="generator" content="ReSpec 6.0.0">
+  <meta name="generator" content="ReSpec 6.0.2">
   <script id="initialUserConfig" type="application/json">
     {
       "doRDFa": "1.1",
@@ -953,7 +953,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <a class="logo" href="https://www.w3.org/"><img src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" alt="W3C" height="48" width="72"></a>
     </p>
     <h1 class="title p-name" id="title" property="dcterms:title"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Authoring Practices 1.1</h1>
-    <h2 id="w3c-editor-s-draft-30-october-2016"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2016-10-30">30 October 2016</time></h2>
+    <h2 id="w3c-editor-s-draft-31-october-2016"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2016-10-31">31 October 2016</time></h2>
     <dl>
       <dt>This version:</dt>
       <dd><a class="u-url" href="http://w3c.github.io/aria-practices/">http://w3c.github.io/aria-practices/</a></dd>
@@ -2200,44 +2200,76 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
       <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-9" property="bibo:hasPart">
         <h4 id="keyboard-interaction-9" resource="#keyboard-interaction-9"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
-        <p>When a menu opens and its items are arranged vertically:</p>
-        <ul>
-          <li>Keyboard focus is placed on the first item. All items in a menu are focusable as described in <a href="#kbd_general_within" class="sec-ref"><span class="secno">4.5</span> <span class="sec-title"> Keyboard Navigation Inside Components</span></a>.</li>
-          <li><kbd>Enter</kbd> and optionally <kbd>Space</kbd>: activate the menu item with focus (perform the command or open the submenu associated with the menu item). </li>
-          <li><kbd>Down Arrow</kbd> and <kbd>Up Arrow</kbd>: move focus to the next and previous items, respectively, optionally wrapping from last to first and vice versa. </li>
-          <li><kbd>Home</kbd> and <kbd>End</kbd>: If arrow key wrapping is not supported, move focus to first and last items.</li>
-          <li><kbd>Right Arrow</kbd>: Perform the first of the following actions that applies:
-            <ul>
-              <li>If the menu item with focus opens a submenu, open the submenu and place focus on the first item in the submenu. </li>
-              <li>If the menu item with focus is contained in a submenu opened from an item in a menubar, close the current menu and open the submenu associated with the next item in the menubar that has an associated submenu. </li>
-              <li>Either move focus to the next item in the current menu or do nothing. </li>
-            </ul>
-          </li>
-          <li><kbd>Left Arrow</kbd>: Perform the first of the following actions that applies:
-            <ul>
-              <li>If the menu item with focus is contained in a submenu opened from an item in a menubar, close the current menu and open the submenu associated with the previous item in the menubar that has an associated submenu. </li>
-              <li>If the menu item with focus is contained in a submenu, close the current menu and place focus on the menu item from which the submenu was opened. </li>
-              <li>Either move focus to the previous item in the current menu or do nothing. </li>
-            </ul>
-          </li>
-          <li>Any key that corresponds to a printable character: Move focus to the next menu item in the current menu whose label begins with that printable character. </li>
-          <li><kbd>Escape</kbd>: Close the menu and return focus to the element or context, e.g., menu button or parent menu item, from which the menu was opened. </li>
-          <li><kbd>Tab</kbd>: Close the menu and all open parent menus and move focus to the next element in the tab sequence.</li>
-          <li><kbd>Shift + Tab</kbd>: Close the menu and all open parent menus and move focus to the previous element in the tab sequence.</li>
-        </ul>
         <div class="note">
           <div class="note-title marker" aria-level="5" role="heading" id="h-note15"><span>Note</span></div>
+          <p class="">
+            Significant revisions to this keyboard subsection were made on October 31. Please provide feedback in <a href="https://github.com/w3c/aria-practices/issues/120">issue 120</a>.
+          </p>
+        </div>
+        <ul>
+          <li>
+            When a <code>menu</code> opens, or when a <code>menubar</code> receives focus, keyboard focus is placed on the first <code>menuitem</code>. All <code>menuitems</code> in a menu are focusable as described in <a href="#kbd_general_within" class="sec-ref"><span class="secno">4.5</span> <span class="sec-title"> Keyboard Navigation Inside Components</span></a>.
+          </li>
+          <li><kbd>Enter</kbd>:
+            <ul>
+              <li>If the focused <code>menuitem</code> has a submenu, opens the submenu and places focus on its first <code>menuitem</code>.</li>
+              <li>Otherwise, activates the focused <code>menuitem</code>, <code>menuitemcheckbox</code>, or <code>menuitemradio</code> and closes the menu.</li>
+            </ul>
+          </li>
+          <li><kbd>Space</kbd>:
+            <ul>
+              <li>If focus is on a <code>menuitemcheckbox</code>, changes the state without closing the menu.</li>
+              <li>If focus is on a <code>menuitemradio</code> that is not checked, without closing the menu, checks the focused <code>menuitemradio</code> and unchecks any other checked <code>menuitemradio</code> element in the same group.</li>
+              <li>Optionally, if the focused <code>menuitem</code> has a submenu, opens the submenu and places focus on its first <code>menuitem</code>.</li>
+              <li>Optionally, activates the focused <code>menuitem</code>.</li>
+            </ul>
+          </li>
+          <li><kbd>Down Arrow</kbd>:
+            <ul>
+              <li>If the focused <code>menuitem</code> is in a vertical menu, moves focus to the next <code>menuitem</code>, optionally wrapping from the last to the first. </li>
+              <li>If the focused <code>menuitem</code> is in a horizontal menubar or menu and the <code>menuitem</code> has a submenu, opens the submenu and places focus on its first <code>menuitem</code>.</li>
+              <li>Otherwise, if the focused <code>menuitem</code> is in a horizontal submenu of a parent vertical menubar, closes the submenu and moves focus to the first <code>menuitem</code> contained in the submenu opened by the next <code>menuitem</code> in the parent menubar. </li>
+            </ul>
+          </li>
+          <li><kbd>Up Arrow</kbd>:
+            <ul>
+              <li>If the focused <code>menuitem</code> is in a vertical menu, moves focus to the previous <code>menuitem</code>, optionally wrapping from the first to the last. </li>
+              <li>If the focused <code>menuitem</code> is in a horizontal submenu of a parent horizontal menu, closes the submenu and returns focus to the <code>menuitem</code> in the parent menu that opened the submenu. </li>
+              <li>Otherwise, if the focused <code>menuitem</code> is in a horizontal submenu of a parent vertical menubar, moves focus to the first <code>menuitem</code> contained in the submenu opened by the previous <code>menuitem</code> in the parent menubar. </li>
+            </ul>
+          </li>
+          <li><kbd>Right Arrow</kbd>:
+            <ul>
+              <li>If the focused <code>menuitem</code> is in a horizontal menu, moves focus to the next <code>menuitem</code>, optionally wrapping from the last to the first. </li>
+              <li>If the focused <code>menuitem</code> is in a vertical menu and the <code>menuitem</code> has a submenu, opens the submenu and places focus on its first <code>menuitem</code>. </li>
+              <li>Otherwise, if the focused <code>menuitem</code> is in a vertical submenu of a parent horizontal menubar, closes the submenu and moves focus to the first <code>menuitem</code> contained in the submenu opened by the next <code>menuitem</code> in the parent menubar.</li>
+            </ul>
+          </li>
+          <li><kbd>Left Arrow</kbd>:
+          </li>
+          <ul>
+            <li>If the focused <code>menuitem</code> is in a horizontal menu, moves focus to the previous <code>menuitem</code>, optionally wrapping from the first to the last. </li>
+            <li>If the focused <code>menuitem</code> is in a vertical submenu of a parent vertical menu, closes the submenu and returns focus to the <code>menuitem</code> that opened the submenu.</li>
+            <li>Otherwise, if the focused <code>menuitem</code> is in a vertical submenu of a parent horizontal menubar, closes the submenu and moves focus to the first <code>menuitem</code> contained in the submenu opened by the previous <code>menuitem</code> in the parent menubar.</li>
+          </ul>
+          <li><kbd>Home</kbd>: If arrow key wrapping is not supported, moves focus to the first <code>menuitem</code> in the menu that contains focus.</li>
+          <li><kbd>End</kbd>: If arrow key wrapping is not supported, moves focus to the last <code>menuitem</code> in the menu that contains focus.</li>
+          <li>Any key that corresponds to a printable character: Move focus to the next menu item in the current menu whose label begins with that printable character.</li>
+          <li><kbd>Escape</kbd>: Close the menu that contains focus and return focus to the element or context, e.g., menu button or parent <code>menuitem</code>, from which the menu was opened. </li>
+          <li><kbd>Tab</kbd>: Moves focus to the next element in the tab sequence, and if the <code>menuitem</code> that had focus is not in a menubar, closes its menu and all open parent menus.</li>
+          <li><kbd>Shift + Tab</kbd>: Moves focus to the previous element in the tab sequence, and if the <code>menuitem</code> that had focus is not in a menubar, closes its menu and all open parent menus.</li>
+        </ul>
+        <div class="note">
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note16"><span>Note</span></div>
           <ol class="">
-            <li>The keyboard behaviors of a menubar are the same as other menus except that a menubar is typically visually persistent so the first item is in the tab sequence and <kbd>Escape</kbd>, <kbd>Tab</kbd>, and <kbd>Shift + Tab</kbd> do not close it. </li>
-            <li>If the items in a menu or menubar are arranged horizontally:
-              <ol>
-                <li> <kbd>Right Arrow</kbd> performs as <kbd>Down Arrow</kbd> is described above and vice versa. </li>
-                <li> <kbd>Left Arrow</kbd> performs as <kbd>Up Arrow</kbd> is described above and vice versa. </li>
-              </ol>
-            </li>
             <li>Disabled menu items should be focusable but can not be activated. </li>
             <li>A <a href="http://w3c.github.io/aria/aria/aria.html#separator" class="role-reference">separator</a> in a menu is not focusable or interactive.</li>
-            <li>If a menu is opened or a menubar receives focus as a result of a context action, <kbd>Escape</kbd> may return focus to the invoking context. For example, a rich text editor may have a menubar that receives focus when a shortcut key, e.g., <kbd>alt + F10</kbd>, is pressed while editing. In this case, <kbd>Escape</kbd> may return focus to the editor. </li>
+            <li>
+              If a menu is opened or a menubar receives focus as a result of a context action, <kbd>Escape</kbd> or <kbd>Enter</kbd> may return focus to the invoking context. For example, a rich text editor may have a menubar that receives focus when a shortcut key, e.g., <kbd>alt + F10</kbd>, is pressed while editing. In this case, <kbd>Escape</kbd> or activating a command from the menu may return focus to the editor.
+            </li>
+            <li>
+              Although it is recommended that authors avoid doing so, some implementations of navigation menubars may have <code>menuitem</code> elements that both perform a function and open a submenu. In such implementations, <kbd>enter</kbd> and <kbd>Space</kbd> perform a navigation function, e.g., load new content, while <kbd>Down Arrow</kbd>, in a horizontal menubar, opens the submenu associated with that same <code>menuitem</code>.
+            </li>
           </ol>
         </div>
       </section>
@@ -2266,7 +2298,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <li>All <a href="http://w3c.github.io/aria/aria/aria.html#separator" class="role-reference">separators</a> should have <a href="http://w3c.github.io/aria/aria/aria.html#aria-orientation" class="property-reference">aria-orientation</a> consistent with the separator's orientation. </li>
         </ul>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note16"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note17"><span>Note</span></div>
           <p class="">If <a href="http://w3c.github.io/aria/aria/aria.html#aria-owns" class="property-reference">aria-owns</a> is set on the menu container to include elements that are not DOM children of the container, those elements will appear in the reading order in the sequence they are referenced and after any items that are DOM children. Scripts that manage focus need to ensure the visual focus order matches this assistive technology reading order. </p>
         </div>
       </section>
@@ -2344,7 +2376,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           </li>
         </ul>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note17"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note18"><span>Note</span></div>
           <p class="">
             The behavior of the <kbd>Tab</kbd> key described above differs slightly from the behavior provided by some browsers for native HTML radio groups. In some browsers, if none of the radio buttons are selected, <kbd>Shift+Tab</kbd> places focus on the last radio button instead of the first radio button.
           </p>
@@ -2412,7 +2444,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </ul>
 
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note18"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note19"><span>Note</span></div>
           <ol class="">
             <li>Focus is placed on the slider (the visual object that the mouse user would move, also known as the thumb) </li>
             <li>In some circumstances, an author may reverse the direction of the value change for the keys specified above, e.g., make <kbd>Up Arrow</kbd> decrease the value, if the author is certain doing so will result in a better user experience. </li>
@@ -2469,7 +2501,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </ul>
 
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note19"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note20"><span>Note</span></div>
           <ol class="">
             <li>Focus is placed on one of the thumbs of the slider.</li>
             <li>All thumbs are in the tab order.</li>
@@ -2492,7 +2524,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <section class="notoc" typeof="bibo:Chapter" resource="#example-12" property="bibo:hasPart">
         <h4 id="example-12" resource="#example-12"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note20"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note21"><span>Note</span></div>
           <p class="">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG task force is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
         </div>
 
@@ -2526,7 +2558,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <li><kbd>Tab</kbd> key moves into and out of the widget. </li>
         </ul>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note21"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note22"><span>Note</span></div>
           <p class="">Focus should remain on the edit field </p>
         </div>
       </section>
@@ -2543,7 +2575,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <section class="notoc" typeof="bibo:Chapter" resource="#example-13" property="bibo:hasPart">
         <h4 id="example-13" resource="#example-13"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note22"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note23"><span>Note</span></div>
           <p class="">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG task force is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
         </div>
         <ul>
@@ -2623,7 +2655,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           </li>
         </ul>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note23"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note24"><span>Note</span></div>
           <ol class="">
             <li>
               It is recommended that tabs activate automatically when they receive focus as long as their associated tab panels are displayed without noticeable latency. This typically requires tab panel content to be preloaded. Otherwise, automatic activation slows focus movement, which significantly hampers users' ability to navigate efficiently across the tab list.
@@ -2696,7 +2728,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           </li>
         </ul>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note24"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note25"><span>Note</span></div>
           <ol class="">
             <li>If the items in a toolbar are arranged vertically:
               <ol>
@@ -2722,7 +2754,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <section class="notoc" typeof="bibo:Chapter" resource="#example-15" property="bibo:hasPart">
         <h4 id="example-15" resource="#example-15"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note25"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note26"><span>Note</span></div>
           <p class="">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG task force is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
         </div>
         <ul>
@@ -2746,7 +2778,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
         <p><kbd>Escape</kbd>: Dismisses the Tooltip.</p>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note26"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note27"><span>Note</span></div>
           <ol class="">
             <li>The trigger element to which the tooltip is attached, e.g., a link, should never actually lose input focus. </li>
             <li>If the tooltip is invoked when the trigger element gets focus, then it should be dismissed when it no longer has focus (onBlur). If the tooltip is invoked with mouseIn, then it should be dismissed with a mouseOut. </li>
@@ -2766,7 +2798,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <section class="notoc" typeof="bibo:Chapter" resource="#example-16" property="bibo:hasPart">
         <h4 id="example-16" resource="#example-16"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note27"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note28"><span>Note</span></div>
           <p class="">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG task force is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
         </div>
         <ul>
@@ -2936,7 +2968,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </ul>
 
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note28"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note29"><span>Note</span></div>
           <p class="">A fixed size splitter simply omits implementation of the arrow keys. </p>
         </div>
       </section>
@@ -2954,7 +2986,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <section class="notoc" typeof="bibo:Chapter" resource="#example-17" property="bibo:hasPart">
         <h4 id="example-17" resource="#example-17"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note29"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note30"><span>Note</span></div>
           <p class="">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG task force is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
         </div>
         <ul>
@@ -3729,7 +3761,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </h4>
 
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note30"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note31"><span>Note</span></div>
           <p class="">Not yet edited ... considering what should be written/included. We don't want to write a javascript book.</p>
         </div>
 
@@ -3768,7 +3800,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </h3>
 
       <div class="note">
-        <div class="note-title marker" aria-level="4" role="heading" id="h-note31"><span>Note</span></div>
+        <div class="note-title marker" aria-level="4" role="heading" id="h-note32"><span>Note</span></div>
         <p class="">
           MCK: unedited content pulled together from the old guide that needs a significant re-write. Please ignore this section for now.
         </p>
@@ -4056,7 +4088,7 @@ helper.stopEvent(evt); <span class="hljs-comment">//stop the event if not a tab 
         </p>
 
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note32"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note33"><span>Note</span></div>
           <p class="">
             In the following sections, <kbd>meta</kbd> key refers to the <kbd>Windows</kbd> key on Windows-compatible keyboards and the <kbd>Command</kbd> key on MacOS-compatible keyboards.
           </p>
@@ -4186,7 +4218,7 @@ helper.stopEvent(evt); <span class="hljs-comment">//stop the event if not a tab 
       </h3>
 
       <div class="note">
-        <div class="note-title marker" aria-level="4" role="heading" id="h-note33"><span>Note</span></div>
+        <div class="note-title marker" aria-level="4" role="heading" id="h-note34"><span>Note</span></div>
         <p class="">MCK: this section is a collection of keyboard related old content with a yet undecided fate.</p>
       </div>
 
