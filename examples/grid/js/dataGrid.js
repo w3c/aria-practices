@@ -36,6 +36,10 @@ aria.SortType = {
   NONE: 'none'
 };
 
+/**
+ * @desc
+ *  DOM Selectors to find the grid components
+ */
 aria.GridSelector = {
   ROW: 'tr, [role="row"]',
   CELL: 'th, td, [role="gridcell"]'
@@ -658,6 +662,10 @@ aria.Grid.prototype.showFromRow = function (startIndex, scrollDown) {
   }
 };
 
+/**
+ * @desc
+ *  Throttle restructuring to only happen every 300ms
+ */
 aria.Grid.prototype.checkRestructureGrid = function () {
   if (this.waitingToRestructure) {
     return;
@@ -668,6 +676,10 @@ aria.Grid.prototype.checkRestructureGrid = function () {
   setTimeout(this.restructureGrid.bind(this), 300);
 };
 
+/**
+ * @desc
+ *  Restructure grid based on the size.
+ */
 aria.Grid.prototype.restructureGrid = function () {
   this.waitingToRestructure = false;
 
