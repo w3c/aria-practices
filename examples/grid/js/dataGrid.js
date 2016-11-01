@@ -864,7 +864,8 @@ aria.Grid.prototype.toggleColumn = function (columnIndex, isShown) {
     function (cell) {
       if (isShown) {
         aria.Utils.removeClass(cell, aria.CSSClass.HIDDEN);
-      } else {
+      }
+      else {
         aria.Utils.addClass(cell, aria.CSSClass.HIDDEN);
       }
     }
