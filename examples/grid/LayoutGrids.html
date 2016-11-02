@@ -55,8 +55,8 @@
             However, the end game is to make the grid structure dependent on what the css does, ie, the css determines the number of columns.
           -->
           <h4 id="grid1_label">Related Documents</h4>
-          <div role="grid" aria-labelledby="grid1_label">
-            <div role="row" class="list-links">
+          <div role="grid" class="list-links" aria-labelledby="grid1_label" data-wrap-cols="true" data-wrap-rows="true" data-restructure="true">
+            <div role="row">
               <span role="gridcell" class="list-link"><a tabindex="-1" href="http://www.w3.org/TR/wai-aria-1.1/">ARIA 1.1 Specification</a></span>
               <span role="gridcell" class="list-link"><a tabindex="-1" href="https://www.w3.org/TR/core-aam-1.1/">Core Accessibility API Mappings 1.1</a></span>
               <span role="gridcell" class="list-link"><a tabindex="-1" href="https://www.w3.org/WAI/intro/aria.php">WAI-ARIA Overview</a></span>
@@ -101,7 +101,7 @@
             I am assuming the remove icon buttons will be the typical X icon; I just put a letter X in the span as a placeholder.
            -->
           <span id="send_to_label">Send To:</span>
-          <div role="grid" class="pill-list" aria-labelledby="send_to_label"  data-wrap-cells="true">
+          <div role="grid" class="pill-list" aria-labelledby="send_to_label"  data-wrap-cols="true">
             <div role="row" class="pill-item" data-id="1">
               <span role="gridcell"><a id="r1" class="pill-name" tabindex="-1" href="#">Recipient Name 1</a></span>
               <span role="gridcell"><span id="rb1" class="pill-remove" tabindex="-1" role="button" aria-label="Remove" aria-labelledby="rb1 r1"> X </span></span>
@@ -134,7 +134,7 @@
       </p>
       <div aria-labelledby="ex3_label" role="region">
         <div id="ex3">
-          <div role="grid" aria-label="Search Results" aria-rowcount="19" aria-colcount="3" data-per-page="5">
+          <div role="grid" aria-label="Search Results" aria-rowcount="19" aria-colcount="3" data-per-page="5" data-wrap-cols="true">
             <div role="row">
               <span role="gridcell"><h3>
                   <a tabindex="-1" href="https://www.w3.org/WAI/intro/aria">WAI-ARIA Overview
