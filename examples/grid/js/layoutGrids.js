@@ -17,26 +17,53 @@ window.addEventListener('load', function () {
   var pillList = new PillList(
     ex2Grid,
     document.getElementById('add-recipient-input'),
-    document.getElementById('add-recipient-button')
+    document.getElementById('add-recipient-button'),
+    document.getElementById('form-action-text')
   );
 });
 
-function PillList (grid, input, submitButton) {
+function PillList (grid, input, submitButton, formUpdateText) {
   // Hardcoded to work for example 2
-  this.pillIDs = [1, 2];
+  this.pillIDs = {length: 2, 1: true, 2: true};
   this.nextPillID = 3;
   this.grid = grid;
   this.input = input;
   this.submitButton = submitButton;
+  this.formUpdateText = formUpdateText;
 
-  this.submitButton.addEventListener('click', this.addPillItem.bind(this));
+  this.input.addEventListener('keydown', this.checkSubmitItem.bind(this));
+  this.submitButton.addEventListener('click', this.submitItemForm.bind(this));
   this.grid.gridNode.addEventListener('click', this.checkRemovePill.bind(this));
   this.grid.gridNode.addEventListener('keydown', this.checkRemovePill.bind(this));
 };
 
-PillList.prototype.addPillItem = function () {
+PillList.prototype.checkSubmitItem = function (event) {
+  var key = event.which || event.keyCode;
+
+  if (key === aria.KeyCode.RETURN) {
+    this.submitItemForm();
+  }
+};
+
+PillList.prototype.getRecipientsString = function () {
+  var recipientCount = this.pillIDs.length;
+  if (recipientCount === 1) {
+    return '1 recipient total.';
+  } else {
+    return recipientCount + ' recipients total.';
+  }
+};
+
+PillList.prototype.submitItemForm = function () {
+  var newItem = this.input.value;
+  this.addPillItem(newItem);
+  this.input.value = '';
+  this.input.focus();
+  this.formUpdateText.innerText = newItem + " added. " + this.getRecipientsString();
+};
+
+PillList.prototype.addPillItem = function (recipientName) {
   var id = this.nextPillID;
-  var recipientName = this.input.value;
 
   if (!recipientName) {
     return;
@@ -70,11 +97,12 @@ PillList.prototype.addPillItem = function () {
   }
 
   this.nextPillID++;
-  this.input.value = '';
+  this.pillIDs[id] = true;
+  this.pillIDs.length++;
 };
 
 PillList.prototype.checkRemovePill = function (event) {
-  var pillItem, nextCell;
+  var pillItem, pillID, pillName;
   var isClickEvent = (event.type === 'click');
   var key = event.which || event.keyCode;
 
@@ -86,10 +114,16 @@ PillList.prototype.checkRemovePill = function (event) {
 
   if (event.target.className === 'pill-remove') {
     pillItem = event.target.parentNode.parentNode;
+    pillID = pillItem.getAttribute('data-id');
+    pillName = pillItem.querySelector('.pill-name').innerText;
   }
   else {
     return;
   }
+
+  delete this.pillIDs[pillID];
+  this.pillIDs.length--;
+  this.formUpdateText.innerText = pillName + " removed. " + this.getRecipientsString();
 
   pillItem.remove();
   this.grid.setupFocusGrid();

@@ -42,7 +42,10 @@ aria.SortType = {
  */
 aria.GridSelector = {
   ROW: 'tr, [role="row"]',
-  CELL: 'th, td, [role="gridcell"]'
+  CELL: 'th, td, [role="gridcell"]',
+  SCROLL_ROW: 'tr:not([data-fixed]), [role="row"]',
+  SORT_HEADER: 'th[aria-sort]',
+  TABBABLE: '[tabindex="0"]'
 };
 
 /**
@@ -530,7 +533,7 @@ aria.Grid.prototype.handleSort = function (headerNode) {
   this.setupFocusGrid();
 
   Array.prototype.forEach.call(
-    this.gridNode.querySelectorAll('th[aria-sort]'),
+    this.gridNode.querySelectorAll(aria.GridSelector.SORT_HEADER),
     function (headerCell) {
       headerCell.setAttribute('aria-sort', aria.SortType.NONE);
     }
@@ -547,7 +550,7 @@ aria.Grid.prototype.handleSort = function (headerNode) {
  *  Comparison function to sort the rows
  */
 aria.Grid.prototype.sortRows = function (compareFn) {
-  var rows = this.gridNode.querySelectorAll('tr, [role="row"]');
+  var rows = this.gridNode.querySelectorAll(aria.GridSelector.ROW);
   var rowWrapper = rows[0].parentNode;
   var dataRows = Array.prototype.slice.call(rows, 1);
 
@@ -563,10 +566,10 @@ aria.Grid.prototype.sortRows = function (compareFn) {
  *  Adds aria-rowindex and aria-colindex to the cells in the grid
  */
 aria.Grid.prototype.setupIndices = function () {
-  var rows = this.gridNode.querySelectorAll('tr');
+  var rows = this.gridNode.querySelectorAll(aria.GridSelector.ROW);
 
   for (var row = 0; row < rows.length; row++) {
-    var cols = rows[row].querySelectorAll('td, th');
+    var cols = rows[row].querySelectorAll(aria.GridSelector.CELL);
 
     for (var col = 0; col < cols.length; col++) {
       cols[col].setAttribute('aria-rowindex', row + 1);
@@ -629,7 +632,7 @@ aria.Grid.prototype.checkPageChange = function (event) {
  */
 aria.Grid.prototype.showFromRow = function (startIndex, scrollDown) {
   var dataRows =
-    this.gridNode.querySelectorAll('tr:not([data-fixed]), [role="row"]');
+    this.gridNode.querySelectorAll(aria.GridSelector.SCROLL_ROW);
   var reachedTop = false;
 
   if (startIndex < 0 || startIndex >= dataRows.length) {
@@ -687,7 +690,7 @@ aria.Grid.prototype.restructureGrid = function () {
   var cells = this.gridNode.querySelectorAll(aria.GridSelector.CELL);
   var currentWidth = 0;
 
-  var focusedElement = this.gridNode.querySelector('[tabindex="0"]');
+  var focusedElement = this.gridNode.querySelector(aria.GridSelector.TABBABLE);
   var shouldRefocus = (document.activeElement === focusedElement);
   var focusedIndex = (this.focusedRow * this.grid[0].length + this.focusedCol);
 
