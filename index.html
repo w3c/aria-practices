@@ -1520,7 +1520,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <ul>
         <li>
           Toggle button: A two-state button that can be either off (not pressed) or on (pressed). To tell assistive technologies that a button is a toggle button, specify a value for the attribute <a href="http://w3c.github.io/aria/aria/aria.html#aria-pressed" class="state-reference">aria-pressed</a>. For example, a button labeled mute in an audio player could indicate that sound is muted by setting the pressed state true.
-          <strong>Important:</strong> the label on a toggle button should never change when the state changes. In this example, when the pressed state is true, the label should not change to "Unmute"" or "Muted."
+          <strong>Important:</strong> it is critical the label on a toggle does not change when its state changes. In this example, when the pressed state is true, the label should remain “Mute” so a screen reader will say something like “Mute toggle button pressed”. Alternatively, if the design were to call for the button label to change from “Mute” to “Unmute,” the aria-pressed attribute would not be needed.
         </li>
         <li>Menu button: as described in the <a href="#menubutton">menu button pattern</a>, a button will be revealed to assistive technologies as a menu button if it has the property <a href="http://w3c.github.io/aria/aria/aria.html#aria-haspopup" class="property-reference">aria-haspopup</a> set true.</li>
       </ul>
