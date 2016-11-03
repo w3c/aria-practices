@@ -49,7 +49,8 @@ PillList.prototype.getRecipientsString = function () {
   var recipientCount = this.pillIDs.length;
   if (recipientCount === 1) {
     return '1 recipient total.';
-  } else {
+  }
+  else {
     return recipientCount + ' recipients total.';
   }
 };
@@ -59,7 +60,7 @@ PillList.prototype.submitItemForm = function () {
   this.addPillItem(newItem);
   this.input.value = '';
   this.input.focus();
-  this.formUpdateText.innerText = newItem + " added. " + this.getRecipientsString();
+  this.formUpdateText.innerText = newItem + ' added. ' + this.getRecipientsString();
 };
 
 PillList.prototype.addPillItem = function (recipientName) {
@@ -123,7 +124,7 @@ PillList.prototype.checkRemovePill = function (event) {
 
   delete this.pillIDs[pillID];
   this.pillIDs.length--;
-  this.formUpdateText.innerText = pillName + " removed. " + this.getRecipientsString();
+  this.formUpdateText.innerText = pillName + ' removed. ' + this.getRecipientsString();
 
   pillItem.remove();
   this.grid.setupFocusGrid();
