@@ -2,6 +2,16 @@
 	display: none !important;
 }
 
+.accessible_elem {
+	clip: rect(1px 1px 1px 1px);
+	clip: rect(1px, 1px, 1px, 1px);
+	height: 1px;
+	overflow: hidden;
+	position: absolute;
+	white-space: nowrap;
+	width: 1px;
+}
+
 .list-links {
   font-size: 0px;
 }
@@ -18,8 +28,29 @@
   width: 120px;
 }
 
+.recipient-list {
+	background: #eee;
+	border: 1px solid #ddd;
+	margin-bottom: 10px;
+  padding: 5px 15px;
+  position: relative;
+}
+
+#send_to_label {
+	font-size: 14px;
+	font-weight: bold;
+	position: absolute;
+	top: 1.2em;
+}
+
 .pill-list {
-  margin-bottom: 5px;
+	background: white;
+	border: 1px solid #ccc;
+	font-size: 0;
+	margin-bottom: 5px;
+	margin-left: 65px;
+	min-height: 31px;
+	padding: 0 5px 5px;
 }
 
 .pill-item {
@@ -28,8 +59,9 @@
   border-radius: 2px;
   color: #acc1e4;
   display: inline-block;
-  margin: 5px 5px 5px 0;
-  padding: .5em;
+	font-size: 14px;
+  margin: 5px 5px 0 0;
+  padding: .3em;
 }
 
 .pill-name {
@@ -39,6 +71,10 @@
 .pill-remove {
   cursor: default;
   margin-left: 10px;
+}
+
+#recipient-form {
+	margin-left: 65px;
 }
 
 #add-recipient-input {
