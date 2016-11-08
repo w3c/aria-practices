@@ -1630,141 +1630,194 @@
     <section class="widget" id="TreeView">
       <h3>Tree View</h3>
       <p>
-        A tree view is a component to navigate hierarchical lists.
-        It is made up of one or more top level nodes.
-        A node may have children or it may be an end node.
-        Nodes with children can be expanded or collapsed - when expanded its child nodes are visible.
-        When collapsed the children are not visible.
-        There is generally some sort of visual indication whether a node has children and can be expanded.
-        Any number of nodes can be expanded at a time and child nodes may contain children.
+        A tree view widget presents a hierarchical list.
+        Any item in the hierarchy may have child items, and items that have children may be expanded or collapsed to show or hide the children.
+        For example, in a file system navigator that uses a tree view to display folders and files,
+        An item representing a folder can be expanded to reveal the contents of the folder, which may be files, folders, or both.
       </p>
-      <p>
-        An example of a Tree View is a File Navigator where a tree view is used to navigate the directories and files on a file system.
-        The directory nodes can be expanded and collapsed to reveal its contained subdirectories and files.
-        Terms for understanding tree views include:
-      </p>
+      <p>Terms for understanding tree views include:</p>
       <dl>
-        <dt>node</dt>
+        <dt>Node</dt>
         <dd>An item in a tree. </dd>
-        <dt>parent node</dt>
-        <dd>Node with children. It can be opened / expanded or closed / collapsed </dd>
-        <dt>open node</dt>
-        <dd>Expanded node with children; first-level children are visible. </dd>
-        <dt>closed node</dt>
-        <dd>Closed node with children; the children are not visible. </dd>
-        <dt>end node</dt>
-        <dd>Node with no children </dd>
+        <dt>Root Node</dt>
+        <dd>Node at the base of the tree; it may have one or more child nodes but does not have a parent node.</dd>
+        <dt>Child Node</dt>
+        <dd>Node that has a parent; any node that is not a root node is a child node.</dd>
+        <dt>End Node</dt>
+        <dd>Node that does not have any child nodes; an end node may be either a root node or a child node.</dd>
+        <dt>Parent Node</dt>
+        <dd>Node with one or more child nodes. It can be open (expanded) or closed (collapsed).</dd>
+        <dt>Open Node</dt>
+        <dd>Parent node that is expanded so its child nodes are visible.</dd>
+        <dt>Closed Node</dt>
+        <dd>Parent node that is collapsed so the child nodes are not visible.</dd>
       </dl>
-
-      <p>Nodes can be focused and/or selected. There must be visual distinction between focused and selected nodes. </p>
+      <p>
+        When using a keyboard to navigate a tree, a visual keyboard indicator informs the user which node is focused.
+        If the tree allows the user to choose just one item for the object of an action, then it is known as a single-select tree, and the item with focus also has a selected state.
+        However, in multi-select trees, which enable the user to select more than one item for an action, the selected state is independent of the focus. 
+        For example, in a typical file system navigator, the user can move focus to select any number of files for an action, such as copy or move.
+        It is important that the visual design distinguish between items that are selected and the item that has focus.
+        For more details, see <a href="#kbd_focus_vs_selection">this description of differences between focus and selection.</a>
+      </p>
 
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
+        <p>For a vertically oriented tree:</p>
         <ul>
-          <li>On first load of the tree component, the top level node is in the tab order. </li>
-          <li>One and only one node of the tree component is in the tab order of the page at any time. </li>
-          <li>The last visited node in the tree control is retained in the tab order when the user navigates away from the tree control. </li>
-          <li>Arrowing to an item with the keyboard will focus and select the node. Any previous selections are cleared </li>
-          <li><kbd>Up Arrow</kbd> and <kbd>Down arrow</kbd> keys move between visible nodes. </li>
-          <li><kbd>Left arrow</kbd> key on an expanded node closes the node. </li>
-          <li><kbd>Left arrow</kbd> key on a closed or end node moves focus to the node's parent. </li>
-          <li><kbd>Right arrow</kbd> key expands a closed node, moves to the first child of an open node, or does nothing on an end node. </li>
-          <li><kbd>Enter</kbd> key performs the default action on end nodes. </li>
-          <li>Typing a letter key moves focus to the next instance of a visible node whose title begins with that letter. </li>
-          <li><kbd>Home</kbd> key moves to the top node in the tree view. </li>
-          <li><kbd>End</kbd> key moves to the last visible node in the tree view. </li>
-          <li><kbd>Control + Arrow</kbd> to an item with the keyboard focuses the item (but does not select it). Previous selections are maintained, provided that the <kbd>Control</kbd> key is not released or that some other keyboard function is not performed. </li>
-          <li><kbd>Control + Space</kbd> with focus on an item toggles the selection of the item. </li>
-          <li><kbd>Shift + Up Arrow</kbd> extends selection up one node. </li>
-          <li><kbd>Shift + Down Arrow</kbd> extends selection down one node. </li>
-          <li><kbd>Shift + Home</kbd> extends selection up to the top-most node. </li>
-          <li><kbd>Shift + End</kbd> extends selection down to the last node. </li>
-          <li><kbd>*</kbd>(asterisk) - on numeric keypad (optional) expands all siblings at the current node's level. </li>
+          <li> When a single-select tree receives focus:
+            <ul>
+              <li>If none of the nodes are selected before the tree receives focus, the first node receives focus.</li>
+              <li>If a node is selected before the tree receives focus, focus is set on the selected node. </li>
+            </ul>
+          </li>
+          <li>When a multi-select tree receives focus:
+            <ul>
+              <li>If none of the nodes are selected before the tree receives focus, focus is set on the first node.</li>
+              <li>If one or more nodes are selected before the tree receives focus, focus is set on the first node in the tree that is selected.</li>
+            </ul>
+          </li>
+          <li><kbd>Right arrow</kbd>:
+            <ul>
+              <li>When focus is on a closed node, opens the node; focus does not move.</li>
+              <li>When focus is on a open node, moves focus to the first child node.</li>
+              <li>When focus is on an end node, does nothing.</li>
+            </ul>
+           </li>
+          <li><kbd>Left arrow</kbd>:
+            <ul>
+              <li>When focus is on an open node, closes the node.</li>
+              <li>When focus is on a child node that is also either an end node or a closed node, moves focus to its parent node.</li>
+              <li>When focus is on a root node that is also either an end node or a closed node, does nothing.</li>
+            </ul>
+           </li>
+          <li><kbd>Down Arrow</kbd>: Moves focus to the next node that is focusable without opening or closing a node.</li>
+          <li><kbd>Up Arrow</kbd>: Moves focus to the previous node that is focusable without opening or closing a node.</li>
+          <li><kbd>Home</kbd>: Moves focus to the first node in the tree.</li>
+          <li><kbd>End</kbd>: Moves focus to the last node in the tree that is focusable without opening a node.</li>
+          <li><kbd>Enter</kbd>: activates a node, i.e., performs its default action. For parent nodes, one possible default action is to open or close the node. In single-select trees where selection does not follow focus (see note below), the default action is typically to select the focused node.</li>
+          <li>Type-ahead is recommended for all lists, but considered essential for large trees (typically more than 5 nodes per level):
+            <ul>
+              <li>Type a character: focus moves to the next node with a name that starts with the typed character.</li>
+              <li>Type multiple characters in rapid succession: focus moves to the next node with a name that starts with the string of characters typed.</li>
+            </ul>
+          </li>
+          <li><kbd>*</kbd> (Optional): Expands all siblings that are at the same level as the current node.</li>
+          <li><strong>Selection in multi-select trees:</strong>
+          Authors may implement either of two interaction models to support multiple selection: a recommended model that does not require the user to hold a modifier key, such as <kbd>Shift</kbd> or <kbd>Control</kbd>, while navigating the list
+          or an alternative model that does require modifier keys to be held while navigating in order to avoid losing selection states.
+            <ul>
+              <li>Recommended selection model -- holding a modifier key while moving focus is not necessary:
+                <ul>
+                  <li><kbd>Space</kbd>: changes the selection state of the focused node.</li>
+                  <li><kbd>Shift + Down Arrow</kbd> (optional): move focus to and select the next node.</li>
+                  <li><kbd>Shift + Up Arrow</kbd> (optional): move focus to and select the previous node.</li>
+                  <li><kbd>Shift + Space</kbd> (Optional): selects contiguous nodes from the last   selected node to the current node.</li>
+                  <li><kbd>Control + Shift + Home</kbd> (Optional): selects the node with focus and all nodes up to the beginning of the tree.</li>
+                  <li><kbd>Control + Shift + End</kbd> (Optional): selects the node with focus and all nodes down to the end of the tree.</li>
+                  <li><kbd>Control + A</kbd> (Optional): selects all nodes in the tree.</li>
+                </ul>
+              </li>
+              <li>Alternative selection model -- Moving focus without holding the <kbd>Shift</kbd> or <kbd>Control</kbd> modifier unselects all selected nodes except for the focused node:
+                <ul>
+                  <li><kbd>Shift + Down Arrow</kbd>: Moves focus to and selects the next node.</li>
+                  <li><kbd>Shift + Up Arrow</kbd>: Moves focus to and selects the previous node.</li>
+                  <li><kbd>Control + Down Arrow</kbd>: Without changing the selection state, moves focus to the next node.</li>
+                  <li><kbd>Control + Up Arrow</kbd>: Without changing the selection state, moves focus to the previous node.</li>
+                  <li><kbd>Control + Space</kbd>: Changes the selection state of the focused node.</li>
+                  <li><kbd>Shift + Space</kbd> (Optional): Selects contiguous nodes from the most recently selected node to the current node.</li>
+                  <li><kbd>Control + Shift + Home</kbd> (Optional): Selects the node with focus and all nodes up to the beginning of the tree.</li>
+                  <li><kbd>Control + Shift + End</kbd> (Optional): Selects the node with focus and all nodes down to the end of the tree.</li>
+                  <li><kbd>Control + A</kbd> (Optional): Selects all nodes in the tree.</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
         </ul>
+        <ol class="note">
+          <li>DOM focus (the active element) is functionally distinct from the selected state. For more details, see <a href="#kbd_focus_vs_selection">this description of differences between focus and selection.</a></li>
+          <li>
+            The <code>tree</code> role supports the <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property, 
+            which provides an alternative to moving DOM focus among <code>treeitem</code> elements when implementing keyboard navigation. 
+            For details, see <a href="#kbd_focus_activedescendant">Managing Focus in Composites Using aria-activedescendant</a>.
+          </li>
+          <li>
+            In a single-select tree, moving focus may optionally unselect the previously selected node and select the newly focused node.
+            This model of selection is known as &quot;selection follows focus&quot;.
+            Having selection follow focus can be very helpful in some circumstances and can severely degrade accessibility in others.
+For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding When to Make Selection Automatically Follow Focus</a>.
+          </li>
+          <li>If selecting or unselecting all nodes is an important function, implementing separate controls for these actions, such as buttons for &quot;Select All&quot; and &quot;Unselect All&quot;, significantly improves accessibility.</li>
+        <li>
+            If the nodes in a tree are arranged horizontally:
+            <ol>
+              <li><kbd>Down Arrow</kbd> performs as <kbd>Right Arrow</kbd> is described above, and vice versa.</li>
+              <li><kbd>Up Arrow</kbd> performs as <kbd>Left Arrow</kbd> is described above, and vice versa.</li>
+            </ol>
+          </li>
+        </ol>
       </section>
 
       <section class="notoc">
         <h4>WAI-ARIA Roles, States, and Properties</h4>
         <ul>
-          <li>The tree view container has a role of <a class="role-reference" href="#tree">tree</a>.</li>
-          <li>Each node in a tree has the role <a class="role-reference" href="#treeitem">treeitem</a> and should be a DOM child of tree.</li>
-          <li>If is not a DOM child of tree, then it should be referenced by <a href="#aria-owns" class="property-reference">aria-owns</a> from its logical parent node.</li>
-          <li>If all nodes in the tree are not DOM children of the tree, then set their <a href="#aria-level" class="property-reference">aria-level</a>, <a href="#aria-setsize" class="property-reference">aria-setsize</a> and <a href="#aria-posinset" class="property-reference">aria-posinset</a> accordingly; otherwise, this information cannot be computed for context by the user agent.</li>
-          <li>A collection of treeitems to be expanded and collapsed are enclosed in a <a class="role-reference" href="#group">group</a>.</li>
-          <li>Each tree node which can be expanded should have <a class="property-reference" href="#aria-expanded">aria-expanded</a> set to <code>false</code></li>
-          <li>Each tree node which is expanded should have <a class="property-reference" href="#aria-expanded">aria-expanded</a> set to <code>true</code></li>
-          <li>Leaf nodes should not have <a class="property-reference" href="#aria-expanded">aria-expanded</a> set</li>
-          <li>If <a class="property-reference" href="#aria-multiselectable">aria-multiselectable</a> is set to <code>true</code> on the tree, then each selectable tree node should have <a class="property-reference" href="#aria-selected">aria-selected</a> set to either <code>true</code> or <code>false</code> depending on the current selection.</li>
+          <li>All tree nodes are contained in or owned by an element with role <a class="role-reference" href="#tree">tree</a>.</li>
+          <li>Each element serving as a tree node has role <a class="role-reference" href="#treeitem">treeitem</a>.</li>
+          <li>Each root node is contained in the element with role <code>tree</code> or referenced by an <a href="#aria-owns" class="property-reference">aria-owns</a> property set on the <code>tree</code> element.</li>
+          <li>Each parent node contains or owns an element with role <a class="role-reference" href="#group">group</a>.</li>
+          <li>Each child node is contained in or owned by an element with role <a class="role-reference" href="#group">group</a> that is contained in or owned by the node that serves as the parent of that child.</li>
+          <li>
+            Each element with role <code>treeitem</code> that serves as a parent node has <a class="property-reference" href="#aria-expanded">aria-expanded</a> 
+            set to <code>false</code> when the node is in a closed state and set to <code>true</code> when the node is in an open state.
+            End nodes do not have the <code>aria-expanded</code> attribute.
+          </li>
+          <li>
+            Each element with role <code>treeitem</code> that serves as a parent node has either
+            <a class="property-reference" href="#aria-label">aria-label</a> or <a class="property-reference" href="#aria-labelledby">aria-labelledby</a>
+            set to specify a label. Otherwise, the parent node will be labeled by the text content of all child elements.
+          </li>
+          <li>If the tre supports selection of more than one node, the element with role <code>tree</code> has <a class="property-reference" href="#aria-multiselectable">aria-multiselectable</a> set to <code>true</code>. Otherwise, <code>aria-multiselectable</code> is either set to <code>false</code> or the default value of <code>false</code> is implied.</li>
+          <li>If the tree does not support multiple selection, <a href="#aria-selected" class="property-reference">aria-selected</a> is set to <code>true</code> for the selected node and it is not present on any other node in the tree.</li>
+          <li>if the tree supports multiple selection:
+          <ul>
+          <li>All selected nodes have <a href="#aria-selected" class="state-reference">aria-selected</a> set to <code>true</code>.</li>
+          <li>All nodes that are not selected have <a href="#aria-selected" class="state-reference">aria-selected</a> set to <code>false</code>.</li>
+          </ul>
+          <li>The element with role <code>tree</code> has either a visible label referenced by <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> or a value specified for <a href="#aria-label" class="property-reference">aria-label</a>.</li>
+          <li>If the complete set of available nodes is not present in the DOM due to dynamic loading as the user moves focus in or scrolls the tree, each node has <a href="#aria-level" class="property-reference">aria-level</a>, <a href="#aria-setsize" class="property-reference">aria-setsize</a>, and <a href="#aria-posinset" class="property-reference">aria-posinset</a> specified.</li>
+          <li>
+            If the <code>tree</code> element is horizontally oriented, it has <a href="#aria-orientation" class="property-reference">aria-orientation</a>
+            set to <code>horizontal</code>.
+            The default value of <code>aria-orientation</code> for a tree is <code>vertical</code>.
+          </li>
         </ul>
+        <p class="note">
+          If <a href="#aria-owns" class="property-reference">aria-owns</a> is set on the tree container to include elements that are not DOM children of the container, 
+          those elements will appear in the reading order in the sequence they are referenced and after any items that are DOM children. 
+          Scripts that manage focus need to ensure the visual focus order matches this assistive technology reading order.
+        </p>
       </section>
 
       <section class="notoc">
         <h4>Examples</h4>
-
-          <table aria-label="Treeview examples">
-            <thead>
-              <tr>
-                <th style="min-width: 6em">Example ID</th>
-                <th>Action</th>
-                <th><code>aria-owns</code></th>
-                <th><code>aria-level</code></th>
-                <th><code>aria-setsize/<br/><code>aria-posinset</code></th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><a href="examples/treeview/treeview-1a/treeview-1a.html">Treeview 1a</a></td>
-                <td>Select a file</td>
-                <td class="nu">-</td>
-                <td class="computed">Computed</td>
-                <td class="computed">Computed</td>
-                <td>
-                  <ul>
-                    <li>Expects browser to compute values for <code>aria-level</code>, <code>aria-posinset</code> and <code>aria-setsize</code> based on DOM structure.</li>
-                  </ul>
-                </td>
-              </tr>
-              <tr>
-                <td><a href="examples/treeview/treeview-1b/treeview-1b.html">Treeview 1b</a></td>
-                <td>Select a file</td>
-                <td class="nu">-</td>
-                <td class="markup">Markup</td>
-                <td class="markup">Markup</td>
-                <td>
-                  <ul>
-                    <li>Explicitly defines values of <code>aria-level</code>, <code>aria-posinset</code> and <code>aria-setsize</code></li>
-                  </ul>
-                </td>
-              </tr>
-              <tr>
-                <td><a href="examples/treeview/treeview-2a/treeview-2a.html">Treeview 2a</a></td>
-                <td>Follow a link</td>
-                <td class="nu">-</td>
-                <td class="computed">Computed</td>
-                <td class="computed">Computed</td>
-                <td>
-                  <ul>
-                    <li>Expects browser to compute values for <code>aria-level</code>, <code>aria-posinset</code> and <code>aria-setsize</code> based on DOM structure.</li>
-                  </ul>
-                </td>
-              </tr>
-              <tr>
-                <td><a href="examples/treeview/treeview-2b/treeview-2b.html">Treeview 2b</a></td>
-                <td>Follow a link</td>
-                <td class="nu">-</td>
-                <td class="markup">Markup</td>
-                <td class="markup">Markup</td>
-                <td>
-                  <ul>
-                    <li>Explicitly defines values of <code>aria-level</code>, <code>aria-posinset</code> and <code>aria-setsize</code></li>
-                  </ul>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-
+        <ul>
+          <li>
+            <a href="examples/treeview/treeview-1a/treeview-1a.html">File Selector Tree #1</a>: 
+            A file selector tree that demonstrates browser support for automatically computing <code>aria-level</code>, <code>aria-posinset</code> and <code>aria-setsize</code> based on DOM structure.
+          </li>
+          <li>
+            <a href="examples/treeview/treeview-1b/treeview-1b.html">File Selector Tree #2</a>: 
+            A file selector tree that demonstrates how to explicitly define values for <code>aria-level</code>, <code>aria-posinset</code> and <code>aria-setsize</code>.
+          </li>
+          <li>
+            <a href="examples/treeview/treeview-2a/treeview-2a.html">Navigation Tree #1</a>:
+            A tree that provides navigation to a set of web pages and demonstrates browser support for automatically computing <code>aria-level</code>, <code>aria-posinset</code> and <code>aria-setsize</code> based on DOM structure.
+          </li>
+          <li>
+            <a href="examples/treeview/treeview-2b/treeview-2b.html">Navigation Tree #2</a>:
+A tree that provides navigation to a set of web pages and demonstrates how to explicitly define values for <code>aria-level</code>, <code>aria-posinset</code> and <code>aria-setsize</code>.
+          </li>
+        </ul>
       </section>
     </section>
 
@@ -2388,6 +2441,30 @@
         <li>The visual focus indicator must always be visible.</li>
         <li>The selected state must be visually distinct from the the focus indicator.</li>
       </ul>
+    </section>
+    
+    <section id="kbd_selection_follows_focus">
+      <h3>Deciding When to Make Selection Automatically Follow Focus</h3>
+      <p>
+        in composite widgets where only one element may be selected, such as a tablist or single-select listbox, moving the focus may also cause the focused element to become the selected element.
+        This is called having selection follow focus.
+        Having selection follow focus is often beneficial to users, but in some circumstances, it is extremely detremental to accessibility.
+      </p>
+      <p>
+        For example, in a tablist, the selected state is used to indicate which panel is displayed.
+        So, when selection follows focus in a tablist, moving focus from one tab to another automatically changes  which panel is displayed.
+        If the content of panels is present in the DOM, then displaying a new panel is nearly instantaneous. 
+        A keyboard user who wishes to display the fourth of six tabs can do so with 3 quick presses of the right arrow. 
+        And, a screen reader user who perceives the labels on tabs by navigating through them may efficiently read through the complete list without any latency.
+      </p>
+      <p>
+        However, if displaying a new panel causes a network request and possibly a page refresh, the effect of having selection automatically focus can be devistating to the experience for keyboard and screen reader users.
+        In this case, displaying the fourth tab or reading through the list becomes a tedious and time-consuming task as the user experiences significant latency with each movement of focus.
+        Further, if displaying a new tab refreshes the page, then the user not only has to wait for the new page to load but also return focus to the tab list.
+      </p>
+      <p>
+        When selection does not follow focus, the user changes which element is selected by pressing the <kbd>Enter</kbd> or <kbd>Space</kbd> key.
+      </p>
     </section>
 
     <section id="kbd_general_between">
