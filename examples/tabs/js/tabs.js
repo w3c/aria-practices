@@ -208,8 +208,8 @@
     var target = event.target;
     var panel = document.getElementById(target.getAttribute('aria-controls'));
 
-    target.remove();
-    panel.remove();
+    target.parentElement.removeChild(target);
+    panel.parentElement.removeChild(panel);
   };
 
   // Determine whether there should be a delay
