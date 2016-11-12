@@ -2,156 +2,213 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>ARIA tabs widget Example</title>
+    <!--
+      An example that was implemented with this template can be found in: examples/checkbox/checkbox-1.html.
+      This template is for examples where only one implementation of the design pattern is demonstrated.
+      If you use this template file, rename it to reflect the name of the example, e.g., SimpleCheckbox.html.
+      Similarly, rename the javascript and CSS stub files in the js and css subdirectories and update the head element of this file.
+    -->
+
+    <!--  Give this example implementation a name and put it in the title element, e.g., "Checkbox" if implementing the checkbox pattern.
+    The name should be unique if the pattern will have multiple implementations, e.g., "Simple Two-State Checkbox" or "Three-State Checkbox".
+    -->
+    <title>Tabs | WAI-ARIA Authoring Practices 1.1</title>
+
+    <!--  Core js and css shared by all examples; do not modify when using this template. -->
     <link href="../css/core.css" rel="stylesheet">
     <link href="../css/table.css" rel="stylesheet">
+
+    <!--  js and css for this example.
+    When developing an example implementation of a design pattern,
+    these files will contain the CSS and JS for the example implementation.
+    Rename these files to match the name of the example, e.g., checkbox.js if implementing the checkbox design pattern.
+    -->
     <link href="css/tabs.css" rel="stylesheet">
   </head>
   <body>
-
     <main>
-    <h1>ARIA tabs widget Example</h1>
-    <p><strong>NOTE:</strong> Please provide feedback on this example in <a href="https://github.com/w3c/aria-practices/issues/114">issue 114</a>. </p>
+      <!--  Repeat the name of the example in this H1  -->
+      <h1>Tabs</h1>
 
-      <p> <a href="../../aria-practices.html#tabpanel">Authoring Practice Design Pattern for Tabs</a></p>
+      <p>
+          <!-- Provide an overview of the example where the first sentence provides a link to the section of aria-practices.html that describes the pattern this example implements. -->
+          The below example section demonstrates a tabs widget that implements the  <a href="../../#checkbox">design pattern for tabs</a>.
+      </p>
 
-      <h2>Tabs Example</h2>
+      <section>
+        <h2 id="ex_label">Example</h2>
+        <div  aria-labelledby="ex_label" role="region">
+          <!--
+          Note the ID of the following div that contains the example HTML is used as a parameter for the sourceCode.add() function.
+          The sourceCode functions in the examples/js/examples.js render the HTML source to show it to the reader of the example page.
+          If you change the ID of this div, be sure to update the parameters of the sourceCode.add() function call, which is made following the div with id="sc1" where the HTML is render.
+          The div for the rendered HTML source is in the last section of the page.
+          -->
+          <div id="ex1">
+            <!--  Replace content of this div with the example.  -->
+            <div class="tabs">
+              <div role="tablist">
+                <button role="tab" aria-selected="true" aria-controls="nils-tab" id="nils">Nils Frahm</button>
+                <button role="tab" aria-selected="false" aria-controls="helios-tab" id="helios" tabindex="-1">Helios</button>
+                <button role="tab" aria-selected="false" aria-controls="complexcomplex" id="complex" tabindex="-1" data-deletable>Joke</button>
+              </div>
 
-      <p>The following examples are composed by a <code>&lt;div&gt;</code> elements for the tab panels and <code>&lt;button&gt;</code> elements functioning as tabs.</p>
+              <div role="tabpanel" id="nils-tab" aria-labelledby="nils">
+                <p>Nils Frahm is a German musician, composer and record producer based in Berlin. He is known for combining classical and electronic music and for an unconventional approach to the piano in which he mixes a grand piano, upright piano, Roland Juno-60, Rhodes piano, drum machine, and Moog Taurus.</p>
+              </div>
 
-      <div id="example">
-        <div class="tabs">
-          <div role="tablist">
-            <button role="tab" aria-selected="true" aria-controls="nils-tab" id="nils">Nils Frahm</button>
-            <button role="tab" aria-selected="false" aria-controls="helios-tab" id="helios" tabindex="-1">Helios</button>
-            <button role="tab" aria-selected="false" aria-controls="complexcomplex" id="complex" tabindex="-1" data-deletable>Joke</button>
-          </div>
+              <div role="tabpanel" id="helios-tab" aria-labelledby="helios" hidden>
+                <p>Helios (Keith Kenniff) is an American composer, multi-instrumentalist, and electronic music producer. He composes ambient/electronic music under the moniker Helios and post-classical piano music under Goldmund. He is also one half of the indie band Mint Julep, and ambient project "A Pale Fire". Keith is also a composer for film, television, dance and performance art. In 2010 he created the record label Unseen.</p>
+              </div>
 
-          <div role="tabpanel" id="nils-tab" aria-labelledby="nils">
-            <p>Nils Frahm is a German musician, composer and record producer based in Berlin. He is known for combining classical and electronic music and for an unconventional approach to the piano in which he mixes a grand piano, upright piano, Roland Juno-60, Rhodes piano, drum machine, and Moog Taurus.</p>
-          </div>
-
-          <div role="tabpanel" id="helios-tab" aria-labelledby="helios" hidden>
-            <p>Helios (Keith Kenniff) is an American composer, multi-instrumentalist, and electronic music producer. He composes ambient/electronic music under the moniker Helios and post-classical piano music under Goldmund. He is also one half of the indie band Mint Julep, and ambient project "A Pale Fire". Keith is also a composer for film, television, dance and performance art. In 2010 he created the record label Unseen.</p>
-          </div>
-
-          <div role="tabpanel" id="complexcomplex" aria-labelledby="complex" hidden>
-            <p>Fear of complicated buildings:</p>
-            <p>A complex complex complex.</p>
+              <div role="tabpanel" id="complexcomplex" aria-labelledby="complex" hidden>
+                <p>Fear of complicated buildings:</p>
+                <p>A complex complex complex.</p>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <h2 id="id_kbd">Keyboard Support</h2>
+      <section hidden>
+        <h2>Accessibility Features</h2>
+        <p class="annotate">Please replace this content with a list of accessibility features demonstrated in this implementation, such as:</p>
+        <ul>
+          <li>ARIA roles</li>
+          <li>property and state information</li>
+          <li>Event handlers</li>
+          <li><code>tabindex</code> values</li>
+        </ul>
+      </section>
 
-      <table aria-labelledby="id_kbd">
-        <thead>
-          <tr>
-            <th>Key</th>
-            <th>Function</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th><kbd>tab</kbd></th>
-            <td>Moves focus to the active tab or first focusable in the tab panel.</td>
-          </tr>
-          <tr>
+      <section>
+        <h2 id="kbd_label">Keyboard Support</h2>
+        <!--  Update the content of this table to describe which keys are implemented in this example. -->
+        <table aria-labelledby="kbd_label">
+          <thead>
+            <tr>
+              <th>Key</th>
+              <th>Function</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th><kbd>tab</kbd></th>
+              <td>Moves focus to the active tab or first focusable in the tab panel.</td>
+            </tr>
+            <tr>
               <th><kbd>left arrow</kbd></th>
               <td>Moves focus to the previous tab.</td>
-          </tr>
-          <tr>
+            </tr>
+            <tr>
               <th><kbd>right arrow</kbd></th>
               <td>Moves focus to the next tab.</td>
-          </tr>
-          <tr>
+            </tr>
+            <tr>
               <th><kbd>home</kbd></th>
               <td>Moves focus to the first tab.</td>
-          </tr>
-          <tr>
+            </tr>
+            <tr>
               <th><kbd>end</kbd></th>
               <td>Moves focus to the last tab.</td>
-          </tr>
-          <tr>
+            </tr>
+            <tr>
               <th><kbd>delete</kbd></th>
               <td>If deletion is allowed on the current tab, deletes the current tab element and its associated tab panel.</td>
-          </tr>
-        </tbody>
-      </table>
+            </tr>
+          </tbody>
+        </table>
+      </section>
 
-      <h2 id="id_rps" hidden>ARIA Roles, Properties and States</h2>
+      <section>
+        <h2 id="rps_label">ARIA Roles, Properties, and States</h2>
+        <!--  Update this table to describe the roles, properties, and states implemented in this example.  -->
+        <table aria-labelledby="rps_label">
+          <thead>
+            <tr>
+              <th>Role</th>
+              <th>Property/State</th>
+              <th>Element</th>
+              <th>Usage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>tablist</td>
+              <td></td>
+              <td></td>
+              <td>
+                <ul>
+                  <li>Serves as the container for the set of tabs.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>tab</td>
+              <td></td>
+              <td></td>
+              <td>
+                <ul>
+                  <li>Contains title for tab panel, activates tab panel when activated.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>tabpanel</td>
+              <td></td>
+              <td></td>
+              <td>
+                <ul>
+                  <li>Contains the tab’s associated content.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td>aria-controls</td>
+              <td>element with <code>role</code> of <code>tab</code></td>
+              <td>
+                <ul>
+                  <li></li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
 
-      <table aria-labelledby="id_rps" hidden>
-        <thead>
-          <tr>
-            <th>Role</th>
-            <th>Property/State</th>
-            <th>Component</th>
-            <th>Usage</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>tablist</td>
-            <td></td>
-            <td></td>
-            <td>
-              <ul>
-                <li>Serves as the container for the set of tabs.</li>
-              </ul>
-            </td>
-          </tr>
-          <tr>
-            <td>tab</td>
-            <td></td>
-            <td></td>
-            <td>
-              <ul>
-                <li>Contains title for tab panel, activates tab panel when activated.</li>
-              </ul>
-            </td>
-          </tr>
-          <tr>
-            <td>tabpanel</td>
-            <td></td>
-            <td></td>
-            <td>
-              <ul>
-                <li>Contains the tab’s associated content.</li>
-              </ul>
-            </td>
-          </tr>
-          <tr>
-            <td></td>
-            <td>aria-controls</td>
-            <td>element with <code>role</code> of <code>tab</code></td>
-            <td>
-              <ul>
-                <li></li>
-              </ul>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      <section>
+        <h2>Javascript and CSS Source Code</h2>
+        <!--  After the js and css files are named with the name of this example, change the href and text of the following 2 links to refer to the appropriate js and css files.  -->
+        <ul>
+          <li>CSS: <a href="css/tabs.css" type="tex/css">tabs.css</a></li>
+          <li>Javascript: <a href="js/tabs.js" type="text/javascript">tabs.js</a></li>
+        </ul>
+      </section>
 
-      <h2>Source Code</h2>
+      <section>
+        <h2 id="sc1_label">HTML Source Code</h2>
+        <div id="sc1" aria-labelledby="sc1_label" role="region"></div>
+        <!--
+        The following script will show the reader the HTML source for the example that is in the div with ID 'ex1'.
+        It renders the HTML in the preceding div with ID 'sc1'.
+        If you change the ID of either the 'ex1' div or the 'sc1' div, be sure to update the sourceCode.add function parameters.
+        -->
+        <script>
+          sourceCode.add('sc1', 'ex1');
+          sourceCode.make();
+        </script>
+      </section>
 
-      <ul>
-        <li>CSS: <a href="css/tabs.css" type="tex/css">tabs.css</a></li>
-        <li>Javascript: <a href="js/tabs.js" type="text/javascript">tabs.js</a></li>
-      </ul>
-      <h3>HTML Code</h3>
-      <p class="annotate">HTML source code is generated by scripting using ID references.</p>
-
-      <div id="print-sc1"></div>
     </main>
 
-    <script src="js/tabs.js"></script>
+    <nav>
+      <!--  Update the pattern_ID parameter of this link to refer to the APG design pattern section related to this example.  -->
+      <a href="../../#tabpanel">Tabs Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
+    </nav>
+
+
     <script src="../js/examples.js" type="text/javascript"></script>
-    <script>
-      sourceCode.add('print-sc1', 'example');
-      sourceCode.make();
-    </script>
+    <script src="js/tabs.js" type="text/javascript"></script>
   </body>
 </html>
