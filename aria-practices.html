@@ -1085,8 +1085,8 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
             <ul>
               <li>If focus is on a <code>menuitemcheckbox</code>, changes the state without closing the menu.</li>
               <li>If focus is on a <code>menuitemradio</code> that is not checked, without closing the menu, checks the focused <code>menuitemradio</code> and unchecks any other checked <code>menuitemradio</code> element in the same group.</li>
-              <li>Optionally, if the focused <code>menuitem</code> has a submenu, opens the submenu and places focus on its first <code>menuitem</code>.</li>
-              <li>Optionally, activates the focused <code>menuitem</code>.</li>
+              <li>(Optional): If the focused <code>menuitem</code> has a submenu, opens the submenu and places focus on its first <code>menuitem</code>.</li>
+              <li>(Optional): Activates the focused <code>menuitem</code> and closes the menu.</li>
             </ul>
           </li>
           <li><kbd>Down Arrow</kbd>:
@@ -1111,15 +1111,15 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
             </ul>
           </li>
           <li><kbd>Left Arrow</kbd>:
-          </li>
           <ul>
             <li>If the focused <code>menuitem</code> is in a horizontal menu, moves focus to the previous <code>menuitem</code>, optionally wrapping from the first to the last. </li>
               <li>If the focused <code>menuitem</code> is in a vertical submenu of a parent vertical menu, closes the submenu and returns focus to the <code>menuitem</code> that opened the submenu.</li>
               <li>Otherwise, if the focused <code>menuitem</code> is in a vertical submenu of a parent horizontal menubar, closes the submenu and moves focus to the first <code>menuitem</code> contained in the submenu opened by the previous <code>menuitem</code> in the parent menubar.</li>
             </ul>
+          </li>
           <li><kbd>Home</kbd>: If arrow key wrapping is not supported, moves focus to the first <code>menuitem</code> in the menu that contains focus.</li>
           <li><kbd>End</kbd>: If arrow key wrapping is not supported, moves focus to the last <code>menuitem</code> in the menu that contains focus.</li>
-          <li>Any key that corresponds to a printable character: Move focus to   the next menu item in the current menu whose label begins with that printable character.</li>
+          <li>Any key that corresponds to a printable character (Optional): Move focus to   the next menu item in the current menu whose label begins with that printable character.</li>
           <li><kbd>Escape</kbd>: Close the menu that contains focus and return focus to   the element or context, e.g., menu button or parent <code>menuitem</code>, from which the menu was opened. </li>
           <li><kbd>Tab</kbd>: Moves focus to the next element in the tab sequence, and if the <code>menuitem</code> that had focus is not in a menubar, closes its menu and all open parent menus.</li>
           <li><kbd>Shift + Tab</kbd>: Moves focus to the previous element in the tab sequence, and if the <code>menuitem</code> that had focus is not in a menubar, closes its menu and all open parent menus.</li>
