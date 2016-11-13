@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en-US" typeof="bibo:Document " prefix="bibo: http://purl.org/ontology/bibo/ w3p: http://www.w3.org/2001/02pd/rec54#">
+<html typeof="bibo:Document " prefix="bibo: http://purl.org/ontology/bibo/ w3p: http://www.w3.org/2001/02pd/rec54#" lang="en-US">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta lang="" property="dc:language" content="en">
+  <meta property="dc:language" content="en" lang="">
   <style>
     /*
 
@@ -947,10 +947,10 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     }
   </script>
 </head>
-<body class="h-entry toc-inline" role="document" id="respecDocument">
+<body class="h-entry" role="document" id="respecDocument">
   <div class="head" role="contentinfo" id="respecHeader">
     <p>
-      <a class="logo" href="https://www.w3.org/"><img width="72" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" alt="W3C"></a>
+      <a class="logo" href="https://www.w3.org/"><img src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" alt="W3C" height="48" width="72"></a>
     </p>
     <h1 class="title p-name" id="title" property="dcterms:title"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Authoring Practices 1.1</h1>
     <h2 id="w3c-editor-s-draft-13-november-2016"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2016-11-13">13 November 2016</time></h2>
@@ -1225,7 +1225,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     <p>This section is <em>informative.</em></p>
 
     <p>
-      The <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Authoring Practices Guide is intended to provide an understanding of how to use <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> to create an accessible Rich Internet Application. It describes recommended <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> usage patterns and provides an introduction to the concepts behind them.
+      <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Authoring Practices is a guide to understanding how to use <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> to create an accessible Rich Internet Application. It describes recommended <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> usage patterns and provides an introduction to the concepts behind them.
     </p>
 
     <p>
@@ -1688,7 +1688,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         <div class="note">
           <div class="note-title marker" aria-level="5" role="heading" id="h-note7"><span>Note</span></div>
           <p class="">
-            Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG task force is developing examples for APG version 1.1 that will be directly incorporated into the guide.
+            Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The ARIA practices task force is developing examples for Authoring Practices 1.1 that will be directly incorporated into the guide.
           </p>
         </div>
         <ul>
@@ -2540,7 +2540,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         <h4 id="example-12" resource="#example-12"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
         <div class="note">
           <div class="note-title marker" aria-level="5" role="heading" id="h-note21"><span>Note</span></div>
-          <p class="">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG task force is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
+          <p class="">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The ARIA practices task force is developing examples for Authoring Practices version 1.1 that will be directly incorporated into the guide.</p>
         </div>
 
         <ul>
@@ -2591,7 +2591,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         <h4 id="example-13" resource="#example-13"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
         <div class="note">
           <div class="note-title marker" aria-level="5" role="heading" id="h-note23"><span>Note</span></div>
-          <p class="">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG task force is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
+          <p class="">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The ARIA practices task force is developing examples for Authoring Practices 1.1 that will be directly incorporated into the guide.</p>
         </div>
         <ul>
           <li><a href="http://www.oaa-accessibility.org/examplep/spinbutton1/" rel="nofollow" target="_blank">Open Ajax Alliance Spinbutton</a></li>
@@ -2716,7 +2716,6 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </span>
         </span>
       </h3>
-
       <p>A <a class="role-reference" href="http://w3c.github.io/aria/aria/aria.html#toolbar">toolbar</a> is a container for grouping a set of controls, such as buttons, menubuttons, or checkboxes.</p>
       <p>
         When a set of controls is visually presented as a group, the <code>toolbar</code> role can be used to communicate the presence and purpose of the grouping to screen reader users. Grouping controls into toolbars can also be an effective way of reducing the number of tab stops in the keyboard interface.
@@ -2730,7 +2729,6 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
       <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-16" property="bibo:hasPart">
         <h4 id="keyboard-interaction-16" resource="#keyboard-interaction-16"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
-
         <ul>
           <li>
             <kbd>Tab</kbd>: Moves focus into and out of the toolbar. When focus moves into the toolbar, the first enabled control receives focus. Optionally, if the toolbar has previously contained focus, the control that last had focus may receive focus.
@@ -2768,13 +2766,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
       <section class="notoc" typeof="bibo:Chapter" resource="#example-15" property="bibo:hasPart">
         <h4 id="example-15" resource="#example-15"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
-        <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note26"><span>Note</span></div>
-          <p class="">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG task force is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
-        </div>
-        <ul>
-          <li><a href="http://www.oaa-accessibility.org/examplep/toolbar1/" target="_blank" rel="nofollow">Open Ajax Alliance toolbar</a></li>
-        </ul>
+        <p><a href="examples/toolbar/toolbar.html">Toolbar Example</a>: A toolbar including buttons, links, and checkboxes that uses roving tabindex to manage focus.</p>
       </section>
     </section>
 
@@ -2793,7 +2785,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
         <p><kbd>Escape</kbd>: Dismisses the Tooltip.</p>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note27"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note26"><span>Note</span></div>
           <ol class="">
             <li>The trigger element to which the tooltip is attached, e.g., a link, should never actually lose input focus. </li>
             <li>If the tooltip is invoked when the trigger element gets focus, then it should be dismissed when it no longer has focus (onBlur). If the tooltip is invoked with mouseIn, then it should be dismissed with a mouseOut. </li>
@@ -2813,8 +2805,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <section class="notoc" typeof="bibo:Chapter" resource="#example-16" property="bibo:hasPart">
         <h4 id="example-16" resource="#example-16"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note28"><span>Note</span></div>
-          <p class="">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG task force is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note27"><span>Note</span></div>
+          <p class="">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The ARIA practices task force is developing examples for Authoring Practices 1.1 that will be directly incorporated into the guide.</p>
         </div>
         <ul>
           <li><a href="http://www.oaa-accessibility.org/examplep/tooltip1/" target="_blank" rel="nofollow">Open Ajax Alliance tooltip</a></li>
@@ -2983,7 +2975,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </ul>
 
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note29"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note28"><span>Note</span></div>
           <p class="">A fixed size splitter simply omits implementation of the arrow keys. </p>
         </div>
       </section>
@@ -3001,8 +2993,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <section class="notoc" typeof="bibo:Chapter" resource="#example-17" property="bibo:hasPart">
         <h4 id="example-17" resource="#example-17"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note30"><span>Note</span></div>
-          <p class="">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG task force is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note29"><span>Note</span></div>
+          <p class="">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The ARIA practices task force is developing examples for Authoring Practices 1.1 that will be directly incorporated into the guide.</p>
         </div>
         <ul>
           <li><a href="http://archive.dojotoolkit.org/nightly/dojotoolkit/dijit/tests/layout/test_BorderContainer.html" target="_blank" rel="nofollow">Dojo Window splitter</a></li>
@@ -3776,7 +3768,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </h4>
 
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note31"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note30"><span>Note</span></div>
           <p class="">Not yet edited ... considering what should be written/included. We don't want to write a javascript book.</p>
         </div>
 
@@ -3815,7 +3807,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </h3>
 
       <div class="note">
-        <div class="note-title marker" aria-level="4" role="heading" id="h-note32"><span>Note</span></div>
+        <div class="note-title marker" aria-level="4" role="heading" id="h-note31"><span>Note</span></div>
         <p class="">
           MCK: unedited content pulled together from the old guide that needs a significant re-write. Please ignore this section for now.
         </p>
@@ -4103,7 +4095,7 @@ helper.stopEvent(evt); <span class="hljs-comment">//stop the event if not a tab 
         </p>
 
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note33"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note32"><span>Note</span></div>
           <p class="">
             In the following sections, <kbd>meta</kbd> key refers to the <kbd>Windows</kbd> key on Windows-compatible keyboards and the <kbd>Command</kbd> key on MacOS-compatible keyboards.
           </p>
@@ -4233,7 +4225,7 @@ helper.stopEvent(evt); <span class="hljs-comment">//stop the event if not a tab 
       </h3>
 
       <div class="note">
-        <div class="note-title marker" aria-level="4" role="heading" id="h-note34"><span>Note</span></div>
+        <div class="note-title marker" aria-level="4" role="heading" id="h-note33"><span>Note</span></div>
         <p class="">MCK: this section is a collection of keyboard related old content with a yet undecided fate.</p>
       </div>
 
