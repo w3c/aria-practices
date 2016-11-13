@@ -28,7 +28,7 @@
     <p>This section is <em>informative.</em></p>
 
     <p>
-      The WAI-ARIA Authoring Practices Guide is intended to provide an understanding of how to use WAI-ARIA to create an accessible Rich Internet Application.
+      WAI-ARIA Authoring Practices is a guide to understanding how to use WAI-ARIA to create an accessible Rich Internet Application.
       It describes recommended WAI-ARIA usage patterns and provides an introduction to the concepts behind them.
     </p>
 
@@ -339,8 +339,9 @@
           Toggle button: A two-state button that can be either off (not pressed) or on (pressed).
           To tell assistive technologies that a button is a toggle button, specify a value for the attribute <a href="#aria-pressed" class="state-reference">aria-pressed</a>.
           For example, a button labeled mute in an audio player could indicate that sound is muted by setting the pressed state true.
-          <strong>Important:</strong> the label on a toggle button should never change when the state changes.
-          In this example, when the pressed state is true, the label should not change to &quot;Unmute"&quot; or &quot;Muted.&quot;
+          <strong>Important:</strong> it is critical the label on a toggle does not change when its state changes.
+          In this example, when the pressed state is true, the label should remain “Mute” so a screen reader will say something like “Mute toggle button pressed”. 
+          Alternatively, if the design were to call for the button label to change from “Mute” to “Unmute,” the aria-pressed attribute would not be needed.
         </li>
         <li>Menu button: as described in the <a href="#menubutton">menu button pattern</a>, a button will be revealed to assistive technologies as a menu button if it has the property <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set true.</li>
       </ul>
@@ -508,7 +509,7 @@
         <h4>Example</h4>
         <p class="note">
           Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section.
-          The APG task force is developing examples for APG version 1.1 that will be directly incorporated into the guide.
+          The ARIA practices task force is developing examples for Authoring Practices 1.1 that will be directly incorporated into the guide.
         </p>
         <ul>
           <li><a href="http://developer.yahoo.com/yui/examples/container/container-ariaplugin_clean.html" rel="nofollow" target="_blank">YUI dialogs -- use first two dialog buttons</a></li>
@@ -872,7 +873,8 @@
       <section class="notoc">
           <h4>Examples</h4>
           <ul>
-            <li><a href="examples/grid/dataGrids.html">Data Grids</a>: Three example implementations of the grid design pattern that include features relevant to tabular information, such as content editing, sort, and column hiding. </li>
+            <li><a href="examples/grid/dataGrids.html">Data Grids</a>: Three example implementations of grid that include features relevant to presenting tabular information, such as content editing, sort, and column hiding. </li>
+            <li><a href="examples/grid/LayoutGrids.html">Layout Grids</a>: Three example implementations of grids that are used to lay out widgets, including a collection of navigation links, a message recipients list, and a set of search results. </li>
           </ul>
         </section>
     </section>
@@ -911,85 +913,110 @@
       <h3>Listbox</h3>
 
       <p>
-        A <a href="#listbox" class="role-reference">listbox</a> widget allows a user to select one or more items from a list of options.
+        A <a href="#listbox" class="role-reference">listbox</a> widget presents a list of options and allows a user to select one or more of them.
         A listbox that allows a single option to be chosen is a single-select listbox; one that allows multiple options to be selected is a multi-select listbox.
       </p>
       <p>
-        The contents of <code>option</code> elements in a <code>listbox</code> are reduced by browsers to static text strings that become the accessible names of the options.
-        So, <code>options</code> in a <code>listbox</code> should not contain interactive elements, such as links, buttons, or checkboxes.
-        To create a list of interactive elements, see the <a href="#grid">grid</a> pattern.
+        When screen readers present a listbox, they render the name, state, and position of each option in the list.
+        The name of an option is a string calculated by the browser, typically from the content of the option element.
+        As a flat string, the name does not contain any semantic information.
+        Thus, if an option contains a semantic element, such as a heading, screen reader users will not have access to the semantics.
+        In addition, the interaction model conveyed by the listbox role to assistive technologies does not support interacting with elements inside of an option.
+        Because of these traits of the listbox widget, it does not provide an accessible way to present a list of interactive elements, such as links, buttons, or checkboxes.
+        To present a list of interactive elements, see the <a href="#grid">grid</a> pattern.
       </p>
       <p>
-      Authors should avoid creating options with very long names.
-       Each option name is spoken by a screen reader as a single unit of speech when the user navigates the list.
-       When a large amount information is spoken as the result of a single key press, it can be difficult to understand.
-      If the speaking of an option is interrupted, the user will typically have to re-read the entire option.
-        And, if the user does not understand what is spoken, re-reading of a listbox option name by character, word, or phrase may be a difficult operation for some screen reader users because the screen reader is in an interactive mode, rather than a reading mode, when operating a widget like a listbox.
+        Avoiding very long option names facilitates understandability and perceivability for screen reader users. 
+        The entire name of an option is spoken as a single unit of speech when the option is read.
+        When too much information is spoken as the result of a single key press, it is difficult to understand.
+        Long names inhibit perception by increasing the impact of interrupted speech because users typically have to re-read the entire option.
+      And, if the user does not understand what is spoken, reading the name by character, word, or phrase may be a difficult operation for many screen reader users in the context of a listbox widget.
       </p>
       <p>
-        Authors should also avoid creating sets of options where each option name starts with the same word or phrase.
-        Otherwise, scrolling through the list to find a specific option becomes inordinately time consuming for a screen reader user who must listen to that word or phrase repeated before hearing what is unique about each option.
+        Sets of options where each option name starts with the same word or phrase can also significantly degrade usability for keyboard and screen reader users.
+        Scrolling through the list to find a specific option becomes inordinately time consuming for a screen reader user who must listen to that word or phrase repeated before hearing what is unique about each option.
         For example, if a listbox for choosing a city were to contain options where each city name were preceded by a country name, and if many cities were listed for each country, a screen reader user would have to listen to the country name before hearing each city name.
         In such a scenario, it would be better to have 2 list boxes, one for country and one for city.
       </p>
-
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
+        <p>For a vertically oriented listbox:</p>
         <ul>
           <li> When a single-select listbox receives focus:
             <ul>
-              <li>If none of the options are selected before the listbox receives focus, the first option receives focus. The author may choose to have the first option automatically selected. </li>
+              <li>If none of the options are selected before the listbox receives focus, the first option receives focus. Optionally, the first option may be automatically selected.</li>
               <li>If an option is selected before the listbox receives focus, focus is set on the selected option. </li>
             </ul>
           </li>
           <li>When a multi-select listbox receives focus:
             <ul>
-              <li>If none of the options are selected before the listbox receives focus, focus is set on the first option. The option should not be selected when it receives focus.</li>
+              <li>If none of the options are selected before the listbox receives focus, focus is set on the first option and there is no automatic change in the selection state.</li>
               <li>If one or more options are selected before the listbox receives focus, focus is set on the first option in the list that is selected.</li>
             </ul>
           </li>
-          <li><kbd>Up Arrow</kbd> and <kbd>Down Arrow</kbd>: Move focus to the previous and next option, respectively. If it is a single-select listbox, the selection state moves with the focus.</li>
-           <li><kbd>Home</kbd> and <kbd>End</kbd> (Optional): Move focus to first and last option, respectively. If it is a single-select listbox, the selection state moves with the focus. Strongly recommended for lists with more than five options.</li>
-          <li>Type-ahead is strongly recommended for all lists, but  essential for long lists (typically more than five options):
+          <li><kbd>Down Arrow</kbd>: Moves focus to the next option. Optionally, in a single-select listbox, selection may also move with focus.</li>
+          <li><kbd>Up Arrow</kbd>: Moves focus to the previous option. Optionally, in a single-select listbox, selection may also move with focus.</li>
+           <li><kbd>Home</kbd> (Optional): Moves focus to first option. Optionally, in a single-select listbox, selection may also move with focus. Supporting this key is strongly recommended for lists with more than five options.</li>
+           <li><kbd>End</kbd> (Optional): Moves focus to last option. Optionally, in a single-select listbox, selection may also move with focus. Supporting this key is strongly recommended for lists with more than five options.</li>
+          <li>Type-ahead is recommended for all listboxes, especially those with more than seven options:
             <ul>
               <li>Type a character: focus moves to the next item with a name that starts with the typed character.</li>
               <li>Type multiple characters in rapid succession: focus moves to the next item with a name that starts with the string of characters typed.</li>
             </ul>
           </li>
           <li><strong>Multiple Selection</strong>:
-          Authors may implement either of two interaction models to support multiple selection: a recommended model that does not require the user to hold a modifier key, such as <kbd>Shift</kbd> or <kbd>Control</kbd>, while navigating the list
-          or an alternative model that does require modifier keys to be held while navigating in order to avoid losing selection states.
+            Authors may implement either of two interaction models to support multiple selection: 
+            a recommended model that does not require the user to hold a modifier key, such as <kbd>Shift</kbd> or <kbd>Control</kbd>, while navigating the list
+            or an alternative model that does require modifier keys to be held while navigating in order to avoid losing selection states.
             <ul>
               <li>Recommended selection model -- holding modifier keys is not necessary:
                 <ul>
                   <li><kbd>Space</kbd>: changes the selection state of the focused option .</li>
-                  <li><kbd>Shift + Up Arrow</kbd> and <kbd>Shift + Down Arrow</kbd> (optional): move focus to and select the previous and next option, respectively.</li>
-                  <li><kbd>Shift + Space</kbd> (Optional): selects contiguous items from the last   selected item to the current item. </li>
-                  <li><kbd>Control + Shift + Home</kbd> (Optional): selects the option with focus and all options up to the beginning of the list.</li>
-                  <li><kbd>Control + Shift + End</kbd> (Optional): selects the option with focus and all options down to the end of the list.</li>
-                  <li><kbd>Control + A</kbd> (Optional): selects all options in the list.</li>
+                  <li><kbd>Shift + Down Arrow</kbd> (Optional): Moves focus to and selects the next option.</li>
+                  <li><kbd>Shift + Up Arrow</kbd> (Optional): Moves focus to and selects the previous option.</li>
+                  <li><kbd>Shift + Space</kbd> (Optional): Selects contiguous items from the most recently selected item to the focused item.</li>
+                  <li><kbd>Control + Shift + Home</kbd> (Optional): Selects the focused option and all options up to the first option.</li>
+                  <li><kbd>Control + Shift + End</kbd> (Optional): Selects the focused option and all options down to the last option.</li>
+                  <li><kbd>Control + A</kbd> (Optional): Selects all options in the list. Optionally, if all options are selected, it may also unselect all options.</li>
                 </ul>
               </li>
-              <li>Alternative selection model -- modifier keys must be held down to maintain selected states when navigating):
-                <ul>
-                  <li><kbd>Shift + Up Arrow</kbd> and <kbd>Shift + Down Arrow</kbd>: move focus to and select the previous and next option, respectively.</li>
-                  <li><kbd>Control + Up Arrow</kbd> and <kbd>Control + Down Arrow</kbd>: Without changing the selection state, move focus to the previous and next option, respectively. </li>
+              <li>Alternative selection model -- moving focus without holding a <kbd>Shift</kbd> or <kbd>Control</kbd> modifier unselects all selected nodes except the focused node: 
+              <ul>
+                  <li><kbd>Shift + Down Arrow</kbd>: Moves focus to and toggles the selection state of the next option.</li>
+                  <li><kbd>Shift + Up Arrow</kbd>: Moves focus to and toggles the selection state of the previous option.</li>
+                  <li><kbd>Control + Down Arrow</kbd>: Moves focus to the next option without changing its selection state.</li>
+                  <li><kbd>Control + Up Arrow</kbd>: Moves focus to the previous option without changing its selection state.</li>
                   <li><kbd>Control + Space</kbd> Changes the selection state of the focused option. </li>
-                  <li><kbd>Up Arrow</kbd> and <kbd>Down Arrow</kbd>: Remove all selected states and move focus to the previous and next option, respectively. </li>
-                  <li><kbd>Home</kbd> and <kbd>End</kbd> (Optional): Remove all selected states and move focus to the first and last option, respectively. </li>
-                  <li><kbd>Shift + Space</kbd> (Optional): selects contiguous items from the last   selected item to the current item. </li>
-                  <li><kbd>Control + Shift + Home</kbd> (Optional): selects the option with focus and all options up to the beginning of the list.</li>
-                  <li><kbd>Control + Shift + End</kbd> (Optional): selects the option with focus and all options down to the end of the list.</li>
-                  <li><kbd>Control + A</kbd> (Optional): selects all options in the list.</li>
+                  <li><kbd>Shift + Space</kbd> (Optional): Selects contiguous items from the most recently selected item to the focused item.</li>
+                  <li><kbd>Control + Shift + Home</kbd> (Optional): Selects the focused option and all options up to the first option.</li>
+                  <li><kbd>Control + Shift + End</kbd> (Optional): Selects the focused option and all options down to the last option.</li>
+                  <li><kbd>Control + A</kbd> (Optional): Selects all options in the list. Optionally, if all options are selected, it may also unselect all options.</li>
                 </ul>
               </li>
             </ul>
           </li>
         </ul>
         <ol class="note">
-        <li>If the ability to select or deselect all options may be commonly needed, it is recommended that the author add separate controls to perform these actions. </li>
-        <li>Focus (the active element) is different from the selected state. See <a href="#focus_vs_selection">to be written</a>. </li>
-        <li>The listbox role supports the <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property, which provides an alternative to moving DOM focus among options when scrolling. For details, see <a href="#using_activedescendant">to be written</a>. </li>
+          <li>DOM focus (the active element) is functionally distinct from the selected state. For more details, see <a href="#kbd_focus_vs_selection">this description of differences between focus and selection.</a></li>
+          <li>
+            The <code>listbox</code> role supports the <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property, 
+            which provides an alternative to moving DOM focus among <code>treeitem</code> elements when implementing keyboard navigation. 
+            For details, see <a href="#kbd_focus_activedescendant">Managing Focus in Composites Using aria-activedescendant</a>.
+          </li>
+          <li>
+            In a single-select listbox, moving focus may optionally unselect the previously selected option and select the newly focused option.
+            This model of selection is known as &quot;selection follows focus&quot;.
+            Having selection follow focus can be very helpful in some circumstances and can severely degrade accessibility in others.
+For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding When to Make Selection Automatically Follow Focus</a>.
+          </li>
+          <li>If selecting or unselecting all options is an important function, implementing separate controls for these actions, such as buttons for &quot;Select All&quot; and &quot;Unselect All&quot;, significantly improves accessibility.</li>
+        <li>
+            If the options in a listbox are arranged horizontally:
+            <ol>
+              <li><kbd>Down Arrow</kbd> performs as <kbd>Right Arrow</kbd> is described above, and vice versa.</li>
+              <li><kbd>Up Arrow</kbd> performs as <kbd>Left Arrow</kbd> is described above, and vice versa.</li>
+            </ol>
+          </li>
         </ol>
       </section>
 
@@ -999,21 +1026,25 @@
           <li>An element that contains or owns all the listbox options has role <a href="#listbox" class="role-reference">listbox</a>.</li>
           <li>Each option in the listbox has role <a href="#option" class="role-reference">option</a> and is a DOM  descendant of the element with role <code>listbox</code> or is referenced by an <a href="#aria-owns" class="property-reference">aria-owns</a> property on the listbox element.</li>
           <li>If the listbox is not part of another widget, then it has a visible label referenced by <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> on the element with role <code>listbox</code>.</li>
-          <li>The selected option has <a href="#aria-selected" class="property-reference">aria-selected</a> set to <code>true</code>. </li>
+          <li>In a single-select listbox, the selected option has <a href="#aria-selected" class="property-reference">aria-selected</a> set to <code>true</code>. </li>
           <li>if the listbox supports multiple selection:
-          <ul>
-          <li> The element with role <code>listbox</code> has <a href="#aria-multiselectable" class="property-reference">aria-multiselectable</a> set to <code>true</code>. </li>
-          <li>All selected options have <a href="#aria-selected" class="state-reference">aria-selected</a> set to <code>true</code>. </li>
-          <li>All options that are not selected have <a href="#aria-selected" class="state-reference">aria-selected</a> set to <code>false</code>. </li>
-          </ul>
+            <ul>
+              <li> The element with role <code>listbox</code> has <a href="#aria-multiselectable" class="property-reference">aria-multiselectable</a> set to <code>true</code>. </li>
+              <li>All selected options have <a href="#aria-selected" class="state-reference">aria-selected</a> set to <code>true</code>. </li>
+              <li>All options that are not selected have <a href="#aria-selected" class="state-reference">aria-selected</a> set to <code>false</code>. </li>
+            </ul>
+          </li>
           <li>If the complete set of available options is not present in the DOM due to dynamic loading as the user scrolls, their <a href="#aria-setsize" class="property-reference">aria-setsize</a> and <a href="#aria-posinset" class="property-reference">aria-posinset</a> attributes are set appropriately. </li>
+          <li>
+            If options are arranged horizontally, the element with role <code>listbox</code> has <a href="#aria-orientation" class="property-reference">aria-orientation</a> set to <code>horizontal</code>.
+            The default value of <code>aria-orientation</code> for <code>listbox</code> is <code>vertical</code>.
           </li>
         </ul>
       </section>
 
       <section class="notoc">
         <h4>Example</h4>
-        <p class="ednote">Add link to example</p>
+        <p><a href="examples/listbox/listbox.html">Listbox Examples:</a> Two examples of the listbox pattern demonstrating differences between single-select and multi-select implementation as well as the use of action buttons with key shortcuts for arranging items in a list.</p>
       </section>
     </section>
 
@@ -1034,42 +1065,78 @@
 
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
-        <p>When a menu opens and its items are arranged vertically:</p>
+        <p class="note">
+          Significant revisions to this keyboard subsection were made on October 31. 
+          Please provide feedback in <a href="https://github.com/w3c/aria-practices/issues/120">issue 120</a>.
+        </p>
         <ul>
-          <li>Keyboard focus is placed on the first item. All items in a menu are focusable as described in <a href="#kbd_general_within"></a>.</li>
-          <li><kbd>Enter</kbd> and optionally <kbd>Space</kbd>: activate the menu item with focus (perform the  command or open the submenu associated with the menu item). </li>
-          <li><kbd>Down Arrow</kbd> and <kbd>Up Arrow</kbd>: move focus to the next and previous items, respectively, optionally wrapping from last to first and vice versa. </li>
-          <li><kbd>Home</kbd> and <kbd>End</kbd>: If arrow key wrapping is not supported, move focus to first and last items.</li>
-          <li><kbd>Right Arrow</kbd>: Perform the first of the following actions that applies:
+          <li>
+            When a <code>menu</code> opens, or when a <code>menubar</code> receives focus, 
+            keyboard focus is placed on the first <code>menuitem</code>.
+            All <code>menuitems</code> in a menu are focusable as described in <a href="#kbd_general_within"></a>.
+          </li>
+          <li><kbd>Enter</kbd>: 
             <ul>
-              <li>If the menu item with focus opens a submenu, open the submenu and place focus on the first item in the submenu. </li>
-              <li>If the menu item with focus is contained in a submenu opened from an item in a menubar, close the current menu and open the submenu associated with the next item in the menubar that has an associated submenu. </li>
-              <li>Either move focus to the next item in the current menu or do nothing. </li>
+              <li>If the focused <code>menuitem</code> has a submenu, opens the submenu and places focus on its first <code>menuitem</code>.</li>
+              <li>Otherwise, activates the focused <code>menuitem</code>, <code>menuitemcheckbox</code>, or <code>menuitemradio</code> and closes the menu.</li>
             </ul>
           </li>
-          <li><kbd>Left Arrow</kbd>: Perform the first of the following actions that applies:
+          <li><kbd>Space</kbd>: 
             <ul>
-              <li>If the menu item with focus is contained in a submenu opened from an item in a menubar, close the current menu and open the submenu associated with the previous item in the menubar that has an associated submenu. </li>
-              <li>If the menu item with focus is contained in a submenu, close the current menu and place focus on the menu item from which the submenu was opened. </li>
-              <li>Either move focus to the previous item in the current menu or do nothing. </li>
+              <li>If focus is on a <code>menuitemcheckbox</code>, changes the state without closing the menu.</li>
+              <li>If focus is on a <code>menuitemradio</code> that is not checked, without closing the menu, checks the focused <code>menuitemradio</code> and unchecks any other checked <code>menuitemradio</code> element in the same group.</li>
+              <li>(Optional): If the focused <code>menuitem</code> has a submenu, opens the submenu and places focus on its first <code>menuitem</code>.</li>
+              <li>(Optional): Activates the focused <code>menuitem</code> and closes the menu.</li>
             </ul>
           </li>
-          <li>Any key that corresponds to a printable character: Move focus to   the next menu item in the current menu whose label begins with that printable character. </li>
-          <li><kbd>Escape</kbd>: Close the menu and return focus to   the element or context, e.g., menu button or parent menu item, from which the menu was opened. </li>
-          <li><kbd>Tab</kbd>: Close the menu and all open parent menus and move focus to the next element in the tab sequence.</li>
-          <li><kbd>Shift + Tab</kbd>: Close the menu and all open parent menus and move focus to the previous element in the tab sequence.</li>
+          <li><kbd>Down Arrow</kbd>:
+            <ul> 
+            <li>If the focused <code>menuitem</code> is in a vertical menu, moves focus to the next <code>menuitem</code>, optionally wrapping from the last to the first. </li>
+              <li>If the focused <code>menuitem</code> is in a horizontal menubar or menu and the <code>menuitem</code> has a submenu, opens the submenu and places focus on its first <code>menuitem</code>.</li>
+              <li>Otherwise, if the focused <code>menuitem</code> is in a horizontal submenu of a parent vertical menubar, closes the submenu and moves focus to the first <code>menuitem</code> contained in the submenu opened by the next <code>menuitem</code> in the parent menubar. </li>
+            </ul>
+          </li>
+          <li><kbd>Up Arrow</kbd>:
+            <ul> 
+            <li>If the focused <code>menuitem</code> is in a vertical menu, moves focus to the previous <code>menuitem</code>, optionally wrapping from the first to the last. </li>
+            <li>If the focused <code>menuitem</code> is in a horizontal submenu of a parent horizontal menu, closes the submenu and returns focus to the <code>menuitem</code> in the parent menu that opened the submenu. </li>
+            <li>Otherwise, if the focused <code>menuitem</code> is in a horizontal submenu of a parent vertical menubar, moves focus to the first <code>menuitem</code> contained in the submenu opened by the previous <code>menuitem</code> in the parent menubar. </li>
+            </ul>
+          </li>
+          <li><kbd>Right Arrow</kbd>: 
+            <ul>
+            <li>If the focused <code>menuitem</code> is in a horizontal menu, moves focus to the next <code>menuitem</code>, optionally wrapping from the last to the first. </li>
+              <li>If the focused <code>menuitem</code> is in a vertical menu and the <code>menuitem</code> has a submenu, opens the submenu and places focus on its first <code>menuitem</code>. </li>
+              <li>Otherwise, if the focused <code>menuitem</code> is in a vertical submenu of a parent horizontal menubar, closes the submenu and moves focus to the first <code>menuitem</code> contained in the submenu opened by the next <code>menuitem</code> in the parent menubar.</li>
+            </ul>
+          </li>
+          <li><kbd>Left Arrow</kbd>:
+          <ul>
+            <li>If the focused <code>menuitem</code> is in a horizontal menu, moves focus to the previous <code>menuitem</code>, optionally wrapping from the first to the last. </li>
+              <li>If the focused <code>menuitem</code> is in a vertical submenu of a parent vertical menu, closes the submenu and returns focus to the <code>menuitem</code> that opened the submenu.</li>
+              <li>Otherwise, if the focused <code>menuitem</code> is in a vertical submenu of a parent horizontal menubar, closes the submenu and moves focus to the first <code>menuitem</code> contained in the submenu opened by the previous <code>menuitem</code> in the parent menubar.</li>
+            </ul>
+          </li>
+          <li><kbd>Home</kbd>: If arrow key wrapping is not supported, moves focus to the first <code>menuitem</code> in the menu that contains focus.</li>
+          <li><kbd>End</kbd>: If arrow key wrapping is not supported, moves focus to the last <code>menuitem</code> in the menu that contains focus.</li>
+          <li>Any key that corresponds to a printable character (Optional): Move focus to   the next menu item in the current menu whose label begins with that printable character.</li>
+          <li><kbd>Escape</kbd>: Close the menu that contains focus and return focus to   the element or context, e.g., menu button or parent <code>menuitem</code>, from which the menu was opened. </li>
+          <li><kbd>Tab</kbd>: Moves focus to the next element in the tab sequence, and if the <code>menuitem</code> that had focus is not in a menubar, closes its menu and all open parent menus.</li>
+          <li><kbd>Shift + Tab</kbd>: Moves focus to the previous element in the tab sequence, and if the <code>menuitem</code> that had focus is not in a menubar, closes its menu and all open parent menus.</li>
         </ul>
         <ol class="note">
-          <li>The keyboard behaviors of a menubar are the same as other menus except that a menubar is typically visually persistent so the first item is in the tab sequence and <kbd>Escape</kbd>, <kbd>Tab</kbd>, and <kbd>Shift + Tab</kbd> do not close it. </li>
-          <li>If the items in a menu or menubar are arranged horizontally:
-            <ol>
-              <li> <kbd>Right Arrow</kbd> performs as <kbd>Down Arrow</kbd> is described above and vice versa. </li>
-              <li> <kbd>Left Arrow</kbd> performs as <kbd>Up Arrow</kbd> is described above and vice versa. </li>
-            </ol>
-          </li>
           <li>Disabled menu items should be focusable but can not be activated. </li>
           <li>A <a href="#separator" class="role-reference">separator</a> in a menu is not focusable or interactive.</li>
-          <li>If a menu is opened or a menubar receives focus as a result of a context action, <kbd>Escape</kbd> may return focus to   the invoking context. For example, a rich text editor may have a menubar that receives focus when a shortcut key, e.g., <kbd>alt + F10</kbd>, is pressed while editing. In this case, <kbd>Escape</kbd> may return focus to the editor. </li>
+          <li>
+            If a menu is opened or a menubar receives focus as a result of a context action, <kbd>Escape</kbd> or <kbd>Enter</kbd> may return focus to   the invoking context. 
+            For example, a rich text editor may have a menubar that receives focus when a shortcut key, e.g., <kbd>alt + F10</kbd>, is pressed while editing. 
+            In this case, <kbd>Escape</kbd> or activating a command from the menu may return focus to the editor.
+          </li>
+          <li>
+            Although it is recommended that authors avoid doing so, some implementations of navigation menubars may have <code>menuitem</code> elements that both perform a function and open a submenu.
+            In such implementations, <kbd>enter</kbd> and <kbd>Space</kbd> perform a navigation function, e.g., load new content,
+            while <kbd>Down Arrow</kbd>, in a horizontal menubar, opens the submenu associated with that same <code>menuitem</code>.
+          </li>
         </ol>
       </section>
 
@@ -1101,11 +1168,9 @@
 
       <section class="notoc">
         <h4>Example</h4>
-        <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG task force is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
-
         <ul>
-          <li><a href="http://www.oaa-accessibility.org/examplep/menubar1/" target="_blank">Open Ajax Alliance Menu bar</a></li>
-          <li><a href="http://www.oaa-accessibility.org/examplep/menubar2/" target="_blank">Open Ajax Alliance Menu bar using CSS selectors</a></li>
+          <li><a href="examples/menubar/menubar-1/menubar-1.html">Navigation Menubar</a>: Demonstrates a menubar that provides site navigation.</li>
+          <li><a href="examples/menubar/menubar-2/menubar-2.html">Editor Menubar</a>: Demonstrates menu radios and menu checkboxes in submenus of a menubar that provides text formatting commands for a text field.</li>
         </ul>
       </section>
     </section>
@@ -1321,7 +1386,7 @@
 
       <section class="notoc">
         <h4>Example</h4>
-        <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG task force is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
+        <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The ARIA practices task force is developing examples for Authoring Practices version 1.1 that will be directly incorporated into the guide.</p>
 
         <ul>
           <li><a href="http://www.oaa-accessibility.org/examplep/slider1/" target="_blank" rel="nofollow">Open Ajax Alliance Sliders</a> (see second example on page)</li>
@@ -1363,7 +1428,7 @@
 
       <section class="notoc">
         <h4>Example</h4>
-        <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG task force is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
+        <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The ARIA practices task force is developing examples for Authoring Practices 1.1 that will be directly incorporated into the guide.</p>
         <ul>
           <li><a href="http://www.oaa-accessibility.org/examplep/spinbutton1/" rel="nofollow" target="_blank">Open Ajax Alliance Spinbutton</a></li>
           <li><a href="http://archive.dojotoolkit.org/nightly/dojotoolkit/dijit/tests/form/test_Spinner.html" rel="nofollow">dojo/dijit nightly build</a></li>
@@ -1492,7 +1557,6 @@
 
     <section class="widget" id="toolbar">
       <h3>Toolbar</h3>
-
       <p>A <a class="role-reference" href="#toolbar">toolbar</a> is a container for grouping a set of controls, such as buttons, menubuttons, or checkboxes.</p>
       <p>
         When a set of controls is visually presented as a group, the <code>toolbar</code> role can be used to communicate the presence and purpose of the grouping to screen reader users.
@@ -1507,7 +1571,6 @@
 
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
-
         <ul>
           <li>
             <kbd>Tab</kbd>: Moves focus into and out of the toolbar.
@@ -1544,10 +1607,7 @@
 
       <section class="notoc">
         <h4>Example</h4>
-        <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG task force is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
-        <ul>
-          <li><a href="http://www.oaa-accessibility.org/examplep/toolbar1/" target="_blank" rel="nofollow">Open Ajax Alliance toolbar</a></li>
-        </ul>
+        <p><a href="examples/toolbar/toolbar.html">Toolbar Example</a>: A toolbar including buttons, links, and checkboxes that uses roving tabindex to manage focus.</p>
       </section>
     </section>
 
@@ -1582,7 +1642,7 @@
 
       <section class="notoc">
         <h4>Example</h4>
-        <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG task force is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
+        <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The ARIA practices task force is developing examples for Authoring Practices 1.1 that will be directly incorporated into the guide.</p>
         <ul>
           <li><a href="http://www.oaa-accessibility.org/examplep/tooltip1/" target="_blank" rel="nofollow">Open Ajax Alliance tooltip</a></li>
           <li><a href="http://www.oaa-accessibility.org/examplep/tooltip2/" target="_blank" rel="nofollow">Open Ajax Alliance tooltip using ARIA CSS selectors</a></li>
@@ -1765,7 +1825,7 @@
 
       <section class="notoc">
         <h4>Example</h4>
-        <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG task force is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
+        <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The ARIA practices task force is developing examples for Authoring Practices 1.1 that will be directly incorporated into the guide.</p>
         <ul>
           <li><a href="http://archive.dojotoolkit.org/nightly/dojotoolkit/dijit/tests/layout/test_BorderContainer.html" target="_blank" rel="nofollow">Dojo Window splitter</a></li>
         </ul>
@@ -2509,7 +2569,7 @@
           </li>
 
           <li>
-            If the design calls for a specific element to be focused the next time a user moves focus into the composite with <kbd>Tab<kbd> or <kbd>Shift+Tab</kbd>, check if aria-activedescendant is referring to that target element when the container loses focus.
+            If the design calls for a specific element to be focused the next time a user moves focus into the composite with <kbd>Tab</kbd> or <kbd>Shift+Tab</kbd>, check if aria-activedescendant is referring to that target element when the container loses focus.
             If it is not, set aria-activedescendant to refer to the target element.
           </li>
         </ul>

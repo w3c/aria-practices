@@ -63,6 +63,10 @@ code {
   font-weight: bold;
 }
 
+[hidden] {
+  display: none;
+}
+
 .sourcecode {
   font-family: "Courier new", Courier, Monospace;
   margin: 0;

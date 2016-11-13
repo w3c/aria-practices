@@ -1,0 +1,82 @@
+.hidden {
+	display: none !important;
+}
+
+.accessible_elem {
+	clip: rect(1px 1px 1px 1px);
+	clip: rect(1px, 1px, 1px, 1px);
+	height: 1px;
+	overflow: hidden;
+	position: absolute;
+	white-space: nowrap;
+	width: 1px;
+}
+
+.list-links {
+  font-size: 0px;
+}
+
+.list-link {
+  background: #eee;
+  border: 1px solid #bbb;
+  display: inline-block;
+  font-size: 14px;
+  height: 40px;
+  margin: 5px 0 0 0;
+  padding: 5px;
+  vertical-align: middle;
+  width: 120px;
+}
+
+.recipient-list {
+	background: #eee;
+	border: 1px solid #ddd;
+	margin-bottom: 10px;
+  padding: 5px 15px;
+  position: relative;
+}
+
+#send_to_label {
+	font-size: 14px;
+	font-weight: bold;
+	position: absolute;
+	top: 1.2em;
+}
+
+.pill-list {
+	background: white;
+	border: 1px solid #ccc;
+	font-size: 0;
+	margin-bottom: 5px;
+	margin-left: 65px;
+	min-height: 31px;
+	padding: 0 5px 5px;
+}
+
+.pill-item {
+  background: #eee;
+  border: 1px solid #acc1e4;
+  border-radius: 2px;
+  color: #acc1e4;
+  display: inline-block;
+	font-size: 14px;
+  margin: 5px 5px 0 0;
+  padding: .3em;
+}
+
+.pill-name {
+  text-decoration: none;
+}
+
+.pill-remove {
+  cursor: default;
+  margin-left: 10px;
+}
+
+#recipient-form {
+	margin-left: 65px;
+}
+
+#add-recipient-input {
+  font-size: 14px;
+}

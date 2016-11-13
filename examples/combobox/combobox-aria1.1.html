@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<!-- 
+        An example that was implemented with this template can be found in: examples/checkbox/checkbox-2.html. 
+        Rename the javascript and CSS stub files in the js and css subdirectories and update the head element of this file.
+    -->
+
+<title>Combobox Examples | WAI-ARIA Authoring Practices 1.1</title>
+
+<!--  Core js and css shared by all examples; do not modify when using this template. -->
+<link href="../css/core.css" rel="stylesheet">
+<link href="../css/table.css" rel="stylesheet">
+<script src="../js/examples.js" type="text/javascript"></script>
+
+<!--  js and css for this example.
+  When developing an example implementation of a design pattern,
+  these files will contain the CSS and JS for the example implementation.
+  Rename these files to match the name of the example, e.g., checkbox.js if implementing the checkbox design pattern.
+  -->
+<link href="css/example_name.css" rel="stylesheet">
+<script src="js/example_name.js" type="text/javascript"></script>
+
+</head>
+<body>
+  <main> 
+  <h1>Combobox Examples</h1>
+  <p>
+    <strong>NOTE:</strong> This is work in progress; it is not ready for review.
+    Once ready, feedback will be welcom in <a href="https://github.com/w3c/aria-practices/issues/100">issue 100</a>.
+  </p>
+  <p>
+    The following three example implementations of the <a href="../../#combobox">design pattern for combobox</a>
+    take advantage of implementation options introduced by the ARIA 1.1 specification.
+    The intent of the ARIA 1.1 changes are to help assistive technologies render more user friendly presentations and give authors greater design flexibility.
+    For example, in addition to allowing listbox as a type of pop-up element, ARIA 1.1 combobox widgets may use a tree, grid, or dialog to present completion values.
+  </p>
+  <p>
+    <strong>NOTE:</strong> Browsers and assistive technologies will continue to support implementations of the <a href="./combobox-aria1.0.html">legacy ARIA 1.0 combobox pattern</a> since it already has wide-spread and successful adoption.
+  </p>
+  <section>
+    <h2>Examples</h2>
+    <p>If there is a brief, important note that applies to all the implementations, put it here.</p>
+
+    <section>
+      <h3 id="ex1_label">Example 1: title of this variation of the implementation</h3>
+      <!--  If there is a preferred implementation, make it the first implementation.  -->
+      <p>This is the preferred implementation whenever feasible. (Delete this paragraph if there
+        is not a preferred implementation.)</p>
+      <div aria-labelledby="ex1_label" role="region">
+        <!-- 
+                        Note the ID of the following div that contains the example HTML is used as a parameter for the sourceCode.add() function.  
+                        The sourceCode functions in the examples/js/examples.js render the HTML source to show it to the reader of the example page.
+                        If you change the ID of this div, be sure to update the parameters of the sourceCode.add() function call, which is made following the div with id="sc1" where the HTML is render.
+                        The div for the rendered HTML source is in the last section of the page.
+                    -->
+        <div id="ex1">
+          <!--  Replace content of this div with the example.  -->
+          <p>This is the place where the reader will experience the first functioning example.</p>
+          <ul>
+            <li>The HTML in this section along with the javascript and CSS it uses demonstrate
+              the design pattern.</li>
+            <li>
+              When developing an example implementation for this guide, please follow the
+              <a href="https://ianpouncey.github.io/code-guide/">APG example coding guidelines</a>
+              .
+            </li>
+            <!--  Target of previous link will need to be updated when we move the guidelines into the wiki from Ian's repo.  -->
+          </ul>
+        </div>
+      </div>
+      <p>In this implementation:</p>
+      <ul>
+        <li>First of a short list of distinguishing characteristics of this implementation.</li>
+        <li>Second of a short list of distinguishing characteristics of this implementation.</li>
+        <li>... Continue as needed.</li>
+        <li>Do not describe common features that will be included in other sections below.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h3 id="ex2_label">Example 2: title of this variation of the implementation</h3>
+      <div aria-labelledby="ex2_label" role="region">
+        <!-- 
+                        Note the ID of the following div that contains the example HTML is used as a parameter for the sourceCode.add() function.  
+                        The sourceCode functions in the examples/js/examples.js render the HTML source to show it to the reader of the example page.
+                        If you change the ID of this div, be sure to update the parameters of the sourceCode.add() function call, which is made following the div with id="sc2" where the HTML is render.
+                        The div for the rendered HTML source is in the last section of the page.
+                    -->
+        <div id="ex2">
+          <!--  Replace content of this div with the example.  -->
+          <p>This is the place where the reader will experience the second functioning example.</p>
+          <ul>
+            <li>The HTML in this section along with the javascript and CSS it uses demonstrate
+              the design pattern.</li>
+            <li>
+              When developing an example implementation for this guide, please follow the
+              <a href="https://ianpouncey.github.io/code-guide/">APG example coding guidelines</a>
+              .
+            </li>
+            <!--  Target of previous link will need to be updated when we move the guidelines into the wiki from Ian's repo.  -->
+          </ul>
+        </div>
+      </div>
+      <p>In this implementation:</p>
+      <ul>
+        <li>First of a short list of distinguishing characteristics of this implementation.</li>
+        <li>Second of a short list of distinguishing characteristics of this implementation.</li>
+        <li>... Continue as needed.</li>
+        <li>Do not describe common features that will be included in other sections below.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h3 id="ex3_label">Example 3: title of this variation of the implementation</h3>
+      <div aria-labelledby="ex3_label" role="region">
+        <!-- 
+                        Note the ID of the following div that contains the example HTML is used as a parameter for the sourceCode.add() function.  
+                        The sourceCode functions in the examples/js/examples.js render the HTML source to show it to the reader of the example page.
+                        If you change the ID of this div, be sure to update the parameters of the sourceCode.add() function call, which is made following the div with id="sc3" where the HTML is render.
+                        The div for the rendered HTML source is in the last section of the page.
+                    -->
+        <div id="ex3">
+          <!--  Replace content of this div with the example.  -->
+          <p>This is the place where the reader will experience the third functioning example.</p>
+          <ul>
+            <li>The HTML in this section along with the javascript and CSS it uses demonstrate
+              the design pattern.</li>
+            <li>
+              When developing an example implementation for this guide, please follow the
+              <a href="https://ianpouncey.github.io/code-guide/">APG example coding guidelines</a>
+              .
+            </li>
+            <!--  Target of previous link will need to be updated when we move the guidelines into the wiki from Ian's repo.  -->
+          </ul>
+        </div>
+      </div>
+      <p>In this implementation:</p>
+      <ul>
+        <li>First of a short list of distinguishing characteristics of this implementation.</li>
+        <li>Second of a short list of distinguishing characteristics of this implementation.</li>
+        <li>... Continue as needed.</li>
+        <li>Do not describe common features that will be included in other sections below.</li>
+      </ul>
+    </section>
+
+  </section>
+
+  <section>
+    <h2>Accessibility Features</h2>
+    <p class="annotate">Please replace this content with a list of accessibility features
+      demonstrated in this implementation, such as the following. If the content will vary
+      significantly for the above implementations, make this a level 4 section inside each of the
+      above level 3 implementation sections.</p>
+    <ul>
+      <li>ARIA roles</li>
+      <li>property and state information</li>
+      <li>Event handlers</li>
+      <li>
+        <code>tabindex</code> values
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 id="kbd_label">Keyboard Support</h2>
+    <!--  Update the content of this table to describe which keys are implemented in this example. 
+            If the content will vary significantly for the above implementations, make this a level 4 section inside each of the above level 3 implementation sections.
+            -->
+    <table aria-labelledby="kbd_label">
+      <thead>
+        <tr>
+          <th>Key</th>
+          <th>Function</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <em>key 1</em>
+          </td>
+          <td>Key 1 action</td>
+        </tr>
+        <tr>
+          <td>
+            <em>key 2</em>
+          </td>
+          <td>Key 2 action</td>
+        </tr>
+        <tr>
+          <td>
+            <em>key 3</em>
+          </td>
+          <td>Key 3 action</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2 id="rps_label">ARIA Roles, Properties, and States</h2>
+    <!--  Update this table to describe the roles, properties, and states implemented in this example.  
+            If the content will vary significantly for the above implementations, make this a level 4 section inside each of the above level 3 implementation sections.
+        -->
+    <table aria-labelledby="rps_label">
+      <thead>
+        <tr>
+          <th>Role</th>
+          <th>Property/State</th>
+          <th>Element</th>
+          <th>Usage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <em>role</em>
+          </td>
+          <td></td>
+          <td>
+            element <em>X</em>
+          </td>
+          <td>
+            <ul>
+              <li>
+                Identify element with the <em>role</em> behavior
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <em>aria-xxxxx</em>
+          </td>
+          <td>
+            <em>X[role="yyy"]</em> element
+          </td>
+          <td>
+            <ul>
+              <li>Purpose of aria properties or aria states within example</li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Javascript and CSS Source Code</h2>
+    <!--  After the js and css files are named with the name of this example, change the href and text of the following 2 links to refer to the appropriate js and css files.  -->
+    <ul>
+      <li>
+        CSS:
+        <a href="css/example_name.css" type="tex/css">example_name.css</a>
+      </li>
+      <li>
+        Javascript:
+        <a href="js/example_name.js" type="text/javascript">example_name.js</a>
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>HTML Source Code</h2>
+    <h3 id="sc1_label">Example 1: title of this variation of the implementation</h3>
+
+    <div id="sc1" role="region" aria-labelledby="sc1 sc1_label" aria-label="HTML source for"></div>
+    <!-- 
+                The following script will show the reader the HTML source for the example that is in the div with ID 'ex1'.
+                It renders the HTML in the preceding div with ID 'sc1'.
+                If you change the ID of either the 'ex1' div or the 'sc1' div, be sure to update the sourceCode.add function parameters.
+            -->
+    <script>sourceCode.add('sc1', 'ex1') </script>
+
+    <h3 id="sc2_label">Example 2: title of this variation of the implementation</h3>
+    <div id="sc2" role="region" aria-labelledby="sc2 sc2_label" aria-label="HTML source for"></div>
+    <!-- 
+                The following script will show the reader the HTML source for the example that is in the div with ID 'ex2'.
+                It renders the HTML in the preceding div with ID 'sc2'.
+                If you change the ID of either the 'ex2' div or the 'sc2' div, be sure to update the sourceCode.add function parameters.
+            -->
+    <script>sourceCode.add('sc2', 'ex2') </script>
+
+    <h3 id="sc3_label">Example 3: title of this variation of the implementation</h3>
+    <div id="sc3" role="region" aria-labelledby="sc3 sc3_label" aria-label="HTML source for"></div>
+    <!-- 
+                The following script will show the reader the HTML source for the example that is in the div with ID 'ex3'.
+                It renders the HTML in the preceding div with ID 'sc3'.
+                If you change the ID of either the 'ex3' div or the 'sc3' div, be sure to update the sourceCode.add function parameters.
+            -->
+    <script>sourceCode.add('sc3', 'ex3') </script>
+
+    <!--  After all source has been added, run make to do the insert.  -->
+    <script> sourceCode.make() </script>
+
+  </section>
+
+  </main>
+  <nav>
+    <!--  Update the pattern_ID parameter of this link to refer to the APG design pattern section related to this example.  -->
+    <a href="../../#pattern_ID">EXAMPLE_NAME Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
+  </nav>
+</body>
+</html>

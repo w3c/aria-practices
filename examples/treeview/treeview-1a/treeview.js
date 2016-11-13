@@ -203,8 +203,8 @@ Tree.prototype.initTreeitems = function (node, previous, parent) {
 
     if (n.firstElementChild) {
       if (
-        n.getAttribute('role') === 'treeitem' &&
-        typeof n.getAttribute('aria-expanded') === 'string'
+        n.getAttribute('role') === 'treeitem'
+        && typeof n.getAttribute('aria-expanded') === 'string'
       ) {
         previous = this.initTreeitems(n, n, n);
       }
@@ -261,9 +261,9 @@ Tree.prototype.getChildTreeitems = function (treeitem) {
 Tree.prototype.isExpandable = function (treeitem) {
 
   if (
-    treeitem.getAttribute('aria-expanded') &&
-    treeitem.nextTreeitem &&
-    treeitem.nextTreeitem.parentTreeitem === treeitem
+    treeitem.getAttribute('aria-expanded')
+    && treeitem.nextTreeitem
+    && treeitem.nextTreeitem.parentTreeitem === treeitem
   ) {
     return true;
   }
@@ -286,10 +286,10 @@ Tree.prototype.isExpandable = function (treeitem) {
 Tree.prototype.isExpanded = function (treeitem) {
 
   if (
-    treeitem.getAttribute('aria-expanded') &&
-    treeitem.getAttribute('aria-expanded') === 'true' &&
-    treeitem.nextTreeitem &&
-    treeitem.nextTreeitem.parentTreeitem === treeitem
+    treeitem.getAttribute('aria-expanded')
+    && treeitem.getAttribute('aria-expanded') === 'true'
+    && treeitem.nextTreeitem
+    && treeitem.nextTreeitem.parentTreeitem === treeitem
   ) {
     return true;
   }
@@ -381,9 +381,11 @@ Tree.prototype.getPreviousVisibleTreeitem = function (treeitem) {
 
   var ti = treeitem.previousTreeitem;
 
-  while (ti &&
-         ti.parentTreeitem &&
-         ti.parentTreeitem.getAttribute('aria-expanded') === 'false') {
+  while (
+    ti
+    && ti.parentTreeitem
+    && ti.parentTreeitem.getAttribute('aria-expanded') === 'false'
+  ) {
     ti = ti.previousTreeitem;
   }
 
@@ -403,9 +405,11 @@ Tree.prototype.getNextVisibleTreeitem = function (treeitem) {
 
   var ti = treeitem.nextTreeitem;
 
-  while (ti &&
-         ti.parentTreeitem &&
-         ti.parentTreeitem.getAttribute('aria-expanded') === 'false') {
+  while (
+    ti
+    && ti.parentTreeitem
+    && ti.parentTreeitem.getAttribute('aria-expanded') === 'false'
+  ) {
     ti = ti.nextTreeitem;
   }
 
@@ -425,8 +429,8 @@ Tree.prototype.compareFirstChar = function (node, char) {
 
   function setFirstChar (name) {
     if (
-      (typeof node.firstChar !== 'string') &&
-      (typeof name === 'string')
+      (typeof node.firstChar !== 'string')
+      && (typeof name === 'string')
     ) {
       name = name.trim();
       if (name.length) {
