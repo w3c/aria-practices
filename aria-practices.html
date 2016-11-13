@@ -1701,7 +1701,7 @@
           <li><kbd>Home</kbd>: Moves focus to the first node in the tree.</li>
           <li><kbd>End</kbd>: Moves focus to the last node in the tree that is focusable without opening a node.</li>
           <li><kbd>Enter</kbd>: activates a node, i.e., performs its default action. For parent nodes, one possible default action is to open or close the node. In single-select trees where selection does not follow focus (see note below), the default action is typically to select the focused node.</li>
-          <li>Type-ahead is recommended for all lists, but considered essential for large trees (typically more than 5 nodes per level):
+          <li>Type-ahead is recommended for all trees, especially for trees with more than 7 root nodes:
             <ul>
               <li>Type a character: focus moves to the next node with a name that starts with the typed character.</li>
               <li>Type multiple characters in rapid succession: focus moves to the next node with a name that starts with the string of characters typed.</li>
@@ -1714,26 +1714,26 @@
             <ul>
               <li>Recommended selection model -- holding a modifier key while moving focus is not necessary:
                 <ul>
-                  <li><kbd>Space</kbd>: changes the selection state of the focused node.</li>
-                  <li><kbd>Shift + Down Arrow</kbd> (optional): move focus to and select the next node.</li>
-                  <li><kbd>Shift + Up Arrow</kbd> (optional): move focus to and select the previous node.</li>
-                  <li><kbd>Shift + Space</kbd> (Optional): selects contiguous nodes from the last   selected node to the current node.</li>
-                  <li><kbd>Control + Shift + Home</kbd> (Optional): selects the node with focus and all nodes up to the beginning of the tree.</li>
-                  <li><kbd>Control + Shift + End</kbd> (Optional): selects the node with focus and all nodes down to the end of the tree.</li>
-                  <li><kbd>Control + A</kbd> (Optional): selects all nodes in the tree.</li>
+                  <li><kbd>Space</kbd>: Toggles the selection state of the focused node.</li>
+                  <li><kbd>Shift + Down Arrow</kbd> (Optional): Move focus to and toggle the selection state of the next node.</li>
+                  <li><kbd>Shift + Up Arrow</kbd> (Optional): Move focus to and toggle the selection state of the previous node.</li>
+                  <li><kbd>Shift + Space</kbd> (Optional): Selects contiguous nodes from the last   selected node to the current node.</li>
+                  <li><kbd>Control + Shift + Home</kbd> (Optional): Selects the node with focus and all nodes up to the first node.</li>
+                  <li><kbd>Control + Shift + End</kbd> (Optional): Selects the node with focus and all nodes down to the last node.</li>
+                  <li><kbd>Control + A</kbd> (Optional): Selects all nodes in the tree. Optionally, if all nodes are select, it can also unselect all nodes.</li>
                 </ul>
               </li>
               <li>Alternative selection model -- Moving focus without holding the <kbd>Shift</kbd> or <kbd>Control</kbd> modifier unselects all selected nodes except for the focused node:
                 <ul>
-                  <li><kbd>Shift + Down Arrow</kbd>: Moves focus to and selects the next node.</li>
-                  <li><kbd>Shift + Up Arrow</kbd>: Moves focus to and selects the previous node.</li>
+                  <li><kbd>Shift + Down Arrow</kbd>: Moves focus to and toggles the selection state of the next node.</li>
+                  <li><kbd>Shift + Up Arrow</kbd>: Moves focus to and toggles the selection state of the previous node.</li>
                   <li><kbd>Control + Down Arrow</kbd>: Without changing the selection state, moves focus to the next node.</li>
                   <li><kbd>Control + Up Arrow</kbd>: Without changing the selection state, moves focus to the previous node.</li>
-                  <li><kbd>Control + Space</kbd>: Changes the selection state of the focused node.</li>
+                  <li><kbd>Control + Space</kbd>: Toggles the selection state of the focused node.</li>
                   <li><kbd>Shift + Space</kbd> (Optional): Selects contiguous nodes from the most recently selected node to the current node.</li>
-                  <li><kbd>Control + Shift + Home</kbd> (Optional): Selects the node with focus and all nodes up to the beginning of the tree.</li>
-                  <li><kbd>Control + Shift + End</kbd> (Optional): Selects the node with focus and all nodes down to the end of the tree.</li>
-                  <li><kbd>Control + A</kbd> (Optional): Selects all nodes in the tree.</li>
+                  <li><kbd>Control + Shift + Home</kbd> (Optional): Selects the node with focus and all nodes up to the first node.</li>
+                  <li><kbd>Control + Shift + End</kbd> (Optional): Selects the node with focus and all nodes down to the last node.</li>
+                  <li><kbd>Control + A</kbd> (Optional): Selects all nodes in the tree. Optionally, if all nodes are selected, it can also unselect all nodes.</li>
                 </ul>
               </li>
             </ul>
