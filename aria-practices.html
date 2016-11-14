@@ -1774,12 +1774,14 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
           <li>
             Each element with role <code>treeitem</code> that serves as a parent node has <a class="property-reference" href="#aria-expanded">aria-expanded</a> 
             set to <code>false</code> when the node is in a closed state and set to <code>true</code> when the node is in an open state.
-            End nodes do not have the <code>aria-expanded</code> attribute.
+            End nodes do not have the <code>aria-expanded</code> attribute because, if they were to have it, they would be incorrectly described to assistive technologies as parent nodes.
           </li>
           <li>
             Each element with role <code>treeitem</code> that serves as a parent node has either
             <a class="property-reference" href="#aria-label">aria-label</a> or <a class="property-reference" href="#aria-labelledby">aria-labelledby</a>
-            set to specify a label. Otherwise, the parent node will be labeled by the text content of all child elements.
+            set to specify a label. 
+            Warning: parent nodes missing a label are labeled by             all child elements,
+            causing screen readers to announce every child and often making a tree so verbose that it is unusable.
           </li>
           <li>If the tre supports selection of more than one node, the element with role <code>tree</code> has <a class="property-reference" href="#aria-multiselectable">aria-multiselectable</a> set to <code>true</code>. Otherwise, <code>aria-multiselectable</code> is either set to <code>false</code> or the default value of <code>false</code> is implied.</li>
           <li>If the tree does not support multiple selection, <a href="#aria-selected" class="property-reference">aria-selected</a> is set to <code>true</code> for the selected node and it is not present on any other node in the tree.</li>
