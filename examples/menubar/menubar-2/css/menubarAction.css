@@ -52,7 +52,7 @@ ul[role="menubar"] [role="separator"]:hover {
   color: white;
 }
 
-ul[role="menubar"] li[aria-checked='true']:before {
+ul[role="menubar"] li[aria-checked='true']{
   background-image: url('../images/checkmark.png');
   background-repeat: no-repeat;
   background-position: 0.1em 0.2em;
@@ -62,6 +62,7 @@ ul[role="menubar"] li[aria-checked='true']:hover,
 ul[role="menubar"] li[aria-checked='true']:focus {
   background-image: url('../images/checkmark-inverse.png');
   background-repeat: no-repeat;
+  background-position: 0.1em 0.2em;
 }
 
 ul[role="menubar"] li {
@@ -72,6 +73,7 @@ ul[role="menubar"] li {
 
 ul[role="menubar"] > li {
   display: inline;
+  position: relative;
 }
 
 ul[role="menubar"] > li > span:after {
