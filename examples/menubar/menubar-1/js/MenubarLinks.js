@@ -171,23 +171,3 @@ Menubar.prototype.getIndexFirstChars = function (startIndex, char) {
   return -1;
 };
 
-/* MENU DISPLAY METHODS */
-
-Menubar.prototype.getPosition = function (element) {
-  var x = 0,
- y = 0;
-
-  while (element) {
-    x += (element.offsetLeft - element.scrollLeft + element.clientLeft);
-    y += (element.offsetTop - element.scrollTop + element.clientTop);
-    element = element.offsetParent;
-  }
-
-  return {x: x, y: y};
-};
-
-Menubar.prototype.open = function () {
-};
-
-Menubar.prototype.close = function (force) {
-};

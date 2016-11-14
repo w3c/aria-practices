@@ -41,6 +41,7 @@ ul[role="menubar"] li {
 
 ul[role="menubar"] > li {
   display: inline;
+  position: relative;
 }
 
 ul[role="menubar"] > li > a:after {
@@ -50,11 +51,13 @@ ul[role="menubar"] > li > a:after {
 ul[role="menubar"] ul[role="menu"] {
   display: none;
   position: absolute;
+  top: -2px;
+  left: 0;
   margin: 0;
   padding: 0;
 }
 
+
 ul[role="menubar"] ul[role="menu"] li a {
   display: block;
 }
-
