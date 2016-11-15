@@ -210,29 +210,15 @@ PopupMenu.prototype.getIndexFirstChars = function (startIndex, char) {
 
 /* MENU DISPLAY METHODS */
 
-PopupMenu.prototype.getPosition = function (element) {
-  var x = 0,
- y = 0;
-
-  while (element) {
-    x += (element.offsetLeft - element.scrollLeft + element.clientLeft);
-    y += (element.offsetTop - element.scrollTop + element.clientTop);
-    element = element.offsetParent;
-  }
-
-  return {x: x, y: y};
-};
-
 PopupMenu.prototype.open = function () {
   // Get position and bounding rectangle of controller object's DOM node
-  var pos = this.getPosition(this.controller.domNode);
   var rect = this.controller.domNode.getBoundingClientRect();
 
   // Set CSS properties
   this.domNode.style.display = 'block';
   this.domNode.style.position = 'absolute';
-  this.domNode.style.top = (pos.y + rect.height) + 'px';
-  this.domNode.style.left = pos.x + 'px';
+  this.domNode.style.top = (rect.height - 1) + 'px';
+  this.domNode.style.zIndex = 100;
 
   // Set aria-expanded attribute
   this.controller.domNode.setAttribute('aria-expanded', 'true');
@@ -242,6 +228,7 @@ PopupMenu.prototype.close = function (force) {
 
   if (force || (!this.hasFocus && !this.hasHover && !this.controller.hasHover)) {
     this.domNode.style.display = 'none';
+    this.domNode.style.zIndex = 0;
     this.controller.domNode.setAttribute('aria-expanded', 'false');
   }
 };
