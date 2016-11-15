@@ -339,6 +339,42 @@
   </section>
   
   <section>
+    <h2>Other Features</h2>
+    <p>
+      The JavaScript for these examples allows the focus movement and wrapping behavior of the arrow keys to be declared in the HTML.
+    </p>
+    <ol>
+      <li>To make an element focusable, set <code>tabindex=&quot;-1&quot;</code>.
+        <ul>
+          <li>If a cell container is made focusable, focus will be placed on the cell. Do this when a cell contains static content, such as the abstract of search results in example 3.</li>
+          <li>If a cell is not made focusable but an element inside of it is, focus will move to that element. Do this when the cell contains an interactive widget, such as the search result link in example 3.</li>
+        </ul>
+      </li>
+      <li>To declare the arrow key wrapping behavior:
+      <ul>
+        <li>
+          <code>data-wrap-cols=&quot;true&quot;</code>: Set this value on the grid to make <kbd>Right Arrow</kbd> and <kbd>Left Arrow</kbd> 
+          move focus from column to column even across row boundaries to the column (cell) in the next or previous row. 
+          Setting it <code>false</code> will disable wrapping. 
+          Typically this should be <code>true</code> in all logical layout grids like those on this page 
+          and <code>false</code> like those on the 
+          <a href="dataGrids.html">data grid examples</a> page.
+        </li>
+        <li>
+          <code>data-wrap-rows=&quot;true&quot;</code>: Set this value on the grid to make <kbd>Down Arrow</kbd> and <kbd>Up Arrow</kbd> 
+          move focus from row to row even across column boundaries to the row (cell) in the next or previous column. 
+          Setting it <code>false</code> will disable wrapping. 
+          This type of wrapping should only occur when all cells in the grid are logically equivalent.
+          That is, the number of cells in a logical unit is one.
+          For instance, in example 1, all cells contain a navigation link. 
+          The grid contains one set of links that can be presented in a single row, a single column, or divided into two rows of three or three rows of two and remain logically equivalent.
+          Conversely, in example 3, each logical row contains three cells, and it would be bizarre for the focus to move from the last search result link to the organization cell of the first search result when <kbd>Down Arrow</kbd> is pressed.
+        </li>
+      </ul>
+      </li>
+    </ol>
+  </section>
+  <section>
     <h2 id="kbd_label">Keyboard Support</h2>
     <ul>
       <li>
