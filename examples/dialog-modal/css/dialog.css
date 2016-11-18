@@ -1,0 +1,32 @@
+.hidden {
+	display: none
+}
+
+div.default_dialog {
+	display: block;
+	width:50%;
+	margin-left:auto;
+	margin-right:auto;
+	padding: 5px;
+	border: thin #000 solid;
+	background-color:#fff;
+	position:fixed;
+	top:25%;
+	left:25%;
+}
+
+.default_dialog h2:first-of-type {
+	text-align:center;
+}
+
+.dialog_close_button {
+	float:right;
+	position:absolute;
+	top:10px;
+	left:92%;
+	height:25px;
+}
+
+.dialog_close_button img {
+	border:0;
+}
