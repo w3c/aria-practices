@@ -1121,9 +1121,16 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
             <ul>
             <li>When focus is in a <code>menubar</code>, moves focus to the next item, optionally wrapping from the last to the first.</li>
               <li>When focus is in a <code>menu</code> and on a <code>menuitem</code> that has a submenu, opens the submenu and places focus on its first item.</li>
-              <li>
-                When focus is in a <code>menu</code> and on an item that does not have a submenu, closes the menu and any parent menus, moves focus to the next item in the <code>menubar</code>, and opens the submenu of that <code>menuitem</code> without moving focus into the submenu. 
-                Note that if the <code>menubar</code> was not present, e.g., the menus were opened from a menubutton, <kbd>Right Arrow</kbd> would not do anything when focus is on an item that does not have a submenu.
+              <li>When focus is in a <code>menu</code> and on an item that does not have a submenu, performs the following 3 actions:
+              <ol>
+                  <li>Closes the submenu and any parent menus.</li>
+                  <li>Moves focus to the next <code>menuitem</code> in the <code>menubar</code>.</li>
+                  <li>
+                    Either: (Recommended) opens the submenu of that <code>menuitem</code> without moving focus into the submenu,
+                    or opens the submenu of that <code>menuitem</code> and places focus on the first item in the submenu.
+                  </li>
+                </ol>
+                Note that if the <code>menubar</code> were not present, e.g., the menus were opened from a menubutton, <kbd>Right Arrow</kbd> would not do anything when focus is on an item that does not have a submenu.
               </li>
             </ul>
           </li>
@@ -1131,7 +1138,15 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
             <ul>
               <li>When focus is in a <code>menubar</code>, moves focus to the previous item, optionally wrapping from the last to the first.</li>
               <li>When focus is in a submenu of an item in a <code>menu</code>, closes the submenu and returns focus to the parent <code>menuitem</code>.</li>
-              <li>When focus is in a submenu of an item in a <code>menubar</code>, closes the submenu, moves focus to the previous <code>menuitem</code> in the <code>menubar</code>, and opens the submenu of that <code>menuitem</code> without moving focus into the submenu.</li>
+              <li>When focus is in a submenu of an item in a <code>menubar</code>, performs the following 3 actions:
+                <ol>
+                  <li>Closes the submenu.</li>
+                  <li>Moves focus to the previous <code>menuitem</code> in the <code>menubar</code>.</li>
+                  <li>
+                    Either: (Recommended) opens the submenu of that <code>menuitem</code> without moving focus into the submenu,
+                    or opens the submenu of that <code>menuitem</code> and places focus on the first item in the submenu.
+                  </li>
+                </ol> 
             </ul>
           </li>
           <li><kbd>Home</kbd>: If arrow key wrapping is not supported, moves focus to the first item in the current <code>menu</code> or <code>menubar</code>.</li>
