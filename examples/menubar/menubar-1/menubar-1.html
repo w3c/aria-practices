@@ -15,7 +15,7 @@
     <script src="js/MenubarItemLinks.js" type="text/javascript"></script> 
 
     <script src="js/PopupMenuLinks.js" type="text/javascript"></script> 
-    <script src="js/MenuItemLinks.js" type="text/javascript"></script> 
+    <script src="js/PopupMenuItemLinks.js" type="text/javascript"></script> 
 
   </head>
   <body>
@@ -133,10 +133,12 @@
   
       </section>    
 
-      <h2 id="id_kbd">Keyboard Support</h2>
 
-      <h3 id="id_kbd1">Menubar Menu Items</h3>
-      <table aria-labelledby="id_kbd id_kbd1"> 
+      <h2 id="id_mbf">Menubar Widget Features</h3>
+
+      <h3 id="id_kbd">Keyboard Support</h2>
+
+      <table aria-labelledby="id_kbd id_mbf"> 
         <thead>
           <tr>
             <th>Key</th>
@@ -215,8 +217,87 @@
         </tbody>
       </table>
 
-      <h3 id="id_kbd2">Popup Menu Items</h3>
-      <table aria-labelledby="id_kbd id_kbd2"> 
+      <h3 id="id_mb_roles">ARIA Roles</h3>
+
+      <table aria-labelledby="id_mb_roles"> 
+        <thead>
+          <tr>
+            <th>Role</th>
+            <th>Tabindex</th>
+            <th>Usage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <code>menubar</code>
+           </td>   
+           <td>
+            none
+           </td>
+           <td>
+            <ul>
+              <li>Identifies the containter element, <code>menubar</code> for the <code>menuitem</code>.</li>
+            </ul>  
+           </td>
+         </tr>  
+         <tr>
+            <td>
+              <code>menuitem</code>
+           </td>   
+           <td>
+            0 
+           </td>
+           <td>
+            <ul>
+              <li>Used for <code>menuitem</code>, so called parent menu items, contained in the menu bar role, <code>menubar</code></li>
+            </ul>  
+           </td>
+         </tr>    
+        </tbody>
+     </table>   
+
+
+      <h3 id="id_mb_property">ARIA Property and States</h3>
+      <table aria-labelledby="id_mb_property"> 
+      <thead>
+          <tr>
+            <th>Property</th>
+            <th>States</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <code>aria-label</code>
+           </td>   
+           <td>
+           used to define <code>ul</code> element to lable menubar
+           </td>
+         </tr> 
+         <tr>
+            <td>
+              <code>aria-haspopup</code>
+           </td>   
+           <td>
+           True or False 
+           </td>
+         </tr> 
+         <tr>
+            <td>
+              <code>aria-expanded</code>
+           </td>   
+           <td>
+            True or False 
+           </td>
+         </tr>      
+        </tbody>
+     </table>   
+
+      <h2 id="id_popf">Popup Widget Features</h2>
+
+      <h3 id="id_pop_kbd">Keyboard Support</h3>
+      <table aria-labelledby="id_pop_kbd id_popf"> 
         <thead>
           <tr>
             <th>Key</th>
@@ -306,20 +387,78 @@
         </tbody>
       </table>
 
+      <h3>ARIA Roles</h3>
+      <table aria-labelledby="id_pop_roles"> 
+        <thead>
+          <tr>
+            <th>Role</th>
+            <th>Tabindex</th>
+            <th>Usage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <code>menu</code>
+           </td>   
+           <td>
+            0
+           </td>
+           <td>
+            Used for <code>ul</code> element to contain sublist menu items, <code>li</code> 
+           </td>
+         </tr> 
+         <tr>
+            <td>
+              <code>menuitem</code>
+           </td>   
+           <td>
+            0
+           </td>
+           <td>
+            Used for sublist menu items, <code>li</code> 
+           </td>
+         </tr>     
+        </tbody>
+     </table>   
+
+<!-- <h3>ARIA Property and States</h3> 
+      <table aria-labelledby="id_pop_property"> 
+        <thead>
+          <tr>
+            <th>Property</th>
+            <th>States</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <code>menubar</code>
+           </td>   
+           <td>
+            <ul>
+              <li>Identifies the containter element for the <code>menuitem</code> contained the menu bar.</li>
+            </ul>  
+           </td>
+         </tr>   
+        </tbody>
+     </table>   
+-->
+
   </main>
 
-  <script type="text/javascript">
+<script type="text/javascript">
 
-    window.onload=function() {
+window.onload = function() {
       var menubar = new Menubar(document.getElementById('menubar1'));
       menubar.init();
 
       menubar = new Menubar(document.getElementById('menubar2'));
       console.log(menubar);
       menubar.init();
-    }    
+    }
 
-  </script>
+</script>
 
   </body>
   </html>
