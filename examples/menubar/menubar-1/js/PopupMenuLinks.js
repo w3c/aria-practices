@@ -129,15 +129,15 @@ PopupMenu.prototype.handleMouseout = function (event) {
 
 /* FOCUS MANAGEMENT METHODS */
 
-PopupMenu.prototype.setFocusToController = function (command) {
+PopupMenu.prototype.setFocusToController = function (command, flag) {
   if (typeof command !== 'string') {
     command = '';
   }
   if (command === 'previous') {
-    this.controller.menubar.setFocusToPreviousItem(this.controller);
+    this.controller.menubar.setFocusToPreviousItem(this.controller, flag);
   }
   else if (command === 'next') {
-    this.controller.menubar.setFocusToNextItem(this.controller);
+    this.controller.menubar.setFocusToNextItem(this.controller, flag);
   }
   else {
     this.controller.domNode.focus();

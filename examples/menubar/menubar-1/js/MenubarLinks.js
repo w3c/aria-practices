@@ -99,42 +99,71 @@ Menubar.prototype.init = function () {
 
 /* FOCUS MANAGEMENT METHODS */
 
-Menubar.prototype.setFocusToFirstItem = function () {
+Menubar.prototype.setFocusToFirstItem = function (flag) {
   this.firstItem.domNode.focus();
+
+  if (flag && this.firstItem.popupMenu) {
+    this.firstItem.popupMenu.open();
+  }
 };
 
-Menubar.prototype.setFocusToLastItem = function () {
+Menubar.prototype.setFocusToLastItem = function (flag) {
   this.lastItem.domNode.focus();
+
+  if (flag && this.lastItem.popupMenu) {
+    this.lastItem.popupMenu.open();
+  }
 };
 
-Menubar.prototype.setFocusToPreviousItem = function (currentItem) {
+Menubar.prototype.setFocusToPreviousItem = function (currentItem, flag) {
   var index;
+  var newItem = false;
+
   currentItem.domNode.tabIndex = -1;
 
   if (currentItem === this.firstItem) {
-    this.lastItem.domNode.focus();
-    this.lastItem.domNode.tabIndex = 0;
+    newItem = this.lastItem;
   }
   else {
     index = this.menubarItems.indexOf(currentItem);
-    this.menubarItems[ index - 1 ].domNode.focus();
-    this.menubarItems[ index - 1 ].domNode.tabIndex = 0;
+    newItem = this.menubarItems[ index - 1 ];
   }
+
+  if (flag && newItem.popupMenu) {
+    newItem.popupMenu.open();
+    newItem.popupMenu.firstItem.domNode.focus();
+    newItem.popupMenu.firstItem.domNode.tabIndex = 0;
+  }
+  else {
+    newItem.domNode.focus();
+    newItem.domNode.tabIndex = 0;
+  }
+
 };
 
-Menubar.prototype.setFocusToNextItem = function (currentItem) {
+Menubar.prototype.setFocusToNextItem = function (currentItem, flag) {
   var index;
+  var newItem = false;
   currentItem.domNode.tabIndex = -1;
 
   if (currentItem === this.lastItem) {
-    this.firstItem.domNode.focus();
-    this.firstItem.domNode.tabIndex = 0;
+    newItem = this.firstItem;
   }
   else {
     index = this.menubarItems.indexOf(currentItem);
-    this.menubarItems[ index + 1 ].domNode.focus();
-    this.menubarItems[ index + 1 ].domNode.tabIndex = 0;
+    newItem = this.menubarItems[ index + 1 ];
   }
+
+  if (flag && newItem.popupMenu) {
+    newItem.popupMenu.open();
+    newItem.popupMenu.firstItem.domNode.focus();
+    newItem.popupMenu.firstItem.domNode.tabIndex = 0;
+  }
+  else {
+    newItem.domNode.focus();
+    newItem.domNode.tabIndex = 0;
+  }
+
 };
 
 Menubar.prototype.setFocusByFirstCharacter = function (currentItem, char) {

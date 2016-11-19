@@ -111,13 +111,13 @@ MenuItem.prototype.handleKeydown = function (event) {
       break;
 
     case this.keyCode.LEFT:
-      this.menu.setFocusToController('previous');
+      this.menu.setFocusToController('previous', true);
       this.menu.close(true);
       flag = true;
       break;
 
     case this.keyCode.RIGHT:
-      this.menu.setFocusToController('next');
+      this.menu.setFocusToController('next', true);
       this.menu.close(true);
       flag = true;
       break;
