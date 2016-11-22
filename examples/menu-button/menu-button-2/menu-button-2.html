@@ -2,17 +2,20 @@
 <html lang="en"><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
-    <title>ARIA Menu Button Example: a element with role="button"</title>
+    <title>ARIA Menu Button Example: Popup Menu of Links</title>
     <meta name="generator" content="BBEdit 10.5">
-    <link href="../css/core.css" rel="stylesheet">
-    <link href="../css/table.css" rel="stylesheet">
+    <link href="../../css/core.css" rel="stylesheet">
+    <link href="../../css/table.css" rel="stylesheet">
     <link href="css/menu-button-2.css" rel="stylesheet">
-    <script src="../js/examples.js" type="text/javascript"></script>
-    <script src="js/menu-button-2.js" type="text/javascript"></script> 
+
+    <script src="../../js/examples.js" type="text/javascript"></script>
+    <script src="js/Menubutton-2.js" type="text/javascript"></script> 
+    <script src="js/PopupMenuLinks.js" type="text/javascript"></script> 
+    <script src="js/MenuItemLinks.js" type="text/javascript"></script> 
   </head>
   <body>
     <main>
-      <h1>ARIA Menu Button Example: <code>a</code> element with <code>role="button"</code></h1>
+      <h1>ARIA Menu Button Example: Popup Menu of Links</h1>
  
       <p><a href="http://www.w3.org/TR/wai-aria-practices-1.1/#h-menubutton">Authoring Practice Design Patten for Menu Button</a></p>
 
@@ -20,50 +23,59 @@
         <h2>Menu Button Example</h2>
         <p>This example provides a pop-up menu of links for web navigation.</p>
 
-        <a  id="mb1"
-            role="button"
+        <button
+            id="menubutton2"
             aria-haspopup="true" 
-            aria-controls="menu1"
-            tabindex="0">
-          WAI-ARIA Quick Links
-         </a>
+            aria-expanded="false"
+            aria-controls="menu2"
+            >
+            WAI-ARIA Quick Links
+         </button>
 
-          <div id="menu1" role="menu" aria-labelledby="mb1">
-            <a role="menuitem" href="https://www.w3.org/">
-              W3C Home Page
-            </a>
-            <a role="menuitem" href="https://www.w3.org/standards/webdesign/accessibility">
-              W3C Web Accessibility Initiative
-            </a>
-            <a role="menuitem" href="https://www.w3.org/TR/wai-aria/">
-              Accessible Rich Internet Application Specification
-            </a>
-            <a role="menuitem" href="https://www.w3.org/TR/wai-aria-practices/">
-              WAI-ARIA Authoring Practices
-            </a>
-            <a role="menuitem" href="https://www.w3.org/TR/wai-aria-implementation/">
-              WAI-ARIA Implementation Guide
-            </a>
-            <a role="menuitem" href="https://www.w3.org/TR/accname-aam-1.1/">
-              Accessible Name and Description
-            </a>
-          </div>
+          <ul id="menu2" role="menu" aria-labelledby="menubutton2">
+            <li>
+              <a role="menuitem" href="https://www.w3.org/">
+                W3C Home Page
+              </a>
+            </li>
+            <li>
+              <a role="menuitem" href="https://www.w3.org/standards/webdesign/accessibility">
+                W3C Web Accessibility Initiative
+              </a>
+            </li>
+            <li>
+              <a role="menuitem" href="https://www.w3.org/TR/wai-aria/">
+                Accessible Rich Internet Application Specification
+              </a>
+            </li>
+            <li>
+              <a role="menuitem" href="https://www.w3.org/TR/wai-aria-practices/">
+                WAI-ARIA Authoring Practices
+              </a>
+            </li>
+            <li>
+              <a role="menuitem" href="https://www.w3.org/TR/wai-aria-implementation/">
+                WAI-ARIA Implementation Guide
+              </a>
+            </li>
+            <li>
+              <a role="menuitem" href="https://www.w3.org/TR/accname-aam-1.1/">
+                Accessible Name and Description
+              </a>
+            </li>
+          </ul>
 
-      </section>    
+      </section>   
 
-      <h2 id="id_a11yfeature">Accessibility Features</h2>
-       <ul>
-          <li>The <code>a</code> element with<code>[role="button"][aria-haspopup="true"]</code> identifies the element as a menu button, "WAI-ARIA Quick Links".</li>
-          <li><code>a</code>element has <code>tabindex="0"</code> to include it as part of the tab order of the page.</li>
-          <li>The <code>aria-haspopup="true"</code> attribute on the <code>button</code> element identifies that activating the button will result in either a menu or dialog box opening.</li>
-          <li>The <code>aria-controls</code> attribute on the <code>button</code> element idenfities the content that will be opened when the button is activated.</li>
-          <li>The <code>a[role="button"][aria-haspopup="true"]</code> element has a <code>keydown</code> event to handle opening and closing the menu and moving focus to the menu.</li>
-          <li>The <code>role="menu"</code> attribute on the <code>div</code> element identifies the element as a contatiner for a list of menu items.</li>
-          <li>The <code>aria-labelledby</code> attribute of the <code>div[role="menu"]</code> elements defines an accessible name for the menu.</li>
-          <li>The <code>role="menuitem"</code> on the <code>a</code> elements identifies the element as a item in the menu .</li>
-          <li>Each of the <code>a[role="menuitem"]</code> elements has a <code>keydown</code> event to handle navigation between menu items, closing the menu and activating the function of the menu item.</li>
-          <li>Each of the <code>a[role="menuitem"]</code> elements has a <code>focus</code> event to handle highlighting the menu item with keyboard focus.</li>
-        </ul>
+      <script type="text/javascript">
+
+        window.onload=function() {
+          var menubutton2 = new Menubutton(document.getElementById('menubutton2'));
+          menubutton2.init();
+        }    
+
+       </script>
+     
 
       <h2 id="id_kbd">Keyboard Support</h2>
 
@@ -82,16 +94,16 @@
           </tr>
           <tr>
             <td>Up Arrow Key</td>
-            <td>Open menu and moves focus to last menu item</td>
+            <td>Open menu and moves focus to previous menu item</td>
           </tr>
            <tr>
             <td>Down Arrow Key</td>
-            <td>Open menu and moves focus to first menu item</td>
+            <td>Open menu and moves focus to first next item</td>
           </tr>
         </tbody>
       </table>
 
-      <h3 id="id_kbd2">Menu</h3>
+      <h3 id="id_kbd2">Popup Menu</h3>
       <table aria-labelledby="id_kbd id_kbd2"> 
         <thead>
           <tr>
@@ -167,8 +179,10 @@
         <h2 id="sc-ex1">Source Code: Example 1</h2>
       
         <ul>
-          <li>CSS: <a href="css/menu-button-2.css" type="tex/css">menu.css</a></li>
-          <li>Javascript: <a href="js/menu-button-2.js" type="text/javascript">menu.js</a></li>
+          <li>MenuButtonLinks CSS: <a href="css/menu-button-2.css" type="tex/css">menu-button-2.css</a></li>
+          <li>MenuButton Javascript: <a href="js/Menubutton-2.js" type="text/javascript">MenuButton.js</a></li>
+          <li>MenuItemLinks Javascript: <a href="js/MenuItemLinks.js" type="text/javascript">MenuItemLinks.js</a></li>
+          <li>PopupMenuLinks Javascript: <a href="js/PopupMenuLinks.js" type="text/javascript">PopupMenuLinks.js</a></li>
         </ul>
       
         <div id="sc1">

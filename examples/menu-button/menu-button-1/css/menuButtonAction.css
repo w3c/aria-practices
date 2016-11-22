@@ -1,0 +1,65 @@
+ul[role="menu"] {
+  margin: 10px;
+  padding: 10px;
+  font-size: 110%;
+  list-style: none;
+  background-color: #EEEEEE;
+  display:none;
+}
+
+[role="menu"][role="menuitem"]{
+  padding: 0.25em;
+  background-color: #EEEEEE;
+  border: 2px solid #EEEEEE;
+}
+
+[role="menu"][role="menuitem"]{
+  padding-left: 1.5em;
+}  
+
+[role="menu"] [role="separator"]{
+  padding-top: 0.15em;
+  background-image: url('../images/separator.png');
+  background-position: center;
+  background-repeat: repeat-x;
+}
+
+ul[role="menu"] [role="menuitem"]:focus,
+ul[role="menu"] [role="menuitem"]:hover{
+  background-color: black;
+  color: white;
+}
+
+ul[role="menu"] li {
+  list-style: none;
+  position: absolute;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+/*
+*  hover and focus styling
+*/
+
+
+.menu-hover {
+  background-color: #700 !important;
+  color: white !important;
+}
+
+
+.menu-focus {
+  background-color: black;
+  font-weight: bold;
+  color: white !important;
+}
+
+.hidden {
+   position: absolute;
+   left: -200em;
+   top: -20em;
+}
+
+
