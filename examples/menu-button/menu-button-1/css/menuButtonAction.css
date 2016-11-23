@@ -1,65 +1,57 @@
-ul[role="menu"] {
-  margin: 10px;
-  padding: 10px;
+.menu_button {
+  position: relative;
+}
+
+.menu_button button {
   font-size: 110%;
+}
+
+
+ul[role="menu"] {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  font-size: 110%;
+
   list-style: none;
   background-color: #EEEEEE;
-  display:none;
+  display: none;
 }
 
-[role="menu"][role="menuitem"]{
+ul[role="menu"] li[role="menuitem"]{
+  display: block;
   padding: 0.25em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
   background-color: #EEEEEE;
-  border: 2px solid #EEEEEE;
+  width: 4em;
 }
 
-[role="menu"][role="menuitem"]{
-  padding-left: 1.5em;
-}  
 
-[role="menu"] [role="separator"]{
+ul[role="menu"] li[role="separator"]{
   padding-top: 0.15em;
   background-image: url('../images/separator.png');
   background-position: center;
   background-repeat: repeat-x;
 }
 
-ul[role="menu"] [role="menuitem"]:focus,
-ul[role="menu"] [role="menuitem"]:hover{
+/* focus and hover styling */
+
+button:focus,
+button:hover,
+input:focus,
+input:hover {
+  outline: 2px solid black;
+}
+
+input:focus,
+input:hover {
+  background-color: #EEEEEE;
+}
+
+ul[role="menu"] li[role="menuitem"]:focus,
+ul[role="menu"] li[role="menuitem"]:hover{
   background-color: black;
   color: white;
 }
-
-ul[role="menu"] li {
-  list-style: none;
-  position: absolute;
-  margin: 0;
-  padding: 0;
-}
-
-
-
-/*
-*  hover and focus styling
-*/
-
-
-.menu-hover {
-  background-color: #700 !important;
-  color: white !important;
-}
-
-
-.menu-focus {
-  background-color: black;
-  font-weight: bold;
-  color: white !important;
-}
-
-.hidden {
-   position: absolute;
-   left: -200em;
-   top: -20em;
-}
-
 

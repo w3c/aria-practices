@@ -21,16 +21,19 @@
 
       <section id="code-ex-1">
         <h2>Menu Button Example</h2>
-        <p>This example provides a pop-up menu of links for web navigation.</p>
+        <p>This example provides a pop-up menu of links for web navigation using a <code>a</code> element for the menu button.</p>
 
-        <button
+        <div class="menu_button"> 
+          <a
             id="menubutton2"
+            role="button"
+            href="#"
             aria-haspopup="true" 
             aria-expanded="false"
             aria-controls="menu2"
             >
             WAI-ARIA Quick Links
-         </button>
+          </a>
 
           <ul id="menu2" role="menu" aria-labelledby="menubutton2">
             <li>
@@ -64,6 +67,7 @@
               </a>
             </li>
           </ul>
+        </div>  
 
       </section>   
 
@@ -77,103 +81,233 @@
        </script>
      
 
-      <h2 id="id_kbd">Keyboard Support</h2>
+     <section aria-labelledby="mbw">
+        <h2 id="mbw" class="widget">Menu Button Widget</h2>
 
-      <h3 id="id_kbd1">Menu Button</h3>
-      <table aria-labelledby="id_kbd id_kbd1"> 
-        <thead>
-          <tr>
-            <th>Key</th>
-            <th>Function</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Space or Enter Key</td>
-            <td>Open menu and move focus to first menu item</td>
-          </tr>
-          <tr>
-            <td>Up Arrow Key</td>
-            <td>Open menu and moves focus to previous menu item</td>
-          </tr>
-           <tr>
-            <td>Down Arrow Key</td>
-            <td>Open menu and moves focus to first next item</td>
-          </tr>
-        </tbody>
-      </table>
+        <h3 id="mbw_kbd">Keyboard Interaction and Focus Management</h3>
+        <table aria-labelledby="mbw mbw_kbd"> 
+          <thead>
+            <tr>
+              <th>Key</th>
+              <th>Function</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Space or Enter Key</td>
+              <td>Open <code>menu</code> and move focus to first <code>menuitem</code></td>
+            </tr>
+            <tr>
+              <td>Up Arrow Key</td>
+              <td>Open <code>menu</code> and move focus to previous <code>menuitem</code></td>
+            </tr>
+             <tr>
+              <td>Down Arrow Key</td>
+              <td>Open <code>menu</code> and move focus to next <code>menuitem</code></td>
+            </tr>
+          </tbody>
+        </table>
 
-      <h3 id="id_kbd2">Popup Menu</h3>
-      <table aria-labelledby="id_kbd id_kbd2"> 
-        <thead>
-          <tr>
-            <th>Key</th>
-            <th>Function</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Space or Enter Keys</td>
-            <td>
-              <ul id="list">
-                <li>Applies the styling associated with the menu item with focus</li>
-                <li>Closes menu and moves focus back to menu button</li>
-              </ul>
-            </td>
-          </tr>
-          <tr>
-            <td>Up or Left Arrow Key </td>
-            <td>Move focus to previous menu item</td>
-          </tr>
-          <tr>
-            <td>Down or Right Arrow Key </td>
-            <td>Move focus to next menu item</td>
-          </tr>
-          <tr>
-            <td>Escape Key</td>
-            <td> Close menu and move focus back to menu button</td>
-          </tr>
-        </tbody>
-      </table>
-      <h2 id="id_rps">ARIA Roles, Properties and States</h2>
+        <h3 id="rps1_label">ARIA Roles, Properties, and States</h3>
 
-      <table aria-labelledby="id_rps"> 
-        <thead>
-          <tr>
-            <th>Role</th>
-            <th>Property/State</th>
-            <th>Usage</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><code>menu</code></td>
-            <td></td>
-            <td>Identifies the <code>div</code> element as a menu widget</td>
-          </tr>
-          <tr> 
-            <td><code>menuitem</code></td>
-            <td></td>
-            <td>Identifies the <code>a</code> element as a menu item widget</td>
-          </tr>
-          <tr>
-            <td></td>
-            <td><code>aria-haspopup</code></td>
-            <td>Identifies the <code>button</code> element as a menu button widget when the value is <code>true</code></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td><code>aria-controls</code></td>
-            <td>Identfies the content on the page (e.g. using IDREFs) that this menu button controls</td>
-          </tr>
-          <tr>
-            <td></td>
-            <td><code>aria-labelledby</code></td>
-            <td>Use to provide a label the menu widget</td>
-          </tr>
-        </tbody>
-      </table>
+        <table aria-labelledby="rps1_label">
+          <thead>
+            <tr>
+              <th>Role</th>
+              <th>Property/State</th>
+              <th>Element</th>
+              <th>Usage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <code>button</code>
+              </td>
+              <td></td>
+              <td>
+                <code>a</code>
+              </td>
+              <td>
+                <ul>
+                  <li>The <code>role=button</code> is added to the <code>a</code> element to identify the element as an ARIA <code>button</code>, overriding the default role of <code>link</code>.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <code></code>
+              </td>
+              <td><code>href</code></td>
+              <td>
+                <code>a</code>
+              </td>
+              <td>
+                <ul>
+                  <li><code>[#]</code>: The use of the <code>href="#"</code> attibute makes the <code>a</code> element part of the tab ordering of the page.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <code></code>
+              </td>
+              <td><code>aria-controls</code></td>
+              <td>
+                <code>a</code>
+              </td>
+              <td>
+                <ul>
+                  <li><code>[IDREF]</code>: Is a pointer to the popup menu, by using the <code>id</code> of the element with <code>role=menu</code>.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <code></code>
+              </td>
+              <td><code>aria-haspopup</code></td>
+              <td>
+                <code>a</code>
+              </td>
+              <td>
+                <ul>
+                  <li><code>[true]</code>: Defines an element with <code>role=button</code> as a ARIA menu button design pattern.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <code></code>
+              </td>
+              <td><code>aria-expanded</code></td>
+              <td>
+                <code>a</code>
+              </td>
+              <td>
+                <ul>
+                  <li><code>[false]</code>: Indicates the popup menu is open.</li>
+                  <li><code>[true]</code>: Indicates the popup menu is closed.</li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table> 
+
+      </section>
+
+
+      <section aria-labelledby="mw">
+
+        <h2 id="mw" class="widget">Popup Menu Widget</h2>
+
+        <h3 id="mw_kbd">Keyboard Interaction and Focus Management</h3>
       
+        <table aria-labelledby="mw mw_kbd"> 
+          <thead>
+            <tr>
+              <th style="min-width: 8em">Key</th>
+              <th>Function</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Space or Enter Keys</td>
+              <td>
+                <ul>
+                  <li>Activates the <code>link</code> associated with the <code>menuitem</code>.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>Up Arrow Key </td>
+              <td>Move focus to previous <code>menuitem</code>.</td>
+            </tr>
+            <tr>
+              <td>Down Arrow Key </td>
+              <td>Move focus to next <code>menuitem</code>.</td>
+            </tr>
+            <tr>
+              <td>Escape Key</td>
+              <td>Move focus back to <code>menu button</code> and then close <code>menu</code>.  NOTE: This sequence is important since hidding the element with focus will cause the focus to move to the beginning of the page.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 id="rps2_label">ARIA Roles, Properties, and States</h3>
+
+        <table aria-labelledby="rps2_label">
+          <thead>
+            <tr>
+              <th>Role</th>
+              <th>Property/State</th>
+              <th>Element</th>
+              <th>Usage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <code>menu</code>
+              </td>
+              <td></td>
+              <td>
+                <code>ul</code>
+              </td>
+              <td>
+                <ul>
+                  <li>Idenfities an ARIA <code>menu</code>.</li>
+                  <li>Does not need a <code>tabindex</code> value since the element does not receive keyboard focus.</li>
+                  </li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <code></code>
+              </td>
+              <td><code>aria-labelledby</code></td>
+              <td>
+                <code>ul</code>
+              </td>
+              <td>
+                <ul>
+                  <li><code>[IDREF]</code>: Pointer to element with the <code>id</code> that defines the accessible name for the <code>menu</code>, in this example "WAI-ARIA Quick Links".</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <code>menuitem</code>
+              </td>
+              <td></td>
+              <td>
+                <code>a</code>
+              </td>
+              <td>
+                <ul>
+                  <li>Identifies element as an ARIA <code>menuitem</code>.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <code></code>
+              </td>
+              <td><code>tabindex</code></td>
+              <td>
+                <code>a</code>
+              </td>
+              <td>
+                <ul>
+                  <li><code>-1</code>: Identifies each <code>li[role=menuitem]</code> as an interactive element on the page (e.g. can recived keyboard focus).</li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table> 
+
+      </section>       
 
       <section aria-labelledby="sc-ex1">
         <h2 id="sc-ex1">Source Code: Example 1</h2>

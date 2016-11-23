@@ -20,9 +20,9 @@
 
       <section id="code-ex-1">
         <h2>Menu Button using a <code>button</code> element</h2>
-        <p>This example provides a menu of actions for changing the state in a web application.</p>
+        <p>This example provides shows a popup menu of actions for changing the state in a web application.</p>
 
-        <p>
+        <div class="menu_button">
           <button 
               id="menubutton1"
               aria-haspopup="true" 
@@ -30,17 +30,20 @@
               aria-controls="menu1"
               >
             Actions
-           </button>
+          </button>
 
-           <label>Last Action: <input id="action_output" value=""></label>
-         </p>
+          <ul id="menu1" role="menu" aria-labelledby="menubutton1">
+            <li role="menuitem"  onclick="updateLastAction(event)">Action 1</li>
+            <li role="menuitem"  onclick="updateLastAction(event)">Action 2</li>
+            <li role="menuitem"  onclick="updateLastAction(event)">Action 3</li>
+            <li role="menuitem"  onclick="updateLastAction(event)">Action 4</li>
+          </ul>
+        </div>
 
-            <ul id="menu1" role="menu" aria-labelledby="menubutton1">
-              <li role="menuitem"  onclick="updateLastAction(event)">Action 1</li>
-              <li role="menuitem"  onclick="updateLastAction(event)">Action 2</li>
-              <li role="menuitem"  onclick="updateLastAction(event)">Action 3</li>
-              <li role="menuitem"  onclick="updateLastAction(event)">Action 4</li>
-            </ul>
+        <p>
+          <label>Last Action: <input id="action_output" type="text" value=""></label>
+        </p>
+
 
 
       </section>    
@@ -87,14 +90,88 @@
           </tbody>
         </table>
 
+        <h3 id="rps1_label">ARIA Roles, Properties, and States</h3>
+
+        <table aria-labelledby="rps1_label">
+          <thead>
+            <tr>
+              <th>Role</th>
+              <th>Property/State</th>
+              <th>Element</th>
+              <th>Usage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <code>button</code>
+              </td>
+              <td></td>
+              <td>
+                <code>button</code>
+              </td>
+              <td>
+                <ul>
+                  <li>Default <code>role</code> of a <code>button</code> element is "<code>button</code>", so do <em>not</em> need to set the <code>role</code> attribute.</li>
+                  <li>The <code>button</code> element is a part of the default tab order of the page (e.g. <code>tabindex=0</code>), so <em>no</em> need to set <code>tabindex</code>.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <code></code>
+              </td>
+              <td><code>aria-controls</code></td>
+              <td>
+                <code>button</code>
+              </td>
+              <td>
+                <ul>
+                  <li><code>[IDREF]</code>: Is a pointer to the popup menu, by using the <code>id</code> of the element with <code>role=menu</code>.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <code></code>
+              </td>
+              <td><code>aria-haspopup</code></td>
+              <td>
+                <code>button</code>
+              </td>
+              <td>
+                <ul>
+                  <li><code>[true]</code>: Defines an element with <code>role=button</code> as a ARIA menu button design pattern.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <code></code>
+              </td>
+              <td><code>aria-expanded</code></td>
+              <td>
+                <code>button</code>
+              </td>
+              <td>
+                <ul>
+                  <li><code>[false]</code>: Indicates the popup menu is open.</li>
+                  <li><code>[true]</code>: Indicates the popup menu is closed.</li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table> 
 
       </section>
 
 
       <section aria-labelledby="mw">
-        <h2 id="mw" class="widget">Menu Widget</h2>
+
+        <h2 id="mw" class="widget">Popup Menu Widget</h2>
 
         <h3 id="mw_kbd">Keyboard Interaction and Focus Management</h3>
+      
         <table aria-labelledby="mw mw_kbd"> 
           <thead>
             <tr>
@@ -127,68 +204,80 @@
           </tbody>
         </table>
 
-      </section>
+        <h3 id="rps2_label">ARIA Roles, Properties, and States</h3>
 
+        <table aria-labelledby="rps2_label">
+          <thead>
+            <tr>
+              <th>Role</th>
+              <th>Property/State</th>
+              <th>Element</th>
+              <th>Usage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <code>menu</code>
+              </td>
+              <td></td>
+              <td>
+                <code>ul</code>
+              </td>
+              <td>
+                <ul>
+                  <li>Idenfities an ARIA <code>menu</code>.</li>
+                  <li>Does not need a <code>tabindex</code> value since the element does not receive keyboard focus.</li>
+                  </li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <code></code>
+              </td>
+              <td><code>aria-labelledby</code></td>
+              <td>
+                <code>ul</code>
+              </td>
+              <td>
+                <ul>
+                  <li><code>[IDREF]</code>: Pointer to element with the <code>id</code> that defines the accessible name for the <code>menu</code>, in this example "Actions".</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <code>menuitem</code>
+              </td>
+              <td></td>
+              <td>
+                <code>li</code>
+              </td>
+              <td>
+                <ul>
+                  <li>Identifies the element as an ARIA <code>menuitem</code>.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <code></code>
+              </td>
+              <td><code>tabindex</code></td>
+              <td>
+                <code>li</code>
+              </td>
+              <td>
+                <ul>
+                  <li><code>-1</code>: Identifies each <code>li[role=menuitem]</code> as an interactive element on the page (e.g. can recived keyboard focus).</li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table> 
 
-
-      <h2 id="id_a11yfeature">Accessibility Features</h2>
-             <ul>
-                <li>The <code>aria-haspopup="true"</code> attribute on the <code>button</code> element identifies that activating the button will result in either a menu or dialog box opening.</li>
-                <li>The <code>aria-controls</code> attribute on the <code>button</code> element identifies the content that will be opened when the button is activated.</li>
-                <li>The <code>role="menu"</code> attribute on the <code>ul</code> element identifies the element as a container for a list of menu items.</li>
-                <li>The <code>aria-labelledby</code> attribute of the <code>ul[role=menu]</code> elements defines an accessible name for the menu.</li>
-                <li>The <code>role="menuitem"</code> on the <code>li</code> elements identifies the element as an item in the menu .</li>
-                <li>The child text content of the <code>li[role=menuitem]</code> elements defines the accessible name for each of the menu items.</li>
-                <li>The <code>button[aria-haspopup=true]</code> element has a <code>keydown</code> event to handle opening and closing the menu and moving focus to the menu.</li>
-                <li>The <code>button[aria-haspopup=true]</code> element has a <code>click</code> event to open the menu and move focus to the first menu item to support assitive technology that emulates click event for button elements.</li>
-                <li>Each of the <code>li[role=menuitem]</code> elements has a <code>keydown</code> event to handle navigation between menu items, closing the menu and activating the function of the menu item.</li>
-                <li>Each of the <code>li[role=menuitem]</code> element has a <code>focus</code> event to handle highlighting the menu item with keyboard focus.</li>
-              </ul>
-
-      <h2 id="id_kbd">Keyboard Support</h2>
-
-
-
-
-      <h2 id="id_rps">ARIA Roles, Properties and States</h2>
-
-      <table aria-labelledby="id_rps"> 
-        <thead>
-          <tr>
-            <th>Role</th>
-            <th>Property/State</th>
-            <th>Usage</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><code>menu</code></td>
-            <td></td>
-            <td>Identifies the <code>ul</code> element as a menu widget</td>
-          </tr>
-          <tr> 
-            <td><code>menuitem</code></td>
-            <td></td>
-            <td>Identifies the <code>li</code> element as a menu item widget</td>
-          </tr>
-          <tr>
-            <td></td>
-            <td><code>aria-haspopup</code></td>
-            <td>Identifies the <code>button</code> element as a menu button widget when the value is <code>true</code></td>
-          </tr>
-          <tr>
-            <td></td>
-            <td><code>aria-controls</code></td>
-            <td>Identfies the content on the page (e.g. using IDREFs) that this menu button controls</td>
-          </tr>
-          <tr>
-            <td></td>
-            <td><code>aria-labelledby</code></td>
-            <td>Use to provide a label the menu widget</td>
-          </tr>
-        </tbody>
-      </table>
-      
+      </section>    
 
       <section aria-labelledby="sc-ex1">
         <h2 id="sc-ex1">Source Code: Example 1</h2>

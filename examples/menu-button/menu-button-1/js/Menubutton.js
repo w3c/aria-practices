@@ -1,23 +1,9 @@
 /*
-*   Copyright 2016 University of Illinois
-*
-*   Licensed under the Apache License, Version 2.0 (the "License");
-*   you may not use this file except in compliance with the License.
-*   You may obtain a copy of the License at
-*
-*       http://www.apache.org/licenses/LICENSE-2.0
-*
-*   Unless required by applicable law or agreed to in writing, software
-*   distributed under the License is distributed on an "AS IS" BASIS,
-*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-*   See the License for the specific language governing permissions and
-*   limitations under the License.
-*
 *   File:   menubuttonItemAction.js
 *
 *   Desc:   Menubutton widget that implements ARIA Authoring Practices
 *
-*   Author: Jon Gunderson, Ku Ja Eun and Nicholas Hoyt
+*   Author: Jon Gunderson, Ku Ja Eun, Nicholas Hoyt and Brian Loh
 */
 
 /*
@@ -100,7 +86,7 @@ Menubutton.prototype.handleKeydown = function (event) {
     case this.keyCode.SPACE:
     case this.keyCode.RETURN:
       if (tgt.getAttribute('aria-expanded') === 'true' && this.popupMenu) {
-        this.popupMenu.close();
+        this.popupMenu.close(true);
       }
       else {
         this.popupMenu.open();
@@ -137,7 +123,7 @@ Menubutton.prototype.handleKeydown = function (event) {
 
 Menubutton.prototype.handleClick = function (event) {
   if(this.domNode.getAttribute("aria-expanded")=="true"){
-      this.popupMenu.close();
+      this.popupMenu.close(true);
   }
   else{
     this.popupMenu.open();
@@ -150,6 +136,8 @@ Menubutton.prototype.handleFocus = function (event) {
 
 Menubutton.prototype.handleBlur = function (event) {
   this.popupMenu.hasFocus = false;
+  setTimeout(this.popupMenu.close.bind(this.popupMenu, false), 300);
+
 };
 
 Menubutton.prototype.handleMouseover = function (event) {

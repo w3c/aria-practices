@@ -1,64 +1,65 @@
-ul[role="menu"] {
-  margin: 10px;
-  padding: 10px;
+.menu_button {
+  position: relative;
+}
+
+.menu_button button {
   font-size: 110%;
+}
+
+a[role="button"] {
+  display: block;
+  padding: 0.25em;
+  border: inset 2px gray;
+  width: 12em;
+  text-align: center;
+  background-color: #EEEEEE;
+  text-decoration: none;
+  color: black;
+}
+
+ul[role="menu"] {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  font-size: 110%;
+
   list-style: none;
   background-color: #EEEEEE;
-  display:none;
-}
-
-[role="menu"][role="menuitem"]{
-  padding: 0.25em;
-  background-color: #EEEEEE;
-  border: 2px solid #EEEEEE;
-}
-
-[role="menu"][role="menuitem"]{
-  padding-left: 1.5em;
-}  
-
-[role="menu"] [role="separator"]{
-  padding-top: 0.15em;
-  background-image: url('../images/separator.png');
-  background-position: center;
-  background-repeat: repeat-x;
-}
-
-ul[role="menu"] [role="menuitem"]:focus,
-ul[role="menu"] [role="menuitem"]:hover{
-  background-color: black;
-  color: white;
+  display: none;
 }
 
 ul[role="menu"] li {
-  list-style: none;
   margin: 0;
   padding: 0;
 }
 
-
-
-/*
-*  hover and focus styling
-*/
-
-
-.menu-hover {
-  background-color: #700 !important;
-  color: white !important;
+ul[role="menu"] a[role="menuitem"],
+ul[role="menu"] a[role="menuitem"]:visited {
+  display: block;
+  text-decoration: none;
+  padding: 0.25em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  background-color: #E0E0E0;
+  width: 22em;
+  color: black;
 }
 
+/* focus and hover styling */
 
-.menu-focus {
+a[role="button"]:focus,
+a[role="button"]:hover {
+  border: 2px solid black;
+  background-color: #F8F8F8;
+}
+
+ul[role="menu"] a[role="menuitem"]:focus,
+ul[role="menu"] a[role="menuitem"]:hover{
   background-color: black;
-  font-weight: bold;
-  color: white !important;
+  color: white;
 }
 
-.hidden {
-   position: absolute;
-   left: -200em;
-   top: -20em;
-}
+
+
 
 

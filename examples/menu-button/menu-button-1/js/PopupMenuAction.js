@@ -1,23 +1,9 @@
 /*
-*   Copyright 2016 University of Illinois
-*
-*   Licensed under the Apache License, Version 2.0 (the "License");
-*   you may not use this file except in compliance with the License.
-*   You may obtain a copy of the License at
-*
-*       http://www.apache.org/licenses/LICENSE-2.0
-*
-*   Unless required by applicable law or agreed to in writing, software
-*   distributed under the License is distributed on an "AS IS" BASIS,
-*   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-*   See the License for the specific language governing permissions and
-*   limitations under the License.
-*
 *   File:   PopupMenuAction.js
 *
 *   Desc:   Popup menu widget that implements ARIA Authoring Practices
 *
-*   Author: Jon Gunderson and Ku Ja Eun
+*   Author: Jon Gunderson, Ku Ja Eun, Nicholas Hoyt and Brian Loh
 */
 
 /*
@@ -55,13 +41,13 @@ var PopupMenuAction = function (domNode, controllerObj) {
   if (domNode.childElementCount === 0)
     throw new Error(msgPrefix + "has no element children.")
 
-  // Check whether domNode descendant elements have A elements
+  // Check whether domNode child elements are A elements
   var childElement = domNode.firstElementChild;
   while (childElement) {
     var menuitem = childElement.firstElementChild;
     if (menuitem && menuitem === 'A')
       throw new Error(msgPrefix +
-        "has descendant elements that are not A elements.");
+        "Cannot have descendant elements are A elements.");
     childElement = childElement.nextElementSibling;
   }
 
@@ -119,7 +105,6 @@ PopupMenuAction.prototype.init = function () {
       textContent = menuElement.textContent.trim();
       this.firstChars.push(textContent.substring(0, 1).toLowerCase());
     }
-
   }
 
   // Use populated menuitems array to initialize firstItem and lastItem.
@@ -215,35 +200,26 @@ PopupMenuAction.prototype.getIndexFirstChars = function (startIndex, char) {
 
 /* MENU DISPLAY METHODS */
 
-PopupMenuAction.prototype.getPosition = function (element) {
-  var x = 0, y = 0;
-
-  while (element) {
-    x += (element.offsetLeft - element.scrollLeft + element.clientLeft);
-    y += (element.offsetTop - element.scrollTop + element.clientTop);
-    element = element.offsetParent;
-  }
-
-  return { x: x, y: y };
-
-};
 
 PopupMenuAction.prototype.open = function () {
-  // get position and bounding rectangle of controller object's DOM node
-  var pos  = this.getPosition(this.controller.domNode);
+  // get bounding rectangle of controller object's DOM node
   var rect = this.controller.domNode.getBoundingClientRect();
 
   // set CSS properties
   this.domNode.style.display = 'block';
   this.domNode.style.position = 'absolute';
-  this.domNode.style.top  = (pos.y + rect.height) + "px";
-  this.domNode.style.left = pos.x + "px";
+  this.domNode.style.top  = rect.height + "px";
+  this.domNode.style.left = "0px";
 
   // set aria-expanded attribute
   this.controller.domNode.setAttribute('aria-expanded', 'true');
 };
 
 PopupMenuAction.prototype.close = function (force) {
+
+  if (typeof force !== 'boolean') force = false;
+
+  console.log(force + " " + this.hasFocus + " " + this.hasHover + " " + this.controller.hasHover);
 
   if (force || (!this.hasFocus && !this.hasHover && !this.controller.hasHover)) {
     this.domNode.style.display = 'none';
