@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>ARIA Radio Group Example</title>
+    <meta name="generator" content="BBEdit 10.5" />
+    <link href="../../css/core.css" rel="stylesheet">
+    <link href="../../css/table.css" rel="stylesheet">
+    <link href="css/radio-1.css" rel="stylesheet">
+
+    <script src="js/radioGroup.js" type="text/javascript"></script>
+    <script src="js/radioButton.js" type="text/javascript"></script>
+    <script src="../../js/examples.js" type="text/javascript"></script>
+
+  </head>
+  <body>
+    <main role="main">
+      <h1>ARIA <code>radiogroup</code> Example</h1>
+      <p> <a href="../../../aria-practices.html#h-radiobutton">WAI-ARIA 1.1 : Radio group pattern </a></p>
+      
+      <div id="codeex">
+          <div  role="radiogroup" aria-labelledby="gdesc1" id="example">
+              <h3 id="gdesc1">Pizza Crust</h3>
+              <div id="rb1"
+                  role="radio" 
+                  aria-checked="false"
+                  tabindex="0"
+              >
+                Regular crust
+             </div>
+             
+             <div id="rb2"
+                  role="radio" 
+                  aria-checked="false"
+                  tabindex="-1"
+              >
+                Deep dish
+             </div>
+             
+             <div id="rb3"
+                  role="radio" 
+                  aria-checked="false"
+                  tabindex="-1"
+              >
+                Thin crust
+             </div>
+         </div>
+      </div>   
+
+      <script type="text/javascript">
+        var ex = document.getElementById('example')
+        var rg = new RadioGroup(ex);
+        rg.init();
+      </script>
+
+      <h2 id="id_kbd">Keyboard Support</h2>
+      <table aria-labelledby="id_kbd"> 
+        <thead>
+          <tr>
+            <th>Key</th>
+            <th>Function</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Tab</td>
+            <td>Moves keyboard focus to radiogroup.</td>
+          </tr>
+          <tr>
+            <td>Up and Down arrow</td>
+            <td>Moves up and down radio options.</td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <h2 id="id_rps">ARIA Roles, Properties and States</h2>
+
+      <table aria-labelledby="id_rps"> 
+        <thead>
+          <tr>
+            <th>Role</th>
+            <th>Property/State</th>
+            <th>Usage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Radiogroup</td>
+            <td></td>
+            <td>
+              <ul>
+                <li>Identify div as a contatiner for radios</li>
+              </ul> 
+            </td>
+          </tr>
+          <tr>
+            <td>Radio</td>
+            <td>aria-checked</td>
+            <td>
+                <ul>
+                  <lI>Indicate state of radio: </lI>
+                    <ul>
+                      <li>Checked  (e.g. aria-checked=true) </li>
+                      <li>Unchecked  (e.g. aria-checked=false)</li>
+                    </ul>  
+                </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>aria-labelledby</td>
+            <td></td>
+            <td>
+                 <ul>
+                  <li>Used to identify radio group</li>
+                 </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      
+      
+      <h2>Source Code</h2>
+      
+      <ul>
+        <li>CSS: <a href="css/radio-1.css" type="tex/css">radio-1.css</a></li>
+        <li>Javascript: <a href="js/radioButton.js" type="text/javascript">radioButton.js</a>&nbsp
+        <a href="js/radioGroup.js" type="text/javascript">radioGroup.js</a>
+      </ul>
+      
+      <div id="sc1">
+      
+      </div>
+      
+      <script>
+        sourceCode.add('sc1', 'example')
+        sourceCode.make()
+      </script>
+
+  </body>
+  </html>
