@@ -1,26 +1,32 @@
 [role=radio] {
    margin: 0;
-   padding: 0;    
+   padding: 0.125em;    
+   padding-left: 0.25em;    
    border: 2px transparent solid;
-   margin-bottom: .5em;
-   margin-top: .5em;
+   margin-bottom: .25em;
+   margin-top: .25em;
+   position: relative;
+   left: -0.25em;
+   width: 8em;
 }
 
 [role=radio][aria-checked='false']:before{
    content: url('../images/radio-unchecked.png');
+   position: relative;
+   top: 1px;
 }
 
 [role=radio][aria-checked='true']:before{
    content: url('../images/radio-checked.png');
+   position: relative;
+   top: 1px;
 }
 
 [role=radio]:hover {
-   border-color: #777;
+   background-color: #DDDDDD;
 }
 
 [role=radio].focus {
    border-color: black;
-   #codeex{
-   background-color: #F1F1F1 ;
-   padding:10px;
+   background-color: #EEEEEE;
 }

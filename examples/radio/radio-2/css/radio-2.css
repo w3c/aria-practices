@@ -1,31 +1,45 @@
-[role=radio] {
+ul.radiogroup,
+ul.radiogroup li {
    margin: 0;
-   padding: 0;    
+   padding: 0;
+   list-style: none;
+   width: 12em;
+}
+
+h3 {
+   font-size: 110%;
+   margin-top: 2em;
+   margin-bottom: 0.25em;
+}
+
+li[role=radio] {
+   margin: 0;
+   padding: 0.25em;    
    border: 2px transparent solid;
-   margin-bottom: .5em;
-   margin-top: .5em;
+   position: relative;
+   left: -0.25em;
+   width: 8em;
 }
 
 [role=radio][aria-checked='false']:before{
    content: url('../images/radio-unchecked.png');
+   position: relative;
+   top: 1px;
+   left: 2px;
 }
 
 [role=radio][aria-checked='true']:before{
    content: url('../images/radio-checked.png');
+   position: relative;
+   top: 1px;
+   left: 2px;
 }
 
-[role=radio] {
-   display: block;
-   border: thin transparent solid;
-   margin-left: 18px;
-}  
 [role=radio]:hover {
-   border-color: #777;
+   background-color: #DDDDDD;
 }
 
 [role=radio].focus {
    border-color: black;
-  #codeex{
-   background-color: #F1F1F1 ;
-   padding:10px;
+   background-color: #EEEEEE;
 }

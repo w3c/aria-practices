@@ -18,40 +18,71 @@
       <h1>ARIA <code>radiogroup</code> Example</h1>
       <p> <a href="../../../aria-practices.html#h-radiobutton">WAI-ARIA 1.1 : Radio group pattern </a></p>
       
-      <div id="codeex">
-          <div  role="radiogroup" aria-labelledby="gdesc1" id="example">
-              <h3 id="gdesc1">Pizza Crust</h3>
-              <div id="rb1"
-                  role="radio" 
-                  aria-checked="false"
-                  tabindex="0"
-              >
-                Regular crust
-             </div>
-             
-             <div id="rb2"
-                  role="radio" 
-                  aria-checked="false"
-                  tabindex="-1"
-              >
-                Deep dish
-             </div>
-             
-             <div id="rb3"
-                  role="radio" 
-                  aria-checked="false"
-                  tabindex="-1"
-              >
-                Thin crust
-             </div>
-         </div>
+
+      <h2>Example Start</h2>
+      <div id="example">
+
+        <div  role="radiogroup" aria-labelledby="group_label_1" id="rg1">
+            <h3 id="group_label_1">Pizza Crust</h3>
+            <div id="rb1"
+                role="radio" 
+                aria-checked="false"
+                tabindex="0"
+            >
+              Regular crust
+           </div>
+           
+           <div id="rb2"
+                role="radio" 
+                aria-checked="false"
+                tabindex="-1"
+            >
+              Deep dish
+           </div>
+           
+           <div id="rb3"
+                role="radio" 
+                aria-checked="false"
+                tabindex="-1"
+            >
+              Thin crust
+           </div>
+       </div>
+
+        <div  role="radiogroup" aria-labelledby="group_label_2" id="rg1">
+            <h3 id="group_label_2">Pizza Delivery</h3>
+            <div id="rb1"
+                role="radio" 
+                aria-checked="false"
+                tabindex="0"
+            >
+              Pickup
+           </div>
+           
+           <div id="rb2"
+                role="radio" 
+                aria-checked="false"
+                tabindex="-1"
+            >
+              Home Delivery
+           </div>
+           
+           <div id="rb3"
+                role="radio" 
+                aria-checked="false"
+                tabindex="-1"
+            >
+            Dine in Restaurant
+           </div>
+       </div>
+
+        <script type="text/javascript">
+          var rg1 = new RadioGroup(document.getElementById('rg1'));
+          rg1.init();
+        </script>
+
       </div>   
 
-      <script type="text/javascript">
-        var ex = document.getElementById('example')
-        var rg = new RadioGroup(ex);
-        rg.init();
-      </script>
 
       <h2 id="id_kbd">Keyboard Support</h2>
       <table aria-labelledby="id_kbd"> 
@@ -64,11 +95,37 @@
         <tbody>
           <tr>
             <td>Tab</td>
-            <td>Moves keyboard focus to radiogroup.</td>
+            <td>
+              <ul>
+                <li>Moves keyboard focus to the checked <code>radio</code> button in a <code>radiogroup</code>.</li>
+                <li>If no <code>radio</code> button is checked, focus moves to the first <code>radio</code> button in the group.</li>
+            </td>
           </tr>
           <tr>
-            <td>Up and Down arrow</td>
-            <td>Moves up and down radio options.</td>
+            <td>Space</td>
+            <td>
+              <ul>
+                <li>If the <code>radio</code> button with focus is unchecked, it's state will be changed to checked.</li>
+              </ul>  
+            </td>
+          </tr>
+          <tr>
+            <td>Down arrow</td>
+            <td>
+              <ul>
+                <li>Moves focus to next <code>radio</code> button in the group.</li>
+                <li>If focus is on the last <code>radio</code> button in the group, move focus to the first <code>radio</code> button.</li>
+              </ul>  
+            </td>
+          </tr>
+          <tr>
+            <td>Up arrow</td>
+            <td>
+              <ul>
+                <li>Moves focus to previous <code>radio</code> button in the group.</li>
+                <li>If focus is on the first <code>radio</code> button in the group, move focus to the last <code>radio</code> button.</li>
+              </ul>  
+            </td>
           </tr>
         </tbody>
       </table>
@@ -85,34 +142,54 @@
         </thead>
         <tbody>
           <tr>
-            <td>Radiogroup</td>
+            <td><code>radiogroup</code></td>
             <td></td>
             <td>
               <ul>
-                <li>Identify div as a contatiner for radios</li>
+                <li>Identify <code>div</code> element as a container for a group of <code>radio</code> buttons.</li>
+                <li>The descendent <code>radio</code> buttons are considered part of the group.</li>
               </ul> 
             </td>
           </tr>
           <tr>
-            <td>Radio</td>
-            <td>aria-checked</td>
+            <td></td>
+            <td><code>aria-labelledby</code></td>
             <td>
-                <ul>
-                  <lI>Indicate state of radio: </lI>
-                    <ul>
-                      <li>Checked  (e.g. aria-checked=true) </li>
-                      <li>Unchecked  (e.g. aria-checked=false)</li>
-                    </ul>  
-                </ul>
+                 <ul>
+                  <li><code>[IDREF]</code>: Defines an accessible name (e.g. label) for the group of <code>radio</code> buttons.</li>
+                 </ul>
+            </td>
+          </tr>  
+          </tr>
+            <td><code>radio</code></td>
+            <td></td>
+            <td>
+              <ul>
+                <li>Identify <code>div</code> element a ARIA <code>radio</code> button.</li>
+              </ul> 
             </td>
           </tr>
           <tr>
-            <td>aria-labelledby</td>
             <td></td>
+            <td><code>aria-checked</code></td>
             <td>
-                 <ul>
-                  <li>Used to identify radio group</li>
-                 </ul>
+                <ul>
+                  <li><code>[false]</code>: Indicates the <code>radio</code> button is checked.</li>
+                  <li><code>[true]</code>: Indicates the <code>radio</code> button is unchecked.</li>
+                  <li>CSS attribute selectors are used to synchornize the visual states with the value of the <code>aria-checked</code> attribute.</li>
+                  <li>The CSS <code>:before</code> psuedo element with the <code>content</code> property is used to indcate visual state to support high contrast setting in operating systems and browsers.</li>
+                </ul>  
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><code>tabindex</code></td>
+            <td>
+                <ul>
+                  <li><code>-1</code>: All <code>radio</code> buttons in a group that are unchecked, except for the first <code>radio</code> button in the case when no <code>radio</code> buttons are checked.</li>
+                  <li><code>0</code>: The <code>radio</code> button that is checked, or if no <code>radio</code> button is checked the first <code>radio</code> button in the group.</li>
+                  <li>See <a href="../../../aria-practices.html#kbd_roving_tabindex">roving tabindex</a> for more information</li>
+                 </ul>  
             </td>
           </tr>
         </tbody>
@@ -123,8 +200,8 @@
       
       <ul>
         <li>CSS: <a href="css/radio-1.css" type="tex/css">radio-1.css</a></li>
-        <li>Javascript: <a href="js/radioButton.js" type="text/javascript">radioButton.js</a>&nbsp
-        <a href="js/radioGroup.js" type="text/javascript">radioGroup.js</a>
+        <li>Javascript: <a href="js/radioGroup.js" type="text/javascript">radioGroup.js</a></li>
+        <li>Javascript: <a href="js/radioButton.js" type="text/javascript">radioButton.js</a></li>
       </ul>
       
       <div id="sc1">
