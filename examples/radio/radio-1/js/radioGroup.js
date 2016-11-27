@@ -1,9 +1,9 @@
 /*
 *   File:   radioGroup.js
 *
-*   Desc:   RadioGroup that implements ARIA Authoring Practices
+*   Desc:   Radio group widget that implements ARIA Authoring Practices
 *
-*   Author: Jon Gunderson, Ku Ja Eun, Nicholas Hoyt, and Brian Loh
+*   Author(s): Jon Gunderson, Ku Ja Eun, Nicholas Hoyt, and Brian Loh
 */
 
 /*
