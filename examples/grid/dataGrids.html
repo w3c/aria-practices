@@ -8,6 +8,7 @@
 <link href="../css/core.css" rel="stylesheet">
 <link href="../css/table.css" rel="stylesheet">
 <script src="../js/examples.js" type="text/javascript"></script>
+<script src="../js/utils.js" type="text/javascript"></script>
 
 <!--  js and css for this example. -->
 <link href="css/menuButton.css" rel="stylesheet">
@@ -20,7 +21,7 @@
   <main>
   <h1>Data Grid Examples</h1>
   <p>
-    Please provide feedback for this example page in 
+    Please provide feedback for this example page in
     <a href="https://github.com/w3c/aria-practices/issues/104">issue 104.</a>
   </p>
   <p>
@@ -33,7 +34,7 @@
     and show/hide.
   </p>
   <p>
-    <strong>Note:</strong> 
+    <strong>Note:</strong>
     To see a data grid that behaves more like a typical spreadsheet and also supports features like cell and row selection,
     see the <a href="advancedDataGrid.html">Advanced Data Grid Example.</a>
   </p>
@@ -121,7 +122,7 @@
         </li>
         <li>The links can be activated with the keyboard when focused.</li>
         <li>
-          header cells are not focusable since they do not provide any functionality, 
+          header cells are not focusable since they do not provide any functionality,
             they can be announced by screen readers as labels,
             and are also navigable with the reading mode of screen readers.
           </li>
@@ -539,13 +540,13 @@
         focus does not move.
       </li>
       <li>
-        <kbd>Page Down</kbd> (Example 3): Moves focus down five rows, 
-        scrolling so the bottom row in the currently visible set of rows becomes the first visible row. 
+        <kbd>Page Down</kbd> (Example 3): Moves focus down five rows,
+        scrolling so the bottom row in the currently visible set of rows becomes the first visible row.
         If focus is in the last row of the grid, focus does not move.
       </li>
       <li>
-        <kbd>Page Up</kbd> (Example 3): Moves focus up 5 rows, 
-        scrolling so the top row in the currently visible set of rows becomes the last visible row. 
+        <kbd>Page Up</kbd> (Example 3): Moves focus up 5 rows,
+        scrolling so the top row in the currently visible set of rows becomes the last visible row.
         If focus is in the first row of the grid, focus does not move.
       </li>
       <li>
@@ -580,9 +581,9 @@
           <td>
             Identifies the element containing the grid widget.
             Because focus is managed using <a href="../../#kbd_roving_tabindex">roving tabindex</a>, the grid element is not focusable.
-            And, since the <code>grid</code> role is applied to a <code>table</code> element, 
+            And, since the <code>grid</code> role is applied to a <code>table</code> element,
             the <code>row</code> , <code>rowheader</code>, <code>colheader</code>, and <code>gridcell</code> roles
-            do not need to be specified because they are implicit in 
+            do not need to be specified because they are implicit in
             <code>tr</code>, <code>th</code>, and <code>td</code> tags.
           </td>
         </tr>
@@ -622,7 +623,7 @@
           <td><code>table</code> with <code>grid</code> role</td>
           <td>
             In example 3, specified because a total of 6 columns are available, but when columns are hidden, fewer than 6 columns are visible to assistive technologies.
-            Similar to how <code>aria-rowcount</code> overrides the browser calculation of the total number of rows, 
+            Similar to how <code>aria-rowcount</code> overrides the browser calculation of the total number of rows,
             the browser uses this value for the total number of columns so it can report the correct number when columns are hidden.
           </td>
         </tr>
@@ -647,7 +648,7 @@
       </tbody>
     </table>
   </section>
-  
+
   <section>
     <h2>Javascript and CSS Source Code</h2>
     <ul>

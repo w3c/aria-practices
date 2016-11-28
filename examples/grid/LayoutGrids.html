@@ -7,10 +7,9 @@
 <link href="../css/core.css" rel="stylesheet">
 <link href="../css/table.css" rel="stylesheet">
 <script src="../js/examples.js" type="text/javascript"></script>
+<script src="../js/utils.js" type="text/javascript"></script>
 <!--  js and css for this example. -->
-<link href="css/menuButton.css" rel="stylesheet">
 <link href="css/layoutGrids.css" rel="stylesheet">
-<script src="js/menuButton.js" type="text/javascript"></script>
 <script src="js/dataGrid.js" type="text/javascript"></script>
 <script src="js/layoutGrids.js" type="text/javascript"></script>
 </head>
@@ -18,9 +17,9 @@
   <main>
   <h1>Layout Grid Examples</h1>
   <p>
-    <strong>Note:</strong> 
+    <strong>Note:</strong>
     This example is not yet complete.
-    When it is ready for review, feedback will be welcom in 
+    When it is ready for review, feedback will be welcom in
     <!-- Please provide feedback on this example in -->
     <a href="https://github.com/w3c/aria-practices/issues/105">issue 105</a>.
   </p>
@@ -91,7 +90,7 @@
     </section>
     <section>
       <h3 id="ex2_label">Example 2: Pill List For Components Like a List of Message Recipients</h3>
-      <p>Type a string in the &quot;Add Recipient&quot; field and press enter or activate the &quot;Add&quot; button to see how this grid behaves as the number of elements increases.</p> 
+      <p>Type a string in the &quot;Add Recipient&quot; field and press enter or activate the &quot;Add&quot; button to see how this grid behaves as the number of elements increases.</p>
       <div role="separator" id="ex2_start_sep" aria-labelledby="ex2_start_sep ex2_label" aria-label="Start of"></div>
       <div id="ex2">
         <!--
@@ -136,7 +135,7 @@
             That is, while the input field appears to be part of the structure, it is not a child of the grid element, and thus has its own place in the tab sequence.
           </li>
           <li>Pressing <kbd>Enter</kbd> when focus is in the add recipient input will activate the &quot;Add&quot; button.</li>
-          <li>When recipients are added or removed, an off-screen live region informs screen reader users of the result of the action so they do not have to move focus to confirm that the action was completed.</li> 
+          <li>When recipients are added or removed, an off-screen live region informs screen reader users of the result of the action so they do not have to move focus to confirm that the action was completed.</li>
         </ol>
     </section>
     <section>
@@ -337,7 +336,7 @@
       </ol>
     </section>
   </section>
-  
+
   <section>
     <h2>Other Features</h2>
     <p>
@@ -353,20 +352,20 @@
       <li>To declare the arrow key wrapping behavior:
       <ul>
         <li>
-          <code>data-wrap-cols=&quot;true&quot;</code>: Set this value on the grid to make <kbd>Right Arrow</kbd> and <kbd>Left Arrow</kbd> 
-          move focus from column to column even across row boundaries to the column (cell) in the next or previous row. 
-          Setting it <code>false</code> will disable wrapping. 
-          Typically this should be <code>true</code> in all logical layout grids like those on this page 
-          and <code>false</code> like those on the 
+          <code>data-wrap-cols=&quot;true&quot;</code>: Set this value on the grid to make <kbd>Right Arrow</kbd> and <kbd>Left Arrow</kbd>
+          move focus from column to column even across row boundaries to the column (cell) in the next or previous row.
+          Setting it <code>false</code> will disable wrapping.
+          Typically this should be <code>true</code> in all logical layout grids like those on this page
+          and <code>false</code> like those on the
           <a href="dataGrids.html">data grid examples</a> page.
         </li>
         <li>
-          <code>data-wrap-rows=&quot;true&quot;</code>: Set this value on the grid to make <kbd>Down Arrow</kbd> and <kbd>Up Arrow</kbd> 
-          move focus from row to row even across column boundaries to the row (cell) in the next or previous column. 
-          Setting it <code>false</code> will disable wrapping. 
+          <code>data-wrap-rows=&quot;true&quot;</code>: Set this value on the grid to make <kbd>Down Arrow</kbd> and <kbd>Up Arrow</kbd>
+          move focus from row to row even across column boundaries to the row (cell) in the next or previous column.
+          Setting it <code>false</code> will disable wrapping.
           This type of wrapping should only occur when all cells in the grid are logically equivalent.
           That is, the number of cells in a logical unit is one.
-          For instance, in example 1, all cells contain a navigation link. 
+          For instance, in example 1, all cells contain a navigation link.
           The grid contains one set of links that can be presented in a single row, a single column, or divided into two rows of three or three rows of two and remain logically equivalent.
           Conversely, in example 3, each logical row contains three cells, and it would be bizarre for the focus to move from the last search result link to the organization cell of the first search result when <kbd>Down Arrow</kbd> is pressed.
         </li>
@@ -390,22 +389,22 @@
       <li>
         <kbd>Down Arrow</kbd>: Moves focus to the next logical row.
         In examples 2 and 3, if focus is in the last logical row, focus does not move.
-        In example 1, since there is only one logical row and since all elements are logically equivalent, 
+        In example 1, since there is only one logical row and since all elements are logically equivalent,
         focus moves to the next cell but does not move if it is in the last cell of the grid.
       </li>
       <li>
         <kbd>Up Arrow</kbd>: Moves focus to the previous logical row.
         In examples 2 and 3, if focus is in the first logical row, focus does not move.
-        In example 1, since there is only one logical row and since all elements are logically equivalent, 
+        In example 1, since there is only one logical row and since all elements are logically equivalent,
         focus moves to the previous cell but does not move if it is in the first cell of the grid.
       </li>
       <li>
-        <kbd>Page Down</kbd> (Example 3): Moves focus down five rows, 
+        <kbd>Page Down</kbd> (Example 3): Moves focus down five rows,
         scrolling so the bottom row in the currently visible set of rows becomes the first visible row.
         If focus is in the last row, focus does not move.
       </li>
       <li>
-        <kbd>Page Up</kbd> (Example 3): Moves focus up 5 rows, 
+        <kbd>Page Up</kbd> (Example 3): Moves focus up 5 rows,
         scrolling so the top row in the currently visible set of rows becomes the last visible row.
         If focus is in the first row, focus does not move.
       </li>
@@ -474,7 +473,7 @@
           <th><code>tabindex=&quot;-1&quot;</code></th>
           <td><code>span</code> with role <code>gridcell</code></td>
           <td>
-            If a cell does not contain an interactive widget, such as a link or button, 
+            If a cell does not contain an interactive widget, such as a link or button,
             the <code>gridcell</code> element is focusable.
             The JavaScript uses the <code>tabindex</code> attribute to determine where to place focus.
           </td>
@@ -483,7 +482,7 @@
           <th><code>tabindex=&quot;-1&quot;</code></th>
           <td>Element with a widget role</td>
           <td>
-            If a cell contains an interactive widget, such as a link or button, 
+            If a cell contains an interactive widget, such as a link or button,
             instead of placing the <code>tabindex</code> attribute on the <code>gridcell</code>, it is placed on the widget element.
             The JavaScript uses the <code>tabindex</code> attribute to determine where to place focus.
             Because focus is placed on the widget instead of the cell, assistive technologies can provide the role, state, and property information normally expected for that widget.
@@ -511,21 +510,19 @@
       </tbody>
     </table>
   </section>
-  
+
   <section>
     <h2>Javascript and CSS Source Code</h2>
     <ul>
       <li>CSS:
         <ul>
           <li><a href="css/layoutGrids.css" type="tex/css">layoutGrids.css</a></li>
-          <li><a href="css/menuButton.css" type="tex/css">menuButton.css</a></li>
         </ul>
       </li>
       <li>JavaScript:
         <ul>
           <li><a href="js/layoutGrids.js" type="text/javascript">layoutGrids.js</a></li>
           <li><a href="js/dataGrid.js" type="text/javascript">dataGrid.js</a></li>
-          <li><a href="js/menuButton.js" type="text/javascript">menuButton.js</a></li>
         </ul>
       </li>
     </ul>
