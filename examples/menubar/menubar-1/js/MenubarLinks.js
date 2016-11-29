@@ -72,12 +72,12 @@ Menubar.prototype.init = function () {
 
   // Traverse the element children of menubarNode: configure each with
   // menuitem role behavior and store reference in menuitems array.
-  e = this.domNode.firstElementChild;
+  elem = this.domNode.firstElementChild;
 
-  while (e) {
-    var menuElement = e.firstElementChild;
+  while (elem) {
+    var menuElement = elem.firstElementChild;
 
-    if (e && menuElement && menuElement.tagName === 'A') {
+    if (elem && menuElement && menuElement.tagName === 'A') {
       menubarItem = new MenubarItem(menuElement, this);
       menubarItem.init();
       this.menubarItems.push(menubarItem);
@@ -85,7 +85,7 @@ Menubar.prototype.init = function () {
       this.firstChars.push(textContent.substring(0, 1).toLowerCase());
     }
 
-    e = e.nextElementSibling;
+    elem = elem.nextElementSibling;
   }
 
   // Use populated menuitems array to initialize firstItem and lastItem.

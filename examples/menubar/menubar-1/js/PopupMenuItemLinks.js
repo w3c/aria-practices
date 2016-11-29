@@ -26,8 +26,12 @@
 */
 var MenuItem = function (domNode, menuObj) {
 
+  if (typeof popupObj !== 'object') popupObj = false;
+
   this.domNode = domNode;
   this.menu = menuObj;
+  this.popupMenu = false;
+  this.isMenubarItem = false;
 
   this.keyCode = Object.freeze({
     'TAB': 9,
@@ -60,7 +64,22 @@ MenuItem.prototype.init = function () {
   this.domNode.addEventListener('mouseover', this.handleMouseover.bind(this));
   this.domNode.addEventListener('mouseout', this.handleMouseout.bind(this));
 
+  // Initialize flyout menu
+
+  var nextElement = this.domNode.nextElementSibling;
+
+  if (nextElement && nextElement.tagName === 'UL') {
+    console.log('popup sub-menu');
+    this.popupMenu = new PopupMenu(nextElement, this.menu, this);
+    this.popupMenu.init();
+  }
+
 };
+
+MenuItem.prototype.isExpanded = function () {
+  return this.domNode.getAttribute('aria-expanded') === 'true';
+};
+
 
 /* EVENT HANDLERS */
 
@@ -74,23 +93,31 @@ MenuItem.prototype.handleKeydown = function (event) {
   switch (event.keyCode) {
     case this.keyCode.SPACE:
     case this.keyCode.RETURN:
-      // Create simulated mouse event to mimic the behavior of ATs
-      // and let the event handler handleClick do the housekeeping.
-      try {
-        clickEvent = new MouseEvent('click', {
-          'view': window,
-          'bubbles': true,
-          'cancelable': true
-        });
+      if (this.popupMenu) {
+        this.popupMenu.open();
+        this.popupMenu.setFocusToFirstItem();
       }
-      catch (err) {
-        if (document.createEvent) {
-          // DOM Level 3 for IE 9+
-          clickEvent = document.createEvent('MouseEvents');
-          clickEvent.initEvent('click', true, true);
+      else {
+
+        // Create simulated mouse event to mimic the behavior of ATs
+        // and let the event handler handleClick do the housekeeping.
+        try {
+          clickEvent = new MouseEvent('click', {
+            'view': window,
+            'bubbles': true,
+            'cancelable': true
+          });
         }
+        catch (err) {
+          if (document.createEvent) {
+            // DOM Level 3 for IE 9+
+            clickEvent = document.createEvent('MouseEvents');
+            clickEvent.initEvent('click', true, true);
+          }
+        }
+        tgt.dispatchEvent(clickEvent);
       }
-      tgt.dispatchEvent(clickEvent);
+
       flag = true;
       break;
 
@@ -117,8 +144,14 @@ MenuItem.prototype.handleKeydown = function (event) {
       break;
 
     case this.keyCode.RIGHT:
-      this.menu.setFocusToController('next', true);
-      this.menu.close(true);
+      if (this.popupMenu) {
+        this.popupMenu.open();
+        this.popupMenu.setFocusToFirstItem();
+      }
+      else {
+        this.menu.setFocusToController('next', true);
+        this.menu.close(true);
+      }
       flag = true;
       break;
 
@@ -168,20 +201,34 @@ MenuItem.prototype.handleClick = function (event) {
 
 MenuItem.prototype.handleFocus = function (event) {
   this.menu.hasFocus = true;
+  if (!this.menu.controller.isMenubarItem) {
+    this.menu.controller.hasFocus = true;
+  }
 };
 
 MenuItem.prototype.handleBlur = function (event) {
   this.menu.hasFocus = false;
+  if (!this.menu.controller.isMenubarItem) {
+    this.menu.controller.hasFocus = false;
+  }
   setTimeout(this.menu.close.bind(this.menu, false), 300);
 };
 
 MenuItem.prototype.handleMouseover = function (event) {
   this.menu.hasHover = true;
   this.menu.open();
-
+  if (this.popupMenu) {
+    this.popupMenu.hasHover = true;
+    this.popupMenu.open();
+  }
 };
 
 MenuItem.prototype.handleMouseout = function (event) {
+  if (this.popupMenu) {
+    this.popupMenu.hasHover = false;
+    this.popupMenu.close(true);
+  }
+
   this.menu.hasHover = false;
   setTimeout(this.menu.close.bind(this.menu, false), 300);
 };

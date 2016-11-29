@@ -43,6 +43,8 @@ var MenubarItem = function (domNode, menuObj) {
   this.hasFocus = false;
   this.hasHover = false;
 
+  this.isMenubarItem = true;
+
   this.keyCode = Object.freeze({
     'TAB': 9,
     'RETURN': 13,

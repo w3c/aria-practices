@@ -32,9 +32,11 @@
 *          domNode has responded to a mouseover event with no subsequent
 *          mouseout event having occurred.
 */
-var PopupMenu = function (domNode, controllerObj) {
+var PopupMenu = function (domNode, controllerObj, popupMenuItemObj) {
   var elementChildren,
       msgPrefix = 'PopupMenu constructor argument domNode ';
+
+  if (typeof popupMenuItemObj !== 'object') popupMenuItemObj = false;
 
   // Check whether domNode is a DOM element
   if (!domNode instanceof Element) {
@@ -54,8 +56,11 @@ var PopupMenu = function (domNode, controllerObj) {
     childElement = childElement.nextElementSibling;
   }
 
+  this.isMenubar = false;
+
   this.domNode = domNode;
   this.controller = controllerObj;
+  this.popupMenuItem = popupMenuItemObj;
 
   this.menuitems = []; // See PopupMenu init method
   this.firstChars = []; // See PopupMenu init method
@@ -133,14 +138,27 @@ PopupMenu.prototype.setFocusToController = function (command, flag) {
   if (typeof command !== 'string') {
     command = '';
   }
-  if (command === 'previous') {
-    this.controller.menubar.setFocusToPreviousItem(this.controller, flag);
-  }
-  else if (command === 'next') {
-    this.controller.menubar.setFocusToNextItem(this.controller, flag);
+
+  if (this.controller.close) {
+    this.popupMenuItem.domNode.focus();
+    this.close();
+
+    if (command === 'next') {
+      this.controller.hasFocus = false;
+      this.controller.close();
+      this.controller.controller.menubar.setFocusToNextItem(this.controller.controller, flag);
+    }
   }
   else {
-    this.controller.domNode.focus();
+    if (command === 'previous') {
+      this.controller.menubar.setFocusToPreviousItem(this.controller, flag);
+    }
+    else if (command === 'next') {
+      this.controller.menubar.setFocusToNextItem(this.controller, flag);
+    }
+    else {
+      this.controller.domNode.focus();
+    }
   }
 };
 
@@ -215,18 +233,33 @@ PopupMenu.prototype.open = function () {
   var rect = this.controller.domNode.getBoundingClientRect();
 
   // Set CSS properties
-  this.domNode.style.display = 'block';
-  this.domNode.style.position = 'absolute';
-  this.domNode.style.top = (rect.height - 1) + 'px';
-  this.domNode.style.zIndex = 100;
+  if (!this.controller.isMenubarItem) {
+    this.domNode.parentNode.style.position = 'relative';
+    this.domNode.style.display = 'block';
+    this.domNode.style.position = 'absolute';
+    this.domNode.style.left = rect.width + 'px';
+    this.domNode.style.zIndex = 100;
+  }
+  else {
+    this.domNode.style.display = 'block';
+    this.domNode.style.position = 'absolute';
+    this.domNode.style.top = (rect.height - 1) + 'px';
+    this.domNode.style.zIndex = 100;
+  }
 
-  // Set aria-expanded attribute
   this.controller.domNode.setAttribute('aria-expanded', 'true');
+
 };
 
 PopupMenu.prototype.close = function (force) {
 
-  if (force || (!this.hasFocus && !this.hasHover && !this.controller.hasHover)) {
+  var controllerHasHover = this.controller.hasHover;
+
+  if (!this.controller.isMenubarItem) {
+    controllerHasHover = false;
+  }
+
+  if (force || (!this.hasFocus && !this.hasHover && !controllerHasHover)) {
     this.domNode.style.display = 'none';
     this.domNode.style.zIndex = 0;
     this.controller.domNode.setAttribute('aria-expanded', 'false');
