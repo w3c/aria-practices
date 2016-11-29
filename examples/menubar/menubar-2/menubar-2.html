@@ -5,7 +5,7 @@
 
     <meta charset="utf-8">
 
-    <title>Navigation Menubar Example: Menuitemradio and Menuitemcheckbox</title>
+    <title>Menubar Example: Menuitemradio and Menuitemcheckbox</title>
 
     <link href="../../css/core.css" rel="stylesheet">
     <link href="../../css/table.css" rel="stylesheet">
@@ -19,103 +19,103 @@
 
   </head>
   <body>
-    <main>
+   <main>
 
-      <h1>Navigation Menubar Example: Actions</h1> 
+    <h1>Navigation Menubar Example: Actions</h1> 
         <p><strong>NOTE:</strong> Please provide feedback on this example in <a href="https://github.com/w3c/aria-practices/issues/144">issue 144</a>. </p>
-        <p>Following are two implementations of the <a href="../../#menu">Design Pattern for menubar</a> that demonstrate how a menubar can be used for site navigation. Each item in the menubars represents an action of styling text in <code>textarea</code> and opens a pull down menu with styling options. This example also demonstrates the usage of <code>menuitemradio</code> and <code>menuitemcheckbox</code>.</p>
-        <section id="code-ex-1">
-            <h2>Examples</h2>
-                <h3 id="ex1_label">Menubar With ARIA Markup with <code>menuitemradio</code> and <code>menuitemcheckbox</code></h3>
-                <div role="separator" id="ex1_start_sep" aria-labelledby="ex1_start_sep ex1_label" aria-label="Start of"></div>
-       <div id="ex1">
-        <ul id="menubar1" role="menubar" aria-label="Text Formatting">
-
-          <li>
-            <span role="menuitem" aria-haspopup="true" aria-expanded="false">Font</span>
-            <ul role="menu" class="font-family"  onclick="setFontFamily(event, 'textarea1')">
-              <li role="menuitemradio" aria-checked="true">Sans-serif</li>
-              <li role="menuitemradio" aria-checked="false">Serif</li>
-              <li role="menuitemradio" aria-checked="false">Monospace</li>
-              <li role="menuitemradio" aria-checked="false">Fantasy</li>
-            </ul>
-          </li>
-
-          <li>
-            <span role="menuitem" aria-haspopup="true" aria-expanded="false">Style/Color</span>
-            <ul role="menu">
-              <li role="menuitemcheckbox" aria-checked="false" onclick="toggleBold(event, 'textarea1')">Bold</li>
-              <li role="menuitemcheckbox" aria-checked="false" onclick="toggleItalic(event,  'textarea1')">Italic</li>
-              <li role="separator"></li>
-              <li>
+        <p>Following is the implementations of the <a href="../../#menu">design pattern for menubar</a> that demonstrate how a menubar can be used for actions. Each item in the menubars represents a CSS styling and opens pull down menu items that change the styling of the text. This example also demonstrates the usage of <code>menuitemradio</code> and <code>menuitemcheckbox</code>.</p>
+  <section id="code-ex-1">
+  <h2>Examples</h2>
+    <h3 id="ex1_label">Menubar With ARIA Markup with <code>menuitemradio</code> and <code>menuitemcheckbox</code></h3>
+      
+      <div role="separator" id="ex1_start_sep" aria-labelledby="ex1_start_sep ex1_label" aria-label="Start of"></div>
+      
+    <div id="ex1">
+      <ul id="menubar1" role="menubar" aria-label="Text Formatting">
+        <li>
+          <span role="menuitem" aria-haspopup="true" aria-expanded="false">Font</span>
+          <ul role="menu" class="font-family"  onclick="setFontFamily(event, 'textarea1')">
+            <li role="menuitemradio" aria-checked="true">Sans-serif</li>
+            <li role="menuitemradio" aria-checked="false">Serif</li>
+            <li role="menuitemradio" aria-checked="false">Monospace</li>
+            <li role="menuitemradio" aria-checked="false">Fantasy</li>
+          </ul>
+        </li>
+        <li>
+          <span role="menuitem" aria-haspopup="true" aria-expanded="false">Style/Color</span>
+          <ul role="menu">
+            <li role="menuitemcheckbox" aria-checked="false" onclick="toggleBold(event, 'textarea1')">Bold</li>
+            <li role="menuitemcheckbox" aria-checked="false" onclick="toggleItalic(event,  'textarea1')">Italic</li>
+            <li role="separator"></li>
+            <li>
                 <ul role="group" class="color" aria-label="Text Color" onclick="setColor(event, 'textarea1', 'black')">
                   <li role="menuitemradio" aria-checked="true">Black</li>
                   <li role="menuitemradio" aria-checked="false">Blue</li>
                   <li role="menuitemradio" aria-checked="false">Red</li>
                   <li role="menuitemradio" aria-checked="false">Green</li>
                 </ul>
-              <li role="separator"></li>
-              <li>
+            <li role="separator"></li>
+            <li>
                 <ul role="group" class="text-decoration" aria-label="Text Decoration" onclick="setTextDecoration(event, 'textarea1')"">
                   <li role="menuitemradio" aria-checked="true">None</li>
                   <li role="menuitemradio" aria-checked="false">Overline</li>
                   <li role="menuitemradio" aria-checked="false">Line-through</li>
                   <li role="menuitemradio" aria-checked="false">Underline</li>
                 </ul>
-            </ul>
-          </li>
+          </ul>
+        </li>
 
-          <li>
-            <span role="menuitem" aria-haspopup="true" aria-expanded="false">Text Align</span>
-            <ul role="menu" class="font-family" onclick="setTextAlign(event, 'textarea1')">
-              <li role="menuitemradio" aria-checked="true">Left</li>
-              <li role="menuitemradio" aria-checked="false">Center</li>
-              <li role="menuitemradio" aria-checked="false">Right</li>
-              <li role="menuitemradio" aria-checked="false">Justify</li>
-            </ul>
-          </li>
+        <li>
+          <span role="menuitem" aria-haspopup="true" aria-expanded="false">Text Align</span>
+          <ul role="menu" class="font-family" onclick="setTextAlign(event, 'textarea1')">
+            <li role="menuitemradio" aria-checked="true">Left</li>
+            <li role="menuitemradio" aria-checked="false">Center</li>
+            <li role="menuitemradio" aria-checked="false">Right</li>
+            <li role="menuitemradio" aria-checked="false">Justify</li>
+          </ul>
+        </li>
 
-          <li>
-            <span role="menuitem" aria-haspopup="true" aria-expanded="false">Size</span>
-            <ul role="menu" class="font-size" onclick="setFontSize(event, 'textarea1')">
-              <li role="menuitem">Smaller</li>
-              <li role="menuitem">Larger</li>
-              <li role="separator"></li>
-              <li>
-                <ul role="group" aria-label="Font Sizes">
-                  <li role="menuitemradio" aria-checked="false">X-Small</li>
-                  <li role="menuitemradio" aria-checked="false">Small</li>
-                  <li role="menuitemradio" aria-checked="true" >Medium</li>
-                  <li role="menuitemradio" aria-checked="false">Large</li>
-                  <li role="menuitemradio" aria-checked="false">X-Large</li>
-                </ul>  
-            </ul>
-          </li>
-        </ul>
+        <li>
+          <span role="menuitem" aria-haspopup="true" aria-expanded="false">Size</span>
+          <ul role="menu" class="font-size" onclick="setFontSize(event, 'textarea1')">
+            <li role="menuitem">Smaller</li>
+            <li role="menuitem">Larger</li>
+            <li role="separator"></li>
+            <li>
+              <ul role="group" aria-label="Font Sizes">
+                <li role="menuitemradio" aria-checked="false">X-Small</li>
+                <li role="menuitemradio" aria-checked="false">Small</li>
+                <li role="menuitemradio" aria-checked="true" >Medium</li>
+                <li role="menuitemradio" aria-checked="false">Large</li>
+                <li role="menuitemradio" aria-checked="false">X-Large</li>
+              </ul>  
+          </ul>
+        </li>
+      </ul>
 
-        <label for="st1" class="hidden">Text Sample 1</label><br>
+     <label for="st1" class="hidden">Text Sample 1</label><br>
+      <textarea id="textarea1" rows="20" cols="80" style="font-size: medium; font-family: sans-serif">
+      Four score and seven years ago our fathers brought forth on this continent a new nation, conceived in Liberty, and dedicated to the proposition that all men are created equal.
 
-        <textarea id="textarea1" rows="20" cols="80" style="font-size: medium; font-family: sans-serif">
-Four score and seven years ago our fathers brought forth on this continent a new nation, conceived in Liberty, and dedicated to the proposition that all men are created equal.
+      Now we are engaged in a great civil war, testing whether that nation, or any nation, so conceived and so dedicated, can long endure. We are met on a great battle-field of that war. We have come to dedicate a portion of that field, as a final resting place for those who here gave their lives that that nation might live. It is altogether fitting and proper that we should do this.
 
-Now we are engaged in a great civil war, testing whether that nation, or any nation, so conceived and so dedicated, can long endure. We are met on a great battle-field of that war. We have come to dedicate a portion of that field, as a final resting place for those who here gave their lives that that nation might live. It is altogether fitting and proper that we should do this.
-
-But, in a larger sense, we can not dedicate, we can not consecrate, we can not hallow, this ground. The brave men, living and dead, who struggled here, have consecrated it, far above our poor power to add or detract. The world will little note, nor long remember what we say here, but it can never forget what they did here. It is for us the living, rather, to be dedicated here to the unfinished work which they who fought here have thus far so nobly advanced. It is rather for us to be here dedicated to the great task remaining before us, that from these honored dead we take increased devotion to that cause for which they gave the last full measure of devotion, that we here highly resolve that these dead shall not have died in vain, that this nation, under God, shall have a new birth of freedom, and that government of the people, by the people, for the people, shall not perish from the earth.
-        </textarea>
+      But, in a larger sense, we can not dedicate, we can not consecrate, we can not hallow, this ground. The brave men, living and dead, who struggled here, have consecrated it, far above our poor power to add or detract. The world will little note, nor long remember what we say here, but it can never forget what they did here. It is for us the living, rather, to be dedicated here to the unfinished work which they who fought here have thus far so nobly advanced. It is rather for us to be here dedicated to the great task remaining before us, that from these honored dead we take increased devotion to that cause for which they gave the last full measure of devotion, that we here highly resolve that these dead shall not have died in vain, that this nation, under God, shall have a new birth of freedom, and that government of the people, by the people, for the people, shall not perish from the earth.
+      </textarea>
 </div>
         <p><a href="http://en.wikipedia.org/wiki/Gettysburg,_Pennsylvania">More information on Gettysburg Address</a></p>
-<h4>Notes</h4>
-        <ol>
+     
+    <h4>Notes</h4>
+      <ol>
         <li>List of pull down menu items that change the styling of the text.</li> 
         <li>Menuitems include radio buttons and checkboxes to indicate the state of the styling of the text.</li> 
         <li>Font "Size" menu included two menuitems that are disabled base on the current size of the text.</li>
       </ol>
-</section>
+  </section>
 
-      <h2 id="id_kbd">Keyboard Support</h2>
-
-      <h3 id="id_kbd1">Menubar Menu Items</h3>
-      <table aria-labelledby="id_kbd id_kbd1"> 
+  <section aria-labelledby="mb_label">
+  <h2 id="id_mbf">Menubar Widget Features</h2>
+    <h3 id="kbd1_label">Keyboard Support</h3>
+      <table aria-labelledby="kbd1_label mb_label">
         <thead>
           <tr>
             <th>Key</th>
@@ -194,9 +194,113 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
           </tr>
         </tbody>
       </table>
+    <h3 id="rps1_label">Role, Property, State, and Tabindex  Attributes</h3>
+      <table aria-labelledby="rps1_label mb_label">
+        <thead>
+            <tr>
+                <th>Role</th>
+                <th>Attribute</th>
+                <th>Element</th>
+                <th>Usage</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>menubar</code></td>
+                <td></td>
+                <td><code>ul</code></td>
+                <td>
+                  <ul>
+                    <li>Identifies a ARIA menubar widget.</li>
+                    <li>No <code>tabindex</code> value is needed since the <code>role="menubar"</code> does not receive focus.</li>
+                    <li>Accessible name for the menu is defined by the <code>aria-label</code> attribute.</li>
+                  </ul>  
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><code>aria-label=&quot;<em>string</em>&quot;</code></td>
+                <td><code>ul</code></td>
+                <td>
+                  <ul>
+                    <li>Defines an acessible name for the menu bar.</li>
+                    <li>Used to help people understand the purpose of the menubar and uniquely identify the menubar from other menubars on the page.</li>
+                  </ul>  
+                </td>
+            </tr>
+            <tr>
+                <td><code>menuitem</code></td>
+                <td></td>
+                <td><code>span</code></td>
+                <td>
+                  <ul>
+                    <li>Identifies a ARIA menuitem in the menubar widget.</li>
+                    <li>Accessible name for the menuitem is defined by the text content of the <code>span</code> element.</li>
+                  </ul>  
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><code>tabindex=&quot;-1&quot;</code></td>
+                <td><code>span</code></td>
+                <td>
+                  <ul>
+                    <li>Makes the <code>span</code> element keyboard focusable, but <strong>not</strong> part of tab order of the page.</li>
+                  </ul>  
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><code>tabindex=&quot;0&quot;</code></td>
+                <td><code>span</code></td>
+                <td>
+                  <ul>
+                    <li>Makes the <code>span</code> element keyboard focusable and part of tab order of the page.</li>
+                    <li>Only one menubar item should have <code>tabindex=&quot;0&quot;</code>.</li>
+                    <li>The default menubar item with  <code>tabindex=&quot;0&quot;</code> is the first menubar item (e.g page is loaded).</li>
+                    <li>The last menubar item to have focus is given the <code>tabindex=&quot;0&quot;</code> so that when user tabs through the page focus will be given to the last menubar item that the user used.</li>
+                  </ul>  
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><code>aria-haspopup=&quot;true&quot;</code></td>
+                <td><code>span</code></td>
+                <td>
+                  <ul>
+                    <li>Identifies the menuitem as a controller for a popup menu.</li>
+                    <li>The menuitem is only to open and close the popup menu it cannot be a link.</li>
+                  </ul>  
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><code>aria-expanded=&quot;true&quot;</code></td>
+                <td><code>span</code></td>
+                <td>
+                  <ul>
+                    <li>Indicates popup menu is open.</li>
+                  </ul>  
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><code>aria-expanded=&quot;false&quot;</code></td>
+                <td><code>span</code></td>
+                <td>
+                  <ul>
+                    <li>Indicates popup menu is closed.</li>
+                  </ul>  
+                </td>
+            </tr>
+        </tbody>
+      </table>        
+  </section>
 
-      <h3 id="id_kbd2">Popup Menu Items</h3>
-      <table aria-labelledby="id_kbd id_kbd2"> 
+  <section aria-labelledby="popup_label">
+  <h2 id="popup_label">Popup Widget Features</h2>
+    <h3 id="kbd2_label">Keyboard Support</h3>
+      <table aria-labelledby="kbd2_label popup_label">
         <thead>
           <tr>
             <th>Key</th>
@@ -284,111 +388,191 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
           </tr>
         </tbody>
       </table>
-      <section>
-      <h2 id="rps_label">Role, Property, State, and Tabindex  Attributes</h2>
-            <table aria-labelledby="rps_label">
-                <thead>
-                    <tr>
-                        <th>Attribute</th>
-                        <th>Applied to Element</th>
-                        <th>Usage</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th><code>role=&quot;menubar&quot;</code></th>
-                        <td><code>ul</code> element</td>
-                        <td>Brief explanation of usage, purpose, benefit, and/or guidance that is relevant to this specific implementation.</td>
-                    </tr>
-                    <tr>
-                        <th><code>role=&quot;menuitem&quot;</code></th>
-                        <td><code>span</code> element</td>
-                        <td>Brief explanation of usage, purpose, benefit, and/or guidance that is relevant to this specific implementation.</td>
-                    </tr>
-                    <tr>
-                        <th><code>role=&quot;menu&quot;</code></th>
-                        <td><code>ul</code> element</td>
-                        <td>Brief explanation of usage, purpose, benefit, and/or guidance that is relevant to this specific implementation.</td>
-                    </tr>
-                    <tr>
-                        <th><code>aria-label</code></th>
-                        <td><code>ul</code> element</td>
-                        <td>brief explanation of usage, purpose, benefit, and/or guidance that is relevant to this specific implementation.</td>
-                    </tr>
-                    <tr>
-                        <th>
-                            <!--  Specify states and properties used like this; replace with the attributes that are relevant. -->
-                            <code>aria-haspopup=&quot;true&quot;</code>
-                        </th>
-                        <td><code>span</code> element which has <code>role="menuitem"</code></td>
-                        <td>Brief explanation of usage, purpose, benefit, and/or guidance that is relevant to this specific implementation.</td>
-                    </tr>
-                    <tr>
-                        <th>
-                            <!--  Specify states and properties used like this; replace with the attributes that are relevant. -->
-                            <code>aria-expanded=&quot;false&quot;</code>
-                        </th>
-                        <td><code>span</code> element which has <code>role="menuitem"</code></td>
-                        <td>Brief explanation of usage, purpose, benefit, and/or guidance that is relevant to this specific implementation.</td>
-                    </tr>
-                    <tr>
-                        <th><code>role=&quot;menuitemradio&quot;</code></th>
-                        <td><code>li</code> element</td>
-                        <td>Brief explanation of usage, purpose, benefit, and/or guidance that is relevant to this specific implementation.</td>
-                    </tr>
-                                        <tr>
-                        <th><code>role=&quot;menuitemcheckbox&quot;</code></th>
-                        <td><code>li</code> element</td>
-                        <td>Brief explanation of usage, purpose, benefit, and/or guidance that is relevant to this specific implementation.</td>
-                    </tr>
-                </tbody>
-            </table>
-      </section>
-      <section>
-            <h2>Javascript and CSS Source Code</h2>
-            <ul>
-                <li>
-                    CSS:
-                    <a href="css/menubarAction.css" type="tex/css">menubarAction.css</a>
-                </li>
-                <li>Javascript:
-                    <ul>
-                        <li><a href="js/MenubarAction.js" type="text/javascript">MenubarAction.js</a></li>
-                        <li><a href="js/MenubarItemAction.js" type="text/javascript">MenubarItemAction.js</a></li>
-                        <li><a href="js/PopupMenuAction.js" type="text/javascript">PopupMenuAction.js</a></li>
-                        <li><a href="js/MenuItemAction.js" type="text/javascript">MenuItemAction.js</a></li>
-                        <li><a href="js/TextStyling.js" type="text/javascript">TextStyling.js</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </section>
+    <h3 id="rps2_label">Role, Property, State, and Tabindex  Attributes</h3>
+      <table aria-labelledby="kbd2_label rps2_label">
+        <thead>
+            <tr>
+                <th>Role</th>
+                <th>Attribute</th>
+                <th>Element</th>
+                <th>Usage</th>
+            </tr>
+        </thead>
+        <tbody>
+           
+            <tr>
+                <td><code>menuitem</code></td>
+                <td></td>
+                <td><code>span</code></td>
+                <td>
+                  <ul>
+                    <li>Identifies a ARIA menuitem in the menu widget.</li>
+                    <li>Accessible name for the menuitem is defined by the text content of the <code>span</code> element.</li>
+                  </ul>  
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><code>tabindex=&quot;-1&quot;</code></td>
+                <td><code>span</code></td>
+                <td>
+                  <ul>
+                    <li>Makes the <code>span</code> element keyboard focusable, but <strong>not</strong> part of tab order of the page.</li>
+                  </ul>  
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><code>aria-haspopup=&quot;true&quot;</code></td>
+                <td><code>span</code></td>
+                <td>
+                  <ul>
+                    <li>Identifies the menuitem as a controller for a popup menu.</li>
+                    <li>The menuitem is only to open and close the popup menu it cannot be a link.</li>
+                  </ul>  
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><code>aria-expanded=&quot;true&quot;</code></td>
+                <td><code>span</code></td>
+                <td>
+                  <ul>
+                    <li>Indicates popup menu is open.</li>
+                  </ul>  
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><code>aria-expanded=&quot;false&quot;</code></td>
+                <td><code>span</code></td>
+                <td>
+                  <ul>
+                    <li>Indicates popup menu is closed.</li>
+                  </ul>  
+                </td>
+            </tr>
+             <tr>
+                <td><code>menu</code></td>
+                <td></td>
+                <td><code>ul</code></td>
+                <td>
+                  <ul>
+                    <li>Identifies a ARIA menu widget.</li>
+                    <li>No <code>tabindex</code> value is needed since the <code>role="menu"</code> does not receive keyboard focus.</li>
+                    <li>Accessible name for the menu is defined by the <code>aria-label</code> attribute.</li>
+                  </ul>  
+                </td>
+            </tr>
+            <tr>
+                <td><code>menuitemradio</code></td>
+                <td></td>
+                <td><code>li</code></td>
+                <td>
+                  <ul>
+                    <li><code>menuitemradio</code> is a checkable menuitem in a set of elements with the same role, only one of which can be checked at a time.</li>
+                    <li>Authors must ensure that multiple <code>menuitemradio</code>s are owned by an element with role <code>group</code>, <code>menu</code>, or <code>menubar</code> in order to identify that they are related widgets.(Note: <code>menuitemradio</code> in Font-family is owned by <code>menu</code> role in the example.)</li>
+                    <li>If a <code>menu</code> or <code>menubar</code> contains more than one group of <code>menuitemradio</code> elements, or if the menu contains one group and other, unrelated menu items, authors should nest each set of related <code>menuitemradio</code> elements in an element using the <code>group</code> role, and authors should delimit the group from other menu items with an element using the <code>separator</code> role.(Note: Style/Color menu bar menu item has two <code>group</code> roles of text color and text decoration with <code>separator</code> role in the example.)</li>
+                  </ul>  
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><code>aria-checked=&quot;true&quot; (or &quot;false&quot;)</code></td>
+                <td><code>li</code></td>
+                <td>
+                  <ul>
+                    <li>Indicates popup menu item is checked (or unchecked.)</li>
+                  </ul>  
+                </td>
+            </tr>
+            <tr>
+                <td><code>group</code></td>
+                <td></td>
+                <td><code>ul</code></td>
+                <td>
+                  <ul>
+                    <li>Used for grouping of <code>menuitemradio</code> popup menu items.</li>
+                  </ul>  
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><code>aria-label=&quot;<em>string</em>&quot;</code></td>
+                <td><code>ul</code></td>
+                <td>
+                  <ul>
+                    <li>Defines an acessible name for <code>menuitemradio</code> group.</li>
+                    <li>Used to help people understand the name of <code>menuitemradio</code> group which distinguish from other menuitemradio group.</li>
+                  </ul>  
+                </td>
+            </tr>
+            <tr>
+                <td><code>menuitemcheckbox</code></td>
+                <td></td>
+                <td><code>li</code></td>
+                <td>
+                  <ul>
+                    <li><code>menuitemcheckbox</code> is a menuitem with a checkable state whose possible values are true, false, or mixed.</li>
+                    <li>Authors must ensure that menu item checkboxes are owned by an element with role <code>menu</code> or <code>menubar</code> in order to identify that they are related widgets. In this example, <code>menuitemcheckbox</code> is owned by role <code>menu</code>.</li>
+                  </ul>  
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><code>aria-checked=&quot;true&quot; (or &quot;false&quot;)</code></td>
+                <td><code>li</code></td>
+                <td>
+                  <ul>
+                    <li>Indicates popup menu item is checked (or unchecked.)</li>
+                  </ul>  
+                </td>
+            </tr>
 
-
-     <section>
-            <h2>HTML Source Code</h2>
-            <h3 id="sc1_label">Example: Menubar With ARIA Markup in the HTML Source</h3>
-            <div id="sc1_start_sep" role="separator" aria-labelledby="sc1_start_sep sc1_label" aria-label="Start of HTML for"></div>
-            <div id="sc1"></div>
-            <div id="sc1_end_sep" role="separator" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of HTML for"></div>
-            <script>
-            sourceCode.add('sc1', 'ex1')
-            </script>
-            <!--  After all source has been added, run make to do the insert.  -->
-            <script>
-            sourceCode.make()
-            </script>
-        </section>
+        </tbody>
+      </table>        
+  </section>
+  <section>
+  <h2>Javascript and CSS Source Code</h2>
+      <ul>
+          <li>
+              CSS:
+              <a href="css/menubarAction.css" type="tex/css">menubarAction.css</a>
+          </li>
+          <li>Javascript:
+              <ul>
+                  <li><a href="js/MenubarAction.js" type="text/javascript">MenubarAction.js</a></li>
+                  <li><a href="js/MenubarItemAction.js" type="text/javascript">MenubarItemAction.js</a></li>
+                  <li><a href="js/PopupMenuAction.js" type="text/javascript">PopupMenuAction.js</a></li>
+                  <li><a href="js/MenuItemAction.js" type="text/javascript">MenuItemAction.js</a></li>
+                  <li><a href="js/TextStyling.js" type="text/javascript">TextStyling.js</a></li>
+              </ul>
+          </li>
+      </ul>
+  </section>
+  
+  <section>
+  <h2>HTML Source Code</h2>
+    <h3 id="sc1_label">Example: Menubar With ARIA Markup in the HTML Source</h3>
+    <div id="sc1_start_sep" role="separator" aria-labelledby="sc1_start_sep sc1_label" aria-label="Start of HTML for"></div>
+    <div id="sc1"></div>
+    <div id="sc1_end_sep" role="separator" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of HTML for"></div>
+<script>
+sourceCode.add('sc1', 'ex1');
+</script>
+<!--  After all source has been added, run make to do the insert.  -->
+<script>
+sourceCode.make();
+</script>
+  </section>
   </main>
 
-  <script type="text/javascript">
-
-    window.onload=function() {
+<script type="text/javascript">
+window.onload = function () {
       var menubar = new MenubarAction(document.getElementById('menubar1'));
       menubar.init();
-
-    }    
-
-  </script>
+    };
+</script>
 
   </body>
-  </html>
+</html>
