@@ -227,7 +227,7 @@ TreeitemLink.prototype.handleBlur = function (event) {
   if (this.isExpandable) {
     node = node.firstElementChild;
   }
-   node.classList.remove('focus');
+  node.classList.remove('focus');
 };
 
 TreeitemLink.prototype.handleMouseOver = function (event) {

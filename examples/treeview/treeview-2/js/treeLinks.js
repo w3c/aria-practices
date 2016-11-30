@@ -63,9 +63,7 @@ TreeLinks.prototype.init = function () {
 
     while (elem) {
 
-      if ((elem.tagName.toLowerCase() === 'li' && 
-           elem.firstElementChild.tagName.toLowerCase() === 'span') ||
-          elem.tagName.toLowerCase() === 'a') {
+      if ((elem.tagName.toLowerCase() === 'li' && elem.firstElementChild.tagName.toLowerCase() === 'span') || elem.tagName.toLowerCase() === 'a') {
         ti = new TreeitemLink(elem, tree, group);
         ti.init();
         tree.treeitems.push(ti);
