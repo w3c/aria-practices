@@ -1,5 +1,5 @@
 /**
- * ARIA Grid Examples
+ * ARIA Toolbar Examples
  * @function onload
  * @desc Initialize the toolbar example once the page has loaded
  */
