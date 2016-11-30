@@ -2,11 +2,16 @@ ul[role="tree"] {
   margin: 0;
   padding: 0;
   list-style: none;
-  font-size: 120%;
 }
 
-[role="treeitem"].doc:before {
-    content: url(../images/file.png);
+ul[role="tree"] li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+ul[role="tree"] a {
+  text-decoration: none;
 }
 
 [role="treeitem"][aria-expanded="false"] > ul {
@@ -18,11 +23,11 @@ ul[role="tree"] {
 }
 
 [role="treeitem"][aria-expanded="false"] > span:before {
-  content: url(../images/closed.png);
+  content: url(../images/collapsed-16.png);
 }
 
 [role="treeitem"][aria-expanded="true"] > span:before {
-  content: url(../images/open.png);
+  content: url(../images/expanded-16.png);
 }
 
 [role="treeitem"],
@@ -38,12 +43,12 @@ ul[role="tree"] {
 [role="treeitem"] span.focus {
   border-color: black;
   background-color: #EEEEEE;
-  width: 9em;  
+  width: 14em;  
 }
 
 [role="treeitem"].hover,
 [role="treeitem"] span.hover {
   background-color: #DDDDDD;
-  width: 9em;  
+  width: 14em;  
 }
 

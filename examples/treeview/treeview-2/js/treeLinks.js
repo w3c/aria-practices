@@ -2,7 +2,7 @@
 *   This content is licensed according to the W3C Software License at
 *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
 *
-*   File:   Tree.js
+*   File:   TreeLinks.js
 *
 *   Desc:   Tree widget that implements ARIA Authoring Practices
 *           for a tree being used as a file viewer
@@ -21,7 +21,7 @@ window.addEventListener('load', function () {
   var trees = document.querySelectorAll('[role="tree"]');
 
   for (var i = 0; i < trees.length; i++) {
-    var t = new Tree(trees[i]);
+    var t = new TreeLinks(trees[i]);
     t.init();
   }
 
@@ -38,7 +38,7 @@ window.addEventListener('load', function () {
 *       An element with the role=tree attribute
 */
 
-var Tree = function (node) {
+var TreeLinks = function (node) {
   // Check whether node is a DOM element
   if (typeof node !== 'object') {
     return;
@@ -54,7 +54,7 @@ var Tree = function (node) {
 
 };
 
-Tree.prototype.init = function () {
+TreeLinks.prototype.init = function () {
 
   function findTreeitems (node, tree, group) {
 
@@ -63,8 +63,10 @@ Tree.prototype.init = function () {
 
     while (elem) {
 
-      if (elem.tagName.toLowerCase() === 'li') {
-        ti = new Treeitem(elem, tree, group);
+      if ((elem.tagName.toLowerCase() === 'li' && 
+           elem.firstElementChild.tagName.toLowerCase() === 'span') ||
+          elem.tagName.toLowerCase() === 'a') {
+        ti = new TreeitemLink(elem, tree, group);
         ti.init();
         tree.treeitems.push(ti);
         tree.firstChars.push(ti.label.substring(0, 1).toLowerCase());
@@ -91,7 +93,7 @@ Tree.prototype.init = function () {
 
 };
 
-Tree.prototype.setFocusToItem = function (treeitem) {
+TreeLinks.prototype.setFocusToItem = function (treeitem) {
 
   for (var i = 0; i < this.treeitems.length; i++) {
     var ti = this.treeitems[i];
@@ -107,7 +109,7 @@ Tree.prototype.setFocusToItem = function (treeitem) {
 
 };
 
-Tree.prototype.setFocusToNextItem = function (currentItem) {
+TreeLinks.prototype.setFocusToNextItem = function (currentItem) {
 
   var nextItem = false;
 
@@ -127,7 +129,7 @@ Tree.prototype.setFocusToNextItem = function (currentItem) {
 
 };
 
-Tree.prototype.setFocusToPreviousItem = function (currentItem) {
+TreeLinks.prototype.setFocusToPreviousItem = function (currentItem) {
 
   var prevItem = false;
 
@@ -146,15 +148,15 @@ Tree.prototype.setFocusToPreviousItem = function (currentItem) {
   }
 };
 
-Tree.prototype.setFocusToFirstItem = function () {
+TreeLinks.prototype.setFocusToFirstItem = function () {
     this.setFocusToItem(this.firstTreeitem);
   };
 
-Tree.prototype.setFocusToLastItem = function () {
+TreeLinks.prototype.setFocusToLastItem = function () {
     this.setFocusToItem(this.lastTreeitem);
   };
 
-Tree.prototype.expandTreeitem = function (currentItem) {
+TreeLinks.prototype.expandTreeitem = function (currentItem) {
 
   if (currentItem.isExpandable) {
     currentItem.domNode.setAttribute('aria-expanded', true);
@@ -163,7 +165,7 @@ Tree.prototype.expandTreeitem = function (currentItem) {
 
 };
 
-Tree.prototype.expandAllSiblingItems = function (currentItem) {
+TreeLinks.prototype.expandAllSiblingItems = function (currentItem) {
   for (var i = 0; i < this.treeitems.length; i++) {
     var ti = this.treeitems[i];
 
@@ -174,7 +176,7 @@ Tree.prototype.expandAllSiblingItems = function (currentItem) {
 
 };
 
-Tree.prototype.collapseTreeitem = function (currentItem) {
+TreeLinks.prototype.collapseTreeitem = function (currentItem) {
 
   var groupTreeitem = false;
 
@@ -193,7 +195,7 @@ Tree.prototype.collapseTreeitem = function (currentItem) {
 
 };
 
-Tree.prototype.updateVisibleTreeitems = function () {
+TreeLinks.prototype.updateVisibleTreeitems = function () {
 
   this.firstTreeitem = this.treeitems[0];
 
@@ -219,7 +221,7 @@ Tree.prototype.updateVisibleTreeitems = function () {
 
 };
 
-Tree.prototype.setFocusByFirstCharacter = function (currentItem, char) {
+TreeLinks.prototype.setFocusByFirstCharacter = function (currentItem, char) {
   var start, index, char = char.toLowerCase();
 
   // Get start index for search based on position of currentItem
@@ -242,7 +244,7 @@ Tree.prototype.setFocusByFirstCharacter = function (currentItem, char) {
   }
 };
 
-Tree.prototype.getIndexFirstChars = function (startIndex, char) {
+TreeLinks.prototype.getIndexFirstChars = function (startIndex, char) {
   for (var i = startIndex; i < this.firstChars.length; i++) {
     if (this.treeitems[i].isVisible) {
       if (char === this.firstChars[i]) {

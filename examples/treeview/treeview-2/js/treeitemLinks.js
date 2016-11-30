@@ -2,7 +2,7 @@
 *   This content is licensed according to the W3C Software License at
 *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
 *
-*   File:   Treeitem.js
+*   File:   TreeitemLink.js
 *
 *   Desc:   Treeitem widget that implements ARIA Authoring Practices
 *           for a tree being used as a file viewer
@@ -21,7 +21,7 @@
 *       An element with the role=tree attribute
 */
 
-var Treeitem = function (node, treeObj, group) {
+var TreeitemLink = function (node, treeObj, group) {
 
   // Check whether node is a DOM element
   if (typeof node !== 'object') {
@@ -73,7 +73,7 @@ var Treeitem = function (node, treeObj, group) {
   });
 };
 
-Treeitem.prototype.init = function () {
+TreeitemLink.prototype.init = function () {
   this.domNode.tabIndex = -1;
 
   if (!this.domNode.getAttribute('role')) {
@@ -96,7 +96,7 @@ Treeitem.prototype.init = function () {
   }
 };
 
-Treeitem.prototype.isExpanded = function () {
+TreeitemLink.prototype.isExpanded = function () {
 
   if (this.isExpandable) {
     return this.domNode.getAttribute('aria-expanded') === 'true';
@@ -108,7 +108,7 @@ Treeitem.prototype.isExpanded = function () {
 
 /* EVENT HANDLERS */
 
-Treeitem.prototype.handleKeydown = function (event) {
+TreeitemLink.prototype.handleKeydown = function (event) {
   var tgt = event.currentTarget,
       flag = false,
  clickEvent;
@@ -180,7 +180,7 @@ Treeitem.prototype.handleKeydown = function (event) {
   }
 };
 
-Treeitem.prototype.handleKeypress = function (event) {
+TreeitemLink.prototype.handleKeypress = function (event) {
   var char = String.fromCharCode(event.charCode);
 
   function isPrintableCharacter (str) {
@@ -200,7 +200,7 @@ Treeitem.prototype.handleKeypress = function (event) {
 
 };
 
-Treeitem.prototype.handleClick = function (event) {
+TreeitemLink.prototype.handleClick = function (event) {
   if (this.isExpandable) {
     if (this.domNode.getAttribute('aria-expanded') == 'true') {
       this.tree.collapseTreeitem(this);
@@ -214,7 +214,7 @@ Treeitem.prototype.handleClick = function (event) {
   }
 };
 
-Treeitem.prototype.handleFocus = function (event) {
+TreeitemLink.prototype.handleFocus = function (event) {
   var node = this.domNode;
   if (this.isExpandable) {
     node = node.firstElementChild;
@@ -222,18 +222,18 @@ Treeitem.prototype.handleFocus = function (event) {
   node.classList.add('focus');
 };
 
-Treeitem.prototype.handleBlur = function (event) {
+TreeitemLink.prototype.handleBlur = function (event) {
   var node = this.domNode;
   if (this.isExpandable) {
     node = node.firstElementChild;
   }
-  node.classList.remove('focus');
+   node.classList.remove('focus');
 };
 
-Treeitem.prototype.handleMouseOver = function (event) {
+TreeitemLink.prototype.handleMouseOver = function (event) {
   event.currentTarget.classList.add('hover');
 };
 
-Treeitem.prototype.handleMouseOut = function (event) {
+TreeitemLink.prototype.handleMouseOut = function (event) {
   event.currentTarget.classList.remove('hover');
 };
