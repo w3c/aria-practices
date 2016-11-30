@@ -1,9 +1,17 @@
 /**
- * Rename this file to the name of the example, e.g., checkbox.js.
+ * @namespace aria
  */
-
 var aria = aria || {};
 
+/**
+ * @constructor
+ *
+ * @desc
+ *  Listbox object representing the state and interactions for a listbox widget
+ *
+ * @param listboxNode
+ *  The DOM node pointing to the listbox
+ */
 aria.Listbox = function (listboxNode) {
   this.listboxNode = listboxNode;
   this.activeDescendant = this.listboxNode.getAttribute('aria-activedescendant');
@@ -11,12 +19,20 @@ aria.Listbox = function (listboxNode) {
   this.registerEvents();
 };
 
+/**
+ * @desc
+ *  Register events for the listbox interactions
+ */
 aria.Listbox.prototype.registerEvents = function () {
   this.listboxNode.addEventListener('focus', this.setupFocus.bind(this));
-  this.listboxNode.addEventListener('keydown', this.checkFocusChange.bind(this));
+  this.listboxNode.addEventListener('keydown', this.checkKeyPress.bind(this));
   this.listboxNode.addEventListener('click', this.checkClickItem.bind(this));
 };
 
+/**
+ * @desc
+ *  If there is no activeDescendant, focus on the first option
+ */
 aria.Listbox.prototype.setupFocus = function () {
   var firstItem;
 
@@ -31,7 +47,15 @@ aria.Listbox.prototype.setupFocus = function () {
   }
 };
 
-aria.Listbox.prototype.checkFocusChange = function (evt) {
+/**
+ * @desc
+ *  Handle various keyboard controls; UP/DOWN will shift focus; SPACE selects
+ *  an item.
+ *
+ * @param evt
+ *  The keydown event object
+ */
+aria.Listbox.prototype.checkKeyPress = function (evt) {
   var key = evt.which || evt.keyCode;
   var nextItem = document.getElementById(this.activeDescendant);
 
@@ -62,6 +86,13 @@ aria.Listbox.prototype.checkFocusChange = function (evt) {
   }
 };
 
+/**
+ * @desc
+ *  Check if an item is clicked on. If so, focus on it and select it.
+ *
+ * @param evt
+ *  The click event object
+ */
 aria.Listbox.prototype.checkClickItem = function (evt) {
   if (evt.target.getAttribute('role') === 'option') {
     this.focusItem(evt.target);
@@ -69,6 +100,13 @@ aria.Listbox.prototype.checkClickItem = function (evt) {
   }
 };
 
+/**
+ * @desc
+ *  Toggle the aria-selected value
+ *
+ * @param element
+ *  The element to select
+ */
 aria.Listbox.prototype.selectItem = function (element) {
   if (element.hasAttribute('aria-selected')) {
     element.setAttribute(
@@ -78,6 +116,13 @@ aria.Listbox.prototype.selectItem = function (element) {
   }
 };
 
+/**
+ * @desc
+ *  Defocus the specified item
+ *
+ * @param element
+ *  The element to defocus
+ */
 aria.Listbox.prototype.defocusItem = function (element) {
   if (!element) {
     return;
@@ -86,6 +131,13 @@ aria.Listbox.prototype.defocusItem = function (element) {
   aria.Utils.removeClass(element, 'focused');
 };
 
+/**
+ * @desc
+ *  Focus on the specified item
+ *
+ * @param element
+ *  The element to focus
+ */
 aria.Listbox.prototype.focusItem = function (element) {
   this.defocusItem(document.getElementById(this.activeDescendant));
   aria.Utils.addClass(element, 'focused');
@@ -93,6 +145,13 @@ aria.Listbox.prototype.focusItem = function (element) {
   this.activeDescendant = element.id;
 };
 
+/**
+ * @desc
+ *  Add the specified items to the listbox. Assumes items are valid options.
+ *
+ * @param items
+ *  An array of items to add to the listbox
+ */
 aria.Listbox.prototype.addItems = function (items) {
   if (!items || !items.length) {
     return false;
@@ -108,6 +167,15 @@ aria.Listbox.prototype.addItems = function (items) {
   }
 };
 
+/**
+ * @desc
+ *  Remove all of the selected items from the listbox; Removes the focused items
+ *  in a single select listbox and the items with aria-selected in a multi
+ *  select listbox.
+ *
+ * @returns items
+ *  An array of items that were removed from the listbox
+ */
 aria.Listbox.prototype.deleteItems = function () {
   var itemsToDelete;
 
@@ -133,6 +201,11 @@ aria.Listbox.prototype.deleteItems = function () {
   return itemsToDelete;
 };
 
+/**
+ * @desc
+ *  Shifts the currently focused item up on the list. No shifting occurs if the
+ *  item is already at the top of the list.
+ */
 aria.Listbox.prototype.moveUpItems = function () {
   var previousItem;
 
@@ -148,6 +221,11 @@ aria.Listbox.prototype.moveUpItems = function () {
   }
 };
 
+/**
+ * @desc
+ *  Shifts the currently focused item down on the list. No shifting occurs if
+ *  the item is already at the end of the list.
+ */
 aria.Listbox.prototype.moveDownItems = function () {
   var nextItem;
 

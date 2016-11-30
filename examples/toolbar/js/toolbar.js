@@ -1,9 +1,17 @@
 /**
- * Rename this file to the name of the example, e.g., checkbox.js.
+ * @namespace aria
  */
-
 var aria = aria || {};
 
+/**
+ * @constructor
+ *
+ * @desc
+ *  Toolbar object representing the state and interactions for a toolbar widget
+ *
+ * @param toolbarNode
+ *  The DOM node pointing to the toolbar
+ */
 aria.Toolbar = function (toolbarNode) {
   this.toolbarNode = toolbarNode;
   this.items = this.toolbarNode.querySelectorAll('.toolbar-item');
@@ -11,11 +19,23 @@ aria.Toolbar = function (toolbarNode) {
   this.registerEvents();
 };
 
+/**
+ * @desc
+ *  Register events for the toolbar interactions
+ */
 aria.Toolbar.prototype.registerEvents = function () {
   this.toolbarNode.addEventListener('keydown', this.checkFocusChange.bind(this));
   this.toolbarNode.addEventListener('click', this.checkClickItem.bind(this));
 };
 
+/**
+ * @desc
+ *  Handle various keyboard controls; LEFT/RIGHT will shift focus; DOWN
+ *  activates a menu button if it is the focused item.
+ *
+ * @param evt
+ *  The keydown event object
+ */
 aria.Toolbar.prototype.checkFocusChange = function (evt) {
   var key = evt.which || evt.keyCode;
   var nextIndex, nextItem;
@@ -41,18 +61,39 @@ aria.Toolbar.prototype.checkFocusChange = function (evt) {
   }
 };
 
+/**
+ * @desc
+ *  Selects a toolbar item if it is clicked
+ *
+ * @param evt
+ *  The click event object
+ */
 aria.Toolbar.prototype.checkClickItem = function (evt) {
   if (aria.Utils.hasClass(evt.target, 'toolbar-item')) {
     this.selectItem(evt.target);
   }
 };
 
+/**
+ * @desc
+ *  Deselect the specified item
+ *
+ * @param element
+ *  The item to deselect
+ */
 aria.Toolbar.prototype.deselectItem = function (element) {
   aria.Utils.removeClass(element, 'selected');
   element.setAttribute('aria-selected', 'false');
   element.setAttribute('tabindex', '-1');
 };
 
+/**
+ * @desc
+ *  Deselect the currently selected item and select the specified item
+ *
+ * @param element
+ *  The item to select
+ */
 aria.Toolbar.prototype.selectItem = function (element) {
   this.deselectItem(this.selectedItem);
   aria.Utils.addClass(element, 'selected');
@@ -61,6 +102,13 @@ aria.Toolbar.prototype.selectItem = function (element) {
   this.selectedItem = element;
 };
 
+/**
+ * @desc
+ *  Focus on the specified item
+ *
+ * @param element
+ *  The item to focus on
+ */
 aria.Toolbar.prototype.focusItem = function (element) {
   element.focus();
 };
