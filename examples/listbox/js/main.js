@@ -14,14 +14,15 @@ window.addEventListener('load', function () {
   var ex2ImportantListbox = new aria.Listbox(document.getElementById('ms_imp_list'));
   var ex2UnimportantListbox = new aria.Listbox(document.getElementById('ms_unimp_list'));
 
+  /**
+   * Setup button controls
+   */
   document.getElementById('ex1-up').addEventListener(
-    'click',
-    ex1ImportantListbox.moveUpItems.bind(ex1ImportantListbox)
+    'click', ex1ImportantListbox.moveUpItems.bind(ex1ImportantListbox)
   );
 
   document.getElementById('ex1-down').addEventListener(
-    'click',
-    ex1ImportantListbox.moveDownItems.bind(ex1ImportantListbox)
+    'click', ex1ImportantListbox.moveDownItems.bind(ex1ImportantListbox)
   );
 
   document.getElementById('ex1-delete').addEventListener('click', function () {
