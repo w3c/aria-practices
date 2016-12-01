@@ -307,7 +307,7 @@
         <h4>WAI-ARIA Roles, States, and Properties</h4>
         <ul>
           <li>Breadcrumb trail is contained within a navigation landmark.</li>
-          <li>The widget should be labelled programmatically via a heading or via either <a href="#aria-label" class="property-reference">aria-label</a> or <a href="#aria-labelledby" class="property-reference">aria-labelledby</a>.
+          <li>The widget should be labelled programmatically via a heading or via either <a href="#aria-label" class="property-reference">aria-label</a> or <a href="#aria-labelledby" class="property-reference">aria-labelledby</a>.</li>
           <li>
             The link to the current page has <a href="#aria-current" class="property-reference">aria-current</a> set to <code>page</code>.
             If the element representing the current page is not a link, aria-current is optional.
@@ -1142,6 +1142,7 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
                     or opens the submenu of that <code>menuitem</code> and places focus on the first item in the submenu.
                   </li>
                 </ol> 
+              </li>
             </ul>
           </li>
           <li><kbd>Home</kbd>: If arrow key wrapping is not supported, moves focus to the first item in the current <code>menu</code> or <code>menubar</code>.</li>
@@ -1239,6 +1240,7 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
         <ul>
           <li><a href="examples/menu-button/menu-button-1.html">Menu button with popup menu for actions</a></li>
           <li><a href="examples/menu-button/menu-button-2.html">Menu button with popup menu for links</a></li>
+        </ul>
       </section>
     </section>
 
@@ -1256,6 +1258,7 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
                                 checked radio button. If none of the radio buttons are checked, they
                                 move focus to the first radio button in the group.</li>
                         </ul>
+                    </li>
                     <li>When focus is on a radio button in a radio group:
                         <ul>
                             <li><kbd>Tab</kbd>: moves focus to the element in the page tab
@@ -1273,6 +1276,7 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
                                 focused button, and check the newly focused button. If focus is on
                                 the first button, focus moves to the last button.</li>
                         </ul>
+                    </li>
                 </ul>
                 <p class="note">
                     The behavior of the <kbd>Tab</kbd> key described above differs slightly from the
@@ -1435,7 +1439,7 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
 
       <p>A spin button provides ways to easily increment and decrement the value. If the range is large, it may support changing the value by both a single step and by multiple steps at once. For instance, in the alarm example, the user may be able to move by 1 minute with the arrow keys and by 10 minutes with PageUp and PageDown.</p>
 
-      <p>A spinbutton usually includes a text field that displays the current value and allows users to directly edit it.</p> </td>
+      <p>A spinbutton usually includes a text field that displays the current value and allows users to directly edit it.</p>
 
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
@@ -1848,6 +1852,7 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
           <li>All selected nodes have <a href="#aria-selected" class="state-reference">aria-selected</a> set to <code>true</code>.</li>
           <li>All nodes that are not selected have <a href="#aria-selected" class="state-reference">aria-selected</a> set to <code>false</code>.</li>
           </ul>
+          </li>
           <li>The element with role <code>tree</code> has either a visible label referenced by <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> or a value specified for <a href="#aria-label" class="property-reference">aria-label</a>.</li>
           <li>If the complete set of available nodes is not present in the DOM due to dynamic loading as the user moves focus in or scrolls the tree, each node has <a href="#aria-level" class="property-reference">aria-level</a>, <a href="#aria-setsize" class="property-reference">aria-setsize</a>, and <a href="#aria-posinset" class="property-reference">aria-posinset</a> specified.</li>
           <li>
@@ -2642,7 +2647,7 @@ A tree that provides navigation to a set of web pages and demonstrates how to ex
           </li>
 
           <li>
-            If the design calls for a specific element to be focused the next time the user moves focus into the composite with <kbd>Tab<kbd> or <kbd>Shift+Tab</kbd>, check if that target element has <code>tabindex="0"</code> when the composite loses focus.
+            If the design calls for a specific element to be focused the next time the user moves focus into the composite with <kbd>Tab</kbd> or <kbd>Shift+Tab</kbd>, check if that target element has <code>tabindex="0"</code> when the composite loses focus.
             If it does not, set <code>tabindex="0"</code> on the target element and set <code>tabindex="-1"</code> on the element that previously had <code>tabindex="0"</code>.
           </li>
         </ul>
