@@ -497,26 +497,28 @@
                  </ul>  
               </td>
             </tr>
-            <tr>
-              <td></td>
-              <td><code>aria-expanded=&quot;false&quot;</code></td>
-              <td><code>li</code></td>
-              <td>
-                <ul>
-                  <li>Indicates the <code>treeitem</code> descendants of the current <code>treeitem</code>s are <strong>not</strong> visible.</li>
-                </ul>  
-              </td>
-            </tr>
-            <tr>
-              <td></td>
-              <td><code>aria-expanded=&quot;true&quot;</code></td>
-              <td><code>li</code></td>
-              <td>
-                <ul>
-                  <li>Indicates the <code>treeitem</code> descendants of the current <code>treeitem</code> widgets are visible.</li>
-                </ul>  
-              </td>
-            </tr>
+          <tr>
+            <td></td>
+            <td><code>aria-expanded=&quot;false&quot;</code></td>
+            <td><code>li</code></td>
+            <td>
+              <ul>
+                <li>Indicates the <code>treeitem</code> descendants of the current <code>treeitem</code>s are <strong>not</strong> visible (e.g. tree sub-leaf is collapsed).</li>
+                <li>The visual state of being collapsed is synchronized with <code>aria-expanded</code> value using CSS attribute selector [<code>aria-expanded=&quot;false&quot;]</code> with the CSS <code>:before</code> psuedo selector and the CSS <code>content</code> property for displaying an image of the collapsed state.</li> 
+              </ul>  
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><code>aria-expanded=&quot;true&quot;</code></td>
+            <td><code>li</code></td>
+            <td>
+              <ul>
+                <li>Indicates the <code>treeitem</code> descendants of the current <code>treeitem</code> widgets are visible e.g. tree sub-leaf is expanded).</li>
+                <li>The visual state of being expanded is synchronized with <code>aria-expanded</code> value using CSS attribute selector [<code>aria-expanded=&quot;true&quot;]</code> with the CSS <code>:before</code> psuedo selector and the CSS <code>content</code> property for displaying an image of the expanded state.</li> 
+              </ul>  
+            </td>
+          </tr>  
             <tr>
               <td></td>
               <td><code>aria-setsize=&quot;<em>number</em>&quot;</code></td>
