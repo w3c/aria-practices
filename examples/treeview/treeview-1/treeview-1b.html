@@ -542,7 +542,8 @@
             <td><code>ul</code></td>
             <td>
               <ul>
-                <li>.</li>
+                <li>The <code>role=&quot;group&quot;</code> attribute identifies the <code>ul</code> element as a container of <code>treeitem</code> widgets for a sub-leaf of a tree.</li>
+                <li>The <code>group</code> role is important for the browser to compute <code>aria-level</code>, <code>aria-setsize</code> and <code>aria-posinset</code>.</li>
               </ul> 
             </td>
           </tr>
@@ -608,7 +609,7 @@
               <ul>
                 <li><code>aria-setsize</code> is used to indicate the number of <code>treeitem</code>s in the current leaf of the tree.</li>
                 <li>This example explicitly sets the <code>aria-setsize</code>, for each <code>treeitem</code>.</li>
-                <li>Explicitly setting code>aria-setsize</code> will override any computed values by the browser.</li>
+                <li>Explicitly setting <code>aria-setsize</code> will override any computed values by the browser.</li>
               </ul>  
             </td>
           </tr>
@@ -620,7 +621,7 @@
               <ul>
                 <li><code>aria-posinset</code> is used to indicate the position of <code>treeitem</code>s in the current leaf of the tree.</li>
                 <li>This example explicitly sets the <code>aria-posinset</code>, for each <code>treeitem</code>.</li>
-                <li>Explicitly setting code>aria-posinset</code> will override any computed values by the browser.</li>
+                <li>Explicitly setting <code>aria-posinset</code> will override any computed values by the browser.</li>
               </ul>  
             </td>
           </tr>
@@ -632,10 +633,8 @@
               <ul>
                 <li><code>aria-level</code> is used to indicate the depth of <code>treeitem</code>s in the tree structure.</li>
                 <li>This example explicitly sets the <code>aria-level</code>, for each <code>treeitem</code>.</li>
-                <li>Explicitly setting code>aria-level</code> will override any computed values by the browser.</li>
+                <li>Explicitly setting <code>aria-level</code> will override any computed values by the browser.</li>
               </ul>  
-            </td>
-          </tr>
             </td>
           </tr>
         </tbody>
