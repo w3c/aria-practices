@@ -117,7 +117,13 @@
       </section>
 
   <section aria-labelledby="mb_label">
-  <h2 id="id_mbf">Menubar Widget Features</h2>
+  <h2 id="id_mbf">Menubar Widget Implementation Information</h2>
+
+    <h3>Implementation Notes</h3>
+    <ul>
+      <li>If a <code>menu</code> contains <em>more than</em> one group of <code>menuitemradio</code> widgets, each group needs to have a <code>group</code> container element.</li>    
+    </ul>
+
     <h3 id="kbd1_label">Keyboard Support</h3>
       <table aria-labelledby="kbd1_label mb_label">
         <thead>
@@ -466,18 +472,31 @@
                 <td><code>li</code></td>
                 <td>
                   <ul>
-                    <li><code>menuitemcheckbox</code> is a menuitem with a checkable state whose possible values are true, false, or mixed.</li>
-                    <li>Authors must ensure that menu item checkboxes are owned by an element with role <code>menu</code> or <code>menubar</code> in order to identify that they are related widgets. In this example, <code>menuitemcheckbox</code> is owned by role <code>menu</code>.</li>
+                    <li>The <code>role=&quot;menuitemcheckbox&quot;</code> identifies the <code>li</code> element as a ARIA menuitemcheckbox widget.</li>
+                    <li>The <code>aria-checked</code> attribute is used to indicate if the menuitem checkbox is checked or not.</li>
+                    <li>The accessible name comes from the child text content of the <code>li</code> element.</li>
                   </ul>  
                 </td>
             </tr>
             <tr>
                 <td></td>
-                <td><code>aria-checked=&quot;true&quot; (or &quot;false&quot;)</code></td>
+                <td><code>aria-checked=&quot;true&quot;</code></td>
                 <td><code>li</code></td>
                 <td>
                   <ul>
-                    <li>Indicates popup menu item is checked (or unchecked.)</li>
+                    <li>Indicates if a <code>menuitemcheckbox</code> or <code>menuitemradio</code> is checked.</li>
+                    <li>The visual state of the selection is synchronized with the <code>aria-checked</code> value using CSS attribute selectors (e.g. [aria-checked=&quot;true&quot;]) and the CSS psuedo selector <code>:before</code> and <code>content</code> property.</li>
+                  </ul>  
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><code>aria-checked=&quot;false&quot;</code></td>
+                <td><code>li</code></td>
+                <td>
+                  <ul>
+                    <li>Indicates if a <code>menuitemcheckbox</code> or <code>menuitemradio</code> is not checked.</li>
+                    <li>The visual state of the selection is synchronized with the <code>aria-checked</code> value using CSS attribute selectors (e.g. [aria-checked=&quot;false&quot;]) and the CSS psuedo selector <code>:before</code> and <code>content</code> property.</li>
                   </ul>  
                 </td>
             </tr>
@@ -488,6 +507,7 @@
                 <td>
                   <ul>
                     <li>The <code>role=&quot;group&quot;</code> identifies the <code>ul</code> element as a container for set of <code>menuitemradio</code> widgets.</li>
+                    <li>The <code>group</code> role is important to allow the browser to compute the values of <code>aria-setsize</code> and <code>aria-posinset</code>.</li>
                     <li>No <code>tabindex</code> value is needed since the <code>ul[role="group"]</code> does not receive keyboard focus.</li>
                     <li>Accessible name is not required for <code>ul[role="group"]</code>.</li>
                   </ul>  
@@ -500,34 +520,12 @@
                 <td>
                   <ul>
                     <li>The <code>role=&quot;group&quot;</code> identifies the <code>li</code> element as a <code>menuitemradio</code> widgets.</li>
-                    <li>Only one <code>menuitemradio</code> item in the same group can be checked at a time.</li>
+                    <li>Only one <code>menuitemradio</code> item in the same radio button group can be checked at a time.</li>
                     <li>In this example the group is defined by either the <code>ul[role=&quot;menu&quot;]</code> or <code>[role=&quot;group&quot;]</code>.</li>
-                    <li>If a <code>menu</code> or <code>menubar</code> contains more than one group of <code>menuitemradio</code> elements, or if the menu contains one group and other, unrelated menu items, authors should nest each set of related <code>menuitemradio</code> elements in an element using the <code>group</code> role, and authors should delimit the group from other menu items with an element using the <code>separator</code> role.(Note: Style/Color menu bar menu item has two <code>group</code> roles of text color and text decoration with <code>separator</code> role in the example.)</li>
+                    <li>The accessible name comes from the child text content of the <code>li</code> element.</li>
                   </ul>  
                 </td>
             </tr>
-            <tr>
-                <td></td>
-                <td><code>aria-label=&quot;<em>string</em>&quot;</code></td>
-                <td><code>ul</code></td>
-                <td>
-                  <ul>
-                    <li>Defines an acessible name for <code>menuitemradio</code> group.</li>
-                    <li>Used to help people understand the name of <code>menuitemradio</code> group which distinguish from other menuitemradio group.</li>
-                  </ul>  
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><code>aria-checked=&quot;true&quot; (or &quot;false&quot;)</code></td>
-                <td><code>li</code></td>
-                <td>
-                  <ul>
-                    <li>Indicates popup menu item is checked (or unchecked.)</li>
-                  </ul>  
-                </td>
-            </tr>
-
         </tbody>
       </table>        
   </section>
