@@ -131,7 +131,7 @@
             <td>Space or Enter Key</td>
             <td>
               <ul>
-                <li>Open or close popup menu.</li>  
+                <li>Opens or closes popup menu.</li>  
                 <li>Focus stays on menubar menu item.</li>  
               </ul>  
             </td>
@@ -158,7 +158,7 @@
             <td>Down Arrow Key</td>
             <td>
               <ul>
-                <li>Open popup menu.</li>
+                <li>Opens popup menu.</li>
                 <li>Moves focus to first popup menu item.</li>
               </ul>  
             </td>
@@ -167,7 +167,7 @@
             <td>Up Arrow Key</td>
             <td>
               <ul>
-                <li>Open popup menu.</li>
+                <li>Opens popup menu.</li>
                 <li>Moves focus to last popup menu item.</li>
               </ul>  
             </td>
@@ -487,7 +487,22 @@
                 <td><code>ul</code></td>
                 <td>
                   <ul>
-                    <li>Used for grouping of <code>menuitemradio</code> popup menu items.</li>
+                    <li>The <code>role=&quot;group&quot;</code> identifies the <code>ul</code> element as a container for set of <code>menuitemradio</code> widgets.</li>
+                    <li>No <code>tabindex</code> value is needed since the <code>ul[role="group"]</code> does not receive keyboard focus.</li>
+                    <li>Accessible name is not required for <code>ul[role="group"]</code>.</li>
+                  </ul>  
+                </td>
+            </tr>
+            <tr>
+                <td><code>menuitemradio</code></td>
+                <td></td>
+                <td><code>li</code></td>
+                <td>
+                  <ul>
+                    <li>The <code>role=&quot;group&quot;</code> identifies the <code>li</code> element as a <code>menuitemradio</code> widgets.</li>
+                    <li>Only one <code>menuitemradio</code> item in the same group can be checked at a time.</li>
+                    <li>In this example the group is defined by either the <code>ul[role=&quot;menu&quot;]</code> or <code>[role=&quot;group&quot;]</code>.</li>
+                    <li>If a <code>menu</code> or <code>menubar</code> contains more than one group of <code>menuitemradio</code> elements, or if the menu contains one group and other, unrelated menu items, authors should nest each set of related <code>menuitemradio</code> elements in an element using the <code>group</code> role, and authors should delimit the group from other menu items with an element using the <code>separator</code> role.(Note: Style/Color menu bar menu item has two <code>group</code> roles of text color and text decoration with <code>separator</code> role in the example.)</li>
                   </ul>  
                 </td>
             </tr>
@@ -499,18 +514,6 @@
                   <ul>
                     <li>Defines an acessible name for <code>menuitemradio</code> group.</li>
                     <li>Used to help people understand the name of <code>menuitemradio</code> group which distinguish from other menuitemradio group.</li>
-                  </ul>  
-                </td>
-            </tr>
-            <tr>
-                <td><code>menuitemradio</code></td>
-                <td></td>
-                <td><code>li</code></td>
-                <td>
-                  <ul>
-                    <li><code>menuitemradio</code> is a checkable menuitem in a set of elements with the same role, only one of which can be checked at a time.</li>
-                    <li>Authors must ensure that multiple <code>menuitemradio</code>s are owned by an element with role <code>group</code>, <code>menu</code>, or <code>menubar</code> in order to identify that they are related widgets.(Note: <code>menuitemradio</code> in Font-family is owned by <code>menu</code> role in the example.)</li>
-                    <li>If a <code>menu</code> or <code>menubar</code> contains more than one group of <code>menuitemradio</code> elements, or if the menu contains one group and other, unrelated menu items, authors should nest each set of related <code>menuitemradio</code> elements in an element using the <code>group</code> role, and authors should delimit the group from other menu items with an element using the <code>separator</code> role.(Note: Style/Color menu bar menu item has two <code>group</code> roles of text color and text decoration with <code>separator</code> role in the example.)</li>
                   </ul>  
                 </td>
             </tr>
