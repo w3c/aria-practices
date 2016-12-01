@@ -1717,7 +1717,7 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
       </dl>
       <p>
         When using a keyboard to navigate a tree, a visual keyboard indicator informs the user which node is focused.
-        If the tree allows the user to choose just one item for the object of an action, then it is known as a single-select tree, and the item with focus also has a selected state.
+        If the tree allows the user to choose just one item for an action, then it is known as a single-select tree, and the item with focus also has a selected state.
         However, in multi-select trees, which enable the user to select more than one item for an action, the selected state is independent of the focus. 
         For example, in a typical file system navigator, the user can move focus to select any number of files for an action, such as copy or move.
         It is important that the visual design distinguish between items that are selected and the item that has focus.
@@ -1730,14 +1730,14 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
         <ul>
           <li> When a single-select tree receives focus:
             <ul>
-              <li>If none of the nodes are selected before the tree receives focus, the first node receives focus.</li>
+              <li>If none of the nodes are selected before the tree receives focus, focus is set on the first node.</li>
               <li>If a node is selected before the tree receives focus, focus is set on the selected node. </li>
             </ul>
           </li>
           <li>When a multi-select tree receives focus:
             <ul>
               <li>If none of the nodes are selected before the tree receives focus, focus is set on the first node.</li>
-              <li>If one or more nodes are selected before the tree receives focus, focus is set on the first node in the tree that is selected.</li>
+              <li>If one or more nodes are selected before the tree receives focus, focus is set on the first selected node.</li>
             </ul>
           </li>
           <li><kbd>Right arrow</kbd>:
@@ -1773,12 +1773,12 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
               <li>Recommended selection model -- holding a modifier key while moving focus is not necessary:
                 <ul>
                   <li><kbd>Space</kbd>: Toggles the selection state of the focused node.</li>
-                  <li><kbd>Shift + Down Arrow</kbd> (Optional): Move focus to and toggle the selection state of the next node.</li>
-                  <li><kbd>Shift + Up Arrow</kbd> (Optional): Move focus to and toggle the selection state of the previous node.</li>
+                  <li><kbd>Shift + Down Arrow</kbd> (Optional): Moves focus to and toggles the selection state of the next node.</li>
+                  <li><kbd>Shift + Up Arrow</kbd> (Optional): Moves focus to and toggles the selection state of the previous node.</li>
                   <li><kbd>Shift + Space</kbd> (Optional): Selects contiguous nodes from the last   selected node to the current node.</li>
                   <li><kbd>Control + Shift + Home</kbd> (Optional): Selects the node with focus and all nodes up to the first node.</li>
                   <li><kbd>Control + Shift + End</kbd> (Optional): Selects the node with focus and all nodes down to the last node.</li>
-                  <li><kbd>Control + A</kbd> (Optional): Selects all nodes in the tree. Optionally, if all nodes are select, it can also unselect all nodes.</li>
+                  <li><kbd>Control + A</kbd> (Optional): Selects all nodes in the tree. Optionally, if all nodes are selected, it can also unselect all nodes.</li>
                 </ul>
               </li>
               <li>Alternative selection model -- Moving focus without holding the <kbd>Shift</kbd> or <kbd>Control</kbd> modifier unselects all selected nodes except for the focused node:
