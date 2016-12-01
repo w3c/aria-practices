@@ -208,6 +208,7 @@ TreeitemLink.prototype.handleClick = function (event) {
     else {
       this.tree.expandTreeitem(this);
     }
+    event.stopPropagation();
   }
   else {
     this.tree.setFocusToItem(this);

@@ -42,7 +42,7 @@ ul[role="tree"] {
 }
 
 [role="treeitem"].hover,
-[role="treeitem"] span.hover {
+[role="treeitem"] span:hover {
   background-color: #DDDDDD;
   width: 9em;  
 }

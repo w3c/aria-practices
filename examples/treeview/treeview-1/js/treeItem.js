@@ -86,11 +86,7 @@ Treeitem.prototype.init = function () {
   this.domNode.addEventListener('focus', this.handleFocus.bind(this));
   this.domNode.addEventListener('blur', this.handleBlur.bind(this));
 
-  if (this.isExpandable) {
-    this.domNode.firstElementChild.addEventListener('mouseover', this.handleMouseOver.bind(this));
-    this.domNode.firstElementChild.addEventListener('mouseout', this.handleMouseOut.bind(this));
-  }
-  else {
+  if (!this.isExpandable) {
     this.domNode.addEventListener('mouseover', this.handleMouseOver.bind(this));
     this.domNode.addEventListener('mouseout', this.handleMouseOut.bind(this));
   }
@@ -208,6 +204,7 @@ Treeitem.prototype.handleClick = function (event) {
     else {
       this.tree.expandTreeitem(this);
     }
+    event.stopPropagation();
   }
   else {
     this.tree.setFocusToItem(this);
