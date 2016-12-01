@@ -5,7 +5,7 @@
 
     <meta charset="utf-8">
 
-    <title>Menubar Example: Menuitemradio and Menuitemcheckbox</title>
+    <title>Editor Menubar Example: Menuitemradio and Menuitemcheckbox</title>
 
     <link href="../../css/core.css" rel="stylesheet">
     <link href="../../css/table.css" rel="stylesheet">
@@ -21,96 +21,100 @@
   <body>
    <main>
 
-    <h1>Navigation Menubar Example: Actions</h1> 
-        <p><strong>NOTE:</strong> Please provide feedback on this example in <a href="https://github.com/w3c/aria-practices/issues/144">issue 144</a>. </p>
-        <p>Following is the implementations of the <a href="../../#menu">design pattern for menubar</a> that demonstrate how a menubar can be used for actions. Each item in the menubars represents a CSS styling and opens pull down menu items that change the styling of the text. This example also demonstrates the usage of <code>menuitemradio</code> and <code>menuitemcheckbox</code>.</p>
-  <section id="code-ex-1">
-  <h2>Examples</h2>
-    <h3 id="ex1_label">Menubar With ARIA Markup with <code>menuitemradio</code> and <code>menuitemcheckbox</code></h3>
-      
-      <div role="separator" id="ex1_start_sep" aria-labelledby="ex1_start_sep ex1_label" aria-label="Start of"></div>
-      
-    <div id="ex1">
-      <ul id="menubar1" role="menubar" aria-label="Text Formatting">
-        <li>
-          <span role="menuitem" aria-haspopup="true" aria-expanded="false">Font</span>
-          <ul role="menu" class="font-family"  onclick="setFontFamily(event, 'textarea1')">
-            <li role="menuitemradio" aria-checked="true">Sans-serif</li>
-            <li role="menuitemradio" aria-checked="false">Serif</li>
-            <li role="menuitemradio" aria-checked="false">Monospace</li>
-            <li role="menuitemradio" aria-checked="false">Fantasy</li>
+    <h1>Editor Menubar Example: Menuitemradio and Menuitemcheckbox</h1> 
+      <p><strong>NOTE:</strong> Please provide feedback on this example in <a href="https://github.com/w3c/aria-practices/issues/144">issue 144</a>. </p>
+
+      <p>Following is the implementations of the <a href="../../#menu">design pattern for menubar</a> that demonstrate how a menubar can be used for actions. Each item in the menubars represents a CSS styling and opens pull down menu items that change the styling of the text. This example also demonstrates the usage of <code>menuitemradio</code> and <code>menuitemcheckbox</code>.</p>
+
+      <section id="code-ex-1">
+      <h2>Examples</h2>
+        <h3 id="ex1_label">Menubar With ARIA Markup with <code>menuitemradio</code> and <code>menuitemcheckbox</code></h3>
+          
+        <div role="separator" id="ex1_start_sep" aria-labelledby="ex1_start_sep ex1_label" aria-label="Start of"></div>
+          
+        <div id="ex1">
+          <ul id="menubar1" role="menubar" aria-label="Text Formatting">
+            <li role="menuitem" aria-haspopup="true" aria-expanded="false" aria-label="Font">
+              <span>Font</span>
+              <ul role="menu" aria-label="Font" class="font-family"  onclick="setFontFamily(event, 'textarea1')">
+                <li role="menuitemradio" aria-checked="true">Sans-serif</li>
+                <li role="menuitemradio" aria-checked="false">Serif</li>
+                <li role="menuitemradio" aria-checked="false">Monospace</li>
+                <li role="menuitemradio" aria-checked="false">Fantasy</li>
+              </ul>
+            </li>
+            <li role="menuitem" aria-haspopup="true" aria-expanded="false" aria-label="Style/Color">
+              <span>Style/Color</span>
+              <ul role="menu" aria-label="Style/Color">
+                <li role="menuitemcheckbox" aria-checked="false" onclick="toggleBold(event, 'textarea1')">Bold</li>
+                <li role="menuitemcheckbox" aria-checked="false" onclick="toggleItalic(event,  'textarea1')">Italic</li>
+                <li role="separator"></li>
+                <li>
+                    <ul role="group" class="color" aria-label="Text Color" onclick="setColor(event, 'textarea1', 'black')">
+                      <li role="menuitemradio" aria-checked="true">Black</li>
+                      <li role="menuitemradio" aria-checked="false">Blue</li>
+                      <li role="menuitemradio" aria-checked="false">Red</li>
+                      <li role="menuitemradio" aria-checked="false">Green</li>
+                    </ul>
+                <li role="separator"></li>
+                <li>
+                    <ul role="group" class="text-decoration" aria-label="Text Decoration" onclick="setTextDecoration(event, 'textarea1')">
+                      <li role="menuitemradio" aria-checked="true">None</li>
+                      <li role="menuitemradio" aria-checked="false">Overline</li>
+                      <li role="menuitemradio" aria-checked="false">Line-through</li>
+                      <li role="menuitemradio" aria-checked="false">Underline</li>
+                    </ul>
+              </ul>
+            </li>
+
+            <li role="menuitem" aria-haspopup="true" aria-expanded="false" aria-label="Text Align">
+              <span>Text Align</span>
+              <ul role="menu" aria-label="Text Align" class="font-family" onclick="setTextAlign(event, 'textarea1')">
+                <li role="menuitemradio" aria-checked="true">Left</li>
+                <li role="menuitemradio" aria-checked="false">Center</li>
+                <li role="menuitemradio" aria-checked="false">Right</li>
+                <li role="menuitemradio" aria-checked="false">Justify</li>
+              </ul>
+            </li>
+
+            <li role="menuitem" aria-haspopup="true" aria-expanded="false" aria-label="Size">
+              <span>Size</span>
+              <ul role="menu" aria-label="Size" class="font-size" onclick="setFontSize(event, 'textarea1')">
+                <li role="menuitem">Smaller</li>
+                <li role="menuitem">Larger</li>
+                <li role="separator"></li>
+                <li>
+                  <ul role="group" aria-label="Font Sizes">
+                    <li role="menuitemradio" aria-checked="false">X-Small</li>
+                    <li role="menuitemradio" aria-checked="false">Small</li>
+                    <li role="menuitemradio" aria-checked="true" >Medium</li>
+                    <li role="menuitemradio" aria-checked="false">Large</li>
+                    <li role="menuitemradio" aria-checked="false">X-Large</li>
+                  </ul>  
+              </ul>
+            </li>
           </ul>
-        </li>
-        <li>
-          <span role="menuitem" aria-haspopup="true" aria-expanded="false">Style/Color</span>
-          <ul role="menu">
-            <li role="menuitemcheckbox" aria-checked="false" onclick="toggleBold(event, 'textarea1')">Bold</li>
-            <li role="menuitemcheckbox" aria-checked="false" onclick="toggleItalic(event,  'textarea1')">Italic</li>
-            <li role="separator"></li>
-            <li>
-                <ul role="group" class="color" aria-label="Text Color" onclick="setColor(event, 'textarea1', 'black')">
-                  <li role="menuitemradio" aria-checked="true">Black</li>
-                  <li role="menuitemradio" aria-checked="false">Blue</li>
-                  <li role="menuitemradio" aria-checked="false">Red</li>
-                  <li role="menuitemradio" aria-checked="false">Green</li>
-                </ul>
-            <li role="separator"></li>
-            <li>
-                <ul role="group" class="text-decoration" aria-label="Text Decoration" onclick="setTextDecoration(event, 'textarea1')"">
-                  <li role="menuitemradio" aria-checked="true">None</li>
-                  <li role="menuitemradio" aria-checked="false">Overline</li>
-                  <li role="menuitemradio" aria-checked="false">Line-through</li>
-                  <li role="menuitemradio" aria-checked="false">Underline</li>
-                </ul>
-          </ul>
-        </li>
 
-        <li>
-          <span role="menuitem" aria-haspopup="true" aria-expanded="false">Text Align</span>
-          <ul role="menu" class="font-family" onclick="setTextAlign(event, 'textarea1')">
-            <li role="menuitemradio" aria-checked="true">Left</li>
-            <li role="menuitemradio" aria-checked="false">Center</li>
-            <li role="menuitemradio" aria-checked="false">Right</li>
-            <li role="menuitemradio" aria-checked="false">Justify</li>
-          </ul>
-        </li>
+         <label for="st1" class="hidden">Text Sample 1</label><br>
+          <textarea id="textarea1" rows="20" cols="80" style="font-size: medium; font-family: sans-serif">
+          Four score and seven years ago our fathers brought forth on this continent a new nation, conceived in Liberty, and dedicated to the proposition that all men are created equal.
 
-        <li>
-          <span role="menuitem" aria-haspopup="true" aria-expanded="false">Size</span>
-          <ul role="menu" class="font-size" onclick="setFontSize(event, 'textarea1')">
-            <li role="menuitem">Smaller</li>
-            <li role="menuitem">Larger</li>
-            <li role="separator"></li>
-            <li>
-              <ul role="group" aria-label="Font Sizes">
-                <li role="menuitemradio" aria-checked="false">X-Small</li>
-                <li role="menuitemradio" aria-checked="false">Small</li>
-                <li role="menuitemradio" aria-checked="true" >Medium</li>
-                <li role="menuitemradio" aria-checked="false">Large</li>
-                <li role="menuitemradio" aria-checked="false">X-Large</li>
-              </ul>  
-          </ul>
-        </li>
-      </ul>
+          Now we are engaged in a great civil war, testing whether that nation, or any nation, so conceived and so dedicated, can long endure. We are met on a great battle-field of that war. We have come to dedicate a portion of that field, as a final resting place for those who here gave their lives that that nation might live. It is altogether fitting and proper that we should do this.
 
-     <label for="st1" class="hidden">Text Sample 1</label><br>
-      <textarea id="textarea1" rows="20" cols="80" style="font-size: medium; font-family: sans-serif">
-      Four score and seven years ago our fathers brought forth on this continent a new nation, conceived in Liberty, and dedicated to the proposition that all men are created equal.
+          But, in a larger sense, we can not dedicate, we can not consecrate, we can not hallow, this ground. The brave men, living and dead, who struggled here, have consecrated it, far above our poor power to add or detract. The world will little note, nor long remember what we say here, but it can never forget what they did here. It is for us the living, rather, to be dedicated here to the unfinished work which they who fought here have thus far so nobly advanced. It is rather for us to be here dedicated to the great task remaining before us, that from these honored dead we take increased devotion to that cause for which they gave the last full measure of devotion, that we here highly resolve that these dead shall not have died in vain, that this nation, under God, shall have a new birth of freedom, and that government of the people, by the people, for the people, shall not perish from the earth.
+          </textarea>
+          
+          <p><a href="http://en.wikipedia.org/wiki/Gettysburg,_Pennsylvania">More information on Gettysburg Address</a></p>
 
-      Now we are engaged in a great civil war, testing whether that nation, or any nation, so conceived and so dedicated, can long endure. We are met on a great battle-field of that war. We have come to dedicate a portion of that field, as a final resting place for those who here gave their lives that that nation might live. It is altogether fitting and proper that we should do this.
+          <h4>Notes</h4>
 
-      But, in a larger sense, we can not dedicate, we can not consecrate, we can not hallow, this ground. The brave men, living and dead, who struggled here, have consecrated it, far above our poor power to add or detract. The world will little note, nor long remember what we say here, but it can never forget what they did here. It is for us the living, rather, to be dedicated here to the unfinished work which they who fought here have thus far so nobly advanced. It is rather for us to be here dedicated to the great task remaining before us, that from these honored dead we take increased devotion to that cause for which they gave the last full measure of devotion, that we here highly resolve that these dead shall not have died in vain, that this nation, under God, shall have a new birth of freedom, and that government of the people, by the people, for the people, shall not perish from the earth.
-      </textarea>
-</div>
-        <p><a href="http://en.wikipedia.org/wiki/Gettysburg,_Pennsylvania">More information on Gettysburg Address</a></p>
+          <ol>
+            <li>List of pull down menu items that change the styling of the text.</li> 
+            <li>Menuitems include radio buttons and checkboxes to indicate the state of the styling of the text.</li> 
+            <li>Font "Size" menu included two menuitems that are disabled base on the current size of the text.</li>
+          </ol>
      
-    <h4>Notes</h4>
-      <ol>
-        <li>List of pull down menu items that change the styling of the text.</li> 
-        <li>Menuitems include radio buttons and checkboxes to indicate the state of the styling of the text.</li> 
-        <li>Font "Size" menu included two menuitems that are disabled base on the current size of the text.</li>
-      </ol>
-  </section>
+      </section>
 
   <section aria-labelledby="mb_label">
   <h2 id="id_mbf">Menubar Widget Features</h2>
@@ -128,7 +132,7 @@
             <td>
               <ul>
                 <li>Open or close popup menu.</li>  
-                <li>Focuse stays on menubar menu item.</li>  
+                <li>Focus stays on menubar menu item.</li>  
               </ul>  
             </td>
           </tr>
@@ -211,8 +215,8 @@
                 <td><code>ul</code></td>
                 <td>
                   <ul>
-                    <li>Identifies a ARIA menubar widget.</li>
-                    <li>No <code>tabindex</code> value is needed since the <code>role="menubar"</code> does not receive focus.</li>
+                    <li>The <code>role=&quot;menubar&quot;</code> identifies the <code>ul</code> element as a container for set of <code>menuitem</code> widgets associated with the menubar.</li>
+                    <li>No <code>tabindex</code> value is needed since the <code>ul[role="menubar"]</code> does not receive keyboard focus.</li>
                     <li>Accessible name for the menu is defined by the <code>aria-label</code> attribute.</li>
                   </ul>  
                 </td>
@@ -223,7 +227,7 @@
                 <td><code>ul</code></td>
                 <td>
                   <ul>
-                    <li>Defines an acessible name for the menu bar.</li>
+                    <li>Defines an acessible name for the <code>menubar</code>.</li>
                     <li>Used to help people understand the purpose of the menubar and uniquely identify the menubar from other menubars on the page.</li>
                   </ul>  
                 </td>
@@ -231,33 +235,44 @@
             <tr>
                 <td><code>menuitem</code></td>
                 <td></td>
-                <td><code>span</code></td>
+                <td><code>li</code></td>
                 <td>
                   <ul>
-                    <li>Identifies a ARIA menuitem in the menubar widget.</li>
-                    <li>Accessible name for the menuitem is defined by the text content of the <code>span</code> element.</li>
+                    <li>The <code>role=&quot;menuitem&quot;</code> identifies the <code>li</code> element a ARIA menuitem in the menubar widget.</li>
+                    <li>Accessible name for the menuitem is defined by the <code>aria-label</code> attribute.</li>
+                  </ul>  
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><code>aria-label=&quot;<em>string</em>&quot;</code></td>
+                <td><code>li</code></td>
+                <td>
+                  <ul>
+                    <li>Defines an acessible name for the <code>menuitem</code>.</li>
+                    <li>Used to help people understand the purpose of the menuitem and uniquely identify the menuitem from other menuitems in the menubar.</li>
                   </ul>  
                 </td>
             </tr>
             <tr>
                 <td></td>
                 <td><code>tabindex=&quot;-1&quot;</code></td>
-                <td><code>span</code></td>
+                <td><code>li</code></td>
                 <td>
                   <ul>
-                    <li>Makes the <code>span</code> element keyboard focusable, but <strong>not</strong> part of tab order of the page.</li>
+                    <li>Makes the <code>li[role=&quot;menuitem&quot;]</code> element keyboard focusable, but <strong>not</strong> part of tab order of the page.</li>
                   </ul>  
                 </td>
             </tr>
             <tr>
                 <td></td>
                 <td><code>tabindex=&quot;0&quot;</code></td>
-                <td><code>span</code></td>
+                <td><code>li</code></td>
                 <td>
                   <ul>
-                    <li>Makes the <code>span</code> element keyboard focusable and part of tab order of the page.</li>
-                    <li>Only one menubar item should have <code>tabindex=&quot;0&quot;</code>.</li>
-                    <li>The default menubar item with  <code>tabindex=&quot;0&quot;</code> is the first menubar item (e.g page is loaded).</li>
+                    <li>Makes the <code>li[role=&quot;menuitem&quot;]</code> element keyboard focusable and part of tab order of the page.</li>
+                    <li>Only one <code>menuitem</code> in the <code>menubar</code> has <code>tabindex=&quot;0&quot;</code>.</li>
+                    <li>The default <code>menuitem</code> in the <code>menubar</code> with <code>tabindex=&quot;0&quot;</code> is the first menubar item (e.g when page is loaded).</li>
                     <li>The last menubar item to have focus is given the <code>tabindex=&quot;0&quot;</code> so that when user tabs through the page focus will be given to the last menubar item that the user used.</li>
                   </ul>  
                 </td>
@@ -265,18 +280,18 @@
             <tr>
                 <td></td>
                 <td><code>aria-haspopup=&quot;true&quot;</code></td>
-                <td><code>span</code></td>
+                <td><code>li</code></td>
                 <td>
                   <ul>
-                    <li>Identifies the menuitem as a controller for a popup menu.</li>
-                    <li>The menuitem is only to open and close the popup menu it cannot be a link.</li>
+                    <li>Identifies the <code>menuitem</code> as having a popup menu.</li>
+                    <li>The only function of a <code>menuitem</code> in a <code>menubar</code> is to open and close the popup menu, it cannot be a link or have other actions.</li>
                   </ul>  
                 </td>
             </tr>
             <tr>
                 <td></td>
                 <td><code>aria-expanded=&quot;true&quot;</code></td>
-                <td><code>span</code></td>
+                <td><code>li</code></td>
                 <td>
                   <ul>
                     <li>Indicates popup menu is open.</li>
@@ -286,7 +301,7 @@
             <tr>
                 <td></td>
                 <td><code>aria-expanded=&quot;false&quot;</code></td>
-                <td><code>span</code></td>
+                <td><code>li</code></td>
                 <td>
                   <ul>
                     <li>Indicates popup menu is closed.</li>
@@ -365,7 +380,7 @@
             <td>Home</td>
             <td>
               <ul>
-                <li>Moves focuse to first popup menu item.</li>
+                <li>Moves focus to first popup menu item.</li>
               </ul>  
             </td>
           </tr>
@@ -399,80 +414,60 @@
             </tr>
         </thead>
         <tbody>
-           
-            <tr>
-                <td><code>menuitem</code></td>
-                <td></td>
-                <td><code>span</code></td>
-                <td>
-                  <ul>
-                    <li>Identifies a ARIA menuitem in the menu widget.</li>
-                    <li>Accessible name for the menuitem is defined by the text content of the <code>span</code> element.</li>
-                  </ul>  
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><code>tabindex=&quot;-1&quot;</code></td>
-                <td><code>span</code></td>
-                <td>
-                  <ul>
-                    <li>Makes the <code>span</code> element keyboard focusable, but <strong>not</strong> part of tab order of the page.</li>
-                  </ul>  
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><code>aria-haspopup=&quot;true&quot;</code></td>
-                <td><code>span</code></td>
-                <td>
-                  <ul>
-                    <li>Identifies the menuitem as a controller for a popup menu.</li>
-                    <li>The menuitem is only to open and close the popup menu it cannot be a link.</li>
-                  </ul>  
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><code>aria-expanded=&quot;true&quot;</code></td>
-                <td><code>span</code></td>
-                <td>
-                  <ul>
-                    <li>Indicates popup menu is open.</li>
-                  </ul>  
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><code>aria-expanded=&quot;false&quot;</code></td>
-                <td><code>span</code></td>
-                <td>
-                  <ul>
-                    <li>Indicates popup menu is closed.</li>
-                  </ul>  
-                </td>
-            </tr>
              <tr>
                 <td><code>menu</code></td>
                 <td></td>
                 <td><code>ul</code></td>
                 <td>
                   <ul>
-                    <li>Identifies a ARIA menu widget.</li>
-                    <li>No <code>tabindex</code> value is needed since the <code>role="menu"</code> does not receive keyboard focus.</li>
-                    <li>Accessible name for the menu is defined by the <code>aria-label</code> attribute.</li>
+                    <li>The <code>role=&quot;menu&quot;</code> identifies the <code>ul</code> element as a container for set of <code>menuitem</code> widgets associated with the menu.</li>
+                    <li>No <code>tabindex</code> value is needed since the <code>ul[role="menu"]</code> does not receive keyboard focus.</li>
+                    <li>Accessible name for the menu is defined by the <code>aria-label</code> attribute and in the case of a popup menu in a menubar the acessible name is same as the associated menubar item.</li>
                   </ul>  
                 </td>
             </tr>
             <tr>
-                <td><code>menuitemradio</code></td>
+                <td></td>
+                <td><code>aria-label=&quot;<em>string</em>&quot;</code></td>
+                <td><code>ul</code></td>
+                <td>
+                  <ul>
+                    <li>Defines an acessible name for the <code>menu</code>.</li>
+                    <li>Used to help people understand the purpose of the menu and uniquely identify the menu from other menus in the menubar.</li>
+                  </ul>  
+                </td>
+            </tr>
+            <tr>
+                <td><code>menuitem</code></td>
+                <td></td>
+                <td><code>span</code></td>
+                <td>
+                  <ul>
+                    <li>The <code>role=&quot;menuitem&quot;</code> identifies the <code>li</code> element as a ARIA menuitem widget.</li>
+                    <li>A <code>tabindex=-1</code> value is needed to make the <code>li[role=&quot;menuitem&quot;]</code> keyboard focusable.</li>
+                    <li>Accessible name for the menu is defined by the <code>aria-label</code> attribute and in the case of a popup menu in a menubar the acessible name is same as the associated menubar item.</li>
+                  </ul>  
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><code>tabindex=&quot;-1&quot;</code></td>
+                <td><code>li</code></td>
+                <td>
+                  <ul>
+                    <li>Makes <code>li[role=&quot;menuitem&quot;]</code>,  <code>li[role=&quot;menuitemcheckbox&quot;]</code> and  <code>li[role=&quot;menuitemradio&quot;]</code> elements keyboard focusable, but <strong>not</strong> part of tab order of the page.</li>
+                    <li>The <code>li[role=&quot;menuitem&quot;]</code>,  <code>li[role=&quot;menuitemcheckbox&quot;]</code> and  <code>li[role=&quot;menuitemradio&quot;]</code> elements in a popup menu do not ever get any other value for <code>tabindex</code>.</li>
+                  </ul>  
+                </td>
+            </tr>
+            <tr>
+                <td><code>menuitemcheckbox</code></td>
                 <td></td>
                 <td><code>li</code></td>
                 <td>
                   <ul>
-                    <li><code>menuitemradio</code> is a checkable menuitem in a set of elements with the same role, only one of which can be checked at a time.</li>
-                    <li>Authors must ensure that multiple <code>menuitemradio</code>s are owned by an element with role <code>group</code>, <code>menu</code>, or <code>menubar</code> in order to identify that they are related widgets.(Note: <code>menuitemradio</code> in Font-family is owned by <code>menu</code> role in the example.)</li>
-                    <li>If a <code>menu</code> or <code>menubar</code> contains more than one group of <code>menuitemradio</code> elements, or if the menu contains one group and other, unrelated menu items, authors should nest each set of related <code>menuitemradio</code> elements in an element using the <code>group</code> role, and authors should delimit the group from other menu items with an element using the <code>separator</code> role.(Note: Style/Color menu bar menu item has two <code>group</code> roles of text color and text decoration with <code>separator</code> role in the example.)</li>
+                    <li><code>menuitemcheckbox</code> is a menuitem with a checkable state whose possible values are true, false, or mixed.</li>
+                    <li>Authors must ensure that menu item checkboxes are owned by an element with role <code>menu</code> or <code>menubar</code> in order to identify that they are related widgets. In this example, <code>menuitemcheckbox</code> is owned by role <code>menu</code>.</li>
                   </ul>  
                 </td>
             </tr>
@@ -508,13 +503,14 @@
                 </td>
             </tr>
             <tr>
-                <td><code>menuitemcheckbox</code></td>
+                <td><code>menuitemradio</code></td>
                 <td></td>
                 <td><code>li</code></td>
                 <td>
                   <ul>
-                    <li><code>menuitemcheckbox</code> is a menuitem with a checkable state whose possible values are true, false, or mixed.</li>
-                    <li>Authors must ensure that menu item checkboxes are owned by an element with role <code>menu</code> or <code>menubar</code> in order to identify that they are related widgets. In this example, <code>menuitemcheckbox</code> is owned by role <code>menu</code>.</li>
+                    <li><code>menuitemradio</code> is a checkable menuitem in a set of elements with the same role, only one of which can be checked at a time.</li>
+                    <li>Authors must ensure that multiple <code>menuitemradio</code>s are owned by an element with role <code>group</code>, <code>menu</code>, or <code>menubar</code> in order to identify that they are related widgets.(Note: <code>menuitemradio</code> in Font-family is owned by <code>menu</code> role in the example.)</li>
+                    <li>If a <code>menu</code> or <code>menubar</code> contains more than one group of <code>menuitemradio</code> elements, or if the menu contains one group and other, unrelated menu items, authors should nest each set of related <code>menuitemradio</code> elements in an element using the <code>group</code> role, and authors should delimit the group from other menu items with an element using the <code>separator</code> role.(Note: Style/Color menu bar menu item has two <code>group</code> roles of text color and text decoration with <code>separator</code> role in the example.)</li>
                   </ul>  
                 </td>
             </tr>
