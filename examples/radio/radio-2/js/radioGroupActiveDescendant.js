@@ -54,7 +54,9 @@ RadioGroup.prototype.init = function () {
 
     console.log(rb);
 
-    if (!this.firstRadioButton) this.firstRadioButton = rb;
+    if (!this.firstRadioButton) {
+      this.firstRadioButton = rb;
+    }
     this.lastRadioButton = rb;
   }
   this.domNode.tabIndex = 0;
@@ -112,7 +114,8 @@ RadioGroup.prototype.getCurrentRadioButton = function () {
   return this.firstRadioButton;
 };
 
-//Event Handlers
+// Event Handlers
+
 RadioGroup.prototype.handleKeydown = function (event) {
   var tgt = event.currentTarget,
       flag = false,

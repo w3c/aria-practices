@@ -38,7 +38,9 @@ RadioGroup.prototype.init = function () {
 
     console.log(rb);
 
-    if (!this.firstRadioButton) this.firstRadioButton = rb;
+    if (!this.firstRadioButton) {
+      this.firstRadioButton = rb;
+    }
     this.lastRadioButton = rb;
   }
   this.firstRadioButton.domNode.tabIndex = 0;
