@@ -10,7 +10,7 @@
   "disallowKeywords": ["with"],
   "disallowMixedSpacesAndTabs": true,
   "disallowMultipleLineBreaks": true,
-  "disallowMultipleSpaces": true,
+  "disallowMultipleSpaces": false,
   "disallowNewlineBeforeBlockStatements": true,
   "disallowOperatorBeforeLineBreak": [
     "?",
@@ -30,7 +30,7 @@
     "&&"
   ],
   "disallowQuotedKeysInObjects": false,
-  "disallowSpaceAfterObjectKeys": true,
+  "disallowSpaceAfterObjectKeys": false,
   "disallowSpaceAfterPrefixUnaryOperators": ["++", "--", "~", "!"],
   "disallowSpaceBeforePostfixUnaryOperators": ["++", "--"],
   "disallowSpacesInCallExpression": true,

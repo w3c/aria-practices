@@ -8,9 +8,12 @@
 <link href="../css/core.css" rel="stylesheet">
 <link href="../css/table.css" rel="stylesheet">
 <script src="../js/examples.js" type="text/javascript"></script>
+<script src="../js/utils.js" type="text/javascript"></script>
 
 <link href="css/listbox.css" rel="stylesheet">
 <script src="js/listbox.js" type="text/javascript"></script>
+<script src="js/toolbar.js" type="text/javascript"></script>
+<script src="js/main.js" type="text/javascript"></script>
 </head>
 <body>
   <main>
@@ -23,8 +26,8 @@
     The following two example implementations of the
     <a href="../../#Listbox">design pattern for listbox</a>
     demonstrate differences between single-select and multi-select functionality.
-    In both examples, users can use action buttons to move options from one list to another. 
-    In the first implementation, users can choose a single option and then activate an action button 
+    In both examples, users can use action buttons to move options from one list to another.
+    In the first implementation, users can choose a single option and then activate an action button
 while in the second example, they may select multiple options before activating an action button.
   </p>
   <section>
@@ -34,31 +37,33 @@ while in the second example, they may select multiple options before activating 
       <div role="separator" id="ex1_start_sep" aria-labelledby="ex1_start_sep ex1_label" aria-label="Start of"></div>
       <div id="ex1">
         <p>Rank features important to you when choosing where to live. If a feature is unimportant, move it to the unimportant features list.</p>
-        <div>
-          <span id="ss_imp_l">Important Features:</span>
-          <ul tabindex="0" role="listbox" aria-labelledby="ss_imp_l" aria-activedescendant="ss_opt1">
-            <li id="ss_opt1" role="option">Proximity of public K-12 schools</li>
-            <li id="ss_opt2" role="option">Proximity of child-friendly parks</li>
-            <li id="ss_opt3" role="option">Proximity of grocery shopping</li>
-            <li id="ss_opt4" role="option">Proximity of fast food</li>
-            <li id="ss_opt5" role="option">Proximity of fine dining</li>
-            <li id="ss_opt6" role="option">Neighborhood walkability</li>
-            <li id="ss_opt7" role="option">Availability of public transit</li>
-            <li id="ss_opt8" role="option">Proximity of hospital and medical services</li>
-            <li id="ss_opt9" role="option">Level of traffic noise</li>
-            <li id="ss_opt10" role="option">Access to major highways</li>
-          </ul>
-        </div>
-        <div role="toolbar" aria-label="Actions">
-          <button aria-keyshortcuts="Alt+ArrowUp">Up</button>
-          <button tabindex="-1" aria-keyshortcuts="Alt+ArrowDown">Down</button>
-          <button tabindex="-1" aria-keyshortcuts="Delete">Not Important -&gt;</button>
-          <button tabindex="-1" aria-keyshortcuts="Delete">&lt;- Important</button>
-        </div>
-        <div>
-          <span id="ss_unimp_l">Unimportant Features</span>
-          <ul tabindex="0" role="listbox" aria-labelledby="ss_unimp_l" aria-activedescendant="">
-          </ul>
+        <div class="listbox-area">
+          <div class="left-area">
+            <span id="ss_imp_l">Important Features:</span>
+            <ul id="ss_imp_list" tabindex="0" role="listbox" aria-labelledby="ss_imp_l">
+              <li id="ss_opt1" role="option">Proximity of public K-12 schools</li>
+              <li id="ss_opt2" role="option">Proximity of child-friendly parks</li>
+              <li id="ss_opt3" role="option">Proximity of grocery shopping</li>
+              <li id="ss_opt4" role="option">Proximity of fast food</li>
+              <li id="ss_opt5" role="option">Proximity of fine dining</li>
+              <li id="ss_opt6" role="option">Neighborhood walkability</li>
+              <li id="ss_opt7" role="option">Availability of public transit</li>
+              <li id="ss_opt8" role="option">Proximity of hospital and medical services</li>
+              <li id="ss_opt9" role="option">Level of traffic noise</li>
+              <li id="ss_opt10" role="option">Access to major highways</li>
+            </ul>
+            <div role="toolbar" aria-label="Actions">
+              <button id="ex1-up" class="toolbar-item selected" aria-keyshortcuts="Alt+ArrowUp">Up</button>
+              <button id="ex1-down" class="toolbar-item" tabindex="-1" aria-keyshortcuts="Alt+ArrowDown">Down</button>
+              <button id="ex1-delete" class="toolbar-item" tabindex="-1" aria-keyshortcuts="Delete">Not Important -&gt;</button>
+            </div>
+          </div>
+          <div class="right-area">
+            <span id="ss_unimp_l">Unimportant Features:</span>
+            <ul id="ss_unimp_list" tabindex="0" role="listbox" aria-labelledby="ss_unimp_l" aria-activedescendant="">
+            </ul>
+            <button id="ex1-add" aria-keyshortcuts="Delete">&lt;- Important</button>
+          </div>
         </div>
       </div>
       <div role="separator" id="ex1_end_sep" aria-labelledby="ex1_end_sep ex1_label" aria-label="End of"></div>
@@ -84,41 +89,46 @@ while in the second example, they may select multiple options before activating 
         </li>
       </ol>
     </section>
-    
+
     <section>
       <h3 id="ex2_label">Example 2: Multi-Select Listbox</h3>
       <div role="separator" id="ex2_start_sep" aria-labelledby="ex2_start_sep ex2_label" aria-label="Start of"></div>
       <div id="ex2">
         <p>Choose upgrades for your transport capsule.</p>
-        <div>
-          <span id="ms_av_l">Available upgrades:</span>
-          <ul tabindex="0" 
-            role="listbox" 
-            aria-labelledby="ms_av_l" 
-            aria-activedescendant="ms_opt1"
-            aria-multiselectable="true">
-            <li id="ms_opt1" role="option" aria-selected="false">Leather seats</li>
-            <li id="ms_opt2" role="option" aria-selected="false">Front seat warmers</li>
-            <li id="ms_opt3" role="option" aria-selected="false">Rear bucket seats</li>
-            <li id="ms_opt4" role="option" aria-selected="false">Rear seat warmers</li>
-            <li id="ms_opt5" role="option" aria-selected="false">Front sun roof</li>
-            <li id="ms_opt6" role="option" aria-selected="false">Rear sun roof</li>
-            <li id="ms_opt7" role="option" aria-selected="false">Privacy cloque</li>
-            <li id="ms_opt8" role="option" aria-selected="false">Food synthesizer</li>
-            <li id="ms_opt9" role="option" aria-selected="false">Advanced waste recycling system</li>
-            <li id="ms_opt10" role="option" aria-selected="false">Turbo vertical take-off capability</li>
-          </ul>
-        </div>
-        <button aria-keyshortcuts="Enter">Add -&gt;</button>
-        <button aria-keyshortcuts="Delete">&lt;- Remove</button>
-        <div>
-          <span id="ms_ch_l">Upgrades you have chosen:</span>
-          <ul tabindex="0" 
-            role="listbox" 
-            aria-labelledby="ms_ch_l" 
-            aria-activedescendant=""
-            aria-multi-selectable="true">
-          </ul>
+        <div class="listbox-area">
+          <div class="left-area">
+            <span id="ms_av_l">Available upgrades:</span>
+            <ul
+              id="ms_imp_list"
+              tabindex="0"
+              role="listbox"
+              aria-labelledby="ms_av_l"
+              aria-multiselectable="true">
+              <li id="ms_opt1" role="option" aria-selected="false">Leather seats</li>
+              <li id="ms_opt2" role="option" aria-selected="false">Front seat warmers</li>
+              <li id="ms_opt3" role="option" aria-selected="false">Rear bucket seats</li>
+              <li id="ms_opt4" role="option" aria-selected="false">Rear seat warmers</li>
+              <li id="ms_opt5" role="option" aria-selected="false">Front sun roof</li>
+              <li id="ms_opt6" role="option" aria-selected="false">Rear sun roof</li>
+              <li id="ms_opt7" role="option" aria-selected="false">Privacy cloque</li>
+              <li id="ms_opt8" role="option" aria-selected="false">Food synthesizer</li>
+              <li id="ms_opt9" role="option" aria-selected="false">Advanced waste recycling system</li>
+              <li id="ms_opt10" role="option" aria-selected="false">Turbo vertical take-off capability</li>
+            </ul>
+            <button id="ex2-add" aria-keyshortcuts="Enter">Add -&gt;</button>
+          </div>
+          <div class="right-area">
+            <span id="ms_ch_l">Upgrades you have chosen:</span>
+            <ul
+              id="ms_unimp_list"
+              tabindex="0"
+              role="listbox"
+              aria-labelledby="ms_ch_l"
+              aria-activedescendant=""
+              aria-multiselectable="true">
+            </ul>
+            <button id="ex2-delete" aria-keyshortcuts="Delete">&lt;- Remove</button>
+          </div>
         </div>
       </div>
       <div role="separator" id="ex2_end_sep" aria-labelledby="ex2_end_sep ex2_label" aria-label="End of"></div>
@@ -165,15 +175,15 @@ while in the second example, they may select multiple options before activating 
           </li>
           <li>Availability of the shortcuts is communicated to assistive technologies via the <code>aria-keyshortcuts</code> property on the button elements.</li>
           <li>Each shortcut is only captured when focus is in a context where it is relevant.
-            For example, <kbd>Enter</kbd> performs an add only when focus is in the available options list, 
+            For example, <kbd>Enter</kbd> performs an add only when focus is in the available options list,
             and <kbd>Delete</kbd> performs a remove only when focus is in the chosen options list.
           </li>
           <li>
             Using a shortcut key intentionally places focus to optimize both screen reader and keyboard usability.
-            For example, pressing <kbd>Alt + Up Arrow</kbd> in the &quot;Important Features&quot; list keeps focus on the option that is moved up, 
+            For example, pressing <kbd>Alt + Up Arrow</kbd> in the &quot;Important Features&quot; list keeps focus on the option that is moved up,
             enabling all keyboard users to easily perform consecutive move operations for an option
             and screen reader users to hear the position of an option after it is moved.
-            Similarly, pressing <kbd>Enter</kbd> in the available options list leaves focus in the available options list. 
+            Similarly, pressing <kbd>Enter</kbd> in the available options list leaves focus in the available options list.
             If the option that had focus before the add operation is no longer present in the list, focus lands on the first of the subsequent options that is still present.
           </li>
         </ol>
@@ -252,8 +262,8 @@ while in the second example, they may select multiple options before activating 
           <th><code>aria-multiselectable=&quot;true&quot;</code></th>
           <td><code>ul</code></td>
           <td>
-            <strong>Example 2 only:</strong> 
-            Applied to the element with the listbox role, tells assistive technologies that the list supports multiple selection. 
+            <strong>Example 2 only:</strong>
+            Applied to the element with the listbox role, tells assistive technologies that the list supports multiple selection.
             The default value is false so it is not specified in example 1.
           </td>
         </tr>
@@ -263,7 +273,7 @@ while in the second example, they may select multiple options before activating 
           <td>
             Applied to the element with the listbox role, tells assistive technologies which of the options, if any, is visually indicated as having keyboard focus.
             DOM focus remains on the <code>ul</code> element and the idref specified for <code>aria-activedescendant</code> refers to the <code>li</code> element that is visually styled as focused.
-            When navigation keys, such as <kbd>Down Arrow</kbd>, are pressed, the JavaScript changes the value. 
+            When navigation keys, such as <kbd>Down Arrow</kbd>, are pressed, the JavaScript changes the value.
             When the listbox is empty, <code>aria-activedescendant=&quot;&quot;</code>.
           </td>
         </tr>
