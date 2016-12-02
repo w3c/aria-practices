@@ -34,19 +34,22 @@ var PopupMenuLinks = function (domNode, controllerObj) {
       msgPrefix = 'PopupMenuLinks constructor argument domNode ';
 
   // Check whether domNode is a DOM element
-  if (!domNode instanceof Element)
+  if (!domNode instanceof Element) {
     throw new TypeError(msgPrefix + 'is not a DOM Element.');
+  }
 
   // Check whether domNode has child elements
-  if (domNode.childElementCount === 0)
+  if (domNode.childElementCount === 0) {
     throw new Error(msgPrefix + 'has no element children.');
+  }
 
   // Check whether domNode descendant elements have A elements
   var childElement = domNode.firstElementChild;
   while (childElement) {
     var menuitem = childElement.firstElementChild;
-    if (menuitem && menuitem === 'A')
+    if (menuitem && menuitem === 'A') {
       throw new Error(msgPrefix + 'has descendant elements that are not A elements.');
+    }
     childElement = childElement.nextElementSibling;
   }
 
@@ -126,11 +129,21 @@ PopupMenuLinks.prototype.handleMouseout = function (event) {
 /* FOCUS MANAGEMENT METHODS */
 
 PopupMenuLinks.prototype.setFocusToController = function (command) {
-  if (typeof command !== 'string') command = '';
+  if (typeof command !== 'string') {
+    command = '';
+  }
 
-  if (command === 'previous') this.controller.menubar.setFocusToPreviousItem(this.controller);
-  else if (command === 'next') this.controller.menubar.setFocusToNextItem(this.controller);
-  else this.controller.domNode.focus();
+  if (command === 'previous') {
+    this.controller.menubar.setFocusToPreviousItem(this.controller);
+  }
+  else {
+    if (command === 'next') {
+      this.controller.menubar.setFocusToNextItem(this.controller);
+    }
+    else {
+      this.controller.domNode.focus();
+    }
+  }
 };
 
 PopupMenuLinks.prototype.setFocusToFirstItem = function () {
@@ -190,7 +203,9 @@ PopupMenuLinks.prototype.setFocusByFirstCharacter = function (currentItem, char)
 
 PopupMenuLinks.prototype.getIndexFirstChars = function (startIndex, char) {
   for (var i = startIndex; i < this.firstChars.length; i++) {
-    if (char === this.firstChars[i]) return i;
+    if (char === this.firstChars[i]) {
+      return i;
+    }
   }
   return -1;
 };

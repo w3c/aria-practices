@@ -70,11 +70,11 @@
       </section>    
 
 
-      <section aria-labelledby="mbw">
-        <h2 id="mbw" class="widget">Menu Button Widget</h2>
+      <section aria-labelledby="w1_label">
+        <h2 id="w1_label" class="widget">Menu Button Implementation Information</h2>
 
-        <h3 id="mbw_kbd">Keyboard Interaction and Focus Management</h3>
-        <table aria-labelledby="mbw mbw_kbd"> 
+        <h3 id="kbd1_label">Keyboard Interaction and Focus Management</h3>
+        <table aria-labelledby="kbd1_label w1_label"> 
           <thead>
             <tr>
               <th>Key</th>
@@ -99,11 +99,11 @@
 
         <h3 id="rps1_label">ARIA Roles, Properties, and States</h3>
 
-        <table aria-labelledby="rps1_label">
+        <table aria-labelledby="rps1_label w1_label">
           <thead>
             <tr>
               <th>Role</th>
-              <th>Property/State</th>
+              <th>Attribute</th>
               <th>Element</th>
               <th>Usage</th>
             </tr>
@@ -119,7 +119,8 @@
               </td>
               <td>
                 <ul>
-                  <li>Default <code>role</code> of a <code>button</code> element is "<code>button</code>", so do <em>not</em> need to set the <code>role</code> attribute.</li>
+                  <li>Default <code>role</code> of a <code>button</code> element is "<code>button</code>", so <em>no</em> need to set the <code>role</code> attribute.</li>
+                  <li>The accessible name comes from the child text content of the <code>button</code> element (e.g. &quot;Actions&quot;).</li>
                   <li>The <code>button</code> element is a part of the default tab order of the page (e.g. <code>tabindex=0</code>), so <em>no</em> need to set <code>tabindex</code>.</li>
                 </ul>
               </td>
@@ -128,13 +129,13 @@
               <td>
                 <code></code>
               </td>
-              <td><code>aria-controls</code></td>
+              <td><code>aria-haspopup=&quot;true&quot;</code></td>
               <td>
                 <code>button</code>
               </td>
               <td>
                 <ul>
-                  <li><code>[IDREF]</code>: Is a pointer to the popup menu, by using the <code>id</code> of the element with <code>role=menu</code>.</li>
+                  <li>The <code>aria-haspopup</code> attribute defines an element with <code>role=button</code> as a ARIA menu button design pattern and indicates the actions of the button are to open and close the popup menu.</li>
                 </ul>
               </td>
             </tr>
@@ -142,30 +143,35 @@
               <td>
                 <code></code>
               </td>
-              <td><code>aria-haspopup</code></td>
+              <td><code>aria-controls=&quot;IDREF&quot;</code></td>
               <td>
                 <code>button</code>
               </td>
               <td>
                 <ul>
-                  <li><code>[true]</code>: Defines an element with <code>role=button</code> as a ARIA menu button design pattern.</li>
+                  <li>The <code>aria-controls</code> attribute serves as a pointer to the the popup menu that is controlled by the menu button.</li>
                 </ul>
               </td>
             </tr>
             <tr>
-              <td>
-                <code></code>
-              </td>
-              <td><code>aria-expanded</code></td>
-              <td>
-                <code>button</code>
-              </td>
-              <td>
-                <ul>
-                  <li><code>[false]</code>: Indicates the popup menu is open.</li>
-                  <li><code>[true]</code>: Indicates the popup menu is closed.</li>
-                </ul>
-              </td>
+                <td></td>
+                <td><code>aria-expanded=&quot;true&quot;</code></td>
+                <td><code>button</code></td>
+                <td>
+                  <ul>
+                    <li>Indicates popup menu is open.</li>
+                  </ul>  
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><code>aria-expanded=&quot;false&quot;</code></td>
+                <td><code>button</code></td>
+                <td>
+                  <ul>
+                    <li>Indicates popup menu is closed.</li>
+                  </ul>  
+                </td>
             </tr>
           </tbody>
         </table> 
@@ -173,13 +179,13 @@
       </section>
 
 
-      <section aria-labelledby="mw">
+      <section aria-labelledby="w2_label">
 
-        <h2 id="mw" class="widget">Popup Menu Widget</h2>
+        <h2 id="w2_label" class="widget">Popup Menu Widget</h2>
 
-        <h3 id="mw_kbd">Keyboard Interaction and Focus Management</h3>
+        <h3 id="kbd2_label">Keyboard Interaction and Focus Management</h3>
       
-        <table aria-labelledby="mw mw_kbd"> 
+        <table aria-labelledby="kbd2_label w2_label"> 
           <thead>
             <tr>
               <th style="min-width: 8em">Key</th>
@@ -196,28 +202,68 @@
                 </ul>
               </td>
             </tr>
-            <tr>
-              <td>Up Arrow Key </td>
-              <td>Move focus to previous <code>menuitem</code>.</td>
-            </tr>
-            <tr>
-              <td>Down Arrow Key </td>
-              <td>Move focus to next <code>menuitem</code>.</td>
-            </tr>
-            <tr>
-              <td>Escape Key</td>
-              <td>Move focus back to <code>menu button</code> and then close <code>menu</code>.  NOTE: This sequence is important since hidding the element with focus will cause the focus to move to the beginning of the page.</td>
-            </tr>
-          </tbody>
-        </table>
+          <tr>
+            <td>Escape Key</td>
+            <td>
+              <ul>
+                <li>Closes popup menu.</li>
+                <li>Moves focus to button menu.</li>
+              </ul>  
+            </td>
+          </tr>
+          <tr>
+            <td>Up Arrow Key</td>
+            <td>
+              <ul>
+                <li>Moves focus to previous popup menu item.</li>
+                <li>If first popup menu item, focus is moved to the last popup menu item.</li>
+              </ul>  
+            </td>
+          </tr>
+           <tr>
+            <td>Down Arrow Key</td>
+            <td>
+              <ul>
+                <li>Moves focus to next popup menu item.</li>
+                <li>If last popup menu item, focus is moved to the first popup menu item.</li>
+              </ul>  
+            </td>
+          </tr>
+          <tr>
+            <td>Home</td>
+            <td>
+              <ul>
+                <li>Moves focus to first popup menu item.</li>
+              </ul>  
+            </td>
+          </tr>
+           <tr>
+            <td>End</td>
+            <td>
+              <ul>
+                <li>Moves focus to last popup menu item.</li>
+              </ul>  
+            </td>
+          </tr>
+           <tr>
+            <td>A-Z, a-z</td>
+            <td>
+              <ul>
+                <li>Moves focus to the next popup item that starts with that letter.</li>
+                <li>If no popup menu item starts with the letter, focus does not move.</li>
+              </ul>  
+            </td>
+          </tr>
+        </tbody>
+      </table>
 
         <h3 id="rps2_label">ARIA Roles, Properties, and States</h3>
 
-        <table aria-labelledby="rps2_label">
+        <table aria-labelledby="rps2_label w2_label">
           <thead>
             <tr>
               <th>Role</th>
-              <th>Property/State</th>
+              <th>Attribute</th>
               <th>Element</th>
               <th>Usage</th>
             </tr>
@@ -233,10 +279,9 @@
               </td>
               <td>
                 <ul>
-                  <li>Idenfities an ARIA <code>menu</code>.</li>
-                  <li>Does not need a <code>tabindex</code> value since the element does not receive keyboard focus.</li>
-                  </li>
-                  <li>Keyboard focus is styled using CSS psuedo element <code>:focus</code>.</li>
+                  <li>The <code>role=&quot;menu&quot;</code> attribute identifies the <code>ul</code> element as an ARIA <code>menu</code> widget.</li>
+                  <li>Accessible name for the <code>menu</code> widget comes from <code>aria-labelledby</code> attribute.</li>
+                  <li>The <code>menu</code> widget does not need a <code>tabindex</code> value, since the <code>ul[role&quot;menu&quot;]</code> element never receives keyboard focus.</li>
                 </ul>
               </td>
             </tr>
@@ -244,13 +289,13 @@
               <td>
                 <code></code>
               </td>
-              <td><code>aria-labelledby</code></td>
+              <td><code>aria-labelledby=&quot;[IDREF]&quot;</code></td>
               <td>
                 <code>ul</code>
               </td>
               <td>
                 <ul>
-                  <li><code>[IDREF]</code>: Pointer to element with the <code>id</code> that defines the accessible name for the <code>menu</code>, in this example "Actions".</li>
+                  <li>Pointer to element with the corresponding <code>id=&quot;[IDREF]&quot;</code> that defines the accessible name for the <code>menu</code>, in this example &quot;Actions&quot;.</li>
                 </ul>
               </td>
             </tr>
@@ -264,7 +309,9 @@
               </td>
               <td>
                 <ul>
-                  <li>Identifies the element as an ARIA <code>menuitem</code>.</li>
+                  <li>The <code>role=&quot;menuitem&quot;</code> attribute identifies the <code>li</code> element as an ARIA <code>menuitem</code> widget.</li>
+                  <li>Accessible name for the <code>menuitem</code> widget comes from child text content of the <code>li</code> element.</li>
+                  <li>The <code>menuitem</code> widget has <code>tabindex=&quot;-1&quot;</code>.</li>
                 </ul>
               </td>
             </tr>
@@ -272,13 +319,13 @@
               <td>
                 <code></code>
               </td>
-              <td><code>tabindex</code></td>
+              <td><code>tabindex=&quot;-1&quot;</code></td>
               <td>
                 <code>li</code>
               </td>
               <td>
                 <ul>
-                  <li><code>-1</code>: Identifies each <code>li[role=menuitem]</code> as an interactive element on the page (e.g. can recived keyboard focus).</li>
+                  <li>Identifies each <code>li[role=menuitem]</code> as an interactive element on the page (e.g. can recived keyboard focus), but is not part of the tab order of the page.</li>
                 </ul>
               </td>
             </tr>
@@ -288,7 +335,7 @@
       </section>    
 
       <section aria-labelledby="sc-ex1">
-        <h2 id="sc-ex1">Source Code: Example 1</h2>
+        <h2 id="sc-ex1">Source Code: Menu Button 1</h2>
       
         <ul>
           <li>MenuButtonAction CSS: <a href="css/menuButtonAction.css" type="text/css">MenubuttonAction.css</a></li>
@@ -304,7 +351,7 @@
 
 
       <script>
-        sourceCode.add('sc1', 'code-ex-1')
+        sourceCode.add('sc1', 'example')
         sourceCode.make()
       </script>
     </main>
