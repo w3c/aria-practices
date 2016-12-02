@@ -16,10 +16,11 @@
   <body>
     <main role="main">
       <h1>ARIA <code>radiogroup</code> Example</h1>
-      <p> <a href="../../../aria-practices.html#h-radiobutton">WAI-ARIA 1.1 : Radio group pattern </a></p>
-      
 
-      <h2>Example Start</h2>
+     <p>This example implements the features of an ARIA <code>radiogroup</code> widget using <a href="../../../aria-practices.html#radiobutton">ARIA Radio Group Design Pattern</a> for selecting a Pizza Crust and delivery method.</p>
+
+     <section aria-labelledby="example_label">
+      <h2 id="example_label">Example Start</h2>
       <div id="example">
 
         <div  role="radiogroup" aria-labelledby="group_label_1" id="rg1">
@@ -49,7 +50,7 @@
            </div>
        </div>
 
-        <div  role="radiogroup" aria-labelledby="group_label_2" id="rg1">
+        <div  role="radiogroup" aria-labelledby="group_label_2" id="rg2">
             <h3 id="group_label_2">Pizza Delivery</h3>
             <div id="rb1"
                 role="radio" 
@@ -72,20 +73,31 @@
                 aria-checked="false"
                 tabindex="-1"
             >
-            Dine in Restaurant
+            Dine in
            </div>
        </div>
 
         <script type="text/javascript">
           var rg1 = new RadioGroup(document.getElementById('rg1'));
           rg1.init();
+          var rg2 = new RadioGroup(document.getElementById('rg2'));
+          rg2.init();
         </script>
-
       </div>   
+     </section> 
+
+     <section aria-labelledby="information_label">
+        <h2 id="information_label">Radio group Widget Implementation Information</h2>
+
+        <h3>Implementation Notes</h3>
+        <ul>
+          <li>.</li>
+        </ul>
 
 
-      <h2 id="id_kbd">Keyboard Support</h2>
-      <table aria-labelledby="id_kbd"> 
+      <h3 id="kbd_label">Keyboard Support</h3>
+
+      <table aria-labelledby="kbd_label"> 
         <thead>
           <tr>
             <th>Key</th>
@@ -130,9 +142,9 @@
         </tbody>
       </table>
       
-      <h2 id="id_rps">ARIA Roles, Properties and States</h2>
+      <h3 id="rps_label">ARIA Roles, Properties and States</h3>
 
-      <table aria-labelledby="id_rps"> 
+      <table aria-labelledby="rps_label"> 
         <thead>
           <tr>
             <th>Role</th>
