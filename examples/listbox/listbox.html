@@ -55,14 +55,14 @@ while in the second example, they may select multiple options before activating 
             <div role="toolbar" aria-label="Actions">
               <button id="ex1-up" class="toolbar-item selected" aria-keyshortcuts="Alt+ArrowUp">Up</button>
               <button id="ex1-down" class="toolbar-item" tabindex="-1" aria-keyshortcuts="Alt+ArrowDown">Down</button>
-              <button id="ex1-delete" class="toolbar-item" tabindex="-1" aria-keyshortcuts="Alt+ArrowRight Delete">Not Important -&gt;</button>
+              <button id="ex1-delete" class="toolbar-item move-right-btn" tabindex="-1" aria-keyshortcuts="Alt+ArrowRight Delete">Not Important</button>
             </div>
           </div>
           <div class="right-area">
             <span id="ss_unimp_l">Unimportant Features:</span>
             <ul id="ss_unimp_list" tabindex="0" role="listbox" aria-labelledby="ss_unimp_l" aria-activedescendant="">
             </ul>
-            <button id="ex1-add" aria-keyshortcuts="Alt+ArrowLeft Delete">&lt;- Important</button>
+            <button id="ex1-add" class="move-left-btn" aria-keyshortcuts="Alt+ArrowLeft Delete">Important</button>
           </div>
         </div>
       </div>
@@ -115,7 +115,7 @@ while in the second example, they may select multiple options before activating 
               <li id="ms_opt9" role="option" aria-selected="false">Advanced waste recycling system</li>
               <li id="ms_opt10" role="option" aria-selected="false">Turbo vertical take-off capability</li>
             </ul>
-            <button id="ex2-add" aria-keyshortcuts="Alt+ArrowRight Delete">Add -&gt;</button>
+            <button id="ex2-add" class="move-right-btn" aria-keyshortcuts="Alt+ArrowRight Delete">Add</button>
           </div>
           <div class="right-area">
             <span id="ms_ch_l">Upgrades you have chosen:</span>
@@ -127,7 +127,7 @@ while in the second example, they may select multiple options before activating 
               aria-activedescendant=""
               aria-multiselectable="true">
             </ul>
-            <button id="ex2-delete" aria-keyshortcuts="Alt+ArrowLeft Delete">&lt;- Remove</button>
+            <button id="ex2-delete" class="move-left-btn" aria-keyshortcuts="Alt+ArrowLeft Delete">Remove</button>
           </div>
         </div>
       </div>
