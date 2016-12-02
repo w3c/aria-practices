@@ -49,13 +49,13 @@ MenuItem.prototype.init = function () {
     this.domNode.setAttribute('role', 'menuitem');
   }
 
-  this.domNode.addEventListener('keydown',    this.handleKeydown.bind(this) );
-  this.domNode.addEventListener('keypress',   this.handleKeypress.bind(this) );
-  this.domNode.addEventListener('click',      this.handleClick.bind(this) );
-  this.domNode.addEventListener('focus',      this.handleFocus.bind(this) );
-  this.domNode.addEventListener('blur',       this.handleBlur.bind(this) );
-  this.domNode.addEventListener('mouseover',  this.handleMouseover.bind(this) );
-  this.domNode.addEventListener('mouseout',   this.handleMouseout.bind(this) );
+  this.domNode.addEventListener('keydown',    this.handleKeydown.bind(this));
+  this.domNode.addEventListener('keypress',   this.handleKeypress.bind(this));
+  this.domNode.addEventListener('click',      this.handleClick.bind(this));
+  this.domNode.addEventListener('focus',      this.handleFocus.bind(this));
+  this.domNode.addEventListener('blur',       this.handleBlur.bind(this));
+  this.domNode.addEventListener('mouseover',  this.handleMouseover.bind(this));
+  this.domNode.addEventListener('mouseout',   this.handleMouseout.bind(this));
 
 };
 
@@ -63,9 +63,10 @@ MenuItem.prototype.init = function () {
 
 MenuItem.prototype.handleKeydown = function (event) {
   var tgt = event.currentTarget,
-      flag = false, clickEvent;
+      flag = false,
+ clickEvent;
 
-//  console.log("[MenuItem][handleKeydown]: " + event.keyCode + " " + this.menu)
+  //  console.log("[MenuItem][handleKeydown]: " + event.keyCode + " " + this.menu)
 
   switch (event.keyCode) {
     case this.keyCode.SPACE:
@@ -79,7 +80,7 @@ MenuItem.prototype.handleKeydown = function (event) {
           'cancelable': true
         });
       }
-      catch(err) {
+      catch (err) {
         if (document.createEvent) {
           // DOM Level 3 for IE 9+
           clickEvent = document.createEvent('MouseEvents');
@@ -157,7 +158,6 @@ MenuItem.prototype.handleKeypress = function (event) {
   }
 };
 
-
 MenuItem.prototype.handleClick = function (event) {
   this.menu.setFocusToController();
   this.menu.close(true);
@@ -173,7 +173,7 @@ MenuItem.prototype.handleBlur = function (event) {
 };
 
 MenuItem.prototype.handleMouseover = function (event) {
-  this.menu.hasHover = true
+  this.menu.hasHover = true;
   this.menu.open();
 
 };

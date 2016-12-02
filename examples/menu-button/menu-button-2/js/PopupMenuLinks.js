@@ -31,23 +31,22 @@
 */
 var PopupMenuLinks = function (domNode, controllerObj) {
   var elementChildren,
-      msgPrefix = "PopupMenuLinks constructor argument domNode ";
+      msgPrefix = 'PopupMenuLinks constructor argument domNode ';
 
   // Check whether domNode is a DOM element
   if (!domNode instanceof Element)
-    throw new TypeError(msgPrefix + "is not a DOM Element.");
+    throw new TypeError(msgPrefix + 'is not a DOM Element.');
 
   // Check whether domNode has child elements
   if (domNode.childElementCount === 0)
-    throw new Error(msgPrefix + "has no element children.")
+    throw new Error(msgPrefix + 'has no element children.');
 
   // Check whether domNode descendant elements have A elements
   var childElement = domNode.firstElementChild;
   while (childElement) {
     var menuitem = childElement.firstElementChild;
     if (menuitem && menuitem === 'A')
-      throw new Error(msgPrefix +
-        "has descendant elements that are not A elements.");
+      throw new Error(msgPrefix + 'has descendant elements that are not A elements.');
     childElement = childElement.nextElementSibling;
   }
 
@@ -80,9 +79,7 @@ PopupMenuLinks.prototype.init = function () {
 
   this.domNode.setAttribute('role', 'menu');
 
-  if (!this.domNode.getAttribute('aria-labelledby') && 
-      !this.domNode.getAttribute('aria-label') &&
-      !this.domNode.getAttribute('title')) {
+  if (!this.domNode.getAttribute('aria-labelledby') && !this.domNode.getAttribute('aria-label') && !this.domNode.getAttribute('title')) {
     label = this.controller.domNode.innerHTML;
     this.domNode.setAttribute('aria-label', label);
   }
@@ -95,7 +92,7 @@ PopupMenuLinks.prototype.init = function () {
   childElement = this.domNode.firstElementChild;
 
   while (childElement) {
-    menuElement= childElement.firstElementChild;
+    menuElement = childElement.firstElementChild;
 
     if (menuElement && menuElement.tagName === 'A') {
       menuItem = new MenuItemLinks(menuElement, this);
@@ -111,7 +108,7 @@ PopupMenuLinks.prototype.init = function () {
   numItems = this.menuitems.length;
   if (numItems > 0) {
     this.firstItem = this.menuitems[0];
-    this.lastItem  = this.menuitems[numItems - 1]
+    this.lastItem  = this.menuitems[numItems - 1];
   }
 };
 
@@ -200,7 +197,6 @@ PopupMenuLinks.prototype.getIndexFirstChars = function (startIndex, char) {
 
 /* MENU DISPLAY METHODS */
 
-
 PopupMenuLinks.prototype.open = function () {
   // get position and bounding rectangle of controller object's DOM node
   var rect = this.controller.domNode.getBoundingClientRect();
@@ -208,8 +204,8 @@ PopupMenuLinks.prototype.open = function () {
   // set CSS properties
   this.domNode.style.display = 'block';
   this.domNode.style.position = 'absolute';
-  this.domNode.style.top  = rect.height + "px";
-  this.domNode.style.left = "0px";
+  this.domNode.style.top  = rect.height + 'px';
+  this.domNode.style.left = '0px';
 
   // set aria-expanded attribute
   this.controller.domNode.setAttribute('aria-expanded', 'true');
