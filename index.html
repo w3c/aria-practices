@@ -953,7 +953,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <a class="logo" href="https://www.w3.org/"><img width="72" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" alt="W3C"></a>
     </p>
     <h1 class="title p-name" id="title" property="dcterms:title"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Authoring Practices 1.1</h1>
-    <h2 id="w3c-editor-s-draft-01-december-2016"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2016-12-01">01 December 2016</time></h2>
+    <h2 id="w3c-editor-s-draft-02-december-2016"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2016-12-02">02 December 2016</time></h2>
     <dl>
       <dt>This version:</dt>
       <dd><a class="u-url" href="http://w3c.github.io/aria-practices/">http://w3c.github.io/aria-practices/</a></dd>
@@ -2301,7 +2301,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         <div class="note">
           <div class="note-title marker" aria-level="5" role="heading" id="h-note15"><span>Note</span></div>
           <ol class="">
-            <li>Disabled menu items are focusable but can not be activated. </li>
+            <li>Disabled menu items are focusable but cannot be activated. </li>
             <li>A <a href="http://w3c.github.io/aria/aria/aria.html#separator" class="role-reference">separator</a> in a menu is not focusable or interactive.</li>
             <li>
               If a menu is opened or a menubar receives focus as a result of a context action, <kbd>Escape</kbd> or <kbd>Enter</kbd> may return focus to the invoking context. For example, a rich text editor may have a menubar that receives focus when a shortcut key, e.g., <kbd>alt + F10</kbd>, is pressed while editing. In this case, pressing <kbd>Escape</kbd> or activating a command from the menu may return focus to the editor.
@@ -2464,9 +2464,10 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
       <section class="notoc" typeof="bibo:Chapter" resource="#example-10" property="bibo:hasPart">
         <h4 id="example-10" resource="#example-10"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
-        <p>
-          <a href="examples/radio/radio.html">Radio Group Examples</a>
-        </p>
+        <ul>
+          <li><a href="examples/radio/radio-1/radio-1.html">Radio group example using roving tabindex.</a></li>
+          <li><a href="examples/radio/radio-2/radio-2.html">Radio group example using managed focus with <code>aria-activedescendant</code>.</a></li>
+        </ul>
       </section>
 
     </section>
