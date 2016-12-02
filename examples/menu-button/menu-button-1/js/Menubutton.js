@@ -57,12 +57,12 @@ Menubutton.prototype.init = function () {
   this.domNode.setAttribute('aria-haspopup', 'true');
   this.domNode.setAttribute('aria-expanded', 'false');
 
-  this.domNode.addEventListener('keydown',    this.handleKeydown.bind(this));
-  this.domNode.addEventListener('click',      this.handleClick.bind(this));
-  this.domNode.addEventListener('focus',      this.handleFocus.bind(this));
-  this.domNode.addEventListener('blur',       this.handleBlur.bind(this));
-  this.domNode.addEventListener('mouseover',  this.handleMouseover.bind(this));
-  this.domNode.addEventListener('mouseout',   this.handleMouseout.bind(this));
+  this.domNode.addEventListener('keydown', this.handleKeydown.bind(this));
+  this.domNode.addEventListener('click', this.handleClick.bind(this));
+  this.domNode.addEventListener('focus', this.handleFocus.bind(this));
+  this.domNode.addEventListener('blur', this.handleBlur.bind(this));
+  this.domNode.addEventListener('mouseover', this.handleMouseover.bind(this));
+  this.domNode.addEventListener('mouseout', this.handleMouseout.bind(this));
 
   // initialize pop up menus
 

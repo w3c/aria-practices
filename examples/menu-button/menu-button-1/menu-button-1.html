@@ -7,6 +7,7 @@
     <link href="../../css/core.css" rel="stylesheet">
     <link href="../../css/table.css" rel="stylesheet">
     <link href="css/menuButtonAction.css" rel="stylesheet">
+
     <script src="../../js/examples.js" type="text/javascript"></script>
     <script src="js/Menubutton.js" type="text/javascript"></script> 
     <script src="js/MenuItemAction.js" type="text/javascript"></script> 
@@ -16,52 +17,58 @@
     <main>
       <h1>ARIA Menu Button Example:  Popup Menu of Actions</h1>
  
-      <p><a href="../../aria-practices.html#h-menubutton">Authoring Practice Design Patten for Menu Button</a></p>
+      <p>This example implements the features of an <a href="../../../aria-practices.html#menubutton">ARIA Menu Button Design Pattern</a> for a menu of actions within a web application.
+      An ARIA menu button is defined as any element with <code>role=&quot;button&quot;</code> with an <code>aria-haspopup=&quot;true&quot;</code>.  
+      This includes the HTML <code>button</code> and <code>input[type="button"]</code> elements with default roles of <code>button</code>.
+      </p>
 
-      <section id="code-ex-1">
-        <h2>Menu Button using a <code>button</code> element</h2>
-        <p>This example provides shows a popup menu of actions for changing the state in a web application.</p>
+      <section aria-labelledby="start">
+        <h2 id="start">Start Example</h2>
+        <div id="example">
 
-        <div class="menu_button">
-          <button 
-              id="menubutton1"
-              aria-haspopup="true" 
-              aria-expanded="false"
-              aria-controls="menu1"
-              >
-            Actions
-          </button>
+          <p>This example shows a popup menu of actions that can be used for changing states in a web application.</p>
 
-          <ul id="menu1" role="menu" aria-labelledby="menubutton1">
-            <li role="menuitem"  onclick="updateLastAction(event)">Action 1</li>
-            <li role="menuitem"  onclick="updateLastAction(event)">Action 2</li>
-            <li role="menuitem"  onclick="updateLastAction(event)">Action 3</li>
-            <li role="menuitem"  onclick="updateLastAction(event)">Action 4</li>
-          </ul>
-        </div>
+          <div class="menu_button">
+            <button 
+                id="menubutton1"
+                aria-haspopup="true" 
+                aria-expanded="false"
+                aria-controls="menu1"
+                >
+              Actions
+            </button>
+
+            <ul id="menu1" role="menu" aria-labelledby="menubutton1">
+              <li role="menuitem"  onclick="updateLastAction(event)">Action 1</li>
+              <li role="menuitem"  onclick="updateLastAction(event)">Action 2</li>
+              <li role="menuitem"  onclick="updateLastAction(event)">Action 3</li>
+              <li role="menuitem"  onclick="updateLastAction(event)">Action 4</li>
+            </ul>
+          </div>
 
         <p>
           <label>Last Action: <input id="action_output" type="text" value=""></label>
         </p>
 
+        <script type="text/javascript">
 
+          document.getElementById("action_output").value = "none";
+
+          function updateLastAction(event) {
+            document.getElementById("action_output").value = event.currentTarget.innerHTML;
+          }
+
+          window.onload=function() {
+            var menubutton = new Menubutton(document.getElementById('menubutton1'));
+            menubutton.init();
+          }    
+
+          </script>
+
+        </div>
 
       </section>    
 
-      <script type="text/javascript">
-
-        document.getElementById("action_output").value = "none";
-
-        function updateLastAction(event) {
-          document.getElementById("action_output").value = event.currentTarget.innerHTML;
-        }
-
-        window.onload=function() {
-          var menubutton = new Menubutton(document.getElementById('menubutton1'));
-          menubutton.init();
-        }    
-
-  </script>
 
       <section aria-labelledby="mbw">
         <h2 id="mbw" class="widget">Menu Button Widget</h2>
