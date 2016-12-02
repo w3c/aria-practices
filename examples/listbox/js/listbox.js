@@ -15,6 +15,8 @@ var aria = aria || {};
 aria.Listbox = function (listboxNode) {
   this.listboxNode = listboxNode;
   this.activeDescendant = this.listboxNode.getAttribute('aria-activedescendant');
+  this.moveUpDownEnabled = false;
+  this.siblingList = null;
 
   this.registerEvents();
 };
@@ -34,16 +36,36 @@ aria.Listbox.prototype.registerEvents = function () {
  *  If there is no activeDescendant, focus on the first option
  */
 aria.Listbox.prototype.setupFocus = function () {
-  var firstItem;
-
   if (this.activeDescendant) {
     return;
   }
+
+  this.focusFirstItem();
+};
+
+/**
+ * @desc
+ *  Focus on the first option
+ */
+aria.Listbox.prototype.focusFirstItem = function () {
+  var firstItem;
 
   firstItem = this.listboxNode.querySelector('[role="option"]');
 
   if (firstItem) {
     this.focusItem(firstItem);
+  }
+};
+
+/**
+ * @desc
+ *  Focus on the last option
+ */
+aria.Listbox.prototype.focusLastItem = function () {
+  var itemList = this.listboxNode.querySelectorAll('[role="option"]');
+
+  if (itemList.length) {
+    this.focusItem(itemList[itemList.length - 1]);
   }
 };
 
@@ -64,6 +86,20 @@ aria.Listbox.prototype.checkKeyPress = function (evt) {
   }
 
   switch (key) {
+    case aria.KeyCode.PAGE_UP:
+    case aria.KeyCode.PAGE_DOWN:
+      if (this.moveUpDownEnabled) {
+        evt.preventDefault();
+
+        if (key === aria.KeyCode.PAGE_UP) {
+          this.moveUpItems();
+        }
+        else {
+          this.moveDownItems();
+        }
+      }
+
+      break;
     case aria.KeyCode.UP:
     case aria.KeyCode.DOWN:
       evt.preventDefault();
@@ -78,10 +114,36 @@ aria.Listbox.prototype.checkKeyPress = function (evt) {
       if (nextItem) {
         this.focusItem(nextItem);
       }
+
+      break;
+    case aria.KeyCode.HOME:
+      evt.preventDefault();
+      this.focusFirstItem();
+      break;
+    case aria.KeyCode.END:
+      evt.preventDefault();
+      this.focusLastItem();
       break;
     case aria.KeyCode.SPACE:
       evt.preventDefault();
-      this.selectItem(nextItem);
+      this.toggleSelectItem(nextItem);
+      break;
+    case aria.KeyCode.BACKSPACE:
+    case aria.KeyCode.DELETE:
+      evt.preventDefault();
+
+      if (nextItem.nextElementSibling) {
+        nextItem = nextItem.nextElementSibling;
+      }
+      else {
+        nextItem = nextItem.previousElementSibling;
+      }
+
+      this.shiftItems();
+
+      if (!this.activeDescendant && nextItem) {
+        this.focusItem(nextItem);
+      }
       break;
   }
 };
@@ -96,7 +158,7 @@ aria.Listbox.prototype.checkKeyPress = function (evt) {
 aria.Listbox.prototype.checkClickItem = function (evt) {
   if (evt.target.getAttribute('role') === 'option') {
     this.focusItem(evt.target);
-    this.selectItem(evt.target);
+    this.toggleSelectItem(evt.target);
   }
 };
 
@@ -107,7 +169,7 @@ aria.Listbox.prototype.checkClickItem = function (evt) {
  * @param element
  *  The element to select
  */
-aria.Listbox.prototype.selectItem = function (element) {
+aria.Listbox.prototype.toggleSelectItem = function (element) {
   if (element.hasAttribute('aria-selected')) {
     element.setAttribute(
       'aria-selected',
@@ -159,6 +221,7 @@ aria.Listbox.prototype.addItems = function (items) {
 
   items.forEach((function (item) {
     this.defocusItem(item);
+    this.toggleSelectItem(item);
     this.listboxNode.append(item);
   }).bind(this));
 
@@ -239,4 +302,21 @@ aria.Listbox.prototype.moveDownItems = function () {
   if (nextItem) {
     this.listboxNode.insertBefore(nextItem, currentItem);
   }
+};
+
+aria.Listbox.prototype.shiftItems = function () {
+  if (!this.siblingList) {
+    return;
+  }
+
+  var itemsToMove = this.deleteItems();
+  this.siblingList.addItems(itemsToMove);
+};
+
+aria.Listbox.prototype.enableMoveUpDown = function () {
+  this.moveUpDownEnabled = true;
+};
+
+aria.Listbox.prototype.setupDeleteDestination = function (siblingList) {
+  this.siblingList = siblingList;
 };
