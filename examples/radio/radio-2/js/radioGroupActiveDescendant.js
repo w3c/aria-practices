@@ -11,10 +11,10 @@
 *
 *   @desc
 *       Wrapper for ARIA radiogroup control using ARIA active-descendant.  Any descendant
-*       element with role=radio will be included in this radiogroup as a radiobutton2. 
-*   
+*       element with role=radio will be included in this radiogroup as a radiobutton2.
+*
 *   @param domNode
-*       The DOM element node that serves as the radiogroup container. 
+*       The DOM element node that serves as the radiogroup container.
 */
 var RadioGroup = function (domNode) {
 
@@ -22,8 +22,8 @@ var RadioGroup = function (domNode) {
 
   this.radioButtons = [];
 
-  this.firstRadioButton  = null;   
-  this.lastRadioButton   = null;   
+  this.firstRadioButton  = null;
+  this.lastRadioButton   = null;
 
   this.keyCode = Object.freeze({
     'TAB'      :  9,
@@ -37,16 +37,15 @@ var RadioGroup = function (domNode) {
 
 RadioGroup.prototype.init = function () {
 
-
-  this.domNode.addEventListener('keydown',    this.handleKeydown.bind(this) );
-  this.domNode.addEventListener('focus',      this.handleFocus.bind(this) );
-  this.domNode.addEventListener('blur',       this.handleBlur.bind(this) );
-  // initialize 
+  this.domNode.addEventListener('keydown',    this.handleKeydown.bind(this));
+  this.domNode.addEventListener('focus',      this.handleFocus.bind(this));
+  this.domNode.addEventListener('blur',       this.handleBlur.bind(this));
+  // initialize
   if (!this.domNode.getAttribute('role')) {
     this.domNode.setAttribute('role', 'radiogroup');
   }
 
-  var rbs = this.domNode.querySelectorAll("[role=radio]");
+  var rbs = this.domNode.querySelectorAll('[role=radio]');
 
   for (var i = 0; i < rbs.length; i++) {
     var rb = new RadioButtonActiveDescendant(rbs[i], this);
@@ -61,8 +60,8 @@ RadioGroup.prototype.init = function () {
   this.domNode.tabIndex = 0;
 };
 
-RadioGroup.prototype.setChecked  = function(currentItem) {
-  for(var i=0; i < this.radioButtons.length; i++){
+RadioGroup.prototype.setChecked  = function (currentItem) {
+  for (var i = 0; i < this.radioButtons.length; i++) {
     var rb = this.radioButtons[i];
     rb.domNode.setAttribute('aria-checked', 'false');
     rb.domNode.classList.remove('focus');
@@ -88,7 +87,7 @@ RadioGroup.prototype.setCheckedToPreviousItem = function (currentItem) {
 RadioGroup.prototype.setCheckedToNextItem = function (currentItem) {
   var index;
 
-   if (currentItem === this.lastRadioButton) {
+  if (currentItem === this.lastRadioButton) {
     this.setChecked(this.firstRadioButton);
   }
   else {
@@ -99,30 +98,31 @@ RadioGroup.prototype.setCheckedToNextItem = function (currentItem) {
 
 RadioGroup.prototype.getCurrentRadioButton = function () {
   var id = this.domNode.getAttribute('aria-activedescendant');
-  if(!id){
+  if (!id) {
     this.domNode.setAttribute('aria-activedescendant', this.firstRadioButton.domNode.id);
     return this.firstRadioButton;
   }
-  for(var i = 0; i < this.radioButtons.length; i++){
+  for (var i = 0; i < this.radioButtons.length; i++) {
     var rb = this.radioButtons[i];
-    if(rb.domNode.id === id){
+    if (rb.domNode.id === id) {
       return rb;
     }
   }
   this.domNode.setAttribute('aria-activedescendant', this.firstRadioButton.domNode.id);
   return this.firstRadioButton;
-}
+};
 
 //Event Handlers
 RadioGroup.prototype.handleKeydown = function (event) {
   var tgt = event.currentTarget,
-      flag = false, clickEvent;
+      flag = false,
+ clickEvent;
 
- var currentItem = this.getCurrentRadioButton();
+  var currentItem = this.getCurrentRadioButton();
   switch (event.keyCode) {
     case this.keyCode.SPACE:
     case this.keyCode.RETURN:
-      this.setChecked(currentItem);  
+      this.setChecked(currentItem);
       flag = true;
       break;
 
@@ -155,7 +155,6 @@ RadioGroup.prototype.handleKeydown = function (event) {
     event.preventDefault();
   }
 };
-
 
 RadioGroup.prototype.handleFocus = function (event) {
   var currentItem = this.getCurrentRadioButton();

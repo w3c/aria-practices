@@ -9,9 +9,9 @@
 /*
 *   @constructor RadioButtonActiveDescendantActiveDescendant
 *
-*   
+*
 */
-var RadioButtonActiveDescendant= function (domNode, groupObj) {
+var RadioButtonActiveDescendant = function (domNode, groupObj) {
 
   this.domNode = domNode;
   this.radioGroup = groupObj;
@@ -34,13 +34,13 @@ var RadioButtonActiveDescendant= function (domNode, groupObj) {
 
 RadioButtonActiveDescendant.prototype.init = function () {
   this.domNode.setAttribute('aria-checked', 'false');
-  this.domNode.addEventListener('click',      this.handleClick.bind(this) );
- 
+  this.domNode.addEventListener('click',      this.handleClick.bind(this));
+
 };
 
 /* EVENT HANDLERS */
 
 RadioButtonActiveDescendant.prototype.handleClick = function (event) {
-  console.log('click')
+  console.log('click');
   this.radioGroup.setChecked(this);
 };

@@ -17,9 +17,9 @@ var RadioGroup = function (domNode) {
 
   this.radioButtons = [];
 
-  this.firstRadioButton  = null;   
-  this.lastRadioButton   = null;   
-  
+  this.firstRadioButton  = null;
+  this.lastRadioButton   = null;
+
 };
 
 RadioGroup.prototype.init = function () {
@@ -29,7 +29,7 @@ RadioGroup.prototype.init = function () {
     this.domNode.setAttribute('role', 'radiogroup');
   }
 
-  var rbs = this.domNode.querySelectorAll("[role=radio]");
+  var rbs = this.domNode.querySelectorAll('[role=radio]');
 
   for (var i = 0; i < rbs.length; i++) {
     var rb = new RadioButton(rbs[i], this);
@@ -44,8 +44,8 @@ RadioGroup.prototype.init = function () {
   this.firstRadioButton.domNode.tabIndex = 0;
 };
 
-RadioGroup.prototype.setChecked  = function(currentItem) {
-  for(var i=0; i < this.radioButtons.length; i++){
+RadioGroup.prototype.setChecked  = function (currentItem) {
+  for (var i = 0; i < this.radioButtons.length; i++) {
     var rb = this.radioButtons[i];
     rb.domNode.setAttribute('aria-checked', 'false');
     rb.domNode.tabIndex = -1;
@@ -70,7 +70,7 @@ RadioGroup.prototype.setCheckedToPreviousItem = function (currentItem) {
 RadioGroup.prototype.setCheckedToNextItem = function (currentItem) {
   var index;
 
-   if (currentItem === this.lastRadioButton) {
+  if (currentItem === this.lastRadioButton) {
     this.setChecked(this.firstRadioButton);
   }
   else {
