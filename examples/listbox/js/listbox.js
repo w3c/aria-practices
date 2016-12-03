@@ -17,6 +17,9 @@ aria.Listbox = function (listboxNode) {
   this.activeDescendant = this.listboxNode.getAttribute('aria-activedescendant');
   this.moveUpDownEnabled = false;
   this.siblingList = null;
+  this.upButton = null;
+  this.downButton = null;
+  this.deleteButton = null;
 
   this.registerEvents();
 };
@@ -205,6 +208,27 @@ aria.Listbox.prototype.focusItem = function (element) {
   aria.Utils.addClass(element, 'focused');
   this.listboxNode.setAttribute('aria-activedescendant', element.id);
   this.activeDescendant = element.id;
+
+  if (this.deleteButton) {
+    this.deleteButton.removeAttribute('disabled');
+  }
+
+  if (this.upButton) {
+    if (element.previousElementSibling) {
+      this.upButton.removeAttribute('disabled');
+    } else {
+      this.upButton.setAttribute('disabled', '');
+    }
+  }
+
+  if (this.downButton) {
+    if (element.nextElementSibling) {
+      this.downButton.removeAttribute('disabled');
+    }
+    else {
+      this.downButton.setAttribute('disabled', '');
+    }
+  }
 };
 
 /**
@@ -258,6 +282,10 @@ aria.Listbox.prototype.deleteItems = function () {
 
     if (item.id === this.activeDescendant) {
       this.activeDescendant = null;
+      this.listboxNode.setAttribute('aria-activedescendant', null);
+      if (this.deleteButton) {
+        this.deleteButton.setAttribute('disabled', '');
+      }
     }
   }).bind(this));
 
@@ -313,10 +341,16 @@ aria.Listbox.prototype.shiftItems = function () {
   this.siblingList.addItems(itemsToMove);
 };
 
-aria.Listbox.prototype.enableMoveUpDown = function () {
+aria.Listbox.prototype.enableMoveUpDown = function (upButton, downButton) {
   this.moveUpDownEnabled = true;
+  this.upButton = upButton;
+  this.downButton = downButton;
+  upButton.addEventListener('click', this.moveUpItems.bind(this));
+  downButton.addEventListener('click', this.moveDownItems.bind(this));
 };
 
-aria.Listbox.prototype.setupDeleteDestination = function (siblingList) {
+aria.Listbox.prototype.setupDelete = function (button, siblingList) {
   this.siblingList = siblingList;
+  this.deleteButton = button;
+  button.addEventListener('click', this.shiftItems.bind(this));
 };

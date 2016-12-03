@@ -10,32 +10,17 @@ window.addEventListener('load', function () {
   var ex1Toolbar = new aria.Toolbar(ex1.querySelector('[role="toolbar"]'));
   var ex1UnimportantListbox = new aria.Listbox(document.getElementById('ss_unimp_list'));
 
-  ex1ImportantListbox.enableMoveUpDown();
-  ex1ImportantListbox.setupDeleteDestination(ex1UnimportantListbox);
-  ex1UnimportantListbox.setupDeleteDestination(ex1ImportantListbox);
-
-  document.getElementById('ex1-up')
-    .addEventListener('click', ex1ImportantListbox.moveUpItems.bind(ex1ImportantListbox));
-
-  document.getElementById('ex1-down')
-    .addEventListener('click', ex1ImportantListbox.moveDownItems.bind(ex1ImportantListbox));
-
-  document.getElementById('ex1-delete')
-    .addEventListener('click', ex1ImportantListbox.shiftItems.bind(ex1ImportantListbox));
-
-  document.getElementById('ex1-add')
-    .addEventListener('click', ex1UnimportantListbox.shiftItems.bind(ex1UnimportantListbox));
+  ex1ImportantListbox.enableMoveUpDown(
+    document.getElementById('ex1-up'),
+    document.getElementById('ex1-down')
+  );
+  ex1ImportantListbox.setupDelete(document.getElementById('ex1-delete'), ex1UnimportantListbox);
+  ex1UnimportantListbox.setupDelete(document.getElementById('ex1-add'), ex1ImportantListbox);
 
   var ex2 = document.getElementById('ex2');
   var ex2ImportantListbox = new aria.Listbox(document.getElementById('ms_imp_list'));
   var ex2UnimportantListbox = new aria.Listbox(document.getElementById('ms_unimp_list'));
 
-  ex2ImportantListbox.setupDeleteDestination(ex2UnimportantListbox);
-  ex2UnimportantListbox.setupDeleteDestination(ex2ImportantListbox);
-
-  document.getElementById('ex2-add')
-    .addEventListener('click', ex2ImportantListbox.shiftItems.bind(ex2ImportantListbox));
-
-  document.getElementById('ex2-delete')
-    .addEventListener('click', ex2UnimportantListbox.shiftItems.bind(ex2UnimportantListbox));
+  ex2ImportantListbox.setupDelete(document.getElementById('ex2-add'), ex2UnimportantListbox);
+  ex2UnimportantListbox.setupDelete(document.getElementById('ex2-delete'), ex2ImportantListbox);
 });
