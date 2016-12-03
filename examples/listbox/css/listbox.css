@@ -54,6 +54,9 @@
 	left: 0.5em;
 }
 
+button[aria-disabled="true"] {
+	opacity: 0.5;
+}
 
 .move-right-btn {
 	padding-right: 15px;
