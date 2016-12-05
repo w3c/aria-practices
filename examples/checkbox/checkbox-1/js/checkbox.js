@@ -2,7 +2,7 @@
 *   This content is licensed according to the W3C Software License at
 *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
 *
-*   File:   Checkbox-1.js
+*   File:   Checkbox.js
 *
 *   Desc:   Checkbox widget that implements ARIA Authoring Practices
 *           for a menu of links
@@ -27,7 +27,10 @@ var Checkbox = function (domNode) {
 
 Checkbox.prototype.init = function () {
   this.domNode.tabIndex = 0;
-  this.domNode.setAttribute('aria-checked', 'false');
+
+  if (!this.domNode.getAttribute('aria-checked')) {
+    this.domNode.setAttribute('aria-checked', 'false');
+  }
 
   this.domNode.addEventListener('keydown',    this.handleKeydown.bind(this));
   this.domNode.addEventListener('click',      this.handleClick.bind(this));
