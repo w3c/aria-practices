@@ -36,7 +36,9 @@ var PopupMenu = function (domNode, controllerObj, popupMenuItemObj) {
   var elementChildren,
       msgPrefix = 'PopupMenu constructor argument domNode ';
 
-  if (typeof popupMenuItemObj !== 'object') popupMenuItemObj = false;
+  if (typeof popupMenuItemObj !== 'object') {
+    popupMenuItemObj = false;
+  }
 
   // Check whether domNode is a DOM element
   if (!domNode instanceof Element) {

@@ -180,7 +180,6 @@ Menubar.prototype.setFocusByFirstCharacter = function (currentItem, char) {
     index = this.getIndexFirstChars(0, char);
   }
 
-
   // If match was found...
   if (index > -1) {
     this.setFocusToItem(this.menubarItems[ index ]);

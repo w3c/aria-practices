@@ -26,7 +26,9 @@
 */
 var MenuItem = function (domNode, menuObj) {
 
-  if (typeof popupObj !== 'object') popupObj = false;
+  if (typeof popupObj !== 'object') {
+    popupObj = false;
+  }
 
   this.domNode = domNode;
   this.menu = menuObj;
@@ -79,7 +81,6 @@ MenuItem.prototype.init = function () {
 MenuItem.prototype.isExpanded = function () {
   return this.domNode.getAttribute('aria-expanded') === 'true';
 };
-
 
 /* EVENT HANDLERS */
 
