@@ -14,7 +14,7 @@ td, th {
  padding-right: 2em;
 }
  
-th {
+thead th {
  background: transparent;  /* Darken header a bit */
  font-weight: bold;
  border-bottom: solid black thin;
