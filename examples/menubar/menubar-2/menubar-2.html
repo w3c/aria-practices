@@ -117,12 +117,7 @@
       </section>
 
   <section aria-labelledby="mb_label">
-  <h2 id="id_mbf">Menubar Widget Implementation Information</h2>
-
-    <h3>Implementation Notes</h3>
-    <ul>
-      <li>If a <code>menu</code> contains <em>more than</em> one group of <code>menuitemradio</code> widgets, each group needs to have a <code>group</code> container element.</li>    
-    </ul>
+  <h2 id="id_mbf">Menubar Widget Features</h2>
 
     <h3 id="kbd1_label">Keyboard Support</h3>
       <table aria-labelledby="kbd1_label mb_label">
@@ -134,7 +129,7 @@
         </thead>
         <tbody>
           <tr>
-            <td>Space or Enter Key</td>
+            <td><kbd>Space or Enter</kbd></td>
             <td>
               <ul>
                 <li>Opens or closes popup menu.</li>  
@@ -143,7 +138,7 @@
             </td>
           </tr>
           <tr>
-            <td>Left Arrow Key</td>
+            <td><kbd>Left Arrow</kbd></td>
             <td>
               <ul>
                 <li>Moves focus to previous menubar menu item.</li>
@@ -152,7 +147,7 @@
             </td>
           </tr>
            <tr>
-            <td>Right Arrow Key</td>
+            <td><kbd>Right Arrow</kbd></td>
             <td>
               <ul>
                 <li>Moves focus to next menubar menu item.</li>
@@ -161,7 +156,7 @@
             </td>
           </tr>
           <tr>
-            <td>Down Arrow Key</td>
+            <td><kbd>Down Arrow</kbd></td>
             <td>
               <ul>
                 <li>Opens popup menu.</li>
@@ -170,7 +165,7 @@
             </td>
           </tr>
            <tr>
-            <td>Up Arrow Key</td>
+            <td><kbd>Up Arrow</kbd></td>
             <td>
               <ul>
                 <li>Opens popup menu.</li>
@@ -179,7 +174,7 @@
             </td>
           </tr>
           <tr>
-            <td>Home</td>
+            <td><kbd>Home</kbd></td>
             <td>
               <ul>
                 <li>Moves focus to first menubar menu item.</li>
@@ -187,7 +182,7 @@
             </td>
           </tr>
            <tr>
-            <td>End</td>
+            <td><kbd>End</kbd></td>
             <td>
               <ul>
                 <li>Moves focus to last menubar menu item.</li>
@@ -195,7 +190,7 @@
             </td>
           </tr>
            <tr>
-            <td>Character Key</td>
+            <td><kbd>Character</kbd></td>
             <td><ul>
                 <li>Moves focus to next menubar item that starts with that letter.</li>
                 <li>If no menubar menu item starts with the letter, focus does not move.</li>
@@ -330,7 +325,7 @@
         </thead>
         <tbody>
           <tr>
-            <td>Space or Enter Key</td>
+            <td><kbd>Space or Enter</kbd></td>
             <td>
               <ul>
                 <li>Executes "onclick" action (e.g. bolding text, changing font).</li>
@@ -338,7 +333,7 @@
             </td>
           </tr>
           <tr>
-            <td>Escape Key</td>
+            <td><kbd>Escape</kbd></td>
             <td>
               <ul>
                 <li>Closes popup menu.</li>
@@ -347,7 +342,7 @@
             </td>
           </tr>
           <tr>
-            <td>Left Arrow Key</td>
+            <td><kbd>Left Arrow</kbd></td>
             <td>
               <ul>
                 <li>Closes popup menu.</li>
@@ -356,7 +351,7 @@
             </td>
           </tr>
            <tr>
-            <td>Right Arrow Key</td>
+            <td><kbd>Right Arrow</kbd></td>
             <td>
               <ul>
                 <li>Closes popup menu.</li>
@@ -365,7 +360,7 @@
             </td>
           </tr>
           <tr>
-            <td>Up Arrow Key</td>
+            <td><kbd>Up Arrow</kbd></td>
             <td>
               <ul>
                 <li>Moves focus to previous popup menu item.</li>
@@ -374,7 +369,7 @@
             </td>
           </tr>
            <tr>
-            <td>Down Arrow Key</td>
+            <td><kbd>Down Arrow</kbd></td>
             <td>
               <ul>
                 <li>Moves focus to next popup menu item.</li>
@@ -383,7 +378,7 @@
             </td>
           </tr>
           <tr>
-            <td>Home</td>
+            <td><kbd>Home</kbd></td>
             <td>
               <ul>
                 <li>Moves focus to first popup menu item.</li>
@@ -391,7 +386,7 @@
             </td>
           </tr>
            <tr>
-            <td>End</td>
+            <td><kbd>End</kbd></td>
             <td>
               <ul>
                 <li>Moves focus to last popup menu item.</li>
@@ -399,7 +394,7 @@
             </td>
           </tr>
            <tr>
-            <td>Character Key</td>
+            <td><kbd>Character</kbd></td>
             <td>
               <ul>
                 <li>Moves focus to the next popup item that starts with that letter.</li>
@@ -510,6 +505,7 @@
                     <li>The <code>group</code> role is important to allow the browser to compute the values of <code>aria-setsize</code> and <code>aria-posinset</code>.</li>
                     <li>No <code>tabindex</code> value is needed since the <code>ul[role="group"]</code> does not receive keyboard focus.</li>
                     <li>Accessible name is not required for <code>ul[role="group"]</code>.</li>
+                    <li>If a <code>menu</code> contains <em>more than</em> one group of <code>menuitemradio</code> widgets, each group needs to have a <code>group</code> container element.</li>   
                   </ul>  
                 </td>
             </tr>
