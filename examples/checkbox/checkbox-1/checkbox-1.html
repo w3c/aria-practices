@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Simple Two-State Checkbox Example</title>
+  <link href="../../css/core.css" rel="stylesheet">
+  <link href="../../css/table.css" rel="stylesheet">
+  <script src="../../js/examples.js" type="text/javascript"></script>
+  
+  <link href="css/checkbox.css" rel="stylesheet">
+  
+  <script src="js/checkbox.js" type="text/javascript"></script>
+</head>
+<body>
+  <main>
+    <h1>Simple Two-State <code>Checkbox</code> Example</h1>
+    <p>Example of a simple two-state checkbox that implements the  <a href="../../#checkbox">design pattern for checkbox</a>.</p>
+
+
+    <h2 id="example_label">Example Start</h2>
+    <section aria-labelledby="example_label">
+
+      <div  id="example">
+        <h3>Sandwich Condiments</h3>
+        <div>
+           <div role="checkbox" aria-checked="false"  tabindex= "0">Lettuce</div>
+           <div role="checkbox" aria-checked="true"   tabindex= "0">Tomato</div>
+           <div role="checkbox" aria-checked="false"  tabindex= "0">Mustard</div>
+           <div role="checkbox" aria-checked="false"  tabindex= "0">Sprouts</div>
+          </div>
+        </div>
+
+        <script type="text/javascript">
+          window.onload=function() {
+
+            var checkboxes = document.querySelectorAll('[role="checkbox"]');
+
+            for (var i = 0; i < checkboxes.length; i++) {
+              var cb = new Checkbox(checkboxes[i]);
+              cb.init();
+            }
+
+          }    
+        </script>
+
+      </section>
+
+    </section>
+
+    <section>
+      <h2 id="id_kbd">Keyboard Support</h2>
+      <table aria-labelledby="id_kbd"> 
+        <thead>
+          <tr>
+            <th>Key</th>
+            <th>Function</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Space or Enter Key</td>
+            <td>
+              <ul>
+                <li>Open or Close popup menu (e.g. toggle).</li>  
+              </ul>  
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      </section>
+      <section>
+    
+    <h2 id="rps_label">Role, Property, State, and Tabindex  Attributes</h2>
+    <!--
+      Update this table to describe how roles, properties, states, and tabindex are used in this example.  
+      If the content will vary significantly for the above implementations, make this a level 4 section inside each of the above level 3 implementation sections.
+    -->
+    <table aria-labelledby="rps_label">
+      <thead>
+        <tr>
+          <th>Role</th>
+          <th>Attribute</th>
+          <th>Element</th>
+          <th>Usage</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td><code>checkbox</code></td>
+            <td></td>
+            <td><code>div</code></td>
+            <td>
+              <ul>
+                <li>The <code>role=&quot;checkbox&quot;</code> attribute identifies the <code>div</code> element as a ARIA <code>checkbox</code>.</li>
+                <li>The accessible name comes the child text content of the <code>div[role=&quot;checkbox&quot; element.</li>
+                <li>The <code>checkbox</code> widget needs a <code>tabindex=&quot;0&quot;</code> value.</li>
+              </ul> 
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><code>tabindex=&quot;0&quot;</code></td>
+            <td><code>div</code></td>
+            <td>
+                <ul>
+                  <li>The <code>div[&quot;checkbox&quot;]</code> is identified as an ineractive element and is added to the tab order of the page by setting the <code>tabindex=&quot;0&quot;</code>.</li>
+                 </ul>  
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><code>aria-checked=&quot;false&quot;</code></td>
+            <td><code>div</code></td>
+            <td>
+                <ul>
+                  <li>Indentifies the <code>checkbox</code> button is <strong>not</strong> checked.</li>
+                  <li>CSS attribute selectors (e.g. <code>[aria-checked=&quot;false&quote;]</code>) are used to synchronize the visual states with the value of the <code>aria-checked</code> attribute.</li>
+                  <li>The CSS <code>:before</code> psuedo selector and the <code>content</code> property is used to indcate visual state of unchecked to support high contrast setting in operating systems and browsers.</li>
+                </ul>  
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><code>aria-checked=&quot;true&quot;</code></td>
+            <td><code>div</code></td>
+            <td>
+                <ul>
+                  <li>Indentifies the <code>checkbox</code> is checked.</li>
+                  <li>CSS attribute selectors (e.g. <code>[aria-checked=&quot;ture&quote;]</code>) are used to synchronize the visual states with the value of the <code>aria-checked</code> attribute.</li>
+                  <li>The CSS <code>:before</code> psuedo selector and the <code>content</code> property is used to indcate visual state of checked to support high contrast setting in operating systems and browsers.</li>
+                </ul>  
+            </td>
+          </tr>
+      </tbody>
+    </table>
+  
+  </section>
+  
+  <section>
+    <h2>Javascript and CSS Source Code</h2>
+    <!--  After the js and css files are named with the name of this example, change the href and text of the following 2 links to refer to the appropriate js and css files.  -->
+    <ul>
+      <li>
+        CSS:
+        <a href="css/checkbox.css" type="tex/css">checkbox.css</a>
+      </li>
+      <li>Javascript: <a href="js/checkbox.js" type="text/javascript">checkbox.js</li>
+      </ul>
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>HTML Source Code</h2>
+    <h3 id="sc1_label">Simple Two-State Checkbox Example</h3>
+    <div id="sc1_start_sep" role="separator" aria-labelledby="sc1_start_sep sc1_label" aria-label="Start of HTML for"></div>
+    <div id="sc1"></div>
+    <div id="sc1_end_sep" role="separator" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of HTML for"></div>
+
+    <script>
+        sourceCode.add('sc1', 'example');
+        sourceCode.make();
+    </script>
+  </section>
+  </main>  
+  </main>
+  
+  <nav>
+  <a href="../../#checkbox">Checkbox Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
+  </nav>
+  
+</body>
+</html>
