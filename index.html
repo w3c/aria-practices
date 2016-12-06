@@ -953,7 +953,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <a class="logo" href="https://www.w3.org/"><img width="72" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" alt="W3C"></a>
     </p>
     <h1 class="title p-name" id="title" property="dcterms:title"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Authoring Practices 1.1</h1>
-    <h2 id="w3c-editor-s-draft-02-december-2016"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2016-12-02">02 December 2016</time></h2>
+    <h2 id="w3c-editor-s-draft-06-december-2016"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2016-12-06">06 December 2016</time></h2>
     <dl>
       <dt>This version:</dt>
       <dd><a class="u-url" href="http://w3c.github.io/aria-practices/">http://w3c.github.io/aria-practices/</a></dd>
@@ -1193,6 +1193,16 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </ol>
       </li>
       <li class="tocline"><a href="#gridAndTableProperties" class="tocxref"><span class="secno">5. </span>Grid and Table Properties</a></li>
+      <li class="tocline"><a href="#presentation_role" class="tocxref"><span class="secno">6. </span>
+      Intentionally Hiding Semantics with the <code>presentation</code> Role
+    </a>
+        <ol class="toc">
+          <li class="tocline"><a href="#presentation_role_rules" class="tocxref"><span class="secno">6.1 </span>
+        Four Rules for Using Role <code>presentation</code>
+      </a></li>
+        </ol>
+      </li>
+      <li class="tocline"><a href="#children_presentational" class="tocxref"><span class="secno">7. </span>Roles That Automatically Hide Semantics by Making Their Descendants Presentational</a></li>
       <li class="tocline"><a href="#appendices" class="tocxref"><span class="secno">A. </span>Appendices</a>
         <ol class="toc">
           <li class="tocline"><a href="#ScreenReaderModes" class="tocxref"><span class="secno">A.1 </span>Understanding Screen Reader Document Reading and Application Reading Modes</a></li>
@@ -4434,6 +4444,162 @@ helper.stopEvent(evt); <span class="hljs-comment">//stop the event if not a tab 
 
     <p>
       [placeholder]. This section will cover colcount, rowcount, colindex, rowindex, colspan, rowspan, and sort. It will explain when they are useful and how to use them. It is referenced by the grid and table design patterns. This section will refer readers to the grid and table design patterns for the basics of grid and table.
+    </p>
+  </section>
+
+  <section id="presentation_role" typeof="bibo:Chapter" resource="#presentation_role" property="bibo:hasPart">
+    <!--OddPage-->
+    <h2 id="h-presentation_role" resource="#h-presentation_role"><span property="xhv:role" resource="xhv:heading"><span class="secno">6. </span> Intentionally Hiding Semantics with the <code>presentation</code> Role
+      <span class="permalink" typeof="bookmark"><a href="#presentation_role" aria-label="Permalink for 6. 
+      Intentionally Hiding Semantics with the presentation Role
+    " title="Permalink for 6. 
+      Intentionally Hiding Semantics with the presentation Role
+    " property="url"><span property="title" content="6. 
+      Intentionally Hiding Semantics with the presentation Role
+    ">§</span></a>
+      </span>
+      </span>
+    </h2>
+    <p>
+      Please provide feedback on this section in <a href="https://github.com/w3c/aria-practices/issues/176">issue 176</a>.
+    </p>
+    <p>
+      While ARIA is primarily used to express semantics, there are some situations where hiding an element’s semantics from assistive technologies is helpful. This is done with the
+      <a href="http://w3c.github.io/aria/aria/aria.html#presentation" class="role-reference">presentation</a> role, which declares that an element is being used only for presentation and therefore does not have any accessibility semantics. The ARIA 1.1 specification also includes role
+      <a href="http://w3c.github.io/aria/aria/aria.html#none" class="role-reference">none</a> , which serves as a synonym for <code>presentation</code>.
+    </p>
+    <p>
+      For example, consider a tablist built using an HTML <code>ul</code> element.
+    </p>
+    <pre class="hljs xml">    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"tablist"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"presentation"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"tab"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Tab 1<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"presentation"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"tab"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Tab 2<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"presentation"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"tab"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Tab 3<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+    </pre>
+    <p>
+      Because the list is declared to be a tablist, the list items are not in a list context. It could confuse users if an assistive technology were to render those list items. Applying role
+      <code>presentation</code> to the <code>li</code> elements tells browsers to leave those elements out of their accessibility tree. Assistive technologies will thus be unaware of the list item elements and see the tab elements as immediate children of the tablist.
+    </p>
+    <p>
+      Three common uses of role <code>presentation</code> are:
+    </p>
+    <ol>
+      <li>Hiding a presentational image.</li>
+      <li>Suppressing semantics of a layout table.</li>
+      <li>Eliminating semantics of intervening orphan elements in the structure of a composite widget, such as a tablist, menu, or tree as demonstrated in the example above.</li>
+    </ol>
+
+    <section id="presentation_role_rules" typeof="bibo:Chapter" resource="#presentation_role_rules" property="bibo:hasPart">
+      <h3 id="h-presentation_role_rules" resource="#h-presentation_role_rules"><span property="xhv:role" resource="xhv:heading"><span class="secno">6.1 </span> Four Rules for Using Role <code>presentation</code>
+        <span class="permalink" typeof="bookmark"><a href="#presentation_role_rules" aria-label="Permalink for 6.1 
+        Four Rules for Using Role presentation
+      " title="Permalink for 6.1 
+        Four Rules for Using Role presentation
+      " property="url"><span property="title" content="6.1 
+        Four Rules for Using Role presentation
+      ">§</span></a>
+        </span>
+        </span>
+      </h3>
+      <p>
+        When reading the following rules, it is important to understand that most host language elements, such as an HTML <code>h1</code> element, have an implied ARIA role and may also have implied states or properties. When rendering an <code>h1</code> element, browsers tell assistive technologies that it has ARIA role <code>heading</code> and property value <code>aria-level="1"</code>.
+      </p>
+      <p>
+        The following rules describe the result of applying role <code>presentation</code> to an element.
+      </p>
+      <ol>
+        <li>
+          Browsers ignore the <code>presentation</code> role and it therefore does not affect how assistive technology users perceive the element if either:
+          <ul>
+            <li>the element is focusable.</li>
+            <li>
+              The element has any of the
+              <a href="http://w3c.github.io/aria/aria/aria.html#global_states" class="specref">twenty-one global ARIA states and properties</a> , e.g., <code>aria-label</code>.
+            </li>
+          </ul>
+        </li>
+        <li>If not ignored, the element’s implied ARIA role and associated ARIA states and properties are hidden from assistive technologies.</li>
+        <li>
+          Text contained by the element and all its descendant elements remains visible to assistive technologies except, of course, when the text is explicitly hidden, e.g., styled with <code>display:
+            none</code> or has <code>aria-hidden="true"</code>.
+        </li>
+        <li>
+          The roles, states, and properties of all descendant elements remain visible to assistive technologies except when the descendant element is a required part of the presentational element. For example:
+          <ul>
+            <li>If the implied role of an element with role presentation is list, its listitem children inherit the presentation role.</li>
+            <li>
+              If the implied role of an element with role <code>presentation</code> is <code>table</code>, its <code>rowgroup</code> and <code>row</code> children inherit the <code>presentation</code> role. And, in turn, the <code>colheader</code>, <code>rowheader</code>, and <code>cell</code> children will then inherit the presentation role from their <code>row</code> or <code>rowgroup</code> parents.
+            </li>
+            <li>
+              Note that a table contained in the cell of a table with role <code>presentation</code> does not inherit the <code>presentation</code> role because the nested table is not a required part of the presentational table.
+            </li>
+          </ul>
+        </li>
+      </ol>
+      <p>
+        The
+        <a href="examples/presentation/PresentationRole.html">
+          <code>presentation</code> role examples page
+        </a>
+        illustrates the effects of these rules in a variety of scenarios and provides more detailed explanations of the rationale behind them.
+      </p>
+    </section>
+  </section>
+
+  <section id="children_presentational" typeof="bibo:Chapter" resource="#children_presentational" property="bibo:hasPart">
+    <!--OddPage-->
+    <h2 id="h-children_presentational" resource="#h-children_presentational"><span property="xhv:role" resource="xhv:heading"><span class="secno">7. </span>Roles That Automatically Hide Semantics by Making Their Descendants Presentational<span class="permalink" typeof="bookmark"><a href="#children_presentational" aria-label="Permalink for 7. Roles That Automatically Hide Semantics by Making Their Descendants Presentational" title="Permalink for 7. Roles That Automatically Hide Semantics by Making Their Descendants Presentational" property="url"><span property="title" content="7. Roles That Automatically Hide Semantics by Making Their Descendants Presentational">§</span></a>
+      </span>
+      </span>
+    </h2>
+    <p>
+      Please provide feedback on this section in <a href="https://github.com/w3c/aria-practices/issues/178">issue 178</a>.
+    </p>
+    <p>
+      There are some types of user interface components that, when represented in a platform accessibility API, can only contain text. For example, accessibility APIs do not have a way of representing semantic elements contained in a button. To deal with this limitation, <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> requires browsers to automatically apply role <code>presentation</code> to all descendant elements of any element with a role that cannot support semantic children.
+    </p>
+    <p>The roles that require all children to be presentational are:</p>
+    <ul>
+      <li>button</li>
+      <li>checkbox</li>
+      <li>img</li>
+      <li>math</li>
+      <li>menuitemcheckbox</li>
+      <li>menuitemradio</li>
+      <li>option</li>
+      <li>progressbar</li>
+      <li>radio</li>
+      <li>scrollbar</li>
+      <li>separator</li>
+      <li>slider</li>
+      <li>switch</li>
+      <li>tab</li>
+    </ul>
+    <p>For instance, consider the following tab element, which contains a heading.</p>
+    <pre class="hljs javascript">      &lt;li role=<span class="hljs-string">"tab"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>Title of My Tab<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span></span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span>
+    </pre>
+    <p>
+      Because <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> requires descendants of tab to be presentational, the following code is equivalent.
+    </p>
+    <pre class="hljs javascript">      &lt;li role=<span class="hljs-string">"tab"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">h3</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"presentation"</span>&gt;</span>Title of My Tab<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span></span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span>
+    </pre>
+    <p>
+      And, from the perspective of anyone using a technology that relies on an accessibility API, such as a screen reader, the heading does not exist since the previous code is equivalent to the following.
+    </p>
+    <pre class="hljs xml">      <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"tab"</span>&gt;</span>Title of My Tab<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+    </pre>
+    <p>
+      See the
+      <a href="#presentation_role">
+        section about role <code>presentation</code>
+      </a> for a detailed explanation of what it does.
     </p>
   </section>
 
