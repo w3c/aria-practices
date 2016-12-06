@@ -72,12 +72,12 @@ Menubar.prototype.init = function () {
 
   // Traverse the element children of menubarNode: configure each with
   // menuitem role behavior and store reference in menuitems array.
-  e = this.domNode.firstElementChild;
+  elem = this.domNode.firstElementChild;
 
-  while (e) {
-    var menuElement = e.firstElementChild;
+  while (elem) {
+    var menuElement = elem.firstElementChild;
 
-    if (e && menuElement && menuElement.tagName === 'A') {
+    if (elem && menuElement && menuElement.tagName === 'A') {
       menubarItem = new MenubarItem(menuElement, this);
       menubarItem.init();
       this.menubarItems.push(menubarItem);
@@ -85,7 +85,7 @@ Menubar.prototype.init = function () {
       this.firstChars.push(textContent.substring(0, 1).toLowerCase());
     }
 
-    e = e.nextElementSibling;
+    elem = elem.nextElementSibling;
   }
 
   // Use populated menuitems array to initialize firstItem and lastItem.
@@ -99,46 +99,72 @@ Menubar.prototype.init = function () {
 
 /* FOCUS MANAGEMENT METHODS */
 
-Menubar.prototype.setFocusToFirstItem = function () {
-  this.firstItem.domNode.focus();
+Menubar.prototype.setFocusToItem = function (newItem) {
+
+  var flag = false;
+
+  for (var i = 0; i < this.menubarItems.length; i++) {
+    var mbi = this.menubarItems[i];
+
+    if (mbi.domNode.tabIndex == 0) {
+      flag = mbi.domNode.getAttribute('aria-expanded') === 'true';
+    }
+
+    mbi.domNode.tabIndex = -1;
+    if (mbi.popupMenu) {
+      mbi.popupMenu.close();
+    }
+  }
+
+  newItem.domNode.focus();
+  newItem.domNode.tabIndex = 0;
+
+  if (flag && newItem.popupMenu) {
+    newItem.popupMenu.open();
+  }
 };
 
-Menubar.prototype.setFocusToLastItem = function () {
-  this.lastItem.domNode.focus();
+Menubar.prototype.setFocusToFirstItem = function (flag) {
+  this.setFocusToItem(this.firstItem);
+};
+
+Menubar.prototype.setFocusToLastItem = function (flag) {
+  this.setFocusToItem(this.lastItem);
 };
 
 Menubar.prototype.setFocusToPreviousItem = function (currentItem) {
   var index;
-  currentItem.domNode.tabIndex = -1;
 
   if (currentItem === this.firstItem) {
-    this.lastItem.domNode.focus();
-    this.lastItem.domNode.tabIndex = 0;
+    newItem = this.lastItem;
   }
   else {
     index = this.menubarItems.indexOf(currentItem);
-    this.menubarItems[ index - 1 ].domNode.focus();
-    this.menubarItems[ index - 1 ].domNode.tabIndex = 0;
+    newItem = this.menubarItems[ index - 1 ];
   }
+
+  this.setFocusToItem(newItem);
+
 };
 
 Menubar.prototype.setFocusToNextItem = function (currentItem) {
   var index;
-  currentItem.domNode.tabIndex = -1;
 
   if (currentItem === this.lastItem) {
-    this.firstItem.domNode.focus();
-    this.firstItem.domNode.tabIndex = 0;
+    newItem = this.firstItem;
   }
   else {
     index = this.menubarItems.indexOf(currentItem);
-    this.menubarItems[ index + 1 ].domNode.focus();
-    this.menubarItems[ index + 1 ].domNode.tabIndex = 0;
+    newItem = this.menubarItems[ index + 1 ];
   }
+
+  this.setFocusToItem(newItem);
+
 };
 
 Menubar.prototype.setFocusByFirstCharacter = function (currentItem, char) {
   var start, index, char = char.toLowerCase();
+  var flag = currentItem.domNode.getAttribute('aria-expanded') === 'true';
 
   // Get start index for search based on position of currentItem
   start = this.menubarItems.indexOf(currentItem) + 1;
@@ -156,9 +182,7 @@ Menubar.prototype.setFocusByFirstCharacter = function (currentItem, char) {
 
   // If match was found...
   if (index > -1) {
-    this.menubarItems[ index ].domNode.focus();
-    this.menubarItems[ index ].domNode.tabIndex = 0;
-    currentItem.tabIndex = -1;
+    this.setFocusToItem(this.menubarItems[ index ]);
   }
 };
 
@@ -171,23 +195,3 @@ Menubar.prototype.getIndexFirstChars = function (startIndex, char) {
   return -1;
 };
 
-/* MENU DISPLAY METHODS */
-
-Menubar.prototype.getPosition = function (element) {
-  var x = 0,
- y = 0;
-
-  while (element) {
-    x += (element.offsetLeft - element.scrollLeft + element.clientLeft);
-    y += (element.offsetTop - element.scrollTop + element.clientTop);
-    element = element.offsetParent;
-  }
-
-  return {x: x, y: y};
-};
-
-Menubar.prototype.open = function () {
-};
-
-Menubar.prototype.close = function (force) {
-};

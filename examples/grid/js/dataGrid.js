@@ -514,9 +514,9 @@ aria.Grid.prototype.setupIndices = function () {
 
   for (var row = 0; row < rows.length; row++) {
     var cols = rows[row].querySelectorAll(aria.GridSelector.CELL);
+    rows[row].setAttribute('aria-rowindex', row + 1);
 
     for (var col = 0; col < cols.length; col++) {
-      cols[col].setAttribute('aria-rowindex', row + 1);
       cols[col].setAttribute('aria-colindex', col + 1);
     }
 

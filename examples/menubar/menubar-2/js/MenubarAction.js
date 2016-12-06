@@ -97,42 +97,61 @@ MenubarAction.prototype.init = function () {
 
 /* FOCUS MANAGEMENT METHODS */
 
-MenubarAction.prototype.setFocusToFirstItem = function () {
-  this.firstItem.domNode.focus();
+MenubarAction.prototype.setFocusToItem = function (newItem) {
+  var flag = false;
+  var newItem;
+  console.log(newItem);
+  for (var i = 0; i < this.menubarItems.length; i++) {
+    var mbi = this.menubarItems[i];
+    if (mbi.domNode.tabIndex == 0) {
+      flag = mbi.domNode.getAttribute('aria-expanded') === 'true';}
+    console.log(flag);
+    mbi.domNode.tabIndex = -1;
+    if (mbi.popupMenu) {
+      mbi.popupMenu.close();
+    }
+  }
+  newItem.domNode.focus();
+  newItem.domNode.tabIndex = 0;
+  if (flag && newItem.popupMenu) {
+    newItem.popupMenu.open();
+  }
 };
-
-MenubarAction.prototype.setFocusToLastItem = function () {
-  this.lastItem.domNode.focus();
+MenubarAction.prototype.setFocusToFirstItem = function (flag) {
+  this.setFocusToItem(this.firstItem);
+};
+MenubarAction.prototype.setFocusToLastItem = function (flag) {
+  this.setFocusToItem(this.lastItem);
 };
 
 MenubarAction.prototype.setFocusToPreviousItem = function (currentItem) {
+
   var index;
-  currentItem.domNode.tabIndex = -1;
 
   if (currentItem === this.firstItem) {
-    this.lastItem.domNode.focus();
-    this.lastItem.domNode.tabIndex = 0;
+    newItem = this.lastItem;
   }
   else {
     index = this.menubarItems.indexOf(currentItem);
-    this.menubarItems[index - 1].domNode.focus();
-    this.menubarItems[index - 1].domNode.tabIndex = 0;
+    newItem = this.menubarItems[ index - 1 ];
   }
+
+  this.setFocusToItem(newItem);
+
 };
 
 MenubarAction.prototype.setFocusToNextItem = function (currentItem) {
   var index;
-  currentItem.domNode.tabIndex = -1;
 
   if (currentItem === this.lastItem) {
-    this.firstItem.domNode.focus();
-    this.firstItem.domNode.tabIndex = 0;
+    newItem = this.firstItem;
   }
   else {
     index = this.menubarItems.indexOf(currentItem);
-    this.menubarItems[index + 1].domNode.focus();
-    this.menubarItems[index + 1].domNode.tabIndex = 0;
+    newItem = this.menubarItems[ index + 1 ];
   }
+  this.setFocusToItem(newItem);
+
 };
 
 MenubarAction.prototype.setFocusByFirstCharacter = function (currentItem, char) {
@@ -167,26 +186,5 @@ MenubarAction.prototype.getIndexFirstChars = function (startIndex, char) {
     }
   }
   return -1;
-};
-
-/* MENU DISPLAY METHODS */
-
-MenubarAction.prototype.getPosition = function (element) {
-  var x = 0,
- y = 0;
-
-  while (element) {
-    x += (element.offsetLeft - element.scrollLeft + element.clientLeft);
-    y += (element.offsetTop - element.scrollTop + element.clientTop);
-    element = element.offsetParent;
-  }
-
-  return {x: x, y: y};
-};
-
-MenubarAction.prototype.open = function () {
-};
-
-MenubarAction.prototype.close = function (force) {
 };
 
