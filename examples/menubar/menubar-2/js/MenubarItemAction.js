@@ -104,17 +104,11 @@ MenubarItemAction.prototype.handleKeydown = function (event) {
 
     case this.keyCode.LEFT:
       this.menubar.setFocusToPreviousItem(this);
-      if (this.popupMenu) {
-        this.popupMenu.close();
-      }
       flag = true;
       break;
 
     case this.keyCode.RIGHT:
       this.menubar.setFocusToNextItem(this);
-      if (this.popupMenu) {
-        this.popupMenu.close();
-      }
       flag = true;
       break;
 
