@@ -10,6 +10,7 @@
 
     <link href="css/checkboxMixed.css" rel="stylesheet">
 
+    <script src="js/controlledCheckbox.js" type="text/javascript"></script>
     <script src="js/checkboxMixed.js" type="text/javascript"></script>
   </head>
   <body>
@@ -29,7 +30,7 @@
                   <div
                       role="checkbox"
                       class="group_checkbox"
-                      aria-checked="false"
+                      aria-checked="mixed"
                       aria-controls="cond1 cond2 cond3 cond4"
                       tabindex="0"
                   >
@@ -38,7 +39,7 @@
 
                 <ul class="checkboxes">
                   <li><label><input type="checkbox" id="cond1">Lettuce</label></li>
-                  <li><label><input type="checkbox" id="cond2">Tomato</label></li>
+                  <li><label><input type="checkbox" id="cond2" checked>Tomato</label></li>
                   <li><label><input type="checkbox" id="cond3">Mustard</label></li>
                   <li><label><input type="checkbox" id="cond4">Sprouts</label></li>
                 </ul>
