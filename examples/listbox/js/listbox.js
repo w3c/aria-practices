@@ -15,6 +15,12 @@ var aria = aria || {};
 aria.Listbox = function (listboxNode) {
   this.listboxNode = listboxNode;
   this.activeDescendant = this.listboxNode.getAttribute('aria-activedescendant');
+  this.multiselectable = this.listboxNode.hasAttribute('aria-multiselectable');
+  this.moveUpDownEnabled = false;
+  this.siblingList = null;
+  this.upButton = null;
+  this.downButton = null;
+  this.deleteButton = null;
 
   this.registerEvents();
 };
@@ -34,16 +40,36 @@ aria.Listbox.prototype.registerEvents = function () {
  *  If there is no activeDescendant, focus on the first option
  */
 aria.Listbox.prototype.setupFocus = function () {
-  var firstItem;
-
   if (this.activeDescendant) {
     return;
   }
+
+  this.focusFirstItem();
+};
+
+/**
+ * @desc
+ *  Focus on the first option
+ */
+aria.Listbox.prototype.focusFirstItem = function () {
+  var firstItem;
 
   firstItem = this.listboxNode.querySelector('[role="option"]');
 
   if (firstItem) {
     this.focusItem(firstItem);
+  }
+};
+
+/**
+ * @desc
+ *  Focus on the last option
+ */
+aria.Listbox.prototype.focusLastItem = function () {
+  var itemList = this.listboxNode.querySelectorAll('[role="option"]');
+
+  if (itemList.length) {
+    this.focusItem(itemList[itemList.length - 1]);
   }
 };
 
@@ -64,6 +90,20 @@ aria.Listbox.prototype.checkKeyPress = function (evt) {
   }
 
   switch (key) {
+    case aria.KeyCode.PAGE_UP:
+    case aria.KeyCode.PAGE_DOWN:
+      if (this.moveUpDownEnabled) {
+        evt.preventDefault();
+
+        if (key === aria.KeyCode.PAGE_UP) {
+          this.moveUpItems();
+        }
+        else {
+          this.moveDownItems();
+        }
+      }
+
+      break;
     case aria.KeyCode.UP:
     case aria.KeyCode.DOWN:
       evt.preventDefault();
@@ -78,10 +118,36 @@ aria.Listbox.prototype.checkKeyPress = function (evt) {
       if (nextItem) {
         this.focusItem(nextItem);
       }
+
+      break;
+    case aria.KeyCode.HOME:
+      evt.preventDefault();
+      this.focusFirstItem();
+      break;
+    case aria.KeyCode.END:
+      evt.preventDefault();
+      this.focusLastItem();
       break;
     case aria.KeyCode.SPACE:
       evt.preventDefault();
-      this.selectItem(nextItem);
+      this.toggleSelectItem(nextItem);
+      break;
+    case aria.KeyCode.BACKSPACE:
+    case aria.KeyCode.DELETE:
+      evt.preventDefault();
+
+      if (nextItem.nextElementSibling) {
+        nextItem = nextItem.nextElementSibling;
+      }
+      else {
+        nextItem = nextItem.previousElementSibling;
+      }
+
+      this.shiftItems();
+
+      if (!this.activeDescendant && nextItem) {
+        this.focusItem(nextItem);
+      }
       break;
   }
 };
@@ -96,7 +162,7 @@ aria.Listbox.prototype.checkKeyPress = function (evt) {
 aria.Listbox.prototype.checkClickItem = function (evt) {
   if (evt.target.getAttribute('role') === 'option') {
     this.focusItem(evt.target);
-    this.selectItem(evt.target);
+    this.toggleSelectItem(evt.target);
   }
 };
 
@@ -107,12 +173,19 @@ aria.Listbox.prototype.checkClickItem = function (evt) {
  * @param element
  *  The element to select
  */
-aria.Listbox.prototype.selectItem = function (element) {
-  if (element.hasAttribute('aria-selected')) {
+aria.Listbox.prototype.toggleSelectItem = function (element) {
+  if (this.multiselectable) {
     element.setAttribute(
       'aria-selected',
-      element.getAttribute('aria-selected') === 'false' ? 'true' : 'false'
+      element.getAttribute('aria-selected') === 'true' ? 'false' : 'true'
     );
+
+    if (this.listboxNode.querySelector('[aria-selected="true"]')) {
+      this.deleteButton.setAttribute('aria-disabled', 'false');
+    }
+    else {
+      this.deleteButton.setAttribute('aria-disabled', 'true');
+    }
   }
 };
 
@@ -143,6 +216,48 @@ aria.Listbox.prototype.focusItem = function (element) {
   aria.Utils.addClass(element, 'focused');
   this.listboxNode.setAttribute('aria-activedescendant', element.id);
   this.activeDescendant = element.id;
+
+  if (!this.multiselectable && this.deleteButton) {
+    this.deleteButton.setAttribute('aria-disabled', false);
+  }
+
+  this.checkUpDownButtons();
+};
+
+/**
+ * @desc
+ *  Enable/disable the up/down arrows based on the activeDescendant.
+ */
+aria.Listbox.prototype.checkUpDownButtons = function () {
+  var activeElement = document.getElementById(this.activeDescendant);
+
+  if (!this.moveUpDownEnabled) {
+    return false;
+  }
+
+  if (!activeElement) {
+    this.upButton.setAttribute('aria-disabled', 'true');
+    this.downButton.setAttribute('aria-disabled', 'true');
+    return;
+  }
+
+  if (this.upButton) {
+    if (activeElement.previousElementSibling) {
+      this.upButton.setAttribute('aria-disabled', false);
+    }
+    else {
+      this.upButton.setAttribute('aria-disabled', 'true');
+    }
+  }
+
+  if (this.downButton) {
+    if (activeElement.nextElementSibling) {
+      this.downButton.setAttribute('aria-disabled', false);
+    }
+    else {
+      this.downButton.setAttribute('aria-disabled', 'true');
+    }
+  }
 };
 
 /**
@@ -159,6 +274,7 @@ aria.Listbox.prototype.addItems = function (items) {
 
   items.forEach((function (item) {
     this.defocusItem(item);
+    this.toggleSelectItem(item);
     this.listboxNode.append(item);
   }).bind(this));
 
@@ -179,7 +295,7 @@ aria.Listbox.prototype.addItems = function (items) {
 aria.Listbox.prototype.deleteItems = function () {
   var itemsToDelete;
 
-  if (this.listboxNode.getAttribute('aria-multiselectable')) {
+  if (this.multiselectable) {
     itemsToDelete = this.listboxNode.querySelectorAll('[aria-selected="true"]');
   }
   else if (this.activeDescendant) {
@@ -194,11 +310,22 @@ aria.Listbox.prototype.deleteItems = function () {
     item.remove();
 
     if (item.id === this.activeDescendant) {
-      this.activeDescendant = null;
+      this.clearActiveDescendant();
     }
   }).bind(this));
 
   return itemsToDelete;
+};
+
+aria.Listbox.prototype.clearActiveDescendant = function () {
+  this.activeDescendant = null;
+  this.listboxNode.setAttribute('aria-activedescendant', null);
+
+  if (this.deleteButton) {
+    this.deleteButton.setAttribute('aria-disabled', 'true');
+  }
+
+  this.checkUpDownButtons();
 };
 
 /**
@@ -219,6 +346,8 @@ aria.Listbox.prototype.moveUpItems = function () {
   if (previousItem) {
     this.listboxNode.insertBefore(currentItem, previousItem);
   }
+
+  this.checkUpDownButtons();
 };
 
 /**
@@ -239,4 +368,54 @@ aria.Listbox.prototype.moveDownItems = function () {
   if (nextItem) {
     this.listboxNode.insertBefore(nextItem, currentItem);
   }
+
+  this.checkUpDownButtons();
+};
+
+/**
+ * @desc
+ *  Delete the currently selected items and add them to the sibling list.
+ */
+aria.Listbox.prototype.shiftItems = function () {
+  if (!this.siblingList) {
+    return;
+  }
+
+  var itemsToMove = this.deleteItems();
+  this.siblingList.addItems(itemsToMove);
+};
+
+/**
+ * @desc
+ *  Enable Up/Down controls to shift items up and down.
+ *
+ * @param upButton
+ *   Up button to trigger up shift
+ *
+ * @param downButton
+ *   Down button to trigger down shift
+ */
+aria.Listbox.prototype.enableMoveUpDown = function (upButton, downButton) {
+  this.moveUpDownEnabled = true;
+  this.upButton = upButton;
+  this.downButton = downButton;
+  upButton.addEventListener('click', this.moveUpItems.bind(this));
+  downButton.addEventListener('click', this.moveDownItems.bind(this));
+};
+
+/**
+ * @desc
+ *  Enable Delete controls. Deleting removes selected items from the current
+ *  list and adds them to the sibling list.
+ *
+ * @param button
+ *   Delete button to trigger delete
+ *
+ * @param siblingList
+ *   Listbox to add deleted items to
+ */
+aria.Listbox.prototype.setupDelete = function (button, siblingList) {
+  this.siblingList = siblingList;
+  this.deleteButton = button;
+  button.addEventListener('click', this.shiftItems.bind(this));
 };
