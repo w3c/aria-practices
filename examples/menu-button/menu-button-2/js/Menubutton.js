@@ -4,13 +4,13 @@
 *
 *   File:   Menubutton.js
 *
-*   Desc:   Menubutton widget that implements ARIA Authoring Practices
+*   Desc:   Menubutton Menuitem widget that implements ARIA Authoring Practices
 *
 *   Author: Jon Gunderson, Ku Ja Eun, Nicholas Hoyt and Brian Loh
 */
 
 /*
-*   @constructor MenuButton
+*   @constructor MenubuttonItem
 *
 *   @desc
 *       Object that configures menu item elements by setting tabIndex
@@ -28,7 +28,6 @@
 *       The DOM element node that serves as the menu item container.
 *       The menuObj PopupMenu is responsible for checking that it has
 *       requisite metadata, e.g. role="menuitem".
-*
 *
 */
 var Menubutton = function (domNode) {
@@ -60,19 +59,19 @@ Menubutton.prototype.init = function () {
   this.domNode.setAttribute('aria-haspopup', 'true');
   this.domNode.setAttribute('aria-expanded', 'false');
 
-  this.domNode.addEventListener('keydown', this.handleKeydown.bind(this));
-  this.domNode.addEventListener('click', this.handleClick.bind(this));
-  this.domNode.addEventListener('focus', this.handleFocus.bind(this));
-  this.domNode.addEventListener('blur', this.handleBlur.bind(this));
-  this.domNode.addEventListener('mouseover', this.handleMouseover.bind(this));
-  this.domNode.addEventListener('mouseout', this.handleMouseout.bind(this));
+  this.domNode.addEventListener('keydown',    this.handleKeydown.bind(this));
+  this.domNode.addEventListener('click',      this.handleClick.bind(this));
+  this.domNode.addEventListener('focus',      this.handleFocus.bind(this));
+  this.domNode.addEventListener('blur',       this.handleBlur.bind(this));
+  this.domNode.addEventListener('mouseover',  this.handleMouseover.bind(this));
+  this.domNode.addEventListener('mouseout',   this.handleMouseout.bind(this));
 
   // initialize pop up menus
 
   var popupMenu = document.getElementById(this.domNode.getAttribute('aria-controls'));
 
   if (popupMenu) {
-    this.popupMenu = new PopupMenuAction(popupMenu, this);
+    this.popupMenu = new PopupMenuLinks(popupMenu, this);
     this.popupMenu.init();
   }
 
@@ -114,7 +113,7 @@ Menubutton.prototype.handleKeydown = function (event) {
 
 Menubutton.prototype.handleClick = function (event) {
   if (this.domNode.getAttribute('aria-expanded') == 'true') {
-    this.popupMenu.close(true);
+    this.popupMenu.close();
   }
   else {
     this.popupMenu.open();
@@ -127,8 +126,6 @@ Menubutton.prototype.handleFocus = function (event) {
 
 Menubutton.prototype.handleBlur = function (event) {
   this.popupMenu.hasFocus = false;
-  setTimeout(this.popupMenu.close.bind(this.popupMenu, false), 300);
-
 };
 
 Menubutton.prototype.handleMouseover = function (event) {
