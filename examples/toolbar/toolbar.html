@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Toolbar Example | WAI-ARIA Authoring Practices 1.1</title>
+
+<!--  Core js and css shared by all examples; do not modify when using this template. -->
+<link href="../css/core.css" rel="stylesheet">
+<link href="../css/table.css" rel="stylesheet">
+<script src="../js/examples.js" type="text/javascript"></script>
+<script src="../js/utils.js" type="text/javascript"></script>
+<!--  js and css for this example. -->
+<link href="css/menuButton.css" rel="stylesheet">
+<script src="js/menuButton.js" type="text/javascript"></script>
+<link href="css/toolbar.css" rel="stylesheet">
+<script src="js/toolbar.js" type="text/javascript"></script>
+<script src="js/main.js" type="text/javascript"></script>
+</head>
+<body>
+  <main>
+  <h1>Toolbar Example</h1>
+  <p>
+    <strong>NOTE:</strong> This example is not yet complete.
+    When it is ready for review, feedback will be welcom in
+    <a href="https://github.com/w3c/aria-practices/issues/126">issue 126.</a>
+  </p>
+  <p>
+    Following is an example implementation of the
+    <a href="../../#toolbar">design pattern for toolbar</a>
+    that demonstrates how a toolbar can group buttons, links, and checkboxes into a single tab stop.
+    It also illustrates the roving tabindex method for managing focus in a composite component.
+  </p>
+  <section>
+    <h2 id="ex_label">Example</h2>
+    <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
+    <div id="ex1">
+        <div class="toolbar" role="toolbar">
+            <div class="toolbar-item selected" role="button" tabindex="0" aria-selected="true">
+                Tool 1
+            </div>
+            <div class="toolbar-item" role="button" tabindex="-1">Tool 2</div>
+            <div class="toolbar-item" role="button" tabindex="-1">Tool 3</div>
+            <div class="toolbar-item" role="button" tabindex="-1">Tool 4</div>
+            <div class="toolbar-item" role="button" tabindex="-1">Tool 5</div>
+            <div class="menu-wrapper">
+              <button
+                tabindex="-1"
+                aria-haspopup="true"
+                aria-controls="menu1"
+                class="toolbar-item menu-button">
+                Menu
+              </button>
+              <ul role="menu" id="menu1">
+                <li role="menuitem">Item 1</li>
+                <li role="menuitem">Item 2</li>
+                <li role="menuitem">Item 3</li>
+                <li role="menuitem">Item 4</li>
+                <li role="menuitem">Item 5</li>
+                <li role="menuitem">Item 6</li>
+              </ul>
+            </td>
+        </div>
+    </div>
+    <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
+  </section>
+
+  <section>
+    <h2>Accessibility Features</h2>
+    <ol>
+      <li>
+        The focus is managed using <a href="../../#kbd_roving_tabindex">roving tabindex</a>.
+      Because the control that most recently had focus has <code>tabindex=&quot;0&quot;</code>,
+      focus returns to the control that last had focus when tabbing into the toolbar.
+    </li>
+      <li>Since there is only a single disabled control, to ensure screen reader users are aware of its presence, it is focusable.</li>
+      <li>The menubutton can be opened with either <kbd>Enter</kbd> or <kbd>Down Arrow</kbd> since <kbd>Down Arrow</kbd> is not needed to navigate a horizontal toolbar.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2 id="kbd_label">Keyboard Support</h2>
+    <ul>
+      <li>
+        <kbd>Tab</kbd>: Moves focus into and out of the toolbar.
+        When focus moves into the toolbar, the first enabled control receives focus.
+        If the toolbar has previously contained focus, the control that last had focus receives focus.
+      </li>
+      <li>
+        <kbd>Left Arrow</kbd>: Moves focus to the previous control,
+        wrapping from the first control to the last.
+      </li>
+      <li>
+        <kbd>Right Arrow</kbd>: Moves focus to the next control,
+        wrapping from the last control to the first.
+      </li>
+      <li><kbd>Home</kbd>: Moves focus to the first control.</li>
+      <li><kbd>End</kbd>: Moves focus to the last control.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 id="rps_label">Role, Property, State, and Tabindex  Attributes</h2>
+    <table aria-labelledby="rps_label">
+      <thead>
+        <tr>
+          <th>Attribute</th>
+          <th>Applied to Element</th>
+          <th>Usage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th><code>role=&quot;toolbar&quot;</code></th>
+          <td><code>div</code></td>
+          <td>
+            Identifies the toolbar container for assistive technologies.
+            Because focus is managed with a roving tabindex instead of <code>aria-activedescendant</code>, the toolbar div is not focusable.
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <code>aria-label=&quot;LABEL_STRING&quot;</code>
+          </th>
+          <td><code>div</code> with <code>toolbar</code> role</td>
+          <td>
+            Since the toolbar does not have a visible label, provides an accessible label that helps screen reader users understand the purpose of the toolbar.
+            Invisible labels are used when sighted users can derive purpose from visual context.
+        </td>
+        </tr>
+        <tr>
+          <th><code>aria-disabled=&quot;true&quot;</code></th>
+          <td><code>button</code></td>
+          <td>Informs assistive technologies of the disabled state.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Javascript and CSS Source Code</h2>
+    <ul>
+      <li>
+        CSS:
+        <a href="css/toolbar.css" type="tex/css">toolbar.css</a>
+      </li>
+      <li>
+        Javascript:
+        <a href="js/toolbar.js" type="text/javascript">toolbar.js</a>
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 id="sc1_label">HTML Source Code</h2>
+    <div role="separator" id="sc1_start_sep" aria-labelledby="sc1_start_sep sc1_label" aria-label="Start of HTML for "></div>
+    <div id="sc1"></div>
+    <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of HTML for "></div>
+    <!--
+      The following script will show the reader the HTML source for the example that is in the div with ID 'ex1'.
+      It renders the HTML in the preceding div with ID 'sc1'.
+      -->
+    <script>
+      sourceCode.add('sc1', 'ex1');
+      sourceCode.make();
+    </script>
+  </section>
+  </main>
+  <nav>
+    <!--  Update the pattern_ID parameter of this link to refer to the APG design pattern section related to this example.  -->
+    <a href="../../#toolbar">Toolbar Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
+  </nav>
+</body>
+</html>

@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>ARIA Tree View: File Viewer with author supplied values for aria-setsize, aria-posinset and arial-level</title>
+
+    <link href="../../css/core.css" rel="stylesheet"> 
+    <link href="../../css/table.css" rel="stylesheet">
+    
+    <link href="css/tree-1.css" rel="stylesheet">
+
+    <script type="text/javascript" src="js/tree.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/treeItem.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/treeItemClick.js" type="text/javascript"></script>
+
+    <script src="../../js/examples.js" type="text/javascript"></script>
+  </head>
+  
+  <body>
+    <main>
+      <h1>ARIA Tree View: File Viewer with author provided values for <code>aria-setsize</code>, <code>aria-posinset</code> and <code>arial-level</code></h1>
+
+      <p>This example implements the features of an ARIA <code>tree</code> widget using <a href="../../../aria-practices.html#TreeView">ARIA Treeview Design Pattern</a> for simulation of a file selector.   This example explicitly sets the values for <code>aria-setsize</code>, <code>aria-posinset</code> and <code>arial-level</code>, which override any browser compuuted values.</p>
+
+      <section aria-labelledby="start">
+        <h2 id="start">Start Example</h2>
+        <div id="example">
+        <h3 id="tree1">File Viewer</h3>
+        <ul role="tree" aria-labelledby="tree1">
+          <li role="treeitem"
+            aria-level="1"
+            aria-setsize="3"
+            aria-posinset="1"
+            aria-expanded="false"
+            aria-label="Projects">
+            <span>
+              Projects
+            </span>
+            <ul role="group">
+              <li role="treeitem"
+                aria-level="2"
+                aria-setsize="5"
+                aria-posinset="1"
+                class="doc">
+                project-1.docx
+              </li>
+              <li role="treeitem"
+                aria-level="2"
+                aria-setsize="5"
+                aria-posinset="2"
+                class="doc">
+                project-2.docx
+              </li>
+              <li role="treeitem"
+                aria-level="2"
+                aria-setsize="5"
+                aria-posinset="3"
+                aria-expanded="false"
+                aria-label="project-3">
+                <span>
+                  project-3
+                </span>
+                <ul role="group">
+                  <li role="treeitem"
+                    aria-level="3"
+                    aria-setsize="3"
+                    aria-posinset="1"
+                    class="doc">
+                    project-3A.docx
+                  </li>
+                  <li role="treeitem"
+                    aria-level="3"
+                    aria-setsize="3"
+                    aria-posinset="2"
+                    class="doc">
+                    project-3B.docx
+                  </li>
+                  <li role="treeitem"
+                    aria-level="3"
+                    aria-setsize="3"
+                    aria-posinset="3"
+                    class="doc">
+                    project-3C.docx
+                  </li>
+                </ul>
+              </li>
+              <li role="treeitem"
+                aria-level="2"
+                aria-setsize="5"
+                aria-posinset="4"
+                class="doc">
+                project-4.docx
+              </li>
+              <li role="treeitem"
+                aria-level="2"
+                aria-setsize="5"
+                aria-posinset="5"
+                aria-expanded="false"
+                aria-label="project-5">
+                <span>
+                  project-5
+                </span>
+                <ul role="group">
+                  <li role="treeitem"
+                    aria-level="3"
+                    aria-setsize="6"
+                    aria-posinset="1"
+                    class="doc">
+                    project-5A.docx
+                  </li>
+                  <li role="treeitem"
+                    aria-level="3"
+                    aria-setsize="6"
+                    aria-posinset="2"
+                    class="doc">
+                    project-5B.docx
+                  </li>
+                  <li role="treeitem"
+                    aria-level="3"
+                    aria-setsize="6"
+                    aria-posinset="3"
+                    class="doc">
+                    project-5C.docx
+                  </li>
+                  <li role="treeitem"
+                    aria-level="3"
+                    aria-setsize="6"
+                    aria-posinset="4"
+                    class="doc">
+                    project-5D.docx
+                  </li>
+                  <li role="treeitem"
+                    aria-level="3"
+                    aria-setsize="6"
+                    aria-posinset="5"
+                    class="doc">
+                    project-5E.docx
+                  </li>
+                  <li role="treeitem"
+                    aria-level="3"
+                    aria-setsize="6"
+                    aria-posinset="6"
+                    class="doc">
+                    project-5F.docx
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li role="treeitem"
+            aria-level="1"
+            aria-setsize="3"
+            aria-posinset="2"
+            aria-expanded="false"
+            aria-label="Reports">
+            <span>
+              Reports
+            </span>
+            <ul role="group">
+              <li role="treeitem"
+                aria-level="2"
+                aria-setsize="3"
+                aria-posinset="1"
+                aria-expanded="false"
+                aria-label="report-1">
+                <span>
+                  report-1
+                </span>
+                <ul role="group">
+                  <li role="treeitem"
+                    aria-level="3"
+                    aria-setsize="3"
+                    aria-posinset="1"
+                    class="doc">
+                    report-1A.docx
+                  </li>
+                  <li role="treeitem"
+                    aria-level="3"
+                    aria-setsize="3"
+                    aria-posinset="2"
+                    class="doc">
+                    report-1B.docx
+                  </li>
+                  <li role="treeitem"
+                    aria-level="3"
+                    aria-setsize="3"
+                    aria-posinset="3"
+                    class="doc">
+                    report-1C.docx
+                  </li>
+                </ul>
+              </li>
+              <li role="treeitem"
+                aria-level="2"
+                aria-setsize="3"
+                aria-posinset="2"
+                aria-expanded="false"
+                aria-label="report-2">
+                <span>
+                  report-2
+                </span>
+                <ul role="group">
+                  <li role="treeitem"
+                    aria-level="3"
+                    aria-setsize="4"
+                    aria-posinset="1"
+                    class="doc">
+                    report-2A.docx
+                  </li>
+                  <li role="treeitem"
+                    aria-level="3"
+                    aria-setsize="4"
+                    aria-posinset="2"
+                    class="doc">
+                    report-2B.docx
+                  </li>
+                  <li role="treeitem"
+                    aria-level="3"
+                    aria-setsize="4"
+                    aria-posinset="3"
+                    class="doc">
+                    report-2C.docx
+                  </li>
+                  <li role="treeitem"
+                    aria-level="3"
+                    aria-setsize="4"
+                    aria-posinset="4"
+                    class="doc">
+                    report-2D.docx
+                  </li>
+                </ul>
+              </li>
+              <li role="treeitem"
+                aria-level="2"
+                aria-setsize="3"
+                aria-posinset="3"
+                aria-expanded="false"
+                aria-label="report-3">
+                <span>
+                  report-3
+                </span>
+                <ul role="group">
+                  <li role="treeitem"
+                    aria-level="3"
+                    aria-setsize="4"
+                    aria-posinset="1"
+                    class="doc">
+                    report-3A.docx
+                  </li>
+                  <li role="treeitem"
+                    aria-level="3"
+                    aria-setsize="4"
+                    aria-posinset="2"
+                    class="doc">
+                    report-3B.docx
+                  </li>
+                  <li role="treeitem"
+                    aria-level="3"
+                    aria-setsize="4"
+                    aria-posinset="3"
+                    class="doc">
+                    report-3C.docx
+                  </li>
+                  <li role="treeitem"
+                    aria-level="3"
+                    aria-setsize="4"
+                    aria-posinset="4"
+                    class="doc">
+                    report-3D.docx
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li role="treeitem"
+            aria-level="1"
+            aria-setsize="3"
+            aria-posinset="3"
+            aria-expanded="false"
+            aria-label="Letters">
+            <span>
+              Letters
+            </span>
+            <ul role="group">
+              <li role="treeitem"
+                aria-level="2"
+                aria-setsize="3"
+                aria-posinset="1"
+                aria-expanded="false"
+                aria-label="letter-1">
+                <span>
+                  letter-1
+                </span>
+                <ul>
+                  <li role="treeitem"
+                    aria-level="3"
+                    aria-setsize="3"
+                    aria-posinset="1"
+                    class="doc">
+                    letter-1A.docx
+                  </li>
+                  <li role="treeitem"
+                    aria-level="3"
+                    aria-setsize="3"
+                    aria-posinset="2"
+                    class="doc">
+                    letter-1B.docx
+                  </li>
+                  <li role="treeitem"
+                    aria-level="3"
+                    aria-setsize="3"
+                    aria-posinset="3"
+                    class="doc">
+                    letter-1C.docx
+                  </li>
+                </ul>
+              </li>
+              <li role="treeitem"
+                aria-level="2"
+                aria-setsize="3"
+                aria-posinset="2"
+                aria-expanded="false"
+                aria-label="letter-2">
+                <span>
+                  letter-2
+                </span>
+                <ul role="group">
+                  <li role="treeitem"
+                    aria-level="3"
+                    aria-setsize="4"
+                    aria-posinset="1"
+                    class="doc">
+                    letter-2A.docx
+                  </li>
+                  <li role="treeitem"
+                    aria-level="3"
+                    aria-setsize="4"
+                    aria-posinset="2"
+                    class="doc">
+                    letter-2B.docx
+                  </li>
+                  <li role="treeitem"
+                    aria-level="3"
+                    aria-setsize="4"
+                    aria-posinset="3"
+                    class="doc">
+                    letter-2C.docx
+                  </li>
+                  <li role="treeitem"
+                    aria-level="3"
+                    aria-setsize="4"
+                    aria-posinset="4"
+                    class="doc">
+                    letter-2D.docx
+                  </li>
+                </ul>
+              </li>
+              <li role="treeitem"
+                aria-level="2"
+                aria-setsize="3"
+                aria-posinset="3"
+                aria-expanded="false"
+                aria-label="letter-3">
+                <span>
+                  letter-3
+                </span>
+                <ul role="group">
+                  <li role="treeitem"
+                    aria-level="3"
+                    aria-setsize="4"
+                    aria-posinset="1"
+                    class="doc">
+                    letter-3A.docx
+                  </li>
+                  <li role="treeitem"
+                    aria-level="3"
+                    aria-setsize="4"
+                    aria-posinset="2"
+                    class="doc">
+                    letter-3B.docx
+                  </li>
+                  <li role="treeitem"
+                    aria-level="3"
+                    aria-setsize="4"
+                    aria-posinset="3"
+                    class="doc">
+                    letter-3C.docx
+                  </li>
+                  <li role="treeitem"
+                    aria-level="3"
+                    aria-setsize="4"
+                    aria-posinset="4"
+                    class="doc">
+                    letter-3D.docx
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <p><label>File or Folder Selected: <input id="last_action" type="output" size="15"></label></p>
+    </div>
+    </section>  
+
+     <section aria-labelledby="id_kbd">
+
+        <h2 id="tree_label">Tree Widget Implementation Information</h2>
+
+        <h3>Implementation Notes</h3>
+
+        <ul>
+          <li>Need to use CSS focus and hover classes to create focus and hover styling of the visible label for expandable <code>treeitem</code> widgets.  This requires using focus/blur and mouseover/mouseout events to apply classes to the <code>span</code> element that is used as the visible label for the <code>treeitem</code>.</li>
+          <li>This example explicitly sets the values for <code>aria-setsize</code>, <code>aria-posinset</code> and <code>arial-level</code>, which override any browser compuuted values.
+        </ul>
+             
+        <h3 id="kbd_label">Keyboard Support</h3>
+             
+        <table aria-labelledby="kbd_label">
+           <thead>
+             <tr>
+               <th style="width: 8em">Key</th>
+               <th>Function</th>
+             </tr>
+           </thead>
+           <tbody>
+             <tr>
+               <td>Up arrow Key</td>
+               <td>Moves focus to previous visible sibling <code>treeitem</code> using a depth first algorithm on the visible <code>treeitems</code>. If on first <code>treeitem</code>, focus stays on first <code>treeitem</code>.</td>
+             </tr>
+             <tr>
+               <td>Down arrow Key</td>
+               <td>Moves focus to next visible sibling <code>treeitem</code> using a depth first algorithm on the visible <code>treeitems</code>. If on last <code>treeitem</code>, focus stays on the last <code>treeitem</code>.</td>
+             </tr>            <tr>
+               <td>Left Arrow Key</td>
+               <td>
+                 <ul>
+                   <li>For a <code>treeitem</code> that is an end node (e.g. no child <code>treeitem</code>s) or is in the collapsed state (e.g. has <code>[aria-expanded=false]</code>), focus moves to the parent <code>treeitem</code>.
+                     If a top level <code>treeitem</code> (e.g. parent is <code>tree</code>), focus stays on current <code>treeitem</code>.
+                   </li>
+                   <li>For a <code>treeitem</code> that is in the expanded state (e.g. has <code>[aria-expanded=true]</code>) it toogles to the collapsed state.   Focus remains on the current <code>treeitem</code>.</li>
+                 </ul>
+               </td>
+             </tr>
+             <tr>
+               <td>Right Arrow Key</td>
+               <td>
+                 <ul>
+                   <li>For a <code>treeitem</code> that is an end node (e.g. no child <code>treeitem</code>s) focus stays on current <code>treeitem</code>.</li>
+                   <li>For a <code>treeitem</code> that is in the collapsed state (e.g. has <code>[aria-expanded=false]</code>) it toogles to the expanded state and focus moves to the first child <code>treeitem</code>.  If no child, focus stays on current <code>treeitem</code>.</li>
+                   <li>For a <code>treeitem</code> is in the expanded state, focus moves to the first child <code>treeitem</code>.
+                     If no child, focus stays on current <code>treeitem</code>.
+                   </li>
+                 </ul>
+               </td>
+             </tr>
+             <tr>
+               <td>Return Key</td>
+               <td>
+                <ul>
+                  <li>Performs the default action (e.g. onclick event) on the current <code>treeitem</code>, in this example updating the "File or Folder Selected" textbox.</li>
+                </ul>  
+                </td>
+             </tr>
+             <tr>
+               <td>Space Key</td>
+               <td>
+                  <ul>
+                    <li>Performs the default action (e.g. onclick event) on the current <code>treeitem</code>, in this example updating the "File or Folder Selected" textbox.</li>
+                  </ul>  
+                </td>
+             </tr>
+             <tr>
+               <td>Home Key</td>
+               <td>
+                <ul>
+                  <li>Moves focus to first <code>treeitem</code> in the <code>tree</code>.</li>
+                </ul>  
+                </td>
+             </tr>
+             <tr>
+               <td>End Key</td>
+               <td>
+                <ul>
+                  <li>Moves focus to last visible <code>treeitem</code> (e.g. depth first) in the <code>tree</code>.</td>
+             </tr>
+             <tr>
+               <td>a-z, A-Z</td>
+               <td>
+                 <ul>
+                   <li>Moves focus to next visible <code>treeitem</code> that starts with letter character.</li>
+                   <li>Search wraps to first <code>treeitem</code> if not found after current <code>treeitem</code>.</li>
+                 </ul>
+               </td>
+             </tr>
+             <tr>
+               <td>*</td>
+               <td>Opens all the expandable <code>treeitem</code>s in the current leaf (e.g. siblings of the current <code>treeitem</code>), keyboard focus does not change.
+               </td>
+             </tr>
+           </tbody>
+        </table>
+
+       <h3 id="rps_label">ARIA Roles, Properties and States</h3>
+
+       <table aria-labelledby="rps_label"> 
+        <thead>
+          <tr>
+            <th>Role</th>
+            <th>Attribute</th>
+            <th>Element</th>
+            <th>Usage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>tree</code></td>
+            <td></td>
+            <td><code>ul</code></td>
+            <td>
+              <ul>
+                <li>The <code>role=&quot;tree&quot;</code> attribute identifies the <code>ul</code> element as an ARIA <code>tree</code> widget.</li>
+                <li>Accessible name for the <code>tree</code> widget comes from <code>aria-label</code> attribute.</li>
+                <li>The <code>tree</code> widget does not need a <code>tabindex</code> value, since the <code>ul[role&quot;tree&quot;]</code> element never receives keyboard focus.</li>
+              </ul> 
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><code>aria-label=&quot;<em>string</em>&quot;</code></td>
+            <td><code>ul</code></td>
+            <td>
+               <ul>
+                <li>Defines an accessible name (e.g. label) for the <code>tree</code> widget.</li>
+                <li>The accessible name is important to identify the purpose of the tree in the page and uniquely identify the <code>tree</code> widget from other trees on the same page.</li>
+               </ul>
+            </td>
+          </tr>  
+          <tr>
+            <td><code>group</code></td>
+            <td></td>
+            <td><code>ul</code></td>
+            <td>
+              <ul>
+                <li>The <code>role=&quot;group&quot;</code> attribute identifies the <code>ul</code> element as a container of <code>treeitem</code> widgets for a sub-leaf of a tree.</li>
+                <li>The <code>group</code> role is important for the browser to compute <code>aria-level</code>, <code>aria-setsize</code> and <code>aria-posinset</code>.</li>
+                <li>The <code>group</code> is not required to have an accessible name.</li>
+                <li>The <code>group</code> widget does not need a <code>tabindex</code> value, since the <code>ul[role&quot;group&quot;]</code> element never receives keyboard focus.</li>
+              </ul> 
+            </td>
+          </tr>
+          <tr>
+            <td><code>treeitem</code></td>
+            <td></td>
+            <td><code>li</code></td>
+            <td>
+              <ul>
+                <li>The <code>role=&quot;treeitem&quot;</code> attribute identifies the <code>li</code> element as an ARIA <code>tree</code> widget.</li>
+                <li>Accessible name for the <code>treeitem</code> widget comes from child text content of the <code>li</code> element or an <code>aria-label</code> attribute.</li>
+              </ul> 
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><code>tabindex=&quot;-1&quot;</code></td>
+            <td><code>li</code></td>
+            <td>
+              <ul>
+                <li>Identifies the <code>treeitem</code> as an elememt that can receive keyboard focus, but will <strong>not</strong> be included in the tab order of the page.</li>
+                <li><code>tabindex=&quot;-1&quot;</code> is the default value for a <code>treeitem</code> widget.</li>
+               </ul>  
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><code>tabindex=&quot;0&quot;</code></td>
+            <td><code>li</code></td>
+            <td>
+              <ul>
+                <li>Only one <code>treeitem</code> in the same <code>tree</code> has a <code>tabindex=&quot;0&quot;</code>.</li>                
+                <li>Identifies the <code>treeitem</code> that last had keyboard focus.</li>
+                <li>The default <code>treeitem</code> with <code>tabindex=&quot;0&quot;</code> is the first <code>treeitem</code> in the <code>tree</code>.</li>
+                <li>See <a href="../../../aria-practices.html#kbd_general_within">roving tabindex</a> for more information.</li>
+               </ul>  
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><code>aria-expanded=&quot;false&quot;</code></td>
+            <td><code>li</code></td>
+            <td>
+              <ul>
+                <li>Indicates the <code>treeitem</code> descendants of the current <code>treeitem</code>s are <strong>not</strong> visible (e.g. tree sub-leaf is collapsed).</li>
+                <li>The visual state of being collapsed is synchronized with <code>aria-expanded</code> value using CSS attribute selector [<code>aria-expanded=&quot;false&quot;]</code> with the CSS <code>:before</code> psuedo selector and the CSS <code>content</code> property for displaying an image of the collapsed state.</li> 
+              </ul>  
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><code>aria-expanded=&quot;true&quot;</code></td>
+            <td><code>li</code></td>
+            <td>
+              <ul>
+                <li>Indicates the <code>treeitem</code> descendants of the current <code>treeitem</code> widgets are visible e.g. tree sub-leaf is expanded).</li>
+                <li>The visual state of being expanded is synchronized with <code>aria-expanded</code> value using CSS attribute selector [<code>aria-expanded=&quot;true&quot;]</code> with the CSS <code>:before</code> psuedo selector and the CSS <code>content</code> property for displaying an image of the expanded state.</li> 
+              </ul>  
+            </td>
+          </tr>  
+          <tr>
+            <td></td>
+            <td><code>aria-setsize=&quot;<em>number</em>&quot;</code></td>
+            <td><code>li</code></td>
+            <td>
+              <ul>
+                <li><code>aria-setsize</code> is used to indicate the number of <code>treeitem</code>s in the current leaf of the tree.</li>
+                <li>This example explicitly sets the <code>aria-setsize</code>, for each <code>treeitem</code>.</li>
+                <li>Explicitly setting <code>aria-setsize</code> will override any computed values by the browser.</li>
+              </ul>  
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><code>aria-posinset=&quot;<em>number</em>&quot;</code></td>
+            <td><code>li</code></td>
+            <td>
+              <ul>
+                <li><code>aria-posinset</code> is used to indicate the position of <code>treeitem</code>s in the current leaf of the tree.</li>
+                <li>This example explicitly sets the <code>aria-posinset</code>, for each <code>treeitem</code>.</li>
+                <li>Explicitly setting <code>aria-posinset</code> will override any computed values by the browser.</li>
+              </ul>  
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><code>aria-level=&quot;<em>number</em>&quot;</code></td>
+            <td><code>li</code></td>
+            <td>
+              <ul>
+                <li><code>aria-level</code> is used to indicate the depth of <code>treeitem</code>s in the tree structure.</li>
+                <li>This example explicitly sets the <code>aria-level</code>, for each <code>treeitem</code>.</li>
+                <li>Explicitly setting <code>aria-level</code> will override any computed values by the browser.</li>
+              </ul>  
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      
+      </section>
+
+      <h2>Source Code</h2>
+      
+      <ul>
+        <li>CSS: <a href="css/tree-1.css" type="text/css">tree-1.css</a></li>
+        <li>Javascript: <a href="js/tree.js" type="text/javascript">tree.js</a></li>
+        <li>Javascript: <a href="js/treeItem.js" type="text/javascript">treeItem.js</a></li>
+        <li>Javascript: <a href="js/treeItemClick.js" type="text/javascript">treeItemClick.js</a></li>
+      </ul>
+      
+      <div id="sc1">
+      
+      </div>
+      
+      <script>
+        sourceCode.add('sc1', 'example')
+        sourceCode.make()
+      </script>
+
+             
+    </main>    
+  </body>
+</html>

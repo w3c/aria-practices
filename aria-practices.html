@@ -28,7 +28,7 @@
     <p>This section is <em>informative.</em></p>
 
     <p>
-      The WAI-ARIA Authoring Practices Guide is intended to provide an understanding of how to use WAI-ARIA to create an accessible Rich Internet Application.
+      WAI-ARIA Authoring Practices is a guide to understanding how to use WAI-ARIA to create an accessible Rich Internet Application.
       It describes recommended WAI-ARIA usage patterns and provides an introduction to the concepts behind them.
     </p>
 
@@ -307,7 +307,7 @@
         <h4>WAI-ARIA Roles, States, and Properties</h4>
         <ul>
           <li>Breadcrumb trail is contained within a navigation landmark.</li>
-          <li>The widget should be labelled programmatically via a heading or via either <a href="#aria-label" class="property-reference">aria-label</a> or <a href="#aria-labelledby" class="property-reference">aria-labelledby</a>.
+          <li>The widget should be labelled programmatically via a heading or via either <a href="#aria-label" class="property-reference">aria-label</a> or <a href="#aria-labelledby" class="property-reference">aria-labelledby</a>.</li>
           <li>
             The link to the current page has <a href="#aria-current" class="property-reference">aria-current</a> set to <code>page</code>.
             If the element representing the current page is not a link, aria-current is optional.
@@ -339,8 +339,9 @@
           Toggle button: A two-state button that can be either off (not pressed) or on (pressed).
           To tell assistive technologies that a button is a toggle button, specify a value for the attribute <a href="#aria-pressed" class="state-reference">aria-pressed</a>.
           For example, a button labeled mute in an audio player could indicate that sound is muted by setting the pressed state true.
-          <strong>Important:</strong> the label on a toggle button should never change when the state changes.
-          In this example, when the pressed state is true, the label should not change to &quot;Unmute"&quot; or &quot;Muted.&quot;
+          <strong>Important:</strong> it is critical the label on a toggle does not change when its state changes.
+          In this example, when the pressed state is true, the label should remain “Mute” so a screen reader will say something like “Mute toggle button pressed”. 
+          Alternatively, if the design were to call for the button label to change from “Mute” to “Unmute,” the aria-pressed attribute would not be needed.
         </li>
         <li>Menu button: as described in the <a href="#menubutton">menu button pattern</a>, a button will be revealed to assistive technologies as a menu button if it has the property <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set true.</li>
       </ul>
@@ -508,7 +509,7 @@
         <h4>Example</h4>
         <p class="note">
           Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section.
-          The APG task force is developing examples for APG version 1.1 that will be directly incorporated into the guide.
+          The ARIA practices task force is developing examples for Authoring Practices 1.1 that will be directly incorporated into the guide.
         </p>
         <ul>
           <li><a href="http://developer.yahoo.com/yui/examples/container/container-ariaplugin_clean.html" rel="nofollow" target="_blank">YUI dialogs -- use first two dialog buttons</a></li>
@@ -872,8 +873,9 @@
       <section class="notoc">
           <h4>Examples</h4>
           <ul>
-            <li><a href="examples/grid/dataGrids.html">Data Grids</a>: Three example implementations of grid that include features relevant to presenting tabular information, such as content editing, sort, and column hiding. </li>
-            <li><a href="examples/grid/LayoutGrids.html">Layout Grids</a>: Three example implementations of grids that are used to lay out widgets, including a collection of navigation links, a message recipients list, and a set of search results. </li>
+            <li><a href="examples/grid/LayoutGrids.html">Layout Grids</a>: Three example implementations of grids that are used to lay out widgets, including a collection of navigation links, a message recipients list, and a set of search results.</li>
+            <li><a href="examples/grid/dataGrids.html">Data Grids</a>: Three example implementations of grid that include features relevant to presenting tabular information, such as content editing, sort, and column hiding.</li>
+            <li><a href="examples/grid/advancedDataGrid.html">Advanced Data Grid</a>: Example of a grid with behaviors and features similar to a typical spreadsheet, including cell and row selection.</li>
           </ul>
         </section>
     </section>
@@ -912,85 +914,110 @@
       <h3>Listbox</h3>
 
       <p>
-        A <a href="#listbox" class="role-reference">listbox</a> widget allows a user to select one or more items from a list of options.
+        A <a href="#listbox" class="role-reference">listbox</a> widget presents a list of options and allows a user to select one or more of them.
         A listbox that allows a single option to be chosen is a single-select listbox; one that allows multiple options to be selected is a multi-select listbox.
       </p>
       <p>
-        The contents of <code>option</code> elements in a <code>listbox</code> are reduced by browsers to static text strings that become the accessible names of the options.
-        So, <code>options</code> in a <code>listbox</code> should not contain interactive elements, such as links, buttons, or checkboxes.
-        To create a list of interactive elements, see the <a href="#grid">grid</a> pattern.
+        When screen readers present a listbox, they may render the name, state, and position of each option in the list.
+        The name of an option is a string calculated by the browser, typically from the content of the option element.
+        As a flat string, the name does not contain any semantic information.
+        Thus, if an option contains a semantic element, such as a heading, screen reader users will not have access to the semantics.
+        In addition, the interaction model conveyed by the listbox role to assistive technologies does not support interacting with elements inside of an option.
+        Because of these traits of the listbox widget, it does not provide an accessible way to present a list of interactive elements, such as links, buttons, or checkboxes.
+        To present a list of interactive elements, see the <a href="#grid">grid</a> pattern.
       </p>
       <p>
-      Authors should avoid creating options with very long names.
-       Each option name is spoken by a screen reader as a single unit of speech when the user navigates the list.
-       When a large amount information is spoken as the result of a single key press, it can be difficult to understand.
-      If the speaking of an option is interrupted, the user will typically have to re-read the entire option.
-        And, if the user does not understand what is spoken, re-reading of a listbox option name by character, word, or phrase may be a difficult operation for some screen reader users because the screen reader is in an interactive mode, rather than a reading mode, when operating a widget like a listbox.
+        Avoiding very long option names facilitates understandability and perceivability for screen reader users. 
+        The entire name of an option is spoken as a single unit of speech when the option is read.
+        When too much information is spoken as the result of a single key press, it is difficult to understand.
+        Long names inhibit perception by increasing the impact of interrupted speech because users typically have to re-read the entire option.
+      And, if the user does not understand what is spoken, reading the name by character, word, or phrase may be a difficult operation for many screen reader users in the context of a listbox widget.
       </p>
       <p>
-        Authors should also avoid creating sets of options where each option name starts with the same word or phrase.
-        Otherwise, scrolling through the list to find a specific option becomes inordinately time consuming for a screen reader user who must listen to that word or phrase repeated before hearing what is unique about each option.
+        Sets of options where each option name starts with the same word or phrase can also significantly degrade usability for keyboard and screen reader users.
+        Scrolling through the list to find a specific option becomes inordinately time consuming for a screen reader user who must listen to that word or phrase repeated before hearing what is unique about each option.
         For example, if a listbox for choosing a city were to contain options where each city name were preceded by a country name, and if many cities were listed for each country, a screen reader user would have to listen to the country name before hearing each city name.
         In such a scenario, it would be better to have 2 list boxes, one for country and one for city.
       </p>
-
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
+        <p>For a vertically oriented listbox:</p>
         <ul>
           <li> When a single-select listbox receives focus:
             <ul>
-              <li>If none of the options are selected before the listbox receives focus, the first option receives focus. The author may choose to have the first option automatically selected. </li>
+              <li>If none of the options are selected before the listbox receives focus, the first option receives focus. Optionally, the first option may be automatically selected.</li>
               <li>If an option is selected before the listbox receives focus, focus is set on the selected option. </li>
             </ul>
           </li>
           <li>When a multi-select listbox receives focus:
             <ul>
-              <li>If none of the options are selected before the listbox receives focus, focus is set on the first option. The option should not be selected when it receives focus.</li>
+              <li>If none of the options are selected before the listbox receives focus, focus is set on the first option and there is no automatic change in the selection state.</li>
               <li>If one or more options are selected before the listbox receives focus, focus is set on the first option in the list that is selected.</li>
             </ul>
           </li>
-          <li><kbd>Up Arrow</kbd> and <kbd>Down Arrow</kbd>: Move focus to the previous and next option, respectively. If it is a single-select listbox, the selection state moves with the focus.</li>
-           <li><kbd>Home</kbd> and <kbd>End</kbd> (Optional): Move focus to first and last option, respectively. If it is a single-select listbox, the selection state moves with the focus. Strongly recommended for lists with more than five options.</li>
-          <li>Type-ahead is strongly recommended for all lists, but  essential for long lists (typically more than five options):
+          <li><kbd>Down Arrow</kbd>: Moves focus to the next option. Optionally, in a single-select listbox, selection may also move with focus.</li>
+          <li><kbd>Up Arrow</kbd>: Moves focus to the previous option. Optionally, in a single-select listbox, selection may also move with focus.</li>
+           <li><kbd>Home</kbd> (Optional): Moves focus to first option. Optionally, in a single-select listbox, selection may also move with focus. Supporting this key is strongly recommended for lists with more than five options.</li>
+           <li><kbd>End</kbd> (Optional): Moves focus to last option. Optionally, in a single-select listbox, selection may also move with focus. Supporting this key is strongly recommended for lists with more than five options.</li>
+          <li>Type-ahead is recommended for all listboxes, especially those with more than seven options:
             <ul>
               <li>Type a character: focus moves to the next item with a name that starts with the typed character.</li>
               <li>Type multiple characters in rapid succession: focus moves to the next item with a name that starts with the string of characters typed.</li>
             </ul>
           </li>
           <li><strong>Multiple Selection</strong>:
-          Authors may implement either of two interaction models to support multiple selection: a recommended model that does not require the user to hold a modifier key, such as <kbd>Shift</kbd> or <kbd>Control</kbd>, while navigating the list
-          or an alternative model that does require modifier keys to be held while navigating in order to avoid losing selection states.
+            Authors may implement either of two interaction models to support multiple selection: 
+            a recommended model that does not require the user to hold a modifier key, such as <kbd>Shift</kbd> or <kbd>Control</kbd>, while navigating the list
+            or an alternative model that does require modifier keys to be held while navigating in order to avoid losing selection states.
             <ul>
               <li>Recommended selection model -- holding modifier keys is not necessary:
                 <ul>
                   <li><kbd>Space</kbd>: changes the selection state of the focused option .</li>
-                  <li><kbd>Shift + Up Arrow</kbd> and <kbd>Shift + Down Arrow</kbd> (optional): move focus to and select the previous and next option, respectively.</li>
-                  <li><kbd>Shift + Space</kbd> (Optional): selects contiguous items from the last   selected item to the current item. </li>
-                  <li><kbd>Control + Shift + Home</kbd> (Optional): selects the option with focus and all options up to the beginning of the list.</li>
-                  <li><kbd>Control + Shift + End</kbd> (Optional): selects the option with focus and all options down to the end of the list.</li>
-                  <li><kbd>Control + A</kbd> (Optional): selects all options in the list.</li>
+                  <li><kbd>Shift + Down Arrow</kbd> (Optional): Moves focus to and selects the next option.</li>
+                  <li><kbd>Shift + Up Arrow</kbd> (Optional): Moves focus to and selects the previous option.</li>
+                  <li><kbd>Shift + Space</kbd> (Optional): Selects contiguous items from the most recently selected item to the focused item.</li>
+                  <li><kbd>Control + Shift + Home</kbd> (Optional): Selects the focused option and all options up to the first option.</li>
+                  <li><kbd>Control + Shift + End</kbd> (Optional): Selects the focused option and all options down to the last option.</li>
+                  <li><kbd>Control + A</kbd> (Optional): Selects all options in the list. Optionally, if all options are selected, it may also unselect all options.</li>
                 </ul>
               </li>
-              <li>Alternative selection model -- modifier keys must be held down to maintain selected states when navigating):
-                <ul>
-                  <li><kbd>Shift + Up Arrow</kbd> and <kbd>Shift + Down Arrow</kbd>: move focus to and select the previous and next option, respectively.</li>
-                  <li><kbd>Control + Up Arrow</kbd> and <kbd>Control + Down Arrow</kbd>: Without changing the selection state, move focus to the previous and next option, respectively. </li>
+              <li>Alternative selection model -- moving focus without holding a <kbd>Shift</kbd> or <kbd>Control</kbd> modifier unselects all selected nodes except the focused node: 
+              <ul>
+                  <li><kbd>Shift + Down Arrow</kbd>: Moves focus to and toggles the selection state of the next option.</li>
+                  <li><kbd>Shift + Up Arrow</kbd>: Moves focus to and toggles the selection state of the previous option.</li>
+                  <li><kbd>Control + Down Arrow</kbd>: Moves focus to the next option without changing its selection state.</li>
+                  <li><kbd>Control + Up Arrow</kbd>: Moves focus to the previous option without changing its selection state.</li>
                   <li><kbd>Control + Space</kbd> Changes the selection state of the focused option. </li>
-                  <li><kbd>Up Arrow</kbd> and <kbd>Down Arrow</kbd>: Remove all selected states and move focus to the previous and next option, respectively. </li>
-                  <li><kbd>Home</kbd> and <kbd>End</kbd> (Optional): Remove all selected states and move focus to the first and last option, respectively. </li>
-                  <li><kbd>Shift + Space</kbd> (Optional): selects contiguous items from the last   selected item to the current item. </li>
-                  <li><kbd>Control + Shift + Home</kbd> (Optional): selects the option with focus and all options up to the beginning of the list.</li>
-                  <li><kbd>Control + Shift + End</kbd> (Optional): selects the option with focus and all options down to the end of the list.</li>
-                  <li><kbd>Control + A</kbd> (Optional): selects all options in the list.</li>
+                  <li><kbd>Shift + Space</kbd> (Optional): Selects contiguous items from the most recently selected item to the focused item.</li>
+                  <li><kbd>Control + Shift + Home</kbd> (Optional): Selects the focused option and all options up to the first option.</li>
+                  <li><kbd>Control + Shift + End</kbd> (Optional): Selects the focused option and all options down to the last option.</li>
+                  <li><kbd>Control + A</kbd> (Optional): Selects all options in the list. Optionally, if all options are selected, it may also unselect all options.</li>
                 </ul>
               </li>
             </ul>
           </li>
         </ul>
         <ol class="note">
-        <li>If the ability to select or deselect all options may be commonly needed, it is recommended that the author add separate controls to perform these actions. </li>
-        <li>Focus (the active element) is different from the selected state. See <a href="#focus_vs_selection">to be written</a>. </li>
-        <li>The listbox role supports the <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property, which provides an alternative to moving DOM focus among options when scrolling. For details, see <a href="#using_activedescendant">to be written</a>. </li>
+          <li>DOM focus (the active element) is functionally distinct from the selected state. For more details, see <a href="#kbd_focus_vs_selection">this description of differences between focus and selection.</a></li>
+          <li>
+            The <code>listbox</code> role supports the <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property, 
+            which provides an alternative to moving DOM focus among <code>treeitem</code> elements when implementing keyboard navigation. 
+            For details, see <a href="#kbd_focus_activedescendant">Managing Focus in Composites Using aria-activedescendant</a>.
+          </li>
+          <li>
+            In a single-select listbox, moving focus may optionally unselect the previously selected option and select the newly focused option.
+            This model of selection is known as &quot;selection follows focus&quot;.
+            Having selection follow focus can be very helpful in some circumstances and can severely degrade accessibility in others.
+For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding When to Make Selection Automatically Follow Focus</a>.
+          </li>
+          <li>If selecting or unselecting all options is an important function, implementing separate controls for these actions, such as buttons for &quot;Select All&quot; and &quot;Unselect All&quot;, significantly improves accessibility.</li>
+        <li>
+            If the options in a listbox are arranged horizontally:
+            <ol>
+              <li><kbd>Down Arrow</kbd> performs as <kbd>Right Arrow</kbd> is described above, and vice versa.</li>
+              <li><kbd>Up Arrow</kbd> performs as <kbd>Left Arrow</kbd> is described above, and vice versa.</li>
+            </ol>
+          </li>
         </ol>
       </section>
 
@@ -1000,21 +1027,25 @@
           <li>An element that contains or owns all the listbox options has role <a href="#listbox" class="role-reference">listbox</a>.</li>
           <li>Each option in the listbox has role <a href="#option" class="role-reference">option</a> and is a DOM  descendant of the element with role <code>listbox</code> or is referenced by an <a href="#aria-owns" class="property-reference">aria-owns</a> property on the listbox element.</li>
           <li>If the listbox is not part of another widget, then it has a visible label referenced by <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> on the element with role <code>listbox</code>.</li>
-          <li>The selected option has <a href="#aria-selected" class="property-reference">aria-selected</a> set to <code>true</code>. </li>
+          <li>In a single-select listbox, the selected option has <a href="#aria-selected" class="property-reference">aria-selected</a> set to <code>true</code>. </li>
           <li>if the listbox supports multiple selection:
-          <ul>
-          <li> The element with role <code>listbox</code> has <a href="#aria-multiselectable" class="property-reference">aria-multiselectable</a> set to <code>true</code>. </li>
-          <li>All selected options have <a href="#aria-selected" class="state-reference">aria-selected</a> set to <code>true</code>. </li>
-          <li>All options that are not selected have <a href="#aria-selected" class="state-reference">aria-selected</a> set to <code>false</code>. </li>
-          </ul>
+            <ul>
+              <li> The element with role <code>listbox</code> has <a href="#aria-multiselectable" class="property-reference">aria-multiselectable</a> set to <code>true</code>. </li>
+              <li>All selected options have <a href="#aria-selected" class="state-reference">aria-selected</a> set to <code>true</code>. </li>
+              <li>All options that are not selected have <a href="#aria-selected" class="state-reference">aria-selected</a> set to <code>false</code>. </li>
+            </ul>
+          </li>
           <li>If the complete set of available options is not present in the DOM due to dynamic loading as the user scrolls, their <a href="#aria-setsize" class="property-reference">aria-setsize</a> and <a href="#aria-posinset" class="property-reference">aria-posinset</a> attributes are set appropriately. </li>
+          <li>
+            If options are arranged horizontally, the element with role <code>listbox</code> has <a href="#aria-orientation" class="property-reference">aria-orientation</a> set to <code>horizontal</code>.
+            The default value of <code>aria-orientation</code> for <code>listbox</code> is <code>vertical</code>.
           </li>
         </ul>
       </section>
 
       <section class="notoc">
         <h4>Example</h4>
-        <p class="ednote">Add link to example</p>
+        <p><a href="examples/listbox/listbox.html">Listbox Examples:</a> Two examples of the listbox pattern demonstrating differences between single-select and multi-select implementation as well as the use of action buttons with key shortcuts for arranging items in a list.</p>
       </section>
     </section>
 
@@ -1035,42 +1066,112 @@
 
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
-        <p>When a menu opens and its items are arranged vertically:</p>
+        <p>
+          The following description of keyboard behaviors assumes:</p>
+          <ol>
+            <li>A horizontal <code>menubar</code> containing several <code>menuitem</code> elements.</li>
+            <li>All items in the <code>menubar</code> have child submenus that contain multiple vertically arranged items.</li> 
+            <li>Some of the <code>menuitem</code> elements in the submenus have child submenus with items that are also vertically arranged.</li>
+          </ol>
+          <p>When reading the following descriptions, also keep in mind that:</p>
+          <ol>
+            <li>Focusable elements, which may have role <code>menuitem</code>, <code>menuitemradio</code>, or <code>menuitemcheckbox</code>, are referred to as items.</li>
+            <li>If a behavior applies to only certain types of items, e.g., <code>menuitem</code> elements, the specific role name is used.</li>
+            <li>Submenus, also known as pop-up menus,  are elements with role <code>menu</code>.</li>
+            <li>Except where noted, menus opened from a menubutton behave the same as menus opened from a menubar.</li>
+          </ol>
         <ul>
-          <li>Keyboard focus is placed on the first item. All items in a menu are focusable as described in <a href="#kbd_general_within"></a>.</li>
-          <li><kbd>Enter</kbd> and optionally <kbd>Space</kbd>: activate the menu item with focus (perform the  command or open the submenu associated with the menu item). </li>
-          <li><kbd>Down Arrow</kbd> and <kbd>Up Arrow</kbd>: move focus to the next and previous items, respectively, optionally wrapping from last to first and vice versa. </li>
-          <li><kbd>Home</kbd> and <kbd>End</kbd>: If arrow key wrapping is not supported, move focus to first and last items.</li>
-          <li><kbd>Right Arrow</kbd>: Perform the first of the following actions that applies:
+          <li>
+            When a <code>menu</code> opens, or when a <code>menubar</code> receives focus, 
+            keyboard focus is placed on the first item.
+            All items are focusable as described in <a href="#kbd_general_within"></a>.
+          </li>
+          <li><kbd>Enter</kbd>: 
             <ul>
-              <li>If the menu item with focus opens a submenu, open the submenu and place focus on the first item in the submenu. </li>
-              <li>If the menu item with focus is contained in a submenu opened from an item in a menubar, close the current menu and open the submenu associated with the next item in the menubar that has an associated submenu. </li>
-              <li>Either move focus to the next item in the current menu or do nothing. </li>
+              <li>When focus is on a <code>menuitem</code> that has a submenu, opens the submenu and places focus on its first item.</li>
+              <li>Otherwise, activates the item and closes the menu.</li>
             </ul>
           </li>
-          <li><kbd>Left Arrow</kbd>: Perform the first of the following actions that applies:
+          <li><kbd>Space</kbd>: 
             <ul>
-              <li>If the menu item with focus is contained in a submenu opened from an item in a menubar, close the current menu and open the submenu associated with the previous item in the menubar that has an associated submenu. </li>
-              <li>If the menu item with focus is contained in a submenu, close the current menu and place focus on the menu item from which the submenu was opened. </li>
-              <li>Either move focus to the previous item in the current menu or do nothing. </li>
+              <li>When focus is on a <code>menuitemcheckbox</code>, changes the state without closing the menu.</li>
+              <li>When focus is on a <code>menuitemradio</code> that is not checked, without closing the menu, checks the focused <code>menuitemradio</code> and unchecks any other checked <code>menuitemradio</code> element in the same group.</li>
+              <li>(Optional): When focus is on a <code>menuitem</code> that has a submenu, opens the submenu and places focus on its first item.</li>
+              <li>(Optional): When focus is on a <code>menuitem</code> that does not have a submenu, activates the <code>menuitem</code> and closes the menu.</li>
             </ul>
           </li>
-          <li>Any key that corresponds to a printable character: Move focus to   the next menu item in the current menu whose label begins with that printable character. </li>
-          <li><kbd>Escape</kbd>: Close the menu and return focus to   the element or context, e.g., menu button or parent menu item, from which the menu was opened. </li>
-          <li><kbd>Tab</kbd>: Close the menu and all open parent menus and move focus to the next element in the tab sequence.</li>
-          <li><kbd>Shift + Tab</kbd>: Close the menu and all open parent menus and move focus to the previous element in the tab sequence.</li>
+          <li><kbd>Down Arrow</kbd>:
+            <ul> 
+              <li>When focus is on a <code>menuitem</code> in a <code>menubar</code>, opens its submenu and places focus on the first item in the submenu.</li>
+            <li>When focus is in a <code>menu</code>, moves focus to the next item, optionally wrapping from the last to the first.</li>
+            </ul>
+          </li>
+          <li><kbd>Up Arrow</kbd>:
+            <ul> 
+            <li>When focus is in a <code>menu</code>, moves focus to the previous item, optionally wrapping from the first to the last.</li>
+            <li>When focus is in a <code>menubar</code>, does nothing.</li>
+            </ul>
+          </li>
+          <li><kbd>Right Arrow</kbd>: 
+            <ul>
+            <li>When focus is in a <code>menubar</code>, moves focus to the next item, optionally wrapping from the last to the first.</li>
+              <li>When focus is in a <code>menu</code> and on a <code>menuitem</code> that has a submenu, opens the submenu and places focus on its first item.</li>
+              <li>When focus is in a <code>menu</code> and on an item that does not have a submenu, performs the following 3 actions:
+              <ol>
+                  <li>Closes the submenu and any parent menus.</li>
+                  <li>Moves focus to the next <code>menuitem</code> in the <code>menubar</code>.</li>
+                  <li>
+                    Either: (Recommended) opens the submenu of that <code>menuitem</code> without moving focus into the submenu,
+                    or opens the submenu of that <code>menuitem</code> and places focus on the first item in the submenu.
+                  </li>
+                </ol>
+                Note that if the <code>menubar</code> were not present, e.g., the menus were opened from a menubutton, <kbd>Right Arrow</kbd> would not do anything when focus is on an item that does not have a submenu.
+              </li>
+            </ul>
+          </li>
+          <li><kbd>Left Arrow</kbd>:
+            <ul>
+              <li>When focus is in a <code>menubar</code>, moves focus to the previous item, optionally wrapping from the last to the first.</li>
+              <li>When focus is in a submenu of an item in a <code>menu</code>, closes the submenu and returns focus to the parent <code>menuitem</code>.</li>
+              <li>When focus is in a submenu of an item in a <code>menubar</code>, performs the following 3 actions:
+                <ol>
+                  <li>Closes the submenu.</li>
+                  <li>Moves focus to the previous <code>menuitem</code> in the <code>menubar</code>.</li>
+                  <li>
+                    Either: (Recommended) opens the submenu of that <code>menuitem</code> without moving focus into the submenu,
+                    or opens the submenu of that <code>menuitem</code> and places focus on the first item in the submenu.
+                  </li>
+                </ol> 
+              </li>
+            </ul>
+          </li>
+          <li><kbd>Home</kbd>: If arrow key wrapping is not supported, moves focus to the first item in the current <code>menu</code> or <code>menubar</code>.</li>
+          <li><kbd>End</kbd>: If arrow key wrapping is not supported, moves focus to the last item in the current <code>menu</code> or <code>menubar</code>.</li>
+          <li>Any key that corresponds to a printable character (Optional): Move focus to   the next menu item in the current menu whose label begins with that printable character.</li>
+          <li><kbd>Escape</kbd>: Close the menu that contains focus and return focus to   the element or context, e.g., menu button or parent <code>menuitem</code>, from which the menu was opened. </li>
+          <li><kbd>Tab</kbd>: Moves focus to the next element in the tab sequence, and if the item that had focus is not in a <code>menubar</code>, closes its <code>menu</code> and all open parent <code>menu</code> containers.</li>
+          <li><kbd>Shift + Tab</kbd>: Moves focus to the previous element in the tab sequence, and if the item that had focus is not in a <code>menubar</code>, closes its <code>menu</code> and all open parent <code>menu</code> containers.</li>
         </ul>
         <ol class="note">
-          <li>The keyboard behaviors of a menubar are the same as other menus except that a menubar is typically visually persistent so the first item is in the tab sequence and <kbd>Escape</kbd>, <kbd>Tab</kbd>, and <kbd>Shift + Tab</kbd> do not close it. </li>
-          <li>If the items in a menu or menubar are arranged horizontally:
+          <li>Disabled menu items are focusable but cannot be activated. </li>
+          <li>A <a href="#separator" class="role-reference">separator</a> in a menu is not focusable or interactive.</li>
+          <li>
+            If a menu is opened or a menubar receives focus as a result of a context action, <kbd>Escape</kbd> or <kbd>Enter</kbd> may return focus to   the invoking context. 
+            For example, a rich text editor may have a menubar that receives focus when a shortcut key, e.g., <kbd>alt + F10</kbd>, is pressed while editing. 
+            In this case, pressing <kbd>Escape</kbd> or activating a command from the menu may return focus to the editor.
+          </li>
+          <li>
+            Although it is recommended that authors avoid doing so, some implementations of navigation menubars may have <code>menuitem</code> elements that both perform a function and open a submenu.
+            In such implementations, <kbd>enter</kbd> and <kbd>Space</kbd> perform a navigation function, e.g., load new content,
+            while <kbd>Down Arrow</kbd>, in a horizontal menubar, opens the submenu associated with that same <code>menuitem</code>.
+          </li>
+          <li>
+            When items in a <code>menubar</code> are arranged vertically and items in <code>menu</code> containers are arranged horizontally:
             <ol>
-              <li> <kbd>Right Arrow</kbd> performs as <kbd>Down Arrow</kbd> is described above and vice versa. </li>
-              <li> <kbd>Left Arrow</kbd> performs as <kbd>Up Arrow</kbd> is described above and vice versa. </li>
+              <li><kbd>Down Arrow</kbd> performs as <kbd>Right Arrow</kbd> is described above, and vice versa.</li>
+              <li><kbd>Up Arrow</kbd> performs as <kbd>Left Arrow</kbd> is described above, and vice versa.</li>
             </ol>
           </li>
-          <li>Disabled menu items should be focusable but can not be activated. </li>
-          <li>A <a href="#separator" class="role-reference">separator</a> in a menu is not focusable or interactive.</li>
-          <li>If a menu is opened or a menubar receives focus as a result of a context action, <kbd>Escape</kbd> may return focus to   the invoking context. For example, a rich text editor may have a menubar that receives focus when a shortcut key, e.g., <kbd>alt + F10</kbd>, is pressed while editing. In this case, <kbd>Escape</kbd> may return focus to the editor. </li>
         </ol>
       </section>
 
@@ -1102,11 +1203,9 @@
 
       <section class="notoc">
         <h4>Example</h4>
-        <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG task force is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
-
         <ul>
-          <li><a href="http://www.oaa-accessibility.org/examplep/menubar1/" target="_blank">Open Ajax Alliance Menu bar</a></li>
-          <li><a href="http://www.oaa-accessibility.org/examplep/menubar2/" target="_blank">Open Ajax Alliance Menu bar using CSS selectors</a></li>
+          <li><a href="examples/menubar/menubar-1/menubar-1.html">Navigation Menubar</a>: Demonstrates a menubar that provides site navigation.</li>
+          <li><a href="examples/menubar/menubar-2/menubar-2.html">Editor Menubar</a>: Demonstrates menu radios and menu checkboxes in submenus of a menubar that provides text formatting commands for a text field.</li>
         </ul>
       </section>
     </section>
@@ -1141,6 +1240,7 @@
         <ul>
           <li><a href="examples/menu-button/menu-button-1.html">Menu button with popup menu for actions</a></li>
           <li><a href="examples/menu-button/menu-button-2.html">Menu button with popup menu for links</a></li>
+        </ul>
       </section>
     </section>
 
@@ -1158,6 +1258,7 @@
                                 checked radio button. If none of the radio buttons are checked, they
                                 move focus to the first radio button in the group.</li>
                         </ul>
+                    </li>
                     <li>When focus is on a radio button in a radio group:
                         <ul>
                             <li><kbd>Tab</kbd>: moves focus to the element in the page tab
@@ -1175,6 +1276,7 @@
                                 focused button, and check the newly focused button. If focus is on
                                 the first button, focus moves to the last button.</li>
                         </ul>
+                    </li>
                 </ul>
                 <p class="note">
                     The behavior of the <kbd>Tab</kbd> key described above differs slightly from the
@@ -1228,9 +1330,10 @@
 
             <section class="notoc">
                 <h4>Example</h4>
-                <p>
-                    <a href="examples/radio/radio.html">Radio Group Examples</a>
-                </p>
+                <ul>
+                    <li><a href="examples/radio/radio-1/radio-1.html">Radio group example using roving tabindex.</a></li>
+                    <li><a href="examples/radio/radio-2/radio-2.html">Radio group example using managed focus with <code>aria-activedescendant</code>.</a></li>
+                </ul>
             </section>
 
         </section>
@@ -1322,7 +1425,7 @@
 
       <section class="notoc">
         <h4>Example</h4>
-        <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG task force is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
+        <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The ARIA practices task force is developing examples for Authoring Practices version 1.1 that will be directly incorporated into the guide.</p>
 
         <ul>
           <li><a href="http://www.oaa-accessibility.org/examplep/slider1/" target="_blank" rel="nofollow">Open Ajax Alliance Sliders</a> (see second example on page)</li>
@@ -1337,7 +1440,7 @@
 
       <p>A spin button provides ways to easily increment and decrement the value. If the range is large, it may support changing the value by both a single step and by multiple steps at once. For instance, in the alarm example, the user may be able to move by 1 minute with the arrow keys and by 10 minutes with PageUp and PageDown.</p>
 
-      <p>A spinbutton usually includes a text field that displays the current value and allows users to directly edit it.</p> </td>
+      <p>A spinbutton usually includes a text field that displays the current value and allows users to directly edit it.</p>
 
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
@@ -1364,7 +1467,7 @@
 
       <section class="notoc">
         <h4>Example</h4>
-        <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG task force is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
+        <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The ARIA practices task force is developing examples for Authoring Practices 1.1 that will be directly incorporated into the guide.</p>
         <ul>
           <li><a href="http://www.oaa-accessibility.org/examplep/spinbutton1/" rel="nofollow" target="_blank">Open Ajax Alliance Spinbutton</a></li>
           <li><a href="http://archive.dojotoolkit.org/nightly/dojotoolkit/dijit/tests/form/test_Spinner.html" rel="nofollow">dojo/dijit nightly build</a></li>
@@ -1493,7 +1596,6 @@
 
     <section class="widget" id="toolbar">
       <h3>Toolbar</h3>
-
       <p>A <a class="role-reference" href="#toolbar">toolbar</a> is a container for grouping a set of controls, such as buttons, menubuttons, or checkboxes.</p>
       <p>
         When a set of controls is visually presented as a group, the <code>toolbar</code> role can be used to communicate the presence and purpose of the grouping to screen reader users.
@@ -1508,7 +1610,6 @@
 
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
-
         <ul>
           <li>
             <kbd>Tab</kbd>: Moves focus into and out of the toolbar.
@@ -1545,10 +1646,7 @@
 
       <section class="notoc">
         <h4>Example</h4>
-        <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG task force is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
-        <ul>
-          <li><a href="http://www.oaa-accessibility.org/examplep/toolbar1/" target="_blank" rel="nofollow">Open Ajax Alliance toolbar</a></li>
-        </ul>
+        <p><a href="examples/toolbar/toolbar.html">Toolbar Example</a>: A toolbar including buttons, links, and checkboxes that uses roving tabindex to manage focus.</p>
       </section>
     </section>
 
@@ -1583,7 +1681,7 @@
 
       <section class="notoc">
         <h4>Example</h4>
-        <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG task force is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
+        <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The ARIA practices task force is developing examples for Authoring Practices 1.1 that will be directly incorporated into the guide.</p>
         <ul>
           <li><a href="http://www.oaa-accessibility.org/examplep/tooltip1/" target="_blank" rel="nofollow">Open Ajax Alliance tooltip</a></li>
           <li><a href="http://www.oaa-accessibility.org/examplep/tooltip2/" target="_blank" rel="nofollow">Open Ajax Alliance tooltip using ARIA CSS selectors</a></li>
@@ -1594,142 +1692,203 @@
 
     <section class="widget" id="TreeView">
       <h3>Tree View</h3>
-      <p>
-        A tree view is a component to navigate hierarchical lists.
-        It is made up of one or more top level nodes.
-        A node may have children or it may be an end node.
-        Nodes with children can be expanded or collapsed - when expanded its child nodes are visible.
-        When collapsed the children are not visible.
-        There is generally some sort of visual indication whether a node has children and can be expanded.
-        Any number of nodes can be expanded at a time and child nodes may contain children.
+      <p class="note">
+        This section was significantly revised on November 8.
+        To review the list of changes and provide feedback,
+        see <a href="https://github.com/w3c/aria-practices/issues/131">issue 131</a>.
       </p>
       <p>
-        An example of a Tree View is a File Navigator where a tree view is used to navigate the directories and files on a file system.
-        The directory nodes can be expanded and collapsed to reveal its contained subdirectories and files.
-        Terms for understanding tree views include:
+        A tree view widget presents a hierarchical list.
+        Any item in the hierarchy may have child items, and items that have children may be expanded or collapsed to show or hide the children.
+        For example, in a file system navigator that uses a tree view to display folders and files,
+        an item representing a folder can be expanded to reveal the contents of the folder, which may be files, folders, or both.
       </p>
+      <p>Terms for understanding tree views include:</p>
       <dl>
-        <dt>node</dt>
+        <dt>Node</dt>
         <dd>An item in a tree. </dd>
-        <dt>parent node</dt>
-        <dd>Node with children. It can be opened / expanded or closed / collapsed </dd>
-        <dt>open node</dt>
-        <dd>Expanded node with children; first-level children are visible. </dd>
-        <dt>closed node</dt>
-        <dd>Closed node with children; the children are not visible. </dd>
-        <dt>end node</dt>
-        <dd>Node with no children </dd>
+        <dt>Root Node</dt>
+        <dd>Node at the base of the tree; it may have one or more child nodes but does not have a parent node.</dd>
+        <dt>Child Node</dt>
+        <dd>Node that has a parent; any node that is not a root node is a child node.</dd>
+        <dt>End Node</dt>
+        <dd>Node that does not have any child nodes; an end node may be either a root node or a child node.</dd>
+        <dt>Parent Node</dt>
+        <dd>Node with one or more child nodes. It can be open (expanded) or closed (collapsed).</dd>
+        <dt>Open Node</dt>
+        <dd>Parent node that is expanded so its child nodes are visible.</dd>
+        <dt>Closed Node</dt>
+        <dd>Parent node that is collapsed so the child nodes are not visible.</dd>
       </dl>
-
-      <p>Nodes can be focused and/or selected. There must be visual distinction between focused and selected nodes. </p>
+      <p>
+        When using a keyboard to navigate a tree, a visual keyboard indicator informs the user which node is focused.
+        If the tree allows the user to choose just one item for an action, then it is known as a single-select tree, and the item with focus also has a selected state.
+        However, in multi-select trees, which enable the user to select more than one item for an action, the selected state is independent of the focus. 
+        For example, in a typical file system navigator, the user can move focus to select any number of files for an action, such as copy or move.
+        It is important that the visual design distinguish between items that are selected and the item that has focus.
+        For more details, see <a href="#kbd_focus_vs_selection">this description of differences between focus and selection.</a>
+      </p>
 
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
+        <p>For a vertically oriented tree:</p>
         <ul>
-          <li>On first load of the tree component, the top level node is in the tab order. </li>
-          <li>One and only one node of the tree component is in the tab order of the page at any time. </li>
-          <li>The last visited node in the tree control is retained in the tab order when the user navigates away from the tree control. </li>
-          <li>Arrowing to an item with the keyboard will focus and select the node. Any previous selections are cleared </li>
-          <li><kbd>Up Arrow</kbd> and <kbd>Down arrow</kbd> keys move between visible nodes. </li>
-          <li><kbd>Left arrow</kbd> key on an expanded node closes the node. </li>
-          <li><kbd>Left arrow</kbd> key on a closed or end node moves focus to the node's parent. </li>
-          <li><kbd>Right arrow</kbd> key expands a closed node, moves to the first child of an open node, or does nothing on an end node. </li>
-          <li><kbd>Enter</kbd> key performs the default action on end nodes. </li>
-          <li>Typing a letter key moves focus to the next instance of a visible node whose title begins with that letter. </li>
-          <li><kbd>Home</kbd> key moves to the top node in the tree view. </li>
-          <li><kbd>End</kbd> key moves to the last visible node in the tree view. </li>
-          <li><kbd>Control + Arrow</kbd> to an item with the keyboard focuses the item (but does not select it). Previous selections are maintained, provided that the <kbd>Control</kbd> key is not released or that some other keyboard function is not performed. </li>
-          <li><kbd>Control + Space</kbd> with focus on an item toggles the selection of the item. </li>
-          <li><kbd>Shift + Up Arrow</kbd> extends selection up one node. </li>
-          <li><kbd>Shift + Down Arrow</kbd> extends selection down one node. </li>
-          <li><kbd>Shift + Home</kbd> extends selection up to the top-most node. </li>
-          <li><kbd>Shift + End</kbd> extends selection down to the last node. </li>
-          <li><kbd>*</kbd>(asterisk) - on numeric keypad (optional) expands all siblings at the current node's level. </li>
+          <li> When a single-select tree receives focus:
+            <ul>
+              <li>If none of the nodes are selected before the tree receives focus, focus is set on the first node.</li>
+              <li>If a node is selected before the tree receives focus, focus is set on the selected node. </li>
+            </ul>
+          </li>
+          <li>When a multi-select tree receives focus:
+            <ul>
+              <li>If none of the nodes are selected before the tree receives focus, focus is set on the first node.</li>
+              <li>If one or more nodes are selected before the tree receives focus, focus is set on the first selected node.</li>
+            </ul>
+          </li>
+          <li><kbd>Right arrow</kbd>:
+            <ul>
+              <li>When focus is on a closed node, opens the node; focus does not move.</li>
+              <li>When focus is on a open node, moves focus to the first child node.</li>
+              <li>When focus is on an end node, does nothing.</li>
+            </ul>
+           </li>
+          <li><kbd>Left arrow</kbd>:
+            <ul>
+              <li>When focus is on an open node, closes the node.</li>
+              <li>When focus is on a child node that is also either an end node or a closed node, moves focus to its parent node.</li>
+              <li>When focus is on a root node that is also either an end node or a closed node, does nothing.</li>
+            </ul>
+           </li>
+          <li><kbd>Down Arrow</kbd>: Moves focus to the next node that is focusable without opening or closing a node.</li>
+          <li><kbd>Up Arrow</kbd>: Moves focus to the previous node that is focusable without opening or closing a node.</li>
+          <li><kbd>Home</kbd>: Moves focus to the first node in the tree.</li>
+          <li><kbd>End</kbd>: Moves focus to the last node in the tree that is focusable without opening a node.</li>
+          <li><kbd>Enter</kbd>: activates a node, i.e., performs its default action. For parent nodes, one possible default action is to open or close the node. In single-select trees where selection does not follow focus (see note below), the default action is typically to select the focused node.</li>
+          <li>Type-ahead is recommended for all trees, especially for trees with more than 7 root nodes:
+            <ul>
+              <li>Type a character: focus moves to the next node with a name that starts with the typed character.</li>
+              <li>Type multiple characters in rapid succession: focus moves to the next node with a name that starts with the string of characters typed.</li>
+            </ul>
+          </li>
+          <li><kbd>*</kbd> (Optional): Expands all siblings that are at the same level as the current node.</li>
+          <li><strong>Selection in multi-select trees:</strong>
+          Authors may implement either of two interaction models to support multiple selection: a recommended model that does not require the user to hold a modifier key, such as <kbd>Shift</kbd> or <kbd>Control</kbd>, while navigating the list
+          or an alternative model that does require modifier keys to be held while navigating in order to avoid losing selection states.
+            <ul>
+              <li>Recommended selection model -- holding a modifier key while moving focus is not necessary:
+                <ul>
+                  <li><kbd>Space</kbd>: Toggles the selection state of the focused node.</li>
+                  <li><kbd>Shift + Down Arrow</kbd> (Optional): Moves focus to and toggles the selection state of the next node.</li>
+                  <li><kbd>Shift + Up Arrow</kbd> (Optional): Moves focus to and toggles the selection state of the previous node.</li>
+                  <li><kbd>Shift + Space</kbd> (Optional): Selects contiguous nodes from the last   selected node to the current node.</li>
+                  <li><kbd>Control + Shift + Home</kbd> (Optional): Selects the node with focus and all nodes up to the first node.</li>
+                  <li><kbd>Control + Shift + End</kbd> (Optional): Selects the node with focus and all nodes down to the last node.</li>
+                  <li><kbd>Control + A</kbd> (Optional): Selects all nodes in the tree. Optionally, if all nodes are selected, it can also unselect all nodes.</li>
+                </ul>
+              </li>
+              <li>Alternative selection model -- Moving focus without holding the <kbd>Shift</kbd> or <kbd>Control</kbd> modifier unselects all selected nodes except for the focused node:
+                <ul>
+                  <li><kbd>Shift + Down Arrow</kbd>: Moves focus to and toggles the selection state of the next node.</li>
+                  <li><kbd>Shift + Up Arrow</kbd>: Moves focus to and toggles the selection state of the previous node.</li>
+                  <li><kbd>Control + Down Arrow</kbd>: Without changing the selection state, moves focus to the next node.</li>
+                  <li><kbd>Control + Up Arrow</kbd>: Without changing the selection state, moves focus to the previous node.</li>
+                  <li><kbd>Control + Space</kbd>: Toggles the selection state of the focused node.</li>
+                  <li><kbd>Shift + Space</kbd> (Optional): Selects contiguous nodes from the most recently selected node to the current node.</li>
+                  <li><kbd>Control + Shift + Home</kbd> (Optional): Selects the node with focus and all nodes up to the first node.</li>
+                  <li><kbd>Control + Shift + End</kbd> (Optional): Selects the node with focus and all nodes down to the last node.</li>
+                  <li><kbd>Control + A</kbd> (Optional): Selects all nodes in the tree. Optionally, if all nodes are selected, it can also unselect all nodes.</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
         </ul>
+        <ol class="note">
+          <li>DOM focus (the active element) is functionally distinct from the selected state. For more details, see <a href="#kbd_focus_vs_selection">this description of differences between focus and selection.</a></li>
+          <li>
+            The <code>tree</code> role supports the <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property, 
+            which provides an alternative to moving DOM focus among <code>treeitem</code> elements when implementing keyboard navigation. 
+            For details, see <a href="#kbd_focus_activedescendant">Managing Focus in Composites Using aria-activedescendant</a>.
+          </li>
+          <li>
+            In a single-select tree, moving focus may optionally unselect the previously selected node and select the newly focused node.
+            This model of selection is known as &quot;selection follows focus&quot;.
+            Having selection follow focus can be very helpful in some circumstances and can severely degrade accessibility in others.
+For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding When to Make Selection Automatically Follow Focus</a>.
+          </li>
+          <li>If selecting or unselecting all nodes is an important function, implementing separate controls for these actions, such as buttons for &quot;Select All&quot; and &quot;Unselect All&quot;, significantly improves accessibility.</li>
+        <li>
+            If the nodes in a tree are arranged horizontally:
+            <ol>
+              <li><kbd>Down Arrow</kbd> performs as <kbd>Right Arrow</kbd> is described above, and vice versa.</li>
+              <li><kbd>Up Arrow</kbd> performs as <kbd>Left Arrow</kbd> is described above, and vice versa.</li>
+            </ol>
+          </li>
+        </ol>
       </section>
 
       <section class="notoc">
         <h4>WAI-ARIA Roles, States, and Properties</h4>
         <ul>
-          <li>The tree view container has a role of <a class="role-reference" href="#tree">tree</a>.</li>
-          <li>Each node in a tree has the role <a class="role-reference" href="#treeitem">treeitem</a> and should be a DOM child of tree.</li>
-          <li>If is not a DOM child of tree, then it should be referenced by <a href="#aria-owns" class="property-reference">aria-owns</a> from its logical parent node.</li>
-          <li>If all nodes in the tree are not DOM children of the tree, then set their <a href="#aria-level" class="property-reference">aria-level</a>, <a href="#aria-setsize" class="property-reference">aria-setsize</a> and <a href="#aria-posinset" class="property-reference">aria-posinset</a> accordingly; otherwise, this information cannot be computed for context by the user agent.</li>
-          <li>A collection of treeitems to be expanded and collapsed are enclosed in a <a class="role-reference" href="#group">group</a>.</li>
-          <li>Each tree node which can be expanded should have <a class="property-reference" href="#aria-expanded">aria-expanded</a> set to <code>false</code></li>
-          <li>Each tree node which is expanded should have <a class="property-reference" href="#aria-expanded">aria-expanded</a> set to <code>true</code></li>
-          <li>Leaf nodes should not have <a class="property-reference" href="#aria-expanded">aria-expanded</a> set</li>
-          <li>If <a class="property-reference" href="#aria-multiselectable">aria-multiselectable</a> is set to <code>true</code> on the tree, then each selectable tree node should have <a class="property-reference" href="#aria-selected">aria-selected</a> set to either <code>true</code> or <code>false</code> depending on the current selection.</li>
+          <li>All tree nodes are contained in or owned by an element with role <a class="role-reference" href="#tree">tree</a>.</li>
+          <li>Each element serving as a tree node has role <a class="role-reference" href="#treeitem">treeitem</a>.</li>
+          <li>Each root node is contained in the element with role <code>tree</code> or referenced by an <a href="#aria-owns" class="property-reference">aria-owns</a> property set on the <code>tree</code> element.</li>
+          <li>Each parent node contains or owns an element with role <a class="role-reference" href="#group">group</a>.</li>
+          <li>Each child node is contained in or owned by an element with role <a class="role-reference" href="#group">group</a> that is contained in or owned by the node that serves as the parent of that child.</li>
+          <li>
+            Each element with role <code>treeitem</code> that serves as a parent node has <a class="property-reference" href="#aria-expanded">aria-expanded</a> 
+            set to <code>false</code> when the node is in a closed state and set to <code>true</code> when the node is in an open state.
+            End nodes do not have the <code>aria-expanded</code> attribute because, if they were to have it, they would be incorrectly described to assistive technologies as parent nodes.
+          </li>
+          <li>
+            Each element with role <code>treeitem</code> that serves as a parent node has either
+            <a class="property-reference" href="#aria-label">aria-label</a> or <a class="property-reference" href="#aria-labelledby">aria-labelledby</a>
+            set to specify a label. 
+            Warning: parent nodes missing a label are labeled by             all child elements,
+            causing screen readers to announce every child and often making a tree so verbose that it is unusable.
+          </li>
+          <li>If the tre supports selection of more than one node, the element with role <code>tree</code> has <a class="property-reference" href="#aria-multiselectable">aria-multiselectable</a> set to <code>true</code>. Otherwise, <code>aria-multiselectable</code> is either set to <code>false</code> or the default value of <code>false</code> is implied.</li>
+          <li>If the tree does not support multiple selection, <a href="#aria-selected" class="property-reference">aria-selected</a> is set to <code>true</code> for the selected node and it is not present on any other node in the tree.</li>
+          <li>if the tree supports multiple selection:
+          <ul>
+          <li>All selected nodes have <a href="#aria-selected" class="state-reference">aria-selected</a> set to <code>true</code>.</li>
+          <li>All nodes that are not selected have <a href="#aria-selected" class="state-reference">aria-selected</a> set to <code>false</code>.</li>
+          </ul>
+          </li>
+          <li>The element with role <code>tree</code> has either a visible label referenced by <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> or a value specified for <a href="#aria-label" class="property-reference">aria-label</a>.</li>
+          <li>If the complete set of available nodes is not present in the DOM due to dynamic loading as the user moves focus in or scrolls the tree, each node has <a href="#aria-level" class="property-reference">aria-level</a>, <a href="#aria-setsize" class="property-reference">aria-setsize</a>, and <a href="#aria-posinset" class="property-reference">aria-posinset</a> specified.</li>
+          <li>
+            If the <code>tree</code> element is horizontally oriented, it has <a href="#aria-orientation" class="property-reference">aria-orientation</a>
+            set to <code>horizontal</code>.
+            The default value of <code>aria-orientation</code> for a tree is <code>vertical</code>.
+          </li>
         </ul>
+        <p class="note">
+          If <a href="#aria-owns" class="property-reference">aria-owns</a> is set on the tree container to include elements that are not DOM children of the container, 
+          those elements will appear in the reading order in the sequence they are referenced and after any items that are DOM children. 
+          Scripts that manage focus need to ensure the visual focus order matches this assistive technology reading order.
+        </p>
       </section>
 
       <section class="notoc">
         <h4>Examples</h4>
-
-          <table aria-label="Treeview examples">
-            <thead>
-              <tr>
-                <th style="min-width: 6em">Example ID</th>
-                <th>Action</th>
-                <th><code>aria-owns</code></th>
-                <th><code>aria-level</code></th>
-                <th><code>aria-setsize/<br/><code>aria-posinset</code></th>
-                <th>Description</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><a href="examples/treeview/treeview-1a/treeview-1a.html">Treeview 1a</a></td>
-                <td>Select a file</td>
-                <td class="nu">-</td>
-                <td class="computed">Computed</td>
-                <td class="computed">Computed</td>
-                <td>
-                  <ul>
-                    <li>Expects browser to compute values for <code>aria-level</code>, <code>aria-posinset</code> and <code>aria-setsize</code> based on DOM structure.</li>
-                  </ul>
-                </td>
-              </tr>
-              <tr>
-                <td><a href="examples/treeview/treeview-1b/treeview-1b.html">Treeview 1b</a></td>
-                <td>Select a file</td>
-                <td class="nu">-</td>
-                <td class="markup">Markup</td>
-                <td class="markup">Markup</td>
-                <td>
-                  <ul>
-                    <li>Explicitly defines values of <code>aria-level</code>, <code>aria-posinset</code> and <code>aria-setsize</code></li>
-                  </ul>
-                </td>
-              </tr>
-              <tr>
-                <td><a href="examples/treeview/treeview-2a/treeview-2a.html">Treeview 2a</a></td>
-                <td>Follow a link</td>
-                <td class="nu">-</td>
-                <td class="computed">Computed</td>
-                <td class="computed">Computed</td>
-                <td>
-                  <ul>
-                    <li>Expects browser to compute values for <code>aria-level</code>, <code>aria-posinset</code> and <code>aria-setsize</code> based on DOM structure.</li>
-                  </ul>
-                </td>
-              </tr>
-              <tr>
-                <td><a href="examples/treeview/treeview-2b/treeview-2b.html">Treeview 2b</a></td>
-                <td>Follow a link</td>
-                <td class="nu">-</td>
-                <td class="markup">Markup</td>
-                <td class="markup">Markup</td>
-                <td>
-                  <ul>
-                    <li>Explicitly defines values of <code>aria-level</code>, <code>aria-posinset</code> and <code>aria-setsize</code></li>
-                  </ul>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-
+        <ul>
+          <li>
+            <a href="examples/treeview/treeview-1a/treeview-1a.html">File Selector Tree #1</a>: 
+            A file selector tree that demonstrates browser support for automatically computing <code>aria-level</code>, <code>aria-posinset</code> and <code>aria-setsize</code> based on DOM structure.
+          </li>
+          <li>
+            <a href="examples/treeview/treeview-1b/treeview-1b.html">File Selector Tree #2</a>: 
+            A file selector tree that demonstrates how to explicitly define values for <code>aria-level</code>, <code>aria-posinset</code> and <code>aria-setsize</code>.
+          </li>
+          <li>
+            <a href="examples/treeview/treeview-2a/treeview-2a.html">Navigation Tree #1</a>:
+            A tree that provides navigation to a set of web pages and demonstrates browser support for automatically computing <code>aria-level</code>, <code>aria-posinset</code> and <code>aria-setsize</code> based on DOM structure.
+          </li>
+          <li>
+            <a href="examples/treeview/treeview-2b/treeview-2b.html">Navigation Tree #2</a>:
+A tree that provides navigation to a set of web pages and demonstrates how to explicitly define values for <code>aria-level</code>, <code>aria-posinset</code> and <code>aria-setsize</code>.
+          </li>
+        </ul>
       </section>
     </section>
 
@@ -1766,7 +1925,7 @@
 
       <section class="notoc">
         <h4>Example</h4>
-        <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG task force is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
+        <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The ARIA practices task force is developing examples for Authoring Practices 1.1 that will be directly incorporated into the guide.</p>
         <ul>
           <li><a href="http://archive.dojotoolkit.org/nightly/dojotoolkit/dijit/tests/layout/test_BorderContainer.html" target="_blank" rel="nofollow">Dojo Window splitter</a></li>
         </ul>
@@ -2354,6 +2513,35 @@
         <li>The selected state must be visually distinct from the the focus indicator.</li>
       </ul>
     </section>
+    
+    <section id="kbd_selection_follows_focus">
+      <h3>Deciding When to Make Selection Automatically Follow Focus</h3>
+      <p class="note">
+        This section was added on November 8.
+        To provide feedback,
+        see <a href="https://github.com/w3c/aria-practices/issues/131">issue 131</a>.
+      </p>
+      <p>
+        in composite widgets where only one element may be selected, such as a tablist or single-select listbox, moving the focus may also cause the focused element to become the selected element.
+        This is called having selection follow focus.
+        Having selection follow focus is often beneficial to users, but in some circumstances, it is extremely detremental to accessibility.
+      </p>
+      <p>
+        For example, in a tablist, the selected state is used to indicate which panel is displayed.
+        So, when selection follows focus in a tablist, moving focus from one tab to another automatically changes  which panel is displayed.
+        If the content of panels is present in the DOM, then displaying a new panel is nearly instantaneous. 
+        A keyboard user who wishes to display the fourth of six tabs can do so with 3 quick presses of the right arrow. 
+        And, a screen reader user who perceives the labels on tabs by navigating through them may efficiently read through the complete list without any latency.
+      </p>
+      <p>
+        However, if displaying a new panel causes a network request and possibly a page refresh, the effect of having selection automatically focus can be devistating to the experience for keyboard and screen reader users.
+        In this case, displaying the fourth tab or reading through the list becomes a tedious and time-consuming task as the user experiences significant latency with each movement of focus.
+        Further, if displaying a new tab refreshes the page, then the user not only has to wait for the new page to load but also return focus to the tab list.
+      </p>
+      <p>
+        When selection does not follow focus, the user changes which element is selected by pressing the <kbd>Enter</kbd> or <kbd>Space</kbd> key.
+      </p>
+    </section>
 
     <section id="kbd_general_between">
       <h3>Keyboard Navigation Between Components (The Tab Sequence)</h3>
@@ -2460,7 +2648,7 @@
           </li>
 
           <li>
-            If the design calls for a specific element to be focused the next time the user moves focus into the composite with <kbd>Tab<kbd> or <kbd>Shift+Tab</kbd>, check if that target element has <code>tabindex="0"</code> when the composite loses focus.
+            If the design calls for a specific element to be focused the next time the user moves focus into the composite with <kbd>Tab</kbd> or <kbd>Shift+Tab</kbd>, check if that target element has <code>tabindex="0"</code> when the composite loses focus.
             If it does not, set <code>tabindex="0"</code> on the target element and set <code>tabindex="-1"</code> on the element that previously had <code>tabindex="0"</code>.
           </li>
         </ul>
@@ -3137,6 +3325,177 @@ helper.stopEvent(evt); //stop the event if not a tab keypress
     </p>
   </section>
 
+  <section id="presentation_role">
+    <h2>
+      Intentionally Hiding Semantics with the <code>presentation</code> Role
+    </h2>
+    <p>
+      Please provide feedback on this section in <a href="https://github.com/w3c/aria-practices/issues/176">issue 176</a>.
+    </p>
+    <p>
+      While ARIA is primarily used to express semantics, there are some situations where hiding an
+      element’s semantics from assistive technologies is helpful. This is done with the
+      <a href="#presentation" class="role-reference">presentation</a>
+      role, which declares that an element is being used only for presentation and therefore does
+      not have any accessibility semantics. The ARIA 1.1 specification also includes role
+      <a href="#none" class="role-reference">none</a>
+      , which serves as a synonym for <code>presentation</code>.
+    </p>
+    <p>
+      For example, consider a tablist built using an HTML <code>ul</code> element.
+    </p>
+    <pre>
+    &lt;ul role=&quot;tablist&quot;&gt;
+      &lt;li role=&quot;presentation&quot;&gt;
+        &lt;a role=&quot;tab&quot; href=&quot;#&quot;&gt;Tab 1&lt;/a&gt;
+      &lt;/li&gt;
+      &lt;li role=&quot;presentation&quot;&gt;
+        &lt;a role=&quot;tab&quot; href=&quot;#&quot;&gt;Tab 2&lt;/a&gt;
+      &lt;/li&gt;
+      &lt;li role=&quot;presentation&quot;&gt;
+        &lt;a role=&quot;tab&quot; href=&quot;#&quot;&gt;Tab 3&lt;/a&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+    </pre>
+    <p>
+      Because the list is declared to be a tablist, the list items are not in a list context. It
+      could confuse users if an assistive technology were to render those list items. Applying role
+      <code>presentation</code> to the <code>li</code> elements tells browsers to leave those
+      elements out of their accessibility tree. Assistive technologies will thus be unaware of the
+      list item elements and see the tab elements as immediate children of the tablist.
+    </p>
+    <p>
+      Three common uses of role <code>presentation</code> are:
+    </p>
+    <ol>
+      <li>Hiding a presentational image.</li>
+      <li>Suppressing semantics of a layout table.</li>
+      <li>Eliminating semantics of intervening orphan elements in the structure of a composite
+        widget, such as a tablist, menu, or tree as demonstrated in the example above.</li>
+    </ol>
+    <section id="presentation_role_rules">
+      <h3>
+        Four Rules for Using Role <code>presentation</code>
+      </h3>
+      <p>
+        When reading the following rules, it is important to understand that most host language
+        elements, such as an HTML <code>h1</code> element, have an implied ARIA role and may also
+        have implied states or properties. When rendering an <code>h1</code> element, browsers tell
+        assistive technologies that it has ARIA role <code>heading</code> and property value <code>aria-level=&quot;1&quot;</code>.
+      </p>
+      <p>
+        The following rules describe the result of applying role <code>presentation</code> to an
+        element.
+      </p>
+      <ol>
+        <li>
+          Browsers ignore the <code>presentation</code> role and it therefore does not affect how
+          assistive technology users perceive the element if either:
+          <ul>
+            <li>the element is focusable.</li>
+            <li>
+              The element has any of the 
+              <a href="#global_states" class="specref">twenty-one global ARIA states and properties</a>
+              , e.g., <code>aria-label</code>.
+            </li>
+          </ul>
+        </li>
+        <li>If not ignored, the element’s implied ARIA role and associated ARIA states and
+          properties are hidden from assistive technologies.</li>
+        <li>
+          Text contained by the element and all its descendant elements remains visible to assistive
+          technologies except, of course, when the text is explicitly hidden, e.g., styled with <code>display:
+            none</code> or has <code>aria-hidden=&quot;true&quot;</code>.
+        </li>
+        <li>
+          The roles, states, and properties of all descendant elements remain visible to assistive
+          technologies except when the descendant element is a required part of the presentational
+          element. For example:
+          <ul>
+            <li>If the implied role of an element with role presentation is list, its listitem
+              children inherit the presentation role.</li>
+            <li>
+              If the implied role of an element with role <code>presentation</code> is <code>table</code>,
+              its <code>rowgroup</code> and <code>row</code> children inherit the <code>presentation</code>
+              role. And, in turn, the <code>colheader</code>, <code>rowheader</code>, and <code>cell</code>
+              children will then inherit the presentation role from their <code>row</code> or <code>rowgroup</code>
+              parents.
+            </li>
+            <li>
+              Note that a table contained in the cell of a table with role <code>presentation</code>
+              does not inherit the <code>presentation</code> role because the nested table is not a
+              required part of the presentational table.
+            </li>
+          </ul>
+        </li>
+      </ol>
+      <p>
+        The
+        <a href="examples/presentation/PresentationRole.html">
+          <code>presentation</code> role examples page
+        </a>
+        illustrates the effects of these rules in a variety of scenarios and provides more detailed
+        explanations of the rationale behind them.
+      </p>
+    </section>
+  </section>
+  
+  <section id="children_presentational">
+    <h2>Roles That Automatically Hide Semantics by Making Their Descendants Presentational</h2>
+    <p>
+      Please provide feedback on this section in <a href="https://github.com/w3c/aria-practices/issues/178">issue 178</a>.
+    </p>
+    <p>
+      There are some types of user interface components that, when represented in a platform
+      accessibility API, can only contain text. For example, accessibility APIs do not have a way of
+      representing semantic elements contained in a button. To deal with this limitation, WAI-ARIA
+      requires browsers to automatically apply role <code>presentation</code> to all descendant
+      elements of any element with a role that cannot support semantic children.
+    </p>
+    <p>The roles that require all children to be presentational are:</p>
+    <ul>
+      <li>button</li>
+      <li>checkbox</li>
+      <li>img</li>
+      <li>math</li>
+      <li>menuitemcheckbox</li>
+      <li>menuitemradio</li>
+      <li>option</li>
+      <li>progressbar</li>
+      <li>radio</li>
+      <li>scrollbar</li>
+      <li>separator</li>
+      <li>slider</li>
+      <li>switch</li>
+      <li>tab</li>
+    </ul>
+    <p>For instance, consider the following tab element, which contains a heading.</p>
+    <pre>
+      &lt;li role=&quot;tab&quot;&gt;&lt;h3&gt;Title of My Tab&lt;/h3&gt;&lt;/li&gt;
+    </pre>
+    <p>
+      Because WAI-ARIA requires descendants of tab to be presentational, 
+      the following code is equivalent.
+    </p>
+    <pre>
+      &lt;li role=&quot;tab&quot;&gt;&lt;h3 role=&quot;presentation&quot;&gt;Title of My Tab&lt;/h3&gt;&lt;/li&gt;
+    </pre>
+    <p>
+      And, from the perspective of anyone using a technology that relies on an accessibility API, such as a screen reader,
+      the heading does not exist since the previous code is equivalent to the following.
+    </p>
+    <pre>
+      &lt;li role=&quot;tab&quot;&gt;Title of My Tab&lt;/li&gt;
+    </pre>
+    <p>
+      See the
+      <a href="#presentation_role">
+        section about role <code>presentation</code>
+      </a>
+      for a detailed explanation of what it does.
+    </p>
+  </section>
+  
   <section id="appendices" class="appendix">
     <h2>Appendices</h2>
 

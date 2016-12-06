@@ -23,7 +23,7 @@ script:
   - cd gh-pages
   - git clone --depth=1 --branch=gh-pages https://github.com/w3c/aria-practices.git
   - cd aria-practices
-  - curl https://labs.w3.org/spec-generator/?type=respec"&"url=https://rawgit.com/w3c/aria-practices/master/aria-practices.html -o index.html -f
+  - curl "https://labs.w3.org/spec-generator/?type=respec&url=https://rawgit.com/w3c/aria-practices/master/aria-practices.html" -o index.html -f
   - cp -r ../../w3c/aria-practices/examples .
 
 after_success:

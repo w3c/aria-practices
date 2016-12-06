@@ -1,0 +1,55 @@
+.annotate{
+	font-style: italic;
+	color: #366ED4;
+}
+
+.listbox-area {
+	padding: 20px;
+	background: #eee;
+	border: 1px solid #aaa;
+	font-size: 0px;
+}
+
+.left-area, .right-area {
+	box-sizing: border-box;
+	display: inline-block;
+	font-size: 14px;
+	vertical-align: top;
+	width: 50%;
+}
+
+.left-area {
+	padding-right: 10px;
+}
+
+.right-area {
+	padding-left: 10px;
+}
+
+[role="listbox"] {
+	min-height: 18em;
+	padding: 0px;
+	background: white;
+	border: 1px solid #aaa;
+}
+
+[role="option"] {
+	display: block;
+	padding: 0 1em;
+	position: relative;
+	line-height: 1.8em;
+}
+
+[role="option"].focused {
+	background: #bde4ff;
+}
+
+[role="option"][aria-selected] {
+	padding-left: 1.5em;
+}
+
+[role="option"][aria-selected="true"]::before {
+	content: '✓';
+	position: absolute;
+	left: 0.5em;
+}

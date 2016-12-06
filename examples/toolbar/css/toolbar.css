@@ -1,0 +1,49 @@
+.annotate {
+		color: #366ED4;
+	  font-style: italic;
+}
+
+.toolbar {
+		border-left: 1px solid #aaa;
+		margin-top: 10px;
+		font-size: 0;
+}
+
+.toolbar-item {
+    display: inline-block;
+    padding: 0.5em 1em;
+
+		background: #eee;
+    border: 1px solid #aaa;
+		border-left: none;
+		color: blue;
+		font-size: 16px;
+		line-height: 1.5em;
+		vertical-align: top;
+}
+
+.toolbar-item.selected {
+		background-color: #ccc;
+		color: black;
+	  font-weight: bold;
+}
+
+.menu-wrapper {
+	display: inline-block;
+	font-size: 16px;
+}
+
+.menu-button {
+	padding-right: 2.5em;
+	position: relative;
+}
+
+.menu-button::after {
+	content: " ";
+	border-left: 0.4em solid transparent;
+	border-right: 0.4em solid transparent;
+	border-top: 0.4em solid black;
+  position: absolute;
+  right: 1em;
+  top: 1.1em;
+}
