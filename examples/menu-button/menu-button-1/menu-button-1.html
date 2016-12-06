@@ -2,8 +2,8 @@
 <html lang="en"><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
-    <title>ARIA Menu Button Example: Popup Menu of Actions</title>
-    <meta name="generator" content="BBEdit 10.5">
+    <title>Menu Button Example: Actions | WAI-ARIA Authoring Practices 1.1</title>
+
     <link href="../../css/core.css" rel="stylesheet">
     <link href="../../css/table.css" rel="stylesheet">
     <link href="css/menuButtonAction.css" rel="stylesheet">
@@ -15,16 +15,21 @@
   </head>
   <body>
     <main>
-      <h1>ARIA Menu Button Example:  Popup Menu of Actions</h1>
+      <h1>Menu Button Example: Actions</h1>
  
       <p>This example implements the features of an <a href="../../../aria-practices.html#menubutton">ARIA Menu Button Design Pattern</a> for a menu of actions within a web application.
       An ARIA menu button is defined as any element with <code>role=&quot;button&quot;</code> with an <code>aria-haspopup=&quot;true&quot;</code>.  
       This includes the HTML <code>button</code> and <code>input[type="button"]</code> elements with default roles of <code>button</code>.
       </p>
 
-      <section aria-labelledby="start">
-        <h2 id="start">Start Example</h2>
-        <div id="example">
+      <p>Similar examples include: </p>
+      <ul>
+        <li><a href="../menu-button-2/menu-button-2.html">Menu Button Example: Links</a>: The popup menu items are <code>a</code> elements and act as links.</li>
+      </ul>
+
+      <section>
+        <h2 id="ex_label">Example</h2>
+        <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>        <div id="ex1">
 
           <p>This example shows a popup menu of actions that can be used for changing states in a web application.</p>
 
@@ -70,11 +75,12 @@
       </section>    
 
 
-      <section aria-labelledby="w1_label">
-        <h2 id="w1_label" class="widget">Menu Button Implementation Information</h2>
+      <section>
+        <h2 id="kbd_label">Keyboard Support</h2>
+        
+        <h3 id="kbd1_label">Menu Button</h3>
 
-        <h3 id="kbd1_label">Keyboard Interaction and Focus Management</h3>
-        <table aria-labelledby="kbd1_label w1_label"> 
+        <table aria-labelledby="kbd1_label kbd_label"> 
           <thead>
             <tr>
               <th>Key</th>
@@ -95,9 +101,88 @@
           </tbody>
         </table>
 
-        <h3 id="rps1_label">ARIA Roles, Properties, and States</h3>
+         <h2 id="kb2_label" class="widget">Popup Menu Widget</h2>
 
-        <table aria-labelledby="rps1_label w1_label">
+        <table aria-labelledby="kbd2_label kbd_label"> 
+          <thead>
+            <tr>
+              <th style="min-width: 8em">Key</th>
+              <th>Function</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Space or Enter Keys</td>
+              <td>
+                <ul>
+                  <li>Activates any <code>click</code> event associated with the <code>menuitem</code>.  In this example updates the "Last Action" textbox.</li>
+                  <li>Moves focus back to <code>menu button</code> and then closes the <code>menu</code>.  NOTE: This sequence is important since hidding the element with focus will cause the focus to move to the beginning of the page.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td>Escape Key</td>
+              <td>
+                <ul>
+                  <li>Closes popup menu.</li>
+                  <li>Moves focus to button menu.</li>
+                </ul>  
+              </td>
+            </tr>
+            <tr>
+              <td>Up Arrow Key</td>
+              <td>
+                <ul>
+                  <li>Moves focus to previous popup menu item.</li>
+                  <li>If first popup menu item, focus is moved to the last popup menu item.</li>
+                </ul>  
+              </td>
+            </tr>
+             <tr>
+              <td>Down Arrow Key</td>
+              <td>
+                <ul>
+                  <li>Moves focus to next popup menu item.</li>
+                  <li>If last popup menu item, focus is moved to the first popup menu item.</li>
+                </ul>  
+              </td>
+            </tr>
+            <tr>
+              <td>Home</td>
+              <td>
+                <ul>
+                  <li>Moves focus to first popup menu item.</li>
+                </ul>  
+              </td>
+            </tr>
+            <tr>
+              <td>End</td>
+              <td>
+                <ul>
+                  <li>Moves focus to last popup menu item.</li>
+                </ul>  
+              </td>
+            </tr>
+            <tr>
+              <td>A-Z, a-z</td>
+              <td>
+                <ul>
+                  <li>Moves focus to the next popup item that starts with that letter.</li>
+                  <li>If no popup menu item starts with the letter, focus does not move.</li>
+                </ul>  
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+
+      <section>
+        <h2 id="rps_label">Role, Property, State, and Tabindex  Attributes</h2>
+
+        <h3 id="rps1_label">Menu Button Widget</h3>
+
+        <table aria-labelledby="rps1_label rps_label">
           <thead>
             <tr>
               <th>Role</th>
@@ -174,90 +259,9 @@
           </tbody>
         </table> 
 
-      </section>
+        <h3 id="rps2_label">Popup Menu Widget</h3>
 
-
-      <section aria-labelledby="w2_label">
-
-        <h2 id="w2_label" class="widget">Popup Menu Widget</h2>
-
-        <h3 id="kbd2_label">Keyboard Interaction and Focus Management</h3>
-      
-        <table aria-labelledby="kbd2_label w2_label"> 
-          <thead>
-            <tr>
-              <th style="min-width: 8em">Key</th>
-              <th>Function</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Space or Enter Keys</td>
-              <td>
-                <ul>
-                  <li>Activates any <code>click</code> event associated with the <code>menuitem</code>.  In this example updates the "Last Action" textbox.</li>
-                  <li>Moves focus back to <code>menu button</code> and then closes the <code>menu</code>.  NOTE: This sequence is important since hidding the element with focus will cause the focus to move to the beginning of the page.</li>
-                </ul>
-              </td>
-            </tr>
-          <tr>
-            <td>Escape Key</td>
-            <td>
-              <ul>
-                <li>Closes popup menu.</li>
-                <li>Moves focus to button menu.</li>
-              </ul>  
-            </td>
-          </tr>
-          <tr>
-            <td>Up Arrow Key</td>
-            <td>
-              <ul>
-                <li>Moves focus to previous popup menu item.</li>
-                <li>If first popup menu item, focus is moved to the last popup menu item.</li>
-              </ul>  
-            </td>
-          </tr>
-           <tr>
-            <td>Down Arrow Key</td>
-            <td>
-              <ul>
-                <li>Moves focus to next popup menu item.</li>
-                <li>If last popup menu item, focus is moved to the first popup menu item.</li>
-              </ul>  
-            </td>
-          </tr>
-          <tr>
-            <td>Home</td>
-            <td>
-              <ul>
-                <li>Moves focus to first popup menu item.</li>
-              </ul>  
-            </td>
-          </tr>
-           <tr>
-            <td>End</td>
-            <td>
-              <ul>
-                <li>Moves focus to last popup menu item.</li>
-              </ul>  
-            </td>
-          </tr>
-           <tr>
-            <td>A-Z, a-z</td>
-            <td>
-              <ul>
-                <li>Moves focus to the next popup item that starts with that letter.</li>
-                <li>If no popup menu item starts with the letter, focus does not move.</li>
-              </ul>  
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
-        <h3 id="rps2_label">ARIA Roles, Properties, and States</h3>
-
-        <table aria-labelledby="rps2_label w2_label">
+        <table aria-labelledby="rps2_label rps_label">
           <thead>
             <tr>
               <th>Role</th>
@@ -332,26 +336,35 @@
 
       </section>    
 
-      <section aria-labelledby="sc-ex1">
-        <h2 id="sc-ex1">Source Code: Menu Button 1</h2>
+      <section>
+        <h2>Javascript and CSS Source Code</h2>
       
         <ul>
           <li>MenuButtonAction CSS: <a href="css/menuButtonAction.css" type="text/css">MenubuttonAction.css</a></li>
-          <li>Menubutton Javascript: <a href="js/Menubutton.js" type="text/javascript">Menubutton.js</a></li>
-          <li>MenuItemAction Javascript: <a href="js/MenuItemAction.js" type="text/javascript">MenuItemAction.js</a></li>
-          <li>PopupMenuAction Javascript: <a href="js/PopupMenuAction.js" type="text/javascript">PopupMenuAction.js</a></li>
-        </ul>
-      
-        <div id="sc1">
-       
-        </div>
+          <li>Javascript:
+            <ul>
+              <li><a href="js/Menubutton.js" type="text/javascript">Menubutton.js</a></li>
+              <li><a href="js/MenuItemAction.js" type="text/javascript">MenuItemAction.js</a></li>
+              <li><a href="js/PopupMenuAction.js" type="text/javascript">PopupMenuAction.js</a></li>
+            </ul>
+          </li>  
+        </li>    
       </section>
-
-
-      <script>
-        sourceCode.add('sc1', 'example')
-        sourceCode.make()
-      </script>
+      <section>
+        <h2 id="sc1_label">HTML Source Code</h2>
+        <div role="separator" id="sc1_start_sep" aria-labelledby="sc1_start_sep sc1_label" aria-label="Start of"></div>
+        <div id="sc1"></div>
+        <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of"></div>
+        <!--
+          The following script will show the reader the HTML source for the example that is in the div with ID 'ex1'.
+          It renders the HTML in the preceding div with ID 'sc1'.
+          If you change the ID of either the 'ex1' div or the 'sc1' div, be sure to update the sourceCode.add function parameters.
+          -->
+        <script>
+          sourceCode.add('sc1', 'ex1');
+          sourceCode.make();
+        </script>
+      </section>
     </main>
   </body>
   </html>
