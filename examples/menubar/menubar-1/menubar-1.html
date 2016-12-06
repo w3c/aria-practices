@@ -1,452 +1,786 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <meta charset="utf-8">
-    <title>Navigation Menubar Example | WAI-ARIA Authoring Practices 1.1</title>
+<head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<title>Navigation Menubar Example | WAI-ARIA Authoring Practices 1.1</title>
+<link href="../../css/core.css" rel="stylesheet">
+<link href="../../css/table.css" rel="stylesheet">
+<script src="../../js/examples.js" type="text/javascript"></script>
+<script src="js/MenubarLinks.js" type="text/javascript"></script>
+<script src="js/MenubarItemLinks.js" type="text/javascript"></script>
+<script src="js/PopupMenuLinks.js" type="text/javascript"></script>
+<script src="js/PopupMenuItemLinks.js" type="text/javascript"></script>
+<link href="css/menubarLinks.css" rel="stylesheet">
+</head>
 
-    <link href="../../css/core.css" rel="stylesheet">
-    <link href="../../css/table.css" rel="stylesheet">
-    <script src="../../js/examples.js" type="text/javascript"></script>
-    <link href="css/menubarLinks.css" rel="stylesheet">
-    <script src="js/MenubarLinks.js"     type="text/javascript"></script> 
-    <script src="js/MenubarItemLinks.js" type="text/javascript"></script> 
-    <script src="js/PopupMenuLinks.js" type="text/javascript"></script> 
-    <script src="js/MenuItemLinks.js" type="text/javascript"></script> 
-  </head>
-  <body>
-    <main>
-      <h1>Navigation Menubar Example</h1>
-      <p><strong>NOTE:</strong> Please provide feedback on this example in <a href="https://github.com/w3c/aria-practices/issues/145">issue 145</a>. </p>
-      <p>
-        Following are two implementations of the 
-        <a href="../../#menu">design Pattern for menubar</a>
-        that demonstrate how a menubar can be used for site navigation.
-        Each item in the menubars represents a section of the site and opens a pull down menu with links to pages within that section.
-        The examples differ only in how they are coded; see notes that follow each example.
-      </p>
-      <section id="code-ex-1">
-        <h2>Examples</h2>
-        <section>
-          <h3 id="ex1_label">Example 1: Menubar With ARIA Markup in the HTML Source</h3>
-          <div role="separator" id="ex1_start_sep" aria-labelledby="ex1_start_sep ex1_label" aria-label="Start of"></div>
-          <div id="ex1">
-            <ul id="menubar1" role="menubar" aria-label="Mythical University Menu 1">
+<body>
+  <main>
+  <h1>Navigation Menubar Example</h1>
+  <p>
+    <strong>NOTE:</strong> Please provide feedback on this example in
+    <a href="https://github.com/w3c/aria-practices/issues/145">issue 145</a>.
+  </p>
+  <p>
+    Following are two implementations of the
+    <a href="../../#menu">design pattern for menubar</a>
+    that demonstrate how a menubar can be used for site navigation. Each item in the two menubars
+    represents a section of a web site for a mythical university and opens a pull down menu with links to pages within that
+    section. The two examples differ only in how they are coded; see notes that follow each example.
+  </p>
+  <section id="code-ex-1">
+    <h2>Examples</h2>
+    <section>
+      <h3 id="ex1_label">Example 1: Menubar With ARIA Markup in the HTML Source</h3>
+      <div role="separator" id="ex1_start_sep" aria-labelledby="ex1_start_sep ex1_label" aria-label="Start of"></div>
+      <div id="ex1">
+        <ul id="menubar1" role="menubar" aria-label="Mythical University Menu 1">
+          <li>
+            <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">About</a>
+            <ul role="menu" aria-label="About">
               <li>
-                <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">About</a>
-                <ul role="menu">
+                <a role="menuitem" href="mb-about.html#overview">Overview</a>
+              </li>
+              <li>
+                <a role="menuitem" href="mb-about.html#admin">Administration</a>
+              </li>
+              <li>
+                <a id="menubar113" role="menuitem" href="#" aria-haspopup="true"
+                  aria-expanded="false"
+                >Facts</a>
+                <ul role="menu" aria-label="facts">
                   <li>
-                    <a role="menuitem" href="mb-about.html#overview">Overview</a>
+                    <a role="menuitem" href="mb-about.html#facts">History</a>
                   </li>
                   <li>
-                    <a role="menuitem" href="mb-about.html#admin">Administration</a>
+                    <a role="menuitem" href="mb-about.html#facts">Current Statistics</a>
                   </li>
                   <li>
-                    <a role="menuitem" href="mb-about.html#facts">Facts</a>
-                  </li>
-                  <li>
-                    <a role="menuitem" href="mb-about.html#tours">Campus Tours</a>
-                  </li>
+                    <a role="menuitem" href="mb-about.html#facts">Awards</a>
                 </ul>
               </li>
               <li>
-                <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">Admissions</a>
-                <ul role="menu">
+                <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">Campus
+                  Tours</a>
+                <ul role="menu" aria-label="Campus Tours">
                   <li>
-                    <a role="menuitem" href="mb-admissions.html#apply">Apply</a>
+                    <a role="menuitem" href="mb-about.html#tours">For prospective students</a>
                   </li>
                   <li>
-                    <a role="menuitem" href="mb-admissions.html#tuition">Tuition</a>
+                    <a role="menuitem" href="mb-about.html#tours">For alumni</a>
                   </li>
                   <li>
-                    <a role="menuitem" href="mb-admissions.html#signup">Sign Up</a>
-                  </li>
-                  <li role="separator"></li>
-                  <li>
-                    <a role="menuitem" href="mb-admissions.html#visit">Visit</a>
-                  </li>
-                  <li>
-                    <a role="menuitem" href="mb-admissions.html#photo">Photo Tour</a>
-                  </li>
-                  <li>
-                    <a role="menuitem" href="mb-admissions.html#connect">Connect</a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">Academics</a>
-                <ul role="menu">
-                  <li>
-                    <a role="menuitem" href="mb-academics.html#colleges">Colleges &amp; Schools</a>
-                  </li>
-                  <li>
-                    <a role="menuitem" href="mb-academics.html#programs">Programs of Study</a>
-                  </li>
-                  <li>
-                    <a role="menuitem" href="mb-academics.html#honors">Honors Programs</a>
-                  </li>
-                  <li>
-                    <a role="menuitem" href="mb-academics.html#online">Online Courses</a>
-                  </li>
-                  <li role="separator"></li>
-                  <li>
-                    <a role="menuitem" href="mb-academics.html#explorer">Course Explorer</a>
-                  </li>
-                  <li>
-                    <a role="menuitem" href="mb-academics.html#register">Register for Class</a>
-                  </li>
-                  <li>
-                    <a role="menuitem" href="mb-academics.html#academic">Academic Calendar</a>
-                  </li>
-                  <li>
-                    <a role="menuitem" href="mb-academics.html#tanscripts">Transscripts</a>
-                  </li>
+                    <a role="menuitem" href="mb-about.html#tours">For visitors</a>
                 </ul>
               </li>
             </ul>
-          </div>
-          <div role="separator" id="ex1_end_sep" aria-labelledby="ex1_end_sep ex1_label" aria-label="End of"></div>
-          <h4>Notes</h4>
-          <ol>
-            <li>This example includes the ARIA roles and properties in the source code for authors
-              to easily see which elements the roles and properties need to be included.</li>
-            <li>This is useful for people writing their own scripts to see which elements need
-              roles and properties.</li>
-          </ol>
-        </section>
-        <section>
-          <h3 id="ex2_label">Example 2: ARIA markup added dynamically</h3>
-          <div role="separator" id="ex2_start_sep" aria-labelledby="ex2_start_sep ex2_label" aria-label="Start of"></div>
-          <div id="ex2">
-            <ul id="menubar2" aria-label="Mythical University Menu 2">
+          </li>
+          <li>
+            <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">Admissions</a>
+            <ul role="menu" aria-label="admissions">
               <li>
-                <a href="#">Research</a>
-                <ul>
-                  <li>
-                    <a href="mb-research.html#res-news">Research News</a>
-                  </li>
-                  <li>
-                    <a href="mb-research.html#res-centers">Reseach Centers</a>
-                  </li>
-                  <li>
-                    <a href="mb-research.html#res-find">Find an Expert</a>
-                  </li>
-                  <li>
-                    <a href="mb-research.html#res-park">Research Park</a>
-                  </li>
-                  <li>
-                    <a href="mb-research.html#res-comm">Technology Commercialization</a>
-                  </li>
-                </ul>
+                <a role="menuitem" href="mb-admissions.html#apply">Apply</a>
               </li>
               <li>
-                <a href="#">Outreach</a>
-                <ul>
-                  <li>
-                    <a href="mb-outreach.html#comm-engage">Community Engagement</a>
-                  </li>
-                  <li>
-                    <a href="mb-outreach.html#copr-rel">Corporate Relations</a>
-                  </li>
-                  <li>
-                    <a href="mb-outreach.html#extension">Extension</a>
-                  </li>
-                  <li>
-                    <a href="mb-outreach.html#outreach-events">Outreach Events</a>
-                  </li>
-                </ul>
+                <a role="menuitem" href="mb-admissions.html#tuition">Tuition</a>
               </li>
               <li>
-                <a href="#">Arts and Culture</a>
-                <ul>
-                  <li>
-                    <a href="mb-arts.html#fas">College of Fine and Applied Arts</a>
-                  </li>
-                  <li>
-                    <a href="mb-arts.html#las">College of Liberal Arts and Sciences</a>
-                  </li>
-                  <li role="separator"></li>
-                  <li>
-                    <a href="mb-arts.html#cultural-center">Cultural Center</a>
-                  </li>
-                  <li>
-                    <a href="mb-arts.html#perfoming-arts">Performing Arts</a>
-                  </li>
-                  <li>
-                    <a href="mb-arts.html#art-museum">Art Museum</a>
-                  </li>
-                  <li>
-                    <a href="mb-arts.html#history-museum">History Museum</a>
-                  </li>
-                  <li>
-                    <a href="mb-arts.html#union">Student Union</a>
-                  </li>
-                </ul>
+                <a role="menuitem" href="mb-admissions.html#signup">Sign Up</a>
+              </li>
+              <li role="separator"></li>
+              <li>
+                <a role="menuitem" href="mb-admissions.html#visit">Visit</a>
+              </li>
+              <li>
+                <a role="menuitem" href="mb-admissions.html#photo">Photo Tour</a>
+              </li>
+              <li>
+                <a role="menuitem" href="mb-admissions.html#connect">Connect</a>
               </li>
             </ul>
-          </div>
-          <div role="separator" id="ex2_end_sep" aria-labelledby="ex2_end_sep ex2_label" aria-label="End of"></div>
-          <h4>Notes</h4>
-          <ol>
-            <li>This example the ARIA roles and properties are added by the scripts based on the structure of the HTML elements.</li>  
-            <li>This can be used by authors to more easily add this script to their own projects and websites.</li>
-          </ol>
-        </section>
-      </section>    
-      <section>
-      <h2 id="id_kbd">Keyboard Support</h2>
-      <h3 id="id_kbd1">Menubar Menu Items</h3>
-      <table aria-labelledby="id_kbd id_kbd1"> 
-        <thead>
-          <tr>
-            <th>Key</th>
-            <th>Function</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Space or Enter Key</td>
-            <td>
-              <ul>
-                <li>Open or Close popup menu (e.g. toggle).</li>  
-              </ul>  
-            </td>
-          </tr>
-          <tr>
-            <td>Left Arrow Key</td>
-            <td>
-              <ul>
-                <li>Moves focus to previous menubar menu item.</li>
-                <li>If focus on first menubar menu item, focus is moved to last menubar menu item.</li>
-              </ul>  
-            </td>
-          </tr>
-           <tr>
-            <td>Right Arrow Key</td>
-            <td>
-              <ul>
-                <li>Moves focus to next menubar menu item.</li>
-                <li>If focus on last menubar menu item, focus is moved to first menubar menu item.</li>
-              </ul>  
-            </td>
-          </tr>
-          <tr>
-            <td>Down Arrow Key</td>
-            <td>
-              <ul>
-                <li>Open popup menu.</li>
-                <li>Moves focus to first popup menu item.</li>
-              </ul>  
-            </td>
-          </tr>
-           <tr>
-            <td>Up Arrow Key</td>
-            <td>
-              <ul>
-                <li>Open popup menu.</li>
-                <li>Moves focus to last popup menu item.</li>
-              </ul>  
-            </td>
-          </tr>
-          <tr>
-            <td>Home</td>
-            <td>
-              <ul>
-                <li>Moves focus to first menubar menu item.</li>
-              </ul>  
-            </td>
-          </tr>
-           <tr>
-            <td>End</td>
-            <td>
-              <ul>
-                <li>Moves focus to last menubar menu item.</li>
-              </ul>  
-            </td>
-          </tr>
-           <tr>
-            <td>Character Key</td>
-            <td><ul>
-                <li>Moves focus to next menubar item that starts with that letter.</li>
-                <li>If no menubar menu item starts with the letter, focus does not move.</li>
-              </ul>  
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <h3 id="id_kbd2">Popup Menu Items</h3>
-      <table aria-labelledby="id_kbd id_kbd2"> 
-        <thead>
-          <tr>
-            <th>Key</th>
-            <th>Function</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Space or Enter Key</td>
-            <td>
-              <ul>
-                <li>Follow link.</li>
-                <li>NOTE: In this example all the links are all internal and therefore not leave the page.</li>
-              </ul>  
-            </td>
-          </tr>
-          <tr>
-            <td>Escape Key</td>
-            <td>
-              <ul>
-                <li>Closes popup menu.</li>
-                <li>Moves focus to current menubar menu item.</li>
-              </ul>  
-            </td>
-          </tr>
-          <tr>
-            <td>Left Arrow Key</td>
-            <td>
-              <ul>
-                <li>Closes popup menu.</li>
-                <li>Moves focus to previous menubar menu item.</li>
-              </ul>  
-            </td>
-          </tr>
-           <tr>
-            <td>Right Arrow Key</td>
-            <td>
-              <ul>
-                <li>Closes popup menu.</li>
-                <li>Moves focus to next menubar menu item.</li>
-              </ul>  
-            </td>
-          </tr>
-          <tr>
-            <td>Up Arrow Key</td>
-            <td>
-              <ul>
-                <li>Moves focus to previous popup menu item.</li>
-                <li>If first popup menu item, focus is moved to the last popup menu item.</li>
-              </ul>  
-            </td>
-          </tr>
-           <tr>
-            <td>Down Arrow Key</td>
-            <td>
-              <ul>
-                <li>Moves focus to next popup menu item.</li>
-                <li>If last popup menu item, focus is moved to the first popup menu item.</li>
-              </ul>  
-            </td>
-          </tr>
-          <tr>
-            <td>Home</td>
-            <td>
-              <ul>
-                <li>Moves focus to first popup menu item.</li>
-              </ul>  
-            </td>
-          </tr>
-           <tr>
-            <td>End</td>
-            <td>
-              <ul>
-                <li>Moves focus to last popup menu item.</li>
-              </ul>  
-            </td>
-          </tr>
-           <tr>
-            <td>Character Key</td>
-            <td>
-              <ul>
-                <li>Moves focus to the next popup item that starts with that letter.</li>
-                <li>If no popup menu item starts with the letter, focus does not move.</li>
-              </ul>  
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      </section>
-      <section>
-    <h2 id="rps_label">Role, Property, State, and Tabindex  Attributes</h2>
-    <!--
-      Update this table to describe how roles, properties, states, and tabindex are used in this example.  
-      If the content will vary significantly for the above implementations, make this a level 4 section inside each of the above level 3 implementation sections.
-    -->
-    <table aria-labelledby="rps_label">
+          </li>
+          <li>
+            <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">Academics</a>
+            <ul role="menu" aria-label="Academics">
+              <li>
+                <a role="menuitem" href="mb-academics.html#colleges">Colleges &amp; Schools</a>
+              </li>
+              <li>
+                <a role="menuitem" href="mb-academics.html#programs">Programs of Study</a>
+              </li>
+              <li>
+                <a role="menuitem" href="mb-academics.html#honors">Honors Programs</a>
+              </li>
+              <li>
+                <a role="menuitem" href="mb-academics.html#online">Online Courses</a>
+              </li>
+              <li role="separator"></li>
+              <li>
+                <a role="menuitem" href="mb-academics.html#explorer">Course Explorer</a>
+              </li>
+              <li>
+                <a role="menuitem" href="mb-academics.html#register">Register for Class</a>
+              </li>
+              <li>
+                <a role="menuitem" href="mb-academics.html#academic">Academic Calendar</a>
+              </li>
+              <li>
+                <a role="menuitem" href="mb-academics.html#tanscripts">Transscripts</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div role="separator" id="ex1_end_sep" aria-labelledby="ex1_end_sep ex1_label" aria-label="End of"></div>
+      <h4>Notes</h4>
+      <ol>
+        <li>This example includes the ARIA roles and properties in the source code for authors
+          to easily see which elements the roles and properties need to be included.</li>
+        <li>This is useful for people writing their own scripts to see which elements need
+          roles and properties.</li>
+      </ol>
+    </section>
+    <section>
+      <h3 id="ex2_label">Example 2: ARIA markup added dynamically</h3>
+      <div role="separator" id="ex2_start_sep" aria-labelledby="ex2_start_sep ex2_label" aria-label="Start of"></div>
+      <div id="ex2">
+        <ul id="menubar2" aria-label="Mythical University Menu 2">
+          <li>
+            <a href="#">Research</a>
+            <ul>
+              <li>
+                <a href="mb-research.html#res-news">Research News</a>
+              </li>
+              <li>
+                <a href="mb-research.html#res-centers">Reseach Centers</a>
+              </li>
+              <li>
+                <a href="mb-research.html#res-find">Find an Expert</a>
+              </li>
+              <li>
+                <a href="mb-research.html#res-park">Research Park</a>
+              </li>
+              <li>
+                <a href="mb-research.html#res-comm">Technology Commercialization</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Outreach</a>
+            <ul>
+              <li>
+                <a href="mb-outreach.html#comm-engage">Community Engagement</a>
+              </li>
+              <li>
+                <a href="mb-outreach.html#copr-rel">Corporate Relations</a>
+              </li>
+              <li>
+                <a href="mb-outreach.html#extension">Extension</a>
+              </li>
+              <li>
+                <a href="mb-outreach.html#outreach-events">Outreach Events</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Arts and Culture</a>
+            <ul>
+              <li>
+                <a href="mb-arts.html#fas">College of Fine and Applied Arts</a>
+              </li>
+              <li>
+                <a href="mb-arts.html#las">College of Liberal Arts and Sciences</a>
+              </li>
+              <li role="separator"></li>
+              <li>
+                <a href="mb-arts.html#cultural-center">Cultural Center</a>
+              </li>
+              <li>
+                <a href="mb-arts.html#perfoming-arts">Performing Arts</a>
+              </li>
+              <li>
+                <a href="mb-arts.html#art-museum">Art Museum</a>
+              </li>
+              <li>
+                <a href="mb-arts.html#history-museum">History Museum</a>
+              </li>
+              <li>
+                <a href="mb-arts.html#union">Student Union</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div role="separator" id="ex2_end_sep" aria-labelledby="ex2_end_sep ex2_label" aria-label="End of"></div>
+      <h4>Notes</h4>
+      <ol>
+        <li>This example includes the ARIA roles and properties are added by the scripts based
+          on the structure of the HTML elements.</li>
+        <li>This can be used by authors to more easily add this script to their own projects
+          and websites.</li>
+      </ol>
+    </section>
+  </section>
+  <section>
+    <h2 id="id_mbf">Menubar Widget Features</h2>
+    <h3 id="kbd1_label">Keyboard Support</h3>
+    <table aria-labelledby="kbd1_label mb_label">
       <thead>
         <tr>
+          <th>Key</th>
+          <th>Function</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <kbd>Space or Enter</kbd>
+          </td>
+          <td>
+            <ul>
+              <li>Open or Close popup menu (e.g. toggle).</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <kbd>Left Arrow</kbd>
+          </td>
+          <td>
+            <ul>
+              <li>Moves focus to previous menubar menu item.</li>
+              <li>If focus on first menubar menu item, focus is moved to last menubar menu
+                item.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <kbd>Right Arrow</kbd>
+          </td>
+          <td>
+            <ul>
+              <li>Moves focus to next menubar menu item.</li>
+              <li>If focus on last menubar menu item, focus is moved to first menubar menu
+                item.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <kbd>Down Arrow</kbd>
+          </td>
+          <td>
+            <ul>
+              <li>Open popup menu.</li>
+              <li>Moves focus to first popup menu item.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <kbd>Up Arrow </kbd>
+          </td>
+          <td>
+            <ul>
+              <li>Open popup menu.</li>
+              <li>Moves focus to last popup menu item.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <kbd>Home</kbd>
+          </td>
+          <td>
+            <ul>
+              <li>Moves focus to first menubar menu item.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <kbd>End</kbd>
+          </td>
+          <td>
+            <ul>
+              <li>Moves focus to last menubar menu item.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <kbd>Character</kbd>
+          </td>
+          <td>
+            <ul>
+              <li>Moves focus to next menubar item that starts with that letter.</li>
+              <li>If no menubar menu item starts with the letter, focus does not move.</li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h3 id="rps1_label">Role, Property, State, and Tabindex Attributes</h3>
+    <table aria-labelledby="rps1_label mb_label">
+      <thead>
+        <tr>
+          <th>Role</th>
           <th>Attribute</th>
-          <th>Applied to Element</th>
+          <th>Element</th>
           <th>Usage</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <th><code>role=&quot;ROLE_NAME&quot;</code></th>
-          <td><code>HTML_ELEMENT</code></td>
-          <td>Brief explanation of usage, purpose, benefit, and/or guidance that is relevant to this specific implementation.</td>
+          <td>
+            <code>menubar</code>
+          </td>
+          <td></td>
+          <td>
+            <code>ul</code>
+          </td>
+          <td>
+            <ul>
+              <li>Identifies a ARIA menubar widget.</li>
+              <li>
+                No <code>tabindex</code> value is needed since the <code>role=menubar</code> does
+                not receive focus.
+              </li>
+              <li>
+                Accessible name for the menu is defined by the <code>aria-label</code> attribute.
+              </li>
+            </ul>
+          </td>
         </tr>
         <tr>
-          <th>
-            <!--  Specify states and properties used like this; replace with the attributes that are relevant. -->
-            <code>aria-labelledby=&quot;ID_REF&quot;</code>
-          </th>
-          <td><code>HTML_ELEMENT</code></td>
-          <td>Brief explanation of usage, purpose, benefit, and/or guidance that is relevant to this specific implementation.</td>
+          <td></td>
+          <td>
+            <code>aria-label=&quot;<em>string</em>&quot;
+            </code>
+          </td>
+          <td>
+            <code>ul</code>
+          </td>
+          <td>
+            <ul>
+              <li>Defines an acessible name for the menu bar.</li>
+              <li>Used to help people understand the purpose of the menubar and uniquely
+                identify the menubar from other menubars on the page.</li>
+            </ul>
+          </td>
         </tr>
         <tr>
-          <th>And so on ... covering all relevant attributes</th>
-          <td>...</td>
-          <td>...</td>
+          <td>
+            <code>menuitem</code>
+          </td>
+          <td></td>
+          <td>
+            <code>a</code>
+          </td>
+          <td>
+            <ul>
+              <li>Identifies a ARIA menuitem in the menubar widget.</li>
+              <li>
+                Accessible name for the menuitem is defined by the text content of the <code>a</code>
+                element.
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <code>tabindex=&quot;-1&quot;</code>
+          </td>
+          <td>
+            <code>a</code>
+          </td>
+          <td>
+            <ul>
+              <li>
+                Makes the <code>a</code> element keyboard focusable, but <strong>not</strong> part
+                of tab order of the page.
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <code>tabindex=&quot;0&quot;</code>
+          </td>
+          <td>
+            <code>a</code>
+          </td>
+          <td>
+            <ul>
+              <li>
+                Makes the <code>a</code> element keyboard focusable and part of tab order of the
+                page.
+              </li>
+              <li>
+                Only one menubar item should have <code>tabindex=&quot;0&quot;</code>.
+              </li>
+              <li>
+                The default menubar item with <code>tabindex=&quot;0&quot;</code> is the first
+                menubar item (e.g page is loaded).
+              </li>
+              <li>
+                The last menubar item to have focus is given the <code>tabindex=&quot;0&quot;</code>
+                so that when user tabs through the page focus will be given to the last menubar item
+                that the user used.
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <code>aria-haspopup=&quot;true&quot;</code>
+          </td>
+          <td>
+            <code>a</code>
+          </td>
+          <td>
+            <ul>
+              <li>Identifies the menuitem as a controller for a popup menu.</li>
+              <li>The menuitem is only to open and close the popup menu it cannot be a link.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <code>aria-expanded=&quot;true&quot;</code>
+          </td>
+          <td>
+            <code>a</code>
+          </td>
+          <td>
+            <ul>
+              <li>Indicates popup menu is open.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <code>aria-expanded=&quot;false&quot;</code>
+          </td>
+          <td>
+            <code>a</code>
+          </td>
+          <td>
+            <ul>
+              <li>Indicates popup menu is closed.</li>
+            </ul>
+          </td>
         </tr>
       </tbody>
     </table>
   </section>
-      <section>
+  <section>
+    <h2 id="popup_label">Popup Widget Features</h2>
+    <h3 id="kbd2_label">Keyboard Support</h3>
+    <table aria-labelledby="kbd2_label popup_label">
+      <thead>
+        <tr>
+          <th>Key</th>
+          <th>Function</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <kbd>Space or Enter</kbd>
+          </td>
+          <td>
+            <ul>
+              <li>Follow link.</li>
+              <li>NOTE: In this example all the links go to dummy pages, use back key to return
+                to the page with the menubar.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <kbd>Escape</kbd>
+          </td>
+          <td>
+            <ul>
+              <li>Closes popup menu.</li>
+              <li>Moves focus to current menubar menu item.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <kbd>Left Arrow</kbd>
+          </td>
+          <td>
+            <ul>
+              <li>Closes popup menu.</li>
+              <li>Moves focus to previous menubar menu item.</li>
+              <li>Open the popup menu of the previous menubar menuitem with focus.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <kbd>Right Arrow</kbd>
+          </td>
+          <td>
+            <ul>
+              <li>Closes popup menu.</li>
+              <li>Moves focus to next menubar menu item.</li>
+              <li>Open the popup menu of the next menubar menuitem with focus.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <kbd>Up Arrow</kbd>
+          </td>
+          <td>
+            <ul>
+              <li>Moves focus to previous popup menu item.</li>
+              <li>If first popup menu item, focus is moved to the last popup menu item.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <kbd>Down Arrow</kbd>
+          </td>
+          <td>
+            <ul>
+              <li>Moves focus to next popup menu item.</li>
+              <li>If last popup menu item, focus is moved to the first popup menu item.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <kbd>Home</kbd>
+          </td>
+          <td>
+            <ul>
+              <li>Moves focus to first popup menu item.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <kbd>End</kbd>
+          </td>
+          <td>
+            <ul>
+              <li>Moves focus to last popup menu item.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <kbd>Character</kbd>
+          </td>
+          <td>
+            <ul>
+              <li>Moves focus to the next popup item that starts with that letter.</li>
+              <li>If no popup menu item starts with the letter, focus does not move.</li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h3 id="rps2_label">Role, Property, State, and Tabindex Attributes</h3>
+    <table aria-labelledby="kbd2_label rps2_label">
+      <thead>
+        <tr>
+          <th>Role</th>
+          <th>Attribute</th>
+          <th>Element</th>
+          <th>Usage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <code>menu</code>
+          </td>
+          <td></td>
+          <td>
+            <code>ul</code>
+          </td>
+          <td>
+            <ul>
+              <li>Identifies a ARIA menu widget.</li>
+              <li>
+                No <code>tabindex</code> value is needed since the <code>role=menu</code> does not
+                receive keyboard focus.
+              </li>
+              <li>
+                Accessible name for the menu is defined by the <code>aria-label</code> attribute.
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <code>aria-label=&quot;<em>string</em>&quot;
+            </code>
+          </td>
+          <td>
+            <code>ul</code>
+          </td>
+          <td>
+            <ul>
+              <li>Defines an acessible name for the menu.</li>
+              <li>Used to help people understand the purpose of the menu and uniquely identify
+                the menu from other menubars on the page.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <code>menuitem</code>
+          </td>
+          <td></td>
+          <td>
+            <code>a</code>
+          </td>
+          <td>
+            <ul>
+              <li>Identifies a ARIA menuitem in the menu widget.</li>
+              <li>
+                Accessible name for the menuitem is defined by the text content of the <code>a</code>
+                element.
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <code>tabindex=&quot;-1&quot;</code>
+          </td>
+          <td>
+            <code>a</code>
+          </td>
+          <td>
+            <ul>
+              <li>
+                Makes the <code>a</code> element keyboard focusable, but <strong>not</strong> part
+                of tab order of the page.
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <code>aria-haspopup=&quot;true&quot;</code>
+          </td>
+          <td>
+            <code>a</code>
+          </td>
+          <td>
+            <ul>
+              <li>Identifies the menuitem as a controller for a popup menu.</li>
+              <li>The menuitem is only to open and close the popup menu it cannot be a link.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <code>aria-expanded=&quot;true&quot;</code>
+          </td>
+          <td>
+            <code>a</code>
+          </td>
+          <td>
+            <ul>
+              <li>Indicates popup menu is open.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>
+            <code>aria-expanded=&quot;false&quot;</code>
+          </td>
+          <td>
+            <code>a</code>
+          </td>
+          <td>
+            <ul>
+              <li>Indicates popup menu is closed.</li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+  <section>
     <h2>Javascript and CSS Source Code</h2>
-    <!--  After the js and css files are named with the name of this example, change the href and text of the following 2 links to refer to the appropriate js and css files.  -->
     <ul>
       <li>
         CSS:
         <a href="css/menubarLinks.css" type="tex/css">menubarLinks.css</a>
       </li>
-      <li>Javascript:
-      <ul>
-        <li><a href="js/MenubarItemLinks.js" type="text/javascript">MenubarItemLinks.js</a></li>
-        <li><a href="js/MenubarLinks.js" type="text/javascript">MenubarLinks.js</a></li>
-        <li><a href="js/MenuItemLinks.js" type="text/javascript">MenuItemLinks.js</a></li>
-        <li><a href="js/PopupMenuLinks.js" type="text/javascript">PopupMenuLinks.js</a></li>
-      </ul>
+      <li>
+        Javascript:
+        <ul>
+          <li>
+            <a href="js/MenubarItemLinks.js" type="text/javascript">MenubarItemLinks.js</a>
+          </li>
+          <li>
+            <a href="js/MenubarLinks.js" type="text/javascript">MenubarLinks.js</a>
+          </li>
+          <li>
+            <a href="js/PopupMenuItemLinks.js" type="text/javascript">PopupMenuItemLinks.js</a>
+          </li>
+          <li>
+            <a href="js/PopupMenuLinks.js" type="text/javascript">PopupMenuLinks.js</a>
+          </li>
+        </ul>
       </li>
     </ul>
   </section>
   <section>
     <h2>HTML Source Code</h2>
     <h3 id="sc1_label">Example 1: Menubar With ARIA Markup in the HTML Source</h3>
-    <div id="sc1_start_sep" role="separator" aria-labelledby="sc1_start_sep sc1_label" aria-label="Start of HTML for"></div>
+    <div id="sc1_start_sep" role="separator" aria-labelledby="sc1_start_sep sc1_label" aria-label="Start of HTML for" ></div>
     <div id="sc1"></div>
-    <div id="sc1_end_sep" role="separator" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of HTML for"></div>
-    <script>sourceCode.add('sc1', 'ex1')</script>
-
+    <div id="sc1_end_sep" role="separator" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of HTML for" ></div>
+    <script>
+            sourceCode.add('sc1', 'ex1')
+            </script>
     <h3 id="sc2_label">Example 2: ARIA markup added dynamically</h3>
-    <div id="sc2_start_sep" role="separator" aria-labelledby="sc2_start_sep sc2_label" aria-label="Start of HTML for"></div>
+    <div id="sc2_start_sep" role="separator" aria-labelledby="sc2_start_sep sc2_label" aria-label="Start of HTML for" ></div>
     <div id="sc2"></div>
-    <div id="sc2_end_sep" role="separator" aria-labelledby="sc2_end_sep sc2_label" aria-label="End of HTML for"></div>
-    <script>sourceCode.add('sc2', 'ex2')</script>
+    <div id="sc2_end_sep" role="separator" aria-labelledby="sc2_end_sep sc2_label" aria-label="End of HTML for" ></div>
+    <script>
+            sourceCode.add('sc2', 'ex2')
+            </script>
     <!--  After all source has been added, run make to do the insert.  -->
-    <script> sourceCode.make() </script>
+    <script>
+            sourceCode.make()
+            </script>
   </section>
   </main>
   <nav>
     <a href="../../../#menu">Menu or Menubar Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
   </nav>
   <script type="text/javascript">
-    window.onload=function() {
-      var menubar = new Menubar(document.getElementById('menubar1'));
-      menubar.init();
-      menubar = new Menubar(document.getElementById('menubar2'));
-      console.log(menubar);
-      menubar.init();
-    }    
-  </script>
-  </body>
-  </html>
+    window.onload = function() {
+        var menubar = new Menubar(document.getElementById('menubar1'));
+        menubar.init();
+        menubar = new Menubar(document.getElementById('menubar2'));
+        menubar.init();
+    }
+    </script>
+</body>
+</html>
