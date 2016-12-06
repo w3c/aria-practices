@@ -2,7 +2,7 @@
   <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Mixed Checkbox Example with Fieldset/Legend grouping Label</title>
+    <title>Checkbox Example: Mixed State | WAI-ARIA Authoring Practices 1.1</title>
     <link href="../../css/core.css" rel="stylesheet">
     <link href="../../css/table.css" rel="stylesheet">
 
@@ -15,15 +15,22 @@
   </head>
   <body>
     <main>
-      <h1>Mixed Checkbox Example with Fieldset/Legend grouping Label</h1>
+      <h1>Checkbox Example: Mixed State</h1>
 
-      <p>Example of a mixed state checkbox that implements the  <a href="../../#checkbox">design pattern for checkbox</a> using <code>div</code> element for the mixed state checkbox with a set of standard HTML checkboxes.</p>
+      <p>Example of a mixed state checkbox that implements the  <a href="../../#checkbox">design pattern for checkbox</a> using <code>div</code> element for the mixed state checkbox with a set of standard HTML checkboxes.   This example also uses <code>fieldset/Legend</code> elements to provide a grouping label for the checkboxes since the checkboxes are related to each other.</p>
+
+      <p>Similar examples include: </p>
+      <ul>
+        <li><a href="../checkbox-1/checkbox-1.html">Checkbox Example: Two State</a>: Simple two state checkbox.</li>
+        <!--  list other examples that implement the same design pattern. -->
+      </ul>
 
 
-      <h2 id="example_label">Example Start</h2>
-      <section aria-labelledby="example_label">
+      <section>
+        <h2 id="ex_label">Example</h2>
+        <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
 
-        <div  id="example">
+        <div  id="ex1">
            <fieldset>
               <legend>Sandwich Condiments</legend>
 
@@ -78,11 +85,14 @@
 
         </div>
 
+        <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
+
       </section>
 
+ 
       <section>
-        <h2 id="id_kbd">Keyboard Support</h2>
-        <table aria-labelledby="id_kbd"> 
+        <h2 id="kbd_label">Keyboard Support</h2>
+        <table aria-labelledby="kbd_label"> 
           <thead>
             <tr>
               <th>Key</th>
@@ -94,7 +104,10 @@
               <td>Space or Enter Key</td>
               <td>
                 <ul>
-                  <li>Open or Close popup menu (e.g. toggle).</li>  
+                  <li>Toggle the checkbox between unchecked, mixed and checked.</li>  
+                  <li>When the checkbox is unchecked, all the controlled checkboxes will be unchecked.</li>
+                  <li>When the checkbox is mixed, all the controlled checkboxes will return to the last state the user selected for that checkbox.</li>
+                  <li>When the checkbox is checked, all the controlled checkboxes will be checked.</li>
                 </ul>  
               </td>
             </tr>
@@ -102,7 +115,7 @@
         </table>
       </section>
       
-      <section aria-labelledby="rps_label">
+      <section>
       
         <h2 id="rps_label">Role, Property, State, and Tabindex  Attributes</h2>
 
@@ -140,11 +153,22 @@
               </tr>
               <tr>
                 <td></td>
+                <td><code>aria-controls=&quot;[IDREFS]&quot;</code></td>
+                <td><code>div</code></td>
+                <td>
+                    <ul>
+                      <li>A list of <code>IDREF</code>s identifying which checkboxes are controlled by the mixed checkbox.</li>
+                    </ul>  
+                </td>
+              </tr>
+              <tr>
+                <td></td>
                 <td><code>aria-checked=&quot;false&quot;</code></td>
                 <td><code>div</code></td>
                 <td>
                     <ul>
-                      <li>Indentifies the <code>checkbox</code> button is <strong>not</strong> checked.</li>
+                      <li>Indentifies the <code>checkbox</code> button is <strong>not</strong> unchecked.</li>
+                      <li>This state reflects that the controlled checkboxes are all unchecked.</li>
                       <li>CSS attribute selectors (e.g. <code>[aria-checked=&quot;false&quote;]</code>) are used to synchronize the visual states with the value of the <code>aria-checked</code> attribute.</li>
                       <li>The CSS <code>:before</code> psuedo selector and the <code>content</code> property is used to indcate visual state of unchecked to support high contrast setting in operating systems and browsers.</li>
                     </ul>  
@@ -157,6 +181,20 @@
                 <td>
                     <ul>
                       <li>Indentifies the <code>checkbox</code> is checked.</li>
+                      <li>This state reflects that the controlled checkboxes are all checked.</li>
+                      <li>CSS attribute selectors (e.g. <code>[aria-checked=&quot;ture&quote;]</code>) are used to synchronize the visual states with the value of the <code>aria-checked</code> attribute.</li>
+                      <li>The CSS <code>:before</code> psuedo selector and the <code>content</code> property is used to indcate visual state of checked to support high contrast setting in operating systems and browsers.</li>
+                    </ul>  
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td><code>aria-checked=&quot;mixed&quot;</code></td>
+                <td><code>div</code></td>
+                <td>
+                    <ul>
+                      <li>Indentifies the <code>checkbox</code> is mixed.</li>
+                      <li>This state reflects that some of controlled checkboxes are all checked and some are not checked.</li>
                       <li>CSS attribute selectors (e.g. <code>[aria-checked=&quot;ture&quote;]</code>) are used to synchronize the visual states with the value of the <code>aria-checked</code> attribute.</li>
                       <li>The CSS <code>:before</code> psuedo selector and the <code>content</code> property is used to indcate visual state of checked to support high contrast setting in operating systems and browsers.</li>
                     </ul>  
@@ -167,31 +205,33 @@
     
       </section>
     
-    <section aria-labelledby="source_label">
-      <h2 id="source_label">Source Code</h2>
+       <section>
+        <h2>Javascript and CSS Source Code</h2>
+        <!--  After the js and css files are named with the name of this example, change the href and text of the following 2 links to refer to the appropriate js and css files.  -->
+        <ul>
+          <li>
+            CSS:
+            <a href="css/checkboxMixed.css" type="tex/css">checkboxMixed.css</a>
+          </li>
+          <li>Javascript: <a href="js/checkboxMixed.js" type="text/javascript">checkboxMixed.js</a></li>
+          <li>Javascript: <a href="js/controlledCheckbox.js" type="text/javascript">controlledCheckbox.js</a></li>
+        </ul>
+      </section>
 
-      <h3>Javascript and CSS Source Code</h2>
-      <!--  After the js and css files are named with the name of this example, change the href and text of the following 2 links to refer to the appropriate js and css files.  -->
-      <ul>
-        <li>
-          CSS: <a href="css/checkboxMixed.css" type="tex/css">checkbox.css</a>
-        </li>
-        <li>
-          Javascript: <a href="js/checkboxMixed.js" type="text/javascript">checkbox.js</a>
-        </li>
-      </ul>
+      <section>
+        <h2 id="sc1_label">HTML Source Code</h2>
+        <div role="separator" id="sc1_start_sep" aria-labelledby="sc1_start_sep sc1_label" aria-label="Start of"></div>
+        <div id="sc1"></div>
+        <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of"></div>
 
-      <h3>HTML Source Code</h2>
-      <h3 id="sc1_label">Simple Two-State Checkbox Example</h3>
-      <div id="sc1_start_sep" role="separator" aria-labelledby="sc1_start_sep sc1_label" aria-label="Start of HTML for"></div>
-      <div id="sc1"></div>
-      <div id="sc1_end_sep" role="separator" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of HTML for"></div>
-
-      <script>
-          sourceCode.add('sc1', 'example');
+        <script>
+          sourceCode.add('sc1', 'ex1');
           sourceCode.make();
-      </script>
-    </section>
+        </script>
+      </section>
   </main>  
+  <nav>
+    <a href="../../../aria-practices.html#checkbox">Checkbox Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
+  </nav>
 </body>
 </html>

@@ -92,8 +92,6 @@ ControlledCheckbox.prototype.setChecked = function (value) {
   }
 };
 
-
-
 /* EVENT HANDLERS */
 
 ControlledCheckbox.prototype.handleChange = function (event) {
@@ -107,5 +105,4 @@ ControlledCheckbox.prototype.handleKeyup = function (event) {
 ControlledCheckbox.prototype.handleClick = function (event) {
   this.lastState = this.isChecked();
 };
-
 

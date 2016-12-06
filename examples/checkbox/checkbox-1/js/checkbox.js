@@ -21,7 +21,7 @@ var Checkbox = function (domNode) {
 
   this.keyCode = Object.freeze({
     'RETURN'   : 13,
-    'SPACE'    : 32,
+    'SPACE'    : 32
   });
 };
 
@@ -39,7 +39,7 @@ Checkbox.prototype.init = function () {
 
 };
 
-Checkbox.prototype.toggleCheckbox = function() {
+Checkbox.prototype.toggleCheckbox = function () {
 
   if (this.domNode.getAttribute('aria-checked') === 'true') {
     this.domNode.setAttribute('aria-checked', 'false');
@@ -48,7 +48,7 @@ Checkbox.prototype.toggleCheckbox = function() {
     this.domNode.setAttribute('aria-checked', 'true');
   }
 
-}
+};
 
 /* EVENT HANDLERS */
 
@@ -58,7 +58,7 @@ Checkbox.prototype.handleKeydown = function (event) {
   switch (event.keyCode) {
     case this.keyCode.SPACE:
     case this.keyCode.RETURN:
-      this.toggleCheckbox()
+      this.toggleCheckbox();
       flag = true;
       break;
 

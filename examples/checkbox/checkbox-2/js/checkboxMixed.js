@@ -23,7 +23,7 @@ var CheckboxMixed = function (domNode) {
 
   this.keyCode = Object.freeze({
     'RETURN'   : 13,
-    'SPACE'    : 32,
+    'SPACE'    : 32
   });
 };
 
@@ -48,7 +48,7 @@ CheckboxMixed.prototype.init = function () {
 
 };
 
-CheckboxMixed.prototype.updateCheckboxMixed = function() {
+CheckboxMixed.prototype.updateCheckboxMixed = function () {
 
   var count = 0;
 
@@ -71,7 +71,7 @@ CheckboxMixed.prototype.updateCheckboxMixed = function() {
   }
 };
 
-CheckboxMixed.prototype.anyLastChecked = function() {
+CheckboxMixed.prototype.anyLastChecked = function () {
 
   var count = 0;
 
@@ -95,7 +95,7 @@ CheckboxMixed.prototype.setControlledCheckboxes = function (value) {
 
 };
 
-CheckboxMixed.prototype.toggleCheckboxMixed = function() {
+CheckboxMixed.prototype.toggleCheckboxMixed = function () {
 
   var state = this.domNode.getAttribute('aria-checked');
 
@@ -112,7 +112,7 @@ CheckboxMixed.prototype.toggleCheckboxMixed = function() {
       this.setControlledCheckboxes('true');
     }
     else {
-      this.setControlledCheckboxes('false');        
+      this.setControlledCheckboxes('false');
     }
   }
 
@@ -127,7 +127,7 @@ CheckboxMixed.prototype.handleKeydown = function (event) {
   switch (event.keyCode) {
     case this.keyCode.SPACE:
     case this.keyCode.RETURN:
-      this.toggleCheckboxMixed()
+      this.toggleCheckboxMixed();
       flag = true;
       break;
 

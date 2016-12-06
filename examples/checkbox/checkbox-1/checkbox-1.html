@@ -54,96 +54,91 @@
 
       <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
 
-    </section>
+     </section>
 
-    <section>
-      <h2 id="id_kbd">Keyboard Support</h2>
-      <table aria-labelledby="id_kbd"> 
+     <section>
+        <h2 id="kbd_label">Keyboard Support</h2>
+        <table aria-labelledby="kbd_label"> 
+          <thead>
+            <tr>
+              <th>Key</th>
+              <th>Function</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Space or Enter Key</td>
+              <td>
+                <ul>
+                  <li>Toggle check checkbox between checked and unchecked.</li>  
+                </ul>  
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+ 
+    <section>   
+      <h2 id="rps_label">Role, Property, State, and Tabindex  Attributes</h2>
+      <table aria-labelledby="rps_label">
         <thead>
           <tr>
-            <th>Key</th>
-            <th>Function</th>
+            <th>Role</th>
+            <th>Attribute</th>
+            <th>Element</th>
+            <th>Usage</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Space or Enter Key</td>
-            <td>
-              <ul>
-                <li>Open or Close popup menu (e.g. toggle).</li>  
-              </ul>  
-            </td>
-          </tr>
+            <tr>
+              <td><code>checkbox</code></td>
+              <td></td>
+              <td><code>div</code></td>
+              <td>
+                <ul>
+                  <li>The <code>role=&quot;checkbox&quot;</code> attribute identifies the <code>div</code> element as a ARIA <code>checkbox</code>.</li>
+                  <li>The accessible name comes the child text content of the <code>div[role=&quot;checkbox&quot; element.</li>
+                  <li>The <code>checkbox</code> widget needs a <code>tabindex=&quot;0&quot;</code> value.</li>
+                </ul> 
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><code>tabindex=&quot;0&quot;</code></td>
+              <td><code>div</code></td>
+              <td>
+                  <ul>
+                    <li>The <code>div[&quot;checkbox&quot;]</code> is identified as an ineractive element and is added to the tab order of the page by setting the <code>tabindex=&quot;0&quot;</code>.</li>
+                   </ul>  
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><code>aria-checked=&quot;false&quot;</code></td>
+              <td><code>div</code></td>
+              <td>
+                  <ul>
+                    <li>Indentifies the <code>checkbox</code> button is <strong>not</strong> checked.</li>
+                    <li>CSS attribute selectors (e.g. <code>[aria-checked=&quot;false&quote;]</code>) are used to synchronize the visual states with the value of the <code>aria-checked</code> attribute.</li>
+                    <li>The CSS <code>:before</code> psuedo selector and the <code>content</code> property is used to indcate visual state of unchecked to support high contrast setting in operating systems and browsers.</li>
+                  </ul>  
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><code>aria-checked=&quot;true&quot;</code></td>
+              <td><code>div</code></td>
+              <td>
+                  <ul>
+                    <li>Indentifies the <code>checkbox</code> is checked.</li>
+                    <li>CSS attribute selectors (e.g. <code>[aria-checked=&quot;ture&quote;]</code>) are used to synchronize the visual states with the value of the <code>aria-checked</code> attribute.</li>
+                    <li>The CSS <code>:before</code> psuedo selector and the <code>content</code> property is used to indcate visual state of checked to support high contrast setting in operating systems and browsers.</li>
+                  </ul>  
+              </td>
+            </tr>
         </tbody>
       </table>
-      </section>
-      <section>
-    
-    <h2 id="rps_label">Role, Property, State, and Tabindex  Attributes</h2>
-    <!--
-      Update this table to describe how roles, properties, states, and tabindex are used in this example.  
-      If the content will vary significantly for the above implementations, make this a level 4 section inside each of the above level 3 implementation sections.
-    -->
-    <table aria-labelledby="rps_label">
-      <thead>
-        <tr>
-          <th>Role</th>
-          <th>Attribute</th>
-          <th>Element</th>
-          <th>Usage</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr>
-            <td><code>checkbox</code></td>
-            <td></td>
-            <td><code>div</code></td>
-            <td>
-              <ul>
-                <li>The <code>role=&quot;checkbox&quot;</code> attribute identifies the <code>div</code> element as a ARIA <code>checkbox</code>.</li>
-                <li>The accessible name comes the child text content of the <code>div[role=&quot;checkbox&quot; element.</li>
-                <li>The <code>checkbox</code> widget needs a <code>tabindex=&quot;0&quot;</code> value.</li>
-              </ul> 
-            </td>
-          </tr>
-          <tr>
-            <td></td>
-            <td><code>tabindex=&quot;0&quot;</code></td>
-            <td><code>div</code></td>
-            <td>
-                <ul>
-                  <li>The <code>div[&quot;checkbox&quot;]</code> is identified as an ineractive element and is added to the tab order of the page by setting the <code>tabindex=&quot;0&quot;</code>.</li>
-                 </ul>  
-            </td>
-          </tr>
-          <tr>
-            <td></td>
-            <td><code>aria-checked=&quot;false&quot;</code></td>
-            <td><code>div</code></td>
-            <td>
-                <ul>
-                  <li>Indentifies the <code>checkbox</code> button is <strong>not</strong> checked.</li>
-                  <li>CSS attribute selectors (e.g. <code>[aria-checked=&quot;false&quote;]</code>) are used to synchronize the visual states with the value of the <code>aria-checked</code> attribute.</li>
-                  <li>The CSS <code>:before</code> psuedo selector and the <code>content</code> property is used to indcate visual state of unchecked to support high contrast setting in operating systems and browsers.</li>
-                </ul>  
-            </td>
-          </tr>
-          <tr>
-            <td></td>
-            <td><code>aria-checked=&quot;true&quot;</code></td>
-            <td><code>div</code></td>
-            <td>
-                <ul>
-                  <li>Indentifies the <code>checkbox</code> is checked.</li>
-                  <li>CSS attribute selectors (e.g. <code>[aria-checked=&quot;ture&quote;]</code>) are used to synchronize the visual states with the value of the <code>aria-checked</code> attribute.</li>
-                  <li>The CSS <code>:before</code> psuedo selector and the <code>content</code> property is used to indcate visual state of checked to support high contrast setting in operating systems and browsers.</li>
-                </ul>  
-            </td>
-          </tr>
-      </tbody>
-    </table>
-  
-  </section>
+    </section>
   
   <section>
     <h2>Javascript and CSS Source Code</h2>
@@ -166,10 +161,13 @@
     <div id="sc1_end_sep" role="separator" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of HTML for"></div>
 
     <script>
-        sourceCode.add('sc1', 'example');
+        sourceCode.add('sc1', 'ex1');
         sourceCode.make();
     </script>
   </section>
   </main>  
+  <nav>
+    <a href="../../../aria-practices.html#checkbox">Checkbox Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
+  </nav>
 </body>
 </html>
