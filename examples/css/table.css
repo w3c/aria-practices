@@ -14,7 +14,7 @@ td, th {
  padding-right: 2em;
 }
  
-th {
+thead th {
  background: transparent;  /* Darken header a bit */
  font-weight: bold;
  border-bottom: solid black thin;
@@ -23,19 +23,29 @@ th {
 td ul {
   margin: 0;
   padding: 0;
+  margin-left: 1.1em;
 }
 
 td ul li {
+  margin: 0;
+  padding: 0;
   padding-bottom: 0.25em;
 }
+
  
  
 
 /* Cells in even rows (2,4,6...) are one color */ 
-tr:nth-child(even) td { background: #F1F1F1; }   
+tr:nth-child(even) td,
+tr:nth-child(even) th { 
+    background: #F1F1F1; 
+}   
 
 /* Cells in odd rows (1,3,5...) are another (excludes header cells)  */ 
-tr:nth-child(odd) td { background: #FEFEFE; }  
+tr:nth-child(odd) td,
+tr:nth-child(odd) th { 
+    background: #FEFEFE; 
+}  
  
 td .sourcecode {
 	border: none;
