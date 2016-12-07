@@ -58,6 +58,10 @@ MenuItem.prototype.init = function () {
     this.domNode.setAttribute('role', 'menuitem');
   }
 
+  if (this.domNode.parentNode.tagName === 'LI') {
+    this.domNode.parentNode.setAttribute('role', 'none');
+  }
+
   this.domNode.addEventListener('keydown', this.handleKeydown.bind(this));
   this.domNode.addEventListener('keypress', this.handleKeypress.bind(this));
   this.domNode.addEventListener('click', this.handleClick.bind(this));
