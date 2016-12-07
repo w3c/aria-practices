@@ -3374,28 +3374,54 @@ helper.stopEvent(evt); //stop the event if not a tab keypress
       <li>Eliminating semantics of intervening orphan elements in the structure of a composite
         widget, such as a tablist, menu, or tree as demonstrated in the example above.</li>
     </ol>
-    <p>
-      The effects of role <code>presentation</code> on an element are:
-      <ul>
-        <li>If not ignored, the element’s implied ARIA role and any ARIA states and properties associated with that role
-        are hidden from assistive technologies.</li>
-        <li>
-          Text contained by the element, including alternative content like the alt text of an <code>img</code> element, and all its descendant elements remains visible to assistive
-          technologies except, of course, when the text is explicitly hidden, e.g., styled with <code>display:
-            none</code>, has the HTM5 <coce>hidden</coce> attribute or has <code>aria-hidden=&quot;true&quot;</code>.
-        </li>
-        </ul>
-
-    </p>
-    <section id="presentation_role_rules">
+    <section id="presentation_role_effects">
       <h3>
-        <code>presentation</code> is ignored for focusable Items and global ARIA attributes
+        Effects of Role <code>presentation</code>
       </h3>
-
+      <p>
+        When <code>role=&quot;presentation&quot;</code> is specified on an element, if a 
+        <a href="#presentation_role_ignored">condition that requires a browser to ignore the <code>presentation</code> role</a> 
+        does not exist, it has the following three effects.
+      </p>
+      <ol>
+        <li>The element’s implied ARIA role and any ARIA states and properties associated with
+          that role are hidden from assistive technologies.</li>
+        <li>
+          Text contained by the element, i.e., inner text, as well as inner text of all its
+          descendant elements remains visible to assistive technologies except, of course, when the
+          text is explicitly hidden, e.g., styled with <code>display: none</code> or has <code>aria-hidden=&quot;true&quot;</code>.
+        </li>
+        <li>
+          The roles, states, and properties of descendant elements remain visible to assistive
+          technologies except for the descendant elements that can only exist in the context of the presentational
+          element. For example:
+          <ul>
+            <li>
+              If <code>presentation</code> is applied to a <code>ul</code> or <code>ol</code>
+              element, it's child <code>li</code> elements inherrit the <code>presentation</code>
+              role because ARIA does not permit a <code>listitem</code> to exist without a parent <code>list</code>.
+              So, the <code>li</code> elements are not exposed to assistive technologies,  
+              but elements contained inside of those <code>li</code> elements, including nested lists,  are visible to assistive technologies.
+            </li>
+            <li>
+              Similarly, if <code>presentation</code> is applied to a <code>table</code> element,
+              The descendant <code>caption</code>, <code>thead</code>, <code>tbody</code>, <code>tfooter</code>,
+              <code>tr</code>, <code>th</code>, and <code>td</code> 
+              elements inherit role <code>presentation</code> and are thus not exposed to assistive technologies.
+              But, elements inside of the <code>th</code> and <code>td</code> elements, including nested tables,  are exposed to assistive technologies.
+            </li>
+          </ul>
+        </li>
+      </ol>
+    </section>
+    <section id="presentation_role_ignored">
+      <h3>
+        Conditions That Cause Role <code>presentation</code> to be Ignored 
+      </h3>
       <p>
          Browsers ignore <code>role=&quot;presentation&quot;</code>, and it therefore has no effect, if either of the following are true about the element to which it is applied:
           <ul>
-            <li>The element is focusable, e.g. links, form controls and elements with <code>tabindex</code> values.</li>
+            <li>The element is focusable, e.g. it is natively focusable like an HTML link or input , or it has a <code>tabindex</code> attribute.</li>
             <li>
               The element has any of the 
               <a href="#global_states" class="specref">twenty-one global ARIA states and properties</a>
@@ -3404,38 +3430,16 @@ helper.stopEvent(evt); //stop the event if not a tab keypress
           </ul>
       </p>
     </section>
-    <section>    
+    <section id="presentation_role_examples">    
       <h3>
-        <code>presentation</code> is inherited by required descendant elements
-      </h3>
-      <p>
-          The roles, states, and properties of all descendant elements remain visible to assistive
-          technologies except when the descendant element is a required part of the presentational
-          element. 
-      </p>
-      <p>For example:</p>
-      <ul>
-        <li>The <code>li</code> element inherits <code>presentation</code> when its parent <code>ul</code> or <code>ol</code> element has <code>presentation</code>.</li>
-        <li>
-          The descendant <code>th</code>, <code>td</code>, <code>caption</code>, <code>thead</code>, <code>tbody</code>, <code>tfooter</code>, <code>tr</code>, <code>col</code> and <code>colgreoup</code> elements inherit role <code>presentation</code> of a <code>table</code> element with <code>role=&quot;presentation&quot;</code>. 
-        </li>
-        <li>
-          <strong>Note:</strong> A <code>table</code> element contained in the <code>td</code> of a <code>table</code> with <code>role=&quot;presentation&quot;</code>
-          does not inherit the <code>presentation</code> role because the nested table is not a
-          required part of the presentational table.
-        </li>
-      </ul>
-    </section>
-    <section>
-      <h3>
-        <code>presentation</code> role examples
+        Examples Demonstrating Effects of the <code>presentation</code> Role
       </h3>
       <p>
         The
         <a href="examples/presentation/PresentationRoleExamples.html">
           <code>presentation</code> role examples page
         </a>
-        illustrates the effects of these rules in a variety of scenarios and provides more detailed
+        illustrates the three effects of the <code>presentation</code> role in a variety of scenarios and provides more detailed
         explanations of the rationale behind them.
       </p>
     </section>
