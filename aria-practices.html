@@ -3434,12 +3434,25 @@ helper.stopEvent(evt); //stop the event if not a tab keypress
       <h3>
         Examples Demonstrating Effects of the <code>presentation</code> Role
       </h3>
+      <p>This code:</p>
+      <pre>
+        &lt;ul role=&quot;presentation&quot;&gt;
+          &lt;li&gt;Date of birth:&lt;/li&gt;
+          &lt;li&gt;January 1, 3456&lt;/li&gt;
+        &lt;/ul&gt;
+      </pre>
+      <p>when parsed by a browser, is equivalent to the following from the perspective of a screen reader or other assistive technology that relies on the browser's accessibility tree:
+      </p>
+      <pre>
+        &lt;div&gt;Date of birth:&lt;/div&gt;
+          &lt;div&gt;January 1, 3456&lt;/div&gt;
+      </pre>
       <p>
         The
         <a href="examples/presentation/PresentationRoleExamples.html">
           <code>presentation</code> role examples page
         </a>
-        illustrates the three effects of the <code>presentation</code> role in a variety of scenarios and provides more detailed
+        includes several more examples that illustrate the three effects of the <code>presentation</code> role in a variety of scenarios and provides more detailed
         explanations of the rationale behind them.
       </p>
     </section>
