@@ -33,6 +33,11 @@
     items in the menubar. This example also demonstrates <code>menuitemradio</code> and <code>menuitemcheckbox</code> elements.
   </p>
 
+  <p>Similar examples include: </p>
+  <ul>
+    <li><a href="../menubar-1/menubar-1.html">Navigation Menubar Example</a>: Example of a menubar with popup menus with navigational links.</li>
+  </ul>
+
   <section id="code-ex-1">
     <h2 id="ex1_label">Example</h2>
     <div role="separator" id="ex1_start_sep" aria-labelledby="ex1_start_sep ex1_label" aria-label="Start of"></div>
@@ -138,8 +143,9 @@
 
   <section>
     <h2 id="kbd_label">Keyboard Support</h2>
-    <table>
-    <caption>Menubar Keys</caption>
+
+    <h3 id="kbd1_label">Menubar</h3>
+    <table aria-labelledby="kbd1_label kbd_label">
       <thead>
         <tr>
           <th>Key</th>
@@ -212,8 +218,9 @@
         </tr>
       </tbody>
     </table>
-    <table>
-      <caption>Popup Menu Keys</caption>
+
+    <h3 id="kbd2_label">Popup</h3>
+    <table aria-labelledby="kbd2_label kbd_label">
       <thead>
         <tr>
           <th>Key</th>
@@ -312,163 +319,165 @@
     </section>
     
     <section>
-        <h2 id="rps_label">Role, Property, State, and Tabindex Attributes</h2>
-    <table>
-      <caption>Menubar role, state, property, and tabindex attributes</caption>
-      <thead>
-        <tr>
-          <th scope="col">Role</th>
-          <th scope="col">Attribute</th>
-          <th scope="col">Element</th>
-          <th scope="col">Usage</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">
-            <code>menubar</code>
-          </th>
-          <td></td>
-          <td>
-            <code>ul</code>
-          </td>
-          <td>
-            <ul>
-              <li>
-                Identifies the <code>ul</code> element as a container for set of <code>menuitem</code> widgets associated with the menubar.
-              </li>
-              <li>
-                Is not focusable because focus is managed using <a href="../../#kbd_roving_tabindex">roving tabindex</a>, 
-              </li>
-            </ul>
-          </td>
-        </tr>
-        <tr>
-          <td></td>
-          <th scope="row">
-            <code>aria-label=&quot;<em>string</em>&quot;
-            </code>
-          </td>
-          <td>
-            <code>ul</code>
-          </td>
-          <td>
-            <ul>
-              <li>
-                Defines an acessible name for the <code>menubar</code>.
-              </li>
-              <li>Helps assistive technology users understand the purpose of the menubar and 
-                distinguish it from any other menubars or similar elements on the page.</li>
-            </ul>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">
-            <code>menuitem</code>
-          </th>
-          <td></td>
-          <td>
-            <code>li</code>
-          </td>
-          <td>
-            Identifies the <code>li</code> element as a menu item within the menubar widget.
-          </td>
-        </tr>
-        <tr>
-          <td></td>
-          <th scope="row">
-            <code>aria-label=&quot;<em>string</em>&quot;</code>
-          </th>
-          <td>
-            <code>li</code>
-          </td>
-          <td>
-            <ul>
-              <li>Defines an acessible name for the <code>menuitem</code>.</li>
-              <li>Overrides browser calculation of accessible name from inner text of all descendants, which includes all the popup menu item names.</li>
-            </ul>
-          </td>
-        </tr>
-        <tr>
-          <td></td>
-          <th scope="row">
-            <code>tabindex=&quot;-1&quot;</code>
-          </th>
-          <td>
-            <code>li</code>
-          </td>
-          <td>
-            Makes the <code>menuitem</code> element keyboard focusable but
-            <strong>not</strong> part of the <kbd>Tab</kbd> sequence of the page.
-          </td>
-        </tr>
-        <tr>
-          <td></td>
-          <th scope="row">
-            <code>tabindex=&quot;0&quot;</code>
-          </th>
-          <td>
-            <code>li</code>
-          </td>
-          <td>
-            <ul>
-              <li>
-                Makes the <code>menuitem</code> element keyboard focusable and
-                part of the <kbd>tab</kbd> sequence of the page.
-              </li>
-              <li>
-                Only one <code>menuitem</code> in the <code>menubar</code> has <code>tabindex=&quot;0&quot;</code>.
-              </li>
-              <li>
-                When the page loads, the first item in the menubar has <code>tabindex=&quot;0&quot;</code>.
-              </li>
-              <li>
-                Focus is managed using <a href="../../#kbd_roving_tabindex">roving tabindex</a>, 
-                so the most recently focused item will be in the page <kbd>Tab</kbd> sequence.
-              </li>
-            </ul>
-          </td>
-        </tr>
-        <tr>
-          <td></td>
-          <th scope="row">
-            <code>aria-haspopup=&quot;true&quot;</code>
-          </th>
-          <td>
-            <code>li</code>
-          </td>
-          <td>
-            Identifies the <code>menuitem</code> as having a child popup menu.
-          </td>
-        </tr>
-        <tr>
-          <td></td>
-          <th scope="row">
-            <code>aria-expanded=&quot;true&quot;</code>
-          </th>
-          <td>
-            <code>li</code>
-          </td>
-          <td>
-            Indicates the child popup menu is open.
-          </td>
-        </tr>
-        <tr>
-          <td></td>
-          <th scope="row">
-            <code>aria-expanded=&quot;false&quot;</code>
-          </th>
-          <td>
-            <code>li</code>
-          </td>
-          <td>
-            Indicates the child popup menu is closed.
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <table>
-      <caption>Popup menu role, state, property, and tabindex attributes</caption>
+      <h2 id="rps_label">Role, Property, State, and Tabindex Attributes</h2>
+
+      <h3 id="rps1_label">Menubar</h3>
+      <table aria-labelledby="rps1_label rps_label">
+        <thead>
+          <tr>
+            <th scope="col">Role</th>
+            <th scope="col">Attribute</th>
+            <th scope="col">Element</th>
+            <th scope="col">Usage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">
+              <code>menubar</code>
+            </th>
+            <td></td>
+            <td>
+              <code>ul</code>
+            </td>
+            <td>
+              <ul>
+                <li>
+                  Identifies the <code>ul</code> element as a container for set of <code>menuitem</code> widgets associated with the menubar.
+                </li>
+                <li>
+                  Is not focusable because focus is managed using <a href="../../#kbd_roving_tabindex">roving tabindex</a>, 
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <th scope="row">
+              <code>aria-label=&quot;<em>string</em>&quot;
+              </code>
+            </td>
+            <td>
+              <code>ul</code>
+            </td>
+            <td>
+              <ul>
+                <li>
+                  Defines an acessible name for the <code>menubar</code>.
+                </li>
+                <li>Helps assistive technology users understand the purpose of the menubar and 
+                  distinguish it from any other menubars or similar elements on the page.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">
+              <code>menuitem</code>
+            </th>
+            <td></td>
+            <td>
+              <code>li</code>
+            </td>
+            <td>
+              Identifies the <code>li</code> element as a menu item within the menubar widget.
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <th scope="row">
+              <code>aria-label=&quot;<em>string</em>&quot;</code>
+            </th>
+            <td>
+              <code>li</code>
+            </td>
+            <td>
+              <ul>
+                <li>Defines an acessible name for the <code>menuitem</code>.</li>
+                <li>Overrides browser calculation of accessible name from inner text of all descendants, which includes all the popup menu item names.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <th scope="row">
+              <code>tabindex=&quot;-1&quot;</code>
+            </th>
+            <td>
+              <code>li</code>
+            </td>
+            <td>
+              Makes the <code>menuitem</code> element keyboard focusable but
+              <strong>not</strong> part of the <kbd>Tab</kbd> sequence of the page.
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <th scope="row">
+              <code>tabindex=&quot;0&quot;</code>
+            </th>
+            <td>
+              <code>li</code>
+            </td>
+            <td>
+              <ul>
+                <li>
+                  Makes the <code>menuitem</code> element keyboard focusable and
+                  part of the <kbd>tab</kbd> sequence of the page.
+                </li>
+                <li>
+                  Only one <code>menuitem</code> in the <code>menubar</code> has <code>tabindex=&quot;0&quot;</code>.
+                </li>
+                <li>
+                  When the page loads, the first item in the menubar has <code>tabindex=&quot;0&quot;</code>.
+                </li>
+                <li>
+                  Focus is managed using <a href="../../#kbd_roving_tabindex">roving tabindex</a>, 
+                  so the most recently focused item will be in the page <kbd>Tab</kbd> sequence.
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <th scope="row">
+              <code>aria-haspopup=&quot;true&quot;</code>
+            </th>
+            <td>
+              <code>li</code>
+            </td>
+            <td>
+              Identifies the <code>menuitem</code> as having a child popup menu.
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <th scope="row">
+              <code>aria-expanded=&quot;true&quot;</code>
+            </th>
+            <td>
+              <code>li</code>
+            </td>
+            <td>
+              Indicates the child popup menu is open.
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <th scope="row">
+              <code>aria-expanded=&quot;false&quot;</code>
+            </th>
+            <td>
+              <code>li</code>
+            </td>
+            <td>
+              Indicates the child popup menu is closed.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3 id="rps2_label">Popup Menu</h3>
+      <table aria-labelledby="rps2_label rps_label">
       <thead>
         <tr>
           <th scope="col">Role</th>
@@ -708,24 +717,19 @@
         <a href="css/menubarAction.css" type="tex/css">menubarAction.css</a>
       </li>
       <li>
-        Javascript:
-        <ul>
-          <li>
-            <a href="js/MenubarAction.js" type="text/javascript">MenubarAction.js</a>
-          </li>
-          <li>
-            <a href="js/MenubarItemAction.js" type="text/javascript">MenubarItemAction.js</a>
-          </li>
-          <li>
-            <a href="js/PopupMenuAction.js" type="text/javascript">PopupMenuAction.js</a>
-          </li>
-          <li>
-            <a href="js/MenuItemAction.js" type="text/javascript">MenuItemAction.js</a>
-          </li>
-          <li>
-            <a href="js/TextStyling.js" type="text/javascript">TextStyling.js</a>
-          </li>
-        </ul>
+        Javascript: <a href="js/MenubarAction.js" type="text/javascript">MenubarAction.js</a>
+      </li>
+      <li>
+        Javascript: <a href="js/MenubarItemAction.js" type="text/javascript">MenubarItemAction.js</a>
+      </li>
+      <li>
+        Javascript: <a href="js/PopupMenuAction.js" type="text/javascript">PopupMenuAction.js</a>
+      </li>
+      <li>
+        Javascript: <a href="js/MenuItemAction.js" type="text/javascript">MenuItemAction.js</a>
+      </li>
+      <li>
+            Javascript: <a href="js/TextStyling.js" type="text/javascript">TextStyling.js</a>
       </li>
     </ul>
   </section>
