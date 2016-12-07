@@ -15,18 +15,18 @@
   </head>
   <body>
     <main>
-      <h1>Menu Button Example: Actions</h1>
- 
-      <p>This example implements the features of an <a href="../../../aria-practices.html#menubutton">ARIA Menu Button Design Pattern</a> for a menu of actions within a web application.
-      An ARIA menu button is defined as any element with <code>role=&quot;button&quot;</code> with an <code>aria-haspopup=&quot;true&quot;</code>.  
-      This includes the HTML <code>button</code> and <code>input[type="button"]</code> elements with default roles of <code>button</code>.
+      <h1>Actions Menu Button Example</h1>
+      <p>This example implements the <a href="../../../#menubutton">menu button design pattern</a> 
+      for a button that provides access to a menu of actions.
+      When an element with role <code>button</code> has <code>aria-haspopup=&quot;true&quot;</code>, 
+      browsers inform assistive technologies that the button is a menu button.
+      This role transformation caused by <code>aria-haspopup</code> happens with any element that is recognized as a button, 
+      including the HTML <code>button</code> and <code>input[type="button"]</code> elements. 
       </p>
-
       <p>Similar examples include: </p>
       <ul>
         <li><a href="../menu-button-2/menu-button-2.html">Menu Button Example: Links</a>: The popup menu items are <code>a</code> elements and act as links.</li>
       </ul>
-
       <section>
         <h2 id="ex_label">Example</h2>
         <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>        <div id="ex1">
