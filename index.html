@@ -4471,7 +4471,7 @@ helper.stopEvent(evt); <span class="hljs-comment">//stop the event if not a tab 
       <a href="http://w3c.github.io/aria/aria/aria.html#none" class="role-reference">none</a> , which serves as a synonym for <code>presentation</code>.
     </p>
     <p>
-      For example, consider a tablist built using an HTML <code>ul</code> element.
+      For example, consider a tabs widget built using an HTML <code>ul</code> element.
     </p>
     <pre class="hljs xml">    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"tablist"</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"presentation"</span>&gt;</span>
@@ -4493,8 +4493,8 @@ helper.stopEvent(evt); <span class="hljs-comment">//stop the event if not a tab 
       Three common uses of role <code>presentation</code> are:
     </p>
     <ol>
-      <li>Hiding a presentational image.</li>
-      <li>Suppressing semantics of a layout table.</li>
+      <li>Hiding a decorative image; it is equivalent to giving the image null alt text. </li>
+      <li>Suppressing table semantics of tables used for layout in circumstances where the table semantics do not convey meaningful relationships.</li>
       <li>Eliminating semantics of intervening orphan elements in the structure of a composite widget, such as a tablist, menu, or tree as demonstrated in the example above.</li>
     </ol>
 
@@ -4518,16 +4518,16 @@ helper.stopEvent(evt); <span class="hljs-comment">//stop the event if not a tab 
       </p>
       <ol>
         <li>
-          Browsers ignore the <code>presentation</code> role and it therefore does not affect how assistive technology users perceive the element if either:
+          Browsers ignore <code>role="presentation"</code>, and it therefore has no effect, if either of the following are true about the element to which it is applied:
           <ul>
-            <li>the element is focusable.</li>
+            <li>The element is focusable.</li>
             <li>
               The element has any of the
               <a href="http://w3c.github.io/aria/aria/aria.html#global_states" class="specref">twenty-one global ARIA states and properties</a> , e.g., <code>aria-label</code>.
             </li>
           </ul>
         </li>
-        <li>If not ignored, the element’s implied ARIA role and associated ARIA states and properties are hidden from assistive technologies.</li>
+        <li>If not ignored, the element’s implied ARIA role and any ARIA states and properties associated with that role are hidden from assistive technologies.</li>
         <li>
           Text contained by the element and all its descendant elements remains visible to assistive technologies except, of course, when the text is explicitly hidden, e.g., styled with <code>display:
             none</code> or has <code>aria-hidden="true"</code>.
@@ -4547,7 +4547,7 @@ helper.stopEvent(evt); <span class="hljs-comment">//stop the event if not a tab 
       </ol>
       <p>
         The
-        <a href="examples/presentation/PresentationRole.html">
+        <a href="examples/presentation/PresentationRoleExamples.html">
           <code>presentation</code> role examples page
         </a>
         illustrates the effects of these rules in a variety of scenarios and provides more detailed explanations of the rationale behind them.
