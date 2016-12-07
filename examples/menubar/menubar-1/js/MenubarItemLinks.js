@@ -43,6 +43,8 @@ var MenubarItem = function (domNode, menuObj) {
   this.hasFocus = false;
   this.hasHover = false;
 
+  this.isMenubarItem = true;
+
   this.keyCode = Object.freeze({
     'TAB': 9,
     'RETURN': 13,
@@ -105,17 +107,11 @@ MenubarItem.prototype.handleKeydown = function (event) {
       break;
 
     case this.keyCode.LEFT:
-      if (this.popupMenu) {
-        this.popupMenu.close(true);
-      }
       this.menubar.setFocusToPreviousItem(this);
       flag = true;
       break;
 
     case this.keyCode.RIGHT:
-      if (this.popupMenu) {
-        this.popupMenu.close(true);
-      }
       this.menubar.setFocusToNextItem(this);
       flag = true;
       break;

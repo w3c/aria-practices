@@ -9,25 +9,6 @@ var aria = aria || {};
 
 /**
  * @desc
- *  Key code constants
- */
-aria.KeyCode = {
-  TAB: 9,
-  RETURN: 13,
-  ESC: 27,
-  SPACE: 32,
-  PAGE_UP: 33,
-  PAGE_DOWN: 34,
-  END: 35,
-  HOME: 36,
-  LEFT: 37,
-  UP: 38,
-  RIGHT: 39,
-  DOWN: 40
-};
-
-/**
- * @desc
  *  Values for aria-sort
  */
 aria.SortType = {
@@ -54,43 +35,6 @@ aria.GridSelector = {
  */
 aria.CSSClass = {
   HIDDEN: 'hidden'
-};
-
-aria.Utils = aria.Utils || {};
-
-// Polyfill src https://developer.mozilla.org/en-US/docs/Web/API/Element/matches
-aria.Utils.matches = function (element, selector) {
-  if (!Element.prototype.matches) {
-    Element.prototype.matches =
-      Element.prototype.matchesSelector
-      || Element.prototype.mozMatchesSelector
-      || Element.prototype.msMatchesSelector
-      || Element.prototype.oMatchesSelector
-      || Element.prototype.webkitMatchesSelector
-      || function (s) {
-          var matches = element.parentNode.querySelectorAll(s);
-          var i = matches.length;
-          while (--i >= 0 && matches.item(i) !== this) {}
-          return i > -1;
-        };
-  }
-
-  return element.matches(selector);
-};
-
-aria.Utils.hasClass = function (element, className) {
-  return (new RegExp('(\\s|^)' + className + '(\\s|$)')).test(element.className);
-};
-
-aria.Utils.addClass = function (element, className) {
-  if (!aria.Utils.hasClass(element, className)) {
-    element.className += ' ' + className;
-  }
-};
-
-aria.Utils.removeClass = function (element, className) {
-  var classRegex = new RegExp('(\\s|^)' + className + '(\\s|$)');
-  element.className = element.className.replace(classRegex, ' ');
 };
 
 /**
@@ -570,9 +514,9 @@ aria.Grid.prototype.setupIndices = function () {
 
   for (var row = 0; row < rows.length; row++) {
     var cols = rows[row].querySelectorAll(aria.GridSelector.CELL);
+    rows[row].setAttribute('aria-rowindex', row + 1);
 
     for (var col = 0; col < cols.length; col++) {
-      cols[col].setAttribute('aria-rowindex', row + 1);
       cols[col].setAttribute('aria-colindex', col + 1);
     }
 
