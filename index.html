@@ -1197,8 +1197,14 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       Intentionally Hiding Semantics with the <code>presentation</code> Role
     </a>
         <ol class="toc">
-          <li class="tocline"><a href="#presentation_role_rules" class="tocxref"><span class="secno">6.1 </span>
-        Four Rules for Using Role <code>presentation</code>
+          <li class="tocline"><a href="#presentation_role_effects" class="tocxref"><span class="secno">6.1 </span>
+        Effects of Role <code>presentation</code>
+      </a></li>
+          <li class="tocline"><a href="#presentation_role_ignored" class="tocxref"><span class="secno">6.2 </span>
+        Conditions That Cause Role <code>presentation</code> to be Ignored 
+      </a></li>
+          <li class="tocline"><a href="#presentation_role_examples" class="tocxref"><span class="secno">6.3 </span>
+        Examples Demonstrating Effects of the <code>presentation</code> Role
       </a></li>
         </ol>
       </li>
@@ -2864,12 +2870,6 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </span>
         </span>
       </h3>
-      <div class="note">
-        <div class="note-title marker" aria-level="4" role="heading" id="h-note26"><span>Note</span></div>
-        <p class="">
-          This section was significantly revised on November 8. To review the list of changes and provide feedback, see <a href="https://github.com/w3c/aria-practices/issues/131">issue 131</a>.
-        </p>
-      </div>
       <p>
         A tree view widget presents a hierarchical list. Any item in the hierarchy may have child items, and items that have children may be expanded or collapsed to show or hide the children. For example, in a file system navigator that uses a tree view to display folders and files, an item representing a folder can be expanded to reveal the contents of the folder, which may be files, folders, or both.
       </p>
@@ -2966,7 +2966,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           </li>
         </ul>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note27"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note26"><span>Note</span></div>
           <ol class="">
             <li>DOM focus (the active element) is functionally distinct from the selected state. For more details, see <a href="#kbd_focus_vs_selection">this description of differences between focus and selection.</a></li>
             <li>
@@ -3017,7 +3017,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           </li>
         </ul>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note28"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note27"><span>Note</span></div>
           <p class="">
             If <a href="http://w3c.github.io/aria/aria/aria.html#aria-owns" class="property-reference">aria-owns</a> is set on the tree container to include elements that are not DOM children of the container, those elements will appear in the reading order in the sequence they are referenced and after any items that are DOM children. Scripts that manage focus need to ensure the visual focus order matches this assistive technology reading order.
           </p>
@@ -3065,7 +3065,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </ul>
 
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note29"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note28"><span>Note</span></div>
           <p class="">A fixed size splitter simply omits implementation of the arrow keys. </p>
         </div>
       </section>
@@ -3083,7 +3083,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <section class="notoc" typeof="bibo:Chapter" resource="#example-17" property="bibo:hasPart">
         <h4 id="example-17" resource="#example-17"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note30"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note29"><span>Note</span></div>
           <p class="">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The ARIA practices task force is developing examples for Authoring Practices 1.1 that will be directly incorporated into the guide.</p>
         </div>
         <ul>
@@ -3678,7 +3678,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </span>
       </h3>
       <div class="note">
-        <div class="note-title marker" aria-level="4" role="heading" id="h-note31"><span>Note</span></div>
+        <div class="note-title marker" aria-level="4" role="heading" id="h-note30"><span>Note</span></div>
         <p class="">
           This section was added on November 8. To provide feedback, see <a href="https://github.com/w3c/aria-practices/issues/131">issue 131</a>.
         </p>
@@ -3879,7 +3879,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </h4>
 
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note32"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note31"><span>Note</span></div>
           <p class="">Not yet edited ... considering what should be written/included. We don't want to write a javascript book.</p>
         </div>
 
@@ -3918,7 +3918,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </h3>
 
       <div class="note">
-        <div class="note-title marker" aria-level="4" role="heading" id="h-note33"><span>Note</span></div>
+        <div class="note-title marker" aria-level="4" role="heading" id="h-note32"><span>Note</span></div>
         <p class="">
           MCK: unedited content pulled together from the old guide that needs a significant re-write. Please ignore this section for now.
         </p>
@@ -4206,7 +4206,7 @@ helper.stopEvent(evt); <span class="hljs-comment">//stop the event if not a tab 
         </p>
 
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note34"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note33"><span>Note</span></div>
           <p class="">
             In the following sections, <kbd>meta</kbd> key refers to the <kbd>Windows</kbd> key on Windows-compatible keyboards and the <kbd>Command</kbd> key on MacOS-compatible keyboards.
           </p>
@@ -4336,7 +4336,7 @@ helper.stopEvent(evt); <span class="hljs-comment">//stop the event if not a tab 
       </h3>
 
       <div class="note">
-        <div class="note-title marker" aria-level="4" role="heading" id="h-note35"><span>Note</span></div>
+        <div class="note-title marker" aria-level="4" role="heading" id="h-note34"><span>Note</span></div>
         <p class="">MCK: this section is a collection of keyboard related old content with a yet undecided fate.</p>
       </div>
 
@@ -4495,59 +4495,85 @@ helper.stopEvent(evt); <span class="hljs-comment">//stop the event if not a tab 
       <li>Eliminating semantics of intervening orphan elements in the structure of a composite widget, such as a tablist, menu, or tree as demonstrated in the example above.</li>
     </ol>
 
-    <section id="presentation_role_rules" typeof="bibo:Chapter" resource="#presentation_role_rules" property="bibo:hasPart">
-      <h3 id="h-presentation_role_rules" resource="#h-presentation_role_rules"><span property="xhv:role" resource="xhv:heading"><span class="secno">6.1 </span> Four Rules for Using Role <code>presentation</code>
-        <span class="permalink" typeof="bookmark"><a href="#presentation_role_rules" aria-label="Permalink for 6.1 
-        Four Rules for Using Role presentation
+    <section id="presentation_role_effects" typeof="bibo:Chapter" resource="#presentation_role_effects" property="bibo:hasPart">
+      <h3 id="h-presentation_role_effects" resource="#h-presentation_role_effects"><span property="xhv:role" resource="xhv:heading"><span class="secno">6.1 </span> Effects of Role <code>presentation</code>
+        <span class="permalink" typeof="bookmark"><a href="#presentation_role_effects" aria-label="Permalink for 6.1 
+        Effects of Role presentation
       " title="Permalink for 6.1 
-        Four Rules for Using Role presentation
+        Effects of Role presentation
       " property="url"><span property="title" content="6.1 
-        Four Rules for Using Role presentation
+        Effects of Role presentation
       ">§</span></a>
         </span>
         </span>
       </h3>
       <p>
-        When reading the following rules, it is important to understand that most host language elements, such as an HTML <code>h1</code> element, have an implied ARIA role and may also have implied states or properties. When rendering an <code>h1</code> element, browsers tell assistive technologies that it has ARIA role <code>heading</code> and property value <code>aria-level="1"</code>.
-      </p>
-      <p>
-        The following rules describe the result of applying role <code>presentation</code> to an element.
+        When <code>role="presentation"</code> is specified on an element, if a
+        <a href="#presentation_role_ignored">condition that requires a browser to ignore the <code>presentation</code> role</a> does not exist, it has the following three effects.
       </p>
       <ol>
+        <li>The element’s implied ARIA role and any ARIA states and properties associated with that role are hidden from assistive technologies.</li>
         <li>
-          Browsers ignore <code>role="presentation"</code>, and it therefore has no effect, if either of the following are true about the element to which it is applied:
-          <ul>
-            <li>The element is focusable.</li>
-            <li>
-              The element has any of the
-              <a href="http://w3c.github.io/aria/aria/aria.html#global_states" class="specref">twenty-one global ARIA states and properties</a> , e.g., <code>aria-label</code>.
-            </li>
-          </ul>
-        </li>
-        <li>If not ignored, the element’s implied ARIA role and any ARIA states and properties associated with that role are hidden from assistive technologies.</li>
-        <li>
-          Text contained by the element and all its descendant elements remains visible to assistive technologies except, of course, when the text is explicitly hidden, e.g., styled with <code>display:
-            none</code> or has <code>aria-hidden="true"</code>.
+          Text contained by the element, i.e., inner text, as well as inner text of all its descendant elements remains visible to assistive technologies except, of course, when the text is explicitly hidden, e.g., styled with <code>display: none</code> or has <code>aria-hidden="true"</code>.
         </li>
         <li>
-          The roles, states, and properties of all descendant elements remain visible to assistive technologies except when the descendant element is a required part of the presentational element. For example:
+          The roles, states, and properties of descendant elements remain visible to assistive technologies except for the descendant elements that can only exist in the context of the presentational element. For example:
           <ul>
-            <li>If the implied role of an element with role presentation is list, its listitem children inherit the presentation role.</li>
             <li>
-              If the implied role of an element with role <code>presentation</code> is <code>table</code>, its <code>rowgroup</code> and <code>row</code> children inherit the <code>presentation</code> role. And, in turn, the <code>colheader</code>, <code>rowheader</code>, and <code>cell</code> children will then inherit the presentation role from their <code>row</code> or <code>rowgroup</code> parents.
+              If <code>presentation</code> is applied to a <code>ul</code> or <code>ol</code> element, it's child <code>li</code> elements inherrit the <code>presentation</code> role because ARIA does not permit a <code>listitem</code> to exist without a parent <code>list</code>. So, the <code>li</code> elements are not exposed to assistive technologies, but elements contained inside of those <code>li</code> elements, including nested lists, are visible to assistive technologies.
             </li>
             <li>
-              Note that a table contained in the cell of a table with role <code>presentation</code> does not inherit the <code>presentation</code> role because the nested table is not a required part of the presentational table.
+              Similarly, if <code>presentation</code> is applied to a <code>table</code> element, The descendant <code>caption</code>, <code>thead</code>, <code>tbody</code>, <code>tfooter</code>,
+              <code>tr</code>, <code>th</code>, and <code>td</code> elements inherit role <code>presentation</code> and are thus not exposed to assistive technologies. But, elements inside of the <code>th</code> and <code>td</code> elements, including nested tables, are exposed to assistive technologies.
             </li>
           </ul>
         </li>
       </ol>
+    </section>
+
+    <section id="presentation_role_ignored" typeof="bibo:Chapter" resource="#presentation_role_ignored" property="bibo:hasPart">
+      <h3 id="h-presentation_role_ignored" resource="#h-presentation_role_ignored"><span property="xhv:role" resource="xhv:heading"><span class="secno">6.2 </span> Conditions That Cause Role <code>presentation</code> to be Ignored
+        <span class="permalink" typeof="bookmark"><a href="#presentation_role_ignored" aria-label="Permalink for 6.2 
+        Conditions That Cause Role presentation to be Ignored 
+      " title="Permalink for 6.2 
+        Conditions That Cause Role presentation to be Ignored 
+      " property="url"><span property="title" content="6.2 
+        Conditions That Cause Role presentation to be Ignored 
+      ">§</span></a>
+        </span>
+        </span>
+      </h3>
+      <p>
+        Browsers ignore <code>role="presentation"</code>, and it therefore has no effect, if either of the following are true about the element to which it is applied:
+      </p>
+      <ul>
+        <li>The element is focusable, e.g. it is natively focusable like an HTML link or input , or it has a <code>tabindex</code> attribute.</li>
+        <li>
+          The element has any of the
+          <a href="http://w3c.github.io/aria/aria/aria.html#global_states" class="specref">twenty-one global ARIA states and properties</a> , e.g., <code>aria-label</code>.
+        </li>
+      </ul>
+      <p></p>
+    </section>
+
+    <section id="presentation_role_examples" typeof="bibo:Chapter" resource="#presentation_role_examples" property="bibo:hasPart">
+      <h3 id="h-presentation_role_examples" resource="#h-presentation_role_examples"><span property="xhv:role" resource="xhv:heading"><span class="secno">6.3 </span> Examples Demonstrating Effects of the <code>presentation</code> Role
+        <span class="permalink" typeof="bookmark"><a href="#presentation_role_examples" aria-label="Permalink for 6.3 
+        Examples Demonstrating Effects of the presentation Role
+      " title="Permalink for 6.3 
+        Examples Demonstrating Effects of the presentation Role
+      " property="url"><span property="title" content="6.3 
+        Examples Demonstrating Effects of the presentation Role
+      ">§</span></a>
+        </span>
+        </span>
+      </h3>
       <p>
         The
         <a href="examples/presentation/PresentationRoleExamples.html">
           <code>presentation</code> role examples page
         </a>
-        illustrates the effects of these rules in a variety of scenarios and provides more detailed explanations of the rationale behind them.
+        illustrates the three effects of the <code>presentation</code> role in a variety of scenarios and provides more detailed explanations of the rationale behind them.
       </p>
     </section>
   </section>
