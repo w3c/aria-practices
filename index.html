@@ -4568,12 +4568,23 @@ helper.stopEvent(evt); <span class="hljs-comment">//stop the event if not a tab 
         </span>
         </span>
       </h3>
+      <p>This code:</p>
+      <pre class="hljs xml">        <span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"presentation"</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Date of birth:<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>January 1, 3456<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+      </pre>
+      <p>when parsed by a browser, is equivalent to the following from the perspective of a screen reader or other assistive technology that relies on the browser's accessibility tree:
+      </p>
+      <pre class="hljs xml">        <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Date of birth:<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>January 1, 3456<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      </pre>
       <p>
         The
         <a href="examples/presentation/PresentationRoleExamples.html">
           <code>presentation</code> role examples page
         </a>
-        illustrates the three effects of the <code>presentation</code> role in a variety of scenarios and provides more detailed explanations of the rationale behind them.
+        includes several more examples that illustrate the three effects of the <code>presentation</code> role in a variety of scenarios and provides more detailed explanations of the rationale behind them.
       </p>
     </section>
   </section>
