@@ -3374,69 +3374,72 @@ helper.stopEvent(evt); //stop the event if not a tab keypress
       <li>Eliminating semantics of intervening orphan elements in the structure of a composite
         widget, such as a tablist, menu, or tree as demonstrated in the example above.</li>
     </ol>
+    <p>
+      The effects of role <code>presentation</code> on an element are:
+      <ul>
+        <li>If not ignored, the element’s implied ARIA role and any ARIA states and properties associated with that role
+        are hidden from assistive technologies.</li>
+        <li>
+          Text contained by the element, including alternative content like the alt text of an <code>img</code> element, and all its descendant elements remains visible to assistive
+          technologies except, of course, when the text is explicitly hidden, e.g., styled with <code>display:
+            none</code>, has the HTM5 <coce>hidden</coce> attribute or has <code>aria-hidden=&quot;true&quot;</code>.
+        </li>
+        </ul>
+
+    </p>
     <section id="presentation_role_rules">
       <h3>
-        Four Rules for Using Role <code>presentation</code>
+        <code>presentation</code> is ignored for focusable Items and global ARIA attributes
       </h3>
+
       <p>
-        When reading the following rules, it is important to understand that most host language
-        elements, such as an HTML <code>h1</code> element, have an implied ARIA role and may also
-        have implied states or properties. When rendering an <code>h1</code> element, browsers tell
-        assistive technologies that it has ARIA role <code>heading</code> and property value <code>aria-level=&quot;1&quot;</code>.
-      </p>
-      <p>
-        The following rules describe the result of applying role <code>presentation</code> to an
-        element.
-      </p>
-      <ol>
-        <li>
-          Browsers ignore <code>role=&quot;presentation&quot;</code>, and it therefore has no effect, if either of the following are true about the element to which it is applied:
+         Browsers ignore <code>role=&quot;presentation&quot;</code>, and it therefore has no effect, if either of the following are true about the element to which it is applied:
           <ul>
-            <li>The element is focusable.</li>
+            <li>The element is focusable, e.g. links, form controls and elements with <code>tabindex</code> values.</li>
             <li>
               The element has any of the 
               <a href="#global_states" class="specref">twenty-one global ARIA states and properties</a>
               , e.g., <code>aria-label</code>.
             </li>
           </ul>
-        </li>
-        <li>If not ignored, the element’s implied ARIA role and any ARIA states and properties associated with that role
-        are hidden from assistive technologies.</li>
-        <li>
-          Text contained by the element and all its descendant elements remains visible to assistive
-          technologies except, of course, when the text is explicitly hidden, e.g., styled with <code>display:
-            none</code> or has <code>aria-hidden=&quot;true&quot;</code>.
-        </li>
-        <li>
+      </p>
+    </section>
+    <section>    
+      <h3>
+        <code>presentation</code> is inherited by required descendant elements
+      </h3>
+      <p>
           The roles, states, and properties of all descendant elements remain visible to assistive
           technologies except when the descendant element is a required part of the presentational
-          element. For example:
-          <ul>
-            <li>If the implied role of an element with role presentation is list, its listitem
-              children inherit the presentation role.</li>
-            <li>
-              If the implied role of an element with role <code>presentation</code> is <code>table</code>,
-              its <code>rowgroup</code> and <code>row</code> children inherit the <code>presentation</code>
-              role. And, in turn, the <code>colheader</code>, <code>rowheader</code>, and <code>cell</code>
-              children will then inherit the presentation role from their <code>row</code> or <code>rowgroup</code>
-              parents.
-            </li>
-            <li>
-              Note that a table contained in the cell of a table with role <code>presentation</code>
-              does not inherit the <code>presentation</code> role because the nested table is not a
-              required part of the presentational table.
-            </li>
-          </ul>
+          element. 
+      </p>
+      <p>For example:</p>
+      <ul>
+        <li>The <code>li</code> element inherits <code>presentation</code> when its parent <code>ul</code> or <code>ol</code> element has <code>presentation</code>.</li>
+        <li>
+          The descendant <code>th</code>, <code>td</code>, <code>caption</code>, <code>thead</code>, <code>tbody</code>, <code>tfooter</code>, <code>tr</code>, <code>col</code> and <code>colgreoup</code> elements inherit role <code>presentation</code> of a <code>table</code> element with <code>role=&quot;presentation&quot;</code>. 
         </li>
-      </ol>
-      <p>
-        The
+        <li>
+          <strong>Note:</strong> A <code>table</code> element contained in the <code>td</code> of a <code>table</code> with <code>role=&quot;presentation&quot;</code>
+          does not inherit the <code>presentation</code> role because the nested table is not a
+          required part of the presentational table.
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h3>
+        <code>presentation</code> role examples
+      </h3>
+      <ul>
+        <li>The
         <a href="examples/presentation/PresentationRoleExamples.html">
           <code>presentation</code> role examples page
         </a>
         illustrates the effects of these rules in a variety of scenarios and provides more detailed
-        explanations of the rationale behind them.
-      </p>
+        explanations of the rationale behind them.</li>
+        <li><a href="examples/menu-button/menu-button-2/menu-button-2.html">Menu Button Example: links</a>
+        <li><a href="examples/menubar/menubar-1/menubar-1.html">Navigation Menubar Example</a>
+      </ul>
     </section>
   </section>
   
