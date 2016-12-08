@@ -469,58 +469,78 @@
 
     <section class="widget" id="dialog_modal">
       <h3>Dialog (Modal)</h3>
-
-      <p class="note">This section is partially revised. Planned changes are being discussed in <a href="https://github.com/w3c/aria-practices/issues/42">issue 42</a>.</p>
-
       <p>
-        A <a href="#dialog" class="role-reference">dialog</a> is a window overlayed on the primary window.
-        A modal dialog is designed to interrupt the user to, for example, prompt the user to confirm an action or enter information, and it traps or contains keyboard focus until the dialog is closed.
-        ARIA has a special role for modal dialogs that convey a brief, important message to the user -- the <a href="#alertdialog" class="role-reference">alertdialog</a> ( See the <a href="#alertdialog">Alert Dialog</a> design pattern).
+        Work on this section is in progress. Provide feedback in
+        <a href="https://github.com/w3c/aria-practices/issues/42">issue 42.</a>
       </p>
-
+      <p>
+        A <a href="#dialog" class="role-reference">dialog</a> is a window overlayed on either the primary window or another dialog window.
+        Like non-modal dialogs, modal dialogs have their own tab sequence, i.e., <kbd>Tab</kbd> and <kbd>Shift + Tab</kbd> do not move focus outside the dialog.
+        However, the window under a modal dialog is typically inert; users cannot interact with content outside the dialog window.
+        So, unlike non-modal dialogs, a modal dialog does not provide means for moving keyboard focus outside the dialog window without closing the dialog.
+      </p>
+      <p>
+        The <a href="#alertdialog" class="role-reference">alertdialog</a> role is a special-case dialog role
+        designed specifically for dialogs that divert users' attention to a brief, important message.
+        Its usage is described in the <a href="#alertdialog">alert dialog design pattern.</a>
+      </p>
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
-
         <ul>
-          <li><kbd>Tab</kbd>: Moves focus to the next focusable element inside the dialog. Pressing tab with focus on the last focusable element in the dialog moves focus to the first focusable element in the dialog. </li>
-          <li><kbd>Shift + Tab</kbd>: Moves focus to the previous focusable element inside the dialog. Pressing shift-tab with focus on the first focusable element in the dialog moves focus to the last focusable element in the dialog. </li>
-          <li><kbd>Escape</kbd>: Closes the dialog without taking any action. </li>
-          <li> <kbd>Enter</kbd>: Serves as the default submit action key if if the primary purpose of the dialog is to gather information </li>
+          <li><kbd>Tab</kbd>: 
+            <ul>
+              <li>Moves focus to the next focusable element inside the dialog.</li>
+              <li>If focus is on the last element, moves focus to the first focusable element inside the dialog. </li>
+            </ul>
+          </li>
+          <li><kbd>Shift + Tab</kbd>: 
+            <ul>
+              <li>Moves focus to the previous focusable element inside the dialog.</li>
+              <li>If focus is on the first element, moves focus to the last focusable element inside the dialog.</li>
+            </ul>
+          </li>
+        <li><kbd>Escape</kbd>: Closes the dialog.</li>
         </ul>
-
-        <ul class="note">
-          <li>If the current focus item has <kbd>Escape</kbd> key behavior, the press of the <kbd>Escape</kbd> will be handled by the current item and the user may have to press <kbd>Escape</kbd> an additional time to close the dialog.</li>
-          <li> When the dialog is closed or cancelled focus should return to the element in the application which had focus before the dialog is invoked. This is usually the control which opened the dialog. </li>
-          <li> When a modal dialog opens focus goes to the first focusable item in the dialog. Determining the first focusable item must take into account elements which receive focus by default (form fields and links) as well as items which may have a tabindex attribute with a positive value. </li>
-        </ul>
+        <ol class="note">
+          <li>
+            When a dialog opens, focus is typically set on the first focusable element.
+          </li>
+          <li>
+            When a dialog closes, focus returns to the element that had focus before the dialog was invoked. 
+            This is often the control that opened the dialog. 
+          </li>
+        </ol>
       </section>
-
       <section class="notoc">
         <h4>WAI-ARIA Roles, States, and Properties</h4>
         <ul>
-          <li>The element containing the dialog has a role of <a href="#dialog" class="role-reference">dialog</a>.</li>
-          <li>The dialog box title is provided by either the <a href="#aria-label" class="property-reference">aria-label</a> or the <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> property.</li>
-          <li> The <a href="#aria-describedby" class="property-reference">aria-describedby</a> property may be set on the element with the <code>dialog</code> role to indicate which element or elements in the dialog contain content that describes the primary purpose or message of the dialog. Screen readers may automatically announce the specified description along with the dialog title and initially focused element when the dialog opens. </li>
+          <li>The element that serves as the dialog container has a role of <a href="#dialog" class="role-reference">dialog</a>.</li>
+          <li>The dialog has either:
+            <ul>
+              <li>The <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> property set to refer to the visible dialog title.</li>
+              <li>A label specified with <a href="#aria-label" class="property-reference">aria-label</a>.</li>
+            </ul>
+          </li>
+          <li>
+            The <a href="#aria-describedby" class="property-reference">aria-describedby</a> property can be set on the 
+            element with the <code>dialog</code> role to indicate which 
+            element or elements in the dialog contain content that describes the primary purpose or message of the dialog. 
+            Specifying descriptive elements enables screen readers to announce the description along with the dialog title and initially focused element when the dialog opens. 
+          </li>
         </ul>
       </section>
-
       <section class="notoc">
         <h4>Example</h4>
-        <p class="note">
-          Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section.
-          The ARIA practices task force is developing examples for Authoring Practices 1.1 that will be directly incorporated into the guide.
+        <p>
+          Development of dialog examples is tracked by  
+          <a href="https://github.com/w3c/aria-practices/issues/103">issue 103.</a>
         </p>
-        <ul>
-          <li><a href="http://developer.yahoo.com/yui/examples/container/container-ariaplugin_clean.html" rel="nofollow" target="_blank">YUI dialogs -- use first two dialog buttons</a></li>
-          <li><a href="http://www.oaa-accessibility.org/examplep/alertdialog1/" target="_blank">Open Ajax Alliance (alertdialog)</a></li>
-          <li><a href="http://archive.dojotoolkit.org/nightly/dojotoolkit/dijit/tests/test_Dialog.html" target="_blank">Dojo nightly</a></li>
-        </ul>
       </section>
     </section>
 
     <section class="widget" id="dialog_nonmodal">
       <h3>Dialog (Non-Modal)</h3>
-      <p>Drafting this section is <a href="https://github.com/w3c/aria-practices/issues/59">issue 59</a>. </p>
+      <p>Drafting content for this section is tracked by <a href="https://github.com/w3c/aria-practices/issues/59">issue 59</a>. </p>
     </section>
 
     <section class="widget" id="grid">
