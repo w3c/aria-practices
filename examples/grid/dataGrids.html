@@ -27,7 +27,7 @@
   <p>
     Following are three example implementations of the
     <a href="../../#grid">design pattern for grid</a>
-    that demonstrate the keyboard interactions and ARIA features that enable accessible presentation
+    that demonstrate the keyboard interactions and ARIA features that enable accessible, interactive  presentation
     of tabular information. Each of the following three grids presents a set of financial
     transactions. The first is a simple grid with minimum ARIA markup and keyboard support. The
     second and third implementations add advanced features, such as content editing, sort, scroll,
@@ -122,9 +122,9 @@
         </li>
         <li>The links can be activated with the keyboard when focused.</li>
         <li>
-          header cells are not focusable since they do not provide any functionality,
-            they can be announced by screen readers as labels,
-            and are also navigable with the reading mode of screen readers.
+          Since the header cells do not provide any functionality, they are not focusable.
+            Screen reader users are still aware of their presence because row and column headers are announced by screen readers during navigation.
+            And, they are also navigable when using a screen reader's reading or browsing mode.
           </li>
       </ol>
     </section>
@@ -321,10 +321,9 @@
       <h4>Notes</h4>
       <ol>
         <li>The navigation keys and functions are the same as example 1 except that the column
-          headers are now focusable.</li>
-        <li>The date and description columns may be sorted by activating the column header.</li>
+          headers are focusable because the date and amount columns provide sort functionality.</li>
+          <li>A description may be edited by activating the cell.</li>
         <li>A category may be changed by using the category pop-up menu.</li>
-        <li>An amount may be edited by activating the cell.</li>
       </ol>
     </section>
     <section>
@@ -502,7 +501,7 @@
       <ol>
         <li>
           In addition to the navigation keys supported in examples 1 and 2, <kbd>Page Down</kbd> and
-          <kbd>Page Up</kbd> can scroll the grid.
+          <kbd>Page Up</kbd> scroll the grid.
         </li>
         <li>
           As navigating up or down scrolls the visible set of rows, the <code>aria-rowindex</code>
