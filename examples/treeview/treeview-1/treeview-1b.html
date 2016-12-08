@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
-    <title>Action Treeview (explicit properties) | WAI-ARIA Authoring Practices 1.1</title>
+    <title>File Directory Treeview Example (explicit properties) | WAI-ARIA Authoring Practices 1.1</title>
 
     <link href="../../css/core.css" rel="stylesheet"> 
     <link href="../../css/table.css" rel="stylesheet">
@@ -19,7 +19,7 @@
   
   <body>
     <main>
-      <h1>Action Treeview (explicit properties)</h1>
+      <h1>File Directory Example Treeview (explicit properties)</h1>
 
       <p>This example implements the features of an ARIA <code>tree</code> widget using <a href="../../../aria-practices.html#TreeView">ARIA Treeview Design Pattern</a> for simulation of a file selector.   This example explicitly sets the values for <code>aria-setsize</code>, <code>aria-posinset</code> and <code>arial-level</code>, which override any browser compuuted values.</p>
 
@@ -426,11 +426,19 @@
            <tbody>
              <tr>
                <td><kbd>Up arrow</kbd></td>
-               <td>Moves focus to previous visible sibling <code>treeitem</code> using a depth first algorithm on the visible <code>treeitems</code>. If on first <code>treeitem</code>, focus stays on first <code>treeitem</code>.</td>
+               <td>
+                <ul>
+                  <li>Moves focus to previous visible sibling <code>treeitem</code> using a depth first algorithm on the visible <code>treeitems</code>. If on first <code>treeitem</code>, focus stays on first <code>treeitem</code>.</li>
+                </ul>
+               </td>
              </tr>
              <tr>
                <td><kbd>Down arrow</kbd></td>
-               <td>Moves focus to next visible sibling <code>treeitem</code> using a depth first algorithm on the visible <code>treeitems</code>. If on last <code>treeitem</code>, focus stays on the last <code>treeitem</code>.</td>
+               <td>
+                <ul>
+                  <li>Moves focus to next visible sibling <code>treeitem</code> using a depth first algorithm on the visible <code>treeitems</code>. If on last <code>treeitem</code>, focus stays on the last <code>treeitem</code>.</li>
+                </ul>
+               </td>
              </tr>            
              <tr>
                <td><kbd>Left Arrow</kbd></td>
@@ -498,8 +506,11 @@
              </tr>
              <tr>
                <td><kbd>*</kbd></td>
-               <td>Opens all the expandable <code>treeitem</code>s in the current leaf (e.g. siblings of the current <code>treeitem</code>), keyboard focus does not change.
-               </td>
+               <td>
+                <ul>
+                  <li>Opens all the expandable <code>treeitem</code>s in the current leaf (e.g. siblings of the current <code>treeitem</code>), keyboard focus does not change.</li>
+                </ul>
+               </td>   
              </tr>
            </tbody>
         </table>
