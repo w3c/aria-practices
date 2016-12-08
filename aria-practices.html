@@ -3394,14 +3394,14 @@ helper.stopEvent(evt); //stop the event if not a tab keypress
           text is explicitly hidden, e.g., styled with <code>display: none</code> or has <code>aria-hidden=&quot;true&quot;</code>.
         </li>
         <li>
-          The roles, states, and properties of descendant elements remain visible to assistive
-          technologies except for the descendant elements that can only exist in the context of the presentational
+          The roles, states, and properties of each descendant element remains visible to assistive
+          technologies unless the descendant requires the context of the presentational
           element. For example:
           <ul>
             <li>
               If <code>presentation</code> is applied to a <code>ul</code> or <code>ol</code>
-              element, it's child <code>li</code> elements inherrit the <code>presentation</code>
-              role because ARIA does not permit a <code>listitem</code> to exist without a parent <code>list</code>.
+              element, each child <code>li</code> element inherrits the <code>presentation</code>
+              role because ARIA requires the <code>listitem</code> elements to have the parent <code>list</code> element.
               So, the <code>li</code> elements are not exposed to assistive technologies,  
               but elements contained inside of those <code>li</code> elements, including nested lists,  are visible to assistive technologies.
             </li>
