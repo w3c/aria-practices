@@ -7,7 +7,7 @@
 *   Desc:   Treeitem widget that implements ARIA Authoring Practices
 *           for a tree being used as a file viewer
 *
-*   Author: Jon Gunderson, Ku Ja Eun and Nicholas Hoyt
+*   Author: Jon Gunderson, Ku Ja Eun and Nicholas Hoyt @ University of Illinois
 */
 
 /*
