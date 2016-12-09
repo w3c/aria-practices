@@ -2,11 +2,12 @@
   <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>ARIA Radio Group Example using aria-activedescendant</title>
+    <title>Radio Button Example (aria-activedescendant) | WAI-ARIA Authoring Practices 1.1</title>
 
     <link href="../../css/core.css" rel="stylesheet">
     <link href="../../css/table.css" rel="stylesheet">
-    <link href="css/radio-2.css" rel="stylesheet">
+
+    <link href="css/radioActiveDescendant.css" rel="stylesheet">
 
     <script src="js/radioGroupActiveDescendant.js" type="text/javascript"></script>
     <script src="js/radioButtonActiveDescendant.js" type="text/javascript"></script>
@@ -16,14 +17,21 @@
   </head>
   <body>
     <main role="main">
-      <h1>ARIA <code>radiogroup</code> Example using <code>aria-activedescendant</code></h1>
-     <p>This example implements the features of an ARIA <code>radiogroup</code> widget using <a href="../../../aria-practices.html#radiobutton">ARIA Radio Group Design Pattern</a> using <code>aria-activedescendant</code> for identifying the radio button with the focus.</p>
 
+      <h1>Radio Button Example (aria-activedescendant)</h1>
+
+      <p>This example implements the features of an ARIA <code>radiogroup</code> widget using <a href="../../../aria-practices.html#radiobutton">ARIA Radio Group Design Pattern</a> using <code>aria-activedescendant</code> for identifying the radio button with the focus.</p>
+
+      <p>Similar examples include: </p>
+      <ul>
+        <li><a href="../radio-1/radio-1.html">Radio Button Example</a>: Radio button group using roving <code>tabindex</code> for managing keyboard focus.</li>
+        <!--  list other examples that implement the same design pattern. -->
+      </ul>
 
      <section aria-labelledby="example_label">
-      <h2 id="example_label">Example Start</h2>
+      <h2 id="example_label">Example</h2>
 
-      <div id="example">
+      <div id="ex1">
         <h3 id="group_label_1">Pizza Crust</h3>
         
         <ul id="rg1"
@@ -105,7 +113,7 @@
         </thead>
         <tbody>
           <tr>
-            <td>Tab</td>
+            <td><kbd>Tab</kbd></td>
             <td>
               <ul>
                 <li>Moves keybaord focus to <code>radiogroup</code> and <code>aria-activedescendant</code> points to the <code>radio</code> button that is checked.</li>
@@ -114,7 +122,7 @@
             </td>
           </tr>
           <tr>
-            <td>Space</td>
+            <td><kbd>Space</kbd></td>
             <td>
               <ul>
                 <li>If the <code>radio</code> button pointed to with <code>aria-activedescendant</code> is unchecked, it's state will be changed to checked.</li>
@@ -122,7 +130,7 @@
             </td>
           </tr>
           <tr>
-            <td>Down arrow</td>
+            <td><kbd>Down arrow</kbd></td>
             <td>
               <ul>
                 <li>Moves <code>aria-activedescendant</code> pointer to next <code>radio</code> button in the group.</li>
@@ -131,7 +139,7 @@
               </td>
           </tr>
           <tr>
-            <td>Up arrow</td>
+            <td><kbd>Up arrow</kbd></td>
             <td>
               <ul>
                 <li>Moves <code>aria-activedescendant</code> pointer to previous <code>radio</code> button in the group.</li>
@@ -148,10 +156,10 @@
       <table aria-labelledby="rps_label"> 
         <thead>
           <tr>
-            <th>Role</th>
-            <th>Attributes</th>
-            <th>Element</th>
-            <th>Usage</th>
+            <th scope="col">Role</th>
+            <th scope="col">Attributes</th>
+            <th scope="col">Element</th>
+            <th scope="col">Usage</th>
           </tr>
         </thead>
         <tbody>
@@ -252,28 +260,33 @@
       </table>
 
       </section>
-      
-      <section aria-labelledby="source_label">
 
-      <h2 id="source_label">Source Code</h2>
-      
-      <ul>
-        <li>CSS: <a href="css/radio-1.css" type="tex/css">radio-1.css</a></li>
-        <li>Javascript: <a href="js/radioGroup.js" type="text/javascript">radioGroup.js</a></li>
-        <li>Javascript: <a href="js/radioButton.js" type="text/javascript">radioButton.js</a></li>
-      </ul>
-      
-      <div id="sc1">
-      
-      </div>
-      
-      <script>
-        sourceCode.add('sc1', 'example')
-        sourceCode.make()
-      </script>
-
+        <h2>Javascript and CSS Source Code</h2>
+        <ul>
+            <li>CSS: <a href="css/radioActiveDescendant.css" type="tex/css">radioActiveDescendant.css</a></li>
+            <li>Javascript: <a href="js/radioGroupActiveDescendant.js" type="text/javascript">radioGroupActiveDescendant.js</a></li>
+            <li>Javascript: <a href="js/radioButtonActiveDescendant.js" type="text/javascript">radioButtonActiveDescendant.js</a></li>
+        </ul>
       </section>
 
-
+      <section>
+        <h2 id="sc1_label">HTML Source Code</h2>
+        <div role="separator" id="sc1_start_sep" aria-labelledby="sc1_start_sep sc1_label" aria-label="Start of"></div>
+        <div id="sc1"></div>
+        <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of"></div>
+        <!--
+          The following script will show the reader the HTML source for the example that is in the div with ID 'ex1'.
+          It renders the HTML in the preceding div with ID 'sc1'.
+          If you change the ID of either the 'ex1' div or the 'sc1' div, be sure to update the sourceCode.add function parameters.
+          -->
+        <script>
+          sourceCode.add('sc1', 'ex1');
+          sourceCode.make();
+        </script>
+      </section>
+    </main>
+    <nav>
+      <a href="../../../#radiobutton"> Radio Button Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
+    </nav>
   </body>
   </html>
