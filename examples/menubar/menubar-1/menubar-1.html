@@ -135,6 +135,12 @@
               </li>
             </ul>
           </li>
+
+          <script type="text/javascript">
+            var menubar = new Menubar(document.getElementById('menubar1'));
+            menubar.init();
+          </script>
+
         </ul>
       </div>
       <div role="separator" id="ex1_end_sep" aria-labelledby="ex1_end_sep ex1_label" aria-label="End of"></div>
@@ -216,6 +222,12 @@
             </ul>
           </li>
         </ul>
+
+          <script type="text/javascript">
+            var menubar = new Menubar(document.getElementById('menubar2'));
+            menubar.init();
+          </script>
+
       </div>
       <div role="separator" id="ex2_end_sep" aria-labelledby="ex2_end_sep ex2_label" aria-label="End of"></div>
       <h4>Notes</h4>
@@ -812,13 +824,5 @@
   <nav>
     <a href="../../../#menu">Menu or Menubar Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
   </nav>
-  <script type="text/javascript">
-    window.onload = function() {
-        var menubar = new Menubar(document.getElementById('menubar1'));
-        menubar.init();
-        menubar = new Menubar(document.getElementById('menubar2'));
-        menubar.init();
-    }
-    </script>
 </body>
 </html>
