@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Checkbox Example: Two State | WAI-ARIA Authoring Practices 1.1</title>
+  <title>Checkbox Example (Two State) | WAI-ARIA Authoring Practices 1.1</title>
 
   <link href="../../css/core.css" rel="stylesheet">
   <link href="../../css/table.css" rel="stylesheet">
@@ -14,13 +14,13 @@
 </head>
 <body>
   <main>
-    <h1>Checkbox Example: Two State</h1>
+    <h1>Checkbox Example (Two State)</h1>
 
-    <p>Example of a simple two-state checkbox that implements the  <a href="../../#checkbox">design pattern for checkbox</a> using <code>div</code> elements.</p>
+    <p>Example of a simple two-state checkbox that implements the  <a href="../../../#checkbox">Checkbox Design Pattern</a> using <code>div</code> elements.</p>
 
     <p>Similar examples include: </p>
     <ul>
-      <li><a href="../checkbox-2/checkbox-2.html">Checkbox Example: Mixed State</a>: Mixed state checkbox controlling standard input checkboxes.</li>
+      <li><a href="../checkbox-2/checkbox-2.html">Checkbox Example (Mixed State)</a>: Mixed state checkbox controlling standard input checkboxes.</li>
       <!--  list other examples that implement the same design pattern. -->
     </ul>
 
@@ -66,8 +66,16 @@
             </tr>
           </thead>
           <tbody>
+          <tr>
+            <td><kbd>Tab</kbd></td>
+            <td>
+              <ul>
+                <li>Moves keyboard focus to the checked <code>checkbox</code>.</li>
+              </ul>  
+            </td>
+          </tr>
             <tr>
-              <td>Space or Enter Key</td>
+              <td><kbd>Space</kbd>, <br/> or <kbd>Enter</kbd></td>
               <td>
                 <ul>
                   <li>Toggle check checkbox between checked and unchecked.</li>  
@@ -83,10 +91,10 @@
       <table aria-labelledby="rps_label">
         <thead>
           <tr>
-            <th>Role</th>
-            <th>Attribute</th>
-            <th>Element</th>
-            <th>Usage</th>
+            <th scope="col">Role</th>
+            <th scope="col">Attribute</th>
+            <th scope="col">Element</th>
+            <th scope="col">Usage</th>
           </tr>
         </thead>
         <tbody>
@@ -142,7 +150,6 @@
   
   <section>
     <h2>Javascript and CSS Source Code</h2>
-    <!--  After the js and css files are named with the name of this example, change the href and text of the following 2 links to refer to the appropriate js and css files.  -->
     <ul>
       <li>
         CSS: <a href="css/checkbox.css" type="tex/css">checkbox.css</a>
@@ -167,7 +174,7 @@
   </section>
   </main>  
   <nav>
-    <a href="../../../aria-practices.html#checkbox">Checkbox Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
+    <a href="../../../#checkbox">Checkbox Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
   </nav>
 </body>
 </html>
