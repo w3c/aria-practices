@@ -521,46 +521,104 @@
 
   <section>
     <h2 id="kbd_label">Keyboard Support</h2>
-    <ul>
-      <li>
-        <kbd>Right Arrow</kbd>: Moves focus one cell to the right. If focus is on the right-most
-        cell in the row, focus does not move.
-      </li>
-      <li>
-        <kbd>Left Arrow</kbd>: Moves focus one cell to the left. If focus is on the left-most cell
-        in the row, focus does not move.
-      </li>
-      <li>
-        <kbd>Down Arrow</kbd>: Moves focus one cell down. If focus is on the bottom cell in the
-        column, focus does not move.
-      </li>
-      <li>
-        <kbd>Up Arrow</kbd>: Moves focus one cell Up. If focus is on the top cell in the column,
-        focus does not move.
-      </li>
-      <li>
-        <kbd>Page Down</kbd> (Example 3): Moves focus down five rows,
-        scrolling so the bottom row in the currently visible set of rows becomes the first visible row.
-        If focus is in the last row of the grid, focus does not move.
-      </li>
-      <li>
-        <kbd>Page Up</kbd> (Example 3): Moves focus up 5 rows,
-        scrolling so the top row in the currently visible set of rows becomes the last visible row.
-        If focus is in the first row of the grid, focus does not move.
-      </li>
-      <li>
-        <kbd>Home</kbd>: moves focus to the first cell in the row that contains focus.
-      </li>
-      <li>
-        <kbd>End</kbd>: moves focus to the last cell in the row that contains focus.
-      </li>
-      <li>
-        <kbd>Control + Home</kbd>: moves focus to the first cell in the first row.
-      </li>
-      <li>
-        <kbd>Control + End</kbd>: moves focus to the last cell in the last row.
-      </li>
-    </ul>
+    <table aria-labelledby="kbd_label">
+      <tr>
+        <th>key</th>
+        <th>Function</th>
+      </tr>
+      <tr>
+        <th scope="row">
+          <kbd>Right Arrow</kbd>
+        </th>
+        <td>
+          <ul>
+            <li>Moves focus one cell to the right.</li>
+            <li>If focus is on the right-most cell in the row, focus does not move.</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">
+          <kbd>Left Arrow</kbd>
+        </th>
+        <td>
+          <ul>
+            <li>Moves focus one cell to the left.</li>
+            <li>If focus is on the left-most cell in the row, focus does not move.</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">
+          <kbd>Down Arrow</kbd>
+        </th>
+        <td>
+          <ul>
+            <li>Moves focus one cell down.</li>
+            <li>If focus is on the bottom cell in the column, focus does not move.</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">
+          <kbd>Up Arrow</kbd>
+        </th>
+        <td>
+          <ul>
+            <li>Moves focus one cell Up.</li>
+            <li>If focus is on the top cell in the column, focus does not move.</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">
+          <kbd>Page Down</kbd>
+        </th>
+        <td>
+          <ul>
+            <li>In example 3, moves focus down five rows, scrolling so the bottom row in the
+              currently visible set of rows becomes the first visible row.</li>
+            <li>If focus is in the last row, focus does not move.</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">
+          <kbd>Page Up</kbd>
+        </th>
+        <td>
+          <ul>
+            <li>In example 3, moves focus up 5 rows, scrolling so the top row in the currently
+              visible set of rows becomes the last visible row.</li>
+            <li>If focus is in the first row of the grid, focus does not move.</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">
+          <kbd>Home</kbd>
+        </th>
+        <td>moves focus to the first cell in the row that contains focus.</td>
+      </tr>
+      <tr>
+        <th scope="row">
+          <kbd>End</kbd>
+        </th>
+        <td>moves focus to the last cell in the row that contains focus.</td>
+      </tr>
+      <tr>
+        <th scope="row">
+          <kbd>Control + Home</kbd>
+        </th>
+        <td>moves focus to the first cell in the first row.</td>
+      </tr>
+      <tr>
+        <th scope="row">
+          <kbd>Control + End</kbd>
+        </th>
+        <td>moves focus to the last cell in the last row.</td>
+      </tr>
+    </table>
   </section>
 
 <section>
