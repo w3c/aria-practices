@@ -27,7 +27,7 @@
   <p>
     Following are three example implementations of the
     <a href="../../#grid">design pattern for grid</a>
-    that demonstrate the keyboard interactions and ARIA features that enable accessible presentation
+    that demonstrate the keyboard interactions and ARIA features that enable accessible, interactive  presentation
     of tabular information. Each of the following three grids presents a set of financial
     transactions. The first is a simple grid with minimum ARIA markup and keyboard support. The
     second and third implementations add advanced features, such as content editing, sort, scroll,
@@ -122,9 +122,9 @@
         </li>
         <li>The links can be activated with the keyboard when focused.</li>
         <li>
-          header cells are not focusable since they do not provide any functionality,
-            they can be announced by screen readers as labels,
-            and are also navigable with the reading mode of screen readers.
+          Since the header cells do not provide any functionality, they are not focusable.
+            Screen reader users are still aware of their presence because row and column headers are announced by screen readers during navigation.
+            And, they are also navigable when using a screen reader's reading or browsing mode.
           </li>
       </ol>
     </section>
@@ -321,10 +321,9 @@
       <h4>Notes</h4>
       <ol>
         <li>The navigation keys and functions are the same as example 1 except that the column
-          headers are now focusable.</li>
-        <li>The date and description columns may be sorted by activating the column header.</li>
+          headers are focusable because the date and amount columns provide sort functionality.</li>
+          <li>A description may be edited by activating the cell.</li>
         <li>A category may be changed by using the category pop-up menu.</li>
-        <li>An amount may be edited by activating the cell.</li>
       </ol>
     </section>
     <section>
@@ -502,7 +501,7 @@
       <ol>
         <li>
           In addition to the navigation keys supported in examples 1 and 2, <kbd>Page Down</kbd> and
-          <kbd>Page Up</kbd> can scroll the grid.
+          <kbd>Page Up</kbd> scroll the grid.
         </li>
         <li>
           As navigating up or down scrolls the visible set of rows, the <code>aria-rowindex</code>
@@ -522,46 +521,104 @@
 
   <section>
     <h2 id="kbd_label">Keyboard Support</h2>
-    <ul>
-      <li>
-        <kbd>Right Arrow</kbd>: Moves focus one cell to the right. If focus is on the right-most
-        cell in the row, focus does not move.
-      </li>
-      <li>
-        <kbd>Left Arrow</kbd>: Moves focus one cell to the left. If focus is on the left-most cell
-        in the row, focus does not move.
-      </li>
-      <li>
-        <kbd>Down Arrow</kbd>: Moves focus one cell down. If focus is on the bottom cell in the
-        column, focus does not move.
-      </li>
-      <li>
-        <kbd>Up Arrow</kbd>: Moves focus one cell Up. If focus is on the top cell in the column,
-        focus does not move.
-      </li>
-      <li>
-        <kbd>Page Down</kbd> (Example 3): Moves focus down five rows,
-        scrolling so the bottom row in the currently visible set of rows becomes the first visible row.
-        If focus is in the last row of the grid, focus does not move.
-      </li>
-      <li>
-        <kbd>Page Up</kbd> (Example 3): Moves focus up 5 rows,
-        scrolling so the top row in the currently visible set of rows becomes the last visible row.
-        If focus is in the first row of the grid, focus does not move.
-      </li>
-      <li>
-        <kbd>Home</kbd>: moves focus to the first cell in the row that contains focus.
-      </li>
-      <li>
-        <kbd>End</kbd>: moves focus to the last cell in the row that contains focus.
-      </li>
-      <li>
-        <kbd>Control + Home</kbd>: moves focus to the first cell in the first row.
-      </li>
-      <li>
-        <kbd>Control + End</kbd>: moves focus to the last cell in the last row.
-      </li>
-    </ul>
+    <table aria-labelledby="kbd_label">
+      <tr>
+        <th>key</th>
+        <th>Function</th>
+      </tr>
+      <tr>
+        <th scope="row">
+          <kbd>Right Arrow</kbd>
+        </th>
+        <td>
+          <ul>
+            <li>Moves focus one cell to the right.</li>
+            <li>If focus is on the right-most cell in the row, focus does not move.</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">
+          <kbd>Left Arrow</kbd>
+        </th>
+        <td>
+          <ul>
+            <li>Moves focus one cell to the left.</li>
+            <li>If focus is on the left-most cell in the row, focus does not move.</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">
+          <kbd>Down Arrow</kbd>
+        </th>
+        <td>
+          <ul>
+            <li>Moves focus one cell down.</li>
+            <li>If focus is on the bottom cell in the column, focus does not move.</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">
+          <kbd>Up Arrow</kbd>
+        </th>
+        <td>
+          <ul>
+            <li>Moves focus one cell Up.</li>
+            <li>If focus is on the top cell in the column, focus does not move.</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">
+          <kbd>Page Down</kbd>
+        </th>
+        <td>
+          <ul>
+            <li>In example 3, moves focus down five rows, scrolling so the bottom row in the
+              currently visible set of rows becomes the first visible row.</li>
+            <li>If focus is in the last row, focus does not move.</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">
+          <kbd>Page Up</kbd>
+        </th>
+        <td>
+          <ul>
+            <li>In example 3, moves focus up 5 rows, scrolling so the top row in the currently
+              visible set of rows becomes the last visible row.</li>
+            <li>If focus is in the first row of the grid, focus does not move.</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">
+          <kbd>Home</kbd>
+        </th>
+        <td>moves focus to the first cell in the row that contains focus.</td>
+      </tr>
+      <tr>
+        <th scope="row">
+          <kbd>End</kbd>
+        </th>
+        <td>moves focus to the last cell in the row that contains focus.</td>
+      </tr>
+      <tr>
+        <th scope="row">
+          <kbd>Control + Home</kbd>
+        </th>
+        <td>moves focus to the first cell in the first row.</td>
+      </tr>
+      <tr>
+        <th scope="row">
+          <kbd>Control + End</kbd>
+        </th>
+        <td>moves focus to the last cell in the last row.</td>
+      </tr>
+    </table>
   </section>
 
 <section>
@@ -569,80 +626,154 @@
     <table aria-labelledby="rps_label">
       <thead>
         <tr>
-          <th>Attribute</th>
-          <th>Applied to Element</th>
-          <th>Usage</th>
+          <th scope="col">Role</th>
+          <th scope="col">Attribute</th>
+          <th scope="col">Element</th>
+          <th scope="col">Usage</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <th><code>role=&quot;grid&quot;</code></th>
-          <td><code>table</code></td>
+          <th scope="row">
+            <code>grid</code>
+          </th>
+          <td></td>
           <td>
-            Identifies the element containing the grid widget.
-            Because focus is managed using <a href="../../#kbd_roving_tabindex">roving tabindex</a>, the grid element is not focusable.
-            And, since the <code>grid</code> role is applied to a <code>table</code> element,
-            the <code>row</code> , <code>rowheader</code>, <code>colheader</code>, and <code>gridcell</code> roles
-            do not need to be specified because they are implicit in
-            <code>tr</code>, <code>th</code>, and <code>td</code> tags.
+            <code>table</code>
+          </td>
+          <td>
+            <ul>
+              <li>Identifies the element that serves as the grid widget container.</li>
+              <li>
+                Because focus is managed using
+                <a href="../../#kbd_roving_tabindex">roving tabindex</a>
+                , the grid element is not focusable.
+              </li>
+              <li>
+                Since the <code>grid</code> role is applied to a <code>table</code> element, the <code>row</code>
+                , <code>rowheader</code>, <code>colheader</code>, and <code>gridcell</code> roles do
+                not need to be specified because they are implied by <code>tr</code>, <code>th</code>,
+                and <code>td</code> tags.
+              </li>
+            </ul>
           </td>
         </tr>
         <tr>
-          <th>
+          <td></td>
+          <th scope="row">
             <code>aria-labelledby=&quot;ID_REF&quot;</code>
           </th>
-          <td><code>table</code> with <code>grid</code> role</td>
+          <td>
+            <code>table</code>
+          </td>
           <td>Refers to the heading element that labels the grid.</td>
         </tr>
         <tr>
-          <th><code>aria-sort=&quot;ascending&quot;</code></th>
-          <td><code>th</code></td>
+          <td></td>
+          <th scope="row">
+            <code>aria-rowcount=&quot;16&quot;</code>
+          </th>
+          <td>
+            <code>table</code>
+          </td>
+          <td>
+            <ul>
+              <li>In example 3, specified because a total of 16 rows are available, but fewer
+                than 16 rows are visible to assistive technologies.</li>
+              <li>
+                In this case, to demonstrate this feature, some rows are hidden using <code>display:none</code>,
+                which excludes them from the browser's accessibility tree.
+              </li>
+              <li>
+                a more common scenario for using <code>aria-rowcount</code> is when not all data is
+                loaded into the DOM at one time.
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <th scope="row">
+            <code>aria-colcount=&quot;6&quot;</code>
+          </th>
+          <td>
+            <code>table</code>
+          </td>
+          <td>
+            <ul>
+              <li>In example 3, specified because a total of 6 columns are available, but when
+                columns are hidden, fewer than 6 columns are visible to assistive technologies.</li>
+              <li>
+                Similar to how <code>aria-rowcount</code> overrides the browser calculation of the
+                total number of rows, the browser uses this value for the total number of columns so
+                it can report the correct number when columns are hidden.
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <th scope="row">
+            <code>aria-rowindex=&quot;INDEX_VALUE&quot;</code>
+          </th>
+          <td>
+            <code>tr</code>
+          </td>
+          <td>
+            <ul>
+              <li>Used in example 3 because not all rows are present in the accessibility tree.</li>
+              <li>Overrides the browser calculation of the row number.</li>
+              <li>Has a value from 1 to 16.</li>
+              <li>Note that it is 1-based, not 0-based.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <th scope="row">
+            <code>aria-sort=&quot;ascending&quot;</code>
+          </th>
+          <td>
+            <code>th</code>
+          </td>
           <td>In example 2, applied when a column is sorted in ascending order.</td>
         </tr>
         <tr>
-          <th><code>aria-sort=&quot;descending&quot;</code></th>
-          <td><code>th</code></td>
+          <td></td>
+          <th scope="row">
+            <code>aria-sort=&quot;descending&quot;</code>
+          </th>
+          <td>
+            <code>th</code>
+          </td>
           <td>In example 2, applied when a column is sorted in descending order.</td>
         </tr>
         <tr>
-          <th><code>aria-sort=&quot;none&quot;</code></th>
-          <td><code>th</code></td>
+          <td></td>
+          <th scope="row">
+            <code>aria-sort=&quot;none&quot;</code>
+          </th>
+          <td>
+            <code>th</code>
+          </td>
           <td>In example 2, applied when a column is sortable but not sorted.</td>
         </tr>
         <tr>
-          <th><code>aria-rowcount=&quot;16&quot;</code></th>
-          <td><code>table</code> with <code>grid</code> role</td>
+          <td></td>
+          <th scope="row">
+            <code>aria-colindex=&quot;INDEX_VALUE&quot;</code>
+          </th>
           <td>
-            In example 3, specified because a total of 16 rows are available, but fewer than 16 rows are visible to assistive technologies.
-            In this case, to demonstrate this feature, some rows are hidden using <code>display:none</code>, which excludes them from the browser's accessibility tree.
-            a more common scenario for using <code>aria-rowcount</code> is when not all data is loaded into the DOM at one time.
+            <code>th</code> and <code>td</code>
           </td>
-        </tr>
-        <tr>
-          <th><code>aria-colcount=&quot;6&quot;</code></th>
-          <td><code>table</code> with <code>grid</code> role</td>
           <td>
-            In example 3, specified because a total of 6 columns are available, but when columns are hidden, fewer than 6 columns are visible to assistive technologies.
-            Similar to how <code>aria-rowcount</code> overrides the browser calculation of the total number of rows,
-            the browser uses this value for the total number of columns so it can report the correct number when columns are hidden.
-          </td>
-        </tr>
-        <tr>
-          <th><code>aria-rowindex=&quot;INDEX_VALUE&quot;</code></th>
-          <td><code>th</code> and <code>td</code></td>
-          <td>
-            In example 3, has a value from 1 to 16.
-            Because not all rows are present in the accessibility tree, these values override the browser calculation of the row number.
-            Note that it is 1-based, not 0-based.
-          </td>
-        </tr>
-        <tr>
-          <th><code>aria-colindex=&quot;INDEX_VALUE&quot;</code></th>
-          <td><code>th</code> and <code>td</code></td>
-          <td>
-            In example 3, has a value from 1 to 6.
-            Because not all columns are present in the accessibility tree when the column hiding feature is used, these values override the browser calculation of the column number.
-            Note that it is 1-based, not 0-based.
+            <ul>
+              <li>Used in example 3 because when the column hiding feature is used, not all
+                columns are present in the accessibility tree.</li>
+              <li>Overrides the browser calculation of the column number.</li>
+              <li>Has a value from 1 to 6.</li>
+              <li>Note that it is 1-based, not 0-based.</li>
+            </ul>
           </td>
         </tr>
       </tbody>
