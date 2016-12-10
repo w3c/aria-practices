@@ -3,16 +3,16 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
-    <title>ARIA Tree View: File Viewer</title>
+    <title>File Directory Treeview Example (computed properties) | WAI-ARIA Authoring Practices 1.1</title>
     
     <link href="../../css/core.css" rel="stylesheet"> 
     <link href="../../css/table.css" rel="stylesheet">
     
-    <link href="css/tree-1.css" rel="stylesheet">
+    <link href="css/tree.css" rel="stylesheet">
 
     <script type="text/javascript" src="js/tree.js" type="text/javascript"></script>
-    <script type="text/javascript" src="js/treeItem.js" type="text/javascript"></script>
-    <script type="text/javascript" src="js/treeItemClick.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/treeitem.js" type="text/javascript"></script>
+    <script type="text/javascript" src="js/treeitemClick.js" type="text/javascript"></script>
 
     <script src="../../js/examples.js" type="text/javascript"></script>
 
@@ -20,14 +20,15 @@
   
   <body>
     <main>
-      <h1>ARIA Tree View: File Viewer</h1>
+      <h1>File Directory Treeview Example (computed properties)</h1>
 
-      <p>This example implements the features of an ARIA <code>tree</code> widget using <a href="../../../aria-practices.html#TreeView">ARIA Treeview Design Pattern</a> for simulation of a file selector.   This example relies on the browser to compute values for <code>aria-setsize</code>, <code>aria-posinset</code> and <code>arial-level</code>.   The ARIA 1.0 Spectification for these properties states the browser can compute these values, but is not required to.</p>
+      <p>This example implements the features of an ARIA <code>tree</code> widget using <a href="../../../#TreeView">ARIA Treeview Design Pattern</a> for simulation of a file selector.   This example relies on the browser to compute values for <code>aria-setsize</code>, <code>aria-posinset</code> and <code>arial-level</code>.   The ARIA 1.0 Spectification for these properties states the browser can compute these values, but is not required to.</p>
 
-      <section aria-labelledby="start">
-        <h2 id="start">Start Example</h2>
-        <div id="example">
-          <h3 id="tree_label">
+       <section aria-labelledby="start">
+        <h2 id="start">Example</h2>
+        <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
+        <div id="ex1">
+         <h3 id="tree_label">
             File Viewer
           </h3>
           <ul role="tree" aria-labelledby="tree_label">
@@ -235,23 +236,21 @@
           </ul>
 
           <p><label>File or Folder Selected: <input id="last_action" type="output" size="15"></label></p>
-
         </div>
-
+        <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
       </section>
         
-      <section aria-labelledby="id_kbd">
-
-        <h2 id="tree_label">Tree Widget Implementation Information</h2>
-
-        <h3>Implementation Notes</h3>
+      <section>
+        <h2>Accessibility Features</h2>
 
         <ul>
           <li>Need to use CSS focus and hover classes to create focus and hover styling of expandable <code>treeitem</code> widgets.  This requires using focus/blur and mouseover/mouseout events to apply classes to the <code>span</code> element that is used as the visible label for the <code>treeitem</code>.</li>
-          <li>This example relies on the browser to compute values for <code>aria-setsize</code>, <code>aria-posinset</code> and <code>arial-level</code>.
+          <li>This example relies on the browser to compute values for <code>aria-setsize</code>, <code>aria-posinset</code> and <code>arial-level</code>.</li>
         </ul>
-             
-        <h3 id="kbd_label">Keyboard Support</h3>
+      </section>
+
+      <section>
+        <h2 id="kbd_label">Keyboard Support</h2>
              
         <table aria-labelledby="kbd_label">
            <thead>
@@ -262,14 +261,23 @@
            </thead>
            <tbody>
              <tr>
-               <td>Up arrow Key</td>
-               <td>Moves focus to previous visible sibling <code>treeitem</code> using a depth first algorithm on the visible <code>treeitems</code>. If on first <code>treeitem</code>, focus stays on first <code>treeitem</code>.</td>
+               <td><kbd>Up arrow</kbd></td>
+               <td>
+                <ul>
+                  <li>Moves focus to previous visible sibling <code>treeitem</code> using a depth first algorithm on the visible <code>treeitems</code>. If on first <code>treeitem</code>, focus stays on first <code>treeitem</code>.</li>
+                </ul>
+               </td>
              </tr>
              <tr>
-               <td>Down arrow Key</td>
-               <td>Moves focus to next visible sibling <code>treeitem</code> using a depth first algorithm on the visible <code>treeitems</code>. If on last <code>treeitem</code>, focus stays on the last <code>treeitem</code>.</td>
-             </tr>            <tr>
-               <td>Left Arrow Key</td>
+               <td><kbd>Down arrow</kbd></td>
+               <td>
+                <ul>
+                  <li>Moves focus to next visible sibling <code>treeitem</code> using a depth first algorithm on the visible <code>treeitems</code>. If on last <code>treeitem</code>, focus stays on the last <code>treeitem</code>.</li>
+                </ul>
+               </td>
+             </tr>            
+             <tr>
+               <td><kbd>Left Arrow</kbd></td>
                <td>
                  <ul>
                    <li>For a <code>treeitem</code> that is an end node (e.g. no child <code>treeitem</code>s) or is in the collapsed state (e.g. has <code>[aria-expanded=false]</code>), focus moves to the parent <code>treeitem</code>.
@@ -280,7 +288,7 @@
                </td>
              </tr>
              <tr>
-               <td>Right Arrow Key</td>
+               <td><kbd>Right Arrow</kbd></td>
                <td>
                  <ul>
                    <li>For a <code>treeitem</code> that is an end node (e.g. no child <code>treeitem</code>s) focus stays on current <code>treeitem</code>.</li>
@@ -292,7 +300,7 @@
                </td>
              </tr>
              <tr>
-               <td>Return Key</td>
+               <td><kbd>Return</kbd></td>
                <td>
                 <ul>
                   <li>Performs the default action (e.g. onclick event) on the current <code>treeitem</code>, in this example updating the "File or Folder Selected" textbox.</li>
@@ -300,7 +308,7 @@
                 </td>
              </tr>
              <tr>
-               <td>Space Key</td>
+               <td><kbd>Space</kbd></td>
                <td>
                   <ul>
                     <li>Performs the default action (e.g. onclick event) on the current <code>treeitem</code>, in this example updating the "File or Folder Selected" textbox.</li>
@@ -308,7 +316,7 @@
                 </td>
              </tr>
              <tr>
-               <td>Home Key</td>
+               <td><kbd>Home</kbd></td>
                <td>
                 <ul>
                   <li>Moves focus to first <code>treeitem</code> in the <code>tree</code>.</li>
@@ -316,13 +324,15 @@
                 </td>
              </tr>
              <tr>
-               <td>End Key</td>
+               <td><kbd>End</kbd></td>
                <td>
                 <ul>
-                  <li>Moves focus to last visible <code>treeitem</code> (e.g. depth first) in the <code>tree</code>.</td>
+                  <li>Moves focus to last visible <code>treeitem</code> (e.g. depth first) in the <code>tree</code>.</li>
+                </ul>  
+                </td>
              </tr>
              <tr>
-               <td>a-z, A-Z</td>
+               <td><kbd>a-z, A-Z</kbd></td>
                <td>
                  <ul>
                    <li>Moves focus to next visible <code>treeitem</code> that starts with letter character.</li>
@@ -331,185 +341,206 @@
                </td>
              </tr>
              <tr>
-               <td>*</td>
-               <td>Opens all the expandable <code>treeitem</code>s in the current leaf (e.g. siblings of the current <code>treeitem</code>), keyboard focus does not change.
+               <td><kbd>*</kbd></td>
+               <td>
+                <ul>
+                  <li>Opens all the expandable <code>treeitem</code>s in the current leaf (e.g. siblings of the current <code>treeitem</code>), keyboard focus does not change.</li>
+                </ul>  
                </td>
              </tr>
            </tbody>
         </table>
-
-    <h3 id="rps_label">ARIA Roles, Properties and States</h3>
-
-      <table aria-labelledby="rps_label"> 
-        <thead>
-          <tr>
-            <th>Role</th>
-            <th>Attribute</th>
-            <th>Element</th>
-            <th>Usage</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><code>tree</code></td>
-            <td></td>
-            <td><code>ul</code></td>
-            <td>
-              <ul>
-                <li>The <code>role=&quot;tree&quot;</code> attribute identifies the <code>ul</code> element as an ARIA <code>tree</code> widget.</li>
-                <li>Accessible name for the <code>tree</code> widget comes from <code>aria-label</code> attribute.</li>
-                <li>The <code>tree</code> widget does not need a <code>tabindex</code> value, since the <code>ul[role&quot;tree&quot;]</code> element never receives keyboard focus.</li>
-              </ul> 
-            </td>
-          </tr>
-          <tr>
-            <td></td>
-            <td><code>aria-label=&quot;<em>string</em>&quot;</code></td>
-            <td><code>ul</code></td>
-            <td>
-               <ul>
-                <li>Defines an accessible name (e.g. label) for the <code>tree</code> widget.</li>
-                <li>The accessible name is important to identify the purpose of the tree in the page and uniquely identify the <code>tree</code> widget from other trees on the same page.</li>
-               </ul>
-            </td>
-          </tr>  
-          <tr>
-            <td><code>group</code></td>
-            <td></td>
-            <td><code>ul</code></td>
-            <td>
-              <ul>
-                <li>The <code>role=&quot;group&quot;</code> attribute identifies the <code>ul</code> element as a container of <code>treeitem</code> widgets for a sub-leaf of a tree.</li>
-                <li>The <code>group</code> role is important for the browser to compute <code>aria-level</code>, <code>aria-setsize</code> and <code>aria-posinset</code>.</li>
-                <li>The <code>group</code> is not required to have an accessible name.</li>
-                <li>The <code>group</code> widget does not need a <code>tabindex</code> value, since the <code>ul[role&quot;group&quot;]</code> element never receives keyboard focus.</li>
-              </ul> 
-            </td>
-          </tr>
-          <tr>
-            <td><code>treeitem</code></td>
-            <td></td>
-            <td><code>li</code></td>
-            <td>
-              <ul>
-                <li>The <code>role=&quot;treeitem&quot;</code> attribute identifies the <code>li</code> element as an ARIA <code>tree</code> widget.</li>
-                <li>Accessible name for the <code>treeitem</code> widget comes from child text content of the <code>li</code> element or an <code>aria-label</code> attribute.</li>
-              </ul> 
-            </td>
-          </tr>
-          <tr>
-            <td></td>
-            <td><code>tabindex=&quot;-1&quot;</code></td>
-            <td><code>li</code></td>
-            <td>
-              <ul>
-                <li>Identifies the <code>treeitem</code> as an elememt that can receive keyboard focus, but will <strong>not</strong> be included in the tab order of the page.</li>
-                <li><code>tabindex=&quot;-1&quot;</code> is the default value for a <code>treeitem</code> widget.</li>
-               </ul>  
-            </td>
-          </tr>
-          <tr>
-            <td></td>
-            <td><code>tabindex=&quot;0&quot;</code></td>
-            <td><code>li</code></td>
-            <td>
-              <ul>
-                <li>Only one <code>treeitem</code> in the same <code>tree</code> has a <code>tabindex=&quot;0&quot;</code>.</li>                
-                <li>Identifies the <code>treeitem</code> that last had keyboard focus.</li>
-                <li>The default <code>treeitem</code> with <code>tabindex=&quot;0&quot;</code> is the first <code>treeitem</code> in the <code>tree</code>.</li>
-                <li>See <a href="../../../aria-practices.html#kbd_general_within">roving tabindex</a> for more information.</li>
-               </ul>  
-            </td>
-          </tr>
-          <tr>
-            <td></td>
-            <td><code>aria-expanded=&quot;false&quot;</code></td>
-            <td><code>li</code></td>
-            <td>
-              <ul>
-                <li>Indicates the <code>treeitem</code> descendants of the current <code>treeitem</code>s are <strong>not</strong> visible (e.g. tree sub-leaf is collapsed).</li>
-                <li>The visual state of being collapsed is synchronized with <code>aria-expanded</code> value using CSS attribute selector [<code>aria-expanded=&quot;false&quot;]</code> with the CSS <code>:before</code> psuedo selector and the CSS <code>content</code> property for displaying an image of the collapsed state.</li> 
-              </ul>  
-            </td>
-          </tr>
-          <tr>
-            <td></td>
-            <td><code>aria-expanded=&quot;true&quot;</code></td>
-            <td><code>li</code></td>
-            <td>
-              <ul>
-                <li>Indicates the <code>treeitem</code> descendants of the current <code>treeitem</code> widgets are visible e.g. tree sub-leaf is expanded).</li>
-                <li>The visual state of being expanded is synchronized with <code>aria-expanded</code> value using CSS attribute selector [<code>aria-expanded=&quot;true&quot;]</code> with the CSS <code>:before</code> psuedo selector and the CSS <code>content</code> property for displaying an image of the expanded state.</li> 
-              </ul>  
-            </td>
-          </tr>  
-          <tr>
-            <td></td>
-            <td><code>aria-setsize=&quot;<em>number</em>&quot;</code></td>
-            <td><code>li</code></td>
-            <td>
-              <ul>
-                <li><code>aria-setsize</code> is used to indicate the number of <code>treeitem</code>s in the current leaf of the tree.</li>
-                <li>This example relies upon the browser to compute the value of <code>aria-setsize</code>, so it is <strong>not</strong> defined by the author.</li>
-                <li>Browsers are encouraged, but not required to compute the <code>aria-setsize</code> value for a <code>treeitem</code> based on the DOM structure.</li>
-                <li><a href="https://www.w3.org/TR/wai-aria/states_and_properties#aria-setsize">Browser requirements for computing <code>aria-setsize</code> values</a>.</li>
-              </ul>  
-            </td>
-          </tr>
-          <tr>
-            <td></td>
-            <td><code>aria-posinset=&quot;<em>number</em>&quot;</code></td>
-            <td><code>li</code></td>
-            <td>
-              <ul>
-                <li><code>aria-posinset</code> is used to indicate the position of <code>treeitem</code>s in the current leaf of the tree.</li>
-                <li>This example relies upon the browser to compute the value of <code>aria-posinset</code>, so it is <strong>not</strong> defined by the author.</li>
-                <li>Browsers are encouraged, but not required to compute the <code>aria-posinset</code> value for a <code>treeitem</code> based on the DOM structure.</li>
-                <li><a href="https://www.w3.org/TR/wai-aria/states_and_properties#aria-posinset">Browser requirements for computing <code>aria-posinset</code> values</a>.</li>
-              </ul>  
-            </td>
-          </tr>
-          <tr>
-            <td></td>
-            <td><code>aria-level=&quot;<em>number</em>&quot;</code></td>
-            <td><code>li</code></td>
-            <td>
-              <ul>
-                <li><code>aria-level</code> is used to indicate the depth of <code>treeitem</code>s in the tree structure.</li>
-                <li>This example relies upon the browser to computer the value of <code>aria-level</code>, so it is <strong>not</strong> defined by the author.</li>
-                <li>Browsers are encouraged, but not required to compute the <code>aria-level</code> value for a <code>treeitem</code> based on the DOM structure.</li>
-                <li><a href="https://www.w3.org/TR/wai-aria/states_and_properties#aria-level">Browser requirements for computing <code>aria-level</code> values</a>.</li>
-              </ul>  
-            </td>
-          </tr>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      
       </section>
 
-      <h2>Source Code</h2>
-      
-      <ul>
-        <li>CSS: <a href="css/tree-1.css" type="text/css">tree-1.css</a></li>
-        <li>Javascript: <a href="js/tree.js" type="text/javascript">tree.js</a></li>
-        <li>Javascript: <a href="js/treeItem.js" type="text/javascript">treeItem.js</a></li>
-        <li>Javascript: <a href="js/treeItemClick.js" type="text/javascript">treeItemClick.js</a></li>
-      </ul>
-      
-      <div id="sc1">
-      
-      </div>
-      
-      <script>
-        sourceCode.add('sc1', 'example')
-        sourceCode.make()
-      </script>
+      <section>
+        
+        <h2 id="rps_label">ARIA Roles, Properties and States</h2>
 
-             
+        <table aria-labelledby="rps_label"> 
+          <thead>
+            <tr>
+              <th scope="col">Role</th>
+              <th scope="col">Attribute</th>
+              <th scope="col">Element</th>
+              <th scope="col">Usage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><code>tree</code></td>
+              <td></td>
+              <td><code>ul</code></td>
+              <td>
+                <ul>
+                  <li>The <code>role=&quot;tree&quot;</code> attribute identifies the <code>ul</code> element as an ARIA <code>tree</code> widget.</li>
+                  <li>Accessible name for the <code>tree</code> widget comes from <code>aria-label</code> attribute.</li>
+                  <li>The <code>tree</code> widget does not need a <code>tabindex</code> value, since the <code>ul[role&quot;tree&quot;]</code> element never receives keyboard focus.</li>
+                </ul> 
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><code>aria-label=&quot;<em>string</em>&quot;</code></td>
+              <td><code>ul</code></td>
+              <td>
+                 <ul>
+                  <li>Defines an accessible name (e.g. label) for the <code>tree</code> widget.</li>
+                  <li>The accessible name is important to identify the purpose of the tree in the page and uniquely identify the <code>tree</code> widget from other trees on the same page.</li>
+                 </ul>
+              </td>
+            </tr>  
+            <tr>
+              <td><code>group</code></td>
+              <td></td>
+              <td><code>ul</code></td>
+              <td>
+                <ul>
+                  <li>The <code>role=&quot;group&quot;</code> attribute identifies the <code>ul</code> element as a container of <code>treeitem</code> widgets for a sub-leaf of a tree.</li>
+                  <li>The <code>group</code> role is important for the browser to compute <code>aria-level</code>, <code>aria-setsize</code> and <code>aria-posinset</code>.</li>
+                  <li>The <code>group</code> is not required to have an accessible name.</li>
+                  <li>The <code>group</code> widget does not need a <code>tabindex</code> value, since the <code>ul[role&quot;group&quot;]</code> element never receives keyboard focus.</li>
+                </ul> 
+              </td>
+            </tr>
+            <tr>
+              <td><code>treeitem</code></td>
+              <td></td>
+              <td><code>li</code></td>
+              <td>
+                <ul>
+                  <li>The <code>role=&quot;treeitem&quot;</code> attribute identifies the <code>li</code> element as an ARIA <code>tree</code> widget.</li>
+                  <li>Accessible name for the <code>treeitem</code> widget comes from child text content of the <code>li</code> element or an <code>aria-label</code> attribute.</li>
+                </ul> 
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><code>tabindex=&quot;-1&quot;</code></td>
+              <td><code>li</code></td>
+              <td>
+                <ul>
+                  <li>Identifies the <code>treeitem</code> as an elememt that can receive keyboard focus, but will <strong>not</strong> be included in the tab order of the page.</li>
+                  <li><code>tabindex=&quot;-1&quot;</code> is the default value for a <code>treeitem</code> widget.</li>
+                 </ul>  
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><code>tabindex=&quot;0&quot;</code></td>
+              <td><code>li</code></td>
+              <td>
+                <ul>
+                  <li>Only one <code>treeitem</code> in the same <code>tree</code> has a <code>tabindex=&quot;0&quot;</code>.</li>                
+                  <li>Identifies the <code>treeitem</code> that last had keyboard focus.</li>
+                  <li>The default <code>treeitem</code> with <code>tabindex=&quot;0&quot;</code> is the first <code>treeitem</code> in the <code>tree</code>.</li>
+                  <li>See <a href="../../../aria-practices.html#kbd_general_within">roving tabindex</a> for more information.</li>
+                 </ul>  
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><code>aria-expanded=&quot;false&quot;</code></td>
+              <td><code>li</code></td>
+              <td>
+                <ul>
+                  <li>Indicates the <code>treeitem</code> descendants of the current <code>treeitem</code>s are <strong>not</strong> visible (e.g. tree sub-leaf is collapsed).</li>
+                  <li>The visual state of being collapsed is synchronized with <code>aria-expanded</code> value using CSS attribute selector [<code>aria-expanded=&quot;false&quot;]</code> with the CSS <code>:before</code> psuedo selector and the CSS <code>content</code> property for displaying an image of the collapsed state.</li> 
+                </ul>  
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><code>aria-expanded=&quot;true&quot;</code></td>
+              <td><code>li</code></td>
+              <td>
+                <ul>
+                  <li>Indicates the <code>treeitem</code> descendants of the current <code>treeitem</code> widgets are visible e.g. tree sub-leaf is expanded).</li>
+                  <li>The visual state of being expanded is synchronized with <code>aria-expanded</code> value using CSS attribute selector [<code>aria-expanded=&quot;true&quot;]</code> with the CSS <code>:before</code> psuedo selector and the CSS <code>content</code> property for displaying an image of the expanded state.</li> 
+                </ul>  
+              </td>
+            </tr>  
+            <tr>
+              <td></td>
+              <td><code>aria-setsize=&quot;<em>number</em>&quot;</code></td>
+              <td><code>li</code></td>
+              <td>
+                <ul>
+                  <li><code>aria-setsize</code> is used to indicate the number of <code>treeitem</code>s in the current leaf of the tree.</li>
+                  <li>This example relies upon the browser to compute the value of <code>aria-setsize</code>, so it is <strong>not</strong> defined by the author.</li>
+                  <li>Browsers are encouraged, but not required to compute the <code>aria-setsize</code> value for a <code>treeitem</code> based on the DOM structure.</li>
+                  <li><a href="https://www.w3.org/TR/wai-aria/states_and_properties#aria-setsize">Browser requirements for computing <code>aria-setsize</code> values</a>.</li>
+                </ul>  
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><code>aria-posinset=&quot;<em>number</em>&quot;</code></td>
+              <td><code>li</code></td>
+              <td>
+                <ul>
+                  <li><code>aria-posinset</code> is used to indicate the position of <code>treeitem</code>s in the current leaf of the tree.</li>
+                  <li>This example relies upon the browser to compute the value of <code>aria-posinset</code>, so it is <strong>not</strong> defined by the author.</li>
+                  <li>Browsers are encouraged, but not required to compute the <code>aria-posinset</code> value for a <code>treeitem</code> based on the DOM structure.</li>
+                  <li><a href="https://www.w3.org/TR/wai-aria/states_and_properties#aria-posinset">Browser requirements for computing <code>aria-posinset</code> values</a>.</li>
+                </ul>  
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><code>aria-level=&quot;<em>number</em>&quot;</code></td>
+              <td><code>li</code></td>
+              <td>
+                <ul>
+                  <li><code>aria-level</code> is used to indicate the depth of <code>treeitem</code>s in the tree structure.</li>
+                  <li>This example relies upon the browser to computer the value of <code>aria-level</code>, so it is <strong>not</strong> defined by the author.</li>
+                  <li>Browsers are encouraged, but not required to compute the <code>aria-level</code> value for a <code>treeitem</code> based on the DOM structure.</li>
+                  <li><a href="https://www.w3.org/TR/wai-aria/states_and_properties#aria-level">Browser requirements for computing <code>aria-level</code> values</a>.</li>
+                </ul>  
+              </td>
+            </tr>
+              </td>
+            </tr>
+          </tbody>
+        </table>
 
+      </section>
 
-    </main>    
+     <section>
+        <h2>Javascript and CSS Source Code</h2>
+        <ul>
+          <li>
+            CSS:
+            <a href="css/tree.css" type="text/css">tree.css</a>
+          </li>
+          <li>
+            Javascript:
+            <a href="js/tree.js" type="text/javascript">tree.js</a>
+          </li>
+          <li>
+            Javascript:
+            <a href="js/treeitem.js" type="text/javascript">treeitem.js</a>
+          </li>
+          <li>
+            Javascript:
+            <a href="js/treeitemClick.js" type="text/javascript">treeitemClick.js</a>
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 id="sc1_label">HTML Source Code</h2>
+        <div role="separator" id="sc1_start_sep" aria-labelledby="sc1_start_sep sc1_label" aria-label="Start of"></div>
+        <div id="sc1"></div>
+        <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of"></div>
+
+        <script>
+          sourceCode.add('sc1', 'ex1');
+          sourceCode.make();
+        </script>
+      </section>
+    </main>
+    <nav>
+      <a href="../../../#TreeView">Treeview Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
+    </nav> 
   </body>
 </html>
