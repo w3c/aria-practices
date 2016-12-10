@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta charset="utf-8">
-    <title>Action Treeview (computed properties) | WAI-ARIA Authoring Practices 1.1</title>
+    <title>File Directory Treeview Example Using Computed Properties | WAI-ARIA Authoring Practices 1.1</title>
     
     <link href="../../css/core.css" rel="stylesheet"> 
     <link href="../../css/table.css" rel="stylesheet">
@@ -20,12 +20,11 @@
   
   <body>
     <main>
-      <h1>Action Treeview (computed properties)</h1>
-
-      <p>This example implements the features of an ARIA <code>tree</code> widget using <a href="../../../aria-practices.html#TreeView">ARIA Treeview Design Pattern</a> for simulation of a file selector.   This example relies on the browser to compute values for <code>aria-setsize</code>, <code>aria-posinset</code> and <code>arial-level</code>.   The ARIA 1.0 Spectification for these properties states the browser can compute these values, but is not required to.</p>
+      <h1>File Directory Treeview Example Using Computed Properties</h1>
+      <p>This example implements the features of an ARIA <code>tree</code> widget using <a href="../../../#TreeView">ARIA Treeview Design Pattern</a> for simulation of a file selector.   This example relies on the browser to compute values for <code>aria-setsize</code>, <code>aria-posinset</code> and <code>arial-level</code>.   The ARIA 1.0 Spectification for these properties states the browser can compute these values, but is not required to.</p>
 
        <section aria-labelledby="start">
-        <h2 id="start">Start Example</h2>
+        <h2 id="start">Example</h2>
         <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
         <div id="ex1">
          <h3 id="tree_label">
@@ -261,14 +260,23 @@
            </thead>
            <tbody>
              <tr>
-               <td>Up arrow Key</td>
-               <td>Moves focus to previous visible sibling <code>treeitem</code> using a depth first algorithm on the visible <code>treeitems</code>. If on first <code>treeitem</code>, focus stays on first <code>treeitem</code>.</td>
+               <td><kbd>Up arrow</kbd></td>
+               <td>
+                <ul>
+                  <li>Moves focus to previous visible sibling <code>treeitem</code> using a depth first algorithm on the visible <code>treeitems</code>. If on first <code>treeitem</code>, focus stays on first <code>treeitem</code>.</li>
+                </ul>
+               </td>
              </tr>
              <tr>
-               <td>Down arrow Key</td>
-               <td>Moves focus to next visible sibling <code>treeitem</code> using a depth first algorithm on the visible <code>treeitems</code>. If on last <code>treeitem</code>, focus stays on the last <code>treeitem</code>.</td>
-             </tr>            <tr>
-               <td>Left Arrow Key</td>
+               <td><kbd>Down arrow</kbd></td>
+               <td>
+                <ul>
+                  <li>Moves focus to next visible sibling <code>treeitem</code> using a depth first algorithm on the visible <code>treeitems</code>. If on last <code>treeitem</code>, focus stays on the last <code>treeitem</code>.</li>
+                </ul>
+               </td>
+             </tr>            
+             <tr>
+               <td><kbd>Left Arrow</kbd></td>
                <td>
                  <ul>
                    <li>For a <code>treeitem</code> that is an end node (e.g. no child <code>treeitem</code>s) or is in the collapsed state (e.g. has <code>[aria-expanded=false]</code>), focus moves to the parent <code>treeitem</code>.
@@ -279,7 +287,7 @@
                </td>
              </tr>
              <tr>
-               <td>Right Arrow Key</td>
+               <td><kbd>Right Arrow</kbd></td>
                <td>
                  <ul>
                    <li>For a <code>treeitem</code> that is an end node (e.g. no child <code>treeitem</code>s) focus stays on current <code>treeitem</code>.</li>
@@ -291,7 +299,7 @@
                </td>
              </tr>
              <tr>
-               <td>Return Key</td>
+               <td><kbd>Return</kbd></td>
                <td>
                 <ul>
                   <li>Performs the default action (e.g. onclick event) on the current <code>treeitem</code>, in this example updating the "File or Folder Selected" textbox.</li>
@@ -299,7 +307,7 @@
                 </td>
              </tr>
              <tr>
-               <td>Space Key</td>
+               <td><kbd>Space</kbd></td>
                <td>
                   <ul>
                     <li>Performs the default action (e.g. onclick event) on the current <code>treeitem</code>, in this example updating the "File or Folder Selected" textbox.</li>
@@ -307,7 +315,7 @@
                 </td>
              </tr>
              <tr>
-               <td>Home Key</td>
+               <td><kbd>Home</kbd></td>
                <td>
                 <ul>
                   <li>Moves focus to first <code>treeitem</code> in the <code>tree</code>.</li>
@@ -315,7 +323,7 @@
                 </td>
              </tr>
              <tr>
-               <td>End Key</td>
+               <td><kbd>End</kbd></td>
                <td>
                 <ul>
                   <li>Moves focus to last visible <code>treeitem</code> (e.g. depth first) in the <code>tree</code>.</li>
@@ -323,7 +331,7 @@
                 </td>
              </tr>
              <tr>
-               <td>a-z, A-Z</td>
+               <td><kbd>a-z, A-Z</kbd></td>
                <td>
                  <ul>
                    <li>Moves focus to next visible <code>treeitem</code> that starts with letter character.</li>
@@ -332,8 +340,11 @@
                </td>
              </tr>
              <tr>
-               <td>*</td>
-               <td>Opens all the expandable <code>treeitem</code>s in the current leaf (e.g. siblings of the current <code>treeitem</code>), keyboard focus does not change.
+               <td><kbd>*</kbd></td>
+               <td>
+                <ul>
+                  <li>Opens all the expandable <code>treeitem</code>s in the current leaf (e.g. siblings of the current <code>treeitem</code>), keyboard focus does not change.</li>
+                </ul>  
                </td>
              </tr>
            </tbody>
@@ -347,10 +358,10 @@
         <table aria-labelledby="rps_label"> 
           <thead>
             <tr>
-              <th>Role</th>
-              <th>Attribute</th>
-              <th>Element</th>
-              <th>Usage</th>
+              <th scope="col">Role</th>
+              <th scope="col">Attribute</th>
+              <th scope="col">Element</th>
+              <th scope="col">Usage</th>
             </tr>
           </thead>
           <tbody>
@@ -528,7 +539,7 @@
       </section>
     </main>
     <nav>
-      <a href="../../../aria-practices.html#TreeView">Treeview Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
+      <a href="../../../#TreeView">Tree View Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
     </nav> 
   </body>
 </html>
