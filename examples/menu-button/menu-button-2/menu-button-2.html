@@ -22,11 +22,11 @@
         This example implements the <a href="../../../#menubutton">menu button design pattern</a>
         for a button that provides access to a menu of link targets.
       An ARIA menu button is defined as any element with <code>role=&quot;button&quot;</code> with an <code>aria-haspopup=&quot;true&quot;</code>.  
-      This includes the HTML <code>a</code> element with <code>role="button"</code></code>.
-      </p>
+      In this example the default role of link for the <code>a</code> element is overridden using <code>role="button"</code></code> to define the menu button.  It is also important to note in the popup menu that the <code>role=menuitem</code> is on the 
+      <code>a</code> element and not the <code>li</code> element, since a <code>menuitem</code> widget cannot contain any intereactive elements (e.g links).</p>
       <p>Similar examples include: </p>
       <ul>
-        <li><a href="../menu-button-1/menu-button-1.html">Menu Button Example: Actions</a>: The popup menu items can be used to activate actions in a web application.</li>
+        <li><a href="../menu-button-1/menu-button-1.html">Action Menu Button</a>: The popup menu items can be used to activate actions in a web application.</li>
       </ul>
       <section>
         <h2 id="ex_label">Example</h2>
@@ -106,12 +106,12 @@
           <tbody>
             <tr>
             <tr>
-              <td><kbd>Down Arrow, <br/>Space, <br/>or Enter</kbd></td>
+              <th><kbd>Down Arrow, <br/>Space, <br/>or Enter</kbd></th>
               <td>Open <code>menu</code> and move focus to first <code>menuitem</code></td>
             </tr>
             </tr>
             <tr>
-              <td><kbd>Up Arrow</kbd></td>
+              <th><kbd>Up Arrow</kbd></th>
               <td>Open <code>menu</code> and move focus to previous <code>menuitem</code></td>
             </tr>
           </tbody>
@@ -128,7 +128,7 @@
           </thead>
           <tbody>
             <tr>
-              <td><kbd>Space or Enter</kbd></td>
+              <th><kbd>Space or Enter</kbd></th>
               <td>
                 <ul>
                   <li>Activates the link asociated with the <code>menuitem</code>.</li>
@@ -136,7 +136,7 @@
               </td>
             </tr>
             <tr>
-              <td><kbd>Escape</kbd></td>
+              <th><kbd>Escape</kbd></th>
               <td>
                 <ul>
                   <li>Closes popup menu.</li>
@@ -145,7 +145,7 @@
               </td>
             </tr>
             <tr>
-              <td><kbd>Up Arrow</kbd></td>
+              <th><kbd>Up Arrow</kbd></th>
               <td>
                 <ul>
                   <li>Moves focus to previous popup menu item.</li>
@@ -154,7 +154,7 @@
               </td>
             </tr>
              <tr>
-              <td><kbd>Down Arrow</kbd></td>
+              <th><kbd>Down Arrow</kbd></th>
               <td>
                 <ul>
                   <li>Moves focus to next popup menu item.</li>
@@ -163,7 +163,7 @@
               </td>
             </tr>
             <tr>
-              <td><kbd>Home</kbd></td>
+              <th><kbd>Home</kbd></th>
               <td>
                 <ul>
                   <li>Moves focus to first popup menu item.</li>
@@ -171,7 +171,7 @@
               </td>
             </tr>
             <tr>
-              <td><kbd>End</kbd></td>
+              <th><kbd>End</kbd></th>
               <td>
                 <ul>
                   <li>Moves focus to last popup menu item.</li>
@@ -179,7 +179,7 @@
               </td>
             </tr>
             <tr>
-              <td><kbd>A-Z, a-z</kbd></td>
+              <th><kbd>A-Z, a-z</kbd></th>
               <td>
                 <ul>
                   <li>Moves focus to the next popup item that starts with that letter.</li>
@@ -207,9 +207,9 @@
           </thead>
           <tbody>
             <tr>
-              <td>
+              <th scope="row">
                 <code>button</code>
-              </td>
+              </th>
               <td></td>
               <td>
                 <code>a</code>
@@ -226,7 +226,7 @@
               <td>
                 <code></code>
               </td>
-              <td><code>href=&quot;#&quot;</code></td>
+              <th scope="row"><code>href=&quot;#&quot;</code></th>
               <td>
                 <code>a</code>
               </td>
@@ -240,7 +240,7 @@
               <td>
                 <code></code>
               </td>
-              <td><code>aria-haspopup=&quot;true&quot;</code></td>
+              <th scope="row"><code>aria-haspopup=&quot;true&quot;</code></th>
               <td>
                 <code>a</code>
               </td>
@@ -254,7 +254,7 @@
               <td>
                 <code></code>
               </td>
-              <td><code>aria-controls=&quot;IDREF&quot;</code></td>
+              <th scope="row"><code>aria-controls=&quot;IDREF&quot;</code></th>
               <td>
                 <code>a</code>
               </td>
@@ -266,7 +266,7 @@
             </tr>
             <tr>
                 <td></td>
-                <td><code>aria-expanded=&quot;true&quot;</code></td>
+                <th scope="row"><code>aria-expanded=&quot;true&quot;</code></th>
                 <td><code>a</code></td>
                 <td>
                   <ul>
@@ -276,7 +276,7 @@
             </tr>
             <tr>
                 <td></td>
-                <td><code>aria-expanded=&quot;false&quot;</code></td>
+                <th scope="row"><code>aria-expanded=&quot;false&quot;</code></th>
                 <td><code>a</code></td>
                 <td>
                   <ul>
@@ -300,9 +300,9 @@
           </thead>
           <tbody>
             <tr>
-              <td>
+              <th scope="row">
                 <code>menu</code>
-              </td>
+              </th>
               <td></td>
               <td>
                 <code>ul</code>
@@ -316,9 +316,9 @@
               </td>
             </tr>
             <tr>
-              <td>
+              <th scope="row">
                 <code></code>
-              </td>
+              </th>
               <td><code>aria-labelledby=&quot;[IDREF]&quot;</code></td>
               <td>
                 <code>ul</code>
@@ -330,9 +330,9 @@
               </td>
             </tr>
             <tr>
-              <td>
+              <th scope="row">
                 <code>menuitem</code>
-              </td>
+              </th>
               <td></td>
               <td>
                 <code>a</code>
@@ -349,7 +349,7 @@
               <td>
                 <code></code>
               </td>
-              <td><code>tabindex=&quot;-1&quot;</code></td>
+              <th scope="row"><code>tabindex=&quot;-1&quot;</code></th>
               <td>
                 <code>a</code>
               </td>
@@ -360,9 +360,9 @@
               </td>
             </tr>
             <tr>
-              <td>
+              <th scope="row">
                 <code>none</code>
-              </td>
+              </th>
               <td></td>
               <td>
                 <code>li</code>
