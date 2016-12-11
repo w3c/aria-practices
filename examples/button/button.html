@@ -12,20 +12,13 @@
 <body>
   <main>
     <h1>Button Examples</h1>
-  <p>
-    This example page requires updates per 
-    <a href="https://github.com/w3c/aria-practices/issues/189">issue 189.</a>
-    Please provide any additional feedback in this issue.
-  </p>
-  <h2>
-    Creating Buttons using <code>role=button</code>
-  </h2>
 
   <p>
-    <a href="../../aria-practices.html#h-button">Authoring Practice Design Patten for Button</a>
+    Creating Buttons using <code>role=button</code> following the <a href="../../#h-button">Button Design Patten</a>.
   </p>
+
   <p>
-    <strong>Note:</strong> When using HTML, use the <code>&lt;button&gt;</code> element. It is
+    <strong>Note:</strong> When using HTML, use the <code>button</code> element. It is
     recommended that authors not re-purpose other elements to create buttons.
   </p>
 
@@ -50,7 +43,7 @@
       </thead>
       <tbody>
         <tr>
-          <td>Push button</td>
+          <th>Push button</th>
           <td>
             <code>div</code> element with text
           </td>
@@ -77,7 +70,7 @@
           </td>
         </tr>
         <tr>
-          <td>Toggle button</td>
+          <th>Toggle button</th>
           <td>
             <code>div</code> element with text
           </td>
@@ -103,7 +96,7 @@
           </td>
         </tr>
         <tr>
-          <td>Push button</td>
+          <th>Push button</th>
           <td>
             <code>tabindex="0"</code> element
           </td>
@@ -125,82 +118,73 @@
             </ul>
           </td>
         </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <section>
+    <h2 id="kbd_label">Keyboard Support</h2>
+
+    <table aria-labelledby="kbd_label">
+      <thead>
         <tr>
-          <td>Non compliant</td>
-          <td>
-            <code>a</code> element with <code>href="#"</code>
-          </td>
-          <td>
-            <a href="#" role="button" id="alert2">Show alert</a>
-          </td>
+          <th>Key</th>
+          <th>Function</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th><kbd>Space or enter</kbd></th>
+          <td>Activate or toggle button</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2 id="rps_label">ARIA Roles, Properties and States</h2>
+
+    <table aria-labelledby="rps_label">
+      <thead>
+        <tr>
+          <th scope="col">Role</th>
+          <th scope="col">Attribute</th>
+          <th scope="col">Element</th>
+          <th scope="col">Usage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row"><code>button</code></th>
+          <td></td>
+          <td><code>span</code>, <code>div</code></td>
           <td>
             <ul>
-              <li>It is a bad practice because it does not support space bar for button
-                activiation.</li>
+              <li>Identify element with the button behavior</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <th scope="row"><code>aria-pressed</code></th>
+          <td><code>span</code></td>
+          <td>
+            <ul>
+              <li>Identify element with the toggle button behavior</li>
             </ul>
           </td>
         </tr>
       </tbody>
     </table>
-  </div>
 
-  <h2 id="id_kbd">Keyboard Support</h2>
-
-  <table aria-labelledby="id_kbd">
-    <thead>
-      <tr>
-        <th>Key</th>
-        <th>Function</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Space or enter</td>
-        <td>Activate or toggle button</td>
-      </tr>
-    </tbody>
-  </table>
-
-  <h2 id="id_rps">ARIA Roles, Properties and States</h2>
-
-  <table aria-labelledby="id_rps">
-    <thead>
-      <tr>
-        <th>Role</th>
-        <th>Property/State</th>
-        <th>Component</th>
-        <th>Usage</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>button</td>
-        <td></td>
-        <td>span or div</td>
-        <td>
-          <ul>
-            <li>Identify element with the button behavior</li>
-          </ul>
-        </td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>aria-pressed</td>
-        <td>span</td>
-        <td>
-          <ul>
-            <li>Identify element with the toggle button behavior</li>
-          </ul>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  </section>
 
   <script src="../js/examples.js" type="text/javascript"></script>
 
-  <h2>Source Code</h2>
-
-  <ul>
+  <section>
+    <h2>Javascript and CSS Source Code</h2>
+    <!--  After the js and css files are named with the name of this example, change the href and text of the following 2 links to refer to the appropriate js and css files.  -->
+    <ul>
     <li>
       CSS:
       <a href="css/button.css" type="tex/css">button.css</a>
@@ -209,27 +193,42 @@
       Javascript:
       <a href="js/button.js" type="text/javascript">button.js</a>
     </li>
-  </ul>
-  <h3>HTML Code</h3>
-  <p class="annotate">HTML source code is generated by scripting using ID references.</p>
+    </ul>
+  </section>
 
-  <h4>First Example: Push button</h4>
-  <div id="print-sc1"></div>
-  <h4>Second Example: Toggle button</h4>
-  <div id="mute-sc1"></div>
-  <h4>Third Example: Push button</h4>
-  <div id="alert-sc"></div>
-  <h4>Non-compliant Example</h4>
-  <div id="noncompliant-sc"></div>
+ <section>
+    <h2 id="sc1_label">HTML Source Code</h2>
+
+    <h3 id="sc1_label">First Example: Push button</h3>
+    <div role="separator" id="sc1_start_sep" aria-labelledby="sc1_start_sep sc1_label" aria-label="Start of"></div>
+    <div id="print-sc1"></div>
+    <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of"></div>
 
 
-  <script>
+    <h3 id="sc2_label">Second Example: Toggle button</h3>
+    <div role="separator" id="sc2_start_sep" aria-labelledby="sc2_start_sep sc2_label" aria-label="Start of"></div>
+    <div id="mute-sc1"></div>
+    <div role="separator" id="sc2_end_sep" aria-labelledby="sc2_end_sep sc2_label" aria-label="End of"></div>
+
+
+    <h3 id="sc3_label">Third Example: Push button</h3>
+    <div role="separator" id="sc3_start_sep" aria-labelledby="sc3_start_sep sc3_label" aria-label="Start of"></div>
+    <div id="alert-sc"></div>
+    <div role="separator" id="sc3_end_sep" aria-labelledby="sc3_end_sep sc3_label" aria-label="End of"></div>
+
+
+    <script>
           sourceCode.add('print-sc1', 'print')
           sourceCode.add('mute-sc1', 'toggle')
           sourceCode.add('alert-sc', 'alert1')
-          sourceCode.add('noncompliant-sc', 'alert2')
-          sourceCode.make()
+      sourceCode.make();
+    </script>
+  </section>
+  </main>
+  <nav>
+    <!--  Update the pattern_ID parameter of this link to refer to the APG design pattern section related to this example.  -->
+    <a href="../../#h-button">Button Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
+  </nav>
 
-    </script> </main>
 </body>
 </html>
