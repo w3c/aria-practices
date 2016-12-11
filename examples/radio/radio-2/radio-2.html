@@ -25,7 +25,6 @@
       <p>Similar examples include: </p>
       <ul>
         <li><a href="../radio-1/radio-1.html">Radio Button Example</a>: Radio button group using roving <code>tabindex</code> for managing keyboard focus.</li>
-        <!--  list other examples that implement the same design pattern. -->
       </ul>
 
      <section aria-labelledby="example_label">
@@ -113,7 +112,7 @@
         </thead>
         <tbody>
           <tr>
-            <td><kbd>Tab</kbd></td>
+            <th><kbd>Tab</kbd></th>
             <td>
               <ul>
                 <li>Moves keybaord focus to <code>radiogroup</code> and <code>aria-activedescendant</code> points to the <code>radio</code> button that is checked.</li>
@@ -122,7 +121,7 @@
             </td>
           </tr>
           <tr>
-            <td><kbd>Space</kbd></td>
+            <th><kbd>Space</kbd></th>
             <td>
               <ul>
                 <li>If the <code>radio</code> button pointed to with <code>aria-activedescendant</code> is unchecked, it's state will be changed to checked.</li>
@@ -130,7 +129,7 @@
             </td>
           </tr>
           <tr>
-            <td><kbd>Down arrow</kbd></td>
+            <th><kbd>Down arrow</kbd></th>
             <td>
               <ul>
                 <li>Moves <code>aria-activedescendant</code> pointer to next <code>radio</code> button in the group.</li>
@@ -139,7 +138,7 @@
               </td>
           </tr>
           <tr>
-            <td><kbd>Up arrow</kbd></td>
+            <th><kbd>Up arrow</kbd></th>
             <td>
               <ul>
                 <li>Moves <code>aria-activedescendant</code> pointer to previous <code>radio</code> button in the group.</li>
@@ -164,7 +163,7 @@
         </thead>
         <tbody>
           <tr>
-            <td><code>radiogroup</code></td>
+            <th scope="row"><code>radiogroup</code></th>
             <td></td>
             <td><code>ul</code></td>
             <td>
@@ -178,7 +177,7 @@
           </tr>
           <tr>
             <td></td>
-            <td><code>tabindex=&quot;0&quot;</code></td>
+            <th scope="row"><code>tabindex=&quot;0&quot;</code></th>
             <td><code>ul</code></td>
             <td>
                 <ul>
@@ -190,7 +189,7 @@
           </tr>
           <tr>
             <td></td>
-            <td><code>aria-activedescendant=&quot;[IDREF]&quot;</code></td>
+            <th scope="row"><code>aria-activedescendant=&quot;[IDREF]&quot;</code></th>
             <td><code>ul</code></td>
             <td>
                <ul>
@@ -201,7 +200,7 @@
           </tr>  
           <tr>
             <td></td>
-            <td><code>aria-labelledby=&quot;[IDREF]&quot;</code></td>
+            <th scope="row"><code>aria-labelledby=&quot;[IDREF]&quot;</code></th>
             <td><code>ul</code></td>
             <td>
                  <ul>
@@ -210,7 +209,7 @@
             </td>
           </tr>  
           </tr>
-            <td><code>radio</code></td>
+            <th scope="row"><code>radio</code></th>
             <td></td>
             <td><code>li</code></td>
             <td>
@@ -223,7 +222,7 @@
           </tr>
           <tr>
             <td></td>
-            <td><code>id=&quot;[IDREF]&quot;</code></td>
+            <th scope="row"><code>id=&quot;[IDREF]&quot;</code></th>
             <td><code>li</code></td>
             <td>
                 <ul>
@@ -234,7 +233,7 @@
           </tr>
           <tr>
             <td></td>
-            <td><code>aria-checked=&quot;false&quot;</code></td>
+            <th scope="row"><code>aria-checked=&quot;false&quot;</code></th>
             <td><code>li</code></td>
             <td>
                 <ul>
@@ -246,7 +245,7 @@
           </tr>
           <tr>
             <td></td>
-            <td><code>aria-checked=&quot;true&quot;</code></td>
+            <th scope="row"><code>aria-checked=&quot;true&quot;</code></th>
             <td><code>li</code></td>
             <td>
                 <ul>
