@@ -99,15 +99,12 @@ MenubarItem.prototype.handleKeydown = function (event) {
   switch (event.keyCode) {
     case this.keyCode.SPACE:
     case this.keyCode.RETURN:
+    case this.keyCode.DOWN:
       if (this.popupMenu) {
-        if (this.domNode.getAttribute('aria-expanded') == 'true') {
-          this.popupMenu.close(true);
-        }
-        else {
-          this.popupMenu.open();
-        }
+        this.popupMenu.open();
+        this.popupMenu.setFocusToFirstItem();
+        flag = true;
       }
-      flag = true;
       break;
 
     case this.keyCode.LEFT:
@@ -124,14 +121,6 @@ MenubarItem.prototype.handleKeydown = function (event) {
       if (this.popupMenu) {
         this.popupMenu.open();
         this.popupMenu.setFocusToLastItem();
-        flag = true;
-      }
-      break;
-
-    case this.keyCode.DOWN:
-      if (this.popupMenu) {
-        this.popupMenu.open();
-        this.popupMenu.setFocusToFirstItem();
         flag = true;
       }
       break;
