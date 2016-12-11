@@ -15,6 +15,9 @@
 
   <p>
     Creating Buttons using <code>role=button</code> following the <a href="../../#h-button">Button Design Patten</a>.
+    The following examples are composed using a <code>div</code> and <code>span</code> elements
+    functioning as a native <code>button</code> element, and an <code>a</code> element that functions as a
+    toggle button.    
   </p>
 
   <p>
@@ -22,105 +25,103 @@
     recommended that authors not re-purpose other elements to create buttons.
   </p>
 
-  <h2>Button Examples</h2>
+  <section>
+    <h2>Examples</h2>
 
-  <p>
-    The following examples are composed by a native <code>&lt;button&gt;</code> element, a <code>&lt;div&gt;</code>
-    functioning as a native button, and a <code>&lt;span&gt;</code> element that functions as a
-    toggle button.
-  </p>
 
-  <div id="example">
+    <div id="example">
 
-    <table>
-      <thead>
-        <tr>
-          <th>Type</th>
-          <th>Technique</th>
-          <th>Button</th>
-          <th>Accessibility Feature</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th>Push button</th>
-          <td>
-            <code>div</code> element with text
-          </td>
-          <td>
-            <div role="button" id="print">Print Page</div>
-          </td>
-          <td>
-            <ul>
-              <li>
-                <code>div</code> element with <code>role="button"</code>.
-              </li>
-              <li>
-                <code>div</code> element has <code>onclick</code> event to handle mouse clicks.
-              </li>
-              <li>
-                <code>div</code> element has <code>onkeydown</code> event to handle keyboard
-                support.
-              </li>
-              <li>
-                <code>div</code> element has <code>tabindex="0"</code> to become part of tab order
-                of the page.
-              </li>
-            </ul>
-          </td>
-        </tr>
-        <tr>
-          <th>Toggle button</th>
-          <td>
-            <code>div</code> element with text
-          </td>
-          <td>
-            <span tabindex="0" role="button" id="toggle" aria-pressed="false">Mute</span>
-          </td>
-          <td>
-            <ul>
-              <li>
-                <code>div</code> element with <code>role="button"</code>.
-              </li>
-              <li>
-                <code>div</code> element has <code>onclick</code> event to handle mouse clicks.
-              </li>
-              <li>
-                <code>div</code> element has <code>onkeydown</code> event to handle keyboard
-                support.
-              </li>
-              <li>
-                Aria property/status from <code>aria-pressed</code> attribute.
-              </li>
-            </ul>
-          </td>
-        </tr>
-        <tr>
-          <th>Push button</th>
-          <td>
-            <code>tabindex="0"</code> element
-          </td>
-          <td>
-            <a tabindex="0" role="button" id="alert1">Show alert</a>
-          </td>
-          <td>
-            <ul>
-              <li>
-                <code>a</code> element has <code>onclick</code> event to handle mouse clicks.
-              </li>
-              <li>
-                <code>a</code> element has <code>onkeydown</code> event to handle keyboard support.
-              </li>
-              <li>
-                <code>a</code> element has <code>tabindex="0"</code> to become part of tab order of
-                the page.
-              </li>
-            </ul>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Element</th>
+            <th>Button</th>
+            <th>Accessibility Feature</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>Push button</th>
+            <td>
+              <code>div</code>
+            </td>
+            <td>
+              <div role="button" id="print">Print Page</div>
+            </td>
+            <td>
+              <ul>
+                <li>
+                  <code>div</code> element with <code>role="button"</code>.
+                </li>
+                <li>
+                  <code>div</code> element has <code>onclick</code> event to handle mouse clicks.
+                </li>
+                <li>
+                  <code>div</code> element has <code>onkeydown</code> event to handle keyboard
+                  support.
+                </li>
+                <li>
+                  <code>div</code> element has <code>tabindex="0"</code> to become part of tab order
+                  of the page.
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <th>Toggle button</th>
+            <td>
+              <code>span</code>
+            </td>
+            <td>
+              <span tabindex="0" role="button" id="toggle" aria-pressed="false">Mute</span>
+            </td>
+            <td>
+              <ul>
+                <li>
+                  <code>span</code> element with <code>role="button"</code>.
+                </li>
+                <li>
+                  <code>span</code> element has <code>onclick</code> event to handle mouse clicks.
+                </li>
+                <li>
+                  <code>span</code> element has <code>onkeydown</code> event to handle keyboard
+                  support.
+                </li>
+                <li>
+                  Toggle status using the <code>aria-pressed</code> attribute.
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <th>Push button</th>
+            <td>
+              <code>a</code>
+            </td>
+            <td>
+              <a tabindex="0" role="button" id="alert1">Show alert</a>
+            </td>
+            <td>
+              <ul>
+                <li>
+                  <code>a</code> element has <code>onclick</code> event to handle mouse clicks.
+                </li>
+                <li>
+                  <code>a</code> element has <code>onkeydown</code> event to handle keyboard support.
+                </li>
+                <li>
+                  <code>a</code> element has <code>tabindex="0"</code> to become part of tab order of
+                  the page.
+                </li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </section>
 
   <section>
     <h2 id="kbd_label">Keyboard Support</h2>
@@ -157,20 +158,53 @@
         <tr>
           <th scope="row"><code>button</code></th>
           <td></td>
-          <td><code>span</code>, <code>div</code></td>
+          <td>
+            <code>div</code>, <code>span</code>, or <code>a</code>
+          </td>
           <td>
             <ul>
-              <li>Identify element with the button behavior</li>
+              <li><code>role=&quot;button&quot;</code> identifies the element as a <code>button</code> widget.</li>
+              <li>
+                Accessible name for the button is defined by the text content of the
+                element.
+              </li>
             </ul>
           </td>
         </tr>
         <tr>
           <td></td>
-          <th scope="row"><code>aria-pressed</code></th>
-          <td><code>span</code></td>
+          <td>
+            <code>tabindex=&quot;0&quot;</code>
+          </td>
+          <td>
+            <code>div</code>, <code>span</code>, or <code>a</code>
+          </td>
           <td>
             <ul>
-              <li>Identify element with the toggle button behavior</li>
+              <li>
+                Makes the  element keyboard focusable and part of tab order of the
+                page.
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <th scope="row"><code>aria-pressed=&quot;false&quot;</code></th>
+          <td><code>a</code></td>
+          <td>
+            <ul>
+              <li>Identify element with the toggle button behavior and toggled off</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <th scope="row"><code>aria-pressed=&quot;true&quot;</code></th>
+          <td><code>a</code></td>
+          <td>
+            <ul>
+              <li>Identify element with the toggle button behavior and toggled on</li>
             </ul>
           </td>
         </tr>
