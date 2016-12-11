@@ -20,9 +20,15 @@
   <body>
     <main>
       <h1>File Directory Treeview Example Using Declared Properties</h1>
->>>>>>> master
 
-      <p>This example implements the features of an ARIA <code>tree</code> widget using <a href="../../../#TreeView">ARIA Treeview Design Pattern</a> for simulation of a file selector.   This example explicitly sets the values for <code>aria-setsize</code>, <code>aria-posinset</code> and <code>arial-level</code>, which override any browser compuuted values.</p>
+      <p>This example implements the features of the <a href="../../../#TreeView">Treeview Design Pattern</a> for simulation of a file selector.   This example explicitly sets the values for <code>aria-setsize</code>, <code>aria-posinset</code> and <code>arial-level</code>, which override any browser compuuted values.</p>
+
+      <p>Similar examples include: </p>
+      <ul>
+        <li><a href="../treeview-1/treeview-1a.html">File Directory Treeview using <em>computed</em> properties</a></li>
+        <li><a href="../treeview-2/treeview-2a.html">Navigation Treeview using <em>computed</em> properties</a></li>
+        <li><a href="../treeview-2/treeview-2b.html">Navigation Treeview using <em>declared</em> properties</a></li>
+      </ul>
 
       <section aria-labelledby="start">
         <h2 id="start">Example</h2>
@@ -426,7 +432,7 @@
            </thead>
            <tbody>
              <tr>
-               <td><kbd>Up arrow</kbd></td>
+               <th><kbd>Up arrow</kbd></th>
                <td>
                 <ul>
                   <li>Moves focus to previous visible sibling <code>treeitem</code> using a depth first algorithm on the visible <code>treeitems</code>. If on first <code>treeitem</code>, focus stays on first <code>treeitem</code>.</li>
@@ -434,7 +440,7 @@
                </td>
              </tr>
              <tr>
-               <td><kbd>Down arrow</kbd></td>
+               <th><kbd>Down arrow</kbd></th>
                <td>
                 <ul>
                   <li>Moves focus to next visible sibling <code>treeitem</code> using a depth first algorithm on the visible <code>treeitems</code>. If on last <code>treeitem</code>, focus stays on the last <code>treeitem</code>.</li>
@@ -442,7 +448,7 @@
                </td>
              </tr>            
              <tr>
-               <td><kbd>Left Arrow</kbd></td>
+               <th><kbd>Left Arrow</kbd></th>
                <td>
                  <ul>
                    <li>For a <code>treeitem</code> that is an end node (e.g. no child <code>treeitem</code>s) or is in the collapsed state (e.g. has <code>[aria-expanded=false]</code>), focus moves to the parent <code>treeitem</code>.
@@ -453,7 +459,7 @@
                </td>
              </tr>
              <tr>
-               <td><kbd>Right Arrow</kbd></td>
+               <th><kbd>Right Arrow</kbd></th>
                <td>
                  <ul>
                    <li>For a <code>treeitem</code> that is an end node (e.g. no child <code>treeitem</code>s) focus stays on current <code>treeitem</code>.</li>
@@ -465,7 +471,7 @@
                </td>
              </tr>
              <tr>
-               <td><kbd>Return</kbd></td>
+               <th><kbd>Return</kbd></th>
                <td>
                 <ul>
                   <li>Performs the default action (e.g. onclick event) on the current <code>treeitem</code>, in this example updating the "File or Folder Selected" textbox.</li>
@@ -473,7 +479,7 @@
                 </td>
              </tr>
              <tr>
-               <td><kbd>Space</kbd></td>
+               <th><kbd>Space</kbd></th>
                <td>
                   <ul>
                     <li>Performs the default action (e.g. onclick event) on the current <code>treeitem</code>, in this example updating the "File or Folder Selected" textbox.</li>
@@ -481,7 +487,7 @@
                 </td>
              </tr>
              <tr>
-               <td><kbd>Home</kbd></td>
+               <th><kbd>Home</kbd></th>
                <td>
                 <ul>
                   <li>Moves focus to first <code>treeitem</code> in the <code>tree</code>.</li>
@@ -489,7 +495,7 @@
                 </td>
              </tr>
              <tr>
-               <td><kbd>End</kbd></td>
+               <th><kbd>End</kbd></th>
                <td>
                 <ul>
                   <li>Moves focus to last visible <code>treeitem</code> (e.g. depth first) in the <code>tree</code>.</li>
@@ -497,7 +503,7 @@
                 </td>
              </tr>
              <tr>
-               <td><kbd>a-z, A-Z</kbd></td>
+               <th><kbd>a-z, A-Z</kbd></th>
                <td>
                  <ul>
                    <li>Moves focus to next visible <code>treeitem</code> that starts with letter character.</li>
@@ -506,7 +512,7 @@
                </td>
              </tr>
              <tr>
-               <td><kbd>*</kbd></td>
+               <th><kbd>*</kbd></th>
                <td>
                 <ul>
                   <li>Opens all the expandable <code>treeitem</code>s in the current leaf (e.g. siblings of the current <code>treeitem</code>), keyboard focus does not change.</li>
@@ -530,7 +536,7 @@
           </thead>
           <tbody>
             <tr>
-              <td><code>tree</code></td>
+              <th scope="row"><code>tree</code></th>
               <td></td>
               <td><code>ul</code></td>
               <td>
@@ -543,7 +549,7 @@
             </tr>
             <tr>
               <td></td>
-              <td><code>aria-label=&quot;<em>string</em>&quot;</code></td>
+              <th scope="row"><code>aria-label=&quot;<em>string</em>&quot;</code></th>
               <td><code>ul</code></td>
               <td>
                  <ul>
@@ -553,7 +559,7 @@
               </td>
             </tr>  
             <tr>
-              <td><code>group</code></td>
+              <th scope="row"><code>group</code></th>
               <td></td>
               <td><code>ul</code></td>
               <td>
@@ -566,7 +572,7 @@
               </td>
             </tr>
             <tr>
-              <td><code>treeitem</code></td>
+              <th scope="row"><code>treeitem</code></th>
               <td></td>
               <td><code>li</code></td>
               <td>
@@ -578,7 +584,7 @@
             </tr>
             <tr>
               <td></td>
-              <td><code>tabindex=&quot;-1&quot;</code></td>
+              <th scope="row"><code>tabindex=&quot;-1&quot;</code></th>
               <td><code>li</code></td>
               <td>
                 <ul>
@@ -589,7 +595,7 @@
             </tr>
             <tr>
               <td></td>
-              <td><code>tabindex=&quot;0&quot;</code></td>
+              <th scope="row"><code>tabindex=&quot;0&quot;</code></th>
               <td><code>li</code></td>
               <td>
                 <ul>
@@ -602,7 +608,7 @@
             </tr>
             <tr>
               <td></td>
-              <td><code>aria-expanded=&quot;false&quot;</code></td>
+              <th scope="row"><code>aria-expanded=&quot;false&quot;</code></th>
               <td><code>li</code></td>
               <td>
                 <ul>
@@ -613,7 +619,7 @@
             </tr>
             <tr>
               <td></td>
-              <td><code>aria-expanded=&quot;true&quot;</code></td>
+              <th scope="row"><code>aria-expanded=&quot;true&quot;</code></th>
               <td><code>li</code></td>
               <td>
                 <ul>
@@ -624,7 +630,7 @@
             </tr>  
             <tr>
               <td></td>
-              <td><code>aria-setsize=&quot;<em>number</em>&quot;</code></td>
+              <th scope="row"><code>aria-setsize=&quot;<em>number</em>&quot;</code></th>
               <td><code>li</code></td>
               <td>
                 <ul>
@@ -636,7 +642,7 @@
             </tr>
             <tr>
               <td></td>
-              <td><code>aria-posinset=&quot;<em>number</em>&quot;</code></td>
+              <th scope="row"><code>aria-posinset=&quot;<em>number</em>&quot;</code></th>
               <td><code>li</code></td>
               <td>
                 <ul>
@@ -648,7 +654,7 @@
             </tr>
             <tr>
               <td></td>
-              <td><code>aria-level=&quot;<em>number</em>&quot;</code></td>
+              <th scope="row"><code>aria-level=&quot;<em>number</em>&quot;</code></th>
               <td><code>li</code></td>
               <td>
                 <ul>
