@@ -2,7 +2,7 @@
   <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Checkbox Example: Mixed State | WAI-ARIA Authoring Practices 1.1</title>
+    <title>Checkbox Example (Mixed State) | WAI-ARIA Authoring Practices 1.1</title>
     <link href="../../css/core.css" rel="stylesheet">
     <link href="../../css/table.css" rel="stylesheet">
 
@@ -15,13 +15,13 @@
   </head>
   <body>
     <main>
-      <h1>Checkbox Example: Mixed State</h1>
+      <h1>Checkbox Example (Mixed State)</h1>
 
-      <p>Example of a mixed state checkbox that implements the  <a href="../../#checkbox">design pattern for checkbox</a> using <code>div</code> element for the mixed state checkbox with a set of standard HTML checkboxes.   This example also uses <code>fieldset/Legend</code> elements to provide a grouping label for the checkboxes since the checkboxes are related to each other.</p>
+      <p>Example of a mixed state checkbox that implements the  <a href="../../../#checkbox">Checkbox Design Pattern</a> using <code>div</code> element for the mixed state checkbox with a set of standard HTML checkboxes.   This example also uses <code>fieldset/Legend</code> elements to provide a grouping label for the checkboxes since the checkboxes are related to each other.</p>
 
       <p>Similar examples include: </p>
       <ul>
-        <li><a href="../checkbox-1/checkbox-1.html">Checkbox Example: Two State</a>: Simple two state checkbox.</li>
+        <li><a href="../checkbox-1/checkbox-1.html">Checkbox Example (Two State)</a>: Simple two state checkbox.</li>
         <!--  list other examples that implement the same design pattern. -->
       </ul>
 
@@ -100,8 +100,14 @@
             </tr>
           </thead>
           <tbody>
+            <td><kbd>Tab</kbd></td>
+            <td>
+              <ul>
+                <li>Moves keyboard focus to the <code>checkbox</code>.</li>
+              </ul>  
+            </td>
             <tr>
-              <td>Space or Enter Key</td>
+              <td><kbd>Space</kbd>, <br/> or <kbd>Enter</kbd></td>
               <td>
                 <ul>
                   <li>Toggle the checkbox between unchecked, mixed and checked.</li>  
@@ -122,10 +128,10 @@
         <table aria-labelledby="rps_label">
           <thead>
             <tr>
-              <th>Role</th>
-              <th>Attribute</th>
-              <th>Element</th>
-              <th>Usage</th>
+              <th scope="col">Role</th>
+              <th scope="col">Attribute</th>
+              <th scope="col">Element</th>
+              <th scope="col">Usage</th>
             </tr>
           </thead>
           <tbody>
@@ -231,7 +237,7 @@
       </section>
   </main>  
   <nav>
-    <a href="../../../aria-practices.html#checkbox">Checkbox Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
+    <a href="../../../#checkbox">Checkbox Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
   </nav>
 </body>
 </html>
