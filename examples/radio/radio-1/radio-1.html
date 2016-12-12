@@ -32,24 +32,20 @@
 
         <div  role="radiogroup" aria-labelledby="group_label_1" id="rg1">
             <h3 id="group_label_1">Pizza Crust</h3>
+
             <div role="radio" 
                 aria-checked="false"
-                tabindex="0"
-            >
+                tabindex="0">
               Regular crust
            </div>
-           
            <div role="radio" 
                 aria-checked="false"
-                tabindex="-1"
-            >
+                tabindex="-1">
               Deep dish
            </div>
-           
            <div role="radio" 
                 aria-checked="false"
-                tabindex="-1"
-            >
+                tabindex="-1">
               Thin crust
            </div>
        </div>
@@ -58,22 +54,19 @@
             <h3 id="group_label_2">Pizza Delivery</h3>
             <div role="radio" 
                 aria-checked="false"
-                tabindex="0"
-            >
+                tabindex="0">
               Pickup
             </div>
            
             <div role="radio" 
                 aria-checked="false"
-                tabindex="-1"
-            >
+                tabindex="-1">
               Home Delivery
             </div>
            
             <div role="radio" 
                 aria-checked="false"
-                tabindex="-1"
-            >
+                tabindex="-1">
             Dine in
            </div>
        </div>
@@ -84,8 +77,8 @@
           var rg2 = new RadioGroup(document.getElementById('rg2'));
           rg2.init();
         </script>
-      </div>   
-     </section> 
+      </div>
+     </section>
 
      <section aria-labelledby="information_label">
         <h2 id="information_label">Radio group Widget Implementation Information</h2>
@@ -99,7 +92,7 @@
 
       <h3 id="kbd_label">Keyboard Support</h3>
 
-      <table aria-labelledby="kbd_label"> 
+      <table aria-labelledby="kbd_label">
         <thead>
           <tr>
             <th>Key</th>
@@ -113,7 +106,7 @@
               <ul>
                 <li>Moves keyboard focus to the checked <code>radio</code> button in a <code>radiogroup</code>.</li>
                 <li>If no <code>radio</code> button is checked, focus moves to the first <code>radio</code> button in the group.</li>
-              </ul>  
+              </ul>
             </td>
           </tr>
           <tr>
@@ -121,7 +114,7 @@
             <td>
               <ul>
                 <li>If the <code>radio</code> button with focus is unchecked, it's state will be changed to checked.</li>
-              </ul>  
+              </ul>
             </td>
           </tr>
           <tr>
@@ -130,7 +123,7 @@
               <ul>
                 <li>Moves focus to next <code>radio</code> button in the group.</li>
                 <li>If focus is on the last <code>radio</code> button in the group, move focus to the first <code>radio</code> button.</li>
-              </ul>  
+              </ul>
             </td>
           </tr>
           <tr>
@@ -139,15 +132,15 @@
               <ul>
                 <li>Moves focus to previous <code>radio</code> button in the group.</li>
                 <li>If focus is on the first <code>radio</code> button in the group, move focus to the last <code>radio</code> button.</li>
-              </ul>  
+              </ul>
             </td>
           </tr>
         </tbody>
       </table>
-      
+
       <h3 id="rps_label">ARIA Roles, Properties and States</h3>
 
-      <table aria-labelledby="rps_label"> 
+      <table aria-labelledby="rps_label">
         <thead>
           <tr>
             <th scope="col">Role</th>
@@ -167,7 +160,7 @@
                 <li>The descendent <code>radio</code> buttons are considered part of the group.</li>
                 <li>The accessible name comes the <code>aria-labelledby</code> attribute, which points to the element that contains the label text.</li>
                 <li>The <code>radiogroup</code> widget does not need a <code>tabindex</code> value, since the <code>ul[role&quot;radiogroup&quot;]</code> element never receives keyboard focus.</li>
-              </ul> 
+              </ul>
             </td>
           </tr>
           <tr>
@@ -179,8 +172,8 @@
                   <li>The <code>aria-labelledby</code> attribute points to the element that contains the test for defining an accessible name (e.g. label) for the group of <code>radio</code> buttons.</li>
                  </ul>
             </td>
-          </tr>  
           </tr>
+          <tr>
             <th scope="row"><code>radio</code></th>
             <td></td>
             <td><code>div</code></td>
@@ -189,8 +182,8 @@
                 <li>The <code>role=&quot;radio&quot;</code> attribute identifies the <code>div</code> element as an ARIA <code>radio</code> button.</li>
                 <li>The accessible name comes the child text content of the <code>div</code> element.</li>
                 <li>The <code>radio</code> widget has a manged <code>tabindex</code> value, one radio button must have a <code>tabindex=&quot;0&quot;</code> and the rest of the daio buttons in the group a <code>tabindex=&quot;-1&quot;</code>.</li>
-                <li>See <a href="../../../aria-practices.html#kbd_roving_tabindex">roving tabindex</a> for more information</li>
-              </ul> 
+                <li>See <a href="../../../#kbd_roving_tabindex">roving tabindex</a> for more information</li>
+              </ul>
             </td>
           </tr>
           <tr>
@@ -200,8 +193,8 @@
             <td>
                 <ul>
                   <li>All <code>radio</code> buttons in a group that are unchecked, except for the first <code>radio</code> button in the case when no <code>radio</code> buttons are checked.</li>
-                  <li>See <a href="../../../aria-practices.html#kbd_roving_tabindex">roving tabindex</a> for more information</li>
-                 </ul>  
+                  <li>See <a href="../../../#kbd_roving_tabindex">roving tabindex</a> for more information</li>
+                 </ul>
             </td>
           </tr>
           <tr>
@@ -211,8 +204,8 @@
             <td>
                 <ul>
                   <li>The <code>radio</code> button that is checked, or if no <code>radio</code> button is checked the first <code>radio</code> button in the radio group.</li>
-                  <li>See <a href="../../../aria-practices.html#kbd_roving_tabindex">roving tabindex</a> for more information</li>
-                 </ul>  
+                  <li>See <a href="../../../#kbd_roving_tabindex">roving tabindex</a> for more information</li>
+                 </ul>
             </td>
           </tr>
           <tr>
@@ -224,7 +217,7 @@
                   <li>Indentifies the <code>radio</code> button is <strong>not</strong> checked.</li>
                   <li>CSS attribute selectors (e.g. <code>[aria-checked=&quot;false&quote;]</code>) are used to synchornize the visual states with the value of the <code>aria-checked</code> attribute.</li>
                   <li>The CSS <code>:before</code> psuedo selector and the <code>content</code> property is used to indcate visual state of unchecked to support high contrast setting in operating systems and browsers.</li>
-                </ul>  
+                </ul>
             </td>
           </tr>
           <tr>
@@ -236,7 +229,7 @@
                   <li>Indentifies the <code>radio</code> button is checked.</li>
                   <li>CSS attribute selectors (e.g. <code>[aria-checked=&quot;ture&quote;]</code>) are used to synchornize the visual states with the value of the <code>aria-checked</code> attribute.</li>
                   <li>The CSS <code>:before</code> psuedo selector and the <code>content</code> property is used to indcate visual state of checked to support high contrast setting in operating systems and browsers.</li>
-                </ul>  
+                </ul>
             </td>
           </tr>
         </tbody>
