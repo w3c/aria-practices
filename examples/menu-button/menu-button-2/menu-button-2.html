@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <meta charset="utf-8">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <title>Menu Button Example: Links | WAI-ARIA Authoring Practices 1.1</title>
 
     <link href="../../css/core.css" rel="stylesheet">
@@ -22,7 +21,7 @@
         This example implements the <a href="../../../#menubutton">menu button design pattern</a>
         for a button that provides access to a menu of link targets.
       An ARIA menu button is defined as any element with <code>role=&quot;button&quot;</code> with an <code>aria-haspopup=&quot;true&quot;</code>.
-      In this example the default role of link for the <code>a</code> element is overridden using <code>role="button"</code></code> to define the menu button.  It is also important to note in the popup menu that the <code>role=menuitem</code> is on the
+      In this example the default role of link for the <code>a</code> element is overridden using <code>role="button"</code> to define the menu button.  It is also important to note in the popup menu that the <code>role=menuitem</code> is on the
       <code>a</code> element and not the <code>li</code> element, since a <code>menuitem</code> widget cannot contain any intereactive elements (e.g links).</p>
       <p>Similar examples include: </p>
       <ul>
@@ -30,61 +29,63 @@
       </ul>
       <section>
         <h2 id="ex_label">Example</h2>
-        <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>        <div id="ex1">
+        <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
+          <div id="ex1">
+            <div class="menu_button">
+              <a
+                id="menubutton"
+                role="button"
+                href="#"
+                aria-haspopup="true"
+                aria-expanded="false"
+                aria-controls="menu2"
+                >
+                WAI-ARIA Quick Links
+              </a>
 
-          <div class="menu_button">
-            <a
-              id="menubutton"
-              role="button"
-              href="#"
-              aria-haspopup="true"
-              aria-expanded="false"
-              aria-controls="menu2"
-              >
-              WAI-ARIA Quick Links
-            </a>
+              <ul id="menu2" role="menu" aria-labelledby="menubutton">
+                <li role="none">
+                  <a role="menuitem" href="https://www.w3.org/">
+                    W3C Home Page
+                  </a>
+                </li>
+                <li role="none">
+                  <a role="menuitem" href="https://www.w3.org/standards/webdesign/accessibility">
+                    W3C Web Accessibility Initiative
+                  </a>
+                </li>
+                <li role="none">
+                  <a role="menuitem" href="https://www.w3.org/TR/wai-aria/">
+                    Accessible Rich Internet Application Specification
+                  </a>
+                </li>
+                <li role="none">
+                  <a role="menuitem" href="https://www.w3.org/TR/wai-aria-practices/">
+                    WAI-ARIA Authoring Practices
+                  </a>
+                </li>
+                <li role="none">
+                  <a role="menuitem" href="https://www.w3.org/TR/wai-aria-implementation/">
+                    WAI-ARIA Implementation Guide
+                  </a>
+                </li>
+                <li role="none">
+                  <a role="menuitem" href="https://www.w3.org/TR/accname-aam-1.1/">
+                    Accessible Name and Description
+                  </a>
+                </li>
+              </ul>
 
-            <ul id="menu2" role="menu" aria-labelledby="menubutton">
-              <li role="none">
-                <a role="menuitem" href="https://www.w3.org/">
-                  W3C Home Page
-                </a>
-              </li>
-              <li role="none">
-                <a role="menuitem" href="https://www.w3.org/standards/webdesign/accessibility">
-                  W3C Web Accessibility Initiative
-                </a>
-              </li>
-              <li role="none">
-                <a role="menuitem" href="https://www.w3.org/TR/wai-aria/">
-                  Accessible Rich Internet Application Specification
-                </a>
-              </li>
-              <li role="none">
-                <a role="menuitem" href="https://www.w3.org/TR/wai-aria-practices/">
-                  WAI-ARIA Authoring Practices
-                </a>
-              </li role="none">
-              <li>
-                <a role="menuitem" href="https://www.w3.org/TR/wai-aria-implementation/">
-                  WAI-ARIA Implementation Guide
-                </a>
-              </li>
-              <li role="none">
-                <a role="menuitem" href="https://www.w3.org/TR/accname-aam-1.1/">
-                  Accessible Name and Description
-                </a>
-              </li>
-            </ul>
+              <script type="text/javascript">
 
-            <script type="text/javascript">
+                window.onload=function() {
+                var menubutton = new Menubutton(document.getElementById('menubutton'));
+                menubutton.init();
+              }
 
-              window.onload=function() {
-              var menubutton = new Menubutton(document.getElementById('menubutton'));
-              menubutton.init();
-            }
-
-            </script>
+              </script>
+            </div>
+          </div>
         </div>
 
         <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
@@ -105,10 +106,8 @@
           </thead>
           <tbody>
             <tr>
-            <tr>
               <th><kbd>Down Arrow, <br/>Space, <br/>or Enter</kbd></th>
               <td>Open <code>menu</code> and move focus to first <code>menuitem</code></td>
-            </tr>
             </tr>
             <tr>
               <th><kbd>Up Arrow</kbd></th>
@@ -117,7 +116,7 @@
           </tbody>
         </table>
 
-         <h3 id="kb2_label" class="widget">Popup Menu</h3>
+         <h3 id="kbd2_label" class="widget">Popup Menu</h3>
 
         <table aria-labelledby="kbd2_label kbd_label">
           <thead>
@@ -216,7 +215,7 @@
               </td>
               <td>
                 <ul>
-                  <li>The <code>role=&quot;button&quot;</code> overrides the default role of <code>link</code> for an <code>a</ element and identifies the element as a ARIA <code>buton</code> widget.</li>
+                  <li>The <code>role=&quot;button&quot;</code> overrides the default role of <code>link</code> for an <code>a</code> element and identifies the element as a ARIA <code>buton</code> widget.</li>
                   <li>The accessible name comes from the child text content of the <code>a</code> element (e.g. &quot;WAI-ARIA Quick Links&quot;).</li>
                   <li>The <code>a[href=&quot;#&quot;]</code> element is a part of the default tab order of the page, so <em>no</em> need to set <code>tabindex</code>.</li>
                 </ul>
