@@ -19,16 +19,15 @@
   <main>
   <h1>Accordion Example</h1>
   <p>
-    This example page is not yet complete. When it is complete, feedback will be welcome in
-    <!--  Please provide feedback for this example in  -->
-    <a href="https://github.com/w3c/aria-practices/issues/67">issue 67.</a>
+    Please provide feedback for this example in
+    <a href="https://github.com/w3c/aria-practices/issues/210">issue 210.</a>
   </p>
   <p>
-    The below example section contains a personal information input form divided into 3 sections
+    The below example section contains a simple personal information input form divided into 3 sections
     that demonstrates the
     <a href="../../#accordion">design pattern for accordion.</a>
     In this implementation, one panel of the accordion is always expanded, and only one panel may
-    be expanded at a time.
+    be expanded at a time. This example does not implement any of the optional keystrokes included in the accordion pattern.
   </p>
   <section>
     <h2 id="ex_label">Example</h2>
@@ -36,7 +35,7 @@
     <div id="coding-arena">
       <div class="demo-block">
         <dl id="accordionGroup">
-          <dt role="heading" aria-level="2" class="clearfix">
+          <dt role="heading" aria-level="3" class="clearfix">
             <a role="button" aria-expanded="false" href="#" class="accAccordion"
               aria-controls="sect1" data-defaultopen="true" id="accordion1id"
             >
@@ -78,7 +77,7 @@
               </fieldset>
             </div>
           </dd>
-          <dt role="heading" aria-level="2" class="clearfix">
+          <dt role="heading" aria-level="3" class="clearfix">
             <a role="button" aria-expanded="false" href="#" class="accAccordion"
               aria-controls="sect2" id="accordion2id"
             >
@@ -111,7 +110,7 @@
               </fieldset>
             </div>
           </dd>
-          <dt role="heading" aria-level="2" class="clearfix">
+          <dt role="heading" aria-level="3" class="clearfix">
             <a role="button" aria-expanded="false" href="#" class="accAccordion"
               aria-controls="sect3" id="accordion3id"
             >
@@ -149,7 +148,6 @@
     </div>
     <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
   </section>
-
   <section>
     <h2 id="kbd_label">Keyboard Support</h2>
     <table aria-labelledby="kbd_label">
@@ -171,35 +169,85 @@
   <section>
     <h2 id="rps_label">Role, Property, State, and Tabindex  Attributes</h2>
     <!--
-      Update this table to describe how roles, properties, states, and tabindex are used in this example.  
-      If the content will vary significantly for the above implementations, make this a level 4 section inside each of the above level 3 implementation sections.
+      Update this table to describe how roles, properties, states, and tabindex are used in this example.
     -->
     <table aria-labelledby="rps_label">
       <thead>
         <tr>
-          <th>Attribute</th>
-          <th>Applied to Element</th>
-          <th>Usage</th>
+          <th scope="col">Role</th>
+          <th scope="col">Attribute</th>
+          <th scope="col">Element</th>
+          <th scope="col">Usage</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <th><code>role=&quot;ROLE_NAME&quot;</code></th>
-          <td><code>HTML_ELEMENT</code></td>
-          <td>Brief explanation of usage, purpose, benefit, and/or guidance that is relevant to this specific implementation.</td>
+          <th scope="row"><code>heading</code></th>
+          <td></td>
+          <td><code>dt</code></td>
+          <td>
+            <ul>
+              <li>Creates the accordion header.</li>
+              <li>The accordion structure is built on an HTML definition list where each term is recast as a header and each definition is recast as a panel.</li>
+            </ul>
+          </td>
         </tr>
         <tr>
-          <th>
-            <!--  Specify states and properties used like this; replace with the attributes that are relevant. -->
-            <code>aria-labelledby=&quot;ID_REF&quot;</code>
-          </th>
-          <td><code>HTML_ELEMENT</code></td>
-          <td>Brief explanation of usage, purpose, benefit, and/or guidance that is relevant to this specific implementation.</td>
+          <td></td>
+          <th scope="row"><code>aria-level=<q>3</q></code></th>
+          <td><code>dt</code></td>
+          <td>
+              Specifies heading level for the accordion header.
+          </td>
         </tr>
         <tr>
-          <th>And so on ... covering all relevant attributes</th>
-          <td>...</td>
-          <td>...</td>
+          <th scope="row"><code>button</code></th>
+          <td></td>
+          <td><code>a</code></td>
+          <td>
+            A button inside the accordion header that provides hide/show functionality.
+          </td>
+        </tr>
+        <tr>
+          <td> </td>
+          <th scope="row"><code>aria-expanded=<q>true</q></code></th>
+          <td><code>a</code></td>
+          <td>
+            Set to <code>true</code> when the Accordion panel is expanded, otherwise set to <code>false</code>.
+          </td>
+        </tr>
+        <tr>
+          <td> </td>
+          <th scope="row"><code>aria-controls=<q>ID</q></code></th>
+          <td><code>a</code></td>
+          <td>
+            Points to the ID of the panel which the header controls.
+          </td>
+        </tr>
+        <tr>
+          <td> </td>
+          <th scope="row"><code>aria-disabled=<q>true</q></code></th>
+          <td><code>a</code></td>
+          <td>
+            If the accordion panel is expanded and is not allowed to be collapsed, then set to <code>true</code>.
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">region</th>
+          <td></td>
+          <td><code>dd</code></td>
+          <td>Creates a landmark region that contains the currently expanded accordion panel.</td>
+        </tr>
+        <tr>
+          <td></td>
+          <th scope="row"><code>aria-labelledby=&quot;ID_REF&quot;</code></th>
+          <td><code>dd</code></td>
+          <td>
+            <ul>
+              <li>Points to the accordion header.</li>
+              <li>Labels the landmark region with the accordion header.</li>
+            </ul>
+          </td>
         </tr>
       </tbody>
     </table>
