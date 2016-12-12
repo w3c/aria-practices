@@ -20,14 +20,14 @@
   <h1>Accordion Example</h1>
   <p>
     Please provide feedback for this example in
-    <a href="https://github.com/w3c/aria-practices/issues/67">issue 67.</a>
+    <a href="https://github.com/w3c/aria-practices/issues/210">issue 210.</a>
   </p>
   <p>
     The below example section contains a simple personal information input form divided into 3 sections
     that demonstrates the
     <a href="../../#accordion">design pattern for accordion.</a>
     In this implementation, one panel of the accordion is always expanded, and only one panel may
-    be expanded at a time. This example does not implement any of the optional keystrokes for the accordion.
+    be expanded at a time. This example does not implement any of the optional keystrokes included in the accordion pattern.
   </p>
   <section>
     <h2 id="ex_label">Example</h2>
@@ -183,50 +183,41 @@
       <tbody>
         <tr>
           <th scope="row"><code>heading</code></th>
-          <td><!--  Leave this cell blank in rows where a role is being described. --></td>
+          <td></td>
           <td><code>dt</code></td>
           <td>
-            The Accordion Header
+            <ul>
+              <li>Creates the accordion header.</li>
+              <li>The accordion structure is built on an HTML definition list where each term is recast as a header and each definition is recast as a panel.</li>
+            </ul>
           </td>
         </tr>
         <tr>
-          <td>
-            <!--  Leave this cell blank in rows that describe attributes applied to the element with the previously described role.
-              Make a row like this for each attribute/value pair.
-          -->
-          </td>
+          <td></td>
           <th scope="row"><code>aria-level=<q>3</q></code></th>
           <td><code>dt</code></td>
           <td>
-            As we are not using an &lt;H3&gt; element in this example we set the level.
+              Specifies heading level for the accordion header.
           </td>
         </tr>
         <tr>
           <th scope="row"><code>button</code></th>
-          <td><!--  Leave this cell blank in rows where a role is being described. --></td>
+          <td></td>
           <td><code>a</code></td>
           <td>
-            A button inside the accordion header which acts as the hide/show.
+            A button inside the accordion header that provides hide/show functionality.
           </td>
         </tr>
         <tr>
-          <td>
-            <!--  Leave this cell blank in rows that describe attributes applied to the element with the previously described role.
-              Make a row like this for each attribute/value pair.
-          -->
-          </td>
+          <td> </td>
           <th scope="row"><code>aria-expanded=<q>true</q></code></th>
           <td><code>a</code></td>
           <td>
-            Set to true if the Accordion panel is expanded, otherwise false
+            Set to <code>true</code> when the Accordion panel is expanded, otherwise set to <code>false</code>.
           </td>
         </tr>
         <tr>
-          <td>
-            <!--  Leave this cell blank in rows that describe attributes applied to the element with the previously described role.
-              Make a row like this for each attribute/value pair.
-          -->
-          </td>
+          <td> </td>
           <th scope="row"><code>aria-controls=<q>ID</q></code></th>
           <td><code>a</code></td>
           <td>
@@ -234,15 +225,28 @@
           </td>
         </tr>
         <tr>
-          <td>
-            <!--  Leave this cell blank in rows that describe attributes applied to the element with the previously described role.
-              Make a row like this for each attribute/value pair.
-          -->
-          </td>
+          <td> </td>
           <th scope="row"><code>aria-disabled=<q>true</q></code></th>
           <td><code>a</code></td>
           <td>
-            If the accordion panel is expanded and is not allowed to be collapsed then we set to true.
+            If the accordion panel is expanded and is not allowed to be collapsed, then set to <code>true</code>.
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">region</th>
+          <td></td>
+          <td><code>dd</code></td>
+          <td>Creates a landmark region that contains the currently expanded accordion panel.</td>
+        </tr>
+        <tr>
+          <td></td>
+          <th scope="row"><code>aria-labelledby=&quot;ID_REF&quot;</code></th>
+          <td><code>dd</code></td>
+          <td>
+            <ul>
+              <li>Points to the accordion header.</li>
+              <li>Labels the landmark region with the accordion header.</li>
+            </ul>
           </td>
         </tr>
       </tbody>
