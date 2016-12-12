@@ -6,7 +6,7 @@
 *
 *   Desc:   JS code for Button Design Pattersn
 *
-*   Author: Jon Gunderson 
+*   Author: Jon Gunderson
 */
 
 function init () {
