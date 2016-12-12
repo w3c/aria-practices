@@ -32,7 +32,7 @@
 
       <div id="ex1">
         <h3 id="group_label_1">Pizza Crust</h3>
-        
+
         <ul id="rg1"
             class="radiogroup"
             role="radiogroup"
@@ -40,24 +40,24 @@
             aria-activedescendant="rb11"
             tabindex="0">
           <li id="rb11"
-              role="radio" 
+              role="radio"
               aria-checked="false">
             Regular crust
           </li>
           <li id="rb12"
-              role="radio" 
+              role="radio"
               aria-checked="false">
             Deep dish
           </li>
           <li id="rb13"
-              role="radio" 
+              role="radio"
               aria-checked="false">
             Thin crust
           </li>
         </ul>
 
         <h3 id="group_label_2">Pizza Delivery</h3>
-              
+
         <ul id="rg2"
             class="radiogroup"
             role="radiogroup"
@@ -65,17 +65,17 @@
             aria-activedescendant="rb21"
             tabindex="0">
           <li id="rb21"
-              role="radio" 
+              role="radio"
               aria-checked="false">
             Pick up
-          </li>         
+          </li>
           <li id="rb22"
-              role="radio" 
+              role="radio"
               aria-checked="false">
             Home Delivery
           </li>
           <li id="rb23"
-              role="radio" 
+              role="radio"
               aria-checked="false">
             Dine in Restaurant
           </li>
@@ -103,7 +103,7 @@
 
 
       <h3 id="kbd_label">Keyboard Support</h3>
-      <table aria-labelledby="kbd_label"> 
+      <table aria-labelledby="kbd_label">
         <thead>
           <tr>
             <th>Key</th>
@@ -125,7 +125,7 @@
             <td>
               <ul>
                 <li>If the <code>radio</code> button pointed to with <code>aria-activedescendant</code> is unchecked, it's state will be changed to checked.</li>
-              </ul>  
+              </ul>
             </td>
           </tr>
           <tr>
@@ -152,7 +152,7 @@
 
     <h3 id="rps_label">ARIA Roles, Properties and States</h3>
 
-      <table aria-labelledby="rps_label"> 
+      <table aria-labelledby="rps_label">
         <thead>
           <tr>
             <th scope="col">Role</th>
@@ -172,7 +172,7 @@
                 <li>The descendent <code>radio</code> buttons are considered part of the group.</li>
                 <li>The accessible name comes the <code>aria-labelledby</code> attribute, which points to the element that contains the label text.</li>
                 <li>The <code>radiogroup</code> widget has a <code>tabindex=&quot;0&quot;</code> and becomes part of the tab order of the page.</li>
-              </ul> 
+              </ul>
             </td>
           </tr>
           <tr>
@@ -183,8 +183,8 @@
                 <ul>
                   <li>When using <code>aria-activedescendant</code> the <code>radiogroup</code> widget has a <code>tabindex=&quot;0&quot;</code>.</li>
                   <li>When the radio group has keyboard focus the accessibility API uses the <code>[IDREF]</code> value of <code>aria-activedescendant</code> to point to the <code>radio</code> button that has focus.</li>
-                  <li>See <a href="../../../aria-practices.html#kbd_focus_activedescendant">managing focus using <code>aria-activedescendant</code></a> for more information</li>
-                 </ul>  
+                  <li>See <a href="../../../#kbd_focus_activedescendant">managing focus using <code>aria-activedescendant</code></a> for more information</li>
+                 </ul>
             </td>
           </tr>
           <tr>
@@ -194,10 +194,10 @@
             <td>
                <ul>
                 <li>The <code>aria-activedescendant</code> attribute identifies the active <code>radio</code> button within a <code>radiogroup</code> by referencing the <code>id</code> value of the <code>radio</code> button that is active.</li>
-                  <li>See <a href="../../../aria-practices.html#kbd_focus_activedescendant">managing focus using <code>aria-activedescendant</code></a> for more information</li>
+                  <li>See <a href="../../../#kbd_focus_activedescendant">managing focus using <code>aria-activedescendant</code></a> for more information</li>
                </ul>
             </td>
-          </tr>  
+          </tr>
           <tr>
             <td></td>
             <th scope="row"><code>aria-labelledby=&quot;[IDREF]&quot;</code></th>
@@ -207,7 +207,7 @@
                   <li>The <code>aria-labelledby</code> attribute points to the element that contains the test for defining an accessible name (e.g. label) for the group of <code>radio</code> buttons.</li>
                  </ul>
             </td>
-          </tr>  
+          </tr>
           </tr>
             <th scope="row"><code>radio</code></th>
             <td></td>
@@ -217,7 +217,7 @@
                 <li>The <code>role=&quot;radio&quot;</code> attribute identifies the <code>div</code> element as an ARIA <code>radio</code> button.</li>
                 <li>The accessible name comes the child text content of the <code>div</code> element.</li>
                 <li>The <code>radio</code> widget does not need a <code>tabindex</code> value, since the <code>ul[role&quot;radiogroup&quot;]</code> element never receives keyboard focus.</li>
-              </ul> 
+              </ul>
             </td>
           </tr>
           <tr>
@@ -227,8 +227,8 @@
             <td>
                 <ul>
                   <li>All <code>radio</code> buttons in a group need an <code>id</code> value for reference by the <code>aria-activedescendant</code>.</li>
-                  <li>See <a href="../../../aria-practices.html#kbd_focus_activedescendant">managing focus using <code>aria-activedescendant</code></a> for more information</li>
-               </ul>  
+                  <li>See <a href="../../../#kbd_focus_activedescendant">managing focus using <code>aria-activedescendant</code></a> for more information</li>
+               </ul>
             </td>
           </tr>
           <tr>
@@ -240,7 +240,7 @@
                   <li>Indentifies the <code>radio</code> button is <strong>not</strong> checked.</li>
                   <li>CSS attribute selectors (e.g. <code>[aria-checked=&quot;false&quote;]</code>) are used to synchornize the visual states with the value of the <code>aria-checked</code> attribute.</li>
                   <li>The CSS <code>:before</code> psuedo selector and the <code>content</code> property is used to indcate visual state of unchecked to support high contrast setting in operating systems and browsers.</li>
-                </ul>  
+                </ul>
             </td>
           </tr>
           <tr>
@@ -252,7 +252,7 @@
                   <li>Indentifies the <code>radio</code> button is checked.</li>
                   <li>CSS attribute selectors (e.g. <code>[aria-checked=&quot;ture&quote;]</code>) are used to synchornize the visual states with the value of the <code>aria-checked</code> attribute.</li>
                   <li>The CSS <code>:before</code> psuedo selector and the <code>content</code> property is used to indcate visual state of checked to support high contrast setting in operating systems and browsers.</li>
-                </ul>  
+                </ul>
             </td>
           </tr>
         </tbody>
