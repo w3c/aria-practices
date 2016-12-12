@@ -80,7 +80,7 @@
                 cb.addEventListener('blur', checkboxBlur);
               }
 
-            }    
+            }
           </script>
 
         </div>
@@ -89,10 +89,10 @@
 
       </section>
 
- 
+
       <section>
         <h2 id="kbd_label">Keyboard Support</h2>
-        <table aria-labelledby="kbd_label"> 
+        <table aria-labelledby="kbd_label">
           <thead>
             <tr>
               <th>Key</th>
@@ -100,29 +100,31 @@
             </tr>
           </thead>
           <tbody>
-            <th><kbd>Tab</kbd></th>
-            <td>
-              <ul>
-                <li>Moves keyboard focus to the checkbox.</li>
-              </ul>  
-            </td>
+            <tr>
+              <th><kbd>Tab</kbd></th>
+              <td>
+                <ul>
+                  <li>Moves keyboard focus to the checkbox.</li>
+                </ul>
+              </td>
+            </tr>
             <tr>
               <th><kbd>Space</kbd>, <br/> or <kbd>Enter</kbd></th>
               <td>
                 <ul>
-                  <li>Toggle the checkbox between unchecked, mixed and checked.</li>  
+                  <li>Toggle the checkbox between unchecked, mixed and checked.</li>
                   <li>When the checkbox is unchecked, all the controlled checkboxes will be unchecked.</li>
                   <li>When the checkbox is mixed, all the controlled checkboxes will return to the last state the user selected for that particular checkbox or the default state when the page was loaded.</li>
                   <li>When the checkbox is checked, all the controlled checkboxes will be checked.</li>
-                </ul>  
+                </ul>
               </td>
             </tr>
           </tbody>
         </table>
       </section>
-      
+
       <section>
-      
+
         <h2 id="rps_label">Role, Property, State, and Tabindex  Attributes</h2>
 
         <table aria-labelledby="rps_label">
@@ -144,7 +146,7 @@
                     <li>The <code>role=&quot;checkbox&quot;</code> attribute identifies the <code>div</code> element as a ARIA <code>checkbox</code>.</li>
                     <li>The accessible name comes the child text content of the <code>div[role=&quot;checkbox&quot;]</code> element.</li>
                     <li>The <code>checkbox</code> widget needs a <code>tabindex=&quot;0&quot;</code> value.</li>
-                  </ul> 
+                  </ul>
                 </td>
               </tr>
               <tr>
@@ -154,7 +156,7 @@
                 <td>
                     <ul>
                       <li>The <code>div[&quot;checkbox&quot;]</code> is identified as an interactive element and is added to the tab order of the page by setting the <code>tabindex=&quot;0&quot;</code>.</li>
-                     </ul>  
+                     </ul>
                 </td>
               </tr>
               <tr>
@@ -164,7 +166,7 @@
                 <td>
                     <ul>
                       <li>A list of <code>IDREF</code>s identifies which checkboxes are controlled by the mixed checkbox.</li>
-                    </ul>  
+                    </ul>
                 </td>
               </tr>
               <tr>
@@ -177,7 +179,7 @@
                       <li>This state reflects that all the controlled checkboxes are unchecked.</li>
                       <li>CSS attribute selectors (e.g. <code>[aria-checked=&quot;false&quot;]</code>) are used to synchronize the visual states with the value of the <code>aria-checked</code> attribute.</li>
                       <li>The CSS <code>:before</code> psuedo selector and the <code>content</code> property are used to indcate visual state of "unchecked" to support high contrast setting in operating systems and browsers.</li>
-                    </ul>  
+                    </ul>
                 </td>
               </tr>
               <tr>
@@ -190,7 +192,7 @@
                       <li>This state reflects that all the controlled checkboxes are checked.</li>
                       <li>CSS attribute selectors (e.g. <code>[aria-checked=&quot;true&quot;]</code>) are used to synchronize the visual states with the value of the <code>aria-checked</code> attribute.</li>
                       <li>The CSS <code>:before</code> psuedo selector and the <code>content</code> property are used to indcate visual state of "checked" to support high contrast setting in operating systems and browsers.</li>
-                    </ul>  
+                    </ul>
                 </td>
               </tr>
               <tr>
@@ -203,14 +205,14 @@
                       <li>This state reflects that some of controlled checkboxes are all checked and some are not checked.</li>
                       <li>CSS attribute selectors (e.g. <code>[aria-checked=&quot;mixed&quot;]</code>) are used to synchronize the visual states with the value of the <code>aria-checked</code> attribute.</li>
                       <li>The CSS <code>:before</code> psuedo selector and the <code>content</code> property are used to indcate visual state of "mixed" to support high contrast setting in operating systems and browsers.</li>
-                    </ul>  
+                    </ul>
                 </td>
               </tr>
           </tbody>
         </table>
-    
+
       </section>
-    
+
        <section>
         <h2>Javascript and CSS Source Code</h2>
         <!--  After the js and css files are named with the name of this example, change the href and text of the following 2 links to refer to the appropriate js and css files.  -->
@@ -235,7 +237,7 @@
           sourceCode.make();
         </script>
       </section>
-  </main>  
+  </main>
   <nav>
     <a href="../../../#checkbox">Checkbox Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
   </nav>
