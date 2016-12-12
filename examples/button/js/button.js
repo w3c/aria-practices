@@ -1,3 +1,14 @@
+/*
+*   This content is licensed according to the W3C Software License at
+*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+*
+*   File:   button.js
+*
+*   Desc:   JS code for Button Design Pattersn
+*
+*   Author: Jon Gunderson 
+*/
+
 function init () {
   // Create variables for the various buttons
   var printButton = document.getElementById('print');
