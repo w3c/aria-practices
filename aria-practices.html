@@ -1571,15 +1571,12 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
 
     <section class="widget" id="tabpanel">
       <h3>Tabs</h3>
-
       <p>
         Tabs are a set of layered sections of content, known as tab panels, that display one panel of content at a time.
         Each tab panel has an associated tab element, that when activated, displays the panel.
         The list of tab elements is arranged along one edge of the currently displayed panel, most commonly the top edge.
       </p>
-
       <p>Terms used to describe this design pattern include:</p>
-
       <dl>
         <dt>Tabs or Tabbed Interface</dt>
         <dd>A set of tab elements and their associated tab panels.</dd>
@@ -1590,17 +1587,13 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
         <dt><a href="#tabpanel" class="role-reference">tabpanel</a></dt>
         <dd>The element that contains the content associated with a tab.</dd>
       </dl>
-
       <p>
         When a tabbed interface is initialized, one tab panel is displayed and its associated tab is styled to indicate that it is active.
         When the user activates one of the other tab elements, the previously displayed tab panel is hidden, the tab panel associated with the activated tab becomes visible, and the tab is considered "active".
       </p>
-
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
-
         <p>For the tab list:</p>
-
         <ul>
           <li>
             <kbd>Tab</kbd>: When the tab list is receiving focus, places focus on the active <code>tab</code> element .
@@ -1639,6 +1632,7 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
             It is recommended that tabs activate automatically when they receive focus as long as their associated tab panels are displayed without noticeable latency.
             This typically requires tab panel content to be preloaded.
             Otherwise, automatic activation slows focus movement, which significantly hampers users' ability to navigate efficiently across the tab list.
+            For additional guidance, see <a href="#kbd_selection_follows_focus"></a>.
           </li>
           <li>
             If the tabs in a tab list are arranged vertically:
@@ -1650,7 +1644,6 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
           <li>If the tab list is horizontal, it does not listen for <kbd>Down Arrow</kbd> or <kbd>Up Arrow</kbd> so those keys can provide their normal browser scrolling functions even when focus is inside the tab list.</li>
         </ol>
       </section>
-
       <section class="notoc">
         <h4>WAI-ARIA Roles, States, and Properties</h4>
         <ul>
@@ -1667,12 +1660,9 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
         </li>
         </ul>
       </section>
-
       <section class="notoc">
         <h4>Example</h4>
-        <ul>
-            <li><a href="examples/tabs/tabs.html">Tabs widget code example</a></li>
-        </ul>
+        <p><a href="examples/tabs/tabs.html">Tabs Widget Example</a></p>
       </section>
     </section>
 
