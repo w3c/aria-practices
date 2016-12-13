@@ -1421,7 +1421,6 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
           </li>
         </ul>
       </section>
-
       <section class="notoc">
         <h4>Examples</h4>
         <ul>
@@ -1433,56 +1432,57 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
 
     <section class="widget" id="slidertwothumb">
       <h3>Slider (Multi-Thumb)</h3>
-
       <p>
-        A multi-thumb slider is a slider with multiple slider thumbs designed to change 2 or more different values for an object it controls.
-        In most cases the user is selecting a maximum and minimum value to create a range, but in some cases the 2 (or more) values selected are completely independent.
+        Work on this design pattern is in progress and is tracked in 
+        <a href="https://github.com/w3c/aria-practices/issues/221">issue 221.</a>
+        Please provide any feedback in that issue.
       </p>
-
+      <p>
+        A multi-thumb slider is a slider with two or more thumbs that each set a value in a group of related values.
+        Many two-thumb sliders set a maximum and minimum value for a range, and the thumbs are not allowed to pass one another.
+        That is, the mthumb that sets the upper value of the range can not be set lower than the thumb that controls the lower value of the range.
+        However, in some multi-thumb sliders, each thumb sets a value that does not depend on the other thumb values.
+      </p>
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
-        <p>This range slider allows author to modify multiple values for an object.</p>
         <ul>
-          <li><kbd>Tab</kbd> to the first slider thumb.</li>
-          <li>Second <kbd>Tab</kbd> moves to next slider thumb..</li>
-          <li>Third <kbd>Tab</kbd> moves to the next slider thumb or if there are no   more, it moves to the next tab stop on the page. </li>
-          <li><kbd>Shift + Tab</kbd> moves backwards through the tabs.</li>
-          <li>With focus on a thumb: Same as <a href="#slider">Slider</a> above.
-            <ul>
-              <li><kbd>Right Arrow</kbd> and <kbd>Up Arrow</kbd> increase the value of the slider. If applicable this is constrained by the value of the other thumb. </li>
-              <li><kbd>Left Arrow</kbd> and <kbd>Down Arrow</kbd> decrease the value of the slider. If applicable this is constrained by the value of the other thumb. </li>
-              <li><kbd>Home</kbd> and <kbd>End</kbd> move to the first and last values of the slider. If applicable this is constrained by the value of the other thumb. </li>
-              <li><kbd>Page Up</kbd> and <kbd>Page Down</kbd> optionally increment or decrement the   slider by a given amount. If applicable this is constrained by the value of the other thumb. </li>
-            </ul>
+          <li>Each thumb is in the page tab sequence and has the same keyboard interaction as a <a href="#slider">single-thumb slider</a>.</li>
+          <li>
+            The tab order remains constant regardless of thumb value and visual position within the slider.
+            For example, if the value of a thumb changes such that it moves past one of the other thumbs, the tab order does not change.
           </li>
         </ul>
-
-        <ol class="note">
-          <li>Focus is placed on one of the thumbs of the slider.</li>
-          <li>All thumbs are in the tab order.</li>
-          <li>If the current value of a slider crosses over one of the other sliders, the tab order remains the same.  Example.  If a high range slider is moved so that its current value is below the current value of a low range slider, the thumb will visually appear to be before the low range slider.  This should not change the tab order of the slider. </li>
-          <li>In some circumstances, an author may reverse the direction of the value change for the keys specified above, e.g., make <kbd>Up Arrow</kbd> decrease the value, if the author is certain doing so will result in a better user experience. </li>
-        </ol>
       </section>
-
-      <section class="notoc">
+<section class="notoc">
         <h4>WAI-ARIA Roles, States, and Properties</h4>
         <ul>
-          <li>Each slider control has the role <a class="role-reference" href="#slider">slider</a>.  </li>
-          <li>Each slider requires the <a class="property-reference" href="#aria-valuemin">aria-valuemin</a>, <a class="property-reference" href="#aria-valuemax">aria-valuemax</a>, and <a class="property-reference" href="#aria-valuenow">aria-valuenow</a> properties representing the minimum possible value of the slider, the maximum possible value, and the current value.  All of these are decimal numbers.  The maximum of the lower slider limits the minimum of the upper slider and vice versa.  </li>
-          <li>Sometimes the value is not user readable, such as a number for the day of the week, e.g., "1". In those cases, use the <a class="property-reference" href="#aria-valuetext">aria-valuetext</a> property to provide a human readable string for the slider's value, e.g. "Monday". </li>
-          <li>It is recommended that authors provide a visible label for the multi-thumb slider, referencing it using <a href="#aria-labelledby" class="property-reference">aria-labelledby</a>.  </li>
+          <li>Each element serving as a focusable slider thumb has role <a class="role-reference" href="#slider">slider</a>.</li>
+          <li>Each slider element has the <a class="property-reference" href="#aria-valuenow">aria-valuenow</a> property set to a decimal value representing the current value of the slider.</li>
+          <li>Each slider element has the <a class="property-reference" href="#aria-valuemin">aria-valuemin</a> property set to a decimal value representing the minimum allowed value of the slider.</li>
+          <li>Each slider element has the <a class="property-reference" href="#aria-valuemax">aria-valuemax</a> property set to a decimal value representing the maximum allowed value of the slider.</li>
+          <li>
+          If a value of <code>aria-valuenow</code> is not user-friendly, e.g., the day of the week is represented by a number, the 
+          <a class="property-reference" href="#aria-valuetext">aria-valuetext</a> 
+          property is set to a string that makes the slider value understandable, e.g., &quot;Monday&quot;.
+          </li>
+          <li>
+            If a slider has a visible label, it is referenced by
+            <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> on the slider element. 
+            Otherwise, the slider element has a label provided by 
+            <a href="#aria-label" class="property-reference">aria-label</a>.
+          </li>
+          <li>
+            If a slider is vertically oriented, it has <a class="property-reference" href="#aria-orientation">aria-orientation</a> set to <code>vertical</code>.
+            The default value of <code>aria-orientation</code> for a slider is <code>horizontal</code>.
+          </li>
         </ul>
       </section>
-
       <section class="notoc">
         <h4>Example</h4>
-        <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The ARIA practices task force is developing examples for Authoring Practices version 1.1 that will be directly incorporated into the guide.</p>
-
-        <ul>
-          <li><a href="http://www.oaa-accessibility.org/examplep/slider1/" target="_blank" rel="nofollow">Open Ajax Alliance Sliders</a> (see second example on page)</li>
-          <li><a href="http://files.paciellogroup.com/blogmisc/samples/aria/slider/doubleslider.html" target="_blank" rel="nofollow">Paciello Group double slider</a></li>
-        </ul>
+        <p>
+        Work to develop an example multi-thumb slider is tracked in 
+        <a href="https://github.com/w3c/aria-practices/issues/124">issue 124.</a>
+        </p>
       </section>
     </section>
 
