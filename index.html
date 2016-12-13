@@ -1370,7 +1370,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
       <section class="notoc" typeof="bibo:Chapter" resource="#example-1" property="bibo:hasPart">
         <h4 id="example-1" resource="#example-1"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
-        <p><a href="examples/alert/index.html">Alert role example</a></p>
+        <p><a href="examples/alert/index.html">Alert Example</a></p>
       </section>
     </section>
 
@@ -1380,7 +1380,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </span>
       </h3>
       <p>
-        An alert dialog is a <a href="#dialog_modal">modal dialog</a> that interrupts the user's workflow to communicate an important message and acquire a response. Examples include action confirmation prompts and error message confirmations. The <a href="http://w3c.github.io/aria/aria/aria.html#alertdialog" class="role-reference">alertdialog</a> role enables assistive technologies and browsers to distinguish alert dialogs from other dialogs so they have the option of giving them special treatment, such as playing a system alert sound.
+        An alert dialog is a <a href="#dialog_modal">modal dialog</a> that interrupts the user's workflow to communicate an important message and acquire a response. Examples include action confirmation prompts and error message confirmations. The <a href="http://w3c.github.io/aria/aria/aria.html#alertdialog" class="role-reference">alertdialog</a> role enables assistive technologies and browsers to distinguish alert dialogs from other dialogs so they have the option of giving alert dialogs special treatment, such as playing a system alert sound.
       </p>
 
       <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-2" property="bibo:hasPart">
@@ -1521,9 +1521,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </ul>
       </section>
 
-      <section class="notoc" typeof="bibo:Chapter" resource="#example-4" property="bibo:hasPart">
-        <h4 id="example-4" resource="#example-4"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
-        <p><a href="examples/button/button.html">Button role examples</a></p>
+      <section class="notoc" typeof="bibo:Chapter" resource="#examples" property="bibo:hasPart">
+        <h4 id="examples" resource="#examples"><span property="xhv:role" resource="xhv:heading">Examples</span></h4>
+        <p><a href="examples/button/button.html">Button Examples</a>: Examples of clickable HTML <code>div</code> and <code>span</code> elements made into accessible command and toggle buttons.</p>
       </section>
     </section>
 
@@ -1572,8 +1572,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </ul>
       </section>
 
-      <section class="notoc" typeof="bibo:Chapter" resource="#examples" property="bibo:hasPart">
-        <h4 id="examples" resource="#examples"><span property="xhv:role" resource="xhv:heading">Examples</span></h4>
+      <section class="notoc" typeof="bibo:Chapter" resource="#examples-1" property="bibo:hasPart">
+        <h4 id="examples-1" resource="#examples-1"><span property="xhv:role" resource="xhv:heading">Examples</span></h4>
         <ul>
           <li>
             <a href="examples/checkbox/checkbox-1/checkbox-1.html">Simple Two-State Checkbox Example</a>: Demonstrates a simple 2-state checkbox.
@@ -1655,10 +1655,10 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </ul>
       </section>
 
-      <section class="notoc" typeof="bibo:Chapter" resource="#example-5" property="bibo:hasPart">
-        <h4 id="example-5" resource="#example-5"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
+      <section class="notoc" typeof="bibo:Chapter" resource="#example-4" property="bibo:hasPart">
+        <h4 id="example-4" resource="#example-4"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
         <p>
-          Development of dialog examples is tracked by
+          Work to develop a dialog example is tracked by
           <a href="https://github.com/w3c/aria-practices/issues/103">issue 103.</a>
         </p>
       </section>
@@ -2000,8 +2000,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
       </section>
 
-      <section class="notoc" typeof="bibo:Chapter" resource="#examples-1" property="bibo:hasPart">
-        <h4 id="examples-1" resource="#examples-1"><span property="xhv:role" resource="xhv:heading">Examples</span></h4>
+      <section class="notoc" typeof="bibo:Chapter" resource="#examples-2" property="bibo:hasPart">
+        <h4 id="examples-2" resource="#examples-2"><span property="xhv:role" resource="xhv:heading">Examples</span></h4>
         <ul>
           <li><a href="examples/grid/LayoutGrids.html">Layout Grids</a>: Three example implementations of grids that are used to lay out widgets, including a collection of navigation links, a message recipients list, and a set of search results.</li>
           <li><a href="examples/grid/dataGrids.html">Data Grids</a>: Three example implementations of grid that include features relevant to presenting tabular information, such as content editing, sort, and column hiding.</li>
@@ -2015,34 +2015,35 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </span>
         </span>
       </h3>
-
-      <p>A <a href="http://w3c.github.io/aria/aria/aria.html#link" class="role-reference">link</a> widget provides an interactive reference to a resource either locally in the application or to an external resource.</p>
+      <p>
+        A <a href="http://w3c.github.io/aria/aria/aria.html#link" class="role-reference">link</a> widget provides an interactive reference to a resource. The target resource can be either external or local, i.e., either outside or within the current page or application.
+      </p>
       <div class="note">
         <div class="note-title marker" aria-level="4" role="heading" id="h-note11"><span>Note</span></div>
-        <p class="">Authors are strongly encouraged to use a native host language link element, such as an HTML <code>&lt;A&gt;</code> element with <code>href</code> attribute. As with other <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> widget roles, applying the link role to an element will not cause browsers to enhance the element with standard link behaviors such as navigation to the link target or context menu actions. Providing these features of the element is the author's responsibility.</p>
+        <p class="">
+          Authors are strongly encouraged to use a native host language link element, such as an HTML
+          <code>&lt;A&gt;</code> element with an <code>href</code> attribute. As with other <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> widget roles, applying the link role to an element will not cause browsers to enhance the element with standard link behaviors, such as navigation to the link target or context menu actions. When using the <code>link</code> role, providing these features of the element is the author's responsibility.
+        </p>
       </div>
 
       <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-7" property="bibo:hasPart">
         <h4 id="keyboard-interaction-7" resource="#keyboard-interaction-7"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
-
         <ul>
-          <li><kbd>Enter</kbd> executes the link and moves focus to the link target.</li>
-          <li><kbd>Shift + F10</kbd> opens associated context menu.</li>
+          <li><kbd>Enter</kbd>: Executes the link and moves focus to the link target.</li>
+          <li><kbd>Shift + F10</kbd>: Opens the link's context menu.</li>
         </ul>
       </section>
 
       <section class="notoc" typeof="bibo:Chapter" resource="#wai-aria-roles-states-and-properties-8" property="bibo:hasPart">
         <h4 id="wai-aria-roles-states-and-properties-8" resource="#wai-aria-roles-states-and-properties-8"><span property="xhv:role" resource="xhv:heading"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties</span></h4>
-        <ul>
-          <li>The element containing the link text has role of <a href="http://w3c.github.io/aria/aria/aria.html#link" class="role-reference">link</a>.</li>
-        </ul>
+        <p>
+          The element containing the link text or graphic has role of <a href="http://w3c.github.io/aria/aria/aria.html#link" class="role-reference">link</a>.
+        </p>
       </section>
 
-      <section class="notoc" typeof="bibo:Chapter" resource="#example-6" property="bibo:hasPart">
-        <h4 id="example-6" resource="#example-6"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
-        <ul>
-          <li><a href="examples/link/link.html">Link role examples</a></li>
-        </ul>
+      <section class="notoc" typeof="bibo:Chapter" resource="#examples-3" property="bibo:hasPart">
+        <h4 id="examples-3" resource="#examples-3"><span property="xhv:role" resource="xhv:heading">Examples</span></h4>
+        <p><a href="examples/link/link.html">Link Examples</a>: Link widgets constructed from HTML <code>span</code> and <code>div</code> elements.</p>
       </section>
     </section>
 
@@ -2096,8 +2097,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
               <li>Recommended selection model -- holding modifier keys is not necessary:
                 <ul>
                   <li><kbd>Space</kbd>: changes the selection state of the focused option .</li>
-                  <li><kbd>Shift + Down Arrow</kbd> (Optional): Moves focus to and selects the next option.</li>
-                  <li><kbd>Shift + Up Arrow</kbd> (Optional): Moves focus to and selects the previous option.</li>
+                  <li><kbd>Shift + Down Arrow</kbd> (Optional): Moves focus to and toggles the selected state of the next option.</li>
+                  <li><kbd>Shift + Up Arrow</kbd> (Optional): Moves focus to and toggles the selected state of the previous option.</li>
                   <li><kbd>Shift + Space</kbd> (Optional): Selects contiguous items from the most recently selected item to the focused item.</li>
                   <li><kbd>Control + Shift + Home</kbd> (Optional): Selects the focused option and all options up to the first option.</li>
                   <li><kbd>Control + Shift + End</kbd> (Optional): Selects the focused option and all options down to the last option.</li>
@@ -2163,8 +2164,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </ul>
       </section>
 
-      <section class="notoc" typeof="bibo:Chapter" resource="#example-7" property="bibo:hasPart">
-        <h4 id="example-7" resource="#example-7"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
+      <section class="notoc" typeof="bibo:Chapter" resource="#examples-4" property="bibo:hasPart">
+        <h4 id="examples-4" resource="#examples-4"><span property="xhv:role" resource="xhv:heading">Examples</span></h4>
         <p><a href="examples/listbox/listbox.html">Listbox Examples:</a> Two examples of the listbox pattern demonstrating differences between single-select and multi-select implementation as well as the use of action buttons with key shortcuts for arranging items in a list.</p>
       </section>
     </section>
@@ -2319,8 +2320,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </div>
       </section>
 
-      <section class="notoc" typeof="bibo:Chapter" resource="#example-8" property="bibo:hasPart">
-        <h4 id="example-8" resource="#example-8"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
+      <section class="notoc" typeof="bibo:Chapter" resource="#examples-5" property="bibo:hasPart">
+        <h4 id="examples-5" resource="#examples-5"><span property="xhv:role" resource="xhv:heading">Examples</span></h4>
         <ul>
           <li><a href="examples/menubar/menubar-1/menubar-1.html">Navigation Menubar</a>: Demonstrates a menubar that provides site navigation.</li>
           <li><a href="examples/menubar/menubar-2/menubar-2.html">Editor Menubar</a>: Demonstrates menu radios and menu checkboxes in submenus of a menubar that provides text formatting commands for a text field.</li>
@@ -2357,8 +2358,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </ul>
       </section>
 
-      <section class="notoc" typeof="bibo:Chapter" resource="#example-9" property="bibo:hasPart">
-        <h4 id="example-9" resource="#example-9"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
+      <section class="notoc" typeof="bibo:Chapter" resource="#examples-6" property="bibo:hasPart">
+        <h4 id="examples-6" resource="#examples-6"><span property="xhv:role" resource="xhv:heading">Examples</span></h4>
         <ul>
           <li>
             <a href="examples/menu-button/menu-button-1/menu-button-1.html">Actions Menu Button Example</a>: Menu button that opens a popup menu of actions that uses a <code>button</code> element for the menu button.
@@ -2375,30 +2376,34 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </span>
         </span>
       </h3>
-      <p>A radio group is a set of checkable buttons, known as radio buttons, where only one button in the set may be in a checked state.</p>
+      <p>
+        A radio group is a set of checkable buttons, known as radio buttons, where only one button in the set may be in a checked state.
+      </p>
 
       <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-11" property="bibo:hasPart">
         <h4 id="keyboard-interaction-11" resource="#keyboard-interaction-11"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
         <ul>
-          <li>When a radio group is receiving focus:
+          <li>
+            When a radio group receives focus:
             <ul>
-              <li><kbd>Tab</kbd> and <kbd>Shift+Tab</kbd>: move focus to the checked radio button. If none of the radio buttons are checked, they move focus to the first radio button in the group.</li>
+              <li>If a radio button is checked, focus is set on the checked button.</li>
+              <li>If none of the radio buttons are checked, focus is set on the first radio button in the group.</li>
             </ul>
           </li>
-          <li>When focus is on a radio button in a radio group:
-            <ul>
-              <li><kbd>Tab</kbd>: moves focus to the element in the page tab sequence that follows the radio group.</li>
-              <li><kbd>Shift+Tab</kbd>: moves focus to the element in the page tab sequence that precedes the radio group.</li>
-              <li><kbd>Space</kbd>: checks the focussed radio button if it is not already checked.</li>
-              <li><kbd>Right Arrow</kbd> and <kbd>Down Arrow</kbd>: move focus to the next radio button in the group, uncheck the previously focused button, and check the newly focused button. If focus is on the last button, focus moves to the first button.</li>
-              <li><kbd>Left Arrow</kbd> and <kbd>Up Arrow</kbd>: move focus to the previous radio button in the group, uncheck the previously focused button, and check the newly focused button. If focus is on the first button, focus moves to the last button.</li>
-            </ul>
+          <li>
+            <kbd>Space</kbd>: checks the focussed radio button if it is not already checked.
+          </li>
+          <li>
+            <kbd>Right Arrow</kbd> and <kbd>Down Arrow</kbd>: move focus to the next radio button in the group, uncheck the previously focused button, and check the newly focused button. If focus is on the last button, focus moves to the first button.
+          </li>
+          <li>
+            <kbd>Left Arrow</kbd> and <kbd>Up Arrow</kbd>: move focus to the previous radio button in the group, uncheck the previously focused button, and check the newly focused button. If focus is on the first button, focus moves to the last button.
           </li>
         </ul>
         <div class="note">
           <div class="note-title marker" aria-level="5" role="heading" id="h-note15"><span>Note</span></div>
           <p class="">
-            The behavior of the <kbd>Tab</kbd> key described above differs slightly from the behavior provided by some browsers for native HTML radio groups. In some browsers, if none of the radio buttons are selected, <kbd>Shift+Tab</kbd> places focus on the last radio button instead of the first radio button.
+            The initial focus behavior described above differs slightly from the behavior provided by some browsers for native HTML radio groups. In some browsers, if none of the radio buttons are selected, moving focus into the radio group with <kbd>Shift+Tab</kbd> will place focus on the last radio button instead of the first radio button.
           </p>
         </div>
       </section>
@@ -2412,7 +2417,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           </li>
           <li>
             Each radio button element has role
-            <a href="http://w3c.github.io/aria/aria/aria.html#radio" class="role-reference">radio</a>.
+            <a href="http://w3c.github.io/aria/aria/aria.html#radio" class="role-reference">radio</a> .
           </li>
           <li>
             If a radio button is checked, the <code>radio</code> element has
@@ -2421,13 +2426,13 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           </li>
           <li>
             Each <code>radio</code> element is labeled by its content, has a visible label referenced by
-            <a href="http://w3c.github.io/aria/aria/aria.html#aria-labelledby" class="property-reference">aria-labelledby</a>, or has a label specified with
-            <a href="http://w3c.github.io/aria/aria/aria.html#aria-label" class="property-reference">aria-label</a>.
+            <a href="http://w3c.github.io/aria/aria/aria.html#aria-labelledby" class="property-reference">aria-labelledby</a> , or has a label specified with
+            <a href="http://w3c.github.io/aria/aria/aria.html#aria-label" class="property-reference">aria-label</a> .
           </li>
           <li>
             The <code>radiogroup</code> element has a visible label referenced by
             <a href="http://w3c.github.io/aria/aria/aria.html#aria-labelledby" class="property-reference">aria-labelledby</a> or has a label specified with
-            <a href="http://w3c.github.io/aria/aria/aria.html#aria-label" class="property-reference">aria-label</a>.
+            <a href="http://w3c.github.io/aria/aria/aria.html#aria-label" class="property-reference">aria-label</a> .
           </li>
           <li>
             If elements providing additional information about either the radio group or each radio button are present, those elements are referenced by the <code>radiogroup</code> element or <code>radio</code> elements with the
@@ -2436,11 +2441,18 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </ul>
       </section>
 
-      <section class="notoc" typeof="bibo:Chapter" resource="#example-10" property="bibo:hasPart">
-        <h4 id="example-10" resource="#example-10"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
+      <section class="notoc" typeof="bibo:Chapter" resource="#examples-7" property="bibo:hasPart">
+        <h4 id="examples-7" resource="#examples-7"><span property="xhv:role" resource="xhv:heading">Examples</span></h4>
         <ul>
-          <li><a href="examples/radio/radio-1/radio-1.html">Radio group example using roving tabindex.</a></li>
-          <li><a href="examples/radio/radio-2/radio-2.html">Radio group example using managed focus with <code>aria-activedescendant</code>.</a></li>
+          <li>
+            <a href="examples/radio/radio-1/radio-1.html">Radio group example using roving
+              tabindex.</a>
+          </li>
+          <li>
+            <a href="examples/radio/radio-2/radio-2.html">
+              Radio group example using managed focus with <code>aria-activedescendant</code>.
+            </a>
+          </li>
         </ul>
       </section>
 
@@ -2451,24 +2463,25 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </span>
         </span>
       </h3>
-
-      <p>A slider is an input where the user selects a value from within a given range. Sliders typically have a slider thumb that when moved will change the current value within the bar or track.</p>
+      <p>
+        A slider is an input where the user selects a value from within a given range. Sliders typically have a slider thumb that can be moved along a bar or track to change the value of the slider.
+      </p>
 
       <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-12" property="bibo:hasPart">
         <h4 id="keyboard-interaction-12" resource="#keyboard-interaction-12"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
         <ul>
           <li><kbd>Right Arrow</kbd> and <kbd>Up Arrow</kbd>: Increase the value of the slider.</li>
           <li><kbd>Left Arrow</kbd> and <kbd>Down Arrow</kbd>: Decrease the value of the slider.</li>
-          <li><kbd>Home</kbd> and <kbd>End</kbd>: Set the slider to the first and last values of the slider.</li>
-          <li><kbd>Tab</kbd>: Moves focus into and out of the slider.</li>
-          <li><kbd>Page Up</kbd> and <kbd>Page Down</kbd> (Optional): Increment or decrement the slider by an amount larger than the step changes made by the arrow keys.</li>
+          <li><kbd>Home</kbd>: Set the slider to the first allowed value in its range.</li>
+          <li><kbd>End</kbd>: Set the slider to the last allowed value in its range.</li>
+          <li><kbd>Page Up</kbd> (Optional): Increment the slider by an amount larger than the step change made by <kbd>Up Arrow</kbd>.</li>
+          <li><kbd>Page Down</kbd> (Optional): Decrement the slider by an amount larger than the step change made by <kbd>Down Arrow</kbd>.</li>
         </ul>
-
         <div class="note">
           <div class="note-title marker" aria-level="5" role="heading" id="h-note16"><span>Note</span></div>
           <ol class="">
-            <li>Focus is placed on the slider (the visual object that the mouse user would move, also known as the thumb) </li>
-            <li>In some circumstances, an author may reverse the direction of the value change for the keys specified above, e.g., make <kbd>Up Arrow</kbd> decrease the value, if the author is certain doing so will result in a better user experience. </li>
+            <li>Focus is placed on the slider (the visual object that the mouse user would move, also known as the thumb.</li>
+            <li>In some circumstances, reversing the direction of the value change for the keys specified above, e.g., having <kbd>Up Arrow</kbd> decrease the value, could create a more intuitive experience.</li>
           </ol>
         </div>
       </section>
@@ -2476,16 +2489,27 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <section class="notoc" typeof="bibo:Chapter" resource="#wai-aria-roles-states-and-properties-13" property="bibo:hasPart">
         <h4 id="wai-aria-roles-states-and-properties-13" resource="#wai-aria-roles-states-and-properties-13"><span property="xhv:role" resource="xhv:heading"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties</span></h4>
         <ul>
-          <li>The slider control has the role <a class="role-reference" href="http://w3c.github.io/aria/aria/aria.html#slider">slider</a>. </li>
-          <li>Sliders require the <a class="property-reference" href="http://w3c.github.io/aria/aria/aria.html#aria-valuemin">aria-valuemin</a>, <a class="property-reference" href="http://w3c.github.io/aria/aria/aria.html#aria-valuemax">aria-valuemax</a>, and <a class="property-reference" href="http://w3c.github.io/aria/aria/aria.html#aria-valuenow">aria-valuenow</a> properties representing the minimum possible value of the slider, the maximum possible value, and the current value. All of these are decimal numbers. The minimum and maximum are typically fixed and do not change. </li>
-          <li>Sometimes the value is not user readable, such as a number for the day of the week, e.g., "1". In those cases, use the <a class="property-reference" href="http://w3c.github.io/aria/aria/aria.html#aria-valuetext">aria-valuetext</a> property to provide a human readable string for the slider's value, e.g. "Monday". </li>
-          <li>It is recommended that authors provide a visible label for the slider, referencing it using <a href="http://w3c.github.io/aria/aria/aria.html#aria-labelledby" class="property-reference">aria-labelledby</a>. </li>
-          <li>If the slider is vertical specify <a class="property-reference" href="http://w3c.github.io/aria/aria/aria.html#aria-orientation">aria-orientation</a>="vertical"</li>
+          <li>The element serving as the focusable slider control has role <a class="role-reference" href="http://w3c.github.io/aria/aria/aria.html#slider">slider</a>.</li>
+          <li>The slider element has the <a class="property-reference" href="http://w3c.github.io/aria/aria/aria.html#aria-valuenow">aria-valuenow</a> property set to a decimal value representing the current value of the slider.</li>
+          <li>The slider element has the <a class="property-reference" href="http://w3c.github.io/aria/aria/aria.html#aria-valuemin">aria-valuemin</a> property set to a decimal value representing the minimum allowed value of the slider.</li>
+          <li>The slider element has the <a class="property-reference" href="http://w3c.github.io/aria/aria/aria.html#aria-valuemax">aria-valuemax</a> property set to a decimal value representing the maximum allowed value of the slider.</li>
+          <li>
+            If the value of <code>aria-valuenow</code> is not user-friendly, e.g., the day of the week is represented by a number, the
+            <a class="property-reference" href="http://w3c.github.io/aria/aria/aria.html#aria-valuetext">aria-valuetext</a> property is set to a string that makes the slider value understandable, e.g., "Monday".
+          </li>
+          <li>
+            If the slider has a visible label, it is referenced by
+            <a href="http://w3c.github.io/aria/aria/aria.html#aria-labelledby" class="property-reference">aria-labelledby</a> on the slider element. Otherwise, the slider element has a label provided by
+            <a href="http://w3c.github.io/aria/aria/aria.html#aria-label" class="property-reference">aria-label</a>.
+          </li>
+          <li>
+            If the slider is vertically oriented, it has <a class="property-reference" href="http://w3c.github.io/aria/aria/aria.html#aria-orientation">aria-orientation</a> set to <code>vertical</code>. The default value of <code>aria-orientation</code> for a slider is <code>horizontal</code>.
+          </li>
         </ul>
       </section>
 
-      <section class="notoc" typeof="bibo:Chapter" resource="#example-11" property="bibo:hasPart">
-        <h4 id="example-11" resource="#example-11"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
+      <section class="notoc" typeof="bibo:Chapter" resource="#examples-8" property="bibo:hasPart">
+        <h4 id="examples-8" resource="#examples-8"><span property="xhv:role" resource="xhv:heading">Examples</span></h4>
         <ul>
           <li><a href="examples/slider/slider-1.html">Horizontal Slider Examples (e.g. color picker)</a></li>
           <li><a href="examples/slider/slider-2.html">Vertical and Text Slider Examples (e.g. Thermostat Controls)</a></li>
@@ -2542,8 +2566,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </ul>
       </section>
 
-      <section class="notoc" typeof="bibo:Chapter" resource="#example-12" property="bibo:hasPart">
-        <h4 id="example-12" resource="#example-12"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
+      <section class="notoc" typeof="bibo:Chapter" resource="#example-5" property="bibo:hasPart">
+        <h4 id="example-5" resource="#example-5"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
         <div class="note">
           <div class="note-title marker" aria-level="5" role="heading" id="h-note18"><span>Note</span></div>
           <p class="">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The ARIA practices task force is developing examples for Authoring Practices version 1.1 that will be directly incorporated into the guide.</p>
@@ -2593,8 +2617,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </ul>
       </section>
 
-      <section class="notoc" typeof="bibo:Chapter" resource="#example-13" property="bibo:hasPart">
-        <h4 id="example-13" resource="#example-13"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
+      <section class="notoc" typeof="bibo:Chapter" resource="#example-6" property="bibo:hasPart">
+        <h4 id="example-6" resource="#example-6"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
         <div class="note">
           <div class="note-title marker" aria-level="5" role="heading" id="h-note20"><span>Note</span></div>
           <p class="">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The ARIA practices task force is developing examples for Authoring Practices 1.1 that will be directly incorporated into the guide.</p>
@@ -2709,8 +2733,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </ul>
       </section>
 
-      <section class="notoc" typeof="bibo:Chapter" resource="#example-14" property="bibo:hasPart">
-        <h4 id="example-14" resource="#example-14"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
+      <section class="notoc" typeof="bibo:Chapter" resource="#example-7" property="bibo:hasPart">
+        <h4 id="example-7" resource="#example-7"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
         <ul>
           <li><a href="examples/tabs/tabs.html">Tabs widget code example</a></li>
         </ul>
@@ -2770,8 +2794,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </ul>
       </section>
 
-      <section class="notoc" typeof="bibo:Chapter" resource="#example-15" property="bibo:hasPart">
-        <h4 id="example-15" resource="#example-15"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
+      <section class="notoc" typeof="bibo:Chapter" resource="#examples-9" property="bibo:hasPart">
+        <h4 id="examples-9" resource="#examples-9"><span property="xhv:role" resource="xhv:heading">Examples</span></h4>
         <p><a href="examples/toolbar/toolbar.html">Toolbar Example</a>: A toolbar including buttons, links, and checkboxes that uses roving tabindex to manage focus.</p>
       </section>
     </section>
@@ -2808,8 +2832,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </ul>
       </section>
 
-      <section class="notoc" typeof="bibo:Chapter" resource="#example-16" property="bibo:hasPart">
-        <h4 id="example-16" resource="#example-16"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
+      <section class="notoc" typeof="bibo:Chapter" resource="#example-8" property="bibo:hasPart">
+        <h4 id="example-8" resource="#example-8"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
         <div class="note">
           <div class="note-title marker" aria-level="5" role="heading" id="h-note24"><span>Note</span></div>
           <p class="">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The ARIA practices task force is developing examples for Authoring Practices 1.1 that will be directly incorporated into the guide.</p>
@@ -2981,8 +3005,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </div>
       </section>
 
-      <section class="notoc" typeof="bibo:Chapter" resource="#examples-2" property="bibo:hasPart">
-        <h4 id="examples-2" resource="#examples-2"><span property="xhv:role" resource="xhv:heading">Examples</span></h4>
+      <section class="notoc" typeof="bibo:Chapter" resource="#examples-10" property="bibo:hasPart">
+        <h4 id="examples-10" resource="#examples-10"><span property="xhv:role" resource="xhv:heading">Examples</span></h4>
         <ul>
           <li>
             <a href="examples/treeview/treeview-1/treeview-1a.html">File Selector Tree #1</a>: A file selector tree that demonstrates browser support for automatically computing <code>aria-level</code>, <code>aria-posinset</code> and <code>aria-setsize</code> based on DOM structure.
@@ -3037,8 +3061,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </ul>
       </section>
 
-      <section class="notoc" typeof="bibo:Chapter" resource="#example-17" property="bibo:hasPart">
-        <h4 id="example-17" resource="#example-17"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
+      <section class="notoc" typeof="bibo:Chapter" resource="#example-9" property="bibo:hasPart">
+        <h4 id="example-9" resource="#example-9"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
         <div class="note">
           <div class="note-title marker" aria-level="5" role="heading" id="h-note28"><span>Note</span></div>
           <p class="">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The ARIA practices task force is developing examples for Authoring Practices 1.1 that will be directly incorporated into the guide.</p>
@@ -3219,8 +3243,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <p>If the HTML5 <code>header</code> element technique is not being used, a <code>role="banner"</code> attribute should be used to define a <code>banner</code> landmark.</p>
         </section>
 
-        <section class="notoc" typeof="bibo:Chapter" resource="#examples-3" property="bibo:hasPart">
-          <h5 id="examples-3" resource="#examples-3"><span property="xhv:role" resource="xhv:heading">Examples</span></h5>
+        <section class="notoc" typeof="bibo:Chapter" resource="#examples-11" property="bibo:hasPart">
+          <h5 id="examples-11" resource="#examples-11"><span property="xhv:role" resource="xhv:heading">Examples</span></h5>
 
           <p><a href="examples/landmarks/banner.html">Banner Landmark Example</a></p>
         </section>
@@ -3253,8 +3277,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <p>If the HTML5 <code>aside</code> element technique is not being used, use a <code>role="complementary"</code> attribute to define a <code>complementary</code> landmark.</p>
         </section>
 
-        <section class="notoc" typeof="bibo:Chapter" resource="#examples-4" property="bibo:hasPart">
-          <h5 id="examples-4" resource="#examples-4"><span property="xhv:role" resource="xhv:heading">Examples</span></h5>
+        <section class="notoc" typeof="bibo:Chapter" resource="#examples-12" property="bibo:hasPart">
+          <h5 id="examples-12" resource="#examples-12"><span property="xhv:role" resource="xhv:heading">Examples</span></h5>
 
           <p><a href="examples/landmarks/complementary.html">Complementary Landmark Example</a></p>
         </section>
@@ -3302,8 +3326,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <p>If the HTML5 <code>footer</code> element technique is not being used, a <code>role="contentinfo"</code> attribute should be used to define a <code>contentinfo</code> landmark.</p>
         </section>
 
-        <section class="notoc" typeof="bibo:Chapter" resource="#examples-5" property="bibo:hasPart">
-          <h5 id="examples-5" resource="#examples-5"><span property="xhv:role" resource="xhv:heading">Examples</span></h5>
+        <section class="notoc" typeof="bibo:Chapter" resource="#examples-13" property="bibo:hasPart">
+          <h5 id="examples-13" resource="#examples-13"><span property="xhv:role" resource="xhv:heading">Examples</span></h5>
           <p><a href="examples/landmarks/contentinfo.html">Contentinfo Landmark Example</a></p>
         </section>
       </section>
@@ -3349,8 +3373,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <p>Use the <code>role="form"</code> to identify a region of the page; do not use it to identify every form field.</p>
         </section>
 
-        <section class="notoc" typeof="bibo:Chapter" resource="#examples-6" property="bibo:hasPart">
-          <h5 id="examples-6" resource="#examples-6"><span property="xhv:role" resource="xhv:heading">Examples</span></h5>
+        <section class="notoc" typeof="bibo:Chapter" resource="#examples-14" property="bibo:hasPart">
+          <h5 id="examples-14" resource="#examples-14"><span property="xhv:role" resource="xhv:heading">Examples</span></h5>
 
           <p><a href="examples/landmarks/form.html">Form Landmark Example</a></p>
         </section>
@@ -3384,8 +3408,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <p>If the HTML5 <code>main</code> element technique is not being used, use a <code>role="main"</code> attribute to define a <code>main</code> landmark.</p>
         </section>
 
-        <section class="notoc" typeof="bibo:Chapter" resource="#examples-7" property="bibo:hasPart">
-          <h5 id="examples-7" resource="#examples-7"><span property="xhv:role" resource="xhv:heading">Examples</span></h5>
+        <section class="notoc" typeof="bibo:Chapter" resource="#examples-15" property="bibo:hasPart">
+          <h5 id="examples-15" resource="#examples-15"><span property="xhv:role" resource="xhv:heading">Examples</span></h5>
 
           <p><a href="examples/landmarks/main.html">Main Landmark Example</a></p>
         </section>
@@ -3416,8 +3440,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
         </section>
 
-        <section class="notoc" typeof="bibo:Chapter" resource="#examples-8" property="bibo:hasPart">
-          <h5 id="examples-8" resource="#examples-8"><span property="xhv:role" resource="xhv:heading">Examples</span></h5>
+        <section class="notoc" typeof="bibo:Chapter" resource="#examples-16" property="bibo:hasPart">
+          <h5 id="examples-16" resource="#examples-16"><span property="xhv:role" resource="xhv:heading">Examples</span></h5>
 
           <p><a href="examples/landmarks/navigation.html">Navigation Landmark Example</a></p>
         </section>
@@ -3449,8 +3473,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <p>If the HTML5 <code>section</code> element technique is not being used, use a <code>role="region"</code> attribute to define a <code>region</code> landmark.</p>
         </section>
 
-        <section class="notoc" typeof="bibo:Chapter" resource="#examples-9" property="bibo:hasPart">
-          <h5 id="examples-9" resource="#examples-9"><span property="xhv:role" resource="xhv:heading">Examples</span></h5>
+        <section class="notoc" typeof="bibo:Chapter" resource="#examples-17" property="bibo:hasPart">
+          <h5 id="examples-17" resource="#examples-17"><span property="xhv:role" resource="xhv:heading">Examples</span></h5>
 
           <p><a href="examples/landmarks/region.html">Region Landmark Example</a></p>
         </section>
@@ -3479,8 +3503,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <p>The <code>role="search"</code> attribute defines a <code>search</code> landmark.</p>
         </section>
 
-        <section class="notoc" typeof="bibo:Chapter" resource="#examples-10" property="bibo:hasPart">
-          <h5 id="examples-10" resource="#examples-10"><span property="xhv:role" resource="xhv:heading">Examples</span></h5>
+        <section class="notoc" typeof="bibo:Chapter" resource="#examples-18" property="bibo:hasPart">
+          <h5 id="examples-18" resource="#examples-18"><span property="xhv:role" resource="xhv:heading">Examples</span></h5>
 
           <p><a href="examples/landmarks/search.html">Search Landmark Example</a></p>
         </section>
