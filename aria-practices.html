@@ -1488,42 +1488,71 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
 
     <section class="widget" id="spinbutton">
       <h3>Spinbutton</h3>
-      <p>A widget that allows users to choose a value from a set, or range, of discrete values. For example, select a number from 1 to 59 for the minute of an hour when setting an alarm.</p>
-
-      <p>A spin button provides ways to easily increment and decrement the value. If the range is large, it may support changing the value by both a single step and by multiple steps at once. For instance, in the alarm example, the user may be able to move by 1 minute with the arrow keys and by 10 minutes with PageUp and PageDown.</p>
-
-      <p>A spinbutton usually includes a text field that displays the current value and allows users to directly edit it.</p>
-
+      <p>
+        A spinbutton is an input widget that restricts its value to a set or range of discrete values. 
+        For example, in a widget that enables users to set an alarm, a spinbutton could allow users to select a number from 0 to 59 for the minute of an hour.
+      </p>
+      <p>
+        Spinbuttons often have three components, including a text field that displays the current value, an increment button, and a decrement button.
+        The text field is the only focusable component because the increment and decrement functions are keyboard accessible via arrow keys.
+        Typically, the text field also allows users to directly edit the value.
+      </p>
+      <p>
+        If the range is large, a spinbutton may support changing the value in both small and large steps.
+        For instance, in the alarm example, the user may be able to move by 1 minute with <kbd>Up Arrow</kbd> and <kbd>Down Arrow</kbd> and by 10 minutes with <kbd>Page Up</kbd> and <kbd>Page Down</kbd>.
+      </p>
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
-
-        <p>The associated text field generally supports standard text entry operations such as selection of characters, deletions, insertions, and caret movement using the <kbd>Right Arrow</kbd> and <kbd>Left Arrow</kbd> keys.  The exception is when the spinbutton's value space is restricted and the associated script limits the characters.  For example, an hour-and-minute spinner would allow only the digits 1-59, the colon ':', and the characters 'AM' and 'PM'.  If the user typed any other character, it would not change the contents of the text field nor the value of the spinbutton. </p>
         <ul>
-          <li><kbd>Up Arrow</kbd> increases the value. </li>
-          <li><kbd>Down Arrow</kbd> decreases the value. </li>
-          <li><kbd>Home</kbd> and <kbd>End</kbd> key  move to the maximum or minimum values. </li>
-          <li>Optional: <kbd>Page Up</kbd> and <kbd>Page Down</kbd> increase or   decrease the value in larger steps. </li>
-          <li><kbd>Tab</kbd> key moves into and out of the widget. </li>
+          <li>Text editing keys: If the spinbutton text field allows directly editing the value, the following keys are supported.
+            <ul>
+              <li>Standard single line text field keys, such as <kbd>Left Arrow</kbd>, <kbd>Right Arrow</kbd>, <kbd>Shift + Left Arrow</kbd>, <kbd>Shift + Right Arrow</kbd>, and <kbd>Delete</kbd>, for cursor movement, selecting text, and text deletion.</li>
+              <li>
+                Characters that are permitted to be part of the value.
+                For example, an hour-and-minute spinner would allow only integer values from 0 to 59, the colon ':', and the letters 'AM' and 'PM'. 
+                Any other character input does not change the contents of the text field nor the value of the spinbutton.
+              </li>
+            </ul>
+          </li>
+          <li><kbd>Up Arrow</kbd>: Increases the value.</li>
+          <li><kbd>Down Arrow</kbd>: Decreases the value.</li>
+          <li><kbd>Home</kbd>: Sets the spinbutton to the minimum value.</li>
+          <li><kbd>End</kbd>: Sets the spinbutton to the maximum value.</li>
+          <li><kbd>Page Up</kbd> (Optional): Increases the value by a larger step than <kbd>Up Arrow</kbd>.</li>
+          <li><kbd>Page Down</kbd> (Optional): Decreases the value by a larger step than <kbd>Down Arrow</kbd>.</li>
         </ul>
-        <p class="note">Focus should remain on the edit field </p>
+        <p class="note">Focus remains on the text field during operation.</p>
       </section>
 
       <section class="notoc">
         <h4>WAI-ARIA Roles, States, and Properties</h4>
         <ul>
-          <li>The widget has the role <a class="role-reference" href="#spinbutton">spinbutton</a>.  </li>
-          <li>Spinbuttons support the <a class="property-reference" href="#aria-valuemin">aria-valuemin</a>, <a class="property-reference" href="#aria-valuemax">aria-valuemax</a>, and <a class="property-reference" href="#aria-valuenow">aria-valuenow</a> properties representing the minimum possible value of the spinner, the maximum possible value, and the current value.  All of these are decimal numbers.  The minimum and maximum are typically fixed.  </li>
-          <li>Sometimes the value is not user readable, such as a number for the day of the week, e.g., "1". In those cases, use the <a class="property-reference" href="#aria-valuetext">aria-valuetext</a> property to provide a human readable string for the slider's value, e.g. "Monday". </li>
+          <li>
+            The focusable element serving as the spinbutton has role <a class="role-reference" href="#spinbutton">spinbutton</a>.
+            This is typically an element that supports text input.
+          </li>
+          <li>The spinbutton element has the <a class="property-reference" href="#aria-valuenow">aria-valuenow</a> property set to a decimal value representing the current value of the spinbutton.</li>
+          <li>The spinbutton element has the <a class="property-reference" href="#aria-valuemin">aria-valuemin</a> property set to a decimal value representing the minimum allowed value of the spinbutton.</li>
+          <li>The spinbutton element has the <a class="property-reference" href="#aria-valuemax">aria-valuemax</a> property set to a decimal value representing the maximum allowed value of the spinbutton.</li>
+          <li>
+          If the value of <code>aria-valuenow</code> is not user-friendly, e.g., the day of the week is represented by a number, the 
+          <a class="property-reference" href="#aria-valuetext">aria-valuetext</a> 
+          property is set on the spinbutton element to a string that makes the spinbutton value understandable, e.g., &quot;Monday&quot;.
+          </li>
+          <li>
+            If the spinbutton has a visible label, it is referenced by
+            <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> on the spinbutton element. 
+            Otherwise, the spinbutton element has a label provided by 
+            <a href="#aria-label" class="property-reference">aria-label</a>.
+          </li>
         </ul>
       </section>
-
       <section class="notoc">
         <h4>Example</h4>
-        <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The ARIA practices task force is developing examples for Authoring Practices 1.1 that will be directly incorporated into the guide.</p>
-        <ul>
-          <li><a href="http://www.oaa-accessibility.org/examplep/spinbutton1/" rel="nofollow" target="_blank">Open Ajax Alliance Spinbutton</a></li>
-          <li><a href="http://archive.dojotoolkit.org/nightly/dojotoolkit/dijit/tests/form/test_Spinner.html" rel="nofollow">dojo/dijit nightly build</a></li>
-        </ul>
+        <p>
+          Work to develop a spinbutton example is tracked by 
+          <a href="https://github.com/w3c/aria-practices/issues/125">issue 125.</a>
+        </p>
       </section>
     </section>
 
