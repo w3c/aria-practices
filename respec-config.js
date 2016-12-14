@@ -146,7 +146,7 @@ var respecConfig = {
   // This is important for Rec-track documents, do not copy a patent URI
   // from a random document unless you know what you're doing.
   // If in doubt ask your friendly neighbourhood Team Contact.
-  wgPatentURI: 'http://www.w3.org/2004/01/pp-impl/83726/status',
+  wgPatentURI: 'https://www.w3.org/2004/01/pp-impl/83726/status',
   maxTocLevel: 4,
 
   localBiblio: biblio,
