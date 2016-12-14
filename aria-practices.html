@@ -1730,41 +1730,43 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
     <section class="widget" id="tooltip">
       <h3>Tooltip Widget</h3>
       <p>
-        Popup that displays a description for an element when a user hovers over or focuses on that element.
-        It should popup automatically when the user gives input focus to the widget or element with which it is associated.
-        The tooltip widget can be dismissed by pressing the <kbd>Escape</kbd> key or by other methods noted below.
-        The tooltip widget does not receive focus at any time. If focusable elements are required in the tooltip
-        a <a href="#dialog_nonmodal">Dialog (non-modal)</a> should be used.
+        Work on this design pattern is in progress and tracked by 
+        <a href="https://github.com/w3c/aria-practices/issues/128">issue 128.</a>
+        Please provide feedback in that issue.
       </p>
-      <p>The tooltip may appear immediately or there may be a small delay before the tooltip appears.</p>
-
+      <p>
+        A tooltip is a popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.
+        It typically appears after a small delay and disappears when <kbd>Escape</kbd> is pressed or on mouse out.
+      </p>
+      <p>
+        Tooltip widgets do not receive focus.
+        A hover that contains focusable elements can be made using the 
+        a <a href="#dialog_nonmodal">non-modal dialog pattern</a>.
+      </p>
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
-
         <p><kbd>Escape</kbd>: Dismisses the Tooltip.</p>
         <ol class="note">
-          <li>The trigger element to which the tooltip is attached,   e.g., a link, should never actually lose input focus. </li>
-          <li>If the tooltip is invoked when the trigger element   gets focus, then it should be dismissed when it no longer has focus (onBlur). If   the tooltip is invoked with mouseIn, then it should be dismissed with a   mouseOut. </li>
-          <li>If nested widgets use the same keys, e.g.,   <kbd>Escape</kbd>, then they should be handled in a Last In First Out (LIFO) manner. For example, an editable grid contains gridcells which contain date fields. The user invokes Actionable mode on the grid and then interacts with the Date Field to invoke the Date Picker. At this point the first press of the <kbd>Escape</kbd> key will close the Date Picker, the second press will exit Actionable mode and return to Navigation mode.</li>
+          <li>Focus stays on the triggering element while the tooltip is displayed.</li>
+          <li>
+            If the tooltip is invoked when the trigger element   receives focus, then it is dismissed when it no longer has focus (onBlur). 
+            If   the tooltip is invoked with mouseIn, then it is dismissed with on mouseOut.
+          </li>
         </ol>
       </section>
-
       <section class="notoc">
         <h4>WAI-ARIA Roles, States, and Properties</h4>
         <ul>
-          <li>Uses the WAI-ARIA role <span class="widget-description"><a href="#tooltip" class="role-reference">tooltip</a></span>. </li>
-          <li>The element that the tooltip is for references the tooltip using <a href="#aria-describedby" class="property-reference">aria-describedby</a>. </li>
+          <li>The element that serves as the tooltip container has role <a href="#tooltip" class="role-reference">tooltip</a>.</li>
+          <li>The element that triggers the tooltip references the tooltip element with <a href="#aria-describedby" class="property-reference">aria-describedby</a>.</li>
         </ul>
       </section>
-
       <section class="notoc">
         <h4>Example</h4>
-        <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The ARIA practices task force is developing examples for Authoring Practices 1.1 that will be directly incorporated into the guide.</p>
-        <ul>
-          <li><a href="http://www.oaa-accessibility.org/examplep/tooltip1/" target="_blank" rel="nofollow">Open Ajax Alliance tooltip</a></li>
-          <li><a href="http://www.oaa-accessibility.org/examplep/tooltip2/" target="_blank" rel="nofollow">Open Ajax Alliance tooltip using ARIA CSS selectors</a></li>
-          <li><a href="http://archive.dojotoolkit.org/nightly/dojotoolkit/dijit/tests/test_Tooltip.html" target="_blank" rel="nofollow">Dojo nightly</a></li>
-        </ul>
+        <p>
+          Work to develop a tooltip example is tracked by 
+          <a href="https://github.com/w3c/aria-practices/issues/127">issue 127.</a>
+        </p>
       </section>
     </section>
 
