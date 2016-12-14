@@ -1673,20 +1673,18 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
         When a set of controls is visually presented as a group, the <code>toolbar</code> role can be used to communicate the presence and purpose of the grouping to screen reader users.
         Grouping controls into toolbars can also be an effective way of reducing the number of tab stops in the keyboard interface.
       </p>
-      <p>When designing and implementing toolbars, it is strongly recommended that authors:</p>
+      <p>To optimize the benefit of toolbar widgets:</p>
       <ol>
-        <li>Implement focus management so there is one stop in the keyboard tab sequence for the toolbar and arrow keys move focus among the contained controls.</li>
+        <li>Implement focus management so the keyboard tab sequence includes one stop for the toolbar and arrow keys move focus among the controls in the toolbar.</li>
         <li>Avoid including controls that require arrow keys to operate, such as textbox or radio group. If unavoidable, include only one such control and make it the last element .</li>
         <li>Use toolbar as a grouping element only if the group contains 3 or more controls.</li>
       </ol>
-
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
         <ul>
           <li>
-            <kbd>Tab</kbd>: Moves focus into and out of the toolbar.
-            When focus moves into the toolbar, the first enabled control receives focus.
-            Optionally, if the toolbar has previously contained focus, the control that last had focus may receive focus.
+            When the toolbar receives focus, focus is set on the first control that is not disabled.
+            Optionally, if the toolbar has previously contained focus, focus is set on the control that last had focus.
           </li>
           <li>For a horizontal toolbar (the default):
             <ul>
@@ -1702,22 +1700,29 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
               <li><kbd>Up Arrow</kbd> performs as <kbd>Left Arrow</kbd> is described above. </li>
             </ol>
           </li>
-          <li>Typically, disabled elements are not focusable when navigating with a keyboard. However, in circumstances where discoverability of a function is crucial, authors may choose to make disabled controls focusable so screen reader users are more likely to be aware of their presence. </li>
-          <li>In applications where quick access to a toolbar is important, such as accessing an editor's toolbar from its text area, it is recommended that authors provide a documented shortcut key for moving focus from the relevant context to its corresponding toolbar. </li>
+          <li>
+            Typically, disabled elements are not focusable when navigating with a keyboard. 
+            However, in circumstances where discoverability of a function is crucial, it may be helpful if disabled controls are focusable so screen reader users are more likely to be aware of their presence. 
+            For additional guidance, see <a href="#kbd_disabled_controls"></a>.
+          </li>
+          <li>In applications where quick access to a toolbar is important, such as accessing an editor's toolbar from its text area, a documented shortcut key for moving focus from the relevant context to its corresponding toolbar is recommended.</li>
         </ol>
       </section>
-
       <section class="notoc">
         <h4>WAI-ARIA Roles, States, and Properties</h4>
         <ul>
-          <li>The element has the role <a class="role-reference" href="#toolbar">toolbar</a>.  </li>
-          <li>Labeling with <a href="#aria-label" class="property-reference">aria-label</a> is recommended, especially if the user interface includes multiple toolbars. </li>
+          <li>The element that serves as the toolbar container has role <a class="role-reference" href="#toolbar">toolbar</a>.  </li>
+          <li>
+            If the toolbar has a visible label, it is referenced by
+            <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> on the toolbar element. 
+            Otherwise, the toolbar element has a label provided by 
+            <a href="#aria-label" class="property-reference">aria-label</a>.
+          </li>
           <li>If the controls are arranged vertically, the toolbar element has <a href="#aria-orientation" class="property-reference">aria-orientation</a> set to <code>vertical</code>. The default orientation is horizontal.</li>
         </ul>
       </section>
-
       <section class="notoc">
-        <h4>Examples</h4>
+        <h4>Example</h4>
         <p><a href="examples/toolbar/toolbar.html">Toolbar Example</a>: A toolbar including buttons, links, and checkboxes that uses roving tabindex to manage focus.</p>
       </section>
     </section>
