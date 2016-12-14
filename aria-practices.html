@@ -1494,7 +1494,7 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
       </p>
       <p>
         Spinbuttons often have three components, including a text field that displays the current value, an increment button, and a decrement button.
-        The text field is the only focusable component because the increment and decrement functions are keyboard accessible via arrow keys.
+        The text field is usually the only focusable component because the increment and decrement functions are keyboard accessible via arrow keys.
         Typically, the text field also allows users to directly edit the value.
       </p>
       <p>
@@ -1532,8 +1532,8 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
             This is typically an element that supports text input.
           </li>
           <li>The spinbutton element has the <a class="property-reference" href="#aria-valuenow">aria-valuenow</a> property set to a decimal value representing the current value of the spinbutton.</li>
-          <li>The spinbutton element has the <a class="property-reference" href="#aria-valuemin">aria-valuemin</a> property set to a decimal value representing the minimum allowed value of the spinbutton.</li>
-          <li>The spinbutton element has the <a class="property-reference" href="#aria-valuemax">aria-valuemax</a> property set to a decimal value representing the maximum allowed value of the spinbutton.</li>
+          <li>The spinbutton element has the <a class="property-reference" href="#aria-valuemin">aria-valuemin</a> property set to a decimal value representing the minimum allowed value of the spinbutton if it has a known minimum value.</li>
+          <li>The spinbutton element has the <a class="property-reference" href="#aria-valuemax">aria-valuemax</a> property set to a decimal value representing the maximum allowed value of the spinbutton if it has a known maximum value.</li>
           <li>
           If the value of <code>aria-valuenow</code> is not user-friendly, e.g., the day of the week is represented by a number, the 
           <a class="property-reference" href="#aria-valuetext">aria-valuetext</a> 
