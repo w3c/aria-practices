@@ -2,83 +2,102 @@
 <html lang="en">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <meta charset="utf-8">
-    <title>ARIA Tree View: Links</title>
-    
-    <link href="../../css/core.css" rel="stylesheet"> 
-    <link href="../../css/table.css" rel="stylesheet">
-    
-    <link href="css/tree-2.css" rel="stylesheet">
+    <title>Navigation Treeview Example Using Computed Properties | WAI-ARIA Authoring Practices 1.1</title>
 
-    <script type="text/javascript" src="js/treeLinks.js" type="text/javascript"></script>
-    <script type="text/javascript" src="js/treeitemLinks.js" type="text/javascript"></script>
-    <script type="text/javascript" src="js/treeitemClick.js" type="text/javascript"></script>
+    <link href="../../css/core.css" rel="stylesheet">
+    <link href="../../css/table.css" rel="stylesheet">
+
+    <link href="css/treeLinks.css" rel="stylesheet">
+
+    <script type="text/javascript" src="js/treeLinks.js"></script>
+    <script type="text/javascript" src="js/treeitemLinks.js"></script>
+    <script type="text/javascript" src="js/treeitemClick.js"></script>
 
     <script src="../../js/examples.js" type="text/javascript"></script>
   </head>
-  
+
   <body>
     <main>
-      <h1>ARIA Tree View: Links</h1>
+      <h1>Navigation Treeview Example Using Computed Properties</h1>
+      <p>
+        Code is complete for this example. 
+        Feedback and progress on editorial work on this page are being tracked in 
+        <a href="https://github.com/w3c/aria-practices/issues/225">issue 225.</a>
+      </p>
+  <p>
+    This example implements the features of the
+    <a href="../../../#TreeView">Treeview Design Pattern</a>
+    for navigating and selecting a link in a large set of hierarchically organized links.
+    It is important in this example that the <code>role=treeitem</code> overrides the default role of link for the <code>a</code> elements, since a <code>treeitem</code> widget cannot contain any interactive elements (e.g. a link).
+    This example also relies on the browser to
+    compute values for <code>aria-setsize</code>, <code>aria-posinset</code> and <code>arial-level</code>.
+    The ARIA 1.0 Spectification for these properties states the browser can compute these values,
+    but is not required to.
+  </p>
 
-      <p>This example implements the features of an ARIA <code>tree</code> widget using <a href="../../../aria-practices.html#TreeView">ARIA Treeview Design Pattern</a> for navigating and selecting a large set of nested links.   This example relies on the browser to compute values for <code>aria-setsize</code>, <code>aria-posinset</code> and <code>arial-level</code>.   The ARIA 1.0 Spectification for these properties states the browser can compute these values, but is not required to.</p>
+      <p>Similar examples include: </p>
+      <ul>
+        <li><a href="../treeview-1/treeview-1a.html">File Directory Treeview using <em>computed</em> properties</a></li>
+        <li><a href="../treeview-1/treeview-1b.html">File Directory Treeview using <em>declared</em> properties</a></li>
+        <li><a href="../treeview-2/treeview-2b.html">Navigation Treeview using <em>declared</em> properties</a></li>
+      </ul>
 
-      <section aria-labelledby="start">
-        <h2 id="start">Start Example</h2>
-        <div id="example">
-
+  <section>
+        <h2 id="ex_label">Example</h2>
+        <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
+        <div id="ex1">
           <h3 id="tree1">Foods</h3>
           <ul role="tree" aria-labelledby="tree1" >
             <li role="treeitem"
-                aria-expanded="false" 
+                aria-expanded="false"
                 aria-label="Fruits">
               <span>Fruits</span>
               <ul>
-                <li>
+                <li role="none">
                   <a role="treeitem"
-                     href="https://en.wikipedia.org/wiki/Orange_%28fruit%29"> 
+                     href="https://en.wikipedia.org/wiki/Orange_%28fruit%29">
                       Oranges
                   </a>
                 </li>
-                <li>
+                <li role="none">
                   <a role="treeitem"
-                     href="https://en.wikipedia.org/wiki/Pineapple"> 
+                     href="https://en.wikipedia.org/wiki/Pineapple">
                       Pineapple
                   </a>
                 </li>
                 <li role="treeitem"
-                    aria-expanded="false" 
+                    aria-expanded="false"
                     aria-label="Apples">
                     <span>Apples</span>
                   <ul role="group">
-                    <li>
+                    <li role="none">
                       <a role="treeitem"
-                         href="https://en.wikipedia.org/wiki/McIntosh_%28apple%29"> 
+                         href="https://en.wikipedia.org/wiki/McIntosh_%28apple%29">
                           Macintosh
                       </a>
                     </li>
-                    <li>
+                    <li role="none">
                       <a role="treeitem"
-                         href="https://en.wikipedia.org/wiki/Granny_Smith"> 
+                         href="https://en.wikipedia.org/wiki/Granny_Smith">
                           Granny Smith
                       </a>
                     </li>
-                    <li >
+                    <li role="none">
                       <a role="treeitem"
                          href="https://en.wikipedia.org/wiki/Fuji_(apple)">
                           Fuji
                       </a>
                     </li>
                   </ul>
-                </li>  
-                <li >
+                </li>
+                <li role="none">
                   <a role="treeitem"
                      href="https://en.wikipedia.org/wiki/Banana">
                       Bananas
                   </a>
-                </li>    
+                </li>
                 <li role="treeitem"
-                    aria-expanded="false" 
+                    aria-expanded="false"
                     aria-label="Pears">
                   <span> Pears </span>
                   <ul role="group">
@@ -88,136 +107,136 @@
                           Anjou
                       </a>
                     </li>
-                    <li>
+                    <li role="none">
                       <a role="treeitem"
                          href="https://en.wikipedia.org/wiki/Williams_pear">
                           Bartlett
                       </a>
                     </li>
-                    <li>
+                    <li role="none">
                       <a role="treeitem"
                          href="https://en.wikipedia.org/wiki/Bosc_pear">
                           Bosc
                       </a>
                     </li>
-                    <li>
+                    <li role="none">
                       <a role="treeitem"
                          href="https://en.wikipedia.org/wiki/Pyrus_communis">
                           Concorde
                       </a>
                     </li>
-                    <li >
+                    <li role="none">
                       <a role="treeitem"
                          href="https://en.wikipedia.org/wiki/Pyrus_communis">
                           Seckel
                       </a>
                     </li>
-                    <li >
+                    <li role="none">
                       <a role="treeitem"
                          href="https://en.wikipedia.org/wiki/Pyrus_communis">
                           Starkrimson
                       </a>
                     </li>
                   </ul>
-                </li>    
+                </li>
               </ul>
             </li>
             <li role="treeitem"
-                aria-expanded="false" 
+                aria-expanded="false"
                 aria-label="Vegetables">
               <span>Vegetables</span>
               <ul role="group">
                 <li role="treeitem"
-                    aria-expanded="false" 
+                    aria-expanded="false"
                     aria-label="Podded Vegetables">
                   <span>Podded Vegetables</span>
                   <ul role="group">
-                    <li>
+                    <li role="none">
                         <a role="treeitem"
                            href="https://en.wikipedia.org/wiki/Lentil">
                             Lentil
                         </a>
                     </li>
-                    <li>
+                    <li role="none">
                         <a role="treeitem"
                            href="https://en.wikipedia.org/wiki/Pea">
                             Pea
                         </a>
                     </li>
-                    <li>
+                    <li role="none">
                         <a role="treeitem"
                            href="https://en.wikipedia.org/wiki/Peanut">
                             Peanut
                         </a>
                     </li>
                   </ul>
-                </li>  
+                </li>
                 <li role="treeitem"
-                    aria-expanded="false" 
+                    aria-expanded="false"
                     aria-label="Bulb and Stem Vegetables">
                   <span>Bulb and Stem Vegetables</span>
                   <ul role="group">
-                    <li>
+                    <li role="none">
                       <a role="treeitem"
                          href="https://en.wikipedia.org/wiki/Asparagus">
                           Asparagus
                       </a>
                     </li>
-                    <li>
+                    <li role="none">
                         <a role="treeitem"
                            href="https://en.wikipedia.org/wiki/Celery">
                             Celery
                         </a>
                     </li>
-                    <li>
+                    <li role="none">
                         <a role="treeitem"
                            href="https://en.wikipedia.org/wiki/Leek">
                             Leek
                         </a>
                     </li>
-                    <li>
+                    <li role="none">
                         <a role="treeitem"
                            href="https://en.wikipedia.org/wiki/Onion">
                             Onion
                         </a>
                     </li>
                   </ul>
-                </li>    
+                </li>
                 <li role="treeitem"
-                    aria-expanded="false" 
+                    aria-expanded="false"
                     aria-label="Root and Tuberous Vegetables">
                   <span>Root and Tuberous Vegetables</span>
                   <ul role="group">
-                    <li>
+                    <li role="none">
                         <a role="treeitem"
                            href="https://en.wikipedia.org/wiki/Carrot">
                             Carrot
                         </a>
                     </li>
-                    <li>
+                    <li role="none">
                         <a role="treeitem"
                            href="https://en.wikipedia.org/wiki/Ginger">
                             Ginger
                         </a>
                     </li>
-                    <li>
+                    <li role="none">
                       <a role="treeitem"
                          href="https://en.wikipedia.org/wiki/Parsnip">
                           Parsnip
                       </a>
                     </li>
-                    <li>
+                    <li role="none">
                       <a role="treeitem"
                          href="https://en.wikipedia.org/wiki/Potato">
                           Potato
                       </a>
                     </li>
                   </ul>
-                </li>    
+                </li>
               </ul>
             </li>
             <li role="treeitem"
-                aria-expanded="false" 
+                aria-expanded="false"
                 aria-label=" Grains">
               <span>Grains</span>
               <ul role="group">
@@ -226,109 +245,109 @@
                     aria-label="Cereal grains">
                   <span>Cereal Grains</span>
                   <ul role="group">
-                    <li>
+                    <li role="none">
                       <a role="treeitem"
                          href="https://en.wikipedia.org/wiki/Barley">
                           Barley
                       </a>
                     </li>
-                    <li>
+                    <li role="none">
                       <a role="treeitem"
                          href="https://en.wikipedia.org/wiki/Oats">
                           Oats
                       </a>
                     </li>
-                    <li>
+                    <li role="none">
                       <a role="treeitem"
                          href="https://en.wikipedia.org/wiki/Rice">
                           Rice
                       </a>
                     </li>
                   </ul>
-                </li>  
+                </li>
                 <li role="treeitem"
-                    aria-expanded="false" 
+                    aria-expanded="false"
                     aria-label="Pseudocereal grains">
                   <span>Pseudocereal Grains</span>
                   <ul role="group">
-                    <li>
+                    <li role="none">
                       <a role="treeitem"
                          href="https://en.wikipedia.org/wiki/Amaranth">
                           Amaranth
                       </a>
                     </li>
-                    <li>
+                    <li role="none">
                       <a role="treeitem"
                          href="https://en.wikipedia.org/wiki/Buckwheat">
                           Bucketwheat
                       </a>
                     </li>
-                    <li>
+                    <li role="none">
                       <a role="treeitem"
                          href="https://en.wikipedia.org/wiki/Salvia_hispanica">
                           Chia
                       </a>
                     </li>
-                    <li>
+                    <li role="none">
                       <a role="treeitem"
                          href="https://en.wikipedia.org/wiki/Quinoa">
                           Quinoa
                       </a>
                     </li>
                   </ul>
-                </li>    
+                </li>
                 <li role="treeitem"
-                    aria-expanded="false" 
+                    aria-expanded="false"
                     aria-label="Oilseeds">
                   <span>Oilseeds</span>
                   <ul role="group">
-                    <li>
+                    <li role="none">
                       <a role="treeitem"
                          href="https://en.wikipedia.org/wiki/Brassica_juncea">
                           India Mustard
                       </a>
                     </li>
-                    <li>
+                    <li role="none">
                       <a role="treeitem"
                          href="https://en.wikipedia.org/wiki/Safflower">
                           Safflower
                       </a>
                     </li>
-                    <li>
+                    <li role="none">
                       <a role="treeitem"
                          href="https://en.wikipedia.org/wiki/Flax_seed">
                           Flax Seed
                       </a>
                     </li>
-                    <li>
+                    <li role="none">
                       <a role="treeitem"
                          href="https://en.wikipedia.org/wiki/Poppy_seed">
                           Poppy Seed
                       </a>
                     </li>
                   </ul>
-                </li>    
+                </li>
               </ul>
             </li>
           </ul>
-
         </div>
-      </section>    
+        <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
+      </section>
 
-      <section aria-labelledby="tree_label">
+      <section>
 
-        <h2 id="tree_label">Tree Widget Implementation Information</h2>
-
-        <h3>Implementation Notes</h3>
-
+        <h2>Accessibility Features</h2>
         <ul>
           <li>Need to use CSS focus and hover classes to create focus and hover styling of the visible label for expandable <code>treeitem</code> widgets.  This requires using focus/blur and mouseover/mouseout events to apply classes to the <code>span</code> element that is used as the visible label for the <code>treeitem</code>.</li>
           <li>This example relies on the browser to computer values for <code>aria-setsize</code>, <code>aria-posinset</code> and <code>arial-level</code>.</li>
           <li>The expandable <code>treeitem</code> widgets cannot behave as links, their only action can be to open and close a leaf in the tree.</li>
         </ul>
-             
-        <h3 id="kbd_label">Keyboard Support</h3>
-             
+
+      </section>
+
+      <section>
+        <h2 id="kbd_label">Keyboard Support</h2>
+
         <table aria-labelledby="kbd_label">
            <thead>
              <tr>
@@ -338,14 +357,23 @@
            </thead>
            <tbody>
              <tr>
-               <td>Up arrow Key</td>
-               <td>Moves focus to previous visible sibling <code>treeitem</code> using a depth first algorithm on the visible <code>treeitems</code>. If on first <code>treeitem</code>, focus stays on first <code>treeitem</code>.</td>
+               <th><kbd>Up arrow</kbd></th>
+               <td>
+                  <ul>
+                    <li>Moves focus to previous visible sibling <code>treeitem</code> using a depth first algorithm on the visible <code>treeitems</code>. If on first <code>treeitem</code>, focus stays on first <code>treeitem</code>.</li>
+                  </ul>
+                </td>
              </tr>
              <tr>
-               <td>Down arrow Key</td>
-               <td>Moves focus to next visible sibling <code>treeitem</code> using a depth first algorithm on the visible <code>treeitems</code>. If on last <code>treeitem</code>, focus stays on the last <code>treeitem</code>.</td>
-             </tr>            <tr>
-               <td>Left Arrow Key</td>
+               <th><kbd>Down arrow</kbd></th>
+               <td>
+                  <ul>
+                    <li>Moves focus to next visible sibling <code>treeitem</code> using a depth first algorithm on the visible <code>treeitems</code>. If on last <code>treeitem</code>, focus stays on the last <code>treeitem</code>.</li>
+                  </ul>
+                </td>
+             </tr>
+             <tr>
+               <th><kbd>Left Arrow</kbd></th>
                <td>
                  <ul>
                    <li>For a <code>treeitem</code> that is an end node (e.g. no child <code>treeitem</code>s) or is in the collapsed state (e.g. has <code>[aria-expanded=false]</code>), focus moves to the parent <code>treeitem</code>.
@@ -356,7 +384,7 @@
                </td>
              </tr>
              <tr>
-               <td>Right Arrow Key</td>
+               <th><kbd>Right Arrow</kbd></th>
                <td>
                  <ul>
                    <li>For a <code>treeitem</code> that is an end node (e.g. no child <code>treeitem</code>s) focus stays on current <code>treeitem</code>.</li>
@@ -368,37 +396,39 @@
                </td>
              </tr>
              <tr>
-               <td>Return Key</td>
-               <td>
-                <ul>
-                  <li>Performs the default action (e.g. onclick event) on the current <code>treeitem</code>, in this example updating the "File or Folder Selected" textbox.</li>
-                </ul>  
+                <th><kbd>Return</kbd></th>
+                <td>
+                  <ul>
+                    <li>Performs the default action (e.g. onclick event) on the current <code>treeitem</code>, in this example updating the "File or Folder Selected" textbox.</li>
+                  </ul>
                 </td>
              </tr>
              <tr>
-               <td>Space Key</td>
+               <th><kbd>Space</kbd></th>
                <td>
                   <ul>
                     <li>Performs the default action (e.g. onclick event) on the current <code>treeitem</code>, in this example updating the "File or Folder Selected" textbox.</li>
-                  </ul>  
+                  </ul>
                 </td>
              </tr>
              <tr>
-               <td>Home Key</td>
+               <th><kbd>Home</kbd></th>
                <td>
                 <ul>
                   <li>Moves focus to first <code>treeitem</code> in the <code>tree</code>.</li>
-                </ul>  
+                </ul>
                 </td>
              </tr>
              <tr>
-               <td>End Key</td>
+               <th><kbd>End</kbd></th>
                <td>
                 <ul>
-                  <li>Moves focus to last visible <code>treeitem</code> (e.g. depth first) in the <code>tree</code>.</td>
+                  <li>Moves focus to last visible <code>treeitem</code> (e.g. depth first) in the <code>tree</code>.</li>
+                </ul>
+                </td>
              </tr>
              <tr>
-               <td>a-z, A-Z</td>
+               <th><kbd>a-z, A-Z</kbd></th>
                <td>
                  <ul>
                    <li>Moves focus to next visible <code>treeitem</code> that starts with letter character.</li>
@@ -407,27 +437,32 @@
                </td>
              </tr>
              <tr>
-               <td>*</td>
-               <td>Opens all the expandable <code>treeitem</code>s in the current leaf (e.g. siblings of the current <code>treeitem</code>), keyboard focus does not change.
+               <th><kbd>*</kbd></th>
+               <td>
+                <ul>
+                  <li>Opens all the expandable <code>treeitem</code>s in the current leaf (e.g. siblings of the current <code>treeitem</code>), keyboard focus does not change.</li>
+                </ul>
                </td>
              </tr>
            </tbody>
         </table>
+      </section>
 
-        <h3 id="rps_label">ARIA Roles, Properties and States</h3>
+      <section>
+        <h2 id="rps_label">ARIA Roles, Properties and States</h2>
 
-        <table aria-labelledby="rps_label"> 
+        <table aria-labelledby="rps_label">
           <thead>
             <tr>
-              <th>Role</th>
-              <th>Attribute</th>
-              <th>Element</th>
-              <th>Usage</th>
+              <th scope="col">Role</th>
+              <th scope="col">Attribute</th>
+              <th scope="col">Element</th>
+              <th scope="col">Usage</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><code>tree</code></td>
+              <th scope="row"><code>tree</code></th>
               <td></td>
               <td><code>ul</code></td>
               <td>
@@ -435,12 +470,12 @@
                   <li>The <code>role=&quot;tree&quot;</code> attribute identifies the <code>ul</code> element as an ARIA <code>tree</code> widget.</li>
                   <li>Accessible name for the <code>tree</code> widget comes from <code>aria-label</code> attribute.</li>
                   <li>The <code>tree</code> widget does not need a <code>tabindex</code> value, since the <code>ul[role&quot;tree&quot;]</code> element never receives keyboard focus.</li>
-                </ul> 
+                </ul>
               </td>
             </tr>
             <tr>
               <td></td>
-              <td><code>aria-label=&quot;<em>string</em>&quot;</code></td>
+              <th scope="row"><code>aria-label=&quot;<em>string</em>&quot;</code></th>
               <td><code>ul</code></td>
               <td>
                  <ul>
@@ -448,9 +483,9 @@
                   <li>The accessible name is important to identify the purpose of the tree in the page and uniquely identify the <code>tree</code> widget from other trees on the same page.</li>
                  </ul>
               </td>
-            </tr>  
+            </tr>
             <tr>
-              <td><code>group</code></td>
+              <th scope="row"><code>group</code></th>
               <td></td>
               <td><code>ul</code></td>
               <td>
@@ -459,132 +494,162 @@
                   <li>The <code>group</code> role is important for the browser to compute <code>aria-level</code>, <code>aria-setsize</code> and <code>aria-posinset</code>.</li>
                   <li>The <code>group</code> is not required to have an accessible name.</li>
                   <li>The <code>group</code> widget does not need a <code>tabindex</code> value, since the <code>ul[role&quot;group&quot;]</code> element never receives keyboard focus.</li>
-                </ul> 
+                </ul>
               </td>
             </tr>
             <tr>
-              <td><code>treeitem</code></td>
+              <th scope="row"><code>treeitem</code></th>
               <td></td>
-              <td><code>li</code>/<code>a</code></td>
+              <td><code>li</code>, <code>a</code></td>
               <td>
                 <ul>
                   <li>The <code>role=&quot;treeitem&quot;</code> attribute identifies the <code>li</code> element as an ARIA <code>tree</code> widget.</li>
                   <li>Accessible name for the <code>treeitem</code> widget comes from child text content of the <code>li</code> element or an <code>aria-label</code> attribute.</li>
-                </ul> 
+                </ul>
               </td>
             </tr>
             <tr>
               <td></td>
-              <td><code>tabindex=&quot;-1&quot;</code></td>
-              <td><code>li</code>/<code>a</code></td>
+              <th scope="row"><code>tabindex=&quot;-1&quot;</code></th>
+              <td><code>li</code>, <code>a</code></td>
               <td>
                 <ul>
                   <li>Identifies the <code>treeitem</code> as an elememt that can receive keyboard focus, but will <strong>not</strong> be included in the tab order of the page.</li>
                   <li><code>tabindex=&quot;-1&quot;</code> is the default value for a <code>treeitem</code> widget.</li>
-                 </ul>  
+                 </ul>
               </td>
             </tr>
             <tr>
               <td></td>
-              <td><code>tabindex=&quot;0&quot;</code></td>
-              <td><code>li</code>/<code>a</code></td>
+              <th scope="row"><code>tabindex=&quot;0&quot;</code></th>
+              <td><code>li</code>, <code>a</code></td>
               <td>
                 <ul>
-                  <li>Only one <code>treeitem</code> in the same <code>tree</code> has a <code>tabindex=&quot;0&quot;</code>.</li>                
+                  <li>Only one <code>treeitem</code> in the same <code>tree</code> has a <code>tabindex=&quot;0&quot;</code>.</li>
                   <li>Identifies the <code>treeitem</code> that last had keyboard focus.</li>
                   <li>The default <code>treeitem</code> with <code>tabindex=&quot;0&quot;</code> is the first <code>treeitem</code> in the <code>tree</code>.</li>
-                  <li>See <a href="../../../aria-practices.html#kbd_general_within">roving tabindex</a> for more information.</li>
-                 </ul>  
+                  <li>See <a href="../../../#kbd_general_within">roving tabindex</a> for more information.</li>
+                 </ul>
               </td>
             </tr>
           <tr>
             <td></td>
-            <td><code>aria-expanded=&quot;false&quot;</code></td>
+            <th scope="row"><code>aria-expanded=&quot;false&quot;</code></th>
             <td><code>li</code></td>
             <td>
               <ul>
                 <li>Indicates the <code>treeitem</code> descendants of the current <code>treeitem</code>s are <strong>not</strong> visible (e.g. tree sub-leaf is collapsed).</li>
-                <li>The visual state of being collapsed is synchronized with <code>aria-expanded</code> value using CSS attribute selector [<code>aria-expanded=&quot;false&quot;]</code> with the CSS <code>:before</code> psuedo selector and the CSS <code>content</code> property for displaying an image of the collapsed state.</li> 
-              </ul>  
+                <li>The visual state of being collapsed is synchronized with <code>aria-expanded</code> value using CSS attribute selector [<code>aria-expanded=&quot;false&quot;]</code> with the CSS <code>:before</code> psuedo selector and the CSS <code>content</code> property for displaying an image of the collapsed state.</li>
+              </ul>
             </td>
           </tr>
           <tr>
             <td></td>
-            <td><code>aria-expanded=&quot;true&quot;</code></td>
+            <th scope="row"><code>aria-expanded=&quot;true&quot;</code></th>
             <td><code>li</code></td>
             <td>
               <ul>
                 <li>Indicates the <code>treeitem</code> descendants of the current <code>treeitem</code> widgets are visible e.g. tree sub-leaf is expanded).</li>
-                <li>The visual state of being expanded is synchronized with <code>aria-expanded</code> value using CSS attribute selector [<code>aria-expanded=&quot;true&quot;]</code> with the CSS <code>:before</code> psuedo selector and the CSS <code>content</code> property for displaying an image of the expanded state.</li> 
-              </ul>  
+                <li>The visual state of being expanded is synchronized with <code>aria-expanded</code> value using CSS attribute selector [<code>aria-expanded=&quot;true&quot;]</code> with the CSS <code>:before</code> psuedo selector and the CSS <code>content</code> property for displaying an image of the expanded state.</li>
+              </ul>
             </td>
-          </tr>  
+          </tr>
             <tr>
               <td></td>
-              <td><code>aria-setsize=&quot;<em>number</em>&quot;</code></td>
-              <td><code>li</code>/<code>a</code></td>
+              <th scope="row"><code>aria-setsize=&quot;<em>number</em>&quot;</code></th>
+              <td><code>li</code>, <code>a</code></td>
               <td>
                 <ul>
                   <li><code>aria-setsize</code> is used to indicate the number of <code>treeitem</code>s in the current leaf of the tree.</li>
                   <li>This example relies upon the browser to compute the value of <code>aria-setsize</code>, so it is <strong>not</strong> defined by the author.</li>
                   <li>Browsers are encouraged, but not required to compute the <code>aria-setsize</code> value for a <code>treeitem</code> based on the DOM structure.</li>
                   <li><a href="https://www.w3.org/TR/wai-aria/states_and_properties#aria-setsize">Browser requirements for computing <code>aria-setsize</code> values</a>.</li>
-                </ul>  
+                </ul>
               </td>
             </tr>
             <tr>
               <td></td>
-              <td><code>aria-posinset=&quot;<em>number</em>&quot;</code></td>
-              <td><code>li</code>/<code>a</code></td>
+              <th scope="row"><code>aria-posinset=&quot;<em>number</em>&quot;</code></th>
+              <td><code>li</code>, <code>a</code></td>
               <td>
                 <ul>
                   <li><code>aria-posinset</code> is used to indicate the position of <code>treeitem</code>s in the current leaf of the tree.</li>
                   <li>This example relies upon the browser to compute the value of <code>aria-posinset</code>, so it is <strong>not</strong> defined by the author.</li>
                   <li>Browsers are encouraged, but not required to compute the <code>aria-posinset</code> value for a <code>treeitem</code> based on the DOM structure.</li>
                   <li><a href="https://www.w3.org/TR/wai-aria/states_and_properties#aria-posinset">Browser requirements for computing <code>aria-posinset</code> values</a>.</li>
-                </ul>  
+                </ul>
               </td>
             </tr>
             <tr>
               <td></td>
-              <td><code>aria-level=&quot;<em>number</em>&quot;</code></td>
-              <td><code>li</code>/<code>a</code></td>
+              <th><code>aria-level=&quot;<em>number</em>&quot;</code></th>
+              <td><code>li</code>, <code>a</code></td>
               <td>
                 <ul>
                   <li><code>aria-level</code> is used to indicate the depth of <code>treeitem</code>s in the tree structure.</li>
                   <li>This example relies upon the browser to computer the value of <code>aria-level</code>, so it is <strong>not</strong> defined by the author.</li>
                   <li>Browsers are encouraged, but not required to compute the <code>aria-level</code> value for a <code>treeitem</code> based on the DOM structure.</li>
                   <li><a href="https://www.w3.org/TR/wai-aria/states_and_properties#aria-level">Browser requirements for computing <code>aria-level</code> values</a>.</li>
-                </ul>  
+                </ul>
               </td>
             </tr>
+            <tr>
+              <th scope="row">
+                <code>none</code>
+              </th>
+              <td></td>
+              <td>
+                <code>li</code>
+              </td>
+              <td>
+                <ul>
+                  <li>Hides <code>li</code> element native role semantics of <code>listiem</code> from assistive technologies.</li>
+                  <li>If native role semantics of the <code>li</code> element are not removed, it could confuse some users of assistive technologies since listitems and treeitems would be interspersed with each other.</li>
+                </ul>
               </td>
             </tr>
           </tbody>
         </table>
 
-      
+
       </section>
 
-      <h2>Source Code</h2>
-      
-      <ul>
-        <li>CSS: <a href="css/tree-2.css" type="text/css">tree-2.css</a></li>
-        <li>Javascript: <a href="js/treeLinks.js" type="text/javascript">treeLinks.js</a></li>
-        <li>Javascript: <a href="js/treeitemLinks.js" type="text/javascript">treeitemLinks.js</a></li>
-        <li>Javascript: <a href="js/treeitemClick.js" type="text/javascript">treeItemClick.js</a></li>
-      </ul>
-      
-      <div id="sc1">
-      
-      </div>
-      
-      <script>
-        sourceCode.add('sc1', 'example')
-        sourceCode.make()
-      </script>
+     <section>
+        <h2>Javascript and CSS Source Code</h2>
+        <ul>
+          <li>
+            CSS:
+            <a href="css/treeLinks.css" type="text/css">treeLinks.css</a>
+          </li>
+          <li>
+            Javascript:
+            <a href="js/treeLinks.js" type="text/javascript">treeLinks.js</a>
+          </li>
+          <li>
+            Javascript:
+            <a href="js/treeitemLinks.js" type="text/javascript">treeitemLinks.js</a>
+          </li>
+          <li>
+            Javascript:
+            <a href="js/treeitemClick.js" type="text/javascript">treeitemClick.js</a>
+          </li>
+        </ul>
+      </section>
 
+      <section>
+        <h2 id="sc1_label">HTML Source Code</h2>
+        <div role="separator" id="sc1_start_sep" aria-labelledby="sc1_start_sep sc1_label" aria-label="Start of"></div>
+        <div id="sc1"></div>
+        <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of"></div>
 
-    </main>    
+        <script>
+          sourceCode.add('sc1', 'ex1');
+          sourceCode.make();
+        </script>
+      </section>
+  </main>
+  <nav>
+    <a href="../../../#TreeView">Tree View Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
+  </nav>
   </body>
 </html>

@@ -68,6 +68,10 @@ MenubarItem.prototype.init = function () {
   this.domNode.setAttribute('aria-haspopup', 'true');
   this.domNode.setAttribute('aria-expanded', 'false');
 
+  if (this.domNode.parentNode.tagName === 'LI') {
+    this.domNode.parentNode.setAttribute('role', 'none');
+  }
+
   this.domNode.addEventListener('keydown', this.handleKeydown.bind(this));
   this.domNode.addEventListener('keypress', this.handleKeypress.bind(this));
   this.domNode.addEventListener('click', this.handleClick.bind(this));
@@ -95,15 +99,12 @@ MenubarItem.prototype.handleKeydown = function (event) {
   switch (event.keyCode) {
     case this.keyCode.SPACE:
     case this.keyCode.RETURN:
+    case this.keyCode.DOWN:
       if (this.popupMenu) {
-        if (this.domNode.getAttribute('aria-expanded') == 'true') {
-          this.popupMenu.close(true);
-        }
-        else {
-          this.popupMenu.open();
-        }
+        this.popupMenu.open();
+        this.popupMenu.setFocusToFirstItem();
+        flag = true;
       }
-      flag = true;
       break;
 
     case this.keyCode.LEFT:
@@ -120,14 +121,6 @@ MenubarItem.prototype.handleKeydown = function (event) {
       if (this.popupMenu) {
         this.popupMenu.open();
         this.popupMenu.setFocusToLastItem();
-        flag = true;
-      }
-      break;
-
-    case this.keyCode.DOWN:
-      if (this.popupMenu) {
-        this.popupMenu.open();
-        this.popupMenu.setFocusToFirstItem();
         flag = true;
       }
       break;

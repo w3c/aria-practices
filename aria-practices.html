@@ -2,7 +2,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
 <head>
   <title>WAI-ARIA Authoring Practices 1.1</title>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <script src="https://www.w3.org/Tools/respec/respec-w3c-common" class="remove"></script>
   <script src="common/script/resolveReferences.js" class="remove"></script>
   <script src="common/biblio.js" class="remove"></script>
@@ -67,19 +66,15 @@
 
   <section id="aria_ex">
     <h2>Design Patterns and Widgets</h2>
-
     <p>This section demonstrates how to make common rich internet application widgets and patterns accessible by applying WAI-ARIA roles, states, and properties and implementing keyboard support.</p>
-
     <p class="note">
       Although users of Mac OS X are familiar with using the <kbd>Command</kbd> key instead of the <kbd>Control</kbd> key, the <kbd>Command</kbd> key is typically reserved for desktop applications and OS-level integration.
       Until device and platform independence can be addressed in WAI-ARIA 2.0, the primary <kbd>Control</kbd> modifier key for WAI-ARIA widget interaction is specified as <kbd>Control</kbd> on all platforms, including Mac OS X.
     </p>
-
+    
     <section id="aria_ex_widget">
       <h3>Generally Applicable Keyboard Recommendations </h3>
-
       <p>The following keyboard conventions are applicable to many of the patterns described in subsequent sections.</p>
-
       <ul>
         <li><kbd>Shift + F10</kbd> opens associated context menu</li>
         <li><kbd>Control + C</kbd> Copies to clipboard </li>
@@ -88,16 +83,6 @@
         <li><kbd>Control + Z</kbd> undo last action</li>
         <li><kbd>Control + Y</kbd> Redo action</li>
       </ul>
-
-      <p class="note">The following guidance on nested widgets will be moved to another section.</p>
-
-      <p>
-        <strong>Widgets within Widgets</strong>
-        The general navigation model is for a user to tab to a widget, interact with the controls in that widget and then tab to move focus to the next widget in the tab order.
-        By extension, when the construct of a widget contains another widget, tab will move focus to the contained widget because it is the next item in the tab order.
-        This continues down the layers of widgets until the last widget is reached.
-        For example, if there are two widgets A and B on a page where widget A contains within it Widget A1 and Widget A1 contains within it Widget A2, the focus sequence when pressing the tab key would be A, A1, A2, B.
-      </p>
     </section>
 
     <section class="widget" id="accordion">
@@ -199,7 +184,7 @@
           </li>
 
           <li>
-            The accordion header <code>button</code> element has <a href="aria-controls" class="property-reference">aria-controls</a> set to the ID of the element containing the accordion panel content.
+            The accordion header <code>button</code> element has <a href="#aria-controls" class="property-reference">aria-controls</a> set to the ID of the element containing the accordion panel content.
           </li>
 
           <li>
@@ -216,21 +201,24 @@
 
     <section class="widget" id="alert">
       <h3>Alert</h3>
-
       <p>
         An <a class="role-reference" href="#alert">alert</a> is an element that displays a brief, important message in a way that attracts the user's attention without interrupting the user's task.
         Dynamically rendered alerts are automatically announced by most screen readers, and in some operating systems, they may trigger an alert sound.
         It is important to note that, at this time, screen readers do not inform users of alerts that are present on the page before page load completes.
       </p>
       <p>
-        Because an alert is intended to provide important and potentially time-sensitive information without interfering with the user's ability to continue working, authors should ensure alerts do not affect the keyboard focus.
-        If there is a need to interrupt work flow, consider using an <a href="#alertdialog">alert dialog</a>
+        Because alerts are intended to provide important and potentially time-sensitive information without interfering with the user's ability to continue working,
+        it is crucial they do not affect keyboard focus.
+        The <a href="#alertdialog">alert dialog</a> is designed for situations where interrupting work flow is necessary.
       </p>
       <p>
-        In most circumstances, authors should avoid making alerts disappear automatically.
-        An alert that disappears too quickly can lead to failure to meet <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits-no-exceptions.html">WCAG 2.0 success criterion 2.2.3</a>.
-        In addition, authors should be careful to avoid overuse of alerts.
-        Frequent interruptions inhibit usability for people with visual and cognitive disabilities, leading to failures to meet <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits-postponed.html">WCAG 2.0 success criterion 2.2.4</a>.
+        It is also important to avoid designing alerts that disappear automatically.
+        An alert that disappears too quickly can lead to failure to meet
+        <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits-no-exceptions.html">WCAG 2.0 success criterion 2.2.3</a>.
+        Another critical design consideration is the frequency of interruption caused by alerts.
+        Frequent interruptions inhibit usability for people with visual and cognitive disabilities, which makes meeting the requirements of 
+        <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits-postponed.html">WCAG 2.0 success criterion 2.2.4</a>
+        more difficult.
       </p>
 
       <section class="notoc">
@@ -245,7 +233,7 @@
 
       <section class="notoc">
         <h4>Example</h4>
-        <p><a href="examples/alert/index.html">Alert role example</a></p>
+        <p><a href="examples/alert/index.html">Alert Example</a></p>
       </section>
     </section>
 
@@ -254,7 +242,9 @@
       <p>
         An alert dialog  is a <a href="#dialog_modal">modal dialog</a> that interrupts the user's workflow to communicate an important message and acquire a response.
         Examples include action confirmation prompts and error message confirmations.
-        The <a href="#alertdialog" class="role-reference">alertdialog</a> role enables assistive technologies and browsers to distinguish alert dialogs from other dialogs so they have the option of giving them special treatment, such as playing a system alert sound.
+        The <a href="#alertdialog" class="role-reference">alertdialog</a> role 
+        enables assistive technologies and browsers to distinguish alert dialogs from other dialogs 
+        so they have the option of giving alert dialogs special treatment, such as playing a system alert sound.
       </p>
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
@@ -340,7 +330,7 @@
           To tell assistive technologies that a button is a toggle button, specify a value for the attribute <a href="#aria-pressed" class="state-reference">aria-pressed</a>.
           For example, a button labeled mute in an audio player could indicate that sound is muted by setting the pressed state true.
           <strong>Important:</strong> it is critical the label on a toggle does not change when its state changes.
-          In this example, when the pressed state is true, the label remains “Mute” so a screen reader would say something like “Mute toggle button pressed”. 
+          In this example, when the pressed state is true, the label remains “Mute” so a screen reader would say something like “Mute toggle button pressed”.
           Alternatively, if the design were to call for the button label to change from “Mute” to “Unmute,” the aria-pressed attribute would not be needed.
         </li>
         <li>Menu button: as described in the <a href="#menubutton">menu button pattern</a>, a button is revealed to assistive technologies as a menu button if it has the property <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set to <code>true</code>.</li>
@@ -411,14 +401,13 @@
         </ul>
       </section>
       <section class="notoc">
-        <h4>Example</h4>
-        <p><a href="examples/button/button.html">Button role examples</a></p>
+        <h4>Examples</h4>
+        <p><a href="examples/button/button.html">Button Examples</a>: Examples of clickable HTML <code>div</code> and <code>span</code> elements made into accessible command and toggle buttons.</p>
       </section>
     </section>
 
     <section class="widget" id="checkbox">
       <h3>Checkbox</h3>
-
       <p>WAI-ARIA supports two types of <a href="#checkbox" class="role-reference">checkbox</a> widgets:</p>
       <ol>
         <li>Dual-state: The most common type of checkbox, it allows the user to toggle between two choices -- checked and not checked.</li>
@@ -442,25 +431,22 @@
           If this feature is provided, activating the overall checkbox a third time recreates that partially checked state where only some options in the group are checked.
         </li>
       </ul>
-
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
         <p>When the checkbox has focus, pressing the <kbd>Space</kbd> key changes the state of the checkbox.</p>
       </section>
-
       <section class="notoc">
         <h4>WAI-ARIA Roles, States, and Properties</h4>
         <ul>
           <li>The checkbox has role <a href="#checkbox" class="role-reference">checkbox</a>.</li>
           <li>The checkbox has an accessible label, preferably provided by a visible label associated using <a href="#aria-labelledby" class="property-reference" >aria-labelledby</a>.</li>
-          <li>When checked, the checkbox element has the state <a href="#aria-checked" class="state-reference" >aria-checked</a>=&quot;true&quot;.</li>
-          <li>When not checked, it has the state <a href="#aria-checked" class="state-reference" >aria-checked</a>=&quot;false&quot;.</li>
-          <li>When partially checked, it has the state <a href="#aria-checked" class="state-reference" >aria-checked</a>=&quot;mixed&quot;.</li>
+          <li>When checked, the checkbox element has state <a href="#aria-checked" class="state-reference" >aria-checked</a> set to <code>true</code>.</li>
+          <li>When not checked, it has state <a href="#aria-checked" class="state-reference" >aria-checked</a> set to <code>false</code>.</li>
+          <li>When partially checked, it has state <a href="#aria-checked" class="state-reference" >aria-checked</a> set to <code>mixed</code>.</li>
           <li>If a set of checkboxes is presented as a logical group with a visible label, the checkboxes are included in an element with role <a href="#group" class="role-reference" >group</a> that has the property <a href="#aria-labelledby" class="property-reference" >aria-labelledby</a> set to the ID of the element containing the label.</li>
           <li>If the presentation includes additional descriptive static text relevant to a checkbox or checkbox group, the checkbox or checkbox group has the property <a href="#aria-describedby" class="property-reference">aria-describedby</a> set to the ID of the element containing the description.</li>
         </ul>
       </section>
-
       <section class="notoc">
         <h4>Examples</h4>
         <ul>
@@ -482,58 +468,78 @@
 
     <section class="widget" id="dialog_modal">
       <h3>Dialog (Modal)</h3>
-
-      <p class="note">This section is partially revised. Planned changes are being discussed in <a href="https://github.com/w3c/aria-practices/issues/42">issue 42</a>.</p>
-
       <p>
-        A <a href="#dialog" class="role-reference">dialog</a> is a window overlayed on the primary window.
-        A modal dialog is designed to interrupt the user to, for example, prompt the user to confirm an action or enter information, and it traps or contains keyboard focus until the dialog is closed.
-        ARIA has a special role for modal dialogs that convey a brief, important message to the user -- the <a href="#alertdialog" class="role-reference">alertdialog</a> ( See the <a href="#alertdialog">Alert Dialog</a> design pattern).
+        Work on this section is in progress. Provide feedback in
+        <a href="https://github.com/w3c/aria-practices/issues/42">issue 42.</a>
       </p>
-
+      <p>
+        A <a href="#dialog" class="role-reference">dialog</a> is a window overlayed on either the primary window or another dialog window.
+        Like non-modal dialogs, modal dialogs have their own tab sequence, i.e., <kbd>Tab</kbd> and <kbd>Shift + Tab</kbd> do not move focus outside the dialog.
+        However, the window under a modal dialog is typically inert; users cannot interact with content outside the dialog window.
+        So, unlike non-modal dialogs, a modal dialog does not provide means for moving keyboard focus outside the dialog window without closing the dialog.
+      </p>
+      <p>
+        The <a href="#alertdialog" class="role-reference">alertdialog</a> role is a special-case dialog role
+        designed specifically for dialogs that divert users' attention to a brief, important message.
+        Its usage is described in the <a href="#alertdialog">alert dialog design pattern.</a>
+      </p>
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
-
         <ul>
-          <li><kbd>Tab</kbd>: Moves focus to the next focusable element inside the dialog. Pressing tab with focus on the last focusable element in the dialog moves focus to the first focusable element in the dialog. </li>
-          <li><kbd>Shift + Tab</kbd>: Moves focus to the previous focusable element inside the dialog. Pressing shift-tab with focus on the first focusable element in the dialog moves focus to the last focusable element in the dialog. </li>
-          <li><kbd>Escape</kbd>: Closes the dialog without taking any action. </li>
-          <li> <kbd>Enter</kbd>: Serves as the default submit action key if if the primary purpose of the dialog is to gather information </li>
+          <li><kbd>Tab</kbd>:
+            <ul>
+              <li>Moves focus to the next focusable element inside the dialog.</li>
+              <li>If focus is on the last element, moves focus to the first focusable element inside the dialog. </li>
+            </ul>
+          </li>
+          <li><kbd>Shift + Tab</kbd>:
+            <ul>
+              <li>Moves focus to the previous focusable element inside the dialog.</li>
+              <li>If focus is on the first element, moves focus to the last focusable element inside the dialog.</li>
+            </ul>
+          </li>
+        <li><kbd>Escape</kbd>: Closes the dialog.</li>
         </ul>
-
-        <ul class="note">
-          <li>If the current focus item has <kbd>Escape</kbd> key behavior, the press of the <kbd>Escape</kbd> will be handled by the current item and the user may have to press <kbd>Escape</kbd> an additional time to close the dialog.</li>
-          <li> When the dialog is closed or cancelled focus should return to the element in the application which had focus before the dialog is invoked. This is usually the control which opened the dialog. </li>
-          <li> When a modal dialog opens focus goes to the first focusable item in the dialog. Determining the first focusable item must take into account elements which receive focus by default (form fields and links) as well as items which may have a tabindex attribute with a positive value. </li>
-        </ul>
+        <ol class="note">
+          <li>
+            When a dialog opens, focus is typically set on the first focusable element.
+          </li>
+          <li>
+            When a dialog closes, focus returns to the element that had focus before the dialog was invoked.
+            This is often the control that opened the dialog.
+          </li>
+        </ol>
       </section>
-
       <section class="notoc">
         <h4>WAI-ARIA Roles, States, and Properties</h4>
         <ul>
-          <li>The element containing the dialog has a role of <a href="#dialog" class="role-reference">dialog</a>.</li>
-          <li>The dialog box title is provided by either the <a href="#aria-label" class="property-reference">aria-label</a> or the <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> property.</li>
-          <li> The <a href="#aria-describedby" class="property-reference">aria-describedby</a> property may be set on the element with the <code>dialog</code> role to indicate which element or elements in the dialog contain content that describes the primary purpose or message of the dialog. Screen readers may automatically announce the specified description along with the dialog title and initially focused element when the dialog opens. </li>
+          <li>The element that serves as the dialog container has a role of <a href="#dialog" class="role-reference">dialog</a>.</li>
+          <li>The dialog has either:
+            <ul>
+              <li>The <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> property set to refer to the visible dialog title.</li>
+              <li>A label specified with <a href="#aria-label" class="property-reference">aria-label</a>.</li>
+            </ul>
+          </li>
+          <li>
+            The <a href="#aria-describedby" class="property-reference">aria-describedby</a> property can be set on the
+            element with the <code>dialog</code> role to indicate which
+            element or elements in the dialog contain content that describes the primary purpose or message of the dialog.
+            Specifying descriptive elements enables screen readers to announce the description along with the dialog title and initially focused element when the dialog opens.
+          </li>
         </ul>
       </section>
-
       <section class="notoc">
         <h4>Example</h4>
-        <p class="note">
-          Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section.
-          The ARIA practices task force is developing examples for Authoring Practices 1.1 that will be directly incorporated into the guide.
+        <p>
+          Work to develop a dialog example is tracked by
+          <a href="https://github.com/w3c/aria-practices/issues/103">issue 103.</a>
         </p>
-        <ul>
-          <li><a href="http://developer.yahoo.com/yui/examples/container/container-ariaplugin_clean.html" rel="nofollow" target="_blank">YUI dialogs -- use first two dialog buttons</a></li>
-          <li><a href="http://www.oaa-accessibility.org/examplep/alertdialog1/" target="_blank">Open Ajax Alliance (alertdialog)</a></li>
-          <li><a href="http://archive.dojotoolkit.org/nightly/dojotoolkit/dijit/tests/test_Dialog.html" target="_blank">Dojo nightly</a></li>
-        </ul>
       </section>
     </section>
 
     <section class="widget" id="dialog_nonmodal">
       <h3>Dialog (Non-Modal)</h3>
-      <p>Drafting this section is <a href="https://github.com/w3c/aria-practices/issues/59">issue 59</a>. </p>
+      <p>Drafting content for this section is tracked by <a href="https://github.com/w3c/aria-practices/issues/59">issue 59</a>. </p>
     </section>
 
     <section class="widget" id="grid">
@@ -613,7 +619,7 @@
           <ul class="note">
             <li>
               When the above grid navigation keys move focus, whether the focus is set on an element inside the cell or the grid cell depends on cell content.
-              See <a href="gridNav_focus">Whether to Focus on a Cell or an Element Inside It</a>.
+              See <a href="#gridNav_focus">Whether to Focus on a Cell or an Element Inside It</a>.
             </li>
             <li>
               While navigation keys, such as arrow keys, are moving focus from cell to cell, they are not available to do something like operate a combobox or move an editing caret inside of a cell.
@@ -714,7 +720,7 @@
           <ul class="note">
             <li>
               When the above grid navigation keys move focus, whether the focus is sett on an element inside the cell or the grid cell depends on cell content.
-              See <a href="gridNav_focus">Whether to Focus on a Cell or an Element Inside It</a>.
+              See <a href="#gridNav_focus">Whether to Focus on a Cell or an Element Inside It</a>.
             </li>
             <li>
               While navigation keys, such as arrow keys, are moving focus from cell to cell, they are not available to do something like operate a combobox or move an editing caret inside of a cell.
@@ -877,48 +883,53 @@
           </li>
           <li>
             If rows or cells are included in a grid via <a href="#aria-owns" class="property-reference">aria-owns</a>, they will be presented to assistive technologies after the DOM descendants of the <code>grid</code> element unless the DOM descendants are also included in the <code>aria-owns</code> attribute.
-            See <a href="#relations_owns">using aria-owns</a> for a detailed explaination.
+            See using aria-owns for a detailed explaination.
           </li>
         </ul>
+        <p class="note">Editor's Note - Guidance for aria-owns has not yet been created. A link to it will be added above once created.</p>
+
       </section>
 
       <section class="notoc">
           <h4>Examples</h4>
           <ul>
-            <li><a href="examples/grid/LayoutGrids.html">Layout Grids</a>: Three example implementations of grids that are used to lay out widgets, including a collection of navigation links, a message recipients list, and a set of search results.</li>
-            <li><a href="examples/grid/dataGrids.html">Data Grids</a>: Three example implementations of grid that include features relevant to presenting tabular information, such as content editing, sort, and column hiding.</li>
-            <li><a href="examples/grid/advancedDataGrid.html">Advanced Data Grid</a>: Example of a grid with behaviors and features similar to a typical spreadsheet, including cell and row selection.</li>
+            <li><a href="examples/grid/LayoutGrids.html">Layout Grid Examples</a>: Three example implementations of grids that are used to lay out widgets, including a collection of navigation links, a message recipients list, and a set of search results.</li>
+            <li><a href="examples/grid/dataGrids.html">Data Grid Examples</a>: Three example implementations of grid that include features relevant to presenting tabular information, such as content editing, sort, and column hiding.</li>
+            <li><a href="examples/grid/advancedDataGrid.html">Advanced Data Grid Example</a>: Example of a grid with behaviors and features similar to a typical spreadsheet, including cell and row selection.</li>
           </ul>
         </section>
     </section>
 
     <section class="widget" id="link">
       <h3>Link</h3>
-
-      <p>A <a href="#link" class="role-reference">link</a> widget provides an interactive reference to a resource either locally in the application or to an external resource.</p>
-      <p class="note">Authors are strongly encouraged to use a native host language link element, such as an HTML <code>&lt;A&gt;</code> element with <code>href</code> attribute. As with other WAI-ARIA widget roles, applying the link role to an element will not cause browsers to enhance the element with standard link behaviors such as navigation to the link target or context menu actions. Providing these features of the element is the author's responsibility.</p>
-
+      <p>
+        A <a href="#link" class="role-reference">link</a> widget provides an interactive reference to a resource.
+        The target resource can be either external or local, i.e., either outside or within the current page or application.
+       </p>
+      <p class="note">
+        Authors are strongly encouraged to use a native host language link element, such as an HTML
+        <code>&lt;A&gt;</code> element with an <code>href</code> attribute. As with other WAI-ARIA
+        widget roles, applying the link role to an element will not cause browsers to enhance the
+        element with standard link behaviors, such as navigation to the link target or context menu
+        actions. 
+        When using the <code>link</code> role, providing these features of the element is the author's responsibility.
+      </p>
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
-
         <ul>
-          <li><kbd>Enter</kbd> executes the link and moves focus to the link target.</li>
-          <li><kbd>Shift + F10</kbd> opens associated context menu.</li>
+          <li><kbd>Enter</kbd>: Executes the link and moves focus to the link target.</li>
+          <li><kbd>Shift + F10</kbd>: Opens the link's context menu.</li>
         </ul>
       </section>
-
       <section class="notoc">
         <h4>WAI-ARIA Roles, States, and Properties</h4>
-          <ul>
-            <li>The element containing the link text has role of <a href="#link" class="role-reference">link</a>.</li>
-          </ul>
+        <p>
+            The element containing the link text or graphic has role of <a href="#link" class="role-reference">link</a>.
+        </p>
       </section>
-
       <section class="notoc">
-        <h4>Example</h4>
-        <ul>
-          <li><a href="examples/link/link.html">Link role examples</a></li>
-        </ul>
+        <h4>Examples</h4>
+        <p><a href="examples/link/link.html">Link Examples</a>: Link widgets constructed from HTML <code>span</code> and <code>div</code> elements.</p>
       </section>
     </section>
 
@@ -939,7 +950,7 @@
         To present a list of interactive elements, see the <a href="#grid">grid</a> pattern.
       </p>
       <p>
-        Avoiding very long option names facilitates understandability and perceivability for screen reader users. 
+        Avoiding very long option names facilitates understandability and perceivability for screen reader users.
         The entire name of an option is spoken as a single unit of speech when the option is read.
         When too much information is spoken as the result of a single key press, it is difficult to understand.
         Long names inhibit perception by increasing the impact of interrupted speech because users typically have to re-read the entire option.
@@ -978,22 +989,22 @@
             </ul>
           </li>
           <li><strong>Multiple Selection</strong>:
-            Authors may implement either of two interaction models to support multiple selection: 
+            Authors may implement either of two interaction models to support multiple selection:
             a recommended model that does not require the user to hold a modifier key, such as <kbd>Shift</kbd> or <kbd>Control</kbd>, while navigating the list
             or an alternative model that does require modifier keys to be held while navigating in order to avoid losing selection states.
             <ul>
               <li>Recommended selection model -- holding modifier keys is not necessary:
                 <ul>
                   <li><kbd>Space</kbd>: changes the selection state of the focused option .</li>
-                  <li><kbd>Shift + Down Arrow</kbd> (Optional): Moves focus to and selects the next option.</li>
-                  <li><kbd>Shift + Up Arrow</kbd> (Optional): Moves focus to and selects the previous option.</li>
+                  <li><kbd>Shift + Down Arrow</kbd> (Optional): Moves focus to and toggles the selected state of the next option.</li>
+                  <li><kbd>Shift + Up Arrow</kbd> (Optional): Moves focus to and toggles the selected state of the previous option.</li>
                   <li><kbd>Shift + Space</kbd> (Optional): Selects contiguous items from the most recently selected item to the focused item.</li>
                   <li><kbd>Control + Shift + Home</kbd> (Optional): Selects the focused option and all options up to the first option.</li>
                   <li><kbd>Control + Shift + End</kbd> (Optional): Selects the focused option and all options down to the last option.</li>
                   <li><kbd>Control + A</kbd> (Optional): Selects all options in the list. Optionally, if all options are selected, it may also unselect all options.</li>
                 </ul>
               </li>
-              <li>Alternative selection model -- moving focus without holding a <kbd>Shift</kbd> or <kbd>Control</kbd> modifier unselects all selected nodes except the focused node: 
+              <li>Alternative selection model -- moving focus without holding a <kbd>Shift</kbd> or <kbd>Control</kbd> modifier unselects all selected nodes except the focused node:
               <ul>
                   <li><kbd>Shift + Down Arrow</kbd>: Moves focus to and toggles the selection state of the next option.</li>
                   <li><kbd>Shift + Up Arrow</kbd>: Moves focus to and toggles the selection state of the previous option.</li>
@@ -1012,8 +1023,8 @@
         <ol class="note">
           <li>DOM focus (the active element) is functionally distinct from the selected state. For more details, see <a href="#kbd_focus_vs_selection">this description of differences between focus and selection.</a></li>
           <li>
-            The <code>listbox</code> role supports the <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property, 
-            which provides an alternative to moving DOM focus among <code>treeitem</code> elements when implementing keyboard navigation. 
+            The <code>listbox</code> role supports the <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property,
+            which provides an alternative to moving DOM focus among <code>treeitem</code> elements when implementing keyboard navigation.
             For details, see <a href="#kbd_focus_activedescendant">Managing Focus in Composites Using aria-activedescendant</a>.
           </li>
           <li>
@@ -1056,7 +1067,7 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
       </section>
 
       <section class="notoc">
-        <h4>Example</h4>
+        <h4>Examples</h4>
         <p><a href="examples/listbox/listbox.html">Listbox Examples:</a> Two examples of the listbox pattern demonstrating differences between single-select and multi-select implementation as well as the use of action buttons with key shortcuts for arranging items in a list.</p>
       </section>
     </section>
@@ -1082,7 +1093,7 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
           The following description of keyboard behaviors assumes:</p>
           <ol>
             <li>A horizontal <code>menubar</code> containing several <code>menuitem</code> elements.</li>
-            <li>All items in the <code>menubar</code> have child submenus that contain multiple vertically arranged items.</li> 
+            <li>All items in the <code>menubar</code> have child submenus that contain multiple vertically arranged items.</li>
             <li>Some of the <code>menuitem</code> elements in the submenus have child submenus with items that are also vertically arranged.</li>
           </ol>
           <p>When reading the following descriptions, also keep in mind that:</p>
@@ -1094,17 +1105,17 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
           </ol>
         <ul>
           <li>
-            When a <code>menu</code> opens, or when a <code>menubar</code> receives focus, 
+            When a <code>menu</code> opens, or when a <code>menubar</code> receives focus,
             keyboard focus is placed on the first item.
             All items are focusable as described in <a href="#kbd_general_within"></a>.
           </li>
-          <li><kbd>Enter</kbd>: 
+          <li><kbd>Enter</kbd>:
             <ul>
               <li>When focus is on a <code>menuitem</code> that has a submenu, opens the submenu and places focus on its first item.</li>
               <li>Otherwise, activates the item and closes the menu.</li>
             </ul>
           </li>
-          <li><kbd>Space</kbd>: 
+          <li><kbd>Space</kbd>:
             <ul>
               <li>When focus is on a <code>menuitemcheckbox</code>, changes the state without closing the menu.</li>
               <li>When focus is on a <code>menuitemradio</code> that is not checked, without closing the menu, checks the focused <code>menuitemradio</code> and unchecks any other checked <code>menuitemradio</code> element in the same group.</li>
@@ -1113,18 +1124,18 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
             </ul>
           </li>
           <li><kbd>Down Arrow</kbd>:
-            <ul> 
+            <ul>
               <li>When focus is on a <code>menuitem</code> in a <code>menubar</code>, opens its submenu and places focus on the first item in the submenu.</li>
             <li>When focus is in a <code>menu</code>, moves focus to the next item, optionally wrapping from the last to the first.</li>
             </ul>
           </li>
           <li><kbd>Up Arrow</kbd>:
-            <ul> 
+            <ul>
             <li>When focus is in a <code>menu</code>, moves focus to the previous item, optionally wrapping from the first to the last.</li>
             <li>When focus is in a <code>menubar</code>, does nothing.</li>
             </ul>
           </li>
-          <li><kbd>Right Arrow</kbd>: 
+          <li><kbd>Right Arrow</kbd>:
             <ul>
             <li>When focus is in a <code>menubar</code>, moves focus to the next item, optionally wrapping from the last to the first.</li>
               <li>When focus is in a <code>menu</code> and on a <code>menuitem</code> that has a submenu, opens the submenu and places focus on its first item.</li>
@@ -1153,7 +1164,7 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
                     Either: (Recommended) opens the submenu of that <code>menuitem</code> without moving focus into the submenu,
                     or opens the submenu of that <code>menuitem</code> and places focus on the first item in the submenu.
                   </li>
-                </ol> 
+                </ol>
               </li>
             </ul>
           </li>
@@ -1168,8 +1179,8 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
           <li>Disabled menu items are focusable but cannot be activated. </li>
           <li>A <a href="#separator" class="role-reference">separator</a> in a menu is not focusable or interactive.</li>
           <li>
-            If a menu is opened or a menubar receives focus as a result of a context action, <kbd>Escape</kbd> or <kbd>Enter</kbd> may return focus to   the invoking context. 
-            For example, a rich text editor may have a menubar that receives focus when a shortcut key, e.g., <kbd>alt + F10</kbd>, is pressed while editing. 
+            If a menu is opened or a menubar receives focus as a result of a context action, <kbd>Escape</kbd> or <kbd>Enter</kbd> may return focus to   the invoking context.
+            For example, a rich text editor may have a menubar that receives focus when a shortcut key, e.g., <kbd>alt + F10</kbd>, is pressed while editing.
             In this case, pressing <kbd>Escape</kbd> or activating a command from the menu may return focus to the editor.
           </li>
           <li>
@@ -1214,10 +1225,10 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
       </section>
 
       <section class="notoc">
-        <h4>Example</h4>
+        <h4>Examples</h4>
         <ul>
-          <li><a href="examples/menubar/menubar-1/menubar-1.html">Navigation Menubar</a>: Demonstrates a menubar that provides site navigation.</li>
-          <li><a href="examples/menubar/menubar-2/menubar-2.html">Editor Menubar</a>: Demonstrates menu radios and menu checkboxes in submenus of a menubar that provides text formatting commands for a text field.</li>
+          <li><a href="examples/menubar/menubar-1/menubar-1.html">Navigation Menubar Example</a>: Demonstrates a menubar that provides site navigation.</li>
+          <li><a href="examples/menubar/menubar-2/menubar-2.html">Editor Menubar Example</a>: Demonstrates menu radios and menu checkboxes in submenus of a menubar that provides text formatting commands for a text field.</li>
         </ul>
       </section>
     </section>
@@ -1248,14 +1259,14 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
       </section>
 
       <section class="notoc">
-        <h4>Example</h4>
+        <h4>Examples</h4>
         <ul>
           <li>
             <a href="examples/menu-button/menu-button-1/menu-button-1.html">Actions Menu Button Example</a>:
             Menu button that opens a popup menu of actions that uses a <code>button</code> element for the menu button.
           </li>
           <li>
-            <a href="examples/menu-button/menu-button-2/menu-button-2.html">Navigation Menu Button Example</a>: 
+            <a href="examples/menu-button/menu-button-2/menu-button-2.html">Navigation Menu Button Example</a>:
             Menu button that opens a popup menu of links that uses a <code>a</code> element for the menu button.
           </li>
         </ul>
@@ -1263,133 +1274,153 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
     </section>
 
     <section class="widget" id="radiobutton">
-            <h3>Radio Group</h3>
-            <p>A radio group is a set of checkable buttons, known as radio buttons, where only
-                one button in the set may be in a checked state.</p>
-
-            <section class="notoc">
-                <h4>Keyboard Interaction</h4>
-                <ul>
-                    <li>When a radio group is receiving focus:
-                        <ul>
-                            <li><kbd>Tab</kbd> and <kbd>Shift+Tab</kbd>: move focus to the
-                                checked radio button. If none of the radio buttons are checked, they
-                                move focus to the first radio button in the group.</li>
-                        </ul>
-                    </li>
-                    <li>When focus is on a radio button in a radio group:
-                        <ul>
-                            <li><kbd>Tab</kbd>: moves focus to the element in the page tab
-                                sequence that follows the radio group.</li>
-                            <li><kbd>Shift+Tab</kbd>: moves focus to the element in the page
-                                tab sequence that precedes the radio group.</li>
-                            <li><kbd>Space</kbd>: checks the focussed radio button if it is not
-                                already checked.</li>
-                            <li><kbd>Right Arrow</kbd> and <kbd>Down Arrow</kbd>: move focus to
-                                the next radio button in the group, uncheck the previously focused
-                                button, and check the newly focused button. If focus is on the last
-                                button, focus moves to the first button.</li>
-                            <li><kbd>Left Arrow</kbd> and <kbd>Up Arrow</kbd>: move focus to
-                                the previous radio button in the group, uncheck the previously
-                                focused button, and check the newly focused button. If focus is on
-                                the first button, focus moves to the last button.</li>
-                        </ul>
-                    </li>
-                </ul>
-                <p class="note">
-                    The behavior of the <kbd>Tab</kbd> key described above differs slightly from the
-                    behavior provided by some browsers for native HTML radio groups. In some
-                    browsers, if none of the radio buttons are selected, <kbd>Shift+Tab</kbd> places
-                    focus on the last radio button instead of the first radio button.
-                </p>
-            </section>
-
-            <section class="notoc">
-                <h4>WAI-ARIA Roles, States, and Properties</h4>
-                <ul>
-                    <li>
-                        The radio buttons are contained in or owned by an element with role
-                        <a href="#radiogroup" class="role-reference">radiogroup</a>
-                        .
-                    </li>
-                    <li>
-                        Each radio button element has role
-                        <a href="#radio" class="role-reference">radio</a>.
-                    </li>
-                    <li>
-                        If a radio button is checked, the <code>radio</code> element has
-                        <a href="#aria-checked" class="state-reference">aria-checked</a>
-                        set to <code>true</code>. If it is not checked, it has
-                        <a href="#aria-checked" class="state-reference">aria-checked</a>
-                        set to <code>false</code>.
-                    </li>
-                    <li>
-                        Each <code>radio</code> element is labeled by its content, has a visible
-                        label referenced by
-                        <a href="#aria-labelledby" class="property-reference">aria-labelledby</a>,
-                        or has a label specified with
-                        <a href="#aria-label" class="property-reference">aria-label</a>.
-                    </li>
-                    <li>
-                        The <code>radiogroup</code> element has a visible label referenced by
-                        <a href="#aria-labelledby" class="property-reference">aria-labelledby</a>
-                        or has a label specified with
-                        <a href="#aria-label" class="property-reference">aria-label</a>.
-                    </li>
-                    <li>
-                        If elements providing additional information about either the radio group or
-                        each radio button are present, those elements are referenced by the <code>radiogroup</code>
-                        element or <code>radio</code> elements with the
-                        <a href="#aria-describedby" class="property-reference">aria-describedby</a>
-                        property.
-                    </li>
-                </ul>
-            </section>
-
-            <section class="notoc">
-                <h4>Example</h4>
-                <ul>
-                    <li><a href="examples/radio/radio-1/radio-1.html">Radio group example using roving tabindex.</a></li>
-                    <li><a href="examples/radio/radio-2/radio-2.html">Radio group example using managed focus with <code>aria-activedescendant</code>.</a></li>
-                </ul>
-            </section>
-
-        </section>
-
-    <section class="widget" id="slider">
-      <h3>Slider</h3>
-
-      <p>A slider is an input where the user selects a value from within a given range. Sliders typically have a slider thumb that when moved will change the current value within the bar or track.</p>
-
+      <h3>Radio Group</h3>
+      <p>
+        A radio group is a set of checkable buttons, known as radio buttons, where only one
+        button in the set may be in a checked state.
+      </p>
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
         <ul>
-          <li><kbd>Right Arrow</kbd> and <kbd>Up Arrow</kbd>: Increase the value of the slider.</li>
-          <li><kbd>Left Arrow</kbd> and <kbd>Down Arrow</kbd>: Decrease the value of the slider.</li>
-          <li><kbd>Home</kbd> and <kbd>End</kbd>: Set the slider to the first and last values of the slider.</li>
-          <li><kbd>Tab</kbd>: Moves focus into and out of the slider.</li>
-          <li><kbd>Page Up</kbd> and <kbd>Page Down</kbd> (Optional): Increment or decrement the slider by an amount larger than the step changes made by the arrow keys.</li>
+          <li>
+            When a radio group receives focus:
+            <ul>
+              <li>If a radio button is checked, focus is set on the checked button.</li>
+              <li>If none of the radio buttons are checked, focus is set on the first radio
+                button in the group.</li>
+            </ul>
+          </li>
+          <li>
+            <kbd>Space</kbd>: checks the focussed radio button if it is not already checked.
+          </li>
+          <li>
+            <kbd>Right Arrow</kbd> and <kbd>Down Arrow</kbd>: move focus to the next radio button in
+            the group, uncheck the previously focused button, and check the newly focused button. If
+            focus is on the last button, focus moves to the first button.
+          </li>
+          <li>
+            <kbd>Left Arrow</kbd> and <kbd>Up Arrow</kbd>: move focus to the previous radio button
+            in the group, uncheck the previously focused button, and check the newly focused button.
+            If focus is on the first button, focus moves to the last button.
+          </li>
         </ul>
-
-        <ol class="note">
-          <li>Focus is placed on the slider (the visual object that the mouse user would move, also known as the thumb) </li>
-          <li>In some circumstances, an author may reverse the direction of the value change for the keys specified above, e.g., make <kbd>Up Arrow</kbd> decrease the value, if the author is certain doing so will result in a better user experience. </li>
-        </ol>
+        <p class="note">
+          The initial focus behavior described above differs slightly from the behavior
+          provided by some browsers for native HTML radio groups. In some browsers, if none of the
+          radio buttons are selected, moving focus into the radio group with <kbd>Shift+Tab</kbd> will place focus on the last radio button
+          instead of the first radio button.
+        </p>
       </section>
 
       <section class="notoc">
         <h4>WAI-ARIA Roles, States, and Properties</h4>
         <ul>
-          <li>The slider control has the role <a class="role-reference" href="#slider">slider</a>.  </li>
-          <li>Sliders require the <a class="property-reference" href="#aria-valuemin">aria-valuemin</a>, <a class="property-reference" href="#aria-valuemax">aria-valuemax</a>, and <a class="property-reference" href="#aria-valuenow">aria-valuenow</a> properties representing the minimum possible value of the slider, the maximum possible value, and the current value.  All of these are decimal numbers.  The minimum and maximum are typically fixed and do not change.  </li>
-          <li>Sometimes the value is not user readable, such as a number for the day of the week, e.g., "1". In those cases, use the <a class="property-reference" href="#aria-valuetext">aria-valuetext</a> property to provide a human readable string for the slider's value, e.g. "Monday". </li>
-          <li>It is recommended that authors provide a visible label for the slider, referencing it using <a href="#aria-labelledby" class="property-reference">aria-labelledby</a>.  </li>
-          <li>If the slider is vertical specify <a class="property-reference" href="#aria-orientation">aria-orientation</a>="vertical"</li>
+          <li>
+            The radio buttons are contained in or owned by an element with role
+            <a href="#radiogroup" class="role-reference">radiogroup</a>
+            .
+          </li>
+          <li>
+            Each radio button element has role
+            <a href="#radio" class="role-reference">radio</a>
+            .
+          </li>
+          <li>
+            If a radio button is checked, the <code>radio</code> element has
+            <a href="#aria-checked" class="state-reference">aria-checked</a>
+            set to <code>true</code>. If it is not checked, it has
+            <a href="#aria-checked" class="state-reference">aria-checked</a>
+            set to <code>false</code>.
+          </li>
+          <li>
+            Each <code>radio</code> element is labeled by its content, has a visible label
+            referenced by
+            <a href="#aria-labelledby" class="property-reference">aria-labelledby</a>
+            , or has a label specified with
+            <a href="#aria-label" class="property-reference">aria-label</a>
+            .
+          </li>
+          <li>
+            The <code>radiogroup</code> element has a visible label referenced by
+            <a href="#aria-labelledby" class="property-reference">aria-labelledby</a>
+            or has a label specified with
+            <a href="#aria-label" class="property-reference">aria-label</a>
+            .
+          </li>
+          <li>
+            If elements providing additional information about either the radio group or each radio
+            button are present, those elements are referenced by the <code>radiogroup</code> element
+            or <code>radio</code> elements with the
+            <a href="#aria-describedby" class="property-reference">aria-describedby</a>
+            property.
+          </li>
         </ul>
       </section>
 
       <section class="notoc">
-        <h4>Example</h4>
+        <h4>Examples</h4>
+        <ul>
+          <li>
+            <a href="examples/radio/radio-1/radio-1.html">Radio group example using roving
+              tabindex.</a>
+          </li>
+          <li>
+            <a href="examples/radio/radio-2/radio-2.html">
+              Radio group example using managed focus with <code>aria-activedescendant</code>.
+            </a>
+          </li>
+        </ul>
+      </section>
+
+    </section>
+
+    <section class="widget" id="slider">
+      <h3>Slider</h3>
+      <p>
+        A slider is an input where the user selects a value from within a given range. 
+        Sliders typically have a slider thumb that can be moved along a bar or track to change the value of the slider.
+        </p>
+      <section class="notoc">
+        <h4>Keyboard Interaction</h4>
+        <ul>
+          <li><kbd>Right Arrow</kbd> and <kbd>Up Arrow</kbd>: Increase the value of the slider.</li>
+          <li><kbd>Left Arrow</kbd> and <kbd>Down Arrow</kbd>: Decrease the value of the slider.</li>
+          <li><kbd>Home</kbd>: Set the slider to the first allowed value in its range.</li>
+          <li><kbd>End</kbd>: Set the slider to the last allowed value in its range.</li>
+          <li><kbd>Page Up</kbd> (Optional): Increment the slider by an amount larger than the step change made by <kbd>Up Arrow</kbd>.</li>
+          <li><kbd>Page Down</kbd> (Optional): Decrement the slider by an amount larger than the step change made by <kbd>Down Arrow</kbd>.</li>
+        </ul>
+        <ol class="note">
+          <li>Focus is placed on the slider (the visual object that the mouse user would move, also known as the thumb.</li>
+          <li>In some circumstances, reversing the direction of the value change for the keys specified above, e.g., having <kbd>Up Arrow</kbd> decrease the value, could create a more intuitive experience.</li>
+        </ol>
+      </section>
+      <section class="notoc">
+        <h4>WAI-ARIA Roles, States, and Properties</h4>
+        <ul>
+          <li>The element serving as the focusable slider control has role <a class="role-reference" href="#slider">slider</a>.</li>
+          <li>The slider element has the <a class="property-reference" href="#aria-valuenow">aria-valuenow</a> property set to a decimal value representing the current value of the slider.</li>
+          <li>The slider element has the <a class="property-reference" href="#aria-valuemin">aria-valuemin</a> property set to a decimal value representing the minimum allowed value of the slider.</li>
+          <li>The slider element has the <a class="property-reference" href="#aria-valuemax">aria-valuemax</a> property set to a decimal value representing the maximum allowed value of the slider.</li>
+          <li>
+          If the value of <code>aria-valuenow</code> is not user-friendly, e.g., the day of the week is represented by a number, the 
+          <a class="property-reference" href="#aria-valuetext">aria-valuetext</a> 
+          property is set to a string that makes the slider value understandable, e.g., &quot;Monday&quot;.
+          </li>
+          <li>
+            If the slider has a visible label, it is referenced by
+            <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> on the slider element. 
+            Otherwise, the slider element has a label provided by 
+            <a href="#aria-label" class="property-reference">aria-label</a>.
+          </li>
+          <li>
+            If the slider is vertically oriented, it has <a class="property-reference" href="#aria-orientation">aria-orientation</a> set to <code>vertical</code>.
+            The default value of <code>aria-orientation</code> for a slider is <code>horizontal</code>.
+          </li>
+        </ul>
+      </section>
+      <section class="notoc">
+        <h4>Examples</h4>
         <ul>
           <li><a href="examples/slider/slider-1.html">Horizontal Slider Examples (e.g. color picker)</a></li>
           <li><a href="examples/slider/slider-2.html">Vertical and Text Slider Examples (e.g. Thermostat Controls)</a></li>
@@ -1399,123 +1430,151 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
 
     <section class="widget" id="slidertwothumb">
       <h3>Slider (Multi-Thumb)</h3>
-
       <p>
-        A multi-thumb slider is a slider with multiple slider thumbs designed to change 2 or more different values for an object it controls.
-        In most cases the user is selecting a maximum and minimum value to create a range, but in some cases the 2 (or more) values selected are completely independent.
+        Work on this design pattern is in progress and is tracked in 
+        <a href="https://github.com/w3c/aria-practices/issues/221">issue 221.</a>
+        Please provide any feedback in that issue.
       </p>
-
+      <p>
+        A multi-thumb slider is a slider with two or more thumbs that each set a value in a group of related values.
+        Many two-thumb sliders set a maximum and minimum value for a range, and the thumbs are not allowed to pass one another.
+        That is, the mthumb that sets the upper value of the range can not be set lower than the thumb that controls the lower value of the range.
+        However, in some multi-thumb sliders, each thumb sets a value that does not depend on the other thumb values.
+      </p>
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
-        <p>This range slider allows author to modify multiple values for an object.</p>
         <ul>
-          <li><kbd>Tab</kbd> to the first slider thumb.</li>
-          <li>Second <kbd>Tab</kbd> moves to next slider thumb..</li>
-          <li>Third <kbd>Tab</kbd> moves to the next slider thumb or if there are no   more, it moves to the next tab stop on the page. </li>
-          <li><kbd>Shift + Tab</kbd> moves backwards through the tabs.</li>
-          <li>With focus on a thumb: Same as <a href="#slider">Slider</a> above.
-            <ul>
-              <li><kbd>Right Arrow</kbd> and <kbd>Up Arrow</kbd> increase the value of the slider. If applicable this is constrained by the value of the other thumb. </li>
-              <li><kbd>Left Arrow</kbd> and <kbd>Down Arrow</kbd> decrease the value of the slider. If applicable this is constrained by the value of the other thumb. </li>
-              <li><kbd>Home</kbd> and <kbd>End</kbd> move to the first and last values of the slider. If applicable this is constrained by the value of the other thumb. </li>
-              <li><kbd>Page Up</kbd> and <kbd>Page Down</kbd> optionally increment or decrement the   slider by a given amount. If applicable this is constrained by the value of the other thumb. </li>
-            </ul>
+          <li>Each thumb is in the page tab sequence and has the same keyboard interaction as a <a href="#slider">single-thumb slider</a>.</li>
+          <li>
+            The tab order remains constant regardless of thumb value and visual position within the slider.
+            For example, if the value of a thumb changes such that it moves past one of the other thumbs, the tab order does not change.
           </li>
         </ul>
-
-        <ol class="note">
-          <li>Focus is placed on one of the thumbs of the slider.</li>
-          <li>All thumbs are in the tab order.</li>
-          <li>If the current value of a slider crosses over one of the other sliders, the tab order remains the same.  Example.  If a high range slider is moved so that its current value is below the current value of a low range slider, the thumb will visually appear to be before the low range slider.  This should not change the tab order of the slider. </li>
-          <li>In some circumstances, an author may reverse the direction of the value change for the keys specified above, e.g., make <kbd>Up Arrow</kbd> decrease the value, if the author is certain doing so will result in a better user experience. </li>
-        </ol>
       </section>
-
-      <section class="notoc">
+<section class="notoc">
         <h4>WAI-ARIA Roles, States, and Properties</h4>
         <ul>
-          <li>Each slider control has the role <a class="role-reference" href="#slider">slider</a>.  </li>
-          <li>Each slider requires the <a class="property-reference" href="#aria-valuemin">aria-valuemin</a>, <a class="property-reference" href="#aria-valuemax">aria-valuemax</a>, and <a class="property-reference" href="#aria-valuenow">aria-valuenow</a> properties representing the minimum possible value of the slider, the maximum possible value, and the current value.  All of these are decimal numbers.  The maximum of the lower slider limits the minimum of the upper slider and vice versa.  </li>
-          <li>Sometimes the value is not user readable, such as a number for the day of the week, e.g., "1". In those cases, use the <a class="property-reference" href="#aria-valuetext">aria-valuetext</a> property to provide a human readable string for the slider's value, e.g. "Monday". </li>
-          <li>It is recommended that authors provide a visible label for the multi-thumb slider, referencing it using <a href="#aria-labelledby" class="property-reference">aria-labelledby</a>.  </li>
+          <li>Each element serving as a focusable slider thumb has role <a class="role-reference" href="#slider">slider</a>.</li>
+          <li>Each slider element has the <a class="property-reference" href="#aria-valuenow">aria-valuenow</a> property set to a decimal value representing the current value of the slider.</li>
+          <li>Each slider element has the <a class="property-reference" href="#aria-valuemin">aria-valuemin</a> property set to a decimal value representing the minimum allowed value of the slider.</li>
+          <li>Each slider element has the <a class="property-reference" href="#aria-valuemax">aria-valuemax</a> property set to a decimal value representing the maximum allowed value of the slider.</li>
+          <li>
+          If a value of <code>aria-valuenow</code> is not user-friendly, e.g., the day of the week is represented by a number, the 
+          <a class="property-reference" href="#aria-valuetext">aria-valuetext</a> 
+          property is set to a string that makes the slider value understandable, e.g., &quot;Monday&quot;.
+          </li>
+          <li>
+            If a slider has a visible label, it is referenced by
+            <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> on the slider element. 
+            Otherwise, the slider element has a label provided by 
+            <a href="#aria-label" class="property-reference">aria-label</a>.
+          </li>
+          <li>
+            If a slider is vertically oriented, it has <a class="property-reference" href="#aria-orientation">aria-orientation</a> set to <code>vertical</code>.
+            The default value of <code>aria-orientation</code> for a slider is <code>horizontal</code>.
+          </li>
         </ul>
       </section>
-
       <section class="notoc">
         <h4>Example</h4>
-        <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The ARIA practices task force is developing examples for Authoring Practices version 1.1 that will be directly incorporated into the guide.</p>
-
-        <ul>
-          <li><a href="http://www.oaa-accessibility.org/examplep/slider1/" target="_blank" rel="nofollow">Open Ajax Alliance Sliders</a> (see second example on page)</li>
-          <li><a href="http://files.paciellogroup.com/blogmisc/samples/aria/slider/doubleslider.html" target="_blank" rel="nofollow">Paciello Group double slider</a></li>
-        </ul>
+        <p>
+        Work to develop an example multi-thumb slider is tracked in 
+        <a href="https://github.com/w3c/aria-practices/issues/124">issue 124.</a>
+        </p>
       </section>
     </section>
 
     <section class="widget" id="spinbutton">
       <h3>Spinbutton</h3>
-      <p>A widget that allows users to choose a value from a set, or range, of discrete values. For example, select a number from 1 to 59 for the minute of an hour when setting an alarm.</p>
-
-      <p>A spin button provides ways to easily increment and decrement the value. If the range is large, it may support changing the value by both a single step and by multiple steps at once. For instance, in the alarm example, the user may be able to move by 1 minute with the arrow keys and by 10 minutes with PageUp and PageDown.</p>
-
-      <p>A spinbutton usually includes a text field that displays the current value and allows users to directly edit it.</p>
-
+      <p>
+        A spinbutton is an input widget that restricts its value to a set or range of discrete values. 
+        For example, in a widget that enables users to set an alarm, a spinbutton could allow users to select a number from 0 to 59 for the minute of an hour.
+      </p>
+      <p>
+        Spinbuttons often have three components, including a text field that displays the current value, an increment button, and a decrement button.
+        The text field is usually the only focusable component because the increment and decrement functions are keyboard accessible via arrow keys.
+        Typically, the text field also allows users to directly edit the value.
+      </p>
+      <p>
+        If the range is large, a spinbutton may support changing the value in both small and large steps.
+        For instance, in the alarm example, the user may be able to move by 1 minute with <kbd>Up Arrow</kbd> and <kbd>Down Arrow</kbd> and by 10 minutes with <kbd>Page Up</kbd> and <kbd>Page Down</kbd>.
+      </p>
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
-
-        <p>The associated text field generally supports standard text entry operations such as selection of characters, deletions, insertions, and caret movement using the <kbd>Right Arrow</kbd> and <kbd>Left Arrow</kbd> keys.  The exception is when the spinbutton's value space is restricted and the associated script limits the characters.  For example, an hour-and-minute spinner would allow only the digits 1-59, the colon ':', and the characters 'AM' and 'PM'.  If the user typed any other character, it would not change the contents of the text field nor the value of the spinbutton. </p>
         <ul>
-          <li><kbd>Up Arrow</kbd> increases the value. </li>
-          <li><kbd>Down Arrow</kbd> decreases the value. </li>
-          <li><kbd>Home</kbd> and <kbd>End</kbd> key  move to the maximum or minimum values. </li>
-          <li>Optional: <kbd>Page Up</kbd> and <kbd>Page Down</kbd> increase or   decrease the value in larger steps. </li>
-          <li><kbd>Tab</kbd> key moves into and out of the widget. </li>
+          <li>Text editing keys: If the spinbutton text field allows directly editing the value, the following keys are supported.
+            <ul>
+              <li>Standard single line text field keys, such as <kbd>Left Arrow</kbd>, <kbd>Right Arrow</kbd>, <kbd>Shift + Left Arrow</kbd>, <kbd>Shift + Right Arrow</kbd>, and <kbd>Delete</kbd>, for cursor movement, selecting text, and text deletion.</li>
+              <li>
+                Characters that are permitted to be part of the value.
+                For example, an hour-and-minute spinner would allow only integer values from 0 to 59, the colon ':', and the letters 'AM' and 'PM'. 
+                Any other character input does not change the contents of the text field nor the value of the spinbutton.
+              </li>
+            </ul>
+          </li>
+          <li><kbd>Up Arrow</kbd>: Increases the value.</li>
+          <li><kbd>Down Arrow</kbd>: Decreases the value.</li>
+          <li><kbd>Home</kbd>: Sets the spinbutton to the minimum value.</li>
+          <li><kbd>End</kbd>: Sets the spinbutton to the maximum value.</li>
+          <li><kbd>Page Up</kbd> (Optional): Increases the value by a larger step than <kbd>Up Arrow</kbd>.</li>
+          <li><kbd>Page Down</kbd> (Optional): Decreases the value by a larger step than <kbd>Down Arrow</kbd>.</li>
         </ul>
-        <p class="note">Focus should remain on the edit field </p>
+        <p class="note">Focus remains on the text field during operation.</p>
       </section>
 
       <section class="notoc">
         <h4>WAI-ARIA Roles, States, and Properties</h4>
         <ul>
-          <li>The widget has the role <a class="role-reference" href="#spinbutton">spinbutton</a>.  </li>
-          <li>Spinbuttons support the <a class="property-reference" href="#aria-valuemin">aria-valuemin</a>, <a class="property-reference" href="#aria-valuemax">aria-valuemax</a>, and <a class="property-reference" href="#aria-valuenow">aria-valuenow</a> properties representing the minimum possible value of the spinner, the maximum possible value, and the current value.  All of these are decimal numbers.  The minimum and maximum are typically fixed.  </li>
-          <li>Sometimes the value is not user readable, such as a number for the day of the week, e.g., "1". In those cases, use the <a class="property-reference" href="#aria-valuetext">aria-valuetext</a> property to provide a human readable string for the slider's value, e.g. "Monday". </li>
+          <li>
+            The focusable element serving as the spinbutton has role <a class="role-reference" href="#spinbutton">spinbutton</a>.
+            This is typically an element that supports text input.
+          </li>
+          <li>The spinbutton element has the <a class="property-reference" href="#aria-valuenow">aria-valuenow</a> property set to a decimal value representing the current value of the spinbutton.</li>
+          <li>The spinbutton element has the <a class="property-reference" href="#aria-valuemin">aria-valuemin</a> property set to a decimal value representing the minimum allowed value of the spinbutton if it has a known minimum value.</li>
+          <li>The spinbutton element has the <a class="property-reference" href="#aria-valuemax">aria-valuemax</a> property set to a decimal value representing the maximum allowed value of the spinbutton if it has a known maximum value.</li>
+          <li>
+          If the value of <code>aria-valuenow</code> is not user-friendly, e.g., the day of the week is represented by a number, the 
+          <a class="property-reference" href="#aria-valuetext">aria-valuetext</a> 
+          property is set on the spinbutton element to a string that makes the spinbutton value understandable, e.g., &quot;Monday&quot;.
+          </li>
+          <li>
+            If the spinbutton has a visible label, it is referenced by
+            <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> on the spinbutton element. 
+            Otherwise, the spinbutton element has a label provided by 
+            <a href="#aria-label" class="property-reference">aria-label</a>.
+          </li>
         </ul>
       </section>
-
       <section class="notoc">
         <h4>Example</h4>
-        <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The ARIA practices task force is developing examples for Authoring Practices 1.1 that will be directly incorporated into the guide.</p>
-        <ul>
-          <li><a href="http://www.oaa-accessibility.org/examplep/spinbutton1/" rel="nofollow" target="_blank">Open Ajax Alliance Spinbutton</a></li>
-          <li><a href="http://archive.dojotoolkit.org/nightly/dojotoolkit/dijit/tests/form/test_Spinner.html" rel="nofollow">dojo/dijit nightly build</a></li>
-        </ul>
+        <p>
+          Work to develop a spinbutton example is tracked by 
+          <a href="https://github.com/w3c/aria-practices/issues/125">issue 125.</a>
+        </p>
       </section>
     </section>
 
     <section class="widget" id="table">
       <h3>Table</h3>
-      <p>Drafting this section is <a href="https://github.com/w3c/aria-practices/issues/90">issue 90</a>. </p>
       <p>
-        [Place holder for a to-be-written section about data tables]
-        While writing the grid pattern, the topic of data tables came up because the grid pattern has text clarifying when to use grid verses when to use table.
-        There was a suggestion to cover tables at the same time in the grid section.
-        That made the grid pattern section feel overwhelming so adding a placeholder for a potential table section here.
-        The grid pattern links to this section.
+        Work on drafting this section is tracked by 
+        <a href="https://github.com/w3c/aria-practices/issues/90">issue 90</a>. 
+      </p>
+      <p>
+        This is a place holder for a to-be-written section about data tables.
+        The grid pattern includes text describing how to choose between using grid and table, and it links to this section.
+        This section does not necessarily have to be part of the design pattern section.
       </p>
     </section>
 
     <section class="widget" id="tabpanel">
       <h3>Tabs</h3>
-
       <p>
         Tabs are a set of layered sections of content, known as tab panels, that display one panel of content at a time.
         Each tab panel has an associated tab element, that when activated, displays the panel.
         The list of tab elements is arranged along one edge of the currently displayed panel, most commonly the top edge.
       </p>
-
       <p>Terms used to describe this design pattern include:</p>
-
       <dl>
         <dt>Tabs or Tabbed Interface</dt>
         <dd>A set of tab elements and their associated tab panels.</dd>
@@ -1526,17 +1585,13 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
         <dt><a href="#tabpanel" class="role-reference">tabpanel</a></dt>
         <dd>The element that contains the content associated with a tab.</dd>
       </dl>
-
       <p>
         When a tabbed interface is initialized, one tab panel is displayed and its associated tab is styled to indicate that it is active.
         When the user activates one of the other tab elements, the previously displayed tab panel is hidden, the tab panel associated with the activated tab becomes visible, and the tab is considered "active".
       </p>
-
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
-
         <p>For the tab list:</p>
-
         <ul>
           <li>
             <kbd>Tab</kbd>: When the tab list is receiving focus, places focus on the active <code>tab</code> element .
@@ -1575,6 +1630,7 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
             It is recommended that tabs activate automatically when they receive focus as long as their associated tab panels are displayed without noticeable latency.
             This typically requires tab panel content to be preloaded.
             Otherwise, automatic activation slows focus movement, which significantly hampers users' ability to navigate efficiently across the tab list.
+            For additional guidance, see <a href="#kbd_selection_follows_focus"></a>.
           </li>
           <li>
             If the tabs in a tab list are arranged vertically:
@@ -1586,7 +1642,6 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
           <li>If the tab list is horizontal, it does not listen for <kbd>Down Arrow</kbd> or <kbd>Up Arrow</kbd> so those keys can provide their normal browser scrolling functions even when focus is inside the tab list.</li>
         </ol>
       </section>
-
       <section class="notoc">
         <h4>WAI-ARIA Roles, States, and Properties</h4>
         <ul>
@@ -1603,12 +1658,9 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
         </li>
         </ul>
       </section>
-
       <section class="notoc">
         <h4>Example</h4>
-        <ul>
-            <li><a href="examples/tabs/tabs.html">Tabs widget code example</a></li>
-        </ul>
+        <p><a href="examples/tabs/tabs.html">Tabs Widget Example</a></p>
       </section>
     </section>
 
@@ -1619,20 +1671,18 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
         When a set of controls is visually presented as a group, the <code>toolbar</code> role can be used to communicate the presence and purpose of the grouping to screen reader users.
         Grouping controls into toolbars can also be an effective way of reducing the number of tab stops in the keyboard interface.
       </p>
-      <p>When designing and implementing toolbars, it is strongly recommended that authors:</p>
+      <p>To optimize the benefit of toolbar widgets:</p>
       <ol>
-        <li>Implement focus management so there is one stop in the keyboard tab sequence for the toolbar and arrow keys move focus among the contained controls.</li>
+        <li>Implement focus management so the keyboard tab sequence includes one stop for the toolbar and arrow keys move focus among the controls in the toolbar.</li>
         <li>Avoid including controls that require arrow keys to operate, such as textbox or radio group. If unavoidable, include only one such control and make it the last element .</li>
         <li>Use toolbar as a grouping element only if the group contains 3 or more controls.</li>
       </ol>
-
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
         <ul>
           <li>
-            <kbd>Tab</kbd>: Moves focus into and out of the toolbar.
-            When focus moves into the toolbar, the first enabled control receives focus.
-            Optionally, if the toolbar has previously contained focus, the control that last had focus may receive focus.
+            When the toolbar receives focus, focus is set on the first control that is not disabled.
+            Optionally, if the toolbar has previously contained focus, focus is set on the control that last had focus.
           </li>
           <li>For a horizontal toolbar (the default):
             <ul>
@@ -1640,6 +1690,8 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
               <li><kbd>Right Arrow</kbd>: Moves focus to the next control.  Optionally, focus movement may wrap from the last element to the first element. </li>
             </ul>
           </li>
+          <li><kbd>Home</kbd> (Optional): Moves focus to first element.</li>
+          <li><kbd>End</kbd> (Optional): Moves focus to last element.</li>
         </ul>
         <ol class="note">
           <li>If the items in a toolbar are arranged vertically:
@@ -1648,20 +1700,27 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
               <li><kbd>Up Arrow</kbd> performs as <kbd>Left Arrow</kbd> is described above. </li>
             </ol>
           </li>
-          <li>Typically, disabled elements are not focusable when navigating with a keyboard. However, in circumstances where discoverability of a function is crucial, authors may choose to make disabled controls focusable so screen reader users are more likely to be aware of their presence. </li>
-          <li>In applications where quick access to a toolbar is important, such as accessing an editor's toolbar from its text area, it is recommended that authors provide a documented shortcut key for moving focus from the relevant context to its corresponding toolbar. </li>
+          <li>
+            Typically, disabled elements are not focusable when navigating with a keyboard. 
+            However, in circumstances where discoverability of a function is crucial, it may be helpful if disabled controls are focusable so screen reader users are more likely to be aware of their presence. 
+            For additional guidance, see <a href="#kbd_disabled_controls"></a>.
+          </li>
+          <li>In applications where quick access to a toolbar is important, such as accessing an editor's toolbar from its text area, a documented shortcut key for moving focus from the relevant context to its corresponding toolbar is recommended.</li>
         </ol>
       </section>
-
       <section class="notoc">
         <h4>WAI-ARIA Roles, States, and Properties</h4>
         <ul>
-          <li>The element has the role <a class="role-reference" href="#toolbar">toolbar</a>.  </li>
-          <li>Labeling with <a href="#aria-label" class="property-reference">aria-label</a> is recommended, especially if the user interface includes multiple toolbars. </li>
+          <li>The element that serves as the toolbar container has role <a class="role-reference" href="#toolbar">toolbar</a>.  </li>
+          <li>
+            If the toolbar has a visible label, it is referenced by
+            <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> on the toolbar element. 
+            Otherwise, the toolbar element has a label provided by 
+            <a href="#aria-label" class="property-reference">aria-label</a>.
+          </li>
           <li>If the controls are arranged vertically, the toolbar element has <a href="#aria-orientation" class="property-reference">aria-orientation</a> set to <code>vertical</code>. The default orientation is horizontal.</li>
         </ul>
       </section>
-
       <section class="notoc">
         <h4>Example</h4>
         <p><a href="examples/toolbar/toolbar.html">Toolbar Example</a>: A toolbar including buttons, links, and checkboxes that uses roving tabindex to manage focus.</p>
@@ -1671,40 +1730,43 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
     <section class="widget" id="tooltip">
       <h3>Tooltip Widget</h3>
       <p>
-        Popup that displays a description for an element when a user hovers over or focuses on that element.
-        It should popup automatically when the user gives input focus to the widget or element with which it is associated.
-        The tooltip widget can be dismissed by pressing the <kbd>Escape</kbd> key or by other methods noted below.
-        The tooltip widget differs from the <a href="#dialog_tooltip">Dialog (Tooltip)</a> in that it does not receive focus at any time.
+        Work on this design pattern is in progress and tracked by 
+        <a href="https://github.com/w3c/aria-practices/issues/128">issue 128.</a>
+        Please provide feedback in that issue.
       </p>
-      <p>The tooltip may appear immediately or there may be a small delay before the tooltip appears.</p>
-
+      <p>
+        A tooltip is a popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.
+        It typically appears after a small delay and disappears when <kbd>Escape</kbd> is pressed or on mouse out.
+      </p>
+      <p>
+        Tooltip widgets do not receive focus.
+        A hover that contains focusable elements can be made using the 
+        a <a href="#dialog_nonmodal">non-modal dialog pattern</a>.
+      </p>
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
-
         <p><kbd>Escape</kbd>: Dismisses the Tooltip.</p>
         <ol class="note">
-          <li>The trigger element to which the tooltip is attached,   e.g., a link, should never actually lose input focus. </li>
-          <li>If the tooltip is invoked when the trigger element   gets focus, then it should be dismissed when it no longer has focus (onBlur). If   the tooltip is invoked with mouseIn, then it should be dismissed with a   mouseOut. </li>
-          <li>If nested widgets use the same keys, e.g.,   <kbd>Escape</kbd>, then they should be handled in a Last In First Out (LIFO) manner. For example, an editable grid contains gridcells which contain date fields. The user invokes Actionable mode on the grid and then interacts with the Date Field to invoke the Date Picker. At this point the first press of the <kbd>Escape</kbd> key will close the Date Picker, the second press will exit Actionable mode and return to Navigation mode.</li>
+          <li>Focus stays on the triggering element while the tooltip is displayed.</li>
+          <li>
+            If the tooltip is invoked when the trigger element   receives focus, then it is dismissed when it no longer has focus (onBlur). 
+            If   the tooltip is invoked with mouseIn, then it is dismissed with on mouseOut.
+          </li>
         </ol>
       </section>
-
       <section class="notoc">
         <h4>WAI-ARIA Roles, States, and Properties</h4>
         <ul>
-          <li>Uses the WAI-ARIA role <span class="widget-description"><a href="#tooltip" class="role-reference">tooltip</a></span>. </li>
-          <li>The element that the tooltip is for references the tooltip using <a href="#aria-describedby" class="property-reference">aria-describedby</a>. </li>
+          <li>The element that serves as the tooltip container has role <a href="#tooltip" class="role-reference">tooltip</a>.</li>
+          <li>The element that triggers the tooltip references the tooltip element with <a href="#aria-describedby" class="property-reference">aria-describedby</a>.</li>
         </ul>
       </section>
-
       <section class="notoc">
         <h4>Example</h4>
-        <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The ARIA practices task force is developing examples for Authoring Practices 1.1 that will be directly incorporated into the guide.</p>
-        <ul>
-          <li><a href="http://www.oaa-accessibility.org/examplep/tooltip1/" target="_blank" rel="nofollow">Open Ajax Alliance tooltip</a></li>
-          <li><a href="http://www.oaa-accessibility.org/examplep/tooltip2/" target="_blank" rel="nofollow">Open Ajax Alliance tooltip using ARIA CSS selectors</a></li>
-          <li><a href="http://archive.dojotoolkit.org/nightly/dojotoolkit/dijit/tests/test_Tooltip.html" target="_blank" rel="nofollow">Dojo nightly</a></li>
-        </ul>
+        <p>
+          Work to develop a tooltip example is tracked by 
+          <a href="https://github.com/w3c/aria-practices/issues/127">issue 127.</a>
+        </p>
       </section>
     </section>
 
@@ -1736,7 +1798,7 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
       <p>
         When using a keyboard to navigate a tree, a visual keyboard indicator informs the user which node is focused.
         If the tree allows the user to choose just one item for an action, then it is known as a single-select tree, and the item with focus also has a selected state.
-        However, in multi-select trees, which enable the user to select more than one item for an action, the selected state is independent of the focus. 
+        However, in multi-select trees, which enable the user to select more than one item for an action, the selected state is independent of the focus.
         For example, in a typical file system navigator, the user can move focus to select any number of files for an action, such as copy or move.
         It is important that the visual design distinguish between items that are selected and the item that has focus.
         For more details, see <a href="#kbd_focus_vs_selection">this description of differences between focus and selection.</a>
@@ -1818,8 +1880,8 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
         <ol class="note">
           <li>DOM focus (the active element) is functionally distinct from the selected state. For more details, see <a href="#kbd_focus_vs_selection">this description of differences between focus and selection.</a></li>
           <li>
-            The <code>tree</code> role supports the <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property, 
-            which provides an alternative to moving DOM focus among <code>treeitem</code> elements when implementing keyboard navigation. 
+            The <code>tree</code> role supports the <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property,
+            which provides an alternative to moving DOM focus among <code>treeitem</code> elements when implementing keyboard navigation.
             For details, see <a href="#kbd_focus_activedescendant">Managing Focus in Composites Using aria-activedescendant</a>.
           </li>
           <li>
@@ -1848,14 +1910,14 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
           <li>Each parent node contains or owns an element with role <a class="role-reference" href="#group">group</a>.</li>
           <li>Each child node is contained in or owned by an element with role <a class="role-reference" href="#group">group</a> that is contained in or owned by the node that serves as the parent of that child.</li>
           <li>
-            Each element with role <code>treeitem</code> that serves as a parent node has <a class="property-reference" href="#aria-expanded">aria-expanded</a> 
+            Each element with role <code>treeitem</code> that serves as a parent node has <a class="property-reference" href="#aria-expanded">aria-expanded</a>
             set to <code>false</code> when the node is in a closed state and set to <code>true</code> when the node is in an open state.
             End nodes do not have the <code>aria-expanded</code> attribute because, if they were to have it, they would be incorrectly described to assistive technologies as parent nodes.
           </li>
           <li>
             Each element with role <code>treeitem</code> that serves as a parent node has either
             <a class="property-reference" href="#aria-label">aria-label</a> or <a class="property-reference" href="#aria-labelledby">aria-labelledby</a>
-            set to specify a label. 
+            set to specify a label.
             Warning: parent nodes missing a label are labeled by             all child elements,
             causing screen readers to announce every child and often making a tree so verbose that it is unusable.
           </li>
@@ -1876,8 +1938,8 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
           </li>
         </ul>
         <p class="note">
-          If <a href="#aria-owns" class="property-reference">aria-owns</a> is set on the tree container to include elements that are not DOM children of the container, 
-          those elements will appear in the reading order in the sequence they are referenced and after any items that are DOM children. 
+          If <a href="#aria-owns" class="property-reference">aria-owns</a> is set on the tree container to include elements that are not DOM children of the container,
+          those elements will appear in the reading order in the sequence they are referenced and after any items that are DOM children.
           Scripts that manage focus need to ensure the visual focus order matches this assistive technology reading order.
         </p>
       </section>
@@ -1886,19 +1948,19 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
         <h4>Examples</h4>
         <ul>
           <li>
-            <a href="examples/treeview/treeview-1/treeview-1a.html">File Selector Tree #1</a>: 
+            <a href="examples/treeview/treeview-1/treeview-1a.html">File Directory Treeview Example Using Computed Properties</a>:
             A file selector tree that demonstrates browser support for automatically computing <code>aria-level</code>, <code>aria-posinset</code> and <code>aria-setsize</code> based on DOM structure.
           </li>
           <li>
-            <a href="examples/treeview/treeview-1/treeview-1b.html">File Selector Tree #2</a>: 
+            <a href="examples/treeview/treeview-1/treeview-1b.html">File Directory Treeview Example Using Declared Properties</a>:
             A file selector tree that demonstrates how to explicitly define values for <code>aria-level</code>, <code>aria-posinset</code> and <code>aria-setsize</code>.
           </li>
           <li>
-            <a href="examples/treeview/treeview-2/treeview-2a.html">Navigation Tree #1</a>:
+            <a href="examples/treeview/treeview-2/treeview-2a.html">Navigation Treeview Example Using Computed Properties</a>:
             A tree that provides navigation to a set of web pages and demonstrates browser support for automatically computing <code>aria-level</code>, <code>aria-posinset</code> and <code>aria-setsize</code> based on DOM structure.
           </li>
           <li>
-            <a href="examples/treeview/treeview-2/treeview-2b.html">Navigation Tree #2</a>:
+            <a href="examples/treeview/treeview-2/treeview-2b.html">Navigation Treeview Example Using Declared Properties</a>:
 A tree that provides navigation to a set of web pages and demonstrates how to explicitly define values for <code>aria-level</code>, <code>aria-posinset</code> and <code>aria-setsize</code>.
           </li>
         </ul>
@@ -1907,69 +1969,91 @@ A tree that provides navigation to a set of web pages and demonstrates how to ex
 
     <section class="widget" id="windowsplitter">
       <h3>Window Splitter</h3>
-      <p>Visible separator between sections of a Window that is used to modify the size of the panes.</p>
-      <p>A Window Splitter can take one of two forms -- fixed size and variable size.</p>
-
+      <p>
+        Work is in progress on this design pattern and is tracked by 
+        <a href="https://github.com/w3c/aria-practices/issues/129">issue 129.</a>
+      </p>
+      <p>
+        A window splitter is a moveable separator between two sections, or panes, of a window that enables users to change the relative size of the panes.
+        A Window Splitter can be either variable or fixed.
+        A fixed splitter toggles between two positions whereas a variable splitter can be adjusted to any position within an allowed range.
+      </p>
+      <p>
+        A window splitter has a value that represents the size of one of the panes, which, in this pattern,  is called the primary pane. 
+        When the splitter has its minimum value, the primary pane has its smallest size and the secondary pane has its largest size.
+        The splitter also has an accessible name that matches the name of the primary pane.
+      </p>
+      <p>
+        For example, consider a book reading application with a primary pane for the table of contents and a secondary pane that displays content from a section of the book.
+        The two panes are divided by a vertical splitter labeled &quot;Table of Contents&quot;.
+        When the table of contents pane has its maximum size, the splitter has a value of <code>100</code>, 
+        and when the table of contents is completely collapsed, the splitter has a value of <code>0</code>.
+      </p>
+      <p>
+        Note that the term &quot;primary pane&quot; does not describe the importance or purpose of content inside the pane.
+      </p>
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
-
         <ul>
-          <li><kbd>Tab</kbd>: Moves focus   in to and out of the splitter. </li>
-          <li><kbd>Left Arrow</kbd> and <kbd>Right Arrow</kbd>: Move a vertical splitter left and right.</li>
-          <li><kbd>Up Arrow</kbd> and <kbd>Down Arrow</kbd>: Move a horizontal splitter up and down.</li>
-          <li><kbd>Enter</kbd>: If pane controlled by the splitter is not collapsed, then collapse the pane. If the pane is collapsed then restore the splitter to its previous position. </li>
-          <li><kbd>End</kbd> (Optional): moves splitter so the associated pane is the largest allowed size. </li>
-          <li><kbd>Home</kbd> (Optional): Moves splitter so the associated pane is the smallest allowed size. This may collapse the pane completely. </li>
-          <li><kbd>F6</kbd> (Optional): Cycle through the window   panes. </li>
+          <li><kbd>Left Arrow</kbd>: Moves a vertical splitter to the left.</li>
+          <li><kbd>Right Arrow</kbd>: Moves a vertical splitter to the right.</li>
+          <li><kbd>Up Arrow</kbd>: Moves a horizontal splitter up.</li>
+          <li><kbd>Down Arrow</kbd>: Moves a horizontal splitter down.</li>
+          <li><kbd>Enter</kbd>: If the primary pane is not collapsed, collapses the pane. If the pane is collapsed, restores the splitter to its previous position.</li>
+          <li><kbd>Home</kbd> (Optional): Moves splitter to the position that gives the primary pane its smallest allowed size. This may completely collapse the primary pane.</li>
+          <li><kbd>End</kbd> (Optional): Moves splitter to the position that gives the primary pane its largest allowed size. This may completely collapse the secondary pane.</li>
+          <li><kbd>F6</kbd> (Optional): Cycle through window   panes.</li>
         </ul>
-
-        <p class="note">A fixed size splitter simply omits implementation of the arrow keys. </p>
+        <p class="note">A fixed size splitter omits implementation of the arrow keys.</p>
       </section>
-
       <section class="notoc">
         <h4>WAI-ARIA Roles, States, and Properties</h4>
         <ul>
-          <li>The splitter has role <a href="separator" class="role-reference">separator</a>.</li>
-          <li>If the splitter is expandable and collapsible, keep the splitter's <a href="#aria-expanded" class="state-reference">aria-expanded</a> state updated accordingly.</li>
-          <li>Label the splitter with <a href="aria-label" class="property-reference">aria-label</a>, <a href="aria-labelledby" class="property-reference">aria-labelledby</a>, or the <code>title</code> attribute. </li>
-          <li>Set the <a href="#aria-controls" class="property-reference">aria-controls</a> attribute of the element with role <code>separator</code> role to the IDs of the panes whose sizes it controls. </li>
+          <li>The element that serves as the focusable splitter has role <a href="#separator" class="role-reference">separator</a>.</li>
+          <li>The separator element has the <a class="property-reference" href="#aria-valuenow">aria-valuenow</a> property set to a decimal value representing the current position of the separator.</li>
+          <li>The separator element has the <a class="property-reference" href="#aria-valuemin">aria-valuemin</a> property set to a decimal value that represents the position where the primary pane has its minimum size. This is typically <code>0</code>.</li>
+          <li>The separator element has the <a class="property-reference" href="#aria-valuemax">aria-valuemax</a> property set to a decimal value that represents the position where the primary pane has its maximum size . This is typically <code>100</code>.</li>
+          <li>
+            If the primary pane has a visible label, it is referenced by
+            <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> on the separator element. 
+            Otherwise, the separator element has a label provided by 
+            <a href="#aria-label" class="property-reference">aria-label</a>.
+          </li>
+          <li>The separator element has <a href="#aria-controls" class="property-reference">aria-controls</a> referring to the primary pane.</li>
         </ul>
       </section>
-
       <section class="notoc">
         <h4>Example</h4>
-        <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The ARIA practices task force is developing examples for Authoring Practices 1.1 that will be directly incorporated into the guide.</p>
-        <ul>
-          <li><a href="http://archive.dojotoolkit.org/nightly/dojotoolkit/dijit/tests/layout/test_BorderContainer.html" target="_blank" rel="nofollow">Dojo Window splitter</a></li>
-        </ul>
+        <p>
+          Work to develop an example window splitter widget is tracked by 
+          <a href="https://github.com/w3c/aria-practices/issues/130">issue 130.</a>
+        </p>
       </section>
     </section>
-
   </section>
 
   <section class="widget" id="aria_landmark">
-    <h2>Landmark Roles Design Patterns</h2>
-
+    <h2>Landmark Regions</h2>
     <p>
-      Landmarks provide a powerful way to identify the organization and structure of a web page.
-      The structural information conveyed visually to users should be represented programmatically in the markup using landmark roles.
-      The use of landmark roles supports keyboard navigation to the structure of a web page for screen reader users, and can be used as targets for author supplied &quot;skip links&quot; and browser extensions for enhanced keyboard navigation.
+      ARIA landmark roles provide a powerful way to identify the organization and structure of a web page.
+      By classifying and labeling sections of a page, they enable structural information that is conveyed visually through layout to be represented programmatically.
+      Screen readers exploit landmark roles to provide keyboard navigation to important sections of a page.
+      Landmark regions can also be used as targets for &quot;skip links&quot; and by browser extensions to enhanced keyboard navigation.
     </p>
-
-    <p>This section is intended to assist designers, developers and quality assurance staff in defining and understanding the importance of logical, usable, and accessible layout for assistive technologies using HTML5 sectioning elements and ARIA landmark roles.</p>
-
+    <p>
+      This section explains how HTML5 sectioning elements and ARIA landmark roles
+      are used to make it easy for assistive technology users to understand the meaning of the layout of a page.
+    </p>
     <section>
       <h3>HTML5 Sectioning Elements</h3>
-
       <p>
-        It is important to understand that many HTML5 sectioning elements by default define ARIA landmarks. If HTML5 sectioning elements are used without understanding the associated landmark structure, assistive technology users will most likely be confused
-        and less efficient in accessing content and interacting with web pages.
+        Several HTML5 sectioning elements automatically create ARIA landmark regions. 
+        So, in order to provide assistive technology users with a logical view of a page, 
+        it is important to understand the effects of using HTML5 sectioning elements. 
         <a href="https://www.w3.org/TR/html-aria/">More information on HTML5 element role mapping</a>.
       </p>
-
       <table class="widget-features">
         <caption>Default landmark roles for HTML5 sectioning elements</caption>
-
         <thead>
           <tr>
             <th>HTML5 Element</th>
@@ -2017,12 +2101,13 @@ A tree that provides navigation to a set of web pages and demonstrates how to ex
         </tbody>
       </table>
     </section>
-
     <section>
       <h3>General Principles of Landmark Design</h3>
-
-      <p>Due to the complexity of todays web content, if using landmarks, <strong>all content</strong> should reside in a semantically meaningful landmark in order that content is not missed by the user.</p>
-
+      <p>
+        Including <strong>all content</strong> on a page in one of its landmark regions 
+        and giving each landmark region a semantically meaningful role
+        is one of the most effective ways of ensuring assistive technology users will not overlook information that is relevant to their needs.
+      </p>
       <p><strong>Step 1: Identify the logical structure</strong></p>
 
       <ul>
@@ -2361,25 +2446,25 @@ A tree that provides navigation to a set of web pages and demonstrates how to ex
 
   <section id="keyboard">
     <h2>Developing a Keyboard Interface</h2>
-
+    <p>
+      This section is work in progress.  
+      Development of the next revision is tracked by 
+      <a href="https://github.com/w3c/aria-practices/issues/220">issue 220.</a>
+    </p>
     <p>
       Unlike native HTML form elements, browsers do not provide keyboard support for graphical user interface (GUI) components that are made accessible with ARIA; authors have to provide the keyboard support in their code.
       This section describes the principles and methods for making the functionality of a web page that includes ARIA widgets, such as menus and grids, as well as interactive components, such as toolbars and dialogs, operable with a keyboard.
       Along with the basics of focus management, this section offers guidance toward the objective of providing experiences to people who rely on a keyboard that are as efficient and enjoyable as the experiences available to others.
-      It covers:
     </p>
-
+      <p>This section covers: </p>
     <ol>
       <li>Understanding fundamental principles of focus movement conventions used in ARIA design patterns.</li>
       <li>Maintaining visible focus, predictable focus movement, and distinguishing between keyboard focus and the selected state.</li>
       <li>Managing movement of keyboard focus between components, e.g., how the focus moves when the <kbd>Tab</kbd> and <kbd>Shift+Tab</kbd> keys are pressed.</li>
       <li>Managing movement of keyboard focus inside components that contain multiple focusable elements, e.g., two different methods for programatically exposing focus inside widgets like radio groups, menus, listboxes, trees, and grids.</li>
-      <li>Managing focus for modal and non-modal dialogs.</li>
       <li>Determining when to make disabled interactive elements focusable.</li>
       <li>Assigning and revealing keyboard shortcuts, including guidance on how to avoid problematic conflicts with keyboard commands of assistive technologies, browsers, and operating systems.</li>
-      <li>Addressing macro navigation concerns, i.e., methods for enabling efficient keyboard access to different sections of a page or site.</li>
     </ol>
-
     <section id="kbd_generalnav">
       <h3>Fundamental Keyboard Navigation Conventions</h3>
 
@@ -2422,19 +2507,19 @@ A tree that provides navigation to a set of web pages and demonstrates how to ex
       <ul>
         <li><a href="#combobox">Combobox</a></li>
         <li><a href="#grid">Grid</a></li>
-        <li><a href="Listbox">Listbox</a></li>
+        <li><a href="#Listbox">Listbox</a></li>
         <li><a href="#menu">Menu or menu bar</a></li>
         <li><a href="#radiobutton">Radiogroup</a></li>
         <li><a href="#tabpanel">Tabs</a></li>
         <li><a href="#toolbar">Toolbar</a></li>
-        <li><a href="#treegrid">Tree Grid</a></li>
+        <li>Tree Grid</li>
         <li><a href="#TreeView">Tree View</a></li>
       </ul>
     </section>
 
     <section id="kbd_focus_discernable_predictable">
       <h3>Discernable and Predictable Keyboard Focus</h3>
-
+      <p>Work to complete this section is tracked by <a href="https://github.com/w3c/aria-practices/issues/217">issue 217.</a></p>
       <p>
         When operating with a keyboard, two essentials of a good experience are the abilities to easily discern the location of the keyboard focus and to discover where focus landed after a navigation key has been pressed.
         The following factors affect to what extent a web page affords users these capabilities.
@@ -2526,14 +2611,9 @@ A tree that provides navigation to a set of web pages and demonstrates how to ex
         <li>The selected state must be visually distinct from the the focus indicator.</li>
       </ul>
     </section>
-    
+
     <section id="kbd_selection_follows_focus">
       <h3>Deciding When to Make Selection Automatically Follow Focus</h3>
-      <p class="note">
-        This section was added on November 8.
-        To provide feedback,
-        see <a href="https://github.com/w3c/aria-practices/issues/131">issue 131</a>.
-      </p>
       <p>
         in composite widgets where only one element may be selected, such as a tablist or single-select listbox, moving the focus may also cause the focused element to become the selected element.
         This is called having selection follow focus.
@@ -2542,8 +2622,8 @@ A tree that provides navigation to a set of web pages and demonstrates how to ex
       <p>
         For example, in a tablist, the selected state is used to indicate which panel is displayed.
         So, when selection follows focus in a tablist, moving focus from one tab to another automatically changes  which panel is displayed.
-        If the content of panels is present in the DOM, then displaying a new panel is nearly instantaneous. 
-        A keyboard user who wishes to display the fourth of six tabs can do so with 3 quick presses of the right arrow. 
+        If the content of panels is present in the DOM, then displaying a new panel is nearly instantaneous.
+        A keyboard user who wishes to display the fourth of six tabs can do so with 3 quick presses of the right arrow.
         And, a screen reader user who perceives the labels on tabs by navigating through them may efficiently read through the complete list without any latency.
       </p>
       <p>
@@ -2739,194 +2819,14 @@ A tree that provides navigation to a set of web pages and demonstrates how to ex
 
       <section id="kbd_nested_components">
         <h4>Nested Composite Components - Composites and Toolbars That Contain Composites</h4>
-
-        <p>to be written</p>
-      </section>
-
-      <section id="scrollintoview">
-        <h5>Managing Focus with Scroll</h5>
-
-        <p class="note">Not yet edited ... considering what should be written/included. We don't want to write a javascript book.</p>
-
         <p>
-          In some browsers, a JavaScript call to <code> scrollIntoView()</code> on this element should suffice, but in browsers where   this is unreliable, authors should explicitly set the <code>scrollTop</code> and <code>scrollLeft</code> properties of the "cell23" element and its ancestors to scroll the element into view. <code>scrollTop</code> and <code>scrollLeft</code> adjust the node positions by the amounts(pixels) needed to scroll a node into view.
-          Scrolling values are adjusted by the amounts(pixels) needed to scroll a node into view.
-          This is done by comparing the sizes of the nodes using available measurements such as scroll+offset+clientWidth/Height/Left/Top. It's important to note that you have to adjust a node so that it's viewable within
-          the context of its parent node.
-          Then you have to move up the DOM tree and make
-          each parent node visible.
-        </p>
-
-        <p>
-          For example, create a custom <code> scrollIntoView()</code> method that is called at various times, including coincidence with the setting of the <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property.
-          The method takes a DOM node argument, say "n". Here is the high level algorithm:
-        </p>
-
-        <ol>
-          <li> If n is already in view, stop; otherwise, continue. </li>
-          <li> adjust n.scrollTop and n.scrollLeft such that it is in view. </li>
-          <li>adjust scrollTop and scrollLeft for the ancestor nodes of n such that   that the region of the ancestors which n consumes is visible.</li>
-        </ol>
-
-        <p>This is a minimum-position-change algorithm.</p>
-
-        <p>
-          Understanding how the DOM scrollIntoView works across browsers is important.
-          Browsers (including Firefox3) force the node either to the top or the bottom of the screen (as defined by the single Boolean parameter) even if its already in view.
-          This is problematic when you only need to scroll horizontally to see the element.
-          It is also problematic when the node is partially off the bottom of the screen and the parameter is (true) which forces the node all the way to the top, and vice versa with the top going to the bottom on (false).
-          IE forces the node to the left of the client area (or right in right-to-left mode) even if it's horizontally in view already.
-        </p>
-
-        <p>
-          The <code>scrollTop</code> and<code> scrollLeft</code> functions create some challenges.
-          <code>scrollTop</code> is always accurate but misleading with respect to inner (nested) scrollbars.
-          <code> scrollLeft</code> cannot be relied on in right-to-left languages because it is sometimes negative and sometimes positive especially with respect to inner (nested) scrollbars.
-          Different browsers handle right-to-left completely differently.
+          Work to draft content for this section is tracked by 
+          <a href="https://github.com/w3c/aria-practices/issues/218">issue 218.</a>
         </p>
       </section>
     </section>
-
-    <section id="modal_dialog">
-      <h3>Managing Focus in Dialogs</h3>
-
-      <p class="note">
-        MCK: unedited content pulled together from the old guide that needs a significant re-write.
-        Please ignore this section for now.
-      </p>
-
-      <p>
-        WAI-ARIA provides for two dialog roles - dialog and alertdialog. When authors simulate dialogs on a web page they often limit their interaction considerations to the mouse.
-        Unlike Graphical User Interface dialog boxes on a desktop computer, a user during keyboard navigation could accidentally navigate outside the dialog box and become disoriented.
-        This can happen when the user is tabbing in the dialog.
-        A modal dialog prevents the user from setting focus outside of the dialog until the dialog is closed.
-        Mouse clicks outside of the dialog must be ignored and the user must not be able to tab into or out of the dialog itself.
-        All WAI-ARIA enabled dialog boxes should be modal.
-        This section describes how.
-      </p>
-
-      <p>
-        Mouse clicks outside of the dialog can be prevented by creating a CSS positioned element that is the size of the viewport to append as a child of the body element.
-        Set the CSS z-index of this element so that it is above all other elements on the page except for the dialog element.
-        Set the tabindex of the underlay element to tabindex="-1" to prevent it from receiving focus via a keyboard event or mouse click.
-        You may lower the opacity of the underlay element in order to emphasize that the dialog itself is modal and has focus.
-      </p>
-
-      <p>
-        Depending upon the action to be performed by the dialog, the object with focus before the dialog box is opened should be saved.
-        This will allow restoring focus to this element when the dialog box is closed.
-        When the dialog box is opened, focus should be set to the first tab focusable element within the dialog.
-        If there is no tab focusable element within the dialog box contents, set the focus to the item that is used to cancel or close the dialog.
-        There must be some element within the dialog which can accept focus in order for the screen reader to speak the dialog title and information when it is opened.
-        In order to prevent keyboard focus from leaving the dialog, determine the first and last tab focusable elements in the dialog and trap keyboard events within the document.
-      </p>
-
-      <p>
-        Search the contents of the dialog container to find the first and last tab focusable elements.
-        This can be implemented by walking the DOM tree of the dialog container to find all visible and enabled anchor elements, input elements, and all elements that have a tabindex value greater than or equal to 0.
-        Remember that elements with a tabindex > 0 will appear in the tab order before all other focusable elements in ascending order by tabindex.
-        Store the first and last tab focusable items within variables in the scope of the dialog box code.
-      </p>
-
-      <p>
-        Before the dialog is shown, create and display the dialog underlay.
-        Connect an onkeypress event handler to the DOM document.documentElement.
-        This will catch all keystrokes on the document and allow trapping keyboard focus within the dialog.
-        Size and position the dialog box in the viewport above the underlay, make it visible and set focus to the first tab focusable item in the dialog box.
-      </p>
-
-      <p>
-        The onkeypress handler will catch all key presses within the document.
-        This onkeypress event handler should be within the scope of the dialog box code so that it has access to the first and last tab focusable elements within the dialog.
-        In the onkeypress handler determine the target of the keypress event.
-        In addition, determine if there is only a single focusable item within the dialog box.
-        In this instance the first tab navigable object will equal the last tab navigable object.
-        If key presses within the dialog box may create, destroy, enable, disable, or change the visibility of tab focusable elements, then determine the first and last tab-focusable items each time a keypress is received.
-        Based on the event target and the key pressed take the following actions:
-      </p>
-
-      <ul>
-        <li>
-          If the keypress is a <kbd>Shift + Tab</kbd> key and the target == the first tab navigable object, then set focus to the last tab-navigable object and stop the key press event. If there is only a single tab focusable item, then focus does not have to be set, but the key press event must be stopped.
-        </li>
-        <li>
-          If the keypress is a <kbd>Tab</kbd> key and the target == the last tab navigable object, then set focus to the first tab-navigable object and stop the keypress event. If there is only a single tab-focusable item, then focus does not have to be set but the keypress event must must be stopped.
-        </li>
-        <li>
-          If the keypress is an <kbd>Escape</kbd> key and the target node is the container node for the dialog box, then close the dialog box and hide or destroy the dialog underlay.
-        </li>
-      </ul>
-
-      <p>
-        Determine if the target node of the keypress is within the dialog box container. This can be done using a while loop to walk the parent chain of the target node until the container node of the dialog box is found. Other than those outlined above, all key presses from within the dialog box should be allowed to execute so that the user can interact with the controls in the dialog box.
-      </p>
-
-      <p>
-        If the target node is not within the dialog box, the keypress is from the documentElement and the keypress event should be stopped unless it is a <kbd>Tab</kbd> key press. Allowing a <kbd>Tab</kbd> key press from the document element will enable tabbing back into the dialog box if, for some reason, focus on the dialog box is lost. This can happen due to timing issues when the dialog box is first loaded and focus does not properly get set to the first tab-focusable item within the dialog.
-      </p>
-
-      <p>
-        The dialog box itself should contain buttons or other mechanisms to cancel the dialog box or execute the dialog box functions and close the dialog box.
-      </p>
-
-      <p>
-        Here is a pseudo code onkeypress handler for a modal dialog box. Pseudo code is used to focus on the actions in the handler rather than on the differences in browser event handling. Assume that the event object, evt, has been normalized between browsers and the helper object is a library of functions that handle browser differences. The keys object is a set of key definition variables. Dialog is the dialog box object, which has a function to cancel the dialog.
-      </p>
-
-<pre>
-_onKey: function(/*Normalized Event*/ evt){
-// summary:
-// Handles the keyboard events for accessibility reasons
-if(evt.charOrCode){
-var node = evt.target; // get the target node of the keypress event
-if (evt.charOrCode === keys.TAB){
-// find the first and last tab focusable items in the hierarchy of the dialog container node
-// do this every time if the items may be added / removed from the the dialog may change visibility or state
-var focusItemsArray = helper.getFocusItems(dialogContainerNode);
-dialog.firstFocusItem = focusItemsArray[0];
-dialog.lastFocusItem = focusItemsArray[focusItemsArray.length-1];
-}
-// assumes firstFocusItem and lastFocusItem maintained by dialog object
-var singleFocusItem = (dialog.firstFocusItem == dialog.lastFocusItem);
-
-// see if we are shift-tabbing from first focusable item on dialog
-if(node == dialog.firstFocusItem &amp;&amp; evt.shiftKey &amp;&amp; evt.charOrCode === keys.TAB){
-if(!singleFocusItem){
-dialog.lastFocusItem.focus(); // send focus to last item in dialog
-}
-helper.stopEvent(evt); //stop the tab keypress event
-}
-// see if we are tabbing from the last focusable item
-else if(node == dialog.lastFocusItem &amp;&amp; evt.charOrCode === keys.TAB &amp;&amp; !evt.shiftKey){
-if (!singleFocusItem){
-dialog.firstFocusItem).focus(); // send focus to first item in dialog
-}
-helper.stopEvent(evt); //stop the tab keypress event
-}
-else{
-// see if the key is for the dialog
-while(node){
-if(node == dialogContainerNode){ // if this is the container node of the dialog
-if(evt.charOrCode == keys.ESCAPE){ // and the escape key was pressed
-dialog.cancel(); // cancel the dialog
-}else{
-return; // just let it go
-}
-}
-node = node.parentNode;
-}
-// this key is for the document window
-if(evt.charOrCode !== keys.TAB){ // allow tabbing into the dialog
-helper.stopEvent(evt); //stop the event if not a tab keypress
-}
-} // end of if evt.charOrCode
-} // end of function
-</pre>
-    </section>
-
     <section id="kbd_disabled_controls">
       <h3>Focusability of disabled controls</h3>
-
       <p>
         By default, disabled HTML input elements are removed from the tab sequence.
         In most contexts, the normal expectation is that disabled interactive elements are not focusable.
@@ -2952,7 +2852,7 @@ helper.stopEvent(evt); //stop the event if not a tab keypress
           For the following composite widget elements, keep them focusable when disabled:
 
           <ul>
-            <li>Options in a <a href="Listbox">Listbox</a></li>
+            <li>Options in a <a href="#Listbox">Listbox</a></li>
             <li>Menu items in a <a href="#menu">Menu or menu bar</a></li>
             <li>Tab elements in a set of <a href="#tabpanel">Tabs</a></li>
             <li>Tree items in a <a href="#TreeView">Tree View</a></li>
@@ -2979,21 +2879,17 @@ helper.stopEvent(evt); //stop the event if not a tab keypress
 
       <p>One design technique for mitigating the impact of including disabled elements in the path of keyboard focus is employing appropriate keyboard shortcuts as described in <a href="#kbd_shortcuts"></a>.</p>
     </section>
-
     <section id="kbd_shortcuts">
       <h3>Keyboard Shortcuts</h3>
-
       <p>
         When effectively designed, keyboard shortcuts that focus an element, activate a widget, or both can dramatically enhance usability of frequently used features of a page or site.
         This section addresses some of the keyboard shortcut design and implementation factors that most impact their effectiveness, including:
       </p>
-
       <ol>
         <li>Understanding how keyboard shortcuts augment a keyboard interface and whether to make a particular shortcut move focus, perform a function, or both. </li>
         <li>Making key assignments and avoiding assignment conflicts with assistive technologies, browsers, and operating systems. </li>
         <li>Exposing and documenting key assignments. </li>
       </ol>
-
       <section id="kbd_shortcuts_behavior_design">
         <h4>Designing the Scope and Behavior of Keyboard Shortcuts</h4>
 
@@ -3070,7 +2966,7 @@ helper.stopEvent(evt); //stop the event if not a tab keypress
 
         <section id="kbd_shortcuts_design_where">
           <h5>Choose Where to Add Shortcuts </h5>
-
+          <p>Work to draft content for this section is tracked in <a href="https://github.com/w3c/aria-practices/issues/219">issue 219.</a></p>
           <p>
             The first goal when designing a keyboard interface is simple, efficient, and and intuitive operation with only basic keyboard navigation support.
             If basic operation of a keyboard interface is inefficient , attempting to compensate for fundamental design issues, such as suboptimal layout or command structure,  by implementing keyboard shortcuts will not likely reduce user frustration.
@@ -3078,32 +2974,26 @@ helper.stopEvent(evt); //stop the event if not a tab keypress
             In many simple user interfaces, keyboard shortcuts can be entirely superfluous.
             And, in user interfaces with too many keyboard shortcuts, the excess shortcuts create cognitive load that make the most useful ones more difficult to remember.
           </p>
-
           <p>Consider the following when deciding where to assign keyboard shortcuts: </p>
 
           <ol>
-            <li>To be written ... stream of consciousness includes frequency of use, repetitive operations, amount of benefit (key presses saved), minimizing the number with placement, e.g., focus on a menubar with first letter nav vs assigning shortcuts to individual menuitems.</li>
+            <li>To be written.</li>
           </ol>
         </section>
       </section>
-
       <section id="kbd_shortcuts_assigning">
         <h4>Assigning Keyboard Shortcuts</h4>
-
         <p>When choosing the keys to assign to a shortcut, there are many factors to consider.</p>
-
         <ul>
           <li>Making the shortcut easy to learn and remember by using a mnemonic (e.g., "S" for "Save") or following a logical or spacial pattern.</li>
           <li> Localizing the interface, including for differences in which keys are available and how they behave and for language considerations that could impact mnemonics. </li>
           <li>Avoiding and managing conflicts with key assignments used by an assistive technology, the browser, or the operating system.</li>
         </ul>
-
         <p>
           Methods for designing a key shortcut scheme that supports learning and memory is beyond the scope of this guide.
           Unless the key shortcut scheme is extensive, it is likely sufficient to mimic concepts that are familiar from common desktop software, such as browsers.
           Similarly, while localization is important, describing how to address it is left to other resources that specialize in that topic.
         </p>
-
         <p>
           The remainder of this section provides guidance balancing requirements and concerns related to key assignment conflicts.
           It is typically ideal if key assignments do not conflict with keys that are assigned to functions in the user's operating system, browser, or assistive technology.
@@ -3112,11 +3002,9 @@ helper.stopEvent(evt); //stop the event if not a tab keypress
           And, given the vast array of operating system, browser, and assistive technology keys, it is almost impossible to be certain conflicts do not exist.
           So it is also important to employ strategies that mitigate the impact of conflicts whether they are intentional or unknown.
         </p>
-
         <p class="note">
           In the following sections, <kbd>meta</kbd> key refers to the <kbd>Windows</kbd> key on Windows-compatible keyboards and the <kbd>Command</kbd> key on MacOS-compatible keyboards.
         </p>
-
         <section id="kbd_shortcuts_assignments_opsys_conflicts">
           <h5>Operating System Key Conflicts</h5>
 
@@ -3183,11 +3071,6 @@ helper.stopEvent(evt); //stop the event if not a tab keypress
             <li>Find functions</li>
           </ol>
         </section>
-
-        <section id="kbd_shortcuts_assignments_mitigating_conflicts">
-          <h5>Mitigating Key Connflict Likelihood and Impact</h5>
-        </section>
-
         <section id="kbd_shortcuts_assignments_intentional_conflicts">
           <h5>Intentional Key Conflicts</h5>
 
@@ -3209,126 +3092,17 @@ helper.stopEvent(evt); //stop the event if not a tab keypress
 
       <section id="kbd_shortcuts_exposing">
         <h4>Exposing and Documenting Keyboard Shortcuts</h4>
-        <p>
-          This is where we will talk about how the keyshortcuts property exposes shortcuts to assistive technology, visual exposure via tooltips, and the like.
-          We will also cover making it easy to find documentation, such as in an accessibility section in help or a keyboard shortcuts option in a help menu.
-        </p>
-      </section>
-
-      <section id="kbd_shortcuts_implementing">
-        <h4>Implementing keyboard shortcuts</h4>
-        <p>
-          Not sure if we will have this section ... could include some js tips and note about access keys ... <a href="http://www.w3.org/TR/1999/REC-html401-19991224/interact/forms.html#h-17.11.2">accesskey</a> behave differently in different browsers.
-        </p>
-      </section>
-    </section>
-
-    <section id="keyboard_js_tips">
-      <H3>Other Keyboard Interface Development Tips</H3>
-
-      <p class="note">MCK: this section is a collection of keyboard related old content with a yet undecided fate.</p>
-
-      <section id="kbd_misc">
-        <h4>Miscelaneous stuff we might or might not keep</h4>
-
-        <ul>
-          <li>
-            <em>Use focus and blur events (or event delegation) to monitor changes to the current focus</em> - <code>focus</code> and <code>blur</code> events can now be used with every element.
-            Don't assume that all focus changes will come via key and mouse events, because assistive technologies such as screen readers can set the focus to any focusable element, and that needs to be handled elegantly by the JavaScript widget.
-            Techniques such as &quot;event delegation&quot; (for example, intercepting events on a list rather than on every listitem) can improve performance.
-          </li>
-
-          <li>
-            <em>Follow keydowns to move focus</em> - A keydown event handler can determine the next object to receive focus and call that element's focus() method.
-          </li>
-
-          <li>
-            <em>Use onkeydown to trap key events, not onkeypress</em> - Key press events do not fire for all keys and they vary across browsers.
-          </li>
-
-          <li>
-            <em>Use element.focus() to set focus</em> - Do not use createEvent(), initEvent() and dispatchEvent() to send focus to an element, because these functions do not change the focus.  DOM focus events are informational only, generated by the user agent after an element has acquired focus, but not used themselves to set focus.
-          </li>
-
-          <li>
-            The use of :focus pseudo-class selectors to style the keyboard focus is not supported in many versions of Internet Explorer. Authors should use the :active pseudo-class (which older versions of IE treat like :focus) in conjunction with the :focus pseudo-class. Example: a:focus, a:active { text-decoration: underline; }
-            If the related CSS pseudo-classes are not appropriate or not supported in all browsers, authors can use JavaScript techniques to indicate an appropriate focus alternative, such as using focus and blur events to toggle a classname on an element.
-          </li>
-
-          <li>
-            <em>Always draw the focus for tabindex="-1" items and elements that receive focus programmatically when supporting versions of Internet Explorer older than 8</em> - Choose between changing the background  color via something like this.style.backgroundColor = "gray"; or add a dotted border via this.style.border = "1px dotted invert".  In the dotted border case, you will need to make sure those elements  have an invisible 1px border to start with, so that the element doesn't  grow when the border style is applied (borders take up space, and IE  doesn't implement CSS outlines).
-          </li>
-
-          <li>
-            <p><em>Prevent used key events from performing browser functions</em> - If a key such as an arrow key is used, prevent the browser from using the key to do something (such as scrolling) by using code like the following:</p>
-            <pre class="example highlight">&lt;span tabindex=&quot;-1&quot; onkeypress=&quot;return  handleKeyPress();&quot;&gt; </pre>
-            <p>
-              If handleKeyDown() returns false, the event will be consumed, preventing the browser from performing any action based on the keystroke.
-              In addition to the return value the browser must call the event methods that will prevent the default action, for IE this is setting the event property &quot;returnValue=false&quot;, and for other browsers supporting the W3C event model this means calling the &quot;preventDefault&quot; method of the event object.
-            </p>
-          </li>
-
-          <li>
-            <em>Use key event handlers to enable activation of the element</em> - For every mouse event handler, a keyboard event handler is required.
-            For example, if you have an <em>onclick="doSomething()"</em> you may also need <em>onkeydown="return event.keyCode != 13 || doSomething();" </em>in order to allow the <kbd>Enter</kbd> key to activate that element.
-            There are <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/Keyboard-navigable_JavaScript_widgets" target="_blank">user agent-specific considerations</a> for key event handling.
-          </li>
-        </ul>
-
-      </section>
-
-      <section id="kbd_tooltips">
-        <h3> Supporting Tooltips with the Keyboard</h3>
-
-        <p>
-          A <a class="role-reference" href="#tooltip">tooltip</a> is a  popup messages typically triggered by moving a mouse over a control or widget causing a small popup window to appear with additional information about the control.
-          To provide simple text tooltips, the <a href="http://www.w3.org/TR/1999/REC-html401-19991224/struct/global.html#h-7.4.3">HTML title attribute</a> should more than suffice because the user agent will render it for tooltips.
-          When creating a <a class="role-reference" href="#tooltip">tooltip</a>, it is essential that  the user be able to activate it using the keyboard.
-          When a form control or widget receives keyboard focus, the <a class="role-reference" href="#tooltip">tooltip</a> must display.
-          When the form control or widget loses focus, the tooltip must disappear.
-          Browsers do not currently support this functionality.
-        </p>
-
-        <p>The following code snippet from the <a href="http://oaa-accessibility.org/examplep/tooltip1/"><abbr title="Illinois Center for Information Technology Accessibility">iCITA</abbr></a> site shows the use of a <span class="example highlight">onfocus=&quot;tooltipShow();&quot;</span> function to display the tooltip when focus is placed on an element.</p>
-
-        <pre class="example higlight" id="line1">&lt;html lang="en-us""&gt;
-&lt;head&gt;
-   &lt;title&gt;inline: Tooltip Example 1&lt;/title&gt;
-   &lt;link rel="stylesheet" href="css/tooltip1_inline.css"  type="text/css"&gt;
-   &lt;script type="text/javascript" src="js/tooltip1_inline.js"&gt;&lt;/script&gt;
-   &lt;script type="text/javascript" src="../js/widgets_inline.js"&gt;&lt;/script&gt;
-   &lt;script type="text/javascript" src="../js/globals.js"&gt;&lt;/script&gt;
-   &lt;link rel="icon" href="http://www.cites.uiuc.edu/favicon.ico" type="image/x-icon"&gt;
-   &lt;link rel="shortcut icon" href="http://www.cites.uiuc.edu/favicon.ico" type="image/x-icon"&gt;
-&lt;/head&gt;
-   &#8230;
-
-   &lt;body onload="initApp()"&gt;
-
-   &lt;div id="container"&gt;
-
-   &lt;h1&gt;Tooltip Example 1&lt;/h1&gt;
-     &lt;h2&gt;Create Account&lt;/h2&gt;
-   &lt;div class="text"&gt;
-   &lt;label for="first"&gt;First Name:&lt;/label&gt;
-
-   &lt;input type="text"  id="first" name="first" size="20"
-          onmouseover="tooltipShow(event, this, 'tp1');"
-          onfocus=&quot;tooltipShow(event, this,  'tp1');&quot;
-          aria-describedby="tp1"
-          aria-required="false"/&gt;
-
-   &lt;div id="tp1" role="tooltip" aria-hidden="true"&gt;Your first name is optional. &lt;/div&gt;
-   &lt;/div&gt;
-  &#8230;
-        </pre>
+        <p> Work to complete this section is tracked in <a href="https://github.com/w3c/aria-practices/issues/167">issue 167.</a></p>
       </section>
     </section>
   </section>
 
   <section id="gridAndTableProperties">
     <h2>Grid and Table Properties</h2>
-
+    <p>
+      Drafting content for this section is
+      <a href="https://github.com/w3c/aria-practices/issues/65">issue 65.</a>
+    </p>
     <p>
       [placeholder].
       This section will cover colcount, rowcount, colindex, rowindex, colspan, rowspan, and sort.
@@ -3386,72 +3160,89 @@ helper.stopEvent(evt); //stop the event if not a tab keypress
       <li>Eliminating semantics of intervening orphan elements in the structure of a composite
         widget, such as a tablist, menu, or tree as demonstrated in the example above.</li>
     </ol>
-    <section id="presentation_role_rules">
+    <section id="presentation_role_effects">
       <h3>
-        Four Rules for Using Role <code>presentation</code>
+        Effects of Role <code>presentation</code>
       </h3>
       <p>
-        When reading the following rules, it is important to understand that most host language
-        elements, such as an HTML <code>h1</code> element, have an implied ARIA role and may also
-        have implied states or properties. When rendering an <code>h1</code> element, browsers tell
-        assistive technologies that it has ARIA role <code>heading</code> and property value <code>aria-level=&quot;1&quot;</code>.
-      </p>
-      <p>
-        The following rules describe the result of applying role <code>presentation</code> to an
-        element.
+        When <code>role=&quot;presentation&quot;</code> is specified on an element, if a
+        <a href="#presentation_role_ignored">condition that requires a browser to ignore the <code>presentation</code> role</a>
+        does not exist, it has the following three effects.
       </p>
       <ol>
+        <li>The element’s implied ARIA role and any ARIA states and properties associated with
+          that role are hidden from assistive technologies.</li>
         <li>
-          Browsers ignore <code>role=&quot;presentation&quot;</code>, and it therefore has no effect, if either of the following are true about the element to which it is applied:
-          <ul>
-            <li>The element is focusable.</li>
-            <li>
-              The element has any of the 
-              <a href="#global_states" class="specref">twenty-one global ARIA states and properties</a>
-              , e.g., <code>aria-label</code>.
-            </li>
-          </ul>
-        </li>
-        <li>If not ignored, the element’s implied ARIA role and any ARIA states and properties associated with that role
-        are hidden from assistive technologies.</li>
-        <li>
-          Text contained by the element and all its descendant elements remains visible to assistive
-          technologies except, of course, when the text is explicitly hidden, e.g., styled with <code>display:
-            none</code> or has <code>aria-hidden=&quot;true&quot;</code>.
+          Text contained by the element, i.e., inner text, as well as inner text of all its
+          descendant elements remains visible to assistive technologies except, of course, when the
+          text is explicitly hidden, e.g., styled with <code>display: none</code> or has <code>aria-hidden=&quot;true&quot;</code>.
         </li>
         <li>
-          The roles, states, and properties of all descendant elements remain visible to assistive
-          technologies except when the descendant element is a required part of the presentational
+          The roles, states, and properties of each descendant element remains visible to assistive
+          technologies unless the descendant requires the context of the presentational
           element. For example:
           <ul>
-            <li>If the implied role of an element with role presentation is list, its listitem
-              children inherit the presentation role.</li>
             <li>
-              If the implied role of an element with role <code>presentation</code> is <code>table</code>,
-              its <code>rowgroup</code> and <code>row</code> children inherit the <code>presentation</code>
-              role. And, in turn, the <code>colheader</code>, <code>rowheader</code>, and <code>cell</code>
-              children will then inherit the presentation role from their <code>row</code> or <code>rowgroup</code>
-              parents.
+              If <code>presentation</code> is applied to a <code>ul</code> or <code>ol</code>
+              element, each child <code>li</code> element inherrits the <code>presentation</code>
+              role because ARIA requires the <code>listitem</code> elements to have the parent <code>list</code> element.
+              So, the <code>li</code> elements are not exposed to assistive technologies,
+              but elements contained inside of those <code>li</code> elements, including nested lists,  are visible to assistive technologies.
             </li>
             <li>
-              Note that a table contained in the cell of a table with role <code>presentation</code>
-              does not inherit the <code>presentation</code> role because the nested table is not a
-              required part of the presentational table.
+              Similarly, if <code>presentation</code> is applied to a <code>table</code> element,
+              The descendant <code>caption</code>, <code>thead</code>, <code>tbody</code>, <code>tfooter</code>,
+              <code>tr</code>, <code>th</code>, and <code>td</code>
+              elements inherit role <code>presentation</code> and are thus not exposed to assistive technologies.
+              But, elements inside of the <code>th</code> and <code>td</code> elements, including nested tables,  are exposed to assistive technologies.
             </li>
           </ul>
         </li>
       </ol>
+    </section>
+    <section id="presentation_role_ignored">
+      <h3>
+        Conditions That Cause Role <code>presentation</code> to be Ignored
+      </h3>
+      <p>
+         Browsers ignore <code>role=&quot;presentation&quot;</code>, and it therefore has no effect, if either of the following are true about the element to which it is applied:</p>
+          <ul>
+            <li>The element is focusable, e.g. it is natively focusable like an HTML link or input , or it has a <code>tabindex</code> attribute.</li>
+            <li>
+              The element has any of the
+              <a href="#global_states" class="specref">twenty-one global ARIA states and properties</a>
+              , e.g., <code>aria-label</code>.
+            </li>
+          </ul>
+    </section>
+    <section id="presentation_role_examples">
+      <h3>
+        Examples Demonstrating Effects of the <code>presentation</code> Role
+      </h3>
+      <p>This code:</p>
+      <pre>
+        &lt;ul role=&quot;presentation&quot;&gt;
+          &lt;li&gt;Date of birth:&lt;/li&gt;
+          &lt;li&gt;January 1, 3456&lt;/li&gt;
+        &lt;/ul&gt;
+      </pre>
+      <p>when parsed by a browser, is equivalent to the following from the perspective of a screen reader or other assistive technology that relies on the browser's accessibility tree:
+      </p>
+      <pre>
+        &lt;div&gt;Date of birth:&lt;/div&gt;
+          &lt;div&gt;January 1, 3456&lt;/div&gt;
+      </pre>
       <p>
         The
         <a href="examples/presentation/PresentationRoleExamples.html">
           <code>presentation</code> role examples page
         </a>
-        illustrates the effects of these rules in a variety of scenarios and provides more detailed
+        includes several more examples that illustrate the three effects of the <code>presentation</code> role in a variety of scenarios and provides more detailed
         explanations of the rationale behind them.
       </p>
     </section>
   </section>
-  
+
   <section id="children_presentational">
     <h2>Roles That Automatically Hide Semantics by Making Their Descendants Presentational</h2>
     <p>
@@ -3486,7 +3277,7 @@ helper.stopEvent(evt); //stop the event if not a tab keypress
       &lt;li role=&quot;tab&quot;&gt;&lt;h3&gt;Title of My Tab&lt;/h3&gt;&lt;/li&gt;
     </pre>
     <p>
-      Because WAI-ARIA requires descendants of tab to be presentational, 
+      Because WAI-ARIA requires descendants of tab to be presentational,
       the following code is equivalent.
     </p>
     <pre>
@@ -3507,12 +3298,16 @@ helper.stopEvent(evt); //stop the event if not a tab keypress
       for a detailed explanation of what it does.
     </p>
   </section>
-  
+
   <section id="appendices" class="appendix">
     <h2>Appendices</h2>
 
     <section id="ScreenReaderModes">
       <h3>Understanding Screen Reader Document Reading and Application Reading Modes</h3>
+      <p>
+        Drafting content for this section is
+        <a href="https://github.com/w3c/aria-practices/issues/193">issue 193.</a>
+      </p>
       <p>Placeholder for a section covering this topic that is yet to be written.</p>
     </section>
 

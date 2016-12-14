@@ -40,7 +40,7 @@ var Menubar = function (domNode) {
   while (e) {
     var menubarItem = e.firstElementChild;
     if (e && menubarItem && menubarItem.tagName !== 'A') {
-      throw new Error(msgPrefix + 'has child elements are note A elements.');
+      throw new Error(msgPrefix + 'has child elements are not A elements.');
     }
     e = e.nextElementSibling;
   }

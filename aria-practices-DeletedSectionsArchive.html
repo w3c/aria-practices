@@ -1783,6 +1783,287 @@ excommunication&lt;/dd&gt;
       The <a href="#aria_ex_widget">Common Widget Design Patterns</a> section of this document contains best  practices, such as keyboard navigation, for creating common widgets found on the Web. 
       This section contains miscellaneous authoring practices that you should also consider.
       </p>
+      
+      <section id="scrollintoview">
+        <h3>Managing Focus with Scroll</h3>
+
+        <p class="note">Not yet edited ... considering what should be written/included. We don't want to write a javascript book.</p>
+
+        <p>
+          In some browsers, a JavaScript call to <code> scrollIntoView()</code> on this element should suffice, but in browsers where   this is unreliable, authors should explicitly set the <code>scrollTop</code> and <code>scrollLeft</code> properties of the "cell23" element and its ancestors to scroll the element into view. <code>scrollTop</code> and <code>scrollLeft</code> adjust the node positions by the amounts(pixels) needed to scroll a node into view.
+          Scrolling values are adjusted by the amounts(pixels) needed to scroll a node into view.
+          This is done by comparing the sizes of the nodes using available measurements such as scroll+offset+clientWidth/Height/Left/Top. It's important to note that you have to adjust a node so that it's viewable within
+          the context of its parent node.
+          Then you have to move up the DOM tree and make
+          each parent node visible.
+        </p>
+
+        <p>
+          For example, create a custom <code> scrollIntoView()</code> method that is called at various times, including coincidence with the setting of the <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property.
+          The method takes a DOM node argument, say "n". Here is the high level algorithm:
+        </p>
+
+        <ol>
+          <li> If n is already in view, stop; otherwise, continue. </li>
+          <li> adjust n.scrollTop and n.scrollLeft such that it is in view. </li>
+          <li>adjust scrollTop and scrollLeft for the ancestor nodes of n such that   that the region of the ancestors which n consumes is visible.</li>
+        </ol>
+
+        <p>This is a minimum-position-change algorithm.</p>
+
+        <p>
+          Understanding how the DOM scrollIntoView works across browsers is important.
+          Browsers (including Firefox3) force the node either to the top or the bottom of the screen (as defined by the single Boolean parameter) even if its already in view.
+          This is problematic when you only need to scroll horizontally to see the element.
+          It is also problematic when the node is partially off the bottom of the screen and the parameter is (true) which forces the node all the way to the top, and vice versa with the top going to the bottom on (false).
+          IE forces the node to the left of the client area (or right in right-to-left mode) even if it's horizontally in view already.
+        </p>
+
+        <p>
+          The <code>scrollTop</code> and<code> scrollLeft</code> functions create some challenges.
+          <code>scrollTop</code> is always accurate but misleading with respect to inner (nested) scrollbars.
+          <code> scrollLeft</code> cannot be relied on in right-to-left languages because it is sometimes negative and sometimes positive especially with respect to inner (nested) scrollbars.
+          Different browsers handle right-to-left completely differently.
+        </p>
+      </section>
+      
+      <section id="modal_dialog">
+      <h3>Managing Focus in Dialogs</h3>
+
+      <p class="note">
+        MCK: unedited content pulled together from the old guide that needs a significant re-write.
+        Please ignore this section for now.
+      </p>
+
+      <p>
+        WAI-ARIA provides for two dialog roles - dialog and alertdialog. When authors simulate dialogs on a web page they often limit their interaction considerations to the mouse.
+        Unlike Graphical User Interface dialog boxes on a desktop computer, a user during keyboard navigation could accidentally navigate outside the dialog box and become disoriented.
+        This can happen when the user is tabbing in the dialog.
+        A modal dialog prevents the user from setting focus outside of the dialog until the dialog is closed.
+        Mouse clicks outside of the dialog must be ignored and the user must not be able to tab into or out of the dialog itself.
+        All WAI-ARIA enabled dialog boxes should be modal.
+        This section describes how.
+      </p>
+
+      <p>
+        Mouse clicks outside of the dialog can be prevented by creating a CSS positioned element that is the size of the viewport to append as a child of the body element.
+        Set the CSS z-index of this element so that it is above all other elements on the page except for the dialog element.
+        Set the tabindex of the underlay element to tabindex="-1" to prevent it from receiving focus via a keyboard event or mouse click.
+        You may lower the opacity of the underlay element in order to emphasize that the dialog itself is modal and has focus.
+      </p>
+
+      <p>
+        Depending upon the action to be performed by the dialog, the object with focus before the dialog box is opened should be saved.
+        This will allow restoring focus to this element when the dialog box is closed.
+        When the dialog box is opened, focus should be set to the first tab focusable element within the dialog.
+        If there is no tab focusable element within the dialog box contents, set the focus to the item that is used to cancel or close the dialog.
+        There must be some element within the dialog which can accept focus in order for the screen reader to speak the dialog title and information when it is opened.
+        In order to prevent keyboard focus from leaving the dialog, determine the first and last tab focusable elements in the dialog and trap keyboard events within the document.
+      </p>
+
+      <p>
+        Search the contents of the dialog container to find the first and last tab focusable elements.
+        This can be implemented by walking the DOM tree of the dialog container to find all visible and enabled anchor elements, input elements, and all elements that have a tabindex value greater than or equal to 0.
+        Remember that elements with a tabindex > 0 will appear in the tab order before all other focusable elements in ascending order by tabindex.
+        Store the first and last tab focusable items within variables in the scope of the dialog box code.
+      </p>
+
+      <p>
+        Before the dialog is shown, create and display the dialog underlay.
+        Connect an onkeypress event handler to the DOM document.documentElement.
+        This will catch all keystrokes on the document and allow trapping keyboard focus within the dialog.
+        Size and position the dialog box in the viewport above the underlay, make it visible and set focus to the first tab focusable item in the dialog box.
+      </p>
+
+      <p>
+        The onkeypress handler will catch all key presses within the document.
+        This onkeypress event handler should be within the scope of the dialog box code so that it has access to the first and last tab focusable elements within the dialog.
+        In the onkeypress handler determine the target of the keypress event.
+        In addition, determine if there is only a single focusable item within the dialog box.
+        In this instance the first tab navigable object will equal the last tab navigable object.
+        If key presses within the dialog box may create, destroy, enable, disable, or change the visibility of tab focusable elements, then determine the first and last tab-focusable items each time a keypress is received.
+        Based on the event target and the key pressed take the following actions:
+      </p>
+
+      <ul>
+        <li>
+          If the keypress is a <kbd>Shift + Tab</kbd> key and the target == the first tab navigable object, then set focus to the last tab-navigable object and stop the key press event. If there is only a single tab focusable item, then focus does not have to be set, but the key press event must be stopped.
+        </li>
+        <li>
+          If the keypress is a <kbd>Tab</kbd> key and the target == the last tab navigable object, then set focus to the first tab-navigable object and stop the keypress event. If there is only a single tab-focusable item, then focus does not have to be set but the keypress event must must be stopped.
+        </li>
+        <li>
+          If the keypress is an <kbd>Escape</kbd> key and the target node is the container node for the dialog box, then close the dialog box and hide or destroy the dialog underlay.
+        </li>
+      </ul>
+
+      <p>
+        Determine if the target node of the keypress is within the dialog box container. This can be done using a while loop to walk the parent chain of the target node until the container node of the dialog box is found. Other than those outlined above, all key presses from within the dialog box should be allowed to execute so that the user can interact with the controls in the dialog box.
+      </p>
+
+      <p>
+        If the target node is not within the dialog box, the keypress is from the documentElement and the keypress event should be stopped unless it is a <kbd>Tab</kbd> key press. Allowing a <kbd>Tab</kbd> key press from the document element will enable tabbing back into the dialog box if, for some reason, focus on the dialog box is lost. This can happen due to timing issues when the dialog box is first loaded and focus does not properly get set to the first tab-focusable item within the dialog.
+      </p>
+
+      <p>
+        The dialog box itself should contain buttons or other mechanisms to cancel the dialog box or execute the dialog box functions and close the dialog box.
+      </p>
+
+      <p>
+        Here is a pseudo code onkeypress handler for a modal dialog box. Pseudo code is used to focus on the actions in the handler rather than on the differences in browser event handling. Assume that the event object, evt, has been normalized between browsers and the helper object is a library of functions that handle browser differences. The keys object is a set of key definition variables. Dialog is the dialog box object, which has a function to cancel the dialog.
+      </p>
+
+<pre>
+_onKey: function(/*Normalized Event*/ evt){
+// summary:
+// Handles the keyboard events for accessibility reasons
+if(evt.charOrCode){
+var node = evt.target; // get the target node of the keypress event
+if (evt.charOrCode === keys.TAB){
+// find the first and last tab focusable items in the hierarchy of the dialog container node
+// do this every time if the items may be added / removed from the the dialog may change visibility or state
+var focusItemsArray = helper.getFocusItems(dialogContainerNode);
+dialog.firstFocusItem = focusItemsArray[0];
+dialog.lastFocusItem = focusItemsArray[focusItemsArray.length-1];
+}
+// assumes firstFocusItem and lastFocusItem maintained by dialog object
+var singleFocusItem = (dialog.firstFocusItem == dialog.lastFocusItem);
+
+// see if we are shift-tabbing from first focusable item on dialog
+if(node == dialog.firstFocusItem &amp;&amp; evt.shiftKey &amp;&amp; evt.charOrCode === keys.TAB){
+if(!singleFocusItem){
+dialog.lastFocusItem.focus(); // send focus to last item in dialog
+}
+helper.stopEvent(evt); //stop the tab keypress event
+}
+// see if we are tabbing from the last focusable item
+else if(node == dialog.lastFocusItem &amp;&amp; evt.charOrCode === keys.TAB &amp;&amp; !evt.shiftKey){
+if (!singleFocusItem){
+dialog.firstFocusItem).focus(); // send focus to first item in dialog
+}
+helper.stopEvent(evt); //stop the tab keypress event
+}
+else{
+// see if the key is for the dialog
+while(node){
+if(node == dialogContainerNode){ // if this is the container node of the dialog
+if(evt.charOrCode == keys.ESCAPE){ // and the escape key was pressed
+dialog.cancel(); // cancel the dialog
+}else{
+return; // just let it go
+}
+}
+node = node.parentNode;
+}
+// this key is for the document window
+if(evt.charOrCode !== keys.TAB){ // allow tabbing into the dialog
+helper.stopEvent(evt); //stop the event if not a tab keypress
+}
+} // end of if evt.charOrCode
+} // end of function
+</pre>
+    </section>
+    <section id="keyboard_js_tips">
+      <H3>Other Keyboard Interface Development Tips</H3>
+
+      <p class="note">MCK: this section is a collection of keyboard related old content with a yet undecided fate.</p>
+
+      <section id="kbd_misc">
+        <h4>Miscelaneous stuff we might or might not keep</h4>
+
+        <ul>
+          <li>
+            <em>Use focus and blur events (or event delegation) to monitor changes to the current focus</em> - <code>focus</code> and <code>blur</code> events can now be used with every element.
+            Don't assume that all focus changes will come via key and mouse events, because assistive technologies such as screen readers can set the focus to any focusable element, and that needs to be handled elegantly by the JavaScript widget.
+            Techniques such as &quot;event delegation&quot; (for example, intercepting events on a list rather than on every listitem) can improve performance.
+          </li>
+
+          <li>
+            <em>Follow keydowns to move focus</em> - A keydown event handler can determine the next object to receive focus and call that element's focus() method.
+          </li>
+
+          <li>
+            <em>Use onkeydown to trap key events, not onkeypress</em> - Key press events do not fire for all keys and they vary across browsers.
+          </li>
+
+          <li>
+            <em>Use element.focus() to set focus</em> - Do not use createEvent(), initEvent() and dispatchEvent() to send focus to an element, because these functions do not change the focus.  DOM focus events are informational only, generated by the user agent after an element has acquired focus, but not used themselves to set focus.
+          </li>
+
+          <li>
+            The use of :focus pseudo-class selectors to style the keyboard focus is not supported in many versions of Internet Explorer. Authors should use the :active pseudo-class (which older versions of IE treat like :focus) in conjunction with the :focus pseudo-class. Example: a:focus, a:active { text-decoration: underline; }
+            If the related CSS pseudo-classes are not appropriate or not supported in all browsers, authors can use JavaScript techniques to indicate an appropriate focus alternative, such as using focus and blur events to toggle a classname on an element.
+          </li>
+
+          <li>
+            <em>Always draw the focus for tabindex="-1" items and elements that receive focus programmatically when supporting versions of Internet Explorer older than 8</em> - Choose between changing the background  color via something like this.style.backgroundColor = "gray"; or add a dotted border via this.style.border = "1px dotted invert".  In the dotted border case, you will need to make sure those elements  have an invisible 1px border to start with, so that the element doesn't  grow when the border style is applied (borders take up space, and IE  doesn't implement CSS outlines).
+          </li>
+
+          <li>
+            <p><em>Prevent used key events from performing browser functions</em> - If a key such as an arrow key is used, prevent the browser from using the key to do something (such as scrolling) by using code like the following:</p>
+            <pre class="example highlight">&lt;span tabindex=&quot;-1&quot; onkeypress=&quot;return  handleKeyPress();&quot;&gt; </pre>
+            <p>
+              If handleKeyDown() returns false, the event will be consumed, preventing the browser from performing any action based on the keystroke.
+              In addition to the return value the browser must call the event methods that will prevent the default action, for IE this is setting the event property &quot;returnValue=false&quot;, and for other browsers supporting the W3C event model this means calling the &quot;preventDefault&quot; method of the event object.
+            </p>
+          </li>
+
+          <li>
+            <em>Use key event handlers to enable activation of the element</em> - For every mouse event handler, a keyboard event handler is required.
+            For example, if you have an <em>onclick="doSomething()"</em> you may also need <em>onkeydown="return event.keyCode != 13 || doSomething();" </em>in order to allow the <kbd>Enter</kbd> key to activate that element.
+            There are <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/Keyboard-navigable_JavaScript_widgets" target="_blank">user agent-specific considerations</a> for key event handling.
+          </li>
+        </ul>
+
+      </section>
+
+      <section id="kbd_tooltips">
+        <h3> Supporting Tooltips with the Keyboard</h3>
+
+        <p>
+          A <a class="role-reference" href="#tooltip">tooltip</a> is a  popup messages typically triggered by moving a mouse over a control or widget causing a small popup window to appear with additional information about the control.
+          To provide simple text tooltips, the <a href="http://www.w3.org/TR/1999/REC-html401-19991224/struct/global.html#h-7.4.3">HTML title attribute</a> should more than suffice because the user agent will render it for tooltips.
+          When creating a <a class="role-reference" href="#tooltip">tooltip</a>, it is essential that  the user be able to activate it using the keyboard.
+          When a form control or widget receives keyboard focus, the <a class="role-reference" href="#tooltip">tooltip</a> must display.
+          When the form control or widget loses focus, the tooltip must disappear.
+          Browsers do not currently support this functionality.
+        </p>
+
+        <p>The following code snippet from the <a href="http://oaa-accessibility.org/examplep/tooltip1/"><abbr title="Illinois Center for Information Technology Accessibility">iCITA</abbr></a> site shows the use of a <span class="example highlight">onfocus=&quot;tooltipShow();&quot;</span> function to display the tooltip when focus is placed on an element.</p>
+
+        <pre class="example higlight" id="line1">&lt;html lang="en-us""&gt;
+&lt;head&gt;
+   &lt;title&gt;inline: Tooltip Example 1&lt;/title&gt;
+   &lt;link rel="stylesheet" href="css/tooltip1_inline.css"  type="text/css"&gt;
+   &lt;script type="text/javascript" src="js/tooltip1_inline.js"&gt;&lt;/script&gt;
+   &lt;script type="text/javascript" src="../js/widgets_inline.js"&gt;&lt;/script&gt;
+   &lt;script type="text/javascript" src="../js/globals.js"&gt;&lt;/script&gt;
+   &lt;link rel="icon" href="http://www.cites.uiuc.edu/favicon.ico" type="image/x-icon"&gt;
+   &lt;link rel="shortcut icon" href="http://www.cites.uiuc.edu/favicon.ico" type="image/x-icon"&gt;
+&lt;/head&gt;
+   &#8230;
+
+   &lt;body onload="initApp()"&gt;
+
+   &lt;div id="container"&gt;
+
+   &lt;h1&gt;Tooltip Example 1&lt;/h1&gt;
+     &lt;h2&gt;Create Account&lt;/h2&gt;
+   &lt;div class="text"&gt;
+   &lt;label for="first"&gt;First Name:&lt;/label&gt;
+
+   &lt;input type="text"  id="first" name="first" size="20"
+          onmouseover="tooltipShow(event, this, 'tp1');"
+          onfocus=&quot;tooltipShow(event, this,  'tp1');&quot;
+          aria-describedby="tp1"
+          aria-required="false"/&gt;
+
+   &lt;div id="tp1" role="tooltip" aria-hidden="true"&gt;Your first name is optional. &lt;/div&gt;
+   &lt;/div&gt;
+  &#8230;
+        </pre>
+      </section>
+    </section>
         <section id="kbd_general_valuenow">
       <h5>Maintain a valid format for aria-valuenow</h5>
   <p>It is essential that application vendors maintain a valid format for

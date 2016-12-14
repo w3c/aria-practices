@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
 <title>Navigation Menubar Example | WAI-ARIA Authoring Practices 1.1</title>
 <link href="../../css/core.css" rel="stylesheet">
 <link href="../../css/table.css" rel="stylesheet">
@@ -23,11 +22,17 @@
   </p>
   <p>
     Following are two implementations of the
-    <a href="../../#menu">design pattern for menubar</a>
+    <a href="../../../#menu">design pattern for menubar</a>
     that demonstrate how a menubar can be used for site navigation. Each item in the two menubars
     represents a section of a web site for a mythical university and opens a pull down menu with links to pages within that
     section. The two examples differ only in how they are coded; see notes that follow each example.
   </p>
+
+  <p>Similar examples include: </p>
+  <ul>
+    <li><a href="../menubar-2/menubar-2.html">Editor Menubar Example</a>: Example of a menubar with text styling actions similar to an editor application.</li>
+  </ul>
+
   <section id="code-ex-1">
     <h2>Examples</h2>
     <section>
@@ -38,24 +43,24 @@
           <li>
             <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">About</a>
             <ul role="menu" aria-label="About">
-              <li>
+              <li role="none">
                 <a role="menuitem" href="mb-about.html#overview">Overview</a>
               </li>
-              <li>
+              <li role="none">
                 <a role="menuitem" href="mb-about.html#admin">Administration</a>
               </li>
-              <li>
+              <li role="none">
                 <a id="menubar113" role="menuitem" href="#" aria-haspopup="true"
                   aria-expanded="false"
                 >Facts</a>
                 <ul role="menu" aria-label="facts">
-                  <li>
+                  <li role="none">
                     <a role="menuitem" href="mb-about.html#facts">History</a>
                   </li>
-                  <li>
+                  <li role="none">
                     <a role="menuitem" href="mb-about.html#facts">Current Statistics</a>
                   </li>
-                  <li>
+                  <li role="none">
                     <a role="menuitem" href="mb-about.html#facts">Awards</a>
                 </ul>
               </li>
@@ -63,13 +68,13 @@
                 <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">Campus
                   Tours</a>
                 <ul role="menu" aria-label="Campus Tours">
-                  <li>
+                  <li role="none">
                     <a role="menuitem" href="mb-about.html#tours">For prospective students</a>
                   </li>
-                  <li>
+                  <li role="none">
                     <a role="menuitem" href="mb-about.html#tours">For alumni</a>
                   </li>
-                  <li>
+                  <li role="none">
                     <a role="menuitem" href="mb-about.html#tours">For visitors</a>
                 </ul>
               </li>
@@ -78,23 +83,23 @@
           <li>
             <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">Admissions</a>
             <ul role="menu" aria-label="admissions">
-              <li>
+              <li role="none">
                 <a role="menuitem" href="mb-admissions.html#apply">Apply</a>
               </li>
-              <li>
+              <li role="none">
                 <a role="menuitem" href="mb-admissions.html#tuition">Tuition</a>
               </li>
-              <li>
+              <li role="none">
                 <a role="menuitem" href="mb-admissions.html#signup">Sign Up</a>
               </li>
               <li role="separator"></li>
-              <li>
+              <li role="none">
                 <a role="menuitem" href="mb-admissions.html#visit">Visit</a>
               </li>
-              <li>
+              <li role="none">
                 <a role="menuitem" href="mb-admissions.html#photo">Photo Tour</a>
               </li>
-              <li>
+              <li role="none">
                 <a role="menuitem" href="mb-admissions.html#connect">Connect</a>
               </li>
             </ul>
@@ -102,33 +107,39 @@
           <li>
             <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">Academics</a>
             <ul role="menu" aria-label="Academics">
-              <li>
+              <li role="none">
                 <a role="menuitem" href="mb-academics.html#colleges">Colleges &amp; Schools</a>
               </li>
-              <li>
+              <li role="none">
                 <a role="menuitem" href="mb-academics.html#programs">Programs of Study</a>
               </li>
-              <li>
+              <li role="none">
                 <a role="menuitem" href="mb-academics.html#honors">Honors Programs</a>
               </li>
-              <li>
+              <li role="none">
                 <a role="menuitem" href="mb-academics.html#online">Online Courses</a>
               </li>
               <li role="separator"></li>
-              <li>
+              <li role="none">
                 <a role="menuitem" href="mb-academics.html#explorer">Course Explorer</a>
               </li>
-              <li>
+              <li role="none">
                 <a role="menuitem" href="mb-academics.html#register">Register for Class</a>
               </li>
-              <li>
+              <li role="none">
                 <a role="menuitem" href="mb-academics.html#academic">Academic Calendar</a>
               </li>
-              <li>
+              <li role="none">
                 <a role="menuitem" href="mb-academics.html#tanscripts">Transscripts</a>
               </li>
             </ul>
           </li>
+
+          <script type="text/javascript">
+            var menubar = new Menubar(document.getElementById('menubar1'));
+            menubar.init();
+          </script>
+
         </ul>
       </div>
       <div role="separator" id="ex1_end_sep" aria-labelledby="ex1_end_sep ex1_label" aria-label="End of"></div>
@@ -210,6 +221,12 @@
             </ul>
           </li>
         </ul>
+
+          <script type="text/javascript">
+            var menubar = new Menubar(document.getElementById('menubar2'));
+            menubar.init();
+          </script>
+
       </div>
       <div role="separator" id="ex2_end_sep" aria-labelledby="ex2_end_sep ex2_label" aria-label="End of"></div>
       <h4>Notes</h4>
@@ -221,10 +238,11 @@
       </ol>
     </section>
   </section>
+
   <section>
-    <h2 id="id_mbf">Menubar Widget Features</h2>
-    <h3 id="kbd1_label">Keyboard Support</h3>
-    <table aria-labelledby="kbd1_label mb_label">
+    <h2 id="kbd_label">Keyboard Support</h2>
+    <h3 id="kbd1_label">Menubar</h3>
+    <table aria-labelledby="kbd1_label kbd_label">
       <thead>
         <tr>
           <th>Key</th>
@@ -321,8 +339,125 @@
         </tr>
       </tbody>
     </table>
-    <h3 id="rps1_label">Role, Property, State, and Tabindex Attributes</h3>
-    <table aria-labelledby="rps1_label mb_label">
+
+    <h3 id="kbd2_label">Popup Menu</h3>
+    <table aria-labelledby="kbd2_label kbd_label">
+      <thead>
+        <tr>
+          <th>Key</th>
+          <th>Function</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <kbd>Space or Enter</kbd>
+          </td>
+          <td>
+            <ul>
+              <li>Follow link.</li>
+              <li>NOTE: In this example all the links go to dummy pages, use back key to return
+                to the page with the menubar.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <kbd>Escape</kbd>
+          </td>
+          <td>
+            <ul>
+              <li>Closes popup menu.</li>
+              <li>Moves focus to current menubar menu item.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <kbd>Left Arrow</kbd>
+          </td>
+          <td>
+            <ul>
+              <li>Closes popup menu.</li>
+              <li>Moves focus to previous menubar menu item.</li>
+              <li>Open the popup menu of the previous menubar menuitem with focus.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <kbd>Right Arrow</kbd>
+          </td>
+          <td>
+            <ul>
+              <li>Closes popup menu.</li>
+              <li>Moves focus to next menubar menu item.</li>
+              <li>Open the popup menu of the next menubar menuitem with focus.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <kbd>Up Arrow</kbd>
+          </td>
+          <td>
+            <ul>
+              <li>Moves focus to previous popup menu item.</li>
+              <li>If first popup menu item, focus is moved to the last popup menu item.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <kbd>Down Arrow</kbd>
+          </td>
+          <td>
+            <ul>
+              <li>Moves focus to next popup menu item.</li>
+              <li>If last popup menu item, focus is moved to the first popup menu item.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <kbd>Home</kbd>
+          </td>
+          <td>
+            <ul>
+              <li>Moves focus to first popup menu item.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <kbd>End</kbd>
+          </td>
+          <td>
+            <ul>
+              <li>Moves focus to last popup menu item.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <kbd>Character</kbd>
+          </td>
+          <td>
+            <ul>
+              <li>Moves focus to the next popup item that starts with that letter.</li>
+              <li>If no popup menu item starts with the letter, focus does not move.</li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2 id="rps_label">Role, Property, State, and Tabindex Attributes</h2>
+    <h3 id="rps1_label">Menubar</h3>
+
+    <table aria-labelledby="rps1_label rps_label">
       <thead>
         <tr>
           <th>Role</th>
@@ -477,124 +612,26 @@
             </ul>
           </td>
         </tr>
-      </tbody>
-    </table>
-  </section>
-  <section>
-    <h2 id="popup_label">Popup Widget Features</h2>
-    <h3 id="kbd2_label">Keyboard Support</h3>
-    <table aria-labelledby="kbd2_label popup_label">
-      <thead>
-        <tr>
-          <th>Key</th>
-          <th>Function</th>
-        </tr>
-      </thead>
-      <tbody>
         <tr>
           <td>
-            <kbd>Space or Enter</kbd>
+            <code>none</code>
+          </td>
+          <td></td>
+          <td>
+            <code>li</code>
           </td>
           <td>
             <ul>
-              <li>Follow link.</li>
-              <li>NOTE: In this example all the links go to dummy pages, use back key to return
-                to the page with the menubar.</li>
-            </ul>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <kbd>Escape</kbd>
-          </td>
-          <td>
-            <ul>
-              <li>Closes popup menu.</li>
-              <li>Moves focus to current menubar menu item.</li>
-            </ul>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <kbd>Left Arrow</kbd>
-          </td>
-          <td>
-            <ul>
-              <li>Closes popup menu.</li>
-              <li>Moves focus to previous menubar menu item.</li>
-              <li>Open the popup menu of the previous menubar menuitem with focus.</li>
-            </ul>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <kbd>Right Arrow</kbd>
-          </td>
-          <td>
-            <ul>
-              <li>Closes popup menu.</li>
-              <li>Moves focus to next menubar menu item.</li>
-              <li>Open the popup menu of the next menubar menuitem with focus.</li>
-            </ul>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <kbd>Up Arrow</kbd>
-          </td>
-          <td>
-            <ul>
-              <li>Moves focus to previous popup menu item.</li>
-              <li>If first popup menu item, focus is moved to the last popup menu item.</li>
-            </ul>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <kbd>Down Arrow</kbd>
-          </td>
-          <td>
-            <ul>
-              <li>Moves focus to next popup menu item.</li>
-              <li>If last popup menu item, focus is moved to the first popup menu item.</li>
-            </ul>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <kbd>Home</kbd>
-          </td>
-          <td>
-            <ul>
-              <li>Moves focus to first popup menu item.</li>
-            </ul>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <kbd>End</kbd>
-          </td>
-          <td>
-            <ul>
-              <li>Moves focus to last popup menu item.</li>
-            </ul>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <kbd>Character</kbd>
-          </td>
-          <td>
-            <ul>
-              <li>Moves focus to the next popup item that starts with that letter.</li>
-              <li>If no popup menu item starts with the letter, focus does not move.</li>
+              <li>Hides <code>li</code> element native role semantics of <code>listiem</code> from assistive technologies.</li>
+              <li>If native role semantics of the <code>li</code> element are not removed, it could confuse some users of assistive technologies since listitems and menuitems would be interspersed with each other.</li>
             </ul>
           </td>
         </tr>
       </tbody>
     </table>
-    <h3 id="rps2_label">Role, Property, State, and Tabindex Attributes</h3>
-    <table aria-labelledby="kbd2_label rps2_label">
+
+    <h3 id="rps2_label">Popup Menu</h3>
+    <table aria-labelledby="rps2_label rps_label">
       <thead>
         <tr>
           <th>Role</th>
@@ -720,9 +757,25 @@
             </ul>
           </td>
         </tr>
+        <tr>
+          <td>
+            <code>none</code>
+          </td>
+          <td></td>
+          <td>
+            <code>li</code>
+          </td>
+          <td>
+            <ul>
+              <li>Hides <code>li</code> element native role semantics of <code>listiem</code> from assistive technologies.</li>
+              <li>If native role semantics of the <code>li</code> element are not removed, it could confuse some users of assistive technologies since listitems and menuitems would be interspersed with each other.</li>
+            </ul>
+          </td>
+        </tr>
       </tbody>
     </table>
   </section>
+
   <section>
     <h2>Javascript and CSS Source Code</h2>
     <ul>
@@ -731,24 +784,20 @@
         <a href="css/menubarLinks.css" type="tex/css">menubarLinks.css</a>
       </li>
       <li>
-        Javascript:
-        <ul>
-          <li>
-            <a href="js/MenubarItemLinks.js" type="text/javascript">MenubarItemLinks.js</a>
-          </li>
-          <li>
-            <a href="js/MenubarLinks.js" type="text/javascript">MenubarLinks.js</a>
-          </li>
-          <li>
-            <a href="js/PopupMenuItemLinks.js" type="text/javascript">PopupMenuItemLinks.js</a>
-          </li>
-          <li>
-            <a href="js/PopupMenuLinks.js" type="text/javascript">PopupMenuLinks.js</a>
-          </li>
-        </ul>
+        Javascript: <a href="js/MenubarItemLinks.js" type="text/javascript">MenubarItemLinks.js</a>
+      </li>
+      <li>
+        Javascript: <a href="js/MenubarLinks.js" type="text/javascript">MenubarLinks.js</a>
+      </li>
+      <li>
+        Javascript: <a href="js/PopupMenuItemLinks.js" type="text/javascript">PopupMenuItemLinks.js</a>
+      </li>
+      <li>
+        Javascript: <a href="js/PopupMenuLinks.js" type="text/javascript">PopupMenuLinks.js</a>
       </li>
     </ul>
   </section>
+
   <section>
     <h2>HTML Source Code</h2>
     <h3 id="sc1_label">Example 1: Menubar With ARIA Markup in the HTML Source</h3>
@@ -774,13 +823,5 @@
   <nav>
     <a href="../../../#menu">Menu or Menubar Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
   </nav>
-  <script type="text/javascript">
-    window.onload = function() {
-        var menubar = new Menubar(document.getElementById('menubar1'));
-        menubar.init();
-        menubar = new Menubar(document.getElementById('menubar2'));
-        menubar.init();
-    }
-    </script>
 </body>
 </html>

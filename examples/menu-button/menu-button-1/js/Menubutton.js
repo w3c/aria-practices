@@ -118,6 +118,7 @@ Menubutton.prototype.handleClick = function (event) {
   }
   else {
     this.popupMenu.open();
+    this.popupMenu.setFocusToFirstItem();
   }
 };
 
