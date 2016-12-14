@@ -2021,28 +2021,27 @@ A tree that provides navigation to a set of web pages and demonstrates how to ex
   </section>
 
   <section class="widget" id="aria_landmark">
-    <h2>Landmark Roles Design Patterns</h2>
-
+    <h2>Landmark Regions</h2>
     <p>
-      Landmarks provide a powerful way to identify the organization and structure of a web page.
-      The structural information conveyed visually to users should be represented programmatically in the markup using landmark roles.
-      The use of landmark roles supports keyboard navigation to the structure of a web page for screen reader users, and can be used as targets for author supplied &quot;skip links&quot; and browser extensions for enhanced keyboard navigation.
+      ARIA landmark roles provide a powerful way to identify the organization and structure of a web page.
+      By classifying and labeling sections of a page, they enable structural information that is conveyed visually through layout to be represented programmatically.
+      Screen readers exploit landmark roles to provide keyboard navigation to important sections of a page.
+      Landmark regions can also be used as targets for &quot;skip links&quot; and by browser extensions to enhanced keyboard navigation.
     </p>
-
-    <p>This section is intended to assist designers, developers and quality assurance staff in defining and understanding the importance of logical, usable, and accessible layout for assistive technologies using HTML5 sectioning elements and ARIA landmark roles.</p>
-
+    <p>
+      This section explains how HTML5 sectioning elements and ARIA landmark roles
+      are used to make it easy for assistive technology users to understand the meaning of the layout of a page.
+    </p>
     <section>
       <h3>HTML5 Sectioning Elements</h3>
-
       <p>
-        It is important to understand that many HTML5 sectioning elements by default define ARIA landmarks. If HTML5 sectioning elements are used without understanding the associated landmark structure, assistive technology users will most likely be confused
-        and less efficient in accessing content and interacting with web pages.
+        Several HTML5 sectioning elements automatically create ARIA landmark regions. 
+        So, in order to provide assistive technology users with a logical view of a page, 
+        it is important to understand the effects of using HTML5 sectioning elements. 
         <a href="https://www.w3.org/TR/html-aria/">More information on HTML5 element role mapping</a>.
       </p>
-
       <table class="widget-features">
         <caption>Default landmark roles for HTML5 sectioning elements</caption>
-
         <thead>
           <tr>
             <th>HTML5 Element</th>
@@ -2090,12 +2089,13 @@ A tree that provides navigation to a set of web pages and demonstrates how to ex
         </tbody>
       </table>
     </section>
-
     <section>
       <h3>General Principles of Landmark Design</h3>
-
-      <p>Due to the complexity of todays web content, if using landmarks, <strong>all content</strong> should reside in a semantically meaningful landmark in order that content is not missed by the user.</p>
-
+      <p>
+        Including <strong>all content</strong> on a page in one of its landmark regions 
+        and giving each landmark region a semantically meaningful role
+        is one of the most effective ways of ensuring assistive technology users will not overlook information that is relevant to their needs.
+      </p>
       <p><strong>Step 1: Identify the logical structure</strong></p>
 
       <ul>
