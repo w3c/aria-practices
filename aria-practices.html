@@ -54,19 +54,15 @@
 
   <section id="aria_ex">
     <h2>Design Patterns and Widgets</h2>
-
     <p>This section demonstrates how to make common rich internet application widgets and patterns accessible by applying WAI-ARIA roles, states, and properties and implementing keyboard support.</p>
-
     <p class="note">
       Although users of Mac OS X are familiar with using the <kbd>Command</kbd> key instead of the <kbd>Control</kbd> key, the <kbd>Command</kbd> key is typically reserved for desktop applications and OS-level integration.
       Until device and platform independence can be addressed in WAI-ARIA 2.0, the primary <kbd>Control</kbd> modifier key for WAI-ARIA widget interaction is specified as <kbd>Control</kbd> on all platforms, including Mac OS X.
     </p>
-
+    
     <section id="aria_ex_widget">
       <h3>Generally Applicable Keyboard Recommendations </h3>
-
       <p>The following keyboard conventions are applicable to many of the patterns described in subsequent sections.</p>
-
       <ul>
         <li><kbd>Shift + F10</kbd> opens associated context menu</li>
         <li><kbd>Control + C</kbd> Copies to clipboard </li>
@@ -75,16 +71,6 @@
         <li><kbd>Control + Z</kbd> undo last action</li>
         <li><kbd>Control + Y</kbd> Redo action</li>
       </ul>
-
-      <p class="note">The following guidance on nested widgets will be moved to another section.</p>
-
-      <p>
-        <strong>Widgets within Widgets</strong>
-        The general navigation model is for a user to tab to a widget, interact with the controls in that widget and then tab to move focus to the next widget in the tab order.
-        By extension, when the construct of a widget contains another widget, tab will move focus to the contained widget because it is the next item in the tab order.
-        This continues down the layers of widgets until the last widget is reached.
-        For example, if there are two widgets A and B on a page where widget A contains within it Widget A1 and Widget A1 contains within it Widget A2, the focus sequence when pressing the tab key would be A, A1, A2, B.
-      </p>
     </section>
 
     <section class="widget" id="accordion">
