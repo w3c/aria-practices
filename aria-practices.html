@@ -1971,44 +1971,67 @@ A tree that provides navigation to a set of web pages and demonstrates how to ex
 
     <section class="widget" id="windowsplitter">
       <h3>Window Splitter</h3>
-      <p>Visible separator between sections of a Window that is used to modify the size of the panes.</p>
-      <p>A Window Splitter can take one of two forms -- fixed size and variable size.</p>
-
+      <p>
+        Work is in progress on this design pattern and is tracked by 
+        <a href="https://github.com/w3c/aria-practices/issues/129">issue 129.</a>
+      </p>
+      <p>
+        A window splitter is a moveable separator between two sections, or panes, of a window that enables users to change the relative size of the panes.
+        A Window Splitter can be either variable or fixed.
+        A fixed splitter toggles between two positions whereas a variable splitter can be adjusted to any position within an allowed range.
+      </p>
+      <p>
+        A window splitter has a value that represents the size of one of the panes, which, in this pattern,  is called the primary pane. 
+        When the splitter has its minimum value, the primary pane has its smallest size and the secondary pane has its largest size.
+        The splitter also has an accessible name that matches the name of the primary pane.
+      </p>
+      <p>
+        For example, consider a book reading application with a primary pane for the table of contents and a secondary pane that displays content from a section of the book.
+        The two panes are divided by a vertical splitter labeled &quot;Table of Contents&quot;.
+        When the table of contents pane has its maximum size, the splitter has a value of <code>100</code>, 
+        and when the table of contents is completely collapsed, the splitter has a value of <code>0</code>.
+      </p>
+      <p>
+        Note that the term &quot;primary pane&quot; does not describe the importance or purpose of content inside the pane.
+      </p>
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
-
         <ul>
-          <li><kbd>Tab</kbd>: Moves focus   in to and out of the splitter. </li>
-          <li><kbd>Left Arrow</kbd> and <kbd>Right Arrow</kbd>: Move a vertical splitter left and right.</li>
-          <li><kbd>Up Arrow</kbd> and <kbd>Down Arrow</kbd>: Move a horizontal splitter up and down.</li>
-          <li><kbd>Enter</kbd>: If pane controlled by the splitter is not collapsed, then collapse the pane. If the pane is collapsed then restore the splitter to its previous position. </li>
-          <li><kbd>End</kbd> (Optional): moves splitter so the associated pane is the largest allowed size. </li>
-          <li><kbd>Home</kbd> (Optional): Moves splitter so the associated pane is the smallest allowed size. This may collapse the pane completely. </li>
-          <li><kbd>F6</kbd> (Optional): Cycle through the window   panes. </li>
+          <li><kbd>Left Arrow</kbd>: Moves a vertical splitter to the left.</li>
+          <li><kbd>Right Arrow</kbd>: Moves a vertical splitter to the right.</li>
+          <li><kbd>Up Arrow</kbd>: Moves a horizontal splitter up.</li>
+          <li><kbd>Down Arrow</kbd>: Moves a horizontal splitter down.</li>
+          <li><kbd>Enter</kbd>: If the primary pane is not collapsed, collapses the pane. If the pane is collapsed, restores the splitter to its previous position.</li>
+          <li><kbd>Home</kbd> (Optional): Moves splitter to the position that gives the primary pane its smallest allowed size. This may completely collapse the primary pane.</li>
+          <li><kbd>End</kbd> (Optional): Moves splitter to the position that gives the primary pane its largest allowed size. This may completely collapse the secondary pane.</li>
+          <li><kbd>F6</kbd> (Optional): Cycle through window   panes.</li>
         </ul>
-
-        <p class="note">A fixed size splitter simply omits implementation of the arrow keys. </p>
+        <p class="note">A fixed size splitter omits implementation of the arrow keys.</p>
       </section>
-
       <section class="notoc">
         <h4>WAI-ARIA Roles, States, and Properties</h4>
         <ul>
-          <li>The splitter has role <a href="#separator" class="role-reference">separator</a>.</li>
-          <li>If the splitter is expandable and collapsible, keep the splitter's <a href="#aria-expanded" class="state-reference">aria-expanded</a> state updated accordingly.</li>
-          <li>Label the splitter with <a href="#aria-label" class="property-reference">aria-label</a>, <a href="#aria-labelledby" class="property-reference">aria-labelledby</a>, or the <code>title</code> attribute. </li>
-          <li>Set the <a href="#aria-controls" class="property-reference">aria-controls</a> attribute of the element with role <code>separator</code> role to the IDs of the panes whose sizes it controls. </li>
+          <li>The element that serves as the focusable splitter has role <a href="#separator" class="role-reference">separator</a>.</li>
+          <li>The separator element has the <a class="property-reference" href="#aria-valuenow">aria-valuenow</a> property set to a decimal value representing the current position of the separator.</li>
+          <li>The separator element has the <a class="property-reference" href="#aria-valuemin">aria-valuemin</a> property set to a decimal value that represents the position where the primary pane has its minimum size. This is typically <code>0</code>.</li>
+          <li>The separator element has the <a class="property-reference" href="#aria-valuemax">aria-valuemax</a> property set to a decimal value that represents the position where the primary pane has its maximum size . This is typically <code>100</code>.</li>
+          <li>
+            If the primary pane has a visible label, it is referenced by
+            <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> on the separator element. 
+            Otherwise, the separator element has a label provided by 
+            <a href="#aria-label" class="property-reference">aria-label</a>.
+          </li>
+          <li>The separator element has <a href="#aria-controls" class="property-reference">aria-controls</a> referring to the primary pane.</li>
         </ul>
       </section>
-
       <section class="notoc">
         <h4>Example</h4>
-        <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The ARIA practices task force is developing examples for Authoring Practices 1.1 that will be directly incorporated into the guide.</p>
-        <ul>
-          <li><a href="http://archive.dojotoolkit.org/nightly/dojotoolkit/dijit/tests/layout/test_BorderContainer.html" target="_blank" rel="nofollow">Dojo Window splitter</a></li>
-        </ul>
+        <p>
+          Work to develop an example window splitter widget is tracked by 
+          <a href="https://github.com/w3c/aria-practices/issues/130">issue 130.</a>
+        </p>
       </section>
     </section>
-
   </section>
 
   <section class="widget" id="aria_landmark">
