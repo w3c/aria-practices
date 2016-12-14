@@ -28,12 +28,14 @@ ul[role="menu"] li[role="menuitem"]{
 }
 
 
+/*
 ul[role="menu"] li[role="separator"]{
   padding-top: 0.15em;
   background-image: url('../images/separator.png');
   background-position: center;
   background-repeat: repeat-x;
 }
+ */
 
 /* focus and hover styling */
 
