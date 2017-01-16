@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
+<!-- saved from url=(0099)file:///Users/jongund/GitHub/jongund/aria-practices/examples/hide-show/hide-show-1/hide-show-1.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
   <title>Hide/Show Long Description of an Imag | WAI-ARIA Authoring Practices 1.1</title>
-  <meta name="generator" content="BBEdit 10.5" />
-  <link href="../../css/core.css" rel="stylesheet">
-  <link href="../../css/table.css" rel="stylesheet">
-  <script src="../../js/examples.js" type="text/javascript"></script>
+  <meta name="generator" content="BBEdit 10.5">
+  <link href="./Hide_Show Long Description of an Imag _ WAI-ARIA Authoring Practices 1.1_files/core.css" rel="stylesheet">
+  <link href="./Hide_Show Long Description of an Imag _ WAI-ARIA Authoring Practices 1.1_files/table.css" rel="stylesheet">
+  <script src="./Hide_Show Long Description of an Imag _ WAI-ARIA Authoring Practices 1.1_files/examples.js" type="text/javascript"></script>
 
-  <link href="css/hideShow1css" rel="stylesheet">
-  <script src="js/buttonExpanded.js" type="text/javascript"></script>
+  <link href="file:///Users/jongund/GitHub/jongund/aria-practices/examples/hide-show/hide-show-1/css/hideShow1css" rel="stylesheet">
+  <script src="./Hide_Show Long Description of an Imag _ WAI-ARIA Authoring Practices 1.1_files/buttonExpanded.js" type="text/javascript"></script>
 
 </head>
 <body>
@@ -17,14 +17,14 @@
     <h1>Hide/Show Long Description of an Image</h1>
   <p>
     The following examples of the
-    <a href="../../#h-button">button design pattern</a>
+    <a href="file:///Users/jongund/GitHub/jongund/aria-practices/examples/#h-button">button design pattern</a>
     demonstrate both command and toggle buttons.
   </p>
   <section>
 
     <div id="example">
 
-      <img src="images/minard.png" aria-labelledby="id_short_desc"/>
+      <img src="./Hide_Show Long Description of an Imag _ WAI-ARIA Authoring Practices 1.1_files/minard.png" aria-labelledby="id_short_desc">
       <div id="ex1">
         <a id="id_short_desc" tabindex="0" role="button" aria-expanded="" aria-controls="id_long_desc"> Charles Minard's 1869 chart showing the number of men in Napoleon’s 1812 Russian campaign army, their movements, as well as the temperature they encountered on the return path.</a>
       </div>
@@ -45,7 +45,7 @@
           </thead>
           <tbody>
 <tr>
-<td></td><td>24.0</td><td>54.9</td><td>Kowno River</td><td>340000</td><td></td><td></td><td>Advance</td>
+<td></td><td>24.0</td><td>54.9</td><td></td><td>340000</td><td></td><td></td><td>Advance</td>
 </tr>
 <tr>
 <td></td><td> 4.5</td><td>55.0</td><td></td><td>340000</td><td></td><td></td><td>Advance</td>
@@ -186,9 +186,9 @@
 <td></td><td> 24.2</td><td>54.4</td><td></td><td>6000</td><td></td><td></td><td>Retreat</td>
 </tr>
 <tr>
-<td></td><td> 24.1</td><td>54.3</td><td>Kowno River</td><td>6000</td><td></td><td></td><td>Retreat</td>
-</td>
-          </tbody>
+<td></td><td> 24.1</td><td>54.3</td><td></td><td>6000</td><td></td><td></td><td>Retreat</td>
+
+          </tr></tbody>
         </table>
 
       </div>
@@ -216,7 +216,7 @@
               </td>
             </tr>
             <tr>
-              <th><kbd>Space</kbd>, <br/> or <kbd>Enter</kbd></th>
+              <th><kbd>Space</kbd>, <br> or <kbd>Enter</kbd></th>
               <td>
                 <ul>
                   <li>Toggle the checkbox between expanded and not expanded.</li>
@@ -247,25 +247,25 @@
                 <td><code>div</code></td>
                 <td>
                   <ul>
-                    <li>The <code>role=&quot;button&quot;</code> attribute identifies the <code>div</code> element as a ARIA <code>button</code>.</li>
+                    <li>The <code>role="button"</code> attribute identifies the <code>div</code> element as a ARIA <code>button</code>.</li>
                     <li>The accessible name comes the ???.</li>
-                    <li>The <code>button</code> widget needs a <code>tabindex=&quot;0&quot;</code> value.</li>
+                    <li>The <code>button</code> widget needs a <code>tabindex="0"</code> value.</li>
                   </ul>
                 </td>
               </tr>
               <tr>
                 <td></td>
-                <th scope="row"><code>tabindex=&quot;0&quot;</code></th>
+                <th scope="row"><code>tabindex="0"</code></th>
                 <td><code>div</code></td>
                 <td>
                     <ul>
-                      <li>The <code>div[&quot;button&quot;]</code> is identified as an interactive element and is added to the tab order of the page by setting the <code>tabindex=&quot;0&quot;</code>.</li>
+                      <li>The <code>div["button"]</code> is identified as an interactive element and is added to the tab order of the page by setting the <code>tabindex="0"</code>.</li>
                      </ul>
                 </td>
               </tr>
               <tr>
                 <td></td>
-                <th scope="row"><code>aria-controls=&quot;[IDREFS]&quot;</code></th>
+                <th scope="row"><code>aria-controls="[IDREFS]"</code></th>
                 <td><code>div</code></td>
                 <td>
                     <ul>
@@ -275,26 +275,26 @@
               </tr>
               <tr>
                 <td></td>
-                <th scope="row"><code>aria-expanded=&quot;false&quot;</code></th>
+                <th scope="row"><code>aria-expanded="false"</code></th>
                 <td><code>div</code></td>
                 <td>
                     <ul>
                       <li>Indentifies the <code>button</code> button as <em>hiding</em> content identified with <code>aria-controls</code> property.</li>
                       <li>This state reflects that all the controlled checkboxes are unchecked.</li>
-                      <li>CSS attribute selectors (e.g. <code>[aria-expanded=&quot;false&quot;]</code>) are used to synchronize the visual states with the value of the <code>aria-expanded</code> attribute.</li>
+                      <li>CSS attribute selectors (e.g. <code>[aria-expanded="false"]</code>) are used to synchronize the visual states with the value of the <code>aria-expanded</code> attribute.</li>
                       <li>The CSS <code>:before</code> psuedo selector and the <code>content</code> property are used to indcate visual state of "expanded" to support high contrast setting in operating systems and browsers.</li>
                     </ul>
                 </td>
               </tr>
               <tr>
                 <td></td>
-                <th scope="row"><code>aria-expanded=&quot;true&quot;</code></th>
+                <th scope="row"><code>aria-expanded="true"</code></th>
                 <td><code>div</code></td>
                 <td>
                     <ul>
                       <li>Indentifies the <code>button</code> button as <em>showing</em> content identified with <code>aria-controls</code> property.</li>
                       <li>This state reflects that all the controlled checkboxes are checked.</li>
-                      <li>CSS attribute selectors (e.g. <code>[aria-checked=&quot;true&quot;]</code>) are used to synchronize the visual states with the value of the <code>aria-checked</code> attribute.</li>
+                      <li>CSS attribute selectors (e.g. <code>[aria-checked="true"]</code>) are used to synchronize the visual states with the value of the <code>aria-checked</code> attribute.</li>
                       <li>The CSS <code>:before</code> psuedo selector and the <code>content</code> property are used to indcate visual state of "checked" to support high contrast setting in operating systems and browsers.</li>
                     </ul>
                 </td>
@@ -309,16 +309,16 @@
         <!--  After the js and css files are named with the name of this example, change the href and text of the following 2 links to refer to the appropriate js and css files.  -->
         <ul>
           <li>
-            CSS: <a href="css/hideShow1.css" type="tex/css">hideShow1.css</a>
+            CSS: <a href="file:///Users/jongund/GitHub/jongund/aria-practices/examples/hide-show/hide-show-1/css/hideShow1.css" type="tex/css">hideShow1.css</a>
           </li>
-          <li>Javascript: <a href="js/buttonExpanded.js" type="text/javascript">buttonExpanded.js</a></li>
+          <li>Javascript: <a href="./Hide_Show Long Description of an Imag _ WAI-ARIA Authoring Practices 1.1_files/buttonExpanded.js" type="text/javascript">buttonExpanded.js</a></li>
         </ul>
       </section>
 
       <section>
         <h2 id="sc1_label">HTML Source Code</h2>
         <div role="separator" id="sc1_start_sep" aria-labelledby="sc1_start_sep sc1_label" aria-label="Start of"></div>
-        <div id="sc1"></div>
+        <div id="sc1" class="sourcecode"><br>&lt;div&nbsp;id="ex1"&gt;<br>&nbsp;&nbsp;&lt;a&nbsp;id="id_short_desc"<br>&nbsp;&nbsp;&nbsp;tabindex="0"<br>&nbsp;&nbsp;&nbsp;role="button"<br>&nbsp;&nbsp;&nbsp;aria-expanded=""<br>&nbsp;&nbsp;&nbsp;aria-controls="id_long_desc"&gt;<br>&nbsp;&nbsp;&nbsp;&nbsp; Charles Minard's 1869 chart showing the number of men in Napoleon’s 1812 Russian campaign army, their movements, as well as the temperature they encountered on the return path.<br>&nbsp;&nbsp;&lt;/a&gt;<br>&lt;/div&gt;</div>
         <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of"></div>
 
         <script>
@@ -328,7 +328,8 @@
       </section>
   </main>
   <nav>
-    <a href="../../../#checkbox">Checkbox Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
+    <a href="file:///Users/jongund/GitHub/jongund/aria-practices/#checkbox">Checkbox Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
   </nav>
-</body>
-</html>
+
+
+</body></html>
