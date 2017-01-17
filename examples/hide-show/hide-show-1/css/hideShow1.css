@@ -9,9 +9,9 @@
 }
 
 [role="button"][aria-expanded="false"]:before {
-  content: url('../images/collapsed-16.png');
+  content: "+";
 }
 
 [role="button"][aria-expanded="true"]:before {
-  content: url('../images/expanded-16.png');
+  content: "-";
 }

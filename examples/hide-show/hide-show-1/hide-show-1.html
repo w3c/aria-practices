@@ -27,14 +27,14 @@
       <img src="images/minard.png" aria-labelledby="id_short_desc"/>
       <div id="ex1">
       Charles Minard's 1869 chart showing the number of men in Napoleon’s 1812 Russian campaign army, their movements, as well as the temperature they encountered on the return path (
-        <a 
+        <span 
           id="id_short_desc" 
           tabindex="0" 
           role="button" 
           aria-expanded="true" 
           aria-controls="id_long_desc"> 
           chart details
-        </a>
+        </span>
         ).
       </div>
 
@@ -256,7 +256,7 @@
               <tr>
                 <th scope="row"><code>button</code></th>
                 <td></td>
-                <td><code>div</code></td>
+                <td><code>span</code></td>
                 <td>
                   <ul>
                     <li>The <code>role=&quot;button&quot;</code> attribute identifies the <code>div</code> element as a ARIA <code>button</code>.</li>
@@ -268,20 +268,20 @@
               <tr>
                 <td></td>
                 <th scope="row"><code>tabindex=&quot;0&quot;</code></th>
-                <td><code>div</code></td>
+                <td><code>span</code></td>
                 <td>
                     <ul>
-                      <li>The <code>div[&quot;button&quot;]</code> is identified as an interactive element and is added to the tab order of the page by setting the <code>tabindex=&quot;0&quot;</code>.</li>
+                      <li>The <code>span[&quot;button&quot;]</code> is identified as an interactive element and is added to the tab order of the page by setting the <code>tabindex=&quot;0&quot;</code>.</li>
                      </ul>
                 </td>
               </tr>
               <tr>
                 <td></td>
                 <th scope="row"><code>aria-controls=&quot;[IDREFS]&quot;</code></th>
-                <td><code>div</code></td>
+                <td><code>span</code></td>
                 <td>
                     <ul>
-                      <li>A list of <code>IDREF</code>s identifies which checkboxes are controlled by the mixed checkbox.</li>
+                      <li>The <code>IDREF</code> identifies the container of the content to hide and show.</li>
                     </ul>
                 </td>
               </tr>
@@ -292,7 +292,6 @@
                 <td>
                     <ul>
                       <li>Indentifies the <code>button</code> button as <em>hiding</em> content identified with <code>aria-controls</code> property.</li>
-                      <li>This state reflects that all the controlled checkboxes are unchecked.</li>
                       <li>CSS attribute selectors (e.g. <code>[aria-expanded=&quot;false&quot;]</code>) are used to synchronize the visual states with the value of the <code>aria-expanded</code> attribute.</li>
                       <li>The CSS <code>:before</code> psuedo selector and the <code>content</code> property are used to indcate visual state of "expanded" to support high contrast setting in operating systems and browsers.</li>
                     </ul>
@@ -301,11 +300,10 @@
               <tr>
                 <td></td>
                 <th scope="row"><code>aria-expanded=&quot;true&quot;</code></th>
-                <td><code>div</code></td>
+                <td><code>span</code></td>
                 <td>
                     <ul>
                       <li>Indentifies the <code>button</code> button as <em>showing</em> content identified with <code>aria-controls</code> property.</li>
-                      <li>This state reflects that all the controlled checkboxes are checked.</li>
                       <li>CSS attribute selectors (e.g. <code>[aria-checked=&quot;true&quot;]</code>) are used to synchronize the visual states with the value of the <code>aria-checked</code> attribute.</li>
                       <li>The CSS <code>:before</code> psuedo selector and the <code>content</code> property are used to indcate visual state of "checked" to support high contrast setting in operating systems and browsers.</li>
                     </ul>

@@ -37,10 +37,8 @@ ButtonExpand.prototype.init = function () {
     this.controlledNode = document.getElementById(id);
   }
 
-  if (!this.domNode.getAttribute('aria-expanded')) {
-    this.domNode.setAttribute('aria-expanded', 'true');
-    this.toggleExpand();
-  }
+  this.domNode.setAttribute('aria-expanded', 'false');
+  this.hideContent();
 
   this.domNode.addEventListener('keydown',    this.handleKeydown.bind(this));
   this.domNode.addEventListener('click',      this.handleClick.bind(this));
@@ -49,21 +47,31 @@ ButtonExpand.prototype.init = function () {
 
 };
 
+ButtonExpand.prototype.showContent = function () {
+
+  if (this.controlledNode) {
+    this.controlledNode.style.display = "block";
+  }    
+
+};
+
+ButtonExpand.prototype.hideContent = function () {
+
+  if (this.controlledNode) {
+    this.controlledNode.style.display = "none";
+  }
+
+};
+
 ButtonExpand.prototype.toggleExpand = function () {
 
   if (this.domNode.getAttribute('aria-expanded') === 'true') {
     this.domNode.setAttribute('aria-expanded', 'false');
-
-    if (this.controlledNode) {
-      this.controlledNode.style.display = "none";
-    }
+    this.hideContent();
   }
   else {
     this.domNode.setAttribute('aria-expanded', 'true');
-
-    if (this.controlledNode) {
-      this.controlledNode.style.display = "block";
-    }    
+    this.showContent();
   }
 
 };
@@ -71,23 +79,24 @@ ButtonExpand.prototype.toggleExpand = function () {
 /* EVENT HANDLERS */
 
 ButtonExpand.prototype.handleKeydown = function (event) {
-  var flag = false;
+
+  console.log("[keydown]");
 
   switch (event.keyCode) {
+
     case this.keyCode.SPACE:
     case this.keyCode.RETURN:
-      this.toggleExpanded();
-      flag = true;
+
+      this.toggleExpand();
+
+      event.stopPropagation();
+      event.preventDefault();
       break;
 
     default:
       break;
   }
 
-  if (flag) {
-    event.stopPropagation();
-    event.preventDefault();
-  }
 };
 
 ButtonExpand.prototype.handleClick = function (event) {
