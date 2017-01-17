@@ -2,7 +2,7 @@
 *   This content is licensed according to the W3C Software License at
 *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
 *
-*   File:   Checkbox.js
+*   File:   ButtonExpand.js
 *
 *   Desc:   Checkbox widget that implements ARIA Authoring Practices
 *           for a menu of links
@@ -11,11 +11,11 @@
 */
 
 /*
-*   @constructor Checkbox
+*   @constructor ButtonExpand
 *
 *
 */
-var Checkbox = function (domNode) {
+var ButtonExpand = function (domNode) {
 
   this.domNode = domNode;
 
@@ -25,11 +25,21 @@ var Checkbox = function (domNode) {
   });
 };
 
-Checkbox.prototype.init = function () {
-  this.domNode.tabIndex = 0;
+ButtonExpand.prototype.init = function () {
 
-  if (!this.domNode.getAttribute('aria-checked')) {
-    this.domNode.setAttribute('aria-checked', 'false');
+  this.domNode.tabIndex = 0;
+  this.controlledNode = false;
+
+  var id = this.domNode.getAttribute('aria-controls');
+
+
+  if (id) {
+    this.controlledNode = document.getElementById(id);
+  }
+
+  if (!this.domNode.getAttribute('aria-expanded')) {
+    this.domNode.setAttribute('aria-expanded', 'true');
+    this.toggleExpand();
   }
 
   this.domNode.addEventListener('keydown',    this.handleKeydown.bind(this));
@@ -39,26 +49,34 @@ Checkbox.prototype.init = function () {
 
 };
 
-Checkbox.prototype.toggleCheckbox = function () {
+ButtonExpand.prototype.toggleExpand = function () {
 
-  if (this.domNode.getAttribute('aria-checked') === 'true') {
-    this.domNode.setAttribute('aria-checked', 'false');
+  if (this.domNode.getAttribute('aria-expanded') === 'true') {
+    this.domNode.setAttribute('aria-expanded', 'false');
+
+    if (this.controlledNode) {
+      this.controlledNode.style.display = "none";
+    }
   }
   else {
-    this.domNode.setAttribute('aria-checked', 'true');
+    this.domNode.setAttribute('aria-expanded', 'true');
+
+    if (this.controlledNode) {
+      this.controlledNode.style.display = "block";
+    }    
   }
 
 };
 
 /* EVENT HANDLERS */
 
-Checkbox.prototype.handleKeydown = function (event) {
+ButtonExpand.prototype.handleKeydown = function (event) {
   var flag = false;
 
   switch (event.keyCode) {
     case this.keyCode.SPACE:
     case this.keyCode.RETURN:
-      this.toggleCheckbox();
+      this.toggleExpanded();
       flag = true;
       break;
 
@@ -72,15 +90,27 @@ Checkbox.prototype.handleKeydown = function (event) {
   }
 };
 
-Checkbox.prototype.handleClick = function (event) {
-  this.toggleCheckbox();
+ButtonExpand.prototype.handleClick = function (event) {
+  this.toggleExpand();
 };
 
-Checkbox.prototype.handleFocus = function (event) {
+ButtonExpand.prototype.handleFocus = function (event) {
   this.domNode.classList.add('focus');
 };
 
-Checkbox.prototype.handleBlur = function (event) {
+ButtonExpand.prototype.handleBlur = function (event) {
   this.domNode.classList.remove('focus');
 };
 
+/* Initialize Hide/Show Buttons */
+
+window.addEventListener('load', function(event) {
+
+  var buttons =  document.querySelectorAll("[role=button][aria-expanded][aria-controls]");
+
+  for(var i=0; i < buttons.length; i++) {
+    var be = new ButtonExpand(buttons[i]);
+    be.init();
+  }
+
+}, false);

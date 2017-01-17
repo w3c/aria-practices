@@ -8,7 +8,7 @@
   <link href="../../css/table.css" rel="stylesheet">
   <script src="../../js/examples.js" type="text/javascript"></script>
 
-  <link href="css/hideShow1css" rel="stylesheet">
+  <link href="css/hideShow1.css" rel="stylesheet">
   <script src="js/buttonExpanded.js" type="text/javascript"></script>
 
 </head>
@@ -26,10 +26,20 @@
 
       <img src="images/minard.png" aria-labelledby="id_short_desc"/>
       <div id="ex1">
-        <a id="id_short_desc" tabindex="0" role="button" aria-expanded="" aria-controls="id_long_desc"> Charles Minard's 1869 chart showing the number of men in Napoleon’s 1812 Russian campaign army, their movements, as well as the temperature they encountered on the return path.</a>
+      Charles Minard's 1869 chart showing the number of men in Napoleon’s 1812 Russian campaign army, their movements, as well as the temperature they encountered on the return path (
+        <a 
+          id="id_short_desc" 
+          tabindex="0" 
+          role="button" 
+          aria-expanded="true" 
+          aria-controls="id_long_desc"> 
+          chart details
+        </a>
+        ).
       </div>
+
       <div id="id_long_desc">
-      <h2 id="id_data_label">Data for Charles Minars's Chart of Naploean's Invasion of Russia</h2>
+        <h2 id="id_data_label">Data for Charles Minars's Chart of Naploean's Invasion of Russia</h2>
         <table aria-labelledby="id_data_label">
           <thead>
             <tr>
@@ -44,156 +54,158 @@
             </tr>
           </thead>
           <tbody>
-<tr>
-<td></td><td>24.0</td><td>54.9</td><td>Kowno River</td><td>340000</td><td></td><td></td><td>Advance</td>
-</tr>
-<tr>
-<td></td><td> 4.5</td><td>55.0</td><td></td><td>340000</td><td></td><td></td><td>Advance</td>
-</tr>
-<tr>
-<td></td><td> 25.5</td><td>54.5</td><td></td><td>340000</td><td></td><td></td><td>Advance</td>
-</tr>
-<tr>
-<td></td><td> 26.0</td><td>54.7</td><td></td><td>320000</td><td></td><td></td><td>Advance</td>
-</tr>
-<tr>
-<td></td><td> 27.0</td><td>54.8</td><td></td><td>300000</td><td></td><td></td><td>Advance</td>
-</tr>
-<tr>
-<td></td><td> 28.0</td><td>54.9</td><td></td><td>280000</td><td></td><td></td><td>Advance</td>
-</tr>
-<tr>
-<td></td><td> 28.5</td><td>55.0</td><td></td><td>240000</td><td></td><td></td><td>Advance</td>
-</tr>
-<tr>
-<td></td><td> 29.0</td><td>55.1</td><td></td><td>210000</td><td></td><td></td><td>Advance</td>
-</tr>
-<tr>
-<td></td><td> 30.0</td><td>55.2</td><td></td><td>180000</td><td></td><td></td><td>Advance</td>
-</tr>
-<tr>
-<td></td><td> 30.3</td><td>55.3</td><td></td><td>175000</td><td></td><td></td><td>Advance</td>
-</tr>
-<tr>
-<td></td><td> 32.0</td><td>54.8</td><td></td><td>145000</td><td></td><td></td><td>Advance</td>
-</tr>
-<tr>
-<td></td><td> 33.2</td><td>54.9</td><td></td><td>140000</td><td></td><td></td><td>Advance</td>
-</tr>
-<tr>
-<td></td><td> 34.4</td><td>55.5</td><td></td><td>127100</td><td></td><td></td><td>Advance</td>
-</tr>
-<tr>
-<td></td><td> 35.5</td><td>55.4</td><td></td><td>100000</td><td></td><td></td><td>Advance</td>
-</tr>
-<tr>
-<td></td><td> 36.0</td><td>55.5</td><td></td><td>100000</td><td></td><td></td><td>Advance</td>
-</tr>
-<tr>
-<td></td><td> 37.6</td><td>55.8</td><td></td><td>100000</td><td></td><td></td><td>Retreat</td>
-</tr>
-<tr>
-<td></td><td> 37.5</td><td>55.7</td><td></td><td>98000</td><td></td><td></td><td>Retreat</td>
-</tr>
-<tr>
-<td></td><td> 37.0</td><td>55.0</td><td></td><td>97000</td><td></td><td></td><td>Retreat</td>
-</tr>
-<tr>
-<td></td><td> 36.8</td><td>55.0</td><td></td><td>96000</td><td></td><td></td><td>Retreat</td>
-</tr>
-<tr>
-<td></td><td> 35.4</td><td>55.3</td><td></td><td>87000</td><td></td><td></td><td>Retreat</td>
-</tr>
-<tr>
-<td></td><td> 34.3</td><td>55.2</td><td></td><td>55000</td><td></td><td></td><td>Retreat</td>
-</tr>
-<tr>
-<td></td><td> 33.3</td><td>54.8</td><td></td><td>37000</td><td></td><td></td><td>Retreat</td>
-</tr>
-<tr>
-<td></td><td> 32.0</td><td>54.6</td><td></td><td>24000</td><td></td><td></td><td>Retreat</td>
-</tr>
-<tr>
-<td></td><td> 30.4</td><td>54.4</td><td></td><td>20000</td><td></td><td></td><td>Retreat</td>
-</tr>
-<tr>
-<td></td><td> 29.2</td><td>54.4</td><td></td><td>20000</td><td></td><td></td><td>Retreat</td>
-</tr>
-<tr>
-<td></td><td> 28.5</td><td>54.3</td><td></td><td>20000</td><td></td><td></td><td>Retreat</td>
-</tr>
-<tr>
-<td></td><td> 28.3</td><td>54.4</td><td></td><td>20000</td><td></td><td></td><td>Retreat</td>
-</tr>
-<tr>
-<td></td><td> 24.0</td><td>55.1</td><td></td><td>60000</td><td></td><td></td><td>Advance</td>
-</tr>
-<tr>
-<td></td><td> 24.5</td><td>55.2</td><td></td><td>60000</td><td></td><td></td><td>Advance</td>
-</tr>
-<tr>
-<td></td><td> 25.5</td><td>54.7</td><td></td><td>60000</td><td></td><td></td><td>Advance</td>
-</tr>
-<tr>
-<td></td><td> 26.6</td><td>55.7</td><td></td><td>40000</td><td></td><td></td><td>Advance</td>
-</tr>
-<tr>
-<td></td><td> 27.4</td><td>55.6</td><td></td><td>33000</td><td></td><td></td><td>Advance</td>
-</tr>
-<tr>
-<td></td><td> 28.7</td><td>55.5</td><td></td><td>30000</td><td></td><td></td><td>Retreat</td>
-</tr>
-<tr>
-<td></td><td> 29.2</td><td>54.3</td><td></td><td>30000</td><td></td><td></td><td>Retreat</td>
-</tr>
-<tr>
-<td></td><td> 28.5</td><td>54.2</td><td></td><td>30000</td><td></td><td></td><td>Retreat</td>
-</tr>
-<tr>
-<td></td><td> 28.3</td><td>54.3</td><td></td><td>28000</td><td></td><td></td><td>Retreat</td>
-</tr>
-<tr>
-<td></td><td> 27.5</td><td>54.5</td><td></td><td>20000</td><td></td><td></td><td>Retreat</td>
-</tr>
-<tr>
-<td></td><td> 26.8</td><td>54.3</td><td></td><td>12000</td><td></td><td></td><td>Retreat</td>
-</tr>
-<tr>
-<td></td><td> 26.4</td><td>54.4</td><td></td><td>14000</td><td></td><td></td><td>Retreat</td>
-</tr>
-<tr>
-<td></td><td> 24.6</td><td>54.5</td><td></td><td>8000</td><td></td><td></td><td>Retreat</td>
-</tr>
-<tr>
-<td></td><td> 24.4</td><td>54.4</td><td></td><td>4000</td><td></td><td></td><td>Retreat</td>
-</tr>
-<tr>
-<td></td><td> 24.2</td><td>54.4</td><td></td><td>4000</td><td></td><td></td><td>Retreat</td>
-</tr>
-<tr>
-<td></td><td> 24.1</td><td>54.3</td><td></td><td>4000</td><td></td><td></td><td>Retreat</td>
-</tr>
-<tr>
-<td></td><td> 24.0</td><td>55.2</td><td></td><td>22000</td><td></td><td></td><td>Advance</td>
-</tr>
-<tr>
-<td></td><td> 24.5</td><td>55.3</td><td></td><td>22000</td><td></td><td></td><td>Advance</td>
-</tr>
-<tr>
-<td></td><td> 24.6</td><td>55.8</td><td></td><td>6000</td><td></td><td></td><td>Retreat</td>
-</tr>
-<tr>
-<td></td><td> 24.2</td><td>54.4</td><td></td><td>6000</td><td></td><td></td><td>Retreat</td>
-</tr>
-<tr>
-<td></td><td> 24.1</td><td>54.3</td><td>Kowno River</td><td>6000</td><td></td><td></td><td>Retreat</td>
-</td>
+            <tr>
+              <td></td><td>24.0</td><td>54.9</td><td>Kowno River</td><td>340000</td><td></td><td></td><td>Advance</td>
+            </tr>
+            <tr>
+              <td></td><td>24.5</td><td>55.0</td><td></td><td>340000</td><td></td><td></td><td>Advance</td>
+            </tr>
+            <tr>
+              <td></td><td> 25.5</td><td>54.5</td><td>Wilna</td><td>340000</td><td></td><td></td><td>Advance</td>
+            </tr>
+            <tr>
+              <td></td><td> 26.0</td><td>54.7</td><td>Smorgoni</td><td>320000</td><td></td><td></td><td>Advance</td>
+            </tr>
+            <tr>
+              <td></td><td> 27.0</td><td>54.8</td><td>Molodexno</td><td>300000</td><td></td><td></td><td>Advance</td>
+            </tr>
+            <tr>
+              <td></td><td> 28.0</td><td>54.9</td><td>Studienska</td><td>280000</td><td></td><td></td><td>Advance</td>
+            </tr>
+            <tr>
+              <td></td><td> 28.5</td><td>55.0</td><td>Polotzk</td><td>240000</td><td></td><td></td><td>Advance</td>
+            </tr>
+            <tr>
+              <td></td><td> 29.0</td><td>55.1</td><td></td><td>210000</td><td></td><td></td><td>Advance</td>
+            </tr>
+            <tr>
+              <td></td><td> 30.0</td><td>55.2</td><td></td><td>180000</td><td></td><td></td><td>Advance</td>
+            </tr>
+            <tr>
+              <td></td><td> 30.3</td><td>55.3</td><td></td><td>175000</td><td></td><td></td><td>Advance</td>
+            </tr>
+            <tr>
+              <td></td><td> 32.0</td><td>54.8</td><td></td><td>145000</td><td></td><td></td><td>Advance</td>
+            </tr>
+            <tr>
+              <td></td><td> 33.2</td><td>54.9</td><td></td><td>140000</td><td></td><td></td><td>Advance</td>
+            </tr>
+            <tr>
+              <td></td><td> 34.4</td><td>55.5</td><td></td><td>127100</td><td></td><td></td><td>Advance</td>
+            </tr>
+            <tr>
+              <td></td><td> 35.5</td><td>55.4</td><td></td><td>100000</td><td></td><td></td><td>Advance</td>
+            </tr>
+            <tr>
+              <td></td><td> 36.0</td><td>55.5</td><td></td><td>100000</td><td></td><td></td><td>Advance</td>
+            </tr>
+            <tr>
+              <td></td><td> 37.6</td><td>55.8</td><td></td><td>100000</td><td></td><td></td><td>Retreat</td>
+            </tr>
+            <tr>
+              <td></td><td> 37.5</td><td>55.7</td><td></td><td>98000</td><td></td><td></td><td>Retreat</td>
+            </tr>
+            <tr>
+              <td></td><td> 37.0</td><td>55.0</td><td></td><td>97000</td><td></td><td></td><td>Retreat</td>
+            </tr>
+            <tr>
+              <td></td><td> 36.8</td><td>55.0</td><td></td><td>96000</td><td></td><td></td><td>Retreat</td>
+            </tr>
+            <tr>
+              <td></td><td> 35.4</td><td>55.3</td><td></td><td>87000</td><td></td><td></td><td>Retreat</td>
+            </tr>
+            <tr>
+              <td></td><td> 34.3</td><td>55.2</td><td></td><td>55000</td><td></td><td></td><td>Retreat</td>
+            </tr>
+            <tr>
+              <td></td><td> 33.3</td><td>54.8</td><td></td><td>37000</td><td></td><td></td><td>Retreat</td>
+            </tr>
+            <tr>
+              <td></td><td> 32.0</td><td>54.6</td><td></td><td>24000</td><td></td><td></td><td>Retreat</td>
+            </tr>
+            <tr>
+              <td></td><td> 30.4</td><td>54.4</td><td></td><td>20000</td><td></td><td></td><td>Retreat</td>
+            </tr>
+            <tr>
+              <td></td><td> 29.2</td><td>54.4</td><td></td><td>20000</td><td></td><td></td><td>Retreat</td>
+            </tr>
+            <tr>
+              <td></td><td> 28.5</td><td>54.3</td><td></td><td>20000</td><td></td><td></td><td>Retreat</td>
+            </tr>
+            <tr>
+              <td></td><td> 28.3</td><td>54.4</td><td></td><td>20000</td><td></td><td></td><td>Retreat</td>
+            </tr>
+            <tr>
+              <td></td><td> 24.0</td><td>55.1</td><td></td><td>60000</td><td></td><td></td><td>Advance</td>
+            </tr>
+            <tr>
+              <td></td><td> 24.5</td><td>55.2</td><td></td><td>60000</td><td></td><td></td><td>Advance</td>
+            </tr>
+            <tr>
+              <td></td><td> 25.5</td><td>54.7</td><td></td><td>60000</td><td></td><td></td><td>Advance</td>
+            </tr>
+            <tr>
+              <td></td><td> 26.6</td><td>55.7</td><td></td><td>40000</td><td></td><td></td><td>Advance</td>
+            </tr>
+            <tr>
+              <td></td><td> 27.4</td><td>55.6</td><td></td><td>33000</td><td></td><td></td><td>Advance</td>
+            </tr>
+            <tr>
+              <td></td><td> 28.7</td><td>55.5</td><td></td><td>30000</td><td></td><td></td><td>Retreat</td>
+            </tr>
+            <tr>
+              <td></td><td> 29.2</td><td>54.3</td><td></td><td>30000</td><td></td><td></td><td>Retreat</td>
+            </tr>
+            <tr>
+              <td></td><td> 28.5</td><td>54.2</td><td></td><td>30000</td><td></td><td></td><td>Retreat</td>
+            </tr>
+            <tr>
+              <td></td><td> 28.3</td><td>54.3</td><td></td><td>28000</td><td></td><td></td><td>Retreat</td>
+            </tr>
+            <tr>
+              <td></td><td> 27.5</td><td>54.5</td><td></td><td>20000</td><td></td><td></td><td>Retreat</td>
+            </tr>
+            <tr>
+              <td></td><td> 26.8</td><td>54.3</td><td></td><td>12000</td><td></td><td></td><td>Retreat</td>
+            </tr>
+            <tr>
+              <td></td><td> 26.4</td><td>54.4</td><td></td><td>14000</td><td></td><td></td><td>Retreat</td>
+            </tr>
+            <tr>
+              <td></td><td> 24.6</td><td>54.5</td><td></td><td>8000</td><td></td><td></td><td>Retreat</td>
+            </tr>
+            <tr>
+              <td></td><td> 24.4</td><td>54.4</td><td></td><td>4000</td><td></td><td></td><td>Retreat</td>
+            </tr>
+            <tr>
+              <td></td><td> 24.2</td><td>54.4</td><td></td><td>4000</td><td></td><td></td><td>Retreat</td>
+            </tr>
+            <tr>
+              <td></td><td> 24.1</td><td>54.3</td><td></td><td>4000</td><td></td><td></td><td>Retreat</td>
+            </tr>
+            <tr>
+              <td></td><td> 24.0</td><td>55.2</td><td></td><td>22000</td><td></td><td></td><td>Advance</td>
+            </tr>
+            <tr>
+              <td></td><td> 24.5</td><td>55.3</td><td></td><td>22000</td><td></td><td></td><td>Advance</td>
+            </tr>
+            <tr>
+              <td></td><td> 24.6</td><td>55.8</td><td></td><td>6000</td><td></td><td></td><td>Retreat</td>
+            </tr>
+            <tr>
+              <td></td><td> 24.2</td><td>54.4</td><td></td><td>6000</td><td></td><td></td><td>Retreat</td>
+            </tr>
+            <tr>
+              <td></td><td> 24.1</td><td>54.3</td><td>Kowno River</td><td>6000</td><td></td><td></td><td>Retreat</td>
+            </tr>
           </tbody>
         </table>
 
       </div>
 
     </div>
+
+
 
   </section>
 
