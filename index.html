@@ -510,6 +510,12 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       border-radius: inherit;
     }
     
+    .respec-offending-element {
+      display: inline-block;
+      position: relative;
+      background: url(data:image/gif;base64,R0lGODdhBAADAPEAANv///8AAP///wAAACwAAAAABAADAEACBZQjmIAFADs=) bottom repeat-x;
+    }
+    
     @media print {
       .removeOnSave {
         display: none;
@@ -522,10 +528,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
 
   <link href="common/css/common.css" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/W3C-ED">
   <!--[if lt IE 9]><script src='https://www.w3.org/2008/site/js/html5shiv.js'></script><![endif]-->
-  <link rel="canonical" href="https://www.w3.org/TR/wai-aria-practices-1.1/">
-  <meta name="generator" content="ReSpec 7.0.0">
   <script id="initialUserConfig" type="application/json">
     {
       "doRDFa": "1.1",
@@ -613,7 +616,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       "wg": "Accessible Rich Internet Applications Working Group",
       "wgURI": "http://www.w3.org/WAI/ARIA/",
       "wgPublicList": "public-aria",
-      "wgPatentURI": "http://www.w3.org/2004/01/pp-impl/83726/status",
+      "wgPatentURI": "https://www.w3.org/2004/01/pp-impl/83726/status",
       "maxTocLevel": 4,
       "localBiblio":
       {
@@ -894,9 +897,13 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       },
       "preProcess": [
         null
-      ]
+      ],
+      "publishDate": "2017-01-23"
     }
   </script>
+  <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/W3C-ED">
+  <meta name="generator" content="ReSpec 8.7.1">
+  <link rel="canonical" href="https://www.w3.org/TR/wai-aria-practices-1.1/">
 </head>
 <body class="h-entry toc-inline" role="document" id="respecDocument">
   <div class="head" role="contentinfo" id="respecHeader">
@@ -904,7 +911,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <a class="logo" href="https://www.w3.org/"><img width="72" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" alt="W3C"></a>
     </p>
     <h1 class="title p-name" id="title" property="dcterms:title"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Authoring Practices 1.1</h1>
-    <h2 id="w3c-editor-s-draft-14-december-2016"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2016-12-14">14 December 2016</time></h2>
+    <h2 id="w3c-editor-s-draft-23-january-2017"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2017-01-23">23 January 2017</time></h2>
     <dl>
       <dt>This version:</dt>
       <dd><a class="u-url" href="http://w3c.github.io/aria-practices/">http://w3c.github.io/aria-practices/</a></dd>
@@ -937,7 +944,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
     </dl>
     <p class="copyright">
-      <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2015-2016
+      <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a> © 2015-2017
 
       <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="https://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>,
       <a href="https://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>,
@@ -976,7 +983,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       This document was produced by a group operating under the
       <a id="sotd_patent" property="w3p:patentRules" href="https://www.w3.org/Consortium/Patent-Policy-20040205/">5 February 2004 <abbr title="World Wide Web Consortium">W3C</abbr> Patent
               Policy</a>.
-      <abbr title="World Wide Web Consortium">W3C</abbr> maintains a <a href="http://www.w3.org/2004/01/pp-impl/83726/status" rel="disclosure">public list of any patent
+      <abbr title="World Wide Web Consortium">W3C</abbr> maintains a <a href="https://www.w3.org/2004/01/pp-impl/83726/status" rel="disclosure">public list of any patent
                 disclosures</a> made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. An individual who has actual knowledge of a patent which the individual believes contains
       <a href="https://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential">Essential
               Claim(s)</a> must disclose the information in accordance with
@@ -1062,7 +1069,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           </li>
         </ol>
       </li>
-      <li class="tocline"><a href="#aria_landmark" class="tocxref"><span class="secno">3. </span>Landmark Roles Design Patterns</a>
+      <li class="tocline"><a href="#aria_landmark" class="tocxref"><span class="secno">3. </span>Landmark Regions</a>
         <ol class="toc">
           <li class="tocline"><a href="#html5-sectioning-elements" class="tocxref"><span class="secno">3.1 </span>HTML5 Sectioning Elements</a></li>
           <li class="tocline"><a href="#general-principles-of-landmark-design" class="tocxref"><span class="secno">3.2 </span>General Principles of Landmark Design</a></li>
@@ -1154,13 +1161,6 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         <ol class="toc">
           <li class="tocline"><a href="#ScreenReaderModes" class="tocxref"><span class="secno">A.1 </span>Understanding Screen Reader Document Reading and Application Reading Modes</a></li>
           <li class="tocline"><a href="#ariaBackground" class="tocxref"><span class="secno">A.2 </span>Background on <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr></a></li>
-          <li class="tocline"><a href="#acknowledgements" class="tocxref"><span class="secno">A.3 </span>Acknowledgments</a>
-            <ol class="toc">
-              <li class="tocline"><a href="#ack_group" class="tocxref"><span class="secno">A.3.1 </span>Participants active in the ARIA WG at the time of publication</a></li>
-              <li class="tocline"><a href="#ack_others" class="tocxref"><span class="secno">A.3.2 </span>Other ARIA contributors, commenters, and previously active participants</a></li>
-              <li class="tocline"><a href="#ack_funders" class="tocxref"><span class="secno">A.3.3 </span>Enabling funders</a></li>
-            </ol>
-          </li>
         </ol>
       </li>
       <li class="tocline"><a href="#references" class="tocxref"><span class="secno">B. </span>References</a>
@@ -3093,31 +3093,28 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
   <section class="widget" id="aria_landmark" typeof="bibo:Chapter" resource="#aria_landmark" property="bibo:hasPart">
     <!--OddPage-->
-    <h2 id="h-aria_landmark" resource="#h-aria_landmark"><span property="xhv:role" resource="xhv:heading"><span class="secno">3. </span>Landmark Roles Design Patterns<span class="permalink" typeof="bookmark"><a href="#aria_landmark" aria-label="Permalink for 3. Landmark Roles Design Patterns" title="Permalink for 3. Landmark Roles Design Patterns" property="url"><span property="title" content="3. Landmark Roles Design Patterns">§</span></a>
+    <h2 id="h-aria_landmark" resource="#h-aria_landmark"><span property="xhv:role" resource="xhv:heading"><span class="secno">3. </span>Landmark Regions<span class="permalink" typeof="bookmark"><a href="#aria_landmark" aria-label="Permalink for 3. Landmark Regions" title="Permalink for 3. Landmark Regions" property="url"><span property="title" content="3. Landmark Regions">§</span></a>
       </span>
       </span>
     </h2>
-
     <p>
-      Landmarks provide a powerful way to identify the organization and structure of a web page. The structural information conveyed visually to users should be represented programmatically in the markup using landmark roles. The use of landmark roles supports keyboard navigation to the structure of a web page for screen reader users, and can be used as targets for author supplied "skip links" and browser extensions for enhanced keyboard navigation.
+      ARIA landmark roles provide a powerful way to identify the organization and structure of a web page. By classifying and labeling sections of a page, they enable structural information that is conveyed visually through layout to be represented programmatically. Screen readers exploit landmark roles to provide keyboard navigation to important sections of a page. Landmark regions can also be used as targets for "skip links" and by browser extensions to enhanced keyboard navigation.
     </p>
-
-    <p>This section is intended to assist designers, developers and quality assurance staff in defining and understanding the importance of logical, usable, and accessible layout for assistive technologies using HTML5 sectioning elements and ARIA landmark roles.</p>
+    <p>
+      This section explains how HTML5 sectioning elements and ARIA landmark roles are used to make it easy for assistive technology users to understand the meaning of the layout of a page.
+    </p>
 
     <section id="html5-sectioning-elements" typeof="bibo:Chapter" resource="#html5-sectioning-elements" property="bibo:hasPart">
       <h3 id="h-html5-sectioning-elements" resource="#h-html5-sectioning-elements"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.1 </span>HTML5 Sectioning Elements<span class="permalink" typeof="bookmark"><a href="#html5-sectioning-elements" aria-label="Permalink for 3.1 HTML5 Sectioning Elements" title="Permalink for 3.1 HTML5 Sectioning Elements" property="url"><span property="title" content="3.1 HTML5 Sectioning Elements">§</span></a>
         </span>
         </span>
       </h3>
-
       <p>
-        It is important to understand that many HTML5 sectioning elements by default define ARIA landmarks. If HTML5 sectioning elements are used without understanding the associated landmark structure, assistive technology users will most likely be confused and less efficient in accessing content and interacting with web pages.
+        Several HTML5 sectioning elements automatically create ARIA landmark regions. So, in order to provide assistive technology users with a logical view of a page, it is important to understand the effects of using HTML5 sectioning elements.
         <a href="https://www.w3.org/TR/html-aria/">More information on HTML5 element role mapping</a>.
       </p>
-
       <table class="widget-features">
         <caption>Default landmark roles for HTML5 sectioning elements</caption>
-
         <thead>
           <tr>
             <th>HTML5 Element</th>
@@ -3171,9 +3168,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </span>
         </span>
       </h3>
-
-      <p>Due to the complexity of todays web content, if using landmarks, <strong>all content</strong> should reside in a semantically meaningful landmark in order that content is not missed by the user.</p>
-
+      <p>
+        Including <strong>all content</strong> on a page in one of its landmark regions and giving each landmark region a semantically meaningful role is one of the most effective ways of ensuring assistive technology users will not overlook information that is relevant to their needs.
+      </p>
       <p><strong>Step 1: Identify the logical structure</strong></p>
 
       <ul>
@@ -4376,207 +4373,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <p>[Placeholder section that will be resolved by <a href="https://github.com/w3c/aria-practices/issues/84">issue #84</a>.]</p>
     </section>
 
-    <section class="appendix informative section" id="acknowledgements" typeof="bibo:Chapter" resource="#acknowledgements" property="bibo:hasPart">
-      <h3 id="h-acknowledgements" resource="#h-acknowledgements"><span property="xhv:role" resource="xhv:heading"><span class="secno">A.3 </span>Acknowledgments<span class="permalink" typeof="bookmark"><a href="#acknowledgements" aria-label="Permalink for A.3 Acknowledgments" title="Permalink for A.3 Acknowledgments" property="url"><span property="title" content="A.3 Acknowledgments">§</span></a>
-        </span>
-        </span>
-      </h3>
-      <p><em>This section is non-normative.</em></p>
-      <p>The following people contributed to the development of this document.</p>
-
-      <section class="section" id="ack_group" typeof="bibo:Chapter" resource="#ack_group" property="bibo:hasPart">
-        <h4 id="h-ack_group" resource="#h-ack_group"><span property="xhv:role" resource="xhv:heading"><span class="secno">A.3.1 </span>Participants active in the ARIA WG at the time of publication<span class="permalink" typeof="bookmark"><a href="#ack_group" aria-label="Permalink for A.3.1 Participants active in the ARIA WG at the time of publication" title="Permalink for A.3.1 Participants active in the ARIA WG at the time of publication" property="url"><span property="title" content="A.3.1 Participants active in the ARIA WG at the time of publication">§</span></a>
-          </span>
-          </span>
-        </h4>
-        <ul>
-          <li>Ann Abbott (IBM Corporation)</li>
-          <li>Michiel Bijl (The Paciello Group)</li>
-          <li>Christy Blew (University of Illinois at Urbana-Champaign)</li>
-          <li>Teresa Boers (IBM Corporation)</li>
-          <li>David Bolter (Mozilla Foundation) </li>
-          <li>Michael Cooper (<abbr title="World Wide Web Consortium">W3C</abbr>/<abbr title="Massachusetts Institute of Technology">MIT</abbr>)</li>
-          <li>James Craig (Apple Inc.) </li>
-          <li>Joanmarie Diggs (Igalia)</li>
-          <li>Fred Esch (IBM Corporation)</li>
-          <li>Steve Faulkner (The Paciello Group) </li>
-          <li>John Foliot (Invited Expert)</li>
-          <li>Bryan Garaventa (SSB BART Group)</li>
-          <li>Matt Garrish (DAISY Consortium)</li>
-          <li>Billy Gregory (The Paciello Group)</li>
-          <li>Karl Groves (The Paciello Group)</li>
-          <li>Jon Gunderson (University of Illinois at Urbana-Champaign)</li>
-          <li>Markus Gylling (DAISY Consortium)</li>
-          <li>Markku Hakkinen (Educational Testing Service)</li>
-          <li>Katie Haritos-Shea (Knowbility)</li>
-          <li>Susann Keohane (IBM Corporation)</li>
-          <li>Matthew King (Facebook)</li>
-          <li>Jason Kiss (Department of Internal Affairs, New Zealand Government)</li>
-          <li>Jamie Knight (British Broadcasting Corporation)</li>
-          <li>JaEun Jemma Ku (University of Illinois at Urbana-Champaign)</li>
-          <li>Shane McCarron (Invited Expert, Aptest)</li>
-          <li>Charles McCathie Nevile (Yandex)</li>
-          <li>Mary Jo Mueller (IBM Corporation)</li>
-          <li>James Nurthen (Oracle Corporation) </li>
-          <li>Ian Pouncey (The Paciello Group, LLC)</li>
-          <li>Mark Sadecki (Invited Expert)</li>
-          <li>Janina Sajka (Invited Expert, The Linux Foundation)</li>
-          <li>Joseph Scheuhammer (Invited Expert, Inclusive Design Research Centre, OCAD University) </li>
-          <li>Stefan Schnabel (SAP AG) </li>
-          <li>Richard Schwerdtfeger (IBM Corporation)</li>
-          <li>Lisa Seeman (Invited Expert) </li>
-          <li>Tzviya Siegman (Wiley)</li>
-          <li>Cynthia Shelly (Microsoft Corporation) </li>
-          <li>Alexander Surkov (Mozilla Foundation)</li>
-          <li>Léonie Watson (The Paciello Group)</li>
-          <li>Jason White (Educational Testing Service)</li>
-          <li>Gottfried Zimmermann (Invited Expert, Access Technologies Group)</li>
-        </ul>
-      </section>
-
-      <section class="section" id="ack_others" typeof="bibo:Chapter" resource="#ack_others" property="bibo:hasPart">
-        <h4 id="h-ack_others" resource="#h-ack_others"><span property="xhv:role" resource="xhv:heading"><span class="secno">A.3.2 </span>Other ARIA contributors, commenters, and previously active participants<span class="permalink" typeof="bookmark"><a href="#ack_others" aria-label="Permalink for A.3.2 Other ARIA contributors, commenters, and previously active participants" title="Permalink for A.3.2 Other ARIA contributors, commenters, and previously active participants" property="url"><span property="title" content="A.3.2 Other ARIA contributors, commenters, and previously active participants">§</span></a>
-          </span>
-          </span>
-        </h4>
-        <ul>
-          <li>Shadi Abou-Zahra (<abbr title="World Wide Web Consortium">W3C</abbr>)</li>
-          <li>Jim Allan (TSB)</li>
-          <li>Jonny Axelsson (Opera Software)</li>
-          <li>David Baron (Mozilla Foundation)</li>
-          <li>Art Barstow (Nokia Corporation)</li>
-          <li>Simon Bates</li>
-          <li>Chris Blouch (AOL)</li>
-          <li>Judy Brewer (<abbr title="World Wide Web Consortium">W3C</abbr>/<abbr title="Massachusetts Institute of Technology">MIT</abbr>)</li>
-          <li>Mark Birbeck (Sidewinder Labs)</li>
-          <li>Sally Cain (Royal National Institute of Blind People (RNIB))</li>
-          <li>Gerardo Capiel (Benetech)</li>
-          <li>Ben Caldwell (Trace)</li>
-          <li>Sofia Celic-Li</li>
-          <li>Jaesik Chang (Samsung Electronics Co., Ltd.)</li>
-          <li>Alex Qiang Chen (University of Manchester)</li>
-          <li>Charles Chen (Google, Inc.)</li>
-          <li>Christian Cohrs</li>
-          <li>Deborah Dahl</li>
-          <li>Erik Dahlström (Opera Software)</li>
-          <li>Dimitar Denev (Frauenhofer Gesellschaft)</li>
-          <li>Micah Dubinko (Invited Expert)</li>
-          <li>Mandana Eibegger</li>
-          <li>Beth Epperson (Websense)</li>
-          <li>Donald Evans (AOL)</li>
-          <li>Chris Fleizach (Apple Inc.)</li>
-          <li>Kelly Ford (Microsoft Corporation)</li>
-          <li>Geoff Freed (Invited Expert, NCAM)</li>
-          <li>Christopher Gallelo (Microsoft Corporation)</li>
-          <li>Birkir Gunnarsson (Deque Systems, Inc.)</li>
-          <li>Kentarou Fukuda (IBM Corporation)</li>
-          <li>Bryan Garaventa</li>
-          <li>Guido Geloso</li>
-          <li>Ali Ghassemi</li>
-          <li>Becky Gibson (IBM)</li>
-          <li>Alfred S. Gilman</li>
-          <li>Andres Gonzalez (Adobe Systems Inc.)</li>
-          <li>Scott González (JQuery Foundation)</li>
-          <li>James Graham</li>
-          <li>Georgios Grigoriadis (SAP AG)</li>
-          <li>Jeff Grimes (Oracle)</li>
-          <li>Loretta Guarino Reid (Google, Inc.)</li>
-          <li>Barbara Hartel</li>
-          <li>James Hawkins (Google, Inc.)</li>
-          <li>Benjamin Hawkes-Lewis</li>
-          <li>Sean Hayes (Microsoft Corporation)</li>
-          <li>Mona Heath (University of Illinois at Urbana-Champaign)</li>
-          <li>Jan Heck</li>
-          <li>Shawn Henry</li>
-          <li>Tina Homboe</li>
-          <li>John Hrvatin (Microsoft Corporation)</li>
-          <li>Takahiro Inada</li>
-          <li>Masayasu Ishikawa (<abbr title="World Wide Web Consortium">W3C</abbr>)</li>
-          <li>Jim Jewitt</li>
-          <li>Kenny Johar (Microsoft Corporation)</li>
-          <li>Shilpi Kapoor (BarrierBreak Technologies)</li>
-          <li>Masahiko Kaneko (Microsoft Corporation)</li>
-          <li>Marjolein Katsma</li>
-          <li>George Kerscher (International Digital Publishing Forum)</li>
-          <li>Jason Kiss (New Zealand Government)</li>
-          <li>Todd Kloots</li>
-          <li>Johannes Koch</li>
-          <li>Sam Kuper</li>
-          <li>Earl Johnson (Sun)</li>
-          <li>Jael Kurz</li>
-          <li>Rajesh Lal (Nokia Corporation)</li>
-          <li>Diego La Monica (International Webmasters Association / HTML Writers Guild (IWA-HWG))</li>
-          <li>Aaron Leventhal (IBM Corporation)</li>
-          <li>Gez Lemon (International Webmasters Association / HTML Writers Guild (IWA-HWG))</li>
-          <li>Alex Li (SAP)</li>
-          <li>Chris Lilley</li>
-          <li>Thomas Logan (HiSoftware Inc.)</li>
-          <li>William Loughborough (Invited Expert)</li>
-          <li>Linda Mao (Microsoft)</li>
-          <li>David MacDonald (Invited Expert, CanAdapt Solutions Inc.)</li>
-          <li>Carolyn MacLeod</li>
-          <li>Anders Markussen (Opera Software)</li>
-          <li>Krzysztof Maczyński </li>
-          <li>Matthew May (Adobe Systems Inc.)</li>
-          <li>Dominic Mazzoni (Google, Inc.)</li>
-          <li>Alexandre Morgaut (4D)</li>
-          <li>Ann Navarro (Invited Expert)</li>
-          <li>Joshue O Connor (Invited Expert, CFIT)</li>
-          <li>Artur Ortega (Microsoft Corporation)</li>
-          <li>Sailesh Panchang (Deque)</li>
-          <li>Lisa Pappas (Society for Technical Communication (STC))</li>
-          <li>Marta Pawlowlska (Samsung Electronics Co., Ltd.)</li>
-          <li>Dave Pawson (RNIB)</li>
-          <li>Steven Pemberton (CWI Amsterdam)</li>
-          <li>Simon Pieters (Opera Software)</li>
-          <li>Jean-Bernard Piot (4D)</li>
-          <li>David Poehlman, Simon Pieters (Opera Software)</li>
-          <li>Sarah Pulis (Media Access Australia)</li>
-          <li>T.V. Raman (Google, Inc.)</li>
-          <li>Jan Richards</li>
-          <li>Gregory Rosmaita (Invited Expert)</li>
-          <li>Tony Ross (Microsoft Corporation)</li>
-          <li>Alex Russell (Dojo Foundation) (</li>
-          <li>Mark Sadecki (Invited Expert)</li>
-          <li>Mario Sánchez Prada (Samsung Electronics Co., Ltd. and Gnome Foundation)</li>
-          <li>Martin Schaus (SAP AG)</li>
-          <li>Doug Schepers (<abbr title="World Wide Web Consortium">W3C</abbr>)</li>
-          <li>Matthias Schmitt </li>
-          <li>Marc Silbey (Microsoft Corporation)</li>
-          <li>Leif Halvard Sili</li>
-          <li>Henri Sivonen (Mozilla)</li>
-          <li>Michael Smith (<abbr title="World Wide Web Consortium">W3C</abbr>)</li>
-          <li>Andi Snow-Weaver (IBM Corporation)</li>
-          <li>Ville Skyttä </li>
-          <li>Henny Swan (BBC)</li>
-          <li>Neil Soiffer (Design Science)</li>
-          <li>Vitaly Sourikov</li>
-          <li>Mike Squillace (IBM)</li>
-          <li>Maciej Stachowiak (Apple Inc.)</li>
-          <li>Christophe Strobbe</li>
-          <li>Suzanne Taylor (Pearson plc)</li>
-          <li>Terrill Thompson</li>
-          <li>David Todd</li>
-          <li>Gregg Vanderheiden (Invited Expert, Trace)</li>
-          <li>Anne van Kesteren</li>
-          <li>Wen He (Tencent)</li>
-          <li>Wu Wei (<abbr title="World Wide Web Consortium">W3C</abbr> / RITT)</li>
-          <li>Ryan Williams (Oracle)</li>
-          <li>Tom Wlodkowski</li>
-          <li>Sam White (Apple Inc.)</li>
-          <li>Marco Zehe (Mozilla Foundation)</li>
-        </ul>
-      </section>
-
-      <section class="section" id="ack_funders" typeof="bibo:Chapter" resource="#ack_funders" property="bibo:hasPart">
-        <h4 id="h-ack_funders" resource="#h-ack_funders"><span property="xhv:role" resource="xhv:heading"><span class="secno">A.3.3 </span>Enabling funders<span class="permalink" typeof="bookmark"><a href="#ack_funders" aria-label="Permalink for A.3.3 Enabling funders" title="Permalink for A.3.3 Enabling funders" property="url"><span property="title" content="A.3.3 Enabling funders">§</span></a>
-          </span>
-          </span>
-        </h4>
-        <p>This publication has been funded in part with U.S. Federal funds from the Department of Education, National Institute on Disability, Independent Living, and Rehabilitation Research (NIDILRR), initially under contract number ED-OSE-10-C-0067 and currently under contract number HHSP23301500054C. The content of this publication does not necessarily reflect the views or policies of the U.S. Department of Education, nor does mention of trade names, commercial products, or organizations imply endorsement by the U.S. Government.</p>
-      </section>
-    </section>
-
+    <div data-include="common/acknowledgements.html" data-include-replace="true" data-include-id="include-03976106072595664">
+    </div>
   </section>
 
 
