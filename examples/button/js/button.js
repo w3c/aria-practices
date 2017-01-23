@@ -40,7 +40,6 @@ function actionButtonEventHandler (event) {
   }
 }
 
-
 function toggleButtonEventHandler (event) {
   var type = event.type;
 
