@@ -20,24 +20,33 @@
     <a href="../../#h-button">button design pattern</a>
     demonstrate for hiding and showing detailed information about the image of a visually complex chart.
   </p>
+
+  <p>Similar examples include: </p>
+      <ul>
+        <li><a href="disclosure-faq.html">Frequently Asked Question (FAQ) hide/show of details</a></li>
+      </ul>
+
   <section>
 
     <div id="example">
 
-      <img src="images/minard.png" aria-labelledby="id_short_desc"/>
-      <div id="ex1">
-      Charles Minard's 1869 chart showing the number of men in Napoleon’s 1812 Russian campaign army, their movements, as well as the temperature they encountered on the return path (
-        <span 
-          id="id_short_desc" 
-          tabindex="0" 
-          role="button" 
-          aria-expanded="true" 
-          aria-controls="id_long_desc"> 
-          chart details
-        </span>
-        ).
-      </div>
+    <h2>Complex Chart Example</h2>
 
+      <p>
+        <img src="images/minard.png" aria-labelledby="id_short_desc"/>
+        <div id="ex1">
+        Charles Minard's 1869 chart showing the number of men in Napoleon’s 1812 Russian campaign army, their movements, as well as the temperature they encountered on the return path (
+          <span 
+            id="id_short_desc" 
+            tabindex="0" 
+            role="button" 
+            aria-expanded="true" 
+            aria-controls="id_long_desc"> 
+            chart details
+          </span>
+          ).
+        </div>
+      </p>
       <div id="id_long_desc">
         <h2 id="id_data_label">Data for Charles Minars's Chart of Naploean's Invasion of Russia</h2>
         <table aria-labelledby="id_data_label">
