@@ -1,7 +1,7 @@
 [role="button"]:hover,
 [role="button"]:focus {
   background-color: #eee;
-	cursor: default;
+  text-decoration: underline;
 }
 
 [role="button"]:active {
