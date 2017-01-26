@@ -9,9 +9,11 @@
 }
 
 [role="button"][aria-expanded="false"]:before {
-  content: "+";
+  content: "\0025BA";
+  color: #630;
 }
 
 [role="button"][aria-expanded="true"]:before {
-  content: "-";
+  content: "\0025BC";
+  color: #630;
 }
