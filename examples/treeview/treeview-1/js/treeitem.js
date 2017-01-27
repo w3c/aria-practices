@@ -81,7 +81,6 @@ Treeitem.prototype.init = function () {
   }
 
   this.domNode.addEventListener('keydown', this.handleKeydown.bind(this));
-  this.domNode.addEventListener('keypress', this.handleKeypress.bind(this));
   this.domNode.addEventListener('click', this.handleClick.bind(this));
   this.domNode.addEventListener('focus', this.handleFocus.bind(this));
   this.domNode.addEventListener('blur', this.handleBlur.bind(this));
@@ -105,9 +104,15 @@ Treeitem.prototype.isExpanded = function () {
 /* EVENT HANDLERS */
 
 Treeitem.prototype.handleKeydown = function (event) {
+  
   var tgt = event.currentTarget,
       flag = false,
- clickEvent;
+      char = event.key,
+      clickEvent;
+
+  function isPrintableCharacter (str) {
+    return str.length === 1 && str.match(/\S/);
+  }
 
   switch (event.keyCode) {
     case this.keyCode.SPACE:
@@ -167,6 +172,18 @@ Treeitem.prototype.handleKeydown = function (event) {
       break;
 
     default:
+
+      if (char == '*') {
+        this.tree.expandAllSiblingItems(this);
+        flag = true;
+      }
+      else {
+        if (isPrintableCharacter(char)) {
+          this.tree.setFocusByFirstCharacter(this, char);
+          flag = true;
+        }
+      }
+
       break;
   }
 
@@ -174,26 +191,6 @@ Treeitem.prototype.handleKeydown = function (event) {
     event.stopPropagation();
     event.preventDefault();
   }
-};
-
-Treeitem.prototype.handleKeypress = function (event) {
-  var char = String.fromCharCode(event.charCode);
-
-  function isPrintableCharacter (str) {
-    return str.length === 1 && str.match(/\S/);
-  }
-
-  if (char == '*') {
-    this.tree.expandAllSiblingItems(this);
-  }
-  else {
-    if (isPrintableCharacter(char)) {
-      this.tree.setFocusByFirstCharacter(this, char);
-      event.stopPropagation();
-      event.preventDefault();
-    }
-  }
-
 };
 
 Treeitem.prototype.handleClick = function (event) {
