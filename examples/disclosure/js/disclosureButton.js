@@ -20,7 +20,6 @@ var ButtonExpand = function (domNode) {
   this.domNode = domNode;
 
   this.keyCode = Object.freeze({
-    'RETURN'   : 13,
     'SPACE'    : 32
   });
 };
@@ -85,7 +84,6 @@ ButtonExpand.prototype.handleKeydown = function (event) {
   switch (event.keyCode) {
 
     case this.keyCode.SPACE:
-    case this.keyCode.RETURN:
 
       this.toggleExpand();
 
