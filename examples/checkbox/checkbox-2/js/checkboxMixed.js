@@ -126,7 +126,6 @@ CheckboxMixed.prototype.handleKeydown = function (event) {
 
   switch (event.keyCode) {
     case this.keyCode.SPACE:
-    case this.keyCode.RETURN:
       this.toggleCheckboxMixed();
       flag = true;
       break;

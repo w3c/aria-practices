@@ -57,7 +57,6 @@ Checkbox.prototype.handleKeydown = function (event) {
 
   switch (event.keyCode) {
     case this.keyCode.SPACE:
-    case this.keyCode.RETURN:
       this.toggleCheckbox();
       flag = true;
       break;
