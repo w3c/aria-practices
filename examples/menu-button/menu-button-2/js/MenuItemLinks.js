@@ -73,7 +73,6 @@ MenuItemLinks.prototype.handleKeydown = function (event) {
     return str.length === 1 && str.match(/\S/);
   }
 
-
   switch (event.keyCode) {
     case this.keyCode.SPACE:
     case this.keyCode.RETURN:
@@ -145,7 +144,7 @@ MenuItemLinks.prototype.handleKeydown = function (event) {
     default:
       if (isPrintableCharacter(char)) {
         this.menu.setFocusByFirstCharacter(this, char);
-      }    
+      }
       break;
   }
 
