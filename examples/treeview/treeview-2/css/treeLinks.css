@@ -23,11 +23,17 @@ ul[role="tree"] a {
 }
 
 [role="treeitem"][aria-expanded="false"] > span:before {
-  content: url(../images/collapsed-16.png);
+  content: "\00229E \0000A0";
+  color: #630;
+  font-weight: bold;
+  font-size: 1em;
 }
 
 [role="treeitem"][aria-expanded="true"] > span:before {
-  content: url(../images/expanded-16.png);
+  content: "\00229F \0000A0";
+  color: #630;
+  font-weight: bold;
+  font-size: 1.1em;
 }
 
 [role="treeitem"],
