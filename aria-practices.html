@@ -1383,17 +1383,35 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
               <li><a href="#menuitemradio" class="role-reference">menuitemradio</a></li>
             </ul>
           </li>
+          <li>
+            If activating a <a href="#menuitem" class="role-reference">menuitem</a> opens a submenu, the menuitem is known as a parent menuitem.
+            A submenu's <code>menu</code> element is contained in or owned by it's parent             menuitem.
+          <li>
+          A parent menuitem has either
+            <a class="property-reference" href="#aria-label">aria-label</a> or <a class="property-reference" href="#aria-labelledby">aria-labelledby</a>
+            set to specify a label.
+            Warning: parent menuitems missing a label are labeled by             all child elements,
+            causing screen readers to announce every child menuitem and often making a menu so verbose that it is unusable.
+          </li>
+          <li>A parent menuitem has <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set to <code>true</code>. </li>
           <li>One of the following approaches is used to enable scripts to move focus among items in a menu as described in <a href="#kbd_general_within"></a>:
             <ul>
               <li>The menu container has <code>tabindex</code> set to <code>-1</code> or <code>0</code> and <a href="#aria-activedescendant" class="property-reference">aria-activedescendant</a> set to the ID of the focused item. </li>
               <li>Each item in the menu has <code>tabindex</code> set to <code>-1</code>, except in a menubar, where the first item has <code>tabindex</code> set to <code>0</code>. </li>
             </ul>
           </li>
-          <li>If activating a <a href="#menuitem" class="role-reference">menuitem</a> opens a submenu, the menuitem has <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set to <code>true</code>. </li>
           <li>When a <a href="#menuitemcheckbox" class="role-reference">menuitemcheckbox</a> or <a href="#menuitemradio" class="role-reference">menuitemradio</a> is checked, <a href="#aria-checked" class="property-reference">aria-checked</a> is set to <code>true</code>. </li>
           <li>When a menu item is disabled, <a href="#aria-disabled" class="state-reference">aria-disabled</a> is set to <code>true</code>.</li>
           <li>Items in a menu may be divided into groups by placing an element with a role of <a href="#separator" class="role-reference">separator</a> between groups. For example, this technique should be used when a menu contains a set of <a href="#menuitemradio" class="role-reference">menuitemradio</a> items. </li>
           <li>All <a href="#separator" class="role-reference">separators</a> should have <a href="#aria-orientation" class="property-reference">aria-orientation</a> consistent with the separator's orientation. </li>
+          <li>
+            If a menubar is vertically oriented, it has <a class="property-reference" href="#aria-orientation">aria-orientation</a> set to <code>vertical</code>.
+            The default value of <code>aria-orientation</code> for a menubar is <code>horizontal</code>.
+          </li>
+          <li>
+            If a menu is horizontally oriented, it has <a class="property-reference" href="#aria-orientation">aria-orientation</a> set to <code>horizontal</code>.
+            The default value of <code>aria-orientation</code> for a menu is <code>vertical</code>.
+          </li>
         </ul>
         <p class="note">If <a href="#aria-owns" class="property-reference">aria-owns</a> is set on the menu container to include elements that are not DOM children of the container, those elements will appear in the reading order in the sequence they are referenced and after any items that are DOM children. Scripts that manage focus need to ensure the visual focus order matches this assistive technology reading order. </p>
       </section>
