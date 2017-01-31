@@ -104,7 +104,7 @@ Treeitem.prototype.isExpanded = function () {
 /* EVENT HANDLERS */
 
 Treeitem.prototype.handleKeydown = function (event) {
-  
+
   var tgt = event.currentTarget,
       flag = false,
       char = event.key,

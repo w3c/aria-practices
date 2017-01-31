@@ -196,7 +196,6 @@ TreeitemLink.prototype.handleKeydown = function (event) {
   }
 };
 
-
 TreeitemLink.prototype.handleClick = function (event) {
   if (this.isExpandable) {
     if (this.domNode.getAttribute('aria-expanded') == 'true') {
