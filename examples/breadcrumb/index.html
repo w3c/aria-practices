@@ -12,14 +12,7 @@
   <body>
     <main>
     <h1>Breadcrumb Example</h1>
-
-    <p>This example shows the <a href="../../#breadcrumb">breadcrumb design pattern</a>.</p>
-
-    <p>
-      It is recommended authors use an ordered list to structure the list of links.
-      Visual separators should be added through <abbr title="Cascading Style Sheets">CSS</abbr>.
-    </p>
-
+    <p>The following example demonstrates the <a href="../../#breadcrumb">breadcrumb design pattern</a>.</p>
     <section>
       <h2 id="ex_label">Example</h2>
       <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
@@ -27,16 +20,16 @@
         <nav aria-label="Breadcrumb" class="breadcrumb">
           <ol>
             <li>
-              <a href="https://www.w3.org/TR/wai-aria-1.1/">WAI-ARIA</a>
+              <a href="../../">WAI-ARIA Authoring Practices 1.1</a>
             </li>
             <li>
-              <a href="../../">Authoring Practices</a>
+              <a href="../../#aria_ex">Design Patterns</a>
             </li>
             <li>
-              <a href="../../#aria_ex">Design Pattern Examples</a>
+              <a href="../../#breadcrumb">Breadcrumb Pattern</a>
             </li>
             <li>
-              <a href="./index.html" aria-current="page">Breadcrumb</a>
+              <a href="./index.html" aria-current="page">Breadcrumb Example</a>
             </li>
           </ol>
         </nav>
@@ -46,7 +39,11 @@
 
     <section>
       <h2>Accessibility Features</h2>
-      <p>If marked-up with a labelled <code>nav</code> element, the breadcrumb will be exposed as such.</p>
+      <ul>
+        <li>The set of links is structured using an ordered list .</li>
+        <li>The visual separators between links are added through <abbr title="Cascading Style Sheets">CSS</abbr> so they do not add unnecessary screen reader verbosity.</li>
+        <li>A labelled <code>nav</code> element identifies the structure and makes it easy to identify and locate.</li>
+      </ul>
     </section>
 
     <section>
@@ -68,7 +65,6 @@
         <tbody>
           <tr>
             <td></td>
-
             <th scope="row">
               <code><a href="http://www.w3.org/TR/wai-aria-1.1/#aria-current">aria-current</a>=<q>page</q></code>
             </th>
@@ -96,9 +92,8 @@
     <section>
       <h2 id="sc1_label">HTML Source Code</h2>
       <div role="separator" id="sc1_start_sep" aria-labelledby="sc1_start_sep sc1_label" aria-label="Start of"></div>
-      <div id="sc1"></div>
+      <pre id="sc1"></pre>
       <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of"></div>
-
       <script>
         sourceCode.add('sc1', 'ex1');
         sourceCode.make();
