@@ -32,7 +32,6 @@ ButtonExpand.prototype.init = function () {
 
   var id = this.domNode.getAttribute('aria-controls');
 
-
   if (id) {
     this.controlledNode = document.getElementById(id);
   }
@@ -50,15 +49,15 @@ ButtonExpand.prototype.init = function () {
 ButtonExpand.prototype.showContent = function () {
 
   if (this.controlledNode) {
-    this.controlledNode.style.display = "block";
-  }    
+    this.controlledNode.style.display = 'block';
+  }
 
 };
 
 ButtonExpand.prototype.hideContent = function () {
 
   if (this.controlledNode) {
-    this.controlledNode.style.display = "none";
+    this.controlledNode.style.display = 'none';
   }
 
 };
@@ -80,7 +79,7 @@ ButtonExpand.prototype.toggleExpand = function () {
 
 ButtonExpand.prototype.handleKeydown = function (event) {
 
-  console.log("[keydown]");
+  console.log('[keydown]');
 
   switch (event.keyCode) {
 
@@ -113,11 +112,11 @@ ButtonExpand.prototype.handleBlur = function (event) {
 
 /* Initialize Hide/Show Buttons */
 
-window.addEventListener('load', function(event) {
+window.addEventListener('load', function (event) {
 
-  var buttons =  document.querySelectorAll("[role=button][aria-expanded][aria-controls]");
+  var buttons =  document.querySelectorAll('[role=button][aria-expanded][aria-controls]');
 
-  for(var i=0; i < buttons.length; i++) {
+  for (var i = 0; i < buttons.length; i++) {
     var be = new ButtonExpand(buttons[i]);
     be.init();
   }
