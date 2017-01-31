@@ -33,7 +33,6 @@
 <body>
   <main> <!--  Repeat the name of the example in this H1  -->
   <h1>EXAMPLE_NAME Example</h1>
-
   <p>
     <!-- Provide an overview of the example where the first sentence provides a link to the section of aria-practices.html that describes the pattern this example implements. -->
     Replace this paragraph with an overview of the example that is something like the following. The
@@ -75,7 +74,7 @@
 
   <section>
     <h2>Accessibility Features</h2>
-    <p class="annotate">If appropriate, please replace this content with a list of any special or noteworthy accessibility features
+    <p class="annotate">Optional section: If appropriate, please replace this content with a list of any special or noteworthy accessibility features
       demonstrated in this implementation, such as:</p>
     <ol>
       <li>What distinguishes this example from related examples.</li>
@@ -187,12 +186,12 @@
   <section>
     <h2 id="sc1_label">HTML Source Code</h2>
     <div role="separator" id="sc1_start_sep" aria-labelledby="sc1_start_sep sc1_label" aria-label="Start of"></div>
-    <div id="sc1"></div>
+    <pre id="sc1"></pre>
     <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of"></div>
     <!--
       The following script will show the reader the HTML source for the example that is in the div with ID 'ex1'.
-      It renders the HTML in the preceding div with ID 'sc1'.
-      If you change the ID of either the 'ex1' div or the 'sc1' div, be sure to update the sourceCode.add function parameters.
+      It renders the HTML in the preceding pre element with ID 'sc1'.
+      If you change the ID of either the 'ex1' div or the 'sc1' pre, be sure to update the sourceCode.add function parameters.
       -->
     <script>
       sourceCode.add('sc1', 'ex1');
