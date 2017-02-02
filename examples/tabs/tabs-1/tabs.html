@@ -12,11 +12,11 @@
     <!--  Give this example implementation a name and put it in the title element, e.g., "Checkbox" if implementing the checkbox pattern.
     The name should be unique if the pattern will have multiple implementations, e.g., "Simple Two-State Checkbox" or "Three-State Checkbox".
     -->
-    <title>Tabs | WAI-ARIA Authoring Practices 1.1</title>
+    <title>Tabs (Follows focus) | WAI-ARIA Authoring Practices 1.1</title>
 
     <!--  Core js and css shared by all examples; do not modify when using this template. -->
-    <link href="../css/core.css" rel="stylesheet">
-    <link href="../css/table.css" rel="stylesheet">
+    <link href="../../css/core.css" rel="stylesheet">
+    <link href="../../css/table.css" rel="stylesheet">
 
     <!--  js and css for this example.
     When developing an example implementation of a design pattern,
@@ -28,12 +28,19 @@
   <body>
     <main>
       <!--  Repeat the name of the example in this H1  -->
-      <h1>Tabs</h1>
+      <h1>Tabs (Follows focus)</h1>
 
       <p>
           <!-- Provide an overview of the example where the first sentence provides a link to the section of aria-practices.html that describes the pattern this example implements. -->
-          The below example section demonstrates a tabs widget that implements the  <a href="../../#checkbox">design pattern for tabs</a>.
+          This example section demonstrates a tabs widget that implements the  <a href="../../#checkbox">design pattern for tabs</a>.
+          In this example panels are automatically activated when its tab receives focus.
       </p>
+
+      <p>Similar examples include: </p>
+      <ul>
+        <li><a href="../tabs-2/tabs.html">Tabs (Manual activation)</a>: a version of the tabs widget where tabs have to be manually activated via <kbd>space</kbd> or <kbd>enter</kbd>.</li>
+        <!--  list other examples that implement the same design pattern. -->
+      </ul>
 
       <section>
         <h2 id="ex_label">Example</h2>
