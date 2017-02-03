@@ -529,6 +529,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
   <link href="common/css/common.css" rel="stylesheet" type="text/css">
   <!--[if lt IE 9]><script src='https://www.w3.org/2008/site/js/html5shiv.js'></script><![endif]-->
+  <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/W3C-ED">
+  <link rel="canonical" href="https://www.w3.org/TR/wai-aria-practices-1.1/">
+  <meta name="generator" content="ReSpec 9.1.0">
   <script id="initialUserConfig" type="application/json">
     {
       "doRDFa": "1.1",
@@ -898,12 +901,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       "preProcess": [
         null
       ],
-      "publishDate": "2017-01-31"
+      "publishDate": "2017-02-03"
     }
   </script>
-  <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/W3C-ED">
-  <meta name="generator" content="ReSpec 8.7.1">
-  <link rel="canonical" href="https://www.w3.org/TR/wai-aria-practices-1.1/">
 </head>
 <body class="h-entry toc-inline" role="document" id="respecDocument">
   <div class="head" role="contentinfo" id="respecHeader">
@@ -911,7 +911,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <a class="logo" href="https://www.w3.org/"><img width="72" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" alt="W3C"></a>
     </p>
     <h1 class="title p-name" id="title" property="dcterms:title"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Authoring Practices 1.1</h1>
-    <h2 id="w3c-editor-s-draft-31-january-2017"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2017-01-31">31 January 2017</time></h2>
+    <h2 id="w3c-editor-s-draft-03-february-2017"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2017-02-03">03 February 2017</time></h2>
     <dl>
       <dt>This version:</dt>
       <dd><a class="u-url" href="http://w3c.github.io/aria-practices/">http://w3c.github.io/aria-practices/</a></dd>
@@ -1027,47 +1027,50 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <li class="tocline"><a href="#disclosure" class="tocxref"><span class="secno">2.11 </span>Disclosure (Show/Hide)</a>
             <ol class="toc"></ol>
           </li>
-          <li class="tocline"><a href="#grid" class="tocxref"><span class="secno">2.12 </span>Grids : Interactive Tabular Data and Layout Containers</a>
+          <li class="tocline"><a href="#feed" class="tocxref"><span class="secno">2.12 </span>Feed</a>
             <ol class="toc"></ol>
           </li>
-          <li class="tocline"><a href="#link" class="tocxref"><span class="secno">2.13 </span>Link</a>
+          <li class="tocline"><a href="#grid" class="tocxref"><span class="secno">2.13 </span>Grids : Interactive Tabular Data and Layout Containers</a>
             <ol class="toc"></ol>
           </li>
-          <li class="tocline"><a href="#Listbox" class="tocxref"><span class="secno">2.14 </span>Listbox</a>
+          <li class="tocline"><a href="#link" class="tocxref"><span class="secno">2.14 </span>Link</a>
             <ol class="toc"></ol>
           </li>
-          <li class="tocline"><a href="#menu" class="tocxref"><span class="secno">2.15 </span>Menu or Menu bar</a>
+          <li class="tocline"><a href="#Listbox" class="tocxref"><span class="secno">2.15 </span>Listbox</a>
             <ol class="toc"></ol>
           </li>
-          <li class="tocline"><a href="#menubutton" class="tocxref"><span class="secno">2.16 </span>Menu Button</a>
+          <li class="tocline"><a href="#menu" class="tocxref"><span class="secno">2.16 </span>Menu or Menu bar</a>
             <ol class="toc"></ol>
           </li>
-          <li class="tocline"><a href="#radiobutton" class="tocxref"><span class="secno">2.17 </span>Radio Group</a>
+          <li class="tocline"><a href="#menubutton" class="tocxref"><span class="secno">2.17 </span>Menu Button</a>
             <ol class="toc"></ol>
           </li>
-          <li class="tocline"><a href="#slider" class="tocxref"><span class="secno">2.18 </span>Slider</a>
+          <li class="tocline"><a href="#radiobutton" class="tocxref"><span class="secno">2.18 </span>Radio Group</a>
             <ol class="toc"></ol>
           </li>
-          <li class="tocline"><a href="#slidertwothumb" class="tocxref"><span class="secno">2.19 </span>Slider (Multi-Thumb)</a>
+          <li class="tocline"><a href="#slider" class="tocxref"><span class="secno">2.19 </span>Slider</a>
             <ol class="toc"></ol>
           </li>
-          <li class="tocline"><a href="#spinbutton" class="tocxref"><span class="secno">2.20 </span>Spinbutton</a>
+          <li class="tocline"><a href="#slidertwothumb" class="tocxref"><span class="secno">2.20 </span>Slider (Multi-Thumb)</a>
             <ol class="toc"></ol>
           </li>
-          <li class="tocline"><a href="#table" class="tocxref"><span class="secno">2.21 </span>Table</a></li>
-          <li class="tocline"><a href="#tabpanel" class="tocxref"><span class="secno">2.22 </span>Tabs</a>
+          <li class="tocline"><a href="#spinbutton" class="tocxref"><span class="secno">2.21 </span>Spinbutton</a>
             <ol class="toc"></ol>
           </li>
-          <li class="tocline"><a href="#toolbar" class="tocxref"><span class="secno">2.23 </span>Toolbar</a>
+          <li class="tocline"><a href="#table" class="tocxref"><span class="secno">2.22 </span>Table</a></li>
+          <li class="tocline"><a href="#tabpanel" class="tocxref"><span class="secno">2.23 </span>Tabs</a>
             <ol class="toc"></ol>
           </li>
-          <li class="tocline"><a href="#tooltip" class="tocxref"><span class="secno">2.24 </span>Tooltip Widget</a>
+          <li class="tocline"><a href="#toolbar" class="tocxref"><span class="secno">2.24 </span>Toolbar</a>
             <ol class="toc"></ol>
           </li>
-          <li class="tocline"><a href="#TreeView" class="tocxref"><span class="secno">2.25 </span>Tree View</a>
+          <li class="tocline"><a href="#tooltip" class="tocxref"><span class="secno">2.25 </span>Tooltip Widget</a>
             <ol class="toc"></ol>
           </li>
-          <li class="tocline"><a href="#windowsplitter" class="tocxref"><span class="secno">2.26 </span>Window Splitter</a>
+          <li class="tocline"><a href="#TreeView" class="tocxref"><span class="secno">2.26 </span>Tree View</a>
+            <ol class="toc"></ol>
+          </li>
+          <li class="tocline"><a href="#windowsplitter" class="tocxref"><span class="secno">2.27 </span>Window Splitter</a>
             <ol class="toc"></ol>
           </li>
         </ol>
@@ -1698,8 +1701,131 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </section>
     </section>
 
+    <section class="widget" id="feed" typeof="bibo:Chapter" resource="#feed" property="bibo:hasPart">
+      <h3 class="widget-name" id="h-feed" resource="#h-feed"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.12 </span>Feed<span class="permalink" typeof="bookmark"><a href="#feed" aria-label="Permalink for 2.12 Feed" title="Permalink for 2.12 Feed" property="url"><span property="title" content="2.12 Feed">§</span></a>
+        </span>
+        </span>
+      </h3>
+      <div class="note">
+        <div class="note-title marker" aria-level="4" role="heading" id="h-note4"><span>Note</span></div>
+        <p class="">
+          This section contains an early draft of new content. Feedback is welcom in
+          <a href="https://github.com/w3c/aria-practices/issues/245">issue 245.</a>
+        </p>
+      </div>
+      <p>
+        A feed is a section of a page that automatically loads new content as the user reads. Content in a feed is segmented into article elements. Thus, it can be thought of as a dynamic list of articles that often appears to scroll infinitely.
+      </p>
+      <p>
+        The primary difference between a feed and other ARIA patterns that support scrolling information, e.g., a grid, is that feed is a structure, not a widget. This means assistive technologies with a reading mode, such as screen readers will default to reading mode when interacting with feed content, making the feed pattern most useful for blocks of unstructured information that may contain links or other interactive elements.
+      </p>
+      <p>
+        For example, a product page on a shopping site may have a related products section that displays five products at a time and, as the user scrolls, loads more product suggestions into the DOM. While a static design might include a next button for loading five more products, a dynamic implementation that automatically loads data as needed simplifies the user experience and reduces the inertia associated with viewing more than 5 suggestions.
+      </p>
+      <p>
+        Unfortunately, when web pages load content dynamically based on scroll events, it creates interoperability difficulties for users of assistive technologies that cannot sufficiently mimic visual scrolling. The web page could also observe focus movements in order to identify when more content is needed. However, requiring assistive technologies to move DOM focus in response to every reading cursor movement, regardless of context, can also have negative side effects on the screen reading experience.
+      </p>
+      <p>
+        The feed pattern enables reliable assistive technology reading mode interaction by establishing the following interoperability agreement between the web page and assistive technologies:
+      </p>
+      <ol>
+        <li>In the context of a feed, the web page code is responsible for:
+          <ul>
+            <li>
+              Appropriate visual scrolling of the content based on which article contains DOM focus.
+            </li>
+            <li>Loading or removing feed articles based on which article contains DOM focus.</li>
+          </ul>
+        </li>
+        <li>In the context of a feed, assistive technologies with a reading mode are responsible for:
+          <ul>
+            <li>Indicating which article contains the reading cursor by ensuring the article element or one of its descendants has DOM focus.</li>
+            <li>providing reading mode keys that move DOM focus to the next and previous articles.</li>
+            <li>Providing reading mode keys for moving the reading cursor and DOM focus past the end and before the start of the feed.</li>
+          </ul>
+        </li>
+      </ol>
+      <p>
+        Thus, implementing the feed pattern allows a screen reader to reliably read and load feed content while staying in its reading mode.
+      </p>
+      <p>
+        Another feature of the feed pattern is its ability to facilitate skim reading by assistive technology users. Web page authors may provide both an accessible name and description for each article. By identifying the elements inside of an article that provide the title and the primary content, assistive technologies can provide functions that enable users to jump from article to article and efficiently discern which articles may be worthy of more attention.
+      </p>
+
+      <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-8" property="bibo:hasPart">
+        <h4 id="keyboard-interaction-8" resource="#keyboard-interaction-8"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
+        <p>
+          The feed pattern is not based on a desktop GUI widget so the <code>feed</code> role is not associated with any well-established keyboard conventions. Supporting the following, or a similar, interface is recommended.
+        </p>
+        <p>When focus is inside the feed:</p>
+        <ul>
+          <li><kbd>Page Down</kbd>: Move focus to next article.</li>
+          <li><kbd>Page Up</kbd>: Move focus to previous article.</li>
+          <li><kbd>Control + End</kbd>: Move focus to the first focusable element after the feed.</li>
+          <li><kbd>Control + Home</kbd>: Move focus to the first focusable element before the feed.</li>
+        </ul>
+        <div class="note">
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note5"><span>Note</span></div>
+          <ol class="">
+            <li>Due to the lack of convention, providing easily discoverable keyboard interface documentation is especially important.</li>
+            <li>
+              In some cases, a feed may contain a nested feed. For example, an article in a social media feed may contain a feed of comments on that article. To navigate the nested feed, users first move focus inside the nested feed. Options for supporting nested feed navigation include:
+              <ul>
+                <li>
+                  Users simply move focus into the nested feed from the content of the containing article with <kbd>Tab</kbd>. This may be slow if the aarticle contains a significant number of links, buttons, or other widgets.
+                </li>
+                <li>Provide a key for moving focus from the elements in the containing article to the first item in the nested feed, e.g., <kbd>Alt + Page Down</kbd>.</li>
+                <li>To continue reading the outer feed, <kbd>Control + End</kbd> moves focus to the next article in the outer feed.</li>
+              </ul>
+            </li>
+            <li>In the rare circumstance that a feed article contains a widget that uses the above suggested keys, the feed navigation key will operate the contained widget, and the user needs to move focus to an element that does not utilize the feed navigation keys in order to navigate the feed.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="notoc" typeof="bibo:Chapter" resource="#wai-aria-roles-states-and-properties-8" property="bibo:hasPart">
+        <h4 id="wai-aria-roles-states-and-properties-8" resource="#wai-aria-roles-states-and-properties-8"><span property="xhv:role" resource="xhv:heading"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties</span></h4>
+        <ul>
+          <li>The element that contains the set of feed articles has role <a href="http://w3c.github.io/aria/aria/aria.html#feed" class="role-reference">feed</a>.</li>
+          <li>
+            If the feed has a visible title, the <code>feed</code> element has <a href="http://w3c.github.io/aria/aria/aria.html#aria-labelledby" class="property-reference">aria-labelledby</a> referring to the element containing the title. Otherwise, the <code>feed</code> element has a label specified with <a href="http://w3c.github.io/aria/aria/aria.html#aria-label" class="property-reference">aria-label</a>.
+          </li>
+          <li>
+            Each unit of content in a feedis contained in an element with role <a href="http://w3c.github.io/aria/aria/aria.html#article" class="role-reference">article</a>. All content inside the feed is contained in an <code>article</code> element.
+          </li>
+          <li>
+            Each <code>article</code> element has
+            <a href="http://w3c.github.io/aria/aria/aria.html#aria-labelledby" class="property-reference">aria-labelledby</a> referring to elements inside the article that can serve as a distinguishing label.
+          </li>
+          <li>
+            It is optional but strongly recommended for Each <code>article</code> element to have
+            <a href="http://w3c.github.io/aria/aria/aria.html#aria-describedby" class="property-reference">aria-describedby</a> referring to one or more elements inside the article that serve as the primary content of the article.
+          </li>
+          <li>
+            Each <code>article</code> element has
+            <a href="http://w3c.github.io/aria/aria/aria.html#aria-posinset" class="property-reference">aria-posinset</a> set to a value that represents its position in the feed.
+          </li>
+          <li>
+            Each <code>article</code> element has
+            <a href="http://w3c.github.io/aria/aria/aria.html#aria-setsize" class="property-reference">aria-setsize</a> set to a value that represents either the total number of articles that have been loaded or the tototal number in the feed, depending on which value is deemed more helpful to users. If the total number in the feed is undetermined, it can be represented by a <code>aria-setsize</code> value of <code>-1</code>.
+          </li>
+          <li>
+            When <code>article</code> elements are being added to or removed from the <code>feed</code> container, and if the operation requires multiple DOM operations, the <code>feed</code> element has
+            <a href="http://w3c.github.io/aria/aria/aria.html#aria-busy" class="state-reference">aria-busy</a> set to <code>true</code> during the update operation. Note that it is extremely important that <code>aria-busy</code> is set to <code>false</code> when the operation is complete or the changes may not become visible to some assistive technology users.
+          </li>
+        </ul>
+      </section>
+
+      <section class="notoc" typeof="bibo:Chapter" resource="#example-5" property="bibo:hasPart">
+        <h4 id="example-5" resource="#example-5"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
+        <p>
+          <a href="examples/feed/feed.html">Example Implementation of Feed Pattern</a>
+        </p>
+      </section>
+    </section>
+
     <section class="widget" id="grid" typeof="bibo:Chapter" resource="#grid" property="bibo:hasPart">
-      <h3 id="h-grid" resource="#h-grid"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.12 </span>Grids : Interactive Tabular Data and Layout Containers<span class="permalink" typeof="bookmark"><a href="#grid" aria-label="Permalink for 2.12 Grids : Interactive Tabular Data and Layout Containers" title="Permalink for 2.12 Grids : Interactive Tabular Data and Layout Containers" property="url"><span property="title" content="2.12 Grids : Interactive Tabular Data and Layout Containers">§</span></a>
+      <h3 id="h-grid" resource="#h-grid"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.13 </span>Grids : Interactive Tabular Data and Layout Containers<span class="permalink" typeof="bookmark"><a href="#grid" aria-label="Permalink for 2.13 Grids : Interactive Tabular Data and Layout Containers" title="Permalink for 2.13 Grids : Interactive Tabular Data and Layout Containers" property="url"><span property="title" content="2.13 Grids : Interactive Tabular Data and Layout Containers">§</span></a>
         </span>
         </span>
       </h3>
@@ -1765,7 +1891,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           </ul>
 
           <div class="note">
-            <div class="note-title marker" aria-level="6" role="heading" id="h-note4"><span>Note</span></div>
+            <div class="note-title marker" aria-level="6" role="heading" id="h-note6"><span>Note</span></div>
             <ul class="">
               <li>
                 When the above grid navigation keys move focus, whether the focus is set on an element inside the cell or the grid cell depends on cell content. See <a href="#gridNav_focus">Whether to Focus on a Cell or an Element Inside It</a>.
@@ -1790,7 +1916,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           </ul>
 
           <div class="note">
-            <div class="note-title marker" aria-level="6" role="heading" id="h-note5"><span>Note</span></div>
+            <div class="note-title marker" aria-level="6" role="heading" id="h-note7"><span>Note</span></div>
             <p class="">See <a href="#aria_ex_widget">Global Recommendations</a> for cut, copy and paste key assignments.</p>
           </div>
         </section>
@@ -1850,7 +1976,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             <li><kbd>Control + End</kbd> (Optional): moves focus to the last cell in the last row.</li>
           </ul>
           <div class="note">
-            <div class="note-title marker" aria-level="6" role="heading" id="h-note6"><span>Note</span></div>
+            <div class="note-title marker" aria-level="6" role="heading" id="h-note8"><span>Note</span></div>
             <ul class="">
               <li>
                 When the above grid navigation keys move focus, whether the focus is sett on an element inside the cell or the grid cell depends on cell content. See <a href="#gridNav_focus">Whether to Focus on a Cell or an Element Inside It</a>.
@@ -1876,7 +2002,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             <li><kbd>Shift + Up Arrow</kbd>: Extends selection one cell Up.</li>
           </ul>
           <div class="note">
-            <div class="note-title marker" aria-level="6" role="heading" id="h-note7"><span>Note</span></div>
+            <div class="note-title marker" aria-level="6" role="heading" id="h-note9"><span>Note</span></div>
             <p class="">See <a href="#aria_ex_widget">Global Recommendations</a> for cut, copy and paste key assignments.</p>
           </div>
         </section>
@@ -1977,8 +2103,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </section>
       </section>
 
-      <section class="notoc" typeof="bibo:Chapter" resource="#wai-aria-roles-states-and-properties-8" property="bibo:hasPart">
-        <h4 id="wai-aria-roles-states-and-properties-8" resource="#wai-aria-roles-states-and-properties-8"><span property="xhv:role" resource="xhv:heading"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties</span></h4>
+      <section class="notoc" typeof="bibo:Chapter" resource="#wai-aria-roles-states-and-properties-9" property="bibo:hasPart">
+        <h4 id="wai-aria-roles-states-and-properties-9" resource="#wai-aria-roles-states-and-properties-9"><span property="xhv:role" resource="xhv:heading"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties</span></h4>
         <ul>
           <li>The grid container has role <a href="http://w3c.github.io/aria/aria/aria.html#grid" class="role-reference">grid</a>. </li>
           <li>Each row container has role <a href="http://w3c.github.io/aria/aria/aria.html#row" class="role-reference">row</a> and is either a DOM descendant of or owned by the <code>grid</code> element or an element with role <a href="http://w3c.github.io/aria/aria/aria.html#rowgroup" class="role-reference">rowgroup</a>. </li>
@@ -2009,7 +2135,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </ul>
 
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note8"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note10"><span>Note</span></div>
           <ul class="">
             <li>
               If the element with the <code>grid</code> role is an HTML <code>table</code> element, then it is not necessary to use ARIA roles for rows and cells because the HTML elements have implied ARIA semantics. For example, an HTML <code>&lt;TR&gt;</code> has an implied ARIA role of <code>row</code>. A <code>grid</code> built from an HTML <code>table</code> that includes cells that span multiple rows or columns must use HTML <code>rowspan</code> and <code>colspan</code> and must not use <code>aria-rowspan</code> or <code>aria-colspan</code>.
@@ -2020,7 +2146,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           </ul>
         </div>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note9"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note11"><span>Note</span></div>
           <p class="">Editor's Note - Guidance for aria-owns has not yet been created. A link to it will be added above once created.</p>
         </div>
 
@@ -2037,7 +2163,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     </section>
 
     <section class="widget" id="link" typeof="bibo:Chapter" resource="#link" property="bibo:hasPart">
-      <h3 id="h-link" resource="#h-link"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.13 </span>Link<span class="permalink" typeof="bookmark"><a href="#link" aria-label="Permalink for 2.13 Link" title="Permalink for 2.13 Link" property="url"><span property="title" content="2.13 Link">§</span></a>
+      <h3 id="h-link" resource="#h-link"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.14 </span>Link<span class="permalink" typeof="bookmark"><a href="#link" aria-label="Permalink for 2.14 Link" title="Permalink for 2.14 Link" property="url"><span property="title" content="2.14 Link">§</span></a>
         </span>
         </span>
       </h3>
@@ -2045,23 +2171,23 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         A <a href="http://w3c.github.io/aria/aria/aria.html#link" class="role-reference">link</a> widget provides an interactive reference to a resource. The target resource can be either external or local, i.e., either outside or within the current page or application.
       </p>
       <div class="note">
-        <div class="note-title marker" aria-level="4" role="heading" id="h-note10"><span>Note</span></div>
+        <div class="note-title marker" aria-level="4" role="heading" id="h-note12"><span>Note</span></div>
         <p class="">
           Authors are strongly encouraged to use a native host language link element, such as an HTML
           <code>&lt;A&gt;</code> element with an <code>href</code> attribute. As with other <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> widget roles, applying the link role to an element will not cause browsers to enhance the element with standard link behaviors, such as navigation to the link target or context menu actions. When using the <code>link</code> role, providing these features of the element is the author's responsibility.
         </p>
       </div>
 
-      <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-8" property="bibo:hasPart">
-        <h4 id="keyboard-interaction-8" resource="#keyboard-interaction-8"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
+      <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-9" property="bibo:hasPart">
+        <h4 id="keyboard-interaction-9" resource="#keyboard-interaction-9"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
         <ul>
           <li><kbd>Enter</kbd>: Executes the link and moves focus to the link target.</li>
           <li><kbd>Shift + F10</kbd>: Opens the link's context menu.</li>
         </ul>
       </section>
 
-      <section class="notoc" typeof="bibo:Chapter" resource="#wai-aria-roles-states-and-properties-9" property="bibo:hasPart">
-        <h4 id="wai-aria-roles-states-and-properties-9" resource="#wai-aria-roles-states-and-properties-9"><span property="xhv:role" resource="xhv:heading"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties</span></h4>
+      <section class="notoc" typeof="bibo:Chapter" resource="#wai-aria-roles-states-and-properties-10" property="bibo:hasPart">
+        <h4 id="wai-aria-roles-states-and-properties-10" resource="#wai-aria-roles-states-and-properties-10"><span property="xhv:role" resource="xhv:heading"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties</span></h4>
         <p>
           The element containing the link text or graphic has role of <a href="http://w3c.github.io/aria/aria/aria.html#link" class="role-reference">link</a>.
         </p>
@@ -2074,7 +2200,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     </section>
 
     <section class="widget" id="Listbox" typeof="bibo:Chapter" resource="#Listbox" property="bibo:hasPart">
-      <h3 id="h-listbox" resource="#h-listbox"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.14 </span>Listbox<span class="permalink" typeof="bookmark"><a href="#Listbox" aria-label="Permalink for 2.14 Listbox" title="Permalink for 2.14 Listbox" property="url"><span property="title" content="2.14 Listbox">§</span></a>
+      <h3 id="h-listbox" resource="#h-listbox"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.15 </span>Listbox<span class="permalink" typeof="bookmark"><a href="#Listbox" aria-label="Permalink for 2.15 Listbox" title="Permalink for 2.15 Listbox" property="url"><span property="title" content="2.15 Listbox">§</span></a>
         </span>
         </span>
       </h3>
@@ -2092,8 +2218,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         Sets of options where each option name starts with the same word or phrase can also significantly degrade usability for keyboard and screen reader users. Scrolling through the list to find a specific option becomes inordinately time consuming for a screen reader user who must listen to that word or phrase repeated before hearing what is unique about each option. For example, if a listbox for choosing a city were to contain options where each city name were preceded by a country name, and if many cities were listed for each country, a screen reader user would have to listen to the country name before hearing each city name. In such a scenario, it would be better to have 2 list boxes, one for country and one for city.
       </p>
 
-      <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-9" property="bibo:hasPart">
-        <h4 id="keyboard-interaction-9" resource="#keyboard-interaction-9"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
+      <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-10" property="bibo:hasPart">
+        <h4 id="keyboard-interaction-10" resource="#keyboard-interaction-10"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
         <p>For a vertically oriented listbox:</p>
         <ul>
           <li> When a single-select listbox receives focus:
@@ -2148,7 +2274,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           </li>
         </ul>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note11"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note13"><span>Note</span></div>
           <ol class="">
             <li>DOM focus (the active element) is functionally distinct from the selected state. For more details, see <a href="#kbd_focus_vs_selection">this description of differences between focus and selection.</a></li>
             <li>
@@ -2169,8 +2295,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </div>
       </section>
 
-      <section class="notoc" typeof="bibo:Chapter" resource="#wai-aria-roles-states-and-properties-10" property="bibo:hasPart">
-        <h4 id="wai-aria-roles-states-and-properties-10" resource="#wai-aria-roles-states-and-properties-10"><span property="xhv:role" resource="xhv:heading"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties</span></h4>
+      <section class="notoc" typeof="bibo:Chapter" resource="#wai-aria-roles-states-and-properties-11" property="bibo:hasPart">
+        <h4 id="wai-aria-roles-states-and-properties-11" resource="#wai-aria-roles-states-and-properties-11"><span property="xhv:role" resource="xhv:heading"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties</span></h4>
         <ul>
           <li>An element that contains or owns all the listbox options has role <a href="http://w3c.github.io/aria/aria/aria.html#listbox" class="role-reference">listbox</a>.</li>
           <li>Each option in the listbox has role <a href="http://w3c.github.io/aria/aria/aria.html#option" class="role-reference">option</a> and is a DOM descendant of the element with role <code>listbox</code> or is referenced by an <a href="http://w3c.github.io/aria/aria/aria.html#aria-owns" class="property-reference">aria-owns</a> property on the listbox element.</li>
@@ -2197,7 +2323,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     </section>
 
     <section class="widget" id="menu" typeof="bibo:Chapter" resource="#menu" property="bibo:hasPart">
-      <h3 id="h-menu" resource="#h-menu"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.15 </span>Menu or Menu bar<span class="permalink" typeof="bookmark"><a href="#menu" aria-label="Permalink for 2.15 Menu or Menu bar" title="Permalink for 2.15 Menu or Menu bar" property="url"><span property="title" content="2.15 Menu or Menu bar">§</span></a>
+      <h3 id="h-menu" resource="#h-menu"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.16 </span>Menu or Menu bar<span class="permalink" typeof="bookmark"><a href="#menu" aria-label="Permalink for 2.16 Menu or Menu bar" title="Permalink for 2.16 Menu or Menu bar" property="url"><span property="title" content="2.16 Menu or Menu bar">§</span></a>
         </span>
         </span>
       </h3>
@@ -2211,8 +2337,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
       <p>A common convention for indicating that a menu item launches a dialog box is to append "…" (ellipsis) to the menu item label, e.g., "Save as …".</p>
 
-      <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-10" property="bibo:hasPart">
-        <h4 id="keyboard-interaction-10" resource="#keyboard-interaction-10"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
+      <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-11" property="bibo:hasPart">
+        <h4 id="keyboard-interaction-11" resource="#keyboard-interaction-11"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
         <p>
           The following description of keyboard behaviors assumes:</p>
         <ol>
@@ -2296,7 +2422,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <li><kbd>Shift + Tab</kbd>: Moves focus to the previous element in the tab sequence, and if the item that had focus is not in a <code>menubar</code>, closes its <code>menu</code> and all open parent <code>menu</code> containers.</li>
         </ul>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note12"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note14"><span>Note</span></div>
           <ol class="">
             <li>Disabled menu items are focusable but cannot be activated. </li>
             <li>A <a href="http://w3c.github.io/aria/aria/aria.html#separator" class="role-reference">separator</a> in a menu is not focusable or interactive.</li>
@@ -2317,8 +2443,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </div>
       </section>
 
-      <section class="notoc" typeof="bibo:Chapter" resource="#wai-aria-roles-states-and-properties-11" property="bibo:hasPart">
-        <h4 id="wai-aria-roles-states-and-properties-11" resource="#wai-aria-roles-states-and-properties-11"><span property="xhv:role" resource="xhv:heading"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties</span></h4>
+      <section class="notoc" typeof="bibo:Chapter" resource="#wai-aria-roles-states-and-properties-12" property="bibo:hasPart">
+        <h4 id="wai-aria-roles-states-and-properties-12" resource="#wai-aria-roles-states-and-properties-12"><span property="xhv:role" resource="xhv:heading"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties</span></h4>
         <ul>
           <li>A menu is a container of items that represent choices. The element serving as the menu has a role of either <a href="http://w3c.github.io/aria/aria/aria.html#menu" class="role-reference">menu</a> or <a href="http://w3c.github.io/aria/aria/aria.html#menubar" class="role-reference">menubar</a>. </li>
           <li>The items contained in a menu are child elements of the containing menu or menubar and have any of the following roles:
@@ -2341,7 +2467,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <li>All <a href="http://w3c.github.io/aria/aria/aria.html#separator" class="role-reference">separators</a> should have <a href="http://w3c.github.io/aria/aria/aria.html#aria-orientation" class="property-reference">aria-orientation</a> consistent with the separator's orientation. </li>
         </ul>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note13"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note15"><span>Note</span></div>
           <p class="">If <a href="http://w3c.github.io/aria/aria/aria.html#aria-owns" class="property-reference">aria-owns</a> is set on the menu container to include elements that are not DOM children of the container, those elements will appear in the reading order in the sequence they are referenced and after any items that are DOM children. Scripts that manage focus need to ensure the visual focus order matches this assistive technology reading order. </p>
         </div>
       </section>
@@ -2356,14 +2482,14 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     </section>
 
     <section class="widget" id="menubutton" typeof="bibo:Chapter" resource="#menubutton" property="bibo:hasPart">
-      <h3 id="h-menubutton" resource="#h-menubutton"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.16 </span>Menu Button<span class="permalink" typeof="bookmark"><a href="#menubutton" aria-label="Permalink for 2.16 Menu Button" title="Permalink for 2.16 Menu Button" property="url"><span property="title" content="2.16 Menu Button">§</span></a>
+      <h3 id="h-menubutton" resource="#h-menubutton"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.17 </span>Menu Button<span class="permalink" typeof="bookmark"><a href="#menubutton" aria-label="Permalink for 2.17 Menu Button" title="Permalink for 2.17 Menu Button" property="url"><span property="title" content="2.17 Menu Button">§</span></a>
         </span>
         </span>
       </h3>
       <p>A menu button is a <a href="#button">button</a> that opens a <a href="#menu">menu</a>. It is often styled as a typical push button with a downward pointing arrow or triangle to hint that activating the button will display a menu.</p>
 
-      <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-11" property="bibo:hasPart">
-        <h4 id="keyboard-interaction-11" resource="#keyboard-interaction-11"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
+      <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-12" property="bibo:hasPart">
+        <h4 id="keyboard-interaction-12" resource="#keyboard-interaction-12"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
         <ul>
           <li>With focus on the button:
             <ul>
@@ -2371,16 +2497,16 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
               <li>(Optional) <kbd>Down Arrow</kbd>: opens the menu and moves focus to the first menu item. </li>
             </ul>
           </li>
-          <li>The keyboard behaviors needed after the menu is open are described in <a href="#menu" class="sec-ref"><span class="secno">2.15</span> <span class="sec-title">Menu or Menu bar</span></a>.</li>
+          <li>The keyboard behaviors needed after the menu is open are described in <a href="#menu" class="sec-ref"><span class="secno">2.16</span> <span class="sec-title">Menu or Menu bar</span></a>.</li>
         </ul>
       </section>
 
-      <section class="notoc" typeof="bibo:Chapter" resource="#wai-aria-roles-states-and-properties-12" property="bibo:hasPart">
-        <h4 id="wai-aria-roles-states-and-properties-12" resource="#wai-aria-roles-states-and-properties-12"><span property="xhv:role" resource="xhv:heading"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties</span></h4>
+      <section class="notoc" typeof="bibo:Chapter" resource="#wai-aria-roles-states-and-properties-13" property="bibo:hasPart">
+        <h4 id="wai-aria-roles-states-and-properties-13" resource="#wai-aria-roles-states-and-properties-13"><span property="xhv:role" resource="xhv:heading"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties</span></h4>
         <ul>
           <li>The element that opens the menu has role <a href="http://w3c.github.io/aria/aria/aria.html#button" class="role-reference">button</a>.</li>
           <li>The element with role <code>button</code> has <a href="http://w3c.github.io/aria/aria/aria.html#aria-haspopup" class="property-reference">aria-haspopup</a> set to <code>true</code>.</li>
-          <li>The roles, states, and properties needed for the menu opened by the button are described in <a href="#menu" class="sec-ref"><span class="secno">2.15</span> <span class="sec-title">Menu or Menu bar</span></a>. </li>
+          <li>The roles, states, and properties needed for the menu opened by the button are described in <a href="#menu" class="sec-ref"><span class="secno">2.16</span> <span class="sec-title">Menu or Menu bar</span></a>. </li>
         </ul>
       </section>
 
@@ -2398,7 +2524,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     </section>
 
     <section class="widget" id="radiobutton" typeof="bibo:Chapter" resource="#radiobutton" property="bibo:hasPart">
-      <h3 id="h-radiobutton" resource="#h-radiobutton"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.17 </span>Radio Group<span class="permalink" typeof="bookmark"><a href="#radiobutton" aria-label="Permalink for 2.17 Radio Group" title="Permalink for 2.17 Radio Group" property="url"><span property="title" content="2.17 Radio Group">§</span></a>
+      <h3 id="h-radiobutton" resource="#h-radiobutton"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.18 </span>Radio Group<span class="permalink" typeof="bookmark"><a href="#radiobutton" aria-label="Permalink for 2.18 Radio Group" title="Permalink for 2.18 Radio Group" property="url"><span property="title" content="2.18 Radio Group">§</span></a>
         </span>
         </span>
       </h3>
@@ -2406,8 +2532,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         A radio group is a set of checkable buttons, known as radio buttons, where only one button in the set may be in a checked state.
       </p>
 
-      <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-12" property="bibo:hasPart">
-        <h4 id="keyboard-interaction-12" resource="#keyboard-interaction-12"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
+      <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-13" property="bibo:hasPart">
+        <h4 id="keyboard-interaction-13" resource="#keyboard-interaction-13"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
         <ul>
           <li>
             When a radio group receives focus:
@@ -2427,15 +2553,15 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           </li>
         </ul>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note14"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note16"><span>Note</span></div>
           <p class="">
             The initial focus behavior described above differs slightly from the behavior provided by some browsers for native HTML radio groups. In some browsers, if none of the radio buttons are selected, moving focus into the radio group with <kbd>Shift+Tab</kbd> will place focus on the last radio button instead of the first radio button.
           </p>
         </div>
       </section>
 
-      <section class="notoc" typeof="bibo:Chapter" resource="#wai-aria-roles-states-and-properties-13" property="bibo:hasPart">
-        <h4 id="wai-aria-roles-states-and-properties-13" resource="#wai-aria-roles-states-and-properties-13"><span property="xhv:role" resource="xhv:heading"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties</span></h4>
+      <section class="notoc" typeof="bibo:Chapter" resource="#wai-aria-roles-states-and-properties-14" property="bibo:hasPart">
+        <h4 id="wai-aria-roles-states-and-properties-14" resource="#wai-aria-roles-states-and-properties-14"><span property="xhv:role" resource="xhv:heading"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties</span></h4>
         <ul>
           <li>
             The radio buttons are contained in or owned by an element with role
@@ -2485,7 +2611,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     </section>
 
     <section class="widget" id="slider" typeof="bibo:Chapter" resource="#slider" property="bibo:hasPart">
-      <h3 id="h-slider" resource="#h-slider"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.18 </span>Slider<span class="permalink" typeof="bookmark"><a href="#slider" aria-label="Permalink for 2.18 Slider" title="Permalink for 2.18 Slider" property="url"><span property="title" content="2.18 Slider">§</span></a>
+      <h3 id="h-slider" resource="#h-slider"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.19 </span>Slider<span class="permalink" typeof="bookmark"><a href="#slider" aria-label="Permalink for 2.19 Slider" title="Permalink for 2.19 Slider" property="url"><span property="title" content="2.19 Slider">§</span></a>
         </span>
         </span>
       </h3>
@@ -2493,8 +2619,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         A slider is an input where the user selects a value from within a given range. Sliders typically have a slider thumb that can be moved along a bar or track to change the value of the slider.
       </p>
 
-      <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-13" property="bibo:hasPart">
-        <h4 id="keyboard-interaction-13" resource="#keyboard-interaction-13"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
+      <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-14" property="bibo:hasPart">
+        <h4 id="keyboard-interaction-14" resource="#keyboard-interaction-14"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
         <ul>
           <li><kbd>Right Arrow</kbd> and <kbd>Up Arrow</kbd>: Increase the value of the slider.</li>
           <li><kbd>Left Arrow</kbd> and <kbd>Down Arrow</kbd>: Decrease the value of the slider.</li>
@@ -2504,7 +2630,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <li><kbd>Page Down</kbd> (Optional): Decrement the slider by an amount larger than the step change made by <kbd>Down Arrow</kbd>.</li>
         </ul>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note15"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note17"><span>Note</span></div>
           <ol class="">
             <li>Focus is placed on the slider (the visual object that the mouse user would move, also known as the thumb.</li>
             <li>In some circumstances, reversing the direction of the value change for the keys specified above, e.g., having <kbd>Up Arrow</kbd> decrease the value, could create a more intuitive experience.</li>
@@ -2512,8 +2638,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </div>
       </section>
 
-      <section class="notoc" typeof="bibo:Chapter" resource="#wai-aria-roles-states-and-properties-14" property="bibo:hasPart">
-        <h4 id="wai-aria-roles-states-and-properties-14" resource="#wai-aria-roles-states-and-properties-14"><span property="xhv:role" resource="xhv:heading"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties</span></h4>
+      <section class="notoc" typeof="bibo:Chapter" resource="#wai-aria-roles-states-and-properties-15" property="bibo:hasPart">
+        <h4 id="wai-aria-roles-states-and-properties-15" resource="#wai-aria-roles-states-and-properties-15"><span property="xhv:role" resource="xhv:heading"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties</span></h4>
         <ul>
           <li>The element serving as the focusable slider control has role <a class="role-reference" href="http://w3c.github.io/aria/aria/aria.html#slider">slider</a>.</li>
           <li>The slider element has the <a class="property-reference" href="http://w3c.github.io/aria/aria/aria.html#aria-valuenow">aria-valuenow</a> property set to a decimal value representing the current value of the slider.</li>
@@ -2544,7 +2670,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     </section>
 
     <section class="widget" id="slidertwothumb" typeof="bibo:Chapter" resource="#slidertwothumb" property="bibo:hasPart">
-      <h3 id="h-slidertwothumb" resource="#h-slidertwothumb"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.19 </span>Slider (Multi-Thumb)<span class="permalink" typeof="bookmark"><a href="#slidertwothumb" aria-label="Permalink for 2.19 Slider (Multi-Thumb)" title="Permalink for 2.19 Slider (Multi-Thumb)" property="url"><span property="title" content="2.19 Slider (Multi-Thumb)">§</span></a>
+      <h3 id="h-slidertwothumb" resource="#h-slidertwothumb"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.20 </span>Slider (Multi-Thumb)<span class="permalink" typeof="bookmark"><a href="#slidertwothumb" aria-label="Permalink for 2.20 Slider (Multi-Thumb)" title="Permalink for 2.20 Slider (Multi-Thumb)" property="url"><span property="title" content="2.20 Slider (Multi-Thumb)">§</span></a>
         </span>
         </span>
       </h3>
@@ -2556,8 +2682,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         A multi-thumb slider is a slider with two or more thumbs that each set a value in a group of related values. Many two-thumb sliders set a maximum and minimum value for a range, and the thumbs are not allowed to pass one another. That is, the mthumb that sets the upper value of the range can not be set lower than the thumb that controls the lower value of the range. However, in some multi-thumb sliders, each thumb sets a value that does not depend on the other thumb values.
       </p>
 
-      <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-14" property="bibo:hasPart">
-        <h4 id="keyboard-interaction-14" resource="#keyboard-interaction-14"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
+      <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-15" property="bibo:hasPart">
+        <h4 id="keyboard-interaction-15" resource="#keyboard-interaction-15"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
         <ul>
           <li>Each thumb is in the page tab sequence and has the same keyboard interaction as a <a href="#slider">single-thumb slider</a>.</li>
           <li>
@@ -2566,8 +2692,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </ul>
       </section>
 
-      <section class="notoc" typeof="bibo:Chapter" resource="#wai-aria-roles-states-and-properties-15" property="bibo:hasPart">
-        <h4 id="wai-aria-roles-states-and-properties-15" resource="#wai-aria-roles-states-and-properties-15"><span property="xhv:role" resource="xhv:heading"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties</span></h4>
+      <section class="notoc" typeof="bibo:Chapter" resource="#wai-aria-roles-states-and-properties-16" property="bibo:hasPart">
+        <h4 id="wai-aria-roles-states-and-properties-16" resource="#wai-aria-roles-states-and-properties-16"><span property="xhv:role" resource="xhv:heading"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties</span></h4>
         <ul>
           <li>Each element serving as a focusable slider thumb has role <a class="role-reference" href="http://w3c.github.io/aria/aria/aria.html#slider">slider</a>.</li>
           <li>Each slider element has the <a class="property-reference" href="http://w3c.github.io/aria/aria/aria.html#aria-valuenow">aria-valuenow</a> property set to a decimal value representing the current value of the slider.</li>
@@ -2588,8 +2714,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </ul>
       </section>
 
-      <section class="notoc" typeof="bibo:Chapter" resource="#example-5" property="bibo:hasPart">
-        <h4 id="example-5" resource="#example-5"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
+      <section class="notoc" typeof="bibo:Chapter" resource="#example-6" property="bibo:hasPart">
+        <h4 id="example-6" resource="#example-6"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
         <p>
           Work to develop an example multi-thumb slider is tracked in
           <a href="https://github.com/w3c/aria-practices/issues/124">issue 124.</a>
@@ -2598,7 +2724,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     </section>
 
     <section class="widget" id="spinbutton" typeof="bibo:Chapter" resource="#spinbutton" property="bibo:hasPart">
-      <h3 id="h-spinbutton" resource="#h-spinbutton"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.20 </span>Spinbutton<span class="permalink" typeof="bookmark"><a href="#spinbutton" aria-label="Permalink for 2.20 Spinbutton" title="Permalink for 2.20 Spinbutton" property="url"><span property="title" content="2.20 Spinbutton">§</span></a>
+      <h3 id="h-spinbutton" resource="#h-spinbutton"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.21 </span>Spinbutton<span class="permalink" typeof="bookmark"><a href="#spinbutton" aria-label="Permalink for 2.21 Spinbutton" title="Permalink for 2.21 Spinbutton" property="url"><span property="title" content="2.21 Spinbutton">§</span></a>
         </span>
         </span>
       </h3>
@@ -2612,8 +2738,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         If the range is large, a spinbutton may support changing the value in both small and large steps. For instance, in the alarm example, the user may be able to move by 1 minute with <kbd>Up Arrow</kbd> and <kbd>Down Arrow</kbd> and by 10 minutes with <kbd>Page Up</kbd> and <kbd>Page Down</kbd>.
       </p>
 
-      <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-15" property="bibo:hasPart">
-        <h4 id="keyboard-interaction-15" resource="#keyboard-interaction-15"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
+      <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-16" property="bibo:hasPart">
+        <h4 id="keyboard-interaction-16" resource="#keyboard-interaction-16"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
         <ul>
           <li>Text editing keys: If the spinbutton text field allows directly editing the value, the following keys are supported.
             <ul>
@@ -2631,13 +2757,13 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <li><kbd>Page Down</kbd> (Optional): Decreases the value by a larger step than <kbd>Down Arrow</kbd>.</li>
         </ul>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note16"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note18"><span>Note</span></div>
           <p class="">Focus remains on the text field during operation.</p>
         </div>
       </section>
 
-      <section class="notoc" typeof="bibo:Chapter" resource="#wai-aria-roles-states-and-properties-16" property="bibo:hasPart">
-        <h4 id="wai-aria-roles-states-and-properties-16" resource="#wai-aria-roles-states-and-properties-16"><span property="xhv:role" resource="xhv:heading"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties</span></h4>
+      <section class="notoc" typeof="bibo:Chapter" resource="#wai-aria-roles-states-and-properties-17" property="bibo:hasPart">
+        <h4 id="wai-aria-roles-states-and-properties-17" resource="#wai-aria-roles-states-and-properties-17"><span property="xhv:role" resource="xhv:heading"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties</span></h4>
         <ul>
           <li>
             The focusable element serving as the spinbutton has role <a class="role-reference" href="http://w3c.github.io/aria/aria/aria.html#spinbutton">spinbutton</a>. This is typically an element that supports text input.
@@ -2657,8 +2783,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </ul>
       </section>
 
-      <section class="notoc" typeof="bibo:Chapter" resource="#example-6" property="bibo:hasPart">
-        <h4 id="example-6" resource="#example-6"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
+      <section class="notoc" typeof="bibo:Chapter" resource="#example-7" property="bibo:hasPart">
+        <h4 id="example-7" resource="#example-7"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
         <p>
           Work to develop a spinbutton example is tracked by
           <a href="https://github.com/w3c/aria-practices/issues/125">issue 125.</a>
@@ -2667,7 +2793,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     </section>
 
     <section class="widget" id="table" typeof="bibo:Chapter" resource="#table" property="bibo:hasPart">
-      <h3 id="h-table" resource="#h-table"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.21 </span>Table<span class="permalink" typeof="bookmark"><a href="#table" aria-label="Permalink for 2.21 Table" title="Permalink for 2.21 Table" property="url"><span property="title" content="2.21 Table">§</span></a>
+      <h3 id="h-table" resource="#h-table"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.22 </span>Table<span class="permalink" typeof="bookmark"><a href="#table" aria-label="Permalink for 2.22 Table" title="Permalink for 2.22 Table" property="url"><span property="title" content="2.22 Table">§</span></a>
         </span>
         </span>
       </h3>
@@ -2681,7 +2807,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     </section>
 
     <section class="widget" id="tabpanel" typeof="bibo:Chapter" resource="#tabpanel" property="bibo:hasPart">
-      <h3 id="h-tabpanel" resource="#h-tabpanel"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.22 </span>Tabs<span class="permalink" typeof="bookmark"><a href="#tabpanel" aria-label="Permalink for 2.22 Tabs" title="Permalink for 2.22 Tabs" property="url"><span property="title" content="2.22 Tabs">§</span></a>
+      <h3 id="h-tabpanel" resource="#h-tabpanel"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.23 </span>Tabs<span class="permalink" typeof="bookmark"><a href="#tabpanel" aria-label="Permalink for 2.23 Tabs" title="Permalink for 2.23 Tabs" property="url"><span property="title" content="2.23 Tabs">§</span></a>
         </span>
         </span>
       </h3>
@@ -2703,8 +2829,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         When a tabbed interface is initialized, one tab panel is displayed and its associated tab is styled to indicate that it is active. When the user activates one of the other tab elements, the previously displayed tab panel is hidden, the tab panel associated with the activated tab becomes visible, and the tab is considered "active".
       </p>
 
-      <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-16" property="bibo:hasPart">
-        <h4 id="keyboard-interaction-16" resource="#keyboard-interaction-16"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
+      <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-17" property="bibo:hasPart">
+        <h4 id="keyboard-interaction-17" resource="#keyboard-interaction-17"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
         <p>For the tab list:</p>
         <ul>
           <li>
@@ -2733,7 +2859,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           </li>
         </ul>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note17"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note19"><span>Note</span></div>
           <ol class="">
             <li>
               It is recommended that tabs activate automatically when they receive focus as long as their associated tab panels are displayed without noticeable latency. This typically requires tab panel content to be preloaded. Otherwise, automatic activation slows focus movement, which significantly hampers users' ability to navigate efficiently across the tab list. For additional guidance, see <a href="#kbd_selection_follows_focus" class="sec-ref"><span class="secno">4.4</span> <span class="sec-title">Deciding When to Make Selection Automatically Follow Focus</span></a>.
@@ -2750,8 +2876,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </div>
       </section>
 
-      <section class="notoc" typeof="bibo:Chapter" resource="#wai-aria-roles-states-and-properties-17" property="bibo:hasPart">
-        <h4 id="wai-aria-roles-states-and-properties-17" resource="#wai-aria-roles-states-and-properties-17"><span property="xhv:role" resource="xhv:heading"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties</span></h4>
+      <section class="notoc" typeof="bibo:Chapter" resource="#wai-aria-roles-states-and-properties-18" property="bibo:hasPart">
+        <h4 id="wai-aria-roles-states-and-properties-18" resource="#wai-aria-roles-states-and-properties-18"><span property="xhv:role" resource="xhv:heading"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties</span></h4>
         <ul>
           <li>The element that serves as the container for the set of tabs has role <a class="role-reference" href="http://w3c.github.io/aria/aria/aria.html#tablist">tablist</a>. </li>
           <li>Each element that serves as a tab has role <a class="role-reference" href="http://w3c.github.io/aria/aria/aria.html#tab">tab</a> and is contained within the element with role <code>tablist</code>.</li>
@@ -2766,14 +2892,14 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </ul>
       </section>
 
-      <section class="notoc" typeof="bibo:Chapter" resource="#example-7" property="bibo:hasPart">
-        <h4 id="example-7" resource="#example-7"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
+      <section class="notoc" typeof="bibo:Chapter" resource="#example-8" property="bibo:hasPart">
+        <h4 id="example-8" resource="#example-8"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
         <p><a href="examples/tabs/tabs.html">Tabs Widget Example</a></p>
       </section>
     </section>
 
     <section class="widget" id="toolbar" typeof="bibo:Chapter" resource="#toolbar" property="bibo:hasPart">
-      <h3 id="h-toolbar" resource="#h-toolbar"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.23 </span>Toolbar<span class="permalink" typeof="bookmark"><a href="#toolbar" aria-label="Permalink for 2.23 Toolbar" title="Permalink for 2.23 Toolbar" property="url"><span property="title" content="2.23 Toolbar">§</span></a>
+      <h3 id="h-toolbar" resource="#h-toolbar"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.24 </span>Toolbar<span class="permalink" typeof="bookmark"><a href="#toolbar" aria-label="Permalink for 2.24 Toolbar" title="Permalink for 2.24 Toolbar" property="url"><span property="title" content="2.24 Toolbar">§</span></a>
         </span>
         </span>
       </h3>
@@ -2788,8 +2914,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         <li>Use toolbar as a grouping element only if the group contains 3 or more controls.</li>
       </ol>
 
-      <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-17" property="bibo:hasPart">
-        <h4 id="keyboard-interaction-17" resource="#keyboard-interaction-17"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
+      <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-18" property="bibo:hasPart">
+        <h4 id="keyboard-interaction-18" resource="#keyboard-interaction-18"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
         <ul>
           <li>
             When the toolbar receives focus, focus is set on the first control that is not disabled. Optionally, if the toolbar has previously contained focus, focus is set on the control that last had focus.
@@ -2804,7 +2930,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <li><kbd>End</kbd> (Optional): Moves focus to last element.</li>
         </ul>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note18"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note20"><span>Note</span></div>
           <ol class="">
             <li>If the items in a toolbar are arranged vertically:
               <ol>
@@ -2820,8 +2946,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </div>
       </section>
 
-      <section class="notoc" typeof="bibo:Chapter" resource="#wai-aria-roles-states-and-properties-18" property="bibo:hasPart">
-        <h4 id="wai-aria-roles-states-and-properties-18" resource="#wai-aria-roles-states-and-properties-18"><span property="xhv:role" resource="xhv:heading"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties</span></h4>
+      <section class="notoc" typeof="bibo:Chapter" resource="#wai-aria-roles-states-and-properties-19" property="bibo:hasPart">
+        <h4 id="wai-aria-roles-states-and-properties-19" resource="#wai-aria-roles-states-and-properties-19"><span property="xhv:role" resource="xhv:heading"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties</span></h4>
         <ul>
           <li>The element that serves as the toolbar container has role <a class="role-reference" href="http://w3c.github.io/aria/aria/aria.html#toolbar">toolbar</a>. </li>
           <li>
@@ -2833,14 +2959,14 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </ul>
       </section>
 
-      <section class="notoc" typeof="bibo:Chapter" resource="#example-8" property="bibo:hasPart">
-        <h4 id="example-8" resource="#example-8"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
+      <section class="notoc" typeof="bibo:Chapter" resource="#example-9" property="bibo:hasPart">
+        <h4 id="example-9" resource="#example-9"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
         <p><a href="examples/toolbar/toolbar.html">Toolbar Example</a>: A toolbar including buttons, links, and checkboxes that uses roving tabindex to manage focus.</p>
       </section>
     </section>
 
     <section class="widget" id="tooltip" typeof="bibo:Chapter" resource="#tooltip" property="bibo:hasPart">
-      <h3 id="h-tooltip" resource="#h-tooltip"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.24 </span>Tooltip Widget<span class="permalink" typeof="bookmark"><a href="#tooltip" aria-label="Permalink for 2.24 Tooltip Widget" title="Permalink for 2.24 Tooltip Widget" property="url"><span property="title" content="2.24 Tooltip Widget">§</span></a>
+      <h3 id="h-tooltip" resource="#h-tooltip"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.25 </span>Tooltip Widget<span class="permalink" typeof="bookmark"><a href="#tooltip" aria-label="Permalink for 2.25 Tooltip Widget" title="Permalink for 2.25 Tooltip Widget" property="url"><span property="title" content="2.25 Tooltip Widget">§</span></a>
         </span>
         </span>
       </h3>
@@ -2855,11 +2981,11 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         Tooltip widgets do not receive focus. A hover that contains focusable elements can be made using the a <a href="#dialog_nonmodal">non-modal dialog pattern</a>.
       </p>
 
-      <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-18" property="bibo:hasPart">
-        <h4 id="keyboard-interaction-18" resource="#keyboard-interaction-18"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
+      <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-19" property="bibo:hasPart">
+        <h4 id="keyboard-interaction-19" resource="#keyboard-interaction-19"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
         <p><kbd>Escape</kbd>: Dismisses the Tooltip.</p>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note19"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note21"><span>Note</span></div>
           <ol class="">
             <li>Focus stays on the triggering element while the tooltip is displayed.</li>
             <li>
@@ -2869,16 +2995,16 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </div>
       </section>
 
-      <section class="notoc" typeof="bibo:Chapter" resource="#wai-aria-roles-states-and-properties-19" property="bibo:hasPart">
-        <h4 id="wai-aria-roles-states-and-properties-19" resource="#wai-aria-roles-states-and-properties-19"><span property="xhv:role" resource="xhv:heading"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties</span></h4>
+      <section class="notoc" typeof="bibo:Chapter" resource="#wai-aria-roles-states-and-properties-20" property="bibo:hasPart">
+        <h4 id="wai-aria-roles-states-and-properties-20" resource="#wai-aria-roles-states-and-properties-20"><span property="xhv:role" resource="xhv:heading"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties</span></h4>
         <ul>
           <li>The element that serves as the tooltip container has role <a href="http://w3c.github.io/aria/aria/aria.html#tooltip" class="role-reference">tooltip</a>.</li>
           <li>The element that triggers the tooltip references the tooltip element with <a href="http://w3c.github.io/aria/aria/aria.html#aria-describedby" class="property-reference">aria-describedby</a>.</li>
         </ul>
       </section>
 
-      <section class="notoc" typeof="bibo:Chapter" resource="#example-9" property="bibo:hasPart">
-        <h4 id="example-9" resource="#example-9"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
+      <section class="notoc" typeof="bibo:Chapter" resource="#example-10" property="bibo:hasPart">
+        <h4 id="example-10" resource="#example-10"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
         <p>
           Work to develop a tooltip example is tracked by
           <a href="https://github.com/w3c/aria-practices/issues/127">issue 127.</a>
@@ -2887,7 +3013,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     </section>
 
     <section class="widget" id="TreeView" typeof="bibo:Chapter" resource="#TreeView" property="bibo:hasPart">
-      <h3 id="h-treeview" resource="#h-treeview"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.25 </span>Tree View<span class="permalink" typeof="bookmark"><a href="#TreeView" aria-label="Permalink for 2.25 Tree View" title="Permalink for 2.25 Tree View" property="url"><span property="title" content="2.25 Tree View">§</span></a>
+      <h3 id="h-treeview" resource="#h-treeview"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.26 </span>Tree View<span class="permalink" typeof="bookmark"><a href="#TreeView" aria-label="Permalink for 2.26 Tree View" title="Permalink for 2.26 Tree View" property="url"><span property="title" content="2.26 Tree View">§</span></a>
         </span>
         </span>
       </h3>
@@ -2915,8 +3041,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         When using a keyboard to navigate a tree, a visual keyboard indicator informs the user which node is focused. If the tree allows the user to choose just one item for an action, then it is known as a single-select tree, and the item with focus also has a selected state. However, in multi-select trees, which enable the user to select more than one item for an action, the selected state is independent of the focus. For example, in a typical file system navigator, the user can move focus to select any number of files for an action, such as copy or move. It is important that the visual design distinguish between items that are selected and the item that has focus. For more details, see <a href="#kbd_focus_vs_selection">this description of differences between focus and selection.</a>
       </p>
 
-      <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-19" property="bibo:hasPart">
-        <h4 id="keyboard-interaction-19" resource="#keyboard-interaction-19"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
+      <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-20" property="bibo:hasPart">
+        <h4 id="keyboard-interaction-20" resource="#keyboard-interaction-20"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
         <p>For a vertically oriented tree:</p>
         <ul>
           <li> When a single-select tree receives focus:
@@ -2987,7 +3113,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           </li>
         </ul>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note20"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note22"><span>Note</span></div>
           <ol class="">
             <li>DOM focus (the active element) is functionally distinct from the selected state. For more details, see <a href="#kbd_focus_vs_selection">this description of differences between focus and selection.</a></li>
             <li>
@@ -3008,8 +3134,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </div>
       </section>
 
-      <section class="notoc" typeof="bibo:Chapter" resource="#wai-aria-roles-states-and-properties-20" property="bibo:hasPart">
-        <h4 id="wai-aria-roles-states-and-properties-20" resource="#wai-aria-roles-states-and-properties-20"><span property="xhv:role" resource="xhv:heading"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties</span></h4>
+      <section class="notoc" typeof="bibo:Chapter" resource="#wai-aria-roles-states-and-properties-21" property="bibo:hasPart">
+        <h4 id="wai-aria-roles-states-and-properties-21" resource="#wai-aria-roles-states-and-properties-21"><span property="xhv:role" resource="xhv:heading"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties</span></h4>
         <ul>
           <li>All tree nodes are contained in or owned by an element with role <a class="role-reference" href="http://w3c.github.io/aria/aria/aria.html#tree">tree</a>.</li>
           <li>Each element serving as a tree node has role <a class="role-reference" href="http://w3c.github.io/aria/aria/aria.html#treeitem">treeitem</a>.</li>
@@ -3038,7 +3164,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           </li>
         </ul>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note21"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note23"><span>Note</span></div>
           <p class="">
             If <a href="http://w3c.github.io/aria/aria/aria.html#aria-owns" class="property-reference">aria-owns</a> is set on the tree container to include elements that are not DOM children of the container, those elements will appear in the reading order in the sequence they are referenced and after any items that are DOM children. Scripts that manage focus need to ensure the visual focus order matches this assistive technology reading order.
           </p>
@@ -3065,7 +3191,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     </section>
 
     <section class="widget" id="windowsplitter" typeof="bibo:Chapter" resource="#windowsplitter" property="bibo:hasPart">
-      <h3 id="h-windowsplitter" resource="#h-windowsplitter"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.26 </span>Window Splitter<span class="permalink" typeof="bookmark"><a href="#windowsplitter" aria-label="Permalink for 2.26 Window Splitter" title="Permalink for 2.26 Window Splitter" property="url"><span property="title" content="2.26 Window Splitter">§</span></a>
+      <h3 id="h-windowsplitter" resource="#h-windowsplitter"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.27 </span>Window Splitter<span class="permalink" typeof="bookmark"><a href="#windowsplitter" aria-label="Permalink for 2.27 Window Splitter" title="Permalink for 2.27 Window Splitter" property="url"><span property="title" content="2.27 Window Splitter">§</span></a>
         </span>
         </span>
       </h3>
@@ -3086,8 +3212,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         Note that the term "primary pane" does not describe the importance or purpose of content inside the pane.
       </p>
 
-      <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-20" property="bibo:hasPart">
-        <h4 id="keyboard-interaction-20" resource="#keyboard-interaction-20"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
+      <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-21" property="bibo:hasPart">
+        <h4 id="keyboard-interaction-21" resource="#keyboard-interaction-21"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
         <ul>
           <li><kbd>Left Arrow</kbd>: Moves a vertical splitter to the left.</li>
           <li><kbd>Right Arrow</kbd>: Moves a vertical splitter to the right.</li>
@@ -3099,13 +3225,13 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <li><kbd>F6</kbd> (Optional): Cycle through window panes.</li>
         </ul>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note22"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note24"><span>Note</span></div>
           <p class="">A fixed size splitter omits implementation of the arrow keys.</p>
         </div>
       </section>
 
-      <section class="notoc" typeof="bibo:Chapter" resource="#wai-aria-roles-states-and-properties-21" property="bibo:hasPart">
-        <h4 id="wai-aria-roles-states-and-properties-21" resource="#wai-aria-roles-states-and-properties-21"><span property="xhv:role" resource="xhv:heading"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties</span></h4>
+      <section class="notoc" typeof="bibo:Chapter" resource="#wai-aria-roles-states-and-properties-22" property="bibo:hasPart">
+        <h4 id="wai-aria-roles-states-and-properties-22" resource="#wai-aria-roles-states-and-properties-22"><span property="xhv:role" resource="xhv:heading"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties</span></h4>
         <ul>
           <li>The element that serves as the focusable splitter has role <a href="http://w3c.github.io/aria/aria/aria.html#separator" class="role-reference">separator</a>.</li>
           <li>The separator element has the <a class="property-reference" href="http://w3c.github.io/aria/aria/aria.html#aria-valuenow">aria-valuenow</a> property set to a decimal value representing the current position of the separator.</li>
@@ -3120,8 +3246,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </ul>
       </section>
 
-      <section class="notoc" typeof="bibo:Chapter" resource="#example-10" property="bibo:hasPart">
-        <h4 id="example-10" resource="#example-10"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
+      <section class="notoc" typeof="bibo:Chapter" resource="#example-11" property="bibo:hasPart">
+        <h4 id="example-11" resource="#example-11"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
         <p>
           Work to develop an example window splitter widget is tracked by
           <a href="https://github.com/w3c/aria-practices/issues/130">issue 130.</a>
@@ -3909,7 +4035,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </span>
       </h3>
       <p>
-        By default, disabled HTML input elements are removed from the tab sequence. In most contexts, the normal expectation is that disabled interactive elements are not focusable. However, there are some contexts where it is common for disabled elements to be focusable, especially inside of composite widgets. For example, as demonstrated in the <a href="#menu" class="sec-ref"><span class="secno">2.15</span> <span class="sec-title">Menu or Menu bar</span></a> pattern, disabled items are focusable when navigating through a menu with the arrow keys.
+        By default, disabled HTML input elements are removed from the tab sequence. In most contexts, the normal expectation is that disabled interactive elements are not focusable. However, there are some contexts where it is common for disabled elements to be focusable, especially inside of composite widgets. For example, as demonstrated in the <a href="#menu" class="sec-ref"><span class="secno">2.16</span> <span class="sec-title">Menu or Menu bar</span></a> pattern, disabled items are focusable when navigating through a menu with the arrow keys.
       </p>
 
       <p>
@@ -4074,7 +4200,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           The remainder of this section provides guidance balancing requirements and concerns related to key assignment conflicts. It is typically ideal if key assignments do not conflict with keys that are assigned to functions in the user's operating system, browser, or assistive technology. Conflicts can block efficient access to functions that are essential to the user, and a perfect storm of conflicts can trap a user. At the same time, there are some circumstances where intentional conflicts are useful. And, given the vast array of operating system, browser, and assistive technology keys, it is almost impossible to be certain conflicts do not exist. So it is also important to employ strategies that mitigate the impact of conflicts whether they are intentional or unknown.
         </p>
         <div class="note">
-          <div class="note-title marker" aria-level="5" role="heading" id="h-note23"><span>Note</span></div>
+          <div class="note-title marker" aria-level="5" role="heading" id="h-note25"><span>Note</span></div>
           <p class="">
             In the following sections, <kbd>meta</kbd> key refers to the <kbd>Windows</kbd> key on Windows-compatible keyboards and the <kbd>Command</kbd> key on MacOS-compatible keyboards.
           </p>
@@ -4208,7 +4334,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     <p>
       For example, consider a tabs widget built using an HTML <code>ul</code> element.
     </p>
-    <pre class="hljs xml">    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"tablist"</span>&gt;</span>
+    <pre class="hljs">    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"tablist"</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"presentation"</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"tab"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Tab 1<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
       <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
@@ -4305,14 +4431,14 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </span>
       </h3>
       <p>This code:</p>
-      <pre class="hljs xml">        <span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"presentation"</span>&gt;</span>
+      <pre class="hljs">        <span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"presentation"</span>&gt;</span>
           <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Date of birth:<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
           <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>January 1, 3456<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
         <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
       </pre>
       <p>when parsed by a browser, is equivalent to the following from the perspective of a screen reader or other assistive technology that relies on the browser's accessibility tree:
       </p>
-      <pre class="hljs xml">        <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Date of birth:<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <pre class="hljs">        <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Date of birth:<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
           <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>January 1, 3456<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
       </pre>
       <p>
@@ -4352,17 +4478,17 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <li>tab</li>
     </ul>
     <p>For instance, consider the following tab element, which contains a heading.</p>
-    <pre class="hljs javascript">      &lt;li role=<span class="hljs-string">"tab"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>Title of My Tab<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span></span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span>
+    <pre class="hljs">      &lt;li role=<span class="hljs-string">"tab"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>Title of My Tab<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span></span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span>
     </pre>
     <p>
       Because <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> requires descendants of tab to be presentational, the following code is equivalent.
     </p>
-    <pre class="hljs javascript">      &lt;li role=<span class="hljs-string">"tab"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">h3</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"presentation"</span>&gt;</span>Title of My Tab<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span></span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span>
+    <pre class="hljs">      &lt;li role=<span class="hljs-string">"tab"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">h3</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"presentation"</span>&gt;</span>Title of My Tab<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span></span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span>
     </pre>
     <p>
       And, from the perspective of anyone using a technology that relies on an accessibility API, such as a screen reader, the heading does not exist since the previous code is equivalent to the following.
     </p>
-    <pre class="hljs xml">      <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"tab"</span>&gt;</span>Title of My Tab<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+    <pre class="hljs">      <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"tab"</span>&gt;</span>Title of My Tab<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
     </pre>
     <p>
       See the
@@ -4399,7 +4525,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <p>[Placeholder section that will be resolved by <a href="https://github.com/w3c/aria-practices/issues/84">issue #84</a>.]</p>
     </section>
 
-    <div data-include="common/acknowledgements.html" data-include-replace="true" data-include-id="include-8266639878248969">
+    <div data-include="common/acknowledgements.html" data-include-replace="true" data-include-id="include-2758090885781641">
     </div>
   </section>
 
