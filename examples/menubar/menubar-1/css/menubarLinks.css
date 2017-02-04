@@ -45,7 +45,7 @@ ul[role="menubar"] > li {
 }
 
 ul[role="menubar"] > li > a:after {
-  content: url('../images/pull-down-menu-icon.png');
+  content: " \0025BE";
 }
 
 
@@ -64,5 +64,5 @@ ul[role="menubar"] ul[role="menu"] li a {
 }
 
 ul[role="menubar"] ul[role="menu"] a[aria-haspopup="true"]:after {
-  content: " >";
+  content: "  \0025B8";
 }

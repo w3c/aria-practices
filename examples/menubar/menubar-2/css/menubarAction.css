@@ -17,6 +17,10 @@ ul[role="menubar"] > li {
   position: relative;
 }
 
+ul[role="menubar"] > li > span:after {
+  content: " \0025BE";
+}
+
 ul[role="menubar"] ul[role="menu"] {
   display: none;
   position: absolute;
