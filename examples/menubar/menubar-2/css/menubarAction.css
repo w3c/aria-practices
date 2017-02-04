@@ -79,17 +79,12 @@ ul[role="menubar"] [role="menu"] [role="separator"]:hover {
 
 ul[role="menubar"] [role="menuitemcheckbox"][aria-checked='true'],
 ul[role="menubar"] [role="menuitemradio"][aria-checked='true'] {
-  background-image: url('../images/checkmark.png');
-  background-repeat: no-repeat;
-  background-position: 0.1em 0.2em;
+  padding-left: 0.5em;
 }
 
-
-ul[role="menubar"] li[aria-checked='true']:hover,
-ul[role="menubar"] li[aria-checked='true']:focus {
-  background-image: url('../images/checkmark-inverse.png');
-  background-repeat: no-repeat;
-  background-position: 0.1em 0.2em;
+ul[role="menubar"] [role="menuitemcheckbox"][aria-checked='true']:before,
+ul[role="menubar"] [role="menuitemradio"][aria-checked='true']:before {
+  content: "\002713\000A0";
 }
 
 
