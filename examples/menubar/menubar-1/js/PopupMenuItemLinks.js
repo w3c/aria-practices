@@ -63,7 +63,6 @@ MenuItem.prototype.init = function () {
   }
 
   this.domNode.addEventListener('keydown', this.handleKeydown.bind(this));
-  this.domNode.addEventListener('keypress', this.handleKeypress.bind(this));
   this.domNode.addEventListener('click', this.handleClick.bind(this));
   this.domNode.addEventListener('focus', this.handleFocus.bind(this));
   this.domNode.addEventListener('blur', this.handleBlur.bind(this));
@@ -89,11 +88,14 @@ MenuItem.prototype.isExpanded = function () {
 /* EVENT HANDLERS */
 
 MenuItem.prototype.handleKeydown = function (event) {
-  var tgt = event.currentTarget,
+  var tgt  = event.currentTarget,
+      char = event.key,
       flag = false,
- clickEvent;
+      clickEvent;
 
-  //  Console.log("[MenuItem][handleKeydown]: " + event.keyCode + " " + this.menu)
+  function isPrintableCharacter (str) {
+    return str.length === 1 && str.match(/\S/);
+  }
 
   switch (event.keyCode) {
     case this.keyCode.SPACE:
@@ -178,6 +180,10 @@ MenuItem.prototype.handleKeydown = function (event) {
       break;
 
     default:
+      if (isPrintableCharacter(char)) {
+        this.menu.setFocusByFirstCharacter(this, char);
+        flag = true;
+      }
       break;
   }
 
@@ -187,17 +193,6 @@ MenuItem.prototype.handleKeydown = function (event) {
   }
 };
 
-MenuItem.prototype.handleKeypress = function (event) {
-  var char = String.fromCharCode(event.charCode);
-
-  function isPrintableCharacter (str) {
-    return str.length === 1 && str.match(/\S/);
-  }
-
-  if (isPrintableCharacter(char)) {
-    this.menu.setFocusByFirstCharacter(this, char);
-  }
-};
 
 MenuItem.prototype.handleClick = function (event) {
   this.menu.setFocusToController();
