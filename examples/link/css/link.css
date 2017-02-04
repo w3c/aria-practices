@@ -13,7 +13,7 @@
     cursor: pointer;
 }
 
-[role="link"].link3 {
+[role="link"].link3:before {
   display: block;
   content: url('../images/w3c-logo.png');
   width:153px;
