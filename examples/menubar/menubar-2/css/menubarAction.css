@@ -77,8 +77,8 @@ ul[role="menubar"] [role="menu"] [role="separator"]:hover {
   color: white;
 }
 
-ul[role="menubar"] [role="menuitemcheckbox"][aria-checked='true']:before,
-ul[role="menubar"] [role="menuitemradio"][aria-checked='true']:before {
+ul[role="menubar"] [role="menuitemcheckbox"][aria-checked='true'],
+ul[role="menubar"] [role="menuitemradio"][aria-checked='true'] {
   background-image: url('../images/checkmark.png');
   background-repeat: no-repeat;
   background-position: 0.1em 0.2em;
