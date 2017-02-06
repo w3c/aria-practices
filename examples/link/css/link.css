@@ -13,17 +13,22 @@
     cursor: pointer;
 }
 
-[role="link"].w3c1 {
+[role="link"].link3:before {
   display: block;
   content: url('../images/w3c-logo.png');
   width:153px;
   height:104px; 
 }
 
-[role="link"].w3c2 {
+[role="link"].link4 {
   display: block;
   background-repeat: no-repeat;
   background-image: url('../images/w3c-logo.png');
   width:153px;
   height:104px; 
+}
+
+td div {
+  margin-bottom: 0.25em;
+  font-weight: bold;
 }
