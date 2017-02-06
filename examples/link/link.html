@@ -10,41 +10,38 @@
 <link href="../css/table.css" rel="stylesheet">
 <script src="../js/examples.js" type="text/javascript"></script>
 
-<!--  js and css for this example.
-  When developing an example implementation of a design pattern,
-  these files will contain the CSS and JS for the example implementation.
-  Rename these files to match the name of the example, e.g., checkbox.js if implementing the checkbox design pattern.
--->
+<!--  js and css for this example. -->
 <link href="css/link.css" rel="stylesheet">
 <script src="js/link.js" type="text/javascript"></script>
 </head>
 <body>
-  <main> <!--  Repeat the name of the example in this H1  -->
+  <main> 
   <h1>Link Examples</h1>
-
   <p>
-    The examples below section demonstrates the 
-    <a href="../../#link">design pattern for link</a> for various techniques, including CSS image techniques, used to create link behaviors on elements other than the <code>a</code> element.
+    <strong>NOTE:</strong> provide feedback on this example page in 
+    <a href="https://github.com/w3c/aria-practices/issues/228">issue 228.</a>
   </p>
-  <p><strong>Note:</strong> ARIA practices recommends using the HTML <code>a</code> element to create links whenever possible.</p>
-
+  <p>
+    The examples below demonstrate four variations of the 
+    <a href="../../#link">design pattern for link</a>.
+     The link pattern is used when it is necessary for elements other than the HTML <code>a</code> element to have link behaviors.
+  </p>
+  <p><strong>Note:</strong> Use the HTML <code>a</code> element to create links whenever possible.</p>
   <section>
     <h2 id="ex_label">Examples</h2>
-    <div role="separator" id="ex_start_sep" aria-labelledby="ex1_start_sep ex_label" aria-label="Start of"></div>
-
+    <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
     <table>
       <thead>
         <tr>
-          <th>Example</th>
+          <th>Number</th>
           <th>Description</th>
           <th>Link</th>
         </tr>
       </thead>
       <tbody>
-
         <tr>
           <th>
-            Link 1
+            1
           </th>
           <td>
             <code>span</code> element with text content.
@@ -59,10 +56,9 @@
             </span>
           </td>
         </tr>
-
         <tr>
           <th>
-            Link 2
+            2
           </th>
           <td>
             <code>img</code> element with <code>alt</code> attribute.
@@ -77,10 +73,9 @@
               alt="W3C Website">
           </td>
         </tr>
-
         <tr>
           <th>
-            Link 3
+            3
           </th>
           <td>
             CSS <code>:before</code> content property on a <code>span</code> element.
@@ -96,10 +91,9 @@
             </span>
           </td>
         </tr>
-
         <tr>
           <th>
-            Link 4
+            4
           </th>
           <td>
             CSS background image on a <code>span</code> element.
@@ -115,27 +109,10 @@
             </span>
           </td>
         </tr>
-
       </tbody>
     </table>
-
-
-
-    <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex1_label" aria-label="End of"></div>
+    <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
   </section>
-
-  <section>
-    <h2>Accessibility Features</h2>
-    <p class="annotate">If appropriate, please replace this content with a list of any special or noteworthy accessibility features
-      demonstrated in this implementation, such as:</p>
-    <ol>
-      <li>What distinguishes this example from related examples.</li>
-      <li>Keyboard chortcuts, live regions,  unusual event handling, or other ancillary best practices that are employed.</li>
-      <li>Do not include information that would be repeated in the following keyboard and attribute sections.</li>
-      <li>Delete this section if not needed.</li>
-    </ol>
-  </section>
-
   <section>
     <h2 id="kbd_label">Keyboard Support</h2>
     <table aria-labelledby="kbd_label">
@@ -149,7 +126,7 @@
         <tr>
           <th><kbd>enter</kbd></th>
           <td>
-          Activate the link.
+          Activates the link.
           </td>
         </tr>
       </tbody>
@@ -172,41 +149,11 @@
           <th scope="row"><code>link</code></th>
           <td>
           </td>
-          <td><code>span</code></td>
+          <td><code>span</code><br><code>img</code></td>
           <td>
-            <div>Link 1 Example:</div>
             <ul>
-              <li>The <code>role=&quot;link&quot;</code> attribute identifies the <code>span</code> element as a ARIA <code>link</code>.</li>
-              <li>The accessible name comes the child text content of the <code>span[role=&quot;link&quot;]</code> element.</li>
-              <li>The <code>link</code> widget needs a <code>tabindex=&quot;0&quot;</code> value.</li>
-            </ul>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row"><code>link</code></th>
-          <td>
-          </td>
-          <td><code>img</code></td>
-          <td>
-            <div>Link 2 Example:</div>
-            <ul>
-              <li>The <code>role=&quot;link&quot;</code> attribute identifies the <code>img</code> element as a ARIA <code>link</code>.</li>
-              <li>The accessible name comes the <code>alt</code> attribute content of the <code>img[role=&quot;link&quot;]</code> element.</li>
-              <li>The <code>link</code> widget needs a <code>tabindex=&quot;0&quot;</code> value.</li>
-            </ul>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row"><code>link</code></th>
-          <td>
-          </td>
-          <td><code>span</code></td>
-          <td>
-            <div>Link 3 and Link 4 Example:</div>
-            <ul>
-              <li>The <code>role=&quot;link&quot;</code> attribute identifies the <code>img</code> element as a ARIA <code>link</code>.</li>
-              <li>The accessible name comes the <code>aria-label</code> attribute content of the <code>span[role=&quot;link&quot;]</code> element.</li>
-              <li>The <code>link</code> widget needs a <code>tabindex=&quot;0&quot;</code> value.</li>
+            <li>Examples 1, 3, and 4: Identifies the <code>span</code> element as a <code>link</code>.</li>
+            <li>Example 2: Identifies the <code>img</code> element as a <code>link</code>.</li>
             </ul>
           </td>
         </tr>
@@ -214,20 +161,14 @@
           <td></td>
           <th scope="row"><code>tabindex=&quot;0&quot;</code></th>
           <td><code>span</code>, <br/><code>img</code></td>
-          <td>
-              <ul>
-                <li>The <code>tabindex=&quot;0&quot;</code> adds the element to the tab order of the page.</li>
-               </ul>
-          </td>
+          <td>Includes the link element in the page tab sequence.</td>
         </tr>
         <tr>
           <td></td>
           <th scope="row"><code>alt</code></th>
           <td><code>img</code></td>
           <td>
-              <ul>
-                <li>The <code>alt</code> attribute defines the accessible name for link example 2.</li>
-               </ul>
+                Example 2: Defines the accessible name of the link.
           </td>
         </tr>
         <tr>
@@ -235,10 +176,7 @@
           <th scope="row"><code>aria-label</code></th>
           <td><code>span</code></td>
           <td>
-              <ul>
-                <li>The <code>aria-label</code> attribute defines the accessible name for link example 3 and 4.</li>
-               </ul>
-          </td>
+            Examples 3 and 4: Defines the accessible name of the link.
         </tr>
       </tbody>
     </table>
@@ -260,27 +198,22 @@
 
   <section>
     <h2>HTML Source Code</h2>
-
-    <h3 id="sc1_label">Link 1 Example</h3>
+    <h3 id="sc1_label">Link 1</h3>
     <div role="separator" id="sc1_start_sep" aria-labelledby="sc1_start_sep sc1_label" aria-label="Start of"></div>
     <div id="sc1"></div>
     <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of"></div>
-
-    <h3 id="sc2_label">Link 2 Example</h3>
+    <h3 id="sc2_label">Link 2</h3>
     <div role="separator" id="sc2_start_sep" aria-labelledby="sc2_start_sep sc2_label" aria-label="Start of"></div>
     <div id="sc2"></div>
     <div role="separator" id="sc2_end_sep" aria-labelledby="sc2_end_sep sc2_label" aria-label="End of"></div>
-
-    <h3 id="sc3_label">Link 3 Example</h3>
+    <h3 id="sc3_label">Link 3</h3>
     <div role="separator" id="sc3_start_sep" aria-labelledby="sc3_start_sep sc3_label" aria-label="Start of"></div>
     <div id="sc3"></div>
     <div role="separator" id="sc3_end_sep" aria-labelledby="sc3_end_sep sc3_label" aria-label="End of"></div>
-
-    <h3 id="sc4_label">Link 4 Example</h3>
+    <h3 id="sc4_label">Link 4</h3>
     <div role="separator" id="sc4_start_sep" aria-labelledby="sc4_start_sep sc4_label" aria-label="Start of"></div>
     <div id="sc4"></div>
     <div role="separator" id="sc4_end_sep" aria-labelledby="sc4_end_sep sc4_label" aria-label="End of"></div>
-
     <script>
       sourceCode.add('sc1', 'ex1');
       sourceCode.add('sc2', 'ex2');
@@ -288,11 +221,9 @@
       sourceCode.add('sc4', 'ex4');
       sourceCode.make();
     </script>
-
   </section>
   </main>
   <nav>
-    <!--  Update the pattern_ID parameter of this link to refer to the APG design pattern section related to this example.  -->
     <a href="../../#link">Link Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
   </nav>
 </body>
