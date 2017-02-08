@@ -26,7 +26,13 @@ window.addEventListener('load', function () {
   var gridNUX = document.getElementById('grid-nux');
   var NUXclose = document.getElementById('close-nux-button');
   var closeNUX = function () {
+    var cellToRefocus = document.querySelector('#ex1 [tabindex="0"]');
     gridNUX.className = 'grid-nux hidden';
+    try {
+      cellToRefocus.focus();
+    } catch (error) {
+
+    }
   }
   NUXclose.addEventListener('click', closeNUX);
   NUXclose.addEventListener('keyup', function (event) {
