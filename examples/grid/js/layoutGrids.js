@@ -1,3 +1,5 @@
+var aria = aria || {};
+
 /**
  * ARIA Grid Examples
  * @function onload
@@ -20,6 +22,19 @@ window.addEventListener('load', function () {
     document.getElementById('add-recipient-button'),
     document.getElementById('form-action-text')
   );
+
+  var gridNUX = document.getElementById('grid-nux');
+  var NUXclose = document.getElementById('close-nux-button');
+  var closeNUX = function () {
+    gridNUX.className = 'grid-nux hidden';
+  }
+  NUXclose.addEventListener('click', closeNUX);
+  NUXclose.addEventListener('keyup', function (event) {
+    var key = event.which || event.keyCode;
+    if (key === aria.KeyCode.RETURN) {
+      closeNUX();
+    }
+  })
 });
 
 function PillList (grid, input, submitButton, formUpdateText) {
