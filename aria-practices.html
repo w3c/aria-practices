@@ -577,16 +577,16 @@
       <p>
         The primary difference between a feed and other ARIA patterns that support scrolling
         information, e.g., a grid, is that feed is a structure, not a widget. This means assistive
-        technologies with a reading mode, such as screen readers will default to reading mode when
+        technologies with a reading mode, such as screen readers, will default to reading mode when
         interacting with feed content, making the feed pattern most useful for blocks of
         unstructured information that may contain links or other interactive elements.
       </p>
       <p>
         For example, a product page on a shopping site may have a related products section that
-        displays five products at a time and, as the user scrolls,  loads more product suggestions into the DOM.
+        displays five products at a time. As the user scrolls,  more products are requested  and loaded into the DOM.
          While a static design might include a next button for loading five more products, a dynamic implementation
         that automatically loads data as needed simplifies the user
-        experience and reduces the inertia associated with viewing more than 5 suggestions.
+        experience and reduces the inertia associated with viewing more than the first five product suggestions.
       </p>
       <p>
         Unfortunately, when web pages load content dynamically based on scroll events, it
@@ -623,7 +623,7 @@
         feed content while staying in its reading mode.
       </p>
       <p>
-        Another feature of the feed pattern is its ability to facilitate skim reading by
+        Another feature of the feed pattern is its ability to facilitate skim reading for
         assistive technology users. Web page authors may provide both an accessible name and
         description for each article. By identifying the elements inside of an
         article that provide the title and the primary content, assistive technologies can provide
@@ -652,8 +652,8 @@
             Options for supporting nested feed navigation include:
             <ul>
               <li>
-                Users simply move focus into the nested feed from the content of the containing article with <kbd>Tab</kbd>. 
-                This may be slow if the aarticle contains a significant number of links, buttons, or other widgets.
+                Users move focus into the nested feed from the content of the containing article with <kbd>Tab</kbd>. 
+                This may be slow if the article contains a significant number of links, buttons, or other widgets.
                </li>
               <li>Provide a key for moving focus from the elements in the containing article to the first item in the nested feed, e.g., <kbd>Alt + Page Down</kbd>.</li>
               <li>To continue reading the outer feed, <kbd>Control + End</kbd> moves focus to the next article in the outer feed.</li>
@@ -671,7 +671,7 @@
             Otherwise, the <code>feed</code> element has a label specified with <a href="#aria-label" class="property-reference">aria-label</a>.
           </li>
           <li>
-            Each unit of content in a feedis contained in an element with role <a href="#article" class="role-reference">article</a>.
+            Each unit of content in a feed is contained in an element with role <a href="#article" class="role-reference">article</a>.
             All content inside the feed is contained in an <code>article</code>  element.
           </li>
           <li>
@@ -692,7 +692,7 @@
           <li>
             Each <code>article</code> element has
             <a href="#aria-setsize" class="property-reference">aria-setsize</a> 
-            set to a value that represents either the total number of articles that have been loaded or the tototal number in the feed, 
+            set to a value that represents either the total number of articles that have been loaded or the total number in the feed, 
             depending on which value is deemed more helpful to users.
             If the total number in the feed is undetermined, it can be represented by a <code>aria-setsize</code> value of <code>-1</code>.
           </li>
