@@ -579,11 +579,11 @@
         unstructured information that may contain links or other interactive elements.
       </p>
       <p>
-        For example, a product page on a shopping site has a related products section that
-        displays five product suggestions at a time. As the user scrolls,  more suggestions are requested and loaded into the DOM.
-         While a static design might include a next button for loading five more product suggestions, a dynamic implementation
+        For example, a product page on a shopping site may have a related products section that
+        displays five products at a time. As the user scrolls,  more products are requested  and loaded into the DOM.
+         While a static design might include a next button for loading five more products, a dynamic implementation
         that automatically loads data as needed simplifies the user
-        experience and reduces the inertia of viewing more than the first five suggestions.
+        experience and reduces the inertia associated with viewing more than the first five product suggestions.
       </p>
       <p>
         Unfortunately, when web pages load content dynamically based on scroll events, it
@@ -622,7 +622,7 @@
         of feed content while staying in its reading mode.
       </p>
       <p>
-        Another feature of the feed pattern is its ability to facilitate skim reading by
+        Another feature of the feed pattern is its ability to facilitate skim reading for
         assistive technology users. Web page authors may provide both an accessible name and
         description for each article. By identifying the elements inside of an
         article that provide the title and the primary content, assistive technologies can provide
@@ -651,7 +651,7 @@
             Options for supporting nested feed navigation include:
             <ul>
               <li>
-                Users move focus into the nested feed from the content of the containing article with <kbd>Tab</kbd>.
+                Users move focus into the nested feed from the content of the containing article with <kbd>Tab</kbd>. 
                 This may be slow if the article contains a significant number of links, buttons, or other widgets.
                </li>
               <li>Provide a key for moving focus from the elements in the containing article to the first item in the nested feed, e.g., <kbd>Alt + Page Down</kbd>.</li>
@@ -690,8 +690,8 @@
           </li>
           <li>
             Each <code>article</code> element has
-            <a href="#aria-setsize" class="property-reference">aria-setsize</a>
-            set to a value that represents either the total number of articles that have been loaded or the total number in the feed,
+            <a href="#aria-setsize" class="property-reference">aria-setsize</a> 
+            set to a value that represents either the total number of articles that have been loaded or the total number in the feed, 
             depending on which value is deemed more helpful to users.
             If the total number in the feed is undetermined, it can be represented by a <code>aria-setsize</code> value of <code>-1</code>.
           </li>
