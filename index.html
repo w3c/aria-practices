@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en-US" typeof="bibo:Document " prefix="bibo: http://purl.org/ontology/bibo/ w3p: http://www.w3.org/2001/02pd/rec54#">
+<html typeof="bibo:Document " prefix="bibo: http://purl.org/ontology/bibo/ w3p: http://www.w3.org/2001/02pd/rec54#" lang="en-US">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta lang="" property="dc:language" content="en">
+  <meta property="dc:language" content="en" lang="">
   <style>
     /*
 
@@ -388,6 +388,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     
     #respec-ui {
       position: fixed;
+      display: flex;
+      flex-direction: row-reverse;
       top: 20px;
       right: 20px;
       width: 202px;
@@ -405,22 +407,26 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     
     .respec-info-button {
       border: none;
+      opacity: .5;
       border-radius: 2em;
       margin-right: 1em;
       min-width: 3.5em;
     }
     
+    .respec-info-button:focus {
+      opacity: 1;
+      transition: opacity .2s;
+    }
+    
     #respec-pill:disabled {
-      margin: 10px auto;
       font-size: 2.8px;
-      position: relative;
       text-indent: -9999em;
       border-top: 1.1em solid rgba(40, 40, 40, 0.2);
       border-right: 1.1em solid rgba(40, 40, 40, 0.2);
       border-bottom: 1.1em solid rgba(40, 40, 40, 0.2);
       border-left: 1.1em solid #ffffff;
       transform: translateZ(0);
-      animation: respec-spin 1.1s infinite linear;
+      animation: respec-spin .5s infinite linear;
       box-shadow: none;
     }
     
@@ -443,18 +449,28 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     #respec-pill:hover,
     #respec-pill:focus {
       color: rgb(0, 0, 0);
-      transition: color .2s
+      background-color: rgb(245, 245, 245);
+      transition: color .2s;
     }
     
     #respec-menu {
+      position: absolute;
+      margin: 0;
+      padding: 0;
       font-family: sans-serif;
       background: #fff;
       box-shadow: 1px 1px 8px 0 rgba(100, 100, 100, .5);
       width: 200px;
       display: none;
       text-align: left;
-      margin-top: 5px;
+      margin-top: 32px;
       font-size: .8em;
+    }
+    
+    #respec-menu li {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
     }
     
     .respec-save-button {
@@ -478,12 +494,12 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       outline-style: none;
     }
     
-    #respec-ui button.respec-pill-error {
+    #respec-pill-error {
       background-color: red;
       color: white;
     }
     
-    #respec-ui button.respec-pill-warning {
+    #respec-pill-warning {
       background-color: orange;
       color: white;
     }
@@ -497,7 +513,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       padding: 1.2em 1.2em;
     }
     
-    #respec-menu button.respec-option:hover {
+    #respec-menu button.respec-option:hover,
+    #respec-menu button:focus {
       background-color: #eeeeee;
     }
     
@@ -531,7 +548,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   <!--[if lt IE 9]><script src='https://www.w3.org/2008/site/js/html5shiv.js'></script><![endif]-->
   <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/W3C-ED">
   <link rel="canonical" href="https://www.w3.org/TR/wai-aria-practices-1.1/">
-  <meta name="generator" content="ReSpec 9.1.0">
+  <meta name="generator" content="ReSpec 10.0.0">
   <script id="initialUserConfig" type="application/json">
     {
       "doRDFa": "1.1",
@@ -900,18 +917,17 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       },
       "preProcess": [
         null
-      ],
-      "publishDate": "2017-02-06"
+      ]
     }
   </script>
 </head>
-<body class="h-entry toc-inline" role="document" id="respecDocument">
+<body aria-busy="false" class="h-entry" role="document" id="respecDocument">
   <div class="head" role="contentinfo" id="respecHeader">
     <p>
-      <a class="logo" href="https://www.w3.org/"><img width="72" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" alt="W3C"></a>
+      <a class="logo" href="https://www.w3.org/"><img src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" alt="W3C" width="72" height="48"></a>
     </p>
     <h1 class="title p-name" id="title" property="dcterms:title"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Authoring Practices 1.1</h1>
-    <h2 id="w3c-editor-s-draft-06-february-2017"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2017-02-06">06 February 2017</time></h2>
+    <h2 id="w3c-editor-s-draft-09-february-2017"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2017-02-09">09 February 2017</time></h2>
     <dl>
       <dt>This version:</dt>
       <dd><a class="u-url" href="http://w3c.github.io/aria-practices/">http://w3c.github.io/aria-practices/</a></dd>
@@ -1165,6 +1181,13 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         <ol class="toc">
           <li class="tocline"><a href="#ScreenReaderModes" class="tocxref"><span class="secno">A.1 </span>Understanding Screen Reader Document Reading and Application Reading Modes</a></li>
           <li class="tocline"><a href="#ariaBackground" class="tocxref"><span class="secno">A.2 </span>Background on <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr></a></li>
+          <li class="tocline"><a href="#acknowledgements" class="tocxref"><span class="secno">A.3 </span>Acknowledgments</a>
+            <ol class="toc">
+              <li class="tocline"><a href="#ack_group" class="tocxref"><span class="secno">A.3.1 </span>Participants active in the ARIA WG at the time of publication</a></li>
+              <li class="tocline"><a href="#ack_others" class="tocxref"><span class="secno">A.3.2 </span>Other ARIA contributors, commenters, and previously active participants</a></li>
+              <li class="tocline"><a href="#ack_funders" class="tocxref"><span class="secno">A.3.3 </span>Enabling funders</a></li>
+            </ol>
+          </li>
         </ol>
       </li>
       <li class="tocline"><a href="#references" class="tocxref"><span class="secno">B. </span>References</a>
@@ -1717,10 +1740,10 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         A feed is a section of a page that automatically loads new content as the user reads. Content in a feed is segmented into article elements. Thus, it can be thought of as a dynamic list of articles that often appears to scroll infinitely.
       </p>
       <p>
-        The primary difference between a feed and other ARIA patterns that support loading data as users scroll, e.g., a <a href="#grid">grid</a>, is that a feed is a structure, not a widget. This means assistive technologies with a reading mode, such as screen readers will default to reading mode when interacting with feed content, making the feed pattern most useful for blocks of unstructured information that may contain links or other interactive elements.
+        The primary difference between a feed and other ARIA patterns that support loading data as users scroll, e.g., a <a href="#grid">grid</a>, is that a feed is a structure, not a widget. This means assistive technologies with a reading mode, such as screen readers, will default to reading mode when interacting with feed content, making the feed pattern most useful for blocks of unstructured information that may contain links or other interactive elements.
       </p>
       <p>
-        For example, a product page on a shopping site may have a related products section that displays five products at a time and, as the user scrolls, loads more product suggestions into the DOM. While a static design might include a next button for loading five more products, a dynamic implementation that automatically loads data as needed simplifies the user experience and reduces the inertia associated with viewing more than 5 suggestions.
+        For example, a product page on a shopping site has a related products section that displays five product suggestions at a time. As the user scrolls, more suggestions are requested and loaded into the DOM. While a static design might include a next button for loading five more product suggestions, a dynamic implementation that automatically loads data as needed simplifies the user experience and reduces the inertia of viewing more than the first five suggestions.
       </p>
       <p>
         Unfortunately, when web pages load content dynamically based on scroll events, it creates interoperability difficulties for users of assistive technologies that cannot sufficiently mimic visual scrolling. Even if the page also observes focus movements in order to identify when more content is needed, there can still be problems because requiring assistive technologies to move DOM focus in response to every reading cursor movement, regardless of context, can also negatively impact a screen reading experience.
@@ -1772,7 +1795,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
               In some cases, a feed may contain a nested feed. For example, an article in a social media feed may contain a feed of comments on that article. To navigate the nested feed, users first move focus inside the nested feed. Options for supporting nested feed navigation include:
               <ul>
                 <li>
-                  Users simply move focus into the nested feed from the content of the containing article with <kbd>Tab</kbd>. This may be slow if the aarticle contains a significant number of links, buttons, or other widgets.
+                  Users move focus into the nested feed from the content of the containing article with <kbd>Tab</kbd>. This may be slow if the article contains a significant number of links, buttons, or other widgets.
                 </li>
                 <li>Provide a key for moving focus from the elements in the containing article to the first item in the nested feed, e.g., <kbd>Alt + Page Down</kbd>.</li>
                 <li>To continue reading the outer feed, <kbd>Control + End</kbd> moves focus to the next article in the outer feed.</li>
@@ -1791,7 +1814,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             If the feed has a visible title, the <code>feed</code> element has <a href="http://w3c.github.io/aria/aria/aria.html#aria-labelledby" class="property-reference">aria-labelledby</a> referring to the element containing the title. Otherwise, the <code>feed</code> element has a label specified with <a href="http://w3c.github.io/aria/aria/aria.html#aria-label" class="property-reference">aria-label</a>.
           </li>
           <li>
-            Each unit of content in a feedis contained in an element with role <a href="http://w3c.github.io/aria/aria/aria.html#article" class="role-reference">article</a>. All content inside the feed is contained in an <code>article</code> element.
+            Each unit of content in a feed is contained in an element with role <a href="http://w3c.github.io/aria/aria/aria.html#article" class="role-reference">article</a>. All content inside the feed is contained in an <code>article</code> element.
           </li>
           <li>
             Each <code>article</code> element has
@@ -1807,7 +1830,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           </li>
           <li>
             Each <code>article</code> element has
-            <a href="http://w3c.github.io/aria/aria/aria.html#aria-setsize" class="property-reference">aria-setsize</a> set to a value that represents either the total number of articles that have been loaded or the tototal number in the feed, depending on which value is deemed more helpful to users. If the total number in the feed is undetermined, it can be represented by a <code>aria-setsize</code> value of <code>-1</code>.
+            <a href="http://w3c.github.io/aria/aria/aria.html#aria-setsize" class="property-reference">aria-setsize</a> set to a value that represents either the total number of articles that have been loaded or the total number in the feed, depending on which value is deemed more helpful to users. If the total number in the feed is undetermined, it can be represented by a <code>aria-setsize</code> value of <code>-1</code>.
           </li>
           <li>
             When <code>article</code> elements are being added to or removed from the <code>feed</code> container, and if the operation requires multiple DOM operations, the <code>feed</code> element has
@@ -2182,7 +2205,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         <h4 id="keyboard-interaction-9" resource="#keyboard-interaction-9"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
         <ul>
           <li><kbd>Enter</kbd>: Executes the link and moves focus to the link target.</li>
-          <li><kbd>Shift + F10</kbd>: Opens the link's context menu.</li>
+          <li><kbd>Shift + F10</kbd> (Optional): Opens a context menu for the link.</li>
         </ul>
       </section>
 
@@ -2892,9 +2915,12 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </ul>
       </section>
 
-      <section class="notoc" typeof="bibo:Chapter" resource="#example-8" property="bibo:hasPart">
-        <h4 id="example-8" resource="#example-8"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
-        <p><a href="examples/tabs/tabs.html">Tabs Widget Example</a></p>
+      <section class="notoc" typeof="bibo:Chapter" resource="#examples-10" property="bibo:hasPart">
+        <h4 id="examples-10" resource="#examples-10"><span property="xhv:role" resource="xhv:heading">Examples</span></h4>
+        <ul>
+          <li><a href="examples/tabs/tabs-1/tabs.html">Tabs With Automatic Activation</a>: A tabs widget where tabs are automatically activated and their panel is displayed when they receive focus.</li>
+          <li><a href="examples/tabs/tabs-2/tabs.html">Tabs With Manual Activation</a>: A tabs widget where users activate a tab and display its panel by pressing <kbd>Space</kbd> or <kbd>Enter</kbd>.</li>
+        </ul>
       </section>
     </section>
 
@@ -2959,8 +2985,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </ul>
       </section>
 
-      <section class="notoc" typeof="bibo:Chapter" resource="#example-9" property="bibo:hasPart">
-        <h4 id="example-9" resource="#example-9"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
+      <section class="notoc" typeof="bibo:Chapter" resource="#example-8" property="bibo:hasPart">
+        <h4 id="example-8" resource="#example-8"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
         <p><a href="examples/toolbar/toolbar.html">Toolbar Example</a>: A toolbar including buttons, links, and checkboxes that uses roving tabindex to manage focus.</p>
       </section>
     </section>
@@ -3003,8 +3029,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </ul>
       </section>
 
-      <section class="notoc" typeof="bibo:Chapter" resource="#example-10" property="bibo:hasPart">
-        <h4 id="example-10" resource="#example-10"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
+      <section class="notoc" typeof="bibo:Chapter" resource="#example-9" property="bibo:hasPart">
+        <h4 id="example-9" resource="#example-9"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
         <p>
           Work to develop a tooltip example is tracked by
           <a href="https://github.com/w3c/aria-practices/issues/127">issue 127.</a>
@@ -3171,8 +3197,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </div>
       </section>
 
-      <section class="notoc" typeof="bibo:Chapter" resource="#examples-10" property="bibo:hasPart">
-        <h4 id="examples-10" resource="#examples-10"><span property="xhv:role" resource="xhv:heading">Examples</span></h4>
+      <section class="notoc" typeof="bibo:Chapter" resource="#examples-11" property="bibo:hasPart">
+        <h4 id="examples-11" resource="#examples-11"><span property="xhv:role" resource="xhv:heading">Examples</span></h4>
         <ul>
           <li>
             <a href="examples/treeview/treeview-1/treeview-1a.html">File Directory Treeview Example Using Computed Properties</a>: A file selector tree that demonstrates browser support for automatically computing <code>aria-level</code>, <code>aria-posinset</code> and <code>aria-setsize</code> based on DOM structure.
@@ -3246,8 +3272,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </ul>
       </section>
 
-      <section class="notoc" typeof="bibo:Chapter" resource="#example-11" property="bibo:hasPart">
-        <h4 id="example-11" resource="#example-11"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
+      <section class="notoc" typeof="bibo:Chapter" resource="#example-10" property="bibo:hasPart">
+        <h4 id="example-10" resource="#example-10"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
         <p>
           Work to develop an example window splitter widget is tracked by
           <a href="https://github.com/w3c/aria-practices/issues/130">issue 130.</a>
@@ -3421,8 +3447,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <p>If the HTML5 <code>header</code> element technique is not being used, a <code>role="banner"</code> attribute should be used to define a <code>banner</code> landmark.</p>
         </section>
 
-        <section class="notoc" typeof="bibo:Chapter" resource="#examples-11" property="bibo:hasPart">
-          <h5 id="examples-11" resource="#examples-11"><span property="xhv:role" resource="xhv:heading">Examples</span></h5>
+        <section class="notoc" typeof="bibo:Chapter" resource="#examples-12" property="bibo:hasPart">
+          <h5 id="examples-12" resource="#examples-12"><span property="xhv:role" resource="xhv:heading">Examples</span></h5>
 
           <p><a href="examples/landmarks/banner.html">Banner Landmark Example</a></p>
         </section>
@@ -3455,8 +3481,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <p>If the HTML5 <code>aside</code> element technique is not being used, use a <code>role="complementary"</code> attribute to define a <code>complementary</code> landmark.</p>
         </section>
 
-        <section class="notoc" typeof="bibo:Chapter" resource="#examples-12" property="bibo:hasPart">
-          <h5 id="examples-12" resource="#examples-12"><span property="xhv:role" resource="xhv:heading">Examples</span></h5>
+        <section class="notoc" typeof="bibo:Chapter" resource="#examples-13" property="bibo:hasPart">
+          <h5 id="examples-13" resource="#examples-13"><span property="xhv:role" resource="xhv:heading">Examples</span></h5>
 
           <p><a href="examples/landmarks/complementary.html">Complementary Landmark Example</a></p>
         </section>
@@ -3504,8 +3530,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <p>If the HTML5 <code>footer</code> element technique is not being used, a <code>role="contentinfo"</code> attribute should be used to define a <code>contentinfo</code> landmark.</p>
         </section>
 
-        <section class="notoc" typeof="bibo:Chapter" resource="#examples-13" property="bibo:hasPart">
-          <h5 id="examples-13" resource="#examples-13"><span property="xhv:role" resource="xhv:heading">Examples</span></h5>
+        <section class="notoc" typeof="bibo:Chapter" resource="#examples-14" property="bibo:hasPart">
+          <h5 id="examples-14" resource="#examples-14"><span property="xhv:role" resource="xhv:heading">Examples</span></h5>
           <p><a href="examples/landmarks/contentinfo.html">Contentinfo Landmark Example</a></p>
         </section>
       </section>
@@ -3551,8 +3577,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <p>Use the <code>role="form"</code> to identify a region of the page; do not use it to identify every form field.</p>
         </section>
 
-        <section class="notoc" typeof="bibo:Chapter" resource="#examples-14" property="bibo:hasPart">
-          <h5 id="examples-14" resource="#examples-14"><span property="xhv:role" resource="xhv:heading">Examples</span></h5>
+        <section class="notoc" typeof="bibo:Chapter" resource="#examples-15" property="bibo:hasPart">
+          <h5 id="examples-15" resource="#examples-15"><span property="xhv:role" resource="xhv:heading">Examples</span></h5>
 
           <p><a href="examples/landmarks/form.html">Form Landmark Example</a></p>
         </section>
@@ -3586,8 +3612,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <p>If the HTML5 <code>main</code> element technique is not being used, use a <code>role="main"</code> attribute to define a <code>main</code> landmark.</p>
         </section>
 
-        <section class="notoc" typeof="bibo:Chapter" resource="#examples-15" property="bibo:hasPart">
-          <h5 id="examples-15" resource="#examples-15"><span property="xhv:role" resource="xhv:heading">Examples</span></h5>
+        <section class="notoc" typeof="bibo:Chapter" resource="#examples-16" property="bibo:hasPart">
+          <h5 id="examples-16" resource="#examples-16"><span property="xhv:role" resource="xhv:heading">Examples</span></h5>
 
           <p><a href="examples/landmarks/main.html">Main Landmark Example</a></p>
         </section>
@@ -3618,8 +3644,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
         </section>
 
-        <section class="notoc" typeof="bibo:Chapter" resource="#examples-16" property="bibo:hasPart">
-          <h5 id="examples-16" resource="#examples-16"><span property="xhv:role" resource="xhv:heading">Examples</span></h5>
+        <section class="notoc" typeof="bibo:Chapter" resource="#examples-17" property="bibo:hasPart">
+          <h5 id="examples-17" resource="#examples-17"><span property="xhv:role" resource="xhv:heading">Examples</span></h5>
 
           <p><a href="examples/landmarks/navigation.html">Navigation Landmark Example</a></p>
         </section>
@@ -3651,8 +3677,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <p>If the HTML5 <code>section</code> element technique is not being used, use a <code>role="region"</code> attribute to define a <code>region</code> landmark.</p>
         </section>
 
-        <section class="notoc" typeof="bibo:Chapter" resource="#examples-17" property="bibo:hasPart">
-          <h5 id="examples-17" resource="#examples-17"><span property="xhv:role" resource="xhv:heading">Examples</span></h5>
+        <section class="notoc" typeof="bibo:Chapter" resource="#examples-18" property="bibo:hasPart">
+          <h5 id="examples-18" resource="#examples-18"><span property="xhv:role" resource="xhv:heading">Examples</span></h5>
 
           <p><a href="examples/landmarks/region.html">Region Landmark Example</a></p>
         </section>
@@ -3681,8 +3707,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <p>The <code>role="search"</code> attribute defines a <code>search</code> landmark.</p>
         </section>
 
-        <section class="notoc" typeof="bibo:Chapter" resource="#examples-18" property="bibo:hasPart">
-          <h5 id="examples-18" resource="#examples-18"><span property="xhv:role" resource="xhv:heading">Examples</span></h5>
+        <section class="notoc" typeof="bibo:Chapter" resource="#examples-19" property="bibo:hasPart">
+          <h5 id="examples-19" resource="#examples-19"><span property="xhv:role" resource="xhv:heading">Examples</span></h5>
 
           <p><a href="examples/landmarks/search.html">Search Landmark Example</a></p>
         </section>
@@ -4334,7 +4360,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     <p>
       For example, consider a tabs widget built using an HTML <code>ul</code> element.
     </p>
-    <pre class="hljs">    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"tablist"</span>&gt;</span>
+    <pre aria-busy="false" aria-live="polite" class="hljs">    <span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"tablist"</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"presentation"</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"tab"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Tab 1<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
       <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
@@ -4431,14 +4457,14 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </span>
       </h3>
       <p>This code:</p>
-      <pre class="hljs">        <span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"presentation"</span>&gt;</span>
+      <pre aria-busy="false" aria-live="polite" class="hljs">        <span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"presentation"</span>&gt;</span>
           <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Date of birth:<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
           <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>January 1, 3456<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
         <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
       </pre>
       <p>when parsed by a browser, is equivalent to the following from the perspective of a screen reader or other assistive technology that relies on the browser's accessibility tree:
       </p>
-      <pre class="hljs">        <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Date of birth:<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <pre aria-busy="false" aria-live="polite" class="hljs">        <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Date of birth:<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
           <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>January 1, 3456<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
       </pre>
       <p>
@@ -4478,17 +4504,17 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <li>tab</li>
     </ul>
     <p>For instance, consider the following tab element, which contains a heading.</p>
-    <pre class="hljs">      &lt;li role=<span class="hljs-string">"tab"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>Title of My Tab<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span></span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span>
+    <pre aria-busy="false" aria-live="polite" class="hljs">      &lt;li role=<span class="hljs-string">"tab"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>Title of My Tab<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span></span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span>
     </pre>
     <p>
       Because <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> requires descendants of tab to be presentational, the following code is equivalent.
     </p>
-    <pre class="hljs">      &lt;li role=<span class="hljs-string">"tab"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">h3</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"presentation"</span>&gt;</span>Title of My Tab<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span></span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span>
+    <pre aria-busy="false" aria-live="polite" class="hljs">      &lt;li role=<span class="hljs-string">"tab"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">h3</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"presentation"</span>&gt;</span>Title of My Tab<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span></span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span>
     </pre>
     <p>
       And, from the perspective of anyone using a technology that relies on an accessibility API, such as a screen reader, the heading does not exist since the previous code is equivalent to the following.
     </p>
-    <pre class="hljs">      <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"tab"</span>&gt;</span>Title of My Tab<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+    <pre aria-busy="false" aria-live="polite" class="hljs">      <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"tab"</span>&gt;</span>Title of My Tab<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
     </pre>
     <p>
       See the
@@ -4525,8 +4551,207 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <p>[Placeholder section that will be resolved by <a href="https://github.com/w3c/aria-practices/issues/84">issue #84</a>.]</p>
     </section>
 
-    <div data-include="common/acknowledgements.html" data-include-replace="true" data-include-id="include-9299689358848957">
-    </div>
+    <section class="appendix informative section" id="acknowledgements" typeof="bibo:Chapter" resource="#acknowledgements" property="bibo:hasPart">
+      <h3 id="h-acknowledgements" resource="#h-acknowledgements"><span property="xhv:role" resource="xhv:heading"><span class="secno">A.3 </span>Acknowledgments<span class="permalink" typeof="bookmark"><a href="#acknowledgements" aria-label="Permalink for A.3 Acknowledgments" title="Permalink for A.3 Acknowledgments" property="url"><span property="title" content="A.3 Acknowledgments">§</span></a>
+        </span>
+        </span>
+      </h3>
+      <p><em>This section is non-normative.</em></p>
+      <p>The following people contributed to the development of this document.</p>
+
+      <section class="section" id="ack_group" typeof="bibo:Chapter" resource="#ack_group" property="bibo:hasPart">
+        <h4 id="h-ack_group" resource="#h-ack_group"><span property="xhv:role" resource="xhv:heading"><span class="secno">A.3.1 </span>Participants active in the ARIA WG at the time of publication<span class="permalink" typeof="bookmark"><a href="#ack_group" aria-label="Permalink for A.3.1 Participants active in the ARIA WG at the time of publication" title="Permalink for A.3.1 Participants active in the ARIA WG at the time of publication" property="url"><span property="title" content="A.3.1 Participants active in the ARIA WG at the time of publication">§</span></a>
+          </span>
+          </span>
+        </h4>
+        <ul>
+          <li>Ann Abbott (IBM Corporation)</li>
+          <li>Michiel Bijl (The Paciello Group)</li>
+          <li>Christy Blew (University of Illinois at Urbana-Champaign)</li>
+          <li>Teresa Boers (IBM Corporation)</li>
+          <li>David Bolter (Mozilla Foundation) </li>
+          <li>Michael Cooper (<abbr title="World Wide Web Consortium">W3C</abbr>/<abbr title="Massachusetts Institute of Technology">MIT</abbr>)</li>
+          <li>James Craig (Apple Inc.) </li>
+          <li>Joanmarie Diggs (Igalia)</li>
+          <li>Fred Esch (IBM Corporation)</li>
+          <li>Steve Faulkner (The Paciello Group) </li>
+          <li>John Foliot (Invited Expert)</li>
+          <li>Bryan Garaventa (SSB BART Group)</li>
+          <li>Matt Garrish (DAISY Consortium)</li>
+          <li>Billy Gregory (The Paciello Group)</li>
+          <li>Karl Groves (The Paciello Group)</li>
+          <li>Jon Gunderson (University of Illinois at Urbana-Champaign)</li>
+          <li>Markus Gylling (DAISY Consortium)</li>
+          <li>Markku Hakkinen (Educational Testing Service)</li>
+          <li>Katie Haritos-Shea (Knowbility)</li>
+          <li>Susann Keohane (IBM Corporation)</li>
+          <li>Matthew King (Facebook)</li>
+          <li>Jason Kiss (Department of Internal Affairs, New Zealand Government)</li>
+          <li>Jamie Knight (British Broadcasting Corporation)</li>
+          <li>JaEun Jemma Ku (University of Illinois at Urbana-Champaign)</li>
+          <li>Shane McCarron (Invited Expert, Aptest)</li>
+          <li>Charles McCathie Nevile (Yandex)</li>
+          <li>Mary Jo Mueller (IBM Corporation)</li>
+          <li>James Nurthen (Oracle Corporation) </li>
+          <li>Ian Pouncey (The Paciello Group, LLC)</li>
+          <li>Mark Sadecki (Invited Expert)</li>
+          <li>Janina Sajka (Invited Expert, The Linux Foundation)</li>
+          <li>Joseph Scheuhammer (Invited Expert, Inclusive Design Research Centre, OCAD University) </li>
+          <li>Stefan Schnabel (SAP AG) </li>
+          <li>Richard Schwerdtfeger (IBM Corporation)</li>
+          <li>Lisa Seeman (Invited Expert) </li>
+          <li>Tzviya Siegman (Wiley)</li>
+          <li>Cynthia Shelly (Microsoft Corporation) </li>
+          <li>Alexander Surkov (Mozilla Foundation)</li>
+          <li>Léonie Watson (The Paciello Group)</li>
+          <li>Jason White (Educational Testing Service)</li>
+          <li>Gottfried Zimmermann (Invited Expert, Access Technologies Group)</li>
+        </ul>
+      </section>
+
+      <section class="section" id="ack_others" typeof="bibo:Chapter" resource="#ack_others" property="bibo:hasPart">
+        <h4 id="h-ack_others" resource="#h-ack_others"><span property="xhv:role" resource="xhv:heading"><span class="secno">A.3.2 </span>Other ARIA contributors, commenters, and previously active participants<span class="permalink" typeof="bookmark"><a href="#ack_others" aria-label="Permalink for A.3.2 Other ARIA contributors, commenters, and previously active participants" title="Permalink for A.3.2 Other ARIA contributors, commenters, and previously active participants" property="url"><span property="title" content="A.3.2 Other ARIA contributors, commenters, and previously active participants">§</span></a>
+          </span>
+          </span>
+        </h4>
+        <ul>
+          <li>Shadi Abou-Zahra (<abbr title="World Wide Web Consortium">W3C</abbr>)</li>
+          <li>Jim Allan (TSB)</li>
+          <li>Jonny Axelsson (Opera Software)</li>
+          <li>David Baron (Mozilla Foundation)</li>
+          <li>Art Barstow (Nokia Corporation)</li>
+          <li>Simon Bates</li>
+          <li>Chris Blouch (AOL)</li>
+          <li>Judy Brewer (<abbr title="World Wide Web Consortium">W3C</abbr>/<abbr title="Massachusetts Institute of Technology">MIT</abbr>)</li>
+          <li>Mark Birbeck (Sidewinder Labs)</li>
+          <li>Sally Cain (Royal National Institute of Blind People (RNIB))</li>
+          <li>Gerardo Capiel (Benetech)</li>
+          <li>Ben Caldwell (Trace)</li>
+          <li>Sofia Celic-Li</li>
+          <li>Jaesik Chang (Samsung Electronics Co., Ltd.)</li>
+          <li>Alex Qiang Chen (University of Manchester)</li>
+          <li>Charles Chen (Google, Inc.)</li>
+          <li>Christian Cohrs</li>
+          <li>Deborah Dahl</li>
+          <li>Erik Dahlström (Opera Software)</li>
+          <li>Dimitar Denev (Frauenhofer Gesellschaft)</li>
+          <li>Micah Dubinko (Invited Expert)</li>
+          <li>Mandana Eibegger</li>
+          <li>Beth Epperson (Websense)</li>
+          <li>Donald Evans (AOL)</li>
+          <li>Chris Fleizach (Apple Inc.)</li>
+          <li>Kelly Ford (Microsoft Corporation)</li>
+          <li>Geoff Freed (Invited Expert, NCAM)</li>
+          <li>Christopher Gallelo (Microsoft Corporation)</li>
+          <li>Birkir Gunnarsson (Deque Systems, Inc.)</li>
+          <li>Kentarou Fukuda (IBM Corporation)</li>
+          <li>Bryan Garaventa</li>
+          <li>Guido Geloso</li>
+          <li>Ali Ghassemi</li>
+          <li>Becky Gibson (IBM)</li>
+          <li>Alfred S. Gilman</li>
+          <li>Andres Gonzalez (Adobe Systems Inc.)</li>
+          <li>Scott González (JQuery Foundation)</li>
+          <li>James Graham</li>
+          <li>Georgios Grigoriadis (SAP AG)</li>
+          <li>Jeff Grimes (Oracle)</li>
+          <li>Loretta Guarino Reid (Google, Inc.)</li>
+          <li>Barbara Hartel</li>
+          <li>James Hawkins (Google, Inc.)</li>
+          <li>Benjamin Hawkes-Lewis</li>
+          <li>Sean Hayes (Microsoft Corporation)</li>
+          <li>Mona Heath (University of Illinois at Urbana-Champaign)</li>
+          <li>Jan Heck</li>
+          <li>Shawn Henry</li>
+          <li>Tina Homboe</li>
+          <li>John Hrvatin (Microsoft Corporation)</li>
+          <li>Takahiro Inada</li>
+          <li>Masayasu Ishikawa (<abbr title="World Wide Web Consortium">W3C</abbr>)</li>
+          <li>Jim Jewitt</li>
+          <li>Kenny Johar (Microsoft Corporation)</li>
+          <li>Shilpi Kapoor (BarrierBreak Technologies)</li>
+          <li>Masahiko Kaneko (Microsoft Corporation)</li>
+          <li>Marjolein Katsma</li>
+          <li>George Kerscher (International Digital Publishing Forum)</li>
+          <li>Jason Kiss (New Zealand Government)</li>
+          <li>Todd Kloots</li>
+          <li>Johannes Koch</li>
+          <li>Sam Kuper</li>
+          <li>Earl Johnson (Sun)</li>
+          <li>Jael Kurz</li>
+          <li>Rajesh Lal (Nokia Corporation)</li>
+          <li>Diego La Monica (International Webmasters Association / HTML Writers Guild (IWA-HWG))</li>
+          <li>Aaron Leventhal (IBM Corporation)</li>
+          <li>Gez Lemon (International Webmasters Association / HTML Writers Guild (IWA-HWG))</li>
+          <li>Alex Li (SAP)</li>
+          <li>Chris Lilley</li>
+          <li>Thomas Logan (HiSoftware Inc.)</li>
+          <li>William Loughborough (Invited Expert)</li>
+          <li>Linda Mao (Microsoft)</li>
+          <li>David MacDonald (Invited Expert, CanAdapt Solutions Inc.)</li>
+          <li>Carolyn MacLeod</li>
+          <li>Anders Markussen (Opera Software)</li>
+          <li>Krzysztof Maczyński </li>
+          <li>Matthew May (Adobe Systems Inc.)</li>
+          <li>Dominic Mazzoni (Google, Inc.)</li>
+          <li>Alexandre Morgaut (4D)</li>
+          <li>Ann Navarro (Invited Expert)</li>
+          <li>Joshue O Connor (Invited Expert, CFIT)</li>
+          <li>Artur Ortega (Microsoft Corporation)</li>
+          <li>Sailesh Panchang (Deque)</li>
+          <li>Lisa Pappas (Society for Technical Communication (STC))</li>
+          <li>Marta Pawlowlska (Samsung Electronics Co., Ltd.)</li>
+          <li>Dave Pawson (RNIB)</li>
+          <li>Steven Pemberton (CWI Amsterdam)</li>
+          <li>Simon Pieters (Opera Software)</li>
+          <li>Jean-Bernard Piot (4D)</li>
+          <li>David Poehlman, Simon Pieters (Opera Software)</li>
+          <li>Sarah Pulis (Media Access Australia)</li>
+          <li>T.V. Raman (Google, Inc.)</li>
+          <li>Jan Richards</li>
+          <li>Gregory Rosmaita (Invited Expert)</li>
+          <li>Tony Ross (Microsoft Corporation)</li>
+          <li>Alex Russell (Dojo Foundation) (</li>
+          <li>Mark Sadecki (Invited Expert)</li>
+          <li>Mario Sánchez Prada (Samsung Electronics Co., Ltd. and Gnome Foundation)</li>
+          <li>Martin Schaus (SAP AG)</li>
+          <li>Doug Schepers (<abbr title="World Wide Web Consortium">W3C</abbr>)</li>
+          <li>Matthias Schmitt </li>
+          <li>Marc Silbey (Microsoft Corporation)</li>
+          <li>Leif Halvard Sili</li>
+          <li>Henri Sivonen (Mozilla)</li>
+          <li>Michael Smith (<abbr title="World Wide Web Consortium">W3C</abbr>)</li>
+          <li>Andi Snow-Weaver (IBM Corporation)</li>
+          <li>Ville Skyttä </li>
+          <li>Henny Swan (BBC)</li>
+          <li>Neil Soiffer (Design Science)</li>
+          <li>Vitaly Sourikov</li>
+          <li>Mike Squillace (IBM)</li>
+          <li>Maciej Stachowiak (Apple Inc.)</li>
+          <li>Christophe Strobbe</li>
+          <li>Suzanne Taylor (Pearson plc)</li>
+          <li>Terrill Thompson</li>
+          <li>David Todd</li>
+          <li>Gregg Vanderheiden (Invited Expert, Trace)</li>
+          <li>Anne van Kesteren</li>
+          <li>Wen He (Tencent)</li>
+          <li>Wu Wei (<abbr title="World Wide Web Consortium">W3C</abbr> / RITT)</li>
+          <li>Ryan Williams (Oracle)</li>
+          <li>Tom Wlodkowski</li>
+          <li>Sam White (Apple Inc.)</li>
+          <li>Marco Zehe (Mozilla Foundation)</li>
+        </ul>
+      </section>
+
+      <section class="section" id="ack_funders" typeof="bibo:Chapter" resource="#ack_funders" property="bibo:hasPart">
+        <h4 id="h-ack_funders" resource="#h-ack_funders"><span property="xhv:role" resource="xhv:heading"><span class="secno">A.3.3 </span>Enabling funders<span class="permalink" typeof="bookmark"><a href="#ack_funders" aria-label="Permalink for A.3.3 Enabling funders" title="Permalink for A.3.3 Enabling funders" property="url"><span property="title" content="A.3.3 Enabling funders">§</span></a>
+          </span>
+          </span>
+        </h4>
+        <p>This publication has been funded in part with U.S. Federal funds from the Department of Education, National Institute on Disability, Independent Living, and Rehabilitation Research (NIDILRR), initially under contract number ED-OSE-10-C-0067 and currently under contract number HHSP23301500054C. The content of this publication does not necessarily reflect the views or policies of the U.S. Department of Education, nor does mention of trade names, commercial products, or organizations imply endorsement by the U.S. Government.</p>
+      </section>
+    </section>
+
   </section>
 
 
