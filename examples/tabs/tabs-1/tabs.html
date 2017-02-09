@@ -2,34 +2,33 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Tabs | WAI-ARIA Authoring Practices 1.1</title>
+    <title>Tabs (Follows focus) | WAI-ARIA Authoring Practices 1.1</title>
 
     <!--  Core js and css shared by all examples; do not modify when using this template. -->
-    <link href="../css/core.css" rel="stylesheet">
-    <link href="../css/table.css" rel="stylesheet">
+    <link href="../../css/core.css" rel="stylesheet">
+    <link href="../../css/table.css" rel="stylesheet">
 
     <!--  js and css for this example. -->
     <link href="css/tabs.css" rel="stylesheet">
   </head>
   <body>
     <main>
-      <h1>Tabs</h1>
+      <h1>Tabs (Follows focus)</h1>
 
       <p>
-          The below example section demonstrates a tabs widget that implements the  <a href="../../#tabpanel">design pattern for tabs</a>.
+          This example section demonstrates a tabs widget that implements the  <a href="../../../#tabpanel">design pattern for tabs</a>.
+          In this example panels are automatically activated when its tab receives focus.
       </p>
+      <p>Similar examples include: </p>
+      <ul>
+        <li><a href="../tabs-2/tabs.html">Tabs (Manual activation)</a>: a version of the tabs widget where tabs have to be manually activated via <kbd>space</kbd> or <kbd>enter</kbd>.</li>
+        <!--  list other examples that implement the same design pattern. -->
+      </ul>
 
       <section>
         <h2 id="ex_label">Example</h2>
         <div  aria-labelledby="ex_label" role="region">
-          <!--
-          Note the ID of the following div that contains the example HTML is used as a parameter for the sourceCode.add() function.
-          The sourceCode functions in the examples/js/examples.js render the HTML source to show it to the reader of the example page.
-          If you change the ID of this div, be sure to update the parameters of the sourceCode.add() function call, which is made following the div with id="sc1" where the HTML is render.
-          The div for the rendered HTML source is in the last section of the page.
-          -->
           <div id="ex1">
-            <!--  Replace content of this div with the example.  -->
             <div class="tabs">
               <div role="tablist">
                 <button role="tab" aria-selected="true" aria-controls="nils-tab" id="nils">Nils Frahm</button>
@@ -67,7 +66,6 @@
 
       <section>
         <h2 id="kbd_label">Keyboard Support</h2>
-        <!--  Update the content of this table to describe which keys are implemented in this example. -->
         <table aria-labelledby="kbd_label">
           <thead>
             <tr>
@@ -187,7 +185,8 @@
     </main>
 
     <nav>
-      <a href="../../#tabpanel">Tabs Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
+      <!--  Update the pattern_ID parameter of this link to refer to the APG design pattern section related to this example.  -->
+      <a href="../../../#tabpanel">Tabs Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
     </nav>
 
 
