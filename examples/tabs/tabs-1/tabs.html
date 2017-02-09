@@ -2,40 +2,23 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <!--
-      An example that was implemented with this template can be found in: examples/checkbox/checkbox-1.html.
-      This template is for examples where only one implementation of the design pattern is demonstrated.
-      If you use this template file, rename it to reflect the name of the example, e.g., SimpleCheckbox.html.
-      Similarly, rename the javascript and CSS stub files in the js and css subdirectories and update the head element of this file.
-    -->
-
-    <!--  Give this example implementation a name and put it in the title element, e.g., "Checkbox" if implementing the checkbox pattern.
-    The name should be unique if the pattern will have multiple implementations, e.g., "Simple Two-State Checkbox" or "Three-State Checkbox".
-    -->
     <title>Tabs (Follows focus) | WAI-ARIA Authoring Practices 1.1</title>
 
     <!--  Core js and css shared by all examples; do not modify when using this template. -->
     <link href="../../css/core.css" rel="stylesheet">
     <link href="../../css/table.css" rel="stylesheet">
 
-    <!--  js and css for this example.
-    When developing an example implementation of a design pattern,
-    these files will contain the CSS and JS for the example implementation.
-    Rename these files to match the name of the example, e.g., checkbox.js if implementing the checkbox design pattern.
-    -->
+    <!--  js and css for this example. -->
     <link href="css/tabs.css" rel="stylesheet">
   </head>
   <body>
     <main>
-      <!--  Repeat the name of the example in this H1  -->
       <h1>Tabs (Follows focus)</h1>
 
       <p>
-          <!-- Provide an overview of the example where the first sentence provides a link to the section of aria-practices.html that describes the pattern this example implements. -->
-          This example section demonstrates a tabs widget that implements the  <a href="../../#checkbox">design pattern for tabs</a>.
+          This example section demonstrates a tabs widget that implements the  <a href="../../../#tabpanel">design pattern for tabs</a>.
           In this example panels are automatically activated when its tab receives focus.
       </p>
-
       <p>Similar examples include: </p>
       <ul>
         <li><a href="../tabs-2/tabs.html">Tabs (Manual activation)</a>: a version of the tabs widget where tabs have to be manually activated via <kbd>space</kbd> or <kbd>enter</kbd>.</li>
@@ -45,14 +28,7 @@
       <section>
         <h2 id="ex_label">Example</h2>
         <div  aria-labelledby="ex_label" role="region">
-          <!--
-          Note the ID of the following div that contains the example HTML is used as a parameter for the sourceCode.add() function.
-          The sourceCode functions in the examples/js/examples.js render the HTML source to show it to the reader of the example page.
-          If you change the ID of this div, be sure to update the parameters of the sourceCode.add() function call, which is made following the div with id="sc1" where the HTML is render.
-          The div for the rendered HTML source is in the last section of the page.
-          -->
           <div id="ex1">
-            <!--  Replace content of this div with the example.  -->
             <div class="tabs">
               <div role="tablist">
                 <button role="tab" aria-selected="true" aria-controls="nils-tab" id="nils">Nils Frahm</button>
@@ -90,7 +66,6 @@
 
       <section>
         <h2 id="kbd_label">Keyboard Support</h2>
-        <!--  Update the content of this table to describe which keys are implemented in this example. -->
         <table aria-labelledby="kbd_label">
           <thead>
             <tr>
@@ -211,7 +186,7 @@
 
     <nav>
       <!--  Update the pattern_ID parameter of this link to refer to the APG design pattern section related to this example.  -->
-      <a href="../../#tabpanel">Tabs Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
+      <a href="../../../#tabpanel">Tabs Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
     </nav>
 
 
