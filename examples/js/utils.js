@@ -47,6 +47,27 @@ aria.Utils.matches = function (element, selector) {
   return element.matches(selector);
 };
 
+aria.Utils.getAncestorBySelector = function (element, selector) {
+  if (!aria.Utils.matches(element, selector + ' ' + element.tagName)) {
+    // Element is not inside an element that matches selector
+    return null;
+  }
+
+  // Move up the DOM tree until a parent matching the selector is found
+  var currentNode = element;
+  var ancestor = null;
+  while (ancestor === null) {
+    if (aria.Utils.matches(currentNode.parentNode, selector)) {
+      ancestor = currentNode.parentNode;
+    }
+    else {
+      currentNode = currentNode.parentNode;
+    }
+  }
+
+  return ancestor;
+};
+
 aria.Utils.hasClass = function (element, className) {
   return (new RegExp('(\\s|^)' + className + '(\\s|$)')).test(element.className);
 };
