@@ -6,16 +6,13 @@
 
     <link href="../../css/core.css" rel="stylesheet">
     <link href="../../css/table.css" rel="stylesheet">
+    <script src="../../js/examples.js" type="text/javascript"></script>
 
     <link href="css/tree.css" rel="stylesheet">
-
     <script type="text/javascript" src="js/tree.js"></script>
     <script type="text/javascript" src="js/treeitem.js"></script>
     <script type="text/javascript" src="js/treeitemClick.js"></script>
-
-    <script src="../../js/examples.js" type="text/javascript"></script>
   </head>
-
   <body>
     <main>
       <h1>File Directory Treeview Example Using Declared Properties</h1>
@@ -24,7 +21,16 @@
         Feedback and progress on editorial work on this page are being tracked in 
         <a href="https://github.com/w3c/aria-practices/issues/224">issue 224.</a>
       </p>
-      <p>This example implements the features of the <a href="../../../#TreeView">Treeview Design Pattern</a> for simulation of a file selector.   This example explicitly sets the values for <code>aria-setsize</code>, <code>aria-posinset</code> and <code>arial-level</code>, which override any browser compuuted values.</p>
+      <p>
+        The below example implements the 
+        <a href="../../../#TreeView">Treeview Design Pattern</a> 
+        to simulate a file selector.  
+        When users activate an item that represents a file name in the below tree, the name of the selected file appears in the read-only edit field next to the tree.
+      </p>
+      <p>
+        The code in this example explicitly declares values for <code>aria-setsize</code>, <code>aria-posinset</code> and <code>aria-level</code>, which overrides browser computation of values for these properties.
+        The ARIA 1.0 specification for these properties states that browsers can, but are not required to, compute these values.
+       </p>
       <p>Similar examples include: </p>
       <ul>
         <li><a href="../treeview-1/treeview-1a.html">File Directory Treeview using <em>computed</em> properties</a></li>

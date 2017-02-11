@@ -6,16 +6,13 @@
 
     <link href="../../css/core.css" rel="stylesheet">
     <link href="../../css/table.css" rel="stylesheet">
+    <script src="../../js/examples.js" type="text/javascript"></script>
 
     <link href="css/treeLinks.css" rel="stylesheet">
-
     <script type="text/javascript" src="js/treeLinks.js"></script>
     <script type="text/javascript" src="js/treeitemLinks.js"></script>
     <script type="text/javascript" src="js/treeitemClick.js"></script>
-
-    <script src="../../js/examples.js" type="text/javascript"></script>
   </head>
-
   <body>
     <main>
       <h1>Navigation Treeview Example Using Declared Properties</h1>
@@ -24,9 +21,20 @@
         Feedback and progress on editorial work on this page are being tracked in 
         <a href="https://github.com/w3c/aria-practices/issues/226">issue 226.</a>
       </p>
-      <p>his example implements the features of the
+    <p>
+    The below example demonstrates how the  
     <a href="../../../#TreeView">Treeview Design Pattern</a>
-    for navigating and selecting a link in a large set of hierarchically organized links.  It is important in this example that the <code>role=treeitem</code> overrides the default role of link for the <code>a</code> elements, since a <code>treeitem</code> widget cannot contain any interactive elements (e.g. a link).  This example also explicitly sets the values for <code>aria-setsize</code>, <code>aria-posinset</code> and <code>arial-level</code>, which override any browser compuuted values.  </p>
+    can be used to build a navigation tree for a set of hierarchically organized web pages.
+    In this example, the user can browse a set of pages about foods that is organized into categories.
+    Activating an item in the tree will open a page about the chosen food.
+  </p>
+  <p>
+    Since a tree item is the only kind of interactive element that can be contained in a tree, links to web pages in a navigation tree have the <code>treeitem</code> role.
+  </p>
+  <p>
+        The code in this example explicitly declares values for <code>aria-setsize</code>, <code>aria-posinset</code> and <code>aria-level</code>, which overrides browser computation of values for these properties.
+        The ARIA 1.0 specification for these properties states that browsers can, but are not required to, compute these values.
+       </p>
       <p>Similar examples include: </p>
       <ul>
         <li><a href="../treeview-1/treeview-1a.html">File Directory Treeview using <em>computed</em> properties</a></li>
