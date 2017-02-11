@@ -32,8 +32,11 @@
     Since a tree item is the only kind of interactive element that can be contained in a tree, links to web pages in a navigation tree have the <code>treeitem</code> role.
   </p>
   <p>
-        This example relies on the browser to compute values for <code>aria-setsize</code>, <code>aria-posinset</code> and <code>aria-level</code>.   
-        The ARIA 1.0 specification for these properties states that browsers can, but are not required to, compute these values.
+        This example relies on the browser to compute values for <code>aria-setsize</code>, <code>aria-posinset</code>, and <code>aria-level</code>.   
+        The ARIA 1.0 specification for these properties states that browsers can, but are not required to, compute their values. 
+        So, some browser and assistive technology combinations may not compute or report correct position and level information if it is not explicitly declared.
+        If testing reveals gaps in support for these properties, override automatic computation by explicitly declaring their values as demonstrated in the example of a 
+        <a href="../treeview-2/treeview-2b.html">Navigation Treeview using <em>declared</em> properties.</a>
        </p>
       <p>Similar examples include: </p>
       <ul>

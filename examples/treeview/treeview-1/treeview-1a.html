@@ -32,8 +32,11 @@
         When users activate an item that represents a file name in the below tree, the name of the selected file appears in the read-only edit field next to the tree.
       </p>
       <p>
-        This example relies on the browser to compute values for <code>aria-setsize</code>, <code>aria-posinset</code> and <code>aria-level</code>.   
-        The ARIA 1.0 specification for these properties states that browsers can, but are not required to, compute these values.
+        This example relies on the browser to compute values for <code>aria-setsize</code>, <code>aria-posinset</code>, and <code>aria-level</code>.   
+        The ARIA 1.0 specification for these properties states that browsers can, but are not required to, compute their values. 
+        So, some browser and assistive technology combinations may not compute or report correct position and level information if it is not explicitly declared.
+        If testing reveals gaps in support for these properties, override automatic computation by explicitly declaring their values as demonstrated in the example of a 
+        <a href="../treeview-1/treeview-1b.html">File Directory Treeview using <em>declared</em> properties.</a>
        </p>
       <p>Similar examples include: </p>
       <ul>
