@@ -388,8 +388,9 @@
               <td>
                 <ul>
                   <li>Identifies the <code>ul</code> element as an <code>tree</code> widget.</li>
+                  <li>A <code>tree</code> is a container widget for focusable, interactive <code>treeitem</code> elements.</li>
                   <li>
-                    Is not made focusable with a <code>tabindex</code> value because a 
+                    The <code>tree</code> is not made focusable with a <code>tabindex</code> value because a 
                     <a href="../../../#kbd_roving_tabindex">roving tabindex</a> 
                     is used to control which descendant <code>treeitem</code> receives focus.
                   </li>
@@ -398,11 +399,9 @@
             </tr>
             <tr>
               <td></td>
-              <th scope="row"><code>aria-label=&quot;<em>string</em>&quot;</code></th>
+              <th scope="row"><code>aria-labelledby=&quot;IDREF&quot;</code></th>
               <td><code>ul</code></td>
-              <td>
-                Defines an accessible name, i.e., label, that identifies the purpose of the <code>tree</code>.
-              </td>
+              <td>Refers to the heading element that contains the label that identifies the purpose of the <code>tree</code>.</td>
             </tr>
             <tr>
               <th scope="row"><code>treeitem</code></th>
