@@ -41,7 +41,11 @@
       <h2>Accessibility Features</h2>
       <ul>
         <li>The set of links is structured using an ordered list .</li>
-        <li>The visual separators between links are added through <abbr title="Cascading Style Sheets">CSS</abbr> so they do not add unnecessary screen reader verbosity.</li>
+        <li>
+          The visual separators between links are added via <abbr title="Cascading Style Sheets">CSS</abbr> Generated Content.
+          They have a border on one side and are skewed with CSS’ <code>transform</code> property so they resemble a slash.
+          Because the separators are added though CSS and are nothing but style, they do not add unnecessary screen reader verbosity.
+        </li>
         <li>A labelled <code>nav</code> element identifies the structure and makes it easy to identify and locate.</li>
       </ul>
     </section>

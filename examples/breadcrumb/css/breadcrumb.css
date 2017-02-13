@@ -15,9 +15,19 @@ nav.breadcrumb li {
   display: inline;
 }
 
+/*nav.breadcrumb li + li::before {
+  display: inline-block;
+  content: url('../images/slash.svg');
+  vertical-align: middle;
+}*/
+
 nav.breadcrumb li + li::before {
-  color: #333;
-  content: '/\00a0';
+  display: inline-block;
+  margin: 0 .25em;
+  transform: rotate(15deg);
+  border-right: .1em solid currentColor;
+  height: .8em;
+  content: '';
 }
 
 nav.breadcrumb a {
