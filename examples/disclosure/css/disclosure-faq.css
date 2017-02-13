@@ -1,34 +1,13 @@
-[role="button"]:hover,
-[role="button"]:focus {
-  background-color: #eee;
-  text-decoration: underline;
-}
-
-[role="button"]:active {
-  background-color: #bbb;
-}
-
-[role="button"][aria-expanded="false"]:before {
-  content: "\0025BA \0000A0";
-  color: #630;
-
-}
-
-[role="button"][aria-expanded="true"]:before {
-  content: "\0025BC \0000A0";
-  color: #630;
-}
-
-dl.faq dt {
+div.faq [role="button"] {
     margin: 0;
     padding: 0;
-    margin-top: 0.5em;
+    margin-top: 1em;
     font-weight: bold;
     font-size: 110%;
 }
 
 
-dl.faq dd {
+div.faq .desc {
     margin: 0;
     padding: 0;
     margin-top: 0.25em;
@@ -36,3 +15,25 @@ dl.faq dd {
     font-size: 110%;
     display: none;
 }
+
+div.faq [role="button"]:hover,
+[role="button"]:focus {
+  background-color: #eee;
+  text-decoration: underline;
+}
+
+div.faq [role="button"]:active {
+  background-color: #bbb;
+}
+
+div.faq [role="button"][aria-expanded="false"]:before {
+  content: url('../images/right-arrow-brown.png');
+  padding-right: 0.35em;
+
+}
+
+div.faq [role="button"][aria-expanded="true"]:before {
+  content: url('../images/down-arrow-brown.png');
+  padding-right: 0.35em;
+}
+

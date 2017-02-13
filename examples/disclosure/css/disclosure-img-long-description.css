@@ -8,12 +8,17 @@
   background-color: #bbb;
 }
 
+
 [role="button"][aria-expanded="false"]:before {
-  content: "\0025BA";
-  color: #630;
+  content: url('../images/right-arrow-brown.png');
+  padding-right: 0.15em;
+  position: relative;
+  top: 0.1em;
+
 }
 
 [role="button"][aria-expanded="true"]:before {
-  content: "\0025BC";
-  color: #630;
+  content: url('../images/down-arrow-brown.png');
+  padding-right: 0.15em;
 }
+

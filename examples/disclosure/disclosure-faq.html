@@ -23,7 +23,7 @@
   <p>
     The following example demonstrates using the
     <a href="../../#disclosure">disclosure design pattern</a>
-    to create a set of frequently asked questions where the answers may be independently shown or hidden.
+    to create a set of frequently asked questions where the answers may be independently shown or hidiven.
   </p>
   <p>Similar examples include:</p>
   <ul>
@@ -36,31 +36,31 @@
     <h2 id="ex_label">Example</h2>
     <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of" ></div>
     <div id="ex1">
-      <dl class="faq">
-        <dt role="button" aria-expanded="false" aria-controls="faq1_desc">What do I do if I
-          have a permit for an assigned lot, but can't find a space there?</dt>
-        <dd id="faq1_desc">Park at the nearest available parking meter without paying the meter
+      <div class="faq">
+        <div role="button" aria-expanded="false" aria-controls="faq1_desc">What do I do if I
+          have a permit for an assigned lot, but can't find a space there?</div>
+        <div id="faq1_desc" class="desc">Park at the nearest available parking meter without paying the meter
           and call 999-999-9999 to report the problem. We will note and approve your alternate
-          location and will investigate the cause of the shortage in your assigned facility.</dd>
+          location and will investigate the cause of the shortage in your assigned facility.</div>
 
-        <dt role="button" aria-expanded="false" aria-controls="faq2_desc">What do I do if I
-          lose my permit or if my permit is stolen?</dt>
-        <dd id="faq2_desc">You should come to the Parking office and report the loss. There is
+        <div role="button" aria-expanded="false" aria-controls="faq2_desc">What do I do if I
+          lose my permit or if my permit is stolen?</div>
+        <div id="faq2_desc" class="desc">You should come to the Parking office and report the loss. There is
           a fee to replace your lost permit. However, if your permit was stolen, a copy of a police
           report needs to be submitted along with a stolen parking permit form for a fee replacement
-          exemption.</dd>
+          exemption.</div>
 
-        <dt role="button" aria-expanded="false" aria-controls="faq3_desc">Is there free parking
-          on holidays?</dt>
-        <dd id="faq3_desc">All facilities are restricted from 2:00 am - 6:00 am on all days. No
+        <div role="button" aria-expanded="false" aria-controls="faq3_desc">Is there free parking
+          on holidays?</div>
+        <div id="faq3_desc" class="desc">All facilities are restricted from 2:00 am - 6:00 am on all days. No
           exceptions are made for any holiday or recess except those officially listed as a
           ”Holidays” in the calendar. Please note: 24-hour rental spaces, 24-hour rental lots, and
-          disabled parking is enforced at all times.</dd>
+          disabled parking is enforced at all times.</div>
 
-        <dt role="button" aria-expanded="false" aria-controls="faq4_desc">Do all parking
-          facilities have the same enforcement rules?</dt>
-        <dd id="faq4_desc">Some parking facility restrictions differ from others. Be sure to
-          take note of the signs at each lot entrance.</dd>
+        <div role="button" aria-expanded="false" aria-controls="faq4_desc">Do all parking
+          facilities have the same enforcement rules?</div>
+        <div id="faq4_desc" class="desc">Some parking facility restrictions differ from others. Be sure to
+          take note of the signs at each lot entrance.</div>
 
       </dl>
     </div>
@@ -158,7 +158,7 @@
           <td>
             <ul>
               <li>
-                Indicates that the container controlled by the disclosure button is <em>hidden </em>.
+                Indicates that the container controlled by the disclosure button is <em>hidiven </em>.
               </li>
               <li>
                 CSS attribute selectors (e.g. <code>[aria-expanded=&quot;false&quot;]</code>) are
@@ -226,7 +226,7 @@
       aria-label="End of"
     ></div>
     <script>
-          sourceCode.add('sc1', 'ex1');
+          sourceCode.adiv('sc1', 'ex1');
           sourceCode.make();
         </script>
   </section>
