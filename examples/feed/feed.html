@@ -2,59 +2,33 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<!--
-  An example that was implemented with this template can be found in: examples/checkbox/checkbox-1.html.
-  This template is for examples where only one implementation of the design pattern is demonstrated.
-  If you use this template file, rename it to reflect the name of the example, e.g., SimpleCheckbox.html.
-  Similarly, rename the javascript and CSS stub files in the js and css subdirectories and update the head element of this file.
--->
-
-<!--  
-  Give this example implementation a name and put it in the title element, 
-  e.g., "Checkbox" if implementing the checkbox pattern.
-  The name should be unique if the pattern will have multiple implementations, 
-  e.g., "Simple Two-State Checkbox" or "Three-State Checkbox".
--->
-<title>EXAMPLE_NAME Example | WAI-ARIA Authoring Practices 1.1</title>
+<title>Feed Example | WAI-ARIA Authoring Practices 1.1</title>
 
 <!--  Core js and css shared by all examples; do not modify when using this template. -->
 <link href="../css/core.css" rel="stylesheet">
 <link href="../css/table.css" rel="stylesheet">
 <script src="../js/examples.js" type="text/javascript"></script>
 
-<!--  js and css for this example.
-  When developing an example implementation of a design pattern,
-  these files will contain the CSS and JS for the example implementation.
-  Rename these files to match the name of the example, e.g., checkbox.js if implementing the checkbox design pattern.
--->
-<link href="css/example_name.css" rel="stylesheet">
-<script src="js/example_name.js" type="text/javascript"></script>
+<!--  js and css for this example. -->
+<link href="css/feed.css" rel="stylesheet">
+<script src="js/feed.js" type="text/javascript"></script>
 </head>
 <body>
-  <main> <!--  Repeat the name of the example in this H1  -->
-  <h1>EXAMPLE_NAME Example</h1>
+  <main>
+  <h1>Feed Example</h1>
   <p>
-    <!-- Provide an overview of the example where the first sentence provides a link to the section of aria-practices.html that describes the pattern this example implements. -->
-    Replace this paragraph with an overview of the example that is something like the following. The
-    below example section demonstrates a simple checkbox that implements the
-    <a href="../../#checkbox">design pattern for checkbox.</a>
+    <strong>NOTE:</strong> This page is work in progress; is not ready for review.
+    Work on this example is tracked by 
+    <a href="https://github.com/w3c/aria-practices/issues/246">issue 246.</a>
+  </p>
+  <p>
+    The example below demonstrates an implementation of the 
     This example uses ... summarize salient techniques )
   </p>
-  <p>Similar examples include: </p>
-  <ul>
-    <li><a href="#">example name</a>: summarize what this related example demonstrates.</li>
-    <!--  list other examples that implement the same design pattern. -->
-  </ul>
-
+  
   <section>
     <h2 id="ex_label">Example</h2>
     <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
-    <!--
-      Note the ID of the following div that contains the example HTML is used as a parameter for the sourceCode.add() function.
-      The sourceCode functions in the examples/js/examples.js render the HTML source to show it to the reader of the example page.
-      If you change the ID of this div, be sure to update the parameters of the sourceCode.add() function call, which is made following the div with id="sc1" where the HTML is render.
-      The div for the rendered HTML source is in the last section of the page.
-    -->
     <div id="ex1">
       <!--  Replace content of this div with the example.  -->
       <p>This is the place where the reader will experience the functioning example.</p>
@@ -174,11 +148,11 @@
     <ul>
       <li>
         CSS:
-        <a href="css/example_name.css" type="tex/css">example_name.css</a>
+        <a href="css/feed.css" type="tex/css">feed.css</a>
       </li>
       <li>
         Javascript:
-        <a href="js/example_name.js" type="text/javascript">example_name.js</a>
+        <a href="js/feed.js" type="text/javascript">feed.js</a>
       </li>
     </ul>
   </section>
@@ -188,11 +162,6 @@
     <div role="separator" id="sc1_start_sep" aria-labelledby="sc1_start_sep sc1_label" aria-label="Start of"></div>
     <pre id="sc1"></pre>
     <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of"></div>
-    <!--
-      The following script will show the reader the HTML source for the example that is in the div with ID 'ex1'.
-      It renders the HTML in the preceding pre element with ID 'sc1'.
-      If you change the ID of either the 'ex1' div or the 'sc1' pre, be sure to update the sourceCode.add function parameters.
-      -->
     <script>
       sourceCode.add('sc1', 'ex1');
       sourceCode.make();
@@ -201,7 +170,7 @@
   </main>
   <nav>
     <!--  Update the pattern_ID parameter of this link to refer to the APG design pattern section related to this example.  -->
-    <a href="../../#pattern_ID">EXAMPLE_NAME Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
+    <a href="../../#feed">Feed Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
   </nav>
 </body>
 </html>

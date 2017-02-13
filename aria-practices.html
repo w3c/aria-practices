@@ -59,7 +59,7 @@
       Although users of Mac OS X are familiar with using the <kbd>Command</kbd> key instead of the <kbd>Control</kbd> key, the <kbd>Command</kbd> key is typically reserved for desktop applications and OS-level integration.
       Until device and platform independence can be addressed in WAI-ARIA 2.0, the primary <kbd>Control</kbd> modifier key for WAI-ARIA widget interaction is specified as <kbd>Control</kbd> on all platforms, including Mac OS X.
     </p>
-    
+
     <section id="aria_ex_widget">
       <h3>Generally Applicable Keyboard Recommendations </h3>
       <p>The following keyboard conventions are applicable to many of the patterns described in subsequent sections.</p>
@@ -204,7 +204,7 @@
         An alert that disappears too quickly can lead to failure to meet
         <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits-no-exceptions.html">WCAG 2.0 success criterion 2.2.3</a>.
         Another critical design consideration is the frequency of interruption caused by alerts.
-        Frequent interruptions inhibit usability for people with visual and cognitive disabilities, which makes meeting the requirements of 
+        Frequent interruptions inhibit usability for people with visual and cognitive disabilities, which makes meeting the requirements of
         <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits-postponed.html">WCAG 2.0 success criterion 2.2.4</a>
         more difficult.
       </p>
@@ -230,8 +230,8 @@
       <p>
         An alert dialog  is a <a href="#dialog_modal">modal dialog</a> that interrupts the user's workflow to communicate an important message and acquire a response.
         Examples include action confirmation prompts and error message confirmations.
-        The <a href="#alertdialog" class="role-reference">alertdialog</a> role 
-        enables assistive technologies and browsers to distinguish alert dialogs from other dialogs 
+        The <a href="#alertdialog" class="role-reference">alertdialog</a> role
+        enables assistive technologies and browsers to distinguish alert dialogs from other dialogs
         so they have the option of giving alert dialogs special treatment, such as playing a system alert sound.
       </p>
       <section class="notoc">
@@ -318,8 +318,8 @@
           To tell assistive technologies that a button is a toggle button, specify a value for the attribute <a href="#aria-pressed" class="state-reference">aria-pressed</a>.
           For example, a button labeled mute in an audio player could indicate that sound is muted by setting the pressed state true.
           <strong>Important:</strong> it is critical the label on a toggle does not change when its state changes.
-          In this example, when the pressed state is true, the label remains “Mute” so a screen reader would say something like “Mute toggle button pressed”.
-          Alternatively, if the design were to call for the button label to change from “Mute” to “Unmute,” the aria-pressed attribute would not be needed.
+          In this example, when the pressed state is true, the label remains &quot;Mute&quot; so a screen reader would say something like &quot;Mute toggle button pressed&quot;.
+          Alternatively, if the design were to call for the button label to change from &quot;Mute&quot; to &quot;Unmute,&quot; the aria-pressed attribute would not be needed.
         </li>
         <li>Menu button: as described in the <a href="#menubutton">menu button pattern</a>, a button is revealed to assistive technologies as a menu button if it has the property <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set to <code>true</code>.</li>
       </ul>
@@ -529,13 +529,191 @@
       <h3>Dialog (Non-Modal)</h3>
       <p>Drafting content for this section is tracked by <a href="https://github.com/w3c/aria-practices/issues/59">issue 59</a>. </p>
     </section>
-    
+
     <section class="widget" id="disclosure">
       <h3>Disclosure (Show/Hide)</h3>
       <p>
-        Drafting content for this section is tracked by 
-        <a href="https://github.com/w3c/aria-practices/issues/9">issue 9</a>. 
+        Drafting content for this section is tracked by
+        <a href="https://github.com/w3c/aria-practices/issues/9">issue 9</a>.
       </p>
+      <p>Write description of disclosure pattern here.</p>
+      <section class="notoc">
+        <h4>Keyboard Interaction</h4>
+        <p>When the disclosure control has focus:</p>
+        <ul>
+          <li><kbd>Enter</kbd>: activates the disclosure control and toggles the visibility of the disclosure content.</li>
+          <li><kbd>Space</kbd>: activates the disclosure control and toggles the visibility of the disclosure content.</li>
+        </ul>
+      </section>
+      <section class="notoc">
+        <h4>WAI-ARIA Roles, States, and Properties</h4>
+        <ul>
+          <li>role <a href="#button" class="role-reference">button</a></li>
+          <li>state <a href="#aria-expanded" class="state-reference">aria-expanded</a></li>
+          <li>property <a href="#aria-controls" class="property-reference">aria-controls</a></li>
+        </ul>
+      </section>
+      <section class="notoc">
+        <h4>Examples</h4>
+        <ul>
+          <li><a href="examples/disclosure/disclosure-img-long-description.html">Disclosure (Show/Hide) of Image Description</a></li>
+          <li><a href="examples/disclosure/disclosure-faq.html">Disclosure (Show/Hide) of Answers to Frequently Asked Questions</a></li>
+        </ul>
+      </section>
+    </section>
+
+    <section class="widget" id="feed">
+      <h3 class="widget-name">Feed</h3>
+      <p class="note">
+        This section contains an early draft of new content.
+        Feedback is welcom in 
+        <a href="https://github.com/w3c/aria-practices/issues/245">issue 245.</a>
+      </p>
+      <p>
+        A feed is a section of a page that automatically loads new content as the user reads.
+        Content in a feed is segmented into article elements. Thus, it can be thought of as a dynamic list of articles
+        that often appears to scroll infinitely.
+      </p>
+      <p>
+        The primary difference between a feed and other ARIA patterns that support loading data as users scroll, 
+        e.g., a <a href="#grid">grid</a>, is that a feed is a structure, not a widget. This means assistive
+        technologies with a reading mode, such as screen readers, will default to reading mode when
+        interacting with feed content, making the feed pattern most useful for blocks of
+        unstructured information that may contain links or other interactive elements.
+      </p>
+      <p>
+        For example, a product page on a shopping site has a related products section that
+        displays five product suggestions at a time. As the user scrolls,  more suggestions are requested and loaded into the DOM.
+         While a static design might include a next button for loading five more product suggestions, a dynamic implementation
+        that automatically loads data as needed simplifies the user
+        experience and reduces the inertia of viewing more than the first five suggestions.
+      </p>
+      <p>
+        Unfortunately, when web pages load content dynamically based on scroll events, it
+        creates interoperability difficulties for users of assistive technologies that cannot
+        sufficiently mimic visual scrolling. 
+        Even if the page also observes focus movements in
+        order to identify when more content is needed, 
+        there can still be problems because requiring assistive technologies to
+        move DOM focus in response to every reading cursor movement, regardless of context, 
+        can also negatively impact a screen reading experience.
+      </p>
+      <p>
+        The feed pattern enables reliable assistive technology reading mode interaction by
+        establishing the following interoperability agreement between the web page and assistive
+        technologies:
+      </p>
+      <ol>
+        <li>In the context of a feed, the web page code is responsible for:
+        <ul>
+          <li>
+            Appropriate visual scrolling of the content based on which article contains DOM focus. 
+          </li>
+          <li>Loading or removing feed articles based on which article contains DOM focus.</li>
+        </ul>
+      </li>
+        <li>In the context of a feed, assistive technologies with a reading mode are responsible for:
+          <ul>
+            <li>Indicating which article contains the reading cursor by ensuring the article element or one of its descendants has DOM focus.</li>
+            <li>providing reading mode keys that move DOM focus to the next and previous articles.</li>
+            <li>Providing reading mode keys for moving the reading cursor and DOM focus past the end and before the start of the feed.</li>
+          </ul>
+        </li>
+      </ol>
+      <p>
+        Thus, implementing the feed pattern allows a screen reader to reliably read and trigger the loading
+        of feed content while staying in its reading mode.
+      </p>
+      <p>
+        Another feature of the feed pattern is its ability to facilitate skim reading by
+        assistive technology users. Web page authors may provide both an accessible name and
+        description for each article. By identifying the elements inside of an
+        article that provide the title and the primary content, assistive technologies can provide
+        functions that enable users to jump from article to article and efficiently discern which
+        articles may be worthy of more attention.
+      </p>
+      <section class="notoc">
+        <h4>Keyboard Interaction</h4>
+        <p>
+          The feed pattern is not based on a desktop GUI widget so the <code>feed</code> role is not associated with any well-established keyboard conventions.
+          Supporting the following, or a similar,  interface is recommended.
+        </p>
+        <p>When focus is inside the feed:</p>
+        <ul>
+          <li><kbd>Page Down</kbd>: Move focus to next article.</li>
+          <li><kbd>Page Up</kbd>: Move focus to previous article.</li>
+          <li><kbd>Control + End</kbd>: Move focus to the first focusable element after the feed.</li>
+          <li><kbd>Control + Home</kbd>: Move focus to the first focusable element before the feed.</li>
+        </ul>
+        <ol class="note">
+          <li>Due to the lack of convention, providing easily discoverable keyboard interface documentation is especially important.</li>
+          <li>
+            In some cases, a feed may contain a nested feed.
+            For example, an article in a social media feed may contain a feed of comments on that article.
+            To navigate the nested feed, users first move focus inside the nested feed. 
+            Options for supporting nested feed navigation include:
+            <ul>
+              <li>
+                Users move focus into the nested feed from the content of the containing article with <kbd>Tab</kbd>. 
+                This may be slow if the article contains a significant number of links, buttons, or other widgets.
+               </li>
+              <li>Provide a key for moving focus from the elements in the containing article to the first item in the nested feed, e.g., <kbd>Alt + Page Down</kbd>.</li>
+              <li>To continue reading the outer feed, <kbd>Control + End</kbd> moves focus to the next article in the outer feed.</li>
+            </ul>
+          </li>
+          <li>In the rare circumstance that a feed article contains a widget that uses the above suggested keys, the feed navigation key will operate the contained widget, and the user needs to move focus to an element that does not utilize the feed navigation keys in order to navigate the feed.</li>
+        </ol>
+      </section>
+      <section class="notoc">
+        <h4>WAI-ARIA Roles, States, and Properties</h4>
+        <ul>
+          <li>The element that contains the set of feed articles has role <a href="#feed" class="role-reference">feed</a>.</li>
+          <li>
+            If the feed has a visible title, the <code>feed</code> element has <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> referring to the element containing the title.
+            Otherwise, the <code>feed</code> element has a label specified with <a href="#aria-label" class="property-reference">aria-label</a>.
+          </li>
+          <li>
+            Each unit of content in a feed is contained in an element with role <a href="#article" class="role-reference">article</a>.
+            All content inside the feed is contained in an <code>article</code>  element.
+          </li>
+          <li>
+            Each <code>article</code> element has 
+            <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> 
+            referring to elements inside the article that can serve as a distinguishing label. 
+          </li>
+          <li>
+            It is optional but strongly recommended for Each <code>article</code> element to have 
+            <a href="#aria-describedby" class="property-reference">aria-describedby</a> 
+            referring to one or more elements inside the article that serve as the primary content of the article.
+          </li>
+          <li>
+            Each <code>article</code> element has
+            <a href="#aria-posinset" class="property-reference">aria-posinset</a> 
+            set to a value that represents its position in the feed.
+          </li>
+          <li>
+            Each <code>article</code> element has
+            <a href="#aria-setsize" class="property-reference">aria-setsize</a> 
+            set to a value that represents either the total number of articles that have been loaded or the total number in the feed, 
+            depending on which value is deemed more helpful to users.
+            If the total number in the feed is undetermined, it can be represented by a <code>aria-setsize</code> value of <code>-1</code>.
+          </li>
+          <li>
+            When <code>article</code> elements are being added to or removed from the <code>feed</code> container, 
+            and if the operation requires multiple DOM operations, 
+            the <code>feed</code> element has 
+            <a href="#aria-busy" class="state-reference">aria-busy</a> 
+            set to <code>true</code> during the update operation. 
+            Note that it is extremely important that <code>aria-busy</code> is set to <code>false</code> when the operation is complete or the changes may not become visible to some assistive technology users.
+          </li>
+        </ul>
+      </section>
+      <section class="notoc">
+        <h4>Example</h4>
+        <p>
+        <a href="examples/feed/feed.html">Example Implementation of Feed Pattern</a>
+        </p>
+      </section>
     </section>
 
     <section class="widget" id="grid">
@@ -907,14 +1085,14 @@
         <code>&lt;A&gt;</code> element with an <code>href</code> attribute. As with other WAI-ARIA
         widget roles, applying the link role to an element will not cause browsers to enhance the
         element with standard link behaviors, such as navigation to the link target or context menu
-        actions. 
+        actions.
         When using the <code>link</code> role, providing these features of the element is the author's responsibility.
       </p>
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
         <ul>
           <li><kbd>Enter</kbd>: Executes the link and moves focus to the link target.</li>
-          <li><kbd>Shift + F10</kbd>: Opens the link's context menu.</li>
+          <li><kbd>Shift + F10</kbd> (Optional): Opens a context menu for the link.</li>
         </ul>
       </section>
       <section class="notoc">
@@ -1373,7 +1551,7 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
     <section class="widget" id="slider">
       <h3>Slider</h3>
       <p>
-        A slider is an input where the user selects a value from within a given range. 
+        A slider is an input where the user selects a value from within a given range.
         Sliders typically have a slider thumb that can be moved along a bar or track to change the value of the slider.
         </p>
       <section class="notoc">
@@ -1399,14 +1577,14 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
           <li>The slider element has the <a class="property-reference" href="#aria-valuemin">aria-valuemin</a> property set to a decimal value representing the minimum allowed value of the slider.</li>
           <li>The slider element has the <a class="property-reference" href="#aria-valuemax">aria-valuemax</a> property set to a decimal value representing the maximum allowed value of the slider.</li>
           <li>
-          If the value of <code>aria-valuenow</code> is not user-friendly, e.g., the day of the week is represented by a number, the 
-          <a class="property-reference" href="#aria-valuetext">aria-valuetext</a> 
+          If the value of <code>aria-valuenow</code> is not user-friendly, e.g., the day of the week is represented by a number, the
+          <a class="property-reference" href="#aria-valuetext">aria-valuetext</a>
           property is set to a string that makes the slider value understandable, e.g., &quot;Monday&quot;.
           </li>
           <li>
             If the slider has a visible label, it is referenced by
-            <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> on the slider element. 
-            Otherwise, the slider element has a label provided by 
+            <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> on the slider element.
+            Otherwise, the slider element has a label provided by
             <a href="#aria-label" class="property-reference">aria-label</a>.
           </li>
           <li>
@@ -1427,7 +1605,7 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
     <section class="widget" id="slidertwothumb">
       <h3>Slider (Multi-Thumb)</h3>
       <p>
-        Work on this design pattern is in progress and is tracked in 
+        Work on this design pattern is in progress and is tracked in
         <a href="https://github.com/w3c/aria-practices/issues/221">issue 221.</a>
         Please provide any feedback in that issue.
       </p>
@@ -1455,14 +1633,14 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
           <li>Each slider element has the <a class="property-reference" href="#aria-valuemin">aria-valuemin</a> property set to a decimal value representing the minimum allowed value of the slider.</li>
           <li>Each slider element has the <a class="property-reference" href="#aria-valuemax">aria-valuemax</a> property set to a decimal value representing the maximum allowed value of the slider.</li>
           <li>
-          If a value of <code>aria-valuenow</code> is not user-friendly, e.g., the day of the week is represented by a number, the 
-          <a class="property-reference" href="#aria-valuetext">aria-valuetext</a> 
+          If a value of <code>aria-valuenow</code> is not user-friendly, e.g., the day of the week is represented by a number, the
+          <a class="property-reference" href="#aria-valuetext">aria-valuetext</a>
           property is set to a string that makes the slider value understandable, e.g., &quot;Monday&quot;.
           </li>
           <li>
             If a slider has a visible label, it is referenced by
-            <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> on the slider element. 
-            Otherwise, the slider element has a label provided by 
+            <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> on the slider element.
+            Otherwise, the slider element has a label provided by
             <a href="#aria-label" class="property-reference">aria-label</a>.
           </li>
           <li>
@@ -1474,7 +1652,7 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
       <section class="notoc">
         <h4>Example</h4>
         <p>
-        Work to develop an example multi-thumb slider is tracked in 
+        Work to develop an example multi-thumb slider is tracked in
         <a href="https://github.com/w3c/aria-practices/issues/124">issue 124.</a>
         </p>
       </section>
@@ -1483,7 +1661,7 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
     <section class="widget" id="spinbutton">
       <h3>Spinbutton</h3>
       <p>
-        A spinbutton is an input widget that restricts its value to a set or range of discrete values. 
+        A spinbutton is an input widget that restricts its value to a set or range of discrete values.
         For example, in a widget that enables users to set an alarm, a spinbutton could allow users to select a number from 0 to 59 for the minute of an hour.
       </p>
       <p>
@@ -1503,7 +1681,7 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
               <li>Standard single line text field keys, such as <kbd>Left Arrow</kbd>, <kbd>Right Arrow</kbd>, <kbd>Shift + Left Arrow</kbd>, <kbd>Shift + Right Arrow</kbd>, and <kbd>Delete</kbd>, for cursor movement, selecting text, and text deletion.</li>
               <li>
                 Characters that are permitted to be part of the value.
-                For example, an hour-and-minute spinner would allow only integer values from 0 to 59, the colon ':', and the letters 'AM' and 'PM'. 
+                For example, an hour-and-minute spinner would allow only integer values from 0 to 59, the colon ':', and the letters 'AM' and 'PM'.
                 Any other character input does not change the contents of the text field nor the value of the spinbutton.
               </li>
             </ul>
@@ -1529,14 +1707,14 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
           <li>The spinbutton element has the <a class="property-reference" href="#aria-valuemin">aria-valuemin</a> property set to a decimal value representing the minimum allowed value of the spinbutton if it has a known minimum value.</li>
           <li>The spinbutton element has the <a class="property-reference" href="#aria-valuemax">aria-valuemax</a> property set to a decimal value representing the maximum allowed value of the spinbutton if it has a known maximum value.</li>
           <li>
-          If the value of <code>aria-valuenow</code> is not user-friendly, e.g., the day of the week is represented by a number, the 
-          <a class="property-reference" href="#aria-valuetext">aria-valuetext</a> 
+          If the value of <code>aria-valuenow</code> is not user-friendly, e.g., the day of the week is represented by a number, the
+          <a class="property-reference" href="#aria-valuetext">aria-valuetext</a>
           property is set on the spinbutton element to a string that makes the spinbutton value understandable, e.g., &quot;Monday&quot;.
           </li>
           <li>
             If the spinbutton has a visible label, it is referenced by
-            <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> on the spinbutton element. 
-            Otherwise, the spinbutton element has a label provided by 
+            <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> on the spinbutton element.
+            Otherwise, the spinbutton element has a label provided by
             <a href="#aria-label" class="property-reference">aria-label</a>.
           </li>
         </ul>
@@ -1544,7 +1722,7 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
       <section class="notoc">
         <h4>Example</h4>
         <p>
-          Work to develop a spinbutton example is tracked by 
+          Work to develop a spinbutton example is tracked by
           <a href="https://github.com/w3c/aria-practices/issues/125">issue 125.</a>
         </p>
       </section>
@@ -1553,8 +1731,8 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
     <section class="widget" id="table">
       <h3>Table</h3>
       <p>
-        Work on drafting this section is tracked by 
-        <a href="https://github.com/w3c/aria-practices/issues/90">issue 90</a>. 
+        Work on drafting this section is tracked by
+        <a href="https://github.com/w3c/aria-practices/issues/90">issue 90</a>.
       </p>
       <p>
         This is a place holder for a to-be-written section about data tables.
@@ -1590,7 +1768,7 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
         <p>For the tab list:</p>
         <ul>
           <li>
-            <kbd>Tab</kbd>: When the tab list is receiving focus, places focus on the active <code>tab</code> element .
+            <kbd>Tab</kbd>: When focus moves into the tab list, places focus on the active <code>tab</code> element .
             When the tab list contains the focus, moves focus to the next element in the page tab sequence outside the tablist, which is typically either the first focusable element inside the tab panel or the tab panel itself.
           </li>
           <li>When focus is on a tab element in a horizontal tab list:
@@ -1655,8 +1833,11 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
         </ul>
       </section>
       <section class="notoc">
-        <h4>Example</h4>
-        <p><a href="examples/tabs/tabs.html">Tabs Widget Example</a></p>
+        <h4>Examples</h4>
+        <ul>
+          <li><a href="examples/tabs/tabs-1/tabs.html">Tabs With Automatic Activation</a>: A tabs widget where tabs are automatically activated and their panel is displayed when they receive focus.</li>
+          <li><a href="examples/tabs/tabs-2/tabs.html">Tabs With Manual Activation</a>: A tabs widget where users activate a tab and display its panel by pressing <kbd>Space</kbd> or <kbd>Enter</kbd>.</li>
+        </ul>
       </section>
     </section>
 
@@ -1697,8 +1878,8 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
             </ol>
           </li>
           <li>
-            Typically, disabled elements are not focusable when navigating with a keyboard. 
-            However, in circumstances where discoverability of a function is crucial, it may be helpful if disabled controls are focusable so screen reader users are more likely to be aware of their presence. 
+            Typically, disabled elements are not focusable when navigating with a keyboard.
+            However, in circumstances where discoverability of a function is crucial, it may be helpful if disabled controls are focusable so screen reader users are more likely to be aware of their presence.
             For additional guidance, see <a href="#kbd_disabled_controls"></a>.
           </li>
           <li>In applications where quick access to a toolbar is important, such as accessing an editor's toolbar from its text area, a documented shortcut key for moving focus from the relevant context to its corresponding toolbar is recommended.</li>
@@ -1710,8 +1891,8 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
           <li>The element that serves as the toolbar container has role <a class="role-reference" href="#toolbar">toolbar</a>.  </li>
           <li>
             If the toolbar has a visible label, it is referenced by
-            <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> on the toolbar element. 
-            Otherwise, the toolbar element has a label provided by 
+            <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> on the toolbar element.
+            Otherwise, the toolbar element has a label provided by
             <a href="#aria-label" class="property-reference">aria-label</a>.
           </li>
           <li>If the controls are arranged vertically, the toolbar element has <a href="#aria-orientation" class="property-reference">aria-orientation</a> set to <code>vertical</code>. The default orientation is horizontal.</li>
@@ -1726,7 +1907,7 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
     <section class="widget" id="tooltip">
       <h3>Tooltip Widget</h3>
       <p>
-        Work on this design pattern is in progress and tracked by 
+        Work on this design pattern is in progress and tracked by
         <a href="https://github.com/w3c/aria-practices/issues/128">issue 128.</a>
         Please provide feedback in that issue.
       </p>
@@ -1736,7 +1917,7 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
       </p>
       <p>
         Tooltip widgets do not receive focus.
-        A hover that contains focusable elements can be made using the 
+        A hover that contains focusable elements can be made using the
         a <a href="#dialog_nonmodal">non-modal dialog pattern</a>.
       </p>
       <section class="notoc">
@@ -1745,7 +1926,7 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
         <ol class="note">
           <li>Focus stays on the triggering element while the tooltip is displayed.</li>
           <li>
-            If the tooltip is invoked when the trigger element   receives focus, then it is dismissed when it no longer has focus (onBlur). 
+            If the tooltip is invoked when the trigger element   receives focus, then it is dismissed when it no longer has focus (onBlur).
             If   the tooltip is invoked with mouseIn, then it is dismissed with on mouseOut.
           </li>
         </ol>
@@ -1760,7 +1941,7 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
       <section class="notoc">
         <h4>Example</h4>
         <p>
-          Work to develop a tooltip example is tracked by 
+          Work to develop a tooltip example is tracked by
           <a href="https://github.com/w3c/aria-practices/issues/127">issue 127.</a>
         </p>
       </section>
@@ -1966,7 +2147,7 @@ A tree that provides navigation to a set of web pages and demonstrates how to ex
     <section class="widget" id="windowsplitter">
       <h3>Window Splitter</h3>
       <p>
-        Work is in progress on this design pattern and is tracked by 
+        Work is in progress on this design pattern and is tracked by
         <a href="https://github.com/w3c/aria-practices/issues/129">issue 129.</a>
       </p>
       <p>
@@ -1975,14 +2156,14 @@ A tree that provides navigation to a set of web pages and demonstrates how to ex
         A fixed splitter toggles between two positions whereas a variable splitter can be adjusted to any position within an allowed range.
       </p>
       <p>
-        A window splitter has a value that represents the size of one of the panes, which, in this pattern,  is called the primary pane. 
+        A window splitter has a value that represents the size of one of the panes, which, in this pattern,  is called the primary pane.
         When the splitter has its minimum value, the primary pane has its smallest size and the secondary pane has its largest size.
         The splitter also has an accessible name that matches the name of the primary pane.
       </p>
       <p>
         For example, consider a book reading application with a primary pane for the table of contents and a secondary pane that displays content from a section of the book.
         The two panes are divided by a vertical splitter labeled &quot;Table of Contents&quot;.
-        When the table of contents pane has its maximum size, the splitter has a value of <code>100</code>, 
+        When the table of contents pane has its maximum size, the splitter has a value of <code>100</code>,
         and when the table of contents is completely collapsed, the splitter has a value of <code>0</code>.
       </p>
       <p>
@@ -2011,8 +2192,8 @@ A tree that provides navigation to a set of web pages and demonstrates how to ex
           <li>The separator element has the <a class="property-reference" href="#aria-valuemax">aria-valuemax</a> property set to a decimal value that represents the position where the primary pane has its maximum size . This is typically <code>100</code>.</li>
           <li>
             If the primary pane has a visible label, it is referenced by
-            <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> on the separator element. 
-            Otherwise, the separator element has a label provided by 
+            <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> on the separator element.
+            Otherwise, the separator element has a label provided by
             <a href="#aria-label" class="property-reference">aria-label</a>.
           </li>
           <li>The separator element has <a href="#aria-controls" class="property-reference">aria-controls</a> referring to the primary pane.</li>
@@ -2021,7 +2202,7 @@ A tree that provides navigation to a set of web pages and demonstrates how to ex
       <section class="notoc">
         <h4>Example</h4>
         <p>
-          Work to develop an example window splitter widget is tracked by 
+          Work to develop an example window splitter widget is tracked by
           <a href="https://github.com/w3c/aria-practices/issues/130">issue 130.</a>
         </p>
       </section>
@@ -2043,9 +2224,9 @@ A tree that provides navigation to a set of web pages and demonstrates how to ex
     <section>
       <h3>HTML5 Sectioning Elements</h3>
       <p>
-        Several HTML5 sectioning elements automatically create ARIA landmark regions. 
-        So, in order to provide assistive technology users with a logical view of a page, 
-        it is important to understand the effects of using HTML5 sectioning elements. 
+        Several HTML5 sectioning elements automatically create ARIA landmark regions.
+        So, in order to provide assistive technology users with a logical view of a page,
+        it is important to understand the effects of using HTML5 sectioning elements.
         <a href="https://www.w3.org/TR/html-aria/">More information on HTML5 element role mapping</a>.
       </p>
       <table class="widget-features">
@@ -2100,7 +2281,7 @@ A tree that provides navigation to a set of web pages and demonstrates how to ex
     <section>
       <h3>General Principles of Landmark Design</h3>
       <p>
-        Including <strong>all content</strong> on a page in one of its landmark regions 
+        Including <strong>all content</strong> on a page in one of its landmark regions
         and giving each landmark region a semantically meaningful role
         is one of the most effective ways of ensuring assistive technology users will not overlook information that is relevant to their needs.
       </p>
@@ -2443,8 +2624,8 @@ A tree that provides navigation to a set of web pages and demonstrates how to ex
   <section id="keyboard">
     <h2>Developing a Keyboard Interface</h2>
     <p>
-      This section is work in progress.  
-      Development of the next revision is tracked by 
+      This section is work in progress.
+      Development of the next revision is tracked by
       <a href="https://github.com/w3c/aria-practices/issues/220">issue 220.</a>
     </p>
     <p>
@@ -2816,7 +2997,7 @@ A tree that provides navigation to a set of web pages and demonstrates how to ex
       <section id="kbd_nested_components">
         <h4>Nested Composite Components - Composites and Toolbars That Contain Composites</h4>
         <p>
-          Work to draft content for this section is tracked by 
+          Work to draft content for this section is tracked by
           <a href="https://github.com/w3c/aria-practices/issues/218">issue 218.</a>
         </p>
       </section>
@@ -3109,12 +3290,7 @@ A tree that provides navigation to a set of web pages and demonstrates how to ex
   </section>
 
   <section id="presentation_role">
-    <h2>
-      Intentionally Hiding Semantics with the <code>presentation</code> Role
-    </h2>
-    <p>
-      Please provide feedback on this section in <a href="https://github.com/w3c/aria-practices/issues/176">issue 176</a>.
-    </p>
+    <h2>Intentionally Hiding Semantics with the <code>presentation</code> Role</h2>
     <p>
       While ARIA is primarily used to express semantics, there are some situations where hiding an
       element’s semantics from assistive technologies is helpful. This is done with the
@@ -3241,9 +3417,6 @@ A tree that provides navigation to a set of web pages and demonstrates how to ex
 
   <section id="children_presentational">
     <h2>Roles That Automatically Hide Semantics by Making Their Descendants Presentational</h2>
-    <p>
-      Please provide feedback on this section in <a href="https://github.com/w3c/aria-practices/issues/178">issue 178</a>.
-    </p>
     <p>
       There are some types of user interface components that, when represented in a platform
       accessibility API, can only contain text. For example, accessibility APIs do not have a way of
