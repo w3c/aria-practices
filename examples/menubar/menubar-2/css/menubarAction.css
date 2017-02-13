@@ -18,7 +18,8 @@ ul[role="menubar"] > li {
 }
 
 ul[role="menubar"] > li > span:after {
-  content: " \0025BE";
+  content: url('../images/down-arrow-brown.png');
+  padding-left: 0.25em;
 }
 
 ul[role="menubar"] ul[role="menu"] {
@@ -54,6 +55,7 @@ ul[role="menubar"] ul li[role="menuitemcheckbox"],
 ul[role="menubar"] ul li[role="menuitemradio"], 
 ul[role="menubar"] ul li[role="separator"] {
   padding-left: 1.5em;
+  width: 8em;
 }  
 
 
@@ -84,18 +86,9 @@ ul[role="menubar"] [role="menuitemradio"][aria-checked='true'] {
 
 ul[role="menubar"] [role="menuitemcheckbox"][aria-checked='true']:before,
 ul[role="menubar"] [role="menuitemradio"][aria-checked='true']:before {
-  content: "\002713\000A0";
+  content: url('../images/check-brown.png');
+  padding-right: 0.25em;
 }
-
-
-ul[role="menubar"] ul[role="menuitem"] > span:after {
-/*  content: url('../images/pull-down-menu-icon.png'); */
-  content: " \25bc";
-  font-size: 80%;
-  color: gray;
-}
-
-
 
 
 

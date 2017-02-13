@@ -45,7 +45,8 @@ ul[role="menubar"] > li {
 }
 
 ul[role="menubar"] > li > a:after {
-  content: " \0025BE";
+  content: url('../images/down-arrow-brown.png');
+  padding-left: .25em;
 }
 
 
@@ -61,8 +62,10 @@ ul[role="menubar"] ul[role="menu"] {
 
 ul[role="menubar"] ul[role="menu"] li a {
   display: block;
+  width: 10em;
 }
 
 ul[role="menubar"] ul[role="menu"] a[aria-haspopup="true"]:after {
-  content: "  \0025B8";
+  content: url('../images/right-arrow-brown.png');
+  padding-right: 2em;
 }
