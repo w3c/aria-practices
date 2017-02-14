@@ -1,34 +1,16 @@
-[role="button"]:hover,
-[role="button"]:focus {
-  background-color: #eee;
-  text-decoration: underline;
-}
-
-[role="button"]:active {
-  background-color: #bbb;
-}
-
-[role="button"][aria-expanded="false"]:before {
-  content: "\0025BA \0000A0";
-  color: #630;
-
-}
-
-[role="button"][aria-expanded="true"]:before {
-  content: "\0025BC \0000A0";
-  color: #630;
-}
-
-dl.faq dt {
+dl.faq button {
     margin: 0;
     padding: 0;
-    margin-top: 0.5em;
+    margin-top: 1em;
     font-weight: bold;
     font-size: 110%;
+    border: thin solid transparent;
+    background-color: transparent;
+    padding-left: 0.125em;
 }
 
 
-dl.faq dd {
+dl.faq .desc {
     margin: 0;
     padding: 0;
     margin-top: 0.25em;
@@ -36,3 +18,32 @@ dl.faq dd {
     font-size: 110%;
     display: none;
 }
+
+dl.faq button:hover,
+dl.faq button:focus {
+  background-color: #eee;
+}
+
+dl.faq button:focus {
+  border-color: #663300;
+}
+
+dl.faq button:hover {
+  text-decoration: underline;
+}
+
+dl.faq button:active {
+  background-color: #bbb;
+}
+
+dl.faq button[aria-expanded="false"]:before {
+  content: url('../images/right-arrow-brown.png');
+  padding-right: 0.35em;
+
+}
+
+dl.faq button[aria-expanded="true"]:before {
+  content: url('../images/down-arrow-brown.png');
+  padding-right: 0.35em;
+}
+
