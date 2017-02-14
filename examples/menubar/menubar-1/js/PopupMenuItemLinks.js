@@ -193,7 +193,6 @@ MenuItem.prototype.handleKeydown = function (event) {
   }
 };
 
-
 MenuItem.prototype.handleClick = function (event) {
   this.menu.setFocusToController();
   this.menu.close(true);

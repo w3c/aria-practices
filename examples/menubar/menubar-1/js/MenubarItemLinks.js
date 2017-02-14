@@ -145,7 +145,7 @@ MenubarItem.prototype.handleKeydown = function (event) {
       if (isPrintableCharacter(char)) {
         this.menubar.setFocusByFirstCharacter(this, char);
         flag = true;
-      }    
+      }
       break;
   }
 
