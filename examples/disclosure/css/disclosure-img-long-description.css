@@ -1,19 +1,39 @@
-[role="button"]:hover,
-[role="button"]:focus {
+figure button {
+    margin: 0;
+    padding: 0;
+    margin-top: 1em;
+    display: block;
+    font-size: 110%;
+    border: thin solid transparent;
+    background-color: transparent;
+    padding-left: 0.125em;
+    position: relative;
+    left: -0.35em;
+}
+figure button:hover,
+figure button:focus {
   background-color: #eee;
+}
+
+figure button:focus {
+  border-color: #663300;
+}
+
+figure button:hover {
   text-decoration: underline;
 }
 
-[role="button"]:active {
+figure button:active {
   background-color: #bbb;
 }
 
-[role="button"][aria-expanded="false"]:before {
-  content: "\0025BA";
-  color: #630;
+figure button[aria-expanded="false"]:before {
+  content: url('../images/right-arrow-brown.png');
+  padding-right: 0.25em;
 }
 
-[role="button"][aria-expanded="true"]:before {
-  content: "\0025BC";
-  color: #630;
+figure button[aria-expanded="true"]:before {
+  content: url('../images/down-arrow-brown.png');
+  padding-right: 0.25em;
 }
+
