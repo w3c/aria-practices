@@ -67,7 +67,6 @@ MenubarItemAction.prototype.init = function () {
   this.domNode.tabIndex = -1;
 
   this.domNode.addEventListener('keydown', this.handleKeydown.bind(this));
-  this.domNode.addEventListener('keypress', this.handleKeypress.bind(this));
   this.domNode.addEventListener('click', this.handleClick.bind(this));
   this.domNode.addEventListener('focus', this.handleFocus.bind(this));
   this.domNode.addEventListener('blur', this.handleBlur.bind(this));
@@ -87,8 +86,13 @@ MenubarItemAction.prototype.init = function () {
 
 MenubarItemAction.prototype.handleKeydown = function (event) {
   var tgt = event.currentTarget,
+      char = event.key,
       flag = false,
- clickEvent;
+      clickEvent;
+
+  function isPrintableCharacter (str) {
+    return str.length === 1 && str.match(/\S/);
+  }
 
   switch (event.keyCode) {
     case this.keyCode.SPACE:
@@ -138,24 +142,16 @@ MenubarItemAction.prototype.handleKeydown = function (event) {
       break;
 
     default:
+      if (isPrintableCharacter(char)) {
+        this.menubar.setFocusByFirstCharacter(this, char);
+        flag = true;
+      }
       break;
   }
 
   if (flag) {
     event.stopPropagation();
     event.preventDefault();
-  }
-};
-
-MenubarItemAction.prototype.handleKeypress = function (event) {
-  var char = String.fromCharCode(event.charCode);
-
-  function isPrintableCharacter (str) {
-    return str.length === 1 && str.match(/\S/);
-  }
-
-  if (isPrintableCharacter(char)) {
-    this.menubar.setFocusByFirstCharacter(this, char);
   }
 };
 

@@ -58,15 +58,14 @@
         <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
       </section>
 
-      <section hidden>
+      <section>
         <h2>Accessibility Features</h2>
-        <p class="annotate">Please replace this content with a list of accessibility features demonstrated in this implementation, such as:</p>
-        <ul>
-          <li>ARIA roles</li>
-          <li>property and state information</li>
-          <li>Event handlers</li>
-          <li><code>tabindex</code> values</li>
-        </ul>
+        <section>
+        <h2>Accessibility Features</h2>
+        <p>
+          To demonstrate the effects of deleting a tab, the third tab, labeled <q>Joke</q>, 
+          can be deleted when it has focus by pressing <kbd>Delete</kbd>.
+        </p>
       </section>
 
       <section>
@@ -80,7 +79,7 @@
           </thead>
           <tbody>
             <tr>
-              <th><kbd>tab</kbd></th>
+              <th><kbd>Tab</kbd></th>
               <td>
                 <ul>
                   <li>When focus moves into the tab list, places focus on the active <code>tab</code> element .</li>
@@ -95,7 +94,7 @@
               </td>
             </tr>
             <tr>
-              <th><kbd>right arrow</kbd></th>
+              <th><kbd>Right Arrow</kbd></th>
               <td>
                 When a tab has focus:
                 <ul>
@@ -105,7 +104,7 @@
               </td>
             </tr>
             <tr>
-              <th><kbd>left arrow</kbd></th>
+              <th><kbd>Left Arrow</kbd></th>
               <td>
                 When a tab has focus:
                 <ul>
@@ -115,12 +114,16 @@
               </td>
             </tr>
             <tr>
-              <th><kbd>home</kbd></th>
+              <th><kbd>Home</kbd></th>
               <td>When a tab has focus, moves focus to the first tab.</td>
             </tr>
             <tr>
-              <th><kbd>end</kbd></th>
+              <th><kbd>End</kbd></th>
               <td>When a tab has focus, moves focus to the last tab.</td>
+            </tr>
+            <tr>
+              <th><kbd>Delete</kbd></th>
+              <td>When focus is on the <q>Joke</q> tab,removes the tab from the tab list and places focus on the previous tab.</td>
             </tr>
           </tbody>
         </table>
