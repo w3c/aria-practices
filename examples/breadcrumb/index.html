@@ -41,12 +41,16 @@
       <h2>Accessibility Features</h2>
       <ul>
         <li>The set of links is structured using an ordered list .</li>
-        <li>
-          The visual separators between links are added via <abbr title="Cascading Style Sheets">CSS</abbr> Generated Content.
-          They have a border on one side and are skewed with CSS’ <code>transform</code> property so they resemble a slash.
-          Because the separators are added though CSS and are nothing but style, they do not add unnecessary screen reader verbosity.
+        <li>A <code>nav</code> element labeled <q>Breadcrumb</q> identifies the structure as a breadcrumb trail and makes it a navigation landmark so that it is easy to locate.</li>
+        <li>To prevent screen reader announcement of the visual separators between links, they are added via <abbr title="Cascading Style Sheets">CSS</abbr>:
+          <ul>
+            <li>
+              The separators are part of the visual presentation that signifies the breadcrumb trail, which is already semantically represented by the <code>nav</code> element with its label of <q>Breadcrumb</q>.
+              So, using a display technique that is not represented in the accessibility tree used by screen readers prevents redundant and potentially distracting verbosity.
+            </li>
+            <li>Each link has a border on one side that is skewed with the CSS’ <code>transform</code> property so it resembles a slash.</li>
+          </ul>
         </li>
-        <li>A labelled <code>nav</code> element identifies the structure and makes it easy to identify and locate.</li>
       </ul>
     </section>
 
