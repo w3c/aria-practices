@@ -1,13 +1,16 @@
-div.faq [role="button"] {
+dl.faq button {
     margin: 0;
     padding: 0;
     margin-top: 1em;
     font-weight: bold;
     font-size: 110%;
+    border: thin solid transparent;
+    background-color: transparent;
+    padding-left: 0.125em;
 }
 
 
-div.faq .desc {
+dl.faq .desc {
     margin: 0;
     padding: 0;
     margin-top: 0.25em;
@@ -16,23 +19,30 @@ div.faq .desc {
     display: none;
 }
 
-div.faq [role="button"]:hover,
-[role="button"]:focus {
+dl.faq button:hover,
+dl.faq button:focus {
   background-color: #eee;
+}
+
+dl.faq button:focus {
+  border-color: #663300;
+}
+
+dl.faq button:hover {
   text-decoration: underline;
 }
 
-div.faq [role="button"]:active {
+dl.faq button:active {
   background-color: #bbb;
 }
 
-div.faq [role="button"][aria-expanded="false"]:before {
+dl.faq button[aria-expanded="false"]:before {
   content: url('../images/right-arrow-brown.png');
   padding-right: 0.35em;
 
 }
 
-div.faq [role="button"][aria-expanded="true"]:before {
+dl.faq button[aria-expanded="true"]:before {
   content: url('../images/down-arrow-brown.png');
   padding-right: 0.35em;
 }
