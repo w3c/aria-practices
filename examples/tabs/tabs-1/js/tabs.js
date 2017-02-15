@@ -198,8 +198,13 @@
       // Update arrays related to tabs widget
       generateArrays();
 
-      // Activate the first tab
-      activateTab(tabs[0]);
+      // Activate the closest tab to the one that was just deleted
+      if (target.index - 1 < 0) {
+        activateTab(tabs[0]);
+      }
+      else {
+        activateTab(tabs[target.index - 1]);
+      };
     };
   };
 
