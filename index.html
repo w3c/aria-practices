@@ -504,8 +504,88 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       color: white;
     }
     
+    .respec-warning-list,
+    .respec-error-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      font-family: sans-serif;
+      background-color: rgb(255, 251, 230);
+      font-size: .9em;
+    }
+    
+    .respec-warning-list li,
+    .respec-error-list li {
+      padding: 0.4em 0.7em;
+    }
+    
+    .respec-warning-list li::before {
+      content: "⚠️";
+      padding-right: .5em;
+    }
+    
+    .respec-warning-list li {
+      color: rgb(92, 59, 0);
+      border-bottom: thin solid rgb(255, 245, 194);
+    }
+    
+    .respec-error-list,
+    .respec-error-list li {
+      background-color: rgb(255, 240, 240);
+    }
+    
+    .respec-error-list li::before {
+      content: "💥";
+      padding-right: .5em;
+    }
+    
+    .respec-error-list li {
+      padding: 0.4em 0.7em;
+      color: rgb(92, 59, 0);
+      border-bottom: thin solid rgb(255, 215, 215);
+    }
+    
+    #respec-overlay {
+      display: block;
+      opacity: 0;
+      position: fixed;
+      zIndex: 10000;
+      top: 0px;
+      left: 0px;
+      height: 100%;
+      width: 100%;
+      background: #000;
+    }
+    
+    .respec-modal {
+      display: block;
+      position: fixed;
+      opacity: 0;
+      z-index: 11000;
+      margin: auto;
+      top: 10%;
+      background: #fff;
+      border: 5px solid #666;
+      min-width: 20%;
+      width: 70%;
+      padding: 0;
+      max-height: 80%;
+      overflow-y: auto;
+      margin: 0 -.5cm
+    }
+    
+    .respec-modal h3 {
+      margin: 0;
+      padding: .2em;
+      text-align: center;
+      color: black;
+      background: linear-gradient(to bottom, rgba(238, 238, 238, 1) 0%, rgba(238, 238, 238, 1) 50%, rgba(204, 204, 204, 1) 100%);
+      font-size: 1em;
+    }
+    
     #respec-menu button.respec-option {
       background: white;
+      padding: 0 .2cm;
       border: none;
       width: 100%;
       text-align: left;
@@ -548,7 +628,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   <!--[if lt IE 9]><script src='https://www.w3.org/2008/site/js/html5shiv.js'></script><![endif]-->
   <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/W3C-ED">
   <link rel="canonical" href="https://www.w3.org/TR/wai-aria-practices-1.1/">
-  <meta name="generator" content="ReSpec 10.1.7">
+  <meta name="generator" content="ReSpec 10.1.9">
   <script id="initialUserConfig" type="application/json">
     {
       "doRDFa": "1.1",
@@ -918,7 +998,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       "preProcess": [
         null
       ],
-      "publishDate": "2017-02-15"
+      "publishDate": "2017-02-16"
     }
   </script>
 </head>
@@ -928,7 +1008,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <a class="logo" href="https://www.w3.org/"><img width="72" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" alt="W3C"></a>
     </p>
     <h1 class="title p-name" id="title" property="dcterms:title"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Authoring Practices 1.1</h1>
-    <h2 id="w3c-editor-s-draft-15-february-2017"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2017-02-15">15 February 2017</time></h2>
+    <h2 id="w3c-editor-s-draft-16-february-2017"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2017-02-16">16 February 2017</time></h2>
     <dl>
       <dt>This version:</dt>
       <dd><a class="u-url" href="http://w3c.github.io/aria-practices/">http://w3c.github.io/aria-practices/</a></dd>
@@ -1255,62 +1335,49 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </span>
         </span>
       </h3>
-
       <p>
         An accordion is a vertically stacked set of elements, such as labels or thumbnails, that allow the user to toggle the display of sections of content. Each labeling element can be expanded or collapsed to reveal or hide its associated content. Accordions are commonly used to reduce the need to scroll when presenting multiple sections of content on a single page.
       </p>
-
       <p>Terms for understanding accordions include:</p>
-
       <dl>
         <dt>Accordion Header:</dt>
         <dd>Label for or thumbnail representing a section of content that also serves as a control for showing, and in some implementations, hiding the section of content. </dd>
         <dt>Accordion Panel:</dt>
         <dd>Section of content associated with an accordion header.</dd>
       </dl>
-
       <p>
         In some accordions, there are additional elements that are always visible adjacent to the accordion header. For instance, a menubutton may accompany each accordion header to provide access to actions that apply to that section. And, in some cases, a snippet of the hidden content may also be visually persistent.
       </p>
 
       <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction" property="bibo:hasPart">
         <h4 id="keyboard-interaction" resource="#keyboard-interaction"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
-
         <ul>
           <li>
             <kbd>Enter</kbd> or <kbd>Space</kbd>:
-
             <ul>
               <li>
                 When focus is on the accordion header for a collapsed panel, expands the associated panel. If the implementation allows only one panel to be expanded, and if another panel is expanded, collapses that panel.
               </li>
-
               <li>
                 When focus is on the accordion header for an expanded panel, collapses the panel if the implementation supports collapsing. Some implementations require one panel to be expanded at all times and allow only one panel to be expanded; so, they do not support a collapse function.
               </li>
             </ul>
           </li>
-
           <li>
             <kbd>Down Arrow</kbd> (Optional): If focus is on an accordion header, moves focus to the next accordion header. If focus is on the last accordion header, either does nothing or moves focus to the first accordion header.
           </li>
-
           <li>
             <kbd>Up Arrow</kbd> (Optional): If focus is on an accordion header, moves focus to the previous accordion header. If focus is on the first accordion header, either does nothing or moves focus to the last accordion header.
           </li>
-
           <li>
             <kbd>Home</kbd> (Optional): When focus is on an accordion header, moves focus to the first accordion header.
           </li>
-
           <li>
             <kbd>End</kbd> (Optional): When focus is on an accordion header, moves focus to the last accordion header.
           </li>
-
           <li>
             <kbd>Control + Page Down</kbd> (Optional): If focus is inside an accordion panel or on an accordion header, moves focus to the next accordion header. If focus is in the last accordion header or panel, either does nothing or moves focus to the first accordion header.
           </li>
-
           <li>
             <kbd>Control + Page Up</kbd> (Optional): If focus is inside an accordion panel, moves focus to the header for that panel. If focus is on an accordion header, moves focus to the previous accordion header. If focus is on the first accordion header, either does nothing or moves focus to the last accordion header.
           </li>
@@ -1319,26 +1386,40 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
       <section class="notoc" typeof="bibo:Chapter" resource="#wai-aria-roles-states-and-properties" property="bibo:hasPart">
         <h4 id="wai-aria-roles-states-and-properties" resource="#wai-aria-roles-states-and-properties"><span property="xhv:role" resource="xhv:heading"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties:</span></h4>
-
         <ul>
           <li>
-            Each accordion header is contained in an element with role <a href="http://w3c.github.io/aria/aria/aria.html#button" class="role-reference">button</a>. The button label is the label for the associated accordion panel.
+            The title of each accordion header is contained in an element with role <a href="http://w3c.github.io/aria/aria/aria.html#button" class="role-reference">button</a>.
           </li>
-
           <li>
-            Each accordion header <code>button</code> is wrapped in an element with role <a href="http://w3c.github.io/aria/aria/aria.html#heading" class="role-reference">heading</a> that has a value set for <a href="http://w3c.github.io/aria/aria/aria.html#aria-level" class="property-reference">aria-level</a> that is appropriate for the information architecture of the page. If the native host language has an element with an implicit <code>heading</code> and <code>aria-level</code>, such as an HTML heading tag, a native host language element may be used. The <code>button</code> element is the only element inside the <code>heading</code> element. That is, if there are other visually persistent elements, they are not included inside the <code>heading</code> element.
+            Each accordion header <code>button</code> is wrapped in an element with role <a href="http://w3c.github.io/aria/aria/aria.html#heading" class="role-reference">heading</a> that has a value set for <a href="http://w3c.github.io/aria/aria/aria.html#aria-level" class="property-reference">aria-level</a> that is appropriate for the information architecture of the page.
+            <ul>
+              <li>If the native host language has an element with an implicit <code>heading</code> and <code>aria-level</code>, such as an HTML heading tag, a native host language element may be used.</li>
+              <li>
+                The <code>button</code> element is the only element inside the <code>heading</code> element. That is, if there are other visually persistent elements, they are not included inside the <code>heading</code> element.
+              </li>
+            </ul>
           </li>
-
           <li>
             If the accordion panel associated with an accordion header is visible, the header <code>button</code> element has <a href="http://w3c.github.io/aria/aria/aria.html#aria-expanded" class="state-reference">aria-expanded</a> set to <code>true</code>. If the panel is not visible, <a href="http://w3c.github.io/aria/aria/aria.html#aria-expanded" class="state-reference">aria-expanded</a> is set to <code>false</code>.
           </li>
-
           <li>
             The accordion header <code>button</code> element has <a href="http://w3c.github.io/aria/aria/aria.html#aria-controls" class="property-reference">aria-controls</a> set to the ID of the element containing the accordion panel content.
           </li>
-
           <li>
             If the accordion panel associated with an accordion header is visible, and if the accordion does not permit the panel to be collapsed, the header <code>button</code> element has <a href="http://w3c.github.io/aria/aria/aria.html#aria-disabled" class="state-reference">aria-disabled</a> set to <code>true</code>.
+          </li>
+          <li>
+            Optionally, each element that serves as a container for panel content has role
+            <a href="http://w3c.github.io/aria/aria/aria.html#region" class="role-reference">region</a> and
+            <a href="http://w3c.github.io/aria/aria/aria.html#aria-labelledby" class="property-reference">aria-labelledby</a> with a value that refers to the button that controls display of the panel.
+            <ul>
+              <li>
+                Avoid using the <code>region</code> role in circumstances that create landmark region proliferation, e.g., in an accordion that contains more than approximately 6 panels that can be expanded at the same time.
+              </li>
+              <li>
+                Role <code>region</code> is especially helpful to the perception of structure by screen reader users when panels contain heading elements or a nested accordion.
+              </li>
+            </ul>
           </li>
         </ul>
       </section>
@@ -4558,7 +4639,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <p>[Placeholder section that will be resolved by <a href="https://github.com/w3c/aria-practices/issues/84">issue #84</a>.]</p>
     </section>
 
-    <div data-include="common/acknowledgements.html" data-include-replace="true" data-include-id="include-8704184027057451">
+    <div data-include="common/acknowledgements.html" data-include-replace="true" data-include-id="include-851786090576353">
     </div>
   </section>
 
@@ -4576,9 +4657,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </span>
       </h3>
       <dl class="bibliography" resource=""><dt id="bib-WAI-ARIA">[WAI-ARIA]</dt>
-        <dd>James Craig; Michael Cooper; Shane McCarron et al. W3C. <a href="http://www.w3.org/TR/wai-aria-1.1/" property="dc:references"><cite>Accessible Rich Internet Applications (WAI-ARIA) 1.1</cite></a>. W3C Working Draft. URL: <a href="http://www.w3.org/TR/wai-aria-1.1/" property="dc:references">http://www.w3.org/TR/wai-aria-1.1/</a>
+        <dd><a href="http://www.w3.org/TR/wai-aria-1.1/" property="dc:references"><cite>Accessible Rich Internet Applications (WAI-ARIA) 1.1</cite></a>. James Craig; Michael Cooper; Shane McCarron et al. W3C. W3C Working Draft. URL: <a href="http://www.w3.org/TR/wai-aria-1.1/" property="dc:references">http://www.w3.org/TR/wai-aria-1.1/</a>
         </dd><dt id="bib-WAI-ARIA-ROADMAP">[WAI-ARIA-ROADMAP]</dt>
-        <dd>Richard Schwerdtfeger. W3C. <a href="https://www.w3.org/TR/wai-aria-roadmap/" property="dc:references"><cite>Roadmap for Accessible Rich Internet Applications (WAI-ARIA Roadmap)</cite></a>. 4 February 2008. W3C Working Draft. URL: <a href="https://www.w3.org/TR/wai-aria-roadmap/" property="dc:references">https://www.w3.org/TR/wai-aria-roadmap/</a>
+        <dd><a href="https://www.w3.org/TR/wai-aria-roadmap/" property="dc:references"><cite>Roadmap for Accessible Rich Internet Applications (WAI-ARIA Roadmap)</cite></a>. Richard Schwerdtfeger. W3C. 4 February 2008. W3C Working Draft. URL: <a href="https://www.w3.org/TR/wai-aria-roadmap/" property="dc:references">https://www.w3.org/TR/wai-aria-roadmap/</a>
         </dd>
       </dl>
     </section>

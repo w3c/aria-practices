@@ -19,10 +19,6 @@
   <main>
   <h1>Accordion Example</h1>
   <p>
-    Please provide feedback for this example in
-    <a href="https://github.com/w3c/aria-practices/issues/210">issue 210.</a>
-  </p>
-  <p>
     The below example section contains a simple personal information input form divided into 3 sections
     that demonstrates the
     <a href="../../#accordion">design pattern for accordion.</a>
@@ -34,7 +30,7 @@
     <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
     <div id="coding-arena">
       <div class="demo-block">
-        <dl id="accordionGroup">
+        <dl id="accordionGroup" role="presentation">
           <dt role="heading" aria-level="3" class="clearfix">
             <a role="button" aria-expanded="false" href="#" class="accAccordion"
               aria-controls="sect1" data-defaultopen="true" id="accordion1id"
@@ -182,22 +178,31 @@
       </thead>
       <tbody>
         <tr>
+          <th scope="row"><code>presentation</code></th>
+          <td></td>
+          <td><code>dl</code></td>
+          <td>
+            <ul>
+              <li>Indicates that the <code>dl</code> element is being used to control presentation and does not represent a definition list.</li>
+              <li>This implementation uses an HTML definition list where each term is recast as a header and each definition is recast as a region that contains panel content.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
           <th scope="row"><code>heading</code></th>
           <td></td>
           <td><code>dt</code></td>
-          <td>
-            <ul>
-              <li>Creates the accordion header.</li>
-              <li>The accordion structure is built on an HTML definition list where each term is recast as a header and each definition is recast as a panel.</li>
-            </ul>
-          </td>
+          <td>Identifies the element as a heading that serves as an accordion header.</td>
         </tr>
         <tr>
           <td></td>
           <th scope="row"><code>aria-level=<q>3</q></code></th>
           <td><code>dt</code></td>
           <td>
-              Specifies heading level for the accordion header.
+            <ul>
+              <li>Specifies heading level for the accordion header.</li>
+              <li>Level 3 is chosen because the accordion is contained in a section with a level 2 heading.</li>
+            </ul>
           </td>
         </tr>
         <tr>
@@ -205,7 +210,7 @@
           <td></td>
           <td><code>a</code></td>
           <td>
-            A button inside the accordion header that provides hide/show functionality.
+            Identifies the element as a button inside the accordion header that provides hide/show functionality.
           </td>
         </tr>
         <tr>
