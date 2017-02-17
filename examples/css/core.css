@@ -58,22 +58,35 @@ img {
   border: none;
 }
 
-code {
-  font-family: "Courier new", Courier, Monospace;
-  font-weight: bold;
+pre,
+code,
+samp,
+.sourcecode {
+  color: hsl(11, 81%, 43%);
+  font-family: "Menlo", "Consolas", "DejaVu Sans Mono", "Monaco", monospace;
+  font-size: .9em;
+  page-break-inside: avoid;
+  hyphens: none;
+  text-transform: none;
+  white-space: pre-line;
+}
+
+pre code,
+code code {
+  font-size: 100%;
+}
+
+pre,
+.sourcecode {
+  margin: 1em 0;
+  padding: 1em;
+  border-radius: .2em;
+  overflow: auto;
+  background: hsl(24, 20%, 95%);
 }
 
 [hidden] {
   display: none;
-}
-
-.sourcecode {
-  font-family: "Courier new", Courier, Monospace;
-  margin: 0;
-  padding: 1em;
-  border: thin solid black;
-  background: #EEEEEE;
-  font-size: 120%;
 }
 
 #example {
