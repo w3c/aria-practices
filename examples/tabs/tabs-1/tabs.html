@@ -10,15 +10,13 @@
     <script src="../../js/examples.js" type="text/javascript"></script>
 
     <!--  js and css for this example. -->
-    <link href="css/tabs.css" rel="stylesheet">
-    
-    
+    <link href="../css/tabs.css" rel="stylesheet">
   </head>
   <body>
     <main>
       <h1>Tabs With Automatic Activation</h1>
       <p>
-        Provide feedback on updates to this page in 
+        Provide feedback on updates to this page in
         <a href="https://github.com/w3c/aria-practices/issues/278">issue 278.</a>
       </p>
       <p>
@@ -31,7 +29,7 @@
       <ul>
         <li><a href="../tabs-2/tabs.html">Tabs With Manual Activation</a>: A tabs widget where users activate a tab and display its panel by pressing <kbd>Space</kbd> or <kbd>Enter</kbd>.</li>
       </ul>
-      
+
       <section>
         <h2 id="ex_label">Example</h2>
         <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
@@ -39,7 +37,7 @@
           <div class="tabs">
             <div role="tablist" aria-label="Entertainment">
               <button role="tab" aria-selected="true" aria-controls="nils-tab" id="nils">Nils Frahm</button>
-              <button role="tab" aria-selected="false" aria-controls="helios-tab" id="helios" tabindex="-1">Helios</button>
+              <button role="tab" aria-selected="false" aria-controls="agnes-tab" id="agnes" tabindex="-1">Agnes Obel</button>
               <button role="tab" aria-selected="false" aria-controls="complexcomplex" id="complex" tabindex="-1" data-deletable>Joke</button>
             </div>
 
@@ -47,8 +45,8 @@
               <p>Nils Frahm is a German musician, composer and record producer based in Berlin. He is known for combining classical and electronic music and for an unconventional approach to the piano in which he mixes a grand piano, upright piano, Roland Juno-60, Rhodes piano, drum machine, and Moog Taurus.</p>
             </div>
 
-            <div tabindex="0" role="tabpanel" id="helios-tab" aria-labelledby="helios" hidden>
-              <p>Helios (Keith Kenniff) is an American composer, multi-instrumentalist, and electronic music producer. He composes ambient/electronic music under the moniker Helios and post-classical piano music under Goldmund. He is also one half of the indie band Mint Julep, and ambient project "A Pale Fire". Keith is also a composer for film, television, dance and performance art. In 2010 he created the record label Unseen.</p>
+            <div tabindex="0" role="tabpanel" id="agnes-tab" aria-labelledby="agnes" hidden>
+              <p>Agnes Caroline Thaarup Obel is a Danish singer/songwriter. Her first album, Philharmonics, was released by PIAS Recordings on 4 October 2010 in Europe. Philharmonics was certified gold in June 2011 by the Belgian Entertainment Association (BEA) for sales of 10,000 Copies.</p>
             </div>
 
             <div tabindex="0" role="tabpanel" id="complexcomplex" aria-labelledby="complex" hidden>
@@ -63,7 +61,7 @@
       <section>
         <h2>Accessibility Features</h2>
         <p>
-          To demonstrate the effects of deleting a tab, the third tab, labeled <q>Joke</q>, 
+          To demonstrate the effects of deleting a tab, the third tab, labeled <q>Joke</q>,
           can be deleted when it has focus by pressing <kbd>Delete</kbd>.
         </p>
       </section>
@@ -312,13 +310,13 @@
       </section>
 
     </main>
-    
+
     <nav>
       <!--  Update the pattern_ID parameter of this link to refer to the APG design pattern section related to this example.  -->
       <a href="../../../#tabpanel">Tabs Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
     </nav>
-    
+
     <script src="js/tabs.js" type="text/javascript"></script>
-    
+
   </body>
 </html>
