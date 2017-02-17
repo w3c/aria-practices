@@ -4,3 +4,7 @@
   border-radius: 4px;
   background: hsl(206, 74%, 90%);
 }
+
+[role="alert"]:empty {
+  display: none;
+}
