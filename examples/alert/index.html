@@ -3,44 +3,48 @@
   <head>
     <meta charset="utf-8" />
     <title>Alert Example | WAI-ARIA Authoring Practices 1.1</title>
+    
+    <!--  Core js and css shared by all examples; do not modify when using this template. -->
     <link href="../css/core.css" rel="stylesheet">
     <link href="../css/table.css" rel="stylesheet">
     <script src="../js/examples.js" type="text/javascript"></script>
+    
+    <!--  js and css for this example. -->
     <link href="css/alert.css" rel="stylesheet">
     <script src="js/alert.js" type="text/javascript"></script>
-    <script type="text/template" id="alert-template">
-      <div role="alert">
-        <p>Hej, hello, ciao, こんにちは, 안녕</p>
-      </div>
-    </script>
   </head>
   <body>
     <main>
     <h1>Alert Example</h1>
-
     <p>
-      This example shows a simple alert after you click the button.
-      It’s implemented according to the <a href="../../#alert">design pattern for alert</a>.
+      The below example demonstrates the <a href="../../#alert">design pattern for alert</a>.
+      Activating the <q>Trigger Alert</q> button causes a message to be inserted into the example alert element.
     </p>
-
     <section>
       <h2 id="ex_label">Example</h2>
       <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
       <div id="ex1">
-        <p><button id="alert-trigger">Trigger an alert</button></p>
-
-        <div id="example">
-
+        <p><button id="alert-trigger">Trigger Alert</button></p>
+        <p>
+          This is just a test. 
+          A typical alert is triggered by an event, such as an error, warning condition, or the arrival of information that is important in the context of the user's task.
+        </p>
+        <div id="example" role="alert">
         </div>
+        <!--  The following script element contains the content that will be inserted into the alert element. -->
+        <script type="text/template" id="alert-template">
+          <p>Hej, hello, ciao, こんにちは, 안녕</p>
+        </script>
       </div>
       <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
     </section>
 
     <section>
       <h2>Accessibility Features</h2>
-      <ol>
-        <li><code>role=alert</code> identifies an element as an alert which is a specialized form of the <code>status</code> role.</li>
-      </ol>
+      <p>
+        Because an alert is for critical information, assistive technologies may provide special behaviors designed to help call attention to changes in the text of an alert. 
+        For example, screen readers may interrupt all other speech and preface announcement of the new alert text with a special sound or phrase.
+      </p>
     </section>
 
     <section>
@@ -63,23 +67,29 @@
           <tr>
             <th scope="row"><code>alert</code></th>
             <td></td>
+            <td><code>div</code></td>
+            <td>Identifies the element as the container where alert content will be added or updated.</td>
+          </tr>
+          <tr>
             <td></td>
+            <th scope="row"><code>aria-live=<q>assertive</q></code></th>
+            <td>Implicit on <code>div</code></td>
             <td>
-              Identify element as Alert widget
+              <ul>
+                <li>This does not have to be declared in the code because it is implicit in the alert role.</li>
+                <li>Tells assistive technologies to interrupt other processes to provide users with immediate notification of relevant alert container changes.</li>
+              </ul>
             </td>
           </tr>
           <tr>
             <td></td>
-            <th scope="row"><a href="http://www.w3.org/TR/wai-aria-1.1/#aria-live"><code>aria-live</code></a> with implicit value of assertive</th>
-            <td></td>
-            <td>Announces alert when it is displayed.</td>
-          </tr>
-          <tr>
-            <td></td>
-            <th scope="row"><a href="http://www.w3.org/TR/wai-aria-1.1/#aria-atomic"><code>aria-atomic</code></a> with implicit value of true</th>
-            <td></td>
+            <th scope="row"><code>aria-atomic=<q>true</q></code></th>
+            <td>Implicit on <code>div</code></td>
             <td>
-              Tells assistive technologies to announce all content.
+            <ul>
+                <li>This does not have to be declared in the code because it is implicit in the alert role.</li>
+                <li>Tells assistive technologies to use the entire content of the alert element as the alert message even if only a portion of it has changed.</li>
+              </ul>
             </td>
           </tr>
         </tbody>
@@ -103,16 +113,12 @@
     <section>
       <h2 id="sc1_label">HTML Source Code</h2>
       <div role="separator" id="sc1_start_sep" aria-labelledby="sc1_start_sep sc1_label" aria-label="Start of"></div>
-      <pre id="sc1" class="sourcecode">
-&lt;script type="text/template" id="alert-template"&gt;
-  &lt;div role="alert"&gt;
-    &lt;p&gt;Hej, hello, ciao, こんにちは, 안녕&lt;/p&gt;
-  &lt;/div&gt;
-&lt;/script&gt;
-
-&lt;button id="alert-trigger"&gt;Trigger an alert&lt;/button&gt;
-</pre>
+      <div id="sc1"></div>
       <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of"></div>
+      <script>
+        sourceCode.add('sc1', 'ex1')
+        sourceCode.make()
+      </script>
     </section>
     </main>
     <nav>
