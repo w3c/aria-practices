@@ -84,5 +84,5 @@
   margin: .15em auto -.15em;
   height: 1em;
   width: 1em;
-  //vertical-align: middle;
+  pointer-events: none;
 }
