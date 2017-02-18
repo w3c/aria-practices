@@ -1,8 +1,8 @@
 nav.breadcrumb {
   padding: 0.8em 1em;
-  border: 1px solid #f5f5f5;
+  border: 1px solid hsl(0, 0%, 90%);
   border-radius: 4px;
-  background: #FCFBFC;
+  background: hsl(300, 14%, 97%);
 }
 
 nav.breadcrumb ol {
@@ -15,12 +15,6 @@ nav.breadcrumb li {
   display: inline;
 }
 
-/*nav.breadcrumb li + li::before {
-  display: inline-block;
-  content: url('../images/slash.svg');
-  vertical-align: middle;
-}*/
-
 nav.breadcrumb li + li::before {
   display: inline-block;
   margin: 0 .25em;
@@ -28,17 +22,6 @@ nav.breadcrumb li + li::before {
   border-right: .1em solid currentColor;
   height: .8em;
   content: '';
-}
-
-nav.breadcrumb a {
-  color: #2F72C8;
-  text-decoration: none;
-}
-
-nav.breadcrumb a:focus,
-nav.breadcrumb a:hover {
-  text-decoration: underline;
-  background: transparent;
 }
 
 nav.breadcrumb [aria-current="page"] {
