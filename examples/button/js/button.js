@@ -62,13 +62,19 @@ function toggleButtonState (event) {
   var currentState = button.getAttribute('aria-pressed');
   var newState = 'true';
 
+  var icon = button.getElementsByTagName('use')[0];
+  var currentIconState = icon.getAttribute('xlink:href');
+  var newIconState = '#icon-mute';
+
   // If aria-pressed is set to true, set newState to false
   if (currentState === 'true') {
     newState = 'false';
+    newIconState = '#icon-sound';
   }
 
   // Set the new aria-pressed state on the button
   button.setAttribute('aria-pressed', newState);
+  icon.setAttribute('xlink:href', newIconState);
 }
 
 window.onload = init;
