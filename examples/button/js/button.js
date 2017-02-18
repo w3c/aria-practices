@@ -53,7 +53,11 @@ function toggleButtonEventHandler (event) {
     }
   }
   else if (type === 'click') {
-    toggleButtonState(event);
+    // Only allow this event if either role is correctly set
+    // or a correct element is used.
+    if (event.target.getAttribute('role') === 'button' || event.target.tagName === 'button') {
+      toggleButtonState(event);
+    }
   }
 }
 
