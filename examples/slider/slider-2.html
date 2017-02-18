@@ -3,9 +3,14 @@
 <head>
   <meta charset="utf-8" />
   <title>ARIA Example: Vertical Sider and Sliders using aria-valuetext</title>
-  <meta name="generator" content="BBEdit 10.5" />
-  <link href="../css/core.css" rel="stylesheet">
-  <link href="../css/table.css" rel="stylesheet">
+
+  <!--  Core js and css shared by all examples; do not modify when using this template. -->
+  <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
+  <link rel="stylesheet" href="../css/core.css">
+  <script src="../js/examples.js"></script>
+  <script src="../js/highlight.pack.js"></script>
+  <script src="../js/app.js"></script>
+
   <link href="css/vertical-slider.css" rel="stylesheet">
   <link href="css/text-slider.css" rel="stylesheet">
 </head>
@@ -16,7 +21,7 @@
   <main>
     <h1>Thermostat Controls using ARIA Sliders</h1>
     <p>
-      This example needs revisions as described in 
+      This example needs revisions as described in
       <a href="https://github.com/w3c/aria-practices/issues/230">issue 230.</a>
     </p>
     <p>Change sliders to set values for setting a vertical temperature, fan speed and heat/air conditioning.  The examples also use <code>aria-valuetext</code> property.</p>
@@ -89,7 +94,7 @@
 
     <h2 id="id_kbd" style="clear: both;">Keyboard Support</h2>
 
-    <table aria-labelledby="id_kbd">
+    <table aria-labelledby="id_kbd" class="def">
       <thead>
         <tr>
           <th>Key</th>
@@ -126,7 +131,7 @@
 
     <h2 id="id_rps">ARIA Roles, Properties and States</h2>
 
-    <table aria-labelledby="id_rps">
+    <table aria-labelledby="id_rps" class="data attributes">
       <thead>
         <tr>
           <th>Role</th>
@@ -193,9 +198,7 @@
       <li>Javascript: <a href="js/vertical-slider.js" type="text/javascript">vertical-slider.js</a></li>
     </ul>
 
-    <div id="sc1">
-
-    </div>
+    <pre><code id="sc1"></code></pre>
 
     <h3>Fan/Heat Sliders</h3>
 
@@ -204,14 +207,12 @@
       <li>Javascript: <a href="js/text-slider.js" type="text/javascript">text-slider.js</a></li>
     </ul>
 
-    <div id="sc2">
-
-    </div>
+    <pre><code id="sc2"></code></pre>
 
     <script>
       console.log(sourceCode)
-      sourceCode.add('sc1', 'example1')
-      sourceCode.add('sc2', 'example2')
+      sourceCode.add('sc1', 'example1');
+      sourceCode.add('sc2', 'example2');
       sourceCode.make()
 
     </script>
