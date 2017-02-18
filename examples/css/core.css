@@ -1,5 +1,9 @@
 /* Style for syntax highlighting */
 @import url("github.css");
+body:not(.toc-inline) {
+  padding-right: 1.5em;
+  padding-left: 1.5em;
+}
 
 /* Code blocks */
 pre,
