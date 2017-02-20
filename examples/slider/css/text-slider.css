@@ -26,8 +26,8 @@ div.aria-widget-text-slider .thumb  {
 
 div.aria-widget-text-slider .thumb.focus, 
 div.aria-widget-text-slider .thumb:hover {
-  outline: 2px solid #000;
-  background-color: #AAA;
+  outline: 2px solid #888;
+  background-color: #E0CB52;
 }
 
 div.aria-widget-text-slider div.value  {

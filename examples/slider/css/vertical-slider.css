@@ -27,8 +27,8 @@ div.aria-widget-vertical-slider .thumb  {
 
 div.aria-widget-vertical-slider .thumb.focus, 
 div.aria-widget-vertical-slider .thumb:hover {
-  outline: 2px solid #000;
-  background-color: #AAA;
+  outline: 2px solid #888;
+  background-color: #E0CB52;
 }
 
 div.aria-widget-vertical-slider .label,
