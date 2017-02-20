@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>ARIA Example: Horizontal Sliders using aria-valuenow</title>
+  <title>Color Picker Using Slider Widgets | WAI-ARIA Authoring Practices 1.1</title>
 
   <!--  Core js and css shared by all examples; do not modify when using this template. -->
   <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
@@ -11,7 +11,11 @@
   <script src="../js/highlight.pack.js"></script>
   <script src="../js/app.js"></script>
 
-  <link href="css/slider.css" rel="stylesheet">
+  <!-- example js and css files -->
+  <link rel="stylesheet" href="css/slider.css">
+  <script src="js/slider.js" type="text/javascript"></script>
+
+
   <style type="text/css">
     #idColorBox {
       width: 200px;
@@ -27,176 +31,186 @@
   </style>
 </head>
 <body>
-  <header>
-    <h1>ARIA Example: Horizontal Sliders using <code>aria-valuenow</code></h1>
-  </header>
 
   <main>
 
     <h1>Color Picker Using Slider Widgets</h1>
-    <p>
-      This example page needs updates as described in
-      <a href="https://github.com/w3c/aria-practices/issues/229">issue 229.</a>
-    </p>
-    <p>Change sliders to update the background color of box (note: the box is visually left of the 3 slider controls), with the HEX color value in a form control.</p>
+    <p>This example implements the slider design pattern
+      that is often found in color pickers. Change the sliders to update the background color of box (note: the box is visually below the 3 slider controls), with the HEX and RGB values in form controls.</p>
 
-    <h2 id="example1_h2">Horizontal Sliders</h2>
-    <div id="example1" class="example" role="region" aria-labelledby="example1_h2">
+    <section>
+       <h2 id="ex_label">Example</h2>
+          <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>        
 
-      <div id="idSliders">
-        <div id="idRed" class="label">Red</div>
-        <div class="aria-widget-slider">
-          <div class="rail" style="width: 300px">
-            <div id="idRedValue"
-                 role="slider"
-                 class="thumb"
-                 aria-valuemin="0"
-                 aria-valuenow="100"
-                 aria-valuemax="255"
-                 aria-labelledby="idRed"></div>
-          </div>
-          <div class="value">0</div>
-        </div>
+          <div id="ex1">
+            <div id="idSliders">
+              <div id="idRed" class="label">Red</div>
+              <div class="aria-widget-slider">
+                <div class="rail" style="width: 300px;">
+                  <div id="idRedValue"
+                       role="slider"
+                       class="thumb"
+                       aria-valuemin="0"
+                       aria-valuenow="0"
+                       aria-valuemax="255"
+                       aria-labelledby="idRed"></div>
+                </div>
+                <div class="value">0</div>
+              </div>
 
-        <div id="idGreen" class="label">Green</div>
-        <div class="aria-widget-slider">
-          <div class="rail" style="width: 300px">
-            <div id="idGreenValue"
-                 role="slider"
-                 class="thumb"
-                 aria-valuemin="0"
-                 aria-valuenow="100"
-                 aria-valuemax="255"
-                 aria-labelledby="idGreen"></div>
-          </div>
-          <div class="value">0</div>
-        </div>
+              <div id="idGreen" class="label">Green</div>
+              <div class="aria-widget-slider">
+                <div class="rail" style="width: 300px">
+                  <div id="idGreenValue"
+                       role="slider"
+                       class="thumb"
+                       aria-valuemin="0"
+                       aria-valuenow="0"
+                       aria-valuemax="255"
+                       aria-labelledby="idGreen"></div>
+                </div>
+                <div class="value">0</div>
+              </div>
 
-        <div id="idBlue" class="label">Blue</div>
-        <div class="aria-widget-slider">
-          <div class="rail" style="width: 300px">
-            <div id="idBlueValue"
-                 role="slider"
-                 class="thumb"
-                 aria-valuemin="0"
-                 aria-valuenow="100"
-                 aria-valuemax="255"
-                 aria-labelledby="idBlue"></div>
-          </div>
-          <div class="value">0</div>
-        </div>
-      </div>
+              <div id="idBlue" class="label">Blue</div>
+              <div class="aria-widget-slider">
+                <div class="rail" style="width: 300px">
+                  <div id="idBlueValue"
+                       role="slider"
+                       class="thumb"
+                       aria-valuemin="0"
+                       aria-valuenow="0"
+                       aria-valuemax="255"
+                       aria-labelledby="idBlue"></div>
+                </div>
+                <div class="value">0</div>
+              </div>
+            </div>
 
-      <h2>Color Box</h2>
-      <div id="idColorInfo">
-        <div id="idColorBox"></div>
-        <label>Color (HEX): <input type="text" readonly id="idColorValueHex" value=""></label>
-        <label>Color (RGB): <input type="text" readonly id="idColorValueRGB" value=""></label>
-      </div>
-    </div>
+            <h2>Color Box</h2>
+            <div id="idColorInfo">
+              <div id="idColorBox"></div>
+              <label>Color (HEX): <input type="text" readonly id="idColorValueHex" value=""></label>
+              <label>Color (RGB): <input type="text" readonly id="idColorValueRGB" value=""></label>
+            </div>
+          </div>          
 
+    </section>
 
-    <h2 id="id_kbd">Keyboard Support</h2>
+    <section>
+        <h2 id="kbd_label">Keyboard Support</h2>
 
-    <table aria-labelledby="id_kbd" class="def">
-      <thead>
-        <tr>
-          <th>Key</th>
-          <th>Function</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Right and Up Arrow</td>
-          <td>Increase slide value by increment value</td>
-        </tr>
-        <tr>
-          <td>Left and Down Arrow</td>
-          <td>Decrease slide value by increment value</td>
-        </tr>
-        <tr>
-          <td>Page Up Arrow</td>
-          <td>Increase slide value by jump value</td>
-        </tr>
-        <tr>
-          <td>Page Down Arrow</td>
-          <td>Decrease slide value by jump value</td>
-        </tr>
-        <tr>
-          <td>Home</td>
-          <td>Set slider to minimum value</td>
-        </tr>
-        <tr>
-          <td>End</td>
-          <td>Set slider to maximum value</td>
-        </tr>
-      </tbody>
-    </table>
+        <table aria-labelledby="kbd_label" class="def">
+          <thead>
+            <tr>
+              <th>Key</th>
+              <th>Function</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th><kbd>Right Arrow</kbd>,<br/> <kbd>Up Arrow</kbd></th>
+              <td>Increase slide value by increment value</td>
+            </tr>
+            <tr>
+              <th><kbd>Left Arrow</kbd>,<br/> <kbd>Down Arrow</kbd></th>
+              <td>Decrease slide value by increment value</td>
+            </tr>
+            <tr>
+              <th><kbd>Page Up</kbd></th>
+              <td>Increase slide value by jump value</td>
+            </tr>
+            <tr>
+              <th><kbd>Page Down</kbd></th>
+              <td>Decrease slide value by jump value</td>
+            </tr>
+            <tr>
+              <th><kbd>Home</kbd></th>
+              <td>Set slider to minimum value</td>
+            </tr>
+            <tr>
+              <th><kbd>End</kbd></th>
+              <td>Set slider to maximum value</td>
+            </tr>
+          </tbody>
+        </table>
+    </section>
+    
+    <section>
+        <h2 id="rps_label">ARIA Roles, Properties and States</h2>
 
-    <h2 id="id_rps">ARIA Roles, Properties and States</h2>
+        <table aria-labelledby="rps_label"  class="data attributes">
+          <thead>
+            <tr>
+              <th scope="col">Role</th>
+              <th scope="col">Attribute</th>
+              <th scope="col">Element</th>
+              <th scope="col">Usage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row"><code>slider</code></th>
+              <td></td>
+              <td><code>div</code></td>
+              <td>Identify the widget as a slider</td>
+            </tr>
+            <tr>
+              <td></td>
+              <th scope="row"><code>aria-valuemax</code></th>
+              <td><code>div</code></td>
+              <td>Maximum value of the slider</td>
+            </tr>
+            <tr>
+              <td></td>
+              <th scope="row"><code>aria-valuemin</code></th>
+              <td><code>div</code></td>
+              <td>Minimum value of the slider</td>
+            </tr>
+            <tr>
+              <td></td>
+              <th scope="row"><code>aria-valuenow</code></th>
+              <td><code>div</code></td>
+              <td>Current value of the slider</td>
+            </tr>
+            <tr>
+              <td></td>
+              <th scope="row"><code>aria-labelledby</code></th>
+              <td><code>div</code></td>
+              <td>Reference to define a unique descriptive <em>accessible name</em> for each slider widget</td>
+            </tr>
+          </tbody>
+        </table>
+    </section>
 
-    <table aria-labelledby="id_rps" class="data attributes">
-      <thead>
-        <tr>
-          <th>Role</th>
-          <th>Property/State</th>
-          <th>Component</th>
-          <th>Usage</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th>slider</th>
-          <td></td>
-          <td>thumb</td>
-          <td>Identify the widget as a slider</td>
-        </tr>
-        <tr>
-          <td></td>
-          <th>aria-valuemax</th>
-          <td>thumb</td>
-          <td>Maximum value of the slider</td>
-        </tr>
-        <tr>
-          <td></td>
-          <th>aria-valuemin</th>
-          <td>thumb</td>
-          <td>Minimum value of the slider</td>
-        </tr>
-        <tr>
-          <td></td>
-          <th>aria-valuenow</th>
-          <td>thumb</td>
-          <td>Current value of the slider</td>
-        </tr>
-        <tr>
-          <td></td>
-          <th>aria-labelledby</th>
-          <td>thumb</td>
-          <td>Reference to define a unique descriptive <em>accessible name</em> for each slider widget</td>
-        </tr>
-      </tbody>
-    </table>
+    <section>
+        <h2>Javascript and CSS Source Code</h2>
 
+        <ul>
+          <li>CSS: <a href="css/slider.css" type="tex/css">slider.css</a></li>
+          <li>Javascript: <a href="js/slider.js" type="text/javascript">slider.js</a></li>
+        </ul>
+    </section>
 
-    <script src="../js/examples.js" type="text/javascript"></script>
-
-    <h2>Source Code</h2>
-
-    <ul>
-      <li>CSS: <a href="css/slider.css" type="tex/css">slider.css</a></li>
-      <li>Javascript: <a href="js/slider.js" type="text/javascript">slider.js</a></li>
-    </ul>
-
-    <pre><code id="sc1"></code></pre>
-
-
-    <script>
-      sourceCode.add('sc1', 'example1');
-      sourceCode.make();
-    </script>
+    <section>
+        <h2 id="sc1_label">HTML Source Code</h2>
+        <div role="separator" id="sc1_start_sep" aria-labelledby="sc1_start_sep sc1_label" aria-label="Start of"></div>
+        <pre><code id="sc1"></code></pre>
+        <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of"></div>
+        <!--
+          The following script will show the reader the HTML source for the example that is in the div with ID 'ex1'.
+          It renders the HTML in the preceding div with ID 'sc1'.
+          If you change the ID of either the 'ex1' div or the 'sc1' div, be sure to update the sourceCode.add function parameters.
+          -->
+        <script>
+          sourceCode.add('sc1', 'ex1');
+          sourceCode.make();
+        </script>
+    </section>
 
   </main>
-  <script src="js/slider.js" type="text/javascript"></script>
+  <nav>
+    <a href="../../../#slider">Slider Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
+  </nav>
 </body>
 </html>

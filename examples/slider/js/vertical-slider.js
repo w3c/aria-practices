@@ -1,468 +1,250 @@
 /*
- * Copyright 2011-2014 OpenAjax Alliance
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+*   File:   vertical-slider.js
+*
+*   Desc:   Slider widget that implements ARIA Authoring Practices
+*
+*   Author(s): Jon Gunderson and Brian Loh
+*/
 
 /*
- * ARIA Slider example
- * @function onload
- * @desc
+ *  @constructor
+ *
+ *
  */
 
-window.addEventListener('load', function () {
+ var VSlider = function (domNode)  {
 
-  var sliders = document.getElementsByClassName('aria-widget-vertical-slider');
+ 	  //Create VSlider that contains value, valuemin, valuemax, and valuenow
 
-  [].forEach.call(sliders, function (slider) {
-    if (slider && !slider.done) {
-      var s = new aria.widget.vslider(slider);
-      s.initSlider();
-    }
+      this.domNode = domNode;
+      this.railDomNode = domNode.parentNode;
+
+      this.valueDomNode = false;
+
+      this.valueMin = 0;
+      this.valueMax = 100;
+      this.valueNow = 50;
+
+      this.railHeight = 0;
+
+      this.thumbWidth  = 28;
+      this.thumbHeight = 8;
+
+      
+      this.keyCode = Object.freeze({
+  	   	'left'     : 37,
+  	 	  'up'       : 38,
+  	  	'right'    : 39,
+  	  	'down'     : 40,
+  	  	'pageUp'   : 33,
+  	  	'pageDown' : 34,
+  	  	'end'	   : 35,
+  	  	'home'	   : 36
   });
+ };
 
-});
 
-/**
- * @namespace aria
- */
+VSlider.prototype.init = function () {
 
-var aria = aria || {};
+	//initialize slider
 
-/* ---------------------------------------------------------------- */
-/*                  ARIA Widget Namespace                        */
-/* ---------------------------------------------------------------- */
+  this.domNode.setAttribute('aria-orientation', 'vertical');
 
-aria.widget = aria.widget || {};
+	if(this.domNode.getAttribute('aria-valuemin')){
+		this.valueMin = parseInt((this.domNode.getAttribute('aria-valuemin')));
+	}
+	if(this.domNode.getAttribute('aria-valuemax')){
+		this.valueMax = parseInt((this.domNode.getAttribute('aria-valuemax')));
+	}
+	if(this.domNode.getAttribute('aria-valuenow')){
+		this.valueNow = parseInt((this.domNode.getAttribute('aria-valuenow')));
+	}
 
-/* ---------------------------------------------------------------- */
-/*                  Vertical Slider Widget                           */
-/* ---------------------------------------------------------------- */
+	this.railHeight = parseInt(this.railDomNode.style.height.slice(0,-2));
 
-/**
- * @constructor vslider
- *
- * @memberOf aria.Widget
- *
- * @desc  Creates a slider widget using ARIA
- *
- * @param  node    DOM node  -  DOM node object
- * @param  inc     Integer   -  inc is the increment value for the slider (default 1)
- * @param  jump    Integer   -  jump is the large increment value for the slider (default 10)
- * @param  width   Integer   -  jump is the large increment value for the slider (default 100)
- *
- * @property  keyCode      Object    -  Object containing the keyCodes used by the slider widget
- *
- * @property  node         Object    -  JQuery node object
- * @property  siderHeight  Integer  - height of the slider in pixels
- * @property  siderWidth   Integer  - width of the slider in pixels
- *
- * @property  valueInc   Integer  - small slider increment value
- * @property  valueJump  Integer  - large slider increment value
- *
- * @property  valueMin  Integer  - Minimum value of the slider
- * @property  valueMax  Integer  - Maximum value of the slider
- * @property  valueNow  Integer  - Current value of the slider
- */
+	this.valueDomNode = this.railDomNode.previousElementSibling;
 
-aria.widget.vslider = function (node, inc, jump, height) {
+	if (this.valueDomNode) {		
+      this.valueDomNode.style.position = 'relative';
+	}
 
-  this.keyCode = Object.freeze({
-    'pageUp': 33,
-    'pageDown': 34,
-    'end': 35,
-    'home': 36,
+	this.domNode.tabIndex = 0;
 
-    'left': 37,
-    'up': 38,
-    'right': 39,
-    'down': 40
-  });
+	this.domNode.style.width = this.thumbWidth + 'px';
+	this.domNode.style.height = this.thumbHeight + 'px';
+	this.domNode.style.left = (this.thumbWidth / -2 )+ 'px';
 
-  this.done = true;
 
-  // Check fo DOM element node
-  if (typeof node !== 'object' || !node.getElementsByClassName) {
-    return false;
-  }
+	this.domNode.addEventListener('keydown',    this.handleKeyDown.bind(this));
+  	// add onmousedown, move, and onmouseup
+  this.domNode.addEventListener('mousedown', this.handleMouseDown.bind(this));
 
-  this.container = node;
+  this.domNode.addEventListener('focus',      this.handleFocus.bind(this));
+  this.domNode.addEventListener('blur',       this.handleBlur.bind(this));
 
-  var rails = node.getElementsByClassName('rail');
-  if (rails) {
-    this.rail = rails[0];
-  }
-  else {
-    return false;
-  }
+  this.railDomNode.addEventListener('click', this.handleClick.bind(this));
 
-  var thumbs = node.getElementsByClassName('thumb');
-  if (thumbs) {
-    this.thumb = thumbs[0];
-  }
-  else {
-    return false;
-  }
-
-  var values = node.getElementsByClassName('value');
-  if (values) {
-    this.value = values[0];
-  }
-  else {
-    return false;
-  }
-  this.value.innerHTML = '0';
-
-  this.thumbHeight = 8;
-  this.thumbWidth = 28;
-
-  if (typeof height !== 'number') {
-    height = window.getComputedStyle(this.rail).getPropertyValue('height');
-    if ((typeof height === 'string') && (height.length > 2)) {
-      height = parseInt(height.slice(0, -2));
-    }
-  }
-
-  if (typeof height === 'number') {
-    this.sliderHeight = height;
-  }
-  else {
-    this.sliderHeight = 200;
-  }
-
-  if (this.sliderHeight < 50) {
-    this.sliderHeight = 50;
-  }
-
-  if (typeof inc !== 'number') {
-    inc = 1;
-  }
-  if (typeof jump !== 'number') {
-    jump = 10;
-  }
-
-  this.valueInc = inc;
-  this.valueJump = jump;
-
-  if (typeof height === 'Number') {
-    this.sliderHeight = height;
-  }
-  if (typeof width === 'Number') {
-    this.sliderWidth = width;
-  }
-
-  this.valueMin = parseInt(this.thumb.getAttribute('aria-valuemin'));
-  if (isNaN(this.valueMin)) {
-    this.valueMin = 0;
-  }
-
-  this.valueMax = parseInt(this.thumb.getAttribute('aria-valuemax'));
-  if (isNaN(this.valueMax)) {
-    this.valueMax = 100;
-  }
-
-  this.valueNow = parseInt(this.thumb.getAttribute('aria-valuenow'));
-  if (isNaN(this.valueNow)) {
-    this.valueNow = Math.round((this.valueMax - this.valueMin) / 2);
-  }
-
-  this.thumb.setAttribute('role', 'slider');
-  this.thumb.setAttribute('aria-orientation', 'vertical');
-  this.thumb.setAttribute('aria-valuenow', this.valueNow);
-  this.thumb.setAttribute('aria-valuemin', this.valueMin);
-  this.thumb.setAttribute('aria-valuemax', this.valueMax);
-
-  this.thumb.tabIndex = 0;
-  this.thumb.innerHTML = '';
+  this.moveVSliderTo(this.valueNow);
 
 };
 
-/**
- * @method initSlider
- *
- * @memberOf aria.widget.vslider
- *
- * @desc  Creates the HTML for the slider
- */
+VSlider.prototype.moveVSliderTo = function(value) {
 
-aria.widget.vslider.prototype.initSlider = function () {
 
-  this.rail.style.height = this.sliderHeight + 'px';
-  this.rail.style.width = '1px';
-
-  this.thumb.style.height = this.thumbHeight + 'px';
-  this.thumb.style.width = this.thumbWidth + 'px';
-  this.thumb.style.left = (-1 * this.thumbWidth / 2) + 'px';
-
-  var self = this;
-
-  var eventKeyDown = function (event) {
-    self.eventKeyDown(event, self);
-  };
-
-  var eventMouseDown = function (event) {
-    self.eventMouseDown(event, self);
-  };
-
-  var eventFocus = function (event) {
-    self.eventFocus(event, self);
-  };
-
-  var eventBlur = function (event) {
-    self.eventBlur(event, self);
-  };
-
-  this.thumb.addEventListener('keydown', eventKeyDown);
-  this.thumb.addEventListener('mousedown', eventMouseDown);
-  this.thumb.addEventListener('focus', eventFocus);
-  this.thumb.addEventListener('blur', eventBlur);
-
-  var eventClick = function (event) {
-    self.eventClick(event, self);
-  };
-
-  this.rail.addEventListener('click', eventClick);
-
-  this.updateThumbPosition();
-
-};
-
-/**
- * @method updateThumbPosition
- *
- * @memberOf aria.widget.vslider
- *
- * @desc  Updates thumb position in slider div and aria-valuenow property
- */
-
-aria.widget.vslider.prototype.updateThumbPosition = function () {
-
-  if (this.valueNow > this.valueMax) {
-    this.valueNow = this.valueMax;
-  }
-  if (this.valueNow < this.valueMin) {
-    this.valueNow = this.valueMin;
+  if (value > this.valueMax) {
+    value = this.valueMax;
   }
 
-  this.thumb.setAttribute('aria-valuenow', this.valueNow);
-  this.thumb.setAttribute('aria-valuetext', this.valueNow + ' degrees');
+  if (value < this.valueMin) {
+    value = this.valueMin;
+  }
+
+  this.valueNow = value;
+
+  
+  this.domNode.setAttribute('aria-valuenow', this.valueNow);
+  this.domNode.setAttribute('aria-valuetext', this.valueNow + ' degrees');
+
 
   var pos = Math.round(
-    (
-      (this.valueMax - this.valueNow) * this.sliderHeight
+    ((this.valueMax - this.valueNow) * this.railHeight
     ) / (this.valueMax - this.valueMin)
   ) - (this.thumbHeight / 2);
 
-  this.thumb.style.top = pos + 'px';
+  this.domNode.style.top = pos + 'px';
 
-  this.value.innerHTML = this.valueNow.toString();
+
+  if (this.valueDomNode) {
+	  this.valueDomNode.innerHTML = this.valueNow.toString();
+    this.valueDomNode.style.left = (this.railDomNode.offsetWidth)/2 -2 + 'px';
+    console.log(this.valueDomNode.style.left);     
+  }
+
 
 };
 
-/**
- * @method eventKeyDown
- *
- * @memberOf aria.widget.vslider
- *
- * @desc  Keydown event handler for slider Object
- *        NOTE: The slider parameter is needed to provide a reference to the specific
- *               slider to change the value on
- */
 
-aria.widget.vslider.prototype.eventKeyDown = function (event, slider) {
+VSlider.prototype.handleKeyDown = function (event) {
 
-  function updateValue (value) {
-    slider.valueNow = value;
-    slider.updateThumbPosition();
-
-    event.preventDefault();
-    event.stopPropagation();
-  }
+  var flag = false;
 
   switch (event.keyCode) {
-    case slider.keyCode.left:
-    case slider.keyCode.down:
-      updateValue(slider.valueNow - slider.valueInc);
+    case this.keyCode.left:
+    case this.keyCode.down:
+      this.moveVSliderTo(this.valueNow - 1);
+      flag = true;
       break;
 
-    case slider.keyCode.right:
-    case slider.keyCode.up:
-      updateValue(slider.valueNow + slider.valueInc);
+    case this.keyCode.right:
+    case this.keyCode.up:
+      this.moveVSliderTo(this.valueNow + 1);
+      flag = true;
       break;
 
-    case slider.keyCode.pageDown:
-      updateValue(slider.valueNow - slider.valueJump);
+    case this.keyCode.pageDown:
+      this.moveVSliderTo(this.valueNow - 10);
+      flag = true;
       break;
 
-    case slider.keyCode.pageUp:
-      updateValue(slider.valueNow + slider.valueJump);
+    case this.keyCode.pageUp:
+      this.moveVSliderTo(this.valueNow + 10);
+      flag = true;
       break;
 
-    case slider.keyCode.home:
-      updateValue(slider.valueMin);
+    case this.keyCode.home:
+      this.moveVSliderTo(this.valueMin);
+      flag = true;
       break;
 
-    case slider.keyCode.end:
-      updateValue(slider.valueMax);
+    case this.keyCode.end:
+      this.moveVSliderTo(this.valueMax);
+      flag = true;
       break;
 
     default:
       break;
   }
 
+    if (flag) {
+      event.preventDefault();
+      event.stopPropagation();      
+    }
+
 };
 
-/**
- * @method eventMouseDown
- *
- * @memberOf aria.widget.vslider
- *
- * @desc  MouseDown event handler for slider Object
- *        NOTE: The slider parameter is needed to provide a reference to the specific
- *               slider to change the value on
- */
+VSlider.prototype.handleFocus = function (event) {
+  this.domNode.classList.add('focus');
+};
 
-aria.widget.vslider.prototype.eventMouseDown = function (event, slider) {
+VSlider.prototype.handleBlur = function (event) {
+  this.domNode.classList.remove('focus');
+};
 
-  if (event.target === slider.thumb) {
 
-    // Set focus to the clicked handle
-    event.target.focus();
+VSlider.prototype.handleMouseDown = function (event) {
 
-    var mouseMove = function (event) {
-      slider.eventMouseMove(event, slider);
-    };
+    
 
-    slider.mouseMove = mouseMove;
+    var slider = this;
 
-    var mouseUp = function (event) {
-      slider.eventMouseUp(event, slider);
-    };
+    var handleMouseMove = function(event) {
 
-    slider.mouseUp = mouseUp;
+      var diffY = event.pageY - slider.railDomNode.offsetTop;
+      slider.valueNow = slider.valueMax - parseInt(((slider.valueMax - slider.valueMin) * diffY) / slider.railHeight);
+      slider.moveVSliderTo(slider.valueNow);
+
+      event.preventDefault();
+      event.stopPropagation();  
+    }
+
+
+    var handleMouseUp = function(event) {
+
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
+
+    }
+
 
     // bind a mousemove event handler to move pointer
-    document.addEventListener('mousemove', slider.mouseMove);
+    document.addEventListener('mousemove', handleMouseMove );
 
     // bind a mouseup event handler to stop tracking mouse movements
-    document.addEventListener('mouseup', slider.mouseUp);
+    document.addEventListener('mouseup', handleMouseUp);
 
+    
     event.preventDefault();
     event.stopPropagation();
-  }
+
+    // Set focus to the clicked handle
+    this.domNode.focus();
 
 };
 
-/**
- * @method eventMouseMove
- *
- * @memberOf aria.widget.vslider
- *
- * @desc  MouseMove event handler for slider Object
- *        NOTE: The slider parameter is needed to provide a reference to the specific
- *               slider to change the value on
- */
 
-aria.widget.vslider.prototype.eventMouseMove = function (event, slider) {
+// handleMouseMove has the same functionality as we need for handleMouseClick on the rail
+VSlider.prototype.handleClick = function (event) {
 
-  var diffY = event.pageY - slider.rail.offsetTop;
-  slider.valueNow = slider.valueMax - parseInt(((slider.valueMax - slider.valueMin) * diffY) / slider.sliderHeight);
-  slider.updateThumbPosition();
+  var diffY = event.pageY - this.railDomNode.offsetTop;
+  this.valueNow = this.valueMax - parseInt(((this.valueMax - this.valueMin) * diffY) / this.railHeight);
+  this.moveVSliderTo(this.valueNow);
 
   event.preventDefault();
   event.stopPropagation();
-
+  
 };
 
-/**
- * @method eventMouseUp
- *
- * @memberOf aria.widget.vslider
- *
- * @desc  MouseUp event handler for slider Object
- *        NOTE: The slider parameter is needed to provide a reference to the specific
- *               slider to change the value on
- */
 
-aria.widget.vslider.prototype.eventMouseUp = function (event, slider) {
+// Initialise VSliders on the page
 
-  document.removeEventListener('mousemove', slider.mouseMove);
-  document.removeEventListener('mouseup', slider.mouseUp);
+window.addEventListener('load', function () {
 
-  event.preventDefault();
-  event.stopPropagation();
+  var sliders = document.querySelectorAll('.aria-widget-vertical-slider [role=slider]');;
 
-};
+  for(var i = 0; i < sliders.length; i++ ) {
+      var s = new VSlider(sliders[i]);
+      s.init();
+    }
 
-/**
- * @method eventClick
- *
- * @memberOf aria.widget.vslider
- *
- * @desc  Click event handler for slider Object
- *        NOTE: The slider parameter is needed to provide a reference to the specific
- *               slider to change the value on
- */
+});
 
-aria.widget.vslider.prototype.eventClick = function (event, slider) {
-
-  if (event.target === slider.thumb) {
-    return;
-  }
-
-  var diffY = event.pageY - slider.rail.offsetTop;
-  slider.valueNow = slider.valueMax - parseInt(((slider.valueMax - slider.valueMin) * diffY) / slider.sliderHeight);
-  slider.updateThumbPosition();
-
-  event.preventDefault();
-  event.stopPropagation();
-
-};
-
-/**
- * @method eventFocus
- *
- * @memberOf aria.widget.vslider
- *
- * @desc  Focus event handler for slider Object
- *        NOTE: The slider parameter is needed to provide a reference to the specific
- *               slider to change the value on
- */
-
-aria.widget.vslider.prototype.eventFocus = function (event, slider) {
-
-  slider.container.className = 'aria-widget-vertical-slider focus';
-
-  event.preventDefault();
-  event.stopPropagation();
-
-};
-
-/**
- * @method eventBlur
- *
- * @memberOf aria.widget.vslider
- *
- * @desc  Focus event handler for slider Object
- *        NOTE: The slider parameter is needed to provide a reference to the specific
- *               slider to change the value on
- */
-
-aria.widget.vslider.prototype.eventBlur = function (event, slider) {
-
-  slider.container.className = 'aria-widget-vertical-slider';
-
-  event.preventDefault();
-  event.stopPropagation();
-
-};
