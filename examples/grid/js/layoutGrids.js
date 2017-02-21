@@ -33,14 +33,14 @@ window.addEventListener('load', function () {
     } catch (error) {
 
     }
-  }
+  };
   NUXclose.addEventListener('click', closeNUX);
   NUXclose.addEventListener('keyup', function (event) {
     var key = event.which || event.keyCode;
     if (key === aria.KeyCode.RETURN) {
       closeNUX();
     }
-  })
+  });
 });
 
 function PillList (grid, input, submitButton, formUpdateText) {
