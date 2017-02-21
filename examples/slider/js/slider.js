@@ -1,82 +1,72 @@
 /*
-*   File:   slider-1.js
+*   File:   slider.js
 *
 *   Desc:   Slider widget that implements ARIA Authoring Practices
 *
-*   Author(s): Jon Gunderson and Brian Loh
+*   Author(s): Jon Gunderson, Nicholas Hoyt and Brian Loh
 */
 
-/*
- *  @constructor
- *
- *
- */
+// Create Slider that contains value, valuemin, valuemax, and valuenow
+var Slider = function (domNode)  {
 
- var Slider = function (domNode)  {
+  this.domNode = domNode;
+  this.railDomNode = domNode.parentNode;
 
- 	  //Create Slider that contains value, valuemin, valuemax, and valuenow
+  this.valueDomNode = false;
 
-      this.domNode = domNode;
-      this.railDomNode = domNode.parentNode;
+  this.valueMin = 0;
+  this.valueMax = 100;
+  this.valueNow = 50;
 
-      this.valueDomNode = false;
+  this.railWidth = 0;
 
-      this.valueMin = 0;
-      this.valueMax = 100;
-      this.valueNow = 50;
+  this.thumbWidth  = 8;
+  this.thumbHeight = 28;
 
-      this.railWidth = 0;
-
-      this.thumbWidth  = 8;
-      this.thumbHeight = 28;
-
-      
-      this.keyCode = Object.freeze({
-  	   	'left'     : 37,
-  	 	  'up'       : 38,
-  	  	'right'    : 39,
-  	  	'down'     : 40,
-  	  	'pageUp'   : 33,
-  	  	'pageDown' : 34,
-  	  	'end'	   : 35,
-  	  	'home'	   : 36
+  this.keyCode = Object.freeze({
+    'left'     : 37,
+    'up'       : 38,
+    'right'    : 39,
+    'down'     : 40,
+    'pageUp'   : 33,
+    'pageDown' : 34,
+    'end'    : 35,
+    'home'     : 36
   });
- };
+};
 
-
+// Initialize slider
 Slider.prototype.init = function () {
 
-	//initialize slider
-	if(this.domNode.getAttribute('aria-valuemin')){
-		this.valueMin = parseInt((this.domNode.getAttribute('aria-valuemin')));
-	}
-	if(this.domNode.getAttribute('aria-valuemax')){
-		this.valueMax = parseInt((this.domNode.getAttribute('aria-valuemax')));
-	}
-	if(this.domNode.getAttribute('aria-valuenow')){
-		this.valueNow = parseInt((this.domNode.getAttribute('aria-valuenow')));
-	}
-	
-	this.railWidth = parseInt(this.railDomNode.style.width.slice(0,-2));
+  if (this.domNode.getAttribute('aria-valuemin')) {
+    this.valueMin = parseInt((this.domNode.getAttribute('aria-valuemin')));
+  }
+  if (this.domNode.getAttribute('aria-valuemax')) {
+    this.valueMax = parseInt((this.domNode.getAttribute('aria-valuemax')));
+  }
+  if (this.domNode.getAttribute('aria-valuenow')) {
+    this.valueNow = parseInt((this.domNode.getAttribute('aria-valuenow')));
+  }
 
-	this.valueDomNode = this.railDomNode.nextElementSibling;
+  this.railWidth = parseInt(this.railDomNode.style.width.slice(0, -2));
 
-	if (this.valueDomNode) {		
-      
-      this.valueDomNode.innerHTML = '0';
-      this.valueDomNode.style.left = (this.railDomNode.offsetLeft + this.railWidth + 10) + 'px';
-      this.valueDomNode.style.top = (this.railDomNode.offsetTop - 4)+ 'px';
-	}
+  this.valueDomNode = this.railDomNode.nextElementSibling;
 
-	this.domNode.tabIndex = 0;
+  if (this.valueDomNode) {
 
-	this.domNode.style.width = this.thumbWidth + 'px';
-	this.domNode.style.height = this.thumbHeight + 'px';
-	this.domNode.style.top = (this.thumbHeight / -2 ) + 'px';
+    this.valueDomNode.innerHTML = '0';
+    this.valueDomNode.style.left = (this.railDomNode.offsetLeft + this.railWidth + 10) + 'px';
+    this.valueDomNode.style.top = (this.railDomNode.offsetTop - 8) + 'px';
+  }
 
+  this.domNode.tabIndex = 0;
 
-	this.domNode.addEventListener('keydown',    this.handleKeyDown.bind(this));
-  	// add onmousedown, move, and onmouseup
+  this.domNode.style.width = this.thumbWidth + 'px';
+  this.domNode.style.height = this.thumbHeight + 'px';
+  this.domNode.style.top = (this.thumbHeight / -2) + 'px';
+
+  this.domNode.addEventListener('keydown',    this.handleKeyDown.bind(this));
+  // add onmousedown, move, and onmouseup
   this.domNode.addEventListener('mousedown', this.handleMouseDown.bind(this));
 
   this.domNode.addEventListener('focus',      this.handleFocus.bind(this));
@@ -86,11 +76,9 @@ Slider.prototype.init = function () {
 
   this.moveSliderTo(this.valueNow);
 
-
 };
 
-Slider.prototype.moveSliderTo = function(value) {
-
+Slider.prototype.moveSliderTo = function (value) {
 
   if (value > this.valueMax) {
     value = this.valueMax;
@@ -110,16 +98,13 @@ Slider.prototype.moveSliderTo = function(value) {
 
   this.domNode.style.left = pos + 'px';
 
-
   if (this.valueDomNode) {
-	  this.valueDomNode.innerHTML = this.valueNow.toString();
+    this.valueDomNode.innerHTML = this.valueNow.toString();
   }
 
   updateColorBox();
 
-
 };
-
 
 Slider.prototype.handleKeyDown = function (event) {
 
@@ -162,7 +147,7 @@ Slider.prototype.handleKeyDown = function (event) {
       break;
   }
 
-  if(flag){
+  if (flag) {
     event.preventDefault();
     event.stopPropagation();
   }
@@ -177,60 +162,52 @@ Slider.prototype.handleBlur = function (event) {
   this.domNode.classList.remove('focus');
 };
 
-
 // Initialise Sliders on the page
-
 window.addEventListener('load', function () {
 
   var sliders = document.querySelectorAll('[role=slider]');;
 
-  for(var i = 0; i < sliders.length; i++ ) {
-      var s = new Slider(sliders[i]);
-      s.init();
-    }
+  for (var i = 0; i < sliders.length; i++) {
+    var s = new Slider(sliders[i]);
+    s.init();
+  }
 
 });
 
 Slider.prototype.handleMouseDown = function (event) {
 
-    
+    var self = this;
 
-    var slider = this;
+    var handleMouseMove = function (event) {
 
-    var handleMouseMove = function(event) {
-
-      var diffX = event.pageX - slider.railDomNode.offsetLeft;
-      slider.valueNow = parseInt(((slider.valueMax - slider.valueMin) * diffX) / slider.railWidth);
-      slider.moveSliderTo(slider.valueNow);
+      var diffX = event.pageX - self.railDomNode.offsetLeft;
+      self.valueNow = parseInt(((self.valueMax - self.valueMin) * diffX) / self.railWidth);
+      self.moveSliderTo(self.valueNow);
 
       event.preventDefault();
-      event.stopPropagation();  
-    }
+      event.stopPropagation();
+    };
 
-
-    var handleMouseUp = function(event) {
+    var handleMouseUp = function (event) {
 
       document.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseup', handleMouseUp);
 
-    }
-
+    };
 
     // bind a mousemove event handler to move pointer
-    document.addEventListener('mousemove', handleMouseMove );
+    document.addEventListener('mousemove', handleMouseMove);
 
     // bind a mouseup event handler to stop tracking mouse movements
     document.addEventListener('mouseup', handleMouseUp);
 
-    
     event.preventDefault();
     event.stopPropagation();
 
     // Set focus to the clicked handle
     this.domNode.focus();
 
-};
-
+  };
 
 // handleMouseMove has the same functionality as we need for handleMouseClick on the rail
 Slider.prototype.handleClick = function (event) {
@@ -241,9 +218,8 @@ Slider.prototype.handleClick = function (event) {
 
   event.preventDefault();
   event.stopPropagation();
-  
-};
 
+};
 
 /* ---------------------------------------------------------------- */
 /*                  Change color of the Box                         */

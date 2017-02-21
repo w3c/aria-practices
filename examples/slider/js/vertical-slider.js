@@ -1,82 +1,71 @@
 /*
 *   File:   vertical-slider.js
 *
-*   Desc:   Slider widget that implements ARIA Authoring Practices
+*   Desc:   Vertical slider widget that implements ARIA Authoring Practices
 *
-*   Author(s): Jon Gunderson and Brian Loh
+*   Author(s): Jon Gunderson, Nicholas Hoyt and Brian Loh
 */
 
-/*
- *  @constructor
- *
- *
- */
+// Create Vertical Slider that contains value, valuemin, valuemax, and valuenow
+var VSlider = function (domNode)  {
 
- var VSlider = function (domNode)  {
+  this.domNode = domNode;
+  this.railDomNode = domNode.parentNode;
 
- 	  //Create VSlider that contains value, valuemin, valuemax, and valuenow
+  this.valueDomNode = false;
 
-      this.domNode = domNode;
-      this.railDomNode = domNode.parentNode;
+  this.valueMin = 0;
+  this.valueMax = 100;
+  this.valueNow = 50;
 
-      this.valueDomNode = false;
+  this.railHeight = 0;
 
-      this.valueMin = 0;
-      this.valueMax = 100;
-      this.valueNow = 50;
+  this.thumbWidth  = 28;
+  this.thumbHeight = 8;
 
-      this.railHeight = 0;
-
-      this.thumbWidth  = 28;
-      this.thumbHeight = 8;
-
-      
-      this.keyCode = Object.freeze({
-  	   	'left'     : 37,
-  	 	  'up'       : 38,
-  	  	'right'    : 39,
-  	  	'down'     : 40,
-  	  	'pageUp'   : 33,
-  	  	'pageDown' : 34,
-  	  	'end'	   : 35,
-  	  	'home'	   : 36
+  this.keyCode = Object.freeze({
+    'left'     : 37,
+    'up'       : 38,
+    'right'    : 39,
+    'down'     : 40,
+    'pageUp'   : 33,
+    'pageDown' : 34,
+    'end'    : 35,
+    'home'     : 36
   });
- };
+};
 
-
+// Initialize vertical slider
 VSlider.prototype.init = function () {
-
-	//initialize slider
 
   this.domNode.setAttribute('aria-orientation', 'vertical');
 
-	if(this.domNode.getAttribute('aria-valuemin')){
-		this.valueMin = parseInt((this.domNode.getAttribute('aria-valuemin')));
-	}
-	if(this.domNode.getAttribute('aria-valuemax')){
-		this.valueMax = parseInt((this.domNode.getAttribute('aria-valuemax')));
-	}
-	if(this.domNode.getAttribute('aria-valuenow')){
-		this.valueNow = parseInt((this.domNode.getAttribute('aria-valuenow')));
-	}
+  if (this.domNode.getAttribute('aria-valuemin')) {
+    this.valueMin = parseInt((this.domNode.getAttribute('aria-valuemin')));
+  }
+  if (this.domNode.getAttribute('aria-valuemax')) {
+    this.valueMax = parseInt((this.domNode.getAttribute('aria-valuemax')));
+  }
+  if (this.domNode.getAttribute('aria-valuenow')) {
+    this.valueNow = parseInt((this.domNode.getAttribute('aria-valuenow')));
+  }
 
-	this.railHeight = parseInt(this.railDomNode.style.height.slice(0,-2));
+  this.railHeight = parseInt(this.railDomNode.style.height.slice(0, -2));
 
-	this.valueDomNode = this.railDomNode.previousElementSibling;
+  this.valueDomNode = this.railDomNode.previousElementSibling;
 
-	if (this.valueDomNode) {		
-      this.valueDomNode.style.position = 'relative';
-	}
+  if (this.valueDomNode) {
+    this.valueDomNode.style.position = 'relative';
+  }
 
-	this.domNode.tabIndex = 0;
+  this.domNode.tabIndex = 0;
 
-	this.domNode.style.width = this.thumbWidth + 'px';
-	this.domNode.style.height = this.thumbHeight + 'px';
-	this.domNode.style.left = (this.thumbWidth / -2 )+ 'px';
+  this.domNode.style.width = this.thumbWidth + 'px';
+  this.domNode.style.height = this.thumbHeight + 'px';
+  this.domNode.style.left = (this.thumbWidth / -2) + 'px';
 
-
-	this.domNode.addEventListener('keydown',    this.handleKeyDown.bind(this));
-  	// add onmousedown, move, and onmouseup
+  this.domNode.addEventListener('keydown',    this.handleKeyDown.bind(this));
+  // add onmousedown, move, and onmouseup
   this.domNode.addEventListener('mousedown', this.handleMouseDown.bind(this));
 
   this.domNode.addEventListener('focus',      this.handleFocus.bind(this));
@@ -88,8 +77,7 @@ VSlider.prototype.init = function () {
 
 };
 
-VSlider.prototype.moveVSliderTo = function(value) {
-
+VSlider.prototype.moveVSliderTo = function (value) {
 
   if (value > this.valueMax) {
     value = this.valueMax;
@@ -101,10 +89,8 @@ VSlider.prototype.moveVSliderTo = function(value) {
 
   this.valueNow = value;
 
-  
   this.domNode.setAttribute('aria-valuenow', this.valueNow);
   this.domNode.setAttribute('aria-valuetext', this.valueNow + ' degrees');
-
 
   var pos = Math.round(
     ((this.valueMax - this.valueNow) * this.railHeight
@@ -113,16 +99,13 @@ VSlider.prototype.moveVSliderTo = function(value) {
 
   this.domNode.style.top = pos + 'px';
 
-
   if (this.valueDomNode) {
-	  this.valueDomNode.innerHTML = this.valueNow.toString();
-    this.valueDomNode.style.left = (this.railDomNode.offsetWidth)/2 -2 + 'px';
-    console.log(this.valueDomNode.style.left);     
+    this.valueDomNode.innerHTML = this.valueNow.toString();
+    this.valueDomNode.style.left = (this.railDomNode.offsetWidth) / 2 - 2 + 'px';
+    console.log(this.valueDomNode.style.left);
   }
 
-
 };
-
 
 VSlider.prototype.handleKeyDown = function (event) {
 
@@ -165,10 +148,10 @@ VSlider.prototype.handleKeyDown = function (event) {
       break;
   }
 
-    if (flag) {
-      event.preventDefault();
-      event.stopPropagation();      
-    }
+  if (flag) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
 
 };
 
@@ -180,47 +163,40 @@ VSlider.prototype.handleBlur = function (event) {
   this.domNode.classList.remove('focus');
 };
 
-
 VSlider.prototype.handleMouseDown = function (event) {
 
-    
+    var self = this;
 
-    var slider = this;
+    var handleMouseMove = function (event) {
 
-    var handleMouseMove = function(event) {
-
-      var diffY = event.pageY - slider.railDomNode.offsetTop;
-      slider.valueNow = slider.valueMax - parseInt(((slider.valueMax - slider.valueMin) * diffY) / slider.railHeight);
-      slider.moveVSliderTo(slider.valueNow);
+      var diffY = event.pageY - self.railDomNode.offsetTop;
+      self.valueNow = self.valueMax - parseInt(((self.valueMax - self.valueMin) * diffY) / self.railHeight);
+      self.moveVSliderTo(self.valueNow);
 
       event.preventDefault();
-      event.stopPropagation();  
-    }
+      event.stopPropagation();
+    };
 
-
-    var handleMouseUp = function(event) {
+    var handleMouseUp = function (event) {
 
       document.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseup', handleMouseUp);
 
-    }
-
+    };
 
     // bind a mousemove event handler to move pointer
-    document.addEventListener('mousemove', handleMouseMove );
+    document.addEventListener('mousemove', handleMouseMove);
 
     // bind a mouseup event handler to stop tracking mouse movements
     document.addEventListener('mouseup', handleMouseUp);
 
-    
     event.preventDefault();
     event.stopPropagation();
 
     // Set focus to the clicked handle
     this.domNode.focus();
 
-};
-
+  };
 
 // handleMouseMove has the same functionality as we need for handleMouseClick on the rail
 VSlider.prototype.handleClick = function (event) {
@@ -231,20 +207,17 @@ VSlider.prototype.handleClick = function (event) {
 
   event.preventDefault();
   event.stopPropagation();
-  
+
 };
 
-
 // Initialise VSliders on the page
-
 window.addEventListener('load', function () {
 
   var sliders = document.querySelectorAll('.aria-widget-vertical-slider [role=slider]');;
 
-  for(var i = 0; i < sliders.length; i++ ) {
-      var s = new VSlider(sliders[i]);
-      s.init();
-    }
+  for (var i = 0; i < sliders.length; i++) {
+    var s = new VSlider(sliders[i]);
+    s.init();
+  }
 
 });
-
