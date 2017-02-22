@@ -163,12 +163,12 @@
           </li>
           <li>
             Optionally, each element that serves as a container for panel content has role
-            <a href="#region" class="role-reference">region</a> and 
-            <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> 
+            <a href="#region" class="role-reference">region</a> and
+            <a href="#aria-labelledby" class="property-reference">aria-labelledby</a>
             with a value that refers to the button that controls display of the panel.
             <ul>
               <li>
-                Avoid using the <code>region</code> role in circumstances that create landmark region proliferation, 
+                Avoid using the <code>region</code> role in circumstances that create landmark region proliferation,
                 e.g., in an accordion that contains more than approximately 6 panels that can be expanded at the same time.
               </li>
               <li>
@@ -180,7 +180,7 @@
       </section>
       <section class="notoc">
         <h4>Example</h4>
-        <p><a href="examples/accordion/accordion1.html">Accordion Example</a>: demonstrates a form divided into three sections using an accordion to show one ssection at a time. </p>
+        <p><a href="examples/accordion/accordion.html">Accordion Example</a>: demonstrates a form divided into three sections using an accordion to show one ssection at a time. </p>
       </section>
     </section>
 
@@ -563,7 +563,7 @@
       <h3 class="widget-name">Feed</h3>
       <p class="note">
         This section contains an early draft of new content.
-        Feedback is welcom in 
+        Feedback is welcom in
         <a href="https://github.com/w3c/aria-practices/issues/245">issue 245.</a>
       </p>
       <p>
@@ -572,7 +572,7 @@
         that often appears to scroll infinitely.
       </p>
       <p>
-        The primary difference between a feed and other ARIA patterns that support loading data as users scroll, 
+        The primary difference between a feed and other ARIA patterns that support loading data as users scroll,
         e.g., a <a href="#grid">grid</a>, is that a feed is a structure, not a widget. This means assistive
         technologies with a reading mode, such as screen readers, will default to reading mode when
         interacting with feed content, making the feed pattern most useful for blocks of
@@ -588,11 +588,11 @@
       <p>
         Unfortunately, when web pages load content dynamically based on scroll events, it
         creates interoperability difficulties for users of assistive technologies that cannot
-        sufficiently mimic visual scrolling. 
+        sufficiently mimic visual scrolling.
         Even if the page also observes focus movements in
-        order to identify when more content is needed, 
+        order to identify when more content is needed,
         there can still be problems because requiring assistive technologies to
-        move DOM focus in response to every reading cursor movement, regardless of context, 
+        move DOM focus in response to every reading cursor movement, regardless of context,
         can also negatively impact a screen reading experience.
       </p>
       <p>
@@ -604,7 +604,7 @@
         <li>In the context of a feed, the web page code is responsible for:
         <ul>
           <li>
-            Appropriate visual scrolling of the content based on which article contains DOM focus. 
+            Appropriate visual scrolling of the content based on which article contains DOM focus.
           </li>
           <li>Loading or removing feed articles based on which article contains DOM focus.</li>
         </ul>
@@ -647,11 +647,11 @@
           <li>
             In some cases, a feed may contain a nested feed.
             For example, an article in a social media feed may contain a feed of comments on that article.
-            To navigate the nested feed, users first move focus inside the nested feed. 
+            To navigate the nested feed, users first move focus inside the nested feed.
             Options for supporting nested feed navigation include:
             <ul>
               <li>
-                Users move focus into the nested feed from the content of the containing article with <kbd>Tab</kbd>. 
+                Users move focus into the nested feed from the content of the containing article with <kbd>Tab</kbd>.
                 This may be slow if the article contains a significant number of links, buttons, or other widgets.
                </li>
               <li>Provide a key for moving focus from the elements in the containing article to the first item in the nested feed, e.g., <kbd>Alt + Page Down</kbd>.</li>
@@ -674,33 +674,33 @@
             All content inside the feed is contained in an <code>article</code>  element.
           </li>
           <li>
-            Each <code>article</code> element has 
-            <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> 
-            referring to elements inside the article that can serve as a distinguishing label. 
+            Each <code>article</code> element has
+            <a href="#aria-labelledby" class="property-reference">aria-labelledby</a>
+            referring to elements inside the article that can serve as a distinguishing label.
           </li>
           <li>
-            It is optional but strongly recommended for Each <code>article</code> element to have 
-            <a href="#aria-describedby" class="property-reference">aria-describedby</a> 
+            It is optional but strongly recommended for Each <code>article</code> element to have
+            <a href="#aria-describedby" class="property-reference">aria-describedby</a>
             referring to one or more elements inside the article that serve as the primary content of the article.
           </li>
           <li>
             Each <code>article</code> element has
-            <a href="#aria-posinset" class="property-reference">aria-posinset</a> 
+            <a href="#aria-posinset" class="property-reference">aria-posinset</a>
             set to a value that represents its position in the feed.
           </li>
           <li>
             Each <code>article</code> element has
-            <a href="#aria-setsize" class="property-reference">aria-setsize</a> 
-            set to a value that represents either the total number of articles that have been loaded or the total number in the feed, 
+            <a href="#aria-setsize" class="property-reference">aria-setsize</a>
+            set to a value that represents either the total number of articles that have been loaded or the total number in the feed,
             depending on which value is deemed more helpful to users.
             If the total number in the feed is undetermined, it can be represented by a <code>aria-setsize</code> value of <code>-1</code>.
           </li>
           <li>
-            When <code>article</code> elements are being added to or removed from the <code>feed</code> container, 
-            and if the operation requires multiple DOM operations, 
-            the <code>feed</code> element has 
-            <a href="#aria-busy" class="state-reference">aria-busy</a> 
-            set to <code>true</code> during the update operation. 
+            When <code>article</code> elements are being added to or removed from the <code>feed</code> container,
+            and if the operation requires multiple DOM operations,
+            the <code>feed</code> element has
+            <a href="#aria-busy" class="state-reference">aria-busy</a>
+            set to <code>true</code> during the update operation.
             Note that it is extremely important that <code>aria-busy</code> is set to <code>false</code> when the operation is complete or the changes may not become visible to some assistive technology users.
           </li>
         </ul>
