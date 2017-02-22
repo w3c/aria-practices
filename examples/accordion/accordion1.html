@@ -12,7 +12,7 @@
 <script src="../js/app.js"></script>
 
 <!--  js and css for this example. -->
-<link rel="stylesheet" type="text/css" href="css/customize.css" />
+<link rel="stylesheet" type="text/css" href="css/accordion.css" />
 <script type="text/javascript" src="js/helpers.js"></script>
 <script type="text/javascript" src="js/setup.js"></script>
 
@@ -32,7 +32,7 @@
     <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
     <div id="coding-arena">
       <div class="demo-block">
-        <dl id="accordionGroup" role="presentation">
+        <dl id="accordionGroup" role="presentation" class="accordion">
           <dt role="heading" aria-level="3" class="clearfix">
             <a role="button" aria-expanded="false" href="#" class="accAccordion"
               aria-controls="sect1" data-defaultopen="true" id="accordion1id"
@@ -45,13 +45,13 @@
               <!-- Variable content within section, may include any type of markup or interactive widgets. -->
               <fieldset class="contact flex">
                 <p>
-                  <label for="cufc1"><span class="cRed">*</span>Name:</label>
+                  <label for="cufc1">Name<span class="cRed">*</span>:</label>
                   <input type="text" value="" name="Name" id="cufc1" class="required"
                     aria-required="true"
                   >
                 </p>
                 <p>
-                  <label for="cufc2"><span class="cRed">*</span>Email:</label>
+                  <label for="cufc2">Email<span class="cRed">*</span>:</label>
                   <input type="text" value="" name="Email" id="cufc2" class="required"
                     aria-required="true"
                   >

@@ -14,6 +14,11 @@
   outline-offset: .2em;
 }
 
+[role="link"].link3:hover,
+[role="link"].link3:focus {
+  outline: none;
+}
+
 [role="link"].link3::before {
   display: block;
   content: url('../images/w3c-logo.png');
