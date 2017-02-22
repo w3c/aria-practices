@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+<title>Accordion Example | WAI-ARIA Authoring Practices 1.1</title>
+<!--  Core js and css shared by all examples; do not modify when using this template. -->
+<link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
+<link rel="stylesheet" href="../css/core.css">
+<script src="../js/examples.js"></script>
+<script src="../js/highlight.pack.js"></script>
+<script src="../js/app.js"></script>
+
+<!--  js and css for this example. -->
+<link rel="stylesheet" type="text/css" href="css/accordion.css" />
+<script type="text/javascript" src="js/helpers.js"></script>
+<script type="text/javascript" src="js/setup.js"></script>
+
+</head>
+<body>
+  <main>
+  <h1>Accordion Example</h1>
+  <p>
+    The below example section contains a simple personal information input form divided into 3 sections
+    that demonstrates the
+    <a href="../../#accordion">design pattern for accordion.</a>
+    In this implementation, one panel of the accordion is always expanded, and only one panel may
+    be expanded at a time. This example does not implement any of the optional keystrokes included in the accordion pattern.
+  </p>
+  <section>
+    <h2 id="ex_label">Example</h2>
+    <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
+    <div id="coding-arena">
+      <div class="demo-block">
+        <dl id="accordionGroup" role="presentation" class="accordion">
+          <dt role="heading" aria-level="3" class="clearfix">
+            <a role="button" aria-expanded="false" href="#" class="accAccordion"
+              aria-controls="sect1" data-defaultopen="true" id="accordion1id"
+            >
+              <span class="icon"></span><span class="lbl">Personal Information</span>
+            </a>
+          </dt>
+          <dd id="sect1" role="region" aria-labelledby="accordion1id" class="hidden">
+            <div>
+              <!-- Variable content within section, may include any type of markup or interactive widgets. -->
+              <fieldset class="contact flex">
+                <p>
+                  <label for="cufc1">Name<span class="cRed">*</span>:</label>
+                  <input type="text" value="" name="Name" id="cufc1" class="required"
+                    aria-required="true"
+                  >
+                </p>
+                <p>
+                  <label for="cufc2">Email<span class="cRed">*</span>:</label>
+                  <input type="text" value="" name="Email" id="cufc2" class="required"
+                    aria-required="true"
+                  >
+                </p>
+                <p>
+                  <label for="cufc3">Phone:</label>
+                  <input type="text" value="" name="Phone" id="cufc3">
+                </p>
+                <p>
+                  <label for="cufc4">Extension:</label>
+                  <input type="text" value="" name="Ext" id="cufc4">
+                </p>
+                <p>
+                  <label for="cufc5">Country:</label>
+                  <input type="text" value="" name="Country" id="cufc5">
+                </p>
+                <p>
+                  <label for="cufc6">City/Province:</label>
+                  <input type="text" value="" name="City_Province" id="cufc6">
+                </p>
+              </fieldset>
+            </div>
+          </dd>
+          <dt role="heading" aria-level="3" class="clearfix">
+            <a role="button" aria-expanded="false" href="#" class="accAccordion"
+              aria-controls="sect2" id="accordion2id"
+            >
+              <span class="icon"></span><span class="lbl">Billing Address</span>
+            </a>
+          </dt>
+          <dd id="sect2" role="region" aria-labelledby="accordion2id" class="hidden">
+            <div>
+              <fieldset class="billing flex">
+                <p>
+                  <label for="b-add1">Address 1:</label>
+                  <input type="text" name="b-add1" id="b-add1" />
+                </p>
+                <p>
+                  <label for="b-add2">Address 2:</label>
+                  <input type="text" name="b-add2" id="b-add2" />
+                </p>
+                <p>
+                  <label for="b-city">City:</label>
+                  <input type="text" name="b-city" id="b-city" />
+                </p>
+                <p>
+                  <label for="b-state">State:</label>
+                  <input type="text" name="b-state" id="b-state" />
+                </p>
+                <p>
+                  <label for="b-zip">Zip Code:</label>
+                  <input type="text" name="b-zip" id="b-zip" />
+                </p>
+              </fieldset>
+            </div>
+          </dd>
+          <dt role="heading" aria-level="3" class="clearfix">
+            <a role="button" aria-expanded="false" href="#" class="accAccordion"
+              aria-controls="sect3" id="accordion3id"
+            >
+              <span class="icon"></span><span class="lbl">Shipping Address</span>
+            </a>
+          </dt>
+          <dd id="sect3" role="region" aria-labelledby="accordion3id" class="hidden">
+            <div>
+              <fieldset class="shipping flex">
+                <p>
+                  <label for="m-add1">Address 1:</label>
+                  <input type="text" name="m-add1" id="m-add1" />
+                </p>
+                <p>
+                  <label for="m-add2">Address 2:</label>
+                  <input type="text" name="m-add2" id="m-add2" />
+                </p>
+                <p>
+                  <label for="m-city">City:</label>
+                  <input type="text" name="m-city" id="m-city" />
+                </p>
+                <p>
+                  <label for="m-state">State:</label>
+                  <input type="text" name="m-state" id="m-state" />
+                </p>
+                <p>
+                  <label for="m-zip">Zip Code:</label>
+                  <input type="text" name="m-zip" id="m-zip" />
+                </p>
+              </fieldset>
+            </div>
+          </dd>
+        </dl>
+      </div>
+    </div>
+    <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
+  </section>
+  <section>
+    <h2 id="kbd_label">Keyboard Support</h2>
+    <table aria-labelledby="kbd_label" class="def">
+      <thead>
+        <tr>
+          <th>Key</th>
+          <th>Function</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th><kbd>Space</kbd> or <kbd>Enter</kbd></th>
+          <td>When focus is on the accordion header of a collapsed section, expands the section.</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2 id="rps_label">Role, Property, State, and Tabindex  Attributes</h2>
+    <!--
+      Update this table to describe how roles, properties, states, and tabindex are used in this example.
+    -->
+    <table aria-labelledby="rps_label" class="data attributes">
+      <thead>
+        <tr>
+          <th scope="col">Role</th>
+          <th scope="col">Attribute</th>
+          <th scope="col">Element</th>
+          <th scope="col">Usage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row"><code>presentation</code></th>
+          <td></td>
+          <td><code>dl</code></td>
+          <td>
+            <ul>
+              <li>Indicates that the <code>dl</code> element is being used to control presentation and does not represent a definition list.</li>
+              <li>This implementation uses an HTML definition list where each term is recast as a header and each definition is recast as a region that contains panel content.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row"><code>heading</code></th>
+          <td></td>
+          <td><code>dt</code></td>
+          <td>Identifies the element as a heading that serves as an accordion header.</td>
+        </tr>
+        <tr>
+          <td></td>
+          <th scope="row"><code>aria-level=<q>3</q></code></th>
+          <td><code>dt</code></td>
+          <td>
+            <ul>
+              <li>Specifies heading level for the accordion header.</li>
+              <li>Level 3 is chosen because the accordion is contained in a section with a level 2 heading.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th scope="row"><code>button</code></th>
+          <td></td>
+          <td><code>a</code></td>
+          <td>
+            Identifies the element as a button inside the accordion header that provides hide/show functionality.
+          </td>
+        </tr>
+        <tr>
+          <td> </td>
+          <th scope="row"><code>aria-expanded=<q>true</q></code></th>
+          <td><code>a</code></td>
+          <td>
+            Set to <code>true</code> when the Accordion panel is expanded, otherwise set to <code>false</code>.
+          </td>
+        </tr>
+        <tr>
+          <td> </td>
+          <th scope="row"><code>aria-controls=<q>ID</q></code></th>
+          <td><code>a</code></td>
+          <td>
+            Points to the ID of the panel which the header controls.
+          </td>
+        </tr>
+        <tr>
+          <td> </td>
+          <th scope="row"><code>aria-disabled=<q>true</q></code></th>
+          <td><code>a</code></td>
+          <td>
+            If the accordion panel is expanded and is not allowed to be collapsed, then set to <code>true</code>.
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">region</th>
+          <td></td>
+          <td><code>dd</code></td>
+          <td>Creates a landmark region that contains the currently expanded accordion panel.</td>
+        </tr>
+        <tr>
+          <td></td>
+          <th scope="row"><code>aria-labelledby=&quot;ID_REF&quot;</code></th>
+          <td><code>dd</code></td>
+          <td>
+            <ul>
+              <li>Points to the accordion header.</li>
+              <li>Labels the landmark region with the accordion header.</li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Javascript and CSS Source Code</h2>
+    <ul>
+      <li>
+        CSS:
+        <ol>
+          <li>
+            <a href="css/customize.css" type="tex/css">customize.css</a>
+          </li>
+        </ol>
+      </li>
+      <li>
+        JavaScript:
+        <ol>
+          <li>
+            <a href="js/helpers.js" type="text/javascript">helpers.js</a>
+          </li>
+          <li>
+            <a href="js/setup.js" type="text/javascript">setup.js</a>
+          </li>
+        </ol>
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 id="sc1_label">HTML Source Code</h2>
+    <div role="separator" id="sc1_start_sep" aria-labelledby="sc1_start_sep sc1_label" aria-label="Start of"></div>
+    <pre><code id="sc1"></code></pre>
+    <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of"></div>
+    <script>
+      sourceCode.add('sc1', 'coding-arena');
+      sourceCode.make();
+    </script>
+  </section>
+
+  </main>
+  <nav>
+    <a href="../../#accordion">Accordion Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
+  </nav>
+</body>
+</html>
