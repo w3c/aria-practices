@@ -1,0 +1,78 @@
+[role="radiogroup"] {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+[role="radiogroup"]:focus {
+  outline: none;
+}
+
+[role="radio"] {
+  display: inline-block;
+  position: relative;
+  padding-left: 1.4em;
+  cursor: default;
+}
+
+[role="radio"] + [role="radio"] {
+  margin-left: 1em;
+}
+
+[role="radio"]::before,
+[role="radio"]::after {
+  position: absolute;
+  top: 50%;
+  left: 7px;
+  transform: translate(-50%, -50%);
+  content: '';
+}
+
+[role="radio"]::before {
+  width: 14px;
+  height: 14px;
+  border: 1px solid hsl(0, 0%, 66%);
+  border-radius: 100%;
+  background-image: linear-gradient(to bottom, hsl(300, 3%, 93%), #fff 60%);
+}
+
+[role="radio"]:active::before {
+  background-image: linear-gradient(to bottom, hsl(300, 3%, 73%), hsl(300, 3%, 93%));
+}
+
+[role="radio"][aria-checked="true"]::before {
+  border-color: hsl(216, 80%, 50%);
+  background: hsl(217, 95%, 68%);
+  background-image: linear-gradient(to bottom, hsl(217, 95%, 68%), hsl(216, 80%, 57%));
+}
+
+[role="radio"][aria-checked="true"]::after {
+  display: block;
+  border: .1875em solid #fff;
+  border-radius: 100%;
+  //transform: translateY(-65%) translateX(-50%);
+}
+
+[role="radio"][aria-checked="mixed"]:active::before,
+[role="radio"][aria-checked="true"]:active::before {
+  background-image: linear-gradient(to bottom, hsl(216, 80%, 57%), hsl(217, 95%, 68%) 60%);
+}
+
+[role="radio"]:hover::before {
+  border-color: hsl(216, 94%, 65%);
+}
+
+[role="radio"]:focus {
+  outline: none;
+}
+
+[role="radio"].focus:before,
+[role="radio"]:focus::before {
+  width: 16px;
+  height: 16px;
+  box-sizing: content-box;
+  border-color: hsl(216, 94%, 73%);
+  border-width: 3px;
+  border-radius: 100%;
+  box-shadow: inset 0 0 0 1px hsl(216, 80%, 50%);
+}
