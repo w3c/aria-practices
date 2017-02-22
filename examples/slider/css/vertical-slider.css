@@ -12,6 +12,8 @@ div.aria-widget-vertical-slider .rail {
   border: 1px solid #888;
   position: relative;
   left: 3.8em;
+  width: 4px;
+
   
 }
 
@@ -23,6 +25,12 @@ div.aria-widget-vertical-slider .thumb  {
   position: relative;
 }
 
+div.aria-widget-vertical-slider .thumb.focus, 
+div.aria-widget-vertical-slider .thumb:hover {
+  outline: 2px solid #888;
+  background-color: #E0CB52;
+}
+
 div.aria-widget-vertical-slider .label,
 div.aria-widget-vertical-slider .value  {
   margin-top: 0.5em;
@@ -32,18 +40,19 @@ div.aria-widget-vertical-slider .value  {
 }
 
 
-div.focus .thumb  {
+
+div.aria-widget-vertical-slider div.focus .thumb  {
   border: 1px solid #444;
   background-color: #888;
   position: relative;
 }
 
-div.focus .rail {
+div.aria-widget-vertical-slider div.focus .rail {
   background-color: #CCC;
   width: 8px;
 }
 
-.label {
+div.aria-widget-vertical-slider .label {
   font-weight: bold;
   font-size: 110%;
 }
