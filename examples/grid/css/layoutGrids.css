@@ -24,8 +24,74 @@
   height: 40px;
   margin: 5px 0 0 0;
   padding: 5px;
+	position: relative;
   vertical-align: middle;
   width: 120px;
+}
+
+[role="gridcell"], [role="gridcell"] [tabindex] {
+	display: inline-block;
+	position: relative;
+}
+
+[role="gridcell"]:focus::before, [role="gridcell"] *:focus::before {
+	content: ' ';
+	background: url('../imgs/arrows-group-in-four-directions-3.png');
+	background-color: white;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 12px;
+	width: 12px;
+	height: 12px;
+	display: block;
+	position: absolute;
+	top: 0px;
+	left: -15px;
+	z-index: 1;
+}
+
+.grid-nux {
+	background: #eaf9ef;
+	position: absolute;
+	max-width: 500px;
+	border: 1px solid #bbb;
+	padding: 0 15px 20px;
+	margin-top: 20px;
+	box-shadow: 2px 2px 3px rgba(0,0,0,0.3);
+}
+
+.grid-nux:after, .grid-nux:before {
+	bottom: 100%;
+	left: 20px;
+	border: solid transparent;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.grid-nux:after {
+	border-color: rgba(136, 183, 213, 0);
+	border-bottom-color: #eaf9ef;
+	border-width: 10px;
+	margin-left: -10px;
+}
+
+.grid-nux:before {
+	border-color: rgba(194, 225, 245, 0);
+	border-bottom-color: #bbb;
+	border-width: 11px;
+	margin-left: -11px;
+}
+
+.close-nux-button {
+	color: #360;
+	cursor: default;
+	position: absolute;
+  right: 10px;
+  bottom: 10px;
+  text-decoration: underline;
 }
 
 .recipient-list {
