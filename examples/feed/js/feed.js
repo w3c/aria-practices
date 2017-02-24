@@ -22,31 +22,23 @@ aria.Feed.prototype.addItem = function (item) {
 
 aria.Feed.prototype.setupEvents = function () {
   this.feedNode.addEventListener('click', this.handleArticleClicked.bind(this));
-  this.feedNode.addEventListener('keyup', this.handleArticleTabbed.bind(this));
+  this.feedNode.addEventListener('focus', this.handleArticleFocused.bind(this));
   this.feedNode.addEventListener('keydown', this.mapKeyShortcut.bind(this));
-  // this.feedNode.addEventListener('focus', );
-
 };
 
 aria.Feed.prototype.handleArticleClicked = function (event) {
-  var clickedItem = event.target;
+  var clickedArticle =
+    aria.Utils.getAncestorBySelector(event.target, '[role="article"]');
 
-  if (aria.Utils.matches(clickedItem, '[role="article"]')) {
-    this.focusItem(clickedItem);
+  if (clickedArticle) {
+    this.focusedIndex = clickedArticle.getAttribute('aria-posinset');
   }
 };
 
-aria.Feed.prototype.handleArticleTabbed = function (event) {
-  var key = event.which || event.keyCode;
-  var tabbedItem = event.target;
+aria.Feed.prototype.handleArticleFocused = function (event) {
 
-  if (key !== aria.KeyCode.TAB) {
-    return;
-  }
-
-  if (aria.Utils.matches(tabbedItem, '[role="article"]')) {
-    this.focusItem(tabbedItem);
-  }
+  this.handleArticleClicked(event);
+  console.log(event);
 };
 
 aria.Feed.prototype.focusItem = function (item) {
