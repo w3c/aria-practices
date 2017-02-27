@@ -59,7 +59,8 @@ aria.Utils.getAncestorBySelector = function (element, selector) {
   while (ancestor === null) {
     if (aria.Utils.matches(currentNode.parentNode, selector)) {
       ancestor = currentNode.parentNode;
-    } else {
+    }
+    else {
       currentNode = currentNode.parentNode;
     }
   }
