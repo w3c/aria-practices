@@ -180,11 +180,13 @@ aria.Listbox.prototype.toggleSelectItem = function (element) {
       element.getAttribute('aria-selected') === 'true' ? 'false' : 'true'
     );
 
-    if (this.listboxNode.querySelector('[aria-selected="true"]')) {
-      this.deleteButton.setAttribute('aria-disabled', 'false');
-    }
-    else {
-      this.deleteButton.setAttribute('aria-disabled', 'true');
+    if (this.deleteButton) {
+      if (this.listboxNode.querySelector('[aria-selected="true"]')) {
+        this.deleteButton.setAttribute('aria-disabled', 'false');
+      }
+      else {
+        this.deleteButton.setAttribute('aria-disabled', 'true');
+      }
     }
   }
 };
