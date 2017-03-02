@@ -32,7 +32,10 @@ var query = function (s, o, fn) {
     }
     else if (typeof a == 'object') {
       for (var n in a) {
-        fn.apply(a, [n, a[n]]);
+        if (a.hasOwnProperty(n)) {
+          fn.apply(a, [n, a[n]]);  
+        }
+
       }
     }
 
