@@ -25,7 +25,7 @@
     that demonstrates the
     <a href="../../#accordion">design pattern for accordion.</a>
     In this implementation, one panel of the accordion is always expanded, and only one panel may
-    be expanded at a time. This example does not implement any of the optional keystrokes included in the accordion pattern.
+    be expanded at a time.
   </p>
   <section>
     <h2 id="ex_label">Example</h2>
@@ -34,13 +34,13 @@
       <div class="demo-block">
         <dl id="accordionGroup" role="presentation" class="accordion">
           <dt role="heading" aria-level="3" class="clearfix">
-            <a role="button" aria-expanded="false" href="#" class="accAccordion"
+            <button aria-expanded="false" class="accAccordion"
               aria-controls="sect1" data-defaultopen="true" id="accordion1id"
             >
               <span class="icon"></span><span class="lbl">Personal Information</span>
-            </a>
+            </button>
           </dt>
-          <dd id="sect1" role="region" aria-labelledby="accordion1id" class="hidden">
+          <dd id="sect1" role="region" aria-labelledby="accordion1id" class="accPanel hidden">
             <div>
               <!-- Variable content within section, may include any type of markup or interactive widgets. -->
               <fieldset class="contact flex">
@@ -76,13 +76,13 @@
             </div>
           </dd>
           <dt role="heading" aria-level="3" class="clearfix">
-            <a role="button" aria-expanded="false" href="#" class="accAccordion"
+            <button aria-expanded="false" class="accAccordion"
               aria-controls="sect2" id="accordion2id"
             >
               <span class="icon"></span><span class="lbl">Billing Address</span>
-            </a>
+            </button>
           </dt>
-          <dd id="sect2" role="region" aria-labelledby="accordion2id" class="hidden">
+          <dd id="sect2" role="region" aria-labelledby="accordion2id" class="accPanel hidden">
             <div>
               <fieldset class="billing flex">
                 <p>
@@ -109,13 +109,13 @@
             </div>
           </dd>
           <dt role="heading" aria-level="3" class="clearfix">
-            <a role="button" aria-expanded="false" href="#" class="accAccordion"
+            <button aria-expanded="false" class="accAccordion"
               aria-controls="sect3" id="accordion3id"
             >
               <span class="icon"></span><span class="lbl">Shipping Address</span>
-            </a>
+            </button>
           </dt>
-          <dd id="sect3" role="region" aria-labelledby="accordion3id" class="hidden">
+          <dd id="sect3" role="region" aria-labelledby="accordion3id" class="accPanel hidden">
             <div>
               <fieldset class="shipping flex">
                 <p>
@@ -159,6 +159,30 @@
         <tr>
           <th><kbd>Space</kbd> or <kbd>Enter</kbd></th>
           <td>When focus is on the accordion header of a collapsed section, expands the section.</td>
+        </tr>
+        <tr>
+          <th><kbd>Up</kbd></th>
+          <td>If focus is on an accordion header, moves focus to the previous accordion header. If focus is on the first accordion header, moves focus to the last accordion header.</td>
+        </tr>
+        <tr>
+          <th><kbd>Down</kbd></th>
+          <td>If focus is on an accordion header, moves focus to the next accordion header. If focus is on the last accordion header, moves focus to the first accordion header.</td>
+        </tr>
+        <tr>
+          <th><kbd>Home</kbd></th>
+          <td>When focus is on an accordion header, moves focus to the first accordion header.</td>
+        </tr>
+        <tr>
+          <th><kbd>End</kbd></th>
+          <td>When focus is on an accordion header, moves focus to the last accordion header.</td>
+        </tr>
+        <tr>
+          <th><kbd>Control</kbd> + <kbd>Page Up</kbd></th>
+          <td>If focus is inside an accordion panel, moves focus to the header for that panel. If focus is on an accordion header, moves focus to the previous accordion header. If focus is on the first accordion header, moves focus to the last accordion header.</td>
+        </tr>
+        <tr>
+          <th><kbd>Control</kbd> + <kbd>Page Down</kbd></th>
+          <td>If focus is inside an accordion panel or on an accordion header, moves focus to the next accordion header. If focus is in the last accordion header or panel, moves focus to the first accordion header.</td>
         </tr>
       </tbody>
     </table>
