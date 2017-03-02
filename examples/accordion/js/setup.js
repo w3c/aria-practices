@@ -13,7 +13,14 @@ bind(window, 'load', function () {
   var allowToggle = false,
 
   // Allow for multiple accordion sections to be expanded at the same time
-  allowMultiple = false;
+  allowMultiple = false,
+
+  // Main accordion parent container, for event delegation
+  accordion = getEl('accordionGroup'),
+
+  // Create the array of toggle elements for the accordion group, using the shared 'accAccordion' class name
+  toggles = [].slice.call(query('*.accAccordion'), accordion),
+  panels = [].slice.call(query('*.accPanel'), accordion);
 
   // Declare function for toggling the activated accordion toggle
   var toggleAccordion = function (o) {
@@ -56,11 +63,9 @@ bind(window, 'load', function () {
       // Set aria-disabled='true' if the accordion toggle is locked in an open state
       setAttr(o, 'aria-disabled', 'true');
     }
-  },
+  };
 
-  // Create the array of toggle elements for the accordion group, using the shared 'accAccordion' class name
-  toggles = query('*.accAccordion', document, function (i, o) {
-
+  forEach(toggles, function (i, o) {
     // Create a click binding for mouse and touch device support, plus works for keyboard support on all native active elements like links and buttons
     bind(o, 'click', function (ev) {
       toggleAccordion(this);
@@ -74,15 +79,51 @@ bind(window, 'load', function () {
       }
     });
 
-    // Now create a redundant keyDown binding to support all simulated elements such as all focusable divs and spans to provide the same functionality and accessibility
-    // tabindex="0" is required on such simulated elements
-    // Adding arrow key support here is okay, though all accordion toggles must also be in the regular tab order too.
-    bind(o, 'keydown', function (ev) {
-      var k = ev.which || ev.keyCode;
+    // Check for the presence of data-defaultopen="true" and automatically open that accordion if found
+    if (getAttr(o, 'data-defaultopen') == 'true') {
+      toggleAccordion(o);
+    }
+  });
 
-      // 13 = Enter, 32 = Spacebar
-      if (k == '13' || k == '32') {
-        toggleAccordion(this);
+  // Bind keyboard behaviors on the main accordion container
+  bind(accordion, 'keydown', function (ev) {
+    var target = ev.target,
+    whichKey = ev.which.toString(),
+    // 33 = Page Up, 34 = Page Down
+    ctrlModifier = (ev.ctrlKey && whichKey.match(/33|34/));
+
+    // Is this coming from an accordion header?
+    if (hasClass(target, 'accAccordion')) {
+      // Up/ Down arrow and Control + Page Up/ Page Down keyboard operations
+      // 38 = Up, 40 = Down
+      if (whichKey.match(/38|40/) || ctrlModifier) {
+        var index = toggles.indexOf(target),
+        direction = (whichKey.match(/34|40/)) ? 1:-1,
+        length = toggles.length,
+        newIndex = (index +length + direction) % length;
+
+        toggles[newIndex].focus();
+
+        if (ev.preventDefault) {
+          ev.preventDefault();
+        }
+
+        else {
+          return false;
+        }
+
+      } else if (whichKey.match(/35|36/)) {
+         // 35 = End, 36 = Home keyboard operations
+        switch (whichKey) {
+          // Go to first accordion
+          case '36':
+            toggles[0].focus();
+            break;
+          // Go to last accordion
+          case '35':
+            toggles[toggles.length-1].focus();
+            break;
+        }
 
         if (ev.preventDefault) {
           ev.preventDefault();
@@ -92,13 +133,23 @@ bind(window, 'load', function () {
           return false;
         }
       }
-    });
-  });
+    } else if (ctrlModifier){
+      // Control + Page Up/ Page Down keyboard operations
+      // Catches events that happen inside of panels
+      forEach(panels, function (i, o) {
+        if (o.contains(target)) {
+          toggles[i].focus();
 
-  // Check for the presence of data-defaultopen="true" and automatically open that accordion if found
-  forEach(toggles, function (i, o) {
-    if (getAttr(o, 'data-defaultopen') == 'true') {
-      toggleAccordion(o);
+          if (ev.preventDefault) {
+            ev.preventDefault();
+          }
+
+          else {
+            return false;
+          }
+        }
+      });
     }
+
   });
 });
