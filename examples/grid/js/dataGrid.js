@@ -257,6 +257,8 @@ aria.Grid.prototype.checkFocusChange = function (event) {
     return;
   }
 
+  this.findFocusedItem(event.target);
+
   var key = event.which || event.keyCode;
   var rowCaret = this.focusedRow;
   var colCaret = this.focusedCol;
@@ -311,6 +313,32 @@ aria.Grid.prototype.checkFocusChange = function (event) {
 
   this.focusCell(rowCaret, colCaret);
   event.preventDefault();
+};
+
+/**
+ * @desc
+ *  Reset focused row and col if it doesn't match focusedRow and focusedCol
+ *
+ * @param focusedTarget
+ *  Element that is currently focused by browser
+ */
+aria.Grid.prototype.findFocusedItem = function (focusedTarget) {
+  var focusedCell = this.grid[this.focusedRow][this.focusedCol];
+
+  if (focusedCell === focusedTarget
+      || focusedCell.contains(focusedTarget)) {
+    return;
+  }
+
+  for (var i = 0; i < this.grid.length; i++) {
+    for (var j = 0; j < this.grid[i].length; j++) {
+      if (this.grid[i][j] === focusedTarget
+          || this.grid[i][j].contains(focusedTarget)) {
+        this.setFocusPointer(i, j);
+        return;
+      }
+    }
+  }
 };
 
 /**
