@@ -575,9 +575,9 @@
         that often appears to scroll infinitely.
       </p>
       <p>
-        The primary difference between a feed and other ARIA patterns that support scrolling
-        information, e.g., a grid, is that feed is a structure, not a widget. This means assistive
-        technologies with a reading mode, such as screen readers, will default to reading mode when
+        The primary difference between a feed and other ARIA patterns that support loading data as users scroll, 
+        e.g., a <a href="#grid">grid</a>, is that a feed is a structure, not a widget. This means assistive
+        technologies with a reading mode, such as screen readers will default to reading mode when
         interacting with feed content, making the feed pattern most useful for blocks of
         unstructured information that may contain links or other interactive elements.
       </p>
@@ -591,10 +591,12 @@
       <p>
         Unfortunately, when web pages load content dynamically based on scroll events, it
         creates interoperability difficulties for users of assistive technologies that cannot
-        sufficiently mimic visual scrolling. The web page could also observe focus movements in
-        order to identify when more content is needed. However, requiring assistive technologies to
-        move DOM focus in response to every reading cursor movement, regardless of context, can also have negative
-        side effects on the screen reading experience.
+        sufficiently mimic visual scrolling. 
+        Even if the page also observes focus movements in
+        order to identify when more content is needed, 
+        there can still be problems because requiring assistive technologies to
+        move DOM focus in response to every reading cursor movement, regardless of context, 
+        can also negatively impact a screen reading experience.
       </p>
       <p>
         The feed pattern enables reliable assistive technology reading mode interaction by
@@ -619,8 +621,8 @@
         </li>
       </ol>
       <p>
-        Thus, implementing the feed pattern allows a screen reader to reliably read and load
-        feed content while staying in its reading mode.
+        Thus, implementing the feed pattern allows a screen reader to reliably read and trigger the loading
+        of feed content while staying in its reading mode.
       </p>
       <p>
         Another feature of the feed pattern is its ability to facilitate skim reading for
