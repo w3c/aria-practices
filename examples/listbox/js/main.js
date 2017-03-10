@@ -23,4 +23,7 @@ window.addEventListener('load', function () {
 
   ex2ImportantListbox.setupDelete(document.getElementById('ex2-add'), ex2UnimportantListbox);
   ex2UnimportantListbox.setupDelete(document.getElementById('ex2-delete'), ex2ImportantListbox);
+
+  var ex3 = document.getElementById('ex3');
+  var ex3Listbox = new aria.Listbox(document.getElementById('ss_elem_list'));
 });

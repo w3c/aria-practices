@@ -160,6 +160,66 @@ while in the second example, they may select multiple options before activating 
         <li>Users can toggle the selected state of the focused option with <kbd>Space</kbd> or click.</li>
       </ol>
     </section>
+
+    <section>
+      <h3 id="ex3_label">Example 3: Scrollable Listbox</h3>
+      <div role="separator" id="ex3_start_sep" aria-labelledby="ex3_start_sep ex3_label" aria-label="Start of"></div>
+      <div id="ex3">
+        <p>Choose your favorite transuranic element (actinide or transactinide).</p>
+        <div class="listbox-area">
+          <div class="left-area">
+            <span id="ss_elem">Transuranium elements:</span>
+            <ul id="ss_elem_list" tabindex="0" role="listbox" aria-labelledby="ss_elem">
+              <li id="ss_elem_Np" role="option">Neptunium</li>
+              <li id="ss_elem_Pu" role="option">Plutonium</li>
+              <li id="ss_elem_Am" role="option">Americium</li>
+              <li id="ss_elem_Cm" role="option">Curium</li>
+              <li id="ss_elem_Bk" role="option">Berkelium</li>
+              <li id="ss_elem_Cf" role="option">Californium</li>
+              <li id="ss_elem_Es" role="option">Einsteinium</li>
+              <li id="ss_elem_Fm" role="option">Fermium</li>
+              <li id="ss_elem_Md" role="option">Mendelevium</li>
+              <li id="ss_elem_No" role="option">Nobelium</li>
+              <li id="ss_elem_Lr" role="option">Lawrencium</li>
+              <li id="ss_elem_Rf" role="option">Rutherfordium</li>
+              <li id="ss_elem_Db" role="option">Dubnium</li>
+              <li id="ss_elem_Sg" role="option">Seaborgium</li>
+              <li id="ss_elem_Bh" role="option">Bohrium</li>
+              <li id="ss_elem_Hs" role="option">Hassium</li>
+              <li id="ss_elem_Mt" role="option">Meitnerium</li>
+              <li id="ss_elem_Ds" role="option">Darmstadtium</li>
+              <li id="ss_elem_Rg" role="option">Roentgenium</li>
+              <li id="ss_elem_Cn" role="option">Copernicium</li>
+              <li id="ss_elem_Nh" role="option">Nihonium</li>
+              <li id="ss_elem_Fl" role="option">Flerovium</li>
+              <li id="ss_elem_Mc" role="option">Moscovium</li>
+              <li id="ss_elem_Lv" role="option">Livermorium</li>
+              <li id="ss_elem_Ts" role="option">Tennessine</li>
+              <li id="ss_elem_Og" role="option">Oganesson</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div role="separator" id="ex3_end_sep" aria-labelledby="ex3_end_sep ex3_label" aria-label="End of"></div>
+      <h4>Notes</h4>
+      <ol>
+        <li>This example has a <code>listbox</code> with more options than its height can accommodate.</li>
+        <li>Scrolling only works as expected if the listbox is the options' <code>offsetParent</code>.
+          The example uses <code>position: relative</code> on the listbox to that effect.</li>
+        <li>When an option is focused that isn't (fully) visible, the listbox's scroll position is updated:
+          <ol>
+            <li>If <kbd>Up Arrow</kbd> or <kbd>Down Arrow</kbd> is pressed, the previous or next option is scrolled into view.</li>
+            <li>If <kbd>Home</kbd> or <kbd>End</kbd> is pressed, the listbox scrolls all the way to the top or to the bottom.</li>
+            <li>If <code>focusItem</code> is called, the focused option will be scrolled to the top of the view if it was located above it or to the bottom if it was below it.</li>
+            <li>If the mouse is clicked on a partially visible option, it will be scrolled fully into view.</li>
+          </ol>
+        </li>
+        <li>When a fully visible option is focused in any way, no scrolling occurs.</li>
+        <li>Normal scrolling through any scrolling mechanism (including <kbd>Page Up</kbd> and <kbd>Page Down</kbd>) works as expected.
+          The scroll position will jump as described for <code>focusItem</code> if another means than a mouse click is used to change focus after scrolling.</li>
+        <li>This example uses a single-select listbox, but works just as well with a multi-select listbox.</li>
+      </ol>
+    </section>
   </section>
 
   <section>
@@ -338,6 +398,11 @@ while in the second example, they may select multiple options before activating 
     <pre><code id="sc2"></code></pre>
     <div id="sc2_end_sep" role="separator" aria-labelledby="sc2_end_sep sc2_label" aria-label="End of HTML for"></div>
     <script>sourceCode.add('sc2', 'ex2')</script>
+    <h3 id="sc3_label">Example 3: Scrollable Listbox</h3>
+    <div id="sc3_start_sep" role="separator" aria-labelledby="sc3_start_sep sc3_label" aria-label="Start of HTML for"></div>
+    <pre><code id="sc3"></code></pre>
+    <div id="sc3_end_sep" role="separator" aria-labelledby="sc3_end_sep sc3_label" aria-label="End of HTML for"></div>
+    <script>sourceCode.add('sc3', 'ex3')</script>
     <!--  After all source has been added, run make to do the insert.  -->
     <script> sourceCode.make() </script>
   </section>

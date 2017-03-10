@@ -89,3 +89,9 @@ button[aria-disabled="true"] {
 	left: 2px;
 	top: 4px;
 }
+
+#ss_elem_list {
+	max-height: 18em;
+	overflow-y: auto;
+	position: relative;
+}
