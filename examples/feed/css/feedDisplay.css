@@ -1,0 +1,57 @@
+#sidepanel {
+  display: inline-block;
+  vertical-align: top;
+  width: 29%;
+}
+
+#main-content {
+  display: inline-block;
+  vertical-align: top;
+  width: 70%;
+}
+
+#restaurant-feed {
+  margin-top: 30px;
+  width: 500px;
+}
+
+.restaurant-item {
+  box-shadow: 1px 1px 6px #bbb;
+  margin-bottom: 15px;
+  padding-top: 15px;
+}
+
+.restaurant-details {
+  display: inline-block;
+  margin-bottom: 10px;
+  padding-left: 15px;
+  vertical-align: top;
+  width: 270px;
+}
+
+.restaurant-name {
+  font-size: 18px;
+  margin-bottom: 2px;
+}
+
+.restaurant-star-img {
+  width: 90px;
+}
+
+.restaurant-type {
+  color: #999;
+  font-size: 13px;
+}
+
+.location-block {
+  display: inline-block;
+  padding-top: 5px;
+  vertical-align: top;
+}
+
+.restaurant-actions {
+  box-sizing: border-box;
+  background: #d8d0c5;
+  padding: 10px;
+  width: 100%;
+}

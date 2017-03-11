@@ -246,6 +246,12 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       border: 0;
     }
   </style>
+  <title>WAI-ARIA Authoring Practices 1.1</title>
+
+
+
+
+  <link href="common/css/common.css" rel="stylesheet" type="text/css">
   <style id="respec-mainstyle">
     /*****************************************************************
  * ReSpec 3 CSS
@@ -379,10 +385,6 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     .section dl.attrs dd,
     .section dl.eldef dd {
       margin-bottom: 0;
-    }
-    
-    .respec-hidden {
-      display: none;
     }
     
     #respec-ui {
@@ -638,16 +640,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       }
     }
   </style>
-  <title>WAI-ARIA Authoring Practices 1.1</title>
-
-
-
-
-  <link href="common/css/common.css" rel="stylesheet" type="text/css">
-  <!--[if lt IE 9]><script src='https://www.w3.org/2008/site/js/html5shiv.js'></script><![endif]-->
   <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/W3C-ED">
   <link rel="canonical" href="https://www.w3.org/TR/wai-aria-practices-1.1/">
-  <meta name="generator" content="ReSpec 10.5.3">
+  <meta name="generator" content="ReSpec 11.0.1">
   <script id="initialUserConfig" type="application/json">
     {
       "doRDFa": "1.1",
@@ -1020,13 +1015,13 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     }
   </script>
 </head>
-<body aria-busy="false" class="h-entry toc-inline" role="document" id="respecDocument">
+<body aria-busy="false" class="h-entry toc-inline" id="respecDocument">
   <div class="head" role="contentinfo" id="respecHeader">
     <p>
       <a class="logo" href="https://www.w3.org/"><img width="72" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" alt="W3C"></a>
     </p>
     <h1 class="title p-name" id="title" property="dcterms:title"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Authoring Practices 1.1</h1>
-    <h2 id="w3c-editor-s-draft-28-february-2017"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2017-02-28">28 February 2017</time></h2>
+    <h2 id="w3c-editor-s-draft-11-march-2017"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2017-03-11">11 March 2017</time></h2>
     <dl>
       <dt>This version:</dt>
       <dd><a class="u-url" href="http://w3c.github.io/aria-practices/">http://w3c.github.io/aria-practices/</a></dd>
@@ -1105,7 +1100,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <a href="https://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">section
               6 of the <abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>.
     </p>
-    <p>This document is governed by the <a id="w3c_process_revision" href="https://www.w3.org/2015/Process-20150901/">1 September 2015 <abbr title="World Wide Web Consortium">W3C</abbr> Process Document</a>.
+    <p>This document is governed by the <a id="w3c_process_revision" href="https://www.w3.org/2017/Process-20170301/">1 March 2017 <abbr title="World Wide Web Consortium">W3C</abbr> Process Document</a>.
     </p>
 
   </section>
@@ -1836,7 +1831,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         The primary difference between a feed and other ARIA patterns that support loading data as users scroll, e.g., a <a href="#grid">grid</a>, is that a feed is a structure, not a widget. This means assistive technologies with a reading mode, such as screen readers, will default to reading mode when interacting with feed content, making the feed pattern most useful for blocks of unstructured information that may contain links or other interactive elements.
       </p>
       <p>
-        For example, a product page on a shopping site has a related products section that displays five product suggestions at a time. As the user scrolls, more suggestions are requested and loaded into the DOM. While a static design might include a next button for loading five more product suggestions, a dynamic implementation that automatically loads data as needed simplifies the user experience and reduces the inertia of viewing more than the first five suggestions.
+        For example, a product page on a shopping site may have a related products section that displays five products at a time. As the user scrolls, more products are requested and loaded into the DOM. While a static design might include a next button for loading five more products, a dynamic implementation that automatically loads data as needed simplifies the user experience and reduces the inertia associated with viewing more than the first five product suggestions.
       </p>
       <p>
         Unfortunately, when web pages load content dynamically based on scroll events, it creates interoperability difficulties for users of assistive technologies that cannot sufficiently mimic visual scrolling. Even if the page also observes focus movements in order to identify when more content is needed, there can still be problems because requiring assistive technologies to move DOM focus in response to every reading cursor movement, regardless of context, can also negatively impact a screen reading experience.
@@ -1865,7 +1860,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         Thus, implementing the feed pattern allows a screen reader to reliably read and trigger the loading of feed content while staying in its reading mode.
       </p>
       <p>
-        Another feature of the feed pattern is its ability to facilitate skim reading by assistive technology users. Web page authors may provide both an accessible name and description for each article. By identifying the elements inside of an article that provide the title and the primary content, assistive technologies can provide functions that enable users to jump from article to article and efficiently discern which articles may be worthy of more attention.
+        Another feature of the feed pattern is its ability to facilitate skim reading for assistive technology users. Web page authors may provide both an accessible name and description for each article. By identifying the elements inside of an article that provide the title and the primary content, assistive technologies can provide functions that enable users to jump from article to article and efficiently discern which articles may be worthy of more attention.
       </p>
 
       <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-8" property="bibo:hasPart">
@@ -4657,7 +4652,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <p>[Placeholder section that will be resolved by <a href="https://github.com/w3c/aria-practices/issues/84">issue #84</a>.]</p>
     </section>
 
-    <div data-include="common/acknowledgements.html" data-include-replace="true" data-include-id="include-7969181753617423">
+    <div data-include="common/acknowledgements.html" data-include-replace="true" data-include-id="include-2776290255860354">
     </div>
   </section>
 

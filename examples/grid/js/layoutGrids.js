@@ -24,15 +24,23 @@ window.addEventListener('load', function () {
   );
 
   var gridNUX = document.getElementById('grid-nux');
+  var firstGridCell = document.querySelector('#ex1 [tabindex="0"]');
+  firstGridCell.addEventListener(
+    'focus',
+    function () {
+      aria.Utils.removeClass(gridNUX, 'hidden');
+    },
+    {
+      once: true
+    }
+  );
+
   var NUXclose = document.getElementById('close-nux-button');
   var closeNUX = function () {
-    var cellToRefocus = document.querySelector('#ex1 [tabindex="0"]');
-    gridNUX.className = 'grid-nux hidden';
+    aria.Utils.addClass(gridNUX, 'hidden');
     try {
-      cellToRefocus.focus();
-    } catch (error) {
-
-    }
+      firstGridCell.focus();
+    } catch (error) { }
   };
   NUXclose.addEventListener('click', closeNUX);
   NUXclose.addEventListener('keyup', function (event) {
