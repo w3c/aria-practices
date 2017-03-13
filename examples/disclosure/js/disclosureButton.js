@@ -83,7 +83,7 @@ ButtonExpand.prototype.handleKeydown = function (event) {
   switch (event.keyCode) {
 
     case this.keyCode.RETURN:
- 
+
       this.toggleExpand();
 
       event.stopPropagation();
