@@ -92,7 +92,27 @@ aria.widget.SourceCode.prototype.createCode = function (location, spaces, node, 
     return false;
   }
 
-  var i;
+  function cleanText (s) {
+    if (typeof s !== 'string') {return '';}
+
+    s1 = '';
+    for (var i = 0; i < s.length; i++) {
+      var c = s[i];
+
+      if (c === '<') {
+        c = '&lt;';
+      }
+
+      if (c === '>') {
+        c = '&gt;';
+      }
+
+      s1 += c;
+    }
+    return s1;
+  }
+
+  var i, s;
   var count = 0;
 
   if (typeof first !== 'boolean') first = false;
@@ -135,7 +155,8 @@ aria.widget.SourceCode.prototype.createCode = function (location, spaces, node, 
 
       case Node.TEXT_NODE:
         if (hasText(n.nodeValue)) {
-          location.innerHTML = location.innerHTML + '<br/>' + spaces + '&nbsp;&nbsp;' + n.nodeValue;
+          s = cleanText(n.nodeValue);
+          location.innerHTML = location.innerHTML + '<br/>' + spaces + '&nbsp;&nbsp;' + s;
         }
         count++;
         break;
