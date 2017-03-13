@@ -62,7 +62,7 @@ aria.widget.SourceCode.prototype.make = function () {
     nodeCode = document.getElementById(this.code[i]);
 
     nodeLocation.className = 'sourcecode';
-    this.createCode(nodeLocation, '', nodeCode);
+    this.createCode(nodeLocation, '', nodeCode, true);
 
   } // endfor
 
@@ -80,7 +80,7 @@ aria.widget.SourceCode.prototype.make = function () {
  * @param  node       Object   - DOM Element node to use to generate the source code
  */
 
-aria.widget.SourceCode.prototype.createCode = function (location, spaces, node) {
+aria.widget.SourceCode.prototype.createCode = function (location, spaces, node, first) {
 
   function hasText (s) {
     if (typeof s !== 'string') {return false;}
@@ -93,31 +93,34 @@ aria.widget.SourceCode.prototype.createCode = function (location, spaces, node) 
   }
 
   var i;
-
-  var nodeNameStr = node.nodeName.toLowerCase();
-
-  location.innerHTML = location.innerHTML + '<br/>' + spaces + '&lt;' + nodeNameStr;
-
-  for (i = 0; i < node.attributes.length; i++) {
-
-    location.innerHTML = location.innerHTML + '&nbsp;' + node.attributes[i].nodeName + '="';
-    location.innerHTML = location.innerHTML + node.attributes[i].value + '"';
-
-    if (((i + 1) != node.attributes.length) && (node.attributes.length > 2)) {
-
-      location.innerHTML = location.innerHTML + '<br/>' + spaces;
-
-      for (var j = 2; j <= nodeNameStr.length; j++) {
-        location.innerHTML = location.innerHTML + '&nbsp;';
-      }
-
-    } // endif
-
-  } // endfor
-
-  location.innerHTML = location.innerHTML + '&gt;';
-
   var count = 0;
+
+  if (typeof first !== 'boolean') first = false;
+
+  if (!first) {
+    var nodeNameStr = node.nodeName.toLowerCase();
+
+    location.innerHTML = location.innerHTML + '<br/>' + spaces + '&lt;' + nodeNameStr;
+
+    for (i = 0; i < node.attributes.length; i++) {
+
+      location.innerHTML = location.innerHTML + '&nbsp;' + node.attributes[i].nodeName + '="';
+      location.innerHTML = location.innerHTML + node.attributes[i].value + '"';
+
+      if (((i + 1) != node.attributes.length) && (node.attributes.length > 2)) {
+
+        location.innerHTML = location.innerHTML + '<br/>' + spaces;
+
+        for (var j = 2; j <= nodeNameStr.length; j++) {
+          location.innerHTML = location.innerHTML + '&nbsp;';
+        }
+
+      } // endif
+
+    } // endfor
+
+    location.innerHTML = location.innerHTML + '&gt;';
+  }
 
   for (i = 0; i < node.childNodes.length; i++) {
 
@@ -137,14 +140,24 @@ aria.widget.SourceCode.prototype.createCode = function (location, spaces, node) 
         count++;
         break;
 
+      case Node.COMMENT_NODE:
+
+        if (hasText(n.nodeValue)) {
+          location.innerHTML = location.innerHTML  + '<br/>' + spaces + '&nbsp;&nbsp;' + '&lt;--&nbsp;&nbsp;' + n.nodeValue + "--&gt;";
+        }
+        count++;
+        break;
+
     } // end switch
 
   } // end for
 
-  if (count > 0) {
-    location.innerHTML = location.innerHTML + '<br/>' + spaces + '&lt;/' + node.nodeName.toLowerCase();
-    location.innerHTML = location.innerHTML + '&gt;';
-  } // end if
+  if (!first) {
+    if (count > 0) {
+      location.innerHTML = location.innerHTML + '<br/>' + spaces + '&lt;/' + node.nodeName.toLowerCase();
+      location.innerHTML = location.innerHTML + '&gt;';
+    } // end if
+  }
 
 };
 
