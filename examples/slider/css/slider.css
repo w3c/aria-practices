@@ -30,6 +30,10 @@ div.aria-widget-slider .thumb:hover {
   background-color: #DEF;
 }
 
+div.aria-widget-slider .rail.focus {
+  background-color: #888;  
+} 
+
 
 div.aria-widget-slider .value  {
   width:      2em;
