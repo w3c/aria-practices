@@ -14,37 +14,41 @@
 
 }
 
-.accordion dt[role="heading"]:first-of-type > [role="button"] {
+.accordion dt[role="heading"]:first-of-type > button {
   border-radius: .3em .3em 0 0;
 }
 
-.accordion dt[role="heading"]:last-of-type > [role="button"] {
+.accordion dt[role="heading"]:last-of-type > button {
   border-radius: 0 0 .3em .3em;
 }
 
-.accordion dt[role="heading"]:last-of-type > [role="button"][aria-expanded="true"] {
+.accordion dt[role="heading"]:last-of-type > button[aria-expanded="true"] {
   border-radius: 0;
 }
 
 /* Accordion button */
-.accordion dt > [role="button"] {
+.accordion dt > button {
   display: block;
   position: relative;
   margin: 0;
   padding: 1em 1.5em;
-  border-bottom: 0;
+  background: none;
+  border: 0;
   color: hsl(0, 0%, 13%);
+  font-size: 16px;
   font-weight: normal;
+  text-align: left;
+  width: 100%;
 }
 
-.accordion dt > [role="button"]:hover,
-.accordion dt > [role="button"]:focus {
+.accordion dt > button:hover,
+.accordion dt > button:focus {
   margin: inherit;
   background: hsl(0, 0%, 93%);
 }
 
 /* Accordion button icon */
-.accordion dt > [role="button"] .icon {
+.accordion dt > button .icon {
   position: absolute;
   top: 50%;
   right: 1.5em;
@@ -55,12 +59,12 @@
   border-width: 0 2px 2px 0;
 }
 
-.accordion dt > [role="button"][aria-expanded="true"] .icon {
+.accordion dt > button[aria-expanded="true"] .icon {
   transform: translateY(-50%) rotate(-135deg);
 }
 
-.accordion dt > [role="button"]:hover .icon,
-.accordion dt > [role="button"]:focus .icon {
+.accordion dt > button:hover .icon,
+.accordion dt > button:focus .icon {
   border-color: hsl(0, 0%, 13%);
 }
 
