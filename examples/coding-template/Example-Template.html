@@ -58,17 +58,25 @@
       The div for the rendered HTML source is in the last section of the page.
     -->
     <div id="ex1">
-      <!--  Replace content of this div with the example.  -->
+      <!-- Replace content of this div with the example.  -->
       <p>This is the place where the reader will experience the functioning example.</p>
       <ul>
         <li>The HTML in this section along with the javascript and CSS it uses demonstrate
           the design pattern.</li>
-        <li>
-          When developing an example implementation for this guide, please follow the
-          <a href="https://ianpouncey.github.io/code-guide/">APG example coding guidelines</a>
-          .
+        <li>When developing an example implementation for this guide, please follow the
+          <a href="https://ianpouncey.github.io/code-guide/">APG example coding guidelines</a>.
         </li>
         <!--  Target of previous link will need to be updated when we move the guidelines into the wiki from Ian's repo.  -->
+
+        <script type="text/javascript">
+          <!--  Javascript relavant to example -->
+          var i;
+          var str = "text"
+          for(i = 0; i < str.length; i++) {
+            console.log(str[i]);
+            var code = "<p>Hello World!</p>";
+          }
+        </script>
       </ul>
     </div>
     <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>

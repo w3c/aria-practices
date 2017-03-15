@@ -219,6 +219,17 @@ aria.Listbox.prototype.focusItem = function (element) {
   this.listboxNode.setAttribute('aria-activedescendant', element.id);
   this.activeDescendant = element.id;
 
+  if (this.listboxNode.scrollHeight > this.listboxNode.clientHeight) {
+    var scrollBottom = this.listboxNode.clientHeight + this.listboxNode.scrollTop;
+    var elementBottom = element.offsetTop + element.offsetHeight;
+    if (elementBottom > scrollBottom) {
+      this.listboxNode.scrollTop = elementBottom - this.listboxNode.clientHeight;
+    }
+    else if (element.offsetTop < this.listboxNode.scrollTop) {
+      this.listboxNode.scrollTop = element.offsetTop;
+    }
+  }
+
   if (!this.multiselectable && this.deleteButton) {
     this.deleteButton.setAttribute('aria-disabled', false);
   }
