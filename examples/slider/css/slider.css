@@ -40,17 +40,6 @@ div.aria-widget-slider .value  {
   position: absolute;
 }
 
-div.focus .thumb  {
-  border: 1px solid #444;
-  background-color: #888;
-  position: relative;
-}
-
-div.focus .rail {
-  background-color: #CCC;
-}
-
-
 label {
   display: block;
   margin-top: 0.5em;
