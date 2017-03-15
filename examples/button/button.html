@@ -65,9 +65,14 @@
     <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
     <div id="example">
       <p>This <q>Print</q> action button uses a <code>div</code> element.</p>
-      <div tabindex="0" role="button" id="action">Print Page</div>
+      <div id="ex1">
+        <div tabindex="0" role="button" id="action">Print Page</div>
+      </div>
+        
       <p>This <q>Mute</q> toggle button uses a <code>a</code> element.</p>
-      <a tabindex="0" role="button" id="toggle" aria-pressed="false">Mute <svg aria-hidden="true"><use xlink:href="#icon-sound"></use></svg></a>
+      <div id="ex2">
+        <a tabindex="0" role="button" id="toggle" aria-pressed="false">Mute <svg aria-hidden="true"><use xlink:href="#icon-sound"></use></svg></a>
+      </div>  
     </div>
     <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
   </section>
@@ -181,7 +186,8 @@
     <pre><code id="source1"></code></pre>
     <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of"></div>
     <script>
-      sourceCode.add('source1', 'example');
+      sourceCode.add('source1', 'ex1');
+      sourceCode.add('source1', 'ex2');
       sourceCode.make();
     </script>
   </section>
