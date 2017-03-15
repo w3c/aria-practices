@@ -58,11 +58,13 @@
 
       <h3>Action Button</h3>
       <p>Print button uses a <code>div</code> element.</p>
-      <div tabindex="0" role="button" id="action">Print Page</div>
+      <div id="ex1">
+        <div tabindex="0" role="button" id="action">Print Page</div>
+      </div>
 
       <h3>Toggle Button</h3>
       <p>Mute button uses a <code>a</code> element.</p>
-      <div>
+      <div id="ex2">
         <a tabindex="0" role="button" id="toggle" aria-pressed="false">Mute <svg aria-hidden="true"><use xlink:href="#icon-sound"></use></svg></a>
       </div>
 
@@ -196,8 +198,8 @@
 
 
     <script>
-      sourceCode.add('source1', 'action');
-      sourceCode.add('source2', 'toggle');
+      sourceCode.add('source1', 'ex1');
+      sourceCode.add('source2', 'ex2');
       sourceCode.make();
     </script>
   </section>
