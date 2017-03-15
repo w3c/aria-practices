@@ -24,12 +24,15 @@ div.aria-widget-slider .thumb  {
   position: relative;
 }
 
-div.aria-widget-slider .thumb.focus, 
-div.aria-widget-slider .thumb:hover {
+div.aria-widget-slider .rail .thumb.focus, 
+div.aria-widget-slider .rail .thumb:hover {
   outline: 2px solid #888;
   background-color: #DEF;
 }
 
+div.aria-widget-slider .rail.focus {
+  background-color: #AAA;
+}
 
 div.aria-widget-slider .value  {
   width:      2em;

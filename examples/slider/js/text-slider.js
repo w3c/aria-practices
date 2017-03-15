@@ -56,7 +56,9 @@ TSlider.prototype.init = function () {
 
   this.railWidth = parseInt(this.railDomNode.style.width.slice(0, -2));
 
-  this.domNode.tabIndex = 0;
+  if (this.domNode.tabIndex != 0) {
+    this.domNode.tabIndex = 0;
+  }
 
   this.domNode.style.width = this.thumbWidth + 'px';
   this.domNode.style.height = this.thumbHeight + 'px';
@@ -147,10 +149,12 @@ TSlider.prototype.handleKeyDown = function (event) {
 
 TSlider.prototype.handleFocus = function (event) {
   this.domNode.classList.add('focus');
+  this.railDomNode.classList.add('focus');
 };
 
 TSlider.prototype.handleBlur = function (event) {
   this.domNode.classList.remove('focus');
+  this.railDomNode.classList.remove('focus');
 };
 
 TSlider.prototype.handleMouseDown = function (event) {

@@ -25,11 +25,16 @@ div.aria-widget-vertical-slider .thumb  {
   position: relative;
 }
 
-div.aria-widget-vertical-slider .thumb.focus, 
-div.aria-widget-vertical-slider .thumb:hover {
+div.aria-widget-vertical-slider .rail .thumb.focus, 
+div.aria-widget-vertical-slider .rail .thumb:hover {
   outline: 2px solid #888;
   background-color: #E0CB52;
 }
+
+div.aria-widget-vertical-slider .rail.focus {
+  background-color: #AAA;
+}
+
 
 div.aria-widget-vertical-slider .label,
 div.aria-widget-vertical-slider .value  {
