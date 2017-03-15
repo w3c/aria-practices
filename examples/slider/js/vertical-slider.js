@@ -58,7 +58,9 @@ VSlider.prototype.init = function () {
     this.valueDomNode.style.position = 'relative';
   }
 
-  this.domNode.tabIndex = 0;
+  if (this.domNode.tabIndex != 0) {
+    this.domNode.tabIndex = 0;
+  }
 
   this.domNode.style.width = this.thumbWidth + 'px';
   this.domNode.style.height = this.thumbHeight + 'px';
@@ -157,10 +159,12 @@ VSlider.prototype.handleKeyDown = function (event) {
 
 VSlider.prototype.handleFocus = function (event) {
   this.domNode.classList.add('focus');
+  this.railDomNode.classList.add('focus');
 };
 
 VSlider.prototype.handleBlur = function (event) {
   this.domNode.classList.remove('focus');
+  this.railDomNode.classList.remove('focus');
 };
 
 VSlider.prototype.handleMouseDown = function (event) {
