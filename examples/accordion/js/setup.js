@@ -98,9 +98,9 @@ bind(window, 'load', function () {
       // 38 = Up, 40 = Down
       if (whichKey.match(/38|40/) || ctrlModifier) {
         var index = toggles.indexOf(target),
-        direction = (whichKey.match(/34|40/)) ? 1:-1,
+        direction = (whichKey.match(/34|40/)) ? 1 : -1,
         length = toggles.length,
-        newIndex = (index +length + direction) % length;
+        newIndex = (index + length + direction) % length;
 
         toggles[newIndex].focus();
 
@@ -112,8 +112,9 @@ bind(window, 'load', function () {
           return false;
         }
 
-      } else if (whichKey.match(/35|36/)) {
-         // 35 = End, 36 = Home keyboard operations
+      }
+      else if (whichKey.match(/35|36/)) {
+        // 35 = End, 36 = Home keyboard operations
         switch (whichKey) {
           // Go to first accordion
           case '36':
@@ -121,7 +122,7 @@ bind(window, 'load', function () {
             break;
           // Go to last accordion
           case '35':
-            toggles[toggles.length-1].focus();
+            toggles[toggles.length - 1].focus();
             break;
         }
 
@@ -133,7 +134,8 @@ bind(window, 'load', function () {
           return false;
         }
       }
-    } else if (ctrlModifier){
+    }
+    else if (ctrlModifier) {
       // Control + Page Up/ Page Down keyboard operations
       // Catches events that happen inside of panels
       forEach(panels, function (i, o) {
