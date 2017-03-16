@@ -1091,6 +1091,33 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     </p>
 
     <p>
+      This is an editor's draft by the
+      <a href="http://www.w3.org/WAI/ARIA/">Accessible Rich Internet Applications Working Group</a> of the
+      <a href="http://www.w3.org/WAI/">Web Accessibility Initiative</a>. It supports the
+      <a href="http://w3c.github.io/aria/aria/aria.html" class="specref"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> 1.1</a> [<cite><a href="#bib-WAI-ARIA" class="bibref"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr></a></cite>] specification, providing detailed advice and examples beyond what would be appropriate to a technical specification but which are important to understand the specification.
+    </p>
+    <p>
+      This draft includes only a portion of content planned for <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Authoring Practices 1.1. To see planns for the complete guide, review the
+      <a href="https://github.com/w3c/aria-practices/milestones?direction=asc&amp;sort=due_date&amp;state=open">Authoring Practices Milestone Plan</a>.
+    </p>
+    <p>
+      Feedback on the information provided here is essential to the ultimate success of Rich Internet Applications that afford full access to their information and operations. The Accessible Rich Internet Applications Working Group asks in particular:
+    </p>
+    <ul>
+      <li>Is it clear how to create accessible Rich Internet Applications?</li>
+      <li>Is the usage of roles, states, and properties clear? </li>
+      <li>Are the various types of rich Web content covered? </li>
+      <li>Are considerations beyond the use of <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> sufficiently explained? </li>
+      <li>Is the relationship of this document to the <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> specification clear? </li>
+      <li>Are the <a href="#aria_ex">design patterns</a> clear?</li>
+    </ul>
+    <p>
+      To comment,
+      <a href="https://github.com/w3c/aria-practices/issues/">file an issue in the <abbr title="World Wide Web Consortium">W3C</abbr> ARIA Practices GitHub repository</a>, or if that is not possible, send email to
+      <a href="mailto:public-aria@w3.org?subject=Comment%20on%20WAI-ARIA%20Practices%201.1">public-aria@w3.org</a> (<a href="http://lists.w3.org/Archives/Public/public-aria/">comment archive</a>).
+    </p>
+
+    <p>
       This document was published by the <a href="http://www.w3.org/WAI/ARIA/">Accessible Rich Internet Applications Working Group</a> as an Editor's Draft. If you wish to make comments regarding this document, please send them to
       <a href="mailto:public-aria@w3.org">public-aria@w3.org</a> (<a href="mailto:public-aria-request@w3.org?subject=subscribe">subscribe</a>,
       <a href="https://lists.w3.org/Archives/Public/public-aria/">archives</a>). All comments are welcome.
@@ -1717,11 +1744,14 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </span>
       </h3>
       <p>
-        Work on this section is in progress. Provide feedback in
-        <a href="https://github.com/w3c/aria-practices/issues/42">issue 42.</a>
+        <strong>NOTE:</strong> This section has been significantly revised to address initial focus placement and other outstanding editorial issues. Please provide feedback on this design pattern in
+        <a href="https://github.com/w3c/aria-practices/issues/325">issue 325.</a>
       </p>
       <p>
-        A <a href="http://w3c.github.io/aria/aria/aria.html#dialog" class="role-reference">dialog</a> is a window overlayed on either the primary window or another dialog window. Like non-modal dialogs, modal dialogs have their own tab sequence, i.e., <kbd>Tab</kbd> and <kbd>Shift + Tab</kbd> do not move focus outside the dialog. However, the window under a modal dialog is typically inert; users cannot interact with content outside the dialog window. So, unlike non-modal dialogs, a modal dialog does not provide means for moving keyboard focus outside the dialog window without closing the dialog.
+        A <a href="http://w3c.github.io/aria/aria/aria.html#dialog" class="role-reference">dialog</a> is a window overlayed on either the primary window or another dialog window. The window under a modal dialog is typically inert; users cannot interact with content outside the dialog window. If the background window is not inert, then interaction with elements in the background window cause the modal window to close.
+      </p>
+      <p>
+        Like <a href="#dialog_nonmodal">non-modal dialogs</a>, modal dialogs contain their tab sequence. That is, <kbd>Tab</kbd> and <kbd>Shift + Tab</kbd> do not move focus outside the dialog. However, unlike most non-modal dialogs, modal dialogs do not provide means for moving keyboard focus outside the dialog window without closing the dialog.
       </p>
       <p>
         The <a href="http://w3c.github.io/aria/aria/aria.html#alertdialog" class="role-reference">alertdialog</a> role is a special-case dialog role designed specifically for dialogs that divert users' attention to a brief, important message. Its usage is described in the <a href="#alertdialog">alert dialog design pattern.</a>
@@ -1747,11 +1777,23 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         <div class="note">
           <div class="note-title marker" aria-level="5" role="heading" id="h-note3"><span>Note</span></div>
           <ol class="">
-            <li>
-              When a dialog opens, focus is typically set on the first focusable element.
+            <li> When a dialog opens, focus placement depends on the nature and size of the content.
+              <ul>
+                <li>In all circumstances, focus moves to an element contained in the dialog.</li>
+                <li>Unless a condition where doing otherwise is advisable, focus is initially set on the first focusable element.</li>
+                <li>
+                  If the content is large enough that focusing the first interactive element could cause the beginning of content to scroll out of view, it is advisable to add <code>tabindex=<q>0</q></code> to a static element at the top of the dialog, such as the dialog title or first paragraph, and initially focus that element.
+                </li>
+                <li>
+                  If the dialog is asking the user to confirm a destructive action, it may be advisable to set focus on the least destructive action, especially if undoing the action is difficult or impossible. The <a href="#alertdialog">Alert Dialog Pattern</a> is often employed in such circumstances.
+                </li>
+                <li>
+                  If the dialog is limited to interactions that either provide additional information or continue processing, it might set focus to the element deemed to be most frequently desired, such as a <q>OK</q> or <q>Continue</q> button.
+                </li>
+              </ul>
             </li>
             <li>
-              When a dialog closes, focus returns to the element that had focus before the dialog was invoked. This is often the control that opened the dialog.
+              When a dialog closes, focus typically returns to the element that had focus before the dialog was invoked. This is often the control that opened the dialog. In circumstances where that element no longer exists, focus is set on an element that supports a logical work flow.
             </li>
           </ol>
         </div>
@@ -4892,5 +4934,6 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     </section>
   </section>
   <p role="navigation" id="back-to-top"><a href="#toc"><abbr title="Back to Top">↑</abbr></a></p>
-  </body>
+  <script src="https://www.w3.org/scripts/TR/2016/fixup.js"></script>
+</body>
 </html>
