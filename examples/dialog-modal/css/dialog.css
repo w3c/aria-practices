@@ -1,0 +1,89 @@
+.hidden {
+	display: none
+}
+
+#dialog_layer.showing {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	overflow: auto;
+}
+
+div.default_dialog {
+	display: block;
+	width: 50%;
+	margin-bottom: 100px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 5px;
+	border: thin #000 solid;
+	background-color: #fff;
+	position: absolute;;
+	top: 25%;
+	left: 25%;
+}
+
+.default_dialog h2:first-of-type {
+	text-align:center;
+}
+
+.dialog_form {
+	margin: 20px;
+}
+
+.dialog_form .label_text {
+	display: inline-block;
+	font-weight: bold;
+	width: 150px;
+	text-align: right;
+}
+
+.dialog_form .label_info {
+	font-size: 12px;
+  width: 150px;
+  text-align: right;
+  display: inline-block;
+}
+
+.dialog_form_item {
+	margin: 10px 0;
+}
+
+.dialog_form_item .wide_input {
+	width: 400px;
+}
+
+.dialog_form_item .city_input {
+	width: 200px;
+}
+
+.dialog_form_item .state_input {
+	width: 150px;
+}
+
+.dialog_form_item .zip_input {
+	width: 100px;
+}
+
+.dialog_form_actions {
+	text-align: right;
+  padding: 0 20px 20px;
+}
+
+.dialog_close_button {
+	float:right;
+	position:absolute;
+	top:10px;
+	left:92%;
+	height:25px;
+}
+
+.dialog_close_button img {
+	border:0;
+}
+
+.dialog_desc {
+	padding: 10px 20px;
+}
