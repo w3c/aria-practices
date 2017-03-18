@@ -5,14 +5,17 @@
 <title>Modal Dialog Example | WAI-ARIA Authoring Practices 1.1</title>
 
 <!--  Core js and css shared by all examples; do not modify when using this template. -->
+<link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
 <link href="../css/core.css" rel="stylesheet">
 <link href="../css/table.css" rel="stylesheet">
 <script src="../js/examples.js" type="text/javascript"></script>
-<script src="../js/utils.js" type="text/javascript"></script>
+<script src="../js/highlight.pack.js"></script>
 
 <!--  js and css for this example. -->
 <link href="css/dialog.css" rel="stylesheet">
+<script src="../js/utils.js" type="text/javascript"></script>
 <script src="js/dialog.js" type="text/javascript"></script>
+
 </head>
 <body>
   <main>
@@ -176,31 +179,26 @@
 
   <section>
     <h2>Accessibility Features</h2>
-    <p>
-      Initial focus and ARIA descriptions are set based on the content of each dialog.
-    </p>
+    <p>Focus and accessible descriptions are set based on the content of each dialog.</p>
     <ol>
       <li><q>Add Delivery Address</q> dialog (id=dialog1):
         <ul>
+          <li>Initial focus is set on the first input, which is the first focusable element.</li>
+          <li>The dialog does not need <code>aria-describedby</code> since there is no static text that describes it.</li>
+          <li>When the dialog closes as a result of the <q>Cancel</q> action, the user's point of regard is maintained by returning focus to the <q>Add Delivery Address</q> button.
           <li>
-            Initial focus is set on the first input, which is the first focusable element.
-          </li>
-          <li>
-            The dialog does not need <code>aria-describedby</code> since there is no static text that describes it.
+            When the dialog closes as a result of the <q>Add</q> action and the <q>Address Added</q> dialog replaces the <q>Add Delivery Address</q> dialog, 
+            the <q>Add Delivery Address</q> dialog passes a reference to the <q>Add Delivery Address</q> button to the the <q>Address Added</q> dialog
+            so that it can maintain the user's point of regard when it closes. 
           </li>
         </ul>
       </li>
       <li><q>Verification Result</q> dialog  (id=dialog2):
         <ul>
-          <li>
-            Initial focus is set on the first paragraph because the first interactive element is at the bottom, which is out of viewdue to the length of the text.
-          </li>
-          <li>
-            To support screen reader user awareness of the dialog text, the dialog text is wrapped in a <code>div</code> that is referenced by <code>aria-describedby</code>.
-          </li>
-          <li>
-            The text of this dialog describes design considerations for initial focus and accessible descriptions in dialogs with large amounts of text.
-          </li>
+          <li>Initial focus is set on the first paragraph because the first interactive element is at the bottom, which is out of view due to the length of the text.</li>
+          <li>To support screen reader user awareness of the dialog text, the dialog text is wrapped in a <code>div</code> that is referenced by <code>aria-describedby</code>.</li>
+          <li>When the dialog closes, to maintain the user's point of regard, focus returns to the <q>Verify Address</q> button.</li>
+          <li>The text of this dialog describes design considerations for initial focus and accessible descriptions in dialogs with large amounts of text.</li>
         </ul>
       </li>
       <li><q>Address Added</q> dialog (id=dialog3):
@@ -210,15 +208,15 @@
             This is for efficiency since most users will simply dismiss the dialog as soon as they have read the message.
             Users can press <kbd>Tab</kbd> to focus on the <q>My Profile</q> link.
           </li>
-          <li>
-            The element containing the dialog message is referenced by <code>aria-describedby</code> to hint to screen readers that it should be announced when the dialog opens.
-          </li>
+          <li>The element containing the dialog message is referenced by <code>aria-describedby</code> to hint to screen readers that it should be announced when the dialog opens.</li>
+          <li>When the dialog closes, the user's point of regard is maintained by setting focus on the <q>Add Delivery Address</q> button.</li>
         </ul>
       </li>
       <li><q>End of the Road!</q> dialog (id=dialog4):
         <ul>
           <li>This dialog has only one focusable element, which receives focus when the dialog opens.</li>
           <li>Like dialog3, <code>aria-describedby</code> is used to facilitate message announcement for screen reader users.</li>
+          <li>Like all other dialogs in this example except for the <q>Address Added</q> confirmation dialog, when it closes, the user's point of regard is maintained by returning focus to the element that triggered display of the dialog.</li>
         </ul>
       </li>
     </ol>
@@ -226,7 +224,7 @@
 
 <section>
     <h2 id="kbd_label">Keyboard Support</h2>
-    <table aria-labelledby="kbd_label">
+    <table aria-labelledby="kbd_label" class="def">
       <thead>
         <tr>
           <th>Key</th>
@@ -258,7 +256,7 @@
 
   <section>
     <h2 id="rps_label">Role, Property, State, and Tabindex  Attributes</h2>
-    <table aria-labelledby="rps_label">
+    <table aria-labelledby="rps_label" class="data attributes">
       <thead>
         <tr>
           <th scope="col">Role</th>
