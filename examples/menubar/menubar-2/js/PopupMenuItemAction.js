@@ -67,6 +67,7 @@ MenuItem.prototype.activateMenuitem = function (node) {
   var value = node.textContent;
   var option = node.getAttribute('rel');
   var item;
+  var flag = true;
 
   if (typeof option !== 'string') {
     option = node.parentNode.getAttribute('rel');
@@ -84,6 +85,7 @@ MenuItem.prototype.activateMenuitem = function (node) {
         this.menu.actionManager.setOption(option, true);
         node.setAttribute('aria-checked', 'true');
       }
+      flag = false;
     }
     else {
       if (role === 'menuitemradio') {
@@ -98,11 +100,14 @@ MenuItem.prototype.activateMenuitem = function (node) {
           item = item.nextElementSibling;
         }
         node.setAttribute('aria-checked', 'true');
+        flag = false;
       }  
     }
   }
 
   this.menu.updateMenuStates();
+
+  return flag;
 
 };  
 
@@ -121,7 +126,10 @@ MenuItem.prototype.handleKeydown = function (event) {
   switch (event.keyCode) {
     case this.keyCode.SPACE:
     case this.keyCode.RETURN:
-      this.activateMenuitem(tgt); 
+      if (this.activateMenuitem(tgt)) {
+        this.menu.setFocusToController();
+        this.menu.close(true);
+      }
       flag = true;
       break;
 
@@ -185,9 +193,10 @@ MenuItem.prototype.handleKeydown = function (event) {
 };
 
 MenuItem.prototype.handleClick = function (event) {
-  this.activateMenuitem(event.currentTarget); 
-  this.menu.setFocusToController();
-  this.menu.close(true);
+  if (this.activateMenuitem(event.currentTarget)) {
+    this.menu.setFocusToController();
+    this.menu.close(true);    
+  }
 };
 
 MenuItem.prototype.handleFocus = function (event) {
