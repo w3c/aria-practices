@@ -9,7 +9,7 @@ body:not(.toc-inline) {
   padding: 0;
 }
 
-#main_content {
+#base_window_layer {
 	box-sizing: border-box;
 	height: 100vh;
 	width: 100%;
@@ -17,7 +17,7 @@ body:not(.toc-inline) {
 	padding: 1.6em 0 2em;
 }
 
-#main_content main, #main_content nav {
+#base_window_layer main, #base_window_layer nav {
 	max-width: 50em;
 	margin: auto;
 	padding-right: 1.5em;
@@ -26,7 +26,7 @@ body:not(.toc-inline) {
 }
 
 @media screen and (min-width: 78em) {
-	body:not(.toc-inline) #main_content main, body:not(.toc-inline) #main_content nav  {
+	body:not(.toc-inline) #base_window_layer main, body:not(.toc-inline) #base_window_layer nav  {
 	    padding-left: 29em;
 	}
 
