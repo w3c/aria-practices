@@ -11,7 +11,7 @@
 
 var StyleManager = function(id) {
   this.node = document.getElementById(id);  
-  this.fontSize = '';
+  this.fontSize = 'medium';
 };
 
 StyleManager.prototype.setFontFamily = function (value) {
@@ -38,22 +38,73 @@ StyleManager.prototype.setColor = function (value) {
 StyleManager.prototype.setBold = function (flag) {
 
   if (flag) {
-    this.node.style.fontWeight = 'normal';
+    this.node.style.fontWeight = 'bold';
   }
   else {
-    this.node.style.fontWeight = 'bold';
+    this.node.style.fontWeight = 'normal';
   }
 };
 
 StyleManager.prototype.setItalic = function(flag) {
 
   if (flag) {
-    document.getElementById(id).style.fontStyle = 'normal';
+    this.node.style.fontStyle = 'italic';
   }
   else {
-    document.getElementById(id).style.fontStyle = 'italic';
+    this.node.style.fontStyle = 'none';
   }
 };
+
+StyleManager.prototype.fontSmaller = function() {
+
+    switch(this.fontSize) {
+      case 'small':
+        this.setFontSize('x-small');
+        break;
+
+      case 'medium':
+        this.setFontSize('small');
+        break;
+
+      case 'large':
+        this.setFontSize('medium');
+        break;
+
+      case 'x-large':
+        this.setFontSize('large');
+        break;
+
+      default:
+        break;  
+
+    } // end switch
+};
+
+StyleManager.prototype.fontLarger = function() {
+
+    switch(this.fontSize) {
+      case 'x-small':
+        this.setFontSize('small');
+        break;
+
+      case 'small':
+        this.setFontSize('medium');
+        break;
+
+      case 'medium':
+        this.setFontSize('large');
+        break;
+
+      case 'large':
+        this.setFontSize('x-large');
+        break;
+
+      default:
+        break;  
+
+    } // end switch
+};
+
 
 StyleManager.prototype.isMinFontSize = function() {
   return this.fontSize === 'x-small';
@@ -64,16 +115,17 @@ StyleManager.prototype.isMaxFontSize = function() {
 };
 
 
-StyleManager.prototype.styleManager = function(option, value) {
+StyleManager.prototype.setOption = function(option, value) {
 
-  if (typeof flag !== 'boolean') {
-    flag = false;
-  }  
+  option = option.toLowerCase();
+  if (typeof value === 'string') {
+    value  = value.toLowerCase();
+  }
 
   switch (option) {
 
     case 'font-bold':
-      this.setItalic(value);
+      this.setBold(value);
       break;
 
     case 'font-color':
@@ -82,6 +134,14 @@ StyleManager.prototype.styleManager = function(option, value) {
 
     case 'font-family':
       this.setFontFamily(value);
+      break;      
+
+    case 'font-smaller':
+      this.fontSmaller();
+      break;      
+
+    case 'font-larger':
+      this.fontLarger();
       break;      
 
     case 'font-size':

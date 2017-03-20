@@ -63,33 +63,46 @@ MenuItem.prototype.init = function () {
 
 MenuItem.prototype.activateMenuitem = function (node) {
 
+  var role  = node.getAttribute('role');
   var value = node.textContent;
-
   var option = node.getAttribute('rel');
+  var item;
 
   if (typeof option !== 'string') {
     option = node.parentNode.getAttribute('rel');
   }
 
-  if (node.getAttribute('aria-menuitem')) {
-    this.menu.controller.actionManager(option, value);
+  if (role === 'menuitem') {
+    this.menu.actionManager.setOption(option, value);
   }
   else {
-    if (node.getAttribute('menuitemcheckbox')) {
-      if (node.getAttribute('checked') == 'true') {
-        this.menu.actionManager(option, false )
-        node.setAttribute('checked', 'false');
+    if (role === 'menuitemcheckbox') {
+      if (node.getAttribute('aria-checked') == 'true') {
+        this.menu.actionManager.setOption(option, false);
+        node.setAttribute('aria-checked', 'false');
       } else {
-        this.menu.actionManager(option, true )
-        node.setAttribute('checked', 'true');
+        this.menu.actionManager.setOption(option, true);
+        node.setAttribute('aria-checked', 'true');
       }
     }
     else {
-      if (node.getAttribute('menuitemradio')) {
+      if (role === 'menuitemradio') {
 
+        this.menu.actionManager.setOption(option, value);
+
+        item = node.parentNode.firstElementChild;
+        while(item) {
+          if (item.getAttribute('role') === 'menuitemradio') {
+            item.setAttribute('aria-checked', 'false');
+          }
+          item = item.nextElementSibling;
+        }
+        node.setAttribute('aria-checked', 'true');
       }  
     }
   }
+
+  this.menu.updateMenuStates();
 
 };  
 
@@ -172,6 +185,7 @@ MenuItem.prototype.handleKeydown = function (event) {
 };
 
 MenuItem.prototype.handleClick = function (event) {
+  this.activateMenuitem(event.currentTarget); 
   this.menu.setFocusToController();
   this.menu.close(true);
 };

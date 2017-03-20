@@ -32,7 +32,7 @@
 *          domNode has responded to a mouseover event with no subsequent
 *          mouseout event having occurred.
 */
-var PopupMenuAction = function (domNode, controllerObj) {
+var PopupMenuAction = function (domNode, controllerObj, actionManager) {
   var elementChildren,
       msgPrefix = 'PopupMenu constructor argument domNode ';
 
@@ -56,8 +56,10 @@ var PopupMenuAction = function (domNode, controllerObj) {
     childElement = childElement.nextElementSibling;
   }
 
+
   this.domNode = domNode;
   this.controller = controllerObj;
+  this.actionManager = actionManager;
 
   this.menuitems = []; // see PopupMenu init method
   this.firstChars = []; // see PopupMenu init method
@@ -117,6 +119,31 @@ PopupMenuAction.prototype.init = function () {
     this.firstItem = this.menuitems[0];
     this.lastItem = this.menuitems[numItems - 1];
   }
+};
+
+PopupMenuAction.prototype.updateMenuStates = function () {
+
+  var item = this.domNode.querySelector('[rel="font-larger"]');
+  if (item) {
+    if (this.actionManager.isMaxFontSize()) {
+      item.setAttribute('aria-disabled', 'true');
+    }
+    else {
+      item.setAttribute('aria-disabled', 'false');      
+    }
+  }
+
+  var item = this.domNode.querySelector('[rel="font-smaller"]');
+  if (item) {
+    if (this.actionManager.isMinFontSize()) {
+      item.setAttribute('aria-disabled', 'true');
+    }
+    else {
+      item.setAttribute('aria-disabled', 'false');      
+    }
+  }
+
+
 };
 
 /* EVENT HANDLERS */
