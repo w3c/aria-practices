@@ -9,8 +9,8 @@
 *   Author: Jon Gunderson
 */
 
-var ICON_MUTE_URL  = '#icon-mute';
-var ICON_SOUND_URL = '#icon-sound';
+var ICON_MUTE_URL  = 'images/mute.svg#icon-mute';
+var ICON_SOUND_URL = 'images/mute.svg#icon-sound';
 
 function init () {
   // Create variables for the various buttons
