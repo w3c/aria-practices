@@ -9,6 +9,9 @@
 *   Author: Jon Gunderson
 */
 
+var ICON_MUTE_URL  = 'images/mute.svg#icon-mute';
+var ICON_SOUND_URL = 'images/mute.svg#icon-sound';
+
 function init () {
   // Create variables for the various buttons
   var actionButton = document.getElementById('action');
@@ -68,12 +71,12 @@ function toggleButtonState (event) {
 
   var icon = button.getElementsByTagName('use')[0];
   var currentIconState = icon.getAttribute('xlink:href');
-  var newIconState = '#icon-mute';
+  var newIconState = ICON_MUTE_URL;
 
   // If aria-pressed is set to true, set newState to false
   if (currentState === 'true') {
     newState = 'false';
-    newIconState = '#icon-sound';
+    newIconState = ICON_SOUND_URL;
   }
 
   // Set the new aria-pressed state on the button
