@@ -56,7 +56,6 @@ var PopupMenuAction = function (domNode, controllerObj, actionManager) {
     childElement = childElement.nextElementSibling;
   }
 
-
   this.domNode = domNode;
   this.controller = controllerObj;
   this.actionManager = actionManager;
@@ -129,7 +128,7 @@ PopupMenuAction.prototype.updateMenuStates = function () {
       item.setAttribute('aria-disabled', 'true');
     }
     else {
-      item.setAttribute('aria-disabled', 'false');      
+      item.setAttribute('aria-disabled', 'false');
     }
   }
 
@@ -139,10 +138,9 @@ PopupMenuAction.prototype.updateMenuStates = function () {
       item.setAttribute('aria-disabled', 'true');
     }
     else {
-      item.setAttribute('aria-disabled', 'false');      
+      item.setAttribute('aria-disabled', 'false');
     }
   }
-
 
 };
 

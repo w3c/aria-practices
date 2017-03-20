@@ -9,8 +9,8 @@
 *   Author: Jon Gunderson and Ku Ja Eun
 */
 
-var StyleManager = function(id) {
-  this.node = document.getElementById(id);  
+var StyleManager = function (id) {
+  this.node = document.getElementById(id);
   this.fontSize = 'medium';
 };
 
@@ -45,7 +45,7 @@ StyleManager.prototype.setBold = function (flag) {
   }
 };
 
-StyleManager.prototype.setItalic = function(flag) {
+StyleManager.prototype.setItalic = function (flag) {
 
   if (flag) {
     this.node.style.fontStyle = 'italic';
@@ -55,9 +55,9 @@ StyleManager.prototype.setItalic = function(flag) {
   }
 };
 
-StyleManager.prototype.fontSmaller = function() {
+StyleManager.prototype.fontSmaller = function () {
 
-    switch(this.fontSize) {
+    switch (this.fontSize) {
       case 'small':
         this.setFontSize('x-small');
         break;
@@ -75,14 +75,14 @@ StyleManager.prototype.fontSmaller = function() {
         break;
 
       default:
-        break;  
+        break;
 
     } // end switch
-};
+  };
 
-StyleManager.prototype.fontLarger = function() {
+StyleManager.prototype.fontLarger = function () {
 
-    switch(this.fontSize) {
+    switch (this.fontSize) {
       case 'x-small':
         this.setFontSize('small');
         break;
@@ -100,22 +100,20 @@ StyleManager.prototype.fontLarger = function() {
         break;
 
       default:
-        break;  
+        break;
 
     } // end switch
-};
+  };
 
-
-StyleManager.prototype.isMinFontSize = function() {
+StyleManager.prototype.isMinFontSize = function () {
   return this.fontSize === 'x-small';
 };
 
-StyleManager.prototype.isMaxFontSize = function() {
-  return this.fontSize === 'x-large';  
+StyleManager.prototype.isMaxFontSize = function () {
+  return this.fontSize === 'x-large';
 };
 
-
-StyleManager.prototype.setOption = function(option, value) {
+StyleManager.prototype.setOption = function (option, value) {
 
   option = option.toLowerCase();
   if (typeof value === 'string') {
@@ -130,23 +128,23 @@ StyleManager.prototype.setOption = function(option, value) {
 
     case 'font-color':
       this.setColor(value);
-      break;      
+      break;
 
     case 'font-family':
       this.setFontFamily(value);
-      break;      
+      break;
 
     case 'font-smaller':
       this.fontSmaller();
-      break;      
+      break;
 
     case 'font-larger':
       this.fontLarger();
-      break;      
+      break;
 
     case 'font-size':
       this.setFontSize(value);
-      break;      
+      break;
 
     case 'font-italic':
       this.setItalic(value);
@@ -154,11 +152,11 @@ StyleManager.prototype.setOption = function(option, value) {
 
     case 'text-align':
       this.setTextAlign(value);
-      break;      
+      break;
 
     case 'text-decoration':
       this.setTextDecoration(value);
-      break;      
+      break;
 
     default:
       break;

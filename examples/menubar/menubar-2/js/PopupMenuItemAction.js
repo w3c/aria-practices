@@ -81,7 +81,8 @@ MenuItem.prototype.activateMenuitem = function (node) {
       if (node.getAttribute('aria-checked') == 'true') {
         this.menu.actionManager.setOption(option, false);
         node.setAttribute('aria-checked', 'false');
-      } else {
+      }
+      else {
         this.menu.actionManager.setOption(option, true);
         node.setAttribute('aria-checked', 'true');
       }
@@ -93,7 +94,7 @@ MenuItem.prototype.activateMenuitem = function (node) {
         this.menu.actionManager.setOption(option, value);
 
         item = node.parentNode.firstElementChild;
-        while(item) {
+        while (item) {
           if (item.getAttribute('role') === 'menuitemradio') {
             item.setAttribute('aria-checked', 'false');
           }
@@ -101,7 +102,7 @@ MenuItem.prototype.activateMenuitem = function (node) {
         }
         node.setAttribute('aria-checked', 'true');
         flag = false;
-      }  
+      }
     }
   }
 
@@ -109,7 +110,7 @@ MenuItem.prototype.activateMenuitem = function (node) {
 
   return flag;
 
-};  
+};
 
 /* EVENT HANDLERS */
 
@@ -195,7 +196,7 @@ MenuItem.prototype.handleKeydown = function (event) {
 MenuItem.prototype.handleClick = function (event) {
   if (this.activateMenuitem(event.currentTarget)) {
     this.menu.setFocusToController();
-    this.menu.close(true);    
+    this.menu.close(true);
   }
 };
 
