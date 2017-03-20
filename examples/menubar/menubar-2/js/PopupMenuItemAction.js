@@ -195,10 +195,9 @@ MenuItem.prototype.handleKeydown = function (event) {
 };
 
 MenuItem.prototype.handleClick = function (event) {
-  if (this.activateMenuitem(event.currentTarget)) {
-    this.menu.setFocusToController();
-    this.menu.close(true);
-  }
+  this.activateMenuitem(event.currentTarget);
+  this.menu.setFocusToController();
+  this.menu.close(true);
 };
 
 MenuItem.prototype.handleFocus = function (event) {
