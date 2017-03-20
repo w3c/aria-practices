@@ -1,3 +1,45 @@
+body {
+	max-width: 100%;
+	padding: 0;
+	margin: 0;
+	overflow: hidden;
+}
+
+body:not(.toc-inline) {
+  padding: 0;
+}
+
+#main_content {
+	box-sizing: border-box;
+	height: 100vh;
+	width: 100%;
+	overflow: auto;
+	padding: 1.6em 0 2em;
+}
+
+#main_content main, #main_content nav {
+	max-width: 50em;
+	margin: auto;
+	padding-right: 1.5em;
+	padding-left: 50px;
+	padding-left: calc(26px + 1.5em);
+}
+
+@media screen and (min-width: 78em) {
+	body:not(.toc-inline) #main_content main, body:not(.toc-inline) #main_content nav  {
+	    padding-left: 29em;
+	}
+
+	body:not(.toc-inline) {
+	  padding: 0;
+	}
+}
+
+body:not(.toc-inline) #main_content main, body:not(.toc-inline) #main_content nav  {
+	padding-left: 1.5em;
+}
+
+
 .hidden {
 	display: none
 }
@@ -9,6 +51,7 @@
 	top: 0;
 	left: 0;
 	overflow: auto;
+	background: rgba(0, 0, 0, 0.3);
 }
 
 div.default_dialog {
