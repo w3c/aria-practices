@@ -59,6 +59,8 @@ aria.Grid = function (gridNode) {
   this.shouldRestructure = this.gridNode.hasAttribute('data-restructure');
   this.topIndex = 0;
 
+  this.keysIndicator = document.getElementById('arrow-keys-indicator');
+
   this.setupFocusGrid();
   this.setFocusPointer(0, 0);
 
@@ -139,12 +141,22 @@ aria.Grid.prototype.setFocusPointer = function (row, col) {
     this.grid[this.focusedRow][this.focusedCol].setAttribute('tabindex', -1);
   }
 
+  this.grid[row][col]
+    .removeEventListener('focus', this.showKeysIndicator.bind(this));
+  this.grid[row][col]
+    .removeEventListener('blur', this.hideKeysIndicator.bind(this));
+
   // Disable navigation if focused on an input
   this.navigationDisabled = aria.Utils.matches(this.grid[row][col], 'input');
 
   this.grid[row][col].setAttribute('tabindex', 0);
   this.focusedRow = row;
   this.focusedCol = col;
+
+  this.grid[row][col]
+    .addEventListener('focus', this.showKeysIndicator.bind(this));
+  this.grid[row][col]
+    .addEventListener('blur', this.hideKeysIndicator.bind(this));
 
   return true;
 };
@@ -205,6 +217,11 @@ aria.Grid.prototype.clearEvents = function () {
   if (this.shouldRestructure) {
     window.removeEventListener('resize', this.checkRestructureGrid.bind(this));
   }
+
+  this.grid[this.focusedRow][this.focusedCol]
+    .removeEventListener('focus', this.showKeysIndicator.bind(this));
+  this.grid[this.focusedRow][this.focusedCol]
+    .removeEventListener('blur', this.hideKeysIndicator.bind(this));
 };
 
 /**
@@ -241,6 +258,19 @@ aria.Grid.prototype.registerEvents = function () {
 aria.Grid.prototype.focusCell = function (row, col) {
   if (this.setFocusPointer(row, col)) {
     this.grid[row][col].focus();
+  }
+};
+
+aria.Grid.prototype.showKeysIndicator = function () {
+  if (this.keysIndicator) {
+    aria.Utils.removeClass(this.keysIndicator, 'hidden');
+  }
+};
+
+aria.Grid.prototype.hideKeysIndicator = function () {
+  if (this.keysIndicator
+      && this.grid[this.focusedRow][this.focusedCol].tabIndex === 0) {
+    aria.Utils.addClass(this.keysIndicator, 'hidden');
   }
 };
 
