@@ -84,7 +84,7 @@ ul[role="menubar"] [role="menu"] [role="separator"]:hover {
 ul[role="menubar"] [role="menuitemcheckbox"][aria-checked='true'],
 ul[role="menubar"] [role="menuitemradio"][aria-checked='true'] {
   padding-left: 0.5em;
-  padding-right: 1em;
+  padding-right: 1.25em;
 }
 
 ul[role="menubar"] [role="menuitemcheckbox"][aria-checked='true']:before,
