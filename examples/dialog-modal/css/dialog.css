@@ -30,41 +30,55 @@ div.default_dialog {
 }
 
 .dialog_form {
-	margin: 20px;
+	margin: 15px;
 }
 
 .dialog_form .label_text {
+	box-sizing: border-box;
+	padding-right: 0.5em;
 	display: inline-block;
+	font-size: 16px;
 	font-weight: bold;
-	width: 150px;
+	width: 30%;
 	text-align: right;
 }
 
 .dialog_form .label_info {
+	box-sizing: border-box;
+	padding-right: 0.5em;
 	font-size: 12px;
-  width: 150px;
+  width: 30%;
   text-align: right;
   display: inline-block;
 }
 
 .dialog_form_item {
 	margin: 10px 0;
+	font-size: 0;
 }
 
 .dialog_form_item .wide_input {
-	width: 400px;
+	box-sizing: border-box;
+	max-width: 70%;
+	width: 27em;
 }
 
 .dialog_form_item .city_input {
-	width: 200px;
+	box-sizing: border-box;
+	max-width: 70%;
+	width: 17em;
 }
 
 .dialog_form_item .state_input {
-	width: 150px;
+	box-sizing: border-box;
+	max-width: 70%;
+	width: 15em;
 }
 
 .dialog_form_item .zip_input {
-	width: 100px;
+	box-sizing: border-box;
+	max-width: 70%;
+	width: 9em;
 }
 
 .dialog_form_actions {
