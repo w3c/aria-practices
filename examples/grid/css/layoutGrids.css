@@ -2,6 +2,16 @@
 	display: none !important;
 }
 
+#arrow-keys-indicator {
+	bottom: 0;
+	left: 0;
+	position: fixed;
+	height: 75px;
+	width: 100px;
+	background: url('../imgs/black_keys.png') no-repeat;
+	background-size: contain;
+}
+
 .accessible_elem {
 	clip: rect(1px 1px 1px 1px);
 	clip: rect(1px, 1px, 1px, 1px);
@@ -36,7 +46,7 @@
 
 [role="gridcell"]:focus::before, [role="gridcell"] *:focus::before {
 	content: ' ';
-	background: url('../imgs/arrows-group-in-four-directions-3.png');
+	background: url('../imgs/keys.png');
 	background-color: white;
 	background-position: center;
 	background-repeat: no-repeat;
