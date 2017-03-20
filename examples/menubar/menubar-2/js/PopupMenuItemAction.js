@@ -67,6 +67,7 @@ MenuItem.prototype.activateMenuitem = function (node) {
   var value = node.textContent;
   var option = node.getAttribute('rel');
   var item;
+  // flag is used to signal whether a menu should close or not
   var flag = true;
 
   if (typeof option !== 'string') {
