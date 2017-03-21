@@ -24,26 +24,20 @@ div.aria-widget-text-slider .thumb  {
   position: relative;
 }
 
-div.aria-widget-text-slider .thumb.focus, 
-div.aria-widget-text-slider .thumb:hover {
+div.aria-widget-text-slider .rail .thumb.focus, 
+div.aria-widget-text-slider .rail .thumb:hover {
   outline: 2px solid #888;
   background-color: #E0CB52;
+}
+
+div.aria-widget-text-slider .rail.focus {
+  background-color: #AAA;
 }
 
 div.aria-widget-text-slider div.value  {
   text-align: center;
   display: block;
   position: absolute;
-}
-
-div.aria-widget-text-slider div.focus .thumb  {
-  border: 1px solid #444;
-  background-color: #888;
-  position: relative;
-}
-
-div.aria-widget-text-slider div.focus .rail {
-  background-color: #CCC;
 }
 
 

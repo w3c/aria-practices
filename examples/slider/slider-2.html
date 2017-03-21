@@ -20,11 +20,6 @@
   <main>
     <h1>Slider Examples with aria-orientation and aria-valuetext</h1>
     <p>
-      <strong>NOTE:</strong> Major revisions have been made to this page.
-      Please provide feedback in 
-      <a href="https://github.com/w3c/aria-practices/issues/230">issue 230.</a>
-    </p>
-    <p>
       The following example of a hypothetical online thermostat demonstrates the 
       <a href="../../#slider">slider design pattern.</a>
       The desired temperature is set with the first slider, which is vertically oriented.
@@ -44,7 +39,7 @@
           <div id="idTemp" class="label">Temperature</div>
           <div id="idTempValue" class="value">0</div>
           <div class="rail" style="height: 200px">
-            <div id="idTempThumb" role="slider" class="thumb" aria-valuemin="50" aria-valuenow="68"
+            <div id="idTempThumb" role="slider" tabindex="0" class="thumb" aria-valuemin="50" aria-valuenow="68"
               aria-valuemax="100" aria-labelledby="idTemp"
             ></div>
           </div>
@@ -52,7 +47,7 @@
         <div class="aria-widget-text-slider">
           <div id="idFan" class="label">Fan</div>
           <div class="rail" style="width: 160px">
-            <div id="idFanThumb" role="slider" class="thumb" aria-valuemin="0" aria-valuenow="0"
+            <div id="idFanThumb" role="slider" tabindex="0" class="thumb" aria-valuemin="0" aria-valuenow="0"
               aria-valuemax="3" aria-valuetext="Off" aria-labelledby="idFan"
               aria-orientation="horizontal"
             ></div>
@@ -65,7 +60,7 @@
         <div class="aria-widget-text-slider">
           <div id="idHeat" class="label">Heat/Cool</div>
           <div class="rail" style="width: 120px">
-            <div id="idHeatThumb" role="slider" class="thumb" aria-valuemin="0" aria-valuenow="0"
+            <div id="idHeatThumb" role="slider" tabindex="0" class="thumb" aria-valuemin="0" aria-valuenow="0"
               aria-valuemax="2" aria-valuetext="Off" aria-labelledby="idHeat"
               aria-orientation="horizontal"
             ></div>
@@ -175,12 +170,7 @@
             <td>
               <code>div</code>
             </td>
-            <td>
-              <ul>
-                <li>Includes the slider thumb in the page tab sequence.</li>
-                <li>Added by the JavaScript during instantiation.</li>
-              </ul>
-            </td>
+            <td>Includes the slider thumb in the page tab sequence.</td>
           </tr>
           <tr>
             <td></td>

@@ -19,11 +19,6 @@
   <main>
     <h1>Horizontal Slider Example</h1>
     <p>
-      <strong>NOTE:</strong> This example has been recently updated. 
-      Please provide feedback in 
-      <a href="https://github.com/w3c/aria-practices/issues/229">issue 229.</a>
-    </p>
-    <p>
       Following is an example of a color picker that demonstrates the 
       <a href="../../#slider">slider design pattern.</a>
       Change the background color of the box below the picker by adjusting the sliders for red, green, and blue values.
@@ -46,6 +41,7 @@
                 <div class="rail" style="width: 300px;">
                   <div id="idRedValue"
                        role="slider"
+                       tabindex="0"
                        class="thumb"
                        aria-valuemin="0"
                        aria-valuenow="0"
@@ -60,6 +56,7 @@
                 <div class="rail" style="width: 300px">
                   <div id="idGreenValue"
                        role="slider"
+                       tabindex="0"
                        class="thumb"
                        aria-valuemin="0"
                        aria-valuenow="0"
@@ -74,6 +71,7 @@
                 <div class="rail" style="width: 300px">
                   <div id="idBlueValue"
                        role="slider"
+                       tabindex="0"
                        class="thumb"
                        aria-valuemin="0"
                        aria-valuenow="0"
@@ -175,12 +173,7 @@
             <td>
               <code>div</code>
             </td>
-            <td>
-              <ul>
-                <li>Includes the slider thumb in the page tab sequence.</li>
-                <li>Added by the JavaScript during instantiation.</li>
-              </ul>
-            </td>
+            <td>Includes the slider thumb in the page tab sequence.</td>
           </tr>
           <tr>
             <td></td>

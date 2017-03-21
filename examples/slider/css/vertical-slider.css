@@ -13,8 +13,6 @@ div.aria-widget-vertical-slider .rail {
   position: relative;
   left: 3.8em;
   width: 4px;
-
-  
 }
 
 div.aria-widget-vertical-slider .thumb  {
@@ -25,11 +23,16 @@ div.aria-widget-vertical-slider .thumb  {
   position: relative;
 }
 
-div.aria-widget-vertical-slider .thumb.focus, 
-div.aria-widget-vertical-slider .thumb:hover {
+div.aria-widget-vertical-slider .rail .thumb.focus, 
+div.aria-widget-vertical-slider .rail .thumb:hover {
   outline: 2px solid #888;
   background-color: #E0CB52;
 }
+
+div.aria-widget-vertical-slider .rail.focus {
+  background-color: #AAA;
+}
+
 
 div.aria-widget-vertical-slider .label,
 div.aria-widget-vertical-slider .value  {
@@ -37,19 +40,6 @@ div.aria-widget-vertical-slider .value  {
   margin-bottom: 0.5em;
   text-align: center;
   width: 8em;
-}
-
-
-
-div.aria-widget-vertical-slider div.focus .thumb  {
-  border: 1px solid #444;
-  background-color: #888;
-  position: relative;
-}
-
-div.aria-widget-vertical-slider div.focus .rail {
-  background-color: #CCC;
-  width: 8px;
 }
 
 div.aria-widget-vertical-slider .label {
