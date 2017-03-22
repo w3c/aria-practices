@@ -568,6 +568,13 @@
             element or elements in the dialog contain content that describes the primary purpose or message of the dialog.
             Specifying descriptive elements enables screen readers to announce the description along with the dialog title and initially focused element when the dialog opens.
           </li>
+          <li>
+            Optionally, if content outside a dialog is completely inert and visually obscured to an extent that is intentionally unreadable, 
+            each element containing a portion of the inert layer has 
+            <a href="#aria-hidden" class="state-reference">aria-hidden</a> set to <code>true</code>.
+            In this circumstance, the dialog container element cannot be a descendant of an element that has <code>aria-hidden</code> set to <code>true</code>.
+            However, if content outside a modal dialog is visually discernable, aria-hidden is not present. 
+          </li>
         </ul>
       </section>
       <section class="notoc">
