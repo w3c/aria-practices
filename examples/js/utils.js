@@ -47,6 +47,41 @@ aria.Utils.matches = function (element, selector) {
   return element.matches(selector);
 };
 
+aria.Utils.remove = function (item) {
+  if (item.remove && typeof item.remove === 'function') {
+    return item.remove();
+  }
+  if (item.parentNode
+      && item.parentNode.removeChild
+      && typeof item.parentNode.removeChild === 'function') {
+    return item.parentNode.removeChild(item);
+  }
+  return false;
+};
+
+aria.Utils.isFocusable = function (element) {
+  if (element.tabIndex > 0 || (element.tabIndex === 0 && element.getAttribute('tabIndex') !== null)) {
+    return true;
+  }
+
+  if (element.disabled) {
+    return false;
+  }
+
+  switch (element.nodeName) {
+    case 'A':
+      return !!element.href && element.rel != 'ignore';
+    case 'INPUT':
+      return element.type != 'hidden' && element.type != 'file';
+    case 'BUTTON':
+    case 'SELECT':
+    case 'TEXTAREA':
+      return true;
+    default:
+      return false;
+  }
+};
+
 aria.Utils.getAncestorBySelector = function (element, selector) {
   if (!aria.Utils.matches(element, selector + ' ' + element.tagName)) {
     // Element is not inside an element that matches selector

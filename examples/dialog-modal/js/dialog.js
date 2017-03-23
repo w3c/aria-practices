@@ -54,6 +54,10 @@ aria.Utils = aria.Utils || {};
    *  true if element is focused.
    */
   aria.Utils.attemptFocus = function (element) {
+    if (!aria.Utils.isFocusable(element)) {
+      return false;
+    }
+
     aria.Utils.IgnoreUtilFocusChanges = true;
     try {
       element.focus();
@@ -197,8 +201,8 @@ aria.Utils = aria.Utils || {};
   aria.Dialog.prototype.close = function () {
     aria.OpenDialogList.pop();
     this.removeListeners();
-    this.preNode.remove();
-    this.postNode.remove();
+    aria.Utils.remove(this.preNode);
+    aria.Utils.remove(this.postNode);
     this.dialogNode.className = 'hidden';
     this.focusAfterClosed.focus();
 
