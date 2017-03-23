@@ -1030,7 +1030,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <a class="logo" href="https://www.w3.org/"><img width="72" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" alt="W3C"></a>
     </p>
     <h1 class="title p-name" id="title" property="dcterms:title"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Authoring Practices 1.1</h1>
-    <h2 id="w3c-editor-s-draft-20-march-2017"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2017-03-20">20 March 2017</time></h2>
+    <h2 id="w3c-editor-s-draft-23-march-2017"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2017-03-23">23 March 2017</time></h2>
     <dl>
       <dt>This version:</dt>
       <dd><a class="u-url" href="http://w3c.github.io/aria-practices/">http://w3c.github.io/aria-practices/</a></dd>
@@ -1775,13 +1775,13 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                 <li>In all circumstances, focus moves to an element contained in the dialog.</li>
                 <li>Unless a condition where doing otherwise is advisable, focus is initially set on the first focusable element.</li>
                 <li>
-                  If the content is large enough that focusing the first interactive element could cause the beginning of content to scroll out of view, it is advisable to add <code>tabindex=<q>0</q></code> to a static element at the top of the dialog, such as the dialog title or first paragraph, and initially focus that element.
+                  If content is large enough that focusing the first interactive element could cause the beginning of content to scroll out of view, it is advisable to add <code>tabindex=<q>-1</q></code> to a static element at the top of the dialog, such as the dialog title or first paragraph, and initially focus that element.
                 </li>
                 <li>
-                  If the dialog is asking the user to confirm a destructive action, it may be advisable to set focus on the least destructive action, especially if undoing the action is difficult or impossible. The <a href="#alertdialog">Alert Dialog Pattern</a> is often employed in such circumstances.
+                  If a dialog contains the final step in a process that is not easily reversible, such as deleting data or completing a financial transaction, it may be advisable to set focus on the least destructive action, especially if undoing the action is difficult or impossible. The <a href="#alertdialog">Alert Dialog Pattern</a> is often employed in such circumstances.
                 </li>
                 <li>
-                  If the dialog is limited to interactions that either provide additional information or continue processing, it might set focus to the element deemed to be most frequently desired, such as a <q>OK</q> or <q>Continue</q> button.
+                  If a dialog is limited to interactions that either provide additional information or continue processing, it might set focus to the element deemed to be most frequently desired, such as a <q>OK</q> or <q>Continue</q> button.
                 </li>
               </ul>
             </li>
@@ -1796,6 +1796,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         <h4 id="wai-aria-roles-states-and-properties-6" resource="#wai-aria-roles-states-and-properties-6"><span property="xhv:role" resource="xhv:heading"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties</span></h4>
         <ul>
           <li>The element that serves as the dialog container has a role of <a href="http://w3c.github.io/aria/aria/aria.html#dialog" class="role-reference">dialog</a>.</li>
+          <li>The dialog container element has <a href="http://w3c.github.io/aria/aria/aria.html#aria-modal" class="property-reference">aria-modal</a> set to <code>true</code>.</li>
           <li>The dialog has either:
             <ul>
               <li>The <a href="http://w3c.github.io/aria/aria/aria.html#aria-labelledby" class="property-reference">aria-labelledby</a> property set to refer to the visible dialog title.</li>
@@ -1804,6 +1805,10 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           </li>
           <li>
             The <a href="http://w3c.github.io/aria/aria/aria.html#aria-describedby" class="property-reference">aria-describedby</a> property can be set on the element with the <code>dialog</code> role to indicate which element or elements in the dialog contain content that describes the primary purpose or message of the dialog. Specifying descriptive elements enables screen readers to announce the description along with the dialog title and initially focused element when the dialog opens.
+          </li>
+          <li>
+            Optionally, if content outside a dialog is completely inert and visually obscured to an extent that is intentionally unreadable, each element containing a portion of the inert layer has
+            <a href="http://w3c.github.io/aria/aria/aria.html#aria-hidden" class="state-reference">aria-hidden</a> set to <code>true</code>. In this circumstance, the dialog container element cannot be a descendant of an element that has <code>aria-hidden</code> set to <code>true</code>. However, if content outside a modal dialog is visually discernable, aria-hidden is not present.
           </li>
         </ul>
       </section>
@@ -4702,7 +4707,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <p>[Placeholder section that will be resolved by <a href="https://github.com/w3c/aria-practices/issues/84">issue #84</a>.]</p>
     </section>
 
-    <div data-include="common/acknowledgements.html" data-include-replace="true" data-include-id="include-08178232462755086">
+    <div data-include="common/acknowledgements.html" data-include-replace="true" data-include-id="include-5122025885180093">
     </div>
   </section>
 
