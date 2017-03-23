@@ -237,7 +237,7 @@
         </div>
       </div>
       <div class="dialog_form_actions">
-        <button onclick="openDialog('dialog2', this)">Verify Address</button>
+        <button onclick="openDialog('dialog2', this, 'dialog2_para1')">Verify Address</button>
         <button onclick="replaceDialog('dialog3', undefined, 'dialog3_close_btn')">Add</button>
         <button onclick="closeDialog(this)">Cancel</button>
       </div>
@@ -249,7 +249,7 @@
     >
       <h2 id="dialog2_label">Verification Result</h2>
       <div id="dialog2_desc" class="dialog_desc">
-        <p tabindex="0">This is just a demonstration. If it were a real application, it would
+        <p tabindex="-1" id="dialog2_para1">This is just a demonstration. If it were a real application, it would
           provide a message telling whether the entered address is valid.</p>
         <p>
           For demonstration purposes, this dialog has a lot of text. It demonstrates a
@@ -289,7 +289,7 @@
             actual focus is difficult to comprehend.</li>
         </ul>
         <p>
-          In this dialog, the first paragraph has <code>tabindex=<q>0</q></code>. The first
+          In this dialog, the first paragraph has <code>tabindex=<q>-1</q></code>. The first
           paragraph is also contained inside the element that provides the dialog description, i.e., the element that is referenced
           by <code>aria-describedby</code>. With some screen readers, this may have one negative
           but relatively insignificant side effect when the dialog opens -- the first paragraph
