@@ -12,8 +12,12 @@
 	background-size: contain;
 }
 
-@media screen and (min-width: 1000px) {
+@media screen and (max-width: 1000px) {
 	#arrow-keys-indicator {
+		display: none;
+	}
+
+	.indicator_description {
 		display: none;
 	}
 }
@@ -89,6 +93,15 @@
 	border-bottom-color: #bbb;
 	border-width: 11px;
 	margin-left: -11px;
+}
+
+.grid-nux-header {
+	font-weight: bold;
+}
+
+.indicator_graphic {
+	float: right;
+	margin-left: 10px;
 }
 
 .close-nux-button {
