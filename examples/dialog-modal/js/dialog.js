@@ -232,7 +232,11 @@ aria.Utils = aria.Utils || {};
   aria.Dialog.prototype.replace = function (newDialogId, newFocusAfterClosed,
       newFocusFirst) {
     var closedDialog = aria.getCurrentDialog();
-    closedDialog.close();
+    aria.OpenDialogList.pop();
+    this.removeListeners();
+    aria.Utils.remove(this.preNode);
+    aria.Utils.remove(this.postNode);
+    this.dialogNode.className = 'hidden';
     var focusAfterClosed = newFocusAfterClosed || this.focusAfterClosed;
     var dialog = new aria.Dialog(newDialogId, focusAfterClosed, newFocusFirst);
   }; // end replace
