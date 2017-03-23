@@ -267,7 +267,7 @@ aria.Utils = aria.Utils || {};
   }; // end trapFocus
 
   window.openDialog = function (dialogId, focusAfterClosed, focusFirst) {
-    var dialog = new aria.Dialog(dialogId, focusAfterClosed);
+    var dialog = new aria.Dialog(dialogId, focusAfterClosed, focusFirst);
   };
 
   window.closeDialog = function (closeButton) {
