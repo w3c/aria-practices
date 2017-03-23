@@ -6,8 +6,8 @@
 	bottom: 10px;
 	left: 0;
 	position: fixed;
-	height: 75px;
-	width: 100px;
+	height: 65px;
+	width: 85px;
 	background: url('../imgs/black_keys.png') no-repeat;
 	background-size: contain;
 }

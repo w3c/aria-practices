@@ -66,3 +66,28 @@
 .edit-text-button:hover::after, .edit-text-button:focus::after {
 	opacity: 1;
 }
+
+[role="gridcell"]:focus,
+[role="gridcell"] *:focus,
+[role="grid"] [tabindex="0"]:focus {
+	outline: #005a9c;
+	outline-style: dotted;
+	outline-width: 3px;
+}
+
+
+#arrow-keys-indicator {
+	bottom: 10px;
+	left: 0;
+	position: fixed;
+	height: 65px;
+	width: 85px;
+	background: url('../imgs/black_keys.png') no-repeat;
+	background-size: contain;
+}
+
+@media screen and (max-width: 1000px) {
+	#arrow-keys-indicator {
+		display: none;
+	}
+}
