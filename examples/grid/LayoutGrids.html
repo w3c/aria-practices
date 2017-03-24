@@ -69,17 +69,14 @@
               class="indicator_graphic" />
           </p>
           <p>
-            This focus ring indicates that arrow keys can be used.
+            This focus ring means arrow key navigation is available. Press arrow keys to move inside the component. Press Tab to jump to the next component. 
             <span class="indicator_description">
-              When focus is in a widget that allows for keyboard controls,
-              a keypad graphic will also appear in the corner of the page.
+              As a reminder, an arrow keypad graphic also appears in the lower left corner of the page.
             </span>
           </p>
-
           <p>
-            When the focus indicators appear, other keys, including Home,
-            End, Ctrl-Home, Ctrl-End, Page Up, and Page Down may also be
-            available to make keyboard navigation easier.
+            Components that support arrow keys often enable additional keys that make navigation easier, 
+            such as Home, End, Ctrl-Home, Ctrl-End, Page Up, and Page Down.
           </p>
           <a id="close-nux-button" class="close-nux-button" role="button" tabindex="0">
             Close Tutorial
@@ -90,8 +87,20 @@
       <h4>Notes</h4>
       <ol>
         <li>
-          This grid is useful in a responsive design as it dynamically adjusts the number of cells per row based on screen size.
-          And, as the grid structure changes, the arrow key behavior adjusts accordingly.
+          This grid includes three features to enhance perception of the availability of arrow key navigation:
+          <ol>
+            <li>The focus indicator changes to a dotted blue box.</li>
+            <li>When screen size is sufficiently large, A graphic of an arrow keypad appears in the page gutter on the bottom left.</li>
+            <li>
+              The first time a user moves focus into the grid with <kbd>Tab</kbd>, a <q>NUX</q> (new user experience helper) appears in the page tab sequence immediately following the grid. 
+              The NUX explains the meaning of the focus indicator and keypad graphic, and it remains visible until the user closes it.
+            </li> 
+          </ol>
+        </li>
+        <li>
+          This grid is useful in a responsive design. 
+          It dynamically adjusts the number of cells per row based on screen size.
+          As the grid structure changes, the arrow key behavior adjusts accordingly.
         </li>
         <li>
           Since all of the links are part of a single logical group,
