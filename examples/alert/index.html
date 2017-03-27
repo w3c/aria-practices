@@ -24,20 +24,19 @@
     </p>
     <section>
       <h2 id="ex_label">Example</h2>
+      <p>
+        This is just a test.
+        A typical alert is triggered by an event, such as an error, warning condition, or the arrival of information that is important in the context of the user's task.
+      </p>
       <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
       <div id="ex1">
-        <p><button id="alert-trigger">Trigger Alert</button></p>
-
-        <p>
-          This is just a test.
-          A typical alert is triggered by an event, such as an error, warning condition, or the arrival of information that is important in the context of the user's task.
-        </p>
+        <button id="alert-trigger">Trigger Alert</button>
 
         <div id="example" role="alert"></div>
 
         <!--  The following script element contains the content that will be inserted into the alert element. -->
         <script type="text/template" id="alert-template">
-          <p>Hej, hello, ciao, こんにちは, 안녕</p>
+          <p><span lang="da">Hej</span>, hello, <span lang="it">ciao</span>, <span lang="ja">こんにちは</span>, <span lang="ko">안녕</span></p>
         </script>
       </div>
       <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
@@ -117,16 +116,12 @@
     <section>
       <h2 id="sc1_label">HTML Source Code</h2>
       <div role="separator" id="sc1_start_sep" aria-labelledby="sc1_start_sep sc1_label" aria-label="Start of"></div>
-      <pre><code id="sc1">&lt;button id="alert-trigger"&gt;Trigger Alert&lt;/button&gt;
-
-&lt;div id="example" role="alert"&gt;&lt;/div&gt;
-
-&lt;!--  The following script element contains the content that will be inserted into the alert element. --&gt;
-&lt;script type="text/template" id="alert-template"&gt;
-  &lt;p&gt;Hej, hello, ciao, こんにちは, 안녕&lt;/p&gt;
-&lt;/script&gt;
-      </code></pre>
+      <pre><code id="sc1"></code></pre>
       <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of"></div>
+      <script>
+        sourceCode.add('sc1', 'ex1');
+        sourceCode.make();
+      </script>
     </section>
     </main>
     <nav>

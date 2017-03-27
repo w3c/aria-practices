@@ -2,6 +2,26 @@
 	display: none !important;
 }
 
+#arrow-keys-indicator {
+	bottom: 10px;
+	left: 0;
+	position: fixed;
+	height: 65px;
+	width: 85px;
+	background: url('../imgs/black_keys.png') no-repeat;
+	background-size: contain;
+}
+
+@media screen and (max-width: 1000px) {
+	#arrow-keys-indicator {
+		display: none;
+	}
+
+	.indicator_description {
+		display: none;
+	}
+}
+
 .accessible_elem {
 	clip: rect(1px 1px 1px 1px);
 	clip: rect(1px, 1px, 1px, 1px);
@@ -34,20 +54,10 @@
 	position: relative;
 }
 
-[role="gridcell"]:focus::before, [role="gridcell"] *:focus::before {
-	content: ' ';
-	background: url('../imgs/arrows-group-in-four-directions-3.png');
-	background-color: white;
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: 12px;
-	width: 12px;
-	height: 12px;
-	display: block;
-	position: absolute;
-	top: 0px;
-	left: -15px;
-	z-index: 1;
+[role="gridcell"]:focus, [role="gridcell"] *:focus {
+	outline: #005a9c;
+	outline-style: dotted;
+	outline-width: 3px;
 }
 
 .grid-nux {
@@ -83,6 +93,15 @@
 	border-bottom-color: #bbb;
 	border-width: 11px;
 	margin-left: -11px;
+}
+
+.grid-nux-header {
+	font-weight: bold;
+}
+
+.indicator_graphic {
+	float: right;
+	margin-left: 10px;
 }
 
 .close-nux-button {

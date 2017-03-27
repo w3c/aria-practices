@@ -1,0 +1,146 @@
+body {
+	max-width: 100%;
+	padding: 0;
+	margin: 0;
+	overflow: hidden;
+}
+
+body:not(.toc-inline) {
+  padding: 0;
+}
+
+#base_window_layer {
+	box-sizing: border-box;
+	height: 100vh;
+	width: 100%;
+	overflow: auto;
+	padding: 1.6em 0 2em;
+}
+
+#base_window_layer main, #base_window_layer nav {
+	max-width: 50em;
+	margin: auto;
+	padding-right: 1.5em;
+	padding-left: 50px;
+	padding-left: calc(26px + 1.5em);
+}
+
+@media screen and (min-width: 78em) {
+	body:not(.toc-inline) #base_window_layer main, body:not(.toc-inline) #base_window_layer nav  {
+	    padding-left: 29em;
+	}
+
+	body:not(.toc-inline) {
+	  padding: 0;
+	}
+}
+
+body:not(.toc-inline) #main_content main, body:not(.toc-inline) #main_content nav  {
+	padding-left: 1.5em;
+}
+
+
+.hidden {
+	display: none
+}
+
+#dialog_layer.showing {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	overflow: auto;
+	background: rgba(0, 0, 0, 0.3);
+}
+
+div.default_dialog {
+	display: block;
+	width: 50%;
+	margin-bottom: 100px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 5px;
+	border: thin #000 solid;
+	background-color: #fff;
+	position: absolute;;
+	top: 25%;
+	left: 25%;
+}
+
+.default_dialog h2:first-of-type {
+	text-align:center;
+}
+
+.dialog_form {
+	margin: 15px;
+}
+
+.dialog_form .label_text {
+	box-sizing: border-box;
+	padding-right: 0.5em;
+	display: inline-block;
+	font-size: 16px;
+	font-weight: bold;
+	width: 30%;
+	text-align: right;
+}
+
+.dialog_form .label_info {
+	box-sizing: border-box;
+	padding-right: 0.5em;
+	font-size: 12px;
+  width: 30%;
+  text-align: right;
+  display: inline-block;
+}
+
+.dialog_form_item {
+	margin: 10px 0;
+	font-size: 0;
+}
+
+.dialog_form_item .wide_input {
+	box-sizing: border-box;
+	max-width: 70%;
+	width: 27em;
+}
+
+.dialog_form_item .city_input {
+	box-sizing: border-box;
+	max-width: 70%;
+	width: 17em;
+}
+
+.dialog_form_item .state_input {
+	box-sizing: border-box;
+	max-width: 70%;
+	width: 15em;
+}
+
+.dialog_form_item .zip_input {
+	box-sizing: border-box;
+	max-width: 70%;
+	width: 9em;
+}
+
+.dialog_form_actions {
+	text-align: right;
+  padding: 0 20px 20px;
+}
+
+.dialog_close_button {
+	float:right;
+	position:absolute;
+	top:10px;
+	left:92%;
+	height:25px;
+}
+
+.dialog_close_button img {
+	border:0;
+}
+
+.dialog_desc {
+	padding: 10px 20px;
+}

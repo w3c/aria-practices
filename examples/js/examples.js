@@ -115,7 +115,9 @@ aria.widget.SourceCode.prototype.createCode = function (location, spaces, node, 
   var i, s;
   var count = 0;
 
-  if (typeof first !== 'boolean') first = false;
+  if (typeof first !== 'boolean') {
+    first = false;
+  }
 
   if (!first) {
     var nodeNameStr = node.nodeName.toLowerCase();
@@ -164,7 +166,7 @@ aria.widget.SourceCode.prototype.createCode = function (location, spaces, node, 
       case Node.COMMENT_NODE:
 
         if (hasText(n.nodeValue)) {
-          location.innerHTML = location.innerHTML  + '<br/>' + spaces + '&nbsp;&nbsp;' + '&lt;--&nbsp;&nbsp;' + n.nodeValue + "--&gt;";
+          location.innerHTML = location.innerHTML  + '<br/>' + spaces + '&nbsp;&nbsp;' + '&lt;--&nbsp;&nbsp;' + n.nodeValue + '--&gt;';
         }
         count++;
         break;

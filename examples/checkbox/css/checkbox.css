@@ -1,3 +1,9 @@
+ul.checkboxes {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 1em;
+}
+
 [role="checkbox"] {
   display: inline-block;
   position: relative;
