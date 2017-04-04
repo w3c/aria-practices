@@ -393,7 +393,7 @@ aria.widget.MenuButton.prototype.initMenuButton = function () {
     }
   }
 
-  this.closeMenu();
+  this.closeMenu(false, false);
 
   var self = this;
 
