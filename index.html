@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html typeof="bibo:Document " prefix="bibo: http://purl.org/ontology/bibo/ w3p: http://www.w3.org/2001/02pd/rec54#" lang="en-US">
+<html lang="en-US" typeof="bibo:Document " prefix="bibo: http://purl.org/ontology/bibo/ w3p: http://www.w3.org/2001/02pd/rec54#">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="dc:language" content="en" lang="">
+  <meta lang="" property="dc:language" content="en">
   <style>
     /*
 
 github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
 */
-    
+
     .hljs {
       display: block;
       overflow-x: auto;
@@ -18,20 +18,20 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       color: #333;
       background: #f8f8f8;
     }
-    
+
     .hljs-comment,
     .hljs-quote {
       color: #998;
       font-style: italic;
     }
-    
+
     .hljs-keyword,
     .hljs-selector-tag,
     .hljs-subst {
       color: #333;
       font-weight: bold;
     }
-    
+
     .hljs-number,
     .hljs-literal,
     .hljs-variable,
@@ -39,75 +39,75 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     .hljs-tag .hljs-attr {
       color: #008080;
     }
-    
+
     .hljs-string,
     .hljs-doctag {
       color: #d14;
     }
-    
+
     .hljs-title,
     .hljs-section,
     .hljs-selector-id {
       color: #900;
       font-weight: bold;
     }
-    
+
     .hljs-subst {
       font-weight: normal;
     }
-    
+
     .hljs-type,
     .hljs-class .hljs-title {
       color: #458;
       font-weight: bold;
     }
-    
+
     .hljs-tag,
     .hljs-name,
     .hljs-attribute {
       color: #000080;
       font-weight: normal;
     }
-    
+
     .hljs-regexp,
     .hljs-link {
       color: #009926;
     }
-    
+
     .hljs-symbol,
     .hljs-bullet {
       color: #990073;
     }
-    
+
     .hljs-built_in,
     .hljs-builtin-name {
       color: #0086b3;
     }
-    
+
     .hljs-meta {
       color: #999;
       font-weight: bold;
     }
-    
+
     .hljs-deletion {
       background: #fdd;
     }
-    
+
     .hljs-addition {
       background: #dfd;
     }
-    
+
     .hljs-emphasis {
       font-style: italic;
     }
-    
+
     .hljs-strong {
       font-weight: bold;
     }
   </style>
   <style>
     /* --- ISSUES/NOTES --- */
-    
+
     div.issue-title,
     div.note-title,
     div.ednote-title,
@@ -116,27 +116,27 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       min-width: 7.5em;
       color: #b9ab2d;
     }
-    
+
     div.issue-title {
       color: #e05252;
     }
-    
+
     div.note-title,
     div.ednote-title {
       color: #2b2;
     }
-    
+
     div.warning-title {
       color: #f22;
     }
-    
+
     div.issue-title span,
     div.note-title span,
     div.ednote-title span,
     div.warning-title span {
       text-transform: uppercase;
     }
-    
+
     div.note,
     div.issue,
     div.ednote,
@@ -144,14 +144,14 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       margin-top: 1em;
       margin-bottom: 1em;
     }
-    
+
     .note>p:first-child,
     .ednote>p:first-child,
     .issue>p:first-child,
     .warning>p:first-child {
       margin-top: 0
     }
-    
+
     .issue,
     .note,
     .ednote,
@@ -160,7 +160,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       border-left-width: .5em;
       border-left-style: solid;
     }
-    
+
     div.issue,
     div.note,
     div.ednote,
@@ -170,32 +170,32 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       position: relative;
       clear: both;
     }
-    
+
     span.note,
     span.ednote,
     span.issue,
     span.warning {
       padding: .1em .5em .15em;
     }
-    
+
     .issue {
       border-color: #e05252;
       background: #fbe9e9;
     }
-    
+
     .note,
     .ednote {
       border-color: #52e052;
       background: #e9fbe9;
     }
-    
+
     .warning {
       border-color: #f11;
       border-width: .2em;
       border-style: solid;
       background: #fbe9e9;
     }
-    
+
     .warning-title:before {
       content: "⚠";
       /*U+26A0 WARNING SIGN*/
@@ -206,11 +206,11 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       vertical-align: top;
       margin-top: -0.5em;
     }
-    
+
     li.task-list-item {
       list-style: none;
     }
-    
+
     input.task-list-item-checkbox {
       margin: 0 0.35em 0.25em -1.6em;
       vertical-align: middle;
@@ -218,7 +218,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   </style>
   <style>
     /* --- PERMALINKS --- */
-    
+
     .permalink {
       width: 1px;
       height: 1px;
@@ -229,7 +229,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       margin-left: 4px;
       float: right;
     }
-    
+
     .permalink a,
     .permalink a:link,
     .permalink a:visited,
@@ -241,7 +241,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       font-weight: bold;
       color: #666 !important;
     }
-    
+
     .permalink abbr {
       border: 0;
     }
@@ -258,18 +258,18 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
  * Robin Berjon - http://berjon.com/
  *****************************************************************/
     /* Override code highlighter background */
-    
+
     .hljs {
       background: transparent !important;
     }
     /* --- INLINES --- */
-    
+
     em.rfc2119 {
       text-transform: lowercase;
       font-style: normal;
       color: #900;
     }
-    
+
     h1 acronym,
     h2 acronym,
     h3 acronym,
@@ -286,107 +286,107 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     a abbr {
       border: none;
     }
-    
+
     dfn {
       font-weight: bold;
     }
-    
+
     a.internalDFN {
       color: inherit;
       border-bottom: 1px solid #99c;
       text-decoration: none;
     }
-    
+
     a.externalDFN {
       color: inherit;
       border-bottom: 1px dotted #ccc;
       text-decoration: none;
     }
-    
+
     a.bibref {
       text-decoration: none;
     }
-    
+
     cite .bibref {
       font-style: normal;
     }
-    
+
     code {
       color: #C83500;
     }
-    
+
     th code {
       color: inherit;
     }
     /* --- TOC --- */
-    
+
     .toc a,
     .tof a {
       text-decoration: none;
     }
-    
+
     a .secno,
     a .figno {
       color: #000;
     }
-    
+
     ul.tof,
     ol.tof {
       list-style: none outside none;
     }
-    
+
     .caption {
       margin-top: 0.5em;
       font-style: italic;
     }
     /* --- TABLE --- */
-    
+
     table.simple {
       border-spacing: 0;
       border-collapse: collapse;
       border-bottom: 3px solid #005a9c;
     }
-    
+
     .simple th {
       background: #005a9c;
       color: #fff;
       padding: 3px 5px;
       text-align: left;
     }
-    
+
     .simple th[scope="row"] {
       background: inherit;
       color: inherit;
       border-top: 1px solid #ddd;
     }
-    
+
     .simple td {
       padding: 3px 10px;
       border-top: 1px solid #ddd;
     }
-    
+
     .simple tr:nth-child(even) {
       background: #f0f6ff;
     }
     /* --- DL --- */
-    
+
     .section dd>p:first-child {
       margin-top: 0;
     }
-    
+
     .section dd>p:last-child {
       margin-bottom: 0;
     }
-    
+
     .section dd {
       margin-bottom: 1em;
     }
-    
+
     .section dl.attrs dd,
     .section dl.eldef dd {
       margin-bottom: 0;
     }
-    
+
     #respec-ui {
       position: fixed;
       display: flex;
@@ -395,8 +395,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       right: 20px;
       width: 202px;
       text-align: right;
+      z-index: 9000;
     }
-    
+
     #respec-pill,
     .respec-info-button {
       background: #fff;
@@ -405,20 +406,21 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       border: 1px solid #ccc;
       box-shadow: 1px 1px 8px 0 rgba(100, 100, 100, .5);
     }
-    
+
     .respec-info-button {
       border: none;
-      opacity: .5;
+      opacity: .75;
       border-radius: 2em;
       margin-right: 1em;
       min-width: 3.5em;
     }
-    
-    .respec-info-button:focus {
+
+    .respec-info-button:focus,
+    .respec-info-button:hover {
       opacity: 1;
       transition: opacity .2s;
     }
-    
+
     #respec-pill:disabled {
       font-size: 2.8px;
       text-indent: -9999em;
@@ -430,14 +432,14 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       animation: respec-spin .5s infinite linear;
       box-shadow: none;
     }
-    
+
     #respec-pill:disabled,
     #respec-pill:disabled:after {
       border-radius: 50%;
       width: 10em;
       height: 10em;
     }
-    
+
     @keyframes respec-spin {
       0% {
         transform: rotate(0deg);
@@ -446,14 +448,14 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         transform: rotate(360deg);
       }
     }
-    
+
     #respec-pill:hover,
     #respec-pill:focus {
       color: rgb(0, 0, 0);
       background-color: rgb(245, 245, 245);
       transition: color .2s;
     }
-    
+
     #respec-menu {
       position: absolute;
       margin: 0;
@@ -467,44 +469,60 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       margin-top: 32px;
       font-size: .8em;
     }
-    
+
     #respec-menu li {
       list-style-type: none;
       margin: 0;
       padding: 0;
     }
-    
-    .respec-save-button {
-      background: #fff;
-      border: 1px solid #000;
-      border-radius: 5px;
-      padding: 5px;
-      margin: 5px;
-      display: block;
-      width: 100%;
-      color: #000;
+
+    .respec-save-buttons {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(47%, 2fr));
+      grid-gap: .5cm;
+      padding: .5cm;
+    }
+
+    .respec-save-button:link {
+      padding-top: 16px;
+      color: rgb(240, 240, 240);
+      background: rgb(42, 90, 168);
+      justify-self: stretch;
+      height: 1cm;
       text-decoration: none;
       text-align: center;
       font-size: inherit;
+      border: none;
+      border-radius: 0.2cm;
     }
-    
+
+    .respec-save-button:link:hover {
+      color: white;
+      background: rgb(42, 90, 168);
+      padding: 0;
+      margin: 0;
+      border: 0;
+      padding-top: 16px;
+    }
+
+
     #respec-ui button:focus,
     #respec-pill:focus,
     .respec-option:focus {
       outline: 0;
       outline-style: none;
     }
-    
+
     #respec-pill-error {
       background-color: red;
       color: white;
     }
-    
+
     #respec-pill-warning {
       background-color: orange;
       color: white;
     }
-    
+
     .respec-warning-list,
     .respec-error-list {
       margin: 0;
@@ -514,38 +532,38 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       background-color: rgb(255, 251, 230);
       font-size: .9em;
     }
-    
+
     .respec-warning-list li,
     .respec-error-list li {
       padding: 0.4em 0.7em;
     }
-    
+
     .respec-warning-list li::before {
       content: "⚠️";
       padding-right: .5em;
     }
-    
+
     .respec-warning-list li {
       color: rgb(92, 59, 0);
       border-bottom: thin solid rgb(255, 245, 194);
     }
-    
+
     .respec-error-list,
     .respec-error-list li {
       background-color: rgb(255, 240, 240);
     }
-    
+
     .respec-error-list li::before {
       content: "💥";
       padding-right: .5em;
     }
-    
+
     .respec-error-list li {
       padding: 0.4em 0.7em;
       color: rgb(92, 59, 0);
       border-bottom: thin solid rgb(255, 215, 215);
     }
-    
+
     #respec-overlay {
       display: block;
       opacity: 0;
@@ -557,7 +575,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       width: 100%;
       background: #000;
     }
-    
+
     .respec-modal {
       display: block;
       position: fixed;
@@ -568,19 +586,19 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       background: #fff;
       border: 5px solid #666;
       min-width: 20%;
-      width: 85%;
+      width: 79%;
       padding: 0;
       max-height: 80%;
       overflow-y: auto;
       margin: 0 -.5cm
     }
-    
+
     @media screen and (min-width: 78em) {
       .respec-modal {
-        width: 64%;
+        width: 62%;
       }
     }
-    
+
     .respec-modal h3 {
       margin: 0;
       padding: .2em;
@@ -589,11 +607,11 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       background: linear-gradient(to bottom, rgba(238, 238, 238, 1) 0%, rgba(238, 238, 238, 1) 50%, rgba(204, 204, 204, 1) 100%);
       font-size: 1em;
     }
-    
+
     .respec-modal .inside p {
       padding-left: 1cm;
     }
-    
+
     #respec-menu button.respec-option {
       background: white;
       padding: 0 .2cm;
@@ -603,27 +621,27 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       font-size: inherit;
       padding: 1.2em 1.2em;
     }
-    
+
     #respec-menu button.respec-option:hover,
     #respec-menu button:focus {
       background-color: #eeeeee;
     }
-    
+
     .respec-cmd-icon {
       padding-right: .5em;
     }
-    
+
     #respec-ui button.respec-option:last-child {
       border: none;
       border-radius: inherit;
     }
-    
+
     .respec-offending-element {
       display: inline-block;
       position: relative;
       background: url(data:image/gif;base64,R0lGODdhBAADAPEAANv///8AAP///wAAACwAAAAABAADAEACBZQjmIAFADs=) bottom repeat-x;
     }
-    
+
     @supports (text-decoration-style: wavy) {
       .respec-offending-element {
         background: none;
@@ -632,17 +650,45 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         text-decoration-color: red;
       }
     }
-    
+
     #issue-summary>ul,
     .respec-dfn-list {
       column-count: 2;
     }
-    
+
     #issue-summary li,
     .respec-dfn-list li {
       list-style: none;
     }
-    
+
+
+    .respec-button-copy-paste {
+      position: absolute;
+      display: block;
+      padding: 0px 8px;
+      height: 28px;
+      width: 40px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid rgb(144, 184, 222);
+      border-radius: 0px 0px 3px 0;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      -webkit-appearance: none;
+      margin: 0px 127px;
+      border-left: 0;
+    }
+
+    p+.respec-button-copy-paste {
+      margin: 1px 127px;
+    }
+
     @media print {
       .removeOnSave {
         display: none;
@@ -651,7 +697,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   </style>
   <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/W3C-ED">
   <link rel="canonical" href="https://www.w3.org/TR/wai-aria-practices-1.1/">
-  <meta name="generator" content="ReSpec 11.2.1">
+  <meta name="generator" content="ReSpec 11.4.1">
   <script id="initialUserConfig" type="application/json">
     {
       "doRDFa": "1.1",
@@ -1024,13 +1070,13 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     }
   </script>
 </head>
-<body aria-busy="false" class="h-entry" id="respecDocument">
+<body aria-busy="false" class="h-entry toc-inline" id="respecDocument">
   <div class="head" role="contentinfo" id="respecHeader">
     <p>
-      <a class="logo" href="https://www.w3.org/"><img src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" alt="W3C" width="72" height="48"></a>
+      <a class="logo" href="https://www.w3.org/"><img width="72" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" alt="W3C"></a>
     </p>
     <h1 class="title p-name" id="title" property="dcterms:title"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Authoring Practices 1.1</h1>
-    <h2 id="w3c-editor-s-draft-26-march-2017"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2017-03-26">26 March 2017</time></h2>
+    <h2 id="w3c-editor-s-draft-10-april-2017"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2017-04-10">10 April 2017</time></h2>
     <dl>
       <dt>This version:</dt>
       <dd><a class="u-url" href="http://w3c.github.io/aria-practices/">http://w3c.github.io/aria-practices/</a></dd>
@@ -1311,13 +1357,6 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         <ol class="toc">
           <li class="tocline"><a href="#ScreenReaderModes" class="tocxref"><span class="secno">A.1 </span>Understanding Screen Reader Document Reading and Application Reading Modes</a></li>
           <li class="tocline"><a href="#ariaBackground" class="tocxref"><span class="secno">A.2 </span>Background on <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr></a></li>
-          <li class="tocline"><a href="#acknowledgements" class="tocxref"><span class="secno">A.3 </span>Acknowledgments</a>
-            <ol class="toc">
-              <li class="tocline"><a href="#ack_group" class="tocxref"><span class="secno">A.3.1 </span>Participants active in the ARIA WG at the time of publication</a></li>
-              <li class="tocline"><a href="#ack_others" class="tocxref"><span class="secno">A.3.2 </span>Other ARIA contributors, commenters, and previously active participants</a></li>
-              <li class="tocline"><a href="#ack_funders" class="tocxref"><span class="secno">A.3.3 </span>Enabling funders</a></li>
-            </ol>
-          </li>
         </ol>
       </li>
       <li class="tocline"><a href="#references" class="tocxref"><span class="secno">B. </span>References</a>
@@ -1482,7 +1521,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
       <section class="notoc" typeof="bibo:Chapter" resource="#example" property="bibo:hasPart">
         <h4 id="example" resource="#example"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
-        <p><a href="examples/accordion/accordion.html">Accordion Example</a>: demonstrates a form divided into three sections using an accordion to show one ssection at a time. </p>
+        <p><a href="examples/accordion/accordion.html">Accordion Example</a>: demonstrates a form divided into three sections using an accordion to show one section at a time. </p>
       </section>
     </section>
 
@@ -1814,8 +1853,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             The <a href="http://w3c.github.io/aria/aria/aria.html#aria-describedby" class="property-reference">aria-describedby</a> property can be set on the element with the <code>dialog</code> role to indicate which element or elements in the dialog contain content that describes the primary purpose or message of the dialog. Specifying descriptive elements enables screen readers to announce the description along with the dialog title and initially focused element when the dialog opens.
           </li>
           <li>
-            Optionally, if content outside a dialog is completely inert and visually obscured to an extent that is intentionally unreadable, each element containing a portion of the inert layer has
-            <a href="http://w3c.github.io/aria/aria/aria.html#aria-hidden" class="state-reference">aria-hidden</a> set to <code>true</code>. In this circumstance, the dialog container element cannot be a descendant of an element that has <code>aria-hidden</code> set to <code>true</code>. However, if content outside a modal dialog is visually discernable, aria-hidden is not present.
+            With the addition of <a href="http://w3c.github.io/aria/aria/aria.html#aria-modal" class="property-reference">aria-modal</a> set to true, where content outside the dialog is completely inert and visually obscured to an extent that is intentionally unreadable, it is no longer necessary to set <a href="http://w3c.github.io/aria/aria/aria.html#aria-hidden" class="state-reference">aria-hidden</a> to <code>true</code> on each element containing a portion of the inert layer, If you do still use <code>aria-hidden</code> set to <code>true</code> the dialog container element cannot be a descendant of an element that has <code>aria-hidden</code> set to <code>true</code> and the content outside the modal dialog must not be visually discernable.
           </li>
         </ul>
       </section>
@@ -2536,8 +2574,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           </li>
           <li><kbd>Space</kbd>:
             <ul>
-              <li>When focus is on a <code>menuitemcheckbox</code>, changes the state without closing the menu.</li>
-              <li>When focus is on a <code>menuitemradio</code> that is not checked, without closing the menu, checks the focused <code>menuitemradio</code> and unchecks any other checked <code>menuitemradio</code> element in the same group.</li>
+              <li>(Optional): When focus is on a <code>menuitemcheckbox</code>, changes the state without closing the menu.</li>
+              <li>(Optional): When focus is on a <code>menuitemradio</code> that is not checked, without closing the menu, checks the focused <code>menuitemradio</code> and unchecks any other checked <code>menuitemradio</code> element in the same group.</li>
               <li>(Optional): When focus is on a <code>menuitem</code> that has a submenu, opens the submenu and places focus on its first item.</li>
               <li>(Optional): When focus is on a <code>menuitem</code> that does not have a submenu, activates the <code>menuitem</code> and closes the menu.</li>
             </ul>
@@ -2551,7 +2589,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <li><kbd>Up Arrow</kbd>:
             <ul>
               <li>When focus is in a <code>menu</code>, moves focus to the previous item, optionally wrapping from the first to the last.</li>
-              <li>When focus is in a <code>menubar</code>, does nothing.</li>
+              <li>(Optional): When focus is on a <code>menuitem</code> in a <code>menubar</code>, opens its submenu and places focus on the last item in the submenu.</li>
             </ul>
           </li>
           <li><kbd>Right Arrow</kbd>:
@@ -4714,207 +4752,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <p>[Placeholder section that will be resolved by <a href="https://github.com/w3c/aria-practices/issues/84">issue #84</a>.]</p>
     </section>
 
-    <section class="appendix informative section" id="acknowledgements" typeof="bibo:Chapter" resource="#acknowledgements" property="bibo:hasPart">
-      <h3 id="h-acknowledgements" resource="#h-acknowledgements"><span property="xhv:role" resource="xhv:heading"><span class="secno">A.3 </span>Acknowledgments<span class="permalink" typeof="bookmark"><a href="#acknowledgements" aria-label="Permalink for A.3 Acknowledgments" title="Permalink for A.3 Acknowledgments" property="url"><span property="title" content="A.3 Acknowledgments">§</span></a>
-        </span>
-        </span>
-      </h3>
-      <p><em>This section is non-normative.</em></p>
-      <p>The following people contributed to the development of this document.</p>
-
-      <section class="section" id="ack_group" typeof="bibo:Chapter" resource="#ack_group" property="bibo:hasPart">
-        <h4 id="h-ack_group" resource="#h-ack_group"><span property="xhv:role" resource="xhv:heading"><span class="secno">A.3.1 </span>Participants active in the ARIA WG at the time of publication<span class="permalink" typeof="bookmark"><a href="#ack_group" aria-label="Permalink for A.3.1 Participants active in the ARIA WG at the time of publication" title="Permalink for A.3.1 Participants active in the ARIA WG at the time of publication" property="url"><span property="title" content="A.3.1 Participants active in the ARIA WG at the time of publication">§</span></a>
-          </span>
-          </span>
-        </h4>
-        <ul>
-          <li>Ann Abbott (IBM Corporation)</li>
-          <li>Michiel Bijl (The Paciello Group)</li>
-          <li>Christy Blew (University of Illinois at Urbana-Champaign)</li>
-          <li>Teresa Boers (IBM Corporation)</li>
-          <li>David Bolter (Mozilla Foundation) </li>
-          <li>Michael Cooper (<abbr title="World Wide Web Consortium">W3C</abbr>/<abbr title="Massachusetts Institute of Technology">MIT</abbr>)</li>
-          <li>James Craig (Apple Inc.) </li>
-          <li>Joanmarie Diggs (Igalia)</li>
-          <li>Fred Esch (IBM Corporation)</li>
-          <li>Steve Faulkner (The Paciello Group) </li>
-          <li>John Foliot (Invited Expert)</li>
-          <li>Bryan Garaventa (SSB BART Group)</li>
-          <li>Matt Garrish (DAISY Consortium)</li>
-          <li>Billy Gregory (The Paciello Group)</li>
-          <li>Karl Groves (The Paciello Group)</li>
-          <li>Jon Gunderson (University of Illinois at Urbana-Champaign)</li>
-          <li>Markus Gylling (DAISY Consortium)</li>
-          <li>Markku Hakkinen (Educational Testing Service)</li>
-          <li>Katie Haritos-Shea (Knowbility)</li>
-          <li>Susann Keohane (IBM Corporation)</li>
-          <li>Matthew King (Facebook)</li>
-          <li>Jason Kiss (Department of Internal Affairs, New Zealand Government)</li>
-          <li>Jamie Knight (British Broadcasting Corporation)</li>
-          <li>JaEun Jemma Ku (University of Illinois at Urbana-Champaign)</li>
-          <li>Shane McCarron (Invited Expert, Aptest)</li>
-          <li>Charles McCathie Nevile (Yandex)</li>
-          <li>Mary Jo Mueller (IBM Corporation)</li>
-          <li>James Nurthen (Oracle Corporation) </li>
-          <li>Ian Pouncey (The Paciello Group, LLC)</li>
-          <li>Mark Sadecki (Invited Expert)</li>
-          <li>Janina Sajka (Invited Expert, The Linux Foundation)</li>
-          <li>Joseph Scheuhammer (Invited Expert, Inclusive Design Research Centre, OCAD University) </li>
-          <li>Stefan Schnabel (SAP AG) </li>
-          <li>Richard Schwerdtfeger (IBM Corporation)</li>
-          <li>Lisa Seeman (Invited Expert) </li>
-          <li>Tzviya Siegman (Wiley)</li>
-          <li>Cynthia Shelly (Microsoft Corporation) </li>
-          <li>Alexander Surkov (Mozilla Foundation)</li>
-          <li>Léonie Watson (The Paciello Group)</li>
-          <li>Jason White (Educational Testing Service)</li>
-          <li>Gottfried Zimmermann (Invited Expert, Access Technologies Group)</li>
-        </ul>
-      </section>
-
-      <section class="section" id="ack_others" typeof="bibo:Chapter" resource="#ack_others" property="bibo:hasPart">
-        <h4 id="h-ack_others" resource="#h-ack_others"><span property="xhv:role" resource="xhv:heading"><span class="secno">A.3.2 </span>Other ARIA contributors, commenters, and previously active participants<span class="permalink" typeof="bookmark"><a href="#ack_others" aria-label="Permalink for A.3.2 Other ARIA contributors, commenters, and previously active participants" title="Permalink for A.3.2 Other ARIA contributors, commenters, and previously active participants" property="url"><span property="title" content="A.3.2 Other ARIA contributors, commenters, and previously active participants">§</span></a>
-          </span>
-          </span>
-        </h4>
-        <ul>
-          <li>Shadi Abou-Zahra (<abbr title="World Wide Web Consortium">W3C</abbr>)</li>
-          <li>Jim Allan (TSB)</li>
-          <li>Jonny Axelsson (Opera Software)</li>
-          <li>David Baron (Mozilla Foundation)</li>
-          <li>Art Barstow (Nokia Corporation)</li>
-          <li>Simon Bates</li>
-          <li>Chris Blouch (AOL)</li>
-          <li>Judy Brewer (<abbr title="World Wide Web Consortium">W3C</abbr>/<abbr title="Massachusetts Institute of Technology">MIT</abbr>)</li>
-          <li>Mark Birbeck (Sidewinder Labs)</li>
-          <li>Sally Cain (Royal National Institute of Blind People (RNIB))</li>
-          <li>Gerardo Capiel (Benetech)</li>
-          <li>Ben Caldwell (Trace)</li>
-          <li>Sofia Celic-Li</li>
-          <li>Jaesik Chang (Samsung Electronics Co., Ltd.)</li>
-          <li>Alex Qiang Chen (University of Manchester)</li>
-          <li>Charles Chen (Google, Inc.)</li>
-          <li>Christian Cohrs</li>
-          <li>Deborah Dahl</li>
-          <li>Erik Dahlström (Opera Software)</li>
-          <li>Dimitar Denev (Frauenhofer Gesellschaft)</li>
-          <li>Micah Dubinko (Invited Expert)</li>
-          <li>Mandana Eibegger</li>
-          <li>Beth Epperson (Websense)</li>
-          <li>Donald Evans (AOL)</li>
-          <li>Chris Fleizach (Apple Inc.)</li>
-          <li>Kelly Ford (Microsoft Corporation)</li>
-          <li>Geoff Freed (Invited Expert, NCAM)</li>
-          <li>Christopher Gallelo (Microsoft Corporation)</li>
-          <li>Birkir Gunnarsson (Deque Systems, Inc.)</li>
-          <li>Kentarou Fukuda (IBM Corporation)</li>
-          <li>Bryan Garaventa</li>
-          <li>Guido Geloso</li>
-          <li>Ali Ghassemi</li>
-          <li>Becky Gibson (IBM)</li>
-          <li>Alfred S. Gilman</li>
-          <li>Andres Gonzalez (Adobe Systems Inc.)</li>
-          <li>Scott González (JQuery Foundation)</li>
-          <li>James Graham</li>
-          <li>Georgios Grigoriadis (SAP AG)</li>
-          <li>Jeff Grimes (Oracle)</li>
-          <li>Loretta Guarino Reid (Google, Inc.)</li>
-          <li>Barbara Hartel</li>
-          <li>James Hawkins (Google, Inc.)</li>
-          <li>Benjamin Hawkes-Lewis</li>
-          <li>Sean Hayes (Microsoft Corporation)</li>
-          <li>Mona Heath (University of Illinois at Urbana-Champaign)</li>
-          <li>Jan Heck</li>
-          <li>Shawn Henry</li>
-          <li>Tina Homboe</li>
-          <li>John Hrvatin (Microsoft Corporation)</li>
-          <li>Takahiro Inada</li>
-          <li>Masayasu Ishikawa (<abbr title="World Wide Web Consortium">W3C</abbr>)</li>
-          <li>Jim Jewitt</li>
-          <li>Kenny Johar (Microsoft Corporation)</li>
-          <li>Shilpi Kapoor (BarrierBreak Technologies)</li>
-          <li>Masahiko Kaneko (Microsoft Corporation)</li>
-          <li>Marjolein Katsma</li>
-          <li>George Kerscher (International Digital Publishing Forum)</li>
-          <li>Jason Kiss (New Zealand Government)</li>
-          <li>Todd Kloots</li>
-          <li>Johannes Koch</li>
-          <li>Sam Kuper</li>
-          <li>Earl Johnson (Sun)</li>
-          <li>Jael Kurz</li>
-          <li>Rajesh Lal (Nokia Corporation)</li>
-          <li>Diego La Monica (International Webmasters Association / HTML Writers Guild (IWA-HWG))</li>
-          <li>Aaron Leventhal (IBM Corporation)</li>
-          <li>Gez Lemon (International Webmasters Association / HTML Writers Guild (IWA-HWG))</li>
-          <li>Alex Li (SAP)</li>
-          <li>Chris Lilley</li>
-          <li>Thomas Logan (HiSoftware Inc.)</li>
-          <li>William Loughborough (Invited Expert)</li>
-          <li>Linda Mao (Microsoft)</li>
-          <li>David MacDonald (Invited Expert, CanAdapt Solutions Inc.)</li>
-          <li>Carolyn MacLeod</li>
-          <li>Anders Markussen (Opera Software)</li>
-          <li>Krzysztof Maczyński </li>
-          <li>Matthew May (Adobe Systems Inc.)</li>
-          <li>Dominic Mazzoni (Google, Inc.)</li>
-          <li>Alexandre Morgaut (4D)</li>
-          <li>Ann Navarro (Invited Expert)</li>
-          <li>Joshue O Connor (Invited Expert, CFIT)</li>
-          <li>Artur Ortega (Microsoft Corporation)</li>
-          <li>Sailesh Panchang (Deque)</li>
-          <li>Lisa Pappas (Society for Technical Communication (STC))</li>
-          <li>Marta Pawlowlska (Samsung Electronics Co., Ltd.)</li>
-          <li>Dave Pawson (RNIB)</li>
-          <li>Steven Pemberton (CWI Amsterdam)</li>
-          <li>Simon Pieters (Opera Software)</li>
-          <li>Jean-Bernard Piot (4D)</li>
-          <li>David Poehlman, Simon Pieters (Opera Software)</li>
-          <li>Sarah Pulis (Media Access Australia)</li>
-          <li>T.V. Raman (Google, Inc.)</li>
-          <li>Jan Richards</li>
-          <li>Gregory Rosmaita (Invited Expert)</li>
-          <li>Tony Ross (Microsoft Corporation)</li>
-          <li>Alex Russell (Dojo Foundation) (</li>
-          <li>Mark Sadecki (Invited Expert)</li>
-          <li>Mario Sánchez Prada (Samsung Electronics Co., Ltd. and Gnome Foundation)</li>
-          <li>Martin Schaus (SAP AG)</li>
-          <li>Doug Schepers (<abbr title="World Wide Web Consortium">W3C</abbr>)</li>
-          <li>Matthias Schmitt </li>
-          <li>Marc Silbey (Microsoft Corporation)</li>
-          <li>Leif Halvard Sili</li>
-          <li>Henri Sivonen (Mozilla)</li>
-          <li>Michael Smith (<abbr title="World Wide Web Consortium">W3C</abbr>)</li>
-          <li>Andi Snow-Weaver (IBM Corporation)</li>
-          <li>Ville Skyttä </li>
-          <li>Henny Swan (BBC)</li>
-          <li>Neil Soiffer (Design Science)</li>
-          <li>Vitaly Sourikov</li>
-          <li>Mike Squillace (IBM)</li>
-          <li>Maciej Stachowiak (Apple Inc.)</li>
-          <li>Christophe Strobbe</li>
-          <li>Suzanne Taylor (Pearson plc)</li>
-          <li>Terrill Thompson</li>
-          <li>David Todd</li>
-          <li>Gregg Vanderheiden (Invited Expert, Trace)</li>
-          <li>Anne van Kesteren</li>
-          <li>Wen He (Tencent)</li>
-          <li>Wu Wei (<abbr title="World Wide Web Consortium">W3C</abbr> / RITT)</li>
-          <li>Ryan Williams (Oracle)</li>
-          <li>Tom Wlodkowski</li>
-          <li>Sam White (Apple Inc.)</li>
-          <li>Marco Zehe (Mozilla Foundation)</li>
-        </ul>
-      </section>
-
-      <section class="section" id="ack_funders" typeof="bibo:Chapter" resource="#ack_funders" property="bibo:hasPart">
-        <h4 id="h-ack_funders" resource="#h-ack_funders"><span property="xhv:role" resource="xhv:heading"><span class="secno">A.3.3 </span>Enabling funders<span class="permalink" typeof="bookmark"><a href="#ack_funders" aria-label="Permalink for A.3.3 Enabling funders" title="Permalink for A.3.3 Enabling funders" property="url"><span property="title" content="A.3.3 Enabling funders">§</span></a>
-          </span>
-          </span>
-        </h4>
-        <p>This publication has been funded in part with U.S. Federal funds from the Department of Education, National Institute on Disability, Independent Living, and Rehabilitation Research (NIDILRR), initially under contract number ED-OSE-10-C-0067 and currently under contract number HHSP23301500054C. The content of this publication does not necessarily reflect the views or policies of the U.S. Department of Education, nor does mention of trade names, commercial products, or organizations imply endorsement by the U.S. Government.</p>
-      </section>
-    </section>
-
+    <div data-include="common/acknowledgements.html" data-include-replace="true" data-include-id="include-06518189373368166">
+    </div>
   </section>
 
 
