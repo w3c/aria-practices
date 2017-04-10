@@ -78,7 +78,7 @@ MenubarItemAction.prototype.init = function () {
   var nextElement = this.domNode.nextElementSibling;
 
   if (nextElement && nextElement.tagName === 'UL') {
-    this.popupMenu = new PopupMenuAction(nextElement, this);
+    this.popupMenu = new PopupMenuAction(nextElement, this, this.menubar.actionManager);
     this.popupMenu.init();
   }
 

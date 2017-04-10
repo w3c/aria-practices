@@ -63,8 +63,10 @@ var MenubarAction = function (domNode) {
 *       Traverse menubar children for A elements to configure each A element as a ARIA menuitem
 *       and populate menuitems array. Initialize firstItem and lastItem properties.
 */
-MenubarAction.prototype.init = function () {
+MenubarAction.prototype.init = function (actionManager) {
   var menubarItem, childElement, menuElement, textContent, numItems;
+
+  this.actionManager = actionManager;
 
   this.domNode.setAttribute('role', 'menubar');
 
@@ -100,12 +102,10 @@ MenubarAction.prototype.init = function () {
 MenubarAction.prototype.setFocusToItem = function (newItem) {
   var flag = false;
   var newItem;
-  console.log(newItem);
   for (var i = 0; i < this.menubarItems.length; i++) {
     var mbi = this.menubarItems[i];
     if (mbi.domNode.tabIndex == 0) {
       flag = mbi.domNode.getAttribute('aria-expanded') === 'true';}
-    console.log(flag);
     mbi.domNode.tabIndex = -1;
     if (mbi.popupMenu) {
       mbi.popupMenu.close();
