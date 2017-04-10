@@ -269,7 +269,11 @@ aria.FeedDisplay.prototype.checkLoadMore = function () {
   }
 
   var lastFeedItem = this.feedItems[this.feedItems.length - 1];
-  var scrollBottom = document.body.scrollTop + window.innerHeight;
+  var scrollTop = window.pageYOffset
+                  || document.documentElement.scrollTop
+                  || document.body.scrollTop
+                  || 0;
+  var scrollBottom = scrollTop + window.innerHeight;
 
   if (scrollBottom >= (lastFeedItem.offsetTop - 300)) {
     this.loadData();
