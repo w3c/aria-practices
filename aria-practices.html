@@ -569,11 +569,11 @@
             Specifying descriptive elements enables screen readers to announce the description along with the dialog title and initially focused element when the dialog opens.
           </li>
           <li>
-            Optionally, if content outside a dialog is completely inert and visually obscured to an extent that is intentionally unreadable, 
-            each element containing a portion of the inert layer has 
-            <a href="#aria-hidden" class="state-reference">aria-hidden</a> set to <code>true</code>.
-            In this circumstance, the dialog container element cannot be a descendant of an element that has <code>aria-hidden</code> set to <code>true</code>.
-            However, if content outside a modal dialog is visually discernable, aria-hidden is not present. 
+            With the addition of <a href="#aria-modal" class="property-reference">aria-modal</a> set to true, where content outside the dialog is completely inert 
+            and visually obscured to an extent that is intentionally unreadable, it is no longer necessary to set <a href="#aria-hidden" class="state-reference">aria-hidden</a>
+            to <code>true</code> on each element containing a portion of the inert layer,    
+            If you do still use <code>aria-hidden</code> set to <code>true</code> the dialog container element cannot be a descendant 
+            of an element that has <code>aria-hidden</code> set to <code>true</code> and the content outside the modal dialog must not be visually discernable.
           </li>
         </ul>
       </section>
