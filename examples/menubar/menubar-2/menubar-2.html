@@ -19,6 +19,7 @@
   <script src="js/MenubarItemAction.js"   type="text/javascript"></script>
   <script src="js/PopupMenuAction.js"     type="text/javascript"></script>
   <script src="js/PopupMenuItemAction.js" type="text/javascript"></script>
+  <script src="js/menubar-2-init.js" type="text/javascript"></script>
 </head>
 <body>
   <main>
@@ -121,11 +122,6 @@
         <a href="http://en.wikipedia.org/wiki/Gettysburg,_Pennsylvania">More information on
           Gettysburg Address</a>
       </p>
-      <script type="text/javascript">
-          var menubar      = new MenubarAction(document.getElementById('menubar1'));
-          var styleManager = new StyleManager('textarea1');
-          menubar.init(styleManager);
-      </script>
 
 
     </div>
@@ -230,7 +226,12 @@
           <th>
             <kbd>Space or Enter</kbd>
           </th>
-          <td>Executes action or command, e.g., bolds text, change font.</td>
+          <td>
+            <ul>
+              <li>Executes action or command, e.g., bolds text, change font.</li>
+              <li>Implements optional behavior of a popup menu staying open after activating a <code>menuitemradio</code> or <code>menuitemcheckbox</code>.  This allows for users to visually see the change in state before they close the popup menu with an additional keyboard command.</li>
+            </ul>
+        </td>
         </tr>
         <tr>
           <th>
