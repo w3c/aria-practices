@@ -61,6 +61,58 @@ MenuItem.prototype.init = function () {
 
 };
 
+MenuItem.prototype.activateMenuitem = function (node) {
+
+  var role  = node.getAttribute('role');
+  var value = node.textContent;
+  var option = node.getAttribute('rel');
+  var item;
+  // flag is used to signal whether a menu should close or not
+  var flag = true;
+
+  if (typeof option !== 'string') {
+    option = node.parentNode.getAttribute('rel');
+  }
+
+  if (role === 'menuitem') {
+    this.menu.actionManager.setOption(option, value);
+  }
+  else {
+    if (role === 'menuitemcheckbox') {
+      if (node.getAttribute('aria-checked') == 'true') {
+        this.menu.actionManager.setOption(option, false);
+        node.setAttribute('aria-checked', 'false');
+      }
+      else {
+        this.menu.actionManager.setOption(option, true);
+        node.setAttribute('aria-checked', 'true');
+      }
+      flag = false;
+    }
+    else {
+      if (role === 'menuitemradio') {
+
+        this.menu.actionManager.setOption(option, value);
+
+        item = node.parentNode.firstElementChild;
+        while (item) {
+          if (item.getAttribute('role') === 'menuitemradio') {
+            item.setAttribute('aria-checked', 'false');
+          }
+          item = item.nextElementSibling;
+        }
+        node.setAttribute('aria-checked', 'true');
+        flag = false;
+      }
+    }
+  }
+
+  this.menu.updateMenuStates();
+
+  return flag;
+
+};
+
 /* EVENT HANDLERS */
 
 MenuItem.prototype.handleKeydown = function (event) {
@@ -76,23 +128,10 @@ MenuItem.prototype.handleKeydown = function (event) {
   switch (event.keyCode) {
     case this.keyCode.SPACE:
     case this.keyCode.RETURN:
-      // Create simulated mouse event to mimic the behavior of ATs
-      // and let the event handler handleClick do the housekeeping.
-      try {
-        clickEvent = new MouseEvent('click', {
-          'view': window,
-          'bubbles': true,
-          'cancelable': true
-        });
+      if (this.activateMenuitem(tgt)) {
+        this.menu.setFocusToController();
+        this.menu.close(true);
       }
-      catch (err) {
-        if (document.createEvent) {
-          // DOM Level 3 for IE 9+
-          clickEvent = document.createEvent('MouseEvents');
-          clickEvent.initEvent('click', true, true);
-        }
-      }
-      tgt.dispatchEvent(clickEvent);
       flag = true;
       break;
 
@@ -156,6 +195,7 @@ MenuItem.prototype.handleKeydown = function (event) {
 };
 
 MenuItem.prototype.handleClick = function (event) {
+  this.activateMenuitem(event.currentTarget);
   this.menu.setFocusToController();
   this.menu.close(true);
 };

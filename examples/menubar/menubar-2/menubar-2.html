@@ -13,12 +13,13 @@
 
   <link href="css/menubarAction.css" rel="stylesheet">
 
-  <script src="js/TextStyling.js"    type="text/javascript"></script>
+  <script src="js/StyleManager.js"    type="text/javascript"></script>
 
-  <script src="js/MenubarAction.js"     type="text/javascript"></script>
-  <script src="js/MenubarItemAction.js" type="text/javascript"></script>
-  <script src="js/PopupMenuAction.js"   type="text/javascript"></script>
-  <script src="js/MenuItemAction.js"    type="text/javascript"></script>
+  <script src="js/MenubarAction.js"       type="text/javascript"></script>
+  <script src="js/MenubarItemAction.js"   type="text/javascript"></script>
+  <script src="js/PopupMenuAction.js"     type="text/javascript"></script>
+  <script src="js/PopupMenuItemAction.js" type="text/javascript"></script>
+  <script src="js/menubar-2-init.js" type="text/javascript"></script>
 </head>
 <body>
   <main>
@@ -48,9 +49,7 @@
       <ul id="menubar1" role="menubar" aria-label="Text Formatting">
         <li role="menuitem" aria-haspopup="true" aria-expanded="false" aria-label="Font">
           <span>Font</span>
-          <ul role="menu" aria-label="Font" class="font-family"
-            onclick="setFontFamily(event, 'textarea1')"
-          >
+          <ul role="menu" rel="font-family" aria-label="Font" >
             <li role="menuitemradio" aria-checked="true">Sans-serif</li>
             <li role="menuitemradio" aria-checked="false">Serif</li>
             <li role="menuitemradio" aria-checked="false">Monospace</li>
@@ -60,17 +59,11 @@
         <li role="menuitem" aria-haspopup="true" aria-expanded="false" aria-label="Style/Color">
           <span>Style/Color</span>
           <ul role="menu" aria-label="Style/Color">
-            <li role="menuitemcheckbox" aria-checked="false"
-              onclick="toggleBold(event, 'textarea1')"
-            >Bold</li>
-            <li role="menuitemcheckbox" aria-checked="false"
-              onclick="toggleItalic(event,  'textarea1')"
-            >Italic</li>
+            <li role="menuitemcheckbox" rel="font-bold" aria-checked="false">Bold</li>
+            <li role="menuitemcheckbox" rel="font-italic" aria-checked="false">Italic</li>
             <li role="separator"></li>
             <li>
-              <ul role="group" class="color" aria-label="Text Color"
-                onclick="setColor(event, 'textarea1', 'black')"
-              >
+              <ul role="group" rel="font-color" aria-label="Text Color">
                 <li role="menuitemradio" aria-checked="true">Black</li>
                 <li role="menuitemradio" aria-checked="false">Blue</li>
                 <li role="menuitemradio" aria-checked="false">Red</li>
@@ -78,9 +71,7 @@
               </ul>
             <li role="separator"></li>
             <li>
-              <ul role="group" class="text-decoration" aria-label="Text Decoration"
-                onclick="setTextDecoration(event, 'textarea1')"
-              >
+              <ul role="group" rel="text-decoration" aria-label="Text Decoration">
                 <li role="menuitemradio" aria-checked="true">None</li>
                 <li role="menuitemradio" aria-checked="false">Overline</li>
                 <li role="menuitemradio" aria-checked="false">Line-through</li>
@@ -91,9 +82,7 @@
 
         <li role="menuitem" aria-haspopup="true" aria-expanded="false" aria-label="Text Align">
           <span>Text Align</span>
-          <ul role="menu" aria-label="Text Align" class="font-family"
-            onclick="setTextAlign(event, 'textarea1')"
-          >
+          <ul role="menu" rel="text-align" aria-label="Text Align">
             <li role="menuitemradio" aria-checked="true">Left</li>
             <li role="menuitemradio" aria-checked="false">Center</li>
             <li role="menuitemradio" aria-checked="false">Right</li>
@@ -103,14 +92,12 @@
 
         <li role="menuitem" aria-haspopup="true" aria-expanded="false" aria-label="Size">
           <span>Size</span>
-          <ul role="menu" aria-label="Size" class="font-size"
-            onclick="setFontSize(event, 'textarea1')"
-          >
-            <li role="menuitem">Smaller</li>
-            <li role="menuitem">Larger</li>
+          <ul role="menu" aria-label="Size" >
+            <li role="menuitem" rel="font-smaller">Smaller</li>
+            <li role="menuitem" rel="font-larger">Larger</li>
             <li role="separator"></li>
             <li>
-              <ul role="group" aria-label="Font Sizes">
+              <ul role="group" rel="font-size" aria-label="Font Sizes">
                 <li role="menuitemradio" aria-checked="false">X-Small</li>
                 <li role="menuitemradio" aria-checked="false">Small</li>
                 <li role="menuitemradio" aria-checked="true">Medium</li>
@@ -135,10 +122,6 @@
         <a href="http://en.wikipedia.org/wiki/Gettysburg,_Pennsylvania">More information on
           Gettysburg Address</a>
       </p>
-      <script type="text/javascript">
-          var menubar = new MenubarAction(document.getElementById('menubar1'));
-          menubar.init();
-      </script>
 
 
     </div>
@@ -243,7 +226,12 @@
           <th>
             <kbd>Space or Enter</kbd>
           </th>
-          <td>Executes action or command, e.g., bolds text, change font.</td>
+          <td>
+            <ul>
+              <li>Executes action or command, e.g., bolds text, change font.</li>
+              <li>Implements optional behavior of a popup menu staying open after activating a <code>menuitemradio</code> or <code>menuitemcheckbox</code>.  This allows for users to visually see the change in state before they close the popup menu with an additional keyboard command.</li>
+            </ul>
+        </td>
         </tr>
         <tr>
           <th>
