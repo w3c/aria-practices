@@ -72,8 +72,14 @@ Menubutton.prototype.init = function () {
   var popupMenu = document.getElementById(this.domNode.getAttribute('aria-controls'));
 
   if (popupMenu) {
-    this.popupMenu = new PopupMenuAction(popupMenu, this);
-    this.popupMenu.init();
+    if (popupMenu.getAttribute('aria-activedescendant')) {
+      this.popupMenu = new PopupMenuActionActivedescendant(popupMenu, this);
+      this.popupMenu.init();
+    }
+    else {
+      this.popupMenu = new PopupMenuAction(popupMenu, this);
+      this.popupMenu.init();
+    }
   }
 
 };
