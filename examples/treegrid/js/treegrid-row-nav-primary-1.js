@@ -329,8 +329,8 @@ function onReady (treegrid) {
     var CTRL_HOME = -HOME;
     var CTRL_END = -END;
 
-    var numModifiersPressed = event.ctrlKey + event.altKey + event.shiftKey +
-      event.metaKey;
+    var numModifiersPressed = event.ctrlKey + event.altKey + event.shiftKey
+      + event.metaKey;
 
     var key = event.keyCode;
 
