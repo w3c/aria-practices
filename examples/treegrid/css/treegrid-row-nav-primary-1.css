@@ -1,17 +1,3 @@
-#key-info {
-  border-spacing: 0;
-  border-collapse: collapse;
-}
-#key-info td, #key-info th {
-  border: 1px solid #aaa;
-  padding: 1ch;
-  font-size: 11pt;
-}
-#key-info th {
-  background-color: #f8f8f8;
-  text-align: left;
-}
-
 #treegrid {
   width: 100%;
   white-space: nowrap;
@@ -19,7 +5,7 @@
   table-layout: fixed;
 }
 
-#col1, #col3 {
+#treegrid-col1, #treegrid-col3 {
   width: 30%;
 }
 
