@@ -259,6 +259,28 @@ function onReady (treegrid) {
     }
   }
 
+  function doPrimaryAction () {
+    var currentRow = getRowWithFocus();
+    if (!currentRow) {
+      return;
+    }
+
+    // If row has focus, open message
+    if (currentRow === document.activeElement) {
+      alert('Message from ' + currentRow.children[2].innerText + ':\n\n'
+        + currentRow.children[1].innerText);
+      return;
+    }
+
+    // If first col has focused, toggle expand/collapse
+
+    var cols = getNavigableCols(currentRow);
+    var currentCol = getColWithFocus(currentRow);
+    if (currentCol === cols[0] && currentRow.hasAttribute('aria-expanded')) {
+      changeExpanded(currentRow.getAttribute('aria-expanded') === 'false');
+    }
+  }
+
   function changeExpanded (doExpand) {
     var currentRow = getRowWithFocus();
     if (!currentRow) {
@@ -297,6 +319,7 @@ function onReady (treegrid) {
   }
 
   function onKeyDown (event) {
+    var ENTER = 13;
     var UP = 38;
     var DOWN = 40;
     var LEFT = 37;
@@ -364,6 +387,9 @@ function onReady (treegrid) {
           return;  // Leave key for editable area
         }
         moveToExtreme(1);
+        break;
+      case ENTER:
+        doPrimaryAction();
         break;
       default:
         return;
