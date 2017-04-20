@@ -37,8 +37,15 @@
     and also provides the ability to navigate to elements that describe each email, such as subject and sender.
   </p>
   <p>
-    This example is like a tree with cells, and on first entry a row is focused.
-    Other treegrids which may act more like a grid and focus a cell on first entry, with some cells containing buttons to reveal or hide further sections of the grid.
+    This same example can be used in three ways.
+  </p>
+  <ul>
+    <li><a href="./treegrid-row-nav-primary-1.html">Rows are focused first, but cells can be focused</a>:<br>Useful when we want to present the treegrid to act primarily like a tree.</li>
+    <li><a href="./treegrid-row-nav-primary-1.html?cell=start">Cells are focused first, but rows can also be focused</a>:<br>Useful when we want to present the treegrid to act primarily like a grid.</li>
+    <li><a href="./treegrid-row-nav-primary-1.html?cell=force">Only cells can be focused</a>:<br>Useful when we we are primarily a grid, and we want to simplify the user experience by removing row navigation options.</li>
+  </ul>
+  <p>
+    Note: no row-only version is provided. A row-only navigation version could be useful when the columns are guaranteed to fit horizontally (no horizontal scrolling necessary), the columns are merely for attractive presentation, as opposed to addressing any need to visit them individually. However, in this case the author can simply follow the tree pattern and present the child treeitem data in columns.
   </p>
 
   <section>
