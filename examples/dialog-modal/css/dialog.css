@@ -47,7 +47,7 @@ body:not(.toc-inline) #main_content main, body:not(.toc-inline) #main_content na
 }
 
 #dialog_layer.showing {
-	position: absolute;
+	position: fixed;
 	width: 100%;
 	height: 100%;
 	top: 0;
