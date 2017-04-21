@@ -18,8 +18,7 @@ body:not(.toc-inline) {
 	height: 100%;
 	width: 100%;
 	/* Use overflow scroll + webkit overflow scrolling for iOS momentum scroll */
-	overflow-y: scroll;
-	-webkit-overflow-scrolling: touch;
+	overflow: auto;
 	padding: 1.6em 0 2em;
 }
 
