@@ -17,8 +17,8 @@ function onReady (treegrid, doAllowRowFocus, doStartRowFocus) {
       }
       else {
         setTabIndexForCellsInRow(rows[index], -1);
+        moveAriaExpandedToFirstCell(rows[index]);
       }
-      propagateExpandedToFirstCell(rows[index]);
     }
 
     if (doStartRowFocus) {
@@ -340,8 +340,7 @@ function onReady (treegrid, doAllowRowFocus, doStartRowFocus) {
       }
     }
     if (didChange) {
-      currentRow.setAttribute('aria-expanded', doExpand);
-      propagateExpandedToFirstCell(currentRow);
+      setExpanded(currentRow, doExpand);
       return true;
     }
   }
@@ -349,15 +348,21 @@ function onReady (treegrid, doAllowRowFocus, doStartRowFocus) {
   // Mirror aria-expanded from the row to the first cell in that row
   // (TBD is this a good idea? How else will screen reader user hear
   // that the cell represents the opportunity to collapse/expand rows?)
-  function propagateExpandedToFirstCell (row) {
+  function moveAriaExpandedToFirstCell (row) {
     var expandedValue = row.getAttribute('aria-expanded');
     var firstCell = getNavigableCols(row)[0];
     if (expandedValue) {
       firstCell.setAttribute('aria-expanded', expandedValue);
+      row.removeAttribute('aria-expanded');
     }
-    else {
-      firstCell.removeAttribute('aria-expanded');
+  }
+
+  function setExpanded (row, isExpanded) {
+    var elem = row;
+    if (!doAllowRowFocus) {
+      elem = getNavigableCols(row)[0];
     }
+    elem.setAttribute('aria-expanded', isExpanded);
   }
 
   function onKeyDown (event) {
