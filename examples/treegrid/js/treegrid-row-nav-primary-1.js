@@ -17,8 +17,8 @@ function onReady (treegrid, doAllowRowFocus, doStartRowFocus) {
       }
       else {
         setTabIndexForCellsInRow(rows[index], -1);
+        moveAriaExpandedToFirstCell(rows[index]);
       }
-      propagateExpandedToFirstCell(rows[index]);
     }
 
     if (doStartRowFocus) {
@@ -149,7 +149,11 @@ function onReady (treegrid, doAllowRowFocus, doStartRowFocus) {
   // The row with focus is the row that either has focus or an element
   // inside of it has focus
   function getRowWithFocus () {
-    var possibleRow = document.activeElement;
+    return getContainingRow(document.activeElement);
+  }
+
+  function getContainingRow (start) {
+    var possibleRow = start;
     if (treegrid.contains(possibleRow)) {
       while (possibleRow !== treegrid) {
         if (possibleRow.localName === 'tr') {
@@ -304,12 +308,12 @@ function onReady (treegrid, doAllowRowFocus, doStartRowFocus) {
     var cols = getNavigableCols(currentRow);
     var currentCol = getColWithFocus(currentRow);
     if (currentCol === cols[0] && currentRow.hasAttribute('aria-expanded')) {
-      changeExpanded(currentRow.getAttribute('aria-expanded') === 'false');
+      changeExpanded(isExpanded(currentRow));
     }
   }
 
-  function changeExpanded (doExpand) {
-    var currentRow = getRowWithFocus();
+  function changeExpanded (doExpand, row) {
+    var currentRow = row || getRowWithFocus();
     if (!currentRow) {
       return;
     }
@@ -340,8 +344,7 @@ function onReady (treegrid, doAllowRowFocus, doStartRowFocus) {
       }
     }
     if (didChange) {
-      currentRow.setAttribute('aria-expanded', doExpand);
-      propagateExpandedToFirstCell(currentRow);
+      setAriaExpanded(currentRow, doExpand);
       return true;
     }
   }
@@ -349,15 +352,32 @@ function onReady (treegrid, doAllowRowFocus, doStartRowFocus) {
   // Mirror aria-expanded from the row to the first cell in that row
   // (TBD is this a good idea? How else will screen reader user hear
   // that the cell represents the opportunity to collapse/expand rows?)
-  function propagateExpandedToFirstCell (row) {
+  function moveAriaExpandedToFirstCell (row) {
     var expandedValue = row.getAttribute('aria-expanded');
     var firstCell = getNavigableCols(row)[0];
     if (expandedValue) {
       firstCell.setAttribute('aria-expanded', expandedValue);
+      row.removeAttribute('aria-expanded');
     }
-    else {
-      firstCell.removeAttribute('aria-expanded');
-    }
+  }
+
+  function getAriaExpandedElem(row) {
+    return doAllowRowFocus ? row : getNavigableCols(row)[0];
+  }
+
+  function setAriaExpanded (row, doExpand) {
+    var elem = getAriaExpandedElem(row);
+    elem.setAttribute('aria-expanded', doExpand);
+  }
+
+  function isExpandable (row) {
+    var elem = getAriaExpandedElem(row);
+    return elem.hasAttribute('aria-expanded');
+  }
+
+  function isExpanded (row) {
+    var elem = getAriaExpandedElem(row);
+    return elem.getAttribute('aria-expanded') === 'true';
   }
 
   function onKeyDown (event) {
@@ -441,8 +461,46 @@ function onReady (treegrid, doAllowRowFocus, doStartRowFocus) {
     event.preventDefault();
   }
 
+  // Toggle row expansion if the click is over the expando triangle
+  // Since the triangle is a pseudo element we can't bind an event listener
+  // to it. Another option is to have an actual element with role="presentation"
+  function onClick (event) {
+    var target = event.target;
+    if (target.localName !== 'td') {
+      return;
+    }
+
+    var row = getContainingRow(event.target);
+    if (!isExpandable(row)) {
+      return;
+    }
+
+    // Determine if mouse coordinate is just to the left of the start of text
+    var range = document.createRange();
+    range.selectNodeContents(target.firstChild);
+    var left = range.getBoundingClientRect().left;
+    var EXPANDO_WIDTH = 20;
+
+    if (event.clientX < left && event.clientX > left - EXPANDO_WIDTH) {
+      changeExpanded(!isExpanded(row), row);
+    }
+  }
+
+  // Double click on row toggles expansion
+  function onDoubleClick (event) {
+    var row = getContainingRow(event.target);
+    if (row) {
+      if (isExpandable(row)) {
+        changeExpanded(!isExpanded(row), row);
+      }
+      event.preventDefault();
+    }
+  }
+
   initAttributes();
   treegrid.addEventListener('keydown', onKeyDown);
+  treegrid.addEventListener('click', onClick);
+  treegrid.addEventListener('dblclick', onDoubleClick);
   // Polyfill for focusin necessary for Firefox < 52
   window.addEventListener(window.onfocusin ? 'focusin' : 'focus',
     onFocusIn, true);

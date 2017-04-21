@@ -5,6 +5,10 @@
   table-layout: fixed;
 }
 
+#treegrid tr {
+  cursor: default;
+}
+
 #treegrid-col1, #treegrid-col3 {
   width: 30%;
 }
@@ -67,6 +71,7 @@
 }
 
 #treegrid tr[aria-expanded] > td:first-child::before {
+  cursor: pointer;
   /* Load both right away so there is no lag when we need the other */
   background-image: url("expand-icon.svg"), url("expand-icon-highlighted.svg");
   background-repeat: no-repeat;
