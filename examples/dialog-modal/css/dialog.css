@@ -57,8 +57,7 @@ body:not(.toc-inline) #main_content main, body:not(.toc-inline) #main_content na
 	top: 0;
 	left: 0;
 	/* Use overflow scroll + webkit overflow scrolling for iOS momentum scroll */
-	overflow-y: scroll;
-	-webkit-overflow-scrolling: touch;
+	overflow: auto;
 	background: rgba(0, 0, 0, 0.3);
 }
 
