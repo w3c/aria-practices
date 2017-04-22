@@ -1,5 +1,5 @@
 html, body {
-	height: 100%;
+	height: 100vh;
 }
 
 body {
@@ -70,7 +70,7 @@ div.default_dialog {
 	padding: 5px;
 	border: thin #000 solid;
 	background-color: #fff;
-	position: absolute;;
+	position: absolute;
 	top: 25%;
 	left: 25%;
 }
