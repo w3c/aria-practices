@@ -78,8 +78,8 @@ div.default_dialog {
 @media screen and (max-width: 640px) {
 	div.default_dialog {
 		box-sizing: border-box;
-		top: 0;
-		left: 0;
+		top: 0px;
+		left: 0px;
 		min-height: 100%;
 		width: 100%;
 	}
