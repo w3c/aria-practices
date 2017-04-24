@@ -135,31 +135,29 @@ TreeitemLink.prototype.handleKeydown = function (event) {
   }
 
   if (event.shift) {
-    printableCharacter(this);
+    if (event.keyCode == this.keyCode.SPACE || event.keyCode == this.keyCode.RETURN) {
+      event.stopPropagation();
+    }
+    else {
+      printableCharacter(this);
+    }
   }
   else {
     switch (event.keyCode) {
       case this.keyCode.SPACE:
       case this.keyCode.RETURN:
-      console.log('SPACE and RETURN');
-        // Create simulated mouse event to mimic the behavior of ATs
-        // and let the event handler handleClick do the housekeeping.
-        try {
-          clickEvent = new MouseEvent('click', {
-            'view': window,
-            'bubbles': true,
-            'cancelable': true
-          });
-        }
-        catch (err) {
-          if (document.createEvent) {
-            // DOM Level 3 for IE 9+
-            clickEvent = document.createEvent('MouseEvents');
-            clickEvent.initEvent('click', true, true);
+        if (this.isExpandable) {
+          if (this.domNode.getAttribute('aria-expanded') == 'true') {
+            this.tree.collapseTreeitem(this);
           }
+          else {
+            this.tree.expandTreeitem(this);
+          }
+          flag = true;
         }
-        tgt.dispatchEvent(clickEvent);
-        flag = true;
+        else {
+          event.stopPropagation();
+        }
         break;
 
       case this.keyCode.UP:
@@ -215,6 +213,7 @@ TreeitemLink.prototype.handleKeydown = function (event) {
 };
 
 TreeitemLink.prototype.handleClick = function (event) {
+  console.log(this.isExpandable);
   if (this.isExpandable) {
     if (this.domNode.getAttribute('aria-expanded') == 'true') {
       this.tree.collapseTreeitem(this);
@@ -223,10 +222,6 @@ TreeitemLink.prototype.handleClick = function (event) {
       this.tree.expandTreeitem(this);
     }
     event.stopPropagation();
-    event.preventDefault();
-  }
-  else {
-    window.location.href=this.domNode.href;
   }
 };
 
