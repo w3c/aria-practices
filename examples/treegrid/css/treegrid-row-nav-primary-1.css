@@ -70,7 +70,8 @@
   transform-origin: 5px 5px;
 }
 
-#treegrid tr[aria-expanded] > td:first-child::before {
+#treegrid tr[aria-expanded] > td:first-child::before,
+#treegrid td[aria-expanded]:first-child::before {
   cursor: pointer;
   /* Load both right away so there is no lag when we need the other */
   background-image: url("expand-icon.svg"), url("expand-icon-highlighted.svg");
@@ -78,10 +79,13 @@
 }
 
 #treegrid tr[aria-expanded]:focus > td:first-child::before,
-#treegrid tr[aria-expanded] > td:focus:first-child::before {
+#treegrid tr[aria-expanded] > td:focus:first-child::before,
+#treegrid tr:focus > td[aria-expanded]:first-child::before,
+#treegrid tr > td[aria-expanded]:focus:first-child::before {
   background-image: url("expand-icon-highlighted.svg");
 }
 
-#treegrid tr[aria-expanded="true"] > td:first-child::before {
+#treegrid tr[aria-expanded="true"] > td:first-child::before,
+#treegrid td[aria-expanded="true"]:first-child::before {
   transform: rotate(90deg);
 }
