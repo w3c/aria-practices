@@ -141,6 +141,7 @@ TreeitemLink.prototype.handleKeydown = function (event) {
     switch (event.keyCode) {
       case this.keyCode.SPACE:
       case this.keyCode.RETURN:
+      console.log('SPACE and RETURN');
         // Create simulated mouse event to mimic the behavior of ATs
         // and let the event handler handleClick do the housekeeping.
         try {
@@ -222,9 +223,10 @@ TreeitemLink.prototype.handleClick = function (event) {
       this.tree.expandTreeitem(this);
     }
     event.stopPropagation();
+    event.preventDefault();
   }
   else {
-    this.tree.setFocusToItem(this);
+    window.location.href=this.domNode.href;
   }
 };
 
