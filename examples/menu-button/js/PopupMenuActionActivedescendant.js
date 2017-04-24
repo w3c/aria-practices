@@ -124,6 +124,7 @@ PopupMenuActionActivedescendant.prototype.init = function () {
       menuItem.init();
       this.menuitems.push(menuItem);
       textContent = menuElement.textContent.trim();
+      this.firstChars.push(textContent.substring(0, 1).toLowerCase());
     }
   }
 
@@ -136,80 +137,101 @@ PopupMenuActionActivedescendant.prototype.init = function () {
 
 };
 PopupMenuActionActivedescendant.prototype.handleKeydown = function (event) {
-  var flag = false;
-  switch (event.keyCode) {
-  case this.keyCode.SPACE:
-  case this.keyCode.RETURN:
-    // Create simulated mouse event to mimic the behavior of ATs
-    // and let the event handler handleClick do the housekeeping.
-    try {
-      clickEvent = new MouseEvent('click', {
-        'view': window,
-        'bubbles': true,
-        'cancelable': true
-      });
+  var tgt = event.currentTarget,
+      flag = false,
+      char = event.key,
+      clickEvent;
+
+  function isPrintableCharacter (str) {
+    return str.length === 1 && str.match(/\S/);
+  }
+
+  if (event.ctrlKey || event.altKey  || event.metaKey) {
+    return;
+  }
+
+  if (event.shiftKey) {
+    if (isPrintableCharacter(char)) {
+      this.setFocusByFirstCharacter(char);
     }
-    catch (err) {
-      if (document.createEvent) {
-        // DOM Level 3 for IE 9+
-        clickEvent = document.createEvent('MouseEvents');
-        clickEvent.initEvent('click', true, true);
-      }
-    }
-    this.currentItem.domNode.dispatchEvent(clickEvent);
-    flag = true;
-    break;
+  }
+  else {
+    switch (event.keyCode) {
+      case this.keyCode.SPACE:
+      case this.keyCode.RETURN:
+        // Create simulated mouse event to mimic the behavior of ATs
+        // and let the event handler handleClick do the housekeeping.
+        try {
+          clickEvent = new MouseEvent('click', {
+            'view': window,
+            'bubbles': true,
+            'cancelable': true
+          });
+        }
+        catch (err) {
+          if (document.createEvent) {
+            // DOM Level 3 for IE 9+
+            clickEvent = document.createEvent('MouseEvents');
+            clickEvent.initEvent('click', true, true);
+          }
+        }
+        this.currentItem.domNode.dispatchEvent(clickEvent);
+        flag = true;
+        break;
 
-  case this.keyCode.ESC:
-    this.close(true);
-    this.setFocusToController();
-    flag = true;
-    break;
+      case this.keyCode.ESC:
+        this.close(true);
+        this.setFocusToController();
+        flag = true;
+        break;
 
-  case this.keyCode.UP:
-    this.setFocusToPreviousItem();
-    flag = true;
-    break;
+      case this.keyCode.UP:
+        this.setFocusToPreviousItem();
+        flag = true;
+        break;
 
-  case this.keyCode.DOWN:
-    this.setFocusToNextItem();
-    flag = true;
-    break;
+      case this.keyCode.DOWN:
+        this.setFocusToNextItem();
+        flag = true;
+        break;
 
-  case this.keyCode.LEFT:
-    this.setFocusToPreviousItem();
-    this.close(true);
-    flag = true;
-    break;
+      case this.keyCode.LEFT:
+        this.setFocusToPreviousItem();
+        this.close(true);
+        flag = true;
+        break;
 
-  case this.keyCode.RIGHT:
-    this.setFocusToNextItem();
-    this.close(true);
-    flag = true;
-    break;
+      case this.keyCode.RIGHT:
+        this.setFocusToNextItem();
+        this.close(true);
+        flag = true;
+        break;
 
-  case this.keyCode.HOME:
-  case this.keyCode.PAGEUP:
-    this.setFocusToFirstItem();
-    flag = true;
-    break;
+      case this.keyCode.HOME:
+      case this.keyCode.PAGEUP:
+        this.setFocusToFirstItem();
+        flag = true;
+        break;
 
-  case this.keyCode.END:
-  case this.keyCode.PAGEDOWN:
-    this.setFocusToLastItem();
-    flag = true;
-    break;
+      case this.keyCode.END:
+      case this.keyCode.PAGEDOWN:
+        this.setFocusToLastItem();
+        flag = true;
+        break;
 
-  case this.keyCode.TAB:
-    this.setFocusToController();
-    this.hasFocus = false;
-    this.close(true);
-    break;
+      case this.keyCode.TAB:
+        this.setFocusToController();
+        this.hasFocus = false;
+        this.close(true);
+        break;
 
-  default:
-
-    break;
-}
+      default:
+        if (isPrintableCharacter(char)) {
+          this.setFocusByFirstCharacter(char);
+        }
+        break;
+    }    
+  }
 
   if (flag) {
     event.stopPropagation();
@@ -272,6 +294,38 @@ PopupMenuActionActivedescendant.prototype.setFocusToNextItem = function () {
     index = this.menuitems.indexOf(this.currentItem);
     this.setFocus(this.menuitems[index + 1]);
   }
+};
+
+PopupMenuActionActivedescendant.prototype.setFocusByFirstCharacter = function (char) {
+  var start, index, char = char.toLowerCase();
+
+  // Get start index for search based on position of currentItem
+  start = this.menuitems.indexOf(this.currentItem) + 1;
+  if (start === this.menuitems.length) {
+    start = 0;
+  }
+
+  // Check remaining slots in the menu
+  index = this.getIndexFirstChars(start, char);
+
+  // If not found in remaining slots, check from beginning
+  if (index === -1) {
+    index = this.getIndexFirstChars(0, char);
+  }
+
+  // If match was found...
+  if (index > -1) {
+    this.setFocus(this.menuitems[index]);
+  }
+};
+
+PopupMenuActionActivedescendant.prototype.getIndexFirstChars = function (startIndex, char) {
+  for (var i = startIndex; i < this.firstChars.length; i++) {
+    if (char === this.firstChars[i]) {
+      return i;
+    }
+  }
+  return -1;
 };
 
 PopupMenuActionActivedescendant.prototype.getCurrentItem = function () {
