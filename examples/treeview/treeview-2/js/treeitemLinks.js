@@ -33,6 +33,7 @@ var TreeitemLink = function (node, treeObj, group) {
   this.groupTreeitem = group;
   this.domNode = node;
   this.label = node.textContent.trim();
+  this.stopDefaultClick = false;
 
   if (node.getAttribute('aria-label')) {
     this.label = node.getAttribute('aria-label').trim();
@@ -130,6 +131,8 @@ TreeitemLink.prototype.handleKeydown = function (event) {
     }
   }
 
+  this.stopDefaultClick = false;
+
   if (event.altKey || event.ctrlKey || event.metaKey) {
     return;
   }
@@ -137,6 +140,7 @@ TreeitemLink.prototype.handleKeydown = function (event) {
   if (event.shift) {
     if (event.keyCode == this.keyCode.SPACE || event.keyCode == this.keyCode.RETURN) {
       event.stopPropagation();
+      this.stopDefaultClick = true;
     }
     else {
       printableCharacter(this);
@@ -157,6 +161,7 @@ TreeitemLink.prototype.handleKeydown = function (event) {
         }
         else {
           event.stopPropagation();
+          this.stopDefaultClick = true;
         }
         break;
 
@@ -213,7 +218,13 @@ TreeitemLink.prototype.handleKeydown = function (event) {
 };
 
 TreeitemLink.prototype.handleClick = function (event) {
-  console.log(this.isExpandable);
+
+  // only process click events that directly happened on this treeitem
+  if (event.target !== this.domNode && 
+      event.target !== this.domNode.firstElementChild) {
+    return;
+  }
+
   if (this.isExpandable) {
     if (this.domNode.getAttribute('aria-expanded') == 'true') {
       this.tree.collapseTreeitem(this);
