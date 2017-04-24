@@ -146,6 +146,13 @@ TreeLinks.prototype.setFocusToPreviousItem = function (currentItem) {
   }
 };
 
+TreeLinks.prototype.setFocusToParentItem = function (currentItem) {
+
+  if (currentItem.groupTreeitem) {
+    this.setFocusToItem(currentItem.groupTreeitem);
+  }
+};
+
 TreeLinks.prototype.setFocusToFirstItem = function () {
     this.setFocusToItem(this.firstTreeitem);
   };

@@ -146,6 +146,13 @@ Tree.prototype.setFocusToPreviousItem = function (currentItem) {
   }
 };
 
+Tree.prototype.setFocusToParentItem = function (currentItem) {
+
+  if (currentItem.groupTreeitem) {
+    this.setFocusToItem(currentItem.groupTreeitem);
+  }
+};
+
 Tree.prototype.setFocusToFirstItem = function () {
     this.setFocusToItem(this.firstTreeitem);
   };

@@ -11,7 +11,8 @@ ul[role="tree"] li {
 }
 
 ul[role="tree"] a {
-  text-decoration: none;
+  text-decoration: underline;
+  border-color: transparent;
 }
 
 [role="treeitem"][aria-expanded="false"] > ul {
