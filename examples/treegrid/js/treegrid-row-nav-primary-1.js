@@ -304,11 +304,14 @@ function onReady (treegrid, doAllowRowFocus, doStartRowFocus) {
     }
 
     // If first col has focused, toggle expand/collapse
+    toggleExpanded(currentRow);
+  }
 
-    var cols = getNavigableCols(currentRow);
-    var currentCol = getColWithFocus(currentRow);
-    if (currentCol === cols[0] && currentRow.hasAttribute('aria-expanded')) {
-      changeExpanded(isExpanded(currentRow));
+  function toggleExpanded (row) {
+    var cols = getNavigableCols(row);
+    var currentCol = getColWithFocus(row);
+    if (currentCol === cols[0] && isExpandable(row)) {
+      changeExpanded(!isExpanded(row), row);
     }
   }
 
@@ -334,7 +337,7 @@ function onReady (treegrid, doAllowRowFocus, doStartRowFocus) {
       // and previous level is expanded
       doExpandLevel[rowLevel + 1] =
         doExpandLevel[rowLevel]
-        && nextRow.getAttribute('aria-expanded') === 'true';
+        && isExpanded(nextRow);
       var willHideRow = !doExpandLevel[rowLevel];
       var isRowHidden = nextRow.getAttribute('aria-hidden') === 'true';
 
