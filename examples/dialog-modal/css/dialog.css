@@ -1,3 +1,7 @@
+html, body {
+	height: 100%;
+}
+
 body {
 	max-width: 100%;
 	padding: 0;
@@ -11,8 +15,9 @@ body:not(.toc-inline) {
 
 #base_window_layer {
 	box-sizing: border-box;
-	height: 100vh;
+	height: 100%;
 	width: 100%;
+	/* Use overflow scroll and webkit-overflow-scrolling to add momentum scroll*/
 	overflow-y: scroll;
 	-webkit-overflow-scrolling: touch;
 	padding: 1.6em 0 2em;
@@ -46,9 +51,9 @@ body:not(.toc-inline) #main_content main, body:not(.toc-inline) #main_content na
 }
 
 #dialog_layer.showing {
-	position: absolute;
+	position: fixed;
 	width: 100%;
-	height: 100vh;
+	height: 100%;
 	top: 0;
 	left: 0;
 	overflow-y: scroll;
@@ -65,7 +70,7 @@ div.default_dialog {
 	padding: 5px;
 	border: thin #000 solid;
 	background-color: #fff;
-	position: absolute;;
+	position: absolute;
 	top: 25%;
 	left: 25%;
 }
@@ -73,9 +78,11 @@ div.default_dialog {
 @media screen and (max-width: 640px) {
 	div.default_dialog {
 		box-sizing: border-box;
-		top: 1%;
-		left: 2%;
-		width: 96%;
+		top: 0px;
+		left: 0px;
+		margin-bottom: 0px;
+		min-height: 100%;
+		width: 100%;
 	}
 }
 
