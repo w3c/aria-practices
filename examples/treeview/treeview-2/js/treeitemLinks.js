@@ -117,7 +117,9 @@ TreeitemLink.prototype.handleKeydown = function (event) {
     return str.length === 1 && str.match(/\S/);
   }
 
-  if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
+  if (event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) {
+    return;
+  }
 
   switch (event.keyCode) {
     case this.keyCode.SPACE:
