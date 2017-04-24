@@ -27,7 +27,8 @@
       </p>
       <p>Similar examples include: </p>
       <ul>
-        <li><a href="../menu-button-2/menu-button-2.html">Navigation Menu Button</a>: The popup menu items are <code>a</code> elements and act as links.</li>
+        <li><a href="menu-button-links.html">Navigation Menu Button</a>: The popup menu items are <code>a</code> elements and act as links.</li>
+        <li><a href="menu-button-actions-active-descendant.html">Action Menu Button (aria-acivedescendant)</a>: The popup menu items can be used to activate actions in a web application.</li>
       </ul>
       <section>
         <h2 id="ex_label">Example</h2>
@@ -39,7 +40,6 @@
             <button
                 id="menubutton1"
                 aria-haspopup="true"
-                aria-expanded="false"
                 aria-controls="menu1"
                 >
               Actions
@@ -243,17 +243,17 @@
                 <td><code>button</code></td>
                 <td>
                   <ul>
-                    <li>Indicates popup menu is open.</li>
+                    <li>The <code>aria-expanded</code> attribute with the value <code>true</code> is added when the menu is open.</li>
                   </ul>
                 </td>
             </tr>
             <tr>
                 <td></td>
-                <th scope="row"><code>aria-expanded=&quot;false&quot;</code></th>
+                <th scope="row"><code>aria-expanded</code></th>
                 <td><code>button</code></td>
                 <td>
                   <ul>
-                    <li>Indicates popup menu is closed.</li>
+                    <li>The <code>aria-expanded</code> attribute is removed when the menu is closed.</li>
                   </ul>
                 </td>
             </tr>

@@ -25,7 +25,6 @@
 *       contains the menu item DOM element. See PopupMenuAction.js
 */
 var MenuItem = function (domNode, menuObj) {
-
   this.domNode = domNode;
   this.menu = menuObj;
 };
@@ -40,7 +39,6 @@ MenuItem.prototype.init = function () {
   this.domNode.addEventListener('click',      this.handleClick.bind(this));
   this.domNode.addEventListener('mouseover',  this.handleMouseover.bind(this));
   this.domNode.addEventListener('mouseout',   this.handleMouseout.bind(this));
-
 };
 
 /* EVENT HANDLERS */
@@ -49,11 +47,10 @@ MenuItem.prototype.handleClick = function (event) {
   this.menu.setFocusToController();
   this.menu.close(true);
 };
-  
+
 MenuItem.prototype.handleMouseover = function (event) {
   this.menu.hasHover = true;
   this.menu.open();
-
 };
 
 MenuItem.prototype.handleMouseout = function (event) {

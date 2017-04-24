@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html lang="en">
+  <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <title>Menu Button Example: Links | WAI-ARIA Authoring Practices 1.1</title>
 
@@ -11,7 +12,6 @@
     <script src="../js/app.js"></script>
 
     <link href="css/MenubuttonLinks.css" rel="stylesheet">
-
     <script src="js/Menubutton2.js" type="text/javascript"></script>
     <script src="js/PopupMenuLinks.js" type="text/javascript"></script>
     <script src="js/MenuItemLinks.js" type="text/javascript"></script>
@@ -27,7 +27,8 @@
       <code>a</code> element and not the <code>li</code> element, since a <code>menuitem</code> widget cannot contain any intereactive elements (e.g links).</p>
       <p>Similar examples include: </p>
       <ul>
-        <li><a href="../menu-button-1/menu-button-1.html">Action Menu Button</a>: The popup menu items can be used to activate actions in a web application.</li>
+        <li><a href="menu-button-actions.html">Action Menu Button</a>: The popup menu items can be used to activate actions in a web application.</li>
+        <li><a href="menu-button-actions-active-descendant.html">Action Menu Button (aria-acivedescendant)</a>: The popup menu items can be used to activate actions in a web application.</li>
       </ul>
       <section>
         <h2 id="ex_label">Example</h2>
@@ -39,7 +40,6 @@
                 role="button"
                 href="#"
                 aria-haspopup="true"
-                aria-expanded="false"
                 aria-controls="menu2"
                 >
                 WAI-ARIA Quick Links
@@ -87,7 +87,6 @@
 
               </script>
             </div>
-          </div>
         </div>
 
         <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
@@ -268,20 +267,20 @@
             <tr>
                 <td></td>
                 <th scope="row"><code>aria-expanded=&quot;true&quot;</code></th>
-                <td><code>a</code></td>
+                <td><code>button</code></td>
                 <td>
                   <ul>
-                    <li>Indicates popup menu is open.</li>
+                    <li>The <code>aria-expanded</code> attribute with the value <code>true</code> is added when the menu is open.</li>
                   </ul>
                 </td>
             </tr>
             <tr>
                 <td></td>
-                <th scope="row"><code>aria-expanded=&quot;false&quot;</code></th>
-                <td><code>a</code></td>
+                <th scope="row"><code>aria-expanded</code></th>
+                <td><code>button</code></td>
                 <td>
                   <ul>
-                    <li>Indicates popup menu is closed.</li>
+                    <li>The <code>aria-expanded</code> attribute is removed when the menu is closed.</li>
                   </ul>
                 </td>
             </tr>
@@ -385,7 +384,7 @@
 
         <ul>
           <li>CSS: <a href="css/menubuttonLinks.css" type="text/css">MenubuttonLinks.css</a></li>
-          <li>Javascript: <a href="js/Menubutton.js" type="text/javascript">Menubutton.js</a></li>
+          <li>Javascript: <a href="js/Menubutton2.js" type="text/javascript">Menubutton2.js</a></li>
           <li>Javascript: <a href="js/MenuItemLinks.js" type="text/javascript">MenuItemLinks.js</a></li>
           <li>Javascript: <a href="js/PopupMenuLinks.js" type="text/javascript">PopupMenuLinks.js</a></li>
         </ul>

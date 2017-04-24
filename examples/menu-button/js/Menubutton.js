@@ -58,7 +58,6 @@ var Menubutton = function (domNode) {
 Menubutton.prototype.init = function () {
 
   this.domNode.setAttribute('aria-haspopup', 'true');
-  this.domNode.setAttribute('aria-expanded', 'false');
 
   this.domNode.addEventListener('keydown', this.handleKeydown.bind(this));
   this.domNode.addEventListener('click', this.handleClick.bind(this));

@@ -237,6 +237,6 @@ PopupMenuAction.prototype.close = function (force) {
 
   if (force || (!this.hasFocus && !this.hasHover && !this.controller.hasHover)) {
     this.domNode.style.display = 'none';
-    this.controller.domNode.setAttribute('aria-expanded', 'false');
+    this.controller.domNode.removeAttribute('aria-expanded');
   }
 };
