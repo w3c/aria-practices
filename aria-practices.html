@@ -502,6 +502,8 @@
         That is, <kbd>Tab</kbd> and <kbd>Shift + Tab</kbd> do not move focus outside the dialog.
         However, unlike most non-modal dialogs, modal dialogs do not provide means for moving keyboard focus outside the dialog window without closing the dialog.
       </p>
+      <p>For all dialogs, all controls required to operate the dialog are child nodes of the element which has role set to dialog.
+      </p>
       <p>
         The <a href="#alertdialog" class="role-reference">alertdialog</a> role is a special-case dialog role
         designed specifically for dialogs that divert users' attention to a brief, important message.
@@ -569,11 +571,11 @@
             Specifying descriptive elements enables screen readers to announce the description along with the dialog title and initially focused element when the dialog opens.
           </li>
           <li>
-            With the addition of <a href="#aria-modal" class="property-reference">aria-modal</a> set to true, where content outside the dialog is completely inert 
+            If the dialog has <a href="#aria-modal" class="property-reference">aria-modal</a> set to <code>true</code>and content outside the dialog is completely inert 
             and visually obscured to an extent that is intentionally unreadable, it is no longer necessary to set <a href="#aria-hidden" class="state-reference">aria-hidden</a>
-            to <code>true</code> on each element containing a portion of the inert layer,    
-            If you do still use <code>aria-hidden</code> set to <code>true</code> the dialog container element cannot be a descendant 
-            of an element that has <code>aria-hidden</code> set to <code>true</code> and the content outside the modal dialog must not be visually discernable.
+            to <code>true</code> on each element containing a portion of the inert layer.    
+            However, if you do still use <code>aria-hidden</code> set to <code>true</code>, the dialog container element cannot be a descendant 
+            of any element that has <code>aria-hidden</code> set to <code>true</code> and the content outside the modal dialog must not be visually discernable.
           </li>
         </ul>
       </section>
