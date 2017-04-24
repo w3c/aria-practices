@@ -158,9 +158,15 @@ TreeitemLink.prototype.handleKeydown = function (event) {
       break;
 
     case this.keyCode.LEFT:
-      if (this.inGroup || this.isExpandable) {
+      if (this.isExpandable) {
         this.tree.collapseTreeitem(this);
         flag = true;
+      }
+      else {
+        if (this.inGroup) {
+          this.tree.setFocusToParentItem(this);
+          flag =true;
+        }
       }
       break;
 
