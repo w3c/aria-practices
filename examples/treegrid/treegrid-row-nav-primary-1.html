@@ -20,7 +20,56 @@
 
 <!--  js and css for this example. -->
 <link href="css/treegrid-row-nav-primary-1.css" rel="stylesheet">
+<style>
+  /* Style the current cell focus option so user know what they're getting */
+  [aria-current] {
+    position: relative;
+    outline: 2px solid green;
+    outline-offset: 3px;
+    background-color: #fffff8;
+  }
+  [aria-current] > a::before {
+    display: inline-block;
+    position: absolute;
+    content: "Current";
+    font-size: 80%;
+    right: -3px;
+    top: -3px;
+    padding: 3px 1ch;
+    background-color: green;
+    color: white;
+    font-weight: bold;
+  }
+</style>
 <script src="js/treegrid-row-nav-primary-1.js" type="text/javascript"></script>
+<script>
+/* Init Script for TreeGrid */
+/* Get an object where each field represents a URL parameter */
+/* global TreeGrid */
+function getQuery () {
+  if (!getQuery.cached) {
+    getQuery.cached = {};
+    const queryStr = window.location.search.substring(1);
+    const vars = queryStr.split('&');
+    for (let i = 0; i<vars.length; i++) {
+      const pair = vars[i].split('=');
+      // If first entry with this name
+      getQuery.cached[pair[0]] = pair[1] && decodeURIComponent(pair[1]);
+    }
+  }
+  return getQuery.cached;
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  // Supports url parameter ?cell=force or ?cell=start (or leave out parameter)
+  var cellParam = getQuery().cell;
+  var doAllowRowFocus = cellParam !== 'force';
+  var doStartRowFocus = doAllowRowFocus && cellParam !== 'start';
+  TreeGrid(document.getElementById('treegrid'), doAllowRowFocus, doStartRowFocus);
+  var choiceElem = document.getElementById('option-cell-focus-' + (cellParam || 'allow'));
+  choiceElem.setAttribute('aria-current', 'true');
+});
+</script>
 </head>
 <body>
   <main>
@@ -40,9 +89,9 @@
     This same example can be used in three ways.
   </p>
   <ul>
-    <li><a href="./treegrid-row-nav-primary-1.html">Rows are focused first, but cells can be focused</a>:<br>Useful when we want to present the treegrid to act primarily like a tree.</li>
-    <li><a href="./treegrid-row-nav-primary-1.html?cell=start">Cells are focused first, but rows can also be focused</a>:<br>Useful when we want to present the treegrid to act primarily like a grid.</li>
-    <li><a href="./treegrid-row-nav-primary-1.html?cell=force">Only cells can be focused</a>:<br>Useful when we we are primarily a grid, and we want to simplify the user experience by removing row navigation options.</li>
+    <li id="option-cell-focus-allow"><a href="./treegrid-row-nav-primary-1.html">Rows are focused first, but cells can be focused</a>:<br>Useful when we want to present the treegrid to act primarily like a tree.</li>
+    <li id="option-cell-focus-start"><a href="./treegrid-row-nav-primary-1.html?cell=start">Cells are focused first, but rows can also be focused</a>:<br>Useful when we want to present the treegrid to act primarily like a grid.</li>
+    <li id="option-cell-focus-force"><a href="./treegrid-row-nav-primary-1.html?cell=force">Only cells can be focused</a>:<br>Useful when we we are primarily a grid, and we want to simplify the user experience by removing row navigation options.</li>
   </ul>
   <p>
     Note: no row-only version is provided. A row-only navigation version could be useful when the columns are guaranteed to fit horizontally (no horizontal scrolling necessary), the columns are merely for attractive presentation, as opposed to addressing any need to visit them individually. However, in this case the author can simply follow the tree pattern and present the child treeitem data in columns.
@@ -354,11 +403,11 @@
     <ul>
       <li>
         CSS:
-        <a href="css/example_name.css" type="tex/css">example_name.css</a>
+        <a href="css/treegrid-row-nav-primary-1.css" type="tex/css">example_name.css</a>
       </li>
       <li>
         Javascript:
-        <a href="js/example_name.js" type="text/javascript">example_name.js</a>
+        <a href="js/treegrid-row-nav-primary-1.js" type="text/javascript">example_name.js</a>
       </li>
     </ul>
   </section>
