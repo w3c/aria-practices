@@ -220,8 +220,7 @@ TreeitemLink.prototype.handleKeydown = function (event) {
 TreeitemLink.prototype.handleClick = function (event) {
 
   // only process click events that directly happened on this treeitem
-  if (event.target !== this.domNode && 
-      event.target !== this.domNode.firstElementChild) {
+  if (event.target !== this.domNode && event.target !== this.domNode.firstElementChild) {
     return;
   }
 
