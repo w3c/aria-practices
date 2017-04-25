@@ -1,8 +1,9 @@
-function onReady (treegrid, doAllowRowFocus, doStartRowFocus) {
+/* exported TreeGrid */
+function TreeGrid (treegridElem, doAllowRowFocus, doStartRowFocus) {
   function initAttributes () {
     // Make sure focusable elements are not in the tab order
     // They will be added back in for the active row
-    setTabIndexOfFocusableElems(treegrid, -1);
+    setTabIndexOfFocusableElems(treegridElem, -1);
 
     // Add tabindex="0" to first row, "-1" to other rows
     // We will use the roving tabindex method since aria-activedescendant
@@ -44,7 +45,7 @@ function onReady (treegrid, doAllowRowFocus, doStartRowFocus) {
   }
 
   function getAllRows () {
-    var nodeList = treegrid.querySelectorAll('tbody > tr');
+    var nodeList = treegridElem.querySelectorAll('tbody > tr');
     return Array.prototype.slice.call(nodeList);
   }
 
@@ -65,7 +66,7 @@ function onReady (treegrid, doAllowRowFocus, doStartRowFocus) {
   }
 
   function getAllNavigableRows () {
-    var nodeList = treegrid.querySelectorAll('tbody > tr:not([aria-hidden="true"])');
+    var nodeList = treegridElem.querySelectorAll('tbody > tr:not([aria-hidden="true"])');
     // Convert to array so that we can use array methods on it
     return Array.prototype.slice.call(nodeList);
   }
@@ -83,7 +84,7 @@ function onReady (treegrid, doAllowRowFocus, doStartRowFocus) {
   }
 
   function focus (elem) {
-    elem.tabIndex = -1; // Ensure focusable
+    elem.tabIndex = 0; // Ensure focusable
     elem.focus();
   }
 
@@ -98,7 +99,8 @@ function onReady (treegrid, doAllowRowFocus, doStartRowFocus) {
   // one treegrid item to another
   function onFocusIn (event) {
     var newTreeGridFocus =
-      event.target !== window && treegrid.contains(event.target) && event.target;
+      event.target !== window && treegridElem.contains(event.target)
+        && event.target;
 
     // The last row we considered focused
     var oldCurrentRow = enableTabbingInActiveRowDescendants.tabbingRow;
@@ -154,8 +156,8 @@ function onReady (treegrid, doAllowRowFocus, doStartRowFocus) {
 
   function getContainingRow (start) {
     var possibleRow = start;
-    if (treegrid.contains(possibleRow)) {
-      while (possibleRow !== treegrid) {
+    if (treegridElem.contains(possibleRow)) {
+      while (possibleRow !== treegridElem) {
         if (possibleRow.localName === 'tr') {
           return possibleRow;
         }
@@ -501,34 +503,11 @@ function onReady (treegrid, doAllowRowFocus, doStartRowFocus) {
   }
 
   initAttributes();
-  treegrid.addEventListener('keydown', onKeyDown);
-  treegrid.addEventListener('click', onClick);
-  treegrid.addEventListener('dblclick', onDoubleClick);
+  treegridElem.addEventListener('keydown', onKeyDown);
+  treegridElem.addEventListener('click', onClick);
+  treegridElem.addEventListener('dblclick', onDoubleClick);
   // Polyfill for focusin necessary for Firefox < 52
   window.addEventListener(window.onfocusin ? 'focusin' : 'focus',
     onFocusIn, true);
 }
 
-// Get an object where each field represents a URL parameter
-// e.g. { tab: 33 }
-function getQuery () {
-  if (!getQuery.cached) {
-    getQuery.cached = {};
-    const queryStr = window.location.search.substring(1);
-    const vars = queryStr.split('&');
-    for (let i = 0; i<vars.length; i++) {
-      const pair = vars[i].split('=');
-      // If first entry with this name
-      getQuery.cached[pair[0]] = pair[1] && decodeURIComponent(pair[1]);
-    }
-  }
-  return getQuery.cached;
-}
-
-document.addEventListener('DOMContentLoaded', function () {
-  // Supports url parameter ?cell=force or ?cell=start (or leave out parameter)
-  var cellParam = getQuery().cell;
-  var doAllowRowFocus = cellParam !== 'force';
-  var doStartRowFocus = doAllowRowFocus && cellParam !== 'start';
-  onReady(document.getElementById('treegrid'), doAllowRowFocus, doStartRowFocus);
-});
