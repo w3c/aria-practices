@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function () {
       The div for the rendered HTML source is in the last section of the page.
     -->
     <div id="ex1">
-      <table id="treegrid" role="treegrid" aria-readonly="true" aria-label="ARIA treegrid example">
+      <table id="treegrid" role="treegrid" aria-label="ARIA treegrid example">
         <colgroup>
           <col id="treegrid-col1">
           <col id="treegrid-col2">
@@ -183,7 +183,6 @@ document.addEventListener('DOMContentLoaded', function () {
       DOM structure to contain rowgroups). Note that the <a href="https://github.com/w3c/aria/issues/553">ARIA spec's text for rowgroup states that it cannot be parented by a treegrid (bug filed)</a>.</li>
       <li>aria-expanded (tristate): this attribute must be removed (not present) if the item cannot be expanded. For expandable items, the value is "true" or "false".<br>IMPORTANT: aria-expanded is set on the row unless rows cannot receive focus, because it is an indicator to the user that something is actionable. If only the cell can get focused, then pressing Enter on the cell is the only way to indicate this, so the attribute needs to go there so that screen readers will announce it. It is not added to the cell if rows can receive focus, as this provides a confusing/redundant experience where both the row and first cell announce the expanded state. In this example, JavaScript is used to move the aria-expanded attribute down to the first cell in the ?cell=force version.</li>
       <li>aria-hidden: set to "true" for child items that are currently hidden because the parent is collapsed.</li>
-      <li>aria-readonly: in ARIA 1.0, a grid/treegrid is editable by default. However, there is no default in ARIA 1.1. Firefox currently implements the ARIA 1.0 concept for this, which means that "editable" is read for every cell unless aria-readonly="true" is used on the treegrid. There needs to be some follow up with user agent developers on this, as ARIA 1.1 seems to be treating it more a tristate (don't care, false, true). In addition, <a href="https://github.com/w3c/aria/issues/550">a bug was filed on the spec regarding aria-readonly but it is possibly invalid</a>.</li>
       <li>tabindex is set in the JS, as per the usual roving tabindex methodology. Specifically, we use tabindex="0" for the current item so that it is the subitem that gets focused if user tabs out and back in, and tabindex="-1" for all items where we want click-to-focus behavior enabled.</li>
     </ul>
 
@@ -194,6 +193,7 @@ document.addEventListener('DOMContentLoaded', function () {
       <li>aria-activedescendant: this example uses to roaming tabindex method instead.</li>
       <li>aria-multiselectable and aria-selected: used on row in the case of a multiselectable treegrid where each row begins with a checkbox. Must be set to false or true so that it is clear that row is selectable. Unfortunately some screen readers will read "selected" for each row even in the single selection case.</li>
       <li>aria-labelledby or aria-describedby for headers? Not currently used, awaiting discussion. Some UA + screen reader combinations seem to be determining this automatically via the table structure.</li>
+      <li>aria-readonly: in ARIA 1.0, a grid/treegrid is editable by default. However, there is no default in ARIA 1.1. Firefox currently implements the ARIA 1.0 concept for this, which means that "editable" is read for every cell unless aria-readonly="true" is used on the treegrid. <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1359482">A bug has been filed in Mozilla to not propagate the readonly/editable state to descendant gridcells unless it is specified via aria-readonly</a>.</li>
     </ul>
 
   </section>
