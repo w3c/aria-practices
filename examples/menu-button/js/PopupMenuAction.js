@@ -2,15 +2,15 @@
 *   This content is licensed according to the W3C Software License at
 *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
 *
-*   File:   PopupMenuLinks.js
+*   File:   PopupMenuAction.js
 *
-*   Desc:   Popup menu Links widget that implements ARIA Authoring Practices
+*   Desc:   Popup menu widget that implements ARIA Authoring Practices
 *
 *   Author: Jon Gunderson, Ku Ja Eun, Nicholas Hoyt and Brian Loh
 */
 
 /*
-*   @constructor PopupMenuLinks
+*   @constructor PopupMenuAction
 *
 *   @desc
 *       Wrapper object for a simple popup menu (without nested submenus)
@@ -32,9 +32,9 @@
 *          domNode has responded to a mouseover event with no subsequent
 *          mouseout event having occurred.
 */
-var PopupMenuLinks = function (domNode, controllerObj) {
+var PopupMenuAction = function (domNode, controllerObj) {
   var elementChildren,
-      msgPrefix = 'PopupMenuLinks constructor argument domNode ';
+      msgPrefix = 'PopupMenu constructor argument domNode ';
 
   // Check whether domNode is a DOM element
   if (!domNode instanceof Element) {
@@ -46,12 +46,12 @@ var PopupMenuLinks = function (domNode, controllerObj) {
     throw new Error(msgPrefix + 'has no element children.');
   }
 
-  // Check whether domNode descendant elements have A elements
+  // Check whether domNode child elements are A elements
   var childElement = domNode.firstElementChild;
   while (childElement) {
     var menuitem = childElement.firstElementChild;
     if (menuitem && menuitem === 'A') {
-      throw new Error(msgPrefix + 'has descendant elements that are not A elements.');
+      throw new Error(msgPrefix + 'Cannot have descendant elements are A elements.');
     }
     childElement = childElement.nextElementSibling;
   }
@@ -59,26 +59,26 @@ var PopupMenuLinks = function (domNode, controllerObj) {
   this.domNode = domNode;
   this.controller = controllerObj;
 
-  this.menuitems  = [];      // see PopupMenuLinks init method
-  this.firstChars = [];      // see PopupMenuLinks init method
+  this.menuitems  = [];      // see PopupMenu init method
+  this.firstChars = [];      // see PopupMenu init method
 
-  this.firstItem  = null;    // see PopupMenuLinks init method
-  this.lastItem   = null;    // see PopupMenuLinks init method
+  this.firstItem  = null;    // see PopupMenu init method
+  this.lastItem   = null;    // see PopupMenu init method
 
-  this.hasFocus   = false;   // see MenuItemLinks handleFocus, handleBlur
-  this.hasHover   = false;   // see PopupMenuLinks handleMouseover, handleMouseout
+  this.hasFocus   = false;   // see MenuItem handleFocus, handleBlur
+  this.hasHover   = false;   // see PopupMenu handleMouseover, handleMouseout
 };
 
 /*
-*   @method PopupMenuLinks.prototype.init
+*   @method PopupMenuAction.prototype.init
 *
 *   @desc
 *       Add domNode event listeners for mouseover and mouseout. Traverse
 *       domNode children to configure each menuitem and populate menuitems
 *       array. Initialize firstItem and lastItem properties.
 */
-PopupMenuLinks.prototype.init = function () {
-  var childElement, menuElement, menuItem, textContent, numItems, label;
+PopupMenuAction.prototype.init = function () {
+  var childElement, menuElement, firstChildElement, menuItem, textContent, numItems, label;
 
   // Configure the domNode itself
   this.domNode.tabIndex = -1;
@@ -95,19 +95,19 @@ PopupMenuLinks.prototype.init = function () {
 
   // Traverse the element children of domNode: configure each with
   // menuitem role behavior and store reference in menuitems array.
-  childElement = this.domNode.firstElementChild;
+  menuElements = this.domNode.getElementsByTagName('LI');
 
-  while (childElement) {
-    menuElement = childElement.firstElementChild;
+  for (var i = 0; i < menuElements.length; i++) {
 
-    if (menuElement && menuElement.tagName === 'A') {
-      menuItem = new MenuItemLinks(menuElement, this);
+    menuElement = menuElements[i];
+
+    if (!menuElement.firstElementChild && menuElement.getAttribute('role') != 'separator') {
+      menuItem = new MenuItem(menuElement, this);
       menuItem.init();
       this.menuitems.push(menuItem);
       textContent = menuElement.textContent.trim();
       this.firstChars.push(textContent.substring(0, 1).toLowerCase());
     }
-    childElement = childElement.nextElementSibling;
   }
 
   // Use populated menuitems array to initialize firstItem and lastItem.
@@ -120,28 +120,28 @@ PopupMenuLinks.prototype.init = function () {
 
 /* EVENT HANDLERS */
 
-PopupMenuLinks.prototype.handleMouseover = function (event) {
+PopupMenuAction.prototype.handleMouseover = function (event) {
   this.hasHover = true;
 };
 
-PopupMenuLinks.prototype.handleMouseout = function (event) {
+PopupMenuAction.prototype.handleMouseout = function (event) {
   this.hasHover = false;
   setTimeout(this.close.bind(this, false), 300);
 };
 
 /* FOCUS MANAGEMENT METHODS */
 
-PopupMenuLinks.prototype.setFocusToController = function (command) {
+PopupMenuAction.prototype.setFocusToController = function (command) {
   if (typeof command !== 'string') {
     command = '';
   }
 
   if (command === 'previous') {
-    this.controller.menubar.setFocusToPreviousItem(this.controller);
+    this.controller.menubutton.setFocusToPreviousItem(this.controller);
   }
   else {
     if (command === 'next') {
-      this.controller.menubar.setFocusToNextItem(this.controller);
+      this.controller.menubutton.setFocusToNextItem(this.controller);
     }
     else {
       this.controller.domNode.focus();
@@ -149,15 +149,15 @@ PopupMenuLinks.prototype.setFocusToController = function (command) {
   }
 };
 
-PopupMenuLinks.prototype.setFocusToFirstItem = function () {
+PopupMenuAction.prototype.setFocusToFirstItem = function () {
   this.firstItem.domNode.focus();
 };
 
-PopupMenuLinks.prototype.setFocusToLastItem = function () {
+PopupMenuAction.prototype.setFocusToLastItem = function () {
   this.lastItem.domNode.focus();
 };
 
-PopupMenuLinks.prototype.setFocusToPreviousItem = function (currentItem) {
+PopupMenuAction.prototype.setFocusToPreviousItem = function (currentItem) {
   var index;
 
   if (currentItem === this.firstItem) {
@@ -169,7 +169,7 @@ PopupMenuLinks.prototype.setFocusToPreviousItem = function (currentItem) {
   }
 };
 
-PopupMenuLinks.prototype.setFocusToNextItem = function (currentItem) {
+PopupMenuAction.prototype.setFocusToNextItem = function (currentItem) {
   var index;
 
   if (currentItem === this.lastItem) {
@@ -181,7 +181,7 @@ PopupMenuLinks.prototype.setFocusToNextItem = function (currentItem) {
   }
 };
 
-PopupMenuLinks.prototype.setFocusByFirstCharacter = function (currentItem, char) {
+PopupMenuAction.prototype.setFocusByFirstCharacter = function (currentItem, char) {
   var start, index, char = char.toLowerCase();
 
   // Get start index for search based on position of currentItem
@@ -204,7 +204,7 @@ PopupMenuLinks.prototype.setFocusByFirstCharacter = function (currentItem, char)
   }
 };
 
-PopupMenuLinks.prototype.getIndexFirstChars = function (startIndex, char) {
+PopupMenuAction.prototype.getIndexFirstChars = function (startIndex, char) {
   for (var i = startIndex; i < this.firstChars.length; i++) {
     if (char === this.firstChars[i]) {
       return i;
@@ -215,8 +215,8 @@ PopupMenuLinks.prototype.getIndexFirstChars = function (startIndex, char) {
 
 /* MENU DISPLAY METHODS */
 
-PopupMenuLinks.prototype.open = function () {
-  // get position and bounding rectangle of controller object's DOM node
+PopupMenuAction.prototype.open = function () {
+  // get bounding rectangle of controller object's DOM node
   var rect = this.controller.domNode.getBoundingClientRect();
 
   // set CSS properties
@@ -229,10 +229,14 @@ PopupMenuLinks.prototype.open = function () {
   this.controller.domNode.setAttribute('aria-expanded', 'true');
 };
 
-PopupMenuLinks.prototype.close = function (force) {
+PopupMenuAction.prototype.close = function (force) {
+
+  if (typeof force !== 'boolean') {
+    force = false;
+  }
 
   if (force || (!this.hasFocus && !this.hasHover && !this.controller.hasHover)) {
     this.domNode.style.display = 'none';
-    this.controller.domNode.setAttribute('aria-expanded', 'false');
+    this.controller.domNode.removeAttribute('aria-expanded');
   }
 };

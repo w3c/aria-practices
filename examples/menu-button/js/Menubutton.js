@@ -58,7 +58,6 @@ var Menubutton = function (domNode) {
 Menubutton.prototype.init = function () {
 
   this.domNode.setAttribute('aria-haspopup', 'true');
-  this.domNode.setAttribute('aria-expanded', 'false');
 
   this.domNode.addEventListener('keydown', this.handleKeydown.bind(this));
   this.domNode.addEventListener('click', this.handleClick.bind(this));
@@ -72,8 +71,14 @@ Menubutton.prototype.init = function () {
   var popupMenu = document.getElementById(this.domNode.getAttribute('aria-controls'));
 
   if (popupMenu) {
-    this.popupMenu = new PopupMenuAction(popupMenu, this);
-    this.popupMenu.init();
+    if (popupMenu.getAttribute('aria-activedescendant')) {
+      this.popupMenu = new PopupMenuActionActivedescendant(popupMenu, this);
+      this.popupMenu.init();
+    }
+    else {
+      this.popupMenu = new PopupMenuAction(popupMenu, this);
+      this.popupMenu.init();
+    }
   }
 
 };

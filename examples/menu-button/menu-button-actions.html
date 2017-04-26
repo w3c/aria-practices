@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en"><head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>Menu Button Example: Actions | WAI-ARIA Authoring Practices 1.1</title>
+    <title>Actions Menu Button Example Using element.focus() | WAI-ARIA Authoring Practices 1.1</title>
 
     <!--  Core js and css shared by all examples; do not modify when using this template. -->
     <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
-    <link rel="stylesheet" href="../../css/core.css">
-    <script src="../../js/examples.js"></script>
-    <script src="../../js/highlight.pack.js"></script>
-    <script src="../../js/app.js"></script>
+    <link rel="stylesheet" href="../css/core.css">
+    <script src="../js/examples.js"></script>
+    <script src="../js/highlight.pack.js"></script>
+    <script src="../js/app.js"></script>
 
+    <!--  JS and CSS for this example  -->
     <link href="css/menuButtonAction.css" rel="stylesheet">
     <script src="js/Menubutton.js" type="text/javascript"></script>
     <script src="js/MenuItemAction.js" type="text/javascript"></script>
@@ -17,29 +18,36 @@
   </head>
   <body>
     <main>
-      <h1>Actions Menu Button Example</h1>
-      <p>This example implements the <a href="../../../#menubutton">menu button design pattern</a>
-      for a button that provides access to a menu of actions.
-      When an element with role <code>button</code> has <code>aria-haspopup=&quot;true&quot;</code>,
-      browsers inform assistive technologies that the button is a menu button.
-      This role transformation caused by <code>aria-haspopup</code> happens with any element that is recognized as a button,
-      including the HTML <code>button</code> and <code>input[type="button"]</code> elements.
+      <h1>Actions Menu Button Example Using <code>element.focus()</code></h1>
+      <p>
+        <strong>Note:</strong> This example has been significantly revised.
+        Please provide feedback in 
+        <a href="https://github.com/w3c/aria-practices/issues/382">issue 382.</a>
+      </p>
+      <p>
+        This example demonstrates how the   
+        <a href="../../#menubutton">menu button design pattern</a>
+      can be used to create a button that opens an actions menu.
+      In this example, choosing an action from the menu will cause the chosen action to be displayed in the <q>Last Action</q> edit box.
+    </p>
+    <p>
+    In this implementation, each item in the menu is made focusable by setting <code>tabindex=&quot;-1&quot;</code> so the JavaScript can use <code>element.focus()</code> to set focus in response to events that trigger focus movement inside the menu.
+    An alternative technique for managing focus movement among menu items is demonstrated in  
+    <a href="menu-button-actions-active-descendant.html">the action menu button example that uses aria-activedescendant.</a>
       </p>
       <p>Similar examples include: </p>
       <ul>
-        <li><a href="../menu-button-2/menu-button-2.html">Navigation Menu Button</a>: The popup menu items are <code>a</code> elements and act as links.</li>
+        <li><a href="menu-button-actions-active-descendant.html">Action Menu Button Example Using aria-activedescendant</a>: A button that opens a menu of actions or commands where focus in the menu is managed using aria-activedescendant.</li>
+        <li><a href="menu-button-links.html">Navigation Menu Button</a>: A button that opens a menu of items that behave as links.</li>
       </ul>
       <section>
         <h2 id="ex_label">Example</h2>
-        <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>        <div id="ex1">
-
-          <p>This example shows a popup menu of actions that can be used for changing states in a web application.</p>
-
+        <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
+        <div id="ex1">
           <div class="menu_button">
             <button
                 id="menubutton1"
                 aria-haspopup="true"
-                aria-expanded="false"
                 aria-controls="menu1"
                 >
               Actions
@@ -52,13 +60,11 @@
               <li role="menuitem"  onclick="updateLastAction(event)">Action 4</li>
             </ul>
           </div>
-
         <p>
           <label>Last Action: <input id="action_output" type="text" value=""></label>
         </p>
 
         <script type="text/javascript">
-
           document.getElementById("action_output").value = "none";
 
           function updateLastAction(event) {
@@ -74,15 +80,11 @@
 
         </div>
         <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
-
       </section>
-
-
+      
       <section>
         <h2 id="kbd_label">Keyboard Support</h2>
-
         <h3 id="kbd1_label">Menu Button</h3>
-
         <table aria-labelledby="kbd1_label kbd_label" class="def">
           <thead>
             <tr>
@@ -92,18 +94,16 @@
           </thead>
           <tbody>
             <tr>
-              <th><kbd>Down Arrow, <br/>Space, <br/>or Enter</kbd></th>
+              <th><kbd>Down Arrow</kbd><br><kbd>Space</kbd><br><kbd>Enter</kbd></th>
               <td>Open <code>menu</code> and move focus to first <code>menuitem</code></td>
             </tr>
             <tr>
-              <th><kbd>Up Arrow Key</kbd></th>
-              <td>Open <code>menu</code> and move focus to previous <code>menuitem</code></td>
+              <th><kbd>Up Arrow</kbd></th>
+              <td>Open <code>menu</code> and move focus to last <code>menuitem</code></td>
             </tr>
           </tbody>
         </table>
-
-         <h3 id="kbd2_label" class="widget">Popup Menu Widget</h3>
-
+         <h3 id="kbd2_label" class="widget">Menu</h3>
         <table aria-labelledby="kbd2_label kbd_label" class="def">
           <thead>
             <tr>
@@ -113,11 +113,12 @@
           </thead>
           <tbody>
             <tr>
-              <th><kbd>Space or Enter</kbd></th>
+              <th><kbd>Space</kbd><br><kbd>Enter</kbd></th>
               <td>
                 <ul>
-                  <li>Activates any <code>click</code> event associated with the <code>menuitem</code>.  In this example updates the "Last Action" textbox.</li>
-                  <li>Moves focus back to <code>menu button</code> and then closes the <code>menu</code>.  NOTE: This sequence is important since hidding the element with focus will cause the focus to move to the beginning of the page.</li>
+                  <li>Activates the menu item, causing the <q>Last Action</q> textbox to be updated.</li>
+                                    <li>Closes the menu.</li>
+                                    <li>Sets focus on the menu button</li>
                 </ul>
               </td>
             </tr>
@@ -125,8 +126,8 @@
               <th><kbd>Escape</kbd></th>
               <td>
                 <ul>
-                  <li>Closes popup menu.</li>
-                  <li>Moves focus to button menu.</li>
+                  <li>Closes the menu.</li>
+                  <li>Sets focus to the menu button.</li>
                 </ul>
               </td>
             </tr>
@@ -134,8 +135,8 @@
               <th><kbd>Up Arrow</kbd></th>
               <td>
                 <ul>
-                  <li>Moves focus to previous popup menu item.</li>
-                  <li>If first popup menu item, focus is moved to the last popup menu item.</li>
+                  <li>Moves focus to the previous menu item.</li>
+                  <li>If focus is on the first menu item, moves focus to the last menu item.</li>
                 </ul>
               </td>
             </tr>
@@ -143,46 +144,35 @@
               <th><kbd>Down Arrow</kbd></th>
               <td>
                 <ul>
-                  <li>Moves focus to next popup menu item.</li>
-                  <li>If last popup menu item, focus is moved to the first popup menu item.</li>
+                  <li>Moves focus to the next menu item.</li>
+                  <li>If focus is on the last menu item, moves focus to the first menu item.</li>
                 </ul>
               </td>
             </tr>
             <tr>
               <th><kbd>Home</kbd></th>
-              <td>
-                <ul>
-                  <li>Moves focus to first popup menu item.</li>
-                </ul>
-              </td>
+              <td>Moves focus to the first menu item.</td>
             </tr>
             <tr>
               <th><kbd>End</kbd></th>
-              <td>
-                <ul>
-                  <li>Moves focus to last popup menu item.</li>
-                </ul>
-              </td>
+              <td>Moves focus to the last menu item.</td>
             </tr>
             <tr>
-              <th><kbd>A-Z, a-z</kbd></th>
+              <th><kbd>A-Z</kbd><br><kbd>a-z</kbd></th>
               <td>
                 <ul>
-                  <li>Moves focus to the next popup item that starts with that letter.</li>
-                  <li>If no popup menu item starts with the letter, focus does not move.</li>
+                  <li>Moves focus to the next menu item with a lable that starts with the typed character if such an menu item exists.</li>
+                  <li>Otherwise, focus does not move.</li>
                 </ul>
               </td>
             </tr>
           </tbody>
         </table>
       </section>
-
-
+      
       <section>
         <h2 id="rps_label">Role, Property, State, and Tabindex  Attributes</h2>
-
-        <h3 id="rps1_label">Menu Button Widget</h3>
-
+        <h3 id="rps1_label">Menu Button</h3>
         <table aria-labelledby="rps1_label rps_label" class="data attributes">
           <thead>
             <tr>
@@ -194,46 +184,31 @@
           </thead>
           <tbody>
             <tr>
-              <th scope="row">
-                <code>button</code>
-              </th>
               <td></td>
-              <td>
-                <code>button</code>
-              </td>
-              <td>
-                <ul>
-                  <li>Default <code>role</code> of a <code>button</code> element is "<code>button</code>", so <em>no</em> need to set the <code>role</code> attribute.</li>
-                  <li>The accessible name comes from the child text content of the <code>button</code> element (e.g. &quot;Actions&quot;).</li>
-                  <li>The <code>button</code> element is a part of the default tab order of the page (e.g. <code>tabindex=0</code>), so <em>no</em> need to set <code>tabindex</code>.</li>
-                </ul>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <code></code>
-              </td>
               <th scope="row"><code>aria-haspopup=&quot;true&quot;</code></th>
               <td>
                 <code>button</code>
               </td>
               <td>
                 <ul>
-                  <li>The <code>aria-haspopup</code> attribute defines an element with <code>role=button</code> as a ARIA menu button design pattern and indicates the actions of the button are to open and close the popup menu.</li>
+                  <li>Indicates the <code>button</code> element opens a menu.</li>
+                  <li>
+                    <strong>NOTE:</strong> While ARIA does not include a role specifically for menu buttons, most platform accessibility APIs include a menubutton role.
+                    Consequently, on such platforms, assistive technologies, such as screen readers, identify buttons that have <code>aria-haspopup</code> set to either <code>true</code> or <code>menu</code> as menu buttons.
+                  </li>
                 </ul>
               </td>
             </tr>
             <tr>
-              <td>
-                <code></code>
-              </td>
+              <td></td>
               <th scope="row"><code>aria-controls=&quot;IDREF&quot;</code></th>
               <td>
                 <code>button</code>
               </td>
               <td>
                 <ul>
-                  <li>The <code>aria-controls</code> attribute serves as a pointer to the the popup menu that is controlled by the menu button.</li>
+                  <li>Refers to the menu element controlled by the menu button.</li>
+                  <li>Optional attribute: assistive technology users can operate the menu if not present.</li>
                 </ul>
               </td>
             </tr>
@@ -243,25 +218,16 @@
                 <td><code>button</code></td>
                 <td>
                   <ul>
-                    <li>Indicates popup menu is open.</li>
-                  </ul>
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <th scope="row"><code>aria-expanded=&quot;false&quot;</code></th>
-                <td><code>button</code></td>
-                <td>
-                  <ul>
-                    <li>Indicates popup menu is closed.</li>
+                    <li>Added when the menu is open.</li>
+                    <li>Indicates that the menu is displayed and that activating the menu button closes the menu.</li>
+                    <li>The <code>aria-expanded</code> attribute is removed when the menu is closed.</li>
+                    <li>Included to support touch devices where screen reader users can touch the menu button when the menu is displayed. Keyboard users cannot focus the menu button when the menu is open.</li>  
                   </ul>
                 </td>
             </tr>
           </tbody>
         </table>
-
-        <h3 id="rps2_label">Popup Menu</h3>
-
+        <h3 id="rps2_label">Menu</h3>
         <table aria-labelledby="rps2_label rps_label" class="data attributes">
           <thead>
             <tr>
@@ -280,25 +246,20 @@
               <td>
                 <code>ul</code>
               </td>
-              <td>
-                <ul>
-                  <li>The <code>role=&quot;menu&quot;</code> attribute identifies the <code>ul</code> element as an ARIA <code>menu</code> widget.</li>
-                  <li>Accessible name for the <code>menu</code> widget comes from <code>aria-labelledby</code> attribute.</li>
-                  <li>The <code>menu</code> widget does not need a <code>tabindex</code> value, since the <code>ul[role&quot;menu&quot;]</code> element never receives keyboard focus.</li>
-                </ul>
-              </td>
+              <td>Identifies the <code>ul</code> element as a <code>menu</code>.</td>
             </tr>
             <tr>
               <td>
                 <code></code>
               </td>
-              <th scope="row"><code>aria-labelledby=&quot;[IDREF]&quot;</code></th>
+              <th scope="row"><code>aria-labelledby=&quot;IDREF&quot;</code></th>
               <td>
                 <code>ul</code>
               </td>
               <td>
                 <ul>
-                  <li>Pointer to element with the corresponding <code>id=&quot;[IDREF]&quot;</code> that defines the accessible name for the <code>menu</code>, in this example &quot;Actions&quot;.</li>
+                  <li>Refers to the element that contains the accessible name for the <code>menu</code>.</li>
+                  <li>The menu is labeled by the menu button.</li>
                 </ul>
               </td>
             </tr>
@@ -312,23 +273,21 @@
               </td>
               <td>
                 <ul>
-                  <li>The <code>role=&quot;menuitem&quot;</code> attribute identifies the <code>li</code> element as an ARIA <code>menuitem</code> widget.</li>
-                  <li>Accessible name for the <code>menuitem</code> widget comes from child text content of the <code>li</code> element.</li>
-                  <li>The <code>menuitem</code> widget has <code>tabindex=&quot;-1&quot;</code>.</li>
+                  <li>Identifies the <code>li</code> element as a <code>menuitem</code>.</li>
+                  <li>The text content of the <code>li</code> element provides the accessible name of the <code>menuitem</code>.</li>
                 </ul>
               </td>
             </tr>
             <tr>
-              <td>
-                <code></code>
-              </td>
+              <td></td>
               <th scope="row"><code>tabindex=&quot;-1&quot;</code></th>
               <td>
                 <code>li</code>
               </td>
               <td>
                 <ul>
-                  <li>Identifies each <code>li[role=menuitem]</code> as an interactive element on the page (e.g. can recived keyboard focus), but is not part of the tab order of the page.</li>
+                  <li>Allows DOM focus to be set on the menu item with the JavaScript focus method.</li>
+                  <li>Dynamically added by the JavaScript.</li>
                 </ul>
               </td>
             </tr>
@@ -362,6 +321,7 @@
           sourceCode.make();
         </script>
       </section>
+      
     </main>
     <nav>
       <a href="../../../#menubutton">Menu Button Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
