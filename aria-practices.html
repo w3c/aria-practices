@@ -1503,9 +1503,25 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
       <section class="notoc">
         <h4>WAI-ARIA Roles, States, and Properties</h4>
         <ul>
-           <li>The element that opens the menu has role <a href="#button" class="role-reference">button</a>.</li>
-           <li>The element with role <code>button</code> has <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set to <code>true</code>.</li>
-           <li>The roles, states, and properties needed for the menu opened by the button are described in <a href="#menu"></a>. </li>
+          <li>The element that opens the menu has role <a href="#button" class="role-reference">button</a>.</li>
+          <li>The element with role <code>button</code> has <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set to <code>true</code>.</li>
+          <li>
+            When the menu is displayed, the element with role <code>button</code> has 
+            <a href="#aria-expanded" class="state-reference">aria-expanded</a> 
+            set to <code>true</code>.
+            When the menu is hidden, it is recommended that <code>aria-expanded</code> is not present. 
+            If <code>aria-expanded</code> is specified when the menu is hidden, it is set to <code>false</code>.
+          </li>
+          <li>
+            The element that contains the menu items displayed by activating the button has role 
+            <a href="#menu" class="role-reference">menu</a>.
+          </li>
+          <li>
+            Optionally, the element with role <code>button</code> has a value specified for 
+            <a href="#aria-controls" class="property-reference">aria-controls</a> 
+            that refers to the element with role <code>menu</code>.
+            </li>
+            <li>Additional roles, states, and properties needed for the menu element are described in <a href="#menu"></a>.</li>
         </ul>
       </section>
 
