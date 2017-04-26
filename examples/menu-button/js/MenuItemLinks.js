@@ -73,80 +73,75 @@ MenuItemLinks.prototype.handleKeydown = function (event) {
     return str.length === 1 && str.match(/\S/);
   }
 
-  switch (event.keyCode) {
-    case this.keyCode.SPACE:
-    case this.keyCode.RETURN:
-      // Create simulated mouse event to mimic the behavior of ATs
-      // and let the event handler handleClick do the housekeeping.
-      try {
-        clickEvent = new MouseEvent('click', {
-          'view': window,
-          'bubbles': true,
-          'cancelable': true
-        });
-      }
-      catch (err) {
-        if (document.createEvent) {
-          // DOM Level 3 for IE 9+
-          clickEvent = document.createEvent('MouseEvents');
-          clickEvent.initEvent('click', true, true);
-        }
-      }
-      tgt.dispatchEvent(clickEvent);
-      flag = true;
-      break;
-
-    case this.keyCode.ESC:
-      this.menu.setFocusToController();
-      this.menu.close(true);
-      flag = true;
-      break;
-
-    case this.keyCode.UP:
-      this.menu.setFocusToPreviousItem(this);
-      flag = true;
-      break;
-
-    case this.keyCode.DOWN:
-      this.menu.setFocusToNextItem(this);
-      flag = true;
-      break;
-
-    case this.keyCode.LEFT:
-      this.menu.setFocusToController('previous');
-      this.menu.close(true);
-      flag = true;
-      break;
-
-    case this.keyCode.RIGHT:
-      this.menu.setFocusToController('next');
-      this.menu.close(true);
-      flag = true;
-      break;
-
-    case this.keyCode.HOME:
-    case this.keyCode.PAGEUP:
-      this.menu.setFocusToFirstItem();
-      flag = true;
-      break;
-
-    case this.keyCode.END:
-    case this.keyCode.PAGEDOWN:
-      this.menu.setFocusToLastItem();
-      flag = true;
-      break;
-
-    case this.keyCode.TAB:
-      this.menu.setFocusToController();
-      this.menu.close(true);
-      break;
-
-    default:
-      if (isPrintableCharacter(char)) {
-        this.menu.setFocusByFirstCharacter(this, char);
-      }
-      break;
+  if (event.ctrlKey || 
+      event.altKey  || 
+      event.metaKey ||
+      (event.keyCode === this.keyCode.SPACE) || 
+      (event.keyCode === this.keyCode.RETURN)) {
+    return;
   }
+
+  if (event.shiftKey) {
+    if (isPrintableCharacter(char)) {
+      this.menu.setFocusByFirstCharacter(this, char);
+    }
+  }
+  else {
+    switch (event.keyCode) {
+
+      case this.keyCode.ESC:
+        this.menu.setFocusToController();
+        this.menu.close(true);
+        flag = true;
+        break;
+
+      case this.keyCode.UP:
+        this.menu.setFocusToPreviousItem(this);
+        flag = true;
+        break;
+
+      case this.keyCode.DOWN:
+        this.menu.setFocusToNextItem(this);
+        flag = true;
+        break;
+
+      case this.keyCode.LEFT:
+        this.menu.setFocusToController('previous');
+        this.menu.close(true);
+        flag = true;
+        break;
+
+      case this.keyCode.RIGHT:
+        this.menu.setFocusToController('next');
+        this.menu.close(true);
+        flag = true;
+        break;
+
+      case this.keyCode.HOME:
+      case this.keyCode.PAGEUP:
+        this.menu.setFocusToFirstItem();
+        flag = true;
+        break;
+
+      case this.keyCode.END:
+      case this.keyCode.PAGEDOWN:
+        this.menu.setFocusToLastItem();
+        flag = true;
+        break;
+
+      case this.keyCode.TAB:
+        this.menu.setFocusToController();
+        this.menu.close(true);
+        break;
+
+      default:
+        if (isPrintableCharacter(char)) {
+          this.menu.setFocusByFirstCharacter(this, char);
+        }
+        break;
+    }    
+  }
+
 
   if (flag) {
     event.stopPropagation();

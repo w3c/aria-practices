@@ -50,6 +50,7 @@ input:hover {
 }
 
 ul[role="menu"] li[role="menuitem"]:focus,
+ul[role="menu"] li[role="menuitem"].focus,
 ul[role="menu"] li[role="menuitem"]:hover{
   background-color: black;
   color: white;
