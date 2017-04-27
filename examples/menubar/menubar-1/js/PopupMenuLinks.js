@@ -131,7 +131,7 @@ PopupMenu.prototype.handleMouseover = function (event) {
 
 PopupMenu.prototype.handleMouseout = function (event) {
   this.hasHover = false;
-  setTimeout(this.close.bind(this, false), 300);
+  setTimeout(this.close.bind(this, false), 1);
 };
 
 /* FOCUS MANAGEMENT METHODS */

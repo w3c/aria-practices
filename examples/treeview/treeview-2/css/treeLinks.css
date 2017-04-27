@@ -50,12 +50,12 @@ ul[role="tree"] a {
 [role="treeitem"] span.focus {
   border-color: black;
   background-color: #EEEEEE;
-  width: 14em;  
+  width: 16em;  
 }
 
 [role="treeitem"].hover,
 [role="treeitem"] span.hover {
   background-color: #DDDDDD;
-  width: 14em;  
+  width: 16em;  
 }
 
