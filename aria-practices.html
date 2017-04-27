@@ -494,8 +494,10 @@
       </p>
       <p>
         A <a href="#dialog" class="role-reference">dialog</a> is a window overlayed on either the primary window or another dialog window.
-        The window under a modal dialog is typically inert; users cannot interact with content outside the dialog window.
-        If the background window is not inert, then interaction with elements in the background window cause the modal window to close.
+        Windows under a modal dialog are inert.
+        That is, users cannot interact with content outside an active dialog window.
+        Inert content outside an active dialog is typically visually obscured or dimmed so it is difficult to discern, 
+        and in some implementations, attempts to interact with the inert content cause the dialog to close.
       </p>
       <p>
         Like <a href="#dialog_nonmodal">non-modal dialogs</a>, modal dialogs contain their tab sequence.
@@ -540,41 +542,57 @@
               </li>
               <li>
                 If a dialog is limited to interactions that either provide additional information or continue processing,
-                it might set focus to the element deemed to be most frequently desired, such as a <q>OK</q> or <q>Continue</q> button.
+                it may be advisable to set focus to the element that is likely to be most frequently used, such as an <q>OK</q> or <q>Continue</q> button.
               </li>
             </ul>
           </li>
           <li>
-            When a dialog closes, focus typically returns to the element that had focus before the dialog was invoked.
-            This is often the control that opened the dialog.
-            In circumstances where that element no longer exists, focus is set on an element that supports a logical work flow.
+            When a dialog closes, focus is set on an element that supports a logical work flow.
+            If the element that had focus before the dialog was invoked still exists, that element is usually the most appropriate choice.
           </li>
+          <li>It is strongly recommended all dialogs include a visible element with role <code>button</code> that closes the dialog, such as  a close icon or cancel button, and that the element is in the <kbd>Tab</kbd> sequence.</li>
         </ol>
       </section>
       <section class="notoc">
         <h4>WAI-ARIA Roles, States, and Properties</h4>
         <ul>
           <li>The element that serves as the dialog container has a role of <a href="#dialog" class="role-reference">dialog</a>.</li>
-          <li>All controls required to operate the dialog are child nodes of the element which has role set to dialog.</li>
+          <li>All elements required to operate the dialog are descendants of the element that has role <code>dialog</code>.</li>
           <li>The dialog container element has <a href="#aria-modal" class="property-reference">aria-modal</a> set to <code>true</code>.</li>
           <li>The dialog has either:
             <ul>
-              <li>The <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> property set to refer to the visible dialog title.</li>
-              <li>A label specified with <a href="#aria-label" class="property-reference">aria-label</a>.</li>
+              <li>A value set for the 
+              <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> 
+              property that refers to a visible dialog title.</li>
+              <li>A label specified by <a href="#aria-label" class="property-reference">aria-label</a>.</li>
             </ul>
           </li>
           <li>
-            The <a href="#aria-describedby" class="property-reference">aria-describedby</a> property can be set on the
-            element with the <code>dialog</code> role to indicate which
-            element or elements in the dialog contain content that describes the primary purpose or message of the dialog.
+            Optionally, the <a href="#aria-describedby" class="property-reference">aria-describedby</a> property 
+            is set on the element with the <code>dialog</code> role to indicate which element or elements in the dialog contain content that describes the primary purpose or message of the dialog.
             Specifying descriptive elements enables screen readers to announce the description along with the dialog title and initially focused element when the dialog opens.
           </li>
+        </ul>
+        <ul class="note">
           <li>
-            If the dialog has <a href="#aria-modal" class="property-reference">aria-modal</a> set to <code>true</code> and content outside the dialog is completely inert 
-            and visually obscured to an extent that is intentionally unreadable, it is no longer necessary to set <a href="#aria-hidden" class="state-reference">aria-hidden</a>
-            to <code>true</code> on each element containing a portion of the inert layer.    
-            However, if you do still use <code>aria-hidden</code> set to <code>true</code>, the dialog container element cannot be a descendant 
-            of any element that has <code>aria-hidden</code> set to <code>true</code> and the content outside the modal dialog must not be visually discernable.
+            Because marking a dialog modal by setting 
+            <a href="#aria-modal" class="property-reference">aria-modal</a>
+            to <code>true</code> can prevent users of some assistive technologies from perceiving content outside the dialog,
+            users of those technologies will experience severe negative ramifications if a dialog is marked modal but is not modal for other users.
+            So, mark a dialog modal <strong>only when:</strong>
+            <ol>
+              <li>Application code prevents all users from interacting in any way with content outside of it.</li>
+              <li>Visual styling obscures the content outside of it.</li>
+            </ol>
+          <li>
+            The <code>aria-modal</code> property introduced by ARIA 1.1 replaces 
+            <a href="#aria-hidden" class="state-reference">aria-hidden</a>
+            for informing assistive technologies that content outside a dialog is inert.
+            However, in legacy dialog implementations where <code>aria-hidden</code> is used to make content outside a dialog inert for assistive technology users, it is important that:
+            <ol>
+              <li><code>aria-hidden</code> is set to <code>true</code> on each element containing a portion of the inert layer.</li>
+              <li>The dialog element is not a descendant of any element that has <code>aria-hidden</code> set to <code>true</code>.</li>
+            </ol>
           </li>
         </ul>
       </section>
