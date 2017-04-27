@@ -151,7 +151,7 @@ TreeitemLink.prototype.handleKeydown = function (event) {
       case this.keyCode.SPACE:
       case this.keyCode.RETURN:
         if (this.isExpandable) {
-          if (this.domNode.getAttribute('aria-expanded') == 'true') {
+          if (this.isExpanded()) {
             this.tree.collapseTreeitem(this);
           }
           else {
@@ -225,7 +225,7 @@ TreeitemLink.prototype.handleClick = function (event) {
   }
 
   if (this.isExpandable) {
-    if (this.domNode.getAttribute('aria-expanded') == 'true') {
+    if (this.isExpanded()) {
       this.tree.collapseTreeitem(this);
     }
     else {

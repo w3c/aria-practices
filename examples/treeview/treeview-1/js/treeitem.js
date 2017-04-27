@@ -213,7 +213,7 @@ Treeitem.prototype.handleKeydown = function (event) {
 
 Treeitem.prototype.handleClick = function (event) {
   if (this.isExpandable) {
-    if (this.domNode.getAttribute('aria-expanded') == 'true') {
+    if (this.isExpanded()) {
       this.tree.collapseTreeitem(this);
     }
     else {
