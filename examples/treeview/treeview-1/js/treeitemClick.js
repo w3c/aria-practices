@@ -6,7 +6,7 @@
 *
 *   Desc:   Setup click events for Tree widget examples
 
-*   Author: Jon Gunderson, Ku Ja Eun and Nicholas Hoyt
+*   Author: Jon Gunderson, Ku Ja Eun and Nicholas Hoyt @ University of Illinois
 */
 
 /**
@@ -27,6 +27,8 @@ window.addEventListener('load', function () {
       if (!label) {
         label = treeitem.innerHTML;
       }
+
+      document.getElementById('last_action').value = label.trim();
 
       event.stopPropagation();
       event.preventDefault();
