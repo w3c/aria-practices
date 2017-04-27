@@ -158,7 +158,7 @@ MenuItem.prototype.handleKeydown = function (event) {
         }
         break;
     }
-  }  
+  }
 
   if (flag) {
     event.stopPropagation();

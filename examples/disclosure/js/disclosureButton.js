@@ -26,7 +26,6 @@ var ButtonExpand = function (domNode) {
 
 ButtonExpand.prototype.init = function () {
 
-  this.domNode.tabIndex = 0;
   this.controlledNode = false;
 
   var id = this.domNode.getAttribute('aria-controls');

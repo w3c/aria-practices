@@ -230,7 +230,7 @@ PopupMenuActionActivedescendant.prototype.handleKeydown = function (event) {
           this.setFocusByFirstCharacter(char);
         }
         break;
-    }    
+    }
   }
 
   if (flag) {
