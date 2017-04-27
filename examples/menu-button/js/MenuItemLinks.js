@@ -73,11 +73,7 @@ MenuItemLinks.prototype.handleKeydown = function (event) {
     return str.length === 1 && str.match(/\S/);
   }
 
-  if (event.ctrlKey || 
-      event.altKey  || 
-      event.metaKey ||
-      (event.keyCode === this.keyCode.SPACE) || 
-      (event.keyCode === this.keyCode.RETURN)) {
+  if (event.ctrlKey || event.altKey  || event.metaKey || (event.keyCode === this.keyCode.SPACE) || (event.keyCode === this.keyCode.RETURN)) {
     return;
   }
 
@@ -139,9 +135,8 @@ MenuItemLinks.prototype.handleKeydown = function (event) {
           this.menu.setFocusByFirstCharacter(this, char);
         }
         break;
-    }    
+    }
   }
-
 
   if (flag) {
     event.stopPropagation();
