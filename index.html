@@ -1076,7 +1076,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <a class="logo" href="https://www.w3.org/"><img src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" alt="W3C" width="72" height="48"></a>
     </p>
     <h1 class="title p-name" id="title" property="dcterms:title"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Authoring Practices 1.1</h1>
-    <h2 id="w3c-editor-s-draft-26-april-2017"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2017-04-26">26 April 2017</time></h2>
+    <h2 id="w3c-editor-s-draft-27-april-2017"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2017-04-27">27 April 2017</time></h2>
     <dl>
       <dt>This version:</dt>
       <dd><a class="u-url" href="http://w3c.github.io/aria-practices/">http://w3c.github.io/aria-practices/</a></dd>
@@ -1805,17 +1805,19 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
       <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-6" property="bibo:hasPart">
         <h4 id="keyboard-interaction-6" resource="#keyboard-interaction-6"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
+        <p>In the following description, the term <q>tabbable element</q> refers to any element with a <code>tabindex</code> value of zero or greater. Note that values greater than 0 are strongly discouraged.</p>
         <ul>
+          <li>When a dialog opens, focus moves to an element inside the dialog. See notes below regarding initial focus placement.</li>
           <li><kbd>Tab</kbd>:
             <ul>
-              <li>Moves focus to the next focusable element inside the dialog.</li>
-              <li>If focus is on the last element, moves focus to the first focusable element inside the dialog. </li>
+              <li>Moves focus to the next tabbable element inside the dialog.</li>
+              <li>If focus is on the last tabbable element inside the dialog, moves focus to the first tabbable element inside the dialog. </li>
             </ul>
           </li>
           <li><kbd>Shift + Tab</kbd>:
             <ul>
-              <li>Moves focus to the previous focusable element inside the dialog.</li>
-              <li>If focus is on the first element, moves focus to the last focusable element inside the dialog.</li>
+              <li>Moves focus to the previous tabbable element inside the dialog.</li>
+              <li>If focus is on the first tabbable element inside the dialog, moves focus to the last tabbable element inside the dialog.</li>
             </ul>
           </li>
           <li><kbd>Escape</kbd>: Closes the dialog.</li>
