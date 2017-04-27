@@ -183,7 +183,7 @@ TreeitemLink.prototype.handleKeydown = function (event) {
         break;
 
       case this.keyCode.LEFT:
-        if (this.isExpandable) {
+        if (this.isExpandable && this.isExpanded()) {
           this.tree.collapseTreeitem(this);
           flag = true;
         }
