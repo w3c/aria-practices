@@ -132,7 +132,9 @@ Treeitem.prototype.handleKeydown = function (event) {
   }
 
   if (event.shift) {
-    printableCharacter(this);
+    if (isPrintableCharacter(char)) {
+      printableCharacter(this);
+    }
   }
   else {
     switch (event.keyCode) {
@@ -170,9 +172,14 @@ Treeitem.prototype.handleKeydown = function (event) {
 
       case this.keyCode.RIGHT:
         if (this.isExpandable) {
-          this.tree.expandTreeitem(this);
-          flag = true;
+          if (this.isExpanded()) {
+            this.tree.setFocusToNextItem(this);
+          }
+          else {
+            this.tree.expandTreeitem(this);
+          }
         }
+        flag = true;
         break;
 
       case this.keyCode.LEFT:
@@ -199,7 +206,9 @@ Treeitem.prototype.handleKeydown = function (event) {
         break;
 
       default:
-        printableCharacter(this);
+        if (isPrintableCharacter(char)) {
+          printableCharacter(this);
+        }
         break;
     }
 

@@ -177,9 +177,14 @@ TreeitemLink.prototype.handleKeydown = function (event) {
 
       case this.keyCode.RIGHT:
         if (this.isExpandable) {
-          this.tree.expandTreeitem(this);
-          flag = true;
+          if (this.isExpanded()) {
+            this.tree.setFocusToNextItem(this);
+          }
+          else {
+            this.tree.expandTreeitem(this);
+          }
         }
+        flag = true;
         break;
 
       case this.keyCode.LEFT:
