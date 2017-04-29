@@ -143,7 +143,9 @@ TreeitemLink.prototype.handleKeydown = function (event) {
       this.stopDefaultClick = true;
     }
     else {
-      printableCharacter(this);
+      if (isPrintableCharacter(char)) {
+        printableCharacter(this);
+      }
     }
   }
   else {
@@ -211,7 +213,9 @@ TreeitemLink.prototype.handleKeydown = function (event) {
         break;
 
       default:
-        printableCharacter(this);
+        if (isPrintableCharacter(char)) {
+          printableCharacter(this);
+        }
         break;
     }
   }
