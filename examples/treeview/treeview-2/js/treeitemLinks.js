@@ -143,7 +143,9 @@ TreeitemLink.prototype.handleKeydown = function (event) {
       this.stopDefaultClick = true;
     }
     else {
-      printableCharacter(this);
+      if (isPrintableCharacter(char)) {
+        printableCharacter(this);
+      }
     }
   }
   else {
@@ -151,7 +153,7 @@ TreeitemLink.prototype.handleKeydown = function (event) {
       case this.keyCode.SPACE:
       case this.keyCode.RETURN:
         if (this.isExpandable) {
-          if (this.domNode.getAttribute('aria-expanded') == 'true') {
+          if (this.isExpanded()) {
             this.tree.collapseTreeitem(this);
           }
           else {
@@ -177,13 +179,18 @@ TreeitemLink.prototype.handleKeydown = function (event) {
 
       case this.keyCode.RIGHT:
         if (this.isExpandable) {
-          this.tree.expandTreeitem(this);
-          flag = true;
+          if (this.isExpanded()) {
+            this.tree.setFocusToNextItem(this);
+          }
+          else {
+            this.tree.expandTreeitem(this);
+          }
         }
+        flag = true;
         break;
 
       case this.keyCode.LEFT:
-        if (this.isExpandable) {
+        if (this.isExpandable && this.isExpanded()) {
           this.tree.collapseTreeitem(this);
           flag = true;
         }
@@ -206,7 +213,9 @@ TreeitemLink.prototype.handleKeydown = function (event) {
         break;
 
       default:
-        printableCharacter(this);
+        if (isPrintableCharacter(char)) {
+          printableCharacter(this);
+        }
         break;
     }
   }
@@ -225,7 +234,7 @@ TreeitemLink.prototype.handleClick = function (event) {
   }
 
   if (this.isExpandable) {
-    if (this.domNode.getAttribute('aria-expanded') == 'true') {
+    if (this.isExpanded()) {
       this.tree.collapseTreeitem(this);
     }
     else {
