@@ -270,13 +270,6 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       color: #900;
     }
 
-    h1 acronym,
-    h2 acronym,
-    h3 acronym,
-    h4 acronym,
-    h5 acronym,
-    h6 acronym,
-    a acronym,
     h1 abbr,
     h2 abbr,
     h3 abbr,
@@ -387,270 +380,6 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       margin-bottom: 0;
     }
 
-    #respec-ui {
-      position: fixed;
-      display: flex;
-      flex-direction: row-reverse;
-      top: 20px;
-      right: 20px;
-      width: 202px;
-      text-align: right;
-      z-index: 9000;
-    }
-
-    #respec-pill,
-    .respec-info-button {
-      background: #fff;
-      height: 2.5em;
-      color: rgb(120, 120, 120);
-      border: 1px solid #ccc;
-      box-shadow: 1px 1px 8px 0 rgba(100, 100, 100, .5);
-    }
-
-    .respec-info-button {
-      border: none;
-      opacity: .75;
-      border-radius: 2em;
-      margin-right: 1em;
-      min-width: 3.5em;
-    }
-
-    .respec-info-button:focus,
-    .respec-info-button:hover {
-      opacity: 1;
-      transition: opacity .2s;
-    }
-
-    #respec-pill:disabled {
-      font-size: 2.8px;
-      text-indent: -9999em;
-      border-top: 1.1em solid rgba(40, 40, 40, 0.2);
-      border-right: 1.1em solid rgba(40, 40, 40, 0.2);
-      border-bottom: 1.1em solid rgba(40, 40, 40, 0.2);
-      border-left: 1.1em solid #ffffff;
-      transform: translateZ(0);
-      animation: respec-spin .5s infinite linear;
-      box-shadow: none;
-    }
-
-    #respec-pill:disabled,
-    #respec-pill:disabled:after {
-      border-radius: 50%;
-      width: 10em;
-      height: 10em;
-    }
-
-    @keyframes respec-spin {
-      0% {
-        transform: rotate(0deg);
-      }
-      100% {
-        transform: rotate(360deg);
-      }
-    }
-
-    #respec-pill:hover,
-    #respec-pill:focus {
-      color: rgb(0, 0, 0);
-      background-color: rgb(245, 245, 245);
-      transition: color .2s;
-    }
-
-    #respec-menu {
-      position: absolute;
-      margin: 0;
-      padding: 0;
-      font-family: sans-serif;
-      background: #fff;
-      box-shadow: 1px 1px 8px 0 rgba(100, 100, 100, .5);
-      width: 200px;
-      display: none;
-      text-align: left;
-      margin-top: 32px;
-      font-size: .8em;
-    }
-
-    #respec-menu li {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-    }
-
-    .respec-save-buttons {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(47%, 2fr));
-      grid-gap: .5cm;
-      padding: .5cm;
-    }
-
-    .respec-save-button:link {
-      padding-top: 16px;
-      color: rgb(240, 240, 240);
-      background: rgb(42, 90, 168);
-      justify-self: stretch;
-      height: 1cm;
-      text-decoration: none;
-      text-align: center;
-      font-size: inherit;
-      border: none;
-      border-radius: 0.2cm;
-    }
-
-    .respec-save-button:link:hover {
-      color: white;
-      background: rgb(42, 90, 168);
-      padding: 0;
-      margin: 0;
-      border: 0;
-      padding-top: 16px;
-    }
-
-
-    #respec-ui button:focus,
-    #respec-pill:focus,
-    .respec-option:focus {
-      outline: 0;
-      outline-style: none;
-    }
-
-    #respec-pill-error {
-      background-color: red;
-      color: white;
-    }
-
-    #respec-pill-warning {
-      background-color: orange;
-      color: white;
-    }
-
-    .respec-warning-list,
-    .respec-error-list {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      font-family: sans-serif;
-      background-color: rgb(255, 251, 230);
-      font-size: .9em;
-    }
-
-    .respec-warning-list li,
-    .respec-error-list li {
-      padding: 0.4em 0.7em;
-    }
-
-    .respec-warning-list li::before {
-      content: "⚠️";
-      padding-right: .5em;
-    }
-
-    .respec-warning-list li {
-      color: rgb(92, 59, 0);
-      border-bottom: thin solid rgb(255, 245, 194);
-    }
-
-    .respec-error-list,
-    .respec-error-list li {
-      background-color: rgb(255, 240, 240);
-    }
-
-    .respec-error-list li::before {
-      content: "💥";
-      padding-right: .5em;
-    }
-
-    .respec-error-list li {
-      padding: 0.4em 0.7em;
-      color: rgb(92, 59, 0);
-      border-bottom: thin solid rgb(255, 215, 215);
-    }
-
-    #respec-overlay {
-      display: block;
-      opacity: 0;
-      position: fixed;
-      z-index: 10000;
-      top: 0px;
-      left: 0px;
-      height: 100%;
-      width: 100%;
-      background: #000;
-    }
-
-    .respec-modal {
-      display: block;
-      position: fixed;
-      opacity: 0;
-      z-index: 11000;
-      margin: auto;
-      top: 10%;
-      background: #fff;
-      border: 5px solid #666;
-      min-width: 20%;
-      width: 79%;
-      padding: 0;
-      max-height: 80%;
-      overflow-y: auto;
-      margin: 0 -.5cm
-    }
-
-    @media screen and (min-width: 78em) {
-      .respec-modal {
-        width: 62%;
-      }
-    }
-
-    .respec-modal h3 {
-      margin: 0;
-      padding: .2em;
-      text-align: center;
-      color: black;
-      background: linear-gradient(to bottom, rgba(238, 238, 238, 1) 0%, rgba(238, 238, 238, 1) 50%, rgba(204, 204, 204, 1) 100%);
-      font-size: 1em;
-    }
-
-    .respec-modal .inside p {
-      padding-left: 1cm;
-    }
-
-    #respec-menu button.respec-option {
-      background: white;
-      padding: 0 .2cm;
-      border: none;
-      width: 100%;
-      text-align: left;
-      font-size: inherit;
-      padding: 1.2em 1.2em;
-    }
-
-    #respec-menu button.respec-option:hover,
-    #respec-menu button:focus {
-      background-color: #eeeeee;
-    }
-
-    .respec-cmd-icon {
-      padding-right: .5em;
-    }
-
-    #respec-ui button.respec-option:last-child {
-      border: none;
-      border-radius: inherit;
-    }
-
-    .respec-offending-element {
-      display: inline-block;
-      position: relative;
-      background: url(data:image/gif;base64,R0lGODdhBAADAPEAANv///8AAP///wAAACwAAAAABAADAEACBZQjmIAFADs=) bottom repeat-x;
-    }
-
-    @supports (text-decoration-style: wavy) {
-      .respec-offending-element {
-        background: none;
-        text-decoration-line: underline;
-        text-decoration-style: wavy;
-        text-decoration-color: red;
-      }
-    }
-
     #issue-summary>ul,
     .respec-dfn-list {
       column-count: 2;
@@ -661,34 +390,6 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       list-style: none;
     }
 
-
-    .respec-button-copy-paste {
-      position: absolute;
-      display: block;
-      padding: 0px 8px;
-      height: 28px;
-      width: 40px;
-      color: #333;
-      white-space: nowrap;
-      vertical-align: middle;
-      cursor: pointer;
-      background-color: #eee;
-      background-image: linear-gradient(#fcfcfc, #eee);
-      border: 1px solid rgb(144, 184, 222);
-      border-radius: 0px 0px 3px 0;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-      -webkit-appearance: none;
-      margin: 0px 127px;
-      border-left: 0;
-    }
-
-    p+.respec-button-copy-paste {
-      margin: 1px 127px;
-    }
-
     @media print {
       .removeOnSave {
         display: none;
@@ -697,7 +398,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   </style>
   <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/W3C-ED">
   <link rel="canonical" href="https://www.w3.org/TR/wai-aria-practices-1.1/">
-  <meta name="generator" content="ReSpec 11.4.1">
+  <meta name="generator" content="ReSpec 11.4.3">
   <script id="initialUserConfig" type="application/json">
     {
       "doRDFa": "1.1",
@@ -1070,13 +771,13 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     }
   </script>
 </head>
-<body aria-busy="false" class="h-entry" id="respecDocument">
+<body aria-busy="false" class="h-entry toc-inline" id="respecDocument">
   <div class="head" role="contentinfo" id="respecHeader">
     <p>
       <a class="logo" href="https://www.w3.org/"><img src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" alt="W3C" width="72" height="48"></a>
     </p>
     <h1 class="title p-name" id="title" property="dcterms:title"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Authoring Practices 1.1</h1>
-    <h2 id="w3c-editor-s-draft-27-april-2017"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2017-04-27">27 April 2017</time></h2>
+    <h2 id="w3c-editor-s-draft-01-may-2017"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2017-05-01">01 May 2017</time></h2>
     <dl>
       <dt>This version:</dt>
       <dd><a class="u-url" href="http://w3c.github.io/aria-practices/">http://w3c.github.io/aria-practices/</a></dd>
@@ -1870,7 +1571,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <ul class="">
             <li>
               Because marking a dialog modal by setting
-              <a href="http://w3c.github.io/aria/aria/aria.html#aria-modal" class="property-reference">aria-modal</a> to <code>true</code> can prevent users of some assistive technologies from perceiving content outside the dialog, users of those technologies will experience severe negative ramifications if a dialog is marked modal but is not modal for other users. So, mark a dialog modal <strong>only when:</strong>
+              <a href="http://w3c.github.io/aria/aria/aria.html#aria-modal" class="property-reference">aria-modal</a> to <code>true</code> can prevent users of some assistive technologies from perceiving content outside the dialog, users of those technologies will experience severe negative ramifications if a dialog is marked modal but does not behave as a modal for other users. So, mark a dialog modal <strong>only when:</strong>
               <ol>
                 <li>Application code prevents all users from interacting in any way with content outside of it.</li>
                 <li>Visual styling obscures the content outside of it.</li>
@@ -2745,7 +2446,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         <ul>
           <li>With focus on the button:
             <ul>
-              <li><kbd>Space</kbd> and <kbd>Enter</kbd>: open the menu and place focus on the first menu item. </li>
+              <li><kbd>Enter</kbd>: opens the menu and places focus on the first menu item. </li>
+              <li><kbd>Space</kbd>: Opens the menu and places focus on the first menu item. </li>
               <li>(Optional) <kbd>Down Arrow</kbd>: opens the menu and moves focus to the first menu item. </li>
             </ul>
           </li>
