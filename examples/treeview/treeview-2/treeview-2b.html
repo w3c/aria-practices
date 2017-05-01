@@ -11,6 +11,7 @@
     <script src="../../js/highlight.pack.js"></script>
     <script src="../../js/app.js"></script>
 
+    <!--  JS and CSS for this example  -->
     <link href="css/treeLinks.css" rel="stylesheet">
     <script type="text/javascript" src="js/treeLinks.js"></script>
     <script type="text/javascript" src="js/treeitemLinks.js"></script>
@@ -598,11 +599,10 @@
               <td>
                 <ul>
                   <li>Identifies the <code>ul</code> element as a <code>tree</code> widget.</li>
-                  <li>A <code>tree</code> is a container widget for focusable, interactive <code>treeitem</code> elements.</li>
                   <li>
-                    The <code>tree</code> is not made focusable with a <code>tabindex</code> value because a
-                    <a href="../../../#kbd_roving_tabindex">roving tabindex</a>
-                    is used to control which descendant <code>treeitem</code> receives focus.
+                    Because focus movement in the tree is managed with a 
+                    <a href="../../../#kbd_roving_tabindex">roving tabindex</a>, 
+                    the <code>tree</code> container does not need a <code>tabindex</code> attribute.
                   </li>
                 </ul>
               </td>
