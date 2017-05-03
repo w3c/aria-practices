@@ -195,18 +195,6 @@ PopupMenuActionActivedescendant.prototype.handleKeydown = function (event) {
         flag = true;
         break;
 
-      case this.keyCode.LEFT:
-        this.setFocusToPreviousItem();
-        this.close(true);
-        flag = true;
-        break;
-
-      case this.keyCode.RIGHT:
-        this.setFocusToNextItem();
-        this.close(true);
-        flag = true;
-        break;
-
       case this.keyCode.HOME:
       case this.keyCode.PAGEUP:
         this.setFocusToFirstItem();
