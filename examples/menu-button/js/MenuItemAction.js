@@ -123,18 +123,6 @@ MenuItem.prototype.handleKeydown = function (event) {
         flag = true;
         break;
 
-      case this.keyCode.LEFT:
-        this.menu.setFocusToController('previous');
-        this.menu.close(true);
-        flag = true;
-        break;
-
-      case this.keyCode.RIGHT:
-        this.menu.setFocusToController('next');
-        this.menu.close(true);
-        flag = true;
-        break;
-
       case this.keyCode.HOME:
       case this.keyCode.PAGEUP:
         this.menu.setFocusToFirstItem();

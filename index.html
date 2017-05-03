@@ -398,7 +398,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   </style>
   <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/W3C-ED">
   <link rel="canonical" href="https://www.w3.org/TR/wai-aria-practices-1.1/">
-  <meta name="generator" content="ReSpec 11.4.3">
+  <meta name="generator" content="ReSpec 11.4.4">
   <script id="initialUserConfig" type="application/json">
     {
       "doRDFa": "1.1",
@@ -777,7 +777,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <a class="logo" href="https://www.w3.org/"><img src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" alt="W3C" width="72" height="48"></a>
     </p>
     <h1 class="title p-name" id="title" property="dcterms:title"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Authoring Practices 1.1</h1>
-    <h2 id="w3c-editor-s-draft-01-may-2017"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2017-05-01">01 May 2017</time></h2>
+    <h2 id="w3c-editor-s-draft-03-may-2017"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2017-05-03">03 May 2017</time></h2>
     <dl>
       <dt>This version:</dt>
       <dd><a class="u-url" href="http://w3c.github.io/aria-practices/">http://w3c.github.io/aria-practices/</a></dd>
@@ -865,9 +865,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     </p>
 
     <p>
-      This document was published by the <a href="http://www.w3.org/WAI/ARIA/">Accessible Rich Internet Applications Working Group</a> as an Editor's Draft. If you wish to make comments regarding this document, please send them to
+      This document was published by the <a href="http://www.w3.org/WAI/ARIA/">Accessible Rich Internet Applications Working Group</a> as an Editor's Draft. Comments regarding this document are welcome. Please send them to
       <a href="mailto:public-aria@w3.org">public-aria@w3.org</a> (<a href="mailto:public-aria-request@w3.org?subject=subscribe">subscribe</a>,
-      <a href="https://lists.w3.org/Archives/Public/public-aria/">archives</a>). All comments are welcome.
+      <a href="https://lists.w3.org/Archives/Public/public-aria/">archives</a>).
     </p>
     <p>
       Publication as an Editor's Draft does not imply endorsement by the <abbr title="World Wide Web Consortium">W3C</abbr> Membership. This is a draft document and may be updated, replaced or obsoleted by other documents at any time. It is inappropriate to cite this document as other than work in progress.
@@ -1571,7 +1571,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <ul class="">
             <li>
               Because marking a dialog modal by setting
-              <a href="http://w3c.github.io/aria/aria/aria.html#aria-modal" class="property-reference">aria-modal</a> to <code>true</code> can prevent users of some assistive technologies from perceiving content outside the dialog, users of those technologies will experience severe negative ramifications if a dialog is marked modal but does not behave as a modal for other users. So, mark a dialog modal <strong>only when:</strong>
+              <a href="http://w3c.github.io/aria/aria/aria.html#aria-modal" class="property-reference">aria-modal</a> to <code>true</code> can prevent users of some assistive technologies from perceiving content outside the dialog, users of those technologies will experience severe negative ramifications if a dialog is marked modal but does not behave as a modal for other users. So, mark a dialog modal <strong>only when both:</strong>
               <ol>
                 <li>Application code prevents all users from interacting in any way with content outside of it.</li>
                 <li>Visual styling obscures the content outside of it.</li>
