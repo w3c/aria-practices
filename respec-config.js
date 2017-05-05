@@ -11,6 +11,7 @@ var respecConfig = {
   // publishDate: "2013-08-22",
   noRecTrack: true,
   diffTool: 'http://www.aptest.com/standards/htmldiff/htmldiff.pl',
+  license: "w3c-software-doc",
 
   // The specifications short name, as in http://www.w3.org/TR/short-name/
   shortName: 'wai-aria-practices-1.1',
