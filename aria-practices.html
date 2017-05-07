@@ -22,20 +22,20 @@
 <section id="sotd">
     <p>
       This is an editor's draft by the
-      <a href="http://www.w3.org/WAI/ARIA/">Accessible Rich Internet Applications Working Group</a> 
-      of the 
-      <a href="http://www.w3.org/WAI/">Web Accessibility Initiative</a>. 
-      It supports the 
-      <a href="" class="specref">WAI-ARIA 1.1</a> [<cite><a href="#bib-WAI-ARIA" class="bibref">WAI-ARIA</a></cite>] 
-      specification, providing detailed advice and examples beyond what would be appropriate to a technical specification but which are important to understand the specification. 
+      <a href="http://www.w3.org/WAI/ARIA/">Accessible Rich Internet Applications Working Group</a>
+      of the
+      <a href="http://www.w3.org/WAI/">Web Accessibility Initiative</a>.
+      It supports the
+      <a href="" class="specref">WAI-ARIA 1.1</a> [<cite><a href="#bib-WAI-ARIA" class="bibref">WAI-ARIA</a></cite>]
+      specification, providing detailed advice and examples beyond what would be appropriate to a technical specification but which are important to understand the specification.
     </p>
     <p>
       This draft includes only a portion of content planned for WAI-ARIA Authoring Practices 1.1.
-      To see planns for the complete guide, review the 
+      To see planns for the complete guide, review the
       <a href="https://github.com/w3c/aria-practices/milestones?direction=asc&sort=due_date&state=open">Authoring Practices Milestone Plan</a>.
     </p>
     <p>
-      Feedback on the  information provided here is essential to the ultimate success of Rich Internet Applications that afford full access to their information and operations. 
+      Feedback on the  information provided here is essential to the ultimate success of Rich Internet Applications that afford full access to their information and operations.
       The Accessible Rich Internet Applications Working Group asks in particular:
     </p>
     <ul>
@@ -47,14 +47,14 @@
       <li>Are the <a href="#aria_ex">design patterns</a> clear?</li>
     </ul>
     <p>
-      To comment, 
-      <a href="https://github.com/w3c/aria-practices/issues/">file an issue in the <abbr title="World Wide Web Consortium">W3C</abbr> ARIA Practices GitHub repository</a>, 
-      or if that is not possible, send email to 
-      <a href="mailto:public-aria@w3.org?subject=Comment%20on%20WAI-ARIA%20Practices%201.1">public-aria@w3.org</a> 
-      (<a href="http://lists.w3.org/Archives/Public/public-aria/">comment archive</a>). 
+      To comment,
+      <a href="https://github.com/w3c/aria-practices/issues/">file an issue in the <abbr title="World Wide Web Consortium">W3C</abbr> ARIA Practices GitHub repository</a>,
+      or if that is not possible, send email to
+      <a href="mailto:public-aria@w3.org?subject=Comment%20on%20WAI-ARIA%20Practices%201.1">public-aria@w3.org</a>
+      (<a href="http://lists.w3.org/Archives/Public/public-aria/">comment archive</a>).
     </p>
   </section>
-  
+
   <section id="intro">
     <h2>Introduction</h2>
 
@@ -488,15 +488,15 @@
     <section class="widget" id="dialog_modal">
       <h3>Dialog (Modal)</h3>
       <p>
-        <strong>NOTE:</strong> This section has been significantly revised to address initial focus placement and other outstanding editorial issues. 
-        Please provide feedback on this design pattern in 
+        <strong>NOTE:</strong> This section has been significantly revised to address initial focus placement and other outstanding editorial issues.
+        Please provide feedback on this design pattern in
         <a href="https://github.com/w3c/aria-practices/issues/325">issue 325.</a>
       </p>
       <p>
         A <a href="#dialog" class="role-reference">dialog</a> is a window overlayed on either the primary window or another dialog window.
         Windows under a modal dialog are inert.
         That is, users cannot interact with content outside an active dialog window.
-        Inert content outside an active dialog is typically visually obscured or dimmed so it is difficult to discern, 
+        Inert content outside an active dialog is typically visually obscured or dimmed so it is difficult to discern,
         and in some implementations, attempts to interact with the inert content cause the dialog to close.
       </p>
       <p>
@@ -534,11 +534,11 @@
               <li>In all circumstances, focus moves to an element contained in the dialog.</li>
               <li>Unless a condition where doing otherwise is advisable, focus is initially set on the first focusable element.</li>
               <li>
-                If content is large enough that focusing the first interactive element could cause the beginning of content to scroll out of view, 
+                If content is large enough that focusing the first interactive element could cause the beginning of content to scroll out of view,
                 it is advisable to add <code>tabindex=<q>-1</q></code> to a static element at the top of the dialog, such as the dialog title or first paragraph, and initially focus that element.
               </li>
               <li>
-                If a dialog contains the final step in a process that is not easily reversible, such as deleting data or completing a financial transaction, 
+                If a dialog contains the final step in a process that is not easily reversible, such as deleting data or completing a financial transaction,
                 it may be advisable to set focus on the least destructive action, especially if undoing the action is difficult or impossible.
                 The <a href="#alertdialog">Alert Dialog Pattern</a> is often employed in such circumstances.
               </li>
@@ -563,21 +563,21 @@
           <li>The dialog container element has <a href="#aria-modal" class="property-reference">aria-modal</a> set to <code>true</code>.</li>
           <li>The dialog has either:
             <ul>
-              <li>A value set for the 
-              <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> 
+              <li>A value set for the
+              <a href="#aria-labelledby" class="property-reference">aria-labelledby</a>
               property that refers to a visible dialog title.</li>
               <li>A label specified by <a href="#aria-label" class="property-reference">aria-label</a>.</li>
             </ul>
           </li>
           <li>
-            Optionally, the <a href="#aria-describedby" class="property-reference">aria-describedby</a> property 
+            Optionally, the <a href="#aria-describedby" class="property-reference">aria-describedby</a> property
             is set on the element with the <code>dialog</code> role to indicate which element or elements in the dialog contain content that describes the primary purpose or message of the dialog.
             Specifying descriptive elements enables screen readers to announce the description along with the dialog title and initially focused element when the dialog opens.
           </li>
         </ul>
         <ul class="note">
           <li>
-            Because marking a dialog modal by setting 
+            Because marking a dialog modal by setting
             <a href="#aria-modal" class="property-reference">aria-modal</a>
             to <code>true</code> can prevent users of some assistive technologies from perceiving content outside the dialog,
             users of those technologies will experience severe negative ramifications if a dialog is marked modal but does not behave as a modal for other users.
@@ -587,7 +587,7 @@
               <li>Visual styling obscures the content outside of it.</li>
             </ol>
           <li>
-            The <code>aria-modal</code> property introduced by ARIA 1.1 replaces 
+            The <code>aria-modal</code> property introduced by ARIA 1.1 replaces
             <a href="#aria-hidden" class="state-reference">aria-hidden</a>
             for informing assistive technologies that content outside a dialog is inert.
             However, in legacy dialog implementations where <code>aria-hidden</code> is used to make content outside a dialog inert for assistive technology users, it is important that:
@@ -733,7 +733,7 @@
             Options for supporting nested feed navigation include:
             <ul>
               <li>
-                Users move focus into the nested feed from the content of the containing article with <kbd>Tab</kbd>. 
+                Users move focus into the nested feed from the content of the containing article with <kbd>Tab</kbd>.
                 This may be slow if the article contains a significant number of links, buttons, or other widgets.
                </li>
               <li>Provide a key for moving focus from the elements in the containing article to the first item in the nested feed, e.g., <kbd>Alt + Page Down</kbd>.</li>
@@ -772,8 +772,8 @@
           </li>
           <li>
             Each <code>article</code> element has
-            <a href="#aria-setsize" class="property-reference">aria-setsize</a> 
-            set to a value that represents either the total number of articles that have been loaded or the total number in the feed, 
+            <a href="#aria-setsize" class="property-reference">aria-setsize</a>
+            set to a value that represents either the total number of articles that have been loaded or the total number in the feed,
             depending on which value is deemed more helpful to users.
             If the total number in the feed is undetermined, it can be represented by a <code>aria-setsize</code> value of <code>-1</code>.
           </li>
@@ -1527,19 +1527,19 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
           <li>The element that opens the menu has role <a href="#button" class="role-reference">button</a>.</li>
           <li>The element with role <code>button</code> has <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set to <code>true</code>.</li>
           <li>
-            When the menu is displayed, the element with role <code>button</code> has 
-            <a href="#aria-expanded" class="state-reference">aria-expanded</a> 
+            When the menu is displayed, the element with role <code>button</code> has
+            <a href="#aria-expanded" class="state-reference">aria-expanded</a>
             set to <code>true</code>.
-            When the menu is hidden, it is recommended that <code>aria-expanded</code> is not present. 
+            When the menu is hidden, it is recommended that <code>aria-expanded</code> is not present.
             If <code>aria-expanded</code> is specified when the menu is hidden, it is set to <code>false</code>.
           </li>
           <li>
-            The element that contains the menu items displayed by activating the button has role 
+            The element that contains the menu items displayed by activating the button has role
             <a href="#menu" class="role-reference">menu</a>.
           </li>
           <li>
-            Optionally, the element with role <code>button</code> has a value specified for 
-            <a href="#aria-controls" class="property-reference">aria-controls</a> 
+            Optionally, the element with role <code>button</code> has a value specified for
+            <a href="#aria-controls" class="property-reference">aria-controls</a>
             that refers to the element with role <code>menu</code>.
             </li>
             <li>Additional roles, states, and properties needed for the menu element are described in <a href="#menu"></a>.</li>
@@ -3237,7 +3237,7 @@ A tree that provides navigation to a set of web pages and demonstrates how to ex
             </li>
 
             <li>
-              Activate an element without moving focus when the target context of the funtion is the context that contains the focus.
+              Activate an element without moving focus when the target context of the function is the context that contains the focus.
               This behavior is most common for command buttons and for functions associated with elements that are not visible, such as a "Save" option that is accessible via a menu.
               For example, if the focus is on an option in a listbox and a toolbar contains buttons for moving and removing options, it is most benefitial to keep focus in the listbox when the user presses a key shortcut for one of the buttons in the toolbar.
               This behavior can be particularly important for screen reader users because it provides confirmation of the action performed and makes performing multiple commands more efficient.
