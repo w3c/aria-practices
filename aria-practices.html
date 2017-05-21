@@ -549,8 +549,19 @@
             </ul>
           </li>
           <li>
-            When a dialog closes, focus is set on an element that supports a logical work flow.
-            If the element that had focus before the dialog was invoked still exists, that element is usually the most appropriate choice.
+            When a dialog closes, focus returns to the element that invoked the dialog unless either:
+            <ul>
+              <li>The invoking element no longer exists. Then, focus is set on another element that provides logical work flow.</li>
+              <li>The work flow design includes  the following conditions that can occasionally make focusing a different element a more logical choice:
+                <ol>
+                  <li>It is very unlikely users need to immediately re-invoke the dialog.</li>
+                  <li>The task completed in the dialog is directly related to a subsequent step in the work flow.</li>
+                </ol>
+                For example, a grid has an associated toolbar with a button for adding rows.
+                the Add Rows button opens a dialog that prompts for the number of rows.
+                After the dialog closes, focus is placed in the first cell of the first new row.
+              </li>
+            </ul>
           </li>
           <li>It is strongly recommended that the tab sequence of all dialogs include a visible element with role <code>button</code> that closes the dialog, such as  a close icon or cancel button.</li>
         </ol>
