@@ -1,96 +1,71 @@
-/* Contains the accordion elements */
-.accordion {
-  border: 1px solid hsl(0, 0%, 82%);
-  border-radius: .3em;
-  box-shadow: 0 1px 2px hsl(0, 0%, 82%);
+.Accordion {
+    border: 1px solid hsl(0, 0%, 82%);
+    border-radius: .3em;
+    box-shadow: 0 1px 2px hsl(0, 0%, 82%);
 }
 
-.accordion > * + * {
-  border-top: 1px solid hsl(0, 0%, 82%);
+.Accordion > * + * {
+    border-top: 1px solid hsl(0, 0%, 82%);
 }
 
-/* Heading containing accordion button */
-.accordion dt[role="heading"] {
-
+.Accordion-trigger {
+    background: none;
+    border: 0;
+    color: hsl(0, 0%, 13%);
+    display: block;
+    font-size: 1rem;
+    font-weight: normal;
+    margin: 0;
+    padding: 1em 1.5em;
+    position: relative;
+    text-align: left;
+    width: 100%;
 }
 
-.accordion dt[role="heading"]:first-of-type > button {
-  border-radius: .3em .3em 0 0;
+.Accordion dt:first-child .Accordion-trigger {
+    border-radius: .3em .3em 0 0;
 }
 
-.accordion dt[role="heading"]:last-of-type > button {
-  border-radius: 0 0 .3em .3em;
+.Accordion-trigger:focus,
+.Accordion-trigger:hover {
+    background: hsl(0, 0%, 93%);
 }
 
-.accordion dt[role="heading"]:last-of-type > button[aria-expanded="true"] {
-  border-radius: 0;
+.Accordion-icon {
+    border: solid hsl(0, 0%, 62%);
+    border-width: 0 2px 2px 0;
+    height: .5rem;
+    position: absolute;
+    right: 1.5em;
+    top: 50%;
+    transform: translateY(-60%) rotate(45deg);
+    width: .5rem;
 }
 
-/* Accordion button */
-.accordion dt > button {
-  display: block;
-  position: relative;
-  margin: 0;
-  padding: 1em 1.5em;
-  background: none;
-  border: 0;
-  color: hsl(0, 0%, 13%);
-  font-size: 16px;
-  font-weight: normal;
-  text-align: left;
-  width: 100%;
+.Accordion-trigger:focus .Accordion-icon,
+.Accordion-trigger:hover .Accordion-icon {
+    border-color: hsl(0, 0%, 13%);
 }
 
-.accordion dt > button:hover,
-.accordion dt > button:focus {
-  margin: inherit;
-  background: hsl(0, 0%, 93%);
+.Accordion-trigger[aria-expanded="true"] .Accordion-icon {
+    transform: translateY(-50%) rotate(-135deg);
 }
 
-/* Accordion button icon */
-.accordion dt > button .icon {
-  position: absolute;
-  top: 50%;
-  right: 1.5em;
-  transform: translateY(-60%) rotate(45deg);
-  width: 8px;
-  height: 8px;
-  border: solid hsl(0, 0%, 62%);
-  border-width: 0 2px 2px 0;
+.Accordion-panel {
+    margin: 0;
+    padding: 1em 1.5em;
 }
 
-.accordion dt > button[aria-expanded="true"] .icon {
-  transform: translateY(-50%) rotate(-135deg);
-}
-
-.accordion dt > button:hover .icon,
-.accordion dt > button:focus .icon {
-  border-color: hsl(0, 0%, 13%);
-}
-
-/* Accordion panel */
-.accordion dd[role="region"] {
-  margin: 0;
-  padding: 1em 1.5em;
-  /*border: solid hsl(0, 0%, 82%);
-  border-width: 0 1px;*/
-}
-
-.accordion dd[role="region"].hidden {
-  display: none;
-}
-
-/* Basic stuff */
 fieldset {
-  border: 0;
-  margin: 0;
-  padding: 0;
+    border: 0;
+    margin: 0;
+    padding: 0;
 }
 
-input[type="text"] {
-  display: block;
-  padding: .3em .5em;
-  border: 1px solid hsl(0, 0%, 62%);
-  border-radius: .3em;
-  font-size: inherit;
+input {
+    border: 1px solid hsl(0, 0%, 62%);
+    border-radius: .3em;
+    display: block;
+    font-size: inherit;
+    padding: .3em .5em;
 }
