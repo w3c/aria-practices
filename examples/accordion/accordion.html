@@ -13,8 +13,6 @@
 
 <!--  js and css for this example. -->
 <link rel="stylesheet" type="text/css" href="css/accordion.css" />
-<script type="text/javascript" src="js/helpers.js"></script>
-<script type="text/javascript" src="js/setup.js"></script>
 
 </head>
 <body>
@@ -25,34 +23,47 @@
     that demonstrates the
     <a href="../../#accordion">design pattern for accordion.</a>
     In this implementation, one panel of the accordion is always expanded, and only one panel may
-    be expanded at a time. This example does not implement any of the optional keystrokes included in the accordion pattern.
+    be expanded at a time.
   </p>
   <section>
     <h2 id="ex_label">Example</h2>
     <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
     <div id="coding-arena">
       <div class="demo-block">
-        <dl id="accordionGroup" role="presentation" class="accordion">
-          <dt role="heading" aria-level="3" class="clearfix">
-            <a role="button" aria-expanded="false" href="#" class="accAccordion"
-              aria-controls="sect1" data-defaultopen="true" id="accordion1id"
+        <!-- Accordion Configuration Options
+
+          data-allow-toggle
+            Allow for each toggle to both open and close individually
+
+          data-allow-multiple
+            Allow for multiple accordion sections to be expanded at the same time
+          __________
+
+          Ex:
+            <dl id="accordionGroup" role="presentation" class="Accordion" data-allow-multiple data-allow-toggle>
+
+        -->
+        <dl id="accordionGroup" role="presentation" class="Accordion">
+          <dt role="heading" aria-level="3">
+            <button aria-expanded="true" class="Accordion-trigger"
+              aria-controls="sect1" id="accordion1id"
             >
-              <span class="icon"></span><span class="lbl">Personal Information</span>
-            </a>
+              <span class="Accordion-title">Personal Information</span><span class="Accordion-icon"></span>
+            </button>
           </dt>
-          <dd id="sect1" role="region" aria-labelledby="accordion1id" class="hidden">
+          <dd id="sect1" role="region" aria-labelledby="accordion1id" class="Accordion-panel">
             <div>
               <!-- Variable content within section, may include any type of markup or interactive widgets. -->
-              <fieldset class="contact flex">
+              <fieldset>
                 <p>
-                  <label for="cufc1">Name<span class="cRed">*</span>:</label>
+                  <label for="cufc1">Name<span aria-hidden="true">*</span>:</label>
                   <input type="text" value="" name="Name" id="cufc1" class="required"
                     aria-required="true"
                   >
                 </p>
                 <p>
-                  <label for="cufc2">Email<span class="cRed">*</span>:</label>
-                  <input type="text" value="" name="Email" id="cufc2" class="required"
+                  <label for="cufc2">Email<span aria-hidden="true">*</span>:</label>
+                  <input type="text" value="" name="Email" id="cufc2"
                     aria-required="true"
                   >
                 </p>
@@ -75,14 +86,14 @@
               </fieldset>
             </div>
           </dd>
-          <dt role="heading" aria-level="3" class="clearfix">
-            <a role="button" aria-expanded="false" href="#" class="accAccordion"
+          <dt role="heading" aria-level="3">
+            <button aria-expanded="false" class="Accordion-trigger"
               aria-controls="sect2" id="accordion2id"
             >
-              <span class="icon"></span><span class="lbl">Billing Address</span>
-            </a>
+              <span class="Accordion-title">Billing Address</span><span class="Accordion-icon"></span>
+            </button>
           </dt>
-          <dd id="sect2" role="region" aria-labelledby="accordion2id" class="hidden">
+          <dd id="sect2" role="region" aria-labelledby="accordion2id" class="Accordion-panel" hidden>
             <div>
               <fieldset class="billing flex">
                 <p>
@@ -108,16 +119,16 @@
               </fieldset>
             </div>
           </dd>
-          <dt role="heading" aria-level="3" class="clearfix">
-            <a role="button" aria-expanded="false" href="#" class="accAccordion"
+          <dt role="heading" aria-level="3">
+            <button aria-expanded="false" class="Accordion-trigger"
               aria-controls="sect3" id="accordion3id"
             >
-              <span class="icon"></span><span class="lbl">Shipping Address</span>
-            </a>
+              <span class="Accordion-title">Shipping Address</span><span class="Accordion-icon"></span>
+            </button>
           </dt>
-          <dd id="sect3" role="region" aria-labelledby="accordion3id" class="hidden">
+          <dd id="sect3" role="region" aria-labelledby="accordion3id" class="Accordion-panel" hidden>
             <div>
-              <fieldset class="shipping flex">
+              <fieldset>
                 <p>
                   <label for="m-add1">Address 1:</label>
                   <input type="text" name="m-add1" id="m-add1" />
@@ -159,6 +170,51 @@
         <tr>
           <th><kbd>Space</kbd> or <kbd>Enter</kbd></th>
           <td>When focus is on the accordion header of a collapsed section, expands the section.</td>
+        </tr>
+        <tr>
+          <th><kbd>Down Arrow</kbd></th>
+          <td>
+            <ul>
+              <li>When focus is on an accordion header, moves focus to the next accordion header.</li>
+              <li>When focus is on last accordion header, moves focus to first accordion header.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th><kbd>Up Arrow</kbd></th>
+          <td>
+            <ul>
+              <li>When focus is on an accordion header, moves focus to the previous accordion header.</li>
+              <li>When focus is on first accordion header, moves focus to last accordion header.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th><kbd>Home</kbd></th>
+          <td>When focus is on an accordion header, moves focus to the first accordion header.</td>
+        </tr>
+        <tr>
+          <th><kbd>End</kbd></th>
+          <td>When focus is on an accordion header, moves focus to the last accordion header.</td>
+        </tr>
+        <tr>
+          <th><kbd>Control + Page Down</kbd></th>
+          <td>
+            <ul>
+              <li>When focus is inside an accordion panel or on an accordion header, moves focus to the next accordion header.</li>
+              <li>When focus is on last accordion header or inside last accordion panel, moves focus to first accordion header.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th><kbd>Control + Page Up</kbd></th>
+          <td>
+            <ul>
+              <li>When focus is inside an accordion panel, moves focus to the header for that panel.</li>
+              <li>When focus is on an accordion header, moves focus to the previous accordion header.</li>
+              <li>When focus is on first accordion header, moves focus to last accordion header.</li>
+            </ul>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -267,7 +323,7 @@
         CSS:
         <ol>
           <li>
-            <a href="css/customize.css" type="tex/css">customize.css</a>
+            <a href="css/accordion.css" type="tex/css">accordion.css</a>
           </li>
         </ol>
       </li>
@@ -275,10 +331,7 @@
         JavaScript:
         <ol>
           <li>
-            <a href="js/helpers.js" type="text/javascript">helpers.js</a>
-          </li>
-          <li>
-            <a href="js/setup.js" type="text/javascript">setup.js</a>
+            <a href="js/accordion.js" type="text/javascript">accordion.js</a>
           </li>
         </ol>
       </li>
@@ -300,5 +353,7 @@
   <nav>
     <a href="../../#accordion">Accordion Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
   </nav>
+
+  <script src="js/accordion.js"></script>
 </body>
 </html>
