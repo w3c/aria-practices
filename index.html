@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html typeof="bibo:Document " prefix="bibo: http://purl.org/ontology/bibo/ w3p: http://www.w3.org/2001/02pd/rec54#" lang="en-US">
+<html lang="en-US" typeof="bibo:Document " prefix="bibo: http://purl.org/ontology/bibo/ w3p: http://www.w3.org/2001/02pd/rec54#">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="dc:language" content="en" lang="">
+  <meta lang="" property="dc:language" content="en">
   <style>
     /*
 
@@ -398,7 +398,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   </style>
   <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/W3C-ED">
   <link rel="canonical" href="https://www.w3.org/TR/wai-aria-practices-1.1/">
-  <meta name="generator" content="ReSpec 12.0.6">
+  <meta name="generator" content="ReSpec 14.0.2">
   <script id="initialUserConfig" type="application/json">
     {
       "doRDFa": "1.1",
@@ -767,17 +767,20 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       },
       "preProcess": [
         null
-      ]
+      ],
+      "publishDate": "2017-06-12",
+      "publishISODate": "2017-06-12T00:00:00.000Z",
+      "generatedSubtitle": "Editor's Draft 12 June 2017"
     }
   </script>
 </head>
-<body aria-busy="false" class="h-entry" id="respecDocument">
+<body aria-busy="false" class="h-entry toc-inline" id="respecDocument">
   <div class="head" role="contentinfo" id="respecHeader">
     <p>
-      <a class="logo" href="https://www.w3.org/"><img src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" alt="W3C" width="72" height="48"></a>
+      <a class="logo" href="https://www.w3.org/"><img width="72" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" alt="W3C"></a>
     </p>
     <h1 class="title p-name" id="title" property="dcterms:title"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Authoring Practices 1.1</h1>
-    <h2 id="w3c-editor-s-draft-21-may-2017"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2017-05-21">21 May 2017</time></h2>
+    <h2 id="w3c-editor-s-draft-12-june-2017"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2017-06-12">12 June 2017</time></h2>
     <dl>
       <dt>This version:</dt>
       <dd><a class="u-url" href="http://w3c.github.io/aria-practices/">http://w3c.github.io/aria-practices/</a></dd>
@@ -817,7 +820,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <a href="https://www.keio.ac.jp/">Keio</a>, <a href="http://ev.buaa.edu.cn/">Beihang</a>).
       <abbr title="World Wide Web Consortium">W3C</abbr> <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
       <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and
-      <a rel="license" href="https://www.w3.org/Consortium/Legal/copyright-documents">document use</a> rules apply.
+      <a rel="license" href="https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document">permissive document license</a> rules apply.
     </p>
     <hr title="Separator for header">
   </div>
@@ -875,16 +878,17 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     <p>
       This document was produced by a group operating under the
       <a id="sotd_patent" property="w3p:patentRules" href="https://www.w3.org/Consortium/Patent-Policy-20040205/">5 February 2004 <abbr title="World Wide Web Consortium">W3C</abbr> Patent
-              Policy</a>.
+            Policy</a>.
       <abbr title="World Wide Web Consortium">W3C</abbr> maintains a <a href="https://www.w3.org/2004/01/pp-impl/83726/status" rel="disclosure">public list of any patent
-                disclosures</a> made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. An individual who has actual knowledge of a patent which the individual believes contains
+              disclosures</a> made in connection with the deliverables of the group; that page also includes instructions for disclosing a patent. An individual who has actual knowledge of a patent which the individual believes contains
       <a href="https://www.w3.org/Consortium/Patent-Policy-20040205/#def-essential">Essential
-              Claim(s)</a> must disclose the information in accordance with
+            Claim(s)</a> must disclose the information in accordance with
       <a href="https://www.w3.org/Consortium/Patent-Policy-20040205/#sec-Disclosure">section
-              6 of the <abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>.
+            6 of the <abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>.
     </p>
     <p>This document is governed by the <a id="w3c_process_revision" href="https://www.w3.org/2017/Process-20170301/">1 March 2017 <abbr title="World Wide Web Consortium">W3C</abbr> Process Document</a>.
     </p>
+
 
   </section>
   <nav id="toc">
@@ -1058,13 +1062,6 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         <ol class="toc">
           <li class="tocline"><a href="#ScreenReaderModes" class="tocxref"><span class="secno">A.1 </span>Understanding Screen Reader Document Reading and Application Reading Modes</a></li>
           <li class="tocline"><a href="#ariaBackground" class="tocxref"><span class="secno">A.2 </span>Background on <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr></a></li>
-          <li class="tocline"><a href="#acknowledgements" class="tocxref"><span class="secno">A.3 </span>Acknowledgments</a>
-            <ol class="toc">
-              <li class="tocline"><a href="#ack_group" class="tocxref"><span class="secno">A.3.1 </span>Participants active in the ARIA WG at the time of publication</a></li>
-              <li class="tocline"><a href="#ack_others" class="tocxref"><span class="secno">A.3.2 </span>Other ARIA contributors, commenters, and previously active participants</a></li>
-              <li class="tocline"><a href="#ack_funders" class="tocxref"><span class="secno">A.3.3 </span>Enabling funders</a></li>
-            </ol>
-          </li>
         </ol>
       </li>
       <li class="tocline"><a href="#references" class="tocxref"><span class="secno">B. </span>References</a>
@@ -1074,8 +1071,6 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </li>
     </ol>
   </nav>
-
-
 
   <section id="intro" typeof="bibo:Chapter" resource="#intro" property="bibo:hasPart">
     <!--OddPage-->
@@ -1152,6 +1147,11 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         In some accordions, there are additional elements that are always visible adjacent to the accordion header. For instance, a menubutton may accompany each accordion header to provide access to actions that apply to that section. And, in some cases, a snippet of the hidden content may also be visually persistent.
       </p>
 
+      <section class="notoc" typeof="bibo:Chapter" resource="#example" property="bibo:hasPart">
+        <h4 id="example" resource="#example"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
+        <p><a href="examples/accordion/accordion.html">Accordion Example</a>: demonstrates a form divided into three sections using an accordion to show one section at a time. </p>
+      </section>
+
       <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction" property="bibo:hasPart">
         <h4 id="keyboard-interaction" resource="#keyboard-interaction"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
         <ul>
@@ -1226,11 +1226,6 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           </li>
         </ul>
       </section>
-
-      <section class="notoc" typeof="bibo:Chapter" resource="#example" property="bibo:hasPart">
-        <h4 id="example" resource="#example"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
-        <p><a href="examples/accordion/accordion.html">Accordion Example</a>: demonstrates a form divided into three sections using an accordion to show one section at a time. </p>
-      </section>
     </section>
 
     <section class="widget" id="alert" typeof="bibo:Chapter" resource="#alert" property="bibo:hasPart">
@@ -1250,6 +1245,11 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         <a href="http://www.w3.org/TR/UNDERSTANDING-WCAG20/time-limits-postponed.html">WCAG 2.0 success criterion 2.2.4</a> more difficult.
       </p>
 
+      <section class="notoc" typeof="bibo:Chapter" resource="#example-1" property="bibo:hasPart">
+        <h4 id="example-1" resource="#example-1"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
+        <p><a href="examples/alert/index.html">Alert Example</a></p>
+      </section>
+
       <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-1" property="bibo:hasPart">
         <h4 id="keyboard-interaction-1" resource="#keyboard-interaction-1"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
         <p>An alert (<abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> live region) does not require any keyboard interaction.</p>
@@ -1258,11 +1258,6 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <section class="notoc" typeof="bibo:Chapter" resource="#wai-aria-roles-states-and-properties-1" property="bibo:hasPart">
         <h4 id="wai-aria-roles-states-and-properties-1" resource="#wai-aria-roles-states-and-properties-1"><span property="xhv:role" resource="xhv:heading"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties</span></h4>
         <p>The widget has a role of <a class="role-reference" href="http://w3c.github.io/aria/aria/aria.html#alert">alert</a>.</p>
-      </section>
-
-      <section class="notoc" typeof="bibo:Chapter" resource="#example-1" property="bibo:hasPart">
-        <h4 id="example-1" resource="#example-1"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
-        <p><a href="examples/alert/index.html">Alert Example</a></p>
       </section>
     </section>
 
@@ -1274,6 +1269,13 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <p>
         An alert dialog is a <a href="#dialog_modal">modal dialog</a> that interrupts the user's workflow to communicate an important message and acquire a response. Examples include action confirmation prompts and error message confirmations. The <a href="http://w3c.github.io/aria/aria/aria.html#alertdialog" class="role-reference">alertdialog</a> role enables assistive technologies and browsers to distinguish alert dialogs from other dialogs so they have the option of giving alert dialogs special treatment, such as playing a system alert sound.
       </p>
+
+      <section class="notoc" typeof="bibo:Chapter" resource="#example-2" property="bibo:hasPart">
+        <h4 id="example-2" resource="#example-2"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
+        <p>
+          Developing an example implementation of this pattern is <a href="https://github.com/w3c/aria-practices/issues/101">issue 101</a>.
+        </p>
+      </section>
 
       <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-2" property="bibo:hasPart">
         <h4 id="keyboard-interaction-2" resource="#keyboard-interaction-2"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
@@ -1306,13 +1308,6 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           </li>
         </ul>
       </section>
-
-      <section class="notoc" typeof="bibo:Chapter" resource="#example-2" property="bibo:hasPart">
-        <h4 id="example-2" resource="#example-2"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
-        <p>
-          Developing an example implementation of this pattern is <a href="https://github.com/w3c/aria-practices/issues/101">issue 101</a>.
-        </p>
-      </section>
     </section>
 
     <section class="widget" id="breadcrumb" typeof="bibo:Chapter" resource="#breadcrumb" property="bibo:hasPart">
@@ -1323,6 +1318,11 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <p>
         A breadcrumb trail consists of a list of links to the parent pages of the current page in hierarchical order. It helps users find their place within a website or web application. Breadcrumbs are often placed horizontally before a page's main content.
       </p>
+
+      <section class="notoc" typeof="bibo:Chapter" resource="#example-3" property="bibo:hasPart">
+        <h4 id="example-3" resource="#example-3"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
+        <p><a href="examples/breadcrumb/index.html">Breadcrumb design pattern example</a></p>
+      </section>
 
       <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-3" property="bibo:hasPart">
         <h4 id="keyboard-interaction-3" resource="#keyboard-interaction-3"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
@@ -1338,11 +1338,6 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             The link to the current page has <a href="http://w3c.github.io/aria/aria/aria.html#aria-current" class="property-reference">aria-current</a> set to <code>page</code>. If the element representing the current page is not a link, aria-current is optional.
           </li>
         </ul>
-      </section>
-
-      <section class="notoc" typeof="bibo:Chapter" resource="#example-3" property="bibo:hasPart">
-        <h4 id="example-3" resource="#example-3"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
-        <p><a href="examples/breadcrumb/index.html">Breadcrumb design pattern example</a></p>
       </section>
     </section>
 
@@ -1368,6 +1363,11 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           The types of actions performed by buttons are distinctly different from the function of a link (see <a href="#link">link pattern</a>). It is important that both the appearance and role of a widget match the function it provides. Nevertheless, elements occasionally have the visual style of a link but perform the action of a button. In such cases, giving the element role <code>button</code> helps assistive technology users understand the function of the element. However, a better solution is to adjust the visual design so it matches the function and ARIA role.
         </p>
       </div>
+
+      <section class="notoc" typeof="bibo:Chapter" resource="#examples" property="bibo:hasPart">
+        <h4 id="examples" resource="#examples"><span property="xhv:role" resource="xhv:heading">Examples</span></h4>
+        <p><a href="examples/button/button.html">Button Examples</a>: Examples of clickable HTML <code>div</code> and <code>span</code> elements made into accessible command and toggle buttons.</p>
+      </section>
 
       <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-4" property="bibo:hasPart">
         <h4 id="keyboard-interaction-4" resource="#keyboard-interaction-4"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
@@ -1412,11 +1412,6 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           </li>
         </ul>
       </section>
-
-      <section class="notoc" typeof="bibo:Chapter" resource="#examples" property="bibo:hasPart">
-        <h4 id="examples" resource="#examples"><span property="xhv:role" resource="xhv:heading">Examples</span></h4>
-        <p><a href="examples/button/button.html">Button Examples</a>: Examples of clickable HTML <code>div</code> and <code>span</code> elements made into accessible command and toggle buttons.</p>
-      </section>
     </section>
 
     <section class="widget" id="checkbox" typeof="bibo:Chapter" resource="#checkbox" property="bibo:hasPart">
@@ -1446,6 +1441,18 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </li>
       </ul>
 
+      <section class="notoc" typeof="bibo:Chapter" resource="#examples-1" property="bibo:hasPart">
+        <h4 id="examples-1" resource="#examples-1"><span property="xhv:role" resource="xhv:heading">Examples</span></h4>
+        <ul>
+          <li>
+            <a href="examples/checkbox/checkbox-1/checkbox-1.html">Simple Two-State Checkbox Example</a>: Demonstrates a simple 2-state checkbox.
+          </li>
+          <li>
+            <a href="examples/checkbox/checkbox-2/checkbox-2.html">Tri-State Checkbox Example</a>: Demonstrates how to make a widget that uses the <code>mixed</code> value for <code>aria-checked</code> and group collection of checkboxes with a field set.
+          </li>
+        </ul>
+      </section>
+
       <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-5" property="bibo:hasPart">
         <h4 id="keyboard-interaction-5" resource="#keyboard-interaction-5"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
         <p>When the checkbox has focus, pressing the <kbd>Space</kbd> key changes the state of the checkbox.</p>
@@ -1461,18 +1468,6 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <li>When partially checked, it has state <a href="http://w3c.github.io/aria/aria/aria.html#aria-checked" class="state-reference">aria-checked</a> set to <code>mixed</code>.</li>
           <li>If a set of checkboxes is presented as a logical group with a visible label, the checkboxes are included in an element with role <a href="http://w3c.github.io/aria/aria/aria.html#group" class="role-reference">group</a> that has the property <a href="http://w3c.github.io/aria/aria/aria.html#aria-labelledby" class="property-reference">aria-labelledby</a> set to the ID of the element containing the label.</li>
           <li>If the presentation includes additional descriptive static text relevant to a checkbox or checkbox group, the checkbox or checkbox group has the property <a href="http://w3c.github.io/aria/aria/aria.html#aria-describedby" class="property-reference">aria-describedby</a> set to the ID of the element containing the description.</li>
-        </ul>
-      </section>
-
-      <section class="notoc" typeof="bibo:Chapter" resource="#examples-1" property="bibo:hasPart">
-        <h4 id="examples-1" resource="#examples-1"><span property="xhv:role" resource="xhv:heading">Examples</span></h4>
-        <ul>
-          <li>
-            <a href="examples/checkbox/checkbox-1/checkbox-1.html">Simple Two-State Checkbox Example</a>: Demonstrates a simple 2-state checkbox.
-          </li>
-          <li>
-            <a href="examples/checkbox/checkbox-2/checkbox-2.html">Tri-State Checkbox Example</a>: Demonstrates how to make a widget that uses the <code>mixed</code> value for <code>aria-checked</code> and group collection of checkboxes with a field set.
-          </li>
         </ul>
       </section>
     </section>
@@ -1491,10 +1486,6 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </span>
       </h3>
       <p>
-        <strong>NOTE:</strong> This section has been significantly revised to address initial focus placement and other outstanding editorial issues. Please provide feedback on this design pattern in
-        <a href="https://github.com/w3c/aria-practices/issues/325">issue 325.</a>
-      </p>
-      <p>
         A <a href="http://w3c.github.io/aria/aria/aria.html#dialog" class="role-reference">dialog</a> is a window overlayed on either the primary window or another dialog window. Windows under a modal dialog are inert. That is, users cannot interact with content outside an active dialog window. Inert content outside an active dialog is typically visually obscured or dimmed so it is difficult to discern, and in some implementations, attempts to interact with the inert content cause the dialog to close.
       </p>
       <p>
@@ -1503,6 +1494,11 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <p>
         The <a href="http://w3c.github.io/aria/aria/aria.html#alertdialog" class="role-reference">alertdialog</a> role is a special-case dialog role designed specifically for dialogs that divert users' attention to a brief, important message. Its usage is described in the <a href="#alertdialog">alert dialog design pattern.</a>
       </p>
+
+      <section class="notoc" typeof="bibo:Chapter" resource="#example-4" property="bibo:hasPart">
+        <h4 id="example-4" resource="#example-4"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
+        <p><a href="examples/dialog-modal/dialog.html">Modal Dialog Example</a></p>
+      </section>
 
       <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-6" property="bibo:hasPart">
         <h4 id="keyboard-interaction-6" resource="#keyboard-interaction-6"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
@@ -1598,11 +1594,6 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           </ul>
         </div>
       </section>
-
-      <section class="notoc" typeof="bibo:Chapter" resource="#example-4" property="bibo:hasPart">
-        <h4 id="example-4" resource="#example-4"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
-        <p><a href="examples/dialog-modal/dialog.html">Modal Dialog Example</a></p>
-      </section>
     </section>
 
     <section class="widget" id="dialog_nonmodal" typeof="bibo:Chapter" resource="#dialog_nonmodal" property="bibo:hasPart">
@@ -1624,6 +1615,14 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </p>
       <p>Write description of disclosure pattern here.</p>
 
+      <section class="notoc" typeof="bibo:Chapter" resource="#examples-2" property="bibo:hasPart">
+        <h4 id="examples-2" resource="#examples-2"><span property="xhv:role" resource="xhv:heading">Examples</span></h4>
+        <ul>
+          <li><a href="examples/disclosure/disclosure-img-long-description.html">Disclosure (Show/Hide) of Image Description</a></li>
+          <li><a href="examples/disclosure/disclosure-faq.html">Disclosure (Show/Hide) of Answers to Frequently Asked Questions</a></li>
+        </ul>
+      </section>
+
       <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-7" property="bibo:hasPart">
         <h4 id="keyboard-interaction-7" resource="#keyboard-interaction-7"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
         <p>When the disclosure control has focus:</p>
@@ -1639,14 +1638,6 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <li>role <a href="http://w3c.github.io/aria/aria/aria.html#button" class="role-reference">button</a></li>
           <li>state <a href="http://w3c.github.io/aria/aria/aria.html#aria-expanded" class="state-reference">aria-expanded</a></li>
           <li>property <a href="http://w3c.github.io/aria/aria/aria.html#aria-controls" class="property-reference">aria-controls</a></li>
-        </ul>
-      </section>
-
-      <section class="notoc" typeof="bibo:Chapter" resource="#examples-2" property="bibo:hasPart">
-        <h4 id="examples-2" resource="#examples-2"><span property="xhv:role" resource="xhv:heading">Examples</span></h4>
-        <ul>
-          <li><a href="examples/disclosure/disclosure-img-long-description.html">Disclosure (Show/Hide) of Image Description</a></li>
-          <li><a href="examples/disclosure/disclosure-faq.html">Disclosure (Show/Hide) of Answers to Frequently Asked Questions</a></li>
         </ul>
       </section>
     </section>
@@ -1701,6 +1692,13 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <p>
         Another feature of the feed pattern is its ability to facilitate skim reading for assistive technology users. Web page authors may provide both an accessible name and description for each article. By identifying the elements inside of an article that provide the title and the primary content, assistive technologies can provide functions that enable users to jump from article to article and efficiently discern which articles may be worthy of more attention.
       </p>
+
+      <section class="notoc" typeof="bibo:Chapter" resource="#example-5" property="bibo:hasPart">
+        <h4 id="example-5" resource="#example-5"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
+        <p>
+          <a href="examples/feed/feed.html">Example Implementation of Feed Pattern</a>
+        </p>
+      </section>
 
       <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-8" property="bibo:hasPart">
         <h4 id="keyboard-interaction-8" resource="#keyboard-interaction-8"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
@@ -1765,13 +1763,6 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           </li>
         </ul>
       </section>
-
-      <section class="notoc" typeof="bibo:Chapter" resource="#example-5" property="bibo:hasPart">
-        <h4 id="example-5" resource="#example-5"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
-        <p>
-          <a href="examples/feed/feed.html">Example Implementation of Feed Pattern</a>
-        </p>
-      </section>
     </section>
 
     <section class="widget" id="grid" typeof="bibo:Chapter" resource="#grid" property="bibo:hasPart">
@@ -1803,6 +1794,15 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <p>
         Uses of the <code>grid</code> pattern broadly fall into two categories: presenting tabular information (data grids) and grouping other widgets (layout grids). Even though both data grids and layout grids employ the same ARIA roles, states, and properties, differences in their content and purpose surface factors that are important to consider in keyboard interaction design. To address these factors, the following two sections describe separate keyboard interaction patterns for data and layout grids.
       </p>
+
+      <section class="notoc" typeof="bibo:Chapter" resource="#examples-3" property="bibo:hasPart">
+        <h4 id="examples-3" resource="#examples-3"><span property="xhv:role" resource="xhv:heading">Examples</span></h4>
+        <ul>
+          <li><a href="examples/grid/LayoutGrids.html">Layout Grid Examples</a>: Three example implementations of grids that are used to lay out widgets, including a collection of navigation links, a message recipients list, and a set of search results.</li>
+          <li><a href="examples/grid/dataGrids.html">Data Grid Examples</a>: Three example implementations of grid that include features relevant to presenting tabular information, such as content editing, sort, and column hiding.</li>
+          <li><a href="examples/grid/advancedDataGrid.html">Advanced Data Grid Example</a>: Example of a grid with behaviors and features similar to a typical spreadsheet, including cell and row selection.</li>
+        </ul>
+      </section>
 
       <section id="dataGrid" class="notoc" typeof="bibo:Chapter" resource="#dataGrid" property="bibo:hasPart">
         <h4 id="h-datagrid" resource="#h-datagrid"><span property="xhv:role" resource="xhv:heading">Data Grids For Presenting Tabular Information<span class="permalink" typeof="bookmark"><a href="#dataGrid" aria-label="Permalink for Data Grids For Presenting Tabular Information" title="Permalink for Data Grids For Presenting Tabular Information" property="url"><span property="title" content="Data Grids For Presenting Tabular Information">§</span></a>
@@ -2101,15 +2101,6 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </div>
 
       </section>
-
-      <section class="notoc" typeof="bibo:Chapter" resource="#examples-3" property="bibo:hasPart">
-        <h4 id="examples-3" resource="#examples-3"><span property="xhv:role" resource="xhv:heading">Examples</span></h4>
-        <ul>
-          <li><a href="examples/grid/LayoutGrids.html">Layout Grid Examples</a>: Three example implementations of grids that are used to lay out widgets, including a collection of navigation links, a message recipients list, and a set of search results.</li>
-          <li><a href="examples/grid/dataGrids.html">Data Grid Examples</a>: Three example implementations of grid that include features relevant to presenting tabular information, such as content editing, sort, and column hiding.</li>
-          <li><a href="examples/grid/advancedDataGrid.html">Advanced Data Grid Example</a>: Example of a grid with behaviors and features similar to a typical spreadsheet, including cell and row selection.</li>
-        </ul>
-      </section>
     </section>
 
     <section class="widget" id="link" typeof="bibo:Chapter" resource="#link" property="bibo:hasPart">
@@ -2128,6 +2119,11 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </p>
       </div>
 
+      <section class="notoc" typeof="bibo:Chapter" resource="#examples-4" property="bibo:hasPart">
+        <h4 id="examples-4" resource="#examples-4"><span property="xhv:role" resource="xhv:heading">Examples</span></h4>
+        <p><a href="examples/link/link.html">Link Examples</a>: Link widgets constructed from HTML <code>span</code> and <code>div</code> elements.</p>
+      </section>
+
       <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-9" property="bibo:hasPart">
         <h4 id="keyboard-interaction-9" resource="#keyboard-interaction-9"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
         <ul>
@@ -2141,11 +2137,6 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         <p>
           The element containing the link text or graphic has role of <a href="http://w3c.github.io/aria/aria/aria.html#link" class="role-reference">link</a>.
         </p>
-      </section>
-
-      <section class="notoc" typeof="bibo:Chapter" resource="#examples-4" property="bibo:hasPart">
-        <h4 id="examples-4" resource="#examples-4"><span property="xhv:role" resource="xhv:heading">Examples</span></h4>
-        <p><a href="examples/link/link.html">Link Examples</a>: Link widgets constructed from HTML <code>span</code> and <code>div</code> elements.</p>
       </section>
     </section>
 
@@ -2167,6 +2158,11 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <p>
         Sets of options where each option name starts with the same word or phrase can also significantly degrade usability for keyboard and screen reader users. Scrolling through the list to find a specific option becomes inordinately time consuming for a screen reader user who must listen to that word or phrase repeated before hearing what is unique about each option. For example, if a listbox for choosing a city were to contain options where each city name were preceded by a country name, and if many cities were listed for each country, a screen reader user would have to listen to the country name before hearing each city name. In such a scenario, it would be better to have 2 list boxes, one for country and one for city.
       </p>
+
+      <section class="notoc" typeof="bibo:Chapter" resource="#examples-5" property="bibo:hasPart">
+        <h4 id="examples-5" resource="#examples-5"><span property="xhv:role" resource="xhv:heading">Examples</span></h4>
+        <p><a href="examples/listbox/listbox.html">Listbox Examples:</a> Two examples of the listbox pattern demonstrating differences between single-select and multi-select implementation as well as the use of action buttons with key shortcuts for arranging items in a list.</p>
+      </section>
 
       <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-10" property="bibo:hasPart">
         <h4 id="keyboard-interaction-10" resource="#keyboard-interaction-10"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
@@ -2265,11 +2261,6 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           </li>
         </ul>
       </section>
-
-      <section class="notoc" typeof="bibo:Chapter" resource="#examples-5" property="bibo:hasPart">
-        <h4 id="examples-5" resource="#examples-5"><span property="xhv:role" resource="xhv:heading">Examples</span></h4>
-        <p><a href="examples/listbox/listbox.html">Listbox Examples:</a> Two examples of the listbox pattern demonstrating differences between single-select and multi-select implementation as well as the use of action buttons with key shortcuts for arranging items in a list.</p>
-      </section>
     </section>
 
     <section class="widget" id="menu" typeof="bibo:Chapter" resource="#menu" property="bibo:hasPart">
@@ -2286,6 +2277,14 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </p>
 
       <p>A common convention for indicating that a menu item launches a dialog box is to append "…" (ellipsis) to the menu item label, e.g., "Save as …".</p>
+
+      <section class="notoc" typeof="bibo:Chapter" resource="#examples-6" property="bibo:hasPart">
+        <h4 id="examples-6" resource="#examples-6"><span property="xhv:role" resource="xhv:heading">Examples</span></h4>
+        <ul>
+          <li><a href="examples/menubar/menubar-1/menubar-1.html">Navigation Menubar Example</a>: Demonstrates a menubar that provides site navigation.</li>
+          <li><a href="examples/menubar/menubar-2/menubar-2.html">Editor Menubar Example</a>: Demonstrates menu radios and menu checkboxes in submenus of a menubar that provides text formatting commands for a text field.</li>
+        </ul>
+      </section>
 
       <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-11" property="bibo:hasPart">
         <h4 id="keyboard-interaction-11" resource="#keyboard-interaction-11"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
@@ -2434,14 +2433,6 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <p class="">If <a href="http://w3c.github.io/aria/aria/aria.html#aria-owns" class="property-reference">aria-owns</a> is set on the menu container to include elements that are not DOM children of the container, those elements will appear in the reading order in the sequence they are referenced and after any items that are DOM children. Scripts that manage focus need to ensure the visual focus order matches this assistive technology reading order. </p>
         </div>
       </section>
-
-      <section class="notoc" typeof="bibo:Chapter" resource="#examples-6" property="bibo:hasPart">
-        <h4 id="examples-6" resource="#examples-6"><span property="xhv:role" resource="xhv:heading">Examples</span></h4>
-        <ul>
-          <li><a href="examples/menubar/menubar-1/menubar-1.html">Navigation Menubar Example</a>: Demonstrates a menubar that provides site navigation.</li>
-          <li><a href="examples/menubar/menubar-2/menubar-2.html">Editor Menubar Example</a>: Demonstrates menu radios and menu checkboxes in submenus of a menubar that provides text formatting commands for a text field.</li>
-        </ul>
-      </section>
     </section>
 
     <section class="widget" id="menubutton" typeof="bibo:Chapter" resource="#menubutton" property="bibo:hasPart">
@@ -2450,6 +2441,15 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </span>
       </h3>
       <p>A menu button is a <a href="#button">button</a> that opens a <a href="#menu">menu</a>. It is often styled as a typical push button with a downward pointing arrow or triangle to hint that activating the button will display a menu.</p>
+
+      <section class="notoc" typeof="bibo:Chapter" resource="#examples-7" property="bibo:hasPart">
+        <h4 id="examples-7" resource="#examples-7"><span property="xhv:role" resource="xhv:heading">Examples</span></h4>
+        <ul>
+          <li><a href="examples/menu-button/menu-button-links.html">Navigation Menu Button</a>: A menu button made from an HTML <code>a</code> element that opens a menu of items that behave as links.</li>
+          <li><a href="examples/menu-button/menu-button-actions.html">Action Menu Button Example Using element.focus()</a>: A menu button made from an HTML <code>button</code> element that opens a menu of actions or commands where focus in the menu is managed using <code>element.focus()</code>.</li>
+          <li><a href="examples/menu-button/menu-button-actions-active-descendant.html">Action Menu Button Example Using aria-activedescendant</a>: A button that opens a menu of actions or commands where focus in the menu is managed using aria-activedescendant.</li>
+        </ul>
+      </section>
 
       <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-12" property="bibo:hasPart">
         <h4 id="keyboard-interaction-12" resource="#keyboard-interaction-12"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
@@ -2486,15 +2486,6 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <li>Additional roles, states, and properties needed for the menu element are described in <a href="#menu" class="sec-ref"><span class="secno">2.16</span> <span class="sec-title">Menu or Menu bar</span></a>.</li>
         </ul>
       </section>
-
-      <section class="notoc" typeof="bibo:Chapter" resource="#examples-7" property="bibo:hasPart">
-        <h4 id="examples-7" resource="#examples-7"><span property="xhv:role" resource="xhv:heading">Examples</span></h4>
-        <ul>
-          <li><a href="examples/menu-button/menu-button-links.html">Navigation Menu Button</a>: A menu button made from an HTML <code>a</code> element that opens a menu of items that behave as links.</li>
-          <li><a href="examples/menu-button/menu-button-actions.html">Action Menu Button Example Using element.focus()</a>: A menu button made from an HTML <code>button</code> element that opens a menu of actions or commands where focus in the menu is managed using <code>element.focus()</code>.</li>
-          <li><a href="examples/menu-button/menu-button-actions-active-descendant.html">Action Menu Button Example Using aria-activedescendant</a>: A button that opens a menu of actions or commands where focus in the menu is managed using aria-activedescendant.</li>
-        </ul>
-      </section>
     </section>
 
     <section class="widget" id="radiobutton" typeof="bibo:Chapter" resource="#radiobutton" property="bibo:hasPart">
@@ -2505,6 +2496,21 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <p>
         A radio group is a set of checkable buttons, known as radio buttons, where only one button in the set may be in a checked state.
       </p>
+
+      <section class="notoc" typeof="bibo:Chapter" resource="#examples-8" property="bibo:hasPart">
+        <h4 id="examples-8" resource="#examples-8"><span property="xhv:role" resource="xhv:heading">Examples</span></h4>
+        <ul>
+          <li>
+            <a href="examples/radio/radio-1/radio-1.html">Radio group example using roving
+              tabindex.</a>
+          </li>
+          <li>
+            <a href="examples/radio/radio-2/radio-2.html">
+              Radio group example using managed focus with <code>aria-activedescendant</code>.
+            </a>
+          </li>
+        </ul>
+      </section>
 
       <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-13" property="bibo:hasPart">
         <h4 id="keyboard-interaction-13" resource="#keyboard-interaction-13"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
@@ -2566,22 +2572,6 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           </li>
         </ul>
       </section>
-
-      <section class="notoc" typeof="bibo:Chapter" resource="#examples-8" property="bibo:hasPart">
-        <h4 id="examples-8" resource="#examples-8"><span property="xhv:role" resource="xhv:heading">Examples</span></h4>
-        <ul>
-          <li>
-            <a href="examples/radio/radio-1/radio-1.html">Radio group example using roving
-              tabindex.</a>
-          </li>
-          <li>
-            <a href="examples/radio/radio-2/radio-2.html">
-              Radio group example using managed focus with <code>aria-activedescendant</code>.
-            </a>
-          </li>
-        </ul>
-      </section>
-
     </section>
 
     <section class="widget" id="slider" typeof="bibo:Chapter" resource="#slider" property="bibo:hasPart">
@@ -2592,6 +2582,14 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <p>
         A slider is an input where the user selects a value from within a given range. Sliders typically have a slider thumb that can be moved along a bar or track to change the value of the slider.
       </p>
+
+      <section class="notoc" typeof="bibo:Chapter" resource="#examples-9" property="bibo:hasPart">
+        <h4 id="examples-9" resource="#examples-9"><span property="xhv:role" resource="xhv:heading">Examples</span></h4>
+        <ul>
+          <li><a href="examples/slider/slider-1.html">Horizontal Slider Examples</a>: Demonstrates using three horizontally aligned sliders to make a color picker.</li>
+          <li><a href="examples/slider/slider-2.html">Slider Examples with aria-orientation and aria-valuetext</a>: Three thermostat control sliders that demonstrate using aria-orientation and aria-valuetext.</li>
+        </ul>
+      </section>
 
       <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-14" property="bibo:hasPart">
         <h4 id="keyboard-interaction-14" resource="#keyboard-interaction-14"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
@@ -2635,14 +2633,6 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           </li>
         </ul>
       </section>
-
-      <section class="notoc" typeof="bibo:Chapter" resource="#examples-9" property="bibo:hasPart">
-        <h4 id="examples-9" resource="#examples-9"><span property="xhv:role" resource="xhv:heading">Examples</span></h4>
-        <ul>
-          <li><a href="examples/slider/slider-1.html">Horizontal Slider Examples</a>: Demonstrates using three horizontally aligned sliders to make a color picker.</li>
-          <li><a href="examples/slider/slider-2.html">Slider Examples with aria-orientation and aria-valuetext</a>: Three thermostat control sliders that demonstrate using aria-orientation and aria-valuetext.</li>
-        </ul>
-      </section>
     </section>
 
     <section class="widget" id="slidertwothumb" typeof="bibo:Chapter" resource="#slidertwothumb" property="bibo:hasPart">
@@ -2657,6 +2647,14 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <p>
         A multi-thumb slider is a slider with two or more thumbs that each set a value in a group of related values. Many two-thumb sliders set a maximum and minimum value for a range, and the thumbs are not allowed to pass one another. That is, the mthumb that sets the upper value of the range can not be set lower than the thumb that controls the lower value of the range. However, in some multi-thumb sliders, each thumb sets a value that does not depend on the other thumb values.
       </p>
+
+      <section class="notoc" typeof="bibo:Chapter" resource="#example-6" property="bibo:hasPart">
+        <h4 id="example-6" resource="#example-6"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
+        <p>
+          Work to develop an example multi-thumb slider is tracked in
+          <a href="https://github.com/w3c/aria-practices/issues/124">issue 124.</a>
+        </p>
+      </section>
 
       <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-15" property="bibo:hasPart">
         <h4 id="keyboard-interaction-15" resource="#keyboard-interaction-15"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
@@ -2689,14 +2687,6 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           </li>
         </ul>
       </section>
-
-      <section class="notoc" typeof="bibo:Chapter" resource="#example-6" property="bibo:hasPart">
-        <h4 id="example-6" resource="#example-6"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
-        <p>
-          Work to develop an example multi-thumb slider is tracked in
-          <a href="https://github.com/w3c/aria-practices/issues/124">issue 124.</a>
-        </p>
-      </section>
     </section>
 
     <section class="widget" id="spinbutton" typeof="bibo:Chapter" resource="#spinbutton" property="bibo:hasPart">
@@ -2713,6 +2703,14 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <p>
         If the range is large, a spinbutton may support changing the value in both small and large steps. For instance, in the alarm example, the user may be able to move by 1 minute with <kbd>Up Arrow</kbd> and <kbd>Down Arrow</kbd> and by 10 minutes with <kbd>Page Up</kbd> and <kbd>Page Down</kbd>.
       </p>
+
+      <section class="notoc" typeof="bibo:Chapter" resource="#example-7" property="bibo:hasPart">
+        <h4 id="example-7" resource="#example-7"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
+        <p>
+          Work to develop a spinbutton example is tracked by
+          <a href="https://github.com/w3c/aria-practices/issues/125">issue 125.</a>
+        </p>
+      </section>
 
       <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-16" property="bibo:hasPart">
         <h4 id="keyboard-interaction-16" resource="#keyboard-interaction-16"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
@@ -2758,14 +2756,6 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           </li>
         </ul>
       </section>
-
-      <section class="notoc" typeof="bibo:Chapter" resource="#example-7" property="bibo:hasPart">
-        <h4 id="example-7" resource="#example-7"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
-        <p>
-          Work to develop a spinbutton example is tracked by
-          <a href="https://github.com/w3c/aria-practices/issues/125">issue 125.</a>
-        </p>
-      </section>
     </section>
 
     <section class="widget" id="table" typeof="bibo:Chapter" resource="#table" property="bibo:hasPart">
@@ -2804,6 +2794,14 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <p>
         When a tabbed interface is initialized, one tab panel is displayed and its associated tab is styled to indicate that it is active. When the user activates one of the other tab elements, the previously displayed tab panel is hidden, the tab panel associated with the activated tab becomes visible, and the tab is considered "active".
       </p>
+
+      <section class="notoc" typeof="bibo:Chapter" resource="#examples-10" property="bibo:hasPart">
+        <h4 id="examples-10" resource="#examples-10"><span property="xhv:role" resource="xhv:heading">Examples</span></h4>
+        <ul>
+          <li><a href="examples/tabs/tabs-1/tabs.html">Tabs With Automatic Activation</a>: A tabs widget where tabs are automatically activated and their panel is displayed when they receive focus.</li>
+          <li><a href="examples/tabs/tabs-2/tabs.html">Tabs With Manual Activation</a>: A tabs widget where users activate a tab and display its panel by pressing <kbd>Space</kbd> or <kbd>Enter</kbd>.</li>
+        </ul>
+      </section>
 
       <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-17" property="bibo:hasPart">
         <h4 id="keyboard-interaction-17" resource="#keyboard-interaction-17"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
@@ -2867,14 +2865,6 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           </li>
         </ul>
       </section>
-
-      <section class="notoc" typeof="bibo:Chapter" resource="#examples-10" property="bibo:hasPart">
-        <h4 id="examples-10" resource="#examples-10"><span property="xhv:role" resource="xhv:heading">Examples</span></h4>
-        <ul>
-          <li><a href="examples/tabs/tabs-1/tabs.html">Tabs With Automatic Activation</a>: A tabs widget where tabs are automatically activated and their panel is displayed when they receive focus.</li>
-          <li><a href="examples/tabs/tabs-2/tabs.html">Tabs With Manual Activation</a>: A tabs widget where users activate a tab and display its panel by pressing <kbd>Space</kbd> or <kbd>Enter</kbd>.</li>
-        </ul>
-      </section>
     </section>
 
     <section class="widget" id="toolbar" typeof="bibo:Chapter" resource="#toolbar" property="bibo:hasPart">
@@ -2892,6 +2882,11 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         <li>Avoid including controls that require arrow keys to operate, such as textbox or radio group. If unavoidable, include only one such control and make it the last element .</li>
         <li>Use toolbar as a grouping element only if the group contains 3 or more controls.</li>
       </ol>
+
+      <section class="notoc" typeof="bibo:Chapter" resource="#example-8" property="bibo:hasPart">
+        <h4 id="example-8" resource="#example-8"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
+        <p><a href="examples/toolbar/toolbar.html">Toolbar Example</a>: A toolbar including buttons, links, and checkboxes that uses roving tabindex to manage focus.</p>
+      </section>
 
       <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-18" property="bibo:hasPart">
         <h4 id="keyboard-interaction-18" resource="#keyboard-interaction-18"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
@@ -2937,11 +2932,6 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <li>If the controls are arranged vertically, the toolbar element has <a href="http://w3c.github.io/aria/aria/aria.html#aria-orientation" class="property-reference">aria-orientation</a> set to <code>vertical</code>. The default orientation is horizontal.</li>
         </ul>
       </section>
-
-      <section class="notoc" typeof="bibo:Chapter" resource="#example-8" property="bibo:hasPart">
-        <h4 id="example-8" resource="#example-8"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
-        <p><a href="examples/toolbar/toolbar.html">Toolbar Example</a>: A toolbar including buttons, links, and checkboxes that uses roving tabindex to manage focus.</p>
-      </section>
     </section>
 
     <section class="widget" id="tooltip" typeof="bibo:Chapter" resource="#tooltip" property="bibo:hasPart">
@@ -2959,6 +2949,14 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <p>
         Tooltip widgets do not receive focus. A hover that contains focusable elements can be made using the a <a href="#dialog_nonmodal">non-modal dialog pattern</a>.
       </p>
+
+      <section class="notoc" typeof="bibo:Chapter" resource="#example-9" property="bibo:hasPart">
+        <h4 id="example-9" resource="#example-9"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
+        <p>
+          Work to develop a tooltip example is tracked by
+          <a href="https://github.com/w3c/aria-practices/issues/127">issue 127.</a>
+        </p>
+      </section>
 
       <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-19" property="bibo:hasPart">
         <h4 id="keyboard-interaction-19" resource="#keyboard-interaction-19"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
@@ -2980,14 +2978,6 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <li>The element that serves as the tooltip container has role <a href="http://w3c.github.io/aria/aria/aria.html#tooltip" class="role-reference">tooltip</a>.</li>
           <li>The element that triggers the tooltip references the tooltip element with <a href="http://w3c.github.io/aria/aria/aria.html#aria-describedby" class="property-reference">aria-describedby</a>.</li>
         </ul>
-      </section>
-
-      <section class="notoc" typeof="bibo:Chapter" resource="#example-9" property="bibo:hasPart">
-        <h4 id="example-9" resource="#example-9"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
-        <p>
-          Work to develop a tooltip example is tracked by
-          <a href="https://github.com/w3c/aria-practices/issues/127">issue 127.</a>
-        </p>
       </section>
     </section>
 
@@ -3019,6 +3009,24 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <p>
         When using a keyboard to navigate a tree, a visual keyboard indicator informs the user which node is focused. If the tree allows the user to choose just one item for an action, then it is known as a single-select tree, and the item with focus also has a selected state. However, in multi-select trees, which enable the user to select more than one item for an action, the selected state is independent of the focus. For example, in a typical file system navigator, the user can move focus to select any number of files for an action, such as copy or move. It is important that the visual design distinguish between items that are selected and the item that has focus. For more details, see <a href="#kbd_focus_vs_selection">this description of differences between focus and selection.</a>
       </p>
+
+      <section class="notoc" typeof="bibo:Chapter" resource="#examples-11" property="bibo:hasPart">
+        <h4 id="examples-11" resource="#examples-11"><span property="xhv:role" resource="xhv:heading">Examples</span></h4>
+        <ul>
+          <li>
+            <a href="examples/treeview/treeview-1/treeview-1a.html">File Directory Treeview Example Using Computed Properties</a>: A file selector tree that demonstrates browser support for automatically computing <code>aria-level</code>, <code>aria-posinset</code> and <code>aria-setsize</code> based on DOM structure.
+          </li>
+          <li>
+            <a href="examples/treeview/treeview-1/treeview-1b.html">File Directory Treeview Example Using Declared Properties</a>: A file selector tree that demonstrates how to explicitly define values for <code>aria-level</code>, <code>aria-posinset</code> and <code>aria-setsize</code>.
+          </li>
+          <li>
+            <a href="examples/treeview/treeview-2/treeview-2a.html">Navigation Treeview Example Using Computed Properties</a>: A tree that provides navigation to a set of web pages and demonstrates browser support for automatically computing <code>aria-level</code>, <code>aria-posinset</code> and <code>aria-setsize</code> based on DOM structure.
+          </li>
+          <li>
+            <a href="examples/treeview/treeview-2/treeview-2b.html">Navigation Treeview Example Using Declared Properties</a>: A tree that provides navigation to a set of web pages and demonstrates how to explicitly define values for <code>aria-level</code>, <code>aria-posinset</code> and <code>aria-setsize</code>.
+          </li>
+        </ul>
+      </section>
 
       <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-20" property="bibo:hasPart">
         <h4 id="keyboard-interaction-20" resource="#keyboard-interaction-20"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
@@ -3149,24 +3157,6 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           </p>
         </div>
       </section>
-
-      <section class="notoc" typeof="bibo:Chapter" resource="#examples-11" property="bibo:hasPart">
-        <h4 id="examples-11" resource="#examples-11"><span property="xhv:role" resource="xhv:heading">Examples</span></h4>
-        <ul>
-          <li>
-            <a href="examples/treeview/treeview-1/treeview-1a.html">File Directory Treeview Example Using Computed Properties</a>: A file selector tree that demonstrates browser support for automatically computing <code>aria-level</code>, <code>aria-posinset</code> and <code>aria-setsize</code> based on DOM structure.
-          </li>
-          <li>
-            <a href="examples/treeview/treeview-1/treeview-1b.html">File Directory Treeview Example Using Declared Properties</a>: A file selector tree that demonstrates how to explicitly define values for <code>aria-level</code>, <code>aria-posinset</code> and <code>aria-setsize</code>.
-          </li>
-          <li>
-            <a href="examples/treeview/treeview-2/treeview-2a.html">Navigation Treeview Example Using Computed Properties</a>: A tree that provides navigation to a set of web pages and demonstrates browser support for automatically computing <code>aria-level</code>, <code>aria-posinset</code> and <code>aria-setsize</code> based on DOM structure.
-          </li>
-          <li>
-            <a href="examples/treeview/treeview-2/treeview-2b.html">Navigation Treeview Example Using Declared Properties</a>: A tree that provides navigation to a set of web pages and demonstrates how to explicitly define values for <code>aria-level</code>, <code>aria-posinset</code> and <code>aria-setsize</code>.
-          </li>
-        </ul>
-      </section>
     </section>
 
     <section class="widget" id="windowsplitter" typeof="bibo:Chapter" resource="#windowsplitter" property="bibo:hasPart">
@@ -3190,6 +3180,14 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <p>
         Note that the term "primary pane" does not describe the importance or purpose of content inside the pane.
       </p>
+
+      <section class="notoc" typeof="bibo:Chapter" resource="#example-10" property="bibo:hasPart">
+        <h4 id="example-10" resource="#example-10"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
+        <p>
+          Work to develop an example window splitter widget is tracked by
+          <a href="https://github.com/w3c/aria-practices/issues/130">issue 130.</a>
+        </p>
+      </section>
 
       <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-21" property="bibo:hasPart">
         <h4 id="keyboard-interaction-21" resource="#keyboard-interaction-21"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction</span></h4>
@@ -3223,14 +3221,6 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           </li>
           <li>The separator element has <a href="http://w3c.github.io/aria/aria/aria.html#aria-controls" class="property-reference">aria-controls</a> referring to the primary pane.</li>
         </ul>
-      </section>
-
-      <section class="notoc" typeof="bibo:Chapter" resource="#example-10" property="bibo:hasPart">
-        <h4 id="example-10" resource="#example-10"><span property="xhv:role" resource="xhv:heading">Example</span></h4>
-        <p>
-          Work to develop an example window splitter widget is tracked by
-          <a href="https://github.com/w3c/aria-practices/issues/130">issue 130.</a>
-        </p>
       </section>
     </section>
   </section>
@@ -4503,207 +4493,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <p>[Placeholder section that will be resolved by <a href="https://github.com/w3c/aria-practices/issues/84">issue #84</a>.]</p>
     </section>
 
-    <section class="appendix informative section" id="acknowledgements" typeof="bibo:Chapter" resource="#acknowledgements" property="bibo:hasPart">
-      <h3 id="h-acknowledgements" resource="#h-acknowledgements"><span property="xhv:role" resource="xhv:heading"><span class="secno">A.3 </span>Acknowledgments<span class="permalink" typeof="bookmark"><a href="#acknowledgements" aria-label="Permalink for A.3 Acknowledgments" title="Permalink for A.3 Acknowledgments" property="url"><span property="title" content="A.3 Acknowledgments">§</span></a>
-        </span>
-        </span>
-      </h3>
-      <p><em>This section is non-normative.</em></p>
-      <p>The following people contributed to the development of this document.</p>
-
-      <section class="section" id="ack_group" typeof="bibo:Chapter" resource="#ack_group" property="bibo:hasPart">
-        <h4 id="h-ack_group" resource="#h-ack_group"><span property="xhv:role" resource="xhv:heading"><span class="secno">A.3.1 </span>Participants active in the ARIA WG at the time of publication<span class="permalink" typeof="bookmark"><a href="#ack_group" aria-label="Permalink for A.3.1 Participants active in the ARIA WG at the time of publication" title="Permalink for A.3.1 Participants active in the ARIA WG at the time of publication" property="url"><span property="title" content="A.3.1 Participants active in the ARIA WG at the time of publication">§</span></a>
-          </span>
-          </span>
-        </h4>
-        <ul>
-          <li>Ann Abbott (IBM Corporation)</li>
-          <li>Michiel Bijl (The Paciello Group)</li>
-          <li>Christy Blew (University of Illinois at Urbana-Champaign)</li>
-          <li>Teresa Boers (IBM Corporation)</li>
-          <li>David Bolter (Mozilla Foundation) </li>
-          <li>Michael Cooper (<abbr title="World Wide Web Consortium">W3C</abbr>/<abbr title="Massachusetts Institute of Technology">MIT</abbr>)</li>
-          <li>James Craig (Apple Inc.) </li>
-          <li>Joanmarie Diggs (Igalia)</li>
-          <li>Fred Esch (IBM Corporation)</li>
-          <li>Steve Faulkner (The Paciello Group) </li>
-          <li>John Foliot (Invited Expert)</li>
-          <li>Bryan Garaventa (SSB BART Group)</li>
-          <li>Matt Garrish (DAISY Consortium)</li>
-          <li>Billy Gregory (The Paciello Group)</li>
-          <li>Karl Groves (The Paciello Group)</li>
-          <li>Jon Gunderson (University of Illinois at Urbana-Champaign)</li>
-          <li>Markus Gylling (DAISY Consortium)</li>
-          <li>Markku Hakkinen (Educational Testing Service)</li>
-          <li>Katie Haritos-Shea (Knowbility)</li>
-          <li>Susann Keohane (IBM Corporation)</li>
-          <li>Matthew King (Facebook)</li>
-          <li>Jason Kiss (Department of Internal Affairs, New Zealand Government)</li>
-          <li>Jamie Knight (British Broadcasting Corporation)</li>
-          <li>JaEun Jemma Ku (University of Illinois at Urbana-Champaign)</li>
-          <li>Shane McCarron (Invited Expert, Aptest)</li>
-          <li>Charles McCathie Nevile (Yandex)</li>
-          <li>Mary Jo Mueller (IBM Corporation)</li>
-          <li>James Nurthen (Oracle Corporation) </li>
-          <li>Ian Pouncey (The Paciello Group, LLC)</li>
-          <li>Mark Sadecki (Invited Expert)</li>
-          <li>Janina Sajka (Invited Expert, The Linux Foundation)</li>
-          <li>Joseph Scheuhammer (Invited Expert, Inclusive Design Research Centre, OCAD University) </li>
-          <li>Stefan Schnabel (SAP AG) </li>
-          <li>Richard Schwerdtfeger (IBM Corporation)</li>
-          <li>Lisa Seeman (Invited Expert) </li>
-          <li>Tzviya Siegman (Wiley)</li>
-          <li>Cynthia Shelly (Microsoft Corporation) </li>
-          <li>Alexander Surkov (Mozilla Foundation)</li>
-          <li>Léonie Watson (The Paciello Group)</li>
-          <li>Jason White (Educational Testing Service)</li>
-          <li>Gottfried Zimmermann (Invited Expert, Access Technologies Group)</li>
-        </ul>
-      </section>
-
-      <section class="section" id="ack_others" typeof="bibo:Chapter" resource="#ack_others" property="bibo:hasPart">
-        <h4 id="h-ack_others" resource="#h-ack_others"><span property="xhv:role" resource="xhv:heading"><span class="secno">A.3.2 </span>Other ARIA contributors, commenters, and previously active participants<span class="permalink" typeof="bookmark"><a href="#ack_others" aria-label="Permalink for A.3.2 Other ARIA contributors, commenters, and previously active participants" title="Permalink for A.3.2 Other ARIA contributors, commenters, and previously active participants" property="url"><span property="title" content="A.3.2 Other ARIA contributors, commenters, and previously active participants">§</span></a>
-          </span>
-          </span>
-        </h4>
-        <ul>
-          <li>Shadi Abou-Zahra (<abbr title="World Wide Web Consortium">W3C</abbr>)</li>
-          <li>Jim Allan (TSB)</li>
-          <li>Jonny Axelsson (Opera Software)</li>
-          <li>David Baron (Mozilla Foundation)</li>
-          <li>Art Barstow (Nokia Corporation)</li>
-          <li>Simon Bates</li>
-          <li>Chris Blouch (AOL)</li>
-          <li>Judy Brewer (<abbr title="World Wide Web Consortium">W3C</abbr>/<abbr title="Massachusetts Institute of Technology">MIT</abbr>)</li>
-          <li>Mark Birbeck (Sidewinder Labs)</li>
-          <li>Sally Cain (Royal National Institute of Blind People (RNIB))</li>
-          <li>Gerardo Capiel (Benetech)</li>
-          <li>Ben Caldwell (Trace)</li>
-          <li>Sofia Celic-Li</li>
-          <li>Jaesik Chang (Samsung Electronics Co., Ltd.)</li>
-          <li>Alex Qiang Chen (University of Manchester)</li>
-          <li>Charles Chen (Google, Inc.)</li>
-          <li>Christian Cohrs</li>
-          <li>Deborah Dahl</li>
-          <li>Erik Dahlström (Opera Software)</li>
-          <li>Dimitar Denev (Frauenhofer Gesellschaft)</li>
-          <li>Micah Dubinko (Invited Expert)</li>
-          <li>Mandana Eibegger</li>
-          <li>Beth Epperson (Websense)</li>
-          <li>Donald Evans (AOL)</li>
-          <li>Chris Fleizach (Apple Inc.)</li>
-          <li>Kelly Ford (Microsoft Corporation)</li>
-          <li>Geoff Freed (Invited Expert, NCAM)</li>
-          <li>Christopher Gallelo (Microsoft Corporation)</li>
-          <li>Birkir Gunnarsson (Deque Systems, Inc.)</li>
-          <li>Kentarou Fukuda (IBM Corporation)</li>
-          <li>Bryan Garaventa</li>
-          <li>Guido Geloso</li>
-          <li>Ali Ghassemi</li>
-          <li>Becky Gibson (IBM)</li>
-          <li>Alfred S. Gilman</li>
-          <li>Andres Gonzalez (Adobe Systems Inc.)</li>
-          <li>Scott González (JQuery Foundation)</li>
-          <li>James Graham</li>
-          <li>Georgios Grigoriadis (SAP AG)</li>
-          <li>Jeff Grimes (Oracle)</li>
-          <li>Loretta Guarino Reid (Google, Inc.)</li>
-          <li>Barbara Hartel</li>
-          <li>James Hawkins (Google, Inc.)</li>
-          <li>Benjamin Hawkes-Lewis</li>
-          <li>Sean Hayes (Microsoft Corporation)</li>
-          <li>Mona Heath (University of Illinois at Urbana-Champaign)</li>
-          <li>Jan Heck</li>
-          <li>Shawn Henry</li>
-          <li>Tina Homboe</li>
-          <li>John Hrvatin (Microsoft Corporation)</li>
-          <li>Takahiro Inada</li>
-          <li>Masayasu Ishikawa (<abbr title="World Wide Web Consortium">W3C</abbr>)</li>
-          <li>Jim Jewitt</li>
-          <li>Kenny Johar (Microsoft Corporation)</li>
-          <li>Shilpi Kapoor (BarrierBreak Technologies)</li>
-          <li>Masahiko Kaneko (Microsoft Corporation)</li>
-          <li>Marjolein Katsma</li>
-          <li>George Kerscher (International Digital Publishing Forum)</li>
-          <li>Jason Kiss (New Zealand Government)</li>
-          <li>Todd Kloots</li>
-          <li>Johannes Koch</li>
-          <li>Sam Kuper</li>
-          <li>Earl Johnson (Sun)</li>
-          <li>Jael Kurz</li>
-          <li>Rajesh Lal (Nokia Corporation)</li>
-          <li>Diego La Monica (International Webmasters Association / HTML Writers Guild (IWA-HWG))</li>
-          <li>Aaron Leventhal (IBM Corporation)</li>
-          <li>Gez Lemon (International Webmasters Association / HTML Writers Guild (IWA-HWG))</li>
-          <li>Alex Li (SAP)</li>
-          <li>Chris Lilley</li>
-          <li>Thomas Logan (HiSoftware Inc.)</li>
-          <li>William Loughborough (Invited Expert)</li>
-          <li>Linda Mao (Microsoft)</li>
-          <li>David MacDonald (Invited Expert, CanAdapt Solutions Inc.)</li>
-          <li>Carolyn MacLeod</li>
-          <li>Anders Markussen (Opera Software)</li>
-          <li>Krzysztof Maczyński </li>
-          <li>Matthew May (Adobe Systems Inc.)</li>
-          <li>Dominic Mazzoni (Google, Inc.)</li>
-          <li>Alexandre Morgaut (4D)</li>
-          <li>Ann Navarro (Invited Expert)</li>
-          <li>Joshue O Connor (Invited Expert, CFIT)</li>
-          <li>Artur Ortega (Microsoft Corporation)</li>
-          <li>Sailesh Panchang (Deque)</li>
-          <li>Lisa Pappas (Society for Technical Communication (STC))</li>
-          <li>Marta Pawlowlska (Samsung Electronics Co., Ltd.)</li>
-          <li>Dave Pawson (RNIB)</li>
-          <li>Steven Pemberton (CWI Amsterdam)</li>
-          <li>Simon Pieters (Opera Software)</li>
-          <li>Jean-Bernard Piot (4D)</li>
-          <li>David Poehlman, Simon Pieters (Opera Software)</li>
-          <li>Sarah Pulis (Media Access Australia)</li>
-          <li>T.V. Raman (Google, Inc.)</li>
-          <li>Jan Richards</li>
-          <li>Gregory Rosmaita (Invited Expert)</li>
-          <li>Tony Ross (Microsoft Corporation)</li>
-          <li>Alex Russell (Dojo Foundation) (</li>
-          <li>Mark Sadecki (Invited Expert)</li>
-          <li>Mario Sánchez Prada (Samsung Electronics Co., Ltd. and Gnome Foundation)</li>
-          <li>Martin Schaus (SAP AG)</li>
-          <li>Doug Schepers (<abbr title="World Wide Web Consortium">W3C</abbr>)</li>
-          <li>Matthias Schmitt </li>
-          <li>Marc Silbey (Microsoft Corporation)</li>
-          <li>Leif Halvard Sili</li>
-          <li>Henri Sivonen (Mozilla)</li>
-          <li>Michael Smith (<abbr title="World Wide Web Consortium">W3C</abbr>)</li>
-          <li>Andi Snow-Weaver (IBM Corporation)</li>
-          <li>Ville Skyttä </li>
-          <li>Henny Swan (BBC)</li>
-          <li>Neil Soiffer (Design Science)</li>
-          <li>Vitaly Sourikov</li>
-          <li>Mike Squillace (IBM)</li>
-          <li>Maciej Stachowiak (Apple Inc.)</li>
-          <li>Christophe Strobbe</li>
-          <li>Suzanne Taylor (Pearson plc)</li>
-          <li>Terrill Thompson</li>
-          <li>David Todd</li>
-          <li>Gregg Vanderheiden (Invited Expert, Trace)</li>
-          <li>Anne van Kesteren</li>
-          <li>Wen He (Tencent)</li>
-          <li>Wu Wei (<abbr title="World Wide Web Consortium">W3C</abbr> / RITT)</li>
-          <li>Ryan Williams (Oracle)</li>
-          <li>Tom Wlodkowski</li>
-          <li>Sam White (Apple Inc.)</li>
-          <li>Marco Zehe (Mozilla Foundation)</li>
-        </ul>
-      </section>
-
-      <section class="section" id="ack_funders" typeof="bibo:Chapter" resource="#ack_funders" property="bibo:hasPart">
-        <h4 id="h-ack_funders" resource="#h-ack_funders"><span property="xhv:role" resource="xhv:heading"><span class="secno">A.3.3 </span>Enabling funders<span class="permalink" typeof="bookmark"><a href="#ack_funders" aria-label="Permalink for A.3.3 Enabling funders" title="Permalink for A.3.3 Enabling funders" property="url"><span property="title" content="A.3.3 Enabling funders">§</span></a>
-          </span>
-          </span>
-        </h4>
-        <p>This publication has been funded in part with U.S. Federal funds from the Department of Education, National Institute on Disability, Independent Living, and Rehabilitation Research (NIDILRR), initially under contract number ED-OSE-10-C-0067 and currently under contract number HHSP23301500054C. The content of this publication does not necessarily reflect the views or policies of the U.S. Department of Education, nor does mention of trade names, commercial products, or organizations imply endorsement by the U.S. Government.</p>
-      </section>
-    </section>
-
+    <div data-include="common/acknowledgements.html" data-include-replace="true" data-include-id="include-32552001860191826">
+    </div>
   </section>
 
 
