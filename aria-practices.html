@@ -19,23 +19,23 @@
     <p>This document is part of the WAI-ARIA suite described in the <a href="http://www.w3.org/WAI/intro/aria.php">WAI-ARIA Overview</a>.</p>
   </section>
 
-<section id="sotd">
+  <section id="sotd">
     <p>
       This is an editor's draft by the
-      <a href="http://www.w3.org/WAI/ARIA/">Accessible Rich Internet Applications Working Group</a> 
-      of the 
-      <a href="http://www.w3.org/WAI/">Web Accessibility Initiative</a>. 
-      It supports the 
-      <a href="" class="specref">WAI-ARIA 1.1</a> [<cite><a href="#bib-WAI-ARIA" class="bibref">WAI-ARIA</a></cite>] 
-      specification, providing detailed advice and examples beyond what would be appropriate to a technical specification but which are important to understand the specification. 
+      <a href="http://www.w3.org/WAI/ARIA/">Accessible Rich Internet Applications Working Group</a>
+      of the
+      <a href="http://www.w3.org/WAI/">Web Accessibility Initiative</a>.
+      It supports the
+      <a href="" class="specref">WAI-ARIA 1.1</a> [<cite><a href="#bib-WAI-ARIA" class="bibref">WAI-ARIA</a></cite>]
+      specification, providing detailed advice and examples beyond what would be appropriate to a technical specification but which are important to understand the specification.
     </p>
     <p>
       This draft includes only a portion of content planned for WAI-ARIA Authoring Practices 1.1.
-      To see planns for the complete guide, review the 
+      To see planns for the complete guide, review the
       <a href="https://github.com/w3c/aria-practices/milestones?direction=asc&sort=due_date&state=open">Authoring Practices Milestone Plan</a>.
     </p>
     <p>
-      Feedback on the  information provided here is essential to the ultimate success of Rich Internet Applications that afford full access to their information and operations. 
+      Feedback on the  information provided here is essential to the ultimate success of Rich Internet Applications that afford full access to their information and operations.
       The Accessible Rich Internet Applications Working Group asks in particular:
     </p>
     <ul>
@@ -47,14 +47,14 @@
       <li>Are the <a href="#aria_ex">design patterns</a> clear?</li>
     </ul>
     <p>
-      To comment, 
-      <a href="https://github.com/w3c/aria-practices/issues/">file an issue in the <abbr title="World Wide Web Consortium">W3C</abbr> ARIA Practices GitHub repository</a>, 
-      or if that is not possible, send email to 
-      <a href="mailto:public-aria@w3.org?subject=Comment%20on%20WAI-ARIA%20Practices%201.1">public-aria@w3.org</a> 
-      (<a href="http://lists.w3.org/Archives/Public/public-aria/">comment archive</a>). 
+      To comment,
+      <a href="https://github.com/w3c/aria-practices/issues/">file an issue in the <abbr title="World Wide Web Consortium">W3C</abbr> ARIA Practices GitHub repository</a>,
+      or if that is not possible, send email to
+      <a href="mailto:public-aria@w3.org?subject=Comment%20on%20WAI-ARIA%20Practices%201.1">public-aria@w3.org</a>
+      (<a href="http://lists.w3.org/Archives/Public/public-aria/">comment archive</a>).
     </p>
   </section>
-  
+
   <section id="intro">
     <h2>Introduction</h2>
 
@@ -126,6 +126,10 @@
         For instance, a menubutton may accompany each accordion header to provide access to actions that apply to that section.
         And, in some cases, a snippet of the hidden content may also be visually persistent.
       </p>
+      <section class="notoc">
+        <h4>Example</h4>
+        <p><a href="examples/accordion/accordion.html">Accordion Example</a>: demonstrates a form divided into three sections using an accordion to show one section at a time. </p>
+      </section>
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
         <ul>
@@ -212,10 +216,6 @@
           </li>
         </ul>
       </section>
-      <section class="notoc">
-        <h4>Example</h4>
-        <p><a href="examples/accordion/accordion.html">Accordion Example</a>: demonstrates a form divided into three sections using an accordion to show one section at a time. </p>
-      </section>
     </section>
 
     <section class="widget" id="alert">
@@ -241,6 +241,11 @@
       </p>
 
       <section class="notoc">
+        <h4>Example</h4>
+        <p><a href="examples/alert/index.html">Alert Example</a></p>
+      </section>
+
+      <section class="notoc">
         <h4>Keyboard Interaction</h4>
         <p>An alert (WAI-ARIA live region) does not require any keyboard interaction.</p>
       </section>
@@ -248,11 +253,6 @@
       <section class="notoc">
         <h4>WAI-ARIA Roles, States, and Properties</h4>
         <p>The widget has a role of <a class="role-reference" href="#alert">alert</a>.</p>
-      </section>
-
-      <section class="notoc">
-        <h4>Example</h4>
-        <p><a href="examples/alert/index.html">Alert Example</a></p>
       </section>
     </section>
 
@@ -265,46 +265,48 @@
         enables assistive technologies and browsers to distinguish alert dialogs from other dialogs
         so they have the option of giving alert dialogs special treatment, such as playing a system alert sound.
       </p>
+
       <section class="notoc">
-        <h4>Keyboard Interaction</h4>
-        <p>See the keyboard interaction section for the <a href="#dialog_modal">modal dialog pattern</a>.</p>
-      </section>
-            <section class="notoc">
-                <h4>WAI-ARIA Roles, States, and Properties</h4>
-                <ul>
-                    <li>
-                        The element that contains all elements of the dialog, including the alert
-                        message and any dialog buttons, has role
-                        <a class="role-reference" href="#alertdialog">alertdialog</a>.
-                    </li>
-                    <li>
-                        The element with role <code>alertdialog</code> has either:
-                        <ul>
-                            <li>
-                                A value for
-                                <a href="#aria-labelledby" class="property-reference">aria-labelledby</a>
-                                that refers to the element containing the title of the dialog if the
-                                dialog has a visible title.
-                            </li>
-                            <li>
-                                A value for
-                                <a href="#aria-label" class="property-reference">aria-label</a>
-                                if the dialog does not have a visible title.
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        The element with role <code>alertdialog</code> has a value set for
-                        <a href="#aria-describedby" class="property-reference">aria-describedby</a>
-                        that refers to the element containing the alert message.
-                    </li>
-                </ul>
-            </section>
-            <section class="notoc">
         <h4>Example</h4>
         <p>
         Developing an example implementation of this pattern is <a href="https://github.com/w3c/aria-practices/issues/101">issue 101</a>.
         </p>
+      </section>
+
+      <section class="notoc">
+        <h4>Keyboard Interaction</h4>
+        <p>See the keyboard interaction section for the <a href="#dialog_modal">modal dialog pattern</a>.</p>
+      </section>
+      <section class="notoc">
+          <h4>WAI-ARIA Roles, States, and Properties</h4>
+          <ul>
+              <li>
+                  The element that contains all elements of the dialog, including the alert
+                  message and any dialog buttons, has role
+                  <a class="role-reference" href="#alertdialog">alertdialog</a>.
+              </li>
+              <li>
+                  The element with role <code>alertdialog</code> has either:
+                  <ul>
+                      <li>
+                          A value for
+                          <a href="#aria-labelledby" class="property-reference">aria-labelledby</a>
+                          that refers to the element containing the title of the dialog if the
+                          dialog has a visible title.
+                      </li>
+                      <li>
+                          A value for
+                          <a href="#aria-label" class="property-reference">aria-label</a>
+                          if the dialog does not have a visible title.
+                      </li>
+                  </ul>
+              </li>
+              <li>
+                  The element with role <code>alertdialog</code> has a value set for
+                  <a href="#aria-describedby" class="property-reference">aria-describedby</a>
+                  that refers to the element containing the alert message.
+              </li>
+          </ul>
       </section>
     </section>
 
@@ -315,10 +317,17 @@
         It helps users find their place within a website or web application.
         Breadcrumbs are often placed horizontally before a page's main content.
       </p>
+
+      <section class="notoc">
+        <h4>Example</h4>
+        <p><a href="examples/breadcrumb/index.html">Breadcrumb design pattern example</a></p>
+      </section>
+
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
         <p>Not applicable.</p>
       </section>
+
       <section class="notoc">
         <h4>WAI-ARIA Roles, States, and Properties</h4>
         <ul>
@@ -329,10 +338,6 @@
             If the element representing the current page is not a link, aria-current is optional.
           </li>
         </ul>
-      </section>
-      <section class="notoc">
-        <h4>Example</h4>
-        <p><a href="examples/breadcrumb/index.html">Breadcrumb design pattern example</a></p>
       </section>
     </section>
 
@@ -361,6 +366,12 @@
         In such cases, giving the element role <code>button</code> helps assistive technology users understand the function of the element.
         However, a better solution is to adjust the visual design so it matches the function and ARIA role.
       </p>
+
+      <section class="notoc">
+        <h4>Examples</h4>
+        <p><a href="examples/button/button.html">Button Examples</a>: Examples of clickable HTML <code>div</code> and <code>span</code> elements made into accessible command and toggle buttons.</p>
+      </section>
+
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
         <p>When the button has focus:</p>
@@ -402,6 +413,7 @@
           </li>
         </ul>
       </section>
+
       <section class="notoc">
         <h4>WAI-ARIA Roles, States, and Properties</h4>
         <ul>
@@ -418,10 +430,6 @@
             When the button is toggled on, the value of this state is <code>true</code>, and when toggled off, the state is <code>false</code>.
           </li>
         </ul>
-      </section>
-      <section class="notoc">
-        <h4>Examples</h4>
-        <p><a href="examples/button/button.html">Button Examples</a>: Examples of clickable HTML <code>div</code> and <code>span</code> elements made into accessible command and toggle buttons.</p>
       </section>
     </section>
 
@@ -450,22 +458,7 @@
           If this feature is provided, activating the overall checkbox a third time recreates that partially checked state where only some options in the group are checked.
         </li>
       </ul>
-      <section class="notoc">
-        <h4>Keyboard Interaction</h4>
-        <p>When the checkbox has focus, pressing the <kbd>Space</kbd> key changes the state of the checkbox.</p>
-      </section>
-      <section class="notoc">
-        <h4>WAI-ARIA Roles, States, and Properties</h4>
-        <ul>
-          <li>The checkbox has role <a href="#checkbox" class="role-reference">checkbox</a>.</li>
-          <li>The checkbox has an accessible label, preferably provided by a visible label associated using <a href="#aria-labelledby" class="property-reference" >aria-labelledby</a>.</li>
-          <li>When checked, the checkbox element has state <a href="#aria-checked" class="state-reference" >aria-checked</a> set to <code>true</code>.</li>
-          <li>When not checked, it has state <a href="#aria-checked" class="state-reference" >aria-checked</a> set to <code>false</code>.</li>
-          <li>When partially checked, it has state <a href="#aria-checked" class="state-reference" >aria-checked</a> set to <code>mixed</code>.</li>
-          <li>If a set of checkboxes is presented as a logical group with a visible label, the checkboxes are included in an element with role <a href="#group" class="role-reference" >group</a> that has the property <a href="#aria-labelledby" class="property-reference" >aria-labelledby</a> set to the ID of the element containing the label.</li>
-          <li>If the presentation includes additional descriptive static text relevant to a checkbox or checkbox group, the checkbox or checkbox group has the property <a href="#aria-describedby" class="property-reference">aria-describedby</a> set to the ID of the element containing the description.</li>
-        </ul>
-      </section>
+
       <section class="notoc">
         <h4>Examples</h4>
         <ul>
@@ -478,6 +471,24 @@
           </li>
         </ul>
       </section>
+
+      <section class="notoc">
+        <h4>Keyboard Interaction</h4>
+        <p>When the checkbox has focus, pressing the <kbd>Space</kbd> key changes the state of the checkbox.</p>
+      </section>
+
+      <section class="notoc">
+        <h4>WAI-ARIA Roles, States, and Properties</h4>
+        <ul>
+          <li>The checkbox has role <a href="#checkbox" class="role-reference">checkbox</a>.</li>
+          <li>The checkbox has an accessible label, preferably provided by a visible label associated using <a href="#aria-labelledby" class="property-reference" >aria-labelledby</a>.</li>
+          <li>When checked, the checkbox element has state <a href="#aria-checked" class="state-reference" >aria-checked</a> set to <code>true</code>.</li>
+          <li>When not checked, it has state <a href="#aria-checked" class="state-reference" >aria-checked</a> set to <code>false</code>.</li>
+          <li>When partially checked, it has state <a href="#aria-checked" class="state-reference" >aria-checked</a> set to <code>mixed</code>.</li>
+          <li>If a set of checkboxes is presented as a logical group with a visible label, the checkboxes are included in an element with role <a href="#group" class="role-reference" >group</a> that has the property <a href="#aria-labelledby" class="property-reference" >aria-labelledby</a> set to the ID of the element containing the label.</li>
+          <li>If the presentation includes additional descriptive static text relevant to a checkbox or checkbox group, the checkbox or checkbox group has the property <a href="#aria-describedby" class="property-reference">aria-describedby</a> set to the ID of the element containing the description.</li>
+        </ul>
+      </section>
     </section>
 
     <section class="widget" id="combobox">
@@ -488,15 +499,10 @@
     <section class="widget" id="dialog_modal">
       <h3>Dialog (Modal)</h3>
       <p>
-        <strong>NOTE:</strong> This section has been significantly revised to address initial focus placement and other outstanding editorial issues. 
-        Please provide feedback on this design pattern in 
-        <a href="https://github.com/w3c/aria-practices/issues/325">issue 325.</a>
-      </p>
-      <p>
         A <a href="#dialog" class="role-reference">dialog</a> is a window overlayed on either the primary window or another dialog window.
         Windows under a modal dialog are inert.
         That is, users cannot interact with content outside an active dialog window.
-        Inert content outside an active dialog is typically visually obscured or dimmed so it is difficult to discern, 
+        Inert content outside an active dialog is typically visually obscured or dimmed so it is difficult to discern,
         and in some implementations, attempts to interact with the inert content cause the dialog to close.
       </p>
       <p>
@@ -509,19 +515,27 @@
         designed specifically for dialogs that divert users' attention to a brief, important message.
         Its usage is described in the <a href="#alertdialog">alert dialog design pattern.</a>
       </p>
+
+      <section class="notoc">
+        <h4>Example</h4>
+        <p><a href="examples/dialog-modal/dialog.html">Modal Dialog Example</a></p>
+      </section>
+
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
+        <p>In the following description, the term <q>tabbable element</q> refers to any element with a <code>tabindex</code> value of zero or greater. Note that values greater than 0 are strongly discouraged.</p>
         <ul>
+          <li>When a dialog opens, focus moves to an element inside the dialog. See notes below regarding initial focus placement.</li>
           <li><kbd>Tab</kbd>:
             <ul>
-              <li>Moves focus to the next focusable element inside the dialog.</li>
-              <li>If focus is on the last element, moves focus to the first focusable element inside the dialog. </li>
+              <li>Moves focus to the next tabbable element inside the dialog.</li>
+              <li>If focus is on the last tabbable element inside the dialog, moves focus to the first tabbable element inside the dialog. </li>
             </ul>
           </li>
           <li><kbd>Shift + Tab</kbd>:
             <ul>
-              <li>Moves focus to the previous focusable element inside the dialog.</li>
-              <li>If focus is on the first element, moves focus to the last focusable element inside the dialog.</li>
+              <li>Moves focus to the previous tabbable element inside the dialog.</li>
+              <li>If focus is on the first tabbable element inside the dialog, moves focus to the last tabbable element inside the dialog.</li>
             </ul>
           </li>
         <li><kbd>Escape</kbd>: Closes the dialog.</li>
@@ -532,11 +546,11 @@
               <li>In all circumstances, focus moves to an element contained in the dialog.</li>
               <li>Unless a condition where doing otherwise is advisable, focus is initially set on the first focusable element.</li>
               <li>
-                If content is large enough that focusing the first interactive element could cause the beginning of content to scroll out of view, 
+                If content is large enough that focusing the first interactive element could cause the beginning of content to scroll out of view,
                 it is advisable to add <code>tabindex=<q>-1</q></code> to a static element at the top of the dialog, such as the dialog title or first paragraph, and initially focus that element.
               </li>
               <li>
-                If a dialog contains the final step in a process that is not easily reversible, such as deleting data or completing a financial transaction, 
+                If a dialog contains the final step in a process that is not easily reversible, such as deleting data or completing a financial transaction,
                 it may be advisable to set focus on the least destructive action, especially if undoing the action is difficult or impossible.
                 The <a href="#alertdialog">Alert Dialog Pattern</a> is often employed in such circumstances.
               </li>
@@ -547,12 +561,24 @@
             </ul>
           </li>
           <li>
-            When a dialog closes, focus is set on an element that supports a logical work flow.
-            If the element that had focus before the dialog was invoked still exists, that element is usually the most appropriate choice.
+            When a dialog closes, focus returns to the element that invoked the dialog unless either:
+            <ul>
+              <li>The invoking element no longer exists. Then, focus is set on another element that provides logical work flow.</li>
+              <li>The work flow design includes  the following conditions that can occasionally make focusing a different element a more logical choice:
+                <ol>
+                  <li>It is very unlikely users need to immediately re-invoke the dialog.</li>
+                  <li>The task completed in the dialog is directly related to a subsequent step in the work flow.</li>
+                </ol>
+                For example, a grid has an associated toolbar with a button for adding rows.
+                the Add Rows button opens a dialog that prompts for the number of rows.
+                After the dialog closes, focus is placed in the first cell of the first new row.
+              </li>
+            </ul>
           </li>
           <li>It is strongly recommended that the tab sequence of all dialogs include a visible element with role <code>button</code> that closes the dialog, such as  a close icon or cancel button.</li>
         </ol>
       </section>
+
       <section class="notoc">
         <h4>WAI-ARIA Roles, States, and Properties</h4>
         <ul>
@@ -561,31 +587,31 @@
           <li>The dialog container element has <a href="#aria-modal" class="property-reference">aria-modal</a> set to <code>true</code>.</li>
           <li>The dialog has either:
             <ul>
-              <li>A value set for the 
-              <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> 
+              <li>A value set for the
+              <a href="#aria-labelledby" class="property-reference">aria-labelledby</a>
               property that refers to a visible dialog title.</li>
               <li>A label specified by <a href="#aria-label" class="property-reference">aria-label</a>.</li>
             </ul>
           </li>
           <li>
-            Optionally, the <a href="#aria-describedby" class="property-reference">aria-describedby</a> property 
+            Optionally, the <a href="#aria-describedby" class="property-reference">aria-describedby</a> property
             is set on the element with the <code>dialog</code> role to indicate which element or elements in the dialog contain content that describes the primary purpose or message of the dialog.
             Specifying descriptive elements enables screen readers to announce the description along with the dialog title and initially focused element when the dialog opens.
           </li>
         </ul>
         <ul class="note">
           <li>
-            Because marking a dialog modal by setting 
+            Because marking a dialog modal by setting
             <a href="#aria-modal" class="property-reference">aria-modal</a>
             to <code>true</code> can prevent users of some assistive technologies from perceiving content outside the dialog,
-            users of those technologies will experience severe negative ramifications if a dialog is marked modal but is not modal for other users.
-            So, mark a dialog modal <strong>only when:</strong>
+            users of those technologies will experience severe negative ramifications if a dialog is marked modal but does not behave as a modal for other users.
+            So, mark a dialog modal <strong>only when both:</strong>
             <ol>
               <li>Application code prevents all users from interacting in any way with content outside of it.</li>
               <li>Visual styling obscures the content outside of it.</li>
             </ol>
           <li>
-            The <code>aria-modal</code> property introduced by ARIA 1.1 replaces 
+            The <code>aria-modal</code> property introduced by ARIA 1.1 replaces
             <a href="#aria-hidden" class="state-reference">aria-hidden</a>
             for informing assistive technologies that content outside a dialog is inert.
             However, in legacy dialog implementations where <code>aria-hidden</code> is used to make content outside a dialog inert for assistive technology users, it is important that:
@@ -595,10 +621,6 @@
             </ol>
           </li>
         </ul>
-      </section>
-      <section class="notoc">
-        <h4>Example</h4>
-        <p><a href="examples/dialog-modal/dialog.html">Modal Dialog Example</a></p>
       </section>
     </section>
 
@@ -614,6 +636,15 @@
         <a href="https://github.com/w3c/aria-practices/issues/9">issue 9</a>.
       </p>
       <p>Write description of disclosure pattern here.</p>
+
+      <section class="notoc">
+        <h4>Examples</h4>
+        <ul>
+          <li><a href="examples/disclosure/disclosure-img-long-description.html">Disclosure (Show/Hide) of Image Description</a></li>
+          <li><a href="examples/disclosure/disclosure-faq.html">Disclosure (Show/Hide) of Answers to Frequently Asked Questions</a></li>
+        </ul>
+      </section>
+
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
         <p>When the disclosure control has focus:</p>
@@ -622,19 +653,13 @@
           <li><kbd>Space</kbd>: activates the disclosure control and toggles the visibility of the disclosure content.</li>
         </ul>
       </section>
+
       <section class="notoc">
         <h4>WAI-ARIA Roles, States, and Properties</h4>
         <ul>
           <li>role <a href="#button" class="role-reference">button</a></li>
           <li>state <a href="#aria-expanded" class="state-reference">aria-expanded</a></li>
           <li>property <a href="#aria-controls" class="property-reference">aria-controls</a></li>
-        </ul>
-      </section>
-      <section class="notoc">
-        <h4>Examples</h4>
-        <ul>
-          <li><a href="examples/disclosure/disclosure-img-long-description.html">Disclosure (Show/Hide) of Image Description</a></li>
-          <li><a href="examples/disclosure/disclosure-faq.html">Disclosure (Show/Hide) of Answers to Frequently Asked Questions</a></li>
         </ul>
       </section>
     </section>
@@ -709,6 +734,14 @@
         functions that enable users to jump from article to article and efficiently discern which
         articles may be worthy of more attention.
       </p>
+
+      <section class="notoc">
+        <h4>Example</h4>
+        <p>
+        <a href="examples/feed/feed.html">Example Implementation of Feed Pattern</a>
+        </p>
+      </section>
+
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
         <p>
@@ -731,7 +764,7 @@
             Options for supporting nested feed navigation include:
             <ul>
               <li>
-                Users move focus into the nested feed from the content of the containing article with <kbd>Tab</kbd>. 
+                Users move focus into the nested feed from the content of the containing article with <kbd>Tab</kbd>.
                 This may be slow if the article contains a significant number of links, buttons, or other widgets.
                </li>
               <li>Provide a key for moving focus from the elements in the containing article to the first item in the nested feed, e.g., <kbd>Alt + Page Down</kbd>.</li>
@@ -741,6 +774,7 @@
           <li>In the rare circumstance that a feed article contains a widget that uses the above suggested keys, the feed navigation key will operate the contained widget, and the user needs to move focus to an element that does not utilize the feed navigation keys in order to navigate the feed.</li>
         </ol>
       </section>
+
       <section class="notoc">
         <h4>WAI-ARIA Roles, States, and Properties</h4>
         <ul>
@@ -770,8 +804,8 @@
           </li>
           <li>
             Each <code>article</code> element has
-            <a href="#aria-setsize" class="property-reference">aria-setsize</a> 
-            set to a value that represents either the total number of articles that have been loaded or the total number in the feed, 
+            <a href="#aria-setsize" class="property-reference">aria-setsize</a>
+            set to a value that represents either the total number of articles that have been loaded or the total number in the feed,
             depending on which value is deemed more helpful to users.
             If the total number in the feed is undetermined, it can be represented by a <code>aria-setsize</code> value of <code>-1</code>.
           </li>
@@ -784,12 +818,6 @@
             Note that it is extremely important that <code>aria-busy</code> is set to <code>false</code> when the operation is complete or the changes may not become visible to some assistive technology users.
           </li>
         </ul>
-      </section>
-      <section class="notoc">
-        <h4>Example</h4>
-        <p>
-        <a href="examples/feed/feed.html">Example Implementation of Feed Pattern</a>
-        </p>
       </section>
     </section>
 
@@ -824,6 +852,15 @@
         Even though both data grids and layout grids employ the same ARIA roles, states, and properties, differences in their content and purpose surface factors that are important to consider in keyboard interaction design.
         To address these factors, the following two sections describe separate keyboard interaction patterns for data and layout grids.
       </p>
+
+      <section class="notoc">
+        <h4>Examples</h4>
+        <ul>
+          <li><a href="examples/grid/LayoutGrids.html">Layout Grid Examples</a>: Three example implementations of grids that are used to lay out widgets, including a collection of navigation links, a message recipients list, and a set of search results.</li>
+          <li><a href="examples/grid/dataGrids.html">Data Grid Examples</a>: Three example implementations of grid that include features relevant to presenting tabular information, such as content editing, sort, and column hiding.</li>
+          <li><a href="examples/grid/advancedDataGrid.html">Advanced Data Grid Example</a>: Example of a grid with behaviors and features similar to a typical spreadsheet, including cell and row selection.</li>
+        </ul>
+      </section>
 
       <section id="dataGrid" class="notoc">
         <h4>Data Grids For Presenting Tabular Information</h4>
@@ -894,6 +931,7 @@
           <p class="note">See <a href="#aria_ex_widget">Global Recommendations</a> for cut, copy and paste key assignments.</p>
         </section>
       </section>
+
       <section id="layoutGrid" class="notoc">
         <h4>Layout Grids for Grouping Widgets</h4>
 
@@ -997,6 +1035,7 @@
           <p class="note">See <a href="#aria_ex_widget">Global Recommendations</a> for cut, copy and paste key assignments.</p>
         </section>
       </section>
+
       <section id="gridNav" class="notoc">
         <h4>Keyboard Interaction - Setting Focus and Navigating Inside Cells</h4>
 
@@ -1140,15 +1179,6 @@
         <p class="note">Editor's Note - Guidance for aria-owns has not yet been created. A link to it will be added above once created.</p>
 
       </section>
-
-      <section class="notoc">
-          <h4>Examples</h4>
-          <ul>
-            <li><a href="examples/grid/LayoutGrids.html">Layout Grid Examples</a>: Three example implementations of grids that are used to lay out widgets, including a collection of navigation links, a message recipients list, and a set of search results.</li>
-            <li><a href="examples/grid/dataGrids.html">Data Grid Examples</a>: Three example implementations of grid that include features relevant to presenting tabular information, such as content editing, sort, and column hiding.</li>
-            <li><a href="examples/grid/advancedDataGrid.html">Advanced Data Grid Example</a>: Example of a grid with behaviors and features similar to a typical spreadsheet, including cell and row selection.</li>
-          </ul>
-        </section>
     </section>
 
     <section class="widget" id="link">
@@ -1165,6 +1195,12 @@
         actions.
         When using the <code>link</code> role, providing these features of the element is the author's responsibility.
       </p>
+
+      <section class="notoc">
+        <h4>Examples</h4>
+        <p><a href="examples/link/link.html">Link Examples</a>: Link widgets constructed from HTML <code>span</code> and <code>div</code> elements.</p>
+      </section>
+
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
         <ul>
@@ -1172,15 +1208,12 @@
           <li><kbd>Shift + F10</kbd> (Optional): Opens a context menu for the link.</li>
         </ul>
       </section>
+
       <section class="notoc">
         <h4>WAI-ARIA Roles, States, and Properties</h4>
         <p>
             The element containing the link text or graphic has role of <a href="#link" class="role-reference">link</a>.
         </p>
-      </section>
-      <section class="notoc">
-        <h4>Examples</h4>
-        <p><a href="examples/link/link.html">Link Examples</a>: Link widgets constructed from HTML <code>span</code> and <code>div</code> elements.</p>
       </section>
     </section>
 
@@ -1213,6 +1246,12 @@
         For example, if a listbox for choosing a city were to contain options where each city name were preceded by a country name, and if many cities were listed for each country, a screen reader user would have to listen to the country name before hearing each city name.
         In such a scenario, it would be better to have 2 list boxes, one for country and one for city.
       </p>
+
+      <section class="notoc">
+        <h4>Examples</h4>
+        <p><a href="examples/listbox/listbox.html">Listbox Examples:</a> Two examples of the listbox pattern demonstrating differences between single-select and multi-select implementation as well as the use of action buttons with key shortcuts for arranging items in a list.</p>
+      </section>
+
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
         <p>For a vertically oriented listbox:</p>
@@ -1282,10 +1321,10 @@
             In a single-select listbox, moving focus may optionally unselect the previously selected option and select the newly focused option.
             This model of selection is known as &quot;selection follows focus&quot;.
             Having selection follow focus can be very helpful in some circumstances and can severely degrade accessibility in others.
-For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding When to Make Selection Automatically Follow Focus</a>.
+            For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding When to Make Selection Automatically Follow Focus</a>.
           </li>
           <li>If selecting or unselecting all options is an important function, implementing separate controls for these actions, such as buttons for &quot;Select All&quot; and &quot;Unselect All&quot;, significantly improves accessibility.</li>
-        <li>
+          <li>
             If the options in a listbox are arranged horizontally:
             <ol>
               <li><kbd>Down Arrow</kbd> performs as <kbd>Right Arrow</kbd> is described above, and vice versa.</li>
@@ -1316,11 +1355,6 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
           </li>
         </ul>
       </section>
-
-      <section class="notoc">
-        <h4>Examples</h4>
-        <p><a href="examples/listbox/listbox.html">Listbox Examples:</a> Two examples of the listbox pattern demonstrating differences between single-select and multi-select implementation as well as the use of action buttons with key shortcuts for arranging items in a list.</p>
-      </section>
     </section>
 
     <section class="widget" id="menu">
@@ -1337,6 +1371,14 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
       </p>
 
       <p>A common convention for indicating that a menu item launches a dialog box is to append &quot;&#8230;&quot; (ellipsis) to the menu item label, e.g., &quot;Save as &#8230;&quot;.</p>
+
+      <section class="notoc">
+        <h4>Examples</h4>
+        <ul>
+          <li><a href="examples/menubar/menubar-1/menubar-1.html">Navigation Menubar Example</a>: Demonstrates a menubar that provides site navigation.</li>
+          <li><a href="examples/menubar/menubar-2/menubar-2.html">Editor Menubar Example</a>: Demonstrates menu radios and menu checkboxes in submenus of a menubar that provides text formatting commands for a text field.</li>
+        </ul>
+      </section>
 
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
@@ -1492,26 +1534,29 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
         </ul>
         <p class="note">If <a href="#aria-owns" class="property-reference">aria-owns</a> is set on the menu container to include elements that are not DOM children of the container, those elements will appear in the reading order in the sequence they are referenced and after any items that are DOM children. Scripts that manage focus need to ensure the visual focus order matches this assistive technology reading order. </p>
       </section>
-
-      <section class="notoc">
-        <h4>Examples</h4>
-        <ul>
-          <li><a href="examples/menubar/menubar-1/menubar-1.html">Navigation Menubar Example</a>: Demonstrates a menubar that provides site navigation.</li>
-          <li><a href="examples/menubar/menubar-2/menubar-2.html">Editor Menubar Example</a>: Demonstrates menu radios and menu checkboxes in submenus of a menubar that provides text formatting commands for a text field.</li>
-        </ul>
-      </section>
     </section>
 
     <section class="widget" id="menubutton"><h3>Menu Button</h3>
       <p>A menu button is a <a href="#button">button</a> that opens a <a href="#menu">menu</a>. It is often styled as a typical push button with a downward pointing arrow or triangle to hint that activating the button will display a menu.</p>
 
       <section class="notoc">
+        <h4>Examples</h4>
+        <ul>
+          <li><a href="examples/menu-button/menu-button-links.html">Navigation Menu Button</a>: A menu button made from an HTML <code>a</code> element that opens a menu of items that behave as links.</li>
+          <li><a href="examples/menu-button/menu-button-actions.html">Action Menu Button Example Using element.focus()</a>: A menu button made from an HTML <code>button</code> element that opens a menu of actions or commands where focus in the menu is managed using <code>element.focus()</code>.</li>
+          <li><a href="examples/menu-button/menu-button-actions-active-descendant.html">Action Menu Button Example Using aria-activedescendant</a>: A button that opens a menu of actions or commands where focus in the menu is managed using aria-activedescendant.</li>
+        </ul>
+      </section>
+
+      <section class="notoc">
         <h4>Keyboard Interaction</h4>
         <ul>
           <li>With focus on the button:
             <ul>
-              <li><kbd>Space</kbd> and <kbd>Enter</kbd>: open the menu and place focus on the first menu item. </li>
-              <li>(Optional) <kbd>Down Arrow</kbd>: opens the menu and moves focus to the first menu item. </li>
+              <li><kbd>Enter</kbd>: opens the menu and places focus on the first menu item.</li>
+              <li><kbd>Space</kbd>: Opens the menu and places focus on the first menu item.</li>
+              <li>(Optional) <kbd>Down Arrow</kbd>: opens the menu and moves focus to the first menu item.</li>
+              <li>(Optional) <kbd>Up Arrow</kbd>: opens the menu and moves focus to the last menu item.</li>
             </ul>
           </li>
           <li>The keyboard behaviors needed after the menu is open are described in <a href="#menu"></a>.</li>
@@ -1524,31 +1569,22 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
           <li>The element that opens the menu has role <a href="#button" class="role-reference">button</a>.</li>
           <li>The element with role <code>button</code> has <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set to <code>true</code>.</li>
           <li>
-            When the menu is displayed, the element with role <code>button</code> has 
-            <a href="#aria-expanded" class="state-reference">aria-expanded</a> 
+            When the menu is displayed, the element with role <code>button</code> has
+            <a href="#aria-expanded" class="state-reference">aria-expanded</a>
             set to <code>true</code>.
-            When the menu is hidden, it is recommended that <code>aria-expanded</code> is not present. 
+            When the menu is hidden, it is recommended that <code>aria-expanded</code> is not present.
             If <code>aria-expanded</code> is specified when the menu is hidden, it is set to <code>false</code>.
           </li>
           <li>
-            The element that contains the menu items displayed by activating the button has role 
+            The element that contains the menu items displayed by activating the button has role
             <a href="#menu" class="role-reference">menu</a>.
           </li>
           <li>
-            Optionally, the element with role <code>button</code> has a value specified for 
-            <a href="#aria-controls" class="property-reference">aria-controls</a> 
+            Optionally, the element with role <code>button</code> has a value specified for
+            <a href="#aria-controls" class="property-reference">aria-controls</a>
             that refers to the element with role <code>menu</code>.
             </li>
             <li>Additional roles, states, and properties needed for the menu element are described in <a href="#menu"></a>.</li>
-        </ul>
-      </section>
-
-      <section class="notoc">
-        <h4>Examples</h4>
-        <ul>
-          <li><a href="examples/menu-button/menu-button-links.html">Navigation Menu Button</a>: A menu button made from an HTML <code>a</code> element that opens a menu of items that behave as links.</li>
-          <li><a href="examples/menu-button/menu-button-actions.html">Action Menu Button Example Using element.focus()</a>: A menu button made from an HTML <code>button</code> element that opens a menu of actions or commands where focus in the menu is managed using <code>element.focus()</code>.</li>
-          <li><a href="examples/menu-button/menu-button-actions-active-descendant.html">Action Menu Button Example Using aria-activedescendant</a>: A button that opens a menu of actions or commands where focus in the menu is managed using aria-activedescendant.</li>
         </ul>
       </section>
     </section>
@@ -1559,6 +1595,22 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
         A radio group is a set of checkable buttons, known as radio buttons, where only one
         button in the set may be in a checked state.
       </p>
+
+      <section class="notoc">
+        <h4>Examples</h4>
+        <ul>
+          <li>
+            <a href="examples/radio/radio-1/radio-1.html">Radio group example using roving
+              tabindex.</a>
+          </li>
+          <li>
+            <a href="examples/radio/radio-2/radio-2.html">
+              Radio group example using managed focus with <code>aria-activedescendant</code>.
+            </a>
+          </li>
+        </ul>
+      </section>
+
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
         <ul>
@@ -1636,22 +1688,6 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
           </li>
         </ul>
       </section>
-
-      <section class="notoc">
-        <h4>Examples</h4>
-        <ul>
-          <li>
-            <a href="examples/radio/radio-1/radio-1.html">Radio group example using roving
-              tabindex.</a>
-          </li>
-          <li>
-            <a href="examples/radio/radio-2/radio-2.html">
-              Radio group example using managed focus with <code>aria-activedescendant</code>.
-            </a>
-          </li>
-        </ul>
-      </section>
-
     </section>
 
     <section class="widget" id="slider">
@@ -1659,7 +1695,16 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
       <p>
         A slider is an input where the user selects a value from within a given range.
         Sliders typically have a slider thumb that can be moved along a bar or track to change the value of the slider.
-        </p>
+      </p>
+
+      <section class="notoc">
+        <h4>Examples</h4>
+        <ul>
+          <li><a href="examples/slider/slider-1.html">Horizontal Slider Examples</a>: Demonstrates using three horizontally aligned sliders to make a color picker.</li>
+          <li><a href="examples/slider/slider-2.html">Slider Examples with aria-orientation and aria-valuetext</a>: Three thermostat control sliders that demonstrate using aria-orientation and aria-valuetext.</li>
+        </ul>
+      </section>
+
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
         <ul>
@@ -1701,13 +1746,6 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
           </li>
         </ul>
       </section>
-      <section class="notoc">
-        <h4>Examples</h4>
-        <ul>
-          <li><a href="examples/slider/slider-1.html">Horizontal Slider Examples</a>: Demonstrates using three horizontally aligned sliders to make a color picker.</li>
-          <li><a href="examples/slider/slider-2.html">Slider Examples with aria-orientation and aria-valuetext</a>: Three thermostat control sliders that demonstrate using aria-orientation and aria-valuetext.</li>
-        </ul>
-      </section>
     </section>
 
     <section class="widget" id="slidertwothumb">
@@ -1723,6 +1761,15 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
         That is, the mthumb that sets the upper value of the range can not be set lower than the thumb that controls the lower value of the range.
         However, in some multi-thumb sliders, each thumb sets a value that does not depend on the other thumb values.
       </p>
+
+      <section class="notoc">
+        <h4>Example</h4>
+        <p>
+        Work to develop an example multi-thumb slider is tracked in
+        <a href="https://github.com/w3c/aria-practices/issues/124">issue 124.</a>
+        </p>
+      </section>
+
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
         <ul>
@@ -1733,7 +1780,8 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
           </li>
         </ul>
       </section>
-<section class="notoc">
+
+      <section class="notoc">
         <h4>WAI-ARIA Roles, States, and Properties</h4>
         <ul>
           <li>Each element serving as a focusable slider thumb has role <a class="role-reference" href="#slider">slider</a>.</li>
@@ -1757,13 +1805,6 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
           </li>
         </ul>
       </section>
-      <section class="notoc">
-        <h4>Example</h4>
-        <p>
-        Work to develop an example multi-thumb slider is tracked in
-        <a href="https://github.com/w3c/aria-practices/issues/124">issue 124.</a>
-        </p>
-      </section>
     </section>
 
     <section class="widget" id="spinbutton">
@@ -1781,6 +1822,15 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
         If the range is large, a spinbutton may support changing the value in both small and large steps.
         For instance, in the alarm example, the user may be able to move by 1 minute with <kbd>Up Arrow</kbd> and <kbd>Down Arrow</kbd> and by 10 minutes with <kbd>Page Up</kbd> and <kbd>Page Down</kbd>.
       </p>
+
+      <section class="notoc">
+        <h4>Example</h4>
+        <p>
+          Work to develop a spinbutton example is tracked by
+          <a href="https://github.com/w3c/aria-practices/issues/125">issue 125.</a>
+        </p>
+      </section>
+
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
         <ul>
@@ -1827,13 +1877,6 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
           </li>
         </ul>
       </section>
-      <section class="notoc">
-        <h4>Example</h4>
-        <p>
-          Work to develop a spinbutton example is tracked by
-          <a href="https://github.com/w3c/aria-practices/issues/125">issue 125.</a>
-        </p>
-      </section>
     </section>
 
     <section class="widget" id="table">
@@ -1871,6 +1914,15 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
         When a tabbed interface is initialized, one tab panel is displayed and its associated tab is styled to indicate that it is active.
         When the user activates one of the other tab elements, the previously displayed tab panel is hidden, the tab panel associated with the activated tab becomes visible, and the tab is considered "active".
       </p>
+
+      <section class="notoc">
+        <h4>Examples</h4>
+        <ul>
+          <li><a href="examples/tabs/tabs-1/tabs.html">Tabs With Automatic Activation</a>: A tabs widget where tabs are automatically activated and their panel is displayed when they receive focus.</li>
+          <li><a href="examples/tabs/tabs-2/tabs.html">Tabs With Manual Activation</a>: A tabs widget where users activate a tab and display its panel by pressing <kbd>Space</kbd> or <kbd>Enter</kbd>.</li>
+        </ul>
+      </section>
+
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
         <p>For the tab list:</p>
@@ -1940,13 +1992,6 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
         </li>
         </ul>
       </section>
-      <section class="notoc">
-        <h4>Examples</h4>
-        <ul>
-          <li><a href="examples/tabs/tabs-1/tabs.html">Tabs With Automatic Activation</a>: A tabs widget where tabs are automatically activated and their panel is displayed when they receive focus.</li>
-          <li><a href="examples/tabs/tabs-2/tabs.html">Tabs With Manual Activation</a>: A tabs widget where users activate a tab and display its panel by pressing <kbd>Space</kbd> or <kbd>Enter</kbd>.</li>
-        </ul>
-      </section>
     </section>
 
     <section class="widget" id="toolbar">
@@ -1962,6 +2007,10 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
         <li>Avoid including controls that require arrow keys to operate, such as textbox or radio group. If unavoidable, include only one such control and make it the last element .</li>
         <li>Use toolbar as a grouping element only if the group contains 3 or more controls.</li>
       </ol>
+      <section class="notoc">
+        <h4>Example</h4>
+        <p><a href="examples/toolbar/toolbar.html">Toolbar Example</a>: A toolbar including buttons, links, and checkboxes that uses roving tabindex to manage focus.</p>
+      </section>
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
         <ul>
@@ -2006,10 +2055,6 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
           <li>If the controls are arranged vertically, the toolbar element has <a href="#aria-orientation" class="property-reference">aria-orientation</a> set to <code>vertical</code>. The default orientation is horizontal.</li>
         </ul>
       </section>
-      <section class="notoc">
-        <h4>Example</h4>
-        <p><a href="examples/toolbar/toolbar.html">Toolbar Example</a>: A toolbar including buttons, links, and checkboxes that uses roving tabindex to manage focus.</p>
-      </section>
     </section>
 
     <section class="widget" id="tooltip">
@@ -2029,6 +2074,13 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
         a <a href="#dialog_nonmodal">non-modal dialog pattern</a>.
       </p>
       <section class="notoc">
+        <h4>Example</h4>
+        <p>
+          Work to develop a tooltip example is tracked by
+          <a href="https://github.com/w3c/aria-practices/issues/127">issue 127.</a>
+        </p>
+      </section>
+      <section class="notoc">
         <h4>Keyboard Interaction</h4>
         <p><kbd>Escape</kbd>: Dismisses the Tooltip.</p>
         <ol class="note">
@@ -2045,13 +2097,6 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
           <li>The element that serves as the tooltip container has role <a href="#tooltip" class="role-reference">tooltip</a>.</li>
           <li>The element that triggers the tooltip references the tooltip element with <a href="#aria-describedby" class="property-reference">aria-describedby</a>.</li>
         </ul>
-      </section>
-      <section class="notoc">
-        <h4>Example</h4>
-        <p>
-          Work to develop a tooltip example is tracked by
-          <a href="https://github.com/w3c/aria-practices/issues/127">issue 127.</a>
-        </p>
       </section>
     </section>
 
@@ -2088,6 +2133,28 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
         It is important that the visual design distinguish between items that are selected and the item that has focus.
         For more details, see <a href="#kbd_focus_vs_selection">this description of differences between focus and selection.</a>
       </p>
+
+      <section class="notoc">
+        <h4>Examples</h4>
+        <ul>
+          <li>
+            <a href="examples/treeview/treeview-1/treeview-1a.html">File Directory Treeview Example Using Computed Properties</a>:
+            A file selector tree that demonstrates browser support for automatically computing <code>aria-level</code>, <code>aria-posinset</code> and <code>aria-setsize</code> based on DOM structure.
+          </li>
+          <li>
+            <a href="examples/treeview/treeview-1/treeview-1b.html">File Directory Treeview Example Using Declared Properties</a>:
+            A file selector tree that demonstrates how to explicitly define values for <code>aria-level</code>, <code>aria-posinset</code> and <code>aria-setsize</code>.
+          </li>
+          <li>
+            <a href="examples/treeview/treeview-2/treeview-2a.html">Navigation Treeview Example Using Computed Properties</a>:
+            A tree that provides navigation to a set of web pages and demonstrates browser support for automatically computing <code>aria-level</code>, <code>aria-posinset</code> and <code>aria-setsize</code> based on DOM structure.
+          </li>
+          <li>
+            <a href="examples/treeview/treeview-2/treeview-2b.html">Navigation Treeview Example Using Declared Properties</a>:
+      A tree that provides navigation to a set of web pages and demonstrates how to explicitly define values for <code>aria-level</code>, <code>aria-posinset</code> and <code>aria-setsize</code>.
+          </li>
+        </ul>
+      </section>
 
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
@@ -2173,7 +2240,7 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
             In a single-select tree, moving focus may optionally unselect the previously selected node and select the newly focused node.
             This model of selection is known as &quot;selection follows focus&quot;.
             Having selection follow focus can be very helpful in some circumstances and can severely degrade accessibility in others.
-For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding When to Make Selection Automatically Follow Focus</a>.
+            For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding When to Make Selection Automatically Follow Focus</a>.
           </li>
           <li>If selecting or unselecting all nodes is an important function, implementing separate controls for these actions, such as buttons for &quot;Select All&quot; and &quot;Unselect All&quot;, significantly improves accessibility.</li>
         <li>
@@ -2228,28 +2295,6 @@ For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding Whe
           Scripts that manage focus need to ensure the visual focus order matches this assistive technology reading order.
         </p>
       </section>
-
-      <section class="notoc">
-        <h4>Examples</h4>
-        <ul>
-          <li>
-            <a href="examples/treeview/treeview-1/treeview-1a.html">File Directory Treeview Example Using Computed Properties</a>:
-            A file selector tree that demonstrates browser support for automatically computing <code>aria-level</code>, <code>aria-posinset</code> and <code>aria-setsize</code> based on DOM structure.
-          </li>
-          <li>
-            <a href="examples/treeview/treeview-1/treeview-1b.html">File Directory Treeview Example Using Declared Properties</a>:
-            A file selector tree that demonstrates how to explicitly define values for <code>aria-level</code>, <code>aria-posinset</code> and <code>aria-setsize</code>.
-          </li>
-          <li>
-            <a href="examples/treeview/treeview-2/treeview-2a.html">Navigation Treeview Example Using Computed Properties</a>:
-            A tree that provides navigation to a set of web pages and demonstrates browser support for automatically computing <code>aria-level</code>, <code>aria-posinset</code> and <code>aria-setsize</code> based on DOM structure.
-          </li>
-          <li>
-            <a href="examples/treeview/treeview-2/treeview-2b.html">Navigation Treeview Example Using Declared Properties</a>:
-A tree that provides navigation to a set of web pages and demonstrates how to explicitly define values for <code>aria-level</code>, <code>aria-posinset</code> and <code>aria-setsize</code>.
-          </li>
-        </ul>
-      </section>
     </section>
 
     <section class="widget" id="windowsplitter">
@@ -2277,6 +2322,13 @@ A tree that provides navigation to a set of web pages and demonstrates how to ex
       <p>
         Note that the term &quot;primary pane&quot; does not describe the importance or purpose of content inside the pane.
       </p>
+      <section class="notoc">
+        <h4>Example</h4>
+        <p>
+          Work to develop an example window splitter widget is tracked by
+          <a href="https://github.com/w3c/aria-practices/issues/130">issue 130.</a>
+        </p>
+      </section>
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
         <ul>
@@ -2306,13 +2358,6 @@ A tree that provides navigation to a set of web pages and demonstrates how to ex
           </li>
           <li>The separator element has <a href="#aria-controls" class="property-reference">aria-controls</a> referring to the primary pane.</li>
         </ul>
-      </section>
-      <section class="notoc">
-        <h4>Example</h4>
-        <p>
-          Work to develop an example window splitter widget is tracked by
-          <a href="https://github.com/w3c/aria-practices/issues/130">issue 130.</a>
-        </p>
       </section>
     </section>
   </section>
@@ -3234,7 +3279,7 @@ A tree that provides navigation to a set of web pages and demonstrates how to ex
             </li>
 
             <li>
-              Activate an element without moving focus when the target context of the funtion is the context that contains the focus.
+              Activate an element without moving focus when the target context of the function is the context that contains the focus.
               This behavior is most common for command buttons and for functions associated with elements that are not visible, such as a "Save" option that is accessible via a menu.
               For example, if the focus is on an option in a listbox and a toolbar contains buttons for moving and removing options, it is most benefitial to keep focus in the listbox when the user presses a key shortcut for one of the buttons in the toolbar.
               This behavior can be particularly important for screen reader users because it provides confirmation of the action performed and makes performing multiple commands more efficient.
