@@ -55,7 +55,7 @@
               aria-setsize="3"
               aria-posinset="1"
               aria-expanded="false">
-              <span>Fruits</span>
+              <span><span class="state" aria-hidden="true"></span>Fruits</span>
               <ul>
                 <li role="none">
                   <a role="treeitem"
@@ -80,7 +80,7 @@
                    aria-setsize="5"
                    aria-posinset="3"
                    aria-expanded="false">
-                  <span>Apples</span>
+                  <span><span class="state" aria-hidden="true"></span>Apples</span>
                   <ul role="group">
                     <li role="none">
                       <a role="treeitem"
@@ -125,7 +125,7 @@
                     aria-setsize="5"
                     aria-posinset="5"
                     aria-expanded="false">
-                    <span> Pears </span>
+                    <span><span class="state" aria-hidden="true"></span>Pears </span>
                   <ul role="group">
                     <li role="none">
                       <a role="treeitem"
@@ -190,14 +190,14 @@
               aria-setsize="3"
               aria-posinset="2"
               aria-expanded="false">
-              <span>Vegetables</span>
+              <span><span class="state" aria-hidden="true"></span>Vegetables</span>
               <ul role="group">
                 <li role="treeitem"
                   aria-level="1"
                   aria-setsize="3"
                   aria-posinset="2"
                   aria-expanded="false">
-                  <span>Podded Vegetables</span>
+                  <span><span class="state" aria-hidden="true"></span>Podded Vegetables</span>
                   <ul role="group">
                     <li role="none">
                       <a role="treeitem"
@@ -233,7 +233,7 @@
                   aria-setsize="3"
                   aria-posinset="2"
                   aria-expanded="false">
-                  <span>Bulb and Stem Vegetables</span>
+                  <span><span class="state" aria-hidden="true"></span>Bulb and Stem Vegetables</span>
                   <ul role="group">
                     <li role="none">
                       <a role="treeitem"
@@ -278,7 +278,7 @@
                   aria-setsize="3"
                   aria-posinset="3"
                   aria-expanded="false">
-                  <span>Root and Tuberous Vegetables</span>
+                  <span><span class="state" aria-hidden="true"></span>Root and Tuberous Vegetables</span>
                   <ul role="group">
                     <li role="none">
                       <a role="treeitem"
@@ -325,14 +325,14 @@
               aria-setsize="3"
               aria-posinset="3"
               aria-expanded="false">
-              <span>Grains</span>
+              <span><span class="state" aria-hidden="true"></span>Grains</span>
               <ul role="group">
                 <li role="treeitem"
                   aria-level="2"
                   aria-setsize="3"
                   aria-posinset="1"
                   aria-expanded="false">
-                  <span>Cereal Grains</span>
+                  <span><span class="state" aria-hidden="true"></span>Cereal Grains</span>
                   <ul role="group">
                     <li role="none">
                       <a role="treeitem"
@@ -368,7 +368,7 @@
                   aria-setsize="3"
                   aria-posinset="2"
                   aria-expanded="false">
-                  <span>Pseudocereal Grains</span>
+                  <span><span class="state" aria-hidden="true"></span>Pseudocereal Grains</span>
                   <ul role="group">
                     <li role="none">
                       <a role="treeitem"
@@ -413,7 +413,7 @@
                   aria-setsize="3"
                   aria-posinset="3"
                   aria-expanded="false">
-                  <span>Oilseeds</span>
+                  <span><span class="state" aria-hidden="true"></span>Oilseeds</span>
                   <ul role="group">
                     <li role="none">
                       <a role="treeitem"
@@ -667,6 +667,18 @@
                   <li>Applied only to <code>treeitem</code> elements that are parent nodes, i.e., they contain a <code>ul</code> with the <code>group</code> role.</li>
                   <li>Indicates the parent node is open, i.e., the descendant elements <strong>are</strong> visible.</li>
                   <li>The visual indication of the expanded state is synchronized by a CSS attribute selecter.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <th scope="row"><code>aria-hidden=&quot;true&quot;</code></th>
+              <td><code>li</code></td>
+              <td>
+              <ul>
+                  <li>The state (e.g. open or closed) of an expandable treeitem is indicated visually using the CSS <code>content</code> property in the <code>span[class="state"]</code> element.</li>
+                  <li>The content of the the CSS <code>content</code> property is read by screen readers.</li>
+                  <li>Since the state information is already available to screen readers through the <code>aria-expanded</code> property, the content of the <code>span[class="state"]</code> element should be ignored using the <code>aria-hidden</code> property.</code>
                 </ul>
               </td>
             </tr>

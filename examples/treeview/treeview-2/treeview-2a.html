@@ -55,7 +55,7 @@
           <ul role="tree" aria-labelledby="tree1" >
             <li role="treeitem"
                 aria-expanded="false">
-              <span>Fruits</span>
+              <span><span class="state" aria-hidden="true"></span>Fruits</span>
               <ul>
                 <li role="none">
                   <a role="treeitem"
@@ -71,7 +71,7 @@
                 </li>
                 <li role="treeitem"
                     aria-expanded="false">
-                    <span>Apples</span>
+                    <span><span class="state" aria-hidden="true"></span>Apples</span>
                   <ul role="group">
                     <li role="none">
                       <a role="treeitem"
@@ -101,7 +101,7 @@
                 </li>
                 <li role="treeitem"
                     aria-expanded="false">
-                  <span> Pears </span>
+                  <span><span class="state" aria-hidden="true"></span>Pears </span>
                   <ul role="group">
                     <li>
                       <a role="treeitem"
@@ -145,11 +145,11 @@
             </li>
             <li role="treeitem"
                 aria-expanded="false">
-              <span>Vegetables</span>
+              <span><span class="state" aria-hidden="true"></span>Vegetables</span>
               <ul role="group">
                 <li role="treeitem"
                     aria-expanded="false">
-                  <span>Podded Vegetables</span>
+                  <span><span class="state" aria-hidden="true"></span>Podded Vegetables</span>
                   <ul role="group">
                     <li role="none">
                         <a role="treeitem"
@@ -173,7 +173,7 @@
                 </li>
                 <li role="treeitem"
                     aria-expanded="false">
-                  <span>Bulb and Stem Vegetables</span>
+                  <span><span class="state" aria-hidden="true"></span>Bulb and Stem Vegetables</span>
                   <ul role="group">
                     <li role="none">
                       <a role="treeitem"
@@ -203,7 +203,7 @@
                 </li>
                 <li role="treeitem"
                     aria-expanded="false">
-                  <span>Root and Tuberous Vegetables</span>
+                  <span><span class="state" aria-hidden="true"></span>Root and Tuberous Vegetables</span>
                   <ul role="group">
                     <li role="none">
                         <a role="treeitem"
@@ -235,11 +235,11 @@
             </li>
             <li role="treeitem"
                 aria-expanded="false">
-              <span>Grains</span>
+              <span><span class="state" aria-hidden="true"></span>Grains</span>
               <ul role="group">
                 <li role="treeitem"
                     aria-expanded="false">
-                  <span>Cereal Grains</span>
+                  <span><span class="state" aria-hidden="true"></span>Cereal Grains</span>
                   <ul role="group">
                     <li role="none">
                       <a role="treeitem"
@@ -263,7 +263,7 @@
                 </li>
                 <li role="treeitem"
                     aria-expanded="false">
-                  <span>Pseudocereal Grains</span>
+                  <span><span class="state" aria-hidden="true"></span>Pseudocereal Grains</span>
                   <ul role="group">
                     <li role="none">
                       <a role="treeitem"
@@ -293,7 +293,7 @@
                 </li>
                 <li role="treeitem"
                     aria-expanded="false">
-                  <span>Oilseeds</span>
+                  <span><span class="state" aria-hidden="true"></span>Oilseeds</span>
                   <ul role="group">
                     <li role="none">
                       <a role="treeitem"
@@ -539,6 +539,17 @@
               </td>
             </tr>
             <tr>
+              <td></td>
+              <th scope="row"><code>aria-hidden=&quot;true&quot;</code></th>
+              <td><code>li</code></td>
+              <td>
+              <ul>
+                  <li>The state (e.g. open or closed) of an expandable treeitem is indicated visually using the CSS <code>content</code> property in the <code>span[class="state"]</code> element.</li>
+                  <li>The content of the the CSS <code>content</code> property is read by screen readers.</li>
+                  <li>Since the state information is already available to screen readers through the <code>aria-expanded</code> property, the content of the <code>span[class="state"]</code> element should be ignored using the <code>aria-hidden</code> property.</code>
+                </ul>
+              </td>
+            </tr>            <tr>
               <th scope="row"><code>group</code></th>
               <td></td>
               <td><code>ul</code></td>
