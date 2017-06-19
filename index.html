@@ -398,7 +398,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   </style>
   <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/W3C-ED">
   <link rel="canonical" href="https://www.w3.org/TR/wai-aria-practices-1.1/">
-  <meta name="generator" content="ReSpec 14.0.2">
+  <meta name="generator" content="ReSpec 14.0.8">
   <script id="initialUserConfig" type="application/json">
     {
       "doRDFa": "1.1",
@@ -768,19 +768,20 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       "preProcess": [
         null
       ],
-      "publishDate": "2017-06-12",
-      "publishISODate": "2017-06-12T00:00:00.000Z",
-      "generatedSubtitle": "Editor's Draft 12 June 2017"
+      "publishDate": "2017-06-19",
+      "publishISODate": "2017-06-19T00:00:00.000Z",
+      "generatedSubtitle": "Editor's Draft 19 June 2017"
     }
   </script>
 </head>
 <body aria-busy="false" class="h-entry toc-inline" id="respecDocument">
   <div class="head" role="contentinfo" id="respecHeader">
-    <p>
-      <a class="logo" href="https://www.w3.org/"><img width="72" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" alt="W3C"></a>
-    </p>
+    <p><a href="https://www.w3.org/" class="logo">
+    <span id="">
+      <img alt="W3C" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" width="72" height="48">
+    </span></a></p>
     <h1 class="title p-name" id="title" property="dcterms:title"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Authoring Practices 1.1</h1>
-    <h2 id="w3c-editor-s-draft-12-june-2017"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2017-06-12">12 June 2017</time></h2>
+    <h2 id="w3c-editor-s-draft-19-june-2017"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2017-06-19">19 June 2017</time></h2>
     <dl>
       <dt>This version:</dt>
       <dd><a class="u-url" href="http://w3c.github.io/aria-practices/">http://w3c.github.io/aria-practices/</a></dd>
@@ -2406,10 +2407,6 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <li>
             If activating a <a href="http://w3c.github.io/aria/aria/aria.html#menuitem" class="role-reference">menuitem</a> opens a submenu, the menuitem is known as a parent menuitem. A submenu's <code>menu</code> element is contained in or owned by it's parent menuitem.
           </li>
-          <li>
-            A parent menuitem has either
-            <a class="property-reference" href="http://w3c.github.io/aria/aria/aria.html#aria-label">aria-label</a> or <a class="property-reference" href="http://w3c.github.io/aria/aria/aria.html#aria-labelledby">aria-labelledby</a> set to specify a label. Warning: parent menuitems missing a label are labeled by all child elements, causing screen readers to announce every child menuitem and often making a menu so verbose that it is unusable.
-          </li>
           <li>A parent menuitem has <a href="http://w3c.github.io/aria/aria/aria.html#aria-haspopup" class="property-reference">aria-haspopup</a> set to <code>true</code>. </li>
           <li>One of the following approaches is used to enable scripts to move focus among items in a menu as described in <a href="#kbd_general_within" class="sec-ref"><span class="secno">4.6</span> <span class="sec-title"> Keyboard Navigation Inside Components</span></a>:
             <ul>
@@ -3131,10 +3128,6 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <li>Each child node is contained in or owned by an element with role <a class="role-reference" href="http://w3c.github.io/aria/aria/aria.html#group">group</a> that is contained in or owned by the node that serves as the parent of that child.</li>
           <li>
             Each element with role <code>treeitem</code> that serves as a parent node has <a class="property-reference" href="http://w3c.github.io/aria/aria/aria.html#aria-expanded">aria-expanded</a> set to <code>false</code> when the node is in a closed state and set to <code>true</code> when the node is in an open state. End nodes do not have the <code>aria-expanded</code> attribute because, if they were to have it, they would be incorrectly described to assistive technologies as parent nodes.
-          </li>
-          <li>
-            Each element with role <code>treeitem</code> that serves as a parent node has either
-            <a class="property-reference" href="http://w3c.github.io/aria/aria/aria.html#aria-label">aria-label</a> or <a class="property-reference" href="http://w3c.github.io/aria/aria/aria.html#aria-labelledby">aria-labelledby</a> set to specify a label. Warning: parent nodes missing a label are labeled by all child elements, causing screen readers to announce every child and often making a tree so verbose that it is unusable.
           </li>
           <li>If the tree supports selection of more than one node, the element with role <code>tree</code> has <a class="property-reference" href="http://w3c.github.io/aria/aria/aria.html#aria-multiselectable">aria-multiselectable</a> set to <code>true</code>. Otherwise, <code>aria-multiselectable</code> is either set to <code>false</code> or the default value of <code>false</code> is implied.</li>
           <li>If the tree does not support multiple selection, <a href="http://w3c.github.io/aria/aria/aria.html#aria-selected" class="property-reference">aria-selected</a> is set to <code>true</code> for the selected node and it is not present on any other node in the tree.</li>
@@ -4493,7 +4486,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <p>[Placeholder section that will be resolved by <a href="https://github.com/w3c/aria-practices/issues/84">issue #84</a>.]</p>
     </section>
 
-    <div data-include="common/acknowledgements.html" data-include-replace="true" data-include-id="include-32552001860191826">
+    <div data-include="common/acknowledgements.html" data-include-replace="true" data-include-id="include-7807057151432841">
     </div>
   </section>
 
