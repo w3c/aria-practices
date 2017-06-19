@@ -28,7 +28,7 @@
       </p>
       <p>
         Following is an example implementation of the
-        <a href="../../#dialog">design pattern for modal dialogs.</a>
+        <a href="../../#dialog_modal">design pattern for modal dialogs.</a>
           The below <q>Add Delivery Address</q> button opens a modal dialog that contains two buttons that open other dialogs.
           The accessibility features section explains the rationale for initial focus placement and use of <code>aria-describedby</code> in each dialog.
         </p>
@@ -196,7 +196,7 @@
       </section>
     </main>
     <nav>
-      <a href="../../#pattern_ID">EXAMPLE_NAME Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
+      <a href="../../#dialog_modal">Modal Dialog Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
     </nav>
   </div>
   <div id="dialog_layer">
@@ -232,9 +232,9 @@
           <label for="special_instructions">
             <span class="label_text">Special instructions:</span>
           </label>
-          <input id="special_instructions" type="textarea" class="wide_input">
-          <div class="label_info">
-            .e.g., gate code or other information to make it easy for the driver to find you
+          <input id="special_instructions" type="textarea" aria-describedby="special_instructions_desc" class="wide_input">
+          <div class="label_info" id="special_instructions_desc">
+            For example, gate code or other information to help the driver find you
           </div>
         </div>
       </div>
