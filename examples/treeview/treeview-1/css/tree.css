@@ -34,6 +34,13 @@ ul[role="tree"] {
   display: block;
 }
 
+/* disable default keyboard focus styling for treeitems
+   Keyboard focus is styled with the following CSS */
+[role="treeitem"]:focus {
+  outline: 0;
+}
+
+
 [role="treeitem"].focus,
 [role="treeitem"] span.focus {
   border-color: black;

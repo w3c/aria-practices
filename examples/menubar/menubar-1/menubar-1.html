@@ -11,6 +11,7 @@
 <script src="../../js/highlight.pack.js"></script>
 <script src="../../js/app.js"></script>
 
+<!--  CSS and JS specific to this example  -->
 <script src="js/MenubarLinks.js" type="text/javascript"></script>
 <script src="js/MenubarItemLinks.js" type="text/javascript"></script>
 <script src="js/PopupMenuLinks.js" type="text/javascript"></script>
@@ -23,21 +24,19 @@
   <h1>Navigation Menubar Example</h1>
   <p>
     <strong>NOTE:</strong> Please provide feedback on this example in
-    <a href="https://github.com/w3c/aria-practices/issues/145">issue 145</a>.
+    <a href="https://github.com/w3c/aria-practices/issues/410">issue 410.</a>
   </p>
   <p>
-    Following are two implementations of the
+    The following two implementations of the
     <a href="../../../#menu">design pattern for menubar</a>
-    that demonstrate how a menubar can be used for site navigation. Each item in the two menubars
-    represents a section of a web site for a mythical university and opens a pull down menu with links to pages within that
-    section. The two examples differ only in how they are coded; see notes that follow each example.
+    demonstrate a menubar that presents site navigation menus. 
+    Each item in the menubars represents a section of a web site for a mythical university and opens a submenu containing menu items that link to pages within that section. 
+    The two examples are functionally equivalent but differ in how they are coded; see notes that follow each example.
   </p>
-
   <p>Similar examples include: </p>
   <ul>
-    <li><a href="../menubar-2/menubar-2.html">Editor Menubar Example</a>: Example of a menubar with text styling actions similar to an editor application.</li>
+    <li><a href="../menubar-2/menubar-2.html">Editor Menubar Example</a>: Example of a menubar that presents text styling actions similar to an editor application.</li>
   </ul>
-
   <section id="code-ex-1">
     <h2>Examples</h2>
     <section>
@@ -149,14 +148,7 @@
       </div>
       <div role="separator" id="ex1_end_sep" aria-labelledby="ex1_end_sep ex1_label" aria-label="End of"></div>
       <h4>Notes</h4>
-      <ol>
-        <li>This example includes the ARIA roles and properties in the source code for authors
-          to easily see which elements the roles and properties need to be included.</li>
-        <li>This is useful for people writing their own scripts to see which elements need
-          roles and properties.</li>
-        <li>CSS <code>:after</code> is used to render the down arrow in a menubar item using the CSS <code>content</code> property string using entity values.</li>
-        <li>CSS <code>:after</code> is used to render right arrow using the CSS <code>content</code> property string using entity values in pull down menu items that have sub-menus.</li>
-        </ol>
+      <p>This implementation includes the ARIA roles and properties in the HTML to make it easy to see how they are used.</p>
     </section>
     <section>
       <h3 id="ex2_label">Example 2: ARIA markup added dynamically</h3>
@@ -238,14 +230,17 @@
       <div role="separator" id="ex2_end_sep" aria-labelledby="ex2_end_sep ex2_label" aria-label="End of"></div>
       <h4>Notes</h4>
       <ol>
-        <li>This example includes the ARIA roles and properties are added by the scripts based
-          on the structure of the HTML elements.</li>
-        <li>This can be used by authors to more easily add this script to their own projects
-          and websites.</li>
+        <li>In this implementation, ARIA roles and properties are added by the scripts based on the HTML structure.</li>
+        <li>This approach may be helpful when applying the menubar pattern to existing content.</li>
       </ol>
     </section>
   </section>
 
+  <section>
+    <h2>Accessibility Features</h2>
+    <p>The down arrow and right arrow icons are made compatible with high contrast mode and hidden from screen readers by using the CSS <code>content</code> property to render images.</p>
+  </section>
+  
   <section>
     <h2 id="kbd_label">Keyboard Support</h2>
     <h3 id="kbd1_label">Menubar</h3>
@@ -259,11 +254,18 @@
       <tbody>
         <tr>
           <th>
-            <kbd>Space or Enter</kbd>
+            <kbd>Space</kbd><br><kbd>Enter</kbd>
+          </th>
+          <td>Opens submenu and moves focus to first item in the submenu.</td>
+        </tr>
+        <tr>
+          <th>
+            <kbd>Right Arrow</kbd>
           </th>
           <td>
             <ul>
-              <li>Open or Close popup menu (e.g. toggle).</li>
+              <li>Moves focus to the next item in the menubar.</li>
+              <li>If focus is on the last item, moves focus to the first item.</li>
             </ul>
           </td>
         </tr>
@@ -273,21 +275,8 @@
           </th>
           <td>
             <ul>
-              <li>Moves focus to previous menubar menu item.</li>
-              <li>If focus on first menubar menu item, focus is moved to last menubar menu
-                item.</li>
-            </ul>
-          </td>
-        </tr>
-        <tr>
-          <th>
-            <kbd>Right Arrow</kbd>
-          </th>
-          <td>
-            <ul>
-              <li>Moves focus to next menubar menu item.</li>
-              <li>If focus on last menubar menu item, focus is moved to first menubar menu
-                item.</li>
+              <li>Moves focus to the previous item in the menubar.</li>
+              <li>If focus is on the first item, moves focus to the last item.</li>
             </ul>
           </td>
         </tr>
@@ -295,43 +284,25 @@
           <th>
             <kbd>Down Arrow</kbd>
           </th>
-          <td>
-            <ul>
-              <li>Open popup menu.</li>
-              <li>Moves focus to first popup menu item.</li>
-            </ul>
-          </td>
+          <td>Opens submenu and moves focus to first item in the submenu.</td>
         </tr>
         <tr>
           <th>
-            <kbd>Up Arrow </kbd>
+            <kbd>Up Arrow</kbd>
           </th>
-          <td>
-            <ul>
-              <li>Open popup menu.</li>
-              <li>Moves focus to last popup menu item.</li>
-            </ul>
-          </td>
+          <td>Opens submenu and moves focus to last item in the submenu.</td>
         </tr>
         <tr>
           <th>
             <kbd>Home</kbd>
           </th>
-          <td>
-            <ul>
-              <li>Moves focus to first menubar menu item.</li>
-            </ul>
-          </td>
+          <td>Moves focus to first item in the menubar.</td>
         </tr>
         <tr>
           <th>
             <kbd>End</kbd>
           </th>
-          <td>
-            <ul>
-              <li>Moves focus to last menubar menu item.</li>
-            </ul>
-          </td>
+          <td>Moves focus to last item in the menubar.</td>
         </tr>
         <tr>
           <th>
@@ -339,15 +310,14 @@
           </th>
           <td>
             <ul>
-              <li>Moves focus to next menubar item that starts with that letter.</li>
-              <li>If no menubar menu item starts with the letter, focus does not move.</li>
+              <li>Moves focus to next item in the menubar having a name that starts with the typed character.</li>
+              <li>If none of the items have a name starting with the typed character, focus does not move.</li>
             </ul>
           </td>
         </tr>
       </tbody>
     </table>
-
-    <h3 id="kbd2_label">Popup Menu</h3>
+<h3 id="kbd2_label">Submenu</h3>
     <table aria-labelledby="kbd2_label kbd_label" class="def">
       <thead>
         <tr>
@@ -358,13 +328,12 @@
       <tbody>
         <tr>
           <th>
-            <kbd>Space or Enter</kbd>
+            <kbd>Space</kbd><br><kbd>Enter</kbd>
           </th>
           <td>
             <ul>
-              <li>Follow link.</li>
-              <li>NOTE: In this example all the links go to dummy pages, use back key to return
-                to the page with the menubar.</li>
+              <li>Activates menu item, causing the link to be activated.</li>
+              <li>NOTE: the links go to dummy pages; use the browser go-back function to return to this menubar example page.</li>
             </ul>
           </td>
         </tr>
@@ -374,20 +343,8 @@
           </th>
           <td>
             <ul>
-              <li>Closes popup menu.</li>
-              <li>Moves focus to current menubar menu item.</li>
-            </ul>
-          </td>
-        </tr>
-        <tr>
-          <th>
-            <kbd>Left Arrow</kbd>
-          </th>
-          <td>
-            <ul>
-              <li>Closes popup menu.</li>
-              <li>Moves focus to previous menubar menu item.</li>
-              <li>Open the popup menu of the previous menubar menuitem with focus.</li>
+              <li>Closes submenu.</li>
+              <li>Moves focus to parent menubar item.</li>
             </ul>
           </td>
         </tr>
@@ -397,20 +354,30 @@
           </th>
           <td>
             <ul>
-              <li>Closes popup menu.</li>
-              <li>Moves focus to next menubar menu item.</li>
-              <li>Open the popup menu of the next menubar menuitem with focus.</li>
+              <li>If focus is on an item with a submenu, opens the submenu and places focus on the first item. </li>
+              <li>If focus is on an item that does not have a submenu:
+                <ul>
+                  <li> Closes submenu.</li>
+                  <li>Moves focus to next item in the menubar.</li>
+                  <li>Opens submenu of newly focused menubar item, keeping focus on that parent menubar item.</li>
+                </ul>
+              </li>
             </ul>
           </td>
         </tr>
         <tr>
           <th>
-            <kbd>Up Arrow</kbd>
+            <kbd>Left Arrow</kbd>
           </th>
           <td>
             <ul>
-              <li>Moves focus to previous popup menu item.</li>
-              <li>If first popup menu item, focus is moved to the last popup menu item.</li>
+              <li>Closes submenu and moves focus to parent menu item.</li>
+              <li>If parent menu item is in the menubar, also:
+                <ul>
+                  <li>moves focus to previous item in the menubar.</li>
+                  <li>Opens submenu of newly focused menubar item, keeping focus on that parent menubar item.</li>
+                </ul>
+              </li>
             </ul>
           </td>
         </tr>
@@ -420,8 +387,19 @@
           </th>
           <td>
             <ul>
-              <li>Moves focus to next popup menu item.</li>
-              <li>If last popup menu item, focus is moved to the first popup menu item.</li>
+              <li>Moves focus to the next item in the submenu.</li>
+              <li>If focus is on the last item, moves focus to the first item.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <kbd>Up Arrow</kbd>
+          </th>
+          <td>
+            <ul>
+              <li>Moves focus to previous item in the submenu.</li>
+              <li>If focus is on the first item, moves focus to the last item.</li>
             </ul>
           </td>
         </tr>
@@ -429,21 +407,13 @@
           <th>
             <kbd>Home</kbd>
           </th>
-          <td>
-            <ul>
-              <li>Moves focus to first popup menu item.</li>
-            </ul>
-          </td>
+          <td>Moves focus to the first item in the submenu.</td>
         </tr>
         <tr>
           <th>
             <kbd>End</kbd>
           </th>
-          <td>
-            <ul>
-              <li>Moves focus to last popup menu item.</li>
-            </ul>
-          </td>
+          <td>Moves focus to the last item in the submenu.</td>
         </tr>
         <tr>
           <th>
@@ -451,19 +421,18 @@
           </th>
           <td>
             <ul>
-              <li>Moves focus to the next popup item that starts with that letter.</li>
-              <li>If no popup menu item starts with the letter, focus does not move.</li>
+              <li>Moves focus to the next item having a name that starts with the typed character.</li>
+              <li>If none of the items have a name starting with the typed character, focus does not move.</li>
             </ul>
           </td>
         </tr>
       </tbody>
-    </table>
+    </table>    
   </section>
 
   <section>
     <h2 id="rps_label">Role, Property, State, and Tabindex Attributes</h2>
     <h3 id="rps1_label">Menubar</h3>
-
     <table aria-labelledby="rps1_label rps_label" class="data attributes">
       <thead>
         <tr>
@@ -484,14 +453,8 @@
           </td>
           <td>
             <ul>
-              <li>Identifies a ARIA menubar widget.</li>
-              <li>
-                No <code>tabindex</code> value is needed since the <code>role=menubar</code> does
-                not receive focus.
-              </li>
-              <li>
-                Accessible name for the menu is defined by the <code>aria-label</code> attribute.
-              </li>
+              <li>Identifies the element as a <code>menubar</code> container for a set of <code>menuitem</code> elements.</li>
+              <li>Is not focusable because focus is managed using <a href="../../../#kbd_roving_tabindex">roving tabindex.</a></li>
             </ul>
           </td>
         </tr>
@@ -506,9 +469,11 @@
           </td>
           <td>
             <ul>
-              <li>Defines an acessible name for the menu bar.</li>
-              <li>Used to help people understand the purpose of the menubar and uniquely
-                identify the menubar from other menubars on the page.</li>
+              <li>
+                Defines an acessible name for the <code>menubar</code>.
+              </li>
+              <li>Helps assistive technology users understand the purpose of the menubar and
+                distinguish it from any other menubars or similar elements on the page.</li>
             </ul>
           </td>
         </tr>
@@ -522,11 +487,8 @@
           </td>
           <td>
             <ul>
-              <li>Identifies a ARIA menuitem in the menubar widget.</li>
-              <li>
-                Accessible name for the menuitem is defined by the text content of the <code>a</code>
-                element.
-              </li>
+              <li>Identifies the element as a menu item.</li>
+              <li> The accessible name is calculated from the text content of the <code>a</code> element.</li>
             </ul>
           </td>
         </tr>
@@ -539,12 +501,7 @@
             <code>a</code>
           </td>
           <td>
-            <ul>
-              <li>
-                Makes the <code>a</code> element keyboard focusable, but <strong>not</strong> part
-                of tab order of the page.
-              </li>
-            </ul>
+            Makes the <code>a</code> element keyboard focusable, but <strong>not</strong> part of the tab sequence.
           </td>
         </tr>
         <tr>
@@ -557,22 +514,10 @@
           </td>
           <td>
             <ul>
-              <li>
-                Makes the <code>a</code> element keyboard focusable and part of tab order of the
-                page.
-              </li>
-              <li>
-                Only one menubar item should have <code>tabindex=&quot;0&quot;</code>.
-              </li>
-              <li>
-                The default menubar item with <code>tabindex=&quot;0&quot;</code> is the first
-                menubar item (e.g page is loaded).
-              </li>
-              <li>
-                The last menubar item to have focus is given the <code>tabindex=&quot;0&quot;</code>
-                so that when user tabs through the page focus will be given to the last menubar item
-                that the user used.
-              </li>
+              <li>Includes the element in the <kbd>Tab</kbd> sequence.</li>
+              <li>Only one menubar item has <code>tabindex=&quot;0&quot;</code>.</li>
+              <li>On page load, the first menubar item has <code>tabindex=&quot;0&quot;</code>.</li>
+              <li>Focus is managed using <a href="../../../#kbd_roving_tabindex">roving tabindex</a>.</li>
             </ul>
           </td>
         </tr>
@@ -584,12 +529,7 @@
           <td>
             <code>a</code>
           </td>
-          <td>
-            <ul>
-              <li>Identifies the menuitem as a controller for a popup menu.</li>
-              <li>The menuitem is only to open and close the popup menu it cannot be a link.</li>
-            </ul>
-          </td>
+          <td>Indicates the menuitem has a submenu.</td>
         </tr>
         <tr>
           <td></td>
@@ -599,11 +539,7 @@
           <td>
             <code>a</code>
           </td>
-          <td>
-            <ul>
-              <li>Indicates popup menu is open.</li>
-            </ul>
-          </td>
+          <td>Indicates the submenu is open.</td>
         </tr>
         <tr>
           <td></td>
@@ -613,11 +549,7 @@
           <td>
             <code>a</code>
           </td>
-          <td>
-            <ul>
-              <li>Indicates popup menu is closed.</li>
-            </ul>
-          </td>
+          <td>Indicates the submenu is closed.</td>
         </tr>
         <tr>
           <th>
@@ -629,15 +561,14 @@
           </td>
           <td>
             <ul>
-              <li>Hides <code>li</code> element native role semantics of <code>listiem</code> from assistive technologies.</li>
-              <li>If native role semantics of the <code>li</code> element are not removed, it could confuse some users of assistive technologies since listitems and menuitems would be interspersed with each other.</li>
+              <li>Removes the implied <code>listitem</code> role of the <code>li</code> element.</li>
+              <li>Necessary because the parent <code>ul</code> is serving as a <code>menu</code> so the <code>li</code> elements are not in their required list context.</li>
             </ul>
           </td>
         </tr>
       </tbody>
     </table>
-
-    <h3 id="rps2_label">Popup Menu</h3>
+    <h3 id="rps2_label">Submenu</h3>
     <table aria-labelledby="rps2_label rps_label" class="data attributes">
       <thead>
         <tr>
@@ -656,18 +587,7 @@
           <td>
             <code>ul</code>
           </td>
-          <td>
-            <ul>
-              <li>Identifies a ARIA menu widget.</li>
-              <li>
-                No <code>tabindex</code> value is needed since the <code>role=menu</code> does not
-                receive keyboard focus.
-              </li>
-              <li>
-                Accessible name for the menu is defined by the <code>aria-label</code> attribute.
-              </li>
-            </ul>
-          </td>
+          <td>Identifies the element as a menu container for a set of menu items.</td>
         </tr>
         <tr>
           <td></td>
@@ -681,8 +601,7 @@
           <td>
             <ul>
               <li>Defines an acessible name for the menu.</li>
-              <li>Used to help people understand the purpose of the menu and uniquely identify
-                the menu from other menubars on the page.</li>
+              <li>Helps assistive technology users understand the purpose of the menu.</li>
             </ul>
           </td>
         </tr>
@@ -696,11 +615,8 @@
           </td>
           <td>
             <ul>
-              <li>Identifies a ARIA menuitem in the menu widget.</li>
-              <li>
-                Accessible name for the menuitem is defined by the text content of the <code>a</code>
-                element.
-              </li>
+              <li>Identifies the element as a menu item.</li>
+              <li>The accessible name is calculated from the text content of the <code>a</code> element.</li>
             </ul>
           </td>
         </tr>
@@ -712,14 +628,7 @@
           <td>
             <code>a</code>
           </td>
-          <td>
-            <ul>
-              <li>
-                Makes the <code>a</code> element keyboard focusable, but <strong>not</strong> part
-                of tab order of the page.
-              </li>
-            </ul>
-          </td>
+          <td>Keeps the <code>a</code> element focusable but removes it from the <kbd>Tab</kbd> sequence.</td>
         </tr>
         <tr>
           <td></td>
@@ -729,12 +638,7 @@
           <td>
             <code>a</code>
           </td>
-          <td>
-            <ul>
-              <li>Identifies the menuitem as a controller for a popup menu.</li>
-              <li>The menuitem is only to open and close the popup menu it cannot be a link.</li>
-            </ul>
-          </td>
+          <td>Indicates the menu item has a submenu.</td>
         </tr>
         <tr>
           <td></td>
@@ -744,11 +648,7 @@
           <td>
             <code>a</code>
           </td>
-          <td>
-            <ul>
-              <li>Indicates popup menu is open.</li>
-            </ul>
-          </td>
+          <td>Indicates the submenu is open.</td>
         </tr>
         <tr>
           <td></td>
@@ -758,11 +658,7 @@
           <td>
             <code>a</code>
           </td>
-          <td>
-            <ul>
-              <li>Indicates popup menu is closed.</li>
-            </ul>
-          </td>
+          <td>Indicates the submenu is closed.</td>
         </tr>
         <tr>
           <th>
@@ -774,8 +670,8 @@
           </td>
           <td>
             <ul>
-              <li>Hides <code>li</code> element native role semantics of <code>listiem</code> from assistive technologies.</li>
-              <li>If native role semantics of the <code>li</code> element are not removed, it could confuse some users of assistive technologies since listitems and menuitems would be interspersed with each other.</li>
+              <li>Removes the implied <code>listitem</code> role of the <code>li</code> element.</li>
+              <li>Necessary because the parent <code>ul</code> is serving as a <code>menu</code> so the <code>li</code> elements are not in their required list context.</li>
             </ul>
           </td>
         </tr>
