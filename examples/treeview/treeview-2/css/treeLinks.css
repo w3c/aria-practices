@@ -15,6 +15,12 @@ ul[role="tree"] a {
   border-color: transparent;
 }
 
+[role="treeitem"] ul {
+  margin: 0;
+  padding: 0;
+  margin-left: 0.9em;
+}
+
 [role="treeitem"][aria-expanded="false"] > ul {
   display: none;
 }
@@ -24,17 +30,15 @@ ul[role="tree"] a {
 }
 
 [role="treeitem"][aria-expanded="false"] > span:before {
-  content: "\00229E \0000A0";
-  color: #630;
-  font-weight: bold;
-  font-size: 1em;
+  content: url(../images/right-arrow-brown.png);
+  position: relative;
+  left: -0.25em;
 }
 
 [role="treeitem"][aria-expanded="true"] > span:before {
-  content: "\00229F \0000A0";
-  color: #630;
-  font-weight: bold;
-  font-size: 1.1em;
+  content: url(../images/down-arrow-brown.png);
+  position: relative;
+  left: -0.25em;
 }
 
 [role="treeitem"],
@@ -44,6 +48,12 @@ ul[role="tree"] a {
   border: 2px transparent solid;
   padding: 0.125em;
   display: block;
+}
+
+/* disable default keyboard focus styling for treeitems
+   Keyboard focus is styled with the following CSS */
+[role="treeitem"]:focus {
+  outline: 0;
 }
 
 [role="treeitem"].focus,
