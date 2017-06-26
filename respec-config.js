@@ -50,9 +50,7 @@ var respecConfig = {
     w3cid: 37155
   }, {
     name: 'Michiel Bijl',
-    mailto: 'mbijl@paciellogroup.com',
-    company: 'The Paciello Group',
-    companyURI: 'https://www.paciellogroup.com/',
+    company: 'Invited Expert',
     w3cid: 74040
   }, {
     name: 'Michael Cooper',
