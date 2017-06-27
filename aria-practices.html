@@ -29,11 +29,7 @@
       <a href="" class="specref">WAI-ARIA 1.1</a> [<cite><a href="#bib-WAI-ARIA" class="bibref">WAI-ARIA</a></cite>]
       specification, providing detailed advice and examples beyond what would be appropriate to a technical specification but which are important to understand the specification.
     </p>
-    <p>
-      This draft includes only a portion of content planned for WAI-ARIA Authoring Practices 1.1.
-      To see planns for the complete guide, review the
-      <a href="https://github.com/w3c/aria-practices/milestones?direction=asc&amp;sort=due_date&amp;state=open">Authoring Practices Milestone Plan</a>.
-    </p>
+    <p> This draft includes only a portion of content planned for WAI-ARIA Authoring Practices 1.1. To see plans for the complete guide, review the <a href="https://github.com/w3c/aria-practices/milestones?direction=asc&amp;sort=due_date&amp;state=open">Authoring Practices Milestone Plan</a>. </p>
     <p>
       Feedback on the  information provided here is essential to the ultimate success of Rich Internet Applications that afford full access to their information and operations.
       The Accessible Rich Internet Applications Working Group asks in particular:
@@ -70,11 +66,7 @@
       The WAI-ARIA suite fills accessibility gaps identified by the [[WAI-ARIA-ROADMAP]].
     </p>
 
-    <p>
-      As explained in <a href="#ariaBackground">Background on WAI-ARIA</a>, languages used to create rich and dynamic web sites, e.g., HTML, Javascript, CSS, and SVG, do not natively include all the features required to make sites usable by people who use assistive technologies (AT) or who rely on keyboard navigation.
-      The W3C Web Accessibility Initiative's (WAI) Accessible Rich Internet Applications working group (ARIA WG) is addressing these deficiencies through several W3C standards efforts, with a focus on the WAI-ARIA specifications.
-      For an introduction to WAI-ARIA, see the <a href="https://www.w3.org/WAI/intro/aria.php">Accessible Rich Internet Applications Suite (WAI-ARIA) Overview</a>.
-    </p>
+    <p> As explained in <a href="#ariaBackground">Background on WAI-ARIA</a>, languages used to create rich and dynamic web sites, e.g., HTML, JavaScript, CSS, and SVG, do not natively include all the features required to make sites usable by people who use assistive technologies (AT) or who rely on keyboard navigation. The W3C Web Accessibility Initiative's (WAI) Accessible Rich Internet Applications working group (ARIA WG) is addressing these deficiencies through several W3C standards efforts, with a focus on the WAI-ARIA specifications. For an introduction to WAI-ARIA, see the <a href="https://www.w3.org/WAI/intro/aria.php">Accessible Rich Internet Applications Suite (WAI-ARIA) Overview</a>. </p>
 
     <p>
       With the understanding many prefer to learn from examples, the guide begins with a section that demonstrates how to make common widgets accessible with descriptions of expected behaviors supported by working code.
@@ -332,7 +324,7 @@
         <h4>WAI-ARIA Roles, States, and Properties</h4>
         <ul>
           <li>Breadcrumb trail is contained within a navigation landmark region.</li>
-          <li>The landmark region is labelled via <a href="#aria-label" class="property-reference">aria-label</a> or <a href="#aria-labelledby" class="property-reference">aria-labelledby</a>.</li>
+          <li>The landmark region is labeled via <a href="#aria-label" class="property-reference">aria-label</a> or <a href="#aria-labelledby" class="property-reference">aria-labelledby</a>.</li>
           <li>
             The link to the current page has <a href="#aria-current" class="property-reference">aria-current</a> set to <code>page</code>.
             If the element representing the current page is not a link, aria-current is optional.
@@ -667,11 +659,8 @@
 
     <section class="widget" id="feed">
       <h3 class="widget-name">Feed</h3>
-      <p class="note">
-        This section contains an early draft of new content.
-        Feedback is welcom in
-        <a href="https://github.com/w3c/aria-practices/issues/245">issue 245.</a>
-      </p>
+      <p class="note"> This section contains an early draft of new content. Feedback is welcome in <a href="https://github.com/w3c/aria-practices/issues/245">issue 245.</a>
+				</p>
       <p>
         A feed is a section of a page that automatically loads new content as the user reads.
         Content in a feed is segmented into article elements. Thus, it can be thought of as a dynamic list of articles
@@ -832,7 +821,7 @@
         While ARIA properties and assistive technologies use row and column nomenclature when describing and presenting the logical structure of elements with the <code>grid</code> role, using the <code>grid</code> role on an element does not necessarily imply that its visual presentation is tabular.
       </p>
 
-      <p>When presenting content that is tabular, consider the following factors when choosing between implementing this <code>grid</code> patern or the <a href="#table">table</a> pattern.</p>
+      <p>When presenting content that is tabular, consider the following factors when choosing between implementing this <code>grid</code> pater or the <a href="#table">table</a> pattern.</p>
 
       <ul>
         <li>
@@ -873,13 +862,7 @@
           A <code>grid</code> may also offer functions, such as cell content editing, selection, cut, copy, and paste.
         </p>
 
-        <p>
-          In a grid that presents tabular data, every cell contains a focusable element or is itself focusable, regardless of whether the cell content is editable or interactive.
-          There is one exception: if column or row header cells do not provide functions, such as sort or filter, they do not need to be focusable. One reason this is important is that screen readers need to be in their application reading mode, rather than their document reading mode, while the user is interacting with the grid.
-          While in application reading mode, a screen reader user can only discover focusable elements and content that labels focusable elements.
-          So, a screen reader user may unknowningly overlook elements contained in a grid that are either not focusable or not used to label a column or row.
-          A more detailed description of this topic with examples is available in the section describing <a href="#ScreenReaderModes">screen reader document and application reading modes</a>.
-        </p>
+        <p> In a grid that presents tabular data, every cell contains a focusable element or is itself focusable, regardless of whether the cell content is editable or interactive. There is one exception: if column or row header cells do not provide functions, such as sort or filter, they do not need to be focusable. One reason this is important is that screen readers need to be in their application reading mode, rather than their document reading mode, while the user is interacting with the grid. While in application reading mode, a screen reader user can only discover focusable elements and content that labels focusable elements. So, a screen reader user may unknowingly overlook elements contained in a grid that are either not focusable or not used to label a column or row. A more detailed description of this topic with examples is available in the section describing <a href="#ScreenReaderModes">screen reader document and application reading modes</a>. </p>
 
         <section class="notoc">
           <h5>Keyboard Interaction For Data Grids</h5>
@@ -953,11 +936,7 @@
           While This type of focus movement wrapping can be very helpful in a layout grid, it would be disorienting if used in a data grid, especially for users of assistive technologies.
         </p>
 
-        <p>
-          Because arrow keys are used to move focus inside of a <code>grid</code>, a <code>grid</code> is both easier to build and use if the components it contains do not require the arrow keys to operate.
-          If a cell contains an element like a <a href="#Listbox">listbox</a>, then an extra key command to focus and activate the listbox is needed as well as a command for restoring the grid navigation functionality.
-          Aproaches to supporting this need are described in the section on <a href="#gridNav_inside">Editing and Navigating Inside a Cell</a>.
-        </p>
+        <p> Because arrow keys are used to move focus inside of a <code>grid</code>, a <code>grid</code> is both easier to build and use if the components it contains do not require the arrow keys to operate. If a cell contains an element like a <a href="#Listbox">listbox</a>, then an extra key command to focus and activate the listbox is needed as well as a command for restoring the grid navigation functionality. Approaches to supporting this need are described in the section on <a href="#gridNav_inside">Editing and Navigating Inside a Cell</a>. </p>
 
         <section class="notoc">
           <h5>Keyboard Interaction For Layout Grids</h5>
@@ -1148,7 +1127,7 @@
             If there is an element in the user interface that serves as a label for the grid, <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> is set on the grid element with a value that refers to the labeling element.
             Otherwise, a label is specified for the grid element using <a href="#aria-label" class="property-reference">aria-label</a>.
           </li>
-          <li>If the grid has a caption or description, <a href="#aria-describedby" class="property-reference">aria-describedby</a> is set on the grid element with a value refering to the element containing the description.</li>
+          <li>If the grid has a caption or description, <a href="#aria-describedby" class="property-reference">aria-describedby</a> is set on the grid element with a value referring to the element containing the description.</li>
           <li>If the grid provides sort functions, <a href="#aria-sort" class="property-reference">aria-sort</a> is set to an appropriate value on the header cell element for the sorted column or row as described in the section on <a href="#gridAndTableProperties">grid and table properties</a>. </li>
           <li>If the grid supports selection, when a cell or row is selected, the selected element has <a href="#aria-selected" class="state-reference">aria-selected</a> set <code>true</code>. </li>
           <li>
@@ -1172,10 +1151,7 @@
             For example, an HTML <code>&lt;TR&gt;</code> has an implied ARIA role of <code>row</code>.
             A <code>grid</code> built from an HTML <code>table</code> that includes cells that span multiple rows or columns must use HTML <code>rowspan</code> and <code>colspan</code> and must not use <code>aria-rowspan</code> or <code>aria-colspan</code>.
           </li>
-          <li>
-            If rows or cells are included in a grid via <a href="#aria-owns" class="property-reference">aria-owns</a>, they will be presented to assistive technologies after the DOM descendants of the <code>grid</code> element unless the DOM descendants are also included in the <code>aria-owns</code> attribute.
-            See using aria-owns for a detailed explaination.
-          </li>
+          <li> If rows or cells are included in a grid via <a href="#aria-owns" class="property-reference">aria-owns</a>, they will be presented to assistive technologies after the DOM descendants of the <code>grid</code> element unless the DOM descendants are also included in the <code>aria-owns</code> attribute. See using aria-owns for a detailed explanation. </li>
         </ul>
         <p class="note">Editor's Note - Guidance for aria-owns has not yet been created. A link to it will be added above once created.</p>
 
@@ -1618,8 +1594,7 @@
             </ul>
           </li>
           <li>
-            <kbd>Space</kbd>: checks the focussed radio button if it is not already checked.
-          </li>
+							<kbd>Space</kbd>: checks the focused radio button if it is not already checked. </li>
           <li>
             <kbd>Right Arrow</kbd> and <kbd>Down Arrow</kbd>: move focus to the next radio button in
             the group, uncheck the previously focused button, and check the newly focused button. If
@@ -2779,7 +2754,7 @@
       <li>Understanding fundamental principles of focus movement conventions used in ARIA design patterns.</li>
       <li>Maintaining visible focus, predictable focus movement, and distinguishing between keyboard focus and the selected state.</li>
       <li>Managing movement of keyboard focus between components, e.g., how the focus moves when the <kbd>Tab</kbd> and <kbd>Shift+Tab</kbd> keys are pressed.</li>
-      <li>Managing movement of keyboard focus inside components that contain multiple focusable elements, e.g., two different methods for programatically exposing focus inside widgets like radio groups, menus, listboxes, trees, and grids.</li>
+      <li>Managing movement of keyboard focus inside components that contain multiple focusable elements, e.g., two different methods for programmatically exposing focus inside widgets like radio groups, menus, listboxes, trees, and grids.</li>
       <li>Determining when to make disabled interactive elements focusable.</li>
       <li>Assigning and revealing keyboard shortcuts, including guidance on how to avoid problematic conflicts with keyboard commands of assistive technologies, browsers, and operating systems.</li>
     </ol>
@@ -2836,7 +2811,7 @@
     </section>
 
     <section id="kbd_focus_discernable_predictable">
-      <h3>Discernable and Predictable Keyboard Focus</h3>
+      <h3>Discernible and Predictable Keyboard Focus</h3>
       <p>Work to complete this section is tracked by <a href="https://github.com/w3c/aria-practices/issues/217">issue 217.</a></p>
       <p>
         When operating with a keyboard, two essentials of a good experience are the abilities to easily discern the location of the keyboard focus and to discover where focus landed after a navigation key has been pressed.
@@ -2852,12 +2827,7 @@
           </ul>
         </li>
 
-        <li>
-          Persistence of focus: It is essential that there is always a component within the user interface that is active (document.activeElement is not null or is not the body element) and that the active element has a visual focus indicator.
-          Authors need to manage events that effect the currently active element so focus remains visible and moves logically.
-          For example, if the user closes a dialog or performs a destructive operation like deleting an item from a list, the active element may be hidden or removed from the DOM.
-          If such events are not managed to set focus on the button that triggered the dialog or on the list item following the deleted item, browsers move focus to the body element, affectively causing a loss of focus within the user interface.
-        </li>
+        <li> Persistence of focus: It is essential that there is always a component within the user interface that is active (document.activeElement is not null or is not the body element) and that the active element has a visual focus indicator. Authors need to manage events that effect the currently active element so focus remains visible and moves logically. For example, if the user closes a dialog or performs a destructive operation like deleting an item from a list, the active element may be hidden or removed from the DOM. If such events are not managed to set focus on the button that triggered the dialog or on the list item following the deleted item, browsers move focus to the body element, effectively causing a loss of focus within the user interface. </li>
 
         <li>
           Predictability of movement: Usability of a keyboard interface is heavily influenced by how readily users can guess where focus will land after a navigation key is pressed.
@@ -2926,17 +2896,13 @@
 
       <ul>
         <li>The visual focus indicator must always be visible.</li>
-        <li>The selected state must be visually distinct from the the focus indicator.</li>
+        <li>The selected state must be visually distinct from the focus indicator.</li>
       </ul>
     </section>
 
     <section id="kbd_selection_follows_focus">
       <h3>Deciding When to Make Selection Automatically Follow Focus</h3>
-      <p>
-        in composite widgets where only one element may be selected, such as a tablist or single-select listbox, moving the focus may also cause the focused element to become the selected element.
-        This is called having selection follow focus.
-        Having selection follow focus is often beneficial to users, but in some circumstances, it is extremely detremental to accessibility.
-      </p>
+      <p> in composite widgets where only one element may be selected, such as a tablist or single-select listbox, moving the focus may also cause the focused element to become the selected element. This is called having selection follow focus. Having selection follow focus is often beneficial to users, but in some circumstances, it is extremely detrimental to accessibility. </p>
       <p>
         For example, in a tablist, the selected state is used to indicate which panel is displayed.
         So, when selection follows focus in a tablist, moving focus from one tab to another automatically changes  which panel is displayed.
@@ -2944,11 +2910,7 @@
         A keyboard user who wishes to display the fourth of six tabs can do so with 3 quick presses of the right arrow.
         And, a screen reader user who perceives the labels on tabs by navigating through them may efficiently read through the complete list without any latency.
       </p>
-      <p>
-        However, if displaying a new panel causes a network request and possibly a page refresh, the effect of having selection automatically focus can be devistating to the experience for keyboard and screen reader users.
-        In this case, displaying the fourth tab or reading through the list becomes a tedious and time-consuming task as the user experiences significant latency with each movement of focus.
-        Further, if displaying a new tab refreshes the page, then the user not only has to wait for the new page to load but also return focus to the tab list.
-      </p>
+      <p> However, if displaying a new panel causes a network request and possibly a page refresh, the effect of having selection automatically focus can be devastating to the experience for keyboard and screen reader users. In this case, displaying the fourth tab or reading through the list becomes a tedious and time-consuming task as the user experiences significant latency with each movement of focus. Further, if displaying a new tab refreshes the page, then the user not only has to wait for the new page to load but also return focus to the tab list. </p>
       <p>
         When selection does not follow focus, the user changes which element is selected by pressing the <kbd>Enter</kbd> or <kbd>Space</kbd> key.
       </p>
@@ -2957,11 +2919,7 @@
     <section id="kbd_general_between">
       <h3>Keyboard Navigation Between Components (The Tab Sequence)</h3>
 
-      <p>
-        As explained in section <a href="#kbd_generalnav"></a>, all interactive UI components need to be reachable vai the keyboard.
-        This is best achieved by either including them in the tab sequence or by making them accessible from a component that is in the tab sequence, e.g., as part of a composite component.
-        This section addresses building and managing the tab sequence, and subsequent sections cover making focusable elements that are contained within components keyboard accessible.
-      </p>
+      <p> As explained in section <a href="#kbd_generalnav"></a>, all interactive UI components need to be reachable via the keyboard. This is best achieved by either including them in the tab sequence or by making them accessible from a component that is in the tab sequence, e.g., as part of a composite component. This section addresses building and managing the tab sequence, and subsequent sections cover making focusable elements that are contained within components keyboard accessible. </p>
 
       <p>
         The <a href="https://www.w3.org/TR/html5/editing.html#attr-tabindex">HTML tabindex</a> and <a href="https://www.w3.org/TR/SVG2/struct.html#tabindexattribute">SVG tabindex</a> attributes can be used to add and remove elements from the tab sequence.
@@ -3010,10 +2968,7 @@
         Authors are free to choose which keys move focus inside of a composite, but they are strongly advised to use the same key bindings as similar components in common GUI operating systems as demonstrated in <a href="#aria_ex"></a>.
       </p>
 
-      <p>
-        The convention for where focus lands in a composite when it recieves focus as a result of a <kbd>Tab</kbd> key event depends on the type of composite.
-        It is typically one of the following.
-      </p>
+      <p> The convention for where focus lands in a composite when it receives focus as a result of a <kbd>Tab</kbd> key event depends on the type of composite. It is typically one of the following. </p>
 
       <ul>
         <li>
@@ -3265,14 +3220,8 @@
               This behavior is also useful for moving focus to a section of a page, such as the main content or a complementary landmark section.
             </li>
 
-            <li>
-              Activate an element without moving focus when the target context of the function is the context that contains the focus.
-              This behavior is most common for command buttons and for functions associated with elements that are not visible, such as a "Save" option that is accessible via a menu.
-              For example, if the focus is on an option in a listbox and a toolbar contains buttons for moving and removing options, it is most benefitial to keep focus in the listbox when the user presses a key shortcut for one of the buttons in the toolbar.
-              This behavior can be particularly important for screen reader users because it provides confirmation of the action performed and makes performing multiple commands more efficient.
-              For instance, when a screen reader user presses the shortcut for the "Up" button, the user will be able to hear the new position of the option in the list since it still has the focus.
-              Similarly, when the user presses the shortcut for deleting an option, the user can hear the next option in the list and immediately decide whether to press the delete shortcut again.
-            </li>
+            <li> Activate an element without moving focus when the target context of the function is the context that contains the focus. This behavior is most common for command buttons and for functions associated with elements that are not visible, such as a "Save" option that is accessible via a menu. For example, if the focus is on an option in a listbox and a toolbar contains buttons for moving and removing options, it is most beneficial to keep focus in the listbox when the user presses a key shortcut for one of the buttons in the toolbar. This behavior can be particularly important for screen reader users because it provides confirmation of the action performed and makes performing multiple commands more efficient. For instance, when a screen reader user presses the shortcut for the "Up" button, the user will be able to hear the new position of the option in the list since it still has the focus. Similarly, when the user presses the shortcut for deleting an option, the user can
+								hear the next option in the list and immediately decide whether to press the delete shortcut again. </li>
 
             <li>
               Move focus and activate when the target of the shortcut has a single function and the context of that function is the same as the target.
@@ -3284,13 +3233,7 @@
         <section id="kbd_shortcuts_design_where">
           <h5>Choose Where to Add Shortcuts </h5>
           <p>Work to draft content for this section is tracked in <a href="https://github.com/w3c/aria-practices/issues/219">issue 219.</a></p>
-          <p>
-            The first goal when designing a keyboard interface is simple, efficient, and and intuitive operation with only basic keyboard navigation support.
-            If basic operation of a keyboard interface is inefficient , attempting to compensate for fundamental design issues, such as suboptimal layout or command structure,  by implementing keyboard shortcuts will not likely reduce user frustration.
-            The practical implication of this is that, in most well-designed user interfaces, the percentage of functionality that needs to be accessible via a keyboard shortcut in order to create optimal usability is not very high.
-            In many simple user interfaces, keyboard shortcuts can be entirely superfluous.
-            And, in user interfaces with too many keyboard shortcuts, the excess shortcuts create cognitive load that make the most useful ones more difficult to remember.
-          </p>
+          <p> The first goal when designing a keyboard interface is simple, efficient, and intuitive operation with only basic keyboard navigation support. If basic operation of a keyboard interface is inefficient , attempting to compensate for fundamental design issues, such as suboptimal layout or command structure, by implementing keyboard shortcuts will not likely reduce user frustration. The practical implication of this is that, in most well-designed user interfaces, the percentage of functionality that needs to be accessible via a keyboard shortcut in order to create optimal usability is not very high. In many simple user interfaces, keyboard shortcuts can be entirely superfluous. And, in user interfaces with too many keyboard shortcuts, the excess shortcuts create cognitive load that make the most useful ones more difficult to remember. </p>
           <p>Consider the following when deciding where to assign keyboard shortcuts: </p>
 
           <ol>
@@ -3325,10 +3268,7 @@
         <section id="kbd_shortcuts_assignments_opsys_conflicts">
           <h5>Operating System Key Conflicts</h5>
 
-          <p>
-            It is essential to avoid conflicts with keys that perform system level functions, such as appplication and window management and display and sound control.
-            In general, this can be achieved by refraining from the following types of assignments.
-          </p>
+          <p> It is essential to avoid conflicts with keys that perform system level functions, such as application and window management and display and sound control. In general, this can be achieved by refraining from the following types of assignments. </p>
 
           <ol>
             <li>Any modifier keys + any of <kbd>Tab</kbd>, <kbd>Enter</kbd>, <kbd>Space</kbd>, or <kbd>Escape</kbd>.</li>
@@ -3351,7 +3291,7 @@
         </section>
 
         <section id="kbd_shortcuts_assignments_assistivetech_conflicts">
-          <h5>Assistive Technology Key Connflicts</h5>
+          <h5>Assistive Technology Key Conflicts</h5>
 
           <p>
             Even though assistive technologies have collectively taken thousands of key assignments, avoiding conflicts is relatively easy.
@@ -3371,14 +3311,9 @@
         </section>
 
         <section id="kbd_shortcuts_assignments_browser_conflicts">
-          <h5>Browser Key Connflicts</h5>
+          <h5>Browser Key Conflicts</h5>
 
-          <p>
-            While there is considerable similarity among browser keyboard schemes, the patterns within the schemes are less homogenious.
-            Consequently, it is more difficult to avoid conflicts with browser key assignments.
-            While the impact of conflicts is sometimes mitigated by the availability of two paths to nearly every function -- keyboard accessible menus and keyboard shortcuts, avoiding conflicts with shortcuts to heavily used functions is nonetheless important.
-            Pay special attention to avoiding conflicts with shortcuts to:
-          </p>
+          <p> While there is considerable similarity among browser keyboard schemes, the patterns within the schemes are less homogenous. Consequently, it is more difficult to avoid conflicts with browser key assignments. While the impact of conflicts is sometimes mitigated by the availability of two paths to nearly every function -- keyboard accessible menus and keyboard shortcuts, avoiding conflicts with shortcuts to heavily used functions is nonetheless important. Pay special attention to avoiding conflicts with shortcuts to: </p>
 
           <ol>
             <li>Address or location bar</li>
@@ -3494,13 +3429,7 @@
           technologies unless the descendant requires the context of the presentational
           element. For example:
           <ul>
-            <li>
-              If <code>presentation</code> is applied to a <code>ul</code> or <code>ol</code>
-              element, each child <code>li</code> element inherrits the <code>presentation</code>
-              role because ARIA requires the <code>listitem</code> elements to have the parent <code>list</code> element.
-              So, the <code>li</code> elements are not exposed to assistive technologies,
-              but elements contained inside of those <code>li</code> elements, including nested lists,  are visible to assistive technologies.
-            </li>
+            <li> If <code>presentation</code> is applied to a <code>ul</code> or <code>ol</code> element, each child <code>li</code> element inherits the <code>presentation</code> role because ARIA requires the <code>listitem</code> elements to have the parent <code>list</code> element. So, the <code>li</code> elements are not exposed to assistive technologies, but elements contained inside of those <code>li</code> elements, including nested lists, are visible to assistive technologies. </li>
             <li>
               Similarly, if <code>presentation</code> is applied to a <code>table</code> element,
               The descendant <code>caption</code>, <code>thead</code>, <code>tbody</code>, <code>tfooter</code>,
