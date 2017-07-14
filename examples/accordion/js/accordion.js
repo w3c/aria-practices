@@ -6,20 +6,20 @@ Gerard K. Cohen, 05/20/2017
 Array.from(document.querySelectorAll('.Accordion')).forEach(function (accordion) {
 
   // Allow for each toggle to both open and close individually
-  const allowToggle = accordion.hasAttribute('data-allow-toggle');
+  var allowToggle = accordion.hasAttribute('data-allow-toggle');
   // Allow for multiple accordion sections to be expanded at the same time
-  const allowMultiple = accordion.hasAttribute('data-allow-multiple');
+  var allowMultiple = accordion.hasAttribute('data-allow-multiple');
 
   // Create the array of toggle elements for the accordion group
-  const triggers = Array.from(accordion.querySelectorAll('.Accordion-trigger'));
-  const panels = Array.from(accordion.querySelectorAll('.Accordion-panel'));
+  var triggers = Array.from(accordion.querySelectorAll('.Accordion-trigger'));
+  var panels = Array.from(accordion.querySelectorAll('.Accordion-panel'));
 
   accordion.addEventListener('click', function (event) {
-    const target = event.target;
+    var target = event.target;
 
     if (target.classList.contains('Accordion-trigger')) {
       // Check if the current toggle is expanded.
-      const isExpanded = target.getAttribute('aria-expanded') == 'true';
+      var isExpanded = target.getAttribute('aria-expanded') == 'true';
 
       if (!allowMultiple) {
         // Close all previously open accordion toggles
@@ -52,20 +52,20 @@ Array.from(document.querySelectorAll('.Accordion')).forEach(function (accordion)
 
   // Bind keyboard behaviors on the main accordion container
   accordion.addEventListener('keydown', function (event) {
-    const target = event.target;
-    const key = event.which.toString();
+    var target = event.target;
+    var key = event.which.toString();
     // 33 = Page Up, 34 = Page Down
-    const ctrlModifier = (event.ctrlKey && key.match(/33|34/));
+    var ctrlModifier = (event.ctrlKey && key.match(/33|34/));
 
     // Is this coming from an accordion header?
     if (target.classList.contains('Accordion-trigger')) {
       // Up/ Down arrow and Control + Page Up/ Page Down keyboard operations
       // 38 = Up, 40 = Down
       if (key.match(/38|40/) || ctrlModifier) {
-        const index = triggers.indexOf(target);
-        const direction = (key.match(/34|40/)) ? 1 : -1;
-        const length = triggers.length;
-        const newIndex = (index + length + direction) % length;
+        var index = triggers.indexOf(target);
+        var direction = (key.match(/34|40/)) ? 1 : -1;
+        var length = triggers.length;
+        var newIndex = (index + length + direction) % length;
 
         triggers[newIndex].focus();
 
