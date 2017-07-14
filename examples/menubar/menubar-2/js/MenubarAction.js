@@ -22,7 +22,7 @@
 */
 var MenubarAction = function (domNode) {
   var elementChildren,
-      msgPrefix = 'Menubar constructor argument menubarNode ';
+    msgPrefix = 'Menubar constructor argument menubarNode ';
 
   // Check whether menubarNode is a DOM element
   if (!domNode instanceof Element) {
@@ -105,7 +105,8 @@ MenubarAction.prototype.setFocusToItem = function (newItem) {
   for (var i = 0; i < this.menubarItems.length; i++) {
     var mbi = this.menubarItems[i];
     if (mbi.domNode.tabIndex == 0) {
-      flag = mbi.domNode.getAttribute('aria-expanded') === 'true';}
+      flag = mbi.domNode.getAttribute('aria-expanded') === 'true';
+    }
     mbi.domNode.tabIndex = -1;
     if (mbi.popupMenu) {
       mbi.popupMenu.close();

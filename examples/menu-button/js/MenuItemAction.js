@@ -30,18 +30,18 @@ var MenuItem = function (domNode, menuObj) {
   this.menu = menuObj;
 
   this.keyCode = Object.freeze({
-    'TAB'      :  9,
-    'RETURN'   : 13,
-    'ESC'      : 27,
-    'SPACE'    : 32,
-    'PAGEUP'   : 33,
-    'PAGEDOWN' : 34,
-    'END'      : 35,
-    'HOME'     : 36,
-    'LEFT'     : 37,
-    'UP'       : 38,
-    'RIGHT'    : 39,
-    'DOWN'     : 40
+    'TAB': 9,
+    'RETURN': 13,
+    'ESC': 27,
+    'SPACE': 32,
+    'PAGEUP': 33,
+    'PAGEDOWN': 34,
+    'END': 35,
+    'HOME': 36,
+    'LEFT': 37,
+    'UP': 38,
+    'RIGHT': 39,
+    'DOWN': 40
   });
 };
 
@@ -65,9 +65,9 @@ MenuItem.prototype.init = function () {
 
 MenuItem.prototype.handleKeydown = function (event) {
   var tgt = event.currentTarget,
-      flag = false,
-      char = event.key,
-      clickEvent;
+    flag = false,
+    char = event.key,
+    clickEvent;
 
   function isPrintableCharacter (str) {
     return str.length === 1 && str.match(/\S/);

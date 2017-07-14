@@ -34,9 +34,9 @@ aria.Feed.prototype.focusItem = function (item) {
 aria.Feed.prototype.mapKeyShortcut = function (event) {
   var key = event.which || event.keyCode;
   var focusedArticle =
-    aria.Utils.matches(event.target, '[role="article"]')
-    ? event.target
-    : aria.Utils.getAncestorBySelector(event.target, '[role="article"]');
+    aria.Utils.matches(event.target, '[role="article"]') ?
+      event.target :
+      aria.Utils.getAncestorBySelector(event.target, '[role="article"]');
 
   if (!focusedArticle) {
     return;
