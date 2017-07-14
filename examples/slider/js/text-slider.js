@@ -16,9 +16,9 @@ var TSlider = function (domNode)  {
   this.valueDomNode = false;
 
   this.values = [];
-  this.value_nodes = this.railDomNode.getElementsByClassName('value');
-  for (var i = 0; this.value_nodes[i]; i++) {
-    this.values.push(this.value_nodes[i].innerHTML);
+  this.valueNodes = this.railDomNode.getElementsByClassName('value');
+  for (var i = 0; this.valueNodes[i]; i++) {
+    this.values.push(this.valueNodes[i].innerHTML);
   }
   this.valueMin = 0;
   this.valueMax = this.values.length - 1;
@@ -65,11 +65,11 @@ TSlider.prototype.init = function () {
   this.domNode.style.top = (this.thumbHeight / -2) + 'px';
 
   var pos = 0;
-  var diff = this.railWidth / (this.value_nodes.length - 1);
-  for (var i = 0; this.value_nodes[i]; i++) {
+  var diff = this.railWidth / (this.valueNodes.length - 1);
+  for (var i = 0; this.valueNodes[i]; i++) {
 
-    this.value_nodes[i].style.left = (
-      pos - (this.value_nodes[i].offsetWidth / 2)
+    this.valueNodes[i].style.left = (
+      pos - (this.valueNodes[i].offsetWidth / 2)
     ) + 'px';
     pos = pos + diff;
   }
@@ -215,4 +215,3 @@ window.addEventListener('load', function () {
   }
 
 });
-
