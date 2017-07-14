@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Horizontal Slider Example | WAI-ARIA Authoring Practices 1.1</title>
+
+  <!--  Core js and css shared by all examples; do not modify when using this template. -->
+  <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
+  <link rel="stylesheet" href="../css/core.css">
+  <script src="../js/examples.js"></script>
+  <script src="../js/highlight.pack.js"></script>
+  <script src="../js/app.js"></script>
+
+  <!-- example js and css files -->
+  <link rel="stylesheet" href="css/multithumb-slider.css">
+  <script src="js/multithumb-slider.js" type="text/javascript"></script>
+</head>
+<body>
+  <main>
+    <h1>Horizontal Multi-Thumb Slider Example</h1>
+    <p>
+      Following is an example of a multi-thumb slider that demonstrates the
+      <a href="../../#slidertwothumb">slider (Multi-Thumb) design pattern.</a>
+      The example illustrates a typical price range selector found on travel websites.  
+      Change the desired price range by moving the arrows for the maximum and minumum price.
+      The price labels on either end of the slider will update as you move the corresponding thumb.
+    </p>
+    <p>Similar examples include: </p>
+    <ul>
+      <li>
+        <a href="slider-1.html">Horizontal Slider Examples</a>:
+        Demonstrates using three horizontally aligned sliders to make a color picker.
+      </li>
+      <li>
+        <a href="slider-2.html">Slider Examples with aria-orientation and aria-valuetext</a>:
+        Three thermostat control sliders that demonstrate using aria-orientation and aria-valuetext.
+      </li>
+    </ul>
+    <section>
+       <h2 id="ex_label">Example</h2>
+          <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
+          <div id="ex1">
+            <div id="idSliders">
+              <div id="idPriceMin" class="label">Minimum Hotel Price: $0</div>
+              <div id="idPriceMax" class="label">Maximum Hotel Price: $270</div>
+
+
+              <div class="aria-widget-slider">
+                <div class="rail-label"><p id='minPriceLabel'>0</p></div>
+                <div class="rail-label"><p id='maxPriceLabel'>0</p></div>
+                <div class="rail" style="width: 300px;">
+                  <img id="idPriceThumb1" style="top: -25px; left: 0px" src="images/arrow-down-a.png" role="slider" tabindex="0" class="min thumb" aria-valuemin="0" aria-valuenow="70"
+                    aria-valuemax="270" aria-labelledby="idPriceMin" aria-controls="minPriceLabel">
+                  </img>
+                  <img id="idPriceThumb2" style="top: 4px; left: 0px" src="images/arrow-up-a.png" role="slider" tabindex="0" class="max thumb" aria-valuemin="0" aria-valuenow="100"
+                    aria-valuemax="270" aria-labelledby="idPriceMax" aria-controls="maxPriceLabel">
+                  </img>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
+    </section>
+
+    <section>
+        <h2 id="kbd_label">Keyboard Support</h2>
+        <table aria-labelledby="kbd_label" class="def">
+          <thead>
+            <tr>
+              <th>Key</th>
+              <th>Function</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th><kbd>Right Arrow</kbd></th>
+              <td>Increases slider value one step.</td>
+            </tr>
+            <tr>
+              <th><kbd>Up Arrow</kbd></th>
+              <td>Increases slider value one step.</td>
+            </tr>
+            <tr>
+              <th><kbd>Left Arrow</kbd></th>
+              <td>Decreases slider value one step.</td>
+            </tr>
+            <tr>
+              <th><kbd>Down Arrow</kbd></th>
+              <td>Decreases slider value one step.</td>
+            </tr>
+            <tr>
+              <th><kbd>Page Up</kbd></th>
+              <td>Increases slider value multiple steps. In this slider, jumps ten steps.</td>
+            </tr>
+            <tr>
+              <th><kbd>Page Down</kbd></th>
+              <td>Decreases slider value multiple steps. In this slider, jumps ten steps.</td>
+            </tr>
+            <tr>
+              <th><kbd>Home</kbd></th>
+              <td>Sets slider to its minimum value.</td>
+            </tr>
+            <tr>
+              <th><kbd>End</kbd></th>
+              <td>Sets slider to its maximum value.</td>
+            </tr>
+          </tbody>
+        </table>
+    </section>
+
+    <section>
+      <h2 id="rps_label">Role, Property, State, and Tabindex Attributes</h2>
+      <table aria-labelledby="rps_label" class="data attributes">
+        <thead>
+          <tr>
+            <th scope="col">Role</th>
+            <th scope="col">Attribute</th>
+            <th scope="col">Element</th>
+            <th scope="col">Usage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">
+              <code>slider</code>
+            </th>
+            <td></td>
+            <td>
+              <code>div</code>
+            </td>
+            <td>
+              <ul>
+                <li>Identifies the element as a slider.</li>
+                <li>Set on the <code>div</code> that represents as the movable thumb because it is the operable element that represents the slider value.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <th scope="row">
+              <code>tabindex=<q>0</q></code>
+            </th>
+            <td>
+              <code>div</code>
+            </td>
+            <td>Includes the slider thumb in the page tab sequence.</td>
+          </tr>
+          <tr>
+            <td></td>
+            <th scope="row">
+              <code>aria-valuemax=<q>270</q></code>
+            </th>
+            <td>
+              <code>div</code>
+            </td>
+            <td>Specifies the maximum value of the slider.</td>
+          </tr>
+          <tr>
+            <td></td>
+            <th scope="row">
+              <code>aria-valuemin=<q>0</q></code>
+            </th>
+            <td>
+              <code>div</code>
+            </td>
+            <td>Specifies the minimum value of the slider.</td>
+          </tr>
+          <tr>
+            <td></td>
+            <th scope="row">
+              <code>aria-valuenow=<q>NUMBER</q></code>
+            </th>
+            <td>
+              <code>div</code>
+            </td>
+            <td>Indicates the current value of the slider.</td>
+          </tr>
+          <tr>
+            <td></td>
+            <th scope="row">
+              <code>aria-labelledby=<q>IDREF</q></code>
+            </th>
+            <td>
+              <code>div</code>
+            </td>
+            <td>Refers to the element containing the name of the slider.</td>
+          </tr>
+          <tr>
+            <td></td>
+            <th scope="row">
+              <code>aria-controls=<q>IDREF</q></code>
+            </th>
+            <td>
+              <code>div</code>
+            </td>
+            <td>Provides a reference to the other slider to change the <code>aria-valuemin</code> or <code>aria-valuemax</code> of the referenced slider.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  <section>
+        <h2>Javascript and CSS Source Code</h2>
+        <ul>
+          <li>CSS: <a href="css/multithumb-slider.css" type="tex/css">multithumb-slider.css</a></li>
+          <li>Javascript: <a href="js/multithumb-slider.js" type="text/javascript">multithumb-slider.js</a></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="sc1_label">HTML Source Code</h2>
+        <div role="separator" id="sc1_start_sep" aria-labelledby="sc1_start_sep sc1_label" aria-label="Start of"></div>
+        <pre><code id="sc1"></code></pre>
+        <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of"></div>
+        <script>
+          sourceCode.add('sc1', 'ex1');
+          sourceCode.make();
+        </script>
+    </section>
+
+  </main>
+  <nav>
+    <a href="../../#slider">Slider Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
+  </nav>
+</body>
+</html>
