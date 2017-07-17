@@ -1,0 +1,33 @@
+body {
+    font-family: sans-serif;
+}
+
+[role^=switch] span {
+    display: inline-block;
+    position: relative;
+    width: 1.5em;
+    height: .5em;
+    border: 1px solid #555;
+    border-radius: 2em;
+    background: hsl(0, 0%, 90%);
+    overflow: hidden;
+}
+
+[role^=switch] span::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background: darkred;
+    content: "";
+}
+
+[role^=switch][aria-checked="true"] span::before {
+    left: 50%;
+    background: darkolivegreen;
+}
+
+[role^=switch]:focus span {
+    outline: 2px solid #000;
+}
