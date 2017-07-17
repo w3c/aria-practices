@@ -12,7 +12,7 @@ var Slider = function (domNode)  {
   this.domNode = domNode;
   this.railDomNode = domNode.parentNode;
 
-  this.valueDomNode = false;
+  this.labelDomNode = false;
   this.minDomNode = false;
   this.maxDomNode = false;
 
@@ -61,11 +61,11 @@ Slider.prototype.init = function () {
 
   this.railWidth = parseInt(this.railDomNode.style.width.slice(0, -2));
 
-  this.valueDomNode = document.getElementById(this.domNode.getAttribute('aria-controls'));
+  this.labelDomNode = document.getElementById(this.domNode.getAttribute('id') + 'Label');
 
-  if (this.valueDomNode) {
-    this.valueDomNode.innerHTML = '0';
-    this.valueDomNode.style.top = (this.railDomNode.offsetTop - 8) + 'px';
+  if (this.labelDomNode) {
+    this.labelDomNode.innerHTML = '0';
+    this.labelDomNode.style.top = (this.railDomNode.offsetTop - 8) + 'px';
   }
 
   if (this.domNode.tabIndex != 0) {
@@ -102,6 +102,7 @@ Slider.prototype.moveSliderTo = function (value) {
   this.dolValueNow = "$" + value;
 
   this.domNode.setAttribute('aria-valuenow', this.valueNow);
+  this.domNode.setAttribute('aria-valuetext', this.dolValueNow);
 
   if (this.minDomNode) {
     this.minDomNode.setAttribute('aria-valuemax', this.valueNow);
@@ -117,9 +118,9 @@ Slider.prototype.moveSliderTo = function (value) {
 
   this.domNode.style.left = pos + 'px';
 
-  if (this.valueDomNode) {
-    this.valueDomNode.innerHTML = this.dolValueNow.toString();
-    this.valueDomNode.style.left = (this.railDomNode.offsetLeft + this.railWidth + 10) + 'px';
+  if (this.labelDomNode) {
+    this.labelDomNode.innerHTML = this.dolValueNow.toString();
+    this.labelDomNode.style.left = (this.railDomNode.offsetLeft + this.railWidth + 10) + 'px';
     }
 };
 

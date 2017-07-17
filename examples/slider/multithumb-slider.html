@@ -29,11 +29,11 @@
     <ul>
       <li>
         <a href="slider-1.html">Horizontal Slider Examples</a>:
-        Demonstrates using three horizontally aligned sliders to make a color picker.
+        Demonstrates using three horizontally aligned single-thumb sliders to make a color picker.
       </li>
       <li>
         <a href="slider-2.html">Slider Examples with aria-orientation and aria-valuetext</a>:
-        Three thermostat control sliders that demonstrate using aria-orientation and aria-valuetext.
+        Three thermostat control single-thumb sliders that demonstrate using aria-orientation and aria-valuetext.
       </li>
     </ul>
     <section>
@@ -41,19 +41,18 @@
           <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
           <div id="ex1">
             <div id="idSliders">
-              <div id="idPriceMin" class="label">Minimum Hotel Price: $0</div>
-              <div id="idPriceMax" class="label">Maximum Hotel Price: $270</div>
 
+            <h3>Select Price Range</h3>
 
               <div class="aria-widget-slider">
                 <div class="rail-label"><p id='minPriceLabel'>0</p></div>
                 <div class="rail-label"><p id='maxPriceLabel'>0</p></div>
-                <div class="rail" style="width: 300px;">
-                  <img id="idPriceThumb1" style="top: -25px; left: 0px" src="images/arrow-down-a.png" role="slider" tabindex="0" class="min thumb" aria-valuemin="0" aria-valuenow="70"
-                    aria-valuemax="270" aria-labelledby="idPriceMin" aria-controls="minPriceLabel">
+                <div class="rail" style="width: 300px;" title="Select a price between $0 and $500">
+                  <img id="minPrice" style="top: -25px; left: 0px" src="images/arrow-down-a.png" role="slider" tabindex="0" class="min thumb" aria-valuemin="0" aria-valuenow="100" aria-valuetext="$100"
+                    aria-valuemax="400" aria-label="Minimim Price">
                   </img>
-                  <img id="idPriceThumb2" style="top: 4px; left: 0px" src="images/arrow-up-a.png" role="slider" tabindex="0" class="max thumb" aria-valuemin="0" aria-valuenow="100"
-                    aria-valuemax="270" aria-labelledby="idPriceMax" aria-controls="maxPriceLabel">
+                  <img id="maxPrice" style="top: 4px; left: 0px" src="images/arrow-up-a.png" role="slider" tabindex="0" class="max thumb" aria-valuemin="0" aria-valuenow="250" aria-valuenow="$250"
+                    aria-valuemax="400" aria-label="Maximum Price">
                   </img>
                 </div>
               </div>
@@ -178,22 +177,22 @@
           <tr>
             <td></td>
             <th scope="row">
-              <code>aria-labelledby=<q>IDREF</q></code>
+              <code>aria-valuetext=<q>DOLLAR AMOUNT</q></code>
             </th>
             <td>
               <code>div</code>
             </td>
-            <td>Refers to the element containing the name of the slider.</td>
+            <td>Indicates the current value of the slider in dollars using the <q>$</q> character as a prefix.</td>
           </tr>
           <tr>
             <td></td>
             <th scope="row">
-              <code>aria-controls=<q>IDREF</q></code>
+              <code>aria-label=<q>text</q></code>
             </th>
             <td>
               <code>div</code>
             </td>
-            <td>Provides a reference to the other slider to change the <code>aria-valuemin</code> or <code>aria-valuemax</code> of the referenced slider.</td>
+            <td>A label identifying the function of the slider, in this case "Minimum Price" or "Maximum Price".</td>
           </tr>
         </tbody>
       </table>
