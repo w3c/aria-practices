@@ -2,7 +2,6 @@
 window.onload = load;
 
 const keys = {
-  enter: 13,
   space: 32
 };
 
@@ -22,8 +21,8 @@ function HTMLSwitchKeyHandler (event) {
   let switchEl = this;
   let key = event.keyCode;
 
-  // If either enter or space is pressed activate the switch.
-  if (key === keys.enter || key === keys.space) {
+  // If space is pressed activate the switch.
+  if (key === keys.space) {
     event.preventDefault();
     activateSwitch(event, this);
   }
