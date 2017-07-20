@@ -40,7 +40,8 @@ window.addEventListener('load', function () {
     aria.Utils.addClass(gridNUX, 'hidden');
     try {
       firstGridCell.focus();
-    } catch (error) { }
+    }
+    catch (error) { }
   };
   NUXclose.addEventListener('click', closeNUX);
   NUXclose.addEventListener('keyup', function (event) {
@@ -105,17 +106,17 @@ PillList.prototype.addPillItem = function (recipientName) {
   newPillItem.className = 'pill-item';
 
   newPillItem.innerHTML =
-    '<span role="gridcell">'
-      + '<a id="r' + id + '" class="pill-name" tabindex="-1" href="#">'
-        + recipientName
-      + '</a>'
-    + '</span>'
-    + '<span role="gridcell">'
-      + '<span id="rb' + id + '" class="pill-remove" tabindex="-1" role="button"'
-        + 'aria-label="Remove" aria-labelledby="rb' + id + ' r' + id + '">'
-        + 'X'
-      + '</span>'
-    + '</span>';
+    '<span role="gridcell">' +
+      '<a id="r' + id + '" class="pill-name" tabindex="-1" href="#">' +
+        recipientName +
+      '</a>' +
+    '</span>' +
+    '<span role="gridcell">' +
+      '<span id="rb' + id + '" class="pill-remove" tabindex="-1" role="button"' +
+        'aria-label="Remove" aria-labelledby="rb' + id + ' r' + id + '">' +
+        'X' +
+      '</span>' +
+    '</span>';
 
   this.grid.gridNode.append(newPillItem);
   this.grid.setupFocusGrid();
@@ -136,9 +137,9 @@ PillList.prototype.checkRemovePill = function (event) {
   var isClickEvent = (event.type === 'click');
   var key = event.which || event.keyCode;
 
-  if (!isClickEvent
-      && key !== aria.KeyCode.RETURN
-      && key !== aria.KeyCode.SPACE) {
+  if (!isClickEvent &&
+      key !== aria.KeyCode.RETURN &&
+      key !== aria.KeyCode.SPACE) {
     return;
   }
 

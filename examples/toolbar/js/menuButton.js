@@ -26,9 +26,9 @@ window.addEventListener('load', function () {
 
   [].forEach.call(menuButtons, function (menuButton) {
     if (
-      menuButton
-      && menuButton.tagName.toLowerCase() === 'button'
-      || menuButton.getAttribute('role').toLowerCase() === 'button'
+      menuButton &&
+      menuButton.tagName.toLowerCase() === 'button' ||
+      menuButton.getAttribute('role').toLowerCase() === 'button'
     ) {
       var mb = new aria.widget.MenuButton(menuButton);
       mb.initMenuButton();
@@ -180,8 +180,8 @@ aria.widget.Menu.prototype.nextMenuItem = function (currentMenuItem) {
 
   while (mi) {
     if (
-      (mi.nodeType === Node.ELEMENT_NODE)
-      && (mi.getAttribute('role') === 'menuitem')
+      (mi.nodeType === Node.ELEMENT_NODE) &&
+      (mi.getAttribute('role') === 'menuitem')
     ) {
       mi.focus();
       break;
@@ -207,8 +207,8 @@ aria.widget.Menu.prototype.previousMenuItem = function (currentMenuItem) {
 
   while (mi) {
     if (
-      mi.nodeType === Node.ELEMENT_NODE
-      && mi.getAttribute('role') === 'menuitem'
+      mi.nodeType === Node.ELEMENT_NODE &&
+      mi.getAttribute('role') === 'menuitem'
     ) {
       mi.focus();
       break;
@@ -438,12 +438,12 @@ aria.widget.MenuButton.prototype.closeMenu = function (force, focusMenuButton) {
   }
 
   if (
-    force
-    || (
-      !this.mouseInMenuButton
-      && this.menuNode
-      && !this.menu.mouseInMenu
-      && !this.menu.menuHasFocus
+    force ||
+    (
+      !this.mouseInMenuButton &&
+      this.menuNode &&
+      !this.menu.mouseInMenu &&
+      !this.menu.menuHasFocus
     )
   ) {
     this.menuNode.style.display = 'none';

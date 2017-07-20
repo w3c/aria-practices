@@ -117,9 +117,9 @@ MenuItem.prototype.activateMenuitem = function (node) {
 
 MenuItem.prototype.handleKeydown = function (event) {
   var tgt  = event.currentTarget,
-      char = event.key,
-      flag = false,
-      clickEvent;
+    char = event.key,
+    flag = false,
+    clickEvent;
 
   function isPrintableCharacter (str) {
     return str.length === 1 && str.match(/\S/);

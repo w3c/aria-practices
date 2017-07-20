@@ -154,12 +154,12 @@ TreeLinks.prototype.setFocusToParentItem = function (currentItem) {
 };
 
 TreeLinks.prototype.setFocusToFirstItem = function () {
-    this.setFocusToItem(this.firstTreeitem);
-  };
+  this.setFocusToItem(this.firstTreeitem);
+};
 
 TreeLinks.prototype.setFocusToLastItem = function () {
-    this.setFocusToItem(this.lastTreeitem);
-  };
+  this.setFocusToItem(this.lastTreeitem);
+};
 
 TreeLinks.prototype.expandTreeitem = function (currentItem) {
 

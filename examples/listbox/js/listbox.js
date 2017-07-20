@@ -312,7 +312,7 @@ aria.Listbox.prototype.deleteItems = function () {
     itemsToDelete = this.listboxNode.querySelectorAll('[aria-selected="true"]');
   }
   else if (this.activeDescendant) {
-    itemsToDelete = [document.getElementById(this.activeDescendant)];
+    itemsToDelete = [ document.getElementById(this.activeDescendant) ];
   }
 
   if (!itemsToDelete || !itemsToDelete.length) {

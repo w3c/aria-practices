@@ -7,9 +7,9 @@
     "example": "examples"
   },
   "scripts": {
-    "jscs-fix": "jscs -c .jscsrc -m 1000 --fix bin examples" ,
-    "jscs-test": "jscs -c .jscsrc -m 1000 bin examples",
-    "test": "npm run jscs-test"
+    "fix": "eslint --fix bin examples",
+    "lint": "eslint bin examples",
+    "test": "npm run lint"
   },
   "repository": {
     "type": "git",
@@ -22,6 +22,6 @@
   },
   "homepage": "https://github.com/w3c/aria-practices#readme",
   "devDependencies": {
-    "jscs": "^3.0.7"
+    "eslint": "^4.2.0"
   }
 }

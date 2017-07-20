@@ -154,12 +154,12 @@ Tree.prototype.setFocusToParentItem = function (currentItem) {
 };
 
 Tree.prototype.setFocusToFirstItem = function () {
-    this.setFocusToItem(this.firstTreeitem);
-  };
+  this.setFocusToItem(this.firstTreeitem);
+};
 
 Tree.prototype.setFocusToLastItem = function () {
-    this.setFocusToItem(this.lastTreeitem);
-  };
+  this.setFocusToItem(this.lastTreeitem);
+};
 
 Tree.prototype.expandTreeitem = function (currentItem) {
 

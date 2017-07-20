@@ -34,7 +34,7 @@
 */
 var PopupMenuLinks = function (domNode, controllerObj) {
   var elementChildren,
-      msgPrefix = 'PopupMenuLinks constructor argument domNode ';
+    msgPrefix = 'PopupMenuLinks constructor argument domNode ';
 
   // Check whether domNode is a DOM element
   if (!domNode instanceof Element) {
