@@ -63,6 +63,12 @@ RadioGroup.prototype.init = function () {
 };
 
 RadioGroup.prototype.setChecked  = function (currentItem) {
+  
+  if(currentItem.domNode.getAttribute('aria-checked') === 'true') {
+    currentItem.domNode.setAttribute('aria-checked', 'false');
+    return;
+  }
+  
   for (var i = 0; i < this.radioButtons.length; i++) {
     var rb = this.radioButtons[i];
     rb.domNode.setAttribute('aria-checked', 'false');
