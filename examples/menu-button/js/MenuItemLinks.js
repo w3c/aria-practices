@@ -30,7 +30,7 @@ var MenuItemLinks = function (domNode, menuObj) {
   this.menu = menuObj;
 
   this.keyCode = Object.freeze({
-    'TAB':  9,
+    'TAB': 9,
     'RETURN': 13,
     'ESC': 27,
     'SPACE': 32,
@@ -65,9 +65,9 @@ MenuItemLinks.prototype.init = function () {
 
 MenuItemLinks.prototype.handleKeydown = function (event) {
   var tgt = event.currentTarget,
-      flag = false,
-      char = event.key,
-      clickEvent;
+    flag = false,
+    char = event.key,
+    clickEvent;
 
   function isPrintableCharacter (str) {
     return str.length === 1 && str.match(/\S/);

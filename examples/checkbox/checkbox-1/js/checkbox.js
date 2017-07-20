@@ -20,8 +20,8 @@ var Checkbox = function (domNode) {
   this.domNode = domNode;
 
   this.keyCode = Object.freeze({
-    'RETURN'   : 13,
-    'SPACE'    : 32
+    'RETURN': 13,
+    'SPACE': 32
   });
 };
 

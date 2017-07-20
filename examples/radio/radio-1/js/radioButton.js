@@ -17,14 +17,14 @@ var RadioButton = function (domNode, groupObj) {
   this.radioGroup = groupObj;
 
   this.keyCode = Object.freeze({
-    'RETURN'   : 13,
-    'SPACE'    : 32,
-    'END'      : 35,
-    'HOME'     : 36,
-    'LEFT'     : 37,
-    'UP'       : 38,
-    'RIGHT'    : 39,
-    'DOWN'     : 40
+    'RETURN': 13,
+    'SPACE': 32,
+    'END': 35,
+    'HOME': 36,
+    'LEFT': 37,
+    'UP': 38,
+    'RIGHT': 39,
+    'DOWN': 40
   });
 };
 
@@ -43,8 +43,8 @@ RadioButton.prototype.init = function () {
 
 RadioButton.prototype.handleKeydown = function (event) {
   var tgt = event.currentTarget,
-      flag = false,
- clickEvent;
+    flag = false,
+    clickEvent;
 
   //  console.log("[RadioButton][handleKeydown]: " + event.keyCode + " " + this.radioGroup)
 

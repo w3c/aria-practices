@@ -20,7 +20,7 @@ var ButtonExpand = function (domNode) {
   this.domNode = domNode;
 
   this.keyCode = Object.freeze({
-    'RETURN'   : 13
+    'RETURN': 13
   });
 };
 

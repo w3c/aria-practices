@@ -252,4 +252,4 @@
       activateTab(target, false);
     };
   };
-})();
+}());

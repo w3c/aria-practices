@@ -16,9 +16,9 @@ var TSlider = function (domNode)  {
   this.valueDomNode = false;
 
   this.values = [];
-  this.value_nodes = this.railDomNode.getElementsByClassName('value');
-  for (var i = 0; this.value_nodes[i]; i++) {
-    this.values.push(this.value_nodes[i].innerHTML);
+  this.valueNodes = this.railDomNode.getElementsByClassName('value');
+  for (var i = 0; this.valueNodes[i]; i++) {
+    this.values.push(this.valueNodes[i].innerHTML);
   }
   this.valueMin = 0;
   this.valueMax = this.values.length - 1;
@@ -32,12 +32,12 @@ var TSlider = function (domNode)  {
   this.thumbHeight = 28;
 
   this.keyCode = Object.freeze({
-    'left'     : 37,
-    'up'       : 38,
-    'right'    : 39,
-    'down'     : 40,
-    'end'      : 35,
-    'home'     : 36
+    'left': 37,
+    'up': 38,
+    'right': 39,
+    'down': 40,
+    'end': 35,
+    'home': 36
   });
 };
 
@@ -65,11 +65,11 @@ TSlider.prototype.init = function () {
   this.domNode.style.top = (this.thumbHeight / -2) + 'px';
 
   var pos = 0;
-  var diff = this.railWidth / (this.value_nodes.length - 1);
-  for (var i = 0; this.value_nodes[i]; i++) {
+  var diff = this.railWidth / (this.valueNodes.length - 1);
+  for (var i = 0; this.valueNodes[i]; i++) {
 
-    this.value_nodes[i].style.left = (
-      pos - (this.value_nodes[i].offsetWidth / 2)
+    this.valueNodes[i].style.left = (
+      pos - (this.valueNodes[i].offsetWidth / 2)
     ) + 'px';
     pos = pos + diff;
   }
@@ -159,38 +159,38 @@ TSlider.prototype.handleBlur = function (event) {
 
 TSlider.prototype.handleMouseDown = function (event) {
 
-    var self = this;
+  var self = this;
 
-    var handleMouseMove = function (event) {
+  var handleMouseMove = function (event) {
 
-      var diffX = event.pageX - self.railDomNode.offsetLeft;
-      self.valueNow = parseInt(((self.valueMax - self.valueMin) * diffX) / self.railWidth);
-      self.moveTSliderTo(self.valueNow);
-
-      event.preventDefault();
-      event.stopPropagation();
-    };
-
-    var handleMouseUp = function (event) {
-
-      document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseup', handleMouseUp);
-
-    };
-
-    // bind a mousemove event handler to move pointer
-    document.addEventListener('mousemove', handleMouseMove);
-
-    // bind a mouseup event handler to stop tracking mouse movements
-    document.addEventListener('mouseup', handleMouseUp);
+    var diffX = event.pageX - self.railDomNode.offsetLeft;
+    self.valueNow = parseInt(((self.valueMax - self.valueMin) * diffX) / self.railWidth);
+    self.moveTSliderTo(self.valueNow);
 
     event.preventDefault();
     event.stopPropagation();
+  };
 
-    // Set focus to the clicked handle
-    this.domNode.focus();
+  var handleMouseUp = function (event) {
+
+    document.removeEventListener('mousemove', handleMouseMove);
+    document.removeEventListener('mouseup', handleMouseUp);
 
   };
+
+    // bind a mousemove event handler to move pointer
+  document.addEventListener('mousemove', handleMouseMove);
+
+  // bind a mouseup event handler to stop tracking mouse movements
+  document.addEventListener('mouseup', handleMouseUp);
+
+  event.preventDefault();
+  event.stopPropagation();
+
+  // Set focus to the clicked handle
+  this.domNode.focus();
+
+};
 
 // handleMouseMove has the same functionality as we need for handleMouseClick on the rail
 TSlider.prototype.handleClick = function (event) {
@@ -215,4 +215,3 @@ window.addEventListener('load', function () {
   }
 
 });
-
