@@ -2,32 +2,78 @@ body {
     font-family: sans-serif;
 }
 
+* {
+    box-sizing: content-box;
+}
+
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+[role^=switch] {
+    display: inline-block;
+    margin-top: .5em;
+    line-height: 1.5;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
 [role^=switch] span {
     display: inline-block;
     position: relative;
-    width: 1.5em;
-    height: .5em;
-    border: 1px solid #555;
-    border-radius: 2em;
-    background: hsl(0, 0%, 90%);
-    overflow: hidden;
+    margin-top: -.1em;
+    margin-right: .5em;
+    width: 3rem;
+    height: 1.5rem;
+    border: 1px solid hsl(200, 16%, 93%);
+    border-radius: 3px;
+    vertical-align: middle;
+    background: hsl(240, 25%, 98%);
+    /* overflow: hidden; */
+}
+
+[role^=switch][aria-checked="true"] span {
+    border-color: hsl(137, 29%, 49%);
+    background: hsl(135, 47%, 55%);
 }
 
 [role^=switch] span::before {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 50%;
-    height: 100%;
-    background: darkred;
+    top: 50%;
+    left: .2rem;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 2px;
+    box-shadow: 0 0 2px hsl(210, 13%, 75%);
+    transform: translateY(-50%);
+    background: hsl(0, 0%, 100%);
     content: "";
 }
 
 [role^=switch][aria-checked="true"] span::before {
-    left: 50%;
-    background: darkolivegreen;
+    left: auto;
+    right: .2rem;
 }
 
-[role^=switch]:focus span {
-    outline: 2px solid #000;
+[role^=switch]:focus {
+    outline: none;
+}
+
+[role^=switch]:focus span::after {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    z-index: -1;
+    width: 3rem;
+    height: 1.5rem;
+    border: 4px solid hsl(200, 16%, 93%);
+    border-color: hsl(137, 29%, 49%);
+    border-color: hsl(205, 75%, 76%);
+    border-radius: 4px;
+    content: "";
+}
+
+[role^=switch][aria-checked="true"]:focus span::after {
+    /* border-color: hsl(137, 29%, 49%); */
 }
