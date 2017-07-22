@@ -5,10 +5,10 @@ Gerard K. Cohen, 05/20/2017
 
 Array.from(document.querySelectorAll('.Accordion')).forEach(function (accordion) {
 
-  // Allow for each toggle to both open and close individually
-  var allowToggle = accordion.hasAttribute('data-allow-toggle');
   // Allow for multiple accordion sections to be expanded at the same time
   var allowMultiple = accordion.hasAttribute('data-allow-multiple');
+  // Allow for each toggle to both open and close individually
+  var allowToggle = (allowMultiple) ? allowMultiple : accordion.hasAttribute('data-allow-toggle');
 
   // Create the array of toggle elements for the accordion group
   var triggers = Array.from(accordion.querySelectorAll('.Accordion-trigger'));
@@ -20,30 +20,27 @@ Array.from(document.querySelectorAll('.Accordion')).forEach(function (accordion)
     if (target.classList.contains('Accordion-trigger')) {
       // Check if the current toggle is expanded.
       var isExpanded = target.getAttribute('aria-expanded') == 'true';
+      var active = accordion.querySelector('[aria-expanded="true"]');
 
-      if (!allowMultiple) {
-        // Close all previously open accordion toggles
-        triggers.forEach(function (trigger) {
-          if (trigger.getAttribute('aria-expanded') == 'true') {
-            // Hide all accordion sections, using aria-controls to specify the desired section
-            document.getElementById(trigger.getAttribute('aria-controls')).setAttribute('hidden', '');
-            // Set the expanded state on the triggering element
-            trigger.setAttribute('aria-expanded', 'false');
-          }
-        });
-      }
-
-      if (allowToggle && isExpanded) {
-        // Close the activated accordion if allowToggle=true, using aria-controls to specify the desired section
-        document.getElementById(target.getAttribute('aria-controls')).setAttribute('hidden', '');
+      // without allowMultiple, close the open accordion
+      if (!allowMultiple && active && active !== target) {
         // Set the expanded state on the triggering element
-        target.setAttribute('aria-expanded', 'false');
+        active.setAttribute('aria-expanded', 'false');
+        // Hide the accordion sections, using aria-controls to specify the desired section
+        document.getElementById(active.getAttribute('aria-controls')).setAttribute('hidden', '');
       }
-      else if (!allowToggle && !isExpanded) {
-        // Otherwise open the activated accordion, using aria-controls to specify the desired section
-        document.getElementById(target.getAttribute('aria-controls')).removeAttribute('hidden');
+
+      if (!isExpanded) {
         // Set the expanded state on the triggering element
         target.setAttribute('aria-expanded', 'true');
+        // Hide the accordion sections, using aria-controls to specify the desired section
+        document.getElementById(target.getAttribute('aria-controls')).removeAttribute('hidden');
+      }
+      else if (allowToggle && isExpanded) {
+        // Set the expanded state on the triggering element
+        target.setAttribute('aria-expanded', 'false');
+        // Hide the accordion sections, using aria-controls to specify the desired section
+        document.getElementById(target.getAttribute('aria-controls')).setAttribute('hidden', '');
       }
 
       event.preventDefault();
