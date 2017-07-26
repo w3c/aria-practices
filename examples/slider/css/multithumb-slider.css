@@ -4,7 +4,7 @@ div.rail-label {
   position: absolute;
 }
 
-div.rail-label p {
+div.rail-label span {
   margin-top: 1.5em;
 }
 

@@ -42,21 +42,71 @@
           <div id="ex1">
             <div id="idSliders">
 
-            <h3>Select Price Range</h3>
+              <h3>Hotel Price Range</h3>
 
               <div class="aria-widget-slider">
-                <div class="rail-label"><p id='minPriceLabel'>0</p></div>
-                <div class="rail-label"><p id='maxPriceLabel'>0</p></div>
+                <div class="rail-label">
+                  <span id="minPriceHotelLabel">0</span>
+                </div>
+                <div class="rail-label">
+                  <span id="maxPriceHotelLabel">0</span>
+                </div>
                 <div class="rail" style="width: 300px;" title="Select a price between $0 and $500">
-                  <img id="minPrice" style="top: -25px; left: 0px" src="images/arrow-down-a.png" role="slider" tabindex="0" class="min thumb" aria-valuemin="0" aria-valuenow="100" aria-valuetext="$100"
-                    aria-valuemax="400" aria-label="Minimim Price">
-                  </img>
-                  <img id="maxPrice" style="top: 4px; left: 0px" src="images/arrow-up-a.png" role="slider" tabindex="0" class="max thumb" aria-valuemin="0" aria-valuenow="250" aria-valuenow="$250"
-                    aria-valuemax="400" aria-label="Maximum Price">
-                  </img>
+                  <img id="minPriceHotel"
+                    src="images/arrow-down-a.png" 
+                    role="slider" 
+                    tabindex="0" 
+                    class="min thumb" 
+                    aria-valuemin="0" 
+                    aria-valuenow="100" 
+                    aria-valuetext="$100"
+                    aria-valuemax="400" 
+                    aria-label="Hotel Minimim Price">
+                  <img id="maxPriceHotel"
+                    src="images/arrow-up-a.png" 
+                    role="slider" 
+                    tabindex="0" 
+                    class="max thumb" 
+                    aria-valuemin="0" 
+                    aria-valuenow="250" 
+                    aria-valuenow="$250"
+                    aria-valuemax="400" 
+                    aria-label="Hotel Maximum Price">
                 </div>
               </div>
             </div>
+
+              <h3>Flight Price Range</h3>
+
+              <div class="aria-widget-slider">
+                <div class="rail-label min">
+                  0
+                </div>
+                <div class="rail" style="width: 300px;" title="Select a price between $0 and $1000">
+                  <img src="images/arrow-down-a.png" 
+                      role="slider" tabindex="0" 
+                      class="min thumb" 
+                      aria-valuemin="0" 
+                      aria-valuenow="100" 
+                      aria-valuetext="$100"
+                      aria-valuemax="250" 
+                      aria-label="Flight Minimim Price">
+                  <img src="images/arrow-up-a.png" 
+                    role="slider" 
+                    tabindex="0" 
+                    class="max thumb" 
+                    aria-valuemin="0" 
+                    aria-valuenow="250" 
+                    aria-valuenow="$250"
+                    aria-valuemax="1000" 
+                    aria-label="Flight Maximum Price">       
+                </div>
+                <div class="rail-label max">
+                  0
+                </div>
+              </div>
+            </div>
+
           </div>
           <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
     </section>
