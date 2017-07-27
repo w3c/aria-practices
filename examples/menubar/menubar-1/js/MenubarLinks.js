@@ -23,7 +23,7 @@
 
 var Menubar = function (domNode) {
   var elementChildren,
-      msgPrefix = 'Menubar constructor argument menubarNode ';
+    msgPrefix = 'Menubar constructor argument menubarNode ';
 
   // Check whether menubarNode is a DOM element
   if (!domNode instanceof Element) {

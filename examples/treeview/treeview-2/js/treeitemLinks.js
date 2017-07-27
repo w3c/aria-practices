@@ -110,9 +110,9 @@ TreeitemLink.prototype.isExpanded = function () {
 
 TreeitemLink.prototype.handleKeydown = function (event) {
   var tgt = event.currentTarget,
-      flag = false,
-      char = event.key,
-      clickEvent;
+    flag = false,
+    char = event.key,
+    clickEvent;
 
   function isPrintableCharacter (str) {
     return str.length === 1 && str.match(/\S/);

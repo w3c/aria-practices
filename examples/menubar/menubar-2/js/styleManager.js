@@ -57,53 +57,53 @@ StyleManager.prototype.setItalic = function (flag) {
 
 StyleManager.prototype.fontSmaller = function () {
 
-    switch (this.fontSize) {
-      case 'small':
-        this.setFontSize('x-small');
-        break;
+  switch (this.fontSize) {
+    case 'small':
+      this.setFontSize('x-small');
+      break;
 
-      case 'medium':
-        this.setFontSize('small');
-        break;
+    case 'medium':
+      this.setFontSize('small');
+      break;
 
-      case 'large':
-        this.setFontSize('medium');
-        break;
+    case 'large':
+      this.setFontSize('medium');
+      break;
 
-      case 'x-large':
-        this.setFontSize('large');
-        break;
+    case 'x-large':
+      this.setFontSize('large');
+      break;
 
-      default:
-        break;
+    default:
+      break;
 
-    } // end switch
-  };
+  } // end switch
+};
 
 StyleManager.prototype.fontLarger = function () {
 
-    switch (this.fontSize) {
-      case 'x-small':
-        this.setFontSize('small');
-        break;
+  switch (this.fontSize) {
+    case 'x-small':
+      this.setFontSize('small');
+      break;
 
-      case 'small':
-        this.setFontSize('medium');
-        break;
+    case 'small':
+      this.setFontSize('medium');
+      break;
 
-      case 'medium':
-        this.setFontSize('large');
-        break;
+    case 'medium':
+      this.setFontSize('large');
+      break;
 
-      case 'large':
-        this.setFontSize('x-large');
-        break;
+    case 'large':
+      this.setFontSize('x-large');
+      break;
 
-      default:
-        break;
+    default:
+      break;
 
-    } // end switch
-  };
+  } // end switch
+};
 
 StyleManager.prototype.isMinFontSize = function () {
   return this.fontSize === 'x-small';

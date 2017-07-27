@@ -24,14 +24,14 @@ var Slider = function (domNode)  {
   this.thumbHeight = 28;
 
   this.keyCode = Object.freeze({
-    'left'     : 37,
-    'up'       : 38,
-    'right'    : 39,
-    'down'     : 40,
-    'pageUp'   : 33,
-    'pageDown' : 34,
-    'end'    : 35,
-    'home'     : 36
+    'left': 37,
+    'up': 38,
+    'right': 39,
+    'down': 40,
+    'pageUp': 33,
+    'pageDown': 34,
+    'end': 35,
+    'home': 36
   });
 };
 
@@ -180,38 +180,38 @@ window.addEventListener('load', function () {
 
 Slider.prototype.handleMouseDown = function (event) {
 
-    var self = this;
+  var self = this;
 
-    var handleMouseMove = function (event) {
+  var handleMouseMove = function (event) {
 
-      var diffX = event.pageX - self.railDomNode.offsetLeft;
-      self.valueNow = parseInt(((self.valueMax - self.valueMin) * diffX) / self.railWidth);
-      self.moveSliderTo(self.valueNow);
-
-      event.preventDefault();
-      event.stopPropagation();
-    };
-
-    var handleMouseUp = function (event) {
-
-      document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseup', handleMouseUp);
-
-    };
-
-    // bind a mousemove event handler to move pointer
-    document.addEventListener('mousemove', handleMouseMove);
-
-    // bind a mouseup event handler to stop tracking mouse movements
-    document.addEventListener('mouseup', handleMouseUp);
+    var diffX = event.pageX - self.railDomNode.offsetLeft;
+    self.valueNow = parseInt(((self.valueMax - self.valueMin) * diffX) / self.railWidth);
+    self.moveSliderTo(self.valueNow);
 
     event.preventDefault();
     event.stopPropagation();
+  };
 
-    // Set focus to the clicked handle
-    this.domNode.focus();
+  var handleMouseUp = function (event) {
+
+    document.removeEventListener('mousemove', handleMouseMove);
+    document.removeEventListener('mouseup', handleMouseUp);
 
   };
+
+    // bind a mousemove event handler to move pointer
+  document.addEventListener('mousemove', handleMouseMove);
+
+  // bind a mouseup event handler to stop tracking mouse movements
+  document.addEventListener('mouseup', handleMouseUp);
+
+  event.preventDefault();
+  event.stopPropagation();
+
+  // Set focus to the clicked handle
+  this.domNode.focus();
+
+};
 
 // handleMouseMove has the same functionality as we need for handleMouseClick on the rail
 Slider.prototype.handleClick = function (event) {

@@ -26,12 +26,12 @@ var RadioGroup = function (domNode) {
   this.lastRadioButton   = null;
 
   this.keyCode = Object.freeze({
-    'TAB'      :  9,
-    'SPACE'    : 32,
-    'LEFT'     : 37,
-    'UP'       : 38,
-    'RIGHT'    : 39,
-    'DOWN'     : 40
+    'TAB': 9,
+    'SPACE': 32,
+    'LEFT': 37,
+    'UP': 38,
+    'RIGHT': 39,
+    'DOWN': 40
   });
 };
 
@@ -118,8 +118,8 @@ RadioGroup.prototype.getCurrentRadioButton = function () {
 
 RadioGroup.prototype.handleKeydown = function (event) {
   var tgt = event.currentTarget,
-      flag = false,
- clickEvent;
+    flag = false,
+    clickEvent;
 
   var currentItem = this.getCurrentRadioButton();
   switch (event.keyCode) {

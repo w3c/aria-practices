@@ -181,31 +181,31 @@ aria.FeedDisplay.prototype.renderItemData = function (itemData) {
   feedItem.setAttribute('aria-labelledby', restaurantID);
 
   if (itemData.image) {
-    itemContent += '<div class="restaurant-image">'
-                   + itemData.image
-                   + '</div>';
+    itemContent += '<div class="restaurant-image">' +
+                   itemData.image +
+                   '</div>';
   }
 
-  itemContent += '<div class="restaurant-name" '
-                 + 'id="' + restaurantID + '">'
-                 + itemData.name
-                 + '</div>';
+  itemContent += '<div class="restaurant-name" ' +
+                 'id="' + restaurantID + '">' +
+                 itemData.name +
+                 '</div>';
 
   if (itemData.rating) {
     var ratingID = 'restaurant-rating-' + this.feedSize;
-    itemContent += '<div class="restaurant-rating" id="' + ratingID + '">'
-                   + '<img class="restaurant-star-img" '
-                   + 'alt="' + itemData.rating + ' stars" '
-                   + 'src="imgs/rating-' + itemData.rating + '.png" />'
-                   + '</div>';
+    itemContent += '<div class="restaurant-rating" id="' + ratingID + '">' +
+                   '<img class="restaurant-star-img" ' +
+                   'alt="' + itemData.rating + ' stars" ' +
+                   'src="imgs/rating-' + itemData.rating + '.png" />' +
+                   '</div>';
     describedbyIDs.push(ratingID);
   }
 
   if (itemData.type) {
     var typeID = 'restaurant-type-' + this.feedSize;
-    itemContent += '<div class="restaurant-type" id="' + typeID + '">'
-                   + itemData.type
-                   + '</div>';
+    itemContent += '<div class="restaurant-type" id="' + typeID + '">' +
+                   itemData.type +
+                   '</div>';
     describedbyIDs.push(typeID);
   }
 
@@ -220,21 +220,21 @@ aria.FeedDisplay.prototype.renderItemData = function (itemData) {
   describedbyIDs.push(locationID);
 
   if (itemData.street) {
-    locationContent += '<div class="restaurant-street">'
-                   + itemData.street
-                   + '</div>';
+    locationContent += '<div class="restaurant-street">' +
+                   itemData.street +
+                   '</div>';
   }
 
   if (itemData.citystate) {
-    locationContent += '<div class="restaurant-citystate">'
-                   + itemData.citystate
-                   + '</div>';
+    locationContent += '<div class="restaurant-citystate">' +
+                   itemData.citystate +
+                   '</div>';
   }
 
   if (itemData.phone) {
-    locationContent += '<div class="restaurant-phone">'
-                   + itemData.phone
-                   + '</div>';
+    locationContent += '<div class="restaurant-phone">' +
+                   itemData.phone +
+                   '</div>';
   }
 
   locationBlock.innerHTML = locationContent;
@@ -269,10 +269,10 @@ aria.FeedDisplay.prototype.checkLoadMore = function () {
   }
 
   var lastFeedItem = this.feedItems[this.feedItems.length - 1];
-  var scrollTop = window.pageYOffset
-                  || document.documentElement.scrollTop
-                  || document.body.scrollTop
-                  || 0;
+  var scrollTop = window.pageYOffset ||
+                  document.documentElement.scrollTop ||
+                  document.body.scrollTop ||
+                  0;
   var scrollBottom = scrollTop + window.innerHeight;
 
   if (scrollBottom >= (lastFeedItem.offsetTop - 300)) {
