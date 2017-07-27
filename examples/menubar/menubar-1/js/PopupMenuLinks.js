@@ -86,14 +86,8 @@ PopupMenu.prototype.init = function () {
   var childElement, menuElement, menuItem, textContent, numItems, label;
 
   // Configure the domNode itself
-  this.domNode.tabIndex = -1;
 
   this.domNode.setAttribute('role', 'menu');
-
-  if (!this.domNode.getAttribute('aria-labelledby') && !this.domNode.getAttribute('aria-label') && !this.domNode.getAttribute('title')) {
-    label = this.controller.domNode.innerHTML;
-    this.domNode.setAttribute('aria-label', label);
-  }
 
   this.domNode.addEventListener('mouseover', this.handleMouseover.bind(this));
   this.domNode.addEventListener('mouseout', this.handleMouseout.bind(this));

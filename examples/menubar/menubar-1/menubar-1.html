@@ -43,7 +43,7 @@
       <h3 id="ex1_label">Example 1: Menubar With ARIA Markup in the HTML Source</h3>
       <div role="separator" id="ex1_start_sep" aria-labelledby="ex1_start_sep ex1_label" aria-label="Start of"></div>
       <div id="ex1">
-        <ul id="menubar1" role="menubar" aria-label="Mythical University Menu 1">
+        <ul id="menubar1" role="menubar" aria-label="Mythical University Menu 1" >
           <li>
             <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">About</a>
             <ul role="menu">
@@ -54,9 +54,9 @@
                 <a role="menuitem" href="mb-about.html#admin">Administration</a>
               </li>
               <li role="none">
-                <a id="menubar113" role="menuitem" href="#" aria-haspopup="true"
-                  aria-expanded="false"
-                >Facts</a>
+                <a id="menubar113" role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">
+                  Facts
+                </a>
                 <ul role="menu">
                   <li role="none">
                     <a role="menuitem" href="mb-about.html#facts">History</a>
@@ -66,6 +66,7 @@
                   </li>
                   <li role="none">
                     <a role="menuitem" href="mb-about.html#facts">Awards</a>
+                  </li>  
                 </ul>
               </li>
               <li>
@@ -80,6 +81,7 @@
                   </li>
                   <li role="none">
                     <a role="menuitem" href="mb-about.html#tours">For visitors</a>
+                  </li>  
                 </ul>
               </li>
             </ul>
@@ -138,13 +140,14 @@
               </li>
             </ul>
           </li>
-
-          <script type="text/javascript">
-            var menubar = new Menubar(document.getElementById('menubar1'));
-            menubar.init();
-          </script>
-
         </ul>
+
+        <script type="text/javascript">
+          var menubar = new Menubar(document.getElementById('menubar1'));
+          menubar.init();
+        </script>
+
+
       </div>
       <div role="separator" id="ex1_end_sep" aria-labelledby="ex1_end_sep ex1_label" aria-label="End of"></div>
       <h4>Notes</h4>
@@ -588,22 +591,6 @@
             <code>ul</code>
           </td>
           <td>Identifies the element as a menu container for a set of menu items.</td>
-        </tr>
-        <tr>
-          <td></td>
-          <th>
-            <code>aria-label=&quot;<em>string</em>&quot;
-            </code>
-          </th>
-          <td>
-            <code>ul</code>
-          </td>
-          <td>
-            <ul>
-              <li>Defines an acessible name for the menu.</li>
-              <li>Helps assistive technology users understand the purpose of the menu.</li>
-            </ul>
-          </td>
         </tr>
         <tr>
           <th>
