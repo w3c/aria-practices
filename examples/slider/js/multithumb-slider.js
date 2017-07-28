@@ -22,8 +22,8 @@ var Slider = function (domNode)  {
   this.railMax = 100;
   this.railWidth = 0;
 
-  this.thumbWidth  = 16;
-  this.thumbHeight = 28;
+  this.thumbWidth  = 32;
+  this.thumbHeight = 32;
 
   this.keyCode = Object.freeze({
     'left'     : 37,
@@ -61,23 +61,22 @@ Slider.prototype.init = function () {
 
   this.railWidth = parseInt(this.railDomNode.style.width.slice(0, -2));
 
-  this.labelDomNode = document.getElementById(this.domNode.getAttribute('id') + 'Label');
+  if (this.domNode.classList.contains('min')) {
+    this.labelDomNode = this.domNode.parentElement.previousElementSibling;
+  }
 
-  if (this.labelDomNode) {
-    this.labelDomNode.innerHTML = '0';
-    this.labelDomNode.style.top = (this.railDomNode.offsetTop - 8) + 'px';
+  if (this.domNode.classList.contains('max')) {
+    this.labelDomNode = this.domNode.parentElement.nextElementSibling;
   }
 
   if (this.domNode.tabIndex != 0) {
     this.domNode.tabIndex = 0;
   }
 
-  //this.domNode.style.width = this.thumbWidth + 'px';
+  this.domNode.style.top    = '-14px';
   this.domNode.style.height = this.thumbHeight + 'px';
-  //this.domNode.style.top = ((this.thumbHeight  / -2) - 15) + 'px';
 
   this.domNode.addEventListener('keydown',    this.handleKeyDown.bind(this));
-  // add onmousedown, move, and onmouseup
   this.domNode.addEventListener('mousedown', this.handleMouseDown.bind(this));
   this.domNode.addEventListener('focus',      this.handleFocus.bind(this));
   this.domNode.addEventListener('blur',       this.handleBlur.bind(this));
@@ -113,15 +112,18 @@ Slider.prototype.moveSliderTo = function (value) {
   }
 
   var pos = Math.round(
-    ((this.valueNow - this.railMin) * this.railWidth) / (this.railMax - this.railMin)
-  ) - (this.thumbWidth / 2);
+    ((this.valueNow - this.railMin) * (this.railWidth - this.thumbWidth)) / (this.railMax - this.railMin));
 
-  this.domNode.style.left = pos + 'px';
+  if (this.minDomNode) {
+    this.domNode.style.left = (pos + 7) + 'px';
+  }
+  else {
+    this.domNode.style.left = (pos - 7) + 'px';    
+  }
 
   if (this.labelDomNode) {
     this.labelDomNode.innerHTML = this.dolValueNow.toString();
-    this.labelDomNode.style.left = (this.railDomNode.offsetLeft + this.railWidth + 10) + 'px';
-    }
+  }
 };
 
 Slider.prototype.handleKeyDown = function (event) {

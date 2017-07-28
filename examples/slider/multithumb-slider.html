@@ -40,20 +40,16 @@
        <h2 id="ex_label">Example</h2>
           <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
           <div id="ex1">
-            <div id="idSliders">
 
               <h3>Hotel Price Range</h3>
 
               <div class="aria-widget-slider">
-                <div class="rail-label">
-                  <span id="minPriceHotelLabel">0</span>
+                <div class="rail-label min">
+                  0
                 </div>
-                <div class="rail-label">
-                  <span id="maxPriceHotelLabel">0</span>
-                </div>
-                <div class="rail" style="width: 300px;" title="Select a price between $0 and $500">
+                <div class="rail" style="width: 300px;" title="Select a hotel between $0 and $500">
                   <img id="minPriceHotel"
-                    src="images/arrow-down-a.png" 
+                    src="images/min-arrow.png" 
                     role="slider" 
                     tabindex="0" 
                     class="min thumb" 
@@ -61,9 +57,9 @@
                     aria-valuenow="100" 
                     aria-valuetext="$100"
                     aria-valuemax="400" 
-                    aria-label="Hotel Minimim Price">
+                    aria-label="Hotel Minimim Price"/>
                   <img id="maxPriceHotel"
-                    src="images/arrow-up-a.png" 
+                    src="images/max-arrow.png" 
                     role="slider" 
                     tabindex="0" 
                     class="max thumb" 
@@ -71,41 +67,42 @@
                     aria-valuenow="250" 
                     aria-valuenow="$250"
                     aria-valuemax="400" 
-                    aria-label="Hotel Maximum Price">
-                </div>
-              </div>
-            </div>
-
-              <h3>Flight Price Range</h3>
-
-              <div class="aria-widget-slider">
-                <div class="rail-label min">
-                  0
-                </div>
-                <div class="rail" style="width: 300px;" title="Select a price between $0 and $1000">
-                  <img src="images/arrow-down-a.png" 
-                      role="slider" tabindex="0" 
-                      class="min thumb" 
-                      aria-valuemin="0" 
-                      aria-valuenow="100" 
-                      aria-valuetext="$100"
-                      aria-valuemax="250" 
-                      aria-label="Flight Minimim Price">
-                  <img src="images/arrow-up-a.png" 
-                    role="slider" 
-                    tabindex="0" 
-                    class="max thumb" 
-                    aria-valuemin="0" 
-                    aria-valuenow="250" 
-                    aria-valuenow="$250"
-                    aria-valuemax="1000" 
-                    aria-label="Flight Maximum Price">       
+                    aria-label="Hotel Maximum Price"/>
                 </div>
                 <div class="rail-label max">
                   0
                 </div>
               </div>
-            </div>
+
+              <h3>Flight Price Range</h3>
+
+              <div class="aria-widget-slider">
+              <div class="rail-label min">
+                0
+              </div>
+              <div class="rail" style="width: 300px;" title="Select a flight between $0 and $1000">
+                <img src="images/min-arrow.png" 
+                    role="slider" tabindex="0" 
+                    class="min thumb" 
+                    aria-valuemin="0" 
+                    aria-valuenow="100" 
+                    aria-valuetext="$100"
+                    aria-valuemax="250" 
+                    aria-label="Flight Minimim Price">
+                <img src="images/max-arrow.png" 
+                  role="slider" 
+                  tabindex="0" 
+                  class="max thumb" 
+                  aria-valuemin="0" 
+                  aria-valuenow="250" 
+                  aria-valuenow="$250"
+                  aria-valuemax="1000" 
+                  aria-label="Flight Maximum Price">       
+              </div>
+              <div class="rail-label max">
+                0
+              </div>
+              </div>
 
           </div>
           <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>

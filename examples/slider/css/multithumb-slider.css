@@ -1,36 +1,31 @@
 /* CSS Document */
 
-div.rail-label {
-  position: absolute;
-}
-
-div.rail-label span {
-  margin-top: 1.5em;
-}
-
-div.rail-label .dol #minPriceLabel {
-    text-align: left;
-}
-
-div.rail-label #maxPriceLabel {
-    margin-left: 23em;
-}
-
 div.aria-widget-slider {
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
-  height: 4em;
+  clear: both;
+  padding-top: 0.5em;
+  padding-bottom: 1em;
+}
+
+div.rail-label {
+  padding-right: 0.5em;
+  text-align: right;
+  float: left;
+  width: 4em;
+  position: relative;
+  top: -0.5em;
+}
+
+div.rail-label.max {
+  padding-left: 0.5em;
+  text-align: left;
 }
 
 div.aria-widget-slider .rail {
-  margin: 2px;
-  margin-left: 50px;
-  padding: 1px;
   background-color: #eee;
   border: 1px solid #888;
   position: relative;
-  top: 2em;
   height: 4px;
+  float: left;
 }
 
 div.aria-widget-slider .thumb  {
@@ -46,14 +41,4 @@ div.aria-widget-slider .rail.focus {
   background-color: #AAA;
 }
 
-div.aria-widget-slider .value  {
-  width:      2em;
-  text-align: right;
-  position: absolute;
-}
 
-label {
-  display: block;
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
-}
