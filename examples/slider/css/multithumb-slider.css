@@ -38,7 +38,7 @@ div.aria-widget-slider img[role="slider"]  {
 
 div.aria-widget-slider img[role="slider"].focus,
 div.aria-widget-slider img[role="slider"]:hover {
-  outline-color: #888;
+  outline-color: rgb(140, 203, 242);
   outline-style: solid;
   outline-width: 2px;
   outline-offset: 2px;
