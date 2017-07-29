@@ -22,8 +22,8 @@ var Slider = function (domNode)  {
   this.railMax = 100;
   this.railWidth = 0;
 
-  this.thumbWidth  = 32;
-  this.thumbHeight = 32;
+  this.thumbWidth  = 20;
+  this.thumbHeight = 24;
 
   this.keyCode = Object.freeze({
     'left'     : 37,
@@ -32,7 +32,7 @@ var Slider = function (domNode)  {
     'down'     : 40,
     'pageUp'   : 33,
     'pageDown' : 34,
-    'end'    : 35,
+    'end'      : 35,
     'home'     : 36
   });
 };
@@ -73,9 +73,6 @@ Slider.prototype.init = function () {
     this.domNode.tabIndex = 0;
   }
 
-  this.domNode.style.top    = '-14px';
-  this.domNode.style.height = this.thumbHeight + 'px';
-
   this.domNode.addEventListener('keydown',    this.handleKeyDown.bind(this));
   this.domNode.addEventListener('mousedown', this.handleMouseDown.bind(this));
   this.domNode.addEventListener('focus',      this.handleFocus.bind(this));
@@ -112,13 +109,13 @@ Slider.prototype.moveSliderTo = function (value) {
   }
 
   var pos = Math.round(
-    ((this.valueNow - this.railMin) * (this.railWidth - this.thumbWidth)) / (this.railMax - this.railMin));
+    ((this.valueNow - this.railMin) * (this.railWidth - 2 * this.thumbWidth + 2)) / (this.railMax - this.railMin));
 
   if (this.minDomNode) {
-    this.domNode.style.left = (pos + 7) + 'px';
+    this.domNode.style.left = (pos + this.thumbWidth - 1) + 'px';
   }
   else {
-    this.domNode.style.left = (pos - 7) + 'px';    
+    this.domNode.style.left = (pos - 1) + 'px';    
   }
 
   if (this.labelDomNode) {

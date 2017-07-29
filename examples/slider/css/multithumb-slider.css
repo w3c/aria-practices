@@ -6,6 +6,7 @@ div.aria-widget-slider {
   padding-bottom: 1em;
 }
 
+
 div.rail-label {
   padding-right: 0.5em;
   text-align: right;
@@ -28,13 +29,19 @@ div.aria-widget-slider .rail {
   float: left;
 }
 
-div.aria-widget-slider .thumb  {
+div.aria-widget-slider img[role="slider"]  {
   position: absolute;
+  padding: 0;
+  margin: 0;
+  top: -10px;
 }
 
-div.aria-widget-slider .rail .thumb.focus,
-div.aria-widget-slider .rail .thumb:hover {
-  outline: 2px solid #888;
+div.aria-widget-slider img[role="slider"].focus,
+div.aria-widget-slider img[role="slider"]:hover {
+  outline-color: #888;
+  outline-style: solid;
+  outline-width: 2px;
+  outline-offset: 2px;
 }
 
 div.aria-widget-slider .rail.focus {
