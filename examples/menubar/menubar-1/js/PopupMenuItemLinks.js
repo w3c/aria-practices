@@ -54,14 +54,6 @@ var MenuItem = function (domNode, menuObj) {
 MenuItem.prototype.init = function () {
   this.domNode.tabIndex = -1;
 
-  if (!this.domNode.getAttribute('role')) {
-    this.domNode.setAttribute('role', 'menuitem');
-  }
-
-  if (this.domNode.parentNode.tagName === 'LI') {
-    this.domNode.parentNode.setAttribute('role', 'none');
-  }
-
   this.domNode.addEventListener('keydown', this.handleKeydown.bind(this));
   this.domNode.addEventListener('click', this.handleClick.bind(this));
   this.domNode.addEventListener('focus', this.handleFocus.bind(this));

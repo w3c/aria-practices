@@ -46,7 +46,7 @@
         <ul id="menubar1" role="menubar" aria-label="Mythical University Menu 1" >
           <li>
             <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">About</a>
-            <ul role="menu">
+            <ul role="menu" aria-label="About">
               <li role="none">
                 <a role="menuitem" href="mb-about.html#overview">Overview</a>
               </li>
@@ -54,10 +54,8 @@
                 <a role="menuitem" href="mb-about.html#admin">Administration</a>
               </li>
               <li role="none">
-                <a id="menubar113" role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">
-                  Facts
-                </a>
-                <ul role="menu">
+                <a id="menubar113" role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">Facts</a>
+                <ul role="menu"  aria-label="Facts">
                   <li role="none">
                     <a role="menuitem" href="mb-about.html#facts">History</a>
                   </li>
@@ -70,9 +68,8 @@
                 </ul>
               </li>
               <li>
-                <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">Campus
-                  Tours</a>
-                <ul role="menu">
+                <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">Campus Tours</a>
+                <ul role="menu"  aria-label="Campus Tours">
                   <li role="none">
                     <a role="menuitem" href="mb-about.html#tours">For prospective students</a>
                   </li>
@@ -88,7 +85,7 @@
           </li>
           <li>
             <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">Admissions</a>
-            <ul role="menu">
+            <ul role="menu"  aria-label="Admissions">
               <li role="none">
                 <a role="menuitem" href="mb-admissions.html#apply">Apply</a>
               </li>
@@ -112,7 +109,7 @@
           </li>
           <li>
             <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">Academics</a>
-            <ul role="menu">
+            <ul role="menu"  aria-label="Academics">
               <li role="none">
                 <a role="menuitem" href="mb-academics.html#colleges">Colleges &amp; Schools</a>
               </li>
@@ -147,97 +144,9 @@
           menubar.init();
         </script>
 
-
       </div>
-      <div role="separator" id="ex1_end_sep" aria-labelledby="ex1_end_sep ex1_label" aria-label="End of"></div>
-      <h4>Notes</h4>
-      <p>This implementation includes the ARIA roles and properties in the HTML to make it easy to see how they are used.</p>
-    </section>
-    <section>
-      <h3 id="ex2_label">Example 2: ARIA markup added dynamically</h3>
-      <div role="separator" id="ex2_start_sep" aria-labelledby="ex2_start_sep ex2_label" aria-label="Start of"></div>
-      <div id="ex2">
-        <ul id="menubar2" aria-label="Mythical University Menu 2">
-          <li>
-            <a href="#">Research</a>
-            <ul>
-              <li>
-                <a href="mb-research.html#res-news">Research News</a>
-              </li>
-              <li>
-                <a href="mb-research.html#res-centers">Reseach Centers</a>
-              </li>
-              <li>
-                <a href="mb-research.html#res-find">Find an Expert</a>
-              </li>
-              <li>
-                <a href="mb-research.html#res-park">Research Park</a>
-              </li>
-              <li>
-                <a href="mb-research.html#res-comm">Technology Commercialization</a>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <a href="#">Outreach</a>
-            <ul>
-              <li>
-                <a href="mb-outreach.html#comm-engage">Community Engagement</a>
-              </li>
-              <li>
-                <a href="mb-outreach.html#copr-rel">Corporate Relations</a>
-              </li>
-              <li>
-                <a href="mb-outreach.html#extension">Extension</a>
-              </li>
-              <li>
-                <a href="mb-outreach.html#outreach-events">Outreach Events</a>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <a href="#">Arts and Culture</a>
-            <ul>
-              <li>
-                <a href="mb-arts.html#fas">College of Fine and Applied Arts</a>
-              </li>
-              <li>
-                <a href="mb-arts.html#las">College of Liberal Arts and Sciences</a>
-              </li>
-              <li role="separator"></li>
-              <li>
-                <a href="mb-arts.html#cultural-center">Cultural Center</a>
-              </li>
-              <li>
-                <a href="mb-arts.html#perfoming-arts">Performing Arts</a>
-              </li>
-              <li>
-                <a href="mb-arts.html#art-museum">Art Museum</a>
-              </li>
-              <li>
-                <a href="mb-arts.html#history-museum">History Museum</a>
-              </li>
-              <li>
-                <a href="mb-arts.html#union">Student Union</a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-
-          <script type="text/javascript">
-            var menubar = new Menubar(document.getElementById('menubar2'));
-            menubar.init();
-          </script>
-
-      </div>
-      <div role="separator" id="ex2_end_sep" aria-labelledby="ex2_end_sep ex2_label" aria-label="End of"></div>
-      <h4>Notes</h4>
-      <ol>
-        <li>In this implementation, ARIA roles and properties are added by the scripts based on the HTML structure.</li>
-        <li>This approach may be helpful when applying the menubar pattern to existing content.</li>
-      </ol>
-    </section>
-  </section>
+    </section>  
+   </section>
 
   <section>
     <h2>Accessibility Features</h2>
@@ -593,6 +502,25 @@
           <td>Identifies the element as a menu container for a set of menu items.</td>
         </tr>
         <tr>
+          <td></td>
+          <th>
+            <code>aria-label=&quot;<em>string</em>&quot;
+            </code>
+          </th>
+          <td>
+            <code>ul</code>
+          </td>
+          <td>
+            <ul>
+              <li>
+                Defines an acessible name for the <code>menu</code>.
+              </li>
+              <li>Helps assistive technology users understand the purpose of the menu and
+                distinguish it from any other menu or similar elements (e.g. menubar) on the page.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
           <th>
             <code>menuitem</code>
           </th>
@@ -690,20 +618,14 @@
 
   <section>
     <h2>HTML Source Code</h2>
-    <h3 id="sc1_label">Example 1: Menubar With ARIA Markup in the HTML Source</h3>
+
     <div id="sc1_start_sep" role="separator" aria-labelledby="sc1_start_sep sc1_label" aria-label="Start of HTML for" ></div>
     <pre><code id="sc1"></code></pre>
     <div id="sc1_end_sep" role="separator" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of HTML for" ></div>
     <script>
             sourceCode.add('sc1', 'ex1')
             </script>
-    <h3 id="sc2_label">Example 2: ARIA markup added dynamically</h3>
-    <div id="sc2_start_sep" role="separator" aria-labelledby="sc2_start_sep sc2_label" aria-label="Start of HTML for" ></div>
-    <pre><code id="sc2"></code></pre>
-    <div id="sc2_end_sep" role="separator" aria-labelledby="sc2_end_sep sc2_label" aria-label="End of HTML for" ></div>
-    <script>
-            sourceCode.add('sc2', 'ex2')
-            </script>
+
     <!--  After all source has been added, run make to do the insert.  -->
     <script>
             sourceCode.make()

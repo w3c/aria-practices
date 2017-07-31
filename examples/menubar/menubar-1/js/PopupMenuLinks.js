@@ -87,8 +87,6 @@ PopupMenu.prototype.init = function () {
 
   // Configure the domNode itself
 
-  this.domNode.setAttribute('role', 'menu');
-
   this.domNode.addEventListener('mouseover', this.handleMouseover.bind(this));
   this.domNode.addEventListener('mouseout', this.handleMouseout.bind(this));
 
