@@ -21,6 +21,7 @@ var Slider = function (domNode)  {
   this.railMin = 0;
   this.railMax = 100;
   this.railWidth = 0;
+  this.railBorderWidth = 1;
 
   this.thumbWidth  = 20;
   this.thumbHeight = 24;
@@ -108,14 +109,13 @@ Slider.prototype.moveSliderTo = function (value) {
     this.maxDomNode.setAttribute('aria-valuemin', this.valueNow);
   }
 
-  var pos = Math.round(
-    ((this.valueNow - this.railMin) * (this.railWidth - 2 * this.thumbWidth + 2)) / (this.railMax - this.railMin));
+  var pos = Math.round(((this.valueNow - this.railMin) * (this.railWidth - 2 * (this.thumbWidth - this.railBorderWidth))) / (this.railMax - this.railMin));
 
   if (this.minDomNode) {
-    this.domNode.style.left = (pos + this.thumbWidth - 1) + 'px';
+    this.domNode.style.left = (pos + this.thumbWidth - this.railBorderWidth) + 'px';
   }
   else {
-    this.domNode.style.left = (pos - 1) + 'px';    
+    this.domNode.style.left = (pos - this.railBorderWidth) + 'px';    
   }
 
   if (this.labelDomNode) {
