@@ -2,3 +2,30 @@
 	font-style: italic;
 	color: #366ED4;
 }
+
+.hidden {
+	display: none;
+}
+
+.combobox-wrapper {
+	position: relative;
+}
+
+.listbox {
+	min-width: 130px;
+	background: white;
+	border: 1px solid #ccc;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	top: 21px;
+}
+
+.listbox .result {
+	margin: 0;
+}
+
+.listbox .focused {
+	background: rgb(139, 189, 225);
+}

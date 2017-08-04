@@ -27,13 +27,11 @@ aria.ListboxCombobox = function (comboboxNode, input, listbox, searchFn) {
 };
 
 aria.ListboxCombobox.prototype.setupEvents = function() {
-  this.input.addEventListener('keyup', this.updateResults.bind(this));
-  // or should I use keydown?
-
+  this.input.addEventListener('keyup', this.checkKey.bind(this));
   this.input.addEventListener('keydown', this.setActiveItem.bind(this));
 };
 
-aria.ListboxCombobox.prototype.updateResults = function() {
+aria.ListboxCombobox.prototype.checkKey = function(event) {
   var key = event.which || event.keyCode;
 
   switch (key) {
@@ -41,18 +39,28 @@ aria.ListboxCombobox.prototype.updateResults = function() {
     case aria.KeyCode.DOWN:
     case aria.KeyCode.ESC:
     case aria.KeyCode.RETURN:
+      event.preventDefault();
       return;
+    default:
+      this.updateResults(event);
   }
+};
 
+aria.ListboxCombobox.prototype.updateResults = function() {
   var searchString = this.input.value;
   var results = this.searchFn(searchString);
 
   this.listbox.innerHTML = null;
   this.activeIndex = -1;
+  this.combobox.setAttribute(
+    'aria-activedescendant',
+    ''
+  );
 
   if (results.length) {
     for (var i = 0; i < results.length; i++) {
       var resultItem = document.createElement('li');
+      resultItem.className = 'result';
       resultItem.setAttribute('id', 'result-item-' + i)
       resultItem.innerText = results[i];
       this.listbox.appendChild(resultItem);
@@ -103,6 +111,8 @@ aria.ListboxCombobox.prototype.setActiveItem = function(evt) {
     default:
       return;
   }
+
+  event.preventDefault();
 
   var activeItem = document.getElementById('result-item-' + activeIndex);
   this.activeIndex = activeIndex;
