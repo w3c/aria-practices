@@ -23,7 +23,12 @@
 }
 
 .listbox .result {
+	cursor: default;
 	margin: 0;
+}
+
+.listbox .result:hover {
+	background: rgb(139, 189, 225);
 }
 
 .listbox .focused {

@@ -29,6 +29,7 @@ aria.ListboxCombobox = function (comboboxNode, input, listbox, searchFn) {
 aria.ListboxCombobox.prototype.setupEvents = function() {
   this.input.addEventListener('keyup', this.checkKey.bind(this));
   this.input.addEventListener('keydown', this.setActiveItem.bind(this));
+  this.listbox.addEventListener('click', this.clickItem.bind(this));
 };
 
 aria.ListboxCombobox.prototype.checkKey = function(event) {
@@ -52,7 +53,7 @@ aria.ListboxCombobox.prototype.updateResults = function() {
 
   this.listbox.innerHTML = null;
   this.activeIndex = -1;
-  this.combobox.setAttribute(
+  this.input.setAttribute(
     'aria-activedescendant',
     ''
   );
@@ -61,18 +62,17 @@ aria.ListboxCombobox.prototype.updateResults = function() {
     for (var i = 0; i < results.length; i++) {
       var resultItem = document.createElement('li');
       resultItem.className = 'result';
-      resultItem.setAttribute('id', 'result-item-' + i)
+      resultItem.setAttribute('role', 'option');
+      resultItem.setAttribute('id', 'result-item-' + i);
       resultItem.innerText = results[i];
       this.listbox.appendChild(resultItem);
     }
     aria.Utils.removeClass(this.listbox, 'hidden');
     this.combobox.setAttribute('aria-expanded', 'true');
-    this.combobox.setAttribute('aria-haspopup', 'listbox');
     this.resultsCount = results.length;
   } else {
     aria.Utils.addClass(this.listbox, 'hidden');
     this.combobox.setAttribute('aria-expanded', 'false');
-    this.combobox.setAttribute('aria-haspopup', 'false');
     this.resultsCount = 0;
   }
 };
@@ -86,6 +86,7 @@ aria.ListboxCombobox.prototype.setActiveItem = function(evt) {
   }
 
   var prevActive = document.getElementById('result-item-' + activeIndex);
+  var activeItem;
 
   switch (key) {
     case aria.KeyCode.UP:
@@ -106,7 +107,8 @@ aria.ListboxCombobox.prototype.setActiveItem = function(evt) {
       activeIndex = -1;
       break;
     case aria.KeyCode.RETURN:
-      this.selectIndex(activeIndex);
+      activeItem = document.getElementById('result-item-' + activeIndex);
+      this.selectItem(activeItem);
       return;
     default:
       return;
@@ -114,7 +116,7 @@ aria.ListboxCombobox.prototype.setActiveItem = function(evt) {
 
   event.preventDefault();
 
-  var activeItem = document.getElementById('result-item-' + activeIndex);
+  activeItem = document.getElementById('result-item-' + activeIndex);
   this.activeIndex = activeIndex;
 
   if (prevActive) {
@@ -122,29 +124,33 @@ aria.ListboxCombobox.prototype.setActiveItem = function(evt) {
   }
 
   if (activeItem) {
-    this.combobox.setAttribute(
+    this.input.setAttribute(
       'aria-activedescendant',
       'result-item-' + activeIndex
     );
     aria.Utils.addClass(activeItem, 'focused');
   } else {
-    this.combobox.setAttribute(
+    this.input.setAttribute(
       'aria-activedescendant',
       ''
     );
   }
 };
 
-aria.ListboxCombobox.prototype.selectIndex = function(index) {
-  var selectedItem = document.getElementById('result-item-' + index);
+aria.ListboxCombobox.prototype.clickItem = function(evt) {
+  if (evt.target && evt.target.nodeName == 'LI') {
+    console.log('selected item', evt.target)
+    this.selectItem(evt.target);
+  }
+};
 
-  if (selectedItem) {
-    this.input.value = selectedItem.innerText;
+aria.ListboxCombobox.prototype.selectItem = function(item) {
+  if (item) {
+    this.input.value = item.innerText;
     this.listbox.innerHTML = null;
     this.activeIndex = -1;
     aria.Utils.addClass(this.listbox, 'hidden');
     this.combobox.setAttribute('aria-expanded', 'false');
-    this.combobox.setAttribute('aria-haspopup', 'false');
     this.resultsCount = 0;
   }
 };

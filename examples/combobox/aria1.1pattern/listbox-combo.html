@@ -47,12 +47,15 @@
       The div for the rendered HTML source is in the last section of the page.
     -->
     <div id="ex1">
+      <label for="ex1-input">
+        Fruits and vegetables
+      </label>
       <div class="combobox-wrapper">
         <div role="combobox"
           aria-label="Tag"
           aria-expanded="false"
           aria-owns="ex1-listbox"
-          aria-haspopup="false"
+          aria-haspopup="listbox"
           id="ex1-combobox">
           <input type="text"
             aria-autocomplete="list"
