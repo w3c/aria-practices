@@ -15,11 +15,18 @@
  *  The search function. The function accepts a search string and returns an
  *  array of results.
  */
-aria.ListboxCombobox = function (comboboxNode, input, listbox, searchFn) {
+aria.ListboxCombobox = function (
+  comboboxNode,
+  input,
+  listbox,
+  searchFn,
+  shouldAutoSelect
+) {
   this.combobox = comboboxNode;
   this.input = input;
   this.listbox = listbox;
   this.searchFn = searchFn;
+  this.shouldAutoSelect = shouldAutoSelect;
   this.activeIndex = -1;
   this.resultsCount = 0;
 
@@ -65,6 +72,11 @@ aria.ListboxCombobox.prototype.updateResults = function() {
       resultItem.setAttribute('role', 'option');
       resultItem.setAttribute('id', 'result-item-' + i);
       resultItem.innerText = results[i];
+      if (this.shouldAutoSelect && i === 0) {
+        resultItem.setAttribute('aria-selected', 'true');
+        aria.Utils.addClass(resultItem, 'focused');
+        this.activeIndex = 0;
+      }
       this.listbox.appendChild(resultItem);
     }
     aria.Utils.removeClass(this.listbox, 'hidden');
@@ -121,6 +133,7 @@ aria.ListboxCombobox.prototype.setActiveItem = function(evt) {
 
   if (prevActive) {
     aria.Utils.removeClass(prevActive, 'focused');
+    prevActive.setAttribute('aria-selected', 'false');
   }
 
   if (activeItem) {
@@ -129,6 +142,7 @@ aria.ListboxCombobox.prototype.setActiveItem = function(evt) {
       'result-item-' + activeIndex
     );
     aria.Utils.addClass(activeItem, 'focused');
+    activeItem.setAttribute('aria-selected', 'true');
   } else {
     this.input.setAttribute(
       'aria-activedescendant',

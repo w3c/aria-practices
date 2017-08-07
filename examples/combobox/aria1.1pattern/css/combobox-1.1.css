@@ -8,11 +8,18 @@
 }
 
 .combobox-wrapper {
+	display: inline-block;
 	position: relative;
 }
 
+.combobox-label {
+	font-size: 14px;
+	font-weight: bold;
+	margin-right: 5px;
+}
+
 .listbox {
-	min-width: 130px;
+	min-width: 200px;
 	background: white;
 	border: 1px solid #ccc;
 	list-style: none;
@@ -20,6 +27,7 @@
 	padding: 0;
 	position: absolute;
 	top: 21px;
+	z-index: 1;
 }
 
 .listbox .result {
@@ -33,4 +41,12 @@
 
 .listbox .focused {
 	background: rgb(139, 189, 225);
+}
+
+.combobox-wrapper input {
+	font-size: 14px;
+  border: 1px solid #aaa;
+	border-radius: 2px;
+  line-height: 1.5em;
+  width: 200px;
 }

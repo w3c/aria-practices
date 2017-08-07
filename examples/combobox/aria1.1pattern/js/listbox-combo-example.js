@@ -94,6 +94,15 @@ window.addEventListener('load', function () {
     document.getElementById('ex1-combobox'),
     document.getElementById('ex1-input'),
     document.getElementById('ex1-listbox'),
-    searchVeggies
+    searchVeggies,
+    false
+  );
+
+  var ex1Combobox = new aria.ListboxCombobox(
+    document.getElementById('ex2-combobox'),
+    document.getElementById('ex2-input'),
+    document.getElementById('ex2-listbox'),
+    searchVeggies,
+    true
   );
 });

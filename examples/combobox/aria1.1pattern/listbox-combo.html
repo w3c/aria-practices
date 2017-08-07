@@ -47,7 +47,7 @@
       The div for the rendered HTML source is in the last section of the page.
     -->
     <div id="ex1">
-      <label for="ex1-input">
+      <label for="ex1-input" class="combobox-label">
         Fruits and vegetables
       </label>
       <div class="combobox-wrapper">
@@ -64,6 +64,27 @@
             id="ex1-input">
         </div>
         <ul role="listbox" id="ex1-listbox" class="listbox hidden"></ul>
+      </div>
+    </div>
+
+    <div id="ex2">
+      <label for="ex2-input" class="combobox-label">
+        Fruits and vegetables
+      </label>
+      <div class="combobox-wrapper">
+        <div role="combobox"
+          aria-label="Tag"
+          aria-expanded="false"
+          aria-owns="ex2-listbox"
+          aria-haspopup="listbox"
+          id="ex2-combobox">
+          <input type="text"
+            aria-autocomplete="list"
+            aria-controls="ex2-listbox"
+            aria-activedescendant=""
+            id="ex2-input">
+        </div>
+        <ul role="listbox" id="ex2-listbox" class="listbox hidden"></ul>
       </div>
     </div>
     <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
