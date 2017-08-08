@@ -39,18 +39,18 @@ aria.ListboxCombobox.prototype.setupEvents = function() {
   this.listbox.addEventListener('click', this.clickItem.bind(this));
 };
 
-aria.ListboxCombobox.prototype.checkKey = function(event) {
-  var key = event.which || event.keyCode;
+aria.ListboxCombobox.prototype.checkKey = function(evt) {
+  var key = evt.which || evt.keyCode;
 
   switch (key) {
     case aria.KeyCode.UP:
     case aria.KeyCode.DOWN:
     case aria.KeyCode.ESC:
     case aria.KeyCode.RETURN:
-      event.preventDefault();
+      evt.preventDefault();
       return;
     default:
-      this.updateResults(event);
+      this.updateResults(evt);
   }
 };
 
@@ -90,7 +90,7 @@ aria.ListboxCombobox.prototype.updateResults = function() {
 };
 
 aria.ListboxCombobox.prototype.setActiveItem = function(evt) {
-  var key = event.which || event.keyCode;
+  var key = evt.which || evt.keyCode;
   var activeIndex = this.activeIndex;
 
   if (this.resultsCount < 1) {
@@ -126,7 +126,7 @@ aria.ListboxCombobox.prototype.setActiveItem = function(evt) {
       return;
   }
 
-  event.preventDefault();
+  evt.preventDefault();
 
   activeItem = document.getElementById('result-item-' + activeIndex);
   this.activeIndex = activeIndex;
