@@ -36,6 +36,7 @@ aria.ListboxCombobox = function (
 aria.ListboxCombobox.prototype.setupEvents = function() {
   this.input.addEventListener('keyup', this.checkKey.bind(this));
   this.input.addEventListener('keydown', this.setActiveItem.bind(this));
+  this.input.addEventListener('blur', this.hideListbox.bind(this));
   this.listbox.addEventListener('click', this.clickItem.bind(this));
 };
 
@@ -93,11 +94,17 @@ aria.ListboxCombobox.prototype.setActiveItem = function(evt) {
   var key = evt.which || evt.keyCode;
   var activeIndex = this.activeIndex;
 
+  if (key === aria.KeyCode.ESC) {
+    this.hideListbox();
+    this.input.value = '';
+    return;
+  }
+
   if (this.resultsCount < 1) {
     return;
   }
 
-  var prevActive = document.getElementById('result-item-' + activeIndex);
+  var prevActive = this.getItemAt(activeIndex);
   var activeItem;
 
   switch (key) {
@@ -115,11 +122,8 @@ aria.ListboxCombobox.prototype.setActiveItem = function(evt) {
         activeIndex++;
       }
       break;
-    case aria.KeyCode.ESC:
-      activeIndex = -1;
-      break;
     case aria.KeyCode.RETURN:
-      activeItem = document.getElementById('result-item-' + activeIndex);
+      activeItem = this.getItemAt(activeIndex);
       this.selectItem(activeItem);
       return;
     default:
@@ -128,7 +132,7 @@ aria.ListboxCombobox.prototype.setActiveItem = function(evt) {
 
   evt.preventDefault();
 
-  activeItem = document.getElementById('result-item-' + activeIndex);
+  activeItem = this.getItemAt(activeIndex);
   this.activeIndex = activeIndex;
 
   if (prevActive) {
@@ -151,6 +155,10 @@ aria.ListboxCombobox.prototype.setActiveItem = function(evt) {
   }
 };
 
+aria.ListboxCombobox.prototype.getItemAt = function(index) {
+  return document.getElementById('result-item-' + index);
+};
+
 aria.ListboxCombobox.prototype.clickItem = function(evt) {
   if (evt.target && evt.target.nodeName == 'LI') {
     console.log('selected item', evt.target)
@@ -167,4 +175,16 @@ aria.ListboxCombobox.prototype.selectItem = function(item) {
     this.combobox.setAttribute('aria-expanded', 'false');
     this.resultsCount = 0;
   }
+};
+
+aria.ListboxCombobox.prototype.hideListbox = function() {
+  this.activeIndex = -1;
+  this.listbox.innerHTML = null;
+  aria.Utils.addClass(this.listbox, 'hidden');
+  this.combobox.setAttribute('aria-expanded', 'false');
+  this.resultsCount = 0;
+  this.input.setAttribute(
+    'aria-activedescendant',
+    ''
+  );
 };
