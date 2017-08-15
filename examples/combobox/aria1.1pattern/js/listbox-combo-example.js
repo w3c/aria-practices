@@ -71,10 +71,6 @@ var FRUITS_AND_VEGGIES = [
 function searchVeggies(searchString) {
   var results = [];
 
-  if (!searchString) {
-    return results;
-  }
-
   for (var i = 0; i < FRUITS_AND_VEGGIES.length; i++) {
     var veggie = FRUITS_AND_VEGGIES[i].toLowerCase();
     if (veggie.indexOf(searchString.toLowerCase()) === 0) {
@@ -98,10 +94,18 @@ window.addEventListener('load', function () {
     false
   );
 
-  var ex1Combobox = new aria.ListboxCombobox(
+  var ex2Combobox = new aria.ListboxCombobox(
     document.getElementById('ex2-combobox'),
     document.getElementById('ex2-input'),
     document.getElementById('ex2-listbox'),
+    searchVeggies,
+    true
+  );
+
+  var ex3Combobox = new aria.ListboxCombobox(
+    document.getElementById('ex3-combobox'),
+    document.getElementById('ex3-input'),
+    document.getElementById('ex3-listbox'),
     searchVeggies,
     true
   );

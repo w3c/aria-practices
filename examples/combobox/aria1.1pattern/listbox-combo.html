@@ -100,6 +100,33 @@
         </ul>
       </div>
     </div>
+
+    <p>A listbox example with inline autocomplete behavior</p>
+    <div id="ex3">
+      <label id="ex3-label" class="combobox-label">
+        Fruits and vegetables
+      </label>
+      <div class="combobox-wrapper">
+        <div role="combobox"
+          aria-expanded="false"
+          aria-owns="ex3-listbox"
+          aria-haspopup="listbox"
+          id="ex3-combobox">
+          <input type="text"
+            aria-autocomplete="both"
+            aria-controls="ex3-listbox"
+            aria-activedescendant=""
+            aria-labelledby="ex3-label"
+            id="ex3-input">
+        </div>
+        <ul
+          aria-labelledby="ex3-label"
+          role="listbox"
+          id="ex3-listbox"
+          class="listbox hidden">
+        </ul>
+      </div>
+    </div>
     <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
   </section>
 

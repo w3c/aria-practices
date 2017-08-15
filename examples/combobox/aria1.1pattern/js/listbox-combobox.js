@@ -29,14 +29,17 @@ aria.ListboxCombobox = function (
   this.shouldAutoSelect = shouldAutoSelect;
   this.activeIndex = -1;
   this.resultsCount = 0;
+  this.hasInlineAutocomplete =
+    input.getAttribute('aria-autocomplete') === 'both';
 
   this.setupEvents();
 };
 
 aria.ListboxCombobox.prototype.setupEvents = function() {
+  document.body.addEventListener('click', this.checkHide.bind(this));
   this.input.addEventListener('keyup', this.checkKey.bind(this));
   this.input.addEventListener('keydown', this.setActiveItem.bind(this));
-  this.input.addEventListener('blur', this.hideListbox.bind(this));
+  this.input.addEventListener('focus', this.checkShow.bind(this));
   this.listbox.addEventListener('click', this.clickItem.bind(this));
 };
 
@@ -51,13 +54,17 @@ aria.ListboxCombobox.prototype.checkKey = function(evt) {
       evt.preventDefault();
       return;
     default:
-      this.updateResults(evt);
+      this.updateResults(false);
   }
 };
 
-aria.ListboxCombobox.prototype.updateResults = function() {
+aria.ListboxCombobox.prototype.updateResults = function(shouldShowAll) {
   var searchString = this.input.value;
   var results = this.searchFn(searchString);
+
+  if (!shouldShowAll && !searchString) {
+    results = [];
+  }
 
   this.listbox.innerHTML = null;
   this.activeIndex = -1;
@@ -96,12 +103,21 @@ aria.ListboxCombobox.prototype.setActiveItem = function(evt) {
 
   if (key === aria.KeyCode.ESC) {
     this.hideListbox();
-    this.input.value = '';
+    setTimeout((function() {
+      // On Firefox, input does not get cleared here unless wrapped in
+      // a setTimeout
+      this.input.value = '';
+    }).bind(this), 1);
     return;
   }
 
   if (this.resultsCount < 1) {
-    return;
+    if (this.hasInlineAutocomplete &&
+        (key === aria.KeyCode.DOWN || key === aria.KeyCode.UP)) {
+      this.updateResults(true);
+    } else {
+      return;
+    }
   }
 
   var prevActive = this.getItemAt(activeIndex);
@@ -125,6 +141,9 @@ aria.ListboxCombobox.prototype.setActiveItem = function(evt) {
     case aria.KeyCode.RETURN:
       activeItem = this.getItemAt(activeIndex);
       this.selectItem(activeItem);
+      return;
+    case aria.KeyCode.TAB:
+      this.hideListbox();
       return;
     default:
       return;
@@ -161,7 +180,6 @@ aria.ListboxCombobox.prototype.getItemAt = function(index) {
 
 aria.ListboxCombobox.prototype.clickItem = function(evt) {
   if (evt.target && evt.target.nodeName == 'LI') {
-    console.log('selected item', evt.target)
     this.selectItem(evt.target);
   }
 };
@@ -175,6 +193,17 @@ aria.ListboxCombobox.prototype.selectItem = function(item) {
     this.combobox.setAttribute('aria-expanded', 'false');
     this.resultsCount = 0;
   }
+};
+
+aria.ListboxCombobox.prototype.checkShow = function(evt) {
+  this.updateResults(false);
+};
+
+aria.ListboxCombobox.prototype.checkHide = function(evt) {
+  if (evt.target === this.input) {
+    return;
+  }
+  this.hideListbox();
 };
 
 aria.ListboxCombobox.prototype.hideListbox = function() {
