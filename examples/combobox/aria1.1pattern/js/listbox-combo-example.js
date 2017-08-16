@@ -107,6 +107,29 @@ window.addEventListener('load', function () {
     document.getElementById('ex3-input'),
     document.getElementById('ex3-listbox'),
     searchVeggies,
-    true
+    true,
+    function () {
+      // on show
+      document.getElementById('ex3-combobox-arrow')
+        .setAttribute('aria-label', 'Hide vegetable options');
+    },
+    function () {
+      // on hide
+      document.getElementById('ex3-combobox-arrow')
+        .setAttribute('aria-label', 'Show vegetable options');
+    }
+  );
+
+  document.getElementById('ex3-combobox-arrow').addEventListener(
+    'click',
+    function() {
+      if (ex3Combobox.shown) {
+        document.getElementById('ex3-input').focus();
+        ex3Combobox.hideListbox();
+      } else {
+        document.getElementById('ex3-input').focus();
+        ex3Combobox.updateResults(true);
+      }
+    }
   );
 });

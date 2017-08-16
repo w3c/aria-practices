@@ -20,22 +20,27 @@ aria.ListboxCombobox = function (
   input,
   listbox,
   searchFn,
-  shouldAutoSelect
+  shouldAutoSelect,
+  onShow,
+  onHide
 ) {
   this.combobox = comboboxNode;
   this.input = input;
   this.listbox = listbox;
   this.searchFn = searchFn;
   this.shouldAutoSelect = shouldAutoSelect;
+  this.onShow = onShow || function () {};
+  this.onHide = onHide || function () {};
   this.activeIndex = -1;
   this.resultsCount = 0;
+  this.shown = false;
   this.hasInlineAutocomplete =
     input.getAttribute('aria-autocomplete') === 'both';
 
   this.setupEvents();
 };
 
-aria.ListboxCombobox.prototype.setupEvents = function() {
+aria.ListboxCombobox.prototype.setupEvents = function () {
   document.body.addEventListener('click', this.checkHide.bind(this));
   this.input.addEventListener('keyup', this.checkKey.bind(this));
   this.input.addEventListener('keydown', this.setActiveItem.bind(this));
@@ -43,7 +48,7 @@ aria.ListboxCombobox.prototype.setupEvents = function() {
   this.listbox.addEventListener('click', this.clickItem.bind(this));
 };
 
-aria.ListboxCombobox.prototype.checkKey = function(evt) {
+aria.ListboxCombobox.prototype.checkKey = function (evt) {
   var key = evt.which || evt.keyCode;
 
   switch (key) {
@@ -56,22 +61,26 @@ aria.ListboxCombobox.prototype.checkKey = function(evt) {
     default:
       this.updateResults(false);
   }
+
+  if (this.hasInlineAutocomplete) {
+    switch (key) {
+      case aria.KeyCode.BACKSPACE:
+        return;
+      default:
+        this.autocompleteItem();
+    }
+  }
 };
 
-aria.ListboxCombobox.prototype.updateResults = function(shouldShowAll) {
+aria.ListboxCombobox.prototype.updateResults = function (shouldShowAll) {
   var searchString = this.input.value;
   var results = this.searchFn(searchString);
+
+  this.hideListbox();
 
   if (!shouldShowAll && !searchString) {
     results = [];
   }
-
-  this.listbox.innerHTML = null;
-  this.activeIndex = -1;
-  this.input.setAttribute(
-    'aria-activedescendant',
-    ''
-  );
 
   if (results.length) {
     for (var i = 0; i < results.length; i++) {
@@ -90,20 +99,18 @@ aria.ListboxCombobox.prototype.updateResults = function(shouldShowAll) {
     aria.Utils.removeClass(this.listbox, 'hidden');
     this.combobox.setAttribute('aria-expanded', 'true');
     this.resultsCount = results.length;
-  } else {
-    aria.Utils.addClass(this.listbox, 'hidden');
-    this.combobox.setAttribute('aria-expanded', 'false');
-    this.resultsCount = 0;
+    this.shown = true;
+    this.onShow();
   }
 };
 
-aria.ListboxCombobox.prototype.setActiveItem = function(evt) {
+aria.ListboxCombobox.prototype.setActiveItem = function (evt) {
   var key = evt.which || evt.keyCode;
   var activeIndex = this.activeIndex;
 
   if (key === aria.KeyCode.ESC) {
     this.hideListbox();
-    setTimeout((function() {
+    setTimeout((function () {
       // On Firefox, input does not get cleared here unless wrapped in
       // a setTimeout
       this.input.value = '';
@@ -166,6 +173,9 @@ aria.ListboxCombobox.prototype.setActiveItem = function(evt) {
     );
     aria.Utils.addClass(activeItem, 'focused');
     activeItem.setAttribute('aria-selected', 'true');
+    if (this.hasInlineAutocomplete) {
+      this.input.value = activeItem.innerText;
+    }
   } else {
     this.input.setAttribute(
       'aria-activedescendant',
@@ -174,39 +184,36 @@ aria.ListboxCombobox.prototype.setActiveItem = function(evt) {
   }
 };
 
-aria.ListboxCombobox.prototype.getItemAt = function(index) {
+aria.ListboxCombobox.prototype.getItemAt = function (index) {
   return document.getElementById('result-item-' + index);
 };
 
-aria.ListboxCombobox.prototype.clickItem = function(evt) {
+aria.ListboxCombobox.prototype.clickItem = function (evt) {
   if (evt.target && evt.target.nodeName == 'LI') {
     this.selectItem(evt.target);
   }
 };
 
-aria.ListboxCombobox.prototype.selectItem = function(item) {
+aria.ListboxCombobox.prototype.selectItem = function (item) {
   if (item) {
     this.input.value = item.innerText;
-    this.listbox.innerHTML = null;
-    this.activeIndex = -1;
-    aria.Utils.addClass(this.listbox, 'hidden');
-    this.combobox.setAttribute('aria-expanded', 'false');
-    this.resultsCount = 0;
+    this.hideListbox();
   }
 };
 
-aria.ListboxCombobox.prototype.checkShow = function(evt) {
+aria.ListboxCombobox.prototype.checkShow = function (evt) {
   this.updateResults(false);
 };
 
-aria.ListboxCombobox.prototype.checkHide = function(evt) {
-  if (evt.target === this.input) {
+aria.ListboxCombobox.prototype.checkHide = function (evt) {
+  if (evt.target === this.input || this.combobox.contains(evt.target)) {
     return;
   }
   this.hideListbox();
 };
 
-aria.ListboxCombobox.prototype.hideListbox = function() {
+aria.ListboxCombobox.prototype.hideListbox = function () {
+  this.shown = false;
   this.activeIndex = -1;
   this.listbox.innerHTML = null;
   aria.Utils.addClass(this.listbox, 'hidden');
@@ -216,4 +223,20 @@ aria.ListboxCombobox.prototype.hideListbox = function() {
     'aria-activedescendant',
     ''
   );
+  this.onHide();
+};
+
+aria.ListboxCombobox.prototype.autocompleteItem = function () {
+  var autocompletedItem = this.listbox.querySelector('.focused');
+  var inputText = this.input.value;
+
+  if (!autocompletedItem || !inputText) {
+    return;
+  }
+
+  var autocomplete = autocompletedItem.innerText;
+  if (inputText !== autocomplete) {
+    this.input.value = autocomplete;
+    this.input.setSelectionRange(inputText.length, autocomplete.length);
+  }
 };

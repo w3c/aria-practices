@@ -10,6 +10,7 @@
 .combobox-wrapper {
 	display: inline-block;
 	position: relative;
+	font-size: 16px;
 }
 
 .combobox-label {
@@ -19,14 +20,14 @@
 }
 
 .listbox {
-	min-width: 200px;
+	min-width: 230px;
 	background: white;
 	border: 1px solid #ccc;
 	list-style: none;
 	margin: 0;
 	padding: 0;
 	position: absolute;
-	top: 21px;
+	top: 1.7em;
 	z-index: 1;
 }
 
@@ -44,9 +45,20 @@
 }
 
 .combobox-wrapper input {
-	font-size: 14px;
+	font-size: inherit;
   border: 1px solid #aaa;
 	border-radius: 2px;
   line-height: 1.5em;
+	padding-right: 30px;
   width: 200px;
+}
+
+.combobox-dropdown {
+	position: absolute;
+	right: 0;
+	top: 0;
+	padding: 0 0 2px;
+	height: 1.5em;
+	border-radius: 0 2px 2px 0;
+	border: 1px solid #aaa;
 }
