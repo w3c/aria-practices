@@ -19,7 +19,7 @@
 	margin-right: 5px;
 }
 
-.listbox {
+.listbox, .grid {
 	min-width: 230px;
 	background: white;
 	border: 1px solid #ccc;
@@ -36,12 +36,17 @@
 	margin: 0;
 }
 
-.listbox .result:hover {
+.listbox .result:hover, .grid .result-row:hover {
 	background: rgb(139, 189, 225);
 }
 
-.listbox .focused {
+.listbox .focused, .grid .focused {
 	background: rgb(139, 189, 225);
+}
+
+.grid .focused-cell {
+	outline-style: dotted;
+	outline-color: green;
 }
 
 .combobox-wrapper input {
@@ -61,4 +66,25 @@
 	height: 1.5em;
 	border-radius: 0 2px 2px 0;
 	border: 1px solid #aaa;
+}
+
+.grid .result-row {
+	padding: 2px;
+	cursor: default;
+	margin: 0;
+}
+
+.grid .result-cell {
+	display: inline-block;
+	cursor: default;
+	margin: 0;
+	padding: 0 5px;
+}
+
+.grid .result-cell:last-child {
+	float: right;
+	font-size: 12px;
+	font-weight: 200;
+	color: #333;
+	line-height: 24px;
 }
