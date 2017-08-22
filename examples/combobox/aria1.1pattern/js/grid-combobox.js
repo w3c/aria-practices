@@ -57,7 +57,7 @@ aria.GridCombobox.prototype.checkKey = function (evt) {
     case aria.KeyCode.LEFT:
     case aria.KeyCode.RIGHT:
       if (this.gridFocused) {
-        console.log('grid focused')
+        console.log('grid focused');
         evt.preventDefault();
         return;
       }
@@ -115,7 +115,8 @@ aria.GridCombobox.prototype.setActiveItem = function (evt) {
         'aria-activedescendant',
         ''
       );
-    } else {
+    }
+    else {
       this.hideResults();
       setTimeout((function () {
         // On Firefox, input does not get cleared here unless wrapped in
@@ -138,7 +139,8 @@ aria.GridCombobox.prototype.setActiveItem = function (evt) {
       this.gridFocused = true;
       if (activeRowIndex <= 0) {
         activeRowIndex = this.rowsCount - 1;
-      } else {
+      }
+      else {
         activeRowIndex--;
       }
       evt.preventDefault();
@@ -147,7 +149,8 @@ aria.GridCombobox.prototype.setActiveItem = function (evt) {
       this.gridFocused = true;
       if (activeRowIndex === -1 || activeRowIndex >= this.rowsCount - 1) {
         activeRowIndex = 0;
-      } else {
+      }
+      else {
         activeRowIndex++;
       }
       evt.preventDefault();
@@ -155,7 +158,8 @@ aria.GridCombobox.prototype.setActiveItem = function (evt) {
     case aria.KeyCode.LEFT:
       if (activeColIndex <= 0) {
         activeColIndex = this.colsCount - 1;
-      } else {
+      }
+      else {
         activeColIndex--;
       }
       if (this.gridFocused) {
@@ -165,7 +169,8 @@ aria.GridCombobox.prototype.setActiveItem = function (evt) {
     case aria.KeyCode.RIGHT:
       if (activeColIndex === -1 || activeColIndex >= this.colsCount - 1) {
         activeColIndex = 0;
-      } else {
+      }
+      else {
         activeColIndex++;
       }
       if (this.gridFocused) {
@@ -201,7 +206,8 @@ aria.GridCombobox.prototype.setActiveItem = function (evt) {
     this.focusCell(activeRowIndex, activeColIndex);
     var selectedItem = this.getItemAt(activeRowIndex, this.selectionCol);
     selectedItem.setAttribute('aria-selected', 'true');
-  } else {
+  }
+  else {
     this.input.setAttribute(
       'aria-activedescendant',
       ''
@@ -221,9 +227,11 @@ aria.GridCombobox.prototype.clickItem = function (evt) {
   var row;
   if (evt.target.getAttribute('role') === 'row') {
     row = evt.target;
-  } else if (evt.target.getAttribute('role') === 'gridcell') {
+  }
+  else if (evt.target.getAttribute('role') === 'gridcell') {
     row = evt.target.parentNode;
-  } else {
+  }
+  else {
     return;
   }
 

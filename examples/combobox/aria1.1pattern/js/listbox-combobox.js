@@ -119,10 +119,10 @@ aria.ListboxCombobox.prototype.setActiveItem = function (evt) {
   }
 
   if (this.resultsCount < 1) {
-    if (this.hasInlineAutocomplete &&
-        (key === aria.KeyCode.DOWN || key === aria.KeyCode.UP)) {
+    if (this.hasInlineAutocomplete && (key === aria.KeyCode.DOWN || key === aria.KeyCode.UP)) {
       this.updateResults(true);
-    } else {
+    }
+    else {
       return;
     }
   }
@@ -134,14 +134,16 @@ aria.ListboxCombobox.prototype.setActiveItem = function (evt) {
     case aria.KeyCode.UP:
       if (activeIndex <= 0) {
         activeIndex = this.resultsCount - 1;
-      } else {
+      }
+      else {
         activeIndex--;
       }
       break;
     case aria.KeyCode.DOWN:
       if (activeIndex === -1 || activeIndex >= this.resultsCount - 1) {
         activeIndex = 0;
-      } else {
+      }
+      else {
         activeIndex++;
       }
       break;
@@ -176,7 +178,8 @@ aria.ListboxCombobox.prototype.setActiveItem = function (evt) {
     if (this.hasInlineAutocomplete) {
       this.input.value = activeItem.innerText;
     }
-  } else {
+  }
+  else {
     this.input.setAttribute(
       'aria-activedescendant',
       ''

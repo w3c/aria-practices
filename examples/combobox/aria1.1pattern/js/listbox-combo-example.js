@@ -65,10 +65,10 @@ var FRUITS_AND_VEGGIES = [
   'Watercress',
   'Watermelon',
   'Yam',
-  'Zucchini',
+  'Zucchini'
 ];
 
-function searchVeggies(searchString) {
+function searchVeggies (searchString) {
   var results = [];
 
   for (var i = 0; i < FRUITS_AND_VEGGIES.length; i++) {
@@ -122,11 +122,12 @@ window.addEventListener('load', function () {
 
   document.getElementById('ex3-combobox-arrow').addEventListener(
     'click',
-    function() {
+    function () {
       if (ex3Combobox.shown) {
         document.getElementById('ex3-input').focus();
         ex3Combobox.hideListbox();
-      } else {
+      }
+      else {
         document.getElementById('ex3-input').focus();
         ex3Combobox.updateResults(true);
       }

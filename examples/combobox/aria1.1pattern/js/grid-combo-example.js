@@ -65,10 +65,10 @@ var FRUITS_AND_VEGGIES = [
   ['Watercress', 'Vegetable'],
   ['Watermelon', 'Fruit'],
   ['Yam', 'Vegetable'],
-  ['Zucchini', 'Vegetable'],
+  ['Zucchini', 'Vegetable']
 ];
 
-function searchVeggies(searchString) {
+function searchVeggies (searchString) {
   var results = [];
 
   for (var i = 0; i < FRUITS_AND_VEGGIES.length; i++) {
