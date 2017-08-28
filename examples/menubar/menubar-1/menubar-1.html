@@ -27,126 +27,124 @@
     <a href="https://github.com/w3c/aria-practices/issues/410">issue 410.</a>
   </p>
   <p>
-    The following two implementations of the
+    The following implementation of the
     <a href="../../../#menu">design pattern for menubar</a>
-    demonstrate a menubar that presents site navigation menus. 
-    Each item in the menubars represents a section of a web site for a mythical university and opens a submenu containing menu items that link to pages within that section. 
-    The two examples are functionally equivalent but differ in how they are coded; see notes that follow each example.
+    demonstrates a menubar that provides site navigation menus. 
+    Each item in the menubar represents a section of a web site for a mythical university and opens a submenu containing menu items that link to pages within that section. 
   </p>
   <p>Similar examples include: </p>
   <ul>
     <li><a href="../menubar-2/menubar-2.html">Editor Menubar Example</a>: Example of a menubar that presents text styling actions similar to an editor application.</li>
   </ul>
   <section id="code-ex-1">
-    <h2>Examples</h2>
-    <section>
-      <h3 id="ex1_label">Example 1: Menubar With ARIA Markup in the HTML Source</h3>
-      <div role="separator" id="ex1_start_sep" aria-labelledby="ex1_start_sep ex1_label" aria-label="Start of"></div>
-      <div id="ex1">
-        <ul id="menubar1" role="menubar" aria-label="Mythical University Menu 1" >
-          <li>
-            <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">About</a>
-            <ul role="menu" aria-label="About">
-              <li role="none">
-                <a role="menuitem" href="mb-about.html#overview">Overview</a>
-              </li>
-              <li role="none">
-                <a role="menuitem" href="mb-about.html#admin">Administration</a>
-              </li>
-              <li role="none">
-                <a id="menubar113" role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">Facts</a>
-                <ul role="menu"  aria-label="Facts">
-                  <li role="none">
-                    <a role="menuitem" href="mb-about.html#facts">History</a>
-                  </li>
-                  <li role="none">
-                    <a role="menuitem" href="mb-about.html#facts">Current Statistics</a>
-                  </li>
-                  <li role="none">
-                    <a role="menuitem" href="mb-about.html#facts">Awards</a>
-                  </li>  
-                </ul>
-              </li>
-              <li>
-                <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">Campus Tours</a>
-                <ul role="menu"  aria-label="Campus Tours">
-                  <li role="none">
-                    <a role="menuitem" href="mb-about.html#tours">For prospective students</a>
-                  </li>
-                  <li role="none">
-                    <a role="menuitem" href="mb-about.html#tours">For alumni</a>
-                  </li>
-                  <li role="none">
-                    <a role="menuitem" href="mb-about.html#tours">For visitors</a>
-                  </li>  
-                </ul>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">Admissions</a>
-            <ul role="menu"  aria-label="Admissions">
-              <li role="none">
-                <a role="menuitem" href="mb-admissions.html#apply">Apply</a>
-              </li>
-              <li role="none">
-                <a role="menuitem" href="mb-admissions.html#tuition">Tuition</a>
-              </li>
-              <li role="none">
-                <a role="menuitem" href="mb-admissions.html#signup">Sign Up</a>
-              </li>
-              <li role="separator"></li>
-              <li role="none">
-                <a role="menuitem" href="mb-admissions.html#visit">Visit</a>
-              </li>
-              <li role="none">
-                <a role="menuitem" href="mb-admissions.html#photo">Photo Tour</a>
-              </li>
-              <li role="none">
-                <a role="menuitem" href="mb-admissions.html#connect">Connect</a>
-              </li>
-            </ul>
-          </li>
-          <li>
-            <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">Academics</a>
-            <ul role="menu"  aria-label="Academics">
-              <li role="none">
-                <a role="menuitem" href="mb-academics.html#colleges">Colleges &amp; Schools</a>
-              </li>
-              <li role="none">
-                <a role="menuitem" href="mb-academics.html#programs">Programs of Study</a>
-              </li>
-              <li role="none">
-                <a role="menuitem" href="mb-academics.html#honors">Honors Programs</a>
-              </li>
-              <li role="none">
-                <a role="menuitem" href="mb-academics.html#online">Online Courses</a>
-              </li>
-              <li role="separator"></li>
-              <li role="none">
-                <a role="menuitem" href="mb-academics.html#explorer">Course Explorer</a>
-              </li>
-              <li role="none">
-                <a role="menuitem" href="mb-academics.html#register">Register for Class</a>
-              </li>
-              <li role="none">
-                <a role="menuitem" href="mb-academics.html#academic">Academic Calendar</a>
-              </li>
-              <li role="none">
-                <a role="menuitem" href="mb-academics.html#tanscripts">Transscripts</a>
-              </li>
-            </ul>
-          </li>
-        </ul>
+    <h2 id="ex_label">Example</h2>
+    <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
+    <div id="ex1">
+      <ul id="menubar1" role="menubar" aria-label="Mythical University Menu 1">
+        <li>
+          <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">About</a>
+          <ul role="menu" aria-label="About">
+            <li role="none">
+              <a role="menuitem" href="mb-about.html#overview">Overview</a>
+            </li>
+            <li role="none">
+              <a role="menuitem" href="mb-about.html#admin">Administration</a>
+            </li>
+            <li role="none">
+              <a id="menubar113" role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">Facts</a>
+              <ul role="menu" aria-label="Facts">
+                <li role="none">
+                  <a role="menuitem" href="mb-about.html#facts">History</a>
+                </li>
+                <li role="none">
+                  <a role="menuitem" href="mb-about.html#facts">Current Statistics</a>
+                </li>
+                <li role="none">
+                  <a role="menuitem" href="mb-about.html#facts">Awards</a>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">Campus
+                Tours</a>
+              <ul role="menu" aria-label="Campus Tours">
+                <li role="none">
+                  <a role="menuitem" href="mb-about.html#tours">For prospective students</a>
+                </li>
+                <li role="none">
+                  <a role="menuitem" href="mb-about.html#tours">For alumni</a>
+                </li>
+                <li role="none">
+                  <a role="menuitem" href="mb-about.html#tours">For visitors</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">Admissions</a>
+          <ul role="menu" aria-label="Admissions">
+            <li role="none">
+              <a role="menuitem" href="mb-admissions.html#apply">Apply</a>
+            </li>
+            <li role="none">
+              <a role="menuitem" href="mb-admissions.html#tuition">Tuition</a>
+            </li>
+            <li role="none">
+              <a role="menuitem" href="mb-admissions.html#signup">Sign Up</a>
+            </li>
+            <li role="separator"></li>
+            <li role="none">
+              <a role="menuitem" href="mb-admissions.html#visit">Visit</a>
+            </li>
+            <li role="none">
+              <a role="menuitem" href="mb-admissions.html#photo">Photo Tour</a>
+            </li>
+            <li role="none">
+              <a role="menuitem" href="mb-admissions.html#connect">Connect</a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">Academics</a>
+          <ul role="menu" aria-label="Academics">
+            <li role="none">
+              <a role="menuitem" href="mb-academics.html#colleges">Colleges &amp; Schools</a>
+            </li>
+            <li role="none">
+              <a role="menuitem" href="mb-academics.html#programs">Programs of Study</a>
+            </li>
+            <li role="none">
+              <a role="menuitem" href="mb-academics.html#honors">Honors Programs</a>
+            </li>
+            <li role="none">
+              <a role="menuitem" href="mb-academics.html#online">Online Courses</a>
+            </li>
+            <li role="separator"></li>
+            <li role="none">
+              <a role="menuitem" href="mb-academics.html#explorer">Course Explorer</a>
+            </li>
+            <li role="none">
+              <a role="menuitem" href="mb-academics.html#register">Register for Class</a>
+            </li>
+            <li role="none">
+              <a role="menuitem" href="mb-academics.html#academic">Academic Calendar</a>
+            </li>
+            <li role="none">
+              <a role="menuitem" href="mb-academics.html#tanscripts">Transscripts</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
 
-        <script type="text/javascript">
-          var menubar = new Menubar(document.getElementById('menubar1'));
-          menubar.init();
-        </script>
+      <script type="text/javascript">
+              var menubar = new Menubar(document.getElementById('menubar1'));
+              menubar.init();
+            </script>
 
-      </div>
-    </section>  
-   </section>
+    </div>
+    <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
+  </section>
 
   <section>
     <h2>Accessibility Features</h2>
@@ -617,11 +615,10 @@
   </section>
 
   <section>
-    <h2>HTML Source Code</h2>
-
-    <div id="sc1_start_sep" role="separator" aria-labelledby="sc1_start_sep sc1_label" aria-label="Start of HTML for" ></div>
+    <h2 id="sc_label">HTML Source Code</h2>
+    <div id="sc1_start_sep" role="separator" aria-labelledby="sc1_start_sep sc_label" aria-label="Start of "></div>
     <pre><code id="sc1"></code></pre>
-    <div id="sc1_end_sep" role="separator" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of HTML for" ></div>
+    <div id="sc1_end_sep" role="separator" aria-labelledby="sc1_end_sep sc_label" aria-label="End of "></div>
     <script>
             sourceCode.add('sc1', 'ex1')
             </script>
