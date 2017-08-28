@@ -142,6 +142,22 @@ PopupMenuAction.prototype.updateMenuStates = function () {
     }
   }
 
+  // Update the radio buttons for font, in case they were updated using the larger 
+  // smaller font menu items
+
+  var rbs = this.domNode.querySelectorAll('[role=menuitemradio]');
+
+  for (var i = 0; i < rbs.length; i++) {
+    var rb = rbs[i];
+    
+    if(this.actionManager.fontSize === rb.textContent.toLowerCase()) {
+      rb.setAttribute('aria-checked', 'true');
+    } 
+    else {
+      rb.setAttribute('aria-checked', 'false');          
+    }  
+  }
+  
 };
 
 /* EVENT HANDLERS */
