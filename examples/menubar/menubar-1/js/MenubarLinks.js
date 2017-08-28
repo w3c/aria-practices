@@ -68,7 +68,6 @@ var Menubar = function (domNode) {
 Menubar.prototype.init = function () {
   var menubarItem, childElement, menuElement, textContent, numItems;
 
-  this.domNode.setAttribute('role', 'menubar');
 
   // Traverse the element children of menubarNode: configure each with
   // menuitem role behavior and store reference in menuitems array.

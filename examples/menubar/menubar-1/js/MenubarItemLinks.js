@@ -64,14 +64,6 @@ var MenubarItem = function (domNode, menuObj) {
 MenubarItem.prototype.init = function () {
   this.domNode.tabIndex = -1;
 
-  this.domNode.setAttribute('role', 'menuitem');
-  this.domNode.setAttribute('aria-haspopup', 'true');
-  this.domNode.setAttribute('aria-expanded', 'false');
-
-  if (this.domNode.parentNode.tagName === 'LI') {
-    this.domNode.parentNode.setAttribute('role', 'none');
-  }
-
   this.domNode.addEventListener('keydown', this.handleKeydown.bind(this));
   this.domNode.addEventListener('click', this.handleClick.bind(this));
   this.domNode.addEventListener('focus', this.handleFocus.bind(this));

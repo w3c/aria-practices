@@ -2939,12 +2939,14 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                 </span>
             </h3>
             <p>
-                Work on this design pattern is in progress and is tracked in
-                <a href="https://github.com/w3c/aria-practices/issues/221">issue 221.</a> Please provide any feedback in that issue.
+                <strong>NOTE:</strong> Revisions to this pattern are in progress. Please provide feedback in
+                <a href="https://github.com/w3c/aria-practices/issues/221">issue 221.</a>
             </p>
             <p>
-                A multi-thumb slider is a slider with two or more thumbs that each set a value in a group of related values. Many two-thumb sliders set a maximum and minimum value for a range, and the thumbs are not allowed to pass one another. That is, the mthumb that
-                sets the upper value of the range can not be set lower than the thumb that controls the lower value of the range. However, in some multi-thumb sliders, each thumb sets a value that does not depend on the other thumb values.
+                A multi-thumb slider is a slider with two or more thumbs that each set a value in a group of related values, for example selecting a price range for a product or service. Many two-thumb sliders set a maximum and minimum value for a range, and the thumbs
+                are not allowed to pass one another. That is, the thumb that sets the upper value of the range can not be set lower than the thumb that controls the lower value of the range. For example, in a price range selector the thumb for the maxmimum
+                value of the lower price is determined by the current value of the maxmimum price. Conversly the minimum value of the higher price thumb is determined by the current value of the lower price. However, in some multi-thumb sliders, each
+                thumb sets a value that does not depend on the other thumb values.
             </p>
 
             <section class="notoc" typeof="bibo:Chapter" resource="#example§-5" property="bibo:hasPart">
@@ -2952,10 +2954,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                     </span>
                     </span>
                 </h4>
-                <p>
-                    Work to develop an example multi-thumb slider is tracked in
-                    <a href="https://github.com/w3c/aria-practices/issues/124">issue 124.</a>
-                </p>
+                <ul>
+                    <li><a href="examples/slider/multithumb-slider.html">Multi-Thumb Slider Examples</a>: Demonstrates a two thumb silder to pick a price range for an airline flight and a hotel reservation.</li>
+                </ul>
             </section>
 
             <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction§-14" property="bibo:hasPart">
@@ -2981,6 +2982,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                     <li>Each slider element has the <a class="property-reference" href="https://w3c.github.io/aria/aria/aria.html#aria-valuenow">aria-valuenow</a> property set to a decimal value representing the current value of the slider.</li>
                     <li>Each slider element has the <a class="property-reference" href="https://w3c.github.io/aria/aria/aria.html#aria-valuemin">aria-valuemin</a> property set to a decimal value representing the minimum allowed value of the slider.</li>
                     <li>Each slider element has the <a class="property-reference" href="https://w3c.github.io/aria/aria/aria.html#aria-valuemax">aria-valuemax</a> property set to a decimal value representing the maximum allowed value of the slider.</li>
+                    <li>When the range (e.g. minimum and/or maximum value) of another slider is dependent on the current value of a slider, the values of <a class="property-reference" href="https://w3c.github.io/aria/aria/aria.html#aria-valuemin">aria-valuemin</a>                        or <a class="property-reference" href="https://w3c.github.io/aria/aria/aria.html#aria-valuemax">aria-valuemax</a> of the dependent sliders must be updated when the value changes.
+                    </li>
                     <li>
                         If a value of <code>aria-valuenow</code> is not user-friendly, e.g., the day of the week is represented by a number, the
                         <a class="property-reference" href="https://w3c.github.io/aria/aria/aria.html#aria-valuetext">aria-valuetext</a> property is set to a string that makes the slider value understandable, e.g., "Monday".
