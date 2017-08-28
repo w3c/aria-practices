@@ -76,6 +76,23 @@ MenuItem.prototype.activateMenuitem = function (node) {
 
   if (role === 'menuitem') {
     this.menu.actionManager.setOption(option, value);
+
+    if (option === 'font-smaller' || option === 'font-larger') {
+
+      var rbs = node.parentNode.querySelectorAll('[role=menuitemradio]');
+
+      for (var i = 0; i < rbs.length; i++) {
+        var rb = rbs[i];
+        
+        if(this.menu.actionManager.fontSize === rb.textContent.toLowerCase()) {
+          rb.setAttribute('aria-checked', 'true');
+        } 
+        else {
+          rb.setAttribute('aria-checked', 'false');          
+        }  
+      }
+    }
+
   }
   else {
     if (role === 'menuitemcheckbox') {
