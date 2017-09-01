@@ -5,8 +5,6 @@ Gerard K. Cohen, 05/20/2017
 
 Array.from(document.querySelectorAll('.Accordion')).forEach(function (accordion) {
 
-  // Allow for each toggle to both open and close individually
-  var allowToggle = accordion.hasAttribute('data-allow-toggle');
   // Allow for multiple accordion sections to be expanded at the same time
   var allowMultiple = accordion.hasAttribute('data-allow-multiple');
 
@@ -14,36 +12,56 @@ Array.from(document.querySelectorAll('.Accordion')).forEach(function (accordion)
   var triggers = Array.from(accordion.querySelectorAll('.Accordion-trigger'));
   var panels = Array.from(accordion.querySelectorAll('.Accordion-panel'));
 
+  var closePanel = function (panel, switcher) {
+    panel.setAttribute('hidden', '');
+    switcher.setAttribute('aria-expanded', 'false');
+  };
+
+  var openPanel = function (panel, switcher) {
+    panel.removeAttribute('hidden');
+    switcher.setAttribute('aria-expanded', 'true');
+  };
+
+  var getPanel = function (root, switcher, cb) {
+    var panelId = switcher.getAttribute('aria-controls');
+    if (panelId) {
+      var panel = root.querySelector('#' + panelId);
+      if (panel) {
+        cb(panel);
+      }
+    }
+  };
+
   accordion.addEventListener('click', function (event) {
     var target = event.target;
 
     if (target.classList.contains('Accordion-trigger')) {
       // Check if the current toggle is expanded.
-      var isExpanded = target.getAttribute('aria-expanded') == 'true';
+      var isExpanded = target.getAttribute('aria-expanded') === 'true';
 
       if (!allowMultiple) {
         // Close all previously open accordion toggles
         triggers.forEach(function (trigger) {
-          if (trigger.getAttribute('aria-expanded') == 'true') {
+          if (trigger.getAttribute('aria-expanded') === 'true') {
             // Hide all accordion sections, using aria-controls to specify the desired section
-            document.getElementById(trigger.getAttribute('aria-controls')).setAttribute('hidden', '');
-            // Set the expanded state on the triggering element
-            trigger.setAttribute('aria-expanded', 'false');
+            getPanel(accordion, trigger, function (panel) {
+              closePanel(panel, trigger);
+            });
           }
         });
       }
 
-      if (allowToggle && isExpanded) {
+      if (isExpanded) {
         // Close the activated accordion if allowToggle=true, using aria-controls to specify the desired section
-        document.getElementById(target.getAttribute('aria-controls')).setAttribute('hidden', '');
-        // Set the expanded state on the triggering element
-        target.setAttribute('aria-expanded', 'false');
+        getPanel(accordion, target, function (panel) {
+          closePanel(panel, target);
+        });
       }
-      else if (!allowToggle && !isExpanded) {
+      else {
         // Otherwise open the activated accordion, using aria-controls to specify the desired section
-        document.getElementById(target.getAttribute('aria-controls')).removeAttribute('hidden');
-        // Set the expanded state on the triggering element
-        target.setAttribute('aria-expanded', 'true');
+        getPanel(accordion, target, function (panel) {
+          openPanel(panel, target);
+        });
       }
 
       event.preventDefault();
