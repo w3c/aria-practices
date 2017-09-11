@@ -487,6 +487,151 @@
     <section class="widget" id="combobox">
       <h3>Combo Box</h3>
       <p>Drafting this section is <a href="https://github.com/w3c/aria-practices/issues/31">issue 31</a>. </p>
+      <p>
+        A <a href="#combobox" class="role-reference">combobox</a> is a single-line textbox that has an associated pop-up element for helping
+        users set the value of the textbox. 
+        The popup may be a <a href="#Listbox">listbox</a>, 
+        <a href="#grid">grid</a>, 
+        <a href="#TreeView">tree</a>, or 
+        <a href="#dialog_modal">dialog.</a>
+      </p>
+      <p>
+        The popup is hidden by default, and its availability is often indicated by an icon, such as a downward pointing arrow, adjacent to the textbox.
+        The conditions that trigger display of the popup are specific to each implementation. 
+        For example, some implementations do not display suggested values for the textbox in the popup until several characters are typed in the text box 
+        while in other implementations, the popup is displayed when the textbox receives focus.
+      </p>
+      <p>Combobox widgets are useful for setting the value of a textbox in one of two types of scenarios:</p>
+      <ol>
+        <li>
+          The value for the textbox must be chosen from a predefined set of allowed values, 
+          e.g., a location field must contain a valid location name. 
+          Note that a listbox is also useful in this scenario and that the differences between combobox and listbox are described below.
+        </li>
+        <li>
+          The textbox may contain any arbetrary value, but it is advantageous to suggest possible values to the user, 
+          e.g., a search field may suggest similar or previous searches to save the user time.
+        </li>
+      </ol>
+      <p>
+        The nature of the suggested values and the way the suggestions are presented is called the autocomplete behavior. 
+        Comboboxes can have one of several forms of autocomplete. 
+      </p>
+      <ol>
+        <li>
+          <strong>No autocomplete:</strong> When the popup is triggered, the suggested values it contains are the same regardless of the characters typed in the textbox. 
+          For example, the popup contains a list of the last ten values entered.
+        </li>
+        <li>
+          <strong>List autocomplete with manual selection:</strong> When the popup is triggered, it presents suggested values that complete or logically correspond to the characters typed in the textbox.
+          The character string the user has typed will become the value of the textbox unless the user selects a value in the popup.
+        </li>
+        <li>
+          <strong>List autocomplete with automatic selection:</strong> When the popup is triggered, it presents suggested values that complete or logically correspond to the characters typed in the textbox, 
+          and the first suggestion is automatically highlighted as selected.
+           The automatically selected suggestion becomes the value of the textbox when the combobox loses focus unless the user chooses a different suggestion or changes the character string in the textbox.
+        </li>
+        <li>
+          <strong>List with inline autocomplete:</strong> This is the same as list with automatic selection with one additional feature. 
+          The portion of the selected suggestion that has not been typed by the user, a completion string, appears inline after the input cursor in the textbox. 
+          The inline completion string is visually highlighted and has a selected state.
+        </li>
+      </ol>
+      <p>
+        With any form of list autocomplete, the popup may appear and disappear as the user types. 
+        For example, if the user types a two character string that triggers five suggestions to be displayed but then types a third character that forms a string that does not have any matches, 
+        the popup may close and, if present, the inline completion string disappears.
+      </p>
+      <p>
+        When providing a widget that asks users to choose one value from a known set of discrete values, another pattern that is often simpler to implement and use is <a href="#Listbox">listbox</a>.
+        The difference between a listbox and a combobox that supports this scenario is that the value of the combobox is presented in an edit field. 
+        Thus, the combobox gives users one function that the listbox lacks, namely the ability to select some or all of the value for copying to the clipboard.
+      </p>
+      <p class="note">
+        The options for a combobox to popup a grid, tree, or dialog were introduced in ARIA 1.1.
+        Changes made in the ARIA 1.1 specification also add support for a code pattern that enables assistive technologies to present the textbox and popup as separately perceivable elements.
+        While the ARIA 1.1 pattern is recommended, both patterns are described in the following sections, 
+        and there are no plans to deprecate the ARIA 1.0 pattern.
+      </p>
+      
+      <section class="notoc">
+        <h4>Examples</h4>
+        <ul>
+          <li><a href="examples/combobox/aria1.1pattern/listbox-combo.html">Examples of ARIA 1.1 Combobox with Listbox Popup</a>: Comboboxes that demonstrate the various forms of autocomplete behavior using a listbox popup.</li>
+          <li><a href="examples/combobox/aria1.1pattern/grid-combo.html">Example of ARIA 1.1 Combobox with Grid Popup</a>: A combobox that presents suggestions in a grid, enabling users to navigate descriptive information about each suggestion.</li>
+        </ul>
+      </section>
+
+      <section class="notoc">
+        <h4>Keyboard Interaction</h4>
+        <ul>
+          <li><kbd>Tab</kbd>: The textbox is in the page <kbd>Tab</kbd> sequence.</li>
+          <li>Note: The popup indicator icon (if present), the popup, and the popup descendants are excluded from the page <kbd>Tab</kbd> sequence. </li>
+        </ul>
+        <h5>Textbox Keyboard Interaction</h5>
+        <p>When focus is in the textbox:</p>
+        <ul>
+          <li><kbd>Down Arrow</kbd>: If the popup is available, moves focus into the popup: 
+            <ul>
+              <li>If the autocomplete behavior automatically selects a suggestion, focus is placed on the suggestion following the automatically selected suggestion.</li>
+              <li>Otherwise, places focus on the first focusable element in the popup.</li>
+            </ul>
+          </li>
+          <li><kbd>Alt + Down Arrow</kbd> (Optional): Performs the same function as <kbd>Down Arrow</kbd>.</li>
+          <li><kbd>Up Arrow</kbd> (Optional): If the popup is available, places focus on the last focusable element in the popup.</li>
+          <li>Printable Characters: Type characters in the textbox. Note that some implementations may regard certain characters as invalid and prevent their input.</li>
+          <li>
+            <kbd>Enter</kbd>: If an autocomplete suggestion is automatically selected, accepts the suggestion either by placing the input cursor at the end of the accepted value in the textbox or by performing a default action on the value.
+            For example, in a messaging application, the default action may be to add the accepted value to a list of message recipients and then clear the textbox so the user can add another recipient.
+          </li>
+          <li><kbd>Escape</kbd>: Dismisses the popup if it is visible. Optionally, clears the textbox.</li>
+          <li><kbd>Alt + Up Arrow</kbd> (Optional): Dismisses the popup if visible.</li>
+          <li><kbd>Right Arrow</kbd>: Moves the cursor right one character. Does nothing if the cursor is on the right-most character.</li>
+          <li><kbd>Left Arrow</kbd>: Moves the cursor left one character. Does nothing if the cursor is on the left-most character.</li>
+          <li><kbd>Control + Right Arrow</kbd>: Moves the cursor right one word. Does nothing if the cursor is on the right-most word .</li>
+          <li><kbd>Control + Left Arrow</kbd>: Moves the cursor left one word. Does nothing if the cursor is on the left-most word.</li>
+          <li><kbd>Home</kbd>: Moves the cursor to the first character. Does nothing if the cursor is on the first character.</li>
+          <li><kbd>End</kbd>: Moves the cursor to the last character. Does nothing if the cursor is on the last character.</li>
+          <li><kbd>Delete</kbd>: Deletes the current character or, if text is selected, deletes the selected text</li>
+          <li><kbd>Backspace</kbd>: Deletes the previous character, or, if text is selected, deletes the selected text.</li>
+          <li><kbd>Shift + Right Arrow</kbd>: Extends selection one character to the right. Does nothing if the cursor is on the right-most character.</li>
+          <li><kbd>Shift + Left Arrow</kbd>: Extends selection one character to the left. Does nothing if the cursor is on the left-most character.</li>
+          <li><kbd>Control + Shift + Right Arrow</kbd>: Extends selection one word to the right. Does nothing if the cursor is after the right-most word.</li>
+          <li><kbd>Control + Shift + Left Arrow</kbd>: Extends selection one word to the left. Does nothing if the cursor is at the start of the left-most word.</li>
+          <li><kbd>Shift + Home</kbd>: Extends selection from the cursor position to the first character.</li>
+          <li><kbd>Shift + End</kbd>: Extends selection from the cursor position to the last character.</li>
+          <li><kbd>Control + A</kbd> (Optional): Selects all the text in the textbox.
+        </ul>
+        <h5>Listbox Popup Keyboard Interaction</h5>
+        <p>When focus is in a listbox popup:</p>
+        <ul>
+          <li><kbd>Enter</kbd>: Accepts the focused option in the listbox by closing the popup and placing the accepted value in the textbox with the input cursor at the end of the value.</li>
+          <li><kbd>Escape</kbd>: Closes the popup and returns focus to the textbox. Optionally, clears the contents of the textbox.</li>
+          <li>
+            <kbd>Right Arrow</kbd>: Returns focus to the textbox without closing the popup and moves the input cursor one character to the right. 
+            If the input cursor is on the right-most character, the cursor does not move.
+          </li> 
+          <li>
+            <kbd>Left Arrow</kbd>: Returns focus to the textbox without closing the popup and moves the input cursor one character to the left. 
+            If the input cursor is on the left-most character, the cursor does not move.
+          </li>
+          <li>Any printable character: Returns the focus to the textbox without closing the popup and types the character.</li>
+          <li><kbd>Backspace</kbd> (Optional): Returns focus to the textbox and deletes the character prior to the cursor.</li>
+          <li><kbd>Delete</kbd> (Optional): Returns focus to the textbox and removes the inline autocomplete string if present.</li>
+          <li>See the <a href="#Listbox">listbox pattern</a> for essential navigation keys.</li>
+        </ul>
+        <h5>Grid Popup Keyboard Interaction</h5>
+        <p>When focus is in a grid popup:</p>
+        <h5>Tree Popup Keyboard Interaction</h5>
+        <p>When focus is in a tree popup:</p>
+        <h5>Dialog Popup Keyboard Interaction</h5>
+        <p>When focus is in a dialog popup:</p>
+        
+      </section>
+
+      <section class="notoc">
+        <h4>WAI-ARIA Roles, States, and Properties</h4>
+      </section>
     </section>
 
     <section class="widget" id="dialog_modal">
