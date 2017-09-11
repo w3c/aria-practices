@@ -486,7 +486,7 @@
 
     <section class="widget" id="combobox">
       <h3>Combo Box</h3>
-      <p>Drafting this section is <a href="https://github.com/w3c/aria-practices/issues/31">issue 31</a>. </p>
+      <p><strong>NOTE:</strong> Work on drafting this section is in progress and tracked by <a href="https://github.com/w3c/aria-practices/issues/31">issue 31</a>. </p>
       <p>
         A <a href="#combobox" class="role-reference">combobox</a> is a single-line textbox that has an associated pop-up element for helping
         users set the value of the textbox. 
@@ -618,7 +618,10 @@
           <li>Any printable character: Returns the focus to the textbox without closing the popup and types the character.</li>
           <li><kbd>Backspace</kbd> (Optional): Returns focus to the textbox and deletes the character prior to the cursor.</li>
           <li><kbd>Delete</kbd> (Optional): Returns focus to the textbox and removes the inline autocomplete string if present.</li>
-          <li>See the <a href="#Listbox">listbox pattern</a> for essential navigation keys.</li>
+          <li><kbd>Down Arrow</kbd>: Moves focus to and selects the next option. If focus is on the last option, either returns focus to the textbox or does nothing.</li>
+          <li><kbd>Up Arrow</kbd>: Moves focus to and selects the previous option. If focus is on the first option, either returns focus to the textbox or does nothing.</li>
+          <li><kbd>Home</kbd> (Optional): Either moves focus to and selects the first option or returns focus to the textbox and places the cursor on the first character.</li>
+          <li><kbd>End</kbd> (Optional): Either moves focus to the last option or returns focus to the textbox and places the cursor after the last character.</li>
         </ul>
         <h5>Grid Popup Keyboard Interaction</h5>
         <p>When focus is in a grid popup:</p>
@@ -626,7 +629,6 @@
         <p>When focus is in a tree popup:</p>
         <h5>Dialog Popup Keyboard Interaction</h5>
         <p>When focus is in a dialog popup:</p>
-        
       </section>
 
       <section class="notoc">
