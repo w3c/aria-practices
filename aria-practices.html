@@ -488,25 +488,25 @@
       <h3>Combo Box</h3>
       <p><strong>NOTE:</strong> Work on drafting this section is in progress and tracked by <a href="https://github.com/w3c/aria-practices/issues/31">issue 31</a>. </p>
       <p>
-        A <a href="#combobox" class="role-reference">combobox</a> is a single-line textbox that has an associated pop-up element for helping
-        users set the value of the textbox. 
+        A <a href="#combobox" class="role-reference">combobox</a> is a widget made up of the combination of two distinct elements: 
+        1) a single-line textbox, and 2) an associated pop-up element for helping users set the value of the textbox.
         The popup may be a <a href="#Listbox">listbox</a>, 
         <a href="#grid">grid</a>, 
         <a href="#TreeView">tree</a>, or 
         <a href="#dialog_modal">dialog.</a>
       </p>
       <p>
-        The popup is hidden by default, and its availability is often indicated by an icon, such as a downward pointing arrow, adjacent to the textbox.
+        The popup is hidden by default, and its availability is often indicated by a graphical button, such as a downward pointing arrow, adjacent to the textbox.
         The conditions that trigger display of the popup are specific to each implementation. 
-        For example, some implementations do not display suggested values for the textbox in the popup until several characters are typed in the text box 
+        For example, some implementations do not display suggested values for the textbox in the popup until several characters are typed in the text box, 
         while in other implementations, the popup is displayed when the textbox receives focus.
       </p>
-      <p>Combobox widgets are useful for setting the value of a textbox in one of two types of scenarios:</p>
+      <p>Combobox widgets are useful for setting the value of a single-line textbox in one of two types of scenarios:</p>
       <ol>
         <li>
           The value for the textbox must be chosen from a predefined set of allowed values, 
           e.g., a location field must contain a valid location name. 
-          Note that a listbox is also useful in this scenario and that the differences between combobox and listbox are described below.
+          Note that the listbox and menu button patterns are also useful in this scenario; differences between combobox and alternative patterns are described below.
         </li>
         <li>
           The textbox may contain any arbetrary value, but it is advantageous to suggest possible values to the user, 
@@ -515,12 +515,12 @@
       </ol>
       <p>
         The nature of the suggested values and the way the suggestions are presented is called the autocomplete behavior. 
-        Comboboxes can have one of several forms of autocomplete. 
+        Comboboxes can have one of four forms of autocomplete: 
       </p>
       <ol>
         <li>
           <strong>No autocomplete:</strong> When the popup is triggered, the suggested values it contains are the same regardless of the characters typed in the textbox. 
-          For example, the popup contains a list of the last ten values entered.
+          For example, the popup suggests a set of recently entered values, and the suggestions  do not change as the user types.
         </li>
         <li>
           <strong>List autocomplete with manual selection:</strong> When the popup is triggered, it presents suggested values that complete or logically correspond to the characters typed in the textbox.
@@ -539,12 +539,12 @@
       </ol>
       <p>
         With any form of list autocomplete, the popup may appear and disappear as the user types. 
-        For example, if the user types a two character string that triggers five suggestions to be displayed but then types a third character that forms a string that does not have any matches, 
+        For example, if the user types a two character string that triggers five suggestions to be displayed but then types a third character that forms a string that does not have any matching suggestions, 
         the popup may close and, if present, the inline completion string disappears.
       </p>
       <p>
-        When providing a widget that asks users to choose one value from a known set of discrete values, another pattern that is often simpler to implement and use is <a href="#Listbox">listbox</a>.
-        The difference between a listbox and a combobox that supports this scenario is that the value of the combobox is presented in an edit field. 
+        When providing a compact widget that asks users to choose one value from a known set of discrete values, often either a <a href="#Listbox">listbox</a> or <a href="#menubutton">menu button</a> is simpler to implement and use.
+        One feature of combobox that distinguishes it from both listbox and menu button is that the value of the combobox is presented in an edit field. 
         Thus, the combobox gives users one function that the listbox lacks, namely the ability to select some or all of the value for copying to the clipboard.
       </p>
       <p class="note">
