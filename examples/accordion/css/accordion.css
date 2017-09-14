@@ -31,10 +31,15 @@
     background: hsl(0, 0%, 93%);
 }
 
+.Accordion-title {
+  pointer-events: none;
+}
+
 .Accordion-icon {
     border: solid hsl(0, 0%, 62%);
     border-width: 0 2px 2px 0;
     height: .5rem;
+    pointer-events: none;
     position: absolute;
     right: 1.5em;
     top: 50%;
