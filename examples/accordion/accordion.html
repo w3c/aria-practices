@@ -41,11 +41,13 @@
             Allow for each toggle to both open and close individually
 
           data-allow-multiple
-            Allow for multiple accordion sections to be expanded at the same time
+            Allow for multiple accordion sections to be expanded at the same time. Assumes data-allow-toggle otherwise you would not be able to close any of the accordions
           __________
 
           Ex:
-            <dl id="accordionGroup" role="presentation" class="Accordion" data-allow-multiple data-allow-toggle>
+            <dl id="accordionGroup" role="presentation" class="Accordion" data-allow-multiple>
+
+            <dl id="accordionGroup" role="presentation" class="Accordion" data-allow-toggle>
 
         -->
         <dl id="accordionGroup" role="presentation" class="Accordion">
