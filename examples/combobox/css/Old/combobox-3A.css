@@ -1,0 +1,29 @@
+button,
+a[role=button] {
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+	display: block;
+}
+
+div[role="listbox"] a {
+	display: block;
+}
+
+ul[role="listbox"] li {
+	list-style: none;
+}
+
+[role="listbox"] {
+	padding: 0;
+	width: 8em;
+	border: thin solid black;
+	background-color: #EEEEEE;
+}
+[role="option"][aria-selected] {
+	padding: 0.25em;
+}
+
+[role="option"][aria-selected="true"]{
+  background-color: #FFFFFF;
+}
