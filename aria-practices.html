@@ -510,7 +510,7 @@
           Note that the listbox and menu button patterns are also useful in this scenario; differences between combobox and alternative patterns are described below.
         </li>
         <li>
-          The textbox may contain any arbetrary value, but it is advantageous to suggest possible values to the user, 
+          The textbox may contain any arbitrary value, but it is advantageous to suggest possible values to the user, 
           e.g., a search field may suggest similar or previous searches to save the user time.
         </li>
       </ol>
@@ -544,9 +544,11 @@
         the popup may close and, if present, the inline completion string disappears.
       </p>
       <p>
-        When providing a compact widget that asks users to choose one value from a known set of discrete values, often either a <a href="#Listbox">listbox</a> or <a href="#menubutton">menu button</a> is simpler to implement and use.
+        When constructing a compact widget that asks users to choose one value from a known set of discrete values, often either a <a href="#Listbox">listbox</a> or <a href="#menubutton">menu button</a> is simpler to implement and use.
         One feature of combobox that distinguishes it from both listbox and menu button is that the value of the combobox is presented in an edit field. 
         Thus, the combobox gives users one function that both listbox and menu button lack, namely the ability to select some or all of the value for copying to the clipboard.
+        A feature that distinguishes both combobox and menu button from listbox is that they can enable users can navigate the set of allowed values and, at any point, decide to keep the current value by pressing escape.
+        In contrast, navigating a listbox immediately changes its value, and escape does not provide an undo mechanism.
       </p>
       <p class="note">
         The options for a combobox to popup a grid, tree, or dialog were introduced in ARIA 1.1.
