@@ -28,6 +28,11 @@ Array.from(document.querySelectorAll('.Accordion')).forEach(function (accordion)
         active.setAttribute('aria-expanded', 'false');
         // Hide the accordion sections, using aria-controls to specify the desired section
         document.getElementById(active.getAttribute('aria-controls')).setAttribute('hidden', '');
+
+        // When toggling is not allowed, clean up disabled state
+        if (!allowToggle) {
+          active.removeAttribute('aria-disabled');
+        }
       }
 
       if (!isExpanded) {
@@ -35,6 +40,11 @@ Array.from(document.querySelectorAll('.Accordion')).forEach(function (accordion)
         target.setAttribute('aria-expanded', 'true');
         // Hide the accordion sections, using aria-controls to specify the desired section
         document.getElementById(target.getAttribute('aria-controls')).removeAttribute('hidden');
+
+        // If toggling is not allowed, set disabled state on trigger
+        if (!allowToggle) {
+          target.setAttribute('aria-disabled', 'true');
+        }
       }
       else if (allowToggle && isExpanded) {
         // Set the expanded state on the triggering element
@@ -96,5 +106,17 @@ Array.from(document.querySelectorAll('.Accordion')).forEach(function (accordion)
       });
     }
   });
+
+  // Minor setup: will set disabled state, via aria-disabled, to an
+  // expanded/ active accordion which is not allowed to be toggled close
+  if (!allowToggle) {
+    // Get the first expanded/ active accordion
+    var expanded = accordion.querySelector('[aria-expanded="true"]');
+
+    // If an expanded/ active accordion is found, disable
+    if (expanded) {
+      expanded.setAttribute('aria-disabled', 'true');
+    }
+  }
 
 });
