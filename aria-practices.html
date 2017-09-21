@@ -562,6 +562,7 @@
         <ul>
           <li><a href="examples/combobox/aria1.1pattern/listbox-combo.html">Examples of ARIA 1.1 Combobox with Listbox Popup</a>: Comboboxes that demonstrate the various forms of autocomplete behavior using a listbox popup.</li>
           <li><a href="examples/combobox/aria1.1pattern/grid-combo.html">Example of ARIA 1.1 Combobox with Grid Popup</a>: A combobox that presents suggestions in a grid, enabling users to navigate descriptive information about each suggestion.</li>
+          <li><a href="examples/combobox/aria1.0pattern/combobox-autocomplete-list.html">ARIA 1.0 Combobox with List Autocomplete</a></li>
         </ul>
       </section>
 
@@ -627,7 +628,78 @@
           <li><kbd>End</kbd> (Optional): Either moves focus to the last option or returns focus to the textbox and places the cursor after the last character.</li>
         </ul>
         <h5>Grid Popup Keyboard Interaction</h5>
-        <p>When focus is in a grid popup:</p>
+        <p>
+          In a grid popup, each suggested value may be represented by either a single cell or an entire row.
+          See notes below for how this aspect of grid design effects the keyboard interaction design and the way that selection moves in response to focus movements.
+        </p>
+        <ul>
+          <li><kbd>Enter</kbd>: Accepts the currently selected suggested value by closing the popup and placing the selected value in the textbox with the input cursor at the end of the value.</li>
+          <li><kbd>Escape</kbd>: Closes the popup and returns focus to the textbox. Optionally, clears the contents of the textbox.</li>
+          <li>Any printable character: Returns the focus to the textbox without closing the popup and types the character.</li>
+          <li><kbd>Backspace</kbd> (Optional): Returns focus to the textbox and deletes the character prior to the cursor.</li>
+          <li><kbd>Delete</kbd> (Optional): Returns focus to the textbox, removes the selected state if a suggestion was selected, and removes the inline autocomplete string if present.</li>
+          <li>
+            <kbd>Right Arrow</kbd>: Moves focus one cell to the right.
+            Optionally, if focus is on the right-most cell in the row, focus may move to the first cell in the following row.
+            If focus is on the last cell in the grid, either does nothing or returns focus to the textbox.
+          </li>
+          <li>
+            <kbd>Left Arrow</kbd>: Moves focus one cell to the left.
+            Optionally, if focus is on the left-most cell in the row, focus may move to the last cell in the previous row.
+            If focus is on the first cell in the grid, either does nothing or returns focus to the textbox.
+          </li>
+          <li>
+            <kbd>Down Arrow</kbd>: Moves focus one cell down.
+            If focus is in the last row of the grid, either does nothing or returns focus to the textbox.
+          </li>
+          <li>
+            <kbd>Up Arrow</kbd>: Moves focus one cell up.
+            If focus is in the first row of the grid, either does nothing or returns focus to the textbox.
+          </li>
+          <li>
+            <kbd>Page Down</kbd> (Optional): Moves focus down an author-determined number of rows, typically scrolling so the bottom row in the currently visible set of rows becomes one of the first visible rows.
+            If focus is in the last row of the grid, focus does not move.
+          </li>
+          <li>
+            <kbd>Page Up</kbd> (Optional): Moves focus up an author-determined number of rows, typically scrolling so the top row in the currently visible set of rows becomes one of the last visible rows.
+            If focus is in the first row of the grid, focus does not move.
+          </li>
+          <li><kbd>Home</kbd> (Optional): <strong>Either:</strong>
+            <ul>
+              <li> Moves focus to the first cell in the row that contains focus. Or, if the grid has fewer than three cells per row or multiple suggested values per row, focus may move to the first cell in the grid.</li>
+              <li>Returns focus to the textbox and places the cursor on the first character.</li>
+            </ul>
+          </li>
+          <li><kbd>End</kbd> (Optional): <strong>Either:</strong>
+            <ul>
+              <li> Moves focus to the last cell in the row that contains focus. Or, if the grid has fewer than three cells per row or multiple suggested values per row, focus may move to the last cell in the grid.</li>
+              <li>Returns focus to the textbox and places the cursor after the last character.</li>
+            </ul>
+          </li>
+          <li><kbd>Control + Home</kbd> (optional): moves focus to the first row.</li>
+          <li><kbd>Control + End</kbd> (Optional): moves focus to the last row.</li>
+        </ul>
+        <ol class="note">
+          <li>DOM Focus is maintained on the combobox textbox and the assistive technology focus is moved within the grid using aria-activedescendant as described in <a href="#"kbd_focus_activedescendant">Managing Focus in Composites Using aria-activedescendant.</a></li>
+          <li>In a grid popup, each suggested value may be represented by either a single cell or an entire row. This aspect of design effects focus and selection movement:
+            <ol>
+              <li>If every cell contains a different suggested value:
+                <ul>
+                  <li>Selection follows focus so that the cell containing focus is selected.</li>
+                  <li>Horizontal arrow key navigation typically wraps from one row to another.</li>
+                  <li>Vertical arrow key navigation typically wraps from one column to another.</li>
+                </ul>
+              </li>
+              <li>If all cells in a row contain information about the same suggested value:
+                <ol>
+                  <li>Either the row containing focus is selected or a cell containing a suggested value is selected when any cell in the same row contains focus.</li>
+                  <li>Horizontal key navigation may wrap from one row to another.</li>
+                  <li>Vertical arrow key navigation <strong>does not</strong> wrap from one column to another.</li>
+                </ol>
+              </li>
+            </ol>
+          </li>
+        </ol>
         <h5>Tree Popup Keyboard Interaction</h5>
         <p>When focus is in a tree popup:</p>
         <h5>Dialog Popup Keyboard Interaction</h5>
