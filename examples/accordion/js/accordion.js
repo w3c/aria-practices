@@ -3,7 +3,9 @@ Simple accordion pattern example
 Gerard K. Cohen, 05/20/2017
 */
 
-Array.from(document.querySelectorAll('.Accordion')).forEach(function (accordion) {
+'use strict';
+
+Array.prototype.slice.call(document.querySelectorAll('.Accordion')).forEach(function (accordion) {
 
   // Allow for multiple accordion sections to be expanded at the same time
   var allowMultiple = accordion.hasAttribute('data-allow-multiple');
@@ -11,8 +13,8 @@ Array.from(document.querySelectorAll('.Accordion')).forEach(function (accordion)
   var allowToggle = (allowMultiple) ? allowMultiple : accordion.hasAttribute('data-allow-toggle');
 
   // Create the array of toggle elements for the accordion group
-  var triggers = Array.from(accordion.querySelectorAll('.Accordion-trigger'));
-  var panels = Array.from(accordion.querySelectorAll('.Accordion-panel'));
+  var triggers = Array.prototype.slice.call(accordion.querySelectorAll('.Accordion-trigger'));
+  var panels = Array.prototype.slice.call(accordion.querySelectorAll('.Accordion-panel'));
 
   accordion.addEventListener('click', function (event) {
     var target = event.target;
