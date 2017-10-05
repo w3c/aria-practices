@@ -223,7 +223,7 @@ while in the second example, they may select multiple options before activating 
   </section>
 
   <section>
-    <h2>Other Accessibility Features</h2>
+    <h2>Accessibility Features</h2>
     <ol>
       <li>Keyboard shortcuts for action buttons:
         <ol>
@@ -256,115 +256,158 @@ while in the second example, they may select multiple options before activating 
 
   <section>
     <h2 id="kbd_label">Keyboard Support</h2>
-    <ul>
-      <li>
-        <kbd>Down Arrow</kbd>: Moves focus to the next option.
-      </li>
-      <li>
-        <kbd>Up Arrow</kbd>: Moves focus to the previous option.
-      </li>
-      <li>
-        <kbd>Home</kbd>: Moves focus to first option.
-      </li>
-      <li>
-        <kbd>End</kbd>: Moves focus to last option.
-      </li>
-    </ul>
-    <p>Multiple selection keys supported in example 2:</p>
-    <ul>
-      <li>
-        <kbd>Space</kbd>: changes the selection state of the focused option .
-      </li>
-      <li>
-        <kbd>Shift + Down Arrow</kbd>: Moves focus to and selects the next option.
-      </li>
-      <li>
-        <kbd>Shift + Up Arrow</kbd>: Moves focus to and selects the previous option.
-      </li>
-      <li>
-        <kbd>Control + Shift + Home</kbd>: Selects from the focused option to the beginning of the list.
-      </li>
-      <li>
-        <kbd>Control + Shift + End</kbd>: Selects from the focused option to the end of the list.
-      </li>
-      <li>
-        <kbd>Control + A</kbd>: selects all options in the list.
-        If all options are selected, unselects all options.
-      </li>
-    </ul>
+    <table aria-labelledby="kbd_label" class="def">
+      <thead>
+        <tr>
+          <th>Key</th>
+          <th>Function</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th><kbd>Down Arrow</kbd></th>
+          <td>Moves focus to the next option.</td>
+        </tr>
+        <tr>
+          <th><kbd>Up Arrow</kbd></th>
+          <td>Moves focus to the previous option.</td>
+        </tr>
+        <tr>
+          <th><kbd>Home</kbd></th>
+          <td>Moves focus to first option.</td>
+        </tr>
+        <tr>
+          <th><kbd>End</kbd></th>
+          <td>Moves focus to last option.</td>
+        </tr>
+      </tbody>
+    </table>
+    <h4>Multiple selection keys supported in example 2</h4>
+    <table aria-labelledby="kbd_label" class="def">
+      <thead>
+        <tr>
+          <th>Key</th>
+          <th>Function</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th><kbd>Space</kbd></th>
+          <td>changes the selection state of the focused option .</td>
+        </tr>
+        <tr>
+          <th><kbd>Shift + Down Arrow</kbd></th>
+          <td>Moves focus to and selects the next option.</td>
+        </tr>
+        <tr>
+          <th><kbd>Shift + Up Arrow</kbd></th>
+          <td>Moves focus to and selects the previous option.</td>
+        </tr>
+        <tr>
+          <th><kbd>Control + Shift + Home</kbd></th>
+          <td>Selects from the focused option to the beginning of the list.</td>
+        </tr>
+        <tr>
+          <th><kbd>Control + Shift + End</kbd></th>
+          <td>Selects from the focused option to the end of the list.</td>
+        </tr>
+        <tr>
+          <th><kbd>Control + A</kbd></th>
+          <td>selects all options in the list. If all options are selected, unselects all options.</td>
+        </tr>
+      </tbody>
+    </table>
   </section>
 
   <section>
     <h2 id="rps_label">Role, Property, State, and Tabindex  Attributes</h2>
     <table aria-labelledby="rps_label" class="data attributes">
-      <thead>
+    <thead>
         <tr>
-          <th>Attribute</th>
-          <th>Applied to Element</th>
-          <th>Usage</th>
+          <th scope="col">Role</th>
+          <th scope="col">Attribute</th>
+          <th scope="col">Element</th>
+          <th scope="col">Usage</th>
         </tr>
       </thead>
       <tbody>
         <tr>
-          <th><code>role=&quot;listbox&quot;</code></th>
+          <th scope="row"><code>listbox</code></th>
+          <td></td>
           <td><code>ul</code></td>
           <td>Identifies the focusable element that has listbox behaviors and contains the listbox options. </td>
         </tr>
         <tr>
-          <th><code>aria-labelledby=&quot;ID_REF&quot;</code></th>
+          <td></td>
+          <th scope="row"><code>aria-labelledby=&quot;ID_REF&quot;</code></th>
           <td><code>ul</code></td>
           <td>Applied to the element with the listbox role, it refers to the span containing its label.</td>
         </tr>
         <tr>
-          <th><code>tabindex=&quot;0&quot;</code></th>
+          <td></td>
+          <th scope="row"><code>tabindex=&quot;0&quot;</code></th>
           <td><code>ul</code></td>
           <td>Applied to the element with the listbox role, it puts the listbox in the tab sequence.</td>
         </tr>
         <tr>
-          <th><code>aria-multiselectable=&quot;true&quot;</code></th>
+          <td></td>
+          <th scope="row"><code>aria-multiselectable=&quot;true&quot;</code></th>
           <td><code>ul</code></td>
           <td>
-            <strong>Example 2 only:</strong>
-            Applied to the element with the listbox role, tells assistive technologies that the list supports multiple selection.
-            The default value is false so it is not specified in example 1.
+            <ul>
+              <li><strong>Used only in example 2.</strong></li>
+              <li>Applied to the element with the listbox role, tells assistive technologies that the list supports multiple selection.</li>
+              <li>The default value is false so it is not specified in example 1.</li>
+            </ul>
           </td>
         </tr>
         <tr>
-          <th><code>aria-activedescendant=&quot;ID_REF&quot;</code></th>
+          <td></td>
+          <th scope="row"><code>aria-activedescendant=&quot;ID_REF&quot;</code></th>
           <td><code>ul</code></td>
           <td>
-            Applied to the element with the listbox role, tells assistive technologies which of the options, if any, is visually indicated as having keyboard focus.
-            DOM focus remains on the <code>ul</code> element and the idref specified for <code>aria-activedescendant</code> refers to the <code>li</code> element that is visually styled as focused.
-            When navigation keys, such as <kbd>Down Arrow</kbd>, are pressed, the JavaScript changes the value.
-            When the listbox is empty, <code>aria-activedescendant=&quot;&quot;</code>.
+            <ul>
+              <li>Applied to the element with the listbox role, tells assistive technologies which of the options, if any, is visually indicated as having keyboard focus.</li>
+              <li>DOM focus remains on the <code>ul</code> element and the idref specified for <code>aria-activedescendant</code> refers to the <code>li</code> element that is visually styled as focused.</li>
+              <li>When navigation keys, such as <kbd>Down Arrow</kbd>, are pressed, the JavaScript changes the value.</li>
+              <li>When the listbox is empty, <code>aria-activedescendant=&quot;&quot;</code>.</li>
+            </ul>
           </td>
         </tr>
         <tr>
-          <th><code>role=&quot;option&quot;</code></th>
+          <th scope="row"><code>role=&quot;option&quot;</code></th>
+          <td></td>
           <td><code>li</code></td>
           <td>Identifies each selectable element containing the name of an option.</td>
         </tr>
         <tr>
-          <th><code>aria-selected=&quot;true&quot;</code></th>
+          <td></td>
+          <th scope="row"><code>aria-selected=&quot;true&quot;</code></th>
           <td><code>li</code></td>
           <td>
-            Applied to elements with role option that are visually styled as  selected to inform assistive technologies that the options are selected.
-            In example 1, this is always the same option that is referenced by aria-activedescendant because it is a single-select listbox where selection follows focus.
-            In example 2, more than one option may be selected so the user can move focus among options without effecting which options are selected.
-            Thus in example 2, the focus style and selection styles are distinctly different and independent.
+            <ul>
+              <li>Applied to elements with role option that are visually styled as  selected to inform assistive technologies that the options are selected.</li>
+              <li>In example 1, the option with this attribute is always the same as the option that is referenced by aria-activedescendant because it is a single-select listbox where selection follows focus.</li>
+              <li>In example 2, more than one option may be selected so the user can move focus among options without effecting which options have this attribute.</li>
+              <li>Note that in example 2, the focus style and selection styles are distinctly different and independent.</li>
+            </ul>
           </td>
         </tr>
         <tr>
+          <td></td>
           <th><code>aria-selected=&quot;false&quot;</code></th>
           <td><code>li</code></td>
           <td>
-            <strong>Example 2 only:</strong>
-            Applied to elements with role option that are <strong>not</strong> visually styled as  selected to inform assistive technologies that the options are selectable but not selected.
-            In example 1, this is not necessary because the focus cannot move to an unselected option.
+            <ul>
+              <li><strong>Used only in example 2.</strong></li>
+              <li>Applied to elements with role option that are <strong>not</strong> visually styled as  selected to inform assistive technologies that the options are selectable but not selected.</li>
+              <li>In example 1, this is unnecessary because the selection moves every time the focus moves.</li>
+            </ul>
           </td>
         </tr>
       </tbody>
     </table>
+    <h4>Note></h4>
     <p>The following attributes are commonly useful when implementing the listbox design pattern but are not used in these examples.</p>
     <ul>
       <li><code>aria-setsize</code> and <code>aria-posinset</code>: Since all option elements are present in the DOM, the browser is able to calculate these values automatically and provide them to assistive technologies.</li>
