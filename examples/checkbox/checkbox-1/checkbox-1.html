@@ -72,19 +72,11 @@
           <tbody>
           <tr>
             <th><kbd>Tab</kbd></th>
-            <td>
-              <ul>
-                <li>Moves keyboard focus to the <code>checkbox</code>.</li>
-              </ul>
-            </td>
+            <td>Moves keyboard focus to the <code>checkbox</code>.</td>
           </tr>
             <tr>
               <th><kbd>Space</kbd></th>
-              <td>
-                <ul>
-                  <li>Toggle check checkbox between checked and unchecked.</li>
-                </ul>
-              </td>
+              <td>Toggles checkbox between checked and unchecked states.</td>
             </tr>
           </tbody>
         </table>
@@ -108,9 +100,8 @@
               <td><code>div</code></td>
               <td>
                 <ul>
-                  <li>The <code>role=&quot;checkbox&quot;</code> attribute identifies the <code>div</code> element as a ARIA <code>checkbox</code>.</li>
-                  <li>The accessible name comes the child text content of the <code>div[role=&quot;checkbox&quot;]</code> element.</li>
-                  <li>The <code>checkbox</code> widget needs a <code>tabindex=&quot;0&quot;</code> value.</li>
+                  <li>Identifies the <code>div</code> element as a ARIA <code>checkbox</code>.</li>
+                  <li>The child text content of this <code>div</code> provides the accessible name of the checkbox.</li>
                 </ul>
               </td>
             </tr>
@@ -118,11 +109,7 @@
               <td></td>
               <th scope="row"><code>tabindex=&quot;0&quot;</code></th>
               <td><code>div</code></td>
-              <td>
-                  <ul>
-                    <li>The <code>div[&quot;checkbox&quot;]</code> is identified as an ineractive element and is added to the tab order of the page by setting the <code>tabindex=&quot;0&quot;</code>.</li>
-                   </ul>
-              </td>
+              <td>Includes the checkbox in the page tab sequence.</td>
             </tr>
             <tr>
               <td></td>
@@ -130,9 +117,9 @@
               <td><code>div</code></td>
               <td>
                   <ul>
-                    <li>Indentifies the <code>checkbox</code> button as unchecked.</li>
+                    <li>Identifies the <code>checkbox</code> button as unchecked.</li>
                     <li>CSS attribute selectors (e.g. <code>[aria-checked=&quot;false&quot;]</code>) are used to synchronize the visual states with the value of the <code>aria-checked</code> attribute.</li>
-                    <li>The CSS <code>:before</code> psuedo selector and the <code>content</code> property are used to indcate visual state of "unchecked" to support high contrast setting in operating systems and browsers.</li>
+                    <li>To support operating system and browser high contrast settings, the CSS <code>::before</code> pseudo element and <code>content</code> property are used to generate the visual indicators of the checkbox state.</li>
                   </ul>
               </td>
             </tr>
@@ -142,9 +129,9 @@
               <td><code>div</code></td>
               <td>
                   <ul>
-                    <li>Indentifies the <code>checkbox</code> as checked.</li>
+                    <li>Identifies the <code>checkbox</code> as checked.</li>
                     <li>CSS attribute selectors (e.g. <code>[aria-checked=&quot;true&quot;]</code>) are used to synchronize the visual states with the value of the <code>aria-checked</code> attribute.</li>
-                    <li>The CSS <code>:before</code> psuedo selector and the <code>content</code> property are used to indcate visual state of "checked" to support high contrast setting in operating systems and browsers.</li>
+                    <li>To support operating system and browser high contrast settings, the CSS <code>::before</code> pseudo element and <code>content</code> property are used to generate the visual indicators of the checkbox state.</li>
                   </ul>
               </td>
             </tr>
