@@ -1843,7 +1843,11 @@
             If activating a <a href="#menuitem" class="role-reference">menuitem</a> opens a submenu, the menuitem is known as a parent menuitem.
             A submenu's <code>menu</code> element is contained in or owned by it's parent             menuitem.
           </li>
-          <li>A parent menuitem has <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set to <code>true</code>. </li>
+          <li>A parent menuitem has <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set to <code>true</code>.</li>
+          <li>
+            A parent menuitem has <a href="#aria-expanded" class="property-reference">aria-expanded</a> set to <code>false</code> when its child menu is not visible and set to <code>true</code> when the child menu is visible.
+            <strong>(See note below regarding HTML validation.)</strong>
+          </li>
           <li>One of the following approaches is used to enable scripts to move focus among items in a menu as described in <a href="#kbd_general_within"></a>:
             <ul>
               <li>The menu container has <code>tabindex</code> set to <code>-1</code> or <code>0</code> and <a href="#aria-activedescendant" class="property-reference">aria-activedescendant</a> set to the ID of the focused item. </li>
@@ -1863,7 +1867,20 @@
             The default value of <code>aria-orientation</code> for a menu is <code>vertical</code>.
           </li>
         </ul>
-        <p class="note">If <a href="#aria-owns" class="property-reference">aria-owns</a> is set on the menu container to include elements that are not DOM children of the container, those elements will appear in the reading order in the sequence they are referenced and after any items that are DOM children. Scripts that manage focus need to ensure the visual focus order matches this assistive technology reading order. </p>
+        <ol class="note">
+          <li>
+            Currently, using aria-expanded on elements with role menuitem triggers HTML validation errors because the ARIA specification does not yet support doing so.
+            The ARIA working group plans to resolve this issue in the next version of the specification.
+            Until a version of ARIA that resolves 
+            <a href="https://github.com/w3c/aria/issues/454">the issue</a> 
+            becomes a W3C recommendation, it is safe to ignore these validation errors. 
+            Alternatively, since only a few browser and assistive technology combinations exploit this feature of the pattern, it can be omitted from implementations.
+          </li>
+          <li>
+            If <a href="#aria-owns" class="property-reference">aria-owns</a> is set on the menu container to include elements that are not DOM children of the container, those elements will appear in the reading order in the sequence they are referenced and after any items that are DOM children.
+            Scripts that manage focus need to ensure the visual focus order matches this assistive technology reading order. 
+          </li>
+        </ol>
       </section>
     </section>
 
