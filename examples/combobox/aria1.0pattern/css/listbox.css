@@ -1,0 +1,50 @@
+
+ul[role="listbox"] {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  font-size: 110%;
+
+  list-style: none;
+  background-color: #EEEEEE;
+  display: none;
+}
+
+ul[role="listbox"] li[role="option"]{
+  display: block;
+  padding: 0.25em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  background-color: #EEEEEE;
+  width: 12em;
+}
+
+
+ul[role="listbox"] li[role="separator"]{
+  padding-top: 0.15em;
+  background-image: url('../images/separator.png');
+  background-position: center;
+  background-repeat: repeat-x;
+}
+
+/* focus and hover styling */
+
+button:focus,
+button:hover,
+input:focus,
+input:hover {
+  outline: 2px solid black;
+}
+
+input:focus,
+input:hover {
+  background-color: #EEEEEE;
+}
+
+ul[role="listbox"] li[role="option"]:focus,
+ul[role="listbox"] li[role="option"].focus,
+ul[role="listbox"] li[role="option"]:hover{
+  background-color: black;
+  color: white;
+}
+
