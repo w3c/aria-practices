@@ -20,7 +20,7 @@ aria.Listbox = function (listboxNode) {
   this.siblingList = null;
   this.upButton = null;
   this.downButton = null;
-  this.deleteButton = null;
+  this.moveButton = null;
 
   this.registerEvents();
 };
@@ -108,6 +108,16 @@ aria.Listbox.prototype.checkKeyPress = function (evt) {
     case aria.KeyCode.DOWN:
       evt.preventDefault();
 
+      if (this.moveUpDownEnabled && evt.altKey) {
+        if (key === aria.KeyCode.UP) {
+          this.moveUpItems();
+        }
+        else {
+          this.moveDownItems();
+        }
+        return;
+      }
+
       if (key === aria.KeyCode.UP) {
         nextItem = nextItem.previousElementSibling;
       }
@@ -134,6 +144,22 @@ aria.Listbox.prototype.checkKeyPress = function (evt) {
       break;
     case aria.KeyCode.BACKSPACE:
     case aria.KeyCode.DELETE:
+    case aria.KeyCode.RETURN:
+      if (!this.moveButton) {
+        return;
+      }
+
+      var keyshortcuts = this.moveButton.getAttribute('aria-keyshortcuts');
+      if (key === aria.KeyCode.RETURN && keyshortcuts.indexOf('Enter') === -1) {
+        return;
+      }
+      if (
+        (key === aria.KeyCode.BACKSPACE || key === aria.KeyCode.DELETE)
+        && keyshortcuts.indexOf('Delete') === -1
+      ) {
+        return;
+      }
+
       evt.preventDefault();
 
       if (nextItem.nextElementSibling) {
@@ -143,7 +169,7 @@ aria.Listbox.prototype.checkKeyPress = function (evt) {
         nextItem = nextItem.previousElementSibling;
       }
 
-      this.shiftItems();
+      this.moveItems();
 
       if (!this.activeDescendant && nextItem) {
         this.focusItem(nextItem);
@@ -180,12 +206,12 @@ aria.Listbox.prototype.toggleSelectItem = function (element) {
       element.getAttribute('aria-selected') === 'true' ? 'false' : 'true'
     );
 
-    if (this.deleteButton) {
+    if (this.moveButton) {
       if (this.listboxNode.querySelector('[aria-selected="true"]')) {
-        this.deleteButton.setAttribute('aria-disabled', 'false');
+        this.moveButton.setAttribute('aria-disabled', 'false');
       }
       else {
-        this.deleteButton.setAttribute('aria-disabled', 'true');
+        this.moveButton.setAttribute('aria-disabled', 'true');
       }
     }
   }
@@ -230,8 +256,8 @@ aria.Listbox.prototype.focusItem = function (element) {
     }
   }
 
-  if (!this.multiselectable && this.deleteButton) {
-    this.deleteButton.setAttribute('aria-disabled', false);
+  if (!this.multiselectable && this.moveButton) {
+    this.moveButton.setAttribute('aria-disabled', false);
   }
 
   this.checkUpDownButtons();
@@ -334,8 +360,8 @@ aria.Listbox.prototype.clearActiveDescendant = function () {
   this.activeDescendant = null;
   this.listboxNode.setAttribute('aria-activedescendant', null);
 
-  if (this.deleteButton) {
-    this.deleteButton.setAttribute('aria-disabled', 'true');
+  if (this.moveButton) {
+    this.moveButton.setAttribute('aria-disabled', 'true');
   }
 
   this.checkUpDownButtons();
@@ -389,7 +415,7 @@ aria.Listbox.prototype.moveDownItems = function () {
  * @desc
  *  Delete the currently selected items and add them to the sibling list.
  */
-aria.Listbox.prototype.shiftItems = function () {
+aria.Listbox.prototype.moveItems = function () {
   if (!this.siblingList) {
     return;
   }
@@ -418,17 +444,17 @@ aria.Listbox.prototype.enableMoveUpDown = function (upButton, downButton) {
 
 /**
  * @desc
- *  Enable Delete controls. Deleting removes selected items from the current
+ *  Enable Move controls. Moving removes selected items from the current
  *  list and adds them to the sibling list.
  *
  * @param button
- *   Delete button to trigger delete
+ *   Move button to trigger delete
  *
  * @param siblingList
- *   Listbox to add deleted items to
+ *   Listbox to move items to
  */
-aria.Listbox.prototype.setupDelete = function (button, siblingList) {
+aria.Listbox.prototype.setupMove = function (button, siblingList) {
   this.siblingList = siblingList;
-  this.deleteButton = button;
-  button.addEventListener('click', this.shiftItems.bind(this));
+  this.moveButton = button;
+  button.addEventListener('click', this.moveItems.bind(this));
 };
