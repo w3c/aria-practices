@@ -86,6 +86,9 @@ PopupMenuItem.prototype.handleKeydown = function (event) {
 
     switch (event.keyCode) {
       case this.keyCode.SPACE:
+        flag = true;
+        break;
+
       case this.keyCode.RETURN:
         this.handleClick(event);
         flag = true;
