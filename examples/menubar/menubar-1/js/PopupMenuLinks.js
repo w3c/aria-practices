@@ -241,7 +241,7 @@ PopupMenu.prototype.open = function () {
     this.domNode.style.zIndex = 100;
   }
 
-  this.controller.domNode.setAttribute('aria-expanded', 'true');
+  this.domNode.setAttribute('aria-expanded', 'true');
 
 };
 
@@ -256,6 +256,6 @@ PopupMenu.prototype.close = function (force) {
   if (force || (!this.hasFocus && !this.hasHover && !controllerHasHover)) {
     this.domNode.style.display = 'none';
     this.domNode.style.zIndex = 0;
-    this.controller.domNode.setAttribute('aria-expanded', 'false');
+    this.domNode.setAttribute('aria-expanded', 'false');
   }
 };

@@ -90,8 +90,8 @@
         <li role="menuitem" aria-haspopup="true" aria-expanded="false">
           <span>Size</span>
           <ul role="menu" aria-label="Size" >
-            <li role="menuitem" rel="font-smaller">Smaller</li>
-            <li role="menuitem" rel="font-larger">Larger</li>
+            <li role="menuitem" rel="font-smaller" aria-disabled="false">Smaller</li>
+            <li role="menuitem" rel="font-larger"  aria-disabled="false">Larger</li>
             <li role="separator"></li>
             <li>
               <ul role="group" rel="font-size" aria-label="Font Sizes">
@@ -366,7 +366,10 @@
               <code>li</code>
             </td>
             <td>
-              Identifies the element as a menu item within the menubar.
+              <ul>
+                <li>Identifies the element as a menu item within the menubar.</li>
+                <li>Accessible name comes from the text content.</li>
+              </ul>  
             </td>
           </tr>
           <tr>
@@ -497,7 +500,10 @@
             <code>li</code>
           </td>
           <td>
-            Identifies the element as an item in the submenu.
+            <ul>
+              <li>Identifies the element as an item in the submenu.</li>
+              <li>Accessible name comes from the text content.</li>
+            </ul>
           </td>
         </tr>
         <tr>
@@ -513,6 +519,30 @@
           </td>
         </tr>
         <tr>
+          <td></td>
+          <th scope="row">
+            <code>aria-disabled=&quot;false&quot;</code>
+          </th>
+          <td>
+            <code>li</code>
+          </td>
+          <td>
+            Used on the font size "Smaller" and "Larger" options to indicate they are active.
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <th scope="row">
+            <code>aria-disabled=&quot;true&quot;</code>
+          </th>
+          <td>
+            <code>li</code>
+          </td>
+          <td>
+            Used on the font size "Smaller" and "Larger" options to indicate one of the options is <strong>not</strong> active because the largest or smallest font has been selected.
+          </td>
+        </tr>
+        <tr>
           <th scope="row">
             <code>menuitemcheckbox</code>
           </th>
@@ -521,7 +551,10 @@
             <code>li</code>
           </td>
           <td>
-            Identifies the element as a <code>menuitemcheckbox</code>.
+            <ul>
+              <li>Identifies the element as a <code>menuitemcheckbox</code>.</li>
+              <li>Accessible name comes from the text content.</li>
+            </ul>  
           </td>
         </tr>
         <tr>
@@ -609,6 +642,9 @@
               <li>
                 When all items in a submenu are members of the same radio group,
                 the group is defined by the <code>menu</code> element; a <code>group</code> element is not necessary.
+              </li>
+              <li>
+                Accessible name comes from the text content.
               </li>
             </ul>
           </td>
