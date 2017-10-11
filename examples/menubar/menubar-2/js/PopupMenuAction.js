@@ -149,15 +149,15 @@ PopupMenuAction.prototype.updateMenuStates = function () {
 
   for (var i = 0; i < rbs.length; i++) {
     var rb = rbs[i];
-    
-    if(this.actionManager.fontSize === rb.textContent.toLowerCase()) {
+
+    if (this.actionManager.fontSize === rb.textContent.toLowerCase()) {
       rb.setAttribute('aria-checked', 'true');
-    } 
+    }
     else {
-      rb.setAttribute('aria-checked', 'false');          
-    }  
+      rb.setAttribute('aria-checked', 'false');
+    }
   }
-  
+
 };
 
 /* EVENT HANDLERS */
