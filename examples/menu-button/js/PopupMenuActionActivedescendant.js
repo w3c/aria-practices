@@ -157,7 +157,11 @@ PopupMenuActionActivedescendant.prototype.handleKeydown = function (event) {
   }
   else {
     switch (event.keyCode) {
+
       case this.keyCode.SPACE:
+        flag = true;
+        break;
+
       case this.keyCode.RETURN:
         // Create simulated mouse event to mimic the behavior of ATs
         // and let the event handler handleClick do the housekeeping.
