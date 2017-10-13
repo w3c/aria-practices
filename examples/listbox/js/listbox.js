@@ -154,25 +154,35 @@ aria.Listbox.prototype.checkKeyPress = function (evt) {
         return;
       }
       if (
-        (key === aria.KeyCode.BACKSPACE || key === aria.KeyCode.DELETE)
-        && keyshortcuts.indexOf('Delete') === -1
+        (key === aria.KeyCode.BACKSPACE || key === aria.KeyCode.DELETE) &&
+        keyshortcuts.indexOf('Delete') === -1
       ) {
         return;
       }
 
       evt.preventDefault();
 
-      if (nextItem.nextElementSibling) {
-        nextItem = nextItem.nextElementSibling;
+      var nextUnselected = nextItem.nextElementSibling;
+      while (nextUnselected) {
+        if (nextUnselected.getAttribute('aria-selected') != 'true') {
+          break;
+        }
+        nextUnselected = nextUnselected.nextElementSibling;
       }
-      else {
-        nextItem = nextItem.previousElementSibling;
+      if (!nextUnselected) {
+        nextUnselected = nextItem.previousElementSibling;
+        while (nextUnselected) {
+          if (nextUnselected.getAttribute('aria-selected') != 'true') {
+            break;
+          }
+          nextUnselected = nextUnselected.previousElementSibling;
+        }
       }
 
       this.moveItems();
 
-      if (!this.activeDescendant && nextItem) {
-        this.focusItem(nextItem);
+      if (!this.activeDescendant && nextUnselected) {
+        this.focusItem(nextUnselected);
       }
       break;
   }
