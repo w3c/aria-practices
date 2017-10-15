@@ -772,9 +772,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             "preProcess": [
                 null
             ],
-            "publishDate": "2017-10-13",
-            "publishISODate": "2017-10-13T00:00:00.000Z",
-            "generatedSubtitle": "Editor's Draft 13 October 2017"
+            "publishDate": "2017-10-15",
+            "publishISODate": "2017-10-15T00:00:00.000Z",
+            "generatedSubtitle": "Editor's Draft 15 October 2017"
         }
     </script>
     <meta name="generator" content="ReSpec 17.0.0">
@@ -790,7 +790,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </p>
         <p></p>
         <h1 class="title p-name" id="title" property="dcterms:title"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Authoring Practices 1.1</h1>
-        <h2 id="w3c-editor-s-draft-13-october-2017"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2017-10-13">13 October 2017</time><span class="permalink" typeof="bookmark"><a href="#undefined" aria-label="Permalink for W3C Editor's Draft 13 October 2017" title="Permalink for W3C Editor's Draft 13 October 2017" property="url"><span property="title" content="W3C Editor's Draft 13 October 2017">§</span></a>
+        <h2 id="w3c-editor-s-draft-15-october-2017"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2017-10-15">15 October 2017</time><span class="permalink" typeof="bookmark"><a href="#undefined" aria-label="Permalink for W3C Editor's Draft 15 October 2017" title="Permalink for W3C Editor's Draft 15 October 2017" property="url"><span property="title" content="W3C Editor's Draft 15 October 2017">§</span></a>
             </span>
         </h2>
         <dl>
@@ -912,171 +912,178 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </h2>
         <ol class="toc" role="directory">
             <li class="tocline"><a href="#intro" class="tocxref"><span class="secno">1. </span>Introduction</a></li>
-            <li class="tocline"><a href="#aria_ex" class="tocxref"><span class="secno">2. </span>Design Patterns and Widgets</a>
+            <li class="tocline"><a href="#read_me_first" class="tocxref"><span class="secno">2. </span>Read Me First</a>
                 <ol class="toc">
-                    <li class="tocline"><a href="#aria_ex_widget" class="tocxref"><span class="secno">2.1 </span>Generally Applicable Keyboard Recommendations </a></li>
-                    <li class="tocline"><a href="#accordion" class="tocxref"><span class="secno">2.2 </span>Accordion (Sections With Show/Hide Functionality)</a>
+                    <li class="tocline"><a href="#no_aria_better_bad_aria" class="tocxref"><span class="secno">2.1 </span>No ARIA is better than Bad ARIA</a></li>
+                    <li class="tocline"><a href="#browser_and_AT_support" class="tocxref"><span class="secno">2.2 </span>Browser and Assistive Technology Support</a></li>
+                    <li class="tocline"><a href="#mobile_and_touch_support" class="tocxref"><span class="secno">2.3 </span>Mobile and Touch Support</a></li>
+                </ol>
+            </li>
+            <li class="tocline"><a href="#aria_ex" class="tocxref"><span class="secno">3. </span>Design Patterns and Widgets</a>
+                <ol class="toc">
+                    <li class="tocline"><a href="#aria_ex_widget" class="tocxref"><span class="secno">3.1 </span>Generally Applicable Keyboard Recommendations </a></li>
+                    <li class="tocline"><a href="#accordion" class="tocxref"><span class="secno">3.2 </span>Accordion (Sections With Show/Hide Functionality)</a>
                         <ol class="toc"></ol>
                     </li>
-                    <li class="tocline"><a href="#alert" class="tocxref"><span class="secno">2.3 </span>Alert</a>
+                    <li class="tocline"><a href="#alert" class="tocxref"><span class="secno">3.3 </span>Alert</a>
                         <ol class="toc"></ol>
                     </li>
-                    <li class="tocline"><a href="#alertdialog" class="tocxref"><span class="secno">2.4 </span>Alert and Message Dialogs</a>
+                    <li class="tocline"><a href="#alertdialog" class="tocxref"><span class="secno">3.4 </span>Alert and Message Dialogs</a>
                         <ol class="toc"></ol>
                     </li>
-                    <li class="tocline"><a href="#breadcrumb" class="tocxref"><span class="secno">2.5 </span>Breadcrumb</a>
+                    <li class="tocline"><a href="#breadcrumb" class="tocxref"><span class="secno">3.5 </span>Breadcrumb</a>
                         <ol class="toc"></ol>
                     </li>
-                    <li class="tocline"><a href="#button" class="tocxref"><span class="secno">2.6 </span>Button</a>
+                    <li class="tocline"><a href="#button" class="tocxref"><span class="secno">3.6 </span>Button</a>
                         <ol class="toc"></ol>
                     </li>
-                    <li class="tocline"><a href="#checkbox" class="tocxref"><span class="secno">2.7 </span>Checkbox</a>
+                    <li class="tocline"><a href="#checkbox" class="tocxref"><span class="secno">3.7 </span>Checkbox</a>
                         <ol class="toc"></ol>
                     </li>
-                    <li class="tocline"><a href="#combobox" class="tocxref"><span class="secno">2.8 </span>Combo Box</a>
+                    <li class="tocline"><a href="#combobox" class="tocxref"><span class="secno">3.8 </span>Combo Box</a>
                         <ol class="toc"></ol>
                     </li>
-                    <li class="tocline"><a href="#dialog_modal" class="tocxref"><span class="secno">2.9 </span>Dialog (Modal)</a>
+                    <li class="tocline"><a href="#dialog_modal" class="tocxref"><span class="secno">3.9 </span>Dialog (Modal)</a>
                         <ol class="toc"></ol>
                     </li>
-                    <li class="tocline"><a href="#dialog_nonmodal" class="tocxref"><span class="secno">2.10 </span>Dialog (Non-Modal)</a></li>
-                    <li class="tocline"><a href="#disclosure" class="tocxref"><span class="secno">2.11 </span>Disclosure (Show/Hide)</a>
+                    <li class="tocline"><a href="#dialog_nonmodal" class="tocxref"><span class="secno">3.10 </span>Dialog (Non-Modal)</a></li>
+                    <li class="tocline"><a href="#disclosure" class="tocxref"><span class="secno">3.11 </span>Disclosure (Show/Hide)</a>
                         <ol class="toc"></ol>
                     </li>
-                    <li class="tocline"><a href="#feed" class="tocxref"><span class="secno">2.12 </span>Feed</a>
+                    <li class="tocline"><a href="#feed" class="tocxref"><span class="secno">3.12 </span>Feed</a>
                         <ol class="toc"></ol>
                     </li>
-                    <li class="tocline"><a href="#grid" class="tocxref"><span class="secno">2.13 </span>Grids : Interactive Tabular Data and Layout Containers</a>
+                    <li class="tocline"><a href="#grid" class="tocxref"><span class="secno">3.13 </span>Grids : Interactive Tabular Data and Layout Containers</a>
                         <ol class="toc"></ol>
                     </li>
-                    <li class="tocline"><a href="#link" class="tocxref"><span class="secno">2.14 </span>Link</a>
+                    <li class="tocline"><a href="#link" class="tocxref"><span class="secno">3.14 </span>Link</a>
                         <ol class="toc"></ol>
                     </li>
-                    <li class="tocline"><a href="#Listbox" class="tocxref"><span class="secno">2.15 </span>Listbox</a>
+                    <li class="tocline"><a href="#Listbox" class="tocxref"><span class="secno">3.15 </span>Listbox</a>
                         <ol class="toc"></ol>
                     </li>
-                    <li class="tocline"><a href="#menu" class="tocxref"><span class="secno">2.16 </span>Menu or Menu bar</a>
+                    <li class="tocline"><a href="#menu" class="tocxref"><span class="secno">3.16 </span>Menu or Menu bar</a>
                         <ol class="toc"></ol>
                     </li>
-                    <li class="tocline"><a href="#menubutton" class="tocxref"><span class="secno">2.17 </span>Menu Button</a>
+                    <li class="tocline"><a href="#menubutton" class="tocxref"><span class="secno">3.17 </span>Menu Button</a>
                         <ol class="toc"></ol>
                     </li>
-                    <li class="tocline"><a href="#radiobutton" class="tocxref"><span class="secno">2.18 </span>Radio Group</a>
+                    <li class="tocline"><a href="#radiobutton" class="tocxref"><span class="secno">3.18 </span>Radio Group</a>
                         <ol class="toc"></ol>
                     </li>
-                    <li class="tocline"><a href="#slider" class="tocxref"><span class="secno">2.19 </span>Slider</a>
+                    <li class="tocline"><a href="#slider" class="tocxref"><span class="secno">3.19 </span>Slider</a>
                         <ol class="toc"></ol>
                     </li>
-                    <li class="tocline"><a href="#slidertwothumb" class="tocxref"><span class="secno">2.20 </span>Slider (Multi-Thumb)</a>
+                    <li class="tocline"><a href="#slidertwothumb" class="tocxref"><span class="secno">3.20 </span>Slider (Multi-Thumb)</a>
                         <ol class="toc"></ol>
                     </li>
-                    <li class="tocline"><a href="#spinbutton" class="tocxref"><span class="secno">2.21 </span>Spinbutton</a>
+                    <li class="tocline"><a href="#spinbutton" class="tocxref"><span class="secno">3.21 </span>Spinbutton</a>
                         <ol class="toc"></ol>
                     </li>
-                    <li class="tocline"><a href="#table" class="tocxref"><span class="secno">2.22 </span>Table</a></li>
-                    <li class="tocline"><a href="#tabpanel" class="tocxref"><span class="secno">2.23 </span>Tabs</a>
+                    <li class="tocline"><a href="#table" class="tocxref"><span class="secno">3.22 </span>Table</a></li>
+                    <li class="tocline"><a href="#tabpanel" class="tocxref"><span class="secno">3.23 </span>Tabs</a>
                         <ol class="toc"></ol>
                     </li>
-                    <li class="tocline"><a href="#toolbar" class="tocxref"><span class="secno">2.24 </span>Toolbar</a>
+                    <li class="tocline"><a href="#toolbar" class="tocxref"><span class="secno">3.24 </span>Toolbar</a>
                         <ol class="toc"></ol>
                     </li>
-                    <li class="tocline"><a href="#tooltip" class="tocxref"><span class="secno">2.25 </span>Tooltip Widget</a>
+                    <li class="tocline"><a href="#tooltip" class="tocxref"><span class="secno">3.25 </span>Tooltip Widget</a>
                         <ol class="toc"></ol>
                     </li>
-                    <li class="tocline"><a href="#TreeView" class="tocxref"><span class="secno">2.26 </span>Tree View</a>
+                    <li class="tocline"><a href="#TreeView" class="tocxref"><span class="secno">3.26 </span>Tree View</a>
                         <ol class="toc"></ol>
                     </li>
-                    <li class="tocline"><a href="#windowsplitter" class="tocxref"><span class="secno">2.27 </span>Window Splitter</a>
+                    <li class="tocline"><a href="#windowsplitter" class="tocxref"><span class="secno">3.27 </span>Window Splitter</a>
                         <ol class="toc"></ol>
                     </li>
                 </ol>
             </li>
-            <li class="tocline"><a href="#aria_landmark" class="tocxref"><span class="secno">3. </span>Landmark Regions</a>
+            <li class="tocline"><a href="#aria_landmark" class="tocxref"><span class="secno">4. </span>Landmark Regions</a>
                 <ol class="toc">
-                    <li class="tocline"><a href="#html5-sectioning-elements" class="tocxref"><span class="secno">3.1 </span>HTML5 Sectioning Elements</a></li>
-                    <li class="tocline"><a href="#general-principles-of-landmark-design" class="tocxref"><span class="secno">3.2 </span>General Principles of Landmark Design</a></li>
-                    <li class="tocline"><a href="#landmark-roles" class="tocxref"><span class="secno">3.3 </span>Landmark Roles</a>
+                    <li class="tocline"><a href="#html5-sectioning-elements" class="tocxref"><span class="secno">4.1 </span>HTML5 Sectioning Elements</a></li>
+                    <li class="tocline"><a href="#general-principles-of-landmark-design" class="tocxref"><span class="secno">4.2 </span>General Principles of Landmark Design</a></li>
+                    <li class="tocline"><a href="#landmark-roles" class="tocxref"><span class="secno">4.3 </span>Landmark Roles</a>
                         <ol class="toc">
-                            <li class="tocline"><a href="#aria_lh_banner" class="tocxref"><span class="secno">3.3.1 </span>Banner</a>
+                            <li class="tocline"><a href="#aria_lh_banner" class="tocxref"><span class="secno">4.3.1 </span>Banner</a>
                                 <ol class="toc"></ol>
                             </li>
-                            <li class="tocline"><a href="#aria_lh_complementary" class="tocxref"><span class="secno">3.3.2 </span>Complementary</a>
+                            <li class="tocline"><a href="#aria_lh_complementary" class="tocxref"><span class="secno">4.3.2 </span>Complementary</a>
                                 <ol class="toc"></ol>
                             </li>
-                            <li class="tocline"><a href="#aria_lh_contentinfo" class="tocxref"><span class="secno">3.3.3 </span>Contentinfo</a>
+                            <li class="tocline"><a href="#aria_lh_contentinfo" class="tocxref"><span class="secno">4.3.3 </span>Contentinfo</a>
                                 <ol class="toc"></ol>
                             </li>
-                            <li class="tocline"><a href="#aria_lh_form" class="tocxref"><span class="secno">3.3.4 </span>Form</a>
+                            <li class="tocline"><a href="#aria_lh_form" class="tocxref"><span class="secno">4.3.4 </span>Form</a>
                                 <ol class="toc"></ol>
                             </li>
-                            <li class="tocline"><a href="#aria_lh_main" class="tocxref"><span class="secno">3.3.5 </span>Main</a>
+                            <li class="tocline"><a href="#aria_lh_main" class="tocxref"><span class="secno">4.3.5 </span>Main</a>
                                 <ol class="toc"></ol>
                             </li>
-                            <li class="tocline"><a href="#aria_lh_navigation" class="tocxref"><span class="secno">3.3.6 </span>Navigation</a>
+                            <li class="tocline"><a href="#aria_lh_navigation" class="tocxref"><span class="secno">4.3.6 </span>Navigation</a>
                                 <ol class="toc"></ol>
                             </li>
-                            <li class="tocline"><a href="#aria_lh_region" class="tocxref"><span class="secno">3.3.7 </span>Region</a>
+                            <li class="tocline"><a href="#aria_lh_region" class="tocxref"><span class="secno">4.3.7 </span>Region</a>
                                 <ol class="toc"></ol>
                             </li>
-                            <li class="tocline"><a href="#aria_lh_search" class="tocxref"><span class="secno">3.3.8 </span>Search</a>
+                            <li class="tocline"><a href="#aria_lh_search" class="tocxref"><span class="secno">4.3.8 </span>Search</a>
                                 <ol class="toc"></ol>
                             </li>
                         </ol>
                     </li>
                 </ol>
             </li>
-            <li class="tocline"><a href="#keyboard" class="tocxref"><span class="secno">4. </span>Developing a Keyboard Interface</a>
+            <li class="tocline"><a href="#keyboard" class="tocxref"><span class="secno">5. </span>Developing a Keyboard Interface</a>
                 <ol class="toc">
-                    <li class="tocline"><a href="#kbd_generalnav" class="tocxref"><span class="secno">4.1 </span>Fundamental Keyboard Navigation Conventions</a></li>
-                    <li class="tocline"><a href="#kbd_focus_discernable_predictable" class="tocxref"><span class="secno">4.2 </span>Discernible and Predictable Keyboard Focus</a></li>
-                    <li class="tocline"><a href="#kbd_focus_vs_selection" class="tocxref"><span class="secno">4.3 </span>Focus VS Selection and the Perception of Dual Focus</a></li>
-                    <li class="tocline"><a href="#kbd_selection_follows_focus" class="tocxref"><span class="secno">4.4 </span>Deciding When to Make Selection Automatically Follow Focus</a></li>
-                    <li class="tocline"><a href="#kbd_general_between" class="tocxref"><span class="secno">4.5 </span>Keyboard Navigation Between Components (The Tab Sequence)</a></li>
-                    <li class="tocline"><a href="#kbd_general_within" class="tocxref"><span class="secno">4.6 </span> Keyboard Navigation Inside Components</a>
+                    <li class="tocline"><a href="#kbd_generalnav" class="tocxref"><span class="secno">5.1 </span>Fundamental Keyboard Navigation Conventions</a></li>
+                    <li class="tocline"><a href="#kbd_focus_discernable_predictable" class="tocxref"><span class="secno">5.2 </span>Discernible and Predictable Keyboard Focus</a></li>
+                    <li class="tocline"><a href="#kbd_focus_vs_selection" class="tocxref"><span class="secno">5.3 </span>Focus VS Selection and the Perception of Dual Focus</a></li>
+                    <li class="tocline"><a href="#kbd_selection_follows_focus" class="tocxref"><span class="secno">5.4 </span>Deciding When to Make Selection Automatically Follow Focus</a></li>
+                    <li class="tocline"><a href="#kbd_general_between" class="tocxref"><span class="secno">5.5 </span>Keyboard Navigation Between Components (The Tab Sequence)</a></li>
+                    <li class="tocline"><a href="#kbd_general_within" class="tocxref"><span class="secno">5.6 </span> Keyboard Navigation Inside Components</a>
                         <ol class="toc">
-                            <li class="tocline"><a href="#kbd_roving_tabindex" class="tocxref"><span class="secno">4.6.1 </span>Managing Focus Within Components Using a Roving tabindex</a></li>
-                            <li class="tocline"><a href="#kbd_focus_activedescendant" class="tocxref"><span class="secno">4.6.2 </span>Managing Focus in Composites Using aria-activedescendant</a></li>
-                            <li class="tocline"><a href="#kbd_nested_components" class="tocxref"><span class="secno">4.6.3 </span>Nested Composite Components - Composites and Toolbars That Contain Composites</a></li>
+                            <li class="tocline"><a href="#kbd_roving_tabindex" class="tocxref"><span class="secno">5.6.1 </span>Managing Focus Within Components Using a Roving tabindex</a></li>
+                            <li class="tocline"><a href="#kbd_focus_activedescendant" class="tocxref"><span class="secno">5.6.2 </span>Managing Focus in Composites Using aria-activedescendant</a></li>
+                            <li class="tocline"><a href="#kbd_nested_components" class="tocxref"><span class="secno">5.6.3 </span>Nested Composite Components - Composites and Toolbars That Contain Composites</a></li>
                         </ol>
                     </li>
-                    <li class="tocline"><a href="#kbd_disabled_controls" class="tocxref"><span class="secno">4.7 </span>Focusability of disabled controls</a></li>
-                    <li class="tocline"><a href="#kbd_shortcuts" class="tocxref"><span class="secno">4.8 </span>Keyboard Shortcuts</a>
+                    <li class="tocline"><a href="#kbd_disabled_controls" class="tocxref"><span class="secno">5.7 </span>Focusability of disabled controls</a></li>
+                    <li class="tocline"><a href="#kbd_shortcuts" class="tocxref"><span class="secno">5.8 </span>Keyboard Shortcuts</a>
                         <ol class="toc">
-                            <li class="tocline"><a href="#kbd_shortcuts_behavior_design" class="tocxref"><span class="secno">4.8.1 </span>Designing the Scope and Behavior of Keyboard Shortcuts</a>
+                            <li class="tocline"><a href="#kbd_shortcuts_behavior_design" class="tocxref"><span class="secno">5.8.1 </span>Designing the Scope and Behavior of Keyboard Shortcuts</a>
                                 <ol class="toc">
-                                    <li class="tocline"><a href="#kbd_shortcuts_design_basic" class="tocxref"><span class="secno">4.8.1.1 </span>Ensure Basic Access Via Navigation </a></li>
-                                    <li class="tocline"><a href="#kbd_shortcuts_design_choose_behavior" class="tocxref"><span class="secno">4.8.1.2 </span>Choose Appropriate Shortcut Behavior</a></li>
-                                    <li class="tocline"><a href="#kbd_shortcuts_design_where" class="tocxref"><span class="secno">4.8.1.3 </span>Choose Where to Add Shortcuts </a></li>
+                                    <li class="tocline"><a href="#kbd_shortcuts_design_basic" class="tocxref"><span class="secno">5.8.1.1 </span>Ensure Basic Access Via Navigation </a></li>
+                                    <li class="tocline"><a href="#kbd_shortcuts_design_choose_behavior" class="tocxref"><span class="secno">5.8.1.2 </span>Choose Appropriate Shortcut Behavior</a></li>
+                                    <li class="tocline"><a href="#kbd_shortcuts_design_where" class="tocxref"><span class="secno">5.8.1.3 </span>Choose Where to Add Shortcuts </a></li>
                                 </ol>
                             </li>
-                            <li class="tocline"><a href="#kbd_shortcuts_assigning" class="tocxref"><span class="secno">4.8.2 </span>Assigning Keyboard Shortcuts</a>
+                            <li class="tocline"><a href="#kbd_shortcuts_assigning" class="tocxref"><span class="secno">5.8.2 </span>Assigning Keyboard Shortcuts</a>
                                 <ol class="toc">
-                                    <li class="tocline"><a href="#kbd_shortcuts_assignments_opsys_conflicts" class="tocxref"><span class="secno">4.8.2.1 </span>Operating System Key Conflicts</a></li>
-                                    <li class="tocline"><a href="#kbd_shortcuts_assignments_assistivetech_conflicts" class="tocxref"><span class="secno">4.8.2.2 </span>Assistive Technology Key Conflicts</a></li>
-                                    <li class="tocline"><a href="#kbd_shortcuts_assignments_browser_conflicts" class="tocxref"><span class="secno">4.8.2.3 </span>Browser Key Conflicts</a></li>
-                                    <li class="tocline"><a href="#kbd_shortcuts_assignments_intentional_conflicts" class="tocxref"><span class="secno">4.8.2.4 </span>Intentional Key Conflicts</a></li>
+                                    <li class="tocline"><a href="#kbd_shortcuts_assignments_opsys_conflicts" class="tocxref"><span class="secno">5.8.2.1 </span>Operating System Key Conflicts</a></li>
+                                    <li class="tocline"><a href="#kbd_shortcuts_assignments_assistivetech_conflicts" class="tocxref"><span class="secno">5.8.2.2 </span>Assistive Technology Key Conflicts</a></li>
+                                    <li class="tocline"><a href="#kbd_shortcuts_assignments_browser_conflicts" class="tocxref"><span class="secno">5.8.2.3 </span>Browser Key Conflicts</a></li>
+                                    <li class="tocline"><a href="#kbd_shortcuts_assignments_intentional_conflicts" class="tocxref"><span class="secno">5.8.2.4 </span>Intentional Key Conflicts</a></li>
                                 </ol>
                             </li>
-                            <li class="tocline"><a href="#kbd_shortcuts_exposing" class="tocxref"><span class="secno">4.8.3 </span>Exposing and Documenting Keyboard Shortcuts</a></li>
+                            <li class="tocline"><a href="#kbd_shortcuts_exposing" class="tocxref"><span class="secno">5.8.3 </span>Exposing and Documenting Keyboard Shortcuts</a></li>
                         </ol>
                     </li>
                 </ol>
             </li>
-            <li class="tocline"><a href="#gridAndTableProperties" class="tocxref"><span class="secno">5. </span>Grid and Table Properties</a></li>
-            <li class="tocline"><a href="#presentation_role" class="tocxref"><span class="secno">6. </span>Intentionally Hiding Semantics with the <code>presentation</code> Role</a>
+            <li class="tocline"><a href="#gridAndTableProperties" class="tocxref"><span class="secno">6. </span>Grid and Table Properties</a></li>
+            <li class="tocline"><a href="#presentation_role" class="tocxref"><span class="secno">7. </span>Intentionally Hiding Semantics with the <code>presentation</code> Role</a>
                 <ol class="toc">
-                    <li class="tocline"><a href="#presentation_role_effects" class="tocxref"><span class="secno">6.1 </span>
+                    <li class="tocline"><a href="#presentation_role_effects" class="tocxref"><span class="secno">7.1 </span>
         Effects of Role <code>presentation</code>
       </a></li>
-                    <li class="tocline"><a href="#presentation_role_ignored" class="tocxref"><span class="secno">6.2 </span>
+                    <li class="tocline"><a href="#presentation_role_ignored" class="tocxref"><span class="secno">7.2 </span>
         Conditions That Cause Role <code>presentation</code> to be Ignored
       </a></li>
-                    <li class="tocline"><a href="#presentation_role_examples" class="tocxref"><span class="secno">6.3 </span>
+                    <li class="tocline"><a href="#presentation_role_examples" class="tocxref"><span class="secno">7.3 </span>
         Examples Demonstrating Effects of the <code>presentation</code> Role
       </a></li>
                 </ol>
             </li>
-            <li class="tocline"><a href="#children_presentational" class="tocxref"><span class="secno">7. </span>Roles That Automatically Hide Semantics by Making Their Descendants Presentational</a></li>
+            <li class="tocline"><a href="#children_presentational" class="tocxref"><span class="secno">8. </span>Roles That Automatically Hide Semantics by Making Their Descendants Presentational</a></li>
             <li class="tocline"><a href="#appendices" class="tocxref"><span class="secno">A. </span>Appendices</a>
                 <ol class="toc">
                     <li class="tocline"><a href="#ScreenReaderModes" class="tocxref"><span class="secno">A.1 </span>Understanding Screen Reader Document Reading and Application Reading Modes</a></li>
@@ -1136,9 +1143,108 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </p>
     </section>
 
+    <section id="read_me_first" typeof="bibo:Chapter" resource="#read_me_first" property="bibo:hasPart">
+        <!--OddPage-->
+        <h2 id="x2-read-me-first" resource="#x2-read-me-first"><span property="xhv:role" resource="xhv:heading"><span class="secno">2. </span>Read Me First<span class="permalink" typeof="bookmark"><a href="#read_me_first" aria-label="Permalink for 2. Read Me First" title="Permalink for 2. Read Me First" property="url"><span property="title" content="2. Read Me First">§</span></a>
+            </span>
+            </span>
+        </h2>
+        <section id="no_aria_better_bad_aria" typeof="bibo:Chapter" resource="#no_aria_better_bad_aria" property="bibo:hasPart">
+            <h3 id="x2-1-no-aria-is-better-than-bad-aria" resource="#x2-1-no-aria-is-better-than-bad-aria"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.1 </span>No ARIA is better than Bad ARIA<span class="permalink" typeof="bookmark"><a href="#no_aria_better_bad_aria" aria-label="Permalink for 2.1 No ARIA is better than Bad ARIA" title="Permalink for 2.1 No ARIA is better than Bad ARIA" property="url"><span property="title" content="2.1 No ARIA is better than Bad ARIA">§</span></a>
+                </span>
+                </span>
+            </h3>
+            <p>
+                Functionally, ARIA roles, states, and properties are sort of like CSS for assistive technologies. In the case of screen readers, ARIA controls the rendering of the non-visual experience. Incorrect ARIA misrepresents the visual experience, with potentially
+                devastating effects on non-visual experiences.
+            </p>
+            <p>Before using ARIA or any of the guidance in this document, please take time to understand the following two essential principles.</p>
+            <h3 id="principal-1-a-role-is-a-promise">Principal 1: A role is a promise<span class="permalink" typeof="bookmark"><a href="#no_aria_better_bad_aria" aria-label="Permalink for Principal 1: A role is a promise" title="Permalink for Principal 1: A role is a promise" property="url"><span property="title" content="Principal 1: A role is a promise">§</span></a>
+                </span>
+            </h3>
+            <p>This code:</p>
+            <pre aria-busy="false" aria-live="polite" class="hljs xml">
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"button"</span>&gt;</span>Press Me<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+           </pre>
+            <p>
+                Is a promise that the author of that <code>&lt;div&gt;</code> has also incorporated JavaScript that provides the keyboard interactions expected for a button. Unlike HTML input elements, ARIA roles do not cause browsers to provide keyboard
+                behaviors or styling.
+            </p>
+            <p>Using a role without fulfilling the promise of that role is similar to making a "Place Order" button that abandons an order and empties the shopping cart.</p>
+            <p>One of the objectives of this guide is to define expected behaviors for each ARIA role.</p>
+            <h3 id="principle-2-aria-can-both-cloak-and-enhance-creating-both-power-and-danger">Principle 2: ARIA Can Both Cloak and Enhance, Creating Both Power and Danger<span class="permalink" typeof="bookmark"><a href="#no_aria_better_bad_aria" aria-label="Permalink for Principle 2: ARIA Can Both Cloak and Enhance, Creating Both Power and Danger" title="Permalink for Principle 2: ARIA Can Both Cloak and Enhance, Creating Both Power and Danger" property="url"><span property="title" content="Principle 2: ARIA Can Both Cloak and Enhance, Creating Both Power and Danger">§</span></a>
+                </span>
+            </h3>
+            <p>
+                From the perspective of assistive technologies, ARIA gives authors the ability to dress up HTML and SVG elements to describe critical aspects of meaning and purpose that assistive technologies would not otherwise be able to reliably derive. The information
+                assistive technologies need about the meaning and purpose of user interface elements is called accessibility semantics.
+            </p>
+            <p>Some of ARIA is like a dress or cloak; it covers up, or overrides, the original semantics or content.</p>
+            <pre aria-busy="false" aria-live="polite" class="hljs xml">
+        <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"menuitem"</span>&gt;</span>Assistive tech users perceive this element as an item in a menu, not a link.<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">aria-label</span>=<span class="hljs-string">"Assistive tech users perceive this aria-label, not the link text"</span>&gt;</span>Link Text<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+</pre>
+            <p>On the other hand, some uses of ARIA are more like suspenders or belts; they add meaning that provides essential support to the original content.</p>
+            <pre aria-busy="false" aria-live="polite" class="hljs xml">
+        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">aria-pressed</span>=<span class="hljs-string">"false"</span>&gt;</span>Press Me<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+      </pre>
+            <p>
+                This is the power of ARIA. It enables authors to describe nearly any user interface component in ways that assistive technologies can reliably interpret, thus making components accessible to assistive technology users.
+            </p>
+            <p>
+                This is also the danger of ARIA. Authors can inadvertently override accessibility semantics.
+            </p>
+            <pre aria-busy="false" aria-live="polite" class="hljs xml">        
+          <span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"log"</span>&gt;</span>
+            <span class="hljs-comment">&lt;!--
+              Table that assistive technology users will not perceive as a table.
+              The log role tells browser this is a log, not a table.
+            --&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"navigation"</span>&gt;</span>
+            <span class="hljs-comment">&lt;!-- This is a navigation region, not a list. --&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"uri1"</span>&gt;</span>nav link 1<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"uri2"</span>&gt;</span>nav link 2<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
+            <span class="hljs-comment">&lt;!-- ERROR! Previous list items are not in a list! --&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
+        
+      </pre>
+        </section>
+        <section id="browser_and_AT_support" typeof="bibo:Chapter" resource="#browser_and_AT_support" property="bibo:hasPart">
+            <h3 id="x2-2-browser-and-assistive-technology-support" resource="#x2-2-browser-and-assistive-technology-support"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.2 </span>Browser and Assistive Technology Support<span class="permalink" typeof="bookmark"><a href="#browser_and_AT_support" aria-label="Permalink for 2.2 Browser and Assistive Technology Support" title="Permalink for 2.2 Browser and Assistive Technology Support" property="url"><span property="title" content="2.2 Browser and Assistive Technology Support">§</span></a>
+                </span>
+                </span>
+            </h3>
+            <p>
+                This guide illustrates appropriate use of ARIA 1.1 as defined in the ARIA specification. The design patterns, reference examples, and sample code intentionally <strong>do not</strong> implement code that fixes problems caused by gaps in
+                support for ARIA 1.1 in browsers or assistive technologies. This approach enables both browser and assistive technology developers to utilize code in the guide as references for test cases to assess the quality of their support for ARIA
+                1.1.
+            </p>
+            <p>
+                Similarly, JavaScript and CSS in this guide is written to be compatible with the most recent version of Chrome, Firefox, Internet Explorer, and Safari at the time of writing. In particular, some JavaScript and CSS may not function correctly in Internet
+                Explorer version 10 or earlier.
+            </p>
+            <p>
+                In other words, except in cases where the ARIA Working Group and other contributors have overlooked an error, examples that do not function well in a particular browser or with a specific assistive technology are demonstrating a lack of ARIA support and
+                can be referenced in a bug report to its developer.
+            </p>
+        </section>
+        <section id="mobile_and_touch_support" typeof="bibo:Chapter" resource="#mobile_and_touch_support" property="bibo:hasPart">
+            <h3 id="x2-3-mobile-and-touch-support" resource="#x2-3-mobile-and-touch-support"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.3 </span>Mobile and Touch Support<span class="permalink" typeof="bookmark"><a href="#mobile_and_touch_support" aria-label="Permalink for 2.3 Mobile and Touch Support" title="Permalink for 2.3 Mobile and Touch Support" property="url"><span property="title" content="2.3 Mobile and Touch Support">§</span></a>
+                </span>
+                </span>
+            </h3>
+            <p>
+                Currently, this guide does not indicate which examples are compatible with mobile browsers or touch interfaces. While some of the examples include specific features that enhance mobile and touch support, some ARIA features are not supported in any mobile
+                browser. In addition, there is not yet a standardized approach for providing touch interactions that work across mobile browsers.
+            </p>
+            <p>More guidance about touch and mobile support is planned for future releases of the guide.</p>
+        </section>
+    </section>
+
     <section id="aria_ex" typeof="bibo:Chapter" resource="#aria_ex" property="bibo:hasPart">
         <!--OddPage-->
-        <h2 id="x2-design-patterns-and-widgets" resource="#x2-design-patterns-and-widgets"><span property="xhv:role" resource="xhv:heading"><span class="secno">2. </span>Design Patterns and Widgets<span class="permalink" typeof="bookmark"><a href="#aria_ex" aria-label="Permalink for 2. Design Patterns and Widgets" title="Permalink for 2. Design Patterns and Widgets" property="url"><span property="title" content="2. Design Patterns and Widgets">§</span></a>
+        <h2 id="x3-design-patterns-and-widgets" resource="#x3-design-patterns-and-widgets"><span property="xhv:role" resource="xhv:heading"><span class="secno">3. </span>Design Patterns and Widgets<span class="permalink" typeof="bookmark"><a href="#aria_ex" aria-label="Permalink for 3. Design Patterns and Widgets" title="Permalink for 3. Design Patterns and Widgets" property="url"><span property="title" content="3. Design Patterns and Widgets">§</span></a>
             </span>
             </span>
         </h2>
@@ -1153,7 +1259,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </div>
 
         <section id="aria_ex_widget" typeof="bibo:Chapter" resource="#aria_ex_widget" property="bibo:hasPart">
-            <h3 id="x2-1-generally-applicable-keyboard-recommendations" resource="#x2-1-generally-applicable-keyboard-recommendations"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.1 </span>Generally Applicable Keyboard Recommendations <span class="permalink" typeof="bookmark"><a href="#aria_ex_widget" aria-label="Permalink for 2.1 Generally Applicable Keyboard Recommendations " title="Permalink for 2.1 Generally Applicable Keyboard Recommendations " property="url"><span property="title" content="2.1 Generally Applicable Keyboard Recommendations ">§</span></a>
+            <h3 id="x3-1-generally-applicable-keyboard-recommendations" resource="#x3-1-generally-applicable-keyboard-recommendations"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.1 </span>Generally Applicable Keyboard Recommendations <span class="permalink" typeof="bookmark"><a href="#aria_ex_widget" aria-label="Permalink for 3.1 Generally Applicable Keyboard Recommendations " title="Permalink for 3.1 Generally Applicable Keyboard Recommendations " property="url"><span property="title" content="3.1 Generally Applicable Keyboard Recommendations ">§</span></a>
                 </span>
                 </span>
             </h3>
@@ -1169,7 +1275,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </section>
 
         <section class="widget" id="accordion" typeof="bibo:Chapter" resource="#accordion" property="bibo:hasPart">
-            <h3 id="x2-2-accordion-sections-with-show-hide-functionality" resource="#x2-2-accordion-sections-with-show-hide-functionality"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.2 </span>Accordion (Sections With Show/Hide Functionality)<span class="permalink" typeof="bookmark"><a href="#accordion" aria-label="Permalink for 2.2 Accordion (Sections With Show/Hide Functionality)" title="Permalink for 2.2 Accordion (Sections With Show/Hide Functionality)" property="url"><span property="title" content="2.2 Accordion (Sections With Show/Hide Functionality)">§</span></a>
+            <h3 id="x3-2-accordion-sections-with-show-hide-functionality" resource="#x3-2-accordion-sections-with-show-hide-functionality"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.2 </span>Accordion (Sections With Show/Hide Functionality)<span class="permalink" typeof="bookmark"><a href="#accordion" aria-label="Permalink for 3.2 Accordion (Sections With Show/Hide Functionality)" title="Permalink for 3.2 Accordion (Sections With Show/Hide Functionality)" property="url"><span property="title" content="3.2 Accordion (Sections With Show/Hide Functionality)">§</span></a>
                 </span>
                 </span>
             </h3>
@@ -1283,7 +1389,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </section>
 
         <section class="widget" id="alert" typeof="bibo:Chapter" resource="#alert" property="bibo:hasPart">
-            <h3 id="x2-3-alert" resource="#x2-3-alert"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.3 </span>Alert<span class="permalink" typeof="bookmark"><a href="#alert" aria-label="Permalink for 2.3 Alert" title="Permalink for 2.3 Alert" property="url"><span property="title" content="2.3 Alert">§</span></a>
+            <h3 id="x3-3-alert" resource="#x3-3-alert"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.3 </span>Alert<span class="permalink" typeof="bookmark"><a href="#alert" aria-label="Permalink for 3.3 Alert" title="Permalink for 3.3 Alert" property="url"><span property="title" content="3.3 Alert">§</span></a>
                 </span>
                 </span>
             </h3>
@@ -1328,7 +1434,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </section>
 
         <section class="widget" id="alertdialog" typeof="bibo:Chapter" resource="#alertdialog" property="bibo:hasPart">
-            <h3 id="x2-4-alert-and-message-dialogs" resource="#x2-4-alert-and-message-dialogs"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.4 </span>Alert and Message Dialogs<span class="permalink" typeof="bookmark"><a href="#alertdialog" aria-label="Permalink for 2.4 Alert and Message Dialogs" title="Permalink for 2.4 Alert and Message Dialogs" property="url"><span property="title" content="2.4 Alert and Message Dialogs">§</span></a>
+            <h3 id="x3-4-alert-and-message-dialogs" resource="#x3-4-alert-and-message-dialogs"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.4 </span>Alert and Message Dialogs<span class="permalink" typeof="bookmark"><a href="#alertdialog" aria-label="Permalink for 3.4 Alert and Message Dialogs" title="Permalink for 3.4 Alert and Message Dialogs" property="url"><span property="title" content="3.4 Alert and Message Dialogs">§</span></a>
                 </span>
                 </span>
             </h3>
@@ -1387,7 +1493,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </section>
 
         <section class="widget" id="breadcrumb" typeof="bibo:Chapter" resource="#breadcrumb" property="bibo:hasPart">
-            <h3 class="widget-name" id="x2-5-breadcrumb" resource="#x2-5-breadcrumb"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.5 </span>Breadcrumb<span class="permalink" typeof="bookmark"><a href="#breadcrumb" aria-label="Permalink for 2.5 Breadcrumb" title="Permalink for 2.5 Breadcrumb" property="url"><span property="title" content="2.5 Breadcrumb">§</span></a>
+            <h3 class="widget-name" id="x3-5-breadcrumb" resource="#x3-5-breadcrumb"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.5 </span>Breadcrumb<span class="permalink" typeof="bookmark"><a href="#breadcrumb" aria-label="Permalink for 3.5 Breadcrumb" title="Permalink for 3.5 Breadcrumb" property="url"><span property="title" content="3.5 Breadcrumb">§</span></a>
                 </span>
                 </span>
             </h3>
@@ -1428,7 +1534,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </section>
 
         <section class="widget" id="button" typeof="bibo:Chapter" resource="#button" property="bibo:hasPart">
-            <h3 id="x2-6-button" resource="#x2-6-button"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.6 </span>Button<span class="permalink" typeof="bookmark"><a href="#button" aria-label="Permalink for 2.6 Button" title="Permalink for 2.6 Button" property="url"><span property="title" content="2.6 Button">§</span></a>
+            <h3 id="x3-6-button" resource="#x3-6-button"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.6 </span>Button<span class="permalink" typeof="bookmark"><a href="#button" aria-label="Permalink for 3.6 Button" title="Permalink for 3.6 Button" property="url"><span property="title" content="3.6 Button">§</span></a>
                 </span>
                 </span>
             </h3>
@@ -1519,7 +1625,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </section>
 
         <section class="widget" id="checkbox" typeof="bibo:Chapter" resource="#checkbox" property="bibo:hasPart">
-            <h3 id="x2-7-checkbox" resource="#x2-7-checkbox"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.7 </span>Checkbox<span class="permalink" typeof="bookmark"><a href="#checkbox" aria-label="Permalink for 2.7 Checkbox" title="Permalink for 2.7 Checkbox" property="url"><span property="title" content="2.7 Checkbox">§</span></a>
+            <h3 id="x3-7-checkbox" resource="#x3-7-checkbox"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.7 </span>Checkbox<span class="permalink" typeof="bookmark"><a href="#checkbox" aria-label="Permalink for 3.7 Checkbox" title="Permalink for 3.7 Checkbox" property="url"><span property="title" content="3.7 Checkbox">§</span></a>
                 </span>
                 </span>
             </h3>
@@ -1590,7 +1696,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </section>
 
         <section class="widget" id="combobox" typeof="bibo:Chapter" resource="#combobox" property="bibo:hasPart">
-            <h3 id="x2-8-combo-box" resource="#x2-8-combo-box"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.8 </span>Combo Box<span class="permalink" typeof="bookmark"><a href="#combobox" aria-label="Permalink for 2.8 Combo Box" title="Permalink for 2.8 Combo Box" property="url"><span property="title" content="2.8 Combo Box">§</span></a>
+            <h3 id="x3-8-combo-box" resource="#x3-8-combo-box"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.8 </span>Combo Box<span class="permalink" typeof="bookmark"><a href="#combobox" aria-label="Permalink for 3.8 Combo Box" title="Permalink for 3.8 Combo Box" property="url"><span property="title" content="3.8 Combo Box">§</span></a>
                 </span>
                 </span>
             </h3>
@@ -1971,7 +2077,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </section>
 
         <section class="widget" id="dialog_modal" typeof="bibo:Chapter" resource="#dialog_modal" property="bibo:hasPart">
-            <h3 id="x2-9-dialog-modal" resource="#x2-9-dialog-modal"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.9 </span>Dialog (Modal)<span class="permalink" typeof="bookmark"><a href="#dialog_modal" aria-label="Permalink for 2.9 Dialog (Modal)" title="Permalink for 2.9 Dialog (Modal)" property="url"><span property="title" content="2.9 Dialog (Modal)">§</span></a>
+            <h3 id="x3-9-dialog-modal" resource="#x3-9-dialog-modal"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.9 </span>Dialog (Modal)<span class="permalink" typeof="bookmark"><a href="#dialog_modal" aria-label="Permalink for 3.9 Dialog (Modal)" title="Permalink for 3.9 Dialog (Modal)" property="url"><span property="title" content="3.9 Dialog (Modal)">§</span></a>
                 </span>
                 </span>
             </h3>
@@ -2106,7 +2212,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </section>
 
         <section class="widget" id="dialog_nonmodal" typeof="bibo:Chapter" resource="#dialog_nonmodal" property="bibo:hasPart">
-            <h3 id="x2-10-dialog-non-modal" resource="#x2-10-dialog-non-modal"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.10 </span>Dialog (Non-Modal)<span class="permalink" typeof="bookmark"><a href="#dialog_nonmodal" aria-label="Permalink for 2.10 Dialog (Non-Modal)" title="Permalink for 2.10 Dialog (Non-Modal)" property="url"><span property="title" content="2.10 Dialog (Non-Modal)">§</span></a>
+            <h3 id="x3-10-dialog-non-modal" resource="#x3-10-dialog-non-modal"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.10 </span>Dialog (Non-Modal)<span class="permalink" typeof="bookmark"><a href="#dialog_nonmodal" aria-label="Permalink for 3.10 Dialog (Non-Modal)" title="Permalink for 3.10 Dialog (Non-Modal)" property="url"><span property="title" content="3.10 Dialog (Non-Modal)">§</span></a>
                 </span>
                 </span>
             </h3>
@@ -2114,7 +2220,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </section>
 
         <section class="widget" id="disclosure" typeof="bibo:Chapter" resource="#disclosure" property="bibo:hasPart">
-            <h3 id="x2-11-disclosure-show-hide" resource="#x2-11-disclosure-show-hide"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.11 </span>Disclosure (Show/Hide)<span class="permalink" typeof="bookmark"><a href="#disclosure" aria-label="Permalink for 2.11 Disclosure (Show/Hide)" title="Permalink for 2.11 Disclosure (Show/Hide)" property="url"><span property="title" content="2.11 Disclosure (Show/Hide)">§</span></a>
+            <h3 id="x3-11-disclosure-show-hide" resource="#x3-11-disclosure-show-hide"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.11 </span>Disclosure (Show/Hide)<span class="permalink" typeof="bookmark"><a href="#disclosure" aria-label="Permalink for 3.11 Disclosure (Show/Hide)" title="Permalink for 3.11 Disclosure (Show/Hide)" property="url"><span property="title" content="3.11 Disclosure (Show/Hide)">§</span></a>
                 </span>
                 </span>
             </h3>
@@ -2161,7 +2267,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </section>
 
         <section class="widget" id="feed" typeof="bibo:Chapter" resource="#feed" property="bibo:hasPart">
-            <h3 class="widget-name" id="x2-12-feed" resource="#x2-12-feed"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.12 </span>Feed<span class="permalink" typeof="bookmark"><a href="#feed" aria-label="Permalink for 2.12 Feed" title="Permalink for 2.12 Feed" property="url"><span property="title" content="2.12 Feed">§</span></a>
+            <h3 class="widget-name" id="x3-12-feed" resource="#x3-12-feed"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.12 </span>Feed<span class="permalink" typeof="bookmark"><a href="#feed" aria-label="Permalink for 3.12 Feed" title="Permalink for 3.12 Feed" property="url"><span property="title" content="3.12 Feed">§</span></a>
                 </span>
                 </span>
             </h3>
@@ -2301,7 +2407,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </section>
 
         <section class="widget" id="grid" typeof="bibo:Chapter" resource="#grid" property="bibo:hasPart">
-            <h3 id="x2-13-grids-interactive-tabular-data-and-layout-containers" resource="#x2-13-grids-interactive-tabular-data-and-layout-containers"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.13 </span>Grids : Interactive Tabular Data and Layout Containers<span class="permalink" typeof="bookmark"><a href="#grid" aria-label="Permalink for 2.13 Grids : Interactive Tabular Data and Layout Containers" title="Permalink for 2.13 Grids : Interactive Tabular Data and Layout Containers" property="url"><span property="title" content="2.13 Grids : Interactive Tabular Data and Layout Containers">§</span></a>
+            <h3 id="x3-13-grids-interactive-tabular-data-and-layout-containers" resource="#x3-13-grids-interactive-tabular-data-and-layout-containers"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.13 </span>Grids : Interactive Tabular Data and Layout Containers<span class="permalink" typeof="bookmark"><a href="#grid" aria-label="Permalink for 3.13 Grids : Interactive Tabular Data and Layout Containers" title="Permalink for 3.13 Grids : Interactive Tabular Data and Layout Containers" property="url"><span property="title" content="3.13 Grids : Interactive Tabular Data and Layout Containers">§</span></a>
                 </span>
                 </span>
             </h3>
@@ -2693,7 +2799,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </section>
 
         <section class="widget" id="link" typeof="bibo:Chapter" resource="#link" property="bibo:hasPart">
-            <h3 id="x2-14-link" resource="#x2-14-link"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.14 </span>Link<span class="permalink" typeof="bookmark"><a href="#link" aria-label="Permalink for 2.14 Link" title="Permalink for 2.14 Link" property="url"><span property="title" content="2.14 Link">§</span></a>
+            <h3 id="x3-14-link" resource="#x3-14-link"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.14 </span>Link<span class="permalink" typeof="bookmark"><a href="#link" aria-label="Permalink for 3.14 Link" title="Permalink for 3.14 Link" property="url"><span property="title" content="3.14 Link">§</span></a>
                 </span>
                 </span>
             </h3>
@@ -2741,7 +2847,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </section>
 
         <section class="widget" id="Listbox" typeof="bibo:Chapter" resource="#Listbox" property="bibo:hasPart">
-            <h3 id="x2-15-listbox" resource="#x2-15-listbox"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.15 </span>Listbox<span class="permalink" typeof="bookmark"><a href="#Listbox" aria-label="Permalink for 2.15 Listbox" title="Permalink for 2.15 Listbox" property="url"><span property="title" content="2.15 Listbox">§</span></a>
+            <h3 id="x3-15-listbox" resource="#x3-15-listbox"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.15 </span>Listbox<span class="permalink" typeof="bookmark"><a href="#Listbox" aria-label="Permalink for 3.15 Listbox" title="Permalink for 3.15 Listbox" property="url"><span property="title" content="3.15 Listbox">§</span></a>
                 </span>
                 </span>
             </h3>
@@ -2890,7 +2996,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </section>
 
         <section class="widget" id="menu" typeof="bibo:Chapter" resource="#menu" property="bibo:hasPart">
-            <h3 id="x2-16-menu-or-menu-bar" resource="#x2-16-menu-or-menu-bar"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.16 </span>Menu or Menu bar<span class="permalink" typeof="bookmark"><a href="#menu" aria-label="Permalink for 2.16 Menu or Menu bar" title="Permalink for 2.16 Menu or Menu bar" property="url"><span property="title" content="2.16 Menu or Menu bar">§</span></a>
+            <h3 id="x3-16-menu-or-menu-bar" resource="#x3-16-menu-or-menu-bar"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.16 </span>Menu or Menu bar<span class="permalink" typeof="bookmark"><a href="#menu" aria-label="Permalink for 3.16 Menu or Menu bar" title="Permalink for 3.16 Menu or Menu bar" property="url"><span property="title" content="3.16 Menu or Menu bar">§</span></a>
                 </span>
                 </span>
             </h3>
@@ -2939,7 +3045,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                 </ol>
                 <ul>
                     <li>
-                        When a <code>menu</code> opens, or when a <code>menubar</code> receives focus, keyboard focus is placed on the first item. All items are focusable as described in <a href="#kbd_general_within" class="sec-ref"><span class="secno">4.6</span> <span class="sec-title"> Keyboard Navigation Inside Components</span></a>.
+                        When a <code>menu</code> opens, or when a <code>menubar</code> receives focus, keyboard focus is placed on the first item. All items are focusable as described in <a href="#kbd_general_within" class="sec-ref"><span class="secno">5.6</span> <span class="sec-title"> Keyboard Navigation Inside Components</span></a>.
                     </li>
                     <li><kbd>Enter</kbd>:
                         <ul>
@@ -3054,7 +3160,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                         the child menu is visible.
                         <strong>(See note below regarding HTML validation.)</strong>
                     </li>
-                    <li>One of the following approaches is used to enable scripts to move focus among items in a menu as described in <a href="#kbd_general_within" class="sec-ref"><span class="secno">4.6</span> <span class="sec-title"> Keyboard Navigation Inside Components</span></a>:
+                    <li>One of the following approaches is used to enable scripts to move focus among items in a menu as described in <a href="#kbd_general_within" class="sec-ref"><span class="secno">5.6</span> <span class="sec-title"> Keyboard Navigation Inside Components</span></a>:
                         <ul>
                             <li>The menu container has <code>tabindex</code> set to <code>-1</code> or <code>0</code> and <a href="https://w3c.github.io/aria/aria/aria.html#aria-activedescendant" class="property-reference">aria-activedescendant</a> set to
                                 the ID of the focused item. </li>
@@ -3093,7 +3199,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </section>
 
         <section class="widget" id="menubutton" typeof="bibo:Chapter" resource="#menubutton" property="bibo:hasPart">
-            <h3 id="x2-17-menu-button" resource="#x2-17-menu-button"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.17 </span>Menu Button<span class="permalink" typeof="bookmark"><a href="#menubutton" aria-label="Permalink for 2.17 Menu Button" title="Permalink for 2.17 Menu Button" property="url"><span property="title" content="2.17 Menu Button">§</span></a>
+            <h3 id="x3-17-menu-button" resource="#x3-17-menu-button"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.17 </span>Menu Button<span class="permalink" typeof="bookmark"><a href="#menubutton" aria-label="Permalink for 3.17 Menu Button" title="Permalink for 3.17 Menu Button" property="url"><span property="title" content="3.17 Menu Button">§</span></a>
                 </span>
                 </span>
             </h3>
@@ -3126,7 +3232,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                             <li>(Optional) <kbd>Up Arrow</kbd>: opens the menu and moves focus to the last menu item.</li>
                         </ul>
                     </li>
-                    <li>The keyboard behaviors needed after the menu is open are described in <a href="#menu" class="sec-ref"><span class="secno">2.16</span> <span class="sec-title">Menu or Menu bar</span></a>.</li>
+                    <li>The keyboard behaviors needed after the menu is open are described in <a href="#menu" class="sec-ref"><span class="secno">3.16</span> <span class="sec-title">Menu or Menu bar</span></a>.</li>
                 </ul>
             </section>
 
@@ -3151,13 +3257,13 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                         Optionally, the element with role <code>button</code> has a value specified for
                         <a href="https://w3c.github.io/aria/aria/aria.html#aria-controls" class="property-reference">aria-controls</a> that refers to the element with role <code>menu</code>.
                     </li>
-                    <li>Additional roles, states, and properties needed for the menu element are described in <a href="#menu" class="sec-ref"><span class="secno">2.16</span> <span class="sec-title">Menu or Menu bar</span></a>.</li>
+                    <li>Additional roles, states, and properties needed for the menu element are described in <a href="#menu" class="sec-ref"><span class="secno">3.16</span> <span class="sec-title">Menu or Menu bar</span></a>.</li>
                 </ul>
             </section>
         </section>
 
         <section class="widget" id="radiobutton" typeof="bibo:Chapter" resource="#radiobutton" property="bibo:hasPart">
-            <h3 id="x2-18-radio-group" resource="#x2-18-radio-group"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.18 </span>Radio Group<span class="permalink" typeof="bookmark"><a href="#radiobutton" aria-label="Permalink for 2.18 Radio Group" title="Permalink for 2.18 Radio Group" property="url"><span property="title" content="2.18 Radio Group">§</span></a>
+            <h3 id="x3-18-radio-group" resource="#x3-18-radio-group"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.18 </span>Radio Group<span class="permalink" typeof="bookmark"><a href="#radiobutton" aria-label="Permalink for 3.18 Radio Group" title="Permalink for 3.18 Radio Group" property="url"><span property="title" content="3.18 Radio Group">§</span></a>
                 </span>
                 </span>
             </h3>
@@ -3253,7 +3359,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </section>
 
         <section class="widget" id="slider" typeof="bibo:Chapter" resource="#slider" property="bibo:hasPart">
-            <h3 id="x2-19-slider" resource="#x2-19-slider"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.19 </span>Slider<span class="permalink" typeof="bookmark"><a href="#slider" aria-label="Permalink for 2.19 Slider" title="Permalink for 2.19 Slider" property="url"><span property="title" content="2.19 Slider">§</span></a>
+            <h3 id="x3-19-slider" resource="#x3-19-slider"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.19 </span>Slider<span class="permalink" typeof="bookmark"><a href="#slider" aria-label="Permalink for 3.19 Slider" title="Permalink for 3.19 Slider" property="url"><span property="title" content="3.19 Slider">§</span></a>
                 </span>
                 </span>
             </h3>
@@ -3322,7 +3428,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </section>
 
         <section class="widget" id="slidertwothumb" typeof="bibo:Chapter" resource="#slidertwothumb" property="bibo:hasPart">
-            <h3 id="x2-20-slider-multi-thumb" resource="#x2-20-slider-multi-thumb"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.20 </span>Slider (Multi-Thumb)<span class="permalink" typeof="bookmark"><a href="#slidertwothumb" aria-label="Permalink for 2.20 Slider (Multi-Thumb)" title="Permalink for 2.20 Slider (Multi-Thumb)" property="url"><span property="title" content="2.20 Slider (Multi-Thumb)">§</span></a>
+            <h3 id="x3-20-slider-multi-thumb" resource="#x3-20-slider-multi-thumb"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.20 </span>Slider (Multi-Thumb)<span class="permalink" typeof="bookmark"><a href="#slidertwothumb" aria-label="Permalink for 3.20 Slider (Multi-Thumb)" title="Permalink for 3.20 Slider (Multi-Thumb)" property="url"><span property="title" content="3.20 Slider (Multi-Thumb)">§</span></a>
                 </span>
                 </span>
             </h3>
@@ -3389,7 +3495,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </section>
 
         <section class="widget" id="spinbutton" typeof="bibo:Chapter" resource="#spinbutton" property="bibo:hasPart">
-            <h3 id="x2-21-spinbutton" resource="#x2-21-spinbutton"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.21 </span>Spinbutton<span class="permalink" typeof="bookmark"><a href="#spinbutton" aria-label="Permalink for 2.21 Spinbutton" title="Permalink for 2.21 Spinbutton" property="url"><span property="title" content="2.21 Spinbutton">§</span></a>
+            <h3 id="x3-21-spinbutton" resource="#x3-21-spinbutton"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.21 </span>Spinbutton<span class="permalink" typeof="bookmark"><a href="#spinbutton" aria-label="Permalink for 3.21 Spinbutton" title="Permalink for 3.21 Spinbutton" property="url"><span property="title" content="3.21 Spinbutton">§</span></a>
                 </span>
                 </span>
             </h3>
@@ -3473,7 +3579,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </section>
 
         <section class="widget" id="table" typeof="bibo:Chapter" resource="#table" property="bibo:hasPart">
-            <h3 id="x2-22-table" resource="#x2-22-table"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.22 </span>Table<span class="permalink" typeof="bookmark"><a href="#table" aria-label="Permalink for 2.22 Table" title="Permalink for 2.22 Table" property="url"><span property="title" content="2.22 Table">§</span></a>
+            <h3 id="x3-22-table" resource="#x3-22-table"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.22 </span>Table<span class="permalink" typeof="bookmark"><a href="#table" aria-label="Permalink for 3.22 Table" title="Permalink for 3.22 Table" property="url"><span property="title" content="3.22 Table">§</span></a>
                 </span>
                 </span>
             </h3>
@@ -3488,7 +3594,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </section>
 
         <section class="widget" id="tabpanel" typeof="bibo:Chapter" resource="#tabpanel" property="bibo:hasPart">
-            <h3 id="x2-23-tabs" resource="#x2-23-tabs"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.23 </span>Tabs<span class="permalink" typeof="bookmark"><a href="#tabpanel" aria-label="Permalink for 2.23 Tabs" title="Permalink for 2.23 Tabs" property="url"><span property="title" content="2.23 Tabs">§</span></a>
+            <h3 id="x3-23-tabs" resource="#x3-23-tabs"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.23 </span>Tabs<span class="permalink" typeof="bookmark"><a href="#tabpanel" aria-label="Permalink for 3.23 Tabs" title="Permalink for 3.23 Tabs" property="url"><span property="title" content="3.23 Tabs">§</span></a>
                 </span>
                 </span>
             </h3>
@@ -3562,7 +3668,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                     <ol class="">
                         <li>
                             It is recommended that tabs activate automatically when they receive focus as long as their associated tab panels are displayed without noticeable latency. This typically requires tab panel content to be preloaded. Otherwise, automatic activation slows
-                            focus movement, which significantly hampers users' ability to navigate efficiently across the tab list. For additional guidance, see <a href="#kbd_selection_follows_focus" class="sec-ref"><span class="secno">4.4</span> <span class="sec-title">Deciding When to Make Selection Automatically Follow Focus</span></a>.
+                            focus movement, which significantly hampers users' ability to navigate efficiently across the tab list. For additional guidance, see <a href="#kbd_selection_follows_focus" class="sec-ref"><span class="secno">5.4</span> <span class="sec-title">Deciding When to Make Selection Automatically Follow Focus</span></a>.
                         </li>
                         <li>
                             If the tabs in a tab list are arranged vertically:
@@ -3599,7 +3705,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </section>
 
         <section class="widget" id="toolbar" typeof="bibo:Chapter" resource="#toolbar" property="bibo:hasPart">
-            <h3 id="x2-24-toolbar" resource="#x2-24-toolbar"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.24 </span>Toolbar<span class="permalink" typeof="bookmark"><a href="#toolbar" aria-label="Permalink for 2.24 Toolbar" title="Permalink for 2.24 Toolbar" property="url"><span property="title" content="2.24 Toolbar">§</span></a>
+            <h3 id="x3-24-toolbar" resource="#x3-24-toolbar"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.24 </span>Toolbar<span class="permalink" typeof="bookmark"><a href="#toolbar" aria-label="Permalink for 3.24 Toolbar" title="Permalink for 3.24 Toolbar" property="url"><span property="title" content="3.24 Toolbar">§</span></a>
                 </span>
                 </span>
             </h3>
@@ -3650,7 +3756,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                         </li>
                         <li>
                             Typically, disabled elements are not focusable when navigating with a keyboard. However, in circumstances where discoverability of a function is crucial, it may be helpful if disabled controls are focusable so screen reader users are more likely to be
-                            aware of their presence. For additional guidance, see <a href="#kbd_disabled_controls" class="sec-ref"><span class="secno">4.7</span> <span class="sec-title">Focusability of disabled controls</span></a>.
+                            aware of their presence. For additional guidance, see <a href="#kbd_disabled_controls" class="sec-ref"><span class="secno">5.7</span> <span class="sec-title">Focusability of disabled controls</span></a>.
                         </li>
                         <li>In applications where quick access to a toolbar is important, such as accessing an editor's toolbar from its text area, a documented shortcut key for moving focus from the relevant context to its corresponding toolbar is recommended.</li>
                     </ol>
@@ -3675,7 +3781,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </section>
 
         <section class="widget" id="tooltip" typeof="bibo:Chapter" resource="#tooltip" property="bibo:hasPart">
-            <h3 id="x2-25-tooltip-widget" resource="#x2-25-tooltip-widget"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.25 </span>Tooltip Widget<span class="permalink" typeof="bookmark"><a href="#tooltip" aria-label="Permalink for 2.25 Tooltip Widget" title="Permalink for 2.25 Tooltip Widget" property="url"><span property="title" content="2.25 Tooltip Widget">§</span></a>
+            <h3 id="x3-25-tooltip-widget" resource="#x3-25-tooltip-widget"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.25 </span>Tooltip Widget<span class="permalink" typeof="bookmark"><a href="#tooltip" aria-label="Permalink for 3.25 Tooltip Widget" title="Permalink for 3.25 Tooltip Widget" property="url"><span property="title" content="3.25 Tooltip Widget">§</span></a>
                 </span>
                 </span>
             </h3>
@@ -3729,7 +3835,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </section>
 
         <section class="widget" id="TreeView" typeof="bibo:Chapter" resource="#TreeView" property="bibo:hasPart">
-            <h3 id="x2-26-tree-view" resource="#x2-26-tree-view"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.26 </span>Tree View<span class="permalink" typeof="bookmark"><a href="#TreeView" aria-label="Permalink for 2.26 Tree View" title="Permalink for 2.26 Tree View" property="url"><span property="title" content="2.26 Tree View">§</span></a>
+            <h3 id="x3-26-tree-view" resource="#x3-26-tree-view"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.26 </span>Tree View<span class="permalink" typeof="bookmark"><a href="#TreeView" aria-label="Permalink for 3.26 Tree View" title="Permalink for 3.26 Tree View" property="url"><span property="title" content="3.26 Tree View">§</span></a>
                 </span>
                 </span>
             </h3>
@@ -3930,7 +4036,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </section>
 
         <section class="widget" id="windowsplitter" typeof="bibo:Chapter" resource="#windowsplitter" property="bibo:hasPart">
-            <h3 id="x2-27-window-splitter" resource="#x2-27-window-splitter"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.27 </span>Window Splitter<span class="permalink" typeof="bookmark"><a href="#windowsplitter" aria-label="Permalink for 2.27 Window Splitter" title="Permalink for 2.27 Window Splitter" property="url"><span property="title" content="2.27 Window Splitter">§</span></a>
+            <h3 id="x3-27-window-splitter" resource="#x3-27-window-splitter"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.27 </span>Window Splitter<span class="permalink" typeof="bookmark"><a href="#windowsplitter" aria-label="Permalink for 3.27 Window Splitter" title="Permalink for 3.27 Window Splitter" property="url"><span property="title" content="3.27 Window Splitter">§</span></a>
                 </span>
                 </span>
             </h3>
@@ -4008,7 +4114,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
     <section class="widget" id="aria_landmark" typeof="bibo:Chapter" resource="#aria_landmark" property="bibo:hasPart">
         <!--OddPage-->
-        <h2 id="x3-landmark-regions" resource="#x3-landmark-regions"><span property="xhv:role" resource="xhv:heading"><span class="secno">3. </span>Landmark Regions<span class="permalink" typeof="bookmark"><a href="#aria_landmark" aria-label="Permalink for 3. Landmark Regions" title="Permalink for 3. Landmark Regions" property="url"><span property="title" content="3. Landmark Regions">§</span></a>
+        <h2 id="x4-landmark-regions" resource="#x4-landmark-regions"><span property="xhv:role" resource="xhv:heading"><span class="secno">4. </span>Landmark Regions<span class="permalink" typeof="bookmark"><a href="#aria_landmark" aria-label="Permalink for 4. Landmark Regions" title="Permalink for 4. Landmark Regions" property="url"><span property="title" content="4. Landmark Regions">§</span></a>
             </span>
             </span>
         </h2>
@@ -4020,7 +4126,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             This section explains how HTML5 sectioning elements and ARIA landmark roles are used to make it easy for assistive technology users to understand the meaning of the layout of a page.
         </p>
         <section id="html5-sectioning-elements" typeof="bibo:Chapter" resource="#html5-sectioning-elements" property="bibo:hasPart">
-            <h3 id="x3-1-html5-sectioning-elements" resource="#x3-1-html5-sectioning-elements"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.1 </span>HTML5 Sectioning Elements<span class="permalink" typeof="bookmark"><a href="#html5-sectioning-elements" aria-label="Permalink for 3.1 HTML5 Sectioning Elements" title="Permalink for 3.1 HTML5 Sectioning Elements" property="url"><span property="title" content="3.1 HTML5 Sectioning Elements">§</span></a>
+            <h3 id="x4-1-html5-sectioning-elements" resource="#x4-1-html5-sectioning-elements"><span property="xhv:role" resource="xhv:heading"><span class="secno">4.1 </span>HTML5 Sectioning Elements<span class="permalink" typeof="bookmark"><a href="#html5-sectioning-elements" aria-label="Permalink for 4.1 HTML5 Sectioning Elements" title="Permalink for 4.1 HTML5 Sectioning Elements" property="url"><span property="title" content="4.1 HTML5 Sectioning Elements">§</span></a>
                 </span>
                 </span>
             </h3>
@@ -4078,7 +4184,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             </table>
         </section>
         <section id="general-principles-of-landmark-design" typeof="bibo:Chapter" resource="#general-principles-of-landmark-design" property="bibo:hasPart">
-            <h3 id="x3-2-general-principles-of-landmark-design" resource="#x3-2-general-principles-of-landmark-design"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.2 </span>General Principles of Landmark Design<span class="permalink" typeof="bookmark"><a href="#general-principles-of-landmark-design" aria-label="Permalink for 3.2 General Principles of Landmark Design" title="Permalink for 3.2 General Principles of Landmark Design" property="url"><span property="title" content="3.2 General Principles of Landmark Design">§</span></a>
+            <h3 id="x4-2-general-principles-of-landmark-design" resource="#x4-2-general-principles-of-landmark-design"><span property="xhv:role" resource="xhv:heading"><span class="secno">4.2 </span>General Principles of Landmark Design<span class="permalink" typeof="bookmark"><a href="#general-principles-of-landmark-design" aria-label="Permalink for 4.2 General Principles of Landmark Design" title="Permalink for 4.2 General Principles of Landmark Design" property="url"><span property="title" content="4.2 General Principles of Landmark Design">§</span></a>
                 </span>
                 </span>
             </h3>
@@ -4124,13 +4230,13 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </section>
 
         <section id="landmark-roles" typeof="bibo:Chapter" resource="#landmark-roles" property="bibo:hasPart">
-            <h3 id="x3-3-landmark-roles" resource="#x3-3-landmark-roles"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.3 </span>Landmark Roles<span class="permalink" typeof="bookmark"><a href="#landmark-roles" aria-label="Permalink for 3.3 Landmark Roles" title="Permalink for 3.3 Landmark Roles" property="url"><span property="title" content="3.3 Landmark Roles">§</span></a>
+            <h3 id="x4-3-landmark-roles" resource="#x4-3-landmark-roles"><span property="xhv:role" resource="xhv:heading"><span class="secno">4.3 </span>Landmark Roles<span class="permalink" typeof="bookmark"><a href="#landmark-roles" aria-label="Permalink for 4.3 Landmark Roles" title="Permalink for 4.3 Landmark Roles" property="url"><span property="title" content="4.3 Landmark Roles">§</span></a>
                 </span>
                 </span>
             </h3>
 
             <section class="widget" id="aria_lh_banner" typeof="bibo:Chapter" resource="#aria_lh_banner" property="bibo:hasPart">
-                <h4 class="widget-name" id="x3-3-1-banner" resource="#x3-3-1-banner"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.3.1 </span>Banner<span class="permalink" typeof="bookmark"><a href="#aria_lh_banner" aria-label="Permalink for 3.3.1 Banner" title="Permalink for 3.3.1 Banner" property="url"><span property="title" content="3.3.1 Banner">§</span></a>
+                <h4 class="widget-name" id="x4-3-1-banner" resource="#x4-3-1-banner"><span property="xhv:role" resource="xhv:heading"><span class="secno">4.3.1 </span>Banner<span class="permalink" typeof="bookmark"><a href="#aria_lh_banner" aria-label="Permalink for 4.3.1 Banner" title="Permalink for 4.3.1 Banner" property="url"><span property="title" content="4.3.1 Banner">§</span></a>
                     </span>
                     </span>
                 </h4>
@@ -4189,7 +4295,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             </section>
 
             <section id="aria_lh_complementary" typeof="bibo:Chapter" resource="#aria_lh_complementary" property="bibo:hasPart">
-                <h4 class="widget-name" id="x3-3-2-complementary" resource="#x3-3-2-complementary"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.3.2 </span>Complementary<span class="permalink" typeof="bookmark"><a href="#aria_lh_complementary" aria-label="Permalink for 3.3.2 Complementary" title="Permalink for 3.3.2 Complementary" property="url"><span property="title" content="3.3.2 Complementary">§</span></a>
+                <h4 class="widget-name" id="x4-3-2-complementary" resource="#x4-3-2-complementary"><span property="xhv:role" resource="xhv:heading"><span class="secno">4.3.2 </span>Complementary<span class="permalink" typeof="bookmark"><a href="#aria_lh_complementary" aria-label="Permalink for 4.3.2 Complementary" title="Permalink for 4.3.2 Complementary" property="url"><span property="title" content="4.3.2 Complementary">§</span></a>
                     </span>
                     </span>
                 </h4>
@@ -4231,7 +4337,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             </section>
 
             <section id="aria_lh_contentinfo" typeof="bibo:Chapter" resource="#aria_lh_contentinfo" property="bibo:hasPart">
-                <h4 class="widget-name" id="x3-3-3-contentinfo" resource="#x3-3-3-contentinfo"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.3.3 </span>Contentinfo<span class="permalink" typeof="bookmark"><a href="#aria_lh_contentinfo" aria-label="Permalink for 3.3.3 Contentinfo" title="Permalink for 3.3.3 Contentinfo" property="url"><span property="title" content="3.3.3 Contentinfo">§</span></a>
+                <h4 class="widget-name" id="x4-3-3-contentinfo" resource="#x4-3-3-contentinfo"><span property="xhv:role" resource="xhv:heading"><span class="secno">4.3.3 </span>Contentinfo<span class="permalink" typeof="bookmark"><a href="#aria_lh_contentinfo" aria-label="Permalink for 4.3.3 Contentinfo" title="Permalink for 4.3.3 Contentinfo" property="url"><span property="title" content="4.3.3 Contentinfo">§</span></a>
                     </span>
                     </span>
                 </h4>
@@ -4288,7 +4394,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             </section>
 
             <section id="aria_lh_form" typeof="bibo:Chapter" resource="#aria_lh_form" property="bibo:hasPart">
-                <h4 class="widget-name" id="x3-3-4-form" resource="#x3-3-4-form"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.3.4 </span>Form<span class="permalink" typeof="bookmark"><a href="#aria_lh_form" aria-label="Permalink for 3.3.4 Form" title="Permalink for 3.3.4 Form" property="url"><span property="title" content="3.3.4 Form">§</span></a>
+                <h4 class="widget-name" id="x4-3-4-form" resource="#x4-3-4-form"><span property="xhv:role" resource="xhv:heading"><span class="secno">4.3.4 </span>Form<span class="permalink" typeof="bookmark"><a href="#aria_lh_form" aria-label="Permalink for 4.3.4 Form" title="Permalink for 4.3.4 Form" property="url"><span property="title" content="4.3.4 Form">§</span></a>
                     </span>
                     </span>
                 </h4>
@@ -4345,7 +4451,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             </section>
 
             <section id="aria_lh_main" typeof="bibo:Chapter" resource="#aria_lh_main" property="bibo:hasPart">
-                <h4 class="widget-name" id="x3-3-5-main" resource="#x3-3-5-main"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.3.5 </span>Main<span class="permalink" typeof="bookmark"><a href="#aria_lh_main" aria-label="Permalink for 3.3.5 Main" title="Permalink for 3.3.5 Main" property="url"><span property="title" content="3.3.5 Main">§</span></a>
+                <h4 class="widget-name" id="x4-3-5-main" resource="#x4-3-5-main"><span property="xhv:role" resource="xhv:heading"><span class="secno">4.3.5 </span>Main<span class="permalink" typeof="bookmark"><a href="#aria_lh_main" aria-label="Permalink for 4.3.5 Main" title="Permalink for 4.3.5 Main" property="url"><span property="title" content="4.3.5 Main">§</span></a>
                     </span>
                     </span>
                 </h4>
@@ -4388,7 +4494,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             </section>
 
             <section id="aria_lh_navigation" typeof="bibo:Chapter" resource="#aria_lh_navigation" property="bibo:hasPart">
-                <h4 class="widget-name" id="x3-3-6-navigation" resource="#x3-3-6-navigation"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.3.6 </span>Navigation<span class="permalink" typeof="bookmark"><a href="#aria_lh_navigation" aria-label="Permalink for 3.3.6 Navigation" title="Permalink for 3.3.6 Navigation" property="url"><span property="title" content="3.3.6 Navigation">§</span></a>
+                <h4 class="widget-name" id="x4-3-6-navigation" resource="#x4-3-6-navigation"><span property="xhv:role" resource="xhv:heading"><span class="secno">4.3.6 </span>Navigation<span class="permalink" typeof="bookmark"><a href="#aria_lh_navigation" aria-label="Permalink for 4.3.6 Navigation" title="Permalink for 4.3.6 Navigation" property="url"><span property="title" content="4.3.6 Navigation">§</span></a>
                     </span>
                     </span>
                 </h4>
@@ -4428,7 +4534,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             </section>
 
             <section id="aria_lh_region" typeof="bibo:Chapter" resource="#aria_lh_region" property="bibo:hasPart">
-                <h4 class="widget-name" id="x3-3-7-region" resource="#x3-3-7-region"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.3.7 </span>Region<span class="permalink" typeof="bookmark"><a href="#aria_lh_region" aria-label="Permalink for 3.3.7 Region" title="Permalink for 3.3.7 Region" property="url"><span property="title" content="3.3.7 Region">§</span></a>
+                <h4 class="widget-name" id="x4-3-7-region" resource="#x4-3-7-region"><span property="xhv:role" resource="xhv:heading"><span class="secno">4.3.7 </span>Region<span class="permalink" typeof="bookmark"><a href="#aria_lh_region" aria-label="Permalink for 4.3.7 Region" title="Permalink for 4.3.7 Region" property="url"><span property="title" content="4.3.7 Region">§</span></a>
                     </span>
                     </span>
                 </h4>
@@ -4469,7 +4575,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             </section>
 
             <section id="aria_lh_search" typeof="bibo:Chapter" resource="#aria_lh_search" property="bibo:hasPart">
-                <h4 class="widget-name" id="x3-3-8-search" resource="#x3-3-8-search"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.3.8 </span>Search<span class="permalink" typeof="bookmark"><a href="#aria_lh_search" aria-label="Permalink for 3.3.8 Search" title="Permalink for 3.3.8 Search" property="url"><span property="title" content="3.3.8 Search">§</span></a>
+                <h4 class="widget-name" id="x4-3-8-search" resource="#x4-3-8-search"><span property="xhv:role" resource="xhv:heading"><span class="secno">4.3.8 </span>Search<span class="permalink" typeof="bookmark"><a href="#aria_lh_search" aria-label="Permalink for 4.3.8 Search" title="Permalink for 4.3.8 Search" property="url"><span property="title" content="4.3.8 Search">§</span></a>
                     </span>
                     </span>
                 </h4>
@@ -4510,7 +4616,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
     <section id="keyboard" typeof="bibo:Chapter" resource="#keyboard" property="bibo:hasPart">
         <!--OddPage-->
-        <h2 id="x4-developing-a-keyboard-interface" resource="#x4-developing-a-keyboard-interface"><span property="xhv:role" resource="xhv:heading"><span class="secno">4. </span>Developing a Keyboard Interface<span class="permalink" typeof="bookmark"><a href="#keyboard" aria-label="Permalink for 4. Developing a Keyboard Interface" title="Permalink for 4. Developing a Keyboard Interface" property="url"><span property="title" content="4. Developing a Keyboard Interface">§</span></a>
+        <h2 id="x5-developing-a-keyboard-interface" resource="#x5-developing-a-keyboard-interface"><span property="xhv:role" resource="xhv:heading"><span class="secno">5. </span>Developing a Keyboard Interface<span class="permalink" typeof="bookmark"><a href="#keyboard" aria-label="Permalink for 5. Developing a Keyboard Interface" title="Permalink for 5. Developing a Keyboard Interface" property="url"><span property="title" content="5. Developing a Keyboard Interface">§</span></a>
             </span>
             </span>
         </h2>
@@ -4533,7 +4639,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             <li>Assigning and revealing keyboard shortcuts, including guidance on how to avoid problematic conflicts with keyboard commands of assistive technologies, browsers, and operating systems.</li>
         </ol>
         <section id="kbd_generalnav" typeof="bibo:Chapter" resource="#kbd_generalnav" property="bibo:hasPart">
-            <h3 id="x4-1-fundamental-keyboard-navigation-conventions" resource="#x4-1-fundamental-keyboard-navigation-conventions"><span property="xhv:role" resource="xhv:heading"><span class="secno">4.1 </span>Fundamental Keyboard Navigation Conventions<span class="permalink" typeof="bookmark"><a href="#kbd_generalnav" aria-label="Permalink for 4.1 Fundamental Keyboard Navigation Conventions" title="Permalink for 4.1 Fundamental Keyboard Navigation Conventions" property="url"><span property="title" content="4.1 Fundamental Keyboard Navigation Conventions">§</span></a>
+            <h3 id="x5-1-fundamental-keyboard-navigation-conventions" resource="#x5-1-fundamental-keyboard-navigation-conventions"><span property="xhv:role" resource="xhv:heading"><span class="secno">5.1 </span>Fundamental Keyboard Navigation Conventions<span class="permalink" typeof="bookmark"><a href="#kbd_generalnav" aria-label="Permalink for 5.1 Fundamental Keyboard Navigation Conventions" title="Permalink for 5.1 Fundamental Keyboard Navigation Conventions" property="url"><span property="title" content="5.1 Fundamental Keyboard Navigation Conventions">§</span></a>
                 </span>
                 </span>
             </h3>
@@ -4580,7 +4686,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </section>
 
         <section id="kbd_focus_discernable_predictable" typeof="bibo:Chapter" resource="#kbd_focus_discernable_predictable" property="bibo:hasPart">
-            <h3 id="x4-2-discernible-and-predictable-keyboard-focus" resource="#x4-2-discernible-and-predictable-keyboard-focus"><span property="xhv:role" resource="xhv:heading"><span class="secno">4.2 </span>Discernible and Predictable Keyboard Focus<span class="permalink" typeof="bookmark"><a href="#kbd_focus_discernable_predictable" aria-label="Permalink for 4.2 Discernible and Predictable Keyboard Focus" title="Permalink for 4.2 Discernible and Predictable Keyboard Focus" property="url"><span property="title" content="4.2 Discernible and Predictable Keyboard Focus">§</span></a>
+            <h3 id="x5-2-discernible-and-predictable-keyboard-focus" resource="#x5-2-discernible-and-predictable-keyboard-focus"><span property="xhv:role" resource="xhv:heading"><span class="secno">5.2 </span>Discernible and Predictable Keyboard Focus<span class="permalink" typeof="bookmark"><a href="#kbd_focus_discernable_predictable" aria-label="Permalink for 5.2 Discernible and Predictable Keyboard Focus" title="Permalink for 5.2 Discernible and Predictable Keyboard Focus" property="url"><span property="title" content="5.2 Discernible and Predictable Keyboard Focus">§</span></a>
                 </span>
                 </span>
             </h3>
@@ -4596,7 +4702,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                     provided by browsers. If overriding the default, consider:
                     <ul>
                         <li>something about ... Colors and gradients can disappear in high contrast modes.</li>
-                        <li>Users need to be able to easily distinguish between focus and selection as described in <a href="#kbd_focus_vs_selection" class="sec-ref"><span class="secno">4.3</span> <span class="sec-title">Focus VS Selection and the Perception of Dual Focus</span></a>,
+                        <li>Users need to be able to easily distinguish between focus and selection as described in <a href="#kbd_focus_vs_selection" class="sec-ref"><span class="secno">5.3</span> <span class="sec-title">Focus VS Selection and the Perception of Dual Focus</span></a>,
                             especially when a component that contains selected elements does not contain the focus.</li>
                         <li>... other considerations to be added ...</li>
                     </ul>
@@ -4641,7 +4747,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </section>
 
         <section id="kbd_focus_vs_selection" typeof="bibo:Chapter" resource="#kbd_focus_vs_selection" property="bibo:hasPart">
-            <h3 id="x4-3-focus-vs-selection-and-the-perception-of-dual-focus" resource="#x4-3-focus-vs-selection-and-the-perception-of-dual-focus"><span property="xhv:role" resource="xhv:heading"><span class="secno">4.3 </span>Focus VS Selection and the Perception of Dual Focus<span class="permalink" typeof="bookmark"><a href="#kbd_focus_vs_selection" aria-label="Permalink for 4.3 Focus VS Selection and the Perception of Dual Focus" title="Permalink for 4.3 Focus VS Selection and the Perception of Dual Focus" property="url"><span property="title" content="4.3 Focus VS Selection and the Perception of Dual Focus">§</span></a>
+            <h3 id="x5-3-focus-vs-selection-and-the-perception-of-dual-focus" resource="#x5-3-focus-vs-selection-and-the-perception-of-dual-focus"><span property="xhv:role" resource="xhv:heading"><span class="secno">5.3 </span>Focus VS Selection and the Perception of Dual Focus<span class="permalink" typeof="bookmark"><a href="#kbd_focus_vs_selection" aria-label="Permalink for 5.3 Focus VS Selection and the Perception of Dual Focus" title="Permalink for 5.3 Focus VS Selection and the Perception of Dual Focus" property="url"><span property="title" content="5.3 Focus VS Selection and the Perception of Dual Focus">§</span></a>
                 </span>
                 </span>
             </h3>
@@ -4673,7 +4779,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </section>
 
         <section id="kbd_selection_follows_focus" typeof="bibo:Chapter" resource="#kbd_selection_follows_focus" property="bibo:hasPart">
-            <h3 id="x4-4-deciding-when-to-make-selection-automatically-follow-focus" resource="#x4-4-deciding-when-to-make-selection-automatically-follow-focus"><span property="xhv:role" resource="xhv:heading"><span class="secno">4.4 </span>Deciding When to Make Selection Automatically Follow Focus<span class="permalink" typeof="bookmark"><a href="#kbd_selection_follows_focus" aria-label="Permalink for 4.4 Deciding When to Make Selection Automatically Follow Focus" title="Permalink for 4.4 Deciding When to Make Selection Automatically Follow Focus" property="url"><span property="title" content="4.4 Deciding When to Make Selection Automatically Follow Focus">§</span></a>
+            <h3 id="x5-4-deciding-when-to-make-selection-automatically-follow-focus" resource="#x5-4-deciding-when-to-make-selection-automatically-follow-focus"><span property="xhv:role" resource="xhv:heading"><span class="secno">5.4 </span>Deciding When to Make Selection Automatically Follow Focus<span class="permalink" typeof="bookmark"><a href="#kbd_selection_follows_focus" aria-label="Permalink for 5.4 Deciding When to Make Selection Automatically Follow Focus" title="Permalink for 5.4 Deciding When to Make Selection Automatically Follow Focus" property="url"><span property="title" content="5.4 Deciding When to Make Selection Automatically Follow Focus">§</span></a>
                 </span>
                 </span>
             </h3>
@@ -4693,12 +4799,12 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </section>
 
         <section id="kbd_general_between" typeof="bibo:Chapter" resource="#kbd_general_between" property="bibo:hasPart">
-            <h3 id="x4-5-keyboard-navigation-between-components-the-tab-sequence" resource="#x4-5-keyboard-navigation-between-components-the-tab-sequence"><span property="xhv:role" resource="xhv:heading"><span class="secno">4.5 </span>Keyboard Navigation Between Components (The Tab Sequence)<span class="permalink" typeof="bookmark"><a href="#kbd_general_between" aria-label="Permalink for 4.5 Keyboard Navigation Between Components (The Tab Sequence)" title="Permalink for 4.5 Keyboard Navigation Between Components (The Tab Sequence)" property="url"><span property="title" content="4.5 Keyboard Navigation Between Components (The Tab Sequence)">§</span></a>
+            <h3 id="x5-5-keyboard-navigation-between-components-the-tab-sequence" resource="#x5-5-keyboard-navigation-between-components-the-tab-sequence"><span property="xhv:role" resource="xhv:heading"><span class="secno">5.5 </span>Keyboard Navigation Between Components (The Tab Sequence)<span class="permalink" typeof="bookmark"><a href="#kbd_general_between" aria-label="Permalink for 5.5 Keyboard Navigation Between Components (The Tab Sequence)" title="Permalink for 5.5 Keyboard Navigation Between Components (The Tab Sequence)" property="url"><span property="title" content="5.5 Keyboard Navigation Between Components (The Tab Sequence)">§</span></a>
                 </span>
                 </span>
             </h3>
 
-            <p> As explained in section <a href="#kbd_generalnav" class="sec-ref"><span class="secno">4.1</span> <span class="sec-title">Fundamental Keyboard Navigation Conventions</span></a>, all interactive UI components need to be reachable via the keyboard.
+            <p> As explained in section <a href="#kbd_generalnav" class="sec-ref"><span class="secno">5.1</span> <span class="sec-title">Fundamental Keyboard Navigation Conventions</span></a>, all interactive UI components need to be reachable via the keyboard.
                 This is best achieved by either including them in the tab sequence or by making them accessible from a component that is in the tab sequence, e.g., as part of a composite component. This section addresses building and managing the tab
                 sequence, and subsequent sections cover making focusable elements that are contained within components keyboard accessible. </p>
 
@@ -4714,7 +4820,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
             <p>
                 The default order of elements in the tab sequence is the order of elements in the DOM. The DOM order also determines screen reader reading order. It is important to keep the keyboard tab sequence and the screen reader reading order aligned, logical, and
-                predictable as described in <a href="#kbd_focus_discernable_predictable" class="sec-ref"><span class="secno">4.2</span> <span class="sec-title">Discernible and Predictable Keyboard Focus</span></a>. The most robust method
+                predictable as described in <a href="#kbd_focus_discernable_predictable" class="sec-ref"><span class="secno">5.2</span> <span class="sec-title">Discernible and Predictable Keyboard Focus</span></a>. The most robust method
                 of manipulating the order of the tab sequence while also maintaining alignment with the reading order that is currently available in all browsers is rearranging elements in the DOM.
             </p>
 
@@ -4738,15 +4844,15 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </section>
 
         <section id="kbd_general_within" typeof="bibo:Chapter" resource="#kbd_general_within" property="bibo:hasPart">
-            <h3 id="x4-6-keyboard-navigation-inside-components" resource="#x4-6-keyboard-navigation-inside-components"><span property="xhv:role" resource="xhv:heading"><span class="secno">4.6 </span> Keyboard Navigation Inside Components<span class="permalink" typeof="bookmark"><a href="#kbd_general_within" aria-label="Permalink for 4.6  Keyboard Navigation Inside Components" title="Permalink for 4.6  Keyboard Navigation Inside Components" property="url"><span property="title" content="4.6  Keyboard Navigation Inside Components">§</span></a>
+            <h3 id="x5-6-keyboard-navigation-inside-components" resource="#x5-6-keyboard-navigation-inside-components"><span property="xhv:role" resource="xhv:heading"><span class="secno">5.6 </span> Keyboard Navigation Inside Components<span class="permalink" typeof="bookmark"><a href="#kbd_general_within" aria-label="Permalink for 5.6  Keyboard Navigation Inside Components" title="Permalink for 5.6  Keyboard Navigation Inside Components" property="url"><span property="title" content="5.6  Keyboard Navigation Inside Components">§</span></a>
                 </span>
                 </span>
             </h3>
 
             <p>
-                As described in section <a href="#kbd_generalnav" class="sec-ref"><span class="secno">4.1</span> <span class="sec-title">Fundamental Keyboard Navigation Conventions</span></a>, the tab sequence should include only one focusable element
+                As described in section <a href="#kbd_generalnav" class="sec-ref"><span class="secno">5.1</span> <span class="sec-title">Fundamental Keyboard Navigation Conventions</span></a>, the tab sequence should include only one focusable element
                 of a composite UI component. Once a composite contains focus, keys other than <kbd>Tab</kbd> and <kbd>Shift + Tab</kbd> enable the user to move focus among its focusable elements. Authors are free to choose which keys move focus inside
-                of a composite, but they are strongly advised to use the same key bindings as similar components in common GUI operating systems as demonstrated in <a href="#aria_ex" class="sec-ref"><span class="secno">2.</span> <span class="sec-title">Design Patterns and Widgets</span></a>.
+                of a composite, but they are strongly advised to use the same key bindings as similar components in common GUI operating systems as demonstrated in <a href="#aria_ex" class="sec-ref"><span class="secno">3.</span> <span class="sec-title">Design Patterns and Widgets</span></a>.
             </p>
 
             <p> The convention for where focus lands in a composite when it receives focus as a result of a <kbd>Tab</kbd> key event depends on the type of composite. It is typically one of the following. </p>
@@ -4771,7 +4877,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             </p>
 
             <section id="kbd_roving_tabindex" typeof="bibo:Chapter" resource="#kbd_roving_tabindex" property="bibo:hasPart">
-                <h4 id="x4-6-1-managing-focus-within-components-using-a-roving-tabindex" resource="#x4-6-1-managing-focus-within-components-using-a-roving-tabindex"><span property="xhv:role" resource="xhv:heading"><span class="secno">4.6.1 </span>Managing Focus Within Components Using a Roving tabindex<span class="permalink" typeof="bookmark"><a href="#kbd_roving_tabindex" aria-label="Permalink for 4.6.1 Managing Focus Within Components Using a Roving tabindex" title="Permalink for 4.6.1 Managing Focus Within Components Using a Roving tabindex" property="url"><span property="title" content="4.6.1 Managing Focus Within Components Using a Roving tabindex">§</span></a>
+                <h4 id="x5-6-1-managing-focus-within-components-using-a-roving-tabindex" resource="#x5-6-1-managing-focus-within-components-using-a-roving-tabindex"><span property="xhv:role" resource="xhv:heading"><span class="secno">5.6.1 </span>Managing Focus Within Components Using a Roving tabindex<span class="permalink" typeof="bookmark"><a href="#kbd_roving_tabindex" aria-label="Permalink for 5.6.1 Managing Focus Within Components Using a Roving tabindex" title="Permalink for 5.6.1 Managing Focus Within Components Using a Roving tabindex" property="url"><span property="title" content="5.6.1 Managing Focus Within Components Using a Roving tabindex">§</span></a>
                     </span>
                     </span>
                 </h4>
@@ -4805,7 +4911,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             </section>
 
             <section id="kbd_focus_activedescendant" typeof="bibo:Chapter" resource="#kbd_focus_activedescendant" property="bibo:hasPart">
-                <h4 id="x4-6-2-managing-focus-in-composites-using-aria-activedescendant" resource="#x4-6-2-managing-focus-in-composites-using-aria-activedescendant"><span property="xhv:role" resource="xhv:heading"><span class="secno">4.6.2 </span>Managing Focus in Composites Using aria-activedescendant<span class="permalink" typeof="bookmark"><a href="#kbd_focus_activedescendant" aria-label="Permalink for 4.6.2 Managing Focus in Composites Using aria-activedescendant" title="Permalink for 4.6.2 Managing Focus in Composites Using aria-activedescendant" property="url"><span property="title" content="4.6.2 Managing Focus in Composites Using aria-activedescendant">§</span></a>
+                <h4 id="x5-6-2-managing-focus-in-composites-using-aria-activedescendant" resource="#x5-6-2-managing-focus-in-composites-using-aria-activedescendant"><span property="xhv:role" resource="xhv:heading"><span class="secno">5.6.2 </span>Managing Focus in Composites Using aria-activedescendant<span class="permalink" typeof="bookmark"><a href="#kbd_focus_activedescendant" aria-label="Permalink for 5.6.2 Managing Focus in Composites Using aria-activedescendant" title="Permalink for 5.6.2 Managing Focus in Composites Using aria-activedescendant" property="url"><span property="title" content="5.6.2 Managing Focus in Composites Using aria-activedescendant">§</span></a>
                     </span>
                     </span>
                 </h4>
@@ -4824,7 +4930,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                         When the container element that has a role that supports aria-activedescendant is loaded or created, ensure that:
 
                         <ul>
-                            <li>The container element is included in the tab sequence as described in <a href="#kbd_general_between" class="sec-ref"><span class="secno">4.5</span> <span class="sec-title">Keyboard Navigation Between Components (The Tab Sequence)</span></a>                                or it is otherwise focusable as described in <a href="#kbd_nested_components" class="sec-ref"><span class="secno">4.6.3</span> <span class="sec-title">Nested Composite Components - Composites and Toolbars That Contain Composites</span></a>.</li>
+                            <li>The container element is included in the tab sequence as described in <a href="#kbd_general_between" class="sec-ref"><span class="secno">5.5</span> <span class="sec-title">Keyboard Navigation Between Components (The Tab Sequence)</span></a>                                or it is otherwise focusable as described in <a href="#kbd_nested_components" class="sec-ref"><span class="secno">5.6.3</span> <span class="sec-title">Nested Composite Components - Composites and Toolbars That Contain Composites</span></a>.</li>
                             <li>
                                 It has <code>aria-activedescendant="IDREF"</code> where IDREF is the ID of the element within the container that should be identified as active when the widget receives focus. The referenced element needs to meet the DOM
                                 relationship requirements described below.
@@ -4873,7 +4979,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             </section>
 
             <section id="kbd_nested_components" typeof="bibo:Chapter" resource="#kbd_nested_components" property="bibo:hasPart">
-                <h4 id="x4-6-3-nested-composite-components-composites-and-toolbars-that-contain-composites" resource="#x4-6-3-nested-composite-components-composites-and-toolbars-that-contain-composites"><span property="xhv:role" resource="xhv:heading"><span class="secno">4.6.3 </span>Nested Composite Components - Composites and Toolbars That Contain Composites<span class="permalink" typeof="bookmark"><a href="#kbd_nested_components" aria-label="Permalink for 4.6.3 Nested Composite Components - Composites and Toolbars That Contain Composites" title="Permalink for 4.6.3 Nested Composite Components - Composites and Toolbars That Contain Composites" property="url"><span property="title" content="4.6.3 Nested Composite Components - Composites and Toolbars That Contain Composites">§</span></a>
+                <h4 id="x5-6-3-nested-composite-components-composites-and-toolbars-that-contain-composites" resource="#x5-6-3-nested-composite-components-composites-and-toolbars-that-contain-composites"><span property="xhv:role" resource="xhv:heading"><span class="secno">5.6.3 </span>Nested Composite Components - Composites and Toolbars That Contain Composites<span class="permalink" typeof="bookmark"><a href="#kbd_nested_components" aria-label="Permalink for 5.6.3 Nested Composite Components - Composites and Toolbars That Contain Composites" title="Permalink for 5.6.3 Nested Composite Components - Composites and Toolbars That Contain Composites" property="url"><span property="title" content="5.6.3 Nested Composite Components - Composites and Toolbars That Contain Composites">§</span></a>
                     </span>
                     </span>
                 </h4>
@@ -4884,13 +4990,13 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             </section>
         </section>
         <section id="kbd_disabled_controls" typeof="bibo:Chapter" resource="#kbd_disabled_controls" property="bibo:hasPart">
-            <h3 id="x4-7-focusability-of-disabled-controls" resource="#x4-7-focusability-of-disabled-controls"><span property="xhv:role" resource="xhv:heading"><span class="secno">4.7 </span>Focusability of disabled controls<span class="permalink" typeof="bookmark"><a href="#kbd_disabled_controls" aria-label="Permalink for 4.7 Focusability of disabled controls" title="Permalink for 4.7 Focusability of disabled controls" property="url"><span property="title" content="4.7 Focusability of disabled controls">§</span></a>
+            <h3 id="x5-7-focusability-of-disabled-controls" resource="#x5-7-focusability-of-disabled-controls"><span property="xhv:role" resource="xhv:heading"><span class="secno">5.7 </span>Focusability of disabled controls<span class="permalink" typeof="bookmark"><a href="#kbd_disabled_controls" aria-label="Permalink for 5.7 Focusability of disabled controls" title="Permalink for 5.7 Focusability of disabled controls" property="url"><span property="title" content="5.7 Focusability of disabled controls">§</span></a>
                 </span>
                 </span>
             </h3>
             <p>
                 By default, disabled HTML input elements are removed from the tab sequence. In most contexts, the normal expectation is that disabled interactive elements are not focusable. However, there are some contexts where it is common for disabled elements to
-                be focusable, especially inside of composite widgets. For example, as demonstrated in the <a href="#menu" class="sec-ref"><span class="secno">2.16</span> <span class="sec-title">Menu or Menu bar</span></a> pattern, disabled
+                be focusable, especially inside of composite widgets. For example, as demonstrated in the <a href="#menu" class="sec-ref"><span class="secno">3.16</span> <span class="sec-title">Menu or Menu bar</span></a> pattern, disabled
                 items are focusable when navigating through a menu with the arrow keys.
             </p>
 
@@ -4934,10 +5040,10 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                 </li>
             </ol>
 
-            <p>One design technique for mitigating the impact of including disabled elements in the path of keyboard focus is employing appropriate keyboard shortcuts as described in <a href="#kbd_shortcuts" class="sec-ref"><span class="secno">4.8</span> <span class="sec-title">Keyboard Shortcuts</span></a>.</p>
+            <p>One design technique for mitigating the impact of including disabled elements in the path of keyboard focus is employing appropriate keyboard shortcuts as described in <a href="#kbd_shortcuts" class="sec-ref"><span class="secno">5.8</span> <span class="sec-title">Keyboard Shortcuts</span></a>.</p>
         </section>
         <section id="kbd_shortcuts" typeof="bibo:Chapter" resource="#kbd_shortcuts" property="bibo:hasPart">
-            <h3 id="x4-8-keyboard-shortcuts" resource="#x4-8-keyboard-shortcuts"><span property="xhv:role" resource="xhv:heading"><span class="secno">4.8 </span>Keyboard Shortcuts<span class="permalink" typeof="bookmark"><a href="#kbd_shortcuts" aria-label="Permalink for 4.8 Keyboard Shortcuts" title="Permalink for 4.8 Keyboard Shortcuts" property="url"><span property="title" content="4.8 Keyboard Shortcuts">§</span></a>
+            <h3 id="x5-8-keyboard-shortcuts" resource="#x5-8-keyboard-shortcuts"><span property="xhv:role" resource="xhv:heading"><span class="secno">5.8 </span>Keyboard Shortcuts<span class="permalink" typeof="bookmark"><a href="#kbd_shortcuts" aria-label="Permalink for 5.8 Keyboard Shortcuts" title="Permalink for 5.8 Keyboard Shortcuts" property="url"><span property="title" content="5.8 Keyboard Shortcuts">§</span></a>
                 </span>
                 </span>
             </h3>
@@ -4951,7 +5057,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                 <li>Exposing and documenting key assignments. </li>
             </ol>
             <section id="kbd_shortcuts_behavior_design" typeof="bibo:Chapter" resource="#kbd_shortcuts_behavior_design" property="bibo:hasPart">
-                <h4 id="x4-8-1-designing-the-scope-and-behavior-of-keyboard-shortcuts" resource="#x4-8-1-designing-the-scope-and-behavior-of-keyboard-shortcuts"><span property="xhv:role" resource="xhv:heading"><span class="secno">4.8.1 </span>Designing the Scope and Behavior of Keyboard Shortcuts<span class="permalink" typeof="bookmark"><a href="#kbd_shortcuts_behavior_design" aria-label="Permalink for 4.8.1 Designing the Scope and Behavior of Keyboard Shortcuts" title="Permalink for 4.8.1 Designing the Scope and Behavior of Keyboard Shortcuts" property="url"><span property="title" content="4.8.1 Designing the Scope and Behavior of Keyboard Shortcuts">§</span></a>
+                <h4 id="x5-8-1-designing-the-scope-and-behavior-of-keyboard-shortcuts" resource="#x5-8-1-designing-the-scope-and-behavior-of-keyboard-shortcuts"><span property="xhv:role" resource="xhv:heading"><span class="secno">5.8.1 </span>Designing the Scope and Behavior of Keyboard Shortcuts<span class="permalink" typeof="bookmark"><a href="#kbd_shortcuts_behavior_design" aria-label="Permalink for 5.8.1 Designing the Scope and Behavior of Keyboard Shortcuts" title="Permalink for 5.8.1 Designing the Scope and Behavior of Keyboard Shortcuts" property="url"><span property="title" content="5.8.1 Designing the Scope and Behavior of Keyboard Shortcuts">§</span></a>
                     </span>
                     </span>
                 </h4>
@@ -4975,7 +5081,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                 </ol>
 
                 <section id="kbd_shortcuts_design_basic" typeof="bibo:Chapter" resource="#kbd_shortcuts_design_basic" property="bibo:hasPart">
-                    <h5 id="x4-8-1-1-ensure-basic-access-via-navigation" resource="#x4-8-1-1-ensure-basic-access-via-navigation"><span property="xhv:role" resource="xhv:heading"><span class="secno">4.8.1.1 </span>Ensure Basic Access Via Navigation <span class="permalink" typeof="bookmark"><a href="#kbd_shortcuts_design_basic" aria-label="Permalink for 4.8.1.1 Ensure Basic Access Via Navigation " title="Permalink for 4.8.1.1 Ensure Basic Access Via Navigation " property="url"><span property="title" content="4.8.1.1 Ensure Basic Access Via Navigation ">§</span></a>
+                    <h5 id="x5-8-1-1-ensure-basic-access-via-navigation" resource="#x5-8-1-1-ensure-basic-access-via-navigation"><span property="xhv:role" resource="xhv:heading"><span class="secno">5.8.1.1 </span>Ensure Basic Access Via Navigation <span class="permalink" typeof="bookmark"><a href="#kbd_shortcuts_design_basic" aria-label="Permalink for 5.8.1.1 Ensure Basic Access Via Navigation " title="Permalink for 5.8.1.1 Ensure Basic Access Via Navigation " property="url"><span property="title" content="5.8.1.1 Ensure Basic Access Via Navigation ">§</span></a>
                         </span>
                         </span>
                     </h5>
@@ -4986,8 +5092,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                     </p>
 
                     <ul>
-                        <li><a href="#kbd_general_between" class="sec-ref"><span class="secno">4.5</span> <span class="sec-title">Keyboard Navigation Between Components (The Tab Sequence)</span></a> </li>
-                        <li><a href="#kbd_general_within" class="sec-ref"><span class="secno">4.6</span> <span class="sec-title"> Keyboard Navigation Inside Components</span></a> </li>
+                        <li><a href="#kbd_general_between" class="sec-ref"><span class="secno">5.5</span> <span class="sec-title">Keyboard Navigation Between Components (The Tab Sequence)</span></a> </li>
+                        <li><a href="#kbd_general_within" class="sec-ref"><span class="secno">5.6</span> <span class="sec-title"> Keyboard Navigation Inside Components</span></a> </li>
                     </ul>
 
                     <p>
@@ -5003,7 +5109,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                 </section>
 
                 <section id="kbd_shortcuts_design_choose_behavior" typeof="bibo:Chapter" resource="#kbd_shortcuts_design_choose_behavior" property="bibo:hasPart">
-                    <h5 id="x4-8-1-2-choose-appropriate-shortcut-behavior" resource="#x4-8-1-2-choose-appropriate-shortcut-behavior"><span property="xhv:role" resource="xhv:heading"><span class="secno">4.8.1.2 </span>Choose Appropriate Shortcut Behavior<span class="permalink" typeof="bookmark"><a href="#kbd_shortcuts_design_choose_behavior" aria-label="Permalink for 4.8.1.2 Choose Appropriate Shortcut Behavior" title="Permalink for 4.8.1.2 Choose Appropriate Shortcut Behavior" property="url"><span property="title" content="4.8.1.2 Choose Appropriate Shortcut Behavior">§</span></a>
+                    <h5 id="x5-8-1-2-choose-appropriate-shortcut-behavior" resource="#x5-8-1-2-choose-appropriate-shortcut-behavior"><span property="xhv:role" resource="xhv:heading"><span class="secno">5.8.1.2 </span>Choose Appropriate Shortcut Behavior<span class="permalink" typeof="bookmark"><a href="#kbd_shortcuts_design_choose_behavior" aria-label="Permalink for 5.8.1.2 Choose Appropriate Shortcut Behavior" title="Permalink for 5.8.1.2 Choose Appropriate Shortcut Behavior" property="url"><span property="title" content="5.8.1.2 Choose Appropriate Shortcut Behavior">§</span></a>
                         </span>
                         </span>
                     </h5>
@@ -5030,7 +5136,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                 </section>
 
                 <section id="kbd_shortcuts_design_where" typeof="bibo:Chapter" resource="#kbd_shortcuts_design_where" property="bibo:hasPart">
-                    <h5 id="x4-8-1-3-choose-where-to-add-shortcuts" resource="#x4-8-1-3-choose-where-to-add-shortcuts"><span property="xhv:role" resource="xhv:heading"><span class="secno">4.8.1.3 </span>Choose Where to Add Shortcuts <span class="permalink" typeof="bookmark"><a href="#kbd_shortcuts_design_where" aria-label="Permalink for 4.8.1.3 Choose Where to Add Shortcuts " title="Permalink for 4.8.1.3 Choose Where to Add Shortcuts " property="url"><span property="title" content="4.8.1.3 Choose Where to Add Shortcuts ">§</span></a>
+                    <h5 id="x5-8-1-3-choose-where-to-add-shortcuts" resource="#x5-8-1-3-choose-where-to-add-shortcuts"><span property="xhv:role" resource="xhv:heading"><span class="secno">5.8.1.3 </span>Choose Where to Add Shortcuts <span class="permalink" typeof="bookmark"><a href="#kbd_shortcuts_design_where" aria-label="Permalink for 5.8.1.3 Choose Where to Add Shortcuts " title="Permalink for 5.8.1.3 Choose Where to Add Shortcuts " property="url"><span property="title" content="5.8.1.3 Choose Where to Add Shortcuts ">§</span></a>
                         </span>
                         </span>
                     </h5>
@@ -5047,7 +5153,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                 </section>
             </section>
             <section id="kbd_shortcuts_assigning" typeof="bibo:Chapter" resource="#kbd_shortcuts_assigning" property="bibo:hasPart">
-                <h4 id="x4-8-2-assigning-keyboard-shortcuts" resource="#x4-8-2-assigning-keyboard-shortcuts"><span property="xhv:role" resource="xhv:heading"><span class="secno">4.8.2 </span>Assigning Keyboard Shortcuts<span class="permalink" typeof="bookmark"><a href="#kbd_shortcuts_assigning" aria-label="Permalink for 4.8.2 Assigning Keyboard Shortcuts" title="Permalink for 4.8.2 Assigning Keyboard Shortcuts" property="url"><span property="title" content="4.8.2 Assigning Keyboard Shortcuts">§</span></a>
+                <h4 id="x5-8-2-assigning-keyboard-shortcuts" resource="#x5-8-2-assigning-keyboard-shortcuts"><span property="xhv:role" resource="xhv:heading"><span class="secno">5.8.2 </span>Assigning Keyboard Shortcuts<span class="permalink" typeof="bookmark"><a href="#kbd_shortcuts_assigning" aria-label="Permalink for 5.8.2 Assigning Keyboard Shortcuts" title="Permalink for 5.8.2 Assigning Keyboard Shortcuts" property="url"><span property="title" content="5.8.2 Assigning Keyboard Shortcuts">§</span></a>
                     </span>
                     </span>
                 </h4>
@@ -5074,7 +5180,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                     </p>
                 </div>
                 <section id="kbd_shortcuts_assignments_opsys_conflicts" typeof="bibo:Chapter" resource="#kbd_shortcuts_assignments_opsys_conflicts" property="bibo:hasPart">
-                    <h5 id="x4-8-2-1-operating-system-key-conflicts" resource="#x4-8-2-1-operating-system-key-conflicts"><span property="xhv:role" resource="xhv:heading"><span class="secno">4.8.2.1 </span>Operating System Key Conflicts<span class="permalink" typeof="bookmark"><a href="#kbd_shortcuts_assignments_opsys_conflicts" aria-label="Permalink for 4.8.2.1 Operating System Key Conflicts" title="Permalink for 4.8.2.1 Operating System Key Conflicts" property="url"><span property="title" content="4.8.2.1 Operating System Key Conflicts">§</span></a>
+                    <h5 id="x5-8-2-1-operating-system-key-conflicts" resource="#x5-8-2-1-operating-system-key-conflicts"><span property="xhv:role" resource="xhv:heading"><span class="secno">5.8.2.1 </span>Operating System Key Conflicts<span class="permalink" typeof="bookmark"><a href="#kbd_shortcuts_assignments_opsys_conflicts" aria-label="Permalink for 5.8.2.1 Operating System Key Conflicts" title="Permalink for 5.8.2.1 Operating System Key Conflicts" property="url"><span property="title" content="5.8.2.1 Operating System Key Conflicts">§</span></a>
                         </span>
                         </span>
                     </h5>
@@ -5102,7 +5208,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                 </section>
 
                 <section id="kbd_shortcuts_assignments_assistivetech_conflicts" typeof="bibo:Chapter" resource="#kbd_shortcuts_assignments_assistivetech_conflicts" property="bibo:hasPart">
-                    <h5 id="x4-8-2-2-assistive-technology-key-conflicts" resource="#x4-8-2-2-assistive-technology-key-conflicts"><span property="xhv:role" resource="xhv:heading"><span class="secno">4.8.2.2 </span>Assistive Technology Key Conflicts<span class="permalink" typeof="bookmark"><a href="#kbd_shortcuts_assignments_assistivetech_conflicts" aria-label="Permalink for 4.8.2.2 Assistive Technology Key Conflicts" title="Permalink for 4.8.2.2 Assistive Technology Key Conflicts" property="url"><span property="title" content="4.8.2.2 Assistive Technology Key Conflicts">§</span></a>
+                    <h5 id="x5-8-2-2-assistive-technology-key-conflicts" resource="#x5-8-2-2-assistive-technology-key-conflicts"><span property="xhv:role" resource="xhv:heading"><span class="secno">5.8.2.2 </span>Assistive Technology Key Conflicts<span class="permalink" typeof="bookmark"><a href="#kbd_shortcuts_assignments_assistivetech_conflicts" aria-label="Permalink for 5.8.2.2 Assistive Technology Key Conflicts" title="Permalink for 5.8.2.2 Assistive Technology Key Conflicts" property="url"><span property="title" content="5.8.2.2 Assistive Technology Key Conflicts">§</span></a>
                         </span>
                         </span>
                     </h5>
@@ -5123,7 +5229,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                 </section>
 
                 <section id="kbd_shortcuts_assignments_browser_conflicts" typeof="bibo:Chapter" resource="#kbd_shortcuts_assignments_browser_conflicts" property="bibo:hasPart">
-                    <h5 id="x4-8-2-3-browser-key-conflicts" resource="#x4-8-2-3-browser-key-conflicts"><span property="xhv:role" resource="xhv:heading"><span class="secno">4.8.2.3 </span>Browser Key Conflicts<span class="permalink" typeof="bookmark"><a href="#kbd_shortcuts_assignments_browser_conflicts" aria-label="Permalink for 4.8.2.3 Browser Key Conflicts" title="Permalink for 4.8.2.3 Browser Key Conflicts" property="url"><span property="title" content="4.8.2.3 Browser Key Conflicts">§</span></a>
+                    <h5 id="x5-8-2-3-browser-key-conflicts" resource="#x5-8-2-3-browser-key-conflicts"><span property="xhv:role" resource="xhv:heading"><span class="secno">5.8.2.3 </span>Browser Key Conflicts<span class="permalink" typeof="bookmark"><a href="#kbd_shortcuts_assignments_browser_conflicts" aria-label="Permalink for 5.8.2.3 Browser Key Conflicts" title="Permalink for 5.8.2.3 Browser Key Conflicts" property="url"><span property="title" content="5.8.2.3 Browser Key Conflicts">§</span></a>
                         </span>
                         </span>
                     </h5>
@@ -5141,7 +5247,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                     </ol>
                 </section>
                 <section id="kbd_shortcuts_assignments_intentional_conflicts" typeof="bibo:Chapter" resource="#kbd_shortcuts_assignments_intentional_conflicts" property="bibo:hasPart">
-                    <h5 id="x4-8-2-4-intentional-key-conflicts" resource="#x4-8-2-4-intentional-key-conflicts"><span property="xhv:role" resource="xhv:heading"><span class="secno">4.8.2.4 </span>Intentional Key Conflicts<span class="permalink" typeof="bookmark"><a href="#kbd_shortcuts_assignments_intentional_conflicts" aria-label="Permalink for 4.8.2.4 Intentional Key Conflicts" title="Permalink for 4.8.2.4 Intentional Key Conflicts" property="url"><span property="title" content="4.8.2.4 Intentional Key Conflicts">§</span></a>
+                    <h5 id="x5-8-2-4-intentional-key-conflicts" resource="#x5-8-2-4-intentional-key-conflicts"><span property="xhv:role" resource="xhv:heading"><span class="secno">5.8.2.4 </span>Intentional Key Conflicts<span class="permalink" typeof="bookmark"><a href="#kbd_shortcuts_assignments_intentional_conflicts" aria-label="Permalink for 5.8.2.4 Intentional Key Conflicts" title="Permalink for 5.8.2.4 Intentional Key Conflicts" property="url"><span property="title" content="5.8.2.4 Intentional Key Conflicts">§</span></a>
                         </span>
                         </span>
                     </h5>
@@ -5162,7 +5268,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             </section>
 
             <section id="kbd_shortcuts_exposing" typeof="bibo:Chapter" resource="#kbd_shortcuts_exposing" property="bibo:hasPart">
-                <h4 id="x4-8-3-exposing-and-documenting-keyboard-shortcuts" resource="#x4-8-3-exposing-and-documenting-keyboard-shortcuts"><span property="xhv:role" resource="xhv:heading"><span class="secno">4.8.3 </span>Exposing and Documenting Keyboard Shortcuts<span class="permalink" typeof="bookmark"><a href="#kbd_shortcuts_exposing" aria-label="Permalink for 4.8.3 Exposing and Documenting Keyboard Shortcuts" title="Permalink for 4.8.3 Exposing and Documenting Keyboard Shortcuts" property="url"><span property="title" content="4.8.3 Exposing and Documenting Keyboard Shortcuts">§</span></a>
+                <h4 id="x5-8-3-exposing-and-documenting-keyboard-shortcuts" resource="#x5-8-3-exposing-and-documenting-keyboard-shortcuts"><span property="xhv:role" resource="xhv:heading"><span class="secno">5.8.3 </span>Exposing and Documenting Keyboard Shortcuts<span class="permalink" typeof="bookmark"><a href="#kbd_shortcuts_exposing" aria-label="Permalink for 5.8.3 Exposing and Documenting Keyboard Shortcuts" title="Permalink for 5.8.3 Exposing and Documenting Keyboard Shortcuts" property="url"><span property="title" content="5.8.3 Exposing and Documenting Keyboard Shortcuts">§</span></a>
                     </span>
                     </span>
                 </h4>
@@ -5173,7 +5279,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
     <section id="gridAndTableProperties" typeof="bibo:Chapter" resource="#gridAndTableProperties" property="bibo:hasPart">
         <!--OddPage-->
-        <h2 id="x5-grid-and-table-properties" resource="#x5-grid-and-table-properties"><span property="xhv:role" resource="xhv:heading"><span class="secno">5. </span>Grid and Table Properties<span class="permalink" typeof="bookmark"><a href="#gridAndTableProperties" aria-label="Permalink for 5. Grid and Table Properties" title="Permalink for 5. Grid and Table Properties" property="url"><span property="title" content="5. Grid and Table Properties">§</span></a>
+        <h2 id="x6-grid-and-table-properties" resource="#x6-grid-and-table-properties"><span property="xhv:role" resource="xhv:heading"><span class="secno">6. </span>Grid and Table Properties<span class="permalink" typeof="bookmark"><a href="#gridAndTableProperties" aria-label="Permalink for 6. Grid and Table Properties" title="Permalink for 6. Grid and Table Properties" property="url"><span property="title" content="6. Grid and Table Properties">§</span></a>
             </span>
             </span>
         </h2>
@@ -5189,7 +5295,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
     <section id="presentation_role" typeof="bibo:Chapter" resource="#presentation_role" property="bibo:hasPart">
         <!--OddPage-->
-        <h2 id="x6-intentionally-hiding-semantics-with-the-presentation-role" resource="#x6-intentionally-hiding-semantics-with-the-presentation-role"><span property="xhv:role" resource="xhv:heading"><span class="secno">6. </span>Intentionally Hiding Semantics with the <code>presentation</code> Role<span class="permalink" typeof="bookmark"><a href="#presentation_role" aria-label="Permalink for 6. Intentionally Hiding Semantics with the presentation Role" title="Permalink for 6. Intentionally Hiding Semantics with the presentation Role" property="url"><span property="title" content="6. Intentionally Hiding Semantics with the presentation Role">§</span></a>
+        <h2 id="x7-intentionally-hiding-semantics-with-the-presentation-role" resource="#x7-intentionally-hiding-semantics-with-the-presentation-role"><span property="xhv:role" resource="xhv:heading"><span class="secno">7. </span>Intentionally Hiding Semantics with the <code>presentation</code> Role<span class="permalink" typeof="bookmark"><a href="#presentation_role" aria-label="Permalink for 7. Intentionally Hiding Semantics with the presentation Role" title="Permalink for 7. Intentionally Hiding Semantics with the presentation Role" property="url"><span property="title" content="7. Intentionally Hiding Semantics with the presentation Role">§</span></a>
             </span>
             </span>
         </h2>
@@ -5228,12 +5334,12 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             <li>Eliminating semantics of intervening orphan elements in the structure of a composite widget, such as a tablist, menu, or tree as demonstrated in the example above.</li>
         </ol>
         <section id="presentation_role_effects" typeof="bibo:Chapter" resource="#presentation_role_effects" property="bibo:hasPart">
-            <h3 id="x6-1-effects-of-role-presentation" resource="#x6-1-effects-of-role-presentation"><span property="xhv:role" resource="xhv:heading"><span class="secno">6.1 </span> Effects of Role <code>presentation</code>
-                <span class="permalink" typeof="bookmark"><a href="#presentation_role_effects" aria-label="Permalink for 6.1 
+            <h3 id="x7-1-effects-of-role-presentation" resource="#x7-1-effects-of-role-presentation"><span property="xhv:role" resource="xhv:heading"><span class="secno">7.1 </span> Effects of Role <code>presentation</code>
+                <span class="permalink" typeof="bookmark"><a href="#presentation_role_effects" aria-label="Permalink for 7.1 
         Effects of Role presentation
-      " title="Permalink for 6.1 
+      " title="Permalink for 7.1 
         Effects of Role presentation
-      " property="url"><span property="title" content="6.1 
+      " property="url"><span property="title" content="7.1 
         Effects of Role presentation
       ">§</span></a>
                 </span>
@@ -5264,12 +5370,12 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             </ol>
         </section>
         <section id="presentation_role_ignored" typeof="bibo:Chapter" resource="#presentation_role_ignored" property="bibo:hasPart">
-            <h3 id="x6-2-conditions-that-cause-role-presentation-to-be-ignored" resource="#x6-2-conditions-that-cause-role-presentation-to-be-ignored"><span property="xhv:role" resource="xhv:heading"><span class="secno">6.2 </span> Conditions That Cause Role <code>presentation</code> to be Ignored
-                <span class="permalink" typeof="bookmark"><a href="#presentation_role_ignored" aria-label="Permalink for 6.2 
+            <h3 id="x7-2-conditions-that-cause-role-presentation-to-be-ignored" resource="#x7-2-conditions-that-cause-role-presentation-to-be-ignored"><span property="xhv:role" resource="xhv:heading"><span class="secno">7.2 </span> Conditions That Cause Role <code>presentation</code> to be Ignored
+                <span class="permalink" typeof="bookmark"><a href="#presentation_role_ignored" aria-label="Permalink for 7.2 
         Conditions That Cause Role presentation to be Ignored
-      " title="Permalink for 6.2 
+      " title="Permalink for 7.2 
         Conditions That Cause Role presentation to be Ignored
-      " property="url"><span property="title" content="6.2 
+      " property="url"><span property="title" content="7.2 
         Conditions That Cause Role presentation to be Ignored
       ">§</span></a>
                 </span>
@@ -5286,12 +5392,12 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             </ul>
         </section>
         <section id="presentation_role_examples" typeof="bibo:Chapter" resource="#presentation_role_examples" property="bibo:hasPart">
-            <h3 id="x6-3-examples-demonstrating-effects-of-the-presentation-role" resource="#x6-3-examples-demonstrating-effects-of-the-presentation-role"><span property="xhv:role" resource="xhv:heading"><span class="secno">6.3 </span> Examples Demonstrating Effects of the <code>presentation</code> Role
-                <span class="permalink" typeof="bookmark"><a href="#presentation_role_examples" aria-label="Permalink for 6.3 
+            <h3 id="x7-3-examples-demonstrating-effects-of-the-presentation-role" resource="#x7-3-examples-demonstrating-effects-of-the-presentation-role"><span property="xhv:role" resource="xhv:heading"><span class="secno">7.3 </span> Examples Demonstrating Effects of the <code>presentation</code> Role
+                <span class="permalink" typeof="bookmark"><a href="#presentation_role_examples" aria-label="Permalink for 7.3 
         Examples Demonstrating Effects of the presentation Role
-      " title="Permalink for 6.3 
+      " title="Permalink for 7.3 
         Examples Demonstrating Effects of the presentation Role
-      " property="url"><span property="title" content="6.3 
+      " property="url"><span property="title" content="7.3 
         Examples Demonstrating Effects of the presentation Role
       ">§</span></a>
                 </span>
@@ -5319,7 +5425,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
     <section id="children_presentational" typeof="bibo:Chapter" resource="#children_presentational" property="bibo:hasPart">
         <!--OddPage-->
-        <h2 id="x7-roles-that-automatically-hide-semantics-by-making-their-descendants-presentational" resource="#x7-roles-that-automatically-hide-semantics-by-making-their-descendants-presentational"><span property="xhv:role" resource="xhv:heading"><span class="secno">7. </span>Roles That Automatically Hide Semantics by Making Their Descendants Presentational<span class="permalink" typeof="bookmark"><a href="#children_presentational" aria-label="Permalink for 7. Roles That Automatically Hide Semantics by Making Their Descendants Presentational" title="Permalink for 7. Roles That Automatically Hide Semantics by Making Their Descendants Presentational" property="url"><span property="title" content="7. Roles That Automatically Hide Semantics by Making Their Descendants Presentational">§</span></a>
+        <h2 id="x8-roles-that-automatically-hide-semantics-by-making-their-descendants-presentational" resource="#x8-roles-that-automatically-hide-semantics-by-making-their-descendants-presentational"><span property="xhv:role" resource="xhv:heading"><span class="secno">8. </span>Roles That Automatically Hide Semantics by Making Their Descendants Presentational<span class="permalink" typeof="bookmark"><a href="#children_presentational" aria-label="Permalink for 8. Roles That Automatically Hide Semantics by Making Their Descendants Presentational" title="Permalink for 8. Roles That Automatically Hide Semantics by Making Their Descendants Presentational" property="url"><span property="title" content="8. Roles That Automatically Hide Semantics by Making Their Descendants Presentational">§</span></a>
             </span>
             </span>
         </h2>
