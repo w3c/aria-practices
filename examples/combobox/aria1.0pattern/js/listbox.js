@@ -56,6 +56,10 @@ var Listbox = function (domNode, controllerObj) {
   this.domNode = domNode;
   this.controller = controllerObj;
 
+  console.log('[Listbox][init][controller]: ' + this.controller);
+
+  this.allOptions = [];
+
   this.options    = [];      // see PopupMenu init method
   this.firstChars = [];      // see PopupMenu init method
 
@@ -101,9 +105,41 @@ Listbox.prototype.init = function () {
     if (!optionElement.firstElementChild && optionElement.getAttribute('role') != 'separator') {
       option = new Option(optionElement, this);
       option.init();
+      this.allOptions.push(option);
+    }
+  }
+
+  this.filterOptions('');
+
+};
+
+Listbox.prototype.filterOptions = function (filter) {
+
+  if (typeof filter !== 'string') {
+    filter = '';
+  }
+
+  var firstMatch = false,
+      i,
+      option,
+      textContent,
+      numItems;
+
+  filter = filter.toLowerCase();
+
+  console.log('[Listbox][filterOptions][filter]: ' + filter);
+
+  this.options    = [];
+  this.firstChars = [];
+  this.domNode.innerHTML = '';
+
+  for (i = 0; i < this.allOptions.length; i++) {
+    option = this.allOptions[i];
+    if (filter.length === 0 || option.textComparision.indexOf(filter) === 0) {
       this.options.push(option);
-      textContent = optionElement.textContent.trim();
+      textContent = option.textContent.trim();
       this.firstChars.push(textContent.substring(0, 1).toLowerCase());
+      this.domNode.appendChild(option.domNode);
     }
   }
 
@@ -111,14 +147,24 @@ Listbox.prototype.init = function () {
   numItems = this.options.length;
   if (numItems > 0) {
     this.firstOption = this.options[0];
+    firstMatch = this.firstOption.textContent;
     this.lastOption  = this.options[numItems - 1];
+  } else {
+    this.firstOption = false;
+    firstMatch = '';
+    this.lastOption  = false;
   }
+
+
+
+  return firstMatch;
+
 };
 
-Listbox.prototype.filterOptions = function (filter) {
-
-
+Listbox.prototype.setValue = function (value) {
+  this.controller.setValue(value);
 };
+
 
 /* EVENT HANDLERS */
 
@@ -138,6 +184,7 @@ Listbox.prototype.setFocusToController = function () {
 };
 
 Listbox.prototype.setFocusToFirstItem = function () {
+  console.log('[Listbox][setFocusToFirstItem]: ' + this.firstOption)
   this.firstOption.domNode.focus();
 };
 
@@ -211,9 +258,6 @@ Listbox.prototype.open = function () {
 
   // set CSS properties
   this.domNode.style.display = 'block';
-  this.domNode.style.position = 'absolute';
-  this.domNode.style.top  = rect.height + 'px';
-  this.domNode.style.left = '0px';
 
   // set aria-expanded attribute
   this.controller.domNode.setAttribute('aria-expanded', 'true');
@@ -225,7 +269,7 @@ Listbox.prototype.close = function (force) {
     force = false;
   }
 
-  console.log('[listbox][close]: ' + force);
+  console.log('[Listbox][close][controller]: ' + this.controller);
 
   if (force || (!this.hasFocus && !this.hasHover && !this.controller.hasHover)) {
     this.domNode.style.display = 'none';

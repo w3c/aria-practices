@@ -2,3 +2,21 @@
 	font-style: italic;
 	color: #366ED4;
 }
+
+.combobox {
+  position: relative;
+}
+
+.combobox label {
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+
+.combobox group input,
+.combobox group button {
+  display: inline;
+}
+
+
+

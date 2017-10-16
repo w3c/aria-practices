@@ -50,80 +50,82 @@
       The div for the rendered HTML source is in the last section of the page.
     -->
     <div id="ex1">
-      <label for="cb1-input">State</label>
+      <div class="combobox">
+        <label for="cb1-input">State</label>
 
-      <input id="cb1-input" class="cb_edit" type="text"
-             role="combobox"
-             aria-autocomplete="none"
-             aria-expanded="flase"
-             aria-haspopup="true"
-             aria-owns="cb1-listbox"
-      />
-      <button id="cb1-button" tabindex="-1" aria-label="open button">
-        &#x025BD;
-      </button>
+        <div class="group">
+          <input id="cb1-input" class="cb_edit" type="text"
+                 role="combobox"
+                 aria-autocomplete="none"
+                 aria-expanded="flase"
+                 aria-haspopup="true"
+                 aria-owns="cb1-listbox"
+          />
+          <button id="cb1-button" tabindex="-1" aria-label="open button">
+            &#x025BD;
+          </button>
+        </div>
 
-      <ul id="cb1-listbox" role="listbox" aria-label="States">
-        <li role="option" tabindex="-1" aria-selected = "false" >Alabama</li>
-        <li role="option" tabindex="-1" aria-selected = "false" >Alaska</li>
-        <li role="option" tabindex="-1" aria-selected = "false" >American Samoa</li>
-        <li role="option" tabindex="-1" aria-selected = "false" >Arizona</li>
-        <li role="option" tabindex="-1" aria-selected = "false" >Arkansas</li>
-        <li role="option" tabindex="-1" aria-selected = "false" >California</li>
-        <li role="option" tabindex="-1" aria-selected = "false" >Colorado</li>
-        <li role="option" tabindex="-1" aria-selected = "false" >Connecticut</li>
-        <li role="option" tabindex="-1" aria-selected = "false" >Delaware</li>
-        <li role="option" tabindex="-1" aria-selected = "false" >District of Columbia</li>
-        <li role="option" tabindex="-1" aria-selected = "false" >Florida</li>
-        <li role="option" tabindex="-1" aria-selected = "false" >Georgia</li>
-        <li role="option" tabindex="-1" aria-selected = "false" >Guam</li>
-        <li role="option" tabindex="-1" aria-selected = "false" >Hawaii</li>
-        <li role="option" tabindex="-1" aria-selected = "false" >Idaho</li>
-        <li role="option" tabindex="-1" aria-selected = "false" >Illinois</li>
-        <li role="option" tabindex="-1" aria-selected = "false" >Indiana</li>
-        <li role="option" tabindex="-1" aria-selected = "false" >Iowa</li>
-        <li role="option" tabindex="-1" aria-selected = "false" >Kansas</li>
-        <li role="option" tabindex="-1" aria-selected = "false" >Kentucky</li>
-        <li role="option" tabindex="-1" aria-selected = "false" >Louisiana</li>
-        <li role="option" tabindex="-1" aria-selected = "false" >Maine</li>
-        <li role="option" tabindex="-1" aria-selected = "false" >Maryland</li>
-        <li role="option" tabindex="-1" aria-selected = "false" >Massachusetts</li>
-        <li role="option" tabindex="-1" aria-selected = "false" >Michigan</li>
-        <li role="option" tabindex="-1" aria-selected = "false" >Minnesota</li>
-        <li role="option" tabindex="-1" aria-selected = "false" >Mississippi</li>
-        <li role="option" tabindex="-1" aria-selected = "false" >Missouri</li>
-        <li role="option" tabindex="-1" aria-selected = "false" >Montana</li>
-        <li role="option" tabindex="-1" aria-selected = "false" >Nebraska</li>
-        <li role="option" tabindex="-1" aria-selected = "false" >Nevada</li>
-        <li role="option" tabindex="-1" aria-selected = "false" >New Hampshire</li>
-        <li role="option" tabindex="-1" aria-selected = "false" >New Jersey</li>
-        <li role="option" tabindex="-1" aria-selected = "false" >New Mexico</li>
-        <li role="option" tabindex="-1" aria-selected = "false" >New York</li>
-        <li role="option" tabindex="-1" aria-selected = "false" >North Carolina</li>
-        <li role="option" tabindex="-1" aria-selected = "false" >North Dakota</li>
-        <li role="option" tabindex="-1" aria-selected = "false" >Northern Marianas Islands</li>
-        <li role="option" tabindex="-1" aria-selected = "false" >Ohio</li>
-        <li role="option" tabindex="-1" aria-selected = "false" >Oklahoma</li>
-        <li role="option" tabindex="-1" aria-selected = "false" >Oregon</li>
-        <li role="option" tabindex="-1" aria-selected = "false" >Pennsylvania</li>
-        <li role="option" tabindex="-1" aria-selected = "false" >Puerto Rico</li>
-        <li role="option" tabindex="-1" aria-selected = "false" >Rhode Island</li>
-        <li role="option" tabindex="-1" aria-selected = "false" >South Carolina</li>
-        <li role="option" tabindex="-1" aria-selected = "false" >South Dakota</li>
-        <li role="option" tabindex="-1" aria-selected = "false" >Tennessee</li>
-        <li role="option" tabindex="-1" aria-selected = "false" >Texas</li>
-        <li role="option" tabindex="-1" aria-selected = "false" >Utah</li>
-        <li role="option" tabindex="-1" aria-selected = "false" >Vermont</li>
-        <li role="option" tabindex="-1" aria-selected = "false" >Virginia</li>
-        <li role="option" tabindex="-1" aria-selected = "false" >Virgin Islands</li>
-        <li role="option" tabindex="-1" aria-selected = "false" >Washington</li>
-        <li role="option" tabindex="-1" aria-selected = "false" >West Virginia</li>
-        <li role="option" tabindex="-1" aria-selected = "false" >Wisconsin</li>
-        <li role="option" tabindex="-1" aria-selected = "false" >Wyoming</li>
-      </ul>
+        <ul id="cb1-listbox" role="listbox" aria-label="States">
+          <li role="option" tabindex="-1" aria-selected = "false" >Alabama</li>
+          <li role="option" tabindex="-1" aria-selected = "false" >Alaska</li>
+          <li role="option" tabindex="-1" aria-selected = "false" >American Samoa</li>
+          <li role="option" tabindex="-1" aria-selected = "false" >Arizona</li>
+          <li role="option" tabindex="-1" aria-selected = "false" >Arkansas</li>
+          <li role="option" tabindex="-1" aria-selected = "false" >California</li>
+          <li role="option" tabindex="-1" aria-selected = "false" >Colorado</li>
+          <li role="option" tabindex="-1" aria-selected = "false" >Connecticut</li>
+          <li role="option" tabindex="-1" aria-selected = "false" >Delaware</li>
+          <li role="option" tabindex="-1" aria-selected = "false" >District of Columbia</li>
+          <li role="option" tabindex="-1" aria-selected = "false" >Florida</li>
+          <li role="option" tabindex="-1" aria-selected = "false" >Georgia</li>
+          <li role="option" tabindex="-1" aria-selected = "false" >Guam</li>
+          <li role="option" tabindex="-1" aria-selected = "false" >Hawaii</li>
+          <li role="option" tabindex="-1" aria-selected = "false" >Idaho</li>
+          <li role="option" tabindex="-1" aria-selected = "false" >Illinois</li>
+          <li role="option" tabindex="-1" aria-selected = "false" >Indiana</li>
+          <li role="option" tabindex="-1" aria-selected = "false" >Iowa</li>
+          <li role="option" tabindex="-1" aria-selected = "false" >Kansas</li>
+          <li role="option" tabindex="-1" aria-selected = "false" >Kentucky</li>
+          <li role="option" tabindex="-1" aria-selected = "false" >Louisiana</li>
+          <li role="option" tabindex="-1" aria-selected = "false" >Maine</li>
+          <li role="option" tabindex="-1" aria-selected = "false" >Maryland</li>
+          <li role="option" tabindex="-1" aria-selected = "false" >Massachusetts</li>
+          <li role="option" tabindex="-1" aria-selected = "false" >Michigan</li>
+          <li role="option" tabindex="-1" aria-selected = "false" >Minnesota</li>
+          <li role="option" tabindex="-1" aria-selected = "false" >Mississippi</li>
+          <li role="option" tabindex="-1" aria-selected = "false" >Missouri</li>
+          <li role="option" tabindex="-1" aria-selected = "false" >Montana</li>
+          <li role="option" tabindex="-1" aria-selected = "false" >Nebraska</li>
+          <li role="option" tabindex="-1" aria-selected = "false" >Nevada</li>
+          <li role="option" tabindex="-1" aria-selected = "false" >New Hampshire</li>
+          <li role="option" tabindex="-1" aria-selected = "false" >New Jersey</li>
+          <li role="option" tabindex="-1" aria-selected = "false" >New Mexico</li>
+          <li role="option" tabindex="-1" aria-selected = "false" >New York</li>
+          <li role="option" tabindex="-1" aria-selected = "false" >North Carolina</li>
+          <li role="option" tabindex="-1" aria-selected = "false" >North Dakota</li>
+          <li role="option" tabindex="-1" aria-selected = "false" >Northern Marianas Islands</li>
+          <li role="option" tabindex="-1" aria-selected = "false" >Ohio</li>
+          <li role="option" tabindex="-1" aria-selected = "false" >Oklahoma</li>
+          <li role="option" tabindex="-1" aria-selected = "false" >Oregon</li>
+          <li role="option" tabindex="-1" aria-selected = "false" >Pennsylvania</li>
+          <li role="option" tabindex="-1" aria-selected = "false" >Puerto Rico</li>
+          <li role="option" tabindex="-1" aria-selected = "false" >Rhode Island</li>
+          <li role="option" tabindex="-1" aria-selected = "false" >South Carolina</li>
+          <li role="option" tabindex="-1" aria-selected = "false" >South Dakota</li>
+          <li role="option" tabindex="-1" aria-selected = "false" >Tennessee</li>
+          <li role="option" tabindex="-1" aria-selected = "false" >Texas</li>
+          <li role="option" tabindex="-1" aria-selected = "false" >Utah</li>
+          <li role="option" tabindex="-1" aria-selected = "false" >Vermont</li>
+          <li role="option" tabindex="-1" aria-selected = "false" >Virginia</li>
+          <li role="option" tabindex="-1" aria-selected = "false" >Virgin Islands</li>
+          <li role="option" tabindex="-1" aria-selected = "false" >Washington</li>
+          <li role="option" tabindex="-1" aria-selected = "false" >West Virginia</li>
+          <li role="option" tabindex="-1" aria-selected = "false" >Wisconsin</li>
+          <li role="option" tabindex="-1" aria-selected = "false" >Wyoming</li>
+        </ul>
+      </div>
     </div>
-
-
 
     <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
   </section>

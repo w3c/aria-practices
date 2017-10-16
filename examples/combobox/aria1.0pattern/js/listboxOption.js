@@ -13,23 +13,23 @@
 *   @constructor Option
 *
 *   @desc
-*       Wrapper object for a simple menu item in a popup menu
+*       Wrapper object for a simple.listbox.item in a popup menu
 *
 *   @param domNode
-*       The DOM element node that serves as the menu item container.
-*       The menuObj PopupMenu is responsible for checking that it has
-*       requisite metadata, e.g. role="menuitem".
+*       The DOM element node that serves as the.listbox.item container.
+*       The.listbox.bj PopupMenu is responsible for checking that it has
+*       requisite metadata, e.g. role=.listbox.tem".
 *
-*   @param menuObj
+*   @param.listbox.bj
 *       The object that is a wrapper for the PopupMenu DOM element that
-*       contains the menu item DOM element. See PopupMenuAction.js
+*       contains the.listbox.item DOM element. See PopupMenuAction.js
 */
-var Option = function (domNode, menuObj) {
+var Option = function (domNode, listboxObj) {
 
   this.domNode = domNode;
-  this.menu = menuObj;
-  this.textContent = domNode.textContent.toLowerCase();
-  console.log(this.textContent);
+  this.listbox = listboxObj;
+  this.textContent     = domNode.textContent;
+  this.textComparision = domNode.textContent.toLowerCase();
 
   this.keyCode = Object.freeze({
     'TAB': 9,
@@ -51,7 +51,7 @@ Option.prototype.init = function () {
   this.domNode.tabIndex = -1;
 
   if (!this.domNode.getAttribute('role')) {
-    this.domNode.setAttribute('role', 'menuitem');
+    this.domNode.setAttribute('role', 'option');
   }
 
   this.domNode.addEventListener('keydown',    this.handleKeydown.bind(this));
@@ -68,8 +68,7 @@ Option.prototype.init = function () {
 Option.prototype.handleKeydown = function (event) {
   var tgt = event.currentTarget,
     flag = false,
-    char = event.key,
-    clickEvent;
+    char = event.key;
 
   function isPrintableCharacter (str) {
     return str.length === 1 && str.match(/\S/);
@@ -81,7 +80,7 @@ Option.prototype.handleKeydown = function (event) {
 
   if (event.shiftKey) {
     if (isPrintableCharacter(char)) {
-      this.menu.setFocusByFirstCharacter(this, char);
+      this.listbox.setFocusByFirstCharacter(this, char);
     }
   }
   else {
@@ -89,62 +88,46 @@ Option.prototype.handleKeydown = function (event) {
     switch (event.keyCode) {
       case this.keyCode.SPACE:
       case this.keyCode.RETURN:
-        // Create simulated mouse event to mimic the behavior of ATs
-        // and let the event handler handleClick do the housekeeping.
-        try {
-          clickEvent = new MouseEvent('click', {
-            'view': window,
-            'bubbles': true,
-            'cancelable': true
-          });
-        }
-        catch (err) {
-          if (document.createEvent) {
-            // DOM Level 3 for IE 9+
-            clickEvent = document.createEvent('MouseEvents');
-            clickEvent.initEvent('click', true, true);
-          }
-        }
-        tgt.dispatchEvent(clickEvent);
+        this.handleClick();
         flag = true;
         break;
 
       case this.keyCode.ESC:
-        this.menu.setFocusToController();
-        this.menu.close(true);
+        this.listbox.setFocusToController();
+        this.listbox.close(true);
         flag = true;
         break;
 
       case this.keyCode.UP:
-        this.menu.setFocusToPreviousItem(this);
+        this.listbox.setFocusToPreviousItem(this);
         flag = true;
         break;
 
       case this.keyCode.DOWN:
-        this.menu.setFocusToNextItem(this);
+        this.listbox.setFocusToNextItem(this);
         flag = true;
         break;
 
       case this.keyCode.HOME:
       case this.keyCode.PAGEUP:
-        this.menu.setFocusToFirstItem();
+        this.listbox.setFocusToFirstItem();
         flag = true;
         break;
 
       case this.keyCode.END:
       case this.keyCode.PAGEDOWN:
-        this.menu.setFocusToLastItem();
+        this.listbox.setFocusToLastItem();
         flag = true;
         break;
 
       case this.keyCode.TAB:
-        this.menu.setFocusToController();
-        this.menu.close(true);
+        this.listbox.setFocusToController();
+        this.listbox.close(true);
         break;
 
       default:
         if (isPrintableCharacter(char)) {
-          this.menu.setFocusByFirstCharacter(this, char);
+          this.listbox.setFocusByFirstCharacter(this, char);
         }
         break;
     }
@@ -157,26 +140,27 @@ Option.prototype.handleKeydown = function (event) {
 };
 
 Option.prototype.handleClick = function (event) {
-  this.menu.setFocusToController();
-  this.menu.close(true);
+  this.listbox.setValue(this.textContent);
+  this.listbox.setFocusToController();
+  this.listbox.close(true);
 };
 
 Option.prototype.handleFocus = function (event) {
-  this.menu.hasFocus = true;
+  this.listbox.hasFocus = true;
 };
 
 Option.prototype.handleBlur = function (event) {
-  this.menu.hasFocus = false;
-  setTimeout(this.menu.close.bind(this.menu, false), 300);
+  this.listbox.hasFocus = false;
+  setTimeout(this.listbox.close.bind(this.listbox, false), 300);
 };
 
 Option.prototype.handleMouseover = function (event) {
-  this.menu.hasHover = true;
-  this.menu.open();
+  this.listbox.hasHover = true;
+  this.listbox.open();
 
 };
 
 Option.prototype.handleMouseout = function (event) {
-  this.menu.hasHover = false;
-  setTimeout(this.menu.close.bind(this.menu, false), 300);
+  this.listbox.hasHover = false;
+  setTimeout(this.listbox.close.bind(this.listbox, false), 300);
 };

@@ -3,29 +3,25 @@ ul[role="listbox"] {
   margin: 0;
   padding: 0;
   position: absolute;
-  font-size: 110%;
-
+  top: 3em;
   list-style: none;
   background-color: #EEEEEE;
   display: none;
+  border: thin #333 solid;
+  height: 12em;
+  overflow: scroll;
 }
 
 ul[role="listbox"] li[role="option"]{
   display: block;
-  padding: 0.25em;
-  padding-left: 0.5em;
-  padding-right: 0.5em;
+  margin: 0.25em;
+  padding: 0;
   background-color: #EEEEEE;
   width: 12em;
+  font-size: 100%;
 }
 
 
-ul[role="listbox"] li[role="separator"]{
-  padding-top: 0.15em;
-  background-image: url('../images/separator.png');
-  background-position: center;
-  background-repeat: repeat-x;
-}
 
 /* focus and hover styling */
 

@@ -40,8 +40,10 @@ var Combobox10 = function (domNode) {
 
   this.hasFocus = false;
   this.hasHover = false;
+  this.filter = '';
 
   this.keyCode = Object.freeze({
+    'BACKSPACE': 8,
     'TAB': 9,
     'RETURN': 13,
     'ESC': 27,
@@ -62,11 +64,10 @@ Combobox10.prototype.init = function () {
   this.domNode.setAttribute('aria-haspopup', 'true');
 
   this.domNode.addEventListener('keydown', this.handleKeydown.bind(this));
-  this.domNode.addEventListener('click', this.handleClick.bind(this));
-  this.domNode.addEventListener('focus', this.handleFocus.bind(this));
-  this.domNode.addEventListener('blur', this.handleBlur.bind(this));
-  this.domNode.addEventListener('mouseover', this.handleMouseover.bind(this));
-  this.domNode.addEventListener('mouseout', this.handleMouseout.bind(this));
+  this.domNode.addEventListener('keyup',   this.handleKeyup.bind(this));
+  this.domNode.addEventListener('click',   this.handleClick.bind(this));
+  this.domNode.addEventListener('focus',   this.handleFocus.bind(this));
+  this.domNode.addEventListener('blur',    this.handleBlur.bind(this));
 
   // initialize pop up menus
 
@@ -82,9 +83,7 @@ Combobox10.prototype.init = function () {
 Combobox10.prototype.handleKeydown = function (event) {
   var tgt = event.currentTarget,
     flag = false,
-    clickEvent;
-
-  console.log('[Combobox10][handleKeydown]: ' + event.keyCode);
+    char = event.key;
 
   switch (event.keyCode) {
     case this.keyCode.SPACE:
@@ -105,8 +104,8 @@ Combobox10.prototype.handleKeydown = function (event) {
       }
       break;
 
-    default:
-      break;
+      default:
+        break;
   }
 
   if (flag) {
@@ -114,6 +113,28 @@ Combobox10.prototype.handleKeydown = function (event) {
     event.preventDefault();
   }
 };
+
+Combobox10.prototype.handleKeyup = function (event) {
+  var tgt = event.currentTarget,
+    flag = false,
+    char = event.key;
+
+  this.filter = this.domNode.value.substring(0,this.domNode.selectionStart);
+
+  this.option = this.listbox.filterOptions(this.filter);
+
+  console.log('[Combobox10][handleKeyup][filter]:       ' + this.filter);
+  console.log('[Combobox10][handleKeyup][value]:        ' + this.domNode.value);
+  console.log('[Combobox10][handleKeyup][option]:       ' + this.option);
+  console.log('[Combobox10][handleKeyup][getSelection]: ' + this.domNode.selectionStart);
+  console.log('[Combobox10][handleKeyup][selectionEnd]: ' + this.domNode.selectionEnd);
+
+}
+
+Combobox10.prototype.setValue = function (value) {
+  this.domNode.value = value;
+}
+
 
 Combobox10.prototype.handleClick = function (event) {
   if (this.domNode.getAttribute('aria-expanded') == 'true') {
@@ -133,16 +154,6 @@ Combobox10.prototype.handleBlur = function (event) {
   this.listbox.hasFocus = false;
   setTimeout(this.listbox.close.bind(this.listbox, false), 300);
 
-};
-
-Combobox10.prototype.handleMouseover = function (event) {
-  this.hasHover = true;
-  this.listbox.open();
-};
-
-Combobox10.prototype.handleMouseout = function (event) {
-  this.hasHover = false;
-  setTimeout(this.listbox.close.bind(this.listbox, false), 300);
 };
 
 // Initialize comboboxes
