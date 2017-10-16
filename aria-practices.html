@@ -672,35 +672,31 @@
         <ul>
           <li><kbd>Down Arrow</kbd>: If the popup is available, moves focus into the popup: 
             <ul>
-              <li>If the autocomplete behavior automatically selects a suggestion, focus is placed on the suggestion following the automatically selected suggestion.</li>
+              <li>If the autocomplete behavior hautomatically selected a suggestion before <kbd>Down Arrow</kbd> was pressed, focus is placed on the suggestion following the automatically selected suggestion.</li>
               <li>Otherwise, places focus on the first focusable element in the popup.</li>
             </ul>
           </li>
-          <li><kbd>Alt + Down Arrow</kbd> (Optional): Performs the same function as <kbd>Down Arrow</kbd>.</li>
           <li><kbd>Up Arrow</kbd> (Optional): If the popup is available, places focus on the last focusable element in the popup.</li>
-          <li>Printable Characters: Type characters in the textbox. Note that some implementations may regard certain characters as invalid and prevent their input.</li>
+          <li><kbd>Escape</kbd>: Dismisses the popup if it is visible. Optionally, clears the textbox.</li>
           <li>
             <kbd>Enter</kbd>: If an autocomplete suggestion is automatically selected, accepts the suggestion either by placing the input cursor at the end of the accepted value in the textbox or by performing a default action on the value.
             For example, in a messaging application, the default action may be to add the accepted value to a list of message recipients and then clear the textbox so the user can add another recipient.
           </li>
-          <li><kbd>Escape</kbd>: Dismisses the popup if it is visible. Optionally, clears the textbox.</li>
-          <li><kbd>Alt + Up Arrow</kbd> (Optional): Dismisses the popup if visible.</li>
-          <li><kbd>Right Arrow</kbd>: Moves the cursor right one character. Does nothing if the cursor is on the right-most character.</li>
-          <li><kbd>Left Arrow</kbd>: Moves the cursor left one character. Does nothing if the cursor is on the left-most character.</li>
-          <li><kbd>Control + Right Arrow</kbd>: Moves the cursor right one word. Does nothing if the cursor is on the right-most word .</li>
-          <li><kbd>Control + Left Arrow</kbd>: Moves the cursor left one word. Does nothing if the cursor is on the left-most word.</li>
-          <li><kbd>Home</kbd>: Moves the cursor to the first character. Does nothing if the cursor is on the first character.</li>
-          <li><kbd>End</kbd>: Moves the cursor to the last character. Does nothing if the cursor is on the last character.</li>
-          <li><kbd>Delete</kbd>: Deletes the current character or, if text is selected, deletes the selected text</li>
-          <li><kbd>Backspace</kbd>: Deletes the previous character, or, if text is selected, deletes the selected text.</li>
-          <li><kbd>Shift + Right Arrow</kbd>: Extends selection one character to the right. Does nothing if the cursor is on the right-most character.</li>
-          <li><kbd>Shift + Left Arrow</kbd>: Extends selection one character to the left. Does nothing if the cursor is on the left-most character.</li>
-          <li><kbd>Control + Shift + Right Arrow</kbd>: Extends selection one word to the right. Does nothing if the cursor is after the right-most word.</li>
-          <li><kbd>Control + Shift + Left Arrow</kbd>: Extends selection one word to the left. Does nothing if the cursor is at the start of the left-most word.</li>
-          <li><kbd>Shift + Home</kbd>: Extends selection from the cursor position to the first character.</li>
-          <li><kbd>Shift + End</kbd>: Extends selection from the cursor position to the last character.</li>
-          <li><kbd>Control + A</kbd> (Optional): Selects all the text in the textbox.
+          <li>Printable Characters: Type characters in the textbox. Note that some implementations may regard certain characters as invalid and prevent their input.</li>
+          <li><kbd>Alt + Down Arrow</kbd> (Optional): If the popup is available but not displayed, displays the popup without moving focus.</li> 
+          <li><kbd>Alt + Up Arrow</kbd> (Optional): If the popup is displayed:
+            <ol>
+              <li>If the popup contains focus, returns focus to the textbox.</li>
+              <li>Closes the popup.</li>
+            </ol>
+          </li>
         </ul>
+        <p class="note">
+          The textbox supports standard keyboard commands for text editing functions, including input, navigation, selection, and manipulation.
+          Standard key assignments for these functions depend on the device operating system.
+          The most robust approach to providing text editing functions is to rely on browsers, which  supply them for HTML inputs with type text and for elements with the contenteditable attribute.
+          <strong>IMPORTANT:</strong> Be sure that JavaScript does not interfere with browser-provided text editing functions by capturing key events for the keys used to perform them.
+        </p>
         <h5>Listbox Popup Keyboard Interaction</h5>
         <p>When focus is in a listbox popup:</p>
         <ul>
