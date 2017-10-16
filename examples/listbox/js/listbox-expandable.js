@@ -53,11 +53,13 @@ aria.ListboxButton.prototype.checkHide = function (evt) {
 
 aria.ListboxButton.prototype.showListbox = function () {
   aria.Utils.removeClass(this.listbox.listboxNode, 'hidden');
+  this.button.setAttribute('aria-expanded', 'true');
   this.listbox.listboxNode.focus();
 };
 
 aria.ListboxButton.prototype.hideListbox = function () {
   aria.Utils.addClass(this.listbox.listboxNode, 'hidden');
+  this.button.removeAttribute('aria-expanded');
 };
 
 aria.ListboxButton.prototype.onFocusChange = function (focusedItem) {
