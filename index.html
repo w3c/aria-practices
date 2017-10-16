@@ -1248,16 +1248,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             </span>
             </span>
         </h2>
-        <p>This section demonstrates how to make common rich internet application widgets and patterns accessible by applying <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> roles, states, and properties and implementing keyboard support.</p>
-        <div class="note">
-            <div class="note-title marker" aria-level="3" role="heading" id="h-note1"><span>Note</span></div>
-            <p class="">
-                Although users of Mac OS X are familiar with using the <kbd>Command</kbd> key instead of the <kbd>Control</kbd> key, the <kbd>Command</kbd> key is typically reserved for desktop applications and OS-level integration. Until device and platform
-                independence can be addressed in <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> 2.0, the primary <kbd>Control</kbd> modifier key for <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> widget interaction
-                is specified as <kbd>Control</kbd> on all platforms, including Mac OS X.
-            </p>
-        </div>
-
+        <p>This section demonstrates how to make common rich internet application patterns and widgets accessible by applying <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> roles, states, and properties and implementing keyboard support.</p>
         <section id="aria_ex_widget" typeof="bibo:Chapter" resource="#aria_ex_widget" property="bibo:hasPart">
             <h3 id="x3-1-generally-applicable-keyboard-recommendations" resource="#x3-1-generally-applicable-keyboard-recommendations"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.1 </span>Generally Applicable Keyboard Recommendations <span class="permalink" typeof="bookmark"><a href="#aria_ex_widget" aria-label="Permalink for 3.1 Generally Applicable Keyboard Recommendations " title="Permalink for 3.1 Generally Applicable Keyboard Recommendations " property="url"><span property="title" content="3.1 Generally Applicable Keyboard Recommendations ">§</span></a>
                 </span>
@@ -1553,7 +1544,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                 <li>Menu button: as described in the <a href="#menubutton">menu button pattern</a>, a button is revealed to assistive technologies as a menu button if it has the property <a href="https://w3c.github.io/aria/aria/aria.html#aria-haspopup" class="property-reference">aria-haspopup</a>                    set to <code>true</code>.</li>
             </ul>
             <div class="note">
-                <div class="note-title marker" aria-level="4" role="heading" id="h-note2"><span>Note</span></div>
+                <div class="note-title marker" aria-level="4" role="heading" id="h-note1"><span>Note</span></div>
                 <p class="">
                     The types of actions performed by buttons are distinctly different from the function of a link (see <a href="#link">link pattern</a>). It is important that both the appearance and role of a widget match the function it provides. Nevertheless,
                     elements occasionally have the visual style of a link but perform the action of a button. In such cases, giving the element role <code>button</code> helps assistive technology users understand the function of the element. However,
@@ -1758,7 +1749,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                 keep the current value by pressing escape. In contrast, navigating a listbox immediately changes its value, and escape does not provide an undo mechanism.
             </p>
             <div class="note">
-                <div class="note-title marker" aria-level="4" role="heading" id="h-note3"><span>Note</span></div>
+                <div class="note-title marker" aria-level="4" role="heading" id="h-note2"><span>Note</span></div>
                 <p class="">
                     The options for a combobox to popup a grid, tree, or dialog were introduced in ARIA 1.1. Changes made in the ARIA 1.1 specification also add support for a code pattern that enables assistive technologies to present the textbox and popup as separately
                     perceivable elements. While the ARIA 1.1 pattern is recommended, both patterns are described in the following sections, and there are no plans to deprecate the ARIA 1.0 pattern.
@@ -1813,7 +1804,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                     </li>
                 </ul>
                 <div class="note">
-                    <div class="note-title marker" aria-level="5" role="heading" id="h-note4"><span>Note</span></div>
+                    <div class="note-title marker" aria-level="5" role="heading" id="h-note3"><span>Note</span></div>
                     <p class="">
                         The textbox supports standard keyboard commands for text editing functions, including input, navigation, selection, and manipulation. Standard key assignments for these functions depend on the device operating system. The most robust approach to providing
                         text editing functions is to rely on browsers, which supply them for HTML inputs with type text and for elements with the contenteditable attribute.
@@ -1842,7 +1833,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                     <li><kbd>End</kbd> (Optional): Either moves focus to the last option or returns focus to the textbox and places the cursor after the last character.</li>
                 </ul>
                 <div class="note">
-                    <div class="note-title marker" aria-level="5" role="heading" id="h-note5"><span>Note</span></div>
+                    <div class="note-title marker" aria-level="5" role="heading" id="h-note4"><span>Note</span></div>
                     <ol class="">
                         <li>DOM Focus is maintained on the combobox textbox and the assistive technology focus is moved within the grid using <code>aria-activedescendant</code> as described in <a href="#kbd_focus_activedescendant">Managing Focus in Composites Using aria-activedescendant.</a></li>
                         <li>Selection follows focus in the listbox; the listbox allows only one suggested value to be selected at a time for the textbox value.</li>
@@ -1898,7 +1889,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                     <li><kbd>Control + End</kbd> (Optional): moves focus to the last row.</li>
                 </ul>
                 <div class="note">
-                    <div class="note-title marker" aria-level="5" role="heading" id="h-note6"><span>Note</span></div>
+                    <div class="note-title marker" aria-level="5" role="heading" id="h-note5"><span>Note</span></div>
                     <ol class="">
                         <li>DOM Focus is maintained on the combobox textbox and the assistive technology focus is moved within the grid using <code>aria-activedescendant</code> as described in <a href="#kbd_focus_activedescendant">Managing Focus in Composites Using aria-activedescendant.</a></li>
                         <li>The grid allows only one suggested value to be selected at a time for the textbox value.</li>
@@ -1953,7 +1944,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                     <li><kbd>End</kbd>: Moves focus to the last node in the tree that is focusable without opening a node and selects it if it is selectable.</li>
                 </ul>
                 <div class="note">
-                    <div class="note-title marker" aria-level="5" role="heading" id="h-note7"><span>Note</span></div>
+                    <div class="note-title marker" aria-level="5" role="heading" id="h-note6"><span>Note</span></div>
                     <ol class="">
                         <li>DOM Focus is maintained on the combobox textbox and the assistive technology focus is moved within the tree using <code>aria-activedescendant</code> as described in <a href="#kbd_focus_activedescendant">Managing Focus in Composites Using aria-activedescendant.</a></li>
                         <li>The tree allows only one suggested value to be selected at a time for the textbox value.</li>
@@ -1990,7 +1981,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                     <li>The dialog implements the keyboard interaction defined in the <a href="#dialog_modal">modal dialog pattern.</a></li>
                 </ul>
                 <div class="note">
-                    <div class="note-title marker" aria-level="5" role="heading" id="h-note8"><span>Note</span></div>
+                    <div class="note-title marker" aria-level="5" role="heading" id="h-note7"><span>Note</span></div>
                     <p class="">
                         Unlike other combobox popups, dialogs do not support <code>aria-activedescendant</code> so DOM focus moves into the dialog from the textbox.
                     </p>
@@ -2059,7 +2050,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                     </li>
                 </ul>
                 <div class="note">
-                    <div class="note-title marker" aria-level="5" role="heading" id="h-note9"><span>Note</span></div>
+                    <div class="note-title marker" aria-level="5" role="heading" id="h-note8"><span>Note</span></div>
                     <p class="">
                         The roles, states, and properties for popup elements are defined in their respective design patterns. When refering to the following design patterns, note that a combobox is a single-select widget where selection follows focus in the popup.
                     </p>
@@ -2123,7 +2114,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                     <li><kbd>Escape</kbd>: Closes the dialog.</li>
                 </ul>
                 <div class="note">
-                    <div class="note-title marker" aria-level="5" role="heading" id="h-note10"><span>Note</span></div>
+                    <div class="note-title marker" aria-level="5" role="heading" id="h-note9"><span>Note</span></div>
                     <ol class="">
                         <li> When a dialog opens, focus placement depends on the nature and size of the content.
                             <ul>
@@ -2183,7 +2174,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                     </li>
                 </ul>
                 <div class="note">
-                    <div class="note-title marker" aria-level="5" role="heading" id="h-note11"><span>Note</span></div>
+                    <div class="note-title marker" aria-level="5" role="heading" id="h-note10"><span>Note</span></div>
                     <ul class="">
                         <li>
                             Because marking a dialog modal by setting
@@ -2269,7 +2260,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                 </span>
             </h3>
             <div class="note">
-                <div class="note-title marker" aria-level="4" role="heading" id="h-note12"><span>Note</span></div>
+                <div class="note-title marker" aria-level="4" role="heading" id="h-note11"><span>Note</span></div>
                 <p class=""> This section contains an early draft of new content. Feedback is welcome in <a href="https://github.com/w3c/aria-practices/issues/245">issue 245.</a>
                 </p>
             </div>
@@ -2343,7 +2334,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                     <li><kbd>Control + Home</kbd>: Move focus to the first focusable element before the feed.</li>
                 </ul>
                 <div class="note">
-                    <div class="note-title marker" aria-level="5" role="heading" id="h-note13"><span>Note</span></div>
+                    <div class="note-title marker" aria-level="5" role="heading" id="h-note12"><span>Note</span></div>
                     <ol class="">
                         <li>Due to the lack of convention, providing easily discoverable keyboard interface documentation is especially important.</li>
                         <li>
@@ -2497,7 +2488,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                     </ul>
 
                     <div class="note">
-                        <div class="note-title marker" aria-level="6" role="heading" id="h-note14"><span>Note</span></div>
+                        <div class="note-title marker" aria-level="6" role="heading" id="h-note13"><span>Note</span></div>
                         <ul class="">
                             <li>
                                 When the above grid navigation keys move focus, whether the focus is set on an element inside the cell or the grid cell depends on cell content. See <a href="#gridNav_focus">Whether to Focus on a Cell or an Element Inside It</a>.
@@ -2525,7 +2516,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                     </ul>
 
                     <div class="note">
-                        <div class="note-title marker" aria-level="6" role="heading" id="h-note15"><span>Note</span></div>
+                        <div class="note-title marker" aria-level="6" role="heading" id="h-note14"><span>Note</span></div>
                         <p class="">See <a href="#aria_ex_widget">Global Recommendations</a> for cut, copy and paste key assignments.</p>
                     </div>
                 </section>
@@ -2599,7 +2590,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                         <li><kbd>Control + End</kbd> (Optional): moves focus to the last cell in the last row.</li>
                     </ul>
                     <div class="note">
-                        <div class="note-title marker" aria-level="6" role="heading" id="h-note16"><span>Note</span></div>
+                        <div class="note-title marker" aria-level="6" role="heading" id="h-note15"><span>Note</span></div>
                         <ul class="">
                             <li>
                                 When the above grid navigation keys move focus, whether the focus is sett on an element inside the cell or the grid cell depends on cell content. See <a href="#gridNav_focus">Whether to Focus on a Cell or an Element Inside It</a>.
@@ -2628,7 +2619,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                         <li><kbd>Shift + Up Arrow</kbd>: Extends selection one cell Up.</li>
                     </ul>
                     <div class="note">
-                        <div class="note-title marker" aria-level="6" role="heading" id="h-note17"><span>Note</span></div>
+                        <div class="note-title marker" aria-level="6" role="heading" id="h-note16"><span>Note</span></div>
                         <p class="">See <a href="#aria_ex_widget">Global Recommendations</a> for cut, copy and paste key assignments.</p>
                     </div>
                 </section>
@@ -2777,7 +2768,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                 </ul>
 
                 <div class="note">
-                    <div class="note-title marker" aria-level="5" role="heading" id="h-note18"><span>Note</span></div>
+                    <div class="note-title marker" aria-level="5" role="heading" id="h-note17"><span>Note</span></div>
                     <ul class="">
                         <li>
                             If the element with the <code>grid</code> role is an HTML <code>table</code> element, then it is not necessary to use ARIA roles for rows and cells because the HTML elements have implied ARIA semantics. For example, an HTML
@@ -2788,7 +2779,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                     </ul>
                 </div>
                 <div class="note">
-                    <div class="note-title marker" aria-level="5" role="heading" id="h-note19"><span>Note</span></div>
+                    <div class="note-title marker" aria-level="5" role="heading" id="h-note18"><span>Note</span></div>
                     <p class="">Editor's Note - Guidance for aria-owns has not yet been created. A link to it will be added above once created.</p>
                 </div>
 
@@ -2805,7 +2796,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                 current page or application.
             </p>
             <div class="note">
-                <div class="note-title marker" aria-level="4" role="heading" id="h-note20"><span>Note</span></div>
+                <div class="note-title marker" aria-level="4" role="heading" id="h-note19"><span>Note</span></div>
                 <p class="">
                     Authors are strongly encouraged to use a native host language link element, such as an HTML
                     <code>&lt;A&gt;</code> element with an <code>href</code> attribute. As with other <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> widget roles, applying the link role to an element will not cause browsers to enhance
@@ -2940,7 +2931,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                     </li>
                 </ul>
                 <div class="note">
-                    <div class="note-title marker" aria-level="5" role="heading" id="h-note21"><span>Note</span></div>
+                    <div class="note-title marker" aria-level="5" role="heading" id="h-note20"><span>Note</span></div>
                     <ol class="">
                         <li>DOM focus (the active element) is functionally distinct from the selected state. For more details, see <a href="#kbd_focus_vs_selection">this description of differences between focus and selection.</a></li>
                         <li>
@@ -3110,7 +3101,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                     <li><kbd>Shift + Tab</kbd>: Moves focus to the previous element in the tab sequence, and if the item that had focus is not in a <code>menubar</code>, closes its <code>menu</code> and all open parent <code>menu</code> containers.</li>
                 </ul>
                 <div class="note">
-                    <div class="note-title marker" aria-level="5" role="heading" id="h-note22"><span>Note</span></div>
+                    <div class="note-title marker" aria-level="5" role="heading" id="h-note21"><span>Note</span></div>
                     <ol class="">
                         <li>Disabled menu items are focusable but cannot be activated. </li>
                         <li>A <a href="https://w3c.github.io/aria/aria/aria.html#separator" class="role-reference">separator</a> in a menu is not focusable or interactive.</li>
@@ -3178,7 +3169,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                     </li>
                 </ul>
                 <div class="note">
-                    <div class="note-title marker" aria-level="5" role="heading" id="h-note23"><span>Note</span></div>
+                    <div class="note-title marker" aria-level="5" role="heading" id="h-note22"><span>Note</span></div>
                     <ol class="">
                         <li>
                             Currently, using aria-expanded on elements with role menuitem triggers HTML validation errors because the ARIA specification does not yet support doing so. The ARIA working group plans to resolve this issue in the next version of the specification. Until
@@ -3311,7 +3302,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                     </li>
                 </ul>
                 <div class="note">
-                    <div class="note-title marker" aria-level="5" role="heading" id="h-note24"><span>Note</span></div>
+                    <div class="note-title marker" aria-level="5" role="heading" id="h-note23"><span>Note</span></div>
                     <p class="">
                         The initial focus behavior described above differs slightly from the behavior provided by some browsers for native HTML radio groups. In some browsers, if none of the radio buttons are selected, moving focus into the radio group with <kbd>Shift+Tab</kbd>                        will place focus on the last radio button instead of the first radio button.
                     </p>
@@ -3391,7 +3382,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                     <li><kbd>Page Down</kbd> (Optional): Decrement the slider by an amount larger than the step change made by <kbd>Down Arrow</kbd>.</li>
                 </ul>
                 <div class="note">
-                    <div class="note-title marker" aria-level="5" role="heading" id="h-note25"><span>Note</span></div>
+                    <div class="note-title marker" aria-level="5" role="heading" id="h-note24"><span>Note</span></div>
                     <ol class="">
                         <li>Focus is placed on the slider (the visual object that the mouse user would move, also known as the thumb.</li>
                         <li>In some circumstances, reversing the direction of the value change for the keys specified above, e.g., having <kbd>Up Arrow</kbd> decrease the value, could create a more intuitive experience.</li>
@@ -3543,7 +3534,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                     <li><kbd>Page Down</kbd> (Optional): Decreases the value by a larger step than <kbd>Down Arrow</kbd>.</li>
                 </ul>
                 <div class="note">
-                    <div class="note-title marker" aria-level="5" role="heading" id="h-note26"><span>Note</span></div>
+                    <div class="note-title marker" aria-level="5" role="heading" id="h-note25"><span>Note</span></div>
                     <p class="">Focus remains on the text field during operation.</p>
                 </div>
             </section>
@@ -3661,7 +3652,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                     </li>
                 </ul>
                 <div class="note">
-                    <div class="note-title marker" aria-level="5" role="heading" id="h-note27"><span>Note</span></div>
+                    <div class="note-title marker" aria-level="5" role="heading" id="h-note26"><span>Note</span></div>
                     <ol class="">
                         <li>
                             It is recommended that tabs activate automatically when they receive focus as long as their associated tab panels are displayed without noticeable latency. This typically requires tab panel content to be preloaded. Otherwise, automatic activation slows
@@ -3743,7 +3734,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                     <li><kbd>End</kbd> (Optional): Moves focus to last element.</li>
                 </ul>
                 <div class="note">
-                    <div class="note-title marker" aria-level="5" role="heading" id="h-note28"><span>Note</span></div>
+                    <div class="note-title marker" aria-level="5" role="heading" id="h-note27"><span>Note</span></div>
                     <ol class="">
                         <li>If the items in a toolbar are arranged vertically:
                             <ol>
@@ -3810,7 +3801,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                 </h4>
                 <p><kbd>Escape</kbd>: Dismisses the Tooltip.</p>
                 <div class="note">
-                    <div class="note-title marker" aria-level="5" role="heading" id="h-note29"><span>Note</span></div>
+                    <div class="note-title marker" aria-level="5" role="heading" id="h-note28"><span>Note</span></div>
                     <ol class="">
                         <li>Focus stays on the triggering element while the tooltip is displayed.</li>
                         <li>
@@ -3963,7 +3954,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                     </li>
                 </ul>
                 <div class="note">
-                    <div class="note-title marker" aria-level="5" role="heading" id="h-note30"><span>Note</span></div>
+                    <div class="note-title marker" aria-level="5" role="heading" id="h-note29"><span>Note</span></div>
                     <ol class="">
                         <li>DOM focus (the active element) is functionally distinct from the selected state. For more details, see <a href="#kbd_focus_vs_selection">this description of differences between focus and selection.</a></li>
                         <li>
@@ -4023,7 +4014,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                     </li>
                 </ul>
                 <div class="note">
-                    <div class="note-title marker" aria-level="5" role="heading" id="h-note31"><span>Note</span></div>
+                    <div class="note-title marker" aria-level="5" role="heading" id="h-note30"><span>Note</span></div>
                     <p class="">
                         If <a href="https://w3c.github.io/aria/aria/aria.html#aria-owns" class="property-reference">aria-owns</a> is set on the tree container to include elements that are not DOM children of the container, those elements will appear in
                         the reading order in the sequence they are referenced and after any items that are DOM children. Scripts that manage focus need to ensure the visual focus order matches this assistive technology reading order.
@@ -4082,7 +4073,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                     <li><kbd>F6</kbd> (Optional): Cycle through window panes.</li>
                 </ul>
                 <div class="note">
-                    <div class="note-title marker" aria-level="5" role="heading" id="h-note32"><span>Note</span></div>
+                    <div class="note-title marker" aria-level="5" role="heading" id="h-note31"><span>Note</span></div>
                     <p class="">A fixed size splitter omits implementation of the arrow keys.</p>
                 </div>
             </section>
@@ -5171,7 +5162,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                     impact of conflicts whether they are intentional or unknown.
                 </p>
                 <div class="note">
-                    <div class="note-title marker" aria-level="5" role="heading" id="h-note33"><span>Note</span></div>
+                    <div class="note-title marker" aria-level="5" role="heading" id="h-note32"><span>Note</span></div>
                     <p class="">
                         In the following sections, <kbd>meta</kbd> key refers to the <kbd>Windows</kbd> key on Windows-compatible keyboards and the <kbd>Command</kbd> key on MacOS-compatible keyboards.
                     </p>
