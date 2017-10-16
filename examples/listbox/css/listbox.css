@@ -95,3 +95,24 @@ button[aria-disabled="true"] {
 	overflow-y: auto;
 	position: relative;
 }
+
+#exp_button {
+  border-radius: 0;
+  font-size: 16px;
+  text-align: left;
+  padding: 5px 10px;
+	width: 150px;
+}
+
+#exp_elem_list {
+	border-top: 0;
+	max-height: 10em;
+	overflow-y: auto;
+	position: absolute;
+	margin: 0;
+	width: 148px;
+}
+
+.hidden {
+	display: none;
+}
