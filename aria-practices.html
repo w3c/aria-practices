@@ -79,6 +79,98 @@
     </p>
   </section>
 
+  <section id="read_me_first">
+    <h2>Read Me First</h2>
+    <p>
+      <strong>NOTE:</strong> This is a proposed draft of a new section.
+      Please provide feedback in 
+      <a href="https://github.com/w3c/aria-practices/issues/482">issue 482</a>.
+    </p>
+    <section id="no_aria_better_bad_aria">
+      <h3>No ARIA is better than Bad ARIA</h3>
+      <p>
+        Functionally, ARIA roles, states, and properties are sort of like CSS for assistive technologies. 
+        In the case of screen readers, ARIA controls the rendering of the non-visual experience. 
+        Incorrect ARIA misrepresents visual experiences, with potentially devastating effects on the corresponding non-visual experiences.
+      </p>
+      <p>Before using ARIA or any of the guidance in this document, please take time to understand the following two essential principles.</p>
+      <h4>Principal 1: A role is a promise</h4>
+      <p>This code:</p>
+      <pre><code>
+        &lt;div role=&quot;button&quot;&gt;Press Me&lt;/div&gt;
+          </code> </pre>
+      <p>
+        Is a promise that the author of that <code>&lt;div&gt;</code> has also incorporated JavaScript that provides the keyboard interactions expected for a button.
+        Unlike HTML input elements, ARIA roles do not cause browsers to provide keyboard behaviors or styling.
+      </p>
+      <p>Using a role without fulfilling the promise of that role is similar to making a &quot;Place Order&quot; button that abandons an order and empties the shopping cart.</p>
+      <p>One of the objectives of this guide is to define expected behaviors for each ARIA role.</p>
+      <h4>Principle 2: ARIA Can Both Cloak and Enhance, Creating Both Power and Danger</h4>
+      <p>
+        The information assistive technologies need about the meaning and purpose of user interface elements is called accessibility semantics.
+        From the perspective of assistive technologies, ARIA gives authors the ability to dress up HTML and SVG elements with critical accessibility semantics that the assistive technologies would not otherwise be able to reliably derive.
+      </p>
+      <p>Some of ARIA is like a cloak; it covers up, or overrides, the original semantics or content.</p>
+      <pre><code>
+        &lt;a role=&quot;menuitem&quot;&gt;Assistive tech users perceive this element as an item in a menu, not a link.&lt;/a&gt;
+        &lt;a aria-label=&quot;Assistive tech users perceive this aria-label, not the link text&quot;&gt;Link Text&lt;/a&gt;
+</code></pre>
+      <p>On the other hand, some uses of ARIA are more like suspenders or belts; they add meaning that provides essential support to the original content.</p>
+      <pre><code>
+        &lt;button aria-pressed=&quot;false&quot;&gt;Press Me&lt;/button&gt;
+      </code></pre>
+      <p>
+        This is the power of ARIA. 
+        It enables authors to describe nearly any user interface component in ways that assistive technologies can reliably interpret, thus making components accessible to assistive technology users.
+      </p>
+      <p>
+        This is also the danger of ARIA. 
+        Authors can inadvertently override accessibility semantics.
+      </p>
+      <pre>
+        <code>
+          &lt;table role=&quot;log&quot;&gt;
+            &lt;!--
+              Table that assistive technology users will not perceive as a table.
+              The log role tells browser this is a log, not a table.
+            --&gt;
+          &lt;/table&gt;
+          &lt;ul role=&quot;navigation&quot;&gt;
+            &lt;!-- This is a navigation region, not a list. --&gt;
+            &lt;li&gt;&lt;a href=&quot;uri1&quot;&gt;nav link 1&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;uri2&quot;&gt;nav link 2&lt;/li&gt;
+            &lt;!-- ERROR! Previous list items are not in a list! --&gt;
+          &lt;/ul&gt;
+        </code>
+      </pre>
+    </section>
+    <section id="browser_and_AT_support">
+      <h3>Browser and Assistive Technology Support</h3>
+      <p>
+        This guide illustrates appropriate use of ARIA 1.1 as defined in the ARIA specification. 
+        The design patterns, reference examples, and sample code intentionally <strong>do not</strong> implement code to fix problems that are caused by gaps in support for ARIA 1.1 in browsers or assistive technologies.
+        Browser and assistive technology developers can thus utilize code in this guide to help assess the quality of their support for ARIA 1.1.
+      </p>
+      <p>
+        Similarly, JavaScript and CSS in this guide is written to be compatible with the most recent version of Chrome, Firefox, Internet Explorer, and Safari at the time of writing. 
+        In particular, some JavaScript and CSS may not function correctly in Internet Explorer version 10 or earlier.
+      </p>
+      <p>
+        In other words, except in cases where the ARIA Working Group and other contributors have overlooked an error, 
+        examples in this guide that do not function well in a particular browser or with a specific assistive technology are demonstrating browser or assistive technology bugs.
+      </p>
+    </section>
+    <section id="mobile_and_touch_support">
+      <h3>Mobile and Touch Support</h3>
+      <p>
+        Currently, this guide does not indicate which examples are compatible with mobile browsers or touch interfaces. 
+        While some of the examples include specific features that enhance mobile and touch support, some ARIA features are not supported in any mobile browser.
+        In addition, there is not yet a standardized approach for providing touch interactions that work across mobile browsers.
+      </p>
+      <p>More guidance about touch and mobile support is planned for future releases of the guide.</p>
+    </section>
+  </section>
+
   <section id="aria_ex">
     <h2>Design Patterns and Widgets</h2>
     <p>This section demonstrates how to make common rich internet application widgets and patterns accessible by applying WAI-ARIA roles, states, and properties and implementing keyboard support.</p>

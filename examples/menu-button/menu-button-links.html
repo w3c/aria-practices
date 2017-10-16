@@ -21,7 +21,7 @@
     <main>
       <h1>Navigation Menu Button Example</h1>
       <p>
-        This example demonstrates the  
+        This example demonstrates the
         <a href="../../#menubutton">menu button design pattern</a>
         for a button that displays a menu of link targets.
         The menu items are made from HTML links and maintain their HTML link behaviors.
@@ -32,7 +32,7 @@
         The <code>menuitem</code> role is on the HTML <code>a</code> element contained by each <code>li</code> element so link behaviors are available when focus is set on the menu item.
         Another reason the <code>menuitem</code> role is not on the <code>li</code> element is that the semantics of descendants of ARIA <code>menuitem</code> elements are not exposed in the accessibility tree.
         That is, an item in a menu can only be a <code>menuitem</code> because accessibility APIs do not enable assistive technologies to render elements contained inside of an item in a menu.
-        For a more detailed description of this constraint, see 
+        For a more detailed description of this constraint, see
         <a href="../../#children_presentational">Roles That Automatically Hide Semantics by Making Their Descendants Presentational.</a>
       </p>
       <p>Similar examples include: </p>
@@ -45,15 +45,13 @@
         <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
         <div id="ex1">
           <div class="menu_button">
-            <a
+            <button
               id="menubutton"
-              role="button"
-              href="#"
               aria-haspopup="true"
               aria-controls="menu2"
               >
               WAI-ARIA Quick Links
-            </a>
+            </button>
 
             <ul id="menu2" role="menu" aria-labelledby="menubutton">
               <li role="none">
@@ -255,7 +253,7 @@
                     <li>Added when the menu is open.</li>
                     <li>Indicates that the menu is displayed and that activating the menu button closes the menu.</li>
                     <li>The <code>aria-expanded</code> attribute is removed when the menu is closed.</li>
-                    <li>Included to support touch devices where screen reader users can touch the menu button when the menu is displayed. Keyboard users cannot focus the menu button when the menu is open.</li>  
+                    <li>Included to support touch devices where screen reader users can touch the menu button when the menu is displayed. Keyboard users cannot focus the menu button when the menu is open.</li>
                   </ul>
                 </td>
             </tr>
@@ -308,7 +306,7 @@
               <td>
                 <ul>
                   <li>Hides the implied <code>listitem</code> role of the <code>li</code> element from assistive technologies.</li>
-                  <li>For more details, see <a href="../../#presentation_role">Intentionally Hiding Semantics with the <code>presentation</code> Role</a>.</li> 
+                  <li>For more details, see <a href="../../#presentation_role">Intentionally Hiding Semantics with the <code>presentation</code> Role</a>.</li>
                 </ul>
               </td>
             </tr>
