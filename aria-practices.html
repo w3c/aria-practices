@@ -79,27 +79,101 @@
     </p>
   </section>
 
+  <section id="read_me_first">
+    <h2>Read Me First</h2>
+    <p>
+      <strong>NOTE:</strong> This is a proposed draft of a new section.
+      Please provide feedback in 
+      <a href="https://github.com/w3c/aria-practices/issues/482">issue 482</a>.
+    </p>
+    <section id="no_aria_better_bad_aria">
+      <h3>No ARIA is better than Bad ARIA</h3>
+      <p>
+        Functionally, ARIA roles, states, and properties are sort of like CSS for assistive technologies. 
+        In the case of screen readers, ARIA controls the rendering of the non-visual experience. 
+        Incorrect ARIA misrepresents visual experiences, with potentially devastating effects on the corresponding non-visual experiences.
+      </p>
+      <p>Before using ARIA or any of the guidance in this document, please take time to understand the following two essential principles.</p>
+      <h4>Principal 1: A role is a promise</h4>
+      <p>This code:</p>
+      <pre><code>
+        &lt;div role=&quot;button&quot;&gt;Press Me&lt;/div&gt;
+          </code> </pre>
+      <p>
+        Is a promise that the author of that <code>&lt;div&gt;</code> has also incorporated JavaScript that provides the keyboard interactions expected for a button.
+        Unlike HTML input elements, ARIA roles do not cause browsers to provide keyboard behaviors or styling.
+      </p>
+      <p>Using a role without fulfilling the promise of that role is similar to making a &quot;Place Order&quot; button that abandons an order and empties the shopping cart.</p>
+      <p>One of the objectives of this guide is to define expected behaviors for each ARIA role.</p>
+      <h4>Principle 2: ARIA Can Both Cloak and Enhance, Creating Both Power and Danger</h4>
+      <p>
+        The information assistive technologies need about the meaning and purpose of user interface elements is called accessibility semantics.
+        From the perspective of assistive technologies, ARIA gives authors the ability to dress up HTML and SVG elements with critical accessibility semantics that the assistive technologies would not otherwise be able to reliably derive.
+      </p>
+      <p>Some of ARIA is like a cloak; it covers up, or overrides, the original semantics or content.</p>
+      <pre><code>
+        &lt;a role=&quot;menuitem&quot;&gt;Assistive tech users perceive this element as an item in a menu, not a link.&lt;/a&gt;
+        &lt;a aria-label=&quot;Assistive tech users perceive this aria-label, not the link text&quot;&gt;Link Text&lt;/a&gt;
+</code></pre>
+      <p>On the other hand, some uses of ARIA are more like suspenders or belts; they add meaning that provides essential support to the original content.</p>
+      <pre><code>
+        &lt;button aria-pressed=&quot;false&quot;&gt;Press Me&lt;/button&gt;
+      </code></pre>
+      <p>
+        This is the power of ARIA. 
+        It enables authors to describe nearly any user interface component in ways that assistive technologies can reliably interpret, thus making components accessible to assistive technology users.
+      </p>
+      <p>
+        This is also the danger of ARIA. 
+        Authors can inadvertently override accessibility semantics.
+      </p>
+      <pre>
+        <code>
+          &lt;table role=&quot;log&quot;&gt;
+            &lt;!--
+              Table that assistive technology users will not perceive as a table.
+              The log role tells browser this is a log, not a table.
+            --&gt;
+          &lt;/table&gt;
+          &lt;ul role=&quot;navigation&quot;&gt;
+            &lt;!-- This is a navigation region, not a list. --&gt;
+            &lt;li&gt;&lt;a href=&quot;uri1&quot;&gt;nav link 1&lt;/li&gt;
+            &lt;li&gt;&lt;a href=&quot;uri2&quot;&gt;nav link 2&lt;/li&gt;
+            &lt;!-- ERROR! Previous list items are not in a list! --&gt;
+          &lt;/ul&gt;
+        </code>
+      </pre>
+    </section>
+    <section id="browser_and_AT_support">
+      <h3>Browser and Assistive Technology Support</h3>
+      <p>
+        This guide illustrates appropriate use of ARIA 1.1 as defined in the ARIA specification. 
+        The design patterns, reference examples, and sample code intentionally <strong>do not</strong> implement code to fix problems that are caused by gaps in support for ARIA 1.1 in browsers or assistive technologies.
+        Browser and assistive technology developers can thus utilize code in this guide to help assess the quality of their support for ARIA 1.1.
+      </p>
+      <p>
+        Similarly, JavaScript and CSS in this guide is written to be compatible with the most recent version of Chrome, Firefox, Internet Explorer, and Safari at the time of writing. 
+        In particular, some JavaScript and CSS may not function correctly in Internet Explorer version 10 or earlier.
+      </p>
+      <p>
+        In other words, except in cases where the ARIA Working Group and other contributors have overlooked an error, 
+        examples in this guide that do not function well in a particular browser or with a specific assistive technology are demonstrating browser or assistive technology bugs.
+      </p>
+    </section>
+    <section id="mobile_and_touch_support">
+      <h3>Mobile and Touch Support</h3>
+      <p>
+        Currently, this guide does not indicate which examples are compatible with mobile browsers or touch interfaces. 
+        While some of the examples include specific features that enhance mobile and touch support, some ARIA features are not supported in any mobile browser.
+        In addition, there is not yet a standardized approach for providing touch interactions that work across mobile browsers.
+      </p>
+      <p>More guidance about touch and mobile support is planned for future releases of the guide.</p>
+    </section>
+  </section>
+
   <section id="aria_ex">
     <h2>Design Patterns and Widgets</h2>
-    <p>This section demonstrates how to make common rich internet application widgets and patterns accessible by applying WAI-ARIA roles, states, and properties and implementing keyboard support.</p>
-    <p class="note">
-      Although users of Mac OS X are familiar with using the <kbd>Command</kbd> key instead of the <kbd>Control</kbd> key, the <kbd>Command</kbd> key is typically reserved for desktop applications and OS-level integration.
-      Until device and platform independence can be addressed in WAI-ARIA 2.0, the primary <kbd>Control</kbd> modifier key for WAI-ARIA widget interaction is specified as <kbd>Control</kbd> on all platforms, including Mac OS X.
-    </p>
-
-    <section id="aria_ex_widget">
-      <h3>Generally Applicable Keyboard Recommendations </h3>
-      <p>The following keyboard conventions are applicable to many of the patterns described in subsequent sections.</p>
-      <ul>
-        <li><kbd>Shift + F10</kbd> opens associated context menu</li>
-        <li><kbd>Control + C</kbd> Copies to clipboard </li>
-        <li><kbd>Control + V</kbd> Pastes from clipboard </li>
-        <li><kbd>Control + X</kbd> Copies to clipboard and cuts </li>
-        <li><kbd>Control + Z</kbd> undo last action</li>
-        <li><kbd>Control + Y</kbd> Redo action</li>
-      </ul>
-    </section>
-
+    <p>This section demonstrates how to make common rich internet application patterns and widgets accessible by applying WAI-ARIA roles, states, and properties and implementing keyboard support.</p>
     <section class="widget" id="accordion">
       <h3>Accordion (Sections With Show/Hide Functionality)</h3>
       <p>
@@ -580,35 +654,33 @@
         <ul>
           <li><kbd>Down Arrow</kbd>: If the popup is available, moves focus into the popup: 
             <ul>
-              <li>If the autocomplete behavior automatically selects a suggestion, focus is placed on the suggestion following the automatically selected suggestion.</li>
+              <li>If the autocomplete behavior hautomatically selected a suggestion before <kbd>Down Arrow</kbd> was pressed, focus is placed on the suggestion following the automatically selected suggestion.</li>
               <li>Otherwise, places focus on the first focusable element in the popup.</li>
             </ul>
           </li>
-          <li><kbd>Alt + Down Arrow</kbd> (Optional): Performs the same function as <kbd>Down Arrow</kbd>.</li>
           <li><kbd>Up Arrow</kbd> (Optional): If the popup is available, places focus on the last focusable element in the popup.</li>
-          <li>Printable Characters: Type characters in the textbox. Note that some implementations may regard certain characters as invalid and prevent their input.</li>
+          <li><kbd>Escape</kbd>: Dismisses the popup if it is visible. Optionally, clears the textbox.</li>
           <li>
             <kbd>Enter</kbd>: If an autocomplete suggestion is automatically selected, accepts the suggestion either by placing the input cursor at the end of the accepted value in the textbox or by performing a default action on the value.
             For example, in a messaging application, the default action may be to add the accepted value to a list of message recipients and then clear the textbox so the user can add another recipient.
           </li>
-          <li><kbd>Escape</kbd>: Dismisses the popup if it is visible. Optionally, clears the textbox.</li>
-          <li><kbd>Alt + Up Arrow</kbd> (Optional): Dismisses the popup if visible.</li>
-          <li><kbd>Right Arrow</kbd>: Moves the cursor right one character. Does nothing if the cursor is on the right-most character.</li>
-          <li><kbd>Left Arrow</kbd>: Moves the cursor left one character. Does nothing if the cursor is on the left-most character.</li>
-          <li><kbd>Control + Right Arrow</kbd>: Moves the cursor right one word. Does nothing if the cursor is on the right-most word .</li>
-          <li><kbd>Control + Left Arrow</kbd>: Moves the cursor left one word. Does nothing if the cursor is on the left-most word.</li>
-          <li><kbd>Home</kbd>: Moves the cursor to the first character. Does nothing if the cursor is on the first character.</li>
-          <li><kbd>End</kbd>: Moves the cursor to the last character. Does nothing if the cursor is on the last character.</li>
-          <li><kbd>Delete</kbd>: Deletes the current character or, if text is selected, deletes the selected text</li>
-          <li><kbd>Backspace</kbd>: Deletes the previous character, or, if text is selected, deletes the selected text.</li>
-          <li><kbd>Shift + Right Arrow</kbd>: Extends selection one character to the right. Does nothing if the cursor is on the right-most character.</li>
-          <li><kbd>Shift + Left Arrow</kbd>: Extends selection one character to the left. Does nothing if the cursor is on the left-most character.</li>
-          <li><kbd>Control + Shift + Right Arrow</kbd>: Extends selection one word to the right. Does nothing if the cursor is after the right-most word.</li>
-          <li><kbd>Control + Shift + Left Arrow</kbd>: Extends selection one word to the left. Does nothing if the cursor is at the start of the left-most word.</li>
-          <li><kbd>Shift + Home</kbd>: Extends selection from the cursor position to the first character.</li>
-          <li><kbd>Shift + End</kbd>: Extends selection from the cursor position to the last character.</li>
-          <li><kbd>Control + A</kbd> (Optional): Selects all the text in the textbox.
+          <li>Printable Characters: Type characters in the textbox. Note that some implementations may regard certain characters as invalid and prevent their input.</li>
+          <li>Standard single line text editing keys appropriate for the device platform (see note below).</li>
+          <li><kbd>Alt + Down Arrow</kbd> (Optional): If the popup is available but not displayed, displays the popup without moving focus.</li> 
+          <li><kbd>Alt + Up Arrow</kbd> (Optional): If the popup is displayed:
+            <ol>
+              <li>If the popup contains focus, returns focus to the textbox.</li>
+              <li>Closes the popup.</li>
+            </ol>
+          </li>
         </ul>
+        <p class="note">Standard single line text editing keys appropriate for the device platform:</p>
+        <ol>
+          <li>include keys for input, cursor movement, selection, and text manipulation.</li>
+          <li>Standard key assignments for editing functions depend on the device operating system.</li>
+          <li>The most robust approach for providing text editing functions is to rely on browsers, which  supply them for HTML inputs with type text and for elements with the <code>contenteditable</code> HTML attribute.</li>
+          <li><strong>IMPORTANT:</strong> Be sure that JavaScript does not interfere with browser-provided text editing functions by capturing key events for the keys used to perform them.</li>
+        </ol>
         <h5>Listbox Popup Keyboard Interaction</h5>
         <p>When focus is in a listbox popup:</p>
         <ul>
@@ -1270,7 +1342,7 @@
             <li><kbd>Shift + Up Arrow</kbd>: Extends selection one cell Up.</li>
           </ul>
 
-          <p class="note">See <a href="#aria_ex_widget">Global Recommendations</a> for cut, copy and paste key assignments.</p>
+          <p class="note">See <a href="#kbd_common_conventions"></a> for cut, copy, and paste key assignments.</p>
         </section>
       </section>
 
@@ -1370,7 +1442,7 @@
             <li><kbd>Shift + Down Arrow</kbd>: Extends selection one cell down.</li>
             <li><kbd>Shift + Up Arrow</kbd>: Extends selection one cell Up.</li>
           </ul>
-          <p class="note">See <a href="#aria_ex_widget">Global Recommendations</a> for cut, copy and paste key assignments.</p>
+          <p class="note">See <a href="#kbd_common_conventions"></a> for cut, copy, and paste key assignments.</p>
         </section>
       </section>
 
@@ -2183,24 +2255,34 @@
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
         <ul>
-          <li>Text editing keys: If the spinbutton text field allows directly editing the value, the following keys are supported.
-            <ul>
-              <li>Standard single line text field keys, such as <kbd>Left Arrow</kbd>, <kbd>Right Arrow</kbd>, <kbd>Shift + Left Arrow</kbd>, <kbd>Shift + Right Arrow</kbd>, and <kbd>Delete</kbd>, for cursor movement, selecting text, and text deletion.</li>
-              <li>
-                Characters that are permitted to be part of the value.
-                For example, an hour-and-minute spinner would allow only integer values from 0 to 59, the colon ':', and the letters 'AM' and 'PM'.
-                Any other character input does not change the contents of the text field nor the value of the spinbutton.
-              </li>
-            </ul>
-          </li>
           <li><kbd>Up Arrow</kbd>: Increases the value.</li>
           <li><kbd>Down Arrow</kbd>: Decreases the value.</li>
           <li><kbd>Home</kbd>: If the spinbutton has a minimum value, sets the value to its minimum.</li>
           <li><kbd>End</kbd>: If the spinbutton has a maximum value, sets the value to its maximum.</li>
           <li><kbd>Page Up</kbd> (Optional): Increases the value by a larger step than <kbd>Up Arrow</kbd>.</li>
           <li><kbd>Page Down</kbd> (Optional): Decreases the value by a larger step than <kbd>Down Arrow</kbd>.</li>
+          <li>If the spinbutton text field allows directly editing the value, the following keys are supported:
+            <ul>
+              <li>Standard single line text editing keys appropriate for the device platform (see note below).</li>
+              <li>
+                Printable Characters: Type characters in the textbox. Note that many implementations allow only certain characters as part of the value and prevent input of any other characters.
+                For example, an hour-and-minute spinner would allow only integer values from 0 to 59, the colon ':', and the letters 'AM' and 'PM'.
+                Any other character input does not change the contents of the text field nor the value of the spinbutton.
+              </li>
+            </ul>
+          </li>
         </ul>
-        <p class="note">Focus remains on the text field during operation.</p>
+        <ol class="note">
+          <li>Focus remains on the text field during operation.</li>
+          <li>Standard single line text editing keys appropriate for the device platform:
+            <ol>
+              <li>include keys for input, cursor movement, selection, and text manipulation.</li>
+              <li>Standard key assignments for editing functions depend on the device operating system.</li>
+              <li>The most robust approach for providing text editing functions is to rely on browsers, which  supply them for HTML inputs with type text and for elements with the <code>contenteditable</code> HTML attribute.</li>
+              <li><strong>IMPORTANT:</strong> Be sure that JavaScript does not interfere with browser-provided text editing functions by capturing key events for the keys used to perform them.</li>
+            </ol>
+          </li>
+        </ol>
       </section>
 
       <section class="notoc">
@@ -3141,7 +3223,7 @@
       <h3>Fundamental Keyboard Navigation Conventions</h3>
 
       <p>
-        ARIA roles, states, and properties model accessibility behaviors and features shared among GUI components of popular desktop GUIs, including Microsoft Windows, Mac OS X, and GNOME.
+        ARIA roles, states, and properties model accessibility behaviors and features shared among GUI components of popular desktop GUIs, including Microsoft Windows, macOS, and GNOME.
         Similarly, ARIA design patterns borrow user expectations and keyboard conventions from those platforms, consistently incorporating common conventions with the aim of facilitating easy learning and efficient operation of keyboard interfaces across the web.
       </p>
 
@@ -3306,8 +3388,8 @@
       </p>
 
       <p>
-        In HTML, the default tab sequence of a web page includes only links and HTML form elements, except In Mac OS, where it includes only form elements.
-        Mac OS system preferences include a keyboard setting that enables the tab key to move focus to all focusable elements.
+        In HTML, the default tab sequence of a web page includes only links and HTML form elements, except In macOS, where it includes only form elements.
+        macOS system preferences include a keyboard setting that enables the tab key to move focus to all focusable elements.
       </p>
 
       <p>
@@ -3530,6 +3612,55 @@
 
       <p>One design technique for mitigating the impact of including disabled elements in the path of keyboard focus is employing appropriate keyboard shortcuts as described in <a href="#kbd_shortcuts"></a>.</p>
     </section>
+    <section id="kbd_common_conventions">
+      <h3>Key Assignment Conventions for Common Functions</h3>
+      <p>
+        The following key assignments can be used in any context where their conventionally associated functions are appropriate.
+        While the assignments associated with Windows and Linux platforms can be implemented and used in browsers running in macOS,
+        replacing them with macOS assignments in browsers running on a macOS device can make the keyboard interface more discoverable and intuitive for those users.
+        In some cases, it may also help avoid system or browser keyboard conflicts.
+      </p>
+      <table class="widget-features">
+        <thead>
+          <tr>
+            <th>Function</th>
+            <th>Windows/Linux Key</th>
+            <th>macOS Key</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">open context menu</th>
+            <td><kbd>Shift + F10</kbd></td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row">Copy to clipboard</th>
+            <td><kbd>Control + C</kbd></td>
+            <td><kbd>Command + C</kbd></td>
+          </tr>
+          <tr>
+            <th scope="row">Paste from clipboard</th>
+            <td><kbd>Control + V</kbd></td>
+            <td><kbd>Command + V</kbd></td>
+          </tr>
+          <tr>
+            <th scope="row">Cut to clipboard</th>
+            <td><kbd>Control + X</kbd></td>
+            <td><kbd>Command + X</kbd></td>
+          </tr>
+          <tr>
+            <th scope="row">undo last action</th>
+            <td><kbd>Control + Z</kbd></td>
+            <td><kbd>Command + Z</kbd></td>
+          </tr>
+          <tr>
+            <th scope="row">Redo action</th>
+            <td><kbd>Control + Y</kbd></td>
+            <td>Command + Shift + Z</td>
+        </tbody>
+      </table>
+    </section>
     <section id="kbd_shortcuts">
       <h3>Keyboard Shortcuts</h3>
       <p>
@@ -3685,7 +3816,7 @@
             <li><kbd>Caps Lock</kbd> + any other combination of keys.</li>
             <li><kbd>Insert</kbd> + any combination of other keys.</li>
             <li><kbd>Scroll Lock</kbd> + any combination of other keys.</li>
-            <li>Mac OS only: <kbd>Control+Option</kbd> + any combination of other keys.</li>
+            <li>macOS only: <kbd>Control+Option</kbd> + any combination of other keys.</li>
           </ol>
         </section>
 

@@ -85,6 +85,10 @@ MenuItemLinks.prototype.handleKeydown = function (event) {
   else {
     switch (event.keyCode) {
 
+      case this.keyCode.SPACE:
+        flag = true;
+        break;
+
       case this.keyCode.ESC:
         this.menu.setFocusToController();
         this.menu.close(true);
