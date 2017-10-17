@@ -174,19 +174,6 @@
   <section id="aria_ex">
     <h2>Design Patterns and Widgets</h2>
     <p>This section demonstrates how to make common rich internet application patterns and widgets accessible by applying WAI-ARIA roles, states, and properties and implementing keyboard support.</p>
-    <section id="aria_ex_widget">
-      <h3>Generally Applicable Keyboard Recommendations </h3>
-      <p>The following keyboard conventions are applicable to many of the patterns described in subsequent sections.</p>
-      <ul>
-        <li><kbd>Shift + F10</kbd> opens associated context menu</li>
-        <li><kbd>Control + C</kbd> Copies to clipboard </li>
-        <li><kbd>Control + V</kbd> Pastes from clipboard </li>
-        <li><kbd>Control + X</kbd> Copies to clipboard and cuts </li>
-        <li><kbd>Control + Z</kbd> undo last action</li>
-        <li><kbd>Control + Y</kbd> Redo action</li>
-      </ul>
-    </section>
-
     <section class="widget" id="accordion">
       <h3>Accordion (Sections With Show/Hide Functionality)</h3>
       <p>
@@ -1353,7 +1340,7 @@
             <li><kbd>Shift + Up Arrow</kbd>: Extends selection one cell Up.</li>
           </ul>
 
-          <p class="note">See <a href="#aria_ex_widget">Global Recommendations</a> for cut, copy and paste key assignments.</p>
+          <p class="note">See <a href="#kbd_common_conventions"></a> for cut, copy, and paste key assignments.</p>
         </section>
       </section>
 
@@ -1453,7 +1440,7 @@
             <li><kbd>Shift + Down Arrow</kbd>: Extends selection one cell down.</li>
             <li><kbd>Shift + Up Arrow</kbd>: Extends selection one cell Up.</li>
           </ul>
-          <p class="note">See <a href="#aria_ex_widget">Global Recommendations</a> for cut, copy and paste key assignments.</p>
+          <p class="note">See <a href="#kbd_common_conventions"></a> for cut, copy, and paste key assignments.</p>
         </section>
       </section>
 
@@ -3612,6 +3599,55 @@
       </ol>
 
       <p>One design technique for mitigating the impact of including disabled elements in the path of keyboard focus is employing appropriate keyboard shortcuts as described in <a href="#kbd_shortcuts"></a>.</p>
+    </section>
+    <section id="kbd_common_conventions">
+      <h3>Key Assignment Conventions for Common Functions</h3>
+      <p>
+        The following key assignments can be used in any context where their conventionally associated functions are appropriate.
+        While the assignments associated with Windows and Linux platforms can be implemented and used in browsers running in Mac OS,
+        replacing them with Mac OS assignments in browsers running on a Mac OS device can make the keyboard interface more discoverable and intuitive for those users.
+        In some cases, it may also help avoid system or browser keyboard conflicts.
+      </p>
+      <table class="widget-features">
+        <thead>
+          <tr>
+            <th>Function</th>
+            <th>Windows/Linux Key</th>
+            <th>Mac OS Key</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">open context menu</th>
+            <td><kbd>Shift + F10</kbd></td>
+            <td></td>
+          </tr>
+          <tr>
+            <th scope="row">Copy to clipboard</th>
+            <td><kbd>Control + C</kbd></td>
+            <td><kbd>Command + C</kbd></td>
+          </tr>
+          <tr>
+            <th scope="row">Paste from clipboard</th>
+            <td><kbd>Control + V</kbd></td>
+            <td><kbd>Command + V</kbd></td>
+          </tr>
+          <tr>
+            <th scope="row">Cut to clipboard</th>
+            <td><kbd>Control + X</kbd></td>
+            <td><kbd>Command + X</kbd></td>
+          </tr>
+          <tr>
+            <th scope="row">undo last action</th>
+            <td><kbd>Control + Z</kbd></td>
+            <td><kbd>Command + Z</kbd></td>
+          </tr>
+          <tr>
+            <th scope="row">Redo action</th>
+            <td><kbd>Control + Y</kbd></td>
+            <td>Command + Shift + Z</td>
+        </tbody>
+      </table>
     </section>
     <section id="kbd_shortcuts">
       <h3>Keyboard Shortcuts</h3>
