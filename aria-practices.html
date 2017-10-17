@@ -665,6 +665,7 @@
             For example, in a messaging application, the default action may be to add the accepted value to a list of message recipients and then clear the textbox so the user can add another recipient.
           </li>
           <li>Printable Characters: Type characters in the textbox. Note that some implementations may regard certain characters as invalid and prevent their input.</li>
+          <li>Standard single line text editing keys appropriate for the device platform (see note below).</li>
           <li><kbd>Alt + Down Arrow</kbd> (Optional): If the popup is available but not displayed, displays the popup without moving focus.</li> 
           <li><kbd>Alt + Up Arrow</kbd> (Optional): If the popup is displayed:
             <ol>
@@ -673,12 +674,13 @@
             </ol>
           </li>
         </ul>
-        <p class="note">
-          The textbox supports standard keyboard commands for text editing functions, including input, navigation, selection, and manipulation.
-          Standard key assignments for these functions depend on the device operating system.
-          The most robust approach to providing text editing functions is to rely on browsers, which  supply them for HTML inputs with type text and for elements with the contenteditable attribute.
-          <strong>IMPORTANT:</strong> Be sure that JavaScript does not interfere with browser-provided text editing functions by capturing key events for the keys used to perform them.
-        </p>
+        <p class="note">Standard single line text editing keys appropriate for the device platform:</p>
+        <ol>
+          <li>include keys for input, cursor movement, selection, and text manipulation.</li>
+          <li>Standard key assignments for editing functions depend on the device operating system.</li>
+          <li>The most robust approach for providing text editing functions is to rely on browsers, which  supply them for HTML inputs with type text and for elements with the <code>contenteditable</code> HTML attribute.</li>
+          <li><strong>IMPORTANT:</strong> Be sure that JavaScript does not interfere with browser-provided text editing functions by capturing key events for the keys used to perform them.</li>
+        </ol>
         <h5>Listbox Popup Keyboard Interaction</h5>
         <p>When focus is in a listbox popup:</p>
         <ul>
@@ -2253,24 +2255,34 @@
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
         <ul>
-          <li>Text editing keys: If the spinbutton text field allows directly editing the value, the following keys are supported.
-            <ul>
-              <li>Standard single line text field keys, such as <kbd>Left Arrow</kbd>, <kbd>Right Arrow</kbd>, <kbd>Shift + Left Arrow</kbd>, <kbd>Shift + Right Arrow</kbd>, and <kbd>Delete</kbd>, for cursor movement, selecting text, and text deletion.</li>
-              <li>
-                Characters that are permitted to be part of the value.
-                For example, an hour-and-minute spinner would allow only integer values from 0 to 59, the colon ':', and the letters 'AM' and 'PM'.
-                Any other character input does not change the contents of the text field nor the value of the spinbutton.
-              </li>
-            </ul>
-          </li>
           <li><kbd>Up Arrow</kbd>: Increases the value.</li>
           <li><kbd>Down Arrow</kbd>: Decreases the value.</li>
           <li><kbd>Home</kbd>: If the spinbutton has a minimum value, sets the value to its minimum.</li>
           <li><kbd>End</kbd>: If the spinbutton has a maximum value, sets the value to its maximum.</li>
           <li><kbd>Page Up</kbd> (Optional): Increases the value by a larger step than <kbd>Up Arrow</kbd>.</li>
           <li><kbd>Page Down</kbd> (Optional): Decreases the value by a larger step than <kbd>Down Arrow</kbd>.</li>
+          <li>If the spinbutton text field allows directly editing the value, the following keys are supported:
+            <ul>
+              <li>Standard single line text editing keys appropriate for the device platform (see note below).</li>
+              <li>
+                Printable Characters: Type characters in the textbox. Note that many implementations allow only certain characters as part of the value and prevent input of any other characters.
+                For example, an hour-and-minute spinner would allow only integer values from 0 to 59, the colon ':', and the letters 'AM' and 'PM'.
+                Any other character input does not change the contents of the text field nor the value of the spinbutton.
+              </li>
+            </ul>
+          </li>
         </ul>
-        <p class="note">Focus remains on the text field during operation.</p>
+        <ol class="note">
+          <li>Focus remains on the text field during operation.</li>
+          <li>Standard single line text editing keys appropriate for the device platform:
+            <ol>
+              <li>include keys for input, cursor movement, selection, and text manipulation.</li>
+              <li>Standard key assignments for editing functions depend on the device operating system.</li>
+              <li>The most robust approach for providing text editing functions is to rely on browsers, which  supply them for HTML inputs with type text and for elements with the <code>contenteditable</code> HTML attribute.</li>
+              <li><strong>IMPORTANT:</strong> Be sure that JavaScript does not interfere with browser-provided text editing functions by capturing key events for the keys used to perform them.</li>
+            </ol>
+          </li>
+        </ol>
       </section>
 
       <section class="notoc">
