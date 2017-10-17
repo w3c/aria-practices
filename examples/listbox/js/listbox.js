@@ -21,6 +21,7 @@ aria.Listbox = function (listboxNode) {
   this.upButton = null;
   this.downButton = null;
   this.deleteButton = null;
+  this.keysSoFar = '';
 
   this.registerEvents();
 };
@@ -149,7 +150,66 @@ aria.Listbox.prototype.checkKeyPress = function (evt) {
         this.focusItem(nextItem);
       }
       break;
+    default:
+      var itemToFocus = this.findItemToFocus(key);
+      if (itemToFocus) {
+        this.focusItem(itemToFocus);
+      }
+      break;
   }
+};
+
+aria.Listbox.prototype.findItemToFocus = function (key) {
+  var itemList = this.listboxNode.querySelectorAll('[role="option"]');
+  var character = String.fromCharCode(key);
+
+  if (!this.keysSoFar) {
+    for (var i = 0; i < itemList.length; i++) {
+      if (itemList[i].getAttribute('id') == this.activeDescendant) {
+        this.searchIndex = i;
+      }
+    }
+  }
+  this.keysSoFar += character;
+  this.clearKeysSoFarAfterDelay();
+
+  var nextMatch = this.findMatchInRange(
+    itemList,
+    this.searchIndex + 1,
+    itemList.length
+  );
+  if (!nextMatch) {
+    nextMatch = this.findMatchInRange(
+      itemList,
+      0,
+      this.searchIndex
+    );
+  }
+
+  return nextMatch || itemList[this.searchIndex];
+};
+
+aria.Listbox.prototype.clearKeysSoFarAfterDelay = function () {
+  if (this.keyClear) {
+    clearTimeout(this.keyClear);
+    this.keyClear = null;
+  }
+  this.keyClear = setTimeout((function () {
+    this.keysSoFar = '';
+    this.keyClear = null;
+  }).bind(this), 500);
+};
+
+aria.Listbox.prototype.findMatchInRange = function (list, startIndex, endIndex) {
+  // Find the first item starting with the keysSoFar substring, searching in
+  // the specified range of items
+  for (var n = startIndex; n < endIndex; n++) {
+    var label = list[n].innerText;
+    if (label && label.toUpperCase().indexOf(this.keysSoFar) === 0) {
+      return list[n];
+    }
+  }
+  return null;
 };
 
 /**
