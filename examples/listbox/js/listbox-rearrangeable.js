@@ -48,7 +48,7 @@ window.addEventListener('load', function () {
   ex2UnimportantListbox.setupDelete(document.getElementById('ex2-delete'), ex2ImportantListbox);
   ex2UnimportantListbox.setHandleItemChange(function (event, items) {
     var updateText = '';
-    var itemText = items.length === 1 ? '1 item' : items.length + ' items'
+    var itemText = items.length === 1 ? '1 item' : items.length + ' items';
 
     switch (event) {
       case 'added':

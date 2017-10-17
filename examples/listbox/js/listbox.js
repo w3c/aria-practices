@@ -424,7 +424,7 @@ aria.Listbox.prototype.moveUpItems = function () {
 
   if (previousItem) {
     this.listboxNode.insertBefore(currentItem, previousItem);
-    this.handleItemChange('moved_up', [currentItem]);
+    this.handleItemChange('moved_up', [ currentItem ]);
   }
 
   this.checkUpDownButtons();
@@ -447,7 +447,7 @@ aria.Listbox.prototype.moveDownItems = function () {
 
   if (nextItem) {
     this.listboxNode.insertBefore(nextItem, currentItem);
-    this.handleItemChange('moved_down', [currentItem]);
+    this.handleItemChange('moved_down', [ currentItem ]);
   }
 
   this.checkUpDownButtons();
