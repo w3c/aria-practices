@@ -22,6 +22,8 @@ aria.Listbox = function (listboxNode) {
   this.downButton = null;
   this.deleteButton = null;
 
+  this.handleFocusChange = function () {};
+
   this.registerEvents();
 };
 
@@ -235,6 +237,7 @@ aria.Listbox.prototype.focusItem = function (element) {
   }
 
   this.checkUpDownButtons();
+  this.handleFocusChange(element);
 };
 
 /**
@@ -431,4 +434,8 @@ aria.Listbox.prototype.setupDelete = function (button, siblingList) {
   this.siblingList = siblingList;
   this.deleteButton = button;
   button.addEventListener('click', this.shiftItems.bind(this));
+};
+
+aria.Listbox.prototype.setHandleFocusChange = function (focusChangeHandler) {
+  this.handleFocusChange = focusChangeHandler;
 };

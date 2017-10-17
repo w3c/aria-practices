@@ -95,3 +95,50 @@ button[aria-disabled="true"] {
 	overflow-y: auto;
 	position: relative;
 }
+
+#exp_button {
+  border-radius: 0;
+  font-size: 16px;
+  text-align: left;
+  padding: 5px 10px;
+	width: 150px;
+	position: relative;
+}
+
+#exp_button::after {
+	width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid #aaa;
+  content: " ";
+  position: absolute;
+  right: 5px;
+  top: 10px;
+}
+
+#exp_button[aria-expanded="true"]::after {
+	width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+	border-top: 0;
+  border-bottom: 8px solid #aaa;
+  content: " ";
+  position: absolute;
+  right: 5px;
+  top: 10px;
+}
+
+#exp_elem_list {
+	border-top: 0;
+	max-height: 10em;
+	overflow-y: auto;
+	position: absolute;
+	margin: 0;
+	width: 148px;
+}
+
+.hidden {
+	display: none;
+}
