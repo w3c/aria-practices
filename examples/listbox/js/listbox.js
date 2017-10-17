@@ -23,6 +23,8 @@ aria.Listbox = function (listboxNode) {
   this.deleteButton = null;
   this.keysSoFar = '';
 
+  this.handleItemChange = function (event, items) {};
+
   this.registerEvents();
 };
 
@@ -354,6 +356,8 @@ aria.Listbox.prototype.addItems = function (items) {
   if (!this.activeDescendant) {
     this.focusItem(items[0]);
   }
+
+  this.handleItemChange('added', items);
 };
 
 /**
@@ -387,6 +391,8 @@ aria.Listbox.prototype.deleteItems = function () {
     }
   }).bind(this));
 
+  this.handleItemChange('removed', itemsToDelete);
+
   return itemsToDelete;
 };
 
@@ -418,6 +424,7 @@ aria.Listbox.prototype.moveUpItems = function () {
 
   if (previousItem) {
     this.listboxNode.insertBefore(currentItem, previousItem);
+    this.handleItemChange('moved_up', [currentItem]);
   }
 
   this.checkUpDownButtons();
@@ -440,6 +447,7 @@ aria.Listbox.prototype.moveDownItems = function () {
 
   if (nextItem) {
     this.listboxNode.insertBefore(nextItem, currentItem);
+    this.handleItemChange('moved_down', [currentItem]);
   }
 
   this.checkUpDownButtons();
@@ -491,4 +499,8 @@ aria.Listbox.prototype.setupDelete = function (button, siblingList) {
   this.siblingList = siblingList;
   this.deleteButton = button;
   button.addEventListener('click', this.shiftItems.bind(this));
+};
+
+aria.Listbox.prototype.setHandleItemChange = function (handlerFn) {
+  this.handleItemChange = handlerFn;
 };
