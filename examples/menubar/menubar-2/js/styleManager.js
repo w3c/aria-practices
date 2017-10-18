@@ -51,7 +51,7 @@ StyleManager.prototype.setItalic = function (flag) {
     this.node.style.fontStyle = 'italic';
   }
   else {
-    this.node.style.fontStyle = 'none';
+    this.node.style.fontStyle = 'normal';
   }
 };
 
