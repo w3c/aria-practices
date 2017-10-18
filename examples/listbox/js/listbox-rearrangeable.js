@@ -39,6 +39,8 @@ window.addEventListener('load', function () {
     }
   });
   ex1UnimportantListbox.setupDelete(document.getElementById('ex1-add'), ex1ImportantListbox);
+  ex1ImportantListbox.setupMove(document.getElementById('ex1-delete'), ex1UnimportantListbox);
+  ex1UnimportantListbox.setupMove(document.getElementById('ex1-add'), ex1ImportantListbox);
 
   var ex2 = document.getElementById('ex2');
   var ex2ImportantListbox = new aria.Listbox(document.getElementById('ms_imp_list'));
@@ -64,4 +66,6 @@ window.addEventListener('load', function () {
       ex1LiveRegion.innerText = updateText;
     }
   });
+  ex2ImportantListbox.setupMove(document.getElementById('ex2-add'), ex2UnimportantListbox);
+  ex2UnimportantListbox.setupMove(document.getElementById('ex2-delete'), ex2ImportantListbox);
 });
