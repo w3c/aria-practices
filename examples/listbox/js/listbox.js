@@ -223,8 +223,7 @@ aria.Listbox.prototype.findItemToFocus = function (key) {
       this.searchIndex
     );
   }
-
-  return nextMatch || itemList[this.searchIndex];
+  return nextMatch;
 };
 
 aria.Listbox.prototype.clearKeysSoFarAfterDelay = function () {
