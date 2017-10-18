@@ -151,10 +151,6 @@ MenubarItem.prototype.setExpanded = function (value) {
   this.domNode.setAttribute('aria-expanded', value);
 };
 
-
-MenubarItem.prototype.handleClick = function (event) {
-};
-
 MenubarItem.prototype.handleFocus = function (event) {
   this.menubar.hasFocus = true;
 };
