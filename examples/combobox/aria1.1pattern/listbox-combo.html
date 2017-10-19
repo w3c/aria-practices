@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>Example of ARIA 1.1 Combobox with Listbox Popup | WAI-ARIA Authoring Practices 1.1</title>
+<title>Examples of ARIA 1.1 Combobox with Listbox Popup | WAI-ARIA Authoring Practices 1.1</title>
 
 <!--  Core js and css shared by all examples; do not modify when using this template. -->
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
@@ -10,24 +10,24 @@
 <script src="../../js/examples.js"></script>
 <script src="../../js/highlight.pack.js"></script>
 <script src="../../js/app.js"></script>
+<script src="../../js/utils.js" type="text/javascript"></script>
 
 <!--  js and css for this example. -->
 <link href="css/combobox-1.1.css" rel="stylesheet">
-<script src="js/combobox-1.1.js" type="text/javascript"></script>
+<script src="js/listbox-combobox.js" type="text/javascript"></script>
+<script src="js/listbox-combo-example.js" type="text/javascript"></script>
 </head>
 <body>
   <main>
-  <h1>Example of Combobox with Listbox Popup</h1>
+  <h1>Examples of ARIA 1.1 Combobox with Listbox Popup</h1>
   <p>
     <strong>NOTE:</strong> This page is work in progress; it is not ready for review.
     This work is tracked by <a href="https://github.com/w3c/aria-practices/issues/100">issue 100</a>.
   </p>
   <p>
-    <!-- Provide an overview of the example where the first sentence provides a link to the section of aria-practices.html that describes the pattern this example implements. -->
-    Replace this paragraph with an overview of the example that is something like the following. The
-    below example section demonstrates a simple checkbox that implements the
-    <a href="../../#checkbox">design pattern for checkbox.</a>
-    This example uses ... summarize salient techniques )
+    The following examples demonstrate  different types of autocomplete behavior 
+    using the ARIA 1.1 form of the 
+    <a href="../../../#combobox">combobox design pattern.</a>
   </p>
   <p>Similar examples include: </p>
   <ul>
@@ -36,29 +36,100 @@
   </ul>
 
   <section>
-    <h2 id="ex_label">Example</h2>
-    <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
-    <!--
-      Note the ID of the following div that contains the example HTML is used as a parameter for the sourceCode.add() function.
-      The sourceCode functions in the examples/js/examples.js render the HTML source to show it to the reader of the example page.
-      If you change the ID of this div, be sure to update the parameters of the sourceCode.add() function call, which is made following the div with id="sc1" where the HTML is render.
-      The div for the rendered HTML source is in the last section of the page.
-    -->
+    <h2 id="ex_label">Examples</h2>
+    <h3 id="ex1_label">Example of list autocomplete with manual selection</h3>
+    <div role="separator" id="ex1_start_sep" aria-labelledby="ex1_start_sep ex1_label" aria-label="Start of"></div>
     <div id="ex1">
-      <!--  Replace content of this div with the example.  -->
-      <p>This is the place where the reader will experience the functioning example.</p>
-      <ul>
-        <li>The HTML in this section along with the javascript and CSS it uses demonstrate
-          the design pattern.</li>
-        <li>
-          When developing an example implementation for this guide, please follow the
-          <a href="https://ianpouncey.github.io/code-guide/">APG example coding guidelines</a>
-          .
-        </li>
-        <!--  Target of previous link will need to be updated when we move the guidelines into the wiki from Ian's repo.  -->
-      </ul>
+      <label id="ex1-label" class="combobox-label">
+        Fruits and vegetables
+      </label>
+      <div class="combobox-wrapper">
+        <div role="combobox"
+          aria-expanded="false"
+          aria-owns="ex1-listbox"
+          aria-haspopup="listbox"
+          id="ex1-combobox">
+          <input type="text"
+            aria-autocomplete="list"
+            aria-controls="ex1-listbox"
+            aria-activedescendant=""
+            aria-labelledby="ex1-label"
+            id="ex1-input">
+        </div>
+        <ul
+          aria-labelledby="ex1-label"
+          role="listbox"
+          id="ex1-listbox"
+          class="listbox hidden">
+        </ul>
+      </div>
     </div>
-    <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
+    <div role="separator" id="ex1_end_sep" aria-labelledby="ex1_end_sep ex1_label" aria-label="End of"></div>
+    <h3 id="ex2_label">Example of list autocomplete with automatic selection</h3>
+    <div role="separator" id="ex2_start_sep" aria-labelledby="ex2_start_sep ex2_label" aria-label="Start of"></div>
+    <div id="ex2">
+      <label id="ex2-label" class="combobox-label">
+        Fruits and vegetables
+      </label>
+      <div class="combobox-wrapper">
+        <div role="combobox"
+          aria-expanded="false"
+          aria-owns="ex2-listbox"
+          aria-haspopup="listbox"
+          id="ex2-combobox">
+          <input type="text"
+            aria-autocomplete="list"
+            aria-controls="ex2-listbox"
+            aria-activedescendant=""
+            aria-labelledby="ex2-label"
+            id="ex2-input">
+        </div>
+        <ul
+          aria-labelledby="ex2-label"
+          role="listbox"
+          id="ex2-listbox"
+          class="listbox hidden">
+        </ul>
+      </div>
+    </div>
+    <div role="separator" id="ex2_end_sep" aria-labelledby="ex2_end_sep ex2_label" aria-label="End of"></div>
+
+    <h3 id="ex3_label">Example of list with inline autocomplete</h3>
+    <div role="separator" id="ex3_start_sep" aria-labelledby="ex3_start_sep ex3_label" aria-label="Start of"></div>
+    <div id="ex3">
+      <label id="ex3-label" class="combobox-label">
+        Fruits and vegetables
+      </label>
+      <div class="combobox-wrapper">
+        <div role="combobox"
+          aria-expanded="false"
+          aria-owns="ex3-listbox"
+          aria-haspopup="listbox"
+          id="ex3-combobox">
+          <input type="text"
+            aria-autocomplete="both"
+            aria-controls="ex3-listbox"
+            aria-activedescendant=""
+            aria-labelledby="ex3-label"
+            id="ex3-input">
+          <div
+            class="combobox-dropdown"
+            id="ex3-combobox-arrow"
+            tabindex="-1"
+            role="button"
+            aria-label="Show vegetable options">
+            <img src="imgs/arrow_drop_down_grey_27x27.png" alt="">
+          </div>
+        </div>
+        <ul
+          aria-labelledby="ex3-label"
+          role="listbox"
+          id="ex3-listbox"
+          class="listbox hidden">
+        </ul>
+      </div>
+    </div>
+    <div role="separator" id="ex3_end_sep" aria-labelledby="ex3_end_sep ex3_label" aria-label="End of"></div>
   </section>
 
   <section>
@@ -189,8 +260,7 @@
   </section>
   </main>
   <nav>
-    <!--  Update the pattern_ID parameter of this link to refer to the APG design pattern section related to this example.  -->
-    <a href="../../#pattern_ID">EXAMPLE_NAME Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
+    <a href="../../../#combobox">combobox design pattern in WAI-ARIA Authoring Practices 1.1</a>
   </nav>
 </body>
 </html>

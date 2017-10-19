@@ -102,7 +102,7 @@ PopupMenuAction.prototype.init = function () {
     menuElement = menuElements[i];
 
     if (!menuElement.firstElementChild && menuElement.getAttribute('role') != 'separator') {
-      menuItem = new MenuItem(menuElement, this);
+      menuItem = new PopupMenuItem(menuElement, this);
       menuItem.init();
       this.menuitems.push(menuItem);
       textContent = menuElement.textContent.trim();
@@ -230,7 +230,6 @@ PopupMenuAction.prototype.open = function () {
 };
 
 PopupMenuAction.prototype.close = function (force) {
-
   if (typeof force !== 'boolean') {
     force = false;
   }
