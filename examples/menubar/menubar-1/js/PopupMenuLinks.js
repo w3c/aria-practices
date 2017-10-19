@@ -241,7 +241,12 @@ PopupMenu.prototype.open = function () {
     this.domNode.style.zIndex = 100;
   }
 
-  this.domNode.setAttribute('aria-expanded', 'true');
+  if (this.popupMenuItem) {
+    this.popupMenuItem.setExpanded(true);
+  }
+  else {
+    this.controller.setExpanded(true);
+  }
 
 };
 
@@ -256,6 +261,11 @@ PopupMenu.prototype.close = function (force) {
   if (force || (!this.hasFocus && !this.hasHover && !controllerHasHover)) {
     this.domNode.style.display = 'none';
     this.domNode.style.zIndex = 0;
-    this.domNode.setAttribute('aria-expanded', 'false');
+    if (this.popupMenuItem) {
+      this.popupMenuItem.setExpanded(false);
+    }
+    else {
+      this.controller.setExpanded(false);
+    }
   }
 };
