@@ -222,10 +222,6 @@ PopupMenu.prototype.getIndexFirstChars = function (startIndex, char) {
 
 /* MENU DISPLAY METHODS */
 
-PopupMenu.prototype.setExpanded = function (value) {
-  this.domNode.setAttribute('aria-expanded', value);
-};
-
 PopupMenu.prototype.open = function () {
   // Get position and bounding rectangle of controller object's DOM node
   var rect = this.controller.domNode.getBoundingClientRect();
@@ -245,7 +241,12 @@ PopupMenu.prototype.open = function () {
     this.domNode.style.zIndex = 100;
   }
 
-  this.controller.setExpanded('true');
+  if (this.popupMenuItem) {
+    this.popupMenuItem.setExpanded(true);
+  }
+  else {
+    this.controller.setExpanded(true);
+  }
 
 };
 
@@ -260,6 +261,11 @@ PopupMenu.prototype.close = function (force) {
   if (force || (!this.hasFocus && !this.hasHover && !controllerHasHover)) {
     this.domNode.style.display = 'none';
     this.domNode.style.zIndex = 0;
-    this.controller.setExpanded('false');
+    if (this.popupMenuItem) {
+      this.popupMenuItem.setExpanded(false);
+    }
+    else {
+      this.controller.setExpanded(false);
+    }
   }
 };

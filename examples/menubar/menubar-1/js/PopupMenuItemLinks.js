@@ -66,7 +66,6 @@ MenuItem.prototype.init = function () {
   var nextElement = this.domNode.nextElementSibling;
 
   if (nextElement && nextElement.tagName === 'UL') {
-    console.log('popup sub-menu');
     this.popupMenu = new PopupMenu(nextElement, this.menu, this);
     this.popupMenu.init();
   }
@@ -182,6 +181,15 @@ MenuItem.prototype.handleKeydown = function (event) {
   if (flag) {
     event.stopPropagation();
     event.preventDefault();
+  }
+};
+
+MenuItem.prototype.setExpanded = function (value) {
+  if (value) {
+    this.domNode.setAttribute('aria-expanded', 'true');
+  }
+  else {
+    this.domNode.setAttribute('aria-expanded', 'false');
   }
 };
 
