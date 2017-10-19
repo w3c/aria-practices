@@ -65,7 +65,6 @@ MenubarItem.prototype.init = function () {
   this.domNode.tabIndex = -1;
 
   this.domNode.addEventListener('keydown', this.handleKeydown.bind(this));
-  this.domNode.addEventListener('click', this.handleClick.bind(this));
   this.domNode.addEventListener('focus', this.handleFocus.bind(this));
   this.domNode.addEventListener('blur', this.handleBlur.bind(this));
   this.domNode.addEventListener('mouseover', this.handleMouseover.bind(this));
@@ -147,7 +146,13 @@ MenubarItem.prototype.handleKeydown = function (event) {
   }
 };
 
-MenubarItem.prototype.handleClick = function (event) {
+MenubarItem.prototype.setExpanded = function (value) {
+  if (value) {
+    this.domNode.setAttribute('aria-expanded', 'true');
+  }
+  else {
+    this.domNode.setAttribute('aria-expanded', 'false');
+  }
 };
 
 MenubarItem.prototype.handleFocus = function (event) {
