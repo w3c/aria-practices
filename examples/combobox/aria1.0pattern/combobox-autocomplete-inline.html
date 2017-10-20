@@ -13,16 +13,13 @@
 
 <!--  js and css for this example. -->
 <link rel="stylesheet" href="css/combobox-1.0.css">
-<link rel="stylesheet" href="css/listbox.css">
 
-<script src="js/combobox-1.0.js"  type="text/javascript"></script>
-<script src="js/listbox.js"       type="text/javascript"></script>
-<script src="js/listboxOption.js" type="text/javascript"></script>
+<script src="js/combobox-1.0-inline.js"  type="text/javascript"></script>
 
 </head>
 <body>
   <main>
-  <h1>Example of Legacy ARIA 1.0 Combobox With Inline Autocomplete</h1>
+  <h1>Example of Legacy ARIA 1.0 Combobox With Inline Autocomplete | WAI-ARIA Authoring Practices 1.1</h1>
   <p>
     <strong>NOTE:</strong> This page is work in progress; it is not ready for review.
     This work is tracked by <a href="https://github.com/w3c/aria-practices/issues/99">issue 99</a>.
@@ -50,81 +47,80 @@
       The div for the rendered HTML source is in the last section of the page.
     -->
     <div id="ex1">
-      <div class="combobox">
+      <div class="combobox-inline">
         <label for="cb1-input">State</label>
-
-        <div class="group">
-          <input id="cb1-input" class="cb_edit" type="text"
+          <input id="cb1-input" type="text"
                  role="combobox"
                  aria-autocomplete="inline"
-                 aria-expanded="flase"
-                 aria-haspopup="true"
-                 aria-owns="cb1-listbox"
           />
-          <button id="cb1-button" tabindex="-1" aria-label="open button">
-            &#x025BD;
-          </button>
-        </div>
-
-        <ul id="cb1-listbox" role="listbox" aria-label="States">
-          <li role="option" tabindex="-1" aria-selected = "false" >Alabama</li>
-          <li role="option" tabindex="-1" aria-selected = "false" >Alaska</li>
-          <li role="option" tabindex="-1" aria-selected = "false" >American Samoa</li>
-          <li role="option" tabindex="-1" aria-selected = "false" >Arizona</li>
-          <li role="option" tabindex="-1" aria-selected = "false" >Arkansas</li>
-          <li role="option" tabindex="-1" aria-selected = "false" >California</li>
-          <li role="option" tabindex="-1" aria-selected = "false" >Colorado</li>
-          <li role="option" tabindex="-1" aria-selected = "false" >Connecticut</li>
-          <li role="option" tabindex="-1" aria-selected = "false" >Delaware</li>
-          <li role="option" tabindex="-1" aria-selected = "false" >District of Columbia</li>
-          <li role="option" tabindex="-1" aria-selected = "false" >Florida</li>
-          <li role="option" tabindex="-1" aria-selected = "false" >Georgia</li>
-          <li role="option" tabindex="-1" aria-selected = "false" >Guam</li>
-          <li role="option" tabindex="-1" aria-selected = "false" >Hawaii</li>
-          <li role="option" tabindex="-1" aria-selected = "false" >Idaho</li>
-          <li role="option" tabindex="-1" aria-selected = "false" >Illinois</li>
-          <li role="option" tabindex="-1" aria-selected = "false" >Indiana</li>
-          <li role="option" tabindex="-1" aria-selected = "false" >Iowa</li>
-          <li role="option" tabindex="-1" aria-selected = "false" >Kansas</li>
-          <li role="option" tabindex="-1" aria-selected = "false" >Kentucky</li>
-          <li role="option" tabindex="-1" aria-selected = "false" >Louisiana</li>
-          <li role="option" tabindex="-1" aria-selected = "false" >Maine</li>
-          <li role="option" tabindex="-1" aria-selected = "false" >Maryland</li>
-          <li role="option" tabindex="-1" aria-selected = "false" >Massachusetts</li>
-          <li role="option" tabindex="-1" aria-selected = "false" >Michigan</li>
-          <li role="option" tabindex="-1" aria-selected = "false" >Minnesota</li>
-          <li role="option" tabindex="-1" aria-selected = "false" >Mississippi</li>
-          <li role="option" tabindex="-1" aria-selected = "false" >Missouri</li>
-          <li role="option" tabindex="-1" aria-selected = "false" >Montana</li>
-          <li role="option" tabindex="-1" aria-selected = "false" >Nebraska</li>
-          <li role="option" tabindex="-1" aria-selected = "false" >Nevada</li>
-          <li role="option" tabindex="-1" aria-selected = "false" >New Hampshire</li>
-          <li role="option" tabindex="-1" aria-selected = "false" >New Jersey</li>
-          <li role="option" tabindex="-1" aria-selected = "false" >New Mexico</li>
-          <li role="option" tabindex="-1" aria-selected = "false" >New York</li>
-          <li role="option" tabindex="-1" aria-selected = "false" >North Carolina</li>
-          <li role="option" tabindex="-1" aria-selected = "false" >North Dakota</li>
-          <li role="option" tabindex="-1" aria-selected = "false" >Northern Marianas Islands</li>
-          <li role="option" tabindex="-1" aria-selected = "false" >Ohio</li>
-          <li role="option" tabindex="-1" aria-selected = "false" >Oklahoma</li>
-          <li role="option" tabindex="-1" aria-selected = "false" >Oregon</li>
-          <li role="option" tabindex="-1" aria-selected = "false" >Pennsylvania</li>
-          <li role="option" tabindex="-1" aria-selected = "false" >Puerto Rico</li>
-          <li role="option" tabindex="-1" aria-selected = "false" >Rhode Island</li>
-          <li role="option" tabindex="-1" aria-selected = "false" >South Carolina</li>
-          <li role="option" tabindex="-1" aria-selected = "false" >South Dakota</li>
-          <li role="option" tabindex="-1" aria-selected = "false" >Tennessee</li>
-          <li role="option" tabindex="-1" aria-selected = "false" >Texas</li>
-          <li role="option" tabindex="-1" aria-selected = "false" >Utah</li>
-          <li role="option" tabindex="-1" aria-selected = "false" >Vermont</li>
-          <li role="option" tabindex="-1" aria-selected = "false" >Virginia</li>
-          <li role="option" tabindex="-1" aria-selected = "false" >Virgin Islands</li>
-          <li role="option" tabindex="-1" aria-selected = "false" >Washington</li>
-          <li role="option" tabindex="-1" aria-selected = "false" >West Virginia</li>
-          <li role="option" tabindex="-1" aria-selected = "false" >Wisconsin</li>
-          <li role="option" tabindex="-1" aria-selected = "false" >Wyoming</li>
-        </ul>
       </div>
+
+      <script type="text/javascript">
+
+        var options = [          'Alabama',
+          'Alaska',
+          'American Samoa',
+          'Arizona',
+          'Arkansas',
+          'California',
+          'Colorado',
+          'Connecticut',
+          'Delaware',
+          'District of Columbia',
+          'Florida',
+          'Georgia',
+          'Guam',
+          'Hawaii',
+          'Idaho',
+          'Illinois',
+          'Indiana',
+          'Iowa',
+          'Kansas',
+          'Kentucky',
+          'Louisiana',
+          'Maine',
+          'Maryland',
+          'Massachusetts',
+          'Michigan',
+          'Minnesota',
+          'Mississippi',
+          'Missouri',
+          'Montana',
+          'Nebraska',
+          'Nevada',
+          'New Hampshire',
+          'New Jersey',
+          'New Mexico',
+          'New York',
+          'North Carolina',
+          'North Dakota',
+          'Northern Marianas Islands',
+          'Ohio',
+          'Oklahoma',
+          'Oregon',
+          'Pennsylvania',
+          'Puerto Rico',
+          'Rhode Island',
+          'South Carolina',
+          'South Dakota',
+          'Tennessee',
+          'Texas',
+          'Utah',
+          'Vermont',
+          'Virginia',
+          'Virgin Islands',
+          'Washington',
+          'West Virginia',
+          'Wisconsin',
+          'Wyoming'];
+
+        var combobox = new ComboboxInline(document.getElementById('cb1-input'), options);
+        if (combobox) {
+          combobox.init();
+        }
+
+      </script>
+
     </div>
 
     <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>

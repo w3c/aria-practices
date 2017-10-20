@@ -11,7 +11,7 @@
 */
 
 /*
-*   @constructor Combobox10
+*   @constructor ComboboxInline
 *
 *   @desc
 *       Wrapper object for a listbox
@@ -20,26 +20,12 @@
 *       The DOM element node that serves as the listbox container. Each
 *       child element of domNode that represents a option must have a
 *       'role' attribute with value 'option'.
-*
-*   @param controllerObj
-*       The object that is a wrapper for the DOM element that controls the
-*       menu, e.g. a button element, with an 'aria-controls' attribute that
-*       references this menu's domNode. See MenuButton.js
-*
-*       The controller object is expected to have the following properties:
-*       1. domNode: The controller object's DOM element node, needed for
-*          retrieving positioning information.
-*       2. hasHover: boolean that indicates whether the controller object's
-*          domNode has responded to a mouseover event with no subsequent
-*          mouseout event having occurred.
 */
-var Combobox10 = function (domNode) {
+var ComboboxInline = function (domNode, options) {
 
-  this.domNode      = domNode;
-  this.listbox      = false;
+  this.domNode  = domNode;
+  this.options  = options;
 
-  this.hasFocus = false;
-  this.hasHover = false;
   this.filter   = '';
 
   this.keyCode = Object.freeze({
@@ -59,28 +45,25 @@ var Combobox10 = function (domNode) {
   });
 };
 
-Combobox10.prototype.init = function () {
-
-  this.domNode.setAttribute('aria-haspopup', 'true');
+ComboboxInline.prototype.init = function () {
 
   this.domNode.addEventListener('keydown', this.handleKeydown.bind(this));
   this.domNode.addEventListener('keyup',   this.handleKeyup.bind(this));
-  this.domNode.addEventListener('click',   this.handleClick.bind(this));
   this.domNode.addEventListener('focus',   this.handleFocus.bind(this));
   this.domNode.addEventListener('blur',    this.handleBlur.bind(this));
 
-  // initialize pop up menus
-
-  var listbox = document.getElementById(this.domNode.getAttribute('aria-owns'));
-
-  if (listbox) {
-    this.listbox = new Listbox(listbox, this);
-    this.listbox.init();
-  }
-
 };
 
-Combobox10.prototype.handleKeydown = function (event) {
+ComboboxInline.prototype.setValue = function (value) {
+  console.log('[ComboboxInline][setValue][value]: ' + value);
+  this.filter = value;
+  this.domNode.value = this.filter;
+  this.domNode.setSelectionRange(this.filter.length, this.filter.length);
+};
+
+/* Event Handlers */
+
+ComboboxInline.prototype.handleKeydown = function (event) {
   var tgt = event.currentTarget,
     flag = false,
     char = event.key,
@@ -90,35 +73,17 @@ Combobox10.prototype.handleKeydown = function (event) {
 
   switch (event.keyCode) {
 
-    case this.keyCode.DOWN:
-      if (this.listbox) {
-        this.listbox.filterOptions(this.filter);
-        this.listbox.open();
-        if (!altKey) {
-          this.listbox.setFocusToFirstItem();
-        }
-      }
+    case this.keyCode.RETURN:
+      this.setValue(this.domNode.value);
       flag = true;
       break;
 
-    case this.keyCode.UP:
-      if (this.listbox) {
-        this.listbox.filterOptions(this.filter);
-        this.listbox.open();
-        if (!altKey) {
-          this.listbox.setFocusToLastItem();
-        }
-        flag = true;
-      }
+    case this.keyCode.TAB:
+      this.setValue(this.filter);
       break;
 
-    case this.keyCode.ESC:
-      this.listbox.close(true);
-      flag = true;
+    default:
       break;
-
-      default:
-        break;
   }
 
   if (flag) {
@@ -127,63 +92,38 @@ Combobox10.prototype.handleKeydown = function (event) {
   }
 };
 
-Combobox10.prototype.handleKeyup = function (event) {
+ComboboxInline.prototype.handleKeyup = function (event) {
   var tgt = event.currentTarget,
     flag = false,
-    char = event.key;
+    char = event.key,
+    shiftKey = event.shiftKey,
+    ctrlKey  = event.ctrlKey,
+    altKey   = event.altKey;
 
-  this.filter = this.domNode.value.substring(0,this.domNode.selectionEnd);
-  this.option = this.listbox.filterOptions(this.filter);
-
-  console.log('[Combobox10][handleKeyup][filter]:       ' + this.filter);
-  console.log('[Combobox10][handleKeyup][value]:        ' + this.domNode.value);
-  console.log('[Combobox10][handleKeyup][option]:       ' + this.option);
-  console.log('[Combobox10][handleKeyup][getSelection]: ' + this.domNode.selectionStart);
-  console.log('[Combobox10][handleKeyup][selectionEnd]: ' + this.domNode.selectionEnd);
-
-};
-
-Combobox10.prototype.updateValue = function (value) {
-  if (this.domNode.getAttribute('aria-autocomplete') === 'both') {
-    this.domNode.value = value;
-    this.domNode.setSelectionRange(this.filter.length,this.filter.length);
-  }
-};
-
-Combobox10.prototype.setValue = function (value) {
-  this.domNode.value = value;
-};
-
-
-Combobox10.prototype.handleClick = function (event) {
-  if (this.domNode.getAttribute('aria-expanded') == 'true') {
-    this.listbox.close(true);
-  }
-  else {
-    this.listbox.open();
-    this.listbox.setFocusToFirstItem();
-  }
-};
-
-Combobox10.prototype.handleFocus = function (event) {
-  this.listbox.hasFocus = true;
-};
-
-Combobox10.prototype.handleBlur = function (event) {
-  this.listbox.hasFocus = false;
-  setTimeout(this.listbox.close.bind(this.listbox, false), 300);
-
-};
-
-// Initialize comboboxes
-
-window.addEventListener('load', function () {
-
-  var comboboxes = document.querySelectorAll('[role="combobox"]');
-
-  for (var i = 0; i < comboboxes.length; i++) {
-    var combobox = new Combobox10(comboboxes[i]);
-    combobox.init();
+  function isPrintableCharacter (str) {
+    return str.length === 1 && str.match(/\S/);
   }
 
-});
+  if (isPrintableCharacter(char)) {
+    console.log('[ComboboxInline][handleKeyup][char]: ' + char);
+    this.filter = this.domNode.value.substring(0,this.domNode.selectionEnd);
+
+    for (var i = 0; i < this.options.length; i++) {
+      var option = this.options[i].toLowerCase();
+      if (option.indexOf(this.filter.toLowerCase()) === 0) {
+        this.domNode.value = this.options[i];
+        this.domNode.setSelectionRange(this.filter.length, option.length);
+        break;
+      }
+    }
+  }
+
+};
+
+ComboboxInline.prototype.handleFocus = function (event) {
+};
+
+ComboboxInline.prototype.handleBlur = function (event) {
+
+};
+

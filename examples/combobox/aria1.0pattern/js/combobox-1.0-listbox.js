@@ -14,24 +14,13 @@
 *   @constructor ComboboxListbox
 *
 *   @desc
-*       Wrapper object for a listbox
+*       Wrapper object for a combobox with a listbox option
 *
 *   @param domNode
 *       The DOM element node that serves as the listbox container. Each
 *       child element of domNode that represents a option must have a
 *       'role' attribute with value 'option'.
 *
-*   @param controllerObj
-*       The object that is a wrapper for the DOM element that controls the
-*       menu, e.g. a button element, with an 'aria-controls' attribute that
-*       references this menu's domNode. See MenuButton.js
-*
-*       The controller object is expected to have the following properties:
-*       1. domNode: The controller object's DOM element node, needed for
-*          retrieving positioning information.
-*       2. hasHover: boolean that indicates whether the controller object's
-*          domNode has responded to a mouseover event with no subsequent
-*          mouseout event having occurred.
 */
 var ComboboxListbox = function (domNode) {
 
@@ -62,6 +51,12 @@ var ComboboxListbox = function (domNode) {
 ComboboxListbox.prototype.init = function () {
 
   this.domNode.setAttribute('aria-haspopup', 'true');
+
+  this.autocomplete = this.domNode.getAttribute('aria-autocomplete');
+
+  if ( this.autocomplete) {
+    this.autocomplete = this.autocomplete.toLowerCase();
+  }
 
   this.domNode.addEventListener('keydown', this.handleKeydown.bind(this));
   this.domNode.addEventListener('keyup',   this.handleKeyup.bind(this));
@@ -153,8 +148,10 @@ ComboboxListbox.prototype.handleKeyup = function (event) {
     flag = false,
     char = event.key;
 
-  this.filter = this.domNode.value.substring(0,this.domNode.selectionEnd);
-  this.option = this.listbox.filterOptions(this.filter);
+  if (this.autocomplete !== 'none') {
+    this.filter = this.domNode.value.substring(0,this.domNode.selectionEnd);
+    this.option = this.listbox.filterOptions(this.filter);
+  }
 
 };
 
