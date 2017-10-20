@@ -35,12 +35,12 @@
 */
 var Combobox10 = function (domNode) {
 
-  this.domNode   = domNode;
-  this.listbox = false;
+  this.domNode      = domNode;
+  this.listbox      = false;
 
   this.hasFocus = false;
   this.hasHover = false;
-  this.filter = '';
+  this.filter   = '';
 
   this.keyCode = Object.freeze({
     'BACKSPACE': 8,
@@ -83,25 +83,38 @@ Combobox10.prototype.init = function () {
 Combobox10.prototype.handleKeydown = function (event) {
   var tgt = event.currentTarget,
     flag = false,
-    char = event.key;
+    char = event.key,
+    shiftKey = event.shiftKey,
+    ctrlKey  = event.ctrlKey,
+    altKey   = event.altKey;
 
   switch (event.keyCode) {
-    case this.keyCode.SPACE:
-    case this.keyCode.RETURN:
+
     case this.keyCode.DOWN:
       if (this.listbox) {
+        this.listbox.filterOptions(this.filter);
         this.listbox.open();
-        this.listbox.setFocusToFirstItem();
+        if (!altKey) {
+          this.listbox.setFocusToFirstItem();
+        }
       }
       flag = true;
       break;
 
     case this.keyCode.UP:
       if (this.listbox) {
+        this.listbox.filterOptions(this.filter);
         this.listbox.open();
-        this.listbox.setFocusToLastItem();
+        if (!altKey) {
+          this.listbox.setFocusToLastItem();
+        }
         flag = true;
       }
+      break;
+
+    case this.keyCode.ESC:
+      this.listbox.close(true);
+      flag = true;
       break;
 
       default:
@@ -119,8 +132,7 @@ Combobox10.prototype.handleKeyup = function (event) {
     flag = false,
     char = event.key;
 
-  this.filter = this.domNode.value.substring(0,this.domNode.selectionStart);
-
+  this.filter = this.domNode.value.substring(0,this.domNode.selectionEnd);
   this.option = this.listbox.filterOptions(this.filter);
 
   console.log('[Combobox10][handleKeyup][filter]:       ' + this.filter);
@@ -129,11 +141,18 @@ Combobox10.prototype.handleKeyup = function (event) {
   console.log('[Combobox10][handleKeyup][getSelection]: ' + this.domNode.selectionStart);
   console.log('[Combobox10][handleKeyup][selectionEnd]: ' + this.domNode.selectionEnd);
 
-}
+};
+
+Combobox10.prototype.updateValue = function (value) {
+  if (this.domNode.getAttribute('aria-autocomplete') === 'both') {
+    this.domNode.value = value;
+    this.domNode.setSelectionRange(this.filter.length,this.filter.length);
+  }
+};
 
 Combobox10.prototype.setValue = function (value) {
   this.domNode.value = value;
-}
+};
 
 
 Combobox10.prototype.handleClick = function (event) {

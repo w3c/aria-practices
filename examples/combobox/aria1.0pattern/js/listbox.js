@@ -20,19 +20,19 @@
 *       child element of domNode that represents a option must have a
 *       'role' attribute with value 'option'.
 *
-*   @param controllerObj
+*   @param comboboxObj
 *       The object that is a wrapper for the DOM element that controls the
 *       menu, e.g. a button element, with an 'aria-controls' attribute that
 *       references this menu's domNode. See MenuButton.js
 *
-*       The controller object is expected to have the following properties:
-*       1. domNode: The controller object's DOM element node, needed for
+*       The combobox object is expected to have the following properties:
+*       1. domNode: The combobox object's DOM element node, needed for
 *          retrieving positioning information.
-*       2. hasHover: boolean that indicates whether the controller object's
+*       2. hasHover: boolean that indicates whether the combobox object's
 *          domNode has responded to a mouseover event with no subsequent
 *          mouseout event having occurred.
 */
-var Listbox = function (domNode, controllerObj) {
+var Listbox = function (domNode, comboboxObj) {
   var elementChildren,
     msgPrefix = 'Listbox constructor argument domNode ';
 
@@ -54,9 +54,9 @@ var Listbox = function (domNode, controllerObj) {
   }
 
   this.domNode = domNode;
-  this.controller = controllerObj;
+  this.combobox = comboboxObj;
 
-  console.log('[Listbox][init][controller]: ' + this.controller);
+  console.log('[Listbox][init][combobox]: ' + this.combobox);
 
   this.allOptions = [];
 
@@ -79,17 +79,12 @@ var Listbox = function (domNode, controllerObj) {
 *       array. Initialize firstOption and lastOption properties.
 */
 Listbox.prototype.init = function () {
-  var childElement, optionElement, firstChildElement, option, textContent, numItems, label;
+  var childElement, optionElement, firstChildElement, option, textContent, numItems;
 
   // Configure the domNode itself
   this.domNode.tabIndex = -1;
 
   this.domNode.setAttribute('role', 'listbox');
-
-  if (!this.domNode.getAttribute('aria-labelledby') && !this.domNode.getAttribute('aria-label') && !this.domNode.getAttribute('title')) {
-    label = this.controller.domNode.innerHTML;
-    this.domNode.setAttribute('aria-label', label);
-  }
 
   this.domNode.addEventListener('mouseover', this.handleMouseover.bind(this));
   this.domNode.addEventListener('mouseout',  this.handleMouseout.bind(this));
@@ -161,10 +156,13 @@ Listbox.prototype.filterOptions = function (filter) {
 
 };
 
-Listbox.prototype.setValue = function (value) {
-  this.controller.setValue(value);
+Listbox.prototype.updateValue = function (value) {
+  this.combobox.updateValue(value);
 };
 
+Listbox.prototype.setValue = function (value) {
+  this.combobox.setValue(value);
+};
 
 /* EVENT HANDLERS */
 
@@ -180,39 +178,36 @@ Listbox.prototype.handleMouseout = function (event) {
 /* FOCUS MANAGEMENT METHODS */
 
 Listbox.prototype.setFocusToController = function () {
-  this.controller.domNode.focus();
+  this.combobox.domNode.focus();
 };
 
 Listbox.prototype.setFocusToFirstItem = function () {
-  console.log('[Listbox][setFocusToFirstItem]: ' + this.firstOption)
   this.firstOption.domNode.focus();
+  this.updateValue(this.firstOption.textContent);
 };
 
 Listbox.prototype.setFocusToLastItem = function () {
   this.lastOption.domNode.focus();
+  this.updateValue(this.lastOption.textContent);
 };
 
 Listbox.prototype.setFocusToPreviousItem = function (currentOption) {
   var index;
 
-  if (currentOption === this.firstOption) {
-    this.lastOption.domNode.focus();
-  }
-  else {
+  if (currentOption !== this.firstOption) {
     index = this.options.indexOf(currentOption);
     this.options[index - 1].domNode.focus();
+    this.updateValue(this.options[index - 1].textContent);
   }
 };
 
 Listbox.prototype.setFocusToNextItem = function (currentOption) {
   var index;
 
-  if (currentOption === this.lastOption) {
-    this.firstOption.domNode.focus();
-  }
-  else {
+  if (currentOption !== this.lastOption) {
     index = this.options.indexOf(currentOption);
     this.options[index + 1].domNode.focus();
+    this.updateValue(this.options[index + 1].textContent);
   }
 };
 
@@ -236,6 +231,7 @@ Listbox.prototype.setFocusByFirstCharacter = function (currentOption, char) {
   // If match was found...
   if (index > -1) {
     this.options[index].domNode.focus();
+    this.updateValue(this.options[index].textContent);
   }
 };
 
@@ -251,16 +247,14 @@ Listbox.prototype.getIndexFirstChars = function (startIndex, char) {
 /* MENU DISPLAY METHODS */
 
 Listbox.prototype.open = function () {
-  // get bounding rectangle of controller object's DOM node
-  var rect = this.controller.domNode.getBoundingClientRect();
-
-  console.log('[listbox][open]');
+  // get bounding rectangle of combobox object's DOM node
+  var rect = this.combobox.domNode.getBoundingClientRect();
 
   // set CSS properties
   this.domNode.style.display = 'block';
 
   // set aria-expanded attribute
-  this.controller.domNode.setAttribute('aria-expanded', 'true');
+  this.combobox.domNode.setAttribute('aria-expanded', 'true');
 };
 
 Listbox.prototype.close = function (force) {
@@ -269,11 +263,9 @@ Listbox.prototype.close = function (force) {
     force = false;
   }
 
-  console.log('[Listbox][close][controller]: ' + this.controller);
-
-  if (force || (!this.hasFocus && !this.hasHover && !this.controller.hasHover)) {
+  if (force || (!this.hasFocus && !this.hasHover && !this.combobox.hasHover)) {
     this.domNode.style.display = 'none';
-    this.controller.domNode.removeAttribute('aria-expanded');
+    this.combobox.domNode.removeAttribute('aria-expanded');
   }
 };
 
