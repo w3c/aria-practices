@@ -13,7 +13,12 @@
 
 <!--  js and css for this example. -->
 <link href="css/combobox-1.0.css" rel="stylesheet">
-<script src="js/combobox-1.0.js" type="text/javascript"></script>
+<link  href="css/listbox.css"     rel="stylesheet">
+
+<script src="js/combobox-1.0-listbox.js"  type="text/javascript"></script>
+<script src="js/listbox.js"       type="text/javascript"></script>
+<script src="js/listboxOption.js" type="text/javascript"></script>
+
 </head>
 <body>
   <main>
@@ -23,69 +28,105 @@
     This work is tracked by <a href="https://github.com/w3c/aria-practices/issues/99">issue 99</a>.
   </p>
   <p>
-    <!-- Provide an overview of the example where the first sentence provides a link to the section of aria-practices.html that describes the pattern this example implements. -->
-    Replace this paragraph with an overview of the example that is something like the following. The
-    below example section demonstrates a simple checkbox that implements the
-    <a href="../../#checkbox">design pattern for checkbox.</a>
-    This example uses ... summarize salient techniques )
+    The below example section demonstrates a <code>combobox</code> that implements the
+    <a href="../../#combobox">ARIA 1.0 design pattern for combobox.</a>
+    This example demonstrates a combobox that provides a list of options to the user.
+    The options available in the listbox is filtered based on user input into the textbox.
+    The user can select an option from the list to set the value of the textbox.
   </p>
   <p>Similar examples include: </p>
   <ul>
-    <li><a href="#">example name</a>: summarize what this related example demonstrates.</li>
-    <!--  list other examples that implement the same design pattern. -->
+    <li><a href="combobox-autocomplete-inline.html">Combobox With Inline Autocomplete</a>: summarize what this related example demonstrates.</li>
+    <li><a href="combobox-autocomplete-both.html">Combobox With Both List and Inline Autocompletion</a>: summarize what this related example demonstrates.</li>
   </ul>
 
   <section>
     <h2 id="ex_label">Example</h2>
     <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
-    <!--
-      Note the ID of the following div that contains the example HTML is used as a parameter for the sourceCode.add() function.
-      The sourceCode functions in the examples/js/examples.js render the HTML source to show it to the reader of the example page.
-      If you change the ID of this div, be sure to update the parameters of the sourceCode.add() function call, which is made following the div with id="sc1" where the HTML is render.
-      The div for the rendered HTML source is in the last section of the page.
-    -->
     <div id="ex1">
-      <!--  Replace content of this div with the example.  -->
-      <p>This is the place where the reader will experience the functioning example.</p>
-      <ul>
-        <li>The HTML in this section along with the javascript and CSS it uses demonstrate
-          the design pattern.</li>
-        <li>
-          When developing an example implementation for this guide, please follow the
-          <a href="https://ianpouncey.github.io/code-guide/">APG example coding guidelines</a>
-          .
-        </li>
-        <!--  Target of previous link will need to be updated when we move the guidelines into the wiki from Ian's repo.  -->
-      </ul>
+      <div class="combobox-listbox">
+        <label for="cb1-input">State</label>
+
+        <div class="group">
+          <input id="cb1-input" class="cb_edit" type="text"
+                 role="combobox"
+                 aria-autocomplete="list"
+                 aria-expanded="flase"
+                 aria-haspopup="true"
+                 aria-owns="cb1-listbox"
+          />
+          <button id="cb1-button" tabindex="-1" aria-label="open button">
+            &#9661;
+          </button>
+        </div>
+
+        <ul id="cb1-listbox" role="listbox" aria-label="States">
+          <li role="option" tabindex="-1">Alabama</li>
+          <li role="option" tabindex="-1">Alaska</li>
+          <li role="option" tabindex="-1">American Samoa</li>
+          <li role="option" tabindex="-1">Arizona</li>
+          <li role="option" tabindex="-1">Arkansas</li>
+          <li role="option" tabindex="-1">California</li>
+          <li role="option" tabindex="-1">Colorado</li>
+          <li role="option" tabindex="-1">Connecticut</li>
+          <li role="option" tabindex="-1">Delaware</li>
+          <li role="option" tabindex="-1">District of Columbia</li>
+          <li role="option" tabindex="-1">Florida</li>
+          <li role="option" tabindex="-1">Georgia</li>
+          <li role="option" tabindex="-1">Guam</li>
+          <li role="option" tabindex="-1">Hawaii</li>
+          <li role="option" tabindex="-1">Idaho</li>
+          <li role="option" tabindex="-1">Illinois</li>
+          <li role="option" tabindex="-1">Indiana</li>
+          <li role="option" tabindex="-1">Iowa</li>
+          <li role="option" tabindex="-1">Kansas</li>
+          <li role="option" tabindex="-1">Kentucky</li>
+          <li role="option" tabindex="-1">Louisiana</li>
+          <li role="option" tabindex="-1">Maine</li>
+          <li role="option" tabindex="-1">Maryland</li>
+          <li role="option" tabindex="-1">Massachusetts</li>
+          <li role="option" tabindex="-1">Michigan</li>
+          <li role="option" tabindex="-1">Minnesota</li>
+          <li role="option" tabindex="-1">Mississippi</li>
+          <li role="option" tabindex="-1">Missouri</li>
+          <li role="option" tabindex="-1">Montana</li>
+          <li role="option" tabindex="-1">Nebraska</li>
+          <li role="option" tabindex="-1">Nevada</li>
+          <li role="option" tabindex="-1">New Hampshire</li>
+          <li role="option" tabindex="-1">New Jersey</li>
+          <li role="option" tabindex="-1">New Mexico</li>
+          <li role="option" tabindex="-1">New York</li>
+          <li role="option" tabindex="-1">North Carolina</li>
+          <li role="option" tabindex="-1">North Dakota</li>
+          <li role="option" tabindex="-1">Northern Marianas Islands</li>
+          <li role="option" tabindex="-1">Ohio</li>
+          <li role="option" tabindex="-1">Oklahoma</li>
+          <li role="option" tabindex="-1">Oregon</li>
+          <li role="option" tabindex="-1">Pennsylvania</li>
+          <li role="option" tabindex="-1">Puerto Rico</li>
+          <li role="option" tabindex="-1">Rhode Island</li>
+          <li role="option" tabindex="-1">South Carolina</li>
+          <li role="option" tabindex="-1">South Dakota</li>
+          <li role="option" tabindex="-1">Tennessee</li>
+          <li role="option" tabindex="-1">Texas</li>
+          <li role="option" tabindex="-1">Utah</li>
+          <li role="option" tabindex="-1">Vermont</li>
+          <li role="option" tabindex="-1">Virginia</li>
+          <li role="option" tabindex="-1">Virgin Islands</li>
+          <li role="option" tabindex="-1">Washington</li>
+          <li role="option" tabindex="-1">West Virginia</li>
+          <li role="option" tabindex="-1">Wisconsin</li>
+          <li role="option" tabindex="-1">Wyoming</li>
+        </ul>
+      </div>
     </div>
     <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
   </section>
 
   <section>
-    <h2>Accessibility Features</h2>
-    <p class="annotate">Optional section: If appropriate, please replace this content with a list of any special or noteworthy accessibility features
-      demonstrated in this implementation, such as:</p>
-    <ol>
-      <li>What distinguishes this example from related examples.</li>
-      <li>Keyboard chortcuts, live regions,  unusual event handling, or other ancillary best practices that are employed.</li>
-      <li>Do not include information that would be repeated in the following keyboard and attribute sections.</li>
-      <li>Delete this section if not needed.</li>
-    </ol>
-  </section>
+    <h2 id="kbd_label_textbox">Textbox Keyboard Support</h2>
 
-  <section>
-    <h2 id="kbd_label">Keyboard Support</h2>
-    <!--
-      List the keys supported in this example.
-      Remember to:
-      Use kbd tags,e.g. <kbd>KeyName</kbd>.
-      Key names use first-letter caps, e.g., <kbd>Enter</kbd>.
-      Single space between multiple Words, e.g., <kbd>Up Arrow</kbd>.
-      Use + to separate modifiers, e.g., <kbd>Control + Right Arrow</kbd>.
-      One key per row, e.g., do not combine <kbd>Up Arrow</kbd> and <kbd>Down Arrow</kbd> into a single row.
-      Do not use the word "key", e.g., do not write <kbd>Enter Key</kbd> or <kbd>Enter</kbd> key.
-     -->
-    <table aria-labelledby="kbd_label" class="def">
+    <table aria-labelledby="kbd_label_textbox" class="def">
       <thead>
         <tr>
           <th>Key</th>
@@ -94,32 +135,104 @@
       </thead>
       <tbody>
         <tr>
-          <th><kbd>KeyName</kbd></th>
+          <th><kbd>Down Arrow</kbd></th>
+          <td>Opens <code>listbox</code> and moves focus to first <code>option</code>.</td>
+        </tr>
+        <tr>
+          <th><kbd>Alt+Down Arrow</kbd></th>
+          <td>Opens <code>listbox</code> and focus stays on the <code>input[type="text"]</code>.</td>
+        </tr>
+        <tr>
+          <th><kbd>Up Arrow</kbd></th>
+          <td>Opens <code>listbox</code> and moves focus to last <code>option</code>.</td>
+        </tr>
+        <tr>
+          <th><kbd>Alt+Up Arrow</kbd></th>
+          <td>Opens <code>listbox</code> and focus stays on the <code>input[type="text"]</code>.</td>
+        </tr>
+        <tr>
+          <th><kbd>Escape</kbd></th>
+          <td>if open, closes the <code>listbox</code>.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 id="kbd_label_listbox">Listbox Keyboard Support</h2>
+
+    <table aria-labelledby="kbd_label_listbox" class="def">
+      <thead>
+        <tr>
+          <th>Key</th>
+          <th>Function</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th><kbd>Enter</kbd></th>
           <td>
-            Description of key function.
-            <!--  Do not use a list if there is only one function for the key.  -->
+            <ul>
+              <li><code>input[type="text"]</code> value is set to the <code>option</code> content.</li>
+              <li>Closes the <code>listbox</code>.</li>
+              <li>Sets focus on the <code>input[type="text"]</code></li>
+            </ul>
           </td>
         </tr>
         <tr>
-          <th><kbd>KeyName</kbd></th>
+          <th><kbd>Escape</kbd></th>
           <td>
             <ul>
-              <li>If condition 1, performs function 1.</li>
-              <li>If condition 2, performs function 2.</li>
-              <li>Only use a list if multiple statements are needed.</li>
+              <li>Closes the <code>listbox</code>.</li>
+              <li>Sets focus to the <code>input[type="text"]</code> button.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th><kbd>Up Arrow</kbd></th>
+          <td>
+            <ul>
+              <li>Moves focus to the previous <code>option</code>.</li>
+              <li>If focus is on the first <code>option</code>, the focus does not move.</li>
+            </ul>
+          </td>
+        </tr>
+         <tr>
+          <th><kbd>Down Arrow</kbd></th>
+          <td>
+            <ul>
+              <li>Moves focus to the next <code>option</code>.</li>
+              <li>If focus is on the last <code>option</code>, the focus does not move.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th><kbd>Home</kbd><br/><kbd>Page Up</kbd></th>
+          <td>Moves focus to the first <code>option</code>.</td>
+        </tr>
+        <tr>
+          <th><kbd>End</kbd><br/><kbd>Page Down</kbd></th>
+          <td>Moves focus to the last <code>option</code>.</td>
+        </tr>
+        <tr>
+          <th><kbd>A-Z</kbd><br><kbd>a-z</kbd></th>
+          <td>
+            <ul>
+              <li>Moves focus to the <code>option</code> with a label that starts with the typed character if such an option exists.</li>
+              <li>Otherwise, focus does not move.</li>
             </ul>
           </td>
         </tr>
       </tbody>
     </table>
+
   </section>
 
   <section>
-    <h2 id="rps_label">Role, Property, State, and Tabindex  Attributes</h2>
+
+    <h2 id="rps_label_combobox">Combobox Role, Property, State, and Tabindex  Attributes</h2>
     <!--
       Update this table to describe how roles, properties, states, and tabindex are used in this example.
     -->
-    <table aria-labelledby="rps_label" class="data attributes">
+    <table aria-labelledby="rps_label_combobox" class="data attributes">
       <thead>
         <tr>
           <th scope="col">Role</th>
@@ -130,26 +243,142 @@
       </thead>
       <tbody>
         <tr>
-          <th scope="row"><code>RoleName</code></th>
+          <th scope="row"><code>combobox</code></th>
           <td><!--  Leave this cell blank in rows where a role is being described. --></td>
-          <td><code>HTML_ELEMENT</code></td>
+          <td><code>input[type="text"]</code></td>
           <td>
-            Describe usage/purpose, e.g., indicates the focusable element that serves as the ...
+            Identifies the textbx as a combobox option.
           </td>
         </tr>
         <tr>
           <td>
-            <!--  Leave this cell blank in rows that describe attributes applied to the element with the previously described role.
-              Make a row like this for each attribute/value pair.
-          -->
           </td>
-          <th scope="row"><code>AttributeName=<q>AttributeValue</q></code></th>
-          <td><code>HTML_ELEMENT</code></td>
+          <th scope="row"><code>aria-autocomplete=<q>list</q></code></th>
+          <td><code>input[type="text"]</code></td>
           <td>
             <ul>
               <li>explanation of usage, purpose, benefit, and/or guidance relevant to this implementation.</li>
               <li>If making multiple statements, use list for brevity and clarity</li>
               <li>Do not make a single item list.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+          </td>
+          <th scope="row"><code>aria-haspopup=<q>true</q></code></th>
+          <td><code>input[type="text"]</code></td>
+          <td>
+            <ul>
+              <li>explanation of usage, purpose, benefit, and/or guidance relevant to this implementation.</li>
+              <li>If making multiple statements, use list for brevity and clarity</li>
+              <li>Do not make a single item list.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+          </td>
+          <th scope="row"><code>aria-owns=<q>#IDREF</q></code></th>
+          <td><code>input[type="text"]</code></td>
+          <td>
+            <ul>
+              <li>explanation of usage, purpose, benefit, and/or guidance relevant to this implementation.</li>
+              <li>If making multiple statements, use list for brevity and clarity</li>
+              <li>Do not make a single item list.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+          </td>
+          <th scope="row"><code>aria-expanded=<q>false</q></code></th>
+          <td><code>input[type="text"]</code></td>
+          <td>
+            <ul>
+              <li>explanation of usage, purpose, benefit, and/or guidance relevant to this implementation.</li>
+              <li>If making multiple statements, use list for brevity and clarity</li>
+              <li>Do not make a single item list.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+          </td>
+          <th scope="row"><code>aria-expanded=<q>true</q></code></th>
+          <td><code>input[type="text"]</code></td>
+          <td>
+            <ul>
+              <li>explanation of usage, purpose, benefit, and/or guidance relevant to this implementation.</li>
+              <li>If making multiple statements, use list for brevity and clarity</li>
+              <li>Do not make a single item list.</li>
+            </ul>
+          </td>
+        </tr>      </tbody>
+    </table>
+
+
+    <h2 id="rps_label_listbox">Listbox Role, Property, State, and Tabindex  Attributes</h2>
+    <!--
+      Update this table to describe how roles, properties, states, and tabindex are used in this example.
+    -->
+    <table aria-labelledby="rps_label_listbox" class="data attributes">
+      <thead>
+        <tr>
+          <th scope="col">Role</th>
+          <th scope="col">Attribute</th>
+          <th scope="col">Element</th>
+          <th scope="col">Usage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">
+            <code>listbox</code>
+          </th>
+          <td></td>
+          <td>
+            <code>ul</code>
+          </td>
+          <td>Identifies the <code>ul</code> element as a <code>listbox</code>.</td>
+        </tr>
+        <tr>
+          <td>
+            <code></code>
+          </td>
+          <th scope="row"><code>aria-label=<q>States<q></code></th>
+          <td>
+            <code>ul</code>
+          </td>
+          <td>
+            Provides a label for the <code>listbox</code>.
+          </td>
+        </tr>
+        <tr>
+          <th scope="row">
+            <code>option</code>
+          </th>
+          <td></td>
+          <td>
+            <code>li</code>
+          </td>
+          <td>
+            <ul>
+              <li>Identifies the <code>li</code> element as a <code>option</code> in a <cpde>listbox</cpde>.</li>
+              <li>The text content of the <code>li</code> element provides the accessible name of the <code>option</code>.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <th scope="row"><code>tabindex=&quot;-1&quot;</code></th>
+          <td>
+            <code>li</code>
+          </td>
+          <td>
+            <ul>
+              <li>Allows DOM focus to be set on the menu item with the JavaScript focus method.</li>
+              <li>Dynamically added by the JavaScript.</li>
             </ul>
           </td>
         </tr>
@@ -163,11 +392,23 @@
     <ul>
       <li>
         CSS:
-        <a href="css/example_name.css" type="tex/css">example_name.css</a>
+        <a href="css/combobox-1.0.css" type="text/css">combobox-1.0.css</a>
+      </li>
+      <li>
+        CSS:
+        <a href="css/listbox.css" type="text/css">listbox.css</a>
       </li>
       <li>
         Javascript:
-        <a href="js/example_name.js" type="text/javascript">example_name.js</a>
+        <a href="js/combobox-1.0-listbox.js" type="text/javascript">combobox-1.0-listbox.js</a>
+      </li>
+      <li>
+        Javascript:
+        <a href="js/listbox.js" type="text/javascript">listbox.js</a>
+      </li>
+      <li>
+        Javascript:
+        <a href="js/listboxOption.js" type="text/javascript">listboxOption.js</a>
       </li>
     </ul>
   </section>

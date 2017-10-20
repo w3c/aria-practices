@@ -1,0 +1,46 @@
+
+ul[role="listbox"] {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 3em;
+  list-style: none;
+  background-color: #EEEEEE;
+  display: none;
+  border: thin #333 solid;
+  height: 12em;
+  width: 12em;
+  overflow: scroll;
+}
+
+ul[role="listbox"] li[role="option"]{
+  display: block;
+  margin: 0.25em;
+  padding: 0;
+  background-color: #EEEEEE;
+  font-size: 100%;
+}
+
+
+
+/* focus and hover styling */
+
+button:focus,
+button:hover,
+input:focus,
+input:hover {
+  outline: 2px solid black;
+}
+
+input:focus,
+input:hover {
+  background-color: #EEEEEE;
+}
+
+ul[role="listbox"] li[role="option"]:focus,
+ul[role="listbox"] li[role="option"].focus,
+ul[role="listbox"] li[role="option"]:hover{
+  background-color: black;
+  color: white;
+}
+
