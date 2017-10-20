@@ -32,18 +32,20 @@ var Option = function (domNode, listboxObj) {
   this.textComparision = domNode.textContent.toLowerCase();
 
   this.keyCode = Object.freeze({
-    'TAB': 9,
-    'RETURN': 13,
-    'ESC': 27,
-    'SPACE': 32,
-    'PAGEUP': 33,
-    'PAGEDOWN': 34,
-    'END': 35,
-    'HOME': 36,
-    'LEFT': 37,
-    'UP': 38,
-    'RIGHT': 39,
-    'DOWN': 40
+    'BACKSPACE':  8,
+    'TAB':        9,
+    'RETURN':    13,
+    'ESC':       27,
+    'SPACE':     32,
+    'PAGEUP':    33,
+    'PAGEDOWN':  34,
+    'END':       35,
+    'HOME':      36,
+    'LEFT':      37,
+    'UP':        38,
+    'RIGHT':     39,
+    'DOWN':      40,
+    'DELETE':    46
   });
 };
 
@@ -92,7 +94,10 @@ Option.prototype.handleKeydown = function (event) {
         flag = true;
         break;
 
+      case this.keyCode.BACKSPACE:
+      case this.keyCode.DELETE:
       case this.keyCode.ESC:
+        this.listbox.restoreValue();
         this.listbox.setFocusToController();
         this.listbox.close(true);
         flag = true;
@@ -121,9 +126,9 @@ Option.prototype.handleKeydown = function (event) {
         break;
 
       case this.keyCode.TAB:
-        this.listbox.setFocusToController();
-        this.listbox.close(true);
+        this.listbox.restoreValue();
         break;
+
 
       default:
         if (isPrintableCharacter(char)) {

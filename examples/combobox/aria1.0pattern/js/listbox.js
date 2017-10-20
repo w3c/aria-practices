@@ -120,9 +120,8 @@ Listbox.prototype.filterOptions = function (filter) {
       textContent,
       numItems;
 
+  this.filter = filter;
   filter = filter.toLowerCase();
-
-  console.log('[Listbox][filterOptions][filter]: ' + filter);
 
   this.options    = [];
   this.firstChars = [];
@@ -154,6 +153,10 @@ Listbox.prototype.filterOptions = function (filter) {
 
   return firstMatch;
 
+};
+
+Listbox.prototype.restoreValue = function () {
+  this.combobox.updateValue(this.filter);
 };
 
 Listbox.prototype.updateValue = function (value) {

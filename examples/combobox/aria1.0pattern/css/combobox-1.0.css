@@ -3,22 +3,22 @@
 	color: #366ED4;
 }
 
-.combobox10 {
+.combobox-listbox {
   position: relative;
 }
 
-.combobox10 label {
+.combobox-listbox label {
   margin: 0;
   padding: 0;
   display: block;
 }
 
-.combobox10 .group input,
-.combobox10 .group button {
+.combobox-listbox .group input,
+.combobox-listbox .group button {
   display: inline;
 }
 
-.combobox10 .group button {
+.combobox-listbox .group button {
   margin: 0;
   padding: 0 0.125em 0 0.125em;
   position: relative;

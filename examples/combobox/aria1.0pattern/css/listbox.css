@@ -9,6 +9,7 @@ ul[role="listbox"] {
   display: none;
   border: thin #333 solid;
   height: 12em;
+  width: 12em;
   overflow: scroll;
 }
 
@@ -17,7 +18,6 @@ ul[role="listbox"] li[role="option"]{
   margin: 0.25em;
   padding: 0;
   background-color: #EEEEEE;
-  width: 12em;
   font-size: 100%;
 }
 
