@@ -254,10 +254,10 @@
       <tbody>
         <tr>
           <th scope="row"><code>combobox</code></th>
-          <td><!--  Leave this cell blank in rows where a role is being described. --></td>
+          <td></td>
           <td><code>input[type="text"]</code></td>
           <td>
-            Identifies the textbx as a combobox option.
+            Identifies the <code>input[type=<q>text</q>] as a combobox option.
           </td>
         </tr>
         <tr>
@@ -266,11 +266,9 @@
           <th scope="row"><code>aria-autocomplete=<q>list</q></code></th>
           <td><code>input[type="text"]</code></td>
           <td>
-            <ul>
-              <li>explanation of usage, purpose, benefit, and/or guidance relevant to this implementation.</li>
-              <li>If making multiple statements, use list for brevity and clarity</li>
-              <li>Do not make a single item list.</li>
-            </ul>
+            The value of <code>both</code>code> identifies the behavior of the
+            combox as providing a list of options for the value of the
+            <code>input[type="<q>text</q>]</code>.
           </td>
         </tr>
         <tr>
@@ -279,11 +277,8 @@
           <th scope="row"><code>aria-haspopup=<q>true</q></code></th>
           <td><code>input[type="text"]</code></td>
           <td>
-            <ul>
-              <li>explanation of usage, purpose, benefit, and/or guidance relevant to this implementation.</li>
-              <li>If making multiple statements, use list for brevity and clarity</li>
-              <li>Do not make a single item list.</li>
-            </ul>
+            Identifies the <code>combobox</code> as having a popup list of
+            options for the value of the textbox.
           </td>
         </tr>
         <tr>
@@ -292,11 +287,8 @@
           <th scope="row"><code>aria-owns=<q>#IDREF</q></code></th>
           <td><code>input[type="text"]</code></td>
           <td>
-            <ul>
-              <li>explanation of usage, purpose, benefit, and/or guidance relevant to this implementation.</li>
-              <li>If making multiple statements, use list for brevity and clarity</li>
-              <li>Do not make a single item list.</li>
-            </ul>
+            Identifies the <code>listbox</code> that is controlled by the
+            combobox.
           </td>
         </tr>
         <tr>
@@ -305,11 +297,8 @@
           <th scope="row"><code>aria-expanded=<q>false</q></code></th>
           <td><code>input[type="text"]</code></td>
           <td>
-            <ul>
-              <li>explanation of usage, purpose, benefit, and/or guidance relevant to this implementation.</li>
-              <li>If making multiple statements, use list for brevity and clarity</li>
-              <li>Do not make a single item list.</li>
-            </ul>
+            Idenitifies the <code>listbox</code> as closed (e.g. hidden from
+            the user).
           </td>
         </tr>
         <tr>
@@ -318,20 +307,17 @@
           <th scope="row"><code>aria-expanded=<q>true</q></code></th>
           <td><code>input[type="text"]</code></td>
           <td>
-            <ul>
-              <li>explanation of usage, purpose, benefit, and/or guidance relevant to this implementation.</li>
-              <li>If making multiple statements, use list for brevity and clarity</li>
-              <li>Do not make a single item list.</li>
-            </ul>
+            Idenitifies the <code>listbox</code> as open (e.g. visible to the
+            user).
           </td>
-        </tr>      </tbody>
+        </tr>
+      </tbody>
     </table>
 
 
-    <h2 id="rps_label_listbox">Listbox Role, Property, State, and Tabindex  Attributes</h2>
-    <!--
-      Update this table to describe how roles, properties, states, and tabindex are used in this example.
-    -->
+    <h2 id="rps_label_listbox">
+      Listbox Role, Property, State, and Tabindex Attributes
+    </h2>
     <table aria-labelledby="rps_label_listbox" class="data attributes">
       <thead>
         <tr>
@@ -350,7 +336,9 @@
           <td>
             <code>ul</code>
           </td>
-          <td>Identifies the <code>ul</code> element as a <code>listbox</code>.</td>
+          <td>
+            Identifies the <code>ul</code> element as a <code>listbox</code>.
+          </td>
         </tr>
         <tr>
           <td>
@@ -374,8 +362,14 @@
           </td>
           <td>
             <ul>
-              <li>Identifies the <code>li</code> element as a <code>option</code> in a <cpde>listbox</cpde>.</li>
-              <li>The text content of the <code>li</code> element provides the accessible name of the <code>option</code>.</li>
+              <li>
+                Identifies the <code>li</code> element as a <code>option</code>
+                in a <cpde>listbox</cpde>.
+              </li>
+              <li>
+                The text content of the <code>li</code> element provides the
+                accessible name of the <code>option</code>.
+              </li>
             </ul>
           </td>
         </tr>
@@ -387,7 +381,10 @@
           </td>
           <td>
             <ul>
-              <li>Allows DOM focus to be set on the menu item with the JavaScript focus method.</li>
+              <li>
+                Allows DOM focus to be set on the menu item with the
+                JavaScript focus method.
+              </li>
               <li>Dynamically added by the JavaScript.</li>
             </ul>
           </td>
@@ -428,11 +425,6 @@
     <div role="separator" id="sc1_start_sep" aria-labelledby="sc1_start_sep sc1_label" aria-label="Start of"></div>
     <pre><code id="sc1"></code></pre>
     <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of"></div>
-    <!--
-      The following script will show the reader the HTML source for the example that is in the div with ID 'ex1'.
-      It renders the HTML in the preceding pre element with ID 'sc1'.
-      If you change the ID of either the 'ex1' div or the 'sc1' pre, be sure to update the sourceCode.add function parameters.
-      -->
     <script>
       sourceCode.add('sc1', 'ex1');
       sourceCode.make();
