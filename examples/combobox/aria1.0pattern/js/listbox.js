@@ -115,10 +115,10 @@ Listbox.prototype.filterOptions = function (filter) {
   }
 
   var firstMatch = false,
-      i,
-      option,
-      textContent,
-      numItems;
+    i,
+    option,
+    textContent,
+    numItems;
 
   this.filter = filter;
   filter = filter.toLowerCase();
@@ -143,12 +143,12 @@ Listbox.prototype.filterOptions = function (filter) {
     this.firstOption = this.options[0];
     firstMatch = this.firstOption.textContent;
     this.lastOption  = this.options[numItems - 1];
-  } else {
+  }
+  else {
     this.firstOption = false;
     firstMatch = '';
     this.lastOption  = false;
   }
-
 
 
   return firstMatch;

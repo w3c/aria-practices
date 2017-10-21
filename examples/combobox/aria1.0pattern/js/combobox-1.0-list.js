@@ -54,7 +54,7 @@ ComboboxList.prototype.init = function () {
 
   this.autocomplete = this.domNode.getAttribute('aria-autocomplete');
 
-  if ( this.autocomplete) {
+  if (this.autocomplete) {
     this.autocomplete = this.autocomplete.toLowerCase();
   }
 
@@ -78,7 +78,7 @@ ComboboxList.prototype.init = function () {
   var button = this.domNode.nextElementSibling;
 
   if (button && button.tagName === 'BUTTON') {
-      button.addEventListener('click',   this.handleButtonClick.bind(this));
+    button.addEventListener('click',   this.handleButtonClick.bind(this));
   }
 
 };
@@ -133,8 +133,8 @@ ComboboxList.prototype.handleKeydown = function (event) {
       flag = true;
       break;
 
-      default:
-        break;
+    default:
+      break;
   }
 
   if (flag) {
