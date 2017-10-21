@@ -11,7 +11,7 @@
 */
 
 /*
-*   @constructor ComboboxListbox
+*   @constructor ComboboxList
 *
 *   @desc
 *       Wrapper object for a combobox with a listbox option
@@ -22,7 +22,7 @@
 *       'role' attribute with value 'option'.
 *
 */
-var ComboboxListbox = function (domNode) {
+var ComboboxList = function (domNode) {
 
   this.domNode      = domNode;
   this.listbox      = false;
@@ -48,7 +48,7 @@ var ComboboxListbox = function (domNode) {
   });
 };
 
-ComboboxListbox.prototype.init = function () {
+ComboboxList.prototype.init = function () {
 
   this.domNode.setAttribute('aria-haspopup', 'true');
 
@@ -83,20 +83,20 @@ ComboboxListbox.prototype.init = function () {
 
 };
 
-ComboboxListbox.prototype.updateValue = function (value) {
+ComboboxList.prototype.updateValue = function (value) {
   if (this.domNode.getAttribute('aria-autocomplete') === 'both') {
     this.domNode.value = value;
     this.domNode.setSelectionRange(this.filter.length,this.filter.length);
   }
 };
 
-ComboboxListbox.prototype.setValue = function (value) {
+ComboboxList.prototype.setValue = function (value) {
   this.domNode.value = value;
 };
 
 /* Event Handlers */
 
-ComboboxListbox.prototype.handleKeydown = function (event) {
+ComboboxList.prototype.handleKeydown = function (event) {
   var tgt = event.currentTarget,
     flag = false,
     char = event.key,
@@ -143,7 +143,7 @@ ComboboxListbox.prototype.handleKeydown = function (event) {
   }
 };
 
-ComboboxListbox.prototype.handleKeyup = function (event) {
+ComboboxList.prototype.handleKeyup = function (event) {
   var tgt = event.currentTarget,
     flag = false,
     char = event.key;
@@ -155,7 +155,7 @@ ComboboxListbox.prototype.handleKeyup = function (event) {
 
 };
 
-ComboboxListbox.prototype.handleClick = function (event) {
+ComboboxList.prototype.handleClick = function (event) {
   if (this.domNode.getAttribute('aria-expanded') == 'true') {
     this.listbox.close(true);
   }
@@ -165,17 +165,17 @@ ComboboxListbox.prototype.handleClick = function (event) {
   }
 };
 
-ComboboxListbox.prototype.handleFocus = function (event) {
+ComboboxList.prototype.handleFocus = function (event) {
   this.listbox.hasFocus = true;
 };
 
-ComboboxListbox.prototype.handleBlur = function (event) {
+ComboboxList.prototype.handleBlur = function (event) {
   this.listbox.hasFocus = false;
   setTimeout(this.listbox.close.bind(this.listbox, false), 300);
 
 };
 
-ComboboxListbox.prototype.handleButtonClick = function (event) {
+ComboboxList.prototype.handleButtonClick = function (event) {
   if (this.domNode.getAttribute('aria-expanded') == 'true') {
     this.listbox.close(true);
   }
@@ -193,7 +193,7 @@ window.addEventListener('load', function () {
   var comboboxes = document.querySelectorAll('.combobox-listbox [role="combobox"]');
 
   for (var i = 0; i < comboboxes.length; i++) {
-    var combobox = new ComboboxListbox(comboboxes[i]);
+    var combobox = new ComboboxList(comboboxes[i]);
     combobox.init();
   }
 
