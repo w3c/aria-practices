@@ -2124,7 +2124,7 @@
         </ul>
       </section>
 
-      <section class="notoc">
+      <section id="slider_kbd_interaction" class="notoc">
         <h4>Keyboard Interaction</h4>
         <ul>
           <li><kbd>Right Arrow</kbd>: Increase the value of the slider by one step.</li>
@@ -2141,7 +2141,7 @@
           <li>In some circumstances, reversing the direction of the value change for the keys specified above, e.g., having <kbd>Up Arrow</kbd> decrease the value, could create a more intuitive experience.</li>
         </ol>
       </section>
-      <section class="notoc">
+      <section id="slider_roles_states_props" class="notoc">
         <h4>WAI-ARIA Roles, States, and Properties</h4>
         <ul>
           <li>The element serving as the focusable slider control has role <a class="role-reference" href="#slider">slider</a>.</li>
@@ -2170,30 +2170,24 @@
     <section class="widget" id="slidertwothumb">
       <h3>Slider (Multi-Thumb)</h3>
       <p>
-        <strong>NOTE:</strong> Revisions to this pattern are in progress.
-        Please provide feedback in 
-        <a href="https://github.com/w3c/aria-practices/issues/221">issue 221.</a>
-      </p>
-      <p>
-        A multi-thumb slider is a slider with two or more thumbs that each set a value in a group of related values, for example selecting a price range for a product or service.
-        Many two-thumb sliders set a maximum and minimum value for a range, and the thumbs are not allowed to pass one another.
-        That is, the thumb that sets the upper value of the range can not be set lower than the thumb that controls the lower value of the range.
-        For example, in a price range selector the thumb for the maxmimum value of the lower price is determined by the current value of the maxmimum price.
-        Conversly the minimum value of the higher price thumb is determined by the current value of the lower price.
+        A multi-thumb slider is a <a href="#slider">slider</a>
+        with two or more thumbs that each set a value in a group of related values.
+        For example, in a product search, a two-thumb slider could be used to enable users to set the minimum and maximum price limits for the search.
+        In many two-thumb sliders, the thumbs are not allowed to pass one another, such as when the slider sets the minimum and maximum values for a range.
+        For example, in a price range selector, the maxmimum value of the thumb that sets the lower end of the range is limited by the current value of the thumb that sets the upper end of the range.
+        Conversly the minimum value of the upper end thumb is limited by the current value of the lower end thumb.
         However, in some multi-thumb sliders, each thumb sets a value that does not depend on the other thumb values.
       </p>
-
+      
       <section class="notoc">
         <h4>Example</h4>
-        <ul>
-          <li><a href="examples/slider/multithumb-slider.html">Multi-Thumb Slider Examples</a>: Demonstrates a two thumb silder to pick a price range for an airline flight and a hotel reservation.</li>
-        </ul>
+        <p><a href="examples/slider/multithumb-slider.html">Multi-Thumb Slider Examples</a>: Demonstrates two-thumb sliders for picking price ranges for an airline flight and hotel reservation.</p>
       </section>
 
-      <section class="notoc">
+      <section id="slidertwothumb_kbd_interaction" class="notoc">
         <h4>Keyboard Interaction</h4>
         <ul>
-          <li>Each thumb is in the page tab sequence and has the same keyboard interaction as a <a href="#slider">single-thumb slider</a>.</li>
+          <li>Each thumb is in the page tab sequence and has the same keyboard interaction as a <a href="#slider_kbd_interaction">single-thumb slider</a>.</li>
           <li>
             The tab order remains constant regardless of thumb value and visual position within the slider.
             For example, if the value of a thumb changes such that it moves past one of the other thumbs, the tab order does not change.
@@ -2208,7 +2202,7 @@
           <li>Each slider element has the <a class="property-reference" href="#aria-valuenow">aria-valuenow</a> property set to a decimal value representing the current value of the slider.</li>
           <li>Each slider element has the <a class="property-reference" href="#aria-valuemin">aria-valuemin</a> property set to a decimal value representing the minimum allowed value of the slider.</li>
           <li>Each slider element has the <a class="property-reference" href="#aria-valuemax">aria-valuemax</a> property set to a decimal value representing the maximum allowed value of the slider.</li>
-          <li>When the range (e.g. minimum and/or maximum value) of another slider is dependent on the current value of a slider, the values of <a class="property-reference" href="#aria-valuemin">aria-valuemin</a> or <a class="property-reference" href="#aria-valuemax">aria-valuemax</a> of the dependent sliders must be updated when the value changes.
+          <li>When the range (e.g. minimum and/or maximum value) of another slider is dependent on the current value of a slider, the values of <a class="property-reference" href="#aria-valuemin">aria-valuemin</a> or <a class="property-reference" href="#aria-valuemax">aria-valuemax</a> of the dependent sliders are updated when the value changes.
           <li>
           If a value of <code>aria-valuenow</code> is not user-friendly, e.g., the day of the week is represented by a number, the
           <a class="property-reference" href="#aria-valuetext">aria-valuetext</a>
