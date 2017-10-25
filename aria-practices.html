@@ -1055,8 +1055,8 @@
     <section class="widget" id="disclosure">
       <h3>Disclosure (Show/Hide)</h3>
       <p>
-        A disclosure is a <a href="#button">button</a> that controls visibility of a section of content. 
-        When the controlled conted is hidden, it is often styled as a typical push button with a right pointing arrow or triangle to hint that activating the button will display additional content.  
+        A disclosure is a <a href="#button">button</a> that controls visibility of a section of content.
+        When the controlled conted is hidden, it is often styled as a typical push button with a right pointing arrow or triangle to hint that activating the button will display additional content.
         When the content is visible, the arrow or triangle typically points down.
       </p>
 
@@ -2188,7 +2188,7 @@
         Conversly the minimum value of the upper end thumb is limited by the current value of the lower end thumb.
         However, in some multi-thumb sliders, each thumb sets a value that does not depend on the other thumb values.
       </p>
-      
+
       <section class="notoc">
         <h4>Example</h4>
         <p><a href="examples/slider/multithumb-slider.html">Multi-Thumb Slider Examples</a>: Demonstrates two-thumb sliders for picking price ranges for an airline flight and hotel reservation.</p>
@@ -3865,10 +3865,40 @@
 
   <section id="gridAndTableProperties">
     <h2>Grid and Table Properties</h2>
-    <p>
-      Drafting content for this section is
-      <a href="https://github.com/w3c/aria-practices/issues/65">issue 65.</a>
+
+    <h3>Using <code>colcount</code>, <code>rowcount</code>, <code>colindex</code> and <code>rowindex</code></h3>
+
+    <p>Accessibility APIs by default use the number of rows and columns to
+      determine the dimensions of a <code>table</code> or <code>grid</code>.
+      There are situations where the number of rows and columns in the DOM does
+      not represent the actual number of rows and columns of a <code>table</code>
+      or <code>grid</code>.  Examples include very large tables where rendering
+      the entire table would be not be practical from a screen realestate or
+      performance standpoint (e.g. the time to download large data sets results
+      in less than responsive browsing experiences).  These conditions are
+      especially true for mobile devices.   ARIA provides support to describe
+      the actual dimensions and the rendered portion of the <code>table</code>
+      or <code>grid</code> using the <code>colcount</code>, <code>rowcount</code>, <code>colindex</code> and <code>rowindex</code> attributes within the context of a <code>table</code> row.
     </p>
+
+    <p>
+      For example, consider a 1000 row by 100 column grid built using an HTML <code>table</code> element, but only 10 rows and 10 columns of the grid are rendered at a time.
+    </p>
+    <pre>
+    &lt;table role=&quot;tablist&quot;&gt;
+      &lt;li role=&quot;presentation&quot;&gt;
+        &lt;a role=&quot;tab&quot; href=&quot;#&quot;&gt;Tab 1&lt;/a&gt;
+      &lt;/li&gt;
+      &lt;li role=&quot;presentation&quot;&gt;
+        &lt;a role=&quot;tab&quot; href=&quot;#&quot;&gt;Tab 2&lt;/a&gt;
+      &lt;/li&gt;
+      &lt;li role=&quot;presentation&quot;&gt;
+        &lt;a role=&quot;tab&quot; href=&quot;#&quot;&gt;Tab 3&lt;/a&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+    </pre>
+
+
     <p>
       [placeholder].
       This section will cover colcount, rowcount, colindex, rowindex, colspan, rowspan, and sort.
@@ -3876,6 +3906,8 @@
       It is referenced by the grid and table design patterns.
       This section will refer readers to the grid and table design patterns for the basics of grid and table.
     </p>
+
+
   </section>
 
   <section id="presentation_role">
