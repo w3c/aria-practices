@@ -3866,30 +3866,100 @@
   <section id="gridAndTableProperties">
     <h2>Grid and Table Properties</h2>
 
-    <h3>Using <code>colcount</code>, <code>rowcount</code>, <code>colindex</code> and <code>rowindex</code></h3>
-
     <p>Accessibility APIs by default use the number of rows and columns to
       determine the dimensions of a <code>table</code> or <code>grid</code>.
-      There are situations where the number of rows and columns in the DOM does
-      not represent the actual number of rows and columns of a <code>table</code>
-      or <code>grid</code>.  Examples include very large tables where rendering
-      the entire table would be not be practical from a screen realestate or
-      performance standpoint (e.g. the time to download large data sets results
-      in less than responsive browsing experiences).  These conditions are
-      especially true for mobile devices.   ARIA provides support to describe
-      the actual dimensions and the rendered portion of the <code>table</code>
-      or <code>grid</code> using the <code>colcount</code>, <code>rowcount</code>, <code>colindex</code> and <code>rowindex</code> attributes within the context of a <code>table</code> row.
+      There are many situations where the number of rows and columns in the DOM
+      does not represent the total number of rows and columns of the data set
+      being rednered in the <code>table</code> or <code>grid</code>.
+      Examples include very large data sets where rendering the entire data set
+      in one table would be not be practical, both from a screen realestate and
+      performance standpoint (e.g. the time to download large sets of data).
+      These conditions are especially true for mobile devices where screen size
+      and bandwidth are serious limitations to how fast and how much data can be
+      displayed at one time.  ARIA provides support to describe the actual
+      dimensions and the rendered portion of the <code>table</code> or
+      <code>grid</code> using the <code>colcount</code>, <code>rowcount</code>,
+      <code>colindex</code> and <code>rowindex</code> attributes within the
+      context of a <code>table</code> row.
     </p>
 
     <section id="gridAndTableProperties_counts">
       <h3>
         Defining dimensions using <code>aria-colcount</code> and <code>aria-rowcount</code>
       </h3>
-      <p>
+
+      <p>When the number of rows or columns in the DOM does not actually
+        represent the total number of rows or columns in a table or grid, the
+        <code>aria-colcount</code> and <code>aria-rowcount</code> must be used to
+        identify the total number of rows and columns in the grid.
+
+      <p>The following example demonstrates the use of <code>aria-rowcount</code>
+        and <code>aria-rowindex</code> attributes for a hypothetical class list.
+        Course management systems typically only show a portion of the entire
+        list of students in a class and provide scrollbars and cursor key
+        navigation (e.g. a grid widget) to change which rows are visible.
+        The <code>aria-rowcount</code> attribute on the <code>table</code>
+        element is used to identify the total number of rows
+        in the grid and the <code>aria-rowinex</code> attribute on each
+        <code>tr</code> element is used identify which row in the grid.
       </p>
+
+      <pre>
+        <code>
+          &lt;table role=&quot;grid&quot; aria-rowcount=&quot;463&quot;&gt;
+            aria-label=&quot;Student roster for history 101&quot;
+            &lt;!--
+              aria-rowcount tells users of assistive technologies that actual
+              size of the grid is 463 rows and not the number or rows
+              found in the markup.
+            --&gt;
+            &lt;thead&gt;
+              &lt;tr aria-rowindex=&quot;1&quot;&gt;
+                &lt;th&gt;Last Name&lt;/th&gt;
+                &lt;th&gt;First Name&lt;/th&gt;
+                &lt;th&gt;E-mail&lt;/th&gt;
+                &lt;th&gt;Major&lt;/th&gt;
+                &lt;th&gt;Minor&lt;/th&gt;
+                &lt;th&gt;Standing&lt;/th&gt;
+              &lt;/tr&gt;
+            &lt;/thead&gt;
+            &lt;tbody&gt;
+              &lt;tr aria-rowindex=&quot;50&quot;&gt;
+                &lt;!--
+                  aria-rowindex tells users of assistive technologies that this
+                  row is row 50 in the grid of 463 rows.
+                --&gt;
+                &lt;td&gt;Henderson&lt;/td&gt;
+                &lt;td&gt;Alan&lt;/td&gt;
+                &lt;td&gt;ahederson56@myuniveristy.edu&lt;/td&gt;
+                &lt;td&gt;Business&lt;/td&gt;
+                &lt;td&gt;Spanish&lt;/td&gt;
+                &lt;td&gt;Junior&lt;/td&gt;
+              &lt;/tr&gt;
+              &lt;tr aria-rowindex=&quot;51&quot;&gt;
+                &lt;td&gt;Henderson&lt;/td&gt;
+                &lt;td&gt;Alice&lt;/td&gt;
+                &lt;td&gt;ahederson345@myuniveristy.edu&lt;/td&gt;
+                &lt;td&gt;Engineering&lt;/td&gt;
+                &lt;td&gt;none&lt;/td&gt;
+                &lt;td&gt;Sophomore&lt;/td&gt;
+              &lt;/tr&gt;
+              &lt;tr aria-rowindex=&quot;52&quot;&gt;
+                &lt;td&gt;Henderson&lt;/td&gt;
+                &lt;td&gt;Andrew&lt;/td&gt;
+                &lt;td&gt;ahederson75@myuniveristy.edu&lt;/td&gt;
+                &lt;td&gt;General Studies&lt;/td&gt;
+                &lt;td&gt;none&lt;/td&gt;
+                &lt;td&gt;Freshman&lt;/td&gt;
+              &lt;/tr&gt;
+            &lt;/tbody&gt;
+          &lt;/table&gt;
+        </code>
+      </pre>
+
     </section>
 
-    <section id="gridAndTableProperties_unkown_counts">
+    <section id="gridAndTableProperties_unknown_counts">
       <h3>
         <code>aria-colcount</code> and <code>aria-rowcount</code> values when dimensions are unknown
       </h3>
@@ -3919,8 +3989,63 @@
       <h3>
         Defining cell spans using <code>aria-colspan</code> and <code>aria-rowspan</code>
       </h3>
-      <p>
+      <p>HTML5 provides native semantics to define row and columns spans for the
+        <code>th</code> and <code>td</code> elements using the <code>rowspan</code>
+        <code>colspan</code> attributes.   In the case when these elements are
+        not being used to identify table cells, grid cells, column headers and
       </p>
+
+      <pre>
+        <code>
+          &lt;div role=&quot;grid&quot; aria-rowcount=&quot;463&quot;&gt;
+            aria-label=&quot;Student frades for history 101&quot;
+            &lt;div role=&quot;row&quot; aria-rowindex=&quot;1&quot;&gt;
+                &lt;!--
+                  aria-rowspan and aria-colspan provides users of
+                  assitive technologies with the correct data cell header
+                  information when cells or headers span more than one row or
+                  column.
+                --&gt;
+
+                &lt;span role="columnheader" aria-rowspan=&quot;2&quot;&gt;Last Name&lt;/span&gt;
+                &lt;span role="columnheader" aria-rowspan=&quot;2&quot;&gt;First Name&lt;/span&gt;
+                &lt;span role="columnheader" aria-colspan=&quot;2&quot;&gt;Exam 1&lt;/span&gt;
+                &lt;span role="columnheader" aria-colspan=&quot;2&quot;&gt;Exam 2&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div role=&quot;row&quot; aria-rowindex=&quot;2&quot;&gt;
+                &lt;span role="columnheader"&gt;Score&lt;/span&gt;
+                &lt;span role="columnheader"&gt;Grade&lt;/span&gt;
+                &lt;span role="columnheader"&gt;Score&lt;/span&gt;
+                &lt;span role="columnheader"&gt;Grade&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div role=&quot;row&quot; aria-rowindex=&quot;50&quot;&gt;
+              &lt;span role=&quot;cell&quot;&gt;Henderson&lt;/span&gt;
+              &lt;span role=&quot;cell&quot;&gt;Alan&lt;/span&gt;
+              &lt;span role=&quot;cell&quot;&gt;89&lt;/span&gt;
+              &lt;span role=&quot;cell&quot;&gt;B+&lt;/span&gt;
+              &lt;span role=&quot;cell&quot;&gt;72&lt;/span&gt;
+              &lt;span role=&quot;cell&quot;&gt;C&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div role=&quot;row&quot;  aria-rowindex=&quot;51&quot;&gt;
+              &lt;span role=&quot;cell&quot;&gt;Henderson&lt;/span&gt;
+              &lt;span role=&quot;cell&quot;&gt;Alice&lt;/span&gt;
+              &lt;span role=&quot;cell&quot;&gt;94&lt;/span&gt;
+              &lt;span role=&quot;cell&quot;&gt;A&lt;/span&gt;
+              &lt;span role=&quot;cell&quot;&gt;86&lt;/span&gt;
+              &lt;span role=&quot;cell&quot;&gt;B&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div role=&quot;row&quot;  aria-rowindex=&quot;52&quot;&gt;
+              &lt;span role=&quot;cell&quot;&gt;Henderson&lt;/span&gt;
+              &lt;span role=&quot;cell&quot;&gt;Andrew&lt;/span&gt;
+              &lt;span role=&quot;cell&quot;&gt;82&lt;/span&gt;
+              &lt;span role=&quot;cell&quot;&gt;B-&lt;/span&gt;
+              &lt;span role=&quot;cell&quot;&gt;95&lt;/span&gt;
+              &lt;span role=&quot;cell&quot;&gt;A&lt;/span&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        </code>
+      </pre>
+
     </section>
 
     <section id="gridAndTableProperties_sort">
@@ -3928,6 +4053,7 @@
         Identifying column sorting using <code>aria-sort</code>
       </h3>
       <p>
+
       </p>
     </section>
 
@@ -3947,15 +4073,6 @@
       &lt;/li&gt;
     &lt;/ul&gt;
     </pre>
-
-
-    <p>
-      [placeholder].
-      This section will cover colcount, rowcount, colindex, rowindex, colspan, rowspan, and sort.
-      It will explain when they are useful and how to use them.
-      It is referenced by the grid and table design patterns.
-      This section will refer readers to the grid and table design patterns for the basics of grid and table.
-    </p>
 
 
   </section>
