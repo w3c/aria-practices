@@ -39,10 +39,6 @@
   <p>Similar examples include: </p>
   <ul>
     <li>
-      <a href="combobox-autocomplete-inline.html">Combobox With Inline Autocomplete</a>
-      : example demonstrates the behavior associated with <code>aria-autocomplete=inline</code>.
-    </li>
-    <li>
       <a href="combobox-autocomplete-none.html">Combobox Without Autocomplete</a>
       : example demonstrates the behavior associated with <code>aria-autocomplete=none</code>.
     </li>
@@ -63,72 +59,75 @@
           <input id="cb1-input" class="cb_edit" type="text"
                  role="combobox"
                  aria-autocomplete="both"
-                 aria-expanded="flase"
+                 aria-expanded="false"
                  aria-haspopup="true"
-                 aria-owns="cb1-listbox"
+                 aria-owns="lb1"
+                 aria-activedescendant=""
           />
-          <button id="cb1-button" tabindex="-1" aria-label="open button">
+          <button id="cb1-button"
+                  aria-label="open button"
+                  tabindex="-1">
             &#9661;
           </button>
         </div>
 
-        <ul id="cb1-listbox" role="listbox" aria-label="States">
-          <li role="option" tabindex="-1">Alabama</li>
-          <li role="option" tabindex="-1">Alaska</li>
-          <li role="option" tabindex="-1">American Samoa</li>
-          <li role="option" tabindex="-1">Arizona</li>
-          <li role="option" tabindex="-1">Arkansas</li>
-          <li role="option" tabindex="-1">California</li>
-          <li role="option" tabindex="-1">Colorado</li>
-          <li role="option" tabindex="-1">Connecticut</li>
-          <li role="option" tabindex="-1">Delaware</li>
-          <li role="option" tabindex="-1">District of Columbia</li>
-          <li role="option" tabindex="-1">Florida</li>
-          <li role="option" tabindex="-1">Georgia</li>
-          <li role="option" tabindex="-1">Guam</li>
-          <li role="option" tabindex="-1">Hawaii</li>
-          <li role="option" tabindex="-1">Idaho</li>
-          <li role="option" tabindex="-1">Illinois</li>
-          <li role="option" tabindex="-1">Indiana</li>
-          <li role="option" tabindex="-1">Iowa</li>
-          <li role="option" tabindex="-1">Kansas</li>
-          <li role="option" tabindex="-1">Kentucky</li>
-          <li role="option" tabindex="-1">Louisiana</li>
-          <li role="option" tabindex="-1">Maine</li>
-          <li role="option" tabindex="-1">Maryland</li>
-          <li role="option" tabindex="-1">Massachusetts</li>
-          <li role="option" tabindex="-1">Michigan</li>
-          <li role="option" tabindex="-1">Minnesota</li>
-          <li role="option" tabindex="-1">Mississippi</li>
-          <li role="option" tabindex="-1">Missouri</li>
-          <li role="option" tabindex="-1">Montana</li>
-          <li role="option" tabindex="-1">Nebraska</li>
-          <li role="option" tabindex="-1">Nevada</li>
-          <li role="option" tabindex="-1">New Hampshire</li>
-          <li role="option" tabindex="-1">New Jersey</li>
-          <li role="option" tabindex="-1">New Mexico</li>
-          <li role="option" tabindex="-1">New York</li>
-          <li role="option" tabindex="-1">North Carolina</li>
-          <li role="option" tabindex="-1">North Dakota</li>
-          <li role="option" tabindex="-1">Northern Marianas Islands</li>
-          <li role="option" tabindex="-1">Ohio</li>
-          <li role="option" tabindex="-1">Oklahoma</li>
-          <li role="option" tabindex="-1">Oregon</li>
-          <li role="option" tabindex="-1">Pennsylvania</li>
-          <li role="option" tabindex="-1">Puerto Rico</li>
-          <li role="option" tabindex="-1">Rhode Island</li>
-          <li role="option" tabindex="-1">South Carolina</li>
-          <li role="option" tabindex="-1">South Dakota</li>
-          <li role="option" tabindex="-1">Tennessee</li>
-          <li role="option" tabindex="-1">Texas</li>
-          <li role="option" tabindex="-1">Utah</li>
-          <li role="option" tabindex="-1">Vermont</li>
-          <li role="option" tabindex="-1">Virginia</li>
-          <li role="option" tabindex="-1">Virgin Islands</li>
-          <li role="option" tabindex="-1">Washington</li>
-          <li role="option" tabindex="-1">West Virginia</li>
-          <li role="option" tabindex="-1">Wisconsin</li>
-          <li role="option" tabindex="-1">Wyoming</li>
+        <ul id="lb1" role="listbox" aria-label="States">
+          <li id="lb1-al" role="option">Alabama</li>
+          <li id="lb1-ak" role="option">Alaska</li>
+          <li id="lb1-as" role="option">American Samoa</li>
+          <li id="lb1-az" role="option">Arizona</li>
+          <li id="lb1-ar" role="option">Arkansas</li>
+          <li id="lb1-ca" role="option">California</li>
+          <li id="lb1-co" role="option">Colorado</li>
+          <li id="lb1-ct" role="option">Connecticut</li>
+          <li id="lb1-de" role="option">Delaware</li>
+          <li id="lb1-dc" role="option">District of Columbia</li>
+          <li id="lb1-fl" role="option">Florida</li>
+          <li id="lb1-ga" role="option">Georgia</li>
+          <li id="lb1-gm" role="option">Guam</li>
+          <li id="lb1-hi" role="option">Hawaii</li>
+          <li id="lb1-id" role="option">Idaho</li>
+          <li id="lb1-il" role="option">Illinois</li>
+          <li id="lb1-in" role="option">Indiana</li>
+          <li id="lb1-ia" role="option">Iowa</li>
+          <li id="lb1-ks" role="option">Kansas</li>
+          <li id="lb1-ky" role="option">Kentucky</li>
+          <li id="lb1-la" role="option">Louisiana</li>
+          <li id="lb1-me" role="option">Maine</li>
+          <li id="lb1-md" role="option">Maryland</li>
+          <li id="lb1-ma" role="option">Massachusetts</li>
+          <li id="lb1-mi" role="option">Michigan</li>
+          <li id="lb1-mn" role="option">Minnesota</li>
+          <li id="lb1-ms" role="option">Mississippi</li>
+          <li id="lb1-mo" role="option">Missouri</li>
+          <li id="lb1-mn" role="option">Montana</li>
+          <li id="lb1-ne" role="option">Nebraska</li>
+          <li id="lb1-nv" role="option">Nevada</li>
+          <li id="lb1-nh" role="option">New Hampshire</li>
+          <li id="lb1-nj" role="option">New Jersey</li>
+          <li id="lb1-nm" role="option">New Mexico</li>
+          <li id="lb1-ny" role="option">New York</li>
+          <li id="lb1-nc" role="option">North Carolina</li>
+          <li id="lb1-nd" role="option">North Dakota</li>
+          <li id="lb1-nm" role="option">Northern Marianas Islands</li>
+          <li id="lb1-oh" role="option">Ohio</li>
+          <li id="lb1-ok" role="option">Oklahoma</li>
+          <li id="lb1-or" role="option">Oregon</li>
+          <li id="lb1-pa" role="option">Pennsylvania</li>
+          <li id="lb1-pr" role="option">Puerto Rico</li>
+          <li id="lb1-ri" role="option">Rhode Island</li>
+          <li id="lb1-sc" role="option">South Carolina</li>
+          <li id="lb1-sd" role="option">South Dakota</li>
+          <li id="lb1-tn" role="option">Tennessee</li>
+          <li id="lb1-tx" role="option">Texas</li>
+          <li id="lb1-ut" role="option">Utah</li>
+          <li id="lb1-ve" role="option">Vermont</li>
+          <li id="lb1-va" role="option">Virginia</li>
+          <li id="lb1-vi" role="option">Virgin Islands</li>
+          <li id="lb1-wa" role="option">Washington</li>
+          <li id="lb1-wv" role="option">West Virginia</li>
+          <li id="lb1-wi" role="option">Wisconsin</li>
+          <li id="lb1-wy" role="option">Wyoming</li>
         </ul>
       </div>
     </div>

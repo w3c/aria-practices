@@ -39,10 +39,6 @@
   <p>Similar examples include: </p>
   <ul>
     <li>
-      <a href="combobox-autocomplete-inline.html">Combobox With Inline Autocomplete</a>
-      : example demonstrates the behavior associated with <code>aria-autocomplete=inline</code>.
-    </li>
-    <li>
       <a href="combobox-autocomplete-list.html">Combobox With an List Autocomplete</a>
       : example demonstrates the behavior associated with <code>aria-autocomplete=list</code>.
     </li>
@@ -63,9 +59,10 @@
           <input id="cb1-input" class="cb_edit" type="text"
                  role="combobox"
                  aria-autocomplete="none"
-                 aria-expanded="flase"
+                 aria-expanded="false"
                  aria-haspopup="true"
                  aria-owns="cb1-listbox"
+                 aria-activedescendant=""
           />
           <button id="cb1-button" tabindex="-1" aria-label="open button">
             &#9661;
@@ -73,17 +70,17 @@
         </div>
 
         <ul id="cb1-listbox" role="listbox" aria-label="States">
-          <li role="option" tabindex="-1">weather</li>
-          <li role="option" tabindex="-1">salsa recipes</li>
-          <li role="option" tabindex="-1">cheap flights to NY</li>
-          <li role="option" tabindex="-1">dictionary</li>
-          <li role="option" tabindex="-1">baseball scores</li>
-          <li role="option" tabindex="-1">hotels in NY</li>
-          <li role="option" tabindex="-1">mortgage calculator</li>
-          <li role="option" tabindex="-1">restaurants near me</li>
-          <li role="option" tabindex="-1">free games</li>
-          <li role="option" tabindex="-1">gas prices</li>
-          <li role="option" tabindex="-1">classical music</li>
+          <li id="lb1-01" role="option">weather</li>
+          <li id="lb1-02" role="option">salsa recipes</li>
+          <li id="lb1-03" role="option">cheap flights to NY</li>
+          <li id="lb1-04" role="option">dictionary</li>
+          <li id="lb1-05" role="option">baseball scores</li>
+          <li id="lb1-06" role="option">hotels in NY</li>
+          <li id="lb1-07" role="option">mortgage calculator</li>
+          <li id="lb1-08" role="option">restaurants near me</li>
+          <li id="lb1-09" role="option">free games</li>
+          <li id="lb1-10" role="option">gas prices</li>
+          <li id="lb1-11" role="option">classical music</li>
         </ul>
       </div>
     </div>

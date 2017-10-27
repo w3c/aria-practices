@@ -24,8 +24,9 @@
 */
 var ComboboxList = function (domNode) {
 
-  this.domNode      = domNode;
-  this.listbox      = false;
+  this.domNode  = domNode;
+  this.listbox  = false;
+  this.option   = false;
 
   this.hasFocus = false;
   this.hasHover = false;
@@ -83,15 +84,34 @@ ComboboxList.prototype.init = function () {
 
 };
 
-ComboboxList.prototype.updateValue = function (value) {
-  if (this.domNode.getAttribute('aria-autocomplete') === 'both') {
-    this.domNode.value = value;
-    this.domNode.setSelectionRange(this.filter.length,this.filter.length);
+ComboboxList.prototype.updateValue = function () {
+  if (this.autocomplete === 'both') {
+
+    if (this.filter.length && this.option && this.listbox.isOpen()) {
+      this.domNode.value = this.option.textContent;
+      this.domNode.setSelectionRange(this.filter.length,this.filter.length);
+    }
+    else {
+      this.domNode.value = this.filter;
+    }
   }
 };
 
 ComboboxList.prototype.setValue = function (value) {
-  this.domNode.value = value;
+  this.filter = value;
+  this.domNode.value = this.filter;
+  this.domNode.setSelectionRange(this.filter.length,this.filter.length);
+  if (this.autocomplete !== 'none') {
+    this.listbox.filterOptions(this.filter, this.option);
+  }
+};
+
+ComboboxList.prototype.setOption = function (option) {
+  if (option) {
+    this.option = option;
+    this.listbox.setFocusStyle(this.option);
+    this.updateValue();
+  }
 };
 
 /* Event Handlers */
@@ -106,30 +126,70 @@ ComboboxList.prototype.handleKeydown = function (event) {
 
   switch (event.keyCode) {
 
+    case this.keyCode.RETURN:
+      if (this.option) {
+        this.setValue(this.option.textContent);
+        this.listbox.close(true);
+      }
+      flag = true;
+      break;
+
     case this.keyCode.DOWN:
-      if (this.listbox) {
-        this.listbox.filterOptions(this.filter);
-        this.listbox.open();
-        if (!altKey) {
-          this.listbox.setFocusToFirstItem();
+
+      if (this.listbox.hasOptions()) {
+        if (this.listbox.isOpen()) {
+          this.setOption(this.listbox.getNextItem(this.option));
+        }
+        else {
+          this.listbox.open();
+          if (!altKey) {
+            this.setOption(this.listbox.getFirstItem());
+          }
         }
       }
       flag = true;
       break;
 
     case this.keyCode.UP:
-      if (this.listbox) {
-        this.listbox.filterOptions(this.filter);
-        this.listbox.open();
-        if (!altKey) {
-          this.listbox.setFocusToLastItem();
+      if (this.listbox.hasOptions()) {
+        if (this.listbox.isOpen()) {
+          this.setOption(this.listbox.getPreviousItem(this.option));
         }
-        flag = true;
+        else {
+          this.listbox.open();
+          if (!altKey) {
+            this.setOption(this.listbox.getLastItem());
+          }
+        }
       }
+      flag = true;
       break;
 
+      case this.keyCode.HOME:
+      case this.keyCode.PAGEUP:
+        if (this.listbox.hasOptions()) {
+          if (this.listbox.isOpen()) {
+            this.setOption(this.listbox.getFirstItem());
+          }
+        }
+        flag = true;
+        break;
+
+      case this.keyCode.END:
+      case this.keyCode.PAGEDOWN:
+        if (this.listbox.hasOptions()) {
+          if (this.listbox.isOpen()) {
+            this.setOption(this.listbox.getLastItem());
+           }
+        }
+        flag = true;
+        break;
+
     case this.keyCode.ESC:
-      this.listbox.close(true);
+      if (this.listbox.isOpen()) {
+        this.listbox.close(true);
+      }
+      this.setValue(this.filter);
       flag = true;
       break;
 
@@ -141,27 +201,66 @@ ComboboxList.prototype.handleKeydown = function (event) {
     event.stopPropagation();
     event.preventDefault();
   }
+
 };
 
 ComboboxList.prototype.handleKeyup = function (event) {
   var tgt = event.currentTarget,
     flag = false,
+    option = false,
     char = event.key;
 
+  function isPrintableCharacter (str) {
+    return str.length === 1 && str.match(/\S/);
+  }
+
+  this.filter = this.domNode.value.substring(0,this.domNode.selectionEnd);
+
   if (this.autocomplete !== 'none') {
-    this.filter = this.domNode.value.substring(0,this.domNode.selectionEnd);
-    this.option = this.listbox.filterOptions(this.filter);
+    option = this.listbox.filterOptions(this.filter, this.option);
+  }
+
+  switch(event.keyCode) {
+
+    case this.keyCode.BACKSPACE:
+      if (this.autocomplete === 'both') {
+        this.setValue(this.filter);
+      }
+      flag = true;
+      break;
+
+    case this.keyCode.LEFT:
+    case this.keyCode.RIGHT:
+      flag = true;
+      break;
+
+    default:
+
+      if (isPrintableCharacter(char)) {
+        if (option) {
+          this.setOption(option);
+        }
+        else {
+          this.setValue(this.filter);
+        }
+      }
+      flag = true;
+      break;
+  }
+
+  if (flag) {
+    event.stopPropagation();
+    event.preventDefault();
   }
 
 };
 
 ComboboxList.prototype.handleClick = function (event) {
-  if (this.domNode.getAttribute('aria-expanded') == 'true') {
+  if (this.listbox.isOpen()) {
     this.listbox.close(true);
   }
   else {
     this.listbox.open();
-    this.listbox.setFocusToFirstItem();
   }
 };
 
@@ -176,12 +275,11 @@ ComboboxList.prototype.handleBlur = function (event) {
 };
 
 ComboboxList.prototype.handleButtonClick = function (event) {
-  if (this.domNode.getAttribute('aria-expanded') == 'true') {
+  if (this.listbox.isOpen()) {
     this.listbox.close(true);
   }
   else {
     this.listbox.open();
-    this.listbox.setFocusToFirstItem();
   }
 };
 
