@@ -245,7 +245,7 @@ Listbox.prototype.close = function (force) {
 
   if (force || (!this.hasFocus && !this.hasHover && !this.combobox.hasHover)) {
     this.domNode.style.display = 'none';
-    this.combobox.domNode.removeAttribute('aria-expanded');
+    this.combobox.domNode.setAttribute('aria-expanded', 'false');
     this.combobox.domNode.setAttribute('aria-activedescendant', '');
   }
 };
