@@ -190,7 +190,7 @@ ComboboxList.prototype.handleButtonClick = function (event) {
 
 window.addEventListener('load', function () {
 
-  var comboboxes = document.querySelectorAll('.combobox-listbox [role="combobox"]');
+  var comboboxes = document.querySelectorAll('.combobox-list [role="combobox"]');
 
   for (var i = 0; i < comboboxes.length; i++) {
     var combobox = new ComboboxList(comboboxes[i]);
