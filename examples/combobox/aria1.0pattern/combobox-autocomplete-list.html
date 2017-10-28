@@ -34,6 +34,11 @@
     The options available in the listbox are filtered based on user input into the textbox.
     The user can select an option from the list to set the value of the textbox.
   </p>
+  </p>The major design feature of the ARIA 1.0 combobox pattern is the use of
+    <code>aria-activedescendant</code> to reference options in a listbox, while keyboard
+    focus remains on the textbox.
+  <p>
+
   <p>Similar examples include: </p>
   <ul>
     <li>
@@ -131,7 +136,7 @@
   </section>
 
   <section>
-    <h2 id="kbd_label_textbox">Textbox Keyboard Support</h2>
+    <h2 id="kbd_label_textbox">Combobox Keyboard Support</h2>
 
     <table aria-labelledby="kbd_label_textbox" class="def">
       <thead>
@@ -143,53 +148,11 @@
       <tbody>
         <tr>
           <th><kbd>Down Arrow</kbd></th>
-          <td>Opens <code>listbox</code> and moves focus to first <code>option</code>.</td>
-        </tr>
-        <tr>
-          <th><kbd>Alt+Down Arrow</kbd></th>
-          <td>Opens <code>listbox</code> and focus stays on the <code>input[type="text"]</code>.</td>
-        </tr>
-        <tr>
-          <th><kbd>Up Arrow</kbd></th>
-          <td>Opens <code>listbox</code> and moves focus to last <code>option</code>.</td>
-        </tr>
-        <tr>
-          <th><kbd>Alt+Up Arrow</kbd></th>
-          <td>Opens <code>listbox</code> and focus stays on the <code>input[type="text"]</code>.</td>
-        </tr>
-        <tr>
-          <th><kbd>Escape</kbd></th>
-          <td>if open, closes the <code>listbox</code>.</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <h2 id="kbd_label_listbox">Listbox Keyboard Support</h2>
-
-    <table aria-labelledby="kbd_label_listbox" class="def">
-      <thead>
-        <tr>
-          <th>Key</th>
-          <th>Function</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th><kbd>Enter</kbd></th>
           <td>
             <ul>
-              <li><code>input[type="text"]</code> value is set to the <code>option</code> content.</li>
-              <li>Closes the <code>listbox</code>.</li>
-              <li>Sets focus on the <code>input[type="text"]</code></li>
-            </ul>
-          </td>
-        </tr>
-        <tr>
-          <th><kbd>Escape</kbd></th>
-          <td>
-            <ul>
-              <li>Closes the <code>listbox</code>.</li>
-              <li>Sets focus to the <code>input[type="text"]</code> button.</li>
+              <li>If the listbox is <strong>closed</strong>, the listbox is opened and <code>aria-activedescendant</code> is set to reference the first option in the listbox.  </li>
+              <li>If the listbox is <strong>open</strong>, <code>aria-activedescendant</code> is updated to reference the next option in the listbox.  <br/>Note: When <code>aria-activedescendant</code> is referencing the last option the reference does not change.</li>
+              <li>If the listbox is <strong>empty</strong> (e.g. no options avaialble), <code>aria-activedescendant</code> is set to an empty string.</li>
             </ul>
           </td>
         </tr>
@@ -197,36 +160,30 @@
           <th><kbd>Up Arrow</kbd></th>
           <td>
             <ul>
-              <li>Moves focus to the previous <code>option</code>.</li>
-              <li>If focus is on the first <code>option</code>, the focus does not move.</li>
-            </ul>
-          </td>
+              <li>If the listbox is <strong>closed</strong>, the listbox is opened and <code>aria-activedescendant</code> is set to reference the last option in the listbox.  </li>
+              <li>If the listbox is <strong>open</strong>, <code>aria-activedescendant</code> is updated to reference the previous option in the listbox.  <br/>Note: When <code>aria-activedescendant</code> is referencing the first option the reference does not change.</li>
+              <li>If the listbox is <strong>empty</strong> (e.g. no options avaialble), <code>aria-activedescendant</code> is set to an empty string.</li>
+            </ul>          </td>
         </tr>
-         <tr>
-          <th><kbd>Down Arrow</kbd></th>
+        <tr>
+          <th><kbd>Left Arrow</kbd>,<br/><kbd>Right Arrow</kbd>,<br/><kbd>Backspace</kbd>,<br/><kbd>Printable characters</kbd></th>
           <td>
             <ul>
-              <li>Moves focus to the next <code>option</code>.</li>
-              <li>If focus is on the last <code>option</code>, the focus does not move.</li>
+              <li>The list of options in the listbox are updated based on the text content of the <code>combobox</code>.</li>
+              <li>The list of options are filtered based on user input before the edit cursor (e.g. <code>sectionStart</code> property of the textbox).</li>
+              <li>After the options are updated:
+                <ul>
+                  <li>If the currently referenced option <strong>remains</strong> in the list, <code>aria-activedescendant</code> will not change.</li>
+                  <li>If the currently referenced option is <strong>not</strong> a match, <code>aria-activedescendant</code> is updated to reference the first item in the new list of options.</li>
+                  <li>If there are <strong>no</strong> options available, <code>aria-activedescendant</code> is set to an empty string.</li>
+                </ul>
+              </li>
             </ul>
           </td>
         </tr>
         <tr>
-          <th><kbd>Home</kbd><br/><kbd>Page Up</kbd></th>
-          <td>Moves focus to the first <code>option</code>.</td>
-        </tr>
-        <tr>
-          <th><kbd>End</kbd><br/><kbd>Page Down</kbd></th>
-          <td>Moves focus to the last <code>option</code>.</td>
-        </tr>
-        <tr>
-          <th><kbd>A-Z</kbd><br><kbd>a-z</kbd></th>
-          <td>
-            <ul>
-              <li>Moves focus to the <code>option</code> with a label that starts with the typed character if such an option exists.</li>
-              <li>Otherwise, focus does not move.</li>
-            </ul>
-          </td>
+          <th><kbd>Escape</kbd></th>
+          <td>If the listbox is <strong>open</strong>, the listbox is closed and aria-activedescendant</code> is set to an empty string.</td>
         </tr>
       </tbody>
     </table>
@@ -251,7 +208,7 @@
       <tbody>
         <tr>
           <th scope="row"><code>combobox</code></th>
-          <td></td>
+          <td><!--  Leave this cell blank in rows where a role is being described. --></td>
           <td><code>input[type="text"]</code></td>
           <td>
             Identifies the <code>input[type=<q>text</q>] as a combobox option.
@@ -263,9 +220,9 @@
           <th scope="row"><code>aria-autocomplete=<q>list</q></code></th>
           <td><code>input[type="text"]</code></td>
           <td>
-            The value of <code>both</code>code> identifies the behavior of the
-            combox as providing a list of options for the value of the
-            <code>input[type="<q>text</q>]</code>.
+            The value of <code>list</code> identifies that the combobox only updates
+            the the list of options based on user input and and the <code>input[type=<q>text</q>]</code> does
+            <code>not</code> provide inline autocompletion.
           </td>
         </tr>
         <tr>
@@ -274,8 +231,7 @@
           <th scope="row"><code>aria-haspopup=<q>true</q></code></th>
           <td><code>input[type="text"]</code></td>
           <td>
-            Identifies the <code>combobox</code> as having a popup list of
-            options for the value of the textbox.
+            Identifies the <code>combobox</code> as having a popup list of options for the value of the textbox.
           </td>
         </tr>
         <tr>
@@ -284,8 +240,7 @@
           <th scope="row"><code>aria-owns=<q>#IDREF</q></code></th>
           <td><code>input[type="text"]</code></td>
           <td>
-            Identifies the <code>listbox</code> that is controlled by the
-            combobox.
+            Identifies the <code>listbox</code> that is controlled by the combobox.
           </td>
         </tr>
         <tr>
@@ -294,8 +249,7 @@
           <th scope="row"><code>aria-expanded=<q>false</q></code></th>
           <td><code>input[type="text"]</code></td>
           <td>
-            Idenitifies the <code>listbox</code> as closed (e.g. hidden from
-            the user).
+            Idenitifies the <code>listbox</code> as closed (e.g. hidden from the user).
           </td>
         </tr>
         <tr>
@@ -304,17 +258,35 @@
           <th scope="row"><code>aria-expanded=<q>true</q></code></th>
           <td><code>input[type="text"]</code></td>
           <td>
-            Idenitifies the <code>listbox</code> as open (e.g. visible to the
-            user).
+            Idenitifies the <code>listbox</code> as open (e.g. visible to the user).
+          </td>
+        </tr>
+        <tr>
+          <td>
+          </td>
+          <th scope="row"><code>aria-activedescendant=<q>#IDREF</q></code></th>
+          <td><code>input[type="text"]</code></td>
+          <td>
+            References the current autocomplete <code>option</code> in the <code>listbox</code>.
+          </td>
+        </tr>
+        <tr>
+          <td>
+          </td>
+          <th scope="row"><code>aria-activedescendant=<q></q></code></th>
+          <td><code>input[type="text"]</code></td>
+          <td>
+            If no autocomplete <code>option</code> is selected or the list of <code>option</code>s is emtpy, <code>aria-activedescendant</code> is set to an empty string.</td>
           </td>
         </tr>
       </tbody>
     </table>
 
 
-    <h2 id="rps_label_listbox">
-      Listbox Role, Property, State, and Tabindex Attributes
-    </h2>
+    <h2 id="rps_label_listbox">Listbox Role, Property, State, and Tabindex  Attributes</h2>
+    <!--
+      Update this table to describe how roles, properties, states, and tabindex are used in this example.
+    -->
     <table aria-labelledby="rps_label_listbox" class="data attributes">
       <thead>
         <tr>
@@ -333,15 +305,13 @@
           <td>
             <code>ul</code>
           </td>
-          <td>
-            Identifies the <code>ul</code> element as a <code>listbox</code>.
-          </td>
+          <td>Identifies the <code>ul</code> element as a <code>listbox</code>.</td>
         </tr>
         <tr>
           <td>
             <code></code>
           </td>
-          <th scope="row"><code>aria-label=<q>States<q></code></th>
+          <th scope="row"><code>aria-label=<q>States</q></code></th>
           <td>
             <code>ul</code>
           </td>
@@ -359,31 +329,21 @@
           </td>
           <td>
             <ul>
-              <li>
-                Identifies the <code>li</code> element as a <code>option</code>
-                in a <cpde>listbox</cpde>.
-              </li>
-              <li>
-                The text content of the <code>li</code> element provides the
-                accessible name of the <code>option</code>.
-              </li>
+              <li>Identifies the <code>li</code> element as a <code>option</code> in a <cpde>listbox</cpde>.</li>
+              <li>The text content of the <code>li</code> element provides the accessible name of the <code>option</code>.</li>
             </ul>
           </td>
         </tr>
         <tr>
-          <td></td>
-          <th scope="row"><code>tabindex=&quot;-1&quot;</code></th>
+          <td>
+            <code></code>
+          </td>
+          <th scope="row"><code>id=<q>ID</q></code></th>
           <td>
             <code>li</code>
           </td>
           <td>
-            <ul>
-              <li>
-                Allows DOM focus to be set on the menu item with the
-                JavaScript focus method.
-              </li>
-              <li>Dynamically added by the JavaScript.</li>
-            </ul>
+            Provides a unique reference for the option that is referenced by the <code>aria-activedescendant</code> attribute of the <code>combobox</code>.
           </td>
         </tr>
       </tbody>
