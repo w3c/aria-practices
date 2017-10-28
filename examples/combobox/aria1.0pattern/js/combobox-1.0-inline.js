@@ -1,25 +1,6 @@
 /*
 *   This content is licensed according to the W3C Software License at
 *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
-*
-*   File:   combobox-1.0.js
-*
-*   Desc:   Combobox widget that implements ARIA Authoring Practices for
-*           ARIA 1.0 definition of combobox
-*
-*   Author: Jon Gunderson and Nicholas Hoyt
-*/
-
-/*
-*   @constructor ComboboxInline
-*
-*   @desc
-*       Wrapper object for a listbox
-*
-*   @param domNode
-*       The DOM element node that serves as the listbox container. Each
-*       child element of domNode that represents a option must have a
-*       'role' attribute with value 'option'.
 */
 var ComboboxInline = function (domNode, options) {
 

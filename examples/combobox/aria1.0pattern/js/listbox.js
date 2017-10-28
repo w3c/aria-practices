@@ -1,36 +1,6 @@
 /*
 *   This content is licensed according to the W3C Software License at
 *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
-*
-*   File:   listbox.js
-*
-*   Desc:   Listbox widget that implements ARIA Authoring Practices
-*
-*   Author: Jon Gunderson and Nicholas Hoyt
-*/
-
-/*
-*   @constructor Listbox
-*
-*   @desc
-*       Wrapper object for a listbox
-*
-*   @param domNode
-*       The DOM element node that serves as the listbox container. Each
-*       child element of domNode that represents a option must have a
-*       'role' attribute with value 'option'.
-*
-*   @param comboboxObj
-*       The object that is a wrapper for the DOM element that controls the
-*       menu, e.g. a button element, with an 'aria-controls' attribute that
-*       references this menu's domNode. See MenuButton.js
-*
-*       The combobox object is expected to have the following properties:
-*       1. domNode: The combobox object's DOM element node, needed for
-*          retrieving positioning information.
-*       2. hasHover: boolean that indicates whether the combobox object's
-*          domNode has responded to a mouseover event with no subsequent
-*          mouseout event having occurred.
 */
 var Listbox = function (domNode, comboboxObj) {
   var elementChildren,
