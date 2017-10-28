@@ -135,7 +135,7 @@
   </section>
 
   <section>
-    <h2 id="kbd_label_textbox">Textbox Keyboard Support</h2>
+    <h2 id="kbd_label_textbox">Combobox Keyboard Support</h2>
 
     <table aria-labelledby="kbd_label_textbox" class="def">
       <thead>
@@ -147,53 +147,11 @@
       <tbody>
         <tr>
           <th><kbd>Down Arrow</kbd></th>
-          <td>Opens <code>listbox</code> and moves focus to first <code>option</code>.</td>
-        </tr>
-        <tr>
-          <th><kbd>Alt+Down Arrow</kbd></th>
-          <td>Opens <code>listbox</code> and focus stays on the <code>input[type="text"]</code>.</td>
-        </tr>
-        <tr>
-          <th><kbd>Up Arrow</kbd></th>
-          <td>Opens <code>listbox</code> and moves focus to last <code>option</code>.</td>
-        </tr>
-        <tr>
-          <th><kbd>Alt+Up Arrow</kbd></th>
-          <td>Opens <code>listbox</code> and focus stays on the <code>input[type="text"]</code>.</td>
-        </tr>
-        <tr>
-          <th><kbd>Escape</kbd></th>
-          <td>if open, closes the <code>listbox</code>.</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <h2 id="kbd_label_listbox">Listbox Keyboard Support</h2>
-
-    <table aria-labelledby="kbd_label_listbox" class="def">
-      <thead>
-        <tr>
-          <th>Key</th>
-          <th>Function</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th><kbd>Enter</kbd></th>
           <td>
             <ul>
-              <li><code>input[type="text"]</code> value is set to the <code>option</code> content.</li>
-              <li>Closes the <code>listbox</code>.</li>
-              <li>Sets focus on the <code>input[type="text"]</code></li>
-            </ul>
-          </td>
-        </tr>
-        <tr>
-          <th><kbd>Escape</kbd></th>
-          <td>
-            <ul>
-              <li>Closes the <code>listbox</code>.</li>
-              <li>Sets focus to the <code>input[type="text"]</code> button.</li>
+              <li>If <code>listbox</code> is closed, opens the <code>listbox</code> and updates <code>aria-activedescendant</code> to reference the first <code>option</code>.  If the <code>listbox</code> is empty <code>aria-activedescendant</code> is set to an empty string.</li>
+              <li>If <code>listbox</code> is open, updates <code>aria-activedescendant</code> to reference the next <code>option</code>.  If at the end of the list <code>option</code> the reference does not change.</li>
+              <li>If there are no <code>option</codes>s available in the <code>listbox</code>, <code>aria-activedescendant</code> is set to an empty string.</li>
             </ul>
           </td>
         </tr>
@@ -201,36 +159,24 @@
           <th><kbd>Up Arrow</kbd></th>
           <td>
             <ul>
-              <li>Moves focus to the previous <code>option</code>.</li>
-              <li>If focus is on the first <code>option</code>, the focus does not move.</li>
+              <li>If <code>listbox</code> is closed, opens the <code>listbox</code> and updates <code>aria-activedescendant</code> to reference the last <code>option</code>.  If the <code>listbox</code> is empty <code>aria-activedescendant</code> is set to an empty string.</li>
+              <li>If <code>listbox</code> is opened, updates <code>aria-activedescendant</code> to reference the previous <code>option</code>.  If at the begining of the list <code>option</code> the reference does not change.</li>
+              <li>If there are no <code>option</codes>s available in the <code>listbox</code>, <code>aria-activedescendant</code> is set to an empty string.</li>
             </ul>
           </td>
         </tr>
-         <tr>
-          <th><kbd>Down Arrow</kbd></th>
+        <tr>
+          <th><kbd>Left Arrow</kbd><br/><kbd>Right Arrow</kbd><br/><kbd>Backspace</kbd><br/>Printable characters</th>
           <td>
             <ul>
-              <li>Moves focus to the next <code>option</code>.</li>
-              <li>If focus is on the last <code>option</code>, the focus does not move.</li>
+              <li>The list of <code>options</code> are updated based on the text content of the <code>combobox</code>.  The text used for filtering options is </li>
+              <li>If there are no <code>option</codes>s available in the <code>listbox</code>, <code>aria-activedescendant</code> is set to an empty string.</li>
             </ul>
           </td>
         </tr>
         <tr>
-          <th><kbd>Home</kbd><br/><kbd>Page Up</kbd></th>
-          <td>Moves focus to the first <code>option</code>.</td>
-        </tr>
-        <tr>
-          <th><kbd>End</kbd><br/><kbd>Page Down</kbd></th>
-          <td>Moves focus to the last <code>option</code>.</td>
-        </tr>
-        <tr>
-          <th><kbd>A-Z</kbd><br><kbd>a-z</kbd></th>
-          <td>
-            <ul>
-              <li>Moves focus to the <code>option</code> with a label that starts with the typed character if such an option exists.</li>
-              <li>Otherwise, focus does not move.</li>
-            </ul>
-          </td>
+          <th><kbd>Escape</kbd></th>
+          <td>if open, closes the <code>listbox</code> and sets <code>aria-activedescendant</code> to an empty string.</td>
         </tr>
       </tbody>
     </table>
