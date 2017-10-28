@@ -89,9 +89,9 @@
     <section id="no_aria_better_bad_aria">
       <h3>No ARIA is better than Bad ARIA</h3>
       <p>
-        Functionally, ARIA roles, states, and properties are sort of like CSS for assistive technologies.
-        In the case of screen readers, ARIA controls the rendering of the non-visual experience.
-        Incorrect ARIA misrepresents visual experiences, with potentially devastating effects on the corresponding non-visual experiences.
+        Functionally, ARIA roles, states, and properties are analogous to a CSS for assistive technologies.
+        For screen reader users, ARIA controls the rendering of their non-visual experience.
+        Incorrect ARIA misrepresents visual experiences, with potentially devastating effects on their corresponding non-visual experiences.
       </p>
       <p>Before using ARIA or any of the guidance in this document, please take time to understand the following two essential principles.</p>
       <h4>Principal 1: A role is a promise</h4>
@@ -113,11 +113,11 @@
       <p>Some of ARIA is like a cloak; it covers up, or overrides, the original semantics or content.</p>
       <pre><code>
         &lt;a role=&quot;menuitem&quot;&gt;Assistive tech users perceive this element as an item in a menu, not a link.&lt;/a&gt;
-        &lt;a aria-label=&quot;Assistive tech users perceive this aria-label, not the link text&quot;&gt;Link Text&lt;/a&gt;
+        &lt;a aria-label=&quot;Assistive tech users can only perceive the contents of this aria-label, not the link text&quot;&gt;Link Text&lt;/a&gt;
 </code></pre>
       <p>On the other hand, some uses of ARIA are more like suspenders or belts; they add meaning that provides essential support to the original content.</p>
       <pre><code>
-        &lt;button aria-pressed=&quot;false&quot;&gt;Press Me&lt;/button&gt;
+        &lt;button aria-pressed=&quot;false&quot;&gt;Mute&lt;/button&gt;
       </code></pre>
       <p>
         This is the power of ARIA.
