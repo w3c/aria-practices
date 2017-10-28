@@ -151,7 +151,7 @@
             <ul>
               <li>If <code>listbox</code> is closed, opens the <code>listbox</code> and updates <code>aria-activedescendant</code> to reference the first <code>option</code>.  If the <code>listbox</code> is empty <code>aria-activedescendant</code> is set to an empty string.</li>
               <li>If <code>listbox</code> is open, updates <code>aria-activedescendant</code> to reference the next <code>option</code>.  If at the end of the list <code>option</code> the reference does not change.</li>
-              <li>If there are no <code>option</codes>s available in the <code>listbox</code>, <code>aria-activedescendant</code> is set to an empty string.</li>
+              <li>If there are no <code>option</code>s available in the <code>listbox</code>, <code>aria-activedescendant</code> is set to an empty string.</li>
             </ul>
           </td>
         </tr>
@@ -161,16 +161,22 @@
             <ul>
               <li>If <code>listbox</code> is closed, opens the <code>listbox</code> and updates <code>aria-activedescendant</code> to reference the last <code>option</code>.  If the <code>listbox</code> is empty <code>aria-activedescendant</code> is set to an empty string.</li>
               <li>If <code>listbox</code> is opened, updates <code>aria-activedescendant</code> to reference the previous <code>option</code>.  If at the begining of the list <code>option</code> the reference does not change.</li>
-              <li>If there are no <code>option</codes>s available in the <code>listbox</code>, <code>aria-activedescendant</code> is set to an empty string.</li>
+              <li>If there are no <code>option</code>s available in the <code>listbox</code>, <code>aria-activedescendant</code> is set to an empty string.</li>
             </ul>
           </td>
         </tr>
         <tr>
-          <th><kbd>Left Arrow</kbd><br/><kbd>Right Arrow</kbd><br/><kbd>Backspace</kbd><br/>Printable characters</th>
+          <th><kbd>Left Arrow</kbd>,<br/><kbd>Right Arrow</kbd>,<br/><kbd>Backspace</kbd>,<br/><kbd>Printable characters</kbd></th>
           <td>
             <ul>
-              <li>The list of <code>options</code> are updated based on the text content of the <code>combobox</code>.  The text used for filtering options is </li>
-              <li>If there are no <code>option</codes>s available in the <code>listbox</code>, <code>aria-activedescendant</code> is set to an empty string.</li>
+              <li>The list of <code>options</code> are updated based on the text content of the <code>combobox</code> upto the <code>selectionStart</code> position.</li>
+              <li>After the <code>option</code>s are updated:
+                <ul>
+                  <li>If the currently selected option reamins a match, <code>aria-activedescendant</code> will not change.</li>
+                  <li>If the currently selected option is <strong>not</strong> a match, <code>aria-activedescendant</code> is updated to reference the first item in the list of options.</li>
+                  <li>If there are no <code>option</code>s available, <code>aria-activedescendant</code> is set to an empty string.</li>
+                </ul>
+              </li>
             </ul>
           </td>
         </tr>
