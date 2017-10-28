@@ -159,7 +159,7 @@ Listbox.prototype.filterOptions = function (filter, currentOption) {
 Listbox.prototype.setFocusStyle = function (option) {
   this.combobox.domNode.setAttribute('aria-activedescendant', '');
 
-  for(var i = 0; i < this.options.length; i++) {
+  for (var i = 0; i < this.options.length; i++) {
     if (this.options[i] === option) {
       this.combobox.domNode.setAttribute('aria-activedescendant', option.domNode.id);
       option.domNode.classList.add('focus');

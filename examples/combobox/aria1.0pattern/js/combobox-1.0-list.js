@@ -165,25 +165,25 @@ ComboboxList.prototype.handleKeydown = function (event) {
       flag = true;
       break;
 
-      case this.keyCode.HOME:
-      case this.keyCode.PAGEUP:
-        if (this.listbox.hasOptions()) {
-          if (this.listbox.isOpen()) {
-            this.setOption(this.listbox.getFirstItem());
-          }
+    case this.keyCode.HOME:
+    case this.keyCode.PAGEUP:
+      if (this.listbox.hasOptions()) {
+        if (this.listbox.isOpen()) {
+          this.setOption(this.listbox.getFirstItem());
         }
-        flag = true;
-        break;
+      }
+      flag = true;
+      break;
 
-      case this.keyCode.END:
-      case this.keyCode.PAGEDOWN:
-        if (this.listbox.hasOptions()) {
-          if (this.listbox.isOpen()) {
-            this.setOption(this.listbox.getLastItem());
-           }
+    case this.keyCode.END:
+    case this.keyCode.PAGEDOWN:
+      if (this.listbox.hasOptions()) {
+        if (this.listbox.isOpen()) {
+          this.setOption(this.listbox.getLastItem());
         }
-        flag = true;
-        break;
+      }
+      flag = true;
+      break;
 
     case this.keyCode.ESC:
       if (this.listbox.isOpen()) {
@@ -220,7 +220,7 @@ ComboboxList.prototype.handleKeyup = function (event) {
     option = this.listbox.filterOptions(this.filter, this.option);
   }
 
-  switch(event.keyCode) {
+  switch (event.keyCode) {
 
     case this.keyCode.BACKSPACE:
       if (this.autocomplete === 'both') {
