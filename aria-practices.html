@@ -3865,27 +3865,76 @@
 
   <section id="gridAndTableProperties">
     <h2>Grid and Table Properties</h2>
-
-    <p>Accessibility APIs by default use the number of rows and columns to
-      determine the dimensions of a <code>table</code> or <code>grid</code>.
-      There are many situations where the number of rows and columns in the DOM
-      does not represent the total number of rows and columns
-      represented in the <code>table</code> or <code>grid</code>.
-      Examples include very large data sets where rendering the entire data set
-      in one table would be impractical, both from a screen realestate and
-      performance standpoint (e.g. the time to download large sets of data).
-      These conditions are especially apparent in mobile devices where screen size
-      and bandwidth are serious limitations to how fast and how much data can be
-      displayed at one time.  ARIA provides support to describe the actual
-      dimensions and the rendered portion of the <code>table</code> or
-      <code>grid</code> using the <code>colcount</code>, <code>rowcount</code>,
-      <code>colindex</code> and <code>rowindex</code> attributes within the
-      context of a <code>table</code> row.
+    <p>
+      <strong>NOTE:</strong> This is a draft section is not yet ready for review.
+      Work on this section is tracked by
+      <a href="https://github.com/w3c/aria-practices/issues/65">issue 65.</a>
     </p>
-
-    <p>ARIA defines other <code>table</code> and <code>grid</code> properties
-      for identifying spanned rows and columns, and the sorting order of a column.
-
+    <p>
+      To present and describe a grid or table, in addition to parsing the headers, rows, and cells using the roles described in the
+      <a href="#grid">grid pattern</a> or <a href="#table">table pattern</a>,
+      assistive technologies need to be able to determine :
+    </p>
+    <ul>
+      <li>The number of rows and columns.</li>
+      <li>Whether any columns or rows are hidden, e.g., columns 1 through 3 and  5 through 8 are visible but column 4 is hidden.</li>
+      <li>Whether a cell spans multiple rows or columns.</li>
+      <li>Whether and how data is sorted.</li>
+    </ul>
+    <p>
+      Browsers can automatically calculate dimension information and put it into their accessibility tree based on what is in the DOM.
+      However, there are many situations where the DOM does not contain the whole table, such as when the data set is too large to fully render.
+      additionally, some of this information, like skipped columns or rows and how data is sorted, cannot be derived from the DOM structure.
+    </p>
+    <p>The below sections explain how to use the following properties that ARIA provides for grid and table accessibility.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Property</th>
+          <th>Definition</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th><code>aria-colcount</code></th>
+          <td>Defines the total number of columns in a <code>table</code>, <code>grid</code>, or <code>treegrid</code>.</td>
+        </tr>
+        <tr>
+          <th><code>aria-rowcount</code></th>
+          <td>Defines the total number of rows in a <code>table</code>, <code>grid</code>, or <code>treegrid</code>.</td>
+        </tr>
+        <tr>
+          <th><code>aria-colindex</code></th>
+          <td>
+            <ul>
+              <li>Defines a cell's position with respect to the total number of columns within a <code>table</code>, <code>grid</code>, or <code>treegrid</code>.</li>
+              <li><strong>Note:</strong> Numbering starts with 1, not 0.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th><code>aria-rowindex</code></th>
+          <td>
+            <ul>
+              <li>Defines a cell's position with respect to the total number of rows within a <code>table</code>, <code>grid</code>, or <code>treegrid</code>.</li>
+              <li><strong>Note:</strong> Numbering starts with 1, not 0.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th><code>aria-colspan</code></th>
+          <td>Defines the number of columns spanned by a cell or gridcell within a <code>table</code>, <code>grid</code>, or <code>treegrid</code>.</td>
+        </tr>
+        <tr>
+          <th><code>aria-rowspan</code></th>
+          <td>Defines the number of rows spanned by a cell or gridcell within a <code>table</code>, <code>grid</code>, or <code>treegrid</code>.</td>
+        </tr>
+        <tr>
+          <th><code>aria-sort</code></th>
+          <td>Indicates if items in a row or column are sorted in ascending or descending order.</td>
+        </tr>
+      </tbody>
+    </table>
     <section id="gridAndTableProperties_counts">
       <h3>
         Defining dimensions using <code>aria-colcount</code> and <code>aria-rowcount</code>
