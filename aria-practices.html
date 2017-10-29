@@ -4167,25 +4167,27 @@
       </section>
     </section>
     <section id="gridAndTableProperties_spans">
-      <h3>
-        Defining cell spans using <code>aria-colspan</code> and <code>aria-rowspan</code>
-      </h3>
-
-      <p>When tables and grids are created using elements other than
-        <code>th</code> and <code>td</code> elements, ARIA provides a means to
-        define row and column spans using the <code>aria-rowspan</code> and
-        <code>aria-colspan</code> attributes.  Row and column span information
-        is used by assistive technologies to support the navigate of table cells
-        and in identifying headers for data cells.
+      <h3>Defining cell spans using <code>aria-colspan</code> and <code>aria-rowspan</code></h3>
+      <p>
+        For tables, grids, and treegrids  created using elements other than HTML <code>table</code> elements,
+        row and column spans are defined with the <code>aria-rowspan</code> and <code>aria-colspan</code> properties.
       </p>
-
-      <p>The following example demonstrates the use of row and column spans on
-        <code>span</code> elements for listing test scores and a final grade.   The
-        first row used row spans for the student name information and column
-        spans for identifying quizes.  The second row includes cells for the score
-        and grade for each quiz.
+      <p>The value of <code>aria-colspan</code> is an integer that is:</p>
+      <ol>
+        <li>Greater than or equal to 1.</li>
+        <li>less than the value that would cause the cell to overlap the next cell in the same row.</li>
+      </ol>
+      <p>The value of <code>aria-rowspan</code> is an integer that is:</p>
+      <ol>
+        <li>Greater than or equal to 0.</li>
+        <li>0 means the cell spans all the remaining rows in its row group.</li>
+        <li>less than the value that would cause the cell to overlap the next cell in the same column.</li>
+      </ol>
+      <p>
+        The following example grid has a two row header.
+        The first two columns have headers that span both rows of the header.
+        The subsequent 6 columns are grouped into 3 pairs with headers in the first row that each span two columns. 
       </p>
-
       <pre>
         <code>
           &lt;div role=&quot;grid&quot; aria-rowcount=&quot;463&quot;&gt;
@@ -4193,12 +4195,10 @@
             &lt;div role=&quot;rowgroup&quot;&gt;
               &lt;div role=&quot;row&quot; aria-rowindex=&quot;1&quot;&gt;
                   &lt;!--
-                    aria-rowspan and aria-colspan provides users of
-                    assitive technologies with the correct data cell header
-                    information when cells or headers span more than one row or
-                    column.
+                    aria-rowspan and aria-colspan provide 
+                    assistive technologies with the correct data cell header information
+                    when header cells span more than one row or column.
                   --&gt;
-
                   &lt;span role="columnheader" aria-rowspan=&quot;2&quot;&gt;Last Name&lt;/span&gt;
                   &lt;span role="columnheader" aria-rowspan=&quot;2&quot;&gt;First Name&lt;/span&gt;
                   &lt;span role="columnheader" aria-colspan=&quot;2&quot;&gt;Test 1&lt;/span&gt;
@@ -4249,16 +4249,12 @@
           &lt;/div&gt;
         </code>
       </pre>
-
-      <p><strong>Note:</strong> When using HTML5 to create content use the
-        native semantics of the <code>th</code> and <code>td</code> elements
-        to define row and column spans using the <code>rowspan</code> and
-        <code>colspan</code> attributes.   Native semantics are always preferred
-        over the use of ARIA attributes for providing accessibility information.
+      <p>
+        <strong>Note:</strong> When using HTML <code>table</code> elements,
+        use the native semantics of the <code>th</code> and <code>td</code> elements to define row and column spans
+        by using the <code>rowspan</code> and <code>colspan</code> attributes.
       </p>
-
     </section>
-
     <section id="gridAndTableProperties_sort">
       <h3>
         Identifying row sorting using <code>aria-sort</code>
