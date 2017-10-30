@@ -3888,7 +3888,7 @@
       additionally, some of this information, like skipped columns or rows and how data is sorted, cannot be derived from the DOM structure.
     </p>
     <p>The below sections explain how to use the following properties that ARIA provides for grid and table accessibility.</p>
-    <table>
+    <table class="widget-features">
       <thead>
         <tr>
           <th>Property</th>
@@ -4256,55 +4256,45 @@
       </p>
     </section>
     <section id="gridAndTableProperties_sort">
-      <h3>
-        Identifying row sorting using <code>aria-sort</code>
-      </h3>
+      <h3>Indicating sort order with <code>aria-sort</code></h3>
       <p>
-        When rows are sorted based on one of the values in one of the columns
-         the <code>aria-sort</code> attribute must be used on the
-        <code>columnheader</code> to identify the column being used to
-        sort the rows of the table or grid.  The following table describes the
-        options for the values of <code>aria-sort</code>.
+        When rows or columns are sorted, the <code>aria-sort</code> property can be applied to a column or row header to indicate the sorting method.
+        The following table describes allowed values for <code>aria-sort</code>.
       </p>
-
       <table class="widget-features">
-        <caption>Description of values for <code>aria-sort</code></caption>
-
+        <caption>
+          Description of values for <code>aria-sort</code>
+        </caption>
         <thead>
           <tr>
             <th>Value</th>
             <th>Description</th>
           </tr>
         </thead>
-
         <tbody>
           <tr>
             <th><code>ascending</code></th>
-            <td>Rows are sorted in ascending order by this column</td>
+            <td>Data are sorted in ascending order.</td>
           </tr>
           <tr>
             <th><code>descending</code></th>
-            <td>Items are sorted in descending order by this column.</td>
+            <td>Data are sorted in descending order.</td>
           </tr>
           <tr>
             <th><code>other</code></th>
-            <td>Rows are sorted by an algorithm other than ascending or
-              descending by this column.
-            </td>
+            <td>Data are sorted by an algorithm other than ascending or descending.</td>
           </tr>
           <tr>
             <th><code>none</code></th>
-            <td>This column is not used for sorting the rows.</td>
+            <td>Default (no sort applied).</td>
           </tr>
         </tbody>
       </table>
-
-      <p>The following example shows using the <code>aria-sort</code> to show
-        that the rows are sorted based on the score of "Quiz 2".   The
-        <code>aria-sort=&quot;descending&quot;</code> identifies the rows being
-        sorted from highest score to lowest score.
+      <p>
+        It is important to note that ARIA does not provide a way to indicate levels of sort for data sets that have multiple sort keys.
+        Thus, there is limited value to applying <code>aria-sort</code> with a value other than <code>none</code> to more than one column or row.
       </p>
-
+      <p>The following example grid uses <code>aria-sort</code> to indicate the rows are sorted from the highest "Quiz 2" score to the lowest "Quiz 2" score.</p>
       <pre>
         <code>
           &lt;table role=&quot;grid&quot; aria-rowcount=&quot;463&quot;&gt;
@@ -4313,11 +4303,8 @@
               &lt;tr aria-colindex=&quot;10&quot; aria-rowindex=&quot;1&quot;&gt;
                 &lt;th&gt;Homework 4&lt;/th&gt;
                 &lt;!--
-                  aria-sort is used to identify the column with the heading
-                  "Quiz 2" being used to sort the rows of the grid.  The
-                  value of aria-sort identifies the rows are being sorted in
-                  descending order (e.g. highest score to lowest
-                  score)
+                  aria-sort indicates the column with the heading
+                  "Quiz 2" has been used to sort the rows of the grid. 
                 --&gt;
                 &lt;th aria-sort=&quot;descending&quot;&gt;Quiz 2&lt;/th&gt;
                 &lt;th&gt;Homework 5&lt;/th&gt;
