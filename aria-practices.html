@@ -569,11 +569,13 @@
         Many implementations also include a third optional element -- a graphical button adjacent to the textbox, indicating the availability of the popup.
         Activating the button displays the popup if suggestions are available.
       </p>
-      <p>
-        The popup is hidden by default, and the conditions that trigger its display are specific to each implementation.
-        For example, some implementations do not display suggested values for the textbox in the popup until several characters are typed in the text box.
-        While in other implementations, the popup is displayed when the textbox receives focus.
-      </p>
+      <p>The popup is hidden by default, and the conditions that trigger its display are specific to each implementation. Some possible popup display conditions include:</p>
+      <ul>
+        <li>It is displayed only if a certain number of characters are typed in the textbox and those characters match some portion of one of the suggested values.</li>
+        <li>It is displayed as soon as the textbox is focused, even if the textbox is empty.</li>
+        <li>It is displayed when the <kbd>Down Arrow</kbd> key is pressed or the <q>show</q> button is activated, possibly with a dependency on the content of the textbox.</li>
+        <li>It is displayed if the value of the textbox is altered in a way that creates one or more partial matches to a suggested value.</li>
+      </ul>
       <p>Combobox widgets are useful for setting the value of a single-line textbox in one of two types of scenarios:</p>
       <ol>
         <li>
@@ -616,17 +618,19 @@
         the popup may close and, if present, the inline completion string disappears.
       </p>
       <p>
-        When constructing a compact widget that asks users to choose one value from a known set of discrete values, often either a <a href="#Listbox">listbox</a> or <a href="#menubutton">menu button</a> is simpler to implement and use.
+        When constructing a widget that is both visually compact and enables users to choose one value from a set of discrete values, often either a <a href="#Listbox">listbox</a> or <a href="#menubutton">menu button</a> is simpler to implement and use.
         One feature of combobox that distinguishes it from both listbox and menu button is that the value of the combobox is presented in an edit field.
         Thus, the combobox gives users one function that both listbox and menu button lack, namely the ability to select some or all of the value for copying to the clipboard.
-        A feature that distinguishes both combobox and menu button from listbox is that they can enable users can navigate the set of allowed values and, at any point, decide to keep the current value by pressing escape.
+        One feature that distinguishes both combobox and menu button widgets from listbox widgets is their ability to provide an undo mechanism.
+        In many implementations, users can navigate the set of allowed values in a combobox or menu and then decide to revert to the value the widget had before navigating by pressing <kbd>escape</kbd>.
         In contrast, navigating a listbox immediately changes its value, and escape does not provide an undo mechanism.
       </p>
       <p class="note">
         The options for a combobox to popup a grid, tree, or dialog were introduced in ARIA 1.1.
         Changes made in the ARIA 1.1 specification also add support for a code pattern that enables assistive technologies to present the textbox and popup as separately perceivable elements.
-        While the ARIA 1.1 pattern is recommended, both patterns are described in the following sections,
-        and there are no plans to deprecate the ARIA 1.0 pattern.
+        both ARIA 1.0 and 1.1 patterns are described in the following sections.
+        While using the ARIA 1.1 pattern is recommended as soon as assistive technology support is sufficient, 
+        there are no plans to deprecate the ARIA 1.0 pattern.
       </p>
 
       <section class="notoc">
@@ -642,7 +646,7 @@
         <h4>Keyboard Interaction</h4>
         <ul>
           <li><kbd>Tab</kbd>: The textbox is in the page <kbd>Tab</kbd> sequence.</li>
-          <li>Note: The popup indicator icon (if present), the popup, and the popup descendants are excluded from the page <kbd>Tab</kbd> sequence. </li>
+          <li>Note: The popup indicator icon or button (if present), the popup, and the popup descendants are excluded from the page <kbd>Tab</kbd> sequence. </li>
         </ul>
         <h5>Textbox Keyboard Interaction</h5>
         <p>When focus is in the textbox:</p>
@@ -698,7 +702,7 @@
           <li><kbd>End</kbd> (Optional): Either moves focus to the last option or returns focus to the textbox and places the cursor after the last character.</li>
         </ul>
         <ol class="note">
-          <li>DOM Focus is maintained on the combobox textbox and the assistive technology focus is moved within the grid using <code>aria-activedescendant</code> as described in <a href="#kbd_focus_activedescendant">Managing Focus in Composites Using aria-activedescendant.</a></li>
+          <li>DOM Focus is maintained on the combobox textbox and the assistive technology focus is moved within the listbox using <code>aria-activedescendant</code> as described in <a href="#kbd_focus_activedescendant">Managing Focus in Composites Using aria-activedescendant.</a></li>
           <li>Selection follows focus in the listbox; the listbox allows only one suggested value to be selected at a time for the textbox value.</li>
         </ol>
         <h5>Grid Popup Keyboard Interaction</h5>
@@ -813,7 +817,7 @@
             <ul>
               <li>The previously selected node, if any, remains selected until focus moves to a node that is selectable.</li>
               <li>There is no selected value.</li>
-              <li>In either case, focus is fisually distinct from selection so users can readily see if a value is selected or not.</li>
+              <li>In either case, focus is visually distinct from selection so users can readily see if a value is selected or not.</li>
             </ul>
         </li>
           <li>If the nodes in a tree are arranged horizontally:
@@ -879,7 +883,7 @@
           <li>
             When the combobox popup is not visible, the element with role <code>combobox</code> has <a href="#aria-expanded" class="state-reference">aria-expanded</a> set to <code>false</code>.
             When the popup element is visible, <code>aria-expanded</code> is set to <code>true</code>.
-            Note that Elements with role <code>combobox</code> have a default value for <code>aria-expanded</code> of <code>false</code>.
+            Note that elements with role <code>combobox</code> have a default value for <code>aria-expanded</code> of <code>false</code>.
           </li>
           <li>When a combobox receives focus, DOM focus is placed on the textbox element.</li>
           <li>When a descendant of  a listbox, grid, or tree popup is focused, DOM focus remains on the textbox and the textbox has <a href="#aria-activedescendant" class="property-reference">aria-activedescendant</a> set to a value that refers to the focused element within the popup.</li>
@@ -894,22 +898,23 @@
               <li><code>list</code>: When the popup is triggered, it presents suggested values that complete or logically correspond to the characters typed in the textbox.</li>
               <li>
                 <code>both</code>: When the popup is triggered, it presents suggested values that complete or logically correspond to the characters typed in the textbox.
-                In addition, the portion of the selected suggestion that has not been typed by the user, a completion string, appears inline after the input cursor in the textbox.
+                In addition, the portion of the selected suggestion that has not been typed by the user, known as the <q>completion string</q>, appears inline after the input cursor in the textbox.
                 The inline completion string is visually highlighted and has a selected state.
               </li>
             </ul>
           </li>
         </ul>
-        <p class="note">
-          The roles, states, and properties for popup elements are defined in their respective design patterns.
-          When refering to the following design patterns, note that a combobox is a single-select widget where selection follows focus in the popup.
-        </p>
-        <ul>
-          <li><a href="#listbox_roles_states_props">Listbox Roles, States, and Properties</a></li>
-          <li><a href="#grid_roles_states_props">Grid Roles, States, and Properties</a></li>
-          <li><a href="#tree_roles_states_props">Tree Roles, States, and Properties</a></li>
-          <li><a href="#dialog_roles_states_props">Dialog Roles, States, and Properties</a></li>
-        </ul>
+        <ol class="note">
+          <li>When referring to the roles, states, and properties documentation for the below list of patterns used for popups, keep in mind that a combobox is a single-select widget where selection always follows focus in the popup.</li>
+          <li>The roles, states, and properties for popup elements are defined in their respective design patterns:
+            <ul>
+              <li><a href="#listbox_roles_states_props">Listbox Roles, States, and Properties</a></li>
+              <li><a href="#grid_roles_states_props">Grid Roles, States, and Properties</a></li>
+              <li><a href="#tree_roles_states_props">Tree Roles, States, and Properties</a></li>
+              <li><a href="#dialog_roles_states_props">Dialog Roles, States, and Properties</a></li>
+            </ul>
+          </li>
+        </ol>
       </section>
     </section>
 
