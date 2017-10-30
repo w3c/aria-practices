@@ -3867,9 +3867,8 @@
   <section id="gridAndTableProperties">
     <h2>Grid and Table Properties</h2>
     <p>
-      <strong>NOTE:</strong> This is a draft section is not yet ready for review.
-      Work on this section is tracked by
-      <a href="https://github.com/w3c/aria-practices/issues/65">issue 65.</a>
+      <strong>NOTE:</strong> The content in this section is new. Please provide feedback in
+      <a href="https://github.com/w3c/aria-practices/issues/505">issue 505.</a>
     </p>
     <p>
       To present and describe a grid or table, in addition to parsing the headers, rows, and cells using the roles described in the
@@ -3889,6 +3888,7 @@
     </p>
     <p>The below sections explain how to use the following properties that ARIA provides for grid and table accessibility.</p>
     <table class="widget-features">
+      <caption>Grid and Table Property Definitions</caption>
       <thead>
         <tr>
           <th>Property</th>
@@ -4297,7 +4297,7 @@
       <p>The following example grid uses <code>aria-sort</code> to indicate the rows are sorted from the highest "Quiz 2" score to the lowest "Quiz 2" score.</p>
       <pre>
         <code>
-          &lt;table role=&quot;grid&quot; aria-rowcount=&quot;463&quot;&gt;
+          &lt;table role=&quot;grid&quot; aria-rowcount=&quot;463&quot; aria-colcount=&quot;13&quot;&gt;
             aria-label=&quot;Student grades for history 101&quot;
             &lt;thead&gt;
               &lt;tr aria-colindex=&quot;10&quot; aria-rowindex=&quot;1&quot;&gt;
