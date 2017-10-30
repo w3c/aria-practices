@@ -717,7 +717,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     <p>
       <a class="logo" href="https://www.w3.org/"><img width="72" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" alt="W3C"></a>
     </p>
-  <p><!--_hyper: 217914486;--></p>
+  <p><!--_hyper: 1548881514;--></p>
   <h1 class="title p-name" id="title" property="dcterms:title"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Authoring Practices 1.1</h1>
   <h2 id="w3c-editor-s-draft-30-october-2017"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2017-10-30">30 October 2017</time><span class="permalink" typeof="bookmark"><a href="#undefined" aria-label="Permalink for W3C Editor's Draft 30 October 2017" title="Permalink for W3C Editor's Draft 30 October 2017" property="url"><span property="title" content="W3C Editor's Draft 30 October 2017">§</span></a></span></h2>
   <dl>
@@ -4666,9 +4666,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   <section id="gridAndTableProperties" typeof="bibo:Chapter" resource="#gridAndTableProperties" property="bibo:hasPart">
     <!--OddPage--><h2 id="x6-grid-and-table-properties" resource="#x6-grid-and-table-properties"><span property="xhv:role" resource="xhv:heading"><span class="secno">6. </span>Grid and Table Properties<span class="permalink" typeof="bookmark"><a href="#gridAndTableProperties" aria-label="Permalink for 6. Grid and Table Properties" title="Permalink for 6. Grid and Table Properties" property="url"><span property="title" content="6. Grid and Table Properties">§</span></a></span></span></h2>
     <p>
-      <strong>NOTE:</strong> This is a draft section is not yet ready for review.
-      Work on this section is tracked by
-      <a href="https://github.com/w3c/aria-practices/issues/65">issue 65.</a>
+      <strong>NOTE:</strong> The content in this section is new. Please provide feedback in
+      <a href="https://github.com/w3c/aria-practices/issues/505">issue 505.</a>
     </p>
     <p>
       To present and describe a grid or table, in addition to parsing the headers, rows, and cells using the roles described in the
@@ -4688,6 +4687,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     </p>
     <p>The below sections explain how to use the following properties that ARIA provides for grid and table accessibility.</p>
     <table class="widget-features">
+      <caption>Grid and Table Property Definitions</caption>
       <thead>
         <tr>
           <th>Property</th>
@@ -5091,7 +5091,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </p>
       <p>The following example grid uses <code>aria-sort</code> to indicate the rows are sorted from the highest "Quiz 2" score to the lowest "Quiz 2" score.</p>
       <pre aria-busy="false" aria-live="polite" class="hljs xml">        
-          <span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"grid"</span> <span class="hljs-attr">aria-rowcount</span>=<span class="hljs-string">"463"</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"grid"</span> <span class="hljs-attr">aria-rowcount</span>=<span class="hljs-string">"463"</span> <span class="hljs-attr">aria-colcount</span>=<span class="hljs-string">"13"</span>&gt;</span>
             aria-label="Student grades for history 101"
             <span class="hljs-tag">&lt;<span class="hljs-name">thead</span>&gt;</span>
               <span class="hljs-tag">&lt;<span class="hljs-name">tr</span> <span class="hljs-attr">aria-colindex</span>=<span class="hljs-string">"10"</span> <span class="hljs-attr">aria-rowindex</span>=<span class="hljs-string">"1"</span>&gt;</span>
