@@ -20,7 +20,7 @@ that supports [EditorConfig](http://editorconfig.org/).
 ### Writing code examples
 
 - Choose a pattern from the
-  [Design Patterns Status](https://github.com/w3c/aria-practices/wiki/Design-Patterns-Status)
+  [Design Patterns Development Status](https://github.com/w3c/aria-practices/wiki/Design-Patterns-Development-Status)
   document that is missing a code example.
 - Via the command line, run:
 

@@ -1,36 +1,6 @@
 /*
 *   This content is licensed according to the W3C Software License at
 *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
-*
-*   File:   listbox.js
-*
-*   Desc:   Listbox widget that implements ARIA Authoring Practices
-*
-*   Author: Jon Gunderson and Nicholas Hoyt
-*/
-
-/*
-*   @constructor Listbox
-*
-*   @desc
-*       Wrapper object for a listbox
-*
-*   @param domNode
-*       The DOM element node that serves as the listbox container. Each
-*       child element of domNode that represents a option must have a
-*       'role' attribute with value 'option'.
-*
-*   @param comboboxObj
-*       The object that is a wrapper for the DOM element that controls the
-*       menu, e.g. a button element, with an 'aria-controls' attribute that
-*       references this menu's domNode. See MenuButton.js
-*
-*       The combobox object is expected to have the following properties:
-*       1. domNode: The combobox object's DOM element node, needed for
-*          retrieving positioning information.
-*       2. hasHover: boolean that indicates whether the combobox object's
-*          domNode has responded to a mouseover event with no subsequent
-*          mouseout event having occurred.
 */
 var Listbox = function (domNode, comboboxObj) {
   var elementChildren,
@@ -56,12 +26,9 @@ var Listbox = function (domNode, comboboxObj) {
   this.domNode = domNode;
   this.combobox = comboboxObj;
 
-  console.log('[Listbox][init][combobox]: ' + this.combobox);
-
   this.allOptions = [];
 
   this.options    = [];      // see PopupMenu init method
-  this.firstChars = [];      // see PopupMenu init method
 
   this.firstOption  = null;    // see PopupMenu init method
   this.lastOption   = null;    // see PopupMenu init method
@@ -108,7 +75,7 @@ Listbox.prototype.init = function () {
 
 };
 
-Listbox.prototype.filterOptions = function (filter) {
+Listbox.prototype.filterOptions = function (filter, currentOption) {
 
   if (typeof filter !== 'string') {
     filter = '';
@@ -141,30 +108,44 @@ Listbox.prototype.filterOptions = function (filter) {
   numItems = this.options.length;
   if (numItems > 0) {
     this.firstOption = this.options[0];
-    firstMatch = this.firstOption.textContent;
     this.lastOption  = this.options[numItems - 1];
+
+    if (currentOption && this.options.indexOf(currentOption) >= 0) {
+      option = currentOption;
+    }
+    else {
+      option = this.firstOption;
+    }
   }
   else {
     this.firstOption = false;
-    firstMatch = '';
+    option = false;
     this.lastOption  = false;
   }
 
+  return option;
+};
 
-  return firstMatch;
+Listbox.prototype.setFocusStyle = function (option) {
+  this.combobox.domNode.setAttribute('aria-activedescendant', '');
+
+  for (var i = 0; i < this.options.length; i++) {
+    if (this.options[i] === option) {
+      this.combobox.domNode.setAttribute('aria-activedescendant', option.domNode.id);
+      option.domNode.classList.add('focus');
+      this.domNode.scrollTop = option.domNode.offsetTop;
+    }
+    else {
+      this.options[i].domNode.classList.remove('focus');
+    }
+  }
 
 };
 
-Listbox.prototype.restoreValue = function () {
-  this.combobox.updateValue(this.filter);
-};
-
-Listbox.prototype.updateValue = function (value) {
-  this.combobox.updateValue(value);
-};
-
-Listbox.prototype.setValue = function (value) {
-  this.combobox.setValue(value);
+Listbox.prototype.setOption = function (option) {
+  this.combobox.setOption(option);
+  this.combobox.setValue(option.textContent);
+  this.close();
 };
 
 /* EVENT HANDLERS */
@@ -180,79 +161,46 @@ Listbox.prototype.handleMouseout = function (event) {
 
 /* FOCUS MANAGEMENT METHODS */
 
-Listbox.prototype.setFocusToController = function () {
-  this.combobox.domNode.focus();
+
+Listbox.prototype.getFirstItem = function () {
+  return this.firstOption;
 };
 
-Listbox.prototype.setFocusToFirstItem = function () {
-  this.firstOption.domNode.focus();
-  this.updateValue(this.firstOption.textContent);
+Listbox.prototype.getLastItem = function () {
+  return this.lastOption;
 };
 
-Listbox.prototype.setFocusToLastItem = function () {
-  this.lastOption.domNode.focus();
-  this.updateValue(this.lastOption.textContent);
-};
-
-Listbox.prototype.setFocusToPreviousItem = function (currentOption) {
+Listbox.prototype.getPreviousItem = function (currentOption) {
   var index;
 
   if (currentOption !== this.firstOption) {
     index = this.options.indexOf(currentOption);
-    this.options[index - 1].domNode.focus();
-    this.updateValue(this.options[index - 1].textContent);
+    return this.options[index - 1];
   }
+  return currentOption;
 };
 
-Listbox.prototype.setFocusToNextItem = function (currentOption) {
+Listbox.prototype.getNextItem = function (currentOption) {
   var index;
 
   if (currentOption !== this.lastOption) {
     index = this.options.indexOf(currentOption);
-    this.options[index + 1].domNode.focus();
-    this.updateValue(this.options[index + 1].textContent);
+    return this.options[index + 1];
   }
-};
-
-Listbox.prototype.setFocusByFirstCharacter = function (currentOption, char) {
-  var start, index, char = char.toLowerCase();
-
-  // Get start index for search based on position of currentOption
-  start = this.options.indexOf(currentOption) + 1;
-  if (start === this.options.length) {
-    start = 0;
-  }
-
-  // Check remaining slots in the menu
-  index = this.getIndexFirstChars(start, char);
-
-  // If not found in remaining slots, check from beginning
-  if (index === -1) {
-    index = this.getIndexFirstChars(0, char);
-  }
-
-  // If match was found...
-  if (index > -1) {
-    this.options[index].domNode.focus();
-    this.updateValue(this.options[index].textContent);
-  }
-};
-
-Listbox.prototype.getIndexFirstChars = function (startIndex, char) {
-  for (var i = startIndex; i < this.firstChars.length; i++) {
-    if (char === this.firstChars[i]) {
-      return i;
-    }
-  }
-  return -1;
+  return currentOption;
 };
 
 /* MENU DISPLAY METHODS */
 
-Listbox.prototype.open = function () {
-  // get bounding rectangle of combobox object's DOM node
-  var rect = this.combobox.domNode.getBoundingClientRect();
+Listbox.prototype.isOpen = function () {
+  return this.domNode.style.display === 'block';
+};
 
+Listbox.prototype.hasOptions = function () {
+  return this.options.length;
+};
+
+Listbox.prototype.open = function () {
   // set CSS properties
   this.domNode.style.display = 'block';
 
@@ -261,14 +209,14 @@ Listbox.prototype.open = function () {
 };
 
 Listbox.prototype.close = function (force) {
-
   if (typeof force !== 'boolean') {
     force = false;
   }
 
   if (force || (!this.hasFocus && !this.hasHover && !this.combobox.hasHover)) {
     this.domNode.style.display = 'none';
-    this.combobox.domNode.removeAttribute('aria-expanded');
+    this.combobox.domNode.setAttribute('aria-expanded', 'false');
+    this.combobox.domNode.setAttribute('aria-activedescendant', '');
   }
 };
 

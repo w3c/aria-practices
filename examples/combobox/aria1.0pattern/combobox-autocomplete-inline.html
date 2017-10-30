@@ -19,33 +19,37 @@
 </head>
 <body>
   <main>
-  <h1>Example of Legacy ARIA 1.0 Combobox With Inline Autocomplete | WAI-ARIA Authoring Practices 1.1</h1>
+  <h1>Example of Legacy ARIA 1.0 Combobox With Inline Autocomplete</h1>
   <p>
-    <strong>NOTE:</strong> This page is work in progress; it is not ready for review.
+    <strong>NOTE:</strong> This page is ready to start reviewing.
     This work is tracked by <a href="https://github.com/w3c/aria-practices/issues/99">issue 99</a>.
   </p>
   <p>
-    <!-- Provide an overview of the example where the first sentence provides a link to the section of aria-practices.html that describes the pattern this example implements. -->
-    Replace this paragraph with an overview of the example that is something like the following. The
-    below example section demonstrates a simple checkbox that implements the
-    <a href="../../#checkbox">design pattern for checkbox.</a>
-    This example uses ... summarize salient techniques )
+    The below example section demonstrates a <code>combobox</code> that implements the
+    <a href="../../#combobox">ARIA 1.0 design pattern for combobox.</a>
+    As the user types in content an autocomplete option will be presented in the textbox if a match is
+    found in a list of options.
+    The user only get to see the matches, there is <strong>no</strong> listbox to see the entire list of options.
   </p>
   <p>Similar examples include: </p>
   <ul>
-    <li><a href="combobox-autocomplete-list.html">Combobox With Autocompete List</a>: summarize what this related example demonstrates.</li>
-    <li><a href="combobox-autocomplete-both.html">Combobox With Both List and Inline Autocompletion</a>: summarize what this related example demonstrates.</li>
+    <li>
+      <a href="combobox-autocomplete-none.html">Combobox Without Autocomplete</a>
+      : example demonstrates the behavior associated with <code>aria-autocomplete=none</code>.
+    </li>
+    <li>
+      <a href="combobox-autocomplete-list.html">Combobox With an List Autocomplete</a>
+      : example demonstrates the behavior associated with <code>aria-autocomplete=list</code>.
+    </li>
+    <li>
+      <a href="combobox-autocomplete-both.html">Combobox With Both List and Inline Autocompletion</a>
+      : example demonstrates the behavior associated with <code>aria-autocomplete=both</code>.
+    </li>
   </ul>
 
   <section>
     <h2 id="ex_label">Example</h2>
     <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
-    <!--
-      Note the ID of the following div that contains the example HTML is used as a parameter for the sourceCode.add() function.
-      The sourceCode functions in the examples/js/examples.js render the HTML source to show it to the reader of the example page.
-      If you change the ID of this div, be sure to update the parameters of the sourceCode.add() function call, which is made following the div with id="sc1" where the HTML is render.
-      The div for the rendered HTML source is in the last section of the page.
-    -->
     <div id="ex1">
       <div class="combobox-inline">
         <label for="cb1-input">State</label>
@@ -114,42 +118,17 @@
           'Wisconsin',
           'Wyoming'];
 
-        var combobox = new ComboboxInline(document.getElementById('cb1-input'), options);
-        if (combobox) {
-          combobox.init();
+        var comboboxInline = new ComboboxInline(document.getElementById('cb1-input'), options);
+        if (comboboxInline) {
+          comboboxInline.init();
         }
-
       </script>
-
     </div>
-
     <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
   </section>
 
   <section>
-    <h2>Accessibility Features</h2>
-    <p class="annotate">Optional section: If appropriate, please replace this content with a list of any special or noteworthy accessibility features
-      demonstrated in this implementation, such as:</p>
-    <ol>
-      <li>What distinguishes this example from related examples.</li>
-      <li>Keyboard chortcuts, live regions,  unusual event handling, or other ancillary best practices that are employed.</li>
-      <li>Do not include information that would be repeated in the following keyboard and attribute sections.</li>
-      <li>Delete this section if not needed.</li>
-    </ol>
-  </section>
-
-  <section>
     <h2 id="kbd_label">Keyboard Support</h2>
-    <!--
-      List the keys supported in this example.
-      Remember to:
-      Use kbd tags,e.g. <kbd>KeyName</kbd>.
-      Key names use first-letter caps, e.g., <kbd>Enter</kbd>.
-      Single space between multiple Words, e.g., <kbd>Up Arrow</kbd>.
-      Use + to separate modifiers, e.g., <kbd>Control + Right Arrow</kbd>.
-      One key per row, e.g., do not combine <kbd>Up Arrow</kbd> and <kbd>Down Arrow</kbd> into a single row.
-      Do not use the word "key", e.g., do not write <kbd>Enter Key</kbd> or <kbd>Enter</kbd> key.
-     -->
     <table aria-labelledby="kbd_label" class="def">
       <thead>
         <tr>
@@ -159,19 +138,17 @@
       </thead>
       <tbody>
         <tr>
-          <th><kbd>KeyName</kbd></th>
+          <th><kbd>Return</kbd></th>
           <td>
-            Description of key function.
-            <!--  Do not use a list if there is only one function for the key.  -->
+            Update the value of the <code>input[type=text]</code> with the autocomplete option.
           </td>
         </tr>
         <tr>
-          <th><kbd>KeyName</kbd></th>
+          <th><kbd>Tab</kbd></th>
           <td>
             <ul>
-              <li>If condition 1, performs function 1.</li>
-              <li>If condition 2, performs function 2.</li>
-              <li>Only use a list if multiple statements are needed.</li>
+              <li>Remove the autocomplete option from textbox.</li>
+              <li>Move focus to next or previous interactive element (e.g. link, form control, widget).</li>
             </ul>
           </td>
         </tr>
@@ -195,9 +172,9 @@
       </thead>
       <tbody>
         <tr>
-          <th scope="row"><code>RoleName</code></th>
+          <th scope="row"><code>combobox</code></th>
           <td><!--  Leave this cell blank in rows where a role is being described. --></td>
-          <td><code>HTML_ELEMENT</code></td>
+          <td><code>input[type="text"]</code></td>
           <td>
             Describe usage/purpose, e.g., indicates the focusable element that serves as the ...
           </td>
@@ -208,14 +185,10 @@
               Make a row like this for each attribute/value pair.
           -->
           </td>
-          <th scope="row"><code>AttributeName=<q>AttributeValue</q></code></th>
-          <td><code>HTML_ELEMENT</code></td>
+          <th scope="row"><code>role=<q>combobox</q></code></th>
+          <td><code>input[type="text"]</code></td>
           <td>
-            <ul>
-              <li>explanation of usage, purpose, benefit, and/or guidance relevant to this implementation.</li>
-              <li>If making multiple statements, use list for brevity and clarity</li>
-              <li>Do not make a single item list.</li>
-            </ul>
+            Identifies the element as having the behavior associated with <code>role=<q>combobox</q></code>.
           </td>
         </tr>
       </tbody>
@@ -231,20 +204,8 @@
         <a href="css/combobox-1.0.css" type="tex/css">combobox-10.css</a>
       </li>
       <li>
-        CSS:
-        <a href="css/listbox.css" type="tex/css">listbox.css</a>
-      </li>
-      <li>
         Javascript:
-        <a href="js/combobox-1.0.js" type="text/javascript">combobox-1.0.js</a>
-      </li>
-      <li>
-        Javascript:
-        <a href="js/listbox.js" type="text/javascript">listbox.js</a>
-      </li>
-      <li>
-        Javascript:
-        <a href="js/listboxOption.js" type="text/javascript">listboxOption.js</a>
+        <a href="js/combobox-1.0-inline.js" type="text/javascript">combobox-1.0-inline.js</a>
       </li>
     </ul>
   </section>

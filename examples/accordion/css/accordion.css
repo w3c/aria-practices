@@ -32,6 +32,7 @@
 }
 
 .Accordion-title {
+  display: block; /* For Edge bug https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/8295099/ */
   pointer-events: none;
 }
 
@@ -59,6 +60,11 @@
 .Accordion-panel {
     margin: 0;
     padding: 1em 1.5em;
+}
+
+/* For Edge bug https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/4806035/ */
+.Accordion-panel[hidden] {
+  display: none;
 }
 
 fieldset {

@@ -21,8 +21,6 @@ ul[role="listbox"] li[role="option"]{
   font-size: 100%;
 }
 
-
-
 /* focus and hover styling */
 
 button:focus,
@@ -37,7 +35,6 @@ input:hover {
   background-color: #EEEEEE;
 }
 
-ul[role="listbox"] li[role="option"]:focus,
 ul[role="listbox"] li[role="option"].focus,
 ul[role="listbox"] li[role="option"]:hover{
   background-color: black;

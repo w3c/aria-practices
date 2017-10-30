@@ -15,7 +15,7 @@
 <link rel="stylesheet" href="css/combobox-1.0.css">
 <link rel="stylesheet" href="css/listbox.css">
 
-<script type="text/javascript" src="js/combobox-1.0-listbox.js"></script>
+<script type="text/javascript" src="js/combobox-1.0-list.js"></script>
 <script type="text/javascript" src="js/listbox.js"></script>
 <script type="text/javascript" src="js/listboxOption.js"></script>
 
@@ -24,99 +24,114 @@
   <main>
   <h1>Example of Legacy ARIA 1.0 Combobox With Both List and Inline Autocompletion</h1>
   <p>
-    <strong>NOTE:</strong> This page is work in progress; it is not ready for review.
+    <strong>NOTE:</strong> This page is ready to start reviewing.
     This work is tracked by <a href="https://github.com/w3c/aria-practices/issues/99">issue 99</a>.
   </p>
   <p>
-    <!-- Provide an overview of the example where the first sentence provides a link to the section of aria-practices.html that describes the pattern this example implements. -->
-    Replace this paragraph with an overview of the example that is something like the following. The
-    below example section demonstrates a simple checkbox that implements the
-    <a href="../../#combobox">design pattern for checkbox.</a>
-    This example uses ... summarize salient techniques )
+    The below example section demonstrates a <code>combobox</code> that implements the
+    <a href="../../#combobox">ARIA 1.0 design pattern for combobox.</a>
+    This example demonstrates a combobox that provides both a list and an inline of
+    autocomplete options to the user.
+    The options available in the listbox are filtered based on user input into the textbox.
+    The user can select an option from the list to set the value of the textbox or use the
+    enter key to select the autocompelete option in the textbox.
+  </p>The major design feature of the ARIA 1.0 combobox pattern is the use of
+    <code>aria-activedescendant</code> to reference options in a listbox, while keyboard
+    focus remains on the textbox.
+  <p>
   </p>
   <p>Similar examples include: </p>
   <ul>
-    <li><a href="combobox-autocomplete-inline.html">Combobox With Inline Autocomplete</a>: summarize what this related example demonstrates.</li>
-    <li><a href="combobox-autocomplete-list.html">Combobox With an Autocomplete List</a>: summarize what this related example demonstrates.</li>
+    <li>
+      <a href="combobox-autocomplete-none.html">Combobox Without Autocomplete</a>
+      : example demonstrates the behavior associated with <code>aria-autocomplete=none</code>.
+    </li>
+    <li>
+      <a href="combobox-autocomplete-list.html">Combobox With an List Autocomplete</a>
+      : example demonstrates the behavior associated with <code>aria-autocomplete=list</code>.
+    </li>
   </ul>
 
   <section>
     <h2 id="ex_label">Example</h2>
     <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
     <div id="ex1">
-      <div class="combobox-listbox">
+      <div class="combobox-list">
         <label for="cb1-input">State</label>
 
         <div class="group">
           <input id="cb1-input" class="cb_edit" type="text"
                  role="combobox"
                  aria-autocomplete="both"
-                 aria-expanded="flase"
+                 aria-expanded="false"
                  aria-haspopup="true"
-                 aria-owns="cb1-listbox"
+                 aria-owns="lb1"
+                 aria-activedescendant=""
           />
-          <button id="cb1-button" tabindex="-1" aria-label="open button">
+          <button id="cb1-button"
+                  aria-label="open button"
+                  tabindex="-1">
             &#9661;
           </button>
         </div>
 
-        <ul id="cb1-listbox" role="listbox" aria-label="States">
-          <li role="option" tabindex="-1">Alabama</li>
-          <li role="option" tabindex="-1">Alaska</li>
-          <li role="option" tabindex="-1">American Samoa</li>
-          <li role="option" tabindex="-1">Arizona</li>
-          <li role="option" tabindex="-1">Arkansas</li>
-          <li role="option" tabindex="-1">California</li>
-          <li role="option" tabindex="-1">Colorado</li>
-          <li role="option" tabindex="-1">Connecticut</li>
-          <li role="option" tabindex="-1">Delaware</li>
-          <li role="option" tabindex="-1">District of Columbia</li>
-          <li role="option" tabindex="-1">Florida</li>
-          <li role="option" tabindex="-1">Georgia</li>
-          <li role="option" tabindex="-1">Guam</li>
-          <li role="option" tabindex="-1">Hawaii</li>
-          <li role="option" tabindex="-1">Idaho</li>
-          <li role="option" tabindex="-1">Illinois</li>
-          <li role="option" tabindex="-1">Indiana</li>
-          <li role="option" tabindex="-1">Iowa</li>
-          <li role="option" tabindex="-1">Kansas</li>
-          <li role="option" tabindex="-1">Kentucky</li>
-          <li role="option" tabindex="-1">Louisiana</li>
-          <li role="option" tabindex="-1">Maine</li>
-          <li role="option" tabindex="-1">Maryland</li>
-          <li role="option" tabindex="-1">Massachusetts</li>
-          <li role="option" tabindex="-1">Michigan</li>
-          <li role="option" tabindex="-1">Minnesota</li>
-          <li role="option" tabindex="-1">Mississippi</li>
-          <li role="option" tabindex="-1">Missouri</li>
-          <li role="option" tabindex="-1">Montana</li>
-          <li role="option" tabindex="-1">Nebraska</li>
-          <li role="option" tabindex="-1">Nevada</li>
-          <li role="option" tabindex="-1">New Hampshire</li>
-          <li role="option" tabindex="-1">New Jersey</li>
-          <li role="option" tabindex="-1">New Mexico</li>
-          <li role="option" tabindex="-1">New York</li>
-          <li role="option" tabindex="-1">North Carolina</li>
-          <li role="option" tabindex="-1">North Dakota</li>
-          <li role="option" tabindex="-1">Northern Marianas Islands</li>
-          <li role="option" tabindex="-1">Ohio</li>
-          <li role="option" tabindex="-1">Oklahoma</li>
-          <li role="option" tabindex="-1">Oregon</li>
-          <li role="option" tabindex="-1">Pennsylvania</li>
-          <li role="option" tabindex="-1">Puerto Rico</li>
-          <li role="option" tabindex="-1">Rhode Island</li>
-          <li role="option" tabindex="-1">South Carolina</li>
-          <li role="option" tabindex="-1">South Dakota</li>
-          <li role="option" tabindex="-1">Tennessee</li>
-          <li role="option" tabindex="-1">Texas</li>
-          <li role="option" tabindex="-1">Utah</li>
-          <li role="option" tabindex="-1">Vermont</li>
-          <li role="option" tabindex="-1">Virginia</li>
-          <li role="option" tabindex="-1">Virgin Islands</li>
-          <li role="option" tabindex="-1">Washington</li>
-          <li role="option" tabindex="-1">West Virginia</li>
-          <li role="option" tabindex="-1">Wisconsin</li>
-          <li role="option" tabindex="-1">Wyoming</li>
+        <ul id="lb1" role="listbox" aria-label="States">
+          <li id="lb1-al" role="option">Alabama</li>
+          <li id="lb1-ak" role="option">Alaska</li>
+          <li id="lb1-as" role="option">American Samoa</li>
+          <li id="lb1-az" role="option">Arizona</li>
+          <li id="lb1-ar" role="option">Arkansas</li>
+          <li id="lb1-ca" role="option">California</li>
+          <li id="lb1-co" role="option">Colorado</li>
+          <li id="lb1-ct" role="option">Connecticut</li>
+          <li id="lb1-de" role="option">Delaware</li>
+          <li id="lb1-dc" role="option">District of Columbia</li>
+          <li id="lb1-fl" role="option">Florida</li>
+          <li id="lb1-ga" role="option">Georgia</li>
+          <li id="lb1-gm" role="option">Guam</li>
+          <li id="lb1-hi" role="option">Hawaii</li>
+          <li id="lb1-id" role="option">Idaho</li>
+          <li id="lb1-il" role="option">Illinois</li>
+          <li id="lb1-in" role="option">Indiana</li>
+          <li id="lb1-ia" role="option">Iowa</li>
+          <li id="lb1-ks" role="option">Kansas</li>
+          <li id="lb1-ky" role="option">Kentucky</li>
+          <li id="lb1-la" role="option">Louisiana</li>
+          <li id="lb1-me" role="option">Maine</li>
+          <li id="lb1-md" role="option">Maryland</li>
+          <li id="lb1-ma" role="option">Massachusetts</li>
+          <li id="lb1-mi" role="option">Michigan</li>
+          <li id="lb1-mn" role="option">Minnesota</li>
+          <li id="lb1-ms" role="option">Mississippi</li>
+          <li id="lb1-mo" role="option">Missouri</li>
+          <li id="lb1-mn" role="option">Montana</li>
+          <li id="lb1-ne" role="option">Nebraska</li>
+          <li id="lb1-nv" role="option">Nevada</li>
+          <li id="lb1-nh" role="option">New Hampshire</li>
+          <li id="lb1-nj" role="option">New Jersey</li>
+          <li id="lb1-nm" role="option">New Mexico</li>
+          <li id="lb1-ny" role="option">New York</li>
+          <li id="lb1-nc" role="option">North Carolina</li>
+          <li id="lb1-nd" role="option">North Dakota</li>
+          <li id="lb1-nm" role="option">Northern Marianas Islands</li>
+          <li id="lb1-oh" role="option">Ohio</li>
+          <li id="lb1-ok" role="option">Oklahoma</li>
+          <li id="lb1-or" role="option">Oregon</li>
+          <li id="lb1-pa" role="option">Pennsylvania</li>
+          <li id="lb1-pr" role="option">Puerto Rico</li>
+          <li id="lb1-ri" role="option">Rhode Island</li>
+          <li id="lb1-sc" role="option">South Carolina</li>
+          <li id="lb1-sd" role="option">South Dakota</li>
+          <li id="lb1-tn" role="option">Tennessee</li>
+          <li id="lb1-tx" role="option">Texas</li>
+          <li id="lb1-ut" role="option">Utah</li>
+          <li id="lb1-ve" role="option">Vermont</li>
+          <li id="lb1-va" role="option">Virginia</li>
+          <li id="lb1-vi" role="option">Virgin Islands</li>
+          <li id="lb1-wa" role="option">Washington</li>
+          <li id="lb1-wv" role="option">West Virginia</li>
+          <li id="lb1-wi" role="option">Wisconsin</li>
+          <li id="lb1-wy" role="option">Wyoming</li>
         </ul>
       </div>
     </div>
@@ -124,7 +139,7 @@
   </section>
 
   <section>
-    <h2 id="kbd_label_textbox">Textbox Keyboard Support</h2>
+    <h2 id="kbd_label_textbox">Combobox Keyboard Support</h2>
 
     <table aria-labelledby="kbd_label_textbox" class="def">
       <thead>
@@ -136,53 +151,11 @@
       <tbody>
         <tr>
           <th><kbd>Down Arrow</kbd></th>
-          <td>Opens <code>listbox</code> and moves focus to first <code>option</code>.</td>
-        </tr>
-        <tr>
-          <th><kbd>Alt+Down Arrow</kbd></th>
-          <td>Opens <code>listbox</code> and focus stays on the <code>input[type="text"]</code>.</td>
-        </tr>
-        <tr>
-          <th><kbd>Up Arrow</kbd></th>
-          <td>Opens <code>listbox</code> and moves focus to last <code>option</code>.</td>
-        </tr>
-        <tr>
-          <th><kbd>Alt+Up Arrow</kbd></th>
-          <td>Opens <code>listbox</code> and focus stays on the <code>input[type="text"]</code>.</td>
-        </tr>
-        <tr>
-          <th><kbd>Escape</kbd></th>
-          <td>if open, closes the <code>listbox</code>.</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <h2 id="kbd_label_listbox">Listbox Keyboard Support</h2>
-
-    <table aria-labelledby="kbd_label_listbox" class="def">
-      <thead>
-        <tr>
-          <th>Key</th>
-          <th>Function</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th><kbd>Enter</kbd></th>
           <td>
             <ul>
-              <li><code>input[type="text"]</code> value is set to the <code>option</code> content.</li>
-              <li>Closes the <code>listbox</code>.</li>
-              <li>Sets focus on the <code>input[type="text"]</code></li>
-            </ul>
-          </td>
-        </tr>
-        <tr>
-          <th><kbd>Escape</kbd></th>
-          <td>
-            <ul>
-              <li>Closes the <code>listbox</code>.</li>
-              <li>Sets focus to the <code>input[type="text"]</code> button.</li>
+              <li>If the listbox is <strong>closed</strong>, the listbox is opened and <code>aria-activedescendant</code> is set to reference the first option in the listbox.  </li>
+              <li>If the listbox is <strong>open</strong>, <code>aria-activedescendant</code> is updated to reference the next option in the listbox.  <br/>Note: When <code>aria-activedescendant</code> is referencing the last option the reference does not change.</li>
+              <li>If the listbox is <strong>empty</strong> (e.g. no options avaialble), <code>aria-activedescendant</code> is set to an empty string.</li>
             </ul>
           </td>
         </tr>
@@ -190,36 +163,30 @@
           <th><kbd>Up Arrow</kbd></th>
           <td>
             <ul>
-              <li>Moves focus to the previous <code>option</code>.</li>
-              <li>If focus is on the first <code>option</code>, the focus does not move.</li>
-            </ul>
-          </td>
+              <li>If the listbox is <strong>closed</strong>, the listbox is opened and <code>aria-activedescendant</code> is set to reference the last option in the listbox.  </li>
+              <li>If the listbox is <strong>open</strong>, <code>aria-activedescendant</code> is updated to reference the previous option in the listbox.  <br/>Note: When <code>aria-activedescendant</code> is referencing the first option the reference does not change.</li>
+              <li>If the listbox is <strong>empty</strong> (e.g. no options avaialble), <code>aria-activedescendant</code> is set to an empty string.</li>
+            </ul>          </td>
         </tr>
-         <tr>
-          <th><kbd>Down Arrow</kbd></th>
+        <tr>
+          <th><kbd>Left Arrow</kbd>,<br/><kbd>Right Arrow</kbd>,<br/><kbd>Backspace</kbd>,<br/><kbd>Printable characters</kbd></th>
           <td>
             <ul>
-              <li>Moves focus to the next <code>option</code>.</li>
-              <li>If focus is on the last <code>option</code>, the focus does not move.</li>
+              <li>The list of options in the listbox are updated based on the text content of the <code>combobox</code>.</li>
+              <li>The list of options are filtered based on user input before the edit cursor (e.g. <code>sectionStart</code> property of the textbox).</li>
+              <li>After the options are updated:
+                <ul>
+                  <li>If the currently referenced option <strong>remains</strong> in the list, <code>aria-activedescendant</code> will not change.</li>
+                  <li>If the currently referenced option is <strong>not</strong> a match, <code>aria-activedescendant</code> is updated to reference the first item in the new list of options.</li>
+                  <li>If there are <strong>no</strong> options available, <code>aria-activedescendant</code> is set to an empty string.</li>
+                </ul>
+              </li>
             </ul>
           </td>
         </tr>
         <tr>
-          <th><kbd>Home</kbd><br/><kbd>Page Up</kbd></th>
-          <td>Moves focus to the first <code>option</code>.</td>
-        </tr>
-        <tr>
-          <th><kbd>End</kbd><br/><kbd>Page Down</kbd></th>
-          <td>Moves focus to the last <code>option</code>.</td>
-        </tr>
-        <tr>
-          <th><kbd>A-Z</kbd><br><kbd>a-z</kbd></th>
-          <td>
-            <ul>
-              <li>Moves focus to the <code>option</code> with a label that starts with the typed character if such an option exists.</li>
-              <li>Otherwise, focus does not move.</li>
-            </ul>
-          </td>
+          <th><kbd>Escape</kbd></th>
+          <td>If the listbox is <strong>open</strong>, the listbox is closed and aria-activedescendant</code> is set to an empty string.</td>
         </tr>
       </tbody>
     </table>
@@ -247,7 +214,7 @@
           <td><!--  Leave this cell blank in rows where a role is being described. --></td>
           <td><code>input[type="text"]</code></td>
           <td>
-            Identifies the textbx as a combobox option.
+            Identifies the <code>input[type=<q>text</q>] as a combobox option.
           </td>
         </tr>
         <tr>
@@ -257,10 +224,14 @@
           <td><code>input[type="text"]</code></td>
           <td>
             <ul>
-              <li>explanation of usage, purpose, benefit, and/or guidance relevant to this implementation.</li>
-              <li>If making multiple statements, use list for brevity and clarity</li>
-              <li>Do not make a single item list.</li>
-            </ul>
+              <li>The value of <code>both</code> identifies that the combobox will update
+                the <code>input[type=<q>text</q>]</code> value with the currently selected option
+                and the list of options will be filtered based on user input.
+              </li>
+              <li>When there is an autocomplete options, the selection range of
+                <code>input[type=<q>text</q>]</code> will be set to the end of the text being
+                used to filter the list of options and the end of the autocomplete option.
+              </li>
           </td>
         </tr>
         <tr>
@@ -269,11 +240,7 @@
           <th scope="row"><code>aria-haspopup=<q>true</q></code></th>
           <td><code>input[type="text"]</code></td>
           <td>
-            <ul>
-              <li>explanation of usage, purpose, benefit, and/or guidance relevant to this implementation.</li>
-              <li>If making multiple statements, use list for brevity and clarity</li>
-              <li>Do not make a single item list.</li>
-            </ul>
+            Identifies the <code>combobox</code> as having a popup list of options for the value of the textbox.
           </td>
         </tr>
         <tr>
@@ -282,11 +249,7 @@
           <th scope="row"><code>aria-owns=<q>#IDREF</q></code></th>
           <td><code>input[type="text"]</code></td>
           <td>
-            <ul>
-              <li>explanation of usage, purpose, benefit, and/or guidance relevant to this implementation.</li>
-              <li>If making multiple statements, use list for brevity and clarity</li>
-              <li>Do not make a single item list.</li>
-            </ul>
+            Identifies the <code>listbox</code> that is controlled by the combobox.
           </td>
         </tr>
         <tr>
@@ -295,11 +258,7 @@
           <th scope="row"><code>aria-expanded=<q>false</q></code></th>
           <td><code>input[type="text"]</code></td>
           <td>
-            <ul>
-              <li>explanation of usage, purpose, benefit, and/or guidance relevant to this implementation.</li>
-              <li>If making multiple statements, use list for brevity and clarity</li>
-              <li>Do not make a single item list.</li>
-            </ul>
+            Idenitifies the <code>listbox</code> as closed (e.g. hidden from the user).
           </td>
         </tr>
         <tr>
@@ -308,13 +267,28 @@
           <th scope="row"><code>aria-expanded=<q>true</q></code></th>
           <td><code>input[type="text"]</code></td>
           <td>
-            <ul>
-              <li>explanation of usage, purpose, benefit, and/or guidance relevant to this implementation.</li>
-              <li>If making multiple statements, use list for brevity and clarity</li>
-              <li>Do not make a single item list.</li>
-            </ul>
+            Idenitifies the <code>listbox</code> as open (e.g. visible to the user).
           </td>
-        </tr>      </tbody>
+        </tr>
+        <tr>
+          <td>
+          </td>
+          <th scope="row"><code>aria-activedescendant=<q>#IDREF</q></code></th>
+          <td><code>input[type="text"]</code></td>
+          <td>
+            References the current autocomplete <code>option</code> in the <code>listbox</code>.
+          </td>
+        </tr>
+        <tr>
+          <td>
+          </td>
+          <th scope="row"><code>aria-activedescendant=<q></q></code></th>
+          <td><code>input[type="text"]</code></td>
+          <td>
+            If no autocomplete <code>option</code> is selected or the list of <code>option</code>s is emtpy, <code>aria-activedescendant</code> is set to an empty string.</td>
+          </td>
+        </tr>
+      </tbody>
     </table>
 
 
@@ -346,7 +320,7 @@
           <td>
             <code></code>
           </td>
-          <th scope="row"><code>aria-label=<q>States<q></code></th>
+          <th scope="row"><code>aria-label=<q>States</q></code></th>
           <td>
             <code>ul</code>
           </td>
@@ -370,16 +344,15 @@
           </td>
         </tr>
         <tr>
-          <td></td>
-          <th scope="row"><code>tabindex=&quot;-1&quot;</code></th>
+          <td>
+            <code></code>
+          </td>
+          <th scope="row"><code>id=<q>ID</q></code></th>
           <td>
             <code>li</code>
           </td>
           <td>
-            <ul>
-              <li>Allows DOM focus to be set on the menu item with the JavaScript focus method.</li>
-              <li>Dynamically added by the JavaScript.</li>
-            </ul>
+            Provides a unique reference for the option that is referenced by the <code>aria-activedescendant</code> attribute of the <code>combobox</code>.
           </td>
         </tr>
       </tbody>
@@ -400,7 +373,7 @@
       </li>
       <li>
         Javascript:
-        <a href="js/combobox-1.0-listbox.js" type="text/javascript">combobox-1.0-listbox.js</a>
+        <a href="js/combobox-1.0-list.js" type="text/javascript">combobox-1.0-list.js</a>
       </li>
       <li>
         Javascript:
