@@ -206,6 +206,7 @@ ComboboxList.prototype.handleKeyup = function (event) {
       if (this.autocomplete === 'both') {
         this.setValue(this.filter);
         this.listbox.setFocusStyle(null);
+        this.option = false;
       }
       flag = true;
       break;
