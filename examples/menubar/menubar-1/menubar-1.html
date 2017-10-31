@@ -29,8 +29,8 @@
   <p>
     The following implementation of the
     <a href="../../../#menu">design pattern for menubar</a>
-    demonstrates a menubar that provides site navigation menus. 
-    Each item in the menubar represents a section of a web site for a mythical university and opens a submenu containing menu items that link to pages within that section. 
+    demonstrates a menubar that provides site navigation menus.
+    Each item in the menubar represents a section of a web site for a mythical university and opens a submenu containing menu items that link to pages within that section.
   </p>
   <p>Similar examples include: </p>
   <ul>
@@ -88,7 +88,18 @@
               <a role="menuitem" href="mb-admissions.html#apply">Apply</a>
             </li>
             <li role="none">
-              <a role="menuitem" href="mb-admissions.html#tuition">Tuition</a>
+              <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">Tuition</a>
+              <ul role="menu" aria-label="Tuition Information">
+                <li role="none">
+                  <a role="menuitem" href="mb-admissions.html#tuition">Undergraduate</a>
+                </li>
+                <li role="none">
+                  <a role="menuitem" href="mb-admissions.html#tuition">Graduate</a>
+                </li>
+                <li role="none">
+                  <a role="menuitem" href="mb-admissions.html#tuition">Professional Schools</a>
+                </li>
+              </ul>
             </li>
             <li role="none">
               <a role="menuitem" href="mb-admissions.html#signup">Sign Up</a>
@@ -150,7 +161,7 @@
     <h2>Accessibility Features</h2>
     <p>The down arrow and right arrow icons are made compatible with high contrast mode and hidden from screen readers by using the CSS <code>content</code> property to render images.</p>
   </section>
-  
+
   <section>
     <h2 id="kbd_label">Keyboard Support</h2>
     <h3 id="kbd1_label">Menubar</h3>
@@ -337,7 +348,7 @@
           </td>
         </tr>
       </tbody>
-    </table>    
+    </table>
   </section>
 
   <section>
@@ -594,9 +605,9 @@
     <p>
       Currently, using aria-expanded on elements with role menuitem triggers HTML validation errors because the ARIA specification does not yet support doing so.
       The ARIA working group plans to resolve this issue in the next version of the specification.
-      Until a version of ARIA that resolves 
-      <a href="https://github.com/w3c/aria/issues/454">the issue</a> 
-      becomes a W3C recommendation, it is safe to ignore these validation errors. 
+      Until a version of ARIA that resolves
+      <a href="https://github.com/w3c/aria/issues/454">the issue</a>
+      becomes a W3C recommendation, it is safe to ignore these validation errors.
       Alternatively, since only a few browser and assistive technology combinations exploit this feature of the pattern, it can be omitted from implementations.
     </p>
   </section>
