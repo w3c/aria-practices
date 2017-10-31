@@ -41,10 +41,8 @@ ul.checkboxes {
 
 [role="checkbox"][aria-checked="mixed"]::after {
   display: block;
-  width: 8px;
+  width: 6px;
   border-bottom: 0.125em solid #fff;
-  transform: translate(-50%, -50%) rotateZ(45deg);
-  transform-origin: center center;
 }
 
 [role="checkbox"][aria-checked="mixed"]:active::after,

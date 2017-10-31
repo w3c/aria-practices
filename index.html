@@ -709,17 +709,17 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   "preProcess": [
     null
   ],
-  "publishDate": "2017-10-30",
-  "publishISODate": "2017-10-30T00:00:00.000Z",
-  "generatedSubtitle": "Editor's Draft 30 October 2017"
+  "publishDate": "2017-10-31",
+  "publishISODate": "2017-10-31T00:00:00.000Z",
+  "generatedSubtitle": "Editor's Draft 31 October 2017"
 }</script></head>
 <body aria-busy="false" class="h-entry toc-inline"><div class="head">
     <p>
       <a class="logo" href="https://www.w3.org/"><img width="72" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" alt="W3C"></a>
     </p>
-  <p><!--_hyper: -1389657559;--></p>
+  <p><!--_hyper: 918907142;--></p>
   <h1 class="title p-name" id="title" property="dcterms:title"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Authoring Practices 1.1</h1>
-  <h2 id="w3c-editor-s-draft-30-october-2017"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2017-10-30">30 October 2017</time><span class="permalink" typeof="bookmark"><a href="#undefined" aria-label="Permalink for W3C Editor's Draft 30 October 2017" title="Permalink for W3C Editor's Draft 30 October 2017" property="url"><span property="title" content="W3C Editor's Draft 30 October 2017">§</span></a></span></h2>
+  <h2 id="w3c-editor-s-draft-31-october-2017"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2017-10-31">31 October 2017</time><span class="permalink" typeof="bookmark"><a href="#undefined" aria-label="Permalink for W3C Editor's Draft 31 October 2017" title="Permalink for W3C Editor's Draft 31 October 2017" property="url"><span property="title" content="W3C Editor's Draft 31 October 2017">§</span></a></span></h2>
   <dl>
       <dt>This version:</dt>
       <dd><a class="u-url" href="https://w3c.github.io/aria-practices/">https://w3c.github.io/aria-practices/</a></dd>
@@ -4670,7 +4670,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <a href="https://github.com/w3c/aria-practices/issues/505">issue 505.</a>
     </p>
     <p>
-      To present and describe a grid or table, in addition to parsing the headers, rows, and cells using the roles described in the
+      To fully present and describe a grid or table, in addition to parsing the headers, rows, and cells using the roles described in the
       <a href="#grid">grid pattern</a> or <a href="#table">table pattern</a>,
       assistive technologies need to be able to determine :
     </p>
@@ -4681,9 +4681,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <li>Whether and how data is sorted.</li>
     </ul>
     <p>
-      Browsers can automatically calculate dimension information and put it into their accessibility tree based on what is in the DOM.
+      Browsers can automatically calculate the number of rows and columns and put it into their accessibility tree based on what is in the DOM.
       However, there are many situations where the DOM does not contain the whole table, such as when the data set is too large to fully render.
-      additionally, some of this information, like skipped columns or rows and how data is sorted, cannot be derived from the DOM structure.
+      Additionally, some of this information, like skipped columns or rows and how data is sorted, cannot be derived from the DOM structure.
     </p>
     <p>The below sections explain how to use the following properties that ARIA provides for grid and table accessibility.</p>
     <table class="widget-features">
@@ -4738,8 +4738,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     <section id="gridAndTableProperties_rows" typeof="bibo:Chapter" resource="#gridAndTableProperties_rows" property="bibo:hasPart">
       <h3 id="x6-1-using-aria-rowcount-and-aria-rowindex" resource="#x6-1-using-aria-rowcount-and-aria-rowindex"><span property="xhv:role" resource="xhv:heading"><span class="secno">6.1 </span>Using <code>aria-rowcount</code> and <code>aria-rowindex</code><span class="permalink" typeof="bookmark"><a href="#gridAndTableProperties_rows" aria-label="Permalink for 6.1 Using aria-rowcount and aria-rowindex" title="Permalink for 6.1 Using aria-rowcount and aria-rowindex" property="url"><span property="title" content="6.1 Using aria-rowcount and aria-rowindex">§</span></a></span></span></h3>
       <p>
-        When the number of rows represented by the DOM structure is not the total number of rows  available for a table, grid, or treegrid,
-        the  <code>aria-rowcount</code>  property is used to commyunicate the total number of rows available,
+        When the number of rows represented by the DOM structure is not the total number of rows available for a table, grid, or treegrid,
+        the  <code>aria-rowcount</code>  property is used to communicate the total number of rows available,
         and it is accompanied by the <code>aria-rowindex</code> property to identify the row indicies of the rows that are present in the DOM.
       </p>
       <p>
