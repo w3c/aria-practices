@@ -99,7 +99,7 @@ PopupMenu.prototype.setFocusToController = function (command, flag) {
     command = '';
   }
 
-  function setFocusToMenubarItem(controller, close) {
+  function setFocusToMenubarItem (controller, close) {
     while (controller) {
       if (controller.isMenubarItem) {
         controller.domNode.focus();
@@ -242,7 +242,7 @@ PopupMenu.prototype.close = function (force) {
 
   var hasFocus = this.hasFocus;
 
-  for(var i = 0; i < this.menuitems.length; i++) {
+  for (var i = 0; i < this.menuitems.length; i++) {
     var mi = this.menuitems[i];
     if (mi.popupMenu) {
       hasFocus = hasFocus | mi.popupMenu.hasFocus;
