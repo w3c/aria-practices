@@ -67,9 +67,9 @@ ComboboxList.prototype.init = function () {
 ComboboxList.prototype.updateValue = function () {
   if (this.autocomplete === 'both') {
 
-    if (this.filter.length && this.option && this.listbox.isOpen()) {
+    if (this.option && this.listbox.isOpen()) {
       this.domNode.value = this.option.textContent;
-      this.domNode.setSelectionRange(this.filter.length,this.filter.length);
+      this.domNode.setSelectionRange(this.filter.length,this.option.textContent.length);
     }
     else {
       this.domNode.value = this.filter;
@@ -194,7 +194,7 @@ ComboboxList.prototype.handleKeyup = function (event) {
     return str.length === 1 && str.match(/\S/);
   }
 
-  this.filter = this.domNode.value.substring(0,this.domNode.selectionEnd);
+  this.filter = this.domNode.value.substring(0,this.domNode.selectionStart);
 
   if (this.autocomplete !== 'none') {
     option = this.listbox.filterOptions(this.filter, this.option);
@@ -205,12 +205,14 @@ ComboboxList.prototype.handleKeyup = function (event) {
     case this.keyCode.BACKSPACE:
       if (this.autocomplete === 'both') {
         this.setValue(this.filter);
+        this.listbox.setFocusStyle(null);
       }
       flag = true;
       break;
 
     case this.keyCode.LEFT:
     case this.keyCode.RIGHT:
+      this.listbox.setFocusStyle(null);
       flag = true;
       break;
 
@@ -245,7 +247,7 @@ ComboboxList.prototype.handleClick = function (event) {
 };
 
 ComboboxList.prototype.handleFocus = function (event) {
-  this.listbox.hasFocus = true;
+  this.listbox.open();
 };
 
 ComboboxList.prototype.handleBlur = function (event) {
