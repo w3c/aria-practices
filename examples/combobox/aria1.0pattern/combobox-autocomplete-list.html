@@ -22,100 +22,100 @@
   <main>
     <h1>Legacy ARIA 1.0 Combobox With List Autocomplete Example</h1>
     <p>
-      <strong>NOTE:</strong> This page is work in progress; it is not ready for review. This work is tracked by
+      <strong>NOTE:</strong> This page is work in progress. Please provide feedback in
       <a href="https://github.com/w3c/aria-practices/issues/99">issue 99.</a>
     </p>
     <p>
-      The below combobox for choosing the name of a state in the USA demonstrates the
+      The below combobox for choosing the name of a US state or territory demonstrates the
       <a href="../../../#combobox">ARIA 1.0 design pattern for combobox.</a>
+      The design pattern describes four types of autocomplete behavior.
       This example illustrates the autocomplete behavior known as list autocomplete with manual selection.
       If the user types one or more characters in the edit box and the typed characters match the beginning of the name of one or more states or territories, a listbox popup appears containing the matching names.
       When the listbox appears, a suggested name is not automatically selected.
       Thus, after typing, if the user tabs or clicks out of the combobox without choosing a value from the listbox, the typed string becomes the value of the combobox.
-      Note that this implementation enables users to input the name of a state or territory but does not prevent input of any other arbetrary value.
+      Note that this implementation enables users to input the name of a state or territory, but it does not prevent input of any other arbetrary value.
     </p>
     <p>Similar examples include:</p>
     <ul>
-      <li><a href="combobox-autocomplete-both.html">ARIA 1.0 Combobox with Both List and Inline Autocompletion</a></li>
-      <li><a href="../aria1.1pattern/listbox-combo.html">ARIA 1.1 Combobox with Listbox Popup</a>: Comboboxes that demonstrate the various forms of autocomplete behavior using a listbox popup.</li>
-            <li><a href="../aria1.1pattern/grid-combo.html">ARIA 1.1 Combobox with Grid Popup</a>: A combobox that presents suggestions in a grid, enabling users to navigate descriptive information about each suggestion.</li>
+      <li><a href="combobox-autocomplete-both.html">ARIA 1.0 Combobox with Both List and Inline Autocomplete</a>: A combobox that demonstrates the autocomplete behavior known as <q>list with inline autocomplete</q> and uses the ARIA 1.0 implementation pattern.</li>
+      <li><a href="combobox-autocomplete-none.html">ARIA 1.0 Combobox Without Autocomplete</a>: A combo box that demonstrates the behavior associated with <code>aria-autocomplete=none</code> and uses the ARIA 1.0 implementation pattern.</li>
+      <li><a href="../aria1.1pattern/listbox-combo.html">ARIA 1.1 Combobox with Listbox Popup</a>: Comboboxes that demonstrate the various forms of autocomplete behavior using a listbox popup and use the ARIA 1.1 implementation pattern.</li>
+      <li><a href="../aria1.1pattern/grid-combo.html">ARIA 1.1 Combobox with Grid Popup</a>: A combobox that presents suggestions in a grid, enabling users to navigate descriptive information about each suggestion.</li>
     </ul>
   
     <section>
       <h2 id="ex_label">Example</h2>
       <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
       <div id="ex1">
-        <div class="combobox-listbox">
+        <div class="combobox-list">
           <label for="cb1-input">State</label>
-  
           <div class="group">
             <input id="cb1-input" class="cb_edit" type="text" role="combobox" aria-autocomplete="list"
               aria-expanded="false" aria-haspopup="true" aria-owns="cb1-listbox"
             />
-            <button id="cb1-button" tabindex="-1" aria-label="open">&#9661;</button>
+            <button id="cb1-button" tabindex="-1" aria-label="Open">&#9661;</button>
           </div>
-  
           <ul id="cb1-listbox" role="listbox" aria-label="States">
-            <li role="option" tabindex="-1">Alabama</li>
-            <li role="option" tabindex="-1">Alaska</li>
-            <li role="option" tabindex="-1">American Samoa</li>
-            <li role="option" tabindex="-1">Arizona</li>
-            <li role="option" tabindex="-1">Arkansas</li>
-            <li role="option" tabindex="-1">California</li>
-            <li role="option" tabindex="-1">Colorado</li>
-            <li role="option" tabindex="-1">Connecticut</li>
-            <li role="option" tabindex="-1">Delaware</li>
-            <li role="option" tabindex="-1">District of Columbia</li>
-            <li role="option" tabindex="-1">Florida</li>
-            <li role="option" tabindex="-1">Georgia</li>
-            <li role="option" tabindex="-1">Guam</li>
-            <li role="option" tabindex="-1">Hawaii</li>
-            <li role="option" tabindex="-1">Idaho</li>
-            <li role="option" tabindex="-1">Illinois</li>
-            <li role="option" tabindex="-1">Indiana</li>
-            <li role="option" tabindex="-1">Iowa</li>
-            <li role="option" tabindex="-1">Kansas</li>
-            <li role="option" tabindex="-1">Kentucky</li>
-            <li role="option" tabindex="-1">Louisiana</li>
-            <li role="option" tabindex="-1">Maine</li>
-            <li role="option" tabindex="-1">Maryland</li>
-            <li role="option" tabindex="-1">Massachusetts</li>
-            <li role="option" tabindex="-1">Michigan</li>
-            <li role="option" tabindex="-1">Minnesota</li>
-            <li role="option" tabindex="-1">Mississippi</li>
-            <li role="option" tabindex="-1">Missouri</li>
-            <li role="option" tabindex="-1">Montana</li>
-            <li role="option" tabindex="-1">Nebraska</li>
-            <li role="option" tabindex="-1">Nevada</li>
-            <li role="option" tabindex="-1">New Hampshire</li>
-            <li role="option" tabindex="-1">New Jersey</li>
-            <li role="option" tabindex="-1">New Mexico</li>
-            <li role="option" tabindex="-1">New York</li>
-            <li role="option" tabindex="-1">North Carolina</li>
-            <li role="option" tabindex="-1">North Dakota</li>
-            <li role="option" tabindex="-1">Northern Marianas Islands</li>
-            <li role="option" tabindex="-1">Ohio</li>
-            <li role="option" tabindex="-1">Oklahoma</li>
-            <li role="option" tabindex="-1">Oregon</li>
-            <li role="option" tabindex="-1">Pennsylvania</li>
-            <li role="option" tabindex="-1">Puerto Rico</li>
-            <li role="option" tabindex="-1">Rhode Island</li>
-            <li role="option" tabindex="-1">South Carolina</li>
-            <li role="option" tabindex="-1">South Dakota</li>
-            <li role="option" tabindex="-1">Tennessee</li>
-            <li role="option" tabindex="-1">Texas</li>
-            <li role="option" tabindex="-1">Utah</li>
-            <li role="option" tabindex="-1">Vermont</li>
-            <li role="option" tabindex="-1">Virginia</li>
-            <li role="option" tabindex="-1">Virgin Islands</li>
-            <li role="option" tabindex="-1">Washington</li>
-            <li role="option" tabindex="-1">West Virginia</li>
-            <li role="option" tabindex="-1">Wisconsin</li>
-            <li role="option" tabindex="-1">Wyoming</li>
+            <li id="lb1-al" role="option">Alabama</li>
+            <li id="lb1-ak" role="option">Alaska</li>
+            <li id="lb1-as" role="option">American Samoa</li>
+            <li id="lb1-az" role="option">Arizona</li>
+            <li id="lb1-ar" role="option">Arkansas</li>
+            <li id="lb1-ca" role="option">California</li>
+            <li id="lb1-co" role="option">Colorado</li>
+            <li id="lb1-ct" role="option">Connecticut</li>
+            <li id="lb1-de" role="option">Delaware</li>
+            <li id="lb1-dc" role="option">District of Columbia</li>
+            <li id="lb1-fl" role="option">Florida</li>
+            <li id="lb1-ga" role="option">Georgia</li>
+            <li id="lb1-gm" role="option">Guam</li>
+            <li id="lb1-hi" role="option">Hawaii</li>
+            <li id="lb1-id" role="option">Idaho</li>
+            <li id="lb1-il" role="option">Illinois</li>
+            <li id="lb1-in" role="option">Indiana</li>
+            <li id="lb1-ia" role="option">Iowa</li>
+            <li id="lb1-ks" role="option">Kansas</li>
+            <li id="lb1-ky" role="option">Kentucky</li>
+            <li id="lb1-la" role="option">Louisiana</li>
+            <li id="lb1-me" role="option">Maine</li>
+            <li id="lb1-md" role="option">Maryland</li>
+            <li id="lb1-ma" role="option">Massachusetts</li>
+            <li id="lb1-mi" role="option">Michigan</li>
+            <li id="lb1-mn" role="option">Minnesota</li>
+            <li id="lb1-ms" role="option">Mississippi</li>
+            <li id="lb1-mo" role="option">Missouri</li>
+            <li id="lb1-mn" role="option">Montana</li>
+            <li id="lb1-ne" role="option">Nebraska</li>
+            <li id="lb1-nv" role="option">Nevada</li>
+            <li id="lb1-nh" role="option">New Hampshire</li>
+            <li id="lb1-nj" role="option">New Jersey</li>
+            <li id="lb1-nm" role="option">New Mexico</li>
+            <li id="lb1-ny" role="option">New York</li>
+            <li id="lb1-nc" role="option">North Carolina</li>
+            <li id="lb1-nd" role="option">North Dakota</li>
+            <li id="lb1-nm" role="option">Northern Marianas Islands</li>
+            <li id="lb1-oh" role="option">Ohio</li>
+            <li id="lb1-ok" role="option">Oklahoma</li>
+            <li id="lb1-or" role="option">Oregon</li>
+            <li id="lb1-pa" role="option">Pennsylvania</li>
+            <li id="lb1-pr" role="option">Puerto Rico</li>
+            <li id="lb1-ri" role="option">Rhode Island</li>
+            <li id="lb1-sc" role="option">South Carolina</li>
+            <li id="lb1-sd" role="option">South Dakota</li>
+            <li id="lb1-tn" role="option">Tennessee</li>
+            <li id="lb1-tx" role="option">Texas</li>
+            <li id="lb1-ut" role="option">Utah</li>
+            <li id="lb1-ve" role="option">Vermont</li>
+            <li id="lb1-va" role="option">Virginia</li>
+            <li id="lb1-vi" role="option">Virgin Islands</li>
+            <li id="lb1-wa" role="option">Washington</li>
+            <li id="lb1-wv" role="option">West Virginia</li>
+            <li id="lb1-wi" role="option">Wisconsin</li>
+            <li id="lb1-wy" role="option">Wyoming</li>
           </ul>
         </div>
       </div>
-      <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
+    <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
     </section>
   
     <section>
@@ -291,7 +291,7 @@
               <code>aria-autocomplete=<q>list</q></code>
             </th>
             <td><code>input[type="text"]</code></td>
-            <td>Indicates that the autocomplete behavior is to suggest values in a listbox.</td>
+            <td>Indicates that the autocomplete behavior of the text input is to suggest a list of possible values in a popup and that the suggestions are related to the string that is present in the textbox.</td>
           </tr>
           <tr>
             <td></td>
@@ -299,12 +299,7 @@
               <code>aria-haspopup=<q>true</q></code>
             </th>
             <td><code>input[type="text"]</code></td>
-            <td>
-              <ul>
-                <li>Indicates that the combobox can popup another element to suggest values.</li>
-                <li>This is the default value for elements with the <code>combobox</code> role.</li>
-              </ul>
-            </td>
+            <td>Indicates that the combobox can popup another element to suggest values.</td>
           </tr>
           <tr>
             <td></td>
@@ -334,6 +329,24 @@
             </th>
             <td><code>input[type="text"]</code></td>
             <td>Indicates that the popup element <strong>is</strong> displayed.</td>
+          </tr>
+          <tr>
+            <td></td>
+            <th scope="row">
+              <code>aria-activedescendant=<q>IDREF</q></code>
+            </th>
+            <td><code>input[type="text"]</code></td>
+            <td>
+              <ul>
+                <li>When an option in the listbox is visually indicated as having keyboard focus, refers to that option.</li>
+                <li>When navigation keys, such as <kbd>Down Arrow</kbd>, are pressed, the JavaScript changes the value.</li>
+                <li>Enables assistive technologies to know which element the application regards as focused while DOM focus remains on the <code>input</code> element.</li>
+                <li>
+                  For more information about this focus management technique, see 
+                  <a href="../../../#kbd_focus_activedescendant">Using aria-activedescendant to Manage Focus.</a>
+                </li>
+              </ul>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -382,13 +395,13 @@
           <tr>
             <td></td>
             <th scope="row">
-              <code>tabindex=&quot;-1&quot;</code>
+              <code>aria-selected=<q>true</q></code>
             </th>
             <td><code>li</code></td>
             <td>
               <ul>
-                <li>Allows DOM focus to be set on the element with the JavaScript focus method.</li>
-                <li>Dynamically added by the JavaScript.</li>
+                <li>Specified on an option in the listbox when it is visually highlighted as selected.</li>
+                <li>Occurs only when an option in the list is referenced by <code>aria-activedescendant</code>.</li>
               </ul>
             </td>
           </tr>
