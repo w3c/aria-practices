@@ -139,7 +139,6 @@ Listbox.prototype.setFocusStyle = function (option) {
       this.options[i].domNode.classList.remove('focus');
     }
   }
-
 };
 
 Listbox.prototype.setOption = function (option) {
