@@ -2,3 +2,30 @@
 	font-style: italic;
 	color: #366ED4;
 }
+
+.combobox-listbox {
+  position: relative;
+}
+
+.combobox-inline label,
+.combobox-listbox label {
+  margin: 0;
+  padding: 0;
+  display: block;
+}
+
+.combobox-listbox .group input,
+.combobox-listbox .group button {
+  display: inline;
+}
+
+.combobox-listbox .group button {
+  margin: 0;
+  padding: 0 0.125em 0 0.125em;
+  position: relative;
+  top: 1px;
+  left: -2px;
+  font-size: 85%;
+  background-color: #eee;
+}
+
