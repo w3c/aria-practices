@@ -6,8 +6,6 @@
 *
 *   Desc:   Combobox widget that implements ARIA Authoring Practices for
 *           ARIA 1.0 definition of combobox using a Listbox
-*
-*   Author: Jon Gunderson and Nicholas Hoyt
 */
 
 /*
