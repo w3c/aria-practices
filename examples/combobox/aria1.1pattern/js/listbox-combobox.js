@@ -231,7 +231,7 @@ aria.ListboxCombobox.prototype.hideListbox = function () {
   this.onHide();
 };
 
-aria.ListboxCombobox.prototype.checkSelection = function() {
+aria.ListboxCombobox.prototype.checkSelection = function () {
   if (this.activeIndex < 0) {
     return;
   }
