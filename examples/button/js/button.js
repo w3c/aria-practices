@@ -5,6 +5,8 @@
 *   File:   button.js
 *
 *   Desc:   JS code for Button Design Pattersn
+*
+*   Author: Jon Gunderson
 */
 
 var ICON_MUTE_URL  = 'images/mute.svg#icon-mute';

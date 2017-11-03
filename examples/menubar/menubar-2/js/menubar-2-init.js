@@ -5,6 +5,8 @@
 *   File:   menubar-2-init.js
 *
 *   Desc:   Creates a menubar to control the styling of text in a textarea element
+*
+*   Author: Jon Gunderson, Ku Ja Eun and Nicholas Hoyt
 */
 
 window.addEventListener('load', function () {

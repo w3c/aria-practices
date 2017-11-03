@@ -5,6 +5,8 @@
 *   File:   Menubutton.js
 *
 *   Desc:   Menubutton Menuitem widget that implements ARIA Authoring Practices
+*
+*   Author: Jon Gunderson, Ku Ja Eun, Nicholas Hoyt and Brian Loh
 */
 
 /*

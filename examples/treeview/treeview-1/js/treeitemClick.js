@@ -5,6 +5,8 @@
 *   File:   Treeitem.js
 *
 *   Desc:   Setup click events for Tree widget examples
+
+*   Author: Jon Gunderson, Ku Ja Eun and Nicholas Hoyt @ University of Illinois
 */
 
 /**
