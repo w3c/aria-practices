@@ -5,8 +5,6 @@
 *   File:   MenubarItemAction.js
 *
 *   Desc:   Menubar Menuitem widget that implements ARIA Authoring Practices
-*
-*   Author: Jon Gunderson, Ku Ja Eun and Nicholas Hoyt
 */
 
 /*

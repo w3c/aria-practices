@@ -6,8 +6,6 @@
 *
 *   Desc:   Checkbox widget that implements ARIA Authoring Practices
 *           for a menu of links
-*
-*   Author: Jon Gunderson and Nicholas Hoyt
 */
 
 /*

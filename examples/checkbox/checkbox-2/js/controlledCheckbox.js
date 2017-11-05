@@ -6,8 +6,6 @@
 *
 *   Desc:   ControlledCheckbox widget that implements ARIA Authoring Practices
 *           for a mixed checkbox
-*
-*   Author: Jon Gunderson and Nicholas Hoyt
 */
 
 /*
