@@ -1,6 +1,8 @@
 /*
-Simple accordion pattern example
-Gerard K. Cohen, 05/20/2017
+*   This content is licensed according to the W3C Software License at
+*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+*
+*   Simple accordion pattern example
 */
 
 'use strict';
