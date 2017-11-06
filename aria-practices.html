@@ -16,7 +16,6 @@
       It describes considerations that might not be evident to most authors from the WAI-ARIA specification alone and recommends approaches to make widgets, navigation, and behaviors accessible using WAI-ARIA roles, states, and properties.
       This document is directed primarily to Web application developers, but the guidance is also useful for user agent and assistive technology developers.
     </p>
-
     <p>This document is part of the WAI-ARIA suite described in the <a href="https://www.w3.org/WAI/intro/aria.php">WAI-ARIA Overview</a>.</p>
   </section>
 
@@ -54,28 +53,24 @@
 
   <section id="intro">
     <h2>Introduction</h2>
-
     <p>This section is <em>informative.</em></p>
-
     <p>
-      WAI-ARIA Authoring Practices is a guide to understanding how to use WAI-ARIA to create an accessible Rich Internet Application.
-      It describes recommended WAI-ARIA usage patterns and provides an introduction to the concepts behind them.
+      WAI-ARIA Authoring Practices is a guide to understanding how to use 
+      <cite><a href="https://www.w3.org/TR/wai-aria-1.1/"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> 1.1</a></cite>
+      to create an accessible Rich Internet Application.
+      It provides guidance on appropriate application of WAI-ARIA, describes recommended WAI-ARIA usage patterns, and explains concepts behind them.
     </p>
-
     <p>
-      This guide is one part of a suite of resources that support the WAI-ARIA specification.
-      The WAI-ARIA suite fills accessibility gaps identified by the [[WAI-ARIA-ROADMAP]].
+      Languages used to create rich and dynamic web sites, e.g., HTML, JavaScript, CSS, and SVG, do not natively include all the features required to make sites usable by people who use assistive technologies (AT) or who rely on keyboard navigation.
+      The W3C Web Accessibility Initiative's (WAI) Accessible Rich Internet Applications working group (ARIA WG) is addressing these deficiencies through several W3C standards efforts.
+      The <a href="https://www.w3.org/WAI/intro/aria.php">WAI-ARIA Overview</a>
+      provides additional background on WAI-ARIA, summarizes those efforts, and lists the other documents included in the WAI-ARIA suite.
     </p>
-
-    <p> As explained in <a href="#ariaBackground">Background on WAI-ARIA</a>, languages used to create rich and dynamic web sites, e.g., HTML, JavaScript, CSS, and SVG, do not natively include all the features required to make sites usable by people who use assistive technologies (AT) or who rely on keyboard navigation. The W3C Web Accessibility Initiative's (WAI) Accessible Rich Internet Applications working group (ARIA WG) is addressing these deficiencies through several W3C standards efforts, with a focus on the WAI-ARIA specifications. For an introduction to WAI-ARIA, see the <a href="https://www.w3.org/WAI/intro/aria.php">Accessible Rich Internet Applications Suite (WAI-ARIA) Overview</a>. </p>
-
     <p>
-      With the understanding many prefer to learn from examples, the guide begins with a section that demonstrates how to make common widgets accessible with descriptions of expected behaviors supported by working code.
-      Where it is helpful to do so, the examples refer to detailed explanations of supporting concepts in subsequent sections.
-      The sections that follow the examples first provide background that helps build understanding of how WAI-ARIA works and how it fits into the larger web technology picture.
-      Next, the guide covers general steps for building an accessible widget using WAI-ARIA, JavaScript, and CSS, including detailed guidance on how to make rich internet applications keyboard accessible.
-      The scope then widens to include the full application, addressing the page layout and structural semantics critical to enabling a usable experience with assistive technologies on pages containing both rich applications and rich documents.
-      It includes guidance on dynamic document management, use of WAI-ARIA Form properties, and the creation of WAI-ARIA-enabled alerts and dialogs.
+      With the understanding many prefer to learn from examples, after a brief <q>Read Me First</q> section,
+      the guide begins with ARIA implementation patterns for common widgets that both enumerate expected behaviors and demonstrate those behaviors with working code.
+      The implementation patterns and examples refer to detailed explanations of supporting concepts in subsequent guidance sections.
+      The guidance sections cover topics, such as use of ARIA landmarks, making rich internet applications keyboard accessible, grid and table properties, and the effects of the <code>presentation</code> role.
     </p>
   </section>
 
@@ -4537,11 +4532,6 @@
         <a href="https://github.com/w3c/aria-practices/issues/193">issue 193.</a>
       </p>
       <p>Placeholder for a section covering this topic that is yet to be written.</p>
-    </section>
-
-    <section class="appendix" id="ariaBackground">
-      <h3>Background on WAI-ARIA</h3>
-      <p>[Placeholder section that will be resolved by <a href="https://github.com/w3c/aria-practices/issues/84">issue #84</a>.]</p>
     </section>
 
     <section id="change_log" class="appendix">
