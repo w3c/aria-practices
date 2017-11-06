@@ -1291,24 +1291,25 @@
 
       <section id="dataGrid" class="notoc">
         <h4>Data Grids For Presenting Tabular Information</h4>
-
         <p>
           A <code>grid</code> can be used to present tabular information that has column titles, row titles, or both.
           The <code>grid</code> pattern is particularly useful if the tabular information is editable or interactive.
           For example, when data elements are links to more information, rather than presenting them in a static table and including the links in the tab sequence, implementing the <code>grid</code> pattern provides users with intuitive and efficient keyboard navigation of the grid contents as well as a shorter tab sequence for the page.
           A <code>grid</code> may also offer functions, such as cell content editing, selection, cut, copy, and paste.
         </p>
-
-        <p> In a grid that presents tabular data, every cell contains a focusable element or is itself focusable, regardless of whether the cell content is editable or interactive. There is one exception: if column or row header cells do not provide functions, such as sort or filter, they do not need to be focusable. One reason this is important is that screen readers need to be in their application reading mode, rather than their document reading mode, while the user is interacting with the grid. While in application reading mode, a screen reader user can only discover focusable elements and content that labels focusable elements. So, a screen reader user may unknowingly overlook elements contained in a grid that are either not focusable or not used to label a column or row. A more detailed description of this topic with examples is available in the section describing <a href="#ScreenReaderModes">screen reader document and application reading modes</a>. </p>
-
+        <p>
+          In a grid, every cell contains a focusable element or is itself focusable, regardless of whether the cell content is editable or interactive.
+          There is one exception: if column or row header cells do not provide functions, such as sort or filter, they do not need to be focusable.
+          One reason it is important for all cells to be able to receive or contain keyboard focus is that screen readers will typically be in their application reading mode, rather than their document reading mode, when users are interacting with the grid.
+          While in application mode, a screen reader user hears only focusable elements and content that labels focusable elements.
+          So, screen reader users may unknowingly overlook elements contained in a grid that are either not focusable or not used to label a column or row.
+        </p>
         <section class="notoc">
           <h5>Keyboard Interaction For Data Grids</h5>
-
           <p>
             The following keys provide grid navigation by moving focus among cells of the grid.
             These key commands are available by default after an element in the grid receives focus.
           </p>
-
           <ul>
             <li>
               <kbd>Right Arrow</kbd>: Moves focus one cell to the right.
@@ -1324,7 +1325,6 @@
             <li><kbd>Control + Home</kbd>: moves focus to the first cell in the first row.</li>
             <li><kbd>Control + End</kbd>: moves focus to the last cell in the last row.</li>
           </ul>
-
           <ul class="note">
             <li>
               When the above grid navigation keys move focus, whether the focus is set on an element inside the cell or the grid cell depends on cell content.
@@ -1336,9 +1336,7 @@
             </li>
             <li>If navigation functions can dynamically add more rows or columns to the DOM, key events that move focus to the beginning or end of the grid, such as <kbd>control + End</kbd>, may move focus to the last row in the DOM rather than the last available row in the back-end data.</li>
           </ul>
-
           <p>If a grid supports selection of cells, rows, or columns, the following keys are commonly used for these functions.</p>
-
           <ul>
             <li><kbd>Control + Space</kbd>: selects the column that contains the focus.</li>
             <li><kbd>Shift + Space</kbd>: Selects the row that contains the focus. If the grid includes a column with checkboxes for selecting rows, this key can serve as a shortcut for checking the box when focus is not on the checkbox.</li>
@@ -1348,11 +1346,10 @@
             <li><kbd>Shift + Down Arrow</kbd>: Extends selection one cell down.</li>
             <li><kbd>Shift + Up Arrow</kbd>: Extends selection one cell Up.</li>
           </ul>
-
           <p class="note">See <a href="#kbd_common_conventions"></a> for cut, copy, and paste key assignments.</p>
         </section>
       </section>
-
+      
       <section id="layoutGrid" class="notoc">
         <h4>Layout Grids for Grouping Widgets</h4>
 
@@ -1455,7 +1452,6 @@
 
       <section id="gridNav" class="notoc">
         <h4>Keyboard Interaction - Setting Focus and Navigating Inside Cells</h4>
-
         <p>This section describes two important aspects of keyboard interaction design shared by both data and layout grid patterns:</p>
 
         <ol>
@@ -4524,15 +4520,6 @@
 
   <section id="appendices" class="appendix">
     <h2>Appendices</h2>
-
-    <section id="ScreenReaderModes">
-      <h3>Understanding Screen Reader Document Reading and Application Reading Modes</h3>
-      <p>
-        Drafting content for this section is
-        <a href="https://github.com/w3c/aria-practices/issues/193">issue 193.</a>
-      </p>
-      <p>Placeholder for a section covering this topic that is yet to be written.</p>
-    </section>
 
     <section id="change_log" class="appendix">
       <h3>Change History</h3>
