@@ -538,7 +538,14 @@
         <h4>WAI-ARIA Roles, States, and Properties</h4>
         <ul>
           <li>The checkbox has role <a href="#checkbox" class="role-reference">checkbox</a>.</li>
-          <li>The checkbox has an accessible label, preferably provided by a visible label associated using <a href="#aria-labelledby" class="property-reference" >aria-labelledby</a>.</li>
+          <li>
+            The checkbox has an accessible label provided by one of the following:
+            <ul>
+              <li>Visible text content contained within the element with role <code>checkbox</code>.</li>
+              <li>A visible label referenced by the value of <a href="#aria-labelledby" class="property-reference" >aria-labelledby</a> set on the element with role <code>checkbox</code>.</li>
+              <li><a href="#aria-label" class="property-reference">aria-label</a> set on the element with role <code>checkbox</code>.</li>
+            </ul>
+          </li>
           <li>When checked, the checkbox element has state <a href="#aria-checked" class="state-reference" >aria-checked</a> set to <code>true</code>.</li>
           <li>When not checked, it has state <a href="#aria-checked" class="state-reference" >aria-checked</a> set to <code>false</code>.</li>
           <li>When partially checked, it has state <a href="#aria-checked" class="state-reference" >aria-checked</a> set to <code>mixed</code>.</li>
