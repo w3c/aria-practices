@@ -1934,8 +1934,19 @@
           <li>Items in a menu may be divided into groups by placing an element with a role of <a href="#separator" class="role-reference">separator</a> between groups. For example, this technique should be used when a menu contains a set of <a href="#menuitemradio" class="role-reference">menuitemradio</a> items. </li>
           <li>All <a href="#separator" class="role-reference">separators</a> should have <a href="#aria-orientation" class="property-reference">aria-orientation</a> consistent with the separator's orientation. </li>
           <li>
+            If a menubar has a visible label, the element with role <code>menubar</code> has <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> set to a value that refers to the labeling element.
+            Otherwise, the menubar element has a label provided by <a href="#aria-label" class="property-reference">aria-label</a>.
+          </li>
+          <li>
             If a menubar is vertically oriented, it has <a class="property-reference" href="#aria-orientation">aria-orientation</a> set to <code>vertical</code>.
             The default value of <code>aria-orientation</code> for a menubar is <code>horizontal</code>.
+          </li>
+          <li>
+            An element with role <code>menu</code> either has:
+            <ul>
+              <li><a href="#aria-labelledby" class="property-reference">aria-labelledby</a> set to a value that refers to the menuitem or button that controls its display.</li>
+              <li>A label provided by <a href="#aria-label" class="property-reference">aria-label</a>.</li>
+            </ul>
           </li>
           <li>
             If a menu is horizontally oriented, it has <a class="property-reference" href="#aria-orientation">aria-orientation</a> set to <code>horizontal</code>.
