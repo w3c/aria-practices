@@ -1584,10 +1584,11 @@
             For example, an HTML <code>&lt;TR&gt;</code> has an implied ARIA role of <code>row</code>.
             A <code>grid</code> built from an HTML <code>table</code> that includes cells that span multiple rows or columns must use HTML <code>rowspan</code> and <code>colspan</code> and must not use <code>aria-rowspan</code> or <code>aria-colspan</code>.
           </li>
-          <li> If rows or cells are included in a grid via <a href="#aria-owns" class="property-reference">aria-owns</a>, they will be presented to assistive technologies after the DOM descendants of the <code>grid</code> element unless the DOM descendants are also included in the <code>aria-owns</code> attribute. See using aria-owns for a detailed explanation. </li>
+          <li>
+            If rows or cells are included in a grid via <a href="#aria-owns" class="property-reference">aria-owns</a>,
+            they will be presented to assistive technologies after the DOM descendants of the <code>grid</code> element unless the DOM descendants are also included in the <code>aria-owns</code> attribute.
+          </li>
         </ul>
-        <p class="note">Editor's Note - Guidance for aria-owns has not yet been created. A link to it will be added above once created.</p>
-
       </section>
     </section>
 
