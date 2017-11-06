@@ -717,7 +717,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     <p>
       <a class="logo" href="https://www.w3.org/"><img width="72" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" alt="W3C"></a>
     </p>
-  <p><!--_hyper: 1966331278;--></p>
+  <p><!--_hyper: -1720723323;--></p>
   <h1 class="title p-name" id="title" property="dcterms:title"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Authoring Practices 1.1</h1>
   <h2 id="w3c-editor-s-draft-06-november-2017"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2017-11-06">06 November 2017</time><span class="permalink" typeof="bookmark"><a href="#undefined" aria-label="Permalink for W3C Editor's Draft 06 November 2017" title="Permalink for W3C Editor's Draft 06 November 2017" property="url"><span property="title" content="W3C Editor's Draft 06 November 2017">§</span></a></span></h2>
   <dl>
@@ -2383,10 +2383,11 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             For example, an HTML <code>&lt;TR&gt;</code> has an implied ARIA role of <code>row</code>.
             A <code>grid</code> built from an HTML <code>table</code> that includes cells that span multiple rows or columns must use HTML <code>rowspan</code> and <code>colspan</code> and must not use <code>aria-rowspan</code> or <code>aria-colspan</code>.
           </li>
-          <li> If rows or cells are included in a grid via <a href="https://w3c.github.io/aria/aria/aria.html#aria-owns" class="property-reference">aria-owns</a>, they will be presented to assistive technologies after the DOM descendants of the <code>grid</code> element unless the DOM descendants are also included in the <code>aria-owns</code> attribute. See using aria-owns for a detailed explanation. </li>
+          <li>
+            If rows or cells are included in a grid via <a href="https://w3c.github.io/aria/aria/aria.html#aria-owns" class="property-reference">aria-owns</a>,
+            they will be presented to assistive technologies after the DOM descendants of the <code>grid</code> element unless the DOM descendants are also included in the <code>aria-owns</code> attribute.
+          </li>
         </ul></div>
-        <div class="note"><div role="heading" class="note-title marker" id="h-note-16" aria-level="5"><span>Note</span></div><p class="">Editor's Note - Guidance for aria-owns has not yet been created. A link to it will be added above once created.</p></div>
-
       </section>
     </section>
 
@@ -2396,7 +2397,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         A <a href="https://w3c.github.io/aria/aria/aria.html#link" class="role-reference">link</a> widget provides an interactive reference to a resource.
         The target resource can be either external or local, i.e., either outside or within the current page or application.
        </p>
-      <div class="note"><div role="heading" class="note-title marker" id="h-note-17" aria-level="4"><span>Note</span></div><p class="">
+      <div class="note"><div role="heading" class="note-title marker" id="h-note-16" aria-level="4"><span>Note</span></div><p class="">
         Authors are strongly encouraged to use a native host language link element, such as an HTML
         <code>&lt;A&gt;</code> element with an <code>href</code> attribute. As with other <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr>
         widget roles, applying the link role to an element will not cause browsers to enhance the
@@ -2521,7 +2522,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             </ul>
           </li>
         </ul>
-        <div class="note"><div role="heading" class="note-title marker" id="h-note-18" aria-level="5"><span>Note</span></div><ol class="">
+        <div class="note"><div role="heading" class="note-title marker" id="h-note-17" aria-level="5"><span>Note</span></div><ol class="">
           <li>DOM focus (the active element) is functionally distinct from the selected state. For more details, see <a href="#kbd_focus_vs_selection">this description of differences between focus and selection.</a></li>
           <li>
             The <code>listbox</code> role supports the <a class="property-reference" href="https://w3c.github.io/aria/aria/aria.html#aria-activedescendant">aria-activedescendant</a> property,
@@ -2679,7 +2680,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <li><kbd>Tab</kbd>: Moves focus to the next element in the tab sequence, and if the item that had focus is not in a <code>menubar</code>, closes its <code>menu</code> and all open parent <code>menu</code> containers.</li>
           <li><kbd>Shift + Tab</kbd>: Moves focus to the previous element in the tab sequence, and if the item that had focus is not in a <code>menubar</code>, closes its <code>menu</code> and all open parent <code>menu</code> containers.</li>
         </ul>
-        <div class="note"><div role="heading" class="note-title marker" id="h-note-19" aria-level="5"><span>Note</span></div><ol class="">
+        <div class="note"><div role="heading" class="note-title marker" id="h-note-18" aria-level="5"><span>Note</span></div><ol class="">
           <li>Disabled menu items are focusable but cannot be activated. </li>
           <li>A <a href="https://w3c.github.io/aria/aria/aria.html#separator" class="role-reference">separator</a> in a menu is not focusable or interactive.</li>
           <li>
@@ -2752,7 +2753,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             The default value of <code>aria-orientation</code> for a menu is <code>vertical</code>.
           </li>
         </ul>
-        <div class="note"><div role="heading" class="note-title marker" id="h-note-20" aria-level="5"><span>Note</span></div><ol class="">
+        <div class="note"><div role="heading" class="note-title marker" id="h-note-19" aria-level="5"><span>Note</span></div><ol class="">
           <li>
             Currently, using aria-expanded on elements with role menuitem triggers HTML validation errors because the ARIA specification does not yet support doing so.
             The ARIA working group plans to resolve this issue in the next version of the specification.
@@ -2868,7 +2869,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             If focus is on the first button, focus moves to the last button.
           </li>
         </ul>
-        <div class="note"><div role="heading" class="note-title marker" id="h-note-21" aria-level="5"><span>Note</span></div><p class="">
+        <div class="note"><div role="heading" class="note-title marker" id="h-note-20" aria-level="5"><span>Note</span></div><p class="">
           The initial focus behavior described above differs slightly from the behavior
           provided by some browsers for native HTML radio groups. In some browsers, if none of the
           radio buttons are selected, moving focus into the radio group with <kbd>Shift+Tab</kbd> will place focus on the last radio button
@@ -2949,7 +2950,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <li><kbd>Page Up</kbd> (Optional): Increment the slider by an amount larger than the step change made by <kbd>Up Arrow</kbd>.</li>
           <li><kbd>Page Down</kbd> (Optional): Decrement the slider by an amount larger than the step change made by <kbd>Down Arrow</kbd>.</li>
         </ul>
-        <div class="note"><div role="heading" class="note-title marker" id="h-note-22" aria-level="5"><span>Note</span></div><ol class="">
+        <div class="note"><div role="heading" class="note-title marker" id="h-note-21" aria-level="5"><span>Note</span></div><ol class="">
           <li>Focus is placed on the slider (the visual object that the mouse user would move, also known as the thumb.</li>
           <li>In some circumstances, reversing the direction of the value change for the keys specified above, e.g., having <kbd>Up Arrow</kbd> decrease the value, could create a more intuitive experience.</li>
         </ol></div>
@@ -3079,7 +3080,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             </ul>
           </li>
         </ul>
-        <div class="note"><div role="heading" class="note-title marker" id="h-note-23" aria-level="5"><span>Note</span></div><ol class="">
+        <div class="note"><div role="heading" class="note-title marker" id="h-note-22" aria-level="5"><span>Note</span></div><ol class="">
           <li>Focus remains on the text field during operation.</li>
           <li>Standard single line text editing keys appropriate for the device platform:
             <ol>
@@ -3197,7 +3198,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             </ul>
           </li>
         </ul>
-        <div class="note"><div role="heading" class="note-title marker" id="h-note-24" aria-level="5"><span>Note</span></div><ol class="">
+        <div class="note"><div role="heading" class="note-title marker" id="h-note-23" aria-level="5"><span>Note</span></div><ol class="">
           <li>
             It is recommended that tabs activate automatically when they receive focus as long as their associated tab panels are displayed without noticeable latency.
             This typically requires tab panel content to be preloaded.
@@ -3265,7 +3266,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <li><kbd>Home</kbd> (Optional): Moves focus to first element.</li>
           <li><kbd>End</kbd> (Optional): Moves focus to last element.</li>
         </ul>
-        <div class="note"><div role="heading" class="note-title marker" id="h-note-25" aria-level="5"><span>Note</span></div><ol class="">
+        <div class="note"><div role="heading" class="note-title marker" id="h-note-24" aria-level="5"><span>Note</span></div><ol class="">
           <li>If the items in a toolbar are arranged vertically:
             <ol>
               <li><kbd>Down Arrow</kbd> performs as <kbd>Right Arrow</kbd> is described above. </li>
@@ -3321,7 +3322,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-19" property="bibo:hasPart">
         <h4 id="keyboard-interaction-19" resource="#keyboard-interaction-19"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction<span class="permalink" typeof="bookmark"><a href="#undefined" aria-label="Permalink for Keyboard Interaction" title="Permalink for Keyboard Interaction" property="url"><span property="title" content="Keyboard Interaction">§</span></a></span></span></h4>
         <p><kbd>Escape</kbd>: Dismisses the Tooltip.</p>
-        <div class="note"><div role="heading" class="note-title marker" id="h-note-26" aria-level="5"><span>Note</span></div><ol class="">
+        <div class="note"><div role="heading" class="note-title marker" id="h-note-25" aria-level="5"><span>Note</span></div><ol class="">
           <li>Focus stays on the triggering element while the tooltip is displayed.</li>
           <li>
             If the tooltip is invoked when the trigger element   receives focus, then it is dismissed when it no longer has focus (onBlur).
@@ -3467,7 +3468,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             </ul>
           </li>
         </ul>
-        <div class="note"><div role="heading" class="note-title marker" id="h-note-27" aria-level="5"><span>Note</span></div><ol class="">
+        <div class="note"><div role="heading" class="note-title marker" id="h-note-26" aria-level="5"><span>Note</span></div><ol class="">
           <li>DOM focus (the active element) is functionally distinct from the selected state. For more details, see <a href="#kbd_focus_vs_selection">this description of differences between focus and selection.</a></li>
           <li>
             The <code>tree</code> role supports the <a class="property-reference" href="https://w3c.github.io/aria/aria/aria.html#aria-activedescendant">aria-activedescendant</a> property,
@@ -3520,7 +3521,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             The default value of <code>aria-orientation</code> for a tree is <code>vertical</code>.
           </li>
         </ul>
-        <div class="note"><div role="heading" class="note-title marker" id="h-note-28" aria-level="5"><span>Note</span></div><p class="">
+        <div class="note"><div role="heading" class="note-title marker" id="h-note-27" aria-level="5"><span>Note</span></div><p class="">
           If <a href="https://w3c.github.io/aria/aria/aria.html#aria-owns" class="property-reference">aria-owns</a> is set on the tree container to include elements that are not DOM children of the container,
           those elements will appear in the reading order in the sequence they are referenced and after any items that are DOM children.
           Scripts that manage focus need to ensure the visual focus order matches this assistive technology reading order.
@@ -3572,7 +3573,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <li><kbd>End</kbd> (Optional): Moves splitter to the position that gives the primary pane its largest allowed size. This may completely collapse the secondary pane.</li>
           <li><kbd>F6</kbd> (Optional): Cycle through window   panes.</li>
         </ul>
-        <div class="note"><div role="heading" class="note-title marker" id="h-note-29" aria-level="5"><span>Note</span></div><p class="">A fixed size splitter omits implementation of the arrow keys.</p></div>
+        <div class="note"><div role="heading" class="note-title marker" id="h-note-28" aria-level="5"><span>Note</span></div><p class="">A fixed size splitter omits implementation of the arrow keys.</p></div>
       </section>
       <section class="notoc" typeof="bibo:Chapter" resource="#wai-aria-roles-states-and-properties-22" property="bibo:hasPart">
         <h4 id="wai-aria-roles-states-and-properties-22" resource="#wai-aria-roles-states-and-properties-22"><span property="xhv:role" resource="xhv:heading"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<span class="permalink" typeof="bookmark"><a href="#undefined" aria-label="Permalink for WAI-ARIA Roles, States, and Properties" title="Permalink for WAI-ARIA Roles, States, and Properties" property="url"><span property="title" content="WAI-ARIA Roles, States, and Properties">§</span></a></span></span></h4>
@@ -4580,7 +4581,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           And, given the vast array of operating system, browser, and assistive technology keys, it is almost impossible to be certain conflicts do not exist.
           So it is also important to employ strategies that mitigate the impact of conflicts whether they are intentional or unknown.
         </p>
-        <div class="note"><div role="heading" class="note-title marker" id="h-note-30" aria-level="5"><span>Note</span></div><p class="">
+        <div class="note"><div role="heading" class="note-title marker" id="h-note-29" aria-level="5"><span>Note</span></div><p class="">
           In the following sections, <kbd>meta</kbd> key refers to the <kbd>Windows</kbd> key on Windows-compatible keyboards and the <kbd>Command</kbd> key on MacOS-compatible keyboards.
         </p></div>
         <section id="kbd_shortcuts_assignments_opsys_conflicts" typeof="bibo:Chapter" resource="#kbd_shortcuts_assignments_opsys_conflicts" property="bibo:hasPart">
