@@ -717,7 +717,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     <p>
       <a class="logo" href="https://www.w3.org/"><img width="72" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" alt="W3C"></a>
     </p>
-  <p><!--_hyper: -1817790745;--></p>
+  <p><!--_hyper: 333729107;--></p>
   <h1 class="title p-name" id="title" property="dcterms:title"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Authoring Practices 1.1</h1>
   <h2 id="w3c-editor-s-draft-06-november-2017"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2017-11-06">06 November 2017</time><span class="permalink" typeof="bookmark"><a href="#undefined" aria-label="Permalink for W3C Editor's Draft 06 November 2017" title="Permalink for W3C Editor's Draft 06 November 2017" property="url"><span property="title" content="W3C Editor's Draft 06 November 2017">§</span></a></span></h2>
   <dl>
@@ -1213,7 +1213,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           In this example, when the pressed state is true, the label remains "Mute" so a screen reader would say something like "Mute toggle button pressed".
           Alternatively, if the design were to call for the button label to change from "Mute" to "Unmute," the aria-pressed attribute would not be needed.
         </li>
-        <li>Menu button: as described in the <a href="#menubutton">menu button pattern</a>, a button is revealed to assistive technologies as a menu button if it has the property <a href="https://w3c.github.io/aria/aria/aria.html#aria-haspopup" class="property-reference">aria-haspopup</a> set to <code>true</code>.</li>
+        <li>Menu button: as described in the <a href="#menubutton">menu button pattern</a>, a button is revealed to assistive technologies as a menu button if it has the property <a href="https://w3c.github.io/aria/aria/aria.html#aria-haspopup" class="property-reference">aria-haspopup</a> set to either <code>menu</code> or <code>true</code>.</li>
       </ul>
       <div class="note"><div role="heading" class="note-title marker" id="h-note" aria-level="4"><span>Note</span></div><p class="">
         The types of actions performed by buttons are distinctly different from the function of a link (see <a href="#link">link pattern</a>).
@@ -2717,7 +2717,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             If activating a <a href="https://w3c.github.io/aria/aria/aria.html#menuitem" class="role-reference">menuitem</a> opens a submenu, the menuitem is known as a parent menuitem.
             A submenu's <code>menu</code> element is contained in or owned by it's parent             menuitem.
           </li>
-          <li>A parent menuitem has <a href="https://w3c.github.io/aria/aria/aria.html#aria-haspopup" class="property-reference">aria-haspopup</a> set to <code>true</code>.</li>
+          <li>A parent menuitem has <a href="https://w3c.github.io/aria/aria/aria.html#aria-haspopup" class="property-reference">aria-haspopup</a> set to either <code>menu</code> or <code>true</code>.</li>
           <li>
             A parent menuitem has <a href="https://w3c.github.io/aria/aria/aria.html#aria-expanded" class="property-reference">aria-expanded</a> set to <code>false</code> when its child menu is not visible and set to <code>true</code> when the child menu is visible.
             <strong>(See note below regarding HTML validation.)</strong>
@@ -2789,7 +2789,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         <h4 id="wai-aria-roles-states-and-properties-13" resource="#wai-aria-roles-states-and-properties-13"><span property="xhv:role" resource="xhv:heading"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<span class="permalink" typeof="bookmark"><a href="#undefined" aria-label="Permalink for WAI-ARIA Roles, States, and Properties" title="Permalink for WAI-ARIA Roles, States, and Properties" property="url"><span property="title" content="WAI-ARIA Roles, States, and Properties">§</span></a></span></span></h4>
         <ul>
           <li>The element that opens the menu has role <a href="https://w3c.github.io/aria/aria/aria.html#button" class="role-reference">button</a>.</li>
-          <li>The element with role <code>button</code> has <a href="https://w3c.github.io/aria/aria/aria.html#aria-haspopup" class="property-reference">aria-haspopup</a> set to <code>true</code>.</li>
+          <li>The element with role <code>button</code> has <a href="https://w3c.github.io/aria/aria/aria.html#aria-haspopup" class="property-reference">aria-haspopup</a> set to either <code>menu</code> or <code>true</code>.</li>
           <li>
             When the menu is displayed, the element with role <code>button</code> has
             <a href="https://w3c.github.io/aria/aria/aria.html#aria-expanded" class="state-reference">aria-expanded</a>
@@ -3212,7 +3212,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <li>Each element with role <code>tab</code> has the property <a href="https://w3c.github.io/aria/aria/aria.html#aria-controls" class="property-reference">aria-controls</a> referring to its associated <code>tabpanel</code> element.</li>
           <li>The active <code>tab</code> element has the state <a href="https://w3c.github.io/aria/aria/aria.html#aria-selected" class="state-reference">aria-selected</a> set to <code>true</code> and all other <code>tab</code> elements have it set to <code>false</code>.</li>
           <li>Each element with role <code>tabpanel</code> has the property <a href="https://w3c.github.io/aria/aria/aria.html#aria-labelledby" class="property-reference">aria-labelledby</a> referring to its associated <code>tab</code> element. </li>
-          <li>If a <code>tab</code> element has a pop-up menu, it has the property <a href="https://w3c.github.io/aria/aria/aria.html#aria-haspopup" class="property-reference">aria-haspopup</a> set to <code>true</code>. </li>
+          <li>If a <code>tab</code> element has a pop-up menu, it has the property <a href="https://w3c.github.io/aria/aria/aria.html#aria-haspopup" class="property-reference">aria-haspopup</a> set to either <code>menu</code> or <code>true</code>. </li>
           <li>
             If the <code>tablist</code> element is vertically oriented, it has the property <a href="https://w3c.github.io/aria/aria/aria.html#aria-orientation" class="property-reference">aria-orientation</a> set to <code>vertical</code>.
             The default value of <code>aria-orientation</code> for a <code>tablist</code> element is <code>horizontal</code>.
