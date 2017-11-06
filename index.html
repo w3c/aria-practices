@@ -717,7 +717,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     <p>
       <a class="logo" href="https://www.w3.org/"><img width="72" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" alt="W3C"></a>
     </p>
-  <p><!--_hyper: -1720723323;--></p>
+  <p><!--_hyper: 1871623186;--></p>
   <h1 class="title p-name" id="title" property="dcterms:title"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Authoring Practices 1.1</h1>
   <h2 id="w3c-editor-s-draft-06-november-2017"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2017-11-06">06 November 2017</time><span class="permalink" typeof="bookmark"><a href="#undefined" aria-label="Permalink for W3C Editor's Draft 06 November 2017" title="Permalink for W3C Editor's Draft 06 November 2017" property="url"><span property="title" content="W3C Editor's Draft 06 November 2017">§</span></a></span></h2>
   <dl>
@@ -1337,7 +1337,14 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         <h4 id="wai-aria-roles-states-and-properties-4" resource="#wai-aria-roles-states-and-properties-4"><span property="xhv:role" resource="xhv:heading"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<span class="permalink" typeof="bookmark"><a href="#undefined" aria-label="Permalink for WAI-ARIA Roles, States, and Properties" title="Permalink for WAI-ARIA Roles, States, and Properties" property="url"><span property="title" content="WAI-ARIA Roles, States, and Properties">§</span></a></span></span></h4>
         <ul>
           <li>The checkbox has role <a href="https://w3c.github.io/aria/aria/aria.html#checkbox" class="role-reference">checkbox</a>.</li>
-          <li>The checkbox has an accessible label, preferably provided by a visible label associated using <a href="https://w3c.github.io/aria/aria/aria.html#aria-labelledby" class="property-reference">aria-labelledby</a>.</li>
+          <li>
+            The checkbox has an accessible label provided by one of the following:
+            <ul>
+              <li>Visible text content contained within the element with role <code>checkbox</code>.</li>
+              <li>A visible label referenced by the value of <a href="https://w3c.github.io/aria/aria/aria.html#aria-labelledby" class="property-reference">aria-labelledby</a> set on the element with role <code>checkbox</code>.</li>
+              <li><a href="https://w3c.github.io/aria/aria/aria.html#aria-label" class="property-reference">aria-label</a> set on the element with role <code>checkbox</code>.</li>
+            </ul>
+          </li>
           <li>When checked, the checkbox element has state <a href="https://w3c.github.io/aria/aria/aria.html#aria-checked" class="state-reference">aria-checked</a> set to <code>true</code>.</li>
           <li>When not checked, it has state <a href="https://w3c.github.io/aria/aria/aria.html#aria-checked" class="state-reference">aria-checked</a> set to <code>false</code>.</li>
           <li>When partially checked, it has state <a href="https://w3c.github.io/aria/aria/aria.html#aria-checked" class="state-reference">aria-checked</a> set to <code>mixed</code>.</li>
