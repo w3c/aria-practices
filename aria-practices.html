@@ -414,7 +414,7 @@
           In this example, when the pressed state is true, the label remains &quot;Mute&quot; so a screen reader would say something like &quot;Mute toggle button pressed&quot;.
           Alternatively, if the design were to call for the button label to change from &quot;Mute&quot; to &quot;Unmute,&quot; the aria-pressed attribute would not be needed.
         </li>
-        <li>Menu button: as described in the <a href="#menubutton">menu button pattern</a>, a button is revealed to assistive technologies as a menu button if it has the property <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set to <code>true</code>.</li>
+        <li>Menu button: as described in the <a href="#menubutton">menu button pattern</a>, a button is revealed to assistive technologies as a menu button if it has the property <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set to either <code>menu</code> or <code>true</code>.</li>
       </ul>
       <p class="note">
         The types of actions performed by buttons are distinctly different from the function of a link (see <a href="#link">link pattern</a>).
@@ -1918,7 +1918,7 @@
             If activating a <a href="#menuitem" class="role-reference">menuitem</a> opens a submenu, the menuitem is known as a parent menuitem.
             A submenu's <code>menu</code> element is contained in or owned by it's parent             menuitem.
           </li>
-          <li>A parent menuitem has <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set to <code>true</code>.</li>
+          <li>A parent menuitem has <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set to either <code>menu</code> or <code>true</code>.</li>
           <li>
             A parent menuitem has <a href="#aria-expanded" class="property-reference">aria-expanded</a> set to <code>false</code> when its child menu is not visible and set to <code>true</code> when the child menu is visible.
             <strong>(See note below regarding HTML validation.)</strong>
@@ -1990,7 +1990,7 @@
         <h4>WAI-ARIA Roles, States, and Properties</h4>
         <ul>
           <li>The element that opens the menu has role <a href="#button" class="role-reference">button</a>.</li>
-          <li>The element with role <code>button</code> has <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set to <code>true</code>.</li>
+          <li>The element with role <code>button</code> has <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set to either <code>menu</code> or <code>true</code>.</li>
           <li>
             When the menu is displayed, the element with role <code>button</code> has
             <a href="#aria-expanded" class="state-reference">aria-expanded</a>
@@ -2413,7 +2413,7 @@
           <li>Each element with role <code>tab</code> has the property <a href="#aria-controls" class="property-reference">aria-controls</a> referring to its associated <code>tabpanel</code> element.</li>
           <li>The active <code>tab</code> element has the state <a href="#aria-selected" class="state-reference">aria-selected</a> set to <code>true</code> and all other <code>tab</code> elements have it set to <code>false</code>.</li>
           <li>Each element with role <code>tabpanel</code> has the property <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> referring to its associated <code>tab</code> element. </li>
-          <li>If a <code>tab</code> element has a pop-up menu, it has the property <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set to <code>true</code>. </li>
+          <li>If a <code>tab</code> element has a pop-up menu, it has the property <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set to either <code>menu</code> or <code>true</code>. </li>
           <li>
             If the <code>tablist</code> element is vertically oriented, it has the property <a href="#aria-orientation" class="property-reference">aria-orientation</a> set to <code>vertical</code>.
             The default value of <code>aria-orientation</code> for a <code>tablist</code> element is <code>horizontal</code>.
