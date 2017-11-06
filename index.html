@@ -717,7 +717,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     <p>
       <a class="logo" href="https://www.w3.org/"><img width="72" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" alt="W3C"></a>
     </p>
-  <p><!--_hyper: -2087707076;--></p>
+  <p><!--_hyper: -327216976;--></p>
   <h1 class="title p-name" id="title" property="dcterms:title"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Authoring Practices 1.1</h1>
   <h2 id="w3c-editor-s-draft-06-november-2017"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2017-11-06">06 November 2017</time><span class="permalink" typeof="bookmark"><a href="#undefined" aria-label="Permalink for W3C Editor's Draft 06 November 2017" title="Permalink for W3C Editor's Draft 06 November 2017" property="url"><span property="title" content="W3C Editor's Draft 06 November 2017">§</span></a></span></h2>
   <dl>
@@ -849,7 +849,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         Conditions That Cause Role <code>presentation</code> to be Ignored
       </a></li><li class="tocline"><a href="#presentation_role_examples" class="tocxref"><span class="secno">7.3 </span>
         Examples Demonstrating Effects of the <code>presentation</code> Role
-      </a></li></ol></li><li class="tocline"><a href="#children_presentational" class="tocxref"><span class="secno">8. </span>Roles That Automatically Hide Semantics by Making Their Descendants Presentational</a></li><li class="tocline"><a href="#appendices" class="tocxref"><span class="secno">A. </span>Appendices</a><ol class="toc"><li class="tocline"><a href="#ScreenReaderModes" class="tocxref"><span class="secno">A.1 </span>Understanding Screen Reader Document Reading and Application Reading Modes</a></li><li class="tocline"><a href="#change_log" class="tocxref"><span class="secno">A.2 </span>Change History</a><ol class="toc"><li class="tocline"><a href="#change_log_2017_june" class="tocxref"><span class="secno">A.2.1 </span>Changes in June 2017 Working Draft</a></li></ol></li><li class="tocline"><a href="#acknowledgements" class="tocxref"><span class="secno">A.3 </span>Acknowledgments</a><ol class="toc"><li class="tocline"><a href="#ack_group" class="tocxref"><span class="secno">A.3.1 </span>Participants active in the ARIA WG at the time of publication</a></li><li class="tocline"><a href="#ack_others" class="tocxref"><span class="secno">A.3.2 </span>Other ARIA contributors, commenters, and previously active participants</a></li><li class="tocline"><a href="#ack_funders" class="tocxref"><span class="secno">A.3.3 </span>Enabling funders</a></li></ol></li></ol></li><li class="tocline"><a href="#references" class="tocxref"><span class="secno">B. </span>References</a><ol class="toc"><li class="tocline"><a href="#informative-references" class="tocxref"><span class="secno">B.1 </span>Informative references</a></li></ol></li></ol></nav>
+      </a></li></ol></li><li class="tocline"><a href="#children_presentational" class="tocxref"><span class="secno">8. </span>Roles That Automatically Hide Semantics by Making Their Descendants Presentational</a></li><li class="tocline"><a href="#appendices" class="tocxref"><span class="secno">A. </span>Appendices</a><ol class="toc"><li class="tocline"><a href="#change_log" class="tocxref"><span class="secno">A.1 </span>Change History</a><ol class="toc"><li class="tocline"><a href="#change_log_2017_june" class="tocxref"><span class="secno">A.1.1 </span>Changes in June 2017 Working Draft</a></li></ol></li><li class="tocline"><a href="#acknowledgements" class="tocxref"><span class="secno">A.2 </span>Acknowledgments</a><ol class="toc"><li class="tocline"><a href="#ack_group" class="tocxref"><span class="secno">A.2.1 </span>Participants active in the ARIA WG at the time of publication</a></li><li class="tocline"><a href="#ack_others" class="tocxref"><span class="secno">A.2.2 </span>Other ARIA contributors, commenters, and previously active participants</a></li><li class="tocline"><a href="#ack_funders" class="tocxref"><span class="secno">A.2.3 </span>Enabling funders</a></li></ol></li></ol></li><li class="tocline"><a href="#references" class="tocxref"><span class="secno">B. </span>References</a><ol class="toc"><li class="tocline"><a href="#informative-references" class="tocxref"><span class="secno">B.1 </span>Informative references</a></li></ol></li></ol></nav>
 
   <section id="intro" typeof="bibo:Chapter" resource="#intro" property="bibo:hasPart">
     <!--OddPage--><h2 id="x1-introduction" resource="#x1-introduction"><span property="xhv:role" resource="xhv:heading"><span class="secno">1. </span>Introduction<span class="permalink" typeof="bookmark"><a href="#intro" aria-label="Permalink for 1. Introduction" title="Permalink for 1. Introduction" property="url"><span property="title" content="1. Introduction">§</span></a></span></span></h2>
@@ -2090,24 +2090,25 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
       <section id="dataGrid" class="notoc" typeof="bibo:Chapter" resource="#dataGrid" property="bibo:hasPart">
         <h4 id="data-grids-for-presenting-tabular-information" resource="#data-grids-for-presenting-tabular-information"><span property="xhv:role" resource="xhv:heading">Data Grids For Presenting Tabular Information<span class="permalink" typeof="bookmark"><a href="#dataGrid" aria-label="Permalink for Data Grids For Presenting Tabular Information" title="Permalink for Data Grids For Presenting Tabular Information" property="url"><span property="title" content="Data Grids For Presenting Tabular Information">§</span></a></span></span></h4>
-
         <p>
           A <code>grid</code> can be used to present tabular information that has column titles, row titles, or both.
           The <code>grid</code> pattern is particularly useful if the tabular information is editable or interactive.
           For example, when data elements are links to more information, rather than presenting them in a static table and including the links in the tab sequence, implementing the <code>grid</code> pattern provides users with intuitive and efficient keyboard navigation of the grid contents as well as a shorter tab sequence for the page.
           A <code>grid</code> may also offer functions, such as cell content editing, selection, cut, copy, and paste.
         </p>
-
-        <p> In a grid that presents tabular data, every cell contains a focusable element or is itself focusable, regardless of whether the cell content is editable or interactive. There is one exception: if column or row header cells do not provide functions, such as sort or filter, they do not need to be focusable. One reason this is important is that screen readers need to be in their application reading mode, rather than their document reading mode, while the user is interacting with the grid. While in application reading mode, a screen reader user can only discover focusable elements and content that labels focusable elements. So, a screen reader user may unknowingly overlook elements contained in a grid that are either not focusable or not used to label a column or row. A more detailed description of this topic with examples is available in the section describing <a href="#ScreenReaderModes">screen reader document and application reading modes</a>. </p>
-
+        <p>
+          In a grid, every cell contains a focusable element or is itself focusable, regardless of whether the cell content is editable or interactive.
+          There is one exception: if column or row header cells do not provide functions, such as sort or filter, they do not need to be focusable.
+          One reason it is important for all cells to be able to receive or contain keyboard focus is that screen readers will typically be in their application reading mode, rather than their document reading mode, when users are interacting with the grid.
+          While in application mode, a screen reader user hears only focusable elements and content that labels focusable elements.
+          So, screen reader users may unknowingly overlook elements contained in a grid that are either not focusable or not used to label a column or row.
+        </p>
         <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-for-data-grids" property="bibo:hasPart">
           <h5 id="keyboard-interaction-for-data-grids" resource="#keyboard-interaction-for-data-grids"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction For Data Grids<span class="permalink" typeof="bookmark"><a href="#undefined" aria-label="Permalink for Keyboard Interaction For Data Grids" title="Permalink for Keyboard Interaction For Data Grids" property="url"><span property="title" content="Keyboard Interaction For Data Grids">§</span></a></span></span></h5>
-
           <p>
             The following keys provide grid navigation by moving focus among cells of the grid.
             These key commands are available by default after an element in the grid receives focus.
           </p>
-
           <ul>
             <li>
               <kbd>Right Arrow</kbd>: Moves focus one cell to the right.
@@ -2123,7 +2124,6 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             <li><kbd>Control + Home</kbd>: moves focus to the first cell in the first row.</li>
             <li><kbd>Control + End</kbd>: moves focus to the last cell in the last row.</li>
           </ul>
-
           <div class="note"><div role="heading" class="note-title marker" id="h-note-11" aria-level="6"><span>Note</span></div><ul class="">
             <li>
               When the above grid navigation keys move focus, whether the focus is set on an element inside the cell or the grid cell depends on cell content.
@@ -2135,9 +2135,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             </li>
             <li>If navigation functions can dynamically add more rows or columns to the DOM, key events that move focus to the beginning or end of the grid, such as <kbd>control + End</kbd>, may move focus to the last row in the DOM rather than the last available row in the back-end data.</li>
           </ul></div>
-
           <p>If a grid supports selection of cells, rows, or columns, the following keys are commonly used for these functions.</p>
-
           <ul>
             <li><kbd>Control + Space</kbd>: selects the column that contains the focus.</li>
             <li><kbd>Shift + Space</kbd>: Selects the row that contains the focus. If the grid includes a column with checkboxes for selecting rows, this key can serve as a shortcut for checking the box when focus is not on the checkbox.</li>
@@ -2147,11 +2145,10 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             <li><kbd>Shift + Down Arrow</kbd>: Extends selection one cell down.</li>
             <li><kbd>Shift + Up Arrow</kbd>: Extends selection one cell Up.</li>
           </ul>
-
           <div class="note"><div role="heading" class="note-title marker" id="h-note-12" aria-level="6"><span>Note</span></div><p class="">See <a href="#kbd_common_conventions" class="sec-ref"><span class="secno">5.8</span> <span class="sec-title">Key Assignment Conventions for Common Functions</span></a> for cut, copy, and paste key assignments.</p></div>
         </section>
       </section>
-
+      
       <section id="layoutGrid" class="notoc" typeof="bibo:Chapter" resource="#layoutGrid" property="bibo:hasPart">
         <h4 id="layout-grids-for-grouping-widgets" resource="#layout-grids-for-grouping-widgets"><span property="xhv:role" resource="xhv:heading">Layout Grids for Grouping Widgets<span class="permalink" typeof="bookmark"><a href="#layoutGrid" aria-label="Permalink for Layout Grids for Grouping Widgets" title="Permalink for Layout Grids for Grouping Widgets" property="url"><span property="title" content="Layout Grids for Grouping Widgets">§</span></a></span></span></h4>
 
@@ -2254,7 +2251,6 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
       <section id="gridNav" class="notoc" typeof="bibo:Chapter" resource="#gridNav" property="bibo:hasPart">
         <h4 id="keyboard-interaction-setting-focus-and-navigating-inside-cells" resource="#keyboard-interaction-setting-focus-and-navigating-inside-cells"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction - Setting Focus and Navigating Inside Cells<span class="permalink" typeof="bookmark"><a href="#gridNav" aria-label="Permalink for Keyboard Interaction - Setting Focus and Navigating Inside Cells" title="Permalink for Keyboard Interaction - Setting Focus and Navigating Inside Cells" property="url"><span property="title" content="Keyboard Interaction - Setting Focus and Navigating Inside Cells">§</span></a></span></span></h4>
-
         <p>This section describes two important aspects of keyboard interaction design shared by both data and layout grid patterns:</p>
 
         <ol>
@@ -5331,19 +5327,10 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   <section id="appendices" class="appendix" typeof="bibo:Chapter" resource="#appendices" property="bibo:hasPart">
     <!--OddPage--><h2 id="a-appendices" resource="#a-appendices"><span property="xhv:role" resource="xhv:heading"><span class="secno">A. </span>Appendices<span class="permalink" typeof="bookmark"><a href="#appendices" aria-label="Permalink for A. Appendices" title="Permalink for A. Appendices" property="url"><span property="title" content="A. Appendices">§</span></a></span></span></h2>
 
-    <section id="ScreenReaderModes" typeof="bibo:Chapter" resource="#ScreenReaderModes" property="bibo:hasPart">
-      <h3 id="a-1-understanding-screen-reader-document-reading-and-application-reading-modes" resource="#a-1-understanding-screen-reader-document-reading-and-application-reading-modes"><span property="xhv:role" resource="xhv:heading"><span class="secno">A.1 </span>Understanding Screen Reader Document Reading and Application Reading Modes<span class="permalink" typeof="bookmark"><a href="#ScreenReaderModes" aria-label="Permalink for A.1 Understanding Screen Reader Document Reading and Application Reading Modes" title="Permalink for A.1 Understanding Screen Reader Document Reading and Application Reading Modes" property="url"><span property="title" content="A.1 Understanding Screen Reader Document Reading and Application Reading Modes">§</span></a></span></span></h3>
-      <p>
-        Drafting content for this section is
-        <a href="https://github.com/w3c/aria-practices/issues/193">issue 193.</a>
-      </p>
-      <p>Placeholder for a section covering this topic that is yet to be written.</p>
-    </section>
-
     <section id="change_log" class="appendix" typeof="bibo:Chapter" resource="#change_log" property="bibo:hasPart">
-      <h3 id="a-2-change-history" resource="#a-2-change-history"><span property="xhv:role" resource="xhv:heading"><span class="secno">A.2 </span>Change History<span class="permalink" typeof="bookmark"><a href="#change_log" aria-label="Permalink for A.2 Change History" title="Permalink for A.2 Change History" property="url"><span property="title" content="A.2 Change History">§</span></a></span></span></h3>
+      <h3 id="a-1-change-history" resource="#a-1-change-history"><span property="xhv:role" resource="xhv:heading"><span class="secno">A.1 </span>Change History<span class="permalink" typeof="bookmark"><a href="#change_log" aria-label="Permalink for A.1 Change History" title="Permalink for A.1 Change History" property="url"><span property="title" content="A.1 Change History">§</span></a></span></span></h3>
       <section id="change_log_2017_june" class="appendix" typeof="bibo:Chapter" resource="#change_log_2017_june" property="bibo:hasPart">
-        <h4 id="a-2-1-changes-in-june-2017-working-draft" resource="#a-2-1-changes-in-june-2017-working-draft"><span property="xhv:role" resource="xhv:heading"><span class="secno">A.2.1 </span>Changes in June 2017 Working Draft<span class="permalink" typeof="bookmark"><a href="#change_log_2017_june" aria-label="Permalink for A.2.1 Changes in June 2017 Working Draft" title="Permalink for A.2.1 Changes in June 2017 Working Draft" property="url"><span property="title" content="A.2.1 Changes in June 2017 Working Draft">§</span></a></span></span></h4>
+        <h4 id="a-1-1-changes-in-june-2017-working-draft" resource="#a-1-1-changes-in-june-2017-working-draft"><span property="xhv:role" resource="xhv:heading"><span class="secno">A.1.1 </span>Changes in June 2017 Working Draft<span class="permalink" typeof="bookmark"><a href="#change_log_2017_june" aria-label="Permalink for A.1.1 Changes in June 2017 Working Draft" title="Permalink for A.1.1 Changes in June 2017 Working Draft" property="url"><span property="title" content="A.1.1 Changes in June 2017 Working Draft">§</span></a></span></span></h4>
         <ul>
           <li>
             Added the following:
@@ -5406,10 +5393,10 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     </section>
 
     <section class="appendix informative section" id="acknowledgements" typeof="bibo:Chapter" resource="#acknowledgements" property="bibo:hasPart">
-	<h3 id="a-3-acknowledgments" resource="#a-3-acknowledgments"><span property="xhv:role" resource="xhv:heading"><span class="secno">A.3 </span>Acknowledgments<span class="permalink" typeof="bookmark"><a href="#acknowledgements" aria-label="Permalink for A.3 Acknowledgments" title="Permalink for A.3 Acknowledgments" property="url"><span property="title" content="A.3 Acknowledgments">§</span></a></span></span></h3><p><em>This section is non-normative.</em></p>
+	<h3 id="a-2-acknowledgments" resource="#a-2-acknowledgments"><span property="xhv:role" resource="xhv:heading"><span class="secno">A.2 </span>Acknowledgments<span class="permalink" typeof="bookmark"><a href="#acknowledgements" aria-label="Permalink for A.2 Acknowledgments" title="Permalink for A.2 Acknowledgments" property="url"><span property="title" content="A.2 Acknowledgments">§</span></a></span></span></h3><p><em>This section is non-normative.</em></p>
 	<p>The following people contributed to the development of this document.</p>
 	<section class="section" id="ack_group" typeof="bibo:Chapter" resource="#ack_group" property="bibo:hasPart">
-		<h4 id="a-3-1-participants-active-in-the-aria-wg-at-the-time-of-publication" resource="#a-3-1-participants-active-in-the-aria-wg-at-the-time-of-publication"><span property="xhv:role" resource="xhv:heading"><span class="secno">A.3.1 </span>Participants active in the ARIA WG at the time of publication<span class="permalink" typeof="bookmark"><a href="#ack_group" aria-label="Permalink for A.3.1 Participants active in the ARIA WG at the time of publication" title="Permalink for A.3.1 Participants active in the ARIA WG at the time of publication" property="url"><span property="title" content="A.3.1 Participants active in the ARIA WG at the time of publication">§</span></a></span></span></h4>
+		<h4 id="a-2-1-participants-active-in-the-aria-wg-at-the-time-of-publication" resource="#a-2-1-participants-active-in-the-aria-wg-at-the-time-of-publication"><span property="xhv:role" resource="xhv:heading"><span class="secno">A.2.1 </span>Participants active in the ARIA WG at the time of publication<span class="permalink" typeof="bookmark"><a href="#ack_group" aria-label="Permalink for A.2.1 Participants active in the ARIA WG at the time of publication" title="Permalink for A.2.1 Participants active in the ARIA WG at the time of publication" property="url"><span property="title" content="A.2.1 Participants active in the ARIA WG at the time of publication">§</span></a></span></span></h4>
 		<ul>
 			<li>Ann Abbott (IBM Corporation)</li>
 			<li>Michiel Bijl (The Paciello Group)</li>
@@ -5455,7 +5442,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 		</ul>
   </section>
 	<section class="section" id="ack_others" typeof="bibo:Chapter" resource="#ack_others" property="bibo:hasPart">
-		<h4 id="a-3-2-other-aria-contributors-commenters-and-previously-active-participants" resource="#a-3-2-other-aria-contributors-commenters-and-previously-active-participants"><span property="xhv:role" resource="xhv:heading"><span class="secno">A.3.2 </span>Other ARIA contributors, commenters, and previously active participants<span class="permalink" typeof="bookmark"><a href="#ack_others" aria-label="Permalink for A.3.2 Other ARIA contributors, commenters, and previously active participants" title="Permalink for A.3.2 Other ARIA contributors, commenters, and previously active participants" property="url"><span property="title" content="A.3.2 Other ARIA contributors, commenters, and previously active participants">§</span></a></span></span></h4>
+		<h4 id="a-2-2-other-aria-contributors-commenters-and-previously-active-participants" resource="#a-2-2-other-aria-contributors-commenters-and-previously-active-participants"><span property="xhv:role" resource="xhv:heading"><span class="secno">A.2.2 </span>Other ARIA contributors, commenters, and previously active participants<span class="permalink" typeof="bookmark"><a href="#ack_others" aria-label="Permalink for A.2.2 Other ARIA contributors, commenters, and previously active participants" title="Permalink for A.2.2 Other ARIA contributors, commenters, and previously active participants" property="url"><span property="title" content="A.2.2 Other ARIA contributors, commenters, and previously active participants">§</span></a></span></span></h4>
 		<ul>
 			<li>Shadi Abou-Zahra (<abbr title="World Wide Web Consortium">W3C</abbr>)</li>
 			<li>Jim Allan (TSB)</li>
@@ -5589,7 +5576,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 		</ul>
 	</section>
 	<section class="section" id="ack_funders" typeof="bibo:Chapter" resource="#ack_funders" property="bibo:hasPart">
-		<h4 id="a-3-3-enabling-funders" resource="#a-3-3-enabling-funders"><span property="xhv:role" resource="xhv:heading"><span class="secno">A.3.3 </span>Enabling funders<span class="permalink" typeof="bookmark"><a href="#ack_funders" aria-label="Permalink for A.3.3 Enabling funders" title="Permalink for A.3.3 Enabling funders" property="url"><span property="title" content="A.3.3 Enabling funders">§</span></a></span></span></h4>
+		<h4 id="a-2-3-enabling-funders" resource="#a-2-3-enabling-funders"><span property="xhv:role" resource="xhv:heading"><span class="secno">A.2.3 </span>Enabling funders<span class="permalink" typeof="bookmark"><a href="#ack_funders" aria-label="Permalink for A.2.3 Enabling funders" title="Permalink for A.2.3 Enabling funders" property="url"><span property="title" content="A.2.3 Enabling funders">§</span></a></span></span></h4>
 		<p>This publication has been funded in part with U.S. Federal funds from the Department of Education, National Institute on Disability, Independent Living, and Rehabilitation Research (NIDILRR), initially under contract number ED-OSE-10-C-0067 and currently under contract number HHSP23301500054C. The content of this publication does not necessarily reflect the views or policies of the U.S. Department of Education, nor does mention of trade names, commercial products, or organizations imply endorsement by the U.S. Government.</p>
 	</section>
 </section>
