@@ -1,28 +1,6 @@
 /*
 *   This content is licensed according to the W3C Software License at
 *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
-*
-*   File:   MenuItem.js
-*
-*   Desc:   Popup Menu Menuitem widget that implements ARIA Authoring Practices
-*
-*   Author: Jon Gunderson, Ku Ja Eun and Nicholas Hoyt
-*/
-
-/*
-*   @constructor MenuItem
-*
-*   @desc
-*       Wrapper object for a simple menu item in a popup menu
-*
-*   @param domNode
-*       The DOM element node that serves as the menu item container.
-*       The menuObj PopupMenu is responsible for checking that it has
-*       requisite metadata, e.g. role="menuitem".
-*
-*   @param menuObj
-*       The object that is a wrapper for the PopupMenu DOM element that
-*       contains the menu item DOM element. See PopupMenu.js
 */
 var MenuItem = function (domNode, menuObj) {
 
@@ -66,7 +44,7 @@ MenuItem.prototype.init = function () {
   var nextElement = this.domNode.nextElementSibling;
 
   if (nextElement && nextElement.tagName === 'UL') {
-    this.popupMenu = new PopupMenu(nextElement, this.menu, this);
+    this.popupMenu = new PopupMenu(nextElement, this);
     this.popupMenu.init();
   }
 
@@ -119,12 +97,6 @@ MenuItem.prototype.handleKeydown = function (event) {
       flag = true;
       break;
 
-    case this.keyCode.ESC:
-      this.menu.setFocusToController();
-      this.menu.close(true);
-      flag = true;
-      break;
-
     case this.keyCode.UP:
       this.menu.setFocusToPreviousItem(this);
       flag = true;
@@ -142,6 +114,7 @@ MenuItem.prototype.handleKeydown = function (event) {
       break;
 
     case this.keyCode.RIGHT:
+      console.log('[MenuItem][handleKeydown]: ' + this.menu.controller.isMenubarItem);
       if (this.popupMenu) {
         this.popupMenu.open();
         this.popupMenu.setFocusToFirstItem();
@@ -165,9 +138,14 @@ MenuItem.prototype.handleKeydown = function (event) {
       flag = true;
       break;
 
-    case this.keyCode.TAB:
+    case this.keyCode.ESC:
       this.menu.setFocusToController();
       this.menu.close(true);
+      flag = true;
+      break;
+
+    case this.keyCode.TAB:
+      this.menu.setFocusToController();
       break;
 
     default:
@@ -200,16 +178,10 @@ MenuItem.prototype.handleClick = function (event) {
 
 MenuItem.prototype.handleFocus = function (event) {
   this.menu.hasFocus = true;
-  if (!this.menu.controller.isMenubarItem) {
-    this.menu.controller.hasFocus = true;
-  }
 };
 
 MenuItem.prototype.handleBlur = function (event) {
   this.menu.hasFocus = false;
-  if (!this.menu.controller.isMenubarItem) {
-    this.menu.controller.hasFocus = false;
-  }
   setTimeout(this.menu.close.bind(this.menu, false), 300);
 };
 

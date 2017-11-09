@@ -5,8 +5,6 @@
 *   File:   PopupMenuAction.js
 *
 *   Desc:   Popup menu widget that implements ARIA Authoring Practices
-*
-*   Author: Jon Gunderson and Ku Ja Eun
 */
 
 /*

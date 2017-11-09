@@ -1,9 +1,10 @@
 /*
+*   This content is licensed according to the W3C Software License at
+*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+*
 *   File:   RadioButtonActiveDescendant.js
 *
 *   Desc:   Radio widget using aria-activedescendant that implements ARIA Authoring Practices
-*
-*   Author(s): Jon Gunderson, Ku Ja Eun, Nicholas Hoyt, and Brian Loh
 */
 
 /*

@@ -16,7 +16,6 @@
       It describes considerations that might not be evident to most authors from the WAI-ARIA specification alone and recommends approaches to make widgets, navigation, and behaviors accessible using WAI-ARIA roles, states, and properties.
       This document is directed primarily to Web application developers, but the guidance is also useful for user agent and assistive technology developers.
     </p>
-
     <p>This document is part of the WAI-ARIA suite described in the <a href="https://www.w3.org/WAI/intro/aria.php">WAI-ARIA Overview</a>.</p>
   </section>
 
@@ -54,28 +53,24 @@
 
   <section id="intro">
     <h2>Introduction</h2>
-
     <p>This section is <em>informative.</em></p>
-
     <p>
-      WAI-ARIA Authoring Practices is a guide to understanding how to use WAI-ARIA to create an accessible Rich Internet Application.
-      It describes recommended WAI-ARIA usage patterns and provides an introduction to the concepts behind them.
+      WAI-ARIA Authoring Practices is a guide to understanding how to use 
+      <cite><a href="https://www.w3.org/TR/wai-aria-1.1/"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> 1.1</a></cite>
+      to create an accessible Rich Internet Application.
+      It provides guidance on appropriate application of WAI-ARIA, describes recommended WAI-ARIA usage patterns, and explains concepts behind them.
     </p>
-
     <p>
-      This guide is one part of a suite of resources that support the WAI-ARIA specification.
-      The WAI-ARIA suite fills accessibility gaps identified by the [[WAI-ARIA-ROADMAP]].
+      Languages used to create rich and dynamic web sites, e.g., HTML, JavaScript, CSS, and SVG, do not natively include all the features required to make sites usable by people who use assistive technologies (AT) or who rely on keyboard navigation.
+      The W3C Web Accessibility Initiative's (WAI) Accessible Rich Internet Applications working group (ARIA WG) is addressing these deficiencies through several W3C standards efforts.
+      The <a href="https://www.w3.org/WAI/intro/aria.php">WAI-ARIA Overview</a>
+      provides additional background on WAI-ARIA, summarizes those efforts, and lists the other documents included in the WAI-ARIA suite.
     </p>
-
-    <p> As explained in <a href="#ariaBackground">Background on WAI-ARIA</a>, languages used to create rich and dynamic web sites, e.g., HTML, JavaScript, CSS, and SVG, do not natively include all the features required to make sites usable by people who use assistive technologies (AT) or who rely on keyboard navigation. The W3C Web Accessibility Initiative's (WAI) Accessible Rich Internet Applications working group (ARIA WG) is addressing these deficiencies through several W3C standards efforts, with a focus on the WAI-ARIA specifications. For an introduction to WAI-ARIA, see the <a href="https://www.w3.org/WAI/intro/aria.php">Accessible Rich Internet Applications Suite (WAI-ARIA) Overview</a>. </p>
-
     <p>
-      With the understanding many prefer to learn from examples, the guide begins with a section that demonstrates how to make common widgets accessible with descriptions of expected behaviors supported by working code.
-      Where it is helpful to do so, the examples refer to detailed explanations of supporting concepts in subsequent sections.
-      The sections that follow the examples first provide background that helps build understanding of how WAI-ARIA works and how it fits into the larger web technology picture.
-      Next, the guide covers general steps for building an accessible widget using WAI-ARIA, JavaScript, and CSS, including detailed guidance on how to make rich internet applications keyboard accessible.
-      The scope then widens to include the full application, addressing the page layout and structural semantics critical to enabling a usable experience with assistive technologies on pages containing both rich applications and rich documents.
-      It includes guidance on dynamic document management, use of WAI-ARIA Form properties, and the creation of WAI-ARIA-enabled alerts and dialogs.
+      With the understanding many prefer to learn from examples, after a brief <q>Read Me First</q> section,
+      the guide begins with ARIA implementation patterns for common widgets that both enumerate expected behaviors and demonstrate those behaviors with working code.
+      The implementation patterns and examples refer to detailed explanations of supporting concepts in subsequent guidance sections.
+      The guidance sections cover topics, such as use of ARIA landmarks, making rich internet applications keyboard accessible, grid and table properties, and the effects of the <code>presentation</code> role.
     </p>
   </section>
 
@@ -419,7 +414,7 @@
           In this example, when the pressed state is true, the label remains &quot;Mute&quot; so a screen reader would say something like &quot;Mute toggle button pressed&quot;.
           Alternatively, if the design were to call for the button label to change from &quot;Mute&quot; to &quot;Unmute,&quot; the aria-pressed attribute would not be needed.
         </li>
-        <li>Menu button: as described in the <a href="#menubutton">menu button pattern</a>, a button is revealed to assistive technologies as a menu button if it has the property <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set to <code>true</code>.</li>
+        <li>Menu button: as described in the <a href="#menubutton">menu button pattern</a>, a button is revealed to assistive technologies as a menu button if it has the property <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set to either <code>menu</code> or <code>true</code>.</li>
       </ul>
       <p class="note">
         The types of actions performed by buttons are distinctly different from the function of a link (see <a href="#link">link pattern</a>).
@@ -543,7 +538,14 @@
         <h4>WAI-ARIA Roles, States, and Properties</h4>
         <ul>
           <li>The checkbox has role <a href="#checkbox" class="role-reference">checkbox</a>.</li>
-          <li>The checkbox has an accessible label, preferably provided by a visible label associated using <a href="#aria-labelledby" class="property-reference" >aria-labelledby</a>.</li>
+          <li>
+            The checkbox has an accessible label provided by one of the following:
+            <ul>
+              <li>Visible text content contained within the element with role <code>checkbox</code>.</li>
+              <li>A visible label referenced by the value of <a href="#aria-labelledby" class="property-reference" >aria-labelledby</a> set on the element with role <code>checkbox</code>.</li>
+              <li><a href="#aria-label" class="property-reference">aria-label</a> set on the element with role <code>checkbox</code>.</li>
+            </ul>
+          </li>
           <li>When checked, the checkbox element has state <a href="#aria-checked" class="state-reference" >aria-checked</a> set to <code>true</code>.</li>
           <li>When not checked, it has state <a href="#aria-checked" class="state-reference" >aria-checked</a> set to <code>false</code>.</li>
           <li>When partially checked, it has state <a href="#aria-checked" class="state-reference" >aria-checked</a> set to <code>mixed</code>.</li>
@@ -1296,24 +1298,25 @@
 
       <section id="dataGrid" class="notoc">
         <h4>Data Grids For Presenting Tabular Information</h4>
-
         <p>
           A <code>grid</code> can be used to present tabular information that has column titles, row titles, or both.
           The <code>grid</code> pattern is particularly useful if the tabular information is editable or interactive.
           For example, when data elements are links to more information, rather than presenting them in a static table and including the links in the tab sequence, implementing the <code>grid</code> pattern provides users with intuitive and efficient keyboard navigation of the grid contents as well as a shorter tab sequence for the page.
           A <code>grid</code> may also offer functions, such as cell content editing, selection, cut, copy, and paste.
         </p>
-
-        <p> In a grid that presents tabular data, every cell contains a focusable element or is itself focusable, regardless of whether the cell content is editable or interactive. There is one exception: if column or row header cells do not provide functions, such as sort or filter, they do not need to be focusable. One reason this is important is that screen readers need to be in their application reading mode, rather than their document reading mode, while the user is interacting with the grid. While in application reading mode, a screen reader user can only discover focusable elements and content that labels focusable elements. So, a screen reader user may unknowingly overlook elements contained in a grid that are either not focusable or not used to label a column or row. A more detailed description of this topic with examples is available in the section describing <a href="#ScreenReaderModes">screen reader document and application reading modes</a>. </p>
-
+        <p>
+          In a grid, every cell contains a focusable element or is itself focusable, regardless of whether the cell content is editable or interactive.
+          There is one exception: if column or row header cells do not provide functions, such as sort or filter, they do not need to be focusable.
+          One reason it is important for all cells to be able to receive or contain keyboard focus is that screen readers will typically be in their application reading mode, rather than their document reading mode, when users are interacting with the grid.
+          While in application mode, a screen reader user hears only focusable elements and content that labels focusable elements.
+          So, screen reader users may unknowingly overlook elements contained in a grid that are either not focusable or not used to label a column or row.
+        </p>
         <section class="notoc">
           <h5>Keyboard Interaction For Data Grids</h5>
-
           <p>
             The following keys provide grid navigation by moving focus among cells of the grid.
             These key commands are available by default after an element in the grid receives focus.
           </p>
-
           <ul>
             <li>
               <kbd>Right Arrow</kbd>: Moves focus one cell to the right.
@@ -1329,7 +1332,6 @@
             <li><kbd>Control + Home</kbd>: moves focus to the first cell in the first row.</li>
             <li><kbd>Control + End</kbd>: moves focus to the last cell in the last row.</li>
           </ul>
-
           <ul class="note">
             <li>
               When the above grid navigation keys move focus, whether the focus is set on an element inside the cell or the grid cell depends on cell content.
@@ -1341,9 +1343,7 @@
             </li>
             <li>If navigation functions can dynamically add more rows or columns to the DOM, key events that move focus to the beginning or end of the grid, such as <kbd>control + End</kbd>, may move focus to the last row in the DOM rather than the last available row in the back-end data.</li>
           </ul>
-
           <p>If a grid supports selection of cells, rows, or columns, the following keys are commonly used for these functions.</p>
-
           <ul>
             <li><kbd>Control + Space</kbd>: selects the column that contains the focus.</li>
             <li><kbd>Shift + Space</kbd>: Selects the row that contains the focus. If the grid includes a column with checkboxes for selecting rows, this key can serve as a shortcut for checking the box when focus is not on the checkbox.</li>
@@ -1353,11 +1353,10 @@
             <li><kbd>Shift + Down Arrow</kbd>: Extends selection one cell down.</li>
             <li><kbd>Shift + Up Arrow</kbd>: Extends selection one cell Up.</li>
           </ul>
-
           <p class="note">See <a href="#kbd_common_conventions"></a> for cut, copy, and paste key assignments.</p>
         </section>
       </section>
-
+      
       <section id="layoutGrid" class="notoc">
         <h4>Layout Grids for Grouping Widgets</h4>
 
@@ -1460,7 +1459,6 @@
 
       <section id="gridNav" class="notoc">
         <h4>Keyboard Interaction - Setting Focus and Navigating Inside Cells</h4>
-
         <p>This section describes two important aspects of keyboard interaction design shared by both data and layout grid patterns:</p>
 
         <ol>
@@ -1593,10 +1591,11 @@
             For example, an HTML <code>&lt;TR&gt;</code> has an implied ARIA role of <code>row</code>.
             A <code>grid</code> built from an HTML <code>table</code> that includes cells that span multiple rows or columns must use HTML <code>rowspan</code> and <code>colspan</code> and must not use <code>aria-rowspan</code> or <code>aria-colspan</code>.
           </li>
-          <li> If rows or cells are included in a grid via <a href="#aria-owns" class="property-reference">aria-owns</a>, they will be presented to assistive technologies after the DOM descendants of the <code>grid</code> element unless the DOM descendants are also included in the <code>aria-owns</code> attribute. See using aria-owns for a detailed explanation. </li>
+          <li>
+            If rows or cells are included in a grid via <a href="#aria-owns" class="property-reference">aria-owns</a>,
+            they will be presented to assistive technologies after the DOM descendants of the <code>grid</code> element unless the DOM descendants are also included in the <code>aria-owns</code> attribute.
+          </li>
         </ul>
-        <p class="note">Editor's Note - Guidance for aria-owns has not yet been created. A link to it will be added above once created.</p>
-
       </section>
     </section>
 
@@ -1927,7 +1926,7 @@
             If activating a <a href="#menuitem" class="role-reference">menuitem</a> opens a submenu, the menuitem is known as a parent menuitem.
             A submenu's <code>menu</code> element is contained in or owned by it's parent             menuitem.
           </li>
-          <li>A parent menuitem has <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set to <code>true</code>.</li>
+          <li>A parent menuitem has <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set to either <code>menu</code> or <code>true</code>.</li>
           <li>
             A parent menuitem has <a href="#aria-expanded" class="property-reference">aria-expanded</a> set to <code>false</code> when its child menu is not visible and set to <code>true</code> when the child menu is visible.
             <strong>(See note below regarding HTML validation.)</strong>
@@ -1943,8 +1942,19 @@
           <li>Items in a menu may be divided into groups by placing an element with a role of <a href="#separator" class="role-reference">separator</a> between groups. For example, this technique should be used when a menu contains a set of <a href="#menuitemradio" class="role-reference">menuitemradio</a> items. </li>
           <li>All <a href="#separator" class="role-reference">separators</a> should have <a href="#aria-orientation" class="property-reference">aria-orientation</a> consistent with the separator's orientation. </li>
           <li>
+            If a menubar has a visible label, the element with role <code>menubar</code> has <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> set to a value that refers to the labeling element.
+            Otherwise, the menubar element has a label provided by <a href="#aria-label" class="property-reference">aria-label</a>.
+          </li>
+          <li>
             If a menubar is vertically oriented, it has <a class="property-reference" href="#aria-orientation">aria-orientation</a> set to <code>vertical</code>.
             The default value of <code>aria-orientation</code> for a menubar is <code>horizontal</code>.
+          </li>
+          <li>
+            An element with role <code>menu</code> either has:
+            <ul>
+              <li><a href="#aria-labelledby" class="property-reference">aria-labelledby</a> set to a value that refers to the menuitem or button that controls its display.</li>
+              <li>A label provided by <a href="#aria-label" class="property-reference">aria-label</a>.</li>
+            </ul>
           </li>
           <li>
             If a menu is horizontally oriented, it has <a class="property-reference" href="#aria-orientation">aria-orientation</a> set to <code>horizontal</code>.
@@ -1999,7 +2009,7 @@
         <h4>WAI-ARIA Roles, States, and Properties</h4>
         <ul>
           <li>The element that opens the menu has role <a href="#button" class="role-reference">button</a>.</li>
-          <li>The element with role <code>button</code> has <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set to <code>true</code>.</li>
+          <li>The element with role <code>button</code> has <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set to either <code>menu</code> or <code>true</code>.</li>
           <li>
             When the menu is displayed, the element with role <code>button</code> has
             <a href="#aria-expanded" class="state-reference">aria-expanded</a>
@@ -2422,7 +2432,7 @@
           <li>Each element with role <code>tab</code> has the property <a href="#aria-controls" class="property-reference">aria-controls</a> referring to its associated <code>tabpanel</code> element.</li>
           <li>The active <code>tab</code> element has the state <a href="#aria-selected" class="state-reference">aria-selected</a> set to <code>true</code> and all other <code>tab</code> elements have it set to <code>false</code>.</li>
           <li>Each element with role <code>tabpanel</code> has the property <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> referring to its associated <code>tab</code> element. </li>
-          <li>If a <code>tab</code> element has a pop-up menu, it has the property <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set to <code>true</code>. </li>
+          <li>If a <code>tab</code> element has a pop-up menu, it has the property <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set to either <code>menu</code> or <code>true</code>. </li>
           <li>
             If the <code>tablist</code> element is vertically oriented, it has the property <a href="#aria-orientation" class="property-reference">aria-orientation</a> set to <code>vertical</code>.
             The default value of <code>aria-orientation</code> for a <code>tablist</code> element is <code>horizontal</code>.
@@ -3762,7 +3772,7 @@
         <h4>Assigning Keyboard Shortcuts</h4>
         <p>When choosing the keys to assign to a shortcut, there are many factors to consider.</p>
         <ul>
-          <li>Making the shortcut easy to learn and remember by using a mnemonic (e.g., "S" for "Save") or following a logical or spacial pattern.</li>
+          <li>Making the shortcut easy to learn and remember by using a mnemonic (e.g., <kbd>Control + S</kbd> for "Save") or following a logical or spacial pattern.</li>
           <li> Localizing the interface, including for differences in which keys are available and how they behave and for language considerations that could impact mnemonics. </li>
           <li>Avoiding and managing conflicts with key assignments used by an assistive technology, the browser, or the operating system.</li>
         </ul>
@@ -4529,20 +4539,6 @@
 
   <section id="appendices" class="appendix">
     <h2>Appendices</h2>
-
-    <section id="ScreenReaderModes">
-      <h3>Understanding Screen Reader Document Reading and Application Reading Modes</h3>
-      <p>
-        Drafting content for this section is
-        <a href="https://github.com/w3c/aria-practices/issues/193">issue 193.</a>
-      </p>
-      <p>Placeholder for a section covering this topic that is yet to be written.</p>
-    </section>
-
-    <section class="appendix" id="ariaBackground">
-      <h3>Background on WAI-ARIA</h3>
-      <p>[Placeholder section that will be resolved by <a href="https://github.com/w3c/aria-practices/issues/84">issue #84</a>.]</p>
-    </section>
 
     <section id="change_log" class="appendix">
       <h3>Change History</h3>
