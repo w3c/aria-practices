@@ -146,7 +146,7 @@ Listbox.prototype.setOption = function (option) {
     this.combobox.setOption(option);
     this.combobox.setValue(option.textContent);
   }
-}
+};
 
 /* EVENT HANDLERS */
 

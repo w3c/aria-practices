@@ -13,7 +13,7 @@ var ComboboxList = function (domNode) {
   this.filter   = '';
   this.isNone = false;
   this.isList = false;
-  this.isBoth = false
+  this.isBoth = false;
 
   this.keyCode = Object.freeze({
     'BACKSPACE': 8,
@@ -109,21 +109,21 @@ ComboboxList.prototype.setOption = function (option, flag) {
   }
 };
 
-ComboboxList.prototype.setVisualFocusTextbox = function() {
+ComboboxList.prototype.setVisualFocusTextbox = function () {
   this.listbox.domNode.classList.remove('focus');
   this.listbox.hasFocus = false;
   this.domNode.classList.add('focus');
   this.hasFocus = true;
 };
 
-ComboboxList.prototype.setVisualFocusListbox = function() {
+ComboboxList.prototype.setVisualFocusListbox = function () {
   this.domNode.classList.remove('focus');
   this.hasFocus = false;
   this.listbox.domNode.classList.add('focus');
   this.listbox.hasFocus = true;
 };
 
-ComboboxList.prototype.removeVisualFocusAll = function() {
+ComboboxList.prototype.removeVisualFocusAll = function () {
   this.domNode.classList.remove('focus');
   this.hasFocus = false;
   this.listbox.domNode.classList.remove('focus');
