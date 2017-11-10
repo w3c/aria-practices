@@ -11,6 +11,9 @@ var ComboboxList = function (domNode) {
   this.hasFocus = false;
   this.hasHover = false;
   this.filter   = '';
+  this.isNone = false;
+  this.isList = false;
+  this.isBoth = false
 
   this.keyCode = Object.freeze({
     'BACKSPACE': 8,
@@ -33,10 +36,17 @@ ComboboxList.prototype.init = function () {
 
   this.domNode.setAttribute('aria-haspopup', 'true');
 
-  this.autocomplete = this.domNode.getAttribute('aria-autocomplete');
+  var autocomplete = this.domNode.getAttribute('aria-autocomplete');
 
-  if (this.autocomplete) {
-    this.autocomplete = this.autocomplete.toLowerCase();
+  if (typeof autocomplete === 'string') {
+    autocomplete = autocomplete.toLowerCase();
+    this.isNone  = autocomplete === 'none';
+    this.isList  = autocomplete === 'list';
+    this.isBoth  = autocomplete === 'both';
+  }
+  else {
+    // default value of autocomplete
+    this.isNone = true;
   }
 
   this.domNode.addEventListener('keydown', this.handleKeydown.bind(this));
@@ -64,34 +74,61 @@ ComboboxList.prototype.init = function () {
 
 };
 
-ComboboxList.prototype.updateValue = function () {
-  if (this.autocomplete === 'both') {
-
-    if (this.option && this.listbox.isOpen()) {
-      this.domNode.value = this.option.textContent;
-      this.domNode.setSelectionRange(this.filter.length,this.option.textContent.length);
-    }
-    else {
-      this.domNode.value = this.filter;
-    }
-  }
+ComboboxList.prototype.setActiveDescendant = function (value) {
+  this.domNode.setAttribute('aria-activedescendant', value);
 };
 
 ComboboxList.prototype.setValue = function (value) {
   this.filter = value;
   this.domNode.value = this.filter;
   this.domNode.setSelectionRange(this.filter.length,this.filter.length);
-  if (this.autocomplete !== 'none') {
+  if (this.isList || this.isBoth) {
     this.listbox.filterOptions(this.filter, this.option);
   }
 };
 
-ComboboxList.prototype.setOption = function (option) {
+ComboboxList.prototype.setOption = function (option, flag) {
+  if (typeof flag !== 'boolean') {
+    flag = false;
+  }
+
   if (option) {
     this.option = option;
-    this.listbox.setFocusStyle(this.option);
-    this.updateValue();
+    this.listbox.setCurrentOptionStyle(this.option);
+    this.setActiveDescendant(option.domNode.id);
+
+    if (this.isBoth) {
+      this.domNode.value = this.option.textContent;
+      if (flag) {
+        this.domNode.setSelectionRange(this.option.textContent.length,this.option.textContent.length);
+      }
+      else {
+        this.domNode.setSelectionRange(this.filter.length,this.option.textContent.length);
+      }
+    }
   }
+};
+
+ComboboxList.prototype.setVisualFocusTextbox = function() {
+  this.listbox.domNode.classList.remove('focus');
+  this.listbox.hasFocus = false;
+  this.domNode.classList.add('focus');
+  this.hasFocus = true;
+};
+
+ComboboxList.prototype.setVisualFocusListbox = function() {
+  this.domNode.classList.remove('focus');
+  this.hasFocus = false;
+  this.listbox.domNode.classList.add('focus');
+  this.listbox.hasFocus = true;
+};
+
+ComboboxList.prototype.removeVisualFocusAll = function() {
+  this.domNode.classList.remove('focus');
+  this.hasFocus = false;
+  this.listbox.domNode.classList.remove('focus');
+  this.listbox.hasFocus = true;
+  this.option = false;
 };
 
 /* Event Handlers */
@@ -118,14 +155,15 @@ ComboboxList.prototype.handleKeydown = function (event) {
 
       if (this.listbox.hasOptions()) {
         if (this.listbox.isOpen()) {
-          this.setOption(this.listbox.getNextItem(this.option));
+          this.setOption(this.listbox.getNextItem(this.option), true);
         }
         else {
           this.listbox.open();
           if (!altKey) {
-            this.setOption(this.listbox.getFirstItem());
+            this.setOption(this.listbox.getFirstItem(), true);
           }
         }
+        this.setVisualFocusListbox();
       }
       flag = true;
       break;
@@ -133,14 +171,15 @@ ComboboxList.prototype.handleKeydown = function (event) {
     case this.keyCode.UP:
       if (this.listbox.hasOptions()) {
         if (this.listbox.isOpen()) {
-          this.setOption(this.listbox.getPreviousItem(this.option));
+          this.setOption(this.listbox.getPreviousItem(this.option), true);
         }
         else {
           this.listbox.open();
           if (!altKey) {
-            this.setOption(this.listbox.getLastItem());
+            this.setOption(this.listbox.getLastItem(), true);
           }
         }
+        this.setVisualFocusListbox();
       }
       flag = true;
       break;
@@ -149,7 +188,8 @@ ComboboxList.prototype.handleKeydown = function (event) {
     case this.keyCode.PAGEUP:
       if (this.listbox.hasOptions()) {
         if (this.listbox.isOpen()) {
-          this.setOption(this.listbox.getFirstItem());
+          this.setOption(this.listbox.getFirstItem(), true);
+          this.setVisualFocusListbox();
         }
       }
       flag = true;
@@ -159,7 +199,8 @@ ComboboxList.prototype.handleKeydown = function (event) {
     case this.keyCode.PAGEDOWN:
       if (this.listbox.hasOptions()) {
         if (this.listbox.isOpen()) {
-          this.setOption(this.listbox.getLastItem());
+          this.setOption(this.listbox.getLastItem(), true);
+          this.setVisualFocusListbox();
         }
       }
       flag = true;
@@ -169,8 +210,19 @@ ComboboxList.prototype.handleKeydown = function (event) {
       if (this.listbox.isOpen()) {
         this.listbox.close(true);
       }
-      this.setValue(this.filter);
+      this.setVisualFocusTextbox();
+      this.setValue('');
       flag = true;
+      break;
+
+    case this.keyCode.TAB:
+      if (this.listbox.isOpen()) {
+        this.listbox.close(true);
+      }
+
+      if (this.option) {
+        this.setValue(this.option.textContent);
+      }
       break;
 
     default:
@@ -194,40 +246,66 @@ ComboboxList.prototype.handleKeyup = function (event) {
     return str.length === 1 && str.match(/\S/);
   }
 
-  this.filter = this.domNode.value.substring(0,this.domNode.selectionStart);
+  if (isPrintableCharacter(char)) {
+    this.filter += char;
+  }
 
-  if (this.autocomplete !== 'none') {
+  if (this.domNode.value.length < this.filter.length) {
+    this.filter = this.domNode.value;
+  }
+
+  if (this.isList || this.isBoth) {
     option = this.listbox.filterOptions(this.filter, this.option);
+    if (option) {
+      this.listbox.open();
+      this.option = option;
+      this.setActiveDescendant(option.domNode.id);
+    }
+    else {
+      this.listbox.close();
+      this.option = false;
+      this.setActiveDescendant('');
+    }
+    this.listbox.setCurrentOptionStyle(option);
+  }
+  else {
+    if (this.domNode.value.length) {
+      this.listbox.open();
+    }
   }
 
   switch (event.keyCode) {
 
     case this.keyCode.BACKSPACE:
-      if (this.autocomplete === 'both') {
-        this.setValue(this.filter);
-        this.listbox.setFocusStyle(null);
-        this.option = false;
-      }
+      this.setValue(this.domNode.value);
+      this.option = false;
+      this.setActiveDescendant('');
+      this.setVisualFocusTextbox();
       flag = true;
       break;
 
     case this.keyCode.LEFT:
     case this.keyCode.RIGHT:
-      this.listbox.setFocusStyle(null);
+      if (this.isBoth) {
+        this.filter = this.domNode.value;
+      }
+      this.option = false;
+      this.setActiveDescendant('');
+      this.setVisualFocusTextbox();
       flag = true;
       break;
 
     default:
-
       if (isPrintableCharacter(char)) {
         if (option) {
-          this.setOption(option);
+          this.setOption(option, false);
         }
         else {
           this.setValue(this.filter);
         }
+        flag = true;
+        this.setVisualFocusTextbox();
       }
-      flag = true;
       break;
   }
 
@@ -248,11 +326,14 @@ ComboboxList.prototype.handleClick = function (event) {
 };
 
 ComboboxList.prototype.handleFocus = function (event) {
-  this.listbox.open();
+  this.setVisualFocusTextbox();
+  this.listbox.setCurrentOptionStyle(null);
 };
 
 ComboboxList.prototype.handleBlur = function (event) {
   this.listbox.hasFocus = false;
+  this.listbox.setCurrentOptionStyle(null);
+  this.removeVisualFocusAll();
   setTimeout(this.listbox.close.bind(this.listbox, false), 300);
 
 };
@@ -264,6 +345,8 @@ ComboboxList.prototype.handleButtonClick = function (event) {
   else {
     this.listbox.open();
   }
+  this.domNode.focus();
+  this.setVisualFocusTextbox();
 };
 
 

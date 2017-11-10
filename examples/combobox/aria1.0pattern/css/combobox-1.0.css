@@ -17,7 +17,13 @@
 .combobox-list .group input,
 .combobox-list .group button {
   display: inline;
+  background-color: #eee;
 }
+
+.combobox-list .group input.focus {
+  background-color: #d6e8f5;
+}
+
 
 .combobox-list .group button {
   margin: 0;

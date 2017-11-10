@@ -1,11 +1,10 @@
-
 ul[role="listbox"] {
   margin: 0;
   padding: 0;
   position: absolute;
   top: 3em;
   list-style: none;
-  background-color: #EEEEEE;
+  background-color: #eee;
   display: none;
   border: thin #333 solid;
   height: 12em;
@@ -13,11 +12,16 @@ ul[role="listbox"] {
   overflow: scroll;
 }
 
+ul[role="listbox"].focus {
+  border-color: #348ccb;
+}
+
+
 ul[role="listbox"] li[role="option"]{
   display: block;
   margin: 0.25em;
   padding: 0;
-  background-color: #EEEEEE;
+  background-color: #eee;
   font-size: 100%;
 }
 
@@ -32,12 +36,15 @@ input:hover {
 
 input:focus,
 input:hover {
-  background-color: #EEEEEE;
+  background-color: #eee;
 }
 
-ul[role="listbox"] li[role="option"].focus,
-ul[role="listbox"] li[role="option"]:hover{
-  background-color: black;
-  color: white;
+ul[role="listbox"] li[role="option"].current {
+  background-color: #ccc;
+}
+
+ul[role="listbox"].focus li[role="option"].current,
+ul[role="listbox"] li[role="option"]:hover {
+  background-color: #c2ddef;
 }
 
