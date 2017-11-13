@@ -220,7 +220,7 @@ ComboboxList.prototype.handleKeydown = function (event) {
         this.listbox.close(true);
       }
 
-      if (this.option) {
+      if (this.isBoth && this.option) {
         this.setValue(this.option.textContent);
       }
       break;
