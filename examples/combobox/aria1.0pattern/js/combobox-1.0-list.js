@@ -74,8 +74,13 @@ ComboboxList.prototype.init = function () {
 
 };
 
-ComboboxList.prototype.setActiveDescendant = function (value) {
-  this.domNode.setAttribute('aria-activedescendant', value);
+ComboboxList.prototype.setActiveDescendant = function (option) {
+  if (option && this.listbox.hasFocus) {
+    this.domNode.setAttribute('aria-activedescendant', option.domNode.id);
+  }
+  else {
+    this.domNode.setAttribute('aria-activedescendant', '');
+  }
 };
 
 ComboboxList.prototype.setValue = function (value) {
@@ -95,7 +100,7 @@ ComboboxList.prototype.setOption = function (option, flag) {
   if (option) {
     this.option = option;
     this.listbox.setCurrentOptionStyle(this.option);
-    this.setActiveDescendant(option.domNode.id);
+    this.setActiveDescendant(this.option);
 
     if (this.isBoth) {
       this.domNode.value = this.option.textContent;
@@ -114,6 +119,7 @@ ComboboxList.prototype.setVisualFocusTextbox = function () {
   this.listbox.hasFocus = false;
   this.domNode.classList.add('focus');
   this.hasFocus = true;
+  this.setActiveDescendant(false);
 };
 
 ComboboxList.prototype.setVisualFocusListbox = function () {
@@ -121,6 +127,7 @@ ComboboxList.prototype.setVisualFocusListbox = function () {
   this.hasFocus = false;
   this.listbox.domNode.classList.add('focus');
   this.listbox.hasFocus = true;
+  this.setActiveDescendant(this.option);
 };
 
 ComboboxList.prototype.removeVisualFocusAll = function () {
@@ -129,6 +136,7 @@ ComboboxList.prototype.removeVisualFocusAll = function () {
   this.listbox.domNode.classList.remove('focus');
   this.listbox.hasFocus = true;
   this.option = false;
+  this.setActiveDescendant(false);
 };
 
 /* Event Handlers */
@@ -144,17 +152,17 @@ ComboboxList.prototype.handleKeydown = function (event) {
   switch (event.keyCode) {
 
     case this.keyCode.RETURN:
-      if (this.option) {
+      if ((this.listbox.hasFocus || this.isBoth) && this.option) {
         this.setValue(this.option.textContent);
-        this.listbox.close(true);
       }
+      this.listbox.close(true);
       flag = true;
       break;
 
     case this.keyCode.DOWN:
 
       if (this.listbox.hasOptions()) {
-        if (this.listbox.isOpen()) {
+        if (this.listbox.hasFocus || (this.isBoth && this.option)) {
           this.setOption(this.listbox.getNextItem(this.option), true);
         }
         else {
@@ -170,7 +178,7 @@ ComboboxList.prototype.handleKeydown = function (event) {
 
     case this.keyCode.UP:
       if (this.listbox.hasOptions()) {
-        if (this.listbox.isOpen()) {
+        if (this.listbox.hasFocus || (this.isBoth && this.option)) {
           this.setOption(this.listbox.getPreviousItem(this.option), true);
         }
         else {
@@ -178,28 +186,6 @@ ComboboxList.prototype.handleKeydown = function (event) {
           if (!altKey) {
             this.setOption(this.listbox.getLastItem(), true);
           }
-        }
-        this.setVisualFocusListbox();
-      }
-      flag = true;
-      break;
-
-    case this.keyCode.HOME:
-    case this.keyCode.PAGEUP:
-      if (this.listbox.hasOptions()) {
-        if (this.listbox.isOpen()) {
-          this.setOption(this.listbox.getFirstItem(), true);
-          this.setVisualFocusListbox();
-        }
-      }
-      flag = true;
-      break;
-
-    case this.keyCode.END:
-    case this.keyCode.PAGEDOWN:
-      if (this.listbox.hasOptions()) {
-        if (this.listbox.isOpen()) {
-          this.setOption(this.listbox.getLastItem(), true);
           this.setVisualFocusListbox();
         }
       }
@@ -207,21 +193,21 @@ ComboboxList.prototype.handleKeydown = function (event) {
       break;
 
     case this.keyCode.ESC:
-      if (this.listbox.isOpen()) {
+      if (this.listbox.hasFocus) {
         this.listbox.close(true);
+        this.setVisualFocusTextbox();
+        this.setValue('');
+        this.option = false;
       }
-      this.setVisualFocusTextbox();
-      this.setValue('');
       flag = true;
       break;
 
     case this.keyCode.TAB:
-      if (this.listbox.isOpen()) {
-        this.listbox.close(true);
-      }
-
-      if (this.isBoth && this.option) {
-        this.setValue(this.option.textContent);
+      this.listbox.close(true);
+      if (this.listbox.hasFocus) {
+        if (this.option) {
+          this.setValue(this.option.textContent);
+        }
       }
       break;
 
@@ -250,64 +236,83 @@ ComboboxList.prototype.handleKeyup = function (event) {
     this.filter += char;
   }
 
+  // this is for the case when a selection in the textbox has been deleted
   if (this.domNode.value.length < this.filter.length) {
     this.filter = this.domNode.value;
-  }
-
-  if (this.isList || this.isBoth) {
-    option = this.listbox.filterOptions(this.filter, this.option);
-    if (option) {
-      this.listbox.open();
-      this.option = option;
-      this.setActiveDescendant(option.domNode.id);
-    }
-    else {
-      this.listbox.close();
-      this.option = false;
-      this.setActiveDescendant('');
-    }
-    this.listbox.setCurrentOptionStyle(option);
-  }
-  else {
-    if (this.domNode.value.length) {
-      this.listbox.open();
-    }
   }
 
   switch (event.keyCode) {
 
     case this.keyCode.BACKSPACE:
       this.setValue(this.domNode.value);
-      this.option = false;
-      this.setActiveDescendant('');
       this.setVisualFocusTextbox();
+      this.listbox.setCurrentOptionStyle(false);
+      this.option = false;
       flag = true;
       break;
 
     case this.keyCode.LEFT:
     case this.keyCode.RIGHT:
+    case this.keyCode.HOME:
+    case this.keyCode.END:
       if (this.isBoth) {
         this.filter = this.domNode.value;
       }
-      this.option = false;
-      this.setActiveDescendant('');
+      else {
+        this.option = false;
+        this.listbox.setCurrentOptionStyle(false);
+      }
+
       this.setVisualFocusTextbox();
       flag = true;
       break;
 
     default:
       if (isPrintableCharacter(char)) {
-        if (option) {
-          this.setOption(option, false);
-        }
-        else {
-          this.setValue(this.filter);
-        }
-        flag = true;
         this.setVisualFocusTextbox();
+        this.listbox.setCurrentOptionStyle(false);
+        flag = true;
       }
+
       break;
   }
+
+  if (event.keyCode !== this.keyCode.RETURN) {
+
+    if (this.isList || this.isBoth) {
+      option = this.listbox.filterOptions(this.filter, this.option);
+      if (option) {
+        if (this.listbox.isClosed()) {
+          if (this.domNode.value.length) {
+            this.listbox.open();
+          }
+        }
+
+        if (option.textComparison.indexOf(this.domNode.value.toLowerCase()) === 0) {
+          this.option = option;
+          if (this.isBoth || this.listbox.hasFocus) {
+            this.listbox.setCurrentOptionStyle(option);
+          }
+        }
+        else {
+          this.option = false;
+          this.listbox.setCurrentOptionStyle(false);
+        }
+      }
+      else {
+        this.listbox.close();
+        this.option = false;
+        this.setActiveDescendant(false);
+      }
+    }
+    else {
+      if (this.domNode.value.length) {
+        this.listbox.open();
+      }
+    }
+
+  }
+
 
   if (flag) {
     event.stopPropagation();
@@ -327,6 +332,7 @@ ComboboxList.prototype.handleClick = function (event) {
 
 ComboboxList.prototype.handleFocus = function (event) {
   this.setVisualFocusTextbox();
+  this.option = false;
   this.listbox.setCurrentOptionStyle(null);
 };
 

@@ -1,4 +1,4 @@
-ul[role="listbox"] {
+[role="listbox"] {
   margin: 0;
   padding: 0;
   position: absolute;
@@ -6,18 +6,18 @@ ul[role="listbox"] {
   list-style: none;
   background-color: #eee;
   display: none;
-  border: thin #333 solid;
+  border: 2px #333 solid;
   height: 12em;
   width: 12em;
   overflow: scroll;
 }
 
-ul[role="listbox"].focus {
+[role="listbox"].focus {
   border-color: #348ccb;
 }
 
 
-ul[role="listbox"] li[role="option"]{
+[role="listbox"] [role="option"]{
   display: block;
   margin: 0.25em;
   padding: 0;
@@ -39,12 +39,15 @@ input:hover {
   background-color: #eee;
 }
 
-ul[role="listbox"] li[role="option"].current {
+[role="listbox"] [role="option"][aria-selected="true"] {
   background-color: #ccc;
 }
 
-ul[role="listbox"].focus li[role="option"].current,
-ul[role="listbox"] li[role="option"]:hover {
+[role="listbox"].focus [role="option"][aria-selected="true"] {
+  background-color: #aed2ea;
+}
+
+[role="listbox"] li[role="option"]:hover {
   background-color: #c2ddef;
 }
 

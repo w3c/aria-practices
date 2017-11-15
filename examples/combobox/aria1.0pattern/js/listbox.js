@@ -126,18 +126,16 @@ Listbox.prototype.filterOptions = function (filter, currentOption) {
 };
 
 Listbox.prototype.setCurrentOptionStyle = function (option) {
-  this.combobox.setActiveDescendant('');
 
   for (var i = 0; i < this.options.length; i++) {
-
-    if (this.options[i] === option) {
-      option.domNode.classList.add('current');
-      this.domNode.scrollTop = option.domNode.offsetTop;
+    var opt = this.options[i];
+    if (opt === option) {
+      opt.domNode.setAttribute('aria-selected', 'true');
+      this.domNode.scrollTop = opt.domNode.offsetTop;
     }
     else {
-      this.options[i].domNode.classList.remove('current');
+      opt.domNode.removeAttribute('aria-selected');
     }
-
   }
 };
 
@@ -196,6 +194,10 @@ Listbox.prototype.isOpen = function () {
   return this.domNode.style.display === 'block';
 };
 
+Listbox.prototype.isClosed = function () {
+  return this.domNode.style.display !== 'block';
+};
+
 Listbox.prototype.hasOptions = function () {
   return this.options.length;
 };
@@ -214,9 +216,10 @@ Listbox.prototype.close = function (force) {
   }
 
   if (force || (!this.hasFocus && !this.hasHover && !this.combobox.hasHover)) {
+    this.setCurrentOptionStyle(false);
     this.domNode.style.display = 'none';
     this.combobox.domNode.setAttribute('aria-expanded', 'false');
-    this.combobox.domNode.setAttribute('aria-activedescendant', '');
+    this.combobox.setActiveDescendant(false);
   }
 };
 

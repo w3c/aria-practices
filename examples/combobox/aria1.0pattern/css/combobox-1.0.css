@@ -22,6 +22,7 @@
 
 .combobox-list .group input.focus {
   background-color: #d6e8f5;
+  outline-color: #348ccb;
 }
 
 
