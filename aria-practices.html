@@ -55,10 +55,9 @@
     <h2>Introduction</h2>
     <p>This section is <em>informative.</em></p>
     <p>
-      WAI-ARIA Authoring Practices is a guide to understanding how to use 
-      <cite><a href="https://www.w3.org/TR/wai-aria-1.1/"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> 1.1</a></cite>
-      to create an accessible Rich Internet Application.
-      It provides guidance on appropriate application of WAI-ARIA, describes recommended WAI-ARIA usage patterns, and explains concepts behind them.
+      WAI-ARIA Authoring Practices is a guide for understanding how to use
+      <cite><a href="https://www.w3.org/TR/wai-aria-1.1/">WAI-ARIA 1.1</a></cite> to create an accessible Rich Internet Application.
+      It provides guidance on the appropriate application of WAI-ARIA, describes recommended WAI-ARIA usage patterns, and explains concepts behind them.
     </p>
     <p>
       Languages used to create rich and dynamic web sites, e.g., HTML, JavaScript, CSS, and SVG, do not natively include all the features required to make sites usable by people who use assistive technologies (AT) or who rely on keyboard navigation.
@@ -67,10 +66,9 @@
       provides additional background on WAI-ARIA, summarizes those efforts, and lists the other documents included in the WAI-ARIA suite.
     </p>
     <p>
-      With the understanding many prefer to learn from examples, after a brief <q>Read Me First</q> section,
-      the guide begins with ARIA implementation patterns for common widgets that both enumerate expected behaviors and demonstrate those behaviors with working code.
+      After a brief <q>Read Me First</q> section, the guide begins with ARIA implementation patterns for common widgets that both enumerate expected behaviors and demonstrate those behaviors with working code.
       The implementation patterns and examples refer to detailed explanations of supporting concepts in subsequent guidance sections.
-      The guidance sections cover topics, such as use of ARIA landmarks, making rich internet applications keyboard accessible, grid and table properties, and the effects of the <code>presentation</code> role.
+      The guidance sections cover more general topics such as use of ARIA landmarks, practices for keyboard interfaces, grid and table properties, and the effects of the <code>presentation</code> roles.
     </p>
   </section>
 
@@ -631,7 +629,7 @@
         The options for a combobox to popup a grid, tree, or dialog were introduced in ARIA 1.1.
         Changes made in the ARIA 1.1 specification also add support for a code pattern that enables assistive technologies to present the textbox and popup as separately perceivable elements.
         both ARIA 1.0 and 1.1 patterns are described in the following sections.
-        While using the ARIA 1.1 pattern is recommended as soon as assistive technology support is sufficient, 
+        While using the ARIA 1.1 pattern is recommended as soon as assistive technology support is sufficient,
         there are no plans to deprecate the ARIA 1.0 pattern.
       </p>
 
@@ -1356,7 +1354,7 @@
           <p class="note">See <a href="#kbd_common_conventions"></a> for cut, copy, and paste key assignments.</p>
         </section>
       </section>
-      
+
       <section id="layoutGrid" class="notoc">
         <h4>Layout Grids for Grouping Widgets</h4>
 
@@ -4198,7 +4196,7 @@
       <p>
         The following example grid has a two row header.
         The first two columns have headers that span both rows of the header.
-        The subsequent 6 columns are grouped into 3 pairs with headers in the first row that each span two columns. 
+        The subsequent 6 columns are grouped into 3 pairs with headers in the first row that each span two columns.
       </p>
       <pre>
         <code>
@@ -4207,7 +4205,7 @@
             &lt;div role=&quot;rowgroup&quot;&gt;
               &lt;div role=&quot;row&quot; aria-rowindex=&quot;1&quot;&gt;
                   &lt;!--
-                    aria-rowspan and aria-colspan provide 
+                    aria-rowspan and aria-colspan provide
                     assistive technologies with the correct data cell header information
                     when header cells span more than one row or column.
                   --&gt;
@@ -4316,7 +4314,7 @@
                 &lt;th&gt;Homework 4&lt;/th&gt;
                 &lt;!--
                   aria-sort indicates the column with the heading
-                  "Quiz 2" has been used to sort the rows of the grid. 
+                  "Quiz 2" has been used to sort the rows of the grid.
                 --&gt;
                 &lt;th aria-sort=&quot;descending&quot;&gt;Quiz 2&lt;/th&gt;
                 &lt;th&gt;Homework 5&lt;/th&gt;
