@@ -717,7 +717,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     <p>
       <a class="logo" href="https://www.w3.org/"><img width="72" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" alt="W3C"></a>
     </p>
-  <p><!--_hyper: -978823875;--></p>
+  <p><!--_hyper: 134844669;--></p>
   <h1 class="title p-name" id="title" property="dcterms:title"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Authoring Practices 1.1</h1>
   <h2 id="w3c-editor-s-draft-16-november-2017"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2017-11-16">16 November 2017</time><span class="permalink" typeof="bookmark"><a href="#undefined" aria-label="Permalink for W3C Editor's Draft 16 November 2017" title="Permalink for W3C Editor's Draft 16 November 2017" property="url"><span property="title" content="W3C Editor's Draft 16 November 2017">§</span></a></span></h2>
   <dl>
@@ -4676,13 +4676,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   <section id="gridAndTableProperties" typeof="bibo:Chapter" resource="#gridAndTableProperties" property="bibo:hasPart">
     <!--OddPage--><h2 id="x6-grid-and-table-properties" resource="#x6-grid-and-table-properties"><span property="xhv:role" resource="xhv:heading"><span class="secno">6. </span>Grid and Table Properties<span class="permalink" typeof="bookmark"><a href="#gridAndTableProperties" aria-label="Permalink for 6. Grid and Table Properties" title="Permalink for 6. Grid and Table Properties" property="url"><span property="title" content="6. Grid and Table Properties">§</span></a></span></span></h2>
     <p>
-      <strong>NOTE:</strong> The content in this section is new. Please provide feedback in
-      <a href="https://github.com/w3c/aria-practices/issues/505">issue 505.</a>
-    </p>
-    <p>
       To fully present and describe a grid or table, in addition to parsing the headers, rows, and cells using the roles described in the
       <a href="#grid">grid pattern</a> or <a href="#table">table pattern</a>,
-      assistive technologies need to be able to determine :
+      assistive technologies need to be able to determine:
     </p>
     <ul>
       <li>The number of rows and columns.</li>
@@ -4691,8 +4687,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <li>Whether and how data is sorted.</li>
     </ul>
     <p>
-      Browsers can automatically calculate the number of rows and columns and put it into their accessibility tree based on what is in the DOM.
-      However, there are many situations where the DOM does not contain the whole table, such as when the data set is too large to fully render.
+      Browsers automatically populate their accessibility tree with the number of rows and columns in a grid or table based on the rendered DOM.
+      However, there are many situations where the DOM does not contain the whole grid or table, such as when the data set is too large to fully render.
       Additionally, some of this information, like skipped columns or rows and how data is sorted, cannot be derived from the DOM structure.
     </p>
     <p>The below sections explain how to use the following properties that ARIA provides for grid and table accessibility.</p>
@@ -4750,7 +4746,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <p>
         When the number of rows represented by the DOM structure is not the total number of rows available for a table, grid, or treegrid,
         the  <code>aria-rowcount</code>  property is used to communicate the total number of rows available,
-        and it is accompanied by the <code>aria-rowindex</code> property to identify the row indicies of the rows that are present in the DOM.
+        and it is accompanied by the <code>aria-rowindex</code> property to identify the row indices of the rows that are present in the DOM.
       </p>
       <p>
         The <code>aria-rowcount</code> is specified on the element with the <code>table</code>, <code>grid</code>, or <code>treegrid</code> role.
@@ -4766,11 +4762,11 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <ol>
         <li>Greater than or equal to 1.</li>
         <li>Greater than the value of <code>aria-rowindex</code> on any previous rows.</li>
-        <li>If cells span multiple rows, set to the index of the first row in the span.</li>
+        <li>Set to the index of the first row in the span if cells span multiple rows.</li>
         <li>Less than or equal to the total number of rows.</li>
       </ol>
       <p>
-        <strong>WARNING!</strong> Missing or inconsistent values of <code>aria-rowindex</code> could have devistating effects on assistive technology behavior.
+        <strong>WARNING!</strong> Missing or inconsistent values of <code>aria-rowindex</code> could have devastating effects on assistive technology behavior.
         For example, specifying an invalid value for <code>aria-rowindex</code> or setting it on some but not all rows in a table, could cause screen reader table reading functions to skip rows or simply stop functioning.
       </p>
       <p>
@@ -4839,8 +4835,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <h3 id="x6-2-using-aria-colcount-and-aria-colindex" resource="#x6-2-using-aria-colcount-and-aria-colindex"><span property="xhv:role" resource="xhv:heading"><span class="secno">6.2 </span>Using <code>aria-colcount</code> and <code>aria-colindex</code><span class="permalink" typeof="bookmark"><a href="#gridAndTableProperties_cols" aria-label="Permalink for 6.2 Using aria-colcount and aria-colindex" title="Permalink for 6.2 Using aria-colcount and aria-colindex" property="url"><span property="title" content="6.2 Using aria-colcount and aria-colindex">§</span></a></span></span></h3>
       <p>
         When the number of columns represented by the DOM structure is not the total number of columns available for a table, grid, or treegrid,
-        the  <code>aria-colcount</code>  property is used to commyunicate the total number of columns available,
-        and it is accompanied by the <code>aria-colindex</code> property to identify the column indicies of the columns that are present in the DOM.
+        the  <code>aria-colcount</code>  property is used to communicate the total number of columns available,
+        and it is accompanied by the <code>aria-colindex</code> property to identify the column indices of the columns that are present in the DOM.
       </p>
       <p>
         The <code>aria-colcount</code> is specified on the element with the <code>table</code>, <code>grid</code>, or <code>treegrid</code> role.
@@ -4856,11 +4852,11 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <ol>
         <li>Greater than or equal to 1.</li>
         <li>When set on a cell, greater than the value set on any previous cell within the same row.</li>
-        <li>If a cell spans multiple columns, set to the index of the first column in the span.</li>
+        <li>Set to the index of the first column in the span if a cell spans multiple columns.</li>
         <li>Less than or equal to the total number of columns.</li>
       </ol>
       <p>
-        <strong>WARNING!</strong> Missing or inconsistent values of <code>aria-colindex</code> could have devistating effects on assistive technology behavior.
+        <strong>WARNING!</strong> Missing or inconsistent values of <code>aria-colindex</code> could have devastating effects on assistive technology behavior.
         For example, specifying an invalid value for <code>aria-colindex</code> or setting it on some but not all cells in a row, could cause screen reader table reading functions to skip cells or simply stop functioning.
       </p>
       <section id="gridAndTableProperties_cols_contiguous" typeof="bibo:Chapter" resource="#gridAndTableProperties_cols_contiguous" property="bibo:hasPart">
@@ -4908,7 +4904,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         <p>
           When the cells in a row have column index numbers that are not consecutive integers, <code>aria-colindex</code> needs to be set on each cell in the row.
           The following example shows a grid for an online grade book where the first two columns contain a student name and subsequent columns contain scores.
-          In this example, the first two columns with the student name are shown, but the score columns have been scrolled to sshow columns 10 through 13.
+          In this example, the first two columns with the student name are shown, but the score columns have been scrolled to show columns 10 through 13.
           Columns 3 through 9 are not visible so are not in the DOM.
         </p>
         <pre aria-busy="false" aria-live="polite" class="hljs xml">          
