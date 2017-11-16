@@ -1,4 +1,4 @@
-[role="listbox"] {
+ul[role="listbox"] {
   margin: 0;
   padding: 0;
   position: absolute;
@@ -8,8 +8,16 @@
   display: none;
   border: 2px #333 solid;
   height: 12em;
-  width: 12em;
+  width: 10em;
   overflow: scroll;
+}
+
+ul[role="listbox"] li[role="option"] {
+  margin: 0;
+  padding: 0;
+  padding-left: 0.125em;
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid transparent;
 }
 
 [role="listbox"].focus {
@@ -45,6 +53,7 @@ input:hover {
 
 [role="listbox"].focus [role="option"][aria-selected="true"] {
   background-color: #aed2ea;
+  border-color: #348ccb;
 }
 
 [role="listbox"] li[role="option"]:hover {
