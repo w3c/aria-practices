@@ -89,11 +89,7 @@ input.task-list-item-checkbox {
 	
   <title>WAI-ARIA Authoring Practices 1.1</title>
   
-  
-  
-  
-  <link href="common/css/common.css" rel="stylesheet" type="text/css">
-<style id="respec-mainstyle">/*****************************************************************
+  <style id="respec-mainstyle">/*****************************************************************
  * ReSpec 3 CSS
  * Robin Berjon - http://berjon.com/
  *****************************************************************/
@@ -366,7 +362,11 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 .hljs-strong {
   font-weight: bold;
 }
-</style><link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/W3C-ED"><link rel="canonical" href="https://www.w3.org/TR/wai-aria-practices-1.1/"><script id="initialUserConfig" type="application/json">{
+</style>
+  
+  
+  <link href="common/css/common.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/W3C-ED"><link rel="canonical" href="https://www.w3.org/TR/wai-aria-practices-1.1/"><script id="initialUserConfig" type="application/json">{
   "doRDFa": "1.1",
   "includePermalinks": true,
   "permalinkEdge": true,
@@ -717,7 +717,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     <p>
       <a class="logo" href="https://www.w3.org/"><img width="72" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" alt="W3C"></a>
     </p>
-  <p><!--_hyper: -799072182;--></p>
+  <p><!--_hyper: -978823875;--></p>
   <h1 class="title p-name" id="title" property="dcterms:title"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Authoring Practices 1.1</h1>
   <h2 id="w3c-editor-s-draft-16-november-2017"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2017-11-16">16 November 2017</time><span class="permalink" typeof="bookmark"><a href="#undefined" aria-label="Permalink for W3C Editor's Draft 16 November 2017" title="Permalink for W3C Editor's Draft 16 November 2017" property="url"><span property="title" content="W3C Editor's Draft 16 November 2017">§</span></a></span></h2>
   <dl>
@@ -868,7 +868,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     <p>
       After a brief <q>Read Me First</q> section, the guide begins with ARIA implementation patterns for common widgets that both enumerate expected behaviors and demonstrate those behaviors with working code.
       The implementation patterns and examples refer to detailed explanations of supporting concepts in subsequent guidance sections.
-      The guidance sections cover more general topics such as use of ARIA landmarks, practices for keyboard interfaces, grid and table properties, and the effects of the <code>presentation</code> roles.
+      The guidance sections cover more general topics such as use of ARIA landmarks, practices for keyboard interfaces, grid and table properties, and the effects of role <code>presentation</code>.
     </p>
   </section>
 
@@ -1857,7 +1857,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <h3 id="x3-10-disclosure-show-hide" resource="#x3-10-disclosure-show-hide"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.10 </span>Disclosure (Show/Hide)<span class="permalink" typeof="bookmark"><a href="#disclosure" aria-label="Permalink for 3.10 Disclosure (Show/Hide)" title="Permalink for 3.10 Disclosure (Show/Hide)" property="url"><span property="title" content="3.10 Disclosure (Show/Hide)">§</span></a></span></span></h3>
       <p>
         A disclosure is a <a href="#button">button</a> that controls visibility of a section of content.
-        When the controlled conted is hidden, it is often styled as a typical push button with a right pointing arrow or triangle to hint that activating the button will display additional content.
+        When the controlled content is hidden, it is often styled as a typical push button with a right-pointing arrow or triangle to hint that activating the button will display additional content.
         When the content is visible, the arrow or triangle typically points down.
       </p>
 
