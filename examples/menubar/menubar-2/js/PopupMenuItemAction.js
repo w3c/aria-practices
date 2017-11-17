@@ -125,6 +125,13 @@ MenuItem.prototype.handleKeydown = function (event) {
 
   switch (event.keyCode) {
     case this.keyCode.SPACE:
+      if (this.activateMenuitem(tgt)) {
+        this.menu.setFocusToController();
+        this.menu.close(true);
+      }
+      flag = true;
+      break;
+
     case this.keyCode.RETURN:
       this.activateMenuitem(tgt);
       this.menu.setFocusToController();
