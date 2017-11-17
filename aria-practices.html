@@ -68,7 +68,7 @@
     <p>
       After a brief <q>Read Me First</q> section, the guide begins with ARIA implementation patterns for common widgets that both enumerate expected behaviors and demonstrate those behaviors with working code.
       The implementation patterns and examples refer to detailed explanations of supporting concepts in subsequent guidance sections.
-      The guidance sections cover more general topics such as use of ARIA landmarks, practices for keyboard interfaces, grid and table properties, and the effects of the <code>presentation</code> roles.
+      The guidance sections cover more general topics such as use of ARIA landmarks, practices for keyboard interfaces, grid and table properties, and the effects of role <code>presentation</code>.
     </p>
   </section>
 
@@ -930,7 +930,7 @@
         and in some implementations, attempts to interact with the inert content cause the dialog to close.
       </p>
       <p>
-        Like <a href="#dialog_nonmodal">non-modal dialogs</a>, modal dialogs contain their tab sequence.
+        Like non-modal dialogs, modal dialogs contain their tab sequence.
         That is, <kbd>Tab</kbd> and <kbd>Shift + Tab</kbd> do not move focus outside the dialog.
         However, unlike most non-modal dialogs, modal dialogs do not provide means for moving keyboard focus outside the dialog window without closing the dialog.
       </p>
@@ -1049,16 +1049,11 @@
       </section>
     </section>
 
-    <section class="widget" id="dialog_nonmodal">
-      <h3>Dialog (Non-Modal)</h3>
-      <p>Drafting content for this section is tracked by <a href="https://github.com/w3c/aria-practices/issues/59">issue 59</a>. </p>
-    </section>
-
     <section class="widget" id="disclosure">
       <h3>Disclosure (Show/Hide)</h3>
       <p>
         A disclosure is a <a href="#button">button</a> that controls visibility of a section of content.
-        When the controlled conted is hidden, it is often styled as a typical push button with a right pointing arrow or triangle to hint that activating the button will display additional content.
+        When the controlled content is hidden, it is often styled as a typical push button with a right-pointing arrow or triangle to hint that activating the button will display additional content.
         When the content is visible, the arrow or triangle typically points down.
       </p>
 
@@ -2515,8 +2510,7 @@
       </p>
       <p>
         Tooltip widgets do not receive focus.
-        A hover that contains focusable elements can be made using the
-        a <a href="#dialog_nonmodal">non-modal dialog pattern</a>.
+        A hover that contains focusable elements can be made using a non-modal dialog.
       </p>
       <section class="notoc">
         <h4>Example</h4>
@@ -3877,13 +3871,9 @@
   <section id="gridAndTableProperties">
     <h2>Grid and Table Properties</h2>
     <p>
-      <strong>NOTE:</strong> The content in this section is new. Please provide feedback in
-      <a href="https://github.com/w3c/aria-practices/issues/505">issue 505.</a>
-    </p>
-    <p>
       To fully present and describe a grid or table, in addition to parsing the headers, rows, and cells using the roles described in the
       <a href="#grid">grid pattern</a> or <a href="#table">table pattern</a>,
-      assistive technologies need to be able to determine :
+      assistive technologies need to be able to determine:
     </p>
     <ul>
       <li>The number of rows and columns.</li>
@@ -3892,8 +3882,8 @@
       <li>Whether and how data is sorted.</li>
     </ul>
     <p>
-      Browsers can automatically calculate the number of rows and columns and put it into their accessibility tree based on what is in the DOM.
-      However, there are many situations where the DOM does not contain the whole table, such as when the data set is too large to fully render.
+      Browsers automatically populate their accessibility tree with the number of rows and columns in a grid or table based on the rendered DOM.
+      However, there are many situations where the DOM does not contain the whole grid or table, such as when the data set is too large to fully render.
       Additionally, some of this information, like skipped columns or rows and how data is sorted, cannot be derived from the DOM structure.
     </p>
     <p>The below sections explain how to use the following properties that ARIA provides for grid and table accessibility.</p>
@@ -3951,7 +3941,7 @@
       <p>
         When the number of rows represented by the DOM structure is not the total number of rows available for a table, grid, or treegrid,
         the  <code>aria-rowcount</code>  property is used to communicate the total number of rows available,
-        and it is accompanied by the <code>aria-rowindex</code> property to identify the row indicies of the rows that are present in the DOM.
+        and it is accompanied by the <code>aria-rowindex</code> property to identify the row indices of the rows that are present in the DOM.
       </p>
       <p>
         The <code>aria-rowcount</code> is specified on the element with the <code>table</code>, <code>grid</code>, or <code>treegrid</code> role.
@@ -3967,11 +3957,11 @@
       <ol>
         <li>Greater than or equal to 1.</li>
         <li>Greater than the value of <code>aria-rowindex</code> on any previous rows.</li>
-        <li>If cells span multiple rows, set to the index of the first row in the span.</li>
+        <li>Set to the index of the first row in the span if cells span multiple rows.</li>
         <li>Less than or equal to the total number of rows.</li>
       </ol>
       <p>
-        <strong>WARNING!</strong> Missing or inconsistent values of <code>aria-rowindex</code> could have devistating effects on assistive technology behavior.
+        <strong>WARNING!</strong> Missing or inconsistent values of <code>aria-rowindex</code> could have devastating effects on assistive technology behavior.
         For example, specifying an invalid value for <code>aria-rowindex</code> or setting it on some but not all rows in a table, could cause screen reader table reading functions to skip rows or simply stop functioning.
       </p>
       <p>
@@ -4041,8 +4031,8 @@
       <h3>Using <code>aria-colcount</code> and <code>aria-colindex</code></h3>
       <p>
         When the number of columns represented by the DOM structure is not the total number of columns available for a table, grid, or treegrid,
-        the  <code>aria-colcount</code>  property is used to commyunicate the total number of columns available,
-        and it is accompanied by the <code>aria-colindex</code> property to identify the column indicies of the columns that are present in the DOM.
+        the  <code>aria-colcount</code>  property is used to communicate the total number of columns available,
+        and it is accompanied by the <code>aria-colindex</code> property to identify the column indices of the columns that are present in the DOM.
       </p>
       <p>
         The <code>aria-colcount</code> is specified on the element with the <code>table</code>, <code>grid</code>, or <code>treegrid</code> role.
@@ -4058,11 +4048,11 @@
       <ol>
         <li>Greater than or equal to 1.</li>
         <li>When set on a cell, greater than the value set on any previous cell within the same row.</li>
-        <li>If a cell spans multiple columns, set to the index of the first column in the span.</li>
+        <li>Set to the index of the first column in the span if a cell spans multiple columns.</li>
         <li>Less than or equal to the total number of columns.</li>
       </ol>
       <p>
-        <strong>WARNING!</strong> Missing or inconsistent values of <code>aria-colindex</code> could have devistating effects on assistive technology behavior.
+        <strong>WARNING!</strong> Missing or inconsistent values of <code>aria-colindex</code> could have devastating effects on assistive technology behavior.
         For example, specifying an invalid value for <code>aria-colindex</code> or setting it on some but not all cells in a row, could cause screen reader table reading functions to skip cells or simply stop functioning.
       </p>
       <section id="gridAndTableProperties_cols_contiguous">
@@ -4111,7 +4101,7 @@
         <p>
           When the cells in a row have column index numbers that are not consecutive integers, <code>aria-colindex</code> needs to be set on each cell in the row.
           The following example shows a grid for an online grade book where the first two columns contain a student name and subsequent columns contain scores.
-          In this example, the first two columns with the student name are shown, but the score columns have been scrolled to sshow columns 10 through 13.
+          In this example, the first two columns with the student name are shown, but the score columns have been scrolled to show columns 10 through 13.
           Columns 3 through 9 are not visible so are not in the DOM.
         </p>
         <pre>
