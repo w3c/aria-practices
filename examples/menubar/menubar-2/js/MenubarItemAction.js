@@ -59,11 +59,6 @@ var MenubarItemAction = function (domNode, menuObj) {
 MenubarItemAction.prototype.init = function () {
   this.domNode.tabIndex = -1;
 
-  this.domNode.setAttribute('role', 'menuitem');
-  this.domNode.setAttribute('aria-haspopup', 'true');
-  this.domNode.setAttribute('aria-expanded', 'false');
-  this.domNode.tabIndex = -1;
-
   this.domNode.addEventListener('keydown', this.handleKeydown.bind(this));
   this.domNode.addEventListener('click', this.handleClick.bind(this));
   this.domNode.addEventListener('focus', this.handleFocus.bind(this));
