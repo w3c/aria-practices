@@ -19,7 +19,7 @@ ul[role="menubar"] > li {
   position: relative;
 }
 
-ul[role="menubar"] > li > span:after {
+ul[role="menubar"] > li > [role="menuitem"]:after {
   content: url('../images/down-arrow-brown.png');
   padding-left: 0.25em;
 }
@@ -35,16 +35,16 @@ ul[role="menubar"] ul[role="menu"] {
 ul[role="menubar"] ul[role="group"] {
   margin: 0;
   padding: 0;
-}  
+}
 
 ul[role="menubar"] li[aria-disabled="true"] {
   color: #666666;
   text-decoration: line-through;
-}  
+}
 
 ul[role="menubar"] [role="menuitem"],
 ul[role="menubar"] [role="menuitemcheckbox"],
-ul[role="menubar"] [role="menuitemradio"], 
+ul[role="menubar"] [role="menuitemradio"],
 ul[role="menubar"] [role="separator"] {
   padding: 0.25em;
   background-color: #EEEEEE;
@@ -54,11 +54,11 @@ ul[role="menubar"] [role="separator"] {
 
 ul[role="menubar"] ul li[role="menuitem"],
 ul[role="menubar"] ul li[role="menuitemcheckbox"],
-ul[role="menubar"] ul li[role="menuitemradio"], 
+ul[role="menubar"] ul li[role="menuitemradio"],
 ul[role="menubar"] ul li[role="separator"] {
   padding-left: 1.5em;
   width: 8em;
-}  
+}
 
 
 ul[role="menubar"] [role="separator"] {
@@ -69,7 +69,7 @@ ul[role="menubar"] [role="separator"] {
 }
 
 ul[role="menubar"] [role="menuitem"]:focus,
-ul[role="menubar"] [role="menuitem"] span:hover,
+ul[role="menubar"] [role="menuitem"] [role="menuitem"]:hover,
 ul[role="menubar"] [role="menu"] [role="menuitem"]:hover,
 ul[role="menubar"] [role="menu"] [role="menuitemcheckbox"]:focus,
 ul[role="menubar"] [role="menu"] [role="menuitemcheckbox"]:hover,
