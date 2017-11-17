@@ -3506,31 +3506,22 @@
         <p>The steps for using the aria-activedescendant method of managing focus are as follows.</p>
 
         <ul>
-          <li>
-            When the container element that has a role that supports aria-activedescendant is loaded or created, ensure that:
-
+          <li>When the container element that has a role that supports aria-activedescendant is loaded or created, ensure that:
             <ul>
-              <li>The container element is included in the tab sequence as described in <a href="#kbd_general_between"></a> or it is otherwise focusable as described in <a href="#kbd_nested_components"></a>.</li>
+              <li>The container element is included in the tab sequence as described in <a href="#kbd_general_between"></a> or is a focusable element of a composite that implements <a href="#kbd_roving_tabindex">a roving tabindex</a>.</li>
               <li>
                 It has <code>aria-activedescendant="IDREF"</code> where IDREF is the ID of the element within the container that should be identified as active when the widget receives focus.
                 The referenced element needs to meet the DOM relationship requirements described below.
               </li>
             </ul>
           </li>
-
-          <li>
-            When the container element receives DOM focus, draw a visual focus indicator on the active element and ensure the active element is scrolled into view.
-          </li>
-
-          <li>
-            When the composite widget contains focus and the user presses a navigation key that moves focus within the widget, such as an arrow key:
-
+          <li>When the container element receives DOM focus, draw a visual focus indicator on the active element and ensure the active element is scrolled into view.</li>
+          <li>When the composite widget contains focus and the user presses a navigation key that moves focus within the widget, such as an arrow key:
             <ul>
               <li>Change the value of aria-activedescendant on the container to refer to the element that should be reported to assistive technologies as active.</li>
               <li>Move the visual focus indicator and, if necessary,  scrolled the active element into view.</li>
             </ul>
           </li>
-
           <li>
             If the design calls for a specific element to be focused the next time a user moves focus into the composite with <kbd>Tab</kbd> or <kbd>Shift+Tab</kbd>, check if aria-activedescendant is referring to that target element when the container loses focus.
             If it is not, set aria-activedescendant to refer to the target element.
@@ -3541,29 +3532,16 @@
           The <a href="#aria-activedescendant" class="property-reference">specification for aria-activedescendant</a> places important restrictions on the DOM relationship between the focused element that has the aria-activedescendant attribute and the element referenced as active by the value of the attribute.
           One of the following three conditions must be met.
         </p>
-
         <ol>
           <li>The element referenced as active is a DOM descendant of the focused referencing element.</li>
-
           <li>The focused referencing element has a value specified for the <a href="#aria-owns" class="property-reference">aria-owns</a> property that includes the ID of the element referenced as active.</li>
-
-          <li>
-            The focused referencing element has role of <a href="#textbox" class="role-reference">textbox</a> and has <a href="#aria-controls" class="property-reference">aria-controls</a> property referring to an element with a role that supports aria-activedescendant and either:
-
+          <li>The focused referencing element has role of <a href="#textbox" class="role-reference">textbox</a> and has <a href="#aria-controls" class="property-reference">aria-controls</a> property referring to an element with a role that supports aria-activedescendant and either:
             <ol>
               <li>The element referenced as active is a descendant of the controlled element.</li>
               <li>The controlled element has a value specified for the <a href="#aria-owns" class="property-reference">aria-owns</a> property that includes the ID of the element referenced as active.</li>
             </ol>
           </li>
         </ol>
-      </section>
-
-      <section id="kbd_nested_components">
-        <h4>Nested Composite Components - Composites and Toolbars That Contain Composites</h4>
-        <p>
-          Work to draft content for this section is tracked by
-          <a href="https://github.com/w3c/aria-practices/issues/218">issue 218.</a>
-        </p>
       </section>
     </section>
     <section id="kbd_disabled_controls">
