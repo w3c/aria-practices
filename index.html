@@ -717,7 +717,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     <p>
       <a class="logo" href="https://www.w3.org/"><img width="72" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" alt="W3C"></a>
     </p>
-  <p><!--_hyper: -1439667155;--></p>
+  <p><!--_hyper: 1054400929;--></p>
   <h1 class="title p-name" id="title" property="dcterms:title"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Authoring Practices 1.1</h1>
   <h2 id="w3c-editor-s-draft-18-november-2017"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2017-11-18">18 November 2017</time><span class="permalink" typeof="bookmark"><a href="#undefined" aria-label="Permalink for W3C Editor's Draft 18 November 2017" title="Permalink for W3C Editor's Draft 18 November 2017" property="url"><span property="title" content="W3C Editor's Draft 18 November 2017">§</span></a></span></h2>
   <dl>
@@ -934,17 +934,18 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     <section id="browser_and_AT_support" typeof="bibo:Chapter" resource="#browser_and_AT_support" property="bibo:hasPart">
       <h3 id="x2-2-browser-and-assistive-technology-support" resource="#x2-2-browser-and-assistive-technology-support"><span property="xhv:role" resource="xhv:heading"><span class="secno">2.2 </span>Browser and Assistive Technology Support<span class="permalink" typeof="bookmark"><a href="#browser_and_AT_support" aria-label="Permalink for 2.2 Browser and Assistive Technology Support" title="Permalink for 2.2 Browser and Assistive Technology Support" property="url"><span property="title" content="2.2 Browser and Assistive Technology Support">§</span></a></span></span></h3>
       <p>
-        This guide illustrates appropriate use of ARIA 1.1 as defined in the ARIA specification.
-        The design patterns, reference examples, and sample code intentionally <strong>do not</strong> implement code to fix problems that are caused by gaps in support for ARIA 1.1 in browsers or assistive technologies.
-        Browser and assistive technology developers can thus utilize code in this guide to help assess the quality of their support for ARIA 1.1.
+        <strong>Testing assistive technology interoperability is essential before using code from this guide in production.</strong>
+        Because the purpose of this guide is to illustrate appropriate use of ARIA 1.1 as defined in the ARIA specification, the design patterns, reference examples, and sample code intentionally <strong>do not</strong> describe and implement coding techniques for working around problems caused by gaps in support for ARIA 1.1 in browsers and assistive technologies.
+        It is thus advisable to test implementations thoroughly with each browser and assistive technology combination that is relevant within a target audience.
       </p>
       <p>
         Similarly, JavaScript and CSS in this guide is written to be compatible with the most recent version of Chrome, Firefox, Internet Explorer, and Safari at the time of writing.
         In particular, some JavaScript and CSS may not function correctly in Internet Explorer version 10 or earlier.
       </p>
       <p>
-        In other words, except in cases where the ARIA Working Group and other contributors have overlooked an error,
+        Except in cases where the ARIA Working Group and other contributors have overlooked an error,
         examples in this guide that do not function well in a particular browser or with a specific assistive technology are demonstrating browser or assistive technology bugs.
+        Browser and assistive technology developers can thus utilize code in this guide to help assess the quality of their support for ARIA 1.1.
       </p>
     </section>
     <section id="mobile_and_touch_support" typeof="bibo:Chapter" resource="#mobile_and_touch_support" property="bibo:hasPart">
