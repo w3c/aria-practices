@@ -135,17 +135,18 @@
     <section id="browser_and_AT_support">
       <h3>Browser and Assistive Technology Support</h3>
       <p>
-        This guide illustrates appropriate use of ARIA 1.1 as defined in the ARIA specification.
-        The design patterns, reference examples, and sample code intentionally <strong>do not</strong> implement code to fix problems that are caused by gaps in support for ARIA 1.1 in browsers or assistive technologies.
-        Browser and assistive technology developers can thus utilize code in this guide to help assess the quality of their support for ARIA 1.1.
+        <strong>Testing assistive technology interoperability is essential before using code from this guide in production.</strong>
+        Because the purpose of this guide is to illustrate appropriate use of ARIA 1.1 as defined in the ARIA specification, the design patterns, reference examples, and sample code intentionally <strong>do not</strong> describe and implement coding techniques for working around problems caused by gaps in support for ARIA 1.1 in browsers and assistive technologies.
+        It is thus advisable to test implementations thoroughly with each browser and assistive technology combination that is relevant within a target audience.
       </p>
       <p>
         Similarly, JavaScript and CSS in this guide is written to be compatible with the most recent version of Chrome, Firefox, Internet Explorer, and Safari at the time of writing.
         In particular, some JavaScript and CSS may not function correctly in Internet Explorer version 10 or earlier.
       </p>
       <p>
-        In other words, except in cases where the ARIA Working Group and other contributors have overlooked an error,
+        Except in cases where the ARIA Working Group and other contributors have overlooked an error,
         examples in this guide that do not function well in a particular browser or with a specific assistive technology are demonstrating browser or assistive technology bugs.
+        Browser and assistive technology developers can thus utilize code in this guide to help assess the quality of their support for ARIA 1.1.
       </p>
     </section>
     <section id="mobile_and_touch_support">
