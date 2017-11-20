@@ -292,6 +292,9 @@ ComboboxList.prototype.handleKeyup = function (event) {
           this.option = option;
           if (this.isBoth || this.listbox.hasFocus) {
             this.listbox.setCurrentOptionStyle(option);
+            if (this.isBoth && isPrintableCharacter(char)) {
+              this.setOption(option);
+            }
           }
         }
         else {
