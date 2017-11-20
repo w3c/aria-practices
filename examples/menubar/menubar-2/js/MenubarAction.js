@@ -31,12 +31,12 @@ var MenubarAction = function (domNode) {
   if (domNode.childElementCount === 0) {
     throw new Error(msgPrefix + 'has no element children.');
   }
-  // Check whether menubarNode has SPAN elements
+  // Check whether menubarNode has A elements
   e = domNode.firstElementChild;
   while (e) {
     var menubarItem = e.firstElementChild;
-    if (e && menubarItem && menubarItem.tagName !== 'SPAN') {
-      throw new Error(msgPrefix + 'has child elements are not SPAN elements.');
+    if (e && menubarItem && menubarItem.tagName !== 'A') {
+      throw new Error(msgPrefix + 'has child elements are not A elements.');
     }
     e = e.nextElementSibling;
   }
@@ -75,7 +75,7 @@ MenubarAction.prototype.init = function (actionManager) {
   while (e) {
     var menuElement = e.firstElementChild;
 
-    if (e && menuElement && menuElement.tagName === 'SPAN') {
+    if (e && menuElement && menuElement.tagName === 'A') {
       menubarItem = new MenubarItemAction(menuElement, this);
       menubarItem.init();
       this.menubarItems.push(menubarItem);
@@ -186,4 +186,3 @@ MenubarAction.prototype.getIndexFirstChars = function (startIndex, char) {
   }
   return -1;
 };
-
