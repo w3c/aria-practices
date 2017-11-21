@@ -55,10 +55,9 @@
     <h2>Introduction</h2>
     <p>This section is <em>informative.</em></p>
     <p>
-      WAI-ARIA Authoring Practices is a guide to understanding how to use 
-      <cite><a href="https://www.w3.org/TR/wai-aria-1.1/"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> 1.1</a></cite>
-      to create an accessible Rich Internet Application.
-      It provides guidance on appropriate application of WAI-ARIA, describes recommended WAI-ARIA usage patterns, and explains concepts behind them.
+      WAI-ARIA Authoring Practices is a guide for understanding how to use
+      <cite><a href="https://www.w3.org/TR/wai-aria-1.1/">WAI-ARIA 1.1</a></cite> to create an accessible Rich Internet Application.
+      It provides guidance on the appropriate application of WAI-ARIA, describes recommended WAI-ARIA usage patterns, and explains concepts behind them.
     </p>
     <p>
       Languages used to create rich and dynamic web sites, e.g., HTML, JavaScript, CSS, and SVG, do not natively include all the features required to make sites usable by people who use assistive technologies (AT) or who rely on keyboard navigation.
@@ -67,10 +66,9 @@
       provides additional background on WAI-ARIA, summarizes those efforts, and lists the other documents included in the WAI-ARIA suite.
     </p>
     <p>
-      With the understanding many prefer to learn from examples, after a brief <q>Read Me First</q> section,
-      the guide begins with ARIA implementation patterns for common widgets that both enumerate expected behaviors and demonstrate those behaviors with working code.
+      After a brief <q>Read Me First</q> section, the guide begins with ARIA implementation patterns for common widgets that both enumerate expected behaviors and demonstrate those behaviors with working code.
       The implementation patterns and examples refer to detailed explanations of supporting concepts in subsequent guidance sections.
-      The guidance sections cover topics, such as use of ARIA landmarks, making rich internet applications keyboard accessible, grid and table properties, and the effects of the <code>presentation</code> role.
+      The guidance sections cover more general topics such as use of ARIA landmarks, practices for keyboard interfaces, grid and table properties, and the effects of role <code>presentation</code>.
     </p>
   </section>
 
@@ -137,17 +135,18 @@
     <section id="browser_and_AT_support">
       <h3>Browser and Assistive Technology Support</h3>
       <p>
-        This guide illustrates appropriate use of ARIA 1.1 as defined in the ARIA specification.
-        The design patterns, reference examples, and sample code intentionally <strong>do not</strong> implement code to fix problems that are caused by gaps in support for ARIA 1.1 in browsers or assistive technologies.
-        Browser and assistive technology developers can thus utilize code in this guide to help assess the quality of their support for ARIA 1.1.
+        <strong>Testing assistive technology interoperability is essential before using code from this guide in production.</strong>
+        Because the purpose of this guide is to illustrate appropriate use of ARIA 1.1 as defined in the ARIA specification, the design patterns, reference examples, and sample code intentionally <strong>do not</strong> describe and implement coding techniques for working around problems caused by gaps in support for ARIA 1.1 in browsers and assistive technologies.
+        It is thus advisable to test implementations thoroughly with each browser and assistive technology combination that is relevant within a target audience.
       </p>
       <p>
         Similarly, JavaScript and CSS in this guide is written to be compatible with the most recent version of Chrome, Firefox, Internet Explorer, and Safari at the time of writing.
         In particular, some JavaScript and CSS may not function correctly in Internet Explorer version 10 or earlier.
       </p>
       <p>
-        In other words, except in cases where the ARIA Working Group and other contributors have overlooked an error,
+        Except in cases where the ARIA Working Group and other contributors have overlooked an error,
         examples in this guide that do not function well in a particular browser or with a specific assistive technology are demonstrating browser or assistive technology bugs.
+        Browser and assistive technology developers can thus utilize code in this guide to help assess the quality of their support for ARIA 1.1.
       </p>
     </section>
     <section id="mobile_and_touch_support">
@@ -558,10 +557,6 @@
     <section class="widget" id="combobox">
       <h3>Combo Box</h3>
       <p>
-        <strong>NOTE:</strong> This section contains new content. Please provide feedback in
-        <a href="https://github.com/w3c/aria-practices/issues/464">issue 464.</a>
-      </p>
-      <p>
         A <a href="#combobox" class="role-reference">combobox</a> is a widget made up of the combination of two distinct elements:
         1) a single-line textbox, and 2) an associated pop-up element for helping users set the value of the textbox.
         The popup may be a <a href="#Listbox">listbox</a>,
@@ -631,7 +626,7 @@
         The options for a combobox to popup a grid, tree, or dialog were introduced in ARIA 1.1.
         Changes made in the ARIA 1.1 specification also add support for a code pattern that enables assistive technologies to present the textbox and popup as separately perceivable elements.
         both ARIA 1.0 and 1.1 patterns are described in the following sections.
-        While using the ARIA 1.1 pattern is recommended as soon as assistive technology support is sufficient, 
+        While using the ARIA 1.1 pattern is recommended as soon as assistive technology support is sufficient,
         there are no plans to deprecate the ARIA 1.0 pattern.
       </p>
 
@@ -932,7 +927,7 @@
         and in some implementations, attempts to interact with the inert content cause the dialog to close.
       </p>
       <p>
-        Like <a href="#dialog_nonmodal">non-modal dialogs</a>, modal dialogs contain their tab sequence.
+        Like non-modal dialogs, modal dialogs contain their tab sequence.
         That is, <kbd>Tab</kbd> and <kbd>Shift + Tab</kbd> do not move focus outside the dialog.
         However, unlike most non-modal dialogs, modal dialogs do not provide means for moving keyboard focus outside the dialog window without closing the dialog.
       </p>
@@ -1051,16 +1046,11 @@
       </section>
     </section>
 
-    <section class="widget" id="dialog_nonmodal">
-      <h3>Dialog (Non-Modal)</h3>
-      <p>Drafting content for this section is tracked by <a href="https://github.com/w3c/aria-practices/issues/59">issue 59</a>. </p>
-    </section>
-
     <section class="widget" id="disclosure">
       <h3>Disclosure (Show/Hide)</h3>
       <p>
         A disclosure is a <a href="#button">button</a> that controls visibility of a section of content.
-        When the controlled conted is hidden, it is often styled as a typical push button with a right pointing arrow or triangle to hint that activating the button will display additional content.
+        When the controlled content is hidden, it is often styled as a typical push button with a right-pointing arrow or triangle to hint that activating the button will display additional content.
         When the content is visible, the arrow or triangle typically points down.
       </p>
 
@@ -1265,7 +1255,7 @@
         While ARIA properties and assistive technologies use row and column nomenclature when describing and presenting the logical structure of elements with the <code>grid</code> role, using the <code>grid</code> role on an element does not necessarily imply that its visual presentation is tabular.
       </p>
 
-      <p>When presenting content that is tabular, consider the following factors when choosing between implementing this <code>grid</code> pater or the <a href="#table">table</a> pattern.</p>
+      <p>When presenting content that is tabular, consider the following factors when choosing between implementing this <code>grid</code> pattern or the <a href="#table">table</a> pattern.</p>
 
       <ul>
         <li>
@@ -1356,7 +1346,7 @@
           <p class="note">See <a href="#kbd_common_conventions"></a> for cut, copy, and paste key assignments.</p>
         </section>
       </section>
-      
+
       <section id="layoutGrid" class="notoc">
         <h4>Layout Grids for Grouping Widgets</h4>
 
@@ -2329,14 +2319,65 @@
     <section class="widget" id="table">
       <h3>Table</h3>
       <p>
-        Work on drafting this section is tracked by
-        <a href="https://github.com/w3c/aria-practices/issues/90">issue 90</a>.
+        Please provide feedback on this section in
+        <a href="https://github.com/w3c/aria-practices/issues/526">issue 526.</a>
       </p>
       <p>
-        This is a place holder for a to-be-written section about data tables.
-        The grid pattern includes text describing how to choose between using grid and table, and it links to this section.
-        This section does not necessarily have to be part of the design pattern section.
+        Like an HTML <code>table</code> element, a WAI-ARIA <a href="#table" class="role-reference">table</a> is a static tabular structure containing one or more rows that each contain one or more cells; it is not an interactive widget.
+        Thus, its cells are not focusable or selectable.
+        The <a href="#grid">grid pattern</a> is used to make an interactive widget that has a tabular structure.
       </p>
+      <p>
+        However, tables are often used to present a combination of information and interactive widgets.
+        Since a table is not a widget, each widget contained in a table is a separate stop in the page tab sequence.
+        If the number of widgets is large, replacing the table with a grid can dramatically reduce the length of the page tab sequence because a grid is a composite widget that can contain other widgets.
+      </p>
+      <p class="note">
+        As with other WAI-ARIA roles that have a native host language equivalent, 
+        authors are strongly encouraged to use a native HTML <code>table</code> element whenever possible.
+        This is especially important with role <code>table</code> because it is a new feature of WAI-ARIA 1.1.
+        It is thus advisable to test implementations thoroughly with each browser and assistive technology combination that could be used by the target audience.
+      </p>
+      <section class="notoc">
+        <h4>Examples</h4>
+        <p><a href="examples/table/table.html">Table Example</a>: ARIA table made using HTML <code>div</code> and <code>span</code> elements.</p>
+      </section>
+      <section class="notoc">
+        <h4>Keyboard Interaction</h4>
+        <p>Not applicable.</p>
+      </section>
+      <section id="table_roles_states_props" class="notoc">
+        <h4>WAI-ARIA Roles, States, and Properties</h4>
+        <ul>
+          <li>The table container has role <a href="#table" class="role-reference">table</a>. </li>
+          <li>Each row container has role <a href="#row" class="role-reference">row</a> and is either a DOM descendant of or owned by the <code>table</code> element or an element with role <a href="#rowgroup" class="role-reference">rowgroup</a>. </li>
+          <li>Each cell is either a DOM descendant of or owned by a <code>row</code> element and has one of the following roles:
+            <ul>
+              <li><a href="#columnheader"  class="role-reference">columnheader</a> if the cell contains a title or header information for the column.</li>
+              <li><a href="#rowheader"  class="role-reference">rowheader</a> if the cell contains title or header information for the row.</li>
+              <li><a href="#cell" class="role-reference">cell</a> if the cell does not contain column or row header information.</li>
+            </ul>
+          </li>
+          <li>
+            If there is an element in the user interface that serves as a label for the table, <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> is set on the table element with a value that refers to the labeling element.
+            Otherwise, a label is specified for the table element using <a href="#aria-label" class="property-reference">aria-label</a>.
+          </li>
+          <li>If the table has a caption or description, <a href="#aria-describedby" class="property-reference">aria-describedby</a> is set on the table element with a value referring to the element containing the description.</li>
+          <li>If the table contains sortable columns or rows, <a href="#aria-sort" class="property-reference">aria-sort</a> is set to an appropriate value on the header cell element for the sorted column or row as described in the section on <a href="#gridAndTableProperties">grid and table properties</a>. </li>
+          <li>
+            If there are conditions where some rows or columns are hidden or not present in the DOM, e.g., there are widgets on the page for hiding rows or columns, the following properties are applied as described in the section on <a href="#gridAndTableProperties">grid and table properties</a>.
+            <ul>
+              <li><a href="#aria-colcount" class="property-reference">aria-colcount</a> or <a href="#aria-rowcount" class="property-reference">aria-rowcount</a> is set to the total number of columns or rows, respectively. </li>
+              <li><a href="#aria-colindex" class="property-reference">aria-colindex</a> or <a href="#aria-rowindex" class="property-reference">aria-rowindex</a> is set to the position of a cell within a row or column, respectively. </li>
+            </ul>
+          </li>
+          <li>If the table includes cells that span multiple rows or multiple columns, then <a href="#aria-rowspan" class="property-reference">aria-rowspan</a> or <a href="#aria-colspan" class="property-reference">aria-colspan</a> is applied as described in <a href="#gridAndTableProperties">grid and table properties</a>.</li>
+        </ul>
+        <p class="note">
+          If rows or cells are included in a table via <a href="#aria-owns" class="property-reference">aria-owns</a>,
+          they will be presented to assistive technologies after the DOM descendants of the <code>table</code> element unless the DOM descendants are also included in the <code>aria-owns</code> attribute.
+        </p>
+      </section>
     </section>
 
     <section class="widget" id="tabpanel">
@@ -2517,8 +2558,7 @@
       </p>
       <p>
         Tooltip widgets do not receive focus.
-        A hover that contains focusable elements can be made using the
-        a <a href="#dialog_nonmodal">non-modal dialog pattern</a>.
+        A hover that contains focusable elements can be made using a non-modal dialog.
       </p>
       <section class="notoc">
         <h4>Example</h4>
@@ -3514,31 +3554,22 @@
         <p>The steps for using the aria-activedescendant method of managing focus are as follows.</p>
 
         <ul>
-          <li>
-            When the container element that has a role that supports aria-activedescendant is loaded or created, ensure that:
-
+          <li>When the container element that has a role that supports aria-activedescendant is loaded or created, ensure that:
             <ul>
-              <li>The container element is included in the tab sequence as described in <a href="#kbd_general_between"></a> or it is otherwise focusable as described in <a href="#kbd_nested_components"></a>.</li>
+              <li>The container element is included in the tab sequence as described in <a href="#kbd_general_between"></a> or is a focusable element of a composite that implements <a href="#kbd_roving_tabindex">a roving tabindex</a>.</li>
               <li>
                 It has <code>aria-activedescendant="IDREF"</code> where IDREF is the ID of the element within the container that should be identified as active when the widget receives focus.
                 The referenced element needs to meet the DOM relationship requirements described below.
               </li>
             </ul>
           </li>
-
-          <li>
-            When the container element receives DOM focus, draw a visual focus indicator on the active element and ensure the active element is scrolled into view.
-          </li>
-
-          <li>
-            When the composite widget contains focus and the user presses a navigation key that moves focus within the widget, such as an arrow key:
-
+          <li>When the container element receives DOM focus, draw a visual focus indicator on the active element and ensure the active element is scrolled into view.</li>
+          <li>When the composite widget contains focus and the user presses a navigation key that moves focus within the widget, such as an arrow key:
             <ul>
               <li>Change the value of aria-activedescendant on the container to refer to the element that should be reported to assistive technologies as active.</li>
               <li>Move the visual focus indicator and, if necessary,  scrolled the active element into view.</li>
             </ul>
           </li>
-
           <li>
             If the design calls for a specific element to be focused the next time a user moves focus into the composite with <kbd>Tab</kbd> or <kbd>Shift+Tab</kbd>, check if aria-activedescendant is referring to that target element when the container loses focus.
             If it is not, set aria-activedescendant to refer to the target element.
@@ -3549,29 +3580,16 @@
           The <a href="#aria-activedescendant" class="property-reference">specification for aria-activedescendant</a> places important restrictions on the DOM relationship between the focused element that has the aria-activedescendant attribute and the element referenced as active by the value of the attribute.
           One of the following three conditions must be met.
         </p>
-
         <ol>
           <li>The element referenced as active is a DOM descendant of the focused referencing element.</li>
-
           <li>The focused referencing element has a value specified for the <a href="#aria-owns" class="property-reference">aria-owns</a> property that includes the ID of the element referenced as active.</li>
-
-          <li>
-            The focused referencing element has role of <a href="#textbox" class="role-reference">textbox</a> and has <a href="#aria-controls" class="property-reference">aria-controls</a> property referring to an element with a role that supports aria-activedescendant and either:
-
+          <li>The focused referencing element has role of <a href="#textbox" class="role-reference">textbox</a> and has <a href="#aria-controls" class="property-reference">aria-controls</a> property referring to an element with a role that supports aria-activedescendant and either:
             <ol>
               <li>The element referenced as active is a descendant of the controlled element.</li>
               <li>The controlled element has a value specified for the <a href="#aria-owns" class="property-reference">aria-owns</a> property that includes the ID of the element referenced as active.</li>
             </ol>
           </li>
         </ol>
-      </section>
-
-      <section id="kbd_nested_components">
-        <h4>Nested Composite Components - Composites and Toolbars That Contain Composites</h4>
-        <p>
-          Work to draft content for this section is tracked by
-          <a href="https://github.com/w3c/aria-practices/issues/218">issue 218.</a>
-        </p>
       </section>
     </section>
     <section id="kbd_disabled_controls">
@@ -3868,24 +3886,15 @@
           <p>For example, consider a save function that is available when the focus is in an editor. Most browsers use ... to be continued ...</p>
         </section>
       </section>
-
-      <section id="kbd_shortcuts_exposing">
-        <h4>Exposing and Documenting Keyboard Shortcuts</h4>
-        <p> Work to complete this section is tracked in <a href="https://github.com/w3c/aria-practices/issues/167">issue 167.</a></p>
-      </section>
     </section>
   </section>
 
   <section id="gridAndTableProperties">
     <h2>Grid and Table Properties</h2>
     <p>
-      <strong>NOTE:</strong> The content in this section is new. Please provide feedback in
-      <a href="https://github.com/w3c/aria-practices/issues/505">issue 505.</a>
-    </p>
-    <p>
       To fully present and describe a grid or table, in addition to parsing the headers, rows, and cells using the roles described in the
       <a href="#grid">grid pattern</a> or <a href="#table">table pattern</a>,
-      assistive technologies need to be able to determine :
+      assistive technologies need to be able to determine:
     </p>
     <ul>
       <li>The number of rows and columns.</li>
@@ -3894,8 +3903,8 @@
       <li>Whether and how data is sorted.</li>
     </ul>
     <p>
-      Browsers can automatically calculate the number of rows and columns and put it into their accessibility tree based on what is in the DOM.
-      However, there are many situations where the DOM does not contain the whole table, such as when the data set is too large to fully render.
+      Browsers automatically populate their accessibility tree with the number of rows and columns in a grid or table based on the rendered DOM.
+      However, there are many situations where the DOM does not contain the whole grid or table, such as when the data set is too large to fully render.
       Additionally, some of this information, like skipped columns or rows and how data is sorted, cannot be derived from the DOM structure.
     </p>
     <p>The below sections explain how to use the following properties that ARIA provides for grid and table accessibility.</p>
@@ -3953,7 +3962,7 @@
       <p>
         When the number of rows represented by the DOM structure is not the total number of rows available for a table, grid, or treegrid,
         the  <code>aria-rowcount</code>  property is used to communicate the total number of rows available,
-        and it is accompanied by the <code>aria-rowindex</code> property to identify the row indicies of the rows that are present in the DOM.
+        and it is accompanied by the <code>aria-rowindex</code> property to identify the row indices of the rows that are present in the DOM.
       </p>
       <p>
         The <code>aria-rowcount</code> is specified on the element with the <code>table</code>, <code>grid</code>, or <code>treegrid</code> role.
@@ -3969,11 +3978,11 @@
       <ol>
         <li>Greater than or equal to 1.</li>
         <li>Greater than the value of <code>aria-rowindex</code> on any previous rows.</li>
-        <li>If cells span multiple rows, set to the index of the first row in the span.</li>
+        <li>Set to the index of the first row in the span if cells span multiple rows.</li>
         <li>Less than or equal to the total number of rows.</li>
       </ol>
       <p>
-        <strong>WARNING!</strong> Missing or inconsistent values of <code>aria-rowindex</code> could have devistating effects on assistive technology behavior.
+        <strong>WARNING!</strong> Missing or inconsistent values of <code>aria-rowindex</code> could have devastating effects on assistive technology behavior.
         For example, specifying an invalid value for <code>aria-rowindex</code> or setting it on some but not all rows in a table, could cause screen reader table reading functions to skip rows or simply stop functioning.
       </p>
       <p>
@@ -4043,8 +4052,8 @@
       <h3>Using <code>aria-colcount</code> and <code>aria-colindex</code></h3>
       <p>
         When the number of columns represented by the DOM structure is not the total number of columns available for a table, grid, or treegrid,
-        the  <code>aria-colcount</code>  property is used to commyunicate the total number of columns available,
-        and it is accompanied by the <code>aria-colindex</code> property to identify the column indicies of the columns that are present in the DOM.
+        the  <code>aria-colcount</code>  property is used to communicate the total number of columns available,
+        and it is accompanied by the <code>aria-colindex</code> property to identify the column indices of the columns that are present in the DOM.
       </p>
       <p>
         The <code>aria-colcount</code> is specified on the element with the <code>table</code>, <code>grid</code>, or <code>treegrid</code> role.
@@ -4060,11 +4069,11 @@
       <ol>
         <li>Greater than or equal to 1.</li>
         <li>When set on a cell, greater than the value set on any previous cell within the same row.</li>
-        <li>If a cell spans multiple columns, set to the index of the first column in the span.</li>
+        <li>Set to the index of the first column in the span if a cell spans multiple columns.</li>
         <li>Less than or equal to the total number of columns.</li>
       </ol>
       <p>
-        <strong>WARNING!</strong> Missing or inconsistent values of <code>aria-colindex</code> could have devistating effects on assistive technology behavior.
+        <strong>WARNING!</strong> Missing or inconsistent values of <code>aria-colindex</code> could have devastating effects on assistive technology behavior.
         For example, specifying an invalid value for <code>aria-colindex</code> or setting it on some but not all cells in a row, could cause screen reader table reading functions to skip cells or simply stop functioning.
       </p>
       <section id="gridAndTableProperties_cols_contiguous">
@@ -4113,7 +4122,7 @@
         <p>
           When the cells in a row have column index numbers that are not consecutive integers, <code>aria-colindex</code> needs to be set on each cell in the row.
           The following example shows a grid for an online grade book where the first two columns contain a student name and subsequent columns contain scores.
-          In this example, the first two columns with the student name are shown, but the score columns have been scrolled to sshow columns 10 through 13.
+          In this example, the first two columns with the student name are shown, but the score columns have been scrolled to show columns 10 through 13.
           Columns 3 through 9 are not visible so are not in the DOM.
         </p>
         <pre>
@@ -4198,7 +4207,7 @@
       <p>
         The following example grid has a two row header.
         The first two columns have headers that span both rows of the header.
-        The subsequent 6 columns are grouped into 3 pairs with headers in the first row that each span two columns. 
+        The subsequent 6 columns are grouped into 3 pairs with headers in the first row that each span two columns.
       </p>
       <pre>
         <code>
@@ -4207,7 +4216,7 @@
             &lt;div role=&quot;rowgroup&quot;&gt;
               &lt;div role=&quot;row&quot; aria-rowindex=&quot;1&quot;&gt;
                   &lt;!--
-                    aria-rowspan and aria-colspan provide 
+                    aria-rowspan and aria-colspan provide
                     assistive technologies with the correct data cell header information
                     when header cells span more than one row or column.
                   --&gt;
@@ -4316,7 +4325,7 @@
                 &lt;th&gt;Homework 4&lt;/th&gt;
                 &lt;!--
                   aria-sort indicates the column with the heading
-                  "Quiz 2" has been used to sort the rows of the grid. 
+                  "Quiz 2" has been used to sort the rows of the grid.
                 --&gt;
                 &lt;th aria-sort=&quot;descending&quot;&gt;Quiz 2&lt;/th&gt;
                 &lt;th&gt;Homework 5&lt;/th&gt;
