@@ -239,7 +239,9 @@ ComboboxList.prototype.handleKeyup = function (event) {
   // this is for the case when a selection in the textbox has been deleted
   if (this.domNode.value.length < this.filter.length) {
     this.filter = this.domNode.value;
+    this.option = false;
   }
+
 
   switch (event.keyCode) {
 
