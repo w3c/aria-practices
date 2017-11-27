@@ -140,7 +140,7 @@ PopupMenuAction.prototype.updateMenuStates = function () {
     }
   }
 
-  // Update the radio buttons for font, in case they were updated using the larger 
+  // Update the radio buttons for font, in case they were updated using the larger
   // smaller font menu items
 
   var rbs = this.domNode.querySelectorAll('[rel="font-size"] [role=menuitemradio]');
