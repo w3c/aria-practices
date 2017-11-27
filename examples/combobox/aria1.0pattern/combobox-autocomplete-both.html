@@ -118,12 +118,12 @@
       </div>
       <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
     </section>
-  
+
     <section>
       <h2 id="kbd_label">Keyboard Support</h2>
       <p>
-      The example combobox on this page implements the following keyboard interface. 
-        Other variations and options for the keyboard interface are described in the  
+      The example comboboxes on this page implement the following keyboard interface.
+        Other variations and options for the keyboard interface are described in the
         <a href="../../../#combobox_kbd_interaction">Keyboard Interaction section of the combobox design pattern.</a>
       </p>
       <h3 id="kbd_label_textbox">Textbox</h3>
@@ -137,23 +137,48 @@
         <tbody>
           <tr>
             <th><kbd>Down Arrow</kbd></th>
-            <td>Opens the listbox and moves focus to the first suggested value.</td>
+            <td>
+              <ul>
+                <li>If the listbox is displayed. moves visual focus to the first suggested value.</li>
+                <li>If the listbox is not displayed, opens the listbox and moves visual focus to the first value.</li>
+                <li>In both cases DOM focus remains on the textbox.</li>
+              </ul>
+            </td>
           </tr>
           <tr>
             <th><kbd>Up Arrow</kbd></th>
-            <td>Opens the listbox and moves focus to the last suggested value.</td>
+            <td>
+              <ul>
+                <li>If the listbox is displayed. moves visual focus to the last suggested value.</li>
+                <li>If the listbox is not displayed, opens the listbox and moves visual focus to the last value.</li>
+                <li>In both cases DOM focus remains on the textbox.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <th><kbd>Enter</kbd></th>
+            <td>
+              <ul>
+                <li>Sets the textbox value to the content of the selected option.</li>
+                <li>Closes the listbox.</li>
+              </ul>
+            </td>
           </tr>
           <tr>
             <th><kbd>Escape</kbd></th>
-            <td>if open, closes the listbox.</td>
+            <td>
+              <ul>
+                <li>Clears the textbox.</li>
+                <li>If the listbox is displayed, closes it.</li>
+              </ul>
+            </td>
           </tr>
           <tr>
             <th><li>Standard single line text editing keys</th>
             <td>
               <ul>
                 <li>Keys used for cursor movement and text manipulation, such as <kbd>Delete</kbd> and <kbd>Shift + Right Arrow</kbd>.</li>
-                <li>As the value of the textbox changes, suggestions in the listbox change to show values that match the input; if there are no matches, the listbox is not visible.</li>
-                <li>Note: An HTML <code>input</code> with <code>type=<q>text</q></code> is used for the textbox so the browser will provide platform-specific editing keys.</li>
+                <li>An HTML <code>input</code> with <code>type=<q>text</q></code> is used for the textbox so the browser will provide platform-specific editing keys.</li>
               </ul>
             </td>
           </tr>
@@ -163,7 +188,7 @@
       <p>
         <strong>NOTE:</strong> When visual focus is in the listbox, DOM focus remains on the textbox and the value of <code>aria-activedescendant</code> on the textbox is set to a value that refers to the listbox option that is visually indicated as focused.
         Where the following descriptions of keyboard commands mention focus, they are referring to the visual focus indicator.
-        For more information about this focus management technique, see 
+        For more information about this focus management technique, see
         <a href="../../../#kbd_focus_activedescendant">Using aria-activedescendant to Manage Focus.</a>
       </p>
       <table aria-labelledby="kbd_label_listbox kbd_label" class="def">
@@ -180,20 +205,27 @@
               <ul>
                 <li>Sets the textbox value to the content of the focused option in the listbox.</li>
                 <li>Closes the listbox.</li>
-                <li>Sets focus on the textbox.</li>
+                <li>Sets visual focus on the textbox.</li>
               </ul>
             </td>
           </tr>
           <tr>
             <th><kbd>Escape</kbd></th>
-            <td>Closes the listbox and sets focus on the textbox.</td>
+            <td>
+              <ul>
+                <li>Clears the textbox.</li>
+                <li>Closes the listbox.</li>
+                <li>Sets visual focus on the textbox.</li>
+              </ul>
+            </td>
           </tr>
           <tr>
             <th><kbd>Down Arrow</kbd></th>
             <td>
               <ul>
-                <li>Moves focus to the next <code>option</code>.</li>
-                <li>If focus is on the last <code>option</code>, the focus does not move.</li>
+                <li>Moves visual focus to the next option.</li>
+                <li>If visual focus is on the last option, moves visual focus to the first option.</li>
+                <li>Note: This wrapping behavior is useful when <kbd>Home</kbd> and <kbd>End</kbd> move the editing cursor as described below.</li>
               </ul>
             </td>
           </tr>
@@ -201,65 +233,46 @@
             <th><kbd>Up Arrow</kbd></th>
             <td>
               <ul>
-                <li>Moves focus to the previous <code>option</code>.</li>
-                <li>If focus is on the first <code>option</code>, the focus does not move.</li>
+                <li>Moves visual focus to the previous option.</li>
+                <li>If visual focus is on the first option, moves visual focus to the last option.</li>
+                <li>Note: This wrapping behavior is useful when <kbd>Home</kbd> and <kbd>End</kbd> move the editing cursor as described below.</li>
               </ul>
             </td>
           </tr>
           <tr>
             <th><kbd>Right Arrow</kbd></th>
-            <td>
-              <ul>
-                <li>Returns focus to the textbox without closing the listbox.</li>
-                <li>Moves the input cursor one character to the right. If the input cursor is on the right-most character, the cursor does not move.</li>
-              </ul>
-            </td>
+            <td>Moves visual focus to the textbox and moves the editing cursor one character to the right.</td>
           </tr>
           <tr>
             <th><kbd>Left Arrow</kbd></th>
-            <td>
-              <ul>
-                <li>Returns focus to the textbox without closing the listbox.</li>
-                <li>Moves the input cursor one character to the left. If the input cursor is on the left-most character, the cursor does not move.</li>
-              </ul>
-            </td>
+            <td>Moves visual focus to the textbox and moves the editing cursor one character to the leftt.</td>
           </tr>
           <tr>
             <th><kbd>Home</kbd></th>
-            <td>Moves focus to the first <code>option</code>.</td>
+            <td>Moves visual focus to the textbox and places the editing cursor at the beginning of the field.</td>
           </tr>
           <tr>
             <th><kbd>End</kbd></th>
-            <td>Moves focus to the last <code>option</code>.</td>
+            <td>Moves visual focus to the textbox and places the editing cursor at the end of the field.</td>
           </tr>
           <tr>
             <th>Printable Characters</th>
             <td>
               <ul>
-                <li>Returns focus to the textbox without closing the popup and types the character.</li>
-                <li>Note: the listbox content may change due to the new textbox value.</li>
-              </ul>
-            </td>
-          </tr>
-          <tr>
-            <th>Standard Editing Keys<br>e.g., <kbd>Delete</kbd></th>
-            <td>
-              <ul>
-                <li>Return focus to the textbox without closing the popup.</li>
-                <li>Executes the platform-specific function for the key.</li>
-                <li>Note: the listbox content may change due to the new textbox value.</li>
+                <li>Moves visual focus to the textbox.</li>
+                <li>Types the character in the textbox.</li>
               </ul>
             </td>
           </tr>
         </tbody>
       </table>
     </section>
-  
+
     <section>
       <h2 id="rps_label">Role, Property, State, and Tabindex Attributes</h2>
       <p>
-        The example combobox on this page implements the following ARIA roles, states, and properties. 
-        Information about other ways of applying ARIA roles, states, and properties is available in the    
+        The example combobox on this page implements the following ARIA roles, states, and properties.
+        Information about other ways of applying ARIA roles, states, and properties is available in the
         <a href="../../../#combobox_roles_states_props">Roles, States, and Properties section of the combobox design pattern.</a>
       </p>
       <h3 id="rps_label_textbox">Textbox</h3>
@@ -343,7 +356,7 @@
                 <li>When navigation keys, such as <kbd>Down Arrow</kbd>, are pressed, the JavaScript changes the value.</li>
                 <li>Enables assistive technologies to know which element the application regards as focused while DOM focus remains on the <code>input</code> element.</li>
                 <li>
-                  For more information about this focus management technique, see 
+                  For more information about this focus management technique, see
                   <a href="../../../#kbd_focus_activedescendant">Using aria-activedescendant to Manage Focus.</a>
                 </li>
               </ul>
