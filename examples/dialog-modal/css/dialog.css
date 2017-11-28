@@ -50,22 +50,16 @@ body:not(.toc-inline) #main_content main, body:not(.toc-inline) #main_content na
   display: none
 }
 
-div.default_dialog {
-  display: block;
+[role="dialog"] {
   width: 50%;
-  margin-bottom: 100px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 10vh auto;
   padding: 5px;
   border: thin #000 solid;
   background-color: #fff;
-  position: absolute;
-  top: 25%;
-  left: 25%;
 }
 
 @media screen and (max-width: 640px) {
-  div.default_dialog {
+  [role="dialog"] {
     box-sizing: border-box;
     top: 0px;
     left: 0px;
@@ -75,7 +69,7 @@ div.default_dialog {
   }
 }
 
-.default_dialog h2:first-of-type {
+[role="dialog"] h2:first-of-type {
   text-align:center;
 }
 
