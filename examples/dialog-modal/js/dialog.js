@@ -125,6 +125,14 @@ aria.Utils = aria.Utils || {};
   aria.Dialog = function (dialogId, focusAfterClosed, focusFirst) {
     this.dialogNode = document.getElementById(dialogId);
 
+    // Wrap in an individual backdrop element
+    // Native <dialog> elements use the ::backdrop pseudo-element, which
+    // works similarly.
+    this.backdropNode = document.createElement('div');
+    this.backdropNode.className = 'dialog-backdrop';
+    this.dialogNode.parentNode.insertBefore(this.backdropNode, this.dialogNode);
+    this.backdropNode.appendChild(this.dialogNode);
+
     if (this.dialogNode === null ||
         this.dialogNode.getAttribute('role') !== 'dialog') {
       throw new Error(
@@ -212,6 +220,10 @@ aria.Utils = aria.Utils || {};
     this.dialogNode.className = 'hidden';
     this.focusAfterClosed.focus();
 
+    // unwrap the dialog and remove the backdrop
+    this.backdropNode.parentNode.insertBefore(this.dialogNode, this.backdropNode);
+    this.backdropNode.remove();
+
     // If a dialog was open underneath this one, restore its listeners.
     if (aria.OpenDialogList.length > 0) {
       aria.getCurrentDialog().addListeners();
@@ -243,6 +255,11 @@ aria.Utils = aria.Utils || {};
     aria.Utils.remove(this.preNode);
     aria.Utils.remove(this.postNode);
     this.dialogNode.className = 'hidden';
+
+    // unwrap the dialog and remove the backdrop
+    this.backdropNode.parentNode.insertBefore(this.dialogNode, this.backdropNode);
+    this.backdropNode.remove();
+
     var focusAfterClosed = newFocusAfterClosed || this.focusAfterClosed;
     var dialog = new aria.Dialog(newDialogId, focusAfterClosed, newFocusFirst);
   }; // end replace
