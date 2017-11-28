@@ -33,7 +33,7 @@ body:not(.toc-inline) {
 
 @media screen and (min-width: 78em) {
   body:not(.toc-inline) #base_window_layer main, body:not(.toc-inline) #base_window_layer nav  {
-      padding-left: 29em;
+    padding-left: 29em;
   }
 
   body:not(.toc-inline) {
