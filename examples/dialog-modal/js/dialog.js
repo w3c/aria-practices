@@ -183,9 +183,6 @@ aria.Utils = aria.Utils || {};
     this.clearDialog();
     this.dialogNode.className = 'default_dialog'; // make visible
 
-    var layer = document.getElementById('dialog_layer');
-    layer.className = 'showing';
-
     if (this.focusFirst) {
       this.focusFirst.focus();
     }
@@ -227,10 +224,6 @@ aria.Utils = aria.Utils || {};
     // If a dialog was open underneath this one, restore its listeners.
     if (aria.OpenDialogList.length > 0) {
       aria.getCurrentDialog().addListeners();
-    }
-    else {
-      var layer = document.getElementById('dialog_layer');
-      layer.className = 'hidden';
     }
   }; // end close
 
