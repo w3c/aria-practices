@@ -1,3 +1,8 @@
+/*
+*   This content is licensed according to the W3C Software License at
+*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+*/
+
 /**
  * @constructor
  *
@@ -100,6 +105,32 @@ aria.GridCombobox.prototype.updateResults = function () {
   }
 };
 
+aria.GridCombobox.prototype.getRowIndex = function (key) {
+  var activeRowIndex = this.activeRowIndex;
+
+  switch (key) {
+    case aria.KeyCode.UP:
+    case aria.KeyCode.LEFT:
+      if (activeRowIndex <= 0) {
+        activeRowIndex = this.rowsCount - 1;
+      }
+      else {
+        activeRowIndex--;
+      }
+      break;
+    case aria.KeyCode.DOWN:
+    case aria.KeyCode.RIGHT:
+      if (activeRowIndex === -1 || activeRowIndex >= this.rowsCount - 1) {
+        activeRowIndex = 0;
+      }
+      else {
+        activeRowIndex++;
+      }
+  }
+
+  return activeRowIndex;
+};
+
 aria.GridCombobox.prototype.setActiveItem = function (evt) {
   var key = evt.which || evt.keyCode;
   var activeRowIndex = this.activeRowIndex;
@@ -137,27 +168,18 @@ aria.GridCombobox.prototype.setActiveItem = function (evt) {
   switch (key) {
     case aria.KeyCode.UP:
       this.gridFocused = true;
-      if (activeRowIndex <= 0) {
-        activeRowIndex = this.rowsCount - 1;
-      }
-      else {
-        activeRowIndex--;
-      }
+      activeRowIndex = this.getRowIndex(key);
       evt.preventDefault();
       break;
     case aria.KeyCode.DOWN:
       this.gridFocused = true;
-      if (activeRowIndex === -1 || activeRowIndex >= this.rowsCount - 1) {
-        activeRowIndex = 0;
-      }
-      else {
-        activeRowIndex++;
-      }
+      activeRowIndex = this.getRowIndex(key);
       evt.preventDefault();
       break;
     case aria.KeyCode.LEFT:
       if (activeColIndex <= 0) {
         activeColIndex = this.colsCount - 1;
+        activeRowIndex = this.getRowIndex(key);
       }
       else {
         activeColIndex--;
@@ -169,6 +191,7 @@ aria.GridCombobox.prototype.setActiveItem = function (evt) {
     case aria.KeyCode.RIGHT:
       if (activeColIndex === -1 || activeColIndex >= this.colsCount - 1) {
         activeColIndex = 0;
+        activeRowIndex = this.getRowIndex(key);
       }
       else {
         activeColIndex++;

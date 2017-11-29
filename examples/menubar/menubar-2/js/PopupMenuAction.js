@@ -5,8 +5,6 @@
 *   File:   PopupMenuAction.js
 *
 *   Desc:   Popup menu widget that implements ARIA Authoring Practices
-*
-*   Author: Jon Gunderson and Ku Ja Eun
 */
 
 /*
@@ -142,10 +140,10 @@ PopupMenuAction.prototype.updateMenuStates = function () {
     }
   }
 
-  // Update the radio buttons for font, in case they were updated using the larger 
+  // Update the radio buttons for font, in case they were updated using the larger
   // smaller font menu items
 
-  var rbs = this.domNode.querySelectorAll('[role=menuitemradio]');
+  var rbs = this.domNode.querySelectorAll('[rel="font-size"] [role=menuitemradio]');
 
   for (var i = 0; i < rbs.length; i++) {
     var rb = rbs[i];

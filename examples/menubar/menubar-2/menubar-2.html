@@ -44,8 +44,8 @@
     <div role="separator" id="ex1_start_sep" aria-labelledby="ex1_start_sep ex1_label" aria-label="Start of"></div>
     <div id="ex1">
       <ul id="menubar1" role="menubar" aria-label="Text Formatting">
-        <li role="menuitem" aria-haspopup="true" aria-expanded="false">
-          <span>Font</span>
+        <li role="none">
+          <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">Font</a>
           <ul role="menu" rel="font-family" aria-label="Font" >
             <li role="menuitemradio" aria-checked="true">Sans-serif</li>
             <li role="menuitemradio" aria-checked="false">Serif</li>
@@ -53,8 +53,8 @@
             <li role="menuitemradio" aria-checked="false">Fantasy</li>
           </ul>
         </li>
-        <li role="menuitem" aria-haspopup="true" aria-expanded="false">
-          <span>Style/Color</span>
+        <li role="none">
+          <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">Style/Color</a>
           <ul role="menu" aria-label="Style/Color">
             <li role="menuitemcheckbox" rel="font-bold" aria-checked="false">Bold</li>
             <li role="menuitemcheckbox" rel="font-italic" aria-checked="false">Italic</li>
@@ -77,8 +77,8 @@
           </ul>
         </li>
 
-        <li role="menuitem" aria-haspopup="true" aria-expanded="false">
-          <span>Text Align</span>
+        <li role="none">
+          <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">Text Align</a>
           <ul role="menu" rel="text-align" aria-label="Text Align">
             <li role="menuitemradio" aria-checked="true">Left</li>
             <li role="menuitemradio" aria-checked="false">Center</li>
@@ -87,8 +87,8 @@
           </ul>
         </li>
 
-        <li role="menuitem" aria-haspopup="true" aria-expanded="false">
-          <span>Size</span>
+        <li role="none">
+          <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">Size</a>
           <ul role="menu" aria-label="Size" >
             <li role="menuitem" rel="font-smaller" aria-disabled="false">Smaller</li>
             <li role="menuitem" rel="font-larger"  aria-disabled="false">Larger</li>
@@ -133,7 +133,7 @@
       <li>The down arrow and checked icons are made compatible with high contrast mode and hidden from screen readers by using the CSS <code>content</code> property to render images.</li>
     </ol>
   </section>
-  
+
   <section>
     <h2 id="kbd_label">Keyboard Support</h2>
     <h3 id="kbd1_label">Menubar</h3>
@@ -369,7 +369,7 @@
               <ul>
                 <li>Identifies the element as a menu item within the menubar.</li>
                 <li>Accessible name comes from the text content.</li>
-              </ul>  
+              </ul>
             </td>
           </tr>
           <tr>
@@ -554,7 +554,7 @@
             <ul>
               <li>Identifies the element as a <code>menuitemcheckbox</code>.</li>
               <li>Accessible name comes from the text content.</li>
-            </ul>  
+            </ul>
           </td>
         </tr>
         <tr>
@@ -705,9 +705,9 @@
     <p>
       Currently, using aria-expanded on elements with role menuitem triggers HTML validation errors because the ARIA specification does not yet support doing so.
       The ARIA working group plans to resolve this issue in the next version of the specification.
-      Until a version of ARIA that resolves 
-      <a href="https://github.com/w3c/aria/issues/454">the issue</a> 
-      becomes a W3C recommendation, it is safe to ignore these validation errors. 
+      Until a version of ARIA that resolves
+      <a href="https://github.com/w3c/aria/issues/454">the issue</a>
+      becomes a W3C recommendation, it is safe to ignore these validation errors.
       Alternatively, since only a few browser and assistive technology combinations exploit this feature of the pattern, it can be omitted from implementations.
     </p>
   </section>
@@ -732,7 +732,7 @@
         Javascript: <a href="js/PopupMenuItemAction.js" type="text/javascript">PopupMenuItemAction.js</a>
       </li>
       <li>
-            Javascript: <a href="js/styleManager.js" type="text/javascript">styleManager.js</a>
+        Javascript: <a href="js/styleManager.js" type="text/javascript">styleManager.js</a>
       </li>
     </ul>
   </section>

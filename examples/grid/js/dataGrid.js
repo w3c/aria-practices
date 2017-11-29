@@ -1,6 +1,7 @@
-/**
- * TODO: Copyright and License stuff goes here
- */
+/*
+*   This content is licensed according to the W3C Software License at
+*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+*/
 
 /**
  * @namespace aria
@@ -587,8 +588,13 @@ aria.Grid.prototype.setupIndices = function () {
  *  accordingly.
  */
 aria.Grid.prototype.setupPagination = function () {
+  this.onPaginationChange = this.onPaginationChange || function () {};
   this.perPage = parseInt(this.gridNode.getAttribute('data-per-page'));
   this.showFromRow(0, true);
+};
+
+aria.Grid.prototype.setPaginationChangeHandler = function (onPaginationChange) {
+  this.onPaginationChange = onPaginationChange;
 };
 
 /**
@@ -636,6 +642,8 @@ aria.Grid.prototype.showFromRow = function (startIndex, scrollDown) {
   var dataRows =
     this.gridNode.querySelectorAll(aria.GridSelector.SCROLL_ROW);
   var reachedTop = false;
+  var firstIndex = -1;
+  var endIndex = -1;
 
   if (startIndex < 0 || startIndex >= dataRows.length) {
     return;
@@ -660,11 +668,17 @@ aria.Grid.prototype.showFromRow = function (startIndex, scrollDown) {
         this.topIndex = i;
         reachedTop = true;
       }
+
+      if (firstIndex < 0) {
+        firstIndex = i;
+      }
+      endIndex = i;
     }
     else {
       aria.Utils.addClass(dataRows[i], aria.CSSClass.HIDDEN);
     }
   }
+  this.onPaginationChange(firstIndex, endIndex);
 };
 
 /**

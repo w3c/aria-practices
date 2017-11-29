@@ -28,7 +28,7 @@
         That is, activating a menuitem loads the link target, and the browser's link context menu and associated actions are available.
       </p>
       <p>
-        In this implementation, the button is made using an HTML <code>a</code> element and the menu structure uses an HTML <code>ul</code> element.
+        In this implementation, an HTML <code>button</code> element reveals a menu structure made with an HTML <code>ul</code> element.
         The <code>menuitem</code> role is on the HTML <code>a</code> element contained by each <code>li</code> element so link behaviors are available when focus is set on the menu item.
         Another reason the <code>menuitem</code> role is not on the <code>li</code> element is that the semantics of descendants of ARIA <code>menuitem</code> elements are not exposed in the accessibility tree.
         That is, an item in a menu can only be a <code>menuitem</code> because accessibility APIs do not enable assistive technologies to render elements contained inside of an item in a menu.
@@ -201,25 +201,10 @@
           </thead>
           <tbody>
             <tr>
-              <th scope="row">
-                <code>button</code>
-              </th>
-              <td></td>
-              <td>
-                <code>a</code>
-              </td>
-              <td>
-                <ul>
-                  <li>Identifies the element as a button.</li>
-                  <li>The text content of the <code>a</code> element provides the accessible name of the button.</li>
-                </ul>
-              </td>
-            </tr>
-            <tr>
               <td></td>
               <th scope="row"><code>aria-haspopup=&quot;true&quot;</code></th>
               <td>
-                <code>a</code>
+                <code>button</code>
               </td>
               <td>
                 <ul>
@@ -235,7 +220,7 @@
               <td></td>
               <th scope="row"><code>aria-controls=&quot;IDREF&quot;</code></th>
               <td>
-                <code>a</code>
+                <code>button</code>
               </td>
               <td>
                 <ul>
@@ -247,7 +232,7 @@
             <tr>
                 <td></td>
                 <th scope="row"><code>aria-expanded=&quot;true&quot;</code></th>
-                <td><code>a</code></td>
+                <td><code>button</code></td>
                 <td>
                   <ul>
                     <li>Added when the menu is open.</li>
@@ -259,6 +244,8 @@
             </tr>
           </tbody>
         </table>
+        <h4>Note</h4>
+        <p>The label for the button is provided by the text content of the <code>button</code> element.</p>
         <h3 id="rps2_label">Menu</h3>
         <table aria-labelledby="rps2_label rps_label" class="data attributes">
           <thead>

@@ -21,9 +21,8 @@
   <main>
   <h1>Example Listboxes with Rearrangeable Options</h1>
   <p>
-    <strong>NOTE:</strong> This example page is incomplete; it is not ready for final review.
-    Development is tracked by
-    <a href="https://github.com/w3c/aria-practices/issues/123">issue 123.</a>
+    <strong>NOTE:</strong> Please provide feedback on this example in
+    <a href="https://github.com/w3c/aria-practices/issues/468">issue 468.</a>
   </p>
   <p>
     The following two example implementations of the
@@ -69,8 +68,9 @@ while in the second example, they may select multiple options before activating 
             <span id="ss_unimp_l">Unimportant Features:</span>
             <ul id="ss_unimp_list" tabindex="0" role="listbox" aria-labelledby="ss_unimp_l" aria-activedescendant="">
             </ul>
-            <button id="ex1-add" class="move-left-btn" aria-keyshortcuts="Alt+ArrowLeft Delete" aria-disabled="true">Important</button>
+            <button id="ex1-add" class="move-left-btn" aria-keyshortcuts="Alt+ArrowLeft Enter" aria-disabled="true">Important</button>
           </div>
+          <div class="offscreen">Last change: <span aria-live="polite" id="ss_live_region"></span></div>
         </div>
       </div>
       <div role="separator" id="ex1_end_sep" aria-labelledby="ex1_end_sep ex1_label" aria-label="End of"></div>
@@ -122,7 +122,7 @@ while in the second example, they may select multiple options before activating 
               <li id="ms_opt9" role="option" aria-selected="false">Advanced waste recycling system</li>
               <li id="ms_opt10" role="option" aria-selected="false">Turbo vertical take-off capability</li>
             </ul>
-            <button id="ex2-add" class="move-right-btn" aria-keyshortcuts="Alt+ArrowRight Delete" aria-disabled="true">Add</button>
+            <button id="ex2-add" class="move-right-btn" aria-keyshortcuts="Alt+ArrowRight Enter" aria-disabled="true">Add</button>
           </div>
           <div class="right-area">
             <span id="ms_ch_l">Upgrades you have chosen:</span>
@@ -136,6 +136,7 @@ while in the second example, they may select multiple options before activating 
             </ul>
             <button id="ex2-delete" class="move-left-btn" aria-keyshortcuts="Alt+ArrowLeft Delete" aria-disabled="true">Remove</button>
           </div>
+          <div class="offscreen">Last change: <span aria-live="polite" id="ms_live_region"></span></div>
         </div>
       </div>
       <div role="separator" id="ex2_end_sep" aria-labelledby="ex2_end_sep ex2_label" aria-label="End of"></div>
@@ -196,6 +197,7 @@ while in the second example, they may select multiple options before activating 
         </ol>
       </li>
       <li>In example 1, since there are four action buttons, a toolbar widget is used to group all the action buttons into a single tab stop.</li>
+      <li>Live regions provide confirmation of completed actions.</li>
     </ol>
   </section>
 

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Horizontal Slider Example | WAI-ARIA Authoring Practices 1.1</title>
+  <title>Horizontal Multi-Thumb Slider Example | WAI-ARIA Authoring Practices 1.1</title>
 
   <!--  Core js and css shared by all examples; do not modify when using this template. -->
   <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
@@ -19,11 +19,11 @@
   <main>
     <h1>Horizontal Multi-Thumb Slider Example</h1>
     <p>
-      Following is an example of a multi-thumb slider that demonstrates the
-      <a href="../../#slidertwothumb">slider (Multi-Thumb) design pattern.</a>
-      The example illustrates a typical price range selector found on travel websites.  
-      Change the desired price range by moving the arrows for the maximum and minumum price.
-      The price labels on either end of the slider will update as you move the corresponding thumb.
+      The below example section includes a slider for setting a price range that demonstrates the
+      <a href="../../#slidertwothumb">multi-thumb slider design pattern.</a>
+      Users set a price range by moving the arrows (thumbs).
+      Each slider has two thumbs: one for the minimum price and one for the maximum price.
+      The price labels at the ends of the slider update as their corresponding thumbs are moved.
     </p>
     <p>Similar examples include: </p>
     <ul>
@@ -40,70 +40,65 @@
        <h2 id="ex_label">Example</h2>
           <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
           <div id="ex1">
-
               <h3>Hotel Price Range</h3>
-
               <div class="aria-widget-slider">
                 <div class="rail-label min">
                   0
                 </div>
-                <div class="rail" style="width: 300px;" title="Select a hotel between $0 and $500">
+                <div class="rail" style="width: 300px;">
                   <img id="minPriceHotel"
-                    src="images/min-arrow.png" 
-                    role="slider" 
-                    tabindex="0" 
-                    class="min thumb" 
-                    aria-valuemin="0" 
-                    aria-valuenow="100" 
+                    src="images/min-arrow.png"
+                    role="slider"
+                    tabindex="0"
+                    class="min thumb"
+                    aria-valuemin="0"
+                    aria-valuenow="100"
                     aria-valuetext="$100"
-                    aria-valuemax="400" 
-                    aria-label="Hotel Minimim Price"/>
+                    aria-valuemax="400"
+                    aria-label="Hotel Minimum Price"/>
                   <img id="maxPriceHotel"
-                    src="images/max-arrow.png" 
-                    role="slider" 
-                    tabindex="0" 
-                    class="max thumb" 
-                    aria-valuemin="0" 
-                    aria-valuenow="250" 
-                    aria-valuenow="$250"
-                    aria-valuemax="400" 
+                    src="images/max-arrow.png"
+                    role="slider"
+                    tabindex="0"
+                    class="max thumb"
+                    aria-valuemin="0"
+                    aria-valuenow="250"
+                    aria-valuetext="$250"
+                    aria-valuemax="400"
                     aria-label="Hotel Maximum Price"/>
                 </div>
                 <div class="rail-label max">
                   0
                 </div>
               </div>
-
               <h3>Flight Price Range</h3>
-
               <div class="aria-widget-slider">
               <div class="rail-label min">
                 0
               </div>
-              <div class="rail" style="width: 300px;" title="Select a flight between $0 and $1000">
-                <img src="images/min-arrow.png" 
-                    role="slider" tabindex="0" 
-                    class="min thumb" 
-                    aria-valuemin="0" 
-                    aria-valuenow="100" 
+              <div class="rail" style="width: 300px;">
+                <img src="images/min-arrow.png"
+                    role="slider" tabindex="0"
+                    class="min thumb"
+                    aria-valuemin="0"
+                    aria-valuenow="100"
                     aria-valuetext="$100"
-                    aria-valuemax="250" 
-                    aria-label="Flight Minimim Price">
-                <img src="images/max-arrow.png" 
-                  role="slider" 
-                  tabindex="0" 
-                  class="max thumb" 
-                  aria-valuemin="0" 
-                  aria-valuenow="250" 
-                  aria-valuenow="$250"
-                  aria-valuemax="1000" 
-                  aria-label="Flight Maximum Price">       
+                    aria-valuemax="250"
+                    aria-label="Flight Minimum Price">
+                <img src="images/max-arrow.png"
+                  role="slider"
+                  tabindex="0"
+                  class="max thumb"
+                  aria-valuemin="0"
+                  aria-valuenow="250"
+                  aria-valuetext="$250"
+                  aria-valuemax="1000"
+                  aria-label="Flight Maximum Price">
               </div>
               <div class="rail-label max">
                 0
               </div>
               </div>
-
           </div>
           <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
     </section>
@@ -172,12 +167,12 @@
             </th>
             <td></td>
             <td>
-              <code>div</code>
+              <code>img</code>
             </td>
             <td>
               <ul>
-                <li>Identifies the element as a slider.</li>
-                <li>Set on the <code>div</code> that represents as the movable thumb because it is the operable element that represents the slider value.</li>
+                <li>Identifies the <code>img</code> element as a slider.</li>
+                <li>Set on the movable thumb because it is the operable element that receives focus and represents the slider value.</li>
               </ul>
             </td>
           </tr>
@@ -187,27 +182,27 @@
               <code>tabindex=<q>0</q></code>
             </th>
             <td>
-              <code>div</code>
+              <code>img</code>
             </td>
             <td>Includes the slider thumb in the page tab sequence.</td>
           </tr>
           <tr>
             <td></td>
             <th scope="row">
-              <code>aria-valuemax=<q>270</q></code>
+              <code>aria-valuemax=<q>NUMBER</q></code>
             </th>
             <td>
-              <code>div</code>
+              <code>img</code>
             </td>
             <td>Specifies the maximum value of the slider.</td>
           </tr>
           <tr>
             <td></td>
             <th scope="row">
-              <code>aria-valuemin=<q>0</q></code>
+              <code>aria-valuemin=<q>NUMBER</q></code>
             </th>
             <td>
-              <code>div</code>
+              <code>img</code>
             </td>
             <td>Specifies the minimum value of the slider.</td>
           </tr>
@@ -217,7 +212,7 @@
               <code>aria-valuenow=<q>NUMBER</q></code>
             </th>
             <td>
-              <code>div</code>
+              <code>img</code>
             </td>
             <td>Indicates the current value of the slider.</td>
           </tr>
@@ -227,7 +222,7 @@
               <code>aria-valuetext=<q>DOLLAR AMOUNT</q></code>
             </th>
             <td>
-              <code>div</code>
+              <code>img</code>
             </td>
             <td>Indicates the current value of the slider in dollars using the <q>$</q> character as a prefix.</td>
           </tr>
@@ -237,13 +232,14 @@
               <code>aria-label=<q>text</q></code>
             </th>
             <td>
-              <code>div</code>
+              <code>img</code>
             </td>
-            <td>A label identifying the function of the slider, in this case "Minimum Price" or "Maximum Price".</td>
+            <td>A label identifying the purpose of the slider, e.g., <q>Hotel Minimum Price</q>.</td>
           </tr>
         </tbody>
       </table>
     </section>
+
   <section>
         <h2>Javascript and CSS Source Code</h2>
         <ul>

@@ -5,8 +5,6 @@
 *   File:   MenubarItemAction.js
 *
 *   Desc:   Menubar Menuitem widget that implements ARIA Authoring Practices
-*
-*   Author: Jon Gunderson, Ku Ja Eun and Nicholas Hoyt
 */
 
 /*
@@ -59,11 +57,6 @@ var MenubarItemAction = function (domNode, menuObj) {
 };
 
 MenubarItemAction.prototype.init = function () {
-  this.domNode.tabIndex = -1;
-
-  this.domNode.setAttribute('role', 'menuitem');
-  this.domNode.setAttribute('aria-haspopup', 'true');
-  this.domNode.setAttribute('aria-expanded', 'false');
   this.domNode.tabIndex = -1;
 
   this.domNode.addEventListener('keydown', this.handleKeydown.bind(this));

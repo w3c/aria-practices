@@ -16,7 +16,6 @@
       It describes considerations that might not be evident to most authors from the WAI-ARIA specification alone and recommends approaches to make widgets, navigation, and behaviors accessible using WAI-ARIA roles, states, and properties.
       This document is directed primarily to Web application developers, but the guidance is also useful for user agent and assistive technology developers.
     </p>
-
     <p>This document is part of the WAI-ARIA suite described in the <a href="https://www.w3.org/WAI/intro/aria.php">WAI-ARIA Overview</a>.</p>
   </section>
 
@@ -54,50 +53,39 @@
 
   <section id="intro">
     <h2>Introduction</h2>
-
     <p>This section is <em>informative.</em></p>
-
     <p>
-      WAI-ARIA Authoring Practices is a guide to understanding how to use WAI-ARIA to create an accessible Rich Internet Application.
-      It describes recommended WAI-ARIA usage patterns and provides an introduction to the concepts behind them.
+      WAI-ARIA Authoring Practices is a guide for understanding how to use
+      <cite><a href="https://www.w3.org/TR/wai-aria-1.1/">WAI-ARIA 1.1</a></cite> to create an accessible Rich Internet Application.
+      It provides guidance on the appropriate application of WAI-ARIA, describes recommended WAI-ARIA usage patterns, and explains concepts behind them.
     </p>
-
     <p>
-      This guide is one part of a suite of resources that support the WAI-ARIA specification.
-      The WAI-ARIA suite fills accessibility gaps identified by the [[WAI-ARIA-ROADMAP]].
+      Languages used to create rich and dynamic web sites, e.g., HTML, JavaScript, CSS, and SVG, do not natively include all the features required to make sites usable by people who use assistive technologies (AT) or who rely on keyboard navigation.
+      The W3C Web Accessibility Initiative's (WAI) Accessible Rich Internet Applications working group (ARIA WG) is addressing these deficiencies through several W3C standards efforts.
+      The <a href="https://www.w3.org/WAI/intro/aria.php">WAI-ARIA Overview</a>
+      provides additional background on WAI-ARIA, summarizes those efforts, and lists the other documents included in the WAI-ARIA suite.
     </p>
-
-    <p> As explained in <a href="#ariaBackground">Background on WAI-ARIA</a>, languages used to create rich and dynamic web sites, e.g., HTML, JavaScript, CSS, and SVG, do not natively include all the features required to make sites usable by people who use assistive technologies (AT) or who rely on keyboard navigation. The W3C Web Accessibility Initiative's (WAI) Accessible Rich Internet Applications working group (ARIA WG) is addressing these deficiencies through several W3C standards efforts, with a focus on the WAI-ARIA specifications. For an introduction to WAI-ARIA, see the <a href="https://www.w3.org/WAI/intro/aria.php">Accessible Rich Internet Applications Suite (WAI-ARIA) Overview</a>. </p>
-
     <p>
-      With the understanding many prefer to learn from examples, the guide begins with a section that demonstrates how to make common widgets accessible with descriptions of expected behaviors supported by working code.
-      Where it is helpful to do so, the examples refer to detailed explanations of supporting concepts in subsequent sections.
-      The sections that follow the examples first provide background that helps build understanding of how WAI-ARIA works and how it fits into the larger web technology picture.
-      Next, the guide covers general steps for building an accessible widget using WAI-ARIA, JavaScript, and CSS, including detailed guidance on how to make rich internet applications keyboard accessible.
-      The scope then widens to include the full application, addressing the page layout and structural semantics critical to enabling a usable experience with assistive technologies on pages containing both rich applications and rich documents.
-      It includes guidance on dynamic document management, use of WAI-ARIA Form properties, and the creation of WAI-ARIA-enabled alerts and dialogs.
+      After a brief <q>Read Me First</q> section, the guide begins with ARIA implementation patterns for common widgets that both enumerate expected behaviors and demonstrate those behaviors with working code.
+      The implementation patterns and examples refer to detailed explanations of supporting concepts in subsequent guidance sections.
+      The guidance sections cover more general topics such as use of ARIA landmarks, practices for keyboard interfaces, grid and table properties, and the effects of role <code>presentation</code>.
     </p>
   </section>
 
   <section id="read_me_first">
     <h2>Read Me First</h2>
-    <p>
-      <strong>NOTE:</strong> This is a proposed draft of a new section.
-      Please provide feedback in 
-      <a href="https://github.com/w3c/aria-practices/issues/482">issue 482</a>.
-    </p>
     <section id="no_aria_better_bad_aria">
       <h3>No ARIA is better than Bad ARIA</h3>
       <p>
-        Functionally, ARIA roles, states, and properties are sort of like CSS for assistive technologies. 
-        In the case of screen readers, ARIA controls the rendering of the non-visual experience. 
-        Incorrect ARIA misrepresents visual experiences, with potentially devastating effects on the corresponding non-visual experiences.
+        Functionally, ARIA roles, states, and properties are analogous to a CSS for assistive technologies.
+        For screen reader users, ARIA controls the rendering of their non-visual experience.
+        Incorrect ARIA misrepresents visual experiences, with potentially devastating effects on their corresponding non-visual experiences.
       </p>
       <p>Before using ARIA or any of the guidance in this document, please take time to understand the following two essential principles.</p>
       <h4>Principal 1: A role is a promise</h4>
       <p>This code:</p>
       <pre><code>
-        &lt;div role=&quot;button&quot;&gt;Press Me&lt;/div&gt;
+        &lt;div role=&quot;button&quot;&gt;Place Order&lt;/div&gt;
           </code> </pre>
       <p>
         Is a promise that the author of that <code>&lt;div&gt;</code> has also incorporated JavaScript that provides the keyboard interactions expected for a button.
@@ -113,18 +101,18 @@
       <p>Some of ARIA is like a cloak; it covers up, or overrides, the original semantics or content.</p>
       <pre><code>
         &lt;a role=&quot;menuitem&quot;&gt;Assistive tech users perceive this element as an item in a menu, not a link.&lt;/a&gt;
-        &lt;a aria-label=&quot;Assistive tech users perceive this aria-label, not the link text&quot;&gt;Link Text&lt;/a&gt;
+        &lt;a aria-label=&quot;Assistive tech users can only perceive the contents of this aria-label, not the link text&quot;&gt;Link Text&lt;/a&gt;
 </code></pre>
       <p>On the other hand, some uses of ARIA are more like suspenders or belts; they add meaning that provides essential support to the original content.</p>
       <pre><code>
-        &lt;button aria-pressed=&quot;false&quot;&gt;Press Me&lt;/button&gt;
+        &lt;button aria-pressed=&quot;false&quot;&gt;Mute&lt;/button&gt;
       </code></pre>
       <p>
-        This is the power of ARIA. 
+        This is the power of ARIA.
         It enables authors to describe nearly any user interface component in ways that assistive technologies can reliably interpret, thus making components accessible to assistive technology users.
       </p>
       <p>
-        This is also the danger of ARIA. 
+        This is also the danger of ARIA.
         Authors can inadvertently override accessibility semantics.
       </p>
       <pre>
@@ -147,23 +135,24 @@
     <section id="browser_and_AT_support">
       <h3>Browser and Assistive Technology Support</h3>
       <p>
-        This guide illustrates appropriate use of ARIA 1.1 as defined in the ARIA specification. 
-        The design patterns, reference examples, and sample code intentionally <strong>do not</strong> implement code to fix problems that are caused by gaps in support for ARIA 1.1 in browsers or assistive technologies.
-        Browser and assistive technology developers can thus utilize code in this guide to help assess the quality of their support for ARIA 1.1.
+        <strong>Testing assistive technology interoperability is essential before using code from this guide in production.</strong>
+        Because the purpose of this guide is to illustrate appropriate use of ARIA 1.1 as defined in the ARIA specification, the design patterns, reference examples, and sample code intentionally <strong>do not</strong> describe and implement coding techniques for working around problems caused by gaps in support for ARIA 1.1 in browsers and assistive technologies.
+        It is thus advisable to test implementations thoroughly with each browser and assistive technology combination that is relevant within a target audience.
       </p>
       <p>
-        Similarly, JavaScript and CSS in this guide is written to be compatible with the most recent version of Chrome, Firefox, Internet Explorer, and Safari at the time of writing. 
+        Similarly, JavaScript and CSS in this guide is written to be compatible with the most recent version of Chrome, Firefox, Internet Explorer, and Safari at the time of writing.
         In particular, some JavaScript and CSS may not function correctly in Internet Explorer version 10 or earlier.
       </p>
       <p>
-        In other words, except in cases where the ARIA Working Group and other contributors have overlooked an error, 
+        Except in cases where the ARIA Working Group and other contributors have overlooked an error,
         examples in this guide that do not function well in a particular browser or with a specific assistive technology are demonstrating browser or assistive technology bugs.
+        Browser and assistive technology developers can thus utilize code in this guide to help assess the quality of their support for ARIA 1.1.
       </p>
     </section>
     <section id="mobile_and_touch_support">
       <h3>Mobile and Touch Support</h3>
       <p>
-        Currently, this guide does not indicate which examples are compatible with mobile browsers or touch interfaces. 
+        Currently, this guide does not indicate which examples are compatible with mobile browsers or touch interfaces.
         While some of the examples include specific features that enhance mobile and touch support, some ARIA features are not supported in any mobile browser.
         In addition, there is not yet a standardized approach for providing touch interactions that work across mobile browsers.
       </p>
@@ -177,8 +166,8 @@
     <section class="widget" id="accordion">
       <h3>Accordion (Sections With Show/Hide Functionality)</h3>
       <p>
-        An accordion is a vertically stacked set of elements, such as labels or thumbnails, that allow the user to toggle the display of sections of content.
-        Each labeling element can be expanded or collapsed to reveal or hide its associated content.
+        An accordion is a vertically stacked set of interactive headings that each contain a title, content snippet, or thumbnail representing a section of content.
+        The headings function as controls that enable users to reveal or hide their associated sections of content.
         Accordions are commonly used to reduce the need to scroll when presenting multiple sections of content on a single page.
       </p>
       <p>Terms for understanding accordions include:</p>
@@ -424,7 +413,7 @@
           In this example, when the pressed state is true, the label remains &quot;Mute&quot; so a screen reader would say something like &quot;Mute toggle button pressed&quot;.
           Alternatively, if the design were to call for the button label to change from &quot;Mute&quot; to &quot;Unmute,&quot; the aria-pressed attribute would not be needed.
         </li>
-        <li>Menu button: as described in the <a href="#menubutton">menu button pattern</a>, a button is revealed to assistive technologies as a menu button if it has the property <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set to <code>true</code>.</li>
+        <li>Menu button: as described in the <a href="#menubutton">menu button pattern</a>, a button is revealed to assistive technologies as a menu button if it has the property <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set to either <code>menu</code> or <code>true</code>.</li>
       </ul>
       <p class="note">
         The types of actions performed by buttons are distinctly different from the function of a link (see <a href="#link">link pattern</a>).
@@ -548,7 +537,14 @@
         <h4>WAI-ARIA Roles, States, and Properties</h4>
         <ul>
           <li>The checkbox has role <a href="#checkbox" class="role-reference">checkbox</a>.</li>
-          <li>The checkbox has an accessible label, preferably provided by a visible label associated using <a href="#aria-labelledby" class="property-reference" >aria-labelledby</a>.</li>
+          <li>
+            The checkbox has an accessible label provided by one of the following:
+            <ul>
+              <li>Visible text content contained within the element with role <code>checkbox</code>.</li>
+              <li>A visible label referenced by the value of <a href="#aria-labelledby" class="property-reference" >aria-labelledby</a> set on the element with role <code>checkbox</code>.</li>
+              <li><a href="#aria-label" class="property-reference">aria-label</a> set on the element with role <code>checkbox</code>.</li>
+            </ul>
+          </li>
           <li>When checked, the checkbox element has state <a href="#aria-checked" class="state-reference" >aria-checked</a> set to <code>true</code>.</li>
           <li>When not checked, it has state <a href="#aria-checked" class="state-reference" >aria-checked</a> set to <code>false</code>.</li>
           <li>When partially checked, it has state <a href="#aria-checked" class="state-reference" >aria-checked</a> set to <code>mixed</code>.</li>
@@ -561,43 +557,41 @@
     <section class="widget" id="combobox">
       <h3>Combo Box</h3>
       <p>
-        <strong>NOTE:</strong> This section contains new content. Please provide feedback in
-        <a href="https://github.com/w3c/aria-practices/issues/464">issue 464.</a>
-      </p>
-      <p>
-        A <a href="#combobox" class="role-reference">combobox</a> is a widget made up of the combination of two distinct elements: 
+        A <a href="#combobox" class="role-reference">combobox</a> is a widget made up of the combination of two distinct elements:
         1) a single-line textbox, and 2) an associated pop-up element for helping users set the value of the textbox.
-        The popup may be a <a href="#Listbox">listbox</a>, 
-        <a href="#grid">grid</a>, 
-        <a href="#TreeView">tree</a>, or 
+        The popup may be a <a href="#Listbox">listbox</a>,
+        <a href="#grid">grid</a>,
+        <a href="#TreeView">tree</a>, or
         <a href="#dialog_modal">dialog.</a>
-        Many implementations also include a third optional element -- a graphical button adjacent to the textbox, indicating the availability of the popup. 
+        Many implementations also include a third optional element -- a graphical button adjacent to the textbox, indicating the availability of the popup.
         Activating the button displays the popup if suggestions are available.
       </p>
-      <p>
-        The popup is hidden by default, and the conditions that trigger its display are specific to each implementation.
-        For example, some implementations do not display suggested values for the textbox in the popup until several characters are typed in the text box.
-        While in other implementations, the popup is displayed when the textbox receives focus.
-      </p>
+      <p>The popup is hidden by default, and the conditions that trigger its display are specific to each implementation. Some possible popup display conditions include:</p>
+      <ul>
+        <li>It is displayed only if a certain number of characters are typed in the textbox and those characters match some portion of one of the suggested values.</li>
+        <li>It is displayed as soon as the textbox is focused, even if the textbox is empty.</li>
+        <li>It is displayed when the <kbd>Down Arrow</kbd> key is pressed or the <q>show</q> button is activated, possibly with a dependency on the content of the textbox.</li>
+        <li>It is displayed if the value of the textbox is altered in a way that creates one or more partial matches to a suggested value.</li>
+      </ul>
       <p>Combobox widgets are useful for setting the value of a single-line textbox in one of two types of scenarios:</p>
       <ol>
         <li>
-          The value for the textbox must be chosen from a predefined set of allowed values, 
-          e.g., a location field must contain a valid location name. 
+          The value for the textbox must be chosen from a predefined set of allowed values,
+          e.g., a location field must contain a valid location name.
           Note that the listbox and menu button patterns are also useful in this scenario; differences between combobox and alternative patterns are described below.
         </li>
         <li>
-          The textbox may contain any arbitrary value, but it is advantageous to suggest possible values to the user, 
+          The textbox may contain any arbitrary value, but it is advantageous to suggest possible values to the user,
           e.g., a search field may suggest similar or previous searches to save the user time.
         </li>
       </ol>
       <p>
-        The nature of the suggested values and the way the suggestions are presented is called the autocomplete behavior. 
-        Comboboxes can have one of four forms of autocomplete: 
+        The nature of the suggested values and the way the suggestions are presented is called the autocomplete behavior.
+        Comboboxes can have one of four forms of autocomplete:
       </p>
       <ol>
         <li>
-          <strong>No autocomplete:</strong> When the popup is triggered, the suggested values it contains are the same regardless of the characters typed in the textbox. 
+          <strong>No autocomplete:</strong> When the popup is triggered, the suggested values it contains are the same regardless of the characters typed in the textbox.
           For example, the popup suggests a set of recently entered values, and the suggestions  do not change as the user types.
         </li>
         <li>
@@ -605,41 +599,45 @@
           The character string the user has typed will become the value of the textbox unless the user selects a value in the popup.
         </li>
         <li>
-          <strong>List autocomplete with automatic selection:</strong> When the popup is triggered, it presents suggested values that complete or logically correspond to the characters typed in the textbox, 
+          <strong>List autocomplete with automatic selection:</strong> When the popup is triggered, it presents suggested values that complete or logically correspond to the characters typed in the textbox,
           and the first suggestion is automatically highlighted as selected.
            The automatically selected suggestion becomes the value of the textbox when the combobox loses focus unless the user chooses a different suggestion or changes the character string in the textbox.
         </li>
         <li>
-          <strong>List with inline autocomplete:</strong> This is the same as list with automatic selection with one additional feature. 
-          The portion of the selected suggestion that has not been typed by the user, a completion string, appears inline after the input cursor in the textbox. 
+          <strong>List with inline autocomplete:</strong> This is the same as list with automatic selection with one additional feature.
+          The portion of the selected suggestion that has not been typed by the user, a completion string, appears inline after the input cursor in the textbox.
           The inline completion string is visually highlighted and has a selected state.
         </li>
       </ol>
       <p>
-        With any form of list autocomplete, the popup may appear and disappear as the user types. 
-        For example, if the user types a two character string that triggers five suggestions to be displayed but then types a third character that forms a string that does not have any matching suggestions, 
+        With any form of list autocomplete, the popup may appear and disappear as the user types.
+        For example, if the user types a two character string that triggers five suggestions to be displayed but then types a third character that forms a string that does not have any matching suggestions,
         the popup may close and, if present, the inline completion string disappears.
       </p>
       <p>
-        When constructing a compact widget that asks users to choose one value from a known set of discrete values, often either a <a href="#Listbox">listbox</a> or <a href="#menubutton">menu button</a> is simpler to implement and use.
-        One feature of combobox that distinguishes it from both listbox and menu button is that the value of the combobox is presented in an edit field. 
+        When constructing a widget that is both visually compact and enables users to choose one value from a set of discrete values, often either a <a href="#Listbox">listbox</a> or <a href="#menubutton">menu button</a> is simpler to implement and use.
+        One feature of combobox that distinguishes it from both listbox and menu button is that the value of the combobox is presented in an edit field.
         Thus, the combobox gives users one function that both listbox and menu button lack, namely the ability to select some or all of the value for copying to the clipboard.
-        A feature that distinguishes both combobox and menu button from listbox is that they can enable users can navigate the set of allowed values and, at any point, decide to keep the current value by pressing escape.
+        One feature that distinguishes both combobox and menu button widgets from listbox widgets is their ability to provide an undo mechanism.
+        In many implementations, users can navigate the set of allowed values in a combobox or menu and then decide to revert to the value the widget had before navigating by pressing <kbd>escape</kbd>.
         In contrast, navigating a listbox immediately changes its value, and escape does not provide an undo mechanism.
       </p>
       <p class="note">
         The options for a combobox to popup a grid, tree, or dialog were introduced in ARIA 1.1.
         Changes made in the ARIA 1.1 specification also add support for a code pattern that enables assistive technologies to present the textbox and popup as separately perceivable elements.
-        While the ARIA 1.1 pattern is recommended, both patterns are described in the following sections, 
-        and there are no plans to deprecate the ARIA 1.0 pattern.
+        both ARIA 1.0 and 1.1 patterns are described in the following sections.
+        While using the ARIA 1.1 pattern is recommended as soon as assistive technology support is sufficient,
+        there are no plans to deprecate the ARIA 1.0 pattern.
       </p>
-      
+
       <section class="notoc">
         <h4>Examples</h4>
         <ul>
-          <li><a href="examples/combobox/aria1.1pattern/listbox-combo.html">Examples of ARIA 1.1 Combobox with Listbox Popup</a>: Comboboxes that demonstrate the various forms of autocomplete behavior using a listbox popup.</li>
+          <li><a href="examples/combobox/aria1.1pattern/listbox-combo.html">Examples of ARIA 1.1 Combobox with Listbox Popup</a>: Comboboxes that demonstrate the various forms of autocomplete behavior using a listbox popup and use the ARIA 1.1 implementation pattern.</li>
           <li><a href="examples/combobox/aria1.1pattern/grid-combo.html">Example of ARIA 1.1 Combobox with Grid Popup</a>: A combobox that presents suggestions in a grid, enabling users to navigate descriptive information about each suggestion.</li>
-          <li><a href="examples/combobox/aria1.0pattern/combobox-autocomplete-list.html">ARIA 1.0 Combobox with List Autocomplete</a></li>
+          <li><a href="examples/combobox/aria1.0pattern/combobox-autocomplete-both.html">ARIA 1.0 Combobox with Both List and Inline Autocomplete</a>: A combobox that demonstrates the autocomplete behavior known as <q>list with inline autocomplete</q> and uses the ARIA 1.0 implementation pattern.</li>
+          <li><a href="examples/combobox/aria1.0pattern/combobox-autocomplete-list.html">ARIA 1.0 Combobox with List Autocomplete</a>: A combobox that demonstrates the autocomplete behavior known as <q>list with manual selection</q> and uses the ARIA 1.0 implementation pattern.</li>
+          <li><a href="examples/combobox/aria1.0pattern/combobox-autocomplete-none.html">ARIA 1.0 Combobox Without Autocomplete</a>: A combo box that demonstrates the behavior associated with <code>aria-autocomplete=none</code> and uses the ARIA 1.0 implementation pattern.</li>
         </ul>
       </section>
 
@@ -647,14 +645,14 @@
         <h4>Keyboard Interaction</h4>
         <ul>
           <li><kbd>Tab</kbd>: The textbox is in the page <kbd>Tab</kbd> sequence.</li>
-          <li>Note: The popup indicator icon (if present), the popup, and the popup descendants are excluded from the page <kbd>Tab</kbd> sequence. </li>
+          <li>Note: The popup indicator icon or button (if present), the popup, and the popup descendants are excluded from the page <kbd>Tab</kbd> sequence. </li>
         </ul>
         <h5>Textbox Keyboard Interaction</h5>
         <p>When focus is in the textbox:</p>
         <ul>
-          <li><kbd>Down Arrow</kbd>: If the popup is available, moves focus into the popup: 
+          <li><kbd>Down Arrow</kbd>: If the popup is available, moves focus into the popup:
             <ul>
-              <li>If the autocomplete behavior hautomatically selected a suggestion before <kbd>Down Arrow</kbd> was pressed, focus is placed on the suggestion following the automatically selected suggestion.</li>
+              <li>If the autocomplete behavior automatically selected a suggestion before <kbd>Down Arrow</kbd> was pressed, focus is placed on the suggestion following the automatically selected suggestion.</li>
               <li>Otherwise, places focus on the first focusable element in the popup.</li>
             </ul>
           </li>
@@ -666,7 +664,7 @@
           </li>
           <li>Printable Characters: Type characters in the textbox. Note that some implementations may regard certain characters as invalid and prevent their input.</li>
           <li>Standard single line text editing keys appropriate for the device platform (see note below).</li>
-          <li><kbd>Alt + Down Arrow</kbd> (Optional): If the popup is available but not displayed, displays the popup without moving focus.</li> 
+          <li><kbd>Alt + Down Arrow</kbd> (Optional): If the popup is available but not displayed, displays the popup without moving focus.</li>
           <li><kbd>Alt + Up Arrow</kbd> (Optional): If the popup is displayed:
             <ol>
               <li>If the popup contains focus, returns focus to the textbox.</li>
@@ -687,11 +685,11 @@
           <li><kbd>Enter</kbd>: Accepts the focused option in the listbox by closing the popup and placing the accepted value in the textbox with the input cursor at the end of the value.</li>
           <li><kbd>Escape</kbd>: Closes the popup and returns focus to the textbox. Optionally, clears the contents of the textbox.</li>
           <li>
-            <kbd>Right Arrow</kbd>: Returns focus to the textbox without closing the popup and moves the input cursor one character to the right. 
+            <kbd>Right Arrow</kbd>: Returns focus to the textbox without closing the popup and moves the input cursor one character to the right.
             If the input cursor is on the right-most character, the cursor does not move.
-          </li> 
+          </li>
           <li>
-            <kbd>Left Arrow</kbd>: Returns focus to the textbox without closing the popup and moves the input cursor one character to the left. 
+            <kbd>Left Arrow</kbd>: Returns focus to the textbox without closing the popup and moves the input cursor one character to the left.
             If the input cursor is on the left-most character, the cursor does not move.
           </li>
           <li>Any printable character: Returns the focus to the textbox without closing the popup and types the character.</li>
@@ -703,7 +701,7 @@
           <li><kbd>End</kbd> (Optional): Either moves focus to the last option or returns focus to the textbox and places the cursor after the last character.</li>
         </ul>
         <ol class="note">
-          <li>DOM Focus is maintained on the combobox textbox and the assistive technology focus is moved within the grid using <code>aria-activedescendant</code> as described in <a href="#kbd_focus_activedescendant">Managing Focus in Composites Using aria-activedescendant.</a></li>
+          <li>DOM Focus is maintained on the combobox textbox and the assistive technology focus is moved within the listbox using <code>aria-activedescendant</code> as described in <a href="#kbd_focus_activedescendant">Managing Focus in Composites Using aria-activedescendant.</a></li>
           <li>Selection follows focus in the listbox; the listbox allows only one suggested value to be selected at a time for the textbox value.</li>
         </ol>
         <h5>Grid Popup Keyboard Interaction</h5>
@@ -818,7 +816,7 @@
             <ul>
               <li>The previously selected node, if any, remains selected until focus moves to a node that is selectable.</li>
               <li>There is no selected value.</li>
-              <li>In either case, focus is fisually distinct from selection so users can readily see if a value is selected or not.</li> 
+              <li>In either case, focus is visually distinct from selection so users can readily see if a value is selected or not.</li>
             </ul>
         </li>
           <li>If the nodes in a tree are arranged horizontally:
@@ -835,7 +833,7 @@
             <ol>
               <li>Perform an action in the dialog, such as activate a button, that specifies a value for the textbox.</li>
               <li>
-                Cancel out of the dialog, e.g., press <kbd>Escape</kbd> or activate the cancel button in the dialog. 
+                Cancel out of the dialog, e.g., press <kbd>Escape</kbd> or activate the cancel button in the dialog.
                 Canceling either returns focus to the text box without changing the textbox value or returns focus to the textbox and clears the textbox.
               </li>
             </ol>
@@ -861,7 +859,7 @@
               <li>When the combobox popup is visible, the combobox element contains or owns an element that has role <a href="#listbox" class="role-reference">listbox</a>, <a href="#tree" class="role-reference">tree</a>, <a href="#grid" class="role-reference">grid</a>, or <a href="#dialog" class="role-reference">dialog</a>.</li>
               <li>
                 If the combobox popup has a role other than <code>listbox</code>, the element with role <code>combobox</code> has <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set to a value that corresponds to the popup type.
-                That is, <code>aria-haspopup</code> is set to <code>grid</code>, <code>tree</code>, or <code>dialog</code>. 
+                That is, <code>aria-haspopup</code> is set to <code>grid</code>, <code>tree</code>, or <code>dialog</code>.
                 Note that elements with role <code>combobox</code> have an implicit <code>aria-haspopup</code> value of <code>listbox</code>.
               </li>
               <li>When the combobox popup is visible, the textbox element has <a href="#aria-controls" class="property-reference">aria-controls</a> set to a value that refers to the combobox popup element.</li>
@@ -870,7 +868,7 @@
           <li>In a combobox implementing the ARIA 1.0 pattern:
             <ul>
               <li>The element that serves as the textbox has role <a href="#combobox" class="role-reference">combobox</a>.</li>
-              <li>When the combobox popup is visible, the element with role combobox has <a href="#aria-owns" class="property-reference">aria-owns</a> set to a value that refers to an element with role <a href="#listbox" class="role-reference">listbox</a>.
+              <li>When the combobox popup is visible, the element with role combobox has <a href="#aria-owns" class="property-reference">aria-owns</a> set to a value that refers to an element with role <a href="#listbox" class="role-reference">listbox</a>.</li>
               <li>
                 the element with role <code>combobox</code> has a value for <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> of <code>listbox</code>.
                 Note that elements with role <code>combobox</code> have an implicit <code>aria-haspopup</code> value of <code>listbox</code>.
@@ -878,13 +876,13 @@
             </ul>
           </li>
           <li>
-            The textbox element has  a value for <a href="#aria-multiline" class="property-reference">aria-multiline</a> of <code>false</code>. 
+            The textbox element has  a value for <a href="#aria-multiline" class="property-reference">aria-multiline</a> of <code>false</code>.
             Note that the default value of <code>aria-multiline</code> is <code>false</code>.
           </li>
           <li>
-            When the combobox popup is not visible, the element with role <code>combobox</code> has <a href="#aria-expanded" class="state-reference">aria-expanded</a> set to <code>false</code>. 
-            When the popup element is visible, <code>aria-expanded</code> is set to <code>true</code>. 
-            Note that Elements with role <code>combobox</code> have a default value for <code>aria-expanded</code> of <code>false</code>.
+            When the combobox popup is not visible, the element with role <code>combobox</code> has <a href="#aria-expanded" class="state-reference">aria-expanded</a> set to <code>false</code>.
+            When the popup element is visible, <code>aria-expanded</code> is set to <code>true</code>.
+            Note that elements with role <code>combobox</code> have a default value for <code>aria-expanded</code> of <code>false</code>.
           </li>
           <li>When a combobox receives focus, DOM focus is placed on the textbox element.</li>
           <li>When a descendant of  a listbox, grid, or tree popup is focused, DOM focus remains on the textbox and the textbox has <a href="#aria-activedescendant" class="property-reference">aria-activedescendant</a> set to a value that refers to the focused element within the popup.</li>
@@ -899,22 +897,23 @@
               <li><code>list</code>: When the popup is triggered, it presents suggested values that complete or logically correspond to the characters typed in the textbox.</li>
               <li>
                 <code>both</code>: When the popup is triggered, it presents suggested values that complete or logically correspond to the characters typed in the textbox.
-                In addition, the portion of the selected suggestion that has not been typed by the user, a completion string, appears inline after the input cursor in the textbox. 
+                In addition, the portion of the selected suggestion that has not been typed by the user, known as the <q>completion string</q>, appears inline after the input cursor in the textbox.
                 The inline completion string is visually highlighted and has a selected state.
               </li>
             </ul>
           </li>
         </ul>
-        <p class="note">
-          The roles, states, and properties for popup elements are defined in their respective design patterns. 
-          When refering to the following design patterns, note that a combobox is a single-select widget where selection follows focus in the popup.
-        </p>
-        <ul>
-          <li><a href="#listbox_roles_states_props">Listbox Roles, States, and Properties</a></li>
-          <li><a href="#grid_roles_states_props">Grid Roles, States, and Properties</a></li>
-          <li><a href="#tree_roles_states_props">Tree Roles, States, and Properties</a></li>
-          <li><a href="#dialog_roles_states_props">Dialog Roles, States, and Properties</a></li>
-        </ul>
+        <ol class="note">
+          <li>When referring to the roles, states, and properties documentation for the below list of patterns used for popups, keep in mind that a combobox is a single-select widget where selection always follows focus in the popup.</li>
+          <li>The roles, states, and properties for popup elements are defined in their respective design patterns:
+            <ul>
+              <li><a href="#listbox_roles_states_props">Listbox Roles, States, and Properties</a></li>
+              <li><a href="#grid_roles_states_props">Grid Roles, States, and Properties</a></li>
+              <li><a href="#tree_roles_states_props">Tree Roles, States, and Properties</a></li>
+              <li><a href="#dialog_roles_states_props">Dialog Roles, States, and Properties</a></li>
+            </ul>
+          </li>
+        </ol>
       </section>
     </section>
 
@@ -928,7 +927,7 @@
         and in some implementations, attempts to interact with the inert content cause the dialog to close.
       </p>
       <p>
-        Like <a href="#dialog_nonmodal">non-modal dialogs</a>, modal dialogs contain their tab sequence.
+        Like non-modal dialogs, modal dialogs contain their tab sequence.
         That is, <kbd>Tab</kbd> and <kbd>Shift + Tab</kbd> do not move focus outside the dialog.
         However, unlike most non-modal dialogs, modal dialogs do not provide means for moving keyboard focus outside the dialog window without closing the dialog.
       </p>
@@ -1047,18 +1046,13 @@
       </section>
     </section>
 
-    <section class="widget" id="dialog_nonmodal">
-      <h3>Dialog (Non-Modal)</h3>
-      <p>Drafting content for this section is tracked by <a href="https://github.com/w3c/aria-practices/issues/59">issue 59</a>. </p>
-    </section>
-
     <section class="widget" id="disclosure">
       <h3>Disclosure (Show/Hide)</h3>
       <p>
-        Drafting content for this section is tracked by
-        <a href="https://github.com/w3c/aria-practices/issues/9">issue 9</a>.
+        A disclosure is a <a href="#button">button</a> that controls visibility of a section of content.
+        When the controlled content is hidden, it is often styled as a typical push button with a right-pointing arrow or triangle to hint that activating the button will display additional content.
+        When the content is visible, the arrow or triangle typically points down.
       </p>
-      <p>Write description of disclosure pattern here.</p>
 
       <section class="notoc">
         <h4>Examples</h4>
@@ -1080,10 +1074,20 @@
       <section class="notoc">
         <h4>WAI-ARIA Roles, States, and Properties</h4>
         <ul>
-          <li>role <a href="#button" class="role-reference">button</a></li>
-          <li>state <a href="#aria-expanded" class="state-reference">aria-expanded</a></li>
-          <li>property <a href="#aria-controls" class="property-reference">aria-controls</a></li>
+          <li>The element that shows and hides the content has role <a href="#button" class="role-reference">button</a>.</li>
+          <li>
+            When the content is visible, the element with role <code>button</code> has
+            <a href="#aria-expanded" class="state-reference">aria-expanded</a>
+            set to <code>true</code>.
+            When the content area is hidden, it is set to <code>false</code>.
+          </li>
+          <li>
+            Optionally, the element with role <code>button</code> has a value specified for
+            <a href="#aria-controls" class="property-reference">aria-controls</a>
+            that refers to the element that contains all the content that is shown or hidden.
+            </li>
         </ul>
+
       </section>
     </section>
 
@@ -1243,15 +1247,15 @@
 
     <section class="widget" id="grid">
       <h3>Grids : Interactive Tabular Data and Layout Containers</h3>
-
+      
       <p>
         A <a href="#grid" class="role-reference">grid</a> widget is a container that enables users to navigate the information or interactive elements it contains using directional navigation keys, such as arrow keys, <kbd>Home</kbd> , and <kbd>End</kbd>.
         As a generic container widget that offers flexible keyboard navigation, it can serve a wide variety of needs.
         It can be used for purposes as simple as grouping a collection of checkboxes or navigation links or as complex as creating a full-featured spreadsheet application.
-        While ARIA properties and assistive technologies use row and column nomenclature when describing and presenting the logical structure of elements with the <code>grid</code> role, using the <code>grid</code> role on an element does not necessarily imply that its visual presentation is tabular.
+        While the words &quot;row&quot; and &quot;column&quot; are used in the names of WAI-ARIA attributes and by assistive technologies when describing and presenting the logical structure of elements with the <code>grid</code> role, using the <code>grid</code> role on an element does not necessarily imply that its visual presentation is tabular.
       </p>
 
-      <p>When presenting content that is tabular, consider the following factors when choosing between implementing this <code>grid</code> pater or the <a href="#table">table</a> pattern.</p>
+      <p>When presenting content that is tabular, consider the following factors when choosing between implementing this <code>grid</code> pattern or the <a href="#table">table</a> pattern.</p>
 
       <ul>
         <li>
@@ -1259,7 +1263,7 @@
 
           <ul>
             <li>Always contains multiple focusable elements. </li>
-            <li>Has only one focusable element in the page tab sequence.</li>
+            <li>Only one of the focusable elements contained by the grid is included in the page tab sequence.</li>
             <li>Requires the author to provide code that <a href="#kbd_general_within">manages focus movement inside it</a>.</li>
           </ul>
         </li>
@@ -1284,24 +1288,25 @@
 
       <section id="dataGrid" class="notoc">
         <h4>Data Grids For Presenting Tabular Information</h4>
-
         <p>
           A <code>grid</code> can be used to present tabular information that has column titles, row titles, or both.
           The <code>grid</code> pattern is particularly useful if the tabular information is editable or interactive.
           For example, when data elements are links to more information, rather than presenting them in a static table and including the links in the tab sequence, implementing the <code>grid</code> pattern provides users with intuitive and efficient keyboard navigation of the grid contents as well as a shorter tab sequence for the page.
           A <code>grid</code> may also offer functions, such as cell content editing, selection, cut, copy, and paste.
         </p>
-
-        <p> In a grid that presents tabular data, every cell contains a focusable element or is itself focusable, regardless of whether the cell content is editable or interactive. There is one exception: if column or row header cells do not provide functions, such as sort or filter, they do not need to be focusable. One reason this is important is that screen readers need to be in their application reading mode, rather than their document reading mode, while the user is interacting with the grid. While in application reading mode, a screen reader user can only discover focusable elements and content that labels focusable elements. So, a screen reader user may unknowingly overlook elements contained in a grid that are either not focusable or not used to label a column or row. A more detailed description of this topic with examples is available in the section describing <a href="#ScreenReaderModes">screen reader document and application reading modes</a>. </p>
-
+        <p>
+          In a grid, every cell contains a focusable element or is itself focusable, regardless of whether the cell content is editable or interactive.
+          There is one exception: if column or row header cells do not provide functions, such as sort or filter, they do not need to be focusable.
+          One reason it is important for all cells to be able to receive or contain keyboard focus is that screen readers will typically be in their application reading mode, rather than their document reading mode, when users are interacting with the grid.
+          While in application mode, a screen reader user hears only focusable elements and content that labels focusable elements.
+          So, screen reader users may unknowingly overlook elements contained in a grid that are either not focusable or not used to label a column or row.
+        </p>
         <section class="notoc">
           <h5>Keyboard Interaction For Data Grids</h5>
-
           <p>
             The following keys provide grid navigation by moving focus among cells of the grid.
             These key commands are available by default after an element in the grid receives focus.
           </p>
-
           <ul>
             <li>
               <kbd>Right Arrow</kbd>: Moves focus one cell to the right.
@@ -1317,7 +1322,6 @@
             <li><kbd>Control + Home</kbd>: moves focus to the first cell in the first row.</li>
             <li><kbd>Control + End</kbd>: moves focus to the last cell in the last row.</li>
           </ul>
-
           <ul class="note">
             <li>
               When the above grid navigation keys move focus, whether the focus is set on an element inside the cell or the grid cell depends on cell content.
@@ -1329,9 +1333,7 @@
             </li>
             <li>If navigation functions can dynamically add more rows or columns to the DOM, key events that move focus to the beginning or end of the grid, such as <kbd>control + End</kbd>, may move focus to the last row in the DOM rather than the last available row in the back-end data.</li>
           </ul>
-
           <p>If a grid supports selection of cells, rows, or columns, the following keys are commonly used for these functions.</p>
-
           <ul>
             <li><kbd>Control + Space</kbd>: selects the column that contains the focus.</li>
             <li><kbd>Shift + Space</kbd>: Selects the row that contains the focus. If the grid includes a column with checkboxes for selecting rows, this key can serve as a shortcut for checking the box when focus is not on the checkbox.</li>
@@ -1341,7 +1343,6 @@
             <li><kbd>Shift + Down Arrow</kbd>: Extends selection one cell down.</li>
             <li><kbd>Shift + Up Arrow</kbd>: Extends selection one cell Up.</li>
           </ul>
-
           <p class="note">See <a href="#kbd_common_conventions"></a> for cut, copy, and paste key assignments.</p>
         </section>
       </section>
@@ -1448,7 +1449,6 @@
 
       <section id="gridNav" class="notoc">
         <h4>Keyboard Interaction - Setting Focus and Navigating Inside Cells</h4>
-
         <p>This section describes two important aspects of keyboard interaction design shared by both data and layout grid patterns:</p>
 
         <ol>
@@ -1581,10 +1581,11 @@
             For example, an HTML <code>&lt;TR&gt;</code> has an implied ARIA role of <code>row</code>.
             A <code>grid</code> built from an HTML <code>table</code> that includes cells that span multiple rows or columns must use HTML <code>rowspan</code> and <code>colspan</code> and must not use <code>aria-rowspan</code> or <code>aria-colspan</code>.
           </li>
-          <li> If rows or cells are included in a grid via <a href="#aria-owns" class="property-reference">aria-owns</a>, they will be presented to assistive technologies after the DOM descendants of the <code>grid</code> element unless the DOM descendants are also included in the <code>aria-owns</code> attribute. See using aria-owns for a detailed explanation. </li>
+          <li>
+            If rows or cells are included in a grid via <a href="#aria-owns" class="property-reference">aria-owns</a>,
+            they will be presented to assistive technologies after the DOM descendants of the <code>grid</code> element unless the DOM descendants are also included in the <code>aria-owns</code> attribute.
+          </li>
         </ul>
-        <p class="note">Editor's Note - Guidance for aria-owns has not yet been created. A link to it will be added above once created.</p>
-
       </section>
     </section>
 
@@ -1915,7 +1916,7 @@
             If activating a <a href="#menuitem" class="role-reference">menuitem</a> opens a submenu, the menuitem is known as a parent menuitem.
             A submenu's <code>menu</code> element is contained in or owned by it's parent             menuitem.
           </li>
-          <li>A parent menuitem has <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set to <code>true</code>.</li>
+          <li>A parent menuitem has <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set to either <code>menu</code> or <code>true</code>.</li>
           <li>
             A parent menuitem has <a href="#aria-expanded" class="property-reference">aria-expanded</a> set to <code>false</code> when its child menu is not visible and set to <code>true</code> when the child menu is visible.
             <strong>(See note below regarding HTML validation.)</strong>
@@ -1931,8 +1932,19 @@
           <li>Items in a menu may be divided into groups by placing an element with a role of <a href="#separator" class="role-reference">separator</a> between groups. For example, this technique should be used when a menu contains a set of <a href="#menuitemradio" class="role-reference">menuitemradio</a> items. </li>
           <li>All <a href="#separator" class="role-reference">separators</a> should have <a href="#aria-orientation" class="property-reference">aria-orientation</a> consistent with the separator's orientation. </li>
           <li>
+            If a menubar has a visible label, the element with role <code>menubar</code> has <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> set to a value that refers to the labeling element.
+            Otherwise, the menubar element has a label provided by <a href="#aria-label" class="property-reference">aria-label</a>.
+          </li>
+          <li>
             If a menubar is vertically oriented, it has <a class="property-reference" href="#aria-orientation">aria-orientation</a> set to <code>vertical</code>.
             The default value of <code>aria-orientation</code> for a menubar is <code>horizontal</code>.
+          </li>
+          <li>
+            An element with role <code>menu</code> either has:
+            <ul>
+              <li><a href="#aria-labelledby" class="property-reference">aria-labelledby</a> set to a value that refers to the menuitem or button that controls its display.</li>
+              <li>A label provided by <a href="#aria-label" class="property-reference">aria-label</a>.</li>
+            </ul>
           </li>
           <li>
             If a menu is horizontally oriented, it has <a class="property-reference" href="#aria-orientation">aria-orientation</a> set to <code>horizontal</code>.
@@ -1943,14 +1955,14 @@
           <li>
             Currently, using aria-expanded on elements with role menuitem triggers HTML validation errors because the ARIA specification does not yet support doing so.
             The ARIA working group plans to resolve this issue in the next version of the specification.
-            Until a version of ARIA that resolves 
-            <a href="https://github.com/w3c/aria/issues/454">the issue</a> 
-            becomes a W3C recommendation, it is safe to ignore these validation errors. 
+            Until a version of ARIA that resolves
+            <a href="https://github.com/w3c/aria/issues/454">the issue</a>
+            becomes a W3C recommendation, it is safe to ignore these validation errors.
             Alternatively, since only a few browser and assistive technology combinations exploit this feature of the pattern, it can be omitted from implementations.
           </li>
           <li>
             If <a href="#aria-owns" class="property-reference">aria-owns</a> is set on the menu container to include elements that are not DOM children of the container, those elements will appear in the reading order in the sequence they are referenced and after any items that are DOM children.
-            Scripts that manage focus need to ensure the visual focus order matches this assistive technology reading order. 
+            Scripts that manage focus need to ensure the visual focus order matches this assistive technology reading order.
           </li>
         </ol>
       </section>
@@ -1987,7 +1999,7 @@
         <h4>WAI-ARIA Roles, States, and Properties</h4>
         <ul>
           <li>The element that opens the menu has role <a href="#button" class="role-reference">button</a>.</li>
-          <li>The element with role <code>button</code> has <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set to <code>true</code>.</li>
+          <li>The element with role <code>button</code> has <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set to either <code>menu</code> or <code>true</code>.</li>
           <li>
             When the menu is displayed, the element with role <code>button</code> has
             <a href="#aria-expanded" class="state-reference">aria-expanded</a>
@@ -2124,7 +2136,7 @@
         </ul>
       </section>
 
-      <section class="notoc">
+      <section id="slider_kbd_interaction" class="notoc">
         <h4>Keyboard Interaction</h4>
         <ul>
           <li><kbd>Right Arrow</kbd>: Increase the value of the slider by one step.</li>
@@ -2141,7 +2153,7 @@
           <li>In some circumstances, reversing the direction of the value change for the keys specified above, e.g., having <kbd>Up Arrow</kbd> decrease the value, could create a more intuitive experience.</li>
         </ol>
       </section>
-      <section class="notoc">
+      <section id="slider_roles_states_props" class="notoc">
         <h4>WAI-ARIA Roles, States, and Properties</h4>
         <ul>
           <li>The element serving as the focusable slider control has role <a class="role-reference" href="#slider">slider</a>.</li>
@@ -2170,30 +2182,24 @@
     <section class="widget" id="slidertwothumb">
       <h3>Slider (Multi-Thumb)</h3>
       <p>
-        <strong>NOTE:</strong> Revisions to this pattern are in progress.
-        Please provide feedback in 
-        <a href="https://github.com/w3c/aria-practices/issues/221">issue 221.</a>
-      </p>
-      <p>
-        A multi-thumb slider is a slider with two or more thumbs that each set a value in a group of related values, for example selecting a price range for a product or service.
-        Many two-thumb sliders set a maximum and minimum value for a range, and the thumbs are not allowed to pass one another.
-        That is, the thumb that sets the upper value of the range can not be set lower than the thumb that controls the lower value of the range.
-        For example, in a price range selector the thumb for the maxmimum value of the lower price is determined by the current value of the maxmimum price.
-        Conversly the minimum value of the higher price thumb is determined by the current value of the lower price.
+        A multi-thumb slider is a <a href="#slider">slider</a>
+        with two or more thumbs that each set a value in a group of related values.
+        For example, in a product search, a two-thumb slider could be used to enable users to set the minimum and maximum price limits for the search.
+        In many two-thumb sliders, the thumbs are not allowed to pass one another, such as when the slider sets the minimum and maximum values for a range.
+        For example, in a price range selector, the maxmimum value of the thumb that sets the lower end of the range is limited by the current value of the thumb that sets the upper end of the range.
+        Conversly the minimum value of the upper end thumb is limited by the current value of the lower end thumb.
         However, in some multi-thumb sliders, each thumb sets a value that does not depend on the other thumb values.
       </p>
 
       <section class="notoc">
         <h4>Example</h4>
-        <ul>
-          <li><a href="examples/slider/multithumb-slider.html">Multi-Thumb Slider Examples</a>: Demonstrates a two thumb silder to pick a price range for an airline flight and a hotel reservation.</li>
-        </ul>
+        <p><a href="examples/slider/multithumb-slider.html">Multi-Thumb Slider Examples</a>: Demonstrates two-thumb sliders for picking price ranges for an airline flight and hotel reservation.</p>
       </section>
 
-      <section class="notoc">
+      <section id="slidertwothumb_kbd_interaction" class="notoc">
         <h4>Keyboard Interaction</h4>
         <ul>
-          <li>Each thumb is in the page tab sequence and has the same keyboard interaction as a <a href="#slider">single-thumb slider</a>.</li>
+          <li>Each thumb is in the page tab sequence and has the same keyboard interaction as a <a href="#slider_kbd_interaction">single-thumb slider</a>.</li>
           <li>
             The tab order remains constant regardless of thumb value and visual position within the slider.
             For example, if the value of a thumb changes such that it moves past one of the other thumbs, the tab order does not change.
@@ -2208,7 +2214,7 @@
           <li>Each slider element has the <a class="property-reference" href="#aria-valuenow">aria-valuenow</a> property set to a decimal value representing the current value of the slider.</li>
           <li>Each slider element has the <a class="property-reference" href="#aria-valuemin">aria-valuemin</a> property set to a decimal value representing the minimum allowed value of the slider.</li>
           <li>Each slider element has the <a class="property-reference" href="#aria-valuemax">aria-valuemax</a> property set to a decimal value representing the maximum allowed value of the slider.</li>
-          <li>When the range (e.g. minimum and/or maximum value) of another slider is dependent on the current value of a slider, the values of <a class="property-reference" href="#aria-valuemin">aria-valuemin</a> or <a class="property-reference" href="#aria-valuemax">aria-valuemax</a> of the dependent sliders must be updated when the value changes.
+          <li>When the range (e.g. minimum and/or maximum value) of another slider is dependent on the current value of a slider, the values of <a class="property-reference" href="#aria-valuemin">aria-valuemin</a> or <a class="property-reference" href="#aria-valuemax">aria-valuemax</a> of the dependent sliders are updated when the value changes.</li>
           <li>
           If a value of <code>aria-valuenow</code> is not user-friendly, e.g., the day of the week is represented by a number, the
           <a class="property-reference" href="#aria-valuetext">aria-valuetext</a>
@@ -2313,14 +2319,65 @@
     <section class="widget" id="table">
       <h3>Table</h3>
       <p>
-        Work on drafting this section is tracked by
-        <a href="https://github.com/w3c/aria-practices/issues/90">issue 90</a>.
+        Please provide feedback on this section in
+        <a href="https://github.com/w3c/aria-practices/issues/526">issue 526.</a>
       </p>
       <p>
-        This is a place holder for a to-be-written section about data tables.
-        The grid pattern includes text describing how to choose between using grid and table, and it links to this section.
-        This section does not necessarily have to be part of the design pattern section.
+        Like an HTML <code>table</code> element, a WAI-ARIA <a href="#table" class="role-reference">table</a> is a static tabular structure containing one or more rows that each contain one or more cells; it is not an interactive widget.
+        Thus, its cells are not focusable or selectable.
+        The <a href="#grid">grid pattern</a> is used to make an interactive widget that has a tabular structure.
       </p>
+      <p>
+        However, tables are often used to present a combination of information and interactive widgets.
+        Since a table is not a widget, each widget contained in a table is a separate stop in the page tab sequence.
+        If the number of widgets is large, replacing the table with a grid can dramatically reduce the length of the page tab sequence because a grid is a composite widget that can contain other widgets.
+      </p>
+      <p class="note">
+        As with other WAI-ARIA roles that have a native host language equivalent, 
+        authors are strongly encouraged to use a native HTML <code>table</code> element whenever possible.
+        This is especially important with role <code>table</code> because it is a new feature of WAI-ARIA 1.1.
+        It is thus advisable to test implementations thoroughly with each browser and assistive technology combination that could be used by the target audience.
+      </p>
+      <section class="notoc">
+        <h4>Examples</h4>
+        <p><a href="examples/table/table.html">Table Example</a>: ARIA table made using HTML <code>div</code> and <code>span</code> elements.</p>
+      </section>
+      <section class="notoc">
+        <h4>Keyboard Interaction</h4>
+        <p>Not applicable.</p>
+      </section>
+      <section id="table_roles_states_props" class="notoc">
+        <h4>WAI-ARIA Roles, States, and Properties</h4>
+        <ul>
+          <li>The table container has role <a href="#table" class="role-reference">table</a>. </li>
+          <li>Each row container has role <a href="#row" class="role-reference">row</a> and is either a DOM descendant of or owned by the <code>table</code> element or an element with role <a href="#rowgroup" class="role-reference">rowgroup</a>. </li>
+          <li>Each cell is either a DOM descendant of or owned by a <code>row</code> element and has one of the following roles:
+            <ul>
+              <li><a href="#columnheader"  class="role-reference">columnheader</a> if the cell contains a title or header information for the column.</li>
+              <li><a href="#rowheader"  class="role-reference">rowheader</a> if the cell contains title or header information for the row.</li>
+              <li><a href="#cell" class="role-reference">cell</a> if the cell does not contain column or row header information.</li>
+            </ul>
+          </li>
+          <li>
+            If there is an element in the user interface that serves as a label for the table, <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> is set on the table element with a value that refers to the labeling element.
+            Otherwise, a label is specified for the table element using <a href="#aria-label" class="property-reference">aria-label</a>.
+          </li>
+          <li>If the table has a caption or description, <a href="#aria-describedby" class="property-reference">aria-describedby</a> is set on the table element with a value referring to the element containing the description.</li>
+          <li>If the table contains sortable columns or rows, <a href="#aria-sort" class="property-reference">aria-sort</a> is set to an appropriate value on the header cell element for the sorted column or row as described in the section on <a href="#gridAndTableProperties">grid and table properties</a>. </li>
+          <li>
+            If there are conditions where some rows or columns are hidden or not present in the DOM, e.g., there are widgets on the page for hiding rows or columns, the following properties are applied as described in the section on <a href="#gridAndTableProperties">grid and table properties</a>.
+            <ul>
+              <li><a href="#aria-colcount" class="property-reference">aria-colcount</a> or <a href="#aria-rowcount" class="property-reference">aria-rowcount</a> is set to the total number of columns or rows, respectively. </li>
+              <li><a href="#aria-colindex" class="property-reference">aria-colindex</a> or <a href="#aria-rowindex" class="property-reference">aria-rowindex</a> is set to the position of a cell within a row or column, respectively. </li>
+            </ul>
+          </li>
+          <li>If the table includes cells that span multiple rows or multiple columns, then <a href="#aria-rowspan" class="property-reference">aria-rowspan</a> or <a href="#aria-colspan" class="property-reference">aria-colspan</a> is applied as described in <a href="#gridAndTableProperties">grid and table properties</a>.</li>
+        </ul>
+        <p class="note">
+          If rows or cells are included in a table via <a href="#aria-owns" class="property-reference">aria-owns</a>,
+          they will be presented to assistive technologies after the DOM descendants of the <code>table</code> element unless the DOM descendants are also included in the <code>aria-owns</code> attribute.
+        </p>
+      </section>
     </section>
 
     <section class="widget" id="tabpanel">
@@ -2416,7 +2473,7 @@
           <li>Each element with role <code>tab</code> has the property <a href="#aria-controls" class="property-reference">aria-controls</a> referring to its associated <code>tabpanel</code> element.</li>
           <li>The active <code>tab</code> element has the state <a href="#aria-selected" class="state-reference">aria-selected</a> set to <code>true</code> and all other <code>tab</code> elements have it set to <code>false</code>.</li>
           <li>Each element with role <code>tabpanel</code> has the property <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> referring to its associated <code>tab</code> element. </li>
-          <li>If a <code>tab</code> element has a pop-up menu, it has the property <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set to <code>true</code>. </li>
+          <li>If a <code>tab</code> element has a pop-up menu, it has the property <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set to either <code>menu</code> or <code>true</code>. </li>
           <li>
             If the <code>tablist</code> element is vertically oriented, it has the property <a href="#aria-orientation" class="property-reference">aria-orientation</a> set to <code>vertical</code>.
             The default value of <code>aria-orientation</code> for a <code>tablist</code> element is <code>horizontal</code>.
@@ -2440,7 +2497,10 @@
       </ol>
       <section class="notoc">
         <h4>Example</h4>
-        <p><a href="examples/toolbar/toolbar.html">Toolbar Example</a>: A toolbar including buttons, links, and checkboxes that uses roving tabindex to manage focus.</p>
+        <p>
+          <a href="examples/toolbar/toolbar.html">Toolbar Example</a>:
+          A toolbar that uses roving tabindex to manage focus and contains several buttons, including  a menu button.
+        </p>
       </section>
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
@@ -2501,8 +2561,7 @@
       </p>
       <p>
         Tooltip widgets do not receive focus.
-        A hover that contains focusable elements can be made using the
-        a <a href="#dialog_nonmodal">non-modal dialog pattern</a>.
+        A hover that contains focusable elements can be made using a non-modal dialog.
       </p>
       <section class="notoc">
         <h4>Example</h4>
@@ -3201,11 +3260,6 @@
   <section id="keyboard">
     <h2>Developing a Keyboard Interface</h2>
     <p>
-      This section is work in progress.
-      Development of the next revision is tracked by
-      <a href="https://github.com/w3c/aria-practices/issues/220">issue 220.</a>
-    </p>
-    <p>
       Unlike native HTML form elements, browsers do not provide keyboard support for graphical user interface (GUI) components that are made accessible with ARIA; authors have to provide the keyboard support in their code.
       This section describes the principles and methods for making the functionality of a web page that includes ARIA widgets, such as menus and grids, as well as interactive components, such as toolbars and dialogs, operable with a keyboard.
       Along with the basics of focus management, this section offers guidance toward the objective of providing experiences to people who rely on a keyboard that are as efficient and enjoyable as the experiences available to others.
@@ -3498,31 +3552,22 @@
         <p>The steps for using the aria-activedescendant method of managing focus are as follows.</p>
 
         <ul>
-          <li>
-            When the container element that has a role that supports aria-activedescendant is loaded or created, ensure that:
-
+          <li>When the container element that has a role that supports aria-activedescendant is loaded or created, ensure that:
             <ul>
-              <li>The container element is included in the tab sequence as described in <a href="#kbd_general_between"></a> or it is otherwise focusable as described in <a href="#kbd_nested_components"></a>.</li>
+              <li>The container element is included in the tab sequence as described in <a href="#kbd_general_between"></a> or is a focusable element of a composite that implements <a href="#kbd_roving_tabindex">a roving tabindex</a>.</li>
               <li>
                 It has <code>aria-activedescendant="IDREF"</code> where IDREF is the ID of the element within the container that should be identified as active when the widget receives focus.
                 The referenced element needs to meet the DOM relationship requirements described below.
               </li>
             </ul>
           </li>
-
-          <li>
-            When the container element receives DOM focus, draw a visual focus indicator on the active element and ensure the active element is scrolled into view.
-          </li>
-
-          <li>
-            When the composite widget contains focus and the user presses a navigation key that moves focus within the widget, such as an arrow key:
-
+          <li>When the container element receives DOM focus, draw a visual focus indicator on the active element and ensure the active element is scrolled into view.</li>
+          <li>When the composite widget contains focus and the user presses a navigation key that moves focus within the widget, such as an arrow key:
             <ul>
               <li>Change the value of aria-activedescendant on the container to refer to the element that should be reported to assistive technologies as active.</li>
               <li>Move the visual focus indicator and, if necessary,  scrolled the active element into view.</li>
             </ul>
           </li>
-
           <li>
             If the design calls for a specific element to be focused the next time a user moves focus into the composite with <kbd>Tab</kbd> or <kbd>Shift+Tab</kbd>, check if aria-activedescendant is referring to that target element when the container loses focus.
             If it is not, set aria-activedescendant to refer to the target element.
@@ -3533,29 +3578,16 @@
           The <a href="#aria-activedescendant" class="property-reference">specification for aria-activedescendant</a> places important restrictions on the DOM relationship between the focused element that has the aria-activedescendant attribute and the element referenced as active by the value of the attribute.
           One of the following three conditions must be met.
         </p>
-
         <ol>
           <li>The element referenced as active is a DOM descendant of the focused referencing element.</li>
-
           <li>The focused referencing element has a value specified for the <a href="#aria-owns" class="property-reference">aria-owns</a> property that includes the ID of the element referenced as active.</li>
-
-          <li>
-            The focused referencing element has role of <a href="#textbox" class="role-reference">textbox</a> and has <a href="#aria-controls" class="property-reference">aria-controls</a> property referring to an element with a role that supports aria-activedescendant and either:
-
+          <li>The focused referencing element has role of <a href="#textbox" class="role-reference">textbox</a> and has <a href="#aria-controls" class="property-reference">aria-controls</a> property referring to an element with a role that supports aria-activedescendant and either:
             <ol>
               <li>The element referenced as active is a descendant of the controlled element.</li>
               <li>The controlled element has a value specified for the <a href="#aria-owns" class="property-reference">aria-owns</a> property that includes the ID of the element referenced as active.</li>
             </ol>
           </li>
         </ol>
-      </section>
-
-      <section id="kbd_nested_components">
-        <h4>Nested Composite Components - Composites and Toolbars That Contain Composites</h4>
-        <p>
-          Work to draft content for this section is tracked by
-          <a href="https://github.com/w3c/aria-practices/issues/218">issue 218.</a>
-        </p>
       </section>
     </section>
     <section id="kbd_disabled_controls">
@@ -3658,6 +3690,7 @@
             <th scope="row">Redo action</th>
             <td><kbd>Control + Y</kbd></td>
             <td>Command + Shift + Z</td>
+          </tr>
         </tbody>
       </table>
     </section>
@@ -3755,7 +3788,7 @@
         <h4>Assigning Keyboard Shortcuts</h4>
         <p>When choosing the keys to assign to a shortcut, there are many factors to consider.</p>
         <ul>
-          <li>Making the shortcut easy to learn and remember by using a mnemonic (e.g., "S" for "Save") or following a logical or spacial pattern.</li>
+          <li>Making the shortcut easy to learn and remember by using a mnemonic (e.g., <kbd>Control + S</kbd> for "Save") or following a logical or spacial pattern.</li>
           <li> Localizing the interface, including for differences in which keys are available and how they behave and for language considerations that could impact mnemonics. </li>
           <li>Avoiding and managing conflicts with key assignments used by an assistive technology, the browser, or the operating system.</li>
         </ul>
@@ -3851,27 +3884,491 @@
           <p>For example, consider a save function that is available when the focus is in an editor. Most browsers use ... to be continued ...</p>
         </section>
       </section>
-
-      <section id="kbd_shortcuts_exposing">
-        <h4>Exposing and Documenting Keyboard Shortcuts</h4>
-        <p> Work to complete this section is tracked in <a href="https://github.com/w3c/aria-practices/issues/167">issue 167.</a></p>
-      </section>
     </section>
   </section>
 
   <section id="gridAndTableProperties">
     <h2>Grid and Table Properties</h2>
     <p>
-      Drafting content for this section is
-      <a href="https://github.com/w3c/aria-practices/issues/65">issue 65.</a>
+      To fully present and describe a grid or table, in addition to parsing the headers, rows, and cells using the roles described in the
+      <a href="#grid">grid pattern</a> or <a href="#table">table pattern</a>,
+      assistive technologies need to be able to determine:
     </p>
+    <ul>
+      <li>The number of rows and columns.</li>
+      <li>Whether any columns or rows are hidden, e.g., columns 1 through 3 and  5 through 8 are visible but column 4 is hidden.</li>
+      <li>Whether a cell spans multiple rows or columns.</li>
+      <li>Whether and how data is sorted.</li>
+    </ul>
     <p>
-      [placeholder].
-      This section will cover colcount, rowcount, colindex, rowindex, colspan, rowspan, and sort.
-      It will explain when they are useful and how to use them.
-      It is referenced by the grid and table design patterns.
-      This section will refer readers to the grid and table design patterns for the basics of grid and table.
+      Browsers automatically populate their accessibility tree with the number of rows and columns in a grid or table based on the rendered DOM.
+      However, there are many situations where the DOM does not contain the whole grid or table, such as when the data set is too large to fully render.
+      Additionally, some of this information, like skipped columns or rows and how data is sorted, cannot be derived from the DOM structure.
     </p>
+    <p>The below sections explain how to use the following properties that ARIA provides for grid and table accessibility.</p>
+    <table class="widget-features">
+      <caption>Grid and Table Property Definitions</caption>
+      <thead>
+        <tr>
+          <th>Property</th>
+          <th>Definition</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th><code>aria-colcount</code></th>
+          <td>Defines the total number of columns in a <code>table</code>, <code>grid</code>, or <code>treegrid</code>.</td>
+        </tr>
+        <tr>
+          <th><code>aria-rowcount</code></th>
+          <td>Defines the total number of rows in a <code>table</code>, <code>grid</code>, or <code>treegrid</code>.</td>
+        </tr>
+        <tr>
+          <th><code>aria-colindex</code></th>
+          <td>
+            <ul>
+              <li>Defines a cell's position with respect to the total number of columns within a <code>table</code>, <code>grid</code>, or <code>treegrid</code>.</li>
+              <li><strong>Note:</strong> Numbering starts with 1, not 0.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th><code>aria-rowindex</code></th>
+          <td>
+            <ul>
+              <li>Defines a cell's position with respect to the total number of rows within a <code>table</code>, <code>grid</code>, or <code>treegrid</code>.</li>
+              <li><strong>Note:</strong> Numbering starts with 1, not 0.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th><code>aria-colspan</code></th>
+          <td>Defines the number of columns spanned by a cell or gridcell within a <code>table</code>, <code>grid</code>, or <code>treegrid</code>.</td>
+        </tr>
+        <tr>
+          <th><code>aria-rowspan</code></th>
+          <td>Defines the number of rows spanned by a cell or gridcell within a <code>table</code>, <code>grid</code>, or <code>treegrid</code>.</td>
+        </tr>
+        <tr>
+          <th><code>aria-sort</code></th>
+          <td>Indicates if items in a row or column are sorted in ascending or descending order.</td>
+        </tr>
+      </tbody>
+    </table>
+    <section id="gridAndTableProperties_rows">
+      <h3>Using <code>aria-rowcount</code> and <code>aria-rowindex</code></h3>
+      <p>
+        When the number of rows represented by the DOM structure is not the total number of rows available for a table, grid, or treegrid,
+        the  <code>aria-rowcount</code>  property is used to communicate the total number of rows available,
+        and it is accompanied by the <code>aria-rowindex</code> property to identify the row indices of the rows that are present in the DOM.
+      </p>
+      <p>
+        The <code>aria-rowcount</code> is specified on the element with the <code>table</code>, <code>grid</code>, or <code>treegrid</code> role.
+        Its value is an integer equal to the total number of rows available, including header rows.
+        If the total number of rows is unknown, a value of <code>-1</code> may be specified.
+        Using a value of <code>-1</code> indicates that more rows are available to include in the DOM without specifying the size of the available supply.
+      </p>
+      <p>
+        When <code>aria-rowcount</code> is used on a <code>table</code>, <code>grid</code>, or <code>treegrid</code>,
+        a value for <code>aria-rowindex</code> property is specified on each of its descendant rows, including any header rows.
+        The value of <code>aria-rowindex</code> is an integer that is:
+      </p>
+      <ol>
+        <li>Greater than or equal to 1.</li>
+        <li>Greater than the value of <code>aria-rowindex</code> on any previous rows.</li>
+        <li>Set to the index of the first row in the span if cells span multiple rows.</li>
+        <li>Less than or equal to the total number of rows.</li>
+      </ol>
+      <p>
+        <strong>WARNING!</strong> Missing or inconsistent values of <code>aria-rowindex</code> could have devastating effects on assistive technology behavior.
+        For example, specifying an invalid value for <code>aria-rowindex</code> or setting it on some but not all rows in a table, could cause screen reader table reading functions to skip rows or simply stop functioning.
+      </p>
+      <p>
+        The following code demonstrates the use of <code>aria-rowcount</code> and <code>aria-rowindex</code> properties on a table containing a a hypothetical class list.
+      </p>
+      <pre>
+        <code>
+          &lt;!--
+            aria-rowcount tells assistive technologies the actual size of the grid
+            is 463 rows even though only 4 rows are present in the markup.
+          --&gt;
+          &lt;table role=&quot;grid&quot; aria-rowcount=&quot;463&quot;&gt;
+            aria-label=&quot;Student roster for history 101&quot;
+            &lt;thead&gt;
+              &lt;tr aria-rowindex=&quot;1&quot;&gt;
+                &lt;th&gt;Last Name&lt;/th&gt;
+                &lt;th&gt;First Name&lt;/th&gt;
+                &lt;th&gt;E-mail&lt;/th&gt;
+                &lt;th&gt;Major&lt;/th&gt;
+                &lt;th&gt;Minor&lt;/th&gt;
+                &lt;th&gt;Standing&lt;/th&gt;
+              &lt;/tr&gt;
+            &lt;/thead&gt;
+            &lt;tbody&gt;
+                &lt;!--
+                  aria-rowindex tells assistive technologies that this
+                  row is row 51 in the grid of 463 rows.
+                --&gt;
+              &lt;tr aria-rowindex=&quot;51&quot;&gt;
+                &lt;td&gt;Henderson&lt;/td&gt;
+                &lt;td&gt;Alan&lt;/td&gt;
+                &lt;td&gt;ahederson56@myuniveristy.edu&lt;/td&gt;
+                &lt;td&gt;Business&lt;/td&gt;
+                &lt;td&gt;Spanish&lt;/td&gt;
+                &lt;td&gt;Junior&lt;/td&gt;
+              &lt;/tr&gt;
+                &lt;!--
+                  aria-rowindex tells assistive technologies that this
+                  row is row 52 in the grid of 463 rows.
+                --&gt;
+              &lt;tr aria-rowindex=&quot;52&quot;&gt;
+                &lt;td&gt;Henderson&lt;/td&gt;
+                &lt;td&gt;Alice&lt;/td&gt;
+                &lt;td&gt;ahederson345@myuniveristy.edu&lt;/td&gt;
+                &lt;td&gt;Engineering&lt;/td&gt;
+                &lt;td&gt;none&lt;/td&gt;
+                &lt;td&gt;Sophomore&lt;/td&gt;
+              &lt;/tr&gt;
+                &lt;!--
+                  aria-rowindex tells assistive technologies that this
+                  row is row 53 in the grid of 463 rows.
+                --&gt;
+              &lt;tr aria-rowindex=&quot;53&quot;&gt;
+                &lt;td&gt;Henderson&lt;/td&gt;
+                &lt;td&gt;Andrew&lt;/td&gt;
+                &lt;td&gt;ahederson75@myuniveristy.edu&lt;/td&gt;
+                &lt;td&gt;General Studies&lt;/td&gt;
+                &lt;td&gt;none&lt;/td&gt;
+                &lt;td&gt;Freshman&lt;/td&gt;
+              &lt;/tr&gt;
+            &lt;/tbody&gt;
+          &lt;/table&gt;
+        </code>
+      </pre>
+    </section>
+    <section id="gridAndTableProperties_cols">
+      <h3>Using <code>aria-colcount</code> and <code>aria-colindex</code></h3>
+      <p>
+        When the number of columns represented by the DOM structure is not the total number of columns available for a table, grid, or treegrid,
+        the  <code>aria-colcount</code>  property is used to communicate the total number of columns available,
+        and it is accompanied by the <code>aria-colindex</code> property to identify the column indices of the columns that are present in the DOM.
+      </p>
+      <p>
+        The <code>aria-colcount</code> is specified on the element with the <code>table</code>, <code>grid</code>, or <code>treegrid</code> role.
+        Its value is an integer equal to the total number of columns available.
+        If the total number of columns is unknown, a value of <code>-1</code> may be specified.
+        Using a value of <code>-1</code> indicates that more columns are available to include in the DOM without specifying the size of the available supply.
+      </p>
+      <p>
+        When <code>aria-colcount</code> is used on a <code>table</code>, <code>grid</code>, or <code>treegrid</code>,
+        a value for <code>aria-colindex</code> property is either specified on each of its descendant rows or on every cell in each descendant row, depending on whether the columns are contiguous as described below.
+        The value of <code>aria-colindex</code> is an integer that is:
+      </p>
+      <ol>
+        <li>Greater than or equal to 1.</li>
+        <li>When set on a cell, greater than the value set on any previous cell within the same row.</li>
+        <li>Set to the index of the first column in the span if a cell spans multiple columns.</li>
+        <li>Less than or equal to the total number of columns.</li>
+      </ol>
+      <p>
+        <strong>WARNING!</strong> Missing or inconsistent values of <code>aria-colindex</code> could have devastating effects on assistive technology behavior.
+        For example, specifying an invalid value for <code>aria-colindex</code> or setting it on some but not all cells in a row, could cause screen reader table reading functions to skip cells or simply stop functioning.
+      </p>
+      <section id="gridAndTableProperties_cols_contiguous">
+        <h4>Using <code>aria-colindex</code> When Column Indicies Are Contiguous</h4>
+        <p>
+          When all the cells in a row have column index numbers that are consecutive integers,
+          <code>aria-colindex</code> can be set on the row element with a value equal to the the index number of the first column in the set.
+          Browsers will then compute a column number for each cell in the row.
+        </p>
+        <p>
+          The following code shows a grid with 16 columns, of which columns 2 through 5 are displayed to the user.
+          Because the set of columns is contiguous, <code>aria-colindex</code> can be placed on each row.
+        </p>
+        <pre>
+        <code>
+&lt;div role="grid" aria-colcount="16"&gt;
+  &lt;div role="rowgroup"&gt;
+    &lt;div role="row" <strong>aria-colindex="2"</strong>&gt;
+      &lt;span role="columnheader"&gt;First Name&lt;/span&gt;
+      &lt;span role="columnheader"&gt;Last Name&lt;/span&gt;
+      &lt;span role="columnheader"&gt;Company&lt;/span&gt;
+      &lt;span role="columnheader"&gt;Address&lt;/span&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div role="rowgroup"&gt;
+    &lt;div role="row" <strong>aria-colindex="2"</strong>&gt;
+      &lt;span role="gridcell"&gt;Fred&lt;/span&gt;
+      &lt;span role="gridcell"&gt;Jackson&lt;/span&gt;
+      &lt;span role="gridcell"&gt;Acme, Inc.&lt;/span&gt;
+      &lt;span role="gridcell"&gt;123 Broad St.&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div role="row" <strong>aria-colindex="2"</strong>&gt;
+      &lt;span role="gridcell"&gt;Sara&lt;/span&gt;
+      &lt;span role="gridcell"&gt;James&lt;/span&gt;
+      &lt;span role="gridcell"&gt;Acme, Inc.&lt;/span&gt;
+      &lt;span role="gridcell"&gt;123 Broad St.&lt;/span&gt;
+    &lt;/div&gt;
+   &#8230;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code>
+</pre>
+      </section>
+      <section id="gridAndTableProperties_cols_noncontiguous">
+        <h4>Using <code>aria-colindex</code> When Column Indicies Are Not Contiguous</h4>
+        <p>
+          When the cells in a row have column index numbers that are not consecutive integers, <code>aria-colindex</code> needs to be set on each cell in the row.
+          The following example shows a grid for an online grade book where the first two columns contain a student name and subsequent columns contain scores.
+          In this example, the first two columns with the student name are shown, but the score columns have been scrolled to show columns 10 through 13.
+          Columns 3 through 9 are not visible so are not in the DOM.
+        </p>
+        <pre>
+          <code>
+            &lt;table role=&quot;grid&quot; aria-rowcount=&quot;463&quot; aria-colcount=&quot;13&quot;&gt;
+              aria-label=&quot;Student grades for history 101&quot;
+              &lt;!--
+                aria-rowcount and aria-colcount tell assistive technologies
+                the actual size of the grid is 463 rows by 13 columns,
+                which is not the number rows and columns found in the markup.
+              --&gt;
+              &lt;thead&gt;
+                &lt;tr aria-rowindex=&quot;1&quot;&gt;
+                  &lt;!--
+                    aria-colindex tells assistive technologies that the
+                    following columns represent columns 1 and 2 of the total data set.
+                  --&gt;
+                  &lt;th aria-colindex=&quot;1&quot;&gt;Last Name&lt;/th&gt;
+                  &lt;th aria-colindex=&quot;2&quot;&gt;First Name&lt;/th&gt;
+                  &lt;!--
+                    aria-colindex tells users of assistive technologies that the
+                    following columns represent columns 10, 11, 12, and 13 of
+                    the overall data set of grades.
+                  --&gt;
+                  &lt;th aria-colindex=&quot;10&quot;&gt;Homework 4&lt;/th&gt;
+                  &lt;th aria-colindex=&quot;11&quot;&gt;Quiz 2&lt;/th&gt;
+                  &lt;th aria-colindex=&quot;12&quot;&gt;Homework 5&lt;/th&gt;
+                  &lt;th aria-colindex=&quot;13&quot;&gt;Homework 6&lt;/th&gt;
+                &lt;/tr&gt;
+              &lt;/thead&gt;
+              &lt;tbody&gt;
+                &lt;tr aria-rowindex=&quot;50&quot;&gt;
+                  &lt;!--
+                    every cell needs to define the aria-colindex attribute
+                  --&gt;
+                  &lt;td aria-colindex=&quot;1&quot;&gt;Henderson&lt;/td&gt;
+                  &lt;td aria-colindex=&quot;2&quot;&gt;Alan&lt;/td&gt;
+                  &lt;td aria-colindex=&quot;10&quot;&gt;8&lt;/td&gt;
+                  &lt;td aria-colindex=&quot;11&quot;&gt;25&lt;/td&gt;
+                  &lt;td aria-colindex=&quot;12&quot;&gt;9&lt;/td&gt;
+                  &lt;td aria-colindex=&quot;13&quot;&gt;9&lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr aria-rowindex=&quot;51&quot;&gt;
+                  &lt;td aria-colindex=&quot;1&quot;&gt;Henderson&lt;/td&gt;
+                  &lt;td aria-colindex=&quot;2&quot;&gt;Alice&lt;/td&gt;
+                  &lt;td aria-colindex=&quot;10&quot;&gt;10&lt;/td&gt;
+                  &lt;td aria-colindex=&quot;11&quot;&gt;27&lt;/td&gt;
+                  &lt;td aria-colindex=&quot;12&quot;&gt;10&lt;/td&gt;
+                  &lt;td aria-colindex=&quot;13&quot;&gt;8&lt;/td&gt;
+                &lt;/tr&gt;
+                &lt;tr aria-rowindex=&quot;52&quot;&gt;
+                  &lt;td aria-colindex=&quot;1&quot;&gt;Henderson&lt;/td&gt;
+                  &lt;td aria-colindex=&quot;2&quot;&gt;Andrew&lt;/td&gt;
+                  &lt;td aria-colindex=&quot;10&quot;&gt;9&lt;/td&gt;
+                  &lt;td aria-colindex=&quot;11&quot;&gt;0&lt;/td&gt;
+                  &lt;td aria-colindex=&quot;12&quot;&gt;29&lt;/td&gt;
+                  &lt;td aria-colindex=&quot;13&quot;&gt;8&lt;/td&gt;
+                &lt;/tr&gt;
+              &lt;/tbody&gt;
+            &lt;/table&gt;
+          </code>
+        </pre>
+      </section>
+    </section>
+    <section id="gridAndTableProperties_spans">
+      <h3>Defining cell spans using <code>aria-colspan</code> and <code>aria-rowspan</code></h3>
+      <p>
+        For tables, grids, and treegrids  created using elements other than HTML <code>table</code> elements,
+        row and column spans are defined with the <code>aria-rowspan</code> and <code>aria-colspan</code> properties.
+      </p>
+      <p>The value of <code>aria-colspan</code> is an integer that is:</p>
+      <ol>
+        <li>Greater than or equal to 1.</li>
+        <li>less than the value that would cause the cell to overlap the next cell in the same row.</li>
+      </ol>
+      <p>The value of <code>aria-rowspan</code> is an integer that is:</p>
+      <ol>
+        <li>Greater than or equal to 0.</li>
+        <li>0 means the cell spans all the remaining rows in its row group.</li>
+        <li>less than the value that would cause the cell to overlap the next cell in the same column.</li>
+      </ol>
+      <p>
+        The following example grid has a two row header.
+        The first two columns have headers that span both rows of the header.
+        The subsequent 6 columns are grouped into 3 pairs with headers in the first row that each span two columns.
+      </p>
+      <pre>
+        <code>
+          &lt;div role=&quot;grid&quot; aria-rowcount=&quot;463&quot;&gt;
+            aria-label=&quot;Student grades for history 101&quot;
+            &lt;div role=&quot;rowgroup&quot;&gt;
+              &lt;div role=&quot;row&quot; aria-rowindex=&quot;1&quot;&gt;
+                  &lt;!--
+                    aria-rowspan and aria-colspan provide
+                    assistive technologies with the correct data cell header information
+                    when header cells span more than one row or column.
+                  --&gt;
+                  &lt;span role="columnheader" aria-rowspan=&quot;2&quot;&gt;Last Name&lt;/span&gt;
+                  &lt;span role="columnheader" aria-rowspan=&quot;2&quot;&gt;First Name&lt;/span&gt;
+                  &lt;span role="columnheader" aria-colspan=&quot;2&quot;&gt;Test 1&lt;/span&gt;
+                  &lt;span role="columnheader" aria-colspan=&quot;2&quot;&gt;Test 2&lt;/span&gt;
+                  &lt;span role="columnheader" aria-colspan=&quot;2&quot;&gt;Final&lt;/span&gt;
+              &lt;/div&gt;
+              &lt;div role=&quot;row&quot; aria-rowindex=&quot;2&quot;&gt;
+                  &lt;span role="columnheader"&gt;Score&lt;/span&gt;
+                  &lt;span role="columnheader"&gt;Grade&lt;/span&gt;
+                  &lt;span role="columnheader"&gt;Score&lt;/span&gt;
+                  &lt;span role="columnheader"&gt;Grade&lt;/span&gt;
+                  &lt;span role="columnheader"&gt;Total&lt;/span&gt;
+                  &lt;span role="columnheader"&gt;Grade&lt;/span&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div role=&quot;rowgroup&quot;&gt;
+              &lt;div role=&quot;row&quot; aria-rowindex=&quot;50&quot;&gt;
+                &lt;span role=&quot;cell&quot;&gt;Henderson&lt;/span&gt;
+                &lt;span role=&quot;cell&quot;&gt;Alan&lt;/span&gt;
+                &lt;span role=&quot;cell&quot;&gt;89&lt;/span&gt;
+                &lt;span role=&quot;cell&quot;&gt;B+&lt;/span&gt;
+                &lt;span role=&quot;cell&quot;&gt;72&lt;/span&gt;
+                &lt;span role=&quot;cell&quot;&gt;C&lt;/span&gt;
+                &lt;span role=&quot;cell&quot;&gt;161&lt;/span&gt;
+                &lt;span role=&quot;cell&quot;&gt;B-&lt;/span&gt;
+              &lt;/div&gt;
+              &lt;div role=&quot;row&quot;  aria-rowindex=&quot;51&quot;&gt;
+                &lt;span role=&quot;cell&quot;&gt;Henderson&lt;/span&gt;
+                &lt;span role=&quot;cell&quot;&gt;Alice&lt;/span&gt;
+                &lt;span role=&quot;cell&quot;&gt;94&lt;/span&gt;
+                &lt;span role=&quot;cell&quot;&gt;A&lt;/span&gt;
+                &lt;span role=&quot;cell&quot;&gt;86&lt;/span&gt;
+                &lt;span role=&quot;cell&quot;&gt;B&lt;/span&gt;
+                &lt;span role=&quot;cell&quot;&gt;180&lt;/span&gt;
+                &lt;span role=&quot;cell&quot;&gt;A-&lt;/span&gt;
+              &lt;/div&gt;
+              &lt;div role=&quot;row&quot;  aria-rowindex=&quot;52&quot;&gt;
+                &lt;span role=&quot;cell&quot;&gt;Henderson&lt;/span&gt;
+                &lt;span role=&quot;cell&quot;&gt;Andrew&lt;/span&gt;
+                &lt;span role=&quot;cell&quot;&gt;82&lt;/span&gt;
+                &lt;span role=&quot;cell&quot;&gt;B-&lt;/span&gt;
+                &lt;span role=&quot;cell&quot;&gt;95&lt;/span&gt;
+                &lt;span role=&quot;cell&quot;&gt;A&lt;/span&gt;
+                &lt;span role=&quot;cell&quot;&gt;177&lt;/span&gt;
+                &lt;span role=&quot;cell&quot;&gt;B+&lt;/span&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+        </code>
+      </pre>
+      <p>
+        <strong>Note:</strong> When using HTML <code>table</code> elements,
+        use the native semantics of the <code>th</code> and <code>td</code> elements to define row and column spans
+        by using the <code>rowspan</code> and <code>colspan</code> attributes.
+      </p>
+    </section>
+    <section id="gridAndTableProperties_sort">
+      <h3>Indicating sort order with <code>aria-sort</code></h3>
+      <p>
+        When rows or columns are sorted, the <code>aria-sort</code> property can be applied to a column or row header to indicate the sorting method.
+        The following table describes allowed values for <code>aria-sort</code>.
+      </p>
+      <table class="widget-features">
+        <caption>
+          Description of values for <code>aria-sort</code>
+        </caption>
+        <thead>
+          <tr>
+            <th>Value</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th><code>ascending</code></th>
+            <td>Data are sorted in ascending order.</td>
+          </tr>
+          <tr>
+            <th><code>descending</code></th>
+            <td>Data are sorted in descending order.</td>
+          </tr>
+          <tr>
+            <th><code>other</code></th>
+            <td>Data are sorted by an algorithm other than ascending or descending.</td>
+          </tr>
+          <tr>
+            <th><code>none</code></th>
+            <td>Default (no sort applied).</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>
+        It is important to note that ARIA does not provide a way to indicate levels of sort for data sets that have multiple sort keys.
+        Thus, there is limited value to applying <code>aria-sort</code> with a value other than <code>none</code> to more than one column or row.
+      </p>
+      <p>The following example grid uses <code>aria-sort</code> to indicate the rows are sorted from the highest "Quiz 2" score to the lowest "Quiz 2" score.</p>
+      <pre>
+        <code>
+          &lt;table role=&quot;grid&quot; aria-rowcount=&quot;463&quot; aria-colcount=&quot;13&quot;&gt;
+            aria-label=&quot;Student grades for history 101&quot;
+            &lt;thead&gt;
+              &lt;tr aria-colindex=&quot;10&quot; aria-rowindex=&quot;1&quot;&gt;
+                &lt;th&gt;Homework 4&lt;/th&gt;
+                &lt;!--
+                  aria-sort indicates the column with the heading
+                  "Quiz 2" has been used to sort the rows of the grid.
+                --&gt;
+                &lt;th aria-sort=&quot;descending&quot;&gt;Quiz 2&lt;/th&gt;
+                &lt;th&gt;Homework 5&lt;/th&gt;
+                &lt;th&gt;Homework 6&lt;/th&gt;
+              &lt;/tr&gt;
+            &lt;/thead&gt;
+            &lt;tbody&gt;
+              &lt;tr aria-colindex=&quot;10&quot; aria-rowindex=&quot;50&quot;&gt;
+                &lt;td&gt;8&lt;/td&gt;
+                &lt;td&gt;30&lt;/td&gt;
+                &lt;td&gt;9&lt;/td&gt;
+                &lt;td&gt;9&lt;/td&gt;
+              &lt;/tr&gt;
+              &lt;tr aria-colindex=&quot;10&quot;  aria-rowindex=&quot;51&quot;&gt;
+                &lt;td&gt;10&lt;/td&gt;
+                &lt;td&gt;29&lt;/td&gt;
+                &lt;td&gt;10&lt;/td&gt;
+                &lt;td&gt;8&lt;/td&gt;
+              &lt;/tr&gt;
+              &lt;tr aria-colindex=&quot;10&quot;  aria-rowindex=&quot;52&quot;&gt;
+                &lt;td&gt;9&lt;/td&gt;
+                &lt;td&gt;9&lt;/td&gt;
+                &lt;td&gt;27&lt;/td&gt;
+                &lt;td&gt;6&lt;/td&gt;
+              &lt;/tr&gt;
+              &lt;tr aria-colindex=&quot;10&quot;  aria-rowindex=&quot;53&quot;&gt;
+                &lt;td&gt;9&lt;/td&gt;
+                &lt;td&gt;10&lt;/td&gt;
+                &lt;td&gt;26&lt;/td&gt;
+                &lt;td&gt;8&lt;/td&gt;
+              &lt;/tr&gt;
+              &lt;tr aria-colindex=&quot;10&quot;  aria-rowindex=&quot;54&quot;&gt;
+                &lt;td&gt;9&lt;/td&gt;
+                &lt;td&gt;7&lt;/td&gt;
+                &lt;td&gt;24&lt;/td&gt;
+                &lt;td&gt;6&lt;/td&gt;
+              &lt;/tr&gt;
+            &lt;/tbody&gt;
+          &lt;/table&gt;
+        </code>
+      </pre>
+
+
+    </section>
+
   </section>
 
   <section id="presentation_role">
@@ -4050,20 +4547,6 @@
   <section id="appendices" class="appendix">
     <h2>Appendices</h2>
 
-    <section id="ScreenReaderModes">
-      <h3>Understanding Screen Reader Document Reading and Application Reading Modes</h3>
-      <p>
-        Drafting content for this section is
-        <a href="https://github.com/w3c/aria-practices/issues/193">issue 193.</a>
-      </p>
-      <p>Placeholder for a section covering this topic that is yet to be written.</p>
-    </section>
-
-    <section class="appendix" id="ariaBackground">
-      <h3>Background on WAI-ARIA</h3>
-      <p>[Placeholder section that will be resolved by <a href="https://github.com/w3c/aria-practices/issues/84">issue #84</a>.]</p>
-    </section>
-
     <section id="change_log" class="appendix">
       <h3>Change History</h3>
       <section id="change_log_2017_june" class="appendix">
@@ -4119,7 +4602,7 @@
         <p>Also see:</p>
         <ul>
           <li>
-            <a href="https://github.com/w3c/aria-practices/issues?q=is%3Aclosed+is%3Aissue+milestone%3A%22Jan+2017+Clean+Up%22+sort%3Aupdated-asc">January 2017 Clean Up Milestone</a>, 
+            <a href="https://github.com/w3c/aria-practices/issues?q=is%3Aclosed+is%3Aissue+milestone%3A%22Jan+2017+Clean+Up%22+sort%3Aupdated-asc">January 2017 Clean Up Milestone</a>,
             which lists the GitHub issues that document discussions and reviews of changes included in the June 2017 working draft.
           </li>
           <li>
@@ -4128,7 +4611,7 @@
         </ul>
       </section>
     </section>
-    
+
     <div data-include='common/acknowledgements.html' data-include-replace='true'></div>
   </section>
 </body>
