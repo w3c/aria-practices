@@ -19,6 +19,12 @@ window.addEventListener('load', function () {
 
   var ex3 = document.getElementById('ex3');
   var ex3Grid = new aria.Grid(ex3.querySelector('[role="grid"]'));
+  var startIndexText = document.getElementById('ex3_start_index');
+  var endIndexText = document.getElementById('ex3_end_index');
+  ex3Grid.setPaginationChangeHandler(function (startIndex, endIndex) {
+    startIndexText.innerText = startIndex + 1;
+    endIndexText.innerText = endIndex + 1;
+  });
 
   var pillList = new PillList(
     ex2Grid,
