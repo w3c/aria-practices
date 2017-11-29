@@ -35,31 +35,24 @@ window.addEventListener('load', function () {
 
   var gridNUX = document.getElementById('grid-nux');
   var firstGridCell = document.querySelector('#ex1 [tabindex="0"]');
-  firstGridCell.addEventListener(
-    'focus',
-    function () {
-      aria.Utils.removeClass(gridNUX, 'hidden');
-    },
-    {
-      once: true
-    }
-  );
-
   var NUXclose = document.getElementById('close-nux-button');
   var closeNUX = function () {
     aria.Utils.addClass(gridNUX, 'hidden');
-    try {
-      firstGridCell.focus();
-    }
-    catch (error) { }
+    firstGridCell.focus();
   };
-  NUXclose.addEventListener('click', closeNUX);
-  NUXclose.addEventListener('keyup', function (event) {
-    var key = event.which || event.keyCode;
-    if (key === aria.KeyCode.RETURN) {
-      closeNUX();
-    }
-  });
+  var setupInstructions = function () {
+    firstGridCell.removeEventListener('focus', setupInstructions);
+    aria.Utils.removeClass(gridNUX, 'hidden');
+
+    NUXclose.addEventListener('click', closeNUX);
+    NUXclose.addEventListener('keyup', function (event) {
+      if (event.which === aria.KeyCode.RETURN) {
+        closeNUX();
+      }
+    });
+  };
+
+  firstGridCell.addEventListener('focus', setupInstructions);
 });
 
 function PillList (grid, input, submitButton, formUpdateText) {
