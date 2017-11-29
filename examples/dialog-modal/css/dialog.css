@@ -63,7 +63,7 @@ body:not(.toc-inline) #main_content main, body:not(.toc-inline) #main_content na
     box-sizing: border-box;
     top: 0px;
     left: 0px;
-    margin-bottom: 0px;
+    margin: 0 auto;
     min-height: 100%;
     width: 100%;
   }
