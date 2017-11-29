@@ -22,8 +22,8 @@
   <main>
     <h1>Legacy ARIA 1.0 Combobox With List Autocomplete Example</h1>
     <p>
-      <strong>NOTE:</strong> This page is work in progress. Please provide feedback in
-      <a href="https://github.com/w3c/aria-practices/issues/99">issue 99.</a>
+      <strong>NOTE:</strong> Please provide feedback on this example page in
+      <a href="https://github.com/w3c/aria-practices/issues/554">issue 554.</a>
     </p>
     <p>
       The below combobox for choosing the name of a US state or territory demonstrates the
@@ -121,7 +121,7 @@
     <section>
       <h2 id="kbd_label">Keyboard Support</h2>
       <p>
-      The example comboboxes on this page implement the following keyboard interface.
+      The example combobox on this page implements the following keyboard interface.
         Other variations and options for the keyboard interface are described in the
         <a href="../../../#combobox_kbd_interaction">Keyboard Interaction section of the combobox design pattern.</a>
       </p>
@@ -138,8 +138,8 @@
             <th><kbd>Down Arrow</kbd></th>
             <td>
               <ul>
-                <li>If the listbox is displayed. moves visual focus to the first suggested value.</li>
-                <li>If the listbox is not displayed, opens the listbox and moves visual focus to the first value.</li>
+                <li>If the textbox is not empty and the listbox is displayed, moves visual focus to the first suggested value.</li>
+                <li>If the textbox is empty and the listbox is not displayed, opens the listbox and moves visual focus to the first option.</li>
                 <li>In both cases DOM focus remains on the textbox.</li>
               </ul>
             </td>
@@ -148,9 +148,8 @@
             <th><kbd>Up Arrow</kbd></th>
             <td>
               <ul>
-                <li>If the listbox is displayed. moves visual focus to the last suggested value.</li>
-                <li>If the listbox is not displayed, opens the listbox and moves visual focus to the last value.</li>
-                <li>In both cases DOM focus remains on the textbox.</li>
+                <li>If the textbox is empty, first opens the listbox if it is not already displayed and then moves visual focus to the last option.</li>
+                <li>DOM focus remains on the textbox.</li>
               </ul>
             </td>
           </tr>
