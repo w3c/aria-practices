@@ -38,12 +38,14 @@ window.addEventListener('load', function () {
     endIndexText.innerText = endIndex + 1;
     if (startIndex <= 0) {
       previousButton.setAttribute('disabled', 'true');
-    } else {
+    }
+    else {
       previousButton.removeAttribute('disabled');
     }
     if (endIndex >= 18) {
       nextButton.setAttribute('disabled', 'true');
-    } else {
+    }
+    else {
       nextButton.removeAttribute('disabled');
     }
   });
