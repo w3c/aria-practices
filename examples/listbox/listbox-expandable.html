@@ -12,6 +12,7 @@
 <script src="../js/app.js"></script>
 <script src="../js/utils.js" type="text/javascript"></script>
 
+<!--  CSS and JS for this example. -->
 <link href="css/listbox.css" rel="stylesheet">
 <script src="js/listbox.js" type="text/javascript"></script>
 <script src="js/listbox-expandable.js" type="text/javascript"></script>
@@ -20,17 +21,16 @@
   <main>
   <h1>Expandable Dropdown Listbox Example</h1>
   <p>
-    <strong>NOTE:</strong> This example page is incomplete; it is not ready for final review.
-    Development is tracked by
-    <a href="https://github.com/w3c/aria-practices/issues/470">issue 470.</a>
+    <strong>NOTE:</strong> Provide feedback on this example page in
+    <a href="https://github.com/w3c/aria-practices/issues/557">issue 557.</a>
   </p>
   <p>
     The following example implementation of the
     <a href="../../#Listbox">design pattern for listbox</a>
-    demonstrates an expandable single-select listbox widget.
-    In its default state, the widget is collapsed and shows only the current value.
-    It can be expanded to show a list of values by clicking a down arrow icon or pressing the down arrow key.
-    This widget is functionally similar to an HTML <code>select</code> input withthe the attribute <code>size=&quot;1&quot;</code>.
+    demonstrates an expandable single-select listbox widget that is functionally similar to an HTML <code>select</code> input withthe the attribute <code>size=&quot;1&quot;</code>.
+    The widget consists of a button that triggers the display of a listbox.
+    In its default state, the widget is collapsed (the listbox is not visible)  and the button label shows the currently selected option from the listbox.
+    When the button is activated, the listbox is displayed and the current option is focused and selected.
   </p>
   <p>Similar examples include:</p>
   <ul>
@@ -47,7 +47,7 @@
           <span id="exp_elem">Transuranium elements:</span>
           <div id="exp_wrapper">
             <button aria-haspopup="listbox" id="exp_button">Neptunium</button>
-            <ul id="exp_elem_list" tabindex="0" role="listbox" aria-labelledby="exp_elem" class="hidden">
+            <ul id="exp_elem_list" tabindex="-1" role="listbox" aria-labelledby="exp_elem" class="hidden">
               <li id="exp_elem_Np" role="option">Neptunium</li>
               <li id="exp_elem_Pu" role="option">Plutonium</li>
               <li id="exp_elem_Am" role="option">Americium</li>
@@ -96,15 +96,13 @@
         </ol>
       </li>
       <li>When a fully visible option is focused in any way, no scrolling occurs.</li>
-      <li>Normal scrolling through any scrolling mechanism (including <kbd>Page Up</kbd> and <kbd>Page Down</kbd>) works as expected.
-        The scroll position will jump as described for <code>focusItem</code> if a means other than a mouse click is used to change focus after scrolling.</li>
     </ol>
   </section>
 
   <section>
     <h2 id="kbd_label">Keyboard Support</h2>
     <p>
-      The example listboxes on this page implement the following keyboard interface.
+      The example listbox on this page implements the following keyboard interface.
       Other variations and options for the keyboard interface are described in the
       <a href="../../#listbox_kbd_interaction">Keyboard Interaction section of the Listbox Design Pattern.</a>
     </p>
@@ -117,6 +115,19 @@
       </thead>
       <tbody>
         <tr>
+          <th><kbd>Enter</kbd></th>
+          <td>
+            <ul>
+              <li>If the focus is on the button, expands the listbox and places focus on the currently selected option in the list.</li>
+              <li>If focus is in the listbox , collapses the listbox and keeps the currently selected option as the button label.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th><kbd>Escape</kbd></th>
+          <td>If the listbox is displayed, collapses the listbox and moves focus to the button.</td>
+        </tr>
+        <tr>
           <th><kbd>Down Arrow</kbd></th>
           <td>
             <ul>
@@ -127,15 +138,29 @@
         </tr>
         <tr>
           <th><kbd>Up Arrow</kbd></th>
-          <td>Moves focus to and selects the previous option.</td>
+          <td>
+            <ul>
+              <li>Moves focus to and selects the previous option.</li>
+              <li>If the listbox is collapsed, also expands the list.</li>
+            </ul>
+          </td>
         </tr>
         <tr>
           <th><kbd>Home</kbd></th>
-          <td>Moves focus to and selects the first option.</td>
+          <td>If the listbox is displayed, moves focus to and selects the first option.</td>
         </tr>
         <tr>
           <th><kbd>End</kbd></th>
-          <td>Moves focus to and selects the last option.</td>
+          <td>If the listbox is displayed, moves focus to and selects the last option.</td>
+        </tr>
+        <tr>
+          <th>Printable Characters</th>
+          <td>
+          <ul>
+              <li>Type a character: focus moves to the next item with a name that starts with the typed character.</li>
+              <li>Type multiple characters in rapid succession: focus moves to the next item with a name that starts with the string of characters typed.</li>
+            </ul>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -144,7 +169,7 @@
   <section>
     <h2 id="rps_label">Role, Property, State, and Tabindex  Attributes</h2>
     <p>
-      The example listboxes on this page implement the following ARIA roles, states, and properties.
+      The example listbox on this page implements the following ARIA roles, states, and properties.
       Information about other ways of applying ARIA roles, states, and properties is available in the
       <a href="../../#listbox_roles_states_props">Roles, States, and Properties section of the Listbox Design Pattern.</a>
     </p>
@@ -159,6 +184,23 @@
       </thead>
       <tbody>
         <tr>
+          <td></td>
+          <th scope="row"><code>aria-haspopup=&quot;listbox&quot;</code></th>
+          <td><code>button</code></td>
+          <td>Indicates that activating the button displays a listbox.</td>
+        </tr>
+        <tr>
+          <td></td>
+          <th scope="row"><code>aria-expanded=&quot;true&quot;</code></th>
+          <td><code>button</code></td>
+          <td>
+            <ul>
+              <li>Set by the JavaScript when the listbox is displayed.</li>
+              <li>Otherwise, is not present.</li> 
+            </ul>
+          </td>
+        </tr>
+        <tr>
           <th scope="row"><code>listbox</code></th>
           <td></td>
           <td><code>ul</code></td>
@@ -172,9 +214,14 @@
         </tr>
         <tr>
           <td></td>
-          <th scope="row"><code>tabindex=&quot;0&quot;</code></th>
+          <th scope="row"><code>tabindex=&quot;-1&quot;</code></th>
           <td><code>ul</code></td>
-          <td>Includes the listbox in the page tab sequence.</td>
+          <td>
+            <ul>
+              <li>Makes the listbox focusable.</li>
+              <li>The JavaScript sets focus on the listbox when it is displayed.</li>
+            </ul>
+          </td>
         </tr>
         <tr>
           <td></td>
@@ -182,28 +229,16 @@
           <td><code>ul</code></td>
           <td>
             <ul>
-              <li>Tells assistive technologies which of the options, if any, is visually indicated as having keyboard focus.</li>
-              <li>DOM focus remains on the <code>ul</code> element and the idref specified for <code>aria-activedescendant</code> refers to the <code>li</code> element that is visually styled as focused.</li>
+              <li>Set by the JavaScript when it displays and sets focus on the listbox; otherwise is not present.</li>
+              <li>Refers to the option in the listbox that is visually indicated as having keyboard focus.</li>
               <li>When navigation keys, such as <kbd>Down Arrow</kbd>, are pressed, the JavaScript changes the value.</li>
+              <li>Enables assistive technologies to know which element the application regards as focused while DOM focus remains on the <code>ul</code> element.</li>
+              <li>
+                For more information about this focus management technique, see 
+                <a href="../../../#kbd_focus_activedescendant">Using aria-activedescendant to Manage Focus.</a>
+              </li>
             </ul>
           </td>
-        </tr>
-        <tr>
-          <td></td>
-          <th scope="row"><code>aria-expanded=&quot;false&quot;</code></th>
-          <td><code>ul</code></td>
-          <td>
-            <ul>
-              <li>Indicates that only the currently selected option, if there is one, is displayed.</li>
-              <li>The default state on page load and whenever the listbox loses focus.</li>
-            </ul>
-          </td>
-        </tr>
-        <tr>
-          <td></td>
-          <th scope="row"><code>aria-expanded=&quot;true&quot;</code></th>
-          <td><code>ul</code></td>
-          <td>Indicates that multiple options are displayed.</td>
         </tr>
         <tr>
           <th scope="row"><code>role=&quot;option&quot;</code></th>
