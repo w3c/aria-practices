@@ -610,22 +610,27 @@ aria.Grid.prototype.checkPageChange = function (event) {
   }
 
   var key = event.which || event.keyCode;
-  var startIndex;
 
-  if (key === aria.KeyCode.PAGE_UP || key === aria.KeyCode.PAGE_DOWN) {
+  if (key === aria.KeyCode.PAGE_UP) {
     event.preventDefault();
-
-    if (key === aria.KeyCode.PAGE_UP) {
-      startIndex = Math.max(this.perPage - 1, this.topIndex);
-      this.showFromRow(startIndex, false);
-    }
-    else {
-      startIndex = this.topIndex + this.perPage - 1;
-      this.showFromRow(startIndex, true);
-    }
-
-    this.focusCell(startIndex, this.focusedCol);
+    this.movePageUp();
   }
+  else if (key === aria.KeyCode.PAGE_DOWN) {
+    event.preventDefault();
+    this.movePageDown();
+  }
+};
+
+aria.Grid.prototype.movePageUp = function () {
+  var startIndex = Math.max(this.perPage - 1, this.topIndex - 1);
+  this.showFromRow(startIndex, false);
+  this.focusCell(startIndex, this.focusedCol);
+};
+
+aria.Grid.prototype.movePageDown = function () {
+  var startIndex = this.topIndex + this.perPage;
+  this.showFromRow(startIndex, true);
+  this.focusCell(startIndex, this.focusedCol);
 };
 
 /**
