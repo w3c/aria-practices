@@ -24,26 +24,20 @@
     <a href="https://github.com/w3c/aria-practices/issues/246">issue 246.</a>
   </p>
   <p>
-    The example below demonstrates an implementation of the
-    This example uses ... summarize salient techniques )
+    The example below implements the
+    <a href="../../#feed">feed design pattern.</a>
+    for a restaurant review site.
+    To immitate an infinitely scrolling set of data, information about ten restaurants is repeated infinitely.
+    Outside of the feed, an article load time selector is available for simulating data fetch delays.
   </p>
-
   <section>
     <h2 id="ex_label">Example</h2>
     <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
     <div id="ex1">
-      <!--  Replace content of this div with the example.  -->
-      <p>This is the place where the reader will experience the functioning example.</p>
-      <ul>
-        <li>The HTML in this section along with the javascript and CSS it uses demonstrate
-          the design pattern.</li>
-        <li>
-          When developing an example implementation for this guide, please follow the
-          <a href="https://ianpouncey.github.io/code-guide/">APG example coding guidelines</a>
-          .
-        </li>
-        <!--  Target of previous link will need to be updated when we move the guidelines into the wiki from Ian's repo.  -->
-      </ul>
+      <p>
+        The example feed experience is presented on a separate
+        <a href="feedDisplay.html">feed display page.</a>
+      </p>
     </div>
     <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
   </section>
@@ -62,16 +56,6 @@
 
   <section>
     <h2 id="kbd_label">Keyboard Support</h2>
-    <!--
-      List the keys supported in this example.
-      Remember to:
-      Use kbd tags,e.g. <kbd>KeyName</kbd>.
-      Key names use first-letter caps, e.g., <kbd>Enter</kbd>.
-      Single space between multiple Words, e.g., <kbd>Up Arrow</kbd>.
-      Use + to separate modifiers, e.g., <kbd>Control + Right Arrow</kbd>.
-      One key per row, e.g., do not combine <kbd>Up Arrow</kbd> and <kbd>Down Arrow</kbd> into a single row.
-      Do not use the word "key", e.g., do not write <kbd>Enter Key</kbd> or <kbd>Enter</kbd> key.
-     -->
     <table aria-labelledby="kbd_label" class="def">
       <thead>
         <tr>
