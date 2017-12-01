@@ -718,7 +718,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     <p>
       <a class="logo" href="https://www.w3.org/"><img width="72" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" alt="W3C"></a>
     </p>
-  <p><!--_hyper: 289062698;--></p>
+  <p><!--_hyper: 81717244;--></p>
   <h1 class="title p-name" id="title" property="dcterms:title"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Authoring Practices 1.1</h1>
   <h2 id="w3c-editor-s-draft-01-december-2017"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2017-12-01">01 December 2017</time><span class="permalink" typeof="bookmark"><a href="#undefined" aria-label="Permalink for W3C Editor's Draft 01 December 2017" title="Permalink for W3C Editor's Draft 01 December 2017" property="url"><span property="title" content="W3C Editor's Draft 01 December 2017">§</span></a></span></h2>
   <dl>
@@ -1892,42 +1892,30 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     </section>
 
     <section class="widget" id="feed" typeof="bibo:Chapter" resource="#feed" property="bibo:hasPart">
-      <h3 class="widget-name" id="x3-10-feed" resource="#x3-10-feed"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.10 </span>Feed<span class="permalink" typeof="bookmark"><a href="#feed" aria-label="Permalink for 3.10 Feed" title="Permalink for 3.10 Feed" property="url"><span property="title" content="3.10 Feed">§</span></a></span></span></h3>
-      <div class="note"><div role="heading" class="note-title marker" id="h-note-9" aria-level="4"><span>Note</span></div><p class=""> This section contains an early draft of new content. Feedback is welcome in <a href="https://github.com/w3c/aria-practices/issues/245">issue 245.</a>
-				</p></div>
+      <h3 id="x3-10-feed" resource="#x3-10-feed"><span property="xhv:role" resource="xhv:heading"><span class="secno">3.10 </span>Feed<span class="permalink" typeof="bookmark"><a href="#feed" aria-label="Permalink for 3.10 Feed" title="Permalink for 3.10 Feed" property="url"><span property="title" content="3.10 Feed">§</span></a></span></span></h3>
       <p>
-        A feed is a section of a page that automatically loads new content as the user reads.
-        Content in a feed is segmented into article elements. Thus, it can be thought of as a dynamic list of articles
-        that often appears to scroll infinitely.
+        <strong>NOTE:</strong> Please provide feedback on this section in
+        <a href="https://github.com/w3c/aria-practices/issues/560">issue 560.</a>
       </p>
       <p>
-        The primary difference between a feed and other ARIA patterns that support loading data as users scroll,
-        e.g., a <a href="#grid">grid</a>, is that a feed is a structure, not a widget. This means assistive
-        technologies with a reading mode, such as screen readers, will default to reading mode when
-        interacting with feed content, making the feed pattern most useful for blocks of
-        unstructured information that may contain links or other interactive elements.
+        A <a href="https://w3c.github.io/aria/aria/aria.html#feed" class="role-reference">feed</a> is a section of a page that automatically loads new sections of content as the user scrolls.
+        The sections of content in a feed are presented in <a href="https://w3c.github.io/aria/aria/aria.html#article" class="role-reference">article</a> elements.
+        So, a feed can be thought of as a dynamic list of articles that often appears to scroll infinitely.
       </p>
       <p>
-        For example, a product page on a shopping site may have a related products section that
-        displays five products at a time. As the user scrolls,  more products are requested  and loaded into the DOM.
-         While a static design might include a next button for loading five more products, a dynamic implementation
-        that automatically loads data as needed simplifies the user
-        experience and reduces the inertia associated with viewing more than the first five product suggestions.
+        The feature that most distinguishes feed from other ARIA patterns that support loading data as users scroll, e.g., a <a href="#grid">grid</a>, is that a feed is a structure, not a widget.
+        Consequently, assistive technologies with a reading mode, such as screen readers, default to reading mode when interacting with feed content.
+        However, unlike most other <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> structures, a feed establishes an interoperability contract between the web page and assistive technologies.
+        The contract governs scroll interactions so that assistive technology users can read articles, jump forward and backward by article, and reliably trigger new articles to load while in reading mode.
       </p>
       <p>
-        Unfortunately, when web pages load content dynamically based on scroll events, it
-        creates interoperability difficulties for users of assistive technologies that cannot
-        sufficiently mimic visual scrolling.
-        Even if the page also observes focus movements in
-        order to identify when more content is needed,
-        there can still be problems because requiring assistive technologies to
-        move DOM focus in response to every reading cursor movement, regardless of context,
-        can also negatively impact a screen reading experience.
+        For example, a product page on a shopping site may have a related products section that displays five products at a time.
+        As the user scrolls,  more products are requested  and loaded into the DOM.
+         While a static design might include a next button for loading five more products, a dynamic implementation that automatically loads more data as the user scrolls simplifies the user experience and reduces the inertia associated with viewing more than the first five product suggestions.
+         But, unfortunately when web pages load content dynamically based on scroll events, it can cause usability and interoperability difficulties for users of assistive technologies.
       </p>
       <p>
-        The feed pattern enables reliable assistive technology reading mode interaction by
-        establishing the following interoperability agreement between the web page and assistive
-        technologies:
+        The feed pattern enables reliable assistive technology reading mode interaction by establishing the following interoperability agreement between the web page and assistive technologies:
       </p>
       <ol>
         <li>In the context of a feed, the web page code is responsible for:
@@ -1947,16 +1935,12 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </li>
       </ol>
       <p>
-        Thus, implementing the feed pattern allows a screen reader to reliably read and trigger the loading
-        of feed content while staying in its reading mode.
+        Thus, implementing the feed pattern allows a screen reader to reliably read and trigger the loading of feed content while staying in its reading mode.
       </p>
       <p>
-        Another feature of the feed pattern is its ability to facilitate skim reading for
-        assistive technology users. Web page authors may provide both an accessible name and
-        description for each article. By identifying the elements inside of an
-        article that provide the title and the primary content, assistive technologies can provide
-        functions that enable users to jump from article to article and efficiently discern which
-        articles may be worthy of more attention.
+        Another feature of the feed pattern is its ability to facilitate skim reading for assistive technology users.
+        Web page authors may provide both an accessible name and description for each article.
+        By identifying the elements inside of an article that provide the title and the primary content, assistive technologies can provide functions that enable users to jump from article to article and efficiently discern which articles may be worthy of more attention.
       </p>
 
       <section class="notoc" typeof="bibo:Chapter" resource="#example-4" property="bibo:hasPart">
@@ -1979,7 +1963,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <li><kbd>Control + End</kbd>: Move focus to the first focusable element after the feed.</li>
           <li><kbd>Control + Home</kbd>: Move focus to the first focusable element before the feed.</li>
         </ul>
-        <div class="note"><div role="heading" class="note-title marker" id="h-note-10" aria-level="5"><span>Note</span></div><ol class="">
+        <div class="note"><div role="heading" class="note-title marker" id="h-note-9" aria-level="5"><span>Note</span></div><ol class="">
           <li>Due to the lack of convention, providing easily discoverable keyboard interface documentation is especially important.</li>
           <li>
             In some cases, a feed may contain a nested feed.
@@ -2122,7 +2106,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             <li><kbd>Control + Home</kbd>: moves focus to the first cell in the first row.</li>
             <li><kbd>Control + End</kbd>: moves focus to the last cell in the last row.</li>
           </ul>
-          <div class="note"><div role="heading" class="note-title marker" id="h-note-11" aria-level="6"><span>Note</span></div><ul class="">
+          <div class="note"><div role="heading" class="note-title marker" id="h-note-10" aria-level="6"><span>Note</span></div><ul class="">
             <li>
               When the above grid navigation keys move focus, whether the focus is set on an element inside the cell or the grid cell depends on cell content.
               See <a href="#gridNav_focus">Whether to Focus on a Cell or an Element Inside It</a>.
@@ -2143,7 +2127,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             <li><kbd>Shift + Down Arrow</kbd>: Extends selection one cell down.</li>
             <li><kbd>Shift + Up Arrow</kbd>: Extends selection one cell Up.</li>
           </ul>
-          <div class="note"><div role="heading" class="note-title marker" id="h-note-12" aria-level="6"><span>Note</span></div><p class="">See <a href="#kbd_common_conventions" class="sec-ref"><span class="secno">5.8</span> <span class="sec-title">Key Assignment Conventions for Common Functions</span></a> for cut, copy, and paste key assignments.</p></div>
+          <div class="note"><div role="heading" class="note-title marker" id="h-note-11" aria-level="6"><span>Note</span></div><p class="">See <a href="#kbd_common_conventions" class="sec-ref"><span class="secno">5.8</span> <span class="sec-title">Key Assignment Conventions for Common Functions</span></a> for cut, copy, and paste key assignments.</p></div>
         </section>
       </section>
 
@@ -2217,7 +2201,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             <li><kbd>Control + Home</kbd> (optional): moves focus to the first cell in the first row.</li>
             <li><kbd>Control + End</kbd> (Optional): moves focus to the last cell in the last row.</li>
           </ul>
-          <div class="note"><div role="heading" class="note-title marker" id="h-note-13" aria-level="6"><span>Note</span></div><ul class="">
+          <div class="note"><div role="heading" class="note-title marker" id="h-note-12" aria-level="6"><span>Note</span></div><ul class="">
             <li>
               When the above grid navigation keys move focus, whether the focus is sett on an element inside the cell or the grid cell depends on cell content.
               See <a href="#gridNav_focus">Whether to Focus on a Cell or an Element Inside It</a>.
@@ -2243,7 +2227,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             <li><kbd>Shift + Down Arrow</kbd>: Extends selection one cell down.</li>
             <li><kbd>Shift + Up Arrow</kbd>: Extends selection one cell Up.</li>
           </ul>
-          <div class="note"><div role="heading" class="note-title marker" id="h-note-14" aria-level="6"><span>Note</span></div><p class="">See <a href="#kbd_common_conventions" class="sec-ref"><span class="secno">5.8</span> <span class="sec-title">Key Assignment Conventions for Common Functions</span></a> for cut, copy, and paste key assignments.</p></div>
+          <div class="note"><div role="heading" class="note-title marker" id="h-note-13" aria-level="6"><span>Note</span></div><p class="">See <a href="#kbd_common_conventions" class="sec-ref"><span class="secno">5.8</span> <span class="sec-title">Key Assignment Conventions for Common Functions</span></a> for cut, copy, and paste key assignments.</p></div>
         </section>
       </section>
 
@@ -2375,7 +2359,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <li>If the grid includes cells that span multiple rows or multiple columns, and if the <code>grid</code> role is NOT applied to an HTML <code>table</code> element, then <a href="https://w3c.github.io/aria/aria/aria.html#aria-rowspan" class="property-reference">aria-rowspan</a> or <a href="https://w3c.github.io/aria/aria/aria.html#aria-colspan" class="property-reference">aria-colspan</a> is applied as described in <a href="#gridAndTableProperties">grid and table properties</a>.</li>
         </ul>
 
-        <div class="note"><div role="heading" class="note-title marker" id="h-note-15" aria-level="5"><span>Note</span></div><ul class="">
+        <div class="note"><div role="heading" class="note-title marker" id="h-note-14" aria-level="5"><span>Note</span></div><ul class="">
           <li>
             If the element with the <code>grid</code> role is an HTML <code>table</code> element, then it is not necessary to use ARIA roles for rows and cells because the HTML elements have implied ARIA semantics.
             For example, an HTML <code>&lt;TR&gt;</code> has an implied ARIA role of <code>row</code>.
@@ -2395,7 +2379,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         A <a href="https://w3c.github.io/aria/aria/aria.html#link" class="role-reference">link</a> widget provides an interactive reference to a resource.
         The target resource can be either external or local, i.e., either outside or within the current page or application.
        </p>
-      <div class="note"><div role="heading" class="note-title marker" id="h-note-16" aria-level="4"><span>Note</span></div><p class="">
+      <div class="note"><div role="heading" class="note-title marker" id="h-note-15" aria-level="4"><span>Note</span></div><p class="">
         Authors are strongly encouraged to use a native host language link element, such as an HTML
         <code>&lt;A&gt;</code> element with an <code>href</code> attribute. As with other <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr>
         widget roles, applying the link role to an element will not cause browsers to enhance the
@@ -2521,7 +2505,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             </ul>
           </li>
         </ul>
-        <div class="note"><div role="heading" class="note-title marker" id="h-note-17" aria-level="5"><span>Note</span></div><ol class="">
+        <div class="note"><div role="heading" class="note-title marker" id="h-note-16" aria-level="5"><span>Note</span></div><ol class="">
           <li>DOM focus (the active element) is functionally distinct from the selected state. For more details, see <a href="#kbd_focus_vs_selection">this description of differences between focus and selection.</a></li>
           <li>
             The <code>listbox</code> role supports the <a class="property-reference" href="https://w3c.github.io/aria/aria/aria.html#aria-activedescendant">aria-activedescendant</a> property,
@@ -2679,7 +2663,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <li><kbd>Tab</kbd>: Moves focus to the next element in the tab sequence, and if the item that had focus is not in a <code>menubar</code>, closes its <code>menu</code> and all open parent <code>menu</code> containers.</li>
           <li><kbd>Shift + Tab</kbd>: Moves focus to the previous element in the tab sequence, and if the item that had focus is not in a <code>menubar</code>, closes its <code>menu</code> and all open parent <code>menu</code> containers.</li>
         </ul>
-        <div class="note"><div role="heading" class="note-title marker" id="h-note-18" aria-level="5"><span>Note</span></div><ol class="">
+        <div class="note"><div role="heading" class="note-title marker" id="h-note-17" aria-level="5"><span>Note</span></div><ol class="">
           <li>Disabled menu items are focusable but cannot be activated. </li>
           <li>A <a href="https://w3c.github.io/aria/aria/aria.html#separator" class="role-reference">separator</a> in a menu is not focusable or interactive.</li>
           <li>
@@ -2752,7 +2736,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             The default value of <code>aria-orientation</code> for a menu is <code>vertical</code>.
           </li>
         </ul>
-        <div class="note"><div role="heading" class="note-title marker" id="h-note-19" aria-level="5"><span>Note</span></div><ol class="">
+        <div class="note"><div role="heading" class="note-title marker" id="h-note-18" aria-level="5"><span>Note</span></div><ol class="">
           <li>
             Currently, using aria-expanded on elements with role menuitem triggers HTML validation errors because the ARIA specification does not yet support doing so.
             The ARIA working group plans to resolve this issue in the next version of the specification.
@@ -2868,7 +2852,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             If focus is on the first button, focus moves to the last button.
           </li>
         </ul>
-        <div class="note"><div role="heading" class="note-title marker" id="h-note-20" aria-level="5"><span>Note</span></div><p class="">
+        <div class="note"><div role="heading" class="note-title marker" id="h-note-19" aria-level="5"><span>Note</span></div><p class="">
           The initial focus behavior described above differs slightly from the behavior
           provided by some browsers for native HTML radio groups. In some browsers, if none of the
           radio buttons are selected, moving focus into the radio group with <kbd>Shift+Tab</kbd> will place focus on the last radio button
@@ -2949,7 +2933,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <li><kbd>Page Up</kbd> (Optional): Increment the slider by an amount larger than the step change made by <kbd>Up Arrow</kbd>.</li>
           <li><kbd>Page Down</kbd> (Optional): Decrement the slider by an amount larger than the step change made by <kbd>Down Arrow</kbd>.</li>
         </ul>
-        <div class="note"><div role="heading" class="note-title marker" id="h-note-21" aria-level="5"><span>Note</span></div><ol class="">
+        <div class="note"><div role="heading" class="note-title marker" id="h-note-20" aria-level="5"><span>Note</span></div><ol class="">
           <li>Focus is placed on the slider (the visual object that the mouse user would move, also known as the thumb.</li>
           <li>In some circumstances, reversing the direction of the value change for the keys specified above, e.g., having <kbd>Up Arrow</kbd> decrease the value, could create a more intuitive experience.</li>
         </ol></div>
@@ -3079,7 +3063,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             </ul>
           </li>
         </ul>
-        <div class="note"><div role="heading" class="note-title marker" id="h-note-22" aria-level="5"><span>Note</span></div><ol class="">
+        <div class="note"><div role="heading" class="note-title marker" id="h-note-21" aria-level="5"><span>Note</span></div><ol class="">
           <li>Focus remains on the text field during operation.</li>
           <li>Standard single line text editing keys appropriate for the device platform:
             <ol>
@@ -3133,7 +3117,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         Since a table is not a widget, each widget contained in a table is a separate stop in the page tab sequence.
         If the number of widgets is large, replacing the table with a grid can dramatically reduce the length of the page tab sequence because a grid is a composite widget that can contain other widgets.
       </p>
-      <div class="note"><div role="heading" class="note-title marker" id="h-note-23" aria-level="4"><span>Note</span></div><p class="">
+      <div class="note"><div role="heading" class="note-title marker" id="h-note-22" aria-level="4"><span>Note</span></div><p class="">
         As with other <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> roles that have a native host language equivalent, 
         authors are strongly encouraged to use a native HTML <code>table</code> element whenever possible.
         This is especially important with role <code>table</code> because it is a new feature of <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> 1.1.
@@ -3174,7 +3158,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           </li>
           <li>If the table includes cells that span multiple rows or multiple columns, then <a href="https://w3c.github.io/aria/aria/aria.html#aria-rowspan" class="property-reference">aria-rowspan</a> or <a href="https://w3c.github.io/aria/aria/aria.html#aria-colspan" class="property-reference">aria-colspan</a> is applied as described in <a href="#gridAndTableProperties">grid and table properties</a>.</li>
         </ul>
-        <div class="note"><div role="heading" class="note-title marker" id="h-note-24" aria-level="5"><span>Note</span></div><p class="">
+        <div class="note"><div role="heading" class="note-title marker" id="h-note-23" aria-level="5"><span>Note</span></div><p class="">
           If rows or cells are included in a table via <a href="https://w3c.github.io/aria/aria/aria.html#aria-owns" class="property-reference">aria-owns</a>,
           they will be presented to assistive technologies after the DOM descendants of the <code>table</code> element unless the DOM descendants are also included in the <code>aria-owns</code> attribute.
         </p></div>
@@ -3248,7 +3232,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             </ul>
           </li>
         </ul>
-        <div class="note"><div role="heading" class="note-title marker" id="h-note-25" aria-level="5"><span>Note</span></div><ol class="">
+        <div class="note"><div role="heading" class="note-title marker" id="h-note-24" aria-level="5"><span>Note</span></div><ol class="">
           <li>
             It is recommended that tabs activate automatically when they receive focus as long as their associated tab panels are displayed without noticeable latency.
             This typically requires tab panel content to be preloaded.
@@ -3319,7 +3303,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <li><kbd>Home</kbd> (Optional): Moves focus to first element.</li>
           <li><kbd>End</kbd> (Optional): Moves focus to last element.</li>
         </ul>
-        <div class="note"><div role="heading" class="note-title marker" id="h-note-26" aria-level="5"><span>Note</span></div><ol class="">
+        <div class="note"><div role="heading" class="note-title marker" id="h-note-25" aria-level="5"><span>Note</span></div><ol class="">
           <li>If the items in a toolbar are arranged vertically:
             <ol>
               <li><kbd>Down Arrow</kbd> performs as <kbd>Right Arrow</kbd> is described above. </li>
@@ -3374,7 +3358,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <section class="notoc" typeof="bibo:Chapter" resource="#keyboard-interaction-20" property="bibo:hasPart">
         <h4 id="keyboard-interaction-20" resource="#keyboard-interaction-20"><span property="xhv:role" resource="xhv:heading">Keyboard Interaction<span class="permalink" typeof="bookmark"><a href="#undefined" aria-label="Permalink for Keyboard Interaction" title="Permalink for Keyboard Interaction" property="url"><span property="title" content="Keyboard Interaction">§</span></a></span></span></h4>
         <p><kbd>Escape</kbd>: Dismisses the Tooltip.</p>
-        <div class="note"><div role="heading" class="note-title marker" id="h-note-27" aria-level="5"><span>Note</span></div><ol class="">
+        <div class="note"><div role="heading" class="note-title marker" id="h-note-26" aria-level="5"><span>Note</span></div><ol class="">
           <li>Focus stays on the triggering element while the tooltip is displayed.</li>
           <li>
             If the tooltip is invoked when the trigger element   receives focus, then it is dismissed when it no longer has focus (onBlur).
@@ -3520,7 +3504,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             </ul>
           </li>
         </ul>
-        <div class="note"><div role="heading" class="note-title marker" id="h-note-28" aria-level="5"><span>Note</span></div><ol class="">
+        <div class="note"><div role="heading" class="note-title marker" id="h-note-27" aria-level="5"><span>Note</span></div><ol class="">
           <li>DOM focus (the active element) is functionally distinct from the selected state. For more details, see <a href="#kbd_focus_vs_selection">this description of differences between focus and selection.</a></li>
           <li>
             The <code>tree</code> role supports the <a class="property-reference" href="https://w3c.github.io/aria/aria/aria.html#aria-activedescendant">aria-activedescendant</a> property,
@@ -3573,7 +3557,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             The default value of <code>aria-orientation</code> for a tree is <code>vertical</code>.
           </li>
         </ul>
-        <div class="note"><div role="heading" class="note-title marker" id="h-note-29" aria-level="5"><span>Note</span></div><p class="">
+        <div class="note"><div role="heading" class="note-title marker" id="h-note-28" aria-level="5"><span>Note</span></div><p class="">
           If <a href="https://w3c.github.io/aria/aria/aria.html#aria-owns" class="property-reference">aria-owns</a> is set on the tree container to include elements that are not DOM children of the container,
           those elements will appear in the reading order in the sequence they are referenced and after any items that are DOM children.
           Scripts that manage focus need to ensure the visual focus order matches this assistive technology reading order.
@@ -3625,7 +3609,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <li><kbd>End</kbd> (Optional): Moves splitter to the position that gives the primary pane its largest allowed size. This may completely collapse the secondary pane.</li>
           <li><kbd>F6</kbd> (Optional): Cycle through window   panes.</li>
         </ul>
-        <div class="note"><div role="heading" class="note-title marker" id="h-note-30" aria-level="5"><span>Note</span></div><p class="">A fixed size splitter omits implementation of the arrow keys.</p></div>
+        <div class="note"><div role="heading" class="note-title marker" id="h-note-29" aria-level="5"><span>Note</span></div><p class="">A fixed size splitter omits implementation of the arrow keys.</p></div>
       </section>
       <section class="notoc" typeof="bibo:Chapter" resource="#wai-aria-roles-states-and-properties-23" property="bibo:hasPart">
         <h4 id="wai-aria-roles-states-and-properties-23" resource="#wai-aria-roles-states-and-properties-23"><span property="xhv:role" resource="xhv:heading"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<span class="permalink" typeof="bookmark"><a href="#undefined" aria-label="Permalink for WAI-ARIA Roles, States, and Properties" title="Permalink for WAI-ARIA Roles, States, and Properties" property="url"><span property="title" content="WAI-ARIA Roles, States, and Properties">§</span></a></span></span></h4>
@@ -4606,7 +4590,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           And, given the vast array of operating system, browser, and assistive technology keys, it is almost impossible to be certain conflicts do not exist.
           So it is also important to employ strategies that mitigate the impact of conflicts whether they are intentional or unknown.
         </p>
-        <div class="note"><div role="heading" class="note-title marker" id="h-note-31" aria-level="5"><span>Note</span></div><p class="">
+        <div class="note"><div role="heading" class="note-title marker" id="h-note-30" aria-level="5"><span>Note</span></div><p class="">
           In the following sections, <kbd>meta</kbd> key refers to the <kbd>Windows</kbd> key on Windows-compatible keyboards and the <kbd>Command</kbd> key on MacOS-compatible keyboards.
         </p></div>
         <section id="kbd_shortcuts_assignments_opsys_conflicts" typeof="bibo:Chapter" resource="#kbd_shortcuts_assignments_opsys_conflicts" property="bibo:hasPart">
