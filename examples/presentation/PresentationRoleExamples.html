@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Presentation Role Examples | WAI-ARIA Authoring Practices 1.1</title>
+
+<!--  Core js and css shared by all examples; do not modify when using this template. -->
+<link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
+<link rel="stylesheet" href="../css/core.css">
+<script src="../js/examples.js"></script>
+<script src="../js/highlight.pack.js"></script>
+<script src="../js/app.js"></script>
+</head>
+<body>
+  <main>
+  <h1>Presentation Role Examples</h1>
+  <p>
+    <strong>PLEASE IGNORE THIS PAGE FOR NOW</strong>:
+    This page is WIP that is just a mixed up pile of copy/pasted content, a few forward looking paragraphs/notes, etc.
+    It is not worth reading for any purpose at this time.
+    <a href="https://github.com/w3c/aria-practices/issues/182">Issue 182</a>
+    describes the purpose of and tracks the work associated with completing this page.
+  </p>
+  <p>
+    The following examples explain the various effects of the <a href="../../#presentation_role_effects">rules for using role <code>presentation</code></a>
+    by illustrating how they change a browser's accessibility tree.
+  </p>
+    <section>
+      <h2>Image Examples</h2>
+      <p>
+        When role <code>presentation</code> is applied to an image, the image is completely hidden from assistive technologies.
+        In fact, in the case of image, <code>role=&quot;presentation&quot;</code> is equivalent to <code>aria-hidden=&quot;true&quot;</code>.
+        On the other hand, when a heading is presentational, the heading semantic is removed and the inner text of the heading is exposed as plain text.
+        Illustrating these affects in terms of how they alter the accessibility tree reveals how these two results are entirely consistent.
+      </p>
+      <pre>
+&#8230;
+&lt;h2&gt;Other Histories of Architecture&lt;/h1&gt;
+&lt;p&gt;
+  &lt;a href="www.somewhere.com"&gt;Ancient Roman Architecture&lt;/a&gt;
+  &lt;img src="spacer.png" role="presentation"&gt;
+  &lt;a href="somewhere.else.com"&gt;19th Century Italian Architecture&lt;/a&gt;
+  &lt;img src="spacer.png" role="presentation"&gt;
+  &lt;a href="www.elsewhere.com"&gt;Modern Buildings more than 100 Years Old&lt;/a&gt;
+&lt;/p&gt;
+&lt;h2&gt;Modern Building Design&lt;/h1&gt;
+&#8230;
+</pre>
+      <p>
+        The resulting accessible tree is shown below. Note that none of the spacer <code>&lt;img&gt;</code>
+        elements are present.
+      </p>
+      <ul>
+        <li>
+          root
+          <ul>
+            <li style="list-style: none">&#8230;</li>
+            <li>
+              h2
+              <ul>
+                <li>[text] Other Histories of Architecture</li>
+              </ul>
+            </li>
+            <li>
+              p
+              <ul>
+                <li>
+                  a
+                  <ul>
+                    <li>[text] Ancient Roman Architecture</li>
+                  </ul>
+                </li>
+                <li>
+                  a
+                  <ul>
+                    <li>[text] 19th Century Italian Architecture</li>
+                  </ul>
+                </li>
+                <li>
+                  a
+                  <ul>
+                    <li>[text] Modern Buildings more than 100 Years Old</li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li>
+              h2
+              <ul>
+                <li>[text] Modern Building Design</li>
+              </ul>
+            </li>
+            <li style="list-style: none">&#8230;</li>
+          </ul>
+        </li>
+      </ul>
+<p>role="presentation" hides the image from the accessibility API and does not publish the alt attribute contents.</p>
+<pre class="example highlight">
+        &lt;!-- 1. [role="presentation"] negates the implicit 'heading' role semantics but does not affect the contents. --&gt;
+&lt;h1 role="presentation"&gt;Presentation role overrides Header role&lt;/h1&gt;
+&lt;h1&gt;Another header&lt;/h1&gt;
+&lt;!-- 2. [role="presentation"] hides the image from the accessibility API and does not publish the alt attribute contents. --&gt;
+&lt;img role="presentation" alt="This text will not appear in the Accessibility API" src="&#8230;"&gt;
+</pre>
+      <p>
+        The first header element is absent from the accessible tree for the above example, but its
+        text appears. The second header element is present as a
+        <a href="https://www.w3.org/TR/wai-aria-1.1/#heading">heading</a>
+        . The <code>img</code> element is not exposed at all:
+      </p>
+      <ul>
+        <li>
+          root
+          <ul>
+            <li style="list-style: none;">&#8230;</li>
+            <li>[text] Presentation role overrides Header role</li>
+            <li>
+              h1
+              <ul>
+                <li>[text] Another header</li>
+              </ul>
+            </li>
+            <li style="list-style: none;">&#8230;</li>
+          </ul>
+        </li>
+      </ul>
+      <p>
+        Be aware that the markup <code>&lt;img role="presentation" alt="non-empty alt
+          text"&#8230;&gt;</code> is in fact contradictory: Declaring a role of presentation says that the
+        image is for layout, is decorative and meaningless, whereas the non-empty alt text implies
+        that the image is meaningful. It is recommended that authors instead use empty <code>alt</code>
+        text (<code>alt=""</code>) where they use <code>role="presentation"</code>.
+      </p>
+      <h2>Table example</h2>
+      <pre class="example highlight">
+        &lt;!-- Layout table marked with [role="presentation"]. --&gt;
+&lt;table role="presentation"&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt; &lt;td&gt;Some text&lt;/td&gt; &lt;td&gt;&lt;p&gt;Paragraph&lt;/p&gt;&lt;/td&gt; &lt;/tr&gt;
+    &lt;tr&gt; &lt;td&gt;&lt;a href="www.somewhere.com"&gt;Link text&lt;/a&gt;&lt;/td&gt; &lt;td&gt;&lt;img src="meaningful.jpg" alt="meaningful image"&gt;&lt;/td&gt; &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+</pre>
+      <p>All table specific elements (table, tr, td, etc.) are eliminated from the tree by
+        inheriting the presentation role, but other elements and textual content in the table cells
+        are exposed:</p>
+      <ul>
+        <li>
+          root
+          <ul>
+            <li style="list-style: none;">&#8230;</li>
+            <li>[text] Some text</li>
+            <li>
+              p
+              <ul>
+                <li>[text] Paragraph</li>
+              </ul>
+            </li>
+            <li>
+              a
+              <ul>
+                <li>Link text</li>
+              </ul>
+            </li>
+            <li>
+              img
+              <ul>
+                <li>[name] meaningful image</li>
+              </ul>
+            </li>
+            <li style="list-style: none;">&#8230;</li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+<!--
+    <script>
+      sourceCode.add('sc1', 'ex1');
+      sourceCode.make();
+    </script>
+    -->
+  </main>
+  <nav>
+    <a href="../../#presentation_role">Hiding Semantics With the presentation Role in WAI-ARIA Authoring Practices 1.1</a>
+  </nav>
+</body>
+</html>
