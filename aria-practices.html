@@ -1092,42 +1092,30 @@
     </section>
 
     <section class="widget" id="feed">
-      <h3 class="widget-name">Feed</h3>
-      <p class="note"> This section contains an early draft of new content. Feedback is welcome in <a href="https://github.com/w3c/aria-practices/issues/245">issue 245.</a>
-				</p>
+      <h3>Feed</h3>
       <p>
-        A feed is a section of a page that automatically loads new content as the user reads.
-        Content in a feed is segmented into article elements. Thus, it can be thought of as a dynamic list of articles
-        that often appears to scroll infinitely.
+        <strong>NOTE:</strong> Please provide feedback on this section in
+        <a href="https://github.com/w3c/aria-practices/issues/560">issue 560.</a>
       </p>
       <p>
-        The primary difference between a feed and other ARIA patterns that support loading data as users scroll,
-        e.g., a <a href="#grid">grid</a>, is that a feed is a structure, not a widget. This means assistive
-        technologies with a reading mode, such as screen readers, will default to reading mode when
-        interacting with feed content, making the feed pattern most useful for blocks of
-        unstructured information that may contain links or other interactive elements.
+        A <a href="#feed" class="role-reference">feed</a> is a section of a page that automatically loads new sections of content as the user scrolls.
+        The sections of content in a feed are presented in <a href="#article" class="role-reference">article</a> elements.
+        So, a feed can be thought of as a dynamic list of articles that often appears to scroll infinitely.
       </p>
       <p>
-        For example, a product page on a shopping site may have a related products section that
-        displays five products at a time. As the user scrolls,  more products are requested  and loaded into the DOM.
-         While a static design might include a next button for loading five more products, a dynamic implementation
-        that automatically loads data as needed simplifies the user
-        experience and reduces the inertia associated with viewing more than the first five product suggestions.
+        The feature that most distinguishes feed from other ARIA patterns that support loading data as users scroll, e.g., a <a href="#grid">grid</a>, is that a feed is a structure, not a widget.
+        Consequently, assistive technologies with a reading mode, such as screen readers, default to reading mode when interacting with feed content.
+        However, unlike most other WAI-ARIA structures, a feed establishes an interoperability contract between the web page and assistive technologies.
+        The contract governs scroll interactions so that assistive technology users can read articles, jump forward and backward by article, and reliably trigger new articles to load while in reading mode.
       </p>
       <p>
-        Unfortunately, when web pages load content dynamically based on scroll events, it
-        creates interoperability difficulties for users of assistive technologies that cannot
-        sufficiently mimic visual scrolling.
-        Even if the page also observes focus movements in
-        order to identify when more content is needed,
-        there can still be problems because requiring assistive technologies to
-        move DOM focus in response to every reading cursor movement, regardless of context,
-        can also negatively impact a screen reading experience.
+        For example, a product page on a shopping site may have a related products section that displays five products at a time.
+        As the user scrolls,  more products are requested  and loaded into the DOM.
+         While a static design might include a next button for loading five more products, a dynamic implementation that automatically loads more data as the user scrolls simplifies the user experience and reduces the inertia associated with viewing more than the first five product suggestions.
+         But, unfortunately when web pages load content dynamically based on scroll events, it can cause usability and interoperability difficulties for users of assistive technologies.
       </p>
       <p>
-        The feed pattern enables reliable assistive technology reading mode interaction by
-        establishing the following interoperability agreement between the web page and assistive
-        technologies:
+        The feed pattern enables reliable assistive technology reading mode interaction by establishing the following interoperability agreement between the web page and assistive technologies:
       </p>
       <ol>
         <li>In the context of a feed, the web page code is responsible for:
@@ -1147,16 +1135,12 @@
         </li>
       </ol>
       <p>
-        Thus, implementing the feed pattern allows a screen reader to reliably read and trigger the loading
-        of feed content while staying in its reading mode.
+        Thus, implementing the feed pattern allows a screen reader to reliably read and trigger the loading of feed content while staying in its reading mode.
       </p>
       <p>
-        Another feature of the feed pattern is its ability to facilitate skim reading for
-        assistive technology users. Web page authors may provide both an accessible name and
-        description for each article. By identifying the elements inside of an
-        article that provide the title and the primary content, assistive technologies can provide
-        functions that enable users to jump from article to article and efficiently discern which
-        articles may be worthy of more attention.
+        Another feature of the feed pattern is its ability to facilitate skim reading for assistive technology users.
+        Web page authors may provide both an accessible name and description for each article.
+        By identifying the elements inside of an article that provide the title and the primary content, assistive technologies can provide functions that enable users to jump from article to article and efficiently discern which articles may be worthy of more attention.
       </p>
 
       <section class="notoc">
