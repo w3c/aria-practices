@@ -28,7 +28,7 @@
   border-bottom: thin solid #888;
 }
 
-[role="table"] [role="rowgroup"]:nth-child(odd) [role="row"]:nth-child(odd) {
+[role="table"] [role="rowgroup"]:last-child [role="row"]:nth-child(odd) {
   background-color: #ddd;
 }
 
