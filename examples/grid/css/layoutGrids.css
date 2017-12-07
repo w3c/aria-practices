@@ -165,3 +165,17 @@
 #add-recipient-input {
   font-size: 14px;
 }
+
+.ex3_result_header {
+	margin: 0px;
+	font-style: normal;
+	font-weight: bold;
+}
+.ex3_result_indices {
+	margin-bottom: 40px;
+}
+
+.ex3_pagination {
+	margin-top: 40px;
+	text-align: center;
+}

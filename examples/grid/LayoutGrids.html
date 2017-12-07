@@ -38,7 +38,7 @@
     Thus, a link contained inside of a grid cell is presented to a screen reader as a link.
     By contrast, a link inside of a menu is presented as a menuitem, and a link inside of a listbox is presented as an option.
   </p>
-  <p> Similar examples include:</p>
+  <p>Similar examples include:</p>
   <ul>
     <li><a href="dataGrids.html">Data Grid Examples</a>: Three example implementations of grid that include features relevant to presenting tabular information, such as content editing, sort, and column hiding.</li>
     <li><a href="advancedDataGrid.html">Advanced Data Grid Example</a>: Example of a grid with behaviors and features similar to a typical spreadsheet, including cell and row selection.</li>
@@ -70,13 +70,13 @@
               class="indicator_graphic" />
           </p>
           <p>
-            This focus ring means arrow key navigation is available. Press arrow keys to move inside the component. Press Tab to jump to the next component. 
+            This focus ring means arrow key navigation is available. Press arrow keys to move inside the component. Press Tab to jump to the next component.
             <span class="indicator_description">
               As a reminder, an arrow keypad graphic also appears in the lower left corner of the page.
             </span>
           </p>
           <p>
-            Components that support arrow keys often enable additional keys that make navigation easier, 
+            Components that support arrow keys often enable additional keys that make navigation easier,
             such as Home, End, Ctrl-Home, Ctrl-End, Page Up, and Page Down.
           </p>
           <a id="close-nux-button" class="close-nux-button" role="button" tabindex="0">
@@ -93,13 +93,13 @@
             <li>The focus indicator changes to a dotted blue box.</li>
             <li>When screen size is sufficiently large, A graphic of an arrow keypad appears in the page gutter on the bottom left.</li>
             <li>
-              The first time a user moves focus into the grid with <kbd>Tab</kbd>, a <q>NUX</q> (new user experience helper) appears in the page tab sequence immediately following the grid. 
+              The first time a user moves focus into the grid with <kbd>Tab</kbd>, a <q>NUX</q> (new user experience helper) appears in the page tab sequence immediately following the grid.
               The NUX explains the meaning of the focus indicator and keypad graphic, and it remains visible until the user closes it.
-            </li> 
+            </li>
           </ol>
         </li>
         <li>
-          This grid is useful in a responsive design. 
+          This grid is useful in a responsive design.
           It dynamically adjusts the number of cells per row based on screen size.
           As the grid structure changes, the arrow key behavior adjusts accordingly.
         </li>
@@ -183,181 +183,190 @@
       </p>
       <div role="separator" id="ex3_start_sep" aria-labelledby="ex3_start_sep ex3_label" aria-label="Start of"></div>
       <div id="ex3">
-        <div role="grid" aria-label="Search Results" aria-rowcount="19" data-per-page="5" data-wrap-cols="true">
+        <h4 id="ex3_search_results_label">Search Results for "W3C WAI-ARIA"</h4>
+        <div class="ex3_result_indices">
+          Showing results <span id="ex3_start_index">1</span> to <span id="ex3_end_index">5</span> of 19
+        </div>
+
+        <div role="grid" aria-labelledby="ex3_search_results_label" aria-rowcount="19" data-per-page="5" data-wrap-cols="true">
           <div role="row">
-            <div role="gridcell"><h3>
+            <div role="gridcell"><h5 class="ex3_result_header">
                 <a tabindex="-1" href="https://www.w3.org/WAI/intro/aria">WAI-ARIA Overview
                   Web Accessibility Initiative W3C</a>
-              </h3></div> <span tabindex="-1" role="gridcell">World Wide Web Consortium</span> <span
+              </h5></div> <span tabindex="-1" role="gridcell">World Wide Web Consortium</span> <span
               tabindex="-1" role="gridcell"
             >WAI-ARIA, the Accessible Rich Internet Applications Suite, defines a way to make
               Web content and Web applications more accessible to people with disabilities.</span>
           </div>
           <div role="row">
-            <div role="gridcell"><h3>
+            <div role="gridcell"><h5 class="ex3_result_header">
                 <a tabindex="-1" href="https://www.w3.org/TR/wai-aria/states_and_properties">ARIA
                   States and Properties - W3C</a>
-              </h3></div> <span tabindex="-1" role="gridcell">World Wide Web Consortium</span> <span
+              </h5></div> <span tabindex="-1" role="gridcell">World Wide Web Consortium</span> <span
               tabindex="-1" role="gridcell"
             >In this document, states and properties are both treated as aria-prefixed markup
               attributes. However, they are maintained conceptually distinct to clarify subtle ...</span>
           </div>
           <div role="row">
-            <div role="gridcell"><h3>
+            <div role="gridcell"><h5 class="ex3_result_header">
                 <a tabindex="-1" href="https://www.w3.org/TR/wai-aria/">Accessible Rich
                   Internet Applications (WAI-ARIA) 1.0 - W3C</a>
-              </h3></div> <span tabindex="-1" role="gridcell">World Wide Web Consortium</span> <span
+              </h5></div> <span tabindex="-1" role="gridcell">World Wide Web Consortium</span> <span
               tabindex="-1" role="gridcell"
             >Mar 20, 2014 - This is the WAI-ARIA 1.0 W3C Recommendation from the Protocols &
               Formats Working Group of the Web Accessibility Initiative. The Working ...</span>
           </div>
           <div role="row">
-            <div role="gridcell"><h3>
+            <div role="gridcell"><h5 class="ex3_result_header">
                 <a tabindex="-1" href="https://www.w3.org/WAI/ARIA/">Accessible Rich Internet
                   Applications (ARIA) Working Group - W3C</a>
-              </h3></div> <span tabindex="-1" role="gridcell">World Wide Web Consortium</span> <span
+              </h5></div> <span tabindex="-1" role="gridcell">World Wide Web Consortium</span> <span
               tabindex="-1" role="gridcell"
             >The mission of the Accessible Rich Internet Applications Working Group (ARIA WG) is
               to develop technologies that enhance accessibility of web content for ...</span>
           </div>
           <div role="row">
-            <div role="gridcell"><h3>
+            <div role="gridcell"><h5 class="ex3_result_header">
                 <a tabindex="-1" href="https://www.w3.org/TR/wai-aria-1.1/">Accessible Rich
                   Internet Applications (WAI-ARIA) 1.1 - W3C</a>
-              </h3></div> <span tabindex="-1" role="gridcell">World Wide Web Consortium</span> <span
+              </h5></div> <span tabindex="-1" role="gridcell">World Wide Web Consortium</span> <span
               tabindex="-1" role="gridcell"
             >Jul 21, 2016 - This version of ARIA 1.1 changes the aria-kbdshortcuts property to
               aria-keyshortcuts , expands roles that can be used in combo boxes, adds a ...</span>
           </div>
           <div role="row">
-            <div role="gridcell"><h3>
+            <div role="gridcell"><h5 class="ex3_result_header">
                 <a tabindex="-1" href="https://www.w3.org/TR/wai-aria/roles">The Roles Model |
                   Accessible Rich Internet Applications (WAI-ARIA) 1.0</a>
-              </h3></div> <span tabindex="-1" role="gridcell">World Wide Web Consortium</span> <span
+              </h5></div> <span tabindex="-1" role="gridcell">World Wide Web Consortium</span> <span
               tabindex="-1" role="gridcell"
             >This section defines the WAI-ARIA role taxonomy and describes the characteristics
               and properties of all roles. A formal RDF / OWL representation of all the ...</span>
           </div>
           <div role="row">
-            <div role="gridcell"><h3>
+            <div role="gridcell"><h5 class="ex3_result_header">
                 <a tabindex="-1" href="https://www.w3.org/TR/wai-aria-practices-1.1/">WAI-ARIA
                   Authoring Practices 1.1 - W3C</a>
-              </h3></div> <span tabindex="-1" role="gridcell">World Wide Web Consortium</span> <span
+              </h5></div> <span tabindex="-1" role="gridcell">World Wide Web Consortium</span> <span
               tabindex="-1" role="gridcell"
             >Mar 17, 2016 - The WAI-ARIA Authoring Practices Guide is intended to provide an
               understanding of how to use WAI-ARIA to create an accessible Rich Internet ...</span>
           </div>
           <div role="row">
-            <div role="gridcell"><h3>
+            <div role="gridcell"><h5 class="ex3_result_header">
                 <a tabindex="-1" href="https://www.w3.org/TR/html-aria/">ARIA in HTML - W3C</a>
-              </h3></div> <span tabindex="-1" role="gridcell">World Wide Web Consortium</span> <span
+              </h5></div> <span tabindex="-1" role="gridcell">World Wide Web Consortium</span> <span
               tabindex="-1" role="gridcell"
             >Oct 5, 2016 - ARIA in HTML is a [ HTML51 ] specification module. Any HTML features,
               conformance requirements, or terms that this specification module ...</span>
           </div>
           <div role="row">
-            <div role="gridcell"><h3>
+            <div role="gridcell"><h5 class="ex3_result_header">
                 <a tabindex="-1" href="https://www.w3.org/TR/html-aria/">ARIA
                   in HTML</a>
-              </h3></div> <span tabindex="-1" role="gridcell">World Wide Web Consortium</span> <span
+              </h5></div> <span tabindex="-1" role="gridcell">World Wide Web Consortium</span> <span
               tabindex="-1" role="gridcell"
             >Jul 24, 2015 - Setting an ARIA role and/or aria-* attribute that matches the
               default implicit ARIA semantics is unnecessary and is NOT RECOMMENDED as ...</span>
           </div>
           <div role="row">
-            <div role="gridcell"><h3>
+            <div role="gridcell"><h5 class="ex3_result_header">
                 <a tabindex="-1" href="https://www.w3.org/WAI/ARIA/faq">Accessible Rich
                   Internet Applications (ARIA) Working Group - W3C</a>
-              </h3></div> <span tabindex="-1" role="gridcell">World Wide Web Consortium</span> <span
+              </h5></div> <span tabindex="-1" role="gridcell">World Wide Web Consortium</span> <span
               tabindex="-1" role="gridcell"
             >Here are answers to some frequently asked questions (FAQ) about WAI-ARIA, the
               Accessible Rich Internet Applications Suite. When we add significant ...</span>
           </div>
           <div role="row">
-            <div role="gridcell"><h3>
+            <div role="gridcell"><h5 class="ex3_result_header">
                 <a tabindex="-1" href="https://www.w3.org/TR/wai-aria-implementation/">WAI-ARIA
                   1.0 User Agent Implementation Guide - W3C</a>
-              </h3></div> <span tabindex="-1" role="gridcell">World Wide Web Consortium</span> <span
+              </h5></div> <span tabindex="-1" role="gridcell">World Wide Web Consortium</span> <span
               tabindex="-1" role="gridcell"
             >WAI-ARIA enables rich Internet applications to have the same accessibility features
               as desktop GUI applications by adding metadata to markup technologies ...</span>
           </div>
           <div role="row">
-            <div role="gridcell"><h3>
+            <div role="gridcell"><h5 class="ex3_result_header">
                 <a tabindex="-1" href="https://w3c.github.io/html-reference/aria/aria.html">ARIA -
                   HTML5 - W3C on GitHub</a>
-              </h3></div> <span tabindex="-1" role="gridcell">World Wide Web Consortium</span> <span
+              </h5></div> <span tabindex="-1" role="gridcell">World Wide Web Consortium</span> <span
               tabindex="-1" role="gridcell"
             >Alertdialog #. aria.alertdialog = role="" alertdialog "" intermixed with an
               optional aria-expanded element. Application #. aria.application = role=""
               application ...</span>
           </div>
           <div role="row">
-            <div role="gridcell"><h3>
+            <div role="gridcell"><h5 class="ex3_result_header">
                 <a tabindex="-1" href="https://www.w3.org/WAI/PF/aria-practices/">WAI-ARIA 1.0
                   Authoring Practices - W3C</a>
-              </h3></div> <span tabindex="-1" role="gridcell">World Wide Web Consortium</span> <span
+              </h5></div> <span tabindex="-1" role="gridcell">World Wide Web Consortium</span> <span
               tabindex="-1" role="gridcell"
             >Abstract. This document provided readers with an understanding of how to use
               WAI-ARIA [ ARIA ] to create accessible rich internet applications. It described ...</span>
           </div>
           <div role="row">
-            <div role="gridcell"><h3>
+            <div role="gridcell"><h5 class="ex3_result_header">
                 <a tabindex="-1" href="https://www.w3.org/TR/aria-in-html/">Notes on Using
                   ARIA in HTML - W3C</a>
-              </h3></div> <span tabindex="-1" role="gridcell">World Wide Web Consortium</span> <span
+              </h5></div> <span tabindex="-1" role="gridcell">World Wide Web Consortium</span> <span
               tabindex="-1" role="gridcell"
             >May 21, 2015 - This document demonstrates how to use WAI-ARIA in [ HTML51 ], which
               especially helps with dynamic content and advanced user interface ...</span>
           </div>
           <div role="row">
-            <div role="gridcell"><h3>
+            <div role="gridcell"><h5 class="ex3_result_header">
                 <a tabindex="-1" href="https://www.w3.org/standards/techs/aria">Accessible
                   Rich Internet Applications (WAI-ARIA) Current Status - W3C</a>
-              </h3></div> <span tabindex="-1" role="gridcell">World Wide Web Consortium</span> <span
+              </h5></div> <span tabindex="-1" role="gridcell">World Wide Web Consortium</span> <span
               tabindex="-1" role="gridcell"
             >Accessible Rich Internet Applications (WAI-ARIA) 1.0. Accessibility of Web content
               to people with disabilities requires semantic information about widgets, ...</span>
           </div>
           <div role="row">
-            <div role="gridcell"><h3>
+            <div role="gridcell"><h5 class="ex3_result_header">
                 <a tabindex="-1" href="https://www.w3.org/WAI/PF/aria/">Accessible Rich
                   Internet Applications (WAI-ARIA) 1.0 - W3C</a>
-              </h3></div> <span tabindex="-1" role="gridcell">World Wide Web Consortium</span> <span
+              </h5></div> <span tabindex="-1" role="gridcell">World Wide Web Consortium</span> <span
               tabindex="-1" role="gridcell"
             >Feb 3, 2014 - This version: http://www.w3.org/WAI/PF/aria/; Previous editors'
               draft: ... This document is part of the WAI-ARIA suite described in the WAI-ARIA ...</span>
           </div>
           <div role="row">
-            <div role="gridcell"><h3>
+            <div role="gridcell"><h5 class="ex3_result_header">
                 <a tabindex="-1" href="https://www.w3.org/TR/wai-aria/introduction">Introduction
                   | Accessible Rich Internet Applications (WAI-ARIA) 1.0</a>
-              </h3></div> <span tabindex="-1" role="gridcell">World Wide Web Consortium</span> <span
+              </h5></div> <span tabindex="-1" role="gridcell">World Wide Web Consortium</span> <span
               tabindex="-1" role="gridcell"
             >WAI-ARIA is a technical specification that provides a framework to improve the
               accessibility and interoperability of web content and applications. This
               document ...</span>
           </div>
           <div role="row">
-            <div role="gridcell"><h3>
+            <div role="gridcell"><h5 class="ex3_result_header">
                 <a tabindex="-1" href="https://www.w3.org/TR/wai-aria/usage">Using WAI-ARIA |
                   Accessible Rich Internet Applications (WAI-ARIA) 1.0</a>
-              </h3></div> <span tabindex="-1" role="gridcell">World Wide Web Consortium</span> <span
+              </h5></div> <span tabindex="-1" role="gridcell">World Wide Web Consortium</span> <span
               tabindex="-1" role="gridcell"
             >WAI-ARIA divides the semantics into roles (the type defining a user interface
               element) and states and properties supported by the roles. Authors need to ...</span>
           </div>
           <div role="row">
-            <div role="gridcell"><h3>
+            <div role="gridcell"><h5 class="ex3_result_header">
                 <a tabindex="-1" href="https://www.w3.org/TR/WCAG20-TECHS/aria#ARIA11">Using
                   ARIA landmarks to identify regions of a page - WCAG WG - W3C</a>
-              </h3></div> <span tabindex="-1" role="gridcell">World Wide Web Consortium</span> <span
+              </h5></div> <span tabindex="-1" role="gridcell">World Wide Web Consortium</span> <span
               tabindex="-1" role="gridcell"
             >Jan 3, 2014 - NVDA 2 supports all landmarks except it will not support navigation
               to “application”; Window Eyes as of V.7 does not support ARIA landmarks.</span>
           </div>
         </div>
 
+        <div class="ex3_pagination">
+          <button disabled="true" id="ex3_pageup_button">Previous</button>
+          <button id="ex3_pagedown_button">Next</button>
+        </div>
       </div>
       <div role="separator" id="ex3_end_sep" aria-labelledby="ex3_end_sep ex3_label" aria-label="End of"></div>
       <h4>Notes</h4>
