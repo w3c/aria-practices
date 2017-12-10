@@ -26,9 +26,8 @@ aria.Listbox = function (listboxNode) {
   this.downButton = null;
   this.moveButton = null;
   this.keysSoFar = '';
-
+  this.handleFocusChange = function () {};
   this.handleItemChange = function (event, items) {};
-
   this.registerEvents();
 };
 
@@ -336,6 +335,7 @@ aria.Listbox.prototype.focusItem = function (element) {
   }
 
   this.checkUpDownButtons();
+  this.handleFocusChange(element);
 };
 
 /**
@@ -542,4 +542,8 @@ aria.Listbox.prototype.setupMove = function (button, siblingList) {
 
 aria.Listbox.prototype.setHandleItemChange = function (handlerFn) {
   this.handleItemChange = handlerFn;
+};
+
+aria.Listbox.prototype.setHandleFocusChange = function (focusChangeHandler) {
+  this.handleFocusChange = focusChangeHandler;
 };

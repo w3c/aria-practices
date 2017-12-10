@@ -588,8 +588,13 @@ aria.Grid.prototype.setupIndices = function () {
  *  accordingly.
  */
 aria.Grid.prototype.setupPagination = function () {
+  this.onPaginationChange = this.onPaginationChange || function () {};
   this.perPage = parseInt(this.gridNode.getAttribute('data-per-page'));
   this.showFromRow(0, true);
+};
+
+aria.Grid.prototype.setPaginationChangeHandler = function (onPaginationChange) {
+  this.onPaginationChange = onPaginationChange;
 };
 
 /**
@@ -605,22 +610,27 @@ aria.Grid.prototype.checkPageChange = function (event) {
   }
 
   var key = event.which || event.keyCode;
-  var startIndex;
 
-  if (key === aria.KeyCode.PAGE_UP || key === aria.KeyCode.PAGE_DOWN) {
+  if (key === aria.KeyCode.PAGE_UP) {
     event.preventDefault();
-
-    if (key === aria.KeyCode.PAGE_UP) {
-      startIndex = Math.max(this.perPage - 1, this.topIndex);
-      this.showFromRow(startIndex, false);
-    }
-    else {
-      startIndex = this.topIndex + this.perPage - 1;
-      this.showFromRow(startIndex, true);
-    }
-
-    this.focusCell(startIndex, this.focusedCol);
+    this.movePageUp();
   }
+  else if (key === aria.KeyCode.PAGE_DOWN) {
+    event.preventDefault();
+    this.movePageDown();
+  }
+};
+
+aria.Grid.prototype.movePageUp = function () {
+  var startIndex = Math.max(this.perPage - 1, this.topIndex - 1);
+  this.showFromRow(startIndex, false);
+  this.focusCell(startIndex, this.focusedCol);
+};
+
+aria.Grid.prototype.movePageDown = function () {
+  var startIndex = this.topIndex + this.perPage;
+  this.showFromRow(startIndex, true);
+  this.focusCell(startIndex, this.focusedCol);
 };
 
 /**
@@ -637,6 +647,8 @@ aria.Grid.prototype.showFromRow = function (startIndex, scrollDown) {
   var dataRows =
     this.gridNode.querySelectorAll(aria.GridSelector.SCROLL_ROW);
   var reachedTop = false;
+  var firstIndex = -1;
+  var endIndex = -1;
 
   if (startIndex < 0 || startIndex >= dataRows.length) {
     return;
@@ -661,11 +673,17 @@ aria.Grid.prototype.showFromRow = function (startIndex, scrollDown) {
         this.topIndex = i;
         reachedTop = true;
       }
+
+      if (firstIndex < 0) {
+        firstIndex = i;
+      }
+      endIndex = i;
     }
     else {
       aria.Utils.addClass(dataRows[i], aria.CSSClass.HIDDEN);
     }
   }
+  this.onPaginationChange(firstIndex, endIndex);
 };
 
 /**

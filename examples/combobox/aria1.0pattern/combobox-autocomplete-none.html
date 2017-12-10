@@ -19,11 +19,19 @@
 <script src="js/listboxOption.js" type="text/javascript"></script>
 </head>
 <body>
+  <nav aria-label="Related Links" class="feedback">
+    <ul>
+      <li><a href="../../../#browser_and_AT_support">Browser and Assistive Technology Support</a></li>
+      <li><a href="https://github.com/w3c/aria-practices/issues/new">Report Issue</a></li>
+      <li><a href="https://github.com/w3c/aria-practices/projects/7">Related Issues</a></li>
+      <li><a href="../../../#combobox">Design Pattern</a></li>
+    </ul>
+  </nav>
   <main>
     <h1>Legacy ARIA 1.0 Combobox without Autocomplete Example</h1>
     <p>
-      <strong>NOTE:</strong> This page is work in progress. Please provide feedback in
-      <a href="https://github.com/w3c/aria-practices/issues/99">issue 99.</a>
+      <strong>NOTE:</strong> Please provide feedback on this example page in
+      <a href="https://github.com/w3c/aria-practices/issues/555">issue 555.</a>
     </p>
     <p>
       The below combobox that enables users to choose a term from a hypothetical list of previously searched terms demonstrates the
@@ -79,7 +87,7 @@
     <section>
       <h2 id="kbd_label">Keyboard Support</h2>
       <p>
-      The example comboboxes on this page implement the following keyboard interface.
+      The example combobox on this page implements the following keyboard interface.
         Other variations and options for the keyboard interface are described in the
         <a href="../../../#combobox_kbd_interaction">Keyboard Interaction section of the combobox design pattern.</a>
       </p>
@@ -96,9 +104,8 @@
             <th><kbd>Down Arrow</kbd></th>
             <td>
               <ul>
-                <li>If the listbox is displayed. moves visual focus to the first suggested value.</li>
-                <li>If the listbox is not displayed, opens the listbox and moves visual focus to the first value.</li>
-                <li>In both cases DOM focus remains on the textbox.</li>
+                <li>First opens the listbox if it is not already displayed and then moves visual focus to the first option.</li>
+                <li>DOM focus remains on the textbox.</li>
               </ul>
             </td>
           </tr>
@@ -106,9 +113,8 @@
             <th><kbd>Up Arrow</kbd></th>
             <td>
               <ul>
-                <li>If the listbox is displayed. moves visual focus to the last suggested value.</li>
-                <li>If the listbox is not displayed, opens the listbox and moves visual focus to the last value.</li>
-                <li>In both cases DOM focus remains on the textbox.</li>
+                <li>First opens the listbox if it is not already displayed and then moves visual focus to the last option.</li>
+                <li>DOM focus remains on the textbox.</li>
               </ul>
             </td>
           </tr>
@@ -117,16 +123,7 @@
             <td>
               <ul>
                 <li>Sets the textbox value to the content of the selected option.</li>
-                <li>Closes the listbox.</li>
-              </ul>
-            </td>
-          </tr>
-          <tr>
-            <th><kbd>Escape</kbd></th>
-            <td>
-              <ul>
-                <li>Clears the textbox.</li>
-                <li>If the listbox is displayed, closes it.</li>
+                <li>Closes the listbox if it is displayed.</li>
               </ul>
             </td>
           </tr>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>Scrollable Listbox Example | WAI-ARIA Authoring Practices 1.1</title>
+<title>Collapsible Dropdown Listbox Example | WAI-ARIA Authoring Practices 1.1</title>
 
 <!--  Core js and css shared by all examples; do not modify when using this template. -->
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
@@ -12,9 +12,10 @@
 <script src="../js/app.js"></script>
 <script src="../js/utils.js" type="text/javascript"></script>
 
+<!--  CSS and JS for this example. -->
 <link href="css/listbox.css" rel="stylesheet">
 <script src="js/listbox.js" type="text/javascript"></script>
-<script src="js/listbox-scrollable.js" type="text/javascript"></script>
+<script src="js/listbox-collapsible.js" type="text/javascript"></script>
 </head>
 <body>
   <nav aria-label="Related Links" class="feedback">
@@ -26,17 +27,23 @@
     </ul>
   </nav>
   <main>
-  <h1>Scrollable Listbox Example</h1>
+  <h1>Collapsible Dropdown Listbox Example</h1>
+  <p>
+    <strong>NOTE:</strong> Provide feedback on this example page in
+    <a href="https://github.com/w3c/aria-practices/issues/557">issue 557.</a>
+  </p>
   <p>
     The following example implementation of the
     <a href="../../#Listbox">design pattern for listbox</a>
-    demonstrates a scrollable single-select listbox widget.
-    This widget is functionally similar to an HTML <code>select</code> input where the <code>size</code> attribute has a value greater than one.
+    demonstrates a collapsible single-select listbox widget that is functionally similar to an HTML <code>select</code> input withthe the attribute <code>size=&quot;1&quot;</code>.
+    The widget consists of a button that triggers the display of a listbox.
+    In its default state, the widget is collapsed (the listbox is not visible)  and the button label shows the currently selected option from the listbox.
+    When the button is activated, the listbox is displayed and the current option is focused and selected.
   </p>
   <p>Similar examples include:</p>
   <ul>
+    <li><a href="listbox-scrollable.html">Scrollable Listbox Example</a>: Single-select listbox that scrolls to reveal more options, similar to HTML <code>select</code> with <code>size</code> attribute greater than one.</li>
     <li><a href="listbox-rearrangeable.html">Example Listboxes with Rearrangeable Options</a>: Examples of both single-select and multi-select listboxes with accompanying toolbars where options can be added, moved, and removed.</li>
-    <li><a href="listbox-collapsible.html">Collapsible Dropdown Listbox Example</a>: Single-select collapsible listbox that expands when activated, similar to HTML <code>select</code> withthe attribute <code>size=&quot;1&quot;</code>.</li>
   </ul>
   <section>
     <h2 id="ex_label">Example</h2>
@@ -45,35 +52,38 @@
       <p>Choose your favorite transuranic element (actinide or transactinide).</p>
       <div class="listbox-area">
         <div class="left-area">
-          <span id="ss_elem">Transuranium elements:</span>
-          <ul id="ss_elem_list" tabindex="0" role="listbox" aria-labelledby="ss_elem">
-            <li id="ss_elem_Np" role="option">Neptunium</li>
-            <li id="ss_elem_Pu" role="option">Plutonium</li>
-            <li id="ss_elem_Am" role="option">Americium</li>
-            <li id="ss_elem_Cm" role="option">Curium</li>
-            <li id="ss_elem_Bk" role="option">Berkelium</li>
-            <li id="ss_elem_Cf" role="option">Californium</li>
-            <li id="ss_elem_Es" role="option">Einsteinium</li>
-            <li id="ss_elem_Fm" role="option">Fermium</li>
-            <li id="ss_elem_Md" role="option">Mendelevium</li>
-            <li id="ss_elem_No" role="option">Nobelium</li>
-            <li id="ss_elem_Lr" role="option">Lawrencium</li>
-            <li id="ss_elem_Rf" role="option">Rutherfordium</li>
-            <li id="ss_elem_Db" role="option">Dubnium</li>
-            <li id="ss_elem_Sg" role="option">Seaborgium</li>
-            <li id="ss_elem_Bh" role="option">Bohrium</li>
-            <li id="ss_elem_Hs" role="option">Hassium</li>
-            <li id="ss_elem_Mt" role="option">Meitnerium</li>
-            <li id="ss_elem_Ds" role="option">Darmstadtium</li>
-            <li id="ss_elem_Rg" role="option">Roentgenium</li>
-            <li id="ss_elem_Cn" role="option">Copernicium</li>
-            <li id="ss_elem_Nh" role="option">Nihonium</li>
-            <li id="ss_elem_Fl" role="option">Flerovium</li>
-            <li id="ss_elem_Mc" role="option">Moscovium</li>
-            <li id="ss_elem_Lv" role="option">Livermorium</li>
-            <li id="ss_elem_Ts" role="option">Tennessine</li>
-            <li id="ss_elem_Og" role="option">Oganesson</li>
-          </ul>
+          <span id="exp_elem">Choose an element:</span>
+          <div id="exp_wrapper">
+            <button aria-haspopup="listbox" aria-labelledby="exp_elem exp_button" id="exp_button">Neptunium</button>
+            <ul id="exp_elem_list" tabindex="-1" role="listbox" aria-labelledby="exp_elem" class="hidden">
+              <li id="exp_elem_Np" role="option">Neptunium</li>
+              <li id="exp_elem_Pu" role="option">Plutonium</li>
+              <li id="exp_elem_Am" role="option">Americium</li>
+              <li id="exp_elem_Cm" role="option">Curium</li>
+              <li id="exp_elem_Bk" role="option">Berkelium</li>
+              <li id="exp_elem_Cf" role="option">Californium</li>
+              <li id="exp_elem_Es" role="option">Einsteinium</li>
+              <li id="exp_elem_Fm" role="option">Fermium</li>
+              <li id="exp_elem_Md" role="option">Mendelevium</li>
+              <li id="exp_elem_No" role="option">Nobelium</li>
+              <li id="exp_elem_Lr" role="option">Lawrencium</li>
+              <li id="exp_elem_Rf" role="option">Rutherfordium</li>
+              <li id="exp_elem_Db" role="option">Dubnium</li>
+              <li id="exp_elem_Sg" role="option">Seaborgium</li>
+              <li id="exp_elem_Bh" role="option">Bohrium</li>
+              <li id="exp_elem_Hs" role="option">Hassium</li>
+              <li id="exp_elem_Mt" role="option">Meitnerium</li>
+              <li id="exp_elem_Ds" role="option">Darmstadtium</li>
+              <li id="exp_elem_Rg" role="option">Roentgenium</li>
+              <li id="exp_elem_Cn" role="option">Copernicium</li>
+              <li id="exp_elem_Nh" role="option">Nihonium</li>
+              <li id="exp_elem_Fl" role="option">Flerovium</li>
+              <li id="exp_elem_Mc" role="option">Moscovium</li>
+              <li id="exp_elem_Lv" role="option">Livermorium</li>
+              <li id="exp_elem_Ts" role="option">Tennessine</li>
+              <li id="exp_elem_Og" role="option">Oganesson</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -94,16 +104,14 @@
         </ol>
       </li>
       <li>When a fully visible option is focused in any way, no scrolling occurs.</li>
-      <li>Normal scrolling through any scrolling mechanism (including <kbd>Page Up</kbd> and <kbd>Page Down</kbd>) works as expected.
-        The scroll position will jump as described for <code>focusItem</code> if a means other than a mouse click is used to change focus after scrolling.</li>
     </ol>
   </section>
 
   <section>
     <h2 id="kbd_label">Keyboard Support</h2>
     <p>
-      The example listboxes on this page implement the following keyboard interface. 
-      Other variations and options for the keyboard interface are described in the  
+      The example listbox on this page implements the following keyboard interface.
+      Other variations and options for the keyboard interface are described in the
       <a href="../../#listbox_kbd_interaction">Keyboard Interaction section of the Listbox Design Pattern.</a>
     </p>
     <table aria-labelledby="kbd_label" class="def">
@@ -115,20 +123,52 @@
       </thead>
       <tbody>
         <tr>
+          <th><kbd>Enter</kbd></th>
+          <td>
+            <ul>
+              <li>If the focus is on the button, expands the listbox and places focus on the currently selected option in the list.</li>
+              <li>If focus is in the listbox , collapses the listbox and keeps the currently selected option as the button label.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th><kbd>Escape</kbd></th>
+          <td>If the listbox is displayed, collapses the listbox and moves focus to the button.</td>
+        </tr>
+        <tr>
           <th><kbd>Down Arrow</kbd></th>
-          <td>Moves focus to and selects the next option.</td>
+          <td>
+            <ul>
+              <li>Moves focus to and selects the next option.</li>
+              <li>If the listbox is collapsed, also expands the list.</li>
+            </ul>
+          </td>
         </tr>
         <tr>
           <th><kbd>Up Arrow</kbd></th>
-          <td>Moves focus to and selects the previous option.</td>
+          <td>
+            <ul>
+              <li>Moves focus to and selects the previous option.</li>
+              <li>If the listbox is collapsed, also expands the list.</li>
+            </ul>
+          </td>
         </tr>
         <tr>
           <th><kbd>Home</kbd></th>
-          <td>Moves focus to and selects the first option.</td>
+          <td>If the listbox is displayed, moves focus to and selects the first option.</td>
         </tr>
         <tr>
           <th><kbd>End</kbd></th>
-          <td>Moves focus to and selects the last option.</td>
+          <td>If the listbox is displayed, moves focus to and selects the last option.</td>
+        </tr>
+        <tr>
+          <th>Printable Characters</th>
+          <td>
+          <ul>
+              <li>Type a character: focus moves to the next item with a name that starts with the typed character.</li>
+              <li>Type multiple characters in rapid succession: focus moves to the next item with a name that starts with the string of characters typed.</li>
+            </ul>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -137,8 +177,8 @@
   <section>
     <h2 id="rps_label">Role, Property, State, and Tabindex  Attributes</h2>
     <p>
-      The example listboxes on this page implement the following ARIA roles, states, and properties. 
-      Information about other ways of applying ARIA roles, states, and properties is available in the    
+      The example listbox on this page implements the following ARIA roles, states, and properties.
+      Information about other ways of applying ARIA roles, states, and properties is available in the
       <a href="../../#listbox_roles_states_props">Roles, States, and Properties section of the Listbox Design Pattern.</a>
     </p>
     <table aria-labelledby="rps_label" class="data attributes">
@@ -151,6 +191,23 @@
         </tr>
       </thead>
       <tbody>
+        <tr>
+          <td></td>
+          <th scope="row"><code>aria-haspopup=&quot;listbox&quot;</code></th>
+          <td><code>button</code></td>
+          <td>Indicates that activating the button displays a listbox.</td>
+        </tr>
+        <tr>
+          <td></td>
+          <th scope="row"><code>aria-expanded=&quot;true&quot;</code></th>
+          <td><code>button</code></td>
+          <td>
+            <ul>
+              <li>Set by the JavaScript when the listbox is displayed.</li>
+              <li>Otherwise, is not present.</li> 
+            </ul>
+          </td>
+        </tr>
         <tr>
           <th scope="row"><code>listbox</code></th>
           <td></td>
@@ -165,9 +222,14 @@
         </tr>
         <tr>
           <td></td>
-          <th scope="row"><code>tabindex=&quot;0&quot;</code></th>
+          <th scope="row"><code>tabindex=&quot;-1&quot;</code></th>
           <td><code>ul</code></td>
-          <td>Includes the listbox in the page tab sequence.</td>
+          <td>
+            <ul>
+              <li>Makes the listbox focusable.</li>
+              <li>The JavaScript sets focus on the listbox when it is displayed.</li>
+            </ul>
+          </td>
         </tr>
         <tr>
           <td></td>
@@ -175,9 +237,14 @@
           <td><code>ul</code></td>
           <td>
             <ul>
-              <li>Tells assistive technologies which of the options, if any, is visually indicated as having keyboard focus.</li>
-              <li>DOM focus remains on the <code>ul</code> element and the idref specified for <code>aria-activedescendant</code> refers to the <code>li</code> element that is visually styled as focused.</li>
+              <li>Set by the JavaScript when it displays and sets focus on the listbox; otherwise is not present.</li>
+              <li>Refers to the option in the listbox that is visually indicated as having keyboard focus.</li>
               <li>When navigation keys, such as <kbd>Down Arrow</kbd>, are pressed, the JavaScript changes the value.</li>
+              <li>Enables assistive technologies to know which element the application regards as focused while DOM focus remains on the <code>ul</code> element.</li>
+              <li>
+                For more information about this focus management technique, see 
+                <a href="../../../#kbd_focus_activedescendant">Using aria-activedescendant to Manage Focus.</a>
+              </li>
             </ul>
           </td>
         </tr>
@@ -216,7 +283,7 @@
       </li>
       <li>
         Javascript:
-        <a href="js/listbox-scrollable.js" type="text/javascript">listbox-scrollable.js</a>
+        <a href="js/listbox-collapsible.js" type="text/javascript">listbox-expandable.js</a>
       </li>
     </ul>
   </section>
