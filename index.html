@@ -718,7 +718,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     <p>
       <a class="logo" href="https://www.w3.org/"><img width="72" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C" alt="W3C"></a>
     </p>
-  <p><!--_hyper: 881063992;--></p>
+  <p><!--_hyper: -230398445;--></p>
   <h1 class="title p-name" id="title" property="dcterms:title"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Authoring Practices 1.1</h1>
   <h2 id="w3c-editor-s-draft-11-december-2017"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time property="dcterms:issued" class="dt-published" datetime="2017-12-11">11 December 2017</time><span class="permalink" typeof="bookmark"><a href="#undefined" aria-label="Permalink for W3C Editor's Draft 11 December 2017" title="Permalink for W3C Editor's Draft 11 December 2017" property="url"><span property="title" content="W3C Editor's Draft 11 December 2017">§</span></a></span></h2>
   <dl>
@@ -2698,10 +2698,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             A submenu's <code>menu</code> element is contained in or owned by it's parent             menuitem.
           </li>
           <li>A parent menuitem has <a href="https://w3c.github.io/aria/aria/aria.html#aria-haspopup" class="property-reference">aria-haspopup</a> set to either <code>menu</code> or <code>true</code>.</li>
-          <li>
-            A parent menuitem has <a href="https://w3c.github.io/aria/aria/aria.html#aria-expanded" class="property-reference">aria-expanded</a> set to <code>false</code> when its child menu is not visible and set to <code>true</code> when the child menu is visible.
-            <strong>(See note below regarding HTML validation.)</strong>
-          </li>
+          <li>A parent menuitem has <a href="https://w3c.github.io/aria/aria/aria.html#aria-expanded" class="property-reference">aria-expanded</a> set to <code>false</code> when its child menu is not visible and set to <code>true</code> when the child menu is visible.</li>
           <li>One of the following approaches is used to enable scripts to move focus among items in a menu as described in <a href="#kbd_general_within" class="sec-ref"><span class="secno">5.6</span> <span class="sec-title"> Keyboard Navigation Inside Components</span></a>:
             <ul>
               <li>The menu container has <code>tabindex</code> set to <code>-1</code> or <code>0</code> and <a href="https://w3c.github.io/aria/aria/aria.html#aria-activedescendant" class="property-reference">aria-activedescendant</a> set to the ID of the focused item. </li>
@@ -2732,20 +2729,10 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             The default value of <code>aria-orientation</code> for a menu is <code>vertical</code>.
           </li>
         </ul>
-        <div class="note"><div role="heading" class="note-title marker" id="h-note-18" aria-level="5"><span>Note</span></div><ol class="">
-          <li>
-            Currently, using aria-expanded on elements with role menuitem triggers HTML validation errors because the ARIA specification does not yet support doing so.
-            The ARIA working group plans to resolve this issue in the next version of the specification.
-            Until a version of ARIA that resolves
-            <a href="https://github.com/w3c/aria/issues/454">the issue</a>
-            becomes a <abbr title="World Wide Web Consortium">W3C</abbr> recommendation, it is safe to ignore these validation errors.
-            Alternatively, since only a few browser and assistive technology combinations exploit this feature of the pattern, it can be omitted from implementations.
-          </li>
-          <li>
-            If <a href="https://w3c.github.io/aria/aria/aria.html#aria-owns" class="property-reference">aria-owns</a> is set on the menu container to include elements that are not DOM children of the container, those elements will appear in the reading order in the sequence they are referenced and after any items that are DOM children.
-            Scripts that manage focus need to ensure the visual focus order matches this assistive technology reading order.
-          </li>
-        </ol></div>
+        <div class="note"><div role="heading" class="note-title marker" id="h-note-18" aria-level="5"><span>Note</span></div><p class="">
+          If <a href="https://w3c.github.io/aria/aria/aria.html#aria-owns" class="property-reference">aria-owns</a> is set on the menu container to include elements that are not DOM children of the container, those elements will appear in the reading order in the sequence they are referenced and after any items that are DOM children.
+          Scripts that manage focus need to ensure the visual focus order matches this assistive technology reading order.
+        </p></div>
       </section>
     </section>
 
