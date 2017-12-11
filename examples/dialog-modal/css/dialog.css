@@ -148,7 +148,7 @@ body:not(.toc-inline) #main_content main, body:not(.toc-inline) #main_content na
 
 /* native <dialog> element uses the ::backdrop pseudo-element */
 /*dialog::backdrop,*/
-.dialog-backdrop {
+.dialog-backdrop.active {
   position: fixed;
   overflow-y: scroll;
   top: 0px;
