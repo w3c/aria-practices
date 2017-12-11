@@ -40,10 +40,3 @@ table.data.attributes tbody td {
     border: 1px solid silver;
 }
 
-@media (min-width: 1300px) { 
-  nav.feedback {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-  } 
-}
