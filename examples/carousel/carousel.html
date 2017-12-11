@@ -1,0 +1,464 @@
+<!--
+*   File:   carousel.html
+*
+*   Desc:   Carousel Tablist group widget that implements ARIA Authoring Practices
+*
+*   Author(s): Jon Gunderson, Nicholas Hoyt, and Mark McCarthy
+*/
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Image Carousel Example | WAI-ARIA Authoring Practices 1.1</title>
+
+  <!--  Core js and css shared by all examples; do not modify when using this template. -->
+  <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
+  <link rel="stylesheet" href="../css/core.css">
+  <script src="../js/examples.js"></script>
+  <script src="../js/highlight.pack.js"></script>
+  <script src="../js/app.js"></script>
+
+  <!-- example js and css files -->
+  <link rel="stylesheet" href="css/carousel.css">
+  <script src="js/carouselTablist.js" type="text/javascript"></script>
+  <script src="js/carouselTab.js" type="text/javascript"></script>
+  <script src="js/carouselButtons.js" type="text/javascript"></script>
+  <script src="js/rotationButton.js" type="text/javascript"></script>
+
+</head>
+<body>
+  <main>
+    <h1>Image Carousel Example</h1>
+    <p>
+      Following is an example of an image slideshow that demonstrates the
+      <a href="../../#carousel">image carousel design pattern.</a>
+    </p>
+    <p>Similar examples include: </p>
+    <ul>
+      <li>none
+      </li>
+    </ul>
+    <section>
+       <h2 id="ex_label">Example</h2>
+          <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
+          <div id="ex1">
+
+            <div id="myCarousel" class="carousel slide">
+              <aside><button class="rotator">Pause Carousel</button></aside>
+
+              <div class="carousel-inner">
+                <!-- Indicators -->
+                <ol role="tablist" class="carousel-indicators">
+                  <li role="tab" class="tab focus" aria-selected="true" tabindex="0" aria-labelledby="rick" aria-controls="carousel-item-1"></li>
+                  <li role="tab" class="tab" aria-selected="false" tabindex="0" aria-labelledby="england" aria-controls="carousel-item-2"></li>
+                  <li role="tab" class="tab" aria-selected="false" tabindex="0" aria-labelledby="pbs" aria-controls="carousel-item-3"></li>
+                  <li role="tab" class="tab" aria-selected="false" tabindex="0" aria-labelledby="foyle" aria-controls="carousel-item-4"></li>
+                  <li role="tab" class="tab" aria-selected="false" tabindex="0" aria-labelledby="britcom" aria-controls="carousel-item-5"></li>
+                  <li role="tab" class="tab" aria-selected="false" tabindex="0" aria-labelledby="will" aria-controls="carousel-item-6"></li>
+                </ol>
+
+                <div role="tabpanel" id="carousel-item-1" class="carousel-item active" tabindex="0" aria-labelledby="rick">
+
+                  <div class="carousel-image">
+                    <a href="http://www.pbs.org/about/news/archive/2015/pbs-most-trusted/">
+                      <img src="images/amsterdamslide__800x600.jpg" alt="Red Light Walking Tour in Amsterdam" />
+                    </a>
+                  </div>
+
+                  <div class="carousel-caption">
+
+                    <h2>
+                      <a href="travel-rick.html" id="rick">
+                         Dynamic Europe: Amsterdam, Prague, Berlin
+                      </a>
+                    </h2>
+
+                    <div class="hidden-xs hidden-sm">
+                      <p>7 pm Tuesday, March 3, on TV</p>
+                    </div>
+                  </div>  <!-- .carousel-caption -->
+                </div>   <!-- .item -->
+
+                <div role="tabpanel" id="carousel-item-2" class="carousel-item" tabindex="0" aria-labelledby="england">
+
+                  <div class="carousel-image">
+                      <img src="images/lands-endslide__800x600.jpg" alt="Land&#039;s End in Cornwall"/>
+                  </div>
+
+                  <div class="carousel-caption">
+
+                    <h2>
+                      <a href="travel-england.html" id="england">
+                        Travel to Southwest England and Paris
+                      </a>
+                    </h2>
+
+                    <div>
+                      <p>Sept. 14 to Sept. 24 or 27</p>
+                    </div>
+                  </div>  <!-- .carousel-caption -->
+                </div>   <!-- .item -->
+
+                <div role="tabpanel" id="carousel-item-3" class="carousel-item" tabindex="0" aria-labelledby="pbs">
+
+                  <div class="carousel-image">
+                    <img src="images/trustslide-2__800x600.jpg" alt="Mom and daughter play Daniel Tiger game on notebook computer."/>
+                  </div>
+
+                  <div class="carousel-caption">
+
+                    <h2>
+                      <a href="pbs-survey.html" id="pbs">
+                        Survey confirms that TV  is America&#8217;s most trusted institution
+                      </a>
+                    </h2>
+
+                    <div>
+
+                    </div>
+                  </div>  <!-- .carousel-caption -->
+                </div>   <!-- .item -->
+
+                <div role="tabpanel" id="carousel-item-4" class="carousel-item" tabindex="0" aria-labelledby="foyle">
+
+                  <div class="carousel-image">
+                      <img src="images/foyleswarslide__800x600.jpg" alt="A man in a suit and fedora and a woman with coiffed hair look sternly into the camera."/>
+                  </div>
+
+                  <div class="carousel-caption">
+
+                    <h2>
+                      <a href="foyles-war.html" id="foyle">
+                        Foyle&#8217;s War Revisited
+                      </a>
+                    </h2>
+
+                    <div>
+                      <p>8 pm Sunday, March 8, on TV: Sneak peak at the final season.</p>
+                    </div>
+                  </div>  <!-- .carousel-caption -->
+                </div>   <!-- .item -->
+
+                <div role="tabpanel" id="carousel-item-5" class="carousel-item" tabindex="0" aria-labelledby="britcom">
+
+                  <div class="carousel-image">
+                      <img src="images/britcomdavidslide__800x600.jpg" alt="British flag with WILL-TV host David Thiel."/>
+                  </div>
+
+                  <div class="carousel-caption">
+
+                    <h2>
+                      <a href="/highlights/story/great-britcom-vote-all-star-edition" id="britcom">
+                        Great Britain Vote: 7 pm Sat.
+                      </a>
+                    </h2>
+
+                    <div>
+                    </div>
+                  </div>  <!-- .carousel-caption -->
+                </div>   <!-- .item -->
+
+                <div role="tabpanel" id="carousel-item-6" class="carousel-item"  tabindex="0" aria-labelledby="will">
+
+                  <div class="carousel-image">
+                      <img src="images/mag800-2__800x600.jpg" alt="Mid-American Gardener panelists on the set" />
+                  </div>
+
+                  <div class="carousel-caption">
+
+                    <h2>
+                      <a href="http://www.will.illinois.edu/midamericangardener" id="will">
+                        Mid-American Gardener: Thursdays at 7 pm
+                      </a>
+                    </h2>
+
+                    <div class="hidden-xs hidden-sm">
+                      <p>Watch the latest episodes.</p>
+                    </div>
+                  </div>  <!-- .carousel-caption -->
+                </div>   <!-- .item -->
+
+                <a class="previous carousel-control" role="button" tabindex="0" aria-label="Previous Slide">
+                <span>&ltrif;</span>
+                </a>
+
+                <a class="next carousel-control" role="button" tabindex="0" aria-label="Next Slide">
+                <span>&rtrif;</span>
+                </a>
+
+              </div> <!-- carousel-inner -->
+
+
+            </div><!-- /.carousel -->
+
+            <div class="col-sm-1"></div>
+          </div>
+
+          <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
+    </section>
+
+    <section>
+        <h2 id="kbd_label">Keyboard Support</h2>
+        <h3 id="kbd1_label">Carousel Tabs</h3>
+        <table aria-labelledby="kbd1_label" class="def">
+          <thead>
+            <tr>
+              <th>Key</th>
+              <th>Function</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th><kbd>Right Arrow</kbd></th>
+              <td>
+                <ul>
+                  <li>Moves focus to the next tabpanel (e.g.).</li>
+                  <li>If last tabpanel is focused, focus moves to the first tabpanel.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <th><kbd>Left Arrow</kbd></th>
+              <td>
+                <ul>
+                  <li>Moves focus to the previous tabpanel.</li>
+                  <li>If first tabpanel is focused, focus moves to the last tabpanel.</li>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <h3 id="kbd2_label">Navigation Buttons</h3>
+        <table aria-labelledby="kbd2_label" class="def">
+          <thead>
+            <tr>
+              <th>Key</th>
+              <th>Function</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th><kbd>Space</kbd><br><kbd>Enter</kbd></th>
+              <td>Moves focus to corresponding tabpanel (e.g. slide).<br>Left button moves to previous tabpanel. Right button moves to next tabpanel.</td>
+            </tr>
+          </tbody>
+        </table>
+        <h3 id="kbd3_label">Start/Pause Button</h3>
+        <table aria-labelledby="kbd3_label" class="def">
+          <thead>
+            <tr>
+              <th>Key</th>
+              <th>Function</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th><kbd>Space</kbd><br><kbd>Enter</kbd></th>
+              <td>Button is clicked.<br>If carousel is running, button pauses it. If carousel is paused, carousel will restart.</td>
+            </tr>
+          </tbody>
+        </table>
+    </section>
+
+    <section>
+      <h2 id="rps_label">Role, Property, State, and Tabindex Attributes</h2>
+      <table aria-labelledby="rps_label" class="data attributes">
+        <thead>
+          <tr>
+            <th scope="col">Role</th>
+            <th scope="col">Attribute</th>
+            <th scope="col">Element</th>
+            <th scope="col">Usage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">
+              <code>tablist</code>
+            </th>
+            <td></td>
+            <td>
+              <code>div</code>
+            </td>
+            <td>Identifies a list of tabs. Each tab controls the display of the slide.</td>
+          </tr>
+          <tr>
+            <th scope="row">
+              <code>tab</code>
+            </th>
+            <td></td>
+            <td>
+              <code>li</code>
+            </td>
+            <td>
+              <ul>
+                <li>Indicates which <code>tabpanel</code> (e.g. slide) in the carousel is visible.</li>
+                <li>When focused, it automatically displays the corresponding <code>tabpanel</code> (e.g. slide).</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>
+            </td>
+            <th scope="row"><code>aria-selected=<q>true</q></code></th>
+            <td><code>li</code>
+            </td>
+            <td>
+              <code>aria-selected=true</code> indicates that the <code>tabpanel</code> (e.g. slide) associated with the tab is currently visble.
+            </td>
+          </tr>
+          <tr>
+            <td>
+            </td>
+            <th scope="row"><code>aria-selected=<q>false</q></code></th>
+            <td>
+              <code>li</code>
+            </td>
+            <td>
+              <code>aria-selected=false</code> indicates that the <code>tabpanel</code> (e.g. slide) associated with the tab is <strong>not</strong> currently visble.
+            </td>
+          </tr>
+            <tr>
+              <td>
+              </td>
+              <th scope="row"><code>aria-labelledby=<q>[IDREF]</q></code></th>
+              <td>
+                <code>li</code>
+              </td>
+              <td>
+                <ul>
+                  <li><code>aria-labelledby=[IDREF]</code> provides an accessible name for the <code>tab</code>.</li>
+                  <li><code>[IDREF]</code> references the <code>id</code> attribute of the <code>h2</code> element in the corresponding <code>tabpanel</code>.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+            <td>
+            </td>
+            <th scope="row"><code>aria-controls=<q>[IDREF]</q></code></th>
+            <td>
+              <code>li</code>
+            </td>
+            <td>
+              <ul>
+                <li><code>aria-controls=[IDREF]</code> references the <code>id</code> attribute of the corresponding <code>tabpanel</code>.</li>
+                <li>The <code>aria-controls</code> provides a programmatic reference for the scripting to hide and show each <code>tabpanel</code>.</li>
+                <li>The <code>aria-controls</code> relationship provides a way for assisitive technologies to provide enhanced navigation.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+          <td></td>
+          <th scope="row"><code>tabindex=0</code></th>
+          <td>
+            <code>li</code>
+          </td>
+          <td>
+            <ul>
+              <li>The <code>tab</code> that is selected.</li>
+              <li>See <a href="../../../#kbd_roving_tabindex">roving tabindex</a> for more information.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td>
+          </td>
+          <th scope="row"><code>tabindex=-1</code></th>
+          <td>
+            <code>li</code>
+          </td>
+          <td>
+            <ul>
+              <li>All the <code>tabs</code> except the one that is selected.</li>
+              <li>See <a href="../../../#kbd_roving_tabindex">roving tabindex</a> for more information.</li>
+            </ul>
+          </td>
+        </tr>
+
+        <tr>
+          <th scope="row">
+            <code>tabpanel</code>
+          </th>
+          <td></td>
+          <td>
+            <code>div</code>
+          </td>
+          <td>
+            <ul>
+              <li>Indicates the element serves as a container for a tab panel.</li>
+              <li>Is hidden unless its associated <code>tab</code> control is activated.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <th scope="row"><code>aria-label</code></th>
+          <td>
+            <code>a, div</code>
+          </td>
+          <td>
+            <ul>
+              <li><code>aria-label</code> defines the string element that labels the current element.</li>
+              <li><code>aria-label</code> provides the user with a recognizable name for the current element.</li>
+            </ul>
+          </td>
+      </tr>
+      <tr>
+        <td></td>
+        <th scope="row"><code>aria-labelledby</code></th>
+          <td>
+            <code>div</code>
+          </td>
+          <td>
+              <ul>
+                <li>The purpose of <code>aria-labelledby</code> is the same as that of <code>aria-label</code>.</li>
+              </ul>
+          </td>
+      </tr>
+
+      <tr>
+        <th scope="row">
+          <code>button</code>
+        </th>
+        <td></td>
+        <td>
+          <code>a</code>
+        </td>
+        <td>
+          <ul>
+            <li>These buttons are actually links, though in this case, do not refer to anywhere on this page or elsewhere.</li>
+            <li>Generally, links redirect focus elsewhere. In this case, however, focus remains on the button when clicked.</li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  </section>
+
+  <section>
+        <h2>Javascript and CSS Source Code</h2>
+        <ul>
+          <li>CSS: <a href="css/carousel.css" type="tex/css">carousel.css</a></li>
+          <li>Javascript: <a href="js/carousel.js" type="text/javascript">carousel.js</a></li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 id="sc1_label">HTML Source Code</h2>
+        <div role="separator" id="sc1_start_sep" aria-labelledby="sc1_start_sep sc1_label" aria-label="Start of"></div>
+        <pre><code id="sc1"></code></pre>
+        <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of"></div>
+        <script>
+          sourceCode.add('sc1', 'ex1');
+          sourceCode.make();
+        </script>
+    </section>
+
+  </main>
+  <nav>
+    <a href="../../#caousel">Image Carousel Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
+  </nav>
+</body>
+</html>

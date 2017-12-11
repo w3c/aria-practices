@@ -1,0 +1,182 @@
+.carousel img {
+  height: 100% !important;
+  width: 100% !important
+}
+
+.carousel-item { /*.carousel*/
+  display: none;
+  max-height: 400px;
+  max-width: 900px;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.carousel .carousel-item.active {
+    display: block;
+}
+
+/* More like bootstrap, less accessible*/
+
+.carousel-inner {
+  max-width: 900px;
+  position: relative;
+}
+
+
+.rotator{
+    display: block;
+    font-size: 20px;
+    width: auto;
+    left: -300em;
+    margin-bottom: 10px;
+    height: auto;
+    position: relative;
+    top: 5px;
+    right: -20px;
+}
+
+.rotator:focus{
+  display: block;
+  position: relative;
+  font-size: 20px;
+  width: auto;
+  left: 0px;
+  margin-bottom: 10px;
+  height: auto;
+  position: relative;
+  top: 5px;
+  right: -20px;
+}
+
+.carousel-inner .carousel-caption h2 a {
+  color: #fff;
+  font-weight: 600
+}
+
+.carousel-inner .carousel-caption p {
+  font-size: 1em;
+  line-height: 1.5;
+  margin-bottom: 0
+}
+
+.carousel-inner .carousel-caption {
+  background-color: rgba(0, 0, 0, 0.4);
+  bottom: 0;
+  left: 0;
+  padding: 3% 3% 50px;
+  right: 0;
+  text-shadow: none
+}
+
+.carousel-caption {
+  position: absolute;
+  right: 15%;
+  bottom: 0px;
+  left: 15%;
+  z-index: 10;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0,0,0,.6);
+}
+
+.carousel-inner, .carousel-item, .carousel-slide {
+  max-height: 400px;
+}
+
+.carousel-indicators {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 15;
+  text-align: center;
+  list-style: none;
+}
+
+ol li {
+  border: 2px solid white;
+	border-radius: 50%;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
+  -webkit-box-shadow: 0 0 1px 0px rgb(255, 255, 255);
+  box-shadow: 0 0 1px 0px rgb(255, 255, 255);
+  width: 10px;
+  height: 10px;
+  z-index: 15;
+  bottom: 0;
+  margin: 0 2px;
+  display: inline-block;
+  float: left;
+}
+
+ol li.focus {
+  background-color: white;
+  border-radius: 50%;
+  outline-style: dashed;
+  outline-color: white;
+  outline-width: medium;
+  padding-right:2px;
+}
+
+.carousel .carousel-control {
+    font-size: 200%;
+    font-weight: bold;
+}
+
+a.carousel-control {
+  position: absolute;
+  top: 0;
+  z-index: 10;
+  font-size: 200%;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0,0,0,.6);
+}
+a.carousel-control span {
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  top: 40%;
+  font-size: 200%;
+  opacity: .9;
+}
+
+a.carousel-control.next span {
+  position: relative;
+  display: inline-block;
+  top: 40%;
+  font-size: 200%;
+  opacity: .9;
+}
+
+a.carousel-control.previous {
+  bottom: 0;
+  background-image: linear-gradient(to right,rgba(0,0,0,.5) 0,rgba(0,0,0,.0001) 100%);
+  width: 15%;
+}
+
+a.carousel-control.next {
+  right: 0;
+  bottom: 0;
+  background-image: linear-gradient(to right,rgba(0,0,0,.0001) 0,rgba(0,0,0,.5) 100%);
+  width: 15%;
+}
+
+a.carousel-control:hover, a.carousel-control:focus {
+  border: 2px solid #6495ED;
+  color:#fff;
+  text-decoration:none;
+  filter:alpha(opacity=90);
+  outline:0;
+  opacity:.9;
+}
+
+.carousel [role="tab"][aria-selected="true"] {
+    color: white;
+}
+
+.carousel [role="tab"][aria-selected="false"] {
+  color: white;
+}
