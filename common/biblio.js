@@ -258,5 +258,26 @@ var biblio = {
 		"deliveredBy": [
 			"http://www.w3.org/WAI/PF/"
 		]
-	}
+	},
+    "wai-aria-1.1": {
+        "authors": [
+            "Joanmarie Diggs",
+            "Shane McCarron",
+            "Michael Cooper",
+            "Richard Schwerdtfeger",
+            "James Craig"
+        ],
+        "href": "https://www.w3.org/TR/wai-aria-1.1/",
+        "title": "Accessible Rich Internet Applications (WAI-ARIA) 1.1",
+        "status": "REC",
+        "publisher": "W3C",
+        "deliveredBy": [{
+            "url": "https://www.w3.org/WAI/ARIA/",
+            "shortname": "wai_aria"
+        }],
+        "edDraft": "https://w3c.github.io/aria/",
+        "repository": "https://github.com/w3c/aria",
+        "id": "wai-aria-1.1",
+        "date": "14 December 2017"
+    },
 };
