@@ -5,7 +5,7 @@ var respecConfig = {
   permalinkEdge: true,
   permalinkHide: false,
   // Specification status (e.g., WD, LC, NOTE, etc.). If in doubt use ED.
-  specStatus: 'NOTE',
+  specStatus: 'WG-NOTE',
   // crEnd: "2012-04-30",
   // perEnd: "2013-07-23",
   // publishDate: "2013-08-22",
