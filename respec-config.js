@@ -5,7 +5,7 @@ var respecConfig = {
   permalinkEdge: true,
   permalinkHide: false,
   // Specification status (e.g., WD, LC, NOTE, etc.). If in doubt use ED.
-  specStatus: 'ED',
+  specStatus: 'NOTE',
   // crEnd: "2012-04-30",
   // perEnd: "2013-07-23",
   // publishDate: "2013-08-22",
@@ -18,14 +18,14 @@ var respecConfig = {
 
   // If you wish the publication date to be other than today,
   // set publishDate.
-  // publishDate: "2009-08-06",
+  publishDate: "2017-12-14",
   copyrightStart: '2015',
 
   // If there is a previously published draft, uncomment this
   // and set its YYYY-MM-DD date and its maturity status.
   //
-  // previousPublishDate:  "",
-  // previousMaturity:  "",
+  previousPublishDate:  "2017-06-28",
+  previousMaturity:  "WD",
   // prevRecURI: "",
   // previousDiffURI: "",
 
@@ -98,18 +98,21 @@ var respecConfig = {
     'ED': 'https://w3c.github.io/aria/aria/aria.html',
     'FPWD': 'https://www.w3.org/TR/wai-aria-1.1/',
     'WD': 'https://www.w3.org/TR/wai-aria-1.1/',
-    'REC': 'https://www.w3.org/TR/wai-aria/'
+    'NOTE': 'https://www.w3.org/TR/wai-aria-1.1/',
+    'REC': 'https://www.w3.org/TR/wai-aria-1.1/'
   },
   accNameURLs: {
     'ED': 'https://w3c.github.io/aria/accname-aam/accname-aam.html',
     'WD': 'https://www.w3.org/TR/accname-aam-1.1/',
     'FPWD': 'https://www.w3.org/TR/accname-aam-1.1/',
+    'NOTE': 'https://www.w3.org/TR/accname-aam-1.1/',
     'REC': 'https://www.w3.org/TR/accname-aam-1.1/'
   },
   coreMappingURLs: {
     'ED': 'https://w3c.github.io/aria/core-aam/core-aam.html',
     'WD': 'https://www.w3.org/TR/core-aam-1.1/',
     'FPWD': 'https://www.w3.org/TR/core-aam-1.1/',
+    'NOTE': 'https://www.w3.org/TR/core-aam-1.1/',
     'REC': 'https://www.w3.org/TR/core-aam-1.1/'
   },
 
