@@ -1094,10 +1094,6 @@
     <section class="widget" id="feed">
       <h3>Feed</h3>
       <p>
-        <strong>NOTE:</strong> Please provide feedback on this section in
-        <a href="https://github.com/w3c/aria-practices/issues/560">issue 560.</a>
-      </p>
-      <p>
         A <a href="#feed" class="role-reference">feed</a> is a section of a page that automatically loads new sections of content as the user scrolls.
         The sections of content in a feed are presented in <a href="#article" class="role-reference">article</a> elements.
         So, a feed can be thought of as a dynamic list of articles that often appears to scroll infinitely.
@@ -1902,10 +1898,7 @@
             A submenu's <code>menu</code> element is contained in or owned by it's parent             menuitem.
           </li>
           <li>A parent menuitem has <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set to either <code>menu</code> or <code>true</code>.</li>
-          <li>
-            A parent menuitem has <a href="#aria-expanded" class="property-reference">aria-expanded</a> set to <code>false</code> when its child menu is not visible and set to <code>true</code> when the child menu is visible.
-            <strong>(See note below regarding HTML validation.)</strong>
-          </li>
+          <li>A parent menuitem has <a href="#aria-expanded" class="property-reference">aria-expanded</a> set to <code>false</code> when its child menu is not visible and set to <code>true</code> when the child menu is visible.</li>
           <li>One of the following approaches is used to enable scripts to move focus among items in a menu as described in <a href="#kbd_general_within"></a>:
             <ul>
               <li>The menu container has <code>tabindex</code> set to <code>-1</code> or <code>0</code> and <a href="#aria-activedescendant" class="property-reference">aria-activedescendant</a> set to the ID of the focused item. </li>
@@ -1936,20 +1929,10 @@
             The default value of <code>aria-orientation</code> for a menu is <code>vertical</code>.
           </li>
         </ul>
-        <ol class="note">
-          <li>
-            Currently, using aria-expanded on elements with role menuitem triggers HTML validation errors because the ARIA specification does not yet support doing so.
-            The ARIA working group plans to resolve this issue in the next version of the specification.
-            Until a version of ARIA that resolves
-            <a href="https://github.com/w3c/aria/issues/454">the issue</a>
-            becomes a W3C recommendation, it is safe to ignore these validation errors.
-            Alternatively, since only a few browser and assistive technology combinations exploit this feature of the pattern, it can be omitted from implementations.
-          </li>
-          <li>
-            If <a href="#aria-owns" class="property-reference">aria-owns</a> is set on the menu container to include elements that are not DOM children of the container, those elements will appear in the reading order in the sequence they are referenced and after any items that are DOM children.
-            Scripts that manage focus need to ensure the visual focus order matches this assistive technology reading order.
-          </li>
-        </ol>
+        <p class="note">
+          If <a href="#aria-owns" class="property-reference">aria-owns</a> is set on the menu container to include elements that are not DOM children of the container, those elements will appear in the reading order in the sequence they are referenced and after any items that are DOM children.
+          Scripts that manage focus need to ensure the visual focus order matches this assistive technology reading order.
+        </p>
       </section>
     </section>
 
@@ -2016,15 +1999,8 @@
       <section class="notoc">
         <h4>Examples</h4>
         <ul>
-          <li>
-            <a href="examples/radio/radio-1/radio-1.html">Radio group example using roving
-              tabindex.</a>
-          </li>
-          <li>
-            <a href="examples/radio/radio-2/radio-2.html">
-              Radio group example using managed focus with <code>aria-activedescendant</code>.
-            </a>
-          </li>
+          <li><a href="examples/radio/radio-1/radio-1.html">Radio Group Example Using Roving tabindex</a></li>
+          <li><a href="examples/radio/radio-2/radio-2.html">Radio Group Example Using aria-activedescendant</a></li>
         </ul>
       </section>
 
@@ -2304,10 +2280,6 @@
     <section class="widget" id="table">
       <h3>Table</h3>
       <p>
-        Please provide feedback on this section in
-        <a href="https://github.com/w3c/aria-practices/issues/526">issue 526.</a>
-      </p>
-      <p>
         Like an HTML <code>table</code> element, a WAI-ARIA <a href="#table" class="role-reference">table</a> is a static tabular structure containing one or more rows that each contain one or more cells; it is not an interactive widget.
         Thus, its cells are not focusable or selectable.
         The <a href="#grid">grid pattern</a> is used to make an interactive widget that has a tabular structure.
@@ -2536,9 +2508,9 @@
     <section class="widget" id="tooltip">
       <h3>Tooltip Widget</h3>
       <p>
-        Work on this design pattern is in progress and tracked by
+        <strong>NOTE:</strong> This design pattern is work in progress; it does not yet have task force consensus.
+        Progress and discussions are captured in 
         <a href="https://github.com/w3c/aria-practices/issues/128">issue 128.</a>
-        Please provide feedback in that issue.
       </p>
       <p>
         A tooltip is a popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.
@@ -2768,7 +2740,9 @@
     <section class="widget" id="windowsplitter">
       <h3>Window Splitter</h3>
       <p>
-        Work is in progress on this design pattern and is tracked by
+        <strong>NOTE:</strong> ARIA 1.1 introduced changes to the separator role so it behaves as a widget when focusable.
+        While this pattern has been revised to match the ARIA 1.1 specification, the task force will not complete its review until a functional example that matches the ARIA 1.1 specification is complete.
+        Progress on this pattern is tracked by
         <a href="https://github.com/w3c/aria-practices/issues/129">issue 129.</a>
       </p>
       <p>
@@ -4526,6 +4500,61 @@
 
     <section id="change_log" class="appendix">
       <h3>Change History</h3>
+      <section id="change_log_2017_december" class="appendix">
+        <h4>Changes in December 2017 Publication as Note</h4>
+        <ul>
+          <li>
+            Added the following:
+            <ul>
+              <li>Read Me First section</li>
+              <li>Combobox pattern</li>
+              <li>Combobox examples: 3 ARIA 1.0 style and 4 ARIA 1.1 style</li>
+              <li>Disclosure pattern</li>
+              <li>Feed example display page</li>
+              <li>Grid and table properties guidance section</li>
+              <li>Collapsible dropdown listbox example</li>
+              <li>Multi-thumb slider examples</li>
+              <li>Table pattern and example</li>
+            </ul>
+          </li>
+          <li>The top of each example page now includes a set of four related links to:
+            <ul>
+              <li><Q>Browser and Assistive Technology Support</Q> section of <q>Read Me First</q></li>
+              <li><q>Report Issue</q> page in the Github repository</li>
+              <li><q>Related Issues</q> listed in the Github project for the example</li>
+              <li><q>Design Pattern</q> section that applies to the example</li>
+            </ul>
+          </li>
+          <li>All Javascript and CSS files used by the examples include the correct license and copyright statements.</li>
+          <li>Significant revisions of guidance and implementation were made to the following sections, design patterns, and examples:
+            <ul>
+              <li>Introduction</li>
+              <li>Keyboard guidance for Mac OS</li>
+              <li>Accordion example</li>
+              <li>Mixed checkbox examples</li>
+              <li>Scrollable layout grid example</li>
+              <li>Listbox examples</li>
+              <li>Modal dialog example</li>
+              <li>editor menubar example</li>
+              <li>Navigation menubar example</li>
+              <li>Menu button examples</li>
+              <li>Spinbutton pattern</li>
+              <li>Toolbar example</li>
+              <li>Tree view examples</li>
+            </ul>
+          </li>
+        </ul>
+        <p>Also see:</p>
+        <ul>
+          <li>
+            <a href="https://github.com/w3c/aria-practices/milestone/6">1.1 APG Release 1 milestone,</a>
+            which lists the GitHub issues that document discussions and reviews of changes included in the December 2017 publication.
+          </li>
+          <li>
+            <a href="https://github.com/w3c/aria-practices/wiki/Change-Log-for-December-2017-Note-Release-1">Detailed change log with links to all commits that are new in the December 2017 publication as a Note since the June 2017 working draft.</a>
+          </li>
+        </ul>
+      </section>
       <section id="change_log_2017_june" class="appendix">
         <h4>Changes in June 2017 Working Draft</h4>
         <ul>
