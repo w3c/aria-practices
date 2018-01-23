@@ -23,6 +23,10 @@ body:not(.toc-inline) {
   padding: 1.6em 0 2em;
 }
 
+.dialog-active #base_window_layer {
+  user-select: none;
+}
+
 #base_window_layer main, #base_window_layer nav {
   max-width: 50em;
   margin: auto;
