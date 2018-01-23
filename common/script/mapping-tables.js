@@ -1,6 +1,18 @@
-var respecEvents = respecEvents || false;
+//check for require() and respec context
+if (typeof require !== "undefined") {
+	/* globals $, require */
+	require(["core/pubsubhub"], function(respecEvents) {
+		mapTables(respecEvents);
+	});
+} else {
+	$(document).ready(function() {
+		mapTables(false);
+	});
+}
 
-(function() {
+function mapTables(respecEvents) {
+
+  "use strict";
 
 	var mappingTableInfos = [];
 
@@ -82,7 +94,7 @@ var respecEvents = respecEvents || false;
 				//remove the tr's @id since same id will be used in the relevant summary element
 				$row.removeAttr('id');
 				//store the row's cells in array rowCells
-				rowCells = [];
+				var rowCells = [];
 				//add row cells to array rowCells for use in the details' table
 				$('td', $row).each(function() {
 					rowCells.push($(this).html());
@@ -248,6 +260,6 @@ var respecEvents = respecEvents || false;
 			});
 		});
 	} else {
-		$(document).ready(mappingTables);
+		mappingTables();
 	}
-}());
+}
