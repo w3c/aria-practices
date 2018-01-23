@@ -131,6 +131,8 @@ aria.Utils = aria.Utils || {};
         'Dialog() requires a DOM element with ARIA role of dialog.');
     }
 
+    document.body.classList.add('dialog-active');
+
     // Wrap in an individual backdrop element if one doesn't exist
     // Native <dialog> elements use the ::backdrop pseudo-element, which
     // works similarly.
@@ -291,6 +293,10 @@ aria.Utils = aria.Utils || {};
     var topDialog = aria.getCurrentDialog();
     if (topDialog.dialogNode.contains(closeButton)) {
       topDialog.close();
+    }
+
+    if (!aria.OpenDialogList.length) {
+      document.body.classList.remove('dialog-active');
     }
   }; // end closeDialog
 
