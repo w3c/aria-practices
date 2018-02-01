@@ -11,32 +11,32 @@
 *   @constructor MenubarAction
 *
 *   @desc
-*       Wrapper object for a menubar (with nested submenus of links)
+*       Wrapper object for a menubar
 *
 *   @param domNode
-*       The DOM element node that serves as the menubar container. Each
-*       child element of menubarNode that represents a menubaritem must
-*       be an A element
+*       The DOM element node that serves as the menubar container.
+*       Each child element of domNode that represents a menubaritem
+*       must be an A element.
 */
 var MenubarAction = function (domNode) {
-  var elementChildren,
-    msgPrefix = 'Menubar constructor argument menubarNode ';
+  var msgPrefix = 'Menubar constructor argument domNode ';
 
-  // Check whether menubarNode is a DOM element
+  // Check whether domNode is a DOM element
   if (!domNode instanceof Element) {
     throw new TypeError(msgPrefix + 'is not a DOM Element.');
   }
 
-  // Check whether menubarNode has descendant elements
+  // Check whether domNode has descendant elements
   if (domNode.childElementCount === 0) {
     throw new Error(msgPrefix + 'has no element children.');
   }
-  // Check whether menubarNode has A elements
-  e = domNode.firstElementChild;
+
+  // Check whether domNode's descendant elements contain A elements
+  var e = domNode.firstElementChild;
   while (e) {
     var menubarItem = e.firstElementChild;
-    if (e && menubarItem && menubarItem.tagName !== 'A') {
-      throw new Error(msgPrefix + 'has child elements are not A elements.');
+    if (menubarItem && menubarItem.tagName !== 'A') {
+      throw new Error(msgPrefix + 'has child elements that are not A elements.');
     }
     e = e.nextElementSibling;
   }
@@ -48,9 +48,6 @@ var MenubarAction = function (domNode) {
 
   this.firstItem = null; // see Menubar init method
   this.lastItem = null; // see Menubar init method
-
-  this.hasFocus = false; // see MenubarItem handleFocus, handleBlur
-  this.hasHover = false; // see Menubar handleMouseover, handleMouseout
 };
 
 /*
@@ -58,24 +55,24 @@ var MenubarAction = function (domNode) {
 *
 *   @desc
 *       Adds ARIA role to the menubar node
-*       Traverse menubar children for A elements to configure each A element as a ARIA menuitem
+*       Traverse menubar children for A elements to configure each A element as an ARIA menuitem
 *       and populate menuitems array. Initialize firstItem and lastItem properties.
 */
 MenubarAction.prototype.init = function (actionManager) {
-  var menubarItem, childElement, menuElement, textContent, numItems;
+  var menubarItem, menuElement, textContent, numItems;
 
   this.actionManager = actionManager;
 
   this.domNode.setAttribute('role', 'menubar');
 
-  // Traverse the element children of menubarNode: configure each with
+  // Traverse the element children of the menubar domNode: configure each with
   // menuitem role behavior and store reference in menuitems array.
-  e = this.domNode.firstElementChild;
+  var e = this.domNode.firstElementChild;
 
   while (e) {
-    var menuElement = e.firstElementChild;
+    menuElement = e.firstElementChild;
 
-    if (e && menuElement && menuElement.tagName === 'A') {
+    if (menuElement && menuElement.tagName === 'A') {
       menubarItem = new MenubarItemAction(menuElement, this);
       menubarItem.init();
       this.menubarItems.push(menubarItem);
@@ -99,11 +96,10 @@ MenubarAction.prototype.init = function (actionManager) {
 
 MenubarAction.prototype.setFocusToItem = function (newItem) {
   var flag = false;
-  var newItem;
   for (var i = 0; i < this.menubarItems.length; i++) {
     var mbi = this.menubarItems[i];
-    if (mbi.domNode.tabIndex == 0) {
-      flag = mbi.domNode.getAttribute('aria-expanded') === 'true';
+    if (mbi.domNode.tabIndex === 0) {
+      flag = mbi.popupMenu && mbi.popupMenu.isOpen();
     }
     mbi.domNode.tabIndex = -1;
     if (mbi.popupMenu) {
@@ -124,8 +120,7 @@ MenubarAction.prototype.setFocusToLastItem = function (flag) {
 };
 
 MenubarAction.prototype.setFocusToPreviousItem = function (currentItem) {
-
-  var index;
+  var newItem, index;
 
   if (currentItem === this.firstItem) {
     newItem = this.lastItem;
@@ -136,11 +131,10 @@ MenubarAction.prototype.setFocusToPreviousItem = function (currentItem) {
   }
 
   this.setFocusToItem(newItem);
-
 };
 
 MenubarAction.prototype.setFocusToNextItem = function (currentItem) {
-  var index;
+  var newItem, index;
 
   if (currentItem === this.lastItem) {
     newItem = this.firstItem;
@@ -150,7 +144,6 @@ MenubarAction.prototype.setFocusToNextItem = function (currentItem) {
     newItem = this.menubarItems[ index + 1 ];
   }
   this.setFocusToItem(newItem);
-
 };
 
 MenubarAction.prototype.setFocusByFirstCharacter = function (currentItem, char) {

@@ -8,37 +8,26 @@
 */
 
 /*
-*   @constructor MenubarItem
+*   @constructor MenubarItemAction
 *
 *   @desc
-*       Object that configures menu item elements by setting tabIndex
+*       Object that configures menubar item elements by setting tabIndex
 *       and registering itself to handle pertinent events.
 *
-*       While menuitem elements handle many keydown events, as well as
-*       focus and blur events, they do not maintain any state variables,
-*       delegating those responsibilities to its associated menu object.
-*
-*       Consequently, it is only necessary to create one instance of
-*       MenubarItem from within the menu object; its configure method
-*       can then be called on each menuitem element.
-*
 *   @param domNode
-*       The DOM element node that serves as the menu item container.
-*       The menuObj PopupMenu is responsible for checking that it has
+*       The DOM element node that serves as the menubar item container.
+*       The menubarObj is responsible for checking that it has
 *       requisite metadata, e.g. role="menuitem".
 *
-*   @param menuObj
-*       The PopupMenu object that is a delegate for the menu DOM element
-*       that contains the menuitem element.
+*   @param menubarObj
+*       The MenubarAction object that is a delegate for the menubar DOM element
+*       that contains the menubar item element.
 */
-var MenubarItemAction = function (domNode, menuObj) {
+var MenubarItemAction = function (domNode, menubarObj) {
 
-  this.menubar = menuObj;
+  this.menubar = menubarObj;
   this.domNode = domNode;
   this.popupMenu = false;
-
-  this.hasFocus = false;
-  this.hasHover = false;
 
   this.keyCode = Object.freeze({
     'TAB': 9,
@@ -61,10 +50,8 @@ MenubarItemAction.prototype.init = function () {
 
   this.domNode.addEventListener('keydown', this.handleKeydown.bind(this));
   this.domNode.addEventListener('click', this.handleClick.bind(this));
-  this.domNode.addEventListener('focus', this.handleFocus.bind(this));
-  this.domNode.addEventListener('blur', this.handleBlur.bind(this));
+  this.domNode.addEventListener('focusout', this.handleFocusout.bind(this));
   this.domNode.addEventListener('mouseover', this.handleMouseover.bind(this));
-  this.domNode.addEventListener('mouseout', this.handleMouseout.bind(this));
 
   // initialize pop up menus
 
@@ -80,8 +67,7 @@ MenubarItemAction.prototype.init = function () {
 MenubarItemAction.prototype.handleKeydown = function (event) {
   var tgt = event.currentTarget,
     char = event.key,
-    flag = false,
-    clickEvent;
+    flag = false;
 
   function isPrintableCharacter (str) {
     return str.length === 1 && str.match(/\S/);
@@ -96,6 +82,13 @@ MenubarItemAction.prototype.handleKeydown = function (event) {
         this.popupMenu.setFocusToFirstItem();
         flag = true;
       }
+      break;
+
+    case this.keyCode.ESC:
+      if (this.popupMenu) {
+        this.popupMenu.close();
+      }
+      flag = true;
       break;
 
     case this.keyCode.LEFT:
@@ -149,22 +142,32 @@ MenubarItemAction.prototype.handleKeydown = function (event) {
 };
 
 MenubarItemAction.prototype.handleClick = function (event) {
+  if (this.popupMenu) {
+    if (!this.popupMenu.isOpen()) {
+  	  // clicking on menubar item opens menu
+  	  this.popupMenu.open();
+    } else {
+  	  // clicking again on same menubar item closes menu
+  	  this.popupMenu.close();
+    }
+    // prevent scroll to top of page when anchor element is clicked
+    event.preventDefault();
+  }
 };
 
-MenubarItemAction.prototype.handleFocus = function (event) {
-  this.menubar.hasFocus = true;
+MenubarItemAction.prototype.menubarElement = function (el) {
+	return this.menubar.domNode.contains(el);
 };
 
-MenubarItemAction.prototype.handleBlur = function (event) {
-  this.menubar.hasFocus = false;
+MenubarItemAction.prototype.handleFocusout = function (event) {
+  // if the next element to get focus is not in the menubar or its menus, then close menu
+  if (!this.menubarElement(event.relatedTarget)) {
+    if (this.popupMenu && this.popupMenu.isOpen()) {
+  	  this.popupMenu.close();
+    }
+  }
 };
 
 MenubarItemAction.prototype.handleMouseover = function (event) {
-  this.hasHover = true;
-  this.popupMenu.open();
-};
-
-MenubarItemAction.prototype.handleMouseout = function (event) {
-  this.hasHover = false;
-  setTimeout(this.popupMenu.close.bind(this.popupMenu, false), 300);
+  this.menubar.setFocusToItem(this);
 };

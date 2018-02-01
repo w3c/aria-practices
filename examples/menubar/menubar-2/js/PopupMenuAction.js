@@ -26,9 +26,6 @@
 *       The controller object is expected to have the following properties:
 *       1. domNode: The controller object's DOM element node, needed for
 *          retrieving positioning information.
-*       2. hasHover: boolean that indicates whether the controller object's
-*          domNode has responded to a mouseover event with no subsequent
-*          mouseout event having occurred.
 */
 var PopupMenuAction = function (domNode, controllerObj, actionManager) {
   var elementChildren,
@@ -44,16 +41,6 @@ var PopupMenuAction = function (domNode, controllerObj, actionManager) {
     throw new Error(msgPrefix + 'has no element children.');
   }
 
-  // Check whether domNode descendant elements have A elements
-  var childElement = domNode.firstElementChild;
-  while (childElement) {
-    var menuitem = childElement.firstElementChild;
-    if (menuitem && menuitem === 'A') {
-      throw new Error(msgPrefix + 'has descendant elements that are not A elements.');
-    }
-    childElement = childElement.nextElementSibling;
-  }
-
   this.domNode = domNode;
   this.controller = controllerObj;
   this.actionManager = actionManager;
@@ -63,9 +50,6 @@ var PopupMenuAction = function (domNode, controllerObj, actionManager) {
 
   this.firstItem = null; // see PopupMenu init method
   this.lastItem = null; // see PopupMenu init method
-
-  this.hasFocus = false; // see MenuItem handleFocus, handleBlur
-  this.hasHover = false; // see PopupMenu handleMouseover, handleMouseout
 };
 
 /*
@@ -89,9 +73,6 @@ PopupMenuAction.prototype.init = function () {
     this.domNode.setAttribute('aria-label', label);
   }
 
-  this.domNode.addEventListener('mouseover', this.handleMouseover.bind(this));
-  this.domNode.addEventListener('mouseout', this.handleMouseout.bind(this));
-
   // Traverse the element children of domNode: configure each with
   // menuitem role behavior and store reference in menuitems array.
   menuElements = this.domNode.getElementsByTagName('LI');
@@ -100,7 +81,7 @@ PopupMenuAction.prototype.init = function () {
 
     menuElement = menuElements[i];
 
-    if (!menuElement.firstElementChild && menuElement.getAttribute('role') != 'separator') {
+    if (!menuElement.firstElementChild && menuElement.getAttribute('role') !== 'separator') {
       menuItem = new MenuItem(menuElement, this);
       menuItem.init();
       this.menuitems.push(menuItem);
@@ -156,17 +137,6 @@ PopupMenuAction.prototype.updateMenuStates = function () {
     }
   }
 
-};
-
-/* EVENT HANDLERS */
-
-PopupMenuAction.prototype.handleMouseover = function (event) {
-  this.hasHover = true;
-};
-
-PopupMenuAction.prototype.handleMouseout = function (event) {
-  this.hasHover = false;
-  setTimeout(this.close.bind(this, false), 300);
 };
 
 /* FOCUS MANAGEMENT METHODS */
@@ -257,21 +227,22 @@ PopupMenuAction.prototype.open = function () {
   var rect = this.controller.domNode.getBoundingClientRect();
 
   // set CSS properties
-  this.domNode.style.display = 'block';
   this.domNode.style.position = 'absolute';
   this.domNode.style.top = (rect.height - 1) + 'px';
   this.domNode.style.left = '0px';
   this.domNode.style.zIndex = 100;
+  this.domNode.style.display = 'block';
 
   // set aria-expanded attribute
   this.controller.domNode.setAttribute('aria-expanded', 'true');
 };
 
-PopupMenuAction.prototype.close = function (force) {
+PopupMenuAction.prototype.isOpen = function () {
+	return this.controller.domNode.getAttribute('aria-expanded') === 'true';
+};
 
-  if (force || (!this.hasFocus && !this.hasHover && !this.controller.hasHover)) {
+PopupMenuAction.prototype.close = function () {
     this.domNode.style.display = 'none';
     this.domNode.style.zIndex = 0;
     this.controller.domNode.setAttribute('aria-expanded', 'false');
-  }
 };

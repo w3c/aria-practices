@@ -69,7 +69,6 @@ ul[role="menubar"] [role="separator"] {
 }
 
 ul[role="menubar"] [role="menuitem"]:focus,
-ul[role="menubar"] [role="menuitem"] [role="menuitem"]:hover,
 ul[role="menubar"] [role="menu"] [role="menuitem"]:hover,
 ul[role="menubar"] [role="menu"] [role="menuitemcheckbox"]:focus,
 ul[role="menubar"] [role="menu"] [role="menuitemcheckbox"]:hover,
