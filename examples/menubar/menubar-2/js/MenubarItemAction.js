@@ -144,11 +144,12 @@ MenubarItemAction.prototype.handleKeydown = function (event) {
 MenubarItemAction.prototype.handleClick = function (event) {
   if (this.popupMenu) {
     if (!this.popupMenu.isOpen()) {
-  	  // clicking on menubar item opens menu
-  	  this.popupMenu.open();
-    } else {
-  	  // clicking again on same menubar item closes menu
-  	  this.popupMenu.close();
+      // clicking on menubar item opens menu
+      this.popupMenu.open();
+    }
+    else {
+      // clicking again on same menubar item closes menu
+      this.popupMenu.close();
     }
     // prevent scroll to top of page when anchor element is clicked
     event.preventDefault();
@@ -156,14 +157,14 @@ MenubarItemAction.prototype.handleClick = function (event) {
 };
 
 MenubarItemAction.prototype.menubarElement = function (el) {
-	return this.menubar.domNode.contains(el);
+  return this.menubar.domNode.contains(el);
 };
 
 MenubarItemAction.prototype.handleFocusout = function (event) {
   // if the next element to get focus is not in the menubar or its menus, then close menu
   if (!this.menubarElement(event.relatedTarget)) {
     if (this.popupMenu && this.popupMenu.isOpen()) {
-  	  this.popupMenu.close();
+      this.popupMenu.close();
     }
   }
 };

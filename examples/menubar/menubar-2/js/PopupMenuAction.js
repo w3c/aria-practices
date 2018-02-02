@@ -238,11 +238,11 @@ PopupMenuAction.prototype.open = function () {
 };
 
 PopupMenuAction.prototype.isOpen = function () {
-	return this.controller.domNode.getAttribute('aria-expanded') === 'true';
+  return this.controller.domNode.getAttribute('aria-expanded') === 'true';
 };
 
 PopupMenuAction.prototype.close = function () {
-    this.domNode.style.display = 'none';
-    this.domNode.style.zIndex = 0;
-    this.controller.domNode.setAttribute('aria-expanded', 'false');
+  this.domNode.style.display = 'none';
+  this.domNode.style.zIndex = 0;
+  this.controller.domNode.setAttribute('aria-expanded', 'false');
 };
