@@ -52,8 +52,7 @@ MenuItem.prototype.init = function () {
 
   this.domNode.addEventListener('keydown', this.handleKeydown.bind(this));
   this.domNode.addEventListener('click', this.handleClick.bind(this));
-  this.domNode.addEventListener('focusout', this.handleFocusout.bind(this));
-
+  this.domNode.addEventListener('mouseover', this.handleMouseover.bind(this));
 };
 
 MenuItem.prototype.activateMenuitem = function (node) {
@@ -202,10 +201,6 @@ MenuItem.prototype.handleClick = function (event) {
   this.menu.close();
 };
 
-MenuItem.prototype.handleFocusout = function (event) {
-  // if the next element to get focus is not in the menubar or its menus, then close menu
-  if (!this.menu.controller.menubarElement(event.relatedTarget)) {
-    this.menu.close();
-  }
-  console.log();
+MenuItem.prototype.handleMouseover = function (event) {
+  this.menu.setFocusToItem(this);
 };

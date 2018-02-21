@@ -65,6 +65,9 @@ MenubarAction.prototype.init = function (actionManager) {
 
   this.domNode.setAttribute('role', 'menubar');
 
+  this.domNode.addEventListener('focusin', this.handleFocusin.bind(this));
+  this.domNode.addEventListener('focusout', this.handleFocusout.bind(this));
+
   // Traverse the element children of the menubar domNode: configure each with
   // menuitem role behavior and store reference in menuitems array.
   var e = this.domNode.firstElementChild;
@@ -94,28 +97,32 @@ MenubarAction.prototype.init = function (actionManager) {
 
 /* FOCUS MANAGEMENT METHODS */
 
-MenubarAction.prototype.setFocusToItem = function (newItem) {
-  var flag = false;
+MenubarAction.prototype.setFocusToItem = function (newItem, hover) {
+  var isOpen = false;
+  var hasFocus = this.domNode.contains(document.activeElement);
   for (var i = 0; i < this.menubarItems.length; i++) {
     var mbi = this.menubarItems[i];
-    if (mbi.domNode.tabIndex === 0) {
-      flag = mbi.popupMenu && mbi.popupMenu.isOpen();
+    isOpen = isOpen || (mbi.popupMenu && mbi.popupMenu.isOpen());
+    if (!hover || hasFocus) {
+      mbi.domNode.tabIndex = -1;
     }
-    mbi.domNode.tabIndex = -1;
     if (mbi.popupMenu) {
       mbi.popupMenu.close();
     }
   }
-  newItem.domNode.focus();
-  newItem.domNode.tabIndex = 0;
-  if (flag && newItem.popupMenu) {
+  if (!hover || hasFocus) {
+    newItem.domNode.focus();
+    newItem.domNode.tabIndex = 0;
+  }
+  if (isOpen && newItem.popupMenu) {
     newItem.popupMenu.open();
   }
 };
-MenubarAction.prototype.setFocusToFirstItem = function (flag) {
+
+MenubarAction.prototype.setFocusToFirstItem = function () {
   this.setFocusToItem(this.firstItem);
 };
-MenubarAction.prototype.setFocusToLastItem = function (flag) {
+MenubarAction.prototype.setFocusToLastItem = function () {
   this.setFocusToItem(this.lastItem);
 };
 
@@ -179,3 +186,23 @@ MenubarAction.prototype.getIndexFirstChars = function (startIndex, char) {
   }
   return -1;
 };
+
+MenubarAction.prototype.handleFocusin = function (event) {
+  // if the menubar or any of its menus has focus, add styling hook for hover
+  this.domNode.classList.add('focus');
+};
+
+MenubarAction.prototype.handleFocusout = function (event) {
+  // if the next element to get focus is not in the menubar or its menus, then close menu
+  if (!this.domNode.contains(event.relatedTarget)) {
+    for (var i = 0; i < this.menubarItems.length; i++) {
+      var mbi = this.menubarItems[i];
+      if (mbi.popupMenu && mbi.popupMenu.isOpen()) {
+        mbi.popupMenu.close();
+      }
+    }
+  }
+  // remove styling hook for hover on menubar item
+  this.domNode.classList.remove('focus');
+};
+

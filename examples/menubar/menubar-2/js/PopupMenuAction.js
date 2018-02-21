@@ -156,6 +156,10 @@ PopupMenuAction.prototype.setFocusToController = function (command) {
   }
 };
 
+PopupMenuAction.prototype.setFocusToItem = function (item) {
+  item.domNode.focus();
+};
+
 PopupMenuAction.prototype.setFocusToFirstItem = function () {
   this.firstItem.domNode.focus();
 };

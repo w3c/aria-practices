@@ -50,7 +50,6 @@ MenubarItemAction.prototype.init = function () {
 
   this.domNode.addEventListener('keydown', this.handleKeydown.bind(this));
   this.domNode.addEventListener('click', this.handleClick.bind(this));
-  this.domNode.addEventListener('focusout', this.handleFocusout.bind(this));
   this.domNode.addEventListener('mouseover', this.handleMouseover.bind(this));
 
   // initialize pop up menus
@@ -156,19 +155,6 @@ MenubarItemAction.prototype.handleClick = function (event) {
   }
 };
 
-MenubarItemAction.prototype.menubarElement = function (el) {
-  return this.menubar.domNode.contains(el);
-};
-
-MenubarItemAction.prototype.handleFocusout = function (event) {
-  // if the next element to get focus is not in the menubar or its menus, then close menu
-  if (!this.menubarElement(event.relatedTarget)) {
-    if (this.popupMenu && this.popupMenu.isOpen()) {
-      this.popupMenu.close();
-    }
-  }
-};
-
 MenubarItemAction.prototype.handleMouseover = function (event) {
-  this.menubar.setFocusToItem(this);
+  this.menubar.setFocusToItem(this, true);
 };
