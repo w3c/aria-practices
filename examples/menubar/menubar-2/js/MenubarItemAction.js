@@ -143,7 +143,14 @@ MenubarItemAction.prototype.handleKeydown = function (event) {
 MenubarItemAction.prototype.handleClick = function (event) {
   if (this.popupMenu) {
     if (!this.popupMenu.isOpen()) {
-      // clicking on menubar item opens menu
+      // clicking on menubar item opens menu (closes open menu first)
+      for (var i = 0; i < this.menubar.menubarItems.length; i++) {
+        var mbi = this.menubar.menubarItems[i];
+        if (mbi.popupMenu && mbi.popupMenu.isOpen()) {
+          mbi.popupMenu.close();
+          break;
+        }
+      }
       this.popupMenu.open();
     }
     else {
