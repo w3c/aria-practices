@@ -224,7 +224,7 @@ aria.ListboxCombobox.prototype.checkHide = function (evt) {
 aria.ListboxCombobox.prototype.hideListbox = function () {
   this.shown = false;
   this.activeIndex = -1;
-  this.listbox.innerHTML = null;
+  this.listbox.innerHTML = '';
   aria.Utils.addClass(this.listbox, 'hidden');
   this.combobox.setAttribute('aria-expanded', 'false');
   this.resultsCount = 0;
