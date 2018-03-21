@@ -74,7 +74,13 @@ ul[role="menubar"]:not(.focus) [role="menuitem"]:hover {
 }
 
 ul[role="menubar"] [role="menuitem"]:focus,
-ul[role="menubar"] [role="menuitem"][aria-expanded="true"],
+ul[role="menubar"] [role="menuitem"][aria-expanded="true"] {
+  background-color: black;
+  color: white;
+  border: 2px solid black;
+  outline: none;
+}
+
 ul[role="menubar"] [role="menu"] [role="menuitem"]:focus,
 ul[role="menubar"] [role="menu"] [role="menuitemcheckbox"]:focus,
 ul[role="menubar"] [role="menu"] [role="menuitemradio"]:focus {
