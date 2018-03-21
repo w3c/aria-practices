@@ -68,18 +68,18 @@ ul[role="menubar"] [role="separator"] {
   background-repeat: repeat-x;
 }
 
+ul[role="menubar"]:not(.focus) [role="menuitem"]:hover {
+  background-color: #444444;
+  color: white;
+}
+
 ul[role="menubar"] [role="menuitem"]:focus,
-ul[role="menubar"]:not(.focus) [role="menuitem"]:hover,
 ul[role="menubar"] [role="menu"] [role="menuitem"]:focus,
-ul[role="menubar"] [role="menu"] [role="menuitem"]:hover,
 ul[role="menubar"] [role="menu"] [role="menuitemcheckbox"]:focus,
-ul[role="menubar"] [role="menu"] [role="menuitemcheckbox"]:hover,
-ul[role="menubar"] [role="menu"] [role="menuitemradio"]:focus,
-ul[role="menubar"] [role="menu"] [role="menuitemradio"]:hover,
-ul[role="menubar"] [role="menu"] [role="separator"]:focus,
-ul[role="menubar"] [role="menu"] [role="separator"]:hover {
+ul[role="menubar"] [role="menu"] [role="menuitemradio"]:focus {
   background-color: black;
   color: white;
+  outline: none;
 }
 
 ul[role="menubar"] [role="menuitemcheckbox"][aria-checked='true'],

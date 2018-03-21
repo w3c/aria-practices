@@ -56,8 +56,7 @@ var PopupMenuAction = function (domNode, controllerObj, actionManager) {
 *   @method PopupMenuAction.prototype.init
 *
 *   @desc
-*       Add domNode event listeners for mouseover and mouseout. Traverse
-*       domNode children to configure each menuitem and populate menuitems
+*       Traverse domNode children to configure each menuitem and populate menuitems
 *       array. Initialize firstItem and lastItem properties.
 */
 PopupMenuAction.prototype.init = function () {
