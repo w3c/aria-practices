@@ -82,9 +82,7 @@ Menubutton.prototype.init = function () {
 };
 
 Menubutton.prototype.handleKeydown = function (event) {
-  var tgt = event.currentTarget,
-    flag = false,
-    clickEvent;
+  var flag = false;
 
   switch (event.keyCode) {
     case this.keyCode.SPACE:
