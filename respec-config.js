@@ -95,7 +95,7 @@ var respecConfig = {
 
   // Spec URLs
   ariaSpecURLs: {
-    'ED': 'https://w3c.github.io/aria/aria/aria.html',
+    'ED': 'https://w3c.github.io/aria/',
     'FPWD': 'https://www.w3.org/TR/wai-aria-1.1/',
     'WD': 'https://www.w3.org/TR/wai-aria-1.1/',
     'REC': 'https://www.w3.org/TR/wai-aria/'
