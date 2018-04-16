@@ -166,7 +166,8 @@ aria.widget.SourceCode.prototype.createCode = function (location, spaces, node, 
       case Node.COMMENT_NODE:
 
         if (hasText(n.nodeValue)) {
-          location.innerHTML = location.innerHTML  + '<br/>' + spaces + '&nbsp;&nbsp;' + '&lt;--&nbsp;&nbsp;' + n.nodeValue + '--&gt;';
+          s = cleanText(n.nodeValue);
+          location.innerHTML = location.innerHTML  + '<br/>' + spaces + '&nbsp;&nbsp;' + '&lt;--&nbsp;&nbsp;' + s + '&nbsp;&nbsp;--&gt;';
         }
         count++;
         break;
