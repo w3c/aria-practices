@@ -22,8 +22,7 @@ pre code:not(.hljs),
   background: hsl(24, 20%, 95%);
 }
 
-/* Style all kbd elements that are not in table headers */
-:not(th) > kbd {
+kbd {
   display: inline-block;
   padding: .1em .3em;
   color: #555;
@@ -39,4 +38,3 @@ table.data.attributes tbody th,
 table.data.attributes tbody td {
     border: 1px solid silver;
 }
-
