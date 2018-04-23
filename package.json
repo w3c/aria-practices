@@ -7,8 +7,8 @@
     "example": "examples"
   },
   "scripts": {
-    "fix": "eslint --fix bin examples",
-    "lint": "eslint bin examples",
+    "fix": "eslint --fix .",
+    "lint": "eslint .",
     "test": "npm run lint"
   },
   "repository": {
