@@ -1,4 +1,4 @@
-<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><meta charset="utf-8"><meta name="generator" content="ReSpec 20.10.3"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><style>/* --- ISSUES/NOTES --- */
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><meta charset="utf-8"><meta name="generator" content="ReSpec 20.10.4"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><style>/* --- ISSUES/NOTES --- */
 div.issue-title, div.note-title , div.ednote-title, div.warning-title {
     padding-right:  1em;
     min-width: 7.5em;
@@ -410,9 +410,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     },
     {
       "name": "James Nurthen",
-      "mailto": "james.nurthen@oracle.com",
-      "company": "Oracle Corporation",
-      "companyURI": "http://www.oracle.com/",
+      "mailto": "nurthen@adobe.com",
+      "company": "Adobe",
+      "companyURI": "http://www.adobe.com/",
       "w3cid": 37155
     },
     {
@@ -513,9 +513,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   "preProcess": [
     null
   ],
-  "publishDate": "2018-05-08",
-  "publishISODate": "2018-05-08T00:00:00.000Z",
-  "generatedSubtitle": "Editor's Draft 08 May 2018"
+  "publishDate": "2018-05-09",
+  "publishISODate": "2018-05-09T00:00:00.000Z",
+  "generatedSubtitle": "Editor's Draft 09 May 2018"
 }</script><meta name="description" content="This document provides readers with an understanding of how to use WAI-ARIA 1.1 [WAI-ARIA] to create accessible rich internet applications.
       It describes considerations that might not be evident to most authors from the WAI-ARIA specification alone and recommends approaches to make widgets, navigation, and behaviors accessible using WAI-ARIA roles, states, and properties.
       This document is directed primarily to Web application developers, but the guidance is also useful for user agent and assistive technology developers."></head>
@@ -525,7 +525,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   </a>
   <h1 id="title" class="title p-name"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Authoring Practices 1.1</h1>
   
-  <h2 id="w3c-editor-s-draft-08-may-2018"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time class="dt-published" datetime="2018-05-08">08 May 2018</time></h2>
+  <h2 id="w3c-editor-s-draft-09-may-2018"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time class="dt-published" datetime="2018-05-09">09 May 2018</time></h2>
   <dl>
     <dt>This version:</dt><dd><a class="u-url" href="https://w3c.github.io/aria-practices/">https://w3c.github.io/aria-practices/</a></dd><dt>Latest published version:</dt><dd><a href="https://www.w3.org/TR/wai-aria-practices-1.1/">https://www.w3.org/TR/wai-aria-practices-1.1/</a></dd>
     <dt>Latest editor's draft:</dt><dd><a href="https://w3c.github.io/aria-practices/">https://w3c.github.io/aria-practices/</a></dd>
@@ -536,7 +536,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     
     
     <dt>Editors:</dt>
-    <dd class="p-author h-card vcard" data-editor-id="44582"><a class="ed_mailto u-email email p-name" href="mailto:mck@fb.com">Matt King</a> (Facebook)</dd><dd class="p-author h-card vcard" data-editor-id="37155"><a class="ed_mailto u-email email p-name" href="mailto:james.nurthen@oracle.com">James Nurthen</a> (Oracle Corporation)</dd><dd class="p-author h-card vcard" data-editor-id="74040"><span class="p-name fn">Michiel Bijl</span> (Invited Expert)</dd><dd class="p-author h-card vcard" data-editor-id="34017"><a class="ed_mailto u-email email p-name" href="mailto:cooper@w3.org">Michael Cooper</a> (<abbr title="World Wide Web Consortium">W3C</abbr>)</dd><dd class="p-author h-card vcard" data-editor-id="42279"><span class="p-name fn">Joseph Scheuhammer</span> (Inclusive Design Research Centre, OCAD University) (Previous Editor)</dd><dd class="p-author h-card vcard" data-editor-id="41725"><span class="p-name fn">Lisa Pappas</span> (SAS) (Previous Editor)</dd><dd class="p-author h-card vcard" data-editor-id="2460"><span class="p-name fn">Rich Schwerdtfeger</span> (IBM Corporation) (Previous Editor)</dd>
+    <dd class="p-author h-card vcard" data-editor-id="44582"><a class="ed_mailto u-email email p-name" href="mailto:mck@fb.com">Matt King</a> (Facebook)</dd><dd class="p-author h-card vcard" data-editor-id="37155"><a class="ed_mailto u-email email p-name" href="mailto:nurthen@adobe.com">James Nurthen</a> (Adobe)</dd><dd class="p-author h-card vcard" data-editor-id="74040"><span class="p-name fn">Michiel Bijl</span> (Invited Expert)</dd><dd class="p-author h-card vcard" data-editor-id="34017"><a class="ed_mailto u-email email p-name" href="mailto:cooper@w3.org">Michael Cooper</a> (<abbr title="World Wide Web Consortium">W3C</abbr>)</dd><dd class="p-author h-card vcard" data-editor-id="42279"><span class="p-name fn">Joseph Scheuhammer</span> (Inclusive Design Research Centre, OCAD University) (Previous Editor)</dd><dd class="p-author h-card vcard" data-editor-id="41725"><span class="p-name fn">Lisa Pappas</span> (SAS) (Previous Editor)</dd><dd class="p-author h-card vcard" data-editor-id="2460"><span class="p-name fn">Rich Schwerdtfeger</span> (IBM Corporation) (Previous Editor)</dd>
     
     
     
@@ -2025,7 +2025,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </ol>
 
         <section id="gridNav_focus" class="notoc">
-          <h5 id="whether-to-focus-on-a-cell-or-an-element-inside-it">Whether to Focus on a Cell Or an Element Inside IT<span class="permalink"><a href="#gridNav_focus" aria-label="Permalink for Whether to Focus on a Cell Or an Element Inside IT" title="Permalink for Whether to Focus on a Cell Or an Element Inside IT"><span>§</span></a></span></h5>
+          <h5 id="whether-to-focus-on-a-cell-or-an-element-inside-it">Whether to Focus on a Cell Or an Element Inside It<span class="permalink"><a href="#gridNav_focus" aria-label="Permalink for Whether to Focus on a Cell Or an Element Inside It" title="Permalink for Whether to Focus on a Cell Or an Element Inside It"><span>§</span></a></span></h5>
 
           <p>
             For assistive technology users, the quality of experience when navigating a grid heavily depends on both what a cell contains and on where keyboard focus is set.
@@ -2426,7 +2426,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           </li>
           <li><kbd>Left Arrow</kbd>:
             <ul>
-              <li>When focus is in a <code>menubar</code>, moves focus to the previous item, optionally wrapping from the last to the first.</li>
+              <li>When focus is in a <code>menubar</code>, moves focus to the previous item, optionally wrapping from the first to the last.</li>
               <li>When focus is in a submenu of an item in a <code>menu</code>, closes the submenu and returns focus to the parent <code>menuitem</code>.</li>
               <li>When focus is in a submenu of an item in a <code>menubar</code>, performs the following 3 actions:
                 <ol>
