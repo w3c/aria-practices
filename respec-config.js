@@ -45,9 +45,9 @@ var respecConfig = {
     w3cid: 44582
   }, {
     name: 'James Nurthen',
-    mailto: 'james.nurthen@oracle.com',
-    company: 'Oracle Corporation',
-    companyURI: 'http://www.oracle.com/',
+    mailto: 'nurthen@adobe.com',
+    company: 'Adobe',
+    companyURI: 'http://www.adobe.com/',
     w3cid: 37155
   }, {
     name: 'Michiel Bijl',
