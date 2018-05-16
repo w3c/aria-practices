@@ -62,10 +62,8 @@ MenuItemLinks.prototype.init = function () {
 /* EVENT HANDLERS */
 
 MenuItemLinks.prototype.handleKeydown = function (event) {
-  var tgt = event.currentTarget,
-    flag = false,
-    char = event.key,
-    clickEvent;
+  var flag = false,
+    char = event.key;
 
   function isPrintableCharacter (str) {
     return str.length === 1 && str.match(/\S/);

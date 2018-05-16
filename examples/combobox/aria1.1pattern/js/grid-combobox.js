@@ -285,7 +285,7 @@ aria.GridCombobox.prototype.hideResults = function () {
   this.shown = false;
   this.activeRowIndex = -1;
   this.activeColIndex = 0;
-  this.grid.innerHTML = null;
+  this.grid.innerHTML = '';
   aria.Utils.addClass(this.grid, 'hidden');
   this.combobox.setAttribute('aria-expanded', 'false');
   this.rowsCount = 0;

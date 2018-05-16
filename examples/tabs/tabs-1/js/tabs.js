@@ -26,7 +26,7 @@
     delete: 46
   };
 
-  // Add or substract depenign on key pressed
+  // Add or substract depending on key pressed
   var direction = {
     37: -1,
     38: -1,
