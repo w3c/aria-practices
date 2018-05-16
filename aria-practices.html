@@ -4389,14 +4389,14 @@
           text is explicitly hidden, e.g., styled with <code>display: none</code> or has <code>aria-hidden=&quot;true&quot;</code>.
         </li>
         <li>
-          The roles, states, and properties of each descendant element remains visible to assistive
+          The roles, states, and properties of each descendant element remain visible to assistive
           technologies unless the descendant requires the context of the presentational
           element. For example:
           <ul>
             <li> If <code>presentation</code> is applied to a <code>ul</code> or <code>ol</code> element, each child <code>li</code> element inherits the <code>presentation</code> role because ARIA requires the <code>listitem</code> elements to have the parent <code>list</code> element. So, the <code>li</code> elements are not exposed to assistive technologies, but elements contained inside of those <code>li</code> elements, including nested lists, are visible to assistive technologies. </li>
             <li>
               Similarly, if <code>presentation</code> is applied to a <code>table</code> element,
-              The descendant <code>caption</code>, <code>thead</code>, <code>tbody</code>, <code>tfooter</code>,
+              the descendant <code>caption</code>, <code>thead</code>, <code>tbody</code>, <code>tfooter</code>,
               <code>tr</code>, <code>th</code>, and <code>td</code>
               elements inherit role <code>presentation</code> and are thus not exposed to assistive technologies.
               But, elements inside of the <code>th</code> and <code>td</code> elements, including nested tables,  are exposed to assistive technologies.
