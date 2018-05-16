@@ -2395,8 +2395,10 @@
               <li><kbd>End</kbd> (Optional): Moves focus to the last tab.</li>
               <li><kbd>Shift + F10</kbd>: If the tab has an associated pop-up menu, opens the menu. </li>
               <li>
-                <kbd>Delete</kbd> (Optional): If deletion is allowed, deletes (closes) the current tab element and its associated tab panel.
-                If any tabs remain, sets focus to the tab following the tab that was closed and activates the newly focused tab.
+                <kbd>Delete</kbd> (Optional): If deletion is allowed, deletes (closes) the current tab element and its associated tab panel, 
+                sets focus to the tab following the tab that was closed, and activates the newly focused tab. If there is no following tab then
+                sets focus to the previous tab to the tab that was close and activates it. If the user can close all the tabs 
+                then the application must decide where to mocve focus.
                 Alternatively, or in addition, the delete function is available in a context menu.
               </li>
             </ul>
