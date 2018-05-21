@@ -50,22 +50,24 @@ body:not(.toc-inline) #main_content main, body:not(.toc-inline) #main_content na
   display: none
 }
 
+[role="alertdialog"],
 [role="dialog"] {
-  width: 50%;
-  margin: 10vh auto;
-  padding: 5px;
-  border: thin #000 solid;
+  box-sizing: border-box;
+  padding: 15px;
+  border: 1px solid #000;
   background-color: #fff;
+  min-height: 100vh;
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (min-width: 640px) {
+  [role="alertdialog"],
   [role="dialog"] {
-    box-sizing: border-box;
-    top: 0px;
-    left: 0px;
-    margin: 0 auto;
-    min-height: 100%;
-    width: 100%;
+    position: absolute;
+    top: 2rem;
+    left: 50vw;  /* move to the middle of the screen (assumes relative parent is the body/viewport) */
+    transform: translateX(-50%);  /* move backwards 50% of this element's width */
+    min-width: calc(640px - (15px * 2));  /* = breakpoint - left+right margin */
+    min-height: auto;
   }
 }
 
