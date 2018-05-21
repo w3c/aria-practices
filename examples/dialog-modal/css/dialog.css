@@ -69,8 +69,8 @@ body:not(.toc-inline) #main_content main, body:not(.toc-inline) #main_content na
   }
 }
 
-[role="dialog"] h2:first-of-type {
-  text-align:center;
+.dialog_label {
+  text-align: center;
 }
 
 .dialog_form {
