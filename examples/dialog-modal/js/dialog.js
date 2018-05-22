@@ -14,6 +14,8 @@ aria.Utils = aria.Utils || {};
    */
   aria.Utils.IgnoreUtilFocusChanges = false;
 
+  aria.Utils.dialogOpenClass = 'has-dialog';
+
   /**
    * @desc Set focus on descendant nodes until the first focusable element is
    *       found.
@@ -146,6 +148,9 @@ aria.Utils = aria.Utils || {};
     }
     this.backdropNode.classList.add('active');
 
+    // Disable scroll on the body element
+    document.body.classList.add(aria.Utils.dialogOpenClass);
+
     if (typeof focusAfterClosed === 'string') {
       this.focusAfterClosed = document.getElementById(focusAfterClosed);
     }
@@ -228,6 +233,9 @@ aria.Utils = aria.Utils || {};
     // If a dialog was open underneath this one, restore its listeners.
     if (aria.OpenDialogList.length > 0) {
       aria.getCurrentDialog().addListeners();
+    }
+    else {
+      document.body.classList.remove(aria.Utils.dialogOpenClass);
     }
   }; // end close
 
