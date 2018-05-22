@@ -124,11 +124,11 @@ aria.Utils = aria.Utils || {};
    */
   aria.Dialog = function (dialogId, focusAfterClosed, focusFirst) {
     this.dialogNode = document.getElementById(dialogId);
+    var role = this.dialogNode.getAttribute('role');
 
-    if (this.dialogNode === null ||
-        this.dialogNode.getAttribute('role') !== 'dialog') {
+    if (this.dialogNode === null || !['dialog', 'alertdialog'].includes(role)) {
       throw new Error(
-        'Dialog() requires a DOM element with ARIA role of dialog.');
+        'Dialog() requires a DOM element with ARIA role of dialog or alertdialog.');
     }
 
     // Wrap in an individual backdrop element if one doesn't exist
