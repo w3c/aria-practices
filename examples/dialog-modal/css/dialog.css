@@ -171,15 +171,15 @@ body:not(.toc-inline) #main_content main, body:not(.toc-inline) #main_content na
 }
 
 .toast {
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.9);
   color: #fff;
   padding: 1rem;
   border: none;
   border-radius: 0.25rem;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 
-  position: absolute;
-  bottom: 1rem;
+  position: fixed;
+  bottom: 50%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%);
 }
