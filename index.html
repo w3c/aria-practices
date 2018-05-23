@@ -513,9 +513,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   "preProcess": [
     null
   ],
-  "publishDate": "2018-05-21",
-  "publishISODate": "2018-05-21T00:00:00.000Z",
-  "generatedSubtitle": "Editor's Draft 21 May 2018"
+  "publishDate": "2018-05-23",
+  "publishISODate": "2018-05-23T00:00:00.000Z",
+  "generatedSubtitle": "Editor's Draft 23 May 2018"
 }</script><meta name="description" content="This document provides readers with an understanding of how to use WAI-ARIA 1.1 [WAI-ARIA] to create accessible rich internet applications.
       It describes considerations that might not be evident to most authors from the WAI-ARIA specification alone and recommends approaches to make widgets, navigation, and behaviors accessible using WAI-ARIA roles, states, and properties.
       This document is directed primarily to Web application developers, but the guidance is also useful for user agent and assistive technology developers."></head>
@@ -525,7 +525,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   </a>
   <h1 id="title" class="title p-name"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Authoring Practices 1.1</h1>
   
-  <h2 id="w3c-editor-s-draft-21-may-2018"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time class="dt-published" datetime="2018-05-21">21 May 2018</time></h2>
+  <h2 id="w3c-editor-s-draft-23-may-2018"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time class="dt-published" datetime="2018-05-23">23 May 2018</time></h2>
   <dl>
     <dt>This version:</dt><dd><a class="u-url" href="https://w3c.github.io/aria-practices/">https://w3c.github.io/aria-practices/</a></dd><dt>Latest published version:</dt><dd><a href="https://www.w3.org/TR/wai-aria-practices-1.1/">https://www.w3.org/TR/wai-aria-practices-1.1/</a></dd>
     <dt>Latest editor's draft:</dt><dd><a href="https://w3c.github.io/aria-practices/">https://w3c.github.io/aria-practices/</a></dd>
@@ -3490,7 +3490,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         <li>Landmark roles can be nested to identify parent/child relationships of the information being presented.</li>
       </ul>
 
-      <p><strong>Step 3: Label areas</strong></p>
+      <p id="aria_lh_step3"><strong>Step 3: Label areas</strong></p>
 
       <ul>
         <li>If a specific landmark role is used more than once on a web page, it should have a unique label.</li>
@@ -3528,7 +3528,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <li>When a page contains nested <code>document</code> and/or <code>application</code> roles (e.g. typically through the use of <code>iframe</code> and <code>frame</code> elements), each <code>document</code> or <code>application</code> role may have
             one <code>banner</code> landmark.</li>
 
-          <li>If a page includes more than one <code>banner</code> landmark, each should have a unique label (see Step 3 above).</li>
+          <li>If a page includes more than one <code>banner</code> landmark, each should have a unique label (see <a href="#aria_lh_step3">Step 3</a> above).</li>
         </ul>
 
         <section class="notoc">
@@ -3572,7 +3572,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
           <li>If the complementary content is not related to the main content, a more general role should be assigned (e.g. <code>region</code>).</li>
 
-          <li>If a page includes more than one <code>complementary</code> landmark, each should have a unique label (see Step 3 above).</li>
+          <li>If a page includes more than one <code>complementary</code> landmark, each should have a unique label (see <a href="#aria_lh_step3">Step 3</a> above).</li>
         </ul>
 
         <section class="notoc">
@@ -3606,7 +3606,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <li>When a page contains nested <code>document</code> and/or <code>application</code> roles (e.g. typically through the use of <code>iframe</code> and <code>frame</code> elements), each <code>document</code> or <code>application</code> role may have
             one <code>contentinfo</code> landmark.</li>
 
-          <li>If a page includes more than one <code>contentinfo</code> landmark, each should have a unique label (see Step 3 above).</li>
+          <li>If a page includes more than one <code>contentinfo</code> landmark, each should have a unique label (see <a href="#aria_lh_step3">Step 3</a> above).</li>
         </ul>
 
         <section class="notoc">
@@ -3652,7 +3652,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
           <li>A label for the <code>form</code> landmark should be visible to all users (e.g. an <code>h1-h6</code> element).</li>
 
-          <li>If a page includes more than one <code>form</code> landmark, each should have a unique label (see Step 3 above).</li>
+          <li>If a page includes more than one <code>form</code> landmark, each should have a unique label (see <a href="#aria_lh_step3">Step 3</a> above).</li>
 
           <li>
             Whenever possible, controls contained in a <code>form</code> landmark in an HTML document should use native host semantics:
@@ -3698,7 +3698,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <li>When a page contains nested <code>document</code> and/or <code>application</code> roles (e.g. typically through the use of <code>iframe</code> and <code>frame</code> elements), each <code>document</code> or <code>application</code> role may have
             one <code>main</code> landmark.</li>
 
-          <li>If a page includes more than one <code>main</code> landmark, each should have a unique label (see Step 3 above).</li>
+          <li>If a page includes more than one <code>main</code> landmark, each should have a unique label (see <a href="#aria_lh_step3">Step 3</a> above).</li>
         </ul>
 
         <section class="notoc">
@@ -3724,7 +3724,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         <p><a href="https://www.w3.org/TR/wai-aria-1.1/#navigation"><code>Navigation</code></a> landmarks provide a way to identify groups (e.g. lists) of links that are intended to be used for website or page content navigation.</p>
 
         <ul>
-          <li>If a page includes more than one <code>navigation</code> landmark, each should have a unique label (see Step 3 above).</li>
+          <li>If a page includes more than one <code>navigation</code> landmark, each should have a unique label (see <a href="#aria_lh_step3">Step 3</a> above).</li>
 
           <li>If a <code>navigation</code> landmark has an identical set of links as another <code>navigation</code> landmark on the page, use the same label for each <code>navigation</code> landmark.</li>
         </ul>
@@ -3755,7 +3755,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         <ul>
           <li>A <code>region</code> landmark must have a label.</li>
 
-          <li>If a page includes more than one <code>region</code> landmark, each should have a unique label (see Step 3 above).</li>
+          <li>If a page includes more than one <code>region</code> landmark, each should have a unique label (see <a href="#aria_lh_step3">Step 3</a> above).</li>
 
           <li>The <code>region</code> landmark can be used identify content that named landmarks do not appropriately describe.</li>
         </ul>
@@ -3785,7 +3785,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         <ul>
           <li>Use the <code>search</code> landmark instead of the <code>form</code> landmark when the form is used for search functionality.</li>
 
-          <li>If a page includes more than one <code>search</code> landmark, each should have a unique label (see Step 3 above).</li>
+          <li>If a page includes more than one <code>search</code> landmark, each should have a unique label (see <a href="#aria_lh_step3">Step 3</a> above).</li>
         </ul>
 
         <section class="notoc">
