@@ -5,8 +5,6 @@
 *   File:   MenubarAction.js
 *
 *   Desc:   Menubar widget that implements ARIA Authoring Practices
-*
-*   Author: Jon Gunderson, Ku Ja Eun and Nicholas Hoyt
 */
 
 /*
@@ -22,7 +20,7 @@
 */
 var MenubarAction = function (domNode) {
   var elementChildren,
-      msgPrefix = 'Menubar constructor argument menubarNode ';
+    msgPrefix = 'Menubar constructor argument menubarNode ';
 
   // Check whether menubarNode is a DOM element
   if (!domNode instanceof Element) {
@@ -33,12 +31,12 @@ var MenubarAction = function (domNode) {
   if (domNode.childElementCount === 0) {
     throw new Error(msgPrefix + 'has no element children.');
   }
-  // Check whether menubarNode has SPAN elements
+  // Check whether menubarNode has A elements
   e = domNode.firstElementChild;
   while (e) {
     var menubarItem = e.firstElementChild;
-    if (e && menubarItem && menubarItem.tagName !== 'SPAN') {
-      throw new Error(msgPrefix + 'has child elements are not SPAN elements.');
+    if (e && menubarItem && menubarItem.tagName !== 'A') {
+      throw new Error(msgPrefix + 'has child elements are not A elements.');
     }
     e = e.nextElementSibling;
   }
@@ -63,8 +61,10 @@ var MenubarAction = function (domNode) {
 *       Traverse menubar children for A elements to configure each A element as a ARIA menuitem
 *       and populate menuitems array. Initialize firstItem and lastItem properties.
 */
-MenubarAction.prototype.init = function () {
+MenubarAction.prototype.init = function (actionManager) {
   var menubarItem, childElement, menuElement, textContent, numItems;
+
+  this.actionManager = actionManager;
 
   this.domNode.setAttribute('role', 'menubar');
 
@@ -75,7 +75,7 @@ MenubarAction.prototype.init = function () {
   while (e) {
     var menuElement = e.firstElementChild;
 
-    if (e && menuElement && menuElement.tagName === 'SPAN') {
+    if (e && menuElement && menuElement.tagName === 'A') {
       menubarItem = new MenubarItemAction(menuElement, this);
       menubarItem.init();
       this.menubarItems.push(menubarItem);
@@ -100,12 +100,11 @@ MenubarAction.prototype.init = function () {
 MenubarAction.prototype.setFocusToItem = function (newItem) {
   var flag = false;
   var newItem;
-  console.log(newItem);
   for (var i = 0; i < this.menubarItems.length; i++) {
     var mbi = this.menubarItems[i];
     if (mbi.domNode.tabIndex == 0) {
-      flag = mbi.domNode.getAttribute('aria-expanded') === 'true';}
-    console.log(flag);
+      flag = mbi.domNode.getAttribute('aria-expanded') === 'true';
+    }
     mbi.domNode.tabIndex = -1;
     if (mbi.popupMenu) {
       mbi.popupMenu.close();
@@ -187,4 +186,3 @@ MenubarAction.prototype.getIndexFirstChars = function (startIndex, char) {
   }
   return -1;
 };
-

@@ -1,44 +1,10 @@
 /*
 *   This content is licensed according to the W3C Software License at
 *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
-*
-*   File:   PopupMenu.js
-*
-*   Desc:   Popup menu widget that implements ARIA Authoring Practices
-*
-*   Author: Jon Gunderson and Ku Ja Eun
 */
-
-/*
-*   @constructor PopupMenu
-*
-*   @desc
-*       Wrapper object for a simple popup menu (without nested submenus)
-*
-*   @param domNode
-*       The DOM element node that serves as the popup menu container. Each
-*       child element of domNode that represents a menuitem must have a
-*       'role' attribute with value 'menuitem'.
-*
-*   @param controllerObj
-*       The object that is a wrapper for the DOM element that controls the
-*       menu, e.g. a button element, with an 'aria-controls' attribute that
-*       references this menu's domNode. See MenuButton.js
-*
-*       The controller object is expected to have the following properties:
-*       1. domNode: The controller object's DOM element node, needed for
-*          retrieving positioning information.
-*       2. hasHover: boolean that indicates whether the controller object's
-*          domNode has responded to a mouseover event with no subsequent
-*          mouseout event having occurred.
-*/
-var PopupMenu = function (domNode, controllerObj, popupMenuItemObj) {
+var PopupMenu = function (domNode, controllerObj) {
   var elementChildren,
-      msgPrefix = 'PopupMenu constructor argument domNode ';
-
-  if (typeof popupMenuItemObj !== 'object') {
-    popupMenuItemObj = false;
-  }
+    msgPrefix = 'PopupMenu constructor argument domNode ';
 
   // Check whether domNode is a DOM element
   if (!domNode instanceof Element) {
@@ -60,9 +26,8 @@ var PopupMenu = function (domNode, controllerObj, popupMenuItemObj) {
 
   this.isMenubar = false;
 
-  this.domNode = domNode;
+  this.domNode    = domNode;
   this.controller = controllerObj;
-  this.popupMenuItem = popupMenuItemObj;
 
   this.menuitems = []; // See PopupMenu init method
   this.firstChars = []; // See PopupMenu init method
@@ -86,14 +51,6 @@ PopupMenu.prototype.init = function () {
   var childElement, menuElement, menuItem, textContent, numItems, label;
 
   // Configure the domNode itself
-  this.domNode.tabIndex = -1;
-
-  this.domNode.setAttribute('role', 'menu');
-
-  if (!this.domNode.getAttribute('aria-labelledby') && !this.domNode.getAttribute('aria-label') && !this.domNode.getAttribute('title')) {
-    label = this.controller.domNode.innerHTML;
-    this.domNode.setAttribute('aria-label', label);
-  }
 
   this.domNode.addEventListener('mouseover', this.handleMouseover.bind(this));
   this.domNode.addEventListener('mouseout', this.handleMouseout.bind(this));
@@ -131,37 +88,59 @@ PopupMenu.prototype.handleMouseover = function (event) {
 
 PopupMenu.prototype.handleMouseout = function (event) {
   this.hasHover = false;
-  setTimeout(this.close.bind(this, false), 300);
+  setTimeout(this.close.bind(this, false), 1);
 };
 
 /* FOCUS MANAGEMENT METHODS */
 
 PopupMenu.prototype.setFocusToController = function (command, flag) {
+
   if (typeof command !== 'string') {
     command = '';
   }
 
-  if (this.controller.close) {
-    this.popupMenuItem.domNode.focus();
+  function setFocusToMenubarItem (controller, close) {
+    while (controller) {
+      if (controller.isMenubarItem) {
+        controller.domNode.focus();
+        return controller;
+      }
+      else {
+        if (close) {
+          controller.menu.close(true);
+        }
+        controller.hasFocus = false;
+      }
+      controller = controller.menu.controller;
+    }
+    return false;
+  }
+
+  if (command === '') {
+    setFocusToMenubarItem(this.controller, true);
+    return;
+  }
+
+  if (!this.controller.isMenubarItem) {
+    this.controller.domNode.focus();
     this.close();
 
     if (command === 'next') {
-      this.controller.hasFocus = false;
-      this.controller.close();
-      this.controller.controller.menubar.setFocusToNextItem(this.controller.controller, flag);
+      var menubarItem = setFocusToMenubarItem(this.controller, false);
+      if (menubarItem) {
+        menubarItem.menu.setFocusToNextItem(menubarItem, flag);
+      }
     }
   }
   else {
     if (command === 'previous') {
-      this.controller.menubar.setFocusToPreviousItem(this.controller, flag);
+      this.controller.menu.setFocusToPreviousItem(this.controller, flag);
     }
     else if (command === 'next') {
-      this.controller.menubar.setFocusToNextItem(this.controller, flag);
-    }
-    else {
-      this.controller.domNode.focus();
+      this.controller.menu.setFocusToNextItem(this.controller, flag);
     }
   }
+
 };
 
 PopupMenu.prototype.setFocusToFirstItem = function () {
@@ -234,6 +213,8 @@ PopupMenu.prototype.open = function () {
   // Get position and bounding rectangle of controller object's DOM node
   var rect = this.controller.domNode.getBoundingClientRect();
 
+  console.log('[PopupMenu][open]');
+
   // Set CSS properties
   if (!this.controller.isMenubarItem) {
     this.domNode.parentNode.style.position = 'relative';
@@ -249,21 +230,34 @@ PopupMenu.prototype.open = function () {
     this.domNode.style.zIndex = 100;
   }
 
-  this.controller.domNode.setAttribute('aria-expanded', 'true');
+  this.controller.setExpanded(true);
 
 };
 
 PopupMenu.prototype.close = function (force) {
 
+  console.log('[PopupMenu][close][force]: ' + force);
+
   var controllerHasHover = this.controller.hasHover;
+
+  var hasFocus = this.hasFocus;
+
+  for (var i = 0; i < this.menuitems.length; i++) {
+    var mi = this.menuitems[i];
+    if (mi.popupMenu) {
+      hasFocus = hasFocus | mi.popupMenu.hasFocus;
+    }
+  }
+
+  console.log('[PopupMenu][close][hasFocus]: ' + hasFocus);
 
   if (!this.controller.isMenubarItem) {
     controllerHasHover = false;
   }
 
-  if (force || (!this.hasFocus && !this.hasHover && !controllerHasHover)) {
+  if (force || (!hasFocus && !this.hasHover && !controllerHasHover)) {
     this.domNode.style.display = 'none';
     this.domNode.style.zIndex = 0;
-    this.controller.domNode.setAttribute('aria-expanded', 'false');
+    this.controller.setExpanded(false);
   }
 };

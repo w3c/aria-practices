@@ -1,9 +1,10 @@
 /*
+*   This content is licensed according to the W3C Software License at
+*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+*
 *   File:   RadioButtonActiveDescendant.js
 *
 *   Desc:   Radio widget using aria-activedescendant that implements ARIA Authoring Practices
-*
-*   Author(s): Jon Gunderson, Ku Ja Eun, Nicholas Hoyt, and Brian Loh
 */
 
 /*
@@ -17,18 +18,18 @@ var RadioButtonActiveDescendant = function (domNode, groupObj) {
   this.radioGroup = groupObj;
 
   this.keyCode = Object.freeze({
-    'TAB'      :  9,
-    'RETURN'   : 13,
-    'ESC'      : 27,
-    'SPACE'    : 32,
-    'PAGEUP'   : 33,
-    'PAGEDOWN' : 34,
-    'END'      : 35,
-    'HOME'     : 36,
-    'LEFT'     : 37,
-    'UP'       : 38,
-    'RIGHT'    : 39,
-    'DOWN'     : 40
+    'TAB': 9,
+    'RETURN': 13,
+    'ESC': 27,
+    'SPACE': 32,
+    'PAGEUP': 33,
+    'PAGEDOWN': 34,
+    'END': 35,
+    'HOME': 36,
+    'LEFT': 37,
+    'UP': 38,
+    'RIGHT': 39,
+    'DOWN': 40
   });
 };
 

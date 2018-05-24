@@ -5,8 +5,6 @@
 *   File:   Treeitem.js
 *
 *   Desc:   Setup click events for Tree widget examples
-
-*   Author: Jon Gunderson, Ku Ja Eun and Nicholas Hoyt @ University of Illinois
 */
 
 /**
@@ -19,7 +17,7 @@ window.addEventListener('load', function () {
 
   var treeitems = document.querySelectorAll('[role="treeitem"]');
 
-  for (var i = 0; i <treeitems.length; i++) {
+  for (var i = 0; i < treeitems.length; i++) {
 
     treeitems[i].addEventListener('click', function (event) {
       var treeitem = event.currentTarget;

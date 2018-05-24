@@ -5,8 +5,6 @@
 *   File:   MenubarItemAction.js
 *
 *   Desc:   Menubar Menuitem widget that implements ARIA Authoring Practices
-*
-*   Author: Jon Gunderson, Ku Ja Eun and Nicholas Hoyt
 */
 
 /*
@@ -61,11 +59,6 @@ var MenubarItemAction = function (domNode, menuObj) {
 MenubarItemAction.prototype.init = function () {
   this.domNode.tabIndex = -1;
 
-  this.domNode.setAttribute('role', 'menuitem');
-  this.domNode.setAttribute('aria-haspopup', 'true');
-  this.domNode.setAttribute('aria-expanded', 'false');
-  this.domNode.tabIndex = -1;
-
   this.domNode.addEventListener('keydown', this.handleKeydown.bind(this));
   this.domNode.addEventListener('click', this.handleClick.bind(this));
   this.domNode.addEventListener('focus', this.handleFocus.bind(this));
@@ -78,7 +71,7 @@ MenubarItemAction.prototype.init = function () {
   var nextElement = this.domNode.nextElementSibling;
 
   if (nextElement && nextElement.tagName === 'UL') {
-    this.popupMenu = new PopupMenuAction(nextElement, this);
+    this.popupMenu = new PopupMenuAction(nextElement, this, this.menubar.actionManager);
     this.popupMenu.init();
   }
 
@@ -86,9 +79,9 @@ MenubarItemAction.prototype.init = function () {
 
 MenubarItemAction.prototype.handleKeydown = function (event) {
   var tgt = event.currentTarget,
-      char = event.key,
-      flag = false,
-      clickEvent;
+    char = event.key,
+    flag = false,
+    clickEvent;
 
   function isPrintableCharacter (str) {
     return str.length === 1 && str.match(/\S/);

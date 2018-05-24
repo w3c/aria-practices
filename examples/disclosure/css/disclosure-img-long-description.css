@@ -37,3 +37,6 @@ figure button[aria-expanded="true"]:before {
   padding-right: 0.25em;
 }
 
+figure figcaption {
+  text-align: left;
+}

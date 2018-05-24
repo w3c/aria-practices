@@ -5,8 +5,6 @@
 *   File:   PopupMenuAction.js
 *
 *   Desc:   Popup menu widget that implements ARIA Authoring Practices
-*
-*   Author: Jon Gunderson and Ku Ja Eun
 */
 
 /*
@@ -32,9 +30,9 @@
 *          domNode has responded to a mouseover event with no subsequent
 *          mouseout event having occurred.
 */
-var PopupMenuAction = function (domNode, controllerObj) {
+var PopupMenuAction = function (domNode, controllerObj, actionManager) {
   var elementChildren,
-      msgPrefix = 'PopupMenu constructor argument domNode ';
+    msgPrefix = 'PopupMenu constructor argument domNode ';
 
   // Check whether domNode is a DOM element
   if (!domNode instanceof Element) {
@@ -58,6 +56,7 @@ var PopupMenuAction = function (domNode, controllerObj) {
 
   this.domNode = domNode;
   this.controller = controllerObj;
+  this.actionManager = actionManager;
 
   this.menuitems = []; // see PopupMenu init method
   this.firstChars = []; // see PopupMenu init method
@@ -117,6 +116,46 @@ PopupMenuAction.prototype.init = function () {
     this.firstItem = this.menuitems[0];
     this.lastItem = this.menuitems[numItems - 1];
   }
+};
+
+PopupMenuAction.prototype.updateMenuStates = function () {
+
+  var item = this.domNode.querySelector('[rel="font-larger"]');
+  if (item) {
+    if (this.actionManager.isMaxFontSize()) {
+      item.setAttribute('aria-disabled', 'true');
+    }
+    else {
+      item.setAttribute('aria-disabled', 'false');
+    }
+  }
+
+  var item = this.domNode.querySelector('[rel="font-smaller"]');
+  if (item) {
+    if (this.actionManager.isMinFontSize()) {
+      item.setAttribute('aria-disabled', 'true');
+    }
+    else {
+      item.setAttribute('aria-disabled', 'false');
+    }
+  }
+
+  // Update the radio buttons for font, in case they were updated using the larger
+  // smaller font menu items
+
+  var rbs = this.domNode.querySelectorAll('[rel="font-size"] [role=menuitemradio]');
+
+  for (var i = 0; i < rbs.length; i++) {
+    var rb = rbs[i];
+
+    if (this.actionManager.fontSize === rb.textContent.toLowerCase()) {
+      rb.setAttribute('aria-checked', 'true');
+    }
+    else {
+      rb.setAttribute('aria-checked', 'false');
+    }
+  }
+
 };
 
 /* EVENT HANDLERS */

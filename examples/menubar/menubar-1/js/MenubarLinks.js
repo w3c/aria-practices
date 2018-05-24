@@ -1,29 +1,11 @@
 /*
 *   This content is licensed according to the W3C Software License at
 *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
-*
-*   File:   Menubar.js
-*
-*   Desc:   Menubar widget that implements ARIA Authoring Practices
-*
-*   Author: Jon Gunderson, Ku Ja Eun and Nicholas Hoyt
-*/
-
-/*
-*   @constructor Menubar
-*
-*   @desc
-*       Wrapper object for a menubar (with nested submenus of links)
-*
-*   @param domNode
-*       The DOM element node that serves as the menubar container. Each
-*       child element of menubarNode that represents a menubaritem must
-*       be an A element
 */
 
 var Menubar = function (domNode) {
   var elementChildren,
-      msgPrefix = 'Menubar constructor argument menubarNode ';
+    msgPrefix = 'Menubar constructor argument menubarNode ';
 
   // Check whether menubarNode is a DOM element
   if (!domNode instanceof Element) {
@@ -44,6 +26,8 @@ var Menubar = function (domNode) {
     }
     e = e.nextElementSibling;
   }
+
+  this.isMenubar = true;
 
   this.domNode = domNode;
 
@@ -68,7 +52,6 @@ var Menubar = function (domNode) {
 Menubar.prototype.init = function () {
   var menubarItem, childElement, menuElement, textContent, numItems;
 
-  this.domNode.setAttribute('role', 'menubar');
 
   // Traverse the element children of menubarNode: configure each with
   // menuitem role behavior and store reference in menuitems array.
