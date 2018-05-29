@@ -45,12 +45,16 @@ ul[role="tree"] {
 [role="treeitem"] span.focus {
   border-color: black;
   background-color: #EEEEEE;
-  width: 9em;  
+  width: 9em;
 }
 
 [role="treeitem"].hover,
 [role="treeitem"] span:hover {
   background-color: #DDDDDD;
-  width: 9em;  
+  width: 9em;
 }
 
+[aria-selected="true"]{
+  background-color:DodgerBlue;
+  width:9em;
+}

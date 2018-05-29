@@ -62,7 +62,7 @@ Tree.prototype.init = function () {
     while (elem) {
 
       if (elem.tagName.toLowerCase() === 'li') {
-        ti = new Treeitem(elem, tree, group);
+        ti = new TreeitemMultiSelect(elem, tree, group);
         ti.init();
         tree.treeitems.push(ti);
         tree.firstChars.push(ti.label.substring(0, 1).toLowerCase());
@@ -104,7 +104,148 @@ Tree.prototype.setFocusToItem = function (treeitem) {
   }
 
 };
+//------------------------------------------------------********-------------------------------------------------
+Tree.prototype.setSelectToItem = function(treeitem){
+  for(var i=0;i<this.treeitems.length;i++){
+    var ti = this.treeitems[i];
+    if(ti===treeitem){
+      ti.domNode.tabIndex=0;
+      ti.domNode.focus();
+      if(ti.domNode.getAttribute("aria-selected")==="false"){
+        ti.domNode.setAttribute("aria-selected", true);
+      }else if(ti.domNode.getAttribute("aria-selected")==='true'){
+        ti.domNode.setAttribute("aria-selected", false);
+      }
+    }
+    else{
+      ti.domNode.tabIndex=-1;
+    }
+  }
+}
+Tree.prototype.setSelectToNextItem= function (currentItem){
+  var nextItem= false;
+  for(var i=(this.treeitems.length-1); i>=0;i--){
+    var ti = this.treeitems[i];
+    if (ti === currentItem) {
+      break;
+    }
+    if (ti.isVisible) {
+      nextItem = ti;
+    }
+  }
 
+  if (nextItem) {
+    this.setSelectToItem(currentItem);
+    this.setSelectToItem(nextItem);
+  }
+
+};
+
+Tree.prototype.setSelectToPreviousItem = function (currentItem) {
+
+  var prevItem = false;
+
+  for (var i = 0; i < this.treeitems.length; i++) {
+    var ti = this.treeitems[i];
+    if (ti === currentItem) {
+      break;
+    }
+    if (ti.isVisible) {
+      prevItem = ti;
+    }
+  }
+
+  if (prevItem) {
+    this.setSelectToItem(currentItem);
+    this.setSelectToItem(prevItem);
+  }
+}
+
+Tree.prototype.selectContiguousKeys = function (currentItem){
+    var selectNode = false;
+    var curPos;
+    var selectPos;
+    for(var i=0; i<this.treeitems.length;i++){
+      var ti = this.treeitems[i];
+      if(ti === currentItem){
+        curPos=i;
+      }
+    }
+    for(var j=this.treeitems.length-1;j>0;j--){
+      var ti =this.treeitems[j];
+      if(ti.domNode.getAttribute('aria-selected')==='true' && ti.isVisible){
+        selectPos=j;
+        break;
+      }
+    }
+    console.log(selectPos);
+    console.log(curPos);
+    this.setSelectToItem(currentItem);
+    if(selectPos>curPos){
+      for(var i=curPos;i<selectPos;i++){
+        this.setSelectToItem(this.treeitems[i]);
+      }
+    }else if(selectPos<curPos){
+      for(var i=curPos;i>selectPos;i--){
+        this.setSelectToItem(this.treeitems[i]);
+      }
+    }
+}
+
+
+Tree.prototype.selectAllTreeitem = function (currentItem){
+  // this.expandAllTreeitem(currentItem);
+  for(var i= 0;i<this.treeitems.length;i++){
+    var ti = this.treeitems[i];
+    if(ti.domNode.hasAttribute("aria-selected")){
+      this.setSelectToItem(ti);
+    }
+  }
+  currentItem.domNode.focus();
+};
+
+Tree.prototype.selectToFirst = function (currentItem){
+  var curPos;
+  this.expandAllTreeitem(currentItem);
+  for(var i=0;i<this.treeitems.length;i++){
+    var ti=this.treeitems[i];
+    if(ti===currentItem){
+      curPos=i;
+    }
+  }
+  console.log(curPos);
+  for(var j= curPos;j>0;j--){
+    if(this.treeitems[j].domNode.hasAttribute("aria-selected")){
+      this.setSelectToItem(this.treeitems[j]);
+    }
+  }
+};
+Tree.prototype.selectToLast = function (currentItem){
+  var curPos;
+  this.expandAllTreeitem(currentItem);
+  for(var i=0;i<this.treeitems.length;i++){
+    var ti=this.treeitems[i];
+    if(ti===currentItem){
+      curPos=i;
+    }
+  }
+  for(var j=curPos;j<this.treeitems.length;j++){
+    if(this.treeitems[j].domNode.hasAttribute("aria-selected")){
+      this.setSelectToItem(this.treeitems[j]);
+    }
+  }
+};
+//JZ
+Tree.prototype.expandAllTreeitem=function(currentItem){
+    for(var i=0;i<this.treeitems.length;i++){
+      var ti=this.treeitems[i];
+      if(ti.isExpandable){
+        this.expandTreeitem(ti);
+      }
+    }
+};
+//
+//------------------------------------------------------********-------------------------------------------------
 Tree.prototype.setFocusToNextItem = function (currentItem) {
 
   var nextItem = false;
@@ -165,7 +306,6 @@ Tree.prototype.expandTreeitem = function (currentItem) {
     currentItem.domNode.setAttribute('aria-expanded', true);
     this.updateVisibleTreeitems();
   }
-
 };
 
 Tree.prototype.expandAllSiblingItems = function (currentItem) {

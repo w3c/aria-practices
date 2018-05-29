@@ -19,7 +19,7 @@
 *       An element with the role=tree attribute
 */
 
-var Treeitem = function (node, treeObj, group) {
+var TreeitemMultiSelect = function (node, treeObj, group) {
 
   // Check whether node is a DOM element
   if (typeof node !== 'object') {
@@ -37,6 +37,7 @@ var Treeitem = function (node, treeObj, group) {
   }
 
   this.isExpandable = false;
+  this.isSelectable = false; //JZ
   this.isVisible = false;
   this.inGroup = false;
 
@@ -53,7 +54,11 @@ var Treeitem = function (node, treeObj, group) {
       this.isExpandable = true;
       break;
     }
-
+    //JZ
+    if(elem.tagName.toLowerCase()=='li' && elem.hasAttribute("aria-selected")){
+      this.isSelectable = true;
+    }
+    //JZ
     elem = elem.nextElementSibling;
   }
 
@@ -67,11 +72,12 @@ var Treeitem = function (node, treeObj, group) {
     LEFT: 37,
     UP: 38,
     RIGHT: 39,
-    DOWN: 40
+    DOWN: 40,
+    A: 65,
   });
 };
 
-Treeitem.prototype.init = function () {
+TreeitemMultiSelect.prototype.init = function () {
   this.domNode.tabIndex = -1;
 
   if (!this.domNode.getAttribute('role')) {
@@ -89,7 +95,7 @@ Treeitem.prototype.init = function () {
   }
 };
 
-Treeitem.prototype.isExpanded = function () {
+TreeitemMultiSelect.prototype.isExpanded = function () {
 
   if (this.isExpandable) {
     return this.domNode.getAttribute('aria-expanded') === 'true';
@@ -98,10 +104,17 @@ Treeitem.prototype.isExpanded = function () {
   return false;
 
 };
-
+//JZ
+TreeitemMultiSelect.prototype.isSelected = function(){
+  if(this.isSelectable){
+    return this.domNode.getAttribute("aria-selected")==='true';
+  }
+  return false;
+};
+//JZ
 /* EVENT HANDLERS */
 
-Treeitem.prototype.handleKeydown = function (event) {
+TreeitemMultiSelect.prototype.handleKeydown = function (event) {
 
   var tgt = event.currentTarget,
     flag = false,
@@ -126,7 +139,7 @@ Treeitem.prototype.handleKeydown = function (event) {
   }
 
   if (event.altKey || event.ctrlKey || event.metaKey) {
-    return;
+    console.log("hello");
   }
 
   if (event.shift) {
@@ -137,6 +150,9 @@ Treeitem.prototype.handleKeydown = function (event) {
   else {
     switch (event.keyCode) {
       case this.keyCode.SPACE:
+        if(event.shiftKey){
+          this.tree.selectContiguousKeys(this);
+        }
       case this.keyCode.RETURN:
         // Create simulated mouse event to mimic the behavior of ATs
         // and let the event handler handleClick do the housekeeping.
@@ -160,14 +176,25 @@ Treeitem.prototype.handleKeydown = function (event) {
 
       case this.keyCode.UP:
         this.tree.setFocusToPreviousItem(this);
+        if(event.shiftKey){
+          this.tree.setSelectToPreviousItem(this);
+        }
         flag = true;
         break;
 
       case this.keyCode.DOWN:
         this.tree.setFocusToNextItem(this);
+        if(event.shiftKey){
+          this.tree.setSelectToNextItem(this);
+        }
         flag = true;
         break;
-
+      case this.keyCode.A:
+        if(event.ctrlKey){
+          this.tree.selectAllTreeitem(this);
+        }
+        flag = true;
+        break;
       case this.keyCode.RIGHT:
         if (this.isExpandable) {
           if (this.isExpanded()) {
@@ -195,11 +222,21 @@ Treeitem.prototype.handleKeydown = function (event) {
 
       case this.keyCode.HOME:
         this.tree.setFocusToFirstItem();
+        if(event.shiftKey){
+          if(event.ctrlKey){
+            this.tree.selectToFirst(this);
+          }
+        }
         flag = true;
         break;
 
       case this.keyCode.END:
         this.tree.setFocusToLastItem();
+        if(event.shiftKey){
+          if(event.ctrlKey){
+            this.tree.selectToLast(this);
+          }
+        }
         flag = true;
         break;
 
@@ -218,7 +255,7 @@ Treeitem.prototype.handleKeydown = function (event) {
   }
 };
 
-Treeitem.prototype.handleClick = function (event) {
+TreeitemMultiSelect.prototype.handleClick = function (event) {
   if (this.isExpandable) {
     if (this.isExpanded()) {
       this.tree.collapseTreeitem(this);
@@ -231,9 +268,18 @@ Treeitem.prototype.handleClick = function (event) {
   else {
     this.tree.setFocusToItem(this);
   }
+  //------------------------------------------------------********-------------------------------------------------
+  //new added for selection state when click
+  var selectState=event.currentTarget.getAttribute('aria-selected');
+  if(selectState==='false'){
+    event.currentTarget.setAttribute("aria-selected", true);
+  }else if(selectState==="true"){
+    event.currentTarget.setAttribute("aria-selected", false);
+  }
+  //
 };
 
-Treeitem.prototype.handleFocus = function (event) {
+TreeitemMultiSelect.prototype.handleFocus = function (event) {
   var node = this.domNode;
   if (this.isExpandable) {
     node = node.firstElementChild;
@@ -241,7 +287,7 @@ Treeitem.prototype.handleFocus = function (event) {
   node.classList.add('focus');
 };
 
-Treeitem.prototype.handleBlur = function (event) {
+TreeitemMultiSelect.prototype.handleBlur = function (event) {
   var node = this.domNode;
   if (this.isExpandable) {
     node = node.firstElementChild;
@@ -249,10 +295,10 @@ Treeitem.prototype.handleBlur = function (event) {
   node.classList.remove('focus');
 };
 
-Treeitem.prototype.handleMouseOver = function (event) {
+TreeitemMultiSelect.prototype.handleMouseOver = function (event) {
   event.currentTarget.classList.add('hover');
 };
 
-Treeitem.prototype.handleMouseOut = function (event) {
+TreeitemMultiSelect.prototype.handleMouseOut = function (event) {
   event.currentTarget.classList.remove('hover');
 };
