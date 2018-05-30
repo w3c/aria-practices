@@ -58,3 +58,7 @@ ul[role="tree"] {
   background-color:DodgerBlue;
   width:9em;
 }
+#ex1-container{
+  display:flex;
+  justify-content:space-around;
+}
