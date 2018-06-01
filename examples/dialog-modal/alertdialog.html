@@ -71,9 +71,9 @@
         <ol>
           <li>The accessible label for the alert dialog is set to its heading ("Confirmation").</li>
           <li>The dialog's prompt ("Are you sure...?") is referenced via <code>aria-describedby</code> to ensure that the user is immediately aware of the prompt.</li>
-          <li>Focus is automatically set to the first focusable element inside the dialog, which is the "No" button. This is the least destructive action, and will prevent the user from accidentally confirming the dialog.</li>
-          <li>The user can dismiss the dialog with <kbd>Escape</kbd> at any time, or by clicking the "No" button.</li>
-          <li>Once the user has removed the contents of the notes <code>textarea</code>, clicking the "discard notes" button cannot do anything. To communicate this to the user, an alert with <code>role="alert"</code> is triggered.</li>
+          <li>Focus is automatically set to the first focusable element inside the dialog, which is the "No" <code>button</code>. This is the least destructive action, and will prevent the user from accidentally confirming the dialog.</li>
+          <li>The user can dismiss the dialog with <kbd>Escape</kbd> at any time, or by clicking the "No" <code>button</code>.</li>
+          <li>Once the user has removed the contents of the notes <code>textarea</code>, clicking the "discard notes" <code>button</code> cannot do anything. To communicate this to the user, an alert with <code>role="alert"</code> is triggered.</li>
         </ol>
       </section>
       <section aria-labelledby="kbd_label">
