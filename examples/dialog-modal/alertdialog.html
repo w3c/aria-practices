@@ -29,13 +29,19 @@
     </nav>
     <main aria-labelledby="main_label">
       <h1 id="main_label">Alert Dialog Example</h1>
-      <p>The below example demonstrates the <a href="../../#alertdialog">design pattern for an alert dialog</a>. The <a href="../../#alert">design pattern for an alert</a> is also demonstrated to allow the user to experience the difference between the two patterns.</p>
+      <p>
+        The below example demonstrates the <a href="../../#alertdialog">design pattern for an alert dialog</a>.
+        The <a href="../../#alert">design pattern for an alert</a> is also demonstrated to allow the user to experience the difference between the two patterns.
+      </p>
       <p>User interactions for this interactive include:</p>
       <ul>
         <li>The "notes" <code>textarea</code> contains editable text that you are encouraged to modify.</li>
         <li>Pressing the "discard notes" <code>button</code> will trigger a confirmation dialog, but only if the notes field contains text.</li>
         <li>Clicking "yes" will remove all contents of the notes field, while clicking "no" or pressing escape will simply close the dialog.</li>
-        <li>If the notes field does not contain any text, pressing the "discard nodes" <code>button</code> will trigger an alert, notifying the user that there is nothing to discard. This notification appears for 3 seconds, and then disappears, a pattern commonly referred to as a "toast notification."</li>
+        <li>
+          If the notes field does not contain any text, pressing the "discard nodes" <code>button</code> will trigger an alert, notifying the user that there is nothing to discard.
+          This notification appears for 3 seconds, and then disappears, a pattern commonly referred to as a "toast notification."
+        </li>
       </ul>
       <p>Similar examples include:</p>
       <ul>
@@ -67,13 +73,22 @@
       </section>
       <section aria-labelledby="a11y_label">
         <h2 id="a11y_label">Accessibility Features</h2>
-        <p>Note that this example uses code from the <a href="../dialog-modal/dialog.html">modal dialog example</a> to handle the behavior of the <code>alertdialog</code>. Referencing that example may also be useful.</p>
+        <p>
+          Note that this example uses code from the <a href="../dialog-modal/dialog.html">modal dialog example</a> to handle the behavior of the <code>alertdialog</code>.
+          Referencing that example may also be useful.
+        </p>
         <ol>
           <li>The accessible label for the alert dialog is set to its heading ("Confirmation").</li>
           <li>The dialog's prompt ("Are you sure...?") is referenced via <code>aria-describedby</code> to ensure that the user is immediately aware of the prompt.</li>
-          <li>Focus is automatically set to the first focusable element inside the dialog, which is the "No" <code>button</code>. This is the least destructive action, and will prevent the user from accidentally confirming the dialog.</li>
+          <li>
+            Focus is automatically set to the first focusable element inside the dialog, which is the "No" <code>button</code>.
+            This is the least destructive action, and will prevent the user from accidentally confirming the dialog.
+          </li>
           <li>The user can dismiss the dialog with <kbd>Escape</kbd> at any time, or by clicking the "No" <code>button</code>.</li>
-          <li>Once the user has removed the contents of the notes <code>textarea</code>, clicking the "discard notes" <code>button</code> cannot do anything. To communicate this to the user, an alert with <code>role="alert"</code> is triggered.</li>
+          <li>
+            Once the user has removed the contents of the notes <code>textarea</code>, clicking the "discard notes" <code>button</code> cannot do anything.
+            To communicate this to the user, an alert with <code>role="alert"</code> is triggered.
+          </li>
         </ol>
       </section>
       <section aria-labelledby="kbd_label">
