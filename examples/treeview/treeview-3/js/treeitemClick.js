@@ -13,32 +13,46 @@
  * @desc  after page has loaded initialize all treeitems based on the role=treeitem
  */
 
-window.addEventListener('load', function (event) {
+// window.addEventListener('load', function (event) {
+//
+//   var treeitems = document.querySelectorAll('[role="treeitem"]');
+//   for (var i = 0; i < treeitems.length; i++) {
+//     //
+//     treeitems[i].addEventListener('click', function (event) {
+//       var treeitem = event.currentTarget;
+//       var selected=treeitem.getAttribute('aria-selected');
+//       var label = treeitem.innerHTML;
+//
+//         // console.log(label.trim());
+//         if(selected==='true'){
+//             res.push(label.trim());
+//         }else if(selected==='false'){
+//           if(res.includes(label.trim())) {
+//             var index=res.indexOf(label.trim());
+//             res.splice(index,1);
+//           }
+//         }
+//
+//
+//       event.stopPropagation();
+//       event.preventDefault();
+//     });
+//   }
 
-  var treeitems = document.querySelectorAll('[role="treeitem"]');
-  var res=[];
-  for (var i = 0; i < treeitems.length; i++) {
-    //
-    treeitems[i].addEventListener('click', function (event) {
-      var treeitem = event.currentTarget;
-      var selected=treeitem.getAttribute('aria-selected');
-      var label = treeitem.innerHTML;
-        console.log(treeitem.getAttribute('aria-selected'));
-        // console.log(label.trim());
-        if(selected==='true'){
-            res.push(label.trim());
-        }else if(selected==='false'){
-          if(res.includes(label.trim())) {
-            var index=res.indexOf(label.trim());
-            res.splice(index,1);
-          }
-        }
+// });
 
-        document.getElementById('last_action').value=res;
-
-      event.stopPropagation();
-      event.preventDefault();
-    });
-  }
-
-});
+// window.addEventListener('load', function () {
+//   var treeitems = document.querySelectorAll('[role="treeitem"]');
+//   for (var i = 0; i < treeitems.length; i++) {
+//     treeitems[i].addEventListener('click', function (event) {
+//       var treeitem = event.currentTarget;
+//       var label = treeitem.getAttribute('aria-label');
+//       if (!label) {
+//         label = treeitem.innerHTML;
+//       }
+//       document.getElementById('last_action').value = label.trim();
+//       event.stopPropagation();
+//       event.preventDefault();
+//     });
+//   }
+// });

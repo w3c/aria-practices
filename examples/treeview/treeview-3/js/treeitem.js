@@ -32,12 +32,12 @@ var TreeitemMultiSelect = function (node, treeObj, group) {
   this.domNode = node;
   this.label = node.textContent.trim();
 
+
   if (node.getAttribute('aria-label')) {
     this.label = node.getAttribute('aria-label').trim();
   }
 
   this.isExpandable = false;
-  this.isSelectable = false; //JZ
   this.isVisible = false;
   this.inGroup = false;
 
@@ -54,11 +54,7 @@ var TreeitemMultiSelect = function (node, treeObj, group) {
       this.isExpandable = true;
       break;
     }
-    //JZ
-    if(elem.tagName.toLowerCase()=='li' && elem.hasAttribute("aria-selected")){
-      this.isSelectable = true;
-    }
-    //JZ
+
     elem = elem.nextElementSibling;
   }
 
@@ -192,6 +188,7 @@ TreeitemMultiSelect.prototype.handleKeydown = function (event) {
       case this.keyCode.A:
         if(event.ctrlKey){
           this.tree.selectAllTreeitem(this);
+
         }
         flag = true;
         break;
@@ -266,18 +263,15 @@ TreeitemMultiSelect.prototype.handleClick = function (event) {
     event.stopPropagation();
   }
   else {
-    this.tree.setFocusToItem(this);
+    this.tree.setSelectToItem(this);
+    event.stopPropagation();
+    event.preventDefault();
   }
   //------------------------------------------------------********-------------------------------------------------
   //new added for selection state when click
-  var selectState=event.currentTarget.getAttribute('aria-selected');
-  if(selectState==='false'){
-    event.currentTarget.setAttribute("aria-selected", true);
-  }else if(selectState==="true"){
-    event.currentTarget.setAttribute("aria-selected", false);
-  }
-  //
+
 };
+
 
 TreeitemMultiSelect.prototype.handleFocus = function (event) {
   var node = this.domNode;

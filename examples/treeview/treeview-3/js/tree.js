@@ -14,6 +14,10 @@
  * @desc  after page has loaded initialize all treeitems based on the role=treeitem
  */
 
+
+// last edit: 6/1/2018, working on handleClickItem event
+
+
 window.addEventListener('load', function () {
 
   var trees = document.querySelectorAll('[role="tree"]');
@@ -46,7 +50,7 @@ var Tree = function (node) {
 
   this.treeitems = [];
   this.firstChars = [];
-
+  this.res=[];// this is suppose to show in last_action
   this.firstTreeitem = null;
   this.lastTreeitem = null;
 
@@ -121,7 +125,20 @@ Tree.prototype.setSelectToItem = function(treeitem){
       ti.domNode.tabIndex=-1;
     }
   }
-}
+
+
+    if(treeitem.domNode.getAttribute("aria-selected")==='true'){
+      this.res.push(treeitem.label.trim());
+    }else if(treeitem.domNode.getAttribute("aria-selected")==='false'){
+      if(this.res.includes(treeitem.label.trim())){
+        var index=this.res.indexOf(treeitem.label.trim());
+        this.res.splice(index,1);
+      }
+    }
+  console.log(this.res);
+  document.getElementById("last_action").value=this.res.join(" ");
+
+};
 Tree.prototype.setSelectToNextItem= function (currentItem){
   var nextItem= false;
   for(var i=(this.treeitems.length-1); i>=0;i--){
@@ -201,6 +218,19 @@ Tree.prototype.selectAllTreeitem = function (currentItem){
       this.setSelectToItem(ti);
     }
   }
+  for(var j=0; j<this.treeitems.length;j++){
+    var ti=this.treeitems[j];
+    if(ti.domNode.getAttribute("aria-selected")==='true'){
+      this.res.push(ti.label.trim());
+    }else if(ti.domNode.getAttribute("aria-selected")==='false'){
+      if(this.res.includes(ti.label.trim())){
+        var index=this.res.indexOf(ti.label.trim());
+        this.res.splice(index,1);
+      }
+    }
+  }
+  console.log(this.res);
+  document.getElementById("last_action").value=this.res.join(" ");
   currentItem.domNode.focus();
 };
 
@@ -244,7 +274,7 @@ Tree.prototype.expandAllTreeitem=function(currentItem){
       }
     }
 };
-//
+//suggestion: put this.res into treeitem, and only keep the handleClick event in treeitem.js 6/1/2018
 //------------------------------------------------------********-------------------------------------------------
 Tree.prototype.setFocusToNextItem = function (currentItem) {
 
