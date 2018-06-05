@@ -9,7 +9,8 @@
   "scripts": {
     "fix": "eslint --fix .",
     "lint": "eslint .",
-    "test": "npm run lint"
+    "vnu-jar": "java -jar node_modules/vnu-jar/build/dist/vnu.jar --errors-only --filterfile .vnurc --no-langdetect examples/**/*.html",
+    "test": "npm run lint && npm run vnu-jar"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,7 @@
   },
   "homepage": "https://github.com/w3c/aria-practices#readme",
   "devDependencies": {
-    "eslint": "^4.2.0"
+    "eslint": "^4.19.1",
+    "vnu-jar": "^18.3.0"
   }
 }

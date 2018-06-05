@@ -7,6 +7,12 @@ env:
   global:
     - GH_REF: github.com/w3c/aria-practices.git
 
+addons:
+  apt:
+    packages:
+      - oracle-java8-installer
+      - oracle-java8-set-default
+
 git:
   depth: 3
 
