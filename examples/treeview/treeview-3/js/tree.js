@@ -15,7 +15,6 @@
  */
 
 
-// last edit: 6/1/2018, working on handleClickItem event
 
 
 window.addEventListener('load', function () {
@@ -53,7 +52,8 @@ var Tree = function (node) {
   this.res=[];// this is suppose to show in last_action
   this.firstTreeitem = null;
   this.lastTreeitem = null;
-
+  this.flag=false;
+  this.number=0;
 };
 
 Tree.prototype.init = function () {
@@ -110,6 +110,7 @@ Tree.prototype.setFocusToItem = function (treeitem) {
 };
 //------------------------------------------------------********-------------------------------------------------
 Tree.prototype.setSelectToItem = function(treeitem){
+  var count=0;
   for(var i=0;i<this.treeitems.length;i++){
     var ti = this.treeitems[i];
     if(ti===treeitem){
@@ -138,6 +139,16 @@ Tree.prototype.setSelectToItem = function(treeitem){
   console.log(this.res);
   document.getElementById("last_action").value=this.res.join(" ");
 
+
+  //update number of files selected
+  for(var i=0; i<this.treeitems.length; i++){
+    var ti=this.treeitems[i];
+    if(ti.domNode.getAttribute("aria-selected")==="true") {
+      count++;
+    }
+  }
+  this.number=count;
+  document.getElementById("numbers").innerHTML=this.number+" ";
 };
 Tree.prototype.setSelectToNextItem= function (currentItem){
   var nextItem= false;
@@ -208,32 +219,63 @@ Tree.prototype.selectContiguousKeys = function (currentItem){
       }
     }
 }
-
-
-Tree.prototype.selectAllTreeitem = function (currentItem){
-  // this.expandAllTreeitem(currentItem);
-  for(var i= 0;i<this.treeitems.length;i++){
-    var ti = this.treeitems[i];
-    if(ti.domNode.hasAttribute("aria-selected")){
-      this.setSelectToItem(ti);
-    }
-  }
-  for(var j=0; j<this.treeitems.length;j++){
-    var ti=this.treeitems[j];
-    if(ti.domNode.getAttribute("aria-selected")==='true'){
-      this.res.push(ti.label.trim());
-    }else if(ti.domNode.getAttribute("aria-selected")==='false'){
-      if(this.res.includes(ti.label.trim())){
-        var index=this.res.indexOf(ti.label.trim());
-        this.res.splice(index,1);
+/////////////////////////////////////////////////////// modify this
+Tree.prototype.selectAllTrue=function(treeitem){
+  this.res=[];
+  for(var i=0;i<this.treeitems.length;i++){
+    var ti=this.treeitems[i];
+      ti.domNode.tabIndex=0;
+      ti.domNode.focus();
+      if(ti.domNode.hasAttribute("aria-selected")){
+        ti.domNode.setAttribute("aria-selected",true);
+        this.res.push(ti.label.trim());
       }
-    }
   }
   console.log(this.res);
   document.getElementById("last_action").value=this.res.join(" ");
+  document.getElementById("numbers").innerHTML=this.res.length + " ";
+
+};
+Tree.prototype.selectAllFalse=function(treeitem){
+  this.res=[];
+  for(var i=0;i<this.treeitems.length;i++){
+    var ti=this.treeitems[i];
+      ti.domNode.tabIndex=0;
+      ti.domNode.focus();
+      if(ti.domNode.hasAttribute("aria-selected")){
+        ti.domNode.setAttribute("aria-selected",false);
+        if(this.res.includes(ti.label.trim())){
+        var index=this.res.indexOf(ti.label.trim());
+        this.res.splice(index,1);
+        }
+      }
+  }
+  console.log(this.res);
+  document.getElementById("last_action").value=this.res.join(" ");
+  document.getElementById("numbers").innerHTML=0 + " ";
+
+};
+Tree.prototype.selectAllTreeitem = function (currentItem){
+
+  var temp=[];
+  var flag;
+  for(var i=0;i<this.treeitems.length;i++){
+    if(this.treeitems[i].domNode.hasAttribute("aria-selected")){
+      temp.push(this.treeitems[i].domNode.getAttribute("aria-selected"));
+    }
+  }
+  function allTrue(elem){
+    return elem=='true';
+  }
+  flag= temp.every(allTrue); // return false if there is unselected files, return true if all files are selected
+  if(flag){
+    this.selectAllFalse(currentItem);
+  }else{
+    this.selectAllTrue(currentItem);
+  }
+  console.log(temp);
   currentItem.domNode.focus();
 };
-
 Tree.prototype.selectToFirst = function (currentItem){
   var curPos;
   this.expandAllTreeitem(currentItem);
@@ -274,6 +316,7 @@ Tree.prototype.expandAllTreeitem=function(currentItem){
       }
     }
 };
+
 //suggestion: put this.res into treeitem, and only keep the handleClick event in treeitem.js 6/1/2018
 //------------------------------------------------------********-------------------------------------------------
 Tree.prototype.setFocusToNextItem = function (currentItem) {
