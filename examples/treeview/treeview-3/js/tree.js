@@ -79,7 +79,7 @@ Tree.prototype.init = function () {
       elem = elem.nextElementSibling;
     }
   }
-
+  document.getElementById("numbers").innerHTML=" No Files Selected:";
   // initialize pop up menus
   if (!this.domNode.getAttribute('role')) {
     this.domNode.setAttribute('role', 'tree');
@@ -148,7 +148,13 @@ Tree.prototype.setSelectToItem = function(treeitem){
     }
   }
   this.number=count;
-  document.getElementById("numbers").innerHTML=this.number+" ";
+  if(this.number==0){
+    document.getElementById("numbers").innerHTML="No Files Selected:";
+  }else if(this.number==1){
+    document.getElementById("numbers").innerHTML=1 +" File Selected:";
+  }else{
+    document.getElementById("numbers").innerHTML=this.number+" Files Selected:";
+  }
 };
 Tree.prototype.setSelectToNextItem= function (currentItem){
   var nextItem= false;
@@ -233,7 +239,7 @@ Tree.prototype.selectAllTrue=function(treeitem){
   }
   console.log(this.res);
   document.getElementById("last_action").value=this.res.join(" ");
-  document.getElementById("numbers").innerHTML=this.res.length + " ";
+  document.getElementById("numbers").innerHTML=this.res.length + " Files Selected:";
 
 };
 Tree.prototype.selectAllFalse=function(treeitem){
@@ -252,7 +258,7 @@ Tree.prototype.selectAllFalse=function(treeitem){
   }
   console.log(this.res);
   document.getElementById("last_action").value=this.res.join(" ");
-  document.getElementById("numbers").innerHTML=0 + " ";
+  document.getElementById("numbers").innerHTML="No" + " Files Selected:";
 
 };
 Tree.prototype.selectAllTreeitem = function (currentItem){

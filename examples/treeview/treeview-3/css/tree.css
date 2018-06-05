@@ -60,5 +60,8 @@ ul[role="tree"] {
 }
 #ex1-container{
   display:flex;
-  justify-content:space-around;
+  justify-content:space-between;
+}
+#tree_label, #tree_box, p {
+  margin-top:0px;
 }

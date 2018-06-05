@@ -33,7 +33,7 @@
       <p>
         The below example implements the
         <a href="../../../#TreeView">Treeview Design Pattern</a>
-        to simulate a file selector.
+        to simulate a file selector or mulitiple files selector.
         When users activate an item that represents a file name in the below tree, the name of the selected file appears in the read-only edit field next to the tree.
       </p>
       <p>
@@ -53,10 +53,11 @@
         <h2 id="start">Example</h2>
         <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep start" aria-label="Start of"></div>
         <div id="ex1">
-         <h3 id="tree_label">
-            File Viewer
-          </h3>
         <div id="ex1-container">
+          <div id="tree_selector">
+          <h3 id="tree_label">
+             File Selector
+           </h3>
           <ul role="tree" aria-labelledby="tree_label">
             <li role="treeitem"
               aria-expanded="false">
@@ -249,9 +250,10 @@
               </ul>
             </li>
           </ul>
-          <div>
-            <p><label><span id="numbers">  </span>Files Selected:</label></p>
-            <textarea rows="20" cols="13" id="last_action" readonly> </textarea>
+        </div>
+          <div id="tree_box">
+            <p><label><span id="numbers">  </span></label></p>
+            <textarea rows="20" cols="16" id="last_action" readonly> </textarea>
           </div>
         </div>
       </div>
