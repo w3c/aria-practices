@@ -47,7 +47,11 @@
         <h2 id="start">Example</h2>
         <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep start" aria-label="Start of"></div>
         <div id="ex1">
-        <h3 id="tree1">File Viewer</h3>
+          <div id="ex1-container">
+            <div id="tree_selector">
+            <h3 id="tree_label">
+               File Selector
+             </h3>
         <ul role="tree" aria-labelledby="tree1">
           <li role="treeitem"
             aria-level="1"
@@ -409,7 +413,12 @@
             </ul>
           </li>
         </ul>
-        <p><label>File or Folder Selected: <input id="last_action" type="text" size="15" readonly></label></p>
+      </div>
+        <div id="tree_box">
+            <p><label><span id="numbers">  </span></label></p>
+            <textarea rows="20" cols="16" id="last_action" readonly> </textarea>
+          </div>
+        </div>
         </div>
         <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep start" aria-label="End of"></div>
       </section>

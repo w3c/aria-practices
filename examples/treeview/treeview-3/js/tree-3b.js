@@ -116,9 +116,12 @@ Tree.prototype.setSelectToItem = function(treeitem){
     if(ti===treeitem){
       ti.domNode.tabIndex=0;
       ti.domNode.focus();
-      if(ti.domNode.className==="doc"){
+      console.log(ti.domNode.className);
+      if(ti.domNode.classList.contains('doc') && !ti.domNode.hasAttribute("aria-selected")){
+        console.log('selected');
         ti.domNode.setAttribute("aria-selected", true);
       }else if(ti.domNode.getAttribute("aria-selected")==='true'){
+        console.log('not selected');
         ti.domNode.removeAttribute("aria-selected");
       }
     }
@@ -130,7 +133,7 @@ Tree.prototype.setSelectToItem = function(treeitem){
 
     if(treeitem.domNode.getAttribute("aria-selected")==='true'){
       this.res.push(treeitem.label.trim());
-    }else if(!treeitem.domNode.hasAttribute("aria-selected")) {
+    }else if(ti.domNode.classList.contains('doc') && !ti.domNode.hasAttribute("aria-selected")) {
       if(this.res.includes(treeitem.label.trim())){
         var index=this.res.indexOf(treeitem.label.trim());
         this.res.splice(index,1);
@@ -232,7 +235,7 @@ Tree.prototype.selectAllTrue=function(treeitem){
     var ti=this.treeitems[i];
       ti.domNode.tabIndex=0;
       ti.domNode.focus();
-      if(ti.domNode.className==="doc"){
+      if(ti.domNode.classList.contains('doc')){
         ti.domNode.setAttribute("aria-selected",true);
         this.res.push(ti.label.trim());
       }
@@ -248,8 +251,8 @@ Tree.prototype.selectAllFalse=function(treeitem){
     var ti=this.treeitems[i];
       ti.domNode.tabIndex=0;
       ti.domNode.focus();
-      if(ti.domNode.className==="doc" && ti.domNode.hasAttribute("aria-selected")){
-        // ti.domNode.setAttribute("aria-selected",false);
+      if(ti.domNode.hasAttribute("aria-selected")){
+        ti.domNode.removeAttribute("aria-selected");
         if(this.res.includes(ti.label.trim())){
         var index=this.res.indexOf(ti.label.trim());
         this.res.splice(index,1);
@@ -264,22 +267,22 @@ Tree.prototype.selectAllFalse=function(treeitem){
 Tree.prototype.selectAllTreeitem = function (currentItem){
 
   var temp=[];
+  var temp2=[];
   var flag;
   for(var i=0;i<this.treeitems.length;i++){
     if(this.treeitems[i].domNode.hasAttribute("aria-selected")){
       temp.push(this.treeitems[i].domNode.getAttribute("aria-selected"));
     }
-  }
-  function allTrue(elem){
-    return elem=='true';
-  }
-  flag= temp.every(allTrue); // return false if there is unselected files, return true if all files are selected
-  if(flag){
-    this.selectAllFalse(currentItem);
-  }else{
-    this.selectAllTrue(currentItem);
+    if(this.treeitems[i].domNode.classList.contains("doc")){
+      temp2.push(this.treeitems[i]);
+    }
   }
   console.log(temp);
+ if(temp.length!==temp2.length){
+    this.selectAllTrue(currentItem);
+  }else{
+    this.selectAllFalse(currentItem);
+  }
   currentItem.domNode.focus();
 };
 Tree.prototype.selectToFirst = function (currentItem){
