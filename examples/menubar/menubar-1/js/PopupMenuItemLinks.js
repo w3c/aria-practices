@@ -77,7 +77,6 @@ MenuItem.prototype.handleKeydown = function (event) {
 
   switch (event.keyCode) {
     case this.keyCode.SPACE:
-    case this.keyCode.RETURN:
       if (this.popupMenu) {
         this.popupMenu.open();
         this.popupMenu.setFocusToFirstItem();
@@ -104,6 +103,21 @@ MenuItem.prototype.handleKeydown = function (event) {
       }
 
       flag = true;
+      break;
+
+    case this.keyCode.RETURN:
+      var anchor = tgt.firstElementChild;
+      if (anchor && anchor.href) {
+        window.location.href = anchor.href;
+        flag = true;
+      }
+      else {
+        if (this.popupMenu) {
+          this.popupMenu.open();
+          this.popupMenu.setFocusToFirstItem();
+          flag = true;
+        }
+      }
       break;
 
     case this.keyCode.UP:

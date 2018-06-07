@@ -62,6 +62,7 @@ ul[role="menubar"] [role="menuitem"] > [role="menu"] {
   padding: 0;
   position: absolute;
   top: 2.5em;
+  left: -0.25em;
 }
 
 ul[role="menubar"] [role="menuitem"] > [role="menu"] [role="menu"] {

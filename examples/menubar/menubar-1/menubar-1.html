@@ -51,7 +51,7 @@
       <nav aria-label="Mythical University">
         <ul id="menubar1" role="menubar" aria-label="Mythical University">
           <li role="menuitem" aria-haspopup="true" aria-expanded="false">
-            <a  href="#">About</a>
+            <a  href="mb-about.html">About</a>
             <ul role="menu" aria-label="About">
               <li role="menuitem">
                 <a href="mb-about.html#overview">Overview</a>
@@ -60,56 +60,56 @@
                 <a href="mb-about.html#admin">Administration</a>
               </li>
               <li role="menuitem" tabindex="-1" aria-haspopup="true" aria-expanded="false">
-                  <a href="#">Facts</a>
+                  <a href="mb-about.html#facts">Facts</a>
                   <ul role="menu" aria-label="Facts">
                     <li role="menuitem">
-                      <a href="mb-about.html#facts">History</a>
+                      <a href="mb-about.html#facts-history">History</a>
                     </li>
                     <li role="menuitem">
-                      <a href="mb-about.html#facts">Current Statistics</a>
+                      <a href="mb-about.html#facts-stats">Current Statistics</a>
                     </li>
                     <li role="menuitem" >
-                      <a href="mb-about.html#facts">Awards</a>
+                      <a href="mb-about.html#facts-awards">Awards</a>
                     </li>
                   </ul>
               </li>
               <li role="menuitem" tabindex="-1" aria-haspopup="true" aria-expanded="false">
-                  <a href="#">Campus Tours</a>
+                  <a href="mb-about.html#tours">Campus Tours</a>
                   <ul role="menu" aria-label="Campus Tours">
                     <li role="menuitem">
-                      <a href="mb-about.html#tours">For prospective students</a>
+                      <a href="mb-about.html#tours-students">For prospective students</a>
                     </li>
                     <li role="menuitem">
-                      <a href="mb-about.html#tours">For alumni</a>
+                      <a href="mb-about.html#tours-alumni">For alumni</a>
                     </li>
                     <li role="menuitem">
-                      <a href="mb-about.html#tours">For visitors</a>
+                      <a href="mb-about.html#tours-vistor">For visitors</a>
                     </li>
                   </ul>
               </li>
             </ul>
           </li>
           <li role="menuitem" aria-haspopup="true" aria-expanded="false">
-            <a  href="#">Admissions</a>
+            <a  href="mb-admissions.html">Admissions</a>
             <ul role="menu" aria-label="Admissions">
               <li role="menuitem">
                 <a  href="mb-admissions.html#apply">Apply</a>
               </li>
               <li role="menuitem" aria-haspopup="true" aria-expanded="false">
-                  <a href="#">Tuition</a>
+                  <a href="mb-admissions.html#tuition">Tuition</a>
                   <ul role="menu" aria-label="Tuition Information">
                     <li role="menuitem">
-                      <a href="mb-admissions.html#tuition">Undergraduate</a>
+                      <a href="mb-admissions.html#tuition-undergrad">Undergraduate</a>
                     </li>
                     <li role="menuitem">
-                      <a href="mb-admissions.html#tuition">Graduate</a>
+                      <a href="mb-admissions.html#tuition-graduate">Graduate</a>
                     </li>
                     <li role="menuitem">
-                      <a href="mb-admissions.html#tuition">Professional Schools</a>
+                      <a href="mb-admissions.html#tuition-professional">Professional Schools</a>
                     </li>
                   </ul>
               </li>
-              <li role="menuitem" >
+              <li role="menuitem">
                 <a href="mb-admissions.html#signup">Sign Up</a>
               </li>
               <li role="separator"></li>
@@ -125,7 +125,7 @@
             </ul>
           </li>
           <li role="menuitem" aria-haspopup="true" aria-expanded="false">
-            <a href="#">Academics</a>
+            <a href="mb-academics.html">Academics</a>
             <ul role="menu" aria-label="Academics">
               <li role="menuitem">
                 <a href="mb-academics.html#colleges">Colleges &amp; Schools</a>
@@ -187,9 +187,19 @@
       <tbody>
         <tr>
           <th>
-            <kbd>Space</kbd><br><kbd>Enter</kbd>
+            <kbd>Space</kbd>
           </th>
           <td>Opens submenu and moves focus to first item in the submenu.</td>
+        </tr>
+        <tr>
+          <th>
+            <kbd>Enter</kbd>
+          </th>
+          <td>
+            <ul>
+              <li>Follows the link associated with the menuitem.</li>
+              <li>If no link associated with the menuitem, the enter key opens submenu and moves focus to first item in the submenu.</li>
+            </td>
         </tr>
         <tr>
           <th>
@@ -549,7 +559,7 @@
           <td>
             <ul>
               <li>Identifies the element as a menu item.</li>
-              <li> The accessible name is calculated from the text content of the <code>li</code> element.</li>
+              <li>The accessible name is calculated from the text content of the <code>li</code> element.</li>
             </ul>
           </td>
         </tr>
