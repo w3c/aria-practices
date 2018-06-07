@@ -79,7 +79,6 @@ Tree.prototype.init = function () {
       elem = elem.nextElementSibling;
     }
   }
-  document.getElementById("numbers").innerHTML=" No Files Selected:";
   // initialize pop up menus
   if (!this.domNode.getAttribute('role')) {
     this.domNode.setAttribute('role', 'tree');
@@ -91,6 +90,7 @@ Tree.prototype.init = function () {
 
   this.firstTreeitem.domNode.tabIndex = 0;
 
+  this.updateSelectedFilesInformation();
 };
 
 Tree.prototype.setFocusToItem = function (treeitem) {
@@ -108,9 +108,37 @@ Tree.prototype.setFocusToItem = function (treeitem) {
   }
 
 };
+
 //------------------------------------------------------********-------------------------------------------------
-Tree.prototype.setSelectToItem = function(treeitem){
+
+Tree.prototype.updateSelectedFilesInformation = function() {
   var count=0;
+  var node_file_info  = document.getElementById("id_selected_file_information");
+  var node_file_count = document.getElementById("id_selected_file_count");
+
+  node_file_info.innerHTML = "";
+
+  //update number of files selected
+  for(var i=0; i<this.treeitems.length; i++){
+    var ti=this.treeitems[i];
+    if(ti.domNode.getAttribute("aria-selected")==="true") {
+      node_file_info.innerHTML = node_file_info.innerHTML + ti.label + "\n";
+      count++;
+    }
+  }
+
+  if(count==0){
+    node_file_count.innerHTML = "No Files Selected:";
+  }else if(count==1){
+    node_file_count.innerHTML = "One File Selected:";
+  }else{
+    node_file_count.innerHTML = count + " Files Selected:";
+  }
+
+}
+
+Tree.prototype.setSelectToItem = function(treeitem){
+
   for(var i=0;i<this.treeitems.length;i++){
     var ti = this.treeitems[i];
     if(ti===treeitem){
@@ -131,34 +159,19 @@ Tree.prototype.setSelectToItem = function(treeitem){
   }
 
 
-    if(treeitem.domNode.getAttribute("aria-selected")==='true'){
-      this.res.push(treeitem.label.trim());
-    }else if(ti.domNode.classList.contains('doc') && !ti.domNode.hasAttribute("aria-selected")) {
-      if(this.res.includes(treeitem.label.trim())){
-        var index=this.res.indexOf(treeitem.label.trim());
-        this.res.splice(index,1);
-      }
-    }
-  console.log(this.res);
-  document.getElementById("last_action").value=this.res.join(" ");
-
-
-  //update number of files selected
-  for(var i=0; i<this.treeitems.length; i++){
-    var ti=this.treeitems[i];
-    if(ti.domNode.getAttribute("aria-selected")==="true") {
-      count++;
+  if(treeitem.domNode.getAttribute("aria-selected")==='true'){
+    this.res.push(treeitem.label.trim());
+  }else if(ti.domNode.classList.contains('doc') && !ti.domNode.hasAttribute("aria-selected")) {
+    if(this.res.includes(treeitem.label.trim())){
+      var index=this.res.indexOf(treeitem.label.trim());
+      this.res.splice(index,1);
     }
   }
-  this.number=count;
-  if(this.number==0){
-    document.getElementById("numbers").innerHTML="No Files Selected:";
-  }else if(this.number==1){
-    document.getElementById("numbers").innerHTML=1 +" File Selected:";
-  }else{
-    document.getElementById("numbers").innerHTML=this.number+" Files Selected:";
-  }
+
+  this.updateSelectedFilesInformation();
+
 };
+
 Tree.prototype.setSelectToNextItem= function (currentItem){
   var nextItem= false;
   for(var i=(this.treeitems.length-1); i>=0;i--){
@@ -229,6 +242,8 @@ Tree.prototype.selectContiguousKeys = function (currentItem){
     }
 }
 /////////////////////////////////////////////////////// modify this
+
+
 Tree.prototype.selectAllTrue=function(treeitem){
   this.res=[];
   for(var i=0;i<this.treeitems.length;i++){
@@ -240,11 +255,9 @@ Tree.prototype.selectAllTrue=function(treeitem){
         this.res.push(ti.label.trim());
       }
   }
-  console.log(this.res);
-  document.getElementById("last_action").value=this.res.join(" ");
-  document.getElementById("numbers").innerHTML=this.res.length + " Files Selected:";
 
 };
+
 Tree.prototype.selectAllFalse=function(treeitem){
   this.res=[];
   for(var i=0;i<this.treeitems.length;i++){
@@ -259,9 +272,8 @@ Tree.prototype.selectAllFalse=function(treeitem){
         }
       }
   }
-  console.log(this.res);
-  document.getElementById("last_action").value=this.res.join(" ");
-  document.getElementById("numbers").innerHTML="No" + " Files Selected:";
+
+  this.updateSelectedFileInformation();
 
 };
 Tree.prototype.selectAllTreeitem = function (currentItem){
