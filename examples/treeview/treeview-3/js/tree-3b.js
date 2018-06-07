@@ -108,7 +108,7 @@ Tree.prototype.updateSelectedFilesInformation = function () {
   var nodeFileInfo  = document.getElementById('id_selected_file_information');
   var nodeFileCount = document.getElementById('id_selected_file_count');
 
-  odeFileInfo.innerHTML = '';
+  nodeFileInfo.innerHTML = '';
 
   // update number of files selected
   for (var i = 0; i < this.treeitems.length; i++) {
