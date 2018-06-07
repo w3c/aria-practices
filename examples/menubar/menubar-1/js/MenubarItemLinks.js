@@ -6,6 +6,8 @@ var MenubarItem = function (domNode, menuObj) {
 
   this.menu = menuObj;
   this.domNode = domNode;
+  this.linkElem = false;
+
   this.popupMenu = false;
 
   this.hasFocus = false;
@@ -38,12 +40,20 @@ MenubarItem.prototype.init = function () {
   this.domNode.addEventListener('mouseover', this.handleMouseover.bind(this));
   this.domNode.addEventListener('mouseout', this.handleMouseout.bind(this));
 
+  // check to see if the the menu item has a child
+  var elem = this.domNode.firstElementChild;
+
+  if (elem && elem.tagName === 'A') {
+    elem.tabIndex = -1;
+    this.linkElem = elem;
+  }
+
   // Initialize pop up menus
 
-  var nextElement = this.domNode.nextElementSibling;
+  var menuElement = this.domNode.querySelector('[role="menu"]');
 
-  if (nextElement && nextElement.tagName === 'UL') {
-    this.popupMenu = new PopupMenu(nextElement, this);
+  if (menuElement) {
+    this.popupMenu = new PopupMenu(menuElement, this);
     this.popupMenu.init();
   }
 

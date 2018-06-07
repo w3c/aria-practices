@@ -6,66 +6,97 @@ ul[role="menubar"] {
   background-color: #EEEEEE;
 }
 
+ul[role="menubar"] [role="menuitem"] {
+  display: inline-block;
+  position: relative;
+  margin: 0;
+  padding: 0.25em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  text-decoration: none;
+  color: black;
+}
+
 ul[role="menubar"] [role="menuitem"],
 ul[role="menubar"] [role="separator"] {
+  margin: 0;
   padding: 0.25em;
   background-color: #EEEEEE;
   border: 2px solid #EEEEEE;
 }
 
-ul[role="menubar"] [role="separator"] {
+
+ul[role="menubar"] [role="menuitem"] > a {
+  text-decoration: none;
+  color: black;
+  border: none;
+}
+
+ul[role="menubar"] > [role="menuitem"] > a {
+  margin-right: 0.5em;
+}
+
+ul[role="menubar"] [role="menu"] [role="menuitem"] {
+  width: 10em;
+}
+
+ul[role="menubar"] [role="menu"] [role="separator"] {
   padding-top: 0.15em;
   background-image: url('../images/separator.png');
   background-position: center;
   background-repeat: repeat-x;
 }
 
-ul[role="menubar"] [role="menuitem"]:focus,
-ul[role="menubar"] [role="menuitem"]:hover,
-ul[role="menubar"] [role="separator"]:focus,
-ul[role="menubar"] [role="separator"]:hover {
-  background-color: black;
-  color: white;
-}
-
-ul[role="menubar"] a[role="menuitem"] {
-  text-decoration: none;
-  color: black;
-}
-
-ul[role="menubar"] li {
+ul[role="menubar"] ul {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-ul[role="menubar"] > li {
-  display: inline;
-  position: relative;
-}
-
-ul[role="menubar"] > li > a:after {
-  content: url('../images/down-arrow-brown.png');
-  padding-left: .25em;
-}
-
-
-ul[role="menubar"] ul[role="menu"] {
-  display: none;
-  position: absolute;
-  top: -2px;
-  left: 0;
-  margin: 0;
-  padding: 0;
-}
-
-
-ul[role="menubar"] ul[role="menu"] li a {
-  display: block;
+ul[role="menubar"] [role="menu"] [role="menuitem"] {
   width: 10em;
 }
 
-ul[role="menubar"] ul[role="menu"] a[aria-haspopup="true"]:after {
+ul[role="menubar"] [role="menuitem"] > [role="menu"] {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 2.5em;
+}
+
+ul[role="menubar"] [role="menuitem"] > [role="menu"] [role="menu"] {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 0em;
+  left: 10.5em;
+}
+
+ul[role="menubar"] [role="menuitem"][aria-expanded="false"] > [role="menu"] {
+  display: none;
+}
+
+ul[role="menubar"] [role="menuitem"][aria-expanded="true"] > [role="menu"] {
+  display: block;
+}
+
+ul[role="menubar"] [role="menuitem"]:focus,
+ul[role="menubar"] [role="menuitem"]:focus > a,
+ul[role="menubar"] [role="menuitem"]:hover,
+ul[role="menubar"] [role="menuitem"]:hover > a,
+ul[role="menubar"] [role="separator"]:focus,
+ul[role="menubar"] [role="separator"]:hover {
+  background-color: #222;
+  color: white;
+}
+
+
+ul[role="menubar"] > [role="menuitem"] [role="menu"] [role="menuitem"][aria-haspopup="true"] > a:after {
   content: url('../images/right-arrow-brown.png');
   padding-right: 2em;
+}
+
+ul[role="menubar"] > [role="menuitem"] [role="menu"] [role="menuitem"][aria-haspopup="true"][aria-expanded="true"] > a:after {
+  content: url('../images/down-arrow-brown.png');
+  padding-left: .25em;
 }

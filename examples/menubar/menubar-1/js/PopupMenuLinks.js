@@ -60,9 +60,19 @@ PopupMenu.prototype.init = function () {
   childElement = this.domNode.firstElementChild;
 
   while (childElement) {
-    menuElement = childElement.firstElementChild;
+    menuElement = false;
 
-    if (menuElement && menuElement.tagName === 'A') {
+    if (childElement.getAttribute('role') === 'menuitem') {
+      menuElement = childElement;
+    }
+    else {
+      if (childElement.firstElementChild &&
+          childElement.firstElementChild.getAttribute('role') === 'menuitem') {
+        menuElement = childElement.firstElementChild;
+      }
+    }
+
+    if (menuElement) {
       menuItem = new MenuItem(menuElement, this);
       menuItem.init();
       this.menuitems.push(menuItem);
@@ -211,32 +221,12 @@ PopupMenu.prototype.getIndexFirstChars = function (startIndex, char) {
 
 PopupMenu.prototype.open = function () {
   // Get position and bounding rectangle of controller object's DOM node
-  var rect = this.controller.domNode.getBoundingClientRect();
-
-  console.log('[PopupMenu][open]');
-
-  // Set CSS properties
-  if (!this.controller.isMenubarItem) {
-    this.domNode.parentNode.style.position = 'relative';
-    this.domNode.style.display = 'block';
-    this.domNode.style.position = 'absolute';
-    this.domNode.style.left = rect.width + 'px';
-    this.domNode.style.zIndex = 100;
-  }
-  else {
-    this.domNode.style.display = 'block';
-    this.domNode.style.position = 'absolute';
-    this.domNode.style.top = (rect.height - 1) + 'px';
-    this.domNode.style.zIndex = 100;
-  }
 
   this.controller.setExpanded(true);
 
 };
 
 PopupMenu.prototype.close = function (force) {
-
-  console.log('[PopupMenu][close][force]: ' + force);
 
   var controllerHasHover = this.controller.hasHover;
 
@@ -249,15 +239,11 @@ PopupMenu.prototype.close = function (force) {
     }
   }
 
-  console.log('[PopupMenu][close][hasFocus]: ' + hasFocus);
-
   if (!this.controller.isMenubarItem) {
     controllerHasHover = false;
   }
 
   if (force || (!hasFocus && !this.hasHover && !controllerHasHover)) {
-    this.domNode.style.display = 'none';
-    this.domNode.style.zIndex = 0;
     this.controller.setExpanded(false);
   }
 };

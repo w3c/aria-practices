@@ -10,6 +10,7 @@ var MenuItem = function (domNode, menuObj) {
 
   this.domNode = domNode;
   this.menu = menuObj;
+  this.linkElem = false;
   this.popupMenu = false;
   this.isMenubarItem = false;
 
@@ -39,12 +40,20 @@ MenuItem.prototype.init = function () {
   this.domNode.addEventListener('mouseover', this.handleMouseover.bind(this));
   this.domNode.addEventListener('mouseout', this.handleMouseout.bind(this));
 
+  // check to see if the the menu item has a child
+  var elem = this.domNode.firstElementChild;
+
+  if (elem && elem.tagName === 'A') {
+    elem.tabIndex = -1;
+    this.linkElem = elem;
+  }
+
   // Initialize flyout menu
 
-  var nextElement = this.domNode.nextElementSibling;
+  var menuElement = this.domNode.querySelector('[role="menu"]');
 
-  if (nextElement && nextElement.tagName === 'UL') {
-    this.popupMenu = new PopupMenu(nextElement, this);
+  if (menuElement) {
+    this.popupMenu = new PopupMenu(menuElement, this);
     this.popupMenu.init();
   }
 
@@ -91,7 +100,7 @@ MenuItem.prototype.handleKeydown = function (event) {
             clickEvent.initEvent('click', true, true);
           }
         }
-        tgt.dispatchEvent(clickEvent);
+        tgt.firstElementChild.dispatchEvent(clickEvent);
       }
 
       flag = true;
@@ -114,7 +123,6 @@ MenuItem.prototype.handleKeydown = function (event) {
       break;
 
     case this.keyCode.RIGHT:
-      console.log('[MenuItem][handleKeydown]: ' + this.menu.controller.isMenubarItem);
       if (this.popupMenu) {
         this.popupMenu.open();
         this.popupMenu.setFocusToFirstItem();
