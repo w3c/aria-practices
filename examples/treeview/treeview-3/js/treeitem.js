@@ -69,7 +69,7 @@ var TreeitemMultiSelect = function (node, treeObj, group) {
     UP: 38,
     RIGHT: 39,
     DOWN: 40,
-    A: 65,
+    A: 65
   });
 };
 
@@ -100,14 +100,14 @@ TreeitemMultiSelect.prototype.isExpanded = function () {
   return false;
 
 };
-//JZ
-TreeitemMultiSelect.prototype.isSelected = function(){
-  if(this.isSelectable){
-    return this.domNode.getAttribute("aria-selected")==='true';
+// JZ
+TreeitemMultiSelect.prototype.isSelected = function () {
+  if (this.isSelectable) {
+    return this.domNode.getAttribute('aria-selected') === 'true';
   }
   return false;
 };
-//JZ
+// JZ
 /* EVENT HANDLERS */
 
 TreeitemMultiSelect.prototype.handleKeydown = function (event) {
@@ -135,7 +135,7 @@ TreeitemMultiSelect.prototype.handleKeydown = function (event) {
   }
 
   if (event.altKey || event.ctrlKey || event.metaKey) {
-    console.log("hello");
+    console.log('hello');
   }
 
   if (event.shift) {
@@ -146,7 +146,7 @@ TreeitemMultiSelect.prototype.handleKeydown = function (event) {
   else {
     switch (event.keyCode) {
       case this.keyCode.SPACE:
-        if(event.shiftKey){
+        if (event.shiftKey) {
           this.tree.selectContiguousKeys(this);
         }
       case this.keyCode.RETURN:
@@ -172,7 +172,7 @@ TreeitemMultiSelect.prototype.handleKeydown = function (event) {
 
       case this.keyCode.UP:
         this.tree.setFocusToPreviousItem(this);
-        if(event.shiftKey){
+        if (event.shiftKey) {
           this.tree.setSelectToPreviousItem(this);
         }
         flag = true;
@@ -180,13 +180,13 @@ TreeitemMultiSelect.prototype.handleKeydown = function (event) {
 
       case this.keyCode.DOWN:
         this.tree.setFocusToNextItem(this);
-        if(event.shiftKey){
+        if (event.shiftKey) {
           this.tree.setSelectToNextItem(this);
         }
         flag = true;
         break;
       case this.keyCode.A:
-        if(event.ctrlKey){
+        if (event.ctrlKey) {
           this.tree.selectAllTreeitem(this);
 
         }
@@ -219,8 +219,8 @@ TreeitemMultiSelect.prototype.handleKeydown = function (event) {
 
       case this.keyCode.HOME:
         this.tree.setFocusToFirstItem();
-        if(event.shiftKey){
-          if(event.ctrlKey){
+        if (event.shiftKey) {
+          if (event.ctrlKey) {
             this.tree.selectToFirst(this);
           }
         }
@@ -229,8 +229,8 @@ TreeitemMultiSelect.prototype.handleKeydown = function (event) {
 
       case this.keyCode.END:
         this.tree.setFocusToLastItem();
-        if(event.shiftKey){
-          if(event.ctrlKey){
+        if (event.shiftKey) {
+          if (event.ctrlKey) {
             this.tree.selectToLast(this);
           }
         }
@@ -267,8 +267,8 @@ TreeitemMultiSelect.prototype.handleClick = function (event) {
     event.stopPropagation();
     event.preventDefault();
   }
-  //------------------------------------------------------********-------------------------------------------------
-  //new added for selection state when click
+  // ------------------------------------------------------********-------------------------------------------------
+  // new added for selection state when click
 
 };
 

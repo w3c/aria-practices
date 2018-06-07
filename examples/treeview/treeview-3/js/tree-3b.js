@@ -14,9 +14,6 @@
  * @desc  after page has loaded initialize all treeitems based on the role=treeitem
  */
 
-
-
-
 window.addEventListener('load', function () {
 
   var trees = document.querySelectorAll('[role="tree"]');
@@ -49,11 +46,8 @@ var Tree = function (node) {
 
   this.treeitems = [];
   this.firstChars = [];
-  this.res=[];// this is suppose to show in last_action
   this.firstTreeitem = null;
   this.lastTreeitem = null;
-  this.flag=false;
-  this.number=0;
 };
 
 Tree.prototype.init = function () {
@@ -109,62 +103,53 @@ Tree.prototype.setFocusToItem = function (treeitem) {
 
 };
 
-//------------------------------------------------------********-------------------------------------------------
+Tree.prototype.updateSelectedFilesInformation = function () {
+  var count = 0;
+  var nodeFileInfo  = document.getElementById('id_selected_file_information');
+  var nodeFileCount = document.getElementById('id_selected_file_count');
 
-Tree.prototype.updateSelectedFilesInformation = function() {
-  var count=0;
-  var node_file_info  = document.getElementById("id_selected_file_information");
-  var node_file_count = document.getElementById("id_selected_file_count");
+  odeFileInfo.innerHTML = '';
 
-  node_file_info.innerHTML = "";
-
-  //update number of files selected
-  for(var i=0; i<this.treeitems.length; i++){
-    var ti=this.treeitems[i];
-    if(ti.domNode.getAttribute("aria-selected")==="true") {
-      node_file_info.innerHTML = node_file_info.innerHTML + ti.label + "\n";
+  // update number of files selected
+  for (var i = 0; i < this.treeitems.length; i++) {
+    var ti = this.treeitems[i];
+    if (ti.domNode.getAttribute('aria-selected') === 'true') {
+      nodeFileInfo.innerHTML = nodeFileInfo.innerHTML + ti.label + '\n';
       count++;
     }
   }
 
-  if(count==0){
-    node_file_count.innerHTML = "No Files Selected:";
-  }else if(count==1){
-    node_file_count.innerHTML = "One File Selected:";
-  }else{
-    node_file_count.innerHTML = count + " Files Selected:";
+  if (count == 0) {
+    nodeFileCount.innerHTML = 'No Files Selected:';
+  }
+  else if (count == 1) {
+    nodeFileCount.innerHTML = 'One File Selected:';
+  }
+  else {
+    nodeFileCount.innerHTML = count + ' Files Selected:';
   }
 
-}
+};
 
-Tree.prototype.setSelectToItem = function(treeitem){
+Tree.prototype.setSelectToItem = function (treeitem) {
 
-  for(var i=0;i<this.treeitems.length;i++){
+  for (var i = 0;i < this.treeitems.length;i++) {
     var ti = this.treeitems[i];
-    if(ti===treeitem){
-      ti.domNode.tabIndex=0;
+    if (ti === treeitem) {
+      ti.domNode.tabIndex = 0;
       ti.domNode.focus();
       console.log(ti.domNode.className);
-      if(ti.domNode.classList.contains('doc') && !ti.domNode.hasAttribute("aria-selected")){
+      if (ti.domNode.classList.contains('doc') && !ti.domNode.hasAttribute('aria-selected')) {
         console.log('selected');
-        ti.domNode.setAttribute("aria-selected", true);
-      }else if(ti.domNode.getAttribute("aria-selected")==='true'){
+        ti.domNode.setAttribute('aria-selected', true);
+      }
+      else if (ti.domNode.getAttribute('aria-selected') === 'true') {
         console.log('not selected');
-        ti.domNode.removeAttribute("aria-selected");
+        ti.domNode.removeAttribute('aria-selected');
       }
     }
-    else{
-      ti.domNode.tabIndex=-1;
-    }
-  }
-
-
-  if(treeitem.domNode.getAttribute("aria-selected")==='true'){
-    this.res.push(treeitem.label.trim());
-  }else if(ti.domNode.classList.contains('doc') && !ti.domNode.hasAttribute("aria-selected")) {
-    if(this.res.includes(treeitem.label.trim())){
-      var index=this.res.indexOf(treeitem.label.trim());
-      this.res.splice(index,1);
+    else {
+      ti.domNode.tabIndex = -1;
     }
   }
 
@@ -172,9 +157,9 @@ Tree.prototype.setSelectToItem = function(treeitem){
 
 };
 
-Tree.prototype.setSelectToNextItem= function (currentItem){
-  var nextItem= false;
-  for(var i=(this.treeitems.length-1); i>=0;i--){
+Tree.prototype.setSelectToNextItem = function (currentItem) {
+  var nextItem = false;
+  for (var i = (this.treeitems.length - 1); i >= 0;i--) {
     var ti = this.treeitems[i];
     if (ti === currentItem) {
       break;
@@ -209,137 +194,125 @@ Tree.prototype.setSelectToPreviousItem = function (currentItem) {
     this.setSelectToItem(currentItem);
     this.setSelectToItem(prevItem);
   }
-}
-
-Tree.prototype.selectContiguousKeys = function (currentItem){
-    var selectNode = false;
-    var curPos;
-    var selectPos;
-    for(var i=0; i<this.treeitems.length;i++){
-      var ti = this.treeitems[i];
-      if(ti === currentItem){
-        curPos=i;
-      }
-    }
-    for(var j=this.treeitems.length-1;j>0;j--){
-      var ti =this.treeitems[j];
-      if(ti.domNode.getAttribute('aria-selected')==='true' && ti.isVisible){
-        selectPos=j;
-        break;
-      }
-    }
-    console.log(selectPos);
-    console.log(curPos);
-    this.setSelectToItem(currentItem);
-    if(selectPos>curPos){
-      for(var i=curPos;i<selectPos;i++){
-        this.setSelectToItem(this.treeitems[i]);
-      }
-    }else if(selectPos<curPos){
-      for(var i=curPos;i>selectPos;i--){
-        this.setSelectToItem(this.treeitems[i]);
-      }
-    }
-}
-/////////////////////////////////////////////////////// modify this
-
-
-Tree.prototype.selectAllTrue=function(treeitem){
-  this.res=[];
-  for(var i=0;i<this.treeitems.length;i++){
-    var ti=this.treeitems[i];
-      ti.domNode.tabIndex=0;
-      ti.domNode.focus();
-      if(ti.domNode.classList.contains('doc')){
-        ti.domNode.setAttribute("aria-selected",true);
-        this.res.push(ti.label.trim());
-      }
-  }
-
 };
 
-Tree.prototype.selectAllFalse=function(treeitem){
-  this.res=[];
-  for(var i=0;i<this.treeitems.length;i++){
-    var ti=this.treeitems[i];
-      ti.domNode.tabIndex=0;
-      ti.domNode.focus();
-      if(ti.domNode.hasAttribute("aria-selected")){
-        ti.domNode.removeAttribute("aria-selected");
-        if(this.res.includes(ti.label.trim())){
-        var index=this.res.indexOf(ti.label.trim());
-        this.res.splice(index,1);
-        }
-      }
+Tree.prototype.selectContiguousKeys = function (currentItem) {
+  var selectNode = false;
+  var curPos;
+  var selectPos;
+  for (var i = 0; i < this.treeitems.length;i++) {
+    var ti = this.treeitems[i];
+    if (ti === currentItem) {
+      curPos = i;
+    }
   }
-
-  this.updateSelectedFileInformation();
-
+  for (var j = this.treeitems.length - 1;j > 0;j--) {
+    var ti = this.treeitems[j];
+    if (ti.domNode.getAttribute('aria-selected') === 'true' && ti.isVisible) {
+      selectPos = j;
+      break;
+    }
+  }
+  console.log(selectPos);
+  console.log(curPos);
+  this.setSelectToItem(currentItem);
+  if (selectPos > curPos) {
+    for (var i = curPos;i < selectPos;i++) {
+      this.setSelectToItem(this.treeitems[i]);
+    }
+  }
+  else if (selectPos < curPos) {
+    for (var i = curPos;i > selectPos;i--) {
+      this.setSelectToItem(this.treeitems[i]);
+    }
+  }
 };
-Tree.prototype.selectAllTreeitem = function (currentItem){
 
-  var temp=[];
-  var temp2=[];
+
+Tree.prototype.selectAllTrue = function () {
+  for (var i = 0;i < this.treeitems.length;i++) {
+    var ti = this.treeitems[i];
+    if (ti.domNode.classList.contains('doc')) {
+      ti.domNode.setAttribute('aria-selected',true);
+    }
+  }
+  this.updateSelectedFilesInformation();
+};
+
+Tree.prototype.selectAllFalse = function (treeitem) {
+  for (var i = 0;i < this.treeitems.length;i++) {
+    var ti = this.treeitems[i];
+    ti.domNode.tabIndex = 0;
+    ti.domNode.focus();
+    if (ti.domNode.hasAttribute('aria-selected')) {
+      ti.domNode.removeAttribute('aria-selected');
+    }
+  }
+  this.updateSelectedFilesInformation();
+};
+Tree.prototype.selectAllTreeitem = function (currentItem) {
+
+  var selectedFiles = [];
+  var docList = [];
   var flag;
-  for(var i=0;i<this.treeitems.length;i++){
-    if(this.treeitems[i].domNode.hasAttribute("aria-selected")){
-      temp.push(this.treeitems[i].domNode.getAttribute("aria-selected"));
+  for (var i = 0;i < this.treeitems.length;i++) {
+    if (this.treeitems[i].domNode.hasAttribute('aria-selected')) {
+      selectedFiles.push(this.treeitems[i].domNode.getAttribute('aria-selected'));
     }
-    if(this.treeitems[i].domNode.classList.contains("doc")){
-      temp2.push(this.treeitems[i]);
+    if (this.treeitems[i].domNode.classList.contains('doc')) {
+      docList.push(this.treeitems[i]);
     }
   }
-  console.log(temp);
- if(temp.length!==temp2.length){
+  if (selectedFiles.length !== docList.length) {
     this.selectAllTrue(currentItem);
-  }else{
+  }
+  else {
     this.selectAllFalse(currentItem);
   }
   currentItem.domNode.focus();
 };
-Tree.prototype.selectToFirst = function (currentItem){
+Tree.prototype.selectToFirst = function (currentItem) {
   var curPos;
   this.expandAllTreeitem(currentItem);
-  for(var i=0;i<this.treeitems.length;i++){
-    var ti=this.treeitems[i];
-    if(ti===currentItem){
-      curPos=i;
+  for (var i = 0;i < this.treeitems.length;i++) {
+    var ti = this.treeitems[i];
+    if (ti === currentItem) {
+      curPos = i;
     }
   }
   console.log(curPos);
-  for(var j= curPos;j>0;j--){
-    if(this.treeitems[j].domNode.className==="doc"){
+  for (var j = curPos;j > 0;j--) {
+    if (this.treeitems[j].domNode.className === 'doc') {
       this.setSelectToItem(this.treeitems[j]);
     }
   }
 };
-Tree.prototype.selectToLast = function (currentItem){
+Tree.prototype.selectToLast = function (currentItem) {
   var curPos;
   this.expandAllTreeitem(currentItem);
-  for(var i=0;i<this.treeitems.length;i++){
-    var ti=this.treeitems[i];
-    if(ti===currentItem){
-      curPos=i;
+  for (var i = 0;i < this.treeitems.length;i++) {
+    var ti = this.treeitems[i];
+    if (ti === currentItem) {
+      curPos = i;
     }
   }
-  for(var j=curPos;j<this.treeitems.length;j++){
-    if(this.treeitems[j].domNode.className==="doc"){
+  for (var j = curPos;j < this.treeitems.length;j++) {
+    if (this.treeitems[j].domNode.className === 'doc') {
       this.setSelectToItem(this.treeitems[j]);
     }
   }
 };
-//JZ
-Tree.prototype.expandAllTreeitem=function(currentItem){
-    for(var i=0;i<this.treeitems.length;i++){
-      var ti=this.treeitems[i];
-      if(ti.isExpandable){
-        this.expandTreeitem(ti);
-      }
+// JZ
+Tree.prototype.expandAllTreeitem = function (currentItem) {
+  for (var i = 0;i < this.treeitems.length;i++) {
+    var ti = this.treeitems[i];
+    if (ti.isExpandable) {
+      this.expandTreeitem(ti);
     }
+  }
 };
 
-//suggestion: put this.res into treeitem, and only keep the handleClick event in treeitem.js 6/1/2018
-//------------------------------------------------------********-------------------------------------------------
+// ------------------------------------------------------********-------------------------------------------------
 Tree.prototype.setFocusToNextItem = function (currentItem) {
 
   var nextItem = false;
