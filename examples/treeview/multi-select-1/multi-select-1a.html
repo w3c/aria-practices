@@ -13,9 +13,8 @@
 
     <link href="css/tree.css" rel="stylesheet">
 
-    <script type="text/javascript" src="js/tree.js"></script>
-    <script type="text/javascript" src="js/treeitem.js"></script>
-    <script type="text/javascript" src="js/treeitemClick.js"></script>
+    <script type="text/javascript" src="js/multi-select-tree-a.js"></script>
+    <script type="text/javascript" src="js/multi-select-treeitem.js"></script>
 
   </head>
 
@@ -53,42 +52,55 @@
         <h2 id="start">Example</h2>
         <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep start" aria-label="Start of"></div>
         <div id="ex1">
+
         <div id="ex1-container">
           <div id="tree_selector">
-          <h3 id="tree_label">
-             File Selector
-           </h3>
-          <ul role="tree" aria-labelledby="tree_label">
+          <h3 id="tree_label">File Selector</h3>
+
+          <ul role="tree"
+              aria-labelledby="tree_label">
             <li role="treeitem"
-              aria-expanded="false">
+                aria-expanded="false">
               <span>
                 Projects
               </span>
               <ul role="group">
-                <li role="treeitem" class="doc" aria-selected="false">
+                <li role="treeitem"
+                    class="doc"
+                    aria-selected="false">
                   project-1.docx
                 </li>
-                <li role="treeitem" class="doc" aria-selected="false">
+                <li role="treeitem"
+                    class="doc"
+                    aria-selected="false">
                   project-2.docx
                 </li>
                 <li role="treeitem"
-                  aria-expanded="false">
+                    aria-expanded="false">
                   <span>
                     Project 3
                   </span>
                   <ul role="group">
-                    <li role="treeitem" class="doc" aria-selected="false">
+                    <li role="treeitem"
+                      class="doc"
+                      aria-selected="false">
                       project-3A.docx
                     </li>
-                    <li role="treeitem" class="doc" aria-selected="false">
+                    <li role="treeitem"
+                        class="doc"
+                        aria-selected="false">
                       project-3B.docx
                     </li>
-                    <li role="treeitem" class="doc" aria-selected="false">
+                    <li role="treeitem"
+                        class="doc"
+                        aria-selected="false">
                       project-3C.docx
                     </li>
                   </ul>
                 </li>
-                <li role="treeitem" class="doc" aria-selected="false">
+                <li role="treeitem"
+                    class="doc"
+                    aria-selected="false">
                   project-4.docx
                 </li>
                 <li role="treeitem"

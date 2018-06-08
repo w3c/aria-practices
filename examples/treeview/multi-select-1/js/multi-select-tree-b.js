@@ -2,10 +2,10 @@
 *   This content is licensed according to the W3C Software License at
 *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
 *
-*   File:   Tree.js
+*   File:   tree-3b.js
 *
 *   Desc:   Tree widget that implements ARIA Authoring Practices
-*           for a tree being used as a file viewer
+*           for a tree being used as a file selector
 */
 
 /**
