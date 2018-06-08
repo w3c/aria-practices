@@ -55,7 +55,8 @@ ul[role="tree"] {
 }
 
 [aria-selected="true"]{
-  background-color:DodgerBlue;
+  border-color: hsl(216, 80%, 10%);
+  background-color: hsl(217, 90%, 70%);
   width:9em;
 }
 #ex1-container{

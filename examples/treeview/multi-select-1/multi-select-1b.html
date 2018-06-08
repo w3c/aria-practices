@@ -31,7 +31,7 @@
       <p>
         The below example implements the
         <a href="../../../#TreeView">Treeview Design Pattern</a>
-        to simulate a file selector.
+        to simulate a file selector or mulitiple files selector.
         When users activate an item that represents a file name in the below tree, the name of the selected file appears in the read-only edit field next to the tree.
       </p>
       <p>
@@ -453,7 +453,7 @@
           </thead>
           <tbody>
             <tr>
-              <th><kbd>Enter</kbd><br>or <kbd>Space</kbd></th>
+              <th><kbd>Enter</kbd></th>
               <td>
                 <ul>
                   <li>Performs the default action (e.g. onclick event) for the focused node.</li>
@@ -526,6 +526,60 @@
                 <li>Expands all closed sibling nodes that are at the same level as the focused node.</li>
                 <li>Focus does not move.</li>
                 </ul>
+              </td>
+            </tr>
+            <tr>
+              <th><kbd>Space</kbd><br></th>
+              <td>
+                Toggles the selection state of the focused node.
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <kbd>Shift</kbd> + <br/><kbd>Down Arrow</kbd>
+              </th>
+              <td>
+               Moves focus to and toggles the selection state of the next node.
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <kbd>Shift</kbd> + <br/><kbd>Up Arrow</kbd>
+              </th>
+              <td>
+               Moves focus to and toggles the selection state of the previous node.
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <kbd>Shift</kbd> + <br/><kbd>Space</kbd>
+              </th>
+              <td>
+               Selects contiguous nodes from the last selected node to the current node.
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <kbd>Control</kbd> + <br/> <kbd>Shift</kbd> + <br/><kbd>Home</kbd>
+              </th>
+              <td>
+                 Selects the node with focus and all nodes up to the first node.
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <kbd>Control</kbd> + <br/> <kbd>Shift</kbd> + <br/><kbd>End</kbd>
+              </th>
+              <td>
+                 Selects the node with focus and all nodes down to the last node.
+              </td>
+            </tr>
+            <tr>
+              <th>
+                <kbd>Control</kbd> + <br/><kbd>A</kbd>
+              </th>
+              <td>
+                 Selects all nodes in the tree. Optionally, if all nodes are selected, it can also unselect all nodes.
               </td>
             </tr>
           </tbody>
@@ -619,6 +673,18 @@
                   <li>Applied only to <code>treeitem</code> elements that are parent nodes, i.e., they contain a <code>ul</code> with the <code>group</code> role.</li>
                   <li>Indicates the parent node is open, i.e., the descendant elements <strong>are</strong> visible.</li>
                   <li>The visual indication of the expanded state is synchronized by a CSS attribute selecter.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <th scope="row"><code>aria-selected=&quot;true&quot;</code></th>
+              <td><code>li</code></td>
+              <td>
+                <ul>
+                  <li>Applied only to <code>treeitem</code> elements that are child nodes, i.e., they are exist inside of <code>ul</code> element with the <code>group</code> role and does not have any child nodes.</li> <!--last edit-->
+                  <li>Indicates the item <strong>is</strong> selected </li>
+                  <li>The visual indication of the collapsed state is synchronized by a CSS attribute selecter.</li>
                 </ul>
               </td>
             </tr>
