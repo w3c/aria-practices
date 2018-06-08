@@ -366,7 +366,7 @@ function TreeGrid (treegridElem, doAllowRowFocus, doStartRowFocus) {
     }
   }
 
-  function getAriaExpandedElem(row) {
+  function getAriaExpandedElem (row) {
     return doAllowRowFocus ? row : getNavigableCols(row)[0];
   }
 

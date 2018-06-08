@@ -6,6 +6,11 @@
 }
 
 #treegrid tr {
+  display: table-row;
+  cursor: default;
+}
+
+#treegrid tbody td {
   cursor: default;
 }
 
@@ -30,14 +35,20 @@
   padding-left: 3ch;
 }
 
-#treegrid :focus {
-  background-color: hsl(230, 60%, 40%);
-  color: white;
-  outline: 0;
+#treegrid a {
+  padding-left: .25ch;
+  padding-right: .25ch;
 }
 
-#treegrid :focus a {
-  color: white;
+#treegrid tr:focus,
+#treegrid td:focus,
+#treegrid a:focus {
+  outline: 2px solid hsl(216, 94%, 70%);
+  background-color: hsl(216, 80%, 97%);
+}
+
+#treegrid a:focus {
+  border-bottom: none;
 }
 
 /* Hide collapsed rows */
@@ -58,6 +69,7 @@
 #treegrid tr[aria-level="5"] > td:first-child {
   padding-left: 10ch;
 }
+
 
 /* Collapse/expand icons */
 #treegrid tr > td:first-child::before {
