@@ -2391,15 +2391,17 @@
           <li>When focus is on a tab in a tablist with either horizontal or vertical orientation:
             <ul>
               <li><kbd>Space or Enter</kbd>: Activates the tab if it was not activated automatically on focus.</li>
-              <li><kbd>Home</kbd> (Optional): Moves focus to the first tab</li>
-              <li><kbd>End</kbd> (Optional): Moves focus to the last tab.</li>
+              <li><kbd>Home</kbd> (Optional): Moves focus to the first tab. Optionally, activates the newly focused tab (See note below).</li>
+              <li><kbd>End</kbd> (Optional): Moves focus to the last tab. Optionally, activates the newly focused tab (See note below).</li>
               <li><kbd>Shift + F10</kbd>: If the tab has an associated pop-up menu, opens the menu. </li>
               <li>
                 <kbd>Delete</kbd> (Optional): If deletion is allowed, deletes (closes) the current tab element and its associated tab panel, 
-                sets focus to the tab following the tab that was closed, and activates the newly focused tab. If there is no following tab then
-                sets focus to the previous tab to the tab that was closed and activates it. If the user can close all the tabs 
-                then the application must decide where to move focus.
-                Alternatively, or in addition, the delete function is available in a context menu.
+                sets focus on the tab following the tab that was closed, and optionally activates the newly focused tab. If there is not a tab that followed the tab that was deleted,
+                e.g., the deleted tab was the right-most tab in a left-to-right horizontal tab list,
+                sets focus on and optionally activates the tab that preceded the deleted tab.
+                 If the application allows all tabs to be deleted, and the user deletes the last remaining tab in the tab list,
+                the application moves focus to another element that provides a logical work flow.
+                As an alternative to <kbd>Delete</kbd>, or in addition to supporting <kbd>Delete</kbd>, the delete function is available in a context menu.
               </li>
             </ul>
           </li>
