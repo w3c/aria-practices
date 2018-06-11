@@ -123,7 +123,7 @@ Tree.prototype.updateSelectedFilesInformation = function () {
     nodeFileCount.innerHTML = 'No Files Selected:';
   }
   else if (count == 1) {
-    nodeFileCount.innerHTML = 'One File Selected:';
+    nodeFileCount.innerHTML = '1 File Selected:';
   }
   else {
     nodeFileCount.innerHTML = count + ' Files Selected:';
