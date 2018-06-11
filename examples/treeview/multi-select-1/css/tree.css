@@ -43,20 +43,20 @@ ul[role="tree"] {
 
 [role="treeitem"].focus,
 [role="treeitem"] span.focus {
-  border-color: black;
-  background-color: #EEEEEE;
+  border-color: hsl(216, 94%, 73%);
+  background-color: hsl(216, 80%, 97%);
   width: 9em;
 }
 
 [role="treeitem"].hover,
 [role="treeitem"] span:hover {
-  background-color: #DDDDDD;
+  background-color: hsl(216, 80%, 92%);;
   width: 9em;
 }
 
 [aria-selected="true"]{
-  border-color: hsl(216, 80%, 10%);
-  background-color: hsl(217, 90%, 70%);
+  border-color: #EEE;
+  background-color: #EEE;
   width:9em;
 }
 #ex1-container{
