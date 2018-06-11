@@ -66,20 +66,16 @@ document.addEventListener('DOMContentLoaded', function () {
 </script>
 </head>
 <body>
+  <nav aria-label="Related Links" class="feedback">
+    <ul>
+      <li><a href="../../#browser_and_AT_support">Browser and Assistive Technology Support</a></li>
+      <li><a href="https://github.com/w3c/aria-practices/issues/new">Report Issue</a></li>
+      <li><a href="project_url">Related Issues</a></li>
+      <li><a href="../../#pattern_id">Design Pattern</a></li>
+    </ul>
+</nav>
   <main>
   <h1>Treegrid Email Inbox Example</h1>
-  <p>
-    <strong>NOTE:</strong> This example page is not yet complete.
-    Development of this example is tracked by
-    <a href="https://github.com/w3c/aria-practices/issues/132">issue 132.</a>
-  </p>
-  <p>
-    The following example demonstrates how the
-    <a href="../../#treegrid">treegrid design pattern (TBD)</a>
-    can be used to make an interactive tree that enables users to navigate the hierarchical structure of email conversations
-    and also provides the ability to navigate to elements that describe each email, such as subject, summary and sender.
-
-  </p>
 
   <section>
     <h2 id="ex_label">Example</h2>
@@ -157,9 +153,9 @@ document.addEventListener('DOMContentLoaded', function () {
     <h2>Accessibility Features</h2>
 
     <ul>
-      <li>This example uses the roving tabindex technqiue to manage the tabbing into and our of the treegrid and tabindex values are managed through javascript.</li>
-      <li>If a <code>gridcell</code> contains a focusable element (e.g. <code>a</code>, <code>input</code>), the focusable element gets focus instead of the <code>gridcell</code>.  In this example the e-mail addresses are links, so the link receives focus when the user navigates to the <code>gridcell</code>.</li>
-      <li>The e-mail adddress link in the current message row with focus is included in the tabbing order (e.g. <code>tabIndex=<q>0</q></code>) of the page, all other links in the <code>treegrid</code> are not in the tabbing order of the page (e.g. <code>tabIndex=<q>-1</q></code>).</li>
+      <li>This example uses the roving tabindex technique to manage the tabbing into and our of the treegrid and tabindex values are managed through javascript.</li>
+      <li>If a <code>gridcell</code> contains a focusable element (e.g. <code>a</code>, <code>input</code>), the focusable element gets focus instead of the <code>gridcell</code>.  In this example the e-mail address column contains links, so the link receives focus when the user navigates to the <code>gridcell</code>.</li>
+      <li>The e-mail address link in the current message row with focus is included in the tabbing order (e.g. <code>tabIndex=<q>0</q></code>) of the page, all other links in the <code>treegrid</code> are not in the tabbing order of the page (e.g. <code>tabIndex=<q>-1</q></code>).</li>
       <li>
     </ul>
   </section>
@@ -382,7 +378,7 @@ document.addEventListener('DOMContentLoaded', function () {
           <td><code>tr</code></td>
           <td>
             <ul>
-              <li>Identifies the element as a <code>row</code> in the<code>treegrid</code>.</li>
+              <li>Identifies the element as a <code>row</code> in the <code>treegrid</code>.</li>
               <li>The accessible name for the <code>row</code> comes from concatenating the text content of the child <code>gridcell</code>s.</li>
           </td>
         </tr>
@@ -421,7 +417,7 @@ document.addEventListener('DOMContentLoaded', function () {
           <td>
             <ul>
               <li>Indicates the <code>row</code> can show or hide other message rows within this <code>treegrid</code>.</li>
-              <li><code>aria-expanded=<q>false</q></code> indictes the message rows that responded to this e-mail are hidden.</li>
+              <li><code>aria-expanded=<q>false</q></code> indicates the message rows that responded to this e-mail are hidden.</li>
             </ul>
           </td>
         </tr>
@@ -433,7 +429,7 @@ document.addEventListener('DOMContentLoaded', function () {
           <td>
             <ul>
               <li>Indicates the <code>row</code> can show or hide other message rows within this <code>treegrid</code>.</li>
-              <li><code>aria-expanded=<q>true</q></code> indictes the message rows that responded to this e-mail are visible.</li>
+              <li><code>aria-expanded=<q>true</q></code> indicates the message rows that responded to this e-mail are visible.</li>
             </ul>
           </td>
         </tr>
@@ -444,7 +440,7 @@ document.addEventListener('DOMContentLoaded', function () {
           <td><code>tr</code></td>
           <td>
             <ul>
-              <li><code>aria-hidden</code> is used to control the information avaiable to assisitve technologies.</li>
+              <li><code>aria-hidden</code> is used to control the information available to assisitve technologies.</li>
               <li>When the <code>row</code> is visible (e.g. a top level message or a message whose parent message is expanded), <code>aria-hidden=<q>false</q></code> makes the message row information available to assistive technologies.</li>
             </ul>
           </td>
@@ -456,7 +452,7 @@ document.addEventListener('DOMContentLoaded', function () {
           <td><code>tr</code></td>
           <td>
             <ul>
-              <li><code>aria-hidden</code> is used to control the information avaiable to assisitve technologies.</li>
+              <li><code>aria-hidden</code> is used to control the information available to assisitve technologies.</li>
               <li>When a message <code>row</code> is <strong>not</strong> visible (e.g. is parent message is collapsed), <code>aria-hidden=<q>true</q></code> <strong>hides</strong> the message row  information from assistive technologies.</li>
             </ul>
           </td>
@@ -487,7 +483,7 @@ document.addEventListener('DOMContentLoaded', function () {
         <tr>
           <td>
           </td>
-          <th scope="row"><code>aria-poinset=<q><em>number</em></q></code></th>
+          <th scope="row"><code>aria-posinset=<q><em>number</em></q></code></th>
           <td><code>tr</code></td>
           <td>
             Identifies the index of message row in the current set of message rows that responded to the parent e-mail message.
@@ -564,7 +560,7 @@ document.addEventListener('DOMContentLoaded', function () {
   </main>
   <nav>
     <!--  Update the pattern_ID parameter of this link to refer to the APG design pattern section related to this example.  -->
-    <a href="../../#pattern_ID">EXAMPLE_NAME Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
+    <a href="../../#treegrid">Treegrid Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
   </nav>
 </body>
 </html>
