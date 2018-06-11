@@ -54,11 +54,16 @@ ul[role="tree"] {
   width: 9em;
 }
 
-[aria-selected="true"]{
+[aria-selected="true"] {
   border-color: #EEE;
   background-color: #EEE;
   width:9em;
 }
+
+[aria-selected="true"]:after {
+  content: '*';
+}
+
 #ex1-container{
   display:flex;
   justify-content:space-between;
