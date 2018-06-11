@@ -30,6 +30,7 @@ ul[role="tree"] {
   margin: 0;
   padding: 0;
   border: 2px transparent solid;
+  border-radius: 5px;
   padding: 0.125em;
   display: block;
 }
