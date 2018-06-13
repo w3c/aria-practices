@@ -422,7 +422,7 @@ document.addEventListener('DOMContentLoaded', function () {
           <td>
             <ul>
               <li>Makes the <code>row</code> element focusable without including it in the tab sequence of the page.</li>
-              <li>All <code>row</code> and <code>girdcell</code> elements are focusable, but only one is included in the tab sequence.</li>
+              <li>All <code>row</code> and <code>gridcell</code> elements are focusable, but only one is included in the tab sequence.</li>
              </ul>
           </td>
         </tr>
@@ -473,7 +473,7 @@ document.addEventListener('DOMContentLoaded', function () {
           <td><code>tr</code></td>
           <td>
             <ul>
-              <li><code>aria-hidden</code> is used to control the information available to assisitve technologies.</li>
+              <li><code>aria-hidden</code> is used to control the information available to assistive technologies.</li>
               <li>When the <code>row</code> is visible (e.g. a top level message or a message whose parent message is expanded), <code>aria-hidden=<q>false</q></code> makes the message row information available to assistive technologies.</li>
             </ul>
           </td>
@@ -485,7 +485,7 @@ document.addEventListener('DOMContentLoaded', function () {
           <td><code>tr</code></td>
           <td>
             <ul>
-              <li><code>aria-hidden</code> is used to control the information available to assisitve technologies.</li>
+              <li><code>aria-hidden</code> is used to control the information available to assistive technologies.</li>
               <li>When a message <code>row</code> is <strong>not</strong> visible (e.g. is parent message is collapsed), <code>aria-hidden=<q>true</q></code> <strong>hides</strong> the message row  information from assistive technologies.</li>
             </ul>
           </td>
@@ -497,10 +497,9 @@ document.addEventListener('DOMContentLoaded', function () {
           <td><code>tr</code></td>
           <td>
             <ul>
-              <li>The level of the e-mail message identifies a set of messages that share responding to the same parent message row (e.g. same subject line and sender).</li>
-              <li>Top level messages have <code>aria-level=<q>1</q></code>.</li>
-              <li>The <code>aria-level</code> value for other message rows is defined by increasing the level by one over the <code>aria-level</code> value of the parent message.  For example, message rows responding to a top level message have <code>aria-level=<q>2</q>.</li>
-              <li>NOTE: Message rows of the same level and sharing the same parent e-mail are shown or hidden as a group when the parent message row is expanded or contracted.</li>
+              <li>Defines the level of the row in the hierarchical treegrid structure.</li>
+              <li>Counting is one-based.</li>
+              <li>Root rows have aria-level=“1”.</li>
             </ul>
           </td>
         </tr>
@@ -519,7 +518,10 @@ document.addEventListener('DOMContentLoaded', function () {
           <th scope="row"><code>aria-posinset=<q><em>number</em></q></code></th>
           <td><code>tr</code></td>
           <td>
-            Identifies the index of message row in the current set of message rows that responded to the parent e-mail message.
+            <ul>
+              <li>Defines the position of the row within the set of other rows that are in the same branch and at the same level within the hierarchy.</li>
+              <li>Counting is one-based, not zero-based.</li>
+            </ul>
           </td>
         </tr>
         <tr>
@@ -537,7 +539,7 @@ document.addEventListener('DOMContentLoaded', function () {
           <td>
             <ul>
               <li>Makes the <code>gridcell</code> element focusable without including it in the tab sequence of the page.</li>
-              <li>All <code>row</code> and <code>girdcell</code> elements are focusable, but only one is included in the tab sequence.</li>
+              <li>All <code>row</code> and <code>gridcell</code> elements are focusable, but only one is included in the tab sequence.</li>
              </ul>
           </td>
         </tr>
