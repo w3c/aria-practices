@@ -1,7 +1,7 @@
 /**
  * This content is licensed according to the W3C Software License at
  * https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
-*/
+ */
 
 var aria = aria || {};
 
@@ -122,6 +122,12 @@ aria.Utils = aria.Utils || {};
    * element in the dialog will receive focus.
    */
   aria.Dialog = function (dialogId, focusAfterClosed, focusFirst) {
+    if (aria.OpenDialogList.length === 0 && this.storedOverflowProperty !== 'hidden') {
+      var docElementStyle = getComputedStyle(document.documentElement);
+      this.storedOverflowProperty = docElementStyle.getPropertyValue('overflow');
+      document.documentElement.style.setProperty('overflow', 'hidden');
+    }
+
     this.dialogNode = document.getElementById(dialogId);
 
     if (this.dialogNode === null || this.dialogNode.getAttribute('role') !== 'dialog') {
@@ -204,6 +210,9 @@ aria.Utils = aria.Utils || {};
    */
   aria.Dialog.prototype.close = function () {
     aria.OpenDialogList.pop();
+    if (aria.OpenDialogList.length === 0) {
+      document.documentElement.style.setProperty('overflow', this.storedOverflowProperty);
+    }
     this.removeListeners();
     aria.Utils.remove(this.preNode);
     aria.Utils.remove(this.postNode);
@@ -231,6 +240,9 @@ aria.Utils = aria.Utils || {};
    */
   aria.Dialog.prototype.replace = function (newDialogId, newFocusAfterClosed, newFocusFirst) {
     aria.OpenDialogList.pop();
+    if (aria.OpenDialogList.length === 0) {
+      document.documentElement.style.setProperty('overflow', this.storedOverflowProperty);
+    }
     this.removeListeners();
     aria.Utils.remove(this.preNode);
     aria.Utils.remove(this.postNode);
