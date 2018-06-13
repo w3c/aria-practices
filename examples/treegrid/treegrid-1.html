@@ -77,6 +77,29 @@ document.addEventListener('DOMContentLoaded', function () {
   <main>
   <h1>Treegrid Email Inbox Example</h1>
 
+  <p>
+    <strong>NOTE:</strong> This example page is not yet complete.
+    Development of this example is tracked by
+    <a href="https://github.com/w3c/aria-practices/issues/132">issue 132.</a>
+  </p>
+  <p>
+    The following example demonstrates how the
+    <a href="../../#treegrid">treegrid design pattern (TBD)</a>
+    can be used to make an interactive tree that enables users to navigate the hierarchical structure of email conversations
+    and also provides the ability to navigate to elements that describe each email, such as subject and sender.
+  </p>
+  <p>
+    This same example can be used in three ways.
+  </p>
+  <ul>
+    <li id="option-cell-focus-allow"><a href="./treegrid-1.html">Rows are focused first, but cells can be focused</a>:<br>Useful when we want to present the treegrid to act primarily like a tree.</li>
+    <li id="option-cell-focus-start"><a href="./treegrid-1.html?cell=start">Cells are focused first, but rows can also be focused</a>:<br>Useful when we want to present the treegrid to act primarily like a grid.</li>
+    <li id="option-cell-focus-force"><a href="./treegrid-1.html?cell=force">Only cells can be focused</a>:<br>Useful when we we are primarily a grid, and we want to simplify the user experience by removing row navigation options.</li>
+  </ul>
+  <p>
+    Note: no row-only version is provided. A row-only navigation version could be useful when the columns are guaranteed to fit horizontally (no horizontal scrolling necessary), the columns are merely for attractive presentation, as opposed to addressing any need to visit them individually. However, in this case the author can simply follow the tree pattern and present the child treeitem data in columns.
+  </p>
+
   <section>
     <h2 id="ex_label">Example</h2>
     <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
@@ -87,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function () {
       The div for the rendered HTML source is in the last section of the page.
     -->
     <div id="ex1">
-      <table id="treegrid" role="treegrid" aria-readonly="true" aria-label="ARIA treegrid example">
+      <table id="treegrid" role="treegrid" aria-label="ARIA treegrid example">
         <colgroup>
           <col id="treegrid-col1">
           <col id="treegrid-col2">
@@ -335,18 +358,6 @@ document.addEventListener('DOMContentLoaded', function () {
           <td><code>table</code></td>
           <td>
             Identifies the element as a <code>treegrid</code>.
-          </td>
-        </tr>
-        <tr>
-          <td>
-          </td>
-          <th scope="row"><code>aria-readonly=<q>true</q></code></th>
-          <td><code>table</code></td>
-          <td>
-            <ul>
-              <li>This example is a treegrid of e-mail messages and the content cannot be edited, <code>aria-readonly</code> is set to indicate the content cannot be edited.</li>
-              <li>The <code>aria-readonly</code> value is propogated to each gridcell contained in the treegrid.</li>
-            </ul>
           </td>
         </tr>
         <tr>
