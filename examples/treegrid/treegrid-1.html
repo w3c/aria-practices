@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
     <ul>
       <li><a href="../../#browser_and_AT_support">Browser and Assistive Technology Support</a></li>
       <li><a href="https://github.com/w3c/aria-practices/issues/new">Report Issue</a></li>
-      <li><a href="project_url">Related Issues</a></li>
+      <li><a href="https://github.com/w3c/aria-practices/projects/17">Related Issues</a></li>
       <li><a href="../../#treegrid">Treegrid Design Pattern</a></li>
     </ul>
 </nav>
@@ -110,7 +110,7 @@ document.addEventListener('DOMContentLoaded', function () {
       The div for the rendered HTML source is in the last section of the page.
     -->
     <div id="ex1">
-      <table id="treegrid" role="treegrid" aria-label="ARIA treegrid example">
+      <table id="treegrid" role="treegrid" aria-label="ARIA treegrid e-mail inbox example">
         <colgroup>
           <col id="treegrid-col1">
           <col id="treegrid-col2">
@@ -177,32 +177,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     <p>Focusable Elements in Current Row</p>
     <ul>
-      <li>This example uses the roving tabindex technique to manage the tabbing into and our of the treegrid and tabindex values are managed through javascript.</li>
+      <li>This example uses the roving tabindex technique to manage the tabbing into and out of the treegrid and tabindex values are managed through javascript.</li>
       <li>If a <code>gridcell</code> contains a focusable element (e.g. <code>a</code>, <code>input</code>), the focusable element gets focus instead of the <code>gridcell</code>.  In this example the e-mail address column contains links, so the link receives focus when the user navigates to the <code>gridcell</code>.</li>
       <li>The e-mail address link in the current message row with focus is included in the tabbing order (e.g. <code>tabIndex=<q>0</q></code>) of the page, all other links in the <code>treegrid</code> are not in the tabbing order of the page (e.g. <code>tabIndex=<q>-1</q></code>).</li>
       <li>
     </ul>
 
-    <p>Markup used:</p>
-    <ul>
-      <li>roles used are treegrid, row, gridcell and columnheader.</li>
-      <li>aria-level: used to set the current level of an item, 1, 2, 3, etc.</li>
-      <li>aria-posinset, aria-setsize: used on a row to indicate the position of an item within it's local group, such as item 3 of 5. Unfortunately, <a href="https://github.com/w3c/aria/issues/558">aria-posinset and aria-setsize are not currently legal in the spec (bug filed)</a>. Therefore, <a href="https://bugzilla.validator.nu/show_bug.cgi?id=1033">aria-posinset and aria-setsize are not currently supported on role="row" in the Nu Validator (bug filed)</a>. We'll need to work that in as this is the most practical way of implementing ARIA in many existing treegrid libraries (as opposed to rearchitecting the
-      DOM structure to contain rowgroups). Note that the <a href="https://github.com/w3c/aria/issues/553">ARIA spec's text for rowgroup states that it cannot be parented by a treegrid (bug filed)</a>.</li>
-      <li>aria-expanded (tristate): this attribute must be removed (not present) if the item cannot be expanded. For expandable items, the value is "true" or "false".<br>IMPORTANT: aria-expanded is set on the row unless rows cannot receive focus, because it is an indicator to the user that something is actionable. If only the cell can get focused, then pressing Enter on the cell is the only way to indicate this, so the attribute needs to go there so that screen readers will announce it. It is not added to the cell if rows can receive focus, as this provides a confusing/redundant experience where both the row and first cell announce the expanded state. In this example, JavaScript is used to move the aria-expanded attribute down to the first cell in the ?cell=force version.</li>
-      <li>aria-hidden: set to "true" for child items that are currently hidden because the parent is collapsed.</li>
-      <li>tabindex is set in the JS, as per the usual roving tabindex methodology. Specifically, we use tabindex="0" for the current item so that it is the subitem that gets focused if user tabs out and back in, and tabindex="-1" for all items where we want click-to-focus behavior enabled.</li>
-    </ul>
-
-    <p>Not used in this example:</p>
-    <ul>
-      <li>aria-rowindex, aria-rowcount, aria-colindex, aria-colcount are not currently used, as UA/AT can compute this for fully loaded table DOMs.</li>
-      <li>aria-owns: not currently used, as it would be confusing to have conceptual children (other rows) vs. layout children (cells) being on the same level.</li>
-      <li>aria-activedescendant: this example uses to roaming tabindex method instead.</li>
-      <li>aria-multiselectable and aria-selected: used on row in the case of a multiselectable treegrid where each row begins with a checkbox. Must be set to false or true so that it is clear that row is selectable. Unfortunately some screen readers will read "selected" for each row even in the single selection case.</li>
-      <li>aria-labelledby or aria-describedby for headers? Not currently used, awaiting discussion. Some UA + screen reader combinations seem to be determining this automatically via the table structure.</li>
-      <li>aria-readonly: in ARIA 1.0, a grid/treegrid is editable by default. However, there is no default in ARIA 1.1. Firefox currently implements the ARIA 1.0 concept for this, which means that "editable" is read for every cell unless aria-readonly="true" is used on the treegrid. <a href="https://bugzilla.mozilla.org/show_bug.cgi?id=1359482">A bug has been filed in Mozilla to not propagate the readonly/editable state to descendant gridcells unless it is specified via aria-readonly</a>.</li>
-    </ul>
   </section>
 
   <section>
@@ -446,11 +426,13 @@ document.addEventListener('DOMContentLoaded', function () {
           <td>
           </td>
           <th scope="row"><code>aria-expanded=<q>false</q></code></th>
-          <td><code>tr</code></td>
+          <td><code>tr</code> or <code>td</code></td>
           <td>
             <ul>
-              <li>Indicates the <code>row</code> can show or hide other message rows within this <code>treegrid</code>.</li>
-              <li><code>aria-expanded=<q>false</q></code> indicates the message rows that responded to this e-mail are hidden.</li>
+              <li>Applied only to rows or cells elements that are parent rows. i.e., next set of rows are response to the message in this row</li>
+              <li>Indicates the parent row is closed, i.e., the descendant rows are not visible.</li>
+              <li>The visual indication of the collapsed state is synchronized by a CSS attribute selector.</li>
+              <li>Typically <code>aria-expanded</code> is on the <code>tr</code> elements, but when this treegrid is configured to not support focus on rows, <code>aria-expanded</code> is on the first <code>td</code> element contained in each row.</li>
             </ul>
           </td>
         </tr>
@@ -458,13 +440,14 @@ document.addEventListener('DOMContentLoaded', function () {
           <td>
           </td>
           <th scope="row"><code>aria-expanded=<q>true</q></code></th>
-          <td><code>tr</code></td>
+          <td><code>tr</code> or <code>td</code></td>
           <td>
             <ul>
-              <li>Indicates the <code>row</code> can show or hide other message rows within this <code>treegrid</code>.</li>
-              <li><code>aria-expanded=<q>true</q></code> indicates the message rows that responded to this e-mail are visible.</li>
-            </ul>
-          </td>
+              <li>Applied only to rows or cells elements that are parent rows. i.e., next set of rows are response to the message in this row</li>
+              <li>Indicates the parent row is open, i.e., the descendant rows are visible.</li>
+              <li>The visual indication of the open state is synchronized by a CSS attribute selector.</li>
+              <li>Typically <code>aria-expanded</code> is on the <code>tr</code> elements, but when this treegrid is configured to not support focus on rows, <code>aria-expanded</code> is on the first <code>td</code> element contained in each row.</li>
+            </td>
         </tr>
         <tr>
           <td>
@@ -509,7 +492,7 @@ document.addEventListener('DOMContentLoaded', function () {
           <th scope="row"><code>aria-setsize=<q><em>number</em></q></code></th>
           <td><code>tr</code></td>
           <td>
-            Identifies the number of message rows that responded to the parent e-mail message.
+            Defines the number of rows in the set of rows that are in the same branch and at the same level within the hierarchy.
           </td>
         </tr>
         <tr>
