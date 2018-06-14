@@ -1227,7 +1227,7 @@
 
     <section class="widget" id="grid">
       <h3>Grids : Interactive Tabular Data and Layout Containers</h3>
-      
+
       <p>
         A <a href="#grid" class="role-reference">grid</a> widget is a container that enables users to navigate the information or interactive elements it contains using directional navigation keys, such as arrow keys, <kbd>Home</kbd> , and <kbd>End</kbd>.
         As a generic container widget that offers flexible keyboard navigation, it can serve a wide variety of needs.
@@ -2288,7 +2288,7 @@
         If the number of widgets is large, replacing the table with a grid can dramatically reduce the length of the page tab sequence because a grid is a composite widget that can contain other widgets.
       </p>
       <p class="note">
-        As with other WAI-ARIA roles that have a native host language equivalent, 
+        As with other WAI-ARIA roles that have a native host language equivalent,
         authors are strongly encouraged to use a native HTML <code>table</code> element whenever possible.
         This is especially important with role <code>table</code> because it is a new feature of WAI-ARIA 1.1.
         It is thus advisable to test implementations thoroughly with each browser and assistive technology combination that could be used by the target audience.
@@ -2507,7 +2507,7 @@
       <h3>Tooltip Widget</h3>
       <p>
         <strong>NOTE:</strong> This design pattern is work in progress; it does not yet have task force consensus.
-        Progress and discussions are captured in 
+        Progress and discussions are captured in
         <a href="https://github.com/w3c/aria-practices/issues/128">issue 128.</a>
       </p>
       <p>
@@ -2604,6 +2604,195 @@
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
         <p>For a vertically oriented tree:</p>
+        <ul>
+          <li> When a single-select tree receives focus:
+            <ul>
+              <li>If none of the nodes are selected before the tree receives focus, focus is set on the first node.</li>
+              <li>If a node is selected before the tree receives focus, focus is set on the selected node. </li>
+            </ul>
+          </li>
+          <li>When a multi-select tree receives focus:
+            <ul>
+              <li>If none of the nodes are selected before the tree receives focus, focus is set on the first node.</li>
+              <li>If one or more nodes are selected before the tree receives focus, focus is set on the first selected node.</li>
+            </ul>
+          </li>
+          <li><kbd>Right arrow</kbd>:
+            <ul>
+              <li>When focus is on a closed node, opens the node; focus does not move.</li>
+              <li>When focus is on a open node, moves focus to the first child node.</li>
+              <li>When focus is on an end node, does nothing.</li>
+            </ul>
+           </li>
+          <li><kbd>Left arrow</kbd>:
+            <ul>
+              <li>When focus is on an open node, closes the node.</li>
+              <li>When focus is on a child node that is also either an end node or a closed node, moves focus to its parent node.</li>
+              <li>When focus is on a root node that is also either an end node or a closed node, does nothing.</li>
+            </ul>
+           </li>
+          <li><kbd>Down Arrow</kbd>: Moves focus to the next node that is focusable without opening or closing a node.</li>
+          <li><kbd>Up Arrow</kbd>: Moves focus to the previous node that is focusable without opening or closing a node.</li>
+          <li><kbd>Home</kbd>: Moves focus to the first node in the tree without opening or closing a node.</li>
+          <li><kbd>End</kbd>: Moves focus to the last node in the tree that is focusable without opening a node.</li>
+          <li><kbd>Enter</kbd>: activates a node, i.e., performs its default action. For parent nodes, one possible default action is to open or close the node. In single-select trees where selection does not follow focus (see note below), the default action is typically to select the focused node.</li>
+          <li>Type-ahead is recommended for all trees, especially for trees with more than 7 root nodes:
+            <ul>
+              <li>Type a character: focus moves to the next node with a name that starts with the typed character.</li>
+              <li>Type multiple characters in rapid succession: focus moves to the next node with a name that starts with the string of characters typed.</li>
+            </ul>
+          </li>
+          <li><kbd>*</kbd> (Optional): Expands all siblings that are at the same level as the current node.</li>
+          <li><strong>Selection in multi-select trees:</strong>
+          Authors may implement either of two interaction models to support multiple selection: a recommended model that does not require the user to hold a modifier key, such as <kbd>Shift</kbd> or <kbd>Control</kbd>, while navigating the list
+          or an alternative model that does require modifier keys to be held while navigating in order to avoid losing selection states.
+            <ul>
+              <li>Recommended selection model -- holding a modifier key while moving focus is not necessary:
+                <ul>
+                  <li><kbd>Space</kbd>: Toggles the selection state of the focused node.</li>
+                  <li><kbd>Shift + Down Arrow</kbd> (Optional): Moves focus to and toggles the selection state of the next node.</li>
+                  <li><kbd>Shift + Up Arrow</kbd> (Optional): Moves focus to and toggles the selection state of the previous node.</li>
+                  <li><kbd>Shift + Space</kbd> (Optional): Selects contiguous nodes from the last   selected node to the current node.</li>
+                  <li><kbd>Control + Shift + Home</kbd> (Optional): Selects the node with focus and all nodes up to the first node.</li>
+                  <li><kbd>Control + Shift + End</kbd> (Optional): Selects the node with focus and all nodes down to the last node.</li>
+                  <li><kbd>Control + A</kbd> (Optional): Selects all nodes in the tree. Optionally, if all nodes are selected, it can also unselect all nodes.</li>
+                </ul>
+              </li>
+              <li>Alternative selection model -- Moving focus without holding the <kbd>Shift</kbd> or <kbd>Control</kbd> modifier unselects all selected nodes except for the focused node:
+                <ul>
+                  <li><kbd>Shift + Down Arrow</kbd>: Moves focus to and toggles the selection state of the next node.</li>
+                  <li><kbd>Shift + Up Arrow</kbd>: Moves focus to and toggles the selection state of the previous node.</li>
+                  <li><kbd>Control + Down Arrow</kbd>: Without changing the selection state, moves focus to the next node.</li>
+                  <li><kbd>Control + Up Arrow</kbd>: Without changing the selection state, moves focus to the previous node.</li>
+                  <li><kbd>Control + Space</kbd>: Toggles the selection state of the focused node.</li>
+                  <li><kbd>Shift + Space</kbd> (Optional): Selects contiguous nodes from the most recently selected node to the current node.</li>
+                  <li><kbd>Control + Shift + Home</kbd> (Optional): Selects the node with focus and all nodes up to the first node.</li>
+                  <li><kbd>Control + Shift + End</kbd> (Optional): Selects the node with focus and all nodes down to the last node.</li>
+                  <li><kbd>Control + A</kbd> (Optional): Selects all nodes in the tree. Optionally, if all nodes are selected, it can also unselect all nodes.</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <ol class="note">
+          <li>DOM focus (the active element) is functionally distinct from the selected state. For more details, see <a href="#kbd_focus_vs_selection">this description of differences between focus and selection.</a></li>
+          <li>
+            The <code>tree</code> role supports the <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property,
+            which provides an alternative to moving DOM focus among <code>treeitem</code> elements when implementing keyboard navigation.
+            For details, see <a href="#kbd_focus_activedescendant">Managing Focus in Composites Using aria-activedescendant</a>.
+          </li>
+          <li>
+            In a single-select tree, moving focus may optionally unselect the previously selected node and select the newly focused node.
+            This model of selection is known as &quot;selection follows focus&quot;.
+            Having selection follow focus can be very helpful in some circumstances and can severely degrade accessibility in others.
+            For additional guidance, see <a href="#kbd_selection_follows_focus">Deciding When to Make Selection Automatically Follow Focus</a>.
+          </li>
+          <li>If selecting or unselecting all nodes is an important function, implementing separate controls for these actions, such as buttons for &quot;Select All&quot; and &quot;Unselect All&quot;, significantly improves accessibility.</li>
+        <li>
+            If the nodes in a tree are arranged horizontally:
+            <ol>
+              <li><kbd>Down Arrow</kbd> performs as <kbd>Right Arrow</kbd> is described above, and vice versa.</li>
+              <li><kbd>Up Arrow</kbd> performs as <kbd>Left Arrow</kbd> is described above, and vice versa.</li>
+            </ol>
+          </li>
+        </ol>
+      </section>
+
+      <section id="tree_roles_states_props" class="notoc">
+        <h4>WAI-ARIA Roles, States, and Properties</h4>
+        <ul>
+          <li>All tree nodes are contained in or owned by an element with role <a class="role-reference" href="#tree">tree</a>.</li>
+          <li>Each element serving as a tree node has role <a class="role-reference" href="#treeitem">treeitem</a>.</li>
+          <li>Each root node is contained in the element with role <code>tree</code> or referenced by an <a href="#aria-owns" class="property-reference">aria-owns</a> property set on the <code>tree</code> element.</li>
+          <li>Each parent node contains or owns an element with role <a class="role-reference" href="#group">group</a>.</li>
+          <li>Each child node is contained in or owned by an element with role <a class="role-reference" href="#group">group</a> that is contained in or owned by the node that serves as the parent of that child.</li>
+          <li>
+            Each element with role <code>treeitem</code> that serves as a parent node has <a class="property-reference" href="#aria-expanded">aria-expanded</a>
+            set to <code>false</code> when the node is in a closed state and set to <code>true</code> when the node is in an open state.
+            End nodes do not have the <code>aria-expanded</code> attribute because, if they were to have it, they would be incorrectly described to assistive technologies as parent nodes.
+          </li>
+          <li>If the tree supports selection of more than one node, the element with role <code>tree</code> has <a class="property-reference" href="#aria-multiselectable">aria-multiselectable</a> set to <code>true</code>. Otherwise, <code>aria-multiselectable</code> is either set to <code>false</code> or the default value of <code>false</code> is implied.</li>
+          <li>If the tree does not support multiple selection, <a href="#aria-selected" class="property-reference">aria-selected</a> is set to <code>true</code> for the selected node and it is not present on any other node in the tree.</li>
+          <li>if the tree supports multiple selection:
+          <ul>
+          <li>All selected nodes have <a href="#aria-selected" class="state-reference">aria-selected</a> set to <code>true</code>.</li>
+          <li>All nodes that are not selected have <a href="#aria-selected" class="state-reference">aria-selected</a> set to <code>false</code>.</li>
+          </ul>
+          </li>
+          <li>The element with role <code>tree</code> has either a visible label referenced by <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> or a value specified for <a href="#aria-label" class="property-reference">aria-label</a>.</li>
+          <li>If the complete set of available nodes is not present in the DOM due to dynamic loading as the user moves focus in or scrolls the tree, each node has <a href="#aria-level" class="property-reference">aria-level</a>, <a href="#aria-setsize" class="property-reference">aria-setsize</a>, and <a href="#aria-posinset" class="property-reference">aria-posinset</a> specified.</li>
+          <li>
+            If the <code>tree</code> element is horizontally oriented, it has <a href="#aria-orientation" class="property-reference">aria-orientation</a>
+            set to <code>horizontal</code>.
+            The default value of <code>aria-orientation</code> for a tree is <code>vertical</code>.
+          </li>
+        </ul>
+        <p class="note">
+          If <a href="#aria-owns" class="property-reference">aria-owns</a> is set on the tree container to include elements that are not DOM children of the container,
+          those elements will appear in the reading order in the sequence they are referenced and after any items that are DOM children.
+          Scripts that manage focus need to ensure the visual focus order matches this assistive technology reading order.
+        </p>
+      </section>
+    </section>
+
+    <section class="widget" id="Treegrid">
+      <h3>Treegrid</h3>
+        <p>
+          A <code>treegrid</code> can be used to present tabular information that has column titles, row titles, or both.
+          The <code>grid</code> pattern is particularly useful if the tabular information is editable or interactive.
+          For example, when data elements are links to more information, rather than presenting them in a static table and including the links in the tab sequence, implementing the <code>grid</code> pattern provides users with intuitive and efficient keyboard navigation of the grid contents as well as a shorter tab sequence for the page.
+          A <code>grid</code> may also offer functions, such as cell content editing, selection, cut, copy, and paste.
+        </p>
+        <p>
+          In a grid, every cell contains a focusable element or is itself focusable, regardless of whether the cell content is editable or interactive.
+          There is one exception: if column or row header cells do not provide functions, such as sort or filter, they do not need to be focusable.
+          One reason it is important for all cells to be able to receive or contain keyboard focus is that screen readers will typically be in their application reading mode, rather than their document reading mode, when users are interacting with the grid.
+          While in application mode, a screen reader user hears only focusable elements and content that labels focusable elements.
+          So, screen reader users may unknowingly overlook elements contained in a grid that are either not focusable or not used to label a column or row.
+        </p>
+      <p>
+        A treegrid widget presents a hierarchical data that is presented as a data grid.
+        Any item in the hierarchy may have child rows, and rows that have children may be expanded or collapsed to show or hide the child rows.
+        For example, a hierarchical e-mail list uses a treegrid to display messages and responses to that message,
+        an item representing a message with responses can be expanded to reveal the response messages.
+      </p>
+      <p>Terms for understanding treegrids include:</p>
+      <dl>
+        <dt>Node</dt>
+        <dd>An item in a tree. </dd>
+        <dt>Root Node</dt>
+        <dd>Node at the base of the tree; it may have one or more child nodes but does not have a parent node.</dd>
+        <dt>Child Node</dt>
+        <dd>Node that has a parent; any node that is not a root node is a child node.</dd>
+        <dt>End Node</dt>
+        <dd>Node that does not have any child nodes; an end node may be either a root node or a child node.</dd>
+        <dt>Parent Node</dt>
+        <dd>Node with one or more child nodes. It can be open (expanded) or closed (collapsed).</dd>
+        <dt>Open Node</dt>
+        <dd>Parent node that is expanded so its child nodes are visible.</dd>
+        <dt>Closed Node</dt>
+        <dd>Parent node that is collapsed so the child nodes are not visible.</dd>
+      </dl>
+      <p>
+        When using a keyboard to navigate a treegrid, a visual keyboard indicator informs the user which cell is focused.
+        If the treegrid allows the user to choose just one item for an action, then it is known as a single-select treegrid, and the item with focus also has a selected state.
+        However, in multi-select treegrids, which enable the user to select more than one item for an action, the selected state is independent of the focus.
+        For example, in a typical hierarchical e-mail grid, the user can move focus to select any number of e-mails for an action, such as delete or move.
+        It is important that the visual design distinguish between items that are selected and the item that has focus.
+        For more details, see <a href="#kbd_focus_vs_selection">this description of differences between focus and selection.</a>
+      </p>
+
+      <section class="notoc">
+        <h4>Examples</h4>
+        <ul>
+          <li>
+            <a href="examples/treegrid/treegrid-1.html">Hierarchical E-mail list Treegrid Example with three types of focus navigation</a>: Rows first, cells first and cells only.
+          </li>
+        </ul>
+      </section>
+
+      <section class="notoc">
+        <h4>Keyboard Interaction</h4>
         <ul>
           <li> When a single-select tree receives focus:
             <ul>
