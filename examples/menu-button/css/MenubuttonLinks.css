@@ -3,16 +3,20 @@
 }
 
 .menu_button button {
+  margin: 1px;
   font-size: 110%;
   display: block;
-  padding: 0.25em;
-  border: inset 2px gray;
+  padding: 0.375em;
+  border: solid 0.125em gray;
+  border-radius: 8px;
   width: 12em;
   text-align: center;
-  background-color: #EEEEEE;
-  text-decoration: none;
+  background-color: #EEE;
   color: black;
+  outline: none;
 }
+
+
 
 ul[role="menu"] {
   margin: 0;
@@ -20,8 +24,11 @@ ul[role="menu"] {
   position: absolute;
   font-size: 110%;
 
+  border: solid 0.125em gray;
+  border-radius: 5px;
+
   list-style: none;
-  background-color: #EEEEEE;
+  background-color: #FFF;
   display: none;
 }
 
@@ -33,25 +40,31 @@ ul[role="menu"] li {
 ul[role="menu"] a[role="menuitem"],
 ul[role="menu"] a[role="menuitem"]:visited {
   display: block;
+  border: none;
   text-decoration: none;
   padding: 0.25em;
   padding-left: 0.5em;
   padding-right: 0.5em;
-  background-color: #E0E0E0;
+  background-color: #FFF;
   width: 22em;
   color: black;
+  outline: solid 0.125em transparent;
 }
 
 /* focus and hover styling */
 
-a[role="button"]:focus,
-a[role="button"]:hover {
-  border: 2px solid black;
-  background-color: #F8F8F8;
+.menu_button button:focus {
+  padding: 0.25em;
+  border-width: 0.25em;
+  border-color: hsl(216, 94%, 70%);
+  background-color: hsl(216, 80%, 97%);
 }
 
-ul[role="menu"] a[role="menuitem"]:focus,
+ul[role="menu"] a[role="menuitem"]:focus {
+  outline-color: hsl(216, 94%, 70%);
+  background-color: hsl(216, 80%, 97%);
+}
+
 ul[role="menu"] a[role="menuitem"]:hover{
-  background-color: black;
-  color: white;
+  background-color: hsl(216, 80%, 90%);
 }
