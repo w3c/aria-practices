@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
 <head>
   <meta charset="utf-8" />
-  <title>WAI-ARIA Authoring Practices 1.1</title>
+  <title>WAI-ARIA Authoring Practices 1.2</title>
   <script src="https://www.w3.org/Tools/respec/respec-w3c-common" class="remove"></script>
   <script src="common/script/resolveReferences.js" class="remove"></script>
   <script src="common/biblio.js" class="remove"></script>
@@ -12,7 +12,7 @@
 <body>
   <section id="abstract">
     <p>
-      This document provides readers with an understanding of how to use <cite><a href="https://www.w3.org/TR/wai-aria-1.1/"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> 1.1</a></cite> [[WAI-ARIA]] to create accessible rich internet applications.
+      This document provides readers with an understanding of how to use <cite><a href="https://www.w3.org/TR/wai-aria-1.2/"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> 1.2</a></cite> [[WAI-ARIA]] to create accessible rich internet applications.
       It describes considerations that might not be evident to most authors from the WAI-ARIA specification alone and recommends approaches to make widgets, navigation, and behaviors accessible using WAI-ARIA roles, states, and properties.
       This document is directed primarily to Web application developers, but the guidance is also useful for user agent and assistive technology developers.
     </p>
@@ -26,10 +26,10 @@
       of the
       <a href="https://www.w3.org/WAI/">Web Accessibility Initiative</a>.
       It supports the
-      <a href="" class="specref">WAI-ARIA 1.1</a> [<cite><a href="#bib-WAI-ARIA" class="bibref">WAI-ARIA</a></cite>]
+      <a href="" class="specref">WAI-ARIA 1.2</a> [<cite><a href="#bib-WAI-ARIA" class="bibref">WAI-ARIA</a></cite>]
       specification, providing detailed advice and examples beyond what would be appropriate to a technical specification but which are important to understand the specification.
     </p>
-    <p> This draft includes only a portion of content planned for WAI-ARIA Authoring Practices 1.1. To see plans for the complete guide, review the <a href="https://github.com/w3c/aria-practices/milestones?direction=asc&amp;sort=due_date&amp;state=open">Authoring Practices Milestone Plan</a>. </p>
+    <p> This draft includes only a portion of content planned for WAI-ARIA Authoring Practices 1.2. To see plans for the complete guide, review the <a href="https://github.com/w3c/aria-practices/milestones?direction=asc&amp;sort=due_date&amp;state=open">Authoring Practices Milestone Plan</a>. </p>
     <p>
       Feedback on the  information provided here is essential to the ultimate success of Rich Internet Applications that afford full access to their information and operations.
       The Accessible Rich Internet Applications Working Group asks in particular:
@@ -46,7 +46,7 @@
       To comment,
       <a href="https://github.com/w3c/aria-practices/issues/">file an issue in the <abbr title="World Wide Web Consortium">W3C</abbr> ARIA Practices GitHub repository</a>,
       or if that is not possible, send email to
-      <a href="mailto:public-aria@w3.org?subject=Comment%20on%20WAI-ARIA%20Practices%201.1">public-aria@w3.org</a>
+      <a href="mailto:public-aria@w3.org?subject=Comment%20on%20WAI-ARIA%20Practices%201.2">public-aria@w3.org</a>
       (<a href="http://lists.w3.org/Archives/Public/public-aria/">comment archive</a>).
     </p>
   </section>
@@ -56,7 +56,7 @@
     <p>This section is <em>informative.</em></p>
     <p>
       WAI-ARIA Authoring Practices is a guide for understanding how to use
-      <cite><a href="https://www.w3.org/TR/wai-aria-1.1/">WAI-ARIA 1.1</a></cite> to create an accessible Rich Internet Application.
+      <cite><a href="https://www.w3.org/TR/wai-aria-1.2/">WAI-ARIA 1.2</a></cite> to create an accessible Rich Internet Application.
       It provides guidance on the appropriate application of WAI-ARIA, describes recommended WAI-ARIA usage patterns, and explains concepts behind them.
     </p>
     <p>
@@ -136,7 +136,7 @@
       <h3>Browser and Assistive Technology Support</h3>
       <p>
         <strong>Testing assistive technology interoperability is essential before using code from this guide in production.</strong>
-        Because the purpose of this guide is to illustrate appropriate use of ARIA 1.1 as defined in the ARIA specification, the design patterns, reference examples, and sample code intentionally <strong>do not</strong> describe and implement coding techniques for working around problems caused by gaps in support for ARIA 1.1 in browsers and assistive technologies.
+        Because the purpose of this guide is to illustrate appropriate use of ARIA 1.2 as defined in the ARIA specification, the design patterns, reference examples, and sample code intentionally <strong>do not</strong> describe and implement coding techniques for working around problems caused by gaps in support for ARIA 1.2 in browsers and assistive technologies.
         It is thus advisable to test implementations thoroughly with each browser and assistive technology combination that is relevant within a target audience.
       </p>
       <p>
@@ -146,7 +146,7 @@
       <p>
         Except in cases where the ARIA Working Group and other contributors have overlooked an error,
         examples in this guide that do not function well in a particular browser or with a specific assistive technology are demonstrating browser or assistive technology bugs.
-        Browser and assistive technology developers can thus utilize code in this guide to help assess the quality of their support for ARIA 1.1.
+        Browser and assistive technology developers can thus utilize code in this guide to help assess the quality of their support for ARIA 1.2.
       </p>
     </section>
     <section id="mobile_and_touch_support">
@@ -2926,7 +2926,7 @@
         <h4 class="widget-name">Banner</h4>
 
         <p>
-          A <a href="https://www.w3.org/TR/wai-aria-1.1/#banner"><code>banner</code></a> landmark identifies site-oriented content at the beginning of each page within a website. Site-oriented content typically includes things such as the logo or identity
+          A <a class="role-reference" href="#banner"><code>banner</code></a> landmark identifies site-oriented content at the beginning of each page within a website. Site-oriented content typically includes things such as the logo or identity
           of the site sponsor, and site-specific search tool. A banner usually appears at the top of the page and typically spans the full width.
         </p>
 
@@ -2974,7 +2974,7 @@
       <section id="aria_lh_complementary">
         <h4 class="widget-name">Complementary</h4>
 
-        <p>A <a href="https://www.w3.org/TR/wai-aria-1.1/#complementary"><code>complementary</code></a> landmark is a supporting section of the document, designed to be complementary to the main content at a similar level in the DOM hierarchy, but remains meaningful
+        <p>A <a class="role-reference" href="#complementary"><code>complementary</code></a> landmark is a supporting section of the document, designed to be complementary to the main content at a similar level in the DOM hierarchy, but remains meaningful
           when separated from the main content.</p>
 
         <ul>
@@ -3005,7 +3005,7 @@
       <section id="aria_lh_contentinfo">
         <h4 class="widget-name">Contentinfo</h4>
 
-        <p>A <a href="https://www.w3.org/TR/wai-aria-1.1/#contentinfo"><code>contentinfo</code></a> landmark is a way to identify common information at the bottom of each page within a website, typically called the &quot;footer&quot; of the page, including information
+        <p>A <a class="role-reference" href="#contentinfo"><code>contentinfo</code></a> landmark is a way to identify common information at the bottom of each page within a website, typically called the &quot;footer&quot; of the page, including information
           such as copyrights and links to privacy and accessibility statements.</p>
 
         <ul>
@@ -3052,7 +3052,7 @@
       <section id="aria_lh_form">
         <h4 class="widget-name">Form</h4>
 
-        <p>A <a href="https://www.w3.org/TR/wai-aria-1.1/#form"><code>form</code></a> landmark identifies a region that contains a collection of items and objects that, as a whole, combine to create a form when no other named landmark is appropriate (e.g. main
+        <p>A <a class="role-reference" href="#form"><code>form</code></a> landmark identifies a region that contains a collection of items and objects that, as a whole, combine to create a form when no other named landmark is appropriate (e.g. main
           or search).</p>
 
         <ul>
@@ -3098,7 +3098,7 @@
       <section id="aria_lh_main">
         <h4 class="widget-name">Main</h4>
 
-        <p>A <a href="https://www.w3.org/TR/wai-aria-1.1/#main"><code>main</code></a> landmark identifies the primary content of the page.</p>
+        <p>A <a class="role-reference" href="#main"><code>main</code></a> landmark identifies the primary content of the page.</p>
 
         <ul>
           <li>Each page should have one <code>main</code> landmark.</li>
@@ -3131,7 +3131,7 @@
       <section id="aria_lh_navigation">
         <h4 class="widget-name">Navigation</h4>
 
-        <p><a href="https://www.w3.org/TR/wai-aria-1.1/#navigation"><code>Navigation</code></a> landmarks provide a way to identify groups (e.g. lists) of links that are intended to be used for website or page content navigation.</p>
+        <p><a class="role-reference" href="#navigation"><code>Navigation</code></a> landmarks provide a way to identify groups (e.g. lists) of links that are intended to be used for website or page content navigation.</p>
 
         <ul>
           <li>If a page includes more than one <code>navigation</code> landmark, each should have a unique label (see <a href="#aria_lh_step3">Step 3</a> above).</li>
@@ -3160,7 +3160,7 @@
       <section id="aria_lh_region">
         <h4 class="widget-name">Region</h4>
 
-        <p>A <a href="https://www.w3.org/TR/wai-aria-1.1/#region"><code>region</code></a> landmark is a perceivable section of the page containing content that is sufficiently important for users to be able to navigate to the section.</p>
+        <p>A <a class="role-reference" href="#region"><code>region</code></a> landmark is a perceivable section of the page containing content that is sufficiently important for users to be able to navigate to the section.</p>
 
         <ul>
           <li>A <code>region</code> landmark must have a label.</li>
@@ -3190,7 +3190,7 @@
       <section id="aria_lh_search">
         <h4 class="widget-name">Search</h4>
 
-        <p>A <a href="https://www.w3.org/TR/wai-aria-1.1/#search"><code>search</code></a> landmark contains a collection of items and objects that, as a whole, combine to create search functionality.</p>
+        <p>A <a class="role-reference" href="#search"><code>search</code></a> landmark contains a collection of items and objects that, as a whole, combine to create search functionality.</p>
 
         <ul>
           <li>Use the <code>search</code> landmark instead of the <code>form</code> landmark when the form is used for search functionality.</li>
@@ -4501,118 +4501,22 @@
     <section id="change_log" class="appendix">
       <h3>Change History</h3>
       <section id="change_log_2017_december" class="appendix">
-        <h4>Changes in December 2017 Publication as Note</h4>
+        <h4>Changes from version 1.1</h4>
         <ul>
           <li>
             Added the following:
             <ul>
-              <li>Read Me First section</li>
-              <li>Combobox pattern</li>
-              <li>Combobox examples: 3 ARIA 1.0 style and 4 ARIA 1.1 style</li>
-              <li>Disclosure pattern</li>
-              <li>Feed example display page</li>
-              <li>Grid and table properties guidance section</li>
-              <li>Collapsible dropdown listbox example</li>
-              <li>Multi-thumb slider examples</li>
-              <li>Table pattern and example</li>
-            </ul>
-          </li>
-          <li>The top of each example page now includes a set of four related links to:
-            <ul>
-              <li><Q>Browser and Assistive Technology Support</Q> section of <q>Read Me First</q></li>
-              <li><q>Report Issue</q> page in the Github repository</li>
-              <li><q>Related Issues</q> listed in the Github project for the example</li>
-              <li><q>Design Pattern</q> section that applies to the example</li>
-            </ul>
-          </li>
-          <li>All Javascript and CSS files used by the examples include the correct license and copyright statements.</li>
-          <li>Significant revisions of guidance and implementation were made to the following sections, design patterns, and examples:
-            <ul>
-              <li>Introduction</li>
-              <li>Keyboard guidance for Mac OS</li>
-              <li>Accordion example</li>
-              <li>Mixed checkbox examples</li>
-              <li>Scrollable layout grid example</li>
-              <li>Listbox examples</li>
-              <li>Modal dialog example</li>
-              <li>editor menubar example</li>
-              <li>Navigation menubar example</li>
-              <li>Menu button examples</li>
-              <li>Spinbutton pattern</li>
-              <li>Toolbar example</li>
-              <li>Tree view examples</li>
+ 
             </ul>
           </li>
         </ul>
         <p>Also see:</p>
         <ul>
           <li>
-            <a href="https://github.com/w3c/aria-practices/milestone/6">1.1 APG Release 1 milestone,</a>
+            <a href="https://github.com/w3c/aria-practices/milestone/7">1.2 APG Working Draft 1 milestone,</a>
             which lists the GitHub issues that document discussions and reviews of changes included in the December 2017 publication.
           </li>
           <li>
-            <a href="https://github.com/w3c/aria-practices/wiki/Change-Log-for-December-2017-Note-Release-1">Detailed change log with links to all commits that are new in the December 2017 publication as a Note since the June 2017 working draft.</a>
-          </li>
-        </ul>
-      </section>
-      <section id="change_log_2017_june" class="appendix">
-        <h4>Changes in June 2017 Working Draft</h4>
-        <ul>
-          <li>
-            Added the following:
-            <ul>
-              <li>Modal dialog example</li>
-              <li>Disclosure design pattern</li>
-              <li>Example disclosure for FAQ</li>
-              <li>Example disclosure for image description</li>
-              <li>Draft of feed pattern</li>
-              <li>Example feed implementation</li>
-              <li>Example of menu button using aria-activedescendant</li>
-              <li>Example of tabs with manual activation</li>
-            </ul>
-          </li>
-          <li>Design pattern section: moved examples subsection of each design pattern to be
-            the first subsection.</li>
-          <li>
-            Across all example pages:
-            <ul>
-              <li>Improved visual design of tables that document keyboard implementation,
-                roles, states, and properties.</li>
-              <li>Improved consistency of editorial style.</li>
-            </ul>
-          </li>
-          <li>
-            Significant revisions of guidance and implementation were made to the following design
-            patterns and example pages:
-            <ul>
-              <li>Accordion example</li>
-              <li>Alert example</li>
-              <li>Breadcrumb example</li>
-              <li>Button example</li>
-              <li>Checkbox examples</li>
-              <li>Dialog (modal) design pattern</li>
-              <li>Grid examples</li>
-              <li>Landmark examples</li>
-              <li>Link example</li>
-              <li>Listbox example</li>
-              <li>Menubar examples</li>
-              <li>Menu button examples</li>
-              <li>Radio group example</li>
-              <li>Slider design pattern</li>
-              <li>Slider example</li>
-              <li>Example of tabs with automatic activation</li>
-              <li>Tree view examples</li>
-            </ul>
-          </li>
-        </ul>
-        <p>Also see:</p>
-        <ul>
-          <li>
-            <a href="https://github.com/w3c/aria-practices/issues?q=is%3Aclosed+is%3Aissue+milestone%3A%22Jan+2017+Clean+Up%22+sort%3Aupdated-asc">January 2017 Clean Up Milestone</a>,
-            which lists the GitHub issues that document discussions and reviews of changes included in the June 2017 working draft.
-          </li>
-          <li>
-            <a href="https://github.com/w3c/aria-practices/wiki/Change-Log-for-June-2017-Working-Draft">Detailed change log with links to all commits that are new in the June 2017 working draft.</a>
           </li>
         </ul>
       </section>
