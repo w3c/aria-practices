@@ -177,10 +177,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
     <p>Focusable Elements in Current Row</p>
     <ul>
-      <li>This example uses the roving tabindex technique to manage the tabbing into and out of the treegrid and tabindex values are managed through javascript.</li>
-      <li>If a <code>gridcell</code> contains a focusable element (e.g. <code>a</code>, <code>input</code>), the focusable element gets focus instead of the <code>gridcell</code>.  In this example the e-mail address column contains links, so the link receives focus when the user navigates to the <code>gridcell</code>.</li>
-      <li>The e-mail address link in the current message row with focus is included in the tabbing order (e.g. <code>tabIndex=<q>0</q></code>) of the page, all other links in the <code>treegrid</code> are not in the tabbing order of the page (e.g. <code>tabIndex=<q>-1</q></code>).</li>
       <li>
+        This example uses the roving tabindex technique to manage the tabbing into and out of the treegrid and tabindex values are managed through javascript.
+      </li>
+      <li>
+        If a <code>gridcell</code> contains a focusable element (e.g. <code>a</code>, <code>input</code>), the focusable element gets focus instead of the <code>gridcell</code>.  In this example the e-mail address column contains links, so the link receives focus when the user navigates to the <code>gridcell</code>.
+      </li>
+      <li>
+        The e-mail address link in the current message row with focus is included in the tabbing order (e.g. <code>tabIndex=<q>0</q></code>) of the page, all other links in the <code>treegrid</code> are not in the tabbing order of the page (e.g. <code>tabIndex=<q>-1</q></code>).
+      </li>
     </ul>
 
   </section>
@@ -432,7 +437,7 @@ document.addEventListener('DOMContentLoaded', function () {
               <li>Applied only to rows or cells elements that are parent rows. i.e., next set of rows are response to the message in this row</li>
               <li>Indicates the parent row is closed, i.e., the descendant rows are not visible.</li>
               <li>The visual indication of the collapsed state is synchronized by a CSS attribute selector.</li>
-              <li>Typically <code>aria-expanded</code> is on the <code>tr</code> elements, but when this treegrid is configured to not support focus on rows, <code>aria-expanded</code> is on the first <code>td</code> element contained in each row.</li>
+              <li>When the treegrid is configured to support focus on rows <code>aria-expanded</code> is on the <code>tr</code> elements, but when this treegrid is configured to not support focus on rows, <code>aria-expanded</code> is on the first <code>td</code> element contained in each row.</li>
             </ul>
           </td>
         </tr>
@@ -446,7 +451,7 @@ document.addEventListener('DOMContentLoaded', function () {
               <li>Applied only to rows or cells elements that are parent rows. i.e., next set of rows are response to the message in this row</li>
               <li>Indicates the parent row is open, i.e., the descendant rows are visible.</li>
               <li>The visual indication of the open state is synchronized by a CSS attribute selector.</li>
-              <li>Typically <code>aria-expanded</code> is on the <code>tr</code> elements, but when this treegrid is configured to not support focus on rows, <code>aria-expanded</code> is on the first <code>td</code> element contained in each row.</li>
+              <li>When the treegrid is configured to support focus on rows <code>aria-expanded</code> is on the <code>tr</code> elements, but when this treegrid is configured to not support focus on rows, <code>aria-expanded</code> is on the first <code>td</code> element contained in each row.</li>
             </td>
         </tr>
         <tr>
