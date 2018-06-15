@@ -52,7 +52,7 @@
 }
 
 /* Hide collapsed rows */
-#treegrid tr[aria-hidden="true"] {
+#treegrid tr.hidden {
   display: none;
 }
 
