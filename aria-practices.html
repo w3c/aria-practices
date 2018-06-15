@@ -2903,7 +2903,12 @@
       <p id="aria_lh_step3"><strong>Step 3: Label areas</strong></p>
 
       <ul>
-        <li>If a specific landmark role is used more than once on a web page, it should have a unique label.</li>
+        <li>
+          If a specific landmark role is used more than once on a page, provide each instance of that landmark with a unique label.
+          There is one rare circumstance where providing the same label to multiple instances of a landmark can be beneficial: the content and purpose of each instance is identical.
+          For example, a large search results table has two sets of identical pagination controls -- one above and one below the table, so each set is in a navigation region labeled <q>Search Results</q>.
+          In this case, adding extra information to the label that distinguishes the two instances may be more distracting than helpful.
+        </li>
 
         <li>If a landmark is only used once on the page it may not require a label. See Landmark Roles section below. </li>
 
