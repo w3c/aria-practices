@@ -2774,20 +2774,22 @@
           </p>
           <ul>
             <li>
-              <kbd>Enter</kbd>:  If focus is on a row or cell with the <code>aria-expanded</code> property it will will open or close the child rows, otherwise performs the default action for the cell.</li>
+              <kbd>Enter</kbd>:  If cell only focus is enabled and focus is on the first cell with the <code>aria-expanded</code> property it will will open or close the child rows, otherwise performs the default action for the cell.</li>
             <li>
               <kbd>Tab</kbd>:  If there are focusable elements in the current row (e.g. inputs, buttons, links, ..) focus moves to the next input in the row.  If on the last input in the row, focus moves out of the <code>treegrid</code> widget to the next focusable control on the page. </li>
             <li>
               <kbd>Right Arrow</kbd>:
               <ul>
-                <li>If focus is on a row, focus moves to the first cell in the row. (e.g. row focus supported)</li>
+                <li>If focus is on a row and the row is expandable, but not expanded, the row is expanded.</li>
+                <li>If focus is on a row and the row is not expandable or is expanded, focus moves to the first cell in the row.</li>
                 <li>If focus is on the right-most cell in the row, focus does not move.</li>
                 <li>If focus is on any other cell, focus one cell to the right.</li>
               </ul>
             </li>
             <li><kbd>Left Arrow</kbd>:
               <ul>
-                <li>If focus is on a row, focus does not move.  (e.g. row focus supported)</li>
+                <li>If focus is on a row and the row is expanded, the row is collapsed.</li>
+                <li>If focus is on a row and the row is not expandable or is collapsed, focus does not move.</li>
                 <li>If focus is on a first cell in the row and row focus is supported, focus moves to the row.</li>
                 <li>If focus is on a first cell in the row and row focus is not supported,focus does not move.</li>
                 <li>If focus is on a any other cell, focus one cell to the left.</li>
