@@ -36,11 +36,20 @@
       <p>User interactions for this interactive include:</p>
       <ul>
         <li>The "notes" <code>textarea</code> contains editable text that you are encouraged to modify.</li>
-        <li>Pressing the "discard notes" <code>button</code> will trigger a confirmation dialog, but only if the notes field contains text.</li>
-        <li>Clicking "yes" will remove all contents of the notes field, while clicking "no" or pressing escape will simply close the dialog.</li>
         <li>
-          If the notes field does not contain any text, pressing the "discard nodes" <code>button</code> will trigger an alert, notifying the user that there is nothing to discard.
-          This notification appears for 3 seconds, and then disappears, a pattern commonly referred to as a "toast notification."
+          The "discard" <code>button</code> triggers a confirmation dialog.
+          <ul>
+            <li>Clicking "yes" will remove all contents of both the notes field and the user's local storage</li>
+            <li>Clicking "no" or pressing <kbd>escape</kbd> will simply close the dialog.</li>
+            <li>The "discard" <code>button</code> is disabled if the notes field does not contain any text.</li>
+          </ul>
+        </li>
+        <li>
+          The "save" <code>button</code> saves the contents of the "notes" <code>textarea</code> to your <a href="https://www.w3.org/TR/webstorage/#the-localstorage-attribute">local storage</a>.
+          <ul>
+            <li>A successful save will trigger a short <code>[role="alert"]</code> to notify you that your notes have been saved.</li>
+            <li>The "save" <code>button</code> is disabled if the user's local storage value is the same as the <code>textarea</code> value.</li>
+          </ul>
         </li>
       </ul>
       <p>Similar examples include:</p>
@@ -54,7 +63,8 @@
         <div id="ex_alertdialog">
           <label for="notes">Notes</label>
           <textarea class="notes" name="notes" id="notes" rows="7">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, similique, consequatur eaque, mollitia repellat cumque numquam fuga hic illo voluptas, alias officiis possimus assumenda natus eos ex. Quo, enim neque!</textarea>
-          <button type="button" aria-controls="notes" onclick="openAlertDialog('alert_dialog', this)">Discard Notes</button>
+          <button type="button" aria-controls="notes" id="notes_save">Save</button>
+          <button type="button" aria-controls="notes" id="notes_discard" onclick="openAlertDialog('alert_dialog', this)">Discard</button>
           <div role="alert" id="alert_toast" class="toast hidden">Nothing to discard.</div>
           <div class="dialog-backdrop no-scroll">
             <div id="alert_dialog" role="alertdialog" aria-modal="true" aria-labelledby="dialog_label" aria-describedby="dialog_desc" class="hidden">
@@ -63,8 +73,8 @@
                 <p>Are you sure you want to discard all of your notes?</p>
               </div>
               <div class="dialog_form_actions">
-                <button onclick="closeDialog(this)">No</button>
-                <button onclick="discardInput(this, 'notes')">Yes</button>
+                <button type="button" onclick="closeDialog(this)">No</button>
+                <button type="button" aria-controls="notes" id="notes_confirm" onclick="discardInput(this)">Yes</button>
               </div>
             </div>
           </div>
@@ -123,6 +133,14 @@
               <th><kbd>Escape</kbd></th>
               <td>Closes the dialog.</td>
             </tr>
+            <tr>
+              <th><kbd>Command + S</kbd></th>
+              <td>(Mac only) Save the contents of the notes <code>textarea</code> when focused.</td>
+            </tr>
+            <tr>
+              <th><kbd>Control + S</kbd></th>
+              <td>(Windows only) Save the contents of the notes <code>textarea</code> when focused.</td>
+            </tr>
           </tbody>
         </table>
       </section>
@@ -151,7 +169,7 @@
               <th scope="row"><code>aria-labelledby=<q>IDREF</q></code></th>
               <td><code>div</code></td>
               <td>
-                Gives the dialog an accessible name by referring to the element that provides the dialog title.
+                Gives the alert dialog an accessible name by referring to the element that provides the alert dialog title.
               </td>
             </tr>
             <tr>
@@ -159,7 +177,7 @@
               <th scope="row"><code>aria-describedby=<q>IDREF</q></code></th>
               <td><code>div</code></td>
               <td>
-                Gives the alertdialog an accessible description by referring to the dialog content that describes the primary message or purpose of the dialog.
+                Gives the alert dialog an accessible description by referring to the alert dialog content that describes the primary message or purpose of the alert dialog.
               </td>
             </tr>
             <tr>
@@ -167,9 +185,17 @@
               <th scope="row"><code>aria-modal=<q>true</q></code></th>
               <td><code>div</code></td>
               <td>
-                Tells assistive technologies that the windows underneath the current dialog are not available for interaction (inert).
+                Tells assistive technologies that the windows underneath the current alert dialog are not available for interaction (inert).
               </td>
             </tr>
+              <tr>
+                <th scope="row"><code>alert</code></th>
+                <td></td>
+                <td><code>div</code></td>
+                <td>
+                  Identifies the element that serves as the alert notification.
+                </td>
+              </tr>
           </tbody>
         </table>
         <h3>Notes on <code>aria-modal</code> and <code>aria-hidden</code></h3>
