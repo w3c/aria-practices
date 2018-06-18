@@ -151,7 +151,12 @@
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 
   position: fixed;
-  bottom: 50%;
-  left: 50%;
-  transform: translate(-50%);
+  top: 1rem;
+  right: 1rem;
+  transform: translateY(-150%);
+  transition: transform 225ms cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.toast.active {
+  transform: translateY(0);
 }
