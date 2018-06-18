@@ -1,7 +1,17 @@
 language: node_js
+
+node_js:
+  - "node"
+
 env:
   global:
     - GH_REF: github.com/w3c/aria-practices.git
+
+addons:
+  apt:
+    packages:
+      - oracle-java8-installer
+      - oracle-java8-set-default
 
 git:
   depth: 3
@@ -23,7 +33,7 @@ script:
   - cd gh-pages
   - git clone --depth=1 --branch=gh-pages https://github.com/w3c/aria-practices.git
   - cd aria-practices
-  - curl "https://labs.w3.org/spec-generator/?type=respec&url=https://rawgit.com/w3c/aria-practices/master/aria-practices.html" -o index.html -f
+  - curl "https://labs.w3.org/spec-generator/?type=respec&url=https://rawgit.com/w3c/aria-practices/master/aria-practices.html" -o index.html -f --retry 3
   - cp -r ../../w3c/aria-practices/examples .
 
 after_success:

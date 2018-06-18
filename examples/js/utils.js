@@ -31,17 +31,17 @@ aria.Utils = aria.Utils || {};
 aria.Utils.matches = function (element, selector) {
   if (!Element.prototype.matches) {
     Element.prototype.matches =
-      Element.prototype.matchesSelector
-      || Element.prototype.mozMatchesSelector
-      || Element.prototype.msMatchesSelector
-      || Element.prototype.oMatchesSelector
-      || Element.prototype.webkitMatchesSelector
-      || function (s) {
-          var matches = element.parentNode.querySelectorAll(s);
-          var i = matches.length;
-          while (--i >= 0 && matches.item(i) !== this) {}
-          return i > -1;
-        };
+      Element.prototype.matchesSelector ||
+      Element.prototype.mozMatchesSelector ||
+      Element.prototype.msMatchesSelector ||
+      Element.prototype.oMatchesSelector ||
+      Element.prototype.webkitMatchesSelector ||
+      function (s) {
+        var matches = element.parentNode.querySelectorAll(s);
+        var i = matches.length;
+        while (--i >= 0 && matches.item(i) !== this) {}
+        return i > -1;
+      };
   }
 
   return element.matches(selector);
@@ -51,9 +51,9 @@ aria.Utils.remove = function (item) {
   if (item.remove && typeof item.remove === 'function') {
     return item.remove();
   }
-  if (item.parentNode
-      && item.parentNode.removeChild
-      && typeof item.parentNode.removeChild === 'function') {
+  if (item.parentNode &&
+      item.parentNode.removeChild &&
+      typeof item.parentNode.removeChild === 'function') {
     return item.parentNode.removeChild(item);
   }
   return false;

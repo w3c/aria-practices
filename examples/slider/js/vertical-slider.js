@@ -1,9 +1,10 @@
 /*
+*   This content is licensed according to the W3C Software License at
+*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+*
 *   File:   vertical-slider.js
 *
 *   Desc:   Vertical slider widget that implements ARIA Authoring Practices
-*
-*   Author(s): Jon Gunderson, Nicholas Hoyt and Brian Loh
 */
 
 // Create Vertical Slider that contains value, valuemin, valuemax, and valuenow
@@ -24,14 +25,14 @@ var VSlider = function (domNode)  {
   this.thumbHeight = 8;
 
   this.keyCode = Object.freeze({
-    'left'     : 37,
-    'up'       : 38,
-    'right'    : 39,
-    'down'     : 40,
-    'pageUp'   : 33,
-    'pageDown' : 34,
-    'end'    : 35,
-    'home'     : 36
+    'left': 37,
+    'up': 38,
+    'right': 39,
+    'down': 40,
+    'pageUp': 33,
+    'pageDown': 34,
+    'end': 35,
+    'home': 36
   });
 };
 
@@ -169,38 +170,38 @@ VSlider.prototype.handleBlur = function (event) {
 
 VSlider.prototype.handleMouseDown = function (event) {
 
-    var self = this;
+  var self = this;
 
-    var handleMouseMove = function (event) {
+  var handleMouseMove = function (event) {
 
-      var diffY = event.pageY - self.railDomNode.offsetTop;
-      self.valueNow = self.valueMax - parseInt(((self.valueMax - self.valueMin) * diffY) / self.railHeight);
-      self.moveVSliderTo(self.valueNow);
-
-      event.preventDefault();
-      event.stopPropagation();
-    };
-
-    var handleMouseUp = function (event) {
-
-      document.removeEventListener('mousemove', handleMouseMove);
-      document.removeEventListener('mouseup', handleMouseUp);
-
-    };
-
-    // bind a mousemove event handler to move pointer
-    document.addEventListener('mousemove', handleMouseMove);
-
-    // bind a mouseup event handler to stop tracking mouse movements
-    document.addEventListener('mouseup', handleMouseUp);
+    var diffY = event.pageY - self.railDomNode.offsetTop;
+    self.valueNow = self.valueMax - parseInt(((self.valueMax - self.valueMin) * diffY) / self.railHeight);
+    self.moveVSliderTo(self.valueNow);
 
     event.preventDefault();
     event.stopPropagation();
+  };
 
-    // Set focus to the clicked handle
-    this.domNode.focus();
+  var handleMouseUp = function (event) {
+
+    document.removeEventListener('mousemove', handleMouseMove);
+    document.removeEventListener('mouseup', handleMouseUp);
 
   };
+
+    // bind a mousemove event handler to move pointer
+  document.addEventListener('mousemove', handleMouseMove);
+
+  // bind a mouseup event handler to stop tracking mouse movements
+  document.addEventListener('mouseup', handleMouseUp);
+
+  event.preventDefault();
+  event.stopPropagation();
+
+  // Set focus to the clicked handle
+  this.domNode.focus();
+
+};
 
 // handleMouseMove has the same functionality as we need for handleMouseClick on the rail
 VSlider.prototype.handleClick = function (event) {

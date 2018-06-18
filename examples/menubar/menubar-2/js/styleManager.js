@@ -5,8 +5,6 @@
 *   File:   TextStyling.js
 *
 *   Desc:   Styling functions for changing the style of an item
-*
-*   Author: Jon Gunderson and Ku Ja Eun
 */
 
 var StyleManager = function (id) {
@@ -51,59 +49,59 @@ StyleManager.prototype.setItalic = function (flag) {
     this.node.style.fontStyle = 'italic';
   }
   else {
-    this.node.style.fontStyle = 'none';
+    this.node.style.fontStyle = 'normal';
   }
 };
 
 StyleManager.prototype.fontSmaller = function () {
 
-    switch (this.fontSize) {
-      case 'small':
-        this.setFontSize('x-small');
-        break;
+  switch (this.fontSize) {
+    case 'small':
+      this.setFontSize('x-small');
+      break;
 
-      case 'medium':
-        this.setFontSize('small');
-        break;
+    case 'medium':
+      this.setFontSize('small');
+      break;
 
-      case 'large':
-        this.setFontSize('medium');
-        break;
+    case 'large':
+      this.setFontSize('medium');
+      break;
 
-      case 'x-large':
-        this.setFontSize('large');
-        break;
+    case 'x-large':
+      this.setFontSize('large');
+      break;
 
-      default:
-        break;
+    default:
+      break;
 
-    } // end switch
-  };
+  } // end switch
+};
 
 StyleManager.prototype.fontLarger = function () {
 
-    switch (this.fontSize) {
-      case 'x-small':
-        this.setFontSize('small');
-        break;
+  switch (this.fontSize) {
+    case 'x-small':
+      this.setFontSize('small');
+      break;
 
-      case 'small':
-        this.setFontSize('medium');
-        break;
+    case 'small':
+      this.setFontSize('medium');
+      break;
 
-      case 'medium':
-        this.setFontSize('large');
-        break;
+    case 'medium':
+      this.setFontSize('large');
+      break;
 
-      case 'large':
-        this.setFontSize('x-large');
-        break;
+    case 'large':
+      this.setFontSize('x-large');
+      break;
 
-      default:
-        break;
+    default:
+      break;
 
-    } // end switch
-  };
+  } // end switch
+};
 
 StyleManager.prototype.isMinFontSize = function () {
   return this.fontSize === 'x-small';

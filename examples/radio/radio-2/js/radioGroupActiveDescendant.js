@@ -1,9 +1,10 @@
 /*
+*   This content is licensed according to the W3C Software License at
+*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+*
 *   File:   radioGroup.js
 *
 *   Desc:   Radio group widget using aria-activedescendant that implements ARIA Authoring Practices
-*
-*   Author(s): Jon Gunderson, Ku Ja Eun, Nicholas Hoyt, and Brian Loh
 */
 
 /*
@@ -26,12 +27,12 @@ var RadioGroup = function (domNode) {
   this.lastRadioButton   = null;
 
   this.keyCode = Object.freeze({
-    'TAB'      :  9,
-    'SPACE'    : 32,
-    'LEFT'     : 37,
-    'UP'       : 38,
-    'RIGHT'    : 39,
-    'DOWN'     : 40
+    'TAB': 9,
+    'SPACE': 32,
+    'LEFT': 37,
+    'UP': 38,
+    'RIGHT': 39,
+    'DOWN': 40
   });
 };
 
@@ -118,8 +119,8 @@ RadioGroup.prototype.getCurrentRadioButton = function () {
 
 RadioGroup.prototype.handleKeydown = function (event) {
   var tgt = event.currentTarget,
-      flag = false,
- clickEvent;
+    flag = false,
+    clickEvent;
 
   var currentItem = this.getCurrentRadioButton();
   switch (event.keyCode) {

@@ -1,6 +1,7 @@
-/**
- * TODO: Copyright and License stuff goes here
- */
+/*
+*   This content is licensed according to the W3C Software License at
+*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+*/
 
 /**
  * @namespace aria
@@ -173,14 +174,14 @@ aria.Grid.prototype.setFocusPointer = function (row, col) {
  */
 aria.Grid.prototype.isValidCell = function (row, col) {
   return (
-    !isNaN(row)
-    && !isNaN(col)
-    && row >= 0
-    && col >= 0
-    && this.grid
-    && this.grid.length
-    && row < this.grid.length
-    && col < this.grid[row].length
+    !isNaN(row) &&
+    !isNaN(col) &&
+    row >= 0 &&
+    col >= 0 &&
+    this.grid &&
+    this.grid.length &&
+    row < this.grid.length &&
+    col < this.grid[row].length
   );
 };
 
@@ -196,7 +197,7 @@ aria.Grid.prototype.isValidCell = function (row, col) {
  */
 aria.Grid.prototype.isHidden = function (row, col) {
   var cell = this.gridNode.querySelectorAll(aria.GridSelector.ROW)[row]
-                  .querySelectorAll(aria.GridSelector.CELL)[col];
+    .querySelectorAll(aria.GridSelector.CELL)[col];
   return aria.Utils.hasClass(cell, aria.CSSClass.HIDDEN);
 };
 
@@ -268,8 +269,8 @@ aria.Grid.prototype.showKeysIndicator = function () {
 };
 
 aria.Grid.prototype.hideKeysIndicator = function () {
-  if (this.keysIndicator
-      && this.grid[this.focusedRow][this.focusedCol].tabIndex === 0) {
+  if (this.keysIndicator &&
+      this.grid[this.focusedRow][this.focusedCol].tabIndex === 0) {
     aria.Utils.addClass(this.keysIndicator, 'hidden');
   }
 };
@@ -355,15 +356,15 @@ aria.Grid.prototype.checkFocusChange = function (event) {
 aria.Grid.prototype.findFocusedItem = function (focusedTarget) {
   var focusedCell = this.grid[this.focusedRow][this.focusedCol];
 
-  if (focusedCell === focusedTarget
-      || focusedCell.contains(focusedTarget)) {
+  if (focusedCell === focusedTarget ||
+      focusedCell.contains(focusedTarget)) {
     return;
   }
 
   for (var i = 0; i < this.grid.length; i++) {
     for (var j = 0; j < this.grid[i].length; j++) {
-      if (this.grid[i][j] === focusedTarget
-          || this.grid[i][j].contains(focusedTarget)) {
+      if (this.grid[i][j] === focusedTarget ||
+          this.grid[i][j].contains(focusedTarget)) {
         this.setFocusPointer(i, j);
         return;
       }
@@ -415,12 +416,12 @@ aria.Grid.prototype.delegateButtonHandler = function (event) {
   }
 
   if (
-    target.parentNode
-    && target.parentNode.matches('th[aria-sort]')
-    && (
-      isClickEvent
-      || key === aria.KeyCode.SPACE
-      || key === aria.KeyCode.RETURN
+    target.parentNode &&
+    target.parentNode.matches('th[aria-sort]') &&
+    (
+      isClickEvent ||
+      key === aria.KeyCode.SPACE ||
+      key === aria.KeyCode.RETURN
     )
   ) {
     event.preventDefault();
@@ -428,10 +429,10 @@ aria.Grid.prototype.delegateButtonHandler = function (event) {
   }
 
   if (
-    aria.Utils.matches(target, '.editable-text, .edit-text-button')
-    && (
-      isClickEvent
-      || key === aria.KeyCode.RETURN
+    aria.Utils.matches(target, '.editable-text, .edit-text-button') &&
+    (
+      isClickEvent ||
+      key === aria.KeyCode.RETURN
     )
   ) {
     event.preventDefault();
@@ -443,10 +444,10 @@ aria.Grid.prototype.delegateButtonHandler = function (event) {
   }
 
   if (
-    aria.Utils.matches(target, '.edit-text-input')
-    && (
-      key === aria.KeyCode.RETURN
-      || key === aria.KeyCode.ESC
+    aria.Utils.matches(target, '.edit-text-input') &&
+    (
+      key === aria.KeyCode.RETURN ||
+      key === aria.KeyCode.ESC
     )
   ) {
     event.preventDefault();
@@ -587,8 +588,13 @@ aria.Grid.prototype.setupIndices = function () {
  *  accordingly.
  */
 aria.Grid.prototype.setupPagination = function () {
+  this.onPaginationChange = this.onPaginationChange || function () {};
   this.perPage = parseInt(this.gridNode.getAttribute('data-per-page'));
   this.showFromRow(0, true);
+};
+
+aria.Grid.prototype.setPaginationChangeHandler = function (onPaginationChange) {
+  this.onPaginationChange = onPaginationChange;
 };
 
 /**
@@ -604,22 +610,27 @@ aria.Grid.prototype.checkPageChange = function (event) {
   }
 
   var key = event.which || event.keyCode;
-  var startIndex;
 
-  if (key === aria.KeyCode.PAGE_UP || key === aria.KeyCode.PAGE_DOWN) {
+  if (key === aria.KeyCode.PAGE_UP) {
     event.preventDefault();
-
-    if (key === aria.KeyCode.PAGE_UP) {
-      startIndex = Math.max(this.perPage - 1, this.topIndex);
-      this.showFromRow(startIndex, false);
-    }
-    else {
-      startIndex = this.topIndex + this.perPage - 1;
-      this.showFromRow(startIndex, true);
-    }
-
-    this.focusCell(startIndex, this.focusedCol);
+    this.movePageUp();
   }
+  else if (key === aria.KeyCode.PAGE_DOWN) {
+    event.preventDefault();
+    this.movePageDown();
+  }
+};
+
+aria.Grid.prototype.movePageUp = function () {
+  var startIndex = Math.max(this.perPage - 1, this.topIndex - 1);
+  this.showFromRow(startIndex, false);
+  this.focusCell(startIndex, this.focusedCol);
+};
+
+aria.Grid.prototype.movePageDown = function () {
+  var startIndex = this.topIndex + this.perPage;
+  this.showFromRow(startIndex, true);
+  this.focusCell(startIndex, this.focusedCol);
 };
 
 /**
@@ -636,6 +647,8 @@ aria.Grid.prototype.showFromRow = function (startIndex, scrollDown) {
   var dataRows =
     this.gridNode.querySelectorAll(aria.GridSelector.SCROLL_ROW);
   var reachedTop = false;
+  var firstIndex = -1;
+  var endIndex = -1;
 
   if (startIndex < 0 || startIndex >= dataRows.length) {
     return;
@@ -645,13 +658,13 @@ aria.Grid.prototype.showFromRow = function (startIndex, scrollDown) {
 
     if (
       (
-        scrollDown
-        && i >= startIndex
-        && i < startIndex + this.perPage)
-        ||(
-          !scrollDown
-          && i <= startIndex
-          && i > startIndex - this.perPage
+        scrollDown &&
+        i >= startIndex &&
+        i < startIndex + this.perPage) ||
+        (
+          !scrollDown &&
+          i <= startIndex &&
+          i > startIndex - this.perPage
         )
     ) {
       aria.Utils.removeClass(dataRows[i], aria.CSSClass.HIDDEN);
@@ -660,11 +673,17 @@ aria.Grid.prototype.showFromRow = function (startIndex, scrollDown) {
         this.topIndex = i;
         reachedTop = true;
       }
+
+      if (firstIndex < 0) {
+        firstIndex = i;
+      }
+      endIndex = i;
     }
     else {
       aria.Utils.addClass(dataRows[i], aria.CSSClass.HIDDEN);
     }
   }
+  this.onPaginationChange(firstIndex, endIndex);
 };
 
 /**

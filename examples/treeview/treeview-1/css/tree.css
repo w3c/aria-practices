@@ -27,6 +27,7 @@ ul[role="tree"] {
 
 [role="treeitem"],
 [role="treeitem"] span {
+  width: 9em;
   margin: 0;
   padding: 0;
   border: 2px transparent solid;
@@ -34,16 +35,21 @@ ul[role="tree"] {
   display: block;
 }
 
+/* disable default keyboard focus styling for treeitems
+   Keyboard focus is styled with the following CSS */
+[role="treeitem"]:focus {
+  outline: 0;
+}
+
+
 [role="treeitem"].focus,
 [role="treeitem"] span.focus {
   border-color: black;
   background-color: #EEEEEE;
-  width: 9em;  
 }
 
 [role="treeitem"].hover,
 [role="treeitem"] span:hover {
   background-color: #DDDDDD;
-  width: 9em;  
 }
 

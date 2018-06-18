@@ -11,6 +11,7 @@ var respecConfig = {
   // publishDate: "2013-08-22",
   noRecTrack: true,
   diffTool: 'http://www.aptest.com/standards/htmldiff/htmldiff.pl',
+  license: 'w3c-software-doc',
 
   // The specifications short name, as in http://www.w3.org/TR/short-name/
   shortName: 'wai-aria-practices-1.1',
@@ -29,7 +30,7 @@ var respecConfig = {
   // previousDiffURI: "",
 
   // If there a publicly available Editors Draft, this is the link
-  edDraftURI: 'http://w3c.github.io/aria-practices/',
+  edDraftURI: 'https://w3c.github.io/aria-practices/',
 
   // If this is a LCWD, uncomment and set the end of its review period
   // lcEnd: "2012-02-21",
@@ -44,22 +45,20 @@ var respecConfig = {
     w3cid: 44582
   }, {
     name: 'James Nurthen',
-    mailto: 'james.nurthen@oracle.com',
-    company: 'Oracle Corporation',
-    companyURI: 'http://www.oracle.com/',
+    mailto: 'nurthen@adobe.com',
+    company: 'Adobe',
+    companyURI: 'http://www.adobe.com/',
     w3cid: 37155
   }, {
     name: 'Michiel Bijl',
-    mailto: 'mbijl@paciellogroup.com',
-    company: 'The Paciello Group',
-    companyURI: 'https://www.paciellogroup.com/',
+    company: 'Invited Expert',
     w3cid: 74040
   }, {
     name: 'Michael Cooper',
-    url: 'http://www.w3.org/People/cooper/',
+    url: 'https://www.w3.org/People/cooper/',
     mailto: 'cooper@w3.org',
     company: 'W3C',
-    companyURI: 'http://www.w3.org/',
+    companyURI: 'https://www.w3.org/',
     w3cid: 34017
   }, {
     name: 'Joseph Scheuhammer',
@@ -96,22 +95,22 @@ var respecConfig = {
 
   // Spec URLs
   ariaSpecURLs: {
-    'ED': 'http://w3c.github.io/aria/aria/aria.html',
-    'FPWD': 'http://www.w3.org/TR/wai-aria-1.1/',
-    'WD': 'http://www.w3.org/TR/wai-aria-1.1/',
-    'REC': 'http://www.w3.org/TR/wai-aria/'
+    'ED': 'https://w3c.github.io/aria/',
+    'FPWD': 'https://www.w3.org/TR/wai-aria-1.1/',
+    'WD': 'https://www.w3.org/TR/wai-aria-1.1/',
+    'REC': 'https://www.w3.org/TR/wai-aria/'
   },
   accNameURLs: {
-    'ED': 'http://w3c.github.io/aria/accname-aam/accname-aam.html',
-    'WD': 'http://www.w3.org/TR/accname-aam-1.1/',
-    'FPWD': 'http://www.w3.org/TR/accname-aam-1.1/',
-    'REC': 'http://www.w3.org/TR/accname-aam-1.1/'
+    'ED': 'https://w3c.github.io/aria/accname-aam/accname-aam.html',
+    'WD': 'https://www.w3.org/TR/accname-aam-1.1/',
+    'FPWD': 'https://www.w3.org/TR/accname-aam-1.1/',
+    'REC': 'https://www.w3.org/TR/accname-aam-1.1/'
   },
   coreMappingURLs: {
-    'ED': 'http://w3c.github.io/aria/core-aam/core-aam.html',
-    'WD': 'http://www.w3.org/TR/core-aam-1.1/',
-    'FPWD': 'http://www.w3.org/TR/core-aam-1.1/',
-    'REC': 'http://www.w3.org/TR/core-aam-1.1/'
+    'ED': 'https://w3c.github.io/aria/core-aam/core-aam.html',
+    'WD': 'https://www.w3.org/TR/core-aam-1.1/',
+    'FPWD': 'https://www.w3.org/TR/core-aam-1.1/',
+    'REC': 'https://www.w3.org/TR/core-aam-1.1/'
   },
 
   // alternateFormats: [
@@ -135,7 +134,7 @@ var respecConfig = {
   wg: 'Accessible Rich Internet Applications Working Group',
 
   // URI of the public WG page
-  wgURI: 'http://www.w3.org/WAI/ARIA/',
+  wgURI: 'https://www.w3.org/WAI/ARIA/',
 
   // Name (without the @w3c.org) of the public mailing
   // to which comments are due.
@@ -151,5 +150,5 @@ var respecConfig = {
 
   localBiblio: biblio,
 
-  preProcess: [linkCrossReferences]
+  preProcess: [ linkCrossReferences ]
 };

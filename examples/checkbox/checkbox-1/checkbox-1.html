@@ -15,15 +15,21 @@
   <script src="js/checkbox.js" type="text/javascript"></script>
 </head>
 <body>
+  <nav aria-label="Related Links" class="feedback">
+    <ul>
+      <li><a href="../../../#browser_and_AT_support">Browser and Assistive Technology Support</a></li>
+      <li><a href="https://github.com/w3c/aria-practices/issues/new">Report Issue</a></li>
+      <li><a href="https://github.com/w3c/aria-practices/projects/9">Related Issues</a></li>
+      <li><a href="../../../#checkbox">Design Pattern</a></li>
+    </ul>
+  </nav>
   <main>
     <h1>Checkbox Example (Two State)</h1>
-
     <p>This example implements the  <a href="../../../#checkbox">Checkbox Design Pattern</a> for a two state checkbox using <code>div</code> elements.</p>
 
     <p>Similar examples include: </p>
     <ul>
-      <li><a href="../checkbox-2/checkbox-2.html">Checkbox (Mixed State)</a>: Mixed state checkbox controlling standard input checkboxes.</li>
-      <!--  list other examples that implement the same design pattern. -->
+      <li><a href="../checkbox-2/checkbox-2.html">Checkbox (Mixed-State)</a>: Mixed state checkbox controlling standard input checkboxes.</li>
     </ul>
 
     <section>
@@ -31,8 +37,8 @@
       <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
 
       <div  id="ex1">
-        <h3>Sandwich Condiments</h3>
-        <div>
+        <h3 id="id-group-label">Sandwich Condiments</h3>
+        <div role="group" aria-labelledby="id-group-label">
           <ul class="checkboxes">
             <li><div role="checkbox" aria-checked="false" tabindex= "0">Lettuce</div></li>
             <li><div role="checkbox" aria-checked="true"  tabindex= "0">Tomato</div></li>
@@ -72,19 +78,11 @@
           <tbody>
           <tr>
             <th><kbd>Tab</kbd></th>
-            <td>
-              <ul>
-                <li>Moves keyboard focus to the <code>checkbox</code>.</li>
-              </ul>
-            </td>
+            <td>Moves keyboard focus to the <code>checkbox</code>.</td>
           </tr>
             <tr>
               <th><kbd>Space</kbd></th>
-              <td>
-                <ul>
-                  <li>Toggle check checkbox between checked and unchecked.</li>
-                </ul>
-              </td>
+              <td>Toggles checkbox between checked and unchecked states.</td>
             </tr>
           </tbody>
         </table>
@@ -103,14 +101,43 @@
         </thead>
         <tbody>
             <tr>
+              <th scope="row"></th>
+              <td></td>
+              <td><code>h3</code></td>
+              <td>
+                <ul>
+                  <li>Provides a grouping label for the group of checkboxes.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row"><code>group</code></th>
+              <td></td>
+              <td><code>div</code></td>
+              <td>
+                <ul>
+                  <li>Identifies the <code>div</code> element as a <code>group</code> container for the checkboxes.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row"</th>
+              <td><code>aria-labelledby</code></td>
+              <td><code>div</code></td>
+              <td>
+                <ul>
+                  <li>The <code>aria-labelledby</code> attribute references the <code>id</code> attribute of the <code>h3</code> element to define the accessible name for the group of checkboxes.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
               <th scope="row"><code>checkbox</code></th>
               <td></td>
               <td><code>div</code></td>
               <td>
                 <ul>
-                  <li>The <code>role=&quot;checkbox&quot;</code> attribute identifies the <code>div</code> element as a ARIA <code>checkbox</code>.</li>
-                  <li>The accessible name comes the child text content of the <code>div[role=&quot;checkbox&quot;]</code> element.</li>
-                  <li>The <code>checkbox</code> widget needs a <code>tabindex=&quot;0&quot;</code> value.</li>
+                  <li>Identifies the <code>div</code> element as a <code>checkbox</code>.</li>
+                  <li>The child text content of this <code>div</code> provides the accessible name of the checkbox.</li>
                 </ul>
               </td>
             </tr>
@@ -118,11 +145,7 @@
               <td></td>
               <th scope="row"><code>tabindex=&quot;0&quot;</code></th>
               <td><code>div</code></td>
-              <td>
-                  <ul>
-                    <li>The <code>div[&quot;checkbox&quot;]</code> is identified as an ineractive element and is added to the tab order of the page by setting the <code>tabindex=&quot;0&quot;</code>.</li>
-                   </ul>
-              </td>
+              <td>Includes the checkbox in the page tab sequence.</td>
             </tr>
             <tr>
               <td></td>
@@ -130,9 +153,9 @@
               <td><code>div</code></td>
               <td>
                   <ul>
-                    <li>Indentifies the <code>checkbox</code> button as unchecked.</li>
+                    <li>Indicates the <code>checkbox</code> is <strong>not</strong> checked.</li>
                     <li>CSS attribute selectors (e.g. <code>[aria-checked=&quot;false&quot;]</code>) are used to synchronize the visual states with the value of the <code>aria-checked</code> attribute.</li>
-                    <li>The CSS <code>:before</code> psuedo selector and the <code>content</code> property are used to indcate visual state of "unchecked" to support high contrast setting in operating systems and browsers.</li>
+                    <li>To support operating system and browser high contrast settings, the CSS <code>::before</code> pseudo element and <code>content</code> property are used to generate the visual indicators of the checkbox state.</li>
                   </ul>
               </td>
             </tr>
@@ -142,9 +165,9 @@
               <td><code>div</code></td>
               <td>
                   <ul>
-                    <li>Indentifies the <code>checkbox</code> as checked.</li>
+                    <li>Indicates the <code>checkbox</code> is checked.</li>
                     <li>CSS attribute selectors (e.g. <code>[aria-checked=&quot;true&quot;]</code>) are used to synchronize the visual states with the value of the <code>aria-checked</code> attribute.</li>
-                    <li>The CSS <code>:before</code> psuedo selector and the <code>content</code> property are used to indcate visual state of "checked" to support high contrast setting in operating systems and browsers.</li>
+                    <li>To support operating system and browser high contrast settings, the CSS <code>::before</code> pseudo element and <code>content</code> property are used to generate the visual indicators of the checkbox state.</li>
                   </ul>
               </td>
             </tr>
@@ -156,7 +179,7 @@
     <h2>Javascript and CSS Source Code</h2>
     <ul>
       <li>
-        CSS: <a href="css/checkbox.css" type="tex/css">checkbox.css</a>
+        CSS: <a href="../css/checkbox.css" type="text/css">checkbox.css</a>
       </li>
       <li>
         Javascript: <a href="js/checkbox.js" type="text/javascript">checkbox.js</a>

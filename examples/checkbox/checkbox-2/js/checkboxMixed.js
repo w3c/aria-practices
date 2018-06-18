@@ -6,8 +6,6 @@
 *
 *   Desc:   CheckboxMixed widget that implements ARIA Authoring Practices
 *           for a menu of links
-*
-*   Author: Jon Gunderson and Nicholas Hoyt
 */
 
 /*
@@ -22,8 +20,8 @@ var CheckboxMixed = function (domNode) {
   this.controlledCheckboxes = [];
 
   this.keyCode = Object.freeze({
-    'RETURN'   : 13,
-    'SPACE'    : 32
+    'RETURN': 13,
+    'SPACE': 32
   });
 };
 
@@ -67,7 +65,14 @@ CheckboxMixed.prototype.updateCheckboxMixed = function () {
     }
     else {
       this.domNode.setAttribute('aria-checked', 'mixed');
+      this.updateControlledStates();
     }
+  }
+};
+
+CheckboxMixed.prototype.updateControlledStates = function () {
+  for (var i = 0; i < this.controlledCheckboxes.length; i++) {
+    this.controlledCheckboxes[i].lastState = this.controlledCheckboxes[i].isChecked();
   }
 };
 

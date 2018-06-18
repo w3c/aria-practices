@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>Navigation Treeview Example Using Declared Properties | WAI-ARIA Authoring Practices 1.1<</title>
+    <title>Navigation Treeview Example Using Declared Properties | WAI-ARIA Authoring Practices 1.1</title>
 
     <!--  Core js and css shared by all examples; do not modify when using this template. -->
     <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
@@ -11,18 +11,26 @@
     <script src="../../js/highlight.pack.js"></script>
     <script src="../../js/app.js"></script>
 
+    <!--  JS and CSS for this example  -->
     <link href="css/treeLinks.css" rel="stylesheet">
     <script type="text/javascript" src="js/treeLinks.js"></script>
     <script type="text/javascript" src="js/treeitemLinks.js"></script>
-    <script type="text/javascript" src="js/treeitemClick.js"></script>
   </head>
   <body>
+    <nav aria-label="Related Links" class="feedback">
+      <ul>
+        <li><a href="../../../#browser_and_AT_support">Browser and Assistive Technology Support</a></li>
+        <li><a href="https://github.com/w3c/aria-practices/issues/new">Report Issue</a></li>
+        <li><a href="https://github.com/w3c/aria-practices/projects/17">Related Issues</a></li>
+        <li><a href="../../../#TreeView">Design Pattern</a></li>
+      </ul>
+    </nav>
     <main>
       <h1>Navigation Treeview Example Using Declared Properties</h1>
       <p>
-        Code is complete for this example.
-        Feedback and progress on editorial work on this page are being tracked in
-        <a href="https://github.com/w3c/aria-practices/issues/226">issue 226.</a>
+        <strong>NOTE:</strong>: This example is recently revised and ready for review.
+        Please provide feedback in
+        <a href="https://github.com/w3c/aria-practices/issues/405">issue 405.</a>
       </p>
     <p>
     The below example demonstrates how the
@@ -54,8 +62,7 @@
               aria-level="1"
               aria-setsize="3"
               aria-posinset="1"
-              aria-expanded="false"
-              aria-label="Fruits">
+              aria-expanded="false">
               <span>Fruits</span>
               <ul>
                 <li role="none">
@@ -80,8 +87,7 @@
                   aria-level="2"
                    aria-setsize="5"
                    aria-posinset="3"
-                   aria-expanded="false"
-                  aria-label="Apples">
+                   aria-expanded="false">
                   <span>Apples</span>
                   <ul role="group">
                     <li role="none">
@@ -113,7 +119,7 @@
                     </li>
                   </ul>
                 </li>
-                <li >
+                <li role="none">
                   <a role="treeitem"
                     aria-level="2"
                     aria-setsize="5"
@@ -126,8 +132,7 @@
                     aria-level="2"
                     aria-setsize="5"
                     aria-posinset="5"
-                    aria-expanded="false"
-                    aria-label="Pears">
+                    aria-expanded="false">
                     <span> Pears </span>
                   <ul role="group">
                     <li role="none">
@@ -192,16 +197,14 @@
               aria-level="1"
               aria-setsize="3"
               aria-posinset="2"
-              aria-expanded="false"
-              aria-label="Vegetables">
+              aria-expanded="false">
               <span>Vegetables</span>
               <ul role="group">
                 <li role="treeitem"
                   aria-level="1"
                   aria-setsize="3"
                   aria-posinset="2"
-                  aria-expanded="false"
-                  aria-label="Podded Vegetables">
+                  aria-expanded="false">
                   <span>Podded Vegetables</span>
                   <ul role="group">
                     <li role="none">
@@ -237,8 +240,7 @@
                   aria-level="2"
                   aria-setsize="3"
                   aria-posinset="2"
-                  aria-expanded="false"
-                  aria-label="Bulb and Stem Vegetables">
+                  aria-expanded="false">
                   <span>Bulb and Stem Vegetables</span>
                   <ul role="group">
                     <li role="none">
@@ -283,8 +285,7 @@
                   aria-level="2"
                   aria-setsize="3"
                   aria-posinset="3"
-                  aria-expanded="false"
-                  aria-label="Root and Tuberous Vegetables">
+                  aria-expanded="false">
                   <span>Root and Tuberous Vegetables</span>
                   <ul role="group">
                     <li role="none">
@@ -331,16 +332,14 @@
               aria-level="1"
               aria-setsize="3"
               aria-posinset="3"
-              aria-expanded="false"
-              aria-label=" Grains">
+              aria-expanded="false">
               <span>Grains</span>
               <ul role="group">
                 <li role="treeitem"
                   aria-level="2"
                   aria-setsize="3"
                   aria-posinset="1"
-                  aria-expanded="false"
-                  aria-label="Cereal grains">
+                  aria-expanded="false">
                   <span>Cereal Grains</span>
                   <ul role="group">
                     <li role="none">
@@ -376,8 +375,7 @@
                   aria-level="2"
                   aria-setsize="3"
                   aria-posinset="2"
-                  aria-expanded="false"
-                  aria-label="Pseudocereal grains">
+                  aria-expanded="false">
                   <span>Pseudocereal Grains</span>
                   <ul role="group">
                     <li role="none">
@@ -422,8 +420,7 @@
                   aria-level="2"
                   aria-setsize="3"
                   aria-posinset="3"
-                  aria-expanded="false"
-                  aria-label="Oilseeds">
+                  aria-expanded="false">
                   <span>Oilseeds</span>
                   <ul role="group">
                     <li role="none">
@@ -474,8 +471,7 @@
       <section>
         <h2>Accessibility Features</h2>
         <p>
-          The expandable nodes (parent items) in the tree have a custom focus and hover styling created using CSS focus and hover classes.
-          To do this, focus, blur, mouseover, and mouseout events trigger application of classes to the <code>span</code> element that contains the visible label of the <code>treeitem</code>.
+          To make the focus indicator easier to see, nodes in the tree have a custom focus and hover styling created using CSS focus and hover pseudo-classes.
         </p>
       </section>
 
@@ -567,7 +563,7 @@
             </tr>
             <tr>
               <th>
-                <kbd>*</kbd>
+                <kbd>*</kbd> (asterisk)
               </th>
               <td>
                 <ul>
@@ -599,11 +595,10 @@
               <td>
                 <ul>
                   <li>Identifies the <code>ul</code> element as a <code>tree</code> widget.</li>
-                  <li>A <code>tree</code> is a container widget for focusable, interactive <code>treeitem</code> elements.</li>
                   <li>
-                    The <code>tree</code> is not made focusable with a <code>tabindex</code> value because a
-                    <a href="../../../#kbd_roving_tabindex">roving tabindex</a>
-                    is used to control which descendant <code>treeitem</code> receives focus.
+                    Because focus movement in the tree is managed with a 
+                    <a href="../../../#kbd_roving_tabindex">roving tabindex</a>, 
+                    the <code>tree</code> container does not need a <code>tabindex</code> attribute.
                   </li>
                 </ul>
               </td>
@@ -629,18 +624,6 @@
                     </ul>
                   </li>
                 </ul>
-              </td>
-            </tr>
-            <tr>
-              <td></td>
-              <th scope="row"><code>aria-label=&quot;<em>string</em>&quot;</code></th>
-              <td><code>li</code></td>
-              <td>
-                <ul>
-                  <li>Defines the accessible name for the <code>treeitem</code>.</li>
-                  <li>Applied only to <code>treeitem</code> elements that are parent nodes, i.e., they contain a <code>ul</code> with the <code>group</code> role.</li>
-                  <li>Overrides browser calculation of the name from the elements contained inside of the <code>li</code> element to avoid having a long, confusing name composed of the names of every node in the branch.</li>
-                 </ul>
               </td>
             </tr>
             <tr>
@@ -769,10 +752,6 @@
           <li>
             Javascript:
             <a href="js/treeitemLinks.js" type="text/javascript">treeitemLinks.js</a>
-          </li>
-          <li>
-            Javascript:
-            <a href="js/treeitemClick.js" type="text/javascript">treeitemClick.js</a>
           </li>
         </ul>
       </section>

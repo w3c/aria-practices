@@ -16,12 +16,16 @@
 
 </head>
 <body>
+  <nav aria-label="Related Links" class="feedback">
+    <ul>
+      <li><a href="../../#browser_and_AT_support">Browser and Assistive Technology Support</a></li>
+      <li><a href="https://github.com/w3c/aria-practices/issues/new">Report Issue</a></li>
+      <li><a href="https://github.com/w3c/aria-practices/projects/14">Related Issues</a></li>
+      <li><a href="../../#disclosure">Design Pattern</a></li>
+    </ul>
+  </nav>
   <main>
   <h1>Example Disclosure (Show/Hide) for Image Description</h1>
-  <p>
-    Please provide feedback on this example in
-    <a href="https://github.com/w3c/aria-practices/issues/264">issue 264.</a>
-  </p>
   <p>
     The following example demonstrates using the
     <a href="../../#disclosure">disclosure design pattern</a>
@@ -57,10 +61,10 @@
           <p>
             In order to facilitate the judgement of the eye regarding the diminution of the army, I supposed that the troops under Prince Jèrôme and under Marshal Davoust, who were sent to Minsk and Mobilow and who rejoined near Orscha and Witebsk, had always marched with the army. 
           </p>
-  <p><strong>Note: A French translation from Wikipeedia.</strong></p>
+  <p><strong>Note: A French translation from Wikipedia.</strong></p>
         <button aria-expanded="true" aria-controls="id_long_desc">Data Table for Minard's Chart</button>
         <div id="id_long_desc">
-          <h3 id="id_data_label">Data for Charles Minars's Chart of Naploean's Invasion of Russia</h3>
+          <h3 id="id_data_label">Data for Charles Minard's Chart of Napoleon's Invasion of Russia</h3>
           <table aria-labelledby="id_data_label" class="data">
             <thead>
               <tr>
@@ -210,10 +214,8 @@
                 <td>Retreat</td>
               </tr>
               <tr>
-                <th scope="row">Wilna
-                </td>
-                <td>na
-                </th>
+                <th scope="row">Wilna</th>
+                <td>na</td>
                 <td>8,000</td>
                 <td>na</td>
                 <td>na</td>
@@ -273,7 +275,6 @@
             <kbd>Enter</kbd>
           </th>
           <td>
-              <li>
               Activates the disclosure button,
               which toggles the visibility of the long description.
           </td>

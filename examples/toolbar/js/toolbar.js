@@ -1,3 +1,7 @@
+/*
+*   This content is licensed according to the W3C Software License at
+*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+*/
 /**
  * @namespace aria
  */
@@ -83,7 +87,6 @@ aria.Toolbar.prototype.checkClickItem = function (evt) {
  */
 aria.Toolbar.prototype.deselectItem = function (element) {
   aria.Utils.removeClass(element, 'selected');
-  element.setAttribute('aria-selected', 'false');
   element.setAttribute('tabindex', '-1');
 };
 
@@ -97,7 +100,6 @@ aria.Toolbar.prototype.deselectItem = function (element) {
 aria.Toolbar.prototype.selectItem = function (element) {
   this.deselectItem(this.selectedItem);
   aria.Utils.addClass(element, 'selected');
-  element.setAttribute('aria-selected', 'true');
   element.setAttribute('tabindex', '0');
   this.selectedItem = element;
 };

@@ -1,23 +1,13 @@
 /*
- * Copyright 2016 University of Illinois
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+*   This content is licensed according to the W3C Software License at
+*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+*
+*/
 
 /**
  * ARIA Menu Button example
  * @function onload
- * @desc  after page has loaded initializ all menu buttons based on the selector "[aria-haspopup][aria-controls]"
+ * @desc  after page has loaded initialize all menu buttons based on the selector "[aria-haspopup][aria-controls]"
  */
 
 window.addEventListener('load', function () {
@@ -26,9 +16,9 @@ window.addEventListener('load', function () {
 
   [].forEach.call(menuButtons, function (menuButton) {
     if (
-      menuButton
-      && menuButton.tagName.toLowerCase() === 'button'
-      || menuButton.getAttribute('role').toLowerCase() === 'button'
+      menuButton &&
+      menuButton.tagName.toLowerCase() === 'button' ||
+      menuButton.getAttribute('role').toLowerCase() === 'button'
     ) {
       var mb = new aria.widget.MenuButton(menuButton);
       mb.initMenuButton();
@@ -181,8 +171,8 @@ aria.widget.Menu.prototype.nextMenuItem = function (currentMenuItem) {
 
   while (mi) {
     if (
-      (mi.nodeType === Node.ELEMENT_NODE)
-      && (mi.getAttribute('role') === 'menuitem')
+      (mi.nodeType === Node.ELEMENT_NODE) &&
+      (mi.getAttribute('role') === 'menuitem')
     ) {
       mi.focus();
       break;
@@ -209,8 +199,8 @@ aria.widget.Menu.prototype.previousMenuItem = function (currentMenuItem) {
 
   while (mi) {
     if (
-      mi.nodeType === Node.ELEMENT_NODE
-      && mi.getAttribute('role') === 'menuitem'
+      mi.nodeType === Node.ELEMENT_NODE &&
+      mi.getAttribute('role') === 'menuitem'
     ) {
       mi.focus();
       break;
@@ -441,12 +431,12 @@ aria.widget.MenuButton.prototype.closeMenu = function (force, focusMenuButton) {
   }
 
   if (
-    force
-    || (
-      !this.mouseInMenuButton
-      && this.menuNode
-      && !this.menu.mouseInMenu
-      && !this.menu.menuHasFocus
+    force ||
+    (
+      !this.mouseInMenuButton &&
+      this.menuNode &&
+      !this.menu.mouseInMenu &&
+      !this.menu.menuHasFocus
     )
   ) {
     this.menuNode.style.display = 'none';
