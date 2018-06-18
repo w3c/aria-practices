@@ -1091,38 +1091,6 @@
       </section>
     </section>
 
-    <section class="widget" id="form-error">
-      <h3>Forms: Required, Invalid, Instructions and Error Feedback</h3>
-      <p>
-        Forms using standard HTML controls (e.g. <a href="https://www.w3.org/TR/html5/sec-forms.html#the-button-element">button</a>, <a href="https://www.w3.org/TR/html5/sec-forms.html#the-input-element">input</a>, <a href="https://www.w3.org/TR/html5/sec-forms.html#the-select-element">select</a> ) or custom widgets controls <a href="#feed" class="role-reference">feed</a> i
-      </p>
-
-      <section class="notoc">
-        <h4>Example</h4>
-        <ul>
-          <li><a href="examples/popup-error/popup-error-1.html">Pizza ordering form with popup errors and instructions</a></li>
-          <li><a href="examples/popup-error/popup-error-2.html">Credit card form with popup errors and instructions</a></li>
-        </ul>
-      </section>
-
-      <section class="notoc">
-        <h4>Keyboard Interaction</h4>
-        <p>When focus is inside the form:</p>
-        <ul>
-          <li><kbd>Tab</kbd>: Move focus to next form control.</li>
-          <li><kbd>Shift + Tab</kbd>: Move focus to previous form control.</li>
-        </ul>
-      </section>
-
-      <section class="notoc">
-        <h4>WAI-ARIA Roles, States, and Properties</h4>
-        <ul>
-          <li>
-            If a form control has visible instructions, the <code>aria-describedby</code> property has <a href="#aria-describedby" class="property-reference">aria-describedby</a> referring to the element containing the instrucitons.
-          </li>
-        </ul>
-      </section>
-    </section>
 
     <section class="widget" id="disclosure">
       <h3>Disclosure (Show/Hide)</h3>
@@ -1166,6 +1134,55 @@
             </li>
         </ul>
 
+      </section>
+    </section>
+
+    <section class="widget" id="forms">
+      <h3>Forms: Required, Invalid, Instructions and Error Feedback</h3>
+      <p>
+        In addition to form controls and widget having a label to describe their purpose with the form, form controls often have additional information about including whether a control is required, has instructions, has an invalid value and visible error feedback for invalid values.  NOTE: In general authors should creaet form that minimize invalid values by preventing the user form entering invalid values.
+      </p>
+
+      <section class="notoc">
+        <h4>Example</h4>
+        <ul>
+          <li><a href="examples/popup-error/popup-error-1.html">Pizza ordering form with popup errors and instructions</a></li>
+          <li><a href="examples/popup-error/popup-error-2.html">Credit card form with popup errors and instructions</a></li>
+        </ul>
+      </section>
+
+      <section class="notoc">
+        <h4>Keyboard Interaction</h4>
+        <p>When focus is inside the form:</p>
+        <ul>
+          <li><kbd>Tab</kbd>: Move focus to next form control.</li>
+          <li><kbd>Shift + Tab</kbd>: Move focus to previous form control.</li>
+        </ul>
+      </section>
+
+      <section class="notoc">
+        <h4>WAI-ARIA Roles, States, and Properties</h4>
+        <ul>
+          <li>
+            <em>Required:</em> HTML form controls that are required should use the HTML5 <code>required</code> attribute.  For custom widgets that are <em>required</em> use <a href="#aria-required" class="property-reference">aria-required=<q>true</q></a> property.
+          </li>
+          <li>
+            <em>Instructions:</em> If a form control or widget has visible instructions use the <a href="#aria-describedby" class="property-reference">aria-describedby</a> property to refer to the element containing the instructions.
+          </li>
+          <li>
+            <em>Invalid Value:</em> If a form control or widget has an invalid value use <a href="#aria-invalid" class="property-reference">aria-invalid=<q>true</q></a> property identify the invalid value to assistive technology.
+          </li>
+          <li>
+            <em>Error Feedback:</em>
+            <ul>
+              <li>If a form control or widget has <em>visible error feedback</em> use the <a href="#aria-errormessage" class="property-reference">aria-errormessage</a> property to refer to the element containing the error feedback.
+            </li>
+            <li>
+              If a form control or widget has <em>visible error feedback</em> use the <a href="#aria-errormessage" class="role-reference">status</a> role on the container element to have the error information automatically spoken when the error information appears
+            </li>
+          </ul>
+        </li>
+        </ul>
       </section>
     </section>
 
