@@ -66,7 +66,7 @@ function TreeGrid (treegridElem, doAllowRowFocus, doStartRowFocus) {
   }
 
   function getAllNavigableRows () {
-    var nodeList = treegridElem.querySelectorAll('tbody > tr:not([aria-hidden="true"])');
+    var nodeList = treegridElem.querySelectorAll('tbody > tr:not([class~="hidden"])');
     // Convert to array so that we can use array methods on it
     return Array.prototype.slice.call(nodeList);
   }
@@ -341,10 +341,15 @@ function TreeGrid (treegridElem, doAllowRowFocus, doStartRowFocus) {
         doExpandLevel[rowLevel]
         && isExpanded(nextRow);
       var willHideRow = !doExpandLevel[rowLevel];
-      var isRowHidden = nextRow.getAttribute('aria-hidden') === 'true';
+      var isRowHidden = nextRow.classList.contains('hidden');
 
       if (willHideRow !== isRowHidden) {
-        nextRow.setAttribute('aria-hidden', willHideRow);
+        if (willHideRow) {
+          nextRow.classList.add('hidden');
+        }
+        else {
+          nextRow.classList.remove('hidden');
+        }
         didChange = true;
       }
     }
@@ -366,7 +371,7 @@ function TreeGrid (treegridElem, doAllowRowFocus, doStartRowFocus) {
     }
   }
 
-  function getAriaExpandedElem(row) {
+  function getAriaExpandedElem (row) {
     return doAllowRowFocus ? row : getNavigableCols(row)[0];
   }
 
