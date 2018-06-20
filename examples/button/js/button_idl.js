@@ -2,9 +2,9 @@
 *   This content is licensed according to the W3C Software License at
 *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
 *
-*   File:   button.js
+*   File:   button_idl.js
 *
-*   Desc:   JS code for Button Design Pattersn
+*   Desc:   JS code for Button Design Pattern using the new ARIA 1.2 IDL for reflection.
 */
 
 var ICON_MUTE_URL  = 'images/mute.svg#icon-mute';
