@@ -24,21 +24,32 @@
     </ul>
   </nav>
   <main>
-    <h1>Button Examples</h1>
+    <h1>Button Examples (IDL Version)</h1>
+    <p>
+      <strong>NOTE:</strong> This is a draft example.
+      Please provide feedback in <a href="https://github.com/w3c/aria-practices/issues/727">issue 727</a>.
+    </p>
     <p>
       The following command and toggle button examples demonstrate the
       <a href="../../#button">button design pattern.</a>
     </p>
-    <p>This version uses the IDL syntax within the JavaScript. Otherwise it is identical to the <a href="button.html">Button Examples</a>.</p>
+    <p>
+      The JavaScript for the examples on this page uses the IDL interface defined in ARIA 1.2.
+      In all other respects, these examples are identical to the <a href="button.html">Button Examples</a>.
+    </p>
     <p>Similar examples include:</p>
     <ul>
+      <li><a href="button.html">Button Examples:</a> Examples of clickable HTML <code>div</code> and <code>span</code> elements made into accessible command and toggle buttons.</li>
       <li><a href="../menu-button/menu-button-links.html">Navigation Menu Button</a>: A button that opens a menu of items that behave as links.</li>
       <li><a href="../menu-button/menu-button-actions.html">Action Menu Button Example Using element.focus()</a>: A button that opens a menu of actions or commands where focus in the menu is managed using <code>element.focus()</code>.</li>
       <li><a href="../menu-button/menu-button-actions-active-descendant.html">Action Menu Button Example Using aria-activedescendant</a>: A button that opens a menu of actions or commands where focus in the menu is managed using aria-activedescendant.</li>
     </ul>
+    
   <section>
     <h2 id="ex_label">Example</h2>
-
+    <p>
+      <strong>IMPORTANT:</strong> This example uses features of the draft ARIA 1.2 specification. As a draft specification, it is subject to change. Any support provided by browsers or assistive technologies is experimental.
+    </p>
     <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
     <div id="example">
       <p>This <q>Print</q> action button uses a <code>div</code> element.</p>
@@ -151,7 +162,7 @@
       </li>
       <li>
         Javascript:
-        <a href="js/button_idl.js" type="text/javascript">button.js</a>
+        <a href="js/button_idl.js" type="text/javascript">button_idl.js</a>
       </li>
     </ul>
   </section>
@@ -168,7 +179,7 @@
   </section>
   </main>
   <nav>
-    <a href="../../#button">Button Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
+    <a href="../../#button">Button Design Pattern in WAI-ARIA Authoring Practices 1.2</a>
   </nav>
 </body>
 </html>
