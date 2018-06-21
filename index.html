@@ -1,4 +1,4 @@
-<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><meta charset="utf-8"><meta name="generator" content="ReSpec 21.0.2"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><style>/* --- ISSUES/NOTES --- */
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><meta charset="utf-8"><meta name="generator" content="ReSpec 21.2.0"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><style>/* --- ISSUES/NOTES --- */
 div.issue-title, div.note-title , div.ednote-title, div.warning-title {
     padding-right:  1em;
     min-width: 7.5em;
@@ -513,9 +513,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   "preProcess": [
     null
   ],
-  "publishDate": "2018-06-18",
-  "publishISODate": "2018-06-18T00:00:00.000Z",
-  "generatedSubtitle": "Editor's Draft 18 June 2018"
+  "publishDate": "2018-06-21",
+  "publishISODate": "2018-06-21T00:00:00.000Z",
+  "generatedSubtitle": "Editor's Draft 21 June 2018"
 }</script><meta name="description" content="This document provides readers with an understanding of how to use WAI-ARIA 1.1 [WAI-ARIA] to create accessible rich internet applications.
       It describes considerations that might not be evident to most authors from the WAI-ARIA specification alone and recommends approaches to make widgets, navigation, and behaviors accessible using WAI-ARIA roles, states, and properties.
       This document is directed primarily to Web application developers, but the guidance is also useful for user agent and assistive technology developers."></head>
@@ -525,7 +525,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   </a>
   <h1 id="title" class="title p-name"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Authoring Practices 1.1</h1>
   
-  <h2 id="w3c-editor-s-draft-18-june-2018"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time class="dt-published" datetime="2018-06-18">18 June 2018</time></h2>
+  <h2 id="w3c-editor-s-draft-21-june-2018"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time class="dt-published" datetime="2018-06-21">21 June 2018</time></h2>
   <dl>
     <dt>This version:</dt><dd><a class="u-url" href="https://w3c.github.io/aria-practices/">https://w3c.github.io/aria-practices/</a></dd><dt>Latest published version:</dt><dd><a href="https://www.w3.org/TR/wai-aria-practices-1.1/">https://www.w3.org/TR/wai-aria-practices-1.1/</a></dd>
     <dt>Latest editor's draft:</dt><dd><a href="https://w3c.github.io/aria-practices/">https://w3c.github.io/aria-practices/</a></dd>
@@ -562,7 +562,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 </div>
   <section id="abstract" class="introductory"><h2 id="abstract-0">Abstract</h2>
     <p>
-      This document provides readers with an understanding of how to use <cite><a href="https://www.w3.org/TR/wai-aria-1.1/"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> 1.1</a></cite> [<cite><a class="bibref" href="#bib-WAI-ARIA">WAI-ARIA</a></cite>] to create accessible rich internet applications.
+      This document provides readers with an understanding of how to use <cite><a href="https://www.w3.org/TR/wai-aria-1.1/"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> 1.1</a></cite> [<cite><a class="bibref" href="#bib-wai-aria">WAI-ARIA</a></cite>] to create accessible rich internet applications.
       It describes considerations that might not be evident to most authors from the <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> specification alone and recommends approaches to make widgets, navigation, and behaviors accessible using <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> roles, states, and properties.
       This document is directed primarily to Web application developers, but the guidance is also useful for user agent and assistive technology developers.
     </p>
@@ -577,7 +577,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       of the
       <a href="https://www.w3.org/WAI/">Web Accessibility Initiative</a>.
       It supports the
-      <a href="https://w3c.github.io/aria/" class="specref"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> 1.1</a> [<cite><a href="#bib-WAI-ARIA" class="bibref"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr></a></cite>]
+      <a href="https://w3c.github.io/aria/" class="specref"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> 1.1</a> [<cite><a href="#bib-WAI-ARIA" class="bibref respec-offending-element"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr></a></cite>]
       specification, providing detailed advice and examples beyond what would be appropriate to a technical specification but which are important to understand the specification.
     </p><p> This draft includes only a portion of content planned for <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Authoring Practices 1.1. To see plans for the complete guide, review the <a href="https://github.com/w3c/aria-practices/milestones?direction=asc&amp;sort=due_date&amp;state=open">Authoring Practices Milestone Plan</a>. </p><p>
       Feedback on the  information provided here is essential to the ultimate success of Rich Internet Applications that afford full access to their information and operations.
@@ -1510,7 +1510,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     <section class="widget" id="dialog_modal">
       <h3 id="x3-8-dialog-modal"><span class="secno">3.8 </span>Dialog (Modal)<span class="permalink"><a href="#dialog_modal" aria-label="Permalink for 3.8 Dialog (Modal)" title="Permalink for 3.8 Dialog (Modal)"><span>§</span></a></span></h3>
       <p>
-        A <a href="https://w3c.github.io/aria/#dialog" class="role-reference">dialog</a> is a window overlayed on either the primary window or another dialog window.
+        A <a href="https://w3c.github.io/aria/#dialog" class="role-reference">dialog</a> is a window overlaid on either the primary window or another dialog window.
         Windows under a modal dialog are inert.
         That is, users cannot interact with content outside an active dialog window.
         Inert content outside an active dialog is typically visually obscured or dimmed so it is difficult to discern,
@@ -5655,5 +5655,11 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   </section>
 
 
-<section id="references" class="appendix"><!--OddPage--><h2 id="b-references"><span class="secno">B. </span>References<span class="permalink"><a href="#references" aria-label="Permalink for B. References" title="Permalink for B. References"><span>§</span></a></span></h2><section id="informative-references"><h3 id="b-1-informative-references"><span class="secno">B.1 </span>Informative references<span class="permalink"><a href="#informative-references" aria-label="Permalink for B.1 Informative references" title="Permalink for B.1 Informative references"><span>§</span></a></span></h3><dl class="bibliography"><dt id="bib-WAI-ARIA">[WAI-ARIA]</dt><dd><a href="https://www.w3.org/TR/wai-aria-1.1/"><cite>Accessible Rich Internet Applications (WAI-ARIA) 1.1</cite></a>. Joanmarie Diggs; Shane McCarron; Michael Cooper; Richard Schwerdtfeger; James Craig. W3C. 14 December 2017. W3C Recommendation. URL: <a href="https://www.w3.org/TR/wai-aria-1.1/">https://www.w3.org/TR/wai-aria-1.1/</a>
-</dd></dl></section></section><p role="navigation" id="back-to-top"><a href="#title"><abbr title="Back to Top">↑</abbr></a></p><script src="https://www.w3.org/scripts/TR/2016/fixup.js"></script></body></html>
+<section id="references" class="appendix">
+      <!--OddPage--><h2 id="b-references"><span class="secno">B. </span>References<span class="permalink"><a href="#references" aria-label="Permalink for B. References" title="Permalink for B. References"><span>§</span></a></span></h2>
+      
+    <section id="informative-references">
+        <h3 id="b-1-informative-references"><span class="secno">B.1 </span>Informative references<span class="permalink"><a href="#informative-references" aria-label="Permalink for B.1 Informative references" title="Permalink for B.1 Informative references"><span>§</span></a></span></h3>
+      <dl class="bibliography">
+        <dt id="bib-wai-aria">[WAI-ARIA]</dt><dd><a href="https://www.w3.org/TR/wai-aria-1.1/"><cite>Accessible Rich Internet Applications (WAI-ARIA) 1.1</cite></a>. Joanmarie Diggs; Shane McCarron; Michael Cooper; Richard Schwerdtfeger; James Craig. W3C. 14 December 2017. W3C Recommendation. URL: <a href="https://www.w3.org/TR/wai-aria-1.1/">https://www.w3.org/TR/wai-aria-1.1/</a></dd>
+      </dl></section></section><p role="navigation" id="back-to-top"><a href="#title"><abbr title="Back to Top">↑</abbr></a></p><script src="https://www.w3.org/scripts/TR/2016/fixup.js"></script></body></html>
