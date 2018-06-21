@@ -9,8 +9,9 @@
   "scripts": {
     "fix": "eslint --fix .",
     "lint": "eslint .",
+    "regression": "ava test/tests",
     "vnu-jar": "java -jar node_modules/vnu-jar/build/dist/vnu.jar --errors-only --filterfile .vnurc --no-langdetect examples/**/*.html",
-    "test": "npm run lint && npm run vnu-jar"
+    "test": "npm run lint && npm run vnu-jar && npm run regression"
   },
   "repository": {
     "type": "git",
@@ -23,7 +24,10 @@
   },
   "homepage": "https://github.com/w3c/aria-practices#readme",
   "devDependencies": {
+    "ava": "^0.25.0",
     "eslint": "^4.19.1",
-    "vnu-jar": "^18.3.0"
+    "geckodriver": "^1.11.0",
+    "vnu-jar": "^18.3.0",
+    "webdriverio": "^4.13.0"
   }
 }
