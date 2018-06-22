@@ -27,7 +27,7 @@
     "ava": "^0.25.0",
     "eslint": "^4.19.1",
     "geckodriver": "^1.11.0",
-    "vnu-jar": "^18.3.0",
-    "webdriverio": "^4.13.0"
+    "selenium-webdriver": "^4.0.0-alpha.1",
+    "vnu-jar": "^18.3.0"
   }
 }
