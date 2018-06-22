@@ -6,30 +6,29 @@ function makeServer(port) {
     res.statusCode = 200;
     res.end();
   });
+  const release = () => {
+    return new Promise((resolve, reject) => {
+      server.close((err) => err ? reject(err) : resolve());
+    });
+  };
 
-  return new Promise((resolve, reject) => {
-    server.listen(port, '127.0.0.1', () => resolve(() => server.close()));
+  return new Promise((resolve) => {
+    server.listen(port, '127.0.0.1', () => resolve(release));
     server.on('error', () => resolve(false));
   });
 }
 
 module.exports = function isolate(port, safe) {
   return makeServer(port)
-    .then((close) => {
-	  if (!close) {
-		return new Promise((resolve) => setTimeout(resolve, 300))
-		  .then(() => isolate(port, safe));
-	  }
-      let result, error, rejected;
+    .then((release) => {
+      if (!release) {
+        return new Promise((resolve) => setTimeout(resolve, 300))
+          .then(() => isolate(port, safe));
+      }
+      const operation = new Promise((resolve) => resolve(operation()));
 
-      return Promise.resolve(safe())
-        .then((r) => result = r, (e) => { rejected = true; error = e; })
-		.then(close)
-        .then(() => {
-          if (rejected) {
-            throw error;
-          }
-		  return result;
-        });
-    }, () => isolate(port, safe));
+      return operation
+        .then(release, release)
+        .then(() => operation);
+    });
 };
