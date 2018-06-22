@@ -2,7 +2,7 @@
 
 const http = require('http');
 
-module.exports = function getJSON(url) {
+module.exports = function getJSON (url) {
   return new Promise((resolve, reject) => {
     http.get(url, resolve)
       .on('error', reject);
@@ -14,7 +14,8 @@ module.exports = function getJSON(url) {
       // consume response data to free up memory
       response.resume();
       throw new Error(`Request Failed.\nStatus Code: ${statusCode}`);
-    } else if (!/^application\/json/.test(contentType)) {
+    }
+    else if (!/^application\/json/.test(contentType)) {
       // consume response data to free up memory
       response.resume();
       throw new Error('Invalid content-type.\n' +
