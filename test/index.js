@@ -4,30 +4,29 @@ const path = require('path');
 const { test } = require('ava');
 const webdriver = require('webdriverio');
 
-const geckodriver = require('./util/geckodriver');
+const startGeckodriver = require('./util/start-geckodriver');
 
-let driver, stopGeckoDriver;
+let session, geckodriver;
 
 test.before(async (t) => {
-  const { stop, port } = await geckodriver(1022, 12 * 1000);
-  stopGeckoDriver = stop;
-  driver = webdriver.remote({
-	port,
-	path: '/',
-	capabilities: {
+  geckodriver = await startGeckodriver(1022, 12 * 1000);
+  session = webdriver.remote({
+    port: geckodriver.port,
+    path: '/',
+    capabilities: {
       browserName: 'firefox'
-	}
+    }
   }).init();
-  await driver;
+  await session;
 });
 
 test.beforeEach((t) => {
-  t.context.driver = driver;
+  t.context.session = session;
 });
 
 test.after.always(() => {
-  return Promise.resolve(driver && driver.end())
-	.then(() => stopGeckoDriver && stopGeckoDriver());
+  return Promise.resolve(session && session.end())
+    .then(() => geckodriver && geckodriver.stop());
 });
 
 module.exports = { test };
