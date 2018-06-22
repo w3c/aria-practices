@@ -1,7 +1,7 @@
 'use strict';
 const net = require('net');
 
-function bindPort(port) {
+function bindPort (port) {
   const server = net.createServer();
   const release = () => {
     return new Promise((resolve, reject) => {
@@ -14,7 +14,8 @@ function bindPort(port) {
     server.on('error', (err) => {
       if (err.code === 'EADDRINUSE') {
         resolve(false);
-      } else {
+      }
+      else {
         reject(err);
       }
     });
@@ -31,7 +32,7 @@ function bindPort(port) {
  * @returns {Promise} eventual value which shares the resolution of the
  *                    provided operation
  */
-module.exports = function forceSerial(port, safe) {
+module.exports = function forceSerial (port, safe) {
   return bindPort(port)
     .then((release) => {
       if (!release) {

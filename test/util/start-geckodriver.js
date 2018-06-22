@@ -20,14 +20,14 @@ const startOnPort = (port, timeout) => {
 
   return new Promise((resolve, reject) => {
     let stopPolling = false;
-	const giveUp = () => {
+    const giveUp = () => {
       stopPolling = true;
-	  resolve(null);
-	};
+      resolve(null);
+    };
 
     child.on('close', giveUp);
 
-    (function poll() {
+    (function poll () {
       if (stopPolling) {
         return;
       }
@@ -53,7 +53,7 @@ const startOnAnyPort = (port, timeout) => {
   const start = Date.now();
 
   return startOnPort(port, timeout)
-    .then(function(stop) {
+    .then(function (stop) {
       if (!stop) {
         return startOnAnyPort(port + 1, timeout - (Date.now() - start));
       }
@@ -65,7 +65,7 @@ const startOnAnyPort = (port, timeout) => {
  * Start a GeckoDriver server using a dynamically-determined available TCP/IP
  * port.
  *
- * @param {Number} port - the TCP/IP port from which to begin search 
+ * @param {Number} port - the TCP/IP port from which to begin search
  * @param {Number{ timeout - the number of milliseconds to attempt to create a
  *                           server before reporting a failure
  *
