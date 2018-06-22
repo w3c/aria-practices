@@ -1,11 +1,8 @@
 'use strict';
-const http = require('http');
+const net = require('net');
 
 function bindPort(port) {
-  const server = http.createServer((req, res) => {
-    res.statusCode = 200;
-    res.end();
-  });
+  const server = net.createServer();
   const release = () => {
     return new Promise((resolve, reject) => {
       server.close((err) => err ? reject(err) : resolve());
@@ -13,8 +10,14 @@ function bindPort(port) {
   };
 
   return new Promise((resolve) => {
-    server.listen(port, '127.0.0.1', () => resolve(release));
-    server.on('error', () => resolve(false));
+    server.listen(port, () => resolve(release));
+    server.on('error', (err) => {
+      if (err.code === 'EADDRINUSE') {
+        resolve(false);
+      } else {
+        reject(err);
+      }
+    });
   });
 }
 
