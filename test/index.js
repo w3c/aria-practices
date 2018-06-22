@@ -16,7 +16,7 @@ test.before(async (t) => {
     desiredCapabilities: {
       browserName: 'firefox',
       'moz:firefoxOptions': {
-        args: ['-headless']
+        args: [ '-headless' ]
       }
     }
   }).init();
