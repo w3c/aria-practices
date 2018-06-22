@@ -13,8 +13,11 @@ test.before(async (t) => {
   session = webdriver.remote({
     port: geckodriver.port,
     path: '/',
-    capabilities: {
-      browserName: 'firefox'
+    desiredCapabilities: {
+      browserName: 'firefox',
+      'moz:firefoxOptions': {
+        args: ['-headless']
+      }
     }
   }).init();
   await session;
