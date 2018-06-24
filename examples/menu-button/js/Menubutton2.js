@@ -108,7 +108,7 @@ Menubutton.prototype.handleKeydown = function (event) {
 
 Menubutton.prototype.handleClick = function (event) {
   if (this.domNode.getAttribute('aria-expanded') == 'true') {
-    this.popupMenu.close();
+    this.popupMenu.close(true);
   }
   else {
     this.popupMenu.open();
