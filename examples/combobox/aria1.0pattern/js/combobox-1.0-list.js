@@ -193,10 +193,12 @@ ComboboxList.prototype.handleKeydown = function (event) {
       break;
 
     case this.keyCode.ESC:
-      this.listbox.close(true);
-      this.setVisualFocusTextbox();
-      this.setValue('');
-      this.option = false;
+      if (this.listbox.hasFocus) {
+        this.listbox.close(true);
+        this.setVisualFocusTextbox();
+        this.setValue('');
+        this.option = false;
+      }
       flag = true;
       break;
 
@@ -240,9 +242,6 @@ ComboboxList.prototype.handleKeyup = function (event) {
     this.option = false;
   }
 
-  if (event.keyCode === this.keyCode.ESC) {
-    return;
-  }
 
   switch (event.keyCode) {
 
