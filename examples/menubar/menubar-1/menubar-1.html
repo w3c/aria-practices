@@ -50,7 +50,7 @@
     <div id="ex1">
       <nav aria-label="Mythical University">
         <ul id="menubar1" role="menubar" aria-label="Mythical University">
-          <li>
+          <li role="none">
             <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">About</a>
             <ul role="menu" aria-label="About">
               <li role="none">
@@ -90,7 +90,7 @@
               </li>
             </ul>
           </li>
-          <li>
+          <li role="none">
             <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">Admissions</a>
             <ul role="menu" aria-label="Admissions">
               <li role="none">
@@ -125,7 +125,7 @@
               </li>
             </ul>
           </li>
-          <li>
+          <li role="none">
             <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">Academics</a>
             <ul role="menu" aria-label="Academics">
               <li role="none">
@@ -496,7 +496,7 @@
           <td>
             <ul>
               <li>Removes the implied <code>listitem</code> role of the <code>li</code> element.</li>
-              <li>Necessary because the parent <code>ul</code> is serving as a <code>menu</code> so the <code>li</code> elements are not in their required list context.</li>
+              <li>Necessary because the parent <code>ul</code> is serving as a <code>menubar</code> or <code>menu</code> so the <code>li</code> elements are not in their required list context.</li>
             </ul>
           </td>
         </tr>
