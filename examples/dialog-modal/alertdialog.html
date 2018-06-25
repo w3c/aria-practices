@@ -29,27 +29,27 @@
     <main>
       <h1>Alert Dialog Example</h1>
       <p>
-        The below example demonstrates the <a href="../../#alertdialog">design pattern for an alert dialog</a>.
-        The <a href="../../#alert">design pattern for an alert</a> is also demonstrated to allow the user to experience the difference between the two patterns.
+        The below example of a confirmation prompt demonstrates the <a href="../../#alertdialog">design pattern for an alert dialog</a>.
+        It also includes an example of the <a href="../../#alert">design pattern for an alert</a> to make comparing the experiences provided by the two patterns easy.
       </p>
-      <p>User interactions for this interactive include:</p>
+      <p>To use this example:</p>
       <ul>
-        <li>The "notes" <code>textarea</code> contains editable text that you are encouraged to modify.</li>
         <li>
-          The "discard" <code>button</code> triggers a confirmation dialog.
+          Activate the "discard" button to trigger a confirmation dialog.
           <ul>
-            <li>Clicking "yes" will remove all contents of both the notes field and the user's local storage</li>
-            <li>Clicking "no" or pressing <kbd>escape</kbd> will simply close the dialog.</li>
-            <li>The "discard" <code>button</code> is disabled if the notes field does not contain any text.</li>
+            <li>Activating the "yes" button removes the contents of both the "Notes" text area and local storage of the notes .</li>
+            <li>Activating the "no" button or pressing <kbd>escape</kbd> closes the dialog.</li>
+            <li>The "discard" button is disabled if the notes text area does not contain any text.</li>
           </ul>
         </li>
         <li>
-          The "save" <code>button</code> saves the contents of the "notes" <code>textarea</code> to your <a href="https://www.w3.org/TR/webstorage/#the-localstorage-attribute">local storage</a>.
+          Activate the "save" button to trigger an alert when it saves the contents of the "Notes" text area to <a href="https://www.w3.org/TR/webstorage/#the-localstorage-attribute">local storage</a>.
           <ul>
-            <li>A successful save will trigger a short <code>[role="alert"]</code> to notify you that your notes have been saved.</li>
-            <li>The "save" <code>button</code> is disabled if the user's local storage value is the same as the <code>textarea</code> value.</li>
+            <li>A successful save triggers a short alert to notify the user that the notes have been saved.</li>
+            <li>The "save" button is disabled if the user's local storage value is the same as the "Notes" field.</li>
           </ul>
         </li>
+        <li>Modify the "notes" text area as needed to enable and disable the discard and save functions.</li>
       </ul>
       <p>Similar examples include:</p>
       <ul>
