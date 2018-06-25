@@ -25,6 +25,9 @@ test.before(async (t) => {
 
 test.beforeEach((t) => {
   t.context.session = session;
+  t.context.By = webdriver.By;
+  t.context.Key = webdriver.Key;
+  t.context.until = webdriver.until;
 });
 
 test.after.always(() => {
@@ -47,10 +50,11 @@ const ariaTest = (page, testId, body) => {
   const selector = '[data-test-id="' + testId + '"]';
 
   test.serial(page + ' ' + selector, async function (t) {
+    t.context.url = url;
     await t.context.session.get(url);
 
     t.is(
-      (await t.context.session.findElements(webdriver.By.css(selector))).length,
+      (await t.context.session.findElements(t.context.By.css(selector))).length,
       1,
       'The behavior description is present in the document'
     );
