@@ -914,9 +914,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
       <section class="notoc">
         <h4 id="example-1">Example</h4>
-        <p>
-        Developing an example implementation of this pattern is <a href="https://github.com/w3c/aria-practices/issues/101">issue 101</a>.
-        </p>
+        <p><a href="examples/dialog-modal/alertdialog.html">Alert Dialog Example</a>: A confirmation prompt that demonstrates an alert dialog.</p>
       </section>
 
       <section class="notoc">
@@ -3168,11 +3166,13 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </dl>
       <p>
         When using a keyboard to navigate a tree, a visual keyboard indicator informs the user which node is focused.
-        If the tree allows the user to choose just one item for an action, then it is known as a single-select tree, and the item with focus also has a selected state.
-        However, in multi-select trees, which enable the user to select more than one item for an action, the selected state is independent of the focus.
+        If the tree allows the user to choose just one item for an action, then it is known as a single-select tree.
+        In some implementations of single-select tree, the focused item also has a selected state; this is known as selection follows focus.
+        However, in multi-select trees, which enable the user to select more than one item for an action, the selected state is always independent of the focus.
         For example, in a typical file system navigator, the user can move focus to select any number of files for an action, such as copy or move.
         It is important that the visual design distinguish between items that are selected and the item that has focus.
-        For more details, see <a href="#kbd_focus_vs_selection">this description of differences between focus and selection.</a>
+        For more details, see <a href="#kbd_focus_vs_selection">this description of differences between focus and selection</a>
+        and <a href="#kbd_selection_follows_focus">Deciding When to Make Selection Automatically Follow Focus</a>.
       </p>
 
       <section class="notoc">
