@@ -1,0 +1,89 @@
+body{
+	margin:0;
+	padding:0;
+}
+div {
+	border: solid medium transparent;
+}
+div.focus {
+	border-color: black;
+	background-color: #EEEEEE;
+}
+div.hover {
+	border-color: black;
+	background-color: #EEEEEE;
+}
+label.focus,input[type="text"]:focus,select:focus {
+	background-color: #EEEEEE;
+	outline: medium solid black;
+}
+label.hover,input[type="text"]:hover,select:hover {
+	background-color: #EEEEEE;
+	outline: medium solid black;
+}
+div.button {
+	position: relative;
+	left: -0.25em;
+	width: 9em;
+}
+label input[type="radio"],label input[type="checkbox"] {
+	margin-left: 0.25em;
+}
+div#id-errors {
+	color: red;
+	display: none;
+	margin-left: 1em;
+	border: thin solid red;
+	width: 25em;
+}
+div#id-errors a {
+	color: red;
+}
+h2, h3 {
+	margin: 0;
+	padding: 0;
+	margin-top: 1em;
+	margin-bottom:1em;
+}
+label {
+	display: block;
+	margin: 0;
+	padding: 0;
+	font-weight: normal;
+}
+fieldset,legend {
+	padding: 0;
+	margin: 0;
+	margin-top: 1em;
+}
+legend {
+	margin-top: 1em;
+	font-weight: bold;
+	font-size: 110%;
+}
+div.text,div.select,input[type="submit"] {
+	margin-top: 0.5em;
+}
+span.error,span.noerror {
+	display: inline;
+}
+span.error {
+	color: red;
+	border: thin solid red;
+	padding: 0.025em;
+}
+span.noerror {
+	color: transparent;
+	border: thin solid transparent;
+	padding: 0.25em;
+}
+#orderSummary{
+	display:none;
+}
+.instruction {
+	margin: 0;
+	padding: 0;
+	font-style: italic;
+	font-size: 80%;
+	color: gray;
+}

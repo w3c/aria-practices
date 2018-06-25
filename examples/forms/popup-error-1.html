@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Pizza Ordering Form with Popup Error Example | WAI-ARIA Authoring Practices 1.1</title>
+
+<!--  Core js and css shared by all examples; do not modify when using this template. -->
+<link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
+<link rel="stylesheet" href="../css/core.css">
+<script src="../js/examples.js" type="text/javascript"></script>
+<script src="../js/highlight.pack.js"></script>
+<script src="../js/app.js"></script>
+
+<link href="css/popup-error-1.css" rel="stylesheet">
+<script src="js/popup-error-1.js" type="text/javascript"></script>
+</head>
+<body>
+  <nav aria-label="Related Links" class="feedback">
+    <ul>
+      <li><a href="../../#browser_and_AT_support">Browser and Assistive Technology Support</a></li>
+      <li><a href="https://github.com/w3c/aria-practices/issues/new">Report Issue</a></li>
+      <li><a href="https://github.com/w3c/aria-practices/projects/14">Related Issues</a></li>
+      <li><a href="../../#popup-error">Design Pattern</a></li>
+    </ul>
+  </nav>
+  <main>
+    <h1>Pizza Ordering Form with Popup Error Example</h1>
+    <p>
+      The following command and example demonstrates how to make popup error messages to screen reader users using the <a href="../../#popup-error">popup-error design pattern.</a>
+    </p>
+  <section>
+    <h2 id="ex_label">Example</h2>
+
+    <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
+    <div id="example">
+    <h2>
+      Pizza Order Form
+    </h2>
+    <div class="text">
+      <label for="id-name">
+        Name
+      </label>
+      <div class="instruction" id="id-name-inst">Ex. John C Doe</div>
+      <input id="id-name"
+           required
+           aria-invalid="false"
+           type="text"
+           size="30"
+           onblur="checkName()"
+           aria-errormessage="id-name-error">
+      <span id="id-name-error" class="noerror" role="status">
+      </span>
+    </div>
+    <div class="text">
+      <label for="id-address">
+        Address
+      </label>
+      <div class="instruction" id="id-address-inst">Ex. 123 Main St.</div>
+      <input id="id-address"
+           required="true"
+           aria-invalid="false"
+           type="text"
+           size="40"
+           onblur="checkAddress()"
+           aria-errormessage="id-address-error">
+      <span id="id-address-error" class="noerror" role="status">
+      </span>
+    </div>
+    <div class="text">
+      <label for="id-phone">
+        Phone
+      </label>
+      <div class="instruction" id="id-name-inst">Ex. (111) 222-3333 </div>
+      <input id="id-phone"
+           required="true"
+           aria-invalid="false"
+           type="text"
+           size="14"
+           onblur="checkPhone()"
+           aria-errormessage="id-phone-error">
+      <span id="id-phone-error" class="noerror" role="status">
+      </span>
+    </div>
+    <div class="select">
+      <label for="id-delivery">
+        Delivery Method
+      </label>
+      <div class="instruction" id="id-delivery-fee">$2.00 for home delivery</div>
+      <select id="id-delivery"
+            aria-invalid="false"
+            aria-errormessage="id-delivery-error"
+            aria-describedby="id-delivery-fee"
+            onblur="checkMethod()"
+            onChange='priceChange()'>
+        <option>
+          Choose your Method
+        </option>
+        <option>
+          Eat in store
+        </option>
+        <option>
+          Pickup
+        </option>
+        <option>
+          Home delivery
+        </option>
+      </select>
+      <span id="id-delivery-error" class="noerror" role="status">
+      </span>
+    </div>
+
+    <fieldset id="id-size">
+      <legend>
+        Size
+      </legend>
+      <div class="button">
+        <label>
+          <input id="id-small"
+               name="size"
+               type="radio"
+               value="Small"
+               price=7
+               required="true"
+               aria-invalid="false"
+               aria-errormessage="id-size-error"
+               onblur="checkSize()"
+               onChange='priceChange()'>
+           Small 10" - $7.00
+        </label>
+      </div>
+      <div class="button">
+        <label>
+          <input id="id-medium"
+               name="size"
+               type="radio"
+               value="Medium"
+               price=8.5
+               required="true"
+               aria-invalid="false"
+               aria-errormessage="id-size-error"
+               onblur="checkSize()"
+               onChange='priceChange()'>
+
+           Medium 12" - $8.50
+        </label>
+      </div>
+      <div class="button">
+        <label>
+          <input id="id-large"
+               name="size"
+               type="radio"
+               value="Large"
+               price=10
+               required="true"
+               aria-invalid="false"
+               aria-errormessage="id-size-error"
+               onblur="checkSize()"
+               onChange='priceChange()'>
+           Large 16" - $10.00
+        </label>
+      </div>
+    </fieldset>
+    <span id="id-size-error" class="noerror" role="status"></span>
+
+    <fieldset id="id-crust" aria-errormessage="id-crust-error" aria-invalid="false">
+      <legend>
+        Crust
+      </legend>
+
+      <div class="instruction" id="id-deep-fee">$1.50 extra for deep dish</div>
+
+      <div class="button">
+        <label>
+          <input id="id-thin"
+               name="crust"
+               type="radio"
+               value="Thin"
+               required="true"
+               aria-invalid="false"
+               aria-errormessage="id-crust-error"
+               onblur="checkCrust()"
+               onChange='priceChange()'>
+           Thin
+        </label>
+      </div>
+      <div class="button">
+        <label>
+          <input id="id-classic"
+               name="crust"
+               type="radio"
+               value="Classic"
+               required="true"
+               aria-invalid="false"
+               aria-errormessage="id-crust-error"
+               onblur="checkCrust()"
+               onChange='priceChange()'>
+           Classic
+        </label>
+      </div>
+      <div class="button">
+        <label>
+          <input id="id-deep"
+               name="crust"
+               type="radio"
+               value="Deep Dish"
+               aria-describedby="id-deep-fee"
+               required="true"
+               aria-invalid="false"
+               aria-errormessage="id-crust-error"
+               onblur="checkCrust()"
+               onChange='priceChange()'>
+           Deep Dish
+        </label>
+      </div>
+    </fieldset>
+    <span id="id-crust-error" class="noerror" role="status"></span>
+    <fieldset>
+      <legend>
+        Toppings
+      </legend>
+      <div class="instruction">Toppings are $1.25 except as marked <sup>*</sup></div>
+      <div class="button">
+        <label>
+          <input id="id-sausage"
+               name="topping"
+               type="checkbox"
+               value="Sausage"
+               onChange='priceChange()'>
+                  Sausage
+        </label>
+      </div>
+      <div class="button">
+        <label>
+          <input id="id-pepperoni"
+               name="topping"
+               type="checkbox"
+               value="Pepperoni"
+               onChange='priceChange()'>
+                  Pepperoni
+        </label>
+      </div>
+      <div class="button">
+        <label>
+          <input id="id-mushrooms"
+               name="topping"
+               type="checkbox"
+               value="Mushrooms"
+               onChange='priceChange()'>
+                  Mushrooms
+        </label>
+      </div>
+      <div class="button">
+        <label>
+          <input id="id-onions"
+               name="topping"
+               type="checkbox"
+               value="Onions"
+               onChange='priceChange()'>
+                  Onions
+        </label>
+      </div>
+      <div class="button">
+        <label>
+          <input id="id-green"
+               name="topping"
+               type="checkbox"
+               value="Green Peppers"
+               onChange='priceChange()'>
+                  Green Peppers
+        </label>
+      </div>
+      <div class="button">
+        <label>
+          <input id="id-black"
+               name="topping"
+               type="checkbox"
+               value="Black Olives"
+               aria-describedby="id-extra-cost"
+               onChange='priceChange()'>
+                  Back Olives <sup>*</sup>
+        </label>
+      </div>
+      <div class="button">
+        <label>
+          <input id="id-x-cheese"
+               name="topping"
+               type="checkbox"
+               value="Extra Cheese"
+               aria-describedby="id-extra-cost"
+               onChange='priceChange()'>
+                  Extra cheese <sup>*</sup>
+        </label>
+      </div>
+      <div class="instruction" id="id-extra-cost"><sup id="id-x-cheese-fee">*</sup> $2.00 toppings</div>
+    </fieldset>
+
+    <div class="cost"><label>Total Cost: <input id="id-total-cost" value="$0"/></label></div>
+
+    <input type="submit"
+     value="Submit Order"
+     onClick="submitOrder()">
+
+      <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
+  </section>
+
+  <section>
+    <h2 id="kbd_label">Keyboard Support</h2>
+    <table aria-labelledby="kbd_label" class="def">
+      <thead>
+        <tr>
+          <th>Key</th>
+          <th>Function</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th><kbd>Tab</kbd></th>
+          <td>Switch to next input/checkbox region</td>
+        </tr>
+        <tr>
+          <th><kbd>Shift</kbd> + <kbd>Tab</kbd></th>
+          <td>Switch to previous input/checkbox region</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2 id="rps_label">Role, Property, State, and Tabindex  Attributes</h2>
+    <table aria-labelledby="rps_label" class="data attributes">
+      <thead>
+        <tr>
+          <th scope="col">Role</th>
+          <th scope="col">Attribute</th>
+          <th scope="col">Element</th>
+          <th scope="col">Usage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td></td>
+          <th scope="row">
+            <code>required</code>
+          </th>
+          <td>
+            <ul>
+              <li><code>input[id=<q>id-name</q>]</code></li>
+              <li><code>input[id=<q>id-address</q>]</code></li>
+              <li><code>input[id=<q>id-phone</q>]</code></li>
+              <li><code>select[id=<q>id-crust</q>]</code></li>
+            </ul>
+          </td>
+          <td>
+              Identifies the input control is required for form submission.
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <th scope="row">
+            <code>aria-invalid=<q>false</q></code>
+          </th>
+          <td>
+            <ul>
+              <li><code>input[id=<q>id-name</q>]</code></li>
+              <li><code>input[id=<q>id-address</q>]</code></li>
+              <li><code>select[id=<q>id-crust</q>]</code></li>
+              <li><code>select[id=<q>id-crust</q>]</code></li>
+            </ul>
+          </td>
+          <td>
+            Identifies the current value of the form controls is valid or the form control has not received keyboard focus (e.g. no user interaction with control).
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <th scope="row">
+            <code>aria-invalid=<q>true</q></code>
+          </th>
+          <td>
+            <ul>
+              <li><code>input[id=<q>id-name</q>]</code></li>
+              <li><code>input[id=<q>id-address</q>]</code></li>
+              <li><code>input[id=<q>id-phone</q>]</code></li>
+              <li><code>select[id=<q>id-crust</q>]</code></li>
+            </ul>
+          </td>
+          <td>
+            Identifies the current value for the form control is invalid.
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <th scope="row">
+            <code>aria-invalid=<q>false</q></code>
+          </th>
+          <td>
+            <ul>
+              <li><code>input[id=<q>id-name</q>]</code></li>
+              <li><code>input[id=<q>id-address</q>]</code></li>
+              <li><code>input[id=<q>id-phone</q>]</code></li>
+              <li><code>select[id=<q>id-crust</q>]</code></li>
+            </ul>
+          </td>
+          <td>
+            Identifies the current value for the form control is invalid.
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <th scope="row">
+            <code>aria-errormessage=<q><em>IDREF</em></q></code>
+          </th>
+          <td>
+            <ul>
+              <li><code>input[id=<q>id-name</q>]</code></li>
+              <li><code>input[id=<q>id-address</q>]</code></li>
+              <li><code>input[id=<q>id-phone</q>]</code></li>
+              <li><code>select[id=<q>id-crust</q>]</code></li>
+            </ul>
+          </td>
+          <td>
+            Identifies the <code>id</code> of the visible element on the page with the error message.
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <th scope="row">
+            <code>aria-describedby=<q><em>IDREF</em></q></code>
+          </th>
+          <td>
+            <ul>
+              <li><code>sub[id=<q>id-x-cheese-fee</q>]</code></li>
+              <li><code>sub[id=<q>id-deep-fee</q>]</code></li>
+              <li><code>sub[id=<q>id-delivery-fee</q>]</code></li>
+            </ul>
+          </td>
+          <td>
+            Define the information of the visible element on the page.
+          </td>
+        </tr>
+        <tr>
+          <th scope="row"><code>status</code></th>
+          <td></td>
+          <td>
+            <ul>
+              <li><code>span[id=<q>id-name-error</q>]</code></li>
+              <li><code>span[id=<q>id-address-error</q>]</code></li>
+              <li><code>span[id=<q>id-phone-error</q>]</code></li>
+              <li><code>span[id=<q>id-crust-error</q>]</code></li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>The use of <code>role=<q>status</q></code> live region will automaticall </li>
+              <li>The <code>role=<q>status</q></code> by default sets <code>aria-live</code> property to <code>polite</code>, so the change will not disrupt what is being spoke, but just add to the content of what is being spoken.</li>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Javascript and CSS Source Code</h2>
+    <ul>
+      <li>
+        CSS:
+        <a href="css/popup-error.css" type="tex/css">popup-error-1.css</a>
+      </li>
+      <li>
+        Javascript:
+        <a href="js/popup-error.js" type="text/javascript">popup-error-1.js</a>
+      </li>
+    </ul>
+  </section>
+
+ <section>
+    <h2 id="sc1_label">HTML Source Code</h2>
+    <div role="separator" id="sc1_start_sep" aria-labelledby="sc1_start_sep sc1_label" aria-label="Start of"></div>
+    <pre><code id="source1"></code></pre>
+    <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of"></div>
+    <script>
+      sourceCode.add('source1', 'example');
+      sourceCode.make();
+    </script>
+  </section>
+  </main>
+  <nav>
+    <a href="../../#popup-error">Popup-error Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
+  </nav>
+</body>
+</html>
