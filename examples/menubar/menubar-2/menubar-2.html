@@ -139,19 +139,6 @@
       <li>Users of assistive technologies can identify which format settings are selected because they are represented by menu item radio and menu item checkbox elements that have a checked state.</li>
       <li>Disabled menu items are demonstrated in the font size menu, which  includes two disabled menuitems        .</li>
       <li>The down arrow and checked icons are made compatible with high contrast mode and hidden from screen readers by using the CSS <code>content</code> property to render images.</li>
-      <li>
-        Like desktop menubars, submenus open on mouse hover over a parent item in the menubar only if another submenu is already open.
-        That is, if all submenus are closed, a click on a parent menu item is required to display a submenu.
-        Minimizing automatic popups makes exploring with a screen magnifier easier.
-      </li>
-      <li>
-        In general, moving focus in response to mouse hover is avoided in accessible widgets; it causes unexpected context changes for keyboard users.
-        However, like desktop menubars, there are two conditions in this example menubar where focus moves in response to hover in order to help maintain context for users who use both keyboard and mouse:
-        <ol>
-          <li>After a parent menu item in the menubar has been activated and the user hovers over a different parent item in the menubar, focus will follow hover.</li>
-          <li>When a submenu is open and the user hovers over an item in the submenu, focus follows hover.</li>
-        </ol>
-      </li>
     </ol>
   </section>
 
