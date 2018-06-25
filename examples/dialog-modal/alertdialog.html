@@ -51,6 +51,9 @@
         </li>
         <li>Modify the "notes" text area as needed to enable and disable the discard and save functions.</li>
       </ul>
+      <p>
+          Note: This example uses code from the <a href="dialog.html">modal dialog example</a> to create the behaviors of the <code>alertdialog</code> so referencing that example may be useful.
+        </p>
       <p>Similar examples include:</p>
       <ul>
         <li><a href="../alert/alert.html">Alert</a>: a basic alert.</li>
@@ -82,21 +85,12 @@
       </section>
       <section>
         <h2>Accessibility Features</h2>
-        <p>
-          Note that this example uses code from the <a href="../dialog-modal/dialog.html">modal dialog example</a> to handle the behavior of the <code>alertdialog</code>.
-          Referencing that example may also be useful.
-        </p>
         <ol>
           <li>The accessible label for the alert dialog is set to its heading ("Confirmation").</li>
           <li>The dialog's prompt ("Are you sure...?") is referenced via <code>aria-describedby</code> to ensure that the user is immediately aware of the prompt.</li>
           <li>
             Focus is automatically set to the first focusable element inside the dialog, which is the "No" <code>button</code>.
-            This is the least destructive action, and will prevent the user from accidentally confirming the dialog.
-          </li>
-          <li>The user can dismiss the dialog with <kbd>Escape</kbd> at any time, or by clicking the "No" <code>button</code>.</li>
-          <li>
-            Once the user has removed the contents of the notes <code>textarea</code>, clicking the "discard notes" <code>button</code> cannot do anything.
-            To communicate this to the user, an alert with <code>role="alert"</code> is triggered.
+            This is the least destructive action, so focusing "No" helps prevent users from accidentally confirming the destructive "Discard" action, which cannot be undone.
           </li>
         </ol>
       </section>
