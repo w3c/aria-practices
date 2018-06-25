@@ -62,6 +62,12 @@ aria.Toolbar.prototype.checkFocusChange = function (evt) {
         this.selectedItem.click();
       }
       break;
+    case aria.KeyCode.HOME:
+      this.setFocusToFirstItem();
+      break;
+    case aria.KeyCode.END:
+      this.setFocusToLast();
+      break;
   }
 };
 
@@ -102,6 +108,7 @@ aria.Toolbar.prototype.selectItem = function (element) {
   aria.Utils.addClass(element, 'selected');
   element.setAttribute('tabindex', '0');
   this.selectedItem = element;
+  document.getElementById('textarea1').style.fontWeight = element.value;
 };
 
 /**

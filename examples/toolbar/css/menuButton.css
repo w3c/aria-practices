@@ -15,7 +15,7 @@ ul[role="menu"] {
   z-index: 1;
 }
 
-ul[role="menu"] li {
+ul[role="menu"] li, ul[role='toolbar'] li{
   list-style: none;
 }
 

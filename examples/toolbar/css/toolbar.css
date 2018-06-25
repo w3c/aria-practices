@@ -1,49 +1,67 @@
 .annotate {
-		color: #366ED4;
-	  font-style: italic;
+	color: #366ED4;
+	font-style: italic;
 }
 
 .toolbar {
-		border-left: 1px solid #aaa;
-		margin-top: 10px;
-		font-size: 0;
+	margin-top: 10px;
+	font-size: 0;
+	border-left: 1px solid black;
 }
-
+li{
+margin: 0;
+}
 .toolbar-item {
-    display: inline-block;
-    padding: 0.5em 1em;
-
-		background: #eee;
-    border: 1px solid #aaa;
-		border-left: none;
-		color: blue;
-		font-size: 16px;
-		line-height: 1.5em;
-		vertical-align: top;
+	border: 1px solid black;
+	display: inline-block;
+	padding: 0.5em 1em;
+	/* width:5em; */
+	text-align: center;
+	background: rgb(255, 255, 255);
+	border-left: none;
+	color: rgb(0, 0, 0);
+	font-size: 16px;
+	line-height: 1.5em;
+	vertical-align: top;
 }
 
 .toolbar-item.selected {
-		background-color: #ccc;
-		color: black;
-	  font-weight: bold;
+	background-color: rgb(158, 158, 158);
+	color: rgb(255, 255, 255);
+	font-weight: bold;
 }
 
 .menu-wrapper {
-	display: inline-block;
-	font-size: 16px;
+display: inline-block;
+font-size: 16px;
 }
 
 .menu-button {
-	padding-right: 2.5em;
-	position: relative;
+padding-right: 2.5em;
+position: relative;
 }
 
 .menu-button::after {
-	content: " ";
-	border-left: 0.4em solid transparent;
-	border-right: 0.4em solid transparent;
-	border-top: 0.4em solid black;
-  position: absolute;
-  right: 1em;
-  top: 1.1em;
+content: " ";
+border-left: 0.4em solid transparent;
+border-right: 0.4em solid transparent;
+border-top: 0.4em solid black;
+position: absolute;
+right: 1em;
+top: 1.1em;
 }
+.menu-button:focus:after {
+	color: white;
+}
+
+#textarea1 {
+padding: .5em;
+border: 1px solid black;
+height: 400px;
+width: 70%;
+font-size: medium;
+font-family: sans-serif;
+}
+
+
+
