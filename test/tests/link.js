@@ -20,7 +20,6 @@ let pageExamples = [
 ];
 
 ariaTest('link/link.html', 'link-role', async (t) => {
-
   for (let i = 0; i < pageExamples.length; i++) {
     let ex = pageExamples[i];
     let linkLocator = t.context.By.css(ex.linkSelector);
@@ -34,7 +33,7 @@ ariaTest('link/link.html', 'link-role', async (t) => {
   }
 });
 
-ariaTest('link/link.html', 'tab-index', async (t) => {
+ariaTest('link/link.html', 'tabindex', async (t) => {
 
   for (let i = 0; i < pageExamples.length; i++) {
     let ex = pageExamples[i];
@@ -61,7 +60,7 @@ ariaTest('link/link.html', 'alt', async (t) => {
 
     t.truthy(
       await linkElement.getAttribute('alt'),
-      '"alt" attribute should exist on element selected by: ' + ex.linkSelector,
+      '"alt" attribute should exist on element selected by: ' + ex.linkSelector
     );
   }
 

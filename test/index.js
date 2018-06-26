@@ -56,7 +56,7 @@ const ariaTest = (page, testId, body) => {
     t.is(
       (await t.context.session.findElements(t.context.By.css(selector))).length,
       1,
-      'The behavior description is present in the document'
+      'The behavior description is present in the document:' + testId
     );
 
     return body.apply(this, arguments);
