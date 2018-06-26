@@ -16,31 +16,31 @@ var cardOptions = [
     'name': 'MasterCard',
     'digitFormat': 'Ex. 0000 0000 0000 0000',
     'digitLength': 16,
-    'secureCodeFormat': 'Ex. 000',
+    'secureCodeFormat': 'Example: 000',
     'secureCodeLength': 3,
     'numberMessage': 'For MasterCard, the length of your card number should be 16 digit.',
-    'secureMessage': 'For VISA, Discover, MasterCard, your secure code should be 3 digit numbers.',
+    'secureMessage': 'For MasterCard, your secure code should be 3 digit numbers.',
     'numberLabel': '16 digit card numbers',
     'secureLabel': '3 digit secure codes'
   },
   {
     'id': 'visa',
     'name': 'VISA',
-    'digitFormat': 'Ex. 0000 0000 0000 0000',
+    'digitFormat': 'Example: 0000 0000 0000 0000',
     'digitLength': 16,
-    'secureCodeFormat': 'Ex. 000',
+    'secureCodeFormat': 'Example: 000',
     'secureCodeLength': 3,
     'numberMessage': 'For VISA, the length of your card number should be 16 digit.',
-    'secureMessage': 'For VISA, Discover, MasterCard, your secure code should be 3 digit numbers.',
+    'secureMessage': 'For VISA, your secure code should be 3 digit numbers.',
     'numberLabel': '16 digit card numbers',
     'secureLabel': '3 digit secure codes'
   },
   {
     'id': 'americanExpress',
     'name': 'American Express',
-    'digitFormat': 'Ex. 0000 000000 00000',
+    'digitFormat': 'Example: 00000 00000 00000',
     'digitLength': 15,
-    'secureCodeFormat': 'Ex. 0000',
+    'secureCodeFormat': 'Example: 0000',
     'secureCodeLength': 4,
     'numberMessage': 'For American Express, the length of your card number should be 15.',
     'secureMessage': 'For American Express, your secure code should be 4 digit numbers.',
@@ -48,18 +48,32 @@ var cardOptions = [
     'secureLabel': '4 digit secure codes'
   },
   {
-    'id': 'discover',
-    'name': 'Discover',
-    'digitFormat': 'Ex. 0000 0000 0000 0000',
-    'digitLength': 15,
-    'secureCodeFormat': 'Ex. 000',
+    'id': 'diners',
+    'name': 'Diner\'s Club',
+    'digitFormat': 'Example: 0000 0000 0000 00',
+    'digitLength': 14,
+    'secureCodeFormat': 'Example: 000',
     'secureCodeLength': 3,
-    'numberMessage': 'For Discover, the length of your card number should be 16 digit.',
-    'secureMessage': 'For VISA, Discover, MasterCard, your secure code should be 3 digit numbers.',
+    'numberMessage': 'For Diner\'s Club, the length of your card number should be 14 digit.',
+    'secureMessage': 'For Diner\'s Club, your secure code should be 3 digit numbers.',
     'numberLabel': '16 digit card numbers',
     'secureLabel': '3 digit secure codes'
   }
 ];
+
+function initCreditCardOptions () {
+  var select = document.getElementById('id-card');
+
+  for (var i = 0; i < cardOptions.length; i++) {
+    var option  = document.createElement('option');
+    console.log(cardOptions[i]);
+    option.text = cardOptions[i].name;
+    option.id   = cardOptions[i].id;
+    select.add(option);
+  }
+}
+
+window.addEventListener('load', initCreditCardOptions);
 
 // Scripting for inline form validation
 function checkItem (id, flag,message) {
@@ -135,22 +149,40 @@ function validateNumber (testForEmpty) {
   var ei = document.getElementById('id-number');
   var cardType = document.getElementById('id-card').value;
   var number = ei.value;
+  var cardOption = cardOptions[0];
+
+  for (var card in cardOptions) {
+    if (cardType === cardOptions[card].name) {
+      cardOption = cardOptions[card];
+      break;
+    }
+  }
+
+  var str = '';
+  var digitCount = 0;
+
   if (testForEmpty) {
     return checkItem('id-number', (number.length === 0), 'Card Number Cannot be Empty!');
   }
   if (number.length !== 0) {
     n = '';
-    for (var i = 0;i < number.length;i++) {
+    for (var i = 0; i < number.length; i++) {
       var c = number[i];
       if ((c >= '0') && (c <= '9')) {
         n += c;
+        str += c;
+        digitCount += 1;
+        if ((cardOption.digitLength === 16 && digitCount === 4) ||
+            (cardOption.digitLength === 15 && digitCount === 5) ||
+            (cardOption.digitLength === 14 && digitCount === 4)) {
+          str += ' ';
+          digitCount = 0;
+        }
       }
+      ei.value = str;
     }
-    for (var card in cardOptions) {
-      if (cardType === cardOptions[card].name) {
-        return checkItem('id-number', (n.length !== cardOptions[card].digitLength), cardOptions[card].numberMessage);
-      }
-    }
+
+    return checkItem('id-number', (n.length !== cardOption.digitLength), cardOption.numberMessage);
   }
 }
 
@@ -232,40 +264,53 @@ function validateZipCode (testForEmpty) {
 
 
 function submitOrder () {
-  var cardFlag = validateCardType(true);
-  var nameFlag = validateName(true);
-  var numberFlag = validateNumber(true);
-  var secureFlag = validateSecureCode(true);
-  var dateFlag = validateDate(true);
-  var addressFlag = validateAddress(true);
-  var zipFlag = validateZipCode(true);
-  if (cardFlag) {
+
+  function messageItem (label, value) {
+    return label + ': ' + value + '\n';
+  }
+
+  var cardInvalid    = validateCardType(true);
+  var nameInvalid    = validateName(true);
+  var numberInvalid  = validateNumber(true);
+  var secureInvalid  = validateSecureCode(true);
+  var dateInvalid    = validateDate(true);
+  var addressInvalid = validateAddress(true);
+  var zipInvalid     = validateZipCode(true);
+
+  if (cardInvalid) {
     document.getElementById('id-card').focus();
   }
-  else if (nameFlag) {
+  else if (nameInvalid) {
     document.getElementById('id-name').focus();
   }
-  else if (numberFlag) {
+  else if (numberInvalid) {
     document.getElementById('id-number').focus();
   }
-  else if (secureFlag) {
+  else if (secureInvalid) {
     document.getElementById('id-secure').focus();
   }
-  else if (dateFlag) {
+  else if (dateInvalid) {
     document.getElementById('id-date').focus();
   }
-  else if (addressFlag) {
+  else if (addressInvalid) {
     document.getElementById('id-address').focus();
   }
-  else if (zipFlag) {
+  else if (zipInvalid) {
     document.getElementById('id-zipcode').focus();
   }
   else {
-    if (window.confirm('Are you sure to submit payment?')) {
-      alert('Thanks');
-    }
-    else {
-      alert('Your payment has been cancelled');
-    }
+    str = 'Payment Information\n\n';
+
+    var card = document.getElementById('id-card');
+
+    str += messageItem('Name',           document.getElementById('id-name').value);
+    str += messageItem('Card',           card.options[card.selectedIndex].value);
+    str += messageItem('Number',         document.getElementById('id-number').value);
+    str += messageItem('Security Code',  document.getElementById('id-secure').value);
+    str += '\n';
+    str += messageItem('Address',        document.getElementById('id-address').value);
+    str += messageItem('Zip Code',       document.getElementById('id-zipcode').value);
+
+    alert(str);
   }
 }
