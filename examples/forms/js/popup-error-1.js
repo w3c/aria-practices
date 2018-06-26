@@ -79,7 +79,7 @@ function checkAddress (isItemEmpty) {
   return false;
 }
 
-function checkPhone(isItemEmpty) {
+function checkPhone (isItemEmpty) {
   if (typeof isItemEmpty !== 'boolean') {
     isItemEmpty = false;
   }
@@ -88,7 +88,7 @@ function checkPhone(isItemEmpty) {
   var phone = ei.value;
 
   if (isItemEmpty && (phone.length === 0)) {
-      return checkItem('id-phone', true, 'Phone cannot be empty! Enter your phone number with <span aria-label=" a 10 digit number">(111) 222-3333 format</span>.');
+    return checkItem('id-phone', true, 'Phone cannot be empty! Enter your phone number with <span aria-label=" a 10 digit number">(111) 222-3333 format</span>.');
   }
 
   if (phone.length !== 0) {
@@ -165,9 +165,9 @@ function checkCrust (isItemEmpty) {
 
 function submitOrder () {
 
-  function getRadioValue(name) {
+  function getRadioValue (name) {
     var radioes = document.getElementsByName(name);
-    for (var i = 0; i < radioes.length;i++) {
+    for (var i = 0; i < radioes.length; i++) {
       if (radioes[i].checked) {
         return radioes[i].value;
       }
@@ -175,8 +175,8 @@ function submitOrder () {
     return false;
   }
 
-  function messageItem(label, value) {
-    return label + ": " + value + "\n";
+  function messageItem (label, value) {
+    return label + ': ' + value + '\n';
   }
 
   // Check all fields
@@ -214,8 +214,10 @@ function submitOrder () {
     var toppings = '';
     var toppingCount = 0;
     for (var i = 0; i < toppingCheckboxes.length; i++) {
-      if(toppingCheckboxes[i].checked) {
-        if (toppingCount > 0) toppings += ', ';
+      if (toppingCheckboxes[i].checked) {
+        if (toppingCount > 0) {
+          toppings += ', ';
+        }
         toppings += toppingCheckboxes[i].value;
         toppingCount += 1;
       }
