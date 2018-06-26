@@ -1,3 +1,12 @@
+/*
+*   This content is licensed according to the W3C Software License at
+*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+*
+*   File:   popup-error-2.js
+*
+*   Desc:   Supports initialization and validation of the credit card form example
+*/
+
 var cardOptions = [
   {
     'id': 'InvalidCardType',
@@ -119,13 +128,19 @@ function setCardType () {
   }
 }
 
-function validateCardType () {
+function validateCardType (testForEmpty) {
+  if (typeof testForEmpty !== 'boolean') {
+    testForEmpty = false;
+  }
+
   var ei = document.getElementById('id-card');
   var str = ei.options[ei.selectedIndex].value;
 
-  for (var card in cardOptions) {
-    if (cardOptions[card].id === 'InvalidCardType') {
-      return checkItem('id-card', (str === cardOptions[card].name), cardOptions[card].numberMessage);
+  if (testForEmpty) {
+    for (var card in cardOptions) {
+      if (cardOptions[card].id === 'InvalidCardType') {
+        return checkItem('id-card', (str === cardOptions[card].name), cardOptions[card].numberMessage);
+      }
     }
   }
 }

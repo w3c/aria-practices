@@ -1,4 +1,13 @@
-document.addEventListener('DOMContentLoaded', function () {
+/*
+*   This content is licensed according to the W3C Software License at
+*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+*
+*   File:   popup-error-1.js
+*
+*   Desc:   Supports initialization and validation of the pizza ordering form example
+*/
+
+function initPizzaForm() {
   var radios = document.querySelectorAll('[type=\'radio\']');
   var checkbox = document.querySelectorAll('[type=\'checkbox\']');
 
@@ -33,7 +42,9 @@ document.addEventListener('DOMContentLoaded', function () {
       this.parentNode.classList.remove('hover');
     });
   }
-});
+}
+
+window.addEventListener('load', initPizzaForm);
 
 // Scripting for inline form validation
 function checkItem (id, flag, message) {

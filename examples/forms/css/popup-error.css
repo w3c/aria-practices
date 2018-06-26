@@ -97,6 +97,7 @@ label {
   margin: 0;
   padding: 0;
   font-weight: normal;
+  width: 12em;
 }
 
 fieldset {
@@ -104,6 +105,7 @@ fieldset {
   margin: 0;
   margin-top: 1em;
   border: 1px gray solid;
+  width: 26em;
 }
 
 legend {
