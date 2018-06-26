@@ -1,14 +1,14 @@
 document.addEventListener('DOMContentLoaded', function () {
-
   var radios = document.querySelectorAll('[type=\'radio\']');
   var checkbox = document.querySelectorAll('[type=\'checkbox\']');
+
   console.log(radios.length);
-  for (var i = 0;i < radios.length;i++) {
-    radios[i].addEventListener('focus',function () {
+  for (var i = 0; i < radios.length; i++) {
+    radios[i].addEventListener('focus', function () {
       this.parentNode.classList.add('focus');
     });
 
-    radios[i].addEventListener('blur',function () {
+    radios[i].addEventListener('blur', function () {
       this.parentNode.classList.remove('focus');
     });
     radios[i].parentNode.addEventListener('mouseover', function () {
@@ -19,8 +19,8 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  for (var i = 0;i < checkbox.length;i++) {
-    checkbox[i].addEventListener('focus',function () {
+  for (var i = 0; i < checkbox.length; i++) {
+    checkbox[i].addEventListener('focus', function () {
       this.parentNode.classList.add('focus');
     });
     checkbox[i].addEventListener('blur', function () {
@@ -38,6 +38,7 @@ document.addEventListener('DOMContentLoaded', function () {
 // Scripting for inline form validation
 function checkItem (id, flag, message) {
   var em = document.getElementById(id + '-error');
+
   em.innerHTML = '';
   var ei = document.getElementById(id);
 
@@ -60,8 +61,9 @@ function checkName (isItemEmpty) {
     isItemEmpty = false;
   }
   var ei = document.getElementById('id-name');
+
   if (isItemEmpty) {
-    return checkItem('id-name',(ei.value.length === 0),'Name cannot be empty! Enter your name.');
+    return checkItem('id-name',(ei.value.length === 0), 'Name cannot be empty! Enter your name.');
   }
 
   return false;
@@ -72,8 +74,9 @@ function checkAddress (isItemEmpty) {
     isItemEmpty = false;
   }
   var ei = document.getElementById('id-address');
+
   if (isItemEmpty) {
-    return checkItem('id-address',(ei.value.length === 0),'Address cannot be empty! Enter your address.');
+    return checkItem('id-address',(ei.value.length === 0), 'Address cannot be empty! Enter your address.');
   }
 
   return false;
@@ -93,13 +96,14 @@ function checkPhone (isItemEmpty) {
 
   if (phone.length !== 0) {
     p = '';
-    for (var i = 0;i < phone.length;i++) {
+    for (var i = 0; i < phone.length; i++) {
       var c = phone[i];
+
       if ((c >= '0') && (c <= '9')) {
         p += c;
       }
     }
-    return checkItem('id-phone', ((p.length !== 7) && (p.length !== 10)),'Not a valid phone number, use this format (111) 222-3333.');
+    return checkItem('id-phone', ((p.length !== 7) && (p.length !== 10)), 'Not a valid phone number, use this format (111) 222-3333.');
   }
 
   return false;
@@ -112,6 +116,7 @@ function checkDeliveryMethod (isItemEmpty) {
 
   var select = document.getElementById('id-delivery');
   var id = select.options[select.selectedIndex].id;
+
   if (isItemEmpty) {
     return checkItem('id-delivery',(id === 'id-delivery-choose'), 'Choose the Delivery Method.');
   }
@@ -153,10 +158,10 @@ function checkCrust (isItemEmpty) {
 
   if (isItemEmpty) {
     if (thin || classic || deep) {
-      return checkItem('id-crust',false, '');
+      return checkItem('id-crust', false, '');
     }
     else {
-      return checkItem('id-crust',!(thin.checked || classic.checked || deep.checked), 'Choose your Crust.');
+      return checkItem('id-crust', !(thin.checked || classic.checked || deep.checked), 'Choose your Crust.');
     }
   }
 
@@ -164,9 +169,9 @@ function checkCrust (isItemEmpty) {
 }
 
 function submitOrder () {
-
   function getRadioValue (name) {
     var radioes = document.getElementsByName(name);
+
     for (var i = 0; i < radioes.length; i++) {
       if (radioes[i].checked) {
         return radioes[i].value;
@@ -180,12 +185,12 @@ function submitOrder () {
   }
 
   // Check all fields
-  var nameInvalid    = checkName(true);
+  var nameInvalid = checkName(true);
   var addressInvalid = checkAddress(true);
-  var phoneInvalid   = checkPhone(true);
-  var methodInvalid  = checkDeliveryMethod(true);
-  var sizeInvalid    = checkSize(true);
-  var crustInvalid   = checkCrust(true);
+  var phoneInvalid = checkPhone(true);
+  var methodInvalid = checkDeliveryMethod(true);
+  var sizeInvalid = checkSize(true);
+  var crustInvalid = checkCrust(true);
 
   if (nameInvalid) {
     document.getElementById('id-name').focus();
@@ -213,6 +218,7 @@ function submitOrder () {
     var toppingCheckboxes = document.getElementsByName('topping');
     var toppings = '';
     var toppingCount = 0;
+
     for (var i = 0; i < toppingCheckboxes.length; i++) {
       if (toppingCheckboxes[i].checked) {
         if (toppingCount > 0) {
@@ -223,12 +229,12 @@ function submitOrder () {
       }
     }
 
-    str += messageItem('Name',     document.getElementById('id-name').value);
-    str += messageItem('Address',  document.getElementById('id-address').value);
-    str += messageItem('Phone',    document.getElementById('id-phone').value);
+    str += messageItem('Name', document.getElementById('id-name').value);
+    str += messageItem('Address', document.getElementById('id-address').value);
+    str += messageItem('Phone', document.getElementById('id-phone').value);
     str += messageItem('Delivery Method', delivery.options[delivery.selectedIndex].value);
-    str += messageItem('Size',     getRadioValue('size'));
-    str += messageItem('Crust',    getRadioValue('crust'));
+    str += messageItem('Size', getRadioValue('size'));
+    str += messageItem('Crust', getRadioValue('crust'));
     if (toppingCount === 0) {
       str += messageItem('Toppings', 'no additional toppings selected');
     }
@@ -240,7 +246,7 @@ function submitOrder () {
         str += messageItem('Toppings', toppings);
       }
     }
-    str += messageItem('Cost',     document.getElementById('id-total-cost').value);
+    str += messageItem('Cost', document.getElementById('id-total-cost').value);
 
     alert(str);
   }
@@ -256,10 +262,11 @@ function priceChange () {
   var sizeRadio = document.getElementsByName('size');
   var crustRadio = document.getElementsByName('crust');
   var toppingCheckbox = document.getElementsByName('topping');
+
   if (document.getElementById('id-delivery').value === 'Home delivery') {
     price += 2;
   }
-  for (var i = 0;i < sizeRadio.length;i++) {
+  for (var i = 0; i < sizeRadio.length; i++) {
     if (sizeRadio[i].checked) {
       price += sizePrice[i];
     }

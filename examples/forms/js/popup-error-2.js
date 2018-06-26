@@ -65,10 +65,11 @@ function initCreditCardOptions () {
   var select = document.getElementById('id-card');
 
   for (var i = 0; i < cardOptions.length; i++) {
-    var option  = document.createElement('option');
+    var option = document.createElement('option');
+
     console.log(cardOptions[i]);
     option.text = cardOptions[i].name;
-    option.id   = cardOptions[i].id;
+    option.id = cardOptions[i].id;
     select.add(option);
   }
 }
@@ -76,8 +77,9 @@ function initCreditCardOptions () {
 window.addEventListener('load', initCreditCardOptions);
 
 // Scripting for inline form validation
-function checkItem (id, flag,message) {
+function checkItem (id, flag, message) {
   var em = document.getElementById(id + '-error');
+
   em.innerHTML = '';
   var ei = document.getElementById(id);
 
@@ -120,6 +122,7 @@ function setCardType () {
 function validateCardType () {
   var ei = document.getElementById('id-card');
   var str = ei.options[ei.selectedIndex].value;
+
   for (var card in cardOptions) {
     if (cardOptions[card].id === 'InvalidCardType') {
       return checkItem('id-card', (str === cardOptions[card].name), cardOptions[card].numberMessage);
@@ -127,20 +130,19 @@ function validateCardType () {
   }
 }
 
-
 function validateName (testForEmpty) {
   if (typeof testForEmpty !== 'boolean') {
     testForEmpty = false;
   }
   var ei = document.getElementById('id-name');
+
   if (testForEmpty) {
-    return checkItem('id-name',(ei.value.length === 0),'Name cannot be empty!');
+    return checkItem('id-name',(ei.value.length === 0), 'Name cannot be empty!');
   }
   if (ei.value.length !== 0) {
     return checkItem('id-name', false, '');
   }
 }
-
 
 function validateNumber (testForEmpty) {
   if (typeof testForEmpty !== 'boolean') {
@@ -168,6 +170,7 @@ function validateNumber (testForEmpty) {
     n = '';
     for (var i = 0; i < number.length; i++) {
       var c = number[i];
+
       if ((c >= '0') && (c <= '9')) {
         n += c;
         str += c;
@@ -186,7 +189,6 @@ function validateNumber (testForEmpty) {
   }
 }
 
-
 function validateSecureCode (testForEmpty) {
   if (typeof testForEmpty !== 'boolean') {
     testForEmpty = false;
@@ -194,13 +196,15 @@ function validateSecureCode (testForEmpty) {
   var ei = document.getElementById('id-secure');
   var cardType = document.getElementById('id-card').value;
   var secure = ei.value;
+
   s = '';
   if (testForEmpty) {
     return checkItem('id-secure', (secure.length === 0), 'Secure Code Cannot be Empty!');
   }
   if (secure.length !== 0) {
-    for (var i = 0; i < secure.length;i++) {
+    for (var i = 0; i < secure.length; i++) {
       var c = secure[i];
+
       if ((c >= '0') && (c <= '9')) {
         s += c;
       }
@@ -220,10 +224,12 @@ function validateDate (testForEmpty) {
 
   var ei = document.getElementById('id-date');
   var date = ei.value;
+
   if (date.length !== 0) {
     d = '';
-    for (var i = 0;i < date.length;i++) {
+    for (var i = 0; i < date.length; i++) {
       var c = date[i];
+
       if ((c >= '0') && (c <= '9')) {
         d += c;
       }
@@ -231,7 +237,7 @@ function validateDate (testForEmpty) {
     return checkItem('id-date', ((d.length !== 6)), 'The format of expiration date should be MM/YYYY');
   }
   if (testForEmpty) {
-    return checkItem('id-date',date.length === 0, 'Expiration date cannot be empty!');
+    return checkItem('id-date', date.length === 0, 'Expiration date cannot be empty!');
   }
 }
 
@@ -240,8 +246,9 @@ function validateAddress (testForEmpty) {
     testForEmpty = false;
   }
   var ei = document.getElementById('id-address');
+
   if (testForEmpty) {
-    return checkItem('id-address',(ei.value.length === 0),'Address cannot be empty! ');
+    return checkItem('id-address',(ei.value.length === 0), 'Address cannot be empty! ');
   }
   if (ei.value.length !== 0) {
     return checkItem('id-address', false, '');
@@ -254,6 +261,7 @@ function validateZipCode (testForEmpty) {
   }
   var ei = document.getElementById('id-zipcode');
   var zip = ei.value;
+
   if (zip.length !== 0) {
     return checkItem('id-zipcode', (zip.length !== 5), 'The format of Zip Code should be 5 digit numbers.');
   }
@@ -262,20 +270,18 @@ function validateZipCode (testForEmpty) {
   }
 }
 
-
 function submitOrder () {
-
   function messageItem (label, value) {
     return label + ': ' + value + '\n';
   }
 
-  var cardInvalid    = validateCardType(true);
-  var nameInvalid    = validateName(true);
-  var numberInvalid  = validateNumber(true);
-  var secureInvalid  = validateSecureCode(true);
-  var dateInvalid    = validateDate(true);
+  var cardInvalid = validateCardType(true);
+  var nameInvalid = validateName(true);
+  var numberInvalid = validateNumber(true);
+  var secureInvalid = validateSecureCode(true);
+  var dateInvalid = validateDate(true);
   var addressInvalid = validateAddress(true);
-  var zipInvalid     = validateZipCode(true);
+  var zipInvalid = validateZipCode(true);
 
   if (cardInvalid) {
     document.getElementById('id-card').focus();
@@ -303,13 +309,13 @@ function submitOrder () {
 
     var card = document.getElementById('id-card');
 
-    str += messageItem('Name',           document.getElementById('id-name').value);
-    str += messageItem('Card',           card.options[card.selectedIndex].value);
-    str += messageItem('Number',         document.getElementById('id-number').value);
-    str += messageItem('Security Code',  document.getElementById('id-secure').value);
+    str += messageItem('Name', document.getElementById('id-name').value);
+    str += messageItem('Card', card.options[card.selectedIndex].value);
+    str += messageItem('Number', document.getElementById('id-number').value);
+    str += messageItem('Security Code', document.getElementById('id-secure').value);
     str += '\n';
-    str += messageItem('Address',        document.getElementById('id-address').value);
-    str += messageItem('Zip Code',       document.getElementById('id-zipcode').value);
+    str += messageItem('Address', document.getElementById('id-address').value);
+    str += messageItem('Zip Code', document.getElementById('id-zipcode').value);
 
     alert(str);
   }
