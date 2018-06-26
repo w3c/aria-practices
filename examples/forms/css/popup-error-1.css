@@ -1,7 +1,11 @@
-body{
-  margin:0;
-  padding:0;
+div#example {
+  line-height: 1em;
 }
+
+input[type="submit"] {
+  padding: 0.25em 1em;
+}
+
 
 input[type="text"]:hover,
 select:hover {
@@ -104,29 +108,34 @@ fieldset {
 
 legend {
   margin: 0;
-  padding: 0;
+  padding: 0 0.125em;
   font-weight: bold;
-  font-size: 110%;
+  font-size: 90%;
 }
 
-div.text, div.select, input[type="submit"] {
-  margin-top: 0.5em;
+div.text,
+div.select,
+input[type="submit"] {
+  margin-top: 1em;
 }
 
-span.error, span.noerror {
-  display: inline;
-}
-
+div.error,
 span.error {
-  color: red;
-  border: thin solid red;
-  padding: 0.025em;
+  padding: 0.25em 1em;
+  background-color: hsl(0, 70%, 95%);
+  border: thin solid hsl(0, 70%, 70%);
+  border-radius: 5px;
+  font-size: 80%;
 }
 
-span.noerror {
-  color: transparent;
-  border: thin solid transparent;
-  padding: 0.25em;
+div.error {
+  margin-bottom: 0.75em;
+  width: 18em;
+}
+
+
+.noerror {
+  display: none;
 }
 
 .instruction {
@@ -134,6 +143,7 @@ span.noerror {
   padding: 0;
   font-style: italic;
   font-size: 80%;
+  color: gray;
 }
 
 .cost {

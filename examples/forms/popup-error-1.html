@@ -40,86 +40,89 @@
       <label for="id-name">
         Name
       </label>
-      <div class="instruction" id="id-name-inst">Ex. John C Doe</div>
       <input id="id-name"
            required
            aria-invalid="false"
            type="text"
            size="30"
            onblur="checkName()"
+           aria-describedby="id-name-desc"
            aria-errormessage="id-name-error">
       <span id="id-name-error" class="noerror" role="status">
       </span>
+      <div class="instruction" id="id-name-desc">Example: John C Doe</div>
     </div>
     <div class="text">
       <label for="id-address">
         Address
       </label>
-      <div class="instruction" id="id-address-inst">Ex. 123 Main St.</div>
       <input id="id-address"
            required="true"
            aria-invalid="false"
            type="text"
            size="40"
            onblur="checkAddress()"
+           aria-describedby="id-address-desc"
            aria-errormessage="id-address-error">
       <span id="id-address-error" class="noerror" role="status">
       </span>
+      <div class="instruction" id="id-address-desc">Example: 123 Main Street</div>
     </div>
     <div class="text">
       <label for="id-phone">
         Phone
       </label>
-      <div class="instruction" id="id-name-inst">Ex. (111) 222-3333 </div>
       <input id="id-phone"
            required="true"
            aria-invalid="false"
            type="text"
            size="14"
            onblur="checkPhone()"
+           aria-describedby="id-phone-desc"
            aria-errormessage="id-phone-error">
       <span id="id-phone-error" class="noerror" role="status">
       </span>
+      <div class="instruction" id="id-phone-desc" aria-label="enter a 7 or 10 digit phone number">Example: nnn-nnn-nnnn</div>
     </div>
     <div class="select">
       <label for="id-delivery">
         Delivery Method
       </label>
-      <div class="instruction" id="id-delivery-fee">$2.00 for home delivery</div>
       <select id="id-delivery"
             aria-invalid="false"
             aria-errormessage="id-delivery-error"
             aria-describedby="id-delivery-fee"
-            onblur="checkMethod()"
+            onblur="checkDeliveryMethod()"
             onChange='priceChange()'>
-        <option>
+        <option id="id-delivery-choose">
           Choose your Method
         </option>
-        <option>
+        <option id="id-delivery-store">
           Eat in store
         </option>
-        <option>
+        <option id="id-delivery-pickup">
           Pickup
         </option>
-        <option>
+        <option id="id-delivery-home">
           Home delivery
         </option>
       </select>
       <span id="id-delivery-error" class="noerror" role="status">
       </span>
+      <div class="instruction" id="id-delivery-fee">$2.00 extra for home delivery</div>
     </div>
 
     <fieldset id="id-size">
       <legend>
         Size
       </legend>
+      <div id="id-size-error" class="noerror" role="status"></div>
       <div class="button">
         <label>
           <input id="id-small"
                name="size"
                type="radio"
                value="Small"
-               price=7
                required="true"
                aria-invalid="false"
                aria-errormessage="id-size-error"
@@ -134,7 +137,6 @@
                name="size"
                type="radio"
                value="Medium"
-               price=8.5
                required="true"
                aria-invalid="false"
                aria-errormessage="id-size-error"
@@ -150,7 +152,6 @@
                name="size"
                type="radio"
                value="Large"
-               price=10
                required="true"
                aria-invalid="false"
                aria-errormessage="id-size-error"
@@ -159,15 +160,15 @@
            Large 16" - $10.00
         </label>
       </div>
+      <div class="instruction" id="id-deep-fee">$1.50 extra for deep dish</div>
     </fieldset>
-    <span id="id-size-error" class="noerror" role="status"></span>
 
     <fieldset id="id-crust" aria-errormessage="id-crust-error" aria-invalid="false">
       <legend>
         Crust
       </legend>
 
-      <div class="instruction" id="id-deep-fee">$1.50 extra for deep dish</div>
+      <div id="id-crust-error" class="noerror" role="status"></div>
 
       <div class="button">
         <label>
@@ -212,20 +213,22 @@
            Deep Dish
         </label>
       </div>
+
     </fieldset>
-    <span id="id-crust-error" class="noerror" role="status"></span>
+
     <fieldset>
       <legend>
         Toppings
       </legend>
-      <div class="instruction">Toppings are $1.25 except as marked <sup>*</sup></div>
+
       <div class="button">
         <label>
           <input id="id-sausage"
                name="topping"
                type="checkbox"
                value="Sausage"
-               onChange='priceChange()'>
+               onChange='priceChange()'
+               aria-describedby="id-cost-desc">
                   Sausage
         </label>
       </div>
@@ -291,7 +294,7 @@
                   Extra cheese <sup>*</sup>
         </label>
       </div>
-      <div class="instruction" id="id-extra-cost"><sup id="id-x-cheese-fee">*</sup> $2.00 toppings</div>
+      <div class="instruction" id="id-cost-desc">Toppings are $1.25 except as marked with an <sup>*</sup> as a <span id="id-extra-cost">$2.00 topping</span></div>
     </fieldset>
 
     <div class="cost"><label>Total Cost: <input id="id-total-cost" value="$0"/></label></div>
