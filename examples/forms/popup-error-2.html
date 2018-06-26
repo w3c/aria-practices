@@ -11,7 +11,7 @@
 <script src="../js/highlight.pack.js"></script>
 <script src="../js/app.js"></script>
 
-<link href="css/popup-error-2.css" rel="stylesheet">
+<link href="css/popup-error-1.css" rel="stylesheet">
 <script src="js/popup-error-2.js" type="text/javascript"></script>
 </head>
 <body>
@@ -72,7 +72,6 @@
           <label for="id-name">
             Name on Card
           </label>
-          <div class="instruction" id="id-name-inst">Ex. John C Doe</div>
           <input id="id-name"
                required
                aria-invalid="false"
@@ -83,13 +82,13 @@
                onblur="validateName()">
           <span id="id-name-error" class="noerror" role="status">
           </span>
+          <div class="instruction" id="id-name-inst">Example: John C Doe</div>
         </div>
 
         <div class="text">
           <label for="id-number">
             Card Number
           </label>
-          <div class="instruction" id="id-card-number-inst" aria-label="">--</div>
           <input id="id-number"
                required="true"
                aria-invalid="false"
@@ -100,13 +99,13 @@
                onblur="validateNumber()">
           <span id="id-number-error" class="noerror" role="status">
           </span>
+          <div class="instruction" id="id-card-number-inst" aria-label="">--</div>
         </div>
 
         <div class="text">
           <label for="id-secure">
             Secure Code
           </label>
-          <div class="instruction" id="id-secure-code-inst" aria-label="">--</div>
           <input id="id-secure"
                required="true"
                aria-invalid="false"
@@ -117,12 +116,12 @@
                onblur="validateSecureCode()">
           <span id="id-secure-error" class="noerror" role="status">
           </span>
+          <div class="instruction" id="id-secure-code-inst" aria-label="">--</div>
         </div>
         <div class="text">
           <label for="id-date">
             Expiration date
           </label>
-          <div class="instruction" id="id-date-inst" aria-label="2 digit month slash 4 digit year">MM/YYYY</div>
           <input id="id-date"
                required="true"
                aria-invalid="false"
@@ -133,6 +132,7 @@
                onblur="validateDate()">
           <span id="id-date-error" class="noerror" role="status">
           </span>
+          <div class="instruction" id="id-date-inst" aria-label="2 digit month, slash character, 4 digit year">MM/YYYY</div>
         </div>
 
         <h3>Billing Information</h3>
@@ -146,25 +146,29 @@
                type="text"
                size="30"
                onblur="validateAddress()"
-               aria-describedby="id-address-error">
+               aria-describedby="id-address-inst"
+               aria-errormessage="id-address-error">
           <span id="id-address-error" class="noerror" role="status">
           </span>
+          <div class="instruction" id="id-address-inst" >Example: 123 Main Street</div>
         </div>
         <div class="text">
           <label for="id-zipcode">
             Zip Code
           </label>
-          <div class="instruction" id="id-zip-inst" aria-label="5 digit zipcode">Ex. 12345</div>
           <input id="id-zipcode"
                required="true"
                aria-invalid="false"
                type="text"
                size="14"
                onblur="validateZipCode()"
-               aria-describedby="id-zipcode-error">
+               aria-describedby="id-zipcode-inst"
+               aria-errormessage="id-zipcode-error">
           <span id="id-zipcode-error" class="noerror" role="status">
           </span>
+          <div class="instruction" id="id-zip-inst" aria-label="enter a 5 digit zipcode">Example: 12345</div>
         </div>
+
     <input type="submit"
      value="Submit Payment"
      onClick="submitOrder()">
