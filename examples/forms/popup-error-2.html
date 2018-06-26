@@ -24,10 +24,14 @@
     </ul>
   </nav>
   <main>
-    <h1>Credit Card Form with Popup Error Example</h1>
+    <h1>Credit Card Form with Popup Errors</h1>
     <p>
-      The following command and example demonstrates how to make popup error messages to screen reader users using the <a href="../../#popup-error">popup-error design pattern.</a>
+      The following pizza ordering form example using standard HTML5 form controls demonstrates how to make required form fields, identifying forms with invalid values, instructional information and popup error messages accessible to screen reader users using the <a href="../../#forms">Form Input Assistance design pattern.</a>
     </p>
+    <p>Similar examples include:</p>
+    <ul>
+      <li><a href="popup-error-1.html">Pizza ordering form</a>: A set of standard HTML5 input forms demonstrating required and invalid input, fields with instructions and popup error feedback.</li>
+    </ul>
   <section>
     <h2 id="ex_label">Example</h2>
 
@@ -42,6 +46,7 @@
             Card Type
           </label>
           <select id="id-card"
+                required
                 aria-invalid="false"
                 aria-errormessage="id-card-error"
                 onChange="setCardType()"
@@ -75,7 +80,7 @@
             Card Number
           </label>
           <input id="id-number"
-               required="true"
+               required
                aria-invalid="false"
                type="text"
                size="20"
@@ -92,7 +97,7 @@
             Secure Code
           </label>
           <input id="id-secure"
-               required="true"
+               required
                aria-invalid="false"
                type="text"
                size="5"
@@ -108,7 +113,7 @@
             Expiration date
           </label>
           <input id="id-date"
-               required="true"
+               required
                aria-invalid="false"
                type="text"
                size="9"
@@ -126,7 +131,7 @@
             Billing Address
           </label>
           <input id="id-address"
-               required="true"
+               required
                aria-invalid="false"
                type="text"
                size="30"
@@ -142,7 +147,7 @@
             Zip Code
           </label>
           <input id="id-zipcode"
-               required="true"
+               required
                aria-invalid="false"
                type="text"
                size="14"
@@ -173,11 +178,11 @@
       <tbody>
         <tr>
           <th><kbd>Tab</kbd></th>
-          <td>Switch to next input/checkbox region</td>
+          <td>Next input form control</td>
         </tr>
         <tr>
           <th><kbd>Shift</kbd> + <kbd>Tab</kbd></th>
-          <td>Switch to previous input/checkbox region</td>
+          <td>Previous input form control</td>
         </tr>
       </tbody>
     </table>
@@ -190,7 +195,7 @@
         <tr>
           <th scope="col">Role</th>
           <th scope="col">Attribute</th>
-          <th scope="col">Element</th>
+          <th scope="col">Elements</th>
           <th scope="col">Usage</th>
         </tr>
       </thead>
@@ -202,13 +207,13 @@
           </th>
           <td>
             <ul>
-              <li><code>input[id=<q>id-card</q>]</code></li>
+              <li><code>select[id=<q>id-card</q>]</code></li>
               <li><code>input[id=<q>id-name</q>]</code></li>
               <li><code>input[id=<q>id-number</q>]</code></li>
-              <li><code>select[id=<q>id-secure</q>]</code></li>
-              <li><code>select[id=<q>id-date</q>]</code></li>
-              <li><code>select[id=<q>id-address</q>]</code></li>
-              <li><code>select[id=<q>id-zipcode</q>]</code></li>
+              <li><code>input[id=<q>id-secure</q>]</code></li>
+              <li><code>input[id=<q>id-date</q>]</code></li>
+              <li><code>input[id=<q>id-address</q>]</code></li>
+              <li><code>input[id=<q>id-zipcode</q>]</code></li>
             </ul>
           </td>
           <td>
@@ -222,17 +227,17 @@
           </th>
           <td>
             <ul>
-              <li><code>input[id=<q>id-card</q>]</code></li>
+              <li><code>select[id=<q>id-card</q>]</code></li>
               <li><code>input[id=<q>id-name</q>]</code></li>
               <li><code>input[id=<q>id-number</q>]</code></li>
-              <li><code>select[id=<q>id-secure</q>]</code></li>
-              <li><code>select[id=<q>id-date</q>]</code></li>
-              <li><code>select[id=<q>id-address</q>]</code></li>
-              <li><code>select[id=<q>id-zipcode</q>]</code></li>
+              <li><code>input[id=<q>id-secure</q>]</code></li>
+              <li><code>input[id=<q>id-date</q>]</code></li>
+              <li><code>input[id=<q>id-address</q>]</code></li>
+              <li><code>input[id=<q>id-zipcode</q>]</code></li>
             </ul>
           </td>
           <td>
-            Identifies the current value of the form controls is valid or the form control has not received keyboard focus (e.g. no user interaction with control).
+            Identifies the current value of the form control as valid or the form control has not received keyboard focus (e.g. no user interaction with control).
           </td>
         </tr>
         <tr>
@@ -242,57 +247,37 @@
           </th>
           <td>
             <ul>
-              <li><code>input[id=<q>id-card</q>]</code></li>
+              <li><code>select[id=<q>id-card</q>]</code></li>
               <li><code>input[id=<q>id-name</q>]</code></li>
               <li><code>input[id=<q>id-number</q>]</code></li>
-              <li><code>select[id=<q>id-secure</q>]</code></li>
-              <li><code>select[id=<q>id-date</q>]</code></li>
-              <li><code>select[id=<q>id-address</q>]</code></li>
-              <li><code>select[id=<q>id-zipcode</q>]</code></li>
+              <li><code>input[id=<q>id-secure</q>]</code></li>
+              <li><code>input[id=<q>id-date</q>]</code></li>
+              <li><code>input[id=<q>id-address</q>]</code></li>
+              <li><code>input[id=<q>id-zipcode</q>]</code></li>
             </ul>
           </td>
           <td>
-            Identifies the current value for the form control is invalid.
+            Identifies the current value of the form control is invalid.
           </td>
         </tr>
         <tr>
           <td></td>
           <th scope="row">
-            <code>aria-invalid=<q>false</q></code>
+            <code>ariadescribedby=<q><em>IDREF</em></q></code>
           </th>
           <td>
             <ul>
-              <li><code>input[id=<q>id-card</q>]</code></li>
+              <li><code>select[id=<q>id-card</q>]</code></li>
               <li><code>input[id=<q>id-name</q>]</code></li>
               <li><code>input[id=<q>id-number</q>]</code></li>
-              <li><code>select[id=<q>id-secure</q>]</code></li>
-              <li><code>select[id=<q>id-date</q>]</code></li>
-              <li><code>select[id=<q>id-address</q>]</code></li>
-              <li><code>select[id=<q>id-zipcode</q>]</code></li>
+              <li><code>input[id=<q>id-secure</q>]</code></li>
+              <li><code>input[id=<q>id-date</q>]</code></li>
+              <li><code>input[id=<q>id-address</q>]</code></li>
+              <li><code>input[id=<q>id-zipcode</q>]</code></li>
             </ul>
           </td>
           <td>
-            Identifies the current value for the form control is invalid.
-          </td>
-        </tr>
-        <tr>
-          <td></td>
-          <th scope="row">
-            <code>ariadescribeby=<q><em>IDREF</em></q></code>
-          </th>
-          <td>
-            <ul>
-              <li><code>input[id=<q>id-card</q>]</code></li>
-              <li><code>input[id=<q>id-name</q>]</code></li>
-              <li><code>input[id=<q>id-number</q>]</code></li>
-              <li><code>select[id=<q>id-secure</q>]</code></li>
-              <li><code>select[id=<q>id-date</q>]</code></li>
-              <li><code>select[id=<q>id-address</q>]</code></li>
-              <li><code>select[id=<q>id-zipcode</q>]</code></li>
-            </ul>
-          </td>
-          <td>
-            Identifies the <code>id</code> of the visible element on the page with the error message.
+            Identifies the <code>id</code> of the visible element on the page with the error message associated with each form control.
           </td>
         </tr>
         <tr>
@@ -300,18 +285,18 @@
           <td></td>
           <td>
             <ul>
-              <li><code>input[id=<q>id-card-error</q>]</code></li>
-              <li><code>input[id=<q>id-name-error</q>]</code></li>
-              <li><code>input[id=<q>id-number-error</q>]</code></li>
-              <li><code>select[id=<q>id-secure-error</q>]</code></li>
-              <li><code>select[id=<q>id-date-error</q>]</code></li>
-              <li><code>select[id=<q>id-address-error</q>]</code></li>
-              <li><code>select[id=<q>id-zipcode-error</q>]</code></li>
+              <li><code>select[id=<q>id-card</q>]</code></li>
+              <li><code>input[id=<q>id-name</q>]</code></li>
+              <li><code>input[id=<q>id-number</q>]</code></li>
+              <li><code>input[id=<q>id-secure</q>]</code></li>
+              <li><code>input[id=<q>id-date</q>]</code></li>
+              <li><code>input[id=<q>id-address</q>]</code></li>
+              <li><code>input[id=<q>id-zipcode</q>]</code></li>
             </ul>
           </td>
           <td>
             <ul>
-              <li>The use of <code>role=<q>status</q></code> live region will automaticall </li>
+              <li>The use of <code>role=<q>status</q></code> live region will signal screen readers to automatically announce error messages.</li>
               <li>The <code>role=<q>status</q></code> by default sets <code>aria-live</code> property to <code>polite</code>, so the change will not disrupt what is being spoke, but just add to the content of what is being spoken.</li>
           </td>
         </tr>
@@ -345,7 +330,7 @@
   </section>
   </main>
   <nav>
-    <a href="../../#popup-error">Popup-error Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
+    <a href="../../#forms">Form Input Assistance Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
   </nav>
 </body>
 </html>

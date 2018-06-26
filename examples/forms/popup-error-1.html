@@ -24,11 +24,15 @@
     </ul>
   </nav>
   <main>
-    <h1>Pizza Ordering Form with Popup Error Example</h1>
+    <h1>Pizza Ordering Form with Popup Errors</h1>
     <p>
-      The following command and example demonstrates how to make popup error messages to screen reader users using the <a href="../../#popup-error">popup-error design pattern.</a>
+      The following pizza ordering form example using standard HTML5 form controls demonstrates how to make required form fields, identifying forms with invalid values, instructional information and popup error messages accessible to screen reader users using the <a href="../../#forms">Form Input Assistance design pattern.</a>
     </p>
-  <section>
+    <p>Similar examples include:</p>
+    <ul>
+      <li><a href="popup-error-2.html">Credit card processing form</a>: A set of standard HTML5 input forms demonstrating required and invalid input, fields with instructions and popup error feedback.</li>
+    </ul>
+    <section>
     <h2 id="ex_label">Example</h2>
 
     <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
@@ -57,7 +61,7 @@
         Address
       </label>
       <input id="id-address"
-           required="true"
+           required
            aria-invalid="false"
            type="text"
            size="40"
@@ -73,7 +77,7 @@
         Phone
       </label>
       <input id="id-phone"
-           required="true"
+           required
            aria-invalid="false"
            type="text"
            size="14"
@@ -89,6 +93,7 @@
         Delivery Method
       </label>
       <select id="id-delivery"
+            required
             aria-invalid="false"
             aria-errormessage="id-delivery-error"
             aria-describedby="id-delivery-fee"
@@ -123,7 +128,7 @@
                name="size"
                type="radio"
                value="Small"
-               required="true"
+               required
                aria-invalid="false"
                aria-errormessage="id-size-error"
                onblur="checkSize()"
@@ -137,7 +142,6 @@
                name="size"
                type="radio"
                value="Medium"
-               required="true"
                aria-invalid="false"
                aria-errormessage="id-size-error"
                onblur="checkSize()"
@@ -152,7 +156,6 @@
                name="size"
                type="radio"
                value="Large"
-               required="true"
                aria-invalid="false"
                aria-errormessage="id-size-error"
                onblur="checkSize()"
@@ -160,7 +163,6 @@
            Large 16" - $10.00
         </label>
       </div>
-      <div class="instruction" id="id-deep-fee">$1.50 extra for deep dish</div>
     </fieldset>
 
     <fieldset id="id-crust" aria-errormessage="id-crust-error" aria-invalid="false">
@@ -176,7 +178,7 @@
                name="crust"
                type="radio"
                value="Thin"
-               required="true"
+               required
                aria-invalid="false"
                aria-errormessage="id-crust-error"
                onblur="checkCrust()"
@@ -190,7 +192,6 @@
                name="crust"
                type="radio"
                value="Classic"
-               required="true"
                aria-invalid="false"
                aria-errormessage="id-crust-error"
                onblur="checkCrust()"
@@ -204,16 +205,15 @@
                name="crust"
                type="radio"
                value="Deep Dish"
-               aria-describedby="id-deep-fee"
-               required="true"
                aria-invalid="false"
+               aria-describedby="id-deep-fee"
                aria-errormessage="id-crust-error"
                onblur="checkCrust()"
                onChange='priceChange()'>
            Deep Dish
         </label>
       </div>
-
+      <div class="instruction" id="id-deep-fee">$1.50 extra for deep dish</div>
     </fieldset>
 
     <fieldset>
@@ -318,11 +318,11 @@
       <tbody>
         <tr>
           <th><kbd>Tab</kbd></th>
-          <td>Switch to next input/checkbox region</td>
+          <td>Next input control form</td>
         </tr>
         <tr>
           <th><kbd>Shift</kbd> + <kbd>Tab</kbd></th>
-          <td>Switch to previous input/checkbox region</td>
+          <td>Previous input control form</td>
         </tr>
       </tbody>
     </table>
@@ -335,7 +335,7 @@
         <tr>
           <th scope="col">Role</th>
           <th scope="col">Attribute</th>
-          <th scope="col">Element</th>
+          <th scope="col">Elements</th>
           <th scope="col">Usage</th>
         </tr>
       </thead>
@@ -350,11 +350,13 @@
               <li><code>input[id=<q>id-name</q>]</code></li>
               <li><code>input[id=<q>id-address</q>]</code></li>
               <li><code>input[id=<q>id-phone</q>]</code></li>
-              <li><code>select[id=<q>id-crust</q>]</code></li>
+              <li><code>select[id=<q>id-delivery</q>]</code></li>
+              <li><code>input[id=<q>id-small</q>]</code></li>
+              <li><code>input[id=<q>id-thin</q>]</code></li>
             </ul>
           </td>
           <td>
-              Identifies the input control is required for form submission.
+              Identifies the input control as required for form submission.
           </td>
         </tr>
         <tr>
@@ -366,12 +368,18 @@
             <ul>
               <li><code>input[id=<q>id-name</q>]</code></li>
               <li><code>input[id=<q>id-address</q>]</code></li>
-              <li><code>select[id=<q>id-crust</q>]</code></li>
-              <li><code>select[id=<q>id-crust</q>]</code></li>
+              <li><code>input[id=<q>id-phone</q>]</code></li>
+              <li><code>select[id=<q>id-delivery</q>]</code></li>
+              <li><code>input[id=<q>id-small</q>]</code></li>
+              <li><code>input[id=<q>id-medium</q>]</code></li>
+              <li><code>input[id=<q>id-large</q>]</code></li>
+              <li><code>input[id=<q>id-thin</q>]</code></li>
+              <li><code>input[id=<q>id-clasic</q>]</code></li>
+              <li><code>input[id=<q>id-deep</q>]</code></li>
             </ul>
           </td>
           <td>
-            Identifies the current value of the form controls is valid or the form control has not received keyboard focus (e.g. no user interaction with control).
+            Identifies the current value of the form controls as valid or the form control has not received keyboard focus (e.g. no user interaction with control).
           </td>
         </tr>
         <tr>
@@ -384,28 +392,17 @@
               <li><code>input[id=<q>id-name</q>]</code></li>
               <li><code>input[id=<q>id-address</q>]</code></li>
               <li><code>input[id=<q>id-phone</q>]</code></li>
-              <li><code>select[id=<q>id-crust</q>]</code></li>
+              <li><code>select[id=<q>id-delivery</q>]</code></li>
+              <li><code>input[id=<q>id-small</q>]</code></li>
+              <li><code>input[id=<q>id-medium</q>]</code></li>
+              <li><code>input[id=<q>id-large</q>]</code></li>
+              <li><code>input[id=<q>id-thin</q>]</code></li>
+              <li><code>input[id=<q>id-clasic</q>]</code></li>
+              <li><code>input[id=<q>id-deep</q>]</code></li>
             </ul>
           </td>
           <td>
-            Identifies the current value for the form control is invalid.
-          </td>
-        </tr>
-        <tr>
-          <td></td>
-          <th scope="row">
-            <code>aria-invalid=<q>false</q></code>
-          </th>
-          <td>
-            <ul>
-              <li><code>input[id=<q>id-name</q>]</code></li>
-              <li><code>input[id=<q>id-address</q>]</code></li>
-              <li><code>input[id=<q>id-phone</q>]</code></li>
-              <li><code>select[id=<q>id-crust</q>]</code></li>
-            </ul>
-          </td>
-          <td>
-            Identifies the current value for the form control is invalid.
+            Identifies the current value for the form control as invalid.
           </td>
         </tr>
         <tr>
@@ -418,11 +415,17 @@
               <li><code>input[id=<q>id-name</q>]</code></li>
               <li><code>input[id=<q>id-address</q>]</code></li>
               <li><code>input[id=<q>id-phone</q>]</code></li>
-              <li><code>select[id=<q>id-crust</q>]</code></li>
+              <li><code>select[id=<q>id-delivery</q>]</code></li>
+              <li><code>input[id=<q>id-small</q>]</code></li>
+              <li><code>input[id=<q>id-medium</q>]</code></li>
+              <li><code>input[id=<q>id-large</q>]</code></li>
+              <li><code>input[id=<q>id-thin</q>]</code></li>
+              <li><code>input[id=<q>id-clasic</q>]</code></li>
+              <li><code>input[id=<q>id-deep</q>]</code></li>
             </ul>
           </td>
           <td>
-            Identifies the <code>id</code> of the visible element on the page with the error message.
+            Identifies the <code>id</code> of the visible element on the page with the error message associated with each control.
           </td>
         </tr>
         <tr>
@@ -432,13 +435,18 @@
           </th>
           <td>
             <ul>
-              <li><code>sub[id=<q>id-x-cheese-fee</q>]</code></li>
-              <li><code>sub[id=<q>id-deep-fee</q>]</code></li>
-              <li><code>sub[id=<q>id-delivery-fee</q>]</code></li>
+              <li><code>input[id=<q>id-name</q>]</code></li>
+              <li><code>input[id=<q>id-address</q>]</code></li>
+              <li><code>input[id=<q>id-phone</q>]</code></li>
+              <li><code>select[id=<q>id-delivery</q>]</code></li>
+              <li><code>input[id=<q>id-deep</q>]</code></li>
+              <li><code>input[id=<q>id-sausage</q>]</code></li>
+              <li><code>input[id=<q>id-black</q>]</code></li>
+              <li><code>input[id=<q>id-x-cheese</q>]</code></li>
             </ul>
           </td>
           <td>
-            Define the information of the visible element on the page.
+            Identifies the <code>id</code> instructional information of the visible element on the page with the associated control.
           </td>
         </tr>
         <tr>
@@ -449,12 +457,14 @@
               <li><code>span[id=<q>id-name-error</q>]</code></li>
               <li><code>span[id=<q>id-address-error</q>]</code></li>
               <li><code>span[id=<q>id-phone-error</q>]</code></li>
-              <li><code>span[id=<q>id-crust-error</q>]</code></li>
+              <li><code>span[id=<q>id-delivery-error</q>]</code></li>
+              <li><code>div[id=<q>id-size-error</q>]</code></li>
+              <li><code>div[id=<q>id-crust-error</q>]</code></li>
             </ul>
           </td>
           <td>
             <ul>
-              <li>The use of <code>role=<q>status</q></code> live region will automaticall </li>
+              <li>The use of <code>role=<q>status</q></code> live region will signal screen readers to automatically announce error messages.</li>
               <li>The <code>role=<q>status</q></code> by default sets <code>aria-live</code> property to <code>polite</code>, so the change will not disrupt what is being spoke, but just add to the content of what is being spoken.</li>
           </td>
         </tr>
