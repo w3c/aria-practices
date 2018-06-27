@@ -1,0 +1,74 @@
+ul[role="tree"] {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 120%;
+}
+
+[role="treeitem"].doc:before {
+    content: url(../images/file.png);
+}
+
+[role="treeitem"][aria-expanded="false"] > ul {
+  display: none;
+}
+
+[role="treeitem"][aria-expanded="true"] > ul {
+  display: block;
+}
+
+[role="treeitem"][aria-expanded="false"] > span:before {
+  content: url(../images/closed.png);
+}
+
+[role="treeitem"][aria-expanded="true"] > span:before {
+  content: url(../images/open.png);
+}
+
+[role="treeitem"],
+[role="treeitem"] span {
+  margin: 0;
+  padding: 0;
+  border: 2px transparent solid;
+  border-radius: 5px;
+  padding: 0.125em;
+  display: block;
+}
+
+/* disable default keyboard focus styling for treeitems
+   Keyboard focus is styled with the following CSS */
+[role="treeitem"]:focus {
+  outline: 0;
+}
+
+
+[role="treeitem"].focus,
+[role="treeitem"] span.focus {
+  border-color: hsl(216, 94%, 73%);
+  background-color: hsl(216, 80%, 97%);
+  width: 9em;
+}
+
+[role="treeitem"].hover,
+[role="treeitem"] span:hover {
+  background-color: hsl(216, 80%, 92%);;
+  width: 9em;
+}
+
+[aria-selected="true"] {
+  border-color: #EEE;
+  background-color: #EEE;
+  width:9em;
+}
+
+[aria-selected="true"]:after {
+  content: '*';
+}
+
+#ex1-container{
+  display:flex;
+  justify-content:space-between;
+}
+#tree_label, #tree_box, p {
+  margin-top:0px;
+}
