@@ -7,7 +7,7 @@
 *   Desc:   Supports initialization and validation of the pizza ordering form example
 */
 
-function initPizzaForm() {
+function initPizzaForm () {
   var radios = document.querySelectorAll('[type=\'radio\']');
   var checkbox = document.querySelectorAll('[type=\'checkbox\']');
 
