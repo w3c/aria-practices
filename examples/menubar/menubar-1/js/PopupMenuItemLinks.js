@@ -114,7 +114,6 @@ MenuItem.prototype.handleKeydown = function (event) {
       break;
 
     case this.keyCode.RIGHT:
-      console.log('[MenuItem][handleKeydown]: ' + this.menu.controller.isMenubarItem);
       if (this.popupMenu) {
         this.popupMenu.open();
         this.popupMenu.setFocusToFirstItem();
