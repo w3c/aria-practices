@@ -65,7 +65,7 @@ MenubarAction.prototype.init = function (actionManager) {
   var menubarItem, childElement, menuElement, textContent, numItems;
 
   this.actionManager = actionManager;
-
+  console.log(this.domNode);
   this.domNode.setAttribute('role', 'menubar');
 
   // Traverse the element children of menubarNode: configure each with

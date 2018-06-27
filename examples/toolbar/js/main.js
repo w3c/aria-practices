@@ -10,4 +10,5 @@
 window.addEventListener('load', function () {
   var ex1 = document.getElementById('ex1');
   var ex1Toolbar = new aria.Toolbar(ex1.querySelector('[role="toolbar"]'));
+  ex1Toolbar.init();
 });
