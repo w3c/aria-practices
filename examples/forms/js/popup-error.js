@@ -7,11 +7,85 @@
 *   Desc:   Supports initialization and validation of the pizza ordering form
 */
 
-function initPizzaForm () {
-  var radios = document.querySelectorAll('[type=\'radio\']');
-  var checkbox = document.querySelectorAll('[type=\'checkbox\']');
+var cardOptions = [
+  {
+    'id': 'InvalidCardType',
+    'name': 'Choose Your Card Type',
+    'digitFormat': '--',
+    'digitLength': null,
+    'secureCodeFormat': '--',
+    'secureCodeLength': null,
+    'numberMessage': 'You have not choose your card type yet!',
+    'secureMessage': 'You have not choose your card type yet!',
+    'numberLabel': '',
+    'secureLabel': ''
+  },
+  {
+    'id': 'masterCard',
+    'name': 'MasterCard',
+    'digitFormat': '0000 0000 0000 0000',
+    'digitLength': 16,
+    'secureCodeFormat': '000',
+    'secureCodeLength': 3,
+    'numberMessage': 'For MasterCard, the length of your card number should be 16 digit.',
+    'secureMessage': 'For MasterCard, your secure code should be 3 digit numbers.',
+    'numberLabel': '16 digit card numbers',
+    'secureLabel': '3 digit secure codes'
+  },
+  {
+    'id': 'visa',
+    'name': 'VISA',
+    'digitFormat': '0000 0000 0000 0000',
+    'digitLength': 16,
+    'secureCodeFormat': '000',
+    'secureCodeLength': 3,
+    'numberMessage': 'For VISA, the length of your card number should be 16 digit.',
+    'secureMessage': 'For VISA, your secure code should be 3 digit numbers.',
+    'numberLabel': '16 digit card numbers',
+    'secureLabel': '3 digit secure codes'
+  },
+  {
+    'id': 'americanExpress',
+    'name': 'American Express',
+    'digitFormat': '00000 00000 00000',
+    'digitLength': 15,
+    'secureCodeFormat': '0000',
+    'secureCodeLength': 4,
+    'numberMessage': 'For American Express, the length of your card number should be 15.',
+    'secureMessage': 'For American Express, your secure code should be 4 digit numbers.',
+    'numberLabel': '15 digit card numbers',
+    'secureLabel': '4 digit secure codes'
+  },
+  {
+    'id': 'diners',
+    'name': 'Diner\'s Club',
+    'digitFormat': '0000 0000 0000 00',
+    'digitLength': 14,
+    'secureCodeFormat': '000',
+    'secureCodeLength': 3,
+    'numberMessage': 'For Diner\'s Club, the length of your card number should be 14 digit.',
+    'secureMessage': 'For Diner\'s Club, your secure code should be 3 digit numbers.',
+    'numberLabel': '16 digit card numbers',
+    'secureLabel': '3 digit secure codes'
+  }
+];
 
-  console.log(radios.length);
+function initCreditCardOptions () {
+  var select = document.getElementById('id-card');
+
+  for (var i = 0; i < cardOptions.length; i++) {
+    var option = document.createElement('option');
+
+    option.text = cardOptions[i].name;
+    option.id = cardOptions[i].id;
+    select.add(option);
+  }
+}
+
+function initRadioAndCheckboxFocusStyling () {
+  var radios = document.querySelectorAll('[type="radio"]');
+  var checkbox = document.querySelectorAll('[type="checkbox"]');
+
   for (var i = 0; i < radios.length; i++) {
     radios[i].addEventListener('focus', function () {
       this.parentNode.classList.add('focus');
@@ -44,7 +118,9 @@ function initPizzaForm () {
   }
 }
 
-window.addEventListener('load', initPizzaForm);
+window.addEventListener('load', initRadioAndCheckboxFocusStyling);
+window.addEventListener('load', initCreditCardOptions);
+
 
 // Scripting for inline form validation
 function checkItem (id, flag, message) {
@@ -67,7 +143,29 @@ function checkItem (id, flag, message) {
   return flag;
 }
 
-function checkName (isItemEmpty) {
+
+// Scripting for inline form validation
+function checkItem (id, flag, message) {
+  var em = document.getElementById(id + '-error');
+
+  em.innerHTML = '';
+  var ei = document.getElementById(id);
+
+  if (flag) {
+    ei.setAttribute('aria-invalid', true);
+    em.innerHTML = message;
+    em.classList.remove('noerror');
+    em.classList.add('error');
+  }
+  else {
+    ei.setAttribute('aria-invalid', false);
+    em.classList.add('noerror');
+    em.classList.remove('error');
+  }
+  return flag;
+}
+
+function validateName (isItemEmpty) {
   if (typeof isItemEmpty !== 'boolean') {
     isItemEmpty = false;
   }
@@ -80,7 +178,7 @@ function checkName (isItemEmpty) {
   return false;
 }
 
-function checkAddress (isItemEmpty) {
+function validateAddress (isItemEmpty) {
   if (typeof isItemEmpty !== 'boolean') {
     isItemEmpty = false;
   }
@@ -93,7 +191,7 @@ function checkAddress (isItemEmpty) {
   return false;
 }
 
-function checkPhone (isItemEmpty) {
+function validatePhone (isItemEmpty) {
   if (typeof isItemEmpty !== 'boolean') {
     isItemEmpty = false;
   }
@@ -120,7 +218,7 @@ function checkPhone (isItemEmpty) {
   return false;
 }
 
-function checkDeliveryMethod (isItemEmpty) {
+function validateDeliveryMethod (isItemEmpty) {
   if (typeof isItemEmpty !== 'boolean') {
     isItemEmpty = false;
   }
@@ -135,7 +233,7 @@ function checkDeliveryMethod (isItemEmpty) {
   return false;
 }
 
-function checkSize (isItemEmpty) {
+function validateSize (isItemEmpty) {
   if (typeof isItemEmpty !== 'boolean') {
     isItemEmpty = false;
   }
@@ -157,7 +255,7 @@ function checkSize (isItemEmpty) {
   return false;
 }
 
-function checkCrust (isItemEmpty) {
+function validateCrust (isItemEmpty) {
   if (typeof isItemEmpty !== 'boolean') {
     isItemEmpty = false;
   }
@@ -179,6 +277,185 @@ function checkCrust (isItemEmpty) {
   return false;
 }
 
+function setCardType () {
+  var ei = document.getElementById('id-card');
+  var str = ei.options[ei.selectedIndex].value;
+  var cardNumber = document.getElementById('id-card-number-inst');
+  var secureCode = document.getElementById('id-card-secure-code-inst');
+
+  for (var card in cardOptions) {
+    if (str === cardOptions[card].name) {
+      cardNumber.innerHTML = cardOptions[card].digitFormat;
+      secureCode.innerHTML = cardOptions[card].secureCodeFormat;
+      cardNumber.setAttribute('aria-label', cardOptions[card].numberLabel);
+      secureCode.setAttribute('aria-label', cardOptions[card].secureLabel);
+      if (document.getElementById('id-number-error').classList.contains('error')) {
+        checkItem('id-number', (str === cardOptions[card].name), cardOptions[card].numberMessage);
+      }
+      if (document.getElementById('id-secure-error').classList.contains('error')) {
+        checkItem('id-secure',(str === cardOptions[card].name), cardOptions[card].secureMessage);
+      }
+    }
+  }
+}
+
+function validateCardType (testForEmpty) {
+  if (typeof testForEmpty !== 'boolean') {
+    testForEmpty = false;
+  }
+
+  var ei = document.getElementById('id-card');
+  var str = ei.options[ei.selectedIndex].value;
+
+  if (testForEmpty) {
+    for (var card in cardOptions) {
+      if (cardOptions[card].id === 'InvalidCardType') {
+        return checkItem('id-card', (str === cardOptions[card].name), cardOptions[card].numberMessage);
+      }
+    }
+  }
+}
+
+function validateCardName (testForEmpty) {
+  if (typeof testForEmpty !== 'boolean') {
+    testForEmpty = false;
+  }
+  var ei = document.getElementById('id-card-name');
+
+  if (testForEmpty) {
+    return checkItem('id-card-name',(ei.value.length === 0), 'Name cannot be empty!');
+  }
+  if (ei.value.length !== 0) {
+    return checkItem('id-card-name', false, '');
+  }
+}
+
+function validateCardNumber (testForEmpty) {
+  if (typeof testForEmpty !== 'boolean') {
+    testForEmpty = false;
+  }
+  var ei = document.getElementById('id-card-number');
+  var cardType = document.getElementById('id-card').value;
+  var number = ei.value;
+  var cardOption = cardOptions[0];
+
+  for (var card in cardOptions) {
+    if (cardType === cardOptions[card].name) {
+      cardOption = cardOptions[card];
+      break;
+    }
+  }
+
+  var str = '';
+  var digitCount = 0;
+
+  if (testForEmpty) {
+    return checkItem('id-card-number', (number.length === 0), 'Card Number Cannot be Empty!');
+  }
+  if (number.length !== 0) {
+    n = '';
+    for (var i = 0; i < number.length; i++) {
+      var c = number[i];
+
+      if ((c >= '0') && (c <= '9')) {
+        n += c;
+        str += c;
+        digitCount += 1;
+        if ((cardOption.digitLength === 16 && digitCount === 4) ||
+            (cardOption.digitLength === 15 && digitCount === 5) ||
+            (cardOption.digitLength === 14 && digitCount === 4)) {
+          str += ' ';
+          digitCount = 0;
+        }
+      }
+      ei.value = str;
+    }
+
+    return checkItem('id-card-number', (n.length !== cardOption.digitLength), cardOption.numberMessage);
+  }
+}
+
+function validateCardSecureCode (testForEmpty) {
+  if (typeof testForEmpty !== 'boolean') {
+    testForEmpty = false;
+  }
+  var ei = document.getElementById('id-card-secure');
+  var cardType = document.getElementById('id-card').value;
+  var secure = ei.value;
+
+  s = '';
+  if (testForEmpty) {
+    return checkItem('id-card-secure', (secure.length === 0), 'Secure Code Cannot be Empty!');
+  }
+  if (secure.length !== 0) {
+    for (var i = 0; i < secure.length; i++) {
+      var c = secure[i];
+
+      if ((c >= '0') && (c <= '9')) {
+        s += c;
+      }
+    }
+    for (var card in cardOptions) {
+      if (cardType === cardOptions[card].name) {
+        return checkItem('id-card-secure', (s.length !== cardOptions[card].secureCodeLength), cardOptions[card].secureMessage);
+      }
+    }
+  }
+}
+
+function validateCardDate (testForEmpty) {
+  if (typeof testForEmpty !== 'boolean') {
+    testForEmpty = false;
+  }
+
+  var ei = document.getElementById('id-card-date');
+  var date = ei.value;
+
+  if (date.length !== 0) {
+    d = '';
+    for (var i = 0; i < date.length; i++) {
+      var c = date[i];
+
+      if ((c >= '0') && (c <= '9')) {
+        d += c;
+      }
+    }
+    return checkItem('id-card-date', ((d.length !== 6)), 'The format of expiration date should be MM/YYYY');
+  }
+  if (testForEmpty) {
+    return checkItem('id-card-date', date.length === 0, 'Expiration date cannot be empty!');
+  }
+}
+
+function validateCardAddress (testForEmpty) {
+  if (typeof testForEmpty !== 'boolean') {
+    testForEmpty = false;
+  }
+  var ei = document.getElementById('id-card-address');
+
+  if (testForEmpty) {
+    return checkItem('id-card-address',(ei.value.length === 0), 'Address cannot be empty! ');
+  }
+  if (ei.value.length !== 0) {
+    return checkItem('id-card-address', false, '');
+  }
+}
+
+function validateCardZipCode (testForEmpty) {
+  if (typeof testForEmpty !== 'boolean') {
+    testForEmpty = false;
+  }
+  var ei = document.getElementById('id-card-zipcode');
+  var zip = ei.value;
+
+  if (zip.length !== 0) {
+    return checkItem('id-card-zipcode', (zip.length !== 5), 'The format of Zip Code should be 5 digit numbers.');
+  }
+  if (testForEmpty) {
+    return checkItem('id-card-zipcode', zip.length === 0, 'Please enter 5 digit zip code');
+  }
+}
+
 function submitOrder () {
   function getRadioValue (name) {
     var radioes = document.getElementsByName(name);
@@ -196,12 +473,20 @@ function submitOrder () {
   }
 
   // Check all fields
-  var nameInvalid = checkName(true);
-  var addressInvalid = checkAddress(true);
-  var phoneInvalid = checkPhone(true);
-  var methodInvalid = checkDeliveryMethod(true);
-  var sizeInvalid = checkSize(true);
-  var crustInvalid = checkCrust(true);
+  var nameInvalid    = validateName(true);
+  var addressInvalid = validateAddress(true);
+  var phoneInvalid   = validatePhone(true);
+  var methodInvalid  = validateDeliveryMethod(true);
+  var sizeInvalid    = validateSize(true);
+  var crustInvalid   = validateCrust(true);
+
+  var cardInvalid        = validateCardType(true);
+  var cardNameInvalid    = validateCardName(true);
+  var cardNumberInvalid  = validateCardNumber(true);
+  var cardSecureInvalid  = validateCardSecureCode(true);
+  var cardDateInvalid    = validateCardDate(true);
+  var cardAddressInvalid = validateCardAddress(true);
+  var cardZipCodeInvalid = validateCardZipCode(true);
 
   if (nameInvalid) {
     document.getElementById('id-name').focus();
@@ -220,6 +505,27 @@ function submitOrder () {
   }
   else if (crustInvalid) {
     document.getElementById('id-thin').focus();
+  }
+  if (cardInvalid) {
+    document.getElementById('id-card').focus();
+  }
+  else if (cardNameInvalid) {
+    document.getElementById('id-card-name').focus();
+  }
+  else if (cardNumberInvalid) {
+    document.getElementById('id-card-number').focus();
+  }
+  else if (cardSecureInvalid) {
+    document.getElementById('id-card-secure').focus();
+  }
+  else if (cardDateInvalid) {
+    document.getElementById('id-card-date').focus();
+  }
+  else if (cardAddressInvalid) {
+    document.getElementById('id-card-address').focus();
+  }
+  else if (cardZipCodeInvalid) {
+    document.getElementById('id-card-zipcode').focus();
   }
   else {
     var str = 'Pizza Order Summary\n\n';
@@ -258,6 +564,16 @@ function submitOrder () {
       }
     }
     str += messageItem('Cost', document.getElementById('id-total-cost').value);
+
+    str + '\nCredit Card Information\n\n';
+
+    str += messageItem('Card', document.getElementById('id-card').value);
+    str += messageItem('Name', document.getElementById('id-card-name').value);
+    str += messageItem('Number', document.getElementById('id-card-number').value);
+    str += messageItem('Security Code', document.getElementById('id-card-secure').value);
+    str += messageItem('Expiration Date', document.getElementById('id-card-date').value);
+    str += messageItem('Billing Address', document.getElementById('id-card-address').value);
+    str += messageItem('Billing Zip Code', document.getElementById('id-card-zipcode').value);
 
     alert(str);
   }
