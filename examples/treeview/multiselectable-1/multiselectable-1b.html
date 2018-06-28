@@ -655,6 +655,12 @@
             </tr>
             <tr>
               <td></td>
+              <th scope="row"><code>aria-multiselectable=&quot;true&quot;</code></th>
+              <td><code>ul</code></td>
+              <td>Identifies that more than one <code>treeitem</code> in the <code>tree</code> widget can be selected.</td>
+            </tr>
+            <tr>
+              <td></td>
               <th scope="row"><code>aria-labelledby=&quot;IDREF&quot;</code></th>
               <td><code>ul</code></td>
               <td>Refers to the heading element that contains the label that identifies the purpose of the <code>tree</code>.</td>
@@ -711,8 +717,21 @@
               <td>
               <ul>
                   <li>Applied only to <code>treeitem</code> elements that are parent nodes, i.e., they contain a <code>ul</code> with the <code>group</code> role.</li>
-                  <li>Indicates the parent node is open, i.e., the descendant elements <strong>are</strong> visible.</li>
+                  <li>Indicates the parent node is open, i.e., the descendant elements are visible.</li>
                   <li>The visual indication of the expanded state is synchronized by a CSS attribute selecter.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <th scope="row"><code>aria-selected=&quot;false&quot;</code></th>
+              <td><code>li</code></td>
+              <td>
+                <ul>
+                  <li>Applied only to <code>treeitem</code> elements that are end nodes, i.e., has no child <code>treeitem</code> elements.</li>
+                  <li>Indicates the item is <strong>not</strong> selected.</li>
+                  <li>The visual indication of the selected state is synchronized by a CSS attribute selector.</li>
+                  <li>NOTE:
                 </ul>
               </td>
             </tr>
@@ -722,9 +741,9 @@
               <td><code>li</code></td>
               <td>
                 <ul>
-                  <li>Applied only to <code>treeitem</code> elements that are child nodes, i.e., they are exist inside of <code>ul</code> element with the <code>group</code> role and does not have any child nodes.</li> <!--last edit-->
-                  <li>Indicates the item <strong>is</strong> selected </li>
-                  <li>The visual indication of the collapsed state is synchronized by a CSS attribute selecter.</li>
+                  <li>Applied only to <code>treeitem</code> elements that are child nodes, i.e., has no child <code>treeitem</code> elements.</li>
+                  <li>Indicates the item is selected.</li>
+                  <li>The visual indication of the selected state is synchronized by a CSS attribute selector.</li>
                 </ul>
               </td>
             </tr>
