@@ -2,10 +2,10 @@
 *   This content is licensed according to the W3C Software License at
 *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
 *
-*   File:   tree-3b.js
+*   File:   Tree.js
 *
 *   Desc:   Tree widget that implements ARIA Authoring Practices
-*           for a tree being used as a file selector
+*           for a tree being used as a file viewer
 */
 
 /**
@@ -13,7 +13,6 @@
  * @function onload
  * @desc  after page has loaded initialize all treeitems based on the role=treeitem
  */
-
 window.addEventListener('load', function () {
 
   var trees = document.querySelectorAll('[role="tree"]');
@@ -85,6 +84,7 @@ Tree.prototype.init = function () {
   this.firstTreeitem.domNode.tabIndex = 0;
 
   this.updateSelectedFilesInformation();
+
 };
 
 Tree.prototype.setFocusToItem = function (treeitem) {
@@ -102,7 +102,7 @@ Tree.prototype.setFocusToItem = function (treeitem) {
   }
 
 };
-
+// ------------------------------------------------------********-------------------------------------------------
 Tree.prototype.updateSelectedFilesInformation = function () {
   var count = 0;
   var nodeFileInfo  = document.getElementById('id_selected_file_information');
@@ -132,7 +132,6 @@ Tree.prototype.updateSelectedFilesInformation = function () {
 };
 
 Tree.prototype.setSelectToItem = function (treeitem) {
-
   for (var i = 0;i < this.treeitems.length;i++) {
     var ti = this.treeitems[i];
     if (ti === treeitem) {
@@ -149,11 +148,8 @@ Tree.prototype.setSelectToItem = function (treeitem) {
       ti.domNode.tabIndex = -1;
     }
   }
-
   this.updateSelectedFilesInformation();
-
 };
-
 Tree.prototype.setSelectToNextItem = function (currentItem) {
   var nextItem = false;
   for (var i = (this.treeitems.length - 1); i >= 0;i--) {
@@ -210,8 +206,6 @@ Tree.prototype.selectContiguousKeys = function (currentItem) {
       break;
     }
   }
-  console.log(selectPos);
-  console.log(curPos);
   this.setSelectToItem(currentItem);
   if (selectPos > curPos) {
     for (var i = curPos;i < selectPos;i++) {
@@ -225,7 +219,6 @@ Tree.prototype.selectContiguousKeys = function (currentItem) {
   }
 };
 
-
 Tree.prototype.selectAllTrue = function () {
   for (var i = 0;i < this.treeitems.length;i++) {
     var ti = this.treeitems[i];
@@ -235,7 +228,6 @@ Tree.prototype.selectAllTrue = function () {
   }
   this.updateSelectedFilesInformation();
 };
-
 Tree.prototype.selectAllFalse = function (treeitem) {
   for (var i = 0;i < this.treeitems.length;i++) {
     var ti = this.treeitems[i];
@@ -277,9 +269,8 @@ Tree.prototype.selectToFirst = function (currentItem) {
       curPos = i;
     }
   }
-  console.log(curPos);
   for (var j = curPos;j > 0;j--) {
-    if (this.treeitems[j].domNode.className === 'doc') {
+    if (this.treeitems[j].domNode.hasAttribute('aria-selected')) {
       this.setSelectToItem(this.treeitems[j]);
     }
   }
@@ -294,7 +285,7 @@ Tree.prototype.selectToLast = function (currentItem) {
     }
   }
   for (var j = curPos;j < this.treeitems.length;j++) {
-    if (this.treeitems[j].domNode.className === 'doc') {
+    if (this.treeitems[j].domNode.hasAttribute('aria-selected')) {
       this.setSelectToItem(this.treeitems[j]);
     }
   }
@@ -309,7 +300,6 @@ Tree.prototype.expandAllTreeitem = function (currentItem) {
   }
 };
 
-// ------------------------------------------------------********-------------------------------------------------
 Tree.prototype.setFocusToNextItem = function (currentItem) {
 
   var nextItem = false;
