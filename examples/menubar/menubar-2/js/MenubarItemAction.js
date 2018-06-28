@@ -58,7 +58,7 @@ var MenubarItemAction = function (domNode, menuObj) {
 
 MenubarItemAction.prototype.init = function () {
   this.domNode.tabIndex = -1;
-  console.log(this.domNode);
+  console.log(this);
   this.domNode.addEventListener('keydown', this.handleKeydown.bind(this));
   this.domNode.addEventListener('click', this.handleClick.bind(this));
   this.domNode.addEventListener('focus', this.handleFocus.bind(this));

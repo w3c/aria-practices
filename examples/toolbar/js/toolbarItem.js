@@ -1,5 +1,5 @@
-var toolbarItem = function (domNode, toolObj) {
-    this.toolObj = toolObj; 
+var ToolbarItem = function (domNode, toolObj) {
+    this.toolbar = toolObj; 
     this.domNode = domNode; 
 
 
@@ -19,10 +19,36 @@ var toolbarItem = function (domNode, toolObj) {
     });
 }; 
 
-toolbarItem.prototype.init = function () {
-    this.domNode.tabIndex = -1;
+ToolbarItem.prototype.init = function () {
     console.log(this.domNode);
+    this.domNode.tabIndex = -1;
+    console.log(this);
     this.domNode.addEventListener('keydown', this.handleKeyDown.bind(this));
     this.domNode.addEventListener('click', this.handleClick.bind(this));
 };
 
+ToolbarItem.prototype.handleKeyDown = function (event){
+    var tgt = event.currenttarget, 
+        char = event.key,
+        flag = false,
+        clickEvent; 
+        function isPrintableCharacter (str) {
+            return str.length === 1 && str.match(/\S/);
+        }
+
+        switch (event.keyCode) {
+            case this.keyCode.SPACE:
+            case this.keyCode.RETURN:
+            
+                break;
+
+            case this.keyCode.LEFT: 
+                this.toolbar.setFocusToNext(this);
+                flag = true;
+                break;
+
+        }
+};
+ToolbarItem.prototype.handleClick = function () {
+
+};

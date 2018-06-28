@@ -71,10 +71,10 @@ MenubarAction.prototype.init = function (actionManager) {
   // Traverse the element children of menubarNode: configure each with
   // menuitem role behavior and store reference in menuitems array.
   e = this.domNode.firstElementChild;
-
+  console.log(e);
   while (e) {
     var menuElement = e.firstElementChild;
-
+    console.log(menuElement);
     if (e && menuElement && menuElement.tagName === 'A') {
       menubarItem = new MenubarItemAction(menuElement, this);
       menubarItem.init();

@@ -20,15 +20,34 @@ aria.Toolbar = function (domNode) {
   this.domNode = domNode;
   this.items = this.domNode.querySelectorAll('.toolbar-item');
   this.selectedItem = this.domNode.querySelector('.selected');
-  if(this.items.length>0){
-    this.firstItem = this.items[0];
-    this.lastItem = this.items[this.items.length-1];
-  }
+  this.firstItem = null; 
+  this.lastItem = null; 
+  this.toolbarItems = []; 
   console.log(this.domNode);
   console.log(this.items);
   // this.registerEvents();
 };
 
+
+aria.Toolbar.prototype.init = function() {
+  var toolbarItem;
+  e = this.domNode.firstElementChild; 
+  console.log(e);
+  while(e){
+    var toolbarElement = e;
+    console.log(toolbarElement);
+    if(toolbarElement.classList.contains('toolbar-item')){
+      toolbarItem = new ToolbarItem(toolbarElement, this);
+      toolbarItem.init();
+      this.toolbarItems.push(toolbarItem);
+    }
+    e = e.nextElementSibling;
+  }
+  if(this.items.length>0){
+    this.firstItem = this.items[0];
+    this.lastItem = this.items[this.items.length-1];
+  }
+};
 
 // /**
 //  * @desc
@@ -135,6 +154,8 @@ aria.Toolbar.prototype.focusItem = function (element) {
   element.tabIndex = 0;
 };
 aria.Toolbar.prototype.setFocusToNext = function (currentItem) {
+  console.log(currentItem);
+  console.log(this.items);
     var index, newItem;
     if(currentItem === this.lastItem) {
       newItem = this.firstItem;
