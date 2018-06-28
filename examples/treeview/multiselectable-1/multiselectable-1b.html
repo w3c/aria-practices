@@ -33,7 +33,7 @@
         The below example implements the
         <a href="../../../#TreeView">Treeview Design Pattern</a>
         to simulate the selection of multiple files.
-        When users select or unselect an item that represents a file name in the tree widget below, the list of current set of selected files appears in a read-only textarea field next to the tree widget.  This example sets <code>aria-selected=<q>true</q></code> when a file is selected and sets the <code>aria-selected=<q>false</q></code> property when the file is not selected.
+        When users select or unselect an item that represents a file name in the tree widget below, the list of current set of selected files appears in a read-only textarea field next to the tree widget.  The <code>aria-multiselectable=<q>true</q></code> property is added to the the element with <code>role=<q>tree</q></code> to indicate that more than one item in the tree can be selected by the user.  This example sets <code>aria-selected=<q>true</q></code> when a file is selected and sets the <code>aria-selected=<q>false</q></code> property when the file is not selected.
       </p>
       </p>
       <p>
