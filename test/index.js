@@ -44,12 +44,13 @@ test.after.always(() => {
  *                          within the demonstration page
  * @param {Function} body - script which implements the test
  */
-const ariaTest = (page, testId, body) => {
+const ariaTest = (desc, page, testId, body) => {
   const absPath = path.resolve(__dirname, '..', 'examples', ...page.split('/'));
   const url = 'file://' + absPath;
   const selector = '[data-test-id="' + testId + '"]';
 
-  test.serial(page + ' ' + selector, async function (t) {
+  const testName = page + ' ' + selector + ": " + desc;
+  test.serial(testName, async function (t) {
     t.context.url = url;
     await t.context.session.get(url);
 
