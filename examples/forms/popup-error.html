@@ -28,6 +28,15 @@
     <p>
       The following pizza ordering form example using standard HTML5 form controls demonstrates how to make required form fields, identifying forms with invalid values, instructional information and popup error messages accessible to screen reader users using the <a href="../../#forms">Form Input Assistance design pattern.</a>
     </p>
+
+    <h2>HTML5 Accessibility Features</h2>
+    <ul>
+      <li>Form <code>input[type=<q>text</q>]</code> and <code>select</code> controls are labeled using the <code>label[for=<q>IDREF</q>]</code> reference technique.</li>
+      <li>Form <code>input[type=<q>radio</q>]</code>, <code>input[type=<q>checkbox</q>]</code> and <code>output</code> controls are labeled using the <code>label</code> encapsulation  technique.</li>
+      <li>The HTML5 <code>required</code> attribute is used to indicate required form controls.</li>
+      <li>The HTML5 <code>disabled</code> attribute is used to indicate disabled form controls.</li>
+    </ul>
+
     <section>
     <h2 id="ex_label">Example</h2>
 
@@ -45,7 +54,7 @@
            aria-invalid="false"
            type="text"
            size="30"
-           onblur="checkName()"
+           onblur="validateName()"
            aria-describedby="id-name-desc"
            aria-errormessage="id-name-error">
       <span id="id-name-error" class="noerror" role="status">
@@ -61,7 +70,7 @@
            aria-invalid="false"
            type="text"
            size="40"
-           onblur="checkAddress()"
+           onblur="validateAddress()"
            aria-describedby="id-address-desc"
            aria-errormessage="id-address-error">
       <span id="id-address-error" class="noerror" role="status">
@@ -77,7 +86,7 @@
            aria-invalid="false"
            type="text"
            size="14"
-           onblur="checkPhone()"
+           onblur="validatePhone()"
            aria-describedby="id-phone-desc"
            aria-errormessage="id-phone-error">
       <span id="id-phone-error" class="noerror" role="status">
@@ -93,7 +102,7 @@
             aria-invalid="false"
             aria-errormessage="id-delivery-error"
             aria-describedby="id-delivery-fee"
-            onblur="checkDeliveryMethod()"
+            onblur="validateDeliveryMethod()"
             onChange='priceChange()'>
         <option id="id-delivery-choose">
           Choose your Method
@@ -127,7 +136,7 @@
                required
                aria-invalid="false"
                aria-errormessage="id-size-error"
-               onblur="checkSize()"
+               onblur="validateSize()"
                onChange='priceChange()'>
            Small 10" - $7.00
         </label>
@@ -140,7 +149,7 @@
                value="Medium"
                aria-invalid="false"
                aria-errormessage="id-size-error"
-               onblur="checkSize()"
+               onblur="validateSize()"
                onChange='priceChange()'>
 
            Medium 12" - $8.50
@@ -154,7 +163,7 @@
                value="Large"
                aria-invalid="false"
                aria-errormessage="id-size-error"
-               onblur="checkSize()"
+               onblur="validateSize()"
                onChange='priceChange()'>
            Large 16" - $10.00
         </label>
@@ -177,7 +186,7 @@
                required
                aria-invalid="false"
                aria-errormessage="id-crust-error"
-               onblur="checkCrust()"
+               onblur="validateCrust()"
                onChange='priceChange()'>
            Thin
         </label>
@@ -190,7 +199,7 @@
                value="Classic"
                aria-invalid="false"
                aria-errormessage="id-crust-error"
-               onblur="checkCrust()"
+               onblur="validateCrust()"
                onChange='priceChange()'>
            Classic
         </label>
@@ -204,7 +213,7 @@
                aria-invalid="false"
                aria-describedby="id-deep-fee"
                aria-errormessage="id-crust-error"
-               onblur="checkCrust()"
+               onblur="validateCrust()"
                onChange='priceChange()'>
            Deep Dish
         </label>
@@ -223,7 +232,7 @@
                name="topping"
                type="checkbox"
                value="Sausage"
-               onChange='priceChange()'
+               onChange="priceChange()"
                aria-describedby="id-cost-desc">
                   Sausage
         </label>
@@ -295,128 +304,130 @@
 
     <div class="cost"><label>Total Cost: <input id="id-total-cost" value="$0"/></label></div>
 
-    <h3>
-      Payment Information
-    </h3>
-    <div class="select">
-      <label for="id-card">
-        Card Type
-      </label>
-      <select id="id-card"
-            required
-            aria-invalid="false"
-            aria-errormessage="id-card-error"
-            onChange="setCardType()"
-            onblur="validateCardType()"
-            >
-      </select>
-      <span id="id-card-error" class="noerror" role="status">
-      </span>
-    </div>
+
+    <fieldset>
+      <legend>Credit Card Information</legend>
+
+      <div class="select" style="margin-top: 0">
+        <label for="id-card">
+          Card Type
+        </label>
+        <select id="id-card"
+              required
+              aria-invalid="false"
+              aria-errormessage="id-card-error"
+              onChange="setCardType()"
+              onblur="validateCardType()"
+              >
+        </select>
+        <span id="id-card-error" class="noerror" role="status">
+        </span>
+      </div>
 
 
-    <div class="text">
-      <label for="id-card-name">
-        Name on Card
-      </label>
-      <input id="id-card-name"
-           required
-           aria-invalid="false"
-           type="text"
-           size="20"
-           aria-errormessage="id-card-name-error"
-           aria-describedby="id-card-name-inst"
-           onblur="validateCardName()">
-      <span id="id-card-name-error" class="noerror" role="status">
-      </span>
-      <div class="instruction" id="id-card-name-inst">Example: John C Doe</div>
-    </div>
+      <div class="text">
+        <label for="id-card-name">
+          Name on Card
+        </label>
+        <input id="id-card-name"
+             disabled
+             aria-invalid="false"
+             type="text"
+             size="20"
+             aria-errormessage="id-card-name-error"
+             aria-describedby="id-card-name-inst"
+             onblur="validateCardName()">
+        <span id="id-card-name-error" class="noerror" role="status">
+        </span>
+        <div class="instruction" id="id-card-name-inst">Example: John C Doe</div>
+      </div>
 
-    <div class="text">
-      <label for="id-card-number">
-        Card Number
-      </label>
-      <input id="id-card-number"
-           required
-           aria-invalid="false"
-           type="text"
-           size="22"
-           aria-errormessage="id-card-number-error"
-           aria-describedby="id-card-number-inst"
-           onblur="validateCardNumber()">
-      <span id="id-card-number-error" class="noerror" role="status">
-      </span>
-      <div class="instruction" id="id-card-number-inst" aria-label="">--</div>
-    </div>
+      <div class="text">
+        <label for="id-card-number">
+          Card Number
+        </label>
+        <input id="id-card-number"
+             disabled
+             aria-invalid="false"
+             type="text"
+             size="22"
+             aria-errormessage="id-card-number-error"
+             aria-describedby="id-card-number-inst"
+             onblur="validateCardNumber()">
+        <span id="id-card-number-error" class="noerror" role="status">
+        </span>
+        <div class="instruction" id="id-card-number-inst" aria-label="">--</div>
+      </div>
 
-    <div class="text">
-      <label for="id-card-secure">
-        Secure Code
-      </label>
-      <input id="id-card-secure"
-           required
-           aria-invalid="false"
-           type="text"
-           size="5"
-           aria-errormessage="id-secure-error"
-           aria-describedby="id-secure-code-inst"
-           onblur="validateCardSecureCode()">
-      <span id="id-card-secure-error" class="noerror" role="status">
-      </span>
-      <div class="instruction" id="id-card-secure-code-inst" aria-label="">--</div>
-    </div>
+      <div class="text">
+        <label for="id-card-secure">
+          Secure Code
+        </label>
+        <input id="id-card-secure"
+             disabled
+             aria-invalid="false"
+             type="text"
+             size="5"
+             aria-errormessage="id-secure-error"
+             aria-describedby="id-secure-inst"
+             onblur="validateCardSecure()">
+        <span id="id-card-secure-error" class="noerror" role="status">
+        </span>
+        <div class="instruction" id="id-card-secure-inst" aria-label="">--</div>
+      </div>
 
-    <div class="text">
-      <label for="id-card-date">
-        Expiration date
-      </label>
-      <input id="id-card-date"
-           required
-           aria-invalid="false"
-           type="text"
-           size="9"
-           aria-errormessage="id-date-error"
-           aria-describedby="id-date-inst"
-           onblur="validateDate()">
-      <span id="id-card-date-error" class="noerror" role="status">
-      </span>
-      <div class="instruction" id="id-card-date-inst" aria-label="2 digit month, slash character, 4 digit year">MM/YYYY</div>
-    </div>
+      <div class="text">
+        <label for="id-card-date">
+          Expiration date
+        </label>
+        <input id="id-card-date"
+             disabled
+             aria-invalid="false"
+             type="text"
+             size="9"
+             aria-errormessage="id-date-error"
+             aria-describedby="id-date-inst"
+             onblur="validateCardDate()">
+        <span id="id-card-date-error" class="noerror" role="status">
+        </span>
+        <div class="instruction" id="id-card-date-inst" aria-label="2 digit month, slash character, 4 digit year">MM/YYYY</div>
+      </div>
 
-    <h3>Billing Information</h3>
-    <div class="text">
-      <label for="id-card-address">
-        Billing Address
-      </label>
-      <input id="id-card-address"
-           required
-           aria-invalid="false"
-           type="text"
-           size="30"
-           onblur="validateAddress()"
-           aria-describedby="id-card-address-inst"
-           aria-errormessage="id-card-address-error">
-      <span id="id-card-address-error" class="noerror" role="status">
-      </span>
-      <div class="instruction" id="id-card-address-inst" >Example: 123 Main Street</div>
-    </div>
+      <div class="text">
+        <label for="id-card-address">
+          Billing Address
+        </label>
+        <input id="id-card-address"
+             disabled
+             aria-invalid="false"
+             type="text"
+             size="30"
+             onblur="validateCardAddress()"
+             aria-describedby="id-card-address-inst"
+             aria-errormessage="id-card-address-error">
+        <span id="id-card-address-error" class="noerror" role="status">
+        </span>
+        <div class="instruction" id="id-card-address-inst" >Example: 123 Main Street</div>
+      </div>
 
-    <div class="text">
-      <label for="id-card-zipcode">
-        Zip Code
-      </label>
-      <input id="id-card-zipcode"
-           required
-           aria-invalid="false"
-           type="text"
-           size="14"
-           onblur="validateZipCode()"
-           aria-describedby="id-card-zipcode-inst"
-           aria-errormessage="id-card-zipcode-error">
-      <span id="id-card-zipcode-error" class="noerror" role="status">
-      </span>
-      <div class="instruction" id="id-card-zipcode-inst" aria-label="enter a 5 digit zipcode">Example: 12345</div>
-    </div>
+      <div class="text">
+        <label for="id-card-zipcode">
+          Zip Code
+        </label>
+        <input id="id-card-zipcode"
+             disabled
+             aria-invalid="false"
+             type="text"
+             size="14"
+             onblur="validateCardZipCode()"
+             aria-describedby="id-card-zipcode-inst"
+             aria-errormessage="id-card-zipcode-error">
+        <span id="id-card-zipcode-error" class="noerror" role="status">
+        </span>
+        <div class="instruction" id="id-card-zipcode-inst" aria-label="enter a 5 digit zipcode">Example: 12345</div>
+      </div>
+
+    </fieldset>
 
     <input type="submit"
      value="Submit Order"
@@ -472,10 +483,43 @@
               <li><code>select[id=<q>id-delivery</q>]</code></li>
               <li><code>input[id=<q>id-small</q>]</code></li>
               <li><code>input[id=<q>id-thin</q>]</code></li>
+              <li><code>input[id=<q>id-card</q>]</code></li>
+              <li><code>input[id=<q>id-card-name</q>]</code></li>
+              <li><code>input[id=<q>id-card-number</q>]</code></li>
+              <li><code>input[id=<q>id-card-secure</q>]</code></li>
+              <li><code>input[id=<q>id-card-date</q>]</code></li>
+              <li><code>input[id=<q>id-card-address</q>]</code></li>
+              <li><code>input[id=<q>id-card-zipcode</q>]</code></li>
             </ul>
           </td>
           <td>
-              Identifies the input control as required for form submission.
+            <ul>
+              <li>Identifies the input control as required for form submission.</li>
+              <li>The HTML5 <code>required</code> attribute is using the native semantics of HTML5 identify the form control as required. The <code>aria-required</code> property should only be used in host languages that do not have native semantics to indicate required controls (e.g SVG).</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <th scope="row">
+            <code>disabled</code>
+          </th>
+          <td>
+            <ul>
+              <li><code>input[id=<q>id-card-name</q>]</code></li>
+              <li><code>input[id=<q>id-card-number</q>]</code></li>
+              <li><code>input[id=<q>id-card-secure</q>]</code></li>
+              <li><code>input[id=<q>id-card-date</q>]</code></li>
+              <li><code>input[id=<q>id-card-address</q>]</code></li>
+              <li><code>input[id=<q>id-card-zipcode</q>]</code></li>
+            </ul>
+          </td>
+          <td>
+            <ul>
+              <li>Identifies the input control as disabled.</li>
+              <li>The controls are enabled when a credit card is selected.</li>
+              <li>The HTML5 <code>disabled</code> attribute is using the native semantics of HTML5 identify the form control as disabled, along with providing the correct behaviors for a disabled control. The <code>aria-disabled</code> property should only be used in host languages that do not have native semantics to indicate disabled controls and associated behaviors (e.g SVG).</li>
+            </ul>
           </td>
         </tr>
         <tr>
@@ -495,10 +539,16 @@
               <li><code>input[id=<q>id-thin</q>]</code></li>
               <li><code>input[id=<q>id-clasic</q>]</code></li>
               <li><code>input[id=<q>id-deep</q>]</code></li>
+              <li><code>input[id=<q>id-card</q>]</code></li>
+              <li><code>input[id=<q>id-card-name</q>]</code></li>
+              <li><code>input[id=<q>id-card-number</q>]</code></li>
+              <li><code>input[id=<q>id-card-secure</q>]</code></li>
+              <li><code>input[id=<q>id-card-date</q>]</code></li>
+              <li><code>input[id=<q>id-card-address</q>]</code></li>
+              <li><code>input[id=<q>id-card-zipcode</q>]</code></li>
             </ul>
           </td>
-          <td>
-            Identifies the current value of the form controls as valid or the form control has not received keyboard focus (e.g. no user interaction with control).
+          <td>Identifies the current value of the form controls as valid or the form control has not received keyboard focus (e.g. no user interaction with control).
           </td>
         </tr>
         <tr>
@@ -518,6 +568,12 @@
               <li><code>input[id=<q>id-thin</q>]</code></li>
               <li><code>input[id=<q>id-clasic</q>]</code></li>
               <li><code>input[id=<q>id-deep</q>]</code></li>
+              <li><code>input[id=<q>id-card-name</q>]</code></li>
+              <li><code>input[id=<q>id-card-number</q>]</code></li>
+              <li><code>input[id=<q>id-card-secure</q>]</code></li>
+              <li><code>input[id=<q>id-card-date</q>]</code></li>
+              <li><code>input[id=<q>id-card-address</q>]</code></li>
+              <li><code>input[id=<q>id-card-zipcode</q>]</code></li>
             </ul>
           </td>
           <td>
@@ -541,6 +597,12 @@
               <li><code>input[id=<q>id-thin</q>]</code></li>
               <li><code>input[id=<q>id-clasic</q>]</code></li>
               <li><code>input[id=<q>id-deep</q>]</code></li>
+              <li><code>input[id=<q>id-card-name</q>]</code></li>
+              <li><code>input[id=<q>id-card-number</q>]</code></li>
+              <li><code>input[id=<q>id-card-secure</q>]</code></li>
+              <li><code>input[id=<q>id-card-date</q>]</code></li>
+              <li><code>input[id=<q>id-card-address</q>]</code></li>
+              <li><code>input[id=<q>id-card-zipcode</q>]</code></li>
             </ul>
           </td>
           <td>
@@ -562,6 +624,12 @@
               <li><code>input[id=<q>id-sausage</q>]</code></li>
               <li><code>input[id=<q>id-black</q>]</code></li>
               <li><code>input[id=<q>id-x-cheese</q>]</code></li>
+              <li><code>input[id=<q>id-card-name</q>]</code></li>
+              <li><code>input[id=<q>id-card-number</q>]</code></li>
+              <li><code>input[id=<q>id-card-secure</q>]</code></li>
+              <li><code>input[id=<q>id-card-date</q>]</code></li>
+              <li><code>input[id=<q>id-card-address</q>]</code></li>
+              <li><code>input[id=<q>id-card-zipcode</q>]</code></li>
             </ul>
           </td>
           <td>
@@ -579,6 +647,12 @@
               <li><code>span[id=<q>id-delivery-error</q>]</code></li>
               <li><code>div[id=<q>id-size-error</q>]</code></li>
               <li><code>div[id=<q>id-crust-error</q>]</code></li>
+              <li><code>span[id=<q>id-card-name-error</q>]</code></li>
+              <li><code>span[id=<q>id-card-number-error</q>]</code></li>
+              <li><code>span[id=<q>id-card-secure-error</q>]</code></li>
+              <li><code>span[id=<q>id-card-date-error</q>]</code></li>
+              <li><code>span[id=<q>id-card-address-error</q>]</code></li>
+              <li><code>span[id=<q>id-card-zipcode-error</q>]</code></li>
             </ul>
           </td>
           <td>

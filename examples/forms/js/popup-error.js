@@ -13,8 +13,8 @@ var cardOptions = [
     'name': 'Choose Your Card Type',
     'digitFormat': '--',
     'digitLength': null,
-    'secureCodeFormat': '--',
-    'secureCodeLength': null,
+    'secureFormat': '--',
+    'secureLength': null,
     'numberMessage': 'You have not choose your card type yet!',
     'secureMessage': 'You have not choose your card type yet!',
     'numberLabel': '',
@@ -25,8 +25,8 @@ var cardOptions = [
     'name': 'MasterCard',
     'digitFormat': '0000 0000 0000 0000',
     'digitLength': 16,
-    'secureCodeFormat': '000',
-    'secureCodeLength': 3,
+    'secureFormat': '000',
+    'secureLength': 3,
     'numberMessage': 'For MasterCard, the length of your card number should be 16 digit.',
     'secureMessage': 'For MasterCard, your secure code should be 3 digit numbers.',
     'numberLabel': '16 digit card numbers',
@@ -37,8 +37,8 @@ var cardOptions = [
     'name': 'VISA',
     'digitFormat': '0000 0000 0000 0000',
     'digitLength': 16,
-    'secureCodeFormat': '000',
-    'secureCodeLength': 3,
+    'secureFormat': '000',
+    'secureLength': 3,
     'numberMessage': 'For VISA, the length of your card number should be 16 digit.',
     'secureMessage': 'For VISA, your secure code should be 3 digit numbers.',
     'numberLabel': '16 digit card numbers',
@@ -49,8 +49,8 @@ var cardOptions = [
     'name': 'American Express',
     'digitFormat': '00000 00000 00000',
     'digitLength': 15,
-    'secureCodeFormat': '0000',
-    'secureCodeLength': 4,
+    'secureFormat': '0000',
+    'secureLength': 4,
     'numberMessage': 'For American Express, the length of your card number should be 15.',
     'secureMessage': 'For American Express, your secure code should be 4 digit numbers.',
     'numberLabel': '15 digit card numbers',
@@ -61,8 +61,8 @@ var cardOptions = [
     'name': 'Diner\'s Club',
     'digitFormat': '0000 0000 0000 00',
     'digitLength': 14,
-    'secureCodeFormat': '000',
-    'secureCodeLength': 3,
+    'secureFormat': '000',
+    'secureLength': 3,
     'numberMessage': 'For Diner\'s Club, the length of your card number should be 14 digit.',
     'secureMessage': 'For Diner\'s Club, your secure code should be 3 digit numbers.',
     'numberLabel': '16 digit card numbers',
@@ -278,23 +278,48 @@ function validateCrust (isItemEmpty) {
 }
 
 function setCardType () {
+  function setRequiredDisabled (id, flag) {
+    var node = document.getElementById(id);
+
+    if (flag) {
+      node.setAttribute('required', 'required');
+      node.removeAttribute('disabled');
+    }
+    else {
+      node.setAttribute('disabled', 'disabled');
+      node.removeAttribute('required');
+    }
+  }
+
   var ei = document.getElementById('id-card');
-  var str = ei.options[ei.selectedIndex].value;
-  var cardNumber = document.getElementById('id-card-number-inst');
-  var secureCode = document.getElementById('id-card-secure-code-inst');
+  var currentCard = ei.options[ei.selectedIndex].value;
+
+  var cardNumberInst = document.getElementById('id-card-number-inst');
+  var cardSecureInst = document.getElementById('id-card-secure-inst');
 
   for (var card in cardOptions) {
-    if (str === cardOptions[card].name) {
-      cardNumber.innerHTML = cardOptions[card].digitFormat;
-      secureCode.innerHTML = cardOptions[card].secureCodeFormat;
-      cardNumber.setAttribute('aria-label', cardOptions[card].numberLabel);
-      secureCode.setAttribute('aria-label', cardOptions[card].secureLabel);
-      if (document.getElementById('id-number-error').classList.contains('error')) {
+    if (currentCard === cardOptions[card].name) {
+      cardNumberInst.innerHTML = cardOptions[card].digitFormat;
+      cardSecureInst.innerHTML = cardOptions[card].secureFormat;
+      cardNumberInst.setAttribute('aria-label', cardOptions[card].numberLabel);
+      cardSecureInst.setAttribute('aria-label', cardOptions[card].secureLabel);
+      if (document.getElementById('id-card-number-error').classList.contains('error')) {
         checkItem('id-number', (str === cardOptions[card].name), cardOptions[card].numberMessage);
       }
-      if (document.getElementById('id-secure-error').classList.contains('error')) {
+      if (document.getElementById('id-card-secure-error').classList.contains('error')) {
         checkItem('id-secure',(str === cardOptions[card].name), cardOptions[card].secureMessage);
       }
+
+      var disable = ei.options[ei.selectedIndex].id !== 'InvalidCardType';
+
+      console.log('[disable]: ' + disable + ' ' + ei.options[ei.selectedIndex].id + ' ' + ei.selectedIndex);
+
+      setRequiredDisabled('id-card-name', disable);
+      setRequiredDisabled('id-card-number', disable);
+      setRequiredDisabled('id-card-secure', disable);
+      setRequiredDisabled('id-card-date', disable);
+      setRequiredDisabled('id-card-address', disable);
+      setRequiredDisabled('id-card-zipcode', disable);
     }
   }
 }
@@ -375,7 +400,7 @@ function validateCardNumber (testForEmpty) {
   }
 }
 
-function validateCardSecureCode (testForEmpty) {
+function validateCardSecure (testForEmpty) {
   if (typeof testForEmpty !== 'boolean') {
     testForEmpty = false;
   }
@@ -397,7 +422,7 @@ function validateCardSecureCode (testForEmpty) {
     }
     for (var card in cardOptions) {
       if (cardType === cardOptions[card].name) {
-        return checkItem('id-card-secure', (s.length !== cardOptions[card].secureCodeLength), cardOptions[card].secureMessage);
+        return checkItem('id-card-secure', (s.length !== cardOptions[card].secureLength), cardOptions[card].secureMessage);
       }
     }
   }
@@ -483,7 +508,7 @@ function submitOrder () {
   var cardInvalid        = validateCardType(true);
   var cardNameInvalid    = validateCardName(true);
   var cardNumberInvalid  = validateCardNumber(true);
-  var cardSecureInvalid  = validateCardSecureCode(true);
+  var cardSecureInvalid  = validateCardSecure(true);
   var cardDateInvalid    = validateCardDate(true);
   var cardAddressInvalid = validateCardAddress(true);
   var cardZipCodeInvalid = validateCardZipCode(true);
@@ -506,7 +531,7 @@ function submitOrder () {
   else if (crustInvalid) {
     document.getElementById('id-thin').focus();
   }
-  if (cardInvalid) {
+  else if (cardInvalid) {
     document.getElementById('id-card').focus();
   }
   else if (cardNameInvalid) {

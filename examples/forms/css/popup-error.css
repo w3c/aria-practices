@@ -105,14 +105,13 @@ fieldset {
   margin: 0;
   margin-top: 1em;
   border: 1px gray solid;
-  width: 26em;
 }
 
 legend {
   margin: 0;
   padding: 0 0.125em;
   font-weight: bold;
-  font-size: 90%;
+  font-size: 100%;
 }
 
 div.text,
@@ -132,7 +131,6 @@ span.error {
 
 div.error {
   margin-bottom: 0.75em;
-  width: 18em;
 }
 
 
