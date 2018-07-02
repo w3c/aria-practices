@@ -23,5 +23,8 @@
   "homepage": "https://github.com/w3c/aria-practices#readme",
   "devDependencies": {
     "eslint": "^4.2.0"
+  },
+  "dependencies": {
+    "glob": "^7.1.2"
   }
 }
