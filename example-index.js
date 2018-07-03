@@ -352,8 +352,8 @@ for (role in indexOfRoles) {
 sorted.sort();
 
 html = '';
-html += '\n\n<h2 id="examples_by_role_label">Examples by Role</h2>\n';
-html += '<table aria-labelledby="examples_by_role">\n';
+html += '\n\n<h2 id="examples_by_role_label">Index of Examples by Role</h2>\n';
+html += '<table aria-labelledby="examples_by_role_label">\n';
 html += '  <thead>\n';
 html += '    <tr>\n';
 html += '      <th>Role</th>\n';
@@ -398,7 +398,7 @@ for (prop in indexOfPropertiesAndStates) {
 sorted.sort();
 
 html = ''
-html += '\n\n<h4 id="examples_by_props_label">Examples By Properties and States</h4>\n';
+html += '\n\n<h4 id="examples_by_props_label">Index of Examples By Properties and States</h4>\n';
 html += '<table aria-labelledby="examples_by_props_label">\n';
 html += '  <thead>\n';
 html += '    <tr>\n';
