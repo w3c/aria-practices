@@ -2,6 +2,13 @@ var Glob = require('Glob');
 fs = require('fs')
 
 ariaRoles = [
+'banner',
+'navigation',
+'main',
+'complementary',
+'contentinfo',
+'search',
+'form',
 'button',
 'checkbox',
 'gridcell',
@@ -131,7 +138,28 @@ indexOfPropertiesAndStates = []
 
 console.log('Generating index...');
 
-function getTitle(data) {
+
+function replaceSection (id, content, newContent ) {
+
+  var indexStart = content.indexOf('id="' + id + '"');
+
+  if (indexStart > 0) {
+    indexStart = content.indexOf('>', indexStart) + 1;
+
+    indexEnd = content.indexOf('</section>', indexStart);
+
+    console.log('Replacing at: ' + indexStart + ' .... ' + indexEnd);
+
+    if (indexStart > 0 && indexEnd > 0 ) {
+      content = content.slice(0, indexStart) + newContent + content.slice(indexEnd);
+    }
+  }
+
+  return content;
+
+}
+
+function getTitle (data) {
 
   title =  data.substring(data.indexOf('<title>') + 7, data.indexOf('</title>'));
 
@@ -257,30 +285,63 @@ function addExampleToPropertiesAndStates(props, example) {
 
 }
 
-var res = Glob.sync('examples/**/*.html');
 
-for (r in res) {
-
-  var data = fs.readFileSync(res[r], 'utf8');
-
-  var ref   = res[r];
-  var title = getTitle(data);
-  var roles = getRoles(data);
-  var props = getPropertiesAndStates(data);
-
-  console.log('\nFile ' + r + ': ' + ref);
-  console.log('Title  ' + r + ': ' + title);
-  console.log('Roles  ' + r + ': ' + roles);
-  console.log('Props  ' + r + ': ' + props);
+function addLandmarkRole (landmark, hasLabel, title, ref) {
 
   var example = {};
   example['title'] = title;
   example['ref']   = ref;
-
-  addExampleToRoles(roles, example);
-
-  addExampleToPropertiesAndStates(props, example);
+  addExampleToRoles(landmark, example);
+  if (hasLabel) {
+    addExampleToPropertiesAndStates('aria-labelledby', example);
+  }
 }
+
+
+var res = Glob.sync('examples/**/*.html');
+
+for (r in res) {
+
+  // handle landmark examples separately
+  if (res[r].indexOf('landmark') < 0) {
+    var data = fs.readFileSync(res[r], 'utf8');
+
+    var ref   = res[r];
+    var title = getTitle(data);
+    var roles = getRoles(data);
+    var props = getPropertiesAndStates(data);
+
+    console.log('\nFile ' + r + ': ' + ref);
+    console.log('Title  ' + r + ': ' + title);
+    console.log('Roles  ' + r + ': ' + roles);
+    console.log('Props  ' + r + ': ' + props);
+
+    var example = {};
+    example['title'] = title;
+    example['ref']   = ref;
+
+    addExampleToRoles(roles, example);
+
+    addExampleToPropertiesAndStates(props, example);
+
+  }
+
+}
+
+// Add landmark examples, since they are a different format
+
+addLandmarkRole('banner',        false, 'Banner Landmark',        'http://localhost/GitHub/aria-practices/examples/landmarks/banner.html');
+addLandmarkRole('complementary', true,  'Complementary Landmark', 'http://localhost/GitHub/aria-practices/examples/landmarks/complementary.html');
+addLandmarkRole('contentinfo',   false, 'Contentinfo Landmark',   'http://localhost/GitHub/aria-practices/examples/landmarks/contentinfo.html');
+addLandmarkRole('form',          true,  'Form Landmark',          'http://localhost/GitHub/aria-practices/examples/landmarks/form.html');
+addLandmarkRole('main',          true,  'Main Landmark',          'http://localhost/GitHub/aria-practices/examples/landmarks/main.html');
+addLandmarkRole('navigation',    true,  'Navigation Landmark',    'http://localhost/GitHub/aria-practices/examples/landmarks/navigation.html');
+addLandmarkRole('region',        true,  'Region Landmark',          'http://localhost/GitHub/aria-practices/examples/landmarks/region.html');
+addLandmarkRole('search',        true,  'Search Landmark',        'http://localhost/GitHub/aria-practices/examples/landmarks/search.html');
+
+var practices = fs.readFileSync("aria-practices.html", function(err){
+  console.log("Error reading aria practices:", err );
+});
 
 var sorted = [];
 
@@ -291,8 +352,8 @@ for (role in indexOfRoles) {
 sorted.sort();
 
 html = '';
-html += '\n\n<h2 id="id-examples-by-role">Examples by Role</h2>\n';
-html += '<table aria-labelledby="id-examples-by-role">\n';
+html += '\n\n<h2 id="examples_by_role_label">Examples by Role</h2>\n';
+html += '<table aria-labelledby="examples_by_role">\n';
 html += '  <thead>\n';
 html += '    <tr>\n';
 html += '      <th>Role</th>\n';
@@ -307,7 +368,7 @@ for (let i = 0; i < sorted.length; i++) {
   var examples = indexOfRoles[role];
 
   html += '    <tr>\n';
-  html += '      <td>' + role + '</td>\n';
+  html += '      <td><code>' + role + '</code></td>\n';
   html += '      <td>\n';
   if (examples.length === 1) {
     html += '        <a href="' + examples[0].ref + '">' + examples[0].title + '</a>\n';
@@ -326,7 +387,7 @@ for (let i = 0; i < sorted.length; i++) {
 html += '  </tbody>\n';
 html += '</table>\n';
 
-
+practices = replaceSection('examples_by_roles', practices, html);
 
 sorted = [];
 
@@ -336,8 +397,9 @@ for (prop in indexOfPropertiesAndStates) {
 
 sorted.sort();
 
-html += '\n\n<h2 id="id-examples-by-props">Examples By Properties and States</h2>\n';
-html += '<table aria-labelledby="id-examples-by-props">\n';
+html = ''
+html += '\n\n<h4 id="examples_by_props_label">Examples By Properties and States</h4>\n';
+html += '<table aria-labelledby="examples_by_props_label">\n';
 html += '  <thead>\n';
 html += '    <tr>\n';
 html += '      <th>Property or State</th>\n';
@@ -352,7 +414,7 @@ for (let i = 0; i < sorted.length; i++) {
   var examples = indexOfPropertiesAndStates[prop];
 
   html += '    <tr>\n';
-  html += '      <td>' + prop + '</td>\n';
+  html += '      <td><code>' + prop + '</code></td>\n';
   html += '      <td>\n';
   if (examples.length === 1) {
     html += '        <a href="' + examples[0].ref + '">' + examples[0].title + '</a>\n';
@@ -371,6 +433,10 @@ for (let i = 0; i < sorted.length; i++) {
 html += '  </tbody>\n';
 html += '</table>\n';
 
-console.log(html);
+practices = replaceSection('examples_by_props', practices, html);
 
-fs.writeFile("example-index.html", html);
+fs.writeFile("aria-practices.html", practices, function(err){
+  if (err) {
+    console.log("Error saving updated aria practices:", err );
+  }
+});
