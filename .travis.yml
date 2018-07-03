@@ -12,6 +12,7 @@ addons:
     packages:
       - oracle-java8-installer
       - oracle-java8-set-default
+  firefox: "60.0.2"
 
 git:
   depth: 3
