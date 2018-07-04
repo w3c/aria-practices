@@ -49,15 +49,15 @@ const ariaTest = (desc, page, testId, body) => {
   const url = 'file://' + absPath;
   const selector = '[data-test-id="' + testId + '"]';
 
-  const testName = page + ' ' + selector + ": " + desc;
+  const testName = page + ' ' + selector + ": desc";
   test.serial(testName, async function (t) {
     t.context.url = url;
     await t.context.session.get(url);
 
-    t.is(
+    const assert = require('assert');
+    assert(
       (await t.context.session.findElements(t.context.By.css(selector))).length,
-      1,
-      'The behavior description is present in the document:' + testId
+      'Cannot find behavior description for this test in example page:' + testId
     );
 
     return body.apply(this, arguments);
