@@ -244,7 +244,27 @@ const checkActiveElement = function(/* gridcellsSelector, index */) {
   return (document.activeElement === gridcell) || gridcell.contains(document.activeElement);
 };
 
-const findAndFocus = function(/* element */) {
+const findFocusable = function(/* selector */) {
+  const selector = arguments[0];
+  const original = document.activeElement;
+  const focusable = Array.from(document.querySelectorAll(selector))
+      .map((parent) => {
+        const candidates = [parent, ...parent.querySelectorAll('*')];
+        for (let candidate of candidates) {
+
+          candidate.focus();
+          if (document.activeElement === candidate) {
+            return candidate;
+          }
+        }
+      }).filter((el) => !!el);;
+
+  original.focus();
+
+  return focusable;
+};
+
+const focusWithin = function(/* element */) {
   // Assumption: element is focusable or contains only one focusable element.
   let element = arguments[0];
   let candidates = [element, ...element.querySelectorAll('*')];
@@ -256,22 +276,24 @@ const findAndFocus = function(/* element */) {
   }
 }
 
-ariaTest('Right arrow key moves focus',
-         'grid/LayoutGrids.html', 'key-right-arrow', async (t) => {
-
+ariaTest('Right arrow key moves focus', 'grid/LayoutGrids.html', 'key-right-arrow', async (t) => {
   t.plan(67);
 
-  for (let exId in pageExamples) {
-    let ex = pageExamples[exId];
-    let gridcellsSelector = ex.gridSelector + ' [role="gridcell"]';
+  const cellSelectors = {
+    ex1: '#ex1 [role="gridcell"]',
+    ex2: '#ex2 [role="row"] [role="gridcell"]',
+    ex3: '#ex3 [role="row"] [role="gridcell"]'
+  };
+
+  for (let [exId, selector] of Object.entries(cellSelectors)) {
     let gridcellElements = await t.context.session.findElements(
-      t.context.By.css(gridcellsSelector)
+      t.context.By.css(selector)
     );
 
     // Find the first focusable element
-    let activeElement = await t.context.session.executeScript(findAndFocus, gridcellElements[0]);
+    let activeElement = await t.context.session.executeScript(focusWithin, gridcellElements[0]);
     if (!activeElement) {
-      throw new Error("Could not focus on element or any decendent in the first gridcell: " + gridcellsSelector);
+      throw new Error('Could not focus on element or any decendent in the first gridcell: ' + selector);
     }
 
     // Test focus moves to next element on arrow key
@@ -279,11 +301,11 @@ ariaTest('Right arrow key moves focus',
     for (let index = 1; index < gridcellElements.length; index++) {
 
       await activeElement.sendKeys(t.context.Key.ARROW_RIGHT);
-      let correctActiveElement = await t.context.session.executeScript(checkActiveElement, gridcellsSelector, index);
+      let correctActiveElement = await t.context.session.executeScript(checkActiveElement, selector, index);
 
       t.truthy(
         correctActiveElement,
-        'Example ' + exId + ': gridcell ' + index + ' should receive focus after arrow right'
+        'Example ' + exId + ': gridcell `' + (await gridcellElements[index].getText()) + '` should receive focus after arrow right'
       );
 
       activeElement = await t.context.session.executeScript(() => {
@@ -294,7 +316,7 @@ ariaTest('Right arrow key moves focus',
     // Test arrow key on final element
 
     await activeElement.sendKeys(t.context.Key.ARROW_RIGHT);
-    let correctActiveElement = await t.context.session.executeScript(checkActiveElement, gridcellsSelector, gridcellElements.length-1);
+    let correctActiveElement = await t.context.session.executeScript(checkActiveElement, selector, gridcellElements.length-1);
     t.truthy(
       correctActiveElement,
       'Example ' + exId + ': Right Arrow sent to final gridcell should not move focus.'
@@ -303,41 +325,33 @@ ariaTest('Right arrow key moves focus',
 });
 
 ariaTest('Left arrow key moves focus', 'grid/LayoutGrids.html', 'key-left-arrow', async (t) => {
+  t.plan(25);
 
-  t.plan(22);
+  const cellSelectors = {
+    ex1: '#ex1 [role="gridcell"]',
+    ex2: '#ex2 [role="row"] [role="gridcell"]',
+    ex3: '#ex3 [role="row"] [role="gridcell"]'
+  };
 
-  for (let exId in pageExamples) {
-    let ex = pageExamples[exId];
-    let gridcellsSelector = ex.gridSelector + ' [role="gridcell"]';
-    let allGridcellElements = await t.context.session.findElements(
-      t.context.By.css(gridcellsSelector)
-    );
+  for (let [exId, selector] of Object.entries(cellSelectors)) {
+    let gridcellElements = await t.context.session.executeScript(findFocusable, selector);
 
-    // Not all gridcell elements are initially visible. First find all focusable elements.
-
-    let gridcellElements = [];
-    for (let el of allGridcellElements) {
-      if (!await t.context.session.executeScript(findAndFocus, el)) {
-        break;
-      }
-      gridcellElements.push(el);
-    }
-
-    let activeElement = await t.context.session.executeScript(function () {
-      return document.activeElement;
-    });
+    // Find the first focusable element
+    let activeElement = await t.context.session.executeScript(focusWithin, gridcellElements[gridcellElements.length - 1]);
     if (!activeElement) {
-      throw new Error("Could not focus on element or any decendent in the final gridcell: " + gridcellsSelector);
+      throw new Error('Could not focus on element or any decendent in the first gridcell: ' + selector);
     }
 
     // Test focus moves to next element on arrow key
-    for (let index = gridcellElements.length - 1; index > 0; index--) {
+
+    for (let index = gridcellElements.length - 2; index > -1; index--) {
+
       await activeElement.sendKeys(t.context.Key.ARROW_LEFT);
-      let correctActiveElement = await t.context.session.executeScript(checkActiveElement, gridcellsSelector, index);
+      let correctActiveElement = await t.context.session.executeScript(checkActiveElement, selector, index);
 
       t.truthy(
         correctActiveElement,
-        'Example ' + exId + ': gridcell ' + index + ' should receive focus after arrow left'
+        'Example ' + exId + ': gridcell `' + (await gridcellElements[index].getText()) + '` should receive focus after arrow left'
       );
 
       activeElement = await t.context.session.executeScript(() => {
@@ -348,51 +362,104 @@ ariaTest('Left arrow key moves focus', 'grid/LayoutGrids.html', 'key-left-arrow'
     // Test arrow key on final element
 
     await activeElement.sendKeys(t.context.Key.ARROW_LEFT);
-    let correctActiveElement = await t.context.session.executeScript(checkActiveElement, gridcellsSelector, 0);
+    let correctActiveElement = await t.context.session.executeScript(checkActiveElement, selector, 0);
     t.truthy(
       correctActiveElement,
-      'Example ' + exId + ': Left Arrow sent to first gridcell should not move focus. Focus is on element'
+      'Example ' + exId + ': Left Arrow sent to fist gridcell should not move focus.'
     );
   }
-
 });
 
-// ariaTest('grid/LayoutGrids.html', 'key-down-arrow', async (t) => {
-//   await new Promise((resolve) => setTimeout(resolve, 10));
-//   t.pass();
-// });
+ariaTest('Down arrow key moves focus', 'grid/LayoutGrids.html', 'key-down-arrow', async (t) => {
+  t.plan(27);
 
-// ariaTest('grid/LayoutGrids.html', 'key-up-arrow', async (t) => {
-//   await new Promise((resolve) => setTimeout(resolve, 10));
-//   t.pass();
-// });
+  const cellSelectors = {
+    ex1: '#ex1 [role="gridcell"]',
+    ex2: '#ex2 [role="row"] [role="gridcell"]:first-of-type',
+    ex3: '#ex3 [role="row"] [role="gridcell"]:first-child'
+  };
 
-// ariaTest('grid/LayoutGrids.html', 'key-page-down', async (t) => {
-//   await new Promise((resolve) => setTimeout(resolve, 10));
-//   t.pass();
-// });
+  for (let [exId, selector] of Object.entries(cellSelectors)) {
+    let gridcellElements = await t.context.session.findElements(
+      t.context.By.css(selector)
+    );
 
-// ariaTest('grid/LayoutGrids.html', 'key-page-up', async (t) => {
-//   await new Promise((resolve) => setTimeout(resolve, 10));
-//   t.pass();
-// });
+    // Find the first focusable element
+    let activeElement = await t.context.session.executeScript(focusWithin, gridcellElements[0]);
+    if (!activeElement) {
+      throw new Error('Could not focus on element or any decendent in the first gridcell: ' + selector);
+    }
 
-// ariaTest('grid/LayoutGrids.html', 'key-home', async (t) => {
-//   await new Promise((resolve) => setTimeout(resolve, 10));
-//   t.pass();
-// });
+    // Test focus moves to next element on arrow key
 
-// ariaTest('grid/LayoutGrids.html', 'key-end', async (t) => {
-//   await new Promise((resolve) => setTimeout(resolve, 10));
-//   t.pass();
-// });
+    for (let index = 1; index < gridcellElements.length; index++) {
 
-// ariaTest('grid/LayoutGrids.html', 'key-control-home', async (t) => {
-//   await new Promise((resolve) => setTimeout(resolve, 10));
-//   t.pass();
-// });
+      await activeElement.sendKeys(t.context.Key.ARROW_DOWN);
+      let correctActiveElement = await t.context.session.executeScript(checkActiveElement, selector, index);
 
-// ariaTest('grid/LayoutGrids.html', 'key-control-end', async (t) => {
-//   await new Promise((resolve) => setTimeout(resolve, 10));
-//   t.pass();
-// });
+      t.truthy(
+        correctActiveElement,
+        'Example ' + exId + ': gridcell `' + (await gridcellElements[index].getText()) + '` should receive focus after arrow down'
+      );
+
+      activeElement = await t.context.session.executeScript(() => {
+        return document.activeElement;
+      });
+    }
+
+    // Test arrow key on final element
+
+    await activeElement.sendKeys(t.context.Key.ARROW_DOWN);
+    let correctActiveElement = await t.context.session.executeScript(checkActiveElement, selector, gridcellElements.length-1);
+    t.truthy(
+      correctActiveElement,
+      'Example ' + exId + ': Down Arrow sent to final gridcell should not move focus.'
+    );
+  }
+});
+
+ariaTest('Up arrow key moves focus', 'grid/LayoutGrids.html', 'key-up-arrow', async (t) => {
+  t.plan(13);
+
+  const cellSelectors = {
+    ex1: '#ex1 [role="gridcell"]',
+    ex2: '#ex2 [role="row"] [role="gridcell"]:first-of-type',
+    ex3: '#ex3 [role="row"] [role="gridcell"]:first-child'
+  };
+
+  for (let [exId, selector] of Object.entries(cellSelectors)) {
+    let gridcellElements = await t.context.session.executeScript(findFocusable, selector);
+
+    // Find the first focusable element
+    let activeElement = await t.context.session.executeScript(focusWithin, gridcellElements[gridcellElements.length - 1]);
+    if (!activeElement) {
+      throw new Error('Could not focus on element or any decendent in the first gridcell: ' + selector);
+    }
+
+    // Test focus moves to next element on arrow key
+
+    for (let index = gridcellElements.length - 2; index > -1; index--) {
+
+      await activeElement.sendKeys(t.context.Key.ARROW_UP);
+      let correctActiveElement = await t.context.session.executeScript(checkActiveElement, selector, index);
+
+      t.truthy(
+        correctActiveElement,
+        'Example ' + exId + ': gridcell `' + (await gridcellElements[index].getText()) + '` should receive focus after arrow up'
+      );
+
+      activeElement = await t.context.session.executeScript(() => {
+        return document.activeElement;
+      });
+    }
+
+    // Test arrow key on final element
+
+    await activeElement.sendKeys(t.context.Key.ARROW_UP);
+    let correctActiveElement = await t.context.session.executeScript(checkActiveElement, selector, 0);
+    t.truthy(
+      correctActiveElement,
+      'Example ' + exId + ': Up Arrow sent to fist gridcell should not move focus.'
+    );
+  }
+});
