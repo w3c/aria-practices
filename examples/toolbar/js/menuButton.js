@@ -286,7 +286,7 @@ aria.widget.Menu.prototype.eventKeyDown = function (event, menu) {
  */
 
 aria.widget.Menu.prototype.eventMouseClick = function (event, menu) {
-  var textContent = document.getElementById("textarea1");
+  var textContent = document.getElementById('textarea1');
   var clickedItemText = event.target.innerText;
   this.menuButton.buttonNode.innerText = clickedItemText;
   textContent.style.fontFamily = clickedItemText;
@@ -528,7 +528,7 @@ aria.widget.MenuButton.prototype.eventKeyDown = function (event, menuButton) {
       menuButton.moveFocusToFirstMenuItem();
       flag = true;
       break;
-    
+
     case menuButton.keyCode.RETURN:
       menuButton.moveFocusToFirstMenuItem();
       flag = true;
