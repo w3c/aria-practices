@@ -19,12 +19,13 @@ var aria = aria || {};
 aria.Toolbar = function (domNode) {
   this.domNode = domNode;
   this.items = this.domNode.querySelectorAll('.toolbar-item');
-  this.selectedItem = this.domNode.querySelector('.selected');
+  // this.selectedItem = this.domNode.querySelector('.selected');
+  this.selectedItem = [];
   this.firstItem = null; 
   this.lastItem = null; 
   this.toolbarItems = []; 
-  console.log(this.domNode);
-  console.log(this.items);
+  this.toolbarGroups = [];
+  this.popupMenu = false;
   // this.registerEvents();
 };
 
@@ -34,81 +35,33 @@ aria.Toolbar.prototype.init = function() {
   e = this.domNode.firstElementChild; 
   console.log(e);
   while(e){
-    var toolbarElement = e;
-    console.log(toolbarElement);
-    if(toolbarElement.classList.contains('toolbar-item')){
-      toolbarItem = new ToolbarItem(toolbarElement, this);
-      toolbarItem.init();
-      this.toolbarItems.push(toolbarItem);
+    var toolbarGroup = e; 
+    if(toolbarGroup.classList.contains('group')){
+      this.toolbarGroups.push(toolbarGroup);
     }
     e = e.nextElementSibling;
+    console.log(e);
   }
-  if(this.items.length>0){
-    this.firstItem = this.items[0];
-    this.lastItem = this.items[this.items.length-1];
+  console.log(this.toolbarGroups);
+  for(var i=0; i<this.toolbarGroups.length;i++) {
+    var j = this.toolbarGroups[i].firstElementChild; 
+    while(j){
+      var toolbarElement = j; 
+      console.log(toolbarElement);
+      if(toolbarElement.classList.contains('toolbar-item') || toolbarElement.classList.contains('menu-wrapper')){
+        toolbarItem = new ToolbarItem(toolbarElement, this);
+        toolbarItem.init();
+        this.toolbarItems.push(toolbarItem);
+      }
+      j= j.nextElementSibling;
+    }
   }
+  if(this.toolbarItems.length>0){
+    this.firstItem = this.toolbarItems[0];
+    this.lastItem = this.toolbarItems[this.toolbarItems.length-1];
+  }
+  console.log(this.toolbarItems);
 };
-
-// /**
-//  * @desc
-//  *  Register events for the toolbar interactions
-//  */
-// aria.Toolbar.prototype.registerEvents = function () {
-//   this.toolbarNode.addEventListener('keydown', this.checkFocusChange.bind(this));
-//   this.toolbarNode.addEventListener('click', this.checkClickItem.bind(this));
-// };
-
-// /**
-//  * @desc
-//  *  Handle various keyboard controls; LEFT/RIGHT will shift focus; DOWN
-//  *  activates a menu button if it is the focused item.
-//  *
-//  * @param evt
-//  *  The keydown event object
-//  */
-// aria.Toolbar.prototype.checkFocusChange = function (evt) {
-//   var key = evt.which || evt.keyCode;
-//   var nextIndex, nextItem;
-
-//   switch (key) {
-//     case aria.KeyCode.LEFT:
-      
-//     case aria.KeyCode.RIGHT:
-//       // nextIndex = Array.prototype.indexOf.call(this.items, this.selectedItem);
-//       // nextIndex = key === aria.KeyCode.LEFT ? nextIndex - 1 : nextIndex + 1;
-//       // nextIndex = Math.max(Math.min(nextIndex, this.items.length - 1), 0);
-
-//       // this.selectItem(nextItem);
-//       this.focusItem(nextItem);
-//       break;
-//     case aria.KeyCode.DOWN:
-//       // if selected item is menu button, pressing DOWN should act like a click
-//       if (aria.Utils.hasClass(this.selectedItem, 'menu-button')) {
-//         evt.preventDefault();
-//         this.selectedItem.click();
-//       }
-//       break;
-//     case aria.KeyCode.HOME:
-//       this.setFocusToFirstItem();
-//       break;
-//     case aria.KeyCode.END:
-//       this.setFocusToLast();
-//       break;
-//   }
-// };
-
-// /**
-//  * @desc
-//  *  Selects a toolbar item if it is clicked
-//  *
-//  * @param evt
-//  *  The click event object
-//  */
-// aria.Toolbar.prototype.checkClickItem = function (evt) {
-//   if (aria.Utils.hasClass(evt.target, 'toolbar-item')) {
-//     this.selectItem(evt.target);
-//   }
-// };
 
 /**
  * @desc
@@ -120,6 +73,7 @@ aria.Toolbar.prototype.init = function() {
 aria.Toolbar.prototype.deselectItem = function (element) {
   // aria.Utils.removeClass(element, 'selected');
   element.classList.remove('selected');
+  element.setAttribute('aria-pressed', false);
   element.setAttribute('tabindex', '-1');
 };
 
@@ -130,12 +84,123 @@ aria.Toolbar.prototype.deselectItem = function (element) {
  * @param element
  *  The item to select
  */
-aria.Toolbar.prototype.selectItem = function (element) {
-  this.deselectItem(this.selectedItem);
-  // aria.Utils.addClass(element, 'selected');
-  element.classList.add('selected');
-  element.setAttribute('tabindex', '0');
-  this.selectedItem = element;
+aria.Toolbar.prototype.styleManage = function (element) {
+  var textContent = document.getElementById('textarea1');
+  console.log(textContent);
+  if(element.classList.contains('selected')) {
+    if(element.classList.contains('bold')){
+      element.setAttribute('aria-pressed', true);
+      textContent.style.fontWeight = 'bold';
+    } else if (element.classList.contains('italic')) {
+      textContent.style.fontStyle = 'italic';
+      element.setAttribute('aria-pressed', true);
+    } else if (element.classList.contains('underline')) {
+      textContent.style.textDecoration = 'underline';
+      element.setAttribute('aria-pressed', true);
+    }
+  } else {
+    if(element.classList.contains('bold')){
+      textContent.style.fontWeight = 'normal';
+      element.setAttribute('aria-pressed', false);
+    } else if (element.classList.contains('italic')) {
+      textContent.style.fontStyle = 'normal';
+      element.setAttribute('aria-pressed', false);
+    } else if (element.classList.contains('underline')) {
+      textContent.style.textDecoration = 'none';
+      element.setAttribute('aria-pressed', false);
+    }
+  }
+  if (element.classList.contains('size')) {
+    if(element.getAttribute('value') === 'smaller'){ // fontSmaller
+        this.fontSmaller(textContent);
+        element.setAttribute('aria-pressed', true);
+        setTimeout(function(){
+          element.setAttribute('aria-pressed',false);
+        },100);
+    } else {
+      this.fontLarger(textContent);
+      element.setAttribute('aria-pressed', true);
+      setTimeout(function(){
+        element.setAttribute('aria-pressed',false);
+      },100);
+    }
+  }
+  if (element.classList.contains('textAlign')){
+    var textAlignElem = [].slice.call(document.querySelectorAll('.textAlign'));
+    console.log(element);
+    for(var elem in textAlignElem){
+      console.log(textAlignElem[elem].getAttribute('aria-pressed')); 
+      textAlignElem[elem].setAttribute('aria-pressed', false);
+    }
+    element.setAttribute('aria-pressed', true);
+    this.setTextAlign(textContent, element.getAttribute('value'));
+  }
+};
+aria.Toolbar.prototype.setTextAlign = function (content, value){
+  content.style.textAlign = value;
+}
+aria.Toolbar.prototype.isMaxFontSize = function (content) { 
+  return content.style.fontSize === 'x-large';
+}
+aria.Toolbar.prototype.isMinFontSize = function (content) { 
+  return content.style.fontSize === 'x-small';
+}
+aria.Toolbar.prototype.setFontSize = function (content, value) {
+  content.style.fontSize = value;
+};
+aria.Toolbar.prototype.fontSmaller = function (content) {
+  switch (content.style.fontSize) {
+    case 'small' :
+      this.setFontSize(content, 'x-small');
+      break;
+    case 'medium' : 
+      this.setFontSize(content, 'small'); 
+      break;
+    case 'large' :
+      this.setFontSize(content, 'medium'); 
+      break; 
+      case 'x-large':
+      this.setFontSize(content, 'large');
+      break;
+
+    default:
+      break;
+
+  }
+};
+aria.Toolbar.prototype.fontLarger = function (content) {
+  switch (content.style.fontSize) {
+    case 'x-small':
+      this.setFontSize(content, 'small');
+      break;
+
+    case 'small':
+      this.setFontSize(content, 'medium');
+      break;
+
+    case 'medium':
+      this.setFontSize(content, 'large');
+      break;
+
+    case 'large':
+      this.setFontSize(content, 'x-large');
+      break;
+
+    default:
+      break;
+
+  }
+};
+aria.Toolbar.prototype.selectItem = function (element) {  
+  if(element.classList.contains('selected')) {
+    this.deselectItem(element);
+  } else {
+    element.classList.add('selected');
+    element.setAttribute('tabindex', '0');
+    this.selectedItem.push(element);
+  }
+  
+  this.styleManage(element);
 };
 
 /**
@@ -145,23 +210,40 @@ aria.Toolbar.prototype.selectItem = function (element) {
  * @param element
  *  The item to focus on
  */
-aria.Toolbar.prototype.focusItem = function (element) {
-  console.log(this.items); 
-  for(var i=0;i<this.items.length;i++){
-    this.items[i].tabIndex = -1;
-  }
+aria.Toolbar.prototype.setFocusItem = function (element) {
   console.log(element);
-  element.tabIndex = 0;
+  for(var i=0;i<this.toolbarItems.length;i++){
+    this.toolbarItems[i].tabIndex = -1;
+  }
+    element.tabIndex = 0;
+    element.focus();
 };
 aria.Toolbar.prototype.setFocusToNext = function (currentItem) {
-  console.log(currentItem);
-  console.log(this.items);
+    console.log(this.toolbarItems);
     var index, newItem;
     if(currentItem === this.lastItem) {
-      newItem = this.firstItem;
+      newItem = this.toolbarItems[0];
     }else{
-      index = this.items.indexOf(currentItem);
-      newItem = this.items[index+1];
+      index = this.toolbarItems.indexOf(currentItem);
+      newItem = this.toolbarItems[index+1];
     }
-    this.setFocusToItem(newItem);
-}
+    this.setFocusItem(newItem.domNode);
+};
+
+aria.Toolbar.prototype.setFocusToPrevious = function (currentItem) {
+ 
+  var index, newItem;
+  if(currentItem === this.firstItem) {
+    newItem = this.toolbarItems[this.toolbarItems.length-1];
+  }else{
+    index = this.toolbarItems.indexOf(currentItem);
+    newItem = this.toolbarItems[index-1];
+  }
+  this.setFocusItem(newItem.domNode);
+};
+aria.Toolbar.prototype.setFocusToFirst = function (currentItem) {
+  this.setFocusItem(this.firstItem.domNode); 
+};
+aria.Toolbar.prototype.setFocusToLast = function (currentItem) {
+  this.setFocusItem(this.lastItem.domNode);
+};

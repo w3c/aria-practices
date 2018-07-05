@@ -20,9 +20,7 @@ var ToolbarItem = function (domNode, toolObj) {
 }; 
 
 ToolbarItem.prototype.init = function () {
-    console.log(this.domNode);
-    this.domNode.tabIndex = -1;
-    console.log(this);
+    this.domNode.tabIndex = 0;
     this.domNode.addEventListener('keydown', this.handleKeyDown.bind(this));
     this.domNode.addEventListener('click', this.handleClick.bind(this));
 };
@@ -35,18 +33,29 @@ ToolbarItem.prototype.handleKeyDown = function (event){
         function isPrintableCharacter (str) {
             return str.length === 1 && str.match(/\S/);
         }
-
         switch (event.keyCode) {
-            case this.keyCode.SPACE:
+            // case this.keyCode.SPACE:
             case this.keyCode.RETURN:
-            
+                this.toolbar.selectItem(this.domNode);
+                console.log(this);
                 break;
 
-            case this.keyCode.LEFT: 
+            case this.keyCode.RIGHT: 
                 this.toolbar.setFocusToNext(this);
                 flag = true;
                 break;
-
+            case this.keyCode.LEFT:
+                this.toolbar.setFocusToPrevious(this);
+                flag = true;
+                break;    
+            case this.keyCode.HOME:
+                this.toolbar.setFocusToFirst(this);
+                flag = true;
+                break;
+            case this.keyCode.END:
+                this.toolbar.setFocusToLast(this);
+                flag = true;
+                break;
         }
 };
 ToolbarItem.prototype.handleClick = function () {

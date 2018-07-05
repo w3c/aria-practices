@@ -47,54 +47,61 @@
     <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
     <div id="ex1">
         <div class="toolbar" role="toolbar">
-            <div class="toolbar-item bold" role="button" aria-pressed="false" value="bold">
+          <div class="group" id="group1" tabindex="-1">
+            <button class="toolbar-item bold" role="button" aria-pressed="false" value="bold" tabindex="0">
               <i class="fas fa-bold"></i>
-            </div>
-            <div class="toolbar-item italic" role="button" aria-pressed="false" value="italic">
+            </button>
+            <button class="toolbar-item italic" role="button" aria-pressed="false" value="italic">
               <i class="fas fa-italic"></i>
-            </div>
-            <div class="toolbar-item textAlign" role="button" aria-pressed="false" value="left">
+            </button>
+            <button class="toolbar-item underline" role="button" aria-pressed="false" value="underline">
+              <i class="fas fa-underline"></i>
+            </button>
+          </div>
+          <div class="group" id= "group2">
+            <button class="toolbar-item textAlign" role="button" aria-pressed="false" value="left">
               <i class="fas fa-align-left"></i>
-            </div>
-            <div class="toolbar-item" role="button" aria-pressed="false" value="center">
+            </button>
+            <button class="toolbar-item textAlign" role="button" aria-pressed="false" value="center">
               <i class="fas fa-align-center"></i>
-            </div>
-            <div class="toolbar-item" role="button" aria-pressed="false" value="right">
+            </button>
+            <button class="toolbar-item textAlign" role="button" aria-pressed="false" value="right">
               <i class="fas fa-align-right"></i>
-            </div>
-            <div class="toolbar-item" role="button" >
+            </button> 
+          </div>
+          <div class="group" id="group3">
+            <button class="toolbar-item size large " value="larger" aria-pressed="false">
               <i class="fas fa-plus"></i>
-            </div>
-            <div class="toolbar-item" role="button">
+            </button>
+            <button class="toolbar-item size" role="button" value="smaller" aria-pressed="false">
               <i class="fas fa-minus"></i>
-            </div>
+            </button>
+          </div>  
+          <div class="menu-wrapper group" >
+            <button
+              aria-haspopup="true"
+              aria-controls="menu1"
+              class=" toolbar-item menu-button">
+              Font
+            </button>
+            <ul role="menu" id="menu1">
+              <li role="menuitem">Sans-serif</li>
+              <li role="menuitem">Serif</li>
+              <li role="menuitem">Monospace</li>
+              <li role="menuitem">Fantasy</li>
+            </ul>
+          </div>
+      </div>
+      <label for="textarea1" class="hidden">Text Sample</label><br>
+      <textarea id="textarea1" rows="20" cols="80"
+        style="font-size: medium; font-family: sans-serif"
+        >
+        Four score and seven years ago our fathers brought forth on this continent a new nation, conceived in Liberty, and dedicated to the proposition that all men are created equal.
 
-            <div class="menu-wrapper">
-              <button
-                 
-                aria-haspopup="true"
-                aria-controls="menu1"
-                class="toolbar-item menu-button">
-                <i class="fas fa-font"></i>
-              </button>
-              <ul role="menu" id="menu1">
-                <li role="menuitem">Sans-serif</li>
-                <li role="menuitem">Serif</li>
-                <li role="menuitem">Monospace</li>
-                <li role="menuitem">Fantasy</li>
-              </ul>
-            </div>
-        </div>
-        <label for="textarea1" class="hidden">Text Sample</label><br>
-            <textarea id="textarea1" rows="20" cols="80"
-             style="font-size: medium; font-family: sans-serif"
-             >
-              Four score and seven years ago our fathers brought forth on this continent a new nation, conceived in Liberty, and dedicated to the proposition that all men are created equal.
+        Now we are engaged in a great civil war, testing whether that nation, or any nation, so conceived and so dedicated, can long endure. We are met on a great battle-field of that war. We have come to dedicate a portion of that field, as a final resting place for those who here gave their lives that that nation might live. It is altogether fitting and proper that we should do this.
 
-              Now we are engaged in a great civil war, testing whether that nation, or any nation, so conceived and so dedicated, can long endure. We are met on a great battle-field of that war. We have come to dedicate a portion of that field, as a final resting place for those who here gave their lives that that nation might live. It is altogether fitting and proper that we should do this.
-
-              But, in a larger sense, we can not dedicate, we can not consecrate, we can not hallow, this ground. The brave men, living and dead, who struggled here, have consecrated it, far above our poor power to add or detract. The world will little note, nor long remember what we say here, but it can never forget what they did here. It is for us the living, rather, to be dedicated here to the unfinished work which they who fought here have thus far so nobly advanced. It is rather for us to be here dedicated to the great task remaining before us, that from these honored dead we take increased devotion to that cause for which they gave the last full measure of devotion, that we here highly resolve that these dead shall not have died in vain, that this nation, under God, shall have a new birth of freedom, and that government of the people, by the people, for the people, shall not perish from the earth.
-            </textarea>     
+        But, in a larger sense, we can not dedicate, we can not consecrate, we can not hallow, this ground. The brave men, living and dead, who struggled here, have consecrated it, far above our poor power to add or detract. The world will little note, nor long remember what we say here, but it can never forget what they did here. It is for us the living, rather, to be dedicated here to the unfinished work which they who fought here have thus far so nobly advanced. It is rather for us to be here dedicated to the great task remaining before us, that from these honored dead we take increased devotion to that cause for which they gave the last full measure of devotion, that we here highly resolve that these dead shall not have died in vain, that this nation, under God, shall have a new birth of freedom, and that government of the people, by the people, for the people, shall not perish from the earth.
+      </textarea>     
     </div>
     <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
   </section>

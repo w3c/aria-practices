@@ -241,17 +241,25 @@ aria.widget.Menu.prototype.eventKeyDown = function (event, menu) {
       break;
 
     case menu.keyCode.UP:
-    case menu.keyCode.LEFT:
       menu.previousMenuItem(ct);
       flag = true;
       break;
-
-    case menu.keyCode.DOWN:
-    case menu.keyCode.RIGHT:
-      menu.nextMenuItem(ct);
+    case menu.keyCode.LEFT:
+      menu.menuButton.closeMenu(true);
+      menu.menuButton.buttonNode.focus();
       flag = true;
       break;
 
+
+    case menu.keyCode.DOWN:
+      menu.nextMenuItem(ct);
+      flag = true;
+      break;
+    case menu.keyCode.RIGHT:
+      menu.menuButton.closeMenu(true);
+      menu.menuButton.buttonNode.focus();
+      flag = true;
+      break;
     case menu.keyCode.TAB:
       menu.menuButton.closeMenu(true, false);
       break;
@@ -278,9 +286,10 @@ aria.widget.Menu.prototype.eventKeyDown = function (event, menu) {
  */
 
 aria.widget.Menu.prototype.eventMouseClick = function (event, menu) {
-
+  var textContent = document.getElementById("textarea1");
   var clickedItemText = event.target.innerText;
   this.menuButton.buttonNode.innerText = clickedItemText;
+  textContent.style.fontFamily = clickedItemText;
   menu.menuButton.closeMenu(true);
 
 };
@@ -407,6 +416,7 @@ aria.widget.MenuButton.prototype.openMenu = function () {
   if (this.menuNode) {
     this.menuNode.style.display = 'block';
     this.menuShowing = true;
+    this.buttonNode.setAttribute('aria-pressed', true);
   }
 };
 
@@ -440,6 +450,7 @@ aria.widget.MenuButton.prototype.closeMenu = function (force, focusMenuButton) {
       this.buttonNode.focus();
     }
     this.menuShowing = false;
+    this.buttonNode.setAttribute('aria-pressed', false);
   }
 };
 
@@ -517,8 +528,9 @@ aria.widget.MenuButton.prototype.eventKeyDown = function (event, menuButton) {
       menuButton.moveFocusToFirstMenuItem();
       flag = true;
       break;
-
+    
     case menuButton.keyCode.RETURN:
+      console.log('ememem');
       menuButton.moveFocusToFirstMenuItem();
       flag = true;
       break;
