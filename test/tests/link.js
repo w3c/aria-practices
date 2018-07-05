@@ -20,95 +20,95 @@ let pageExamples = [
 ];
 
 ariaTest('Test "role" attribute exists',
-         'link/link.html', 'link-role', async (t) => {
+  'link/link.html', 'link-role', async (t) => {
 
-  for (let i = 0; i < pageExamples.length; i++) {
-    let ex = pageExamples[i];
-    let linkLocator = t.context.By.css(ex.linkSelector);
-    let linkElement = await t.context.session.findElement(linkLocator);
+    for (let i = 0; i < pageExamples.length; i++) {
+      let ex = pageExamples[i];
+      let linkLocator = t.context.By.css(ex.linkSelector);
+      let linkElement = await t.context.session.findElement(linkLocator);
 
-    t.is(
-      await linkElement.getAttribute('role'),
-      'link',
-      '[role="link"] attribute should exist on element select by: ' + ex.linkSelector
-    );
-  }
-});
+      t.is(
+        await linkElement.getAttribute('role'),
+        'link',
+        '[role="link"] attribute should exist on element select by: ' + ex.linkSelector
+      );
+    }
+  });
 
 ariaTest('Test "tabindex" attribute set to 0',
-         'link/link.html', 'tabindex', async (t) => {
+  'link/link.html', 'tabindex', async (t) => {
 
-  for (let i = 0; i < pageExamples.length; i++) {
-    let ex = pageExamples[i];
-    let linkLocator = t.context.By.css(ex.linkSelector);
-    let linkElement = await t.context.session.findElement(linkLocator);
+    for (let i = 0; i < pageExamples.length; i++) {
+      let ex = pageExamples[i];
+      let linkLocator = t.context.By.css(ex.linkSelector);
+      let linkElement = await t.context.session.findElement(linkLocator);
 
-    t.is(
-      await linkElement.getAttribute('tabindex'),
-      '0',
-      '[tab-index=0] attribute should exist on element selected by: ' + ex.linkSelector
-    );
-  }
-});
+      t.is(
+        await linkElement.getAttribute('tabindex'),
+        '0',
+        '[tab-index=0] attribute should exist on element selected by: ' + ex.linkSelector
+      );
+    }
+  });
 
 ariaTest('Test "alt" attribute exists',
-         'link/link.html', 'alt', async (t) => {
+  'link/link.html', 'alt', async (t) => {
 
-  for (let i = 0; i < pageExamples.length; i++) {
-    let ex = pageExamples[i];
-    if (!ex.hasOwnProperty('alt')) {
-      continue;
+    for (let i = 0; i < pageExamples.length; i++) {
+      let ex = pageExamples[i];
+      if (!ex.hasOwnProperty('alt')) {
+        continue;
+      }
+      let linkLocator = t.context.By.css(ex.linkSelector);
+      let linkElement = await t.context.session.findElement(linkLocator);
+
+      t.truthy(
+        await linkElement.getAttribute('alt'),
+        '"alt" attribute should exist on element selected by: ' + ex.linkSelector
+      );
     }
-    let linkLocator = t.context.By.css(ex.linkSelector);
-    let linkElement = await t.context.session.findElement(linkLocator);
 
-    t.truthy(
-      await linkElement.getAttribute('alt'),
-      '"alt" attribute should exist on element selected by: ' + ex.linkSelector
-    );
-  }
-
-});
+  });
 
 ariaTest('Test "aria-label" attribute exists',
-         'link/link.html', 'aria-label', async (t) => {
+  'link/link.html', 'aria-label', async (t) => {
 
-  for (let i = 0; i < pageExamples.length; i++) {
-    let ex = pageExamples[i];
-    if (!ex.hasOwnProperty('ariaLabel')) {
-      continue;
+    for (let i = 0; i < pageExamples.length; i++) {
+      let ex = pageExamples[i];
+      if (!ex.hasOwnProperty('ariaLabel')) {
+        continue;
+      }
+      let linkLocator = t.context.By.css(ex.linkSelector);
+      let linkElement = await t.context.session.findElement(linkLocator);
+
+      t.truthy(
+        await linkElement.getAttribute('aria-label'),
+        '"aria-label" attribute should exist on element selected by: ' + ex.linkSelector,
+      );
     }
-    let linkLocator = t.context.By.css(ex.linkSelector);
-    let linkElement = await t.context.session.findElement(linkLocator);
-
-    t.truthy(
-      await linkElement.getAttribute('aria-label'),
-      '"aria-label" attribute should exist on element selected by: ' + ex.linkSelector,
-    );
-  }
-});
+  });
 
 ariaTest('Test "ENTER" key behavior',
-         'link/link.html', 'key-enter', async (t) => {
+  'link/link.html', 'key-enter', async (t) => {
 
-  for (let i = 0; i < pageExamples.length; i++) {
-    await t.context.session.get(t.context.url);
+    for (let i = 0; i < pageExamples.length; i++) {
+      await t.context.session.get(t.context.url);
 
-    let ex = pageExamples[i];
-    let linkLocator = t.context.By.css(ex.linkSelector);
-    let linkElement = await t.context.session.findElement(linkLocator);
+      let ex = pageExamples[i];
+      let linkLocator = t.context.By.css(ex.linkSelector);
+      let linkElement = await t.context.session.findElement(linkLocator);
 
-    await linkElement.sendKeys(t.context.Key.ENTER);
-    await t.context.session.wait(() => {
-      return t.context.session.getCurrentUrl().then(url => {
-        return url != t.context.url;
-      });
-    }, 1000).catch(() => {});
+      await linkElement.sendKeys(t.context.Key.ENTER);
+      await t.context.session.wait(() => {
+        return t.context.session.getCurrentUrl().then(url => {
+          return url != t.context.url;
+        });
+      }, 1000).catch(() => {});
 
-    t.not(
-      await t.context.session.getCurrentUrl(),
-      t.context.url,
-      'ENTER key on element with selector "' + ex.linkSelector + '" should activate link.'
-    );
-  }
-});
+      t.not(
+        await t.context.session.getCurrentUrl(),
+        t.context.url,
+        'ENTER key on element with selector "' + ex.linkSelector + '" should activate link.'
+      );
+    }
+  });

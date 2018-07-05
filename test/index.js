@@ -49,7 +49,7 @@ const ariaTest = (desc, page, testId, body) => {
   const url = 'file://' + absPath;
   const selector = '[data-test-id="' + testId + '"]';
 
-  const testName = page + ' ' + selector + ": desc";
+  const testName = page + ' ' + selector + ': desc';
   test.serial(testName, async function (t) {
     t.context.url = url;
     await t.context.session.get(url);
