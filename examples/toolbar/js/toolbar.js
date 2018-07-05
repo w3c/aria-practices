@@ -86,7 +86,6 @@ aria.Toolbar.prototype.deselectItem = function (element) {
  */
 aria.Toolbar.prototype.styleManage = function (element) {
   var textContent = document.getElementById('textarea1');
-  console.log(textContent);
   if(element.classList.contains('selected')) {
     if(element.classList.contains('bold')){
       element.setAttribute('aria-pressed', true);

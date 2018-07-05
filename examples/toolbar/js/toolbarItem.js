@@ -36,10 +36,9 @@ ToolbarItem.prototype.handleKeyDown = function (event){
         switch (event.keyCode) {
             // case this.keyCode.SPACE:
             case this.keyCode.RETURN:
-                this.toolbar.selectItem(this.domNode);
-                console.log(this);
+                // this.handleClick();
+                // this.toolbar.selectItem(this.domNode);
                 break;
-
             case this.keyCode.RIGHT: 
                 this.toolbar.setFocusToNext(this);
                 flag = true;
