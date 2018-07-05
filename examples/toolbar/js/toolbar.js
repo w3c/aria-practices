@@ -33,21 +33,17 @@ aria.Toolbar = function (domNode) {
 aria.Toolbar.prototype.init = function() {
   var toolbarItem;
   e = this.domNode.firstElementChild; 
-  console.log(e);
   while(e){
     var toolbarGroup = e; 
     if(toolbarGroup.classList.contains('group')){
       this.toolbarGroups.push(toolbarGroup);
     }
     e = e.nextElementSibling;
-    console.log(e);
   }
-  console.log(this.toolbarGroups);
   for(var i=0; i<this.toolbarGroups.length;i++) {
     var j = this.toolbarGroups[i].firstElementChild; 
     while(j){
       var toolbarElement = j; 
-      console.log(toolbarElement);
       if(toolbarElement.classList.contains('toolbar-item') || toolbarElement.classList.contains('menu-wrapper')){
         toolbarItem = new ToolbarItem(toolbarElement, this);
         toolbarItem.init();
@@ -60,7 +56,6 @@ aria.Toolbar.prototype.init = function() {
     this.firstItem = this.toolbarItems[0];
     this.lastItem = this.toolbarItems[this.toolbarItems.length-1];
   }
-  console.log(this.toolbarItems);
 };
 
 /**
@@ -128,9 +123,7 @@ aria.Toolbar.prototype.styleManage = function (element) {
   }
   if (element.classList.contains('textAlign')){
     var textAlignElem = [].slice.call(document.querySelectorAll('.textAlign'));
-    console.log(element);
     for(var elem in textAlignElem){
-      console.log(textAlignElem[elem].getAttribute('aria-pressed')); 
       textAlignElem[elem].setAttribute('aria-pressed', false);
     }
     element.setAttribute('aria-pressed', true);
@@ -212,7 +205,6 @@ aria.Toolbar.prototype.selectItem = function (element) {
  *  The item to focus on
  */
 aria.Toolbar.prototype.setFocusItem = function (element) {
-  console.log(element);
   for(var i=0;i<this.toolbarItems.length;i++){
     this.toolbarItems[i].tabIndex = -1;
   }
@@ -220,7 +212,6 @@ aria.Toolbar.prototype.setFocusItem = function (element) {
     element.focus();
 };
 aria.Toolbar.prototype.setFocusToNext = function (currentItem) {
-    console.log(this.toolbarItems);
     var index, newItem;
     if(currentItem === this.lastItem) {
       newItem = this.toolbarItems[0];

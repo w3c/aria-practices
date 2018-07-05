@@ -530,7 +530,6 @@ aria.widget.MenuButton.prototype.eventKeyDown = function (event, menuButton) {
       break;
     
     case menuButton.keyCode.RETURN:
-      console.log('ememem');
       menuButton.moveFocusToFirstMenuItem();
       flag = true;
       break;
