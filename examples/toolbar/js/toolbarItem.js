@@ -59,5 +59,5 @@ ToolbarItem.prototype.handleKeyDown = function (event){
         }
 };
 ToolbarItem.prototype.handleClick = function () {
-
+ this.toolbar.selectItem(this.domNode);
 };

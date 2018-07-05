@@ -112,17 +112,19 @@ aria.Toolbar.prototype.styleManage = function (element) {
   }
   if (element.classList.contains('size')) {
     if(element.getAttribute('value') === 'smaller'){ // fontSmaller
-        this.fontSmaller(textContent);
-        element.setAttribute('aria-pressed', true);
-        setTimeout(function(){
-          element.setAttribute('aria-pressed',false);
-        },100);
+        
+      this.fontSmaller(textContent);
+      if(this.isMinFontSize(textContent)){
+        element.disabled = true;
+      } 
+      document.getElementById("large").disabled = false;
     } else {
       this.fontLarger(textContent);
-      element.setAttribute('aria-pressed', true);
-      setTimeout(function(){
-        element.setAttribute('aria-pressed',false);
-      },100);
+      if(this.isMaxFontSize(textContent)){
+        element.disabled = true;
+      }
+      document.getElementById("small").disabled = false;
+      
     }
   }
   if (element.classList.contains('textAlign')){

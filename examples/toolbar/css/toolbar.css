@@ -3,16 +3,13 @@
 	font-style: italic;
 }
 
-/* .toolbar {
-	margin-top: 10px;
-	font-size: 0;
-} */
 li{
 margin: 0;
 }
 .toolbar{
-	/* border: 1px solid black; */
+	border:1px solid black;
 	border-radius:10px;
+	padding:1em;
 	display:flex;
 	justify-content: space-evenly;
 }
@@ -35,10 +32,10 @@ margin: 0;
 	/* vertical-align: top; */
 	margin-right:1em;
 }
-.toolbar-item:focus {
+/* .toolbar-item:focus {
 	border-color: hsl(216, 94%, 73%);
 	background-color: hsl(216, 80%, 97%);
-}
+} */
 
 .menu-wrapper {
 display: inline-block;
