@@ -1,7 +1,19 @@
 'use strict';
 
 const { ariaTest } = require('..');
+const { By } = require('selenium-webdriver');
 
+const reload = async (session) => {
+  return session.get(await session.getCurrentUrl());
+};
+const clickUntilDisabled = async (session, selector) => {
+  const el = await session.findElement(By.css(selector));
+  await el.click();
+
+  if (await el.isEnabled()) {
+    return clickUntilDisabled(session, selector);
+  }
+};
 
 let pageExamples = {
   'ex1': {
@@ -460,6 +472,116 @@ ariaTest('Up arrow key moves focus', 'grid/LayoutGrids.html', 'key-up-arrow', as
     t.truthy(
       correctActiveElement,
       'Example ' + exId + ': Up Arrow sent to fist gridcell should not move focus.'
+    );
+  }
+});
+
+ariaTest('PageDown key moves focus', 'grid/LayoutGrids.html', 'key-page-down', async (t) => {
+  t.plan(12);
+
+  const cellSelectors = {
+    first: '#ex3 [role="row"] [role="gridcell"]:nth-child(1)',
+    second: '#ex3 [role="row"] [role="gridcell"]:nth-child(2)',
+    third: '#ex3 [role="row"] [role="gridcell"]:nth-child(3)'
+  };
+  const jumpBy = 5;
+
+  for (let [initialCell, selector] of Object.entries(cellSelectors)) {
+    await reload(t.context.session);
+
+    let finalIndex;
+    let gridcellElements = (await t.context.session.findElements(
+      t.context.By.css(selector)
+    ));
+
+    // Find the first focusable element
+    let activeElement = await t.context.session.executeScript(focusWithin, gridcellElements[0]);
+    if (!activeElement) {
+      throw new Error('Could not focus on element or any decendent in the first gridcell: ' + selector);
+    }
+
+    // Test focus moves to next element on paging key
+
+    for (let index = jumpBy; index < gridcellElements.length; index += jumpBy) {
+      await activeElement.sendKeys(t.context.Key.PAGE_DOWN);
+      let correctActiveElement = await t.context.session.executeScript(checkActiveElement, selector, index);
+
+      t.truthy(
+        correctActiveElement,
+        initialCell + ' cell in row: gridcell `' + (await gridcellElements[index].getText()) + '` should receive focus after page down'
+      );
+
+      activeElement = await t.context.session.executeScript(() => {
+        return document.activeElement;
+      });
+      finalIndex = index;
+    }
+
+    // Test paging key on final element
+
+    await activeElement.sendKeys(t.context.Key.PAGE_DOWN);
+    let correctActiveElement = await t.context.session.executeScript(checkActiveElement, selector, finalIndex);
+    t.truthy(
+      correctActiveElement,
+      initialCell + ' cell in row: Page Down sent to final gridcell should not move focus.'
+    );
+  }
+});
+
+ariaTest('PageDown key moves focus', 'grid/LayoutGrids.html', 'key-page-up', async (t) => {
+  t.plan(12);
+
+  const cellSelectors = {
+    first: '#ex3 [role="row"] [role="gridcell"]:nth-child(1)',
+    second: '#ex3 [role="row"] [role="gridcell"]:nth-child(2)',
+    third: '#ex3 [role="row"] [role="gridcell"]:nth-child(3)'
+  };
+  const jumpBy = 5;
+
+  for (let [initialCell, selector] of Object.entries(cellSelectors)) {
+    await reload(t.context.session);
+    await clickUntilDisabled(t.context.session, '#ex3_pagedown_button');
+
+    let finalIndex;
+    let gridcellElements = (await t.context.session.findElements(
+      t.context.By.css(selector)
+    ));
+
+    // Find the first focusable element
+    let activeElement = await t.context.session.executeScript(focusWithin, gridcellElements[gridcellElements.length - 1]);
+    if (!activeElement) {
+      throw new Error('Could not focus on element or any decendent in the final gridcell: ' + selector);
+    }
+
+    // Test focus moves to next element on paging key
+
+    // The final "page" of rows may not contain the maxmium number of rows. In
+    // this case, the first "Page Up" keypress will involve traversing fewer
+    // rows than subsequent kepresses.
+    const finalPageLength = (gridcellElements.length % jumpBy) || jumpBy;
+    const penultimate = gridcellElements.length - 1 - finalPageLength;
+    for (let index = penultimate; index > -1; index -= jumpBy) {
+      await activeElement.sendKeys(t.context.Key.PAGE_UP);
+      let correctActiveElement = await t.context.session.executeScript(checkActiveElement, selector, index);
+
+      t.truthy(
+        correctActiveElement,
+        initialCell + ' cell in row: gridcell `' + (await gridcellElements[index].getText()) + '` should receive focus after page up'
+      );
+
+      activeElement = await t.context.session.executeScript(() => {
+        return document.activeElement;
+      });
+      finalIndex = index;
+    }
+
+    // Test paging key on final element
+
+    await activeElement.sendKeys(t.context.Key.PAGE_UP);
+    let correctActiveElement = await t.context.session.executeScript(checkActiveElement, selector, finalIndex);
+    t.truthy(
+      correctActiveElement,
+      initialCell + ' cell in row: Page Up sent to first gridcell should not move focus.'
     );
   }
 });
