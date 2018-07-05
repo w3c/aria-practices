@@ -6,12 +6,55 @@ const { By } = require('selenium-webdriver');
 const reload = async (session) => {
   return session.get(await session.getCurrentUrl());
 };
+
 const clickUntilDisabled = async (session, selector) => {
   const el = await session.findElement(By.css(selector));
   await el.click();
 
   if (await el.isEnabled()) {
     return clickUntilDisabled(session, selector);
+  }
+};
+
+const checkActiveElement = function(/* gridcellsSelector, index */) {
+  let gridcellsSelector = arguments[0];
+  let index = arguments[1];
+  let gridcells = document.querySelectorAll(gridcellsSelector);
+  let gridcell = gridcells[index];
+  return (document.activeElement === gridcell) || gridcell.contains(document.activeElement);
+};
+
+const findFocusable = function(/* selector */) {
+  const selector = arguments[0];
+  const original = document.activeElement;
+  const focusable = Array.from(document.querySelectorAll(selector))
+      .map((parent) => {
+        const candidates = [parent, ...parent.querySelectorAll('*')];
+        for (let candidate of candidates) {
+
+          candidate.focus();
+          if (document.activeElement === candidate) {
+            return candidate;
+          }
+        }
+      }).filter((el) => !!el);;
+
+  original.focus();
+
+  return focusable;
+};
+
+const focusWithin = function(/* element */) {
+  // Assumption: `element is` focusable or contains only one focusable element.
+  let element = arguments[0];
+  let candidates = [element, ...element.querySelectorAll('*')];
+
+  for (let candidate of candidates) {
+    candidate.focus();
+
+    if (document.activeElement === candidate) {
+      return candidate;
+    }
   }
 };
 
@@ -247,46 +290,6 @@ ariaTest('Test "tabindex" appropriately set',
 
 
 // Keys
-
-const checkActiveElement = function(/* gridcellsSelector, index */) {
-  let gridcellsSelector = arguments[0];
-  let index = arguments[1];
-  let gridcells = document.querySelectorAll(gridcellsSelector);
-  let gridcell = gridcells[index];
-  return (document.activeElement === gridcell) || gridcell.contains(document.activeElement);
-};
-
-const findFocusable = function(/* selector */) {
-  const selector = arguments[0];
-  const original = document.activeElement;
-  const focusable = Array.from(document.querySelectorAll(selector))
-      .map((parent) => {
-        const candidates = [parent, ...parent.querySelectorAll('*')];
-        for (let candidate of candidates) {
-
-          candidate.focus();
-          if (document.activeElement === candidate) {
-            return candidate;
-          }
-        }
-      }).filter((el) => !!el);;
-
-  original.focus();
-
-  return focusable;
-};
-
-const focusWithin = function(/* element */) {
-  // Assumption: element is focusable or contains only one focusable element.
-  let element = arguments[0];
-  let candidates = [element, ...element.querySelectorAll('*')];
-  for (let candidate of candidates) {
-    candidate.focus();
-    if (document.activeElement === candidate) {
-      return candidate;
-    }
-  }
-}
 
 ariaTest('Right arrow key moves focus', 'grid/LayoutGrids.html', 'key-right-arrow', async (t) => {
   t.plan(67);
@@ -528,7 +531,7 @@ ariaTest('PageDown key moves focus', 'grid/LayoutGrids.html', 'key-page-down', a
   }
 });
 
-ariaTest('PageDown key moves focus', 'grid/LayoutGrids.html', 'key-page-up', async (t) => {
+ariaTest('PageUp key moves focus', 'grid/LayoutGrids.html', 'key-page-up', async (t) => {
   t.plan(12);
 
   const cellSelectors = {
@@ -540,6 +543,9 @@ ariaTest('PageDown key moves focus', 'grid/LayoutGrids.html', 'key-page-up', asy
 
   for (let [initialCell, selector] of Object.entries(cellSelectors)) {
     await reload(t.context.session);
+    // This test depends on the "page down" button which is not specified by
+    // the widget's description. It does this to avoid relying on behaviors
+    // that are tested elsewhere.
     await clickUntilDisabled(t.context.session, '#ex3_pagedown_button');
 
     let finalIndex;
