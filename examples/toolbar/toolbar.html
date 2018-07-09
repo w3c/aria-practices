@@ -46,26 +46,26 @@
     <h2 id="ex_label">Example</h2>
     <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
     <div id="ex1">
-        <div class="toolbar" role="toolbar">
+        <div class="toolbar" role="toolbar" aria-label="Toolbar">
           <div class="group" id="group1" tabindex="-1">
-            <button class="toolbar-item bold" role="button" aria-pressed="false" value="bold" tabindex="0">
+            <button class="toolbar-item bold" aria-pressed="false" value="bold" tabindex="0">
               <i class="fas fa-bold"></i>
             </button>
-            <button class="toolbar-item italic" role="button" aria-pressed="false" value="italic">
+            <button class="toolbar-item italic" aria-pressed="false" value="italic">
               <i class="fas fa-italic"></i>
             </button>
-            <button class="toolbar-item underline" role="button" aria-pressed="false" value="underline">
+            <button class="toolbar-item underline" aria-pressed="false" value="underline">
               <i class="fas fa-underline"></i>
             </button>
           </div>
           <div class="group" id= "group2">
-            <button class="toolbar-item textAlign" role="button" aria-pressed="true" value="left">
+            <button class="toolbar-item textAlign" aria-pressed="true" value="left">
               <i class="fas fa-align-left"></i>
             </button>
-            <button class="toolbar-item textAlign" role="button" aria-pressed="false" value="center">
+            <button class="toolbar-item textAlign" aria-pressed="false" value="center">
               <i class="fas fa-align-center"></i>
             </button>
-            <button class="toolbar-item textAlign" role="button" aria-pressed="false" value="right">
+            <button class="toolbar-item textAlign" aria-pressed="false" value="right">
               <i class="fas fa-align-right"></i>
             </button> 
           </div>
@@ -73,7 +73,7 @@
             <button class="toolbar-item size" id="large" value="larger" aria-pressed="false">
               <i class="fas fa-plus"></i>
             </button>
-            <button class="toolbar-item size" id="small" role="button" value="smaller" aria-pressed="false">
+            <button class="toolbar-item size" id="small" value="smaller" aria-pressed="false">
               <i class="fas fa-minus"></i>
             </button>
           </div>  
@@ -160,6 +160,33 @@
           </td>
         </tr>
         <tr>
+          <th><kbd>Enter</kbd></th>
+          <td>
+            <ul>
+              <li>Select the item if it is toolbar item or menu item</li>
+              <li>Expand the menu if it include menu items</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th><kbd>Down Arrow</kbd></th>
+          <td>
+            <ul>
+              <li>Moves focus to the next menu item.</li>
+              <li>If the last menu item has focus, focus moves to the first menu item.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <th><kbd>Up Arrow</kbd></th>
+          <td>
+            <ul>
+              <li>Moves focus to the previous menu item.</li>
+              <li>If the first menu item has focus, focus moves to the last menu item.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
           <th><kbd>Home</kbd></th>
           <td>Moves focus to the first control.</td>
         </tr>
@@ -208,9 +235,12 @@
         </td>
         </tr>
         <tr>
-          <th scope="row"><code>button</code></th>
+          <!-- <th scope="row"><code>button</code></th> -->
           <td></td>
-          <td><code>div</code></td>
+          <td></td>
+          <th scope="row">
+            <code>button</code>
+          </th>
           <td>Identifies the element as a button.</td>
         </tr>
         <tr>
@@ -253,6 +283,34 @@
           <td><code>button</code></td>
           <td>Informs assistive technologies of the disabled state.</td>
         </tr>
+        <tr>
+            <td></td>
+            <th scope="row"><code>aria-pressed=&quot;true&quot;</code></th>
+            <td><code>button</code></td>
+            <td>Indicate the button has been pressed</td>
+        </tr>
+        <tr>
+            <td></td>
+            <th scope="row"><code>aria-pressed=&quot;false&quot;</code></th>
+            <td><code>button</code></td>
+            <td>Indicate the button has <b>Not</b> been pressed</td>
+        </tr>
+        <tr>
+            <th scope="row"><code>menu</code></th>
+            <td></td>
+            <td><code>ul</code></td>
+            <td>
+               Identifies the menu container.
+            </td>
+          </tr>
+          <tr>
+              <th scope="row"><code>menuitem</code></th>
+              <td></td>
+              <td><code>li</code></td>
+              <td>
+                 Identifies the menuitem.
+              </td>
+            </tr>
       </tbody>
     </table>
   </section>
