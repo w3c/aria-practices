@@ -20,7 +20,6 @@ var ToolbarItem = function (domNode, toolObj) {
 };
 
 ToolbarItem.prototype.init = function () {
-  this.domNode.tabIndex = 0;
   this.domNode.addEventListener('keydown', this.handleKeyDown.bind(this));
   this.domNode.addEventListener('click', this.handleClick.bind(this));
 };
@@ -34,10 +33,8 @@ ToolbarItem.prototype.handleKeyDown = function (event) {
     return str.length === 1 && str.match(/\S/);
   }
   switch (event.keyCode) {
-    // case this.keyCode.SPACE:
     case this.keyCode.RETURN:
-      // this.handleClick();
-      // this.toolbar.selectItem(this.domNode);
+      this.toolbar.selectItem(this.domNode);
       break;
     case this.keyCode.RIGHT:
       this.toolbar.setFocusToNext(this);

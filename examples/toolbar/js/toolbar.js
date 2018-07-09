@@ -212,11 +212,13 @@ aria.Toolbar.prototype.selectItem = function (element) {
  *  The item to focus on
  */
 aria.Toolbar.prototype.setFocusItem = function (element) {
+
   for (var i = 0;i < this.toolbarItems.length;i++) {
-    this.toolbarItems[i].tabIndex = -1;
+    this.toolbarItems[i].domNode.setAttribute('tabindex', '1');
   }
-  element.tabIndex = 0;
+  element.setAttribute('tabindex', '0');
   element.focus();
+
 };
 aria.Toolbar.prototype.setFocusToNext = function (currentItem) {
   var index, newItem;

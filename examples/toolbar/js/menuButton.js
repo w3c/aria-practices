@@ -507,7 +507,6 @@ aria.widget.MenuButton.prototype.moveFocusToLastMenuItem = function () {
   }
 
 };
-
 /**
  * @method eventKeyDown
  *
@@ -525,12 +524,8 @@ aria.widget.MenuButton.prototype.eventKeyDown = function (event, menuButton) {
   switch (event.keyCode) {
 
     case menuButton.keyCode.SPACE:
-      menuButton.moveFocusToFirstMenuItem();
-      flag = true;
-      break;
-
     case menuButton.keyCode.RETURN:
-      menuButton.moveFocusToFirstMenuItem();
+      this.buttonNode.setAttribute('aria-pressed', true);
       flag = true;
       break;
 
@@ -544,6 +539,9 @@ aria.widget.MenuButton.prototype.eventKeyDown = function (event, menuButton) {
     case menuButton.keyCode.DOWN:
       if (this.menuShowing) {
         menuButton.moveFocusToFirstMenuItem();
+        flag = true;
+      } else {
+        menuButton.openMenu();
         flag = true;
       }
       break;
