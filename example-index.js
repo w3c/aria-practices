@@ -352,17 +352,6 @@ for (role in indexOfRoles) {
 sorted.sort();
 
 html = '';
-html += '\n\n<h2 id="examples_by_role_label">Examples by Role</h2>\n';
-html += '<table aria-labelledby="examples_by_role_label">\n';
-html += '  <thead>\n';
-html += '    <tr>\n';
-html += '      <th>Role</th>\n';
-html += '      <th>Examples</th>\n';
-html += '    </tr>\n';
-html += '  </thead>\n';
-
-
-html += '  <tbody>\n';
 for (let i = 0; i < sorted.length; i++) {
   var role = sorted[i];
   var examples = indexOfRoles[role];
@@ -384,10 +373,8 @@ for (let i = 0; i < sorted.length; i++) {
   html += '      </td>\n';
   html += '    </tr>\n';
 }
-html += '  </tbody>\n';
-html += '</table>\n';
 
-practices = replaceSection('examples_by_roles', practices, html);
+practices = replaceSection('examples_by_roles_tbody', practices, html);
 
 sorted = [];
 
@@ -398,17 +385,6 @@ for (prop in indexOfPropertiesAndStates) {
 sorted.sort();
 
 html = ''
-html += '\n\n<h4 id="examples_by_props_label">Examples By Properties and States</h4>\n';
-html += '<table aria-labelledby="examples_by_props_label">\n';
-html += '  <thead>\n';
-html += '    <tr>\n';
-html += '      <th>Property or State</th>\n';
-html += '      <th>Examples</th>\n';
-html += '    </tr>\n';
-html += '  </thead>\n';
-
-
-html += '  <tbody>\n';
 for (let i = 0; i < sorted.length; i++) {
   var prop = sorted[i];
   var examples = indexOfPropertiesAndStates[prop];
@@ -430,10 +406,8 @@ for (let i = 0; i < sorted.length; i++) {
   html += '      </td>\n';
   html += '    </tr>\n';
 }
-html += '  </tbody>\n';
-html += '</table>\n';
 
-practices = replaceSection('examples_by_props', practices, html);
+practices = replaceSection('examples_by_props_tbody', practices, html);
 
 fs.writeFile("aria-practices.html", practices, function(err){
   if (err) {
