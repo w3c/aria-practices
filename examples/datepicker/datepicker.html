@@ -7,6 +7,8 @@
 <!--  Core js and css shared by all examples; do not modify when using this template. -->
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
 <link rel="stylesheet" href="../css/core.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+
 <script src="../js/examples.js" type="text/javascript"></script>
 <script src="../js/highlight.pack.js"></script>
 <script src="../js/app.js"></script>
@@ -20,13 +22,13 @@
       <li><a href="../../#browser_and_AT_support">Browser and Assistive Technology Support</a></li>
       <li><a href="https://github.com/w3c/aria-practices/issues/new">Report Issue</a></li>
       <li><a href="https://github.com/w3c/aria-practices/projects/14">Related Issues</a></li>
-      <li><a href="../../#button">Design Pattern</a></li>
+      <li><a href="../../#datepicker">Design Pattern</a></li>
     </ul>
   </nav>
   <main>
     <h1>Datepicker Examples</h1>
-    <p>
-      The following command and toggle button examples demonstrate the
+    <p>     
+      The following command and input examples demonstrate the
       <a href="../../#datepicker">datepicker design pattern.</a>
     </p>
   <section>
@@ -35,8 +37,13 @@
     <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
     <div id="example">
       <div>
-        <label for="datepicker">Date</label>
-        <input type="date" id="datepicker" value="2018-07-06"  min="2018-01-01" max="2018-12-31"/>
+        <label for="datepicker">Date (mm/dd/yyyy):  </label> <br/>
+        <!-- <input type="date" id="datepicker" value="2018-07-06"  min="2018-01-01" max="2018-12-31"/> -->
+        <input type="text" id="datepicker">
+        <button id="datepicker_label" aria-describedby="datepickerlabel">
+            <i class="fa fa-calendar-alt"></i>
+        </button>
+        
       </div>
     </div>
     <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
@@ -135,11 +142,11 @@
     <ul>
       <li>
         CSS:
-        <a href="css/button.css" type="tex/css">button.css</a>
+        <a href="css/datepicker.css" type="tex/css">datepicker.css</a>
       </li>
       <li>
         Javascript:
-        <a href="js/button.js" type="text/javascript">button.js</a>
+        <a href="js/datepicker.js" type="text/javascript">datepicker.js</a>
       </li>
     </ul>
   </section>
@@ -154,9 +161,9 @@
       sourceCode.make();
     </script>
   </section>
-  </main>
+  </main> 
   <nav>
-    <a href="../../#button">Button Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
+    <a href="../../#datepicker">Datepicker Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
   </nav>
 </body>
 </html>
