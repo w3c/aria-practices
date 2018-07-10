@@ -8,16 +8,15 @@ margin: 0;
 }
 .toolbar{
 	border:3px solid black;
-	border-radius:10px;
+	border-radius:5px;
 	padding:1em;
 	display:flex;
-	justify-content: space-evenly;
+	justify-content: space-around;
 	background-color:#F5F6F6;
 }
 .group{
 	padding:0.5em;
 	border:2px solid black;
-	border-radius:10px;
 	background-color:rgb(213, 218, 218);
 }
 .toolbar-item {

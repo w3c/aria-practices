@@ -114,16 +114,16 @@ aria.Toolbar.prototype.styleManage = function (element) {
 
       this.fontSmaller(textContent);
       if (this.isMinFontSize(textContent)) {
-        element.disabled = true;
+        element.setAttribute('aria-disabled', true);
       }
-      document.getElementById('large').disabled = false;
+      document.getElementById('large').setAttribute('aria-disabled',false);
     }
     else {
       this.fontLarger(textContent);
       if (this.isMaxFontSize(textContent)) {
-        element.disabled = true;
+        element.setAttribute('aria-disabled', true);
       }
-      document.getElementById('small').disabled = false;
+      document.getElementById('small').setAttribute('aria-disabled',false);
 
     }
   }
