@@ -9,29 +9,35 @@ margin: 0;
 .toolbar{
 	border:3px solid black;
 	border-radius:5px;
-	padding:1em;
-	display:flex;
-	justify-content: space-around;
+	padding:.25em;
 	background-color:#F5F6F6;
+	height: 3.25em;
+	width: 35.75em;
 }
-.group{
-	padding:0.5em;
-	border:2px solid black;
-	background-color:rgb(213, 218, 218);
+.group {
+	padding:0.25em;
+	display: block;
+	float: left;
 }
+
+.group:not(:first-child) {
+margin-left: 0.75em;
+}
+
 .toolbar-item {
 	border: 1px solid black;
 	display: inline-block;
 	padding: 0.5em 1em;
 	/* width:6em; */
-	border-radius:32px;
+	border-radius:5px;
 	text-align: center;
 	background: rgb(255, 255, 255);
 	color: rgb(0, 0, 0);
 	font-size: 16px;
 	line-height: 1.5em;
 	/* vertical-align: top; */
-	margin-right:0.5em;
+	margin-right:0.25em;
+	float: left;
 }
 
 .menu-wrapper {
