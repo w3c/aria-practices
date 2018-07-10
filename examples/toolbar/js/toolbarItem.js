@@ -34,7 +34,9 @@ ToolbarItem.prototype.handleKeyDown = function (event) {
   }
   switch (event.keyCode) {
     case this.keyCode.RETURN:
+    case this.keyCode.SPACE:
       this.toolbar.selectItem(this.domNode);
+      flag = true;
       break;
     case this.keyCode.RIGHT:
       this.toolbar.setFocusToNext(this);
@@ -53,7 +55,14 @@ ToolbarItem.prototype.handleKeyDown = function (event) {
       flag = true;
       break;
   }
+
+  if (flag) {
+    event.stopPropagation();
+    event.preventDefault();
+  }
+
 };
+
 ToolbarItem.prototype.handleClick = function () {
   this.toolbar.selectItem(this.domNode);
 };
