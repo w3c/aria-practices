@@ -1,6 +1,13 @@
-var datepicker  = function (domNode) {
+var DatePicker  = function (domNode) {
 
-  this.today = domNode;
-  this.firstDay = null;
-  this.lastDay = null;
-}
+  this.calender= domNode;
+  this.date = null;
+  this.months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+};
+
+DatePicker.prototype.init = function() {
+  console.log(this.calender);
+  this.calender.find("#prev").addEventListener('click', this.handlePrevClick(this));
+};
+
