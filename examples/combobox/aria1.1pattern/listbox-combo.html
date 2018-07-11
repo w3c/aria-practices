@@ -52,7 +52,7 @@
       <h3 id="ex1_label">Example 1: List Autocomplete with Manual Selection</h3>
       <div role="separator" id="ex1_start_sep" aria-labelledby="ex1_start_sep ex1_label" aria-label="Start of"></div>
       <div id="ex1">
-        <label id="ex1-label" class="combobox-label">
+        <label for="ex1-input" id="ex1-label" class="combobox-label">
           Choice 1 Fruit or Vegetable
         </label>
         <div class="combobox-wrapper">
@@ -64,7 +64,6 @@
             <input type="text"
               aria-autocomplete="list"
               aria-controls="ex1-listbox"
-              aria-labelledby="ex1-label"
               id="ex1-input">
           </div>
           <ul
@@ -351,7 +350,12 @@
             <td>
               <ul>
                 <li>Identifies the element as a combobox.</li>
-                <li>Note: The primary difference between the ARIA 1.0 pattern and the ARIA 1.1 pattern is the placement of the <code>combobox</code> role.</li>
+                <li>Note:
+                  <ul>
+                    <li>Unlike this ARIA 1.1 combobox, an ARIA 1.0 pattern would have the <code>combobox</code> role on the textbox input instead of a parent container of the textbox.</li>
+                    <li>The ARIA 1.1 pattern demonstrated on this page enables screen reader users to perceive both the input and the popup when using reading mode (see note below about aria-owns).</li>
+                  </ul>
+                </li>
               </ul>
             </td>
           </tr>
@@ -374,7 +378,12 @@
               <code>aria-owns=<q>IDREF</q></code>
             </th>
             <td><code>div</code></td>
-            <td>Identifies the element that serves as the listbox popup.</td>
+            <td>
+              <ul>
+                <li>Refers to the element that serves as the listbox popup.</li>
+                <li>Tells browsers to arrange the screen reader reading order so the listbox, when it is visible,  immediately follows the other elements inside the combobox, regardless of where the listbox element is in the DOM.</li>
+              </ul>
+            </td>
           </tr>
           <tr>
             <td></td>
@@ -408,10 +417,15 @@
           <tr>
             <td></td>
             <th scope="row">
-              <code>aria-labelledby=<q>IDREF</q></code>
+              <code>id="string"</code>
             </th>
             <td><code>input[type="text"]</code></td>
-            <td>Provides a label for the textbox element of the combobox.</td>
+            <td>
+              <ul>
+                <li>Referenced by <code>for</code> attribute of <code>label</code> element to provide an accessible label.</li>
+                <li>Recommended labeling method for HTML input elements so clicking label focuses input.</li>
+              </ul>
+            </td>
           </tr>
           <tr>
             <td></td>
@@ -438,7 +452,12 @@
             <td>
               <ul>
                 <li>Identifies the popup element that lists suggested values.</li>
-                <li>Note: In the ARIA 1.0 combobox pattern, the textbox uses <code>aria-owns</code> instead of <code>aria-controls</code>.</li>
+                <li>Note:
+                  <ul>
+                    <li>In the ARIA 1.0 combobox pattern, the textbox has <code>aria-owns</code> instead of <code>aria-controls</code>.</li>
+                    <li>In this ARIA 1.1 pattern, <code>aria-owns</code> is instead on the parent container so the popup element is a sibling of the textbox instead of a child of the textbox, making it perceivable by screen reader users as an element adjacent to the textbox when using a reading cursor or touch interface.</li> 
+                  </ul>
+                </li>
               </ul>
             </td>
           </tr>

@@ -324,9 +324,7 @@
 
       <section class="notoc">
         <h4>Example</h4>
-        <p>
-        Developing an example implementation of this pattern is <a href="https://github.com/w3c/aria-practices/issues/101">issue 101</a>.
-        </p>
+        <p><a href="examples/dialog-modal/alertdialog.html">Alert Dialog Example</a>: A confirmation prompt that demonstrates an alert dialog.</p>
       </section>
 
       <section class="notoc">
@@ -920,7 +918,7 @@
     <section class="widget" id="dialog_modal">
       <h3>Dialog (Modal)</h3>
       <p>
-        A <a href="#dialog" class="role-reference">dialog</a> is a window overlayed on either the primary window or another dialog window.
+        A <a href="#dialog" class="role-reference">dialog</a> is a window overlaid on either the primary window or another dialog window.
         Windows under a modal dialog are inert.
         That is, users cannot interact with content outside an active dialog window.
         Inert content outside an active dialog is typically visually obscured or dimmed so it is difficult to discern,
@@ -1678,8 +1676,8 @@
                   <li><kbd>Shift + Down Arrow</kbd> (Optional): Moves focus to and toggles the selected state of the next option.</li>
                   <li><kbd>Shift + Up Arrow</kbd> (Optional): Moves focus to and toggles the selected state of the previous option.</li>
                   <li><kbd>Shift + Space</kbd> (Optional): Selects contiguous items from the most recently selected item to the focused item.</li>
-                  <li><kbd>Control + Shift + Home</kbd> (Optional): Selects the focused option and all options up to the first option.</li>
-                  <li><kbd>Control + Shift + End</kbd> (Optional): Selects the focused option and all options down to the last option.</li>
+                  <li><kbd>Control + Shift + Home</kbd> (Optional): Selects the focused option and all options up to the first option. Optionally, moves focus to the first option.</li>
+                  <li><kbd>Control + Shift + End</kbd> (Optional): Selects the focused option and all options down to the last option. Optionally, moves focus to the last option.</li>
                   <li><kbd>Control + A</kbd> (Optional): Selects all options in the list. Optionally, if all options are selected, it may also unselect all options.</li>
                 </ul>
               </li>
@@ -1691,8 +1689,8 @@
                   <li><kbd>Control + Up Arrow</kbd>: Moves focus to the previous option without changing its selection state.</li>
                   <li><kbd>Control + Space</kbd> Changes the selection state of the focused option. </li>
                   <li><kbd>Shift + Space</kbd> (Optional): Selects contiguous items from the most recently selected item to the focused item.</li>
-                  <li><kbd>Control + Shift + Home</kbd> (Optional): Selects the focused option and all options up to the first option.</li>
-                  <li><kbd>Control + Shift + End</kbd> (Optional): Selects the focused option and all options down to the last option.</li>
+                  <li><kbd>Control + Shift + Home</kbd> (Optional): Selects the focused option and all options up to the first option. Optionally, moves focus to the first option.</li>
+                  <li><kbd>Control + Shift + End</kbd> (Optional): Selects the focused option and all options down to the last option. Optionally, moves focus to the last option.</li>
                   <li><kbd>Control + A</kbd> (Optional): Selects all options in the list. Optionally, if all options are selected, it may also unselect all options.</li>
                 </ul>
               </li>
@@ -2393,13 +2391,17 @@
           <li>When focus is on a tab in a tablist with either horizontal or vertical orientation:
             <ul>
               <li><kbd>Space or Enter</kbd>: Activates the tab if it was not activated automatically on focus.</li>
-              <li><kbd>Home</kbd> (Optional): Moves focus to the first tab</li>
-              <li><kbd>End</kbd> (Optional): Moves focus to the last tab.</li>
+              <li><kbd>Home</kbd> (Optional): Moves focus to the first tab. Optionally, activates the newly focused tab (See note below).</li>
+              <li><kbd>End</kbd> (Optional): Moves focus to the last tab. Optionally, activates the newly focused tab (See note below).</li>
               <li><kbd>Shift + F10</kbd>: If the tab has an associated pop-up menu, opens the menu. </li>
               <li>
-                <kbd>Delete</kbd> (Optional): If deletion is allowed, deletes (closes) the current tab element and its associated tab panel.
-                If any tabs remain, sets focus to the tab following the tab that was closed and activates the newly focused tab.
-                Alternatively, or in addition, the delete function is available in a context menu.
+                <kbd>Delete</kbd> (Optional): If deletion is allowed, deletes (closes) the current tab element and its associated tab panel, 
+                sets focus on the tab following the tab that was closed, and optionally activates the newly focused tab. If there is not a tab that followed the tab that was deleted,
+                e.g., the deleted tab was the right-most tab in a left-to-right horizontal tab list,
+                sets focus on and optionally activates the tab that preceded the deleted tab.
+                 If the application allows all tabs to be deleted, and the user deletes the last remaining tab in the tab list,
+                the application moves focus to another element that provides a logical work flow.
+                As an alternative to <kbd>Delete</kbd>, or in addition to supporting <kbd>Delete</kbd>, the delete function is available in a context menu.
               </li>
             </ul>
           </li>
@@ -2604,11 +2606,13 @@
       </dl>
       <p>
         When using a keyboard to navigate a tree, a visual keyboard indicator informs the user which node is focused.
-        If the tree allows the user to choose just one item for an action, then it is known as a single-select tree, and the item with focus also has a selected state.
-        However, in multi-select trees, which enable the user to select more than one item for an action, the selected state is independent of the focus.
+        If the tree allows the user to choose just one item for an action, then it is known as a single-select tree.
+        In some implementations of single-select tree, the focused item also has a selected state; this is known as selection follows focus.
+        However, in multi-select trees, which enable the user to select more than one item for an action, the selected state is always independent of the focus.
         For example, in a typical file system navigator, the user can move focus to select any number of files for an action, such as copy or move.
         It is important that the visual design distinguish between items that are selected and the item that has focus.
-        For more details, see <a href="#kbd_focus_vs_selection">this description of differences between focus and selection.</a>
+        For more details, see <a href="#kbd_focus_vs_selection">this description of differences between focus and selection</a>
+        and <a href="#kbd_selection_follows_focus">Deciding When to Make Selection Automatically Follow Focus</a>.
       </p>
 
       <section class="notoc">
@@ -2684,9 +2688,9 @@
                   <li><kbd>Space</kbd>: Toggles the selection state of the focused node.</li>
                   <li><kbd>Shift + Down Arrow</kbd> (Optional): Moves focus to and toggles the selection state of the next node.</li>
                   <li><kbd>Shift + Up Arrow</kbd> (Optional): Moves focus to and toggles the selection state of the previous node.</li>
-                  <li><kbd>Shift + Space</kbd> (Optional): Selects contiguous nodes from the last   selected node to the current node.</li>
-                  <li><kbd>Control + Shift + Home</kbd> (Optional): Selects the node with focus and all nodes up to the first node.</li>
-                  <li><kbd>Control + Shift + End</kbd> (Optional): Selects the node with focus and all nodes down to the last node.</li>
+                  <li><kbd>Shift + Space</kbd> (Optional): Selects contiguous nodes from the most recently selected node to the current node.</li>
+                  <li><kbd>Control + Shift + Home</kbd> (Optional): Selects the node with focus and all nodes up to the first node. Optionally, moves focus to the first node.</li>
+                  <li><kbd>Control + Shift + End</kbd> (Optional): Selects the node with focus and all nodes down to the last node. Optionally, moves focus to the last node.</li>
                   <li><kbd>Control + A</kbd> (Optional): Selects all nodes in the tree. Optionally, if all nodes are selected, it can also unselect all nodes.</li>
                 </ul>
               </li>
@@ -2698,8 +2702,8 @@
                   <li><kbd>Control + Up Arrow</kbd>: Without changing the selection state, moves focus to the previous node.</li>
                   <li><kbd>Control + Space</kbd>: Toggles the selection state of the focused node.</li>
                   <li><kbd>Shift + Space</kbd> (Optional): Selects contiguous nodes from the most recently selected node to the current node.</li>
-                  <li><kbd>Control + Shift + Home</kbd> (Optional): Selects the node with focus and all nodes up to the first node.</li>
-                  <li><kbd>Control + Shift + End</kbd> (Optional): Selects the node with focus and all nodes down to the last node.</li>
+                  <li><kbd>Control + Shift + Home</kbd> (Optional): Selects the node with focus and all nodes up to the first node. Optionally, moves focus to the first node.</li>
+                  <li><kbd>Control + Shift + End</kbd> (Optional): Selects the node with focus and all nodes down to the last node. Optionally, moves focus to the last node.</li>
                   <li><kbd>Control + A</kbd> (Optional): Selects all nodes in the tree. Optionally, if all nodes are selected, it can also unselect all nodes.</li>
                 </ul>
               </li>
