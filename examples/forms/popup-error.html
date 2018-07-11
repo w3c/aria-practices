@@ -103,7 +103,7 @@
             aria-errormessage="id-delivery-error"
             aria-describedby="id-delivery-fee"
             onblur="validateDeliveryMethod()"
-            onChange='priceChange()'>
+            onchange="priceChange()">
         <option id="id-delivery-choose">
           Choose your Method
         </option>
@@ -137,7 +137,7 @@
                aria-invalid="false"
                aria-errormessage="id-size-error"
                onblur="validateSize()"
-               onChange='priceChange()'>
+               onchange="priceChange()">
            Small 10" - $7.00
         </label>
       </div>
@@ -150,7 +150,7 @@
                aria-invalid="false"
                aria-errormessage="id-size-error"
                onblur="validateSize()"
-               onChange='priceChange()'>
+               onchange="priceChange()">
 
            Medium 12" - $8.50
         </label>
@@ -164,7 +164,7 @@
                aria-invalid="false"
                aria-errormessage="id-size-error"
                onblur="validateSize()"
-               onChange='priceChange()'>
+               onchange='priceChange()'>
            Large 16" - $10.00
         </label>
       </div>
@@ -304,7 +304,6 @@
 
     <div class="cost"><label>Total Cost: <input id="id-total-cost" value="$0"/></label></div>
 
-
     <fieldset>
       <legend>Credit Card Information</legend>
 
@@ -368,8 +367,8 @@
              aria-invalid="false"
              type="text"
              size="5"
-             aria-errormessage="id-secure-error"
-             aria-describedby="id-secure-inst"
+             aria-errormessage="id-card-secure-error"
+             aria-describedby="id-card-secure-inst"
              onblur="validateCardSecure()">
         <span id="id-card-secure-error" class="noerror" role="status">
         </span>
@@ -435,6 +434,10 @@
 
       <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
   </section>
+
+</div>
+</section>
+
 
   <section>
     <h2 id="kbd_label">Keyboard Support</h2>
@@ -659,6 +662,7 @@
             <ul>
               <li>The use of <code>role=<q>status</q></code> live region will signal screen readers to automatically announce error messages.</li>
               <li>The <code>role=<q>status</q></code> by default sets <code>aria-live</code> property to <code>polite</code>, so the change will not disrupt what is being spoke, but just add to the content of what is being spoken.</li>
+            </ul>
           </td>
         </tr>
       </tbody>
