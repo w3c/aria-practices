@@ -14,7 +14,8 @@ Array.prototype.slice.call(document.querySelectorAll('.Spinbutton')).forEach(fun
 
     if (event.key.match(/[\d]|Backspace/)) {
       // updateValueNow(target,);
-    } else {
+    }
+    else {
       event.preventDefault();
     }
 
