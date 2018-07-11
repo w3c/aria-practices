@@ -245,7 +245,12 @@
             <td>
               <ul>
                 <li>Identifies the element as a combobox.</li>
-                <li>Note: The primary difference between the ARIA 1.0 pattern and the ARIA 1.1 pattern is the placement of the <code>combobox</code> role.</li>
+                <li>Note:
+                  <ul>
+                    <li>Unlike this ARIA 1.1 combobox, an ARIA 1.0 pattern would have the <code>combobox</code> role on the textbox input instead of a parent container of the textbox.</li>
+                    <li>The ARIA 1.1 pattern demonstrated on this page enables screen reader users to perceive both the input and the popup when using reading mode (see note below about aria-owns).</li>
+                  </ul>
+                </li>
               </ul>
             </td>
           </tr>
@@ -263,7 +268,12 @@
               <code>aria-owns=<q>IDREF</q></code>
             </th>
             <td><code>div</code></td>
-            <td>Identifies the element that serves as the grid popup.</td>
+            <td>
+              <ul>
+                <li>Refers to the element that serves as the grid popup.</li>
+                <li>Tells browsers to arrange the screen reader reading order so the grid, when it is visible,  immediately follows the other elements inside the combobox, regardless of where the grid element is in the DOM.</li>
+              </ul>
+            </td>
           </tr>
           <tr>
             <td></td>
@@ -324,7 +334,12 @@
             <td>
               <ul>
                 <li>Identifies the popup element that lists suggested values.</li>
-                <li>Note: In the ARIA 1.0 combobox pattern, the textbox uses <code>aria-owns</code> instead of <code>aria-controls</code>.</li>
+                <li>Note:
+                  <ul>
+                    <li>In the ARIA 1.0 combobox pattern, the textbox has <code>aria-owns</code> instead of <code>aria-controls</code>.</li>
+                    <li>In this ARIA 1.1 pattern, <code>aria-owns</code> is instead on the parent container so the popup element is a sibling of the textbox instead of a child of the textbox, making it perceivable by screen reader users as an element adjacent to the textbox when using a reading cursor or touch interface.</li> 
+                  </ul>
+                </li>
               </ul>
             </td>
           </tr>
