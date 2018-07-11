@@ -12,7 +12,7 @@ margin: 0;
 	padding:.25em;
 	background-color:#F5F6F6;
 	height: 3.25em;
-	width: 35.75em;
+	width:41.145em;
 }
 .group {
 	padding:0.25em;
@@ -28,16 +28,13 @@ margin-left: 0.75em;
 	border: 1px solid black;
 	display: inline-block;
 	padding: 0.5em 1em;
-	/* width:6em; */
 	border-radius:5px;
 	text-align: center;
 	background: rgb(255, 255, 255);
 	color: rgb(0, 0, 0);
 	font-size: 16px;
 	line-height: 1.5em;
-	/* vertical-align: top; */
 	margin-right:0.25em;
-	float: left;
 }
 
 .menu-wrapper {
@@ -71,7 +68,7 @@ width: 70%;
 font-size: medium;
 font-family: sans-serif;
 }
-div[aria-pressed="true"] {
+.characteristics div[aria-pressed="true"], .align div[aria-pressed="true"] {
 	background:#5B616D;
 	font-weight: bold;
 }

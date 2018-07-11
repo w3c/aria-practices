@@ -416,7 +416,6 @@ aria.widget.MenuButton.prototype.openMenu = function () {
   if (this.menuNode) {
     this.menuNode.style.display = 'block';
     this.menuShowing = true;
-    this.buttonNode.setAttribute('aria-pressed', true);
   }
 };
 
@@ -450,7 +449,6 @@ aria.widget.MenuButton.prototype.closeMenu = function (force, focusMenuButton) {
       this.buttonNode.focus();
     }
     this.menuShowing = false;
-    this.buttonNode.setAttribute('aria-pressed', false);
   }
 };
 
@@ -525,7 +523,6 @@ aria.widget.MenuButton.prototype.eventKeyDown = function (event, menuButton) {
 
     case menuButton.keyCode.SPACE:
     case menuButton.keyCode.RETURN:
-      this.buttonNode.setAttribute('aria-pressed', true);
       flag = true;
       break;
 

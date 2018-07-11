@@ -4,9 +4,11 @@ button {
 }
 
 .menu-wrapper {
-  position: relative
+  position: relative;
 }
-
+.menu-button{
+  width:6em;
+}
 ul[role="menu"] {
   display: none;
   position: absolute;
@@ -21,8 +23,9 @@ ul[role="menu"] li, ul[role='toolbar'] li{
 
 [role="menu"] {
   padding: 0;
-  width: 8em;
+  width: 9.5em;
   border: thin solid black;
+  border-radius:5px;
   background-color: #EEEEEE;
 }
 [role="menuitem"] {

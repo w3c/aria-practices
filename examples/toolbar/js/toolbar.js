@@ -19,14 +19,11 @@ var aria = aria || {};
 aria.Toolbar = function (domNode) {
   this.domNode = domNode;
   this.items = this.domNode.querySelectorAll('.toolbar-item');
-  // this.selectedItem = this.domNode.querySelector('.selected');
-  this.selectedItem = [];
   this.firstItem = null;
   this.lastItem = null;
   this.toolbarItems = [];
   this.toolbarGroups = [];
   this.popupMenu = false;
-  // this.registerEvents();
 };
 
 
@@ -67,9 +64,10 @@ aria.Toolbar.prototype.init = function () {
  */
 aria.Toolbar.prototype.deselectItem = function (element) {
   // aria.Utils.removeClass(element, 'selected');
-  element.classList.remove('selected');
-  element.setAttribute('aria-pressed', false);
-  element.setAttribute('tabindex', '-1');
+  if(element.classList.contains('selected')){
+    element.classList.remove('selected');
+  }
+  element.setAttribute('tabindex', '1');
 };
 
 /**
@@ -111,8 +109,8 @@ aria.Toolbar.prototype.styleManage = function (element) {
   }
   if (element.classList.contains('size')) {
     if (element.getAttribute('value') === 'smaller') { // fontSmaller
-
       this.fontSmaller(textContent);
+      element.setAttribute('aria-pressed', true);
       if (this.isMinFontSize(textContent)) {
         element.setAttribute('aria-disabled', true);
       }
@@ -120,6 +118,7 @@ aria.Toolbar.prototype.styleManage = function (element) {
     }
     else {
       this.fontLarger(textContent);
+      element.setAttribute('aria-pressed', true);
       if (this.isMaxFontSize(textContent)) {
         element.setAttribute('aria-disabled', true);
       }
@@ -198,7 +197,6 @@ aria.Toolbar.prototype.selectItem = function (element) {
   else {
     element.classList.add('selected');
     element.setAttribute('tabindex', '0');
-    this.selectedItem.push(element);
   }
 
   this.styleManage(element);
