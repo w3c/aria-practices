@@ -72,6 +72,7 @@ var cardOptions = [
 
 function initCreditCardOptions () {
   var select = document.getElementById('id-card');
+  select.innerHTML = "";
 
   for (var i = 0; i < cardOptions.length; i++) {
     var option = document.createElement('option');
