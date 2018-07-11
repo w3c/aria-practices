@@ -99,16 +99,16 @@ function TreeGrid (treegridElem, doAllowRowFocus, doStartRowFocus) {
   // one treegrid item to another
   function onFocusIn (event) {
     var newTreeGridFocus =
-      event.target !== window && treegridElem.contains(event.target)
-        && event.target;
+      event.target !== window && treegridElem.contains(event.target) &&
+        event.target;
 
     // The last row we considered focused
     var oldCurrentRow = enableTabbingInActiveRowDescendants.tabbingRow;
     if (oldCurrentRow) {
       enableTabbingInActiveRowDescendants(false, oldCurrentRow);
     }
-    if (doAllowRowFocus && onFocusIn.prevTreeGridFocus
-      && onFocusIn.prevTreeGridFocus.localName === 'td') {
+    if (doAllowRowFocus && onFocusIn.prevTreeGridFocus &&
+      onFocusIn.prevTreeGridFocus.localName === 'td') {
       // Was focused on td, remove tabIndex so that it's not focused on click
       onFocusIn.prevTreeGridFocus.removeAttribute('tabindex');
     }
@@ -199,8 +199,8 @@ function TreeGrid (treegridElem, doAllowRowFocus, doStartRowFocus) {
   // When
   function moveByRow (direction, requireLevelChange) {
     var currentRow = getRowWithFocus();
-    var requiredLevel = requireLevelChange && currentRow
-      && getLevel(currentRow) + direction;
+    var requiredLevel = requireLevelChange && currentRow &&
+      getLevel(currentRow) + direction;
     var rows = getAllNavigableRows();
     var numRows = rows.length;
     var rowIndex = currentRow ? rows.indexOf(currentRow) : -1;
@@ -266,8 +266,8 @@ function TreeGrid (treegridElem, doAllowRowFocus, doStartRowFocus) {
     var currentCol = getColWithFocus(currentRow);
     var currentColIndex = cols.indexOf(currentCol);
     // First right arrow moves to first column
-    var newColIndex = (currentCol || direction < 0) ? currentColIndex
-      + direction : 0;
+    var newColIndex = (currentCol || direction < 0) ? currentColIndex +
+      direction : 0;
     // Moving past beginning focuses row
     if (doAllowRowFocus && newColIndex < 0) {
       focus(currentRow);
@@ -300,8 +300,8 @@ function TreeGrid (treegridElem, doAllowRowFocus, doStartRowFocus) {
 
     // If row has focus, open message
     if (currentRow === document.activeElement) {
-      alert('Message from ' + currentRow.children[2].innerText + ':\n\n'
-        + currentRow.children[1].innerText);
+      alert('Message from ' + currentRow.children[2].innerText + ':\n\n' +
+        currentRow.children[1].innerText);
       return;
     }
 
@@ -338,8 +338,8 @@ function TreeGrid (treegridElem, doAllowRowFocus, doStartRowFocus) {
       // Only expand the next level if this level is expanded
       // and previous level is expanded
       doExpandLevel[rowLevel + 1] =
-        doExpandLevel[rowLevel]
-        && isExpanded(nextRow);
+        doExpandLevel[rowLevel] &&
+        isExpanded(nextRow);
       var willHideRow = !doExpandLevel[rowLevel];
       var isRowHidden = nextRow.classList.contains('hidden');
 
@@ -401,8 +401,8 @@ function TreeGrid (treegridElem, doAllowRowFocus, doStartRowFocus) {
     var CTRL_HOME = -HOME;
     var CTRL_END = -END;
 
-    var numModifiersPressed = event.ctrlKey + event.altKey + event.shiftKey
-      + event.metaKey;
+    var numModifiersPressed = event.ctrlKey + event.altKey + event.shiftKey +
+      event.metaKey;
 
     var key = event.keyCode;
 
