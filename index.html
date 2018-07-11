@@ -1,4 +1,4 @@
-<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><meta charset="utf-8"><meta name="generator" content="ReSpec 22.0.0"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><style>/* --- ISSUES/NOTES --- */
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><meta charset="utf-8"><meta name="generator" content="ReSpec 22.2.1"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><style>/* --- ISSUES/NOTES --- */
 div.issue-title, div.note-title , div.ednote-title, div.warning-title {
     padding-right:  1em;
     min-width: 7.5em;
@@ -111,11 +111,7 @@ input.task-list-item-checkbox {
   
   <title>WAI-ARIA Authoring Practices 1.1</title>
   
-  
-  
-  
-  <link href="common/css/common.css" rel="stylesheet" type="text/css">
-<style id="respec-mainstyle">/*****************************************************************
+  <style id="respec-mainstyle">/*****************************************************************
  * ReSpec 3 CSS
  * Robin Berjon - http://berjon.com/
  *****************************************************************/
@@ -154,6 +150,10 @@ a.externalDFN {
 
 a.bibref {
   text-decoration: none;
+}
+
+#references :target {
+  background: #eaf3ff;
 }
 
 cite .bibref {
@@ -263,9 +263,9 @@ details.respec-tests-details[open] {
   z-index: 999999;
   position: absolute;
   border: thin solid #cad3e2;
-  border-radius: .3em;
+  border-radius: 0.3em;
   background-color: white;
-  padding-bottom: .5em;
+  padding-bottom: 0.5em;
 }
 
 details.respec-tests-details[open] > summary {
@@ -388,7 +388,11 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 .hljs-strong {
   font-weight: bold;
 }
-</style><link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/W3C-ED"><link rel="canonical" href="https://www.w3.org/TR/wai-aria-practices-1.1/"><script id="initialUserConfig" type="application/json">{
+</style>
+  
+  
+  <link href="common/css/common.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/W3C-ED"><link rel="canonical" href="https://www.w3.org/TR/wai-aria-practices-1.1/"><script id="initialUserConfig" type="application/json">{
   "doRDFa": "1.1",
   "includePermalinks": true,
   "permalinkEdge": true,
@@ -513,9 +517,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   "preProcess": [
     null
   ],
-  "publishDate": "2018-06-27",
-  "publishISODate": "2018-06-27T00:00:00.000Z",
-  "generatedSubtitle": "Editor's Draft 27 June 2018"
+  "publishDate": "2018-07-11",
+  "publishISODate": "2018-07-11T00:00:00.000Z",
+  "generatedSubtitle": "Editor's Draft 11 July 2018"
 }</script><meta name="description" content="This document provides readers with an understanding of how to use WAI-ARIA 1.1 [WAI-ARIA] to create accessible rich internet applications.
       It describes considerations that might not be evident to most authors from the WAI-ARIA specification alone and recommends approaches to make widgets, navigation, and behaviors accessible using WAI-ARIA roles, states, and properties.
       This document is directed primarily to Web application developers, but the guidance is also useful for user agent and assistive technology developers."></head>
@@ -525,7 +529,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   </a>
   <h1 id="title" class="title p-name"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Authoring Practices 1.1</h1>
   
-  <h2 id="w3c-editor-s-draft-27-june-2018"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time class="dt-published" datetime="2018-06-27">27 June 2018</time></h2>
+  <h2 id="w3c-editor-s-draft-11-july-2018"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time class="dt-published" datetime="2018-07-11">11 July 2018</time></h2>
   <dl>
     <dt>This version:</dt><dd><a class="u-url" href="https://w3c.github.io/aria-practices/">https://w3c.github.io/aria-practices/</a></dd><dt>Latest published version:</dt><dd><a href="https://www.w3.org/TR/wai-aria-practices-1.1/">https://www.w3.org/TR/wai-aria-practices-1.1/</a></dd>
     <dt>Latest editor's draft:</dt><dd><a href="https://w3c.github.io/aria-practices/">https://w3c.github.io/aria-practices/</a></dd>
