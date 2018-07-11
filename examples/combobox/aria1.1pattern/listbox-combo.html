@@ -52,7 +52,7 @@
       <h3 id="ex1_label">Example 1: List Autocomplete with Manual Selection</h3>
       <div role="separator" id="ex1_start_sep" aria-labelledby="ex1_start_sep ex1_label" aria-label="Start of"></div>
       <div id="ex1">
-        <label id="ex1-label" class="combobox-label">
+        <label for="ex1-input" id="ex1-label" class="combobox-label">
           Choice 1 Fruit or Vegetable
         </label>
         <div class="combobox-wrapper">
@@ -64,7 +64,6 @@
             <input type="text"
               aria-autocomplete="list"
               aria-controls="ex1-listbox"
-              aria-labelledby="ex1-label"
               id="ex1-input">
           </div>
           <ul
@@ -408,10 +407,15 @@
           <tr>
             <td></td>
             <th scope="row">
-              <code>aria-labelledby=<q>IDREF</q></code>
+              <code>id="string"</code>
             </th>
             <td><code>input[type="text"]</code></td>
-            <td>Provides a label for the textbox element of the combobox.</td>
+            <td>
+              <ul>
+                <li>Referenced by <code>for</code> attribute of <code>label</code> element to provide an accessible label.</li>
+                <li>Recommended labeling method for HTML input elements so clicking label focuses input.</li>
+              </ul>
+            </td>
           </tr>
           <tr>
             <td></td>
