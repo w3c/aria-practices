@@ -183,7 +183,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr data-test-id="key-down-arrow">
             <th><kbd>Down Arrow</kbd></th>
             <td>
               <ul>
@@ -197,7 +197,7 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="key-up-arrow">
             <th><kbd>Up Arrow</kbd></th>
             <td>
               <ul>
@@ -206,7 +206,7 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="key-enter">
             <th><kbd>Enter</kbd></th>
             <td>
               <ul>
@@ -220,7 +220,7 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="key-escape">
             <th><kbd>Escape</kbd></th>
             <td>
               <ul>
@@ -255,7 +255,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr data-test-id="key-enter">
             <th><kbd>Enter</kbd></th>
             <td>
               <ul>
@@ -265,7 +265,7 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="key-escape">
             <th><kbd>Escape</kbd></th>
             <td>
               <ul>
@@ -275,7 +275,7 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="key-down-arrow">
             <th><kbd>Down Arrow</kbd></th>
             <td>
               <ul>
@@ -285,7 +285,7 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="key-up-arrow">
             <th><kbd>Up Arrow</kbd></th>
             <td>
               <ul>
@@ -295,19 +295,19 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="key-right-arrow">
             <th><kbd>Right Arrow</kbd></th>
             <td>Moves focus to the textbox and moves the editing cursor one character to the right.</td>
           </tr>
-          <tr>
+          <tr data-test-id="key-left-arrow">
             <th><kbd>Left Arrow</kbd></th>
             <td>Moves focus to the textbox and moves the editing cursor one character to the leftt.</td>
           </tr>
-          <tr>
+          <tr data-test-id="key-home">
             <th><kbd>Home</kbd></th>
             <td>Moves focus to the textbox and places the editing cursor at the beginning of the field.</td>
           </tr>
-          <tr>
+          <tr data-test-id="key-end">
             <th><kbd>End</kbd></th>
             <td>Moves focus to the textbox and places the editing cursor at the end of the field.</td>
           </tr>
@@ -342,7 +342,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr data-test-id="combobox-role">
             <th scope="row">
               <code>combobox</code>
             </th>
@@ -355,7 +355,7 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="aria-haspopup">
             <td></td>
             <th scope="row">
               <code>aria-haspopup=<q>listbox</q></code>
@@ -368,7 +368,7 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="aria-owns">
             <td></td>
             <th scope="row">
               <code>aria-owns=<q>IDREF</q></code>
@@ -376,7 +376,7 @@
             <td><code>div</code></td>
             <td>Identifies the element that serves as the listbox popup.</td>
           </tr>
-          <tr>
+          <tr data-test-id="aria-expanded">
             <td></td>
             <th scope="row">
               <code>aria-expanded=<q>false</q></code>
@@ -384,7 +384,7 @@
             <td><code>div</code></td>
             <td>Indicates that the popup element <strong>is not</strong> displayed.</td>
           </tr>
-          <tr>
+          <tr data-test-id="aria-expanded">
             <td></td>
             <th scope="row">
               <code>aria-expanded=<q>true</q></code>
@@ -405,7 +405,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr data-test-id="textbox-aria-labelledby">
             <td></td>
             <th scope="row">
               <code>aria-labelledby=<q>IDREF</q></code>
@@ -413,7 +413,7 @@
             <td><code>input[type="text"]</code></td>
             <td>Provides a label for the textbox element of the combobox.</td>
           </tr>
-          <tr>
+          <tr data-test-id="aria-autocomplete-list">
             <td></td>
             <th scope="row">
               <code>aria-autocomplete=<q>list</q></code>
@@ -421,7 +421,7 @@
             <td><code>input[type="text"]</code></td>
             <td>Examples 1 and 2: Indicates that the autocomplete behavior of the text input is to suggest a list of possible values in a popup and that the suggestions are related to the string that is present in the textbox.</td>
           </tr>
-          <tr>
+          <tr data-test-id="aria-autocomplete-both">
             <td></td>
             <th scope="row">
               <code>aria-autocomplete=<q>both</q></code>
@@ -429,7 +429,7 @@
             <td><code>input[type="text"]</code></td>
             <td>Example 3: Indicates that the autocomplete behavior of the text input is to both show an inline completion string and suggest a list of possible values in a popup where the suggestions are related to the string that is present in the textbox.</td>
           </tr>
-          <tr>
+          <tr data-test-id="textbox-aria-controls">
             <td></td>
             <th scope="row">
               <code>aria-controls=<q>IDREF</q></code>
@@ -442,7 +442,7 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="textbox-aria-activedescendant">
             <td></td>
             <th scope="row">
               <code>aria-activedescendant=<q>IDREF</q></code>
@@ -465,7 +465,7 @@
       <h3 id="rps_label_listbox">Listbox Popup</h3>
       <table aria-labelledby="rps_label_listbox rps_label" class="data attributes">
         <thead>
-          <tr>
+          <tr data-test-id="">
             <th scope="col">Role</th>
             <th scope="col">Attribute</th>
             <th scope="col">Element</th>
@@ -473,7 +473,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr data-test-id="listbox-role">
             <th scope="row">
               <code>listbox</code>
             </th>
@@ -483,7 +483,7 @@
             </td>
             <td>Identifies the <code>ul</code> element as a <code>listbox</code>.</td>
           </tr>
-          <tr>
+          <tr data-test-id="listbox-aria-labelledby">
             <td></td>
             <th scope="row">
               <code>aria-labelledby=<q>IDREF</q></code>
@@ -491,7 +491,7 @@
             <td><code>ul</code></td>
             <td>Provides a label for the <code>listbox</code> element of the combobox.</td>
           </tr>
-          <tr>
+          <tr data-test-id="option-role">
             <th scope="row">
               <code>option</code>
             </th>
@@ -504,7 +504,7 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="option-aria-selected">
             <td></td>
             <th scope="row">
               <code>aria-selected=<q>true</q></code>
