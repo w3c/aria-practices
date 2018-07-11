@@ -103,9 +103,8 @@
             aria-errormessage="id-delivery-error"
             aria-describedby="id-delivery-fee"
             onblur="validateDeliveryMethod()"
-            onchange="priceChange()"
-            size="1">
-        <option id="id-delivery-choose">
+            onchange="priceChange()">
+        <option id="id-delivery-choose" value="">
           Choose your Method
         </option>
         <option id="id-delivery-store">
@@ -317,9 +316,8 @@
               aria-invalid="false"
               aria-errormessage="id-card-error"
               onChange="setCardType()"
-              onblur="validateCardType()"
-              size="1">
-              <option>no cards available</option>
+              onblur="validateCardType()">
+              <option value=""></option>
         </select>
         <span id="id-card-error" class="noerror" role="status">
         </span>
