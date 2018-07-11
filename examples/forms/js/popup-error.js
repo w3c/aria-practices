@@ -72,7 +72,8 @@ var cardOptions = [
 
 function initCreditCardOptions () {
   var select = document.getElementById('id-card');
-  select.innerHTML = "";
+  // Remove placeholder option
+  select.remove(0);
 
   for (var i = 0; i < cardOptions.length; i++) {
     var option = document.createElement('option');
