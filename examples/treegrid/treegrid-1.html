@@ -359,64 +359,35 @@ document.addEventListener('DOMContentLoaded', function () {
       <tbody>
         <tr>
           <th scope="row"><code>treegrid</code></th>
-          <td><!--  Leave this cell blank in rows where a role is being described. --></td>
+          <td></td>
           <td><code>table</code></td>
-          <td>
-            Identifies the element as a <code>treegrid</code>.
-          </td>
+          <td>Identifies the element as a <code>treegrid</code>.</td>
         </tr>
         <tr>
           <td>
           </td>
-          <th scope="row"><code>aria-label=<q>ARIA Treegrid Example</q></code></th>
+          <th scope="row"><code>aria-label="Inbox"</code></th>
           <td><code>table</code></td>
-          <td>
-            <ul>
-              <li>Provides an accessible name for the <code>treegrid</code>.</li>
-              <li><code>treegrid</code> requires an accessible name.</li>
-            </ul>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row"><code>columnheader</code></th>
-          <td><!--  Leave this cell blank in rows where a role is being described. --></td>
-          <td><code>th</code></td>
-          <td>
-            <ul>
-              <li>Identifies the element as a <code>columnheader</code>.</li>
-              <li>Column headers provide context (e.g. label) for the values of the <code>gridcell</code>s in the <code>treegrid</code>.</li>
-            </ul>
-          </td>
-        </tr>
-        <tr>
-          <th scope="row"><code>row</code></th>
-          <td><!--  Leave this cell blank in rows where a role is being described. --></td>
-          <td><code>tr</code></td>
-          <td>
-            <ul>
-              <li>Identifies the element as a <code>row</code> in the <code>treegrid</code>.</li>
-              <li>The accessible name for the <code>row</code> comes from concatenating the text content of the child <code>gridcell</code>s.</li>
-            </ul>
-          </td>
+          <td>Provides an accessible name for the <code>treegrid</code>.</td>
         </tr>
         <tr>
           <td></td>
-          <th scope="row"><code>tabindex=<q>-1</q></code></th>
-          <td><code>tr</code></td>
+          <th scope="row"><code>tabindex="-1"></code></th>
+          <td><code>tr, td</code></td>
           <td>
             <ul>
-              <li>Makes the <code>row</code> element focusable without including it in the tab sequence of the page.</li>
+              <li>Makes the element focusable without including it in the tab sequence of the page.</li>
               <li>All <code>row</code> and <code>gridcell</code> elements are focusable, but only one is included in the tab sequence.</li>
              </ul>
           </td>
         </tr>
         <tr>
           <td></td>
-          <th scope="row"><code>tabindex=<q>0</q></code></th>
-          <td><code>tr</code></td>
+          <th scope="row"><code>tabindex="0"</code></th>
+          <td><code>tr, td</code></td>
           <td>
             <ul>
-              <li>Includes the <code>row</code> element in the tab sequence.</li>
+              <li>Includes the element in the tab sequence.</li>
               <li>Only one <code>row</code> or <code>gridcell</code> in the <code>treegrid</code> has <code>tabindex=&quot;0&quot;</code>.</li>
               <li>In this implementation, the first <code>row</code> in the <code>treegrid</code> is included in the tab sequence when the page loads.</li>
               <li>
@@ -429,11 +400,11 @@ document.addEventListener('DOMContentLoaded', function () {
         <tr>
           <td>
           </td>
-          <th scope="row"><code>aria-expanded=<q>false</q></code></th>
+          <th scope="row"><code>aria-expanded="false"</code></th>
           <td><code>tr</code> or <code>td</code></td>
           <td>
             <ul>
-              <li>Applied only to rows or cells elements that are parent rows. i.e., next set of rows are response to the message in this row</li>
+              <li>Applied only to parent row or first cell of parent row, i.e., next set of rows are responses to the message in this row</li>
               <li>Indicates the parent row is closed, i.e., the descendant rows are not visible.</li>
               <li>The visual indication of the collapsed state is synchronized by a CSS attribute selector.</li>
               <li>When the treegrid is configured to support focus on rows <code>aria-expanded</code> is on the <code>tr</code> elements, but when the treegrid is configured to support focus on cells only, <code>aria-expanded</code> is on the first <code>td</code> element contained in each row.</li>
@@ -443,11 +414,11 @@ document.addEventListener('DOMContentLoaded', function () {
         <tr>
           <td>
           </td>
-          <th scope="row"><code>aria-expanded=<q>true</q></code></th>
+          <th scope="row"><code>aria-expanded="true"</code></th>
           <td><code>tr</code> or <code>td</code></td>
           <td>
             <ul>
-              <li>Applied only to rows or cells elements that are parent rows. i.e., next set of rows are response to the message in this row</li>
+              <li>Applied only to parent rows or the first cell in parent rows, i.e., next set of rows are responses to the message in this row</li>
               <li>Indicates the parent row is open, i.e., the descendant rows are visible.</li>
               <li>The visual indication of the open state is synchronized by a CSS attribute selector.</li>
               <li>When the treegrid is configured to support focus on rows <code>aria-expanded</code> is on the <code>tr</code> elements, but when the treegrid is configured to support focus on cells only, <code>aria-expanded</code> is on the first <code>td</code> element contained in each row.</li>
@@ -457,7 +428,7 @@ document.addEventListener('DOMContentLoaded', function () {
         <tr>
           <td>
           </td>
-          <th scope="row"><code>aria-level=<q><em>number</em></q></code></th>
+          <th scope="row"><code>aria-level="<em>number</em>"></code></th>
           <td><code>tr</code></td>
           <td>
             <ul>
@@ -470,7 +441,7 @@ document.addEventListener('DOMContentLoaded', function () {
         <tr>
           <td>
           </td>
-          <th scope="row"><code>aria-setsize=<q><em>number</em></q></code></th>
+          <th scope="row"><code>aria-setsize="em>number</em>"</code></th>
           <td><code>tr</code></td>
           <td>
             Defines the number of rows in the set of rows that are in the same branch and at the same level within the hierarchy.
@@ -479,7 +450,7 @@ document.addEventListener('DOMContentLoaded', function () {
         <tr>
           <td>
           </td>
-          <th scope="row"><code>aria-posinset=<q><em>number</em></q></code></th>
+          <th scope="row"><code>aria-posinset="<em>number</em>"</code></th>
           <td><code>tr</code></td>
           <td>
             <ul>
@@ -490,39 +461,11 @@ document.addEventListener('DOMContentLoaded', function () {
         </tr>
         <tr>
           <th scope="row"><code>gridcell</code></th>
-          <td><!--  Leave this cell blank in rows where a role is being described. --></td>
-          <td><code>td</code></td>
-          <td>
-            Identifies the element as a <code>gridcell</code>.
-          </td>
-        </tr>
-        <tr>
           <td></td>
-          <th scope="row"><code>tabindex=<q>-1</q></code></th>
           <td><code>td</code></td>
-          <td>
-            <ul>
-              <li>Makes the <code>gridcell</code> element focusable without including it in the tab sequence of the page.</li>
-              <li>All <code>row</code> and <code>gridcell</code> elements are focusable, but only one is included in the tab sequence.</li>
-             </ul>
-          </td>
+          <td>Identifies the element as a <code>gridcell</code>.</td>
         </tr>
-        <tr>
-          <td></td>
-          <th scope="row"><code>tabindex=<q>0</q></code></th>
-          <td><code>td</code></td>
-          <td>
-            <ul>
-              <li>Includes the <code>gridcell</code> element in the tab sequence.</li>
-              <li>Only one <code>row</code> or <code>gridcell</code> in the <code>treegrid</code> has <code>tabindex=&quot;0&quot;</code>.</li>
-              <li>In this implementation, the first <code>row</code> in the <code>treegrid</code> is included in the tab sequence when the page loads.</li>
-              <li>
-                When the user moves focus in the <code>treegrid</code>, the element included in the tab sequence changes to the element with focus as described in the section on
-                <a href="../../../#kbd_roving_tabindex">roving tabindex.</a>
-              </li>
-             </ul>
-          </td>
-        </tr>      </tbody>
+              </tbody>
     </table>
   </section>
 
