@@ -76,7 +76,6 @@ document.addEventListener('DOMContentLoaded', function () {
 </nav>
   <main>
   <h1>Treegrid Email Inbox Example</h1>
-
   <p>
     <strong>NOTE:</strong> This example page is not yet complete.
     Development of this example is tracked by
@@ -84,21 +83,40 @@ document.addEventListener('DOMContentLoaded', function () {
   </p>
   <p>
     The following example demonstrates how the
-    <a href="../../#treegrid">treegrid design pattern (TBD)</a>
-    can be used to make an interactive tree that enables users to navigate the hierarchical structure of email conversations
-    and also provides the ability to navigate to elements that describe each email, such as subject and sender.
+    <a href="../../#treegrid">treegrid design pattern</a>
+    can be used to make an interactive tree that enables users to both navigate the hierarchical structure of email conversations
+    and also navigate elements that describe each email, such as subject and sender.
   </p>
   <p>
-    This same example can be used in three ways.
+    This example demonstrates three different ways of implementing the keyboard navigation specified in the treegrid pattern.
+    Activating the following links changes the behavior of the navigation keys as described:
   </p>
   <ul>
-    <li id="option-cell-focus-allow"><a href="./treegrid-1.html">Rows are focused first, but cells can be focused</a>:<br>Useful when we want to present the treegrid to act primarily like a tree.</li>
-    <li id="option-cell-focus-start"><a href="./treegrid-1.html?cell=start">Cells are focused first, but rows can also be focused</a>:<br>Useful when we want to present the treegrid to act primarily like a grid.</li>
-    <li id="option-cell-focus-force"><a href="./treegrid-1.html?cell=force">Only cells can be focused</a>:<br>Useful when we we are primarily a grid, and we want to simplify the user experience by removing row navigation options.</li>
+    <li id="option-cell-focus-allow">
+      <a href="./treegrid-1.html">Rows are focused first, but cells can be focused</a>:<br>
+      Useful when the desired experience is for the treegrid to act primarily like a tree where each row is treated like a node in a tree,
+      but it is still possible for users to navigate across the cells in a row.
+    </li>
+    <li id="option-cell-focus-start">
+      <a href="./treegrid-1.html?cell=start">Cells are focused first, but rows can be focused</a>:<br>
+      Useful when the desired experience is for the treegrid to act primarily like a grid where arrow keys move among cells,
+      but it is still possible for users to focus a row and then start navigating the structure like a tree.
+    </li>
+    <li id="option-cell-focus-force">
+      <a href="./treegrid-1.html?cell=force">Only cells can be focused</a>:<br>
+      Useful when the desired experience is that the treegrid act primarily like a grid and there is no need to focus complete rows.
+    </li>
   </ul>
   <p>
-    Note: no row-only version is provided. A row-only navigation version could be useful when the columns are guaranteed to fit horizontally (no horizontal scrolling necessary), the columns are merely for attractive presentation, as opposed to addressing any need to visit them individually. However, in this case the author can simply follow the tree pattern and present the child treeitem data in columns.
+    Note: A row-only option is not provided.
+    A treegrid where cells cannot be focused would be implemented as a <a href="../../#TreeView">tree view</a>.
+    A treeview that has columns in its visual presentation may be appropriate when:
   </p>
+  <ul>
+    <li>Columns are guaranteed to fit horizontally (no horizontal scrolling necessary).</li>
+    <li>Columns are merely for attractive presentation; there is no need to navigate them individually.</li>
+    <li>A screen reader user can easily understand the UI when all information in a row is announced as a single string without any separation.</li>
+  </ul>
 
   <section>
     <h2 id="ex_label">Example</h2>
