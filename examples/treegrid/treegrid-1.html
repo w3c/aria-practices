@@ -150,42 +150,42 @@ document.addEventListener('DOMContentLoaded', function () {
           </tr>
         </thead>
         <tbody>
-          <tr aria-level="1" aria-posinset="1" aria-setsize="1" aria-expanded="true">
+          <tr role="row" aria-level="1" aria-posinset="1" aria-setsize="1" aria-expanded="true">
             <td role="gridcell">Treegrids are awesome</td>
             <td role="gridcell">Want to learn how to use them?</td>
             <td role="gridcell"><a href="mailto:aaron@thegoogle.rocks">aaron@thegoogle.rocks</a></td>
           </tr>
-          <tr aria-level="2" aria-posinset="1" aria-setsize="3">
+          <tr role="row" aria-level="2" aria-posinset="1" aria-setsize="3">
              <td role="gridcell">re: Treegrids are awesome</td>
              <td role="gridcell">I agree with you, they are the shizzle</td>
              <td role="gridcell"><a href="mailto:joe@blahblahblah.blahblah">joe@blahblahblah.blahblah</a></td>
           </tr>
-          <tr aria-level="2" aria-posinset="2" aria-setsize="3" aria-expanded="false">
+          <tr role="row" aria-level="2" aria-posinset="2" aria-setsize="3" aria-expanded="false">
              <td role="gridcell">re: Treegrids are awesome
              <td role="gridcell">They are great for showing a lot of data, like a grid
              <td role="gridcell"><a href="mailto:billy@dangerous.fish">billy@dangerous.fish</a></td>
           </tr>
-          <tr aria-level="3" aria-posinset="1" aria-setsize="1" class="hidden">
+          <tr role="row" aria-level="3" aria-posinset="1" aria-setsize="1" class="hidden">
              <td role="gridcell">re: Treegrids are awesome</td>
              <td role="gridcell">Cool, we've been needing an example and documentation</td>
              <td role="gridcell"><a href="mailto:doris@rufflazydogs.sleep">doris@rufflazydogs.sleep</a></td>
           </tr>
-          <tr aria-level="2" aria-posinset="3" aria-setsize="3" aria-expanded="false">
+          <tr role="row" aria-level="2" aria-posinset="3" aria-setsize="3" aria-expanded="false">
              <td role="gridcell">re: Treegrids are awesome</td>
              <td role="gridcell">I hear the Fancytree library is going to align with this example!</td>
              <td role="gridcell"><a href="mailto:someone@please-do-it.company">someone@please-do-it.company</a></td>
           </tr>
-          <tr aria-level="3" aria-posinset="1" aria-setsize="1" aria-expanded="false" class="hidden">
+          <tr role="row" aria-level="3" aria-posinset="1" aria-setsize="1" aria-expanded="false" class="hidden">
              <td role="gridcell">re: Treegrids are awesome</td>
              <td role="gridcell">Sometimes they are more like trees, otherse are more like grids</td>
              <td role="gridcell"><a href="mailto:mari@beingpractical.com">mari@beingpractical.com</a></td>
           </tr>
-          <tr aria-level="4" aria-posinset="1" aria-setsize="2" class="hidden">
+          <tr role="row" aria-level="4" aria-posinset="1" aria-setsize="2" class="hidden">
              <td role="gridcell">re: Treegrids are awesome</td>
              <td role="gridcell">Cool, when it's a tree, let's keep left/right to collapse/expand</td>
              <td role="gridcell"><a href="mailto:issie@imadeadcatsadly.wascute">issie@imadeadcatsadly.wascute</a></td>
           </tr>
-          <tr aria-level="4" aria-posinset="2" aria-setsize="2" class="hidden">
+          <tr role="row" aria-level="4" aria-posinset="2" aria-setsize="2" class="hidden">
              <td role="gridcell">re: Treegrids are awesome
              <td role="gridcell">I see, sometimes right arrow moves by column</td>
              <td role="gridcell"><a href="mailto:kitten@kittenseason.future">kitten@kittenseason.future</a></td>
@@ -344,9 +344,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
   <section>
     <h2 id="rps_label">Role, Property, State, and Tabindex  Attributes</h2>
-    <!--
-      Update this table to describe how roles, properties, states, and tabindex are used in this example.
-    -->
     <table aria-labelledby="rps_label" class="data attributes">
       <thead>
         <tr>
@@ -369,6 +366,17 @@ document.addEventListener('DOMContentLoaded', function () {
           <th scope="row"><code>aria-label="Inbox"</code></th>
           <td><code>table</code></td>
           <td>Provides an accessible name for the <code>treegrid</code>.</td>
+        </tr>
+        <tr>
+          <th scope="row"><code>row</code></th>
+          <td></td>
+          <td><code>tr</code></td>
+          <td>
+            <ul>
+              <li>Identifies the element as a <code>row</code>.</li>
+              <li>The <code>row</code role is not an implicit semantic for the <code>tr</code> element when in a <code>treegrid</code>.</li>
+            </ul>
+          </td>
         </tr>
         <tr>
           <td></td>
@@ -463,7 +471,12 @@ document.addEventListener('DOMContentLoaded', function () {
           <th scope="row"><code>gridcell</code></th>
           <td></td>
           <td><code>td</code></td>
-          <td>Identifies the element as a <code>gridcell</code>.</td>
+          <td>
+            <ul>
+              <li>Identifies the element as a <code>gridcell</code>.</li>
+              <li>The <code>gridcell</code role is not an implicit semantic for the <code>td</code> element when in a <code>treegrid</code>.</li>
+            </ul>
+          </td>
         </tr>
               </tbody>
     </table>
