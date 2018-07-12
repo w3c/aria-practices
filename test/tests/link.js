@@ -19,7 +19,8 @@ let pageExamples = [
   }
 ];
 
-ariaTest('link/link.html', 'link-role', async (t) => {
+ariaTest('Test "role" attribute exists',
+         'link/link.html', 'link-role', async (t) => {
 
   for (let i = 0; i < pageExamples.length; i++) {
     let ex = pageExamples[i];
@@ -34,7 +35,8 @@ ariaTest('link/link.html', 'link-role', async (t) => {
   }
 });
 
-ariaTest('link/link.html', 'tab-index', async (t) => {
+ariaTest('Test "tabindex" attribute set to 0',
+         'link/link.html', 'tabindex', async (t) => {
 
   for (let i = 0; i < pageExamples.length; i++) {
     let ex = pageExamples[i];
@@ -49,7 +51,8 @@ ariaTest('link/link.html', 'tab-index', async (t) => {
   }
 });
 
-ariaTest('link/link.html', 'alt', async (t) => {
+ariaTest('Test "alt" attribute exists',
+         'link/link.html', 'alt', async (t) => {
 
   for (let i = 0; i < pageExamples.length; i++) {
     let ex = pageExamples[i];
@@ -61,13 +64,15 @@ ariaTest('link/link.html', 'alt', async (t) => {
 
     t.truthy(
       await linkElement.getAttribute('alt'),
-      '"alt" attribute should exist on element selected by: ' + ex.linkSelector,
+      '"alt" attribute should exist on element selected by: ' + ex.linkSelector
     );
   }
 
 });
 
-ariaTest('link/link.html', 'aria-label', async (t) => {
+ariaTest('Test "aria-label" attribute exists',
+         'link/link.html', 'aria-label', async (t) => {
+
   for (let i = 0; i < pageExamples.length; i++) {
     let ex = pageExamples[i];
     if (!ex.hasOwnProperty('ariaLabel')) {
@@ -83,7 +88,9 @@ ariaTest('link/link.html', 'aria-label', async (t) => {
   }
 });
 
-ariaTest('link/link.html', 'key-enter', async (t) => {
+ariaTest('Test "ENTER" key behavior',
+         'link/link.html', 'key-enter', async (t) => {
+
   for (let i = 0; i < pageExamples.length; i++) {
     await t.context.session.get(t.context.url);
 
@@ -96,7 +103,7 @@ ariaTest('link/link.html', 'key-enter', async (t) => {
       return t.context.session.getCurrentUrl().then(url => {
         return url != t.context.url;
       });
-    }, 500).catch(() => {});
+    }, 1000).catch(() => {});
 
     t.not(
       await t.context.session.getCurrentUrl(),
