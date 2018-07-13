@@ -1891,7 +1891,11 @@
           </li>
           <li>
             If activating a <a href="#menuitem" class="role-reference">menuitem</a> opens a submenu, the menuitem is known as a parent menuitem.
-            A submenu's <code>menu</code> element is contained in or owned by it's parent             menuitem.
+            A submenu's <code>menu</code> element is:
+            <ul>
+              <li>Contained inside the same <code>menu</code> element as its parent <code>menuitem</code>.</li>
+              <li>Is the sibling element immediately following its parent <code>menuitem</code>.</li>
+            </ul>
           </li>
           <li>A parent menuitem has <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set to either <code>menu</code> or <code>true</code>.</li>
           <li>A parent menuitem has <a href="#aria-expanded" class="property-reference">aria-expanded</a> set to <code>false</code> when its child menu is not visible and set to <code>true</code> when the child menu is visible.</li>
