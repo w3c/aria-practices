@@ -5,7 +5,7 @@ var respecConfig = {
   permalinkEdge: true,
   permalinkHide: false,
   // Specification status (e.g., WD, LC, NOTE, etc.). If in doubt use ED.
-  specStatus: 'ED',
+  specStatus: 'FPWD',
   // crEnd: "2012-04-30",
   // perEnd: "2013-07-23",
   // publishDate: "2013-08-22",
@@ -18,7 +18,7 @@ var respecConfig = {
 
   // If you wish the publication date to be other than today,
   // set publishDate.
-  // publishDate: "2009-08-06",
+   publishDate: "2018-07-12",
   copyrightStart: '2018',
 
   // If there is a previously published draft, uncomment this
@@ -26,11 +26,11 @@ var respecConfig = {
   //
   // previousPublishDate:  "",
   // previousMaturity:  "",
-  // prevRecURI: "",
+  prevRecURI: "https://www.w3.org/TR/wai-aria-practices/",
   // previousDiffURI: "",
 
   // If there a publicly available Editors Draft, this is the link
-  edDraftURI: 'https://rawgit.com/w3c/aria-practices/apg-1.2/aria-practices.html',
+  edDraftURI: 'https://w3c.github.io/aria-practices/',
 
   // If this is a LCWD, uncomment and set the end of its review period
   // lcEnd: "2012-02-21",
