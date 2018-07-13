@@ -34,5 +34,8 @@ var biblio = {
 	},
 	"WAI-ARIA": {
 		"aliasOf": "WAI-ARIA-1.1",
-	}
+	},
+	"CORE-AAM-1.2":{"authors":["Joanmarie Diggs","Michael Cooper"],"href":"https://www.w3.org/TR/core-aam-1.2/","title":"Core Accessibility API Mappings 1.2","status":"FPWD","publisher":"W3C","deliveredBy":[{"url":"https://www.w3.org/WAI/ARIA/","shortname":"wai_aria"}],"edDraft":"https://w3c.github.io/core-aam/","repository":"https://github.com/w3c/aria","id":"core-aam-1.2","date":"12 July 2018"},
+	"WAI-ARIA-1.2":{"authors":["Joanmarie Diggs","James Nurthen","Michael Cooper"],"href":"https://www.w3.org/TR/wai-aria-1.2/","title":"Accessible Rich Internet Applications (WAI-ARIA) 1.2","status":"FPWD","publisher":"W3C","deliveredBy":[{"url":"https://www.w3.org/WAI/ARIA/","shortname":"wai_aria"}],"edDraft":"https://w3c.github.io/aria/","repository":"https://github.com/w3c/aria","id":"wai-aria-1.2","date":"12 July 2018"},
+	"WAI-ARIA-PRACTICES-1.2":{"authors":["Matthew King","James Nurthen","Michael Cooper"],"href":"https://www.w3.org/TR/wai-aria-practices-1.2/","title":"WAI-ARIA Authoring Practices 1.2","status":"FPWD","publisher":"W3C","edDraft":"https://w3c.github.io/aria-practices/","deliveredBy":[{"url":"https://www.w3.org/WAI/ARIA/","shortname":"wai_aria"}],"repository":"https://github.com/w3c/aria-practices","id":"wai-aria-practices-1.2","date":"12 July 2018"}
 };
