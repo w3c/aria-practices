@@ -3,6 +3,7 @@
 const path = require('path');
 const { test } = require('ava');
 const webdriver = require('selenium-webdriver');
+const { By } = require('selenium-webdriver');
 
 const startGeckodriver = require('./util/start-geckodriver');
 
@@ -25,9 +26,6 @@ test.before(async (t) => {
 
 test.beforeEach((t) => {
   t.context.session = session;
-  t.context.By = webdriver.By;
-  t.context.Key = webdriver.Key;
-  t.context.until = webdriver.until;
 });
 
 test.after.always(() => {
@@ -49,14 +47,14 @@ const ariaTest = (desc, page, testId, body) => {
   const url = 'file://' + absPath;
   const selector = '[data-test-id="' + testId + '"]';
 
-  const testName = page + ' ' + selector + ": desc";
+  const testName = page + ' ' + selector + ': ' + desc;
   test.serial(testName, async function (t) {
     t.context.url = url;
     await t.context.session.get(url);
 
     const assert = require('assert');
     assert(
-      (await t.context.session.findElements(t.context.By.css(selector))).length,
+      (await t.context.session.findElements(By.css(selector))).length,
       'Cannot find behavior description for this test in example page:' + testId
     );
 
