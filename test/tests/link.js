@@ -1,6 +1,7 @@
 'use strict';
 
 const { ariaTest } = require('..');
+const { By, Key } = require('selenium-webdriver');
 
 let pageExamples = [
   {
@@ -24,7 +25,7 @@ ariaTest('Test "role" attribute exists',
 
   for (let i = 0; i < pageExamples.length; i++) {
     let ex = pageExamples[i];
-    let linkLocator = t.context.By.css(ex.linkSelector);
+    let linkLocator = By.css(ex.linkSelector);
     let linkElement = await t.context.session.findElement(linkLocator);
 
     t.is(
@@ -40,7 +41,7 @@ ariaTest('Test "tabindex" attribute set to 0',
 
   for (let i = 0; i < pageExamples.length; i++) {
     let ex = pageExamples[i];
-    let linkLocator = t.context.By.css(ex.linkSelector);
+    let linkLocator = By.css(ex.linkSelector);
     let linkElement = await t.context.session.findElement(linkLocator);
 
     t.is(
@@ -59,7 +60,7 @@ ariaTest('Test "alt" attribute exists',
     if (!ex.hasOwnProperty('alt')) {
       continue;
     }
-    let linkLocator = t.context.By.css(ex.linkSelector);
+    let linkLocator = By.css(ex.linkSelector);
     let linkElement = await t.context.session.findElement(linkLocator);
 
     t.truthy(
@@ -78,7 +79,7 @@ ariaTest('Test "aria-label" attribute exists',
     if (!ex.hasOwnProperty('ariaLabel')) {
       continue;
     }
-    let linkLocator = t.context.By.css(ex.linkSelector);
+    let linkLocator = By.css(ex.linkSelector);
     let linkElement = await t.context.session.findElement(linkLocator);
 
     t.truthy(
@@ -95,10 +96,10 @@ ariaTest('Test "ENTER" key behavior',
     await t.context.session.get(t.context.url);
 
     let ex = pageExamples[i];
-    let linkLocator = t.context.By.css(ex.linkSelector);
+    let linkLocator = By.css(ex.linkSelector);
     let linkElement = await t.context.session.findElement(linkLocator);
 
-    await linkElement.sendKeys(t.context.Key.ENTER);
+    await linkElement.sendKeys(Key.ENTER);
     await t.context.session.wait(() => {
       return t.context.session.getCurrentUrl().then(url => {
         return url != t.context.url;
