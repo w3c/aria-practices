@@ -161,14 +161,14 @@
 <body>
     <section id="abstract">
     <p>
-    This document is a placeholder for sitnificatn sections of content that were removed from the ARIA Authoring Practices Guide. 
+    This document is a placeholder for sitnificatn sections of content that were removed from the ARIA Authoring Practices Guide.
     It allows reviewers to more easily see what was removed, and makes it easier to restore content.
     </p>
     </section>
-    
+
     <section id="aria_ex">
         <h2>Design Patterns and Widgets</h2>
-        
+
         <section class="widget" id="autocomplete">
             <h3>Auto Complete</h3>
             <p class="note">This section has not been updated since it was integrated from APG
@@ -509,7 +509,7 @@
         <section class="widget" id="datepicker">
           <h3>Date Picker</h3>
           <p class="note">This section has not been updated since it was integrated from APG version 1.0 -- an APG task force review is pending.</p>
-    
+
           <p>
             The date picker widget allows the user to select a date or date ranges.
             The date picker shows one month at least. All navigation that is described below depends on the application.
@@ -524,7 +524,7 @@
             However, should the author wish to uses a div or span to represent the cells then the DOM structure for a table is duplicated with rows marked with <code>role="<a href="#row" class="role-reference">row</a>"</code>.
           </p>
           <p>The calendar portion can be displayed in a numbers of ways, including as a popup associated with another widget, or as a static region of a page.</p>
-    
+
           <section class="notoc">
             <h4>Keyboard Interaction</h4>
             <p>Keyboard navigation on days that are not included the currently displayed month should move to the month automatically and lead to the day in the next or previous month.</p>
@@ -580,7 +580,7 @@
               For example, using HTML anchors for the gridcells places them all in the tab order impacting the usability of keyboard navigation.
             </p>
           </section>
-    
+
           <section class="notoc">
             <h4>WAI-ARIA Roles, States, and Properties</h4>
             <ul>
@@ -604,7 +604,7 @@
               Keep in mind that older browsers may not support aria-activedescendant.
             </p>
           </section>
-    
+
           <section class="notoc">
             <h4>Example</h4>
             <p class="note">
@@ -617,7 +617,7 @@
             </ul>
           </section>
         </section>
-    
+
         <section class="widget" id="dialog_nonmodal">
       <h3>Dialog (Non-Modal)</h3>
       <p class="note">This section has not been updated since it was integrated from APG version 1.0 -- an APG task force review is pending.</p>
@@ -694,10 +694,10 @@
       <section class="notoc">
         <h4>Example</h4>
         <p class="note">Any examples referenced here that are hosted outside www.w3.org may have changed and may not accurately exemplify the guidance in this section. The APG task force is developing examples for APG version 1.1 that will be directly incorporated into the guide.</p>
-        <p><a href="http://archive.dojotoolkit.org/nightly/dojotoolkit/dijit/tests/test_TooltipDialog.html" title="TooltipDialog Widget Tests" target="_blank">Dojo nightly</a></p></td>
+        <p><a href="http://archive.dojotoolkit.org/nightly/dojotoolkit/dijit/tests/test_TooltipDialog.html" title="TooltipDialog Widget Tests" target="_blank">Dojo nightly</a></p>
       </section>
     </section>
-    
+
         <section class="widget" id="landmarks">
             <h3>Landmark Navigation</h3>
             <p class="note">This section has not been updated since it was integrated from APG version 1.0 -- an APG task force review is pending.</p>
@@ -720,7 +720,7 @@
         </ul>
       </section>
     </section>
-    
+
         <section class="widget" id="popuphelp">
       <h3>Popup Help (aka Bubble Help)</h3>
       <p class="note">This section has not been updated since it was integrated from APG version 1.0 -- an APG task force review is pending.</p>
@@ -819,7 +819,7 @@
         <p class="ednote">Add link to example.</p>
       </section>
     </section>
-    
+
         <section class="widget" id="richtext">
       <h3>Rich Text Editor</h3>
       <p class="note">This section has not been updated since it was integrated from APG version 1.0 -- an APG task force review is pending.</p>
@@ -968,7 +968,7 @@
       <p>Some sites or applications may provide support for hierarchical navigation using tabbed style navigation by providing a tab set for each level of the hierarchy.</p>
 
       <section class="notoc">
-        <h4>Keyboard Interaction: </th>
+        <h4>Keyboard Interaction: </h4>
         <p>The tree should implement keyboard navigation consistent with the <a href="#TreeView">Tree View design pattern</a> with one exception. When enter is pressed, the default action can be activated on any node containing a link even if it is not an end node. Note that the user can still use left and right arrow to expand and collapse nodes. Note that selection keys should not be implemented unless <a class="property-reference" href="#aria-multiselectable">aria-multiselectable</a> is <code>true</code>. If aria-multi-selectable is <code>false</code>, the default action should be to display the content associated with that item, and if possible, move the focus to the beginning of the controlled region. If aria-multiselectable is <code>true</code> and <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> is <code>true</code> for the current node, then enter should open a pop-up menu that provides options for navigating to the target specified by the current node and for performing supported non-navigation operations on the currently selected items.</p>
         <p>Focus: When the tree receives focus, the item in the tree that is marked as currently displayed should receive focus.</p>
       </section>
@@ -1056,7 +1056,7 @@
         <p class="ednote">Add link to example</p>
       </section>
     </section>
-    
+
         <section class="widget" id="treegrid">
       <h3>Tree Grid</h3>
       <p class="note">This section has not been updated since it was integrated from APG version 1.0 -- an APG task force review is pending.</p>
@@ -1135,7 +1135,7 @@
         </ul>
       </section>
     </section>
-    
+
         <section class="widget" id="wizard">
       <h3>Wizard</h3>
       <p class="note">This section has not been updated since it was integrated from APG version 1.0 -- an APG task force review is pending.</p>
@@ -1176,9 +1176,9 @@
         <p><a href="http://archive.dojotoolkit.org/nightly/dojotoolkit/dijit/tests/layout/StackContainer.html" title="StackContainer Demo" target="_blank" rel="nofollow">Dojo nightly</a></p>
       </section>
     </section>
-    
+
     </section>
-    
+
     <section id="accessiblewidget">
   <h2> General Steps for Building an Accessible Widget with WAI-ARIA</h2>
   <p class="note">This content could be useful when working on <a href="https://github.com/w3c/aria-practices/issues/73">issue 73</a>.</p>
@@ -1445,22 +1445,22 @@ function detectHiContrast() {
     </li>
   </ol>
 </section>
-    
+
     <section id="kbd_layout">
       <h2>Providing Navigable Structure within Web Pages</h2>
       <p class="note">
-      Matt King: Removed on July 10 per discussion in <a href="https://www.w3.org/2016/05/23-aria-apg-minutes.html">May 23, 2016 meeting</a>. 
+      Matt King: Removed on July 10 per discussion in <a href="https://www.w3.org/2016/05/23-aria-apg-minutes.html">May 23, 2016 meeting</a>.
       This section is redundant given the new landmark section.
       The parts that are not redundant are either out-of-date or not necessary. The possible exceptions are content covering the group and directory roles.
       </p>
       <p>
-      This section takes a broader look at the Web page. 
-      It is intended to assist you in conveying a logical, usable, and accessible layout to an assistive technology or adaptive system designed to modify the visual layout to meet the users needs. 
+      This section takes a broader look at the Web page.
+      It is intended to assist you in conveying a logical, usable, and accessible layout to an assistive technology or adaptive system designed to modify the visual layout to meet the users needs.
       </p>
       <p>
-      One of the deficiencies of (X)HTML for disabled users has been the  usability of keyboard navigation. 
-      Users dependent on a keyboard for  navigation have been forced to tab everywhere in the document, as the  only keyboard accessible document elements are form and  anchor elements. 
-      This has forced developers to make most everything a  link to make it keyboard accessible, and to get to each link you have  to tab to it. 
+      One of the deficiencies of (X)HTML for disabled users has been the  usability of keyboard navigation.
+      Users dependent on a keyboard for  navigation have been forced to tab everywhere in the document, as the  only keyboard accessible document elements are form and  anchor elements.
+      This has forced developers to make most everything a  link to make it keyboard accessible, and to get to each link you have  to tab to it.
       With the advent of portals and other content aggregation  means Web pages are divided into visible regions and there has been no  vehicle to get to them other than perhaps to do things such as: </p>
       <ul>
         <li>Create a skip link at the top of the page to the main content </li>
@@ -1479,8 +1479,8 @@ function detectHiContrast() {
         <section id="kbd_layout_landmarks">
         <h4> Steps for Defining a Logical Navigational Structure</h4>
         <p>
-        
-        <strong>Due to the complexity of today's web content, it is imperative that all content reside in a navigation landmark.</strong> Sight and mobility impaired users must be able to quickly access a list of landmarks for a web page, to be used as a table of contents.  
+
+        <strong>Due to the complexity of today's web content, it is imperative that all content reside in a navigation landmark.</strong> Sight and mobility impaired users must be able to quickly access a list of landmarks for a web page, to be used as a table of contents.
         This allows the user to quickly navigate to important sections of the page without "endless" TAB navigation.  If this is not done, then content will be orphaned and missed by the user.  In fact many of today's accessibility test tools have built-in rules to flag this issue as a compliance error.  This section defines how to create these navigable regions of the page:  </p>
         <ol>
           <li>
@@ -1773,17 +1773,17 @@ excommunication&lt;/dd&gt;
 &lt;/div&gt;</pre>
       </section>
     </section>
-    
+
 <section id="kbd_general_other">
       <h2> Other Widget Authoring Practices</h2>
       <p class="note">
       MCK: Setting this content aside to determine whether we will remove or rewrite it.
       </p>
       <p>
-      The <a href="#aria_ex_widget">Common Widget Design Patterns</a> section of this document contains best  practices, such as keyboard navigation, for creating common widgets found on the Web. 
+      The <a href="#aria_ex_widget">Common Widget Design Patterns</a> section of this document contains best  practices, such as keyboard navigation, for creating common widgets found on the Web.
       This section contains miscellaneous authoring practices that you should also consider.
       </p>
-      
+
       <section id="scrollintoview">
         <h3>Managing Focus with Scroll</h3>
 
@@ -1826,7 +1826,7 @@ excommunication&lt;/dd&gt;
           Different browsers handle right-to-left completely differently.
         </p>
       </section>
-      
+
       <section id="modal_dialog">
       <h3>Managing Focus in Dialogs</h3>
 
@@ -2084,7 +2084,7 @@ the assistive technology, resulting in undesirable results. Should an alternativ
 Here the values 1 through 7 represent the days of the week and
   aria-valuenow of 1 is equivalent to the first day of the week or Sunday.  When aria-valuetext is made available aria-valuenow should also be treated as an   index which is 1 based. </p>
 </section>
-    </section>    
+    </section>
 
 <section id="relations">
   <h2> Relationships</h2>
@@ -2339,7 +2339,7 @@ consistent with their visual rendering. Rather than setting  size only on a cont
   &lt;/div&gt;
 &lt;/div&gt;</pre>
   </section>
-</section>    
+</section>
 
 <section id="docmgt">
   <h2>Managing Dynamic Changes</h2>
@@ -2782,7 +2782,7 @@ field. </p>
 
 <section id="appendices" class="appendix">
     <h2>Appendices</h2>
-    
+
   <section class="appendix" id="ariaBackground">
     <h2>Background on WAI-ARIA</h2>
     <p class="note">This section has not been updated since it was integrated from the ARIA 1.0 Primer -- an APG task force review is pending.</p>
@@ -3648,8 +3648,8 @@ field. </p>
     </ul>
   </section>
 </section>
-    
+
   </section>
-  
+
 </body>
 </html>
