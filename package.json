@@ -9,7 +9,7 @@
   "scripts": {
     "fix": "eslint --fix .",
     "lint": "eslint .",
-    "vnu-jar": "java -jar node_modules/vnu-jar/build/dist/vnu.jar --errors-only --filterfile .vnurc --no-langdetect examples/**/*.html",
+    "vnu-jar": "java -jar node_modules/vnu-jar/build/dist/vnu.jar --errors-only --filterfile .vnurc --no-langdetect --skip-non-html *.html examples/",
     "test": "npm run lint && npm run vnu-jar"
   },
   "repository": {
