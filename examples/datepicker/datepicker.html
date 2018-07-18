@@ -14,8 +14,8 @@
 <script src="../js/app.js"></script>
 
 <link href="css/datepicker.css" rel="stylesheet">
+<script src="js/datePickerAction.js" type="text/javascript"></script>
 <script src="js/datepicker.js" type="text/javascript"></script>
-<script src="js/main.js" type="text/javascript"></script>
 </head>
 <body>
   <nav aria-label="Related Links" class="feedback">
@@ -47,7 +47,7 @@
         <div id="cal">
           <div class="header">
             <span role="button" class="left button" id="prev">&lang;</span>
-            <span class="month-year" id="label">July 2018</span>
+            <span class="month-year" id="label"></span>
             <span role="button" class="right button" id="next">&rang;</span> 
           </div>
 
@@ -62,13 +62,14 @@
           </table>
           <div id="cal-frame">
             <table class="curr"> 
-              <tbody> 
-                  <tr><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr> 
-                  <tr><td>8</td><td>9</td><td class="today">10</td><td>11</td><td>12</td><td>13</td><td>14</td></tr> 
-                  <tr><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td><td>21</td></tr> 
-                  <tr><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td><td>28</td></tr> 
-                  <tr><td>29</td><td>30</td><td>31</td><td class="nil"></td><td class="nil"></td><td class="nil"></td><td class="nil"></td></tr> 
-              </tbody> 
+            
+                  <tr class="dateRow"></tr>
+                  <tr class="dateRow"></tr>
+                  <tr class="dateRow"></tr>
+                  <tr class="dateRow"></tr>
+                  <tr class="dateRow"></tr>
+                  <tr class="dateRow"></tr>
+               
             </table>
           </div>
         </div> 
