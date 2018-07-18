@@ -447,6 +447,11 @@
   </section>
   <section>
     <h2 id="kbd_label">Keyboard Support</h2>
+    <p>
+      <strong>NOTE:</strong> The following table describes keyboard commands that move focus among grid cells.
+      In the examples on this page, some cells contain a single focusable widget, and if a cell contains a widget, the cell is not focusable; the widget receives focus instead of the cell.
+      So, when a description says a command moves focus to a cell, the command may either focus the cell or a widget inside the cell.     
+    </p>
     <table aria-labelledby="kbd_label" class="def">
       <thead>
         <tr>
@@ -455,7 +460,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr data-test-id="key-right-arrow">
           <th>
             <kbd>Right Arrow</kbd>
           </th>
@@ -468,7 +473,7 @@
             </ul>
           </td>
         </tr>
-        <tr>
+        <tr data-test-id="key-left-arrow">
           <th>
             <kbd>Left Arrow</kbd>
           </th>
@@ -481,7 +486,7 @@
             </ul>
           </td>
         </tr>
-        <tr>
+        <tr data-test-id="key-down-arrow">
           <th>
             <kbd>Down Arrow</kbd>
           </th>
@@ -496,7 +501,7 @@
             </ul>
           </td>
         </tr>
-        <tr>
+        <tr data-test-id="key-up-arrow">
           <th>
             <kbd>Up Arrow</kbd>
           </th>
@@ -511,7 +516,7 @@
             </ul>
           </td>
         </tr>
-        <tr>
+        <tr data-test-id="key-page-down">
           <th>
             <kbd>Page Down</kbd> (Example 3)
           </th>
@@ -523,7 +528,7 @@
             </ul>
           </td>
         </tr>
-        <tr>
+        <tr data-test-id="key-page-up">
           <th>
             <kbd>Page Up</kbd> (Example 3)
           </th>
@@ -535,25 +540,25 @@
             </ul>
           </td>
         </tr>
-        <tr>
+        <tr data-test-id="key-home">
           <th>
             <kbd>Home</kbd>
           </th>
           <td>Moves focus to the first cell in the row that contains focus.</td>
         </tr>
-        <tr>
+        <tr data-test-id="key-end">
           <th>
             <kbd>End</kbd>
           </th>
           <td>Moves focus to the last cell in the row that contains focus.</td>
         </tr>
-        <tr>
+        <tr data-test-id="key-control-home">
           <th>
             <kbd>Control + Home</kbd>
           </th>
           <td>Moves focus to the first cell in the first row.</td>
         </tr>
-        <tr>
+        <tr data-test-id="key-control-end">
           <th>
             <kbd>Control + End</kbd>
           </th>
@@ -575,7 +580,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr data-test-id="grid-role">
           <th scope="row"><code>grid</code></th>
           <td></td>
           <td><code>div</code></td>
@@ -584,23 +589,15 @@
             Because focus is managed using <a href="../../#kbd_roving_tabindex">roving tabindex</a>, the grid element is not focusable.
           </td>
         </tr>
-        <tr>
+        <tr data-test-id="aria-labelledby">
           <td></td>
           <th scope="row">
             <code>aria-labelledby=&quot;ID_REF&quot;</code>
           </th>
           <td><code>div</code></td>
-          <td>In examples 1 and 2, refers to the element that labels the grid.</td>
+          <td>Refers to the element that labels the grid.</td>
         </tr>
-        <tr>
-          <td></td>
-          <th scope="row">
-            <code>aria-label=&quot;Search Results&quot;</code>
-          </th>
-          <td><code>div</code></td>
-          <td>In example 3, the grid does not have a visible label so the label is specified with <code>aria-label</code>.</td>
-        </tr>
-        <tr>
+        <tr data-test-id="aria-rowcount">
           <td></td>
           <th scope="row"><code>aria-rowcount=&quot;19&quot;</code></th>
           <td><code>div</code></td>
@@ -612,7 +609,7 @@
             </ul>
           </td>
         </tr>
-        <tr>
+        <tr data-test-id="row-role">
           <th scope="row"><code>row</code></th>
           <td></td>
           <td><code>div</code></td>
@@ -628,7 +625,7 @@
             </ul>
           </td>
         </tr>
-        <tr>
+        <tr data-test-id="aria-rowindex">
           <td></td>
           <th scope="row"><code>aria-rowindex=&quot;INDEX_VALUE&quot;</code></th>
           <td><code>div</code></td>
@@ -641,31 +638,50 @@
             </ul>
           </td>
         </tr>
-        <tr>
+        <tr data-test-id="gridcell-role">
           <th scope="row"><code>gridcell</code></th>
           <td></td>
-          <td><code>span</code></td>
+          <td><code>span, div</code></td>
           <td>Identifies the element containing the content for a single cell.</td>
         </tr>
-        <tr>
+        <tr data-test-id="tabindex">
           <td></td>
           <th scope="row"><code>tabindex=&quot;-1&quot;</code></th>
-          <td><code>span</code></td>
+          <td><code>span, div</code></td>
           <td>
             <ul>
-              <li>Makes the cell focusable.</li>
-              <li>Applied only to cells that do not contain an interactive widget that consumes arrow keys, such as a link or button.</li>
+              <li>Makes the cell focusable and excludes it from the page <kbd>Tab</kbd> sequence.</li>
+              <li>Applied to all cells that do not contain an interactive widget that consumes arrow keys, such as a link or button.</li>
+              <li>Changed dynamically to <code>0</code> by the JavaScript when the cell is to be included in the page <kbd>Tab</kbd> sequence.</li>
+              <li>At any given time, only one of the cells or widgets within the grid is in the page <kbd>Tab</kbd> sequence.</li>
+              <li>This approach to managing focus is described in the section on <a href="../../#kbd_roving_tabindex">roving tabindex</a>.</li>
             </ul>
           </td>
         </tr>
-        <tr>
+        <tr data-test-id="tabindex">
           <td></td>
           <th scope="row"><code>tabindex=&quot;-1&quot;</code></th>
           <td>Widgets inside cells</td>
           <td>
             <ul>
-              <li>Makes the widget, e.g., link or button,  focusable.</li>
-              <li>Keyboard navigation and clicks focus the widget if the containing cell is not focusable.</li>
+              <li>Makes the widget, e.g., link or button,  focusable and excludes it from the page <kbd>Tab</kbd> sequence.</li>
+              <li>Clicks and keyboard commands that move focus inside the grid can focus widgets if the containing cell is not focusable.</li>
+              <li>Changed dynamically to <code>0</code> by the JavaScript when the widget is to be included in the page <kbd>Tab</kbd> sequence.</li>
+              <li>At any given time, only one of the cells or widgets within the grid is in the page <kbd>Tab</kbd> sequence.</li>
+              <li>This approach to managing focus is described in the section on <a href="../../#kbd_roving_tabindex">roving tabindex</a>.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <th scope="row"><code>tabindex=&quot;0&quot;</code></th>
+          <td>span, div, or if present, widget inside cell</td>
+          <td>
+            <ul>
+              <li>Makes the element focusable and includes it in the page <kbd>Tab</kbd> sequence.</li>
+              <li>Set dynamically by the JavaScript when the element is to be included in the page <kbd>Tab</kbd> sequence.</li>
+              <li>At any given time, only one element within the grid is in the page <kbd>Tab</kbd> sequence.</li>
+              <li>This approach to managing focus is described in the section on <a href="../../#kbd_roving_tabindex">roving tabindex</a>.</li>
             </ul>
           </td>
         </tr>
