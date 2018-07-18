@@ -61,13 +61,13 @@ const focusWithin = function (/* element */) {
   }
 };
 
-const findColIndex = function() {
+const findColIndex = function () {
   let el = document.activeElement;
-  while (! el.hasAttribute('aria-colindex') ){
-    el = el.parent
+  while (!el.hasAttribute('aria-colindex')) {
+    el = el.parent;
   }
   return el.attribute('aria-colindex');
-}
+};
 
 
 let pageExamples = {
@@ -116,7 +116,7 @@ let pageExamples = {
 const exampleInitialized = async function (t, exId) {
   let initializedSelector = '#' + exId + ' [role="grid"] [tabindex="0"]';
 
-  await t.context.session.wait(async function() {
+  await t.context.session.wait(async function () {
     let els = await t.context.session.findElements(By.css(initializedSelector));
     return els.length === 1;
   }, 100);
@@ -271,12 +271,12 @@ ariaTest('Test "tabindex" appropriately set',
         let focusableElementSelector = ex.focusableElements[el];
 
         // If it is the gridcell itself
-        if (focusableElementSelector == "gridcell") {
+        if (focusableElementSelector == 'gridcell') {
           t.is(
             await gridcellElements[el].getAttribute('tabindex'),
             tabindex,
             'gridcell at index ' + el + 'in ' + exId + ' grid should have tabindex=' + tabindex
-          )
+          );
         }
         // If it is not the gridcell, it is an element within it
         else {
@@ -284,16 +284,16 @@ ariaTest('Test "tabindex" appropriately set',
             await gridcellElements[el].getAttribute('tabindex'),
             null,
             'gridcell at index ' + el + 'in ' + exId + ' grid should not have tabindex'
-          )
+          );
 
           t.is(
             await gridcellElements[el]
               .findElement(By.css(focusableElementSelector))
               .getAttribute('tabindex'),
             tabindex,
-            'element "' + focusableElementSelector + '" in gridcell index '
-              + el + 'in ' + exId + ' grid should have tabindex=' + tabindex
-          )
+            'element "' + focusableElementSelector + '" in gridcell index ' +
+              el + 'in ' + exId + ' grid should have tabindex=' + tabindex
+          );
 
         }
 
@@ -489,8 +489,8 @@ ariaTest('PageDown key moves focus', 'grid/LayoutGrids.html', 'key-page-down', a
     third: '#ex3 [role="row"] [role="gridcell"]:nth-child(3)'
   };
   const jumpBy = Number(await t.context.session
-        .findElement(By.css('#ex3 [role="grid"]'))
-        .getAttribute('data-per-page'));
+    .findElement(By.css('#ex3 [role="grid"]'))
+    .getAttribute('data-per-page'));
 
   for (let [initialCell, selector] of Object.entries(cellSelectors)) {
     await reload(t.context.session);
@@ -545,8 +545,8 @@ ariaTest('PageUp key moves focus', 'grid/LayoutGrids.html', 'key-page-up', async
     third: '#ex3 [role="row"] [role="gridcell"]:nth-child(3)'
   };
   const jumpBy = Number(await t.context.session
-        .findElement(By.css('#ex3 [role="grid"]'))
-        .getAttribute('data-per-page'));
+    .findElement(By.css('#ex3 [role="grid"]'))
+    .getAttribute('data-per-page'));
 
   for (let [initialCell, selector] of Object.entries(cellSelectors)) {
     await reload(t.context.session);
@@ -605,8 +605,8 @@ ariaTest('Home key moves focus', 'grid/LayoutGrids.html', 'key-home', async (t) 
   const firstElementInFirstRowText = {
     ex1: 'ARIA 1.1 Specification',
     ex2: 'Recipient Name 1',
-    ex3: 'WAI-ARIA Overview Web Accessibility Initiative W3C',
-  }
+    ex3: 'WAI-ARIA Overview Web Accessibility Initiative W3C'
+  };
 
   for (let [exId, ex] of Object.entries(pageExamples)) {
 
@@ -647,8 +647,8 @@ ariaTest('End key moves focus', 'grid/LayoutGrids.html', 'key-end', async (t) =>
   const lastElementInFirstRowText = {
     ex1: 'SVG 2 Specification',
     ex2: 'X',
-    ex3: 'WAI-ARIA, the Accessible Rich Internet Applications Suite, defines a way to make Web content and Web applications more accessible to people with disabilities.',
-  }
+    ex3: 'WAI-ARIA, the Accessible Rich Internet Applications Suite, defines a way to make Web content and Web applications more accessible to people with disabilities.'
+  };
 
   for (let [exId, ex] of Object.entries(pageExamples)) {
 
@@ -682,8 +682,8 @@ ariaTest('control+home keys moves focus', 'grid/LayoutGrids.html', 'key-control-
   const firstElementInFirstRowText = {
     ex1: 'ARIA 1.1 Specification',
     ex2: 'Recipient Name 1',
-    ex3: 'WAI-ARIA Overview Web Accessibility Initiative W3C',
-  }
+    ex3: 'WAI-ARIA Overview Web Accessibility Initiative W3C'
+  };
 
   for (let [exId, ex] of Object.entries(pageExamples)) {
 
@@ -724,8 +724,8 @@ ariaTest('Control+end keys moves focus', 'grid/LayoutGrids.html', 'key-control-e
   const lastElementInFirstRowText = {
     ex1: 'SVG 2 Specification',
     ex2: 'X',
-    ex3: 'Jan 3, 2014 - NVDA 2 supports all landmarks except it will not support navigation to “application”; Window Eyes as of V.7 does not support ARIA landmarks.',
-  }
+    ex3: 'Jan 3, 2014 - NVDA 2 supports all landmarks except it will not support navigation to “application”; Window Eyes as of V.7 does not support ARIA landmarks.'
+  };
 
   for (let [exId, ex] of Object.entries(pageExamples)) {
 
