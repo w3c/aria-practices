@@ -102,9 +102,9 @@ var respecConfig = {
   },
   accNameURLs: {
     'ED': 'https://w3c.github.io/aria/accname-aam/accname-aam.html',
-    'WD': 'https://www.w3.org/TR/accname-aam-1.2/',
-    'FPWD': 'https://www.w3.org/TR/accname-aam-1.2/',
-    'REC': 'https://www.w3.org/TR/accname-aam-1.2/'
+    'WD': 'https://www.w3.org/TR/accname-aam-1.1/',
+    'FPWD': 'https://www.w3.org/TR/accname-aam-1.1/',
+    'REC': 'https://www.w3.org/TR/accname-aam-1.1/'
   },
   coreMappingURLs: {
     'ED': 'https://w3c.github.io/aria/core-aam/core-aam.html',
