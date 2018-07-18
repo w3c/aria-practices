@@ -5,10 +5,11 @@ window.addEventListener('load' , function(){
       for(var j=0;j<7; j++){
           var colum = document.createElement('td');
           colum.classList.add('dateColum');
+          colum.setAttribute('tabIndex', 0);
           tableRow[i].appendChild(colum);
       }
   }
-  
+
   var ex = new DatePicker(document.querySelector('.header'));
   ex.init();
 });
