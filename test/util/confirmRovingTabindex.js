@@ -20,7 +20,7 @@ module.exports = async function confirmRovingTabindex (t, elementsSelector, key)
   for (let tabableEl = 0; tabableEl < elements.length; tabableEl++) {
     for (let el = 0; el < elements.length; el++) {
 
-      let tabindex = el === tabableEl ? '0' : '-1'
+      let tabindex = el === tabableEl ? '0' : '-1';
 
       t.is(
         await elements[el].getAttribute('tabindex'),
