@@ -424,8 +424,8 @@ ariaTest('Test for aria-selected on option element',
 
 // Keys
 
-ariaTest('Test down key press with focus on textbox and listbox',
-  exampleFile, 'key-down-arrow', async (t) => {
+ariaTest('Test down key press with focus on textbox',
+  exampleFile, 'textbox-key-down-arrow', async (t) => {
 
     t.plan(14);
 
@@ -537,8 +537,8 @@ ariaTest('Test down key press with focus on textbox and listbox',
   });
 
 
-ariaTest('Test down up press with focus on textbox and listbox',
-  exampleFile, 'key-up-arrow', async (t) => {
+ariaTest('Test up key press with focus on textbox',
+  exampleFile, 'textbox-key-up-arrow', async (t) => {
 
     t.plan(16);
 
@@ -719,7 +719,7 @@ ariaTest('Test enter key press with focus on textbox',
   });
 
 ariaTest('Test escape key press with focus on textbox',
-  exampleFile, 'key-escape', async (t) => {
+  exampleFile, 'textbox-key-escape', async (t) => {
 
     for (let exId in pageExamples) {
       let ex = pageExamples[exId];
