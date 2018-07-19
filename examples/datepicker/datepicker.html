@@ -28,43 +28,62 @@
   </nav>
   <main>
     <h1>Datepicker Examples</h1>
-    <p>     
+    <p>
       The following command and input examples demonstrate the
       <a href="../../#datepicker">datepicker design pattern.</a>
     </p>
   <section>
     <h2 id="ex_label">Example</h2>
-    
+
     <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
     <div id="example">
-     
-        <label for="datepicker">Date (mm/dd/yyyy):  </label> <br/>
-        <input type="text" id="datepicker">
-        <button id="datepicker_label" aria-describedby="datepickerlabel">
+
+        <label for="id-date-1">Date (mm/dd/yyyy):  </label> <br/>
+        <input type="text" id="id-date-1">
+        <button aria-haspop="true" aria-controls="id-datepicker-1">
             <i class="fa fa-calendar-alt fa-2x"></i>
         </button>
 
-        <div id="cal">
+        <div id="id-datepicker-1" class="datepicker">
+
           <div class="header">
-            <span role="button" class="left button" id="prev" tabIndex="0" >&lang;</span>
-            <span class="month-year" id="label"></span>
-            <span role="button" class="right button" id="next" tabIndex="0" >&rang;</span> 
+            <button class="prev-year">&lang;</span>
+            <button class="prev-month">&lang;</span>
+            <span class="month-year-label"></span>
+            <button role="button" class="next-month">&rang;</span>
+            <button role="button" class="next-year">&rang;</span>
           </div>
 
-          <table id ="days">
-            <td>Su</td> 
-            <td>Mo</td> 
-            <td>Tu</td> 
-            <td>We</td> 
-            <td>Th</td> 
-            <td>Fr</td> 
-            <td>Sa</td>  
+          <table class="dates" role="grid">
+            <theader>
+              <tr>
+                <th scope="col" aria-label="Sunday">Su</th>
+                <th scope="col" aria-label="Monday">Mo</th>
+                <th scope="col" aria-label="Tuesday">Tu</th>
+                <th scope="col" aria-label="Wednesday">We</th>
+                <th scope="col" aria-label="Thursday">Th</th>
+                <th scope="col" aria-label="Friday">Fr</th>
+                <th scope="col" aria-label="Saturday">Sa</th>
+              </tr>
+            </theader>
+            <tbody>
+              <tr>
+                <td><button></button></td>
+                <td><button></button></td>
+                <td><button></button></td>
+                <td><button></button></td>
+                <td><button></button></td>
+                <td><button></button></td>
+                <td><button></button></td>
+              </tr>
+            </tbody>
           </table>
           <div id="cal-frame">
-            <table class="curr">             
+            <table class="curr">
+
             </table>
           </div>
-        </div> 
+        </div>
 
     </div>
     <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
@@ -182,7 +201,7 @@
       sourceCode.make();
     </script>
   </section>
-  </main> 
+  </main>
   <nav>
     <a href="../../#datepicker">Datepicker Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
   </nav>
