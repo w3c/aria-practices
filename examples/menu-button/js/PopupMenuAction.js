@@ -5,8 +5,6 @@
 *   File:   PopupMenuAction.js
 *
 *   Desc:   Popup menu widget that implements ARIA Authoring Practices
-*
-*   Author: Jon Gunderson, Ku Ja Eun, Nicholas Hoyt and Brian Loh
 */
 
 /*
@@ -34,7 +32,7 @@
 */
 var PopupMenuAction = function (domNode, controllerObj) {
   var elementChildren,
-      msgPrefix = 'PopupMenu constructor argument domNode ';
+    msgPrefix = 'PopupMenu constructor argument domNode ';
 
   // Check whether domNode is a DOM element
   if (!domNode instanceof Element) {
@@ -102,7 +100,7 @@ PopupMenuAction.prototype.init = function () {
     menuElement = menuElements[i];
 
     if (!menuElement.firstElementChild && menuElement.getAttribute('role') != 'separator') {
-      menuItem = new MenuItem(menuElement, this);
+      menuItem = new PopupMenuItem(menuElement, this);
       menuItem.init();
       this.menuitems.push(menuItem);
       textContent = menuElement.textContent.trim();
@@ -230,7 +228,6 @@ PopupMenuAction.prototype.open = function () {
 };
 
 PopupMenuAction.prototype.close = function (force) {
-
   if (typeof force !== 'boolean') {
     force = false;
   }

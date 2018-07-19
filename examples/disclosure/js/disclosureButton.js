@@ -6,8 +6,6 @@
 *
 *   Desc:   Checkbox widget that implements ARIA Authoring Practices
 *           for a menu of links
-*
-*   Author: Jon Gunderson and Nicholas Hoyt
 */
 
 /*
@@ -20,7 +18,7 @@ var ButtonExpand = function (domNode) {
   this.domNode = domNode;
 
   this.keyCode = Object.freeze({
-    'RETURN'   : 13
+    'RETURN': 13
   });
 };
 

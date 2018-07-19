@@ -6,8 +6,6 @@
 *
 *   Desc:   Treeitem widget that implements ARIA Authoring Practices
 *           for a tree being used as a file viewer
-*
-*   Author: Jon Gunderson, Ku Ja Eun and Nicholas Hoyt
 */
 
 /*
@@ -110,9 +108,9 @@ TreeitemLink.prototype.isExpanded = function () {
 
 TreeitemLink.prototype.handleKeydown = function (event) {
   var tgt = event.currentTarget,
-      flag = false,
-      char = event.key,
-      clickEvent;
+    flag = false,
+    char = event.key,
+    clickEvent;
 
   function isPrintableCharacter (str) {
     return str.length === 1 && str.match(/\S/);

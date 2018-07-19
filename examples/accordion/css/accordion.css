@@ -31,10 +31,16 @@
     background: hsl(0, 0%, 93%);
 }
 
+.Accordion-title {
+  display: block; /* For Edge bug https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/8295099/ */
+  pointer-events: none;
+}
+
 .Accordion-icon {
     border: solid hsl(0, 0%, 62%);
     border-width: 0 2px 2px 0;
     height: .5rem;
+    pointer-events: none;
     position: absolute;
     right: 1.5em;
     top: 50%;
@@ -54,6 +60,11 @@
 .Accordion-panel {
     margin: 0;
     padding: 1em 1.5em;
+}
+
+/* For Edge bug https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/4806035/ */
+.Accordion-panel[hidden] {
+  display: none;
 }
 
 fieldset {

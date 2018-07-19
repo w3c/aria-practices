@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>Navigation Treeview Example Using Declared Properties | WAI-ARIA Authoring Practices 1.1<</title>
+    <title>Navigation Treeview Example Using Declared Properties | WAI-ARIA Authoring Practices 1.1</title>
 
     <!--  Core js and css shared by all examples; do not modify when using this template. -->
     <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
@@ -17,11 +17,19 @@
     <script type="text/javascript" src="js/treeitemLinks.js"></script>
   </head>
   <body>
+    <nav aria-label="Related Links" class="feedback">
+      <ul>
+        <li><a href="../../../#browser_and_AT_support">Browser and Assistive Technology Support</a></li>
+        <li><a href="https://github.com/w3c/aria-practices/issues/new">Report Issue</a></li>
+        <li><a href="https://github.com/w3c/aria-practices/projects/17">Related Issues</a></li>
+        <li><a href="../../../#TreeView">Design Pattern</a></li>
+      </ul>
+    </nav>
     <main>
       <h1>Navigation Treeview Example Using Declared Properties</h1>
       <p>
         <strong>NOTE:</strong>: This example is recently revised and ready for review.
-        Please provide feedback in 
+        Please provide feedback in
         <a href="https://github.com/w3c/aria-practices/issues/405">issue 405.</a>
       </p>
     <p>
@@ -111,7 +119,7 @@
                     </li>
                   </ul>
                 </li>
-                <li >
+                <li role="none">
                   <a role="treeitem"
                     aria-level="2"
                     aria-setsize="5"
@@ -463,8 +471,7 @@
       <section>
         <h2>Accessibility Features</h2>
         <p>
-          To make the focus indicator easier to see, the expandable nodes (parent items) in the tree have a custom focus and hover styling created using CSS focus and hover classes.
-          To do this, focus, blur, mouseover, and mouseout events trigger application of classes to the <code>span</code> element that contains the visible label of the <code>treeitem</code>.
+          To make the focus indicator easier to see, nodes in the tree have a custom focus and hover styling created using CSS focus and hover pseudo-classes.
         </p>
       </section>
 
@@ -556,7 +563,7 @@
             </tr>
             <tr>
               <th>
-                <kbd>*</kbd>
+                <kbd>*</kbd> (asterisk)
               </th>
               <td>
                 <ul>

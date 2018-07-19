@@ -1,3 +1,7 @@
+/*
+*   This content is licensed according to the W3C Software License at
+*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+*/
 (function () {
   var tablist = document.querySelectorAll('[role="tablist"]')[0];
   var tabs;
@@ -22,7 +26,7 @@
     delete: 46
   };
 
-  // Add or substract depenign on key pressed
+  // Add or substract depending on key pressed
   var direction = {
     37: -1,
     38: -1,
@@ -252,4 +256,4 @@
       activateTab(target, false);
     };
   };
-})();
+}());

@@ -1,9 +1,10 @@
 /*
+*   This content is licensed according to the W3C Software License at
+*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+*
 *   File:   RadioButton.js
 *
 *   Desc:   Radio button widget that implements ARIA Authoring Practices
-*
-*   Author(s): Jon Gunderson, Ku Ja Eun, Nicholas Hoyt, and Brian Loh
 */
 
 /*
@@ -17,14 +18,14 @@ var RadioButton = function (domNode, groupObj) {
   this.radioGroup = groupObj;
 
   this.keyCode = Object.freeze({
-    'RETURN'   : 13,
-    'SPACE'    : 32,
-    'END'      : 35,
-    'HOME'     : 36,
-    'LEFT'     : 37,
-    'UP'       : 38,
-    'RIGHT'    : 39,
-    'DOWN'     : 40
+    'RETURN': 13,
+    'SPACE': 32,
+    'END': 35,
+    'HOME': 36,
+    'LEFT': 37,
+    'UP': 38,
+    'RIGHT': 39,
+    'DOWN': 40
   });
 };
 
@@ -43,8 +44,8 @@ RadioButton.prototype.init = function () {
 
 RadioButton.prototype.handleKeydown = function (event) {
   var tgt = event.currentTarget,
-      flag = false,
- clickEvent;
+    flag = false,
+    clickEvent;
 
   //  console.log("[RadioButton][handleKeydown]: " + event.keyCode + " " + this.radioGroup)
 

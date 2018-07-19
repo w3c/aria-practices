@@ -4,9 +4,6 @@
 
 .menu_button button {
   font-size: 110%;
-}
-
-a[role="button"] {
   display: block;
   padding: 0.25em;
   border: inset 2px gray;
@@ -58,8 +55,3 @@ ul[role="menu"] a[role="menuitem"]:hover{
   background-color: black;
   color: white;
 }
-
-
-
-
-

@@ -1,49 +1,60 @@
 /*
-Simple accordion pattern example
-Gerard K. Cohen, 05/20/2017
+*   This content is licensed according to the W3C Software License at
+*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+*
+*   Simple accordion pattern example
 */
 
-Array.from(document.querySelectorAll('.Accordion')).forEach(function (accordion) {
+'use strict';
 
-  // Allow for each toggle to both open and close individually
-  const allowToggle = accordion.hasAttribute('data-allow-toggle');
+Array.prototype.slice.call(document.querySelectorAll('.Accordion')).forEach(function (accordion) {
+
   // Allow for multiple accordion sections to be expanded at the same time
-  const allowMultiple = accordion.hasAttribute('data-allow-multiple');
+  var allowMultiple = accordion.hasAttribute('data-allow-multiple');
+  // Allow for each toggle to both open and close individually
+  var allowToggle = (allowMultiple) ? allowMultiple : accordion.hasAttribute('data-allow-toggle');
 
   // Create the array of toggle elements for the accordion group
-  const triggers = Array.from(accordion.querySelectorAll('.Accordion-trigger'));
-  const panels = Array.from(accordion.querySelectorAll('.Accordion-panel'));
+  var triggers = Array.prototype.slice.call(accordion.querySelectorAll('.Accordion-trigger'));
+  var panels = Array.prototype.slice.call(accordion.querySelectorAll('.Accordion-panel'));
 
   accordion.addEventListener('click', function (event) {
-    const target = event.target;
+    var target = event.target;
 
     if (target.classList.contains('Accordion-trigger')) {
       // Check if the current toggle is expanded.
-      const isExpanded = target.getAttribute('aria-expanded') == 'true';
+      var isExpanded = target.getAttribute('aria-expanded') == 'true';
+      var active = accordion.querySelector('[aria-expanded="true"]');
 
-      if (!allowMultiple) {
-        // Close all previously open accordion toggles
-        triggers.forEach(function (trigger) {
-          if (trigger.getAttribute('aria-expanded') == 'true') {
-            // Hide all accordion sections, using aria-controls to specify the desired section
-            document.getElementById(trigger.getAttribute('aria-controls')).setAttribute('hidden', '');
-            // Set the expanded state on the triggering element
-            trigger.setAttribute('aria-expanded', 'false');
-          }
-        });
-      }
-
-      if (allowToggle && isExpanded) {
-        // Close the activated accordion if allowToggle=true, using aria-controls to specify the desired section
-        document.getElementById(target.getAttribute('aria-controls')).setAttribute('hidden', '');
+      // without allowMultiple, close the open accordion
+      if (!allowMultiple && active && active !== target) {
         // Set the expanded state on the triggering element
-        target.setAttribute('aria-expanded', 'false');
+        active.setAttribute('aria-expanded', 'false');
+        // Hide the accordion sections, using aria-controls to specify the desired section
+        document.getElementById(active.getAttribute('aria-controls')).setAttribute('hidden', '');
+
+        // When toggling is not allowed, clean up disabled state
+        if (!allowToggle) {
+          active.removeAttribute('aria-disabled');
+        }
       }
-      else if (!allowToggle && !isExpanded) {
-        // Otherwise open the activated accordion, using aria-controls to specify the desired section
-        document.getElementById(target.getAttribute('aria-controls')).removeAttribute('hidden');
+
+      if (!isExpanded) {
         // Set the expanded state on the triggering element
         target.setAttribute('aria-expanded', 'true');
+        // Hide the accordion sections, using aria-controls to specify the desired section
+        document.getElementById(target.getAttribute('aria-controls')).removeAttribute('hidden');
+
+        // If toggling is not allowed, set disabled state on trigger
+        if (!allowToggle) {
+          target.setAttribute('aria-disabled', 'true');
+        }
+      }
+      else if (allowToggle && isExpanded) {
+        // Set the expanded state on the triggering element
+        target.setAttribute('aria-expanded', 'false');
+        // Hide the accordion sections, using aria-controls to specify the desired section
+        document.getElementById(target.getAttribute('aria-controls')).setAttribute('hidden', '');
       }
 
       event.preventDefault();
@@ -52,20 +63,20 @@ Array.from(document.querySelectorAll('.Accordion')).forEach(function (accordion)
 
   // Bind keyboard behaviors on the main accordion container
   accordion.addEventListener('keydown', function (event) {
-    const target = event.target;
-    const key = event.which.toString();
+    var target = event.target;
+    var key = event.which.toString();
     // 33 = Page Up, 34 = Page Down
-    const ctrlModifier = (event.ctrlKey && key.match(/33|34/));
+    var ctrlModifier = (event.ctrlKey && key.match(/33|34/));
 
     // Is this coming from an accordion header?
     if (target.classList.contains('Accordion-trigger')) {
       // Up/ Down arrow and Control + Page Up/ Page Down keyboard operations
       // 38 = Up, 40 = Down
       if (key.match(/38|40/) || ctrlModifier) {
-        const index = triggers.indexOf(target);
-        const direction = (key.match(/34|40/)) ? 1 : -1;
-        const length = triggers.length;
-        const newIndex = (index + length + direction) % length;
+        var index = triggers.indexOf(target);
+        var direction = (key.match(/34|40/)) ? 1 : -1;
+        var length = triggers.length;
+        var newIndex = (index + length + direction) % length;
 
         triggers[newIndex].focus();
 
@@ -99,5 +110,17 @@ Array.from(document.querySelectorAll('.Accordion')).forEach(function (accordion)
       });
     }
   });
+
+  // Minor setup: will set disabled state, via aria-disabled, to an
+  // expanded/ active accordion which is not allowed to be toggled close
+  if (!allowToggle) {
+    // Get the first expanded/ active accordion
+    var expanded = accordion.querySelector('[aria-expanded="true"]');
+
+    // If an expanded/ active accordion is found, disable
+    if (expanded) {
+      expanded.setAttribute('aria-disabled', 'true');
+    }
+  }
 
 });

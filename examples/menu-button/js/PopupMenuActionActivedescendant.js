@@ -5,8 +5,6 @@
 *   File:   PopupMenuActionActivedescendant.js
 *
 *   Desc:   Popup menu widget that implements ARIA Authoring Practices
-*
-*   Author: Jon Gunderson, Ku Ja Eun, Nicholas Hoyt and Brian Loh
 */
 
 /*
@@ -34,7 +32,7 @@
 */
 var PopupMenuActionActivedescendant = function (domNode, controllerObj) {
   var elementChildren,
-      msgPrefix = 'PopupMenu constructor argument domNode ';
+    msgPrefix = 'PopupMenu constructor argument domNode ';
 
   // Check whether domNode is a DOM element
   if (!domNode instanceof Element) {
@@ -71,18 +69,18 @@ var PopupMenuActionActivedescendant = function (domNode, controllerObj) {
   this.hasHover   = false;   // see PopupMenu handleMouseover, handleMouseout
 
   this.keyCode = Object.freeze({
-    'TAB'      :  9,
-    'RETURN'   : 13,
-    'ESC'      : 27,
-    'SPACE'    : 32,
-    'PAGEUP'   : 33,
-    'PAGEDOWN' : 34,
-    'END'      : 35,
-    'HOME'     : 36,
-    'LEFT'     : 37,
-    'UP'       : 38,
-    'RIGHT'    : 39,
-    'DOWN'     : 40
+    'TAB': 9,
+    'RETURN': 13,
+    'ESC': 27,
+    'SPACE': 32,
+    'PAGEUP': 33,
+    'PAGEDOWN': 34,
+    'END': 35,
+    'HOME': 36,
+    'LEFT': 37,
+    'UP': 38,
+    'RIGHT': 39,
+    'DOWN': 40
   });
 
 };
@@ -137,10 +135,9 @@ PopupMenuActionActivedescendant.prototype.init = function () {
 
 };
 PopupMenuActionActivedescendant.prototype.handleKeydown = function (event) {
-  var tgt = event.currentTarget,
-      flag = false,
-      char = event.key,
-      clickEvent;
+  var flag = false,
+    char = event.key,
+    clickEvent;
 
   function isPrintableCharacter (str) {
     return str.length === 1 && str.match(/\S/);
@@ -157,7 +154,11 @@ PopupMenuActionActivedescendant.prototype.handleKeydown = function (event) {
   }
   else {
     switch (event.keyCode) {
+
       case this.keyCode.SPACE:
+        flag = true;
+        break;
+
       case this.keyCode.RETURN:
         // Create simulated mouse event to mimic the behavior of ATs
         // and let the event handler handleClick do the housekeeping.

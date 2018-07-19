@@ -16,6 +16,14 @@
     <script type="text/javascript" src="js/treeitemLinks.js"></script>
   </head>
   <body>
+  <nav aria-label="Related Links" class="feedback">
+      <ul>
+        <li><a href="../../../#browser_and_AT_support">Browser and Assistive Technology Support</a></li>
+        <li><a href="https://github.com/w3c/aria-practices/issues/new">Report Issue</a></li>
+        <li><a href="https://github.com/w3c/aria-practices/projects/17">Related Issues</a></li>
+        <li><a href="../../../#TreeView">Design Pattern</a></li>
+      </ul>
+    </nav>
     <main>
       <h1>Navigation Treeview Example Using Computed Properties</h1>
       <p>
@@ -103,7 +111,7 @@
                     aria-expanded="false">
                   <span> Pears </span>
                   <ul role="group">
-                    <li>
+                    <li role="none">
                       <a role="treeitem"
                          href="https://en.wikipedia.org/wiki/D%27Anjou">
                           Anjou
@@ -331,8 +339,7 @@
       <section>
         <h2>Accessibility Features</h2>
         <p>
-          To make the focus indicator easier to see, the expandable nodes (parent items) in the tree have a custom focus and hover styling created using CSS focus and hover classes.
-          To do this, focus, blur, mouseover, and mouseout events trigger application of classes to the <code>span</code> element that contains the visible label of the <code>treeitem</code>.
+          To make the focus indicator easier to see, nodes in the tree have a custom focus and hover styling created using CSS focus and hover pseudo-classes.
         </p>
       </section>
 
@@ -424,7 +431,7 @@
             </tr>
             <tr>
               <th>
-                <kbd>*</kbd>
+                <kbd>*</kbd> (asterisk)
               </th>
               <td>
                 <ul>
@@ -457,8 +464,8 @@
                 <ul>
                   <li>Identifies the <code>ul</code> element as a <code>tree</code> widget.</li>
                   <li>
-                    Because focus movement in the tree is managed with a 
-                    <a href="../../../#kbd_roving_tabindex">roving tabindex</a>, 
+                    Because focus movement in the tree is managed with a
+                    <a href="../../../#kbd_roving_tabindex">roving tabindex</a>,
                     the <code>tree</code> container does not need a <code>tabindex</code> attribute.
                   </li>
                 </ul>

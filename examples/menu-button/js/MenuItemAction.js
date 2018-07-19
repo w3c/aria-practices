@@ -5,8 +5,6 @@
 *   File:   MenuItem.js
 *
 *   Desc:   Popup Menu Menuitem widget that implements ARIA Authoring Practices
-*
-*   Author: Jon Gunderson, Ku Ja Eun, Nicholas Hoyt and Brian Loh
 */
 
 /*
@@ -24,28 +22,28 @@
 *       The object that is a wrapper for the PopupMenu DOM element that
 *       contains the menu item DOM element. See PopupMenuAction.js
 */
-var MenuItem = function (domNode, menuObj) {
+var PopupMenuItem = function (domNode, popupMenuObj) {
 
-  this.domNode = domNode;
-  this.menu = menuObj;
+  this.domNode   = domNode;
+  this.popupMenu = popupMenuObj;
 
   this.keyCode = Object.freeze({
-    'TAB'      :  9,
-    'RETURN'   : 13,
-    'ESC'      : 27,
-    'SPACE'    : 32,
-    'PAGEUP'   : 33,
-    'PAGEDOWN' : 34,
-    'END'      : 35,
-    'HOME'     : 36,
-    'LEFT'     : 37,
-    'UP'       : 38,
-    'RIGHT'    : 39,
-    'DOWN'     : 40
+    'TAB': 9,
+    'RETURN': 13,
+    'ESC': 27,
+    'SPACE': 32,
+    'PAGEUP': 33,
+    'PAGEDOWN': 34,
+    'END': 35,
+    'HOME': 36,
+    'LEFT': 37,
+    'UP': 38,
+    'RIGHT': 39,
+    'DOWN': 40
   });
 };
 
-MenuItem.prototype.init = function () {
+PopupMenuItem.prototype.init = function () {
   this.domNode.tabIndex = -1;
 
   if (!this.domNode.getAttribute('role')) {
@@ -63,11 +61,9 @@ MenuItem.prototype.init = function () {
 
 /* EVENT HANDLERS */
 
-MenuItem.prototype.handleKeydown = function (event) {
-  var tgt = event.currentTarget,
-      flag = false,
-      char = event.key,
-      clickEvent;
+PopupMenuItem.prototype.handleKeydown = function (event) {
+  var flag = false,
+    char = event.key;
 
   function isPrintableCharacter (str) {
     return str.length === 1 && str.match(/\S/);
@@ -79,70 +75,57 @@ MenuItem.prototype.handleKeydown = function (event) {
 
   if (event.shiftKey) {
     if (isPrintableCharacter(char)) {
-      this.menu.setFocusByFirstCharacter(this, char);
+      this.popupMenu.setFocusByFirstCharacter(this, char);
     }
   }
   else {
 
     switch (event.keyCode) {
       case this.keyCode.SPACE:
+        flag = true;
+        break;
+
       case this.keyCode.RETURN:
-        // Create simulated mouse event to mimic the behavior of ATs
-        // and let the event handler handleClick do the housekeeping.
-        try {
-          clickEvent = new MouseEvent('click', {
-            'view': window,
-            'bubbles': true,
-            'cancelable': true
-          });
-        }
-        catch (err) {
-          if (document.createEvent) {
-            // DOM Level 3 for IE 9+
-            clickEvent = document.createEvent('MouseEvents');
-            clickEvent.initEvent('click', true, true);
-          }
-        }
-        tgt.dispatchEvent(clickEvent);
+        this.handleClick(event);
         flag = true;
         break;
 
       case this.keyCode.ESC:
-        this.menu.setFocusToController();
-        this.menu.close(true);
+        this.popupMenu.setFocusToController();
+        this.popupMenu.close(true);
         flag = true;
         break;
 
       case this.keyCode.UP:
-        this.menu.setFocusToPreviousItem(this);
+        this.popupMenu.setFocusToPreviousItem(this);
         flag = true;
         break;
 
       case this.keyCode.DOWN:
-        this.menu.setFocusToNextItem(this);
+        this.popupMenu.setFocusToNextItem(this);
         flag = true;
         break;
 
       case this.keyCode.HOME:
       case this.keyCode.PAGEUP:
-        this.menu.setFocusToFirstItem();
+        this.popupMenu.setFocusToFirstItem();
         flag = true;
         break;
 
       case this.keyCode.END:
       case this.keyCode.PAGEDOWN:
-        this.menu.setFocusToLastItem();
+        this.popupMenu.setFocusToLastItem();
         flag = true;
         break;
 
       case this.keyCode.TAB:
-        this.menu.setFocusToController();
-        this.menu.close(true);
+        this.popupMenu.setFocusToController();
+        this.popupMenu.close(true);
         break;
 
       default:
         if (isPrintableCharacter(char)) {
-          this.menu.setFocusByFirstCharacter(this, char);
+          this.popupMenu.setFocusByFirstCharacter(this, char);
         }
         break;
     }
@@ -154,27 +137,30 @@ MenuItem.prototype.handleKeydown = function (event) {
   }
 };
 
-MenuItem.prototype.handleClick = function (event) {
-  this.menu.setFocusToController();
-  this.menu.close(true);
+PopupMenuItem.prototype.handleClick = function (event) {
+  if (menuAction) {
+    menuAction(event);
+  }
+  this.popupMenu.setFocusToController();
+  this.popupMenu.close(true);
 };
 
-MenuItem.prototype.handleFocus = function (event) {
-  this.menu.hasFocus = true;
+PopupMenuItem.prototype.handleFocus = function (event) {
+  this.popupMenu.hasFocus = true;
 };
 
-MenuItem.prototype.handleBlur = function (event) {
-  this.menu.hasFocus = false;
-  setTimeout(this.menu.close.bind(this.menu, false), 300);
+PopupMenuItem.prototype.handleBlur = function (event) {
+  this.popupMenu.hasFocus = false;
+  setTimeout(this.popupMenu.close.bind(this.popupMenu, false), 300);
 };
 
-MenuItem.prototype.handleMouseover = function (event) {
-  this.menu.hasHover = true;
-  this.menu.open();
+PopupMenuItem.prototype.handleMouseover = function (event) {
+  this.popupMenu.hasHover = true;
+  this.popupMenu.open();
 
 };
 
-MenuItem.prototype.handleMouseout = function (event) {
-  this.menu.hasHover = false;
-  setTimeout(this.menu.close.bind(this.menu, false), 300);
+PopupMenuItem.prototype.handleMouseout = function (event) {
+  this.popupMenu.hasHover = false;
+  setTimeout(this.popupMenu.close.bind(this.popupMenu, false), 300);
 };

@@ -18,21 +18,29 @@
     <script src="js/MenuItemLinks.js" type="text/javascript"></script>
   </head>
   <body>
+    <nav aria-label="Related Links" class="feedback">
+      <ul>
+        <li><a href="../../#browser_and_AT_support">Browser and Assistive Technology Support</a></li>
+        <li><a href="https://github.com/w3c/aria-practices/issues/new">Report Issue</a></li>
+        <li><a href="https://github.com/w3c/aria-practices/projects/5">Related Issues</a></li>
+        <li><a href="../../#menubutton">Design Pattern</a></li>
+      </ul>
+    </nav>
     <main>
       <h1>Navigation Menu Button Example</h1>
       <p>
-        This example demonstrates the  
+        This example demonstrates the
         <a href="../../#menubutton">menu button design pattern</a>
         for a button that displays a menu of link targets.
         The menu items are made from HTML links and maintain their HTML link behaviors.
         That is, activating a menuitem loads the link target, and the browser's link context menu and associated actions are available.
       </p>
       <p>
-        In this implementation, the button is made using an HTML <code>a</code> element and the menu structure uses an HTML <code>ul</code> element.
+        In this implementation, an HTML <code>button</code> element reveals a menu structure made with an HTML <code>ul</code> element.
         The <code>menuitem</code> role is on the HTML <code>a</code> element contained by each <code>li</code> element so link behaviors are available when focus is set on the menu item.
         Another reason the <code>menuitem</code> role is not on the <code>li</code> element is that the semantics of descendants of ARIA <code>menuitem</code> elements are not exposed in the accessibility tree.
         That is, an item in a menu can only be a <code>menuitem</code> because accessibility APIs do not enable assistive technologies to render elements contained inside of an item in a menu.
-        For a more detailed description of this constraint, see 
+        For a more detailed description of this constraint, see
         <a href="../../#children_presentational">Roles That Automatically Hide Semantics by Making Their Descendants Presentational.</a>
       </p>
       <p>Similar examples include: </p>
@@ -45,15 +53,13 @@
         <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
         <div id="ex1">
           <div class="menu_button">
-            <a
+            <button
               id="menubutton"
-              role="button"
-              href="#"
               aria-haspopup="true"
               aria-controls="menu2"
               >
               WAI-ARIA Quick Links
-            </a>
+            </button>
 
             <ul id="menu2" role="menu" aria-labelledby="menubutton">
               <li role="none">
@@ -203,25 +209,10 @@
           </thead>
           <tbody>
             <tr>
-              <th scope="row">
-                <code>button</code>
-              </th>
-              <td></td>
-              <td>
-                <code>a</code>
-              </td>
-              <td>
-                <ul>
-                  <li>Identifies the element as a button.</li>
-                  <li>The text content of the <code>a</code> element provides the accessible name of the button.</li>
-                </ul>
-              </td>
-            </tr>
-            <tr>
               <td></td>
               <th scope="row"><code>aria-haspopup=&quot;true&quot;</code></th>
               <td>
-                <code>a</code>
+                <code>button</code>
               </td>
               <td>
                 <ul>
@@ -237,7 +228,7 @@
               <td></td>
               <th scope="row"><code>aria-controls=&quot;IDREF&quot;</code></th>
               <td>
-                <code>a</code>
+                <code>button</code>
               </td>
               <td>
                 <ul>
@@ -249,18 +240,20 @@
             <tr>
                 <td></td>
                 <th scope="row"><code>aria-expanded=&quot;true&quot;</code></th>
-                <td><code>a</code></td>
+                <td><code>button</code></td>
                 <td>
                   <ul>
                     <li>Added when the menu is open.</li>
                     <li>Indicates that the menu is displayed and that activating the menu button closes the menu.</li>
                     <li>The <code>aria-expanded</code> attribute is removed when the menu is closed.</li>
-                    <li>Included to support touch devices where screen reader users can touch the menu button when the menu is displayed. Keyboard users cannot focus the menu button when the menu is open.</li>  
+                    <li>Included to support touch devices where screen reader users can touch the menu button when the menu is displayed. Keyboard users cannot focus the menu button when the menu is open.</li>
                   </ul>
                 </td>
             </tr>
           </tbody>
         </table>
+        <h4>Note</h4>
+        <p>The label for the button is provided by the text content of the <code>button</code> element.</p>
         <h3 id="rps2_label">Menu</h3>
         <table aria-labelledby="rps2_label rps_label" class="data attributes">
           <thead>
@@ -308,7 +301,7 @@
               <td>
                 <ul>
                   <li>Hides the implied <code>listitem</code> role of the <code>li</code> element from assistive technologies.</li>
-                  <li>For more details, see <a href="../../#presentation_role">Intentionally Hiding Semantics with the <code>presentation</code> Role</a>.</li> 
+                  <li>For more details, see <a href="../../#presentation_role">Intentionally Hiding Semantics with the <code>presentation</code> Role</a>.</li>
                 </ul>
               </td>
             </tr>
