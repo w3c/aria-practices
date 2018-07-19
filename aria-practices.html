@@ -2494,6 +2494,43 @@
       </section>
     </section>
 
+    <section class="widget" id="switch">
+      <h3>Switch</h3>
+      <p>A switch is similar to a checkbox, but instead of being checked or unchecked its states are <q>on</q> or <q>off</q>.  The switch  provides assistive technologies the opportunity to render the state of the switch consistent with the graphical rendering (e.g. announcing "on" and "off").  Switches are often found in user preference and profile pages.</p>
+
+      <section class="notoc">
+        <h4>Examples</h4>
+        <ul>
+          <li>
+            <a href="examples/switch/switch.html">Switch Example</a>: Demonstrates simple on/off switches.
+          </li>
+        </ul>
+      </section>
+
+      <section class="notoc">
+        <h4>Keyboard Interaction</h4>
+        <p>When the switch has focus, pressing the <kbd>Space</kbd> key changes the state of the switch.</p>
+      </section>
+
+      <section class="notoc">
+        <h4>WAI-ARIA Roles, States, and Properties</h4>
+        <ul>
+          <li>The switch has role <a href="#switch" class="role-reference">switch</a>.</li>
+          <li>
+            The switch has an accessible label provided by one of the following:
+            <ul>
+              <li>Visible text content contained within the element with role <code>switch</code>.</li>
+              <li>A visible label referenced by the value of <a href="#aria-labelledby" class="property-reference" >aria-labelledby</a> set on the element with role <code>switch</code>.</li>
+              <li><a href="#aria-label" class="property-reference">aria-label</a> set on the element with role <code>switch</code>.</li>
+            </ul>
+          </li>
+          <li>When <q>on</q>, the switch element has state <a href="#aria-checked" class="state-reference" >aria-checked</a> set to <code>true</code>.</li>
+          <li>When <q>off</q>, it has state <a href="#aria-checked" class="state-reference" >aria-checked</a> set to <code>false</code>.</li>
+          <li>If the state <a href="#aria-checked" class="state-reference" >aria-checked</a> is set to <code>mixed</code>, it will be treated <code>false</code>.</li>
+        </ul>
+      </section>
+    </section>
+
     <section class="widget" id="table">
       <h3>Table</h3>
       <p>
