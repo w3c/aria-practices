@@ -2,8 +2,8 @@
 
 const { ariaTest } = require('..');
 const { By, Key } = require('selenium-webdriver');
-const confirmAttributeValue = require('../util/confirmAttributeValue');
-const confirmRovingTabindex = require('../util/confirmRovingTabindex');
+const assertAttributeValues = require('../util/assertAttributeValues');
+const assertRovingTabindex = require('../util/assertRovingTabindex');
 
 const exampleFile = 'menubar/menubar-2/menubar-2.html';
 
@@ -134,28 +134,28 @@ ariaTest('Test for role="menuitem" on li', exampleFile, 'menubar-menuitem-role',
 
 ariaTest('Test roving tabindex', exampleFile, 'menubar-menuitem-tabindex', async (t) => {
 
-  t.plan(16);
+  t.plan(1);
 
   // Wait for roving tabindex to be initialized by the javascript
   await exampleInitialized(t);
 
-  await confirmRovingTabindex(t, ex.menubarMenuitemSelector, Key.ARROW_RIGHT);
+  await assertRovingTabindex(t, ex.menubarMenuitemSelector, Key.ARROW_RIGHT);
 });
 
 ariaTest('Test aria-haspopup set to true on menuitems',
   exampleFile, 'menubar-menuitem-aria-haspopup', async (t) => {
 
-    t.plan(4);
+    t.plan(1);
 
-    await confirmAttributeValue(t, ex.menubarMenuitemSelector, 'aria-haspopup', 'true');
+    await assertAttributeValues(t, ex.menubarMenuitemSelector, 'aria-haspopup', 'true');
   });
 
 ariaTest('', exampleFile, 'menubar-menuitem-aria-expanded', async (t) => {
 
-  t.plan(40);
+  t.plan(37);
 
   // Before interating with page, make sure aria-expanded is set to false
-  await confirmAttributeValue(t, ex.menubarMenuitemSelector, 'aria-expanded', 'false');
+  await assertAttributeValues(t, ex.menubarMenuitemSelector, 'aria-expanded', 'false');
 
   // AND make sure no submenus are visible
   let submenus = await t.context.session.findElements(By.css(ex.submenuSelector));
@@ -202,7 +202,7 @@ ariaTest('', exampleFile, 'menubar-menuitem-aria-expanded', async (t) => {
 
 ariaTest('Test for role="menubar" on ul', exampleFile, 'menu-role', async (t) => {
 
-  t.plan(9);
+  t.plan(6);
 
   let submenus = await t.context.session.findElements(By.css(ex.submenuSelector));
 
@@ -222,7 +222,7 @@ ariaTest('Test for role="menubar" on ul', exampleFile, 'menu-role', async (t) =>
     );
   }
 
-  await confirmAttributeValue(t, ex.submenuSelector, 'tabindex', '-1');
+  await assertAttributeValues(t, ex.submenuSelector, 'tabindex', '-1');
 });
 
 ariaTest('Test for aria-label on role="menu"', exampleFile, 'menu-aria-label', async (t) => {
@@ -271,17 +271,17 @@ ariaTest('Test for submenu menuitems with accessible names', exampleFile, 'subme
 ariaTest('Test tabindex="-1" for all submenu role="menuitem"s',
   exampleFile, 'submenu-menuitem-tabindex', async (t) => {
 
-    t.plan(2);
-    await confirmAttributeValue(t, ex.submenuMenuitemSelector, 'tabindex', '-1');
+    t.plan(1);
+    await assertAttributeValues(t, ex.submenuMenuitemSelector, 'tabindex', '-1');
   });
 
 
 ariaTest('Test aria-disabled="false" for all submenu role="menuitem"s',
   exampleFile, 'submenu-menuitem-aria-disabled', async (t) => {
-    t.plan(4);
+    t.plan(3);
 
     // "aria-disable" should be set to false by defaul
-    await confirmAttributeValue(t, ex.submenuMenuitemSelector, 'aria-disabled', 'false');
+    await assertAttributeValues(t, ex.submenuMenuitemSelector, 'aria-disabled', 'false');
 
     let menus = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
     let menuitem = await t.context.session.findElements(By.css(ex.submenuMenuitemSelector));
@@ -344,13 +344,13 @@ ariaTest('Test for role="menuitemcheckbox" on li', exampleFile, 'menuitemcheckbo
 });
 
 ariaTest('Test tabindex="-1" for role="menuitemcheckbox"', exampleFile, 'menuitemcheckbox-tabindex', async (t) => {
-  t.plan(2);
-  await confirmAttributeValue(t, ex.menuitemcheckboxSelector, 'tabindex', '-1');
+  t.plan(1);
+  await assertAttributeValues(t, ex.menuitemcheckboxSelector, 'tabindex', '-1');
 });
 
 ariaTest('Test "aria-checked" attirbute on role="menuitemcheckbox"',
   exampleFile, 'menuitemcheckbox-aria-checked', async (t) => {
-    t.plan(8);
+    t.plan(6);
 
     let menus = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
 
@@ -358,7 +358,7 @@ ariaTest('Test "aria-checked" attirbute on role="menuitemcheckbox"',
     await menus[1].sendKeys(Key.ARROW_DOWN);
 
     // Confirm aria-checked is set to false by default
-    await confirmAttributeValue(t, ex.menuitemcheckboxSelector, 'aria-checked', 'false');
+    await assertAttributeValues(t, ex.menuitemcheckboxSelector, 'aria-checked', 'false');
 
     // And corrospondingly, neither item should have a visible checkmark
     for (let checkIndex = 0; checkIndex < 2; checkIndex++) {
@@ -380,7 +380,7 @@ ariaTest('Test "aria-checked" attirbute on role="menuitemcheckbox"',
 
 
     // Confirm aria-checked is set to true
-    await confirmAttributeValue(t, ex.menuitemcheckboxSelector, 'aria-checked', 'true');
+    await assertAttributeValues(t, ex.menuitemcheckboxSelector, 'aria-checked', 'true');
 
     // And corrospondingly, both items should have a visible checkmark
     for (let checkIndex = 0; checkIndex < 2; checkIndex++) {
@@ -436,8 +436,8 @@ ariaTest('Test role="menuitemradio" exists with accessible name',
 
 ariaTest('Test tabindex="-1" on role="menuitemradio"',
   exampleFile, 'menuitemradio-tabindex', async (t) => {
-    t.plan(21);
-    await confirmAttributeValue(t, ex.menuitemradioSelector, 'tabindex', '-1');
+    t.plan(1);
+    await assertAttributeValues(t, ex.menuitemradioSelector, 'tabindex', '-1');
   });
 
 ariaTest('Text "aria-checked" appropriately set on role="menitemradio"',
