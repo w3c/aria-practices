@@ -40,18 +40,18 @@
 
         <label for="id-date-1">Date (mm/dd/yyyy):  </label> <br/>
         <input type="text" id="id-date-1">
-        <button aria-haspop="true" aria-controls="id-datepicker-1">
+        <button class="dateButton" aria-haspopup="true" aria-controls="id-datepicker-1">
             <i class="fa fa-calendar-alt fa-2x"></i>
         </button>
 
         <div id="id-datepicker-1" class="datepicker">
 
           <div class="header">
-            <button class="prev-year">&lang;</span>
-            <button class="prev-month">&lang;</span>
+            <button class="prev-year">&lang;&lang;</button>
+            <button class="prev-month">&lang;</button>
             <span class="month-year-label"></span>
-            <button role="button" class="next-month">&rang;</span>
-            <button role="button" class="next-year">&rang;</span>
+            <button class="next-month">&rang;</button>
+            <button class="next-year">&rang;&rang;</button>
           </div>
 
           <table class="dates" role="grid">
@@ -66,23 +66,10 @@
                 <th scope="col" aria-label="Saturday">Sa</th>
               </tr>
             </theader>
-            <tbody>
-              <tr>
-                <td><button></button></td>
-                <td><button></button></td>
-                <td><button></button></td>
-                <td><button></button></td>
-                <td><button></button></td>
-                <td><button></button></td>
-                <td><button></button></td>
-              </tr>
+            <tbody class="curr">
+             
             </tbody>
           </table>
-          <div id="cal-frame">
-            <table class="curr">
-
-            </table>
-          </div>
         </div>
 
     </div>

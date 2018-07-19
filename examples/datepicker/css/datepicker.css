@@ -1,18 +1,29 @@
-#datepicker {
-  height:16px;
+
+.dateButton{
+  border-style:none;
+}
+
+.datepicker {
+  width:40%;
 }
 #datepicker_label{
   padding:0;
   border:none;
 }
-#cal {
-  display:table;
-  font-size:16px;
+.dates{
+  width:100%;
+}
+th[scope="col"],.dateRow td{
+  text-align:center;
+}
+.dateCell{
+  width: 100%;
+  border-style:none;
 }
 .fa-calendar-alt {
   color:hsl(216, 89%, 72%);
 }
-#cal .header {
+.header {
   cursor:default;
   background-color:hsl(216, 89%, 72%);
   height:34px;
@@ -23,42 +34,27 @@
   display: flex;
   justify-content: space-between;
 }
+.header button{
+  border-style:none;
+  height:3em;
+  background:transparent;
+}
 
-#cal .header span {
+.header span {
   display:inline-block;
   line-height:34px;
 }
 
-#cal .header .button{
+.header .button{
  font-size:20px;
  width:24px;
  text-align:center;
 }
-#cal table {
-  border-collapse:collapse;
-}
-#cal td {
-  color:#2d2d2d;
-  width:30px;
-  height:30px;
-  line-height:30px;
-  text-align:center;
-  border:1px solid #e6e6e6;
-  cursor:default;
-}
-#cal #day td {
-  height:26px;
-  line-height:26px;
-  font-size:13px;
-  color:#9e9e9e;
-}
 
-#cal #cal-frame td.today {
-  background:#ededed;
-  color:#8c8c8c;
-}
-
-#cal #cal-frame td:not(.nil):hover {
+.dateCell:hover {
   background:hsl(216, 80%, 81%);
   box-shadow: 0px 0px 0px;
+}
+.dateRow{
+  border:1px solid black;
 }
