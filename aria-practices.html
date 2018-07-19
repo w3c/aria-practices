@@ -2277,7 +2277,7 @@
 
     <section class="widget" id="switch">
       <h3>Switch</h3>
-      <p>A switch is used to turn on and off a feature or service, typically used in a users profile or preferences.  The state of a switch is rendered graphically as a slide switch, with a visible label.  An example of a switch is to turn on/off notifications in a user profile.</p>
+      <p>A switch is similar to a checkbox, but instead of being checked or unchecked its states are <q>on</q> or <q>off</q>.  The switch  provides assistive technologies the opportunity to render the state of the switch consistent with the graphical rendering (e.g. announcing "on" and "off").  Switches are often found in user preference and profile pages.</p>
 
       <section class="notoc">
         <h4>Examples</h4>
@@ -2300,12 +2300,14 @@
           <li>
             The switch has an accessible label provided by one of the following:
             <ul>
+              <li>Visible text content contained within the element with role <code>switch</code>.</li>
               <li>A visible label referenced by the value of <a href="#aria-labelledby" class="property-reference" >aria-labelledby</a> set on the element with role <code>switch</code>.</li>
               <li><a href="#aria-label" class="property-reference">aria-label</a> set on the element with role <code>switch</code>.</li>
             </ul>
           </li>
           <li>When <q>on</q>, the switch element has state <a href="#aria-checked" class="state-reference" >aria-checked</a> set to <code>true</code>.</li>
           <li>When <q>off</q>, it has state <a href="#aria-checked" class="state-reference" >aria-checked</a> set to <code>false</code>.</li>
+          <li>If the state <a href="#aria-checked" class="state-reference" >aria-checked</a> is set to <code>mixed</code>, it will be treated <code>false</code>.</li>
         </ul>
       </section>
     </section>
