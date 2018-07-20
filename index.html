@@ -111,6 +111,7 @@ input.task-list-item-checkbox {
   
   <title>WAI-ARIA Authoring Practices 1.1</title>
   
+  
   <style id="respec-mainstyle">/*****************************************************************
  * ReSpec 3 CSS
  * Robin Berjon - http://berjon.com/
@@ -390,7 +391,6 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 }
 </style>
   
-  
   <link href="common/css/common.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/W3C-ED"><link rel="canonical" href="https://www.w3.org/TR/wai-aria-practices-1.1/"><script id="initialUserConfig" type="application/json">{
   "doRDFa": "1.1",
@@ -644,7 +644,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         Conditions That Cause Role <code>presentation</code> to be Ignored
       </a></li><li class="tocline"><a href="#presentation_role_examples" class="tocxref"><span class="secno">7.3 </span>
         Example Demonstrating Effects of the <code>presentation</code> Role
-      </a></li></ol></li><li class="tocline"><a href="#children_presentational" class="tocxref"><span class="secno">8. </span>Roles That Automatically Hide Semantics by Making Their Descendants Presentational</a></li><li class="tocline"><a href="#appendices" class="tocxref"><span class="secno">A. </span>Appendices</a><ol class="toc"><li class="tocline"><a href="#change_log" class="tocxref"><span class="secno">A.1 </span>Change History</a><ol class="toc"><li class="tocline"><a href="#change_log_2017_december" class="tocxref"><span class="secno">A.1.1 </span>Changes in December 2017 Publication as Note</a></li><li class="tocline"><a href="#change_log_2017_june" class="tocxref"><span class="secno">A.1.2 </span>Changes in June 2017 Working Draft</a></li></ol></li><li class="tocline"><a href="#acknowledgements" class="tocxref"><span class="secno">A.2 </span>Acknowledgments</a><ol class="toc"><li class="tocline"><a href="#ack_group" class="tocxref"><span class="secno">A.2.1 </span>Participants active in the ARIA WG at the time of publication</a></li><li class="tocline"><a href="#ack_others" class="tocxref"><span class="secno">A.2.2 </span>Other ARIA contributors, commenters, and previously active participants</a></li><li class="tocline"><a href="#ack_funders" class="tocxref"><span class="secno">A.2.3 </span>Enabling funders</a></li></ol></li></ol></li><li class="tocline"><a href="#references" class="tocxref"><span class="secno">B. </span>References</a><ol class="toc"><li class="tocline"><a href="#informative-references" class="tocxref"><span class="secno">B.1 </span>Informative references</a></li></ol></li></ol></nav>
+      </a></li></ol></li><li class="tocline"><a href="#children_presentational" class="tocxref"><span class="secno">8. </span>Roles That Automatically Hide Semantics by Making Their Descendants Presentational</a></li><li class="tocline"><a href="#appendices" class="tocxref"><span class="secno">A. </span>Appendices</a><ol class="toc"><li class="tocline"><a href="#change_log" class="tocxref"><span class="secno">A.1 </span>Change History</a><ol class="toc"><li class="tocline"><a href="#change_log_2018_july" class="tocxref"><span class="secno">A.1.1 </span>Changes in July 2018 Publication of Note Release 2</a></li><li class="tocline"><a href="#change_log_2017_december" class="tocxref"><span class="secno">A.1.2 </span>Changes in December 2017 Publication as Note</a></li><li class="tocline"><a href="#change_log_2017_june" class="tocxref"><span class="secno">A.1.3 </span>Changes in June 2017 Working Draft</a></li></ol></li><li class="tocline"><a href="#acknowledgements" class="tocxref"><span class="secno">A.2 </span>Acknowledgments</a><ol class="toc"><li class="tocline"><a href="#ack_group" class="tocxref"><span class="secno">A.2.1 </span>Participants active in the ARIA WG at the time of publication</a></li><li class="tocline"><a href="#ack_others" class="tocxref"><span class="secno">A.2.2 </span>Other ARIA contributors, commenters, and previously active participants</a></li><li class="tocline"><a href="#ack_funders" class="tocxref"><span class="secno">A.2.3 </span>Enabling funders</a></li></ol></li></ol></li><li class="tocline"><a href="#references" class="tocxref"><span class="secno">B. </span>References</a><ol class="toc"><li class="tocline"><a href="#informative-references" class="tocxref"><span class="secno">B.1 </span>Informative references</a></li></ol></li></ol></nav>
 
   <section id="intro">
     <!--OddPage--><h2 id="x1-introduction"><span class="secno">1. </span>Introduction<span class="permalink"><a href="#intro" aria-label="Permalink for 1. Introduction" title="Permalink for 1. Introduction"><span>§</span></a></span></h2>
@@ -5346,8 +5346,49 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
     <section id="change_log" class="appendix">
       <h3 id="a-1-change-history"><span class="secno">A.1 </span>Change History<span class="permalink"><a href="#change_log" aria-label="Permalink for A.1 Change History" title="Permalink for A.1 Change History"><span>§</span></a></span></h3>
+      <section id="change_log_2018_july" class="appendix">
+        <h4 id="a-1-1-changes-in-july-2018-publication-of-note-release-2"><span class="secno">A.1.1 </span>Changes in July 2018 Publication of Note Release 2<span class="permalink"><a href="#change_log_2018_july" aria-label="Permalink for A.1.1 Changes in July 2018 Publication of Note Release 2" title="Permalink for A.1.1 Changes in July 2018 Publication of Note Release 2"><span>§</span></a></span></h4>
+        <ul>
+          <li>
+            Added the following:
+            <ul>
+              <li>Treegrid design pattern and example</li>
+              <li>Alert dialog example</li>
+            </ul>
+          </li>
+          <li>Significant revisions of guidance or implementation were made to the following design patterns and examples:
+            <ul>
+              <li>Accordion pattern and example, including removing two optional key commands from the pattern.</li>
+              <li>Checkbox example bug fixes</li>
+              <li>ARIA 1.0 Combobox example, including escape key behavior</li>
+              <li>ARIA 1.1 Combobox example labeling</li>
+              <li>Modal dialog example, primarily code refactoring when adding alert dialog</li>
+              <li>Grid pattern, including guidance on column selection</li>
+              <li>Listbox examples</li>
+              <li>Menu pattern, including guidance on menu/submenu structure</li>
+              <li>editor menubar example, including significant improvement to mouse behaviors.</li>
+              <li>Menu button example bug fixes</li>
+              <li>Navigation menubar example bug fixes</li>
+              <li>Radio group example styling</li>
+              <li>Tabs pattern, including labeling guidance</li> 
+              <li>Tree view pattern, including multi-select guidance</li>
+              <li>Tree view example bug fixes</li>
+            </ul>
+          </li>
+        </ul>
+        <p>Also see:</p>
+        <ul>
+          <li>
+            <a href="https://github.com/w3c/aria-practices/milestone/1?closed=1">The APG 1.1 Release 2 Milestone</a>:
+            which lists the GitHub issues that document discussions and reviews of changes included in the July 2018 publication.
+          </li>
+          <li>
+            <a href="https://github.com/w3c/aria-practices/wiki/Change-Log-for-July-2018-APG-1.1-Note-Release-2">Detailed change log with links to all commits that are new in the July 2018 publication  since the December 2017 working draft.</a>
+          </li>
+        </ul>
+      </section>
       <section id="change_log_2017_december" class="appendix">
-        <h4 id="a-1-1-changes-in-december-2017-publication-as-note"><span class="secno">A.1.1 </span>Changes in December 2017 Publication as Note<span class="permalink"><a href="#change_log_2017_december" aria-label="Permalink for A.1.1 Changes in December 2017 Publication as Note" title="Permalink for A.1.1 Changes in December 2017 Publication as Note"><span>§</span></a></span></h4>
+        <h4 id="a-1-2-changes-in-december-2017-publication-as-note"><span class="secno">A.1.2 </span>Changes in December 2017 Publication as Note<span class="permalink"><a href="#change_log_2017_december" aria-label="Permalink for A.1.2 Changes in December 2017 Publication as Note" title="Permalink for A.1.2 Changes in December 2017 Publication as Note"><span>§</span></a></span></h4>
         <ul>
           <li>
             Added the following:
@@ -5402,7 +5443,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </ul>
       </section>
       <section id="change_log_2017_june" class="appendix">
-        <h4 id="a-1-2-changes-in-june-2017-working-draft"><span class="secno">A.1.2 </span>Changes in June 2017 Working Draft<span class="permalink"><a href="#change_log_2017_june" aria-label="Permalink for A.1.2 Changes in June 2017 Working Draft" title="Permalink for A.1.2 Changes in June 2017 Working Draft"><span>§</span></a></span></h4>
+        <h4 id="a-1-3-changes-in-june-2017-working-draft"><span class="secno">A.1.3 </span>Changes in June 2017 Working Draft<span class="permalink"><a href="#change_log_2017_june" aria-label="Permalink for A.1.3 Changes in June 2017 Working Draft" title="Permalink for A.1.3 Changes in June 2017 Working Draft"><span>§</span></a></span></h4>
         <ul>
           <li>
             Added the following:
