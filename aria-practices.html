@@ -2436,6 +2436,10 @@
         <li>The element that serves as the container for the set of tabs has role  <a class="role-reference" href="#tablist">tablist</a>. </li>
         <li>Each element that serves as a tab has role <a class="role-reference" href="#tab">tab</a> and is contained within the element with role <code>tablist</code>.</li>
           <li>Each element that contains the content panel for a <code>tab</code> has role <a class="role-reference" href="#tabpanel">tabpanel</a>.</li>
+          <li>
+            If the tab list has a visible label, the element with role <code>tablist</code> has <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> set to a value that refers to the labeling element.
+            Otherwise, the <code>tablist</code> element has a label provided by <a href="#aria-label" class="property-reference">aria-label</a>.
+          </li>
           <li>Each element with role <code>tab</code> has the property <a href="#aria-controls" class="property-reference">aria-controls</a> referring to its associated <code>tabpanel</code> element.</li>
           <li>The active <code>tab</code> element has the state <a href="#aria-selected" class="state-reference">aria-selected</a> set to <code>true</code> and all other <code>tab</code> elements have it set to <code>false</code>.</li>
           <li>Each element with role <code>tabpanel</code> has the property <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> referring to its associated <code>tab</code> element. </li>
