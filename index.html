@@ -3323,7 +3323,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <li>if the tree supports multiple selection:
           <ul>
           <li>All selected nodes have <a href="https://w3c.github.io/aria/#aria-selected" class="state-reference">aria-selected</a> set to <code>true</code>.</li>
-          <li>All nodes that are not selected have <a href="https://w3c.github.io/aria/#aria-selected" class="state-reference">aria-selected</a> set to <code>false</code>.</li>
+          <li>All nodes that are selectable but not selected have <a href="https://w3c.github.io/aria/#aria-selected" class="state-reference">aria-selected</a> set to <code>false</code>.</li>
+          <li>If the tree contains nodes that are not selectable, those nodes do not have the <code>aria-selected</code> state.</li>
           </ul>
           </li>
           <li>The element with role <code>tree</code> has either a visible label referenced by <a href="https://w3c.github.io/aria/#aria-labelledby" class="property-reference">aria-labelledby</a> or a value specified for <a href="https://w3c.github.io/aria/#aria-label" class="property-reference">aria-label</a>.</li>
