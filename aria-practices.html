@@ -1535,7 +1535,10 @@
           </li>
           <li>If the grid has a caption or description, <a href="#aria-describedby" class="property-reference">aria-describedby</a> is set on the grid element with a value referring to the element containing the description.</li>
           <li>If the grid provides sort functions, <a href="#aria-sort" class="property-reference">aria-sort</a> is set to an appropriate value on the header cell element for the sorted column or row as described in the section on <a href="#gridAndTableProperties">grid and table properties</a>. </li>
-          <li>If the grid supports selection, when a cell or row is selected, the selected element has <a href="#aria-selected" class="state-reference">aria-selected</a> set <code>true</code>. </li>
+          <li>
+            If the grid supports selection, when a cell or row is selected, the selected element has <a href="#aria-selected" class="state-reference">aria-selected</a> set <code>true</code>.
+            If the grid supports column selection and a column is selected, all cells in the column have <code>aria-selected</code> set to <code>true</code>.
+          </li>
           <li>
             If the grid provides content editing functionality and contains cells that may have edit capabilities disabled in certain conditions, <a href="#aria-readonly" class="state-reference">aria-readonly</a> may be set <code>true</code> on cells where editing is disabled.
             If edit functions are disabled for all cells, <code>aria-readonly</code> may be set <code>true</code> on the grid element.
