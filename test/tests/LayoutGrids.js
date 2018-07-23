@@ -3,8 +3,7 @@
 const { ariaTest } = require('..');
 const { By, Key } = require('selenium-webdriver');
 
-const confirmAriaLabelledby = require('../util/confirmAriaLabelledby');
-const confirmAttributeValue = require('../util/confirmAttributeValue');
+const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 
 const reload = async (session) => {
   return session.get(await session.getCurrentUrl());
@@ -144,12 +143,12 @@ ariaTest('Test "role=grid" attribute exists',
 ariaTest('Test "aria-labelledby" attribute exists',
   'grid/LayoutGrids.html', 'aria-labelledby', async (t) => {
 
-    t.plan(6);
+    t.plan(3);
 
     for (let exId in pageExamples) {
       let ex = pageExamples[exId];
 
-      await confirmAriaLabelledby(t, exId, ex.gridSelector);
+      await assertAriaLabelledby(t, exId, ex.gridSelector);
     }
   });
 
