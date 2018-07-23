@@ -18,6 +18,7 @@ th[scope="col"],.dateRow td{
 }
 .dateCell{
   width: 100%;
+  font-size: 15px;
   border-style:none;
 }
 .fa-calendar-alt {
@@ -28,9 +29,9 @@ th[scope="col"],.dateRow td{
   background-color:hsl(216, 89%, 72%);
   height:34px;
   /* position:relative; */
-  font-weight:bold; 
+  font-weight:bold;
   text-transform:uppercase;
-  color:white; 
+  color:white;
   display: flex;
   justify-content: space-between;
 }
@@ -51,10 +52,10 @@ th[scope="col"],.dateRow td{
  text-align:center;
 }
 
-.dateCell:hover {
+/* .dateCell:hover {
   background:hsl(216, 80%, 81%);
   box-shadow: 0px 0px 0px;
-}
+} */
 .dateRow{
   border:1px solid black;
 }
