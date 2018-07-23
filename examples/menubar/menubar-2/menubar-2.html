@@ -392,7 +392,7 @@
             </th>
             <td></td>
             <td>
-              <code>li</code>
+              <code>a</code>
             </td>
             <td>
               <ul>
@@ -407,7 +407,7 @@
               <code>tabindex=&quot;-1&quot;</code>
             </th>
             <td>
-              <code>li</code>
+              <code>a</code>
             </td>
             <td>
               Makes the <code>menuitem</code> element keyboard focusable but
@@ -420,7 +420,7 @@
               <code>tabindex=&quot;0&quot;</code>
             </th>
             <td>
-              <code>li</code>
+              <code>a</code>
             </td>
             <td>
               <ul>
@@ -446,7 +446,7 @@
               <code>aria-haspopup=&quot;true&quot;</code>
             </th>
             <td>
-              <code>li</code>
+              <code>a</code>
             </td>
             <td>
               Indicates that the <code>menuitem</code> has a submenu.
@@ -458,7 +458,7 @@
               <code>aria-expanded=&quot;true&quot;</code>
             </th>
             <td>
-              <code>li</code>
+              <code>a</code>
             </td>
             <td>Indicates the menu is open.</td>
           </tr>
@@ -468,7 +468,7 @@
               <code>aria-expanded=&quot;false&quot;</code>
             </th>
             <td>
-              <code>li</code>
+              <code>a</code>
             </td>
             <td>Indicates the submenu is closed.</td>
           </tr>
@@ -495,12 +495,8 @@
           </td>
           <td>
             <ul>
-              <li>
-                Identifies the element as a menu container for a set of <code>menuitem</code> elements.
-              </li>
-              <li>
-                Is not focusable because focus is managed using <a href="../../../#kbd_roving_tabindex">roving tabindex.</a>
-              </li>
+              <li>Identifies the element as a menu container for a set of menu items.</li>
+              <li>Is not focusable because focus is managed using <a href="../../../#kbd_roving_tabindex">roving tabindex.</a></li>
             </ul>
           </td>
         </tr>
@@ -632,6 +628,21 @@
             </ul>
           </td>
         </tr>
+        <tr data-test-id="separator-role">
+          <th scope="row">
+            <code>separator</code>
+          </th>
+          <td></td>
+          <td>
+            <code>li</code>
+          </td>
+          <td>
+            <ul>
+              <li>Identifies the element as a visual separator between groups of items within a menu, such as groups of <code>menuitemradio</code> or <code>menuitemcheckbox</code> elements.</li>
+              <li>Is not focusable but may be perceivable by a screen reader user when using a reading cursor that does not depend on focus.</li>
+            </ul>
+          </td>
+        </tr>
         <tr data-test-id="group-role">
           <th scope="row">
             <code>group</code>
@@ -649,6 +660,18 @@
                 Enables browsers to compute values of <code>aria-setsize</code> and <code>aria-posinset</code>.
               </li>
             </ul>
+          </td>
+        </tr>
+        <tr data-test-id="group-aria-label">
+          <td></td>
+          <th scope="row">
+            <code>aria-label=&quot;string&quot;</code>
+          </th>
+          <td>
+            <code>ul</code>
+          </td>
+          <td>
+            Provides an accessible name for the group of menu items.
           </td>
         </tr>
         <tr data-test-id="menuitemradio-role">
@@ -669,7 +692,7 @@
                 the group is defined by the <code>menu</code> element; a <code>group</code> element is not necessary.
               </li>
               <li>
-                Accessible name comes from the text content.
+                Accessible name is computed from the text content.
               </li>
             </ul>
           </td>
