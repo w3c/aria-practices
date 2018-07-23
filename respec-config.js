@@ -5,10 +5,10 @@ var respecConfig = {
   permalinkEdge: true,
   permalinkHide: false,
   // Specification status (e.g., WD, LC, NOTE, etc.). If in doubt use ED.
-  specStatus: 'ED',
+  specStatus: 'NOTE',
   // crEnd: "2012-04-30",
   // perEnd: "2013-07-23",
-  // publishDate: "2013-08-22",
+  publishDate: "2018-07-26",
   noRecTrack: true,
   diffTool: 'http://www.aptest.com/standards/htmldiff/htmldiff.pl',
   license: 'w3c-software-doc',
@@ -24,8 +24,8 @@ var respecConfig = {
   // If there is a previously published draft, uncomment this
   // and set its YYYY-MM-DD date and its maturity status.
   //
-  // previousPublishDate:  "",
-  // previousMaturity:  "",
+  previousPublishDate:  "2017-12-14",
+  previousMaturity:  "NOTE",
   // prevRecURI: "",
   // previousDiffURI: "",
 
@@ -41,13 +41,13 @@ var respecConfig = {
     name: 'Matt King',
     mailto: 'mck@fb.com',
     company: 'Facebook',
-    companyURI: 'http://www.facebook.com/',
+    companyURI: 'https://www.facebook.com/',
     w3cid: 44582
   }, {
     name: 'James Nurthen',
     mailto: 'nurthen@adobe.com',
     company: 'Adobe',
-    companyURI: 'http://www.adobe.com/',
+    companyURI: 'https://www.adobe.com/',
     w3cid: 37155
   }, {
     name: 'Michiel Bijl',
@@ -63,19 +63,19 @@ var respecConfig = {
   }, {
     name: 'Joseph Scheuhammer',
     company: 'Inclusive Design Research Centre, OCAD University',
-    companyURI: 'http://idrc.ocad.ca/',
+    companyURI: 'https://idrc.ocadu.ca/',
     note: 'Previous Editor',
     w3cid: 42279
   }, {
     name: 'Lisa Pappas',
     company: 'SAS',
-    companyURI: 'http://www.sas.com/',
+    companyURI: 'https://www.sas.com/',
     note: 'Previous Editor',
     w3cid: 41725
   }, {
     name: 'Rich Schwerdtfeger',
     company: 'IBM Corporation',
-    companyURI: 'http://ibm.com/',
+    companyURI: 'https://www.ibm.com/',
     note: 'Previous Editor',
     w3cid: 2460
   }],
@@ -128,7 +128,7 @@ var respecConfig = {
   //   }
   // ],
 
-  // errata: 'http://www.w3.org/2010/02/rdfa/errata.html',
+  // errata: 'https://www.w3.org/2010/02/rdfa/errata.html',
 
   // name of the WG
   wg: 'Accessible Rich Internet Applications Working Group',
