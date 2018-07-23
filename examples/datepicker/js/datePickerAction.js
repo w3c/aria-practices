@@ -116,10 +116,16 @@ DateCell.prototype.setFocusToRight = function (){
   if(this.currElement.nextDate){
     var pointer = this.currElement;
     this.currElement = this.currElement.nextDate;
+
     this.nextIndex = this.dates.datesArray.indexOf(this.currElement) + 1;
     this.currElement.nextDate = this.dates.datesArray[this.nextIndex];
+
     this.aboveIndex = this.dates.datesArray.indexOf(this.currElement) - 7;
     this.currElement.aboveDate = this.dates.datesArray[this.aboveIndex];
+
+    this.belowIndex = this.dates.datesArray.indexOf(this.currElement) + 7;
+    this.currElement.belowDate = this.dates.datesArray[this.belowIndex];
+    
     this.currElement.prevDate = pointer;
   }
   else {
@@ -139,11 +145,18 @@ DateCell.prototype.setFocusToLeft = function () {
 
   if(this.currElement.prevDate){
     var pointer = this.currElement;
+
     this.currElement = this.currElement.prevDate;
+
     this.prevIndex = this.dates.datesArray.indexOf(this.currElement) - 1;
     this.currElement.prevDate = this.dates.datesArray[this.prevIndex];
+
     this.aboveIndex = this.dates.datesArray.indexOf(this.currElement) - 7;
     this.currElement.aboveDate = this.dates.datesArray[this.aboveIndex];
+
+    this.belowIndex = this.dates.datesArray.indexOf(this.currElement) + 7;
+    this.currElement.belowDate = this.dates.datesArray[this.belowIndex];
+
     this.currElement.nextDate = pointer;
   }
   else {
@@ -190,8 +203,10 @@ DateCell.prototype.setFocusToUp = function() {
   if(this.currElement.aboveDate){
     var pointer = this.currElement;
     this.currElement = this.currElement.aboveDate;
+
     this.prevIndex = this.dates.datesArray.indexOf(this.currElement) - 1;
     this.currElement.prevDate = this.dates.datesArray[this.prevIndex];
+
     this.nextIndex = this.dates.datesArrat.indexOf(this.currElement) + 1;
     this.currElement.nextDate = this.dates.datesArray[this.nextIndex];
     this.currElement.belowDate = pointer;
