@@ -22,7 +22,7 @@ module.exports = async function assertRovingTabindex (t, elementsSelector, key) 
 
       let tabindex = el === tabableEl ? '0' : '-1';
 
-      assert.deepEqual(
+      assert.equal(
         await elements[el].getAttribute('tabindex'),
         tabindex,
         'focus is on element ' + tabableEl + ' of elements "' + elementsSelector +
