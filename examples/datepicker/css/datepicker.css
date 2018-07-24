@@ -14,6 +14,7 @@
 .datepicker {
   width:40%;
   clear:both;
+  display:none;
 }
 #datepicker_label{
   padding:0;
@@ -38,6 +39,7 @@ th[scope="col"],.dateRow td{
   background-color:hsl(216, 89%, 72%);
   height:34px;
   /* position:relative; */
+  border-radius: 3px;
   font-weight:bold;
   text-transform:uppercase;
   color:white;
@@ -60,22 +62,16 @@ th[scope="col"],.dateRow td{
  width:24px;
  text-align:center;
 }
-/*.labels:nth-child(n+2){
-  width:20%;
-  float:left;
-}*/
+
 .labels div{
   width:25%;
   float:left;
 }
-/*.labels button{
- float:right;
-}*/
 
-/* .dateCell:hover {
-  background:hsl(216, 80%, 81%);
-  box-shadow: 0px 0px 0px;
-} */
 .dateRow{
   border:1px solid black;
+}
+
+button[aria-selected="true"]{
+  background-color: hsl(216, 80%, 92%);
 }

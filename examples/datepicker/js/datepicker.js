@@ -1,7 +1,18 @@
 
 window.addEventListener('load' , function(){
-  var ex = new Dates(document.querySelector('.header'));
-  ex.init();
+  var button = document.getElementsByClassName('dateButton')[0];
+  button.addEventListener('click', function(){
+      var val = button.getAttribute('aria-expanded');
+      if(val === "false"){
+        document.getElementsByClassName('datepicker')[0].style.display= 'block';
+        button.setAttribute('aria-expanded', 'true');
+        var ex = new Dates(document.querySelector('.header'));
+        ex.init();
+      } else {
+        document.getElementsByClassName('datepicker')[0].style.display= 'none';
+        button.setAttribute('aria-expanded', 'false');
+      }
+    });
 });
 
 const months =  ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];

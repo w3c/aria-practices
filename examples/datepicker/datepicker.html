@@ -39,15 +39,11 @@
     <div id="example">
     <div class="labels">
       <div>
-        <label for="id-date-1">Check in (mm/dd/yyyy):  </label> <br/>
+        <label for="id-date-1">Date (mm/dd/yyyy):  </label> <br/>
         <input type="text" id="id-date-1">
       </div>
 
-      <div>
-        <label for="id-date-2">Check out (mm/dd/yyyy):  </label> <br/>
-        <input type="text" id="id-date-1">
-      </div>
-      <button class="dateButton" aria-haspopup="true" aria-controls="id-datepicker-1">
+      <button class="dateButton" aria-expanded="false" aria-haspopup="true" aria-controls="id-datepicker-1">
           <i class="fa fa-calendar-alt fa-3x"></i>
       </button>
     </div>
@@ -102,7 +98,25 @@
           <th><kbd>Space</kbd></th>
           <td>Activates the button.</td>
         </tr>
+        <tr>
+          <th><kbd>Up Arrow</kbd></th>
+          <td>Move the focus to the above button.</td>
+        </tr>
+        <tr>
+          <th><kbd>Down Arrow</kbd></th>
+          <td>Move the focus to the below button.</td>
+        </tr>
+        <tr>
+          <th><kbd>Right Arrow</kbd></th>
+          <td>Move the focus to the next button.</td>
+        </tr>
+        <tr>
+          <th><kbd>Left Arrow</kbd></th>
+          <td>Move the focus to the previous button.</td>
+        </tr>
       </tbody>
+
+    </tbody>
     </table>
   </section>
 

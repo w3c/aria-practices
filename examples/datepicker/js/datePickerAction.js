@@ -49,8 +49,6 @@ DateCell.prototype.init = function(){
     this.dates.datesArray[i].addEventListener('keydown', this.handleKeyDown.bind(this));
 
   }
-
-
 };
 
 DateCell.prototype.handleKeyDown = function(event) {
@@ -95,16 +93,20 @@ DateCell.prototype.handleClick = function(){
     this.setSelectDate(this.currElement);
 };
 DateCell.prototype.setSelectDate = function () {
+    for(var i=0;i<this.dates.datesArray.length;i++){
+      this.dates.datesArray[i].setAttribute("aria-selected", "false");
+    }
     if(this.currElement.innerHTML === ""){
         return;
     };
+    this.currElement.setAttribute("aria-selected", "true");
     this.selectDate = this.currElement.innerHTML;
     document.getElementById('id-date-1').value = this.selectMonth + '/' + this.selectDate + '/' + this.selectYear;
     this.currElement.setAttribute('tabindex', '0');
 };
 DateCell.prototype.setFocusDate = function (element) {
     for(var i= 0; i<this.dates.datesArray.length;i++){
-        this.dates.datesArray[i].setAttribute("tabIndex","-1");
+        this.dates.datesArray[i].setAttribute("tabIndex","1");
     }
 
     element.setAttribute("tabIndex","0");
