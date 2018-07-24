@@ -532,8 +532,8 @@ ariaTest('Test down key press with focus on list',
     // Test that ARROW_DOWN moves active descendant focus on item in listbox
     for (let i = 1; i < numOptions + 1; i++) {
       let oldfocus = t.context.session
-          .findElement(By.css(ex.textboxSelector))
-          .getAttribute('aria-activedescendant');
+        .findElement(By.css(ex.textboxSelector))
+        .getAttribute('aria-activedescendant');
 
       await t.context.session
         .findElement(By.css(ex.textboxSelector))
@@ -542,8 +542,8 @@ ariaTest('Test down key press with focus on list',
       // Account for race condition
       await t.context.session.wait(async function () {
         let newfocus = t.context.session
-            .findElement(By.css(ex.textboxSelector))
-            .getAttribute('aria-activedescendant');
+          .findElement(By.css(ex.textboxSelector))
+          .getAttribute('aria-activedescendant');
 
         return newfocus != oldfocus;
       }, 100);
@@ -563,8 +563,8 @@ ariaTest('Test down key press with focus on list',
     // Test that ARROW_DOWN moves active descendant focus on item in listbox
     for (let i = 2; i < numOptions + 1; i++) {
       let oldfocus = t.context.session
-          .findElement(By.css(ex.textboxSelector))
-          .getAttribute('aria-activedescendant');
+        .findElement(By.css(ex.textboxSelector))
+        .getAttribute('aria-activedescendant');
 
       await t.context.session
         .findElement(By.css(ex.textboxSelector))
@@ -573,8 +573,8 @@ ariaTest('Test down key press with focus on list',
       // Account for race conditoon
       await t.context.session.wait(async function () {
         let newfocus = t.context.session
-            .findElement(By.css(ex.textboxSelector))
-            .getAttribute('aria-activedescendant');
+          .findElement(By.css(ex.textboxSelector))
+          .getAttribute('aria-activedescendant');
 
         return newfocus != oldfocus;
       }, 100);
@@ -594,8 +594,8 @@ ariaTest('Test down key press with focus on list',
     // Test that ARROW_DOWN moves active descendant focus on item in listbox
     for (let i = 2; i < numOptions + 1; i++) {
       let oldfocus = t.context.session
-          .findElement(By.css(ex.textboxSelector))
-          .getAttribute('aria-activedescendant');
+        .findElement(By.css(ex.textboxSelector))
+        .getAttribute('aria-activedescendant');
 
       await t.context.session
         .findElement(By.css(ex.textboxSelector))
@@ -604,8 +604,8 @@ ariaTest('Test down key press with focus on list',
       // Account for race conditoon
       await t.context.session.wait(async function () {
         let newfocus = t.context.session
-            .findElement(By.css(ex.textboxSelector))
-            .getAttribute('aria-activedescendant');
+          .findElement(By.css(ex.textboxSelector))
+          .getAttribute('aria-activedescendant');
 
         return newfocus != oldfocus;
       }, 100);
@@ -724,8 +724,8 @@ ariaTest('Test up key press with focus on listbox',
     let numOptions = (await t.context.session.findElements(By.css(ex.optionsSelector))).length;
     for (let i = 1; i < numOptions + 1; i++) {
       let oldfocus = t.context.session
-          .findElement(By.css(ex.textboxSelector))
-          .getAttribute('aria-activedescendant');
+        .findElement(By.css(ex.textboxSelector))
+        .getAttribute('aria-activedescendant');
 
       await t.context.session
         .findElement(By.css(ex.textboxSelector))
@@ -734,8 +734,8 @@ ariaTest('Test up key press with focus on listbox',
       // Account for race conditoon
       await t.context.session.wait(async function () {
         let newfocus = t.context.session
-            .findElement(By.css(ex.textboxSelector))
-            .getAttribute('aria-activedescendant');
+          .findElement(By.css(ex.textboxSelector))
+          .getAttribute('aria-activedescendant');
 
         return newfocus != oldfocus;
       }, 100);
@@ -757,8 +757,8 @@ ariaTest('Test up key press with focus on listbox',
     numOptions = (await t.context.session.findElements(By.css(ex.optionsSelector))).length;
     for (let i = 1; i < numOptions + 1; i++) {
       let oldfocus = t.context.session
-          .findElement(By.css(ex.textboxSelector))
-          .getAttribute('aria-activedescendant');
+        .findElement(By.css(ex.textboxSelector))
+        .getAttribute('aria-activedescendant');
 
       // Send Key
       await t.context.session
@@ -768,8 +768,8 @@ ariaTest('Test up key press with focus on listbox',
       // Account for race conditoon
       await t.context.session.wait(async function () {
         let newfocus = t.context.session
-            .findElement(By.css(ex.textboxSelector))
-            .getAttribute('aria-activedescendant');
+          .findElement(By.css(ex.textboxSelector))
+          .getAttribute('aria-activedescendant');
 
         return newfocus != oldfocus;
       }, 100);
@@ -791,8 +791,8 @@ ariaTest('Test up key press with focus on listbox',
     numOptions = (await t.context.session.findElements(By.css(ex.optionsSelector))).length;
     for (let i = 1; i < numOptions + 1; i++) {
       let oldfocus = t.context.session
-          .findElement(By.css(ex.textboxSelector))
-          .getAttribute('aria-activedescendant');
+        .findElement(By.css(ex.textboxSelector))
+        .getAttribute('aria-activedescendant');
 
       // Send Key
       await t.context.session
@@ -802,7 +802,7 @@ ariaTest('Test up key press with focus on listbox',
       // Account for race conditoon
       await t.context.session.wait(async function () {
         let newfocus = t.context.session
-           .findElement(By.css(ex.textboxSelector))
+          .findElement(By.css(ex.textboxSelector))
           .getAttribute('aria-activedescendant');
         return newfocus != oldfocus;
       }, 100);
@@ -915,7 +915,7 @@ ariaTest('Test escape key press with focus on textbox',
 
       await t.context.session
         .findElement(By.css(ex.textboxSelector))
-        .sendKeys('a', Key.ARROW_DOWN, Key.ESCAPE)
+        .sendKeys('a', Key.ARROW_DOWN, Key.ESCAPE);
 
       // Confirm the listbox is closed and the textboxed is cleared
 

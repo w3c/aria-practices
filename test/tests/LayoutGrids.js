@@ -26,11 +26,11 @@ const checkActiveElement = function (/* gridcellsSelector, index */) {
   return (document.activeElement === gridcell) || gridcell.contains(document.activeElement);
 };
 
-const focusOnOrInCell = async function(t, cellElement, focusable) {
-  return await t.context.session.executeScript(function() {
+const focusOnOrInCell = async function (t, cellElement, focusable) {
+  return await t.context.session.executeScript(function () {
     const [cellElement, focusable] = arguments;
 
-    if (focusable == "gridcell") {
+    if (focusable == 'gridcell') {
       cellElement.focus();
       if (document.activeElement === cellElement) {
         return cellElement;
@@ -43,8 +43,8 @@ const focusOnOrInCell = async function(t, cellElement, focusable) {
       return focusableEl;
     }
 
-  }, cellElement, focusable)
-}
+  }, cellElement, focusable);
+};
 
 const findColIndex = function () {
   const el = document.activeElement;
@@ -336,7 +336,7 @@ ariaTest('Left arrow key moves focus', 'grid/LayoutGrids.html', 'key-left-arrow'
 
   for (let [exId, ex] of Object.entries(pageExamples)) {
 
-    if (exId == "ex3") {
+    if (exId == 'ex3') {
       // This test depends on the "page down" button which is not specified by
       // the widget's description. It does this to avoid relying on behaviors
       // that are tested elsewhere.
@@ -443,7 +443,7 @@ ariaTest('Up arrow key moves focus', 'grid/LayoutGrids.html', 'key-up-arrow', as
   for (let [exId, selector, focusableElement] of cellSelectors) {
     const ex = pageExamples[exId];
 
-    if (exId == "ex3") {
+    if (exId == 'ex3') {
       // This test depends on the "page down" button which is not specified by
       // the widget's description. It does this to avoid relying on behaviors
       // that are tested elsewhere.
@@ -491,7 +491,7 @@ ariaTest('Up arrow key moves focus', 'grid/LayoutGrids.html', 'key-up-arrow', as
 ariaTest('PageDown key moves focus', 'grid/LayoutGrids.html', 'key-page-down', async (t) => {
   t.plan(12);
 
-  const ex = pageExamples['ex3'];
+  const ex = pageExamples.ex3;
   const cellSelectors = [
     ['first', '#ex3 [role="row"] [role="gridcell"]:nth-child(1)', 'a'],
     ['second', '#ex3 [role="row"] [role="gridcell"]:nth-child(2)', 'gridcell'],
@@ -549,7 +549,7 @@ ariaTest('PageDown key moves focus', 'grid/LayoutGrids.html', 'key-page-down', a
 ariaTest('PageUp key moves focus', 'grid/LayoutGrids.html', 'key-page-up', async (t) => {
   t.plan(12);
 
-  const ex = pageExamples["ex3"];
+  const ex = pageExamples.ex3;
   const cellSelectors = [
     ['first', '#ex3 [role="row"] [role="gridcell"]:nth-child(1)', 'a'],
     ['second', '#ex3 [role="row"] [role="gridcell"]:nth-child(2)', 'gridcell'],
