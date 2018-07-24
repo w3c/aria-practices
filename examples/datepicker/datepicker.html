@@ -37,12 +37,20 @@
 
     <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
     <div id="example">
-
-        <label for="id-date-1">Date (mm/dd/yyyy):  </label> <br/>
+    <div class="labels">
+      <div>
+        <label for="id-date-1">Check in (mm/dd/yyyy):  </label> <br/>
         <input type="text" id="id-date-1">
-        <button class="dateButton" aria-haspopup="true" aria-controls="id-datepicker-1">
-            <i class="fa fa-calendar-alt fa-2x"></i>
-        </button>
+      </div>
+
+      <div>
+        <label for="id-date-2">Check out (mm/dd/yyyy):  </label> <br/>
+        <input type="text" id="id-date-1">
+      </div>
+      <button class="dateButton" aria-haspopup="true" aria-controls="id-datepicker-1">
+          <i class="fa fa-calendar-alt fa-3x"></i>
+      </button>
+    </div>
 
         <div id="id-datepicker-1" class="datepicker">
 
@@ -67,7 +75,7 @@
               </tr>
             </theader>
             <tbody class="curr">
-             
+
             </tbody>
           </table>
         </div>

@@ -1,10 +1,19 @@
 
 .dateButton{
   border-style:none;
+  padding:0;
+  height:48px;
+  text-align:left;
+  position:relative;
+}
+.dateButton i{
+  position:absolute;
+  bottom:0;
 }
 
 .datepicker {
   width:40%;
+  clear:both;
 }
 #datepicker_label{
   padding:0;
@@ -51,6 +60,17 @@ th[scope="col"],.dateRow td{
  width:24px;
  text-align:center;
 }
+/*.labels:nth-child(n+2){
+  width:20%;
+  float:left;
+}*/
+.labels div{
+  width:25%;
+  float:left;
+}
+/*.labels button{
+ float:right;
+}*/
 
 /* .dateCell:hover {
   background:hsl(216, 80%, 81%);
