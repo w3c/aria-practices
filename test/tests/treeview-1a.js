@@ -42,7 +42,6 @@ const checkFocus = async function (t, selector, index) {
   return await t.context.session.executeScript(function (/* selector, index*/) {
     const [selector, index] = arguments;
     let items = document.querySelectorAll(selector);
-    // return document.activeElement.innerText;
     return items[index] === document.activeElement;
   }, selector, index);
 };
