@@ -7,7 +7,7 @@ const assertRovingTabindex = require('../util/assertRovingTabindex');
 
 const exampleFile = 'menubar/menubar-2/menubar-2.html';
 
-let ex = {
+const ex = {
   menubarSelector: '#ex1 [role="menubar"]',
   menubarMenuitemSelector: '#ex1 a[role="menuitem"]',
   submenuMenuitemSelector: '#ex1 li[role="menuitem"]',
@@ -53,31 +53,34 @@ let ex = {
 };
 
 const exampleInitialized = async function (t) {
-  let initializedSelector = ex.menubarMenuitemSelector + '[tabindex="0"]';
+  const initializedSelector = ex.menubarMenuitemSelector + '[tabindex="0"]';
 
   await t.context.session.wait(async function () {
-    let els = await t.context.session.findElements(By.css(initializedSelector));
+    const els = await t.context.session.findElements(By.css(initializedSelector));
     return els.length === 1;
   }, 100);
 };
 
-const checkmarkVisible = function (/* selector, index*/) {
-  const [selector, index] = arguments;
-  let checkmarkContent = window.getComputedStyle(
-    document.querySelectorAll(selector)[index], ':before'
-  ).getPropertyValue('content');
-  if (checkmarkContent == 'none') {
-    return false;
-  }
-  return true;
+const checkmarkVisible = async function (t, selector, index) {
+  return await t.context.session.executeScript(function() {
+    const [selector, index] = arguments;
+    const checkmarkContent = window.getComputedStyle(
+      document.querySelectorAll(selector)[index], ':before'
+    ).getPropertyValue('content');
+    if (checkmarkContent == 'none') {
+      return false;
+    }
+    return true;
+  }, selector, index);
 };
 
-const checkFocus = function (/* selector, index*/) {
-  const [selector, index] = arguments;
-  let items = document.querySelectorAll(selector);
-  return items[index] === document.activeElement;
+const checkFocus = async function(t, selector, index) {
+  return await t.context.session.executeScript(function () {
+    const [selector, index] = arguments;
+    const items = document.querySelectorAll(selector);
+    return items[index] === document.activeElement;
+  }, selector, index)
 };
-
 
 // Attributes
 
@@ -85,7 +88,7 @@ ariaTest('Test for role="menubar" on ul', exampleFile, 'menubar-role', async (t)
 
   t.plan(2);
 
-  let menubars = await t.context.session.findElements(By.css(ex.menubarSelector));
+  const menubars = await t.context.session.findElements(By.css(ex.menubarSelector));
 
   t.is(
     menubars.length,
@@ -104,7 +107,7 @@ ariaTest('Test aria-label on menubar', exampleFile, 'menubar-aria-label', async 
 
   t.plan(1);
 
-  let menubar = await t.context.session.findElement(By.css(ex.menubarSelector));
+  const menubar = await t.context.session.findElement(By.css(ex.menubarSelector));
 
   t.truthy(
     await menubar.getAttribute('aria-label'),
@@ -116,7 +119,7 @@ ariaTest('Test for role="menuitem" on li', exampleFile, 'menubar-menuitem-role',
 
   t.plan(5);
 
-  let menuitems = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
+  const menuitems = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
 
   t.is(
     menuitems.length,
@@ -150,7 +153,7 @@ ariaTest('Test aria-haspopup set to true on menuitems',
     await assertAttributeValues(t, ex.menubarMenuitemSelector, 'aria-haspopup', 'true');
   });
 
-ariaTest('', exampleFile, 'menubar-menuitem-aria-expanded', async (t) => {
+ariaTest('"aria-expanded" attribute on menubar menuitem', exampleFile, 'menubar-menuitem-aria-expanded', async (t) => {
 
   t.plan(37);
 
@@ -158,7 +161,7 @@ ariaTest('', exampleFile, 'menubar-menuitem-aria-expanded', async (t) => {
   await assertAttributeValues(t, ex.menubarMenuitemSelector, 'aria-expanded', 'false');
 
   // AND make sure no submenus are visible
-  let submenus = await t.context.session.findElements(By.css(ex.submenuSelector));
+  const submenus = await t.context.session.findElements(By.css(ex.submenuSelector));
   for (let submenu of submenus) {
     t.false(
       await submenu.isDisplayed(),
@@ -166,7 +169,7 @@ ariaTest('', exampleFile, 'menubar-menuitem-aria-expanded', async (t) => {
     );
   }
 
-  let menuitems = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
+  const menuitems = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
 
   for (let menuIndex = 0; menuIndex < menuitems.length; menuIndex++) {
 
@@ -176,7 +179,7 @@ ariaTest('', exampleFile, 'menubar-menuitem-aria-expanded', async (t) => {
     for (let item = 0; item < menuitems.length; item++) {
 
       // Test attribute "aria-expanded" is only set for the opened submenu
-      let displayed = menuIndex === item ? true : false;
+      const displayed = menuIndex === item ? true : false;
       t.is(
         await menuitems[item].getAttribute('aria-expanded'),
         displayed.toString(),
@@ -204,7 +207,7 @@ ariaTest('Test for role="menubar" on ul', exampleFile, 'menu-role', async (t) =>
 
   t.plan(6);
 
-  let submenus = await t.context.session.findElements(By.css(ex.submenuSelector));
+  const submenus = await t.context.session.findElements(By.css(ex.submenuSelector));
 
   // Test elements with role="menu" exist
   t.is(
@@ -229,7 +232,7 @@ ariaTest('Test for aria-label on role="menu"', exampleFile, 'menu-aria-label', a
 
   t.plan(4);
 
-  let submenus = await t.context.session.findElements(By.css(ex.submenuSelector));
+  const submenus = await t.context.session.findElements(By.css(ex.submenuSelector));
 
   for (let submenu of submenus) {
     t.truthy(
@@ -243,7 +246,7 @@ ariaTest('Test for submenu menuitems with accessible names', exampleFile, 'subme
 
   t.plan(3);
 
-  let menuitems = await t.context.session.findElements(By.css(ex.submenuMenuitemSelector));
+  const menuitems = await t.context.session.findElements(By.css(ex.submenuMenuitemSelector));
 
   t.truthy(
     menuitems.length,
@@ -255,8 +258,8 @@ ariaTest('Test for submenu menuitems with accessible names', exampleFile, 'subme
   for (let menuitem of menuitems) {
 
     // The menuitem is not visible, so we cannot use selenium's "getText" function
-    let menutext = await t.context.session.executeScript(function () {
-      let el = arguments[0];
+    const menutext = await t.context.session.executeScript(function () {
+      const el = arguments[0];
       return el.innerHTML;
     }, menuitem);
 
@@ -280,14 +283,14 @@ ariaTest('Test aria-disabled="false" for all submenu role="menuitem"s',
   exampleFile, 'submenu-menuitem-aria-disabled', async (t) => {
     t.plan(3);
 
-    // "aria-disable" should be set to false by defaul
+    // "aria-disable" should be set to false by default
     await assertAttributeValues(t, ex.submenuMenuitemSelector, 'aria-disabled', 'false');
 
-    let menus = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
-    let menuitem = await t.context.session.findElements(By.css(ex.submenuMenuitemSelector));
+    const menus = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
+    const menuitem = await t.context.session.findElements(By.css(ex.submenuMenuitemSelector));
 
     // Select the first item in the list until it is disabled
-    let disabledFirstItem = await t.context.session.wait(async function () {
+    const disabledFirstItem = await t.context.session.wait(async function () {
       await menus[3].sendKeys(Key.ARROW_DOWN);
       await menuitem[0].sendKeys(Key.ENTER);
 
@@ -301,7 +304,7 @@ ariaTest('Test aria-disabled="false" for all submenu role="menuitem"s',
     );
 
     // Select the second item in the list until it is disabled
-    let disabledSecondItem = await t.context.session.wait(async function () {
+    const disabledSecondItem = await t.context.session.wait(async function () {
       await menus[3].sendKeys(Key.ARROW_DOWN);
       await menuitem[0].sendKeys(Key.ARROW_DOWN);
       await menuitem[1].sendKeys(Key.ENTER);
@@ -319,7 +322,7 @@ ariaTest('Test aria-disabled="false" for all submenu role="menuitem"s',
 ariaTest('Test for role="menuitemcheckbox" on li', exampleFile, 'menuitemcheckbox-role', async (t) => {
   t.plan(3);
 
-  let checkboxes = await t.context.session.findElements(By.css(ex.menuitemcheckboxSelector));
+  const checkboxes = await t.context.session.findElements(By.css(ex.menuitemcheckboxSelector));
 
   t.truthy(
     checkboxes.length,
@@ -331,8 +334,8 @@ ariaTest('Test for role="menuitemcheckbox" on li', exampleFile, 'menuitemcheckbo
   for (let checkbox of checkboxes) {
 
     // The menuitem is not visible, so we cannot use selenium's "getText" function
-    let text = await t.context.session.executeScript(function () {
-      let el = arguments[0];
+    const text = await t.context.session.executeScript(function () {
+      const el = arguments[0];
       return el.innerHTML;
     }, checkbox);
 
@@ -352,7 +355,7 @@ ariaTest('Test "aria-checked" attirbute on role="menuitemcheckbox"',
   exampleFile, 'menuitemcheckbox-aria-checked', async (t) => {
     t.plan(6);
 
-    let menus = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
+    const menus = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
 
     // Reveal the menuitemcheckbox elements in the second dropdown
     await menus[1].sendKeys(Key.ARROW_DOWN);
@@ -362,17 +365,15 @@ ariaTest('Test "aria-checked" attirbute on role="menuitemcheckbox"',
 
     // And corrospondingly, neither item should have a visible checkmark
     for (let checkIndex = 0; checkIndex < 2; checkIndex++) {
-      let checkmark = await t.context.session.executeScript(
-        checkmarkVisible, ex.menuitemcheckboxSelector, checkIndex
-      );
+      const checkmark = await checkmarkVisible(t, ex.menuitemcheckboxSelector, checkIndex);
       t.false(
         checkmark,
-        'All menitemcheckbox items should not have checkmark prepended'
+        'All menuitemcheckbox items should not have checkmark prepended'
       );
     }
 
     // Select both menuitems
-    let checkboxes = await t.context.session.findElements(By.css(ex.menuitemcheckboxSelector));
+    const checkboxes = await t.context.session.findElements(By.css(ex.menuitemcheckboxSelector));
     checkboxes[0].sendKeys(Key.ENTER);
     await menus[1].sendKeys(Key.ARROW_DOWN);
     checkboxes[1].sendKeys(Key.ENTER);
@@ -384,12 +385,10 @@ ariaTest('Test "aria-checked" attirbute on role="menuitemcheckbox"',
 
     // And corrospondingly, both items should have a visible checkmark
     for (let checkIndex = 0; checkIndex < 2; checkIndex++) {
-      let checkmark = await t.context.session.executeScript(
-        checkmarkVisible, ex.menuitemcheckboxSelector, checkIndex
-      );
+      const checkmark = await checkmarkVisible(t, ex.menuitemcheckboxSelector, checkIndex);
       t.true(
         checkmark,
-        'All menitemcheckbox items should have checkmark prepended'
+        'All menuitemcheckbox items should have checkmark prepended'
       );
     }
   });
@@ -397,7 +396,7 @@ ariaTest('Test "aria-checked" attirbute on role="menuitemcheckbox"',
 ariaTest('Test role="group" exists', exampleFile, 'group-role', async (t) => {
   t.plan(1);
 
-  let groups = await t.context.session.findElements(By.css(ex.groupSelector));
+  const groups = await t.context.session.findElements(By.css(ex.groupSelector));
 
   t.truthy(
     groups.length,
@@ -409,7 +408,7 @@ ariaTest('Test role="menuitemradio" exists with accessible name',
   exampleFile, 'menuitemradio-role', async (t) => {
     t.plan(22);
 
-    let items = await t.context.session.findElements(By.css(ex.menuitemradioSelector));
+    const items = await t.context.session.findElements(By.css(ex.menuitemradioSelector));
 
     // Test that the elements exist
     t.truthy(
@@ -422,8 +421,8 @@ ariaTest('Test role="menuitemradio" exists with accessible name',
     for (let item of items) {
 
       // The menuitem is not visible, so we cannot use selenium's "getText" function
-      let text = await t.context.session.executeScript(function () {
-        let el = arguments[0];
+      const text = await t.context.session.executeScript(function () {
+        const el = arguments[0];
         return el.innerHTML;
       }, item);
 
@@ -443,20 +442,20 @@ ariaTest('Test tabindex="-1" on role="menuitemradio"',
 ariaTest('Text "aria-checked" appropriately set on role="menitemradio"',
   exampleFile, 'menuitemradio-aria-checked', async (t) => {
 
-    let menus = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
+    const menus = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
 
     for (let grouping of ex.radioItemGroupings) {
 
     // Reveal the elements in the dropdown
       await menus[grouping.menuIndex].sendKeys(Key.ARROW_DOWN);
 
-      let items = await t.context.session.findElements(By.css(grouping.itemsSelector));
+      const items = await t.context.session.findElements(By.css(grouping.itemsSelector));
 
       // Test for the initial state of checked/not checked for all radio menuitems
 
-      for (let itemIndex = 0; itemIndex < items.length; items++) {
+      for (let itemIndex = 0; itemIndex < items.length; itemIndex++) {
 
-        let selected = itemIndex === grouping.defaultSelectedIndex ? true : false;
+        const selected = itemIndex === grouping.defaultSelectedIndex ? true : false;
 
         t.is(
           await items[itemIndex].getAttribute('aria-checked'),
@@ -464,9 +463,7 @@ ariaTest('Text "aria-checked" appropriately set on role="menitemradio"',
           'Only item ' + grouping.defaultSelectedIndex + ' should have aria-select="true" in menu dropdown items: ' + grouping.itemsSelector
         );
 
-        let checkmark = await t.context.session.executeScript(
-          checkmarkVisible, grouping.itemsSelector, itemIndex
-        );
+        const checkmark = await checkmarkVisible(t, grouping.itemsSelector, itemIndex);
         t.is(
           checkmark,
           selected,
@@ -478,11 +475,11 @@ ariaTest('Text "aria-checked" appropriately set on role="menitemradio"',
 
 // KEYS
 
-ariaTest('Key SPACE and ENTER open submenu', exampleFile, 'menubar-key-space-and-enter', async (t) => {
-  t.plan(16);
+ariaTest('Key ENTER open submenu', exampleFile, 'menubar-key-space-and-enter', async (t) => {
+  t.plan(8);
 
-  let menuitems = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
-  let submenus = await t.context.session.findElements(By.css(ex.submenuSelector));
+  const menuitems = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
+  const submenus = await t.context.session.findElements(By.css(ex.submenuSelector));
   for (let menuIndex = 0; menuIndex < ex.numMenus; menuIndex++) {
 
     // Send the ENTER key
@@ -495,19 +492,21 @@ ariaTest('Key SPACE and ENTER open submenu', exampleFile, 'menubar-key-space-and
     );
 
     t.true(
-      await t.context.session.executeScript(checkFocus, ex.allSubmenuItems[menuIndex], 0),
+      await checkFocus(t,  ex.allSubmenuItems[menuIndex], 0),
       'Sending key "ENTER" to menuitem ' + menuIndex + ' in menubar should send focus to the first element in the submenu'
     );
   }
+});
 
-  // Reload page
-  t.context.session.get(await t.context.session.getCurrentUrl());
 
-  menuitems = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
-  submenus = await t.context.session.findElements(By.css(ex.submenuSelector));
+ariaTest('Key SPACE open submenu', exampleFile, 'menubar-key-space-and-enter', async (t) => {
+  t.plan(8);
+
+  const menuitems = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
+  const submenus = await t.context.session.findElements(By.css(ex.submenuSelector));
   for (let menuIndex = 0; menuIndex < ex.numMenus; menuIndex++) {
 
-    // Send the ENTER key
+    // Send the SPACE key
     await menuitems[menuIndex].sendKeys(Key.SPACE);
 
     // Test that the submenu is displayed
@@ -517,18 +516,19 @@ ariaTest('Key SPACE and ENTER open submenu', exampleFile, 'menubar-key-space-and
     );
 
     t.true(
-      await t.context.session.executeScript(checkFocus, ex.allSubmenuItems[menuIndex], 0),
+      await checkFocus(t,  ex.allSubmenuItems[menuIndex], 0),
       'Sending key "SPACE" to menuitem ' + menuIndex + ' in menubar should send focus to the first element in the submenu'
     );
 
   }
 });
 
+
 ariaTest('Key ESCAPE closes menubar', exampleFile, 'menubar-key-escape', async (t) => {
   t.plan(4);
 
-  let menuitems = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
-  let submenus = await t.context.session.findElements(By.css(ex.submenuSelector));
+  const menuitems = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
+  const submenus = await t.context.session.findElements(By.css(ex.submenuSelector));
   for (let menuIndex = 0; menuIndex < ex.numMenus; menuIndex++) {
 
     // Send the ENTER key, then the ESCAPE
@@ -549,23 +549,19 @@ ariaTest('Key ARROW_RIGHT moves focus to next menubar item',
 
     t.plan(5);
 
-    let menuitems = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
+    const menuitems = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
 
     for (let menuIndex = 0; menuIndex < ex.numMenus + 1; menuIndex++) {
 
-      let currentIndex = menuIndex % ex.numMenus;
-      let nextIndex = (menuIndex + 1) % ex.numMenus;
+      const currentIndex = menuIndex % ex.numMenus;
+      const nextIndex = (menuIndex + 1) % ex.numMenus;
 
       // Send the ARROW_RIGHT key
       await menuitems[currentIndex].sendKeys(Key.ARROW_RIGHT);
 
       // Test the focus is on the next item mod the number of items to account for wrapping
       t.true(
-        await t.context.session.executeScript(
-          checkFocus,
-          ex.menubarMenuitemSelector,
-          nextIndex
-        ),
+        await checkFocus(t, ex.menubarMenuitemSelector, nextIndex),
         'Sending key "ARROW_RIGHT" to menuitem ' + currentIndex + ' should move focus to menuitem ' + nextIndex
       );
     }
@@ -576,18 +572,14 @@ ariaTest('Key ARROW_RIGHT moves focus to next menubar item',
 
     t.plan(4);
 
-    let menuitems = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
+    const menuitems = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
 
     // Send the ARROW_LEFT key to the first menuitem
     await menuitems[0].sendKeys(Key.ARROW_LEFT);
 
     // Test the focus is on the last menu item
     t.true(
-      await t.context.session.executeScript(
-        checkFocus,
-        ex.menubarMenuitemSelector,
-        ex.numMenus - 1
-      ),
+      await checkFocus(t, ex.menubarMenuitemSelector, ex.numMenus - 1),
       'Sending key "ARROW_LEFT" to menuitem 0 will change focus to menu item 3'
     );
 
@@ -599,11 +591,7 @@ ariaTest('Key ARROW_RIGHT moves focus to next menubar item',
 
       // Test the focus is on the previous menuitem
       t.true(
-        await t.context.session.executeScript(
-          checkFocus,
-          ex.menubarMenuitemSelector,
-          menuIndex - 1
-        ),
+        await checkFocus(t, ex.menubarMenuitemSelector, menuIndex - 1),
         'Sending key "ARROW_RIGHT" to menuitem ' + menuIndex + ' should move focus to menuitem ' + menuIndex - 1
       );
     }
@@ -614,8 +602,8 @@ ariaTest('Key ARROW_UP opens submenu, focus on last item',
 
     t.plan(8);
 
-    let menuitems = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
-    let submenus = await t.context.session.findElements(By.css(ex.submenuSelector));
+    const menuitems = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
+    const submenus = await t.context.session.findElements(By.css(ex.submenuSelector));
     for (let menuIndex = 0; menuIndex < ex.numMenus; menuIndex++) {
 
     // Send the ENTER key
@@ -627,15 +615,12 @@ ariaTest('Key ARROW_UP opens submenu, focus on last item',
         'Sending key "ENTER" to menuitem ' + menuIndex + ' in menubar should display submenu'
       );
 
-      let numSubItems = (await t.context.session
+      const numSubItems = (await t.context.session
         .findElements(By.css(ex.allSubmenuItems[menuIndex]))).length;
 
       // Test that the focus is on the last item in the list
       t.true(
-        await t.context.session.executeScript(
-          checkFocus,
-          ex.allSubmenuItems[menuIndex],
-          numSubItems - 1),
+        await checkFocus(t, ex.allSubmenuItems[menuIndex], numSubItems - 1),
         'Sending key "ENTER" to menuitem ' + menuIndex + ' in menubar should send focus to the first element in the submenu'
       );
     }
@@ -645,8 +630,8 @@ ariaTest('Key ARROW_UP opens submenu, focus on first item',
   exampleFile, 'menubar-key-down-arrow', async (t) => {
     t.plan(8);
 
-    let menuitems = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
-    let submenus = await t.context.session.findElements(By.css(ex.submenuSelector));
+    const menuitems = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
+    const submenus = await t.context.session.findElements(By.css(ex.submenuSelector));
     for (let menuIndex = 0; menuIndex < ex.numMenus; menuIndex++) {
 
     // Send the ENTER key
@@ -660,7 +645,7 @@ ariaTest('Key ARROW_UP opens submenu, focus on first item',
 
       // Test that the focus is on the first item in the list
       t.true(
-        await t.context.session.executeScript(checkFocus, ex.allSubmenuItems[menuIndex], 0),
+        await checkFocus(t,  ex.allSubmenuItems[menuIndex], 0),
         'Sending key "ENTER" to menuitem ' + menuIndex + ' in menubar should send focus to the first element in the submenu'
       );
     }
@@ -669,7 +654,7 @@ ariaTest('Key ARROW_UP opens submenu, focus on first item',
 ariaTest('Key HOME goes to first item in menubar', exampleFile, 'menubar-key-home', async (t) => {
   t.plan(4);
 
-  let menuitems = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
+  const menuitems = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
   for (let menuIndex = 0; menuIndex < ex.numMenus; menuIndex++) {
 
     // Send the ARROW_RIGHT key to move the focus to later menu item for every test
@@ -682,7 +667,7 @@ ariaTest('Key HOME goes to first item in menubar', exampleFile, 'menubar-key-hom
 
     // Test that the focus is on the first item in the list
     t.true(
-      await t.context.session.executeScript(checkFocus, ex.menubarMenuitemSelector, 0),
+      await checkFocus(t,  ex.menubarMenuitemSelector, 0),
       'Sending key "HOME" to menuitem ' + menuIndex + ' in menubar should move the foucs to the first menuitem'
     );
   }
@@ -691,7 +676,7 @@ ariaTest('Key HOME goes to first item in menubar', exampleFile, 'menubar-key-hom
 ariaTest('Key END goes to last item in menubar', exampleFile, 'menubar-key-end', async (t) => {
   t.plan(4);
 
-  let menuitems = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
+  const menuitems = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
   for (let menuIndex = 0; menuIndex < ex.numMenus; menuIndex++) {
 
     // Send the ARROW_RIGHT key to move the focus to later menu item for every test
@@ -704,7 +689,7 @@ ariaTest('Key END goes to last item in menubar', exampleFile, 'menubar-key-end',
 
     // Test that the focus is on the last item in the list
     t.true(
-      await t.context.session.executeScript(checkFocus, ex.menubarMenuitemSelector, ex.numMenus - 1),
+      await checkFocus(t,  ex.menubarMenuitemSelector, ex.numMenus - 1),
       'Sending key "END" to menuitem ' + menuIndex + ' in menubar should move the foucs to the last menuitem'
     );
   }
@@ -715,7 +700,7 @@ ariaTest('Character sends to menubar changes focus in menubar',
 
     t.plan(7);
 
-    let charIndexTest = [
+    const charIndexTest = [
       { sendChar: 'f', sendIndex: 0, endIndex: 0 },
       { sendChar: 's', sendIndex: 0, endIndex: 1 },
       { sendChar: 't', sendIndex: 0, endIndex: 2 },
@@ -725,7 +710,7 @@ ariaTest('Character sends to menubar changes focus in menubar',
       { sendChar: 'z', sendIndex: 3, endIndex: 3 }
     ];
 
-    let menuitems = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
+    const menuitems = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
     for (let test of charIndexTest) {
 
     // Send character to menuitem
@@ -733,7 +718,7 @@ ariaTest('Character sends to menubar changes focus in menubar',
 
       // Test that the focus switches to the appropriate menuitem
       t.true(
-        await t.context.session.executeScript(checkFocus, ex.menubarMenuitemSelector, test.endIndex),
+        await checkFocus(t,  ex.menubarMenuitemSelector, test.endIndex),
         'Sending characther ' + test.sendChar + ' to menuitem ' + test.sendIndex + ' in menubar should move the foucs to menuitem ' + test.endIndex
       );
     }
@@ -742,8 +727,8 @@ ariaTest('Character sends to menubar changes focus in menubar',
 ariaTest('ENTER in submenu selects item', exampleFile, 'submenu-enter', async (t) => {
   t.plan(75);
 
-  let menuitems = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
-  let submenus = await t.context.session.findElements(By.css(ex.submenuSelector));
+  const menuitems = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
+  const submenus = await t.context.session.findElements(By.css(ex.submenuSelector));
 
   for (let menuIndex = 0; menuIndex < ex.numMenus; menuIndex++) {
 
@@ -751,12 +736,12 @@ ariaTest('ENTER in submenu selects item', exampleFile, 'submenu-enter', async (t
 
       // Open the submenu
       await menuitems[menuIndex].sendKeys(Key.ENTER);
-      let items = await t.context.session.findElements(By.css(ex.allSubmenuItems[menuIndex]));
-      let item = items[itemIndex];
-      let itemText = await item.getText();
+      const items = await t.context.session.findElements(By.css(ex.allSubmenuItems[menuIndex]));
+      const item = items[itemIndex];
+      const itemText = await item.getText();
 
       // Get the current style attribute on the "Text Sample"
-      let originalStyle = await t.context.session
+      const originalStyle = await t.context.session
         .findElement(By.css('#textarea1'))
         .getAttribute('style');
 
@@ -771,7 +756,7 @@ ariaTest('ENTER in submenu selects item', exampleFile, 'submenu-enter', async (t
 
       // Test that the focus is back on the menuitem in the menubar
       t.true(
-        await t.context.session.executeScript(checkFocus, ex.menubarMenuitemSelector, menuIndex),
+        await checkFocus(t,  ex.menubarMenuitemSelector, menuIndex),
         'Sending key "ENTER" to submenuitem "' + itemText + '" should change the focus to menuitem ' + menuIndex + ' in the menubar'
       );
 
@@ -782,7 +767,7 @@ ariaTest('ENTER in submenu selects item', exampleFile, 'submenu-enter', async (t
       }
 
       // Get the current style attribute on the "Text Sample"
-      let currentStyle = await t.context.session
+      const currentStyle = await t.context.session
         .findElement(By.css('#textarea1'))
         .getAttribute('style');
 
@@ -799,8 +784,8 @@ ariaTest('ENTER in submenu selects item', exampleFile, 'submenu-enter', async (t
 ariaTest('ESCAPE to submenu closes submenu', exampleFile, 'submenu-escape', async (t) => {
   t.plan(50);
 
-  let menuitems = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
-  let submenus = await t.context.session.findElements(By.css(ex.submenuSelector));
+  const menuitems = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
+  const submenus = await t.context.session.findElements(By.css(ex.submenuSelector));
 
   for (let menuIndex = 0; menuIndex < ex.numMenus; menuIndex++) {
 
@@ -809,9 +794,9 @@ ariaTest('ESCAPE to submenu closes submenu', exampleFile, 'submenu-escape', asyn
       // Open the submenu
       await menuitems[menuIndex].sendKeys(Key.ENTER);
 
-      let items = await t.context.session.findElements(By.css(ex.allSubmenuItems[menuIndex]));
-      let item = items[itemIndex];
-      let itemText = await item.getText();
+      const items = await t.context.session.findElements(By.css(ex.allSubmenuItems[menuIndex]));
+      const item = items[itemIndex];
+      const itemText = await item.getText();
 
       // send escape to the item
       await item.sendKeys(Key.ESCAPE);
@@ -824,7 +809,7 @@ ariaTest('ESCAPE to submenu closes submenu', exampleFile, 'submenu-escape', asyn
 
       // Test that the focus is back on the menuitem in the menubar
       t.true(
-        await t.context.session.executeScript(checkFocus, ex.menubarMenuitemSelector, menuIndex),
+        await checkFocus(t,  ex.menubarMenuitemSelector, menuIndex),
         'Sending key "ESCAPE" to submenuitem "' + itemText + '" should change the focus to menuitem ' + menuIndex + ' in the menubar'
       );
     }
@@ -837,20 +822,20 @@ ariaTest('ARROW_RIGHT to submenu closes submenu and opens next',
 
     t.plan(75);
 
-    let menuitems = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
-    let submenus = await t.context.session.findElements(By.css(ex.submenuSelector));
+    const menuitems = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
+    const submenus = await t.context.session.findElements(By.css(ex.submenuSelector));
 
     for (let menuIndex = 0; menuIndex < ex.numMenus; menuIndex++) {
 
       for (let itemIndex = 0; itemIndex < ex.numSubmenuItems[menuIndex]; itemIndex++) {
 
-      // Open the submenu
+        // Open the submenu
         await menuitems[menuIndex].sendKeys(Key.ENTER);
 
-        let items = await t.context.session.findElements(By.css(ex.allSubmenuItems[menuIndex]));
-        let item = items[itemIndex];
-        let itemText = await item.getText();
-        let nextMenuIndex = (menuIndex + 1) % ex.numMenus;
+        const items = await t.context.session.findElements(By.css(ex.allSubmenuItems[menuIndex]));
+        const item = items[itemIndex];
+        const itemText = await item.getText();
+        const nextMenuIndex = (menuIndex + 1) % ex.numMenus;
 
         // send RIGHT to the item
         await item.sendKeys(Key.ARROW_RIGHT);
@@ -869,7 +854,7 @@ ariaTest('ARROW_RIGHT to submenu closes submenu and opens next',
 
         // Test that the focus is on the menuitem in the menubar
         t.true(
-          await t.context.session.executeScript(checkFocus, ex.menubarMenuitemSelector, nextMenuIndex),
+          await checkFocus(t,  ex.menubarMenuitemSelector, nextMenuIndex),
           'Sending key "ARROW_RIGHT" to submenuitem "' + itemText + '" should send focus to menuitem' + nextMenuIndex + ' in the menubar'
         );
       }
@@ -881,8 +866,8 @@ ariaTest('ARROW_RIGHT to submenu closes submenu and opens next',
 
     t.plan(75);
 
-    let menuitems = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
-    let submenus = await t.context.session.findElements(By.css(ex.submenuSelector));
+    const menuitems = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
+    const submenus = await t.context.session.findElements(By.css(ex.submenuSelector));
 
     for (let menuIndex = 0; menuIndex < ex.numMenus; menuIndex++) {
       for (let itemIndex = 0; itemIndex < ex.numSubmenuItems[menuIndex]; itemIndex++) {
@@ -890,11 +875,11 @@ ariaTest('ARROW_RIGHT to submenu closes submenu and opens next',
       // Open the submenu
         await menuitems[menuIndex].sendKeys(Key.ENTER);
 
-        let items = await t.context.session.findElements(By.css(ex.allSubmenuItems[menuIndex]));
-        let item = items[itemIndex];
-        let itemText = await item.getText();
+        const items = await t.context.session.findElements(By.css(ex.allSubmenuItems[menuIndex]));
+        const item = items[itemIndex];
+        const itemText = await item.getText();
         // Account for wrapping (index 0 should go to 3)
-        let nextMenuIndex = menuIndex === 0 ? 3 : menuIndex - 1;
+        const nextMenuIndex = menuIndex === 0 ? 3 : menuIndex - 1;
 
         // send LEFT to the item
         await item.sendKeys(Key.ARROW_LEFT);
@@ -913,7 +898,7 @@ ariaTest('ARROW_RIGHT to submenu closes submenu and opens next',
 
         // Test that the focus is on the menuitem in the menubar
         t.true(
-          await t.context.session.executeScript(checkFocus, ex.menubarMenuitemSelector, nextMenuIndex),
+          await checkFocus(t,  ex.menubarMenuitemSelector, nextMenuIndex),
           'Sending key "ARROW_LEFT" to submenuitem "' + itemText + '" should send focus to menuitem' + nextMenuIndex + ' in the menubar'
         );
       }
@@ -923,25 +908,25 @@ ariaTest('ARROW_RIGHT to submenu closes submenu and opens next',
 ariaTest('ARROW_DOWN moves focus to next item', exampleFile, 'submenu-down-arrow', async (t) => {
   t.plan(25);
 
-  let menuitems = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
+  const menuitems = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
 
   for (let menuIndex = 0; menuIndex < ex.numMenus; menuIndex++) {
 
     // Open the submenu
     await menuitems[menuIndex].sendKeys(Key.ARROW_DOWN);
-    let items = await t.context.session.findElements(By.css(ex.allSubmenuItems[menuIndex]));
+    const items = await t.context.session.findElements(By.css(ex.allSubmenuItems[menuIndex]));
 
     for (let itemIndex = 0; itemIndex < ex.numSubmenuItems[menuIndex]; itemIndex++) {
-      let item = items[itemIndex];
-      let itemText = await item.getText();
-      let nextItemIndex = (itemIndex + 1) % ex.numSubmenuItems[menuIndex];
+      const item = items[itemIndex];
+      const itemText = await item.getText();
+      const nextItemIndex = (itemIndex + 1) % ex.numSubmenuItems[menuIndex];
 
       // send DOWN to the item
       await item.sendKeys(Key.ARROW_DOWN);
 
       // Test that the focus is on the next item
       t.true(
-        await t.context.session.executeScript(checkFocus, ex.allSubmenuItems[menuIndex], nextItemIndex),
+        await checkFocus(t,  ex.allSubmenuItems[menuIndex], nextItemIndex),
         'Sending key "ARROW_DOWN" to submenu item "' + itemText + '" should send focus to next submenu item.'
       );
     }
@@ -951,26 +936,26 @@ ariaTest('ARROW_DOWN moves focus to next item', exampleFile, 'submenu-down-arrow
 ariaTest('ARROW_DOWN moves focus to previous item', exampleFile, 'submenu-up-arrow', async (t) => {
   t.plan(25);
 
-  let menuitems = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
+  const menuitems = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
 
   for (let menuIndex = 0; menuIndex < ex.numMenus; menuIndex++) {
 
     // Open the submenu
     await menuitems[menuIndex].sendKeys(Key.ARROW_DOWN);
-    let items = await t.context.session.findElements(By.css(ex.allSubmenuItems[menuIndex]));
+    const items = await t.context.session.findElements(By.css(ex.allSubmenuItems[menuIndex]));
 
     for (let itemIndex = 0; itemIndex < ex.numSubmenuItems[menuIndex]; itemIndex++) {
-      let item = items[itemIndex];
-      let itemText = await item.getText();
+      const item = items[itemIndex];
+      const itemText = await item.getText();
       // Account for wrapping
-      let nextItemIndex = itemIndex === 0 ? ex.numSubmenuItems[menuIndex] - 1 : itemIndex - 1;
+      const nextItemIndex = itemIndex === 0 ? ex.numSubmenuItems[menuIndex] - 1 : itemIndex - 1;
 
       // Send UP to the item
       await item.sendKeys(Key.ARROW_UP);
 
       // Test that the focus is on the previous item
       t.true(
-        await t.context.session.executeScript(checkFocus, ex.allSubmenuItems[menuIndex], nextItemIndex),
+        await checkFocus(t,  ex.allSubmenuItems[menuIndex], nextItemIndex),
         'Sending key "ARROW_UP" to submenu item "' + itemText + '" should send focus to next submenu item.'
       );
     }
@@ -979,26 +964,26 @@ ariaTest('ARROW_DOWN moves focus to previous item', exampleFile, 'submenu-up-arr
 
 ariaTest('HOME moves focus to first item', exampleFile, 'submenu-home', async (t) => {
   t.plan(25);
-  let menuitems = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
+  const menuitems = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
 
   for (let menuIndex = 0; menuIndex < ex.numMenus; menuIndex++) {
 
     // Open the submenu
     await menuitems[menuIndex].sendKeys(Key.ARROW_DOWN);
-    let items = await t.context.session.findElements(By.css(ex.allSubmenuItems[menuIndex]));
+    const items = await t.context.session.findElements(By.css(ex.allSubmenuItems[menuIndex]));
 
     for (let itemIndex = 0; itemIndex < ex.numSubmenuItems[menuIndex]; itemIndex++) {
-      let item = items[itemIndex];
-      let itemText = await item.getText();
+      const item = items[itemIndex];
+      const itemText = await item.getText();
       // Account for wrapping
-      let nextItemIndex = itemIndex + 1;
+      const nextItemIndex = itemIndex + 1;
 
       // Send UP to the item
       await item.sendKeys(Key.HOME);
 
       // Test that the focus is on the first item
       t.true(
-        await t.context.session.executeScript(checkFocus, ex.allSubmenuItems[menuIndex], 0),
+        await checkFocus(t,  ex.allSubmenuItems[menuIndex], 0),
         'Sending key "HOME" to submenu item "' + itemText + '" should send focus to first submenu item.'
       );
     }
@@ -1007,27 +992,27 @@ ariaTest('HOME moves focus to first item', exampleFile, 'submenu-home', async (t
 
 ariaTest('END moves focus to last item', exampleFile, 'submenu-end', async (t) => {
   t.plan(25);
-  let menuitems = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
+  const menuitems = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
 
   for (let menuIndex = 0; menuIndex < ex.numMenus; menuIndex++) {
 
     // Open the submenu
     await menuitems[menuIndex].sendKeys(Key.ARROW_DOWN);
-    let items = await t.context.session.findElements(By.css(ex.allSubmenuItems[menuIndex]));
-    let lastIndex = items.length - 1;
+    const items = await t.context.session.findElements(By.css(ex.allSubmenuItems[menuIndex]));
+    const lastIndex = items.length - 1;
 
     for (let itemIndex = 0; itemIndex < ex.numSubmenuItems[menuIndex]; itemIndex++) {
-      let item = items[itemIndex];
-      let itemText = await item.getText();
+      const item = items[itemIndex];
+      const itemText = await item.getText();
       // Account for wrapping
-      let nextItemIndex = itemIndex + 1;
+      const nextItemIndex = itemIndex + 1;
 
       // Send UP to the item
       await item.sendKeys(Key.END);
 
       // Test that the focus is on the first item
       t.true(
-        await t.context.session.executeScript(checkFocus, ex.allSubmenuItems[menuIndex], lastIndex),
+        await checkFocus(t,  ex.allSubmenuItems[menuIndex], lastIndex),
         'Sending key "END" to submenu item "' + itemText + '" should send focus to last submenu item.'
       );
     }
@@ -1039,7 +1024,7 @@ ariaTest('Character sends to menubar changes focus in menubar',
 
     t.plan(9);
 
-    let charIndexTest = [
+    const charIndexTest = [
       [ // Tests for menu dropdown 0
         { sendChar: 's', sendIndex: 0, endIndex: 1 },
         { sendChar: 's', sendIndex: 1, endIndex: 0 },
@@ -1059,26 +1044,22 @@ ariaTest('Character sends to menubar changes focus in menubar',
       ]
     ];
 
-    let menuitems = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
+    const menuitems = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
     for (let menuIndex = 0; menuIndex < ex.numMenus; menuIndex++) {
 
     // Open the dropdown
       await menuitems[menuIndex].sendKeys(Key.ARROW_DOWN);
-      let items = await t.context.session.findElements(By.css(ex.allSubmenuItems[menuIndex]));
+      const items = await t.context.session.findElements(By.css(ex.allSubmenuItems[menuIndex]));
 
       for (let test of charIndexTest[menuIndex]) {
 
       // Send character to menuitem
-        let itemText = items[test.sendIndex].getText();
+        const itemText = items[test.sendIndex].getText();
         await items[test.sendIndex].sendKeys(test.sendChar);
 
         // Test that the focus switches to the appropriate menuitem
         t.true(
-          await t.context.session.executeScript(
-            checkFocus,
-            ex.allSubmenuItems[menuIndex],
-            test.endIndex
-          ),
+          await checkFocus(t, ex.allSubmenuItems[menuIndex], test.endIndex),
           'Sending characther ' + test.sendChar + ' to menuitem ' + itemText + ' should move the foucs to menuitem ' + test.endIndex
         );
       }
