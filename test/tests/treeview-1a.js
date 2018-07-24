@@ -16,16 +16,15 @@ const ex = {
   topLevelFolderSelector: '#ex1 [role="tree"] > [role="treeitem"]',
   nextLevelFolderSelector: '[role="group"] > [role="treeitem"][aria-expanded]',
   docSelector: '#ex1 .doc[role="treeitem"]',
-  textboxSelector: '#ex1 #last_action',
-
+  textboxSelector: '#ex1 #last_action'
 };
 
-const openAllFolders = async function(t) {
+const openAllFolders = async function (t) {
   let closedFoldersSelector = ex.treeitemSelector + '[aria-expanded="false"]';
   let folders = await t.context.session.findElements(By.css(closedFoldersSelector));
 
   // While their are closed folders
-  while (folders.length !=0 ) {
+  while (folders.length != 0) {
 
     // Find the first visible closed folder and click it
     for (let folder of folders) {
@@ -39,17 +38,17 @@ const openAllFolders = async function(t) {
   }
 };
 
-const checkFocus = async function(t, selector, index) {
+const checkFocus = async function (t, selector, index) {
   return await t.context.session.executeScript(function (/* selector, index*/) {
     const [selector, index] = arguments;
     let items = document.querySelectorAll(selector);
-    //return document.activeElement.innerText;
+    // return document.activeElement.innerText;
     return items[index] === document.activeElement;
-  }, selector, index)
+  }, selector, index);
 };
 
-const checkFocusOnParentFolder = async function(t, el) {
-  return await t.context.session.executeScript(function() {
+const checkFocusOnParentFolder = async function (t, el) {
+  return await t.context.session.executeScript(function () {
     let el = arguments[0];
 
     // the element is a folder
@@ -63,24 +62,24 @@ const checkFocusOnParentFolder = async function(t, el) {
   }, el);
 };
 
-const isTopLevelFolder = async function(t, el) {
-  return await t.context.session.executeScript(function() {
+const isTopLevelFolder = async function (t, el) {
+  return await t.context.session.executeScript(function () {
     let el = arguments[0];
-    return el.parentElement.getAttribute("role") == "tree";
+    return el.parentElement.getAttribute('role') == 'tree';
   }, el);
-}
+};
 
-const isFolderTreeitem = async function(el) {
-  return ! (await el.getAttribute('class')).includes('doc');
-}
+const isFolderTreeitem = async function (el) {
+  return !(await el.getAttribute('class')).includes('doc');
+};
 
-const isOpenedFolderTreeitem =  async function(el) {
+const isOpenedFolderTreeitem =  async function (el) {
   return await el.getAttribute('aria-expanded') === 'true';
-}
+};
 
-const isClosedFolderTreeitem =  async function(el) {
+const isClosedFolderTreeitem =  async function (el) {
   return await el.getAttribute('aria-expanded') === 'false';
-}
+};
 
 ariaTest('role="tree" on ul element', exampleFile, 'tree-role', async (t) => {
 
@@ -153,7 +152,7 @@ ariaTest('aria-expanded attribute on treeitem matches dom', exampleFile, 'treeit
         'false'
       );
       t.is(
-        await (await folder.findElements(By.css('[role="treeitem"]')))[0].isDisplayed(),
+        await(await folder.findElements(By.css('[role="treeitem"]')))[0].isDisplayed(),
         false
       );
 
@@ -166,7 +165,7 @@ ariaTest('aria-expanded attribute on treeitem matches dom', exampleFile, 'treeit
         'true'
       );
       t.is(
-        await (await folder.findElements(By.css('[role="treeitem"]')))[0].isDisplayed(),
+        await(await folder.findElements(By.css('[role="treeitem"]')))[0].isDisplayed(),
         true
       );
     }
@@ -189,7 +188,7 @@ ariaTest('aria-expanded attribute on treeitem matches dom', exampleFile, 'treeit
         folderText
       );
       t.is(
-        await (await folders[i].findElements(By.css('[role="treeitem"]')))[0].isDisplayed(),
+        await(await folders[i].findElements(By.css('[role="treeitem"]')))[0].isDisplayed(),
         false,
         folderText
       );
@@ -258,7 +257,7 @@ ariaTest('Key space opens folder', exampleFile, 'key-enter-or-space', async (t) 
     // Send enter to the folder
     await item.sendKeys(Key.SPACE);
 
-    let boxText = await t.context.session.findElement(By.css(ex.textboxSelector)).getAttribute("value");
+    let boxText = await t.context.session.findElement(By.css(ex.textboxSelector)).getAttribute('value');
     t.is(
       boxText,
       itemText,
@@ -278,19 +277,19 @@ ariaTest('key down arrow moves focus', exampleFile, 'key-down-arrow', async (t) 
     await topLevelFolders[i].sendKeys(Key.ARROW_DOWN);
 
     // If we are on the last top level folder, the focus will not move
-    let nextIndex = i == topLevelFolders.length - 1
-        ? i
-        : i + 1;
+    let nextIndex = i == topLevelFolders.length - 1 ?
+      i :
+      i + 1;
 
     t.true(
       await checkFocus(t, ex.topLevelFolderSelector, nextIndex),
-      "Sending key ARROW_DOWN to top level folder at index " + i + " will move focus to " + nextIndex
-    )
+      'Sending key ARROW_DOWN to top level folder at index ' + i + ' will move focus to ' + nextIndex
+    );
 
     t.is(
       await topLevelFolders[i].getAttribute('aria-expanded'),
       'false',
-      "Sending key ARROW_DOWN to top level folder at index " + i + " should not expand the folder"
+      'Sending key ARROW_DOWN to top level folder at index ' + i + ' should not expand the folder'
     );
   }
 
@@ -306,14 +305,14 @@ ariaTest('key down arrow moves focus', exampleFile, 'key-down-arrow', async (t) 
     await items[i].sendKeys(Key.ARROW_DOWN);
 
     // If we are on the last item, the focus will not move
-    let nextIndex = i == items.length - 1
-        ? i
-        : i + 1;
+    let nextIndex = i == items.length - 1 ?
+      i :
+      i + 1;
 
     t.true(
       await checkFocus(t,  ex.treeitemSelector, nextIndex),
-      "Sending key ARROW_DOWN to top level folder/item at index " + i + " will move focus to " + nextIndex
-    )
+      'Sending key ARROW_DOWN to top level folder/item at index ' + i + ' will move focus to ' + nextIndex
+    );
   }
 });
 
@@ -327,19 +326,19 @@ ariaTest('key up arrow moves focus', exampleFile, 'key-up-arrow', async (t) => {
     await topLevelFolders[i].sendKeys(Key.ARROW_UP);
 
     // If we are on the last top level folder, the focus will not move
-    let nextIndex = i == 0
-        ? i
-        : i - 1;
+    let nextIndex = i == 0 ?
+      i :
+      i - 1;
 
     t.true(
       await checkFocus(t,  ex.topLevelFolderSelector, nextIndex),
-      "Sending key ARROW_UP to top level folder at index " + i + " will move focus to " + nextIndex
-    )
+      'Sending key ARROW_UP to top level folder at index ' + i + ' will move focus to ' + nextIndex
+    );
 
     t.is(
       await topLevelFolders[i].getAttribute('aria-expanded'),
       'false',
-      "Sending key ARROW_UP to top level folder at index " + i + " should not expand the folder"
+      'Sending key ARROW_UP to top level folder at index ' + i + ' should not expand the folder'
     );
   }
 
@@ -355,14 +354,14 @@ ariaTest('key up arrow moves focus', exampleFile, 'key-up-arrow', async (t) => {
     await items[i].sendKeys(Key.ARROW_UP);
 
     // If we are on the last item, the focus will not move
-    let nextIndex = i == 0
-        ? i
-        : i - 1;
+    let nextIndex = i == 0 ?
+      i :
+      i - 1;
 
     t.true(
       await checkFocus(t,  ex.treeitemSelector, nextIndex),
-      "Sending key ARROW_UP to top level folder/item at index " + i + " will move focus to " + nextIndex
-    )
+      'Sending key ARROW_UP to top level folder/item at index ' + i + ' will move focus to ' + nextIndex
+    );
   }
 });
 
@@ -384,14 +383,14 @@ ariaTest('key right arrow opens folders and moves focus', exampleFile, 'key-righ
       t.is(
         await items[i].getAttribute('aria-expanded'),
         'true',
-        "Sending key ARROW_RIGHT to folder at treeitem index " + i
-          + " when the folder is closed should open the folder"
+        'Sending key ARROW_RIGHT to folder at treeitem index ' + i +
+          ' when the folder is closed should open the folder'
       );
 
       t.true(
         await checkFocus(t,  ex.treeitemSelector, i),
-        "Sending key ARROW_RIGHT to folder at treeitem index " + i
-          + " when the folder was closed should not move the focus"
+        'Sending key ARROW_RIGHT to folder at treeitem index ' + i +
+          ' when the folder was closed should not move the focus'
       );
       continue;
     }
@@ -399,9 +398,9 @@ ariaTest('key right arrow opens folders and moves focus', exampleFile, 'key-righ
     // If the folder is an open folder, the focus will move
     else if (isFolder) {
       t.true(
-        await checkFocus(t,  ex.treeitemSelector, i+1),
-        "Sending key ARROW_RIGHT to folder at treeitem index " + i
-          + " should move focus to item " + (i+1)
+        await checkFocus(t,  ex.treeitemSelector, i + 1),
+        'Sending key ARROW_RIGHT to folder at treeitem index ' + i +
+          ' should move focus to item ' + (i + 1)
       );
     }
 
@@ -409,7 +408,7 @@ ariaTest('key right arrow opens folders and moves focus', exampleFile, 'key-righ
     else {
       t.true(
         await checkFocus(t,  ex.treeitemSelector, i),
-        "Sending key ARROW_RIGHT to document item at treeitem index " + i + " should not move focus"
+        'Sending key ARROW_RIGHT to document item at treeitem index ' + i + ' should not move focus'
       );
 
     }
@@ -425,14 +424,14 @@ ariaTest('key left arrow closes folders and moves focus', exampleFile, 'key-left
 
   let items = await t.context.session.findElements(By.css(ex.treeitemSelector));
 
-  let i = items.length-1;
+  let i = items.length - 1;
   while (i > 0) {
 
     let isFolder = await isFolderTreeitem(items[i]);
-    let isOpened = await isOpenedFolderTreeitem(items[i])
-    let isTopLevel = isFolder
-        ? await isTopLevelFolder(t, items[i])
-        : false;
+    let isOpened = await isOpenedFolderTreeitem(items[i]);
+    let isTopLevel = isFolder ?
+      await isTopLevelFolder(t, items[i]) :
+      false;
 
     await items[i].sendKeys(Key.ARROW_LEFT);
 
@@ -441,14 +440,14 @@ ariaTest('key left arrow closes folders and moves focus', exampleFile, 'key-left
       t.is(
         await items[i].getAttribute('aria-expanded'),
         'false',
-        "Sending key ARROW_LEFT to folder at treeitem index " + i
-          + " when the folder is opened should close the folder"
+        'Sending key ARROW_LEFT to folder at treeitem index ' + i +
+          ' when the folder is opened should close the folder'
       );
 
       t.true(
         await checkFocus(t,  ex.treeitemSelector, i),
-        "Sending key ARROW_LEFT to folder at treeitem index " + i
-          + " when the folder is opened should not move the focus"
+        'Sending key ARROW_LEFT to folder at treeitem index ' + i +
+          ' when the folder is opened should not move the focus'
       );
       // Send one more arrow key to the folder that is now closed
       continue;
@@ -458,8 +457,8 @@ ariaTest('key left arrow closes folders and moves focus', exampleFile, 'key-left
     else if (isTopLevel) {
       t.true(
         await checkFocus(t,  ex.treeitemSelector, i),
-        "Sending key ARROW_LEFT to document in top level folder at treeitem index " + i
-          + " should not move focu"
+        'Sending key ARROW_LEFT to document in top level folder at treeitem index ' + i +
+          ' should not move focu'
       );
     }
 
@@ -467,15 +466,15 @@ ariaTest('key left arrow closes folders and moves focus', exampleFile, 'key-left
     else {
       t.true(
         await checkFocusOnParentFolder(t, items[i]),
-        "Sending key ARROW_LEFT to document in folder at treeitem index " + i
-          + " should move focus to parent folder"
+        'Sending key ARROW_LEFT to document in folder at treeitem index ' + i +
+          ' should move focus to parent folder'
       );
 
       t.is(
         await items[i].isDisplayed(),
         true,
-        "Sending key ARROW_LEFT to document in folder at treeitem index " + i
-          + " should not close the folder it is in"
+        'Sending key ARROW_LEFT to document in folder at treeitem index ' + i +
+          ' should not close the folder it is in'
       );
     }
 
@@ -494,13 +493,13 @@ ariaTest('key home moves focus', exampleFile, 'key-home', async (t) => {
 
     t.true(
       await checkFocus(t,  ex.topLevelFolderSelector, 0),
-      "Sending key HOME to top level folder at index " + i + " should move focus to first top level folder"
-    )
+      'Sending key HOME to top level folder at index ' + i + ' should move focus to first top level folder'
+    );
 
     t.is(
       await topLevelFolders[i].getAttribute('aria-expanded'),
       'false',
-      "Sending key HOME to top level folder at index " + i + " should not expand the folder"
+      'Sending key HOME to top level folder at index ' + i + ' should not expand the folder'
     );
   }
 
@@ -518,8 +517,8 @@ ariaTest('key home moves focus', exampleFile, 'key-home', async (t) => {
 
     t.true(
       await checkFocus(t,  ex.treeitemSelector, 0),
-      "Sending key HOME to top level folder/item at index " + i + " will move focus to the first item"
-    )
+      'Sending key HOME to top level folder/item at index ' + i + ' will move focus to the first item'
+    );
   }
 });
 
@@ -533,14 +532,14 @@ ariaTest('key end moves focus', exampleFile, 'key-end', async (t) => {
     await topLevelFolders[i].sendKeys(Key.END);
 
     t.true(
-      await checkFocus(t,  ex.topLevelFolderSelector, topLevelFolders.length-1),
-      "Sending key END to top level folder at index " + i + " should move focus to last top level folder"
-    )
+      await checkFocus(t,  ex.topLevelFolderSelector, topLevelFolders.length - 1),
+      'Sending key END to top level folder at index ' + i + ' should move focus to last top level folder'
+    );
 
     t.is(
       await topLevelFolders[i].getAttribute('aria-expanded'),
       'false',
-      "Sending key END to top level folder at index " + i + " should not expand the folder"
+      'Sending key END to top level folder at index ' + i + ' should not expand the folder'
     );
   }
 
@@ -557,10 +556,10 @@ ariaTest('key end moves focus', exampleFile, 'key-end', async (t) => {
     await items[i].sendKeys(Key.END);
 
     t.true(
-      await checkFocus(t,  ex.treeitemSelector, (items.length-1)),
-      "Sending key END to top level folder/item at index " + i
-        + " will move focus to the last item in the last opened folder"
-    )
+      await checkFocus(t,  ex.treeitemSelector, (items.length - 1)),
+      'Sending key END to top level folder/item at index ' + i +
+        ' will move focus to the last item in the last opened folder'
+    );
   }
 });
 
@@ -570,7 +569,7 @@ ariaTest('characters move focus', exampleFile, 'key-character', async (t) => {
   let charIndexTestClosed = [
     { sendChar: 'p', sendIndex: 0, endIndex: 0 },
     { sendChar: 'r', sendIndex: 0, endIndex: 1 },
-    { sendChar: 'l', sendIndex: 1, endIndex: 2 },
+    { sendChar: 'l', sendIndex: 1, endIndex: 2 }
   ];
 
   let charIndexTestOpened = [
@@ -598,7 +597,7 @@ ariaTest('characters move focus', exampleFile, 'key-character', async (t) => {
       'Sending characther ' + test.sendChar + ' to treeitem ' + test.sendIndex + ' should move the foucs to treeitem ' + test.endIndex
     );
 
-    await assertAttributeValues(t, ex.topLevelFolderSelector, "aria-expanded", "false");
+    await assertAttributeValues(t, ex.topLevelFolderSelector, 'aria-expanded', 'false');
   }
 
   // Reload page
@@ -631,47 +630,47 @@ ariaTest('asterisk key opens folders', exampleFile, 'key-asterisk', async (t) =>
   let nextLevelFolders = await t.context.session.findElements(By.css(ex.nextLevelFolderSelector));
 
   // Send Key
-  await topLevelFolders[0].sendKeys("*");
+  await topLevelFolders[0].sendKeys('*');
 
-  await assertAttributeValues(t, ex.topLevelFolderSelector, "aria-expanded", "true");
-  await assertAttributeValues(t, ex.nextLevelFolderSelector, "aria-expanded", "false");
+  await assertAttributeValues(t, ex.topLevelFolderSelector, 'aria-expanded', 'true');
+  await assertAttributeValues(t, ex.nextLevelFolderSelector, 'aria-expanded', 'false');
 
   /* Test that "*" ONLY opens sibling folders at that level */
 
   // Send key
-  await nextLevelFolders[0].sendKeys("*");
+  await nextLevelFolders[0].sendKeys('*');
 
   // The subfolders of first top level folder should all be open
 
   let subFoldersOfFirstFolder = await topLevelFolders[0]
-      .findElements(By.css(ex.nextLevelFolderSelector));
+    .findElements(By.css(ex.nextLevelFolderSelector));
   for (let el of subFoldersOfFirstFolder) {
     t.true(
-      await el.getAttribute("aria-expanded") == "true",
+      await el.getAttribute('aria-expanded') == 'true',
       'Subfolders under the first top level folder should all be opened after sending one "*" to subfolder under first top level folder'
-    )
+    );
   }
 
   // The subfolders of second top level folder should all be closed
 
   let subFoldersOfSecondFolder = await topLevelFolders[1]
-      .findElements(By.css(ex.nextLevelFolderSelector));
+    .findElements(By.css(ex.nextLevelFolderSelector));
   for (let el of subFoldersOfSecondFolder) {
     t.true(
-      await el.getAttribute("aria-expanded") == "false",
+      await el.getAttribute('aria-expanded') == 'false',
       'Subfolders under the second top level folder should all be closed after sending one "*" to subfolder under first top level folder'
-    )
+    );
   }
 
   // The subfolders of third top level folder should all be closed
 
   let subFoldersOfThirdFolder = await topLevelFolders[2]
-      .findElements(By.css(ex.nextLevelFolderSelector));
+    .findElements(By.css(ex.nextLevelFolderSelector));
   for (let el of subFoldersOfThirdFolder) {
     t.true(
-      await el.getAttribute("aria-expanded") == "false",
+      await el.getAttribute('aria-expanded') == 'false',
       'Subfolders under the third top level folder should all be closed after sending one "*" to subfolder under first top level folder'
-    )
+    );
   }
 
 });
