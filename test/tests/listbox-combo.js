@@ -33,6 +33,16 @@ const reload = async (session) => {
   return session.get(await session.getCurrentUrl());
 };
 
+const waitForFocusChange = async (t, textboxSelector, originalFocus) => {
+  await t.context.session.wait(async function () {
+    let newfocus = t.context.session
+      .findElement(By.css(textboxSelector))
+      .getAttribute('aria-activedescendant');
+    return newfocus != originalFocus;
+  }, 200);
+};
+
+
 // Attributes
 
 ariaTest('Test for role="combobox"', exampleFile, 'combobox-role', async (t) => {
@@ -277,8 +287,6 @@ ariaTest('Test aria-controls attribute on textbox',
         'Element with id "' + popupId + '" should have role="listbox"'
       );
     }
-
-
   });
 
 ariaTest('Test initial aria-activedescendant value on textbox',
@@ -540,13 +548,7 @@ ariaTest('Test down key press with focus on list',
         .sendKeys(Key.ARROW_DOWN);
 
       // Account for race condition
-      await t.context.session.wait(async function () {
-        let newfocus = t.context.session
-          .findElement(By.css(ex.textboxSelector))
-          .getAttribute('aria-activedescendant');
-
-        return newfocus != oldfocus;
-      }, 100);
+      await waitForFocusChange(t, ex.textboxSelector, oldfocus);
 
       await assertActiveDescendantFocus(t, ex.textboxSelector, ex.optionsSelector, i % numOptions);
     }
@@ -570,14 +572,8 @@ ariaTest('Test down key press with focus on list',
         .findElement(By.css(ex.textboxSelector))
         .sendKeys(Key.ARROW_DOWN);
 
-      // Account for race conditoon
-      await t.context.session.wait(async function () {
-        let newfocus = t.context.session
-          .findElement(By.css(ex.textboxSelector))
-          .getAttribute('aria-activedescendant');
-
-        return newfocus != oldfocus;
-      }, 100);
+      // Account for race condition
+      await waitForFocusChange(t, ex.textboxSelector, oldfocus);
 
       await assertActiveDescendantFocus(t, ex.textboxSelector, ex.optionsSelector, i % numOptions);
     }
@@ -601,14 +597,8 @@ ariaTest('Test down key press with focus on list',
         .findElement(By.css(ex.textboxSelector))
         .sendKeys(Key.ARROW_DOWN);
 
-      // Account for race conditoon
-      await t.context.session.wait(async function () {
-        let newfocus = t.context.session
-          .findElement(By.css(ex.textboxSelector))
-          .getAttribute('aria-activedescendant');
-
-        return newfocus != oldfocus;
-      }, 100);
+      // Account for race condition
+      await waitForFocusChange(t, ex.textboxSelector, oldfocus);
 
       await assertActiveDescendantFocus(t, ex.textboxSelector, ex.optionsSelector, i % numOptions);
     }
@@ -731,14 +721,8 @@ ariaTest('Test up key press with focus on listbox',
         .findElement(By.css(ex.textboxSelector))
         .sendKeys(Key.ARROW_UP);
 
-      // Account for race conditoon
-      await t.context.session.wait(async function () {
-        let newfocus = t.context.session
-          .findElement(By.css(ex.textboxSelector))
-          .getAttribute('aria-activedescendant');
-
-        return newfocus != oldfocus;
-      }, 100);
+      // Account for race conditon
+      await waitForFocusChange(t, ex.textboxSelector, oldfocus);
 
       const index = numOptions - 1 - (i % numOptions);
       await assertActiveDescendantFocus(t, ex.textboxSelector, ex.optionsSelector, index);
@@ -765,14 +749,8 @@ ariaTest('Test up key press with focus on listbox',
         .findElement(By.css(ex.textboxSelector))
         .sendKeys(Key.ARROW_UP);
 
-      // Account for race conditoon
-      await t.context.session.wait(async function () {
-        let newfocus = t.context.session
-          .findElement(By.css(ex.textboxSelector))
-          .getAttribute('aria-activedescendant');
-
-        return newfocus != oldfocus;
-      }, 100);
+      // Account for race condition
+      await waitForFocusChange(t, ex.textboxSelector, oldfocus);
 
       const index = numOptions - 1 - (i % numOptions);
       await assertActiveDescendantFocus(t, ex.textboxSelector, ex.optionsSelector, index);
@@ -799,13 +777,8 @@ ariaTest('Test up key press with focus on listbox',
         .findElement(By.css(ex.textboxSelector))
         .sendKeys(Key.ARROW_UP);
 
-      // Account for race conditoon
-      await t.context.session.wait(async function () {
-        let newfocus = t.context.session
-          .findElement(By.css(ex.textboxSelector))
-          .getAttribute('aria-activedescendant');
-        return newfocus != oldfocus;
-      }, 100);
+      // Account for race condition
+      await waitForFocusChange(t, ex.textboxSelector, oldfocus);
 
       const index = numOptions - 1 - (i % numOptions);
       await assertActiveDescendantFocus(t, ex.textboxSelector, ex.optionsSelector, index);
