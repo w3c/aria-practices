@@ -21,25 +21,22 @@ const ex = {
 
 const openAllFolders = async function (t) {
   const closedFoldersSelector = ex.treeitemSelector + '[aria-expanded="false"]';
-  let folders = await t.context.session.findElements(By.css(closedFoldersSelector));
+  let closedFolders = await t.context.session.findElements(By.css(closedFoldersSelector));
 
-  // While their are closed folders
-  while (folders.length != 0) {
+  // While there are closed folders
+  while (closedFolders.length > 0) {
 
     // Find the first visible closed folder and click it
-    for (let folder of folders) {
-      if (await folder.isDisplayed()) {
-        await folder.click();
-        break;
-      }
-    }
+    await closedFolders[0].click();
 
-    folders = await t.context.session.findElements(By.css(closedFoldersSelector));
+    // Get the updated list of closed folders (as opening one folder may have revealled
+    // more folders)
+    closedFolders = await t.context.session.findElements(By.css(closedFoldersSelector));
   }
 };
 
 const checkFocus = async function (t, selector, index) {
-  return await t.context.session.executeScript(function (/* selector, index*/) {
+  return t.context.session.executeScript(function (/* selector, index*/) {
     const [selector, index] = arguments;
     const items = document.querySelectorAll(selector);
     return items[index] === document.activeElement;
@@ -47,24 +44,24 @@ const checkFocus = async function (t, selector, index) {
 };
 
 const checkFocusOnParentFolder = async function (t, el) {
-  return await t.context.session.executeScript(function () {
+  return t.context.session.executeScript(function () {
     const el = arguments[0];
 
     // the element is a folder
     if (el.hasAttribute('aria-expanded')) {
-      return document.activeElement == el.parentElement.closest('[role="treeitem"][aria-expanded]');
+      return document.activeElement === el.parentElement.closest('[role="treeitem"][aria-expanded]');
     }
     // the element is a folder
     else {
-      return document.activeElement == el.closest('[role="treeitem"][aria-expanded]');
+      return document.activeElement === el.closest('[role="treeitem"][aria-expanded]');
     }
   }, el);
 };
 
 const isTopLevelFolder = async function (t, el) {
-  return await t.context.session.executeScript(function () {
+  return t.context.session.executeScript(function () {
     const el = arguments[0];
-    return el.parentElement.getAttribute('role') == 'tree';
+    return el.parentElement.getAttribute('role') === 'tree';
   }, el);
 };
 
@@ -276,7 +273,7 @@ ariaTest('key down arrow moves focus', exampleFile, 'key-down-arrow', async (t) 
     await topLevelFolders[i].sendKeys(Key.ARROW_DOWN);
 
     // If we are on the last top level folder, the focus will not move
-    const nextIndex = i == topLevelFolders.length - 1 ?
+    const nextIndex = i === topLevelFolders.length - 1 ?
       i :
       i + 1;
 
@@ -304,7 +301,7 @@ ariaTest('key down arrow moves focus', exampleFile, 'key-down-arrow', async (t) 
     await items[i].sendKeys(Key.ARROW_DOWN);
 
     // If we are on the last item, the focus will not move
-    const nextIndex = i == items.length - 1 ?
+    const nextIndex = i === items.length - 1 ?
       i :
       i + 1;
 
@@ -325,7 +322,7 @@ ariaTest('key up arrow moves focus', exampleFile, 'key-up-arrow', async (t) => {
     await topLevelFolders[i].sendKeys(Key.ARROW_UP);
 
     // If we are on the last top level folder, the focus will not move
-    const nextIndex = i == 0 ?
+    const nextIndex = i === 0 ?
       i :
       i - 1;
 
@@ -353,7 +350,7 @@ ariaTest('key up arrow moves focus', exampleFile, 'key-up-arrow', async (t) => {
     await items[i].sendKeys(Key.ARROW_UP);
 
     // If we are on the last item, the focus will not move
-    const nextIndex = i == 0 ?
+    const nextIndex = i === 0 ?
       i :
       i - 1;
 
@@ -645,7 +642,7 @@ ariaTest('asterisk key opens folders', exampleFile, 'key-asterisk', async (t) =>
     .findElements(By.css(ex.nextLevelFolderSelector));
   for (let el of subFoldersOfFirstFolder) {
     t.true(
-      await el.getAttribute('aria-expanded') == 'true',
+      await el.getAttribute('aria-expanded') === 'true',
       'Subfolders under the first top level folder should all be opened after sending one "*" to subfolder under first top level folder'
     );
   }
@@ -656,7 +653,7 @@ ariaTest('asterisk key opens folders', exampleFile, 'key-asterisk', async (t) =>
     .findElements(By.css(ex.nextLevelFolderSelector));
   for (let el of subFoldersOfSecondFolder) {
     t.true(
-      await el.getAttribute('aria-expanded') == 'false',
+      await el.getAttribute('aria-expanded') === 'false',
       'Subfolders under the second top level folder should all be closed after sending one "*" to subfolder under first top level folder'
     );
   }
@@ -667,7 +664,7 @@ ariaTest('asterisk key opens folders', exampleFile, 'key-asterisk', async (t) =>
     .findElements(By.css(ex.nextLevelFolderSelector));
   for (let el of subFoldersOfThirdFolder) {
     t.true(
-      await el.getAttribute('aria-expanded') == 'false',
+      await el.getAttribute('aria-expanded') === 'false',
       'Subfolders under the third top level folder should all be closed after sending one "*" to subfolder under first top level folder'
     );
   }
