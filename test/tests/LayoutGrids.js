@@ -18,16 +18,20 @@ const clickUntilDisabled = async (session, selector) => {
   }
 };
 
-const checkActiveElement = function (/* gridcellsSelector, index */) {
-  const gridcellsSelector = arguments[0];
-  const index = arguments[1];
-  const gridcells = document.querySelectorAll(gridcellsSelector);
-  const gridcell = gridcells[index];
-  return (document.activeElement === gridcell) || gridcell.contains(document.activeElement);
+const checkActiveElement = async function (t, gridcellsSelector, index) {
+  return t.context.session.executeScript(function () {
+
+    const gridcellsSelector = arguments[0];
+    const index = arguments[1];
+    const gridcells = document.querySelectorAll(gridcellsSelector);
+    const gridcell = gridcells[index];
+    return (document.activeElement === gridcell) || gridcell.contains(document.activeElement);
+
+  }, gridcellsSelector, index);
 };
 
 const focusOnOrInCell = async function (t, cellElement, focusable) {
-  return await t.context.session.executeScript(function () {
+  return t.context.session.executeScript(function () {
     const [cellElement, focusable] = arguments;
 
     if (focusable == 'gridcell') {
@@ -308,7 +312,7 @@ ariaTest('Right arrow key moves focus', 'grid/LayoutGrids.html', 'key-right-arro
     for (let index = 1; index < gridcellElements.length; index++) {
 
       await activeElement.sendKeys(Key.ARROW_RIGHT);
-      const correctActiveElement = await t.context.session.executeScript(checkActiveElement, ex.gridcellSelector, index);
+      const correctActiveElement = checkActiveElement(t, ex.gridcellSelector, index);
 
       t.truthy(
         correctActiveElement,
@@ -323,7 +327,7 @@ ariaTest('Right arrow key moves focus', 'grid/LayoutGrids.html', 'key-right-arro
     // Test arrow key on final element
 
     await activeElement.sendKeys(Key.ARROW_RIGHT);
-    const correctActiveElement = await t.context.session.executeScript(checkActiveElement, ex.gridcellSelector, gridcellElements.length - 1);
+    const correctActiveElement = checkActiveElement(t, ex.gridcellSelector, gridcellElements.length - 1);
     t.truthy(
       correctActiveElement,
       'Example ' + exId + ': Right Arrow sent to final gridcell should not move focus.'
@@ -358,7 +362,7 @@ ariaTest('Left arrow key moves focus', 'grid/LayoutGrids.html', 'key-left-arrow'
     for (let index = gridcellElements.length - 2; index > -1; index--) {
 
       await activeElement.sendKeys(Key.ARROW_LEFT);
-      const correctActiveElement = await t.context.session.executeScript(checkActiveElement, ex.gridcellSelector, index);
+      const correctActiveElement = checkActiveElement(t, ex.gridcellSelector, index);
 
       t.truthy(
         correctActiveElement,
@@ -373,7 +377,7 @@ ariaTest('Left arrow key moves focus', 'grid/LayoutGrids.html', 'key-left-arrow'
     // Test arrow left on the first cell
 
     await activeElement.sendKeys(Key.ARROW_LEFT);
-    const correctActiveElement = await t.context.session.executeScript(checkActiveElement, ex.gridcellSelector, 0);
+    const correctActiveElement = checkActiveElement(t, ex.gridcellSelector, 0);
     t.truthy(
       correctActiveElement,
       'Example ' + exId + ': Left Arrow sent to fist gridcell should not move focus.'
@@ -408,7 +412,7 @@ ariaTest('Down arrow key moves focus', 'grid/LayoutGrids.html', 'key-down-arrow'
     for (let index = 1; index < gridcellElements.length; index++) {
 
       await activeElement.sendKeys(Key.ARROW_DOWN);
-      const correctActiveElement = await t.context.session.executeScript(checkActiveElement, selector, index);
+      const correctActiveElement = checkActiveElement(t, selector, index);
 
       t.truthy(
         correctActiveElement,
@@ -423,7 +427,7 @@ ariaTest('Down arrow key moves focus', 'grid/LayoutGrids.html', 'key-down-arrow'
     // Test arrow key on final row
 
     await activeElement.sendKeys(Key.ARROW_DOWN);
-    const correctActiveElement = await t.context.session.executeScript(checkActiveElement, selector, gridcellElements.length - 1);
+    const correctActiveElement = checkActiveElement(t, selector, gridcellElements.length - 1);
     t.truthy(
       correctActiveElement,
       'Example ' + exId + ': Down Arrow sent to final gridcell should not move focus.'
@@ -465,7 +469,7 @@ ariaTest('Up arrow key moves focus', 'grid/LayoutGrids.html', 'key-up-arrow', as
     for (let index = gridcellElements.length - 2; index > -1; index--) {
 
       await activeElement.sendKeys(Key.ARROW_UP);
-      const correctActiveElement = await t.context.session.executeScript(checkActiveElement, selector, index);
+      const correctActiveElement = checkActiveElement(t, selector, index);
 
       t.truthy(
         correctActiveElement,
@@ -480,7 +484,7 @@ ariaTest('Up arrow key moves focus', 'grid/LayoutGrids.html', 'key-up-arrow', as
     // Test up arrow on first row
 
     await activeElement.sendKeys(Key.ARROW_UP);
-    const correctActiveElement = await t.context.session.executeScript(checkActiveElement, selector, 0);
+    const correctActiveElement = checkActiveElement(t, selector, 0);
     t.truthy(
       correctActiveElement,
       'Example ' + exId + ': Up Arrow sent to fist gridcell should not move focus.'
@@ -522,7 +526,7 @@ ariaTest('PageDown key moves focus', 'grid/LayoutGrids.html', 'key-page-down', a
     for (let index = jumpBy; index < gridcellElements.length; index += jumpBy) {
 
       await activeElement.sendKeys(Key.PAGE_DOWN);
-      const correctActiveElement = await t.context.session.executeScript(checkActiveElement, selector, index);
+      const correctActiveElement = checkActiveElement(t, selector, index);
 
       t.truthy(
         correctActiveElement,
@@ -538,7 +542,7 @@ ariaTest('PageDown key moves focus', 'grid/LayoutGrids.html', 'key-page-down', a
     // Test paging key on final element
 
     await activeElement.sendKeys(Key.PAGE_DOWN);
-    const correctActiveElement = await t.context.session.executeScript(checkActiveElement, selector, finalIndex);
+    const correctActiveElement = checkActiveElement(t, selector, finalIndex);
     t.truthy(
       correctActiveElement,
       initialCell + ' cell in row: Page Down sent to final gridcell should not move focus.'
@@ -589,7 +593,7 @@ ariaTest('PageUp key moves focus', 'grid/LayoutGrids.html', 'key-page-up', async
     const penultimate = gridcellElements.length - 1 - finalPageLength;
     for (let index = penultimate; index > -1; index -= jumpBy) {
       await activeElement.sendKeys(Key.PAGE_UP);
-      const correctActiveElement = await t.context.session.executeScript(checkActiveElement, selector, index);
+      const correctActiveElement = checkActiveElement(t, selector, index);
 
       t.truthy(
         correctActiveElement,
@@ -605,7 +609,7 @@ ariaTest('PageUp key moves focus', 'grid/LayoutGrids.html', 'key-page-up', async
     // Test paging key on final element
 
     await activeElement.sendKeys(Key.PAGE_UP);
-    const correctActiveElement = await t.context.session.executeScript(checkActiveElement, selector, finalIndex);
+    const correctActiveElement = checkActiveElement(t, selector, finalIndex);
     t.truthy(
       correctActiveElement,
       initialCell + ' cell in row: Page Up sent to first gridcell should not move focus.'
