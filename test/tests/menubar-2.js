@@ -62,7 +62,7 @@ const exampleInitialized = async function (t) {
 };
 
 const checkmarkVisible = async function (t, selector, index) {
-  return await t.context.session.executeScript(function () {
+  return t.context.session.executeScript(function () {
     const [selector, index] = arguments;
     const checkmarkContent = window.getComputedStyle(
       document.querySelectorAll(selector)[index], ':before'
@@ -75,7 +75,7 @@ const checkmarkVisible = async function (t, selector, index) {
 };
 
 const checkFocus = async function (t, selector, index) {
-  return await t.context.session.executeScript(function () {
+  return t.context.session.executeScript(function () {
     const [selector, index] = arguments;
     const items = document.querySelectorAll(selector);
     return items[index] === document.activeElement;
