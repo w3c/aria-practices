@@ -23,15 +23,10 @@ const openAllFolders = async function (t) {
   const closedFoldersSelector = ex.treeitemSelector + '[aria-expanded="false"]';
   let closedFolders = await t.context.session.findElements(By.css(closedFoldersSelector));
 
-  // While there are closed folders
-  while (closedFolders.length > 0) {
-
-    // Find the first visible closed folder and click it
-    await closedFolders[0].click();
-
-    // Get the updated list of closed folders (as opening one folder may have revealled
-    // more folders)
-    closedFolders = await t.context.session.findElements(By.css(closedFoldersSelector));
+  // Going through all closed folder elements in dom order will open parent
+  // folders first, therefore all child folders will be visible before clicked
+  for (let folder of closedFolders) {
+    await folder.click();
   }
 };
 
