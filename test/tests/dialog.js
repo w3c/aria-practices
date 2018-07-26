@@ -41,25 +41,25 @@ const ex = {
     '#dialog3 a'
   ],
   dialog4FocusableEls: [
-    '#dialog4 button',
+    '#dialog4 button'
   ]
 };
 
-const openDialog1 = async function(t) {
+const openDialog1 = async function (t) {
   // Click the button to open the address form dialog
   await t.context.session
     .findElement(By.css(ex.dialog1ButtonSelector))
     .click();
 
   // Make sure the appropriate dialog is open
-  const dialog = await t.context.session.findElement(By.css("#dialog1"));
+  const dialog = await t.context.session.findElement(By.css('#dialog1'));
   assert(
     await dialog.isDisplayed(),
-    "dialog1 should have successfullly openned"
+    'dialog1 should have successfullly openned'
   );
 };
 
-const openDialog2 = async function(t) {
+const openDialog2 = async function (t) {
   // Click the button to open the "address form" dialog
   await t.context.session
     .findElement(By.css(ex.dialog1ButtonSelector))
@@ -71,14 +71,14 @@ const openDialog2 = async function(t) {
     .click();
 
   // Make sure the appropriate dialog is open
-  const dialog = await t.context.session.findElement(By.css("#dialog2"));
+  const dialog = await t.context.session.findElement(By.css('#dialog2'));
   assert(
     await dialog.isDisplayed(),
-    "dialog2 should have successfullly openned"
+    'dialog2 should have successfullly openned'
   );
 };
 
-const openDialog3 = async function(t) {
+const openDialog3 = async function (t) {
   // Click the button to open the "address form" dialog
   await t.context.session
     .findElement(By.css(ex.dialog1ButtonSelector))
@@ -90,14 +90,14 @@ const openDialog3 = async function(t) {
     .click();
 
   // Make sure the appropriate dialog is open
-  const dialog = await t.context.session.findElement(By.css("#dialog3"));
+  const dialog = await t.context.session.findElement(By.css('#dialog3'));
   assert(
     await dialog.isDisplayed(),
-    "dialog3 should have successfullly openned"
+    'dialog3 should have successfullly openned'
   );
 };
 
-const openDialog4 = async function(t) {
+const openDialog4 = async function (t) {
   // Click the button to open the "address form" dialog
   await t.context.session
     .findElement(By.css(ex.dialog1ButtonSelector))
@@ -114,10 +114,10 @@ const openDialog4 = async function(t) {
     .click();
 
   // Make sure the appropriate dialog is open
-  const dialog = await t.context.session.findElement(By.css("#dialog2"));
+  const dialog = await t.context.session.findElement(By.css('#dialog2'));
   assert(
     await dialog.isDisplayed(),
-    "dialog4 should have successfullly openned"
+    'dialog4 should have successfullly openned'
   );
 };
 
@@ -127,7 +127,7 @@ const reload = async (t) => {
 
 const checkFocus = async function (t, selector) {
   return t.context.session.executeScript(function () {
-    const [selector] = arguments;
+    const [ selector ] = arguments;
     const items = document.querySelector(selector);
     return items === document.activeElement;
   }, selector);
@@ -225,8 +225,8 @@ ariaTest('', exampleFile, 'key-tab', async (t) => {
   for (let i = 0; i < ex.dialog1FocusableEls.length; i++) {
     t.true(
       await checkFocus(t, ex.dialog1FocusableEls[i]),
-      'Focus should be on "' + ex.dialog1FocusableEls[i] + '" after '
-        + i + ' tabs have been sent to dialog 1'
+      'Focus should be on "' + ex.dialog1FocusableEls[i] + '" after ' +
+        i + ' tabs have been sent to dialog 1'
     );
 
     await sendTabToCurrentlyFocused(t);
@@ -236,8 +236,8 @@ ariaTest('', exampleFile, 'key-tab', async (t) => {
   let totaltabs = ex.dialog1FocusableEls.length;
   t.true(
     await checkFocus(t, ex.dialog1FocusableEls[0]),
-    'Focus should be on "' + ex.dialog1FocusableEls[0] + '" after '
-      + totaltabs + ' tabs have been sent to dialog 1'
+    'Focus should be on "' + ex.dialog1FocusableEls[0] + '" after ' +
+      totaltabs + ' tabs have been sent to dialog 1'
   );
 
   /* DIALOG 2 */
@@ -252,8 +252,8 @@ ariaTest('', exampleFile, 'key-tab', async (t) => {
   for (let i = 0; i < ex.dialog2FocusableEls.length; i++) {
     t.true(
       await checkFocus(t, ex.dialog2FocusableEls[i]),
-      'Focus should be on "' + ex.dialog2FocusableEls[i] + '" after '
-        + (i+1) + ' tabs have been sent to dialog 2'
+      'Focus should be on "' + ex.dialog2FocusableEls[i] + '" after ' +
+        (i + 1) + ' tabs have been sent to dialog 2'
     );
 
     await sendTabToCurrentlyFocused(t);
@@ -263,8 +263,8 @@ ariaTest('', exampleFile, 'key-tab', async (t) => {
   totaltabs = ex.dialog2FocusableEls.length + 1;
   t.true(
     await checkFocus(t, ex.dialog2FocusableEls[0]),
-    'Focus should be on "' +  ex.dialog2FocusableEls[0]+ '" after '
-      + totaltabs + ' tabs have been sent to dialog 1'
+    'Focus should be on "' +  ex.dialog2FocusableEls[0] + '" after ' +
+      totaltabs + ' tabs have been sent to dialog 1'
   );
 
   /* DIALOG 3 */
@@ -276,8 +276,8 @@ ariaTest('', exampleFile, 'key-tab', async (t) => {
   for (let i = 0; i < ex.dialog3FocusableEls.length; i++) {
     t.true(
       await checkFocus(t, ex.dialog3FocusableEls[i]),
-      'Focus should be on item "' + ex.dialog3FocusableEls[i] + '" after '
-        + i + ' tabs have been sent to dialog 3'
+      'Focus should be on item "' + ex.dialog3FocusableEls[i] + '" after ' +
+        i + ' tabs have been sent to dialog 3'
     );
 
     await sendTabToCurrentlyFocused(t);
@@ -287,8 +287,8 @@ ariaTest('', exampleFile, 'key-tab', async (t) => {
   totaltabs = ex.dialog3FocusableEls.length + 1;
   t.true(
     await checkFocus(t, ex.dialog3FocusableEls[0]),
-    'Focus should be on "' + ex.dialog3FocusableEls[0] + '" after '
-      + totaltabs + ' tabs have been sent to dialog 3'
+    'Focus should be on "' + ex.dialog3FocusableEls[0] + '" after ' +
+      totaltabs + ' tabs have been sent to dialog 3'
   );
 
   /* DIALOG 4 */
@@ -322,11 +322,11 @@ ariaTest('', exampleFile, 'key-shift-tab', async (t) => {
   await sendShiftTabToCurrentlyFocused(t);
   let shifttabcount = 1;
 
-  for (let i = ex.dialog1FocusableEls.length-1; i >= 0; i--) {
+  for (let i = ex.dialog1FocusableEls.length - 1; i >= 0; i--) {
     t.true(
       await checkFocus(t, ex.dialog1FocusableEls[i]),
-      'Focus should be on item "' + ex.dialog1FocusableEls[i] + '" after ' + shifttabcount
-        + ' shift tabs have been sent to dialog 1'
+      'Focus should be on item "' + ex.dialog1FocusableEls[i] + '" after ' + shifttabcount +
+        ' shift tabs have been sent to dialog 1'
     );
 
     await sendShiftTabToCurrentlyFocused(t);
@@ -338,8 +338,8 @@ ariaTest('', exampleFile, 'key-shift-tab', async (t) => {
   let lastindex = ex.dialog1FocusableEls.length - 1;
   t.true(
     await checkFocus(t, ex.dialog1FocusableEls[lastindex]),
-    'Focus should be on "' + ex.dialog1FocusableEls[lastindex] + '" after '
-      + totaltabs + ' tabs have been sent to dialog 1'
+    'Focus should be on "' + ex.dialog1FocusableEls[lastindex] + '" after ' +
+      totaltabs + ' tabs have been sent to dialog 1'
   );
 
   /* DIALOG 2 */
@@ -352,11 +352,11 @@ ariaTest('', exampleFile, 'key-shift-tab', async (t) => {
   await sendShiftTabToCurrentlyFocused(t); // Focus will be on the first focusable element second
   shifttabcount = 2;
 
-  for (let i = ex.dialog2FocusableEls.length-1; i >= 0; i--) {
+  for (let i = ex.dialog2FocusableEls.length - 1; i >= 0; i--) {
     t.true(
       await checkFocus(t, ex.dialog2FocusableEls[i]),
-      'Focus should be on item "' + ex.dialog2FocusableEls[i] + '" after ' + shifttabcount
-        + ' shift tabs have been sent to dialog 2'
+      'Focus should be on item "' + ex.dialog2FocusableEls[i] + '" after ' + shifttabcount +
+        ' shift tabs have been sent to dialog 2'
     );
     await sendShiftTabToCurrentlyFocused(t);
     shifttabcount++;
@@ -367,8 +367,8 @@ ariaTest('', exampleFile, 'key-shift-tab', async (t) => {
   lastindex = ex.dialog2FocusableEls.length - 1;
   t.true(
     await checkFocus(t, ex.dialog2FocusableEls[lastindex]),
-    'Focus should be on "' + ex.dialog2FocusableEls[lastindex] + '" after '
-      + totaltabs + ' tabs have been sent to dialog 1'
+    'Focus should be on "' + ex.dialog2FocusableEls[lastindex] + '" after ' +
+      totaltabs + ' tabs have been sent to dialog 1'
   );
 
 
@@ -381,11 +381,11 @@ ariaTest('', exampleFile, 'key-shift-tab', async (t) => {
   await sendShiftTabToCurrentlyFocused(t);
   shifttabcount = 1;
 
-  for (let i = ex.dialog3FocusableEls.length-1; i >= 0; i--) {
+  for (let i = ex.dialog3FocusableEls.length - 1; i >= 0; i--) {
     t.true(
       await checkFocus(t, ex.dialog3FocusableEls[i]),
-      'Focus should be on item "' + ex.dialog3FocusableEls[i] + '" after ' + shifttabcount
-        + ' shift tabs have been sent to dialog 3'
+      'Focus should be on item "' + ex.dialog3FocusableEls[i] + '" after ' + shifttabcount +
+        ' shift tabs have been sent to dialog 3'
     );
 
     await sendShiftTabToCurrentlyFocused(t);
@@ -397,8 +397,8 @@ ariaTest('', exampleFile, 'key-shift-tab', async (t) => {
   lastindex = ex.dialog3FocusableEls.length - 1;
   t.true(
     await checkFocus(t, ex.dialog3FocusableEls[lastindex]),
-    'Focus should be on "' + ex.dialog3FocusableEls[lastindex] + '" after '
-      + totaltabs + ' tabs have been sent to dialog 3'
+    'Focus should be on "' + ex.dialog3FocusableEls[lastindex] + '" after ' +
+      totaltabs + ' tabs have been sent to dialog 3'
   );
 
   /* DIALOG 4 */
@@ -432,7 +432,7 @@ ariaTest('', exampleFile, 'key-escape', async (t) => {
     const modalEl = await t.context.session.findElement(By.css(ex.dialog1Selector));
     t.false(
       await modalEl.isDisplayed(),
-      "Modal 1 should not be displayed after sending escape to element: " + selector
+      'Modal 1 should not be displayed after sending escape to element: ' + selector
     );
 
     await reload(t);
@@ -447,7 +447,7 @@ ariaTest('', exampleFile, 'key-escape', async (t) => {
     const modalEl = await t.context.session.findElement(By.css(ex.dialog2Selector));
     t.false(
       await modalEl.isDisplayed(),
-      "Modal 2 should not be displayed after sending escape to element: " + selector
+      'Modal 2 should not be displayed after sending escape to element: ' + selector
     );
 
     await reload(t);
@@ -462,7 +462,7 @@ ariaTest('', exampleFile, 'key-escape', async (t) => {
     const modalEl = await t.context.session.findElement(By.css(ex.dialog3Selector));
     t.false(
       await modalEl.isDisplayed(),
-      "Modal 3 should not be displayed after sending escape to element: " + selector
+      'Modal 3 should not be displayed after sending escape to element: ' + selector
     );
 
     await reload(t);
@@ -476,7 +476,7 @@ ariaTest('', exampleFile, 'key-escape', async (t) => {
   const modalEl = await t.context.session.findElement(By.css(ex.dialog4Selector));
   t.false(
     await modalEl.isDisplayed(),
-    "Modal 4 should not be displayed after sending escape to element: " + ex.dialog4FocusableEls[0]
+    'Modal 4 should not be displayed after sending escape to element: ' + ex.dialog4FocusableEls[0]
   );
 
 });

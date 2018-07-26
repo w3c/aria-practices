@@ -35,7 +35,7 @@ module.exports = async function assertAriaLabelledby (t, exampleId, elementSelec
 
   let labelText = await t.context.session.executeScript(async function () {
     const id = arguments[0];
-    let el = document.querySelector("#" + id);
+    let el = document.querySelector('#' + id);
     return el.innerText;
   }, labelId);
 
