@@ -7,7 +7,7 @@ const assert = require('assert');
  * Confirm the aria-labelledby element.
  *
  * @param {obj} t                  - ava execution object
- * @param {String} exampleId       - the id of the container element within the label must exist
+ * @param {String} exampleId       - the id example (in case of multiple examples per page)
  * @param {String} elementSelector - the element with aria-labelledby set
  */
 
@@ -16,7 +16,7 @@ module.exports = async function assertAriaLabelledby (t, exampleId, elementSelec
     .findElement(By.css(elementSelector));
 
   let ariaLabelledbyExists = await t.context.session.executeScript(async function () {
-    selector = arguments[0];
+    const selector = arguments[0];
     let el = document.querySelector(selector);
     return el.hasAttribute('aria-labelledby');
   }, elementSelector);
@@ -33,12 +33,14 @@ module.exports = async function assertAriaLabelledby (t, exampleId, elementSelec
     '"aria-labelledby" attribute should have a value on element: ' + elementSelector
   );
 
-  let labelElement = await t.context.session
-    .findElement(By.id(exampleId))
-    .findElement(By.id(labelId));
+  let labelText = await t.context.session.executeScript(async function () {
+    const id = arguments[0];
+    let el = document.querySelector("#" + id);
+    return el.innerText;
+  }, labelId);
 
   assert.ok(
-    await labelElement.getText(),
+    labelText,
     'Element with id "' + labelId + '" should contain label text in example: ' + exampleId
   );
 
