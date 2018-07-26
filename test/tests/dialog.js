@@ -175,7 +175,7 @@ const sendEscapeTo = async function (t, selector) {
 
 // Attributes
 
-ariaTest('', exampleFile, 'dialog-role', async (t) => {
+ariaTest('role="dialog" on div element', exampleFile, 'dialog-role', async (t) => {
 
   t.plan(5);
 
@@ -196,7 +196,7 @@ ariaTest('', exampleFile, 'dialog-role', async (t) => {
   }
 });
 
-ariaTest('', exampleFile, 'aria-labelledby', async (t) => {
+ariaTest('"aria-labelledby" attribute on role="dialog"', exampleFile, 'aria-labelledby', async (t) => {
   t.plan(1);
   await assertAriaLabelledby(t, 'ex1', ex.dialogSelector);
 });
@@ -206,7 +206,7 @@ ariaTest('', exampleFile, 'aria-describedby', async (t) => {
   await assertAriaDescribedby(t, 'ex1', ex.dialogsWithDescribedbySelector);
 });
 
-ariaTest('', exampleFile, 'aria-modal', async (t) => {
+ariaTest('"aria-modal" attribute on role="dialog"', exampleFile, 'aria-modal', async (t) => {
   t.plan(1);
   await assertAttributeValues(t, ex.dialogSelector, 'aria-modal', 'true');
 });
@@ -214,7 +214,7 @@ ariaTest('', exampleFile, 'aria-modal', async (t) => {
 
 // Keys
 
-ariaTest('', exampleFile, 'key-tab', async (t) => {
+ariaTest('tab changes focus within dialog', exampleFile, 'key-tab', async (t) => {
   t.plan(18);
 
   /* DIALOG 1 */
@@ -311,7 +311,7 @@ ariaTest('', exampleFile, 'key-tab', async (t) => {
 
 });
 
-ariaTest('', exampleFile, 'key-shift-tab', async (t) => {
+ariaTest('shift tab changes focus within dialog', exampleFile, 'key-shift-tab', async (t) => {
   t.plan(18);
 
   /* DIALOG 1 */
@@ -420,7 +420,7 @@ ariaTest('', exampleFile, 'key-shift-tab', async (t) => {
   );
 });
 
-ariaTest('', exampleFile, 'key-escape', async (t) => {
+ariaTest('escape closes dialog', exampleFile, 'key-escape', async (t) => {
   t.plan(14);
 
   /* DIALOG 1 */
