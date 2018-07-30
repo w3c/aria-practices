@@ -263,7 +263,7 @@ ariaTest('"down arrow" on role="menuitem"', exampleFile, 'menu-key-down-arrow', 
     const itemText = await items[index].getText();
     t.true(
       await checkFocus(t, ex.menuitemSelector, index + 1),
-      'down arrow on item "' + itemText + '" should put focus on the next time.'
+      'down arrow on item "' + itemText + '" should put focus on the next item.'
     );
   }
 
@@ -272,7 +272,7 @@ ariaTest('"down arrow" on role="menuitem"', exampleFile, 'menu-key-down-arrow', 
   const itemText = await items[items.length - 1].getText();
   t.true(
     await checkFocus(t, ex.menuitemSelector, 0),
-    'down arrow on item "' + itemText + '" should put focus to first itemx.'
+    'down arrow on item "' + itemText + '" should put focus to first item.'
   );
 
 });
@@ -299,7 +299,7 @@ ariaTest('"up arrow" on role="menuitem"', exampleFile, 'menu-key-up-arrow', asyn
     const itemText = await items[index].getText();
     t.true(
       await checkFocus(t, ex.menuitemSelector, index - 1),
-      'down arrow on item "' + itemText + '" should put focus on the previous time.'
+      'down arrow on item "' + itemText + '" should put focus on the previous item.'
     );
   }
 
