@@ -12,37 +12,38 @@ const assert = require('assert');
  */
 
 module.exports = async function assertAriaLabelledby (t, exampleId, elementSelector) {
-  let element = await t.context.session
-    .findElement(By.css(elementSelector));
+  const elements = await t.context.session.findElements(By.css(elementSelector));
 
-  let ariaLabelledbyExists = await t.context.session.executeScript(async function () {
-    const selector = arguments[0];
-    let el = document.querySelector(selector);
-    return el.hasAttribute('aria-labelledby');
-  }, elementSelector);
+  for (let element of elements) {
+    let ariaLabelledbyExists = await t.context.session.executeScript(async function () {
+      const selector = arguments[0];
+      let el = document.querySelector(selector);
+      return el.hasAttribute('aria-labelledby');
+    }, elementSelector);
 
-  assert(
-    ariaLabelledbyExists,
-    '"aria-labelledby" attribute should exist on element: ' + elementSelector
-  );
+    assert(
+      ariaLabelledbyExists,
+      '"aria-labelledby" attribute should exist on element(s): ' + elementSelector
+    );
 
-  let labelId = await element.getAttribute('aria-labelledby');
+    let labelId = await element.getAttribute('aria-labelledby');
 
-  assert.ok(
-    labelId,
-    '"aria-labelledby" attribute should have a value on element: ' + elementSelector
-  );
+    assert.ok(
+      labelId,
+      '"aria-labelledby" attribute should have a value on element(s): ' + elementSelector
+    );
 
-  let labelText = await t.context.session.executeScript(async function () {
-    const id = arguments[0];
-    let el = document.querySelector('#' + id);
-    return el.innerText;
-  }, labelId);
+    let labelText = await t.context.session.executeScript(async function () {
+      const id = arguments[0];
+      let el = document.querySelector('#' + id);
+      return el.innerText;
+    }, labelId);
 
-  assert.ok(
-    labelText,
-    'Element with id "' + labelId + '" should contain label text in example: ' + exampleId
-  );
+    assert.ok(
+      labelText,
+      'Element with id "' + labelId + '" should contain label text in example: ' + exampleId
+    );
+  }
 
   t.pass();
 };

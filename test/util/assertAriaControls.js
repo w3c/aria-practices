@@ -12,33 +12,34 @@ const assert = require('assert');
  */
 
 module.exports = async function assertAriaControls (t, exampleId, elementSelector) {
-  const element = await t.context.session.findElement(By.css(elementSelector));
+  const elements = await t.context.session.findElements(By.css(elementSelector));
 
-  const ariaControlsExists = await t.context.session.executeScript(async function () {
-    const selector = arguments[0];
-    let el = document.querySelector(selector);
-    return el.hasAttribute('aria-controls');
-  }, elementSelector);
+  for (let element of elements) {
+    const ariaControlsExists = await t.context.session.executeScript(async function () {
+      const selector = arguments[0];
+      let el = document.querySelector(selector);
+      return el.hasAttribute('aria-controls');
+    }, elementSelector);
 
-  assert.ok(
-    ariaControlsExists,
-    '"aria-controls" attribute should exist on element: ' + elementSelector
-  );
+    assert.ok(
+      ariaControlsExists,
+      '"aria-controls" attribute should exist on element(s): ' + elementSelector
+    );
 
-  const controlId = await element.getAttribute('aria-controls');
+    const controlId = await element.getAttribute('aria-controls');
 
-  assert.ok(
-    controlId,
-    '"aria-controls" attribute should have a value on element: ' + elementSelector
-  );
+    assert.ok(
+      controlId,
+      '"aria-controls" attribute should have a value on element(s): ' + elementSelector
+    );
 
-  const controlEl = await t.context.session.findElements(By.id(controlId));
+    const controlEl = await t.context.session.findElements(By.id(controlId));
 
-  assert.equal(
-    controlEl.length,
-    1,
-    'Element with id "' + controlId + '" should exist in: ' + exampleId
-  );
-
+    assert.equal(
+      controlEl.length,
+      1,
+      'Element with id "' + controlId + '" should exist in: ' + exampleId
+    );
+  }
   t.pass();
 };
