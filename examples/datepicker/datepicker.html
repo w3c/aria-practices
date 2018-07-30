@@ -37,44 +37,49 @@
 
     <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
     <div id="example">
-    <div class="labels">
+
       <div>
-        <label for="id-date-1">Date (mm/dd/yyyy):  </label> <br/>
-        <input type="text" id="id-date-1">
+        <label for="id-date-1">Date (mm/dd/yyyy):</label>
+        <div>
+          <input class="date"
+                type="text"
+                id="id-date-1"
+                aria-haspopup="true"
+                aria-controls="id-datepicker-1">
+          <button class="dateButton" tabindex="-1">
+            <i class="fa fa-calendar-alt fa-3x"></i>
+          </button>
+        </div>
+
       </div>
 
-      <button class="dateButton" aria-expanded="false" aria-haspopup="true" aria-controls="id-datepicker-1">
-          <i class="fa fa-calendar-alt fa-3x"></i>
-      </button>
-    </div>
+      <div id="id-datepicker-1" class="datepicker">
 
-        <div id="id-datepicker-1" class="datepicker">
-
-          <div class="header">
-            <button class="prev-year">&lang;&lang;</button>
-            <button class="prev-month">&lang;</button>
-            <span class="month-year-label"></span>
-            <button class="next-month">&rang;</button>
-            <button class="next-year">&rang;&rang;</button>
-          </div>
-
-          <table class="dates" role="grid">
-            <theader>
-              <tr>
-                <th scope="col" aria-label="Sunday">Su</th>
-                <th scope="col" aria-label="Monday">Mo</th>
-                <th scope="col" aria-label="Tuesday">Tu</th>
-                <th scope="col" aria-label="Wednesday">We</th>
-                <th scope="col" aria-label="Thursday">Th</th>
-                <th scope="col" aria-label="Friday">Fr</th>
-                <th scope="col" aria-label="Saturday">Sa</th>
-              </tr>
-            </theader>
-            <tbody class="curr">
-
-            </tbody>
-          </table>
+        <div class="header">
+          <button class="prev-year">&lang;&lang;</button>
+          <button class="prev-month">&lang;</button>
+          <span class="month-year-label"></span>
+          <button class="next-month">&rang;</button>
+          <button class="next-year">&rang;&rang;</button>
         </div>
+
+        <table class="dates" role="grid">
+          <theader>
+            <tr>
+              <th scope="col" aria-label="Sunday">Su</th>
+              <th scope="col" aria-label="Monday">Mo</th>
+              <th scope="col" aria-label="Tuesday">Tu</th>
+              <th scope="col" aria-label="Wednesday">We</th>
+              <th scope="col" aria-label="Thursday">Th</th>
+              <th scope="col" aria-label="Friday">Fr</th>
+              <th scope="col" aria-label="Saturday">Sa</th>
+            </tr>
+          </theader>
+          <tbody class="curr">
+
+          </tbody>
+        </table>
+      </div>
 
     </div>
     <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>

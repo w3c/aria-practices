@@ -1,5 +1,19 @@
 
 window.addEventListener('load' , function(){
+  var datepickers = document.getElementsByClassName('datepicker');
+
+  for(let i = 0; i < datepickers.length; i++) {
+    var dp = new DatePicker(datepickers[i]);
+    dp.init();
+  }
+
+  var dates = document.getElementsByClassName('input.date');
+
+  for(let i = 0; i < dates.length; i++) {
+    var d = new Date(dates[i]);
+    d.init();
+  }
+
   var button = document.getElementsByClassName('dateButton')[0];
   button.addEventListener('click', function(){
       var val = button.getAttribute('aria-expanded');
@@ -120,9 +134,11 @@ Dates.prototype.handlePrevMonthButton = function (event){
 
 
 
-Dates.prototype.toggleNextYearButton = function(){
+Dates.prototype.moveToNextYear = function(day){
+    if (typeof day !== 'string') day = '1';
+
     this.year++;
-    this.updateDates();
+    this.updateDates(day);
 }
 Dates.prototype.togglePrevYearButton = function(){
     this.year--;
@@ -168,8 +184,8 @@ Dates.prototype.setSelectDate = function(dateCell){
     }
     document.getElementById('id-date-1').value = numberOfMonth + '/' + this.selectDate + '/' + this.year;
 }
-Dates.prototype.setFocusDate = function(node) { 
-    console.log(this.datesArrayDOM); 
+Dates.prototype.setFocusDate = function(node) {
+    console.log(this.datesArrayDOM);
     console.log(node);
     for(var i=0; i<this.datesArrayDOM.length;i++){
         if(this.datesArrayDOM[i].domNode === node){
@@ -187,12 +203,12 @@ Dates.prototype.setFocusToRight = function (dateCell){
     var nextDate = false;
     var nextIndex = this.datesArray.indexOf(dateCell.domNode) + 1;
     if(nextIndex > this.datesArray.length-1) {
-        console.log('hi'); 
+        console.log('hi');
         this.toggleNextMonthButton();
         nextIndex = 0;
     }
     nextDate = this.datesArray[nextIndex];
- 
+
     this.setFocusDate(nextDate);
   }
 
@@ -300,7 +316,7 @@ Dates.prototype.updateCalendar = function(month, year) {
         dc.init();
         this.datesArrayDOM.push(dc);
     }
-   
+
     this.datesArrayDOM[0].domNode.focus();
   }
   this.prev = false;
