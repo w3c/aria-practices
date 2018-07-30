@@ -18,7 +18,8 @@ git:
 
 branches:
   only:
-    master
+  - master
+  - bocoup
 
 install:
   - npm install && npm test
