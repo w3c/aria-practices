@@ -159,7 +159,14 @@ Dates.prototype.setSelectDate = function(dateCell){
     }
     console.log(dateCell);
     this.selectDate = dateCell.domNode.innerHTML;
-    document.getElementById('id-date-1').value = this.month + '/' + this.selectDate + '/' + this.year;
+    console.log(this.monthIndex.toString().length);
+    var numberOfMonth = null;
+    if(this.monthIndex.toString().length === 1){
+        numberOfMonth = "0" + (this.monthIndex + 1);
+    } else {
+        numberOfMonth = this.monthIndex + 1;
+    }
+    document.getElementById('id-date-1').value = numberOfMonth + '/' + this.selectDate + '/' + this.year;
 }
 Dates.prototype.setFocusDate = function(node) { 
     console.log(this.datesArrayDOM); 

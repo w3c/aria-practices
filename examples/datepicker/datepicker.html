@@ -133,10 +133,10 @@
       </thead>
       <tbody>
         <tr>
-          <th scope="row"><code>button</code></th>
+          <th scope="row"><code></code></th>
           <td></td>
           <td>
-            <code>div</code>, <code>a</code>
+            <code>button</code>
           </td>
           <td>
             <ul>
@@ -151,7 +151,7 @@
             <code>tabindex=&quot;0&quot;</code>
           </th>
           <td>
-            <code>div</code>, <code>a</code>
+            <code>button</code>
           </td>
           <td>
             <ul>
@@ -162,24 +162,79 @@
         </tr>
         <tr>
           <td></td>
-          <th scope="row"><code>aria-pressed=&quot;false&quot;</code></th>
-          <td><code>a</code></td>
+          <th scope="row">
+            <code>tabindex=&quot;-1&quot;</code>
+          </th>
+          <td>
+            <code>button</code>
+          </td>
           <td>
             <ul>
-              <li>Identifies the button as a toggle button.</li>
-              <li>Indicates the toggle button is not pressed.</li>
+              <li>Includes the element in the tab sequence but not focusable.</li>
             </ul>
           </td>
         </tr>
         <tr>
           <td></td>
-          <th scope="row"><code>aria-pressed=&quot;true&quot;</code></th>
+          <th scope="row"><code>aria-selected=&quot;false&quot;</code></th>
+          <td><code>button</code></td>
+          <td>
+            <ul>
+              <li>Identifies the button as a selectable button.</li>
+              <li>Indicates the button is not selected.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <th scope="row"><code>aria-selected=&quot;true&quot;</code></th>
           <td><code>a</code></td>
           <td>
           <ul>
-              <li>Identifies the button as a toggle button.</li>
-              <li>Indicates the toggle button is pressed.</li>
+              <li>Identifies the button as a selectable button.</li>
+              <li>Indicates the toggle button is selected .</li>
             </ul>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <th scope="row"><code>aria-expanded=&quot;false&quot;</code></th>
+          <td><code>button</code></td>
+          <td>
+          <ul>
+              <li>Identifies the button as a selectable button.</li>
+              <li>Indicates the toggle button is .</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <th scope="row"><code>aria-expanded=&quot;false&quot;</code></th>
+          <td><code>button</code></td>
+          <td>
+          <ul>
+            <li>Indicates the parent node is close, i.e., the descendant elements are invisible.</li>
+          </ul>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <th scope="row"><code>aria-expanded=&quot;true&quot;</code></th>
+          <td><code>button</code></td>
+          <td>
+          <ul>
+            <li>Indicates the parent node is open, i.e., the descendant elements are visible.</li>
+          </ul>
+          </td>
+        </tr>
+        <tr>
+          <td></td>
+          <th scope="row"><code>aira-label=&quot;IDREF&quot;</code></th>
+          <td><code>th</code></td>
+          <td>
+          <ul>
+            <li>Define a string to the current element.</li>
+          </ul>
           </td>
         </tr>
       </tbody>
