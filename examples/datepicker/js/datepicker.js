@@ -34,11 +34,16 @@ var Dates = function (domNode) {
     this.dateCells=[];
 
     this.datesArray=[];
+    this.datesArrayDOM = [];
+
     this.date = null;
 
 
     this.prev = false;
     this.next = false;
+
+    this.selectDate = null;
+
 }
 Dates.prototype.init = function () {
 
@@ -63,9 +68,11 @@ Dates.prototype.init = function () {
 
 
     this.updateCalendar(this.month, this.year);
-
-    this.date = new DateCell(this.datesArray[0], this);
-    this.date.init();
+    for(var i=0;i<this.datesArray.length;i++){
+        var dc = new DateCell(this.datesArray[i], this);
+        dc.init();
+        this.datesArrayDOM.push(dc);
+    }
     this.datesArray[0].focus();
 }
 
@@ -131,10 +138,8 @@ Dates.prototype.togglePrevMonthButton = function (){
     this.updateDates();
 }
 Dates.prototype.toggleNextMonthButton = function (){
-  this.tempMonthIndex = this.monthIndex;
     this.monthIndex++;
     if(this.monthIndex > 11) {
-        this.tempYear = this.year;
         this.monthIndex = 0;
         this.year++;
     }
@@ -143,6 +148,80 @@ Dates.prototype.toggleNextMonthButton = function (){
 }
 
 
+Dates.prototype.setSelectDate = function(dateCell){
+    for(var i=0;i<this.datesArrayDOM.length;i++){
+        this.datesArrayDOM[i].domNode.setAttribute("aria-selected", "false");
+        if(this.datesArrayDOM[i] === dateCell){
+            this.datesArrayDOM[i].domNode.tabIndex = '0';
+            this.datesArrayDOM[i].domNode.focus();
+            this.datesArrayDOM[i].domNode.setAttribute("aria-selected","true");
+        }
+    }
+    console.log(dateCell);
+    this.selectDate = dateCell.domNode.innerHTML;
+    document.getElementById('id-date-1').value = this.month + '/' + this.selectDate + '/' + this.year;
+}
+Dates.prototype.setFocusDate = function(node) { 
+    console.log(this.datesArrayDOM); 
+    console.log(node);
+    for(var i=0; i<this.datesArrayDOM.length;i++){
+        if(this.datesArrayDOM[i].domNode === node){
+            console.log('---');
+            this.datesArrayDOM[i].domNode.setAttribute("tabIndex", "0");
+            console.log('----');
+            this.datesArrayDOM[i].domNode.focus();
+        } else {
+            this.datesArrayDOM[i].domNode.setAttribute("tabIndex", "-1");
+        }
+    }
+}
+
+Dates.prototype.setFocusToRight = function (dateCell){
+    var nextDate = false;
+    var nextIndex = this.datesArray.indexOf(dateCell.domNode) + 1;
+    if(nextIndex > this.datesArray.length-1) {
+        console.log('hi'); 
+        this.toggleNextMonthButton();
+        nextIndex = 0;
+    }
+    nextDate = this.datesArray[nextIndex];
+ 
+    this.setFocusDate(nextDate);
+  }
+
+Dates.prototype.setFocusToDown = function (dateCell) {
+    var downDate = false;
+    var downIndex = this.datesArray.indexOf(dateCell.domNode) + 7;
+    if(downIndex > this.datesArray.length - 1){
+        this.toggleNextMonthButton();
+        downIndex = 0;
+    }
+    downDate = this.datesArray[downIndex];
+    this.setFocusDate(downDate);
+}
+Dates.prototype.setFocusToUp = function (dateCell){
+    var upDate = false;
+    var upIndex = this.datesArray.indexOf(dateCell.domNode) - 7;
+    if(upIndex < 0) {
+        this.togglePrevMonthButton();
+        upIndex = this.datesArray.length - 1;
+    }
+    upDate = this.datesArray[upIndex];
+    this.setFocusDate(upDate);
+}
+  Dates.prototype.setFocusToLeft = function (dateCell) {
+    var prevDate = false;
+    prevIndex = this.datesArray.indexOf(dateCell.domNode) - 1;
+
+    if(prevIndex < 0) {
+        this.togglePrevMonthButton();
+        prevIndex = this.datesArray.length-1;
+    }
+    prevDate = this.datesArray[prevIndex];
+
+    console.log(prevDate);
+    this.setFocusDate(prevDate);
+  }
 
 Dates.prototype.updateDates = function() {
 
@@ -151,6 +230,7 @@ Dates.prototype.updateDates = function() {
     this.month = months[this.monthIndex]; // show the string of the month
     this.dates= this.datesInMonth[this.monthIndex]; // show the number of dates in that month
     this.datesArray=[];
+    this.datesArrayDOM=[];
     this.tempYear = this.year;
 
     this.updateCalendar(this.month, this.year);
@@ -201,13 +281,20 @@ Dates.prototype.updateCalendar = function(month, year) {
 
 
   if(this.prev) { // if the calendar toggled to previous month/year
-    this.date = new DateCell(this.datesArray[this.datesArray.length-1], this);
-    this.date.init();
-    this.datesArray[this.datesArray.length-1].focus();
+    for(var i=0;i<this.datesArray.length;i++){
+        var dc = new DateCell(this.datesArray[i], this);
+        dc.init();
+        this.datesArrayDOM.push(dc);
+    }
+    this.datesArrayDOM[this.datesArrayDOM.length-1].domNode.focus();
   } else if (this.next) {
-    this.date = new DateCell(this.datesArray[0], this);
-    this.date.init();
-    this.datesArray[0].focus();
+    for(var i=0;i<this.datesArray.length;i++){
+        var dc = new DateCell(this.datesArray[i], this);
+        dc.init();
+        this.datesArrayDOM.push(dc);
+    }
+   
+    this.datesArrayDOM[0].domNode.focus();
   }
   this.prev = false;
   this.next = false;
