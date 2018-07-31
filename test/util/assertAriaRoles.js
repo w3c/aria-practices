@@ -4,7 +4,8 @@ const { By } = require('selenium-webdriver');
 const assert = require('assert');
 
 /**
- * Confirm the aria-labelledby element.
+ * Confirm the specificed aria role is found on an expected number of elements
+ * and an expected element type.
  *
  * @param {obj} t             - ava execution object
  * @param {String} exampleId  - the id of the element containing the example
@@ -13,7 +14,7 @@ const assert = require('assert');
  * @param {String} elementTag - the element the role should be found on
  */
 
-module.exports = async function assertAriaRole (t, exampleId, role, roleCount, elementTag) {
+module.exports = async function assertAriaRoles (t, exampleId, role, roleCount, elementTag) {
   const elementSelector = '#' + exampleId + ' [role="' + role + '"]';
 
   const elements = await t.context.session.findElements(By.css(elementSelector));

@@ -5,7 +5,7 @@ const { By, Key } = require('selenium-webdriver');
 const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertAriaControls = require('../util/assertAriaControls');
-const assertAriaRole = require('../util/assertAriaRole');
+const assertAriaRoles = require('../util/assertAriaRoles');
 const assertTabSequence = require('../util/assertTabSequence');
 
 const exampleFile = 'tabs/tabs-1/tabs.html';
@@ -23,8 +23,8 @@ const ex = {
   ]
 };
 
-const openTabAtIndex = async function (t, tabIndex) {
-  const selector = ex.tabSelector + ':nth-child(' + (tabIndex + 1) + ')';
+const openTabAtIndex = async function (t, tabOrderIndex) {
+  const selector = ex.tabSelector + ':nth-child(' + (tabOrderIndex + 1) + ')';
 
   await t.context.session.findElement(By.css(selector)).click();
 };
@@ -41,7 +41,7 @@ const checkFocus = function (t, selector, index) {
 
 ariaTest('role="tablist" on div element', exampleFile, 'tablist-role', async (t) => {
   t.plan(1);
-  await assertAriaRole(t, 'ex1', 'tablist', '1', 'div');
+  await assertAriaRoles(t, 'ex1', 'tablist', '1', 'div');
 });
 
 ariaTest('"ariaLabel" attribute on role="tablist"', exampleFile, 'tablist-aria-label', async (t) => {
@@ -71,7 +71,7 @@ ariaTest('"ariaLabel" attribute on role="tablist"', exampleFile, 'tablist-aria-l
 
 ariaTest('role="tab" on button elements', exampleFile, 'tab-role', async (t) => {
   t.plan(1);
-  await assertAriaRole(t, 'ex1', 'tab', '3', 'button');
+  await assertAriaRoles(t, 'ex1', 'tab', '3', 'button');
 });
 
 ariaTest('"aria-selected" set on role="tab"', exampleFile, 'tab-aria-selected', async (t) => {
@@ -148,14 +148,14 @@ ariaTest('"tabindex" on role="tab"', exampleFile, 'tab-tabindex', async (t) => {
   }
 });
 
-ariaTest('', exampleFile, 'tab-aria-control', async (t) => {
+ariaTest('"aria-control" attribute on role="tab"', exampleFile, 'tab-aria-control', async (t) => {
   t.plan(1);
   await assertAriaControls(t, 'ex1', ex.tabSelector);
 });
 
 ariaTest('role="tabpanel" on div element', exampleFile, 'tabpanel-role', async (t) => {
   t.plan(1);
-  await assertAriaRole(t, 'ex1', 'tabpanel', '3', 'div');
+  await assertAriaRoles(t, 'ex1', 'tabpanel', '3', 'div');
 });
 
 ariaTest('"aria-labelledby" attribute on role="tabpanel" elements', exampleFile, 'tabpanel-aria-labelledby', async (t) => {
