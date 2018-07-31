@@ -177,11 +177,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr data-test-id="key-enter-or-space">
           <th><kbd>Space</kbd> or <kbd>Enter</kbd></th>
           <td>When focus is on the accordion header of a collapsed section, expands the section.</td>
         </tr>
-        <tr>
+        <tr data-test-id="key-tab">
           <th><kbd>Tab</kbd></th>
           <td>
             <ul>
@@ -190,7 +190,7 @@
             </ul>
           </td>
         </tr>
-        <tr>
+        <tr data-test-id="key-shift-tab">
           <th><kbd>Shift + Tab</kbd></th>
           <td>
             <ul>
@@ -199,7 +199,7 @@
             </ul>
           </td>
         </tr>
-        <tr>
+        <tr data-test-id="key-down-arrow">
           <th><kbd>Down Arrow</kbd></th>
           <td>
             <ul>
@@ -208,7 +208,7 @@
             </ul>
           </td>
         </tr>
-        <tr>
+        <tr data-test-id="key-up-arrow">
           <th><kbd>Up Arrow</kbd></th>
           <td>
             <ul>
@@ -217,11 +217,11 @@
             </ul>
           </td>
         </tr>
-        <tr>
+        <tr data-test-id="key-home">
           <th><kbd>Home</kbd></th>
           <td>When focus is on an accordion header, moves focus to the first accordion header.</td>
         </tr>
-        <tr>
+        <tr data-test-id="key-end">
           <th><kbd>End</kbd></th>
           <td>When focus is on an accordion header, moves focus to the last accordion header.</td>
         </tr>
@@ -244,7 +244,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr data-test-id="presentation-role">
           <th scope="row"><code>presentation</code></th>
           <td></td>
           <td><code>dl</code></td>
@@ -255,13 +255,13 @@
             </ul>
           </td>
         </tr>
-        <tr>
+        <tr data-test-id="heading-role">
           <th scope="row"><code>heading</code></th>
           <td></td>
           <td><code>dt</code></td>
           <td>Identifies the element as a heading that serves as an accordion header.</td>
         </tr>
-        <tr>
+        <tr data-test-id="heading-aria-level">
           <td></td>
           <th scope="row"><code>aria-level=<q>3</q></code></th>
           <td><code>dt</code></td>
@@ -272,7 +272,7 @@
             </ul>
           </td>
         </tr>
-        <tr>
+        <tr data-test-id="button-aria-expanded">
           <td> </td>
           <th scope="row"><code>aria-expanded=<q>true</q></code></th>
           <td><code>button</code></td>
@@ -280,7 +280,7 @@
             Set to <code>true</code> when the Accordion panel is expanded, otherwise set to <code>false</code>.
           </td>
         </tr>
-        <tr>
+        <tr data-test-id="button-aria-controls">
           <td> </td>
           <th scope="row"><code>aria-controls=<q>ID</q></code></th>
           <td><code>button</code></td>
@@ -288,7 +288,7 @@
             Points to the ID of the panel which the header controls.
           </td>
         </tr>
-        <tr>
+        <tr data-test-id="button-aria-disabled">
           <td> </td>
           <th scope="row"><code>aria-disabled=<q>true</q></code></th>
           <td><code>button</code></td>
@@ -296,13 +296,13 @@
             If the accordion panel is expanded and is not allowed to be collapsed, then set to <code>true</code>.
           </td>
         </tr>
-        <tr>
+        <tr data-test-id="region-role">
           <th scope="row">region</th>
           <td></td>
           <td><code>dd</code></td>
           <td>Creates a landmark region that contains the currently expanded accordion panel.</td>
         </tr>
-        <tr>
+        <tr data-test-id="region-aria-labelledby">
           <td></td>
           <th scope="row"><code>aria-labelledby=&quot;ID_REF&quot;</code></th>
           <td><code>dd</code></td>
