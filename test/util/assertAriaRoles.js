@@ -22,14 +22,15 @@ module.exports = async function assertAriaRoles (t, exampleId, role, roleCount, 
   assert.equal(
     elements.length,
     roleCount,
-    roleCount + 'role="' + role + '" elements should be found by selector: ' + elementSelector
+    roleCount + 'role="' + role + '" elements should be found by selector "' + elementSelector +
+      '" in this example'
   );
 
   for (let element of elements) {
     assert.equal(
       await element.getTagName(),
       elementTag,
-      'role="' + role + '" should be found on "' + elementTag + '" elements only'
+      'role="' + role + '" should be found on "' + elementTag + '" elements in this example'
     );
   }
 
