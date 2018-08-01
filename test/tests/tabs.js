@@ -6,7 +6,7 @@ const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertAriaControls = require('../util/assertAriaControls');
 const assertAriaRoles = require('../util/assertAriaRoles');
-const assertTabSequence = require('../util/assertTabSequence');
+const assertTabOrder = require('../util/assertTabOrder');
 
 const exampleFile = 'tabs/tabs-1/tabs.html';
 
@@ -171,13 +171,13 @@ ariaTest('tabindex="0" on role="tabpanel" elements', exampleFile, 'tabpanel-tabi
 
 // Keys
 
-ariaTest('', exampleFile, 'key-tab', async (t) => {
+ariaTest('TAB key moves focus to open tab and panel', exampleFile, 'key-tab', async (t) => {
   t.plan(3);
 
   for (let index = 0; index < ex.tabCount; index++) {
-    openTabAtIndex(t, index);
+    await openTabAtIndex(t, index);
 
-    await assertTabSequence(t, ex.tabTabOrder[index]);
+    await assertTabOrder(t, ex.tabTabOrder[index]);
   }
 });
 
