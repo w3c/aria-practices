@@ -4,7 +4,7 @@ const { ariaTest } = require('..');
 const { By, Key } = require('selenium-webdriver');
 const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAriaLabelledby = require('../util/assertAriaLabelledby');
-const assertActiveDescendantFocus = require('../util/assertActiveDescendantFocus');
+const assertAriaSelectedAndActivedescendant = require('../util/assertAriaSelectedAndActivedescendant');
 
 const exampleFile = 'combobox/aria1.1pattern/listbox-combo.html';
 
@@ -463,7 +463,7 @@ ariaTest('Test down key press with focus on textbox',
       .sendKeys('a', Key.ARROW_DOWN);
 
     // Check that the active descendent focus is correct
-    await assertActiveDescendantFocus(t, ex.textboxSelector, ex.optionsSelector, 0);
+    await assertAriaSelectedAndActivedescendant(t, ex.textboxSelector, ex.optionsSelector, 0);
 
     /* Example 2 */
 
@@ -488,7 +488,7 @@ ariaTest('Test down key press with focus on textbox',
       .sendKeys('a', Key.ARROW_DOWN);
 
     // Check that the active descendent focus is correct
-    await assertActiveDescendantFocus(t, ex.textboxSelector, ex.optionsSelector, 1);
+    await assertAriaSelectedAndActivedescendant(t, ex.textboxSelector, ex.optionsSelector, 1);
 
     /* Example 3 */
 
@@ -506,7 +506,7 @@ ariaTest('Test down key press with focus on textbox',
     );
 
     // Check that the active descendent focus is correct
-    await assertActiveDescendantFocus(t, ex.textboxSelector, ex.optionsSelector, 0);
+    await assertAriaSelectedAndActivedescendant(t, ex.textboxSelector, ex.optionsSelector, 0);
 
     await reload(t.context.session);
 
@@ -516,7 +516,7 @@ ariaTest('Test down key press with focus on textbox',
       .sendKeys('a', Key.ARROW_DOWN);
 
     // Check that the active descendent focus is correct
-    await assertActiveDescendantFocus(t, ex.textboxSelector, ex.optionsSelector, 1);
+    await assertAriaSelectedAndActivedescendant(t, ex.textboxSelector, ex.optionsSelector, 1);
 
   });
 
@@ -550,7 +550,7 @@ ariaTest('Test down key press with focus on list',
       // Account for race condition
       await waitForFocusChange(t, ex.textboxSelector, oldfocus);
 
-      await assertActiveDescendantFocus(t, ex.textboxSelector, ex.optionsSelector, i % numOptions);
+      await assertAriaSelectedAndActivedescendant(t, ex.textboxSelector, ex.optionsSelector, i % numOptions);
     }
 
     /* Example 2 */
@@ -575,7 +575,7 @@ ariaTest('Test down key press with focus on list',
       // Account for race condition
       await waitForFocusChange(t, ex.textboxSelector, oldfocus);
 
-      await assertActiveDescendantFocus(t, ex.textboxSelector, ex.optionsSelector, i % numOptions);
+      await assertAriaSelectedAndActivedescendant(t, ex.textboxSelector, ex.optionsSelector, i % numOptions);
     }
 
     /* Example 3 */
@@ -600,7 +600,7 @@ ariaTest('Test down key press with focus on list',
       // Account for race condition
       await waitForFocusChange(t, ex.textboxSelector, oldfocus);
 
-      await assertActiveDescendantFocus(t, ex.textboxSelector, ex.optionsSelector, i % numOptions);
+      await assertAriaSelectedAndActivedescendant(t, ex.textboxSelector, ex.optionsSelector, i % numOptions);
     }
 
   });
@@ -635,7 +635,7 @@ ariaTest('Test up key press with focus on textbox',
 
     // Check that the active descendent focus is correct
     let numOptions = (await t.context.session.findElements(By.css(ex.optionsSelector))).length;
-    await assertActiveDescendantFocus(t, ex.textboxSelector, ex.optionsSelector, numOptions - 1);
+    await assertAriaSelectedAndActivedescendant(t, ex.textboxSelector, ex.optionsSelector, numOptions - 1);
 
     /* Example 2 */
 
@@ -661,7 +661,7 @@ ariaTest('Test up key press with focus on textbox',
 
     // Check that the active descendent focus is correct
     numOptions = (await t.context.session.findElements(By.css(ex.optionsSelector))).length;
-    await assertActiveDescendantFocus(t, ex.textboxSelector, ex.optionsSelector, numOptions - 1);
+    await assertAriaSelectedAndActivedescendant(t, ex.textboxSelector, ex.optionsSelector, numOptions - 1);
 
     /* Example 3 */
 
@@ -680,7 +680,7 @@ ariaTest('Test up key press with focus on textbox',
 
     // Check that the active descendent focus is correct
     numOptions = (await t.context.session.findElements(By.css(ex.optionsSelector))).length;
-    await assertActiveDescendantFocus(t, ex.textboxSelector, ex.optionsSelector, numOptions - 1);
+    await assertAriaSelectedAndActivedescendant(t, ex.textboxSelector, ex.optionsSelector, numOptions - 1);
 
     await reload(t.context.session);
 
@@ -691,7 +691,7 @@ ariaTest('Test up key press with focus on textbox',
 
     // Check that the active descendent focus is correct
     numOptions = (await t.context.session.findElements(By.css(ex.optionsSelector))).length;
-    await assertActiveDescendantFocus(t, ex.textboxSelector, ex.optionsSelector, numOptions - 1);
+    await assertAriaSelectedAndActivedescendant(t, ex.textboxSelector, ex.optionsSelector, numOptions - 1);
 
   });
 
@@ -725,7 +725,7 @@ ariaTest('Test up key press with focus on listbox',
       await waitForFocusChange(t, ex.textboxSelector, oldfocus);
 
       const index = numOptions - 1 - (i % numOptions);
-      await assertActiveDescendantFocus(t, ex.textboxSelector, ex.optionsSelector, index);
+      await assertAriaSelectedAndActivedescendant(t, ex.textboxSelector, ex.optionsSelector, index);
     }
 
     /* Example 2 */
@@ -753,7 +753,7 @@ ariaTest('Test up key press with focus on listbox',
       await waitForFocusChange(t, ex.textboxSelector, oldfocus);
 
       const index = numOptions - 1 - (i % numOptions);
-      await assertActiveDescendantFocus(t, ex.textboxSelector, ex.optionsSelector, index);
+      await assertAriaSelectedAndActivedescendant(t, ex.textboxSelector, ex.optionsSelector, index);
     }
 
     /* Example 3 */
@@ -781,7 +781,7 @@ ariaTest('Test up key press with focus on listbox',
       await waitForFocusChange(t, ex.textboxSelector, oldfocus);
 
       const index = numOptions - 1 - (i % numOptions);
-      await assertActiveDescendantFocus(t, ex.textboxSelector, ex.optionsSelector, index);
+      await assertAriaSelectedAndActivedescendant(t, ex.textboxSelector, ex.optionsSelector, index);
     }
   });
 
