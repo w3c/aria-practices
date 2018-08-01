@@ -14,6 +14,8 @@ const assert = require('assert');
  */
 module.exports = async function assertAriaSelectedAndActivedescendant (t, ariaDescendantSelector, optionsSelector, index) {
 
+  // Confirm the option at index index has aria-selected set to true
+
   let options = await t.context.session
     .findElements(By.css(optionsSelector));
 
@@ -23,6 +25,8 @@ module.exports = async function assertAriaSelectedAndActivedescendant (t, ariaDe
     'aria-selected should be on item at index ' + index + ' for items: ' + optionsSelector
   );
 
+  // Confrirm aria-activedescendant refers to the correct optoin
+
   let optionId = await options[index].getAttribute('id');
 
   assert.strictEqual(
@@ -31,6 +35,19 @@ module.exports = async function assertAriaSelectedAndActivedescendant (t, ariaDe
       .getAttribute('aria-activedescendant'),
     optionId,
     'aria-activedescendant should be set to ' + optionId + ' for items: ' + ariaDescendantSelector
+  );
+
+  // Confirm the focus is on the aria-activedescendent element
+
+  let focused = await t.context.session.executeScript(function () {
+    const selector = arguments[0];
+    let item = document.querySelector(selector);
+    return item === document.activeElement;
+  }, ariaDescendantSelector);
+
+  assert(
+    focused,
+    'document focus should be on aria-activedescendant element: ' + ariaDescendantSelector
   );
 
   t.pass();
