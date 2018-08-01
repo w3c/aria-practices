@@ -197,6 +197,7 @@ DatePicker.prototype.moveToNextMonth = function () {
 DatePicker.prototype.setSelectDate = function (dateCell) {
   for (var i = 0;i < this.datesArrayDOM.length;i++) {
     this.datesArrayDOM[i].domNode.setAttribute('aria-selected', 'false');
+    this.datesArrayDOM[i].domNode.tabIndex = '-1';
     if (this.datesArrayDOM[i] === dateCell) {
       this.datesArrayDOM[i].domNode.tabIndex = '0';
       this.datesArrayDOM[i].domNode.focus();
