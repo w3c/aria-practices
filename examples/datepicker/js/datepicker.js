@@ -6,7 +6,7 @@ const months =  ['January', 'February', 'March', 'April', 'May', 'June', 'July',
       this.monthIndex = null;
       this.month = null;
       this.year = null;
-  
+      this.today = null;
       this.prevYear=firstChild.children[0];
       this.prevMonth=firstChild.children[1];
       this.nextMonth=firstChild.children[3];
@@ -33,6 +33,7 @@ const months =  ['January', 'February', 'March', 'April', 'May', 'June', 'July',
   
       this.monthIndex = new Date().getMonth();
       this.year = new Date().getFullYear();
+      this.today = new Date().getDate();
       this.datesInMonth =[31, (((this.year%4===0)&&(this.year%100!==0)&&(this.year%400===0))?29:28), 31, 30, 31, 30, 31, 31, 30 ,31, 30, 31];
   
       this.month = months[this.monthIndex];
@@ -71,26 +72,26 @@ const months =  ['January', 'February', 'March', 'April', 'May', 'June', 'July',
           dc.init();
           this.datesArrayDOM.push(dc);
       }
-      this.datesArray[0].focus();
+    
+      console.log(this.today-1);
+    //   this.datesArrayDOM[this.today-1].domNode.setAttribute('aria-selected',true);
   }
+
   DatePicker.prototype.handleButtonClick = function (event) {
-      var input = document.getElementsByClassName('dateInput')[0];
-      console.log(input);
-      var cal = document.getElementsByClassName('datePicker')[0];
       var type = event.type;
       if(type === 'keydown') {
           if(event.keyCode === 13 || event.keyCode===32) {
             if(input.hasAttribute('aria-expanded')){
-                this.close(input);
+                this.close(this.dateInput[0]);
             } else {
-                this.open(input);
+                this.open(this.dateInput[0]);
             }
           }
       } else if (type='click'){
-        if(input.hasAttribute('aria-expanded')){
-            this.close(input);
+        if(this.dateInput[0].hasAttribute('aria-expanded')){
+            this.close(this.dateInput[0]);
         } else {
-            this.open(input);
+            this.open(this.dateInput[0]);
         }
       }
   }
@@ -103,6 +104,7 @@ const months =  ['January', 'February', 'March', 'April', 'May', 'June', 'July',
     this.domNode.style.display = 'none';
     node.removeAttribute('aria-expanded');
   }
+
   DatePicker.prototype.handleNextYearButton = function (event){
       var type = event.type;
       if(type==='keydown'){

@@ -1,7 +1,14 @@
+* {
+  margin: 0;
+  padding: 0;
+}
 .dateButton{
   border-style:none;
   padding:10px;
   text-align:left;
+}
+.dateButton:focus{
+  outline:0;
 }
 .datepicker {
   width:40%;
@@ -35,7 +42,7 @@ th[scope="col"],.dateRow td{
   text-transform:uppercase;
   color:white;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 .header button{
   border-style:none;
@@ -60,20 +67,36 @@ th[scope="col"],.dateRow td{
 button[aria-selected="true"]{
   border-color: hsl(216, 94%, 73%);
   background-color: hsl(215, 51%, 77%);
+  border-radius:5px;
 }
 .dateInput_label:not(:first-child){
   margin-left:55px;
 }
-/* .dateCell, .cell{
+.cell {
+  border:none;
   padding:0;
-} */
+  margin:0;
+  height: 40px;
+  width:40px;
+}
+.dateCell{
+  padding:0;
+  border:none;
+  margin:0;
+  line-height: inherit;
+  height:100%;
+}
 .dateCell:focus{
+  outline:0;
   padding:0;
   background-color: hsl(216, 80%, 92%);
+  border-radius:5px;
 }
 
 .disabled, .dateCell:disabled{
   cursor: not-allowed;
   background: #dddddd;
-  color: #666666;
+  border-radius:5px;
+  height:40px;
+  width:40px;
 }
