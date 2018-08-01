@@ -14,7 +14,9 @@
 <script src="../js/app.js"></script>
 
 <link href="css/datepicker.css" rel="stylesheet">
-<script src="js/datePickerAction.js" type="text/javascript"></script>
+<script src="js/main.js" type="text/javascript"></script>
+<script src="js/dateInput.js" type="text/javascript"></script>
+<script src="js/datePickerDay.js" type="text/javascript"></script>
 <script src="js/datepicker.js" type="text/javascript"></script>
 </head>
 <body>
@@ -39,18 +41,16 @@
     <div id="example">
 
       <div>
-        <label for="id-date-1">Date (mm/dd/yyyy):</label>
-        <div>
-          <input class="date"
-                type="text"
-                id="id-date-1"
-                aria-haspopup="true"
-                aria-controls="id-datepicker-1">
-          <button class="dateButton" tabindex="-1">
-            <i class="fa fa-calendar-alt fa-3x"></i>
-          </button>
-        </div>
-
+        <label for="id-date-1">Date: </label>
+        <input class="dateInput"
+              type="text"
+              placeholder="mm/dd/yyyy"
+              id="id-date-1"
+              aria-haspopup="true"
+              aria-controls="id-datepicker-1">
+        <button class="dateButton" tabindex="-1">
+          <i class="fa fa-calendar-alt fa-2x"></i>
+        </button>
       </div>
 
       <div id="id-datepicker-1" class="datepicker">
@@ -64,7 +64,7 @@
         </div>
 
         <table class="dates" role="grid">
-          <theader>
+          <thead>
             <tr>
               <th scope="col" aria-label="Sunday">Su</th>
               <th scope="col" aria-label="Monday">Mo</th>
@@ -74,7 +74,7 @@
               <th scope="col" aria-label="Friday">Fr</th>
               <th scope="col" aria-label="Saturday">Sa</th>
             </tr>
-          </theader>
+          </thead>
           <tbody class="curr">
 
           </tbody>
@@ -96,28 +96,32 @@
       </thead>
       <tbody>
         <tr>
-          <th><kbd>Enter</kbd></th>
-          <td>Activates the button.</td>
-        </tr>
-        <tr>
-          <th><kbd>Space</kbd></th>
-          <td>Activates the button.</td>
+          <th><kbd>Enter</kbd>, <kbd>Space</kbd></th>
+          <td>Select the date.</td>
         </tr>
         <tr>
           <th><kbd>Up Arrow</kbd></th>
-          <td>Move the focus to the above button.</td>
+          <td>Move the focus to the above date.</td>
         </tr>
         <tr>
           <th><kbd>Down Arrow</kbd></th>
-          <td>Move the focus to the below button.</td>
+          <td>Move the focus to the below date.</td>
         </tr>
         <tr>
           <th><kbd>Right Arrow</kbd></th>
-          <td>Move the focus to the next button.</td>
+          <td>Move the focus to the next date.</td>
         </tr>
         <tr>
           <th><kbd>Left Arrow</kbd></th>
-          <td>Move the focus to the previous button.</td>
+          <td>Move the focus to the previous date.</td>
+        </tr>
+        <tr>
+          <th><kbd>PageUp</kbd></th>
+          <td>Change the calendar to the previous year, if already selected a date, the focus would be on that date, otherwise, it will focus on the first date of that month.</td>
+        </tr>
+        <tr>
+          <th><kbd>PageDown</kbd></th>
+          <td>Change the calendar to the next year, if already selected a date, the focus would be on that date, otherwise, it will focus on the first date of that month.</td>
         </tr>
       </tbody>
 
@@ -138,7 +142,30 @@
       </thead>
       <tbody>
         <tr>
-          <th scope="row"><code></code></th>
+          <th scope="row"><code>grid</code></th>
+            <td></td>
+            <td>
+              <code>table</code>
+            </td>
+            <td>
+              <ul>
+                <li>Identifies the element that serves as the grid widget container.</li>
+                <li>Since the <code>grid</code> role is applied to a <code>table</code> element, the <code>row</code> , <code>rowheader</code>, <code>colheader</code>, and <code>gridcell</code> roles do not need to be specified because they are implied by <code>tr</code>, <code>th</code>, and <code>td</code> tags.</li>
+              </ul>
+            </td>
+          </tr>
+         <tr>
+        <tr>
+          <td></td>
+          <th scope="row"><code>aira-label=&quot;IDREF&quot;</code></th>
+          <td><code>th</code></td>
+          <td>
+          <ul>
+            <li>Define a string to the current element.</li>
+          </ul>
+          </td>
+        </tr> 
+          <th scope="row"></th>
           <td></td>
           <td>
             <code>button</code>
@@ -193,7 +220,7 @@
         <tr>
           <td></td>
           <th scope="row"><code>aria-selected=&quot;true&quot;</code></th>
-          <td><code>a</code></td>
+          <td><code>button</code></td>
           <td>
           <ul>
               <li>Identifies the button as a selectable button.</li>
@@ -201,27 +228,8 @@
             </ul>
           </td>
         </tr>
-        <tr>
-          <td></td>
-          <th scope="row"><code>aria-expanded=&quot;false&quot;</code></th>
-          <td><code>button</code></td>
-          <td>
-          <ul>
-              <li>Identifies the button as a selectable button.</li>
-              <li>Indicates the toggle button is .</li>
-            </ul>
-          </td>
-        </tr>
-        <tr>
-          <td></td>
-          <th scope="row"><code>aria-expanded=&quot;false&quot;</code></th>
-          <td><code>button</code></td>
-          <td>
-          <ul>
-            <li>Indicates the parent node is close, i.e., the descendant elements are invisible.</li>
-          </ul>
-          </td>
-        </tr>
+        
+       
         <tr>
           <td></td>
           <th scope="row"><code>aria-expanded=&quot;true&quot;</code></th>
@@ -232,16 +240,7 @@
           </ul>
           </td>
         </tr>
-        <tr>
-          <td></td>
-          <th scope="row"><code>aira-label=&quot;IDREF&quot;</code></th>
-          <td><code>th</code></td>
-          <td>
-          <ul>
-            <li>Define a string to the current element.</li>
-          </ul>
-          </td>
-        </tr>
+       
       </tbody>
     </table>
   </section>

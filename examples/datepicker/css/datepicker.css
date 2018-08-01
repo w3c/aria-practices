@@ -1,19 +1,10 @@
-
 .dateButton{
   border-style:none;
-  padding:0;
-  height:48px;
+  padding:10px;
   text-align:left;
-  position:relative;
 }
-.dateButton i{
-  position:absolute;
-  bottom:0;
-}
-
 .datepicker {
   width:40%;
-  clear:both;
   display:none;
 }
 #datepicker_label{
@@ -62,16 +53,27 @@ th[scope="col"],.dateRow td{
  width:24px;
  text-align:center;
 }
-
-.labels div{
-  width:25%;
-  float:left;
-}
-
 .dateRow{
   border:1px solid black;
 }
 
 button[aria-selected="true"]{
+  border-color: hsl(216, 94%, 73%);
+  background-color: hsl(215, 51%, 77%);
+}
+.dateInput_label:not(:first-child){
+  margin-left:55px;
+}
+/* .dateCell, .cell{
+  padding:0;
+} */
+.dateCell:focus{
+  padding:0;
   background-color: hsl(216, 80%, 92%);
+}
+
+.disabled, .dateCell:disabled{
+  cursor: not-allowed;
+  background: #dddddd;
+  color: #666666;
 }

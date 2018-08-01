@@ -1,4 +1,4 @@
-var DateCell = function (domNode,dates) {
+var DatePickerDay = function (domNode,dates) {
 
     this.domNode=domNode;
     this.dates = dates;
@@ -19,15 +19,13 @@ var DateCell = function (domNode,dates) {
       });
 };
 
-DateCell.prototype.init = function(){
- 
-    // console.log(this);
-    this.domNode.addEventListener('click', this.handleClick.bind(this));
+DatePickerDay.prototype.init = function(){
+     this.domNode.addEventListener('click', this.handleClick.bind(this));
     this.domNode.addEventListener('keydown', this.handleKeyDown.bind(this));
 
 };
 
-DateCell.prototype.handleKeyDown = function(event) {
+DatePickerDay.prototype.handleKeyDown = function(event) {
     var tgt = event.currentTarget,
     char = event.key,
     flag = false,
@@ -58,6 +56,14 @@ DateCell.prototype.handleKeyDown = function(event) {
         case this.keyCode.DOWN:
           this.dates.setFocusToDown(this);
           flag = true;
+          break;  
+        case this.keyCode.PAGEUP:
+          this.dates.moveToPrevYear();
+          flag = true;
+          break;
+        case this.keyCode.PAGEDOWN:
+          this.dates.moveToNextYear(); 
+          flag = true;
           break;
       }
 
@@ -67,7 +73,7 @@ DateCell.prototype.handleKeyDown = function(event) {
       }
 
 };
-DateCell.prototype.handleClick = function(event){
+DatePickerDay.prototype.handleClick = function(event){
     console.log(this.domNode);
     this.dates.setSelectDate(this);
     event.stopPropagation();
