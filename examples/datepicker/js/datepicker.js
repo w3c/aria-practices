@@ -102,6 +102,7 @@ DatePicker.prototype.open = function (node) {
   this.domNode.style.display = 'block';
   node.setAttribute('aria-expanded', 'true');
 };
+
 DatePicker.prototype.close = function (node) {
   this.domNode.style.display = 'none';
   node.removeAttribute('aria-expanded');
@@ -203,15 +204,23 @@ DatePicker.prototype.setSelectDate = function (dateCell) {
     }
   }
   this.selectDate = dateCell.domNode.innerHTML;
-  console.log(this.monthIndex.toString().length);
+
   var numberOfMonth = null;
-  if (this.monthIndex.toString().length === 1) {
+  var numberOfDate = null;
+  if ((this.monthIndex + 1).toString().length === 1) {
     numberOfMonth = '0' + (this.monthIndex + 1);
   }
   else {
     numberOfMonth = this.monthIndex + 1;
   }
-  document.getElementById('id-date-1').value = numberOfMonth + '/' + this.selectDate + '/' + this.year;
+
+  if (this.selectDate.length === 1) {
+    numberOfDate = '0' + this.selectDate;
+  }
+  else {
+    numberOfDate = this.selectDate;
+  }
+  document.getElementById('id-date-1').value = numberOfMonth + '/' + numberOfDate + '/' + this.year;
 };
 DatePicker.prototype.setFocusDate = function (node) {
   console.log(this.datesArrayDOM);
