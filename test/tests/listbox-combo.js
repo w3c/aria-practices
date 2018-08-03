@@ -13,19 +13,22 @@ const pageExamples = {
     comboboxSelector: '#ex1 [role="combobox"]',
     textboxSelector: '#ex1 input[type="text"]',
     listboxSelector: '#ex1 [role="listbox"]',
-    optionsSelector: '#ex1 [role="option"]'
+    optionsSelector: '#ex1 [role="option"]',
+    numCharAfterADown: 1,
   },
   'ex2': {
     comboboxSelector: '#ex2 [role="combobox"]',
     textboxSelector: '#ex2 input[type="text"]',
     listboxSelector: '#ex2 [role="listbox"]',
-    optionsSelector: '#ex2 [role="option"]'
+    optionsSelector: '#ex2 [role="option"]',
+    numCharAfterADown: 1,
   },
   'ex3': {
     comboboxSelector: '#ex3 [role="combobox"]',
     textboxSelector: '#ex3 input[type="text"]',
     listboxSelector: '#ex3 [role="listbox"]',
-    optionsSelector: '#ex3 [role="option"]'
+    optionsSelector: '#ex3 [role="option"]',
+    numCharAfterADown: 9,
   }
 };
 
@@ -34,12 +37,28 @@ const reload = async (session) => {
 };
 
 const waitForFocusChange = async (t, textboxSelector, originalFocus) => {
-  await t.context.session.wait(async function () {
-    let newfocus = t.context.session
-      .findElement(By.css(textboxSelector))
-      .getAttribute('aria-activedescendant');
-    return newfocus != originalFocus;
-  }, 200);
+  try {
+    await t.context.session.wait(async function () {
+      let newfocus = await t.context.session
+          .findElement(By.css(textboxSelector))
+          .getAttribute('aria-activedescendant');
+      return newfocus != originalFocus;
+    }, 200);
+  }
+  catch (e) {
+    throw new Error('Error waiting for "aria-activedescendant" value to change from "'
+                    + originalFocus + '". ' + e.message);
+  }
+};
+
+
+const confirmCursorIndex = async (t, selector, cursorIndex) => {
+  return t.context.session.executeScript(function () {
+    const [selector, cursorIndex] = arguments;
+    let item = document.querySelector(selector);
+    return item.selectionStart === cursorIndex;
+    //return item.selectionStart;
+  }, selector, cursorIndex);
 };
 
 
@@ -377,7 +396,7 @@ ariaTest('Test for role="option" on li',
 ariaTest('Test for aria-selected on option element',
   exampleFile, 'option-aria-selected', async (t) => {
 
-    t.plan(3);
+    t.plan(4);
 
     /* Example 1 */
 
@@ -400,6 +419,24 @@ ariaTest('Test for aria-selected on option element',
       options.length,
       0,
       'In example ex1, no element with role="option" should have aria-select="true" by default'
+    );
+
+    // Send key "a" to textbox
+
+    await t.context.session
+      .findElement(By.css(ex.textboxSelector))
+      .sendKeys(Key.ARROW_DOWN);
+
+    // Check that one role="option" element has aria-select="true"
+
+    options = await t.context.session
+      .findElement(By.css(ex.listboxSelector))
+      .findElements(By.css('[role="option"][aria-selected="true"]'));
+
+    t.is(
+      options.length,
+      1,
+      'In example ex1, one element with role="option" should have aria-select="true" after arrow down'
     );
 
     /* Example 2 and 3 */
@@ -435,7 +472,7 @@ ariaTest('Test for aria-selected on option element',
 ariaTest('Test down key press with focus on textbox',
   exampleFile, 'textbox-key-down-arrow', async (t) => {
 
-    t.plan(7);
+    t.plan(4);
 
     // Test assumptions: the number of options in the listbox after typing "a"
     const numOptions = 3;
@@ -455,16 +492,6 @@ ariaTest('Test down key press with focus on textbox',
       'In example ex1 listbox should not display after ARROW_DOWN keypress'
     );
 
-    await reload(t.context.session);
-
-    // Send 'a' to text box, then send ARROW_DOWN to text box
-    await t.context.session
-      .findElement(By.css(ex.textboxSelector))
-      .sendKeys('a', Key.ARROW_DOWN);
-
-    // Check that the active descendent focus is correct
-    await assertAriaSelectedAndActivedescendant(t, ex.textboxSelector, ex.optionsSelector, 0);
-
     /* Example 2 */
 
     ex = pageExamples.ex2;
@@ -479,16 +506,6 @@ ariaTest('Test down key press with focus on textbox',
       await t.context.session.findElement(By.css(ex.listboxSelector)).isDisplayed(),
       'In example ex2 listbox should not display after ARROW_DOWN keypress'
     );
-
-    await reload(t.context.session);
-
-    // Send 'a' to text box, then send ARROW_DOWN to text box
-    await t.context.session
-      .findElement(By.css(ex.textboxSelector))
-      .sendKeys('a', Key.ARROW_DOWN);
-
-    // Check that the active descendent focus is correct
-    await assertAriaSelectedAndActivedescendant(t, ex.textboxSelector, ex.optionsSelector, 1);
 
     /* Example 3 */
 
@@ -507,16 +524,6 @@ ariaTest('Test down key press with focus on textbox',
 
     // Check that the active descendent focus is correct
     await assertAriaSelectedAndActivedescendant(t, ex.textboxSelector, ex.optionsSelector, 0);
-
-    await reload(t.context.session);
-
-    // Send 'a' to text box, then send ARROW_DOWN to text box
-    await t.context.session
-      .findElement(By.css(ex.textboxSelector))
-      .sendKeys('a', Key.ARROW_DOWN);
-
-    // Check that the active descendent focus is correct
-    await assertAriaSelectedAndActivedescendant(t, ex.textboxSelector, ex.optionsSelector, 1);
 
   });
 
@@ -539,7 +546,7 @@ ariaTest('Test down key press with focus on list',
 
     // Test that ARROW_DOWN moves active descendant focus on item in listbox
     for (let i = 1; i < numOptions + 1; i++) {
-      let oldfocus = t.context.session
+      let oldfocus = await t.context.session
         .findElement(By.css(ex.textboxSelector))
         .getAttribute('aria-activedescendant');
 
@@ -564,7 +571,7 @@ ariaTest('Test down key press with focus on list',
 
     // Test that ARROW_DOWN moves active descendant focus on item in listbox
     for (let i = 2; i < numOptions + 1; i++) {
-      let oldfocus = t.context.session
+      let oldfocus = await t.context.session
         .findElement(By.css(ex.textboxSelector))
         .getAttribute('aria-activedescendant');
 
@@ -589,7 +596,7 @@ ariaTest('Test down key press with focus on list',
 
     // Test that ARROW_DOWN moves active descendant focus on item in listbox
     for (let i = 2; i < numOptions + 1; i++) {
-      let oldfocus = t.context.session
+      let oldfocus = await t.context.session
         .findElement(By.css(ex.textboxSelector))
         .getAttribute('aria-activedescendant');
 
@@ -609,7 +616,7 @@ ariaTest('Test down key press with focus on list',
 ariaTest('Test up key press with focus on textbox',
   exampleFile, 'textbox-key-up-arrow', async (t) => {
 
-    t.plan(7);
+    t.plan(4);
 
     /* Example 1 */
 
@@ -626,17 +633,6 @@ ariaTest('Test up key press with focus on textbox',
       'In example ex1 listbox should not display after ARROW_UP keypress'
     );
 
-    await reload(t.context.session);
-
-    // Send 'a' to text box, then send ARROW_UP to text box
-    await t.context.session
-      .findElement(By.css(ex.textboxSelector))
-      .sendKeys('a', Key.ARROW_UP);
-
-    // Check that the active descendent focus is correct
-    let numOptions = (await t.context.session.findElements(By.css(ex.optionsSelector))).length;
-    await assertAriaSelectedAndActivedescendant(t, ex.textboxSelector, ex.optionsSelector, numOptions - 1);
-
     /* Example 2 */
 
     ex = pageExamples.ex2;
@@ -651,17 +647,6 @@ ariaTest('Test up key press with focus on textbox',
       await t.context.session.findElement(By.css(ex.listboxSelector)).isDisplayed(),
       'In example ex2 listbox should not display after ARROW_UP keypress'
     );
-
-    await reload(t.context.session);
-
-    // Send 'a' to text box, then send ARROW_UP to text box
-    await t.context.session
-      .findElement(By.css(ex.textboxSelector))
-      .sendKeys('a', Key.ARROW_UP);
-
-    // Check that the active descendent focus is correct
-    numOptions = (await t.context.session.findElements(By.css(ex.optionsSelector))).length;
-    await assertAriaSelectedAndActivedescendant(t, ex.textboxSelector, ex.optionsSelector, numOptions - 1);
 
     /* Example 3 */
 
@@ -679,18 +664,7 @@ ariaTest('Test up key press with focus on textbox',
     );
 
     // Check that the active descendent focus is correct
-    numOptions = (await t.context.session.findElements(By.css(ex.optionsSelector))).length;
-    await assertAriaSelectedAndActivedescendant(t, ex.textboxSelector, ex.optionsSelector, numOptions - 1);
-
-    await reload(t.context.session);
-
-    // Send 'a' to text box, then send ARROW_UP to text box
-    await t.context.session
-      .findElement(By.css(ex.textboxSelector))
-      .sendKeys('a', Key.ARROW_UP);
-
-    // Check that the active descendent focus is correct
-    numOptions = (await t.context.session.findElements(By.css(ex.optionsSelector))).length;
+    let numOptions = (await t.context.session.findElements(By.css(ex.optionsSelector))).length;
     await assertAriaSelectedAndActivedescendant(t, ex.textboxSelector, ex.optionsSelector, numOptions - 1);
 
   });
@@ -713,7 +687,7 @@ ariaTest('Test up key press with focus on listbox',
     // Test that ARROW_UP moves active descendant focus on item in listbox
     let numOptions = (await t.context.session.findElements(By.css(ex.optionsSelector))).length;
     for (let i = 1; i < numOptions + 1; i++) {
-      let oldfocus = t.context.session
+      let oldfocus = await t.context.session
         .findElement(By.css(ex.textboxSelector))
         .getAttribute('aria-activedescendant');
 
@@ -740,7 +714,7 @@ ariaTest('Test up key press with focus on listbox',
     // Test that ARROW_UP moves active descendant focus on item in listbox
     numOptions = (await t.context.session.findElements(By.css(ex.optionsSelector))).length;
     for (let i = 1; i < numOptions + 1; i++) {
-      let oldfocus = t.context.session
+      let oldfocus = await t.context.session
         .findElement(By.css(ex.textboxSelector))
         .getAttribute('aria-activedescendant');
 
@@ -768,7 +742,7 @@ ariaTest('Test up key press with focus on listbox',
     // Test that ARROW_UP moves active descendant focus on item in listbox
     numOptions = (await t.context.session.findElements(By.css(ex.optionsSelector))).length;
     for (let i = 1; i < numOptions + 1; i++) {
-      let oldfocus = t.context.session
+      let oldfocus = await t.context.session
         .findElement(By.css(ex.textboxSelector))
         .getAttribute('aria-activedescendant');
 
@@ -903,3 +877,113 @@ ariaTest('Test escape key press with focus on textbox',
     }
 
   });
+
+ariaTest('left arrow from focus on list puts focus on listbox and moves cursor right',
+  exampleFile, 'listbox-key-left-arrow', async (t) => {
+
+    for (let exId in pageExamples) {
+      let ex =  pageExamples[exId];
+
+      // Send key "a" then key "ARROW_DOWN" to put the focus on the listbox,
+      // then key ESCAPE to the textbox
+      const textbox = t.context.session.findElement(By.css(ex.textboxSelector));
+      await textbox.sendKeys('a', Key.ARROW_DOWN);
+
+      // Send key "ARROW_LEFT"
+      await textbox.sendKeys(Key.ARROW_LEFT);
+
+      t.true(
+        await confirmCursorIndex(t, ex.textboxSelector, ex.numCharAfterADown-1),
+        'Cursor should be at index ' + (ex.numCharAfterADown-1) + ' after one ARROW_LEFT key'
+      );
+
+      t.is(
+        await textbox.getAttribute('aria-activedescendant'),
+        '',
+        'Focus should be on the textbox after on ARROW_LEFT key',
+      );
+    }
+});
+
+
+ariaTest('Right arrow from focus on list puts focus on listbox',
+  exampleFile, 'listbox-key-right-arrow', async (t) => {
+
+    for (let exId in pageExamples) {
+      let ex =  pageExamples[exId];
+
+      // Send key "a" then key "ARROW_DOWN" to put the focus on the listbox,
+      // then key ESCAPE to the textbox
+      const textbox = t.context.session.findElement(By.css(ex.textboxSelector));
+      await textbox.sendKeys('a', Key.ARROW_DOWN);
+
+      // Send key "RIGHT_ARROW"
+      await textbox.sendKeys(Key.ARROW_RIGHT);
+
+      t.true(
+        await confirmCursorIndex(t, ex.textboxSelector, ex.numCharAfterADown),
+        'Cursor should be at index ' + ex.numCharAfterADown + ' after one ARROW_RIGHT key'
+      );
+
+      t.is(
+        await textbox.getAttribute('aria-activedescendant'),
+        '',
+        'Focus should be on the textbox after on ARROW_RIGHT key',
+      );
+    }
+});
+
+ariaTest('Home arrow from focus on list puts focus on listbox',
+  exampleFile, 'listbox-key-home', async (t) => {
+
+    for (let exId in pageExamples) {
+      let ex =  pageExamples[exId];
+
+      // Send key "a" then key "ARROW_DOWN" to put the focus on the listbox,
+      // then key ESCAPE to the textbox
+      const textbox = t.context.session.findElement(By.css(ex.textboxSelector));
+      await textbox.sendKeys('a', Key.ARROW_DOWN);
+
+      // Send key "ARROW_HOME"
+      await textbox.sendKeys(Key.HOME);
+
+      t.true(
+        await confirmCursorIndex(t, ex.textboxSelector, 0),
+        'Cursor should be at index 0 after one ARROW_HOME key'
+      );
+
+      t.is(
+        await textbox.getAttribute('aria-activedescendant'),
+        '',
+        'Focus should be on the textbox after one ARROW_HOME key',
+      );
+    }
+});
+
+ariaTest('End arrow from focus on list puts focus on listbox',
+  exampleFile, 'listbox-key-end', async (t) => {
+
+    for (let exId in pageExamples) {
+      let ex =  pageExamples[exId];
+
+      // Send key "a" then key "ARROW_DOWN" to put the focus on the listbox,
+      // then key ESCAPE to the textbox
+      const textbox = t.context.session.findElement(By.css(ex.textboxSelector));
+      await textbox.sendKeys('a', Key.ARROW_DOWN);
+
+      // Send key "END_ARROW"
+      await textbox.sendKeys(Key.END);
+
+      t.true(
+        await confirmCursorIndex(t, ex.textboxSelector, ex.numCharAfterADown),
+        'Cursor should be at index ' + ex.numCharAfterADown + ' after one ARROW_END key'
+      );
+
+      t.is(
+        await textbox.getAttribute('aria-activedescendant'),
+        '',
+        'Focus should be on the textbox after on ARROW_END key',
+      );
+    }
+});
+
