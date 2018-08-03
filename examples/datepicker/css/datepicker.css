@@ -4,15 +4,15 @@
 }
 .dateButton{
   border-style:none;
-  padding:10px;
+  padding:5px;
   text-align:left;
 }
 label{
   display:block;
 }
-.dateButton:focus{
+/* .dateButton:focus{
   outline:0;
-}
+} */
 .dateInput{
   width:20%;
 }

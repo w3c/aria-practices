@@ -55,12 +55,12 @@
         </button>
       </div>
 
-      <div id="id-datepicker-1" class="datepicker">
+      <div id="id-datepicker-1" class="datepicker" role="dialog" aria-labelledby="dislogLabel">
 
         <div class="header">
           <button class="prev-year">&lang;&lang;</button>
           <button class="prev-month">&lang;</button>
-          <span class="month-year-label"></span>
+          <span id="dialogLabel" class="month-year-label"></span>
           <button class="next-month">&rang;</button>
           <button class="next-year">&rang;&rang;</button>
         </div>
@@ -144,28 +144,38 @@
       <tbody>
         <tr>
           <th scope="row"><code>grid</code></th>
-            <td></td>
-            <td>
-              <code>table</code>
-            </td>
-            <td>
-              <ul>
-                <li>Identifies the element that serves as the grid widget container.</li>
-                <li>Since the <code>grid</code> role is applied to a <code>table</code> element, the <code>row</code> , <code>rowheader</code>, <code>colheader</code>, and <code>gridcell</code> roles do not need to be specified because they are implied by <code>tr</code>, <code>th</code>, and <code>td</code> tags.</li>
-              </ul>
-            </td>
-          </tr>
-         <tr>
-        <tr>
           <td></td>
-          <th scope="row"><code>aira-label=&quot;IDREF&quot;</code></th>
-          <td><code>th</code></td>
           <td>
-          <ul>
-            <li>Define a string to the current element.</li>
-          </ul>
+            <code>table</code>
           </td>
+          <td>
+            <ul>
+              <li>Identifies the element that serves as the grid widget container.</li>
+              <li>Since the <code>grid</code> role is applied to a <code>table</code> element, the <code>row</code> , <code>rowheader</code>, <code>colheader</code>, and <code>gridcell</code> roles do not need to be specified because they are implied by <code>tr</code>, <code>th</code>, and <code>td</code> tags.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr>            
+            <td></td>
+            <th scope="row"><code>aira-label=&quot;IDREF&quot;</code></th>
+            <td><code>th</code></td>
+            <td>
+            <ul>
+              <li>Define a string to the current element.</li>
+            </ul>
+            </td>
         </tr> 
+        <tr>
+          <th scope="row"><code>dialog</code></th>
+          <td></td>
+          <td>
+            <code>div</code>
+          </td>
+          <td>
+            Identifies the element that serves as the dialog container
+          </td>
+        </tr>
+        <tr>
           <th scope="row"></th>
           <td></td>
           <td>
@@ -178,6 +188,21 @@
             </ul>
           </td>
         </tr>
+        <tr>
+            <td></td>
+            <th scope="row">
+              <code>aria-labelledby=&quot;0&quot;</code>
+            </th>
+            <td>
+              <code>button</code>
+            </td>
+            <td>
+              <ul>
+                <li>Includes the element in the tab sequence.</li>
+                <li>Needed on the <code>a</code> element because it does not have a <code>href</code> attribute.</li>
+              </ul>
+            </td>
+          </tr>
         <tr>
           <td></td>
           <th scope="row">

@@ -7,6 +7,7 @@ var DatePicker = function (firstChild, domNode) {
   this.month = null;
   this.year = null;
   this.today = null;
+
   this.prevYear = firstChild.children[0];
   this.prevMonth = firstChild.children[1];
   this.nextMonth = firstChild.children[3];
@@ -43,7 +44,7 @@ DatePicker.prototype.init = function () {
   var dateInput = document.getElementsByClassName('dateInput');
 
   for (var i = 0; i < dateInput.length; i++) {
-    var di = new DateInput(dateInput[i]);
+    var di = new DateInput(dateInput[i], this);
     di.init();
     this.dateInputArr.push(di);
   }
@@ -51,7 +52,7 @@ DatePicker.prototype.init = function () {
 
   for (var i = 0; i < this.dateButton.length; i++) {
     this.dateButton[i].addEventListener('click', this.handleButtonClick.bind(this));
-    this.dateButton[i].addEventListener('keydown', this.handleButtonClick.bind(this));
+    this.dateButton[i].addEventListener('keydown', this.handleButtonKeyDown.bind(this));
   }
 
   this.prevMonth.addEventListener('click',this.handlePrevMonthButton.bind(this));
@@ -71,41 +72,44 @@ DatePicker.prototype.init = function () {
     dc.init();
     this.datesArrayDOM.push(dc);
   }
-
-  console.log(this.today - 1);
-  //   this.datesArrayDOM[this.today-1].domNode.setAttribute('aria-selected',true);
 };
 
-DatePicker.prototype.handleButtonClick = function (event) {
-  var type = event.type;
-  if (type === 'keydown') {
-    if (event.keyCode === 13 || event.keyCode === 32) {
-      if (input.hasAttribute('aria-expanded')) {
-        this.close(this.dateInput[0]);
-      }
-      else {
-        this.open(this.dateInput[0]);
-      }
-    }
-  }
-  else if (type = 'click') {
+DatePicker.prototype.handleButtonClick = function () {
     if (this.dateInput[0].hasAttribute('aria-expanded')) {
       this.close(this.dateInput[0]);
     }
     else {
       this.open(this.dateInput[0]);
     }
-  }
 };
+DatePicker.prototype.handleButtonKeyDown = function(event) {
+  var tgt = event.currentTarget,
+  char = event.key,
+  flag = false;
+  function isPrintableCharacter (str) {
+    return str.length === 1 && str.match(/\S/);
+  }
+
+  if(event.keyCode === 13 || event.keyCode === 32) {
+    this.handleButtonClick();
+    flag = true;
+  } 
+  if (flag) {
+    event.stopPropagation();
+    event.preventDefault();
+  }
+}; 
 
 DatePicker.prototype.open = function (node) {
   this.domNode.style.display = 'block';
   node.setAttribute('aria-expanded', 'true');
+  this.prevYear.focus();
 };
 
 DatePicker.prototype.close = function (node) {
   this.domNode.style.display = 'none';
   node.removeAttribute('aria-expanded');
+  node.focus();
 };
 
 DatePicker.prototype.handleNextYearButton = function (event) {
@@ -113,6 +117,8 @@ DatePicker.prototype.handleNextYearButton = function (event) {
   if (type === 'keydown') {
     if (event.keyCode === 13 || event.keyCode === 32) {
       this.moveToNextYear();
+    } else if (event.keyCode === 27){
+      this.close(this.dateInput[0]);
     }
   }
   else if (type === 'click') {
@@ -124,6 +130,8 @@ DatePicker.prototype.handlePrevYearButton = function (event) {
   if (type === 'keydown') {
     if (event.keyCode === 13 || event.keyCode === 32) {
       this.moveToPrevYear();
+    } else if (event.keyCode === 27){
+      this.close(this.dateInput[0]);
     }
   }
   else if (type === 'click') {
@@ -132,9 +140,11 @@ DatePicker.prototype.handlePrevYearButton = function (event) {
 };
 DatePicker.prototype.handleNextMonthButton = function (event) {
   var type = event.type;
-  if (type === 'keydonw') {
+  if (type === 'keydown') {
     if (event.keyCode === 13 || event.keyCode === 32) {
       this.moveToNextMonth();
+    } else if (event.keyCode === 27){
+      this.close(this.dateInput[0]);
     }
   }
   else if (type === 'click') {
@@ -143,9 +153,11 @@ DatePicker.prototype.handleNextMonthButton = function (event) {
 };
 DatePicker.prototype.handlePrevMonthButton = function (event) {
   var type = event.type;
-  if (type === 'keydonw') {
+  if (type === 'keydown') {
     if (event.keyCode === 13 || event.keyCode === 32) {
       this.moveToPrevMonth();
+    } else if (event.keyCode === 27){
+      this.close(this.dateInput[0]);
     }
   }
   else if (type === 'click') {
@@ -222,18 +234,21 @@ DatePicker.prototype.setSelectDate = function (dateCell) {
     numberOfDate = this.selectDate;
   }
   document.getElementById('id-date-1').value = numberOfMonth + '/' + numberOfDate + '/' + this.year;
+
+  this.close(this.dateInput[0]);
 };
+
+
 DatePicker.prototype.setFocusDate = function (node) {
   console.log(this.datesArrayDOM);
   console.log(node);
   for (var i = 0; i < this.datesArrayDOM.length;i++) {
     if (this.datesArrayDOM[i].domNode === node) {
-      this.datesArrayDOM[i].domNode.setAttribute('tabIndex', '0');
       this.datesArrayDOM[i].domNode.focus();
     }
-    else {
-      this.datesArrayDOM[i].domNode.setAttribute('tabIndex', '-1');
-    }
+  }
+  if(this.prevYear === node ){ 
+    this.prevYear.focus();
   }
 };
 
@@ -292,9 +307,9 @@ DatePicker.prototype.updateDates = function () {
   this.datesArrayDOM = [];
 
   this.updateCalendar(this.month, this.year);
-  console.log(this.datesArrayDOM);
 };
 DatePicker.prototype.updateCalendar = function (month, year) {
+
   document.querySelector('.month-year-label').innerHTML = month + ' ' + year;
   var firstDateOfMonth = new Date(this.year, this.monthIndex, 1);
   var startDay = firstDateOfMonth.getDay();
@@ -305,6 +320,7 @@ DatePicker.prototype.updateCalendar = function (month, year) {
     var row = tbody.insertRow(i);
     row.classList.add('dateRow');
   }
+
   var tableRow = document.getElementsByClassName('dateRow');
   for (var i = 0; i < tableRow.length;i++) {
     for (var j = 0;j < 7; j++) {
@@ -318,6 +334,13 @@ DatePicker.prototype.updateCalendar = function (month, year) {
   }
   var dateCells = document.querySelectorAll('.dateCell');
   var cells = document.querySelectorAll('.cell');
+  
+  var lastMonthDate = this.datesInMonth[this.monthIndex-1];
+  for(var i=startDay-1; i >= 0; i--) {
+    dateCells[i].innerHTML = lastMonthDate;
+    dateCells[i].setAttribute('value', "0");
+    lastMonthDate--;
+  }
   for (var i = 1;i <= this.dates;i++) {
     dateCells[startDay].innerHTML = i;
     dateCells[startDay].setAttribute('value', i);
@@ -326,19 +349,25 @@ DatePicker.prototype.updateCalendar = function (month, year) {
   if (tbody.rows[tableRow.length - 1].cells[0].querySelector('button').innerHTML === '') {
     tbody.deleteRow(tableRow.length - 1);
   }
+  var j = 1;
+  for(var i = startDay; i< dateCells.length; i++){
+    dateCells[i].innerHTML = j;
+    dateCells[i].setAttribute('value', '0');
+    j++;
+  }
+ 
 
 
   for (var i = 0;i < dateCells.length;i++) {
-    if (dateCells[i].innerHTML === '') {
+    if (dateCells[i].getAttribute('value') === "0") {
       dateCells[i].disabled = true;
-      dateCells[i].setAttribute('tabIndex', '-1');
+      dateCells[i].setAttribute('tabIndex', '1');
       cells[i].classList.add('disabled');
     }
     else {
       this.datesArray.push(dateCells[i]);
     }
   }
-
 
   if (this.headerButton) { // if the calendar toggled to previous month/year
     for (var i = 0;i < this.datesArray.length;i++) {
@@ -351,3 +380,5 @@ DatePicker.prototype.updateCalendar = function (month, year) {
   this.headerButton = false;
   return true;
 };
+
+

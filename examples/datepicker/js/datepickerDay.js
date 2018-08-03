@@ -34,9 +34,15 @@ DatePickerDay.prototype.handleKeyDown = function (event) {
     return str.length === 1 && str.match(/\S/);
   }
   switch (event.keyCode) {
+    case this.keyCode.ESC:
+      this.dates.close(this.dates.dateInput[0]);
+    break;
+    case this.keyCode.TAB:
+      this.dates.setFocusDate(this.dates.prevYear);
+      flag = true;
+      break;
     case this.keyCode.RETURN:
     case this.keyCode.SPACE:
-      console.log(this);
       this.dates.setSelectDate(this);
       flag = true;
       break;
@@ -45,7 +51,6 @@ DatePickerDay.prototype.handleKeyDown = function (event) {
       flag = true;
       break;
     case this.keyCode.LEFT:
-      console.log(this);
       this.dates.setFocusToLeft(this);
       flag = true;
       break;
@@ -74,7 +79,6 @@ DatePickerDay.prototype.handleKeyDown = function (event) {
 
 };
 DatePickerDay.prototype.handleClick = function (event) {
-  console.log(this.domNode);
   this.dates.setSelectDate(this);
   event.stopPropagation();
   event.preventDefault();
