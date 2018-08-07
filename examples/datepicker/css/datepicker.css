@@ -10,9 +10,7 @@
 label{
   display:block;
 }
-/* .dateButton:focus{
-  outline:0;
-} */
+
 .dateInput{
   width:20%;
 }
@@ -21,7 +19,21 @@ label{
   width:40%;
   display:none;
   clear:both;
+  border:1px solid rgb(130, 177, 230);
+  padding:10px;
+  border-radius:5px;
+  padding:0.75em;
 }
+.dialogButtonGroup{
+  text-align:right;
+}
+.dialogButton{
+  padding:5px;
+  border-radius:3px;
+  margin-left:10px;
+  margin-top:10px;
+}
+
 .dates{
   width:100%;
 }
@@ -40,7 +52,6 @@ th[scope="col"],.dateRow td{
   cursor:default;
   background-color:hsl(216, 89%, 72%);
   height:34px;
-  /* position:relative; */
   border-radius: 3px;
   font-weight:bold;
   text-transform:uppercase;
@@ -92,7 +103,7 @@ button[aria-selected="true"]{
 
 .disabled, .dateCell:disabled{
   cursor: not-allowed;
-  background: #dddddd;
+  color: #afafaf;
   border-radius:5px;
   height:40px;
   width:40px;

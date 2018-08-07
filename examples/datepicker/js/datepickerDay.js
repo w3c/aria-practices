@@ -20,6 +20,7 @@ var DatePickerDay = function (domNode,dates) {
 };
 
 DatePickerDay.prototype.init = function () {
+  this.domNode.tabIndex = -1;
   this.domNode.addEventListener('click', this.handleClick.bind(this));
   this.domNode.addEventListener('keydown', this.handleKeyDown.bind(this));
 
@@ -38,7 +39,10 @@ DatePickerDay.prototype.handleKeyDown = function (event) {
       this.dates.close(this.dates.dateInput[0]);
     break;
     case this.keyCode.TAB:
-      this.dates.setFocusDate(this.dates.prevYear);
+      this.dates.dialogButton[0].focus();
+      if(event.shiftKey){
+        this.dates.nextYear.focus();
+      }
       flag = true;
       break;
     case this.keyCode.RETURN:
@@ -47,19 +51,19 @@ DatePickerDay.prototype.handleKeyDown = function (event) {
       flag = true;
       break;
     case this.keyCode.RIGHT:
-      this.dates.setFocusToRight(this);
+      this.dates.setFocusToNextDay(this);
       flag = true;
       break;
     case this.keyCode.LEFT:
-      this.dates.setFocusToLeft(this);
+      this.dates.setFocusToPrevDay(this);
       flag = true;
       break;
     case this.keyCode.UP:
-      this.dates.setFocusToUp(this);
+      this.dates.setFocusToPrevWeek(this);
       flag = true;
       break;
     case this.keyCode.DOWN:
-      this.dates.setFocusToDown(this);
+      this.dates.setFocusToNextWeek(this);
       flag = true;
       break;
     case this.keyCode.PAGEUP:
