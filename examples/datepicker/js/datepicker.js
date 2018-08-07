@@ -71,7 +71,6 @@ DatePicker.prototype.init = function () {
 
   for (var i = 0; i < this.dateButton.length; i++) {
     this.dateButton[i].addEventListener('click', this.handleButtonClick.bind(this));
-    this.dateButton[i].addEventListener('keydown', this.handleButtonKeyDown.bind(this));
   }
 
   for(var i = 0; i<this.dialogButton.length; i++) {
@@ -127,58 +126,47 @@ DatePicker.prototype.handleButtonClick = function () {
 DatePicker.prototype.handleDialogButton = function(event) {
   var tgt = event.currentTarget; 
   var flag = false;
-  function isPrintableCharacter (str) {
-    return str.length === 1 && str.match(/\S/);
-  }
-  switch(event.keyCode) {
-    case this.keyCode.TAB:
-      if(tgt.value==='ok'){
-        this.prevYear.focus();
-      } else if(tgt.value==='cancel') {
-        this.dialogButton[1].focus();
-      }
-      if(event.shiftKey){
-        if(tgt.value==='cancel'){
-          if(this.selectDate === null) {
-            this.datesArray[this.today - 1].focus();
-          }else{
-            this.datesArray[this.selectDate-1].focus();
-          } 
-        } else{
-          this.dialogButton[0].focus();
+  if(event.type==="keydown"){
+    function isPrintableCharacter (str) {
+      return str.length === 1 && str.match(/\S/);
+    }
+    switch(event.keyCode) {
+      case this.keyCode.TAB:
+        if(tgt.value==='ok'){
+          this.prevYear.focus();
+        } else if(tgt.value==='cancel') {
+          this.dialogButton[1].focus();
         }
-      }
-      flag=true;
-      break;
-    case this.keyCode.RETURN:
-    case this.keyCode.SPACE:
-    case this.keyCode.ESC: 
-      this.close(this.dateInput[0]);
-      break;
+        if(event.shiftKey){
+          if(tgt.value==='cancel'){
+            if(this.selectDate === null) {
+              this.datesArray[this.today - 1].focus();
+            }else{
+              this.datesArray[this.selectDate-1].focus();
+            } 
+          } else{
+            this.dialogButton[0].focus();
+          }
+        }
+        flag=true;
+        break;
+      case this.keyCode.RETURN:
+      case this.keyCode.SPACE:
+      case this.keyCode.ESC: 
+        this.close(this.dateInput[0]);
+        flag=true;
+        break;
+    }
+  }
+  else if (event.type==="click"){
+    this.close(this.dateInput[0]);
+    flag=true;
   }
   if (flag) {
     event.stopPropagation();
     event.preventDefault();
   }
 }
-DatePicker.prototype.handleButtonKeyDown = function(event) {
-  var tgt = event.currentTarget,
-  char = event.key,
-  flag = false;
-  function isPrintableCharacter (str) {
-    return str.length === 1 && str.match(/\S/);
-  }
-
-  if(event.keyCode === 13 || event.keyCode === 32) {
-    this.handleButtonClick();
-    flag = true;
-  } 
-  if (flag) {
-    event.stopPropagation();
-    event.preventDefault();
-  }
-}; 
-
 DatePicker.prototype.handleNextYearButton = function (event) {
   var type = event.type;
   if (type === 'keydown') {
