@@ -37,10 +37,10 @@ DatePickerDay.prototype.handleKeyDown = function (event) {
   switch (event.keyCode) {
     case this.keyCode.ESC:
       this.dates.close(this.dates.dateInput[0]);
-    break;
+      break;
     case this.keyCode.TAB:
       this.dates.dialogButton[0].focus();
-      if(event.shiftKey){
+      if (event.shiftKey) {
         this.dates.nextYear.focus();
       }
       flag = true;

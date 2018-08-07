@@ -11,14 +11,14 @@ DateInput.prototype.init = function () {
 };
 DateInput.prototype.handleKeyDown = function (event) {
   var tgt = event.currentTarget,
-  char = event.key,
-  flag = false;
-  if(event.keyCode === 40){
+    char = event.key,
+    flag = false;
+  if (event.keyCode === 40) {
     this.dates.open(this.dates.dateInput[0]);
     flag = true;
   }
-  if(flag) {
-    event.stopPropagation(); 
+  if (flag) {
+    event.stopPropagation();
     event.preventDefault();
   }
 };

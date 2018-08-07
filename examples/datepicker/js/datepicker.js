@@ -30,7 +30,7 @@ var DatePicker = function (firstChild, domNode) {
 
 
   this.dialogButton = document.getElementsByClassName('dialogButton');
-  var today = new Date(); 
+  var today = new Date();
   this.today = today.getDate();
 
   this.keyCode = Object.freeze({
@@ -68,12 +68,11 @@ DatePicker.prototype.init = function () {
     this.dateInputArr.push(di);
   }
 
-
   for (var i = 0; i < this.dateButton.length; i++) {
     this.dateButton[i].addEventListener('click', this.handleButtonClick.bind(this));
   }
 
-  for(var i = 0; i<this.dialogButton.length; i++) {
+  for (var i = 0; i < this.dialogButton.length; i++) {
     this.dialogButton[i].addEventListener('click', this.handleDialogButton.bind(this));
     this.dialogButton[i].addEventListener('keydown', this.handleDialogButton.bind(this));
   }
@@ -100,12 +99,13 @@ DatePicker.prototype.init = function () {
 DatePicker.prototype.open = function (node) {
   this.domNode.style.display = 'block';
   node.setAttribute('aria-expanded', 'true');
-  if(this.selectDate) {
-    this.datesArray[this.selectDate-1].focus();
-    this.datesArray[this.selectDate-1].tabIndex = 0;
-  } else {
-    this.datesArray[this.today-1].focus();
-    this.datesArray[this.today-1].tabIndex = 0; 
+  if (this.selectDate) {
+    this.datesArray[this.selectDate - 1].focus();
+    this.datesArray[this.selectDate - 1].tabIndex = 0;
+  }
+  else {
+    this.datesArray[this.today - 1].focus();
+    this.datesArray[this.today - 1].tabIndex = 0;
   }
 };
 
@@ -116,86 +116,90 @@ DatePicker.prototype.close = function (node) {
 };
 
 DatePicker.prototype.handleButtonClick = function () {
-    if (this.dateInput[0].hasAttribute('aria-expanded')) {
-      this.close(this.dateInput[0]);
-    }
-    else {
-      this.open(this.dateInput[0]);
-    }
+  if (this.dateInput[0].hasAttribute('aria-expanded')) {
+    this.close(this.dateInput[0]);
+  }
+  else {
+    this.open(this.dateInput[0]);
+  }
 };
-DatePicker.prototype.handleDialogButton = function(event) {
-  var tgt = event.currentTarget; 
+DatePicker.prototype.handleDialogButton = function (event) {
+  var tgt = event.currentTarget;
   var flag = false;
-  if(event.type==="keydown"){
+  if (event.type === 'keydown') {
     function isPrintableCharacter (str) {
       return str.length === 1 && str.match(/\S/);
     }
-    switch(event.keyCode) {
+    switch (event.keyCode) {
       case this.keyCode.TAB:
-        if(tgt.value==='ok'){
+        if (tgt.value === 'ok') {
           this.prevYear.focus();
-        } else if(tgt.value==='cancel') {
+        }
+        else if (tgt.value === 'cancel') {
           this.dialogButton[1].focus();
         }
-        if(event.shiftKey){
-          if(tgt.value==='cancel'){
-            if(this.selectDate === null) {
+        if (event.shiftKey) {
+          if (tgt.value === 'cancel') {
+            if (this.selectDate === null) {
               this.datesArray[this.today - 1].focus();
-            }else{
-              this.datesArray[this.selectDate-1].focus();
-            } 
-          } else{
+            }
+            else {
+              this.datesArray[this.selectDate - 1].focus();
+            }
+          }
+          else {
             this.dialogButton[0].focus();
           }
         }
-        flag=true;
+        flag = true;
         break;
       case this.keyCode.RETURN:
       case this.keyCode.SPACE:
-      case this.keyCode.ESC: 
+      case this.keyCode.ESC:
         this.close(this.dateInput[0]);
-        flag=true;
+        flag = true;
         break;
     }
   }
-  else if (event.type==="click"){
+  else if (event.type === 'click') {
     this.close(this.dateInput[0]);
-    flag=true;
+    flag = true;
   }
   if (flag) {
     event.stopPropagation();
     event.preventDefault();
   }
-}
+};
 DatePicker.prototype.handleNextYearButton = function (event) {
   var type = event.type;
   if (type === 'keydown') {
     var tgt = event.currentTarget,
-    char = event.key,
-    flag = false;
+      char = event.key,
+      flag = false;
     function isPrintableCharacter (str) {
       return str.length === 1 && str.match(/\S/);
     }
-    switch (event.keyCode){
-      case this.keyCode.ESC: 
-        this.close(this.dateInput[0]); 
+    switch (event.keyCode) {
+      case this.keyCode.ESC:
+        this.close(this.dateInput[0]);
         flag = true;
         break;
-      case this.keyCode.TAB: 
-        if(event.shiftKey){
+      case this.keyCode.TAB:
+        if (event.shiftKey) {
           this.nextMonth.focus();
-        } else {
-          this.selectDate?this.datesArray[this.selectDate-1].focus():this.datesArray[this.today-1].focus();
         }
-        flag=true;
+        else {
+          this.selectDate ? this.datesArray[this.selectDate - 1].focus() : this.datesArray[this.today - 1].focus();
+        }
+        flag = true;
 
-        break; 
+        break;
       case this.keyCode.RETURN:
       case this.keyCode.SPACE:
         this.moveToPrevYear();
-        flag=true;
+        flag = true;
         break;
-      }
+    }
   }
   else if (type === 'click') {
     this.moveToNextYear();
@@ -209,30 +213,31 @@ DatePicker.prototype.handlePrevYearButton = function (event) {
   var type = event.type;
   if (type === 'keydown') {
     var tgt = event.currentTarget,
-    char = event.key,
-    flag = false;
+      char = event.key,
+      flag = false;
     function isPrintableCharacter (str) {
       return str.length === 1 && str.match(/\S/);
     }
-    switch (event.keyCode){
-      case this.keyCode.ESC: 
-        this.close(this.dateInput[0]); 
+    switch (event.keyCode) {
+      case this.keyCode.ESC:
+        this.close(this.dateInput[0]);
         flag = true;
         break;
-      case this.keyCode.TAB: 
-        if(event.shiftKey){
+      case this.keyCode.TAB:
+        if (event.shiftKey) {
           this.dialogButton[1].focus();
-        } else {
+        }
+        else {
           this.prevMonth.focus();
         }
-        flag=true;
-        break; 
+        flag = true;
+        break;
       case this.keyCode.RETURN:
       case this.keyCode.SPACE:
         this.moveToPrevYear();
-        flag=true;
+        flag = true;
         break;
-      }
+    }
   }
   else if (type === 'click') {
     this.moveToPrevYear();
@@ -249,7 +254,8 @@ DatePicker.prototype.handleNextMonthButton = function (event) {
   if (type === 'keydown') {
     if (event.keyCode === 13 || event.keyCode === 32) {
       this.moveToNextMonth();
-    } else if (event.keyCode === 27){
+    }
+    else if (event.keyCode === 27) {
       this.close(this.dateInput[0]);
     }
   }
@@ -262,7 +268,8 @@ DatePicker.prototype.handlePrevMonthButton = function (event) {
   if (type === 'keydown') {
     if (event.keyCode === 13 || event.keyCode === 32) {
       this.moveToPrevMonth();
-    } else if (event.keyCode === 27){
+    }
+    else if (event.keyCode === 27) {
       this.close(this.dateInput[0]);
     }
   }
@@ -346,12 +353,12 @@ DatePicker.prototype.setSelectDate = function (dateCell) {
 
 
 DatePicker.prototype.setFocusDate = function (button) {
-  for(var i=0; i<this.datesArray.length; i++) {
+  for (var i = 0; i < this.datesArray.length; i++) {
     var dc = this.datesArray[i];
 
-    if(dc === button) {
+    if (dc === button) {
       dc.tabIndex = 0;
-      dc.focus(); 
+      dc.focus();
     }
     else {
       dc.tabIndex = -1;
@@ -441,11 +448,11 @@ DatePicker.prototype.updateCalendar = function (month, year) {
   }
   var dateCells = document.querySelectorAll('.dateCell');
   var cells = document.querySelectorAll('.cell');
-  
-  var lastMonthDate = this.datesInMonth[this.monthIndex-1];
-  for(var i=startDay-1; i >= 0; i--) {
+
+  var lastMonthDate = this.datesInMonth[this.monthIndex - 1];
+  for (var i = startDay - 1; i >= 0; i--) {
     dateCells[i].innerHTML = lastMonthDate;
-    dateCells[i].setAttribute('value', "0");
+    dateCells[i].setAttribute('value', '0');
     lastMonthDate--;
   }
   for (var i = 1;i <= this.dates;i++) {
@@ -457,16 +464,15 @@ DatePicker.prototype.updateCalendar = function (month, year) {
     tbody.deleteRow(tableRow.length - 1);
   }
   var j = 1;
-  for(var i = startDay; i< dateCells.length; i++){
+  for (var i = startDay; i < dateCells.length; i++) {
     dateCells[i].innerHTML = j;
     dateCells[i].setAttribute('value', '0');
     j++;
   }
- 
 
 
   for (var i = 0;i < dateCells.length;i++) {
-    if (dateCells[i].getAttribute('value') === "0") {
+    if (dateCells[i].getAttribute('value') === '0') {
       dateCells[i].disabled = true;
       dateCells[i].setAttribute('tabIndex', '1');
       cells[i].classList.add('disabled');
