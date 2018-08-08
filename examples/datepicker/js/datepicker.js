@@ -22,7 +22,7 @@ var DatePicker = function (firstChild, domNode) {
   this.headerButton;
 
   this.selectDate = null;
-
+  
   this.dateInput = document.getElementsByClassName('dateInput');
   this.dateInputArr = [];
 
@@ -32,7 +32,7 @@ var DatePicker = function (firstChild, domNode) {
   this.dialogButton = document.getElementsByClassName('dialogButton');
   var today = new Date();
   this.today = today.getDate();
-
+  this.lastFocused = null;
   this.keyCode = Object.freeze({
     'TAB': 9,
     'RETURN': 13,
@@ -93,6 +93,7 @@ DatePicker.prototype.init = function () {
     dc.init();
     this.datesArrayDOM.push(dc);
   }
+
 };
 
 
@@ -140,11 +141,11 @@ DatePicker.prototype.handleDialogButton = function (event) {
         }
         if (event.shiftKey) {
           if (tgt.value === 'cancel') {
-            if (this.selectDate === null) {
-              this.datesArray[this.today - 1].focus();
-            }
+            if (this.lastFocused){
+              this.lastFocused.focus();
+            } 
             else {
-              this.datesArray[this.selectDate - 1].focus();
+              this.datesArray[this.today - 1].focus();
             }
           }
           else {
@@ -155,6 +156,15 @@ DatePicker.prototype.handleDialogButton = function (event) {
         break;
       case this.keyCode.RETURN:
       case this.keyCode.SPACE:
+        if(tgt.value === 'ok'){
+          for(var i=0; i<this.datesArrayDOM.length; i++){
+            if(this.datesArrayDOM[i].domNode.classList.contains('lastFocused')){
+              this.setSelectDate(this.datesArrayDOM[i]);
+            }
+          }
+        } else if (tgt.value==='cancel') {
+          this.close(this.dateInput[0]);
+        }
       case this.keyCode.ESC:
         this.close(this.dateInput[0]);
         flag = true;
@@ -189,7 +199,7 @@ DatePicker.prototype.handleNextYearButton = function (event) {
           this.nextMonth.focus();
         }
         else {
-          this.selectDate ? this.datesArray[this.selectDate - 1].focus() : this.datesArray[this.today - 1].focus();
+          this.lastFocused ? this.lastFocused.focus() : this.datesArray[this.today-1].focus();
         }
         flag = true;
 
@@ -355,10 +365,12 @@ DatePicker.prototype.setSelectDate = function (dateCell) {
 DatePicker.prototype.setFocusDate = function (button) {
   for (var i = 0; i < this.datesArray.length; i++) {
     var dc = this.datesArray[i];
-
+    dc.classList.remove('lastFocused');
     if (dc === button) {
       dc.tabIndex = 0;
       dc.focus();
+      dc.classList.add('lastFocused');
+      this.lastFocused = dc;
     }
     else {
       dc.tabIndex = -1;

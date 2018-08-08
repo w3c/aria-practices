@@ -43,6 +43,13 @@ DatePickerDay.prototype.handleKeyDown = function (event) {
       if (event.shiftKey) {
         this.dates.nextYear.focus();
       }
+      // for(var i=0; i<this.dates.datesArray.length; i++){
+      //   this.dates.datesArray[i].classList.remove('lastFocused');
+      //   if(this.dates.datesArray[i]===this.domNode){
+      //     this.domNode.classList.add('lastFocused');
+      //     this.dates.lastFocused = this.dates.datesArray[i];
+      //   }
+      // }
       flag = true;
       break;
     case this.keyCode.RETURN:
