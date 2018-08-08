@@ -6,6 +6,7 @@
   border-style:none;
   padding:5px;
   text-align:left;
+  background-color:white;
 }
 label{
   display:block;
@@ -16,35 +17,38 @@ label{
 }
 
 .datepicker {
-  width:40%;
+  width:45%;
   display:none;
   clear:both;
-  border:1px solid rgb(130, 177, 230);
-  padding:10px;
+  border:3px solid rgb(130, 177, 230);
+  margin-top: 5px;
   border-radius:5px;
-  padding:0.75em;
+  padding:0;
 }
 .dialogButtonGroup{
   text-align:right;
+  margin-top:1em;
+  margin-bottom:1em;
+  margin-right:1em;
 }
 .dialogButton{
   padding:5px;
   border-radius:3px;
-  margin-left:10px;
-  margin-top:10px;
+  margin-left:1em;
+  width:5em;
+  background-color:transparent;
+  border: 1px solid #EEE;
 }
 
 .dates{
   width:100%;
+  padding-left:1em;
+  padding-right:1em;
 }
 th[scope="col"],.dateRow td{
   text-align:center;
 }
-.dateCell{
-  width: 100%;
-  font-size: 15px;
-  border-style:none;
-}
+
 .fa-calendar-alt {
   color:hsl(216, 89%, 72%);
 }
@@ -52,7 +56,6 @@ th[scope="col"],.dateRow td{
   cursor:default;
   background-color:hsl(216, 89%, 72%);
   height:34px;
-  border-radius: 3px;
   font-weight:bold;
   text-transform:uppercase;
   color:white;
@@ -81,7 +84,8 @@ button[aria-selected="true"]{
 }
 
 .cell {
-  border:none;
+  outline:0;
+  border:0;
   padding:0;
   margin:0;
   height: 40px;
@@ -89,22 +93,30 @@ button[aria-selected="true"]{
 }
 .dateCell{
   padding:0;
-  border:none;
   margin:0;
   line-height: inherit;
   height:100%;
+  width: 100%;
+  font-size: 15px;
+  border:1px solid #EEE;
+  background:white;
+  border-radius:5px;
 }
-.dateCell:focus{
+.dateCell::-moz-focus-inner{
+  border:0;
+}
+.dateCell:focus, .lastFocused{
   outline:0;
   padding:0;
   background-color: hsl(216, 80%, 92%);
   border-radius:5px;
+  border:1px solid black;
 }
 
-.disabled, .dateCell:disabled{
+.disabled, .dateCell:disabled,{
   cursor: not-allowed;
   color: #afafaf;
   border-radius:5px;
-  height:40px;
-  width:40px;
+  background:#EEE;
+  border:1px solid transparent;
 }
