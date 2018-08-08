@@ -1,7 +1,7 @@
-var DatePickerDay = function (domNode,dates) {
+var DatePickerDay = function (domNode,datepicker) {
 
   this.domNode = domNode;
-  this.dates = dates;
+  this.datepicker = datepicker;
 
   this.keyCode = Object.freeze({
     'TAB': 9,
@@ -36,49 +36,42 @@ DatePickerDay.prototype.handleKeyDown = function (event) {
   }
   switch (event.keyCode) {
     case this.keyCode.ESC:
-      this.dates.close(this.dates.dateInput[0]);
+      this.datepicker.close(this.datepicker.inputNode);
       break;
     case this.keyCode.TAB:
-      this.dates.dialogButton[0].focus();
+      this.datepicker.dialogButton[0].focus();
       if (event.shiftKey) {
-        this.dates.nextYear.focus();
+        this.datepicker.nextYear.focus();
       }
-      // for(var i=0; i<this.dates.datesArray.length; i++){
-      //   this.dates.datesArray[i].classList.remove('lastFocused');
-      //   if(this.dates.datesArray[i]===this.domNode){
-      //     this.domNode.classList.add('lastFocused');
-      //     this.dates.lastFocused = this.dates.datesArray[i];
-      //   }
-      // }
       flag = true;
       break;
     case this.keyCode.RETURN:
     case this.keyCode.SPACE:
-      this.dates.setSelectDate(this);
+      this.datepicker.setSelectDate(this);
       flag = true;
       break;
     case this.keyCode.RIGHT:
-      this.dates.setFocusToNextDay(this);
+      this.datepicker.setFocusToNextDay(this);
       flag = true;
       break;
     case this.keyCode.LEFT:
-      this.dates.setFocusToPrevDay(this);
+      this.datepicker.setFocusToPrevDay(this);
       flag = true;
       break;
     case this.keyCode.UP:
-      this.dates.setFocusToPrevWeek(this);
+      this.datepicker.setFocusToPrevWeek(this);
       flag = true;
       break;
     case this.keyCode.DOWN:
-      this.dates.setFocusToNextWeek(this);
+      this.datepicker.setFocusToNextWeek(this);
       flag = true;
       break;
     case this.keyCode.PAGEUP:
-      this.dates.moveToPrevYear();
+      this.datepicker.moveToPrevYear();
       flag = true;
       break;
     case this.keyCode.PAGEDOWN:
-      this.dates.moveToNextYear();
+      this.datepicker.moveToNextYear();
       flag = true;
       break;
   }
@@ -90,7 +83,7 @@ DatePickerDay.prototype.handleKeyDown = function (event) {
 
 };
 DatePickerDay.prototype.handleClick = function (event) {
-  this.dates.setSelectDate(this);
+  this.datepicker.setSelectDate(this);
   event.stopPropagation();
   event.preventDefault();
 

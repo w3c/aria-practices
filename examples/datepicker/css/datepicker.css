@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
 }
-.dateButton{
+.datepickerButton{
   border-style:none;
   padding:5px;
   text-align:left;
@@ -12,14 +12,14 @@ label{
   display:block;
 }
 
-.dateInput{
+.datepickerInput{
   width:20%;
 }
 
-.datepicker {
+.datepickerDialog {
   width:45%;
-  display:none;
   clear:both;
+  display:none;
   border:3px solid rgb(130, 177, 230);
   margin-top: 5px;
   border-radius:5px;
@@ -105,14 +105,18 @@ button[aria-selected="true"]{
 .dateCell::-moz-focus-inner{
   border:0;
 }
-.dateCell:focus, .lastFocused{
+.dateCell:focus{
   outline:0;
   padding:0;
-  background-color: hsl(216, 80%, 92%);
-  border-radius:5px;
+  background-color: hsl(216, 96%, 73%);
   border:1px solid black;
 }
-
+.lastFocused {
+  outline:0;
+  padding:0;
+  background-color:hsl(216, 80%, 92%);
+  border:1px solid rgb(100, 100, 100);
+}
 .disabled, .dateCell:disabled,{
   cursor: not-allowed;
   color: #afafaf;

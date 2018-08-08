@@ -1,21 +1,45 @@
-var DateInput = function (domNode, dates) {
+var DateInput = function (domNode,buttonNode, datepicker) {
   this.domNode = domNode;
-  this.dates = dates;
+  this.buttonNode = buttonNode;
+  this.datepicker = datepicker;
+
+  this.keyCode = Object.freeze({
+    'TAB': 9,
+    'RETURN': 13,
+    'ESC': 27,
+    'SPACE': 32,
+    'PAGEUP': 33,
+    'PAGEDOWN': 34,
+    'END': 35,
+    'HOME': 36,
+    'LEFT': 37,
+    'UP': 38,
+    'RIGHT': 39,
+    'DOWN': 40
+  });
 };
 
 DateInput.prototype.init = function () {
-  console.log(this.domNode);
-  console.log(document.activeElement);
   this.domNode.addEventListener('keydown', this.handleKeyDown.bind(this));
+  this.buttonNode.addEventListener('click', this.handleButtonClick.bind(this));
 
 };
+
+
 DateInput.prototype.handleKeyDown = function (event) {
   var tgt = event.currentTarget,
     char = event.key,
     flag = false;
-  if (event.keyCode === 40) {
-    this.dates.open(this.dates.dateInput[0]);
-    flag = true;
+  function isPrintableCharacter (str) {
+    return str.length === 1 && str.match(/\S/);
+  }
+  switch (event.keyCode) {
+    case this.keyCode.DOWN:
+      this.datepicker.open(this.domNode);
+      flag = true;
+      break;
+    case this.keyCode.ESC: 
+      this.datepicker.close(this.domNode);
   }
   if (flag) {
     event.stopPropagation();
@@ -23,3 +47,11 @@ DateInput.prototype.handleKeyDown = function (event) {
   }
 };
 
+DateInput.prototype.handleButtonClick = function () {
+  if (this.domNode.hasAttribute('aria-expanded')) {
+    this.datepicker.close(this.domNode);
+  }
+  else {
+    this.datepicker.open(this.domNode);
+  }
+};

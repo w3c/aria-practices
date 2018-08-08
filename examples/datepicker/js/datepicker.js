@@ -1,17 +1,34 @@
+window.addEventListener('load' , function () {
+
+  var datepickerInput = document.getElementsByClassName('datepickerInput');
+  var datepickerButton = document.getElementsByClassName('datepickerButton');
+  var datepickerDialog = document.getElementsByClassName('datepickerDialog');
+  var dp = new DatePicker(datepickerInput, datepickerButton, datepickerDialog);
+  dp.init();
+
+  document.body.addEventListener('click', function(e){
+    if(dp.inputNode.hasAttribute('aria-expanded')){
+      e.stopPropagation();
+      e.preventDefault();
+    }
+  })
+});
 var months =  ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-var DatePicker = function (firstChild, domNode) {
-  this.firstChild = firstChild;
-  this.domNode = domNode;
+var DatePicker = function (inputNode,buttonNode,dialogNode) {
+  this.inputNode = inputNode[0];
+  this.buttonNode = buttonNode[0];
+  this.dialogNode = dialogNode[0];
   this.monthIndex = null;
   this.month = null;
   this.year = null;
   this.today = null;
 
-  this.prevYear = firstChild.children[0];
-  this.prevMonth = firstChild.children[1];
-  this.nextMonth = firstChild.children[3];
-  this.nextYear = firstChild.children[4];
+  var header = this.dialogNode.children[0];
+  this.prevYear = header.children[0];
+  this.prevMonth = header.children[1];
+  this.nextMonth = header.children[3];
+  this.nextYear = header.children[4];
 
   this.datesInMonth = null;
   this.dates = null;
@@ -23,16 +40,14 @@ var DatePicker = function (firstChild, domNode) {
 
   this.selectDate = null;
   
-  this.dateInput = document.getElementsByClassName('dateInput');
-  this.dateInputArr = [];
-
-  this.dateButton = document.getElementsByClassName('dateButton');
 
 
   this.dialogButton = document.getElementsByClassName('dialogButton');
   var today = new Date();
   this.today = today.getDate();
   this.lastFocused = null;
+
+
   this.keyCode = Object.freeze({
     'TAB': 9,
     'RETURN': 13,
@@ -60,22 +75,17 @@ DatePicker.prototype.init = function () {
   this.dates = this.datesInMonth[this.monthIndex];
 
 
-  var dateInput = document.getElementsByClassName('dateInput');
 
-  for (var i = 0; i < dateInput.length; i++) {
-    var di = new DateInput(dateInput[i], this);
-    di.init();
-    this.dateInputArr.push(di);
-  }
+  
+  var di = new DateInput(this.inputNode, this.buttonNode, this);
+  di.init();
 
-  for (var i = 0; i < this.dateButton.length; i++) {
-    this.dateButton[i].addEventListener('click', this.handleButtonClick.bind(this));
-  }
 
   for (var i = 0; i < this.dialogButton.length; i++) {
     this.dialogButton[i].addEventListener('click', this.handleDialogButton.bind(this));
     this.dialogButton[i].addEventListener('keydown', this.handleDialogButton.bind(this));
   }
+
   this.prevMonth.addEventListener('click',this.handlePrevMonthButton.bind(this));
   this.nextMonth.addEventListener('click',this.handleNextMonthButton.bind(this));
   this.prevYear.addEventListener('click',this.handlePrevYearButton.bind(this));
@@ -98,7 +108,7 @@ DatePicker.prototype.init = function () {
 
 
 DatePicker.prototype.open = function (node) {
-  this.domNode.style.display = 'block';
+  this.dialogNode.style.display = 'block';
   node.setAttribute('aria-expanded', 'true');
   if (this.selectDate) {
     this.datesArray[this.selectDate - 1].focus();
@@ -111,17 +121,18 @@ DatePicker.prototype.open = function (node) {
 };
 
 DatePicker.prototype.close = function (node) {
-  this.domNode.style.display = 'none';
+  this.dialogNode.style.display = 'none';
+  console.log(node);
   node.removeAttribute('aria-expanded');
-  node.focus();
+  this.buttonNode.focus();
 };
 
 DatePicker.prototype.handleButtonClick = function () {
-  if (this.dateInput[0].hasAttribute('aria-expanded')) {
-    this.close(this.dateInput[0]);
+  if (this.inputNode.hasAttribute('aria-expanded')) {
+    this.close(this.inputNode);
   }
   else {
-    this.open(this.dateInput[0]);
+    this.open(this.inputNode);
   }
 };
 DatePicker.prototype.handleDialogButton = function (event) {
@@ -163,16 +174,16 @@ DatePicker.prototype.handleDialogButton = function (event) {
             }
           }
         } else if (tgt.value==='cancel') {
-          this.close(this.dateInput[0]);
+          this.close(this.inputNode);
         }
       case this.keyCode.ESC:
-        this.close(this.dateInput[0]);
+        this.close(this.inputNode);
         flag = true;
         break;
     }
   }
   else if (event.type === 'click') {
-    this.close(this.dateInput[0]);
+    this.close(this.inputNode);
     flag = true;
   }
   if (flag) {
@@ -181,6 +192,7 @@ DatePicker.prototype.handleDialogButton = function (event) {
   }
 };
 DatePicker.prototype.handleNextYearButton = function (event) {
+  console.log('hihi')
   var type = event.type;
   if (type === 'keydown') {
     var tgt = event.currentTarget,
@@ -191,7 +203,7 @@ DatePicker.prototype.handleNextYearButton = function (event) {
     }
     switch (event.keyCode) {
       case this.keyCode.ESC:
-        this.close(this.dateInput[0]);
+        this.close(this.inputNode);
         flag = true;
         break;
       case this.keyCode.TAB:
@@ -206,7 +218,7 @@ DatePicker.prototype.handleNextYearButton = function (event) {
         break;
       case this.keyCode.RETURN:
       case this.keyCode.SPACE:
-        this.moveToPrevYear();
+        this.moveToNextYear();
         flag = true;
         break;
     }
@@ -230,7 +242,7 @@ DatePicker.prototype.handlePrevYearButton = function (event) {
     }
     switch (event.keyCode) {
       case this.keyCode.ESC:
-        this.close(this.dateInput[0]);
+        this.close(this.inputNode);
         flag = true;
         break;
       case this.keyCode.TAB:
@@ -262,29 +274,61 @@ DatePicker.prototype.handlePrevYearButton = function (event) {
 DatePicker.prototype.handleNextMonthButton = function (event) {
   var type = event.type;
   if (type === 'keydown') {
-    if (event.keyCode === 13 || event.keyCode === 32) {
-      this.moveToNextMonth();
+    var tgt = event.currentTarget,
+    char = event.key,
+    flag = false;
+    function isPrintableCharacter (str) {
+      return str.length === 1 && str.match(/\S/);
     }
-    else if (event.keyCode === 27) {
-      this.close(this.dateInput[0]);
+    switch (event.keyCode) {
+      case this.keyCode.ESC:
+        this.close(this.inputNode);
+        flag = true;
+        break;
+      case this.keyCode.RETURN:
+      case this.keyCode.SPACE:
+        this.moveToNextMonth();
+        flag = true;
+        break;
     }
   }
   else if (type === 'click') {
     this.moveToNextMonth();
+    flag = true;
+  }
+  if (flag) {
+    event.stopPropagation();
+    event.preventDefault();
   }
 };
 DatePicker.prototype.handlePrevMonthButton = function (event) {
   var type = event.type;
   if (type === 'keydown') {
-    if (event.keyCode === 13 || event.keyCode === 32) {
-      this.moveToPrevMonth();
+    var tgt = event.currentTarget,
+    char = event.key,
+    flag = false;
+    function isPrintableCharacter (str) {
+      return str.length === 1 && str.match(/\S/);
     }
-    else if (event.keyCode === 27) {
-      this.close(this.dateInput[0]);
+    switch (event.keyCode) {
+      case this.keyCode.ESC:
+        this.close(this.inputNode);
+        flag = true; 
+        break;
+      case this.keyCode.RETURN:
+      case this.keyCode.SPACE:
+        this.moveToPrevMonth();
+        flag = true; 
+        break; 
     }
   }
   else if (type === 'click') {
     this.moveToPrevMonth();
+    flag = true;
+  }
+  if (flag) {
+    event.stopPropagation();
+    event.preventDefault();
   }
 };
 DatePicker.prototype.moveToNextYear = function () {
@@ -317,6 +361,12 @@ DatePicker.prototype.moveToPrevMonth = function () {
   }
   this.headerButton = true;
   this.updateDates();
+  if (this.selectDate == null) {
+    this.datesArray[0].focus();
+  }
+  else {
+    this.datesArray[parseInt(this.selectDate) - 1].focus();
+  }
 };
 DatePicker.prototype.moveToNextMonth = function () {
   this.monthIndex++;
@@ -326,6 +376,13 @@ DatePicker.prototype.moveToNextMonth = function () {
   }
   this.headerButton = true;
   this.updateDates();
+  if (this.selectDate == null) {
+    this.datesArray[0].focus();
+  }
+  else {
+    this.datesArray[parseInt(this.selectDate) - 1].focus();
+  }
+  console.log('hdhdhd');
 };
 
 
@@ -358,7 +415,7 @@ DatePicker.prototype.setSelectDate = function (dateCell) {
   }
   document.getElementById('id-date-1').value = numberOfMonth + '/' + numberOfDate + '/' + this.year;
 
-  this.close(this.dateInput[0]);
+  this.close(this.inputNode);
 };
 
 
@@ -500,10 +557,11 @@ DatePicker.prototype.updateCalendar = function (month, year) {
       dc.init();
       this.datesArrayDOM.push(dc);
     }
-    this.datesArrayDOM[0].domNode.focus();
+    // this.datesArrayDOM[0].domNode.focus();
   }
   this.headerButton = false;
   return true;
 };
+
 
 
