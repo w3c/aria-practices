@@ -146,21 +146,19 @@ DatePicker.prototype.handleDialogButton = function (event) {
       case this.keyCode.TAB:
         if (tgt.value === 'ok') {
           this.prevYear.focus();
+          if(event.shiftKey) {
+            this.dialogButton[0].focus();
+          }
         }
         else if (tgt.value === 'cancel') {
           this.dialogButton[1].focus();
-        }
-        if (event.shiftKey) {
-          if (tgt.value === 'cancel') {
+          if (event.shiftKey) {
             if (this.lastFocused){
               this.lastFocused.focus();
             } 
             else {
               this.datesArray[this.today - 1].focus();
             }
-          }
-          else {
-            this.dialogButton[0].focus();
           }
         }
         flag = true;
@@ -339,7 +337,7 @@ DatePicker.prototype.moveToNextYear = function () {
     this.datesArray[0].focus();
   }
   else {
-    this.datesArray[parseInt(this.selectDate) - 1].focus();
+    this.datesArray[parseInt(this.selectDate) - 1].focus(); 
   }
 };
 DatePicker.prototype.moveToPrevYear = function () {

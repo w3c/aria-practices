@@ -2,9 +2,12 @@
   margin: 0;
   padding: 0;
 }
+.datepicker{
+  margin-top:1em;
+}
 .datepickerButton{
   border-style:none;
-  padding:5px;
+  /* padding:5px; */
   text-align:left;
   background-color:white;
 }
@@ -13,6 +16,7 @@ label{
 }
 
 .datepickerInput{
+  margin-top:1em;
   width:20%;
 }
 
@@ -21,7 +25,7 @@ label{
   clear:both;
   display:none;
   border:3px solid rgb(130, 177, 230);
-  margin-top: 5px;
+  margin-top:1em;
   border-radius:5px;
   padding:0;
 }
@@ -39,11 +43,25 @@ label{
   background-color:transparent;
   border: 1px solid #EEE;
 }
-
+.prev-year, .prev-month, .next-month, .next-year {
+  padding:4px;
+}
+.prev-year:focus, .prev-month:focus, .next-month:focus, .next-year:focus{
+  /* background-color:#EEE;  */
+  color:black;
+  border:1px solid black;
+  border-radius:10px;
+  outline:0;
+}
+.dialogButton:focus{
+  border:1px solid black;
+  outline:0;
+}
 .dates{
   width:100%;
   padding-left:1em;
   padding-right:1em;
+  padding-top:1em;
 }
 th[scope="col"],.dateRow td{
   text-align:center;
@@ -55,7 +73,7 @@ th[scope="col"],.dateRow td{
 .header {
   cursor:default;
   background-color:hsl(216, 89%, 72%);
-  height:34px;
+  padding:5px;
   font-weight:bold;
   text-transform:uppercase;
   color:white;
@@ -64,13 +82,11 @@ th[scope="col"],.dateRow td{
 }
 .header button{
   border-style:none;
-  height:3em;
   background:transparent;
 }
 
 .header span {
   display:inline-block;
-  line-height:34px;
 }
 
 .dateRow{
