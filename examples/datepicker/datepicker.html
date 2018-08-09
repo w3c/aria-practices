@@ -49,18 +49,22 @@
               aria-haspopup="true"
               aria-controls="id-datepicker-1">
 
-        <button class="datepickerButton" tabIndex="-1" aria-label="toggle the calendar">
+        <button class="datepickerButton" 
+          tabIndex="-1" 
+          aria-label="Pick a date"
+          title="Select to change date"
+          >
           <i class="fa fa-calendar-alt fa-2x"></i>
         </button>
 
         <div id="id-datepicker-1" class="datepickerDialog" role="dialog" aria-labelledby="dislogLabel">
 
           <div class="header">
-            <button class="prev-year">&lang;&lang;</button>
-            <button class="prev-month">&lang;</button>
+            <button class="prev-year"><i class="fas fa-angle-double-left"></i></button>
+            <button class="prev-month"><i class="fas fa-angle-left"></i></button>
             <span id="dialogLabel" class="month-year-label"></span>
-            <button class="next-month">&rang;</button>
-            <button class="next-year">&rang;&rang;</button>
+            <button class="next-month"><i class="fas fa-angle-right"></i></button>
+            <button class="next-year"><i class="fas fa-angle-double-right"></i></button>
           </div>
   
           <table class="dates" role="grid">
