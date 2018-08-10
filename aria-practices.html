@@ -559,18 +559,18 @@
     <section class="widget" id="carousel">
       <h3>Carousel (Image Rotator)</h3>
       <p>
-        A carousel is a widget that automatically rotates through a set of images, showing just one image at time.
+        A carousel is a composite widget containing a set of controls for pausing the rotation of images and navigating images.
         The image often has additional related content in the form of text content and links.
         A  <code>tablist</code> widget and a set of <code>button</code> widgets can be used to describe the carousel content, pause and restart automatic rotation and manually rotate through the images.
-        Each image is represented by a tab in the tablist, with the tabs used to control the rendering of each image.
-        In addition to the tabs, a previous and next button are typically provided to control the rendering of each image.
-        A button is also need to stop rotation for screen reader users when they are in review mode.
-        If a screen reader user moves their review cursor into the image content and it automatically rotates, the content will be removed from the accessibility API and the review cursor typically moves to the beginning of thet page, which is disorietning to users.
+        Each image is represented as a <code>tabpanel</code> and a <code>tablist</code> is used to control navigation to each item.
+        In addition to the tabs, a previous and next button are typically provided to allow navigation to the previous and next slide.
+        A button is used to stop the automatic rotationof the image for screen reader and other keyboard users.
+        When screen reader users move their review cursor to the image content and it automatically rotates, the content is removed from the accessibility tree and the review cursor typically moves to the beginning of the page, which is disorienting to users.
         The set of controls should also be in a complementary landmark with an accessible name identifying the region as a carousel widget.
 
       <section class="notoc">
         <h4>Examples</h4>
-        <p><a href="examples/carousel/carousel-1.html">Carousel Example</a>: Demonstates the accessibility features of a carousel widget.</p>
+        <p><a href="examples/carousel/carousel-1/carousel.html">Carousel Example</a>: Demonstrates the accessibility features of a carousel of auto-rotating images.</p>
       </section>
 
       <section class="notoc">
@@ -600,20 +600,14 @@
       <section class="notoc">
         <h4>WAI-ARIA Roles, States, and Properties</h4>
         <ul>
-          <li>The checkbox has role <a href="#checkbox" class="role-reference">checkbox</a>.</li>
-          <li>
-            The checkbox has an accessible label provided by one of the following:
-            <ul>
-              <li>Visible text content contained within the element with role <code>checkbox</code>.</li>
-              <li>A visible label referenced by the value of <a href="#aria-labelledby" class="property-reference" >aria-labelledby</a> set on the element with role <code>checkbox</code>.</li>
-              <li><a href="#aria-label" class="property-reference">aria-label</a> set on the element with role <code>checkbox</code>.</li>
-            </ul>
-          </li>
-          <li>When checked, the checkbox element has state <a href="#aria-checked" class="state-reference" >aria-checked</a> set to <code>true</code>.</li>
-          <li>When not checked, it has state <a href="#aria-checked" class="state-reference" >aria-checked</a> set to <code>false</code>.</li>
-          <li>When partially checked, it has state <a href="#aria-checked" class="state-reference" >aria-checked</a> set to <code>mixed</code>.</li>
-          <li>If a set of checkboxes is presented as a logical group with a visible label, the checkboxes are included in an element with role <a href="#group" class="role-reference" >group</a> that has the property <a href="#aria-labelledby" class="property-reference" >aria-labelledby</a> set to the ID of the element containing the label.</li>
-          <li>If the presentation includes additional descriptive static text relevant to a checkbox or checkbox group, the checkbox or checkbox group has the property <a href="#aria-describedby" class="property-reference">aria-describedby</a> set to the ID of the element containing the description.</li>
+        <li>The pause button uses <code>aria-pressed="true"</code> to indicate the rotator is paused.</li>
+        <li>The pause button uses <code>aria-pressed="false"</code> to indicate the rotator is automatically rotating.</li>
+        <li>The element that serves as the container the for the set of tabs has role  <a class="role-reference" href="#tablist">tablist</a>. </li>
+        <li>Each element that serves as a tab has role <a class="role-reference" href="#tab">tab</a> and is contained within the element with role <code>tablist</code>.</li>
+          <li>Each element that contains the content panel for a <code>tab</code> has role <a class="role-reference" href="#tabpanel">tabpanel</a>.</li>
+          <li>Each element with role <code>tab</code> has the property <a href="#aria-controls" class="property-reference">aria-controls</a> referring to its associated <code>tabpanel</code> element.</li>
+          <li>The active <code>tab</code> element has the state <a href="#aria-selected" class="state-reference">aria-selected</a> set to <code>true</code> and all other <code>tab</code> elements have it set to <code>false</code>.</li>
+          <li>Each element with role <code>tabpanel</code> has the property <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> referring to its associated <code>tab</code> element. </li>
         </ul>
       </section>
     </section>
