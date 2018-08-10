@@ -42,7 +42,9 @@ label{
   border-radius:5px;
   margin-left:1em;
   width:5em;
-  background-color:hsl(216, 91%, 79%);
+  background-color:hsl(216, 89%, 72%);
+  color:white;
+  outline:none;
   border: 1px solid #EEE;
 }
 .prev-year, .prev-month, .next-month, .next-year {
@@ -122,7 +124,7 @@ th[scope="col"],.dateRow td{
 .dateCell:focus{
   outline:0;
   padding:0;
-  background-color: hsl(216, 96%, 73%);
+  background-color:hsl(216, 89%, 72%);
   border:1px solid black;
 }
 .lastFocused {
@@ -134,11 +136,10 @@ th[scope="col"],.dateRow td{
 .disabled, .dateCell:disabled,{
   cursor: not-allowed;
   color: #afafaf;
-  border-radius:5px;
-  background:#EEE;
-
 }
 
 .dateCell:disabled{
   border:1.3px solid #EEE;
+  background:#EEE;
+  cursor: not-allowed;
 }
