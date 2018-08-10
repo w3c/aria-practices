@@ -114,9 +114,12 @@
   padding-right:2px;
 }
 
-.carousel [role="tab"]:focus {
+.carousel [role="tab"][aria-selected="true"] {
   background-color: white;
   border-radius: 50%;
+}
+
+.carousel [role="tab"]:focus {
   outline-offset: 1px;
   outline-style: solid;
   outline-color: white;

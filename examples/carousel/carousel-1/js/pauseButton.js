@@ -9,31 +9,27 @@
 */
 
 var PauseButton = function (domNode, tablist) {
-
-  this.domNode   = domNode;
+  this.domNode = domNode;
 
   this.tablist = tablist;
 };
 
 var StartButton = function (domNode, tablist) {
-
-  this.domNode   = domNode;
+  this.domNode = domNode;
 
   this.tablist = tablist;
 };
 
 PauseButton.prototype.init = function () {
-
-  this.domNode.addEventListener('click',      this.handleClick.bind(this));
-  this.domNode.addEventListener('focus',      this.handleFocus.bind(this));
-  this.domNode.addEventListener('blur',       this.handleBlur.bind(this));
+  this.domNode.addEventListener('click', this.handleClick.bind(this));
+  this.domNode.addEventListener('focus', this.handleFocus.bind(this));
+  this.domNode.addEventListener('blur', this.handleBlur.bind(this));
 };
 
 /* EVENT HANDLERS */
 
 PauseButton.prototype.handleClick = function (event) {
   this.tablist.toggleRotation();
-  this.tablist.rotationButtonState = this.tablist.rotate;
 };
 
 PauseButton.prototype.handleFocus = function (event) {
