@@ -12,35 +12,33 @@
 *
 */
 var CarouselButton = function (domNode, tablist) {
-
-  this.domNode   = domNode;
+  this.domNode = domNode;
 
   this.tablist = tablist;
 
   this.direction = 'previous';
 
-  if(this.domNode.classList.contains('next')) {
+  if (this.domNode.classList.contains('next')) {
     this.direction = 'next';
   }
 
   this.keyCode = Object.freeze({
-    'RETURN'   : 13,
-    'SPACE'    : 32,
-    'END'      : 35,
-    'HOME'     : 36,
-    'LEFT'     : 37,
-    'UP'       : 38,
-    'RIGHT'    : 39,
-    'DOWN'     : 40
+    'RETURN': 13,
+    'SPACE': 32,
+    'END': 35,
+    'HOME': 36,
+    'LEFT': 37,
+    'UP': 38,
+    'RIGHT': 39,
+    'DOWN': 40
   });
 };
 
 CarouselButton.prototype.init = function () {
-
-  this.domNode.addEventListener('keydown',    this.handleKeydown.bind(this));
-  this.domNode.addEventListener('click',      this.handleClick.bind(this));
-  this.domNode.addEventListener('focus',      this.handleFocus.bind(this));
-  this.domNode.addEventListener('blur',       this.handleBlur.bind(this));
+  this.domNode.addEventListener('keydown', this.handleKeydown.bind(this));
+  this.domNode.addEventListener('click', this.handleClick.bind(this));
+  this.domNode.addEventListener('focus', this.handleFocus.bind(this));
+  this.domNode.addEventListener('blur', this.handleBlur.bind(this));
 };
 
 CarouselButton.prototype.changeTab = function () {
@@ -58,9 +56,7 @@ CarouselButton.prototype.changeTab = function () {
 CarouselButton.prototype.handleKeydown = function (event) {
   var flag = false;
 
-
   switch (event.keyCode) {
-
     case this.keyCode.SPACE:
     case this.keyCode.RETURN:
       this.changeTab();
@@ -79,7 +75,7 @@ CarouselButton.prototype.handleKeydown = function (event) {
 };
 
 CarouselButton.prototype.handleClick = function (event) {
-  this.changeTab()
+  this.changeTab();
 };
 
 CarouselButton.prototype.handleFocus = function (event) {
