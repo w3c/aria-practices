@@ -1,16 +1,13 @@
 /*
-*   File:   carouselButton.js
+*   This content is licensed according to the W3C Software License at
+*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
 *
-*   Desc:   Carousel Button widget that implements ARIA Authoring Practices
+*   File:   pauseButton.js
 *
-*   Author(s): Jon Gunderson, Nicholas Hoyt, and Mark McCarthy
+*   Desc:   Button to start and stop carousel image rotation
+*
 */
 
-/*
-*   @constructor PauseButton
-*
-*
-*/
 var PauseButton = function (domNode, tablist) {
 
   this.domNode   = domNode;
@@ -32,12 +29,7 @@ PauseButton.prototype.init = function () {
   this.domNode.addEventListener('blur',       this.handleBlur.bind(this));
 };
 
-
-
 /* EVENT HANDLERS */
-
-  //  console.log("[PauseButton][handleKeydown]: " + event.keyCode + " " + this.tablist)
-
 
 PauseButton.prototype.handleClick = function (event) {
   this.tablist.toggleRotation();

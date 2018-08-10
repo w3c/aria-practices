@@ -56,9 +56,7 @@ CarouselButton.prototype.changeTab = function () {
 /* EVENT HANDLERS */
 
 CarouselButton.prototype.handleKeydown = function (event) {
-  var tgt = event.currentTarget,
-      flag = false,
- clickEvent;
+  var flag = false;
 
 
   switch (event.keyCode) {

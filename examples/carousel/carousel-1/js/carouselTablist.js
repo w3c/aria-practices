@@ -167,15 +167,13 @@ CarouselTablist.prototype.toggleRotation = function(){
   if (this.enableRotation){
     this.enableRotation=false;
     this.stopRotation();
-    this.rotationButton.innerHTML='Start Carousel';
-    console.log("rotation is "+this.enableRotation);
+    this.rotationButton.setAttribute('aria-pressed', 'true');
   }
   else {
     this.enableRotation = true;
     this.startRotation();
     this.hasFocus=false;
-    this.rotationButton.innerHTML='Pause Carousel';
-    console.log("rotation is "+this.enableRotation);
+    this.rotationButton.setAttribute('aria-pressed', 'false');
   }
 
 };

@@ -16,7 +16,7 @@
     <script src="js/carouselTablist.js" type="text/javascript"></script>
     <script src="js/carouselTab.js" type="text/javascript"></script>
     <script src="js/carouselButtons.js" type="text/javascript"></script>
-    <script src="js/rotationButton.js" type="text/javascript"></script>
+    <script src="js/pauseButton.js" type="text/javascript"></script>
 
   </head>
   <body>
@@ -31,9 +31,9 @@
     <main>
       <h1>Example of Image Carousel with Automatically Rotating Images</h1>
       <p>
-          This example section demonstrates a tabs widget that implements the  <a href="../../../#carousel">design pattern for tabs</a>.
-          In this example,  a tab is automatically activated and its associated panel is displayed when the tab receives focus.
-          Tabs should only be automatically activated in circumstances where panels can be displayed instantly, i.e., all panel content is present in the DOM.
+          This example section demonstrates a <a href="../../../#carousel">design pattern for a image carousel</a> consisting of a pause button, next and previous slide buttons and a the use of <a href="../../../#tab">tabs</a> to navigate the list of carousel items.
+          In this example, when the page is loaded the carousel images start rotating automatically.
+          The auto rotation can be stopped by pressing the pause button, just moving keyboard focus to any control or link in the carousel or hovering over the image with a mouse.  There are two ways for the user to restart rotation, pressing the pause button again or moving the pointer outside the carousel image area.
           For additional guidance, see <a href="../../../#kbd_selection_follows_focus">Deciding When to Make Selection Automatically Follow Focus</a>.
       </p>
 
@@ -42,31 +42,31 @@
         <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
         <div id="ex1">
             <div id="myCarousel" class="carousel slide">
-              <aside><button class="rotator">Pause Carousel</button></aside>
+              <aside><button class="pause" aria-pressed="false">Pause Carousel</button></aside>
 
               <div class="carousel-inner">
                 <!-- Indicators -->
-                <ol role="tablist" class="carousel-indicators">
-                  <li role="tab" class="tab focus" aria-selected="true" tabindex="0" aria-labelledby="rick" aria-controls="carousel-item-1"></li>
-                  <li role="tab" class="tab" aria-selected="false" tabindex="0" aria-labelledby="england" aria-controls="carousel-item-2"></li>
-                  <li role="tab" class="tab" aria-selected="false" tabindex="0" aria-labelledby="pbs" aria-controls="carousel-item-3"></li>
-                  <li role="tab" class="tab" aria-selected="false" tabindex="0" aria-labelledby="foyle" aria-controls="carousel-item-4"></li>
-                  <li role="tab" class="tab" aria-selected="false" tabindex="0" aria-labelledby="britcom" aria-controls="carousel-item-5"></li>
-                  <li role="tab" class="tab" aria-selected="false" tabindex="0" aria-labelledby="will" aria-controls="carousel-item-6"></li>
+                <ol role="tablist" class="carousel-indicators" aria-label="Image Carousel">
+                  <li role="tab" aria-selected="true"  tabindex="0" aria-labelledby="carousel-label-1" aria-controls="carousel-panel-1"></li>
+                  <li role="tab" aria-selected="false" tabindex="0" aria-labelledby="carousel-label-2" aria-controls="carousel-panel-2"></li>
+                  <li role="tab" aria-selected="false" tabindex="0" aria-labelledby="carousel-label-3" aria-controls="carousel-panel-3"></li>
+                  <li role="tab" aria-selected="false" tabindex="0" aria-labelledby="carousel-label-4" aria-controls="carousel-panel-4"></li>
+                  <li role="tab" aria-selected="false" tabindex="0" aria-labelledby="carousel-label-5" aria-controls="carousel-panel-5"></li>
+                  <li role="tab" aria-selected="false" tabindex="0" aria-labelledby="carousel-label-6" aria-controls="carousel-panel-6"></li>
                 </ol>
 
-                <div role="tabpanel" id="carousel-item-1" class="carousel-item active" tabindex="0" aria-labelledby="rick">
+                <div role="tabpanel" id="carousel-panel-1" class="carousel-item active" tabindex="0" aria-labelledby="carousel-label-1">
 
                   <div class="carousel-image">
                     <a href="http://www.pbs.org/about/news/archive/2015/pbs-most-trusted/">
-                      <img src="images/amsterdamslide__800x600.jpg" alt="Red Light Walking Tour in Amsterdam" />
+                      <img src="images/amsterdamslide__800x600.jpg" alt="Walking Tour in Amsterdam" />
                     </a>
                   </div>
 
                   <div class="carousel-caption">
 
                     <h2>
-                      <a href="travel-rick.html" id="rick">
+                      <a href="#" id="carousel-label-1">
                          Dynamic Europe: Amsterdam, Prague, Berlin
                       </a>
                     </h2>
@@ -77,7 +77,7 @@
                   </div>  <!-- .carousel-caption -->
                 </div>   <!-- .item -->
 
-                <div role="tabpanel" id="carousel-item-2" class="carousel-item" tabindex="0" aria-labelledby="england">
+                <div role="tabpanel" id="carousel-panel-2" class="carousel-item" tabindex="0" aria-labelledby="carousel-label-2">
 
                   <div class="carousel-image">
                       <img src="images/lands-endslide__800x600.jpg" alt="Land&#039;s End in Cornwall"/>
@@ -86,7 +86,7 @@
                   <div class="carousel-caption">
 
                     <h2>
-                      <a href="travel-england.html" id="england">
+                      <a href="#" id="carousel-label-2">
                         Travel to Southwest England and Paris
                       </a>
                     </h2>
@@ -97,7 +97,7 @@
                   </div>  <!-- .carousel-caption -->
                 </div>   <!-- .item -->
 
-                <div role="tabpanel" id="carousel-item-3" class="carousel-item" tabindex="0" aria-labelledby="pbs">
+                <div role="tabpanel" id="carousel-panel-3" class="carousel-item" tabindex="0" aria-labelledby="carousel-label-3">
 
                   <div class="carousel-image">
                     <img src="images/trustslide-2__800x600.jpg" alt="Mom and daughter play Daniel Tiger game on notebook computer."/>
@@ -106,7 +106,7 @@
                   <div class="carousel-caption">
 
                     <h2>
-                      <a href="pbs-survey.html" id="pbs">
+                      <a href="pbs-survey.html" id="carousel-label-3">
                         Survey confirms that TV  is America&#8217;s most trusted institution
                       </a>
                     </h2>
@@ -117,7 +117,7 @@
                   </div>  <!-- .carousel-caption -->
                 </div>   <!-- .item -->
 
-                <div role="tabpanel" id="carousel-item-4" class="carousel-item" tabindex="0" aria-labelledby="foyle">
+                <div role="tabpanel" id="carousel-panel-4" class="carousel-item" tabindex="0" aria-labelledby="carousel-label-4">
 
                   <div class="carousel-image">
                       <img src="images/foyleswarslide__800x600.jpg" alt="A man in a suit and fedora and a woman with coiffed hair look sternly into the camera."/>
@@ -126,7 +126,7 @@
                   <div class="carousel-caption">
 
                     <h2>
-                      <a href="foyles-war.html" id="foyle">
+                      <a href="foyles-war.html" id="carousel-label-4">
                         Foyle&#8217;s War Revisited
                       </a>
                     </h2>
@@ -137,7 +137,7 @@
                   </div>  <!-- .carousel-caption -->
                 </div>   <!-- .item -->
 
-                <div role="tabpanel" id="carousel-item-5" class="carousel-item" tabindex="0" aria-labelledby="britcom">
+                <div role="tabpanel" id="carousel-panel-5" class="carousel-item" tabindex="0" aria-labelledby="carousel-label-5">
 
                   <div class="carousel-image">
                       <img src="images/britcomdavidslide__800x600.jpg" alt="British flag with WILL-TV host David Thiel."/>
@@ -146,7 +146,7 @@
                   <div class="carousel-caption">
 
                     <h2>
-                      <a href="/highlights/story/great-britcom-vote-all-star-edition" id="britcom">
+                      <a href="/highlights/story/great-britcom-vote-all-star-edition" id="carousel-label-5">
                         Great Britain Vote: 7 pm Sat.
                       </a>
                     </h2>
@@ -156,7 +156,7 @@
                   </div>  <!-- .carousel-caption -->
                 </div>   <!-- .item -->
 
-                <div role="tabpanel" id="carousel-item-6" class="carousel-item"  tabindex="0" aria-labelledby="will">
+                <div role="tabpanel" id="carousel-panel-6" class="carousel-item"  tabindex="0" aria-labelledby="carousel-label-6">
 
                   <div class="carousel-image">
                       <img src="images/mag800-2__800x600.jpg" alt="Mid-American Gardener panelists on the set" />
@@ -165,7 +165,7 @@
                   <div class="carousel-caption">
 
                     <h2>
-                      <a href="http://www.will.illinois.edu/midamericangardener" id="will">
+                      <a href="http://www.will.illinois.edu/midamericangardener" id="carousel-label-6">
                         Mid-American Gardener: Thursdays at 7 pm
                       </a>
                     </h2>
@@ -222,6 +222,7 @@
                   <ul>
                     <li>When focus moves into the tab list, places focus on the active <code>tab</code> element .</li>
                     <li>When the tab list contains the focus, moves focus to the next element in the tab sequence, which is the <code>tabpanel</code> element.</li>
+                    <li>When any element in the carousel example receives focus, auto rotation of the images is stopped.</li>
                   </ul>
                 </td>
               </tr>
@@ -253,10 +254,6 @@
                 <th><kbd>End</kbd></th>
                 <td>Moves focus to the last tab and activates it.</td>
               </tr>
-              <tr>
-                <th><kbd>Delete</kbd></th>
-                <td>When focus is on the <q>Joke</q> tab, removes the tab from the tab list and places focus on the previous tab.</td>
-              </tr>
             </tbody>
           </table>
         </section>
@@ -271,12 +268,17 @@
               </tr>
             </thead>
             <tbody>
+                <th><kbd>Tab</kbd></th>
+                <td>
+                  The button becomes visible when it receives keyboard focus.
+                </td>
+              </tr>
               <tr>
                 <th><kbd>Enter</kbd> or <kbd>Space</kbd></th>
                 <td>
                   <ul>
-                    <li></li>
-                    <li></li>
+                    <li>Activating the button will toggle the auto rotation of slides in the carousel.</li>
+                    <li>The purpose is to help screen reader users know there is a way to pause the auto rotation of images when they are in review mode before they get to the rotating content (e.g. not stopping the images may cause screen reader to move reading back to the top of the page when they are reading content that becomes hidden).</li>
                     <li></li>
                   </ul>
                 </td>
@@ -298,11 +300,7 @@
               <tr>
                 <th><kbd>Enter</kbd> or <kbd>Space</kbd></th>
                 <td>
-                  <ul>
-                    <li></li>
-                    <li></li>
-                    <li></li>
-                  </ul>
+                  Moves content to the next or previous slide in the image carousel.
                 </td>
               </tr>
             </tbody>
@@ -332,14 +330,14 @@
                 </th>
                 <td></td>
                 <td>
-                  <code>div</code>
+                  <code>ol</code>
                 </td>
                 <td>Indicates that the element serves as a container for a set of tabs.</td>
               </tr>
               <tr>
                 <td></td>
                 <th scope="row">
-                  <code>aria-label=<q>Entertainment</q></code>
+                  <code>aria-label=<q>Image Carousel</q></code>
                 </th>
                 <td>
                   <code>div</code>
@@ -352,19 +350,29 @@
                 </th>
                 <td></td>
                 <td>
-                  <code>button</code>
+                  <code>li</code>
                 </td>
                 <td>
                   <ul>
                     <li>Indicates the element serves as a tab control.</li>
                     <li>
-                      When focused, is automatically activated, causing its associated <code>tabpanel</code>
+                      When focused, is automatically activated, causing its associated <code>tabpanel</code> (e.g. slide)
                       to be displayed.
                     </li>
-                    <li>
-                      Provides a title for its associated <code>tabpanel</code>.
-                    </li>
                   </ul>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                </td>
+                <th scope="row">
+                  <code>aria-labelledby=<q>IDREF</q></code>
+                </th>
+                <td>
+                  <code>li</code>
+                </td>
+                <td>
+                  Defines a label for the <code>tab</code>.
                 </td>
               </tr>
               <tr>
@@ -373,11 +381,11 @@
                   <code>aria-selected=<q>true</q></code>
                 </th>
                 <td>
-                  <code>button</code>
+                  <code>li</code>
                 </td>
                 <td>
                   <ul>
-                    <li>Indicates the tab control is activated and its associated panel is displayed.</li>
+                    <li>Indicates the tab control is activated and its associated panel (e.g slide) is displayed.</li>
                     <li>Set when a tab receives focus.</li>
                   </ul>
                 </td>
@@ -388,7 +396,7 @@
                   <code>aria-selected=<q>false</q></code>
                 </th>
                 <td>
-                  <code>button</code>
+                  <code>li</code>
                 </td>
                 <td>
                   <ul>
@@ -406,13 +414,13 @@
                   <code>tabindex=<q>-1</q></code>
                 </th>
                 <td>
-                  <code>button</code>
+                  <code>li</code>
                 </td>
                 <td>
                   <ul>
-                    <li>Removes the element from the page <kbd>Tab</kbd> sequence.</li>
+                    <li>Makes the element focusable.</li>
                     <li>Set when a tab is not selected so that only the selected tab is in the page <kbd>Tab</kbd> sequence.</li>
-                    <li>Since an HTML <code>button</code> element is used for the tab, it is not necessary to set <code>tabindex=<q>0</q></code> on the selected (active) tab element.</li>
+                    <li>Since an HTML <code>LI</code> element is used for the tab, it is necessary to set <code>tabindex=<q>0</q></code> on the selected (active) tab element.</li>
                     <li>This approach to managing focus is described in the section on <a href="../../../#kbd_roving_tabindex">roving tabindex</a>.</li>
                   </ul>
                 </td>
@@ -423,7 +431,7 @@
                   <code>aria-controls=<q>IDREF</q></code>
                 </th>
                 <td>
-                  <code>button</code>
+                  <code>li</code>
                 </td>
                 <td>
                   Refers to the <code>tabpanel</code> element associated with the tab.
@@ -496,14 +504,14 @@
             </thead>
             <tbody>
               <tr>
-                <th scope="row">
-                  <code>tablist</code>
-                </th>
                 <td></td>
+                <th scope="row">
+                  <code>aria-pressed</code>
+                </th>
                 <td>
-                  <code>div</code>
+                  <code>button</code>
                 </td>
-                <td>Indicates that the element serves as a container for a set of tabs.</td>
+                <td>Identifies the button as a toggle button.</td>
               </tr>
             </tbody>
           </table>
@@ -523,28 +531,27 @@
             <tbody>
               <tr>
                 <th scope="row">
-                  <code>tablist</code>
+                  <code>button</code>
                 </th>
                 <td></td>
                 <td>
-                  <code>div</code>
+                  <code>a</code>
                 </td>
-                <td>Indicates that the element serves as a container for a set of tabs.</td>
+                <td>Overrides the default role of <code>link</code> with <code>button</code>.</td>
               </tr>
             </tbody>
           </table>
         </section>
       <section>
 
-          <li>Javascript: <a href="js/carouselTablist.js" type="text/javascript">carouselTablist.js</a></li>
- <section>
+      <section>
         <h2>Javascript and CSS Source Code</h2>
         <ul>
           <li>CSS: <a href="../css/carousel.css" type="text/css">carousel.css</a></li>
           <li>Javascript: <a href="js/carouselTablist.js" type="text/javascript">carouselTablist.js</a></li>
           <li>Javascript: <a href="js/carouselTab.js" type="text/javascript">carouselTab.js</a></li>
           <li>Javascript: <a href="js/carouselButtons.js" type="text/javascript">carouselButtons.js</a></li>
-          <li>Javascript: <a href="js/rotationButton.js" type="text/javascript">rotationButton.js</a></li>
+          <li>Javascript: <a href="js/pauseButton.js" type="text/javascript">pauseButton.js</a></li>
         </ul>
       </section>
 

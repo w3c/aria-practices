@@ -18,13 +18,13 @@
 
 /* More like bootstrap, less accessible*/
 
-.carousel-inner {
+.carousel .carousel-inner {
   max-width: 900px;
   position: relative;
 }
 
 
-.rotator{
+.carousel button.pause {
     display: block;
     font-size: 20px;
     width: auto;
@@ -36,7 +36,7 @@
     right: -20px;
 }
 
-.rotator:focus{
+.carousel button.pause:focus{
   display: block;
   position: relative;
   font-size: 20px;
@@ -49,18 +49,18 @@
   right: -20px;
 }
 
-.carousel-inner .carousel-caption h2 a {
+.carousel .carousel-inner .carousel-caption h2 a {
   color: #fff;
   font-weight: 600
 }
 
-.carousel-inner .carousel-caption p {
+.carousel .carousel-inner .carousel-caption p {
   font-size: 1em;
   line-height: 1.5;
   margin-bottom: 0
 }
 
-.carousel-inner .carousel-caption {
+.carousel .carousel-inner .carousel-caption {
   background-color: rgba(0, 0, 0, 0.4);
   bottom: 0;
   left: 0;
@@ -69,7 +69,7 @@
   text-shadow: none
 }
 
-.carousel-caption {
+.carousel .carousel-caption {
   position: absolute;
   right: 15%;
   bottom: 0px;
@@ -82,11 +82,13 @@
   text-shadow: 0 1px 2px rgba(0,0,0,.6);
 }
 
-.carousel-inner, .carousel-item, .carousel-slide {
+.carousel .carousel-inner,
+.carousel .carousel-item,
+.carousel .carousel-slide {
   max-height: 400px;
 }
 
-.carousel-indicators {
+.carousel .carousel-indicators {
   position: absolute;
   bottom: 0;
   left: 50%;
@@ -96,7 +98,7 @@
   list-style: none;
 }
 
-ol li {
+.carousel [role="tab"] {
   border: 2px solid white;
 	border-radius: 50%;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
@@ -112,7 +114,7 @@ ol li {
   padding-right:2px;
 }
 
-ol li:focus {
+.carousel [role="tab"]:focus {
   background-color: white;
   border-radius: 50%;
   outline-offset: 1px;
@@ -131,35 +133,36 @@ ol li:focus {
   text-align: center;
   text-shadow: 0 1px 2px rgba(0,0,0,.6);
 }
-a.carousel-control span {
+
+.carousel a.carousel-control span {
   position: relative;
   display: inline-block;
   vertical-align: middle;
   top: 40%;
   font-size: 200%;
-  opacity: .9;
+  opacity:.70;
 }
 
-a.carousel-control.previous {
+.carousel a.carousel-control.previous {
   bottom: 0;
-  background-image: linear-gradient(to right,rgba(0,0,0,.5) 0,rgba(0,0,0,.0001) 100%);
   width: 15%;
+  background-image: linear-gradient(to right,rgba(0,0,0,.5) 0,rgba(0,0,0,.0001) 100%);
 }
 
-a.carousel-control.next {
+.carousel a.carousel-control.next {
   right: 0;
   bottom: 0;
-  background-image: linear-gradient(to right,rgba(0,0,0,.0001) 0,rgba(0,0,0,.5) 100%);
   width: 15%;
+  background-image: linear-gradient(to right,rgba(0,0,0,.0001) 0,rgba(0,0,0,.5) 100%);
 }
 
-a.carousel-control:hover, a.carousel-control:focus {
-  border: 2px solid #6495ED;
+.carousel a.carousel-control:focus span {
+  opacity:.99;
+}
+
+.carousel a.carousel-control:hover, a.carousel-control:focus {
   color:#fff;
   text-decoration:none;
-  filter:alpha(opacity=90);
-  outline:0;
-  opacity:.9;
 }
 
 .carousel [role="tab"][aria-selected="true"] {
