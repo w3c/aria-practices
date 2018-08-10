@@ -57,14 +57,30 @@
           <i class="fa fa-calendar-alt fa-2x"></i>
         </button>
 
-        <div id="id-datepicker-1" class="datepickerDialog" role="dialog" aria-labelledby="dislogLabel">
+        <div id="id-datepicker-1" class="datepickerDialog" role="dialog" aria-labelledby="dialogLabel">
 
           <div class="header">
-            <button class="prev-year"><i class="fas fa-angle-double-left"></i></button>
-            <button class="prev-month"><i class="fas fa-angle-left"></i></button>
-            <span id="dialogLabel" class="month-year-label"></span>
-            <button class="next-month"><i class="fas fa-angle-right"></i></button>
-            <button class="next-year"><i class="fas fa-angle-double-right"></i></button>
+            <button class="prev-year" 
+              aria-label="previous year"
+              aria-control="dialogLabel">
+              <i class="fas fa-angle-double-left"></i>
+            </button>
+            <button class="prev-month" 
+              aria-label="previous month"
+              aria-control="dialogLabel">
+              <i class="fas fa-angle-left"></i>
+            </button>
+            <span id="dialogLabel" class="month-year-label" role="status"></span>
+            <button class="next-month" 
+              aria-label="next month"
+              aria-control="dialogLabel">
+              <i class="fas fa-angle-right"></i>
+            </button>
+            <button class="next-year" 
+              aria-label="next year"
+              aria-control="dialogLabel">
+              <i class="fas fa-angle-double-right"></i>
+            </button>
           </div>
   
           <table class="dates" role="grid">
@@ -100,51 +116,158 @@
 
   <section>
     <h2 id="kbd_label">Keyboard Support</h2>
-    <table aria-labelledby="kbd_label" class="def">
-      <thead>
-        <tr>
-          <th>Key</th>
-          <th>Function</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th><kbd>Enter</kbd>, <kbd>Space</kbd></th>
-          <td>Select the date.</td>
-        </tr>
-        <tr>
-          <th><kbd>Up Arrow</kbd></th>
-          <td>Move the focus to the above date.</td>
-        </tr>
-        <tr>
-          <th><kbd>Down Arrow</kbd></th>
-          <td>
-            <ul>
-              <li>Move the focus to the below date if the dialog is open.</li>
-              <li>If the focus is on the input, it will open the dialog</li>
-            </ul>
-          </td>
-        </tr>
-        <tr>
-          <th><kbd>Right Arrow</kbd></th>
-          <td>Move the focus to the next date.</td>
-        </tr>
-        <tr>
-          <th><kbd>Left Arrow</kbd></th>
-          <td>Move the focus to the previous date.</td>
-        </tr>
-        <tr>
-          <th><kbd>PageUp</kbd></th>
-          <td>Change the calendar to the previous year, if already selected a date, the focus would be on that date, otherwise, it will focus on the first date of that month.</td>
-        </tr>
-        <tr>
-          <th><kbd>PageDown</kbd></th>
-          <td>Change the calendar to the next year, if already selected a date, the focus would be on that date, otherwise, it will focus on the first date of that month.</td>
-        </tr>
-      </tbody>
+    <section>
+      <h3 id="kbd_label_1">Date Input keyboard</h3>
+      <table aria-labeeledby="kbd_label_1" class="def">
+        <thead>
+          <tr>
+            <th>Key</th>
+            <th>Function</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th><kbd>DOWN</kbd></th>
+                <td>Open the calendar dialog</td>
+            </tr>
+        </tbody>
+      </table>
+    </section>
 
-    </tbody>
-    </table>
+    <section>
+        <h3 id="kbd_label_2">Calendar Button keyboard</h3>
+        <table aria-labeeledby="kbd_label_2" class="def">
+          <thead>
+            <tr>
+              <th>Key</th>
+              <th>Function</th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <th><kbd>Space</kbd>, <kbd>Return</kbd></th>
+                  <td>Toggle the dialog</td>
+              </tr>
+          </tbody>
+        </table>
+    </section>
+    <section>
+        <h3 id="kbd_label_3">Month Year Navigation Keyboard</h3>
+        <table aria-labeeledby="kbd_label_3" class="def">
+          <thead>
+            <tr>
+              <th>Key</th>
+              <th>Function</th>
+            </tr>
+          </thead>
+          <tbody>
+              <tr>
+                  <th><kbd>Space</kbd>, <kbd>Return</kbd></th>
+                  <td>Change the status of the calendar</td>
+              </tr>
+              <tr>
+                  <th><kbd>ESC</kbd></th>
+                  <td>Close the dialog and move focus to the calendar button</td>
+              </tr>
+              <tr>
+                <th><kbd>TAB</kbd></th>
+                <td>Move focus to next element inside the dialog.</td>
+              </tr>
+              <tr>
+                <th><kbd>Shift</kbd> + <kbd>TAB</kbd></th>
+                <td>Move focus to previous element inside the dialog.</td>
+              </tr>    
+          </tbody>
+        </table>
+    </section>
+    <section>
+        <h3 id="kbd_label_4">Date Cell Keyboard</h3>
+        <table aria-labeeledby="kbd_label_4" class="def">
+          <thead>
+            <tr>
+              <th>Key</th>
+              <th>Function</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+                <th><kbd>Space</kbd>,<kbd>Return</kbd></th>
+                <td>Select the date.</td>
+            </tr>
+            <tr>
+              <th><kbd>Up Arrow</kbd></th>
+              <td>Move the focus to the above date.</td>
+            </tr>
+            <tr>
+              <th><kbd>Down Arrow</kbd></th>
+              <td>
+                <ul>
+                  <li>Move the focus to the below date if the dialog is open.</li>
+                  <li>If the focus is on the input, it will open the dialog</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <th><kbd>Right Arrow</kbd></th>
+              <td>Move the focus to the next date.</td>
+            </tr>
+            <tr>
+              <th><kbd>Left Arrow</kbd></th>
+              <td>Move the focus to the previous date.</td>
+            </tr>
+            <tr>
+              <th><kbd>PageUp</kbd></th>
+              <td>Change the calendar to the previous year, if already selected a date, the focus would be on that date, otherwise, it will focus on the first date of that month.</td>
+            </tr>
+            <tr>
+              <th><kbd>PageDown</kbd></th>
+              <td>Change the calendar to the next year, if already selected a date, the focus would be on that date, otherwise, it will focus on the first date of that month.</td>
+            </tr>
+            <tr>
+              <th><kbd>TAB</kbd></th>
+              <td>Move focus to next element inside the dialog.</td>
+            </tr>
+            <tr>
+              <th><kbd>Shift</kbd> + <kbd>TAB</kbd></th>
+              <td>Move focus to previous element inside the dialog.</td>
+            </tr>
+          </tbody>
+        </table>
+    </section>
+    <section>
+        <h3 id="kbd_label_5">Dialog Button Keyboard</h3>
+        <table aria-labeeledby="kbd_label_5" class="def">
+          <thead>
+            <tr>
+                <th>Key</th>
+                <th>Function</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th> <kbd>Space</kbd>, <kbd>Return</kbd></th>
+              <td>
+                <ul>
+                    <li>If it's cancel button, it would not select the focued date and close the dialog.</li>
+                    <li>If it's ok button, it would select the focused date and close the dialog.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <th><kbd>TAB</kbd></th>
+              <td>Move focus to next element inside the dialog.</td>
+            </tr>
+            <tr>
+              <th><kbd>Shift</kbd> + <kbd>TAB</kbd></th>
+              <td>Move focus to previous element inside the dialog.</td>
+            </tr>
+            <tr>
+              <th><kbd>ESC</kbd></th>
+              <td>Close the dialog</td>
+            </tr>
+          </tbody>
+        </table>
+    </section>
   </section>
 
   <section>
@@ -159,6 +282,32 @@
         </tr>
       </thead>
       <tbody>
+        <tr>
+          <th scope="row"><code>status</code></th>
+          <td></td>
+          <td>
+            <code>span</code>
+          </td>
+          <td>
+              Identifies the element that serves as a form of live region.
+          </td>
+        </tr>
+        <tr>            
+            <td></td>
+            <th scope="row"><code>aira-control=&quot;IDREF&quot;</code></th>
+            <td><code>button</code></td>
+            <td>
+              Whenever the button clicked or pressed, the status of the calendar will also change.
+            </td>
+        </tr> 
+        <tr>            
+            <td></td>
+            <th scope="row"><code>aira-label=&quot;IDREF&quot;</code></th>
+            <td><code>button</code></td>
+            <td>
+              Define the function of the current element.
+            </td>
+        </tr> 
         <tr>
           <th scope="row"><code>grid</code></th>
           <td></td>
@@ -193,6 +342,18 @@
           </td>
         </tr>
         <tr>
+            <td></td>
+            <th scope="row">
+              <code>aria-labelledby=&quot;IDREF&quot;</code>
+            </th>
+            <td>
+              <code>div</code>
+            </td>
+            <td>
+              Gives the dialog an accessible name by referring to the element that provides the dialog title.
+            </td>
+          </tr>
+        <tr>
           <th scope="row"></th>
           <td></td>
           <td>
@@ -205,21 +366,7 @@
             </ul>
           </td>
         </tr>
-        <tr>
-            <td></td>
-            <th scope="row">
-              <code>aria-labelledby=&quot;0&quot;</code>
-            </th>
-            <td>
-              <code>button</code>
-            </td>
-            <td>
-              <ul>
-                <li>Includes the element in the tab sequence.</li>
-                <li>Needed on the <code>a</code> element because it does not have a <code>href</code> attribute.</li>
-              </ul>
-            </td>
-          </tr>
+        
         <tr>
           <td></td>
           <th scope="row">
@@ -231,7 +378,7 @@
           <td>
             <ul>
               <li>Includes the element in the tab sequence.</li>
-              <li>Needed on the <code>a</code> element because it does not have a <code>href</code> attribute.</li>
+              <li>The current button is focused</li>
             </ul>
           </td>
         </tr>
@@ -244,9 +391,9 @@
             <code>button</code>
           </td>
           <td>
-            <ul>
-              <li>Includes the element in the tab sequence but not focusable.</li>
-            </ul>
+            
+              Exclude the button from tab sequence but it is focusable.
+            
           </td>
         </tr>
         <tr>
@@ -256,7 +403,7 @@
           <td>
             <ul>
               <li>Identifies the button as a selectable button.</li>
-              <li>Indicates the button is not selected.</li>
+              <li>Indicates the button is <b>not</b> selected.</li>
             </ul>
           </td>
         </tr>
@@ -267,7 +414,7 @@
           <td>
           <ul>
               <li>Identifies the button as a selectable button.</li>
-              <li>Indicates the toggle button is selected .</li>
+              <li>Indicates the toggle button <b>is</b> selected .</li>
             </ul>
           </td>
         </tr>
@@ -278,9 +425,9 @@
           <th scope="row"><code>aria-expanded=&quot;true&quot;</code></th>
           <td><code>button</code></td>
           <td>
-          <ul>
-            <li>Indicates the parent node is open, i.e., the descendant elements are visible.</li>
-          </ul>
+        
+            Indicates the parent node is open, i.e., the descendant elements are visible.
+         
           </td>
         </tr>
        

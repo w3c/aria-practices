@@ -38,7 +38,7 @@ DateInput.prototype.handleKeyDown = function (event) {
       this.datepicker.open(this.domNode);
       flag = true;
       break;
-    case this.keyCode.ESC: 
+    case this.keyCode.ESC:
       this.datepicker.close(this.domNode);
   }
   if (flag) {

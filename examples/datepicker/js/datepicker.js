@@ -33,10 +33,9 @@ var DatePicker = function (inputNode,buttonNode,dialogNode) {
   this.datesArray = [];
   this.datesArrayDOM = [];
 
-  this.headerButton;
+  this.headerButtonClicked = false;
 
   this.selectDate = null;
-  
 
 
   this.dialogButton = document.getElementsByClassName('dialogButton');
@@ -73,7 +72,7 @@ DatePicker.prototype.init = function () {
 
   this.body.addEventListener('click', this.handleBodyClick.bind(this));
 
-  
+
   var di = new DateInput(this.inputNode, this.buttonNode, this);
   di.init();
 
@@ -102,13 +101,11 @@ DatePicker.prototype.init = function () {
   }
 
 
-
 };
- 
+
 DatePicker.prototype.handleBodyClick = function () {
-  console.log(this.lastFocused);
-  if(this.inputNode.hasAttribute('aria-expanded')) {
-    if(this.lastFocused){
+  if (this.inputNode.hasAttribute('aria-expanded')) {
+    if (this.lastFocused) {
       this.lastFocused.focus();
       this.lastFocused.tabIndex = 0;
     }
@@ -117,7 +114,7 @@ DatePicker.prototype.handleBodyClick = function () {
       this.datesArray[this.today - 1].tabIndex = 0;
     }
   }
-}
+};
 DatePicker.prototype.open = function (node) {
   this.dialogNode.style.display = 'block';
   node.setAttribute('aria-expanded', 'true');
@@ -131,12 +128,10 @@ DatePicker.prototype.open = function (node) {
   }
 
 
-
 };
 
 DatePicker.prototype.close = function (node) {
   this.dialogNode.style.display = 'none';
-  console.log(node);
   node.removeAttribute('aria-expanded');
   this.buttonNode.focus();
 };
@@ -160,16 +155,16 @@ DatePicker.prototype.handleDialogButton = function (event) {
       case this.keyCode.TAB:
         if (tgt.value === 'ok') {
           this.prevYear.focus();
-          if(event.shiftKey) {
+          if (event.shiftKey) {
             this.dialogButton[0].focus();
           }
         }
         else if (tgt.value === 'cancel') {
           this.dialogButton[1].focus();
           if (event.shiftKey) {
-            if (this.lastFocused){
+            if (this.lastFocused) {
               this.lastFocused.focus();
-            } 
+            }
             else {
               this.datesArray[this.today - 1].focus();
             }
@@ -179,13 +174,14 @@ DatePicker.prototype.handleDialogButton = function (event) {
         break;
       case this.keyCode.RETURN:
       case this.keyCode.SPACE:
-        if(tgt.value === 'ok'){
-          for(var i=0; i<this.datesArrayDOM.length; i++){
-            if(this.datesArrayDOM[i].domNode.classList.contains('lastFocused')){
+        if (tgt.value === 'ok') {
+          for (var i = 0; i < this.datesArrayDOM.length; i++) {
+            if (this.datesArrayDOM[i].domNode.classList.contains('lastFocused')) {
               this.setSelectDate(this.datesArrayDOM[i]);
             }
           }
-        } else if (tgt.value==='cancel') {
+        }
+        else if (tgt.value === 'cancel') {
           this.close(this.inputNode);
         }
       case this.keyCode.ESC:
@@ -204,7 +200,6 @@ DatePicker.prototype.handleDialogButton = function (event) {
   }
 };
 DatePicker.prototype.handleNextYearButton = function (event) {
-  console.log('hihi')
   var type = event.type;
   if (type === 'keydown') {
     var tgt = event.currentTarget,
@@ -223,7 +218,7 @@ DatePicker.prototype.handleNextYearButton = function (event) {
           this.nextMonth.focus();
         }
         else {
-          this.lastFocused ? this.lastFocused.focus() : this.datesArray[this.today-1].focus();
+          this.lastFocused ? this.lastFocused.focus() : this.datesArray[this.today - 1].focus();
         }
         flag = true;
 
@@ -287,8 +282,8 @@ DatePicker.prototype.handleNextMonthButton = function (event) {
   var type = event.type;
   if (type === 'keydown') {
     var tgt = event.currentTarget,
-    char = event.key,
-    flag = false;
+      char = event.key,
+      flag = false;
     function isPrintableCharacter (str) {
       return str.length === 1 && str.match(/\S/);
     }
@@ -317,21 +312,21 @@ DatePicker.prototype.handlePrevMonthButton = function (event) {
   var type = event.type;
   if (type === 'keydown') {
     var tgt = event.currentTarget,
-    char = event.key,
-    flag = false;
+      char = event.key,
+      flag = false;
     function isPrintableCharacter (str) {
       return str.length === 1 && str.match(/\S/);
     }
     switch (event.keyCode) {
       case this.keyCode.ESC:
         this.close(this.inputNode);
-        flag = true; 
+        flag = true;
         break;
       case this.keyCode.RETURN:
       case this.keyCode.SPACE:
         this.moveToPrevMonth();
-        flag = true; 
-        break; 
+        flag = true;
+        break;
     }
   }
   else if (type === 'click') {
@@ -345,18 +340,18 @@ DatePicker.prototype.handlePrevMonthButton = function (event) {
 };
 DatePicker.prototype.moveToNextYear = function () {
   this.year++;
-  this.headerButton = true;
+  this.headerButtonClicked = true;
   this.updateDates();
   if (this.selectDate === null) {
     this.datesArray[0].focus();
   }
   else {
-    this.datesArray[parseInt(this.selectDate) - 1].focus(); 
+    this.datesArray[parseInt(this.selectDate) - 1].focus();
   }
 };
 DatePicker.prototype.moveToPrevYear = function () {
   this.year--;
-  this.headerButton = true;
+  this.headerButtonClicked = true;
   this.updateDates();
   if (this.selectDate == null) {
     this.datesArray[0].focus();
@@ -371,7 +366,7 @@ DatePicker.prototype.moveToPrevMonth = function () {
     this.monthIndex = 11;
     this.year--;
   }
-  this.headerButton = true;
+  this.headerButtonClicked = true;
   this.updateDates();
   if (this.selectDate == null) {
     this.datesArray[0].focus();
@@ -386,7 +381,7 @@ DatePicker.prototype.moveToNextMonth = function () {
     this.monthIndex = 0;
     this.year++;
   }
-  this.headerButton = true;
+  this.headerButtonClicked = true;
   this.updateDates();
   if (this.selectDate == null) {
     this.datesArray[0].focus();
@@ -394,7 +389,6 @@ DatePicker.prototype.moveToNextMonth = function () {
   else {
     this.datesArray[parseInt(this.selectDate) - 1].focus();
   }
-  console.log('hdhdhd');
 };
 
 
@@ -451,7 +445,6 @@ DatePicker.prototype.setFocusToNextDay = function (dateCell) {
   var nextDate = false;
   var nextIndex = this.datesArray.indexOf(dateCell.domNode) + 1;
   if (nextIndex > this.datesArray.length - 1) {
-    console.log('hi');
     this.moveToNextMonth();
     nextIndex = 0;
   }
@@ -563,16 +556,15 @@ DatePicker.prototype.updateCalendar = function (month, year) {
     }
   }
 
-  if (this.headerButton) { // if the calendar toggled to previous month/year
+  if (this.headerButtonClicked) { // if the calendar toggled to previous month/year
     for (var i = 0;i < this.datesArray.length;i++) {
       var dc = new DatePickerDay(this.datesArray[i], this);
       dc.init();
       this.datesArrayDOM.push(dc);
     }
   }
-  this.headerButton = false;
+  this.headerButtonClicked = false;
   return true;
 };
-
 
 

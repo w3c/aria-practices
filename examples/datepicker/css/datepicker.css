@@ -8,7 +8,6 @@
 }
 .datepickerButton{
   border-style:none;
-  /* padding:5px; */
   text-align:left;
   background-color:white;
 }
@@ -54,6 +53,7 @@ label{
 
 .prev-year:focus, .prev-month:focus, .next-month:focus, .next-year:focus{
   color:black;
+  border: 1px solid black;
   background:hsl(217, 100%, 92%);
   border-radius:10px;
   outline:0;
