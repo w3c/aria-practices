@@ -205,8 +205,9 @@
 
       <section>
         <h2 id="kbd_label">Keyboard Support</h2>
+
         <section>
-          <h3 id="kbd_label_1">Tabs</h3>
+          <h3 id="kbd_label_1">Tabs for Selecting Slides</h3>
           <table aria-labelledby="kbd_label_1" class="def">
             <thead>
               <tr>
@@ -261,7 +262,7 @@
         </section>
 
         <section>
-          <h3 id="kbd_label_2">Pause/Start Button</h3>
+          <h3 id="kbd_label_2">Pause/Start Slide Rotation Button</h3>
           <table aria-labelledby="kbd_label_2" class="def">
             <thead>
               <tr>
@@ -285,7 +286,7 @@
         </section>
 
         <section>
-          <h3 id="kbd_label_3">Next/Previous Buttons</h3>
+          <h3 id="kbd_label_3">Next/Previous Slide Buttons</h3>
           <table aria-labelledby="kbd_label_3" class="def">
             <thead>
               <tr>
@@ -312,172 +313,228 @@
 
       <section>
         <h2 id="rps_label">Role, Property, State, and Tabindex  Attributes</h2>
-        <table aria-labelledby="rps_label" class="data attributes">
-          <thead>
-            <tr>
-              <th scope="col">Role</th>
-              <th scope="col">Attribute</th>
-              <th scope="col">Element</th>
-              <th scope="col">Usage</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">
-                <code>tablist</code>
-              </th>
-              <td></td>
-              <td>
-                <code>div</code>
-              </td>
-              <td>Indicates that the element serves as a container for a set of tabs.</td>
-            </tr>
-            <tr>
-              <td></td>
-              <th scope="row">
-                <code>aria-label=<q>Entertainment</q></code>
-              </th>
-              <td>
-                <code>div</code>
-              </td>
-              <td>Provides a label that describes the purpose of the set of tabs.</td>
-            </tr>
-            <tr>
-              <th scope="row">
-                <code>tab</code>
-              </th>
-              <td></td>
-              <td>
-                <code>button</code>
-              </td>
-              <td>
-                <ul>
-                  <li>Indicates the element serves as a tab control.</li>
-                  <li>
-                    When focused, is automatically activated, causing its associated <code>tabpanel</code>
-                    to be displayed.
-                  </li>
-                  <li>
-                    Provides a title for its associated <code>tabpanel</code>.
-                  </li>
-                </ul>
-              </td>
-            </tr>
-            <tr>
-              <td></td>
-              <th scope="row">
-                <code>aria-selected=<q>true</q></code>
-              </th>
-              <td>
-                <code>button</code>
-              </td>
-              <td>
-                <ul>
-                  <li>Indicates the tab control is activated and its associated panel is displayed.</li>
-                  <li>Set when a tab receives focus.</li>
-                </ul>
-              </td>
-            </tr>
-            <tr>
-              <td></td>
-              <th scope="row">
-                <code>aria-selected=<q>false</q></code>
-              </th>
-              <td>
-                <code>button</code>
-              </td>
-              <td>
-                <ul>
-                  <li>
-                    Indicates the tab control is not active and its associated panel is <strong>NOT</strong>
-                    displayed.
-                  </li>
-                  <li>Set for all tab elements in the tab set except the focused tab.</li>
-                </ul>
-              </td>
-            </tr>
-            <tr>
-              <td></td>
-              <th scope="row">
-                <code>tabindex=<q>-1</q></code>
-              </th>
-              <td>
-                <code>button</code>
-              </td>
-              <td>
-                <ul>
-                  <li>Removes the element from the page <kbd>Tab</kbd> sequence.</li>
-                  <li>Set when a tab is not selected so that only the selected tab is in the page <kbd>Tab</kbd> sequence.</li>
-                  <li>Since an HTML <code>button</code> element is used for the tab, it is not necessary to set <code>tabindex=<q>0</q></code> on the selected (active) tab element.</li>
-                  <li>This approach to managing focus is described in the section on <a href="../../../#kbd_roving_tabindex">roving tabindex</a>.</li>
-                </ul>
-              </td>
-            </tr>
-            <tr>
-              <td></td>
-              <th scope="row">
-                <code>aria-controls=<q>IDREF</q></code>
-              </th>
-              <td>
-                <code>button</code>
-              </td>
-              <td>
-                Refers to the <code>tabpanel</code> element associated with the tab.
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">
-                <code>tabpanel</code>
-              </th>
-              <td></td>
-              <td>
-                <code>div</code>
-              </td>
-              <td>
-                <ul>
-                  <li>Indicates the element serves as a container for tab panel content.</li>
-                  <li>
-                    Is hidden unless its associated <code>tab</code> control is activated.
-                  </li>
-                </ul>
-              </td>
-            </tr>
-            <tr>
-              <td></td>
-              <th scope="row">
-                <code>aria-labelledby=<q>IDREF</q></code>
-              </th>
-              <td>
-                <code>div</code>
-              </td>
-              <td>
-                <ul>
-                  <li>
-                    Refers to the <code>tab</code> element that controls the panel.
-                  </li>
-                  <li>Provides an accessible name for the tab panel.</li>
-                </ul>
-              </td>
-            </tr>
-            <tr>
-              <td></td>
-              <th scope="row">
-                <code>tabindex=<q>0</q></code>
-              </th>
-              <td>
-                <code>div</code>
-              </td>
-              <td>
-                <ul>
-                  <li>Puts the tabpanel in the page <kbd>Tab</kbd> sequence.</li>
-                  <li>Facilitates movement to panel content for assistive technology users.</li>
-                  <li>Especially helpful if there are panels that do not contain a focusable element.</li>
-                </ul>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      <tion>
+
+        <section>
+          <h3 id="rps_label_1">Tabs for Selecting Slides</h3>
+          <table aria-labelledby="rps_label_1" class="data attributes">
+            <thead>
+              <tr>
+                <th scope="col">Role</th>
+                <th scope="col">Attribute</th>
+                <th scope="col">Element</th>
+                <th scope="col">Usage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">
+                  <code>tablist</code>
+                </th>
+                <td></td>
+                <td>
+                  <code>div</code>
+                </td>
+                <td>Indicates that the element serves as a container for a set of tabs.</td>
+              </tr>
+              <tr>
+                <td></td>
+                <th scope="row">
+                  <code>aria-label=<q>Entertainment</q></code>
+                </th>
+                <td>
+                  <code>div</code>
+                </td>
+                <td>Provides a label that describes the purpose of the set of tabs.</td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <code>tab</code>
+                </th>
+                <td></td>
+                <td>
+                  <code>button</code>
+                </td>
+                <td>
+                  <ul>
+                    <li>Indicates the element serves as a tab control.</li>
+                    <li>
+                      When focused, is automatically activated, causing its associated <code>tabpanel</code>
+                      to be displayed.
+                    </li>
+                    <li>
+                      Provides a title for its associated <code>tabpanel</code>.
+                    </li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <th scope="row">
+                  <code>aria-selected=<q>true</q></code>
+                </th>
+                <td>
+                  <code>button</code>
+                </td>
+                <td>
+                  <ul>
+                    <li>Indicates the tab control is activated and its associated panel is displayed.</li>
+                    <li>Set when a tab receives focus.</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <th scope="row">
+                  <code>aria-selected=<q>false</q></code>
+                </th>
+                <td>
+                  <code>button</code>
+                </td>
+                <td>
+                  <ul>
+                    <li>
+                      Indicates the tab control is not active and its associated panel is <strong>NOT</strong>
+                      displayed.
+                    </li>
+                    <li>Set for all tab elements in the tab set except the focused tab.</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <th scope="row">
+                  <code>tabindex=<q>-1</q></code>
+                </th>
+                <td>
+                  <code>button</code>
+                </td>
+                <td>
+                  <ul>
+                    <li>Removes the element from the page <kbd>Tab</kbd> sequence.</li>
+                    <li>Set when a tab is not selected so that only the selected tab is in the page <kbd>Tab</kbd> sequence.</li>
+                    <li>Since an HTML <code>button</code> element is used for the tab, it is not necessary to set <code>tabindex=<q>0</q></code> on the selected (active) tab element.</li>
+                    <li>This approach to managing focus is described in the section on <a href="../../../#kbd_roving_tabindex">roving tabindex</a>.</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <th scope="row">
+                  <code>aria-controls=<q>IDREF</q></code>
+                </th>
+                <td>
+                  <code>button</code>
+                </td>
+                <td>
+                  Refers to the <code>tabpanel</code> element associated with the tab.
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">
+                  <code>tabpanel</code>
+                </th>
+                <td></td>
+                <td>
+                  <code>div</code>
+                </td>
+                <td>
+                  <ul>
+                    <li>Indicates the element serves as a container for tab panel content.</li>
+                    <li>
+                      Is hidden unless its associated <code>tab</code> control is activated.
+                    </li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <th scope="row">
+                  <code>aria-labelledby=<q>IDREF</q></code>
+                </th>
+                <td>
+                  <code>div</code>
+                </td>
+                <td>
+                  <ul>
+                    <li>
+                      Refers to the <code>tab</code> element that controls the panel.
+                    </li>
+                    <li>Provides an accessible name for the tab panel.</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <th scope="row">
+                  <code>tabindex=<q>0</q></code>
+                </th>
+                <td>
+                  <code>div</code>
+                </td>
+                <td>
+                  <ul>
+                    <li>Puts the tabpanel in the page <kbd>Tab</kbd> sequence.</li>
+                    <li>Facilitates movement to panel content for assistive technology users.</li>
+                    <li>Especially helpful if there are panels that do not contain a focusable element.</li>
+                  </ul>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section>
+          <h3 id="rps_label_2">Start/Pause Slide Rotation</h3>
+          <table aria-labelledby="rps_label_2" class="data attributes">
+            <thead>
+              <tr>
+                <th scope="col">Role</th>
+                <th scope="col">Attribute</th>
+                <th scope="col">Element</th>
+                <th scope="col">Usage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">
+                  <code>tablist</code>
+                </th>
+                <td></td>
+                <td>
+                  <code>div</code>
+                </td>
+                <td>Indicates that the element serves as a container for a set of tabs.</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section>
+          <h3 id="rps_label_3">Next/Previous Slide Buttons</h3>
+          <table aria-labelledby="rps_label_3" class="data attributes">
+            <thead>
+              <tr>
+                <th scope="col">Role</th>
+                <th scope="col">Attribute</th>
+                <th scope="col">Element</th>
+                <th scope="col">Usage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">
+                  <code>tablist</code>
+                </th>
+                <td></td>
+                <td>
+                  <code>div</code>
+                </td>
+                <td>Indicates that the element serves as a container for a set of tabs.</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+      <section>
 
           <li>Javascript: <a href="js/carouselTablist.js" type="text/javascript">carouselTablist.js</a></li>
  <section>

@@ -106,30 +106,27 @@ ol li {
   height: 10px;
   z-index: 15;
   bottom: 0;
-  margin: 0 2px;
+  margin: 0 4px;
   display: inline-block;
   float: left;
-}
-
-ol li.focus {
-  background-color: white;
-  border-radius: 50%;
-  outline-style: dashed;
-  outline-color: white;
-  outline-width: medium;
   padding-right:2px;
 }
 
-.carousel .carousel-control {
-    font-size: 200%;
-    font-weight: bold;
+ol li:focus {
+  background-color: white;
+  border-radius: 50%;
+  outline-offset: 1px;
+  outline-style: solid;
+  outline-color: white;
+  outline-width: 2px;
 }
 
-a.carousel-control {
+.carousel .carousel-control {
   position: absolute;
   top: 0;
   z-index: 10;
   font-size: 200%;
+  font-weight: bold;
   color: #fff;
   text-align: center;
   text-shadow: 0 1px 2px rgba(0,0,0,.6);
@@ -138,14 +135,6 @@ a.carousel-control span {
   position: relative;
   display: inline-block;
   vertical-align: middle;
-  top: 40%;
-  font-size: 200%;
-  opacity: .9;
-}
-
-a.carousel-control.next span {
-  position: relative;
-  display: inline-block;
   top: 40%;
   font-size: 200%;
   opacity: .9;
