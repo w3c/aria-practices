@@ -414,14 +414,22 @@ DatePicker.prototype.moveToNextMonth = function (dateCell) {
 };
 
 DatePicker.prototype.setFocusToNewMonthYear = function (row, cellPos){
-  if(row[cellPos[0]].children[cellPos[1]] !== undefined) {
+  console.log(row[cellPos[0]].children[cellPos[1]]);
+  while(row[cellPos[0]].children[cellPos[1]].children.classList.contains('disable')){
+    cellPos[1]++;
+  }
+  if(row[cellPos[0]].children[cellPos[1]] !== undefined || row[cellPos[0] !== undefined]) {
     this.setFocusDate(row[cellPos[0]].children[cellPos[1]].children[0]);
-  } else {
+  } else if(row[cellPos[0]-1].children[cellPos[1]].children[0]){
     this.setFocusDate(row[cellPos[0]-1].children[cellPos[1]].children[0]);
   }
+
+
+
+
+ 
 };
 DatePicker.prototype.setUpForNewMonthYear = function (row, dateCell) {
-  var row = document.getElementsByClassName('dateRow');
   var weekNum, dayNum;
   for(var i = 0; i<row.length;i++){
     for(var j=0; j<7; j++){
@@ -617,6 +625,7 @@ DatePicker.prototype.updateCalendar = function (month, year) {
     }
   }
   this.headerButtonClicked = false;
+  console.log(this.lastFocused);
   return true;
 };
 
