@@ -35,17 +35,13 @@
 
 [role="option"] {
 	display: block;
-	padding: 0 1em;
+	padding: 0 1em 0 1.5em;
 	position: relative;
 	line-height: 1.8em;
 }
 
 [role="option"].focused {
 	background: #bde4ff;
-}
-
-[role="option"][aria-selected] {
-	padding-left: 1.5em;
 }
 
 [role="option"][aria-selected="true"]::before {
