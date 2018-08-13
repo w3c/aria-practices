@@ -101,7 +101,7 @@ DatePicker.prototype.init = function () {
     this.datesArrayDOM.push(dc);
   }
 
-
+  this.lastFocused = this.datesArray[this.today-1];
 };
 
 DatePicker.prototype.handleBodyClick = function () {
@@ -339,7 +339,10 @@ DatePicker.prototype.handlePrevMonthButton = function (event) {
     event.preventDefault();
   }
 };
-DatePicker.prototype.moveToNextYear = function () {
+DatePicker.prototype.moveToNextYear = function (dateCell) {
+  var row = document.getElementsByClassName("dateRow");
+
+  var cell = this.setUpForNewMonthYear(row, dateCell);
   this.year++;
   this.headerButtonClicked = true;
   this.updateDates();
@@ -349,8 +352,14 @@ DatePicker.prototype.moveToNextYear = function () {
   else {
     this.datesArray[parseInt(this.selectDate) - 1].focus();
   }
+  this.setFocusToNewMonthYear(row, cell);
 };
-DatePicker.prototype.moveToPrevYear = function () {
+
+
+DatePicker.prototype.moveToPrevYear = function (dateCell) {
+  var row = document.getElementsByClassName("dateRow");
+
+  var cell = this.setUpForNewMonthYear(row, dateCell);
   this.year--;
   this.headerButtonClicked = true;
   this.updateDates();
@@ -360,8 +369,13 @@ DatePicker.prototype.moveToPrevYear = function () {
   else {
     this.datesArray[parseInt(this.selectDate) - 1].focus();
   }
+
+  this.setFocusToNewMonthYear(row, cell);
 };
-DatePicker.prototype.moveToPrevMonth = function () {
+DatePicker.prototype.moveToPrevMonth = function (dateCell) {
+  var row = document.getElementsByClassName("dateRow");
+
+  var cell = this.setUpForNewMonthYear(row, dateCell);
   this.monthIndex--;
   if (this.monthIndex < 0) {
     this.monthIndex = 11;
@@ -375,8 +389,13 @@ DatePicker.prototype.moveToPrevMonth = function () {
   else {
     this.datesArray[parseInt(this.selectDate) - 1].focus();
   }
+
+  this.setFocusToNewMonthYear(row, cell);
 };
-DatePicker.prototype.moveToNextMonth = function () {
+DatePicker.prototype.moveToNextMonth = function (dateCell) {
+  var row = document.getElementsByClassName("dateRow");
+
+  var cell = this.setUpForNewMonthYear(row, dateCell);
   this.monthIndex++;
   if (this.monthIndex > 11) {
     this.monthIndex = 0;
@@ -390,7 +409,37 @@ DatePicker.prototype.moveToNextMonth = function () {
   else {
     this.datesArray[parseInt(this.selectDate) - 1].focus();
   }
+  this.setFocusToNewMonthYear(row, cell);
+
 };
+
+DatePicker.prototype.setFocusToNewMonthYear = function (row, cellPos){
+  if(row[cellPos[0]].children[cellPos[1]] !== undefined) {
+    this.setFocusDate(row[cellPos[0]].children[cellPos[1]].children[0]);
+  } else {
+    this.setFocusDate(row[cellPos[0]-1].children[cellPos[1]].children[0]);
+  }
+};
+DatePicker.prototype.setUpForNewMonthYear = function (row, dateCell) {
+  var row = document.getElementsByClassName('dateRow');
+  var weekNum, dayNum;
+  for(var i = 0; i<row.length;i++){
+    for(var j=0; j<7; j++){
+      if(row[i].children[j]===undefined){
+        break;
+      } else {
+        if(row[i].children[j].children[0] === this.lastFocused){
+          weekNum = i;
+          dayNum = j;
+          break;
+        }
+      }
+    }
+  }
+ return ([weekNum, dayNum]);
+
+};
+
 
 
 DatePicker.prototype.setSelectDate = function (dateCell) {
@@ -538,7 +587,8 @@ DatePicker.prototype.updateCalendar = function (month, year) {
   }
 
   if (tbody.rows[tableRow.length - 1].cells[0].querySelector('button').innerHTML === '') {
-    tbody.deleteRow(tableRow.length - 1);
+    tbody.rows[tableRow.length - 1].innerHTML="&nbsp;";
+    tbody.rows[tableRow.length - 1].style.height="40px";
   }
   var j = 1;
   for (var i = startDay; i < dateCells.length; i++) {

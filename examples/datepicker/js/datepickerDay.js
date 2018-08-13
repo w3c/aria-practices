@@ -68,17 +68,18 @@ DatePickerDay.prototype.handleKeyDown = function (event) {
       break;
     case this.keyCode.PAGEUP:
       if(event.shiftKey){
-        this.datepicker.moveToPrevYear();
+        this.datepicker.moveToPrevYear(this);
       } else {
-        this.datepicker.moveToPrevMonth();
+        this.datepicker.moveToPrevMonth(this);
       }
+      // this.datepicker.setFocusToNewMonth(this);
       flag = true;
       break;
     case this.keyCode.PAGEDOWN:
       if(event.shiftKey){
-        this.datepicker.moveToNextYear();
+        this.datepicker.moveToNextYear(this);
       } else {
-        this.datepicker.moveToNextMonth();
+        this.datepicker.moveToNextMonth(this);
       }
       flag = true;
       break;
