@@ -1,0 +1,154 @@
+div#example {
+  line-height: 1em;
+}
+
+input[type="submit"] {
+  padding: 0.25em 1em;
+}
+
+
+input[type="text"]:hover,
+select:hover {
+  background-color: hsl(216, 80%, 97%);
+  outline: medium solid hsl(216, 80%, 97%);
+}
+
+input[type="text"]:focus,
+select:focus {
+  background-color: hsl(216, 80%, 97%);
+  outline: medium solid hsl(216, 94%, 73%);
+}
+
+div.button {
+  border: solid medium transparent;
+  position: relative;
+  left: -0.25em;
+    /* width: 9em;
+  */
+}
+
+label input[type="radio"],
+label input[type="checkbox"] {
+  margin-left: 0.25em;
+}
+
+input[type="submit"] {
+  background-color: hsl(216, 80%, 92%);
+  border: solid 2px white;
+  border-radius: 5px;
+  font-size: 110%;
+  outline: none;
+}
+
+input[type="submit"]:hover {
+  background-color: hsl(216, 80%, 97%);
+  border-color:  hsl(216, 94%, 73%);
+}
+
+input[type="submit"]:focus {
+  background-color: hsl(216, 80%, 97%);
+  border-color:  hsl(216, 94%, 73%);
+}
+
+div.button label {
+  border: solid 2px transparent;
+  border-radius: 5px;
+  outline: none;
+}
+
+div.button label input[type="checkbox"],
+div.button label input[type="radio"] {
+  outline: none;
+}
+
+div.button label:hover {
+  background-color: hsl(216, 80%, 97%);
+  border-color:  transparent;
+}
+
+div.button label.focus,
+div.button label.focus:hover {
+  background-color: hsl(216, 80%, 97%);
+  border-color:  hsl(216, 94%, 73%);
+}
+
+
+div#id-errors {
+  color: red;
+  display: none;
+  margin-left: 1em;
+  border: thin solid red;
+  width: 25em;
+}
+
+div#id-errors a {
+  color: red;
+}
+
+h2, h3 {
+  margin: 0;
+  padding: 0;
+  margin-top: 1em;
+  margin-bottom:1em;
+}
+
+label {
+  display: block;
+  margin: 0;
+  padding: 0;
+  font-weight: normal;
+  width: 12em;
+}
+
+fieldset {
+  padding: 0.5em;
+  margin: 0;
+  margin-top: 1em;
+  border: 1px gray solid;
+}
+
+legend {
+  margin: 0;
+  padding: 0 0.125em;
+  font-weight: bold;
+  font-size: 100%;
+}
+
+div.text,
+div.select,
+input[type="submit"] {
+  margin-top: 1em;
+}
+
+div.error,
+span.error {
+  padding: 0.25em 1em;
+  background-color: hsl(0, 70%, 95%);
+  border: thin solid hsl(0, 70%, 70%);
+  border-radius: 5px;
+  font-size: 80%;
+}
+
+div.error {
+  margin-bottom: 0.75em;
+}
+
+
+.noerror {
+  display: none;
+}
+
+.instruction {
+  margin: 0;
+  padding: 0;
+  font-style: italic;
+  font-size: 80%;
+  color: gray;
+}
+
+.cost {
+  margin: 0;
+  padding: 0;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
