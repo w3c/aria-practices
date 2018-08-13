@@ -50,21 +50,49 @@
         <h2 id="ex_label">Example</h2>
         <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
         <div id="ex1">
-            <div id="myCarousel" class="carousel slide">
+            <section id="myCarousel" class="carousel slide" aria-label="Carousel of TV Shows">
               <button class="pause" aria-pressed="false">Pause Carousel</button>
 
               <div class="carousel-inner">
                 <!-- Indicators -->
                 <ol role="tablist" class="carousel-indicators" aria-label="Image Carousel">
-                  <li role="tab" aria-selected="true"  tabindex="0"  aria-labelledby="carousel-label-1" aria-controls="carousel-panel-1"></li>
-                  <li role="tab" aria-selected="false" tabindex="-1" aria-labelledby="carousel-label-2" aria-controls="carousel-panel-2"></li>
-                  <li role="tab" aria-selected="false" tabindex="-1" aria-labelledby="carousel-label-3" aria-controls="carousel-panel-3"></li>
-                  <li role="tab" aria-selected="false" tabindex="-1" aria-labelledby="carousel-label-4" aria-controls="carousel-panel-4"></li>
-                  <li role="tab" aria-selected="false" tabindex="-1" aria-labelledby="carousel-label-5" aria-controls="carousel-panel-5"></li>
-                  <li role="tab" aria-selected="false" tabindex="-1" aria-labelledby="carousel-label-6" aria-controls="carousel-panel-6"></li>
+                  <li role="tab"
+                      aria-selected="true"
+                      tabindex="0"
+                      aria-labelledby="carousel-label-1"
+                      aria-controls="carousel-panel-1"></li>
+                  <li role="tab"
+                      aria-selected="false"
+                      tabindex="-1"
+                      aria-labelledby="carousel-label-2"
+                      aria-controls="carousel-panel-2"></li>
+                  <li role="tab"
+                      aria-selected="false"
+                      tabindex="-1"
+                      aria-labelledby="carousel-label-3"
+                      aria-controls="carousel-panel-3"></li>
+                  <li role="tab"
+                      aria-selected="false"
+                      tabindex="-1"
+                      aria-labelledby="carousel-label-4"
+                      aria-controls="carousel-panel-4"></li>
+                  <li role="tab"
+                      aria-selected="false"
+                      tabindex="-1"
+                      aria-labelledby="carousel-label-5"
+                      aria-controls="carousel-panel-5"></li>
+                  <li role="tab"
+                      aria-selected="false"
+                      tabindex="-1"
+                      aria-labelledby="carousel-label-6"
+                      aria-controls="carousel-panel-6"></li>
                 </ol>
 
-                <div role="tabpanel" id="carousel-panel-1" class="carousel-item active" tabindex="0" aria-labelledby="carousel-label-1">
+                <div role="tabpanel"
+                     id="carousel-panel-1"
+                     class="carousel-item active"
+                     tabindex="0"
+                     aria-labelledby="carousel-label-1">
 
                   <div class="carousel-image">
                     <a href="http://www.pbs.org/about/news/archive/2015/pbs-most-trusted/">
@@ -185,18 +213,26 @@
                   </div>  <!-- .carousel-caption -->
                 </div>   <!-- .item -->
 
-                <a class="previous carousel-control" role="button" tabindex="0" aria-label="Previous Slide">
+                <a class="previous carousel-control"
+                   role="button"
+                   tabindex="0"
+                   aria-controls="carousel-panel-1"
+                   aria-label="Previous Slide">
                 <span>&ltrif;</span>
                 </a>
 
-                <a class="next carousel-control" role="button" tabindex="0" aria-label="Next Slide">
+                <a class="next carousel-control"
+                   role="button"
+                   tabindex="0"
+                   aria-controls="carousel-panel-1"
+                   aria-label="Next Slide">
                 <span>&rtrif;</span>
                 </a>
 
               </div> <!-- carousel-inner -->
 
 
-            </div><!-- /.carousel -->
+            </section><!-- /.carousel -->
 
             <div class="col-sm-1"></div>
 
