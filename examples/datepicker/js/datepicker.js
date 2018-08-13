@@ -19,6 +19,7 @@ var DatePicker = function (inputNode,buttonNode,dialogNode) {
   this.monthIndex = null;
   this.month = null;
   this.year = null;
+  this.lastMonthDates = null;
   this.today = null;
 
   var header = this.dialogNode.children[0];
@@ -66,7 +67,7 @@ DatePicker.prototype.init = function () {
   this.year = new Date().getFullYear();
   this.today = new Date().getDate();
   this.datesInMonth = [31, (((this.year % 4 === 0) && (this.year % 100 !== 0) && (this.year % 400 === 0)) ? 29 : 28), 31, 30, 31, 30, 31, 31, 30 ,31, 30, 31];
-
+  this.lastMonthDates = this.datesInMonth[this.monthIndex-1];
   this.month = months[this.monthIndex];
   this.dates = this.datesInMonth[this.monthIndex];
 
@@ -487,7 +488,7 @@ DatePicker.prototype.setFocusToPrevDay = function (dateCell) {
 
 DatePicker.prototype.updateDates = function () {
 
-
+  this.lastMonthDates = this.dates;
   this.datesInMonth[1] = (((this.year % 4 === 0) && (this.year % 100 !== 0) && (this.year % 400 === 0)) ? 29 : 28);
   this.month = months[this.monthIndex]; // show the string of the month
   this.dates = this.datesInMonth[this.monthIndex]; // show the number of dates in that month
@@ -523,17 +524,19 @@ DatePicker.prototype.updateCalendar = function (month, year) {
   var dateCells = document.querySelectorAll('.dateCell');
   var cells = document.querySelectorAll('.cell');
 
-  var lastMonthDate = this.datesInMonth[this.monthIndex - 1];
+ 
   for (var i = startDay - 1; i >= 0; i--) {
-    dateCells[i].innerHTML = lastMonthDate;
+    dateCells[i].innerHTML = this.lastMonthDates;
     dateCells[i].setAttribute('value', '0');
-    lastMonthDate--;
+    this.lastMonthDates--;
   }
+
   for (var i = 1;i <= this.dates;i++) {
     dateCells[startDay].innerHTML = i;
     dateCells[startDay].setAttribute('value', i);
     startDay++;
   }
+
   if (tbody.rows[tableRow.length - 1].cells[0].querySelector('button').innerHTML === '') {
     tbody.deleteRow(tableRow.length - 1);
   }

@@ -67,11 +67,19 @@ DatePickerDay.prototype.handleKeyDown = function (event) {
       flag = true;
       break;
     case this.keyCode.PAGEUP:
-      this.datepicker.moveToPrevYear();
+      if(event.shiftKey){
+        this.datepicker.moveToPrevYear();
+      } else {
+        this.datepicker.moveToPrevMonth();
+      }
       flag = true;
       break;
     case this.keyCode.PAGEDOWN:
-      this.datepicker.moveToNextYear();
+      if(event.shiftKey){
+        this.datepicker.moveToNextYear();
+      } else {
+        this.datepicker.moveToNextMonth();
+      }
       flag = true;
       break;
   }
