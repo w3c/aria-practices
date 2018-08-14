@@ -67,20 +67,31 @@ DatePickerDay.prototype.handleKeyDown = function (event) {
       flag = true;
       break;
     case this.keyCode.PAGEUP:
-      if(event.shiftKey){
+      var row = document.getElementsByClassName('dateRow');
+      var cell = this.datepicker.setUpForNewMonthYear(row, this);
+      if (event.shiftKey) {
         this.datepicker.moveToPrevYear(this);
-      } else {
+      }
+      else {
         this.datepicker.moveToPrevMonth(this);
       }
-      // this.datepicker.setFocusToNewMonth(this);
+      console.log(cell);
+      var newRow = document.getElementsByClassName('dateRow');
+      this.datepicker.setFocusToNewMonthYear(newRow, cell);
+      console.log(cell);
+
       flag = true;
       break;
     case this.keyCode.PAGEDOWN:
-      if(event.shiftKey){
+      var row = document.getElementsByClassName('dateRow');
+      var cell = this.datepicker.setUpForNewMonthYear(row, this);
+      if (event.shiftKey) {
         this.datepicker.moveToNextYear(this);
-      } else {
+      }
+      else {
         this.datepicker.moveToNextMonth(this);
       }
+      this.datepicker.setFocusToNewMonthYear(row, cell);
       flag = true;
       break;
   }
