@@ -119,6 +119,7 @@ DatePicker.prototype.handleBodyClick = function () {
 DatePicker.prototype.open = function (node) {
   this.dialogNode.style.display = 'block';
   node.setAttribute('aria-expanded', 'true');
+  this.buttonNode.setAttribute('aria-expanded', 'true');
   if (this.lastFocused) {
     this.lastFocused.focus();
     this.lastFocused.tabIndex = 0;
@@ -134,6 +135,7 @@ DatePicker.prototype.open = function (node) {
 DatePicker.prototype.close = function (node) {
   this.dialogNode.style.display = 'none';
   node.removeAttribute('aria-expanded');
+  this.buttonNode.removeAttribute('aria-expanded');
   this.buttonNode.focus();
 };
 

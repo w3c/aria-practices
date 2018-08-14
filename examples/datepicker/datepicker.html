@@ -52,6 +52,7 @@
         <button class="datepickerButton"
           tabIndex="-1"
           aria-label="Pick a date"
+          aria-haspopup="true"
           title="Select to change date"
           >
           <i class="fa fa-calendar-alt fa-2x"></i>
@@ -63,27 +64,29 @@
             <button class="prev-year"
               aria-label="previous year"
               aria-control="dialogLabel">
-              <i class="fas fa-angle-double-left"></i>
+              <i class="fas fa-angle-double-left fa-lg"></i>
             </button>
             <button class="prev-month"
               aria-label="previous month"
               aria-control="dialogLabel">
-              <i class="fas fa-angle-left"></i>
+              <i class="fas fa-angle-left fa-lg"></i>
             </button>
             <span id="dialogLabel" class="month-year-label" role="status"></span>
             <button class="next-month"
               aria-label="next month"
               aria-control="dialogLabel">
-              <i class="fas fa-angle-right"></i>
+              <i class="fas fa-angle-right fa-lg"></i>
             </button>
             <button class="next-year"
               aria-label="next year"
               aria-control="dialogLabel">
-              <i class="fas fa-angle-double-right"></i>
+              <i class="fas fa-angle-double-right fa-lg"></i>
             </button>
           </div>
 
-          <table class="dates" role="grid">
+          <table class="dates" 
+            role="grid" 
+            aria-labelledby="dialogLabel">
             <thead>
               <tr>
                 <th scope="col" aria-label="Sunday">Su</th>
@@ -129,7 +132,12 @@
         <tbody>
             <tr>
                 <th><kbd>Down Arrow</kbd></th>
-                <td>Open the calendar dialog</td>
+                <td>
+                  <ul>
+                    <li>Open the calendar dialog.</li>
+                    <li>Move focus to current date.</li>
+                </ul>
+              </td>
             </tr>
         </tbody>
       </table>
@@ -150,7 +158,7 @@
               <td>
                 <ul>
                   <li>Toggles calendar dialog.</li>
-                  <li>NOTE: This button has been removed from <code>tab</code> order of the page by setting <code>tabindex=-1</code></li>
+                  <li>NOTE: This button has been removed from <code>tab</code> order of the page by setting <code>tabindex=-1</code>, for compatibilty with mobile browsers.</li>
                 </ul>
               </td>
             </tr>
@@ -200,7 +208,12 @@
         <tbody>
           <tr>
               <th><kbd>Space</kbd>,<br><kbd>Return</kbd></th>
-              <td>Select the date, close the dialog box and move focus to the calendar button.</td>
+              <td>
+                <ul>
+                  <li>Select the date, close the dialog box and move focus to the calendar button.</li>
+                  <li>Focus is move to calendar button for compatibilty with mobile browers.</li>
+                </ul>
+              </td>
           </tr>
           <tr>
             <th><kbd>Up Arrow</kbd></th>
@@ -264,7 +277,11 @@
           </tr>
           <tr>
             <th><kbd>ESC</kbd></th>
-            <td>Close the dialog and move focus back to calendar button</td>
+            <td>
+              <ul>
+                <li>Close the dialog and move focus back to calendar button.</li>
+                <li>Focus is move to calendar button for compatibilty with mobile browers.</li>
+            </ul></td>
           </tr>
         </tbody>
       </table>
@@ -298,7 +315,12 @@
             </tr>
             <tr>
               <th><kbd>ESC</kbd></th>
-              <td>Closes the calendar dialog, moves focus to calendar button, does not update date in date input.</td>
+              <td>
+                <ul>
+                  <li>Closes the calendar dialog, moves focus to calendar button, does not update date in date input.</li>
+                  <li>Focus is move to calendar button for compatibilty with mobile browers.</li>
+                </ul>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -307,167 +329,249 @@
 
   <section>
     <h2 id="rps_label">Role, Property, State, and Tabindex  Attributes</h2>
-    <table aria-labelledby="rps_label" class="data attributes">
-      <thead>
-        <tr>
-          <th scope="col">Role</th>
-          <th scope="col">Attribute</th>
-          <th scope="col">Element</th>
-          <th scope="col">Usage</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row"><code>status</code></th>
-          <td></td>
-          <td>
-            <code>span</code>
-          </td>
-          <td>
-              Identifies the element that serves as a form of live region.
-          </td>
-        </tr>
-        <tr>
+    <section>
+      <h3 id="rps_label_1">Date Input</h3>
+      <table aria-labelledby="rps_label_1" class="data attributes">
+        <thead>
+          <tr>
+            <th scope="col">Role</th>
+            <th scope="col">Attribute</th>
+            <th scope="col">Element</th>
+            <th scope="col">Usage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
             <td></td>
-            <th scope="row"><code>aira-control=&quot;IDREF&quot;</code></th>
-            <td><code>button</code></td>
+            <th scope="row"><code>aria-haspopup=&quot;true&quot;</code></th>
+            <td><code>input</code></td>
             <td>
-              Whenever the button clicked or pressed, the status of the calendar will also change.
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <th scope="row"><code>aira-label=&quot;IDREF&quot;</code></th>
-            <td><code>button</code></td>
-            <td>
-              Define the function of the current element.
-            </td>
-        </tr>
-        <tr>
-          <th scope="row"><code>grid</code></th>
-          <td></td>
-          <td>
-            <code>table</code>
-          </td>
-          <td>
-            <ul>
-              <li>Identifies the element that serves as the grid widget container.</li>
-              <li>Since the <code>grid</code> role is applied to a <code>table</code> element, the <code>row</code> , <code>rowheader</code>, <code>colheader</code>, and <code>gridcell</code> roles do not need to be specified because they are implied by <code>tr</code>, <code>th</code>, and <code>td</code> tags.</li>
-            </ul>
-          </td>
-        </tr>
-        <tr>
-            <td></td>
-            <th scope="row"><code>aira-label=&quot;IDREF&quot;</code></th>
-            <td><code>th</code></td>
-            <td>
-            <ul>
-              <li>Define a string to the current element.</li>
-            </ul>
-            </td>
-        </tr>
-        <tr>
-          <th scope="row"><code>dialog</code></th>
-          <td></td>
-          <td>
-            <code>div</code>
-          </td>
-          <td>
-            Identifies the element that serves as the dialog container
-          </td>
-        </tr>
-        <tr>
-            <td></td>
-            <th scope="row">
-              <code>aria-labelledby=&quot;IDREF&quot;</code>
-            </th>
-            <td>
-              <code>div</code>
-            </td>
-            <td>
-              Gives the dialog an accessible name by referring to the element that provides the dialog title.
+              Indicate that the input has a popup context menu.
             </td>
           </tr>
-        <tr>
-          <th scope="row"></th>
-          <td></td>
-          <td>
-            <code>button</code>
-          </td>
-          <td>
-            <ul>
-              <li>Identifies the element as a <code>button</code> widget.</li>
-              <li> Accessible name for the button is defined by the text content of the element.</li>
-            </ul>
-          </td>
-        </tr>
-
-        <tr>
-          <td></td>
-          <th scope="row">
-            <code>tabindex=&quot;0&quot;</code>
-          </th>
-          <td>
-            <code>button</code>
-          </td>
-          <td>
-            <ul>
-              <li>Includes the element in the tab sequence.</li>
-              <li>The current button is focused</li>
-            </ul>
-          </td>
-        </tr>
-        <tr>
-          <td></td>
-          <th scope="row">
-            <code>tabindex=&quot;-1&quot;</code>
-          </th>
-          <td>
-            <code>button</code>
-          </td>
-          <td>
-
-              Exclude the button from tab sequence but it is focusable.
-
-          </td>
-        </tr>
-        <tr>
-          <td></td>
-          <th scope="row"><code>aria-selected=&quot;false&quot;</code></th>
-          <td><code>button</code></td>
-          <td>
-            <ul>
-              <li>Identifies the button as a selectable button.</li>
-              <li>Indicates the button is <b>not</b> selected.</li>
-            </ul>
-          </td>
-        </tr>
-        <tr>
-          <td></td>
-          <th scope="row"><code>aria-selected=&quot;true&quot;</code></th>
-          <td><code>button</code></td>
-          <td>
-          <ul>
-              <li>Identifies the button as a selectable button.</li>
-              <li>Indicates the toggle button <b>is</b> selected .</li>
-            </ul>
-          </td>
-        </tr>
+          <tr>
+              <td></td>
+              <th scope="row"><code>aria-expanded=&quot;true&quot;</code></th>
+              <td><code>input</code></td>
+              <td>
+                Indicate the popup context menu is currently expanded.
+              </td>
+            </tr>
+        </tbody>
+      </table>
+    </section>
 
 
-        <tr>
-          <td></td>
-          <th scope="row"><code>aria-expanded=&quot;true&quot;</code></th>
-          <td><code>button</code></td>
-          <td>
+    <section>
+        <h3 id="rps_label_2">Calendar Button</h3>
+        <table aria-labelledby="rps_label_2" class="data attributes">
+          <thead>
+            <tr>
+              <th scope="col">Role</th>
+              <th scope="col">Attribute</th>
+              <th scope="col">Element</th>
+              <th scope="col">Usage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td></td>
+              <th scope="row"><code>aria-haspopup=&quot;true&quot;</code></th>
+              <td><code>button</code></td>
+              <td>
+                Indicate that the input has a popup context menu.
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <th scope="row"><code>aria-expanded=&quot;true&quot;</code></th>
+              <td><code>button</code></td>
+              <td>
+                Indicate the popup context menu is currently expanded.
+              </td>
+            </tr>
+            <tr>
+              <td></td>
+              <th scope="row"><code>aria-label=&quot;IDREF&quot;</code></th>
+              <td><code>button</code></td>
+              <td>
+                Define the selected date, month and year for screen reader.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
 
-            Indicates the parent node is open, i.e., the descendant elements are visible.
 
-          </td>
-        </tr>
+      <section>
+          <h3 id="rps_label_3">Next/Previous Buttons (for month and year)</h3>
+          <table aria-labelledby="rps_label_3" class="data attributes">
+            <thead>
+              <tr>
+                <th scope="col">Role</th>
+                <th scope="col">Attribute</th>
+                <th scope="col">Element</th>
+                <th scope="col">Usage</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row"><code>status</code></th>
+                    <td></td>
+                    <td>
+                      <code>span</code>
+                    </td>
+                    <td>
+                      <ul>
+                        <li>Identifies the element that contains the current month and year as a <code>polite</code> live region.</li>
+                        <li>When the month and year changes, the new value will automatically spoke by screen reader, and will not interpurt the current speech.</li>
+                      </ul>
+                    </td>
+                  </tr>
+                  <tr>
+                      <td></td>
+                      <th scope="row"><code>aira-control=&quot;IDREF&quot;</code></th>
+                      <td><code>button</code></td>
+                      <td>
+                        Provide a reference for screen reader to negivate to the reference content.
+                      </td>
+                  </tr>
+                  <tr>
+                      <td></td>
+                      <th scope="row"><code>aira-label=&quot;IDREF&quot;</code></th>
+                      <td><code>button</code></td>
+                      <td>
+                        Define the function of the current element, for example, for next month/year, button could be <q>August 2018</q> or <q>August 2019</q>.
+                      </td>
+                  </tr>
+            </tbody>
+          </table>
+        </section>
 
-      </tbody>
-    </table>
+        <section>
+            <h3 id="rps_label_4">Calendar Grid</h3>
+            <table aria-labelledby="rps_label_4" class="data attributes">
+              <thead>
+                <tr>
+                  <th scope="col">Role</th>
+                  <th scope="col">Attribute</th>
+                  <th scope="col">Element</th>
+                  <th scope="col">Usage</th>
+                </tr>
+              </thead>
+              <tbody>
+                  <tr>
+                    <th scope="row"><code>grid</code></th>
+                    <td></td>
+                    <td>
+                      <code>table</code>
+                    </td>
+                    <td>
+                      <ul>
+                        <li>Identifies the element that serves as the grid widget container.</li>
+                        <li>Since the <code>grid</code> role is applied to a <code>table</code> element, the <code>row</code> , <code>rowheader</code>, <code>colheader</code>, and <code>gridcell</code> roles do not need to be specified because they are implied by <code>tr</code>, <code>th</code>, and <code>td</code> tags.</li>
+                      </ul>
+                    </td>
+                  </tr>
+                  <tr>
+                      <td></td>
+                      <th scope="row"><code>aira-labelledby=&quot;IDREF&quot;</code></th>
+                      <td><code>table</code></td>
+                      <td>
+                      <ul>
+                        <li>Define an accessible name for the <code>grid</code> using current month and year.</li>
+                      </ul>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td></td>
+                      <th scope="row"><code>aira-label=&quot;IDREF&quot;</code></th>
+                      <td><code>th</code></td>
+                      <td>
+                      <ul>
+                        <li>Define an accessible name as a day of week for colume headers.</li>
+                      </ul>
+                      </td>
+                  </tr>
+                  <tr>
+                      <th scope="row"><code>dialog</code></th>
+                      <td></td>
+                      <td>
+                        <code>div</code>
+                      </td>
+                      <td>
+                        Identifies the element that serves as the dialog container.
+                      </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <th scope="row">
+                          <code>aria-labelledby=&quot;IDREF&quot;</code>
+                        </th>
+                        <td>
+                          <code>div</code>
+                        </td>
+                        <td>
+                          Gives the dialog an accessible name by referring to the element that provides the dialog title.
+                        </td>
+                      </tr>
+                    <tr>
+                      <th scope="row"></th>
+                      <td></td>
+                      <td>
+                        <code>button</code>
+                      </td>
+                      <td>
+                        <ul>
+                          <li>Identifies the element as a <code>button</code> widget.</li>
+                          <li> Accessible name for the button is defined by the text content of the element.</li>
+                        </ul>
+                      </td>
+                    </tr>
+            
+                    <tr>
+                      <td></td>
+                      <th scope="row">
+                        <code>tabindex=&quot;0&quot;</code>
+                      </th>
+                      <td>
+                        <code>button</code>
+                      </td>
+                      <td>
+                        <ul>
+                          <li>Includes the element in the tab sequence.</li>
+                          <li>The current button is focused</li>
+                        </ul>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <th scope="row">
+                        <code>tabindex=&quot;-1&quot;</code>
+                      </th>
+                      <td>
+                        <code>button</code>
+                      </td>
+                      <td>
+            
+                          Exclude the button from tab sequence but it is focusable.
+            
+                      </td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                      <th scope="row"><code>aria-selected=&quot;true&quot;</code></th>
+                      <td><code>button</code></td>
+                      <td>
+                      <ul>
+                          <li>Identifies the button as a selectable button.</li>
+                          <li>Indicates the button <b>is</b> selected.</li>
+                        </ul>
+                      </td>
+                    </tr>
+              </tbody>
+            </table>
+          </section>
   </section>
 
   <section>

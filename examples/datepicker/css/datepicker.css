@@ -143,3 +143,6 @@ th[scope="col"],.dateRow td{
   background:#EEE;
   cursor: not-allowed;
 }
+.fa-lg {
+  color:white;
+}
