@@ -346,7 +346,7 @@
             <th scope="row"><code>aria-haspopup=&quot;true&quot;</code></th>
             <td><code>input</code></td>
             <td>
-              Indicate that the input has a popup context menu.
+              Identifies that the input has a popup context menu.
             </td>
           </tr>
           <tr>
@@ -354,7 +354,11 @@
               <th scope="row"><code>aria-expanded=&quot;true&quot;</code></th>
               <td><code>input</code></td>
               <td>
-                Indicate the popup context menu is currently expanded.
+                <ul>
+                  <li>Indicate the popup context menu is currently expanded.</li>
+                  <li>When the calendar dialog closed, the <code>aria-expanded</code> attribute is removed from element.</li>
+                </ul>
+                
               </td>
             </tr>
         </tbody>
@@ -387,15 +391,19 @@
               <th scope="row"><code>aria-expanded=&quot;true&quot;</code></th>
               <td><code>button</code></td>
               <td>
-                Indicate the popup context menu is currently expanded.
+                  <ul>
+                    <li>Indicate the popup context menu is currently expanded.</li>
+                    <li>When the calendar dialog closed, the <code>aria-expanded</code> attribute is removed from element.</li>
+                  </ul>              
               </td>
             </tr>
             <tr>
               <td></td>
-              <th scope="row"><code>aria-label=&quot;IDREF&quot;</code></th>
+              <th scope="row"><code>aria-label=&quot;<i>String</i>&quot;</code></th>
               <td><code>button</code></td>
               <td>
-                Define the selected date, month and year for screen reader.
+                <li>Initial value of accessible name is <q>Pick a Date</q>.</li>
+                <li>When user selected date, the accessible name will update to current date.</li>
               </td>
             </tr>
           </tbody>
@@ -433,15 +441,15 @@
                       <th scope="row"><code>aira-control=&quot;IDREF&quot;</code></th>
                       <td><code>button</code></td>
                       <td>
-                        Provide a reference for screen reader to negivate to the reference content.
+                        Provide a reference for screen reader to navigate to the reference content.
                       </td>
                   </tr>
                   <tr>
                       <td></td>
-                      <th scope="row"><code>aira-label=&quot;IDREF&quot;</code></th>
+                      <th scope="row"><code>aira-label=&quot;<i>String</i>&quot;</code></th>
                       <td><code>button</code></td>
                       <td>
-                        Define the function of the current element, for example, for next month/year, button could be <q>August 2018</q> or <q>August 2019</q>.
+                        The accessible name of the button is the month and year the button will change the calendar too.
                       </td>
                   </tr>
             </tbody>
@@ -461,39 +469,6 @@
               </thead>
               <tbody>
                   <tr>
-                    <th scope="row"><code>grid</code></th>
-                    <td></td>
-                    <td>
-                      <code>table</code>
-                    </td>
-                    <td>
-                      <ul>
-                        <li>Identifies the element that serves as the grid widget container.</li>
-                        <li>Since the <code>grid</code> role is applied to a <code>table</code> element, the <code>row</code> , <code>rowheader</code>, <code>colheader</code>, and <code>gridcell</code> roles do not need to be specified because they are implied by <code>tr</code>, <code>th</code>, and <code>td</code> tags.</li>
-                      </ul>
-                    </td>
-                  </tr>
-                  <tr>
-                      <td></td>
-                      <th scope="row"><code>aira-labelledby=&quot;IDREF&quot;</code></th>
-                      <td><code>table</code></td>
-                      <td>
-                      <ul>
-                        <li>Define an accessible name for the <code>grid</code> using current month and year.</li>
-                      </ul>
-                      </td>
-                  </tr>
-                  <tr>
-                      <td></td>
-                      <th scope="row"><code>aira-label=&quot;IDREF&quot;</code></th>
-                      <td><code>th</code></td>
-                      <td>
-                      <ul>
-                        <li>Define an accessible name as a day of week for colume headers.</li>
-                      </ul>
-                      </td>
-                  </tr>
-                  <tr>
                       <th scope="row"><code>dialog</code></th>
                       <td></td>
                       <td>
@@ -512,19 +487,53 @@
                           <code>div</code>
                         </td>
                         <td>
-                          Gives the dialog an accessible name by referring to the element that provides the dialog title.
+                          The accessible name for the dialog is current month and year.
                         </td>
                       </tr>
+                  <tr>
+                    <th scope="row"><code>grid</code></th>
+                    <td></td>
+                    <td>
+                      <code>table</code>
+                    </td>
+                    <td>
+                      <ul>
+                        <li>Identifies the element that serves as the grid widget container.</li>
+                        <li>Since the <code>grid</code> role is applied to a <code>table</code> element, the <code>row</code> , <code>rowheader</code>, <code>colheader</code>, and <code>gridcell</code> roles do not need to be specified because they are implied by <code>tr</code>, <code>th</code>, and <code>td</code> tags.</li>
+                      </ul>
+                    </td>
+                  </tr>
+                  <tr>
+                      <td></td>
+                      <th scope="row"><code>aira-labelledby=&quot;IDREF&quot;</code></th>
+                      <td><code>table</code></td>
+                      <td>
+                      <ul>
+                        <li>Define the accessible name for the <code>grid</code> using current month and year.</li>
+                      </ul>
+                      </td>
+                  </tr>
+                  <tr>
+                      <td></td>
+                      <th scope="row"><code>aira-label=&quot;<i>String</i>&quot;</code></th>
+                      <td><code>th</code></td>
+                      <td>
+                      <ul>
+                        <li>Define the accessible name as a day of week for column headers.</li>
+                      </ul>
+                      </td>
+                  </tr>
+                 
                     <tr>
                       <th scope="row"></th>
                       <td></td>
                       <td>
-                        <code>button</code>
+                        <code>td > button</code>
                       </td>
                       <td>
                         <ul>
-                          <li>Identifies the element as a <code>button</code> widget.</li>
-                          <li> Accessible name for the button is defined by the text content of the element.</li>
+                          <li>The button element is use to Identify the dates in calendar grid.</li>
+                          <li>Accessible name for the button is the date which is defined by the text content of the button element.</li>
                         </ul>
                       </td>
                     </tr>
@@ -535,13 +544,10 @@
                         <code>tabindex=&quot;0&quot;</code>
                       </th>
                       <td>
-                        <code>button</code>
+                        <code>td > button</code>
                       </td>
                       <td>
-                        <ul>
-                          <li>Includes the element in the tab sequence.</li>
-                          <li>The current button is focused</li>
-                        </ul>
+                        Identify the currently selected date and make it part of tab sequence of the dialog box.
                       </td>
                     </tr>
                     <tr>
@@ -550,25 +556,28 @@
                         <code>tabindex=&quot;-1&quot;</code>
                       </th>
                       <td>
-                        <code>button</code>
+                        <code>td > button</code>
                       </td>
                       <td>
-            
-                          Exclude the button from tab sequence but it is focusable.
-            
+                        Exclude the button from tab sequence to support grid cell navigation.
                       </td>
                     </tr>
                     <tr>
                       <td></td>
                       <th scope="row"><code>aria-selected=&quot;true&quot;</code></th>
-                      <td><code>button</code></td>
+                      <td><code>td > button</code></td>
                       <td>
-                      <ul>
-                          <li>Identifies the button as a selectable button.</li>
-                          <li>Indicates the button <b>is</b> selected.</li>
-                        </ul>
+                        Identifies the currently selected date.
                       </td>
                     </tr>
+                    <tr>
+                        <td></td>
+                        <th scope="row"><code>disabled</code></th>
+                        <td><code>td > button</code></td>
+                        <td>
+                          Identifies buttons that represent dates that are not part of current month but are displayed visually. 
+                        </td>
+                      </tr>
               </tbody>
             </table>
           </section>
