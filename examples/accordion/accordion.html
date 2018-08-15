@@ -53,15 +53,15 @@
             <dl id="accordionGroup" role="presentation" class="Accordion" data-allow-toggle>
 
         -->
-        <dl id="accordionGroup" role="presentation" class="Accordion">
-          <dt role="heading" aria-level="3">
+        <div id="accordionGroup" role="presentation" class="Accordion">
+          <div role="heading" aria-level="3">
             <button aria-expanded="true" class="Accordion-trigger"
               aria-controls="sect1" id="accordion1id" type="button"
             >
               <span class="Accordion-title">Personal Information</span><span class="Accordion-icon"></span>
             </button>
-          </dt>
-          <dd id="sect1" role="region" aria-labelledby="accordion1id" class="Accordion-panel">
+          </div>
+          <div id="sect1" role="region" aria-labelledby="accordion1id" class="Accordion-panel">
             <div>
               <!-- Variable content within section, may include any type of markup or interactive widgets. -->
               <fieldset>
@@ -95,15 +95,15 @@
                 </p>
               </fieldset>
             </div>
-          </dd>
-          <dt role="heading" aria-level="3">
+          </div>
+          <div role="heading" aria-level="3">
             <button aria-expanded="false" class="Accordion-trigger"
               aria-controls="sect2" id="accordion2id" type="button"
             >
               <span class="Accordion-title">Billing Address</span><span class="Accordion-icon"></span>
             </button>
-          </dt>
-          <dd id="sect2" role="region" aria-labelledby="accordion2id" class="Accordion-panel" hidden>
+          </div>
+          <div id="sect2" role="region" aria-labelledby="accordion2id" class="Accordion-panel" hidden>
             <div>
               <fieldset>
                 <p>
@@ -128,15 +128,15 @@
                 </p>
               </fieldset>
             </div>
-          </dd>
-          <dt role="heading" aria-level="3">
+          </div>
+          <div role="heading" aria-level="3">
             <button aria-expanded="false" class="Accordion-trigger"
               aria-controls="sect3" id="accordion3id" type="button"
             >
               <span class="Accordion-title">Shipping Address</span><span class="Accordion-icon"></span>
             </button>
-          </dt>
-          <dd id="sect3" role="region" aria-labelledby="accordion3id" class="Accordion-panel" hidden>
+          </div>
+          <div id="sect3" role="region" aria-labelledby="accordion3id" class="Accordion-panel" hidden>
             <div>
               <fieldset>
                 <p>
@@ -161,8 +161,8 @@
                 </p>
               </fieldset>
             </div>
-          </dd>
-        </dl>
+          </div>
+        </div>
       </div>
     </div>
     <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
@@ -248,7 +248,7 @@
         <tr>
           <th scope="row"><code>presentation</code></th>
           <td></td>
-          <td><code>dl</code></td>
+          <td><code>div</code></td>
           <td>
             <ul>
               <li>Indicates that the <code>dl</code> element is being used to control presentation and does not represent a definition list.</li>
@@ -259,13 +259,13 @@
         <tr>
           <th scope="row"><code>heading</code></th>
           <td></td>
-          <td><code>dt</code></td>
+          <td><code>div</code></td>
           <td>Identifies the element as a heading that serves as an accordion header.</td>
         </tr>
         <tr>
           <td></td>
           <th scope="row"><code>aria-level=<q>3</q></code></th>
-          <td><code>dt</code></td>
+          <td><code>div</code></td>
           <td>
             <ul>
               <li>Specifies heading level for the accordion header.</li>
@@ -298,15 +298,15 @@
           </td>
         </tr>
         <tr>
-          <th scope="row">region</th>
+          <th scope="row"><code>region</code></th>
           <td></td>
-          <td><code>dd</code></td>
+          <td><code>div</code></td>
           <td>Creates a landmark region that contains the currently expanded accordion panel.</td>
         </tr>
         <tr>
           <td></td>
           <th scope="row"><code>aria-labelledby=&quot;ID_REF&quot;</code></th>
-          <td><code>dd</code></td>
+          <td><code>div</code></td>
           <td>
             <ul>
               <li>Points to the accordion header.</li>
