@@ -8,3 +8,11 @@ An “img” element must have an “alt” attribute, except under certain cond
 # Ignoring aria-posinset and aria-setsize on role row
 Attribute “aria-posinset” not allowed on element “tr” at this point.
 Attribute “aria-setsize” not allowed on element “tr” at this point.
+# Deleted Section Archive
+The “longdesc” attribute on the “img” element is obsolete. Use a regular “a” element to link to the description.
+# TODO: #822 rel elements in menubar2 example
+Attribute “rel” not allowed on element “ul” at this point.
+Attribute “rel” not allowed on element “li” at this point.
+# TODO: #815 dl/dt used for accordion example
+Bad value “heading” for attribute “role” on element “dt”.
+Bad value “region” for attribute “role” on element “dd”.
