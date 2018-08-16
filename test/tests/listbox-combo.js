@@ -14,21 +14,21 @@ const pageExamples = {
     textboxSelector: '#ex1 input[type="text"]',
     listboxSelector: '#ex1 [role="listbox"]',
     optionsSelector: '#ex1 [role="option"]',
-    numCharAfterADown: 1,
+    numCharAfterADown: 1
   },
   'ex2': {
     comboboxSelector: '#ex2 [role="combobox"]',
     textboxSelector: '#ex2 input[type="text"]',
     listboxSelector: '#ex2 [role="listbox"]',
     optionsSelector: '#ex2 [role="option"]',
-    numCharAfterADown: 1,
+    numCharAfterADown: 1
   },
   'ex3': {
     comboboxSelector: '#ex3 [role="combobox"]',
     textboxSelector: '#ex3 input[type="text"]',
     listboxSelector: '#ex3 [role="listbox"]',
     optionsSelector: '#ex3 [role="option"]',
-    numCharAfterADown: 9,
+    numCharAfterADown: 9
   }
 };
 
@@ -40,14 +40,14 @@ const waitForFocusChange = async (t, textboxSelector, originalFocus) => {
   try {
     await t.context.session.wait(async function () {
       let newfocus = await t.context.session
-          .findElement(By.css(textboxSelector))
-          .getAttribute('aria-activedescendant');
+        .findElement(By.css(textboxSelector))
+        .getAttribute('aria-activedescendant');
       return newfocus != originalFocus;
     }, 200);
   }
   catch (e) {
-    throw new Error('Error waiting for "aria-activedescendant" value to change from "'
-                    + originalFocus + '". ' + e.message);
+    throw new Error('Error waiting for "aria-activedescendant" value to change from "' +
+                    originalFocus + '". ' + e.message);
   }
 };
 
@@ -57,7 +57,7 @@ const confirmCursorIndex = async (t, selector, cursorIndex) => {
     const [selector, cursorIndex] = arguments;
     let item = document.querySelector(selector);
     return item.selectionStart === cursorIndex;
-    //return item.selectionStart;
+    // return item.selectionStart;
   }, selector, cursorIndex);
 };
 
@@ -893,8 +893,8 @@ ariaTest('left arrow from focus on list puts focus on listbox and moves cursor r
       await textbox.sendKeys(Key.ARROW_LEFT);
 
       t.true(
-        await confirmCursorIndex(t, ex.textboxSelector, ex.numCharAfterADown-1),
-        'Cursor should be at index ' + (ex.numCharAfterADown-1) + ' after one ARROW_LEFT key'
+        await confirmCursorIndex(t, ex.textboxSelector, ex.numCharAfterADown - 1),
+        'Cursor should be at index ' + (ex.numCharAfterADown - 1) + ' after one ARROW_LEFT key'
       );
 
       t.is(
@@ -903,7 +903,7 @@ ariaTest('left arrow from focus on list puts focus on listbox and moves cursor r
         'Focus should be on the textbox after on ARROW_LEFT key',
       );
     }
-});
+  });
 
 
 ariaTest('Right arrow from focus on list puts focus on listbox',
@@ -931,7 +931,7 @@ ariaTest('Right arrow from focus on list puts focus on listbox',
         'Focus should be on the textbox after on ARROW_RIGHT key',
       );
     }
-});
+  });
 
 ariaTest('Home arrow from focus on list puts focus on listbox',
   exampleFile, 'listbox-key-home', async (t) => {
@@ -958,7 +958,7 @@ ariaTest('Home arrow from focus on list puts focus on listbox',
         'Focus should be on the textbox after one ARROW_HOME key',
       );
     }
-});
+  });
 
 ariaTest('End arrow from focus on list puts focus on listbox',
   exampleFile, 'listbox-key-end', async (t) => {
@@ -985,5 +985,5 @@ ariaTest('End arrow from focus on list puts focus on listbox',
         'Focus should be on the textbox after on ARROW_END key',
       );
     }
-});
+  });
 

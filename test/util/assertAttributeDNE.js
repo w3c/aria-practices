@@ -19,7 +19,7 @@ module.exports = async function assertAttributeDNE (t, selector, attribute) {
       let [selector, index, attribute] = arguments;
       let elements = document.querySelectorAll(selector);
       return elements[index].hasAttribute(attribute);
-    }, selector, index, attribute)
+    }, selector, index, attribute);
 
     assert(
       !attributeExists,
