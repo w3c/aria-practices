@@ -46,7 +46,7 @@
       <li><a href="../aria1.0pattern/combobox-autocomplete-list.html">ARIA 1.0 Combobox with List Autocomplete</a>: A combobox that demonstrates the autocomplete behavior known as <q>list with manual selection</q> and uses the ARIA 1.0 implementation pattern.</li>
       <li><a href="../aria1.0pattern/combobox-autocomplete-none.html">ARIA 1.0 Combobox Without Autocomplete</a>: A combo box that demonstrates the behavior associated with <code>aria-autocomplete=none</code> and uses the ARIA 1.0 implementation pattern.</li>
     </ul>
-  
+
     <section>
       <h2 id="ex_label">Examples</h2>
       <h3 id="ex1_label">Example 1: List Autocomplete with Manual Selection</h3>
@@ -92,7 +92,7 @@
           Choice 2 Fruit or Vegetable
         </label>
         <div class="combobox-wrapper">
-          <div role="combobox" 
+          <div role="combobox"
             aria-expanded="false"
             aria-owns="ex2-listbox"
             aria-haspopup="listbox"
@@ -169,8 +169,8 @@
     <section>
       <h2 id="kbd_label">Keyboard Support</h2>
       <p>
-      The example comboboxes on this page implement the following keyboard interface. 
-        Other variations and options for the keyboard interface are described in the  
+      The example comboboxes on this page implement the following keyboard interface.
+        Other variations and options for the keyboard interface are described in the
         <a href="../../../#combobox_kbd_interaction">Keyboard Interaction section of the combobox design pattern.</a>
       </p>
       <h3 id="kbd_label_textbox">Textbox</h3>
@@ -192,7 +192,7 @@
                     <li>Examples 2 and 3: Moves focus to the second suggested value. Note that the first value is automatically selected.</li>
                   </ul>
                 </li>
-                <li>If the listbox is not displayed, in example 3 only, opens the listbox and moves focus to the first value.</li>           
+                <li>If the listbox is not displayed, in example 3 only, opens the listbox and moves focus to the first value.</li>
               </ul>
             </td>
           </tr>
@@ -201,7 +201,7 @@
             <td>
               <ul>
                 <li>If the listbox is displayed, moves focus to the last suggested value.</li>
-                <li>If the listbox is not displayed, in example 3 only, opens the listbox and moves focus to the last value.</li>           
+                <li>If the listbox is not displayed, in example 3 only, opens the listbox and moves focus to the last value.</li>
               </ul>
             </td>
           </tr>
@@ -243,7 +243,7 @@
       <p>
         <strong>NOTE:</strong> When visual focus is in the listbox, DOM focus remains on the textbox and the value of <code>aria-activedescendant</code> on the textbox is set to a value that refers to the listbox option that is visually indicated as focused.
         Where the following descriptions of keyboard commands mention focus, they are referring to the visual focus indicator.
-        For more information about this focus management technique, see 
+        For more information about this focus management technique, see
         <a href="../../../#kbd_focus_activedescendant">Using aria-activedescendant to Manage Focus.</a>
       </p>
       <table aria-labelledby="kbd_label_listbox kbd_label" class="def">
@@ -300,7 +300,7 @@
           </tr>
           <tr data-test-id="listbox-key-left-arrow">
             <th><kbd>Left Arrow</kbd></th>
-            <td>Moves focus to the textbox and moves the editing cursor one character to the leftt.</td>
+            <td>Moves focus to the textbox and moves the editing cursor one character to the left.</td>
           </tr>
           <tr data-test-id="listbox-key-home">
             <th><kbd>Home</kbd></th>
@@ -326,8 +326,8 @@
     <section>
       <h2 id="rps_label">Role, Property, State, and Tabindex Attributes</h2>
       <p>
-        The example comboboxes on this page implement the following ARIA roles, states, and properties. 
-        Information about other ways of applying ARIA roles, states, and properties is available in the    
+        The example comboboxes on this page implement the following ARIA roles, states, and properties.
+        Information about other ways of applying ARIA roles, states, and properties is available in the
         <a href="../../../#combobox_roles_states_props">Roles, States, and Properties section of the combobox design pattern.</a>
       </p>
       <h3 id="rps_label_combobox">Combobox Container</h3>
@@ -455,7 +455,7 @@
                 <li>Note:
                   <ul>
                     <li>In the ARIA 1.0 combobox pattern, the textbox has <code>aria-owns</code> instead of <code>aria-controls</code>.</li>
-                    <li>In this ARIA 1.1 pattern, <code>aria-owns</code> is instead on the parent container so the popup element is a sibling of the textbox instead of a child of the textbox, making it perceivable by screen reader users as an element adjacent to the textbox when using a reading cursor or touch interface.</li> 
+                    <li>In this ARIA 1.1 pattern, <code>aria-owns</code> is instead on the parent container so the popup element is a sibling of the textbox instead of a child of the textbox, making it perceivable by screen reader users as an element adjacent to the textbox when using a reading cursor or touch interface.</li>
                   </ul>
                 </li>
               </ul>
@@ -473,7 +473,7 @@
                 <li>When navigation keys, such as <kbd>Down Arrow</kbd>, are pressed, the JavaScript changes the value.</li>
                 <li>Enables assistive technologies to know which element the application regards as focused while DOM focus remains on the <code>input</code> element.</li>
                 <li>
-                  For more information about this focus management technique, see 
+                  For more information about this focus management technique, see
                   <a href="../../../#kbd_focus_activedescendant">Using aria-activedescendant to Manage Focus.</a>
                 </li>
               </ul>
