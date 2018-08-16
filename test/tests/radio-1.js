@@ -98,6 +98,7 @@ ariaTest('Moves focus to first or checked item', exampleFile, 'key-tab', async (
   await t.context.session
     .findElement(By.css(ex.deliveryRadioSelector + ':nth-of-type(2)')).click();
 
+  // Now the second radio item in each list should be selected
   await assertTabOrder(t, [
     ex.crustRadioSelector + ':nth-of-type(2)',
     ex.deliveryRadioSelector + ':nth-of-type(2)'
