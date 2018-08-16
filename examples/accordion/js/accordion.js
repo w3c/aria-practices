@@ -65,6 +65,10 @@ Array.prototype.slice.call(document.querySelectorAll('.Accordion')).forEach(func
   accordion.addEventListener('keydown', function (event) {
     var target = event.target;
     var key = event.which.toString();
+
+    var isExpanded = target.getAttribute('aria-expanded') == 'true';
+    var allowToggle = (allowMultiple) ? allowMultiple : accordion.hasAttribute('data-allow-toggle');
+
     // 33 = Page Up, 34 = Page Down
     var ctrlModifier = (event.ctrlKey && key.match(/33|34/));
 
@@ -94,9 +98,50 @@ Array.prototype.slice.call(document.querySelectorAll('.Accordion')).forEach(func
             triggers[triggers.length - 1].focus();
             break;
         }
-
         event.preventDefault();
+ 
       }
+        else if (key.match(/13|32/)){
+          var target = event.target;
+
+          if (target.classList.contains('Accordion-trigger')) {
+            // Check if the current toggle is expanded.
+            var isExpanded = target.getAttribute('aria-expanded') == 'true';
+            var active = accordion.querySelector('[aria-expanded="true"]');
+      
+            // without allowMultiple, close the open accordion
+            if (!allowMultiple && active && active !== target) {
+              // Set the expanded state on the triggering element
+              active.setAttribute('aria-expanded', 'false');
+              // Hide the accordion sections, using aria-controls to specify the desired section
+              document.getElementById(active.getAttribute('aria-controls')).setAttribute('hidden', '');
+      
+              // When toggling is not allowed, clean up disabled state
+              if (!allowToggle) {
+                active.removeAttribute('aria-disabled');
+              }
+            }
+      
+            if (!isExpanded) {
+              // Set the expanded state on the triggering element
+              target.setAttribute('aria-expanded', 'true');
+              // Hide the accordion sections, using aria-controls to specify the desired section
+              document.getElementById(target.getAttribute('aria-controls')).removeAttribute('hidden');
+      
+              // If toggling is not allowed, set disabled state on trigger
+              if (!allowToggle) {
+                target.setAttribute('aria-disabled', 'true');
+              }
+            }
+            else if (allowToggle && isExpanded) {
+              // Set the expanded state on the triggering element
+              target.setAttribute('aria-expanded', 'false');
+              // Hide the accordion sections, using aria-controls to specify the desired section
+              document.getElementById(target.getAttribute('aria-controls')).setAttribute('hidden', '');
+            }
+      
+            event.preventDefault();
+          }
     }
     else if (ctrlModifier) {
       // Control + Page Up/ Page Down keyboard operations
@@ -109,6 +154,7 @@ Array.prototype.slice.call(document.querySelectorAll('.Accordion')).forEach(func
         }
       });
     }
+  }
   });
 
   // Minor setup: will set disabled state, via aria-disabled, to an
