@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>Datepicker Examples | WAI-ARIA Authoring Practices 1.1</title>
+<title>Date Picker Example | WAI-ARIA Authoring Practices 1.1</title>
 
 <!--  Core js and css shared by all examples; do not modify when using this template. -->
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
@@ -28,10 +28,12 @@
     </ul>
   </nav>
   <main>
-    <h1>Datepicker Examples</h1>
+    <h1>Date Picker Example</h1>
     <p>
       The following command and input examples demonstrate the
-      <a href="../../#datepicker">datepicker design pattern.</a>
+      <a href="../../#datepicker">date picker design pattern</a> which is an example of a <code>combobox</code> that opens a dialog box.
+      The date picker dialog box in this example is opened when keyboard focus is moved to the text box and a <kbd>down arrow</kbd> key pressed or clicking on the calendar button.
+      The date picker dialog uses a <code>grid</code> pattern to show and select a date, and buttons for changing the month and year shown in the grid.  For compatibility with mobile browsers, keyboard focus is moved to the calender button when the date picker dialog box closes, rather than the text input control.  In some mobile browsers moving focus to the input control causes the date picker dialog to open automatically, which is avoided by moving focus to the calendar button.  The accessible name for the calender button and the value of the textbox value are updated when the date picker dialog closes.
     </p>
   <section>
     <h2 id="ex_label">Example</h2>
@@ -39,14 +41,17 @@
     <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
     <div id="example">
 
-      <div class="datepicker">
+      <div class="datepicker"
+           role="combobox"
+           aria-expanded="false"
+           aria-haspopup="dialog"
+           aria-label="Date">
         <label for="id-date-1">Date: </label>
 
         <input class="datepickerInput"
               type="text"
               placeholder="mm/dd/yyyy"
               id="id-date-1"
-              aria-haspopup="true"
               aria-controls="id-datepicker-1">
 
         <button class="datepickerButton"
@@ -84,8 +89,8 @@
             </button>
           </div>
 
-          <table class="dates" 
-            role="grid" 
+          <table class="dates"
+            role="grid"
             aria-labelledby="dialogLabel">
             <thead>
               <tr>
@@ -158,7 +163,7 @@
               <td>
                 <ul>
                   <li>Toggles calendar dialog.</li>
-                  <li>NOTE: This button has been removed from <code>tab</code> order of the page by setting <code>tabindex=-1</code>, for compatibilty with mobile browsers.</li>
+                  <li>NOTE: This button has been removed from <code>tab</code> order of the page by setting <code>tabindex=-1</code>, for compatibility with mobile browsers.</li>
                 </ul>
               </td>
             </tr>
@@ -211,7 +216,7 @@
               <td>
                 <ul>
                   <li>Select the date, close the dialog box and move focus to the calendar button.</li>
-                  <li>Focus is move to calendar button for compatibilty with mobile browers.</li>
+                  <li>Focus is move to calendar button for compatibility with mobile browsers.</li>
                 </ul>
               </td>
           </tr>
@@ -280,7 +285,7 @@
             <td>
               <ul>
                 <li>Close the dialog and move focus back to calendar button.</li>
-                <li>Focus is move to calendar button for compatibilty with mobile browers.</li>
+                <li>Focus is move to calendar button for compatibility with mobile browsers.</li>
             </ul></td>
           </tr>
         </tbody>
@@ -318,7 +323,7 @@
               <td>
                 <ul>
                   <li>Closes the calendar dialog, moves focus to calendar button, does not update date in date input.</li>
-                  <li>Focus is move to calendar button for compatibilty with mobile browers.</li>
+                  <li>Focus is move to calendar button for compatibility with mobile browsers.</li>
                 </ul>
               </td>
             </tr>
@@ -342,25 +347,41 @@
         </thead>
         <tbody>
           <tr>
+            <th scope="row"><code>role=&quot;combobox&quot;</code></th>
             <td></td>
-            <th scope="row"><code>aria-haspopup=&quot;true&quot;</code></th>
-            <td><code>input</code></td>
+            <td><code>div</code></td>
             <td>
-              Identifies that the input has a popup context menu.
+              Identifies that the input has a combobox.
             </td>
           </tr>
           <tr>
-              <td></td>
-              <th scope="row"><code>aria-expanded=&quot;true&quot;</code></th>
-              <td><code>input</code></td>
-              <td>
-                <ul>
-                  <li>Indicate the popup context menu is currently expanded.</li>
-                  <li>When the calendar dialog closed, the <code>aria-expanded</code> attribute is removed from element.</li>
-                </ul>
-                
-              </td>
-            </tr>
+            <td></td>
+            <th scope="row"><code>aria-haspopup=&quot;dialog&quot;</code></th>
+            <td><code>div</code></td>
+            <td>
+              Identifies that the combobox opens a dialog box.
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <th scope="row"><code>aria-expanded=&quot;false&quot;</code></th>
+            <td><code>div</code></td>
+            <td>
+              <ul>
+                <li><code>aria-expanded=&quot;false&quot;</code> when the date picker dialog box is closed.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <th scope="row"><code>aria-expanded=&quot;true&quot;</code></th>
+            <td><code>div</code></td>
+            <td>
+              <ul>
+                <li><code>aria-expanded=&quot;true&quot;</code> when the date picker dialog box is open.</li>
+              </ul>
+            </td>
+          </tr>
         </tbody>
       </table>
     </section>
@@ -394,7 +415,7 @@
                   <ul>
                     <li>Indicate the popup context menu is currently expanded.</li>
                     <li>When the calendar dialog closed, the <code>aria-expanded</code> attribute is removed from element.</li>
-                  </ul>              
+                  </ul>
               </td>
             </tr>
             <tr>
@@ -523,7 +544,7 @@
                       </ul>
                       </td>
                   </tr>
-                 
+
                     <tr>
                       <th scope="row"></th>
                       <td></td>
@@ -537,7 +558,7 @@
                         </ul>
                       </td>
                     </tr>
-            
+
                     <tr>
                       <td></td>
                       <th scope="row">
@@ -575,7 +596,7 @@
                         <th scope="row"><code>disabled</code></th>
                         <td><code>td > button</code></td>
                         <td>
-                          Identifies buttons that represent dates that are not part of current month but are displayed visually. 
+                          Identifies buttons that represent dates that are not part of current month but are displayed visually.
                         </td>
                       </tr>
               </tbody>
@@ -609,7 +630,7 @@
   </section>
   </main>
   <nav>
-    <a href="../../#datepicker">Datepicker Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
+    <a href="../../#datepicker">Date Picker Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
   </nav>
 </body>
 </html>
