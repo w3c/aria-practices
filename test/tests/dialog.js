@@ -42,7 +42,8 @@ const ex = {
   ],
   dialog4FocusableEls: [
     '#dialog4 button'
-  ]
+  ],
+  dialog2FirstFocusedEl: '#dialog2_para1'
 };
 
 const openDialog1 = async function (t) {
@@ -133,37 +134,29 @@ const checkFocus = async function (t, selector) {
   }, selector);
 };
 
-const sendTabToCurrentlyFocused = async function (t) {
-  const el = await t.context.session.executeScript(function () {
-    return document.activeElement;
-  });
-
+const sendTabToSelector = async function (t, selector) {
+  let el = await t.context.session.findElement(By.css(selector));
   await el.sendKeys(Key.TAB);
 
   // await for focus change before returning
-  const origText = el.getText();
   await t.context.session.wait(async function () {
-    const newEl = await t.context.session.executeScript(function () {
-      return document.activeElement;
-    });
-    return newEl.getText() !== origText;
+    return t.context.session.executeScript(function () {
+      let selector = arguments[0];
+      return document.activeElement !== document.querySelector(selector);
+    }, selector);
   }, 200);
 };
 
-const sendShiftTabToCurrentlyFocused = async function (t) {
-  const el = await t.context.session.executeScript(function () {
-    return document.activeElement;
-  });
-
+const sendShiftTabToSelector = async function (t, selector) {
+  let el = await t.context.session.findElement(By.css(selector));
   await el.sendKeys(Key.chord(Key.SHIFT, Key.TAB));
 
   // await for focus change before returning
-  const origText = el.getText();
   await t.context.session.wait(async function () {
-    const newEl = await t.context.session.executeScript(function () {
-      return document.activeElement;
-    });
-    return newEl.getText() !== origText;
+    return t.context.session.executeScript(function () {
+      let selector = arguments[0];
+      return document.activeElement !== document.querySelector(selector);
+    }, selector);
   }, 200);
 };
 
@@ -229,7 +222,7 @@ ariaTest('tab changes focus within dialog', exampleFile, 'key-tab', async (t) =>
         i + ' tabs have been sent to dialog 1'
     );
 
-    await sendTabToCurrentlyFocused(t);
+    await sendTabToSelector(t, ex.dialog1FocusableEls[i]);
   }
 
   // Check that the focus returns to the first focusable element
@@ -247,7 +240,7 @@ ariaTest('tab changes focus within dialog', exampleFile, 'key-tab', async (t) =>
 
   // Loop through the focusable elements
   // focus is not first focusable element on popup -- send tab to start
-  await sendTabToCurrentlyFocused(t);
+  await sendTabToSelector(t, ex.dialog2FirstFocusedEl);
 
   for (let i = 0; i < ex.dialog2FocusableEls.length; i++) {
     t.true(
@@ -256,7 +249,7 @@ ariaTest('tab changes focus within dialog', exampleFile, 'key-tab', async (t) =>
         (i + 1) + ' tabs have been sent to dialog 2'
     );
 
-    await sendTabToCurrentlyFocused(t);
+    await sendTabToSelector(t, ex.dialog2FocusableEls[i]);
   }
 
   // Check that the focus returns to the first focusable element
@@ -280,7 +273,7 @@ ariaTest('tab changes focus within dialog', exampleFile, 'key-tab', async (t) =>
         i + ' tabs have been sent to dialog 3'
     );
 
-    await sendTabToCurrentlyFocused(t);
+    await sendTabToSelector(t, ex.dialog3FocusableEls[i]);
   }
 
   // Check that the focus returns to the first focusable element
@@ -303,7 +296,8 @@ ariaTest('tab changes focus within dialog', exampleFile, 'key-tab', async (t) =>
   );
 
   // Make focus does not change
-  await sendTabToCurrentlyFocused(t);
+  let el = await t.context.session.findElement(By.css(ex.dialog4FocusableEls[0]));
+  await el.sendKeys(Key.TAB);
   t.true(
     await checkFocus(t, ex.dialog4FocusableEls[0]),
     'Focus should remain on: "' + ex.dialog4FocusableEls[0] + '" after tabs in dialog 4'
@@ -319,7 +313,7 @@ ariaTest('shift tab changes focus within dialog', exampleFile, 'key-shift-tab', 
   await openDialog1(t);
 
   // Loop through the focusable elements backwards (focus is on first focusable element on popup)
-  await sendShiftTabToCurrentlyFocused(t);
+  await sendShiftTabToSelector(t, ex.dialog1FocusableEls[0]);
   let shifttabcount = 1;
 
   for (let i = ex.dialog1FocusableEls.length - 1; i >= 0; i--) {
@@ -329,7 +323,7 @@ ariaTest('shift tab changes focus within dialog', exampleFile, 'key-shift-tab', 
         ' shift tabs have been sent to dialog 1'
     );
 
-    await sendShiftTabToCurrentlyFocused(t);
+    await sendShiftTabToSelector(t, ex.dialog1FocusableEls[i]);
     shifttabcount++;
   }
 
@@ -347,18 +341,22 @@ ariaTest('shift tab changes focus within dialog', exampleFile, 'key-shift-tab', 
   await reload(t);
   await openDialog2(t);
 
-  // Loop through the focusable elements backwards
-  await sendShiftTabToCurrentlyFocused(t); // Focus will be on div at first
-  await sendShiftTabToCurrentlyFocused(t); // Focus will be on the first focusable element second
+  // Set up:
+  // First, focus will be on a div, send SHIFT+TAB
+  await sendShiftTabToSelector(t, ex.dialog2FirstFocusedEl);
+  // Second, focus will be on the first focusable element second, send SHIFT+TAB
+  await sendShiftTabToSelector(t, ex.dialog2FocusableEls[0]);
+
   shifttabcount = 2;
 
+  // Loop through all focusable elements backward
   for (let i = ex.dialog2FocusableEls.length - 1; i >= 0; i--) {
     t.true(
       await checkFocus(t, ex.dialog2FocusableEls[i]),
       'Focus should be on item "' + ex.dialog2FocusableEls[i] + '" after ' + shifttabcount +
         ' shift tabs have been sent to dialog 2'
     );
-    await sendShiftTabToCurrentlyFocused(t);
+    await sendShiftTabToSelector(t, ex.dialog2FocusableEls[i]);
     shifttabcount++;
   }
 
@@ -378,7 +376,7 @@ ariaTest('shift tab changes focus within dialog', exampleFile, 'key-shift-tab', 
   await openDialog3(t);
 
   // Loop through the focusable elements backwards (focus is on first focusable element on popup)
-  await sendShiftTabToCurrentlyFocused(t);
+  await sendShiftTabToSelector(t, ex.dialog3FocusableEls[0]);
   shifttabcount = 1;
 
   for (let i = ex.dialog3FocusableEls.length - 1; i >= 0; i--) {
@@ -388,7 +386,7 @@ ariaTest('shift tab changes focus within dialog', exampleFile, 'key-shift-tab', 
         ' shift tabs have been sent to dialog 3'
     );
 
-    await sendShiftTabToCurrentlyFocused(t);
+    await sendShiftTabToSelector(t, ex.dialog3FocusableEls[i]);
     shifttabcount++;
   }
 
@@ -413,7 +411,8 @@ ariaTest('shift tab changes focus within dialog', exampleFile, 'key-shift-tab', 
   );
 
   // Make focus does not change
-  await sendShiftTabToCurrentlyFocused(t);
+  let el = await t.context.session.findElement(By.css(ex.dialog4FocusableEls[0]));
+  await el.sendKeys(Key.chord(Key.SHIFT, Key.TAB));
   t.true(
     await checkFocus(t, ex.dialog4FocusableEls[0]),
     'Focus should remain on: "' + ex.dialog4FocusableEls[0] + '" after tabs in dialog 4'
