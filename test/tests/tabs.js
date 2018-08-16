@@ -29,12 +29,14 @@ const openTabAtIndex = async function (t, tabOrderIndex) {
   await t.context.session.findElement(By.css(selector)).click();
 };
 
-const checkFocus = function (t, selector, index) {
-  return t.context.session.executeScript(function () {
-    const [selector, index] = arguments;
-    let items = document.querySelectorAll(selector);
-    return items[index] === document.activeElement;
-  }, selector, index);
+const waitAndCheckFocus = function (t, selector, index) {
+  return t.context.session.wait(async function () {
+    return t.context.session.executeScript(function () {
+      const [selector, index] = arguments;
+      let items = document.querySelectorAll(selector);
+      return items[index] === document.activeElement;
+    }, selector, index);
+  }, 200);
 };
 
 // Attributes
@@ -185,7 +187,7 @@ ariaTest('ARROW_RIGHT key moves focus and activates tab', exampleFile, 'key-righ
   t.plan(9);
 
   // Put focus on first tab
-  openTabAtIndex(t, 0);
+  await openTabAtIndex(t, 0);
 
   const tabs = await t.context.session.findElements(By.css(ex.tabSelector));
   const tabpanels = await t.context.session.findElements(By.css(ex.tabpanelSelector));
@@ -196,7 +198,7 @@ ariaTest('ARROW_RIGHT key moves focus and activates tab', exampleFile, 'key-righ
 
     // Check the focus is correct
     t.true(
-      await checkFocus(t, ex.tabSelector, index + 1),
+      await waitAndCheckFocus(t, ex.tabSelector, index + 1),
       'right arrow on tab "' + index + '" should put focus on the next tab.'
     );
     t.is(
@@ -215,7 +217,7 @@ ariaTest('ARROW_RIGHT key moves focus and activates tab', exampleFile, 'key-righ
 
   // Check the focus returns to the first item
   t.true(
-    await checkFocus(t, ex.tabSelector, 0),
+    await waitAndCheckFocus(t, ex.tabSelector, 0),
     'right arrow on tab "' + (tabs.length - 1) + '" should put focus to first tab.'
   );
   t.is(
@@ -237,14 +239,14 @@ ariaTest('ARROW_LEFT key moves focus and activates tab', exampleFile, 'key-left-
   const tabpanels = await t.context.session.findElements(By.css(ex.tabpanelSelector));
 
   // Put focus on first tab
-  openTabAtIndex(t, 0);
+  await openTabAtIndex(t, 0);
 
   // Send the right arrow
   await tabs[0].sendKeys(Key.ARROW_LEFT);
 
   // Check the focus returns to the last item
   t.true(
-    await checkFocus(t, ex.tabSelector, tabs.length - 1),
+    await waitAndCheckFocus(t, ex.tabSelector, tabs.length - 1),
     'right arrow on tab 0 should put focus to last tab.'
   );
   t.is(
@@ -264,7 +266,7 @@ ariaTest('ARROW_LEFT key moves focus and activates tab', exampleFile, 'key-left-
 
     // Check the focus is correct
     t.true(
-      await checkFocus(t, ex.tabSelector, index - 1),
+      await waitAndCheckFocus(t, ex.tabSelector, index - 1),
       'right arrow on tab "' + index + '" should put focus on the previous tab.'
     );
     t.is(
@@ -288,14 +290,14 @@ ariaTest('HOME key moves focus and selects tab', exampleFile, 'key-home', async 
   for (let index = 0; index < tabs.length; index++) {
 
     // Put focus on the tab
-    openTabAtIndex(t, index);
+    await openTabAtIndex(t, index);
 
     // Send the home key to the tab
     await tabs[index].sendKeys(Key.HOME);
 
     // Check the focus is correct
     t.true(
-      await checkFocus(t, ex.tabSelector, 0),
+      await waitAndCheckFocus(t, ex.tabSelector, 0),
       'home key on tab "' + index + '" should put focus on the first tab.'
     );
     t.is(
@@ -318,14 +320,14 @@ ariaTest('END key moves focus and selects tab', exampleFile, 'key-end', async (t
   for (let index = 0; index < tabs.length; index++) {
 
     // Put focus on the tab
-    openTabAtIndex(t, index);
+    await openTabAtIndex(t, index);
 
     // Send the end key to the tab
     await tabs[index].sendKeys(Key.END);
 
     // Check the focus is correct
     t.true(
-      await checkFocus(t, ex.tabSelector, tabs.length - 1),
+      await waitAndCheckFocus(t, ex.tabSelector, tabs.length - 1),
       'home key on tab "' + index + '" should put focus on the last tab.'
     );
     t.is(
@@ -346,7 +348,7 @@ ariaTest('DELETE key removes third tab', exampleFile, 'key-delete', async (t) =>
   let tabs = await t.context.session.findElements(By.css(ex.tabSelector));
 
   // Put focus on the first tab
-  openTabAtIndex(t, 0);
+  await openTabAtIndex(t, 0);
 
   // Send the delete key to the tab
   await tabs[0].sendKeys(Key.DELETE);
@@ -358,7 +360,7 @@ ariaTest('DELETE key removes third tab', exampleFile, 'key-delete', async (t) =>
   );
 
   // Put focus on the second tab
-  openTabAtIndex(t, 1);
+  await openTabAtIndex(t, 1);
 
   // Send the delete key to the tab
   await tabs[1].sendKeys(Key.DELETE);
@@ -370,7 +372,7 @@ ariaTest('DELETE key removes third tab', exampleFile, 'key-delete', async (t) =>
   );
 
   // Put focus on the last tab
-  openTabAtIndex(t, 2);
+  await openTabAtIndex(t, 2);
 
   // Send the delete key to the tab
   await tabs[2].sendKeys(Key.DELETE);
