@@ -351,7 +351,18 @@
             <td></td>
             <td><code>div</code></td>
             <td>
-              Identifies that the input has a combobox.
+              <ul>
+                <li>Identifies that the input has a combobox.</li>
+                <li>Required accessible name comes from the <code>aria-label</code> attribute.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <th scope="row"><code>aria-label=&quot;Date&quot;</code></th>
+            <td><code>div</code></td>
+            <td>
+              Defines an accessible name, "Date", for the combobox.
             </td>
           </tr>
           <tr>
@@ -367,9 +378,7 @@
             <th scope="row"><code>aria-expanded=&quot;false&quot;</code></th>
             <td><code>div</code></td>
             <td>
-              <ul>
-                <li><code>aria-expanded=&quot;false&quot;</code> when the date picker dialog box is closed.</li>
-              </ul>
+              <code>aria-expanded=&quot;false&quot;</code> when the date picker dialog box is closed.
             </td>
           </tr>
           <tr>
@@ -377,9 +386,15 @@
             <th scope="row"><code>aria-expanded=&quot;true&quot;</code></th>
             <td><code>div</code></td>
             <td>
-              <ul>
-                <li><code>aria-expanded=&quot;true&quot;</code> when the date picker dialog box is open.</li>
-              </ul>
+              <code>aria-expanded=&quot;true&quot;</code> when the date picker dialog box is open.
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <th scope="row"><code>aria-controls=&quot;IDREF&quot;</code></th>
+            <td><code>input[type=text]</code></td>
+            <td>
+              Provides a reference from the textbox and date picker dialog box.
             </td>
           </tr>
         </tbody>
