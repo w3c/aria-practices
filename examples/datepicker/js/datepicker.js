@@ -119,7 +119,6 @@ DatePicker.prototype.handleBodyClick = function () {
 DatePicker.prototype.open = function (node) {
   this.dialogNode.style.display = 'block';
   node.setAttribute('aria-expanded', 'true');
-  this.buttonNode.setAttribute('aria-expanded', 'true');
   if (this.lastFocused) {
     this.lastFocused.focus();
     this.lastFocused.tabIndex = 0;
@@ -134,17 +133,16 @@ DatePicker.prototype.open = function (node) {
 
 DatePicker.prototype.close = function (node) {
   this.dialogNode.style.display = 'none';
-  node.removeAttribute('aria-expanded');
-  this.buttonNode.removeAttribute('aria-expanded');
+  node.setAttribute('aria-expanded','false');
   this.buttonNode.focus();
 };
 
 DatePicker.prototype.handleButtonClick = function () {
-  if (this.inputNode.hasAttribute('aria-expanded')) {
-    this.close(this.inputNode);
+  if (this.inputNode.parentElement.getAttribute('aria-expanded') === "true") {
+    this.close(this.inputNode.parentElement);
   }
   else {
-    this.open(this.inputNode);
+    this.open(this.inputNode.parentElement);
   }
 };
 DatePicker.prototype.handleDialogButton = function (event) {
@@ -185,10 +183,10 @@ DatePicker.prototype.handleDialogButton = function (event) {
           }
         }
         else if (tgt.value === 'cancel') {
-          this.close(this.inputNode);
+          this.close(this.inputNode.parentElement);
         }
       case this.keyCode.ESC:
-        this.close(this.inputNode);
+        this.close(this.inputNode.parentElement);
         flag = true;
         break;
     }
@@ -213,7 +211,7 @@ DatePicker.prototype.handleNextYearButton = function (event) {
     }
     switch (event.keyCode) {
       case this.keyCode.ESC:
-        this.close(this.inputNode);
+        this.close(this.inputNode.parentElement);
         flag = true;
         break;
       case this.keyCode.TAB:
@@ -252,7 +250,7 @@ DatePicker.prototype.handlePrevYearButton = function (event) {
     }
     switch (event.keyCode) {
       case this.keyCode.ESC:
-        this.close(this.inputNode);
+        this.close(this.inputNode.parentElement);
         flag = true;
         break;
       case this.keyCode.TAB:
@@ -292,7 +290,7 @@ DatePicker.prototype.handleNextMonthButton = function (event) {
     }
     switch (event.keyCode) {
       case this.keyCode.ESC:
-        this.close(this.inputNode);
+        this.close(this.inputNode.parentElement);
         flag = true;
         break;
       case this.keyCode.RETURN:
@@ -322,7 +320,7 @@ DatePicker.prototype.handlePrevMonthButton = function (event) {
     }
     switch (event.keyCode) {
       case this.keyCode.ESC:
-        this.close(this.inputNode);
+        this.close(this.inputNode.parentElement);
         flag = true;
         break;
       case this.keyCode.RETURN:
@@ -468,7 +466,7 @@ DatePicker.prototype.setSelectDate = function (dateCell) {
   }
   document.getElementById('id-date-1').value = numberOfMonth + '/' + numberOfDate + '/' + this.year;
   this.buttonNode.setAttribute('aria-label', this.month + ' ' + numberOfDate + ' ' + this.year);
-  this.close(this.inputNode);
+  this.close(this.inputNode.parentElement);
 };
 
 
