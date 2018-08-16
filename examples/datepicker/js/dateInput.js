@@ -22,7 +22,7 @@ var DateInput = function (domNode,buttonNode, datepicker) {
 DateInput.prototype.init = function () {
   this.domNode.addEventListener('keydown', this.handleKeyDown.bind(this));
   this.buttonNode.addEventListener('click', this.handleButtonClick.bind(this));
-
+  this.buttonNode.addEventListener('keydown', this.handleButtonKeyDown.bind(this));
 };
 
 
@@ -48,10 +48,31 @@ DateInput.prototype.handleKeyDown = function (event) {
 };
 
 DateInput.prototype.handleButtonClick = function () {
-  if (this.domNode.hasAttribute('aria-expanded')) {
+  if (this.domNode.getAttribute('aria-expanded') === 'true') {
     this.datepicker.close(this.domNode.parentElement);
   }
   else {
     this.datepicker.open(this.domNode.parentElement);
   }
+};
+
+DateInput.prototype.handleButtonKeyDown = function (event) {
+  var tgt = event.currentTarget,
+    char = event.key,
+    flag = false;
+  function isPrintableCharacter (str) {
+    return str.length === 1 && str.match(/\S/);
+  }
+  switch (event.keyCode) {
+    case this.keyCode.RETURN:
+    case this.keyCode.SPACE:
+      this.handleButtonClick();
+      flag = true;
+      break;
+  }
+  if (flag) {
+    event.stopPropagation();
+    event.preventDefault();
+  }
+
 };

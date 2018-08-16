@@ -137,14 +137,6 @@ DatePicker.prototype.close = function (node) {
   this.buttonNode.focus();
 };
 
-DatePicker.prototype.handleButtonClick = function () {
-  if (this.inputNode.parentElement.getAttribute('aria-expanded') === "true") {
-    this.close(this.inputNode.parentElement);
-  }
-  else {
-    this.open(this.inputNode.parentElement);
-  }
-};
 DatePicker.prototype.handleDialogButton = function (event) {
   var tgt = event.currentTarget;
   var flag = false;
