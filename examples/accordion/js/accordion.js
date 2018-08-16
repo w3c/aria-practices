@@ -99,62 +99,10 @@ Array.prototype.slice.call(document.querySelectorAll('.Accordion')).forEach(func
             break;
         }
         event.preventDefault();
- 
+
       }
-        else if (key.match(/13|32/)){
-          var target = event.target;
 
-          if (target.classList.contains('Accordion-trigger')) {
-            // Check if the current toggle is expanded.
-            var isExpanded = target.getAttribute('aria-expanded') == 'true';
-            var active = accordion.querySelector('[aria-expanded="true"]');
-      
-            // without allowMultiple, close the open accordion
-            if (!allowMultiple && active && active !== target) {
-              // Set the expanded state on the triggering element
-              active.setAttribute('aria-expanded', 'false');
-              // Hide the accordion sections, using aria-controls to specify the desired section
-              document.getElementById(active.getAttribute('aria-controls')).setAttribute('hidden', '');
-      
-              // When toggling is not allowed, clean up disabled state
-              if (!allowToggle) {
-                active.removeAttribute('aria-disabled');
-              }
-            }
-      
-            if (!isExpanded) {
-              // Set the expanded state on the triggering element
-              target.setAttribute('aria-expanded', 'true');
-              // Hide the accordion sections, using aria-controls to specify the desired section
-              document.getElementById(target.getAttribute('aria-controls')).removeAttribute('hidden');
-      
-              // If toggling is not allowed, set disabled state on trigger
-              if (!allowToggle) {
-                target.setAttribute('aria-disabled', 'true');
-              }
-            }
-            else if (allowToggle && isExpanded) {
-              // Set the expanded state on the triggering element
-              target.setAttribute('aria-expanded', 'false');
-              // Hide the accordion sections, using aria-controls to specify the desired section
-              document.getElementById(target.getAttribute('aria-controls')).setAttribute('hidden', '');
-            }
-      
-            event.preventDefault();
-          }
     }
-    else if (ctrlModifier) {
-      // Control + Page Up/ Page Down keyboard operations
-      // Catches events that happen inside of panels
-      panels.forEach(function (panel, index) {
-        if (panel.contains(target)) {
-          triggers[index].focus();
-
-          event.preventDefault();
-        }
-      });
-    }
-  }
   });
 
   // Minor setup: will set disabled state, via aria-disabled, to an
