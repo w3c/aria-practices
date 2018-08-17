@@ -104,7 +104,7 @@ ariaTest('Test "ENTER" key behavior',
         return t.context.session.getCurrentUrl().then(url => {
           return url != t.context.url;
         });
-      }, 1000).catch(() => {});
+      }, 500).catch(() => {});
 
       t.not(
         await t.context.session.getCurrentUrl(),

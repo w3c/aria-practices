@@ -29,7 +29,7 @@ const waitForFocusChange = async (t, textboxSelector, originalFocus) => {
         .findElement(By.css(textboxSelector))
         .getAttribute('aria-activedescendant');
       return newfocus != originalFocus;
-    }, 200);
+    }, 500);
   }
   catch (e) {
     throw new Error('Error waiting for "aria-activedescendant" value to change from "' +

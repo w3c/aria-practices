@@ -58,7 +58,7 @@ const exampleInitialized = async function (t) {
   await t.context.session.wait(async function () {
     const els = await t.context.session.findElements(By.css(initializedSelector));
     return els.length === 1;
-  }, 100);
+  }, 500);
 };
 
 const checkmarkVisible = async function (t, selector, index) {

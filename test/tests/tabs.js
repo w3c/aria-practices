@@ -17,6 +17,7 @@ const ex = {
   tabCount: 3,
   deletableId: 'complex',
   tabTabOrder: [
+    // button id, tab id
     ['#nils', '#nils-tab'],
     ['#agnes', '#agnes-tab'],
     ['#complex', '#complexcomplex']
