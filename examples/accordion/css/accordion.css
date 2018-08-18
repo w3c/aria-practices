@@ -60,11 +60,17 @@
 .Accordion-panel {
     margin: 0;
     padding: 1em 1.5em;
+    overflow: hidden;
+    transition: all 500ms;
 }
 
-/* For Edge bug https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/4806035/ */
 .Accordion-panel[hidden] {
-  display: none;
+  display: block;
+  height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  border-top: 0;
+  visibility: hidden;
 }
 
 fieldset {
@@ -79,4 +85,11 @@ input {
     display: block;
     font-size: inherit;
     padding: .3em .5em;
+}
+
+/* Applies styles when Reduced Motion is enabled */
+@media screen and (prefers-reduced-motion: reduce) {
+  .Accordion-panel {
+    transition: none;
+  }
 }
