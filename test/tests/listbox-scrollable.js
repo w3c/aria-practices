@@ -90,7 +90,7 @@ ariaTest('DOWN ARROW moves focus', exampleFile, 'key-down-arrow', async (t) => {
     await listbox.sendKeys(Key.ARROW_DOWN);
   }
   await assertAriaSelectedAndActivedescendant(t, ex.listboxSelector, ex.optionSelector,
-                                              ex.numOptions-1);
+    ex.numOptions - 1);
 });
 
 ariaTest('END moves focus', exampleFile, 'key-end', async (t) => {
@@ -101,12 +101,12 @@ ariaTest('END moves focus', exampleFile, 'key-end', async (t) => {
   // Sending key end should put focus on the last item
   await listbox.sendKeys(Key.END);
   await assertAriaSelectedAndActivedescendant(t, ex.listboxSelector, ex.optionSelector,
-                                              ex.numOptions-1);
+    ex.numOptions - 1);
 
   // Sending key end twice should put focus on the last item
   await listbox.sendKeys(Key.END);
   await assertAriaSelectedAndActivedescendant(t, ex.listboxSelector, ex.optionSelector,
-                                              ex.numOptions-1);
+    ex.numOptions - 1);
 });
 
 ariaTest('UP ARROW moves focus', exampleFile, 'key-up-arrow', async (t) => {
@@ -120,7 +120,7 @@ ariaTest('UP ARROW moves focus', exampleFile, 'key-up-arrow', async (t) => {
   // Sending the key up arrow will put focus on the item at index numOptions-2
   await listbox.sendKeys(Key.ARROW_UP);
   await assertAriaSelectedAndActivedescendant(t, ex.listboxSelector, ex.optionSelector,
-                                              ex.numOptions-2);
+    ex.numOptions - 2);
 
   // The selection does not wrap to the bottom of list if key up arrow is sent more times
   // then their are options
@@ -131,7 +131,7 @@ ariaTest('UP ARROW moves focus', exampleFile, 'key-up-arrow', async (t) => {
 });
 
 ariaTest('HOME moves focus', exampleFile, 'key-home', async (t) => {
-  t.plan(2)
+  t.plan(2);
 
   const listbox = await t.context.session.findElement(By.css(ex.listboxSelector));
   await listbox.sendKeys(Key.ARROW_DOWN, Key.ARROW_DOWN);
