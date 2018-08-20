@@ -11,11 +11,12 @@ li{
 	border-radius:5px;
 	padding:.25em;
 	height: 3.25em;
-	width:82.5%;
+	width:83%;
+	background-color:#ECECEA;
+	border:3px solid transparent;
 }
 .focused {
-	border:3px solid #8FCFEC;
-	background-color:#ECECEA;
+	border:3px solid #005A9C;
 }
 .group {
 	padding:0.25em;
@@ -41,8 +42,8 @@ margin-left: 0.75em;
 	margin-right:0.25em;
 }
 .toolbar-item:focus{
-	border: 1px solid black;
-	background:#0097D6;
+	border: 2px solid rgb(172, 172, 172);
+	background:rgb(0, 173, 247);
 	color:white;
 }
 .menu-wrapper {
@@ -72,13 +73,12 @@ margin-left: 0.75em;
 	padding: .5em;
 	border: 1px solid black;
 	height: 400px;
-	/* width:41.145em; */
-	width:82.5%;
+	width:83%;
 	font-size: medium;
 	font-family: sans-serif;
 }
 .characteristics div[aria-pressed="true"], .align div[aria-pressed="true"] {
-	background:#8FCFEC;
+	background:rgba(154, 220, 250, 0.671);
 	font-weight: bold;
 }
 

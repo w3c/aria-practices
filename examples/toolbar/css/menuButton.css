@@ -26,7 +26,7 @@ ul[role="menu"] li, ul[role='toolbar'] li{
   width: 9.5em;
   border: thin solid black;
   border-radius:5px;
-  background-color: #EEEEEE;
+  background-color: white;
 }
 [role="menuitem"] {
   padding: 0.25em;
