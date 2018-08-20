@@ -14,19 +14,19 @@ const assert = require('assert');
 module.exports = async function assertAriaLabelledby (t, exampleId, elementSelector) {
   const elements = await t.context.session.findElements(By.css(elementSelector));
 
-  for (let element of elements) {
+  for (let index = 0; index < elements.length; index++) {
     let ariaLabelledbyExists = await t.context.session.executeScript(async function () {
-      const selector = arguments[0];
-      let el = document.querySelector(selector);
-      return el.hasAttribute('aria-labelledby');
-    }, elementSelector);
+      const [selector, index] = arguments;
+      let els = document.querySelectorAll(selector);
+      return els[index].hasAttribute('aria-labelledby');
+    }, elementSelector, index);
 
     assert(
       ariaLabelledbyExists,
       '"aria-labelledby" attribute should exist on element(s): ' + elementSelector
     );
 
-    let labelId = await element.getAttribute('aria-labelledby');
+    let labelId = await elements[index].getAttribute('aria-labelledby');
 
     assert.ok(
       labelId,

@@ -15,7 +15,7 @@ const ex = {
   listboxSelector: '#ex1 [role="listbox"]',
   optionsSelector: '#ex1 [role="option"]',
   numAOptions: 5,
-  numCharFirstAOption: 6,
+  numCharFirstAOption: 6
 };
 
 const reload = async (session) => {
@@ -26,14 +26,14 @@ const waitForFocusChange = async (t, textboxSelector, originalFocus) => {
   try {
     await t.context.session.wait(async function () {
       let newfocus = await t.context.session
-          .findElement(By.css(textboxSelector))
-          .getAttribute('aria-activedescendant');
+        .findElement(By.css(textboxSelector))
+        .getAttribute('aria-activedescendant');
       return newfocus != originalFocus;
-    }, 200);
+    }, 500);
   }
   catch (e) {
-    throw new Error('Error waiting for "aria-activedescendant" value to change from "'
-                    + originalFocus + '". ' + e.message);
+    throw new Error('Error waiting for "aria-activedescendant" value to change from "' +
+                    originalFocus + '". ' + e.message);
   }
 };
 
@@ -42,7 +42,7 @@ const confirmCursorIndex = async (t, selector, cursorIndex) => {
     const [selector, cursorIndex] = arguments;
     let item = document.querySelector(selector);
     return item.selectionStart === cursorIndex;
-    //return item.selectionStart;
+    // return item.selectionStart;
   }, selector, cursorIndex);
 };
 
@@ -53,12 +53,12 @@ ariaTest('Test for role="combobox"', exampleFile, 'combobox-role', async (t) => 
 });
 
 ariaTest('"aria-autocomplete" on comboxbox element', exampleFile, 'combobox-aria-autocomplete', async (t) => {
-  t.plan(1)
+  t.plan(1);
   await assertAttributeValues(t, 'ex1', ex.textboxSelector, 'aria-autocomplete', 'both');
 });
 
 ariaTest('"aria-haspopup" on combobox element', exampleFile, 'combobox-aria-haspopup', async (t) => {
-  t.plan(1)
+  t.plan(1);
   await assertAttributeValues(t, 'ex1', ex.textboxSelector, 'aria-haspopup', 'true');
 });
 
@@ -66,8 +66,8 @@ ariaTest('"aria-owns" attribute on combobox element', exampleFile, 'combobox-ari
   t.plan(2);
 
   const popupId = await t.context.session
-        .findElement(By.css(ex.textboxSelector))
-        .getAttribute('aria-owns');
+    .findElement(By.css(ex.textboxSelector))
+    .getAttribute('aria-owns');
 
   t.truthy(
     popupId,
@@ -75,8 +75,8 @@ ariaTest('"aria-owns" attribute on combobox element', exampleFile, 'combobox-ari
   );
 
   const popupElements = await t.context.session
-        .findElement(By.id('ex1'))
-        .findElements(By.id(popupId));
+    .findElement(By.id('ex1'))
+    .findElements(By.id(popupId));
 
   t.is(
     popupElements.length,
@@ -99,12 +99,12 @@ ariaTest('"aria-expanded" on combobox element', exampleFile, 'combobox-aria-expa
   );
 
   const popupId = await t.context.session
-        .findElement(By.css(ex.textboxSelector))
-        .getAttribute('aria-owns');
+    .findElement(By.css(ex.textboxSelector))
+    .getAttribute('aria-owns');
 
   const popupElement = await t.context.session
-        .findElement(By.id('ex1'))
-        .findElement(By.id(popupId));
+    .findElement(By.id('ex1'))
+    .findElement(By.id(popupId));
 
   t.false(
     await popupElement.isDisplayed(),
@@ -133,7 +133,7 @@ ariaTest('"aria-expanded" on combobox element', exampleFile, 'combobox-aria-expa
 });
 
 ariaTest('"aria-activedescendant" on combobox element', exampleFile, 'combobox-aria-activedescendant', async (t) => {
-  t.plan(1)
+  t.plan(1);
   await assertAttributeValues(t, ex.textboxSelector, 'aria-activedescendant', null);
 });
 
@@ -208,7 +208,7 @@ ariaTest('Test down key press with focus on list',
         .sendKeys(Key.ARROW_DOWN);
 
       // Account for race condition
-      await waitForFocusChange(t, ex.textboxSelector, oldfocus)
+      await waitForFocusChange(t, ex.textboxSelector, oldfocus);
 
       await assertAriaSelectedAndActivedescendant(t, ex.textboxSelector, ex.optionsSelector, i % ex.numAOptions);
     }
@@ -250,7 +250,7 @@ ariaTest('Test up key press with focus on listbox',
       .sendKeys('a', Key.ARROW_UP);
 
     // Test that ARROW_UP moves active descendant focus up one item in the listbox
-    for (let index = ex.numAOptions-1; index > 0 ; index--) {
+    for (let index = ex.numAOptions - 1; index > 0 ; index--) {
       let oldfocus = await t.context.session
         .findElement(By.css(ex.textboxSelector))
         .getAttribute('aria-activedescendant');
@@ -260,7 +260,7 @@ ariaTest('Test up key press with focus on listbox',
         .findElement(By.css(ex.textboxSelector))
         .sendKeys(Key.ARROW_UP);
 
-      await waitForFocusChange(t, ex.textboxSelector, oldfocus)
+      await waitForFocusChange(t, ex.textboxSelector, oldfocus);
 
       await assertAriaSelectedAndActivedescendant(t, ex.textboxSelector, ex.optionsSelector, index);
     }
@@ -363,8 +363,8 @@ ariaTest('left arrow from focus on list puts focus on listbox and moves cursor r
     await textbox.sendKeys(Key.ARROW_LEFT);
 
     t.true(
-      await confirmCursorIndex(t, ex.textboxSelector, ex.numCharFirstAOption-1),
-      'Cursor should be at index ' + (ex.numCharFirstAOption-1) + ' after one ARROW_LEFT key'
+      await confirmCursorIndex(t, ex.textboxSelector, ex.numCharFirstAOption - 1),
+      'Cursor should be at index ' + (ex.numCharFirstAOption - 1) + ' after one ARROW_LEFT key'
     );
 
     t.is(
@@ -372,7 +372,7 @@ ariaTest('left arrow from focus on list puts focus on listbox and moves cursor r
       '',
       'Focus should be on the textbox after on ARROW_LEFT key',
     );
-});
+  });
 
 
 ariaTest('Right arrow from focus on list puts focus on listbox',
@@ -397,7 +397,7 @@ ariaTest('Right arrow from focus on list puts focus on listbox',
       '',
       'Focus should be on the textbox after on ARROW_RIGHT key',
     );
-});
+  });
 
 ariaTest('Home arrow from focus on list puts focus on listbox and moves cursor',
   exampleFile, 'listbox-key-home', async (t) => {
@@ -421,7 +421,7 @@ ariaTest('Home arrow from focus on list puts focus on listbox and moves cursor',
       '',
       'Focus should be on the textbox after one ARROW_HOME key',
     );
-});
+  });
 
 ariaTest('End arrow from focus on list puts focus on listbox',
   exampleFile, 'listbox-key-end', async (t) => {
@@ -445,5 +445,5 @@ ariaTest('End arrow from focus on list puts focus on listbox',
       '',
       'Focus should be on the textbox after on ARROW_END key',
     );
-});
+  });
 

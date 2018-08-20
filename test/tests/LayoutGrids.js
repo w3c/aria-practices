@@ -108,7 +108,7 @@ const exampleInitialized = async function (t, exId) {
   await t.context.session.wait(async function () {
     const els = await t.context.session.findElements(By.css(initializedSelector));
     return els.length === 1;
-  }, 100);
+  }, 500);
 };
 
 // Attributes

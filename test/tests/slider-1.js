@@ -15,16 +15,16 @@ const ex = {
   colorBox: '#idColorBox'
 };
 
-const testDisplayMatchesValue = async function(t, rgbString) {
+const testDisplayMatchesValue = async function (t, rgbString) {
   const rgbValue = await t.context.session
-        .findElement(By.css(ex.rgbTextInput))
-        .getAttribute('value');
+    .findElement(By.css(ex.rgbTextInput))
+    .getAttribute('value');
   const hexValue = await t.context.session
-        .findElement(By.css(ex.hexTextInput))
-        .getAttribute('value');
+    .findElement(By.css(ex.hexTextInput))
+    .getAttribute('value');
   const boxColor = await t.context.session
-        .findElement(By.css(ex.colorBox))
-        .getCssValue('background-color');
+    .findElement(By.css(ex.colorBox))
+    .getCssValue('background-color');
 
   if (rgbValue !== rgbString) {
     return ex.rgbTextInput + ' was not update, value is ' + rgbValue +
@@ -37,9 +37,9 @@ const testDisplayMatchesValue = async function(t, rgbString) {
   }
 
   const rbgFromHexString = hexValue.match(/^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i)
-        .slice(1,4)
-        .map(x => parseInt(x, 16))
-        .join(', ');
+    .slice(1,4)
+    .map(x => parseInt(x, 16))
+    .join(', ');
 
   if (rbgFromHexString !== rgbString) {
     return ex.hexTextInput + ' was not update, value is ' + rbgFromHexString +
@@ -49,13 +49,13 @@ const testDisplayMatchesValue = async function(t, rgbString) {
   return true;
 };
 
-const sendAllSlidersToEnd = async function(t) {
+const sendAllSlidersToEnd = async function (t) {
   const sliders = await t.context.session.findElements(By.css(ex.sliderSelector));
 
   for (let slider of sliders) {
     await slider.sendKeys(Key.END);
   }
-}
+};
 
 // Attributes
 
