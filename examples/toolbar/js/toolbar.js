@@ -63,8 +63,7 @@ aria.Toolbar.prototype.init = function () {
  *  The item to deselect
  */
 aria.Toolbar.prototype.deselectItem = function (element) {
-  // aria.Utils.removeClass(element, 'selected');
-  if(element.classList.contains('selected')){
+  if (element.classList.contains('selected')) {
     element.classList.remove('selected');
   }
   element.setAttribute('tabindex', '1');
@@ -210,7 +209,6 @@ aria.Toolbar.prototype.selectItem = function (element) {
  *  The item to focus on
  */
 aria.Toolbar.prototype.setFocusItem = function (element) {
-
   for (var i = 0;i < this.toolbarItems.length;i++) {
     this.toolbarItems[i].domNode.setAttribute('tabindex', '1');
   }

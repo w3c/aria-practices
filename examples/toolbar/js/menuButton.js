@@ -76,7 +76,6 @@ aria.widget = aria.widget || {};
  */
 
 aria.widget.Menu = function (node, menuButton) {
-
   this.keyCode = Object.freeze({
     'TAB': 9,
     'RETURN': 13,
@@ -99,7 +98,7 @@ aria.widget.Menu = function (node, menuButton) {
 
   this.menuNode = node;
   node.tabIndex = -1;
-
+  // this.toolbar = document.getElementsByClassName('toolbar')[0];
   this.menuButton = menuButton;
 
   this.firstMenuItem = false;
@@ -181,6 +180,8 @@ aria.widget.Menu.prototype.nextMenuItem = function (currentMenuItem) {
   if (!mi && this.firstMenuItem) {
     this.firstMenuItem.focus();
   }
+  document.getElementsByClassName('toolbar')[0].classList.add('focused');
+
 };
 
 /**
@@ -208,6 +209,8 @@ aria.widget.Menu.prototype.previousMenuItem = function (currentMenuItem) {
   if (!mi && this.lastMenuItem) {
     this.lastMenuItem.focus();
   }
+  document.getElementsByClassName('toolbar')[0].classList.add('focused');
+
 };
 
 /**
@@ -486,7 +489,7 @@ aria.widget.MenuButton.prototype.moveFocusToFirstMenuItem = function () {
     this.openMenu();
     this.menu.firstMenuItem.focus();
   }
-
+  document.getElementsByClassName('toolbar')[0].classList.add('focused');
 };
 
 /**
@@ -503,6 +506,7 @@ aria.widget.MenuButton.prototype.moveFocusToLastMenuItem = function () {
     this.openMenu();
     this.menu.lastMenuItem.focus();
   }
+  document.getElementsByClassName('toolbar')[0].classList.add('focused');
 
 };
 /**
@@ -537,7 +541,8 @@ aria.widget.MenuButton.prototype.eventKeyDown = function (event, menuButton) {
       if (this.menuShowing) {
         menuButton.moveFocusToFirstMenuItem();
         flag = true;
-      } else {
+      }
+      else {
         menuButton.openMenu();
         flag = true;
       }

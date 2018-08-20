@@ -22,8 +22,15 @@ var ToolbarItem = function (domNode, toolObj) {
 ToolbarItem.prototype.init = function () {
   this.domNode.addEventListener('keydown', this.handleKeyDown.bind(this));
   this.domNode.addEventListener('click', this.handleClick.bind(this));
+  this.domNode.addEventListener('focus', this.handleFocus.bind(this));
+  this.domNode.addEventListener('blur', this.handleBlur.bind(this));
 };
-
+ToolbarItem.prototype.handleBlur = function (event) {
+  this.toolbar.domNode.classList.remove('focused');
+};
+ToolbarItem.prototype.handleFocus = function (event) {
+  this.toolbar.domNode.classList.add('focused');
+};
 ToolbarItem.prototype.handleKeyDown = function (event) {
   var tgt = event.currenttarget,
     char = event.key,
