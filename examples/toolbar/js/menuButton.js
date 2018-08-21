@@ -544,6 +544,7 @@ aria.widget.MenuButton.prototype.eventKeyDown = function (event, menuButton) {
       }
       else {
         menuButton.openMenu();
+        menuButton.moveFocusToFirstMenuItem();
         flag = true;
       }
       break;

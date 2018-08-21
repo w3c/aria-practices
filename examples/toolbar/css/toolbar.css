@@ -1,3 +1,4 @@
+
 .annotate {
 	color: #366ED4;
 	font-style: italic;
@@ -7,16 +8,16 @@ li{
 	margin: 0;
 }
 .toolbar{
-	border:3px transparent;
+	border:3px #ECECEA;
 	border-radius:5px;
 	padding:.25em;
 	height: 3.25em;
-	width:83%;
+	width:85%;
 	background-color:#ECECEA;
-	border:3px solid transparent;
+	border:2px solid transparent;
 }
 .focused {
-	border:3px solid #005A9C;
+	border-color:#005A9C;
 }
 .group {
 	padding:0.25em;
@@ -29,7 +30,7 @@ margin-left: 0.75em;
 }
 
 .toolbar-item {
-	border: 1px solid transparent;
+	border: 2px solid transparent;
 	outline:none;
 	display: inline-block;
 	padding: 0.5em 1em;
@@ -42,8 +43,8 @@ margin-left: 0.75em;
 	margin-right:0.25em;
 }
 .toolbar-item:focus{
-	border: 2px solid rgb(172, 172, 172);
-	background:rgb(0, 173, 247);
+	border-color:#8CCBF2;
+	background:rgb(200, 227, 255);
 	color:white;
 }
 .menu-wrapper {
@@ -70,15 +71,18 @@ margin-left: 0.75em;
 }
 
 #textarea1 {
-	padding: .5em;
-	border: 1px solid black;
+	width:85%;
+	padding: .25em;
+	border: 2px solid black;
 	height: 400px;
-	width:83%;
 	font-size: medium;
 	font-family: sans-serif;
+	border-radius: 5px;
+
 }
 .characteristics div[aria-pressed="true"], .align div[aria-pressed="true"] {
-	background:rgba(154, 220, 250, 0.671);
+	background:rgb(105, 105, 105);
+	border-color:rgb(153, 152, 152);
 	font-weight: bold;
 }
 
