@@ -45,7 +45,6 @@ margin-left: 0.75em;
 .toolbar-item:focus{
 	border-color:#8CCBF2;
 	background:rgb(200, 227, 255);
-	color:white;
 }
 .menu-wrapper {
 	display: inline-block;
@@ -81,7 +80,6 @@ margin-left: 0.75em;
 
 }
 .characteristics div[aria-pressed="true"], .align div[aria-pressed="true"] {
-	background:rgb(105, 105, 105);
 	border-color:rgb(153, 152, 152);
 	font-weight: bold;
 }
