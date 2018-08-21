@@ -67,24 +67,24 @@ const waitAndCheckTabindex = async function (t, selector) {
 
 // Attributes
 
-ariaTest('', exampleFile, 'toolbar-role', async (t) => {
+ariaTest('role="toolbar" element', exampleFile, 'toolbar-role', async (t) => {
   t.plan(1);
   await assertAriaRoles(t, 'ex1', 'toolbar', '1', 'div');
 });
 
 // Test fails from bug in example: fix in issue 847 on w3c/aria-practices
 
-// ariaTest('', exampleFile, 'toolbar-aria-label', async (t) => {
+// ariaTest('"aria-label" on toolbar element', exampleFile, 'toolbar-aria-label', async (t) => {
 //   t.plan(1);
 //   await assertAttributeValues(t, ex.toolbarSelector, ex.toolbarLabel);
 // });
 
-ariaTest('', exampleFile, 'button-role', async (t) => {
+ariaTest('role="button elements', exampleFile, 'button-role', async (t) => {
   t.plan(1);
   await assertAriaRoles(t, 'ex1', 'button', '5', 'div');
 });
 
-ariaTest('', exampleFile, 'button-tabindex', async (t) => {
+ariaTest('roving tabindex on button elements', exampleFile, 'button-tabindex', async (t) => {
   t.plan(3);
 
   // Test all the role="button" elements with roving tab index
@@ -99,14 +99,14 @@ ariaTest('', exampleFile, 'button-tabindex', async (t) => {
 
 // Test pending fix bug in example: fix in issue 847 on w3c/aria-practices
 
-// ariaTest('', exampleFile, 'button-aria-disabled', async (t) => {
+// ariaTest('"aria-disabled" on button elements', exampleFile, 'button-aria-disabled', async (t) => {
 //   t.pass();
 // });
 
 
 // Keys
 
-ariaTest('', exampleFile, 'key-tab', async (t) => {
+ariaTest('key TAB moves focus', exampleFile, 'key-tab', async (t) => {
   t.plan(6);
 
   let numTools = ex.allToolSelectors.length;
@@ -130,7 +130,7 @@ ariaTest('', exampleFile, 'key-tab', async (t) => {
 
 // The following tests fail from bug in example: fix in issue 847 on w3c/aria-practices
 
-// ariaTest('', exampleFile, 'key-left-arrow', async (t) => {
+// ariaTest('key LEFT ARROW moves focus', exampleFile, 'key-left-arrow', async (t) => {
 //   t.plan(12);
 
 //   // Put focus on the first item in the list
@@ -182,7 +182,7 @@ ariaTest('', exampleFile, 'key-tab', async (t) => {
 
 // });
 
-// ariaTest('', exampleFile, 'key-right-arrow', async (t) => {
+// ariaTest('key RIGHT ARROW moves focus', exampleFile, 'key-right-arrow', async (t) => {
 //   t.plan(12);
 
 //   // Put focus on the first item in the list
@@ -233,7 +233,7 @@ ariaTest('', exampleFile, 'key-tab', async (t) => {
 //   );
 // });
 
-// ariaTest('', exampleFile, 'key-home', async (t) => {
+// ariaTest('key HOME moves focus', exampleFile, 'key-home', async (t) => {
 //   t.plan(6);
 
 //   let numTools = ex.allToolSelectors.length;
@@ -256,7 +256,7 @@ ariaTest('', exampleFile, 'key-tab', async (t) => {
 //   }
 // });
 
-// ariaTest('', exampleFile, 'key-end', async (t) => {
+// ariaTest('key END moves focus', exampleFile, 'key-end', async (t) => {
 //   t.plan(6)
 
 //   let numTools = ex.allToolSelectors.length;
