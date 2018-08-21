@@ -551,6 +551,7 @@ aria.widget.MenuButton.prototype.eventKeyDown = function (event, menuButton) {
 
     case menuButton.keyCode.TAB:
       menuButton.closeMenu(true, false);
+      flag=true;
       break;
 
     default:

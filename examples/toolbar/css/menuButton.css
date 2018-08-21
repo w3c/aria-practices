@@ -35,5 +35,5 @@ ul[role="menu"] li, ul[role='toolbar'] li{
 
 [role="menuitem"]:focus,
 [role="menuitem"]:hover {
-	background:rgb(200, 227, 255);
+	background:rgb(235, 245, 255);
 }
