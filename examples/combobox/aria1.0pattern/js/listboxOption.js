@@ -6,8 +6,8 @@ var Option = function (domNode, listboxObj) {
 
   this.domNode = domNode;
   this.listbox = listboxObj;
-  this.textContent     = domNode.textContent;
-  this.textComparision = domNode.textContent.toLowerCase();
+  this.textContent    = domNode.textContent;
+  this.textComparison = domNode.textContent.toLowerCase();
 
 };
 

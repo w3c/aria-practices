@@ -11,6 +11,9 @@ var ComboboxList = function (domNode) {
   this.hasFocus = false;
   this.hasHover = false;
   this.filter   = '';
+  this.isNone = false;
+  this.isList = false;
+  this.isBoth = false;
 
   this.keyCode = Object.freeze({
     'BACKSPACE': 8,
@@ -33,10 +36,17 @@ ComboboxList.prototype.init = function () {
 
   this.domNode.setAttribute('aria-haspopup', 'true');
 
-  this.autocomplete = this.domNode.getAttribute('aria-autocomplete');
+  var autocomplete = this.domNode.getAttribute('aria-autocomplete');
 
-  if (this.autocomplete) {
-    this.autocomplete = this.autocomplete.toLowerCase();
+  if (typeof autocomplete === 'string') {
+    autocomplete = autocomplete.toLowerCase();
+    this.isNone  = autocomplete === 'none';
+    this.isList  = autocomplete === 'list';
+    this.isBoth  = autocomplete === 'both';
+  }
+  else {
+    // default value of autocomplete
+    this.isNone = true;
   }
 
   this.domNode.addEventListener('keydown', this.handleKeydown.bind(this));
@@ -64,16 +74,12 @@ ComboboxList.prototype.init = function () {
 
 };
 
-ComboboxList.prototype.updateValue = function () {
-  if (this.autocomplete === 'both') {
-
-    if (this.filter.length && this.option && this.listbox.isOpen()) {
-      this.domNode.value = this.option.textContent;
-      this.domNode.setSelectionRange(this.filter.length,this.filter.length);
-    }
-    else {
-      this.domNode.value = this.filter;
-    }
+ComboboxList.prototype.setActiveDescendant = function (option) {
+  if (option && this.listbox.hasFocus) {
+    this.domNode.setAttribute('aria-activedescendant', option.domNode.id);
+  }
+  else {
+    this.domNode.setAttribute('aria-activedescendant', '');
   }
 };
 
@@ -81,17 +87,56 @@ ComboboxList.prototype.setValue = function (value) {
   this.filter = value;
   this.domNode.value = this.filter;
   this.domNode.setSelectionRange(this.filter.length,this.filter.length);
-  if (this.autocomplete !== 'none') {
+  if (this.isList || this.isBoth) {
     this.listbox.filterOptions(this.filter, this.option);
   }
 };
 
-ComboboxList.prototype.setOption = function (option) {
+ComboboxList.prototype.setOption = function (option, flag) {
+  if (typeof flag !== 'boolean') {
+    flag = false;
+  }
+
   if (option) {
     this.option = option;
-    this.listbox.setFocusStyle(this.option);
-    this.updateValue();
+    this.listbox.setCurrentOptionStyle(this.option);
+    this.setActiveDescendant(this.option);
+
+    if (this.isBoth) {
+      this.domNode.value = this.option.textContent;
+      if (flag) {
+        this.domNode.setSelectionRange(this.option.textContent.length,this.option.textContent.length);
+      }
+      else {
+        this.domNode.setSelectionRange(this.filter.length,this.option.textContent.length);
+      }
+    }
   }
+};
+
+ComboboxList.prototype.setVisualFocusTextbox = function () {
+  this.listbox.domNode.classList.remove('focus');
+  this.listbox.hasFocus = false;
+  this.domNode.classList.add('focus');
+  this.hasFocus = true;
+  this.setActiveDescendant(false);
+};
+
+ComboboxList.prototype.setVisualFocusListbox = function () {
+  this.domNode.classList.remove('focus');
+  this.hasFocus = false;
+  this.listbox.domNode.classList.add('focus');
+  this.listbox.hasFocus = true;
+  this.setActiveDescendant(this.option);
+};
+
+ComboboxList.prototype.removeVisualFocusAll = function () {
+  this.domNode.classList.remove('focus');
+  this.hasFocus = false;
+  this.listbox.domNode.classList.remove('focus');
+  this.listbox.hasFocus = true;
+  this.option = false;
+  this.setActiveDescendant(false);
 };
 
 /* Event Handlers */
@@ -107,70 +152,61 @@ ComboboxList.prototype.handleKeydown = function (event) {
   switch (event.keyCode) {
 
     case this.keyCode.RETURN:
-      if (this.option) {
+      if ((this.listbox.hasFocus || this.isBoth) && this.option) {
         this.setValue(this.option.textContent);
-        this.listbox.close(true);
       }
+      this.listbox.close(true);
       flag = true;
       break;
 
     case this.keyCode.DOWN:
 
       if (this.listbox.hasOptions()) {
-        if (this.listbox.isOpen()) {
-          this.setOption(this.listbox.getNextItem(this.option));
+        if (this.listbox.hasFocus || (this.isBoth && this.option)) {
+          this.setOption(this.listbox.getNextItem(this.option), true);
         }
         else {
           this.listbox.open();
           if (!altKey) {
-            this.setOption(this.listbox.getFirstItem());
+            this.setOption(this.listbox.getFirstItem(), true);
           }
         }
+        this.setVisualFocusListbox();
       }
       flag = true;
       break;
 
     case this.keyCode.UP:
       if (this.listbox.hasOptions()) {
-        if (this.listbox.isOpen()) {
-          this.setOption(this.listbox.getPreviousItem(this.option));
+        if (this.listbox.hasFocus || (this.isBoth && this.option)) {
+          this.setOption(this.listbox.getPreviousItem(this.option), true);
         }
         else {
           this.listbox.open();
           if (!altKey) {
-            this.setOption(this.listbox.getLastItem());
+            this.setOption(this.listbox.getLastItem(), true);
           }
-        }
-      }
-      flag = true;
-      break;
-
-    case this.keyCode.HOME:
-    case this.keyCode.PAGEUP:
-      if (this.listbox.hasOptions()) {
-        if (this.listbox.isOpen()) {
-          this.setOption(this.listbox.getFirstItem());
-        }
-      }
-      flag = true;
-      break;
-
-    case this.keyCode.END:
-    case this.keyCode.PAGEDOWN:
-      if (this.listbox.hasOptions()) {
-        if (this.listbox.isOpen()) {
-          this.setOption(this.listbox.getLastItem());
+          this.setVisualFocusListbox();
         }
       }
       flag = true;
       break;
 
     case this.keyCode.ESC:
-      if (this.listbox.isOpen()) {
-        this.listbox.close(true);
-      }
-      this.setValue(this.filter);
+      this.listbox.close(true);
+      this.setVisualFocusTextbox();
+      this.setValue('');
+      this.option = false;
       flag = true;
+      break;
+
+    case this.keyCode.TAB:
+      this.listbox.close(true);
+      if (this.listbox.hasFocus) {
+        if (this.option) {
+          this.setValue(this.option.textContent);
+        }
+      }
       break;
 
     default:
@@ -194,39 +230,95 @@ ComboboxList.prototype.handleKeyup = function (event) {
     return str.length === 1 && str.match(/\S/);
   }
 
-  this.filter = this.domNode.value.substring(0,this.domNode.selectionEnd);
+  if (isPrintableCharacter(char)) {
+    this.filter += char;
+  }
 
-  if (this.autocomplete !== 'none') {
-    option = this.listbox.filterOptions(this.filter, this.option);
+  // this is for the case when a selection in the textbox has been deleted
+  if (this.domNode.value.length < this.filter.length) {
+    this.filter = this.domNode.value;
+    this.option = false;
+  }
+
+  if (event.keyCode === this.keyCode.ESC) {
+    return;
   }
 
   switch (event.keyCode) {
 
     case this.keyCode.BACKSPACE:
-      if (this.autocomplete === 'both') {
-        this.setValue(this.filter);
-      }
+      this.setValue(this.domNode.value);
+      this.setVisualFocusTextbox();
+      this.listbox.setCurrentOptionStyle(false);
+      this.option = false;
       flag = true;
       break;
 
     case this.keyCode.LEFT:
     case this.keyCode.RIGHT:
+    case this.keyCode.HOME:
+    case this.keyCode.END:
+      if (this.isBoth) {
+        this.filter = this.domNode.value;
+      }
+      else {
+        this.option = false;
+        this.listbox.setCurrentOptionStyle(false);
+      }
+
+      this.setVisualFocusTextbox();
       flag = true;
       break;
 
     default:
-
       if (isPrintableCharacter(char)) {
-        if (option) {
-          this.setOption(option);
-        }
-        else {
-          this.setValue(this.filter);
-        }
+        this.setVisualFocusTextbox();
+        this.listbox.setCurrentOptionStyle(false);
+        flag = true;
       }
-      flag = true;
+
       break;
   }
+
+  if (event.keyCode !== this.keyCode.RETURN) {
+
+    if (this.isList || this.isBoth) {
+      option = this.listbox.filterOptions(this.filter, this.option);
+      if (option) {
+        if (this.listbox.isClosed()) {
+          if (this.domNode.value.length) {
+            this.listbox.open();
+          }
+        }
+
+        if (option.textComparison.indexOf(this.domNode.value.toLowerCase()) === 0) {
+          this.option = option;
+          if (this.isBoth || this.listbox.hasFocus) {
+            this.listbox.setCurrentOptionStyle(option);
+            if (this.isBoth && isPrintableCharacter(char)) {
+              this.setOption(option);
+            }
+          }
+        }
+        else {
+          this.option = false;
+          this.listbox.setCurrentOptionStyle(false);
+        }
+      }
+      else {
+        this.listbox.close();
+        this.option = false;
+        this.setActiveDescendant(false);
+      }
+    }
+    else {
+      if (this.domNode.value.length) {
+        this.listbox.open();
+      }
+    }
+
+  }
+
 
   if (flag) {
     event.stopPropagation();
@@ -245,11 +337,15 @@ ComboboxList.prototype.handleClick = function (event) {
 };
 
 ComboboxList.prototype.handleFocus = function (event) {
-  this.listbox.hasFocus = true;
+  this.setVisualFocusTextbox();
+  this.option = false;
+  this.listbox.setCurrentOptionStyle(null);
 };
 
 ComboboxList.prototype.handleBlur = function (event) {
   this.listbox.hasFocus = false;
+  this.listbox.setCurrentOptionStyle(null);
+  this.removeVisualFocusAll();
   setTimeout(this.listbox.close.bind(this.listbox, false), 300);
 
 };
@@ -261,6 +357,8 @@ ComboboxList.prototype.handleButtonClick = function (event) {
   else {
     this.listbox.open();
   }
+  this.domNode.focus();
+  this.setVisualFocusTextbox();
 };
 
 

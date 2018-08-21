@@ -20,6 +20,14 @@
 </head>
 
 <body>
+  <nav aria-label="Related Links" class="feedback">
+      <ul>
+        <li><a href="../../../#browser_and_AT_support">Browser and Assistive Technology Support</a></li>
+        <li><a href="https://github.com/w3c/aria-practices/issues/new">Report Issue</a></li>
+        <li><a href="https://github.com/w3c/aria-practices/projects/5">Related Issues</a></li>
+        <li><a href="../../../#menu">Design Pattern</a></li>
+      </ul>
+    </nav>
   <main>
   <h1>Navigation Menubar Example</h1>
   <p>
@@ -40,113 +48,115 @@
     <h2 id="ex_label">Example</h2>
     <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
     <div id="ex1">
-      <ul id="menubar1" role="menubar" aria-label="Mythical University Menu 1">
-        <li>
-          <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">About</a>
-          <ul role="menu" aria-label="About">
-            <li role="none">
-              <a role="menuitem" href="mb-about.html#overview">Overview</a>
-            </li>
-            <li role="none">
-              <a role="menuitem" href="mb-about.html#admin">Administration</a>
-            </li>
-            <li role="none">
-              <a id="menubar113" role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">Facts</a>
-              <ul role="menu" aria-label="Facts">
-                <li role="none">
-                  <a role="menuitem" href="mb-about.html#facts">History</a>
-                </li>
-                <li role="none">
-                  <a role="menuitem" href="mb-about.html#facts">Current Statistics</a>
-                </li>
-                <li role="none">
-                  <a role="menuitem" href="mb-about.html#facts">Awards</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">Campus
-                Tours</a>
-              <ul role="menu" aria-label="Campus Tours">
-                <li role="none">
-                  <a role="menuitem" href="mb-about.html#tours">For prospective students</a>
-                </li>
-                <li role="none">
-                  <a role="menuitem" href="mb-about.html#tours">For alumni</a>
-                </li>
-                <li role="none">
-                  <a role="menuitem" href="mb-about.html#tours">For visitors</a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">Admissions</a>
-          <ul role="menu" aria-label="Admissions">
-            <li role="none">
-              <a role="menuitem" href="mb-admissions.html#apply">Apply</a>
-            </li>
-            <li role="none">
-              <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">Tuition</a>
-              <ul role="menu" aria-label="Tuition Information">
-                <li role="none">
-                  <a role="menuitem" href="mb-admissions.html#tuition">Undergraduate</a>
-                </li>
-                <li role="none">
-                  <a role="menuitem" href="mb-admissions.html#tuition">Graduate</a>
-                </li>
-                <li role="none">
-                  <a role="menuitem" href="mb-admissions.html#tuition">Professional Schools</a>
-                </li>
-              </ul>
-            </li>
-            <li role="none">
-              <a role="menuitem" href="mb-admissions.html#signup">Sign Up</a>
-            </li>
-            <li role="separator"></li>
-            <li role="none">
-              <a role="menuitem" href="mb-admissions.html#visit">Visit</a>
-            </li>
-            <li role="none">
-              <a role="menuitem" href="mb-admissions.html#photo">Photo Tour</a>
-            </li>
-            <li role="none">
-              <a role="menuitem" href="mb-admissions.html#connect">Connect</a>
-            </li>
-          </ul>
-        </li>
-        <li>
-          <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">Academics</a>
-          <ul role="menu" aria-label="Academics">
-            <li role="none">
-              <a role="menuitem" href="mb-academics.html#colleges">Colleges &amp; Schools</a>
-            </li>
-            <li role="none">
-              <a role="menuitem" href="mb-academics.html#programs">Programs of Study</a>
-            </li>
-            <li role="none">
-              <a role="menuitem" href="mb-academics.html#honors">Honors Programs</a>
-            </li>
-            <li role="none">
-              <a role="menuitem" href="mb-academics.html#online">Online Courses</a>
-            </li>
-            <li role="separator"></li>
-            <li role="none">
-              <a role="menuitem" href="mb-academics.html#explorer">Course Explorer</a>
-            </li>
-            <li role="none">
-              <a role="menuitem" href="mb-academics.html#register">Register for Class</a>
-            </li>
-            <li role="none">
-              <a role="menuitem" href="mb-academics.html#academic">Academic Calendar</a>
-            </li>
-            <li role="none">
-              <a role="menuitem" href="mb-academics.html#tanscripts">Transscripts</a>
-            </li>
-          </ul>
-        </li>
-      </ul>
+      <nav aria-label="Mythical University">
+        <ul id="menubar1" role="menubar" aria-label="Mythical University">
+          <li>
+            <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">About</a>
+            <ul role="menu" aria-label="About">
+              <li role="none">
+                <a role="menuitem" href="mb-about.html#overview">Overview</a>
+              </li>
+              <li role="none">
+                <a role="menuitem" href="mb-about.html#admin">Administration</a>
+              </li>
+              <li role="none">
+                <a id="menubar113" role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">Facts</a>
+                <ul role="menu" aria-label="Facts">
+                  <li role="none">
+                    <a role="menuitem" href="mb-about.html#facts">History</a>
+                  </li>
+                  <li role="none">
+                    <a role="menuitem" href="mb-about.html#facts">Current Statistics</a>
+                  </li>
+                  <li role="none">
+                    <a role="menuitem" href="mb-about.html#facts">Awards</a>
+                  </li>
+                </ul>
+              </li>
+              <li role="none">
+                <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">Campus
+                  Tours</a>
+                <ul role="menu" aria-label="Campus Tours">
+                  <li role="none">
+                    <a role="menuitem" href="mb-about.html#tours">For prospective students</a>
+                  </li>
+                  <li role="none">
+                    <a role="menuitem" href="mb-about.html#tours">For alumni</a>
+                  </li>
+                  <li role="none">
+                    <a role="menuitem" href="mb-about.html#tours">For visitors</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">Admissions</a>
+            <ul role="menu" aria-label="Admissions">
+              <li role="none">
+                <a role="menuitem" href="mb-admissions.html#apply">Apply</a>
+              </li>
+              <li role="none">
+                <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">Tuition</a>
+                <ul role="menu" aria-label="Tuition Information">
+                  <li role="none">
+                    <a role="menuitem" href="mb-admissions.html#tuition">Undergraduate</a>
+                  </li>
+                  <li role="none">
+                    <a role="menuitem" href="mb-admissions.html#tuition">Graduate</a>
+                  </li>
+                  <li role="none">
+                    <a role="menuitem" href="mb-admissions.html#tuition">Professional Schools</a>
+                  </li>
+                </ul>
+              </li>
+              <li role="none">
+                <a role="menuitem" href="mb-admissions.html#signup">Sign Up</a>
+              </li>
+              <li role="separator"></li>
+              <li role="none">
+                <a role="menuitem" href="mb-admissions.html#visit">Visit</a>
+              </li>
+              <li role="none">
+                <a role="menuitem" href="mb-admissions.html#photo">Photo Tour</a>
+              </li>
+              <li role="none">
+                <a role="menuitem" href="mb-admissions.html#connect">Connect</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">Academics</a>
+            <ul role="menu" aria-label="Academics">
+              <li role="none">
+                <a role="menuitem" href="mb-academics.html#colleges">Colleges &amp; Schools</a>
+              </li>
+              <li role="none">
+                <a role="menuitem" href="mb-academics.html#programs">Programs of Study</a>
+              </li>
+              <li role="none">
+                <a role="menuitem" href="mb-academics.html#honors">Honors Programs</a>
+              </li>
+              <li role="none">
+                <a role="menuitem" href="mb-academics.html#online">Online Courses</a>
+              </li>
+              <li role="separator"></li>
+              <li role="none">
+                <a role="menuitem" href="mb-academics.html#explorer">Course Explorer</a>
+              </li>
+              <li role="none">
+                <a role="menuitem" href="mb-academics.html#register">Register for Class</a>
+              </li>
+              <li role="none">
+                <a role="menuitem" href="mb-academics.html#academic">Academic Calendar</a>
+              </li>
+              <li role="none">
+                <a role="menuitem" href="mb-academics.html#tanscripts">Transcripts</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
 
       <script type="text/javascript">
               var menubar = new Menubar(document.getElementById('menubar1'));
@@ -159,7 +169,10 @@
 
   <section>
     <h2>Accessibility Features</h2>
-    <p>The down arrow and right arrow icons are made compatible with high contrast mode and hidden from screen readers by using the CSS <code>content</code> property to render images.</p>
+    <ol>
+      <li>Since the menubar presents a site navigation system, it is wrapped in a navigation region implemented with a <code>nav</code> element that has an <code>aria-label</code> that matches the label on the menubar.</li>
+      <li>The down arrow and right arrow icons are made compatible with high contrast mode and hidden from screen readers by using the CSS <code>content</code> property to render images.</li>
+    </ol>
   </section>
 
   <section>
@@ -391,7 +404,7 @@
           <td>
             <ul>
               <li>
-                Defines an acessible name for the <code>menubar</code>.
+                Defines an accessible name for the <code>menubar</code>.
               </li>
               <li>Helps assistive technology users understand the purpose of the menubar and
                 distinguish it from any other menubars or similar elements on the page.</li>
@@ -460,7 +473,7 @@
           <td>
             <code>a</code>
           </td>
-          <td>Indicates the submenu is open. (<strong>See note below.</strong>)</td>
+          <td>Indicates the submenu is open.</td>
         </tr>
         <tr>
           <td></td>
@@ -470,7 +483,7 @@
           <td>
             <code>a</code>
           </td>
-          <td>Indicates the submenu is closed. (<strong>See note below.</strong>)</td>
+          <td>Indicates the submenu is closed.</td>
         </tr>
         <tr>
           <th>
@@ -522,7 +535,7 @@
           <td>
             <ul>
               <li>
-                Defines an acessible name for the <code>menu</code>.
+                Defines an accessible name for the <code>menu</code>.
               </li>
               <li>Helps assistive technology users understand the purpose of the menu and
                 distinguish it from any other menu or similar elements (e.g. menubar) on the page.</li>
@@ -572,7 +585,7 @@
           <td>
             <code>a</code>
           </td>
-          <td>Indicates the submenu is open. (<strong>See note below.</strong>)</td>
+          <td>Indicates the submenu is open.</td>
         </tr>
         <tr>
           <td></td>
@@ -582,7 +595,7 @@
           <td>
             <code>a</code>
           </td>
-          <td>Indicates the submenu is closed. (<strong>See note below.</strong>)</td>
+          <td>Indicates the submenu is closed.</td>
         </tr>
         <tr>
           <th>
@@ -601,15 +614,6 @@
         </tr>
       </tbody>
     </table>
-    <h3>Note</h3>
-    <p>
-      Currently, using aria-expanded on elements with role menuitem triggers HTML validation errors because the ARIA specification does not yet support doing so.
-      The ARIA working group plans to resolve this issue in the next version of the specification.
-      Until a version of ARIA that resolves
-      <a href="https://github.com/w3c/aria/issues/454">the issue</a>
-      becomes a W3C recommendation, it is safe to ignore these validation errors.
-      Alternatively, since only a few browser and assistive technology combinations exploit this feature of the pattern, it can be omitted from implementations.
-    </p>
   </section>
 
   <section>

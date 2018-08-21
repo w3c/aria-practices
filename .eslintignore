@@ -1,7 +1,4 @@
 **/*.min.js
+common/
 examples/landmarks/js/visua11y.js
-examples/landmarks/js/SkipTo.min.js
-examples/landmarks/js/bootstrap-accessibility.min.js
-examples/landmarks/js/bootstrap.min.js
-examples/landmarks/js/jquery-2.1.1.min.js
 examples/js/highlight.pack.js

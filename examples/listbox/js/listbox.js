@@ -26,9 +26,8 @@ aria.Listbox = function (listboxNode) {
   this.downButton = null;
   this.moveButton = null;
   this.keysSoFar = '';
-
+  this.handleFocusChange = function () {};
   this.handleItemChange = function (event, items) {};
-
   this.registerEvents();
 };
 
@@ -303,7 +302,9 @@ aria.Listbox.prototype.defocusItem = function (element) {
   if (!element) {
     return;
   }
-
+  if (!this.multiselectable) {
+    element.removeAttribute('aria-selected');
+  }
   aria.Utils.removeClass(element, 'focused');
 };
 
@@ -316,6 +317,9 @@ aria.Listbox.prototype.defocusItem = function (element) {
  */
 aria.Listbox.prototype.focusItem = function (element) {
   this.defocusItem(document.getElementById(this.activeDescendant));
+  if (!this.multiselectable) {
+    element.setAttribute('aria-selected', 'true');
+  }
   aria.Utils.addClass(element, 'focused');
   this.listboxNode.setAttribute('aria-activedescendant', element.id);
   this.activeDescendant = element.id;
@@ -336,6 +340,7 @@ aria.Listbox.prototype.focusItem = function (element) {
   }
 
   this.checkUpDownButtons();
+  this.handleFocusChange(element);
 };
 
 /**
@@ -542,4 +547,8 @@ aria.Listbox.prototype.setupMove = function (button, siblingList) {
 
 aria.Listbox.prototype.setHandleItemChange = function (handlerFn) {
   this.handleItemChange = handlerFn;
+};
+
+aria.Listbox.prototype.setHandleFocusChange = function (focusChangeHandler) {
+  this.handleFocusChange = focusChangeHandler;
 };

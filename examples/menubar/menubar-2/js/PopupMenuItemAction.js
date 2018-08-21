@@ -52,11 +52,7 @@ MenuItem.prototype.init = function () {
 
   this.domNode.addEventListener('keydown', this.handleKeydown.bind(this));
   this.domNode.addEventListener('click', this.handleClick.bind(this));
-  this.domNode.addEventListener('focus', this.handleFocus.bind(this));
-  this.domNode.addEventListener('blur', this.handleBlur.bind(this));
   this.domNode.addEventListener('mouseover', this.handleMouseover.bind(this));
-  this.domNode.addEventListener('mouseout', this.handleMouseout.bind(this));
-
 };
 
 MenuItem.prototype.activateMenuitem = function (node) {
@@ -66,6 +62,7 @@ MenuItem.prototype.activateMenuitem = function (node) {
   var option = node.getAttribute('rel');
   var item;
   // flag is used to signal whether a menu should close or not
+  // i.e. don't close if checkbox or radio menuitem is toggled
   var flag = true;
 
   if (typeof option !== 'string') {
@@ -77,7 +74,7 @@ MenuItem.prototype.activateMenuitem = function (node) {
   }
   else {
     if (role === 'menuitemcheckbox') {
-      if (node.getAttribute('aria-checked') == 'true') {
+      if (node.getAttribute('aria-checked') === 'true') {
         this.menu.actionManager.setOption(option, false);
         node.setAttribute('aria-checked', 'false');
       }
@@ -116,8 +113,7 @@ MenuItem.prototype.activateMenuitem = function (node) {
 MenuItem.prototype.handleKeydown = function (event) {
   var tgt  = event.currentTarget,
     char = event.key,
-    flag = false,
-    clickEvent;
+    flag = false;
 
   function isPrintableCharacter (str) {
     return str.length === 1 && str.match(/\S/);
@@ -125,17 +121,23 @@ MenuItem.prototype.handleKeydown = function (event) {
 
   switch (event.keyCode) {
     case this.keyCode.SPACE:
-    case this.keyCode.RETURN:
       if (this.activateMenuitem(tgt)) {
         this.menu.setFocusToController();
-        this.menu.close(true);
+        this.menu.close();
       }
+      flag = true;
+      break;
+
+    case this.keyCode.RETURN:
+      this.activateMenuitem(tgt);
+      this.menu.setFocusToController();
+      this.menu.close();
       flag = true;
       break;
 
     case this.keyCode.ESC:
       this.menu.setFocusToController();
-      this.menu.close(true);
+      this.menu.close();
       flag = true;
       break;
 
@@ -151,13 +153,13 @@ MenuItem.prototype.handleKeydown = function (event) {
 
     case this.keyCode.LEFT:
       this.menu.setFocusToController('previous');
-      this.menu.close(true);
+      this.menu.close();
       flag = true;
       break;
 
     case this.keyCode.RIGHT:
       this.menu.setFocusToController('next');
-      this.menu.close(true);
+      this.menu.close();
       flag = true;
       break;
 
@@ -175,7 +177,8 @@ MenuItem.prototype.handleKeydown = function (event) {
 
     case this.keyCode.TAB:
       this.menu.setFocusToController();
-      this.menu.close(true);
+      this.menu.close();
+      // allow tab and shift+tab to navigate out of menu bar
       break;
 
     default:
@@ -195,25 +198,9 @@ MenuItem.prototype.handleKeydown = function (event) {
 MenuItem.prototype.handleClick = function (event) {
   this.activateMenuitem(event.currentTarget);
   this.menu.setFocusToController();
-  this.menu.close(true);
-};
-
-MenuItem.prototype.handleFocus = function (event) {
-  this.menu.hasFocus = true;
-};
-
-MenuItem.prototype.handleBlur = function (event) {
-  this.menu.hasFocus = false;
-  setTimeout(this.menu.close.bind(this.menu, false), 300);
+  this.menu.close();
 };
 
 MenuItem.prototype.handleMouseover = function (event) {
-  this.menu.hasHover = true;
-  this.menu.open();
-
-};
-
-MenuItem.prototype.handleMouseout = function (event) {
-  this.menu.hasHover = false;
-  setTimeout(this.menu.close.bind(this.menu, false), 300);
+  this.menu.setFocusToItem(this);
 };

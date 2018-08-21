@@ -11,32 +11,32 @@
 *   @constructor MenubarAction
 *
 *   @desc
-*       Wrapper object for a menubar (with nested submenus of links)
+*       Wrapper object for a menubar
 *
 *   @param domNode
-*       The DOM element node that serves as the menubar container. Each
-*       child element of menubarNode that represents a menubaritem must
-*       be an A element
+*       The DOM element node that serves as the menubar container.
+*       Each child element of domNode that represents a menubaritem
+*       must be an A element.
 */
 var MenubarAction = function (domNode) {
-  var elementChildren,
-    msgPrefix = 'Menubar constructor argument menubarNode ';
+  var msgPrefix = 'Menubar constructor argument domNode ';
 
-  // Check whether menubarNode is a DOM element
+  // Check whether domNode is a DOM element
   if (!domNode instanceof Element) {
     throw new TypeError(msgPrefix + 'is not a DOM Element.');
   }
 
-  // Check whether menubarNode has descendant elements
+  // Check whether domNode has descendant elements
   if (domNode.childElementCount === 0) {
     throw new Error(msgPrefix + 'has no element children.');
   }
-  // Check whether menubarNode has SPAN elements
-  e = domNode.firstElementChild;
+
+  // Check whether domNode's descendant elements contain A elements
+  var e = domNode.firstElementChild;
   while (e) {
     var menubarItem = e.firstElementChild;
-    if (e && menubarItem && menubarItem.tagName !== 'SPAN') {
-      throw new Error(msgPrefix + 'has child elements are not SPAN elements.');
+    if (menubarItem && menubarItem.tagName !== 'A') {
+      throw new Error(msgPrefix + 'has child elements that are not A elements.');
     }
     e = e.nextElementSibling;
   }
@@ -48,9 +48,6 @@ var MenubarAction = function (domNode) {
 
   this.firstItem = null; // see Menubar init method
   this.lastItem = null; // see Menubar init method
-
-  this.hasFocus = false; // see MenubarItem handleFocus, handleBlur
-  this.hasHover = false; // see Menubar handleMouseover, handleMouseout
 };
 
 /*
@@ -58,24 +55,27 @@ var MenubarAction = function (domNode) {
 *
 *   @desc
 *       Adds ARIA role to the menubar node
-*       Traverse menubar children for A elements to configure each A element as a ARIA menuitem
+*       Traverse menubar children for A elements to configure each A element as an ARIA menuitem
 *       and populate menuitems array. Initialize firstItem and lastItem properties.
 */
 MenubarAction.prototype.init = function (actionManager) {
-  var menubarItem, childElement, menuElement, textContent, numItems;
+  var menubarItem, menuElement, textContent, numItems;
 
   this.actionManager = actionManager;
 
   this.domNode.setAttribute('role', 'menubar');
 
-  // Traverse the element children of menubarNode: configure each with
+  this.domNode.addEventListener('focusin', this.handleFocusin.bind(this));
+  this.domNode.addEventListener('focusout', this.handleFocusout.bind(this));
+
+  // Traverse the element children of the menubar domNode: configure each with
   // menuitem role behavior and store reference in menuitems array.
-  e = this.domNode.firstElementChild;
+  var e = this.domNode.firstElementChild;
 
   while (e) {
-    var menuElement = e.firstElementChild;
+    menuElement = e.firstElementChild;
 
-    if (e && menuElement && menuElement.tagName === 'SPAN') {
+    if (menuElement && menuElement.tagName === 'A') {
       menubarItem = new MenubarItemAction(menuElement, this);
       menubarItem.init();
       this.menubarItems.push(menubarItem);
@@ -97,35 +97,37 @@ MenubarAction.prototype.init = function (actionManager) {
 
 /* FOCUS MANAGEMENT METHODS */
 
-MenubarAction.prototype.setFocusToItem = function (newItem) {
-  var flag = false;
-  var newItem;
+MenubarAction.prototype.setFocusToItem = function (newItem, hover) {
+  var isOpen = false;
+  var hasFocus = this.domNode.contains(document.activeElement);
   for (var i = 0; i < this.menubarItems.length; i++) {
     var mbi = this.menubarItems[i];
-    if (mbi.domNode.tabIndex == 0) {
-      flag = mbi.domNode.getAttribute('aria-expanded') === 'true';
+    isOpen = isOpen || (mbi.popupMenu && mbi.popupMenu.isOpen());
+    if (!hover || hasFocus) {
+      mbi.domNode.tabIndex = -1;
     }
-    mbi.domNode.tabIndex = -1;
     if (mbi.popupMenu) {
       mbi.popupMenu.close();
     }
   }
-  newItem.domNode.focus();
-  newItem.domNode.tabIndex = 0;
-  if (flag && newItem.popupMenu) {
+  if (!hover || hasFocus) {
+    newItem.domNode.focus();
+    newItem.domNode.tabIndex = 0;
+  }
+  if (isOpen && newItem.popupMenu) {
     newItem.popupMenu.open();
   }
 };
-MenubarAction.prototype.setFocusToFirstItem = function (flag) {
+
+MenubarAction.prototype.setFocusToFirstItem = function () {
   this.setFocusToItem(this.firstItem);
 };
-MenubarAction.prototype.setFocusToLastItem = function (flag) {
+MenubarAction.prototype.setFocusToLastItem = function () {
   this.setFocusToItem(this.lastItem);
 };
 
 MenubarAction.prototype.setFocusToPreviousItem = function (currentItem) {
-
-  var index;
+  var newItem, index;
 
   if (currentItem === this.firstItem) {
     newItem = this.lastItem;
@@ -136,11 +138,10 @@ MenubarAction.prototype.setFocusToPreviousItem = function (currentItem) {
   }
 
   this.setFocusToItem(newItem);
-
 };
 
 MenubarAction.prototype.setFocusToNextItem = function (currentItem) {
-  var index;
+  var newItem, index;
 
   if (currentItem === this.lastItem) {
     newItem = this.firstItem;
@@ -150,7 +151,6 @@ MenubarAction.prototype.setFocusToNextItem = function (currentItem) {
     newItem = this.menubarItems[ index + 1 ];
   }
   this.setFocusToItem(newItem);
-
 };
 
 MenubarAction.prototype.setFocusByFirstCharacter = function (currentItem, char) {
@@ -185,5 +185,24 @@ MenubarAction.prototype.getIndexFirstChars = function (startIndex, char) {
     }
   }
   return -1;
+};
+
+MenubarAction.prototype.handleFocusin = function (event) {
+  // if the menubar or any of its menus has focus, add styling hook for hover
+  this.domNode.classList.add('focus');
+};
+
+MenubarAction.prototype.handleFocusout = function (event) {
+  // if the next element to get focus is not in the menubar or its menus, then close menu
+  if (!this.domNode.contains(event.relatedTarget)) {
+    for (var i = 0; i < this.menubarItems.length; i++) {
+      var mbi = this.menubarItems[i];
+      if (mbi.popupMenu && mbi.popupMenu.isOpen()) {
+        mbi.popupMenu.close();
+      }
+    }
+  }
+  // remove styling hook for hover on menubar item
+  this.domNode.classList.remove('focus');
 };
 
