@@ -263,7 +263,7 @@
                 <li>Provides an accessible label for the toolbar.</li>
                 <li>An invisible label is appropriate when the visual context adequately communicates purpose.</li>
               </ul>
-          </td>
+            </td>
           </tr>
           <tr>
             <th scope="row"><code>button</code></th>
@@ -312,25 +312,23 @@
             <td>Informs assistive technologies of the disabled state.</td>
           </tr>
           <tr>
-              <td></td>
-              <th scope="row"><code>aria-pressed=&quot;true&quot;</code></th>
-              <td><code>div</code></td>
-              <td>Indicate the button has been pressed</td>
+            <td></td>
+            <th scope="row"><code>aria-pressed=&quot;true&quot;</code></th>
+            <td><code>div</code></td>
+            <td>Indicate the button has been pressed</td>
           </tr>
           <tr>
-              <td></td>
-              <th scope="row"><code>aria-pressed=&quot;false&quot;</code></th>
-              <td><code>div</code></td>
-              <td>Indicate the button has <b>Not</b> been pressed</td>
+            <td></td>
+            <th scope="row"><code>aria-pressed=&quot;false&quot;</code></th>
+            <td><code>div</code></td>
+            <td>Indicate the button has <b>Not</b> been pressed</td>
           </tr>
         </tbody>
       </table>
     </section>
 
-
-
-    <section>
-      <h3 id="rps_label_2">Toolbar</h3>
+    <section> 
+      <h3 id="rps_label_2">Menu Button</h3>
       <table aria-labelledby="rps_label_2" class="data attributes">
         <thead>
           <tr>
@@ -350,13 +348,35 @@
             </td>
           </tr>
           <tr>
-              <th scope="row"><code>menuitem</code></th>
+            <th scope="row"><code>menuitem</code></th>
+            <td></td>
+            <td><code>li</code></td>
+            <td>
+                Identifies the menuitem.
+            </td>
+          </tr>
+          <tr>
+            <th scope="row"><code>button</code></th>
+            <td></td>
+            <td> <code>div</code></td>
+            <td>Identifies the element as a button.</td>
+          </tr>
+          <tr>
               <td></td>
-              <td><code>li</code></td>
+              <th scope="row"><code>aria-haspopup=&quot;true&quot;</code></th>
+              <td><code>button</code></td>
               <td>
-                 Identifies the menuitem.
+                Indicate that the button has a popup context menu.
               </td>
-            </tr>
+          </tr>
+          <tr>
+              <td></td>
+              <th scope="row"><code>aira-control=&quot;IDREF&quot;</code></th>
+              <td><code>button</code></td>
+              <td>
+                Provide a reference for screen reader to navigate to the reference content.
+              </td>
+          </tr>
         </tbody>
       </table>
     </section>
