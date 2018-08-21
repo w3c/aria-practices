@@ -1,4 +1,4 @@
-<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><meta charset="utf-8"><meta name="generator" content="ReSpec 22.5.0"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><style>/* --- ISSUES/NOTES --- */
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><meta charset="utf-8"><meta name="generator" content="ReSpec 22.5.1"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><style>/* --- ISSUES/NOTES --- */
 div.issue-title, div.note-title , div.ednote-title, div.warning-title {
     padding-right:  1em;
     min-width: 7.5em;
@@ -521,9 +521,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   "preProcess": [
     null
   ],
-  "publishDate": "2018-08-17",
-  "publishISODate": "2018-08-17T00:00:00.000Z",
-  "generatedSubtitle": "Editor's Draft 17 August 2018"
+  "publishDate": "2018-08-21",
+  "publishISODate": "2018-08-21T00:00:00.000Z",
+  "generatedSubtitle": "Editor's Draft 21 August 2018"
 }</script><meta name="description" content="This document provides readers with an understanding of how to use WAI-ARIA 1.1 [WAI-ARIA] to create accessible rich internet applications.
       It describes considerations that might not be evident to most authors from the WAI-ARIA specification alone and recommends approaches to make widgets, navigation, and behaviors accessible using WAI-ARIA roles, states, and properties.
       This document is directed primarily to Web application developers, but the guidance is also useful for user agent and assistive technology developers."></head>
@@ -533,7 +533,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   </a>
   <h1 id="title" class="title p-name"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Authoring Practices 1.1</h1>
   
-  <h2 id="w3c-editor-s-draft-17-august-2018"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time class="dt-published" datetime="2018-08-17">17 August 2018</time></h2>
+  <h2 id="w3c-editor-s-draft-21-august-2018"><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time class="dt-published" datetime="2018-08-21">21 August 2018</time></h2>
   <dl>
     <dt>This version:</dt><dd><a class="u-url" href="https://w3c.github.io/aria-practices/">https://w3c.github.io/aria-practices/</a></dd><dt>Latest published version:</dt><dd><a href="https://www.w3.org/TR/wai-aria-practices-1.1/">https://www.w3.org/TR/wai-aria-practices-1.1/</a></dd>
     <dt>Latest editor's draft:</dt><dd><a href="https://w3c.github.io/aria-practices/">https://w3c.github.io/aria-practices/</a></dd>
@@ -690,7 +690,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </p>
       <p>Using a role without fulfilling the promise of that role is similar to making a "Place Order" button that abandons an order and empties the shopping cart.</p>
       <p>One of the objectives of this guide is to define expected behaviors for each ARIA role.</p>
-      <h3 id="principle-2-aria-can-both-cloak-and-enhance-creating-both-power-and-danger">Principle 2: ARIA Can Both Cloak and Enhance, Creating Both Power and Danger<span class="permalink"><a href="#no_aria_better_bad_aria" aria-label="Permalink for Principle 2: ARIA Can Both Cloak and Enhance, Creating Both Power and Danger" title="Permalink for Principle 2: ARIA Can Both Cloak and Enhance, Creating Both Power and Danger"><span>§</span></a></span></h3>
+      <h4 id="principle-2-aria-can-both-cloak-and-enhance-creating-both-power-and-danger">Principle 2: ARIA Can Both Cloak and Enhance, Creating Both Power and Danger<span class="permalink"><a href="#no_aria_better_bad_aria" aria-label="Permalink for Principle 2: ARIA Can Both Cloak and Enhance, Creating Both Power and Danger" title="Permalink for Principle 2: ARIA Can Both Cloak and Enhance, Creating Both Power and Danger"><span>§</span></a></span></h4>
       <p>
         The information assistive technologies need about the meaning and purpose of user interface elements is called accessibility semantics.
         From the perspective of assistive technologies, ARIA gives authors the ability to dress up HTML and SVG elements with critical accessibility semantics that the assistive technologies would not otherwise be able to reliably derive.
@@ -1264,7 +1264,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <li>The most robust approach for providing text editing functions is to rely on browsers, which  supply them for HTML inputs with type text and for elements with the <code>contenteditable</code> HTML attribute.</li>
           <li><strong>IMPORTANT:</strong> Be sure that JavaScript does not interfere with browser-provided text editing functions by capturing key events for the keys used to perform them.</li>
         </ol>
-        <h4 id="listbox-popup-keyboard-interaction">Listbox Popup Keyboard Interaction</h4>
+        <h5 id="listbox-popup-keyboard-interaction">Listbox Popup Keyboard Interaction</h5>
         <p>When focus is in a listbox popup:</p>
         <ul>
           <li><kbd>Enter</kbd>: Accepts the focused option in the listbox by closing the popup and placing the accepted value in the textbox with the input cursor at the end of the value.</li>
