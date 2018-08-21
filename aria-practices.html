@@ -543,6 +543,64 @@
       </section>
     </section>
 
+
+    <section class="widget" id="carousel">
+      <h3>Carousel (Image Rotator)</h3>
+      <p>
+        A carousel is a composite widget containing a set of controls for pausing the rotation of images and navigating images.
+        The image often has additional related content in the form of text content and links.
+        A  <code>tablist</code> widget and a set of <code>button</code> widgets can be used to describe the carousel content, pause and restart automatic rotation and manually rotate through the images.
+        Each image is represented as a <code>tabpanel</code> and a <code>tablist</code> is used to control navigation to each item.
+        In addition to the tabs, a previous and next button are typically provided to allow navigation to the previous and next slide.
+        A button is used to stop the automatic rotationof the image for screen reader and other keyboard users.
+        When screen reader users move their review cursor to the image content and it automatically rotates, the content is removed from the accessibility tree and the review cursor typically moves to the beginning of the page, which is disorienting to users.
+        The set of controls should also be in a complementary landmark with an accessible name identifying the region as a carousel widget.
+
+      <section class="notoc">
+        <h4>Examples</h4>
+        <p><a href="examples/carousel/carousel-1/carousel.html">Carousel Example</a>: Demonstrates the accessibility features of a carousel of auto-rotating images.</p>
+      </section>
+
+      <section class="notoc">
+        <h4>Keyboard Interaction</h4>
+        <p>For the tab list:</p>
+        <ul>
+          <li>
+            <kbd>Tab</kbd>: When focus moves into the tab list, places focus on the active <code>tab</code> element .
+            When the tab list contains the focus, moves focus to the next element in the page tab sequence outside the tablist, which is typically either the first focusable element inside the tab panel or the tab panel itself.
+          </li>
+          <li>
+            <kbd>Left Arrow</kbd>: moves focus to the previous tab (i.e. image).
+            If focus is on the first tab, moves focus to the last tab.
+            Optionally, activates the newly focused tab (See note below).
+          </li>
+          <li>
+            <kbd>Right Arrow</kbd>: Moves focus to the next tab (i.e. image).
+            If focus is on the last tab element, moves focus to the first tab.
+            Optionally, activates the newly focused tab (See note below).
+          </li>
+          <li><kbd>Home</kbd> (Optional): Moves focus to the first tab (i.e. image).</li>
+          <li><kbd>End</kbd> (Optional): Moves focus to the last tab (i.e.. image).</li>
+        </ul>
+        <p>
+      </section>
+
+      <section class="notoc">
+        <h4>WAI-ARIA Roles, States, and Properties</h4>
+        <ul>
+        <li>The pause button uses <code>aria-pressed="true"</code> to indicate the rotator is paused.</li>
+        <li>The pause button uses <code>aria-pressed="false"</code> to indicate the rotator is automatically rotating.</li>
+        <li>The element that serves as the container the for the set of tabs has role  <a class="role-reference" href="#tablist">tablist</a>. </li>
+        <li>Each element that serves as a tab has role <a class="role-reference" href="#tab">tab</a> and is contained within the element with role <code>tablist</code>.</li>
+          <li>Each element that contains the content panel for a <code>tab</code> has role <a class="role-reference" href="#tabpanel">tabpanel</a>.</li>
+          <li>Each element with role <code>tab</code> has the property <a href="#aria-controls" class="property-reference">aria-controls</a> referring to its associated <code>tabpanel</code> element.</li>
+          <li>The active <code>tab</code> element has the state <a href="#aria-selected" class="state-reference">aria-selected</a> set to <code>true</code> and all other <code>tab</code> elements have it set to <code>false</code>.</li>
+          <li>Each element with role <code>tabpanel</code> has the property <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> referring to its associated <code>tab</code> element. </li>
+        </ul>
+      </section>
+    </section>
+
+
     <section class="widget" id="combobox">
       <h3>Combo Box</h3>
       <p>
