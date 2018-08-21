@@ -11,6 +11,7 @@ const exampleFile = 'toolbar/toolbar.html';
 
 const ex = {
   toolbarSelector: '#ex1 [role="toolbar"]',
+  toolbarLabel: 'Example Toolbar',
   toolSelector: '#ex1 [role="button"]',
   menuSelector: '#ex1 button',
   allToolSelectors: [
@@ -20,33 +21,48 @@ const ex = {
     '#ex1 [role="button"]:nth-of-type(4)',
     '#ex1 [role="button"]:nth-of-type(5)',
     '#ex1 button'
-  ]
+  ],
+  tabbaleItemBeforeToolbarSelector: '[href="../../#toolbar"]',
+  tabbaleItemAfterToolbarSelector: '[href="../../#kbd_roving_tabindex"]'
 };
 
-const clickAndWait = async function (t, element) {
+const clickAndWait = async function (t, selector) {
+  let element = await t.context.session.findElement(By.css(selector));
   await element.click();
 
-  await t.context.session.wait(async function () {
-    let tabindex = await element.getAttribute('tabindex');
-    return tabindex === '0';
-  }, 500);
+  return await t.context.session.wait(
+    async function () {
+      let tabindex = await element.getAttribute('tabindex');
+      return tabindex === '0';
+    },
+    500,
+    'click did not set tabindex="0" on: ' + selector
+  ).catch((err) => { return err; });
 };
 
 const waitAndCheckFocus = async function (t, selector) {
-  return t.context.session.wait(async function () {
-    return t.context.session.executeScript(function () {
-      const [selector, index] = arguments;
-      let item = document.querySelector(selector);
-      return item === document.activeElement;
-    }, selector);
-  }, 500);
+  return t.context.session.wait(
+    async function () {
+      return t.context.session.executeScript(function () {
+        const [selector, index] = arguments;
+        let item = document.querySelector(selector);
+        return item === document.activeElement;
+      }, selector);
+    },
+    500,
+    'activeElement is not: ' + selector,
+  ).catch((err) => { return err; });
 };
 
 const waitAndCheckTabindex = async function (t, selector) {
-  return t.context.session.wait(async function () {
-    let item = await t.context.session.findElement(By.css(selector));
-    return (await item.getAttribute('tabindex')) === '0';
-  }, 600);
+  return t.context.session.wait(
+    async function () {
+      let item = await t.context.session.findElement(By.css(selector));
+      return (await item.getAttribute('tabindex')) === '0';
+    },
+    600,
+    'tabindex is not "0" for: ' + selector
+  ).catch((err) => { return err; });
 };
 
 // Attributes
@@ -57,7 +73,8 @@ ariaTest('', exampleFile, 'toolbar-role', async (t) => {
 });
 
 ariaTest('', exampleFile, 'toolbar-aria-label', async (t) => {
-  t.pass();
+  t.plan(1);
+  await assertAttributeValues(t, ex.toolbarSelector, ex.toolbarLabel);
 });
 
 ariaTest('', exampleFile, 'button-role', async (t) => {
@@ -72,8 +89,7 @@ ariaTest('', exampleFile, 'button-tabindex', async (t) => {
   await assertRovingTabindex(t, ex.toolSelector, Key.ARROW_RIGHT);
 
   // Test the last element in the toolbox, which is a native "button" element
-  let menuButton = await t.context.session.findElement(By.css(ex.menuSelector));
-  await clickAndWait(t, menuButton);
+  await clickAndWait(t, ex.menuSelector);
 
   await assertAttributeValues(t, 'ex1', ex.toolSelector, 'tabindex', '-1');
   await assertAttributeValues(t, 'ex1', ex.menuSelector, 'tabindex', '0');
@@ -87,15 +103,32 @@ ariaTest('', exampleFile, 'button-aria-disabled', async (t) => {
 // Keys
 
 ariaTest('', exampleFile, 'key-tab', async (t) => {
-  t.pass();
+  t.plan(6);
+
+  let numTools = ex.allToolSelectors.length;
+
+  for (let index = 0; index < numTools; index++) {
+    let toolSelector = ex.allToolSelectors[index];
+
+    // Click on element to set focus
+    await clickAndWait(t, toolSelector);
+
+    // Send tab key to element
+    await t.context.session.findElement(By.css(toolSelector))
+      .sendKeys(Key.TAB);
+
+    t.true(
+      await waitAndCheckFocus(t, ex.tabbaleItemAfterToolbarSelector, index),
+      'Sending TAB to: ' + toolSelector + ' should move focus off toolbar'
+    );
+  }
 });
 
 ariaTest('', exampleFile, 'key-left-arrow', async (t) => {
   t.plan(12);
 
   // Put focus on the first item in the list
-  let button = await t.context.session.findElement(By.css(ex.allToolSelectors[0]));
-  await clickAndWait(t, button);
+  await clickAndWait(t, ex.allToolSelectors[0]);
 
   let numTools = ex.allToolSelectors.length;
   let toolSelector = ex.allToolSelectors[0];
@@ -147,8 +180,7 @@ ariaTest('', exampleFile, 'key-right-arrow', async (t) => {
   t.plan(12);
 
   // Put focus on the first item in the list
-  let button = await t.context.session.findElement(By.css(ex.allToolSelectors[0]));
-  await clickAndWait(t, button);
+  await clickAndWait(t, ex.allToolSelectors[0]);
 
   let numTools = ex.allToolSelectors.length;
 
@@ -196,11 +228,47 @@ ariaTest('', exampleFile, 'key-right-arrow', async (t) => {
 });
 
 ariaTest('', exampleFile, 'key-home', async (t) => {
-  t.pass();
+  t.plan(6);
 
-  // TODO: click on each element, then send the HOME key, check that focus/tabindex is on the first element
+  let numTools = ex.allToolSelectors.length;
+
+  // Confirm right moves HOME focus to first item
+  for (let index = 0; index < numTools - 1; index++) {
+    let toolSelector = ex.allToolSelectors[index];
+
+    // Click on element to focus
+    await clickAndWait(t, toolSelector);
+
+    // Send HOME key to the last item
+    await t.context.session.findElement(By.css(toolSelector))
+      .sendKeys(Key.HOME);
+
+    t.true(
+      await waitAndCheckFocus(t, ex.allToolSelectors[0], index),
+      'Sending HOME to tool "' + toolSelector + '" should move focus to first tool'
+    );
+  }
 });
 
 ariaTest('', exampleFile, 'key-end', async (t) => {
-  t.pass();
+  t.plan(6)
+
+  let numTools = ex.allToolSelectors.length;
+
+  // Confirm right moves HOME focus to first item
+  for (let index = 0; index < numTools - 1; index++) {
+    let toolSelector = ex.allToolSelectors[index];
+
+    // Click on element to focus
+    await clickAndWait(t, toolSelector);
+
+    // Send HOME key to the last item
+    await t.context.session.findElement(By.css(toolSelector))
+      .sendKeys(Key.HOME);
+
+    t.true(
+      await waitAndCheckFocus(t, ex.allToolSelectors[0], index),
+      'Sending HOME to tool "' + toolSelector + '" should move focus to first tool'
+    );
+  }
 });
