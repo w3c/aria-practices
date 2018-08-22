@@ -90,14 +90,30 @@ ul[role="menubar"] [role="menu"] [role="menuitemradio"]:focus {
 }
 
 ul[role="menubar"] [role="menuitemcheckbox"][aria-checked='true'],
-ul[role="menubar"] [role="menuitemradio"][aria-checked='true'] {
+ul[role="menubar"] [role="menuitemradio"][aria-checked='true'],
+ul[role="menubar"] [role="menuitemcheckbox"][aria-checked='false'],
+ul[role="menubar"] [role="menuitemradio"][aria-checked='false'] {
   padding-left: 0.5em;
   padding-right: 1.25em;
 }
 
-ul[role="menubar"] [role="menuitemcheckbox"][aria-checked='true']:before,
-ul[role="menubar"] [role="menuitemradio"][aria-checked='true']:before {
+ul[role="menubar"] [role="menuitemcheckbox"][aria-checked='true']:before {
   content: url('../images/check-brown.png');
+  padding-right: 0.3em;
+}
+
+ul[role="menubar"] [role="menuitemcheckbox"][aria-checked='false']:before {
+  content: url('../images/box-brown.png');
+  padding-right: 0.3em;
+}
+
+ul[role="menubar"] [role="menuitemradio"][aria-checked='true']:before {
+  content: url('../images/dot-brown.png');
+  padding-right: 0.3em;
+}
+
+ul[role="menubar"] [role="menuitemradio"][aria-checked='false']:before {
+  content: url('../images/circle-brown.png');
   padding-right: 0.3em;
 }
 
