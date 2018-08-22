@@ -44,7 +44,7 @@ margin-left: 0.75em;
 }
 .toolbar-item:focus{
 	border-color:#8CCBF2;
-	background:rgb(235, 245, 255);
+	background:rgb(226, 239, 255);
 }
 .menu-wrapper {
 	display: inline-block;

@@ -264,7 +264,7 @@ aria.widget.Menu.prototype.eventKeyDown = function (event, menu) {
       flag = true;
       break;
     case menu.keyCode.TAB:
-      menu.menuButton.closeMenu(true, false);
+      menu.menuButton.closeMenu(true);
       break;
 
     default:
@@ -549,10 +549,10 @@ aria.widget.MenuButton.prototype.eventKeyDown = function (event, menuButton) {
       }
       break;
 
-    case menuButton.keyCode.TAB:
-      menuButton.closeMenu(true, false);
-      flag=true;
-      break;
+    // case menuButton.keyCode.TAB:
+    //   menuButton.closeMenu(true, false);
+    //   flag=true;
+    //   break;
 
     default:
       break;

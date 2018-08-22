@@ -31,9 +31,10 @@ ul[role="menu"] li, ul[role='toolbar'] li{
 [role="menuitem"] {
   padding: 0.25em;
   outline:0;
+  border-radius: 5px;
 }
 
 [role="menuitem"]:focus,
 [role="menuitem"]:hover {
-	background:rgb(235, 245, 255);
+	background:rgb(226, 239, 255);
 }
