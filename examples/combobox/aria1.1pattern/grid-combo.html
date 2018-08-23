@@ -94,15 +94,15 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr data-test-id="textbox-key-down-arrow">
             <th><kbd>Down Arrow</kbd></th>
             <td>If the grid is displayed, moves focus to the first suggested value.</td>
           </tr>
-          <tr>
+          <tr data-test-id="textbox-key-up-arrow">
             <th><kbd>Up Arrow</kbd></th>
             <td>If the grid is displayed, moves focus to the last suggested value.</td>
           </tr>
-          <tr>
+          <tr data-test-id="textbox-key-escape">
             <th><kbd>Escape</kbd></th>
             <td>
               <ul>
@@ -137,7 +137,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr data-test-id="popup-key-enter">
             <th><kbd>Enter</kbd></th>
             <td>
               <ul>
@@ -147,7 +147,7 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="popup-key-escape">
             <th><kbd>Escape</kbd></th>
             <td>
               <ul>
@@ -157,7 +157,7 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="popup-key-down-arrow">
             <th><kbd>Down Arrow</kbd></th>
             <td>
               <ul>
@@ -167,7 +167,7 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="popup-key-up-arrow">
             <th><kbd>Up Arrow</kbd></th>
             <td>
               <ul>
@@ -177,7 +177,7 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="popup-key-right-arrow">
             <th><kbd>Right Arrow</kbd></th>
             <td>
               <ul>
@@ -187,7 +187,7 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="popup-key-left-arrow">
             <th><kbd>Left Arrow</kbd></th>
             <td>
               <ul>
@@ -197,15 +197,15 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="popup-key-home">
             <th><kbd>Home</kbd></th>
             <td>Moves focus to the textbox and places the editing cursor at the beginning of the field.</td>
           </tr>
-          <tr>
+          <tr data-test-id="popup-key-end">
             <th><kbd>End</kbd></th>
             <td>Moves focus to the textbox and places the editing cursor at the end of the field.</td>
           </tr>
-          <tr>
+          <tr data-test-id="popup-key-char">
             <th>Printable Characters</th>
             <td>
               <ul>
@@ -236,7 +236,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr data-test-id="combobox-role">
             <th scope="row">
               <code>combobox</code>
             </th>
@@ -254,7 +254,7 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="combobox-aria-haspopup">
             <td></td>
             <th scope="row">
               <code>aria-haspopup=<q>grid</q></code>
@@ -262,7 +262,7 @@
             <td><code>div</code></td>
             <td>Indicates that the combobox can popup a <code>grid</code> to suggest values.</td>
           </tr>
-          <tr>
+          <tr data-test-id="combobox-aria-owns">
             <td></td>
             <th scope="row">
               <code>aria-owns=<q>IDREF</q></code>
@@ -275,7 +275,7 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="combobox-aria-expanded">
             <td></td>
             <th scope="row">
               <code>aria-expanded=<q>false</q></code>
@@ -283,7 +283,7 @@
             <td><code>div</code></td>
             <td>Indicates that the popup element <strong>is not</strong> displayed.</td>
           </tr>
-          <tr>
+          <tr data-test-id="combobox-aria-expanded">
             <td></td>
             <th scope="row">
               <code>aria-expanded=<q>true</q></code>
@@ -304,7 +304,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr data-test-id="textbox-id">
             <td></td>
             <th scope="row">
               <code>id="string"</code>
@@ -317,7 +317,7 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="textbox-aria-autocomplete">
             <td></td>
             <th scope="row">
               <code>aria-autocomplete=<q>list</q></code>
@@ -325,7 +325,7 @@
             <td><code>input[type="text"]</code></td>
             <td>Indicates that the autocomplete behavior of the text input is to suggest a list of possible values in a popup.</td>
           </tr>
-          <tr>
+          <tr data-test-id="textbox-aria-controls">
             <td></td>
             <th scope="row">
               <code>aria-controls=<q>IDREF</q></code>
@@ -343,7 +343,7 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="textbox-aria-activedescendant">
             <td></td>
             <th scope="row">
               <code>aria-activedescendant=<q>IDREF</q></code>
@@ -374,7 +374,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr data-test-id="grid-role">
             <th scope="row">
               <code>grid</code>
             </th>
@@ -384,7 +384,7 @@
             </td>
             <td>Identifies the element as a <code>grid</code>.</td>
           </tr>
-          <tr>
+          <tr data-test-id="grid-aria-labelledby">
             <td></td>
             <th scope="row">
               <code>aria-labelledby=<q>IDREF</q></code>
@@ -392,7 +392,7 @@
             <td><code>div</code></td>
             <td>Provides a label for the <code>grid</code> element of the combobox.</td>
           </tr>
-          <tr>
+          <tr data-test-id="row-role">
             <th scope="row">
               <code>row</code>
             </th>
@@ -400,7 +400,7 @@
             <td><code>div</code></td>
             <td>Identifies the element containing all the cells for a row.</td>
           </tr>
-          <tr>
+          <tr data-test-id="row-aria-selected">
             <td></td>
             <th scope="row">
               <code>aria-selected=<q>true</q></code>
@@ -413,7 +413,7 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="gridcell-role">
             <th scope="row"><code>gridcell</code></th>
             <td></td>
             <td><code>div</code></td>
