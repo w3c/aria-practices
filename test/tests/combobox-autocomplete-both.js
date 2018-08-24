@@ -3,8 +3,6 @@
 const { ariaTest } = require('..');
 const { By, Key } = require('selenium-webdriver');
 const assertAttributeValues = require('../util/assertAttributeValues');
-const assertAttributeDNE = require('../util/assertAttributeDNE');
-const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertAriaRoles = require('../util/assertAriaRoles');
 const assertAriaSelectedAndActivedescendant = require('../util/assertAriaSelectedAndActivedescendant');
 
@@ -16,6 +14,7 @@ const ex = {
   optionsSelector: '#ex1 [role="option"]',
   numAOptions: 5,
   numCharFirstAOption: 6
+
 };
 
 const reload = async (session) => {
@@ -53,12 +52,12 @@ ariaTest('Test for role="combobox"', exampleFile, 'combobox-role', async (t) => 
 
 ariaTest('"aria-autocomplete" on comboxbox element', exampleFile, 'combobox-aria-autocomplete', async (t) => {
   t.plan(1);
-  await assertAttributeValues(t, 'ex1', ex.textboxSelector, 'aria-autocomplete', 'both');
+  await assertAttributeValues(t, ex.textboxSelector, 'aria-autocomplete', 'both');
 });
 
 ariaTest('"aria-haspopup" on combobox element', exampleFile, 'combobox-aria-haspopup', async (t) => {
   t.plan(1);
-  await assertAttributeValues(t, 'ex1', ex.textboxSelector, 'aria-haspopup', 'true');
+  await assertAttributeValues(t, ex.textboxSelector, 'aria-haspopup', 'true');
 });
 
 ariaTest('"aria-owns" attribute on combobox element', exampleFile, 'combobox-aria-owns', async (t) => {
@@ -143,13 +142,13 @@ ariaTest('role "listbox" on ul element', exampleFile, 'listbox-role', async (t) 
 
 ariaTest('"aria-label" attribute on listbox element', exampleFile, 'listbox-aria-label', async (t) => {
   t.plan(1);
-  await assertAttributeValues(t, 'ex1', ex.listboxSelector, 'aria-label', 'states');
+  await assertAttributeValues(t, ex.listboxSelector, 'aria-label', 'States');
 });
 
 ariaTest('role "option" on lu elements', exampleFile, 'option-role', async (t) => {
   t.plan(1);
 
-  // Send key "a" then key "BACK_SPACE" to show all options
+  // Send arrow down to reveal all options
   await t.context.session.findElement(By.css(ex.textboxSelector)).sendKeys(Key.ARROW_DOWN);
   await assertAriaRoles(t, 'ex1', 'option', '56', 'li');
 });
@@ -157,7 +156,7 @@ ariaTest('role "option" on lu elements', exampleFile, 'option-role', async (t) =
 ariaTest('"aria-selected" attribute on options element', exampleFile, 'option-aria-selected', async (t) => {
   t.plan(1);
 
-  // Send key "a" then key "BACK_SPACE" to show all options
+  // Send key "a"
   await t.context.session.findElement(By.css(ex.textboxSelector)).sendKeys('a');
   await assertAttributeValues(t, ex.optionsSelector + ':nth-of-type(1)', 'aria-selected', 'true');
 });
@@ -355,8 +354,7 @@ ariaTest('left arrow from focus on list puts focus on listbox and moves cursor r
   exampleFile, 'listbox-key-left-arrow', async (t) => {
     t.plan(2);
 
-    // Send key "a" then key "ARROW_DOWN" to put the focus on the listbox,
-    // then key ESCAPE to the textbox
+    // Send key "a" then key "ARROW_DOWN" to put the focus on the listbox
     const textbox = t.context.session.findElement(By.css(ex.textboxSelector));
     await textbox.sendKeys('a', Key.ARROW_DOWN);
 
@@ -380,8 +378,7 @@ ariaTest('Right arrow from focus on list puts focus on listbox',
   exampleFile, 'listbox-key-right-arrow', async (t) => {
     t.plan(2);
 
-    // Send key "a" then key "ARROW_DOWN" to put the focus on the listbox,
-    // then key ESCAPE to the textbox
+    // Send key "a" then key "ARROW_DOWN" to put the focus on the listbox
     const textbox = t.context.session.findElement(By.css(ex.textboxSelector));
     await textbox.sendKeys('a', Key.ARROW_DOWN);
 
@@ -400,12 +397,11 @@ ariaTest('Right arrow from focus on list puts focus on listbox',
     );
   });
 
-ariaTest('Home arrow from focus on list puts focus on listbox and moves cursor',
+ariaTest('Home from focus on list puts focus on listbox and moves cursor',
   exampleFile, 'listbox-key-home', async (t) => {
     t.plan(2);
 
-    // Send key "a" then key "ARROW_DOWN" to put the focus on the listbox,
-    // then key ESCAPE to the textbox
+    // Send key "a" then key "ARROW_DOWN" to put the focus on the listbox
     const textbox = t.context.session.findElement(By.css(ex.textboxSelector));
     await textbox.sendKeys('a', Key.ARROW_DOWN);
 
@@ -424,12 +420,11 @@ ariaTest('Home arrow from focus on list puts focus on listbox and moves cursor',
     );
   });
 
-ariaTest('End arrow from focus on list puts focus on listbox',
+ariaTest('End from focus on list puts focus on listbox',
   exampleFile, 'listbox-key-end', async (t) => {
     t.plan(2);
 
-    // Send key "a" then key "ARROW_DOWN" to put the focus on the listbox,
-    // then key ESCAPE to the textbox
+    // Send key "a" then key "ARROW_DOWN" to put the focus on the listbox
     const textbox = t.context.session.findElement(By.css(ex.textboxSelector));
     await textbox.sendKeys('a', Key.ARROW_DOWN);
 
@@ -446,5 +441,34 @@ ariaTest('End arrow from focus on list puts focus on listbox',
       '',
       'Focus should be on the textbox after on ARROW_END key',
     );
+  });
+
+ariaTest('Sending character keys while focus is on listbox moves focus',
+  exampleFile, 'listbox-characters', async (t) => {
+    t.plan(2);
+
+    // Send key "ARROW_DOWN" to put the focus on the listbox
+    const textbox = t.context.session.findElement(By.css(ex.textboxSelector));
+    await textbox.sendKeys(Key.ARROW_DOWN);
+
+    // Send key "a"
+    await textbox.sendKeys('a');
+
+    // Get the value of the first option in the listbox
+    const firstOption = await t.context.session.findElement(By.css(ex.optionsSelector)).getText();
+
+    t.is(
+      await textbox.getAttribute('value'),
+      firstOption + 'a',
+      'Value of the textbox should be "a" after sending key "a" to the textbox while the focus ' +
+        'is on the listbox'
+    );
+
+    t.is(
+      await textbox.getAttribute('aria-activedescendant'),
+      '',
+      'Focus should be on the textbox after sending a character key while the focus is on the listbox',
+    );
+
   });
 
