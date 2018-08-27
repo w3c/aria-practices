@@ -20,6 +20,8 @@ jobs:
       script: npm run lint
     - stage: Test
       script: npm run vnu-jar
+    - stage: Test
+      script: npm run regression
     - stage: Deploy
       script: skip
       before_deploy: scripts/travis-before_deploy.sh
