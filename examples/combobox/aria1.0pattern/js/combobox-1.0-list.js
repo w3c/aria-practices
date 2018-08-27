@@ -75,6 +75,7 @@ ComboboxList.prototype.init = function () {
 };
 
 ComboboxList.prototype.setActiveDescendant = function (option) {
+  console.log('[setActiveDescendant]: ' + option + ' ' + this.listbox.hasFocus);
   if (option && this.listbox.hasFocus) {
     this.domNode.setAttribute('aria-activedescendant', option.domNode.id);
   }
@@ -177,6 +178,7 @@ ComboboxList.prototype.handleKeydown = function (event) {
       break;
 
     case this.keyCode.UP:
+
       if (this.listbox.hasOptions()) {
         if (this.listbox.hasFocus || (this.isBoth && this.option)) {
           this.setOption(this.listbox.getPreviousItem(this.option), true);
@@ -186,8 +188,8 @@ ComboboxList.prototype.handleKeydown = function (event) {
           if (!altKey) {
             this.setOption(this.listbox.getLastItem(), true);
           }
-          this.setVisualFocusListbox();
         }
+        this.setVisualFocusListbox();
       }
       flag = true;
       break;
