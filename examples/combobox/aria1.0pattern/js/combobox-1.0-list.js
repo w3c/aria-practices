@@ -75,7 +75,6 @@ ComboboxList.prototype.init = function () {
 };
 
 ComboboxList.prototype.setActiveDescendant = function (option) {
-  console.log('[setActiveDescendant]: ' + option + ' ' + this.listbox.hasFocus);
   if (option && this.listbox.hasFocus) {
     this.domNode.setAttribute('aria-activedescendant', option.domNode.id);
   }
