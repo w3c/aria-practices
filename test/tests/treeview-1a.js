@@ -119,6 +119,7 @@ ariaTest('role="treeitem" on "ul" element', exampleFile, 'treeitem-role', async 
 });
 
 ariaTest('treeitem tabindex set by roving tabindex', exampleFile, 'treeitem-tabindex', async (t) => {
+  t.plan(1);
   await openAllFolders(t);
 
   await assertRovingTabindex(t, ex.treeitemSelector, Key.ARROW_DOWN);
@@ -302,7 +303,7 @@ ariaTest('key down arrow moves focus', exampleFile, 'key-down-arrow', async (t) 
 
     t.true(
       await checkFocus(t,  ex.treeitemSelector, nextIndex),
-      'Sending key ARROW_DOWN to top level folder/item at index ' + i + ' will move focus to ' + nextIndex
+      'Sending key ARROW_DOWN to folder/item at index ' + i + ' will move focus to ' + nextIndex
     );
   }
 });
@@ -351,7 +352,7 @@ ariaTest('key up arrow moves focus', exampleFile, 'key-up-arrow', async (t) => {
 
     t.true(
       await checkFocus(t,  ex.treeitemSelector, nextIndex),
-      'Sending key ARROW_UP to top level folder/item at index ' + i + ' will move focus to ' + nextIndex
+      'Sending key ARROW_UP to folder/item at index ' + i + ' will move focus to ' + nextIndex
     );
   }
 });
@@ -390,7 +391,7 @@ ariaTest('key right arrow opens folders and moves focus', exampleFile, 'key-righ
     else if (isFolder) {
       t.true(
         await checkFocus(t,  ex.treeitemSelector, i + 1),
-        'Sending key ARROW_RIGHT to folder at treeitem index ' + i +
+        'Sending key ARROW_RIGHT to open folder at treeitem index ' + i +
           ' should move focus to item ' + (i + 1)
       );
     }
@@ -508,7 +509,7 @@ ariaTest('key home moves focus', exampleFile, 'key-home', async (t) => {
 
     t.true(
       await checkFocus(t,  ex.treeitemSelector, 0),
-      'Sending key HOME to top level folder/item at index ' + i + ' will move focus to the first item'
+      'Sending key HOME to folder/item at index ' + i + ' will move focus to the first item'
     );
   }
 });
@@ -548,7 +549,7 @@ ariaTest('key end moves focus', exampleFile, 'key-end', async (t) => {
 
     t.true(
       await checkFocus(t,  ex.treeitemSelector, (items.length - 1)),
-      'Sending key END to top level folder/item at index ' + i +
+      'Sending key END to folder/item at index ' + i +
         ' will move focus to the last item in the last opened folder'
     );
   }
