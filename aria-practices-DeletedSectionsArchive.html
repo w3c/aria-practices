@@ -568,7 +568,7 @@
               <li>
                 <kbd>Enter</kbd> -
                 <ul>
-                  <li>If the the calendar is a popup attached to some other widget (e.g., a text field), then <kbd>Enter</kbd> dismisses the popup, and the selected date(s) are shown in the associated widget.</li>
+                  <li>If the calendar is a popup attached to some other widget (e.g., a text field), then <kbd>Enter</kbd> dismisses the popup, and the selected date(s) are shown in the associated widget.</li>
                   <li>If the calendar is a static region on the page, then <kbd>Enter</kbd> confirms the selected date(s).</li>
                 </ul>
               </li>
@@ -942,7 +942,7 @@
             </ol>
           </li>
           <li>
-            Navigation region: Each navigation widget should be wrapped in a container with role <a class="role-reference" href="#navigation">navigation</a> and have a label that is the same as the label on the the widget.
+            Navigation region: Each navigation widget should be wrapped in a container with role <a class="role-reference" href="#navigation">navigation</a> and have a label that is the same as the label on the widget.
             If multiple widgets are used to support a hierarchy and if the widgets are sequential in the <kbd>Tab</kbd> order, then the navigation regions for child widgets should be nested inside the navigation region of the parent.
           </li>
         </ol>
@@ -1005,7 +1005,7 @@
 
         <p>Option 1: Listbox containing links</p>
         <ul>
-          <li>The listbox should implement keyboard navigation consistent with the <a href="#Listbox">Listbox design pattern</a>. In addition, when <kbd>Enter</kbd> is pressed, the default action associated with the the currently focused option will be executed. Note that selection keys should not be implemented unless <a class="property-reference" href="#aria-multiselectable">aria-multiselectable</a> is <code>true</code>. If aria-multi-selectable is <code>false</code>, the default action should be to display the content specified by the link contained in that option, and if possible, move the focus to the beginning of the controlled region. If aria-multiselectable is <code>true</code> and <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> is <code>true</code> for the currently focused option, then <kbd>Enter</kbd> should open a pop-up menu that provides items for navigating to the target specified by the currently focused option and for performing supported non-navigation operations on the currently selected options.</li>
+          <li>The listbox should implement keyboard navigation consistent with the <a href="#Listbox">Listbox design pattern</a>. In addition, when <kbd>Enter</kbd> is pressed, the default action associated with the currently focused option will be executed. Note that selection keys should not be implemented unless <a class="property-reference" href="#aria-multiselectable">aria-multiselectable</a> is <code>true</code>. If aria-multi-selectable is <code>false</code>, the default action should be to display the content specified by the link contained in that option, and if possible, move the focus to the beginning of the controlled region. If aria-multiselectable is <code>true</code> and <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> is <code>true</code> for the currently focused option, then <kbd>Enter</kbd> should open a pop-up menu that provides items for navigating to the target specified by the currently focused option and for performing supported non-navigation operations on the currently selected options.</li>
           <li>Focus: When the listbox receives focus, the option in the listbox that is marked as currently displayed should receive focus.</li>
         </ul>
         <p>Option 2:  Toolbar containing toggle buttons</p>
@@ -1921,7 +1921,7 @@ if(evt.charOrCode){
 var node = evt.target; // get the target node of the keypress event
 if (evt.charOrCode === keys.TAB){
 // find the first and last tab focusable items in the hierarchy of the dialog container node
-// do this every time if the items may be added / removed from the the dialog may change visibility or state
+// do this every time if the items may be added / removed from the dialog may change visibility or state
 var focusItemsArray = helper.getFocusItems(dialogContainerNode);
 dialog.firstFocusItem = focusItemsArray[0];
 dialog.lastFocusItem = focusItemsArray[focusItemsArray.length-1];
