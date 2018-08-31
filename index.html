@@ -2582,9 +2582,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     <section class="widget" id="radiobutton">
       <h3 id="x3-16-radio-group"><span class="secno">3.16 </span>Radio Group<span class="permalink"><a href="#radiobutton" aria-label="Permalink for 3.16 Radio Group" title="Permalink for 3.16 Radio Group"><span>§</span></a></span></h3>
       <p>
-        A radio group is a set of checkable buttons, known as radio buttons, where no more than one of 
+        A radio group is a set of checkable buttons, known as radio buttons, where no more than one of
         the buttons can be checked at a time.
-        Some implementations may initialize the set with all buttons in the unchecked state in order to 
+        Some implementations may initialize the set with all buttons in the unchecked state in order to
         force the user to check one of the buttons before moving past a certain point in the workflow.
       </p>
 
@@ -2995,7 +2995,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
               <li><kbd>End</kbd> (Optional): Moves focus to the last tab. Optionally, activates the newly focused tab (See note below).</li>
               <li><kbd>Shift + F10</kbd>: If the tab has an associated pop-up menu, opens the menu. </li>
               <li>
-                <kbd>Delete</kbd> (Optional): If deletion is allowed, deletes (closes) the current tab element and its associated tab panel, 
+                <kbd>Delete</kbd> (Optional): If deletion is allowed, deletes (closes) the current tab element and its associated tab panel,
                 sets focus on the tab following the tab that was closed, and optionally activates the newly focused tab. If there is not a tab that followed the tab that was deleted,
                 e.g., the deleted tab was the right-most tab in a left-to-right horizontal tab list,
                 sets focus on and optionally activates the tab that preceded the deleted tab.
@@ -3526,7 +3526,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </ul>
         <div class="note" id="issue-container-generatedID-31"><div role="heading" class="note-title marker" id="h-note-30" aria-level="5"><span>Note</span></div><p class="">See <a href="#kbd_common_conventions" class="sec-ref"><span class="secno">5.8</span> <span class="sec-title">Key Assignment Conventions for Common Functions</span></a> for cut, copy, and paste key assignments.</p></div>
       </section>
-        
+
       <section id="treegrid_roles_states_props" class="notoc">
         <h4 id="wai-aria-roles-states-and-properties-23"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<span class="permalink"><a href="#treegrid_roles_states_props" aria-label="Permalink for WAI-ARIA Roles, States, and Properties" title="Permalink for WAI-ARIA Roles, States, and Properties"><span>§</span></a></span></h4>
         <ul>
@@ -4796,7 +4796,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         For example, specifying an invalid value for <code>aria-rowindex</code> or setting it on some but not all rows in a table, could cause screen reader table reading functions to skip rows or simply stop functioning.
       </p>
       <p>
-        The following code demonstrates the use of <code>aria-rowcount</code> and <code>aria-rowindex</code> properties on a table containing a a hypothetical class list.
+        The following code demonstrates the use of <code>aria-rowcount</code> and <code>aria-rowindex</code> properties on a table containing a hypothetical class list.
       </p>
       <pre aria-busy="false" class="hljs xml">        
           <span class="hljs-comment">&lt;!--
@@ -4889,7 +4889,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         <h4 id="x6-2-1-using-aria-colindex-when-column-indicies-are-contiguous"><span class="secno">6.2.1 </span>Using <code>aria-colindex</code> When Column Indicies Are Contiguous<span class="permalink"><a href="#gridAndTableProperties_cols_contiguous" aria-label="Permalink for 6.2.1 Using aria-colindex When Column Indicies Are Contiguous" title="Permalink for 6.2.1 Using aria-colindex When Column Indicies Are Contiguous"><span>§</span></a></span></h4>
         <p>
           When all the cells in a row have column index numbers that are consecutive integers,
-          <code>aria-colindex</code> can be set on the row element with a value equal to the the index number of the first column in the set.
+          <code>aria-colindex</code> can be set on the row element with a value equal to the index number of the first column in the set.
           Browsers will then compute a column number for each cell in the row.
         </p>
         <p>
@@ -5123,7 +5123,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </p>
       <p>The following example grid uses <code>aria-sort</code> to indicate the rows are sorted from the highest "Quiz 2" score to the lowest "Quiz 2" score.</p>
       <pre aria-busy="false" class="hljs xml">        
-          <span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"grid"</span> <span class="hljs-attr">aria-rowcount</span>=<span class="hljs-string">"463"</span> <span class="hljs-attr">aria-colcount</span>=<span class="hljs-string">"13"</span> 
+          <span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"grid"</span> <span class="hljs-attr">aria-rowcount</span>=<span class="hljs-string">"463"</span> <span class="hljs-attr">aria-colcount</span>=<span class="hljs-string">"13"</span>
             <span class="hljs-attr">aria-label</span>=<span class="hljs-string">"Student grades for history 101"</span>&gt;</span>
             <span class="hljs-tag">&lt;<span class="hljs-name">thead</span>&gt;</span>
               <span class="hljs-tag">&lt;<span class="hljs-name">tr</span> <span class="hljs-attr">aria-colindex</span>=<span class="hljs-string">"10"</span> <span class="hljs-attr">aria-rowindex</span>=<span class="hljs-string">"1"</span>&gt;</span>
@@ -5378,7 +5378,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
               <li>Menu button example bug fixes</li>
               <li>Navigation menubar example bug fixes</li>
               <li>Radio group example styling</li>
-              <li>Tabs pattern, including labeling guidance</li> 
+              <li>Tabs pattern, including labeling guidance</li>
               <li>Tree view pattern, including multi-select guidance</li>
               <li>Tree view example bug fixes</li>
             </ul>
