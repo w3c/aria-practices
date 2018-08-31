@@ -15,6 +15,7 @@ stages:
 jobs:
   include:
     - stage: Test
+      name: AVA Regression Tests
       script: ava -c 1 test/tests
     - stage: Test
       name: JS Linting
