@@ -9,11 +9,24 @@ addons:
 git:
   depth: 3
 
-before_deploy: scripts/travis-before_deploy.sh
-
-deploy:
-  provider: script
-  skip_cleanup: true
-  script: /tmp/deploy/travis-deploy.sh
-  on:
-    branch: master
+stages:
+- Test
+- Deploy
+jobs:
+  include:
+    - stage: Test
+      name: JS Linting
+      script: npm run lint
+    - stage: Test
+      name: HTML Linting
+      script: npm run vnu-jar
+    - stage: Deploy
+      if: branch = master AND type != pull_request
+      script: skip
+      before_deploy: scripts/travis-before_deploy.sh
+      deploy:
+        provider: script
+        skip_cleanup: true
+        script: /tmp/deploy/travis-deploy.sh
+        on:
+          branch: master
