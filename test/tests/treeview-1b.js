@@ -6,7 +6,7 @@ const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertRovingTabindex = require('../util/assertRovingTabindex');
 
-const exampleFile = 'treeview/treeview-1/treeview-1a.html';
+const exampleFile = 'treeview/treeview-1/treeview-1b.html';
 
 const ex = {
   treeSelector: '#ex1 [role="tree"]',
@@ -16,7 +16,39 @@ const ex = {
   topLevelFolderSelector: '#ex1 [role="tree"] > [role="treeitem"]',
   nextLevelFolderSelector: '[role="group"] > [role="treeitem"][aria-expanded]',
   docSelector: '#ex1 .doc[role="treeitem"]',
-  textboxSelector: '#ex1 #last_action'
+  textboxSelector: '#ex1 #last_action',
+  treeitemGroupSelectors: {
+    1: [
+      // Top level folders
+      '[role="tree"]>[role="treeitem"]'
+    ],
+    2: [
+      // Content of first top level folder
+      '[role="tree"]>[role="treeitem"]:nth-of-type(1)>[role="group"]>[role="treeitem"]',
+
+      // Content of second top level folder
+      '[role="tree"]>[role="treeitem"]:nth-of-type(2)>[role="group"]>[role="treeitem"]',
+
+      // Content of third top level folder
+      '[role="tree"]>[role="treeitem"]:nth-of-type(3)>[role="group"]>[role="treeitem"]'
+    ],
+
+    3: [
+      // Content of subfolders of first top level folder
+      '[role="tree"]>[role="treeitem"]:nth-of-type(1)>[role="group"]>[role="treeitem"]:nth-of-type(3) [role="treeitem"]',
+      '[role="tree"]>[role="treeitem"]:nth-of-type(1)>[role="group"]>[role="treeitem"]:nth-of-type(5) [role="treeitem"]',
+
+      // Content of subfolders of second top level folder
+      '[role="tree"]>[role="treeitem"]:nth-of-type(2)>[role="group"]>[role="treeitem"]:nth-of-type(1) [role="treeitem"]',
+      '[role="tree"]>[role="treeitem"]:nth-of-type(2)>[role="group"]>[role="treeitem"]:nth-of-type(2) [role="treeitem"]',
+      '[role="tree"]>[role="treeitem"]:nth-of-type(2)>[role="group"]>[role="treeitem"]:nth-of-type(3) [role="treeitem"]',
+
+      // Content of subfolders of third top level folder
+      '[role="tree"]>[role="treeitem"]:nth-of-type(3)>[role="group"]>[role="treeitem"]:nth-of-type(1) [role="treeitem"]',
+      '[role="tree"]>[role="treeitem"]:nth-of-type(3)>[role="group"]>[role="treeitem"]:nth-of-type(2) [role="treeitem"]',
+      '[role="tree"]>[role="treeitem"]:nth-of-type(3)>[role="group"]>[role="treeitem"]:nth-of-type(3) [role="treeitem"]'
+    ]
+  }
 };
 
 const openAllFolders = async function (t) {
@@ -91,7 +123,7 @@ ariaTest('role="tree" on ul element', exampleFile, 'tree-role', async (t) => {
   );
 });
 
-ariaTest('aria-labelledby on role="tree" element', exampleFile, 'tree-aria-labelledby', async (t) => {
+ariaTest('aria-labelledby on role="tree" element', exampleFile, 'tree-arialabelledby', async (t) => {
 
   t.plan(1);
 
@@ -125,7 +157,66 @@ ariaTest('treeitem tabindex set by roving tabindex', exampleFile, 'treeitem-tabi
   await assertRovingTabindex(t, ex.treeitemSelector, Key.ARROW_DOWN);
 });
 
-ariaTest('aria-expanded attribute on treeitem matches dom', exampleFile, 'treeitem-ariaexpanded', async (t) => {
+ariaTest('"aria-setsize" atrribute on treeitem', exampleFile, 'treeitem-aria-setsize', async (t) => {
+  t.plan(45);
+
+  for (const [level, levelSelectors] of Object.entries(ex.treeitemGroupSelectors)) {
+    for (const selector of levelSelectors) {
+
+      const treeitems = await t.context.session.findElements(By.css(selector));
+      const setsize = treeitems.length;
+
+      for (const treeitem of treeitems) {
+        t.is(
+          await treeitem.getAttribute('aria-setsize'),
+          setsize.toString(),
+          '"aria-setsize" attribute should be set to group size (' + setsize + ') in group "' + selector + '"'
+        );
+      }
+    }
+  }
+
+});
+
+ariaTest('"aria-posinset" attribute on treeitem', exampleFile, 'treeitem-aria-posinset', async (t) => {
+  t.plan(45);
+
+  for (const [level, levelSelectors] of Object.entries(ex.treeitemGroupSelectors)) {
+    for (const selector of levelSelectors) {
+
+      const treeitems = await t.context.session.findElements(By.css(selector));
+      let pos = 0;
+      for (const treeitem of treeitems) {
+        pos++;
+        t.is(
+          await treeitem.getAttribute('aria-posinset'),
+          pos.toString(),
+          '"aria-posinset" attribute should be set to "' + pos + '" for treeitem in group "' + selector + '"'
+        );
+      }
+    }
+  }
+});
+
+ariaTest('"aria-level" attribute on treeitem', exampleFile, 'treeitem-aria-level', async (t) => {
+  t.plan(45);
+
+  for (const [level, levelSelectors] of Object.entries(ex.treeitemGroupSelectors)) {
+    for (const selector of levelSelectors) {
+
+      const treeitems = await t.context.session.findElements(By.css(selector));
+      for (const treeitem of treeitems) {
+        t.is(
+          await treeitem.getAttribute('aria-level'),
+          level.toString(),
+          '"aria-level" attribute should be set to level "' + level + '" in group "' + selector + '"'
+        );
+      }
+    }
+  }
+});
+
+ariaTest('aria-expanded attribute on treeitem matches dom', exampleFile, 'treeitem-aria-expanded', async (t) => {
 
   t.plan(66);
 
@@ -189,7 +280,7 @@ ariaTest('aria-expanded attribute on treeitem matches dom', exampleFile, 'treeit
 
 });
 
-ariaTest('role="group" on "ul" elements', exampleFile, 'group-role', async (t) => {
+ariaTest('role="group" on "ul" elements', exampleFile, 'role-group', async (t) => {
 
   t.plan(12);
 
@@ -303,7 +394,7 @@ ariaTest('key down arrow moves focus', exampleFile, 'key-down-arrow', async (t) 
 
     t.true(
       await checkFocus(t,  ex.treeitemSelector, nextIndex),
-      'Sending key ARROW_DOWN to folder/item at index ' + i + ' will move focus to ' + nextIndex
+      'Sending key ARROW_DOWN to top level folder/item at index ' + i + ' will move focus to ' + nextIndex
     );
   }
 });
@@ -352,7 +443,7 @@ ariaTest('key up arrow moves focus', exampleFile, 'key-up-arrow', async (t) => {
 
     t.true(
       await checkFocus(t,  ex.treeitemSelector, nextIndex),
-      'Sending key ARROW_UP to folder/item at index ' + i + ' will move focus to ' + nextIndex
+      'Sending key ARROW_UP to top level folder/item at index ' + i + ' will move focus to ' + nextIndex
     );
   }
 });
@@ -391,7 +482,7 @@ ariaTest('key right arrow opens folders and moves focus', exampleFile, 'key-righ
     else if (isFolder) {
       t.true(
         await checkFocus(t,  ex.treeitemSelector, i + 1),
-        'Sending key ARROW_RIGHT to open folder at treeitem index ' + i +
+        'Sending key ARROW_RIGHT to folder at treeitem index ' + i +
           ' should move focus to item ' + (i + 1)
       );
     }
@@ -509,7 +600,7 @@ ariaTest('key home moves focus', exampleFile, 'key-home', async (t) => {
 
     t.true(
       await checkFocus(t,  ex.treeitemSelector, 0),
-      'Sending key HOME to folder/item at index ' + i + ' will move focus to the first item'
+      'Sending key HOME to top level folder/item at index ' + i + ' will move focus to the first item'
     );
   }
 });
@@ -549,7 +640,7 @@ ariaTest('key end moves focus', exampleFile, 'key-end', async (t) => {
 
     t.true(
       await checkFocus(t,  ex.treeitemSelector, (items.length - 1)),
-      'Sending key END to folder/item at index ' + i +
+      'Sending key END to top level folder/item at index ' + i +
         ' will move focus to the last item in the last opened folder'
     );
   }
