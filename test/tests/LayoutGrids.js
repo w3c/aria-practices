@@ -312,9 +312,9 @@ ariaTest('Right arrow key moves focus', 'grid/LayoutGrids.html', 'key-right-arro
     for (let index = 1; index < gridcellElements.length; index++) {
 
       await activeElement.sendKeys(Key.ARROW_RIGHT);
-      const correctActiveElement = checkActiveElement(t, ex.gridcellSelector, index);
+      const correctActiveElement = await checkActiveElement(t, ex.gridcellSelector, index);
 
-      t.truthy(
+      t.true(
         correctActiveElement,
         'Example ' + exId + ': gridcell `' + (await gridcellElements[index].getText()) + '` should receive focus after arrow right'
       );
@@ -327,8 +327,8 @@ ariaTest('Right arrow key moves focus', 'grid/LayoutGrids.html', 'key-right-arro
     // Test arrow key on final element
 
     await activeElement.sendKeys(Key.ARROW_RIGHT);
-    const correctActiveElement = checkActiveElement(t, ex.gridcellSelector, gridcellElements.length - 1);
-    t.truthy(
+    const correctActiveElement = await checkActiveElement(t, ex.gridcellSelector, gridcellElements.length - 1);
+    t.true(
       correctActiveElement,
       'Example ' + exId + ': Right Arrow sent to final gridcell should not move focus.'
     );
@@ -362,9 +362,9 @@ ariaTest('Left arrow key moves focus', 'grid/LayoutGrids.html', 'key-left-arrow'
     for (let index = gridcellElements.length - 2; index > -1; index--) {
 
       await activeElement.sendKeys(Key.ARROW_LEFT);
-      const correctActiveElement = checkActiveElement(t, ex.gridcellSelector, index);
+      const correctActiveElement = await checkActiveElement(t, ex.gridcellSelector, index);
 
-      t.truthy(
+      t.true(
         correctActiveElement,
         'Example ' + exId + ': gridcell `' + (await gridcellElements[index].getText()) + '` should receive focus after arrow left'
       );
@@ -377,8 +377,8 @@ ariaTest('Left arrow key moves focus', 'grid/LayoutGrids.html', 'key-left-arrow'
     // Test arrow left on the first cell
 
     await activeElement.sendKeys(Key.ARROW_LEFT);
-    const correctActiveElement = checkActiveElement(t, ex.gridcellSelector, 0);
-    t.truthy(
+    const correctActiveElement = await checkActiveElement(t, ex.gridcellSelector, 0);
+    t.true(
       correctActiveElement,
       'Example ' + exId + ': Left Arrow sent to fist gridcell should not move focus.'
     );
@@ -412,9 +412,9 @@ ariaTest('Down arrow key moves focus', 'grid/LayoutGrids.html', 'key-down-arrow'
     for (let index = 1; index < gridcellElements.length; index++) {
 
       await activeElement.sendKeys(Key.ARROW_DOWN);
-      const correctActiveElement = checkActiveElement(t, selector, index);
+      const correctActiveElement = await checkActiveElement(t, selector, index);
 
-      t.truthy(
+      t.true(
         correctActiveElement,
         'Example ' + exId + ': gridcell `' + (await gridcellElements[index].getText()) + '` should receive focus after arrow down'
       );
@@ -427,8 +427,8 @@ ariaTest('Down arrow key moves focus', 'grid/LayoutGrids.html', 'key-down-arrow'
     // Test arrow key on final row
 
     await activeElement.sendKeys(Key.ARROW_DOWN);
-    const correctActiveElement = checkActiveElement(t, selector, gridcellElements.length - 1);
-    t.truthy(
+    const correctActiveElement = await checkActiveElement(t, selector, gridcellElements.length - 1);
+    t.true(
       correctActiveElement,
       'Example ' + exId + ': Down Arrow sent to final gridcell should not move focus.'
     );
@@ -469,9 +469,9 @@ ariaTest('Up arrow key moves focus', 'grid/LayoutGrids.html', 'key-up-arrow', as
     for (let index = gridcellElements.length - 2; index > -1; index--) {
 
       await activeElement.sendKeys(Key.ARROW_UP);
-      const correctActiveElement = checkActiveElement(t, selector, index);
+      const correctActiveElement = await checkActiveElement(t, selector, index);
 
-      t.truthy(
+      t.true(
         correctActiveElement,
         'Example ' + exId + ': gridcell `' + (await gridcellElements[index].getText()) + '` should receive focus after arrow up'
       );
@@ -484,8 +484,8 @@ ariaTest('Up arrow key moves focus', 'grid/LayoutGrids.html', 'key-up-arrow', as
     // Test up arrow on first row
 
     await activeElement.sendKeys(Key.ARROW_UP);
-    const correctActiveElement = checkActiveElement(t, selector, 0);
-    t.truthy(
+    const correctActiveElement = await checkActiveElement(t, selector, 0);
+    t.true(
       correctActiveElement,
       'Example ' + exId + ': Up Arrow sent to fist gridcell should not move focus.'
     );
@@ -526,9 +526,9 @@ ariaTest('PageDown key moves focus', 'grid/LayoutGrids.html', 'key-page-down', a
     for (let index = jumpBy; index < gridcellElements.length; index += jumpBy) {
 
       await activeElement.sendKeys(Key.PAGE_DOWN);
-      const correctActiveElement = checkActiveElement(t, selector, index);
+      const correctActiveElement = await checkActiveElement(t, selector, index);
 
-      t.truthy(
+      t.true(
         correctActiveElement,
         initialCell + ' cell in row: gridcell `' + (await gridcellElements[index].getText()) + '` should receive focus after page down'
       );
@@ -542,8 +542,8 @@ ariaTest('PageDown key moves focus', 'grid/LayoutGrids.html', 'key-page-down', a
     // Test paging key on final element
 
     await activeElement.sendKeys(Key.PAGE_DOWN);
-    const correctActiveElement = checkActiveElement(t, selector, finalIndex);
-    t.truthy(
+    const correctActiveElement = await checkActiveElement(t, selector, finalIndex);
+    t.true(
       correctActiveElement,
       initialCell + ' cell in row: Page Down sent to final gridcell should not move focus.'
     );
@@ -593,9 +593,9 @@ ariaTest('PageUp key moves focus', 'grid/LayoutGrids.html', 'key-page-up', async
     const penultimate = gridcellElements.length - 1 - finalPageLength;
     for (let index = penultimate; index > -1; index -= jumpBy) {
       await activeElement.sendKeys(Key.PAGE_UP);
-      const correctActiveElement = checkActiveElement(t, selector, index);
+      const correctActiveElement = await checkActiveElement(t, selector, index);
 
-      t.truthy(
+      t.true(
         correctActiveElement,
         initialCell + ' cell in row: gridcell `' + (await gridcellElements[index].getText()) + '` should receive focus after page up'
       );
@@ -609,8 +609,8 @@ ariaTest('PageUp key moves focus', 'grid/LayoutGrids.html', 'key-page-up', async
     // Test paging key on final element
 
     await activeElement.sendKeys(Key.PAGE_UP);
-    const correctActiveElement = checkActiveElement(t, selector, finalIndex);
-    t.truthy(
+    const correctActiveElement = await checkActiveElement(t, selector, finalIndex);
+    t.true(
       correctActiveElement,
       initialCell + ' cell in row: Page Up sent to first gridcell should not move focus.'
     );
