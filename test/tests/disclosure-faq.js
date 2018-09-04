@@ -26,16 +26,18 @@ const ex = {
 };
 
 
-const waitAndCheckExpandedTrue = async function (t, element) {
+const waitAndCheckExpandedTrue = async function (t, selector) {
   return t.context.session.wait(async function () {
+    const element = t.context.session.findElement(By.css(selector));
     return (await element.getAttribute('aria-expanded')) === 'true';
-  }, 500);
+  }, 500, 'Timeout waiting for aria-expanded to change to true on element: ' + selector);
 };
 
-const waitAndCheckExpandedFalse = async function (t, element) {
+const waitAndCheckExpandedFalse = async function (t, selector) {
   return t.context.session.wait(async function () {
+    const element = t.context.session.findElement(By.css(selector));
     return (await element.getAttribute('aria-expanded')) === 'false';
-  }, 500);
+  }, 500, 'Timeout waiting for aria-expanded to change to false on element: ' + selector);
 };
 
 
@@ -93,7 +95,7 @@ ariaTest('key ENTER expands details', exampleFile, 'key-enter-or-space', async (
     await button.sendKeys(Key.ENTER);
 
     t.true(
-      await waitAndCheckExpandedTrue(t, button),
+      await waitAndCheckExpandedTrue(t, buttonSelector),
       'Question should have aria-expanded true after sending ENTER: ' + buttonSelector
     );
 
@@ -105,7 +107,7 @@ ariaTest('key ENTER expands details', exampleFile, 'key-enter-or-space', async (
     await button.sendKeys(Key.ENTER);
 
     t.true(
-      await waitAndCheckExpandedFalse(t, button),
+      await waitAndCheckExpandedFalse(t, buttonSelector),
       'Question should have aria-expanded false after sending ENTER twice: ' + buttonSelector
     );
 
@@ -127,7 +129,7 @@ ariaTest('key SPACE expands details', exampleFile, 'key-enter-or-space', async (
     await button.sendKeys(Key.SPACE);
 
     t.true(
-      await waitAndCheckExpandedTrue(t, button),
+      await waitAndCheckExpandedTrue(t, buttonSelector),
       'Question should have aria-expanded true after sending SPACE: ' + buttonSelector
     );
 
@@ -139,7 +141,7 @@ ariaTest('key SPACE expands details', exampleFile, 'key-enter-or-space', async (
     await button.sendKeys(Key.SPACE);
 
     t.true(
-      await waitAndCheckExpandedFalse(t, button),
+      await waitAndCheckExpandedFalse(t, buttonSelector),
       'Question should have aria-expanded false after sending SPACE twice: ' + buttonSelector
     );
 

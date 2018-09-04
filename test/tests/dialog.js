@@ -144,7 +144,7 @@ const sendTabToSelector = async function (t, selector) {
       let selector = arguments[0];
       return document.activeElement !== document.querySelector(selector);
     }, selector);
-  }, 500);
+  }, 500, 'Timeout waiting for focus to move after TAB sent to: ' + selector);
 };
 
 const sendShiftTabToSelector = async function (t, selector) {
@@ -157,7 +157,7 @@ const sendShiftTabToSelector = async function (t, selector) {
       let selector = arguments[0];
       return document.activeElement !== document.querySelector(selector);
     }, selector);
-  }, 500);
+  }, 500, 'Timeout waiting for focus to move after SHIFT TAB sent to: ' + selector);
 };
 
 const sendEscapeTo = async function (t, selector) {

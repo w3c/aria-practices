@@ -29,7 +29,7 @@ const waitForFocusChange = async (t, textboxSelector, originalFocus) => {
       return newfocus != originalFocus;
     },
     500,
-    'Error waiting for "aria-activedescendant" value to change from "' + originalFocus + '". '
+    'Timeout waiting for "aria-activedescendant" value to change from "' + originalFocus + '". '
   );
 };
 

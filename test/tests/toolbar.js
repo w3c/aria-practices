@@ -36,7 +36,7 @@ const clickAndWait = async function (t, selector) {
       return tabindex === '0';
     },
     500,
-    'click did not set tabindex="0" on: ' + selector
+    'Timeout waiting for click to set tabindex="0" on: ' + selector
   ).catch((err) => { return err; });
 };
 
@@ -50,7 +50,7 @@ const waitAndCheckFocus = async function (t, selector) {
       }, selector);
     },
     500,
-    'activeElement is not: ' + selector,
+    'Timeout waiting for activeElement to become: ' + selector,
   ).catch((err) => { return err; });
 };
 
@@ -61,7 +61,7 @@ const waitAndCheckTabindex = async function (t, selector) {
       return (await item.getAttribute('tabindex')) === '0';
     },
     600,
-    'tabindex is not "0" for: ' + selector
+    'Timeout waiting for tabindex to set to "0" for: ' + selector
   ).catch((err) => { return err; });
 };
 

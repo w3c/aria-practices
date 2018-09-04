@@ -22,18 +22,12 @@ const reload = async (session) => {
 };
 
 const waitForFocusChange = async (t, textboxSelector, originalFocus) => {
-  try {
-    await t.context.session.wait(async function () {
-      let newfocus = await t.context.session
-        .findElement(By.css(textboxSelector))
-        .getAttribute('aria-activedescendant');
-      return newfocus != originalFocus;
-    }, 500);
-  }
-  catch (e) {
-    throw new Error('Error waiting for "aria-activedescendant" value to change from "' +
-                    originalFocus + '". ' + e.message);
-  }
+  await t.context.session.wait(async function () {
+    let newfocus = await t.context.session
+      .findElement(By.css(textboxSelector))
+      .getAttribute('aria-activedescendant');
+    return newfocus != originalFocus;
+  }, 500, 'Timeout waiting for "aria-activedescendant" value to change from: ' + originalFocus);
 };
 
 const confirmCursorIndex = async (t, selector, cursorIndex) => {

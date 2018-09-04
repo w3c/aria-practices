@@ -35,7 +35,7 @@ const waitForFocusChange = async (t, textboxSelector, originalFocus) => {
       return newfocus != originalFocus;
     },
     500,
-    'Error waiting for "aria-activedescendant" value to change from "' + originalFocus + '". '
+    'Timeout waiting for "aria-activedescendant" value to change from "' + originalFocus + '". '
   );
 };
 
@@ -534,7 +534,7 @@ ariaTest('Test escape key press with focus on textbox',
         return !(await t.context.session.findElement(By.css(ex.gridSelector)).isDisplayed());
       },
       500,
-      'Error waiting for gridbox to close afer escape'
+      'Timeout waiting for gridbox to close afer escape'
     );
 
     // Confirm the grid is closed and the textboxed is cleared
@@ -568,7 +568,7 @@ ariaTest('Test escape key press with focus on textbox',
 //         return ! (await t.context.session.findElement(By.css(ex.gridSelector)).isDisplayed());
 //       },
 //       500,
-//       'Error waiting for gridbox to close afer escape'
+//       'Timeout waiting for gridbox to close afer escape'
 //     );
 
 //     // Confirm the grid is closed and the textboxed is cleared

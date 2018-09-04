@@ -30,7 +30,7 @@ const waitAndCheckAriaChecked = async function (t, selector, value) {
       return (await checkbox.getAttribute('aria-checked')) === value;
     },
     500,
-    'aria-checked is not set to "' + value + '" for: ' + selector,
+    'Timeout: aria-checked is not set to "' + value + '" for: ' + selector,
   ).catch((err) => { return err; });
 };
 
