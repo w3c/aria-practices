@@ -123,7 +123,7 @@ const openDialog4 = async function (t) {
 };
 
 const reload = async (t) => {
-  return t.context.session.get(await t.context.session.getCurrentUrl());
+  return t.context.session.get(t.context.url);
 };
 
 const checkFocus = async function (t, selector) {

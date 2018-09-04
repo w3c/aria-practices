@@ -5,8 +5,8 @@ const { By, Key } = require('selenium-webdriver');
 
 const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 
-const reload = async (session) => {
-  return session.get(await session.getCurrentUrl());
+const reload = async (t) => {
+  return t.context.session.get(t.context.url);
 };
 
 const clickUntilDisabled = async (session, selector) => {
@@ -507,7 +507,7 @@ ariaTest('PageDown key moves focus', 'grid/LayoutGrids.html', 'key-page-down', a
 
   for (let [initialCell, selector, focusableElement] of cellSelectors) {
 
-    await reload(t.context.session);
+    await reload(t);
 
     let finalIndex;
     const gridcellElements = (await t.context.session.findElements(
@@ -565,7 +565,7 @@ ariaTest('PageUp key moves focus', 'grid/LayoutGrids.html', 'key-page-up', async
 
   for (let [initialCell, selector, focusableElement] of cellSelectors) {
 
-    await reload(t.context.session);
+    await reload(t);
     // This test depends on the "page down" button which is not specified by
     // the widget's description. It does this to avoid relying on behaviors
     // that are tested elsewhere.

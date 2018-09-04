@@ -17,7 +17,7 @@ const ex = {
 };
 
 const reload = async (session) => {
-  return session.get(await session.getCurrentUrl());
+  return session.get(t.context.url);
 };
 
 const waitForFocusChange = async (t, textboxSelector, originalFocus) => {
