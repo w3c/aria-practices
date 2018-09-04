@@ -389,7 +389,7 @@
                         tab order. If you create a text field without using a standard HTML text
                         field form control then ensure that it is in the tab order.
                     </li>
-                    <li>If the text field is not editable it must have have <a
+                    <li>If the text field is not editable it must have <a
                         href="#aria-readonly" class="property-reference">aria-readonly</a> = <code>true</code>.
                     </li>
                     <li>The combobox must have <a href="#aria-expanded"
@@ -422,7 +422,7 @@
                         field is in the tab order. If you create a text field without using a
                         standard HTML text field form control then ensure that it is in the tab
                         order.</li>
-                    <li>If the combobox is not editable it must have have <a
+                    <li>If the combobox is not editable it must have <a
                         href="#aria-readonly" class="property-reference">aria-readonly</a> = <code>true</code>.
                     </li>
                     <li>The combobox must have <a href="#aria-expanded"
@@ -568,7 +568,7 @@
               <li>
                 <kbd>Enter</kbd> -
                 <ul>
-                  <li>If the the calendar is a popup attached to some other widget (e.g., a text field), then <kbd>Enter</kbd> dismisses the popup, and the selected date(s) are shown in the associated widget.</li>
+                  <li>If the calendar is a popup attached to some other widget (e.g., a text field), then <kbd>Enter</kbd> dismisses the popup, and the selected date(s) are shown in the associated widget.</li>
                   <li>If the calendar is a static region on the page, then <kbd>Enter</kbd> confirms the selected date(s).</li>
                 </ul>
               </li>
@@ -942,7 +942,7 @@
             </ol>
           </li>
           <li>
-            Navigation region: Each navigation widget should be wrapped in a container with role <a class="role-reference" href="#navigation">navigation</a> and have a label that is the same as the label on the the widget.
+            Navigation region: Each navigation widget should be wrapped in a container with role <a class="role-reference" href="#navigation">navigation</a> and have a label that is the same as the label on the widget.
             If multiple widgets are used to support a hierarchy and if the widgets are sequential in the <kbd>Tab</kbd> order, then the navigation regions for child widgets should be nested inside the navigation region of the parent.
           </li>
         </ol>
@@ -1005,7 +1005,7 @@
 
         <p>Option 1: Listbox containing links</p>
         <ul>
-          <li>The listbox should implement keyboard navigation consistent with the <a href="#Listbox">Listbox design pattern</a>. In addition, when <kbd>Enter</kbd> is pressed, the default action associated with the the currently focused option will be executed. Note that selection keys should not be implemented unless <a class="property-reference" href="#aria-multiselectable">aria-multiselectable</a> is <code>true</code>. If aria-multi-selectable is <code>false</code>, the default action should be to display the content specified by the link contained in that option, and if possible, move the focus to the beginning of the controlled region. If aria-multiselectable is <code>true</code> and <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> is <code>true</code> for the currently focused option, then <kbd>Enter</kbd> should open a pop-up menu that provides items for navigating to the target specified by the currently focused option and for performing supported non-navigation operations on the currently selected options.</li>
+          <li>The listbox should implement keyboard navigation consistent with the <a href="#Listbox">Listbox design pattern</a>. In addition, when <kbd>Enter</kbd> is pressed, the default action associated with the currently focused option will be executed. Note that selection keys should not be implemented unless <a class="property-reference" href="#aria-multiselectable">aria-multiselectable</a> is <code>true</code>. If aria-multi-selectable is <code>false</code>, the default action should be to display the content specified by the link contained in that option, and if possible, move the focus to the beginning of the controlled region. If aria-multiselectable is <code>true</code> and <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> is <code>true</code> for the currently focused option, then <kbd>Enter</kbd> should open a pop-up menu that provides items for navigating to the target specified by the currently focused option and for performing supported non-navigation operations on the currently selected options.</li>
           <li>Focus: When the listbox receives focus, the option in the listbox that is marked as currently displayed should receive focus.</li>
         </ul>
         <p>Option 2:  Toolbar containing toggle buttons</p>
@@ -1890,7 +1890,7 @@ excommunication&lt;/dd&gt;
           If the keypress is a <kbd>Shift + Tab</kbd> key and the target == the first tab navigable object, then set focus to the last tab-navigable object and stop the key press event. If there is only a single tab focusable item, then focus does not have to be set, but the key press event must be stopped.
         </li>
         <li>
-          If the keypress is a <kbd>Tab</kbd> key and the target == the last tab navigable object, then set focus to the first tab-navigable object and stop the keypress event. If there is only a single tab-focusable item, then focus does not have to be set but the keypress event must must be stopped.
+          If the keypress is a <kbd>Tab</kbd> key and the target == the last tab navigable object, then set focus to the first tab-navigable object and stop the keypress event. If there is only a single tab-focusable item, then focus does not have to be set but the keypress event must be stopped.
         </li>
         <li>
           If the keypress is an <kbd>Escape</kbd> key and the target node is the container node for the dialog box, then close the dialog box and hide or destroy the dialog underlay.
@@ -1921,7 +1921,7 @@ if(evt.charOrCode){
 var node = evt.target; // get the target node of the keypress event
 if (evt.charOrCode === keys.TAB){
 // find the first and last tab focusable items in the hierarchy of the dialog container node
-// do this every time if the items may be added / removed from the the dialog may change visibility or state
+// do this every time if the items may be added / removed from the dialog may change visibility or state
 var focusItemsArray = helper.getFocusItems(dialogContainerNode);
 dialog.firstFocusItem = focusItemsArray[0];
 dialog.lastFocusItem = focusItemsArray[focusItemsArray.length-1];
@@ -2284,7 +2284,7 @@ consistent with their visual rendering. Rather than setting  size only on a cont
 &lt;img src="foo.jpg" id="333" title="Finance Manager Approval"&gt;
 &lt;img src="foo.jpg" id="334" title="Sales Manager Approval"&gt;
 &#8230;  </pre>
-<p>Each element referenced by the flowto must have have a unique id. The combination of the unique id and the name allow the assistive technology  to adequately assist the user in retracing their steps backward through a flow to reference or moving forward to it. Since the author sets only the target the user agent is responsible for mapping the backward reference relationship. Therefore, neither the user agent nor the user can get lost. The host user agent does not provide an alternative navigation order; this is an assistive technology function.</p>
+<p>Each element referenced by the flowto must have a unique id. The combination of the unique id and the name allow the assistive technology  to adequately assist the user in retracing their steps backward through a flow to reference or moving forward to it. Since the author sets only the target the user agent is responsible for mapping the backward reference relationship. Therefore, neither the user agent nor the user can get lost. The host user agent does not provide an alternative navigation order; this is an assistive technology function.</p>
       </li>
       <li id="step3_keyboard">Make sure visual objects are keyboard accessible
         <p>Use tabindex to enable objects to receive focus. Actually setting focus to them may be performed by an assistive technology, such as an alternative input device. This example places each drawing object in  document order with respect to the tab sequence. </p>
@@ -3122,7 +3122,7 @@ field. </p>
         analysis of the accessibility properties defined in <abbr title="Microsoft Active Accessibility">MSAA</abbr> and <abbr title="Accessibility Toolkit">ATK</abbr>.
         The following example extends the previous approach by adding the <a class="property-reference" href="#aria-haspopup">aria-haspopup</a> accessibility property.</p>
       <div class="example">
-        <p>Example: Use of WAI-ARIA to incorporate accessible state information information into XHTML 1.x</p>
+        <p>Example: Use of WAI-ARIA to incorporate accessible state information into XHTML 1.x</p>
         <pre class="highlight">
 <span class="pi">&lt;?xml version="1.1" encoding="us-ascii"?&gt;</span>
 <span class="doctype">&lt;!DOCTYPE html PUBLIC "Accessible Adaptive Applications//EN"
@@ -3305,7 +3305,7 @@ field. </p>
       extensions for Mozilla/Firefox</a> from the University of Illinois at
       Urbana-Champaign to render the document landmarks. This picture
       shows the Firefox browser rendering the University of Illinois
-      Career Career Center home page. In this example. The "List of Navigation Bars" viewer is shown, launched from the extension on the
+      Career Center home page. In this example. The "List of Navigation Bars" viewer is shown, launched from the extension on the
       toolbar. The viewer shows that the secondary "Career Center Services" is selected resulting
       in that section of the document being highlighted in yellow. The
       Navigation Bar Lists Viewer  lists the following list of titles corresponding to the navigation sections:</p>
