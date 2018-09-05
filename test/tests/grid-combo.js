@@ -6,7 +6,6 @@ const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAttributeDNE = require('../util/assertAttributeDNE');
 const assertAriaRoles = require('../util/assertAriaRoles');
-const assertAriaSelectedAndActivedescendant = require('../util/assertAriaSelectedAndActivedescendant');
 
 const exampleFile = 'combobox/aria1.1pattern/grid-combo.html';
 
@@ -20,10 +19,6 @@ const ex = {
   gridcellSelector: '#ex1 [role="gridcell"]',
   gridcellFocusedClass: 'focused-cell',
   numAOptions: 3
-};
-
-const reload = async (session) => {
-  return session.get(t.context.url);
 };
 
 const waitForFocusChange = async (t, textboxSelector, originalFocus) => {
@@ -264,6 +259,9 @@ ariaTest('Test down key press with focus on textbox',
       .findElement(By.css(ex.textboxSelector))
       .sendKeys('a', Key.ARROW_DOWN);
 
+    // Account for race condition
+    await waitForFocusChange(t, ex.textboxSelector, null);
+
     // Check that the grid is displayed
     t.true(
       await t.context.session.findElement(By.css(ex.gridSelector)).isDisplayed(),
@@ -382,6 +380,9 @@ ariaTest('Test up key press with focus on textbox',
     await t.context.session
       .findElement(By.css(ex.textboxSelector))
       .sendKeys('a', Key.ARROW_UP);
+
+    // Account for race condition
+    await waitForFocusChange(t, ex.textboxSelector, null);
 
     // Check that the grid is displayed
     t.true(
