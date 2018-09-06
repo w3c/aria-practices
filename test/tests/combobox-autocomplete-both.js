@@ -3,6 +3,7 @@
 const { ariaTest } = require('..');
 const { By, Key } = require('selenium-webdriver');
 const assertAttributeValues = require('../util/assertAttributeValues');
+const assertAriaLabelExists = require('../util/assertAriaLabelExists');
 const assertAriaRoles = require('../util/assertAriaRoles');
 const assertAriaSelectedAndActivedescendant = require('../util/assertAriaSelectedAndActivedescendant');
 
@@ -142,7 +143,7 @@ ariaTest('role "listbox" on ul element', exampleFile, 'listbox-role', async (t) 
 
 ariaTest('"aria-label" attribute on listbox element', exampleFile, 'listbox-aria-label', async (t) => {
   t.plan(1);
-  await assertAttributeValues(t, ex.listboxSelector, 'aria-label', 'States');
+  await assertAriaLabelExists(t, ex.listboxSelector);
 });
 
 ariaTest('role "option" on lu elements', exampleFile, 'option-role', async (t) => {

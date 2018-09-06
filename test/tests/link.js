@@ -2,6 +2,7 @@
 
 const { ariaTest } = require('..');
 const { By, Key } = require('selenium-webdriver');
+const assertAriaLabelExists = require('../util/assertAriaLabelExists');
 
 let pageExamples = [
   {
@@ -74,18 +75,16 @@ ariaTest('Test "alt" attribute exists',
 ariaTest('Test "aria-label" attribute exists',
   'link/link.html', 'aria-label', async (t) => {
 
+    t.plan(1);
+
     for (let i = 0; i < pageExamples.length; i++) {
+
       let ex = pageExamples[i];
       if (!ex.hasOwnProperty('ariaLabel')) {
         continue;
       }
-      let linkLocator = By.css(ex.linkSelector);
-      let linkElement = await t.context.session.findElement(linkLocator);
 
-      t.truthy(
-        await linkElement.getAttribute('aria-label'),
-        '"aria-label" attribute should exist on element selected by: ' + ex.linkSelector,
-      );
+      await assertAriaLabelExists(t, ex.linkSelector);
     }
   });
 

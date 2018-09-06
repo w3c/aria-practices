@@ -3,8 +3,9 @@
 const { ariaTest } = require('..');
 const { By, Key } = require('selenium-webdriver');
 const assertAttributeValues = require('../util/assertAttributeValues');
-const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertAriaControls = require('../util/assertAriaControls');
+const assertAriaLabelledby = require('../util/assertAriaLabelledby');
+const assertAriaLabelExists = require('../util/assertAriaLabelExists');
 const assertAriaRoles = require('../util/assertAriaRoles');
 const assertTabOrder = require('../util/assertTabOrder');
 
@@ -54,28 +55,8 @@ ariaTest('role="tablist" on div element', exampleFile, 'tablist-role', async (t)
 });
 
 ariaTest('"ariaLabel" attribute on role="tablist"', exampleFile, 'tablist-aria-label', async (t) => {
-  t.plan(2);
-
-  const element = await t.context.session.findElement(By.css(ex.tablistSelector));
-
-  const ariaLabelExists = await t.context.session.executeScript(async function () {
-    const selector = arguments[0];
-    let el = document.querySelector(selector);
-    return el.hasAttribute('aria-label');
-  }, ex.tablistSelector);
-
-  t.true(
-    ariaLabelExists,
-    '"aria-label" attribute should exist on element: ' + ex.tablistSelector
-  );
-
-  let label = await element.getAttribute('aria-label');
-
-  t.is(
-    label,
-    'Entertainment',
-    '"aria-label" attribute should be set to "Entertainment" for element: ' + ex.tablistSelector
-  );
+  t.plan(1);
+  await assertAriaLabelExists(t, ex.tablistSelector);
 });
 
 ariaTest('role="tab" on button elements', exampleFile, 'tab-role', async (t) => {

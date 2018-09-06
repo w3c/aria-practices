@@ -3,6 +3,7 @@
 const { ariaTest } = require('..');
 const { By, Key } = require('selenium-webdriver');
 const assertAriaDescribedby = require('../util/assertAriaDescribedby');
+const assertAriaLabelExists = require('../util/assertAriaLabelExists');
 const assertAriaRoles = require('../util/assertAriaRoles');
 
 const exampleFile = 'table/table.html';
@@ -23,26 +24,8 @@ ariaTest('role="table" element exists', exampleFile, 'table-role', async (t) => 
 });
 
 ariaTest('"aria-label" attribute on table element', exampleFile, 'table-aria-label', async (t) => {
-  t.plan(2);
-
-  const ariaLabelExists = await t.context.session.executeScript(async function () {
-    const [ selector ] = arguments;
-    const el = document.querySelector(selector);
-    return el.hasAttribute('aria-label');
-  }, ex.tableSelector);
-
-  t.true(
-    ariaLabelExists,
-    '"aria-label" attribute should exist on element: ' + ex.tableSelector
-  );
-
-  const ariaLabel = await t.context.session.findElement(By.css(ex.tableSelector))
-    .getAttribute('aria-label');
-
-  t.truthy(
-    ariaLabel,
-    '"aria-label" attribute should have value on element: ' + ex.tableSelector
-  );
+  t.plan(1);
+  await assertAriaLabelExists(t, ex.tableSelector);
 });
 
 ariaTest('"aria-describedby" attribute on table element', exampleFile, 'table-aria-describedby', async (t) => {
