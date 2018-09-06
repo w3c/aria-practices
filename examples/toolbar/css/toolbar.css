@@ -7,7 +7,7 @@
 li{
 	margin: 0;
 }
-.toolbar{
+[role="toolbar"] {
 	border:3px #ECECEA;
 	border-radius:5px;
 	padding:.25em;
@@ -29,7 +29,7 @@ li{
 margin-left: 0.75em;
 }
 
-.toolbar-item {
+[role="button"] {
 	border: 2px solid transparent;
 	outline:none;
 	display: inline-block;
@@ -42,34 +42,16 @@ margin-left: 0.75em;
 	line-height: 1.5em;
 	margin-right:0.25em;
 }
-.toolbar-item:focus{
-	border-color:#8CCBF2;
+.characteristics div[aria-pressed="true"], .align div[aria-pressed="true"] {
+	border-color:rgb(70, 70, 70);
+	font-weight: bold;
+}
+[role="button"]:focus{
+
+	border-color:#005A9C;
 	background:rgb(226, 239, 255);
 }
-.menu-wrapper {
-	display: inline-block;
-	font-size: 16px;
-}
-
-.menu-button {
-	padding-right: 2.5em;
-	position: relative;
-}
-
-.menu-button::after {
-	content: " ";
-	border-left: 0.4em solid transparent;
-	border-right: 0.4em solid transparent;
-	border-top: 0.4em solid black;
-	position: absolute;
-	right: 1em;
-	top: 1.1em;
-}
-.menu-button:focus:after {
-	color: white;
-}
-
-#textarea1 {
+textarea {
 	width:85%;
 	padding: .25em;
 	border: 2px solid black;
@@ -79,9 +61,6 @@ margin-left: 0.75em;
 	border-radius: 5px;
 
 }
-.characteristics div[aria-pressed="true"], .align div[aria-pressed="true"] {
-	border-color:rgb(70, 70, 70);
-	font-weight: bold;
-}
+
 
 

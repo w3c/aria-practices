@@ -18,7 +18,7 @@ var aria = aria || {};
  */
 aria.Toolbar = function (domNode) {
   this.domNode = domNode;
-  this.items = this.domNode.querySelectorAll('.toolbar-item');
+  this.items = this.domNode.querySelectorAll('[role="toolbar-item"]');
   this.firstItem = null;
   this.lastItem = null;
   this.toolbarItems = [];

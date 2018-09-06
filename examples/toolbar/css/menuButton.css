@@ -5,9 +5,25 @@ button {
 
 .menu-wrapper {
   position: relative;
+  display: inline-block;
+	font-size: 16px;
 }
 .menu-button{
   width:6em;
+  padding-right: 2.5em;
+	position: relative;
+}
+.menu-button::after {
+	content: " ";
+	border-left: 0.4em solid transparent;
+	border-right: 0.4em solid transparent;
+	border-top: 0.4em solid black;
+	position: absolute;
+	right: 1em;
+	top: 1.1em;
+}
+.menu-button:focus:after {
+	color: white;
 }
 ul[role="menu"] {
   display: none;
