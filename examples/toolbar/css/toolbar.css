@@ -29,7 +29,7 @@ li{
 margin-left: 0.75em;
 }
 
-[role="button"] {
+[role="toolbar"] [role="button"] {
 	border: 2px solid transparent;
 	outline:none;
 	display: inline-block;
@@ -42,11 +42,11 @@ margin-left: 0.75em;
 	line-height: 1.5em;
 	margin-right:0.25em;
 }
-.characteristics div[aria-pressed="true"], .align div[aria-pressed="true"] {
+[role="toolbar"]  [role="button"][aria-pressed="true"] {
 	border-color:rgb(70, 70, 70);
 	font-weight: bold;
 }
-[role="button"]:focus{
+[role="toolbar"] [role="button"]:focus{
 
 	border-color:#005A9C;
 	background:rgb(226, 239, 255);
