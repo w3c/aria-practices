@@ -40,13 +40,12 @@ function actionButtonKeydownHandler (event) {
 }
 
 /**
- * Activates the action button with the enter or space key.
+ * Activates the action button with the space key.
  *
  * @param {KeyboardEvent} event
  */
 function actionButtonKeyupHandler (event) {
-  // If either enter or space is pressed, activate the button
-  if (event.keyCode === 13 || event.keyCode === 32) {
+  if (event.keyCode === 32) {
     event.preventDefault();
     activateActionButton();
   }
@@ -87,12 +86,12 @@ function toggleButtonKeydownHandler (event) {
 }
 
 /**
- * Toggles the toggle button’s state with the enter or space key.
+ * Toggles the toggle button’s state with space key.
  *
  * @param {KeyboardEvent} event
  */
 function toggleButtonKeyupHandler (event) {
-  if (event.keyCode === 13 || event.keyCode === 32) {
+  if (event.keyCode === 32) {
     event.preventDefault();
     toggleButtonState(event.currentTarget);
   }
