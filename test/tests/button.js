@@ -83,7 +83,7 @@ ariaTest('"aria-pressed" reflects button state', exampleFile, 'button-aria-press
   await toggleButtonEl.click();
   await t.context.session.wait(async function () {
     return toggleButtonEl.getAttribute('aria-pressed') !== 'true';
-  }, 500, 'Timeout waiting for aria-pressed to change from "true"');
+  }, t.context.waitTime, 'Timeout waiting for aria-pressed to change from "true"');
 
   t.is(
     await toggleButtonEl.getAttribute('aria-pressed'),
@@ -102,7 +102,7 @@ ariaTest('key ENTER activates button', exampleFile, 'key-enter', async (t) => {
   await toggleButtonEl.sendKeys(Key.ENTER);
   await t.context.session.wait(async function () {
     return toggleButtonEl.getAttribute('aria-pressed') !== 'true';
-  }, 500, 'Timeout waiting for aria-pressed to change from "true"');
+  }, t.context.waitTime, 'Timeout waiting for aria-pressed to change from "true"');
 
   t.is(
     await toggleButtonEl.getAttribute('aria-pressed'),
@@ -114,7 +114,7 @@ ariaTest('key ENTER activates button', exampleFile, 'key-enter', async (t) => {
   await toggleButtonEl.sendKeys(Key.ENTER);
   await t.context.session.wait(async function () {
     return toggleButtonEl.getAttribute('aria-pressed') !== 'false';
-  }, 500, 'Timeout waiting for aria-pressed to change from "false"');
+  }, t.context.waitTime, 'Timeout waiting for aria-pressed to change from "false"');
 
   t.is(
     await toggleButtonEl.getAttribute('aria-pressed'),
@@ -139,7 +139,7 @@ ariaTest('key ENTER activates button', exampleFile, 'key-enter', async (t) => {
 
   await t.context.session.wait(async function () {
     return actionButtonEl.getText('') !== oldText;
-  }, 500, 'window.print was not executed');
+  }, t.context.waitTime, 'window.print was not executed');
 
   t.is(
     await actionButtonEl.getText(),
@@ -158,7 +158,7 @@ ariaTest('key SPACE activates button', exampleFile, 'key-space', async (t) => {
   await toggleButtonEl.sendKeys(Key.SPACE);
   await t.context.session.wait(async function () {
     return toggleButtonEl.getAttribute('aria-pressed') !== 'true';
-  }, 500, 'Timeout waiting for aria-pressed to change from "true"');
+  }, t.context.waitTime, 'Timeout waiting for aria-pressed to change from "true"');
 
   t.is(
     await toggleButtonEl.getAttribute('aria-pressed'),
@@ -170,7 +170,7 @@ ariaTest('key SPACE activates button', exampleFile, 'key-space', async (t) => {
   await toggleButtonEl.sendKeys(Key.SPACE);
   await t.context.session.wait(async function () {
     return toggleButtonEl.getAttribute('aria-pressed') !== 'false';
-  }, 500, 'Timeout waiting for aria-pressed to change from "false"');
+  }, t.context.waitTime, 'Timeout waiting for aria-pressed to change from "false"');
 
   t.is(
     await toggleButtonEl.getAttribute('aria-pressed'),
@@ -195,7 +195,7 @@ ariaTest('key SPACE activates button', exampleFile, 'key-space', async (t) => {
 
   await t.context.session.wait(async function () {
     return actionButtonEl.getText('') !== oldText;
-  }, 500, 'window.print was not executed');
+  }, t.context.waitTime, 'window.print was not executed');
 
   t.is(
     await actionButtonEl.getText(),

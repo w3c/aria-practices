@@ -37,13 +37,13 @@ const waitAndCheckFocus = async function (t, selector, index) {
       let items = document.querySelectorAll(selector);
       return items[index] === document.activeElement;
     }, selector, index);
-  }, 500, 'Timeout waiting for document.activeElement to become item at index ' + index + ' of elements selected by: ' + selector);
+  }, t.context.waitTime, 'Timeout waiting for document.activeElement to become item at index ' + index + ' of elements selected by: ' + selector);
 };
 
 const waitAndCheckAriaSelected = async function (t, element) {
   return t.context.session.wait(async function () {
     return (await element.getAttribute('aria-selected')) === 'true';
-  }, 500, 'Timeout waiting for aria-selected to be set to true.');
+  }, t.context.waitTime, 'Timeout waiting for aria-selected to be set to true.');
 };
 
 // Attributes

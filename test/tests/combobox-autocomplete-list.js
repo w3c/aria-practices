@@ -24,7 +24,7 @@ const waitForFocusChange = async (t, textboxSelector, originalFocus) => {
         .getAttribute('aria-activedescendant');
       return newfocus != originalFocus;
     },
-    500,
+    t.context.waitTime,
     'Error waiting for "aria-activedescendant" value to change from "' + originalFocus + '". '
   );
 };

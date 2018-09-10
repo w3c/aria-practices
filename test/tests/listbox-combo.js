@@ -43,7 +43,7 @@ const waitForFocusChange = async (t, textboxSelector, originalFocus) => {
       .findElement(By.css(textboxSelector))
       .getAttribute('aria-activedescendant');
     return newfocus != originalFocus;
-  }, 500, 'Timeout waiting for "aria-activedescendant" value to change from: ' + originalFocus);
+  }, t.context.waitTime, 'Timeout waiting for "aria-activedescendant" value to change from: ' + originalFocus);
 };
 
 const confirmCursorIndex = async (t, selector, cursorIndex) => {

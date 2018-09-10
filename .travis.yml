@@ -33,3 +33,6 @@ jobs:
         script: /tmp/deploy/travis-deploy.sh
         on:
           branch: master
+
+env:
+  - TEST_WAIT_TIME=1000

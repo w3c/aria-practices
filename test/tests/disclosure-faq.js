@@ -30,14 +30,14 @@ const waitAndCheckExpandedTrue = async function (t, selector) {
   return t.context.session.wait(async function () {
     const element = t.context.session.findElement(By.css(selector));
     return (await element.getAttribute('aria-expanded')) === 'true';
-  }, 500, 'Timeout waiting for aria-expanded to change to true on element: ' + selector);
+  }, t.context.waitTime, 'Timeout waiting for aria-expanded to change to true on element: ' + selector);
 };
 
 const waitAndCheckExpandedFalse = async function (t, selector) {
   return t.context.session.wait(async function () {
     const element = t.context.session.findElement(By.css(selector));
     return (await element.getAttribute('aria-expanded')) === 'false';
-  }, 500, 'Timeout waiting for aria-expanded to change to false on element: ' + selector);
+  }, t.context.waitTime, 'Timeout waiting for aria-expanded to change to false on element: ' + selector);
 };
 
 

@@ -58,7 +58,7 @@ const exampleInitialized = async function (t) {
   await t.context.session.wait(async function () {
     const els = await t.context.session.findElements(By.css(initializedSelector));
     return els.length === 1;
-  }, 500, 'Timeout waiting for example to initialize');
+  }, t.context.waitTime, 'Timeout waiting for example to initialize');
 };
 
 const checkmarkVisible = async function (t, selector, index) {
@@ -295,7 +295,7 @@ ariaTest('Test aria-disabled="false" for all submenu role="menuitem"s',
       await menuitem[0].sendKeys(Key.ENTER);
 
       return await menuitem[0].getAttribute('aria-disabled') === 'true';
-    }, 500, 'Timeout trying to disable the first item in the last menu by sending multiple clicks');
+    }, t.context.waitTime, 'Timeout trying to disable the first item in the last menu by sending multiple clicks');
 
     // Test that the item was successfully disabled
     t.true(
@@ -310,7 +310,7 @@ ariaTest('Test aria-disabled="false" for all submenu role="menuitem"s',
       await menuitem[1].sendKeys(Key.ENTER);
 
       return await menuitem[1].getAttribute('aria-disabled') === 'true';
-    }, 500, 'Timeout trying to disable the second item in the last menu by sending multiple clicks');
+    }, t.context.waitTime, 'Timeout trying to disable the second item in the last menu by sending multiple clicks');
 
     // Test that the item was successfully disabled
     t.true(
