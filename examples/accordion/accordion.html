@@ -38,27 +38,16 @@
     <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
     <div id="coding-arena">
       <div class="demo-block">
-        <!-- Accordion Configuration Options
-
-          data-allow-toggle
-            Allow for each toggle to both open and close individually
-
-          data-allow-multiple
-            Allow for multiple accordion sections to be expanded at the same time. Assumes data-allow-toggle otherwise you would not be able to close any of the accordions
-          __________
-
-          Ex:
-            <dl id="accordionGroup" role="presentation" class="Accordion" data-allow-multiple>
-            <dl id="accordionGroup" role="presentation" class="Accordion" data-allow-toggle>
-        -->
         <div id="accordionGroup" role="presentation" class="Accordion">
-          <div role="heading" aria-level="3">
+          <h3>
             <button aria-expanded="true" class="Accordion-trigger"
-              aria-controls="sect1" id="accordion1id" type="button"
-            >
-              <span class="Accordion-title">Personal Information</span><span class="Accordion-icon"></span>
+              aria-controls="sect1" id="accordion1id">
+              <div class="Accordion-title"">
+                Personal Information
+                <span class="Accordion-icon"></span>
+              </div>
             </button>
-          </div>
+          </h3>
           <div id="sect1" role="region" aria-labelledby="accordion1id" class="Accordion-panel">
             <div>
               <!-- Variable content within section, may include any type of markup or interactive widgets. -->
@@ -94,13 +83,15 @@
               </fieldset>
             </div>
           </div>
-          <div role="heading" aria-level="3">
+          <h3>
             <button aria-expanded="false" class="Accordion-trigger"
-              aria-controls="sect2" id="accordion2id" type="button"
-            >
-              <span class="Accordion-title">Billing Address</span><span class="Accordion-icon"></span>
+              aria-controls="sect2" id="accordion2id">
+              <div class="Accordion-title">
+                Billing Address
+                <span class="Accordion-icon"></span>
+              </div>
             </button>
-          </div>
+          </h3>
           <div id="sect2" role="region" aria-labelledby="accordion2id" class="Accordion-panel" hidden>
             <div>
               <fieldset>
@@ -127,13 +118,15 @@
               </fieldset>
             </div>
           </div>
-          <div role="heading" aria-level="3">
+          <h3>
             <button aria-expanded="false" class="Accordion-trigger"
-              aria-controls="sect3" id="accordion3id" type="button"
-            >
-              <span class="Accordion-title">Shipping Address</span><span class="Accordion-icon"></span>
+              aria-controls="sect3" id="accordion3id">
+              <div class="Accordion-title">
+                Shipping Address
+                <span class="Accordion-icon"></span>
+            </div>
             </button>
-          </div>
+          </h3>
           <div id="sect3" role="region" aria-labelledby="accordion3id" class="Accordion-panel" hidden>
             <div>
               <fieldset>
@@ -164,6 +157,22 @@
       </div>
     </div>
     <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
+  </section>
+  <section>
+    <h2>Focus Styling</h2>
+    <p>One way to provide keyboard only users information on the additional keyboard shortcuts available in the accordion pattern, is to highlight the accordion container and the accordion buttons that the shortcuts can be used to navigate to.</p>
+
+    <p>When any of the accordion button receives focus:</p>
+    <ul>
+      <li>The border of the accordion changes color.</li>
+      <li>Background color of the accordion buttons change.</li>
+    </ul>
+
+    <p>The accordion button that receives focus:</p>
+    <ul>
+      <li>Border appears around the button text and icon.</li>
+      <li>Background color is different than the non-focus accordion buttons.</li>
+    </ul>
   </section>
   <section>
     <h2 id="kbd_label">Keyboard Support</h2>

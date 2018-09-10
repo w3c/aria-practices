@@ -18,6 +18,7 @@ Array.prototype.slice.call(document.querySelectorAll('.Accordion')).forEach(func
   var triggers = Array.prototype.slice.call(accordion.querySelectorAll('.Accordion-trigger'));
   var panels = Array.prototype.slice.call(accordion.querySelectorAll('.Accordion-panel'));
 
+
   accordion.addEventListener('click', function (event) {
     var target = event.target;
 
@@ -103,6 +104,19 @@ Array.prototype.slice.call(document.querySelectorAll('.Accordion')).forEach(func
       }
 
     }
+  });
+
+  // These are used to style the accordion when one of the buttons has focus
+  accordion.querySelectorAll('.Accordion-trigger').forEach(function (trigger) {
+
+    trigger.addEventListener('focus', function (event) {
+      accordion.classList.add('focus');
+    });
+
+    trigger.addEventListener('blur', function (event) {
+      accordion.classList.remove('focus');
+    });
+
   });
 
   // Minor setup: will set disabled state, via aria-disabled, to an
