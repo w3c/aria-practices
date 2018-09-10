@@ -14,6 +14,12 @@ const assert = require('assert');
 module.exports = async function assertAttributeValues (t, elementSelector, attribute, value) {
   let elementLocator = By.css(elementSelector);
   let elements = await t.context.session.findElements(elementLocator);
+
+  assert.ok(
+    elements.length,
+    'CSS elector returned no results: ' + elementSelector
+  );
+
   for (let element of elements) {
     assert.strictEqual(
       await element.getAttribute(attribute),
