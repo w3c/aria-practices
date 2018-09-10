@@ -547,23 +547,53 @@
     <section class="widget" id="carousel">
       <h3>Carousel (Image Rotator)</h3>
       <p>
-        A carousel is a composite widget containing a set of controls for pausing the rotation of images and navigating images.
-        The image often has additional related content in the form of text content and links.
-        A  <code>tablist</code> widget and a set of <code>button</code> widgets can be used to describe the carousel content, pause and restart automatic rotation and manually rotate through the images.
-        Each image is represented as a <code>tabpanel</code> and a <code>tablist</code> is used to control navigation to each item.
-        In addition to the tabs, a previous and next button are typically provided to allow navigation to the previous and next slide.
-        A button is used to stop the automatic rotationof the image for screen reader and other keyboard users.
-        When screen reader users move their review cursor to the image content and it automatically rotates, the content is removed from the accessibility tree and the review cursor typically moves to the beginning of the page, which is disorienting to users.
-        The set of controls should also be in a complementary landmark with an accessible name identifying the region as a carousel widget.
+        A carousel is a composite widget containing a set of controls for pausing the rotation of images and navigation of auto-rotating images.  The image often has additional related content in the form of text content and links.  The carousel content and related controls should be contained in a <code>complementary</code> or <code>region</code> landmark with a label identifying the region as containing an auto-rotating images. Images that are not rendered should be hidden using <code>display: none</code>. The sufficient requirements for controlling the carousel include a pause button, previous button and a next button.  Optionally a <code>tablist</code> can be used to provide additional control over the navigation of the imaged.</p>
+
+        <p>When screen reader users do not have information or control over the rotating images, they often move their review cursor to the image content and when it automatically rotates, the content is removed from the accessibility tree and their reading cursor typically moves to the beginning of the page, which is disorienting to users.</p>
+
+        <dl>
+          <dt>Pause Button</dt>
+          <dd>Used to stop the auto-rotation of images, and can optionally be a toggle to restart the rotation of images</dd>
+          <dd>This is important to inform screen reader users using virtual reading modes to switch to application mode to stop the rotation of images.</dd>
+
+          <dt>Previous Image Button</dt>
+          <dd>Used to update the image to the previous image in the list of images.</dd>
+          <dd>The label for the button can contain information on the current position of the previous image in the sequence of images and the total number of images.</dd>
+
+          <dt>Next Image Button</dt>
+          <dd>Used to update the image to the next image in the list of images.</dd>
+          <dd>The label for the button can contain information on the current position of the next image in the sequence of images and the total number of images.</dd>
+
+          <dt><code>tablist</code> widget (optional)</dt>
+          <dd>Used to provide direct navigation to individual images.</dd>
+        </dl>
+
 
       <section class="notoc">
         <h4>Examples</h4>
-        <p><a href="examples/carousel/carousel-1/carousel.html">Carousel Example</a>: Demonstrates the accessibility features of a carousel of auto-rotating images.</p>
+        <ul>
+          <li><a href="examples/carousel/carousel-2/carousel.html">Carousel Example</a>: Demonstrates the accessibility features of a carousel of auto-rotating images.</li>
+          <li><a href="examples/carousel/carousel-1/carousel.html">Carousel with Tablist Example</a>: Demonstrates the accessibility features of a carousel of auto-rotating images with optional tablist.</li>
+        </ul>
       </section>
 
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
-        <p>For the tab list:</p>
+
+        <p>Moving keyboard focus to any interactive element immediately stops slide rotation.  Automated slide rotation should not resume unless explicitly requested by the user (e.g. through an optional resume rotation button)</p>
+
+        <p>For the pause, previous and next buttons:</p>
+        <ul>
+          <li>
+            <kbd>Tab</kbd>: The tab sequence begins with the pause button, next the previous image button, then to interactive content in the image and then to the next image button.
+          </li>
+          <li>
+            <kbd>Enter or Space</kbd>: Activates the previous or next button rotating in new slide content or pauses the rotation of the images.
+          </li>
+        </ul>
+        <p>
+
+        <p>For the optional tab list:</p>
         <ul>
           <li>
             <kbd>Tab</kbd>: When focus moves into the tab list, places focus on the active <code>tab</code> element .
@@ -2044,9 +2074,9 @@
     <section class="widget" id="radiobutton">
       <h3>Radio Group</h3>
       <p>
-        A radio group is a set of checkable buttons, known as radio buttons, where no more than one of 
+        A radio group is a set of checkable buttons, known as radio buttons, where no more than one of
         the buttons can be checked at a time.
-        Some implementations may initialize the set with all buttons in the unchecked state in order to 
+        Some implementations may initialize the set with all buttons in the unchecked state in order to
         force the user to check one of the buttons before moving past a certain point in the workflow.
       </p>
 
@@ -2451,7 +2481,7 @@
               <li><kbd>End</kbd> (Optional): Moves focus to the last tab. Optionally, activates the newly focused tab (See note below).</li>
               <li><kbd>Shift + F10</kbd>: If the tab has an associated pop-up menu, opens the menu. </li>
               <li>
-                <kbd>Delete</kbd> (Optional): If deletion is allowed, deletes (closes) the current tab element and its associated tab panel, 
+                <kbd>Delete</kbd> (Optional): If deletion is allowed, deletes (closes) the current tab element and its associated tab panel,
                 sets focus on the tab following the tab that was closed, and optionally activates the newly focused tab. If there is not a tab that followed the tab that was deleted,
                 e.g., the deleted tab was the right-most tab in a left-to-right horizontal tab list,
                 sets focus on and optionally activates the tab that preceded the deleted tab.
@@ -2982,7 +3012,7 @@
         </ul>
         <p class="note">See <a href="#kbd_common_conventions"></a> for cut, copy, and paste key assignments.</p>
       </section>
-        
+
       <section id="treegrid_roles_states_props" class="notoc">
         <h4>WAI-ARIA Roles, States, and Properties</h4>
         <ul>
@@ -4584,7 +4614,7 @@
       <p>The following example grid uses <code>aria-sort</code> to indicate the rows are sorted from the highest "Quiz 2" score to the lowest "Quiz 2" score.</p>
       <pre>
         <code>
-          &lt;table role=&quot;grid&quot; aria-rowcount=&quot;463&quot; aria-colcount=&quot;13&quot; 
+          &lt;table role=&quot;grid&quot; aria-rowcount=&quot;463&quot; aria-colcount=&quot;13&quot;
             aria-label=&quot;Student grades for history 101&quot;&gt;
             &lt;thead&gt;
               &lt;tr aria-colindex=&quot;10&quot; aria-rowindex=&quot;1&quot;&gt;
@@ -4833,7 +4863,7 @@
               <li>Menu button example bug fixes</li>
               <li>Navigation menubar example bug fixes</li>
               <li>Radio group example styling</li>
-              <li>Tabs pattern, including labeling guidance</li> 
+              <li>Tabs pattern, including labeling guidance</li>
               <li>Tree view pattern, including multi-select guidance</li>
               <li>Tree view example bug fixes</li>
             </ul>
