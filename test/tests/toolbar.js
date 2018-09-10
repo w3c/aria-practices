@@ -94,8 +94,8 @@ ariaTest('roving tabindex on button elements', exampleFile, 'button-tabindex', a
   // Test the last element in the toolbox, which is a native "button" element
   await clickAndWait(t, ex.menuSelector);
 
-  await assertAttributeValues(t, 'ex1', ex.toolSelector, 'tabindex', '-1');
-  await assertAttributeValues(t, 'ex1', ex.menuSelector, 'tabindex', '0');
+  await assertAttributeValues(t, ex.toolSelector, 'tabindex', '-1');
+  await assertAttributeValues(t, ex.menuSelector, 'tabindex', '0');
 });
 
 // Test pending fix bug in example: fix in issue 847 on w3c/aria-practices

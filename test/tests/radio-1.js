@@ -59,7 +59,7 @@ ariaTest('"aria-checked" set on role="radio"', exampleFile, 'radio-aria-checked'
   t.plan(19);
 
   // The radio groups will be all unchecked on page load
-  await assertAttributeValues(t, 'ex1', ex.radioSelector, 'aria-checked', 'false');
+  await assertAttributeValues(t, ex.radioSelector, 'aria-checked', 'false');
 
   const radiogroups = await t.context.session.findElements(By.css(ex.radiogroupSelector));
   for (let radiogroup of radiogroups) {
@@ -110,11 +110,11 @@ ariaTest('Selects radio item', exampleFile, 'key-space', async (t) => {
 
   const firstCrustSelector = ex.crustRadioSelector + ':nth-of-type(1)';
   await t.context.session.findElement(By.css(firstCrustSelector)).sendKeys(Key.SPACE);
-  await assertAttributeValues(t, 'ex1', firstCrustSelector, 'aria-checked', 'true');
+  await assertAttributeValues(t, firstCrustSelector, 'aria-checked', 'true');
 
   const firstDeliverySelector = ex.deliveryRadioSelector + ':nth-of-type(1)';
   await t.context.session.findElement(By.css(firstDeliverySelector)).sendKeys(Key.SPACE);
-  await assertAttributeValues(t, 'ex1', firstDeliverySelector, 'aria-checked', 'true');
+  await assertAttributeValues(t, firstDeliverySelector, 'aria-checked', 'true');
 
 });
 
