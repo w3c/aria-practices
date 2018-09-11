@@ -25,10 +25,9 @@ const ex = {
   ]
 };
 
-const openTabAtIndex = async function (t, tabOrderIndex) {
-  const selector = ex.tabSelector + ':nth-child(' + (tabOrderIndex + 1) + ')';
-
-  await t.context.session.findElement(By.css(selector)).click();
+const openTabAtIndex = async function (t, index) {
+  const tabs = await t.context.session.findElements(By.css(ex.tabSelector));
+  await tabs[index].click();
 };
 
 const waitAndCheckFocus = async function (t, selector, index) {
@@ -41,9 +40,10 @@ const waitAndCheckFocus = async function (t, selector, index) {
   }, t.context.waitTime, 'Timeout waiting for document.activeElement to become item at index ' + index + ' of elements selected by: ' + selector);
 };
 
-const waitAndCheckAriaSelected = async function (t, element) {
+const waitAndCheckAriaSelected = async function (t, index) {
   return t.context.session.wait(async function () {
-    return (await element.getAttribute('aria-selected')) === 'true';
+    const tabs = await t.context.session.findElements(By.css(ex.tabSelector));
+    return (await tabs[index].getAttribute('aria-selected')) === 'true';
   }, t.context.waitTime, 'Timeout waiting for aria-selected to be set to true.');
 };
 
@@ -122,7 +122,6 @@ ariaTest('"tabindex" on role="tab"', exampleFile, 'tab-tabindex', async (t) => {
           'Tab at index ' + selectedEl + ' is selected, therefore, that tab should not ' +
             'have the "tabindex" attribute'
         );
-
       }
 
       // Unopened tabs should have tabindex="-1"
@@ -189,8 +188,9 @@ ariaTest('ARROW_RIGHT key moves focus and activates tab', exampleFile, 'key-righ
       await waitAndCheckFocus(t, ex.tabSelector, index + 1),
       'right arrow on tab "' + index + '" should put focus on the next tab.'
     );
+
     t.true(
-      await waitAndCheckAriaSelected(t, tabs[index + 1]),
+      await waitAndCheckAriaSelected(t, index + 1),
       'right arrow on tab "' + index + '" should set aria-selected="true" on next tab.'
     );
     t.true(
@@ -208,7 +208,7 @@ ariaTest('ARROW_RIGHT key moves focus and activates tab', exampleFile, 'key-righ
     'right arrow on tab "' + (tabs.length - 1) + '" should put focus to first tab.'
   );
   t.true(
-    await waitAndCheckAriaSelected(t, tabs[0]),
+    await waitAndCheckAriaSelected(t, 0),
     'right arrow on tab "' + (tabs.length - 1) + '" should set aria-selected="true" on first tab.'
   );
   t.true(
@@ -227,41 +227,41 @@ ariaTest('ARROW_LEFT key moves focus and activates tab', exampleFile, 'key-left-
   // Put focus on first tab
   await openTabAtIndex(t, 0);
 
-  // Send the right arrow
+  // Send the left arrow
   await tabs[0].sendKeys(Key.ARROW_LEFT);
 
   // Check the focus returns to the last item
   t.true(
     await waitAndCheckFocus(t, ex.tabSelector, tabs.length - 1),
-    'right arrow on tab 0 should put focus to last tab.'
+    'left arrow on tab 0 should put focus to last tab.'
   );
 
   t.true(
-    await waitAndCheckAriaSelected(t, tabs[tabs.length - 1]),
-    'right arrow on tab 0 should set aria-selected="true" on last tab.'
+    await waitAndCheckAriaSelected(t, tabs.length - 1),
+    'left arrow on tab 0 should set aria-selected="true" on last tab.'
   );
   t.true(
     await tabpanels[tabs.length - 1].isDisplayed(),
-    'right arrow on tab 0 should display the last panel.'
+    'left arrow on tab 0 should display the last panel.'
   );
 
   for (let index = tabs.length - 1; index > 0; index--) {
 
-    // Send the arrow right key to move focus
+    // Send the arrow left key to move focus
     await tabs[index].sendKeys(Key.ARROW_LEFT);
 
     // Check the focus is correct
     t.true(
       await waitAndCheckFocus(t, ex.tabSelector, index - 1),
-      'right arrow on tab "' + index + '" should put focus on the previous tab.'
+      'left arrow on tab "' + index + '" should put focus on the previous tab.'
     );
     t.true(
-      await waitAndCheckAriaSelected(t, tabs[index - 1]),
-      'right arrow on tab "' + index + '" should set aria-selected="true" on previous tab.'
+      await waitAndCheckAriaSelected(t, index - 1),
+      'left arrow on tab "' + index + '" should set aria-selected="true" on previous tab.'
     );
     t.true(
       await tabpanels[index - 1].isDisplayed(),
-      'right arrow on tab "' + index + '" should display the next previous panel.'
+      'left arrow on tab "' + index + '" should display the next previous panel.'
     );
   }
 });
@@ -286,7 +286,7 @@ ariaTest('HOME key moves focus and selects tab', exampleFile, 'key-home', async 
       'home key on tab "' + index + '" should put focus on the first tab.'
     );
     t.true(
-      await waitAndCheckAriaSelected(t, tabs[0]),
+      await waitAndCheckAriaSelected(t, 0),
       'home key on tab "' + index + '" should set aria-selected="true" on the first tab.'
     );
     t.true(
@@ -315,7 +315,7 @@ ariaTest('END key moves focus and selects tab', exampleFile, 'key-end', async (t
       'home key on tab "' + index + '" should put focus on the last tab.'
     );
     t.true(
-      await waitAndCheckAriaSelected(t, tabs[tabs.length - 1]),
+      await waitAndCheckAriaSelected(t, tabs.length - 1),
       'home key on tab "' + index + '" should set aria-selected="true" on the last tab.'
     );
     t.true(
