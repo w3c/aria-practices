@@ -6,7 +6,6 @@ const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAttributeDNE = require('../util/assertAttributeDNE');
 const assertAriaRoles = require('../util/assertAriaRoles');
-const assertAriaSelectedAndActivedescendant = require('../util/assertAriaSelectedAndActivedescendant');
 
 const exampleFile = 'combobox/aria1.1pattern/grid-combo.html';
 
@@ -22,10 +21,6 @@ const ex = {
   numAOptions: 3
 };
 
-const reload = async (session) => {
-  return session.get(await session.getCurrentUrl());
-};
-
 const waitForFocusChange = async (t, textboxSelector, originalFocus) => {
   await t.context.session.wait(
     async function () {
@@ -34,8 +29,8 @@ const waitForFocusChange = async (t, textboxSelector, originalFocus) => {
         .getAttribute('aria-activedescendant');
       return newfocus != originalFocus;
     },
-    500,
-    'Error waiting for "aria-activedescendant" value to change from "' + originalFocus + '". '
+    t.context.waitTime,
+    'Timeout waiting for "aria-activedescendant" value to change from "' + originalFocus + '". '
   );
 };
 
@@ -264,6 +259,9 @@ ariaTest('Test down key press with focus on textbox',
       .findElement(By.css(ex.textboxSelector))
       .sendKeys('a', Key.ARROW_DOWN);
 
+    // Account for race condition
+    await waitForFocusChange(t, ex.textboxSelector, null);
+
     // Check that the grid is displayed
     t.true(
       await t.context.session.findElement(By.css(ex.gridSelector)).isDisplayed(),
@@ -382,6 +380,9 @@ ariaTest('Test up key press with focus on textbox',
     await t.context.session
       .findElement(By.css(ex.textboxSelector))
       .sendKeys('a', Key.ARROW_UP);
+
+    // Account for race condition
+    await waitForFocusChange(t, ex.textboxSelector, null);
 
     // Check that the grid is displayed
     t.true(
@@ -533,8 +534,8 @@ ariaTest('Test escape key press with focus on textbox',
       async function () {
         return !(await t.context.session.findElement(By.css(ex.gridSelector)).isDisplayed());
       },
-      500,
-      'Error waiting for gridbox to close afer escape'
+      t.context.waitTime,
+      'Timeout waiting for gridbox to close afer escape'
     );
 
     // Confirm the grid is closed and the textboxed is cleared
@@ -567,8 +568,8 @@ ariaTest('Test escape key press with focus on textbox',
 //       async function () {
 //         return ! (await t.context.session.findElement(By.css(ex.gridSelector)).isDisplayed());
 //       },
-//       500,
-//       'Error waiting for gridbox to close afer escape'
+//       t.context.waitTime,
+//       'Timeout waiting for gridbox to close afer escape'
 //     );
 
 //     // Confirm the grid is closed and the textboxed is cleared

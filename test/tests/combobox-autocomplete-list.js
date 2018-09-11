@@ -16,10 +16,6 @@ const ex = {
   numAOptions: 5
 };
 
-const reload = async (session) => {
-  return session.get(await session.getCurrentUrl());
-};
-
 const waitForFocusChange = async (t, textboxSelector, originalFocus) => {
   await t.context.session.wait(
     async function () {
@@ -28,7 +24,7 @@ const waitForFocusChange = async (t, textboxSelector, originalFocus) => {
         .getAttribute('aria-activedescendant');
       return newfocus != originalFocus;
     },
-    500,
+    t.context.waitTime,
     'Error waiting for "aria-activedescendant" value to change from "' + originalFocus + '". '
   );
 };
@@ -181,6 +177,8 @@ ariaTest('Test down key press with focus on textbox',
       'In example ex3 listbox should display after ARROW_DOWN keypress'
     );
 
+    await waitForFocusChange(t, ex.textboxSelector, null);
+
     // Check that the active descendent focus is correct
     await assertAriaSelectedAndActivedescendant(t, ex.textboxSelector, ex.optionsSelector, 0);
 
@@ -244,6 +242,8 @@ ariaTest('Test up key press with focus on textbox',
       await t.context.session.findElement(By.css(ex.listboxSelector)).isDisplayed(),
       'In example ex3 listbox should display after ARROW_UP keypress'
     );
+
+    await waitForFocusChange(t, ex.textboxSelector, null);
 
     // Check that the active descendent focus is correct
     let numOptions = (await t.context.session.findElements(By.css(ex.optionsSelector))).length;

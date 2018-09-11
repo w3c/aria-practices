@@ -29,8 +29,8 @@ const waitAndCheckAriaChecked = async function (t, selector, value) {
       let checkbox = await t.context.session.findElement(By.css(selector));
       return (await checkbox.getAttribute('aria-checked')) === value;
     },
-    500,
-    'aria-checked is not set to "' + value + '" for: ' + selector,
+    t.context.waitTime,
+    'Timeout: aria-checked is not set to "' + value + '" for: ' + selector,
   ).catch((err) => { return err; });
 };
 

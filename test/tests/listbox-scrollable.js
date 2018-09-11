@@ -13,7 +13,8 @@ const exampleFile = 'listbox/listbox-scrollable.html';
 const ex = {
   listboxSelector: '#ex [role="listbox"]',
   optionSelector: '#ex [role="option"]',
-  numOptions: 26
+  numOptions: 26,
+  firstOptionSelector: '#ex #ss_elem_Np'
 };
 
 // Attributes
@@ -38,7 +39,7 @@ ariaTest('aria-activedescendant on listbox element', exampleFile, 'listbox-aria-
 
   // Put the focus on the listbox. In this example, focusing on the listbox
   // will automatically select the first option.
-  await t.context.session.findElement(By.css(ex.listboxSelector)).sendKeys(Key.TAB);
+  await t.context.session.findElement(By.css(ex.firstOptionSelector)).click();
 
   let options = await t.context.session.findElements(By.css(ex.optionSelector));
   let optionId = await options[0].getAttribute('id');
@@ -64,8 +65,7 @@ ariaTest('"aria-selected" on option elements', exampleFile, 'option-aria-selecte
 
   // Put the focus on the listbox. In this example, focusing on the listbox
   // will automatically select the first option.
-  const listbox = await t.context.session.findElement(By.css(ex.listboxSelector));
-  await listbox.sendKeys(Key.TAB);
+  await t.context.session.findElement(By.css(ex.firstOptionSelector)).click();
 
   await assertAttributeValues(t, ex.optionSelector + ':nth-child(1)', 'aria-selected', 'true');
 });
@@ -77,11 +77,12 @@ ariaTest('DOWN ARROW moves focus', exampleFile, 'key-down-arrow', async (t) => {
 
   // Put the focus on the listbox. In this example, focusing on the listbox
   // will automatically select the first option.
-  const listbox = await t.context.session.findElement(By.css(ex.listboxSelector));
-  await listbox.sendKeys(Key.TAB);
+  await t.context.session.findElement(By.css(ex.firstOptionSelector)).click();
 
   // Sending the key down arrow will put focus on the item at index 1
+  const listbox = await t.context.session.findElement(By.css(ex.listboxSelector));
   await listbox.sendKeys(Key.ARROW_DOWN);
+
   await assertAriaSelectedAndActivedescendant(t, ex.listboxSelector, ex.optionSelector, 1);
 
   // The selection does not wrap to beginning of list if keydown arrow is sent more times
@@ -95,6 +96,10 @@ ariaTest('DOWN ARROW moves focus', exampleFile, 'key-down-arrow', async (t) => {
 
 ariaTest('END moves focus', exampleFile, 'key-end', async (t) => {
   t.pass(2);
+
+  // Put the focus on the listbox. In this example, focusing on the listbox
+  // will automatically select the first option.
+  await t.context.session.findElement(By.css(ex.firstOptionSelector)).click();
 
   const listbox = await t.context.session.findElement(By.css(ex.listboxSelector));
 
@@ -111,6 +116,10 @@ ariaTest('END moves focus', exampleFile, 'key-end', async (t) => {
 
 ariaTest('UP ARROW moves focus', exampleFile, 'key-up-arrow', async (t) => {
   t.plan(2);
+
+  // Put the focus on the listbox. In this example, focusing on the listbox
+  // will automatically select the first option.
+  await t.context.session.findElement(By.css(ex.firstOptionSelector)).click();
 
   const listbox = await t.context.session.findElement(By.css(ex.listboxSelector));
 
@@ -132,6 +141,10 @@ ariaTest('UP ARROW moves focus', exampleFile, 'key-up-arrow', async (t) => {
 
 ariaTest('HOME moves focus', exampleFile, 'key-home', async (t) => {
   t.plan(2);
+
+  // Put the focus on the listbox. In this example, focusing on the listbox
+  // will automatically select the first option.
+  await t.context.session.findElement(By.css(ex.firstOptionSelector)).click();
 
   const listbox = await t.context.session.findElement(By.css(ex.listboxSelector));
   await listbox.sendKeys(Key.ARROW_DOWN, Key.ARROW_DOWN);

@@ -9,6 +9,7 @@ const startGeckodriver = require('./util/start-geckodriver');
 
 let session, geckodriver;
 const firefoxArgs = process.env.CI ? [ '-headless' ] : [];
+const testWaitTime = parseInt(process.env.TEST_WAIT_TIME) || 500;
 
 test.before(async (t) => {
   geckodriver = await startGeckodriver(1022, 12 * 1000);
@@ -26,6 +27,7 @@ test.before(async (t) => {
 
 test.beforeEach((t) => {
   t.context.session = session;
+  t.context.waitTime = testWaitTime;
 });
 
 test.after.always(() => {

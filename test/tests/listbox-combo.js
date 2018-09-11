@@ -32,25 +32,19 @@ const pageExamples = {
   }
 };
 
-const reload = async (session) => {
-  return session.get(await session.getCurrentUrl());
+const reload = async (t) => {
+  return t.context.session.get(t.context.url);
 };
 
 const waitForFocusChange = async (t, textboxSelector, originalFocus) => {
-  try {
-    await t.context.session.wait(async function () {
-      let newfocus = await t.context.session
-        .findElement(By.css(textboxSelector))
-        .getAttribute('aria-activedescendant');
-      return newfocus != originalFocus;
-    }, 500);
-  }
-  catch (e) {
-    throw new Error('Error waiting for "aria-activedescendant" value to change from "' +
-                    originalFocus + '". ' + e.message);
-  }
-};
 
+  await t.context.session.wait(async function () {
+    const newfocus = await t.context.session
+      .findElement(By.css(textboxSelector))
+      .getAttribute('aria-activedescendant');
+    return newfocus != originalFocus;
+  }, t.context.waitTime, 'Timeout waiting for "aria-activedescendant" value to change from: ' + originalFocus);
+};
 
 const confirmCursorIndex = async (t, selector, cursorIndex) => {
   return t.context.session.executeScript(function () {
@@ -444,7 +438,10 @@ ariaTest('Test for aria-selected on option element',
 
     /* Example 2 and 3 */
 
+    await reload(t);
+
     for (let exId of ['ex2', 'ex3']) {
+      await reload(t);
       ex = pageExamples[exId];
 
       // Send key "a" to textbox
@@ -497,6 +494,7 @@ ariaTest('Test down key press with focus on textbox',
 
     /* Example 2 */
 
+    await reload(t);
     ex = pageExamples.ex2;
 
     // Send ARROW_DOWN to the textbox
@@ -512,6 +510,7 @@ ariaTest('Test down key press with focus on textbox',
 
     /* Example 3 */
 
+    await reload(t);
     ex = pageExamples.ex3;
 
     // Send ARROW_DOWN to the textbox
@@ -520,10 +519,13 @@ ariaTest('Test down key press with focus on textbox',
       .sendKeys(Key.ARROW_DOWN);
 
     // Check that the listbox is displayed
-    t.truthy(
+    t.true(
       await t.context.session.findElement(By.css(ex.listboxSelector)).isDisplayed(),
       'In example ex3 listbox should display after ARROW_DOWN keypress'
     );
+
+    // Wait for focus to change
+    await waitForFocusChange(t, ex.textboxSelector, null);
 
     // Check that the active descendent focus is correct
     await assertAriaSelectedAndActivedescendant(t, ex.textboxSelector, ex.optionsSelector, 0);
@@ -537,6 +539,7 @@ ariaTest('Test down key press with focus on list',
 
     // Test assumptions: the number of options in the listbox after typing "a"
     const numOptions = 3;
+
 
     /* Example 1 */
 
@@ -563,8 +566,10 @@ ariaTest('Test down key press with focus on list',
       await assertAriaSelectedAndActivedescendant(t, ex.textboxSelector, ex.optionsSelector, i % numOptions);
     }
 
+
     /* Example 2 */
 
+    await reload(t);
     ex = pageExamples.ex2;
 
     // Send 'a' to text box, then send ARROW_DOWN to textbox to set focus on listbox
@@ -590,6 +595,7 @@ ariaTest('Test down key press with focus on list',
 
     /* Example 3 */
 
+    await reload(t);
     ex = pageExamples.ex3;
 
     // Send 'a' to text box, then send ARROW_DOWN to textbox to set focus on listbox
@@ -638,6 +644,7 @@ ariaTest('Test up key press with focus on textbox',
 
     /* Example 2 */
 
+    await reload(t);
     ex = pageExamples.ex2;
 
     // Send ARROW_UP to the textbox
@@ -653,6 +660,7 @@ ariaTest('Test up key press with focus on textbox',
 
     /* Example 3 */
 
+    await reload(t);
     ex = pageExamples.ex3;
 
     // Send ARROW_UP to the textbox
@@ -660,8 +668,11 @@ ariaTest('Test up key press with focus on textbox',
       .findElement(By.css(ex.textboxSelector))
       .sendKeys(Key.ARROW_UP);
 
+    // Wait for focus to change
+    await waitForFocusChange(t, ex.textboxSelector, null);
+
     // Check that the listbox is displayed
-    t.truthy(
+    t.true(
       await t.context.session.findElement(By.css(ex.listboxSelector)).isDisplayed(),
       'In example ex3 listbox should display after ARROW_UP keypress'
     );
@@ -707,6 +718,7 @@ ariaTest('Test up key press with focus on listbox',
 
     /* Example 2 */
 
+    await reload(t);
     ex = pageExamples.ex2;
 
     // Send 'a' to text box, then send ARROW_UP to textbox to textbox to put focus in textbox
@@ -735,6 +747,7 @@ ariaTest('Test up key press with focus on listbox',
 
     /* Example 3 */
 
+    await reload(t);
     ex = pageExamples.ex3;
 
     // Send 'a' to text box, then send ARROW_UP to textbox to textbox to put focus in textbox
@@ -794,6 +807,7 @@ ariaTest('Test enter key press with focus on textbox',
     /* Example 2 and 3 */
 
     for (let exId of ['ex2', 'ex3']) {
+      await reload(t);
       ex = pageExamples[exId];
 
       // Send key "a" to the textbox

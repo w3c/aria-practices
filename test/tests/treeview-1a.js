@@ -286,7 +286,7 @@ ariaTest('key down arrow moves focus', exampleFile, 'key-down-arrow', async (t) 
   }
 
   // Reload page
-  await t.context.session.get(await t.context.session.getCurrentUrl());
+  await t.context.session.get(t.context.url);
 
   // Open all folders
   await openAllFolders(t);
@@ -335,7 +335,7 @@ ariaTest('key up arrow moves focus', exampleFile, 'key-up-arrow', async (t) => {
   }
 
   // Reload page
-  await t.context.session.get(await t.context.session.getCurrentUrl());
+  await t.context.session.get(t.context.url);
 
   // Open all folders
   await openAllFolders(t);
@@ -497,7 +497,7 @@ ariaTest('key home moves focus', exampleFile, 'key-home', async (t) => {
 
 
   // Reload page
-  await t.context.session.get(await t.context.session.getCurrentUrl());
+  await t.context.session.get(t.context.url);
 
   // Open all folders
   await openAllFolders(t);
@@ -537,7 +537,7 @@ ariaTest('key end moves focus', exampleFile, 'key-end', async (t) => {
 
 
   // Reload page
-  await t.context.session.get(await t.context.session.getCurrentUrl());
+  await t.context.session.get(t.context.url);
 
   // Open all folders
   await openAllFolders(t);
@@ -593,7 +593,7 @@ ariaTest('characters move focus', exampleFile, 'key-character', async (t) => {
   }
 
   // Reload page
-  await t.context.session.get(await t.context.session.getCurrentUrl());
+  await t.context.session.get(t.context.url);
 
   // Open all folders
   await openAllFolders(t);

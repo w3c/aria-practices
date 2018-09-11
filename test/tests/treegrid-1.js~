@@ -1,0 +1,162 @@
+'use strict';
+
+const { ariaTest } = require('..');
+const { By, Key } = require('selenium-webdriver');
+const assertAriaRoles = require('../util/assertAriaRoles');
+const assertAttributeValues = require('../util/assertAttributeValues');
+const assertAriaLabelExists = require('../util/assertAriaLabelExists');
+const assertRovingTabindex = require('../util/assertRovingTabindex');
+
+const exampleFile = 'treegrid/treegrid-1.html';
+
+const ex = {
+  treegridSelector: '#ex1 [role="treegrid"]',
+  rowSelector: '#ex1 [role="row"]',
+  gridcellSelector: '#ex1 [role="gridcell"]',
+  parentEmailSelector: '#ex1 [role="row"][aria-expanded]'
+};
+
+const openAllThreads = async function (t) {
+  let closedThreads = await t.context.session.findElements(By.css(ex.parentEmailSelector));
+
+  // Going through all closed email thread elements in dom order will open parent
+  // threads first, therefore all child threads will be visible before openning
+  for (let thread of closedThreads) {
+    await thread.sendKeys(Key.ENTER);
+  }
+};
+
+const checkFocus = async function (t, selector, index) {
+  return t.context.session.executeScript(function (/* selector, index*/) {
+    const [selector, index] = arguments;
+    const items = document.querySelectorAll(selector);
+    return items[index] === document.activeElement;
+  }, selector, index);
+};
+
+const checkFocusOnParentFolder = async function (t, el) {
+  return t.context.session.executeScript(function () {
+    const el = arguments[0];
+
+    // the element is a folder
+    if (el.hasAttribute('aria-expanded')) {
+      return document.activeElement === el.parentElement.closest('[role="treeitem"][aria-expanded]');
+    }
+    // the element is a folder
+    else {
+      return document.activeElement === el.closest('[role="treeitem"][aria-expanded]');
+    }
+  }, el);
+};
+
+const isTopLevelFolder = async function (t, el) {
+  return t.context.session.executeScript(function () {
+    const el = arguments[0];
+    return el.parentElement.getAttribute('role') === 'tree';
+  }, el);
+};
+
+const isFolderTreeitem = async function (el) {
+  return !(await el.getAttribute('class')).includes('doc');
+};
+
+const isOpenedFolderTreeitem =  async function (el) {
+  return await el.getAttribute('aria-expanded') === 'true';
+};
+
+const isClosedFolderTreeitem =  async function (el) {
+  return await el.getAttribute('aria-expanded') === 'false';
+};
+
+// Attributes
+
+ariaTest('', exampleFile, 'treegrid-role', async (t) => {
+  t.plan(1);
+  await assertAriaRoles(t, 'ex1', 'treegrid', 1, 'table');
+});
+
+ariaTest('', exampleFile, 'treegrid-aria-label', async (t) => {
+  t.plan(1);
+  await assertAriaLabelExists(t, ex.treegridSelector);
+});
+
+ariaTest('', exampleFile, 'row-role', async (t) => {
+  t.plan(1);
+  await assertAriaRoles(t, 'ex1', 'row', 8, 'tr');
+});
+
+ariaTest('', exampleFile, 'row-tabindex', async (t) => {
+  t.pass();
+});
+
+
+ariaTest('', exampleFile, 'row-aria-expanded', async (t) => {
+  t.pass();
+});
+
+
+ariaTest('', exampleFile, 'row-aria-level', async (t) => {
+  t.pass();
+});
+
+ariaTest('', exampleFile, 'row-aria-setsize', async (t) => {
+  t.pass();
+});
+
+
+ariaTest('', exampleFile, 'row-aria-posinset', async (t) => {
+  t.pass();
+});
+
+
+ariaTest('', exampleFile, 'gridcell-role', async (t) => {
+  t.plan(1);
+  await assertAriaRoles(t, 'ex1', 'gridcell', 24, 'td');
+});
+
+// Keys
+
+ariaTest('', exampleFile, 'key-right-arrow', async (t) => {
+  t.pass();
+});
+
+
+ariaTest('', exampleFile, 'key-left-arrow', async (t) => {
+  t.pass();
+});
+
+ariaTest('', exampleFile, 'key-down-arrow', async (t) => {
+  t.pass();
+});
+
+ariaTest('', exampleFile, 'key-up-arrow', async (t) => {
+  t.pass();
+});
+
+ariaTest('', exampleFile, 'key-tab', async (t) => {
+  t.pass();
+});
+
+ariaTest('', exampleFile, 'key-shift-tab', async (t) => {
+  t.pass();
+});
+
+ariaTest('', exampleFile, 'key-home', async (t) => {
+  t.pass();
+});
+
+ariaTest('', exampleFile, 'key-end', async (t) => {
+  t.pass();
+});
+
+ariaTest('', exampleFile, 'key-control-home', async (t) => {
+  t.pass();
+});
+
+ariaTest('', exampleFile, 'key-control-end', async (t) => {
+  t.pass();
+});
+
+ariaTest('', exampleFile, 'key-enter', async (t) => {
+  t.pass();
+});

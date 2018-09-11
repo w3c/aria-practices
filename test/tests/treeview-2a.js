@@ -272,7 +272,7 @@ ariaTest('Key enter opens folder and activates link', exampleFile, 'key-enter-or
     return t.context.session.getCurrentUrl().then(url => {
       return url != t.context.url;
     });
-  }, 500).catch(() => {});
+  }, t.context.waitTime).catch(() => {});
 
   t.not(
     await t.context.session.getCurrentUrl(),
@@ -306,7 +306,7 @@ ariaTest('Key enter opens folder and activates link', exampleFile, 'key-enter-or
 //     return t.context.session.getCurrentUrl().then(url => {
 //       return url != t.context.url;
 //     });
-//   }, 500).catch(() => {});
+//   }, t.context.waitTime).catch(() => {});
 
 //   t.not(
 //     await t.context.session.getCurrentUrl(),
