@@ -26,22 +26,25 @@ aria.Toolbar = function (domNode) {
   this.popupMenu = false;
 };
 
-
 aria.Toolbar.prototype.init = function () {
   var toolbarItem;
+
   e = this.domNode.firstElementChild;
   while (e) {
     var toolbarGroup = e;
+
     if (toolbarGroup.classList.contains('group')) {
       this.toolbarGroups.push(toolbarGroup);
     }
     e = e.nextElementSibling;
   }
-  for (var i = 0; i < this.toolbarGroups.length;i++) {
+  for (var i = 0; i < this.toolbarGroups.length; i++) {
     var j = this.toolbarGroups[i].firstElementChild;
+
     while (j) {
       var toolbarElement = j;
-      if (toolbarElement.getAttribute('role')==="button") {
+
+      if (toolbarElement.getAttribute('role') === 'button') {
         toolbarItem = new ToolbarItem(toolbarElement, this);
         toolbarItem.init();
         this.toolbarItems.push(toolbarItem);
@@ -63,7 +66,7 @@ aria.Toolbar.prototype.init = function () {
  *  The item to deselect
  */
 aria.Toolbar.prototype.deselectItem = function (element) {
-  if (element.getAttribute('aria-pressed')==='true') {
+  if (element.getAttribute('aria-pressed') === 'true') {
     element.setAttribute('aria-pressed', false);
   }
   element.setAttribute('tabindex', '1');
@@ -78,7 +81,8 @@ aria.Toolbar.prototype.deselectItem = function (element) {
  */
 aria.Toolbar.prototype.styleManage = function (element) {
   var textContent = document.getElementById('textarea1');
-  if (element.getAttribute('aria-pressed') === "true") {
+
+  if (element.getAttribute('aria-pressed') === 'true') {
     if (element.classList.contains('bold')) {
       textContent.style.fontWeight = 'bold';
     }
@@ -101,23 +105,24 @@ aria.Toolbar.prototype.styleManage = function (element) {
     }
   }
   if (element.classList.contains('size')) {
-    if (element.getAttribute('value') === 'smaller') { // fontSmaller
+    if (element.getAttribute('value') === 'smaller') { // FontSmaller
       this.fontSmaller(textContent);
       if (this.isMinFontSize(textContent)) {
         element.setAttribute('aria-disabled', true);
       }
-      document.getElementById('large').setAttribute('aria-disabled',false);
+      document.getElementById('large').setAttribute('aria-disabled', false);
     }
     else {
       this.fontLarger(textContent);
       if (this.isMaxFontSize(textContent)) {
         element.setAttribute('aria-disabled', true);
       }
-      document.getElementById('small').setAttribute('aria-disabled',false);
+      document.getElementById('small').setAttribute('aria-disabled', false);
     }
   }
   if (element.classList.contains('textAlign')) {
     var textAlignElem = [].slice.call(document.querySelectorAll('.textAlign'));
+
     for (var elem in textAlignElem) {
       textAlignElem[elem].setAttribute('aria-pressed', false);
     }
@@ -162,15 +167,12 @@ aria.Toolbar.prototype.fontLarger = function (content) {
     case 'x-small':
       this.setFontSize(content, 'small');
       break;
-
     case 'small':
       this.setFontSize(content, 'medium');
       break;
-
     case 'medium':
       this.setFontSize(content, 'large');
       break;
-
     case 'large':
       this.setFontSize(content, 'x-large');
       break;
@@ -181,8 +183,8 @@ aria.Toolbar.prototype.fontLarger = function (content) {
   }
 };
 aria.Toolbar.prototype.selectItem = function (element) {
-  if(!(element.classList.contains("size")) && !(element.hasAttribute('aria-haspopup')) ){
-    if (element.getAttribute('aria-pressed')==='true' ) {
+  if (!(element.classList.contains('size')) && !(element.hasAttribute('aria-haspopup'))) {
+    if (element.getAttribute('aria-pressed') === 'true') {
       this.deselectItem(element);
     }
     else {
@@ -202,22 +204,22 @@ aria.Toolbar.prototype.selectItem = function (element) {
  *  The item to focus on
  */
 aria.Toolbar.prototype.setFocusItem = function (element) {
-  for (var i = 0;i < this.toolbarItems.length;i++) {
+  for (var i = 0; i < this.toolbarItems.length; i++) {
     this.toolbarItems[i].domNode.setAttribute('tabindex', '1');
   }
   element.setAttribute('tabindex', '0');
   element.focus();
-
 };
 aria.Toolbar.prototype.setFocusToNext = function (currentItem) {
   var index, newItem;
+
   if (currentItem === this.lastItem) {
     newItem = this.toolbarItems[0];
   }
   else {
     index = this.toolbarItems.indexOf(currentItem);
     newItem = this.toolbarItems[index + 1];
-    if(newItem.domNode.getAttribute("aria-disabled")==="true"){
+    if (newItem.domNode.getAttribute('aria-disabled') === 'true') {
       newItem = this.toolbarItems[index + 2];
     }
   }
@@ -225,17 +227,17 @@ aria.Toolbar.prototype.setFocusToNext = function (currentItem) {
 };
 
 aria.Toolbar.prototype.setFocusToPrevious = function (currentItem) {
-
   var index, newItem;
+
   if (currentItem === this.firstItem) {
     newItem = this.toolbarItems[this.toolbarItems.length - 1];
   }
   else {
     index = this.toolbarItems.indexOf(currentItem);
     newItem = this.toolbarItems[index - 1];
-    if (newItem.domNode.getAttribute("aria-disabled") === "true") {
+    if (newItem.domNode.getAttribute('aria-disabled') === 'true') {
       newItem = this.toolbarItems[index - 2];
-    }  
+    }
   }
   this.setFocusItem(newItem.domNode);
 };

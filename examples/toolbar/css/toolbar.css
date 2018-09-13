@@ -43,8 +43,9 @@ li{
 	margin-right:0.25em;
 }
 [role="toolbar"]  [role="button"][aria-pressed="true"] {
-	border-color:rgb(70, 70, 70);
+	border-color:#AAA;
 	font-weight: bold;
+	background-color: #F4F4F4;
 }
 
 [role="toolbar"] [role="button"][aria-disabled="true"],[role="toolbar"] [role="button"][aria-disabled="false"]{
