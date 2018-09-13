@@ -32,7 +32,7 @@ const ex = {
     'Off',
     'Heat',
     'Cool'
-  ],
+  ]
 };
 
 const sendAllSlidersToEnd = async function (t) {
@@ -347,7 +347,7 @@ ariaTest('left arrow decreases slider value by 1', exampleFile, 'key-left-arrow'
   const tempSlider = await t.context.session.findElement(By.css(ex.tempSelector));
   await tempSlider.sendKeys(Key.ARROW_LEFT);
 
-  let tempVal = parseInt(ex.tempMax)-1;
+  let tempVal = parseInt(ex.tempMax) - 1;
   t.is(
     await tempSlider.getAttribute('aria-valuenow'),
     tempVal.toString(),
@@ -431,7 +431,7 @@ ariaTest('down arrow decreases slider value by 1', exampleFile, 'key-down-arrow'
   const tempSlider = await t.context.session.findElement(By.css(ex.tempSelector));
   await tempSlider.sendKeys(Key.ARROW_DOWN);
 
-  let tempVal = parseInt(ex.tempMax)-1;
+  let tempVal = parseInt(ex.tempMax) - 1;
   t.is(
     await tempSlider.getAttribute('aria-valuenow'),
     tempVal.toString(),
