@@ -78,38 +78,31 @@ aria.Toolbar.prototype.deselectItem = function (element) {
  */
 aria.Toolbar.prototype.styleManage = function (element) {
   var textContent = document.getElementById('textarea1');
-  if (element.classList.contains('selected')) {
+  if (element.getAttribute('aria-pressed') === "true") {
     if (element.classList.contains('bold')) {
-      element.setAttribute('aria-pressed', true);
       textContent.style.fontWeight = 'bold';
     }
     else if (element.classList.contains('italic')) {
       textContent.style.fontStyle = 'italic';
-      element.setAttribute('aria-pressed', true);
     }
     else if (element.classList.contains('underline')) {
       textContent.style.textDecoration = 'underline';
-      element.setAttribute('aria-pressed', true);
     }
   }
   else {
     if (element.classList.contains('bold')) {
       textContent.style.fontWeight = 'normal';
-      element.setAttribute('aria-pressed', false);
     }
     else if (element.classList.contains('italic')) {
       textContent.style.fontStyle = 'normal';
-      element.setAttribute('aria-pressed', false);
     }
     else if (element.classList.contains('underline')) {
       textContent.style.textDecoration = 'none';
-      element.setAttribute('aria-pressed', false);
     }
   }
   if (element.classList.contains('size')) {
     if (element.getAttribute('value') === 'smaller') { // fontSmaller
       this.fontSmaller(textContent);
-      element.setAttribute('aria-pressed', true);
       if (this.isMinFontSize(textContent)) {
         element.setAttribute('aria-disabled', true);
       }
@@ -117,12 +110,10 @@ aria.Toolbar.prototype.styleManage = function (element) {
     }
     else {
       this.fontLarger(textContent);
-      element.setAttribute('aria-pressed', true);
       if (this.isMaxFontSize(textContent)) {
         element.setAttribute('aria-disabled', true);
       }
       document.getElementById('small').setAttribute('aria-disabled',false);
-
     }
   }
   if (element.classList.contains('textAlign')) {
@@ -190,12 +181,14 @@ aria.Toolbar.prototype.fontLarger = function (content) {
   }
 };
 aria.Toolbar.prototype.selectItem = function (element) {
-  if (element.getAttribuet('aria-pressed')==='true') {
-    this.deselectItem(element);
-  }
-  else {
-    element.setAttribute('aria-pressed', 'true');
-    element.setAttribute('tabindex', '0');
+  if(!(element.classList.contains("size")) && !(element.hasAttribute('aria-haspopup')) ){
+    if (element.getAttribute('aria-pressed')==='true' ) {
+      this.deselectItem(element);
+    }
+    else {
+      element.setAttribute('aria-pressed', 'true');
+      element.setAttribute('tabindex', '0');
+    }
   }
 
   this.styleManage(element);
@@ -224,6 +217,9 @@ aria.Toolbar.prototype.setFocusToNext = function (currentItem) {
   else {
     index = this.toolbarItems.indexOf(currentItem);
     newItem = this.toolbarItems[index + 1];
+    if(newItem.domNode.getAttribute("aria-disabled")==="true"){
+      newItem = this.toolbarItems[index + 2];
+    }
   }
   this.setFocusItem(newItem.domNode);
 };
@@ -237,6 +233,9 @@ aria.Toolbar.prototype.setFocusToPrevious = function (currentItem) {
   else {
     index = this.toolbarItems.indexOf(currentItem);
     newItem = this.toolbarItems[index - 1];
+    if (newItem.domNode.getAttribute("aria-disabled") === "true") {
+      newItem = this.toolbarItems[index - 2];
+    }  
   }
   this.setFocusItem(newItem.domNode);
 };

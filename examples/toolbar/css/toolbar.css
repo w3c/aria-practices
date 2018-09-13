@@ -12,7 +12,7 @@ li{
 	border-radius:5px;
 	padding:.25em;
 	height: 3.25em;
-	width:85%;
+	width:42.3em;
 	background-color:#ECECEA;
 	border:2px solid transparent;
 }
@@ -26,7 +26,7 @@ li{
 }
 
 .group:not(:first-child) {
-margin-left: 0.75em;
+	margin-left: 0.75em;
 }
 
 [role="toolbar"] [role="button"] {
@@ -45,6 +45,10 @@ margin-left: 0.75em;
 [role="toolbar"]  [role="button"][aria-pressed="true"] {
 	border-color:rgb(70, 70, 70);
 	font-weight: bold;
+}
+
+[role="toolbar"] [role="button"][aria-disabled="true"],[role="toolbar"] [role="button"][aria-disabled="false"]{
+	border-color: white;
 }
 [role="toolbar"] [role="button"]:focus{
 

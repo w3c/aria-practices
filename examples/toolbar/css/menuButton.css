@@ -6,12 +6,13 @@ button {
 .menu-wrapper {
   position: relative;
   display: inline-block;
-	font-size: 16px;
+  font-size: 16px;
 }
 .menu-button{
-  width:6em;
-  padding-right: 2.5em;
-	position: relative;
+  width:7.5em;
+  padding-right: 0.25em;
+  position: relative;
+  margin-right:0 !important;
 }
 .menu-button::after {
 	content: " ";
