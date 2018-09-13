@@ -2,6 +2,7 @@
 
 const { ariaTest } = require('..');
 const { By, Key } = require('selenium-webdriver');
+const assertAriaLabelExists = require('../util/assertAriaLabelExists');
 
 const exampleFile = 'breadcrumb/index.html';
 
@@ -12,26 +13,8 @@ const ex = {
 // Attributes
 
 ariaTest('aria-label attribute on nav element', exampleFile, 'aria-label', async (t) => {
-  t.plan(2);
-
-  let ariaLabelExists = await t.context.session.executeScript(async function () {
-    const [ selector ] = arguments;
-    let el = document.querySelector(selector);
-    return el.hasAttribute('aria-label');
-  }, ex.breadcrumbSelector);
-
-  t.true(
-    ariaLabelExists,
-    '"aria-label" attribute should exist on element: ' + ex.breadcrumbSelector
-  );
-
-  let ariaLabel = await t.context.session.findElement(By.css(ex.breadcrumbSelector))
-    .getAttribute('aria-label');
-
-  t.truthy(
-    ariaLabel,
-    '"aria-label" attribute should have value on element: ' + ex.breadcrumbSelector
-  );
+  t.plan(1);
+  await assertAriaLabelExists(t, ex.breadcrumbSelector);
 });
 
 ariaTest('aria-current element should exist on relevent link', exampleFile, 'aria-current', async (t) => {

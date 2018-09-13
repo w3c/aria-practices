@@ -3,6 +3,7 @@
 const { ariaTest } = require('..');
 const { By, Key } = require('selenium-webdriver');
 const assertAttributeValues = require('../util/assertAttributeValues');
+const assertAriaLabelExists = require('../util/assertAriaLabelExists');
 const assertRovingTabindex = require('../util/assertRovingTabindex');
 
 const exampleFile = 'menubar/menubar-2/menubar-2.html';
@@ -104,15 +105,8 @@ ariaTest('Test for role="menubar" on ul', exampleFile, 'menubar-role', async (t)
 });
 
 ariaTest('Test aria-label on menubar', exampleFile, 'menubar-aria-label', async (t) => {
-
   t.plan(1);
-
-  const menubar = await t.context.session.findElement(By.css(ex.menubarSelector));
-
-  t.truthy(
-    await menubar.getAttribute('aria-label'),
-    '"role=menubar" should have an "aria-label" attribute set'
-  );
+  await assertAriaLabelExists(t, ex.menubarSelector);
 });
 
 ariaTest('Test for role="menuitem" on li', exampleFile, 'menubar-menuitem-role', async (t) => {
@@ -229,16 +223,17 @@ ariaTest('Test for role="menubar" on ul', exampleFile, 'menu-role', async (t) =>
 });
 
 ariaTest('Test for aria-label on role="menu"', exampleFile, 'menu-aria-label', async (t) => {
-
   t.plan(4);
 
-  const submenus = await t.context.session.findElements(By.css(ex.submenuSelector));
+  const submenusSelectors = [
+    '#ex1 li:nth-of-type(1) [role="menu"]',
+    '#ex1 li:nth-of-type(2) [role="menu"]',
+    '#ex1 li:nth-of-type(3) [role="menu"]',
+    '#ex1 li:nth-of-type(4) [role="menu"]'
+  ];
 
-  for (let submenu of submenus) {
-    t.truthy(
-      await submenu.getAttribute('aria-label'),
-      '"role=menu" should have an "aria-label" attribute set'
-    );
+  for (let submenuSelector of submenusSelectors) {
+    await assertAriaLabelExists(t, submenuSelector);
   }
 });
 

@@ -22,7 +22,7 @@ module.exports = async function assertAriaRoles (t, exampleId, role, roleCount, 
   assert.equal(
     elements.length,
     roleCount,
-    roleCount + 'role="' + role + '" elements should be found by selector "' + elementSelector +
+    roleCount + ' role="' + role + '" elements should be found by selector "' + elementSelector +
       '" in this example'
   );
 
