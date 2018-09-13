@@ -16,7 +16,7 @@ const ex = {
     lastColumn: 5,
     lastRow: 7,
     firstInterativeRow: 2
- },
+  },
   2: {
     gridSelector: '#ex2 [role="grid"]',
     rowSelector: '#ex2 tr',
@@ -33,23 +33,23 @@ const ex = {
     lastColumn: 6,
     lastRow: 16,
     firstInterativeRow: 2
-  },
-}
+  }
+};
 
 const checkFocusOnOrInCell = async function (t, gridSelector, rowIndex, columnIndex) {
-  t.log('check focus: ' + gridSelector + ' tr:nth-of-type(' + rowIndex
-        + ') td:nth-of-type(' + columnIndex + ')');
+  t.log('check focus: ' + gridSelector + ' tr:nth-of-type(' + rowIndex +
+        ') td:nth-of-type(' + columnIndex + ')');
 
   return t.context.session.executeScript(function () {
     const [gridSelector, rowIndex, columnIndex] = arguments;
 
-    let selector = gridSelector + ' tr:nth-of-type(' + rowIndex
-        + ') td:nth-of-type(' + columnIndex + ')'
+    let selector = gridSelector + ' tr:nth-of-type(' + rowIndex +
+        ') td:nth-of-type(' + columnIndex + ')';
 
     // If rowIndex === 1, then focus will be on a th element
     if (rowIndex === 1) {
-      selector = gridSelector + ' tr:nth-of-type(' + rowIndex
-        + ') th:nth-of-type(' + columnIndex + ')'
+      selector = gridSelector + ' tr:nth-of-type(' + rowIndex +
+        ') th:nth-of-type(' + columnIndex + ')';
     }
 
     // If the element has "tabindex", it is the candidate for focus
@@ -67,8 +67,8 @@ const checkFocusOnOrInCell = async function (t, gridSelector, rowIndex, columnIn
 
 const sendKeyToGridcell = async function (t, gridSelector, rowIndex, columnIndex, key) {
 
-  let selector = gridSelector + ' tr:nth-of-type(' + rowIndex
-        + ') td:nth-of-type(' + columnIndex + ')'
+  let selector = gridSelector + ' tr:nth-of-type(' + rowIndex +
+        ') td:nth-of-type(' + columnIndex + ')';
 
   t.log(selector);
   t.log(await t.context.session.findElement(By.css(selector)).isDisplayed());
@@ -87,7 +87,7 @@ const sendKeyToGridcell = async function (t, gridSelector, rowIndex, columnIndex
 const scrollToEndOfExample3 = async function (t) {
   await sendKeyToGridcell(t, ex[3].gridSelector, 2, 1, Key.PAGE_DOWN);
   await sendKeyToGridcell(t, ex[3].gridSelector, 7, 1, Key.PAGE_DOWN);
-}
+};
 
 
 // Attributes
@@ -127,8 +127,8 @@ ariaTest('aria-rowindex attribute in example 3', exampleFile, 'aria-rowindex', a
       await row.getAttribute('aria-rowindex'),
       index.toString(),
       'In example 3, tr element at index ' + index + ' should have aria-rowindex value: ' + index
-    )
-    index ++;
+    );
+    index++;
   }
 });
 
@@ -243,7 +243,7 @@ ariaTest('Right arrow moves focus, example 1 and 2', exampleFile, 'key-right-arr
       // Test focus moves right
       await sendKeyToGridcell(t, gridSelector, rowIndex, 1, Key.ARROW_RIGHT);
       t.true(
-        await checkFocusOnOrInCell(t, gridSelector, rowIndex, 2, ),
+        await checkFocusOnOrInCell(t, gridSelector, rowIndex, 2,),
         'After sending ARROW RIGHT to element at column index 1 in row ' + rowIndex + ' focus should be on element at column index 2'
       );
 
@@ -275,16 +275,16 @@ ariaTest('Right arrow moves focus, example 3', exampleFile, 'key-right-arrow', a
   for (let rowIndex = 2; rowIndex <= lastRow; rowIndex++) {
 
     // If the row is not displayed, send page down to the last rows first element
-    let rows = (await t.context.session.findElements(By.css(rowSelector)))
-    if (!(await rows[rowIndex-1].isDisplayed())) {
-      let previousRowCell = rows[rowIndex-2].findElement(By.css('td'));
+    let rows = (await t.context.session.findElements(By.css(rowSelector)));
+    if (!(await rows[rowIndex - 1].isDisplayed())) {
+      let previousRowCell = rows[rowIndex - 2].findElement(By.css('td'));
       await previousRowCell.sendKeys(Key.PAGE_DOWN);
     }
 
     // Test focus moves right
     await sendKeyToGridcell(t, gridSelector, rowIndex, 1, Key.ARROW_RIGHT);
     t.true(
-      await checkFocusOnOrInCell(t, gridSelector, rowIndex, 2, ),
+      await checkFocusOnOrInCell(t, gridSelector, rowIndex, 2,),
       'After sending ARROW RIGHT to element at column index 1 in row ' + rowIndex + ' focus should be on element at column index 2'
     );
 
@@ -311,16 +311,16 @@ ariaTest('Right arrow moves focus, example 3', exampleFile, 'key-right-arrow', a
   for (let rowIndex = 2; rowIndex <= lastRow; rowIndex++) {
 
     // If the row is not displayed, send page down to the last rows first element
-    let rows = (await t.context.session.findElements(By.css(rowSelector)))
-    if (!(await rows[rowIndex-1].isDisplayed())) {
-      let previousRowCell = rows[rowIndex-2].findElement(By.css('td'));
+    let rows = (await t.context.session.findElements(By.css(rowSelector)));
+    if (!(await rows[rowIndex - 1].isDisplayed())) {
+      let previousRowCell = rows[rowIndex - 2].findElement(By.css('td'));
       await previousRowCell.sendKeys(Key.PAGE_DOWN);
     }
 
     // Test focus moves right
     await sendKeyToGridcell(t, gridSelector, rowIndex, 1, Key.ARROW_RIGHT);
     t.true(
-      await checkFocusOnOrInCell(t, gridSelector, rowIndex, 3, ),
+      await checkFocusOnOrInCell(t, gridSelector, rowIndex, 3,),
       'After sending ARROW RIGHT to element at column index 1 in row ' + rowIndex + ' focus should be on element at column index 2'
     );
 
@@ -354,7 +354,7 @@ ariaTest('Left arrow moves focus, example 1 and 2', exampleFile, 'key-left-arrow
       // Test focus moves left
       await sendKeyToGridcell(t, gridSelector, rowIndex, 4, Key.ARROW_LEFT);
       t.true(
-        await checkFocusOnOrInCell(t, gridSelector, rowIndex, 3, ),
+        await checkFocusOnOrInCell(t, gridSelector, rowIndex, 3,),
         'After sending ARROW LEFT to element at column index 4 in row ' + rowIndex + ' focus should be on element at column index 3'
       );
 
@@ -386,16 +386,16 @@ ariaTest('left arrow moves focus, example 3', exampleFile, 'key-left-arrow', asy
   for (let rowIndex = 2; rowIndex <= lastRow; rowIndex++) {
 
     // If the row is not displayed, send page down to the last rows first element
-    let rows = (await t.context.session.findElements(By.css(rowSelector)))
-    if (!(await rows[rowIndex-1].isDisplayed())) {
-      let previousRowCell = rows[rowIndex-2].findElement(By.css('td'));
+    let rows = (await t.context.session.findElements(By.css(rowSelector)));
+    if (!(await rows[rowIndex - 1].isDisplayed())) {
+      let previousRowCell = rows[rowIndex - 2].findElement(By.css('td'));
       await previousRowCell.sendKeys(Key.PAGE_DOWN);
     }
 
     // Test focus moves left
     await sendKeyToGridcell(t, gridSelector, rowIndex, 4, Key.ARROW_LEFT);
     t.true(
-      await checkFocusOnOrInCell(t, gridSelector, rowIndex, 3, ),
+      await checkFocusOnOrInCell(t, gridSelector, rowIndex, 3,),
       'After sending ARROW LEFT to element at column index 4 in row ' + rowIndex + ' focus should be on element at column index 3'
     );
 
@@ -422,16 +422,16 @@ ariaTest('left arrow moves focus, example 3', exampleFile, 'key-left-arrow', asy
   for (let rowIndex = 2; rowIndex <= lastRow; rowIndex++) {
 
     // If the row is not displayed, send page down to the last rows first element
-    let rows = (await t.context.session.findElements(By.css(rowSelector)))
-    if (!(await rows[rowIndex-1].isDisplayed())) {
-      let previousRowCell = rows[rowIndex-2].findElement(By.css('td'));
+    let rows = (await t.context.session.findElements(By.css(rowSelector)));
+    if (!(await rows[rowIndex - 1].isDisplayed())) {
+      let previousRowCell = rows[rowIndex - 2].findElement(By.css('td'));
       await previousRowCell.sendKeys(Key.PAGE_DOWN);
     }
 
     // Test focus moves left (skipping invisible columns)
     await sendKeyToGridcell(t, gridSelector, rowIndex, 5, Key.ARROW_LEFT);
     t.true(
-      await checkFocusOnOrInCell(t, gridSelector, rowIndex, 3, ),
+      await checkFocusOnOrInCell(t, gridSelector, rowIndex, 3,),
       'After sending ARROW LEFT to element at column index 5 in row ' + rowIndex + ' focus should be on element at column index 3 (skipping invisible columns)'
     );
 
@@ -467,8 +467,8 @@ ariaTest('Key down moves focus, examples 1,2,3', exampleFile, 'key-down-arrow', 
       // Test focus moves down
       await sendKeyToGridcell(t, gridSelector, rowIndex, columnIndex, Key.ARROW_DOWN);
       t.true(
-        await checkFocusOnOrInCell(t, gridSelector, rowIndex+1, columnIndex),
-        'After sending ARROW DOWN to element in row ' + rowIndex + ' at column ' + columnIndex + ' focus should be on element in row ' + (rowIndex+1) + ' at column ' + columnIndex + ' in example: ' + example
+        await checkFocusOnOrInCell(t, gridSelector, rowIndex + 1, columnIndex),
+        'After sending ARROW DOWN to element in row ' + rowIndex + ' at column ' + columnIndex + ' focus should be on element in row ' + (rowIndex + 1) + ' at column ' + columnIndex + ' in example: ' + example
       );
 
       // Switch the column every time
@@ -508,8 +508,8 @@ ariaTest('Key up moves focus, examples 1,2,3', exampleFile, 'key-up-arrow', asyn
       // Test focus moves down
       await sendKeyToGridcell(t, gridSelector, rowIndex, columnIndex, Key.ARROW_UP);
       t.true(
-        await checkFocusOnOrInCell(t, gridSelector, rowIndex-1, columnIndex),
-        'After sending ARROW DOWN to element in row ' + rowIndex + ' at column ' + columnIndex + ' focus should be on element in row ' + (rowIndex-1) + ' at column ' + columnIndex + ' in example: ' + example
+        await checkFocusOnOrInCell(t, gridSelector, rowIndex - 1, columnIndex),
+        'After sending ARROW DOWN to element in row ' + rowIndex + ' at column ' + columnIndex + ' focus should be on element in row ' + (rowIndex - 1) + ' at column ' + columnIndex + ' in example: ' + example
       );
 
       // Switch the column every time
@@ -576,7 +576,7 @@ ariaTest('Page up moves focus in example 3', exampleFile, 'key-page-up', async (
   // Test focus moves left
   await sendKeyToGridcell(t, gridSelector, 12, 1, Key.PAGE_UP);
   t.true(
-    await checkFocusOnOrInCell(t, gridSelector, 11, 1, ),
+    await checkFocusOnOrInCell(t, gridSelector, 11, 1,),
     'After sending PAGE UP to element at row 12 column 1, the focus should be on row 11, column 1'
   );
 
@@ -612,9 +612,9 @@ ariaTest('Home key moves focus', exampleFile, 'key-home', async (t) => {
 
       // If the row is not displayed, send page down to the last rows first element
       if (example === 3) {
-        let rows = (await t.context.session.findElements(By.css(rowSelector)))
-        if (!(await rows[rowIndex-1].isDisplayed())) {
-          let previousRowCell = rows[rowIndex-2].findElement(By.css('td'));
+        let rows = (await t.context.session.findElements(By.css(rowSelector)));
+        if (!(await rows[rowIndex - 1].isDisplayed())) {
+          let previousRowCell = rows[rowIndex - 2].findElement(By.css('td'));
           await previousRowCell.sendKeys(Key.PAGE_DOWN);
         }
       }
@@ -653,9 +653,9 @@ ariaTest('End key moves focus', exampleFile, 'key-end', async (t) => {
 
       // If the row is not displayed, send page down to the last rows first element
       if (example === 3) {
-        let rows = (await t.context.session.findElements(By.css(rowSelector)))
-        if (!(await rows[rowIndex-1].isDisplayed())) {
-          let previousRowCell = rows[rowIndex-2].findElement(By.css('td'));
+        let rows = (await t.context.session.findElements(By.css(rowSelector)));
+        if (!(await rows[rowIndex - 1].isDisplayed())) {
+          let previousRowCell = rows[rowIndex - 2].findElement(By.css('td'));
           await previousRowCell.sendKeys(Key.PAGE_DOWN);
         }
       }
