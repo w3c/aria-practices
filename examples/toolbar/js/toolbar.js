@@ -18,7 +18,7 @@ var aria = aria || {};
  */
 aria.Toolbar = function (domNode) {
   this.domNode = domNode;
-  this.items = this.domNode.querySelectorAll('[role="toolbar-item"]');
+  this.items = this.domNode.querySelectorAll('[role="toolbar"] [role="button"]');
   this.firstItem = null;
   this.lastItem = null;
   this.toolbarItems = [];
@@ -41,7 +41,7 @@ aria.Toolbar.prototype.init = function () {
     var j = this.toolbarGroups[i].firstElementChild;
     while (j) {
       var toolbarElement = j;
-      if (toolbarElement.classList.contains('toolbar-item') || toolbarElement.classList.contains('menu-wrapper')) {
+      if (toolbarElement.getAttribute('role')==="button") {
         toolbarItem = new ToolbarItem(toolbarElement, this);
         toolbarItem.init();
         this.toolbarItems.push(toolbarItem);
@@ -63,8 +63,8 @@ aria.Toolbar.prototype.init = function () {
  *  The item to deselect
  */
 aria.Toolbar.prototype.deselectItem = function (element) {
-  if (element.classList.contains('selected')) {
-    element.classList.remove('selected');
+  if (element.getAttribute('aria-pressed')==='true') {
+    element.setAttribute('aria-pressed', false);
   }
   element.setAttribute('tabindex', '1');
 };
@@ -190,11 +190,11 @@ aria.Toolbar.prototype.fontLarger = function (content) {
   }
 };
 aria.Toolbar.prototype.selectItem = function (element) {
-  if (element.classList.contains('selected')) {
+  if (element.getAttribuet('aria-pressed')==='true') {
     this.deselectItem(element);
   }
   else {
-    element.classList.add('selected');
+    element.setAttribute('aria-pressed', 'true');
     element.setAttribute('tabindex', '0');
   }
 
