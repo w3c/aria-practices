@@ -65,18 +65,17 @@ MenubarAction.prototype.init = function (actionManager) {
   var menubarItem, childElement, menuElement, textContent, numItems;
 
   this.actionManager = actionManager;
-  console.log(this.domNode);
+
   this.domNode.setAttribute('role', 'menubar');
 
   // Traverse the element children of menubarNode: configure each with
   // menuitem role behavior and store reference in menuitems array.
   e = this.domNode.firstElementChild;
-  console.log(e);
+
   while (e) {
     var menuElement = e.firstElementChild;
-    console.log(menuElement);
+
     if (e && menuElement && menuElement.tagName === 'A') {
-      console.log(this);
       menubarItem = new MenubarItemAction(menuElement, this);
       menubarItem.init();
       this.menubarItems.push(menubarItem);
@@ -142,8 +141,7 @@ MenubarAction.prototype.setFocusToPreviousItem = function (currentItem) {
 
 MenubarAction.prototype.setFocusToNextItem = function (currentItem) {
   var index;
-  console.log(currentItem);
-  console.log(this.menubarItems);
+
   if (currentItem === this.lastItem) {
     newItem = this.firstItem;
   }

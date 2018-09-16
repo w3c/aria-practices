@@ -58,7 +58,7 @@ var MenubarItemAction = function (domNode, menuObj) {
 
 MenubarItemAction.prototype.init = function () {
   this.domNode.tabIndex = -1;
-  console.log(this);
+
   this.domNode.addEventListener('keydown', this.handleKeydown.bind(this));
   this.domNode.addEventListener('click', this.handleClick.bind(this));
   this.domNode.addEventListener('focus', this.handleFocus.bind(this));
@@ -99,13 +99,11 @@ MenubarItemAction.prototype.handleKeydown = function (event) {
       break;
 
     case this.keyCode.LEFT:
-      console.log(this);
       this.menubar.setFocusToPreviousItem(this);
       flag = true;
       break;
 
     case this.keyCode.RIGHT:
-      console.log(this);
       this.menubar.setFocusToNextItem(this);
       flag = true;
       break;
