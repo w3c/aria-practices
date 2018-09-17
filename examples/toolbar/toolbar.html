@@ -14,12 +14,14 @@
 <script src="../js/utils.js" type="text/javascript"></script>
 
 <!--  js and css for this example. -->
+
 <link href="css/toolbar.css" rel="stylesheet">
 <link href="css/menuButton.css" rel="stylesheet">
+
 <script src="js/menuButton.js" type="text/javascript"></script>
-<script src="js/toolbar.js" type="text/javascript"></script>
-<script src="js/main.js" type="text/javascript"></script>
 <script src = "js/toolbarItem.js" type="text/javascript"></script>
+<script src="js/toolbar.js" type="text/javascript"></script>
+
 </head>
 <body>
   <nav aria-label="Related Links" class="feedback">
@@ -49,7 +51,7 @@
         <div class="toolbar" role="toolbar" aria-label="Text Formatting" aria-controls="textarea1">
           <div class="group characteristics">
             <div role="button"
-                class="toolbar-item bold"
+                class="bold"
                 aria-pressed="false"
                 aria-label="bold"
                 value="bold"
@@ -57,7 +59,7 @@
               <i class="fas fa-bold"></i>
             </div>
             <div role="button"
-                class="toolbar-item italic"
+                class="italic"
                 aria-label="Italic"
                 aria-pressed="false"
                 value="italic"
@@ -65,7 +67,7 @@
               <i class="fas fa-italic"></i>
             </div>
             <div role="button"
-                class="toolbar-item underline"
+                class="underline"
                 aria-label="Underline"
                 aria-pressed="false"
                 value="underline"
@@ -73,47 +75,40 @@
               <i class="fas fa-underline"></i>
             </div>
           </div>
-          <div class="group align">
+          <div class="group">
             <div role="button"
-                class="toolbar-item textAlign"
+                class="align-left"
                 aria-label="Text align left"
                 aria-pressed="true"
-                value="left"
                 tabindex="-1">
               <i class="fas fa-align-left"></i>
             </div>
             <div role="button"
-                class="toolbar-item textAlign"
+                class="align-center"
                 aria-label="Text align center"
                 aria-pressed="false"
-                value="center"
                 tabindex="-1">
               <i class="fas fa-align-center"></i>
             </div>
             <div role="button"
-                class="toolbar-item textAlign"
+                class="align-right"
                 aria-label="Text align right"
                 aria-pressed="false"
-                value="right"
                 tabindex="-1">
               <i class="fas fa-align-right"></i>
             </div>
           </div>
           <div class="group">
             <div role="button"
-                class="toolbar-item size"
-                id="large"
+                class="font-larger"
                 aria-label="Font size larger"
-                value="larger"
                 aria-disabled="false"
                 tabindex="-1">
               <i class="fas fa-plus"></i>
             </div>
             <div role="button"
-                class="toolbar-item size"
-                id="small"
+                class="font-smaller"
                 aria-label="Font size smaller"
-                value="smaller"
                 aria-disabled="false"
                 tabindex="-1">
               <i class="fas fa-minus"></i>
@@ -124,7 +119,7 @@
               role="button"
               aria-haspopup="true"
               aria-controls="menu1"
-              class=" toolbar-item menu-button"
+              class="menu-button"
               tabindex="=-1">
               Fonts
             </div>
@@ -338,14 +333,21 @@
           <tr>
             <td></td>
             <th scope="row">
-              <code>aria-label=&quot;LABEL_STRING&quot;</code>
+              <code>aria-label=&quot;Text Formatting&quot;</code>
             </th>
             <td><code>div</code></td>
             <td>
-              <ul>
-                <li>Provides an accessible label for the toolbar.</li>
-                <li>An invisible label is appropriate when the visual context adequately communicates purpose.</li>
-              </ul>
+                Provides the accessible name of <q>Text Formatting</q> for the functions in the toolbar.
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <th scope="row">
+              <code>aria-controls=<q>IDREF</q></code>
+            </th>
+            <td><code>div</code></td>
+            <td>
+                Provides a reference to the <code>textarea</code> that the toolbar controls.
             </td>
           </tr>
           <tr>
@@ -357,7 +359,7 @@
           <tr>
             <td></td>
             <th scope="row">
-              <code>tabindex=&quot;-1&quot;</code>
+              <code>tabindex=<q>-1</q></code>
             </th>
             <td>
               <code>div</code>
@@ -373,7 +375,7 @@
           <tr>
             <td></td>
             <th scope="row">
-              <code>tabindex=&quot;0&quot;</code>
+              <code>tabindex=<q>0</q></code>
             </th>
             <td>
               <code>div</code>
@@ -387,6 +389,12 @@
                 <li>This approach to managing focus is described in the section on <a href="../../#kbd_roving_tabindex">roving tabindex</a>.</li>
               </ul>
             </td>
+          </tr>
+          <tr>
+            <td></td>
+            <th scope="row"><code>aria-label=<q></q></code></th>
+            <td><code>div</code></td>
+            <td>Informs assistive technologies of the disabled state.</td>
           </tr>
           <tr>
             <td></td>
@@ -411,8 +419,8 @@
     </section>
 
     <section>
-      <h3 id="rps_label_2">Menu Button</h3>
-      <table aria-labelledby="rps_label_2" class="data attributes">
+      <h3 id="rps1_label">Menu Button</h3>
+      <table aria-labelledby="rps1_label rps_label" class="data attributes">
         <thead>
           <tr>
             <th scope="col">Role</th>
@@ -425,33 +433,65 @@
           <tr>
             <th scope="row"><code>button</code></th>
             <td></td>
-            <td> <code>div</code></td>
-            <td>Identifies the element as a button.</td>
+            <td>
+              <code>div</code>
+            </td>
+            <td>
+              <ul>
+                <li>Identifies the <code>div</code> element as having the behaviors of the <code>button</code> role.</li>
+                <li>The accessible name comes from the text content of the button (e.g. <q>Fonts</q>).
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <th scope="row"><code>aria-haspopup=&quot;true&quot;</code></th>
+            <td>
+              <code>div</code>
+            </td>
+            <td>
+              <ul>
+                <li>Indicates the <code>button</code> opens a menu.</li>
+                <li>
+                  <strong>NOTE:</strong> While ARIA does not include a role specifically for menu buttons, most platform accessibility APIs include a menubutton role.
+                  Consequently, on such platforms, assistive technologies, such as screen readers, identify buttons that have <code>aria-haspopup</code> set to either <code>true</code> or <code>menu</code> as menu buttons.
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <th scope="row"><code>aria-controls=&quot;IDREF&quot;</code></th>
+            <td>
+              <code>div</code>
+            </td>
+            <td>
+              <ul>
+                <li>Refers to the menu element controlled by the menu button.</li>
+                <li>Optional attribute: assistive technology users can operate the menu if not present.</li>
+              </ul>
+            </td>
           </tr>
           <tr>
               <td></td>
-              <th scope="row"><code>aria-haspopup=&quot;true&quot;</code></th>
+              <th scope="row"><code>aria-expanded=&quot;true&quot;</code></th>
               <td><code>div</code></td>
               <td>
-                Indicate that the button has a popup context menu.
-              </td>
-          </tr>
-          <tr>
-              <td></td>
-              <th scope="row"><code>aira-controls=&quot;IDREF&quot;</code></th>
-              <td><code>div</code></td>
-              <td>
-                Provide a reference for screen reader to navigate to the reference content.
+                <ul>
+                  <li>Added when the menu is open.</li>
+                  <li>Indicates that the menu is displayed and that activating the menu button closes the menu.</li>
+                  <li>The <code>aria-expanded</code> attribute is removed when the menu is closed.</li>
+                  <li>Included to support touch devices where screen reader users can touch the menu button when the menu is displayed. Keyboard users cannot focus the menu button when the menu is open.</li>
+                </ul>
               </td>
           </tr>
         </tbody>
       </table>
     </section>
 
-
     <section>
-      <h3 id="rps_label_3">Menu</h3>
-      <table aria-labelledby="rps_label_3" class="data attributes">
+      <h3 id="rps2_label">Menu</h3>
+      <table aria-labelledby="rps2_label rps_label" class="data attributes">
         <thead>
           <tr>
             <th scope="col">Role</th>
@@ -461,26 +501,59 @@
           </tr>
         </thead>
         <tbody>
-            <tr>
-              <th scope="row"><code>menu</code></th>
-              <td></td>
-              <td><code>ul</code></td>
-              <td>
-                  Identifies the menu container.
-              </td>
-            </tr>
-            <tr>
-              <th scope="row"><code>menuitem</code></th>
-              <td></td>
-              <td><code>li</code></td>
-              <td>
-                  Identifies the menuitem.
-              </td>
-            </tr>
+          <tr>
+            <th scope="row">
+              <code>menu</code>
+            </th>
+            <td></td>
+            <td>
+              <code>ul</code>
+            </td>
+            <td>Identifies the <code>ul</code> element as a <code>menu</code>.</td>
+          </tr>
+          <tr>
+            <td>
+              <code></code>
+            </td>
+            <th scope="row"><code>aria-label=&quot;Fonts&quot;</code></th>
+            <td>
+              <code>ul</code>
+            </td>
+            <td>
+              Defines the accessible name for the menu as <q>Fonts</q>.
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">
+              <code>menuitem</code>
+            </th>
+            <td></td>
+            <td>
+              <code>li</code>
+            </td>
+            <td>
+              <ul>
+                <li>Identifies the <code>li</code> element as a <code>menuitem</code>.</li>
+                <li>The text content of the <code>li</code> element provides the accessible name of the <code>menuitem</code>.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <th scope="row"><code>tabindex=<q>-1</q></code></th>
+            <td>
+              <code>li</code>
+            </td>
+            <td>
+              <ul>
+                <li>Allows DOM focus to be set on the menu item with the JavaScript focus method.</li>
+                <li>Dynamically added by the JavaScript.</li>
+              </ul>
+            </td>
+          </tr>
         </tbody>
       </table>
     </section>
-
 
   </section>
 
