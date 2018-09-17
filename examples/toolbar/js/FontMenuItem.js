@@ -146,12 +146,11 @@ FontMenuItem.prototype.handleClick = function (event) {
 };
 
 FontMenuItem.prototype.handleFocus = function (event) {
-  this.fontMenu.hasFocus = true;
+  this.fontMenu.setFocus();
 };
 
 FontMenuItem.prototype.handleBlur = function (event) {
-  this.fontMenu.hasFocus = false;
-  setTimeout(this.fontMenu.close.bind(this.fontMenu, false), 300);
+  this.fontMenu.removeFocus();
 };
 
 FontMenuItem.prototype.handleMouseover = function (event) {

@@ -110,7 +110,7 @@ FontMenu.prototype.setFocusToController = function (command) {
 };
 
 FontMenu.prototype.setFontFamily = function (font) {
-  this.controller.setFontFamily(font);x
+  this.controller.setFontFamily(font);
 };
 
 FontMenu.prototype.setFocusToFirstItem = function () {
@@ -177,12 +177,26 @@ FontMenu.prototype.getIndexFirstChars = function (startIndex, char) {
   return -1;
 };
 
+/* focus methods */
+
+FontMenu.prototype.setFocus = function () {
+  this.hasFocus = true;
+  this.domNode.classList.add('focus');
+  this.controller.toolbar.domNode.classList.add('focus');
+}
+
+FontMenu.prototype.removeFocus = function () {
+  this.hasFocus = false;
+  this.domNode.classList.remove('focus');
+  this.controller.toolbar.domNode.classList.remove('focus');
+  setTimeout(this.close.bind(this, false), 300);
+}
+
 /* MENU DISPLAY METHODS */
 
 FontMenu.prototype.isOpen = function () {
   return this.controller.domNode.getAttribute('aria-expanded') === 'true';
 };
-
 
 FontMenu.prototype.open = function () {
   // get bounding rectangle of controller object's DOM node

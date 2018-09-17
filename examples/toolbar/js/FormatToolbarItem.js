@@ -94,11 +94,11 @@ FormatToolbarItem.prototype.enable = function () {
 // Events
 
 FormatToolbarItem.prototype.handleBlur = function (event) {
-  this.toolbar.domNode.classList.remove('focused');
+  this.toolbar.domNode.classList.remove('focus');
 };
 
 FormatToolbarItem.prototype.handleFocus = function (event) {
-  this.toolbar.domNode.classList.add('focused');
+  this.toolbar.domNode.classList.add('focus');
 };
 
 FormatToolbarItem.prototype.handleKeyDown = function (event) {

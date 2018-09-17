@@ -1,12 +1,3 @@
-
-.annotate {
-	color: #366ED4;
-	font-style: italic;
-}
-
-li{
-	margin: 0;
-}
 [role="toolbar"] {
 	border:3px #ECECEA;
 	border-radius:5px;
@@ -16,16 +7,18 @@ li{
 	background-color:#ECECEA;
 	border:2px solid transparent;
 }
-.focused {
+
+[role="toolbar"].focus {
 	border-color:#005A9C;
 }
-.group {
+
+[role="toolbar"] .group {
 	padding:0.25em;
 	display: block;
 	float: left;
 }
 
-.group:not(:first-child) {
+[role="toolbar"] .group:not(:first-child) {
 	margin-left: 0.75em;
 }
 
