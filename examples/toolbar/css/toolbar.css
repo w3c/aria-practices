@@ -48,14 +48,24 @@ li{
 	background-color: #F4F4F4;
 }
 
-[role="toolbar"] [role="button"][aria-disabled="true"],[role="toolbar"] [role="button"][aria-disabled="false"]{
+[role="toolbar"] [role="button"] {
 	border-color: white;
 }
+
+[role="toolbar"] [role="button"][aria-disabled="true"] {
+	color: #888;
+	background-color: #DDD;
+	border-color: #DDD;
+}
+
 [role="toolbar"] [role="button"]:focus{
 
 	border-color:#005A9C;
 	background:rgb(226, 239, 255);
 }
+
+
+
 textarea {
 	width:85%;
 	padding: .25em;
