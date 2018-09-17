@@ -26,14 +26,13 @@ FormatToolbar = function (domNode) {
 };
 
 FormatToolbar.prototype.init = function () {
-
   var i, buttons, toolbarItem, menuButtons;
 
   this.textarea = document.getElementById(this.domNode.getAttribute('aria-controls'));
 
   buttons = this.domNode.querySelectorAll('[role="button"]');
 
-  for (i=0; i < buttons.length; i++) {
+  for (i = 0; i < buttons.length; i++) {
     toolbarItem = new FormatToolbarItem(buttons[i], this);
     toolbarItem.init();
 
@@ -46,7 +45,7 @@ FormatToolbar.prototype.init = function () {
 
   menuButtons = this.domNode.querySelectorAll('[role="button"][aria-haspopup="true"]');
 
-  for(i=0; i < menuButtons.length; i++) {
+  for (i = 0; i < menuButtons.length; i++) {
     toolbarItem = new FontMenuButton(menuButtons[i], this);
     toolbarItem.init();
   }
@@ -86,7 +85,6 @@ FormatToolbar.prototype.toggleItalic = function (toolbarItem) {
 };
 
 FormatToolbar.prototype.setAlignment = function (toolbarItem) {
-
   for (var i = 0; i < this.alignItems.length; i++) {
     this.alignItems[i].resetPressed();
   }
@@ -96,7 +94,6 @@ FormatToolbar.prototype.setAlignment = function (toolbarItem) {
       this.textarea.style.textAlign = 'left';
       toolbarItem.setPressed();
       break;
-
     case 'center':
       this.textarea.style.textAlign = 'center';
       toolbarItem.setPressed();
@@ -168,9 +165,6 @@ FormatToolbar.prototype.setFontFamily = function (font) {
 };
 
 FormatToolbar.prototype.activateItem = function (toolbarItem) {
-
-  console.log(toolbarItem.buttonAction + ' ' + toolbarItem.value);
-
   switch (toolbarItem.buttonAction) {
     case 'bold':
       this.toggleBold(toolbarItem);
@@ -192,7 +186,6 @@ FormatToolbar.prototype.activateItem = function (toolbarItem) {
         this.fontSmaller();
       }
       break;
-
     case 'font-family':
       this.setFontFamily(toolbarItem.value);
       break;
@@ -211,7 +204,6 @@ FormatToolbar.prototype.activateItem = function (toolbarItem) {
  *  The item to focus on
  */
 FormatToolbar.prototype.setFocusItem = function (item) {
-
   for (var i = 0; i < this.toolbarItems.length; i++) {
     this.toolbarItems[i].domNode.setAttribute('tabindex', '-1');
   }

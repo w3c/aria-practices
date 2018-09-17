@@ -4,13 +4,12 @@
 */
 
 FontMenuButton = function (node, toolbar) {
-
-  this.domNode  = node;
+  this.domNode = node;
   this.fontMenu = false;
-  this.toolbar  = toolbar;
+  this.toolbar = toolbar;
 
   this.buttonAction = 'font-family';
-  this.value = ''
+  this.value = '';
 
   this.keyCode = Object.freeze({
     'TAB': 9,
@@ -20,7 +19,6 @@ FontMenuButton = function (node, toolbar) {
     'UP': 38,
     'DOWN': 40
   });
-
 };
 
 FontMenuButton.prototype.init = function () {
@@ -37,15 +35,12 @@ FontMenuButton.prototype.init = function () {
 
   this.domNode.addEventListener('keydown', this.handleKeyDown.bind(this));
   this.domNode.addEventListener('click', this.handleClick.bind(this));
-
 };
 
 FontMenuButton.prototype.handleKeyDown = function (event) {
-
   var flag = false;
 
   switch (event.keyCode) {
-
     case this.keyCode.SPACE:
     case this.keyCode.RETURN:
     case this.keyCode.DOWN:
@@ -53,9 +48,8 @@ FontMenuButton.prototype.handleKeyDown = function (event) {
       this.fontMenu.setFocusToFirstItem();
       flag = true;
       break;
-
     case this.keyCode.UP:
-      this.fontMenu.open()
+      this.fontMenu.open();
       this.fontMenu.setFocusToLastItem();
       flag = true;
       break;
@@ -68,20 +62,19 @@ FontMenuButton.prototype.handleKeyDown = function (event) {
     event.stopPropagation();
     event.preventDefault();
   }
-
 };
 
 FontMenuButton.prototype.handleClick = function (event, menuButton) {
   if (this.fontMenu.isOpen()) {
-    this.fontMenu.close()
+    this.fontMenu.close();
   }
   else {
-    this.fontMenu.open()
+    this.fontMenu.open();
   }
 };
 
 FontMenuButton.prototype.setFontFamily = function (font) {
   this.value = font;
   this.toolbar.activateItem(this);
-}
+};
 

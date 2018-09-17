@@ -19,8 +19,10 @@ var FontMenu = function (domNode, controllerObj) {
 
   // Check whether domNode child elements are A elements
   var childElement = domNode.firstElementChild;
+
   while (childElement) {
     var menuitem = childElement.firstElementChild;
+
     if (menuitem && menuitem === 'A') {
       throw new Error(msgPrefix + 'Cannot have descendant elements are A elements.');
     }
@@ -30,14 +32,14 @@ var FontMenu = function (domNode, controllerObj) {
   this.domNode = domNode;
   this.controller = controllerObj;
 
-  this.menuitems  = [];      // see PopupMenu init method
-  this.firstChars = [];      // see PopupMenu init method
+  this.menuitems = [];      // See PopupMenu init method
+  this.firstChars = [];      // See PopupMenu init method
 
-  this.firstItem  = null;    // see PopupMenu init method
-  this.lastItem   = null;    // see PopupMenu init method
+  this.firstItem = null;    // See PopupMenu init method
+  this.lastItem = null;    // See PopupMenu init method
 
-  this.hasFocus   = false;   // see MenuItem handleFocus, handleBlur
-  this.hasHover   = false;   // see PopupMenu handleMouseover, handleMouseout
+  this.hasFocus = false;   // See MenuItem handleFocus, handleBlur
+  this.hasHover = false;   // See PopupMenu handleMouseover, handleMouseout
 };
 
 /*
@@ -55,7 +57,7 @@ FontMenu.prototype.init = function () {
   this.domNode.tabIndex = -1;
 
   this.domNode.addEventListener('mouseover', this.handleMouseover.bind(this));
-  this.domNode.addEventListener('mouseout',  this.handleMouseout.bind(this));
+  this.domNode.addEventListener('mouseout', this.handleMouseout.bind(this));
 
   // Traverse the element children of domNode: configure each with
   // menuitem role behavior and store reference in menuitems array.
@@ -74,7 +76,7 @@ FontMenu.prototype.init = function () {
   numItems = this.menuitems.length;
   if (numItems > 0) {
     this.firstItem = this.menuitems[0];
-    this.lastItem  = this.menuitems[numItems - 1];
+    this.lastItem = this.menuitems[numItems - 1];
   }
 };
 
@@ -177,20 +179,20 @@ FontMenu.prototype.getIndexFirstChars = function (startIndex, char) {
   return -1;
 };
 
-/* focus methods */
+/* Focus methods */
 
 FontMenu.prototype.setFocus = function () {
   this.hasFocus = true;
   this.domNode.classList.add('focus');
   this.controller.toolbar.domNode.classList.add('focus');
-}
+};
 
 FontMenu.prototype.removeFocus = function () {
   this.hasFocus = false;
   this.domNode.classList.remove('focus');
   this.controller.toolbar.domNode.classList.remove('focus');
   setTimeout(this.close.bind(this, false), 300);
-}
+};
 
 /* MENU DISPLAY METHODS */
 
@@ -199,17 +201,17 @@ FontMenu.prototype.isOpen = function () {
 };
 
 FontMenu.prototype.open = function () {
-  // get bounding rectangle of controller object's DOM node
+  // Get bounding rectangle of controller object's DOM node
   var rect = this.controller.domNode.getBoundingClientRect();
 
-  // set CSS properties
+  // Set CSS properties
   this.domNode.style.display = 'block';
   this.domNode.style.position = 'absolute';
-  this.domNode.style.top  = (rect.height -1) + 'px';
+  this.domNode.style.top = (rect.height - 1) + 'px';
   this.domNode.style.left = '0px';
   this.domNode.style.zIndex = 100;
 
-  // set aria-expanded attribute
+  // Set aria-expanded attribute
   this.controller.domNode.setAttribute('aria-expanded', 'true');
 };
 
