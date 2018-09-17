@@ -53,9 +53,15 @@ li{
 }
 
 [role="toolbar"] [role="button"][aria-disabled="true"] {
-	color: #888;
-	background-color: #DDD;
-	border-color: #DDD;
+	color: #EEE;
+	background-color: #666;
+	border-color: #666;
+}
+
+[role="toolbar"] [role="button"][aria-disabled="true"]:focus {
+	color: #222428;
+	border-color:#005A9C;
+	background:rgb(226, 239, 255);
 }
 
 [role="toolbar"] [role="button"]:focus{
@@ -63,8 +69,6 @@ li{
 	border-color:#005A9C;
 	background:rgb(226, 239, 255);
 }
-
-
 
 textarea {
 	width:85%;

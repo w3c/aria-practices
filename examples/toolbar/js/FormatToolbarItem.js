@@ -3,19 +3,7 @@
 *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
 */
 
-/**
- * @namespace aria
- */
-
-var aria = aria || {};
-
-/* ---------------------------------------------------------------- */
-/*                  ARIA Widget Namespace                        */
-/* ---------------------------------------------------------------- */
-
-aria.widget = aria.widget || {};
-
-aria.widget.ToolbarItem = function (domNode, toolbar) {
+FormatToolbarItem = function (domNode, toolbar) {
   this.domNode = domNode;
   this.toolbar = toolbar;
   this.buttonAction = '';
@@ -38,7 +26,7 @@ aria.widget.ToolbarItem = function (domNode, toolbar) {
   });
 };
 
-aria.widget.ToolbarItem.prototype.init = function () {
+FormatToolbarItem.prototype.init = function () {
   this.domNode.addEventListener('keydown', this.handleKeyDown.bind(this));
   this.domNode.addEventListener('click', this.handleClick.bind(this));
   this.domNode.addEventListener('focus', this.handleFocus.bind(this));
@@ -87,33 +75,33 @@ aria.widget.ToolbarItem.prototype.init = function () {
   }
 };
 
-aria.widget.ToolbarItem.prototype.setPressed = function () {
+FormatToolbarItem.prototype.setPressed = function () {
   this.domNode.setAttribute('aria-pressed', 'true');
 };
 
-aria.widget.ToolbarItem.prototype.resetPressed = function () {
+FormatToolbarItem.prototype.resetPressed = function () {
   this.domNode.setAttribute('aria-pressed', 'false');
 };
 
-aria.widget.ToolbarItem.prototype.disable = function () {
+FormatToolbarItem.prototype.disable = function () {
   this.domNode.setAttribute('aria-disabled', 'true');
 };
 
-aria.widget.ToolbarItem.prototype.enable = function () {
+FormatToolbarItem.prototype.enable = function () {
   this.domNode.removeAttribute('aria-disabled');
 };
 
 // Events
 
-aria.widget.ToolbarItem.prototype.handleBlur = function (event) {
+FormatToolbarItem.prototype.handleBlur = function (event) {
   this.toolbar.domNode.classList.remove('focused');
 };
 
-aria.widget.ToolbarItem.prototype.handleFocus = function (event) {
+FormatToolbarItem.prototype.handleFocus = function (event) {
   this.toolbar.domNode.classList.add('focused');
 };
 
-aria.widget.ToolbarItem.prototype.handleKeyDown = function (event) {
+FormatToolbarItem.prototype.handleKeyDown = function (event) {
 
   var flag = false;
 
@@ -158,7 +146,7 @@ aria.widget.ToolbarItem.prototype.handleKeyDown = function (event) {
 
 };
 
-aria.widget.ToolbarItem.prototype.handleClick = function () {
+FormatToolbarItem.prototype.handleClick = function () {
   this.toolbar.setFocusItem(this);
   this.toolbar.activateItem(this);
 };
