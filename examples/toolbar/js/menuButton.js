@@ -253,7 +253,6 @@ aria.widget.Menu.prototype.eventKeyDown = function (event, menu) {
       flag = true;
       break;
 
-
     case menu.keyCode.DOWN:
       menu.nextMenuItem(ct);
       flag = true;

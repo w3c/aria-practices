@@ -18,7 +18,7 @@ aria.widget = aria.widget || {};
 aria.widget.ToolbarItem = function (domNode, toolbar) {
   this.domNode = domNode;
   this.toolbar = toolbar;
-  this.buttonAction = 'none';
+  this.buttonAction = '';
   this.value = '';
 
 
@@ -103,7 +103,7 @@ aria.widget.ToolbarItem.prototype.enable = function () {
   this.domNode.removeAttribute('aria-disabled');
 };
 
-
+// Events
 
 aria.widget.ToolbarItem.prototype.handleBlur = function (event) {
   this.toolbar.domNode.classList.remove('focused');
@@ -115,11 +115,16 @@ aria.widget.ToolbarItem.prototype.handleFocus = function (event) {
 
 aria.widget.ToolbarItem.prototype.handleKeyDown = function (event) {
 
+  var flag = false;
+
   switch (event.keyCode) {
+
     case this.keyCode.RETURN:
     case this.keyCode.SPACE:
-      this.toolbar.activateItem(this);
-      flag = true;
+      if (this.buttonAction !== '') {
+        this.toolbar.activateItem(this);
+        flag = true;
+      }
       break;
 
     case this.keyCode.RIGHT:
@@ -141,6 +146,9 @@ aria.widget.ToolbarItem.prototype.handleKeyDown = function (event) {
       this.toolbar.setFocusToLast(this);
       flag = true;
       break;
+
+    default:
+      break;
   }
 
   if (flag) {
@@ -151,5 +159,6 @@ aria.widget.ToolbarItem.prototype.handleKeyDown = function (event) {
 };
 
 aria.widget.ToolbarItem.prototype.handleClick = function () {
+  this.toolbar.setFocusItem(this);
   this.toolbar.activateItem(this);
 };

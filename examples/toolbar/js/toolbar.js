@@ -25,25 +25,25 @@ aria.widget = aria.widget || {};
  *  The DOM node pointing to the toolbar
  */
 aria.widget.Toolbar = function (domNode) {
-  this.domNode   = domNode;
+  this.domNode = domNode;
   this.firstItem = null;
-  this.lastItem  = null;
+  this.lastItem = null;
 
   this.toolbarItems = [];
-  this.alignItems   = [];
+  this.alignItems = [];
 
   this.fontSmallerItem = null;
   this.fontLargerItem = null;
 };
 
 aria.widget.Toolbar.prototype.init = function () {
-
   this.textarea = document.getElementById(this.domNode.getAttribute('aria-controls'));
 
   var buttons = this.domNode.querySelectorAll('[role="button"]');
 
-  for (let i = 0; i < buttons.length; i++) {
+  for (var i = 0; i < buttons.length; i++) {
     var toolbarItem = new aria.widget.ToolbarItem(buttons[i], this);
+
     toolbarItem.init();
     if (i === 0) {
       this.firstItem = toolbarItem;
@@ -88,12 +88,11 @@ aria.widget.Toolbar.prototype.toggleItalic = function (toolbarItem) {
 
 aria.widget.Toolbar.prototype.setAlignment = function (toolbarItem) {
 
-  for (let i = 0; i < this.alignItems.length; i++) {
+  for (var i = 0; i < this.alignItems.length; i++) {
     this.alignItems[i].resetPressed();
   }
 
-  switch(toolbarItem.value) {
-
+  switch (toolbarItem.value) {
     case 'left':
       this.textarea.style.textAlign = 'left';
       toolbarItem.setPressed();
@@ -103,7 +102,6 @@ aria.widget.Toolbar.prototype.setAlignment = function (toolbarItem) {
       this.textarea.style.textAlign = 'center';
       toolbarItem.setPressed();
       break;
-
     case 'right':
       this.textarea.style.textAlign = 'right';
       toolbarItem.setPressed();
@@ -112,27 +110,22 @@ aria.widget.Toolbar.prototype.setAlignment = function (toolbarItem) {
     default:
       break;
   }
-
 };
 
 aria.widget.Toolbar.prototype.fontSmaller = function () {
-
   switch (this.textarea.style.fontSize) {
     case 'small' :
       this.textarea.style.fontSize = 'x-small';
       this.fontLargerItem.enable();
       break;
-
     case 'medium' :
       this.textarea.style.fontSize = 'small';
       this.fontLargerItem.enable();
       break;
-
     case 'large' :
       this.textarea.style.fontSize = 'medium';
       this.fontLargerItem.enable();
       break;
-
     case 'x-large':
       this.textarea.style.fontSize = 'large';
       this.fontLargerItem.enable();
@@ -146,7 +139,6 @@ aria.widget.Toolbar.prototype.fontSmaller = function () {
 };
 
 aria.widget.Toolbar.prototype.fontLarger = function () {
-
   switch (this.textarea.style.fontSize) {
     case 'x-small':
       this.textarea.style.fontSize = 'small';
@@ -173,38 +165,31 @@ aria.widget.Toolbar.prototype.fontLarger = function () {
 };
 
 aria.widget.Toolbar.prototype.activateItem = function (toolbarItem) {
-
   console.log(toolbarItem.buttonAction);
 
   switch (toolbarItem.buttonAction) {
     case 'bold':
       this.toggleBold(toolbarItem);
       break;
-
     case 'underline':
       this.toggleUnderline(toolbarItem);
       break;
-
     case 'italic':
       this.toggleItalic(toolbarItem);
       break;
-
     case 'align':
       this.setAlignment(toolbarItem);
       break;
-
     case 'font':
       if (toolbarItem.value === 'larger') {
-        this.fontLarger()
+        this.fontLarger();
       }
       else {
-        this.fontSmaller()
+        this.fontSmaller();
       }
       break;
 
   }
-
-
 };
 
 /**
@@ -214,49 +199,48 @@ aria.widget.Toolbar.prototype.activateItem = function (toolbarItem) {
  * @param element
  *  The item to focus on
  */
-aria.widget.Toolbar.prototype.setFocusItem = function (element) {
+aria.widget.Toolbar.prototype.setFocusItem = function (item) {
+
   for (var i = 0; i < this.toolbarItems.length; i++) {
     this.toolbarItems[i].domNode.setAttribute('tabindex', '-1');
   }
-  element.setAttribute('tabindex', '0');
-  element.focus();
+
+  item.domNode.setAttribute('tabindex', '0');
+  item.domNode.focus();
 };
+
 aria.widget.Toolbar.prototype.setFocusToNext = function (currentItem) {
   var index, newItem;
 
   if (currentItem === this.lastItem) {
-    newItem = this.toolbarItems[0];
+    newItem = this.firstItem;
   }
   else {
     index = this.toolbarItems.indexOf(currentItem);
     newItem = this.toolbarItems[index + 1];
-    if (newItem.domNode.getAttribute('aria-disabled') === 'true') {
-      newItem = this.toolbarItems[index + 2];
-    }
   }
-  this.setFocusItem(newItem.domNode);
+  this.setFocusItem(newItem);
 };
 
 aria.widget.Toolbar.prototype.setFocusToPrevious = function (currentItem) {
   var index, newItem;
 
   if (currentItem === this.firstItem) {
-    newItem = this.toolbarItems[this.toolbarItems.length - 1];
+    newItem = this.lastItem;
   }
   else {
     index = this.toolbarItems.indexOf(currentItem);
     newItem = this.toolbarItems[index - 1];
-    if (newItem.domNode.getAttribute('aria-disabled') === 'true') {
-      newItem = this.toolbarItems[index - 2];
-    }
   }
-  this.setFocusItem(newItem.domNode);
+  this.setFocusItem(newItem);
 };
+
 aria.widget.Toolbar.prototype.setFocusToFirst = function (currentItem) {
-  this.setFocusItem(this.firstItem.domNode);
+  this.setFocusItem(this.firstItem);
 };
+
 aria.widget.Toolbar.prototype.setFocusToLast = function (currentItem) {
-  this.setFocusItem(this.lastItem.domNode);
+  this.setFocusItem(this.lastItem);
 };
 
 // Initialize toolbars
@@ -272,8 +256,10 @@ aria.widget.Toolbar.prototype.setFocusToLast = function (currentItem) {
 
 window.addEventListener('load', function () {
   var toolbars = document.querySelectorAll('[role="toolbar"]');
-  for (let i = 0; i < toolbars.length; i++) {
+
+  for (var i = 0; i < toolbars.length; i++) {
     var toolbar = new aria.widget.Toolbar(toolbars[i]);
+
     toolbar.init();
   }
 });
