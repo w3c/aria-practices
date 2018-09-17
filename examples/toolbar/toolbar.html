@@ -18,9 +18,11 @@
 <link href="css/toolbar.css"    rel="stylesheet">
 <link href="css/menuButton.css" rel="stylesheet">
 
-<script src="js/menuButton.js"        type="text/javascript"></script>
 <script src="js/FormatToolbarItem.js" type="text/javascript"></script>
 <script src="js/FormatToolbar.js"     type="text/javascript"></script>
+<script src="js/FontMenuItem.js"      type="text/javascript"></script>
+<script src="js/FontMenu.js"          type="text/javascript"></script>
+<script src="js/FontMenuButton.js"    type="text/javascript"></script>
 
 </head>
 <body>
@@ -123,11 +125,12 @@
               tabindex="=-1">
               Fonts
             </div>
-            <ul role="menu" id="menu1" aria-label="Fonts">
-              <li role="menuitem">Sans-serif</li>
-              <li role="menuitem">Serif</li>
-              <li role="menuitem">Monospace</li>
-              <li role="menuitem">Fantasy</li>
+            <ul role="menu" id="menu1" aria-label="Font Family">
+              <li role="menuitem" style="font-family: sans-serif">Sans-serif</li>
+              <li role="menuitem" style="font-family: serif">Serif</li>
+              <li role="menuitem" style="font-family: monspace">Monospace</li>
+              <li role="menuitem" style="font-family: fantasy">Fantasy</li>
+              <li role="menuitem" style="font-family: cursive">Cursive</li>
             </ul>
           </div>
       </div>
@@ -561,10 +564,12 @@
     <h2>Javascript and CSS Source Code</h2>
     <ul>
       <li>CSS: <a href="css/toolbar.css" type="tex/css">toolbar.css</a></li>
-      <li>Javascript: <a href="js/toolbar.js" type="text/javascript">toolbar.js</a></li>
       <li>CSS: <a href="css/menuButton.css" type="stylesheet">menuButton.css</a></li>
-      <li>Javascript: <a href="js/menuButton.js" type="text/javascript">menuButton.js</a></li>
-      <li>Javascript: <a href="js/main.js" type="text/javascript">main.js</a></li>
+      <li>Javascript: <a href="js/FormatToolbar.js" type="text/javascript">FormatToolbar.js</a></li>
+      <li>Javascript: <a href="js/FormatToolbarItem.js" type="text/javascript">FormatToolbarItem.js</a></li>
+      <li>Javascript: <a href="js/FontMenuButton.js" type="text/javascript">FontMenuButton.js</a></li>
+      <li>Javascript: <a href="js/FontMenu.js" type="text/javascript">FontMenu.js</a></li>
+      <li>Javascript: <a href="js/FontMenuItem.js" type="text/javascript">FontMenuItem.js</a></li>
     </ul>
   </section>
 

@@ -63,13 +63,13 @@ FormatToolbarItem.prototype.init = function () {
   }
 
   if (this.domNode.classList.contains('font-larger')) {
-    this.buttonAction = 'font';
+    this.buttonAction = 'font-size';
     this.value = 'larger';
     this.toolbar.fontLargerItem = this;
   }
 
   if (this.domNode.classList.contains('font-smaller')) {
-    this.buttonAction = 'font';
+    this.buttonAction = 'font-size';
     this.value = 'smaller';
     this.toolbar.fontSmallerItem = this;
   }

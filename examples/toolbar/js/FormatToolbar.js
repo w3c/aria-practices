@@ -26,19 +26,29 @@ FormatToolbar = function (domNode) {
 };
 
 FormatToolbar.prototype.init = function () {
+
+  var i, buttons, toolbarItem, menuButtons;
+
   this.textarea = document.getElementById(this.domNode.getAttribute('aria-controls'));
 
-  var buttons = this.domNode.querySelectorAll('[role="button"]');
+  buttons = this.domNode.querySelectorAll('[role="button"]');
 
-  for (var i = 0; i < buttons.length; i++) {
-    var toolbarItem = new FormatToolbarItem(buttons[i], this);
-
+  for (i=0; i < buttons.length; i++) {
+    toolbarItem = new FormatToolbarItem(buttons[i], this);
     toolbarItem.init();
+
     if (i === 0) {
       this.firstItem = toolbarItem;
     }
     this.lastItem = toolbarItem;
     this.toolbarItems.push(toolbarItem);
+  }
+
+  menuButtons = this.domNode.querySelectorAll('[role="button"][aria-haspopup="true"]');
+
+  for(i=0; i < menuButtons.length; i++) {
+    toolbarItem = new FontMenuButton(menuButtons[i], this);
+    toolbarItem.init();
   }
 };
 
@@ -153,8 +163,13 @@ FormatToolbar.prototype.fontLarger = function () {
   }
 };
 
+FormatToolbar.prototype.setFontFamily = function (font) {
+  this.textarea.style.fontFamily = font;
+};
+
 FormatToolbar.prototype.activateItem = function (toolbarItem) {
-  console.log(toolbarItem.buttonAction);
+
+  console.log(toolbarItem.buttonAction + ' ' + toolbarItem.value);
 
   switch (toolbarItem.buttonAction) {
     case 'bold':
@@ -169,13 +184,20 @@ FormatToolbar.prototype.activateItem = function (toolbarItem) {
     case 'align':
       this.setAlignment(toolbarItem);
       break;
-    case 'font':
+    case 'font-size':
       if (toolbarItem.value === 'larger') {
         this.fontLarger();
       }
       else {
         this.fontSmaller();
       }
+      break;
+
+    case 'font-family':
+      this.setFontFamily(toolbarItem.value);
+      break;
+
+    default:
       break;
 
   }
@@ -245,7 +267,6 @@ FormatToolbar.prototype.setFocusToLast = function (currentItem) {
 
 window.addEventListener('load', function () {
   var toolbars = document.querySelectorAll('[role="toolbar"].format');
-  alert(toolbars.length);
 
   for (var i = 0; i < toolbars.length; i++) {
     var toolbar = new FormatToolbar(toolbars[i]);
