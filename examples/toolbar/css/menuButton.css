@@ -31,16 +31,6 @@
   border-bottom: 1px solid transparent;
 }
 
-[role='toolbar'] [role="menu"] [role="menuitem"]:first-child {
-  border-top: none;
-  border-radius-top: 5px;
-}
-
-[role='toolbar'] [role="menu"] [role="menuitem"]:last-child {
-  border-bottom: none;
-  border-radius-bottom: 5px;
-}
-
 [role='toolbar'] [role="menu"] [role="menuitem"]:focus,
 [role='toolbar'] [role="menu"] [role="menuitem"]:hover {
 	background:rgb(226, 239, 255);
