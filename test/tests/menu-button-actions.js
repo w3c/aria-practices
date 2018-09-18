@@ -5,6 +5,7 @@ const { By, Key } = require('selenium-webdriver');
 const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertAriaControls = require('../util/assertAriaControls');
+const assertAriaRoles = require('../util/assertAriaRoles');
 
 const exampleFile = 'menu-button/menu-button-actions.html';
 
@@ -71,21 +72,8 @@ ariaTest('"aria-expanded" attribute on menu button', exampleFile, 'menu-button-a
 });
 
 ariaTest('role="menu" on ul element', exampleFile, 'menu-role', async (t) => {
-  t.plan(2);
-
-  const menus = await t.context.session.findElements(By.css(ex.menuSelector));
-
-  t.is(
-    menus.length,
-    1,
-    '1 role="menu" elements should be found by selector: ' + ex.menuSelector
-  );
-
-  t.is(
-    await menus[0].getTagName(),
-    'ul',
-    'role="menu" should be found on "ul" element'
-  );
+  t.plan(1);
+  await assertAriaRoles(t, 'ex1', 'menu', 1, 'ul');
 });
 
 ariaTest('"aria-labelledby" on role="menu"', exampleFile, 'menu-aria-labelledby', async (t) => {
@@ -94,24 +82,8 @@ ariaTest('"aria-labelledby" on role="menu"', exampleFile, 'menu-aria-labelledby'
 });
 
 ariaTest('role="menuitem" on li element', exampleFile, 'menuitem-role', async (t) => {
-
-  t.plan(5);
-
-  const menuitems = await t.context.session.findElements(By.css(ex.menuitemSelector));
-
-  t.is(
-    menuitems.length,
-    4,
-    'Four role="menuitems" elements should be found by selector: ' + ex.menuitemSelector
-  );
-
-  for (let menuitem of menuitems) {
-    t.is(
-      await menuitem.getTagName(),
-      'li',
-      '"role=menuitem" should be found on a "li" element'
-    );
-  }
+  t.plan(1);
+  await assertAriaRoles(t, 'ex1', 'menuitem', ex.numMenuitems, 'li');
 });
 
 ariaTest('tabindex="-1" on role="menuitem"', exampleFile, 'menuitem-tabindex', async (t) => {
@@ -130,7 +102,7 @@ ariaTest('"enter" on menu button', exampleFile, 'menu-button-key-open', async (t
     .sendKeys(Key.ENTER);
 
   t.true(
-    await t.context.session.findElement(By.css(ex.menuitemSelector)).isDisplayed(),
+    await t.context.session.findElement(By.css(ex.menuSelector)).isDisplayed(),
     'The popup should be displayed after sending button ENTER'
   );
 
@@ -148,7 +120,7 @@ ariaTest('"down arrow" on menu button', exampleFile, 'menu-button-key-open', asy
     .sendKeys(Key.ARROW_DOWN);
 
   t.true(
-    await t.context.session.findElement(By.css(ex.menuitemSelector)).isDisplayed(),
+    await t.context.session.findElement(By.css(ex.menuSelector)).isDisplayed(),
     'The popup should be displayed after sending button ARROW_DOWN'
   );
 
@@ -166,7 +138,7 @@ ariaTest('"space" on menu button', exampleFile, 'menu-button-key-open', async (t
     .sendKeys(Key.SPACE);
 
   t.true(
-    await t.context.session.findElement(By.css(ex.menuitemSelector)).isDisplayed(),
+    await t.context.session.findElement(By.css(ex.menuSelector)).isDisplayed(),
     'The popup should be displayed after sending button SPACE'
   );
 
@@ -202,7 +174,7 @@ ariaTest('"enter" on role="menuitem"', exampleFile, 'menu-key-enter', async (t) 
 
     await openMenu(t);
     const itemText = await item.getText();
-    item.sendKeys(Key.ENTER);
+    await item.sendKeys(Key.ENTER);
 
     t.is(
       itemText,
@@ -230,7 +202,7 @@ ariaTest('"escape" on role="menuitem"', exampleFile, 'menu-key-escape', async (t
 
     await openMenu(t);
     const itemText = await item.getText();
-    item.sendKeys(Key.ESCAPE);
+    await item.sendKeys(Key.ESCAPE);
 
     t.not(
       itemText,
