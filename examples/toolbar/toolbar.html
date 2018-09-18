@@ -50,10 +50,10 @@
     <h2 id="ex_label">Example</h2>
     <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
     <div id="ex1">
-        <div class="format" role="toolbar" aria-label="Text Formatting" aria-controls="textarea1">
+      <div class="format" role="toolbar" aria-label="Text Formatting" aria-controls="textarea1">
           <div class="group characteristics">
             <div role="button"
-                class="bold"
+                class="item bold"
                 aria-pressed="false"
                 aria-label="bold"
                 value="bold"
@@ -61,7 +61,7 @@
               <i class="fas fa-bold"></i>
             </div>
             <div role="button"
-                class="italic"
+                class="item italic"
                 aria-label="Italic"
                 aria-pressed="false"
                 value="italic"
@@ -69,7 +69,7 @@
               <i class="fas fa-italic"></i>
             </div>
             <div role="button"
-                class="underline"
+                class="item underline"
                 aria-label="Underline"
                 aria-pressed="false"
                 value="underline"
@@ -79,21 +79,21 @@
           </div>
           <div class="group">
             <div role="button"
-                class="align-left"
+                class="item align-left"
                 aria-label="Text align left"
                 aria-pressed="true"
                 tabindex="-1">
               <i class="fas fa-align-left"></i>
             </div>
             <div role="button"
-                class="align-center"
+                class="item align-center"
                 aria-label="Text align center"
                 aria-pressed="false"
                 tabindex="-1">
               <i class="fas fa-align-center"></i>
             </div>
             <div role="button"
-                class="align-right"
+                class="item align-right"
                 aria-label="Text align right"
                 aria-pressed="false"
                 tabindex="-1">
@@ -101,15 +101,17 @@
             </div>
           </div>
           <div class="group">
-            <div role="button"
-                class="font-larger"
+            <input type="text"
+                size="5"
+                role="spinbutton"
+                class="item font-size">
+            <div class="button font-larger"
                 aria-label="Font size larger"
                 aria-disabled="false"
                 tabindex="-1">
               <i class="fas fa-plus"></i>
             </div>
-            <div role="button"
-                class="font-smaller"
+            <div class="button font-smaller"
                 aria-label="Font size smaller"
                 aria-disabled="false"
                 tabindex="-1">
@@ -121,7 +123,7 @@
               role="button"
               aria-haspopup="true"
               aria-controls="menu1"
-              class="menu-button"
+              class="item menu-button"
               tabindex="=-1">
               Fonts
             </div>
@@ -132,6 +134,19 @@
               <li role="menuitem" style="font-family: fantasy">Fantasy</li>
               <li role="menuitem" style="font-family: cursive">Cursive</li>
             </ul>
+          </div>
+          <div class="group">
+            <a href="#help"
+              tabindex="-1"
+              class="item button">
+              Help
+            </a>
+            <div role="checkbox"
+                class="item button"
+                aria-label="Checkbox example"
+                tabindex="-1">
+                X
+            </div>
           </div>
       </div>
       <label for="textarea1" class="hidden">Text Sample</label><br>

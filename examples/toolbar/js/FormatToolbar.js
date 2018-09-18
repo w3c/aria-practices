@@ -26,14 +26,14 @@ FormatToolbar = function (domNode) {
 };
 
 FormatToolbar.prototype.init = function () {
-  var i, buttons, toolbarItem, menuButtons;
+  var i, items, toolbarItem, menuButtons;
 
   this.textarea = document.getElementById(this.domNode.getAttribute('aria-controls'));
 
-  buttons = this.domNode.querySelectorAll('[role="button"]');
+  items = this.domNode.querySelectorAll('.items');
 
-  for (i = 0; i < buttons.length; i++) {
-    toolbarItem = new FormatToolbarItem(buttons[i], this);
+  for (i = 0; i < items.length; i++) {
+    toolbarItem = new FormatToolbarItem(items[i], this);
     toolbarItem.init();
 
     if (i === 0) {

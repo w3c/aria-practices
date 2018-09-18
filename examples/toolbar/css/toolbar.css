@@ -3,7 +3,7 @@
 	border-radius:5px;
 	padding:.25em;
 	height: 3.25em;
-	width:42.3em;
+	width: 50em;
 	background-color:#ECECEA;
 	border:2px solid transparent;
 }
@@ -22,8 +22,9 @@
 	margin-left: 0.75em;
 }
 
-[role="toolbar"] [role="button"] {
-	border: 2px solid transparent;
+[role="toolbar"] [role="button"],
+[role="toolbar"] .button {
+	border: 2px solid rgb(255, 255, 255);
 	outline:none;
 	display: inline-block;
 	padding: 0.5em 1em;
@@ -41,9 +42,6 @@
 	background-color: #F4F4F4;
 }
 
-[role="toolbar"] [role="button"] {
-	border-color: white;
-}
 
 [role="toolbar"] [role="button"][aria-disabled="true"] {
 	color: #EEE;
@@ -64,7 +62,7 @@
 }
 
 textarea {
-	width:85%;
+	width: 50em;
 	padding: .25em;
 	border: 2px solid black;
 	height: 400px;
