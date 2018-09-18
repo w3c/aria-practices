@@ -38,6 +38,20 @@
     <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
     <div id="coding-arena">
       <div class="demo-block">
+        <!-- Accordion Configuration Options
+
+          data-allow-toggle
+            Allow for each toggle to both open and close individually
+
+          data-allow-multiple
+            Allow for multiple accordion sections to be expanded at the same time. Assumes data-allow-toggle otherwise you would not be able to close any of the accordions
+          __________
+
+          Ex:
+            <div id="accordionGroup" role="presentation" class="Accordion" data-allow-multiple>
+
+            <div id="accordionGroup" role="presentation" class="Accordion" data-allow-toggle>
+        -->
         <div id="accordionGroup" role="presentation" class="Accordion">
           <h3>
             <button aria-expanded="true" class="Accordion-trigger"
@@ -159,8 +173,8 @@
     <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
   </section>
   <section>
-    <h2>Focus Styling</h2>
-    <p>One way to provide keyboard only users information on the additional keyboard shortcuts available in the accordion pattern, is to highlight the accordion container and the accordion buttons that the shortcuts can be used to navigate to.</p>
+    <h2>Accessibility Features</h2>
+    <p>One issue for supporting keyboard only users is providing visual cues for informing the user of additional keyboard commands to enhance navigation. The example changes styling of the accordion container and the buttons associated with expanding/collapsing the accordion when any of the accordion buttons has keyboard focus.</p>
 
     <p>When any of the accordion button receives focus:</p>
     <ul>
