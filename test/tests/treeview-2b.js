@@ -133,7 +133,7 @@ ariaTest('aria-labelledby on role="tree" element', exampleFile, 'tree-aria-label
 
   t.plan(1);
 
-  await assertAriaLabelledby(t, 'ex1', ex.treeSelector);
+  await assertAriaLabelledby(t, ex.treeSelector);
 });
 
 ariaTest('role="treeitem" on "li" or "a" element', exampleFile, 'treeitem-role', async (t) => {

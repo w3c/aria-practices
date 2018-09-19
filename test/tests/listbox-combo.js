@@ -349,7 +349,7 @@ ariaTest('Test aria-labelledby attribute on listbox',
 
     for (let exId in pageExamples) {
       let ex =  pageExamples[exId];
-      await assertAriaLabelledby(t, exId, ex.listboxSelector);
+      await assertAriaLabelledby(t, ex.listboxSelector);
     }
 
   });

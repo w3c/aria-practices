@@ -7,11 +7,10 @@ const assert = require('assert');
  * Confirm the aria-labelledby element.
  *
  * @param {obj} t                  - ava execution object
- * @param {String} exampleId       - the id example (in case of multiple examples per page)
  * @param {String} elementSelector - the element with aria-labelledby set
  */
 
-module.exports = async function assertAriaLabelledby (t, exampleId, elementSelector) {
+module.exports = async function assertAriaLabelledby (t, elementSelector) {
   const elements = await t.context.session.findElements(By.css(elementSelector));
 
   for (let index = 0; index < elements.length; index++) {
@@ -41,7 +40,7 @@ module.exports = async function assertAriaLabelledby (t, exampleId, elementSelec
 
     assert.ok(
       labelText,
-      'Element with id "' + labelId + '" should contain label text in example: ' + exampleId
+      'Element with id "' + labelId + '" should contain label text according to attribute "aria-labelledby" on element: ' + elementSelector
     );
   }
 

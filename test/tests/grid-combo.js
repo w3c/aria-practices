@@ -14,7 +14,6 @@ const ex = {
   labelSelector: '#ex1 label',
   textboxSelector: '#ex1 input[type="text"]',
   gridSelector: '#ex1 [role="grid"]',
-  gridSelector: '#ex1 [role="grid"]',
   rowSelector: '#ex1 [role="row"]',
   gridcellSelector: '#ex1 [role="gridcell"]',
   gridcellFocusedClass: 'focused-cell',
@@ -188,7 +187,7 @@ ariaTest('role "grid" on div element', exampleFile, 'grid-role', async (t) => {
 
 ariaTest('"aria-labelledby" attribute on grid element', exampleFile, 'grid-aria-labelledby', async (t) => {
   t.plan(1);
-  await assertAriaLabelledby(t, ex.textboxSelector, 'aria-labelledby');
+  await assertAriaLabelledby(t, ex.gridSelector);
 });
 
 ariaTest('role "row" exists within grid element', exampleFile, 'row-role', async (t) => {

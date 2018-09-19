@@ -7,11 +7,10 @@ const assert = require('assert');
  * Confirm the aria-describedby attribute and corrosponding element.
  *
  * @param {obj} t                  - ava execution object
- * @param {String} exampleId       - the example id (in case of multiple examples per page)
  * @param {String} elementSelector - the element with aria-describedby set
  */
 
-module.exports = async function assertAriaDescribedby (t, exampleId, elementSelector) {
+module.exports = async function assertAriaDescribedby (t, elementSelector) {
   let element = await t.context.session
     .findElement(By.css(elementSelector));
 
@@ -41,7 +40,7 @@ module.exports = async function assertAriaDescribedby (t, exampleId, elementSele
 
   assert.ok(
     descriptionText,
-    'Element with id "' + descriptionId + '" should contain description text in example: ' + exampleId
+    'Element with id "' + descriptionId + '" should contain description text according to attribute "aria-describedby" on element: ' + elementSelector
   );
 
   t.pass();

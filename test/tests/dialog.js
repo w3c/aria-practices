@@ -191,12 +191,12 @@ ariaTest('role="dialog" on div element', exampleFile, 'dialog-role', async (t) =
 
 ariaTest('"aria-labelledby" attribute on role="dialog"', exampleFile, 'aria-labelledby', async (t) => {
   t.plan(1);
-  await assertAriaLabelledby(t, 'ex1', ex.dialogSelector);
+  await assertAriaLabelledby(t, ex.dialogSelector);
 });
 
 ariaTest('', exampleFile, 'aria-describedby', async (t) => {
   t.plan(1);
-  await assertAriaDescribedby(t, 'ex1', ex.dialogsWithDescribedbySelector);
+  await assertAriaDescribedby(t, ex.dialogsWithDescribedbySelector);
 });
 
 ariaTest('"aria-modal" attribute on role="dialog"', exampleFile, 'aria-modal', async (t) => {
