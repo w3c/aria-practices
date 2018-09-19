@@ -39,7 +39,7 @@ ariaTest('"aria-haspopup" attribute on menu button', exampleFile, 'menu-button-a
 
 ariaTest('"aria-controls" attribute on menu button', exampleFile, 'menu-button-aria-controls', async (t) => {
   t.plan(1);
-  await assertAriaControls(t, 'ex1', ex.menubuttonSelector);
+  await assertAriaControls(t, ex.menubuttonSelector);
 });
 
 ariaTest('"aria-expanded" attribute on menu button', exampleFile, 'menu-button-aria-expanded', async (t) => {
@@ -90,7 +90,7 @@ ariaTest('role="menu" on ul element', exampleFile, 'menu-role', async (t) => {
 
 ariaTest('"aria-labelledby" on role="menu"', exampleFile, 'menu-aria-labelledby', async (t) => {
   t.plan(1);
-  await assertAriaLabelledby(t, 'ex1', ex.menuSelector);
+  await assertAriaLabelledby(t, ex.menuSelector);
 });
 
 ariaTest('role="menuitem" on li element', exampleFile, 'menuitem-role', async (t) => {

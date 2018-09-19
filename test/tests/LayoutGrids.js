@@ -138,7 +138,7 @@ ariaTest('Test "aria-labelledby" attribute exists',
     for (let exId in pageExamples) {
       const ex = pageExamples[exId];
 
-      await assertAriaLabelledby(t, exId, ex.gridSelector);
+      await assertAriaLabelledby(t, ex.gridSelector);
     }
   });
 
