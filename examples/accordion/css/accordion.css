@@ -47,7 +47,12 @@
     background: hsl(216, 94%, 94%);
 }
 
+.Accordion button::-moz-focus-inner {
+    border: 0;
+}
+
 .Accordion-title {
+  display: block;
   pointer-events: none;
   border: transparent 2px solid;
   border-radius: 5px;

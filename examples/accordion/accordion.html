@@ -52,14 +52,14 @@
 
             <div id="accordionGroup" role="presentation" class="Accordion" data-allow-toggle>
         -->
-        <div id="accordionGroup" role="presentation" class="Accordion">
+        <div id="accordionGroup" class="Accordion">
           <h3>
             <button aria-expanded="true" class="Accordion-trigger"
               aria-controls="sect1" id="accordion1id">
-              <div class="Accordion-title">
+              <span class="Accordion-title">
                 Personal Information
                 <span class="Accordion-icon"></span>
-              </div>
+              </span>
             </button>
           </h3>
           <div id="sect1" role="region" aria-labelledby="accordion1id" class="Accordion-panel">
@@ -100,10 +100,10 @@
           <h3>
             <button aria-expanded="false" class="Accordion-trigger"
               aria-controls="sect2" id="accordion2id">
-              <div class="Accordion-title">
+              <span class="Accordion-title">
                 Billing Address
                 <span class="Accordion-icon"></span>
-              </div>
+              </span>
             </button>
           </h3>
           <div id="sect2" role="region" aria-labelledby="accordion2id" class="Accordion-panel" hidden>
@@ -135,10 +135,10 @@
           <h3>
             <button aria-expanded="false" class="Accordion-trigger"
               aria-controls="sect3" id="accordion3id">
-              <div class="Accordion-title">
+              <span class="Accordion-title">
                 Shipping Address
                 <span class="Accordion-icon"></span>
-            </div>
+              </span>
             </button>
           </h3>
           <div id="sect3" role="region" aria-labelledby="accordion3id" class="Accordion-panel" hidden>
@@ -266,32 +266,14 @@
       </thead>
       <tbody>
         <tr>
-          <th scope="row"><code>presentation</code></th>
-          <td></td>
-          <td><code>div</code></td>
-          <td>
-            <ul>
-              <li>Indicates that the <code>dl</code> element is being used to control presentation and does not represent a definition list.</li>
-              <li>This implementation uses an HTML definition list where each term is recast as a header and each definition is recast as a region that contains panel content.</li>
-            </ul>
-          </td>
-        </tr>
-        <tr>
           <th scope="row"><code>heading</code></th>
           <td></td>
-          <td><code>div</code></td>
-          <td>Identifies the element as a heading that serves as an accordion header.</td>
-        </tr>
-        <tr>
-          <td></td>
-          <th scope="row"><code>aria-level=<q>3</q></code></th>
-          <td><code>div</code></td>
+          <td><code>h3</code></td>
           <td>
             <ul>
-              <li>Specifies heading level for the accordion header.</li>
-              <li>Level 3 is chosen because the accordion is contained in a section with a level 2 heading.</li>
-            </ul>
-          </td>
+              <li>The accordion design pattern is defined by a button is contained within an element with <code>role=heading</code>.</li>
+              <li>The default role for the <code>h3</code> element is <code>heading</code>.</li>
+            </td>
         </tr>
         <tr>
           <td> </td>
@@ -318,10 +300,15 @@
           </td>
         </tr>
         <tr data-test-id="region-role">
-          <th scope="row">region</th>
+          <th scope="row"><code>region</code></th>
           <td></td>
           <td><code>div</code></td>
-          <td>Creates a landmark region that contains the currently expanded accordion panel.</td>
+          <td>
+            <ul>
+              <li>Creates a landmark region that contains the currently expanded accordion panel.</li>
+              <li>The accessible name for the region is defined by <code>aria-labelledby</code> attribute.</li>
+              <li><code>region</code> roles are required to have an accessible name to be identified as a landmark.</li>
+          </td>
         </tr>
         <tr>
           <td></td>
@@ -329,9 +316,8 @@
           <td><code>div</code></td>
           <td>
             <ul>
-              <li>Points to the accordion header.</li>
-              <li>Labels the landmark region with the accordion header.</li>
-            </ul>
+              <li>Defines the accessible name for the <code>region</code> landmark.</li>
+              <li>The IDREF references the associated accordion button that expands and collapses the accordion panel.</li>
           </td>
         </tr>
       </tbody>
