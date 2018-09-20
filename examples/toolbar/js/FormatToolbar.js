@@ -30,9 +30,10 @@ FormatToolbar.prototype.init = function () {
 
   this.textarea = document.getElementById(this.domNode.getAttribute('aria-controls'));
 
-  items = this.domNode.querySelectorAll('.items');
+  items = this.domNode.querySelectorAll('.item');
 
   for (i = 0; i < items.length; i++) {
+
     toolbarItem = new FormatToolbarItem(items[i], this);
     toolbarItem.init();
 
@@ -42,7 +43,7 @@ FormatToolbar.prototype.init = function () {
     this.lastItem = toolbarItem;
     this.toolbarItems.push(toolbarItem);
   }
-
+  console.log(this.toolbarItems);
   menuButtons = this.domNode.querySelectorAll('[role="button"][aria-haspopup="true"]');
 
   for (i = 0; i < menuButtons.length; i++) {
@@ -108,57 +109,17 @@ FormatToolbar.prototype.setAlignment = function (toolbarItem) {
   }
 };
 
-FormatToolbar.prototype.fontSmaller = function () {
-  switch (this.textarea.style.fontSize) {
-    case 'small' :
-      this.textarea.style.fontSize = 'x-small';
-      this.fontLargerItem.enable();
-      break;
-    case 'medium' :
-      this.textarea.style.fontSize = 'small';
-      this.fontLargerItem.enable();
-      break;
-    case 'large' :
-      this.textarea.style.fontSize = 'medium';
-      this.fontLargerItem.enable();
-      break;
-    case 'x-large':
-      this.textarea.style.fontSize = 'large';
-      this.fontLargerItem.enable();
-      break;
-
-    default:
-      this.fontSmallerItem.disable();
-      break;
-
-  }
+FormatToolbar.prototype.copyTextContent = function () {
+  console.log(this.textarea.value);
+  this.textarea.select();
+  document.execCommand('copy');
 };
 
-FormatToolbar.prototype.fontLarger = function () {
-  switch (this.textarea.style.fontSize) {
-    case 'x-small':
-      this.textarea.style.fontSize = 'small';
-      this.fontSmallerItem.enable();
-      break;
-    case 'small':
-      this.textarea.style.fontSize = 'medium';
-      this.fontSmallerItem.enable();
-      break;
-    case 'medium':
-      this.textarea.style.fontSize = 'large';
-      this.fontSmallerItem.enable();
-      break;
-    case 'large':
-      this.textarea.style.fontSize = 'x-large';
-      this.fontSmallerItem.enable();
-      break;
+FormatToolbar.prototype.pasteTextContent = function() {
+  // let paste = window.clipboardData.getData('text');
 
-    default:
-      this.fontLargerItem.disable();
-      break;
-
-  }
-};
+  console.log(window.clipboardData);
+}
 
 FormatToolbar.prototype.setFontFamily = function (font) {
   this.textarea.style.fontFamily = font;
@@ -178,13 +139,11 @@ FormatToolbar.prototype.activateItem = function (toolbarItem) {
     case 'align':
       this.setAlignment(toolbarItem);
       break;
-    case 'font-size':
-      if (toolbarItem.value === 'larger') {
-        this.fontLarger();
-      }
-      else {
-        this.fontSmaller();
-      }
+    case 'copy':
+      this.copyTextContent();
+      break;
+    case 'paste':
+      this.pasteTextContent();
       break;
     case 'font-family':
       this.setFontFamily(toolbarItem.value);

@@ -62,16 +62,11 @@ FormatToolbarItem.prototype.init = function () {
     this.toolbar.alignItems.push(this);
   }
 
-  if (this.domNode.classList.contains('font-larger')) {
-    this.buttonAction = 'font-size';
-    this.value = 'larger';
-    this.toolbar.fontLargerItem = this;
+  if (this.domNode.classList.contains('copy')) {
+    this.buttonAction = 'copy';
   }
-
-  if (this.domNode.classList.contains('font-smaller')) {
-    this.buttonAction = 'font-size';
-    this.value = 'smaller';
-    this.toolbar.fontSmallerItem = this;
+  if (this.domNode.classList.contains('paste')) {
+    this.buttonAction = 'paste';
   }
 };
 
@@ -102,7 +97,6 @@ FormatToolbarItem.prototype.handleFocus = function (event) {
 };
 
 FormatToolbarItem.prototype.handleKeyDown = function (event) {
-
   var flag = false;
 
   switch (event.keyCode) {
