@@ -4,7 +4,6 @@ const { ariaTest } = require('..');
 const { By, Key } = require('selenium-webdriver');
 const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertAttributeValues = require('../util/assertAttributeValues');
-const assertAttributeDNE = require('../util/assertAttributeDNE');
 const assertAriaRoles = require('../util/assertAriaRoles');
 
 const exampleFile = 'grid/dataGrids.html';
@@ -101,9 +100,9 @@ ariaTest('Test for role="grid"', exampleFile, 'grid-role', async (t) => {
 
 ariaTest('aria-labelledby attribute on all examples', exampleFile, 'aria-labelledby', async (t) => {
   t.plan(3);
-  await assertAriaLabelledby(t, 'ex1', ex[1].gridSelector);
-  await assertAriaLabelledby(t, 'ex2', ex[2].gridSelector);
-  await assertAriaLabelledby(t, 'ex3', ex[3].gridSelector);
+  await assertAriaLabelledby(t, ex[1].gridSelector);
+  await assertAriaLabelledby(t, ex[2].gridSelector);
+  await assertAriaLabelledby(t, ex[3].gridSelector);
 });
 
 ariaTest('aria-rowcount attribute in example 3', exampleFile, 'aria-rowcount', async (t) => {
