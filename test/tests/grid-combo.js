@@ -259,7 +259,7 @@ ariaTest('Test down key press with focus on textbox',
       .sendKeys('a', Key.ARROW_DOWN);
 
     // Account for race condition
-    await waitForFocusChange(t, ex.textboxSelector, null);
+    await waitForFocusChange(t, ex.textboxSelector, '');
 
     // Check that the grid is displayed
     t.true(
@@ -381,7 +381,7 @@ ariaTest('Test up key press with focus on textbox',
       .sendKeys('a', Key.ARROW_UP);
 
     // Account for race condition
-    await waitForFocusChange(t, ex.textboxSelector, null);
+    await waitForFocusChange(t, ex.textboxSelector, '');
 
     // Check that the grid is displayed
     t.true(
@@ -559,7 +559,13 @@ ariaTest.failing('Test escape key press with focus on popup',
 
     await t.context.session
       .findElement(By.css(ex.textboxSelector))
-      .sendKeys('a', Key.ARROW_DOWN, Key.ESCAPE);
+      .sendKeys('a', Key.ARROW_DOWN);
+
+    await waitForFocusChange(t, ex.textboxSelector, '');
+
+    await t.context.session
+      .findElement(By.css(ex.textboxSelector))
+      .sendKeys(Key.ESCAPE);
 
     // Wait for gridbox to close
     await t.context.session.wait(
@@ -572,6 +578,7 @@ ariaTest.failing('Test escape key press with focus on popup',
 
     // Confirm the grid is closed and the textboxed is cleared
     await assertAttributeValues(t, ex.comboboxSelector, 'aria-expanded', 'false');
+
     t.is(
       await t.context.session
         .findElement(By.css(ex.textboxSelector))
@@ -579,6 +586,7 @@ ariaTest.failing('Test escape key press with focus on popup',
       '',
       'In grid key press "ESCAPE" should result in clearing of the textbox'
     );
+
   });
 
 ariaTest('left arrow from focus on list puts focus on grid and moves cursor right',
