@@ -41,16 +41,16 @@
         <!-- Accordion Configuration Options
 
           data-allow-toggle
-            Allow for each toggle to both open and close individually
+            Allow for each toggle to both open and close its section. Makes it possible for all sections to be closed. Assumes only one section may be open.
 
           data-allow-multiple
-            Allow for multiple accordion sections to be expanded at the same time. Assumes data-allow-toggle otherwise you would not be able to close any of the accordions
+            Allow for multiple accordion sections to be expanded at the same time. Assumes data-allow-toggle otherwise the toggle on open sections would be disabled.
           __________
 
           Ex:
-            <div id="accordionGroup" role="presentation" class="Accordion" data-allow-multiple>
+            <div id="accordionGroup" class="Accordion" data-allow-multiple>
 
-            <div id="accordionGroup" role="presentation" class="Accordion" data-allow-toggle>
+            <div id="accordionGroup" class="Accordion" data-allow-toggle>
         -->
         <div id="accordionGroup" class="Accordion">
           <h3>
@@ -174,18 +174,19 @@
   </section>
   <section>
     <h2>Accessibility Features</h2>
-    <p>One issue for supporting keyboard only users is providing visual cues for informing the user of additional keyboard commands to enhance navigation. The example changes styling of the accordion container and the buttons associated with expanding/collapsing the accordion when any of the accordion buttons has keyboard focus.</p>
-
-    <p>When any of the accordion button receives focus:</p>
+    <p>
+      The visual design includes features intended to help users understand that the accordion provides enhanced keyboard navigation functions.
+      When an accordion header button has keyboard focus, the styling of the accordion container and all its header buttons is changed.
+    </p>
+    <p>When any accordion header button receives focus:</p>
     <ul>
-      <li>The border of the accordion changes color.</li>
-      <li>Background color of the accordion buttons change.</li>
+      <li>The border encompassing the entire accordion changes color.</li>
+      <li>The background color of the accordion header buttons changes.</li>
     </ul>
-
-    <p>The accordion button that receives focus:</p>
+    <p>The focused accordion header button:</p>
     <ul>
-      <li>Border appears around the button text and icon.</li>
-      <li>Background color is different than the non-focus accordion buttons.</li>
+      <li>Has a border that encompasses both the header text and icon.</li>
+      <li>Has a background color that distinguishes it from the other accordion buttons that are not focused.</li>
     </ul>
   </section>
   <section>
@@ -301,11 +302,7 @@
           </td>
         </tr>
         <tr data-test-id="region-role">
-<<<<<<< HEAD
           <th scope="row"><code>region</code></th>
-=======
-          <th scope="row">region</th>
->>>>>>> issue815-accordion-restructure
           <td></td>
           <td><code>div</code></td>
           <td>
