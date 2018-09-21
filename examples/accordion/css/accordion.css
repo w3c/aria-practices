@@ -1,8 +1,19 @@
 .Accordion {
-    border: 1px solid hsl(0, 0%, 82%);
-    border-radius: .3em;
-    box-shadow: 0 1px 2px hsl(0, 0%, 82%);
+    margin: 0;
+    padding: 0;
+    border: 2px solid hsl(0, 0%, 82%);
+    border-radius: 7px;
+    width: 20em;
 }
+
+.Accordion.focus {
+    border-color: hsl(216, 94%, 73%);
+}
+
+.Accordion.focus h3 {
+    background-color: hsl(0, 0%, 97%);
+}
+
 
 .Accordion > * + * {
     border-top: 1px solid hsl(0, 0%, 82%);
@@ -10,7 +21,6 @@
 
 .Accordion-trigger {
     background: none;
-    border: 0;
     color: hsl(0, 0%, 13%);
     display: block;
     font-size: 1rem;
@@ -20,20 +30,38 @@
     position: relative;
     text-align: left;
     width: 100%;
+    outline: none;
 }
 
-.Accordion dt:first-child .Accordion-trigger {
-    border-radius: .3em .3em 0 0;
+.Accordion h3 {
+    margin: 0;
+    padding: 0;
+}
+
+.Accordion *:first-child .Accordion-trigger {
+    border-radius: 5px 5px 0 0;
 }
 
 .Accordion-trigger:focus,
 .Accordion-trigger:hover {
-    background: hsl(0, 0%, 93%);
+    background: hsl(216, 94%, 94%);
+}
+
+.Accordion button::-moz-focus-inner {
+    border: 0;
 }
 
 .Accordion-title {
-  display: block; /* For Edge bug https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/8295099/ */
+  display: block;
   pointer-events: none;
+  border: transparent 2px solid;
+  border-radius: 5px;
+  padding: 0.25em;
+  outline: none;
+}
+
+.Accordion-trigger:focus .Accordion-title {
+    border-color: hsl(216, 94%, 73%);
 }
 
 .Accordion-icon {
@@ -42,7 +70,7 @@
     height: .5rem;
     pointer-events: none;
     position: absolute;
-    right: 1.5em;
+    right: 2em;
     top: 50%;
     transform: translateY(-60%) rotate(45deg);
     width: .5rem;
@@ -50,7 +78,7 @@
 
 .Accordion-trigger:focus .Accordion-icon,
 .Accordion-trigger:hover .Accordion-icon {
-    border-color: hsl(0, 0%, 13%);
+    border-color: hsl(216, 94%, 73%);
 }
 
 .Accordion-trigger[aria-expanded="true"] .Accordion-icon {
@@ -65,6 +93,10 @@
 /* For Edge bug https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/4806035/ */
 .Accordion-panel[hidden] {
   display: none;
+}
+
+button {
+    border-style: none;
 }
 
 fieldset {
