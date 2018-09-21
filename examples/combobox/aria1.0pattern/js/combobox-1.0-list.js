@@ -177,6 +177,7 @@ ComboboxList.prototype.handleKeydown = function (event) {
       break;
 
     case this.keyCode.UP:
+
       if (this.listbox.hasOptions()) {
         if (this.listbox.hasFocus || (this.isBoth && this.option)) {
           this.setOption(this.listbox.getPreviousItem(this.option), true);
@@ -186,19 +187,17 @@ ComboboxList.prototype.handleKeydown = function (event) {
           if (!altKey) {
             this.setOption(this.listbox.getLastItem(), true);
           }
-          this.setVisualFocusListbox();
         }
+        this.setVisualFocusListbox();
       }
       flag = true;
       break;
 
     case this.keyCode.ESC:
-      if (this.listbox.hasFocus) {
-        this.listbox.close(true);
-        this.setVisualFocusTextbox();
-        this.setValue('');
-        this.option = false;
-      }
+      this.listbox.close(true);
+      this.setVisualFocusTextbox();
+      this.setValue('');
+      this.option = false;
       flag = true;
       break;
 
@@ -242,6 +241,9 @@ ComboboxList.prototype.handleKeyup = function (event) {
     this.option = false;
   }
 
+  if (event.keyCode === this.keyCode.ESC) {
+    return;
+  }
 
   switch (event.keyCode) {
 

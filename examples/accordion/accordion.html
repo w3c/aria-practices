@@ -198,11 +198,29 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr data-test-id="key-enter-or-space">
           <th><kbd>Space</kbd> or <kbd>Enter</kbd></th>
           <td>When focus is on the accordion header of a collapsed section, expands the section.</td>
         </tr>
-        <tr>
+        <tr data-test-id="key-tab">
+          <th><kbd>Tab</kbd></th>
+          <td>
+            <ul>
+              <li>Moves focus to the next focusable element.</li>
+              <li>All focusable elements in the accordion are included in the page <kbd>Tab</kbd> sequence.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr data-test-id="key-shift-tab">
+          <th><kbd>Shift + Tab</kbd></th>
+          <td>
+            <ul>
+              <li>Moves focus to the previous focusable element.</li>
+              <li>All focusable elements in the accordion are included in the page <kbd>Tab</kbd> sequence.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr data-test-id="key-down-arrow">
           <th><kbd>Down Arrow</kbd></th>
           <td>
             <ul>
@@ -211,7 +229,7 @@
             </ul>
           </td>
         </tr>
-        <tr>
+        <tr data-test-id="key-up-arrow">
           <th><kbd>Up Arrow</kbd></th>
           <td>
             <ul>
@@ -220,32 +238,13 @@
             </ul>
           </td>
         </tr>
-        <tr>
+        <tr data-test-id="key-home">
           <th><kbd>Home</kbd></th>
           <td>When focus is on an accordion header, moves focus to the first accordion header.</td>
         </tr>
-        <tr>
+        <tr data-test-id="key-end">
           <th><kbd>End</kbd></th>
           <td>When focus is on an accordion header, moves focus to the last accordion header.</td>
-        </tr>
-        <tr>
-          <th><kbd>Control + Page Down</kbd></th>
-          <td>
-            <ul>
-              <li>When focus is inside an accordion panel or on an accordion header, moves focus to the next accordion header.</li>
-              <li>When focus is on last accordion header or inside last accordion panel, moves focus to first accordion header.</li>
-            </ul>
-          </td>
-        </tr>
-        <tr>
-          <th><kbd>Control + Page Up</kbd></th>
-          <td>
-            <ul>
-              <li>When focus is inside an accordion panel, moves focus to the header for that panel.</li>
-              <li>When focus is on an accordion header, moves focus to the previous accordion header.</li>
-              <li>When focus is on first accordion header, moves focus to last accordion header.</li>
-            </ul>
-          </td>
         </tr>
       </tbody>
     </table>
@@ -265,17 +264,19 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <th scope="row"><code>heading</code></th>
+        <tr data-test-id="h3-element">
           <td></td>
-          <td><code>h3</code></td>
+          <td></td>
+          <th scope="row"><code>h3</code></th>
           <td>
             <ul>
-              <li>The accordion design pattern is defined by a button is contained within an element with <code>role=heading</code>.</li>
-              <li>The default role for the <code>h3</code> element is <code>heading</code>.</li>
-            </td>
+              <li>Element that serves as an accordion header.</li>
+              <li>Each accordion header element contains a button that controls the visibility of its content panel.</li>
+              <li>The example uses heading level 3 so it fits correctly within the outline of the page; the example is contained in a section titled with a level 2 heading.</li> 
+            </ul>
+          </td>
         </tr>
-        <tr>
+        <tr data-test-id="button-aria-expanded">
           <td> </td>
           <th scope="row"><code>aria-expanded=<q>true</q></code></th>
           <td><code>button</code></td>
@@ -283,7 +284,7 @@
             Set to <code>true</code> when the Accordion panel is expanded, otherwise set to <code>false</code>.
           </td>
         </tr>
-        <tr>
+        <tr data-test-id="button-aria-controls">
           <td> </td>
           <th scope="row"><code>aria-controls=<q>ID</q></code></th>
           <td><code>button</code></td>
@@ -291,7 +292,7 @@
             Points to the ID of the panel which the header controls.
           </td>
         </tr>
-        <tr>
+        <tr data-test-id="button-aria-disabled">
           <td> </td>
           <th scope="row"><code>aria-disabled=<q>true</q></code></th>
           <td><code>button</code></td>
@@ -300,7 +301,11 @@
           </td>
         </tr>
         <tr data-test-id="region-role">
+<<<<<<< HEAD
           <th scope="row"><code>region</code></th>
+=======
+          <th scope="row">region</th>
+>>>>>>> issue815-accordion-restructure
           <td></td>
           <td><code>div</code></td>
           <td>
@@ -310,7 +315,7 @@
               <li><code>region</code> roles are required to have an accessible name to be identified as a landmark.</li>
           </td>
         </tr>
-        <tr>
+        <tr data-test-id="region-aria-labelledby">
           <td></td>
           <th scope="row"><code>aria-labelledby=&quot;ID_REF&quot;</code></th>
           <td><code>div</code></td>
