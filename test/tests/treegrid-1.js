@@ -705,8 +705,8 @@ ariaTest.failing('ENTER actives interative items item', exampleFile, 'key-enter'
     await t.context.session.get(t.context.url);
     await openAllThreads(t);
 
-    const selector = '#ex1 [role="row"]:nth-of-type(' + (index+1) + ') a';
-    const newUrl = t.context.url + '#test-url-change'
+    const selector = '#ex1 [role="row"]:nth-of-type(' + (index + 1) + ') a';
+    const newUrl = t.context.url + '#test-url-change';
 
     // Reset the href to not be an email link in order to test
     await t.context.session.executeScript(function () {
