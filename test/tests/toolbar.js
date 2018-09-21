@@ -99,7 +99,7 @@ ariaTest('roving tabindex on button elements', exampleFile, 'button-tabindex', a
 
 // Test pending fix bug in example: fix in issue 847 on w3c/aria-practices
 ariaTest.failing('"aria-disabled" on button elements', exampleFile, 'button-aria-disabled', async (t) => {
-  t.pass();
+  t.fail();
 });
 
 
