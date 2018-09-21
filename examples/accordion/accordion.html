@@ -305,12 +305,7 @@
           <th scope="row"><code>region</code></th>
           <td></td>
           <td><code>div</code></td>
-          <td>
-            <ul>
-              <li>Creates a landmark region that contains the currently expanded accordion panel.</li>
-              <li>The accessible name for the region is defined by <code>aria-labelledby</code> attribute.</li>
-              <li><code>region</code> roles are required to have an accessible name to be identified as a landmark.</li>
-          </td>
+          <td>Creates a landmark region that contains the currently expanded accordion panel.</td>
         </tr>
         <tr data-test-id="region-aria-labelledby">
           <td></td>
@@ -318,8 +313,10 @@
           <td><code>div</code></td>
           <td>
             <ul>
-              <li>Defines the accessible name for the <code>region</code> landmark.</li>
-              <li>The IDREF references the associated accordion button that expands and collapses the accordion panel.</li>
+              <li>Defines the accessible name for the <code>region</code> element.</li>
+              <li>References the accordion header button that expands and collapses the region.</li>
+              <li><code>region</code> elements are required to have an accessible name to be identified as a landmark.</li>
+            </ul>
           </td>
         </tr>
       </tbody>
@@ -329,22 +326,8 @@
   <section>
     <h2>Javascript and CSS Source Code</h2>
     <ul>
-      <li>
-        CSS:
-        <ol>
-          <li>
-            <a href="css/accordion.css" type="tex/css">accordion.css</a>
-          </li>
-        </ol>
-      </li>
-      <li>
-        JavaScript:
-        <ol>
-          <li>
-            <a href="js/accordion.js" type="text/javascript">accordion.js</a>
-          </li>
-        </ol>
-      </li>
+      <li>CSS: <a href="css/accordion.css" type="tex/css">accordion.css</a></li>
+      <li>JavaScript: <a href="js/accordion.js" type="text/javascript">accordion.js</a></li>
     </ul>
   </section>
 
