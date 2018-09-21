@@ -141,7 +141,7 @@ ariaTest('"tabindex" on role="tab"', exampleFile, 'tab-tabindex', async (t) => {
 
 ariaTest('"aria-control" attribute on role="tab"', exampleFile, 'tab-aria-controls', async (t) => {
   t.plan(1);
-  await assertAriaControls(t, 'ex1', ex.tabSelector);
+  await assertAriaControls(t, ex.tabSelector);
 });
 
 ariaTest('role="tabpanel" on div element', exampleFile, 'tabpanel-role', async (t) => {
@@ -151,7 +151,7 @@ ariaTest('role="tabpanel" on div element', exampleFile, 'tabpanel-role', async (
 
 ariaTest('"aria-labelledby" attribute on role="tabpanel" elements', exampleFile, 'tabpanel-aria-labelledby', async (t) => {
   t.plan(1);
-  await assertAriaLabelledby(t, 'ex1', ex.tabpanelSelector);
+  await assertAriaLabelledby(t, ex.tabpanelSelector);
 });
 
 ariaTest('tabindex="0" on role="tabpanel" elements', exampleFile, 'tabpanel-tabindex', async (t) => {
