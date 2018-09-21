@@ -123,7 +123,7 @@ ariaTest('Right arrow increases slider value by 1', exampleFile, 'key-right-arro
     'Temp display should match value of slider: ' + sliderVal
   );
 
-  // Send more than 51 keys to temp slider
+  // Send 51 more keys to temp slider
   for (let i = 0; i < 51; i++) {
     await tempSlider.sendKeys(Key.ARROW_RIGHT);
   }
@@ -202,7 +202,7 @@ ariaTest('up arrow increases slider value by 1', exampleFile, 'key-up-arrow', as
     'Temp display should match value of slider: ' + sliderVal
   );
 
-  // Send more than 51 keys to temp slider
+  // Send 51 more keys to temp slider
   for (let i = 0; i < 51; i++) {
     await tempSlider.sendKeys(Key.ARROW_UP);
   }
@@ -359,7 +359,7 @@ ariaTest('left arrow decreases slider value by 1', exampleFile, 'key-left-arrow'
     'Temp display should match value of slider: ' +  tempVal
   );
 
-  // Send more than 51 keys to temp slider
+  // Send 51 more keys to temp slider
   for (let i = 0; i < 51; i++) {
     await tempSlider.sendKeys(Key.ARROW_LEFT);
   }
@@ -443,7 +443,7 @@ ariaTest('down arrow decreases slider value by 1', exampleFile, 'key-down-arrow'
     'Temp display should match value of slider: ' +  tempVal
   );
 
-  // Send more than 51 keys to temp slider
+  // Send 51 more keys to temp slider
   for (let i = 0; i < 51; i++) {
     await tempSlider.sendKeys(Key.ARROW_DOWN);
   }
