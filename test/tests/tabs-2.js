@@ -35,7 +35,7 @@ const waitAndCheckFocus = async function (t, selector, index) {
   return t.context.session.wait(async function () {
     return t.context.session.executeScript(function () {
       const [selector, index] = arguments;
-      let items = document.querySelectorAll(selector);
+      const items = document.querySelectorAll(selector);
       return items[index] === document.activeElement;
     }, selector, index);
   }, t.context.waitTime, 'Timeout waiting for document.activeElement to become item at index ' + index + ' of elements selected by: ' + selector);
@@ -68,8 +68,8 @@ ariaTest('role="tab" on button elements', exampleFile, 'tab-role', async (t) => 
 ariaTest('"aria-selected" set on role="tab"', exampleFile, 'tab-aria-selected', async (t) => {
   t.plan(18);
 
-  let tabs = await t.context.session.findElements(By.css(ex.tabSelector));
-  let tabpanels = await t.context.session.findElements(By.css(ex.tabpanelSelector));
+  const tabs = await t.context.session.findElements(By.css(ex.tabSelector));
+  const tabpanels = await t.context.session.findElements(By.css(ex.tabpanelSelector));
 
   for (let selectedEl = 0; selectedEl < tabs.length; selectedEl++) {
 
@@ -102,7 +102,7 @@ ariaTest('"aria-selected" set on role="tab"', exampleFile, 'tab-aria-selected', 
 ariaTest('"tabindex" on role="tab"', exampleFile, 'tab-tabindex', async (t) => {
   t.plan(9);
 
-  let tabs = await t.context.session.findElements(By.css(ex.tabSelector));
+  const tabs = await t.context.session.findElements(By.css(ex.tabSelector));
   for (let selectedEl = 0; selectedEl < tabs.length; selectedEl++) {
 
     // Open the tab
@@ -338,7 +338,7 @@ ariaTest('END key moves focus', exampleFile, 'key-end', async (t) => {
 ariaTest('DELETE key removes third tab', exampleFile, 'key-delete', async (t) => {
   t.plan(4);
 
-  let tabs = await t.context.session.findElements(By.css(ex.tabSelector));
+  const tabs = await t.context.session.findElements(By.css(ex.tabSelector));
 
   // Put focus on the first tab
   await openTabAtIndex(t, 0);
