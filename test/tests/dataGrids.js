@@ -57,7 +57,7 @@ const checkFocusOnOrInCell = async function (t, gridSelector, rowIndex, columnIn
       return document.activeElement === cellElement;
     }
 
-    // Look for an interative element in the gridcell to find candidate for focu
+    // Look for an interative element in the gridcell to find candidate for focus
     const interactiveElement = cellElement.querySelector('[tabindex]');
     return document.activeElement === interactiveElement;
 
@@ -679,7 +679,7 @@ ariaTest('End key moves focus', exampleFile, 'key-end', async (t) => {
 ariaTest('Control+home moves focus', exampleFile, 'key-control-home', async (t) => {
   t.plan(28);
 
-  // Examples 1 2, and 3
+  // Examples 1, 2, and 3
   for (let example of [1,2,3]) {
     const gridSelector = ex[example].gridSelector;
     const rowSelector = ex[example].rowSelector;
@@ -721,7 +721,7 @@ ariaTest('Control+home moves focus', exampleFile, 'key-control-home', async (t) 
 ariaTest('Control+end moves focus', exampleFile, 'key-control-end', async (t) => {
   t.plan(28);
 
-  // Examples 1 2, and 3
+  // Examples 1, 2, and 3
   for (let example of [1,2,3]) {
     const gridSelector = ex[example].gridSelector;
     const rowSelector = ex[example].rowSelector;
