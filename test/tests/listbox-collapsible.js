@@ -53,7 +53,6 @@ ariaTest('"aria-expanded" on button element', exampleFile, 'button-aria-expanded
   );
 
   // click button
-
   await t.context.session.findElement(By.css(ex.buttonSelector)).click();
 
   // Check that aria-expanded is true and the listbox is visible
@@ -155,7 +154,7 @@ ariaTest('ENTER opens and closes listbox', exampleFile, 'key-enter', async (t) =
   // Send ENTER to the listbox
   await listbox.sendKeys(Key.ENTER);
 
-  // And focus should be on the element with the corrosponding text in on button
+  // And focus should be on the element with the corresponding text in on button
   t.false(
     await listbox.isDisplayed(),
     'After sending ENTER to the listbox element, the listbox should closed'
@@ -186,7 +185,7 @@ ariaTest('ESCAPE closes listbox', exampleFile, 'key-escape', async (t) => {
   // Send ESCAPE to the listbox
   await listbox.sendKeys(Key.ESCAPE);
 
-  // And focus should be on the element with the corrosponding text in on button
+  // And focus should be on the element with the corresponding text in on button
   t.false(
     await listbox.isDisplayed(),
     'After sending ENTER to the listbox element, the listbox should closed'
