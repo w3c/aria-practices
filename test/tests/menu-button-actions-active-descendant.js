@@ -87,7 +87,8 @@ ariaTest('"aria-labelledby" on role="menu"', exampleFile, 'menu-aria-labelledby'
   await assertAriaLabelledby(t, ex.menuSelector);
 });
 
-ariaTest('tabindex="-1" on role="menu"', exampleFile, 'menu-tabindex', async (t) => {
+// This test fails due to bug: https://github.com/w3c/aria-practices/issues/894
+ariaTest.failing('tabindex="-1" on role="menu"', exampleFile, 'menu-tabindex', async (t) => {
   t.plan(1);
   await openMenu(t);
   await assertAttributeValues(t, ex.menuSelector, 'tabindex', '-1');
