@@ -5,7 +5,7 @@ const assert = require('assert');
 
 /**
  * Assert the aria-activedescendant focus is correctly set to the item that has
- * attribute aria-selected set to "true" in a list of options.
+ * at the appropriate index.
  *
  * @param {obj} t                  - ava execution object
  * @param {String} ariaDescendantSelector - selector for element with aria-activeDescendant set
@@ -14,19 +14,10 @@ const assert = require('assert');
  */
 module.exports = async function assertAriaSelectedAndActivedescendant (t, ariaDescendantSelector, optionsSelector, index) {
 
-  // Confirm the option at index index has aria-selected set to true
+  // Confrirm aria-activedescendant refers to the correct option
 
   let options = await t.context.session
     .findElements(By.css(optionsSelector));
-
-  assert.strictEqual(
-    await options[index].getAttribute('aria-selected'),
-    'true',
-    'aria-selected should be on item at index ' + index + ' for items: ' + optionsSelector
-  );
-
-  // Confrirm aria-activedescendant refers to the correct option
-
   let optionId = await options[index].getAttribute('id');
 
   assert.strictEqual(
