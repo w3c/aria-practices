@@ -9,7 +9,7 @@ const assertAriaLabelExists = require('../util/assertAriaLabelExists');
 const assertAriaRoles = require('../util/assertAriaRoles');
 const assertTabOrder = require('../util/assertTabOrder');
 
-const exampleFile = 'tabs/tabs-1/tabs.html';
+const exampleFile = 'tabs/tabs-2/tabs.html';
 
 const ex = {
   tablistSelector: '#ex1 [role="tablist"]',
@@ -25,16 +25,17 @@ const ex = {
   ]
 };
 
-const openTabAtIndex = async function (t, index) {
-  const tabs = await t.context.session.findElements(By.css(ex.tabSelector));
-  await tabs[index].click();
+const openTabAtIndex = async function (t, tabOrderIndex) {
+  const selector = ex.tabSelector + ':nth-child(' + (tabOrderIndex + 1) + ')';
+
+  await t.context.session.findElement(By.css(selector)).click();
 };
 
 const waitAndCheckFocus = async function (t, selector, index) {
   return t.context.session.wait(async function () {
     return t.context.session.executeScript(function () {
       const [selector, index] = arguments;
-      let items = document.querySelectorAll(selector);
+      const items = document.querySelectorAll(selector);
       return items[index] === document.activeElement;
     }, selector, index);
   }, t.context.waitTime, 'Timeout waiting for document.activeElement to become item at index ' + index + ' of elements selected by: ' + selector);
@@ -67,8 +68,8 @@ ariaTest('role="tab" on button elements', exampleFile, 'tab-role', async (t) => 
 ariaTest('"aria-selected" set on role="tab"', exampleFile, 'tab-aria-selected', async (t) => {
   t.plan(18);
 
-  let tabs = await t.context.session.findElements(By.css(ex.tabSelector));
-  let tabpanels = await t.context.session.findElements(By.css(ex.tabpanelSelector));
+  const tabs = await t.context.session.findElements(By.css(ex.tabSelector));
+  const tabpanels = await t.context.session.findElements(By.css(ex.tabpanelSelector));
 
   for (let selectedEl = 0; selectedEl < tabs.length; selectedEl++) {
 
@@ -101,7 +102,7 @@ ariaTest('"aria-selected" set on role="tab"', exampleFile, 'tab-aria-selected', 
 ariaTest('"tabindex" on role="tab"', exampleFile, 'tab-tabindex', async (t) => {
   t.plan(9);
 
-  let tabs = await t.context.session.findElements(By.css(ex.tabSelector));
+  const tabs = await t.context.session.findElements(By.css(ex.tabSelector));
   for (let selectedEl = 0; selectedEl < tabs.length; selectedEl++) {
 
     // Open the tab
@@ -122,6 +123,7 @@ ariaTest('"tabindex" on role="tab"', exampleFile, 'tab-tabindex', async (t) => {
           'Tab at index ' + selectedEl + ' is selected, therefore, that tab should not ' +
             'have the "tabindex" attribute'
         );
+
       }
 
       // Unopened tabs should have tabindex="-1"
@@ -137,7 +139,7 @@ ariaTest('"tabindex" on role="tab"', exampleFile, 'tab-tabindex', async (t) => {
   }
 });
 
-ariaTest('"aria-control" attribute on role="tab"', exampleFile, 'tab-aria-control', async (t) => {
+ariaTest('"aria-control" attribute on role="tab"', exampleFile, 'tab-aria-controls', async (t) => {
   t.plan(1);
   await assertAriaControls(t, ex.tabSelector);
 });
@@ -170,8 +172,8 @@ ariaTest('TAB key moves focus to open tab and panel', exampleFile, 'key-tab', as
   }
 });
 
-ariaTest('ARROW_RIGHT key moves focus and activates tab', exampleFile, 'key-right-arrow', async (t) => {
-  t.plan(9);
+ariaTest('ARROW_RIGHT key moves focus', exampleFile, 'key-right-arrow', async (t) => {
+  t.plan(5);
 
   // Put focus on first tab
   await openTabAtIndex(t, 0);
@@ -188,14 +190,9 @@ ariaTest('ARROW_RIGHT key moves focus and activates tab', exampleFile, 'key-righ
       await waitAndCheckFocus(t, ex.tabSelector, index + 1),
       'right arrow on tab "' + index + '" should put focus on the next tab.'
     );
-
-    t.true(
-      await waitAndCheckAriaSelected(t, index + 1),
-      'right arrow on tab "' + index + '" should set aria-selected="true" on next tab.'
-    );
-    t.true(
+    t.false(
       await tabpanels[index + 1].isDisplayed(),
-      'right arrow on tab "' + index + '" should display the next tab panel.'
+      'right arrow on tab "' + index + '" should not display the next tab panel.'
     );
   }
 
@@ -207,19 +204,61 @@ ariaTest('ARROW_RIGHT key moves focus and activates tab', exampleFile, 'key-righ
     await waitAndCheckFocus(t, ex.tabSelector, 0),
     'right arrow on tab "' + (tabs.length - 1) + '" should put focus to first tab.'
   );
-  t.true(
-    await waitAndCheckAriaSelected(t, 0),
-    'right arrow on tab "' + (tabs.length - 1) + '" should set aria-selected="true" on first tab.'
-  );
-  t.true(
-    await tabpanels[0].isDisplayed(),
-    'right arrow on tab "' + (tabs.length - 1) + '" should display the first panel.'
-  );
-
 });
 
-ariaTest('ARROW_LEFT key moves focus and activates tab', exampleFile, 'key-left-arrow', async (t) => {
-  t.plan(9);
+ariaTest('ENTER activates tab that contains focus', exampleFile, 'key-enter-or-space', async (t) => {
+  t.plan(4);
+
+  const tabs = await t.context.session.findElements(By.css(ex.tabSelector));
+  const tabpanels = await t.context.session.findElements(By.css(ex.tabpanelSelector));
+  for (let index = 0; index < tabs.length - 1; index++) {
+
+    // Send ENTER to activate tab
+    await tabs[index].sendKeys(Key.ENTER);
+
+    // Check the focus is correct
+    t.true(
+      await tabpanels[index].isDisplayed(),
+      'Enter on tab "' + index + '" should active the current panel.'
+    );
+    t.true(
+      await waitAndCheckAriaSelected(t, index),
+      'Enter on tab "' + index + '" should set aria-selected to "true".'
+    );
+
+    // Send arrow key to move focus
+    await tabs[index].sendKeys(Key.ARROW_RIGHT);
+  }
+});
+
+ariaTest('SPACE activates tab that contains focus', exampleFile, 'key-enter-or-space', async (t) => {
+  t.plan(4);
+
+  const tabs = await t.context.session.findElements(By.css(ex.tabSelector));
+  const tabpanels = await t.context.session.findElements(By.css(ex.tabpanelSelector));
+  for (let index = 0; index < tabs.length - 1; index++) {
+
+    // Send SPACE to activate tab
+    await tabs[index].sendKeys(Key.SPACE);
+
+    // Check the focus is correct
+    t.true(
+      await tabpanels[index].isDisplayed(),
+      'Enter on tab "' + index + '" should active the current panel.'
+    );
+    t.true(
+      await waitAndCheckAriaSelected(t, index),
+      'Enter on tab "' + index + '" should set aria-selected to "true".'
+    );
+
+    // Send arrow key to move focus
+    await tabs[index].sendKeys(Key.ARROW_RIGHT);
+  }
+});
+
+
+ariaTest('ARROW_LEFT key moves focus', exampleFile, 'key-left-arrow', async (t) => {
+  t.plan(4);
 
   const tabs = await t.context.session.findElements(By.css(ex.tabSelector));
   const tabpanels = await t.context.session.findElements(By.css(ex.tabpanelSelector));
@@ -227,48 +266,35 @@ ariaTest('ARROW_LEFT key moves focus and activates tab', exampleFile, 'key-left-
   // Put focus on first tab
   await openTabAtIndex(t, 0);
 
-  // Send the left arrow
+  // Send the right arrow
   await tabs[0].sendKeys(Key.ARROW_LEFT);
 
   // Check the focus returns to the last item
   t.true(
     await waitAndCheckFocus(t, ex.tabSelector, tabs.length - 1),
-    'left arrow on tab 0 should put focus to last tab.'
+    'right arrow on tab 0 should put focus to last tab.'
   );
-
-  t.true(
-    await waitAndCheckAriaSelected(t, tabs.length - 1),
-    'left arrow on tab 0 should set aria-selected="true" on last tab.'
-  );
-  t.true(
+  t.false(
     await tabpanels[tabs.length - 1].isDisplayed(),
-    'left arrow on tab 0 should display the last panel.'
+    'right arrow on tab 0 should not display the last panel.'
   );
 
   for (let index = tabs.length - 1; index > 0; index--) {
 
-    // Send the arrow left key to move focus
+    // Send the arrow right key to move focus
     await tabs[index].sendKeys(Key.ARROW_LEFT);
 
     // Check the focus is correct
     t.true(
       await waitAndCheckFocus(t, ex.tabSelector, index - 1),
-      'left arrow on tab "' + index + '" should put focus on the previous tab.'
-    );
-    t.true(
-      await waitAndCheckAriaSelected(t, index - 1),
-      'left arrow on tab "' + index + '" should set aria-selected="true" on previous tab.'
-    );
-    t.true(
-      await tabpanels[index - 1].isDisplayed(),
-      'left arrow on tab "' + index + '" should display the next previous panel.'
+      'right arrow on tab "' + index + '" should put focus on the previous tab.'
     );
   }
 });
 
-ariaTest('HOME key moves focus and selects tab', exampleFile, 'key-home', async (t) => {
+ariaTest('HOME key moves focus', exampleFile, 'key-home', async (t) => {
 
-  t.plan(9);
+  t.plan(3);
 
   const tabs = await t.context.session.findElements(By.css(ex.tabSelector));
   const tabpanels = await t.context.session.findElements(By.css(ex.tabpanelSelector));
@@ -285,19 +311,11 @@ ariaTest('HOME key moves focus and selects tab', exampleFile, 'key-home', async 
       await waitAndCheckFocus(t, ex.tabSelector, 0),
       'home key on tab "' + index + '" should put focus on the first tab.'
     );
-    t.true(
-      await waitAndCheckAriaSelected(t, 0),
-      'home key on tab "' + index + '" should set aria-selected="true" on the first tab.'
-    );
-    t.true(
-      await tabpanels[0].isDisplayed(),
-      'home key on tab "' + index + '" should display the first tab.'
-    );
   }
 });
 
-ariaTest('END key moves focus and selects tab', exampleFile, 'key-end', async (t) => {
-  t.plan(9);
+ariaTest('END key moves focus', exampleFile, 'key-end', async (t) => {
+  t.plan(3);
 
   const tabs = await t.context.session.findElements(By.css(ex.tabSelector));
   const tabpanels = await t.context.session.findElements(By.css(ex.tabpanelSelector));
@@ -314,21 +332,13 @@ ariaTest('END key moves focus and selects tab', exampleFile, 'key-end', async (t
       await waitAndCheckFocus(t, ex.tabSelector, tabs.length - 1),
       'home key on tab "' + index + '" should put focus on the last tab.'
     );
-    t.true(
-      await waitAndCheckAriaSelected(t, tabs.length - 1),
-      'home key on tab "' + index + '" should set aria-selected="true" on the last tab.'
-    );
-    t.true(
-      await tabpanels[tabs.length - 1].isDisplayed(),
-      'home key on tab "' + index + '" should display the last tab.'
-    );
   }
 });
 
 ariaTest('DELETE key removes third tab', exampleFile, 'key-delete', async (t) => {
   t.plan(4);
 
-  let tabs = await t.context.session.findElements(By.css(ex.tabSelector));
+  const tabs = await t.context.session.findElements(By.css(ex.tabSelector));
 
   // Put focus on the first tab
   await openTabAtIndex(t, 0);
