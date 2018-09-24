@@ -18,6 +18,7 @@ Array.prototype.slice.call(document.querySelectorAll('.Accordion')).forEach(func
   var triggers = Array.prototype.slice.call(accordion.querySelectorAll('.Accordion-trigger'));
   var panels = Array.prototype.slice.call(accordion.querySelectorAll('.Accordion-panel'));
 
+
   accordion.addEventListener('click', function (event) {
     var target = event.target;
 
@@ -65,6 +66,10 @@ Array.prototype.slice.call(document.querySelectorAll('.Accordion')).forEach(func
   accordion.addEventListener('keydown', function (event) {
     var target = event.target;
     var key = event.which.toString();
+
+    var isExpanded = target.getAttribute('aria-expanded') == 'true';
+    var allowToggle = (allowMultiple) ? allowMultiple : accordion.hasAttribute('data-allow-toggle');
+
     // 33 = Page Up, 34 = Page Down
     var ctrlModifier = (event.ctrlKey && key.match(/33|34/));
 
@@ -94,21 +99,24 @@ Array.prototype.slice.call(document.querySelectorAll('.Accordion')).forEach(func
             triggers[triggers.length - 1].focus();
             break;
         }
-
         event.preventDefault();
-      }
-    }
-    else if (ctrlModifier) {
-      // Control + Page Up/ Page Down keyboard operations
-      // Catches events that happen inside of panels
-      panels.forEach(function (panel, index) {
-        if (panel.contains(target)) {
-          triggers[index].focus();
 
-          event.preventDefault();
-        }
-      });
+      }
+
     }
+  });
+
+  // These are used to style the accordion when one of the buttons has focus
+  accordion.querySelectorAll('.Accordion-trigger').forEach(function (trigger) {
+
+    trigger.addEventListener('focus', function (event) {
+      accordion.classList.add('focus');
+    });
+
+    trigger.addEventListener('blur', function (event) {
+      accordion.classList.remove('focus');
+    });
+
   });
 
   // Minor setup: will set disabled state, via aria-disabled, to an
