@@ -16,13 +16,13 @@ const ex = {
   menuitemSelector: '#ex1 [role="menuitem"]',
   numMenuitems: 4,
   lastactionSelector: '#action_output',
-  defaultAriaActivedescentantVal: 'mi1'
+  defaultAriaActivedescendantVal: 'mi1'
 };
 
 const checkFocus = function (t, selector, index) {
   return t.context.session.executeScript(function () {
     const [selector, index] = arguments;
-    let items = document.querySelectorAll(selector);
+    const items = document.querySelectorAll(selector);
     return items[index] === document.activeElement;
   }, selector, index);
 };
@@ -96,7 +96,7 @@ ariaTest.failing('tabindex="-1" on role="menu"', exampleFile, 'menu-tabindex', a
 
 ariaTest('aria-activedescendant on role="menu"', exampleFile, 'menu-aria-activedescendant', async (t) => {
   t.plan(1);
-  await assertAttributeValues(t, ex.menuSelector, 'aria-activedescendant', ex.defaultAriaActivedescentantVal);
+  await assertAttributeValues(t, ex.menuSelector, 'aria-activedescendant', ex.defaultAriaActivedescendantVal);
 });
 
 ariaTest('role="menuitem" on li element', exampleFile, 'menuitem-role', async (t) => {
