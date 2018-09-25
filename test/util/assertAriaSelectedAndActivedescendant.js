@@ -8,15 +8,15 @@ const assert = require('assert');
  * attribute aria-selected set to "true" in a list of options.
  *
  * @param {obj} t                  - ava execution object
- * @param {String} ariaDescendantSelector - selector for element with aria-activeDescendant set
+ * @param {String} activedescendantSelector - selector for element with aria-activeDescendant set
  * @param {String} optionsSelector - selector to select list of canidate elements for focus
  * @param {Number} index           - index of element in list returned by optionsSelector with focus
  */
-module.exports = async function assertAriaSelectedAndActivedescendant (t, ariaDescendantSelector, optionsSelector, index) {
+module.exports = async function assertAriaSelectedAndActivedescendant (t, activedescendantSelector, optionsSelector, index) {
 
   // Confirm the option at index index has aria-selected set to true
 
-  let options = await t.context.session
+  const options = await t.context.session
     .findElements(By.css(optionsSelector));
 
   assert.strictEqual(
@@ -27,27 +27,27 @@ module.exports = async function assertAriaSelectedAndActivedescendant (t, ariaDe
 
   // Confrirm aria-activedescendant refers to the correct option
 
-  let optionId = await options[index].getAttribute('id');
+  const optionId = await options[index].getAttribute('id');
 
   assert.strictEqual(
     await t.context.session
-      .findElement(By.css(ariaDescendantSelector))
+      .findElement(By.css(activedescendantSelector))
       .getAttribute('aria-activedescendant'),
     optionId,
-    'aria-activedescendant should be set to ' + optionId + ' for items: ' + ariaDescendantSelector
+    'aria-activedescendant should be set to ' + optionId + ' for items: ' + activedescendantSelector
   );
 
   // Confirm the focus is on the aria-activedescendent element
 
-  let focused = await t.context.session.executeScript(function () {
+  const focused = await t.context.session.executeScript(function () {
     const selector = arguments[0];
     let item = document.querySelector(selector);
     return item === document.activeElement;
-  }, ariaDescendantSelector);
+  }, activedescendantSelector);
 
   assert(
     focused,
-    'document focus should be on aria-activedescendant element: ' + ariaDescendantSelector
+    'document focus should be on aria-activedescendant element: ' + activedescendantSelector
   );
 
   t.pass();
