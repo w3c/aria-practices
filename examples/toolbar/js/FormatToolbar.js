@@ -20,15 +20,16 @@ FormatToolbar = function (domNode) {
 
   this.toolbarItems = [];
   this.alignItems = [];
-
-  this.fontSmallerItem = null;
-  this.fontLargerItem = null;
+  this.textarea = null;
 };
 
 FormatToolbar.prototype.init = function () {
   var i, items, toolbarItem, menuButtons;
 
-  this.textarea = document.getElementById(this.domNode.getAttribute('aria-controls'));
+  var textarea = document.getElementById(this.domNode.getAttribute('aria-controls'));
+  this.textarea = new Textarea(textarea);
+  this.textarea.init();
+  this.selected = this.textarea.selectText;
 
   items = this.domNode.querySelectorAll('.item');
 
@@ -43,13 +44,15 @@ FormatToolbar.prototype.init = function () {
     this.lastItem = toolbarItem;
     this.toolbarItems.push(toolbarItem);
   }
-  console.log(this.toolbarItems);
   menuButtons = this.domNode.querySelectorAll('[role="button"][aria-haspopup="true"]');
 
   for (i = 0; i < menuButtons.length; i++) {
     toolbarItem = new FontMenuButton(menuButtons[i], this);
     toolbarItem.init();
   }
+
+
+
 };
 
 FormatToolbar.prototype.toggleBold = function (toolbarItem) {
@@ -109,17 +112,36 @@ FormatToolbar.prototype.setAlignment = function (toolbarItem) {
   }
 };
 
-FormatToolbar.prototype.copyTextContent = function () {
-  console.log(this.textarea.value);
-  this.textarea.select();
-  document.execCommand('copy');
+FormatToolbar.prototype.selectText = function(start, end, textarea){
+  if(typeof (textarea.selectionStart != undefined)) {
+    textarea.focus();
+    textarea.selectionStart = start;
+    textarea.selectionEnd = end;
+    return true;
+  }
+}
+FormatToolbar.prototype.copyTextContent = function (toolbarItem) {
+  this.selectText(this.textarea.start, this.textarea.end, this.textarea.domNode);
+  var copysuccess;
+  try{
+    copysuccess = document.execCommand('copy');
+  }catch(e){
+    copysuccess = false;
+  }
+  console.log(copysuccess);
 };
 
-FormatToolbar.prototype.pasteTextContent = function() {
-  // let paste = window.clipboardData.getData('text');
+FormatToolbar.prototype.cutTextContent = function () {
+  this.selectText(this.textarea.start, this.textarea.end, this.textarea.domNode);
+  document.execCommand('cut');
+  var str = this.textarea.domNode.value;
+  str.replace(str.substring(this.textarea.start,this.textarea.end),"");
+}
 
+FormatToolbar.prototype.pasteTextContent = function() {
   console.log(window.clipboardData);
 }
+
 
 FormatToolbar.prototype.setFontFamily = function (font) {
   this.textarea.style.fontFamily = font;
@@ -140,15 +162,17 @@ FormatToolbar.prototype.activateItem = function (toolbarItem) {
       this.setAlignment(toolbarItem);
       break;
     case 'copy':
-      this.copyTextContent();
+      this.copyTextContent(toolbarItem);
+      break;
+    case 'cut':
+      this.cutTextContent(toolbarItem);
       break;
     case 'paste':
-      this.pasteTextContent();
+      this.pasteTextContent(toolbarItem);
       break;
     case 'font-family':
       this.setFontFamily(toolbarItem.value);
       break;
-
     default:
       break;
 

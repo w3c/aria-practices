@@ -3,7 +3,7 @@
 	border-radius:5px;
 	padding:.25em;
 	height: 3.25em;
-	width: 50em;
+	width: 54em;
 	background-color:#ECECEA;
 	border:2px solid transparent;
 }
@@ -47,6 +47,7 @@
 	color: #EEE;
 	background-color: #666;
 	border-color: #666;
+	cursor: not-allowed;
 }
 
 [role="toolbar"] [role="button"][aria-disabled="true"]:focus {
@@ -62,7 +63,7 @@
 }
 
 textarea {
-	width: 50em;
+	width: 54em;
 	padding: .25em;
 	border: 2px solid black;
 	height: 400px;

@@ -68,6 +68,9 @@ FormatToolbarItem.prototype.init = function () {
   if (this.domNode.classList.contains('paste')) {
     this.buttonAction = 'paste';
   }
+  if (this.domNode.classList.contains('cut')) {
+    this.buttonAction = 'cut';
+  }
 };
 
 FormatToolbarItem.prototype.setPressed = function () {
@@ -140,7 +143,8 @@ FormatToolbarItem.prototype.handleKeyDown = function (event) {
 
 };
 
-FormatToolbarItem.prototype.handleClick = function () {
+FormatToolbarItem.prototype.handleClick = function (e) {
   this.toolbar.setFocusItem(this);
   this.toolbar.activateItem(this);
+  e.preventDefault();
 };
