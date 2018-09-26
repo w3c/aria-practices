@@ -29,5 +29,8 @@
     "geckodriver": "^1.11.0",
     "selenium-webdriver": "^4.0.0-alpha.1",
     "vnu-jar": "^18.7.23"
+  },
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2"
   }
 }
