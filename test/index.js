@@ -72,7 +72,7 @@ const _ariaTest = (desc, page, testId, body, failing) => {
   if (coverageReportRun) {
     test(testName, async function (t) {
       t.fail('All tests expect to fail. Running in coverage mode.');
-    })
+    });
     return;
   }
 

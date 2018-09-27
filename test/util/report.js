@@ -15,12 +15,12 @@ const ignoreExampleFiles = path.resolve(__dirname, 'report_files', 'ignore_html_
 const ignoreDirectories = fs.readFileSync(ignoreExampleDirs)
   .toString()
   .trim()
-  .split("\n")
+  .split('\n')
   .map(d => path.resolve(examplePath, d));
 const ignoreFiles = fs.readFileSync(ignoreExampleFiles)
   .toString()
   .trim()
-  .split("\n")
+  .split('\n')
   .map(f => path.resolve(examplePath, f));
 
 /**
@@ -34,20 +34,20 @@ const getExampleFiles = function (currentDirPath, exampleFiles) {
     var filePath = path.join(currentDirPath, name);
     var stat = fs.statSync(filePath);
     if (
-      stat.isFile()
-      && path.extname(filePath) == '.html'
-      && ignoreFiles.indexOf(filePath) === -1
+      stat.isFile() &&
+      path.extname(filePath) == '.html' &&
+      ignoreFiles.indexOf(filePath) === -1
     ) {
       exampleFiles.push(filePath);
     }
     else if (
-      stat.isDirectory()
-      && ignoreDirectories.indexOf(filePath) === -1
+      stat.isDirectory() &&
+      ignoreDirectories.indexOf(filePath) === -1
     ) {
       getExampleFiles(filePath, exampleFiles);
     }
   });
-}
+};
 
 /**
  * Return human readible name for a "Keyboard Support" table row.
@@ -57,7 +57,7 @@ const getExampleFiles = function (currentDirPath, exampleFiles) {
  */
 const getKeyboardRowName = function ($, $tableRow) {
   return $('th', $tableRow).text().replace(/\n/g, ', ');
-}
+};
 
 /**
  * Return human readible name for an "Attributes" table row.
@@ -73,7 +73,7 @@ const getAttributeRowName = function ($, $tableRow) {
     rowName = $(':nth-child(3)', $tableRow).text();
   }
   return rowName;
-}
+};
 
 
 /**
@@ -102,7 +102,7 @@ const processDocumentationInExampleFiles = function (exampleFiles, exampleCovera
     let keysMissingIds = new Set();
 
     // Find all the "Keyboard Interaction" table rows
-    $('table.def tbody tr').each(function() {
+    $('table.def tbody tr').each(function () {
       let $row = $(this);
       let dataTestId = $row.attr('data-test-id');
       if (dataTestId !== undefined) {
@@ -111,19 +111,19 @@ const processDocumentationInExampleFiles = function (exampleFiles, exampleCovera
       else {
         keysMissingIds.add(getKeyboardRowName($, $row));
       }
-    })
+    });
 
     // Find all the "Attribute" table rows
-    $('table.attributes tbody tr').each(function() {
+    $('table.attributes tbody tr').each(function () {
       let $row = $(this);
       let dataTestId = $row.attr('data-test-id');
       if (dataTestId !== undefined) {
         dataTestIds.add(dataTestId);
       }
       else {
-        attrsMissingIds.add(getAttributeRowName($, $row))
+        attrsMissingIds.add(getAttributeRowName($, $row));
       }
-    })
+    });
 
     // Use the relative path to identify the example page
     const example = path.relative(examplePath, exampleFile);
@@ -132,10 +132,10 @@ const processDocumentationInExampleFiles = function (exampleFiles, exampleCovera
       existingTestIds: dataTestIds,
       missingTests: new Set(dataTestIds),
       missingAttrs: attrsMissingIds,
-      missingKeys: keysMissingIds,
-    }
+      missingKeys: keysMissingIds
+    };
   }
-}
+};
 
 /**
  * Runs ava tests in coverage mode to collect data on which tests exist.
@@ -163,7 +163,7 @@ const getRegressionTestCoverage = function (exampleCoverage) {
     // the test page.
     exampleCoverage[example].missingTests.delete(matchResults[3]);
   }
-}
+};
 
 // Process example files and results of regression test to find coverage information.
 const exampleFiles = [];
@@ -190,7 +190,7 @@ for (let example in exampleCoverage) {
     totalTestIds += existingTestIds;
   }
 
-  if ( missingTests || missingKeys || missingAttrs ) {
+  if (missingTests || missingKeys || missingAttrs) {
     let exampleName = example;
 
     if (existingTestIds === missingTests) {
@@ -235,10 +235,10 @@ console.log('\nExamples documentation table rows without data-test-ids:\n');
 console.log(missingTestIdsReport);
 
 console.log('SUMMARTY:\n');
-console.log('  ' + exampleFiles.length + ' example pages found.')
-console.log('  ' + examplesWithNoTests + ' example pages have no regression tests.')
-console.log('  ' + examplesMissingSomeTests + ' example pages are missing approximately '
-            + missingTestIds + ' out of approximately ' + totalTestIds + ' tests.\n')
+console.log('  ' + exampleFiles.length + ' example pages found.');
+console.log('  ' + examplesWithNoTests + ' example pages have no regression tests.');
+console.log('  ' + examplesMissingSomeTests + ' example pages are missing approximately ' +
+            missingTestIds + ' out of approximately ' + totalTestIds + ' tests.\n');
 
 if (examplesMissingSomeTests) {
   console.log('ERROR:\n\n  Please write missing tests for this report to pass.\n');
