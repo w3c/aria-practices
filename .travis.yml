@@ -17,6 +17,9 @@ jobs:
     - stage: Test
       name: AVA Regression Tests
       script: ava --tap -c 1 test/tests
+    - stage: Test Coverage
+      name: Regression Tests Coverage Report
+      script: node test/util/report.js
     - stage: Test
       name: JS Linting
       script: npm run lint
