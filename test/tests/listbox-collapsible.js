@@ -29,7 +29,7 @@ const checkFocus = async function (t, selector) {
 
 ariaTest('"aria-labelledby" on button element', exampleFile, 'button-aria-labelledby', async (t) => {
   t.plan(1);
-  await assertAriaLabelledby(t, 'ex', ex.buttonSelector);
+  await assertAriaLabelledby(t, ex.buttonSelector);
 });
 
 
@@ -76,7 +76,7 @@ ariaTest('role="listbox" on ul element', exampleFile, 'listbox-role', async (t) 
 
 ariaTest('"aria-labelledby" on listbox element', exampleFile, 'listbox-aria-labelledby', async (t) => {
   t.plan(1);
-  await assertAriaLabelledby(t, 'ex', ex.listboxSelector);
+  await assertAriaLabelledby(t, ex.listboxSelector);
 });
 
 ariaTest('tabindex="0" on listbox element', exampleFile, 'listbox-tabindex', async (t) => {
