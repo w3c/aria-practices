@@ -11,6 +11,7 @@ const examplePath = path.resolve(__dirname, '..', '..', 'examples');
 const testsPath = path.resolve(__dirname, '..', 'tests');
 const ignoreExampleDirs = path.resolve(__dirname, 'report_files', 'ignore_test_directories');
 const ignoreExampleFiles = path.resolve(__dirname, 'report_files', 'ignore_html_files');
+const ignoredDataTestId = 'test-not-required';
 
 const ignoreDirectories = fs.readFileSync(ignoreExampleDirs)
   .toString()
@@ -105,7 +106,10 @@ const processDocumentationInExampleFiles = function (exampleFiles, exampleCovera
     $('table.def tbody tr').each(function () {
       let $row = $(this);
       let dataTestId = $row.attr('data-test-id');
-      if (dataTestId !== undefined) {
+
+      if (dataTestId === ignoredDataTestId) { return };
+
+      if ( dataTestId !== undefined ) {
         dataTestIds.add(dataTestId);
       }
       else {
@@ -117,7 +121,10 @@ const processDocumentationInExampleFiles = function (exampleFiles, exampleCovera
     $('table.attributes tbody tr').each(function () {
       let $row = $(this);
       let dataTestId = $row.attr('data-test-id');
-      if (dataTestId !== undefined) {
+
+      if (dataTestId === ignoredDataTestId) { return };
+
+      if ( dataTestId !== undefined ) {
         dataTestIds.add(dataTestId);
       }
       else {
