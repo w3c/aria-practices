@@ -166,7 +166,7 @@ ariaTest('Test down key press with focus on textbox',
       .sendKeys(Key.ARROW_DOWN);
 
     // Check that the listbox is displayed
-    t.truthy(
+    t.true(
       await t.context.session.findElement(By.css(ex.listboxSelector)).isDisplayed(),
       'In example ex3 listbox should display after ARROW_DOWN keypress'
     );
@@ -219,7 +219,7 @@ ariaTest('Test up key press with focus on textbox',
       .sendKeys(Key.ARROW_UP);
 
     // Check that the listbox is displayed
-    t.truthy(
+    t.true(
       await t.context.session.findElement(By.css(ex.listboxSelector)).isDisplayed(),
       'In example ex3 listbox should display after ARROW_UP keypress'
     );
