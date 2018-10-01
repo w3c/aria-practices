@@ -312,8 +312,7 @@ ariaTest('Test enter key press with focus on listbox',
 
     // Get the value of the second option in the listbox
 
-    const secondOption = await
-      (await t.context.session.findElements(By.css(ex.optionsSelector)))[1]
+    const secondOption = await(await t.context.session.findElements(By.css(ex.optionsSelector)))[1]
       .getText();
 
     // Send key ENTER
