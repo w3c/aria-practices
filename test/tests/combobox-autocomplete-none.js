@@ -279,6 +279,38 @@ ariaTest('Test up key press with focus on listbox',
     }
   });
 
+ariaTest('Test enter key press with focus on textbox',
+  exampleFile, 'textbox-key-enter', async (t) => {
+
+    t.plan(2);
+
+    // Send key "a" to the textbox, then key ARROW_DOWN to select the first item
+
+    await t.context.session
+      .findElement(By.css(ex.textboxSelector))
+      .sendKeys('a');
+
+    // Send key ENTER
+
+    await t.context.session
+      .findElement(By.css(ex.textboxSelector))
+      .sendKeys(Key.ENTER);
+
+    // Confirm that the listbox is closed
+
+    await assertAttributeValues(t, ex.textboxSelector, 'aria-expanded', 'false');
+
+    // Confirm that the value of the textbox is the same as the characters set to the listbox
+
+    t.is(
+      await t.context.session
+        .findElement(By.css(ex.textboxSelector))
+        .getAttribute('value'),
+      'a',
+      'key press "ENTER" should not result in selecting an option'
+    );
+  });
+
 ariaTest('Test enter key press with focus on listbox',
   exampleFile, 'listbox-key-enter', async (t) => {
 
@@ -458,5 +490,11 @@ ariaTest('Sending character keys while focus is on listbox moves focus',
       'Focus should be on the textbox after sending a character key while the focus is on the listbox',
     );
 
+  });
+
+ariaTest.failing('Expected behavior for all other standard single line editing keys',
+  exampleFile, 'standard-single-line-editing-keys', async (t) => {
+    t.plan(1);
+    t.fail();
   });
 
