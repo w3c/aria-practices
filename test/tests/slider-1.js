@@ -86,7 +86,7 @@ ariaTest('"aria-valuenow" reflects slider value', exampleFile, 'aria-valuenow', 
 
 ariaTest('"aria-labelledby" set on sliders', exampleFile, 'aria-labelledby', async (t) => {
   t.plan(1);
-  await assertAriaLabelledby(t, 'ex1', ex.sliderSelector);
+  await assertAriaLabelledby(t, ex.sliderSelector);
 });
 
 // Keys
