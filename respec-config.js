@@ -11,7 +11,7 @@ var respecConfig = {
   // publishDate: "2013-08-22",
   noRecTrack: true,
   diffTool: 'http://www.aptest.com/standards/htmldiff/htmldiff.pl',
-  license: "w3c-software-doc",
+  license: 'w3c-software-doc',
 
   // The specifications short name, as in http://www.w3.org/TR/short-name/
   shortName: 'wai-aria-practices-1.1',
@@ -45,9 +45,9 @@ var respecConfig = {
     w3cid: 44582
   }, {
     name: 'James Nurthen',
-    mailto: 'james.nurthen@oracle.com',
-    company: 'Oracle Corporation',
-    companyURI: 'http://www.oracle.com/',
+    mailto: 'nurthen@adobe.com',
+    company: 'Adobe',
+    companyURI: 'http://www.adobe.com/',
     w3cid: 37155
   }, {
     name: 'Michiel Bijl',
@@ -95,7 +95,7 @@ var respecConfig = {
 
   // Spec URLs
   ariaSpecURLs: {
-    'ED': 'https://w3c.github.io/aria/aria/aria.html',
+    'ED': 'https://w3c.github.io/aria/',
     'FPWD': 'https://www.w3.org/TR/wai-aria-1.1/',
     'WD': 'https://www.w3.org/TR/wai-aria-1.1/',
     'REC': 'https://www.w3.org/TR/wai-aria/'
@@ -150,5 +150,5 @@ var respecConfig = {
 
   localBiblio: biblio,
 
-  preProcess: [linkCrossReferences]
+  preProcess: [ linkCrossReferences ]
 };

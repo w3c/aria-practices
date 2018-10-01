@@ -18,6 +18,7 @@ Please do not provide commit access to this repository without coordination.
 * The [scope of work and roadmap](https://github.com/w3c/aria-practices/wiki/Scope) are described in the project wiki.
 
 ## Contributing
+
 1. Comment in an existing issue or raise a new issue, expressing your willingness to help and briefly summarizing the nature of your proposed resolution.
 2. An editor will confirm there are no conflicting plans and, if needed, provide guidance.
 3. Be sure you have ESLint configured as described below.
@@ -29,8 +30,10 @@ Note: Please feel free to ask questions either through an issue or on the [Autho
 ### Code conformance
 
 * All HTML should validate in the NU HTML Validator. Exceptions to this rule are warnings and errors related to future ARIA features that are not yet implemented.
-* To keep code in this repository consistent; editors should use a text editor that supports [EditorConfig](http://editorconfig.org/).
-* All code should test clean with ESLint.
+* To keep code in this repository consistent:
+    * Read the [code guide](https://github.com/w3c/aria-practices/wiki/Code-Guide)
+    * Use a text editor that supports [EditorConfig](http://editorconfig.org/).
+    * Make sure All code tests clean with ESLint.
 
 ### Running ESLint, the pluggable linting utility for JavaScript and JSX
 

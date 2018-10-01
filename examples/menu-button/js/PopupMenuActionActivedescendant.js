@@ -135,8 +135,7 @@ PopupMenuActionActivedescendant.prototype.init = function () {
 
 };
 PopupMenuActionActivedescendant.prototype.handleKeydown = function (event) {
-  var tgt = event.currentTarget,
-    flag = false,
+  var flag = false,
     char = event.key,
     clickEvent;
 
