@@ -69,7 +69,7 @@ ariaTest('aria-expanded on button element', exampleFile, 'button-aria-expanded',
     await buttons[expandIndex].click();
 
     for (let index = 0; index < buttons.length; index++) {
-      let expandedValue = index === expandIndex ? 'true' : 'false';
+      const expandedValue = index === expandIndex ? 'true' : 'false';
       t.is(
         await buttons[index].getAttribute('aria-expanded'),
         expandedValue,
@@ -97,7 +97,7 @@ ariaTest('"aria-disabled" set on expanded sections', exampleFile, 'button-aria-d
     await buttons[expandIndex].click();
 
     for (let index = 0; index < buttons.length; index++) {
-      let disabledValue = index === expandIndex ? 'true' : null;
+      const disabledValue = index === expandIndex ? 'true' : null;
       t.is(
         await buttons[index].getAttribute('aria-disabled'),
         disabledValue,
