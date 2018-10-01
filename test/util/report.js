@@ -216,18 +216,18 @@ for (let example in exampleCoverage) {
     }
 
     if (missingKeys || missingAttrs) {
-      missingTestIdsReport += '\n' + exampleName + '\n';
+      missingTestIdsReport += exampleName + '\n';
       if (missingKeys) {
-        missingTestIdsReport += ' "Keyboard Support" table(s):\n';
+        missingTestIdsReport += '    "Keyboard Support" table(s):\n';
         for (let row of exampleCoverage[example].missingKeys) {
-          missingTestIdsReport += '    ' + row + '\n';
+          missingTestIdsReport += '       ' + row + '\n';
         }
       }
 
       if (missingAttrs) {
-        missingTestIdsReport += ' "Attributes" table(s):\n';
+        missingTestIdsReport += '    "Attributes" table(s):\n';
         for (let row of exampleCoverage[example].missingAttrs) {
-          missingTestIdsReport += '    ' + row + '\n';
+          missingTestIdsReport += '       ' + row + '\n';
         }
       }
     }
