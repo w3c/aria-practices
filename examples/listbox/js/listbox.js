@@ -302,7 +302,9 @@ aria.Listbox.prototype.defocusItem = function (element) {
   if (!element) {
     return;
   }
-
+  if (!this.multiselectable) {
+    element.removeAttribute('aria-selected');
+  }
   aria.Utils.removeClass(element, 'focused');
 };
 
@@ -315,6 +317,9 @@ aria.Listbox.prototype.defocusItem = function (element) {
  */
 aria.Listbox.prototype.focusItem = function (element) {
   this.defocusItem(document.getElementById(this.activeDescendant));
+  if (!this.multiselectable) {
+    element.setAttribute('aria-selected', 'true');
+  }
   aria.Utils.addClass(element, 'focused');
   this.listboxNode.setAttribute('aria-activedescendant', element.id);
   this.activeDescendant = element.id;

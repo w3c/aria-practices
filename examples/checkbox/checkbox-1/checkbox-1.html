@@ -22,7 +22,7 @@
       <li><a href="https://github.com/w3c/aria-practices/projects/9">Related Issues</a></li>
       <li><a href="../../../#checkbox">Design Pattern</a></li>
     </ul>
-  </nav>  
+  </nav>
   <main>
     <h1>Checkbox Example (Two State)</h1>
     <p>This example implements the  <a href="../../../#checkbox">Checkbox Design Pattern</a> for a two state checkbox using <code>div</code> elements.</p>
@@ -37,8 +37,8 @@
       <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
 
       <div  id="ex1">
-        <h3>Sandwich Condiments</h3>
-        <div>
+        <h3 id="id-group-label">Sandwich Condiments</h3>
+        <div role="group" aria-labelledby="id-group-label">
           <ul class="checkboxes">
             <li><div role="checkbox" aria-checked="false" tabindex= "0">Lettuce</div></li>
             <li><div role="checkbox" aria-checked="true"  tabindex= "0">Tomato</div></li>
@@ -76,11 +76,11 @@
             </tr>
           </thead>
           <tbody>
-          <tr>
+          <tr data-test-id="key-tab">
             <th><kbd>Tab</kbd></th>
             <td>Moves keyboard focus to the <code>checkbox</code>.</td>
           </tr>
-            <tr>
+            <tr data-test-id="key-space">
               <th><kbd>Space</kbd></th>
               <td>Toggles checkbox between checked and unchecked states.</td>
             </tr>
@@ -101,6 +101,36 @@
         </thead>
         <tbody>
             <tr>
+              <th scope="row"></th>
+              <td></td>
+              <td><code>h3</code></td>
+              <td>
+                <ul>
+                  <li>Provides a grouping label for the group of checkboxes.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr data-test-id="group-role">
+              <th scope="row"><code>group</code></th>
+              <td></td>
+              <td><code>div</code></td>
+              <td>
+                <ul>
+                  <li>Identifies the <code>div</code> element as a <code>group</code> container for the checkboxes.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr data-test-id="group-aria-labelledby">
+              <th scope="row"></th>
+              <td><code>aria-labelledby</code></td>
+              <td><code>div</code></td>
+              <td>
+                <ul>
+                  <li>The <code>aria-labelledby</code> attribute references the <code>id</code> attribute of the <code>h3</code> element to define the accessible name for the group of checkboxes.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr data-test-id="checkbox-role">
               <th scope="row"><code>checkbox</code></th>
               <td></td>
               <td><code>div</code></td>
@@ -111,13 +141,13 @@
                 </ul>
               </td>
             </tr>
-            <tr>
+            <tr data-test-id="checkbox-tabindex">
               <td></td>
               <th scope="row"><code>tabindex=&quot;0&quot;</code></th>
               <td><code>div</code></td>
               <td>Includes the checkbox in the page tab sequence.</td>
             </tr>
-            <tr>
+            <tr data-test-id="checkbox-aria-checked">
               <td></td>
               <th scope="row"><code>aria-checked=&quot;false&quot;</code></th>
               <td><code>div</code></td>
@@ -129,7 +159,7 @@
                   </ul>
               </td>
             </tr>
-            <tr>
+            <tr data-test-id="checkbox-aria-checked">
               <td></td>
               <th scope="row"><code>aria-checked=&quot;true&quot;</code></th>
               <td><code>div</code></td>

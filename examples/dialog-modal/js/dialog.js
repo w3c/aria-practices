@@ -14,6 +14,8 @@ aria.Utils = aria.Utils || {};
    */
   aria.Utils.IgnoreUtilFocusChanges = false;
 
+  aria.Utils.dialogOpenClass = 'has-dialog';
+
   /**
    * @desc Set focus on descendant nodes until the first focusable element is
    *       found.
@@ -124,11 +126,11 @@ aria.Utils = aria.Utils || {};
    */
   aria.Dialog = function (dialogId, focusAfterClosed, focusFirst) {
     this.dialogNode = document.getElementById(dialogId);
+    var role = this.dialogNode.getAttribute('role');
 
-    if (this.dialogNode === null ||
-        this.dialogNode.getAttribute('role') !== 'dialog') {
+    if (this.dialogNode === null || !['dialog', 'alertdialog'].includes(role)) {
       throw new Error(
-        'Dialog() requires a DOM element with ARIA role of dialog.');
+        'Dialog() requires a DOM element with ARIA role of dialog or alertdialog.');
     }
 
     // Wrap in an individual backdrop element if one doesn't exist
@@ -145,6 +147,9 @@ aria.Utils = aria.Utils || {};
       this.backdropNode.appendChild(this.dialogNode);
     }
     this.backdropNode.classList.add('active');
+
+    // Disable scroll on the body element
+    document.body.classList.add(aria.Utils.dialogOpenClass);
 
     if (typeof focusAfterClosed === 'string') {
       this.focusAfterClosed = document.getElementById(focusAfterClosed);
@@ -228,6 +233,9 @@ aria.Utils = aria.Utils || {};
     // If a dialog was open underneath this one, restore its listeners.
     if (aria.OpenDialogList.length > 0) {
       aria.getCurrentDialog().addListeners();
+    }
+    else {
+      document.body.classList.remove(aria.Utils.dialogOpenClass);
     }
   }; // end close
 
