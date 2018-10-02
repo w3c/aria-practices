@@ -54,7 +54,7 @@ ariaTest('"aria-checked" set on role="radio"', exampleFile, 'radio-aria-checked'
 
   const radiogroups = await t.context.session.findElements(By.css(ex.radiogroupSelector));
   for (let radiogroup of radiogroups) {
-    let radios = await radiogroup.findElements(By.css(ex.innerRadioSelector));
+    const radios = await radiogroup.findElements(By.css(ex.innerRadioSelector));
 
     for (let checked = 0; checked < radios.length; checked++) {
 
@@ -62,7 +62,7 @@ ariaTest('"aria-checked" set on role="radio"', exampleFile, 'radio-aria-checked'
       for (let el = 0; el < radios.length; el++) {
 
         // test only one element has aria-checked="true"
-        let isChecked = el === checked ? 'true' : 'false';
+        const isChecked = el === checked ? 'true' : 'false';
         t.is(
           await radios[el].getAttribute('aria-checked'),
           isChecked,
@@ -103,11 +103,11 @@ ariaTest('Selects radio item', exampleFile, 'key-space', async (t) => {
   t.plan(2);
 
   await t.context.session.findElement(By.css(ex.radiogroupSelectors[0])).sendKeys(Key.SPACE);
-  let firstCrustRadioOption = ex.radioSelectors[0] + ':nth-of-type(1)';
+  const firstCrustRadioOption = ex.radioSelectors[0] + ':nth-of-type(1)';
   await assertAttributeValues(t, firstCrustRadioOption, 'aria-checked', 'true');
 
   await t.context.session.findElement(By.css(ex.radiogroupSelectors[1])).sendKeys(Key.SPACE);
-  let firstDeliveryRadioOption = ex.radioSelectors[1] + ':nth-of-type(1)';
+  const firstDeliveryRadioOption = ex.radioSelectors[1] + ':nth-of-type(1)';
   await assertAttributeValues(t, firstDeliveryRadioOption, 'aria-checked', 'true');
 });
 
