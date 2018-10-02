@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Toolbar Example | WAI-ARIA Authoring Practices 1.1</title>
+
+<!--  Core js and css shared by all examples; do not modify when using this template. -->
+<link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
+<link rel="stylesheet" href="../css/core.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+<script src="../js/examples.js"></script>
+<script src="../js/highlight.pack.js"></script>
+<script src="../js/app.js"></script>
+<script src="../js/utils.js" type="text/javascript"></script>
+
+<!--  js and css for this example. -->
+
+<link href="css/toolbar.css"    rel="stylesheet">
+<link href="css/menuButton.css" rel="stylesheet">
+
+<script src="js/Textarea.js" type="text/javascript"></script>
+<script src="js/FormatToolbarItem.js" type="text/javascript"></script>
+<script src="js/FormatToolbar.js"     type="text/javascript"></script>
+<script src="js/FontMenuItem.js"      type="text/javascript"></script>
+<script src="js/FontMenu.js"          type="text/javascript"></script>
+<script src="js/FontMenuButton.js"    type="text/javascript"></script>
+
+</head>
+<body>
+  <nav aria-label="Related Links" class="feedback">
+    <ul>
+      <li><a href="../../#browser_and_AT_support">Browser and Assistive Technology Support</a></li>
+      <li><a href="https://github.com/w3c/aria-practices/issues/new">Report Issue</a></li>
+      <li><a href="https://github.com/w3c/aria-practices/projects/18">Related Issues</a></li>
+      <li><a href="../../#toolbar">Design Pattern</a></li>
+    </ul>
+  </nav>
+  <main>
+  <h1>Toolbar Example</h1>
+  <p>
+    <strong>NOTE:</strong> Please provide feedback on this example page in
+    <a href="https://github.com/w3c/aria-practices/issues/539">issue 539.</a>
+  </p>
+  <p>
+    Following is an example implementation of the
+    <a href="../../#toolbar">design pattern for toolbar</a>
+    that demonstrates how a toolbar can group a set of buttons into a single tab stop.
+    It also illustrates the roving tabindex method for managing focus within a component.
+  </p>
+  <section>
+    <h2 id="ex_label">Example</h2>
+    <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
+    <div id="ex1">
+      <div class="format" role="toolbar" aria-label="Text Formatting" aria-controls="textarea1">
+          <div class="group characteristics">
+            <div role="button"
+                class="item bold"
+                aria-pressed="false"
+                aria-label="bold"
+                value="bold"
+                tabindex="0">
+              <i class="fas fa-bold"></i>
+            </div>
+            <div role="button"
+                class="item italic"
+                aria-label="Italic"
+                aria-pressed="false"
+                value="italic"
+                tabindex="-1">
+              <i class="fas fa-italic"></i>
+            </div>
+            <div role="button"
+                class="item underline"
+                aria-label="Underline"
+                aria-pressed="false"
+                value="underline"
+                tabindex="-1">
+              <i class="fas fa-underline"></i>
+            </div>
+          </div>
+          <div class="group">
+            <div role="button"
+                class="item align-left"
+                aria-label="Text align left"
+                aria-pressed="true"
+                tabindex="-1">
+              <i class="fas fa-align-left"></i>
+            </div>
+            <div role="button"
+                class="item align-center"
+                aria-label="Text align center"
+                aria-pressed="false"
+                tabindex="-1">
+              <i class="fas fa-align-center"></i>
+            </div>
+            <div role="button"
+                class="item align-right"
+                aria-label="Text align right"
+                aria-pressed="false"
+                tabindex="-1">
+              <i class="fas fa-align-right"></i>
+            </div>
+          </div>
+          <div class="group">
+            <div role="button"
+                class="item copy"
+                aria-disabled="true"
+                aria-label="copy textarea"
+                disabled = "true"
+                tabindex="-1">
+              Copy
+            </div>
+            <div role="button"
+                class="item paste"
+                aria-disabled="true"
+                aria-label="paste to textarea"
+                disabled = "true"
+                tabindex="-1">
+                Paste
+            </div>
+            <div role="button"
+                class="item cut"
+                aria-disabled="true"
+                aria-label="cut textarea"
+                disabled = "true"
+                tabindex="-1">
+                Cut
+            </div>
+          </div>
+          <div class="menu-wrapper group" >
+            <div
+              role="button"
+              aria-haspopup="true"
+              aria-controls="menu1"
+              class="item menu-button"
+              tabindex="=-1">
+              Fonts
+            </div>
+            <ul role="menu" id="menu1" aria-label="Font Family">
+              <li role="menuitem" style="font-family: sans-serif">Sans-serif</li>
+              <li role="menuitem" style="font-family: serif">Serif</li>
+              <li role="menuitem" style="font-family: monspace">Monospace</li>
+              <li role="menuitem" style="font-family: fantasy">Fantasy</li>
+              <li role="menuitem" style="font-family: cursive">Cursive</li>
+            </ul>
+          </div>
+          <div class="group">
+            <a href="#help"
+              tabindex="-1"
+              class="item button">
+              Help
+            </a>
+            <div role="checkbox"
+                class="item button"
+                aria-label="Checkbox example"
+                tabindex="-1">
+                X
+            </div>
+          </div>
+      </div>
+      <label for="textarea1" class="hidden">Text Sample</label><br>
+      <textarea id="textarea1" rows="20" cols="80"
+        style="font-size: medium; font-family: sans-serif"
+        >
+        Four score and seven years ago our fathers brought forth on this continent a new nation, conceived in Liberty, and dedicated to the proposition that all men are created equal.
+
+        Now we are engaged in a great civil war, testing whether that nation, or any nation, so conceived and so dedicated, can long endure. We are met on a great battle-field of that war. We have come to dedicate a portion of that field, as a final resting place for those who here gave their lives that that nation might live. It is altogether fitting and proper that we should do this.
+
+        But, in a larger sense, we can not dedicate, we can not consecrate, we can not hallow, this ground. The brave men, living and dead, who struggled here, have consecrated it, far above our poor power to add or detract. The world will little note, nor long remember what we say here, but it can never forget what they did here. It is for us the living, rather, to be dedicated here to the unfinished work which they who fought here have thus far so nobly advanced. It is rather for us to be here dedicated to the great task remaining before us, that from these honored dead we take increased devotion to that cause for which they gave the last full measure of devotion, that we here highly resolve that these dead shall not have died in vain, that this nation, under God, shall have a new birth of freedom, and that government of the people, by the people, for the people, shall not perish from the earth.
+      </textarea>
+    </div>
+    <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
+  </section>
+
+  <section>
+    <h2>Accessibility Features</h2>
+    <ol>
+      <li>
+        When tabbing into the toolbar, focus returns to the control that last had focus.
+        Focus movement inside the toolbar is managed using <a href="../../#kbd_roving_tabindex">roving tabindex</a>.
+    </li>
+      <li>
+        Since there is only a single disabled control, to ensure screen reader users are aware of its presence, it is focusable.
+        For additional guidance, see <a href="../../#kbd_disabled_controls">Focusability of disabled controls.</a>
+      </li>
+      <li>Since <kbd>Down Arrow</kbd> is not used to navigate a horizontal toolbar, the menubutton can be opened with <kbd>Down Arrow</kbd> as well as <kbd>Enter</kbd>.</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>Focus Styling</h2>
+    <ol>
+      <li>
+        When the toolbar has focus, the container element border is highlighted.
+      </li>
+      <li>
+        When a toolbar button has focus, its border is highlighted and the background color of the button also changes.
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h2 id="kbd_label">Keyboard Support</h2>
+
+
+
+    <section>
+      <h3 id="kbd_label_1">Toolbar</h3>
+      <table aria-labelledby="kbd_label_1" class="def">
+        <thead>
+          <tr>
+            <th>Key</th>
+            <th>Function</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th><kbd>Tab</kbd></th>
+            <td>
+              <ul>
+                <li>Moves focus into and out of the toolbar.</li>
+                <li>The first control is focused if the toolbar is receiving focus for the first time after page load.</li>
+                <li>Otherwise, the most recently focused control receives focus.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <th><kbd>Left Arrow</kbd></th>
+            <td>
+              <ul>
+                <li>Moves focus to the previous control.</li>
+                <li>If the first control has focus, focus moves to the last control.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <th><kbd>Right Arrow</kbd></th>
+            <td>
+              <ul>
+                <li>Moves focus to the next control.</li>
+                <li>If the last control has focus, focus moves to the first control.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <th><kbd>Enter</kbd>,<br><kbd>Space</kbd></th>
+            <td>
+              Activate the action associated with the toolbar item.
+            </td>
+          </tr>
+          <tr>
+            <th><kbd>Home</kbd></th>
+            <td>Moves focus to the first control.</td>
+          </tr>
+          <tr>
+            <th><kbd>End</kbd></th>
+            <td>Moves focus to the last control.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+      <h3 id="kbd_label_2">Menu Button</h3>
+      <table aria-labelledby="kbd_label_2" class="def">
+        <thead>
+          <tr>
+            <th>Key</th>
+            <th>Function</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th><kbd>Enter</kbd>,<br><kbd>Space</kbd></th>
+            <td>
+              Expand the menu if it include menu items.
+            </td>
+          </tr>
+          <tr>
+            <th><kbd>Down Arrow</kbd></th>
+            <td>
+              <ul>
+                <li>Expand the menu</li>
+                <li>Move focus to the first menu item.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <th><kbd>Up Arrow</kbd></th>
+            <td>
+              <ul>
+                <li>Moves focus to the previous menu item.</li>
+                <li>If the first menu item has focus, focus moves to the last menu item.</li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+    <section>
+        <h3 id="kbd_label_2">Menu</h3>
+        <table aria-labelledby="kbd_label_2" class="def">
+          <thead>
+            <tr>
+              <th>Key</th>
+              <th>Function</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th><kbd>Enter</kbd>,<br><kbd>Space</kbd></th>
+              <td>
+                Select the menu item.
+              </td>
+            </tr>
+            <tr>
+              <th><kbd>Down Arrow</kbd></th>
+              <td>
+                <ul>
+                  <li>Moves focus to the next menu item.</li>
+                  <li>If the last menu item has focus, focus moves to the first menu item.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <th><kbd>Up Arrow</kbd></th>
+              <td>
+                <ul>
+                  <li>Moves focus to the previous menu item.</li>
+                  <li>If the first menu item has focus, focus moves to the last menu item.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+                <th><kbd>ESC</kbd>,<br><kbd>Left Arrow</kbd>,<br><kbd>Right Arrow</kbd></th>
+                <td>
+                  <ul>
+                    <li>Close the menu.</li>
+                    <li>Move focus back to the menu button.</li>
+                  </ul>
+                </td>
+              </tr>
+          </tbody>
+        </table>
+      </section>
+  </section>
+
+  <section>
+    <h2 id="rps_label">Role, Property, State, and Tabindex  Attributes</h2>
+    <section>
+      <h3 id="rps_label_1">Toolbar</h3>
+      <table aria-labelledby="rps_label_1" class="data attributes">
+        <thead>
+          <tr>
+            <th scope="col">Role</th>
+            <th scope="col">Attribute</th>
+            <th scope="col">Element</th>
+            <th scope="col">Usage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row"><code>toolbar</code></th>
+            <td></td>
+            <td><code>div</code></td>
+            <td>
+              <ul>
+                <li>Identifies the toolbar container.</li>
+                <li>The toolbar div is not focusable because focus is managed with a <a href="../../#kbd_roving_tabindex">roving tabindex</a>.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <th scope="row">
+              <code>aria-label=&quot;Text Formatting&quot;</code>
+            </th>
+            <td><code>div</code></td>
+            <td>
+                Provides the accessible name of <q>Text Formatting</q> for the functions in the toolbar.
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <th scope="row">
+              <code>aria-controls=<q>IDREF</q></code>
+            </th>
+            <td><code>div</code></td>
+            <td>
+                Provides a reference to the <code>textarea</code> that the toolbar controls.
+            </td>
+          </tr>
+          <tr>
+            <th scope="row"><code>button</code></th>
+            <td></td>
+            <td> <code>div</code></td>
+            <td>Identifies the element as a button.</td>
+          </tr>
+          <tr>
+            <td></td>
+            <th scope="row">
+              <code>tabindex=<q>-1</q></code>
+            </th>
+            <td>
+              <code>div</code>
+            </td>
+            <td>
+              <ul>
+                <li>Makes the element focusable but not part of the page <kbd>Tab</kbd> sequence.</li>
+                <li>Applied to all elements contained in the toolbar except for one that is included in the page <kbd>Tab</kbd> sequence.</li>
+                <li>This approach to managing focus is described in the section on <a href="../../#kbd_roving_tabindex">roving tabindex</a>.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <th scope="row">
+              <code>tabindex=<q>0</q></code>
+            </th>
+            <td>
+              <code>div</code>
+            </td>
+            <td>
+              <ul>
+                <li>Makes the element focusable and includes it in the page <kbd>Tab</kbd> sequence.</li>
+                <li>Set on only one widget contained by the toolbar.</li>
+                <li>On page load is set on the first widget element contained by the toolbar.</li>
+                <li>Moves with focus inside the toolbar so the most recently focused element is included in the page <kbd>Tab</kbd> sequence.</li>
+                <li>This approach to managing focus is described in the section on <a href="../../#kbd_roving_tabindex">roving tabindex</a>.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <th scope="row"><code>aria-label=<q></q></code></th>
+            <td><code>div</code></td>
+            <td>Informs assistive technologies of the disabled state.</td>
+          </tr>
+          <tr>
+            <td></td>
+            <th scope="row"><code>aria-disabled=&quot;true&quot;</code></th>
+            <td><code>div</code></td>
+            <td>Informs assistive technologies of the disabled state.</td>
+          </tr>
+          <tr>
+            <td></td>
+            <th scope="row"><code>aria-pressed=&quot;true&quot;</code></th>
+            <td><code>div</code></td>
+            <td>Indicate the button has been pressed.</td>
+          </tr>
+          <tr>
+            <td></td>
+            <th scope="row"><code>aria-pressed=&quot;false&quot;</code></th>
+            <td><code>div</code></td>
+            <td>Indicate the button has <b>Not</b> been pressed.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h3 id="rps1_label">Menu Button</h3>
+      <table aria-labelledby="rps1_label rps_label" class="data attributes">
+        <thead>
+          <tr>
+            <th scope="col">Role</th>
+            <th scope="col">Attribute</th>
+            <th scope="col">Element</th>
+            <th scope="col">Usage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row"><code>button</code></th>
+            <td></td>
+            <td>
+              <code>div</code>
+            </td>
+            <td>
+              <ul>
+                <li>Identifies the <code>div</code> element as having the behaviors of the <code>button</code> role.</li>
+                <li>The accessible name comes from the text content of the button (e.g. <q>Fonts</q>).
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <th scope="row"><code>aria-haspopup=&quot;true&quot;</code></th>
+            <td>
+              <code>div</code>
+            </td>
+            <td>
+              <ul>
+                <li>Indicates the <code>button</code> opens a menu.</li>
+                <li>
+                  <strong>NOTE:</strong> While ARIA does not include a role specifically for menu buttons, most platform accessibility APIs include a menubutton role.
+                  Consequently, on such platforms, assistive technologies, such as screen readers, identify buttons that have <code>aria-haspopup</code> set to either <code>true</code> or <code>menu</code> as menu buttons.
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <th scope="row"><code>aria-controls=&quot;IDREF&quot;</code></th>
+            <td>
+              <code>div</code>
+            </td>
+            <td>
+              <ul>
+                <li>Refers to the menu element controlled by the menu button.</li>
+                <li>Optional attribute: assistive technology users can operate the menu if not present.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+              <td></td>
+              <th scope="row"><code>aria-expanded=&quot;true&quot;</code></th>
+              <td><code>div</code></td>
+              <td>
+                <ul>
+                  <li>Added when the menu is open.</li>
+                  <li>Indicates that the menu is displayed and that activating the menu button closes the menu.</li>
+                  <li>The <code>aria-expanded</code> attribute is removed when the menu is closed.</li>
+                  <li>Included to support touch devices where screen reader users can touch the menu button when the menu is displayed. Keyboard users cannot focus the menu button when the menu is open.</li>
+                </ul>
+              </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h3 id="rps2_label">Menu</h3>
+      <table aria-labelledby="rps2_label rps_label" class="data attributes">
+        <thead>
+          <tr>
+            <th scope="col">Role</th>
+            <th scope="col">Attribute</th>
+            <th scope="col">Element</th>
+            <th scope="col">Usage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">
+              <code>menu</code>
+            </th>
+            <td></td>
+            <td>
+              <code>ul</code>
+            </td>
+            <td>Identifies the <code>ul</code> element as a <code>menu</code>.</td>
+          </tr>
+          <tr>
+            <td>
+              <code></code>
+            </td>
+            <th scope="row"><code>aria-label=&quot;Fonts&quot;</code></th>
+            <td>
+              <code>ul</code>
+            </td>
+            <td>
+              Defines the accessible name for the menu as <q>Fonts</q>.
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">
+              <code>menuitem</code>
+            </th>
+            <td></td>
+            <td>
+              <code>li</code>
+            </td>
+            <td>
+              <ul>
+                <li>Identifies the <code>li</code> element as a <code>menuitem</code>.</li>
+                <li>The text content of the <code>li</code> element provides the accessible name of the <code>menuitem</code>.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <th scope="row"><code>tabindex=<q>-1</q></code></th>
+            <td>
+              <code>li</code>
+            </td>
+            <td>
+              <ul>
+                <li>Allows DOM focus to be set on the menu item with the JavaScript focus method.</li>
+                <li>Dynamically added by the JavaScript.</li>
+              </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+  </section>
+
+  <section>
+    <h2>Javascript and CSS Source Code</h2>
+    <ul>
+      <li>CSS: <a href="css/toolbar.css" type="tex/css">toolbar.css</a></li>
+      <li>CSS: <a href="css/menuButton.css" type="stylesheet">menuButton.css</a></li>
+      <li>Javascript: <a href="js/FormatToolbar.js" type="text/javascript">FormatToolbar.js</a></li>
+      <li>Javascript: <a href="js/FormatToolbarItem.js" type="text/javascript">FormatToolbarItem.js</a></li>
+      <li>Javascript: <a href="js/FontMenuButton.js" type="text/javascript">FontMenuButton.js</a></li>
+      <li>Javascript: <a href="js/FontMenu.js" type="text/javascript">FontMenu.js</a></li>
+      <li>Javascript: <a href="js/FontMenuItem.js" type="text/javascript">FontMenuItem.js</a></li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 id="sc1_label">HTML Source Code</h2>
+    <div role="separator" id="sc1_start_sep" aria-labelledby="sc1_start_sep sc1_label" aria-label="Start of HTML for "></div>
+    <pre><code id="sc1"></code></pre>
+    <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of HTML for "></div>
+    <!--
+      The following script will show the reader the HTML source for the example that is in the div with ID 'ex1'.
+      It renders the HTML in the preceding div with ID 'sc1'.
+      -->
+    <script>
+      sourceCode.add('sc1', 'ex1');
+      sourceCode.make();
+    </script>
+  </section>
+  </main>
+  <nav>
+    <!--  Update the pattern_ID parameter of this link to refer to the APG design pattern section related to this example.  -->
+    <a href="../../#toolbar">Toolbar Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
+  </nav>
+</body>
+</html>
