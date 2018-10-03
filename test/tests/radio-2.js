@@ -41,6 +41,12 @@ ariaTest('tabindex on radiogroup', exampleFile, 'radiogroup-tabindex', async (t)
   await assertAttributeValues(t, ex.radiogroupSelector, 'tabindex', '0');
 });
 
+ariaTest('aria-activedescendant', exampleFile, 'radiogroup-aria-activedescendant', async (t) => {
+  t.plan(2);
+  await assertAttributeValues(t, ex.radiogroupSelectors[0], 'aria-activedescendant', 'rb11');
+  await assertAttributeValues(t, ex.radiogroupSelectors[1], 'aria-activedescendant', 'rb21');
+});
+
 ariaTest('role="radio" on div elements', exampleFile, 'radio-role', async (t) => {
   t.plan(1);
   await assertAriaRoles(t, 'ex1', 'radio', '6', 'li');
