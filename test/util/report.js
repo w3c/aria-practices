@@ -235,11 +235,11 @@ for (let example in exampleCoverage) {
 }
 
 console.log('\nExamples without regression tests:\n');
-console.log(examplesWithNoTestsReport);
+console.log(examplesWithNoTestsReport || 'None found.\n');
 console.log('\nExamples missing regression tests:\n');
-console.log(examplesMissingSomeTestsReport);
+console.log(examplesMissingSomeTestsReport || 'None found.\n');
 console.log('\nExamples documentation table rows without data-test-ids:\n');
-console.log(missingTestIdsReport);
+console.log(missingTestIdsReport || 'None found.\n');
 
 console.log('SUMMARTY:\n');
 console.log('  ' + exampleFiles.length + ' example pages found.');
