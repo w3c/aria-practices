@@ -36,9 +36,10 @@ FormatToolbar.prototype.init = function () {
   this.textarea.init();
   this.selected = this.textarea.selectText;
 
-  this.copyButton = document.getElementsByClassName('copy')[0];
-  this.cutButton = document.getElementsByClassName('cut')[0];
-  items = this.domNode.querySelectorAll('.item');
+  this.copyButton  = this.domNode.querySelector('.copy');
+  this.cutButton   = this.domNode.querySelector('.cut');
+  this.pasteButton = this.domNode.querySelector('.paste');
+  items            = this.domNode.querySelectorAll('.item');
 
   for (i = 0; i < items.length; i++) {
 
