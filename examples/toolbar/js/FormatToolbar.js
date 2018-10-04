@@ -21,6 +21,9 @@ FormatToolbar = function (domNode) {
   this.toolbarItems = [];
   this.alignItems = [];
   this.textarea = null;
+
+  this.copyButton = null;
+  this.cutButton = null;
 };
 
 FormatToolbar.prototype.init = function () {
@@ -31,6 +34,8 @@ FormatToolbar.prototype.init = function () {
   this.textarea.init();
   this.selected = this.textarea.selectText;
 
+  this.copyButton = document.getElementsByClassName('copy')[0];
+  this.cutButton = document.getElementsByClassName('cut')[0];
   items = this.domNode.querySelectorAll('.item');
 
   for (i = 0; i < items.length; i++) {
@@ -44,7 +49,7 @@ FormatToolbar.prototype.init = function () {
     this.lastItem = toolbarItem;
     this.toolbarItems.push(toolbarItem);
   }
-  menuButtons = this.domNode.querySelectorAll('[role="button"][aria-haspopup="true"]');
+  menuButtons = this.domNode.querySelectorAll('button[aria-haspopup="true"]');
 
   for (i = 0; i < menuButtons.length; i++) {
     toolbarItem = new FontMenuButton(menuButtons[i], this);
@@ -92,18 +97,18 @@ FormatToolbar.prototype.setAlignment = function (toolbarItem) {
   for (var i = 0; i < this.alignItems.length; i++) {
     this.alignItems[i].resetPressed();
   }
-
+  console.log(this.textarea);
   switch (toolbarItem.value) {
     case 'left':
-      this.textarea.style.textAlign = 'left';
+      this.textarea.domNode.style.textAlign = 'left';
       toolbarItem.setPressed();
       break;
     case 'center':
-      this.textarea.style.textAlign = 'center';
+      this.textarea.domNode.style.textAlign = 'center';
       toolbarItem.setPressed();
       break;
     case 'right':
-      this.textarea.style.textAlign = 'right';
+      this.textarea.domNode.style.textAlign = 'right';
       toolbarItem.setPressed();
       break;
 
@@ -136,6 +141,8 @@ FormatToolbar.prototype.cutTextContent = function () {
   document.execCommand('cut');
   var str = this.textarea.domNode.value;
   str.replace(str.substring(this.textarea.start,this.textarea.end),"");
+  this.textarea.checkDisable(this.textarea.copyButton,false);
+  this.textarea.checkDisable(this.textarea.cutButton,false);
 }
 
 FormatToolbar.prototype.pasteTextContent = function() {

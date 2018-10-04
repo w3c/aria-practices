@@ -53,89 +53,88 @@
     <div id="ex1">
       <div class="format" role="toolbar" aria-label="Text Formatting" aria-controls="textarea1">
           <div class="group characteristics">
-            <div role="button"
+            <button
                 class="item bold"
                 aria-pressed="false"
                 aria-label="bold"
                 value="bold"
                 tabindex="0">
               <i class="fas fa-bold"></i>
-            </div>
-            <div role="button"
+            </button>
+            <button
                 class="item italic"
                 aria-label="Italic"
                 aria-pressed="false"
                 value="italic"
                 tabindex="-1">
               <i class="fas fa-italic"></i>
-            </div>
-            <div role="button"
+            </button>
+            <button
                 class="item underline"
                 aria-label="Underline"
                 aria-pressed="false"
                 value="underline"
                 tabindex="-1">
               <i class="fas fa-underline"></i>
-            </div>
+            </button>
           </div>
           <div class="group">
-            <div role="button"
+            <button
                 class="item align-left"
                 aria-label="Text align left"
                 aria-pressed="true"
                 tabindex="-1">
               <i class="fas fa-align-left"></i>
-            </div>
-            <div role="button"
+            </button>
+            <button
                 class="item align-center"
                 aria-label="Text align center"
                 aria-pressed="false"
                 tabindex="-1">
               <i class="fas fa-align-center"></i>
-            </div>
-            <div role="button"
+            </button>
+            <button
                 class="item align-right"
                 aria-label="Text align right"
                 aria-pressed="false"
                 tabindex="-1">
               <i class="fas fa-align-right"></i>
-            </div>
+            </button>
           </div>
           <div class="group">
-            <div role="button"
+            <button
                 class="item copy"
                 aria-disabled="true"
                 aria-label="copy textarea"
                 disabled = "true"
                 tabindex="-1">
               Copy
-            </div>
-            <div role="button"
+            </button>
+            <button
                 class="item paste"
                 aria-disabled="true"
                 aria-label="paste to textarea"
                 disabled = "true"
                 tabindex="-1">
                 Paste
-            </div>
-            <div role="button"
+            </button>
+            <button
                 class="item cut"
                 aria-disabled="true"
                 aria-label="cut textarea"
                 disabled = "true"
                 tabindex="-1">
                 Cut
-            </div>
+            </button>
           </div>
           <div class="menu-wrapper group" >
-            <div
-              role="button"
+            <button
               aria-haspopup="true"
               aria-controls="menu1"
               class="item menu-button"
               tabindex="=-1">
               Fonts
-            </div>
+            </button>
             <ul role="menu" id="menu1" aria-label="Font Family">
               <li role="menuitem" style="font-family: sans-serif">Sans-serif</li>
               <li role="menuitem" style="font-family: serif">Serif</li>
@@ -143,19 +142,6 @@
               <li role="menuitem" style="font-family: fantasy">Fantasy</li>
               <li role="menuitem" style="font-family: cursive">Cursive</li>
             </ul>
-          </div>
-          <div class="group">
-            <a href="#help"
-              tabindex="-1"
-              class="item button">
-              Help
-            </a>
-            <div role="checkbox"
-                class="item button"
-                aria-label="Checkbox example"
-                tabindex="-1">
-                X
-            </div>
           </div>
       </div>
       <label for="textarea1" class="hidden">Text Sample</label><br>

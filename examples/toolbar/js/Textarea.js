@@ -14,30 +14,24 @@ Textarea.prototype.init = function (){
     this.domNode.addEventListener('mouseup', this.selectTextContent.bind(this));
 };
 Textarea.prototype.getSelectionText = function() {
-
     this.start = this.domNode.selectionStart;
     this.end = this.domNode.selectionEnd;
-    this.selection = this.domNode.value.substring(this.start, this.end);
-
-    console.log(this.selection);
-    return this.selection;
+    return this.domNode.value.substring(this.start, this.end);
 }
 
 Textarea.prototype.selectTextContent = function() {
     
     var selected = this.getSelectionText();
-    console.log(selected);
-    if(selected.length > 0) {
-        this.copyButton.setAttribute('aria-disabled', false);
-        this.copyButton.disabled = false;
-        this.cutButton.setAttribute('aria-disabled', false);
-        this.cutButton.disabled = false;
+    this.checkDisable(this.copyButton, selected.length>0);
+    this.checkDisable(this.cutButton, selected.length>0);
+}
+Textarea.prototype.checkDisable = function (domNode, check) {
+    if(check){
+        domNode.setAttribute('aria-disabled', false);
+        domNode.disabled = false;
     }
-    else {
-        this.copyButton.setAttribute('aria-disabled', true);
-        this.copyButton.disabled = true;
-        this.cutButton.setAttribute('aria-disabled', true);
-        this.cutButton.disabled = true;
-
+    else{
+        domNode.setAttribute('aria-disabled', true);
+        domNode.disabled = true;   
     }
 }

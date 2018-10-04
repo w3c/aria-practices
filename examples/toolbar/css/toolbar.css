@@ -22,7 +22,7 @@
 	margin-left: 0.75em;
 }
 
-[role="toolbar"] [role="button"],
+[role="toolbar"] button,
 [role="toolbar"] .button {
 	border: 2px solid rgb(255, 255, 255);
 	outline:none;
@@ -36,27 +36,27 @@
 	line-height: 1.5em;
 	margin-right:0.25em;
 }
-[role="toolbar"]  [role="button"][aria-pressed="true"] {
+[role="toolbar"]  button[aria-pressed="true"] {
 	border-color:#AAA;
 	font-weight: bold;
 	background-color: #F4F4F4;
 }
 
 
-[role="toolbar"] [role="button"][aria-disabled="true"] {
+[role="toolbar"] button[aria-disabled="true"] {
 	color: #EEE;
 	background-color: #666;
 	border-color: #666;
 	cursor: not-allowed;
 }
 
-[role="toolbar"] [role="button"][aria-disabled="true"]:focus {
+[role="toolbar"] button[aria-disabled="true"]:focus {
 	color: #222428;
 	border-color:#005A9C;
 	background:rgb(226, 239, 255);
 }
 
-[role="toolbar"] [role="button"]:focus{
+[role="toolbar"] button:focus{
 
 	border-color:#005A9C;
 	background:rgb(226, 239, 255);
