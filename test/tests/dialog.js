@@ -222,7 +222,7 @@ ariaTest('tab changes focus within dialog', exampleFile, 'key-tab', async (t) =>
     t.true(
       await checkFocus(t, ex.dialog1FocusableEls[i]),
       'Focus should be on "' + ex.dialog1FocusableEls[i] + '" after ' +
-        (i + 1) + ' tabs have been sent to dialog 1'
+        i + ' tabs have been sent to dialog 1'
     );
 
     await sendTabToSelector(t, ex.dialog1FocusableEls[i]);
@@ -249,7 +249,7 @@ ariaTest('tab changes focus within dialog', exampleFile, 'key-tab', async (t) =>
     t.true(
       await checkFocus(t, ex.dialog2FocusableEls[i]),
       'Focus should be on "' + ex.dialog2FocusableEls[i] + '" after ' +
-        (i + 2) + ' tabs have been sent to dialog 2'
+        (i + 1) + ' tabs have been sent to dialog 2'
     );
 
     await sendTabToSelector(t, ex.dialog2FocusableEls[i]);
