@@ -24,6 +24,8 @@ FormatToolbar = function (domNode) {
 
   this.copyButton = null;
   this.cutButton = null;
+
+  this.ourClipboard = "";
 };
 
 FormatToolbar.prototype.init = function () {
@@ -59,34 +61,34 @@ FormatToolbar.prototype.init = function () {
 };
 
 FormatToolbar.prototype.toggleBold = function (toolbarItem) {
-  if (this.textarea.style.fontWeight === 'bold') {
-    this.textarea.style.fontWeight = 'normal';
+  if (this.textarea.domNode.style.fontWeight === 'bold') {
+    this.textarea.domNode.style.fontWeight = 'normal';
     toolbarItem.resetPressed();
   }
   else {
-    this.textarea.style.fontWeight = 'bold';
+    this.textarea.domNode.style.fontWeight = 'bold';
     toolbarItem.setPressed();
   }
 };
 
 FormatToolbar.prototype.toggleUnderline = function (toolbarItem) {
-  if (this.textarea.style.textDecoration === 'underline') {
-    this.textarea.style.textDecoration = 'none';
+  if (this.textarea.domNode.style.textDecoration === 'underline') {
+    this.textarea.domNode.style.textDecoration = 'none';
     toolbarItem.resetPressed();
   }
   else {
-    this.textarea.style.textDecoration = 'underline';
+    this.textarea.domNode.style.textDecoration = 'underline';
     toolbarItem.setPressed();
   }
 };
 
 FormatToolbar.prototype.toggleItalic = function (toolbarItem) {
-  if (this.textarea.style.fontStyle === 'italic') {
-    this.textarea.style.fontStyle = 'normal';
+  if (this.textarea.domNode.style.fontStyle === 'italic') {
+    this.textarea.domNode.style.fontStyle = 'normal';
     toolbarItem.resetPressed();
   }
   else {
-    this.textarea.style.fontStyle = 'italic';
+    this.textarea.domNode.style.fontStyle = 'italic';
     toolbarItem.setPressed();
   }
 };
@@ -125,18 +127,12 @@ FormatToolbar.prototype.selectText = function(start, end, textarea){
 }
 FormatToolbar.prototype.copyTextContent = function (toolbarItem) {
   this.selectText(this.textarea.start, this.textarea.end, this.textarea.domNode);
-  var copysuccess;
-  try{
-    copysuccess = document.execCommand('copy');
-  }catch(e){
-    copysuccess = false;
-  }
-  console.log(copysuccess);
+  this.ourClipboard = this.textarea.selectText;
 };
 
 FormatToolbar.prototype.cutTextContent = function () {
   this.selectText(this.textarea.start, this.textarea.end, this.textarea.domNode);
-  document.execCommand('cut');
+  this.ourClipboard = this.textarea.selectText;
   var str = this.textarea.domNode.value;
   str.replace(str.substring(this.textarea.start,this.textarea.end),"");
   this.textarea.checkDisable(this.textarea.copyButton,false);
@@ -149,7 +145,7 @@ FormatToolbar.prototype.pasteTextContent = function() {
 
 
 FormatToolbar.prototype.setFontFamily = function (font) {
-  this.textarea.style.fontFamily = font;
+  this.textarea.domNode.style.fontFamily = font;
 };
 
 FormatToolbar.prototype.activateItem = function (toolbarItem) {

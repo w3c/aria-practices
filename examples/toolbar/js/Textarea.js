@@ -18,7 +18,8 @@ Textarea.prototype.init = function (){
 Textarea.prototype.getSelectionText = function() {
     this.start = this.domNode.selectionStart;
     this.end = this.domNode.selectionEnd;
-    return this.domNode.value.substring(this.start, this.end);
+    this.selectText =  this.domNode.value.substring(this.start, this.end);
+    return this.selectText;
 }
 
 Textarea.prototype.selectTextContent = function() {
