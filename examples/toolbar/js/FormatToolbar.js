@@ -56,8 +56,6 @@ FormatToolbar.prototype.init = function () {
     toolbarItem.init();
   }
 
-
-
 };
 
 FormatToolbar.prototype.toggleBold = function (toolbarItem) {

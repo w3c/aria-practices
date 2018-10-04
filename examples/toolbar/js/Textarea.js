@@ -5,6 +5,8 @@ Textarea = function(domNode){
 
     this.copyButton = null;
     this.cutButton = null;
+
+    this.ourClipboardText = '';
 };
 
 Textarea.prototype.init = function (){
@@ -20,7 +22,7 @@ Textarea.prototype.getSelectionText = function() {
 }
 
 Textarea.prototype.selectTextContent = function() {
-    
+
     var selected = this.getSelectionText();
     this.checkDisable(this.copyButton, selected.length>0);
     this.checkDisable(this.cutButton, selected.length>0);
@@ -28,10 +30,8 @@ Textarea.prototype.selectTextContent = function() {
 Textarea.prototype.checkDisable = function (domNode, check) {
     if(check){
         domNode.setAttribute('aria-disabled', false);
-        domNode.disabled = false;
     }
     else{
         domNode.setAttribute('aria-disabled', true);
-        domNode.disabled = true;   
     }
 }

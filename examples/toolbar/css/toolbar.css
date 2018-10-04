@@ -22,8 +22,7 @@
 	margin-left: 0.75em;
 }
 
-[role="toolbar"] button,
-[role="toolbar"] .button {
+[role="toolbar"] button {
 	border: 2px solid rgb(255, 255, 255);
 	outline:none;
 	display: inline-block;
@@ -31,7 +30,7 @@
 	border-radius:5px;
 	text-align: center;
 	background: rgb(255, 255, 255);
-	color:#222428;
+	color: #222428;
 	font-size: 16px;
 	line-height: 1.5em;
 	margin-right:0.25em;
@@ -44,22 +43,22 @@
 
 
 [role="toolbar"] button[aria-disabled="true"] {
-	color: #EEE;
-	background-color: #666;
-	border-color: #666;
+	color: #889;
 	cursor: not-allowed;
 }
 
 [role="toolbar"] button[aria-disabled="true"]:focus {
-	color: #222428;
 	border-color:#005A9C;
-	background:rgb(226, 239, 255);
 }
 
 [role="toolbar"] button:focus{
 
 	border-color:#005A9C;
 	background:rgb(226, 239, 255);
+}
+
+[role="toolbar"] button::-moz-focus-inner {
+    border: 0;
 }
 
 textarea {
