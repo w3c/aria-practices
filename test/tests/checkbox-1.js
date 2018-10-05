@@ -62,7 +62,7 @@ ariaTest('role="group" element exists', exampleFile, 'group-role', async (t) => 
 
 ariaTest('"aria-labelledby" on group element', exampleFile, 'group-aria-labelledby', async (t) => {
   t.plan(1);
-  await assertAriaLabelledby(t, 'ex1', ex.groupSelector);
+  await assertAriaLabelledby(t, ex.groupSelector);
 });
 
 ariaTest('role="checkbox" elements exist', exampleFile, 'checkbox-role', async (t) => {

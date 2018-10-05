@@ -14,7 +14,6 @@ const ex = {
   labelSelector: '#ex1 label',
   textboxSelector: '#ex1 input[type="text"]',
   gridSelector: '#ex1 [role="grid"]',
-  gridSelector: '#ex1 [role="grid"]',
   rowSelector: '#ex1 [role="row"]',
   gridcellSelector: '#ex1 [role="gridcell"]',
   gridcellFocusedClass: 'focused-cell',
@@ -188,7 +187,7 @@ ariaTest('role "grid" on div element', exampleFile, 'grid-role', async (t) => {
 
 ariaTest('"aria-labelledby" attribute on grid element', exampleFile, 'grid-aria-labelledby', async (t) => {
   t.plan(1);
-  await assertAriaLabelledby(t, ex.textboxSelector, 'aria-labelledby');
+  await assertAriaLabelledby(t, ex.gridSelector);
 });
 
 ariaTest('role "row" exists within grid element', exampleFile, 'row-role', async (t) => {
@@ -207,18 +206,17 @@ ariaTest('role "row" exists within grid element', exampleFile, 'row-role', async
 });
 
 // This test fails due to bug: https://github.com/w3c/aria-practices/issues/859
+ariaTest.failing('"aria-selected" attribute on row element', exampleFile, 'row-aria-selected', async (t) => {
+  t.plan(2);
 
-// ariaTest('"aria-selected" attribute on row element', exampleFile, 'row-aria-selected', async (t) => {
-//   t.plan(2);
+  // Send key "a"
+  await t.context.session.findElement(By.css(ex.textboxSelector)).sendKeys('a');
+  await assertAttributeDNE(t, ex.rowSelector + ':nth-of-type(1)', 'aria-selected');
 
-//   // Send key "a"
-//   await t.context.session.findElement(By.css(ex.textboxSelector)).sendKeys('a');
-//   await assertAttributeDNE(t, ex.rowSelector + ':nth-of-type(1)', 'aria-selected');
-
-//   // Send key ARROW_DOWN to selected first option
-//   await t.context.session.findElement(By.css(ex.textboxSelector)).sendKeys(Key.ARROW_DOWN);
-//   await assertAttributeValues(t, ex.rowSelector + ':nth-of-type(1)', 'aria-selected', 'true');
-// });
+  // Send key ARROW_DOWN to selected first option
+  await t.context.session.findElement(By.css(ex.textboxSelector)).sendKeys(Key.ARROW_DOWN);
+  await assertAttributeValues(t, ex.rowSelector + ':nth-of-type(1)', 'aria-selected', 'true');
+});
 
 ariaTest('role "gridcell" exists within row element', exampleFile, 'gridcell-role', async (t) => {
   t.plan(1);
@@ -260,7 +258,7 @@ ariaTest('Test down key press with focus on textbox',
       .sendKeys('a', Key.ARROW_DOWN);
 
     // Account for race condition
-    await waitForFocusChange(t, ex.textboxSelector, null);
+    await waitForFocusChange(t, ex.textboxSelector, '');
 
     // Check that the grid is displayed
     t.true(
@@ -382,7 +380,7 @@ ariaTest('Test up key press with focus on textbox',
       .sendKeys('a', Key.ARROW_UP);
 
     // Account for race condition
-    await waitForFocusChange(t, ex.textboxSelector, null);
+    await waitForFocusChange(t, ex.textboxSelector, '');
 
     // Check that the grid is displayed
     t.true(
@@ -551,38 +549,44 @@ ariaTest('Test escape key press with focus on textbox',
   });
 
 // This test fails due to bug: https://github.com/w3c/aria-practices/issues/860
+ariaTest.failing('Test escape key press with focus on popup',
+  exampleFile, 'popup-key-escape', async (t) => {
+    t.plan(2);
 
-// ariaTest('Test escape key press with focus on popup',
-//   exampleFile, 'popup-key-escape', async (t) => {
-//     t.plan(2);
+    // Send key "a" then key "ARROW_DOWN to put the focus on the grid,
+    // then key ESCAPE to the textbox
 
-//     // Send key "a" then key "ARROW_DOWN to put the focus on the grid,
-//     // then key ESCAPE to the textbox
+    await t.context.session
+      .findElement(By.css(ex.textboxSelector))
+      .sendKeys('a', Key.ARROW_DOWN);
 
-//     await t.context.session
-//       .findElement(By.css(ex.textboxSelector))
-//       .sendKeys('a', Key.ARROW_DOWN, Key.ESCAPE);
+    await waitForFocusChange(t, ex.textboxSelector, '');
 
-//     // Wait for gridbox to close
-//     await t.context.session.wait(
-//       async function () {
-//         return ! (await t.context.session.findElement(By.css(ex.gridSelector)).isDisplayed());
-//       },
-//       t.context.waitTime,
-//       'Timeout waiting for gridbox to close afer escape'
-//     );
+    await t.context.session
+      .findElement(By.css(ex.textboxSelector))
+      .sendKeys(Key.ESCAPE);
 
-//     // Confirm the grid is closed and the textboxed is cleared
-//     await assertAttributeValues(t, ex.comboboxSelector, 'aria-expanded', 'false');
-//     t.is(
-//       await t.context.session
-//         .findElement(By.css(ex.textboxSelector))
-//         .getAttribute('value'),
-//       '',
-//       'In grid key press "ESCAPE" should result in clearing of the textbox'
-//     );
+    // Wait for gridbox to close
+    await t.context.session.wait(
+      async function () {
+        return !(await t.context.session.findElement(By.css(ex.gridSelector)).isDisplayed());
+      },
+      t.context.waitTime,
+      'Timeout waiting for gridbox to close afer escape'
+    );
 
-//   });
+    // Confirm the grid is closed and the textboxed is cleared
+    await assertAttributeValues(t, ex.comboboxSelector, 'aria-expanded', 'false');
+
+    t.is(
+      await t.context.session
+        .findElement(By.css(ex.textboxSelector))
+        .getAttribute('value'),
+      '',
+      'In grid key press "ESCAPE" should result in clearing of the textbox'
+    );
+
+  });
 
 ariaTest('left arrow from focus on list puts focus on grid and moves cursor right',
   exampleFile, 'popup-key-left-arrow', async (t) => {

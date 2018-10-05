@@ -45,7 +45,7 @@ const waitAndCheckExpandedFalse = async function (t, selector) {
 
 ariaTest('"aria-controls" attribute on button', exampleFile, 'button-aria-controls', async (t) => {
   t.plan(1);
-  await assertAriaControls(t, 'ex1', 'button');
+  await assertAriaControls(t, ex.buttonSelector);
 });
 
 ariaTest('"aria-expanded" attribute on button', exampleFile, 'button-aria-expanded', async (t) => {

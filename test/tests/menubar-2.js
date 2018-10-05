@@ -4,6 +4,7 @@ const { ariaTest } = require('..');
 const { By, Key } = require('selenium-webdriver');
 const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAriaLabelExists = require('../util/assertAriaLabelExists');
+const assertAriaRoles = require('../util/assertAriaRoles');
 const assertRovingTabindex = require('../util/assertRovingTabindex');
 
 const exampleFile = 'menubar/menubar-2/menubar-2.html';
@@ -197,7 +198,7 @@ ariaTest('"aria-expanded" attribute on menubar menuitem', exampleFile, 'menubar-
 });
 
 
-ariaTest('Test for role="menubar" on ul', exampleFile, 'menu-role', async (t) => {
+ariaTest('Test for role="menu" on ul', exampleFile, 'menu-role', async (t) => {
 
   t.plan(6);
 
@@ -245,7 +246,7 @@ ariaTest('Test for submenu menuitems with accessible names', exampleFile, 'subme
 
   t.truthy(
     menuitems.length,
-    '"role=menuitem" elements should be found by selector: ' + ex.menubarMenuitemSelector
+    '"role=menuitem" elements should be found by selector: ' + ex.submenuMenuitemSelector
   );
 
   // Test the accessible name of each menuitem
@@ -260,7 +261,7 @@ ariaTest('Test for submenu menuitems with accessible names', exampleFile, 'subme
 
     t.truthy(
       menutext,
-      '"role=menuitem" elements should all have accessible text content: ' + ex.menubarMenuitemSelector
+      '"role=menuitem" elements should all have accessible text content: ' + ex.submenuMenuitemSelector
     );
   }
 
@@ -388,15 +389,20 @@ ariaTest('Test "aria-checked" attirbute on role="menuitemcheckbox"',
     }
   });
 
+
+ariaTest('Test role="separator" exists', exampleFile, 'separator-role', async (t) => {
+  t.plan(1);
+  await assertAriaRoles(t, 'ex1', 'separator', 3, 'li');
+});
+
 ariaTest('Test role="group" exists', exampleFile, 'group-role', async (t) => {
   t.plan(1);
+  await assertAriaRoles(t, 'ex1', 'group', 3, 'ul');
+});
 
-  const groups = await t.context.session.findElements(By.css(ex.groupSelector));
-
-  t.truthy(
-    groups.length,
-    '"role=group" elements should be found by selector: ' + ex.group
-  );
+ariaTest('Test aria-label on group', exampleFile, 'group-aria-label', async (t) => {
+  t.plan(1);
+  await assertAriaLabelExists(t, ex.groupSelector);
 });
 
 ariaTest('Test role="menuitemradio" exists with accessible name',
@@ -621,7 +627,7 @@ ariaTest('Key ARROW_UP opens submenu, focus on last item',
     }
   });
 
-ariaTest('Key ARROW_UP opens submenu, focus on first item',
+ariaTest('Key ARROW_DOWN opens submenu, focus on first item',
   exampleFile, 'menubar-key-down-arrow', async (t) => {
     t.plan(8);
 
@@ -1049,13 +1055,13 @@ ariaTest('Character sends to menubar changes focus in menubar',
       for (let test of charIndexTest[menuIndex]) {
 
       // Send character to menuitem
-        const itemText = items[test.sendIndex].getText();
+        const itemText = await items[test.sendIndex].getText();
         await items[test.sendIndex].sendKeys(test.sendChar);
 
         // Test that the focus switches to the appropriate menuitem
         t.true(
           await checkFocus(t, ex.allSubmenuItems[menuIndex], test.endIndex),
-          'Sending characther ' + test.sendChar + ' to menuitem ' + itemText + ' should move the foucs to menuitem ' + test.endIndex
+          'Sending characther ' + test.sendChar + ' to menuitem ' + itemText + ' should move the focus to menuitem ' + test.endIndex
         );
       }
     }
