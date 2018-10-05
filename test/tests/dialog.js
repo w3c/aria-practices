@@ -127,11 +127,14 @@ const reload = async (t) => {
 };
 
 const checkFocus = async function (t, selector) {
-  return t.context.session.executeScript(function () {
-    const [ selector ] = arguments;
-    const items = document.querySelector(selector);
-    return items === document.activeElement;
-  }, selector);
+  return t.context.session.wait(
+    t.context.session.executeScript(function () {
+      const [ selector ] = arguments;
+      const items = document.querySelector(selector);
+      return items === document.activeElement;
+    }, selector),
+    t.context.waitTime
+  );
 };
 
 const sendTabToSelector = async function (t, selector) {
@@ -270,7 +273,7 @@ ariaTest('tab changes focus within dialog', exampleFile, 'key-tab', async (t) =>
     t.true(
       await checkFocus(t, ex.dialog3FocusableEls[i]),
       'Focus should be on item "' + ex.dialog3FocusableEls[i] + '" after ' +
-        i + ' tabs have been sent to dialog 3'
+        (i + 1) + ' tabs have been sent to dialog 3'
     );
 
     await sendTabToSelector(t, ex.dialog3FocusableEls[i]);
