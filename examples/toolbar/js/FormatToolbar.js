@@ -36,6 +36,7 @@ FormatToolbar.prototype.init = function () {
 
   this.textarea = document.getElementById(this.domNode.getAttribute('aria-controls'));
   this.textarea.addEventListener('mouseup', this.selectTextContent.bind(this));
+  this.textarea.addEventListener('keyup', this.selectTextContent.bind(this));
 
   this.selected = this.textarea.selectText;
 

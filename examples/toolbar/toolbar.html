@@ -373,8 +373,13 @@
           <tr>
             <th scope="row"><code>button</code></th>
             <td></td>
-            <td> <code>div</code></td>
-            <td>Identifies the element as a button.</td>
+            <td> <code>button</code></td>
+            <td>
+              <ul>
+                <li>All the buttons in the toolbar use the <code>button</code> element.</li>
+                <li>The default role of a <code>button</code> element is <q>button</q>.</li>
+                <li>Accessible name for each button comes from either the text content of the button or <code>aria-label</code> attribute.</li>
+            </td>
           </tr>
           <tr>
             <td></td>
@@ -382,12 +387,12 @@
               <code>tabindex=<q>-1</q></code>
             </th>
             <td>
-              <code>div</code>
+              <code>button</code>
             </td>
             <td>
               <ul>
-                <li>Makes the element focusable but not part of the page <kbd>Tab</kbd> sequence.</li>
-                <li>Applied to all elements contained in the toolbar except for one that is included in the page <kbd>Tab</kbd> sequence.</li>
+                <li>Removes the <code>button</code> element from the page <kbd>Tab</kbd> sequence.</li>
+                <li>Applied to all <code>button</code> elements contained in the toolbar except for one that is included in the page <kbd>Tab</kbd> sequence.</li>
                 <li>This approach to managing focus is described in the section on <a href="../../#kbd_roving_tabindex">roving tabindex</a>.</li>
               </ul>
             </td>
@@ -398,41 +403,74 @@
               <code>tabindex=<q>0</q></code>
             </th>
             <td>
-              <code>div</code>
+              <code>button</code>
             </td>
             <td>
               <ul>
-                <li>Makes the element focusable and includes it in the page <kbd>Tab</kbd> sequence.</li>
-                <li>Set on only one widget contained by the toolbar.</li>
-                <li>On page load is set on the first widget element contained by the toolbar.</li>
-                <li>Moves with focus inside the toolbar so the most recently focused element is included in the page <kbd>Tab</kbd> sequence.</li>
+                <li>Makes the <code>button</code> element part of the page <kbd>Tab</kbd> sequence.</li>
+                <li>Set on only one <code>button</code> contained by the toolbar.</li>
+                <li>On page load is set on the first <code>button</code> element contained by the toolbar.</li>
+                <li>Moves with focus inside the toolbar so the most recently focused button is included in the page <kbd>Tab</kbd> sequence.</li>
                 <li>This approach to managing focus is described in the section on <a href="../../#kbd_roving_tabindex">roving tabindex</a>.</li>
               </ul>
             </td>
           </tr>
           <tr>
             <td></td>
-            <th scope="row"><code>aria-label=<q></q></code></th>
-            <td><code>div</code></td>
-            <td>Informs assistive technologies of the disabled state.</td>
+            <th scope="row"><code>aria-label=<q><em>name</em></q></code></th>
+            <td><code>button</code></td>
+            <td>
+              <ul>
+                <li>Provides an accessible name for buttons without text content.</li>
+                <li>Used on the bold, italic, underline and text alignment buttons.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <th scope="row"><code>title=<q><em>description</em></q></code></th>
+            <td><code>button</code></td>
+            <td>
+              <ul>
+                <li>Provides an accessible description of the actions associated with a button.</li>
+                <li>Used on the cut, copy and paste buttons.</li>
+              </ul>
+            </td>
           </tr>
           <tr>
             <td></td>
             <th scope="row"><code>aria-disabled=&quot;true&quot;</code></th>
-            <td><code>div</code></td>
-            <td>Informs assistive technologies of the disabled state.</td>
+            <td><code>button</code></td>
+            <td>
+              <ul>
+                <li>Informs assistive technologies of the disabled state.</li>
+                <li>Used on the Cut, Copy and Paste buttons</li>
+              </ul>
+            </td>
           </tr>
           <tr>
             <td></td>
             <th scope="row"><code>aria-pressed=&quot;true&quot;</code></th>
-            <td><code>div</code></td>
-            <td>Indicate the button has been pressed.</td>
+            <td><code>button</code></td>
+            <td>
+              <ul>
+                <li>The combination of the <code>aria-pressed</code> attribute with the <code>button</code> role identifies the button as behaving as a toggle button.</li>
+                <li>Indicates the action of the button has been applied, in this case to the styling of the textarea.</li>
+                <li>Used on the bold, italic, underline and text alignment buttons.</li>
+              </ul>
+            </td>
           </tr>
           <tr>
             <td></td>
             <th scope="row"><code>aria-pressed=&quot;false&quot;</code></th>
-            <td><code>div</code></td>
-            <td>Indicate the button has <b>Not</b> been pressed.</td>
+            <td><code>button</code></td>
+            <td>
+              <ul>
+                <li>The combination of the <code>aria-pressed</code> attribute with the <code>button</code> role identifies the button as behaving as a toggle button.</li>
+                <li>Indicates the action of the button has <strong>not</strong> been applied, in this case to the styling of the textarea.</li>
+                <li>Used on the bold, italic, underline and text alignment buttons.</li>
+              </ul>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -454,11 +492,11 @@
             <th scope="row"><code>button</code></th>
             <td></td>
             <td>
-              <code>div</code>
+              <code>button</code>
             </td>
             <td>
               <ul>
-                <li>Identifies the <code>div</code> element as having the behaviors of the <code>button</code> role.</li>
+                <li>The combination of the <code>aria-haspopup</code> attribute with the <code>button</code> role identifies the button as following the menu button design pattern.</li>
                 <li>The accessible name comes from the text content of the button (e.g. <q>Fonts</q>).
               </ul>
             </td>
@@ -467,11 +505,11 @@
             <td></td>
             <th scope="row"><code>aria-haspopup=&quot;true&quot;</code></th>
             <td>
-              <code>div</code>
+              <code>button</code>
             </td>
             <td>
               <ul>
-                <li>Indicates the <code>button</code> opens a menu.</li>
+                <li>Identifies the <code>button</code> as opening a menu.</li>
                 <li>
                   <strong>NOTE:</strong> While ARIA does not include a role specifically for menu buttons, most platform accessibility APIs include a menubutton role.
                   Consequently, on such platforms, assistive technologies, such as screen readers, identify buttons that have <code>aria-haspopup</code> set to either <code>true</code> or <code>menu</code> as menu buttons.
@@ -483,11 +521,11 @@
             <td></td>
             <th scope="row"><code>aria-controls=&quot;IDREF&quot;</code></th>
             <td>
-              <code>div</code>
+              <code>button</code>
             </td>
             <td>
               <ul>
-                <li>Refers to the menu element controlled by the menu button.</li>
+                <li>Provides a reference to the <code>menu</code> controlled by the menu button.</li>
                 <li>Optional attribute: assistive technology users can operate the menu if not present.</li>
               </ul>
             </td>
@@ -495,7 +533,7 @@
           <tr>
               <td></td>
               <th scope="row"><code>aria-expanded=&quot;true&quot;</code></th>
-              <td><code>div</code></td>
+              <td><code>button</code></td>
               <td>
                 <ul>
                   <li>Added when the menu is open.</li>
