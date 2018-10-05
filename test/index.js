@@ -39,18 +39,35 @@ test.after.always(() => {
  * Declare a test for a behavior documented on and demonstrated by an
  * aria-practices examples page.
  *
+ * @param {String} desc - short description of the test
  * @param {String} page - path to the example file
  * @param {String} testId - unique identifier for the documented behavior
  *                          within the demonstration page
  * @param {Function} body - script which implements the test
  */
 const ariaTest = (desc, page, testId, body) => {
+  _ariaTest(desc, page, testId, body);
+};
+
+/**
+ * Mark a declared test as failing using ava's 'test.failing' functionality.
+ * If the test passes when it is expected to fail, a failure will be reported.
+ *
+ * See arguments for ariaTest.
+ */
+ariaTest.failing = (desc, page, testId, body) => {
+  _ariaTest(desc, page, testId, body, 'FAILING');
+};
+
+const _ariaTest = (desc, page, testId, body, failing) => {
   const absPath = path.resolve(__dirname, '..', 'examples', ...page.split('/'));
   const url = 'file://' + absPath;
   const selector = '[data-test-id="' + testId + '"]';
 
   const testName = page + ' ' + selector + ': ' + desc;
-  test.serial(testName, async function (t) {
+
+  let runTest = failing ? test.failing : test.serial;
+  runTest(testName, async function (t) {
     t.context.url = url;
     await t.context.session.get(url);
 

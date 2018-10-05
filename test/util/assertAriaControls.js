@@ -7,12 +7,16 @@ const assert = require('assert');
  * Confirm the aria-controls element.
  *
  * @param {obj} t                  - ava execution object
- * @param {String} exampleId       - the id example (in case of multiple examples per page)
  * @param {String} elementSelector - the element with aria-controls set
  */
 
-module.exports = async function assertAriaControls (t, exampleId, elementSelector) {
+module.exports = async function assertAriaControls (t, elementSelector) {
   const elements = await t.context.session.findElements(By.css(elementSelector));
+
+  assert.ok(
+    elements.length,
+    'CSS elector returned no results: ' + elementSelector
+  );
 
   for (let element of elements) {
     const ariaControlsExists = await t.context.session.executeScript(async function () {
@@ -38,7 +42,7 @@ module.exports = async function assertAriaControls (t, exampleId, elementSelecto
     assert.equal(
       controlEl.length,
       1,
-      'Element with id "' + controlId + '" should exist in: ' + exampleId
+      'Element with id "' + controlId + '" should exist as reference by "aria-controls" on: ' + elementSelector
     );
   }
   t.pass();

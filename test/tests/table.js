@@ -30,7 +30,7 @@ ariaTest('"aria-label" attribute on table element', exampleFile, 'table-aria-lab
 
 ariaTest('"aria-describedby" attribute on table element', exampleFile, 'table-aria-describedby', async (t) => {
   t.plan(1);
-  await assertAriaDescribedby(t, 'ex1', ex.tableSelector);
+  await assertAriaDescribedby(t, ex.tableSelector);
 });
 
 

@@ -35,7 +35,7 @@ ariaTest('role="radigroup" on div element', exampleFile, 'radiogroup-role', asyn
 
 ariaTest('"aria-labelledby" attribute on radiogroup', exampleFile, 'radiogroup-aria-labelledby', async (t) => {
   t.plan(1);
-  await assertAriaLabelledby(t, 'ex1', ex.radiogroupSelector);
+  await assertAriaLabelledby(t,  ex.radiogroupSelector);
 });
 
 ariaTest('role="radio" on div elements', exampleFile, 'radio-role', async (t) => {

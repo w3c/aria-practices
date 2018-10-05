@@ -9,7 +9,7 @@ const focusMatchesElement = async function (t, selector) {
       selector = arguments[0];
       return document.activeElement === document.querySelector(selector);
     }, selector);
-  }, 200);
+  }, t.context.WaitTime);
 };
 
 /**

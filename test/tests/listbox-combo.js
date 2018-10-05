@@ -177,35 +177,33 @@ ariaTest('Test aria-expanded on listbox correlates with listbox',
   });
 
 // This test fails due to bug: https://github.com/w3c/aria-practices/issues/785
-// Uncomment when the bug is fixed.
+ariaTest.failing('Test id attribute on textbox referred to by label element',
+  exampleFile, 'textbox-id', async (t) => {
 
-// ariaTest('Test id attribute on textbox referred to by label element',
-//   exampleFile, 'textbox-id', async (t) => {
+    t.plan(9);
 
-//     t.plan(9);
+    for (let exId in pageExamples) {
+      let ex =  pageExamples[exId];
 
-//     for (let exId in pageExamples) {
-//       let ex =  pageExamples[exId];
+      const labelEl = await t.context.session.findElement(By.css('#' + exId + ' label'));
+      const textboxEl = await t.context.session.findElement(By.css(ex.textboxSelector));
 
-//       const labelEl = await t.context.session.findElement(By.css('#' + exId + ' label'));
-//       const textboxEl = await t.context.session.findElement(By.css(ex.textboxSelector));
+      t.truthy(
+        await labelEl.getAttribute('for'),
+        'Attribute "for" should exist on label element in example: ' + exId
+      );
 
-//       t.truthy(
-//         await labelEl.getAttribute('for'),
-//         'Attribute "for" should exist on label element in example: ' + exId
-//       );
+      t.truthy(
+        await textboxEl.getAttribute('id'),
+        'Attribute "id" should exist on textbox element: ' + exId
+      );
 
-//       t.truthy(
-//         await textboxEl.getAttribute('id'),
-//         'Attribute "id" should exist on textbox element: ' + exId
-//       );
-
-//       t.true(
-//         await labelEl.getAttribute('for') === await textboxEl.getAttribute('id'),
-//         'Attribute "for" on label element should match the "id" on the textbox element in example:' + exId
-//       );
-//     }
-//   });
+      t.true(
+        await labelEl.getAttribute('for') === await textboxEl.getAttribute('id'),
+        'Attribute "for" on label element should match the "id" on the textbox element in example:' + exId
+      );
+    }
+  });
 
 ariaTest('Test aria-autocomplete="list" attribute on textbox',
   exampleFile, 'aria-autocomplete-list', async (t) => {
@@ -349,7 +347,7 @@ ariaTest('Test aria-labelledby attribute on listbox',
 
     for (let exId in pageExamples) {
       let ex =  pageExamples[exId];
-      await assertAriaLabelledby(t, exId, ex.listboxSelector);
+      await assertAriaLabelledby(t, ex.listboxSelector);
     }
 
   });
