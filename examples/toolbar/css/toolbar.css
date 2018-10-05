@@ -3,7 +3,7 @@
 	border-radius:5px;
 	padding:.25em;
 	height: 3.25em;
-	width: 54em;
+	width: 45em;
 	background-color:#ECECEA;
 	border:2px solid transparent;
 }
@@ -62,7 +62,7 @@
 }
 
 textarea {
-	width: 54em;
+	width: 45em;
 	padding: .25em;
 	border: 2px solid black;
 	height: 400px;

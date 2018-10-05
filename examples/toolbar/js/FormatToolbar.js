@@ -25,15 +25,18 @@ FormatToolbar = function (domNode) {
   this.copyButton = null;
   this.cutButton = null;
 
-  this.ourClipboard = "";
+  this.start = null;
+  this.end = null;
+  this.ourClipboard = '';
+  this.selected = null;
 };
 
 FormatToolbar.prototype.init = function () {
   var i, items, toolbarItem, menuButtons;
 
-  var textarea = document.getElementById(this.domNode.getAttribute('aria-controls'));
-  this.textarea = new Textarea(textarea);
-  this.textarea.init();
+  this.textarea = document.getElementById(this.domNode.getAttribute('aria-controls'));
+  this.textarea.addEventListener('mouseup', this.selectTextContent.bind(this));
+
   this.selected = this.textarea.selectText;
 
   this.copyButton  = this.domNode.querySelector('.copy');
@@ -61,35 +64,99 @@ FormatToolbar.prototype.init = function () {
 
 };
 
+FormatToolbar.prototype.selectTextContent = function () {
+  this.start = this.textarea.selectionStart;
+  this.end = this.textarea.selectionEnd;
+  this.selected = this.textarea.value.substring(this.start, this.end);
+  this.updateDisable(this.copyButton, this.cutButton, this.pasteButton, this.selected);
+
+};
+FormatToolbar.prototype.updateDisable = function (copyButton, cutButton, pasteButton, selectedContent) {
+  var start = this.textarea.selectionStart;
+  var end = this.textarea.selectionEnd;
+  if (start !== end) {
+    copyButton.setAttribute('aria-disabled', false);
+    cutButton.setAttribute('aria-disabled',  false);
+  }
+  else {
+    copyButton.setAttribute('aria-disabled', true);
+    cutButton.setAttribute('aria-disabled',  true);
+  }
+  if (this.ourClipboard.length > 0) {
+    pasteButton.setAttribute('aria-disabled', false);
+  }
+};
+
+
+FormatToolbar.prototype.selectText = function (start, end, textarea) {
+  if (typeof(textarea.selectionStart != undefined)) {
+    textarea.focus();
+    textarea.selectionStart = start;
+    textarea.selectionEnd = end;
+    return true;
+  }
+};
+FormatToolbar.prototype.copyTextContent = function (toolbarItem) {
+  if (this.copyButton.getAttribute('aria-disabled') === 'true') {
+    return;
+  }
+  this.selectText(this.start, this.end, this.textarea);
+  this.ourClipboard = this.selected;
+  this.updateDisable(this.copyButton, this.cutButton, this.pasteButton, this.selected);
+
+};
+
+FormatToolbar.prototype.cutTextContent = function (toolbarItem) {
+  if (this.cutButton.getAttribute('aria-disabled') === 'true') {
+    return;
+  }
+  this.copyTextContent(toolbarItem);
+  var str = this.textarea.value;
+  this.textarea.value = str.replace(str.substring(this.start, this.end),'');
+  this.selected = '';
+  this.updateDisable(this.copyButton, this.cutButton, this.pasteButton, this.selected);
+};
+
+FormatToolbar.prototype.pasteTextContent = function () {
+  if (this.pasteButton.getAttribute('aria-disabled') === 'true') {
+    return;
+  }
+  var str = this.textarea.value;
+  this.textarea.value = str.slice(0,this.textarea.selectionStart) + this.ourClipboard + str.slice(this.textarea.selectionEnd);
+  this.textarea.focus();
+  this.updateDisable(this.copyButton, this.cutButton, this.pasteButton, this.selected);
+};
+
+
 FormatToolbar.prototype.toggleBold = function (toolbarItem) {
-  if (this.textarea.domNode.style.fontWeight === 'bold') {
-    this.textarea.domNode.style.fontWeight = 'normal';
+  if (this.textarea.style.fontWeight === 'bold') {
+    this.textarea.style.fontWeight = 'normal';
     toolbarItem.resetPressed();
   }
   else {
-    this.textarea.domNode.style.fontWeight = 'bold';
+    this.textarea.style.fontWeight = 'bold';
     toolbarItem.setPressed();
   }
 };
 
 FormatToolbar.prototype.toggleUnderline = function (toolbarItem) {
-  if (this.textarea.domNode.style.textDecoration === 'underline') {
-    this.textarea.domNode.style.textDecoration = 'none';
+  if (this.textarea.style.textDecoration === 'underline') {
+    this.textarea.style.textDecoration = 'none';
     toolbarItem.resetPressed();
   }
   else {
-    this.textarea.domNode.style.textDecoration = 'underline';
+    this.textarea.style.textDecoration = 'underline';
     toolbarItem.setPressed();
   }
 };
 
 FormatToolbar.prototype.toggleItalic = function (toolbarItem) {
-  if (this.textarea.domNode.style.fontStyle === 'italic') {
-    this.textarea.domNode.style.fontStyle = 'normal';
+  if (this.textarea.style.fontStyle === 'italic') {
+    this.textarea.style.fontStyle = 'normal';
     toolbarItem.resetPressed();
   }
   else {
-    this.textarea.domNode.style.fontStyle = 'italic';
+    this.textarea.style.fontStyle = 'italic';
     toolbarItem.setPressed();
   }
 };
@@ -98,18 +165,17 @@ FormatToolbar.prototype.setAlignment = function (toolbarItem) {
   for (var i = 0; i < this.alignItems.length; i++) {
     this.alignItems[i].resetPressed();
   }
-  console.log(this.textarea);
   switch (toolbarItem.value) {
     case 'left':
-      this.textarea.domNode.style.textAlign = 'left';
+      this.textarea.style.textAlign = 'left';
       toolbarItem.setPressed();
       break;
     case 'center':
-      this.textarea.domNode.style.textAlign = 'center';
+      this.textarea.style.textAlign = 'center';
       toolbarItem.setPressed();
       break;
     case 'right':
-      this.textarea.domNode.style.textAlign = 'right';
+      this.textarea.style.textAlign = 'right';
       toolbarItem.setPressed();
       break;
 
@@ -118,35 +184,9 @@ FormatToolbar.prototype.setAlignment = function (toolbarItem) {
   }
 };
 
-FormatToolbar.prototype.selectText = function(start, end, textarea){
-  if(typeof (textarea.selectionStart != undefined)) {
-    textarea.focus();
-    textarea.selectionStart = start;
-    textarea.selectionEnd = end;
-    return true;
-  }
-}
-FormatToolbar.prototype.copyTextContent = function (toolbarItem) {
-  this.selectText(this.textarea.start, this.textarea.end, this.textarea.domNode);
-  this.ourClipboard = this.textarea.selectText;
-};
-
-FormatToolbar.prototype.cutTextContent = function () {
-  this.selectText(this.textarea.start, this.textarea.end, this.textarea.domNode);
-  this.ourClipboard = this.textarea.selectText;
-  var str = this.textarea.domNode.value;
-  str.replace(str.substring(this.textarea.start,this.textarea.end),"");
-  this.textarea.checkDisable(this.textarea.copyButton,false);
-  this.textarea.checkDisable(this.textarea.cutButton,false);
-}
-
-FormatToolbar.prototype.pasteTextContent = function() {
-  console.log(window.clipboardData);
-}
-
 
 FormatToolbar.prototype.setFontFamily = function (font) {
-  this.textarea.domNode.style.fontFamily = font;
+  this.textarea.style.fontFamily = font;
 };
 
 FormatToolbar.prototype.activateItem = function (toolbarItem) {
