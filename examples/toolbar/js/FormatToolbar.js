@@ -29,6 +29,9 @@ FormatToolbar = function (domNode) {
   this.end = null;
   this.ourClipboard = '';
   this.selected = null;
+
+  this.fontSizes = ['8pt', '10pt', '12pt', '14pt', '16pt', '18pt', '20pt', '24pt']
+
 };
 
 FormatToolbar.prototype.init = function () {
