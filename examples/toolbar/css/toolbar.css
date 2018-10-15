@@ -3,7 +3,7 @@
 	border-radius:5px;
 	padding-top:.65em;
 	height: 3.25em;
-	width: 870px;
+	width: 900px;
 	background-color:#ECECEA;
 	border:2px solid transparent;
 }
@@ -54,7 +54,9 @@
 	border-color:#005A9C;
 }
 
-[role="toolbar"] button:focus, [role="toolbar"] a:focus{
+[role="toolbar"] button:focus,
+[role="toolbar"] .focus,
+[role="toolbar"] a:focus{
 	border-width:2px;
 	border-color:#005A9C;
 	background:rgb(226, 239, 255);
