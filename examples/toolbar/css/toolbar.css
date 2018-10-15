@@ -95,6 +95,12 @@
 	background-color:#ECECEA;
 }
 
+[role="toolbar"] [role="spinbutton"]:focus .increase,
+[role="toolbar"] [role="spinbutton"]:focus .decrease{
+	background-color: white;
+	fill:#005A9C;
+}
+
 textarea {
 	width: 960px;
 	padding: .25em;
