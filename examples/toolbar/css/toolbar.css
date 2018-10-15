@@ -3,7 +3,7 @@
 	border-radius:5px;
 	padding-top:.65em;
 	height: 3.25em;
-	width: 970px;
+	width: 1000px;
 	background-color:#ECECEA;
 	border:2px solid transparent;
 }
@@ -102,7 +102,7 @@
 }
 
 textarea {
-	width: 960px;
+	width: 990px;
 	padding: .25em;
 	border: 2px solid black;
 	height: 400px;

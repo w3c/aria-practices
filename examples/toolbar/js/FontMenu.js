@@ -99,11 +99,11 @@ FontMenu.prototype.setFocusToController = function (command) {
   }
 
   if (command === 'previous') {
-    this.controller.toolbar.setFocusToPrevious(this.controller);
+    this.controller.toolbar.setFocusToPrevious(this.controller.toolbarItem);
   }
   else {
     if (command === 'next') {
-      this.controller.toolbar.setFocusToNext(this.controller);
+      this.controller.toolbar.setFocusToNext(this.controller.toolbarItem);
     }
     else {
       this.controller.domNode.focus();

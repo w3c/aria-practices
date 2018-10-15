@@ -38,7 +38,7 @@ FormatToolbar = function (domNode) {
 };
 
 FormatToolbar.prototype.init = function () {
-  var i, items, toolbarItem, menuButtons;
+  var i, items, toolbarItem, menuButton;
 
   this.textarea = document.getElementById(this.domNode.getAttribute('aria-controls'));
   this.textarea.addEventListener('mouseup', this.selectTextContent.bind(this));
@@ -59,17 +59,16 @@ FormatToolbar.prototype.init = function () {
     toolbarItem = new FormatToolbarItem(items[i], this);
     toolbarItem.init();
 
+    if (items[i].hasAttribute('aria-haspopup')) {
+      menuButton = new FontMenuButton(items[i], this, toolbarItem);
+      menuButton.init();
+    }
+
     if (i === 0) {
       this.firstItem = toolbarItem;
     }
     this.lastItem = toolbarItem;
     this.toolbarItems.push(toolbarItem);
-  }
-  menuButtons = this.domNode.querySelectorAll('button[aria-haspopup="true"]');
-
-  for (i = 0; i < menuButtons.length; i++) {
-    toolbarItem = new FontMenuButton(menuButtons[i], this);
-    toolbarItem.init();
   }
 
   var spinButtons = this.domNode.querySelectorAll('[role=spinbutton]');;

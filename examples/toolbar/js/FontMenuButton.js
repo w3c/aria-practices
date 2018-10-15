@@ -3,10 +3,11 @@
 *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
 */
 
-FontMenuButton = function (node, toolbar) {
+FontMenuButton = function (node, toolbar, toolbarItem) {
   this.domNode = node;
   this.fontMenu = false;
   this.toolbar = toolbar;
+  this.toolbarItem = toolbarItem;
 
   this.buttonAction = 'font-family';
   this.value = '';
