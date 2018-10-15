@@ -3,7 +3,7 @@
 	border-radius:5px;
 	padding-top:.65em;
 	height: 3.25em;
-	width: 900px;
+	width: 950px;
 	background-color:#ECECEA;
 	border:2px solid transparent;
 }
@@ -25,7 +25,7 @@
 [role="toolbar"] button,
 [role="toolbar"] label,
 [role="toolbar"] a,
-[role="toolbar"] input[role="spinbutton"]{
+[role="toolbar"] .input {
 	border: 2px solid rgb(255, 255, 255);
 	outline:none;
 	display: inline-block;
@@ -66,7 +66,7 @@
     border: 0;
 }
 textarea {
-	width: 870px;
+	width: 940px;
 	padding: .25em;
 	border: 2px solid black;
 	height: 400px;
