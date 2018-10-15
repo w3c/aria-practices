@@ -1,9 +1,9 @@
 [role="toolbar"] {
 	border:3px #ECECEA;
 	border-radius:5px;
-	padding:.25em;
+	padding-top:.65em;
 	height: 3.25em;
-	width: 60em;
+	width: 870px;
 	background-color:#ECECEA;
 	border:2px solid transparent;
 }
@@ -24,7 +24,8 @@
 
 [role="toolbar"] button,
 [role="toolbar"] label,
-[role="toolbar"] a {
+[role="toolbar"] a,
+[role="toolbar"] input[role="spinbutton"]{
 	border: 2px solid rgb(255, 255, 255);
 	outline:none;
 	display: inline-block;
@@ -53,8 +54,8 @@
 	border-color:#005A9C;
 }
 
-[role="toolbar"] button:focus{
-
+[role="toolbar"] button:focus, [role="toolbar"] a:focus{
+	border-width:2px;
 	border-color:#005A9C;
 	background:rgb(226, 239, 255);
 }
@@ -62,16 +63,14 @@
 [role="toolbar"] button::-moz-focus-inner {
     border: 0;
 }
-
 textarea {
-	width: 45em;
+	width: 870px;
 	padding: .25em;
 	border: 2px solid black;
 	height: 400px;
-	font-size: medium;
+	font-size: 14pt;
 	font-family: sans-serif;
 	border-radius: 5px;
-
 }
 
 

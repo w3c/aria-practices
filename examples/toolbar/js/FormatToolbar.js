@@ -30,7 +30,10 @@ FormatToolbar = function (domNode) {
   this.ourClipboard = '';
   this.selected = null;
 
-  this.fontSizes = ['8pt', '10pt', '12pt', '14pt', '16pt', '18pt', '20pt', '24pt']
+  this.nightModeCheck = null;
+
+  this.fontSizes = ['8pt', '10pt', '12pt', '14pt', '16pt', '18pt', '20pt', '24pt'];
+
 
 };
 
@@ -41,12 +44,19 @@ FormatToolbar.prototype.init = function () {
   this.textarea.addEventListener('mouseup', this.selectTextContent.bind(this));
   this.textarea.addEventListener('keyup', this.selectTextContent.bind(this));
 
+
+  this.spinbutton = document.querySelector('.spinbutton');
+  this.spinbutton.addEventListener('click', this.changeFontSize.bind(this));
+
   this.selected = this.textarea.selectText;
 
   this.copyButton  = this.domNode.querySelector('.copy');
   this.cutButton   = this.domNode.querySelector('.cut');
   this.pasteButton = this.domNode.querySelector('.paste');
+
+  this.nightModeCheck = this.domNode.querySelector('.nightmode');
   items            = this.domNode.querySelectorAll('.item');
+
 
   for (i = 0; i < items.length; i++) {
 
@@ -90,7 +100,6 @@ FormatToolbar.prototype.updateDisable = function (copyButton, cutButton, pasteBu
     pasteButton.setAttribute('aria-disabled', false);
   }
 };
-
 
 FormatToolbar.prototype.selectText = function (start, end, textarea) {
   if (typeof(textarea.selectionStart != undefined)) {
@@ -164,7 +173,46 @@ FormatToolbar.prototype.toggleItalic = function (toolbarItem) {
     toolbarItem.setPressed();
   }
 };
+FormatToolbar.prototype.increaseFontSize = function (toolbarItem) {
+  if (toolbarItem.domNode.value >= 40) {
+    return;
+  }
+  toolbarItem.domNode.value = parseInt(toolbarItem.domNode.value) + 2;
+  this.textarea.style.fontSize = toolbarItem.domNode.value + 'pt';
+};
+FormatToolbar.prototype.decreaseFontSize = function (toolbarItem) {
+  if (toolbarItem.domNode.value <= 8) {
+    return;
+  }
+  toolbarItem.domNode.value = parseInt(toolbarItem.domNode.value) - 2;
+  this.textarea.style.fontSize = toolbarItem.domNode.value + 'pt';
+};
 
+FormatToolbar.prototype.changeFontSize = function () {
+  if (this.spinbutton.value >= 40 || this.spinbutton.value <= 8) {
+    return;
+  }
+  this.textarea.style.fontSize = this.spinbutton.value + 'pt';
+};
+
+FormatToolbar.prototype.toggleNightMode = function (toolbarItem) {
+  if (this.nightModeCheck.getAttribute('aria-checked') === 'true') {
+    this.textarea.style.color = 'black';
+    this.textarea.style.background = 'white';
+    toolbarItem.resetChecked();
+  }
+  else {
+    this.textarea.style.color = 'white';
+    this.textarea.style.background = 'black';
+    toolbarItem.setChecked();
+  }
+};
+FormatToolbar.prototype.redirectLink = function (toolbarItem) {
+  window.open(
+    'tips.html',
+    '_blank'
+  );
+};
 FormatToolbar.prototype.setAlignment = function (toolbarItem) {
   for (var i = 0; i < this.alignItems.length; i++) {
     this.alignItems[i].resetPressed();
@@ -218,6 +266,12 @@ FormatToolbar.prototype.activateItem = function (toolbarItem) {
       break;
     case 'font-family':
       this.setFontFamily(toolbarItem.value);
+      break;
+    case 'nightmode':
+      this.toggleNightMode(toolbarItem);
+      break;
+    case 'link':
+      this.redirectLink(toolbarItem);
       break;
     default:
       break;

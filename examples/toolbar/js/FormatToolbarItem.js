@@ -61,7 +61,12 @@ FormatToolbarItem.prototype.init = function () {
     this.value = 'right';
     this.toolbar.alignItems.push(this);
   }
-
+  if (this.domNode.classList.contains('nightmode')) {
+    this.buttonAction = 'nightmode';
+  }
+  if (this.domNode.classList.contains('link')) {
+    this.buttonAction = 'link';
+  }
   if (this.domNode.classList.contains('copy')) {
     this.buttonAction = 'copy';
   }
@@ -70,6 +75,9 @@ FormatToolbarItem.prototype.init = function () {
   }
   if (this.domNode.classList.contains('cut')) {
     this.buttonAction = 'cut';
+  }
+  if (this.domNode.classList.contains('spinbutton')) {
+    this.buttonAction = 'changeFontSize';
   }
 };
 
@@ -80,7 +88,15 @@ FormatToolbarItem.prototype.setPressed = function () {
 FormatToolbarItem.prototype.resetPressed = function () {
   this.domNode.setAttribute('aria-pressed', 'false');
 };
+FormatToolbarItem.prototype.setChecked = function () {
+  this.domNode.setAttribute('aria-checked', 'true');
+  this.domNode.checked = true;
 
+};
+FormatToolbarItem.prototype.resetChecked = function () {
+  this.domNode.setAttribute('aria-checked', 'false');
+  this.domNode.checked = false;
+};
 FormatToolbarItem.prototype.disable = function () {
   this.domNode.setAttribute('aria-disabled', 'true');
 };
@@ -132,6 +148,18 @@ FormatToolbarItem.prototype.handleKeyDown = function (event) {
       flag = true;
       break;
 
+    case this.keyCode.UP:
+      if (this.buttonAction === 'changeFontSize') {
+        this.toolbar.increaseFontSize(this);
+        flag = true;
+      }
+      break;
+    case this.keyCode.DOWN:
+      if (this.buttonAction === 'changeFontSize') {
+        this.toolbar.decreaseFontSize(this);
+        flag = true;
+      }
+      break;
     default:
       break;
   }
@@ -146,5 +174,4 @@ FormatToolbarItem.prototype.handleKeyDown = function (event) {
 FormatToolbarItem.prototype.handleClick = function (e) {
   this.toolbar.setFocusItem(this);
   this.toolbar.activateItem(this);
-  e.preventDefault();
 };
