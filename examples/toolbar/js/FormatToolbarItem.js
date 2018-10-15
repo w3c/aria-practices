@@ -181,6 +181,11 @@ FormatToolbarItem.prototype.handleKeyDown = function (event) {
 };
 
 FormatToolbarItem.prototype.handleClick = function (e) {
+
+  if (this.buttonAction == 'link') {
+    return;
+  }
+
   this.toolbar.setFocusItem(this);
   this.toolbar.activateItem(this);
 };

@@ -209,7 +209,7 @@ FormatToolbar.prototype.toggleNightMode = function (toolbarItem) {
 };
 FormatToolbar.prototype.redirectLink = function (toolbarItem) {
   window.open(
-    'tips.html',
+    toolbarItem.domNode.href,
     '_blank'
   );
 };
