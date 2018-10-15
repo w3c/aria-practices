@@ -44,10 +44,6 @@ FormatToolbar.prototype.init = function () {
   this.textarea.addEventListener('mouseup', this.selectTextContent.bind(this));
   this.textarea.addEventListener('keyup', this.selectTextContent.bind(this));
 
-
-  this.spinbutton = document.querySelector('.spinbutton');
-  this.spinbutton.addEventListener('click', this.changeFontSize.bind(this));
-
   this.selected = this.textarea.selectText;
 
   this.copyButton  = this.domNode.querySelector('.copy');
@@ -74,6 +70,13 @@ FormatToolbar.prototype.init = function () {
   for (i = 0; i < menuButtons.length; i++) {
     toolbarItem = new FontMenuButton(menuButtons[i], this);
     toolbarItem.init();
+  }
+
+  var spinButtons = this.domNode.querySelectorAll('[role=spinbutton]');;
+
+  for (var i = 0; i < spinButtons.length; i++) {
+    var s = new SpinButton(spinButtons[i], this);
+    s.init();
   }
 
 };
@@ -188,12 +191,9 @@ FormatToolbar.prototype.decreaseFontSize = function (toolbarItem) {
   this.textarea.style.fontSize = toolbarItem.domNode.value + 'pt';
 };
 
-FormatToolbar.prototype.changeFontSize = function () {
-  if (this.spinbutton.value >= 40 || this.spinbutton.value <= 8) {
-    return;
-  }
-  this.textarea.style.fontSize = this.spinbutton.value + 'pt';
-};
+FormatToolbar.prototype.changeFontSize = function (value) {
+  this.textarea.style.fontSize = value + 'pt';
+ };
 
 FormatToolbar.prototype.toggleNightMode = function (toolbarItem) {
   if (this.nightModeCheck.getAttribute('aria-checked') === 'true') {

@@ -61,7 +61,7 @@ FontMenu.prototype.init = function () {
 
   // Traverse the element children of domNode: configure each with
   // menuitem role behavior and store reference in menuitems array.
-  var menuitemElements = this.domNode.querySelectorAll('[role="menuitem"]');
+  var menuitemElements = this.domNode.querySelectorAll('[role="menuitemradio"]');
 
   for (var i = 0; i < menuitemElements.length; i++) {
     menuitemElement = menuitemElements[i];
@@ -99,11 +99,11 @@ FontMenu.prototype.setFocusToController = function (command) {
   }
 
   if (command === 'previous') {
-    this.controller.menubutton.setFocusToPreviousItem(this.controller);
+    this.controller.toolbar.setFocusToPrevious(this.controller);
   }
   else {
     if (command === 'next') {
-      this.controller.menubutton.setFocusToNextItem(this.controller);
+      this.controller.toolbar.setFocusToNext(this.controller);
     }
     else {
       this.controller.domNode.focus();

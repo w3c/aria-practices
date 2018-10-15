@@ -48,7 +48,7 @@ FontMenuItem.prototype.init = function () {
   this.domNode.tabIndex = -1;
 
   if (!this.domNode.getAttribute('role')) {
-    this.domNode.setAttribute('role', 'menuitem');
+    this.domNode.setAttribute('role', 'menuitemradio');
   }
 
   this.font = this.domNode.textContent.trim().toLowerCase();
@@ -106,6 +106,16 @@ FontMenuItem.prototype.handleKeydown = function (event) {
       case this.keyCode.DOWN:
         this.fontMenu.setFocusToNextItem(this);
         flag = true;
+        break;
+
+      case this.keyCode.RIGHT:
+        this.fontMenu.setFocusToController('next');
+        this.fontMenu.close(true);
+        break;
+
+      case this.keyCode.LEFT:
+        this.fontMenu.setFocusToController('previous');
+        this.fontMenu.close(true);
         break;
 
       case this.keyCode.HOME:

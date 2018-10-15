@@ -23,6 +23,7 @@
 <script src="js/FontMenuItem.js"      type="text/javascript"></script>
 <script src="js/FontMenu.js"          type="text/javascript"></script>
 <script src="js/FontMenuButton.js"    type="text/javascript"></script>
+<script src="js/SpinButton.js"    type="text/javascript"></script>
 
 </head>
 <body>
@@ -128,38 +129,44 @@
               aria-haspopup="true"
               aria-controls="menu1"
               class="item menu-button"
-              tabindex="-1">
+              tabindex="-1"
+              aria-label="Fonts">
               Fonts
             </button>
             <ul role="menu" id="menu1" aria-label="Font Family">
-              <li role="menuitem" style="font-family: sans-serif">Sans-serif</li>
-              <li role="menuitem" style="font-family: serif">Serif</li>
-              <li role="menuitem" style="font-family: monspace">Monospace</li>
-              <li role="menuitem" style="font-family: fantasy">Fantasy</li>
-              <li role="menuitem" style="font-family: cursive">Cursive</li>
+              <li role="menuitemradio" aria-checked="true" style="font-family: sans-serif">Sans-serif</li>
+              <li role="menuitemradio" aria-checked="false" style="font-family: serif">Serif</li>
+              <li role="menuitemradio" aria-checked="false" style="font-family: monspace">Monospace</li>
+              <li role="menuitemradio" aria-checked="false" style="font-family: fantasy">Fantasy</li>
+              <li role="menuitemradio" aria-checked="false" style="font-family: cursive">Cursive</li>
             </ul>
           </div>
 
           <div class="group">
-            <div class="input">
-            <input class="item spinbutton"
-                   type="number"
-                   tabindex="-1"
-                   role="spinbutton"
-                   size="3"
-                   value="14"
-                   min="8"
-                   max="40"
-                   step="2"
-                   style="width: 3em"
-                   aria-label="Font size in points">
-                   Pts
+            <div  class="item spinbutton"
+                  role="spinbutton"
+                  aria-valuenow="14"
+                  aria-valuetext="14pt"
+                  aria-valuemin="8"
+                  aria-valuemax="40"
+                  aria-label="Font size in points">
+              <span class="value">14pt</span>
+              <span class="increase">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14">
+                  <polygon fill="#333" points="0,14 13,14 7,2"></polygon>
+                </svg>
+              </span>
+              <span class="decrease">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14">
+                  <polygon fill="#333" points="0,2 13,2 7,14"></polygon>
+                </svg>
+              </span>
             </div>
           </div>
 
           <div class="group">
             <label class="input"><input class="item nightmode" type="checkbox" tabindex="-1" aria-checked="false"> Night Mode</label>
-            <a class="item link" href="tips.html" tabindex="-1">Tips</a>
+            <a class="item link" href="help.html" tabindex="-1">Help</a>
           </div>
       </div>
       <label for="textarea1" class="hidden">Text Sample</label><br>
@@ -648,8 +655,9 @@
       <li>Javascript: <a href="js/FormatToolbar.js" type="text/javascript">FormatToolbar.js</a></li>
       <li>Javascript: <a href="js/FormatToolbarItem.js" type="text/javascript">FormatToolbarItem.js</a></li>
       <li>Javascript: <a href="js/FontMenuButton.js" type="text/javascript">FontMenuButton.js</a></li>
-      <li>Javascript: <a href="js/FontMenu.js" type="text/javascript">FontMenu.js</a></li>
-      <li>Javascript: <a href="js/FontMenuItem.js" type="text/javascript">FontMenuItem.js</a></li>
+      <li>Javascript: <a href="js/FontMenu.js"       type="text/javascript">FontMenu.js</a></li>
+      <li>Javascript: <a href="js/FontMenuItem.js"   type="text/javascript">FontMenuItem.js</a></li>
+      <li>Javascript: <a href="js/SpinButton.js"     type="text/javascript">SpinButton.js</a></li>
     </ul>
   </section>
 
