@@ -112,7 +112,7 @@ FormatToolbarItem.prototype.handleBlur = function (event) {
 
   if (this.domNode.classList.contains('spinbutton') ||
     this.domNode.classList.contains('nightmode')) {
-    this.domNode.parentNode.classList.add('focus');
+    this.domNode.parentNode.classList.remove('focus');
   }
 };
 
@@ -121,7 +121,7 @@ FormatToolbarItem.prototype.handleFocus = function (event) {
 
   if (this.domNode.classList.contains('spinbutton') ||
     this.domNode.classList.contains('nightmode')) {
-    this.domNode.parentNode.classList.remove('focus');
+    this.domNode.parentNode.classList.add('focus');
   }
 
 };
