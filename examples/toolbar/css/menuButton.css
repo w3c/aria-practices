@@ -24,19 +24,19 @@
   list-style: none;
 }
 
-[role='toolbar'] [role="menu"] [role="menuitem"] {
+[role='toolbar'] [role="menu"] [role="menuitemradio"] {
   padding: 0.25em;
   outline:0;
   border-top: 1px solid transparent;
   border-bottom: 1px solid transparent;
 }
 
-[role='toolbar'] [role="menu"] [role="menuitem"]:focus,
-[role='toolbar'] [role="menu"] [role="menuitem"]:hover {
+[role='toolbar'] [role="menu"] [role="menuitemradio"]:focus,
+[role='toolbar'] [role="menu"] [role="menuitemradio"]:hover {
 	background:rgb(226, 239, 255);
 }
 
-[role='toolbar'] [role="menu"] [role="menuitem"]:focus {
+[role='toolbar'] [role="menu"] [role="menuitemradio"]:focus {
   border-color: #005A9C;
 }
 

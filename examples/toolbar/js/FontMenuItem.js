@@ -150,7 +150,7 @@ FontMenuItem.prototype.handleKeydown = function (event) {
 };
 
 FontMenuItem.prototype.handleClick = function (event) {
-  this.fontMenu.setFontFamily(this.font);
+  this.fontMenu.setFontFamily(this, this.font);
   this.fontMenu.setFocusToController();
   this.fontMenu.close(true);
 };
