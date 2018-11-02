@@ -112,7 +112,7 @@ FontMenu.prototype.setFocusToController = function (command) {
 };
 
 FontMenu.prototype.setFontFamily = function (menuitem, font) {
-  for (let i = 0; i < this.menuitems.length; i++) {
+  for (var i = 0; i < this.menuitems.length; i++) {
     var mi = this.menuitems[i];
     mi.domNode.setAttribute('aria-checked', mi === menuitem);
   }

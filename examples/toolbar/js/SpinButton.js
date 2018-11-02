@@ -128,7 +128,7 @@ SpinButton.prototype.handleKeyDown = function (event) {
 
 SpinButton.prototype.handleIncreaseClick = function (event) {
 
-  this.setValue(this.valueNow+1);
+  this.setValue(this.valueNow + 1);
 
   event.preventDefault();
   event.stopPropagation();
@@ -137,14 +137,9 @@ SpinButton.prototype.handleIncreaseClick = function (event) {
 
 SpinButton.prototype.handleDecreaseClick = function (event) {
 
-  this.setValue(this.valueNow-1);
+  this.setValue(this.valueNow - 1);
 
   event.preventDefault();
   event.stopPropagation();
 
 };
-
-
-
-
-

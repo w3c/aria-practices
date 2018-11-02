@@ -139,10 +139,10 @@ FormatToolbarItem.prototype.handleKeyDown = function (event) {
 
     case this.keyCode.RETURN:
     case this.keyCode.SPACE:
-      if (this.buttonAction !== '' &&
-          this.buttonAction !=='bold' &&
-          this.buttonAction !=='italic' &&
-          this.buttonAction !=='underline') {
+      if ((this.buttonAction !== '') &&
+        (this.buttonAction !== 'bold') &&
+        (this.buttonAction !== 'italic') &&
+        (this.buttonAction !== 'underline')) {
         this.toolbar.activateItem(this);
         flag = true;
       }

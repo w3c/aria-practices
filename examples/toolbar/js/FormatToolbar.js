@@ -176,7 +176,7 @@ FormatToolbar.prototype.toggleItalic = function (toolbarItem) {
 
 FormatToolbar.prototype.changeFontSize = function (value) {
   this.textarea.style.fontSize = value + 'pt';
- };
+};
 
 FormatToolbar.prototype.toggleNightMode = function (toolbarItem) {
   if (this.nightModeCheck.checked) {
@@ -188,12 +188,14 @@ FormatToolbar.prototype.toggleNightMode = function (toolbarItem) {
     this.textarea.style.background = 'white';
   }
 };
+
 FormatToolbar.prototype.redirectLink = function (toolbarItem) {
   window.open(
     toolbarItem.domNode.href,
     '_blank'
   );
 };
+
 FormatToolbar.prototype.setAlignment = function (toolbarItem) {
   for (var i = 0; i < this.alignItems.length; i++) {
     this.alignItems[i].resetChecked();
