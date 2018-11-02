@@ -23,6 +23,7 @@
 }
 
 [role="toolbar"] button,
+[role="toolbar"] [role="menuitemradio"],
 [role="toolbar"] label,
 [role="toolbar"] .spinbutton,
 [role="toolbar"] a,
@@ -40,7 +41,8 @@
 	margin-right:0.25em;
 }
 
-[role="toolbar"]  button[aria-pressed="true"] {
+[role="toolbar"]  button[aria-pressed="true"],
+[role="toolbar"] [role="menuitemradio"][aria-checked="true"]  {
 	border-color:#AAA;
 	font-weight: bold;
 	background-color: #F4F4F4;
@@ -57,6 +59,7 @@
 }
 
 [role="toolbar"] button:focus,
+[role="toolbar"] [role="menuitemradio"]:focus,
 [role="toolbar"] .spinbutton:focus,
 [role="toolbar"] .focus,
 [role="toolbar"] a:focus{

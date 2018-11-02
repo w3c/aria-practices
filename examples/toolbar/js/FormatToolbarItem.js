@@ -81,6 +81,10 @@ FormatToolbarItem.prototype.init = function () {
   }
 };
 
+FormatToolbarItem.prototype.isPressed = function () {
+  return this.domNode.getAttribute('aria-pressed')  === 'true';
+};
+
 FormatToolbarItem.prototype.setPressed = function () {
   this.domNode.setAttribute('aria-pressed', 'true');
 };
@@ -88,15 +92,19 @@ FormatToolbarItem.prototype.setPressed = function () {
 FormatToolbarItem.prototype.resetPressed = function () {
   this.domNode.setAttribute('aria-pressed', 'false');
 };
+
+
 FormatToolbarItem.prototype.setChecked = function () {
   this.domNode.setAttribute('aria-checked', 'true');
   this.domNode.checked = true;
 
 };
+
 FormatToolbarItem.prototype.resetChecked = function () {
   this.domNode.setAttribute('aria-checked', 'false');
   this.domNode.checked = false;
 };
+
 FormatToolbarItem.prototype.disable = function () {
   this.domNode.setAttribute('aria-disabled', 'true');
 };
@@ -131,7 +139,10 @@ FormatToolbarItem.prototype.handleKeyDown = function (event) {
 
     case this.keyCode.RETURN:
     case this.keyCode.SPACE:
-      if (this.buttonAction !== '') {
+      if (this.buttonAction !== '' &&
+          this.buttonAction !=='bold' &&
+          this.buttonAction !=='italic' &&
+          this.buttonAction !=='underline') {
         this.toolbar.activateItem(this);
         flag = true;
       }
@@ -158,14 +169,24 @@ FormatToolbarItem.prototype.handleKeyDown = function (event) {
       break;
 
     case this.keyCode.UP:
-      if (this.buttonAction === 'changeFontSize') {
-        this.toolbar.increaseFontSize(this);
+      if (this.buttonAction === 'align') {
+        if (this.domNode.classList.contains('align-left')) {
+          this.toolbar.setFocusToLastAlignItem();
+        }
+        else {
+          this.toolbar.setFocusToPrevious(this);
+        }
         flag = true;
       }
       break;
     case this.keyCode.DOWN:
-      if (this.buttonAction === 'changeFontSize') {
-        this.toolbar.decreaseFontSize(this);
+      if (this.buttonAction === 'align') {
+        if (this.domNode.classList.contains('align-right')) {
+          this.toolbar.setFocusToFirstAlignItem();
+        }
+        else {
+          this.toolbar.setFocusToNext(this);
+        }
         flag = true;
       }
       break;

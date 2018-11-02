@@ -26,7 +26,9 @@ var SpinButton = function (domNode, toolbar)  {
     'UP': 38,
     'DOWN': 40,
     'PAGEUP': 33,
-    'PAGEDOWN': 34
+    'PAGEDOWN': 34,
+    'END': 35,
+    'HOME': 36
   });
 };
 
@@ -94,11 +96,21 @@ SpinButton.prototype.handleKeyDown = function (event) {
       break;
 
     case this.keyCode.PAGEDOWN:
-      this.setValue(this.valueMin);
+      this.setValue(this.valueNow - 5);
       flag = true;
       break;
 
     case this.keyCode.PAGEUP:
+      this.setValue(this.valueNow + 5);
+      flag = true;
+      break;
+
+    case this.keyCode.HOME:
+      this.setValue(this.valueMin);
+      flag = true;
+      break;
+
+    case this.keyCode.END:
       this.setValue(this.valueMax);
       flag = true;
       break;

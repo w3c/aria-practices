@@ -32,9 +32,6 @@ FormatToolbar = function (domNode) {
 
   this.nightModeCheck = null;
 
-  this.fontSizes = ['8pt', '10pt', '12pt', '14pt', '16pt', '18pt', '20pt', '24pt'];
-
-
 };
 
 FormatToolbar.prototype.init = function () {
@@ -144,7 +141,8 @@ FormatToolbar.prototype.pasteTextContent = function () {
 
 
 FormatToolbar.prototype.toggleBold = function (toolbarItem) {
-  if (this.textarea.style.fontWeight === 'bold') {
+  console.log('[toggleBold][isPressed]: ' + toolbarItem.isPressed());
+  if (toolbarItem.isPressed()) {
     this.textarea.style.fontWeight = 'normal';
     toolbarItem.resetPressed();
   }
@@ -155,7 +153,7 @@ FormatToolbar.prototype.toggleBold = function (toolbarItem) {
 };
 
 FormatToolbar.prototype.toggleUnderline = function (toolbarItem) {
-  if (this.textarea.style.textDecoration === 'underline') {
+  if (toolbarItem.isPressed()) {
     this.textarea.style.textDecoration = 'none';
     toolbarItem.resetPressed();
   }
@@ -166,7 +164,7 @@ FormatToolbar.prototype.toggleUnderline = function (toolbarItem) {
 };
 
 FormatToolbar.prototype.toggleItalic = function (toolbarItem) {
-  if (this.textarea.style.fontStyle === 'italic') {
+  if (toolbarItem.isPressed()) {
     this.textarea.style.fontStyle = 'normal';
     toolbarItem.resetPressed();
   }
@@ -175,35 +173,19 @@ FormatToolbar.prototype.toggleItalic = function (toolbarItem) {
     toolbarItem.setPressed();
   }
 };
-FormatToolbar.prototype.increaseFontSize = function (toolbarItem) {
-  if (toolbarItem.domNode.value >= 40) {
-    return;
-  }
-  toolbarItem.domNode.value = parseInt(toolbarItem.domNode.value) + 2;
-  this.textarea.style.fontSize = toolbarItem.domNode.value + 'pt';
-};
-FormatToolbar.prototype.decreaseFontSize = function (toolbarItem) {
-  if (toolbarItem.domNode.value <= 8) {
-    return;
-  }
-  toolbarItem.domNode.value = parseInt(toolbarItem.domNode.value) - 2;
-  this.textarea.style.fontSize = toolbarItem.domNode.value + 'pt';
-};
 
 FormatToolbar.prototype.changeFontSize = function (value) {
   this.textarea.style.fontSize = value + 'pt';
  };
 
 FormatToolbar.prototype.toggleNightMode = function (toolbarItem) {
-  if (this.nightModeCheck.getAttribute('aria-checked') === 'true') {
-    this.textarea.style.color = 'black';
-    this.textarea.style.background = 'white';
-    toolbarItem.resetChecked();
+  if (this.nightModeCheck.checked) {
+    this.textarea.style.color = '#eee';
+    this.textarea.style.background = 'black';
   }
   else {
-    this.textarea.style.color = 'white';
-    this.textarea.style.background = 'black';
-    toolbarItem.setChecked();
+    this.textarea.style.color = 'black';
+    this.textarea.style.background = 'white';
   }
 };
 FormatToolbar.prototype.redirectLink = function (toolbarItem) {
@@ -214,20 +196,20 @@ FormatToolbar.prototype.redirectLink = function (toolbarItem) {
 };
 FormatToolbar.prototype.setAlignment = function (toolbarItem) {
   for (var i = 0; i < this.alignItems.length; i++) {
-    this.alignItems[i].resetPressed();
+    this.alignItems[i].resetChecked();
   }
   switch (toolbarItem.value) {
     case 'left':
       this.textarea.style.textAlign = 'left';
-      toolbarItem.setPressed();
+      toolbarItem.setChecked();
       break;
     case 'center':
       this.textarea.style.textAlign = 'center';
-      toolbarItem.setPressed();
+      toolbarItem.setChecked();
       break;
     case 'right':
       this.textarea.style.textAlign = 'right';
-      toolbarItem.setPressed();
+      toolbarItem.setChecked();
       break;
 
     default:
@@ -235,12 +217,20 @@ FormatToolbar.prototype.setAlignment = function (toolbarItem) {
   }
 };
 
+FormatToolbar.prototype.setFocusToFirstAlignItem = function () {
+  this.setFocusItem(this.alignItems[0]);
+};
+
+FormatToolbar.prototype.setFocusToLastAlignItem = function () {
+  this.setFocusItem(this.alignItems[2]);
+};
 
 FormatToolbar.prototype.setFontFamily = function (font) {
   this.textarea.style.fontFamily = font;
 };
 
 FormatToolbar.prototype.activateItem = function (toolbarItem) {
+  console.log('[activateItem][buttonAction]: ' + toolbarItem.buttonAction);
   switch (toolbarItem.buttonAction) {
     case 'bold':
       this.toggleBold(toolbarItem);
@@ -327,6 +317,7 @@ FormatToolbar.prototype.setFocusToFirst = function (currentItem) {
 FormatToolbar.prototype.setFocusToLast = function (currentItem) {
   this.setFocusItem(this.lastItem);
 };
+
 
 // Initialize toolbars
 
