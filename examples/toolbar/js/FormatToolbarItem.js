@@ -144,7 +144,9 @@ FormatToolbarItem.prototype.handleKeyDown = function (event) {
         (this.buttonAction !== 'italic') &&
         (this.buttonAction !== 'underline')) {
         this.toolbar.activateItem(this);
-        flag = true;
+        if (this.buttonAction !== 'nightmode') {
+          flag = true;
+        }
       }
       break;
 
