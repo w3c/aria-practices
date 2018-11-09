@@ -83,7 +83,13 @@
         <h2>Accessibility Features</h2>
         <ul>
           <li>Uses CSS attribute selectors for synchronizing <code>aria-checked</code> state with the visual state indicator.</li>
-          <li>Uses CSS <code>:hover</code> and <code>:focus</code> pseudo-selectors for styling visual keyboard focus and hover.</li>
+          <li>
+            Uses CSS <code>:hover</code> and <code>:focus</code> pseudo-selectors for styling visual keyboard focus and hover.
+            <ul>
+              <li>Focus indicator encompasses both radio button and label, making it easier to perceive which option is being chosen.</li>
+              <li>Hover changes background of both radio button and label, making it easier to perceive that clicking either the label or button will activate the radio button.</li>
+            </ul>
+          </li>
         </ul>
       </section>
 
@@ -97,7 +103,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr data-test-id="key-tab">
               <th><kbd>Tab</kbd></th>
               <td>
                 <ul>
@@ -106,7 +112,7 @@
                 </ul>
               </td>
             </tr>
-            <tr>
+            <tr data-test-id="key-space">
               <th><kbd>Space</kbd></th>
               <td>
                 <ul>
@@ -116,7 +122,7 @@
                 </ul>
               </td>
             </tr>
-            <tr>
+            <tr data-test-id="key-right-arrow">
               <th><kbd>Right arrow</kbd></th>
               <td>
                 <ul>
@@ -126,7 +132,7 @@
                 </ul>
               </td>
             </tr>
-            <tr>
+            <tr data-test-id="key-down-arrow">
               <th><kbd>Down arrow</kbd></th>
               <td>
                 <ul>
@@ -136,7 +142,7 @@
                 </ul>
               </td>
             </tr>
-            <tr>
+            <tr data-test-id="key-left-arrow">
               <th><kbd>Left arrow</kbd></th>
               <td>
                 <ul>
@@ -146,7 +152,7 @@
                 </ul>
               </td>
             </tr>
-            <tr>
+            <tr data-test-id="key-up-arrow">
               <th><kbd>Up arrow</kbd></th>
               <td>
                 <ul>
@@ -172,7 +178,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr data-test-id="radiogroup-role">
               <th scope="row"><code>radiogroup</code></th>
               <td></td>
               <td><code>div</code></td>
@@ -183,13 +189,13 @@
                 </ul>
               </td>
             </tr>
-            <tr>
+            <tr data-test-id="radiogroup-aria-labelledby">
               <td></td>
               <th scope="row"><code>aria-labelledby="[IDREF]"</code></th>
               <td><code>div</code></td>
               <td>Refers to the element that contains the label of the radio group.</td>
             </tr>
-            <tr>
+            <tr data-test-id="radio-role">
               <th scope="row"><code>radio</code></th>
               <td></td>
               <td><code>div</code></td>
@@ -200,7 +206,7 @@
                 </ul>
               </td>
             </tr>
-            <tr>
+            <tr data-test-id="radio-tabindex">
               <td></td>
               <th scope="row"><code>tabindex="-1"</code></th>
               <td><code>div</code></td>
@@ -212,7 +218,7 @@
                 </ul>
               </td>
             </tr>
-            <tr>
+            <tr data-test-id="radio-tabindex">
               <td></td>
               <th scope="row"><code>tabindex="0"</code></th>
               <td><code>div</code></td>
@@ -226,7 +232,7 @@
                 </ul>
               </td>
             </tr>
-            <tr>
+            <tr data-test-id="radio-aria-checked">
               <td></td>
               <th scope="row"><code>aria-checked="false"</code></th>
               <td><code>div</code></td>
@@ -238,7 +244,7 @@
                 </ul>
               </td>
             </tr>
-            <tr>
+            <tr data-test-id="radio-aria-checked">
               <td></td>
               <th scope="row"><code>aria-checked="true"</code></th>
               <td><code>div</code></td>

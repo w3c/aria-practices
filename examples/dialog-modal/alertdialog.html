@@ -29,11 +29,6 @@
     <main>
       <h1>Alert Dialog Example</h1>
       <p>
-        <strong>NOTE:</strong> This is a new example.
-        Please provide feedback in
-        <a href="https://github.com/w3c/aria-practices/issues/736">issue 736.</a>
-      </p>
-      <p>
         The below example of a confirmation prompt demonstrates the <a href="../../#alertdialog">design pattern for an alert dialog</a>.
         It also includes an example of the <a href="../../#alert">design pattern for an alert</a> to make comparing the experiences provided by the two patterns easy.
       </p>
@@ -69,7 +64,7 @@
         <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
         <div id="ex_alertdialog">
           <label for="notes">Notes</label>
-          <textarea class="notes" name="notes" id="notes" rows="7">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, similique, consequatur eaque, mollitia repellat cumque numquam fuga hic illo voluptas, alias officiis possimus assumenda natus eos ex. Quo, enim neque!</textarea>
+          <textarea class="notes" name="notes" id="notes" rows="7">This is an example text box, which unsurprisingly contains text. The user is given the option to save this text - which triggers a basic alert - or to discard the text - which triggers an alert dialog that prompts the user for confirmation.</textarea>
           <button type="button" aria-controls="notes" id="notes_save">Save</button>
           <button type="button" aria-controls="notes" id="notes_discard" onclick="openAlertDialog('alert_dialog', this)">Discard</button>
           <div role="alert" id="alert_toast" class="toast hidden">Nothing to discard.</div>
