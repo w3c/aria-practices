@@ -102,13 +102,17 @@
 	border: 1px solid #ECECEA;
 	border-radius: 3px;
 	background-color:#ECECEA;
+	border: 1px solid #ECECEA;
 }
 
+[role="toolbar"] [role="spinbutton"] .increase:hover,
+[role="toolbar"] [role="spinbutton"] .decrease:hover,
 [role="toolbar"] [role="spinbutton"]:focus .increase,
 [role="toolbar"] [role="spinbutton"]:focus .decrease{
-	background-color: white;
 	fill:#005A9C;
+	border-color: #005A9C;
 }
+
 
 textarea {
 	width: 990px;
