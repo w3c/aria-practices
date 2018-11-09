@@ -45,13 +45,9 @@ FontMenuButton.prototype.handleKeyDown = function (event) {
     case this.keyCode.SPACE:
     case this.keyCode.RETURN:
     case this.keyCode.DOWN:
-      this.fontMenu.open();
-      this.fontMenu.setFocusToFirstItem();
-      flag = true;
-      break;
     case this.keyCode.UP:
       this.fontMenu.open();
-      this.fontMenu.setFocusToLastItem();
+      this.fontMenu.setFocusToCheckedItem();
       flag = true;
       break;
 
@@ -76,6 +72,9 @@ FontMenuButton.prototype.handleClick = function (event, menuButton) {
 
 FontMenuButton.prototype.setFontFamily = function (font) {
   this.value = font;
+  this.domNode.innerHTML = font.toUpperCase() + '<span></span>';
+  this.domNode.style.fontFamily = font;
+  this.domNode.setAttribute('aria-label', 'Font: ' + font);
   this.toolbar.activateItem(this);
 };
 

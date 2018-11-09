@@ -151,6 +151,14 @@ FontMenu.prototype.setFocusToNextItem = function (currentItem) {
   }
 };
 
+FontMenu.prototype.setFocusToCheckedItem = function () {
+  for (var index = 0; index < this.menuitems.length; index++) {
+    if (this.menuitems[index].domNode.getAttribute('aria-checked') === 'true') {
+      this.menuitems[index].domNode.focus();
+    }
+  }
+};
+
 FontMenu.prototype.setFocusByFirstCharacter = function (currentItem, char) {
   var start, index, char = char.toLowerCase();
 

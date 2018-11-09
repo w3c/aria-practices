@@ -1,15 +1,17 @@
 [role="toolbar"] {
-	border:3px #ECECEA;
+	border:1px #ECECEA solid;
 	border-radius:5px;
-	padding-top:.65em;
-	height: 3.25em;
-	width: 1000px;
+	padding: 6px;
+	height: 40px;
+	width: 1100px;
 	background-color:#ECECEA;
 	border:2px solid transparent;
 }
 
 [role="toolbar"].focus {
 	border-color:#005A9C;
+	border-width: 3px;
+	padding: 5px;
 }
 
 [role="toolbar"] .group {
@@ -28,10 +30,10 @@
 [role="toolbar"] .spinbutton,
 [role="toolbar"] a,
 [role="toolbar"] .input {
-	border: 2px solid rgb(255, 255, 255);
+	border: 1px solid rgb(255, 255, 255);
 	outline:none;
 	display: inline-block;
-	padding: 0.25em 0.75em;
+	padding: 6px 12px;
 	border-radius:5px;
 	text-align: center;
 	background: rgb(255, 255, 255);
@@ -66,6 +68,7 @@
 	border-width:2px;
 	border-color:#005A9C;
 	background:rgb(226, 239, 255);
+	padding: 5px 11px;
 }
 
 [role="toolbar"] button::-moz-focus-inner {
@@ -81,12 +84,15 @@
 	margin: 0;
 }
 
-[role="toolbar"] button[aria-haspopup]:after {
-	content: url(../images/pulldown-icon.svg);
-	margin-left: 0.25em;
+[role="toolbar"] button[aria-haspopup] span {
+	float: right;
 }
 
-[role="toolbar"] button[aria-haspopup]:focus:after {
+[role="toolbar"] button[aria-haspopup] span:after {
+	content: url(../images/pulldown-icon.svg);
+}
+
+[role="toolbar"] button[aria-haspopup]:focus span:after {
 	content: url(../images/pulldown-icon-focus.svg);
 }
 

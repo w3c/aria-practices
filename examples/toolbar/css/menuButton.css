@@ -21,26 +21,39 @@
 }
 
 [role='toolbar'] .menu-wrapper [role="menu"] li {
+  padding: 0;
+  margin: 0;
   display: block;
   text-align: left;
   list-style: none;
 }
 
 [role='toolbar'] .menu-wrapper [role="menu"] [role="menuitemradio"] {
-  padding: 0.25em;
+  padding: 0;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 2px;
+  padding-right: 2px;
   outline:0;
-  border-top: 1px solid transparent;
-  border-bottom: 1px solid transparent;
+  border: none;
+  border-radius: 0;
+}
+
+[role='toolbar'] .menu-wrapper [role="menu"] [role="menuitemradio"]:before {
+  content: url('../images/menuitemradio-unchecked.svg');
 }
 
 [role='toolbar'] .menu-wrapper [role="menu"] [role="menuitemradio"][aria-checked="true"]:before {
-  content: '>';
+  content: url('../images/menuitemradio-checked.svg');
 }
-
 
 [role='toolbar'] .menu-wrapper [role="menu"] [role="menuitemradio"]:focus,
 [role='toolbar'] .menu-wrapper [role="menu"] [role="menuitemradio"]:hover {
 	background:rgb(226, 239, 255);
+  border-top: 1px solid #005A9C;
+  border-bottom: 1px solid #005A9C;
+  padding-top: 0px;
+  padding-bottom: 0px;
 }
 
 [role='toolbar'] .menu-wrapper [role="menu"] [role="menuitemradio"]:focus {
