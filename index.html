@@ -1,4 +1,4 @@
-<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><meta charset="utf-8"><meta name="generator" content="ReSpec 23.4.0"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><style>/* --- ISSUES/NOTES --- */
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><meta charset="utf-8"><meta name="generator" content="ReSpec 23.5.0"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><style>/* --- ISSUES/NOTES --- */
 div.issue-title, div.note-title , div.ednote-title, div.warning-title {
     padding-right:  1em;
     min-width: 7.5em;
@@ -560,9 +560,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   "preProcess": [
     null
   ],
-  "publishDate": "2018-10-31",
-  "publishISODate": "2018-10-31T00:00:00.000Z",
-  "generatedSubtitle": "Editor's Draft 31 October 2018"
+  "publishDate": "2018-11-09",
+  "publishISODate": "2018-11-09T00:00:00.000Z",
+  "generatedSubtitle": "Editor's Draft 09 November 2018"
 }</script><meta name="description" content="This document provides readers with an understanding of how to use WAI-ARIA 1.1 [WAI-ARIA] to create accessible rich internet applications.
       It describes considerations that might not be evident to most authors from the WAI-ARIA specification alone and recommends approaches to make widgets, navigation, and behaviors accessible using WAI-ARIA roles, states, and properties.
       This document is directed primarily to Web application developers, but the guidance is also useful for user agent and assistive technology developers."></head>
@@ -572,7 +572,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   </a>
   <h1 id="title" class="title p-name"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Authoring Practices 1.1</h1>
   
-  <h2><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time class="dt-published" datetime="2018-10-31">31 October 2018</time></h2>
+  <h2><abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft <time class="dt-published" datetime="2018-11-09">09 November 2018</time></h2>
   <dl>
     <dt>This version:</dt><dd><a class="u-url" href="https://w3c.github.io/aria-practices/">https://w3c.github.io/aria-practices/</a></dd><dt>Latest published version:</dt><dd><a href="https://www.w3.org/TR/wai-aria-practices-1.1/">https://www.w3.org/TR/wai-aria-practices-1.1/</a></dd>
     <dt>Latest editor's draft:</dt><dd><a href="https://w3c.github.io/aria-practices/">https://w3c.github.io/aria-practices/</a></dd>
@@ -685,7 +685,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         Conditions That Cause Role <code>presentation</code> to be Ignored
       </a></li><li class="tocline"><a href="#presentation_role_examples" class="tocxref"><span class="secno">7.3 </span>
         Example Demonstrating Effects of the <code>presentation</code> Role
-      </a></li></ol></li><li class="tocline"><a href="#children_presentational" class="tocxref"><span class="secno">8. </span>Roles That Automatically Hide Semantics by Making Their Descendants Presentational</a></li><li class="tocline"><a href="#appendices" class="tocxref"><span class="secno">A. </span>Appendices</a><ol class="toc"><li class="tocline"><a href="#change_log" class="tocxref"><span class="secno">A.1 </span>Change History</a><ol class="toc"><li class="tocline"><a href="#change_log_2018_july" class="tocxref"><span class="secno">A.1.1 </span>Changes in July 2018 Publication of Note Release 2</a></li><li class="tocline"><a href="#change_log_2017_december" class="tocxref"><span class="secno">A.1.2 </span>Changes in December 2017 Publication as Note</a></li><li class="tocline"><a href="#change_log_2017_june" class="tocxref"><span class="secno">A.1.3 </span>Changes in June 2017 Working Draft</a></li></ol></li><li class="tocline"><a href="#acknowledgements" class="tocxref"><span class="secno">A.2 </span>Acknowledgments</a><ol class="toc"><li class="tocline"><a href="#ack_group" class="tocxref"><span class="secno">A.2.1 </span>Participants active in the ARIA WG at the time of publication</a></li><li class="tocline"><a href="#ack_others" class="tocxref"><span class="secno">A.2.2 </span>Other ARIA contributors, commenters, and previously active participants</a></li><li class="tocline"><a href="#ack_funders" class="tocxref"><span class="secno">A.2.3 </span>Enabling funders</a></li></ol></li></ol></li><li class="tocline"><a href="#references" class="tocxref"><span class="secno">B. </span>References</a><ol class="toc"><li class="tocline"><a href="#normative-references" class="tocxref"><span class="secno">B.1 </span>Normative references</a></li></ol></li></ol></nav>
+      </a></li></ol></li><li class="tocline"><a href="#children_presentational" class="tocxref"><span class="secno">8. </span>Roles That Automatically Hide Semantics by Making Their Descendants Presentational</a></li><li class="tocline"><a href="#appendices" class="tocxref"><span class="secno">A. </span>Appendices</a><ol class="toc"><li class="tocline"><a href="#change_log" class="tocxref"><span class="secno">A.1 </span>Change History</a></li><li class="tocline"><a href="#acknowledgements" class="tocxref"><span class="secno">A.2 </span>Acknowledgments</a><ol class="toc"><li class="tocline"><a href="#ack_group" class="tocxref"><span class="secno">A.2.1 </span>Participants active in the ARIA WG at the time of publication</a></li><li class="tocline"><a href="#ack_others" class="tocxref"><span class="secno">A.2.2 </span>Other ARIA contributors, commenters, and previously active participants</a></li><li class="tocline"><a href="#ack_funders" class="tocxref"><span class="secno">A.2.3 </span>Enabling funders</a></li></ol></li></ol></li><li class="tocline"><a href="#references" class="tocxref"><span class="secno">B. </span>References</a><ol class="toc"><li class="tocline"><a href="#normative-references" class="tocxref"><span class="secno">B.1 </span>Normative references</a></li></ol></li></ol></nav>
 
   <section id="intro">
     <!--OddPage--><h2 id="x1-introduction"><span class="secno">1. </span>Introduction<a class="self-link" aria-label="§" href="#intro"></a></h2>
@@ -5381,163 +5381,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
     <section id="change_log" class="appendix">
       <h3 id="a-1-change-history"><span class="secno">A.1 </span>Change History<a class="self-link" aria-label="§" href="#change_log"></a></h3>
-      <section id="change_log_2018_july" class="appendix">
-        <h4 id="a-1-1-changes-in-july-2018-publication-of-note-release-2"><span class="secno">A.1.1 </span>Changes in July 2018 Publication of Note Release 2<a class="self-link" aria-label="§" href="#change_log_2018_july"></a></h4>
-        <ul>
-          <li>
-            Added the following:
-            <ul>
-              <li>Treegrid design pattern and example</li>
-              <li>Alert dialog example</li>
-            </ul>
-          </li>
-          <li>Significant revisions of guidance or implementation were made to the following design patterns and examples:
-            <ul>
-              <li>Accordion pattern and example, including removing two optional key commands from the pattern.</li>
-              <li>Checkbox example bug fixes</li>
-              <li>ARIA 1.0 Combobox example, including escape key behavior</li>
-              <li>ARIA 1.1 Combobox example labeling</li>
-              <li>Modal dialog example, primarily code refactoring when adding alert dialog</li>
-              <li>Grid pattern, including guidance on column selection</li>
-              <li>Listbox examples</li>
-              <li>Menu pattern, including guidance on menu/submenu structure</li>
-              <li>editor menubar example, including significant improvement to mouse behaviors.</li>
-              <li>Menu button example bug fixes</li>
-              <li>Navigation menubar example bug fixes</li>
-              <li>Radio group example styling</li>
-              <li>Tabs pattern, including labeling guidance</li>
-              <li>Tree view pattern, including multi-select guidance</li>
-              <li>Tree view example bug fixes</li>
-            </ul>
-          </li>
-        </ul>
-        <p>Also see:</p>
-        <ul>
-          <li>
-            <a href="https://github.com/w3c/aria-practices/milestone/1?closed=1">The APG 1.1 Release 2 Milestone</a>:
-            which lists the GitHub issues that document discussions and reviews of changes included in the July 2018 publication.
-          </li>
-          <li>
-            <a href="https://github.com/w3c/aria-practices/wiki/Change-Log-for-July-2018-APG-1.1-Note-Release-2">Detailed change log with links to all commits that are new in the July 2018 publication  since the December 2017 working draft.</a>
-          </li>
-        </ul>
-      </section>
-      <section id="change_log_2017_december" class="appendix">
-        <h4 id="a-1-2-changes-in-december-2017-publication-as-note"><span class="secno">A.1.2 </span>Changes in December 2017 Publication as Note<a class="self-link" aria-label="§" href="#change_log_2017_december"></a></h4>
-        <ul>
-          <li>
-            Added the following:
-            <ul>
-              <li>Read Me First section</li>
-              <li>Combobox pattern</li>
-              <li>Combobox examples: 3 ARIA 1.0 style and 4 ARIA 1.1 style</li>
-              <li>Disclosure pattern</li>
-              <li>Feed example display page</li>
-              <li>Grid and table properties guidance section</li>
-              <li>Collapsible dropdown listbox example</li>
-              <li>Multi-thumb slider examples</li>
-              <li>Table pattern and example</li>
-            </ul>
-          </li>
-          <li>The top of each example page now includes a set of four related links to:
-            <ul>
-              <li><q>Browser and Assistive Technology Support</q> section of <q>Read Me First</q></li>
-              <li><q>Report Issue</q> page in the Github repository</li>
-              <li><q>Related Issues</q> listed in the Github project for the example</li>
-              <li><q>Design Pattern</q> section that applies to the example</li>
-            </ul>
-          </li>
-          <li>All Javascript and CSS files used by the examples include the correct license and copyright statements.</li>
-          <li>Significant revisions of guidance and implementation were made to the following sections, design patterns, and examples:
-            <ul>
-              <li>Introduction</li>
-              <li>Keyboard guidance for Mac OS</li>
-              <li>Accordion example</li>
-              <li>Mixed checkbox examples</li>
-              <li>Scrollable layout grid example</li>
-              <li>Listbox examples</li>
-              <li>Modal dialog example</li>
-              <li>editor menubar example</li>
-              <li>Navigation menubar example</li>
-              <li>Menu button examples</li>
-              <li>Spinbutton pattern</li>
-              <li>Toolbar example</li>
-              <li>Tree view examples</li>
-            </ul>
-          </li>
-        </ul>
-        <p>Also see:</p>
-        <ul>
-          <li>
-            <a href="https://github.com/w3c/aria-practices/milestone/6">1.1 APG Release 1 milestone,</a>
-            which lists the GitHub issues that document discussions and reviews of changes included in the December 2017 publication.
-          </li>
-          <li>
-            <a href="https://github.com/w3c/aria-practices/wiki/Change-Log-for-December-2017-Note-Release-1">Detailed change log with links to all commits that are new in the December 2017 publication as a Note since the June 2017 working draft.</a>
-          </li>
-        </ul>
-      </section>
-      <section id="change_log_2017_june" class="appendix">
-        <h4 id="a-1-3-changes-in-june-2017-working-draft"><span class="secno">A.1.3 </span>Changes in June 2017 Working Draft<a class="self-link" aria-label="§" href="#change_log_2017_june"></a></h4>
-        <ul>
-          <li>
-            Added the following:
-            <ul>
-              <li>Modal dialog example</li>
-              <li>Disclosure design pattern</li>
-              <li>Example disclosure for FAQ</li>
-              <li>Example disclosure for image description</li>
-              <li>Draft of feed pattern</li>
-              <li>Example feed implementation</li>
-              <li>Example of menu button using aria-activedescendant</li>
-              <li>Example of tabs with manual activation</li>
-            </ul>
-          </li>
-          <li>Design pattern section: moved examples subsection of each design pattern to be
-            the first subsection.</li>
-          <li>
-            Across all example pages:
-            <ul>
-              <li>Improved visual design of tables that document keyboard implementation,
-                roles, states, and properties.</li>
-              <li>Improved consistency of editorial style.</li>
-            </ul>
-          </li>
-          <li>
-            Significant revisions of guidance and implementation were made to the following design
-            patterns and example pages:
-            <ul>
-              <li>Accordion example</li>
-              <li>Alert example</li>
-              <li>Breadcrumb example</li>
-              <li>Button example</li>
-              <li>Checkbox examples</li>
-              <li>Dialog (modal) design pattern</li>
-              <li>Grid examples</li>
-              <li>Landmark examples</li>
-              <li>Link example</li>
-              <li>Listbox example</li>
-              <li>Menubar examples</li>
-              <li>Menu button examples</li>
-              <li>Radio group example</li>
-              <li>Slider design pattern</li>
-              <li>Slider example</li>
-              <li>Example of tabs with automatic activation</li>
-              <li>Tree view examples</li>
-            </ul>
-          </li>
-        </ul>
-        <p>Also see:</p>
-        <ul>
-          <li>
-            <a href="https://github.com/w3c/aria-practices/issues?q=is%3Aclosed+is%3Aissue+milestone%3A%22Jan+2017+Clean+Up%22+sort%3Aupdated-asc">January 2017 Clean Up Milestone</a>,
-            which lists the GitHub issues that document discussions and reviews of changes included in the June 2017 working draft.
-          </li>
-          <li>
-            <a href="https://github.com/w3c/aria-practices/wiki/Change-Log-for-June-2017-Working-Draft">Detailed change log with links to all commits that are new in the June 2017 working draft.</a>
-          </li>
-        </ul>
-      </section>
+      <p>Change history is maintained in a separate version-specific branch.</p>
     </section>
 
     <section class="appendix informative section" id="acknowledgements">
