@@ -11,7 +11,7 @@
 [role="toolbar"].focus {
 	border-color:#005A9C;
 	border-width: 3px;
-	padding: 4px;
+	padding:5px;
 }
 
 [role="toolbar"] .group {
