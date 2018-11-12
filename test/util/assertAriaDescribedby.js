@@ -7,42 +7,56 @@ const assert = require('assert');
  * Confirm the aria-describedby attribute and corrosponding element.
  *
  * @param {obj} t                  - ava execution object
- * @param {String} exampleId       - the example id (in case of multiple examples per page)
  * @param {String} elementSelector - the element with aria-describedby set
  */
 
-module.exports = async function assertAriaDescribedby (t, exampleId, elementSelector) {
-  let element = await t.context.session
-    .findElement(By.css(elementSelector));
-
-  let ariaDescribedbyExists = await t.context.session.executeScript(async function () {
-    let selector = arguments[0];
-    let el = document.querySelector(selector);
-    return el.hasAttribute('aria-describedby');
-  }, elementSelector);
-
-  assert(
-    ariaDescribedbyExists,
-    '"aria-describedby" attribute should exist on element: ' + elementSelector
-  );
-
-  let descriptionId = await element.getAttribute('aria-describedby');
+module.exports = async function assertAriaDescribedby (t, elementSelector) {
+  const elements = await t.context.session.findElements(By.css(elementSelector));
 
   assert.ok(
-    descriptionId,
-    '"aria-describedby" attribute should have a value on element: ' + elementSelector
+    elements.length,
+    'CSS elector returned no results: ' + elementSelector
   );
 
-  let descriptionText = await t.context.session.executeScript(async function () {
-    const id = arguments[0];
-    let el = document.querySelector('#' + id);
-    return el.innerText;
-  }, descriptionId);
+  for (let index = 0; index < elements.length; index++) {
 
-  assert.ok(
-    descriptionText,
-    'Element with id "' + descriptionId + '" should contain description text in example: ' + exampleId
-  );
+    let ariaDescribedbyExists = await t.context.session.executeScript(async function () {
+      const [selector, index] = arguments;
+      let els = document.querySelectorAll(selector);
+      return els[index].hasAttribute('aria-describedby');
+    }, elementSelector, index);
+
+    assert(
+      ariaDescribedbyExists,
+      '"aria-describedby" attribute should exist on element: ' + elementSelector
+    );
+
+    let descriptionValue = await elements[index].getAttribute('aria-describedby');
+
+    assert.ok(
+      descriptionValue,
+      '"aria-describedby" attribute should have a value on element: ' + elementSelector
+    );
+
+    const descriptionIds = descriptionValue.split(' ');
+
+    for (let descriptionId of descriptionIds) {
+
+      let descriptionText = await t.context.session.executeScript(async function () {
+        const id = arguments[0];
+        let el = document.querySelector('#' + id);
+        return el.innerText;
+      }, descriptionId);
+
+      let descriptionImage = await t.context.session.findElement(By.id(descriptionId))
+        .findElements(By.css('img'));
+
+      assert.ok(
+        descriptionText || descriptionImage.length,
+        'Element with id "' + descriptionId + '" should contain description text (or image) according to attribute "aria-describedby" on element: ' + elementSelector
+      );
+    }
+  }
 
   t.pass();
 };
