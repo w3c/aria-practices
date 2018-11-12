@@ -127,8 +127,11 @@ aria.Utils = aria.Utils || {};
   aria.Dialog = function (dialogId, focusAfterClosed, focusFirst) {
     this.dialogNode = document.getElementById(dialogId);
     var role = this.dialogNode.getAttribute('role');
+    var isDialog = role.split(' ').some(function (r) {
+      return r === 'dialog' || r === 'alertdialog';
+    });
 
-    if (this.dialogNode === null || !['dialog', 'alertdialog'].includes(role)) {
+    if (this.dialogNode === null || !isDialog) {
       throw new Error(
         'Dialog() requires a DOM element with ARIA role of dialog or alertdialog.');
     }
