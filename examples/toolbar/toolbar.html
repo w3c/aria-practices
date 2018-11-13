@@ -807,8 +807,22 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
             <td>
               <ul>
                 <li>The combination of the <code>aria-haspopup</code> attribute with the <code>button</code> role identifies the button as following the menu button design pattern.</li>
-                <li>The accessible name comes from the text content of the button (e.g. <q>Fonts</q>).
+                <li>The accessible name comes from <code>aria-label</code> attribute.</li>
               </ul>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <code></code>
+            </td>
+            <th scope="row"><code>aria-label=&quot;Font: <em>font family name</em>&quot;</code></th>
+            <td>
+              <code>ul</code>
+            </td>
+            <td>
+              <ul>
+                <li>Defines the accessible name for the menu button, by contacting <q>Font: </q> with the current font family name checked in the menu.</li>
+                <li>The accessible name is updated when a different font is selected from the font menu.</li>
             </td>
           </tr>
           <tr>
