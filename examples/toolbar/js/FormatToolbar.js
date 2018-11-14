@@ -38,6 +38,8 @@ FormatToolbar.prototype.init = function () {
   var i, items, toolbarItem, menuButton;
 
   this.textarea = document.getElementById(this.domNode.getAttribute('aria-controls'));
+  console.log('width: ' + this.domNode.getBoundingClientRect().width);
+  this.textarea.style.width = (this.domNode.getBoundingClientRect().width-12) + 'px';
   this.textarea.addEventListener('mouseup', this.selectTextContent.bind(this));
   this.textarea.addEventListener('keyup', this.selectTextContent.bind(this));
 
