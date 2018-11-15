@@ -547,102 +547,73 @@
     <section class="widget" id="carousel">
       <h3>Carousel (Image Rotator)</h3>
       <p>
-        A carousel is a composite widget containing a set of controls for pausing the rotation of a set of slides consisting of an image often with descriptive content used for navigation to more detailed information related to the slide.
+        A carousel is a composite widget for rendering auto-rotating image slides for highlighting the activities or accomplishments of an organization and often providing navigation links to more information the topic of the slide.  The image is the dominate visual feature of each slide and slides often have additional content in the form of text content for titles and links to additional information.  The carousel slides should be contained in a <code>complementary</code> or <code>region</code> landmark with a label identifying the region as containing auto-rotating slides. Slides that are not rendered should be hidden using <code>display: none</code> or equivalent technique. The requirements for controlling the slide rotation include pausing rotation on keyboard focus and pointer hover, an explicit pause button, previous button and a next slide buttons.  Optionally a <code>tablist</code> can be used to provide additional control over the navigation of the slides.</p>
 
-        <section class="notoc">
-          <h4>Required Components</h4>
+        <p>When screen reader users do not have information or control over the rotating slides, they often move their review cursor into the slide content and when the slides rotate, the content of the current slide is removed from the accessibility tree and their reading cursor typically moves to the beginning of the page, which is disorienting and confusing.  There screen reader users need a way to identify the carousel behavior and stop the auto rotation before they begin reading the slide content.</p>
 
-          <dl>
-            <dt>Pause/Stop Rotation</dt>
+        <dl>
+          <dt>Pause Rotation</dt>
+          <dd>The auto-rotation must stop when keyboard focus is on a slide in the carousel.  Keyboard only and screen reader users will be disoriented if keyboard focus disappears when the slides change.</dd>
+          <dd>The auto-rotation must stop when the pointer hovers over an image in the carousel.</dd>
 
-            <dd>A pause/stop slide rotation button is need on the page before the carousel to provide an opportunity for screen reader users to stop the slide rotation before they move their reading cursor into the rotating content.   If the reading cursor enters slide content and the slide is rotated, the content is removed from the accessibility tree and the reading cursor is typically moved by the screen reader to the beginning of the page.  This situation is disorienting to screen reader users, since they are not expecting the sudden change in reading context.</dd>
+          <dt>Pause Button</dt>
+          <dd>Used to stop the auto-rotation of slides, and can optionally be a toggle to restart the rotation of slides</dd>
+          <dd>This is important to inform screen reader users using virtual reading modes to switch to application mode to stop the rotation of slides.</dd>
 
-            <dd>When any element in a slide receives keyboard focus, slide rotation should pause/stop.  This allows keyboard only users to navigate the content of the slide without keyboard focus suddenly disappearing when a slide rotates.</dd>
+          <dt>Previous Slide Button</dt>
+          <dd>Used to move to the previous slide in the set of slides.</dd>
+          <dd>The label for the previous button should contain information on the slide position of the previous slide in the sequence of slides and the total number of slides (e.g. Slide 3 of 6).</dd>
 
-            <dd>When the mouse cursor is over a slide the rotation should pause/stop to help people with visual impairments and cognitive disabilities to be able to read content without the content changing.</dd>
+          <dt>Next Slide Button</dt>
+          <dd>Used to move to the next slide in the set of slides.</dd>
+          <dd>The label for the next button should contain information on the slide position of the previous slide in the sequence of slides and the total number of slides (e.g. Slide 5 of 6).</dd>
 
-            <dt>Next Image</dt>
-
-            <dd>A button is needed to manually move to the next slide.</dd>
-
-            <dd>The label of the button should indicate the content of the next panel (e.g. next slide: James Smith lecture) and/or position of the next panel in the set of panels (e.g. slide 3 of 6).</dd>
-
-            <dd>The next slide button should before the previous slide button and slide content, so that the changed slide content is after the buttons. </dd>
-
-            <dt>Previous Image</dt>
-
-            <dd>A button is needed to manually move the previous slide.</dd>
-
-            <dd>The label of the button should indicate the content of the next panel (e.g. next slide: James Smith lecture) and/or position of the next panel in the set of panels (e.g. slide 3 of 6).</dd>
-
-            <dd>The previous slide button should after the next slide button and before the slide content, so that the changed slide content is after the buttons.  </dd>
-
-          </dl>
-        </section>
-
-        <section class="notoc">
-          <h4>Optional Components</h4>
-
-          <dl>
-            <dt>Tablist Navigation</dt>
-
-            <dd>Some carousels have a set of clickable buttons indicating the number of slides in the carousel and clicking on the button makes the slide visible.   This type of interaction can be modeled as a <code>tablist</code> with the clickable buttons represented as <code>tab</code>s and the slides as <code>tabpanels</code>.</dd>
-
-            <dd>The accessible names for the <code>tab</code>s should describe the content of the slide (e.g. James Smith lecture).</dd>
-          </dl>
-        </section>
+          <dt><code>tablist</code> Widget (optional)</dt>
+          <dd>Used to provide direct navigation to individual slides when a carousel provides visual controls indicating number of slides and direct navigation to a slide.</dd>
+          <dd>The set of controls for navigating slides can be modelled using the <code>tablist</code> pattern.</dd>
+        </dl>
 
 
       <section class="notoc">
         <h4>Examples</h4>
-        <p><a href="examples/carousel/carousel-1/carousel.html">Carousel Example</a>: Demonstrates the accessibility features of a carousel of auto-rotating images.</p>
+        <ul>
+          <li><a href="examples/carousel/carousel-1/carousel-1.html">Carousel Example</a>: Demonstrates the accessibility features of a carousel of auto-rotating images.</li>
+          <li><a href="examples/carousel/carousel-2/carousel-2.html">Carousel with Tablist Example</a>: Demonstrates the accessibility features of a carousel of auto-rotating images with optional tablist.</li>
+        </ul>
       </section>
 
       <section class="notoc">
-        <h4>Optional Keyboard Interaction</h4>
-        <p>For the tab list:</p>
+        <h4>Keyboard Interaction</h4>
+
+        <p>Moving keyboard focus to any interactive element immediately stops slide rotation.  Automated slide rotation should not resume unless explicitly requested by the user (e.g. through an optional resume rotation button)</p>
+
+        <p>For the pause, previous and next buttons:</p>
         <ul>
           <li>
-            <kbd>Tab</kbd>: When focus moves into the tab list, places focus on the active <code>tab</code> element .
-            When the tab list contains the focus, moves focus to the next element in the page tab sequence outside the tablist, which is typically either the first focusable element inside the tab panel or the tab panel itself.
+            <kbd>Tab</kbd>: The tab sequence begins with the pause button, next the previous slide button, then to interactive content in the slide and then to the next slide button.
           </li>
           <li>
-            <kbd>Left Arrow</kbd>: moves focus to the previous tab (i.e. image).
-            If focus is on the first tab, moves focus to the last tab.
-            Optionally, activates the newly focused tab (See note below).
+            <kbd>Enter or Space</kbd>: Activates the previous or next button rotating in new slide content or pauses the rotation of the slides.
           </li>
-          <li>
-            <kbd>Right Arrow</kbd>: Moves focus to the next tab (i.e. image).
-            If focus is on the last tab element, moves focus to the first tab.
-            Optionally, activates the newly focused tab (See note below).
-          </li>
-          <li><kbd>Home</kbd> (Optional): Moves focus to the first tab (i.e. image).</li>
-          <li><kbd>End</kbd> (Optional): Moves focus to the last tab (i.e.. image).</li>
         </ul>
         <p>
-      </section>
 
-
-      <section class="notoc">
-        <h4>Optional Keyboard Interaction</h4>
-        <p>For the tab list:</p>
+        <p>For the optional <code>tablist</code>:</p>
         <ul>
           <li>
-            <kbd>Tab</kbd>: When focus moves into the tab list, places focus on the active <code>tab</code> element .
-            When the tab list contains the focus, moves focus to the next element in the page tab sequence outside the tablist, which is typically either the first focusable element inside the tab panel or the tab panel itself.
+            <kbd>Tab</kbd>: The tab sequence begins with the pause button, next the tablist, the interactive slide content, previous slide button, and then to the next slide button.  Keyboard focus moves to the <code>tab</code> element representing the current slide.
+            When the tablist has keyboard focus, moves focus to the interactive slide content.
           </li>
           <li>
-            <kbd>Left Arrow</kbd>: moves focus to the previous tab (i.e. image).
+            <kbd>Left Arrow</kbd>: moves focus to the previous tab (i.e. slide).
             If focus is on the first tab, moves focus to the last tab.
-            Optionally, activates the newly focused tab (See note below).
           </li>
           <li>
-            <kbd>Right Arrow</kbd>: Moves focus to the next tab (i.e. image).
+            <kbd>Right Arrow</kbd>: Moves focus to the next tab (i.e. slide).
             If focus is on the last tab element, moves focus to the first tab.
-            Optionally, activates the newly focused tab (See note below).
           </li>
-          <li><kbd>Home</kbd> (Optional): Moves focus to the first tab (i.e. image).</li>
-          <li><kbd>End</kbd> (Optional): Moves focus to the last tab (i.e.. image).</li>
+          <li><kbd>Home</kbd> (Optional): Moves focus to the first tab (i.e. slide).</li>
+          <li><kbd>End</kbd> (Optional): Moves focus to the last tab (i.e. slide).</li>
         </ul>
         <p>
       </section>
@@ -650,16 +621,18 @@
       <section class="notoc">
         <h4>WAI-ARIA Roles, States, and Properties</h4>
         <ul>
-        <li>The pause button uses <code>aria-pressed="true"</code> to indicate the rotator is paused.</li>
-        <li>The pause button uses <code>aria-pressed="false"</code> to indicate the rotator is automatically rotating.</li>
-        <li>The element that serves as the container the for the set of tabs has role  <a class="role-reference" href="#tablist">tablist</a>. </li>
-        <li>Each element that serves as a tab has role <a class="role-reference" href="#tab">tab</a> and is contained within the element with role <code>tablist</code>.</li>
-          <li>Each element that contains the content panel for a <code>tab</code> has role <a class="role-reference" href="#tabpanel">tabpanel</a>.</li>
+          <li>The <code>complementary</code> or <code>region</code> landmark used to identify the carousel should have an accessible name (e.g. "Image Carousel") indicating it contains auto-rotating slides using <code>aria-label</code>.</li>
+          <li>The pause button uses <code>aria-pressed="true"</code> to indicate the rotator is paused.</li>
+          <li>The pause button uses <code>aria-pressed="false"</code> to indicate the rotator is automatically rotating.</li>
+          <li>The element that serves as the container the for the set of tabs has role  <a class="role-reference" href="#tablist">tablist</a>. </li>
+          <li>Each element that serves as a tab has role <a class="role-reference" href="#tab">tab</a> and is contained within the element with role <code>tablist</code>.</li>
+          <li>Each element that contains slide content for a <code>tab</code> has role <a class="role-reference" href="#tabpanel">tabpanel</a>.</li>
           <li>Each element with role <code>tab</code> has the property <a href="#aria-controls" class="property-reference">aria-controls</a> referring to its associated <code>tabpanel</code> element.</li>
           <li>The active <code>tab</code> element has the state <a href="#aria-selected" class="state-reference">aria-selected</a> set to <code>true</code> and all other <code>tab</code> elements have it set to <code>false</code>.</li>
           <li>Each element with role <code>tabpanel</code> has the property <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> referring to its associated <code>tab</code> element. </li>
         </ul>
       </section>
+
     </section>
 
 
