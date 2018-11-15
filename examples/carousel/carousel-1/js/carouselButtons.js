@@ -11,10 +11,10 @@
 *
 *
 */
-var CarouselButton = function (domNode, tablist) {
+var CarouselButton = function (domNode, carouselObj) {
   this.domNode = domNode;
 
-  this.tablist = tablist;
+  this.carousel = carouselObj;
 
   this.direction = 'previous';
 
@@ -41,12 +41,12 @@ CarouselButton.prototype.init = function () {
   this.domNode.addEventListener('blur', this.handleBlur.bind(this));
 };
 
-CarouselButton.prototype.changeTab = function () {
+CarouselButton.prototype.changeItem = function () {
   if (this.direction === 'previous') {
-    this.tablist.setSelectedToPreviousItem();
+    this.carousel.setSelectedToPreviousItem();
   }
   else {
-    this.tablist.setSelectedToNextItem();
+    this.carousel.setSelectedToNextItem();
   }
 };
 
@@ -59,7 +59,7 @@ CarouselButton.prototype.handleKeydown = function (event) {
   switch (event.keyCode) {
     case this.keyCode.SPACE:
     case this.keyCode.RETURN:
-      this.changeTab();
+      this.changeItem();
       this.domNode.focus();
       flag = true;
       break;
@@ -75,12 +75,12 @@ CarouselButton.prototype.handleKeydown = function (event) {
 };
 
 CarouselButton.prototype.handleClick = function (event) {
-  this.changeTab();
+  this.changeItem();
 };
 
 CarouselButton.prototype.handleFocus = function (event) {
   this.domNode.classList.add('focus');
-  this.tablist.toggleRotation(this);
+  this.carousel.toggleRotation(this);
 };
 
 CarouselButton.prototype.handleBlur = function (event) {

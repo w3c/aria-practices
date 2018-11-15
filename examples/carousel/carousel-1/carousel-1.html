@@ -13,8 +13,8 @@
 
     <!--  js and css for this example. -->
     <link rel="stylesheet" href="css/carousel.css">
-    <script src="js/carouselTablist.js" type="text/javascript"></script>
-    <script src="js/carouselTab.js" type="text/javascript"></script>
+    <script src="js/carousel.js" type="text/javascript"></script>
+    <script src="js/carouselItem.js" type="text/javascript"></script>
     <script src="js/carouselButtons.js" type="text/javascript"></script>
     <script src="js/pauseButton.js" type="text/javascript"></script>
 
@@ -31,9 +31,9 @@
     <main>
       <h1>Example of Image Carousel with Automatically Rotating Images</h1>
       <p>
-          This example section demonstrates a <a href="../../../#carousel">design pattern for a image carousel</a> consisting of a pause button, next and previous slide buttons and a the use of <a href="../../../#tab">tabs</a> to navigate the list of carousel items.
+          This example section demonstrates a <a href="../../../#carousel">design pattern for a image carousel</a> consisting of a pause button, next and previous slide buttons.
           In this example, when the page is loaded the carousel images start rotating automatically.
-          The auto rotation can be stopped by pressing the pause button, just moving keyboard focus to any control or link in the carousel or hovering over the image with a mouse.  There are two ways for the user to restart rotation, pressing the pause button again or moving the pointer outside the carousel image area.
+          The auto rotation can be stopped by activating the pause button, just moving keyboard focus to any control or link in the carousel or hovering the over carousel content with a mouse.  There are two ways for the user to restart rotation, pressing the pause button again or moving the pointer outside the carousel image area.
           For additional guidance, see <a href="../../../#kbd_selection_follows_focus">Deciding When to Make Selection Automatically Follow Focus</a>.
       </p>
 
@@ -54,45 +54,31 @@
               <button class="pause" aria-pressed="false">Pause Carousel</button>
 
               <div class="carousel-inner">
-                <!-- Indicators -->
-                <ol role="tablist" class="carousel-indicators" aria-label="Image Carousel">
-                  <li role="tab"
-                      aria-selected="true"
-                      tabindex="0"
-                      aria-labelledby="carousel-label-1"
-                      aria-controls="carousel-panel-1"></li>
-                  <li role="tab"
-                      aria-selected="false"
-                      tabindex="-1"
-                      aria-labelledby="carousel-label-2"
-                      aria-controls="carousel-panel-2"></li>
-                  <li role="tab"
-                      aria-selected="false"
-                      tabindex="-1"
-                      aria-labelledby="carousel-label-3"
-                      aria-controls="carousel-panel-3"></li>
-                  <li role="tab"
-                      aria-selected="false"
-                      tabindex="-1"
-                      aria-labelledby="carousel-label-4"
-                      aria-controls="carousel-panel-4"></li>
-                  <li role="tab"
-                      aria-selected="false"
-                      tabindex="-1"
-                      aria-labelledby="carousel-label-5"
-                      aria-controls="carousel-panel-5"></li>
-                  <li role="tab"
-                      aria-selected="false"
-                      tabindex="-1"
-                      aria-labelledby="carousel-label-6"
-                      aria-controls="carousel-panel-6"></li>
-                </ol>
 
-                <div role="tabpanel"
-                     id="carousel-panel-1"
-                     class="carousel-item active"
-                     tabindex="0"
-                     aria-labelledby="carousel-label-1">
+                <a class="previous carousel-control"
+                   role="button"
+                   tabindex="0"
+                   aria-controls="carousel-panel-1"
+                   aria-label="Previous Slide">
+                  <svg width="30" height="30" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <polygon points="30 0 30 30 0 15"
+                        stroke="white" fill="white" stroke-width="2"/>
+                  </svg>
+                </a>
+
+                <a class="next carousel-control"
+                   role="button"
+                   tabindex="0"
+                   aria-controls="carousel-panel-1"
+                   aria-label="Next Slide">
+                <?xml version="1.0" standalone="no"?>
+                  <svg width="30" height="30" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <polygon points="0 0 30 15 0 30"
+                        stroke="white" fill="white" stroke-width="2"/>
+                  </svg>
+                </a>
+
+                <div class="carousel-item active">
 
                   <div class="carousel-image">
                     <a href="http://www.pbs.org/about/news/archive/2015/pbs-most-trusted/">
@@ -114,7 +100,7 @@
                   </div>  <!-- .carousel-caption -->
                 </div>   <!-- .item -->
 
-                <div role="tabpanel" id="carousel-panel-2" class="carousel-item" tabindex="0" aria-labelledby="carousel-label-2">
+                <div class="carousel-item">
 
                   <div class="carousel-image">
                       <img src="images/lands-endslide__800x600.jpg" alt="Land&#039;s End in Cornwall"/>
@@ -134,7 +120,7 @@
                   </div>  <!-- .carousel-caption -->
                 </div>   <!-- .item -->
 
-                <div role="tabpanel" id="carousel-panel-3" class="carousel-item" tabindex="0" aria-labelledby="carousel-label-3">
+                <div class="carousel-item">
 
                   <div class="carousel-image">
                     <img src="images/trustslide-2__800x600.jpg" alt="Mom and daughter play Daniel Tiger game on notebook computer."/>
@@ -154,7 +140,7 @@
                   </div>  <!-- .carousel-caption -->
                 </div>   <!-- .item -->
 
-                <div role="tabpanel" id="carousel-panel-4" class="carousel-item" tabindex="0" aria-labelledby="carousel-label-4">
+                <div class="carousel-item">
 
                   <div class="carousel-image">
                       <img src="images/foyleswarslide__800x600.jpg" alt="A man in a suit and fedora and a woman with coiffed hair look sternly into the camera."/>
@@ -174,7 +160,7 @@
                   </div>  <!-- .carousel-caption -->
                 </div>   <!-- .item -->
 
-                <div role="tabpanel" id="carousel-panel-5" class="carousel-item" tabindex="0" aria-labelledby="carousel-label-5">
+                <div class="carousel-item">
 
                   <div class="carousel-image">
                       <img src="images/britcomdavidslide__800x600.jpg" alt="British flag with WILL-TV host David Thiel."/>
@@ -193,7 +179,7 @@
                   </div>  <!-- .carousel-caption -->
                 </div>   <!-- .item -->
 
-                <div role="tabpanel" id="carousel-panel-6" class="carousel-item"  tabindex="0" aria-labelledby="carousel-label-6">
+                <div class="carousel-item">
 
                   <div class="carousel-image">
                       <img src="images/mag800-2__800x600.jpg" alt="Mid-American Gardener panelists on the set" />
@@ -213,21 +199,6 @@
                   </div>  <!-- .carousel-caption -->
                 </div>   <!-- .item -->
 
-                <a class="previous carousel-control"
-                   role="button"
-                   tabindex="0"
-                   aria-controls="carousel-panel-1"
-                   aria-label="Previous Slide">
-                <span>&ltrif;</span>
-                </a>
-
-                <a class="next carousel-control"
-                   role="button"
-                   tabindex="0"
-                   aria-controls="carousel-panel-1"
-                   aria-label="Next Slide">
-                <span>&rtrif;</span>
-                </a>
 
               </div> <!-- carousel-inner -->
 
@@ -250,58 +221,6 @@
 
       <section>
         <h2 id="kbd_label">Keyboard Support</h2>
-
-        <section>
-          <h3 id="kbd_label_1">Tabs for Selecting Slides</h3>
-          <table aria-labelledby="kbd_label_1" class="def">
-            <thead>
-              <tr>
-                <th>Key</th>
-                <th>Function</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th><kbd>Tab</kbd></th>
-                <td>
-                  <ul>
-                    <li>When focus moves into the tab list, places focus on the active <code>tab</code> element .</li>
-                    <li>When the tab list contains the focus, moves focus to the next element in the tab sequence, which is the <code>tabpanel</code> element.</li>
-                    <li>When any element in the carousel example receives focus, auto rotation of the images is stopped.</li>
-                  </ul>
-                </td>
-              </tr>
-              <tr>
-                <th><kbd>Right Arrow</kbd></th>
-                <td>
-                  <ul>
-                    <li>Moves focus to the next tab.</li>
-                    <li>If focus is on the last tab, moves focus to the first tab.</li>
-                    <li>Activates the newly focused tab.</li>
-                  </ul>
-                </td>
-              </tr>
-              <tr>
-                <th><kbd>Left Arrow</kbd></th>
-                <td>
-                  <ul>
-                    <li>Moves focus to the previous tab.</li>
-                    <li>If focus is on the first tab, moves focus to the last tab.</li>
-                    <li>Activates the newly focused tab.</li>
-                  </ul>
-                </td>
-              </tr>
-              <tr>
-                <th><kbd>Home</kbd></th>
-                <td>Moves focus to the first tab and activates it.</td>
-              </tr>
-              <tr>
-                <th><kbd>End</kbd></th>
-                <td>Moves focus to the last tab and activates it.</td>
-              </tr>
-            </tbody>
-          </table>
-        </section>
 
         <section>
           <h3 id="kbd_label_2">Pause/Start Slide Rotation Button</h3>
@@ -593,8 +512,8 @@
         <h2>Javascript and CSS Source Code</h2>
         <ul>
           <li>CSS: <a href="../css/carousel.css" type="text/css">carousel.css</a></li>
-          <li>Javascript: <a href="js/carouselTablist.js" type="text/javascript">carouselTablist.js</a></li>
-          <li>Javascript: <a href="js/carouselTab.js" type="text/javascript">carouselTab.js</a></li>
+          <li>Javascript: <a href="js/carousel.js" type="text/javascript">carousel.js</a></li>
+          <li>Javascript: <a href="js/carouselItem.js" type="text/javascript">carouselItem.js</a></li>
           <li>Javascript: <a href="js/carouselButtons.js" type="text/javascript">carouselButtons.js</a></li>
           <li>Javascript: <a href="js/pauseButton.js" type="text/javascript">pauseButton.js</a></li>
         </ul>

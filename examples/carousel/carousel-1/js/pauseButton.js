@@ -8,16 +8,16 @@
 *
 */
 
-var PauseButton = function (domNode, tablist) {
+var PauseButton = function (domNode, carouselObj) {
   this.domNode = domNode;
 
-  this.tablist = tablist;
+  this.carousel = carouselObj;
 };
 
-var StartButton = function (domNode, tablist) {
+var StartButton = function (domNode, carouselObj) {
   this.domNode = domNode;
 
-  this.tablist = tablist;
+  this.carousel = carouselObj;
 };
 
 PauseButton.prototype.init = function () {
@@ -29,7 +29,7 @@ PauseButton.prototype.init = function () {
 /* EVENT HANDLERS */
 
 PauseButton.prototype.handleClick = function (event) {
-  this.tablist.toggleRotation();
+  this.carousel.toggleRotation();
 };
 
 PauseButton.prototype.handleFocus = function (event) {
