@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Example of Image Carousel with Automatically Rotating Images | WAI-ARIA Authoring Practices 1.1</title>
+    <title>Example of Image Carousel with Automatically Rotating Images using Tablist | WAI-ARIA Authoring Practices 1.1</title>
 
     <!--  Core js and css shared by all examples; do not modify when using this template. -->
     <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
@@ -29,22 +29,13 @@
       </ul>
     </nav>
     <main>
-      <h1>Example of Image Carousel with Automatically Rotating Images</h1>
+      <h1>Example of Image Carousel with Automatically Rotating Images using Tablist</h1>
       <p>
           This example section demonstrates a <a href="../../../#carousel">design pattern for a image carousel</a> consisting of a pause button, next and previous slide buttons and a the use of <a href="../../../#tab">tabs</a> to navigate the list of carousel items.
           In this example, when the page is loaded the carousel images start rotating automatically.
           The auto rotation can be stopped by pressing the pause button, just moving keyboard focus to any control or link in the carousel or hovering over the image with a mouse.  There are two ways for the user to restart rotation, pressing the pause button again or moving the pointer outside the carousel image area.
           For additional guidance, see <a href="../../../#kbd_selection_follows_focus">Deciding When to Make Selection Automatically Follow Focus</a>.
       </p>
-
-      <h2>Accessibility Features</h2>
-      <ul>
-        <li>Image rotation stops when keyboard focus enters the controls or content of the carousel.</li>
-        <li>Pause button is to provide a means of screen reader users using review mode to be aware of auto-updating content.</li>
-        <li>
-          To improve readability of the caption text and content, background contrast is improved by decreasing the transparency of the caption area.   This improved the color contrast radio of the white text, especially when light colored image are used in the background.
-        </li>
-      </ul>
 
       <section>
         <h2 id="ex_label">Example</h2>
@@ -95,7 +86,7 @@
                      aria-labelledby="carousel-label-1">
 
                   <div class="carousel-image">
-                    <a href="http://www.pbs.org/about/news/archive/2015/pbs-most-trusted/">
+                    <a href="#">
                       <img src="images/amsterdamslide__800x600.jpg" alt="Walking Tour in Amsterdam" />
                     </a>
                   </div>
@@ -117,7 +108,9 @@
                 <div role="tabpanel" id="carousel-panel-2" class="carousel-item" tabindex="0" aria-labelledby="carousel-label-2">
 
                   <div class="carousel-image">
+                    <a href="#">
                       <img src="images/lands-endslide__800x600.jpg" alt="Land&#039;s End in Cornwall"/>
+                    </a>
                   </div>
 
                   <div class="carousel-caption">
@@ -137,13 +130,15 @@
                 <div role="tabpanel" id="carousel-panel-3" class="carousel-item" tabindex="0" aria-labelledby="carousel-label-3">
 
                   <div class="carousel-image">
-                    <img src="images/trustslide-2__800x600.jpg" alt="Mom and daughter play Daniel Tiger game on notebook computer."/>
+                    <a href="#">
+                      <img src="images/trustslide-2__800x600.jpg" alt="Mom and daughter play Daniel Tiger game on notebook computer."/>
+                    </a>
                   </div>
 
                   <div class="carousel-caption">
 
                     <h2>
-                      <a href="pbs-survey.html" id="carousel-label-3">
+                      <a href="#" id="carousel-label-3">
                         Survey confirms that TV  is America&#8217;s most trusted institution
                       </a>
                     </h2>
@@ -157,13 +152,15 @@
                 <div role="tabpanel" id="carousel-panel-4" class="carousel-item" tabindex="0" aria-labelledby="carousel-label-4">
 
                   <div class="carousel-image">
+                    <a href="#">
                       <img src="images/foyleswarslide__800x600.jpg" alt="A man in a suit and fedora and a woman with coiffed hair look sternly into the camera."/>
+                    </a>
                   </div>
 
                   <div class="carousel-caption">
 
                     <h2>
-                      <a href="foyles-war.html" id="carousel-label-4">
+                      <a href="#" id="carousel-label-4">
                         Foyle&#8217;s War Revisited
                       </a>
                     </h2>
@@ -177,13 +174,15 @@
                 <div role="tabpanel" id="carousel-panel-5" class="carousel-item" tabindex="0" aria-labelledby="carousel-label-5">
 
                   <div class="carousel-image">
+                    <a href="#">
                       <img src="images/britcomdavidslide__800x600.jpg" alt="British flag with WILL-TV host David Thiel."/>
+                    </a>
                   </div>
 
                   <div class="carousel-caption">
 
                     <h2>
-                      <a href="/highlights/story/great-britcom-vote-all-star-edition" id="carousel-label-5">
+                      <a href="#" id="carousel-label-5">
                         Great Britain Vote: 7 pm Sat.
                       </a>
                     </h2>
@@ -196,13 +195,15 @@
                 <div role="tabpanel" id="carousel-panel-6" class="carousel-item"  tabindex="0" aria-labelledby="carousel-label-6">
 
                   <div class="carousel-image">
+                    <a href="#">
                       <img src="images/mag800-2__800x600.jpg" alt="Mid-American Gardener panelists on the set" />
+                    </a>
                   </div>
 
                   <div class="carousel-caption">
 
                     <h2>
-                      <a href="http://www.will.illinois.edu/midamericangardener" id="carousel-label-6">
+                      <a href="#" id="carousel-label-6">
                         Mid-American Gardener: Thursdays at 7 pm
                       </a>
                     </h2>
@@ -218,7 +219,10 @@
                    tabindex="0"
                    aria-controls="carousel-panel-1"
                    aria-label="Previous Slide">
-                <span>&ltrif;</span>
+                  <svg width="30" height="30" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <polygon points="30 0 30 30 0 15"
+                        stroke="white" fill="white" stroke-width="2"/>
+                  </svg>
                 </a>
 
                 <a class="next carousel-control"
@@ -226,7 +230,10 @@
                    tabindex="0"
                    aria-controls="carousel-panel-1"
                    aria-label="Next Slide">
-                <span>&rtrif;</span>
+                  <svg width="30" height="30" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <polygon points="0 0 30 15 0 30"
+                        stroke="white" fill="white" stroke-width="2"/>
+                  </svg>
                 </a>
 
               </div> <!-- carousel-inner -->
@@ -240,14 +247,19 @@
         <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
       </section>
 
-      <section>
-        <h2>Accessibility Features</h2>
-        <p>
-          To demonstrate the effects of deleting a tab, the third tab, labeled <q>Joke</q>,
-          can be deleted when it has focus by pressing <kbd>Delete</kbd>.
-        </p>
-      </section>
 
+      <h2>Accessibility Features</h2>
+      <ul>
+        <li>
+          Image rotation stops when keyboard focus enters the controls or content of the carousel.
+        </li>
+        <li>
+          Pause button is to provide a means of screen reader users using review mode to be aware of auto-updating content and stop the rotation.
+        </li>
+        <li>
+          To improve readability of the caption text and content, background contrast is improved by decreasing the transparency of the caption area.   This improves the color contrast radio of the white text, especially when light colored image are used in the background.
+        </li>
+      </ul>
       <section>
         <h2 id="kbd_label">Keyboard Support</h2>
 
@@ -356,6 +368,47 @@
 
       <section>
         <h2 id="rps_label">Role, Property, State, and Tabindex  Attributes</h2>
+
+        <section>
+          <h3 id="rps_label_0">Region Landmark</h3>
+          <table aria-labelledby="rps_label_0" class="data attributes">
+            <thead>
+              <tr>
+                <th scope="col">Role</th>
+                <th scope="col">Attribute</th>
+                <th scope="col">Element</th>
+                <th scope="col">Usage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">
+                  <code>region</code>
+                </th>
+                <td></td>
+                <td>
+                  <code>section</code>
+                </td>
+                <td>
+                  <ul>
+                    <li>The <code>region</code> landmark is defined by a <code>section</code> element with a accessible name.</li>
+                    <li>The accessible name of the <code>region</code> landmark is defined using the <code>aria-label</code> attribute.</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <th scope="row">
+                  <code>aria-label=<q>Image Carousel</q></code>
+                </th>
+                <td>
+                  <code>section</code>
+                </td>
+                <td>Provides a label that describes the carousel region.</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
 
         <section>
           <h3 id="rps_label_1">Tabs for Selecting Slides</h3>
@@ -549,14 +602,44 @@
             </thead>
             <tbody>
               <tr>
+                <th scope="row">
+                  <code>button</code>
+                </th>
+                <td></td>
+                <td>
+                  <code>button</code>
+                </td>
+                <td>
+                  <ul>
+                    <li>The default role for the <code>button</code> element is <code>button</code> role.</li>
+                    <li>Accessible name comes from the text content of the button (e.g. <q>Pause Carousel</q>).</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
                 <td></td>
                 <th scope="row">
-                  <code>aria-pressed</code>
+                  <code>aria-pressed=<q>false</q></code>
                 </th>
                 <td>
                   <code>button</code>
                 </td>
-                <td>Identifies the button as a toggle button.</td>
+                <td>
+                  <ul>
+                    <li>The <code>aria-pressed</code> attribute identified the button as a toggle button.</li>
+                    <li>When <code>aria-pressed=<q>false</q></code> the carousel auto-rotate is enabled.</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <th scope="row">
+                  <code>aria-pressed=<q>false</q></code>
+                </th>
+                <td>
+                  <code>button</code>
+                </td>
+                <td>When <code>aria-pressed=<q>true</q></code> the carousel auto-rotation is disabled.</td>
               </tr>
             </tbody>
           </table>
@@ -582,11 +665,42 @@
                 <td>
                   <code>a</code>
                 </td>
-                <td>Overrides the default role of <code>link</code> with <code>button</code>.</td>
+                <td>
+                  <ul>
+                    <li>Overrides the default role of <code>link</code> with <code>button</code> role.</li>
+                    <li>Accessible name is defined using <code>aria-label</code>.</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <th scope="row">
+                  <code>aria-label=<q><em>name</em></q></code>
+                </th>
+                <td>
+                  <code>a</code>
+                </td>
+                <td>Defines the accessible name for the next and previous slide buttons.</td>
+              </tr>
+              <tr>
+                <td></td>
+                <th scope="row">
+                  <code>aria-controls=<q>IDREF</q></code>
+                </th>
+                <td>
+                  <code>a</code>
+                </td>
+                <td>
+                  <ul>
+                    <li>Identifies the content on the page that the button controls.</li>
+                    <li>Relationship can be used by screen readers to provide navigation to the controlled content.</li>
+                  </ul>
+                </td>
               </tr>
             </tbody>
           </table>
         </section>
+
       <section>
 
       <section>
