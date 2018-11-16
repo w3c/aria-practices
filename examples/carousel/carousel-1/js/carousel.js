@@ -23,7 +23,6 @@ var Carousel = function (domNode) {
   this.pauseButton = null;
 
   this.rotate = true;
-  this.enableRotation = true;
   this.hasFocus = null;
   this.timeInterval = 5000;
 };
@@ -142,29 +141,27 @@ Carousel.prototype.rotateSlides = function () {
   setTimeout(this.rotateSlides.bind(this), this.timeInterval);
 };
 
+
 Carousel.prototype.startRotation = function (force) {
-  if (this.enableRotation && !this.hasFocus && !this.hasHover) {
+  if ((this.pauseButton.getAttribute('aria-pressed') === 'false') && !this.hasFocus && !this.hasHover) {
     this.rotate = true;
-    this.pauseButton.setAttribute('aria-pressed', 'false');
   }
   else {
     this.rotate = false;
-    this.pauseButton.setAttribute('aria-pressed', 'true');
   }
 };
 
 Carousel.prototype.stopRotation = function () {
   this.rotate = false;
-  this.pauseButton.setAttribute('aria-pressed', 'true');
 };
 
 Carousel.prototype.toggleRotation = function () {
-  if (this.enableRotation) {
-    this.enableRotation = false;
+  if ((this.pauseButton.getAttribute('aria-pressed') === 'false')) {
+    this.pauseButton.setAttribute('aria-pressed', 'true');
     this.stopRotation();
   }
   else {
-    this.enableRotation = true;
+    this.pauseButton.setAttribute('aria-pressed', 'false');
     this.startRotation();
     this.hasFocus = false;
   }

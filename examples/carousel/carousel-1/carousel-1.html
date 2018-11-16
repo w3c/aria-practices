@@ -39,10 +39,14 @@
 
       <h2>Accessibility Features</h2>
       <ul>
-        <li>Image rotation stops when keyboard focus enters the controls or content of the carousel.</li>
-        <li>Pause button is to provide a means of screen reader users using review mode to be aware of auto-updating content.</li>
         <li>
-          To improve readability of the caption text and content, background contrast is improved by decreasing the transparency of the caption area.   This improved the color contrast radio of the white text, especially when light colored image are used in the background.
+          Image rotation stops when keyboard focus enters the controls or content of the carousel.
+        </li>
+        <li>
+          Pause button is to provide a means of screen reader users using review mode to be aware of auto-updating content and stop the rotation.
+        </li>
+        <li>
+          To improve readability of the caption text and content, background contrast is improved by decreasing the transparency of the caption area.   This improves the color contrast radio of the white text, especially when light colored image are used in the background.
         </li>
       </ul>
 
@@ -50,7 +54,7 @@
         <h2 id="ex_label">Example</h2>
         <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
         <div id="ex1">
-            <section id="myCarousel" class="carousel slide" aria-label="Carousel of TV Shows">
+            <section id="myCarousel" class="carousel slide" aria-label="Image carousel">
               <button class="pause" aria-pressed="false">Pause Carousel</button>
 
               <div class="carousel-inner">
@@ -58,7 +62,7 @@
                 <a class="previous carousel-control"
                    role="button"
                    tabindex="0"
-                   aria-controls="carousel-panel-1"
+                   aria-controls="myCarousel"
                    aria-label="Previous Slide">
                   <svg width="30" height="30" version="1.1" xmlns="http://www.w3.org/2000/svg">
                     <polygon points="30 0 30 30 0 15"
@@ -69,9 +73,8 @@
                 <a class="next carousel-control"
                    role="button"
                    tabindex="0"
-                   aria-controls="carousel-panel-1"
+                   aria-controls="myCarousel"
                    aria-label="Next Slide">
-                <?xml version="1.0" standalone="no"?>
                   <svg width="30" height="30" version="1.1" xmlns="http://www.w3.org/2000/svg">
                     <polygon points="0 0 30 15 0 30"
                         stroke="white" fill="white" stroke-width="2"/>
@@ -81,7 +84,7 @@
                 <div class="carousel-item active">
 
                   <div class="carousel-image">
-                    <a href="http://www.pbs.org/about/news/archive/2015/pbs-most-trusted/">
+                    <a href="#">
                       <img src="images/amsterdamslide__800x600.jpg" alt="Walking Tour in Amsterdam" />
                     </a>
                   </div>
@@ -103,7 +106,9 @@
                 <div class="carousel-item">
 
                   <div class="carousel-image">
+                    <a href="#">
                       <img src="images/lands-endslide__800x600.jpg" alt="Land&#039;s End in Cornwall"/>
+                    </a>
                   </div>
 
                   <div class="carousel-caption">
@@ -123,13 +128,15 @@
                 <div class="carousel-item">
 
                   <div class="carousel-image">
-                    <img src="images/trustslide-2__800x600.jpg" alt="Mom and daughter play Daniel Tiger game on notebook computer."/>
+                    <a href="#">
+                      <img src="images/trustslide-2__800x600.jpg" alt="Mom and daughter play Daniel Tiger game on notebook computer."/>
+                    </a>
                   </div>
 
                   <div class="carousel-caption">
 
                     <h2>
-                      <a href="pbs-survey.html" id="carousel-label-3">
+                      <a href="#" id="carousel-label-3">
                         Survey confirms that TV  is America&#8217;s most trusted institution
                       </a>
                     </h2>
@@ -143,13 +150,15 @@
                 <div class="carousel-item">
 
                   <div class="carousel-image">
+                    <a href="#">
                       <img src="images/foyleswarslide__800x600.jpg" alt="A man in a suit and fedora and a woman with coiffed hair look sternly into the camera."/>
+                    </a>
                   </div>
 
                   <div class="carousel-caption">
 
                     <h2>
-                      <a href="foyles-war.html" id="carousel-label-4">
+                      <a href="#" id="carousel-label-4">
                         Foyle&#8217;s War Revisited
                       </a>
                     </h2>
@@ -169,7 +178,7 @@
                   <div class="carousel-caption">
 
                     <h2>
-                      <a href="/highlights/story/great-britcom-vote-all-star-edition" id="carousel-label-5">
+                      <a href="#" id="carousel-label-5">
                         Great Britain Vote: 7 pm Sat.
                       </a>
                     </h2>
@@ -182,13 +191,15 @@
                 <div class="carousel-item">
 
                   <div class="carousel-image">
+                    <a href="#">
                       <img src="images/mag800-2__800x600.jpg" alt="Mid-American Gardener panelists on the set" />
+                    </a>
                   </div>
 
                   <div class="carousel-caption">
 
                     <h2>
-                      <a href="http://www.will.illinois.edu/midamericangardener" id="carousel-label-6">
+                      <a href="#" id="carousel-label-6">
                         Mid-American Gardener: Thursdays at 7 pm
                       </a>
                     </h2>
@@ -223,7 +234,7 @@
         <h2 id="kbd_label">Keyboard Support</h2>
 
         <section>
-          <h3 id="kbd_label_2">Pause/Start Slide Rotation Button</h3>
+          <h3 id="kbd_label_2">Pause Slide Rotation Button</h3>
           <table aria-labelledby="kbd_label_2" class="def">
             <thead>
               <tr>
@@ -277,7 +288,7 @@
         <h2 id="rps_label">Role, Property, State, and Tabindex  Attributes</h2>
 
         <section>
-          <h3 id="rps_label_1">Tabs for Selecting Slides</h3>
+          <h3 id="rps_label_1">Region Landmark</h3>
           <table aria-labelledby="rps_label_1" class="data attributes">
             <thead>
               <tr>
@@ -290,13 +301,18 @@
             <tbody>
               <tr>
                 <th scope="row">
-                  <code>tablist</code>
+                  <code>region</code>
                 </th>
                 <td></td>
                 <td>
-                  <code>ol</code>
+                  <code>section</code>
                 </td>
-                <td>Indicates that the element serves as a container for a set of tabs.</td>
+                <td>
+                  <ul>
+                    <li>The <code>region</code> landmark is defined by a <code>section</code> element with a accessible name.</li>
+                    <li>The accessible name of the <code>region</code> landmark is defined using the <code>aria-label</code> attribute.</li>
+                  </ul>
+                </td>
               </tr>
               <tr>
                 <td></td>
@@ -304,152 +320,9 @@
                   <code>aria-label=<q>Image Carousel</q></code>
                 </th>
                 <td>
-                  <code>div</code>
+                  <code>section</code>
                 </td>
-                <td>Provides a label that describes the purpose of the set of tabs.</td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  <code>tab</code>
-                </th>
-                <td></td>
-                <td>
-                  <code>li</code>
-                </td>
-                <td>
-                  <ul>
-                    <li>Indicates the element serves as a tab control.</li>
-                    <li>
-                      When focused, is automatically activated, causing its associated <code>tabpanel</code> (e.g. slide)
-                      to be displayed.
-                    </li>
-                  </ul>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                </td>
-                <th scope="row">
-                  <code>aria-labelledby=<q>IDREF</q></code>
-                </th>
-                <td>
-                  <code>li</code>
-                </td>
-                <td>
-                  Defines a label for the <code>tab</code>.
-                </td>
-              </tr>
-              <tr>
-                <td></td>
-                <th scope="row">
-                  <code>aria-selected=<q>true</q></code>
-                </th>
-                <td>
-                  <code>li</code>
-                </td>
-                <td>
-                  <ul>
-                    <li>Indicates the tab control is activated and its associated panel (e.g slide) is displayed.</li>
-                    <li>Set when a tab receives focus.</li>
-                  </ul>
-                </td>
-              </tr>
-              <tr>
-                <td></td>
-                <th scope="row">
-                  <code>aria-selected=<q>false</q></code>
-                </th>
-                <td>
-                  <code>li</code>
-                </td>
-                <td>
-                  <ul>
-                    <li>
-                      Indicates the tab control is not active and its associated panel is <strong>NOT</strong>
-                      displayed.
-                    </li>
-                    <li>Set for all tab elements in the tab set except the focused tab.</li>
-                  </ul>
-                </td>
-              </tr>
-              <tr>
-                <td></td>
-                <th scope="row">
-                  <code>tabindex=<q>-1</q></code>
-                </th>
-                <td>
-                  <code>li</code>
-                </td>
-                <td>
-                  <ul>
-                    <li>Makes the element focusable.</li>
-                    <li>Set when a tab is not selected so that only the selected tab is in the page <kbd>Tab</kbd> sequence.</li>
-                    <li>Since an HTML <code>LI</code> element is used for the tab, it is necessary to set <code>tabindex=<q>0</q></code> on the selected (active) tab element.</li>
-                    <li>This approach to managing focus is described in the section on <a href="../../../#kbd_roving_tabindex">roving tabindex</a>.</li>
-                  </ul>
-                </td>
-              </tr>
-              <tr>
-                <td></td>
-                <th scope="row">
-                  <code>aria-controls=<q>IDREF</q></code>
-                </th>
-                <td>
-                  <code>li</code>
-                </td>
-                <td>
-                  Refers to the <code>tabpanel</code> element associated with the tab.
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">
-                  <code>tabpanel</code>
-                </th>
-                <td></td>
-                <td>
-                  <code>div</code>
-                </td>
-                <td>
-                  <ul>
-                    <li>Indicates the element serves as a container for tab panel content.</li>
-                    <li>
-                      Is hidden unless its associated <code>tab</code> control is activated.
-                    </li>
-                  </ul>
-                </td>
-              </tr>
-              <tr>
-                <td></td>
-                <th scope="row">
-                  <code>aria-labelledby=<q>IDREF</q></code>
-                </th>
-                <td>
-                  <code>div</code>
-                </td>
-                <td>
-                  <ul>
-                    <li>
-                      Refers to the <code>tab</code> element that controls the panel.
-                    </li>
-                    <li>Provides an accessible name for the tab panel.</li>
-                  </ul>
-                </td>
-              </tr>
-              <tr>
-                <td></td>
-                <th scope="row">
-                  <code>tabindex=<q>0</q></code>
-                </th>
-                <td>
-                  <code>div</code>
-                </td>
-                <td>
-                  <ul>
-                    <li>Puts the tabpanel in the page <kbd>Tab</kbd> sequence.</li>
-                    <li>Facilitates movement to panel content for assistive technology users.</li>
-                    <li>Especially helpful if there are panels that do not contain a focusable element.</li>
-                  </ul>
-                </td>
+                <td>Provides a label that describes the carousel region.</td>
               </tr>
             </tbody>
           </table>
@@ -468,14 +341,44 @@
             </thead>
             <tbody>
               <tr>
+                <th scope="row">
+                  <code>button</code>
+                </th>
+                <td></td>
+                <td>
+                  <code>button</code>
+                </td>
+                <td>
+                  <ul>
+                    <li>The default role for the <code>button</code> element is <code>button</code> role.</li>
+                    <li>Accessible name comes from the text content of the button (e.g. <q>Pause Carousel</q>).</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
                 <td></td>
                 <th scope="row">
-                  <code>aria-pressed</code>
+                  <code>aria-pressed=<q>false</q></code>
                 </th>
                 <td>
                   <code>button</code>
                 </td>
-                <td>Identifies the button as a toggle button.</td>
+                <td>
+                  <ul>
+                    <li>The <code>aria-pressed</code> attribute identified the button as a toggle button.</li>
+                    <li>When <code>aria-pressed=<q>false</q></code> the carousel auto-rotate is enabled.</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <th scope="row">
+                  <code>aria-pressed=<q>false</q></code>
+                </th>
+                <td>
+                  <code>button</code>
+                </td>
+                <td>When <code>aria-pressed=<q>true</q></code> the carousel auto-rotation is disabled.</td>
               </tr>
             </tbody>
           </table>
@@ -501,7 +404,37 @@
                 <td>
                   <code>a</code>
                 </td>
-                <td>Overrides the default role of <code>link</code> with <code>button</code>.</td>
+                <td>
+                  <ul>
+                    <li>Overrides the default role of <code>link</code> with <code>button</code> role.</li>
+                    <li>Accessible name is defined using <code>aria-label</code>.</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <th scope="row">
+                  <code>aria-label=<q><em>name</em></q></code>
+                </th>
+                <td>
+                  <code>a</code>
+                </td>
+                <td>Defines the accessible name for the next and previous slide buttons.</td>
+              </tr>
+              <tr>
+                <td></td>
+                <th scope="row">
+                  <code>aria-controls=<q>IDREF</q></code>
+                </th>
+                <td>
+                  <code>a</code>
+                </td>
+                <td>
+                  <ul>
+                    <li>Identifies the content on the page that the button controls.</li>
+                    <li>Relationship can be used by screen readers to provide navigation to the controlled content.</li>
+                  </ul>
+                </td>
               </tr>
             </tbody>
           </table>

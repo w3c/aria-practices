@@ -80,9 +80,10 @@ CarouselButton.prototype.handleClick = function (event) {
 
 CarouselButton.prototype.handleFocus = function (event) {
   this.domNode.classList.add('focus');
-  this.carousel.toggleRotation(this);
+  this.carousel.stopRotation();
 };
 
 CarouselButton.prototype.handleBlur = function (event) {
   this.domNode.classList.remove('focus');
+  this.carousel.startRotation();
 };

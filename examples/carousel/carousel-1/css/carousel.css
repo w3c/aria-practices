@@ -1,8 +1,3 @@
-.carousel img {
-  height: 100% !important;
-  width: 100% !important
-}
-
 .carousel-item { /*.carousel*/
   display: none;
   max-height: 400px;
@@ -33,6 +28,12 @@
     position: relative;
     top: 5px;
     right: -20px;
+    border: thin solid outset;
+}
+
+.carousel button[aria-pressed=true].pause {
+    border-style: inset;
+    color: #666;
 }
 
 .carousel button.pause:focus{
@@ -48,14 +49,29 @@
   right: -20px;
 }
 
+
+.carousel .carousel-inner .carousel-image a {
+  display: block;
+}
+
+.carousel .carousel-inner .carousel-image a:focus {
+  border: solid 2px #005A9C;
+}
+
+.carousel .carousel-inner .carousel-image a img {
+  height: 100%;
+  width: 100%;
+}
+
+
 .carousel .carousel-inner .carousel-caption a {
   text-decoration: underline;
   border: none;
 }
 
-.carousel .carousel-inner .carousel-caption a:focus {
-  text-decoration: none;
-  outline: solid 1px #FFF;
+.carousel .carousel-inner .carousel-caption a:focus,
+.carousel .carousel-inner .carousel-caption a:hover {
+  outline: solid 2px #FFF;
   outline-offset: 1px;
 }
 
@@ -123,7 +139,8 @@
 }
 
 .carousel a.carousel-control:focus {
-  outline: 3px solid #005A9C;
+  border: 3px solid #FFF;
+  outline: 1px solid #005A9C;
 }
 
 .carousel a.carousel-control:focus svg polygon {
