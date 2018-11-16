@@ -40,6 +40,13 @@ CarouselTab.prototype.init = function () {
   this.domNode.addEventListener('click', this.handleClick.bind(this));
   this.domNode.addEventListener('focus', this.handleFocus.bind(this));
   this.domNode.addEventListener('blur', this.handleBlur.bind(this));
+
+  this.domNode.addEventListener('focusin', this.handleFocusIn.bind(this));
+  this.domNode.addEventListener('focusout', this.handleFocusOut.bind(this));
+
+  this.tabpanelDomNode.addEventListener('focusin', this.handleFocusIn.bind(this));
+  this.tabpanelDomNode.addEventListener('focusout', this.handleFocusOut.bind(this));
+
 };
 
 CarouselTab.prototype.hideTabPanel = function () {
@@ -102,5 +109,14 @@ CarouselTab.prototype.handleFocus = function (event) {
 
 CarouselTab.prototype.handleBlur = function (event) {
   this.domNode.classList.remove('focus');
+  this.tablist.hasFocus = false;
   this.tablist.startRotation();
+};
+
+CarouselTab.prototype.handleFocusIn = function (event) {
+  this.tabpanelDomNode.classList.add('focus');
+};
+
+CarouselTab.prototype.handleFocusOut = function (event) {
+  this.tabpanelDomNode.classList.remove('focus');
 };
