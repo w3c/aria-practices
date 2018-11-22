@@ -9,7 +9,7 @@
   "scripts": {
     "fix": "eslint --fix .",
     "lint": "npm run lint:es && npm run lint:css",
-    "lint:css": "stylelint .",
+    "lint:css": "stylelint **/*.css",
     "lint:es": "eslint .",
     "regression": "ava test/tests",
     "regression-report": "node test/util/report",
