@@ -62,10 +62,8 @@ MenuItemLinks.prototype.init = function () {
 /* EVENT HANDLERS */
 
 MenuItemLinks.prototype.handleKeydown = function (event) {
-  var tgt = event.currentTarget,
-    flag = false,
-    char = event.key,
-    clickEvent;
+  var flag = false,
+    char = event.key;
 
   function isPrintableCharacter (str) {
     return str.length === 1 && str.match(/\S/);
@@ -78,14 +76,16 @@ MenuItemLinks.prototype.handleKeydown = function (event) {
   if (event.shiftKey) {
     if (isPrintableCharacter(char)) {
       this.menu.setFocusByFirstCharacter(this, char);
+      flag = true;
+    }
+
+    if (event.keyCode === this.keyCode.TAB) {
+      this.menu.setFocusToController();
+      this.menu.close(true);
     }
   }
   else {
     switch (event.keyCode) {
-
-      case this.keyCode.SPACE:
-        flag = true;
-        break;
 
       case this.keyCode.ESC:
         this.menu.setFocusToController();

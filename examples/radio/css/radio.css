@@ -9,10 +9,15 @@
 }
 
 [role="radio"] {
+  border: 2px solid transparent;
+  border-radius: 5px;
   display: inline-block;
   position: relative;
-  padding-left: 1.4em;
+  padding: 0.125em;
+  padding-left: 1.5em;
+  padding-right: 0.5em;
   cursor: default;
+  outline: none;
 }
 
 [role="radio"] + [role="radio"] {
@@ -24,7 +29,7 @@
   position: absolute;
   top: 50%;
   left: 7px;
-  transform: translate(-50%, -50%);
+  transform: translate(-20%, -50%);
   content: '';
 }
 
@@ -50,7 +55,7 @@
   display: block;
   border: .1875em solid #fff;
   border-radius: 100%;
-  //transform: translateY(-65%) translateX(-50%);
+  transform: translate(25%, -50%);
 }
 
 [role="radio"][aria-checked="mixed"]:active::before,
@@ -62,17 +67,13 @@
   border-color: hsl(216, 94%, 65%);
 }
 
-[role="radio"]:focus {
-  outline: none;
+[role="radio"].focus {
+  border-color: hsl(216, 94%, 73%);
+  background-color: hsl(216, 80%, 97%);
 }
 
-[role="radio"].focus:before,
-[role="radio"]:focus::before {
-  width: 16px;
-  height: 16px;
-  box-sizing: content-box;
-  border-color: hsl(216, 94%, 73%);
-  border-width: 3px;
-  border-radius: 100%;
-  box-shadow: inset 0 0 0 1px hsl(216, 80%, 50%);
+[role="radio"]:hover {
+  background-color: hsl(216, 80%, 92%);
 }
+
+
