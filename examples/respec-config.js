@@ -42,6 +42,13 @@ var respecConfig = {
     mailto: 'jongund@illinois.edu',
     company: 'University of Illinois',
     companyURI: 'http://illinois.edu/'
+  },
+  {
+    name: 'Matt King',
+    mailto: 'mck@fb.com',
+    company: 'Facebook',
+    companyURI: 'http://www.facebook.com/',
+    w3cid: 44582
   }],
 
   // Authors, add as many as you like.
