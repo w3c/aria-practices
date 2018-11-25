@@ -144,18 +144,15 @@ console.log('Generating index...');
 
 function replaceSection (id, content, newContent ) {
 
-  var indexStart = content.indexOf('id="' + id + '"');
+  var indexStart = content.indexOf(id);
 
   if (indexStart > 0) {
     indexStart = content.indexOf('>', indexStart) + 1;
-
-    indexEnd = content.indexOf('</section>', indexStart);
+    indexEnd = indexStart + 1;
 
     console.log('Replacing at: ' + indexStart + ' .... ' + indexEnd);
 
-    if (indexStart > 0 && indexEnd > 0 ) {
-      content = content.slice(0, indexStart) + newContent + content.slice(indexEnd);
-    }
+    content = content.slice(0, indexStart) + newContent + content.slice(indexEnd);
   }
 
   return content;
@@ -304,44 +301,42 @@ var count = 0;
 
 function findHTMLFiles(path) {
 
-  fs.readdir(path, function(err, items) {
-      for (var i = 0; i < items.length; i++) {
+  fs.readdirSync(path).forEach(function(file) {
+    var new_path = path + '/' + file;
 
-        var new_path = path + '/' + items[i];
+    var stats = fs.statSync(new_path);
 
-        var stats = fs.lstatSync(new_path);
+    if (stats.isDirectory()) {
+      findHTMLFiles(new_path);
+    }
 
-        if (stats.isDirectory()) {
-          findHTMLFiles(new_path);
-        }
+    if (stats.isFile() &&
+        (new_path.indexOf('.html') > 0) &&
+        (new_path.indexOf('index.html') < 0) &&
+        (new_path.indexOf('landmark') < 0)) {
 
-        if (stats.isFile() &&
-            (new_path.indexOf('.html') > 0) &&
-            (new_path.indexOf('landmark') < 0)) {
+      count += 1;
 
-          count += 1;
+      var data = fs.readFileSync(new_path, 'utf8');
 
-          var data = fs.readFileSync(new_path, 'utf8');
+      var ref   = new_path;
+      var title = getTitle(data);
+      var roles = getRoles(data);
+      var props = getPropertiesAndStates(data);
 
-          var ref   = new_path;
-          var title = getTitle(data);
-          var roles = getRoles(data);
-          var props = getPropertiesAndStates(data);
+      console.log('\nFile ' + count + ': ' + ref);
+      console.log('Title  ' + count + ': ' + title);
+      console.log('Roles  ' + count + ': ' + roles);
+      console.log('Props  ' + count + ': ' + props);
 
-          console.log('\nFile ' + count + ': ' + ref);
-          console.log('Title  ' + count + ': ' + title);
-          console.log('Roles  ' + count + ': ' + roles);
-          console.log('Props  ' + count + ': ' + props);
+      var example = {};
+      example['title'] = title;
+      example['ref']   = ref;
 
-          var example = {};
-          example['title'] = title;
-          example['ref']   = ref;
+      addExampleToRoles(roles, example);
 
-          addExampleToRoles(roles, example);
-
-          addExampleToPropertiesAndStates(props, example);
-        }
-      }
+      addExampleToPropertiesAndStates(props, example);
+    }
   });
 };
 
@@ -369,7 +364,6 @@ addLandmarkRole('main',          true,  'Main Landmark',          'http://localh
 addLandmarkRole('navigation',    true,  'Navigation Landmark',    'http://localhost/GitHub/aria-practices/examples/landmarks/navigation.html');
 addLandmarkRole('region',        true,  'Region Landmark',        'http://localhost/GitHub/aria-practices/examples/landmarks/region.html');
 addLandmarkRole('search',        true,  'Search Landmark',        'http://localhost/GitHub/aria-practices/examples/landmarks/search.html');
-
 
 var exampleIndexFile = fs.readFileSync(fileNameTemplate, function(err){
   console.log("Error reading aria index:", err );
@@ -406,7 +400,7 @@ for (let i = 0; i < sorted.length; i++) {
   html += '    </tr>\n';
 }
 
-exampleIndexFile = replaceSection('examples_by_roles_tbody', exampleIndexFile, html);
+exampleIndexFile = replaceSection('examples_by_role_tbody', exampleIndexFile, html);
 
 sorted = [];
 
@@ -439,10 +433,7 @@ for (let i = 0; i < sorted.length; i++) {
   html += '    </tr>\n';
 }
 
-console.log(html)
 exampleIndexFile = replaceSection('examples_by_props_tbody', exampleIndexFile, html);
-
-
 
 fs.writeFile(fileNameIndex, exampleIndexFile, function(err){
   if (err) {

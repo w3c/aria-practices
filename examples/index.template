@@ -6,14 +6,14 @@
   <script src="https://www.w3.org/Tools/respec/respec-w3c-common" class="remove"></script>
   <script src="../common/script/resolveReferences.js" class="remove"></script>
   <script src="../common/biblio.js" class="remove"></script>
-  <script src="../respec-config.js" class="remove"></script>
+  <script src="respec-config.js" class="remove"></script>
   <link href="../common/css/common.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 
   <section id="abstract">
     <p>
-      This document provides readers with an index of examples using <cite><a href="https://www.w3.org/TR/wai-aria-1.1/"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> 1.1</a></cite> [[WAI-ARIA]] to create accessible rich internet applications.
+      This document provides readers with an index of <cite><a href="https://www.w3.org/TR/aria-practices/"><abbr title="ARIA Authoring Practices">ARIA Authoring Practices </abbr> 1.1</a></cite> examples using <cite><a href="https://www.w3.org/TR/wai-aria-1.1/"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> 1.1</a></cite> [[WAI-ARIA]] to create accessible rich internet applications.
       The index provides references to examples by role, properties and states.
       Not every role, property and state may have an example.
     </p>
@@ -31,7 +31,7 @@
           <th>Examples</th>
         </tr>
       </thead>
-      <tbody id="examples_by_role_label_tbody">
+      <tbody id="examples_by_role_tbody">
 
       </tbody>
     </table>
@@ -48,7 +48,7 @@
           <th>Examples</th>
         </tr>
       </thead>
-      <tbody id="examples_by_props_label_tbody">
+      <tbody id="examples_by_props_tbody">
       </tbody>
     </table>
 
