@@ -1,5 +1,9 @@
 const fs = require('fs')
 
+var fileNameTemplate = "index.template";
+var fileNameIndex    = "index.html";
+
+
 ariaRoles = [
 'banner',
 'navigation',
@@ -366,9 +370,8 @@ addLandmarkRole('navigation',    true,  'Navigation Landmark',    'http://localh
 addLandmarkRole('region',        true,  'Region Landmark',        'http://localhost/GitHub/aria-practices/examples/landmarks/region.html');
 addLandmarkRole('search',        true,  'Search Landmark',        'http://localhost/GitHub/aria-practices/examples/landmarks/search.html');
 
-var fileName = "index.html";
 
-var exampleFile = fs.readFileSync(fileName, function(err){
+var exampleIndexFile = fs.readFileSync(fileNameTemplate, function(err){
   console.log("Error reading aria index:", err );
 });
 
@@ -403,7 +406,7 @@ for (let i = 0; i < sorted.length; i++) {
   html += '    </tr>\n';
 }
 
-exampleFile = replaceSection('examples_by_roles_tbody', exampleFile, html);
+exampleIndexFile = replaceSection('examples_by_roles_tbody', exampleIndexFile, html);
 
 sorted = [];
 
@@ -436,9 +439,12 @@ for (let i = 0; i < sorted.length; i++) {
   html += '    </tr>\n';
 }
 
-exampleFile = replaceSection('examples_by_props_tbody', exampleFile, html);
+console.log(html)
+exampleIndexFile = replaceSection('examples_by_props_tbody', exampleIndexFile, html);
 
-fs.writeFile(fileName, exampleFile, function(err){
+
+
+fs.writeFile(fileNameIndex, exampleIndexFile, function(err){
   if (err) {
     console.log("Error saving updated aria practices:", err );
   }
