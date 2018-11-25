@@ -1,5 +1,4 @@
-var Glob = require('Glob');
-fs = require('fs')
+const fs = require('fs')
 
 ariaRoles = [
 'banner',
@@ -297,32 +296,60 @@ function addLandmarkRole (landmark, hasLabel, title, ref) {
   }
 }
 
+var r = 0;
 
-var res = Glob.sync('examples/**/*.html');
+function findHTMLFiles(path) {
+
+  fs.readdir(path, function(err, items) {
+      for (var i = 0; i < items.length; i++) {
+
+        var new_path = path + '/' + items[i];
+
+        var stats = fs.lstatSync(new_path);
+
+        if (stats.isDirectory()) {
+          findHTMLFiles(new_path);
+        }
+
+        if (stats.isFile() &&
+            (new_path.indexOf('.html') > 0) &&
+            (new_path.indexOf('landmark') < 0)) {
+
+          r += 1;
+
+          var data = fs.readFileSync(new_path, 'utf8');
+
+          var ref   = new_path;
+          var title = getTitle(data);
+          var roles = getRoles(data);
+          var props = getPropertiesAndStates(data);
+
+          console.log('\nFile ' + r + ': ' + ref);
+          console.log('Title  ' + r + ': ' + title);
+          console.log('Roles  ' + r + ': ' + roles);
+          console.log('Props  ' + r + ': ' + props);
+
+          var example = {};
+          example['title'] = title;
+          example['ref']   = ref;
+
+          addExampleToRoles(roles, example);
+
+          addExampleToPropertiesAndStates(props, example);
+        }
+      }
+  });
+};
+
+findHTMLFiles('examples');
+
+
+var res = fs.readdir('examples');
 
 for (r in res) {
 
   // handle landmark examples separately
   if (res[r].indexOf('landmark') < 0) {
-    var data = fs.readFileSync(res[r], 'utf8');
-
-    var ref   = res[r];
-    var title = getTitle(data);
-    var roles = getRoles(data);
-    var props = getPropertiesAndStates(data);
-
-    console.log('\nFile ' + r + ': ' + ref);
-    console.log('Title  ' + r + ': ' + title);
-    console.log('Roles  ' + r + ': ' + roles);
-    console.log('Props  ' + r + ': ' + props);
-
-    var example = {};
-    example['title'] = title;
-    example['ref']   = ref;
-
-    addExampleToRoles(roles, example);
-
-    addExampleToPropertiesAndStates(props, example);
 
   }
 
@@ -336,7 +363,7 @@ addLandmarkRole('contentinfo',   false, 'Contentinfo Landmark',   'http://localh
 addLandmarkRole('form',          true,  'Form Landmark',          'http://localhost/GitHub/aria-practices/examples/landmarks/form.html');
 addLandmarkRole('main',          true,  'Main Landmark',          'http://localhost/GitHub/aria-practices/examples/landmarks/main.html');
 addLandmarkRole('navigation',    true,  'Navigation Landmark',    'http://localhost/GitHub/aria-practices/examples/landmarks/navigation.html');
-addLandmarkRole('region',        true,  'Region Landmark',          'http://localhost/GitHub/aria-practices/examples/landmarks/region.html');
+addLandmarkRole('region',        true,  'Region Landmark',        'http://localhost/GitHub/aria-practices/examples/landmarks/region.html');
 addLandmarkRole('search',        true,  'Search Landmark',        'http://localhost/GitHub/aria-practices/examples/landmarks/search.html');
 
 var practices = fs.readFileSync("aria-practices.html", function(err){
