@@ -296,7 +296,7 @@ function addLandmarkRole (landmark, hasLabel, title, ref) {
   }
 }
 
-var r = 0;
+var count = 0;
 
 function findHTMLFiles(path) {
 
@@ -315,7 +315,7 @@ function findHTMLFiles(path) {
             (new_path.indexOf('.html') > 0) &&
             (new_path.indexOf('landmark') < 0)) {
 
-          r += 1;
+          count += 1;
 
           var data = fs.readFileSync(new_path, 'utf8');
 
@@ -324,10 +324,10 @@ function findHTMLFiles(path) {
           var roles = getRoles(data);
           var props = getPropertiesAndStates(data);
 
-          console.log('\nFile ' + r + ': ' + ref);
-          console.log('Title  ' + r + ': ' + title);
-          console.log('Roles  ' + r + ': ' + roles);
-          console.log('Props  ' + r + ': ' + props);
+          console.log('\nFile ' + count + ': ' + ref);
+          console.log('Title  ' + count + ': ' + title);
+          console.log('Roles  ' + count + ': ' + roles);
+          console.log('Props  ' + count + ': ' + props);
 
           var example = {};
           example['title'] = title;
