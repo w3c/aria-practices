@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+<head>
+  <meta charset="utf-8" />
+  <title>Index of ARIA Examples</title>
+  <script src="https://www.w3.org/Tools/respec/respec-w3c-common" class="remove"></script>
+  <script src="../common/script/resolveReferences.js" class="remove"></script>
+  <script src="../common/biblio.js" class="remove"></script>
+  <script src="../respec-config.js" class="remove"></script>
+  <link href="../common/css/common.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+  <section id="abstract">
+    <p>
+      This document provides readers with an index of examples using <cite><a href="https://www.w3.org/TR/wai-aria-1.1/"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> 1.1</a></cite> [[WAI-ARIA]] to create accessible rich internet applications.
+      The index provides references to examples by role, properties and states.
+      Not every role, property and state may have an example.
+    </p>
+    <p>This document is part of the WAI-ARIA suite described in the <a href="https://www.w3.org/WAI/intro/aria.php">WAI-ARIA Overview</a>.</p>
+  </section>
+
+
+  <section id="examples_by_roles">
+
+    <h2 id="examples_by_role_label">Examples by Role</h2>
+    <table aria-labelledby="examples_by_role_label">
+      <thead>
+        <tr>
+          <th>Role</th>
+          <th>Examples</th>
+        </tr>
+      </thead>
+      <tbody id="examples_by_role_label_tbody">
+
+      </tbody>
+    </table>
+
+  </section>
+
+  <section id="examples_by_props">
+
+    <h2 id="examples_by_props_label">Examples By Properties and States</h2>
+    <table aria-labelledby="examples_by_props_label">
+      <thead>
+        <tr>
+          <th>Property or State</th>
+          <th>Examples</th>
+        </tr>
+      </thead>
+      <tbody id="examples_by_props_label_tbody">
+      </tbody>
+    </table>
+
+  </section>
+
+
+
+  <section id="appendices" class="appendix">
+    <h2>Appendices</h2>
+    <div data-include='../common/acknowledgements.html' data-include-replace='true'></div>
+  </section>
+</body>
+</html>
