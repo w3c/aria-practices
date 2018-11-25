@@ -165,7 +165,10 @@ function getTitle (data) {
 
   title = title.split('|');
 
-  return title[0];
+  title = title[0].replace('Examples', '');
+  title = title.replace('Example', '');
+
+  return title;
 
 }
 
