@@ -138,7 +138,7 @@ aria.Utils = aria.Utils || {};
         return validRoles.some(function (role) {
           return token === role;
         });
-    });
+      });
     if (!isDialog) {
       throw new Error(
         'Dialog() requires a DOM element with ARIA role of dialog or alertdialog.');
