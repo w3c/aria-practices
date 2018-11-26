@@ -109,13 +109,11 @@ FontMenuItem.prototype.handleKeydown = function (event) {
         break;
 
       case this.keyCode.RIGHT:
-        this.fontMenu.setFocusToController('next');
-        this.fontMenu.close(true);
+        flag = true;
         break;
 
       case this.keyCode.LEFT:
-        this.fontMenu.setFocusToController('previous');
-        this.fontMenu.close(true);
+        flag = true;
         break;
 
       case this.keyCode.HOME:
