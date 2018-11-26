@@ -3,14 +3,36 @@ language: node_js
 node_js:
   - "node"
 
+addons:
+  firefox: "60.0.2"
+
 git:
   depth: 3
 
-before_deploy: scripts/travis-before_deploy.sh
+stages:
+- Test
+- Deploy
+jobs:
+  include:
+    - stage: Test
+      name: AVA Regression Tests
+      script: ava --tap -c 1 test/tests
+    - stage: Test
+      name: JS Linting
+      script: npm run lint
+    - stage: Test
+      name: HTML Linting
+      script: npm run vnu-jar
+    - stage: Deploy
+      if: branch = master AND type != pull_request
+      script: skip
+      before_deploy: scripts/travis-before_deploy.sh
+      deploy:
+        provider: script
+        skip_cleanup: true
+        script: /tmp/deploy/travis-deploy.sh
+        on:
+          branch: master
 
-deploy:
-  provider: script
-  skip_cleanup: true
-  script: /tmp/deploy/travis-deploy.sh
-  on:
-    branch: master
+env:
+  - TEST_WAIT_TIME=1000

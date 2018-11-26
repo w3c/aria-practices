@@ -1669,7 +1669,7 @@
 
       <section class="notoc">
         <h4>Examples</h4>
-        <p><a href="examples/link/link.html">Link Examples</a>: Link widgets constructed from HTML <code>span</code> and <code>div</code> elements.</p>
+        <p><a href="examples/link/link.html">Link Examples</a>: Link widgets constructed from HTML <code>span</code> and <code>img</code> elements.</p>
       </section>
 
       <section class="notoc">
@@ -2361,6 +2361,12 @@
             <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> on the spinbutton element.
             Otherwise, the spinbutton element has a label provided by
             <a href="#aria-label" class="property-reference">aria-label</a>.
+          </li>
+          <li>
+            The spinbutton element has
+            <a href="#aria-invalid" class="state-reference">aria-invalid</a> set to <code>true</code>
+            if the value is outside the allowed range.
+            Note that most implementations prevent input of invalid values, but in some scenarios, blocking all invalid input may not be practical.
           </li>
         </ul>
       </section>
@@ -4287,7 +4293,7 @@
         For example, specifying an invalid value for <code>aria-rowindex</code> or setting it on some but not all rows in a table, could cause screen reader table reading functions to skip rows or simply stop functioning.
       </p>
       <p>
-        The following code demonstrates the use of <code>aria-rowcount</code> and <code>aria-rowindex</code> properties on a table containing a a hypothetical class list.
+        The following code demonstrates the use of <code>aria-rowcount</code> and <code>aria-rowindex</code> properties on a table containing a hypothetical class list.
       </p>
       <pre>
         <code>
@@ -4381,7 +4387,7 @@
         <h4>Using <code>aria-colindex</code> When Column Indicies Are Contiguous</h4>
         <p>
           When all the cells in a row have column index numbers that are consecutive integers,
-          <code>aria-colindex</code> can be set on the row element with a value equal to the the index number of the first column in the set.
+          <code>aria-colindex</code> can be set on the row element with a value equal to the index number of the first column in the set.
           Browsers will then compute a column number for each cell in the row.
         </p>
         <p>
