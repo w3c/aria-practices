@@ -131,7 +131,7 @@ aria.Utils = aria.Utils || {};
     }
 
     var validRoles = ['dialog', 'alertdialog'];
-    var isDialog = element.getAttribute('role')
+    var isDialog = (element.getAttribute('role') || '')
       .trim()
       .split(/\s+/g)
       .some(function (token) {
