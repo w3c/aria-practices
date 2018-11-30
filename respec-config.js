@@ -43,7 +43,15 @@ var respecConfig = {
     company: 'Facebook',
     companyURI: 'http://www.facebook.com/',
     w3cid: 44582
-  }, {
+  }, 
+     {
+    name: 'JaEun Jemma Ku',
+    mailto: 'jku@illinois.edu',
+    company: 'University of Illinois',
+    companyURI: 'https://illinois.edu/',
+    w3cid: 74097
+  },
+     {
     name: 'James Nurthen',
     mailto: 'nurthen@adobe.com',
     company: 'Adobe',
