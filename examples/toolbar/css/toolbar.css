@@ -71,6 +71,15 @@
 	padding: 5px 11px;
 }
 
+[role="toolbar"] button:hover,
+[role="toolbar"] [role="menuitemradio"]:hover,
+[role="toolbar"] .spinbutton:hover,
+[role="toolbar"] label.input:hover,
+[role="toolbar"] a:hover{
+	border-color:#005A9C;
+	background:rgb(226, 239, 255);
+}
+
 [role="toolbar"] button::-moz-focus-inner {
     border: 0;
 }
