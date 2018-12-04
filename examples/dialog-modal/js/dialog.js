@@ -126,9 +126,20 @@ aria.Utils = aria.Utils || {};
    */
   aria.Dialog = function (dialogId, focusAfterClosed, focusFirst) {
     this.dialogNode = document.getElementById(dialogId);
-    var role = this.dialogNode.getAttribute('role');
+    if (this.dialogNode === null) {
+      throw new Error('No element found with id="' + dialogId + '".');
+    }
 
-    if (this.dialogNode === null || !['dialog', 'alertdialog'].includes(role)) {
+    var validRoles = ['dialog', 'alertdialog'];
+    var isDialog = (this.dialogNode.getAttribute('role') || '')
+      .trim()
+      .split(/\s+/g)
+      .some(function (token) {
+        return validRoles.some(function (role) {
+          return token === role;
+        });
+      });
+    if (!isDialog) {
       throw new Error(
         'Dialog() requires a DOM element with ARIA role of dialog or alertdialog.');
     }
