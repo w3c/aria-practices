@@ -1,0 +1,148 @@
+* {
+  margin: 0;
+  padding: 0;
+  /* border:0; */
+}
+.datepicker{
+  margin-top:1em;
+}
+.datepickerButton{
+  border-style:none;
+  text-align:left;
+  background-color:white;
+}
+label{
+  display:block;
+}
+
+.datepickerInput{
+  margin-top:1em;
+  width:20%;
+}
+
+.datepickerDialog {
+  width:45%;
+  clear:both;
+  display:none;
+  border:3px solid rgb(130, 177, 230);
+  margin-top:1em;
+  border-radius:5px;
+  padding:0;
+}
+.dialogButtonGroup{
+  text-align:right;
+  margin-top:1em;
+  margin-bottom:1em;
+  margin-right:1em;
+}
+.dialogButton{
+  font-size:0.85em;
+  padding:5px;
+  border-radius:5px;
+  margin-left:1em;
+  width:5em;
+  background-color:hsl(216, 89%, 72%);
+  color:white;
+  outline:none;
+  border: 1px solid #EEE;
+}
+.prev-year, .prev-month, .next-month, .next-year {
+  padding:4px;
+  width:2em;
+}
+
+.prev-year:focus, .prev-month:focus, .next-month:focus, .next-year:focus{
+  color:black;
+  border: 1px solid black;
+  background:hsl(217, 100%, 92%);
+  border-radius:10px;
+  outline:0;
+}
+.dialogButton:focus{
+  border:1px solid black;
+  outline:0;
+}
+.dates{
+  width:100%;
+  padding-left:1em;
+  padding-right:1em;
+  padding-top:1em;
+}
+th[scope="col"],.dateRow td{
+  text-align:center;
+}
+
+.fa-calendar-alt {
+  color:hsl(216, 89%, 72%);
+}
+.header {
+  cursor:default;
+  background-color:hsl(216, 89%, 72%);
+  padding:7px;
+  font-weight:bold;
+  text-transform:uppercase;
+  color:white;
+  display: flex;
+  justify-content: space-around;
+}
+.header button{
+  border-style:none;
+  background:transparent;
+}
+
+.header span {
+  display:inline-block;
+}
+
+.dateRow{
+  border:1px solid black;
+}
+
+
+.cell {
+  outline:0;
+  border:0;
+  padding:0;
+  margin:0;
+  height: 40px;
+  width:40px;
+}
+.dateCell{
+  padding:0;
+  margin:0;
+  line-height: inherit;
+  height:100%;
+  width: 100%;
+  font-size: 15px;
+  border:1px solid rgba(164, 164, 164, 0.961);
+  background:white;
+  border-radius:5px;
+}
+.dateCell::-moz-focus-inner{
+  border:0;
+}
+.dateCell:focus{
+  outline:0;
+  padding:0;
+  background-color:hsl(216, 89%, 72%);
+  border:1px solid black;
+}
+.lastFocused {
+  outline:0;
+  padding:0;
+  background-color:hsl(216, 80%, 92%);
+  border:1px solid rgb(100, 100, 100);
+}
+.disabled, .dateCell:disabled,{
+  cursor: not-allowed;
+  color: #afafaf;
+}
+
+.dateCell:disabled{
+  border:1.3px solid #EEE;
+  background:#EEE;
+  cursor: not-allowed;
+}
+.fa-lg {
+  color:white;
+}
