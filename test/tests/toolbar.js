@@ -13,7 +13,7 @@ const ex = {
   toolbarSelector: '#ex1 [role="toolbar"]',
   toolbarLabel: 'Example Toolbar',
   itemSelector: '#ex1 .item',
-  buttonSelector: '#ex1 button.item',
+  buttonSelector: '#ex1 button',
   menuSelector: '#ex1 button[aria-haspopup]',
   spinSelector: '#ex1 [role="spinbutton"]',
   linkSelector: '#ex1 a[href]',
@@ -89,8 +89,7 @@ ariaTest('Toolbar element has "aria-label"', exampleFile, 'toolbar-aria-label', 
   await assertAriaLabelExists(t, ex.toolbarSelector);
 });
 
-/*
-ariaTest('Toolbar items support roving tabindex on toolbar items', exampleFile, 'toolbaritem-tabindex', async (t) => {
+ariaTest('Toolbar items support roving tabindex on toolbar items', exampleFile, 'toolbar-item-tabindex', async (t) => {
   t.plan(2);
 
   // Test all the role="button" elements with roving tab index
@@ -103,6 +102,7 @@ ariaTest('Toolbar items support roving tabindex on toolbar items', exampleFile, 
   await assertAttributeValues(t, ex.spinSelector, 'tabindex', '0');
 });
 
+/*
 // Test pending fix bug in example: fix in issue 847 on w3c/aria-practices
 ariaTest.failing('"aria-disabled" on button elements', exampleFile, 'button-aria-disabled', async (t) => {
   t.fail();
