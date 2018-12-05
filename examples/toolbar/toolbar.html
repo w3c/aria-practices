@@ -278,7 +278,7 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
     </section>
 
     <section>
-      <h3 id="kbd_label_2">Toggle Button</h3>
+      <h3 id="kbd_label_2">Toggle Button (bold, Italic and Underline)</h3>
       <p>The <b>Bold</b>, <i>Italic</i>, <u>Underline</u> and the left, center and right justification buttons in the toolbar and use the <a href="../../#button">Toggle Button design pattern</a>.</p>
       <table aria-labelledby="kbd_label_2" class="def">
         <thead>
@@ -292,27 +292,6 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
             <th><kbd>Enter</kbd>,<br><kbd>Space</kbd></th>
             <td>
               Toggle on/off the the action associated with the button.
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-
-    <section>
-      <h3 id="kbd_label_3">Button</h3>
-      <p>The cut, copy and paste button in the toolbar.</p>
-      <table aria-labelledby="kbd_label_3" class="def">
-        <thead>
-          <tr>
-            <th>Key</th>
-            <th>Function</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th><kbd>Enter</kbd>,<br><kbd>Space</kbd></th>
-            <td>
-              Activate the action associated with the button.
             </td>
           </tr>
         </tbody>
@@ -370,6 +349,27 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
                 <li>Moves focus to the previous radio button.</li>
                 <li>If the radio button has focus, focus moves to the last radio button.</li>
               </ul>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h3 id="kbd_label_3">Button (Cut, Copy and Paste)</h3>
+      <p>The cut, copy and paste button in the toolbar.</p>
+      <table aria-labelledby="kbd_label_3" class="def">
+        <thead>
+          <tr>
+            <th>Key</th>
+            <th>Function</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th><kbd>Enter</kbd>,<br><kbd>Space</kbd></th>
+            <td>
+              If the button is enabled, activate the action associated with the button.
             </td>
           </tr>
         </tbody>
@@ -777,16 +777,6 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
             </td>
             <td>
               <code>aria-checked</code> is set to <code><q>true</q></code> on the radio button representing the current text alignment of the content in the <code>textarea</code>, otherwise it is set to <code><q>false</q></code>.
-            </td>
-          </tr>
-          <tr>
-            <td></td>
-            <th scope="row"><code>tabindex=<q>-1</q></code></th>
-            <td>
-              <code>button</code>
-            </td>
-            <td>
-              Setting <code>tabindex=-1</code> takes the <code>button<code> element out of the tab order of the page.
             </td>
           </tr>
         </tbody>

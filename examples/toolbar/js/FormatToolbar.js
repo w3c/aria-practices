@@ -38,8 +38,7 @@ FormatToolbar.prototype.init = function () {
   var i, items, toolbarItem, menuButton;
 
   this.textarea = document.getElementById(this.domNode.getAttribute('aria-controls'));
-  console.log('width: ' + this.domNode.getBoundingClientRect().width);
-  this.textarea.style.width = (this.domNode.getBoundingClientRect().width-12) + 'px';
+  this.textarea.style.width = (this.domNode.getBoundingClientRect().width - 12) + 'px';
   this.textarea.addEventListener('mouseup', this.selectTextContent.bind(this));
   this.textarea.addEventListener('keyup', this.selectTextContent.bind(this));
 
@@ -143,7 +142,6 @@ FormatToolbar.prototype.pasteTextContent = function () {
 
 
 FormatToolbar.prototype.toggleBold = function (toolbarItem) {
-  console.log('[toggleBold][isPressed]: ' + toolbarItem.isPressed());
   if (toolbarItem.isPressed()) {
     this.textarea.style.fontWeight = 'normal';
     toolbarItem.resetPressed();
@@ -234,7 +232,6 @@ FormatToolbar.prototype.setFontFamily = function (font) {
 };
 
 FormatToolbar.prototype.activateItem = function (toolbarItem) {
-  console.log('[activateItem][buttonAction]: ' + toolbarItem.buttonAction);
   switch (toolbarItem.buttonAction) {
     case 'bold':
       this.toggleBold(toolbarItem);

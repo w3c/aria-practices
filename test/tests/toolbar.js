@@ -12,11 +12,11 @@ const exampleFile = 'toolbar/toolbar.html';
 const ex = {
   toolbarSelector: '#ex1 [role="toolbar"]',
   toolbarLabel: 'Example Toolbar',
-  itemSelector:   '#ex1 .item',
+  itemSelector: '#ex1 .item',
   buttonSelector: '#ex1 button.item',
-  menuSelector:   '#ex1 button[aria-haspopup]',
-  spinSelector:   '#ex1 [role="spinbutton"]',
-  linkSelector:   '#ex1 a[href]',
+  menuSelector: '#ex1 button[aria-haspopup]',
+  spinSelector: '#ex1 [role="spinbutton"]',
+  linkSelector: '#ex1 a[href]',
   allToolSelectors: [
     '#ex1 .item:nth-of-type(1)',
     '#ex1 .item:nth-of-type(2)',
