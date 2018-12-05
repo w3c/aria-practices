@@ -45,7 +45,7 @@ var FontMenuItem = function (domNode, fontMenu) {
 };
 
 FontMenuItem.prototype.init = function () {
-  this.domNode.tabIndex = -1;
+  this.domNode.setAttribute('tabindex', '-1');
 
   if (!this.domNode.getAttribute('role')) {
     this.domNode.setAttribute('role', 'menuitemradio');

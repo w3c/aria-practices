@@ -54,7 +54,7 @@ FontMenu.prototype.init = function () {
   var menuitemElements, menuitemElement, menuItem, textContent, numItems;
 
   // Configure the domNode itself
-  this.domNode.tabIndex = -1;
+  this.domNode.setAttribute('tabindex', '-1');
 
   this.domNode.addEventListener('mouseover', this.handleMouseover.bind(this));
   this.domNode.addEventListener('mouseout', this.handleMouseout.bind(this));

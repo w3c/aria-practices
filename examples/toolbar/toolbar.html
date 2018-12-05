@@ -79,32 +79,32 @@
             </button>
           </div>
           <div class="group"
-               role="menu"
+               role="radiogroup"
                aria-label="Text Alignment">
-            <div
-                role="menuitemradio"
+            <button
+                role="radio"
                 class="item align-left"
                 aria-label="Text align left"
                 aria-checked="true"
                 tabindex="-1">
               <span class="fas fa-align-left"></span>
-            </div>
-            <div
-                role="menuitemradio"
+            </button>
+            <button
+                role="radio"
                 class="item align-center"
                 aria-label="Text align center"
                 aria-checked="false"
                 tabindex="-1">
               <span class="fas fa-align-center"></span>
-            </div>
-            <div
-                role="menuitemradio"
+            </button>
+            <button
+                role="radio"
                 class="item align-right"
                 aria-label="Text align right"
                 aria-checked="false"
                 tabindex="-1">
               <span class="fas fa-align-right"></span>
-            </div>
+            </button>
           </div>
           <div class="group">
             <button
@@ -320,8 +320,8 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
     </section>
 
     <section>
-      <h3 id="kbd_label_4">Menu (Text Alignment)</h3>
-      <p>The menu changes the text alignment of the content in the <code>textarea</code> and uses the <a href="../../#menu">Menu design pattern</a> using <code>menuitemradio</code>.  The menu pattern is used because the selected item (e.g. checked) does not change when keyboard focus moves between items, the selected item changes with the use of the <kbd>space</kbd> or <kbd>enter</kbd> key.</p>
+      <h3 id="kbd_label_4">Radio Group (Text Alignment)</h3>
+      <p>The group of text alignment buttons look and act like standard toggle buttons, but since only one of the three options can be active they behave like a group of radio buttons and this behavior needs to be communicated to users of assistive technologies.   To communicate this behavior to assitive technologies the buttons use the <a href="../../#radiobutton">radio group design pattern</a> with the <code>radiogroup</code> and <code>radio</code> roles.  When the radio group pattern is within a toolbar its keyboard support is slightly different than a traditional radio group.  The selected item (e.g. checked) does not change when keyboard focus moves between radio buttons, the selected button only changes with the use of the <kbd>space</kbd> or <kbd>enter</kbd> key.</p>
       <table aria-labelledby="kbd_label_4" class="def">
         <thead>
           <tr>
@@ -340,8 +340,8 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
             <th><kbd>Right Arrow</kbd></th>
             <td>
               <ul>
-                <li>Moves focus to the next menu item.</li>
-                <li>If the last menu item has focus, focus moves to the next control in the toolbar.</li>
+                <li>Moves focus to the next radio button.</li>
+                <li>If the last radio button has focus, focus moves to the next control in the toolbar.</li>
               </ul>
             </td>
           </tr>
@@ -349,8 +349,8 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
             <th><kbd>Left Arrow</kbd></th>
             <td>
               <ul>
-                <li>Moves focus to the previous menu item.</li>
-                <li>If the first menu item has focus, focus moves to the previous control in the toolbar.</li>
+                <li>Moves focus to the previous radio button.</li>
+                <li>If the first radio button has focus, focus moves to the previous control in the toolbar.</li>
               </ul>
             </td>
           </tr>
@@ -358,8 +358,8 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
             <th><kbd>Down Arrow</kbd></th>
             <td>
               <ul>
-                <li>Moves focus to the next menu item.</li>
-                <li>If the last menu item has focus, focus moves to the first menu item.</li>
+                <li>Moves focus to the next radio button.</li>
+                <li>If the last radio button has focus, focus moves to the first radio button.</li>
               </ul>
             </td>
           </tr>
@@ -367,8 +367,8 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
             <th><kbd>Up Arrow</kbd></th>
             <td>
               <ul>
-                <li>Moves focus to the previous menu item.</li>
-                <li>If the first menu item has focus, focus moves to the last menu item.</li>
+                <li>Moves focus to the previous radio button.</li>
+                <li>If the radio button has focus, focus moves to the last radio button.</li>
               </ul>
             </td>
           </tr>
@@ -506,8 +506,8 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
   </section>
 
     <section>
-      <h3 id="kbd_label_8">Checkbox</h3>
-      <p>The checkbox changes the foreground and background colors in the <code>textarea</code>.
+      <h3 id="kbd_label_8">Checkbox (Night Mode)</h3>
+      <p>The checkbox for night mode changes the foreground and background colors in the <code>textarea</code>.
       <table aria-labelledby="kbd_label_8" class="def">
         <thead>
           <tr>
@@ -527,7 +527,7 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
     </section>
 
     <section>
-      <h3 id="kbd_label_9">Link</h3>
+      <h3 id="kbd_label_9">Link (Help)</h3>
       <p>Opens a new web page in the current window.</p>
       <table aria-labelledby="kbd_label_9" class="def">
         <thead>
@@ -562,18 +562,19 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr data-test-id="toolbar-role">
             <th scope="row"><code>toolbar</code></th>
             <td></td>
             <td><code>div</code></td>
             <td>
               <ul>
                 <li>Identifies the toolbar container.</li>
+                <li>Accessible name is defined using <code>aria-label</code>.</li>
                 <li>The toolbar div is not focusable because focus is managed with a <a href="../../#kbd_roving_tabindex">roving tabindex</a>.</li>
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="toolbar-aria-label">
             <td></td>
             <th scope="row">
               <code>aria-label=&quot;Text Formatting&quot;</code>
@@ -593,30 +594,29 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
                 Provides a reference to the <code>textarea</code> that the toolbar controls.
             </td>
           </tr>
-          <tr>
-            <th scope="row"><code>button</code></th>
+          <tr data-test-id="toolbar-role">
+            <th scope="row"><code>button</code>, <code>spinbutton</code>, <code>checkbox</code>, <code>link</code></th>
             <td></td>
-            <td> <code>button</code></td>
+            <td><code>button</code>, <code>div</code>, <code>input[type=<q>checkbox</q>]</code>, <code>a</code></td>
             <td>
               <ul>
-                <li>All the buttons in the toolbar use the <code>button</code> element.</li>
-                <li>The default role of a <code>button</code> element is <q>button</q>.</li>
-                <li>Accessible name for each button comes from either the text content of the button or <code>aria-label</code> attribute.</li>
+                <li>The toolbar items that are part of the toolbar keyboard navigation include .</li>
+                <li>The toolbar <code>div</code> is not focusable.</li>
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="toolbaritem-tabindex">
             <td></td>
             <th scope="row">
               <code>tabindex=<q>-1</q></code>
             </th>
             <td>
-              <code>button</code>
+              <code>button</code>, <code>div</code>, <code>input[type=<q>checkbox</q>]</code>, <code>a</code>
             </td>
             <td>
               <ul>
-                <li>Removes the <code>button</code> element from the page <kbd>Tab</kbd> sequence.</li>
-                <li>Applied to all <code>button</code> elements contained in the toolbar except for one that is included in the page <kbd>Tab</kbd> sequence.</li>
+                <li>Removes a toolbar item from the page <kbd>Tab</kbd> sequence.</li>
+                <li>Applied to all toolbar items contained in the toolbar except for one that is included in the page <kbd>Tab</kbd> sequence.</li>
                 <li>This approach to managing focus is described in the section on <a href="../../#kbd_roving_tabindex">roving tabindex</a>.</li>
               </ul>
             </td>
@@ -627,48 +627,43 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
               <code>tabindex=<q>0</q></code>
             </th>
             <td>
-              <code>button</code>
+              <code>button</code>, <code>div</code>, <code>input[type=<q>checkbox</q>]</code>, <code>a</code>
             </td>
             <td>
               <ul>
-                <li>Makes the <code>button</code> element part of the page <kbd>Tab</kbd> sequence.</li>
-                <li>Set on only one <code>button</code> contained by the toolbar.</li>
-                <li>On page load is set on the first <code>button</code> element contained by the toolbar.</li>
-                <li>Moves with focus inside the toolbar so the most recently focused button is included in the page <kbd>Tab</kbd> sequence.</li>
+                <li>Makes the toolbar item part of the page <kbd>Tab</kbd> sequence.</li>
+                <li>Set on only one toolbar item contained by the toolbar.</li>
+                <li>On page load is set on the first toolbar item contained by the toolbar.</li>
+                <li>Moves with focus inside the toolbar so the most recently focused item is included in the page <kbd>Tab</kbd> sequence.</li>
                 <li>This approach to managing focus is described in the section on <a href="../../#kbd_roving_tabindex">roving tabindex</a>.</li>
               </ul>
             </td>
           </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h3 id="rps2_label">Toggle Buttons (Bold, Italic and Underline)</h3>
+      <table aria-labelledby="rps2_label rps_label" class="data attributes">
+        <thead>
           <tr>
-            <td></td>
-            <th scope="row"><code>aria-label=<q><em>name</em></q></code></th>
-            <td><code>button</code></td>
-            <td>
-              <ul>
-                <li>Provides an accessible name for buttons without text content.</li>
-                <li>Used on the bold, italic, underline and text alignment buttons.</li>
-              </ul>
-            </td>
+            <th scope="col">Role</th>
+            <th scope="col">Attribute</th>
+            <th scope="col">Element</th>
+            <th scope="col">Usage</th>
           </tr>
+        </thead>
+        <tbody>
           <tr>
+            <th scope="row"><code>button</code></th>
             <td></td>
-            <th scope="row"><code>title=<q><em>description</em></q></code></th>
             <td><code>button</code></td>
             <td>
               <ul>
-                <li>Provides an accessible description of the actions associated with a button.</li>
-                <li>Used on the cut, copy and paste buttons.</li>
-              </ul>
-            </td>
-          </tr>
-          <tr>
-            <td></td>
-            <th scope="row"><code>aria-disabled=<q>true</q></code></th>
-            <td><code>button</code></td>
-            <td>
-              <ul>
-                <li>Informs assistive technologies of the disabled state.</li>
-                <li>Used on the Cut, Copy and Paste buttons</li>
+                <li>The default role of a <code>button</code> element is <code>button</code>.</li>
+                <li>The use of <code>aria-pressed</code> attribute identifies this button as a toggle button.</li>
+                <li>Accessible name is defined using <code>aria-label</code>.</li>
               </ul>
             </td>
           </tr>
@@ -696,13 +691,24 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
               </ul>
             </td>
           </tr>
+          <tr>
+            <td></td>
+            <th scope="row"><code>aria-label=<q><em>name</em></q></code></th>
+            <td><code>button</code></td>
+            <td>
+              <ul>
+                <li>Provides an accessible name for buttons without text content.</li>
+                <li>Used on the bold, italic, underline and text alignment buttons.</li>
+              </ul>
+            </td>
+          </tr>
         </tbody>
       </table>
     </section>
 
+
     <section>
-      <h3 id="rps2_label">Menu (Text Alignment)</h3>
-  <p>The menu changes the text alignment of the content in the <code>textarea</code> and uses the <a href="../../#menu">Menu design pattern</a> using <code>menuitemradio</code>.  The menu pattern is used because the selected item (e.g. checked) does not change when keyboard focus moves between items, the selected item changes with the use of the <kbd>space</kbd> or <kbd>enter</kbd> key.</p>
+      <h3 id="rps2_label">Radio Group (Text Alignment)</h3>
       <table aria-labelledby="rps2_label rps_label" class="data attributes">
         <thead>
           <tr>
@@ -715,13 +721,13 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
         <tbody>
           <tr>
             <th scope="row">
-              <code>menu</code>
+              <code>radiogroup</code>
             </th>
             <td></td>
             <td>
               <code>div</code>
             </td>
-            <td>Identifies the <code>div</code> element as a <code>menu</code>.</td>
+            <td>Identifies the <code>div</code> element as a container for group of radio buttons.</td>
           </tr>
           <tr>
             <td>
@@ -732,21 +738,21 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
               <code>div</code>
             </td>
             <td>
-              Defines the accessible name for the menu as <q>Text Alignment</q>.
+              Defines the accessible name for the group of radio buttons as <q>Text Alignment</q>.
             </td>
           </tr>
           <tr>
             <th scope="row">
-              <code>menuitemradio</code>
+              <code>radio</code>
             </th>
             <td></td>
             <td>
-              <code>div</code>
+              <code>button</code>
             </td>
             <td>
               <ul>
-                <li>Identifies the <code>div</code> element as a <code>menuitemradio</code>.</li>
-                <li>The <code>aria-label</code> attribute provides the accessible name of the <code>menuitemradio</code>.</li>
+                <li>Overrides the default role of the <code>button</code> element  to be role <code>radio</code>.</li>
+                <li>The <code>aria-label</code> attribute provides the accessible name of the radio button.</li>
               </ul>
             </td>
           </tr>
@@ -755,10 +761,10 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
             </td>
             <th scope="row"><code>aria-label=<q><em>name</em></q></code></th>
             <td>
-              <code>div</code>
+              <code>button</code>
             </td>
             <td>
-              <code>aria-label</code> attribute is used to define an accessible name for the menu item.
+              <code>aria-label</code> attribute is used to define an accessible name for the radio button.
             </td>
           </tr>
           <tr>
@@ -766,28 +772,72 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
             </td>
             <th scope="row"><code>aria-checked=<q><em>value</em></q></code></th>
             <td>
-              <code>div</code>
+              <code>button</code>
             </td>
             <td>
-              <code>aria-checked</code> is set to <code><q>true</q></code> on the menu item representing the text alignment of the content in the <code>textarea</code>, otherwise it is set to <code><q>false</q></code>.
+              <code>aria-checked</code> is set to <code><q>true</q></code> on the radio button representing the current text alignment of the content in the <code>textarea</code>, otherwise it is set to <code><q>false</q></code>.
             </td>
           </tr>
           <tr>
             <td></td>
             <th scope="row"><code>tabindex=<q>-1</q></code></th>
             <td>
-              <code>div</code>
+              <code>button</code>
             </td>
             <td>
-              <ul>
-                <li>Allows DOM focus to be set on the menu item with the JavaScript focus method.</li>
-                <li>Dynamically added by the JavaScript.</li>
-              </ul>
+              Setting <code>tabindex=-1</code> takes the <code>button<code> element out of the tab order of the page.
             </td>
           </tr>
         </tbody>
       </table>
     </section>
+
+    <section>
+      <h3 id="rps2_label">Button (Cut, Copy and Paste)</h3>
+      <table aria-labelledby="rps2_label rps_label" class="data attributes">
+        <thead>
+          <tr>
+            <th scope="col">Role</th>
+            <th scope="col">Attribute</th>
+            <th scope="col">Element</th>
+            <th scope="col">Usage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row"><code>button</code></th>
+            <td></td>
+            <td><code>button</code></td>
+            <td>
+              <ul>
+                <li>The default role of a <code>button</code> element is <code>button</code>.</li>
+                <li>Accessible name is comes from the text content of each button (e.g. "cut", "Copy" and "Paste").</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <th scope="row"><code>aria-disabled=<q>true</q></code></th>
+            <td><code>button</code></td>
+            <td>
+              <ul>
+                <li>Informs assistive technologies of the disabled state.</li>
+                <li>Used on the Cut, Copy and Paste buttons</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <th scope="row"><code>title=<q><em>description</em></q></code></th>
+            <td><code>button</code></td>
+            <td>
+              Provides an accessible description of the actions associated with each button.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
 
     <section>
       <h3 id="rps1_label">Menu Button (Font Family)</h3>
