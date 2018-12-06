@@ -2,9 +2,9 @@ var fs = require('fs');
 var i;
 
 var fileNameTemplate = 'reference-tables.template';
-var fileNameIndex = 'reference-tables.html';
+var fileNameIndex = '../examples/index.html';
 
-ariaRoles = [
+var ariaRoles = [
   'banner',
   'navigation',
   'main',
@@ -68,7 +68,7 @@ ariaRoles = [
   'tooltip'
 ];
 
-ariaPropertiesAndStates = [
+var ariaPropertiesAndStates = [
   'aria-atomic',
   'aria-busy',
   'aria-controls',
@@ -136,8 +136,8 @@ ariaPropertiesAndStates = [
   'aria-setsize'
 ];
 
-indexOfRoles = [];
-indexOfPropertiesAndStates = [];
+var indexOfRoles = [];
+var indexOfPropertiesAndStates = [];
 
 console.log('Generating index...');
 
@@ -162,6 +162,7 @@ function getTitle (data) {
   title = title.split('|');
 
   title = title[0].replace('Examples', '');
+  title = title.replace('Example of', '');
   title = title.replace('Example', '');
 
   return title;
@@ -326,7 +327,7 @@ function findHTMLFiles (path) {
   });
 };
 
-findHTMLFiles('examples/');
+findHTMLFiles('../examples/');
 
 var res = fs.readdir('.');
 
