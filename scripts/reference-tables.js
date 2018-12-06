@@ -1,11 +1,11 @@
 var fs = require('fs');
 var i;
 
-const fileNameTemplate = 'reference-tables.template';
-const fileNameIndex = '../examples/index.html';
-const examplesDirectory = '../examples/';
+var fileNameTemplate = 'reference-tables.template';
+var fileNameIndex = '../examples/index.html';
+var examplesDirectory = '../examples/';
 
-const ariaRoles = [
+var ariaRoles = [
   'banner',
   'navigation',
   'main',
@@ -69,7 +69,7 @@ const ariaRoles = [
   'tooltip'
 ];
 
-const ariaPropertiesAndStates = [
+var ariaPropertiesAndStates = [
   'aria-atomic',
   'aria-busy',
   'aria-controls',
@@ -362,23 +362,18 @@ for (role in indexOfRoles) {
 
 sorted.sort();
 
-var html = sorted.reduce((set, role) => {
-  const examples = indexOfRoles[role];
+var html = sorted.reduce(function (set,role) {
+  var examples = indexOfRoles[role];
 
-  let examplesHTML = '';
+  var examplesHTML = '';
   if (examples.length === 1) {
-    examplesHTML = `<a href="${examples[0].ref}">${examples[0].title}</a>`;
+    examplesHTML = '    <a href="' + examples[0].ref + '">' + examples[0].title + '</a>';
   }
   else {
-    const exampleListItem = item => `<li><a href="${item.ref}">${item.title}</a></li>`;
-    examplesHTML = `<ul>${examples.map(exampleListItem).join('\n')}</ul>`;
+    function exampleListItem (item) { return '      <li><a href="' + item.ref + '">' + item.title + '</a></li>';};
+    examplesHTML = '    <ul>' + examples.map(exampleListItem).join('\n') + '</ul>';
   }
-  return set + `
-    <tr>
-      <td><code>${role}</code></td>
-      <td>${examplesHTML}</td>
-    </tr>
-  `;
+  return set + '<tr>\n  <td><code>' + role + '</code></td>\n  <td>' + examplesHTML + '</td>\n</tr>';
 }, '');
 
 exampleIndexFile = replaceSection('examples_by_role_tbody', exampleIndexFile, html);
@@ -391,23 +386,18 @@ for (prop in indexOfPropertiesAndStates) {
 
 sorted.sort();
 
-html = sorted.reduce((set, prop) => {
-  const examples = indexOfPropertiesAndStates[prop];
+html = sorted.reduce(function (set,prop) {
+  var examples = indexOfPropertiesAndStates[prop];
 
-  let examplesHTML = '';
+  var examplesHTML = '';
   if (examples.length === 1) {
-    examplesHTML = `<a href="${examples[0].ref}">${examples[0].title}</a>`;
+    examplesHTML = '<a href="' + examples[0].ref + '">' + examples[0].title + '</a>';
   }
   else {
-    const exampleListItem = item => `<li><a href="${item.ref}">${item.title}</a></li>`;
-    examplesHTML = `<ul>${examples.map(exampleListItem).join('\n')}</ul>`;
+    function exampleListItem (item) { return '      <li><a href="' + item.ref + '">' + item.title + '</a></li>';};
+    examplesHTML = '    <ul>' + examples.map(exampleListItem).join('\n') + '</ul>';
   }
-  return set + `
-    <tr>
-      <td><code>${prop}</code></td>
-      <td>${examplesHTML}</td>
-    </tr>
-  `;
+  return set + '<tr>\n  <td><code>' + role + '</code></td>\n  <td>' + examplesHTML + '</td>\n</tr>';
 }, '');
 
 exampleIndexFile = replaceSection('examples_by_props_tbody', exampleIndexFile, html);
