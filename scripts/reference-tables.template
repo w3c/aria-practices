@@ -12,7 +12,7 @@
 </head>
 <body>
   <nav>
-    <a href="../../">WAI-ARIA Authoring Practices 1.1</a>
+    <a href="../">WAI-ARIA Authoring Practices 1.1</a>
   </nav>
 
   <main>
@@ -53,7 +53,7 @@
 
   </main>
   <nav>
-    <a href="../../">WAI-ARIA Authoring Practices 1.1</a>
+    <a href="../">WAI-ARIA Authoring Practices 1.1</a>
   </nav>
 </body>
 </html>
