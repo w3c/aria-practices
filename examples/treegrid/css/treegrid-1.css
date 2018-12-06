@@ -36,8 +36,8 @@
 }
 
 #treegrid a {
-  padding-left: .25ch;
-  padding-right: .25ch;
+  padding-left: 0.25ch;
+  padding-right: 0.25ch;
 }
 
 #treegrid tr:focus,
@@ -60,12 +60,15 @@
 #treegrid tr[aria-level="2"] > td:first-child {
   padding-left: 2.5ch;
 }
+
 #treegrid tr[aria-level="3"] > td:first-child {
   padding-left: 5ch;
 }
+
 #treegrid tr[aria-level="4"] > td:first-child {
   padding-left: 7.5ch;
 }
+
 #treegrid tr[aria-level="5"] > td:first-child {
   padding-left: 10ch;
 }
@@ -78,13 +81,14 @@
   display: inline-block;
   width: 2ch;
   height: 11px;
-  transition: transform .3s;
+  transition: transform 0.3s;
   transform-origin: 5px 5px;
 }
 
 #treegrid tr[aria-expanded] > td:first-child::before,
 #treegrid td[aria-expanded]:first-child::before {
   cursor: pointer;
+
   /* Load both right away so there is no lag when we need the other */
   background-image: url("expand-icon.svg"), url("expand-icon-highlighted.svg");
   background-repeat: no-repeat;
