@@ -11,6 +11,9 @@
   <script src="examples/js/app.js"></script>
 </head>
 <body>
+  <nav>
+    <a href="../../">WAI-ARIA Authoring Practices 1.1</a>
+  </nav>
 
   <main>
     <h1>Index of ARIA Examples</h1>
@@ -49,6 +52,8 @@
     </section>
 
   </main>
-
+  <nav>
+    <a href="../../">WAI-ARIA Authoring Practices 1.1</a>
+  </nav>
 </body>
 </html>
