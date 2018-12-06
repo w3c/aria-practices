@@ -397,7 +397,7 @@ html = sorted.reduce(function (set,prop) {
     function exampleListItem (item) { return '      <li><a href="' + item.ref + '">' + item.title + '</a></li>';};
     examplesHTML = '    <ul>' + examples.map(exampleListItem).join('\n') + '</ul>';
   }
-  return set + '<tr>\n  <td><code>' + role + '</code></td>\n  <td>' + examplesHTML + '</td>\n</tr>';
+  return set + '<tr>\n  <td><code>' + prop + '</code></td>\n  <td>' + examplesHTML + '</td>\n</tr>';
 }, '');
 
 exampleIndexFile = replaceSection('examples_by_props_tbody', exampleIndexFile, html);
