@@ -53,7 +53,7 @@
 
 [role="radio"][aria-checked="true"]::after {
   display: block;
-  border: .1875em solid #fff;
+  border: 0.1875em solid #fff;
   border-radius: 100%;
   transform: translate(25%, -50%);
 }
