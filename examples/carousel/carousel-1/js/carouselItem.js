@@ -12,11 +12,10 @@
 *
 */
 var CarouselItem = function (domNode, carouselObj) {
-  console.log("[CarouselItem]: " + domNode);
+  console.log('[CarouselItem]: ' + domNode);
 
   this.domNode = domNode;
   this.carousel = carouselObj;
-
 };
 
 CarouselItem.prototype.init = function () {

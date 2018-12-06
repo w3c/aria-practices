@@ -28,6 +28,7 @@
         <li><a href="../../../#carousel">Design Pattern</a></li>
       </ul>
     </nav>
+
     <main>
       <h1>Example of Image Carousel with Automatically Rotating Images using Tablist</h1>
       <p>
@@ -241,9 +242,9 @@
 
             </section><!-- /.carousel -->
 
-            <div class="col-sm-1"></div>
+          <div class="col-sm-1"></div>
 
-          </div>
+        </div>
         <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
       </section>
 
@@ -260,6 +261,7 @@
           To improve readability of the caption text and content, background contrast is improved by decreasing the transparency of the caption area.   This improves the color contrast radio of the white text, especially when light colored image are used in the background.
         </li>
       </ul>
+
       <section>
         <h2 id="kbd_label">Keyboard Support</h2>
 
@@ -325,6 +327,7 @@
               </tr>
             </thead>
             <tbody>
+              <tr>
                 <th><kbd>Tab</kbd></th>
                 <td>
                   The button becomes visible when it receives keyboard focus.
@@ -396,7 +399,7 @@
                   </ul>
                 </td>
               </tr>
-              <tr>
+              <tr data-test-id="landmark-aria-label">
                 <td></td>
                 <th scope="row">
                   <code>aria-label=<q>Image Carousel</q></code>
@@ -616,7 +619,7 @@
                   </ul>
                 </td>
               </tr>
-              <tr>
+              <tr data-test-id="pause-aria-pressed">
                 <td></td>
                 <th scope="row">
                   <code>aria-pressed=<q>false</q></code>
@@ -701,7 +704,7 @@
           </table>
         </section>
 
-      <section>
+      </section>
 
       <section>
         <h2>Javascript and CSS Source Code</h2>

@@ -28,7 +28,6 @@ var Carousel = function (domNode) {
 };
 
 Carousel.prototype.init = function () {
-
   var items = this.domNode.querySelectorAll('.carousel-item');
 
   for (var i = 0; i < items.length; i++) {
@@ -74,8 +73,6 @@ Carousel.prototype.init = function () {
   // Start rotation
   setTimeout(this.rotateSlides.bind(this), this.timeInterval);
 };
-
-
 
 Carousel.prototype.setSelected = function (newItem, moveFocus) {
   if (typeof moveFocus != 'boolean') {
@@ -141,7 +138,6 @@ Carousel.prototype.rotateSlides = function () {
   setTimeout(this.rotateSlides.bind(this), this.timeInterval);
 };
 
-
 Carousel.prototype.startRotation = function (force) {
   if ((this.pauseButton.getAttribute('aria-pressed') === 'false') && !this.hasFocus && !this.hasHover) {
     this.rotate = true;
@@ -181,7 +177,7 @@ window.addEventListener('load', function (event) {
   var carousels = document.querySelectorAll('.carousel');
 
   for (var i = 0; i < carousels.length; i++) {
-    console.log("[Carousel]: " + carousels[i]);
+    console.log('[Carousel]: ' + carousels[i]);
     var carousel = new Carousel(carousels[i]);
 
     carousel.init();
