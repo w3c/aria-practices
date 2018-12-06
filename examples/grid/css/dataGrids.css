@@ -59,11 +59,13 @@
   width: 20px;
 }
 
-.edit-text-button:hover, .edit-text-button:focus {
+.edit-text-button:hover,
+.edit-text-button:focus {
   color: black;
 }
 
-.edit-text-button:hover::after, .edit-text-button:focus::after {
+.edit-text-button:hover::after,
+.edit-text-button:focus::after {
   opacity: 1;
 }
 
@@ -74,7 +76,6 @@
   outline-style: dotted;
   outline-width: 3px;
 }
-
 
 #arrow-keys-indicator {
   bottom: 10px;

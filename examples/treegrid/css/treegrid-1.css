@@ -10,29 +10,26 @@
   cursor: default;
 }
 
+/* Extra space between columns for readability */
+#treegrid th,
+#treegrid td {
+  padding-bottom: 3px;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+}
+
 #treegrid tbody td {
   cursor: default;
 }
 
-#treegrid-col1, #treegrid-col3 {
+#treegrid-col1,
+#treegrid-col3 {
   width: 30%;
 }
 
 #treegrid th {
   text-align: left;
   background-color: #eee;
-}
-
-/* Extra space between columns for readability */
-#treegrid th, #treegrid td {
-  padding-bottom: 3px;
-  overflow-x: hidden;
-  text-overflow: ellipsis;
-}
-
-#treegrid tr > td:not(:first-child),
-#treegrid tr > th:not(:first-child) {
-  padding-left: 3ch;
 }
 
 #treegrid a {
@@ -45,6 +42,11 @@
 #treegrid a:focus {
   outline: 2px solid hsl(216, 94%, 70%);
   background-color: hsl(216, 80%, 97%);
+}
+
+#treegrid tr > td:not(:first-child),
+#treegrid tr > th:not(:first-child) {
+  padding-left: 3ch;
 }
 
 #treegrid a:focus {
@@ -73,7 +75,6 @@
   padding-left: 10ch;
 }
 
-
 /* Collapse/expand icons */
 #treegrid tr > td:first-child::before {
   font-family: monospace;
@@ -94,14 +95,14 @@
   background-repeat: no-repeat;
 }
 
+#treegrid tr[aria-expanded="true"] > td:first-child::before,
+#treegrid td[aria-expanded="true"]:first-child::before {
+  transform: rotate(90deg);
+}
+
 #treegrid tr[aria-expanded]:focus > td:first-child::before,
 #treegrid tr[aria-expanded] > td:focus:first-child::before,
 #treegrid tr:focus > td[aria-expanded]:first-child::before,
 #treegrid tr > td[aria-expanded]:focus:first-child::before {
   background-image: url("expand-icon-highlighted.svg");
-}
-
-#treegrid tr[aria-expanded="true"] > td:first-child::before,
-#treegrid td[aria-expanded="true"]:first-child::before {
-  transform: rotate(90deg);
 }

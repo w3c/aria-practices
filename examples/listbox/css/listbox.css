@@ -10,7 +10,8 @@
   font-size: 0;
 }
 
-.left-area, .right-area {
+.left-area,
+.right-area {
   box-sizing: border-box;
   display: inline-block;
   font-size: 14px;

@@ -6,7 +6,6 @@
   font-size: 110%;
 }
 
-
 ul[role="menu"] {
   margin: 0;
   padding: 0;
@@ -46,4 +45,3 @@ ul[role="menu"] li[role="menuitem"]:hover {
   background-color: black;
   color: white;
 }
-
