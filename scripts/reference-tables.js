@@ -361,27 +361,24 @@ for (role in indexOfRoles) {
 
 sorted.sort();
 
-html = '';
-for (i = 0; i < sorted.length; i++) {
-  var role = sorted[i];
-  var examples = indexOfRoles[role];
+var html = sorted.reduce((set, role) => {
+  const examples = indexOfRoles[role];
 
-  html += '    <tr>\n';
-  html += '      <td><code>' + role + '</code></td>\n';
-  html += '      <td>\n';
+  let examplesHTML = '';
   if (examples.length === 1) {
-    html += '        <a href="' + examples[0].ref + '">' + examples[0].title + '</a>\n';
+    examplesHTML = `<a href="${examples[0].ref}">${examples[0].title}</a>`;
   }
   else {
-    html += '        <ul>\n';
-    for (var j = 0; j < examples.length; j++) {
-      html += '          <li><a href="' + examples[j].ref + '">' + examples[j].title + '</a></li>\n';
-    }
-    html += '        </ul>\n';
+    const exampleListItem = item => `<li><a href="${item.ref}">${item.title}</a></li>`;
+    examplesHTML = `<ul>${examples.map(exampleListItem).join('\n')}</ul>`;
   }
-  html += '      </td>\n';
-  html += '    </tr>\n';
-}
+  return set + `
+    <tr>
+      <td><code>${role}</code></td>
+      <td>${examplesHTML}</td>
+    </tr>
+  `;
+}, '');
 
 exampleIndexFile = replaceSection('examples_by_role_tbody', exampleIndexFile, html);
 
@@ -393,27 +390,24 @@ for (prop in indexOfPropertiesAndStates) {
 
 sorted.sort();
 
-html = '';
-for (i = 0; i < sorted.length; i++) {
-  var prop = sorted[i];
-  var examples = indexOfPropertiesAndStates[prop];
+html = sorted.reduce((set, prop) => {
+  const examples = indexOfPropertiesAndStates[prop];
 
-  html += '    <tr>\n';
-  html += '      <td><code>' + prop + '</code></td>\n';
-  html += '      <td>\n';
+  let examplesHTML = '';
   if (examples.length === 1) {
-    html += '        <a href="' + examples[0].ref + '">' + examples[0].title + '</a>\n';
+    examplesHTML = `<a href="${examples[0].ref}">${examples[0].title}</a>`;
   }
   else {
-    html += '        <ul>\n';
-    for (var j = 0; j < examples.length; j++) {
-      html += '          <li><a href="' + examples[j].ref + '">' + examples[j].title + '</a></li>\n';
-    }
-    html += '        </ul>\n';
+    const exampleListItem = item => `<li><a href="${item.ref}">${item.title}</a></li>`;
+    examplesHTML = `<ul>${examples.map(exampleListItem).join('\n')}</ul>`;
   }
-  html += '      </td>\n';
-  html += '    </tr>\n';
-}
+  return set + `
+    <tr>
+      <td><code>${prop}</code></td>
+      <td>${examplesHTML}</td>
+    </tr>
+  `;
+}, '');
 
 exampleIndexFile = replaceSection('examples_by_props_tbody', exampleIndexFile, html);
 
