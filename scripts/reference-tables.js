@@ -1,10 +1,11 @@
 var fs = require('fs');
 var i;
 
-var fileNameTemplate = 'reference-tables.template';
-var fileNameIndex = '../examples/index.html';
+const fileNameTemplate = 'reference-tables.template';
+const fileNameIndex = '../examples/index.html';
+const examplesDirectory = '../examples/';
 
-var ariaRoles = [
+const ariaRoles = [
   'banner',
   'navigation',
   'main',
@@ -68,7 +69,7 @@ var ariaRoles = [
   'tooltip'
 ];
 
-var ariaPropertiesAndStates = [
+const ariaPropertiesAndStates = [
   'aria-atomic',
   'aria-busy',
   'aria-controls',
@@ -327,7 +328,7 @@ function findHTMLFiles (path) {
   });
 };
 
-findHTMLFiles('../examples/');
+findHTMLFiles(examplesDirectory);
 
 var res = fs.readdir('.');
 
@@ -340,14 +341,14 @@ for (r in res) {
 
 // Add landmark examples, since they are a different format
 
-addLandmarkRole('banner', false, 'Banner Landmark', 'http://localhost/GitHub/aria-practices/examples/landmarks/banner.html');
-addLandmarkRole('complementary', true, 'Complementary Landmark', 'http://localhost/GitHub/aria-practices/examples/landmarks/complementary.html');
-addLandmarkRole('contentinfo', false, 'Contentinfo Landmark', 'http://localhost/GitHub/aria-practices/examples/landmarks/contentinfo.html');
-addLandmarkRole('form', true, 'Form Landmark', 'http://localhost/GitHub/aria-practices/examples/landmarks/form.html');
-addLandmarkRole('main', true, 'Main Landmark', 'http://localhost/GitHub/aria-practices/examples/landmarks/main.html');
-addLandmarkRole('navigation', true, 'Navigation Landmark', 'http://localhost/GitHub/aria-practices/examples/landmarks/navigation.html');
-addLandmarkRole('region', true, 'Region Landmark', 'http://localhost/GitHub/aria-practices/examples/landmarks/region.html');
-addLandmarkRole('search', true, 'Search Landmark', 'http://localhost/GitHub/aria-practices/examples/landmarks/search.html');
+addLandmarkRole('banner', false, 'Banner Landmark', examplesDirectory + 'landmarks/banner.html');
+addLandmarkRole('complementary', true, 'Complementary Landmark', examplesDirectory + 'landmarks/complementary.html');
+addLandmarkRole('contentinfo', false, 'Contentinfo Landmark', examplesDirectory + 'landmarks/contentinfo.html');
+addLandmarkRole('form', true, 'Form Landmark', examplesDirectory + 'landmarks/form.html');
+addLandmarkRole('main', true, 'Main Landmark', examplesDirectory + 'landmarks/main.html');
+addLandmarkRole('navigation', true, 'Navigation Landmark', examplesDirectory + 'landmarks/navigation.html');
+addLandmarkRole('region', true, 'Region Landmark', examplesDirectory + 'landmarks/region.html');
+addLandmarkRole('search', true, 'Search Landmark', examplesDirectory + 'landmarks/search.html');
 
 var exampleIndexFile = fs.readFileSync(fileNameTemplate, function (err) {
   console.log('Error reading aria index:', err);
