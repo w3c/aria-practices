@@ -49,12 +49,14 @@
   width: 120px;
 }
 
-[role="gridcell"], [role="gridcell"] [tabindex] {
+[role="gridcell"],
+[role="gridcell"] [tabindex] {
   display: inline-block;
   position: relative;
 }
 
-[role="gridcell"]:focus, [role="gridcell"] *:focus {
+[role="gridcell"]:focus,
+[role="gridcell"] *:focus {
   outline: #005a9c;
   outline-style: dotted;
   outline-width: 3px;
@@ -70,7 +72,8 @@
   box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.3);
 }
 
-.grid-nux::after, .grid-nux::before {
+.grid-nux::after,
+.grid-nux::before {
   bottom: 100%;
   left: 20px;
   border: solid transparent;

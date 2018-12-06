@@ -33,7 +33,6 @@ div.aria-widget-vertical-slider .rail.focus {
   background-color: #aaa;
 }
 
-
 div.aria-widget-vertical-slider .label,
 div.aria-widget-vertical-slider .value {
   margin-top: 0.5em;
@@ -50,5 +49,3 @@ div.aria-widget-vertical-slider .label {
 #id_kbd {
   clear: both;
 }
-
-

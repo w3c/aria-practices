@@ -19,7 +19,8 @@
   margin-right: 5px;
 }
 
-.listbox, .grid {
+.listbox,
+.grid {
   min-width: 230px;
   background: white;
   border: 1px solid #ccc;
@@ -36,11 +37,19 @@
   margin: 0;
 }
 
-.listbox .result:hover, .grid .result-row:hover {
+.grid .result-row {
+  padding: 2px;
+  cursor: default;
+  margin: 0;
+}
+
+.listbox .result:hover,
+.grid .result-row:hover {
   background: rgb(139, 189, 225);
 }
 
-.listbox .focused, .grid .focused {
+.listbox .focused,
+.grid .focused {
   background: rgb(139, 189, 225);
 }
 
@@ -66,12 +75,6 @@
   height: 1.5em;
   border-radius: 0 2px 2px 0;
   border: 1px solid #aaa;
-}
-
-.grid .result-row {
-  padding: 2px;
-  cursor: default;
-  margin: 0;
 }
 
 .grid .result-cell {

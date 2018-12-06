@@ -29,7 +29,6 @@ ul[role="tree"] {
 [role="treeitem"] span {
   width: 9em;
   margin: 0;
-  padding: 0;
   border: 2px transparent solid;
   padding: 0.125em;
   display: block;
@@ -41,7 +40,6 @@ ul[role="tree"] {
   outline: 0;
 }
 
-
 [role="treeitem"].focus,
 [role="treeitem"] span.focus {
   border-color: black;
@@ -52,4 +50,3 @@ ul[role="tree"] {
 [role="treeitem"] span:hover {
   background-color: #ddd;
 }
-
