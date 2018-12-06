@@ -90,16 +90,17 @@ ariaTest('Toolbar element has "aria-label"', exampleFile, 'toolbar-aria-label', 
 });
 
 ariaTest.failing('Toolbar items support roving tabindex on toolbar items', exampleFile, 'toolbar-item-tabindex', async (t) => {
-  t.plan(1);
+  t.plan(4);
 
   // Test all the toolbar items with roving tab index
   await assertRovingTabindex(t, ex.itemSelector, Key.ARROW_RIGHT);
 
   // Test the last element in the toolbox, which is a native "link" element
-  // await clickAndWait(t, ex.linkSelector);
+  await clickAndWait(t, ex.linkSelector);
 
-  // await assertAttributeValues(t, ex.buttonSelector, 'tabindex', '-1');
-  // await assertAttributeValues(t, ex.spinSelector, 'tabindex', '0');
+  await assertAttributeValues(t, ex.buttonSelector, 'tabindex', '-1');
+  await assertAttributeValues(t, ex.spinSelector, 'tabindex', '-1');
+  await assertAttributeValues(t, ex.linkSelector, 'tabindex', '0');
 });
 
 /*
