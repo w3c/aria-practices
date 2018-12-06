@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Index of ARIA Examples</title>
+  <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
+  <link rel="stylesheet" href="examples/css/core.css">
+  <script src="examples/js/examples.js"></script>
+  <script src="examples/js/highlight.pack.js"></script>
+  <script src="examples/js/app.js"></script>
+</head>
+<body>
+
+  <main>
+    <h1>Index of ARIA Examples</h1>
+
+    <section id="examples_by_roles">
+
+      <h2 id="examples_by_role_label">Examples by Role</h2>
+      <table aria-labelledby="examples_by_role_label" class="data attributes">
+        <thead>
+          <tr>
+            <th>Role</th>
+            <th>Examples</th>
+          </tr>
+        </thead>
+        <tbody id="examples_by_role_tbody">
+
+        </tbody>
+      </table>
+
+    </section>
+
+    <section id="examples_by_props">
+
+      <h2 id="examples_by_props_label">Examples By Properties and States</h2>
+      <table aria-labelledby="examples_by_props_label" class="data attributes">
+        <thead>
+          <tr>
+            <th>Property or State</th>
+            <th>Examples</th>
+          </tr>
+        </thead>
+        <tbody id="examples_by_props_tbody">
+        </tbody>
+      </table>
+
+    </section>
+
+  </main>
+
+</body>
+</html>
