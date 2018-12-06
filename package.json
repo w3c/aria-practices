@@ -42,7 +42,13 @@
     }
   },
   "lint-staged": {
-    "*.css": ["stylelint --fix", "git add"],
-    "*.js": ["eslint --fix", "git add"]
+    "*.css": [
+      "stylelint --fix",
+      "git add"
+    ],
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ]
   }
 }
