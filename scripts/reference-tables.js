@@ -230,7 +230,6 @@ function getPropertiesAndStates (data) {
           (code.indexOf(ariaPropertiesAndStates[i]) >= 0) &&
           (propertiesAndStates.indexOf(ariaPropertiesAndStates[i]) < 0)) {
         propertiesAndStates.push(ariaPropertiesAndStates[i]);
-        console.log('Property: ' + ariaPropertiesAndStates[i]);
       }
     }
 
@@ -329,15 +328,6 @@ function findHTMLFiles (path) {
 };
 
 findHTMLFiles(examplesDirectory);
-
-var res = fs.readdir('.');
-
-for (r in res) {
-
-  // Handle landmark examples separately
-  if (res[r].indexOf('landmark') < 0) {
-  }
-}
 
 // Add landmark examples, since they are a different format
 
