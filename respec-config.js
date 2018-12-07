@@ -84,11 +84,11 @@ var respecConfig = {
     w3cid: 2460
   }],
   authors: [{
-  	name: 'Jon Gunderson',
-  	mailto: 'jongund@illinois.edu',
-  	company: 'University of Illinois at Urbana-Champaign',
-  	companyURI: 'https://illinois.edu/',
-  	w3cid: 3226
+    name: 'Jon Gunderson',
+    mailto: 'jongund@illinois.edu',
+    company: 'University of Illinois at Urbana-Champaign',
+    companyURI: 'https://illinois.edu/',
+    w3cid: 3226
   }, {
     name: 'Matt King',
     mailto: 'mck@fb.com',
