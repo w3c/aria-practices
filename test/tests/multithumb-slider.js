@@ -90,10 +90,6 @@ ariaTest('"aria-valuemax" set on sliders', exampleFile, 'aria-valuemax', async (
     'Value of "aria-valuemax" for first flight slider on page load should be: ' + ex.flightDefaultVals[1]
   );
 
-  t.log(ex);
-  t.log(await flightSliders[1].getAttribute('aria-valuemax'));
-
-
   t.is(
     await flightSliders[1].getAttribute('aria-valuemax'),
     ex.flightMax,

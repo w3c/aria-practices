@@ -55,6 +55,24 @@ const uncheckAllSelectedByDefault = async function (t) {
 
 // Attributes
 
+ariaTest('element h3 exists', exampleFile, 'h3', async (t) => {
+  t.plan(2);
+
+  let header = await t.context.session.findElements(By.css('#ex1 h3'));
+
+  t.is(
+    header.length,
+    1,
+    'One h3 element exist within the example to label the checkboxes'
+  );
+
+  t.truthy(
+    await header[0].getText(),
+    'One h3 element exist with readable content within the example to label the checkboxes'
+  );
+
+});
+
 ariaTest('role="group" element exists', exampleFile, 'group-role', async (t) => {
   t.plan(1);
   await assertAriaRoles(t, 'ex1', 'group', '1', 'div');
