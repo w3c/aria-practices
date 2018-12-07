@@ -1,7 +1,7 @@
 'use strict';
 
 const { ariaTest } = require('..');
-const { By, Key } = require('selenium-webdriver');
+const { By, Key, until } = require('selenium-webdriver');
 const assertAriaRoles = require('../util/assertAriaRoles');
 const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAriaLabelExists = require('../util/assertAriaLabelExists');
@@ -679,51 +679,40 @@ ariaTest('CTRL+END moves focus', exampleFile, 'key-control-end', async (t) => {
 });
 
 // This test fails due to: https://github.com/w3c/aria-practices/issues/790#issuecomment-422079276
-// When the bug is fixed this test should be uncommented.
+ariaTest.failing('ENTER actives interactive items item', exampleFile, 'key-enter', async (t) => {
+  t.plan(2);
 
-// ariaTest('ENTER actives interative items item', exampleFile, 'key-enter', async (t) => {
-//   t.plan(16);
+  // INTERACTIVE ITEM 1: Enter sent while focus is on email row should open email alert
 
+  const email = await t.context.session.findElement(By.css(ex.emailRowSelector));
 
-//   // INTERACTIVE ITEM 1: Enter sent while focus is on email row should open email altert
-//   await openAllThreads(t);
-//   const emailRows = await t.context.session.findElements(By.css(ex.emailRowSelector));
+  await email.sendKeys(Key.ENTER);
 
-//   for (let email of emailRows) {
-//     await email.sendKeys(Key.ENTER);
+  const alert = await t.context.session.wait(until.alertIsPresent(), t.context.waitTime);
+  t.truthy(
+    await alert.getText(),
+    'Sending "enter" to any email row should open alert with the rest of the email'
+  );
+  await alert.accept();
 
-//     t.truthy(
-//       await t.context.session.switchTo().alert().getText(),
-//       'Sending "enter" to any email row should open alert with the test of the email'
-//     );
-//     await t.context.session.switchTo().alert().accept();
-//   }
+  // INTERACTIVE ITEM 1: Enter sent while focus is email gridcell should trigger link
 
+  const selector = '#ex1 [role="row"]:nth-of-type(1) a';
+  const newUrl = t.context.url + '#test-url-change';
 
-//   // INTERACTIVE ITEM 1: Enter sent while focus is email gridcell should trigger link
-//   for (let index = 0; index <= ex.lastRowIndex; index++) {
+  // Reset the href to not be an email link in order to test
+  await t.context.session.executeScript(function () {
+    let [selector, newUrl] = arguments;
+    document.querySelector(selector).href = newUrl;
+  }, selector, newUrl);
 
-//     // Reload the page and open all emails
-//     await t.context.session.get(t.context.url);
-//     await openAllThreads(t);
+  await t.context.session.findElement(By.css(selector)).sendKeys(Key.ENTER);
 
-//     const selector = '#ex1 [role="row"]:nth-of-type(' + (index+1) + ') a';
-//     const newUrl = t.context.url + '#test-url-change'
-
-//     // Reset the href to not be an email link in order to test
-//     await t.context.session.executeScript(function () {
-//       let [selector, newUrl] = arguments;
-//       document.querySelector(selector).href = newUrl;
-//     }, selector, newUrl);
-
-//     await t.context.session.findElement(By.css(selector)).sendKeys(Key.ENTER);
-
-//     // Test the the URL is updated.
-//     t.is(
-//       await t.context.session.getCurrentUrl(),
-//       newUrl,
-//       'Sending "enter" to a link within the gridcell should activate the link'
-//     );
-//   }
-// });
+  // Test the the URL is updated.
+  t.is(
+    await t.context.session.getCurrentUrl(),
+    newUrl,
+    'Sending "enter" to a link within the gridcell should activate the link'
+  );
+});
 

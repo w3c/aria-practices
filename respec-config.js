@@ -66,24 +66,35 @@ var respecConfig = {
     company: 'W3C',
     companyURI: 'https://www.w3.org/',
     w3cid: 34017
-  }, {
+  }],
+  formerEditors: [{
     name: 'Joseph Scheuhammer',
     company: 'Inclusive Design Research Centre, OCAD University',
     companyURI: 'http://idrc.ocad.ca/',
-    note: 'Previous Editor',
     w3cid: 42279
   }, {
     name: 'Lisa Pappas',
     company: 'SAS',
     companyURI: 'http://www.sas.com/',
-    note: 'Previous Editor',
     w3cid: 41725
   }, {
     name: 'Rich Schwerdtfeger',
     company: 'IBM Corporation',
     companyURI: 'http://ibm.com/',
-    note: 'Previous Editor',
     w3cid: 2460
+  }],
+  authors: [{
+    name: 'Jon Gunderson',
+    mailto: 'jongund@illinois.edu',
+    company: 'University of Illinois at Urbana-Champaign',
+    companyURI: 'https://illinois.edu/',
+    w3cid: 3226
+  }, {
+    name: 'Matt King',
+    mailto: 'mck@fb.com',
+    company: 'Facebook',
+    companyURI: 'http://www.facebook.com/',
+    w3cid: 44582
   }],
 
   // Authors, add as many as you like.

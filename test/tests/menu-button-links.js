@@ -108,7 +108,12 @@ ariaTest('"aria-labelledby" on role="menu"', exampleFile, 'menu-aria-labelledby'
   await assertAriaLabelledby(t, ex.menuSelector);
 });
 
-ariaTest('role="menuitem" on li element', exampleFile, 'menuitem-role', async (t) => {
+ariaTest('role="none" on li element', exampleFile, 'none-role', async (t) => {
+  t.plan(1);
+  await assertAriaRoles(t, 'ex1', 'none', ex.numMenuitems, 'li');
+});
+
+ariaTest('role="menuitem" on a element', exampleFile, 'menuitem-role', async (t) => {
   t.plan(1);
   await assertAriaRoles(t, 'ex1', 'menuitem', ex.numMenuitems, 'a');
 });
