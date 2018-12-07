@@ -585,7 +585,7 @@ ariaTest.failing('Test escape key press with focus on popup',
       '',
       'In grid key press "ESCAPE" should result in clearing of the textbox'
     );
-    
+
   });
 
 ariaTest('left arrow from focus on list puts focus on grid and moves cursor right',
