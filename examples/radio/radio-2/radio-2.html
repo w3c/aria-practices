@@ -114,13 +114,13 @@
           </li>
         </ul>
       </section>
-      
+
       <section>
         <h2 id="kbd_label">Keyboard Support</h2>
         <p>
           <strong>NOTE:</strong> When visual focus is on a radio button in the radio group, DOM focus remains on the radio group container and the value of <code>aria-activedescendant</code> on the radio group refers to the radio button that is visually indicated as focused.
           Where the following descriptions of keyboard commands mention focus, they are referring to the visual focus indicator, not DOM focus.
-          For more information about this focus management technique, see 
+          For more information about this focus management technique, see
           <a href="../../../#kbd_focus_activedescendant">Using aria-activedescendant to Manage Focus.</a>
         </p>
         <table aria-labelledby="kbd_label" class="def">
@@ -209,13 +209,13 @@
             <tr data-test-id="radiogroup-role">
               <th scope="row"><code>radiogroup</code></th>
               <td></td>
-              <td><code>div</code></td>
-              <td>Identifies the <code>div</code> element as a container for a group of <code>radio</code> buttons.</td>
+              <td><code>ul</code></td>
+              <td>Identifies the element as a container for a group of <code>radio</code> buttons.</td>
             </tr>
             <tr data-test-id="radiogroup-aria-labelledby">
               <td></td>
               <th scope="row"><code>aria-labelledby="[IDREF]"</code></th>
-              <td><code>div</code></td>
+              <td><code>ul</code></td>
               <td>Refers to the element that contains the label of the radio group.</td>
             </tr>
             <tr data-test-id="radiogroup-tabindex">
@@ -239,7 +239,7 @@
                   <li>When arrow keys are pressed, the JavaScript changes the value.</li>
                   <li>Enables assistive technologies to know which element the application regards as focused while DOM focus remains on the  radio group element.</li>
                   <li>
-                    For more information about this focus management technique, see 
+                    For more information about this focus management technique, see
                     <a href="../../../#kbd_focus_activedescendant">Using aria-activedescendant to Manage Focus.</a>
                   </li>
                 </ul>
@@ -248,18 +248,18 @@
             <tr data-test-id="radio-role">
               <th scope="row"><code>radio</code></th>
               <td></td>
-              <td><code>div</code></td>
+              <td><code>li</code></td>
               <td>
                 <ul>
-                  <li>Identifies the <code>div</code> element as an ARIA <code>radio</code> button.</li>
-                  <li>The accessible name is computed from the child text content of the <code>div</code> element.</li>
+                  <li>Identifies the element as an ARIA <code>radio</code> button.</li>
+                  <li>The accessible name is computed from the child text content of the element.</li>
                 </ul>
               </td>
             </tr>
             <tr data-test-id="radio-aria-checked">
               <td></td>
               <th scope="row"><code>aria-checked="false"</code></th>
-              <td><code>div</code></td>
+              <td><code>li</code></td>
               <td>
                 <ul>
                   <li>Identifies <code>radio</code> buttons which are not checked.</li>
@@ -271,7 +271,7 @@
             <tr data-test-id="radio-aria-checked">
               <td></td>
               <th scope="row"><code>aria-checked="true"</code></th>
-              <td><code>div</code></td>
+              <td><code>li</code></td>
               <td>
                 <ul>
                   <li>Identifies the <code>radio</code> button which is checked.</li>
@@ -283,7 +283,7 @@
           </tbody>
         </table>
       </section>
-      
+
       <section>
         <h2>Javascript and CSS Source Code</h2>
         <ul>

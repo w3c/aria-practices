@@ -117,3 +117,10 @@ aria.Utils.removeClass = function (element, className) {
   var classRegex = new RegExp('(\\s|^)' + className + '(\\s|$)');
   element.className = element.className.replace(classRegex, ' ').trim();
 };
+
+aria.Utils.bindMethods = function (object /* , ...methodNames */) {
+  var methodNames = Array.prototype.slice.call(arguments, 1);
+  methodNames.forEach(function (method) {
+    object[method] = object[method].bind(object);
+  });
+};
