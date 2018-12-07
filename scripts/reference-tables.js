@@ -190,7 +190,7 @@ function getColumn (data, indexStart) {
 }
 
 function getRoles (data) {
-  var roles = '';
+  var roles = [];
 
   var indexStart = data.indexOf('<code>', 0);
   var indexEnd = data.indexOf('</code>', indexStart);
@@ -199,8 +199,10 @@ function getRoles (data) {
     code = data.substring(indexStart + 6, indexEnd).trim();
 
     for (var i = 0; i < ariaRoles.length; i++) {
-      if ((getColumn(data, indexStart) === 1) && (code === ariaRoles[i]) && (roles.indexOf(ariaRoles[i]) < 0)) {
-        roles += ariaRoles[i] + ' ';
+      if ((getColumn(data, indexStart) === 1) &&
+          (code == ariaRoles[i]) &&
+          (roles.indexOf(ariaRoles[i]) < 0)) {
+        roles.push(ariaRoles[i]);
       }
     }
 
@@ -215,7 +217,7 @@ function getRoles (data) {
 }
 
 function getPropertiesAndStates (data) {
-  var propertiesAndStates = '';
+  var propertiesAndStates = [];
 
   var indexStart = data.indexOf('<code>', 0);
   var indexEnd = data.indexOf('</code>', indexStart);
@@ -227,7 +229,8 @@ function getPropertiesAndStates (data) {
       if ((getColumn(data, indexStart) === 2) &&
           (code.indexOf(ariaPropertiesAndStates[i]) >= 0) &&
           (propertiesAndStates.indexOf(ariaPropertiesAndStates[i]) < 0)) {
-        propertiesAndStates += ariaPropertiesAndStates[i] + ' ';
+        propertiesAndStates.push(ariaPropertiesAndStates[i]);
+        console.log('Property: ' + ariaPropertiesAndStates[i]);
       }
     }
 
@@ -242,8 +245,6 @@ function getPropertiesAndStates (data) {
 }
 
 function addExampleToRoles (roles, example) {
-  var roles = roles.split(' ');
-
   for (var i = 0; i < roles.length; i++) {
     var role = roles[i];
 
@@ -259,7 +260,6 @@ function addExampleToRoles (roles, example) {
 }
 
 function addExampleToPropertiesAndStates (props, example) {
-  var props = props.split(' ');
 
   for (var i = 0; i < props.length; i++) {
     var prop = props[i];
@@ -282,7 +282,7 @@ function addLandmarkRole (landmark, hasLabel, title, ref) {
   example.ref = ref;
   addExampleToRoles(landmark, example);
   if (hasLabel) {
-    addExampleToPropertiesAndStates('aria-labelledby', example);
+    addExampleToPropertiesAndStates(['aria-labelledby'], example);
   }
 }
 
@@ -341,14 +341,14 @@ for (r in res) {
 
 // Add landmark examples, since they are a different format
 
-addLandmarkRole('banner', false, 'Banner Landmark', examplesDirectory + 'landmarks/banner.html');
-addLandmarkRole('complementary', true, 'Complementary Landmark', examplesDirectory + 'landmarks/complementary.html');
-addLandmarkRole('contentinfo', false, 'Contentinfo Landmark', examplesDirectory + 'landmarks/contentinfo.html');
-addLandmarkRole('form', true, 'Form Landmark', examplesDirectory + 'landmarks/form.html');
-addLandmarkRole('main', true, 'Main Landmark', examplesDirectory + 'landmarks/main.html');
-addLandmarkRole('navigation', true, 'Navigation Landmark', examplesDirectory + 'landmarks/navigation.html');
-addLandmarkRole('region', true, 'Region Landmark', examplesDirectory + 'landmarks/region.html');
-addLandmarkRole('search', true, 'Search Landmark', examplesDirectory + 'landmarks/search.html');
+addLandmarkRole(['banner'], false, 'Banner Landmark', examplesDirectory + 'landmarks/banner.html');
+addLandmarkRole(['complementary'], true, 'Complementary Landmark', examplesDirectory + 'landmarks/complementary.html');
+addLandmarkRole(['contentinfo'], false, 'Contentinfo Landmark', examplesDirectory + 'landmarks/contentinfo.html');
+addLandmarkRole(['form'], true, 'Form Landmark', examplesDirectory + 'landmarks/form.html');
+addLandmarkRole(['main'], true, 'Main Landmark', examplesDirectory + 'landmarks/main.html');
+addLandmarkRole(['navigation'], true, 'Navigation Landmark', examplesDirectory + 'landmarks/navigation.html');
+addLandmarkRole(['region'], true, 'Region Landmark', examplesDirectory + 'landmarks/region.html');
+addLandmarkRole(['search'], true, 'Search Landmark', examplesDirectory + 'landmarks/search.html');
 
 var exampleIndexFile = fs.readFileSync(fileNameTemplate, function (err) {
   console.log('Error reading aria index:', err);
