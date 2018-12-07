@@ -66,23 +66,21 @@ var respecConfig = {
     company: 'W3C',
     companyURI: 'https://www.w3.org/',
     w3cid: 34017
-  }, {
+  }],
+  formerEditors: [{
     name: 'Joseph Scheuhammer',
     company: 'Inclusive Design Research Centre, OCAD University',
     companyURI: 'http://idrc.ocad.ca/',
-    note: 'Previous Editor',
     w3cid: 42279
   }, {
     name: 'Lisa Pappas',
     company: 'SAS',
     companyURI: 'http://www.sas.com/',
-    note: 'Previous Editor',
     w3cid: 41725
   }, {
     name: 'Rich Schwerdtfeger',
     company: 'IBM Corporation',
     companyURI: 'http://ibm.com/',
-    note: 'Previous Editor',
     w3cid: 2460
   }],
   authors: [{
