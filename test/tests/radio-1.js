@@ -83,6 +83,8 @@ ariaTest('"aria-checked" set on role="radio"', exampleFile, 'radio-aria-checked'
   }
 });
 
+// Keys
+
 ariaTest('Moves focus to first or checked item', exampleFile, 'key-tab', async (t) => {
   t.plan(2);
 
