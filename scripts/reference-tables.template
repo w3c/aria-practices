@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <title>Index of ARIA Examples</title>
+  <title>Index of ARIA Design Pattern Examples | WAI-ARIA Authoring Practices 1.1</title>
   <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
   <link rel="stylesheet" href="css/core.css">
   <script src="js/examples.js"></script>
@@ -16,7 +16,7 @@
   </nav>
 
   <main>
-    <h1>Index of ARIA Examples</h1>
+    <h1>Index of ARIA Design Pattern Examples</h1>
 
     <section id="examples_by_roles">
 
