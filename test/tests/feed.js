@@ -117,7 +117,7 @@ ariaTest('aria-describedby set on article elements', exampleFile, 'article-descr
   await assertAriaDescribedby(t, ex.articleSelector);
 });
 
-ariaTest('', exampleFile, 'article-aria-posinset', async (t) => {
+ariaTest('aria-posinset on article element', exampleFile, 'article-aria-posinset', async (t) => {
   t.plan(30);
   await navigateToFeed(t);
   await waitForArticlesToLoad(t);
@@ -144,7 +144,7 @@ ariaTest('', exampleFile, 'article-aria-posinset', async (t) => {
   }
 });
 
-ariaTest('', exampleFile, 'article-aria-setsize', async (t) => {
+ariaTest('aria-setsize on article element', exampleFile, 'article-aria-setsize', async (t) => {
   t.plan(30);
 
   await navigateToFeed(t);
@@ -222,7 +222,7 @@ ariaTest('CONTROL+END moves focus out of feed', exampleFile, 'key-control-end', 
 });
 
 // This bug has been reported in issue: https://github.com/w3c/aria-practices/issues/911
-ariaTest.failing('', exampleFile, 'key-control-home', async (t) => {
+ariaTest.failing('key home moves focus out of feed', exampleFile, 'key-control-home', async (t) => {
   t.fail();
 });
 
