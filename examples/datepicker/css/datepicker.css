@@ -6,16 +6,17 @@
 .datepicker{
   margin-top:1em;
 }
-.datepickerButton{
+.datepicker button.icon {
   border-style:none;
   text-align:left;
   background-color:white;
 }
+
 label{
   display:block;
 }
 
-.datepickerInput{
+.datepicker input {
   margin-top:1em;
   width:20%;
 }

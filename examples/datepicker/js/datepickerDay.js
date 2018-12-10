@@ -35,13 +35,15 @@ DatePickerDay.prototype.handleKeyDown = function (event) {
     return str.length === 1 && str.match(/\S/);
   }
   switch (event.keyCode) {
+
     case this.keyCode.ESC:
       this.datepicker.close(this.datepicker.inputNode.parentElement);
       break;
+
     case this.keyCode.TAB:
       this.datepicker.dialogButton[0].focus();
       if (event.shiftKey) {
-        this.datepicker.nextYear.focus();
+        this.datepicker.nextYearNode.focus();
       }
       flag = true;
       break;

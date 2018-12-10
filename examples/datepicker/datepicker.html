@@ -51,15 +51,15 @@
            aria-haspopup="dialog"
            aria-owns="id-datepicker-1"
            aria-label="Date">
+
         <label for="id-date-1">Date: </label>
 
-        <input class="datepickerInput"
-              type="text"
+        <input type="text"
               placeholder="mm/dd/yyyy"
               id="id-date-1"
               aria-controls="id-datepicker-1">
 
-        <button class="datepickerButton"
+        <button class="icon"
           tabIndex="-1"
           aria-label="Pick a date"
           aria-haspopup="true"
@@ -112,28 +112,26 @@
             aria-labelledby="id-dialog-label">
             <thead>
               <tr>
-                <th scope="col" role="colheader" aria-label="Sunday">Su</th>
-                <th scope="col" role="colheader" aria-label="Monday">Mo</th>
-                <th scope="col" role="colheader" aria-label="Tuesday">Tu</th>
-                <th scope="col" role="colheader" aria-label="Wednesday">We</th>
-                <th scope="col" role="colheader" aria-label="Thursday">Th</th>
-                <th scope="col" role="colheader" aria-label="Friday">Fr</th>
-                <th scope="col" role="colheader" aria-label="Saturday">Sa</th>
+                <th scope="col" aria-label="Sunday">Su</th>
+                <th scope="col" aria-label="Monday">Mo</th>
+                <th scope="col" aria-label="Tuesday">Tu</th>
+                <th scope="col" aria-label="Wednesday">We</th>
+                <th scope="col" aria-label="Thursday">Th</th>
+                <th scope="col" aria-label="Friday">Fr</th>
+                <th scope="col" aria-label="Saturday">Sa</th>
               </tr>
             </thead>
+
             <tbody class="curr">
             </tbody>
           </table>
-          <div class="dialogButtonGroup">
-            <button class="dialogButton" value="cancel">
-              Cancel
-            </button>
-            <button class="dialogButton" value="ok">
-              OK
-            </button>
-          </div>
-        </div>
 
+          <div class="dialogButtonGroup">
+            <button class="dialogButton" value="cancel">Cancel</button>
+            <button class="dialogButton" value="ok">OK</button>
+          </div>
+
+        </div>
       </div>
 
     </div>
@@ -381,8 +379,16 @@
             <td>
               <ul>
                 <li>Identifies the texbox as having a combobox behavior.</li>
-                <li>Accessible name comes from the <code>label</code> element.</li>
+                <li>Accessible name is defined using the <code>aria-label</code> attribute.</li>
               </ul>
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <th scope="row"><code>aria-label=<q>Date</q></code></th>
+            <td><code>button</code></td>
+            <td>
+              Defines the accessible name of the combobox (e.g. "Date").
             </td>
           </tr>
           <tr>
@@ -526,8 +532,8 @@
         </section>
 
       <section>
-          <h3 id="rps_label_3">Buttons (Next/Previous Month and Year)</h3>
-          <table aria-labelledby="rps_label_3" class="data attributes">
+          <h3 id="rps_label_4">Buttons (Next/Previous Month and Year)</h3>
+          <table aria-labelledby="rps_label_4" class="data attributes">
             <thead>
               <tr>
                 <th scope="col">Role</th>
@@ -584,8 +590,8 @@
         </section>
 
         <section>
-            <h3 id="rps_label_4">Grid (Calendar)</h3>
-            <table aria-labelledby="rps_label_4" class="data attributes">
+            <h3 id="rps_label_5">Grid (Dates of a Month)</h3>
+            <table aria-labelledby="rps_label_5" class="data attributes">
               <thead>
                 <tr>
                   <th scope="col">Role</th>
@@ -610,7 +616,7 @@
                   </tr>
                   <tr>
                       <td></td>
-                      <th scope="row"><code>aira-labelledby=&quot;IDREF&quot;</code></th>
+                      <th scope="row"><code>aira-labelledby=<q>IDREF</q></code></th>
                       <td><code>table</code></td>
                       <td>
                       <ul>
@@ -620,7 +626,7 @@
                   </tr>
                   <tr>
                       <td></td>
-                      <th scope="row"><code>aira-label=&quot;<i>String</span>&quot;</code></th>
+                      <th scope="row"><code>aira-label=<q><em>String</em></q></code></th>
                       <td><code>th</code></td>
                       <td>
                       <ul>
@@ -639,13 +645,13 @@
                     </td>
                   </tr>
                   <tr>
-                    <th scope="row"><code>colheader</code></th>
+                    <th scope="row"><code>columnheader</code></th>
                     <td></td>
                     <td>
-                      <code><code>th</code>
+                      <code>th</code>
                     </td>
                     <td>
-                      Identifies the <code>th</code> element as having a role of columnheader.
+                      The deafult role for a <code>th[scope="col"]</code> element is columnheader.
                     </td>
                   </tr>
                   <tr>
