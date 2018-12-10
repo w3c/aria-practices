@@ -29,12 +29,14 @@ label{
   border-radius:5px;
   padding:0;
 }
+
 .dialogButtonGroup{
   text-align:right;
   margin-top:1em;
   margin-bottom:1em;
   margin-right:1em;
 }
+
 .dialogButton{
   font-size:0.85em;
   padding:5px;
@@ -46,12 +48,19 @@ label{
   outline:none;
   border: 1px solid #EEE;
 }
-.prev-year, .prev-month, .next-month, .next-year {
+
+.prevYear,
+.prevMonth,
+.nextMonth,
+.nextYear {
   padding:4px;
   width:2em;
 }
 
-.prev-year:focus, .prev-month:focus, .next-month:focus, .next-year:focus{
+.prevYear:focus,
+.prevMonth:focus,
+.nextMonth:focus,
+.nextMear:focus{
   color:black;
   border: 1px solid black;
   background:hsl(217, 100%, 92%);
