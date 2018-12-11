@@ -2019,8 +2019,7 @@
                   button in the group.</li>
               </ul>
             </li>
-            <li>
-  							<kbd>Space</kbd>: checks the focused radio button if it is not already checked. </li>
+            <li><kbd>Space</kbd>: checks the focused radio button if it is not already checked.</li>
             <li>
               <kbd>Right Arrow</kbd> and <kbd>Down Arrow</kbd>: move focus to the next radio button in
               the group, uncheck the previously focused button, and check the newly focused button. If
@@ -2049,15 +2048,28 @@
           </p>
           <ul>
             <li><kbd>Space</kbd>: checks the focused radio button if it is not checked. Otherwise, does nothing.</li>
-            <li>
-              <kbd>Right Arrow</kbd>: moves focus to the next radio button in the radio group.
-              Or, if focus is on the last radio button in the group, moves focus to the next element in the toolbar.
-              Or, If the last radio button in the group is also the last element in the toolbar, moves focus to the first element in the toolbar.
+            <li><kbd>Enter</kbd> (optional): checks the focused radio button if it is not already checked.</li>
+            <li><kbd>Right Arrow</kbd>:
+              <ul>
+                <li>When focus is on a radio button and that radio button is <strong>not</strong> the last radio button in the radio group, moves focus to the next radio button.</li>
+                <li>When focus is on the last radio button in the radio group and that radio button is <strong>not</strong> the last element in the toolbar, moves focus to the next element in the toolbar.</li>
+                <li>When focus is on the last radio button in the radio group and that radio button is also the last element in the toolbar, moves focus to the first element in the toolbar.</li>
+              </ul>
+            </li>
+            <li><kbd>Left Arrow</kbd>:
+              <ul>
+                <li>When focus is on a radio button and that radio button is <strong>not</strong> the first radio button in the radio group, moves focus to the previous radio button.</li>
+                <li>When focus is on the first radio button in the radio group and that radio button is <strong>not</strong> the first element in the toolbar, moves focus to the previous element in the toolbar.</li>
+                <li>When focus is on the first radio button in the radio group and that radio button is also the first element in the toolbar, moves focus to the last element in the toolbar.</li>
+              </ul>
             </li>
             <li>
-              <kbd>Left Arrow</kbd>: moves focus to the previous radio button in the radio group.
-              Or, if focus is on the first radio button in the group, moves focus to the previous element in the toolbar.
-              Or, If the first radio button in the group is also the first element in the toolbar, moves focus to the last element in the toolbar.
+              <kbd>Down Arrow</kbd> (optional): Moves focus to the next radio button in the radio group.
+              If focus is on the last radio button in the radio group, moves focus to the first radio button in the group.
+            </li>
+            <li>
+              <kbd>Up Arrow</kbd> (optional): Moves focus to the previous radio button in the radio group.
+              If focus is on the first radio button in the radio group, moves focus to the last radio button in the group.
             </li>
           </ul>
           <p class="note">
