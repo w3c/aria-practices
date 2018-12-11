@@ -35,11 +35,11 @@ DateInput.prototype.handleKeyDown = function (event) {
   }
   switch (event.keyCode) {
     case this.keyCode.DOWN:
-      this.datepicker.open(this.domNode.parentElement);
+      this.datepicker.open();
       flag = true;
       break;
     case this.keyCode.ESC:
-      this.datepicker.close(this.domNode.parentElement);
+      this.datepicker.close();
   }
   if (flag) {
     event.stopPropagation();
@@ -49,10 +49,10 @@ DateInput.prototype.handleKeyDown = function (event) {
 
 DateInput.prototype.handleButtonClick = function () {
   if (this.domNode.getAttribute('aria-expanded') === 'true') {
-    this.datepicker.close(this.domNode.parentElement);
+    this.datepicker.close();
   }
   else {
-    this.datepicker.open(this.domNode.parentElement);
+    this.datepicker.open();
   }
 };
 

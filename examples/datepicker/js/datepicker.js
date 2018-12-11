@@ -3,8 +3,9 @@
 var months =  ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 
-var DatePicker = function (inputNode,buttonNode,dialogNode) {
+var DatePicker = function (comboboxNode, inputNode,buttonNode,dialogNode) {
   this.body = document;
+  this.comboboxNode = comboboxNode;
   this.inputNode = inputNode;
   this.buttonNode = buttonNode;
   this.dialogNode = dialogNode;
@@ -15,6 +16,8 @@ var DatePicker = function (inputNode,buttonNode,dialogNode) {
   this.prevMonthNode = dialogNode.querySelector('.prevMonth');
   this.nextMonthNode = dialogNode.querySelector('.nextMonth');
   this.nextYearNode = dialogNode.querySelector('.nextYear');
+
+  this.tbodyNode = dialogNode.querySelector('table.dates tbody');
 
   this.monthIndex = null;
   this.month = null;
@@ -109,9 +112,10 @@ DatePicker.prototype.handleBodyClick = function () {
     }
   }
 };
-DatePicker.prototype.open = function (node) {
+
+DatePicker.prototype.open = function () {
   this.dialogNode.style.display = 'block';
-  node.setAttribute('aria-expanded', 'true');
+  this.comboboxNode.setAttribute('aria-expanded', 'true');
   if (this.lastFocused) {
     this.lastFocused.focus();
     this.lastFocused.tabIndex = 0;
@@ -126,7 +130,7 @@ DatePicker.prototype.open = function (node) {
 
 DatePicker.prototype.close = function (node) {
   this.dialogNode.style.display = 'none';
-  node.setAttribute('aria-expanded','false');
+  this.comboboxNode.setAttribute('aria-expanded','false');
   this.buttonNode.focus();
 };
 
@@ -168,16 +172,16 @@ DatePicker.prototype.handleDialogButton = function (event) {
           }
         }
         else if (tgt.value === 'cancel') {
-          this.close(this.inputNode.parentElement);
+          this.close();
         }
       case this.keyCode.ESC:
-        this.close(this.inputNode.parentElement);
+        this.close();
         flag = true;
         break;
     }
   }
   else if (event.type === 'click') {
-    this.close(this.inputNode);
+    this.close();
     flag = true;
   }
   if (flag) {
@@ -196,7 +200,7 @@ DatePicker.prototype.handleNextYearButton = function (event) {
     }
     switch (event.keyCode) {
       case this.keyCode.ESC:
-        this.close(this.inputNode.parentElement);
+        this.close();
         flag = true;
         break;
       case this.keyCode.TAB:
@@ -235,7 +239,7 @@ DatePicker.prototype.handlePrevYearButton = function (event) {
     }
     switch (event.keyCode) {
       case this.keyCode.ESC:
-        this.close(this.inputNode.parentElement);
+        this.close();
         flag = true;
         break;
       case this.keyCode.TAB:
@@ -275,7 +279,7 @@ DatePicker.prototype.handleNextMonthButton = function (event) {
     }
     switch (event.keyCode) {
       case this.keyCode.ESC:
-        this.close(this.inputNode.parentElement);
+        this.close();
         flag = true;
         break;
       case this.keyCode.RETURN:
@@ -305,7 +309,7 @@ DatePicker.prototype.handlePrevMonthButton = function (event) {
     }
     switch (event.keyCode) {
       case this.keyCode.ESC:
-        this.close(this.inputNode.parentElement);
+        this.close();
         flag = true;
         break;
       case this.keyCode.RETURN:
@@ -424,7 +428,7 @@ DatePicker.prototype.setUpForNewMonthYear = function (row, dateCell) {
 
 DatePicker.prototype.setSelectDate = function (dateCell) {
   for (var i = 0;i < this.datesArrayDOM.length;i++) {
-    this.datesArrayDOM[i].domNode.setAttribute('aria-selected', 'false');
+    this.datesArrayDOM[i].domNode.removeAttribute('aria-selected');
     this.datesArrayDOM[i].domNode.tabIndex = '-1';
     if (this.datesArrayDOM[i] === dateCell) {
       this.datesArrayDOM[i].domNode.tabIndex = '0';
@@ -451,18 +455,16 @@ DatePicker.prototype.setSelectDate = function (dateCell) {
   }
   document.getElementById('id-date-1').value = numberOfMonth + '/' + numberOfDate + '/' + this.year;
   this.buttonNode.setAttribute('aria-label', this.month + ' ' + numberOfDate + ' ' + this.year);
-  this.close(this.inputNode.parentElement);
+  this.close();
 };
 
 
 DatePicker.prototype.setFocusDate = function (button) {
   for (var i = 0; i < this.datesArray.length; i++) {
     var dc = this.datesArray[i];
-    dc.classList.remove('lastFocused');
     if (dc === button) {
       dc.tabIndex = 0;
       dc.focus();
-      dc.classList.add('lastFocused');
       this.lastFocused = dc;
     }
     else {
@@ -532,10 +534,9 @@ DatePicker.prototype.updateCalendar = function (month, year) {
   var firstDateOfMonth = new Date(this.year, this.monthIndex, 1);
   var startDay = firstDateOfMonth.getDay();
 
-  var tbody = document.querySelector('.curr');
-  tbody.innerHTML = '';
+  this.tbodyNode.innerHTML = '';
   for (var i = 0; i < 6;i++) {
-    var row = tbody.insertRow(i);
+    var row = this.tbodyNode.insertRow(i);
     row.classList.add('dateRow');
   }
 
@@ -547,11 +548,11 @@ DatePicker.prototype.updateCalendar = function (month, year) {
       cell.appendChild(cellButton);
       tableRow[i].appendChild(cell);
       cellButton.classList.add('dateCell');
-      cell.classList.add('cell');
+      cell.classList.add('date');
     }
   }
   var dateCells = document.querySelectorAll('.dateCell');
-  var cells = document.querySelectorAll('.cell');
+  var cells = document.querySelectorAll('.date');
 
 
   for (var i = startDay - 1; i >= 0; i--) {
@@ -566,9 +567,9 @@ DatePicker.prototype.updateCalendar = function (month, year) {
     startDay++;
   }
 
-  if (tbody.rows[tableRow.length - 1].cells[0].querySelector('button').innerHTML === '') {
-    tbody.rows[tableRow.length - 1].innerHTML = '';
-    tbody.rows[tableRow.length - 1].style.height = '40px';
+  if (this.tbodyNode.rows[tableRow.length - 1].cells[0].querySelector('button').innerHTML === '') {
+    this.tbodyNode.rows[tableRow.length - 1].innerHTML = '';
+    this.tbodyNode.rows[tableRow.length - 1].style.height = '40px';
   }
   var j = 1;
   for (var i = startDay; i < dateCells.length; i++) {
@@ -610,7 +611,7 @@ window.addEventListener('load' , function () {
       var dpInput    = dp.querySelector('input');
       var dpButton   = dp.querySelector('button');
       var dpDialog   = document.getElementById(dp.getAttribute('aria-owns'));
-      var datePicker = new DatePicker(dpInput, dpButton, dpDialog);
+      var datePicker = new DatePicker(dp, dpInput, dpButton, dpDialog);
       datePicker.init();
     }
   );

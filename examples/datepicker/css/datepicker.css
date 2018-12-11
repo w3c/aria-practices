@@ -1,11 +1,7 @@
-* {
-  margin: 0;
-  padding: 0;
-  /* border:0; */
-}
 .datepicker{
   margin-top:1em;
 }
+
 .datepicker button.icon {
   border-style:none;
   text-align:left;
@@ -25,10 +21,56 @@ label{
   width:45%;
   clear:both;
   display:none;
-  border:3px solid rgb(130, 177, 230);
+  border:3px solid hsl(216, 80%, 55%);
   margin-top:1em;
   border-radius:5px;
   padding:0;
+}
+
+.datepickerDialog button::-moz-focus-inner {
+  border:0;
+}
+
+
+.header {
+  cursor:default;
+  background-color:hsl(216, 80%, 55%);
+  padding:7px;
+  font-weight:bold;
+  text-transform:uppercase;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+}
+
+.header button {
+  border-style:none;
+  background:transparent;
+}
+
+.header span {
+  display:inline-block;
+}
+
+.prevYear,
+.prevMonth,
+.nextMonth,
+.nextYear {
+  padding:4px;
+  width:2em;
+  color: white;
+}
+
+.prevYear:focus,
+.prevMonth:focus,
+.nextMonth:focus,
+.nextYear:focus{
+  color: black;
+  padding: 2px;
+  border: 2px solid black;
+  background: hsl(216, 80%, 92%);
+  border-radius: 4px;
+  outline: 0;
 }
 
 .dialogButtonGroup{
@@ -39,69 +81,37 @@ label{
 }
 
 .dialogButton{
-  font-size:0.85em;
   padding:5px;
-  border-radius:5px;
   margin-left:1em;
   width:5em;
-  background-color:hsl(216, 89%, 72%);
-  color:white;
-  outline:none;
-  border: 1px solid #EEE;
-}
-
-.prevYear,
-.prevMonth,
-.nextMonth,
-.nextYear {
-  padding:4px;
-  width:2em;
-}
-
-.prevYear:focus,
-.prevMonth:focus,
-.nextMonth:focus,
-.nextMear:focus{
+  background-color: hsl(216, 80%, 92%);
+  font-size:0.85em;
   color:black;
-  border: 1px solid black;
-  background:hsl(217, 100%, 92%);
-  border-radius:10px;
-  outline:0;
+  outline: none;
+  border: 1px solid hsl(216, 80%, 92%);
+  border-radius:5px;
 }
+
 .dialogButton:focus{
-  border:1px solid black;
-  outline:0;
-}
-.dates{
-  width:100%;
-  padding-left:1em;
-  padding-right:1em;
-  padding-top:1em;
-}
-th[scope="col"],.dateRow td{
-  text-align:center;
+  padding: 4px;
+  border: 2px solid black;
 }
 
 .fa-calendar-alt {
   color:hsl(216, 89%, 72%);
 }
-.header {
-  cursor:default;
-  background-color:hsl(216, 89%, 72%);
-  padding:7px;
-  font-weight:bold;
-  text-transform:uppercase;
-  color:white;
-  display: flex;
-  justify-content: space-around;
-}
-.header button{
-  border-style:none;
-  background:transparent;
+
+
+table.dates {
+  width:100%;
+  padding-left:1em;
+  padding-right:1em;
+  padding-top:1em;
 }
 
-.header span {
-  display:inline-block;
+table.dates th,
+table.dates td{
+  text-align:center;
 }
 
 .dateRow{
@@ -109,7 +119,7 @@ th[scope="col"],.dateRow td{
 }
 
 
-.cell {
+.date {
   outline:0;
   border:0;
   padding:0;
@@ -117,42 +127,47 @@ th[scope="col"],.dateRow td{
   height: 40px;
   width:40px;
 }
-.dateCell{
+
+.dateCell {
   padding:0;
   margin:0;
   line-height: inherit;
   height:100%;
   width: 100%;
-  font-size: 15px;
-  border:1px solid rgba(164, 164, 164, 0.961);
-  background:white;
+  border: 1px solid #EEE;
   border-radius:5px;
+  font-size: 15px;
+  background: #EEE;
 }
-.dateCell::-moz-focus-inner{
-  border:0;
-}
-.dateCell:focus{
-  outline:0;
-  padding:0;
-  background-color:hsl(216, 89%, 72%);
-  border:1px solid black;
-}
-.lastFocused {
-  outline:0;
+
+.dateCell:focus,
+.dateCell:hover {
   padding:0;
   background-color:hsl(216, 80%, 92%);
-  border:1px solid rgb(100, 100, 100);
 }
-.disabled, .dateCell:disabled,{
+
+.dateCell:focus {
+  border-width: 2px;
+  border-color: rgb(100, 100, 100);
+  outline:0;
+}
+
+.dateCell[aria-selected] {
+  background-color:hsl(216, 80%, 92%);
+  border-color: rgb(100, 100, 100);
+}
+
+
+.disabled {
   cursor: not-allowed;
   color: #afafaf;
 }
 
-.dateCell:disabled{
-  border:1.3px solid #EEE;
-  background:#EEE;
+.dateCell:disabled {
+  color: #777;
+  background-color: #FFF;
+  border: none;
   cursor: not-allowed;
 }
-.fa-lg {
-  color:white;
-}
+
+

@@ -37,7 +37,7 @@ DatePickerDay.prototype.handleKeyDown = function (event) {
   switch (event.keyCode) {
 
     case this.keyCode.ESC:
-      this.datepicker.close(this.datepicker.inputNode.parentElement);
+      this.datepicker.close();
       break;
 
     case this.keyCode.TAB:
