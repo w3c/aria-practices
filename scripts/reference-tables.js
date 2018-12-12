@@ -281,7 +281,7 @@ function addLandmarkRole (landmark, hasLabel, title, ref) {
   example.ref = ref;
   addExampleToRoles(landmark, example);
   if (hasLabel) {
-    addExampleToPropertiesAndStates(['aria-labelledby'], example);
+    addExampleToPropertiesAndStates([ 'aria-labelledby' ], example);
   }
 }
 
@@ -331,14 +331,14 @@ findHTMLFiles(examplesDirectory);
 
 // Add landmark examples, since they are a different format
 
-addLandmarkRole(['banner'], false, 'Banner Landmark', examplesDirectory + 'landmarks/banner.html');
-addLandmarkRole(['complementary'], true, 'Complementary Landmark', examplesDirectory + 'landmarks/complementary.html');
-addLandmarkRole(['contentinfo'], false, 'Contentinfo Landmark', examplesDirectory + 'landmarks/contentinfo.html');
-addLandmarkRole(['form'], true, 'Form Landmark', examplesDirectory + 'landmarks/form.html');
-addLandmarkRole(['main'], true, 'Main Landmark', examplesDirectory + 'landmarks/main.html');
-addLandmarkRole(['navigation'], true, 'Navigation Landmark', examplesDirectory + 'landmarks/navigation.html');
-addLandmarkRole(['region'], true, 'Region Landmark', examplesDirectory + 'landmarks/region.html');
-addLandmarkRole(['search'], true, 'Search Landmark', examplesDirectory + 'landmarks/search.html');
+addLandmarkRole([ 'banner' ], false, 'Banner Landmark', examplesDirectory + 'landmarks/banner.html');
+addLandmarkRole([ 'complementary' ], true, 'Complementary Landmark', examplesDirectory + 'landmarks/complementary.html');
+addLandmarkRole([ 'contentinfo' ], false, 'Contentinfo Landmark', examplesDirectory + 'landmarks/contentinfo.html');
+addLandmarkRole([ 'form' ], true, 'Form Landmark', examplesDirectory + 'landmarks/form.html');
+addLandmarkRole([ 'main' ], true, 'Main Landmark', examplesDirectory + 'landmarks/main.html');
+addLandmarkRole([ 'navigation' ], true, 'Navigation Landmark', examplesDirectory + 'landmarks/navigation.html');
+addLandmarkRole([ 'region' ], true, 'Region Landmark', examplesDirectory + 'landmarks/region.html');
+addLandmarkRole([ 'search' ], true, 'Search Landmark', examplesDirectory + 'landmarks/search.html');
 
 var exampleIndexFile = fs.readFileSync(fileNameTemplate, function (err) {
   console.log('Error reading aria index:', err);
