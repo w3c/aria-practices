@@ -492,34 +492,17 @@
         While a slide may contain any type of content, image carousels where each slide contains nothing more than a single image are common.
       </p>
       <p>
-          Ensuring all users, especially screen reader users, can control slide rotation is an essential accessibility feature of carousels.
-          If a slide is hidden while a screen reader user is reading it, the screen reader will lose its point of regard, typically forcing the screen reader's reading cursor to the top of the page.
-          this is particularly disorienting if the user is not aware of the automatic rotation.
-        </p>
-      <p>
-        The requirements for controlling the slide rotation include pausing rotation on keyboard focus and pointer hover, an explicit pause button, previous button and a next slide buttons.  Optionally a <code>tablist</code> can be used to provide additional control over the navigation of the slides.
+        Ensuring all users, especially screen reader users, can control slide rotation is an essential accessibility feature of carousels.
+        If content is hidden and replaced while a screen reader user is reading it, the experience can be confusing and disorienting, especially  if the user is not aware of the automatic slide rotation.
       </p>
-        <dl>
-          <dt>Pause Rotation</dt>
-          <dd>The auto-rotation must stop when keyboard focus is on a slide in the carousel.  Keyboard only and screen reader users will be disoriented if keyboard focus disappears when the slides change.</dd>
-          <dd>The auto-rotation must stop when the pointer hovers over an image in the carousel.</dd>
-
-          <dt>Pause Button</dt>
-          <dd>Used to stop the auto-rotation of slides, and can optionally be a toggle to restart the rotation of slides</dd>
-          <dd>This is important to inform screen reader users using virtual reading modes to switch to application mode to stop the rotation of slides.</dd>
-
-          <dt>Previous Slide Button</dt>
-          <dd>Used to move to the previous slide in the set of slides.</dd>
-          <dd>The label for the previous button should contain information on the slide position of the previous slide in the sequence of slides and the total number of slides (e.g. Slide 3 of 6).</dd>
-
-          <dt>Next Slide Button</dt>
-          <dd>Used to move to the next slide in the set of slides.</dd>
-          <dd>The label for the next button should contain information on the slide position of the previous slide in the sequence of slides and the total number of slides (e.g. Slide 5 of 6).</dd>
-
-          <dt><code>tablist</code> Widget (optional)</dt>
-          <dd>Used to provide direct navigation to individual slides when a carousel provides visual controls indicating number of slides and direct navigation to a slide.</dd>
-          <dd>The set of controls for navigating slides can be modelled using the <code>tablist</code> pattern.</dd>
-        </dl>
+      <p>Features needed to provide sufficient rotation control include:</p>
+      <ol>
+        <li>Rotation pauses when keyboard focus enters the carousel.</li>
+        <li>Rotation pauses when the mouse hovers over the carousel.</li>
+        <li>A button for pausing and restarting rotation. This is particularly important for supporting assistive technologies operating in a mode that does not move either keyboard focus or the mouse.</li>
+        <li>Buttons for displaying the previous and next slides.</li>
+        <li>Optionally, a control, or group of controls, for choosing a specific slide to display. For example, the selection controls can be marked up as tabs in a tablist with the slide represented by a tabpanel element.</li>
+      </ol>
 
       <section class="notoc">
         <h4>Example</h4>
