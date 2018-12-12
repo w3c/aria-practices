@@ -10,30 +10,33 @@ const startGeckodriver = require('./util/start-geckodriver');
 let session, geckodriver;
 const firefoxArgs = process.env.CI ? [ '-headless' ] : [];
 const testWaitTime = parseInt(process.env.TEST_WAIT_TIME) || 500;
+const coverageReportRun = process.env.REGRESSION_COVERAGE_REPORT;
 
-test.before(async (t) => {
-  geckodriver = await startGeckodriver(1022, 12 * 1000);
-  session = new webdriver.Builder()
-    .usingServer('http://localhost:' + geckodriver.port)
-    .withCapabilities({
-      'moz:firefoxOptions': {
-        args: firefoxArgs
-      }
-    })
-    .forBrowser('firefox')
-    .build();
-  await session;
-});
+if (!coverageReportRun) {
+  test.before(async (t) => {
+    geckodriver = await startGeckodriver(1022, 12 * 1000);
+    session = new webdriver.Builder()
+      .usingServer('http://localhost:' + geckodriver.port)
+      .withCapabilities({
+        'moz:firefoxOptions': {
+          args: firefoxArgs
+        }
+      })
+      .forBrowser('firefox')
+      .build();
+    await session;
+  });
 
-test.beforeEach((t) => {
-  t.context.session = session;
-  t.context.waitTime = testWaitTime;
-});
+  test.beforeEach((t) => {
+    t.context.session = session;
+    t.context.waitTime = testWaitTime;
+  });
 
-test.after.always(() => {
-  return Promise.resolve(session && session.close())
-    .then(() => geckodriver && geckodriver.stop());
-});
+  test.after.always(() => {
+    return Promise.resolve(session && session.close())
+      .then(() => geckodriver && geckodriver.stop());
+  });
+}
 
 /**
  * Declare a test for a behavior documented on and demonstrated by an
@@ -65,6 +68,13 @@ const _ariaTest = (desc, page, testId, body, failing) => {
   const selector = '[data-test-id="' + testId + '"]';
 
   const testName = page + ' ' + selector + ': ' + desc;
+
+  if (coverageReportRun) {
+    test(testName, async function (t) {
+      t.fail('All tests expect to fail. Running in coverage mode.');
+    });
+    return;
+  }
 
   let runTest = failing ? test.failing : test.serial;
   runTest(testName, async function (t) {

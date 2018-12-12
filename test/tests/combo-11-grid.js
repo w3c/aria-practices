@@ -778,3 +778,9 @@ ariaTest('Sending character keys while focus is on grid moves focus',
 
   });
 
+ariaTest.failing('Expected behavior for all other standard single line editing keys',
+  exampleFile, 'standard-single-line-editing-keys', async (t) => {
+    t.plan(1);
+    t.fail();
+  });
+
