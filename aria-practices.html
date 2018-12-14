@@ -511,35 +511,86 @@
           <a href="https://github.com/w3c/aria-practices/issues/458">issue 458.</a>
         </p>
       </section>
+      
+      <section class="notoc">
+        <h4>Terms</h4>
+        <p>The following terms are used to describe components of a carousel.</p>
+        <dl>
+          <dt>Rotation Control</dt>
+          <dd>An interactive element that stops and starts automatic slide rotation.</dd>
+          <dt>Next Slide Control</dt>
+          <dd>An interactive element, often styled as an arrow,  that displays the next slide in the rotation sequence.</dd>
+          <dt>Previous Slide Control</dt>
+          <dd>An interactive element, often styled as an arrow,  that displays the previous slide in the rotation sequence.</dd>
+          <dt>Slide Selection Controls</dt>
+          <dd>A group of elements, often styled as small dots, that enable the user to display a specific slide in the rotation sequence.</dd>
+        </dl>
+      </section>
 
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
         <ul>
           <li>
             Automatic slide rotation stops when any element in the carousel receives keyboard focus.
-            It does not resume unless the user activates the control for starting and stopping rotation.
+            It does not resume unless the user activates the rotation control.
           </li>
-          <li><kbd>Tab</kbd> and <kbd>Shift + Tab</kbd>: Move focus through the carousel as specified by the page tab sequence; no special scripting is necessary.</li>
+          <li><kbd>Tab</kbd> and <kbd>Shift + Tab</kbd>: Move focus through the interactive elements of the carousel as specified by the page tab sequence; no special scripting is necessary.</li>
           <li>Button elements implement the keyboard interaction defined in the <a href="#button">button pattern</a>.</li>
-          <li>If tabs are used for slide selection, they implement the keyboard interaction defined in the <a href="#tabpanel">Tabs Pattern.</a></li>
+          <li>If tab elements are used for slide selection controls, they implement the keyboard interaction defined in the <a href="#tabpanel">Tabs Pattern.</a></li>
         </ul>
       </section>
 
       <section class="notoc">
         <h4>WAI-ARIA Roles, States, and Properties</h4>
         <ul>
-          <li>The <code>complementary</code> or <code>region</code> landmark used to identify the carousel should have an accessible name (e.g. "Image Carousel") indicating it contains auto-rotating slides using <code>aria-label</code>.</li>
-          <li>The pause button uses <code>aria-pressed="true"</code> to indicate the rotator is paused.</li>
-          <li>The pause button uses <code>aria-pressed="false"</code> to indicate the rotator is automatically rotating.</li>
-          <li>The element that serves as the container the for the set of tabs has role  <a class="role-reference" href="#tablist">tablist</a>. </li>
-          <li>Each element that serves as a tab has role <a class="role-reference" href="#tab">tab</a> and is contained within the element with role <code>tablist</code>.</li>
-          <li>Each element that contains slide content for a <code>tab</code> has role <a class="role-reference" href="#tabpanel">tabpanel</a>.</li>
-          <li>Each element with role <code>tab</code> has the property <a href="#aria-controls" class="property-reference">aria-controls</a> referring to its associated <code>tabpanel</code> element.</li>
-          <li>The active <code>tab</code> element has the state <a href="#aria-selected" class="state-reference">aria-selected</a> set to <code>true</code> and all other <code>tab</code> elements have it set to <code>false</code>.</li>
-          <li>Each element with role <code>tabpanel</code> has the property <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> referring to its associated <code>tab</code> element. </li>
+          <li>
+            A carousel container element that encompasses all components of the carousel,  including both carousel controls and slides,
+            has either role <a href="#region" class="role-reference">region</a>
+            or role <a href="#group" class="role-reference">group.</a>
+            The most appropriate role for the carousel container depends on the information architecture of the page.
+            See the <a href="#aria_landmark">landmark regions guidance</a> to determine whether the carousel warrants being designated as a landmark region.
+          </li>
+          <li>The carousel container has the <a href="#aria-roledescription" class="property-reference">aria-roledescription</a> property set to <code>carousel</code>.</li>
+          <li>
+            If the carousel has a visible label, its accessible label is provided by the property
+            <a href="#aria-labelledby" class="property-reference" >aria-labelledby</a> on the carousel container set to the ID of the element containing the visible label.
+            Otherwise, an accessible label is provided by the property <a href="#aria-label" class="property-reference">aria-label</a> set on the carousel container.
+            Note that since the <code>aria-roledescription</code> is set to &quot;carousel&quot;, the label should not contain the word &quot;carousel&quot;.
+          </li>
+          <li>
+            The rotation control, next slide control, and previous slide control are
+            either native button elements with an implicit role of <a href="#button" class="role-reference">button</a> (recommended)
+            or implement the <a href="#button">button pattern</a>.
+          </li>
+          <li>
+            The rotation control has an accessible label provided by either its inner text or <a href="#aria-label" class="property-reference">aria-label</a>.
+            The label changes to match the action the button will perform, e.g., &quot;Stop slide rotation&quot; or &quot;Start slide rotation&quot;.
+            A label that changes when the button is activated clearly communicates both that slide content can change automatically and when it is doing so. 
+            Note that since the label changes, the rotation control does not have any states, e.g., <code>aria-pressed</code>, specified.
+          </li>
+          <li>
+            If slide selection controls are present and are implemented as <a href="#tab" class="role-reference">tab</a> elements,
+            each slide container has the role <a href="#tabpanel" class="role-reference">tabpanel</a>.
+            Otherwise, each slide container has the role <a href="#group" class="role-reference">group</a>
+            and the property <a href="aria-roledescription" class="property-reference">aria-roledescription</a> set to <code>slide</code>.
+          </li>
+          <li>If slide selection controls are included, they are either:
+            <ul>
+              <li>
+                <strong>(Recommended)</strong> Implemented using the <a href="#tabpanel">tabs pattern</a> where each control is a <code>tab</code> element and the set of controls is grouped in a <code>tablist</code> element.
+                See the <a href="#tabpanel">tabs pattern</a> for the complete list of implementation details.
+              </li>
+              <li>Implemented as a group of buttons where:
+                <ul>
+                  <li>The set of controls is contained in an element with role group and has a label.</li>
+                  <li>Each selection control is a native button or implements the button pattern.</li>
+                  <li>The button representing the currently display slide has aria-disabled.</li> 
+                </ul>
+              </li>
+            </ul>
+          </li>
         </ul>
       </section>
-
     </section>
     
     <section class="widget" id="checkbox">
