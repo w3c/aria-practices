@@ -37,6 +37,8 @@ var DatePicker = function (comboboxNode, inputNode,buttonNode,dialogNode) {
 
   this.currentDay = null;
 
+  this.handleDocumentClick;
+
 
   this.keyCode = Object.freeze({
     'TAB': 9,
@@ -319,7 +321,8 @@ DatePicker.prototype.getDaysInMonth = function (year, month) {
 
 
 DatePicker.prototype.open = function () {
-  document.addEventListener('click', this.handleDocumentClick.bind(this), true);
+  this.handleDocumentClick = this.handleDocumentClick.bind(this);
+  document.addEventListener('click', this.handleDocumentClick, true);
 
   this.dialogNode.style.display = 'block';
   this.comboboxNode.setAttribute('aria-expanded', 'true');
@@ -328,7 +331,7 @@ DatePicker.prototype.open = function () {
 };
 
 DatePicker.prototype.close = function (node) {
-  document.removeEventListener('click', this.handleDocumentClick.bind(this), true);
+  document.removeEventListener('click', this.handleDocumentClick, true);
 
   this.dialogNode.style.display = 'none';
   this.comboboxNode.setAttribute('aria-expanded','false');
@@ -379,6 +382,7 @@ DatePicker.prototype.handleOkButton = function (event) {
       break;
 
     case 'click':
+      this.setTextboxDate();
       this.close();
       flag = true;
       break;
