@@ -57,30 +57,29 @@ label{
 .nextMonth,
 .nextYear {
   padding:4px;
-  width:2em;
+  width:24px;
+  height:24px;
   color: white;
 }
 
 .prevYear:focus,
 .prevMonth:focus,
 .nextMonth:focus,
-.nextYear:focus{
-  color: black;
+.nextYear:focus {
   padding: 2px;
-  border: 2px solid black;
-  background: hsl(216, 80%, 92%);
+  border: 2px solid white;
   border-radius: 4px;
   outline: 0;
 }
 
-.dialogButtonGroup{
+.dialogButtonGroup {
   text-align:right;
   margin-top:1em;
   margin-bottom:1em;
   margin-right:1em;
 }
 
-.dialogButton{
+.dialogButton {
   padding:5px;
   margin-left:1em;
   width:5em;
@@ -92,7 +91,7 @@ label{
   border-radius:5px;
 }
 
-.dialogButton:focus{
+.dialogButton:focus  {
   padding: 4px;
   border: 2px solid black;
 }
@@ -114,12 +113,11 @@ table.dates td{
   text-align:center;
 }
 
-.dateRow{
+.dateRow {
   border:1px solid black;
 }
 
-
-.date {
+.dateCell {
   outline:0;
   border:0;
   padding:0;
@@ -128,7 +126,7 @@ table.dates td{
   width:40px;
 }
 
-.dateCell {
+.dateButton {
   padding:0;
   margin:0;
   line-height: inherit;
@@ -140,30 +138,32 @@ table.dates td{
   background: #EEE;
 }
 
-.dateCell:focus,
-.dateCell:hover {
+.dateButton:focus,
+.dateButton:hover {
   padding:0;
   background-color:hsl(216, 80%, 92%);
 }
 
-.dateCell:focus {
+.dateButton:focus {
   border-width: 2px;
   border-color: rgb(100, 100, 100);
   outline:0;
 }
 
-.dateCell[aria-selected] {
-  background-color:hsl(216, 80%, 92%);
+.dateButton[aria-selected] {
   border-color: rgb(100, 100, 100);
 }
 
+.dateButton[tabindex="0"] {
+  background-color:hsl(216, 80%, 92%);
+}
 
 .disabled {
   cursor: not-allowed;
   color: #afafaf;
 }
 
-.dateCell:disabled {
+.dateButton:disabled {
   color: #777;
   background-color: #FFF;
   border: none;

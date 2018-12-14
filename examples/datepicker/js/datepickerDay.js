@@ -1,4 +1,12 @@
-var DatePickerDay = function (domNode,datepicker) {
+var DatePickerDay = function (domNode, datepicker, index, row, column) {
+
+  this.index = index;
+  this.row = row;
+  this.column = column;
+
+  this.year = -1;
+  this.month = -1;
+  this.day = -1;
 
   this.domNode = domNode;
   this.datepicker = datepicker;
@@ -20,20 +28,40 @@ var DatePickerDay = function (domNode,datepicker) {
 };
 
 DatePickerDay.prototype.init = function () {
-  this.domNode.tabIndex = -1;
+  this.domNode.setAttribute('tabindex', '-1');
   this.domNode.addEventListener('click', this.handleClick.bind(this));
   this.domNode.addEventListener('keydown', this.handleKeyDown.bind(this));
+
+  this.domNode.innerHTML = '-1';
+
+};
+
+DatePickerDay.prototype.isDisabled = function () {
+  return this.domNode.disabled;
+};
+
+DatePickerDay.prototype.updateDay = function (disable, year, month, day) {
+
+  this.domNode.disabled = disable;
+
+  this.year = year;
+  this.month = month;
+  this.day = day;
+
+  this.domNode.innerHTML = day + 1;
+  this.domNode.setAttribute('tabindex', '-1');
+  this.domNode.removeAttribute('aria-selected');
 
 };
 
 DatePickerDay.prototype.handleKeyDown = function (event) {
-  var tgt = event.currentTarget,
-    char = event.key,
-    flag = false,
-    clickEvent;
-  function isPrintableCharacter (str) {
-    return str.length === 1 && str.match(/\S/);
-  }
+  var flag = false
+  var onFirstRow = this.row === 0;
+  onFirstRow = onFirstRow || ((this.row === 1) && (this.datepicker.days[this.index-7].isDisabled()));
+  var onLastRow = this.row === 5;
+  onLastRow = onLastRow || (this.row === 3) && (this.datepicker.days[this.index+7].isDisabled());
+  onLastRow = onLastRow || (this.row === 4) && (this.datepicker.days[this.index+7].isDisabled());
+
   switch (event.keyCode) {
 
     case this.keyCode.ESC:
@@ -41,59 +69,50 @@ DatePickerDay.prototype.handleKeyDown = function (event) {
       break;
 
     case this.keyCode.TAB:
-      this.datepicker.dialogButton[0].focus();
+      this.datepicker.cancelButtonNode.focus();
       if (event.shiftKey) {
         this.datepicker.nextYearNode.focus();
       }
       flag = true;
       break;
+
     case this.keyCode.RETURN:
     case this.keyCode.SPACE:
       this.datepicker.setSelectDate(this);
       flag = true;
       break;
-    case this.keyCode.RIGHT:
-      this.datepicker.setFocusToNextDay(this);
-      flag = true;
-      break;
-    case this.keyCode.LEFT:
-      this.datepicker.setFocusToPrevDay(this);
-      flag = true;
-      break;
-    case this.keyCode.UP:
-      this.datepicker.setFocusToPrevWeek(this);
-      flag = true;
-      break;
-    case this.keyCode.DOWN:
-      this.datepicker.setFocusToNextWeek(this);
-      flag = true;
-      break;
-    case this.keyCode.PAGEUP:
-      var row = document.getElementsByClassName('dateRow');
-      var cell = this.datepicker.setUpForNewMonthYear(row, this);
-      if (event.shiftKey) {
-        this.datepicker.moveToPrevYear(this);
-      }
-      else {
-        this.datepicker.moveToPrevMonth(this);
-      }
-      console.log(cell);
-      var newRow = document.getElementsByClassName('dateRow');
-      this.datepicker.setFocusToNewMonthYear(newRow, cell);
-      console.log(cell);
 
+    case this.keyCode.RIGHT:
+      this.datepicker.moveFocusToNextDay();
       flag = true;
       break;
+
+    case this.keyCode.LEFT:
+      this.datepicker.moveFocusToPreviousDay();
+      flag = true;
+      break;
+
+    case this.keyCode.DOWN:
+      this.datepicker.moveFocusToNextWeek();
+      flag = true;
+      break;
+
+    case this.keyCode.UP:
+      this.datepicker.moveFocusToPreviousWeek();
+      flag = true;
+      break;
+
+    case this.keyCode.PAGEUP:
+      this.datepicker.moveToPreviousMonth();
+      this.datepicker.adjustCurrentDay(this, onFirstRow, onLastRow);
+      this.datepicker.setFocusDay();
+      flag = true;
+      break;
+
     case this.keyCode.PAGEDOWN:
-      var row = document.getElementsByClassName('dateRow');
-      var cell = this.datepicker.setUpForNewMonthYear(row, this);
-      if (event.shiftKey) {
-        this.datepicker.moveToNextYear(this);
-      }
-      else {
-        this.datepicker.moveToNextMonth(this);
-      }
-      this.datepicker.setFocusToNewMonthYear(row, cell);
+      this.datepicker.moveToNextMonth();
+      this.datepicker.adjustCurrentDay(this, onFirstRow, onLastRow);
+      this.datepicker.setFocusDay();
       flag = true;
       break;
   }
@@ -104,8 +123,12 @@ DatePickerDay.prototype.handleKeyDown = function (event) {
   }
 
 };
+
 DatePickerDay.prototype.handleClick = function (event) {
-  this.datepicker.setSelectDate(this);
+  this.datepicker.day = this.day;
+
+  this.datepicker.setFocusDay();
+
   event.stopPropagation();
   event.preventDefault();
 
