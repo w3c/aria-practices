@@ -8,8 +8,8 @@
   background-color:white;
 }
 
-label{
-  display:block;
+.datepicker .date label {
+  display:inline;
 }
 
 .datepicker input {

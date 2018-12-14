@@ -29,8 +29,8 @@ var DatePicker = function (comboboxNode, inputNode,buttonNode,dialogNode) {
   this.month = date.getMonth();
   this.day   = date.getDate() - 1;
 
-  this.daysInCurrentMonth = this.daysInMonth();
-  this.daysInLastMonth = this.daysInLastMonth();
+  this.daysInCurrentMonth = this.getDaysInMonth();
+  this.daysInLastMonth = this.getDaysInLastMonth();
 
   this.days = [];
 
@@ -115,7 +115,7 @@ DatePicker.prototype.updateGrid = function (year, month) {
 
   this.MonthYearNode.innerHTML = month + ' ' + year;
 
-  this.daysInCurrentMonth = this.daysInMonth(year, month);
+  this.daysInCurrentMonth = this.getDaysInMonth(year, month);
 
   var lastMonth = month -1;
   var lastYear = year;
@@ -124,7 +124,7 @@ DatePicker.prototype.updateGrid = function (year, month) {
     lastYear = year-1;
   }
 
-  var daysInLastMonth = this.daysInMonth(lastYear, lastMonth);
+  var daysInLastMonth = this.getDaysInMonth(lastYear, lastMonth);
   this.daysInLastMonth = daysInLastMonth;
 
   var nextMonth = month + 1;
@@ -168,49 +168,58 @@ DatePicker.prototype.updateGrid = function (year, month) {
 
 };
 
+DatePicker.prototype.onFirstRow = function () {
+  var cd = this.currentDay;
+  var flag = cd.row === 0;
+  flag = flag || ((cd.row === 1) && this.days[cd.index-7].isDisabled());
+  return flag;
+};
+
+
+DatePicker.prototype.onLastRow = function () {
+  var cd = this.currentDay;
+  var flag = cd.row === 5;
+  flag = flag || ((cd.row === 3) && this.days[cd.index+7].isDisabled());
+  flag = flag || ((cd.row === 4) && this.days[cd.index+7].isDisabled());
+  return flag;
+};
+
+
 // If after updating the grid the current day is on a disabled button move it to an enabled button in the same column
-DatePicker.prototype.adjustCurrentDay = function (dayButton, onFirstRow, onLastRow) {
+DatePicker.prototype.adjustCurrentDay = function (onFirstRow, onLastRow) {
   var cd = this.currentDay;
 
-  console.log('[adjustCurrentDay]');
-
-  if (typeof dayButton !== 'object') {
-    console.log('[adjustCurrentDay][currentDay]');
-    dayButton = cd;
-  }
-
   if (typeof onFirstRow !== 'boolean') {
-    onFirstRow = cd.row === 0;
-    onFirstRow = onFirstRow || ((cd.row === 1) && (this.days[this.index-7].isDisabled()));
-    var onLastRow = cd.row === 5;
-    onLastRow = onLastRow || (cd.row === 3) && (this.days[this.index+7].isDisabled());
-    onLastRow = onLastRow || (cd.row === 4) && (this.days[this.index+7].isDisabled());
+    onFirstRow = false;
   }
 
+  if (typeof onLastRow !== 'boolean') {
+    onLastRow = false;
+  }
 
-  if (dayButton.isDisabled()) {
-    if (dayButton.row === 0 ) {
-      this.day = this.days[dayButton.index+7].day;
+  if (cd.isDisabled()) {
+    if (cd.row === 0 ) {
+      this.day = this.days[cd.index+7].day;
     }
     else {
-      if (this.days[dayButton.index-7].isDisabled()) {
-        this.day = this.days[dayButton.index-14].day;
+      if (this.days[cd.index-7].isDisabled()) {
+        this.day = this.days[cd.index-14].day;
       }
       else {
-        this.day = this.days[dayButton.index-7].day;
+        this.day = this.days[cd.index-7].day;
       }
     }
   }
   else {
-    if (onFirstRow && (dayButton.row === 1) && (!this.days[dayButton.index-7].isDisabled())) {
-      this.day = this.days[dayButton.index-7].day;
+    if (onFirstRow && (cd.row === 1) && (!this.days[cd.index-7].isDisabled())) {
+      this.day = this.days[cd.index-7].day;
     }
     else {
-      if (onLastRow && ((dayButton.row === 3)|| (dayButton.row === 4)) && (!this.days[dayButton.index+7].isDisabled())) {
-        this.day = this.days[dayButton.index+7].day;
+      if (onLastRow && ((cd.row === 3)|| (cd.row === 4)) && (!this.days[cd.index+7].isDisabled())) {
+        this.day = this.days[cd.index+7].day;
       }
       else {
-        this.day = dayButton.day;
+        this.day = cd.day;
       }
     }
   }
@@ -257,7 +266,7 @@ DatePicker.prototype.updateDate = function (year, month, day) {
   this.day = day;
 };
 
-DatePicker.prototype.daysInLastMonth = function (year, month) {
+DatePicker.prototype.getDaysInLastMonth = function (year, month) {
 
   if (typeof year  !== 'number') year = this.year;
   if (typeof month !== 'number') month = this.month;
@@ -269,11 +278,11 @@ DatePicker.prototype.daysInLastMonth = function (year, month) {
     lastYear = year-1;
   }
 
-  return this.daysInMonth(lastYear, lastMonth);
+  return this.getDaysInMonth(lastYear, lastMonth);
 
 };
 
-DatePicker.prototype.daysInMonth = function (year, month) {
+DatePicker.prototype.getDaysInMonth = function (year, month) {
 
   if (typeof year  !== 'number') year = this.year;
   if (typeof month !== 'number') month = this.month;
@@ -314,6 +323,7 @@ DatePicker.prototype.daysInMonth = function (year, month) {
 DatePicker.prototype.open = function () {
   this.dialogNode.style.display = 'block';
   this.comboboxNode.setAttribute('aria-expanded', 'true');
+  this.getTextboxDate();
   this.setFocusDay();
 };
 
@@ -340,7 +350,7 @@ DatePicker.prototype.handleOkButton = function (event) {
         case this.keyCode.RETURN:
         case this.keyCode.SPACE:
 
-// TO DO
+          this.setTextboxDate();
 
           this.close();
           flag = true;
@@ -420,6 +430,8 @@ DatePicker.prototype.handleCancelButton = function (event) {
 
 DatePicker.prototype.handleNextYearButton = function (event) {
   var flag = false;
+  var onFirstRow = this.onFirstRow();
+  var onLastRow = this.onLastRow();
 
   switch (event.type) {
 
@@ -434,7 +446,7 @@ DatePicker.prototype.handleNextYearButton = function (event) {
         case this.keyCode.RETURN:
         case this.keyCode.SPACE:
           this.moveToNextYear();
-          this.adjustCurrentDay();
+          this.adjustCurrentDay(onFirstRow, onLastRow);
           this.setFocusDay(false);
           flag = true;
           break;
@@ -444,7 +456,7 @@ DatePicker.prototype.handleNextYearButton = function (event) {
 
     case 'click':
       this.moveToNextYear();
-      this.adjustCurrentDay();
+      this.adjustCurrentDay(onFirstRow, onLastRow);
       this.setFocusDay(false);
       break;
 
@@ -460,6 +472,8 @@ DatePicker.prototype.handleNextYearButton = function (event) {
 
 DatePicker.prototype.handlePreviousYearButton = function (event) {
   var flag = false;
+  var onFirstRow = this.onFirstRow();
+  var onLastRow = this.onLastRow();
 
   switch (event.type) {
 
@@ -470,7 +484,7 @@ DatePicker.prototype.handlePreviousYearButton = function (event) {
         case this.keyCode.RETURN:
         case this.keyCode.SPACE:
           this.moveToPreviousYear();
-          this.adjustCurrentDay();
+          this.adjustCurrentDay(onFirstRow, onLastRow);
           this.setFocusDay(false);
           flag = true;
           break;
@@ -495,7 +509,7 @@ DatePicker.prototype.handlePreviousYearButton = function (event) {
 
     case 'click':
       this.moveToPreviousYear();
-      this.adjustCurrentDay();
+      this.adjustCurrentDay(onFirstRow, onLastRow);
       this.setFocusDay(false);
       break;
 
@@ -511,6 +525,8 @@ DatePicker.prototype.handlePreviousYearButton = function (event) {
 
 DatePicker.prototype.handleNextMonthButton = function (event) {
   var flag = false;
+  var onFirstRow = this.onFirstRow();
+  var onLastRow = this.onLastRow();
 
   switch (event.type) {
 
@@ -525,7 +541,7 @@ DatePicker.prototype.handleNextMonthButton = function (event) {
         case this.keyCode.RETURN:
         case this.keyCode.SPACE:
           this.moveToNextMonth();
-          this.adjustCurrentDay();
+          this.adjustCurrentDay(onFirstRow, onLastRow);
           this.setFocusDay(false);
           flag = true;
           break;
@@ -535,7 +551,7 @@ DatePicker.prototype.handleNextMonthButton = function (event) {
 
     case 'click':
       this.moveToNextMonth();
-      this.adjustCurrentDay();
+      this.adjustCurrentDay(onFirstRow, onLastRow);
       this.setFocusDay(false);
       break;
 
@@ -551,6 +567,8 @@ DatePicker.prototype.handleNextMonthButton = function (event) {
 
 DatePicker.prototype.handlePreviousMonthButton = function (event) {
   var flag = false;
+  var onFirstRow = this.onFirstRow();
+  var onLastRow = this.onLastRow();
 
   switch (event.type) {
 
@@ -565,7 +583,7 @@ DatePicker.prototype.handlePreviousMonthButton = function (event) {
         case this.keyCode.RETURN:
         case this.keyCode.SPACE:
           this.moveToPreviousMonth();
-          this.adjustCurrentDay();
+          this.adjustCurrentDay(onFirstRow, onLastRow);
           this.setFocusDay(false);
           flag = true;
           break;
@@ -575,7 +593,7 @@ DatePicker.prototype.handlePreviousMonthButton = function (event) {
 
     case 'click':
       this.moveToPreviousMonth();
-      this.adjustCurrentDay();
+      this.adjustCurrentDay(onFirstRow, onLastRow);
       this.setFocusDay(false);
       flag = true;
       break;
@@ -655,6 +673,39 @@ DatePicker.prototype.moveFocusToPreviousWeek = function () {
     this.moveToPreviousMonth();
   }
   this.setFocusDay();
+};
+
+DatePicker.prototype.setTextboxDate = function () {
+  this.inputNode.value = (this.month + 1) + '/' + (this.day + 1) + '/' + this.year;
+};
+
+DatePicker.prototype.getTextboxDate = function () {
+
+  var parts = this.inputNode.value.split('/');
+
+  if ((parts.length === 3) &&
+      !isNaN(parts[0]) &&
+      !isNaN(parts[1]) &&
+      !isNaN(parts[2])) {
+    this.month = parseInt(parts[0])-1;
+    this.day = parseInt(parts[1])-1;
+    this.year = parseInt(parts[2]);
+  }
+  else {
+    // If not a valid date (MM/DD/YY) initialize with todays date
+    var date = new Date();
+
+    this.year  = date.getFullYear();
+    this.month = date.getMonth();
+    this.day   = date.getDate()-1;
+  }
+
+
+  this.daysInCurrentMonth = this.getDaysInMonth();
+  this.daysInLastMonth = this.getDaysInLastMonth();
+
+  this.selectedDay = new Date(this.year, this.month, this.day);
+
 };
 
 // Initialize date picker

@@ -52,21 +52,23 @@
            aria-owns="id-datepicker-1"
            aria-label="Date">
 
-        <label for="id-date-1">Date: </label>
+        <div class="date">
+          <label for="id-date-1">Date</label>
 
-        <input type="text"
-              placeholder="mm/dd/yyyy"
-              id="id-date-1"
-              aria-controls="id-datepicker-1">
+          <input type="text"
+                placeholder="mm/dd/yyyy"
+                id="id-date-1"
+                aria-controls="id-datepicker-1">
 
-        <button class="icon"
-          tabIndex="-1"
-          aria-label="Pick a date"
-          aria-haspopup="true"
-          title="Select to change date"
-          >
-          <span class="fa fa-calendar-alt fa-2x"></span>
-        </button>
+          <button class="icon"
+            tabIndex="-1"
+            aria-label="Pick a date"
+            aria-haspopup="true"
+            title="Select to change date"
+            >
+            <span class="fa fa-calendar-alt fa-2x"></span>
+          </button>
+        </div>
 
         <div id="id-datepicker-1"
              class="datepickerDialog"

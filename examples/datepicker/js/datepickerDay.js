@@ -55,12 +55,9 @@ DatePickerDay.prototype.updateDay = function (disable, year, month, day) {
 };
 
 DatePickerDay.prototype.handleKeyDown = function (event) {
-  var flag = false
-  var onFirstRow = this.row === 0;
-  onFirstRow = onFirstRow || ((this.row === 1) && (this.datepicker.days[this.index-7].isDisabled()));
-  var onLastRow = this.row === 5;
-  onLastRow = onLastRow || (this.row === 3) && (this.datepicker.days[this.index+7].isDisabled());
-  onLastRow = onLastRow || (this.row === 4) && (this.datepicker.days[this.index+7].isDisabled());
+  var flag = false;
+  var onFirstRow = this.datepicker.onFirstRow();
+  var onLastRow = this.datepicker.onLastRow();
 
   switch (event.keyCode) {
 
@@ -78,7 +75,8 @@ DatePickerDay.prototype.handleKeyDown = function (event) {
 
     case this.keyCode.RETURN:
     case this.keyCode.SPACE:
-      this.datepicker.setSelectDate(this);
+      this.datepicker.setTextboxDate();
+      this.datepicker.close();
       flag = true;
       break;
 
@@ -103,15 +101,25 @@ DatePickerDay.prototype.handleKeyDown = function (event) {
       break;
 
     case this.keyCode.PAGEUP:
-      this.datepicker.moveToPreviousMonth();
-      this.datepicker.adjustCurrentDay(this, onFirstRow, onLastRow);
+      if (event.shiftKey) {
+        this.datepicker.moveToPreviousYear();
+      }
+      else {
+        this.datepicker.moveToPreviousMonth();
+      }
+      this.datepicker.adjustCurrentDay(onFirstRow, onLastRow);
       this.datepicker.setFocusDay();
       flag = true;
       break;
 
     case this.keyCode.PAGEDOWN:
-      this.datepicker.moveToNextMonth();
-      this.datepicker.adjustCurrentDay(this, onFirstRow, onLastRow);
+      if (event.shiftKey) {
+        this.datepicker.moveToNextYear();
+      }
+      else {
+        this.datepicker.moveToNextMonth();
+      }
+      this.datepicker.adjustCurrentDay(onFirstRow, onLastRow);
       this.datepicker.setFocusDay();
       flag = true;
       break;
@@ -126,7 +134,6 @@ DatePickerDay.prototype.handleKeyDown = function (event) {
 
 DatePickerDay.prototype.handleClick = function (event) {
   this.datepicker.day = this.day;
-
   this.datepicker.setFocusDay();
 
   event.stopPropagation();
