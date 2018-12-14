@@ -1,7 +1,7 @@
 
 
 var DatePicker = function (comboboxNode, inputNode,buttonNode,dialogNode) {
-  var months =  ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  this.months =  ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
   this.comboboxNode = comboboxNode;
   this.inputNode = inputNode;
@@ -113,7 +113,7 @@ DatePicker.prototype.updateGrid = function (year, month) {
   if (typeof year  !== 'number') year = this.year;
   if (typeof month !== 'number') month = this.month;
 
-  this.MonthYearNode.innerHTML = month + ' ' + year;
+  this.MonthYearNode.innerHTML = this.months[month] + ' ' + year;
 
   this.daysInCurrentMonth = this.getDaysInMonth(year, month);
 

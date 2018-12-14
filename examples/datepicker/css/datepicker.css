@@ -100,6 +100,11 @@
   color:hsl(216, 89%, 72%);
 }
 
+.datepicker .monthYear {
+  display: inline-block;
+  width: 12em;
+  text-align: center;
+}
 
 table.dates {
   width:100%;
