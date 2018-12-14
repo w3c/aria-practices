@@ -3,7 +3,6 @@
 var DatePicker = function (comboboxNode, inputNode,buttonNode,dialogNode) {
   var months =  ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-  this.body = document;
   this.comboboxNode = comboboxNode;
   this.inputNode = inputNode;
   this.buttonNode = buttonNode;
@@ -59,7 +58,6 @@ var DatePicker = function (comboboxNode, inputNode,buttonNode,dialogNode) {
 
 DatePicker.prototype.init = function () {
 
-  this.body.addEventListener('click', this.handleBodyClick.bind(this));
 
   var di = new DateInput(this.inputNode, this.buttonNode, this);
   di.init();
@@ -321,6 +319,8 @@ DatePicker.prototype.getDaysInMonth = function (year, month) {
 
 
 DatePicker.prototype.open = function () {
+  document.addEventListener('click', this.handleDocumentClick.bind(this), true);
+
   this.dialogNode.style.display = 'block';
   this.comboboxNode.setAttribute('aria-expanded', 'true');
   this.getTextboxDate();
@@ -328,15 +328,19 @@ DatePicker.prototype.open = function () {
 };
 
 DatePicker.prototype.close = function (node) {
+  document.removeEventListener('click', this.handleDocumentClick.bind(this), true);
+
   this.dialogNode.style.display = 'none';
   this.comboboxNode.setAttribute('aria-expanded','false');
   this.buttonNode.focus();
 };
 
 
-DatePicker.prototype.handleBodyClick = function () {
-  if (this.inputNode.hasAttribute('aria-expanded')) {
-
+DatePicker.prototype.handleDocumentClick = function (event) {
+  if (!this.dialogNode.contains(event.target)) {
+    this.setFocusDay();
+    event.stopPropagation();
+    event.preventDefault();
   }
 };
 
