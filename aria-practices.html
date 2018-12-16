@@ -586,8 +586,8 @@
           </li>
           <li>It has slide selection controls implemented using the <a href="#tabpanel">tabs pattern</a> where:
             <ul>
-              <li>Each control is a <code>tab</code> element; activating the tab displays the slide associated with that tab.</li>
-              <li>the set of controls is grouped in a <code>tablist</code> element.</li>
+              <li>Each control is a <code>tab</code> element, so activating a tab displays the slide associated with that tab.</li>
+              <li>The set of controls is grouped in a <code>tablist</code> element.</li>
               <li>The <code>tab</code>, <code>tablist</code>, and <code>tabpanel</code> implement the properties specified in the <a href="#tabpanel">tabs pattern</a>.</li>
             </ul>
           </li>
@@ -595,9 +595,10 @@
         <h5>Grouped Carousel</h5>
         <p>A grouped carousel has the same structure as a basic carousel, but it also includes slide selection controls where:</p>
         <ul>
-          <li>The set of controls is contained in an element with role group and has a label.</li>
-          <li>Each selection control is a native button or implements the button pattern.</li>
-          <li>The button representing the currently display slide has aria-disabled.</li>
+          <li>The set of slide selection controls is contained in an element with role <a href="#group" class="role-reference">group</a>.</li>
+          <li>The group containing the controls has an accessible label provided by the value of <a href="#aria-label" class="property-reference">aria-label</a> that identifies the purpose of the controls, e.g., &quot;Choose slide to display&quot;.</li>
+          <li>Each control is a native button element (recommended) or implements the <a href="#button">button pattern.</a></li>
+          <li>The button representing the currently displayed slide has the property <a href="#aria-disabled" class="property-reference">aria-disabled</a> set to <code>true</code>. Note: <code>aria-disabled</code> is preferable to the HTML <code>disabled</code> attribute because it helpful for the disabled button to be included in the page tab sequence in this circumstance.</li>
         </ul>
       </section>
     </section>
