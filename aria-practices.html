@@ -522,8 +522,8 @@
           <dd>An interactive element, often styled as an arrow,  that displays the next slide in the rotation sequence.</dd>
           <dt>Previous Slide Control</dt>
           <dd>An interactive element, often styled as an arrow,  that displays the previous slide in the rotation sequence.</dd>
-          <dt>Slide Selection Controls</dt>
-          <dd>A group of elements, often styled as small dots, that enable the user to display a specific slide in the rotation sequence.</dd>
+          <dt>Slide Picker Controls</dt>
+          <dd>A group of elements, often styled as small dots, that enable the user to pick a specific slide in the rotation sequence to display.</dd>
         </dl>
       </section>
 
@@ -536,7 +536,7 @@
           </li>
           <li><kbd>Tab</kbd> and <kbd>Shift + Tab</kbd>: Move focus through the interactive elements of the carousel as specified by the page tab sequence; no special scripting is necessary.</li>
           <li>Button elements implement the keyboard interaction defined in the <a href="#button">button pattern</a>.</li>
-          <li>If tab elements are used for slide selection controls, they implement the keyboard interaction defined in the <a href="#tabpanel">Tabs Pattern.</a></li>
+          <li>If tab elements are used for slide picker controls, they implement the keyboard interaction defined in the <a href="#tabpanel">Tabs Pattern.</a></li>
         </ul>
       </section>
 
@@ -544,9 +544,9 @@
         <h4>WAI-ARIA Roles, States, and Properties</h4>
         <p>This section describes the element composition for three styles of carousels:</p>
         <ul>
-          <li>Basic: Has rotation , previous slide, and next slide controls but no slide selection controls.</li>
-          <li>Tabbed: Has basic controls plus a single tab stop for slide selection controls implemented using the <a href="#tabpanel">tabs pattern.</a></li>
-          <li>Grouped: Has basic controls plus a series of tab stops in a group of slide selection controls where each control implements the <a href="#button">button pattern.</a> Because each slide selector button adds an element to the page tab sequence, this style is the least friendly for keyboard users.</li>
+          <li>Basic: Has rotation , previous slide, and next slide controls but no slide picker controls.</li>
+          <li>Tabbed: Has basic controls plus a single tab stop for slide picker controls implemented using the <a href="#tabpanel">tabs pattern.</a></li>
+          <li>Grouped: Has basic controls plus a series of tab stops in a group of slide picker controls where each control implements the <a href="#button">button pattern.</a> Because each slide selector button adds an element to the page tab sequence, this style is the least friendly for keyboard users.</li>
         </ul>
         <h5>Basic carousel elements</h5>
         <ul>
@@ -584,7 +584,7 @@
             Each slide container has role <a href="#tabpanel" class="role-reference">tabpanel,</a>
             and it does not have the <code>aria-roledescription</code> property.
           </li>
-          <li>It has slide selection controls implemented using the <a href="#tabpanel">tabs pattern</a> where:
+          <li>It has slide picker controls implemented using the <a href="#tabpanel">tabs pattern</a> where:
             <ul>
               <li>Each control is a <code>tab</code> element, so activating a tab displays the slide associated with that tab.</li>
               <li>The set of controls is grouped in a <code>tablist</code> element.</li>
@@ -593,12 +593,12 @@
           </li>
         </ul>
         <h5>Grouped Carousel</h5>
-        <p>A grouped carousel has the same structure as a basic carousel, but it also includes slide selection controls where:</p>
+        <p>A grouped carousel has the same structure as a basic carousel, but it also includes slide picker controls where:</p>
         <ul>
-          <li>The set of slide selection controls is contained in an element with role <a href="#group" class="role-reference">group</a>.</li>
-          <li>The group containing the controls has an accessible label provided by the value of <a href="#aria-label" class="property-reference">aria-label</a> that identifies the purpose of the controls, e.g., &quot;Choose slide to display&quot;.</li>
-          <li>Each control is a native button element (recommended) or implements the <a href="#button">button pattern.</a></li>
-          <li>The button representing the currently displayed slide has the property <a href="#aria-disabled" class="property-reference">aria-disabled</a> set to <code>true</code>. Note: <code>aria-disabled</code> is preferable to the HTML <code>disabled</code> attribute because it helpful for the disabled button to be included in the page tab sequence in this circumstance.</li>
+          <li>The set of slide picker controls is contained in an element with role <a href="#group" class="role-reference">group</a>.</li>
+          <li>The group containing the picker controls has an accessible label provided by the value of <a href="#aria-label" class="property-reference">aria-label</a> that identifies the purpose of the controls, e.g., &quot;Choose slide to display&quot;.</li>
+          <li>Each picker control is a native button element (recommended) or implements the <a href="#button">button pattern.</a></li>
+          <li>The button representing the currently displayed slide has the property <a href="#aria-disabled" class="property-reference">aria-disabled</a> set to <code>true</code>. Note: <code>aria-disabled</code> is preferable to the HTML <code>disabled</code> attribute because this is a circumstance where screen reader users benefit from the disabled button being included in the page <kbd>Tab</kbd> sequence.</li>
         </ul>
       </section>
     </section>
