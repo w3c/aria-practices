@@ -545,8 +545,8 @@
         <p>This section describes the element composition for three styles of carousels:</p>
         <ul>
           <li>Basic: Has rotation , previous slide, and next slide controls but no slide selection controls.</li>
-          <li>Tabbed: Has basic controls plus a single tab stop for slide selection controls implemented using the tabs pattern.</li>
-          <li>Grouped: Has basic controls plus a group of tab stops for slide selection controls implemented using the button pattern. Because each slide adds an element to the page tab sequence, this is the least friendly style for keyboard users.</li>
+          <li>Tabbed: Has basic controls plus a single tab stop for slide selection controls implemented using the <a href="#tabpanel">tabs pattern.</a></li>
+          <li>Grouped: Has basic controls plus a series of tab stops in a group of slide selection controls where each control implements the <a href="#button">button pattern.</a> Because each slide selector button adds an element to the page tab sequence, this style is the least friendly for keyboard users.</li>
         </ul>
         <h5>Basic carousel elements</h5>
         <ul>
@@ -581,17 +581,15 @@
         <p>The structure of a tabbed carousel is the same as a basic carousel except that:</p>
         <ul>
           <li>
-            Each slide container has role
-            <a href="#tabpanel" class="role-reference">tabpanel</a>
+            Each slide container has role <a href="#tabpanel" class="role-reference">tabpanel,</a>
             and it does not have the <code>aria-roledescription</code> property.
           </li>
-          <li>
-            It has slide selection controls implemented using the
-            <a href="#tabpanel">tabs pattern</a>
-            where each control is a <code>tab</code> element and the set of controls is grouped in a <code>tablist</code>
-            element. See the
-            <a href="#tabpanel">tabs pattern</a>
-            for the complete list of implementation details.
+          <li>It has slide selection controls implemented using the <a href="#tabpanel">tabs pattern</a> where:
+            <ul>
+              <li>Each control is a <code>tab</code> element; activating the tab displays the slide associated with that tab.</li>
+              <li>the set of controls is grouped in a <code>tablist</code> element.</li>
+              <li>The <code>tab</code>, <code>tablist</code>, and <code>tabpanel</code> implement the properties specified in the <a href="#tabpanel">tabs pattern</a>.</li>
+            </ul>
           </li>
         </ul>
         <h5>Grouped Carousel</h5>
