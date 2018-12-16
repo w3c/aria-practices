@@ -542,6 +542,13 @@
 
       <section class="notoc">
         <h4>WAI-ARIA Roles, States, and Properties</h4>
+        <p>This section describes the element composition for three styles of carousels:</p>
+        <ul>
+          <li>Basic: Has rotation , previous slide, and next slide controls but no slide selection controls.</li>
+          <li>Tabbed: Has basic controls plus a single tab stop for slide selection controls implemented using the tabs pattern.</li>
+          <li>Grouped: Has basic controls plus a group of tab stops for slide selection controls implemented using the button pattern. Because each slide adds an element to the page tab sequence, this is the least friendly style for keyboard users.</li>
+        </ul>
+        <h5>Basic carousel elements</h5>
         <ul>
           <li>
             A carousel container element that encompasses all components of the carousel,  including both carousel controls and slides,
@@ -568,27 +575,31 @@
             A label that changes when the button is activated clearly communicates both that slide content can change automatically and when it is doing so. 
             Note that since the label changes, the rotation control does not have any states, e.g., <code>aria-pressed</code>, specified.
           </li>
+          <li>Each slide container has role <a href="#group" class="role-reference">group</a> with the property <a href="aria-roledescription" class="property-reference">aria-roledescription</a> set to <code>slide</code>.</li>
+        </ul>
+        <h5>Tabbed Carousel Elements</h5>
+        <p>The structure of a tabbed carousel is the same as a basic carousel except that:</p>
+        <ul>
           <li>
-            If slide selection controls are present and are implemented as <a href="#tab" class="role-reference">tab</a> elements,
-            each slide container has the role <a href="#tabpanel" class="role-reference">tabpanel</a>.
-            Otherwise, each slide container has the role <a href="#group" class="role-reference">group</a>
-            and the property <a href="aria-roledescription" class="property-reference">aria-roledescription</a> set to <code>slide</code>.
+            Each slide container has role
+            <a href="#tabpanel" class="role-reference">tabpanel</a>
+            and it does not have the <code>aria-roledescription</code> property.
           </li>
-          <li>If slide selection controls are included, they are either:
-            <ul>
-              <li>
-                <strong>(Recommended)</strong> Implemented using the <a href="#tabpanel">tabs pattern</a> where each control is a <code>tab</code> element and the set of controls is grouped in a <code>tablist</code> element.
-                See the <a href="#tabpanel">tabs pattern</a> for the complete list of implementation details.
-              </li>
-              <li>Implemented as a group of buttons where:
-                <ul>
-                  <li>The set of controls is contained in an element with role group and has a label.</li>
-                  <li>Each selection control is a native button or implements the button pattern.</li>
-                  <li>The button representing the currently display slide has aria-disabled.</li> 
-                </ul>
-              </li>
-            </ul>
+          <li>
+            It has slide selection controls implemented using the
+            <a href="#tabpanel">tabs pattern</a>
+            where each control is a <code>tab</code> element and the set of controls is grouped in a <code>tablist</code>
+            element. See the
+            <a href="#tabpanel">tabs pattern</a>
+            for the complete list of implementation details.
           </li>
+        </ul>
+        <h5>Grouped Carousel</h5>
+        <p>A grouped carousel has the same structure as a basic carousel, but it also includes slide selection controls where:</p>
+        <ul>
+          <li>The set of controls is contained in an element with role group and has a label.</li>
+          <li>Each selection control is a native button or implements the button pattern.</li>
+          <li>The button representing the currently display slide has aria-disabled.</li>
         </ul>
       </section>
     </section>
