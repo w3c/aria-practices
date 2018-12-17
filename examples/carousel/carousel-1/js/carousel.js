@@ -32,8 +32,6 @@ Carousel.prototype.init = function () {
   for (var i = 0; i < items.length; i++) {
     var item = new CarouselItem(items[i], this);
 
-    console.log('[item]: ' + item.domNode);
-
     item.init();
     this.items.push(item);
 
@@ -176,9 +174,7 @@ window.addEventListener('load', function (event) {
   var carousels = document.querySelectorAll('.carousel');
 
   for (var i = 0; i < carousels.length; i++) {
-    console.log('[Carousel]: ' + carousels[i]);
     var carousel = new Carousel(carousels[i]);
-
     carousel.init();
   }
 }, false);
