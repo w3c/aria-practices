@@ -545,12 +545,21 @@
 
 
     <section class="widget" id="carousel">
-      <h3>Carousel (Image Rotator)</h3>
+      <h3>Carousel (Image or Slide Rotator)</h3>
       <p>
-        A carousel is a composite widget for rendering auto-rotating image slides for highlighting the activities or accomplishments of an organization and often providing navigation links to more information the topic of the slide.  The image is the dominate visual feature of each slide and slides often have additional content in the form of text content for titles and links to additional information.  The carousel slides should be contained in a <code>complementary</code> or <code>region</code> landmark with a label identifying the region as containing auto-rotating slides. Slides that are not rendered should be hidden using <code>display: none</code> or equivalent technique. The requirements for controlling the slide rotation include pausing rotation on keyboard focus and pointer hover, an explicit pause button, previous button and a next slide buttons.  Optionally a <code>tablist</code> can be used to provide additional control over the navigation of the slides.</p>
-
-        <p>When screen reader users do not have information or control over the rotating slides, they often move their review cursor into the slide content and when the slides rotate, the content of the current slide is removed from the accessibility tree and their reading cursor typically moves to the beginning of the page, which is disorienting and confusing.  There screen reader users need a way to identify the carousel behavior and stop the auto rotation before they begin reading the slide content.</p>
-
+        A carousel presents a set of items, referred to as slides, by rotating, i.e., horizontally scrolling,  a subset of the slides into view at a time.
+        Typically, one slide is made visible at a time, and rotation automatically starts when the page loads.
+        In some implementations, rotation automatically stops once all the slides have been displayed.
+        While a slide may contain any type of content, image carousels where each slide contains nothing more than a single image are common.
+      </p>
+      <p>
+          Ensuring all users, especially screen reader users, can control slide rotation is an essential accessibility feature of carousels.
+          If a slide is hidden while a screen reader user is reading it, the screen reader will lose its point of regard, typically forcing the screen reader's reading cursor to the top of the page.
+          this is particularly disorienting if the user is not aware of the automatic rotation.
+        </p>
+      <p>
+        The requirements for controlling the slide rotation include pausing rotation on keyboard focus and pointer hover, an explicit pause button, previous button and a next slide buttons.  Optionally a <code>tablist</code> can be used to provide additional control over the navigation of the slides.
+      </p>
         <dl>
           <dt>Pause Rotation</dt>
           <dd>The auto-rotation must stop when keyboard focus is on a slide in the carousel.  Keyboard only and screen reader users will be disoriented if keyboard focus disappears when the slides change.</dd>
