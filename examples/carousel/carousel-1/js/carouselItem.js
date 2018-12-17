@@ -2,8 +2,6 @@
 *   File:   CarouselItem.js
 *
 *   Desc:   Carousel Tab widget that implements ARIA Authoring Practices
-*
-*   Author(s): Jon Gunderson, Nicholas Hoyt, and Mark McCarthy
 */
 
 /*

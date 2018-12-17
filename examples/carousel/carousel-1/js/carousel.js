@@ -1,12 +1,8 @@
 /*
 *   File:   Carousel.js
 *
-*   Desc:   Carousel Tablist group widget that implements ARIA Authoring Practices
+*   Desc:   Carousel widget that implements ARIA Authoring Practices
 *
-<<<<<<< HEAD
-*/
-=======
-*   Author(s): Jon Gunderson, Nicholas Hoyt, and Mark McCarthy
 */
 
 /*
@@ -186,4 +182,4 @@ window.addEventListener('load', function (event) {
     carousel.init();
   }
 }, false);
->>>>>>> carousel-v2
+

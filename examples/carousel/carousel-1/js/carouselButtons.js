@@ -2,8 +2,6 @@
 *   File:   carouselButton.js
 *
 *   Desc:   Carousel Button widget that implements ARIA Authoring Practices
-*
-*   Author(s): Jon Gunderson, Nicholas Hoyt, and Mark McCarthy
 */
 
 /*
