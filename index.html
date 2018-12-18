@@ -526,16 +526,22 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     "REC": "https://www.w3.org/TR/wai-aria/"
   },
   "accNameURLs": {
-    "ED": "https://w3c.github.io/aria/accname-aam/accname-aam.html",
+    "ED": "https://w3c.github.io/accname/",
     "WD": "https://www.w3.org/TR/accname-aam-1.1/",
     "FPWD": "https://www.w3.org/TR/accname-aam-1.1/",
     "REC": "https://www.w3.org/TR/accname-aam-1.1/"
   },
   "coreMappingURLs": {
-    "ED": "https://w3c.github.io/aria/core-aam/core-aam.html",
+    "ED": "https://w3c.github.io/core-aam/",
     "WD": "https://www.w3.org/TR/core-aam-1.1/",
     "FPWD": "https://www.w3.org/TR/core-aam-1.1/",
     "REC": "https://www.w3.org/TR/core-aam-1.1/"
+  },
+  "htmlMappingURLs": {
+    "ED": "https://w3c.github.io/html-aam/",
+    "WD": "https://www.w3.org/TR/html-aam-1.0/",
+    "FPWD": "https://www.w3.org/TR/html-aam-1.0/",
+    "REC": "https://www.w3.org/TR/html-aam-1.0/"
   },
   "wg": "Accessible Rich Internet Applications Working Group",
   "wgURI": "https://www.w3.org/WAI/ARIA/",
@@ -675,7 +681,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       of the
       <a href="https://www.w3.org/WAI/">Web Accessibility Initiative</a>.
       It supports the
-      <a href="https://w3c.github.io/aria/" class="specref"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> 1.1</a> [<cite><a href="#bib-WAI-ARIA" class="bibref respec-offending-element" title="Linter (local-refs-exist): Broken local reference found in document. Please fix the links mentioned. See developer console. Occured" id="respec-offender-linter-local-refs-exist-broken-local-reference-found-in-document-please-fix-the-links-mentioned-see-developer-console-occured"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr></a></cite>]
+      <a href="https://w3c.github.io/aria/" class="specref"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> 1.1</a> [<cite><a class="bibref" href="#bib-wai-aria">WAI-ARIA</a></cite>]
       specification, providing detailed advice and examples beyond what would be appropriate to a technical specification but which are important to understand the specification.
     </p>
     <p> This draft includes only a portion of content planned for <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Authoring Practices 1.1. To see plans for the complete guide, review the <a href="https://github.com/w3c/aria-practices/milestones?direction=asc&amp;sort=due_date&amp;state=open">Authoring Practices Milestone Plan</a>. </p>
@@ -3910,7 +3916,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             <li>The HTML5 <code>header</code> element defines a <code>banner</code> landmark when its context is the <code>body</code> element.</li>
 
             <li>
-              The HTML5 <code>header</code> element is not considered a <code>banner</code> landmark when it is descendant of any of following elements (see <a href="http://w3c.github.io/aria/html-aam/html-aam.html">HTML Accessibility Mappings</a>):
+              The HTML5 <code>header</code> element is not considered a <code>banner</code> landmark when it is descendant of any of following elements (see <a href="https://w3c.github.io/html-aam/" class="html-mapping">HTML Accessibility Mappings</a> [<cite><a class="bibref" href="#bib-html-aam">HTML-AAM</a></cite>]):
               <ul>
                 <li><code>article</code></li>
                 <li><code>aside</code></li>
@@ -3990,7 +3996,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             <li>The HTML5 <code>footer</code> element defines a <code>contentinfo</code> landmark when its context is the <code>body</code> element.</li>
 
             <li>
-              The HTML5 <code>footer</code> element is not considered a <code>contentinfo</code> landmark when it is descendant of any of following elements (see <a href="http://w3c.github.io/aria/html-aam/html-aam.html">HTML Accessibility Mappings</a>):
+              The HTML5 <code>footer</code> element is not considered a <code>contentinfo</code> landmark when it is descendant of any of following elements (see <a href="https://w3c.github.io/html-aam/" class="html-mapping">HTML Accessibility Mappings</a> [<cite><a class="bibref" href="#bib-html-aam">HTML-AAM</a></cite>]):
               <ul>
                 <li><code>article</code></li>
                 <li><code>aside</code></li>
@@ -5664,5 +5670,5 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     <section id="normative-references">
         <h3 id="b-1-normative-references"><span class="secno">B.1 </span>Normative references<a class="self-link" aria-label="§" href="#normative-references"></a></h3>
       <dl class="bibliography">
-        <dt id="bib-wai-aria">[WAI-ARIA]</dt><dd><a href="https://www.w3.org/TR/wai-aria-1.1/"><cite>Accessible Rich Internet Applications (WAI-ARIA) 1.1</cite></a>. Joanmarie Diggs; Shane McCarron; Michael Cooper; Richard Schwerdtfeger; James Craig. W3C. 14 December 2017. W3C Recommendation. URL: <a href="https://www.w3.org/TR/wai-aria-1.1/">https://www.w3.org/TR/wai-aria-1.1/</a></dd>
+        <dt id="bib-html-aam">[HTML-AAM]</dt><dd><a href="https://www.w3.org/TR/html-aam-1.0/"><cite>HTML Accessibility API Mappings 1.0</cite></a>. Steve Faulkner; Alexander Surkov; Scott O'Hara; Bogdan Brinza; Jason Kiss; Cynthia Shelly. W3C. 14 December 2018. W3C Working Draft. URL: <a href="https://www.w3.org/TR/html-aam-1.0/">https://www.w3.org/TR/html-aam-1.0/</a></dd><dt id="bib-wai-aria">[WAI-ARIA]</dt><dd><a href="https://www.w3.org/TR/wai-aria-1.1/"><cite>Accessible Rich Internet Applications (WAI-ARIA) 1.1</cite></a>. Joanmarie Diggs; Shane McCarron; Michael Cooper; Richard Schwerdtfeger; James Craig. W3C. 14 December 2017. W3C Recommendation. URL: <a href="https://www.w3.org/TR/wai-aria-1.1/">https://www.w3.org/TR/wai-aria-1.1/</a></dd>
       </dl></section></section><p role="navigation" id="back-to-top"><a href="#title"><abbr title="Back to Top">↑</abbr></a></p><script src="https://www.w3.org/scripts/TR/2016/fixup.js"></script></body></html>
