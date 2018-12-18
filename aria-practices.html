@@ -554,7 +554,7 @@
         <h4>WAI-ARIA Roles, States, and Properties</h4>
         <p>This section describes the element composition for three styles of carousels:</p>
         <ul>
-          <li>Basic: Has rotation , previous slide, and next slide controls but no slide picker controls.</li>
+          <li>Basic: Has rotation, previous slide, and next slide controls but no slide picker controls.</li>
           <li>Tabbed: Has basic controls plus a single tab stop for slide picker controls implemented using the <a href="#tabpanel">tabs pattern.</a></li>
           <li>Grouped: Has basic controls plus a series of tab stops in a group of slide picker controls where each control implements the <a href="#button">button pattern.</a> Because each slide selector button adds an element to the page tab sequence, this style is the least friendly for keyboard users.</li>
         </ul>
@@ -600,7 +600,7 @@
                 An exception is helpful in this implementation because group elements do not support <a href="#aria-setsize" class="property-reference">aria-setsize</a> or <a href="#aria-posinset" class="property-reference">aria-posinset</a>.
                 The tabbed carousel implementation pattern does not have this limitation.
               </li>
-              <li>Note that since the <code>aria-roledescription</code> is set to &quot;slide&quot;, the label does not contain the word &quot;slide&quot;.</li>
+              <li>Note that since the <code>aria-roledescription</code> is set to &quot;slide&quot;, the label does not contain the word &quot;slide.&quot;</li>
             </ul>
           </li>
           <li>
@@ -623,7 +623,7 @@
             <ul>
               <li>Each control is a <code>tab</code> element, so activating a tab displays the slide associated with that tab.</li>
               <li>The accessible name of each <code>tab</code> indicates which slide it will display by including the name or number of the slide, e.g., &quot;Slide 3&quot;. Slide names are preferable if each slide has a unique name.</li>
-              <li>The set of controls is grouped in a <code>tablist</code> element with an accessible name provided by the value of <a href="#aria-label" class="property-reference">aria-label</a> that identifies the purpose of the tabs, e.g., &quot;Choose slide to display&quot;.</li>
+              <li>The set of controls is grouped in a <code>tablist</code> element with an accessible name provided by the value of <a href="#aria-label" class="property-reference">aria-label</a> that identifies the purpose of the tabs, e.g., &quot;Choose slide to display.&quot;</li>
               <li>The <code>tab</code>, <code>tablist</code>, and <code>tabpanel</code> implement the properties specified in the <a href="#tabpanel">tabs pattern</a>.</li>
             </ul>
           </li>
@@ -632,7 +632,7 @@
         <p>A grouped carousel has the same structure as a basic carousel, but it also includes slide picker controls where:</p>
         <ul>
           <li>The set of slide picker controls is contained in an element with role <a href="#group" class="role-reference">group</a>.</li>
-          <li>The group containing the picker controls has an accessible label provided by the value of <a href="#aria-label" class="property-reference">aria-label</a> that identifies the purpose of the controls, e.g., &quot;Choose slide to display&quot;.</li>
+          <li>The group containing the picker controls has an accessible label provided by the value of <a href="#aria-label" class="property-reference">aria-label</a> that identifies the purpose of the controls, e.g., &quot;Choose slide to display.&quot;</li>
           <li>Each picker control is a native button element (recommended) or implements the <a href="#button">button pattern.</a></li>
           <li>
             The accessible name of each picker button matches the name of the slide it displays.
