@@ -129,6 +129,12 @@ var respecConfig = {
     'FPWD': 'https://www.w3.org/TR/core-aam-1.1/',
     'REC': 'https://www.w3.org/TR/core-aam-1.1/'
   },
+  htmlMappingURLs: {
+    'ED': 'https://w3c.github.io/html-aam/',
+    'WD': 'https://www.w3.org/TR/html-aam-1.0/',
+    'FPWD': 'https://www.w3.org/TR/html-aam-1.0/',
+    'REC': 'https://www.w3.org/TR/html-aam-1.0/'
+  },
 
   // alternateFormats: [
   //   {
