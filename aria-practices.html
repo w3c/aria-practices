@@ -486,23 +486,28 @@
         <a href="https://github.com/w3c/aria-practices/issues/43">issue 43.</a>
       </p>
       <p>
-        A carousel presents a set of items, referred to as slides, by rotating, i.e., horizontally scrolling,  a subset of the slides into view at a time.
-        Typically, one slide is made visible at a time, and rotation automatically starts when the page loads.
-        In some implementations, rotation automatically stops once all the slides have been displayed.
+        A carousel presents a set of items, referred to as slides, by rotating one or more of the slides into view.
+        Typically, only one slide is displayed at a time.
         While a slide may contain any type of content, image carousels where each slide contains nothing more than a single image are common.
+        In some implementations, rotation automatically starts when the page loads, and it may also automatically stop once all the slides have been displayed.
       </p>
       <p>
-        Ensuring all users, especially screen reader users, can control slide rotation is an essential accessibility feature of carousels.
-        If content is hidden and replaced while a screen reader user is reading it, the experience can be confusing and disorienting, especially  if the user is not aware of the automatic slide rotation.
+        Ensuring all users can easily control and are not adversely effected by slide rotation is an essential aspect of making carousels accessible.
+        For instance, the screen reader experience can be confusing and disorienting if slides that are not visible on screen are incorrectly hidden, e.g., displayed off-screen.
+        Similarly, if slides rotate automatically and a screen reader user is not aware of the rotation, the user may read an element on slide one, execute the screen reader command for next element, and, instead of hearing the next element on slide one,  hear an element from slide 2 without any knowledge that the element just announced is from an entirely new context.
       </p>
       <p>Features needed to provide sufficient rotation control include:</p>
-      <ol>
-        <li>Rotation stops when keyboard focus enters the carousel. It does not restart unless the user explicitly requests it to do so.</li>
-        <li>Rotation is stopped whenever the mouse is hovering over the carousel.</li>
-        <li>A button for stopping and restarting rotation. This is particularly important for supporting assistive technologies operating in a mode that does not move either keyboard focus or the mouse.</li>
+      <ul>
         <li>Buttons for displaying the previous and next slides.</li>
-        <li>Optionally, a control, or group of controls, for choosing a specific slide to display. For example, the selection controls can be marked up as tabs in a tablist with the slide represented by a tabpanel element.</li>
-      </ol>
+        <li>Optionally, a control, or group of controls, for choosing a specific slide to display. For example, slide picker controls can be marked up as tabs in a tablist with the slide represented by a tabpanel element.</li>
+        <li>If the carousel can automatically rotate, it also:
+          <ul>
+            <li>Has a button for stopping and restarting rotation. This is particularly important for supporting assistive technologies operating in a mode that does not move either keyboard focus or the mouse.</li>
+            <li>Stops rotating when keyboard focus enters the carousel. It does not restart unless the user explicitly requests it to do so.</li>
+            <li>Stops rotating whenever the mouse is hovering over the carousel.</li>
+          </ul>
+        </li>
+      </ul>
 
       <section class="notoc">
         <h4>Example</h4>
@@ -516,6 +521,8 @@
         <h4>Terms</h4>
         <p>The following terms are used to describe components of a carousel.</p>
         <dl>
+          <dt>Slide</dt>
+          <dd>A single content container within a set of content containers that hold the content to be presented by the carousel.</dd>
           <dt>Rotation Control</dt>
           <dd>An interactive element that stops and starts automatic slide rotation.</dd>
           <dt>Next Slide Control</dt>
@@ -531,11 +538,14 @@
         <h4>Keyboard Interaction</h4>
         <ul>
           <li>
-            Automatic slide rotation stops when any element in the carousel receives keyboard focus.
+            If the carousel has an auto-rotate feature, automatic slide rotation stops when any element in the carousel receives keyboard focus.
             It does not resume unless the user activates the rotation control.
           </li>
-          <li><kbd>Tab</kbd> and <kbd>Shift + Tab</kbd>: Move focus through the interactive elements of the carousel as specified by the page tab sequence; no special scripting is necessary.</li>
-          <li>Button elements implement the keyboard interaction defined in the <a href="#button">button pattern</a>.</li>
+          <li><kbd>Tab</kbd> and <kbd>Shift + Tab</kbd>: Move focus through the interactive elements of the carousel as specified by the page tab sequence -- scripting for <kbd>Tab</kbd> is not necessary.</li>
+          <li>
+            Button elements implement the keyboard interaction defined in the <a href="#button">button pattern</a>.
+            Note: Activating the rotation control, next slide, and previous slide do not move focus, so users may easily repetitively activate them as many times as desired.
+          </li>
           <li>If tab elements are used for slide picker controls, they implement the keyboard interaction defined in the <a href="#tabpanel">Tabs Pattern.</a></li>
         </ul>
       </section>
@@ -591,6 +601,14 @@
                 The tabbed carousel implementation pattern does not have this limitation.
               </li>
               <li>Note that since the <code>aria-roledescription</code> is set to &quot;slide&quot;, the label does not contain the word &quot;slide&quot;.</li>
+            </ul>
+          </li>
+          <li>
+            Optionally, an element wrapping the set of slide elements has <a href="#aria-atomic" class="property-reference">aria-atomic</a> set to <code>false</code>
+            and <a href="#aria-live" class="property-reference">aria-live</a> set to:
+            <ul>
+              <li><code>off</code>: ifthe the carousel is automatically rotating.
+              <li><code>polite</code>: if the carousel is <strong>NOT</strong> automatically rotating.
             </ul>
           </li>
         </ul>
