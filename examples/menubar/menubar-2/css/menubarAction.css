@@ -95,9 +95,13 @@ ul[role="menubar"] [role="menuitemradio"][aria-checked='true'] {
   padding-right: 1.25em;
 }
 
-ul[role="menubar"] [role="menuitemcheckbox"][aria-checked='true']:before,
-ul[role="menubar"] [role="menuitemradio"][aria-checked='true']:before {
+ul[role="menubar"] [role="menuitemcheckbox"][aria-checked='true']:before {
   content: url('../images/check-brown.png');
+  padding-right: 0.3em;
+}
+
+ul[role="menubar"] [role="menuitemradio"][aria-checked='true']:before {
+  content: url('../images/dot-brown.png');
   padding-right: 0.3em;
 }
 
