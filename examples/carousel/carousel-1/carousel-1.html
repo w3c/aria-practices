@@ -47,9 +47,9 @@
         <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
         <div id="ex1">
             <section id="myCarousel" class="carousel slide" aria-label="Image carousel">
-              <button class="pause" aria-pressed="false">Pause Carousel</button>
+              <button class="pause">Pause Carousel</button>
 
-              <div class="carousel-inner">
+              <div class="carousel-inner" aria-live="off">
 
                 <a class="previous carousel-control"
                    role="button"
@@ -73,7 +73,7 @@
                   </svg>
                 </a>
 
-                <div class="carousel-item active">
+                <div class="carousel-item active" role="group" aria-roledescription="slide" aria-label="1 of 6" aria-describedby="carousel-label-1">
 
                   <div class="carousel-image">
                     <a href="#">
@@ -95,7 +95,7 @@
                   </div>  <!-- .carousel-caption -->
                 </div>   <!-- .item -->
 
-                <div class="carousel-item">
+                <div class="carousel-item" role="group" aria-roledescription="slide" aria-label="2 of 6" aria-describedby="carousel-label-2">
 
                   <div class="carousel-image">
                     <a href="#">
@@ -117,7 +117,7 @@
                   </div>  <!-- .carousel-caption -->
                 </div>   <!-- .item -->
 
-                <div class="carousel-item">
+                <div class="carousel-item" role="group" aria-roledescription="slide" aria-label="3 of 6" aria-describedby="carousel-label-3">
 
                   <div class="carousel-image">
                     <a href="#">
@@ -139,7 +139,7 @@
                   </div>  <!-- .carousel-caption -->
                 </div>   <!-- .item -->
 
-                <div class="carousel-item">
+                <div class="carousel-item" role="group" aria-roledescription="slide" aria-label="4 of 6" aria-describedby="carousel-label-4">
 
                   <div class="carousel-image">
                     <a href="#">
@@ -161,7 +161,7 @@
                   </div>  <!-- .carousel-caption -->
                 </div>   <!-- .item -->
 
-                <div class="carousel-item">
+                <div class="carousel-item" role="group" aria-roledescription="slide" aria-label="5 of 6" aria-describedby="carousel-label-5">
 
                   <div class="carousel-image">
                       <img src="images/britcomdavidslide__800x600.jpg" alt="British flag with WILL-TV host David Thiel."/>
@@ -180,7 +180,7 @@
                   </div>  <!-- .carousel-caption -->
                 </div>   <!-- .item -->
 
-                <div class="carousel-item">
+                <div class="carousel-item" role="group" aria-roledescription="slide" aria-label="6 of 6" aria-describedby="carousel-label-6">
 
                   <div class="carousel-image">
                     <a href="#">
@@ -287,7 +287,7 @@
         <h2 id="rps_label">Role, Property, State, and Tabindex  Attributes</h2>
 
         <section>
-          <h3 id="rps_label_1">Region Landmark</h3>
+          <h3 id="rps_label_1">Carousel Regions and Groups</h3>
           <table aria-labelledby="rps_label_1" class="data attributes">
             <thead>
               <tr>
@@ -323,13 +323,101 @@
                 </td>
                 <td>Provides a label that describes the carousel region.</td>
               </tr>
+              <tr>
+                <th scope="row">
+                  <code>group</code>
+                </th>
+                <td></td>
+                <td>
+                  <code>div</code>
+                </td>
+                <td>
+                  <ul>
+                    <li>The <code>group</code> role is used to defined a set of related content, in this case the content of the individual slides.</li>
+                    <li>The accessible name of the <code>region</code> landmark is defined using the <code>aria-label</code> attribute.</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <th scope="row">
+                  <code>aria-roledescription=<q>slide</q></code>
+                </th>
+                <td>
+                  <code>div</code>
+                </td>
+                <td>Identifies the group as a <q>slide</q> content.</td>
+              </tr>
+              <tr>
+                <td></td>
+                <th scope="row">
+                  <code>aria-label=<q><em>N</em> of 6</q></code>
+                </th>
+                <td>
+                  <code>div</code>
+                </td>
+                <td>Identifies the number of the slide in the group of 6 slides.</td>
+              </tr>
+              <tr>
+                <td></td>
+                <th scope="row">
+                  <code>aria-describedby=<q>IDREF</q></code>
+                </th>
+                <td>
+                  <code>div</code>
+                </td>
+                <td>Provides additional information about the group by pointing to the content of the slide.</td>
+              </tr>
             </tbody>
           </table>
         </section>
 
         <section>
-          <h3 id="rps_label_2">Start/Pause Slide Rotation</h3>
+          <h3 id="rps_label_2">Live Region</h3>
           <table aria-labelledby="rps_label_2" class="data attributes">
+            <thead>
+              <tr>
+                <th scope="col">Role</th>
+                <th scope="col">Attribute</th>
+                <th scope="col">Element</th>
+                <th scope="col">Usage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td></td>
+                <th scope="row">
+                  <code>aria-live=<q>off</q></code>
+                </th>
+                <td>
+                  <code>div.carousel-inner</code>
+                </td>
+                <td>
+                  <ul>
+                    <li>Identifies the container element of all the slides as a live region.</li>
+                    <li>When the slide are auto-rotating the <code>aria-live</code> attribute is set to <code><q>off</q></code>.</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <th scope="row">
+                  <code>aria-live=<q>polite</q></code>
+                </th>
+                <td>
+                  <code>div.carousel-inner</code>
+                </td>
+                <td>
+                  When the images auto-rotating of images is disabled or one of the interactive elements has focus the live region is enabled using <code>aria-live</code> attribute set to <code><q>polite</q></code>.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section>
+          <h3 id="rps_label_3">Start/Pause Slide Rotation</h3>
+          <table aria-labelledby="rps_label_3" class="data attributes">
             <thead>
               <tr>
                 <th scope="col">Role</th>
@@ -350,42 +438,19 @@
                 <td>
                   <ul>
                     <li>The default role for the <code>button</code> element is <code>button</code> role.</li>
-                    <li>Accessible name comes from the text content of the button (e.g. <q>Pause Carousel</q>).</li>
+                    <li>Accessible name comes from the text content of the button.</li>
+                    <li>When the <em>action</em> of the button is to stop rotation the text content (e.g. accessible name) of the button is <q>Pause Rotation</q>.</li>
+                    <li>When the <em>action</em> of the button is to restart rotation of the slides the text content (e.g. accessible name) of the button is <q>Start Rotation</q>.
                   </ul>
                 </td>
-              </tr>
-              <tr data-test-id="pause-aria-pressed">
-                <td></td>
-                <th scope="row">
-                  <code>aria-pressed=<q>false</q></code>
-                </th>
-                <td>
-                  <code>button</code>
-                </td>
-                <td>
-                  <ul>
-                    <li>The <code>aria-pressed</code> attribute identified the button as a toggle button.</li>
-                    <li>When <code>aria-pressed=<q>false</q></code> the carousel auto-rotate is enabled.</li>
-                  </ul>
-                </td>
-              </tr>
-              <tr>
-                <td></td>
-                <th scope="row">
-                  <code>aria-pressed=<q>false</q></code>
-                </th>
-                <td>
-                  <code>button</code>
-                </td>
-                <td>When <code>aria-pressed=<q>true</q></code> the carousel auto-rotation is disabled.</td>
               </tr>
             </tbody>
           </table>
         </section>
 
         <section>
-          <h3 id="rps_label_3">Next/Previous Slide Buttons</h3>
-          <table aria-labelledby="rps_label_3" class="data attributes">
+          <h3 id="rps_label_4">Next/Previous Slide Buttons</h3>
+          <table aria-labelledby="rps_label_4" class="data attributes">
             <thead>
               <tr>
                 <th scope="col">Role</th>

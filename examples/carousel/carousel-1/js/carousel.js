@@ -18,6 +18,7 @@ var Carousel = function (domNode) {
   this.firstItem = null;
   this.lastItem = null;
   this.currentDomNode = null;
+  this.liveRegionNode = null;
   this.currentItem = null;
   this.pauseButton = null;
 
@@ -27,6 +28,8 @@ var Carousel = function (domNode) {
 };
 
 Carousel.prototype.init = function () {
+  this.liveRegionNode = this.domNode.querySelector('.carousel-inner');
+  console.log(this.liveRegionNode + ' ' + this.liveRegionNode.getAttribute('aria-live'))
   var items = this.domNode.querySelectorAll('.carousel-item');
 
   for (var i = 0; i < items.length; i++) {
@@ -136,25 +139,27 @@ Carousel.prototype.rotateSlides = function () {
 };
 
 Carousel.prototype.startRotation = function (force) {
-  if ((this.pauseButton.getAttribute('aria-pressed') === 'false') && !this.hasFocus && !this.hasHover) {
+  if (!this.hasFocus && !this.hasHover) {
     this.rotate = true;
+    this.liveRegionNode.setAttribute('aria-live', 'off');
   }
   else {
-    this.rotate = false;
+    this.stopRotation();
   }
 };
 
 Carousel.prototype.stopRotation = function () {
   this.rotate = false;
+  this.liveRegionNode.setAttribute('aria-live', 'polite');
 };
 
 Carousel.prototype.toggleRotation = function () {
-  if ((this.pauseButton.getAttribute('aria-pressed') === 'false')) {
-    this.pauseButton.setAttribute('aria-pressed', 'true');
+  if ((this.pauseButton.innerHTML.toLowerCase().indexOf('pause') >= 0)) {
+    this.pauseButton.innerHTML = 'Start Rotation';
     this.stopRotation();
   }
   else {
-    this.pauseButton.setAttribute('aria-pressed', 'false');
+    this.pauseButton.innerHTML = 'Pause Rotation';
     this.startRotation();
     this.hasFocus = false;
   }
