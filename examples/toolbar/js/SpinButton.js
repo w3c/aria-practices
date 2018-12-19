@@ -2,7 +2,7 @@
 *   This content is licensed according to the W3C Software License at
 *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
 *
-*   File:   spinbutton.js
+*   File:   SpinButton.js
 *
 *   Desc:   SpinButton widget that implements ARIA Authoring Practices
 */
