@@ -329,7 +329,7 @@
                 </th>
                 <td></td>
                 <td>
-                  <code>div</code>
+                  <code>div.carousel-item</code>
                 </td>
                 <td>
                   <ul>
@@ -344,7 +344,7 @@
                   <code>aria-roledescription=<q>slide</q></code>
                 </th>
                 <td>
-                  <code>div</code>
+                  <code>div.carousel-item</code>
                 </td>
                 <td>Identifies the group as a <q>slide</q> content.</td>
               </tr>
@@ -354,7 +354,7 @@
                   <code>aria-label=<q><em>N</em> of 6</q></code>
                 </th>
                 <td>
-                  <code>div</code>
+                  <code>div.carousel-item</code>
                 </td>
                 <td>Identifies the number of the slide in the group of 6 slides.</td>
               </tr>
@@ -364,7 +364,7 @@
                   <code>aria-describedby=<q>IDREF</q></code>
                 </th>
                 <td>
-                  <code>div</code>
+                  <code>div.carousel-item</code>
                 </td>
                 <td>Provides additional information about the group by pointing to the content of the slide.</td>
               </tr>
@@ -395,7 +395,7 @@
                 <td>
                   <ul>
                     <li>Identifies the container element of all the slides as a live region.</li>
-                    <li>When the slide are auto-rotating the <code>aria-live</code> attribute is set to <code><q>off</q></code>.</li>
+                    <li>When the slides are auto-rotating the live region is <em>disabled</em> by setting the <code>aria-live</code> attribute to <code><q>off</q></code>.</li>
                   </ul>
                 </td>
               </tr>
@@ -408,7 +408,10 @@
                   <code>div.carousel-inner</code>
                 </td>
                 <td>
-                  When the images auto-rotating of images is disabled or one of the interactive elements has focus the live region is enabled using <code>aria-live</code> attribute set to <code><q>polite</q></code>.
+                  <ul>
+                    <li>When the images auto-rotating of images is paused or one of the interactive elements within the carousel has focus the live region is <em>enabled</em> using <code>aria-live</code> attribute set to <code><q>polite</q></code>.</li>
+                    <li>When the live region is enabled the content of a new slide can be automatically read by screen readers.</li>
+                  </ul>
                 </td>
               </tr>
             </tbody>

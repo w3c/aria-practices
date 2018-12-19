@@ -29,7 +29,6 @@ var Carousel = function (domNode) {
 
 Carousel.prototype.init = function () {
   this.liveRegionNode = this.domNode.querySelector('.carousel-inner');
-  console.log(this.liveRegionNode + ' ' + this.liveRegionNode.getAttribute('aria-live'))
   var items = this.domNode.querySelectorAll('.carousel-item');
 
   for (var i = 0; i < items.length; i++) {
