@@ -12,24 +12,33 @@ const assert = require('assert');
 
 module.exports = async function assertAriaLabel (t, elementSelector) {
 
-  let ariaLabelExists = await t.context.session.executeScript(async function () {
-    const selector = arguments[0];
-    let els = document.querySelector(selector);
-    return els.hasAttribute('aria-label');
-  }, elementSelector);
-
-  assert(
-    ariaLabelExists,
-    '"aria-label" attribute should exist on element(s): ' + elementSelector
-  );
-
-  let element = t.context.session.findElement(By.css(elementSelector));
-  let labelValue = await element.getAttribute('aria-label');
+  const elements = await t.context.session.findElements(By.css(elementSelector));
 
   assert.ok(
-    labelValue,
-    '"aria-label" attribute should have a value on element(s): ' + elementSelector
+    elements.length,
+    'CSS elector returned no results: ' + elementSelector
   );
+
+  for (let index = 0; index < elements.length; index++) {
+
+    let ariaLabelExists = await t.context.session.executeScript(async function () {
+      const [selector, index] = arguments;
+      let els = document.querySelectorAll(selector);
+      return els[index].hasAttribute('aria-label');
+    }, elementSelector, index);
+
+    assert(
+      ariaLabelExists,
+      '"aria-label" attribute should exist on element(s): ' + elementSelector
+    );
+
+    let labelValue = await elements[index].getAttribute('aria-label');
+
+    assert.ok(
+      labelValue,
+      '"aria-label" attribute should have a value on element(s): ' + elementSelector
+    );
+  }
 
   t.pass();
 };

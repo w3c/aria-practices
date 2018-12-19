@@ -25,7 +25,7 @@ module.exports = async function assertAriaSelectedAndActivedescendant (t, active
       .findElement(By.css(activedescendantSelector))
       .getAttribute('aria-activedescendant'),
     optionId,
-    'aria-activedescendant should be set to ' + optionId + ' for items: ' + activedescendantSelector
+    'aria-activedescendant should be set to ' + optionId + ' for item: ' + activedescendantSelector
   );
 
   // Confirm the focus is on the aria-activedescendent element
