@@ -231,7 +231,7 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
     <h2 id="kbd_label">Keyboard Support</h2>
     <section>
       <h3 id="kbd_label_1">Toolbar</h3>
-      <p>The following keyboard commands, defined by the <a href="../../#toolbar">toolbar pattern</a>, apply to all controls in the toolbar.</p>
+      <p>The toolbar provides the following keyboard support defined by the <a href="../../#toolbar">toolbar pattern.</a></p>
       <table aria-labelledby="kbd_label_1 kbd_label" class="def">
         <thead>
           <tr>
@@ -284,7 +284,7 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
 
     <section>
       <h3 id="kbd_label_2">Toggle Buttons (Bold, Italic, Underline)</h3>
-      <p>The <b>Bold</b>, <i>Italic</i>, and <u>Underline</u> controls are toggle buttons that implement the <a href="../../#button">button design pattern</a>.</p>
+      <p>The toggle buttons for choosing to apply <b>Bold</b>, <i>Italic</i>, and <u>Underline</u> styling provide the following keyboard support defined by the <a href="../../#button">button design pattern</a>.</p>
       <table aria-labelledby="kbd_label_2 kbd_label" class="def">
         <thead>
           <tr>
@@ -294,7 +294,7 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
         </thead>
         <tbody>
           <tr data-test-id="toolbar-toggle-enter-or-space">
-            <th><kbd>Enter</kbd>,<br><kbd>Space</kbd></th>
+            <th><kbd>Enter</kbd><br><kbd>Space</kbd></th>
             <td>Toggle the pressed state of the button.</td>
           </tr>
         </tbody>
@@ -307,7 +307,7 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
         The buttons for choosing left, center, or right text alignment are styled like toggle buttons.
         However, since pressing one toggles off another so that only one button in the group is in the pressed state, the toggles behave like radio buttons.
         Because ARIA is designed to describe behavior, not styling, to assistive technologies,
-        the alignment toggles implement the <a href="../../#radiobutton">radio group design pattern.</a>
+        the alignment toggles provide the following keyboard support defined by the <a href="../../#radiobutton">radio group design pattern.</a>
         As described in the pattern, nesting a radio group in a toolbar calls for an important behavioral difference compared to radios outside a toolbar: moving focus inside the group does not automatically change which button is checked.
       </p>
       <table aria-labelledby="kbd_label_3 kbd_label" class="def">
@@ -319,7 +319,7 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
         </thead>
         <tbody>
           <tr data-test-id="toolbar-radio-enter-or-space">
-            <th><kbd>Enter</kbd>,<br><kbd>Space</kbd></th>
+            <th><kbd>Enter</kbd><br><kbd>Space</kbd></th>
             <td>
               <ul>
                 <li>If the focused radio button is checked, do nothing.</li>
@@ -331,8 +331,9 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
             <th><kbd>Right Arrow</kbd></th>
             <td>
               <ul>
-                <li>Moves focus to the next radio button.</li>
-                <li>If the last radio button has focus, focus moves to the next control in the toolbar.</li>
+                <li>If the focused radio button is <strong>not</strong> the last radio button in the radio group, moves focus to the next radio button.</li>
+                <li>If the focused radio button is the last radio button in the radio group and is <strong>not</strong> the last element in the toolbar, moves focus to the next element in the toolbar.</li>
+                <li>If the focused radio button is the last radio button in the radio group and is also the last element in the toolbar, moves focus to the first element in the toolbar.</li>
               </ul>
             </td>
           </tr>
@@ -340,8 +341,9 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
             <th><kbd>Left Arrow</kbd></th>
             <td>
               <ul>
-                <li>Moves focus to the previous radio button.</li>
-                <li>If the first radio button has focus, focus moves to the previous control in the toolbar.</li>
+                <li>If the focused radio button is <strong>not</strong> the first radio button in the radio group, moves focus to the previous radio button.</li>
+                <li>If the focused radio button is the first radio button in the radio group and is <strong>not</strong> the first element in the toolbar, moves focus to the previous element in the toolbar.</li>
+                <li>If the focused radio button is the first radio button in the radio group and is also the first element in the toolbar, moves focus to the last element in the toolbar.</li>
               </ul>
             </td>
           </tr>
@@ -369,8 +371,11 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
 
     <section>
       <h3 id="kbd_label_4">Button (Cut, Copy and Paste)</h3>
-      <p>NOTE: The <code>aria-disabled</code> attribute is used instead of the DOM <code>.disabled</code> property of the <code>button</code> element to identify the button as disabled.  By using <code>aria-disabled</code> the button can receive keyboard focus and be part of the navigation of the toolbar when it's functionality is enabled or disabled.</p>
-      <table aria-labelledby="kbd_label_4" class="def">
+      <p>
+        The buttons for cut, copy, and paste provide the following keyboard support defined by the <a href="../../#button">button design pattern.</a>
+        While they are HTML button elements, as described in the accessibility features section above, in order to remain focusable when disabled, they use <code>aria-disabled</code> instead of the HTML <code>disabled</code> attribute.
+      </p>
+      <table aria-labelledby="kbd_label_4 kbd_label" class="def">
         <thead>
           <tr>
             <th>Key</th>
@@ -378,11 +383,9 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th><kbd>Enter</kbd>,<br><kbd>Space</kbd></th>
-            <td>
-              If the button is enabled, activate the action associated with the button.
-            </td>
+          <tr data-test-id="toolbar-button-enter-or-space">
+            <th><kbd>Enter</kbd><br><kbd>Space</kbd></th>
+            <td>If the button is enabled, execute the action associated with the button. Otherwise, do nothing.</td>
           </tr>
         </tbody>
       </table>
@@ -390,8 +393,8 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
 
     <section>
       <h3 id="kbd_label_5">Menu Button (Font Family)</h3>
-      <p>The menu opens the font family menu and uses the <a href="../../#menubutton">Menu Button design pattern</a>.</p>
-      <table aria-labelledby="kbd_label_5" class="def">
+      <p>The menu button for opening the font family menu provides the following keyboard support defined by the <a href="../../#menubutton">menu button design pattern.</a></p>
+      <table aria-labelledby="kbd_label_5 kbd_label" class="def">
         <thead>
           <tr>
             <th>Key</th>
@@ -399,28 +402,16 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th><kbd>Enter</kbd>,<br><kbd>Space</kbd></th>
+          <tr data-test-id="toolbar-menubutton-enter-or-space-or-down-or-up">
+            <th>
+              <kbd>Enter</kbd><br>
+              <kbd>Space</kbd><br>
+              <kbd>Down Arrow</kbd><br>
+              <kbd>Up Arrow</kbd>
+            </th>
             <td>
-              Expand the menu if it include menu items.
-            </td>
-          </tr>
-          <tr>
-            <th><kbd>Down Arrow</kbd></th>
-            <td>
-              <ul>
-                <li>Expand the menu</li>
-                <li>Move focus to the first menu item.</li>
-              </ul>
-            </td>
-          </tr>
-          <tr>
-            <th><kbd>Up Arrow</kbd></th>
-            <td>
-              <ul>
-                <li>Moves focus to the previous menu item.</li>
-                <li>If the first menu item has focus, focus moves to the last menu item.</li>
-              </ul>
+              Open the menu and place focus on a menu item.
+              In this implementation, the focus is set on the currently selected font family when the menu opens.
             </td>
           </tr>
         </tbody>
@@ -429,8 +420,8 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
 
     <section>
       <h3 id="kbd_label_6">Menu (Font Family)</h3>
-      <p>The menu changes the font family in the <code>textarea</code>  and uses the <a href="../../#menu">Menu design pattern</a>..</p>
-      <table aria-labelledby="kbd_label_6" class="def">
+      <p>The menu for choosing a font family provides the following keyboard support defined by the <a href="../../#menu">Menu design pattern.</a></p>
+      <table aria-labelledby="kbd_label_6 kbd_label" class="def">
         <thead>
           <tr>
             <th>Key</th>
@@ -438,13 +429,11 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th><kbd>Enter</kbd>,<br><kbd>Space</kbd></th>
-            <td>
-              Select the menu item.
-            </td>
+          <tr data-test-id="toolbar-menu-enter-or-space">
+            <th><kbd>Enter</kbd><br><kbd>Space</kbd></th>
+            <td>Activate the menu item, close the menu, and place focus on the menu button.</td>
           </tr>
-          <tr>
+          <tr data-test-id="toolbar-menu-down-arrow">
             <th><kbd>Down Arrow</kbd></th>
             <td>
               <ul>
@@ -453,7 +442,7 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="toolbar-menu-up-arrow">
             <th><kbd>Up Arrow</kbd></th>
             <td>
               <ul>
@@ -462,16 +451,9 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
               </ul>
             </td>
           </tr>
-        <tr>
-          <th>
-            <kbd>ESC</kbd>,<br><kbd>Left Arrow</kbd>,<br><kbd>Right Arrow</kbd>
-          </th>
-          <td>
-            <ul>
-              <li>Close the menu.</li>
-              <li>Move focus back to the menu button.</li>
-            </ul>
-          </td>
+        <tr data-test-id="toolbar-menu-escape">
+          <th><kbd>ESC</kbd></th>
+          <td>Closes the menu and moves focus to the menu button.</td>
         </tr>
         </tbody>
       </table>
@@ -479,8 +461,8 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
 
     <section>
       <h3 id="kbd_label_7">Spin Button (Font Size)</h3>
-      <p>The spinbutton changes the size of the font in the <code>textarea</code>  and uses the <a href="../../#spinbutton">Spin Button design pattern</a>..
-      <table aria-labelledby="kbd_label_7" class="def">
+      <p>The spin button for changing font size provides the following keyboard support as defined by the <a href="../../#spinbutton">spin button design pattern.</a></p>
+      <table aria-labelledby="kbd_label_7 kbd_label" class="def">
         <thead>
           <tr>
             <th>Key</th>
@@ -488,29 +470,21 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr data-test-id="toolbar-spinbutton-down-arrow">
             <th><kbd>Down Arrow</kbd></th>
-            <td>
-              Decreases the font size of the text in the <code>textarea</code> by 1 points.
-            </td>
+            <td>Decreases the font size of the text in the <code>textarea</code> by 1 point.</td>
           </tr>
-          <tr>
+          <tr data-test-id="toolbar-spinbutton-up-arrow">
             <th><kbd>Up Arrow</kbd></th>
-            <td>
-              Increases the font size of the text in the <code>textarea</code> by 1 points.
-            </td>
+            <td>Increases the font size of the text in the <code>textarea</code> by 1 point.</td>
           </tr>
-          <tr>
-            <th><kbd>Page Down Arrow</kbd></th>
-            <td>
-              Decreases the font size of the text in the <code>textarea</code> by 5 points.
-            </td>
+          <tr data-test-id="toolbar-spinbutton-page-down">
+            <th><kbd>Page Down</kbd></th>
+            <td>Decreases the font size of the text in the <code>textarea</code> by 5 points.</td>
           </tr>
-          <tr>
-            <th><kbd>Page Up Arrow</kbd></th>
-            <td>
-              Increases the font size of the text in the <code>textarea</code> by 5 points.
-            </td>
+          <tr data-test-id="toolbar-spinbutton-page-up">
+            <th><kbd>Page Up</kbd></th>
+            <td>Increases the font size of the text in the <code>textarea</code> by 5 points.</td>
           </tr>
         </tbody>
       </table>
@@ -518,8 +492,11 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
 
     <section>
       <h3 id="kbd_label_8">Checkbox (Night Mode)</h3>
-      <p>The checkbox for night mode changes the foreground and background colors in the <code>textarea</code>.
-      <table aria-labelledby="kbd_label_8" class="def">
+      <p>
+        The checkbox for toggling night mode provides the following keyboard support defined in the <a href="../../#checkbox">checkbox design pattern.</a>
+        As an HTML input element, the browser provides the keyboard support.
+        </p>
+      <table aria-labelledby="kbd_label_8 kbd_label" class="def">
         <thead>
           <tr>
             <th>Key</th>
@@ -527,11 +504,9 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th><kbd>Return</kbd>, <kbd>Space</kbd></th>
-            <td>
-              Toggle the state of the checkbox.
-            </td>
+          <tr data-test-id="toolbar-checkbox-enter-or-space">
+            <th><kbd>Enter</kbd><br><kbd>Space</kbd></th>
+            <td>Toggles the state of the checkbox.</td>
           </tr>
         </tbody>
       </table>
@@ -539,8 +514,11 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
 
     <section>
       <h3 id="kbd_label_9">Link (Help)</h3>
-      <p>Opens a new web page in the current window.</p>
-      <table aria-labelledby="kbd_label_9" class="def">
+      <p>
+        The link for opening a help page provides the following keyboard support as defined by the <a href="../../#link">link design pattern.</a>
+        As an HTML link, the keyboard support is provided by the browser.
+      </p>
+      <table aria-labelledby="kbd_label_9 kbd_label" class="def">
         <thead>
           <tr>
             <th>Key</th>
@@ -548,11 +526,9 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th><kbd>Return</kbd>, <kbd>Space</kbd></th>
-            <td>
-              Activate the link.
-            </td>
+          <tr data-test-id="toolbar-link-enter-or-space">
+            <th><kbd>Enter</kbd><br><kbd>Space</kbd></th>
+            <td>Activate the link.</td>
           </tr>
         </tbody>
       </table>
