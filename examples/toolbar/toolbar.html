@@ -42,10 +42,13 @@
     <a href="https://github.com/w3c/aria-practices/issues/539">issue 539.</a>
   </p>
   <p>
-    Following is an example implementation of the
+    The following example of an editor toolbar implements the
     <a href="../../#toolbar">design pattern for toolbar</a>
-    that demonstrates how a toolbar can group a set of buttons into a single tab stop.
-    It also illustrates the roving tabindex method for managing focus within a component.
+    and demonstrates how a toolbar can group a set of interactive widgets into a single tab stop.
+    For illustrative and interoperability assessment purposes, this This implementation includes a diverse set of widgets, some of which may not be ordinarily grouped in the same toolbar.
+    For instance, it includes both a checkbox and toggle buttons. In a typical implementation, the design would use either one or the other but not both.
+    Similarly, the edit field is included to help simulate actual implementation and is not intended to represent an actual rich text editor.
+    This example also illustrates the <a href="../../#kbd_roving_tabindex">roving tabindex method</a> for managing focus within a component.
   </p>
   <section>
     <h2 id="ex_label">Example</h2>
@@ -194,7 +197,8 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
 
   <section>
     <h2>Accessibility Features</h2>
-    <ol>
+    <h3>Keyboard Features</h3>
+    <ul>
       <li>
         When tabbing into the toolbar, focus returns to the control that last had focus.
         Focus movement inside the toolbar is managed using <a href="../../#kbd_roving_tabindex">roving tabindex</a>.
@@ -203,19 +207,19 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
         When any of the cut, copy and paste buttons are disabled they remain focusable to ensure screen reader users are aware of their presence.
         For additional guidance, see <a href="../../#kbd_disabled_controls">Focusability of disabled controls.</a>
       </li>
-      <li>Since <kbd>Up Arrow</kbd> and <kbd>Down Arrow</kbd> keys are not used to navigate a horizontal toolbar:
+      <li><kbd>Left Arrow</kbd> and <kbd>Right Arrow</kbd> navigate among elements in the toolbar so <kbd>Up Arrow</kbd> and <kbd>Down Arrow</kbd> are available to: 
         <ul>
-          <li>The text alignment options can be changed using the <kbd>Up Arrow</kbd> and <kbd>Down Arrow</kbd> keys.</li>
-          <li>The menu button (i.e. for font family) can be opened with <kbd>Up Arrow</kbd> or <kbd>Down Arrow</kbd> as well as <kbd>Enter</kbd>.</li>
+          <li>Navigate among radios in the text alignment group. For instance, <kbd>Down Arrow</kbd> moves focus from last to first member in the group.</li>
+          <li>Open the font menu button, which can also be opened with <kbd>Enter</kbd>.</li>
+          <li>Increment and decrement the font size spin button.</li>
         </ul>
-    </ol>
-  </section>
-
-  <section>
-    <h2>Focus Styling</h2>
-    <ol>
+      </li>
+    </ul>
+    <h3>Focus Styling</h3>
+    <ul>
       <li>
-        When the toolbar has focus, the container element border is highlighted.
+        When the toolbar has focus, the container element border is highlighted,
+        helping indicate that the container supports directional navigation with the arrow keys. 
       </li>
       <li>
         When a toolbar item has focus, its border is highlighted and the background color of the button also changes.
@@ -227,8 +231,8 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
     <h2 id="kbd_label">Keyboard Support</h2>
     <section>
       <h3 id="kbd_label_1">Toolbar</h3>
-      <p>The following keyboard commands apply to all controls in the toolbar.</p>
-      <table aria-labelledby="kbd_label_1" class="def">
+      <p>The following keyboard commands, defined by the <a href="../../#toolbar">toolbar pattern</a>, apply to all controls in the toolbar.</p>
+      <table aria-labelledby="kbd_label_1 kbd_label" class="def">
         <thead>
           <tr>
             <th>Key</th>
@@ -236,7 +240,7 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr data-test-id="toolbar-tab">
             <th><kbd>Tab</kbd></th>
             <td>
               <ul>
@@ -246,31 +250,31 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
               </ul>
             </td>
           </tr>
-          <tr>
-            <th><kbd>Left Arrow</kbd></th>
-            <td>
-              <ul>
-                <li>Moves focus to the previous control.</li>
-                <li>If the first control has focus, focus moves to the last control.</li>
-                <li>NOTE: When an item in the popup menu has focus, the left arrow key does nothing.</li>
-              </ul>
-            </td>
-          </tr>
-          <tr>
+          <tr data-test-id="toolbar-right-arrow">
             <th><kbd>Right Arrow</kbd></th>
             <td>
               <ul>
                 <li>Moves focus to the next control.</li>
                 <li>If the last control has focus, focus moves to the first control.</li>
-                <li>NOTE: When an item in the popup menu has focus, the right arrow key does nothing.</li>
+                <li>If an item in the popup menu has focus, does nothing.</li>
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="toolbar-left-arrow">
+            <th><kbd>Left Arrow</kbd></th>
+            <td>
+              <ul>
+                <li>Moves focus to the previous control.</li>
+                <li>If the first control has focus, focus moves to the last control.</li>
+                <li>If an item in the popup menu has focus, does nothing.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr data-test-id="toolbar-home">
             <th><kbd>Home</kbd></th>
             <td>Moves focus to the first control.</td>
           </tr>
-          <tr>
+          <tr data-test-id="toolbar-end">
             <th><kbd>End</kbd></th>
             <td>Moves focus to the last control.</td>
           </tr>
@@ -279,9 +283,9 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
     </section>
 
     <section>
-      <h3 id="kbd_label_2">Toggle Button (bold, Italic and Underline)</h3>
-      <p>The <b>Bold</b>, <i>Italic</i>, <u>Underline</u> and the left, center and right justification buttons in the toolbar and use the <a href="../../#button">Toggle Button design pattern</a>.</p>
-      <table aria-labelledby="kbd_label_2" class="def">
+      <h3 id="kbd_label_2">Toggle Buttons (Bold, Italic, Underline)</h3>
+      <p>The <b>Bold</b>, <i>Italic</i>, and <u>Underline</u> controls are toggle buttons that implement the <a href="../../#button">button design pattern</a>.</p>
+      <table aria-labelledby="kbd_label_2 kbd_label" class="def">
         <thead>
           <tr>
             <th>Key</th>
@@ -289,11 +293,9 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr data-test-id="toolbar-toggle-enter-or-space">
             <th><kbd>Enter</kbd>,<br><kbd>Space</kbd></th>
-            <td>
-              Toggle on/off the the action associated with the button.
-            </td>
+            <td>Toggle the pressed state of the button.</td>
           </tr>
         </tbody>
       </table>
@@ -301,8 +303,14 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
 
     <section>
       <h3 id="kbd_label_3">Radio Group (Text Alignment)</h3>
-      <p>The group of text alignment buttons look and act like standard toggle buttons, but since only one of the three options can be selected (e.g. checked) they behave like a group of radio buttons and this behavior needs to be communicated to users of assistive technologies.   To communicate this behavior to assitive technologies the buttons use the <a href="../../#radiobutton">radio group design pattern</a> with the <code>radiogroup</code> and <code>radio</code> roles.  When the radio group pattern is within a toolbar its keyboard support is slightly different than a traditional radio group.  The selected item (e.g. checked) does not change when keyboard focus moves between radio buttons, the selected button only changes with the use of the <kbd>space</kbd> or <kbd>enter</kbd> key.</p>
-      <table aria-labelledby="kbd_label_3" class="def">
+      <p>
+        The buttons for choosing left, center, or right text alignment are styled like toggle buttons.
+        However, since pressing one toggles off another so that only one button in the group is in the pressed state, the toggles behave like radio buttons.
+        Because ARIA is designed to describe behavior, not styling, to assistive technologies,
+        the alignment toggles implement the <a href="../../#radiobutton">radio group design pattern.</a>
+        As described in the pattern, nesting a radio group in a toolbar calls for an important behavioral difference compared to radios outside a toolbar: moving focus inside the group does not automatically change which button is checked.
+      </p>
+      <table aria-labelledby="kbd_label_3 kbd_label" class="def">
         <thead>
           <tr>
             <th>Key</th>
@@ -310,13 +318,16 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr data-test-id="toolbar-radio-enter-or-space">
             <th><kbd>Enter</kbd>,<br><kbd>Space</kbd></th>
             <td>
-              Select the menu item.
+              <ul>
+                <li>If the focused radio button is checked, do nothing.</li>
+                <li>Otherwise, uncheck the currently checked radio button and check the radio button that has focus.</li>
+              </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="toolbar-radio-right-arrow">
             <th><kbd>Right Arrow</kbd></th>
             <td>
               <ul>
@@ -325,7 +336,7 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="toolbar-radio-left-arrow">
             <th><kbd>Left Arrow</kbd></th>
             <td>
               <ul>
@@ -334,7 +345,7 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="toolbar-radio-down-arrow">
             <th><kbd>Down Arrow</kbd></th>
             <td>
               <ul>
@@ -343,7 +354,7 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="toolbar-radio-up-arrow">
             <th><kbd>Up Arrow</kbd></th>
             <td>
               <ul>
