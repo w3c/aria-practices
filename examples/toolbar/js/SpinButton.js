@@ -3,8 +3,6 @@
 *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
 *
 *   File:   SpinButton.js
-*
-*   Desc:   SpinButton widget that implements ARIA Authoring Practices
 */
 
 // Create SpinButton that contains value, valuemin, valuemax, and valuenow
