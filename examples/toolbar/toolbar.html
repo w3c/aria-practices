@@ -617,6 +617,7 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
 
     <section>
       <h3 id="rps_label_2">Toggle Buttons (Bold, Italic, Underline)</h3>
+      <p>The toggle buttons for choosing to apply <b>Bold</b>, <i>Italic</i>, and <u>Underline</u> styling implement the following ARIA attributes described in the <a href="../../#button">button design pattern</a>.</p>
       <table aria-labelledby="rps_label_2 rps_label" class="data attributes">
         <thead>
           <tr>
@@ -751,32 +752,27 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr data-test-id="toolbar-button-aria-disabled">
             <td></td>
-            <th scope="row"><code>aria-disabled=<q>true</q></code></th>
+            <th scope="row"><code>aria-disabled="true"</code></th>
             <td><code>button</code></td>
-            <td>
-              <ul>
-                <li>Informs assistive technologies of the disabled state.</li>
-                <li>Used on the Cut, Copy and Paste buttons</li>
-              </ul>
-            </td>
+            <td>Set when the button is disable to inform assistive technologies of the disabled state.</td>
           </tr>
-          <tr>
+          <tr data-test-id="toolbar-button-aria-disabled">
             <td></td>
-            <th scope="row"><code>title=<q><em>description</em></q></code></th>
+            <th scope="row"><code>aria-disabled="false"</code></th>
             <td><code>button</code></td>
-            <td>
-              Provides an accessible description of the actions associated with each button.
-            </td>
+            <td>Set when the function provided by the button is available.</td>
           </tr>
         </tbody>
       </table>
+      <p>Note: In addition to the ARIA attributes, the accessible design includes the HTML <code>title</code> attribute for providing accessible descriptions of button actions.</p>
     </section>
 
     <section>
-      <h3 id="rps5_label">Menu Button (Font Family)</h3>
-      <table aria-labelledby="rps5_label rps_label" class="data attributes">
+      <h3 id="rps_label_5">Menu Button (Font Family)</h3>
+      <p>The menu button for opening the font family menu implements the following ARIA attributes described in the <a href="../../#menubutton">menu button design pattern.</a></p>
+      <table aria-labelledby="rps_label_5 rps_label" class="data attributes">
         <thead>
           <tr>
             <th scope="col">Role</th>
@@ -786,66 +782,45 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row"><code>button</code></th>
+          <tr data-test-id="toolbar-menubutton-aria-label">
             <td></td>
-            <td>
-              <code>button</code>
-            </td>
+            <th scope="row"><code>aria-label="Font: FONT_FAMILY_NAME"</code></th>
+            <td><code>button</code></td>
             <td>
               <ul>
-                <li>The combination of the <code>aria-haspopup</code> attribute with the <code>button</code> role identifies the button as following the menu button design pattern.</li>
-                <li>The accessible name comes from <code>aria-label</code> attribute.</li>
+                <li>Defines the accessible name for the menu button by concatenating <q>Font: </q> with the name of the font family currently checked in the menu.</li>
+                <li>Updated when a different font family is chosen in the font family menu.</li>
               </ul>
             </td>
           </tr>
-          <tr>
-            <td>
-              <code></code>
-            </td>
-            <th scope="row"><code>aria-label=&quot;Font: <em>font family name</em>&quot;</code></th>
-            <td>
-              <code>ul</code>
-            </td>
-            <td>
-              <ul>
-                <li>Defines the accessible name for the menu button, by contacting <q>Font: </q> with the current font family name checked in the menu.</li>
-                <li>The accessible name is updated when a different font is selected from the font menu.</li>
-              </ul>
-            </td>
-          </tr>
-          <tr>
+          <tr data-test-id="toolbar-menubutton-aria-haspopup">
             <td></td>
-            <th scope="row"><code>aria-haspopup=&quot;true&quot;</code></th>
-            <td>
-              <code>button</code>
-            </td>
+            <th scope="row"><code>aria-haspopup="true"</code></th>
+            <td><code>button</code></td>
             <td>
               <ul>
-                <li>Identifies the <code>button</code> as opening a menu.</li>
+                <li>Indicates the <code>button</code> opens a menu.</li>
                 <li>
-                  <strong>NOTE:</strong> While ARIA does not include a role specifically for menu buttons, most platform accessibility APIs include a menubutton role.
-                  Consequently, on such platforms, assistive technologies, such as screen readers, identify buttons that have <code>aria-haspopup</code> set to either <code>true</code> or <code>menu</code> as menu buttons.
+                  <strong>NOTE:</strong> While ARIA does not include a <code>menubutton</code>, most platform accessibility APIs have a <code>menubutton</code> role.
+                  On those platforms, assistive technologies identify buttons with <code>aria-haspopup</code> set to either <code>true</code> or <code>menu</code> as menu buttons.
                 </li>
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="toolbar-menubutton-aria-controls">
             <td></td>
-            <th scope="row"><code>aria-controls=&quot;IDREF&quot;</code></th>
-            <td>
-              <code>button</code>
-            </td>
+            <th scope="row"><code>aria-controls="IDREF"</code></th>
+            <td><code>button</code></td>
             <td>
               <ul>
-                <li>Provides a reference to the <code>menu</code> controlled by the menu button.</li>
-                <li>Optional attribute: assistive technology users can operate the menu if not present.</li>
+                <li>Set to a value that references the element with role <code>menu</code>.</li>
+                <li>Indicates the button opens and closes the menu.</li>
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="toolbar-menubutton-aria-expanded">
               <td></td>
-              <th scope="row"><code>aria-expanded=&quot;true&quot;</code></th>
+              <th scope="row"><code>aria-expanded="true"</code></th>
               <td><code>button</code></td>
               <td>
                 <ul>
