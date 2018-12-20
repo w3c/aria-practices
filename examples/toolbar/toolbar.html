@@ -373,7 +373,7 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
       <h3 id="kbd_label_4">Button (Cut, Copy, Paste)</h3>
       <p>
         The buttons for cut, copy, and paste provide the following keyboard support described in the <a href="../../#button">button design pattern.</a>
-        While they are HTML button elements, as described in the accessibility features section above, in order to remain focusable when disabled, they use <code>aria-disabled</code> instead of the HTML <code>disabled</code> attribute.
+        While they are HTML button elements, as described in the accessibility features section above, in order to remain focusable when disabled, they have <code>aria-disabled</code> instead of the HTML <code>disabled</code> attribute.
       </p>
       <table aria-labelledby="kbd_label_4 kbd_label" class="def">
         <thead>
@@ -540,6 +540,7 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
     <h2 id="rps_label">Role, Property, State, and Tabindex  Attributes</h2>
     <section>
       <h3 id="rps_label_1">Toolbar</h3>
+      <p>The toolbar implements the following ARIA attributes described in the <a href="../../#toolbar">toolbar pattern.</a></p>
       <table aria-labelledby="rps_label_1 rps_label" class="data attributes">
         <thead>
           <tr>
@@ -740,7 +741,7 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
       <h3 id="rps_label_4">Button (Cut, Copy, Paste)</h3>
       <p>
         The buttons for cut, copy, and paste implement the following ARIA attributes         described in the <a href="../../#button">button design pattern.</a>
-        While they are HTML button elements, as described in the accessibility features section above, in order to remain focusable when disabled, they use <code>aria-disabled</code> instead of the HTML <code>disabled</code> attribute.
+        While they are HTML button elements, as described in the accessibility features section above, in order to remain focusable when disabled, they have <code>aria-disabled</code> instead of the HTML <code>disabled</code> attribute.
       </p>
       <table aria-labelledby="rps_label_4 rps_label" class="data attributes">
         <thead>
@@ -836,8 +837,9 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
     </section>
 
     <section>
-      <h3 id="rps6_label">Menu (Font Family)</h3>
-      <table aria-labelledby="rps6_label rps_label" class="data attributes">
+      <h3 id="rps_label_6">Menu (Font Family)</h3>
+      <p>The menu for choosing a font family implements the following ARIA attributes described in the <a href="../../#menu">Menu design pattern.</a></p>
+      <table aria-labelledby="rps_label_6 rps_label" class="data attributes">
         <thead>
           <tr>
             <th scope="col">Role</th>
@@ -847,36 +849,24 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr data-test-id="toolbar-menu-role">
             <th scope="row">
               <code>menu</code>
             </th>
             <td></td>
-            <td>
-              <code>ul</code>
-            </td>
+            <td><code>ul</code></td>
             <td>Identifies the <code>ul</code> element as a <code>menu</code>.</td>
           </tr>
-          <tr>
-            <td>
-              <code></code>
-            </td>
-            <th scope="row"><code>aria-label=&quot;Fonts&quot;</code></th>
-            <td>
-              <code>ul</code>
-            </td>
-            <td>
-              Defines the accessible name for the menu as <q>Fonts</q>.
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">
-              <code>menuitemradio</code>
-            </th>
+          <tr data-test-id="toolbar-menu-aria-label">
             <td></td>
-            <td>
-              <code>li</code>
-            </td>
+            <th scope="row"><code>aria-label="Font Family"</code></th>
+            <td><code>ul</code></td>
+            <td>Defines the accessible name for the menu as &quot;Font Family&quot;.</td>
+          </tr>
+          <tr data-test-id="toolbar-menuitemradio-role">
+            <th scope="row"><code>menuitemradio</code></th>
+            <td></td>
+            <td><code>li</code></td>
             <td>
               <ul>
                 <li>Identifies the <code>li</code> element as a <code>menuitemradio</code>.</li>
@@ -884,27 +874,40 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="toolbar-menuitemradio-aria-checked">
             <td>
             </td>
-            <th scope="row"><code>aria-checked=<q>value</q></code></th>
+            <th scope="row"><code>aria-checked="true"</code></th>
+            <td><code>li</code></td>
             <td>
-              <code>li</code>
-            </td>
-            <td>
-              <code>aria-checked</code> is set to <code><q>true</q></code> on the menu item representing the font used to format the <code>textarea</code>, otherwise it is set to <code><q>false</q></code>.
+              <ul>
+                <li>Applied to an element with role <code>menuitemradio</code> to indicate the item is checked, informing users which font is applied to the text area .</li>
+                <li>Only one item in the menu has the checked state at any given time.</li>
+              </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="toolbar-menuitemradio-aria-checked">
+            <td>
+            </td>
+            <th scope="row"><code>aria-checked="false"</code></th>
+            <td><code>li</code></td>
+            <td>
+              <ul>
+                <li>Applied to elements with role <code>menuitemradio</code> to indicate the items are <strong>NOT</strong> checked.</li>
+                <li>All items in the menu, except one, have this value.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr data-test-id="toolbar-menuitemradio-tabindex">
             <td></td>
-            <th scope="row"><code>tabindex=<q>-1</q></code></th>
+            <th scope="row"><code>tabindex="-1"</code></th>
             <td>
               <code>li</code>
             </td>
             <td>
               <ul>
-                <li>Allows DOM focus to be set on the menu item with the JavaScript focus method.</li>
-                <li>Dynamically added by the JavaScript.</li>
+                <li>Makes the <code>menuitemradio</code> element focusable so DOM focus can be set on the menu item.</li>
+                <li>Dynamically added by JavaScript.</li>
               </ul>
             </td>
           </tr>
@@ -913,8 +916,9 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
     </section>
 
     <section>
-      <h3 id="rps7_label">Spin Button (Font Size)</h3>
-      <table aria-labelledby="rps7_label rps_label" class="data attributes">
+      <h3 id="rps_label_7">Spin Button (Font Size)</h3>
+      <p>The spin button for changing font size implements the following ARIA attributes described in the <a href="../../#spinbutton">spin button design pattern.</a></p>
+      <table aria-labelledby="rps_label_7 rps_label" class="data attributes">
         <thead>
           <tr>
             <th scope="col">Role</th>
@@ -924,75 +928,51 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">
-              <code>spinbutton</code>
-            </th>
+          <tr data-test-id="toolbar-spinbutton-role">
+            <th scope="row"><code>spinbutton</code></th>
             <td></td>
-            <td>
-              <code>div</code>
-            </td>
+            <td><code>div</code></td>
             <td>Identifies the <code>div</code> element as a <code>spinbutton</code>.</td>
           </tr>
-          <tr>
+          <tr data-test-id="toolbar-spinbutton-aria-label">
+            <td></td>
+            <th scope="row"><code>aria-label="Font size in points"</code></th>
+            <td><code>div</code></td>
+            <td>Defines the accessible name for the spin button as &quot;Font size in points&quot;.</td>
+          </tr>
+          <tr data-test-id="toolbar-spinbutton-aria-valuenow">
+            <td></td>
+            <th scope="row"><code>aria-valuenow="NUMBER_POINTS"</code></th>
+            <td><code>div</code></td>
             <td>
-              <code></code>
-            </td>
-            <th scope="row"><code>aria-label=<q>Font size in points</q></code></th>
-            <td>
-              <code>div</code>
-            </td>
-            <td>
-              Defines the accessible name for the menu as <q>Font size in points</q>.
+              <ul>
+                <li>Indicates the current value of the spin button.</li>
+                <li>Updated by JavaScript as users adjust the value of the spin button.</li>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="toolbar-spinbutton-aria-valuetext">
+            <td></td>
+            <th scope="row"><code>aria-valuetext="NUMBER_POINTS Points"</code></th>
+            <td><code>div</code></td>
             <td>
-              <code></code>
-            </td>
-            <th scope="row"><code>aria-valuenow=<q><em>number</em></q></code></th>
-            <td>
-              <code>div</code>
-            </td>
-            <td>
-              Identifies the current size of the font as an integer value.
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <code></code>
-            </td>
-            <th scope="row"><code>aria-valuetext=<q><em>number</em> Points</q></code></th>
-            <td>
-              <code>div</code>
-            </td>
-            <td>
-              Identifies the current size of the font as string <q>NN points</q>.
+              <ul>
+                <li>Provides a more user friendly announcement of the current value for screen reader users.</li>
+                <li><code>NUMBER_POINTS</code> is updated by JavaScript as the user adjusts the value of the spin button.</li>
+                <li>As users adjust the value, instead of hearing only a number, they will hear the current value followed by the word <q>Points</q>, e.g., <q>10 Points</q>.
+              </ul>
             </td>
           </tr>
-          <tr>
-            <td>
-              <code></code>
-            </td>
-            <th scope="row"><code>aria-valuemax=<q>40</q></code></th>
-            <td>
-              <code>div</code>
-            </td>
-            <td>
-              Identifies the maximum size of the font.
-            </td>
+          <tr data-test-id="toolbar-spinbutton-aria-valuemin">
+            <td></td>
+            <th scope="row"><code>aria-valuemin="8"</code></th>
+            <td><code>div</code></td>
+            <td>Indicates the minimum allowed value for the spin button, i.e., smallest supported font size.</td>
           </tr>
-          <tr>
-            <td>
-              <code></code>
-            </td>
-            <th scope="row"><code>aria-valuemin=<q>8</q></code></th>
-            <td>
-              <code>div</code>
-            </td>
-            <td>
-              Identifies the minimum size of the font.
-            </td>
+          <tr data-test-id="toolbar-spinbutton-aria-valuemax">
+            <td></td>
+            <th scope="row"><code>aria-valuemax="40"</code></th>
+            <td><code>div</code></td>
+            <td>Indicates the maximum allowed value for the spin button, i.e., largest supported font size.</td>
           </tr>
         </tbody>
       </table>
@@ -1030,7 +1010,6 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
   </section>
   </main>
   <nav>
-    <!--  Update the pattern_ID parameter of this link to refer to the APG design pattern section related to this example.  -->
     <a href="../../#toolbar">Toolbar Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
   </nav>
 </body>
