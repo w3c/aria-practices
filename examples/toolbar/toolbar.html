@@ -307,9 +307,11 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
       <p>
         The buttons for choosing left, center, or right text alignment are styled like toggle buttons.
         However, since pressing one toggles off another so that only one button in the group is in the pressed state, the toggles behave like radio buttons.
-        Because ARIA is designed to describe behavior, not styling, to assistive technologies,
+        Because ARIA is designed to inform assistive technologies about UI semantics and behaviors, not styling,
         the alignment toggles provide the following keyboard support described in the <a href="../../#radiobutton">radio group design pattern.</a>
         As described in the pattern, nesting a radio group in a toolbar calls for an important behavioral difference compared to radios outside a toolbar: moving focus inside the group does not automatically change which button is checked.
+        In addition, because <kbd>Left Arrow</kbd> and <kbd>Right Arrow</kbd> are needed by the parent toolbar, they are not captured by the radio group.
+        The toolbar thus provides navigation into, inside, and out of the nested radio group.
       </p>
       <table aria-labelledby="kbd_label_3 kbd_label" class="def">
         <thead>
@@ -325,26 +327,6 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
               <ul>
                 <li>If the focused radio button is checked, do nothing.</li>
                 <li>Otherwise, uncheck the currently checked radio button and check the radio button that has focus.</li>
-              </ul>
-            </td>
-          </tr>
-          <tr data-test-id="toolbar-radio-right-arrow">
-            <th><kbd>Right Arrow</kbd></th>
-            <td>
-              <ul>
-                <li>If the focused radio button is <strong>not</strong> the last radio button in the radio group, moves focus to the next radio button.</li>
-                <li>If the focused radio button is the last radio button in the radio group and is <strong>not</strong> the last element in the toolbar, moves focus to the next element in the toolbar.</li>
-                <li>If the focused radio button is the last radio button in the radio group and is also the last element in the toolbar, moves focus to the first element in the toolbar.</li>
-              </ul>
-            </td>
-          </tr>
-          <tr data-test-id="toolbar-radio-left-arrow">
-            <th><kbd>Left Arrow</kbd></th>
-            <td>
-              <ul>
-                <li>If the focused radio button is <strong>not</strong> the first radio button in the radio group, moves focus to the previous radio button.</li>
-                <li>If the focused radio button is the first radio button in the radio group and is <strong>not</strong> the first element in the toolbar, moves focus to the previous element in the toolbar.</li>
-                <li>If the focused radio button is the first radio button in the radio group and is also the first element in the toolbar, moves focus to the last element in the toolbar.</li>
               </ul>
             </td>
           </tr>
@@ -662,7 +644,7 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
       <p>
         The buttons for choosing left, center, or right text alignment are styled like toggle buttons.
         However, since pressing one toggles off another so that only one button in the group is in the pressed state, the toggles behave like radio buttons.
-        Because ARIA is designed to describe behavior, not styling, to assistive technologies,
+        Because ARIA is designed to inform assistive technologies about UI semantics and behavior, not styling,
         the alignment toggles implement the following ARIA attributes described in the <a href="../../#radiobutton">radio group design pattern.</a>
       </p>
       <table aria-labelledby="rps_label_3 rps_label" class="data attributes">
@@ -675,63 +657,50 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">
-              <code>radiogroup</code>
-            </th>
+          <tr data-test-id="toolbar-radiogroup-role">
+            <th scope="row"><code>radiogroup</code></th>
             <td></td>
-            <td>
-              <code>div</code>
-            </td>
+            <td><code>div</code></td>
             <td>Identifies the <code>div</code> element as a container for group of radio buttons.</td>
           </tr>
-          <tr>
-            <td>
-              <code></code>
-            </td>
-            <th scope="row"><code>aria-label=<q>Text Alignment</q></code></th>
-            <td>
-              <code>div</code>
-            </td>
-            <td>
-              Defines the accessible name for the group of radio buttons as <q>Text Alignment</q>.
-            </td>
-          </tr>
-          <tr>
-            <th scope="row">
-              <code>radio</code>
-            </th>
+          <tr data-test-id="toolbar-radiogroup-aria-label">
             <td></td>
-            <td>
-              <code>button</code>
-            </td>
+            <th scope="row"><code>aria-label="Text Alignment"</code></th>
+            <td><code>div</code></td>
+            <td>Defines the accessible name for the group of radio buttons as &quot;Text Alignment&quot;.</td>
+          </tr>
+          <tr data-test-id="toolbar-radio-role">
+            <th scope="row"><code>radio</code></th>
+            <td></td>
+            <td><code>button</code></td>
+            <td>Identifies the <code>button</code> element  as a <code>radio</code> element.</td>
+          </tr>
+          <tr data-test-id="toolbar-radio-aria-label">
+            <td></td>
+            <th scope="row"><code>aria-label="ALIGNMENT_NAME_STRING"</code></th>
+            <td><code>button</code></td>
+            <td>Provides an accessible name for the radio button that indicates the type of text alignment it performs.</td>
+          </tr>
+          <tr data-test-id="toolbar-radio-aria-checked">
+            <td></td>
+            <th scope="row"><code>aria-checked="true"</code></th>
+            <td><code>button</code></td>
             <td>
               <ul>
-                <li>Overrides the default role of the <code>button</code> element  to be role <code>radio</code>.</li>
-                <li>The <code>aria-label</code> attribute provides the accessible name of the radio button.</li>
+                <li>Indicates the radio button is checked, i.e., the type of alignment currently applied to the text area.</li>
+                <li>Only one radio button in the group has <code>aria-checked</code> set to <code>true</code> at any given time.</li> 
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="toolbar-radio-aria-checked">
+            <td></td>
+            <th scope="row"><code>aria-checked="false"</code></th>
+            <td><code>button</code></td>
             <td>
-            </td>
-            <th scope="row"><code>aria-label=<q><em>name</em></q></code></th>
-            <td>
-              <code>button</code>
-            </td>
-            <td>
-              <code>aria-label</code> attribute is used to define an accessible name for the radio button.
-            </td>
-          </tr>
-          <tr>
-            <td>
-            </td>
-            <th scope="row"><code>aria-checked=<q><em>value</em></q></code></th>
-            <td>
-              <code>button</code>
-            </td>
-            <td>
-              <code>aria-checked</code> is set to <code><q>true</q></code> on the radio button representing the current text alignment of the content in the <code>textarea</code>, otherwise it is set to <code><q>false</q></code>.
+              <ul>
+                <li>Indicates the radio button is <strong>NOT</strong> checked.</li>
+                <li>All radio buttons in the group, except for one,  have <code>aria-checked</code> set to <code>false</code>.</li> 
+              </ul>
             </td>
           </tr>
         </tbody>
