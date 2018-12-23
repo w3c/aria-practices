@@ -1,18 +1,17 @@
+#!/usr/bin/env node
 /*
-*   This content is licensed according to the W3C Software License at
-*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
-*
-*   File:   reference-tables.js
-*/
+ *   This content is licensed according to the W3C Software License at
+ *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+ *
+ *   File:   reference-tables.js
+ */
 
-var fs = require('fs');
-var i;
+const fs = require('fs');
+const path = require('path');
 
-var fileNameTemplate = 'reference-tables.template';
-var fileNameIndex = '../examples/index.html';
-var examplesDirectory = '../examples/';
+const exampleFilePath = path.join(__dirname, '..', 'examples', 'index.html');
 
-var ariaRoles = [
+const ariaRoles = [
   'application',
   'article',
   'banner',
@@ -76,7 +75,7 @@ var ariaRoles = [
   'treeitem'
 ];
 
-var ariaPropertiesAndStates = [
+const ariaPropertiesAndStates = [
   'aria-activedescendant',
   'aria-atomic',
   'aria-autocomplete',
@@ -127,13 +126,14 @@ var ariaPropertiesAndStates = [
   'aria-valuetext'
 ];
 
-var indexOfRoles = [];
-var indexOfPropertiesAndStates = [];
+let indexOfRoles = [];
+let indexOfPropertiesAndStates = [];
 
 console.log('Generating index...');
 
-function replaceSection (id, content, newContent) {
-  var indexStart = content.indexOf(id);
+function replaceSection(id, content, newContent) {
+  let indexStart = content.indexOf(id);
+  let indexEnd;
 
   if (indexStart > 0) {
     indexStart = content.indexOf('>', indexStart) + 1;
@@ -147,8 +147,8 @@ function replaceSection (id, content, newContent) {
   return content;
 }
 
-function getTitle (data) {
-  title = data.substring(data.indexOf('<title>') + 7, data.indexOf('</title>'));
+function getTitle(data) {
+  let title = data.substring(data.indexOf('<title>') + 7, data.indexOf('</title>'));
 
   title = title.split('|');
 
@@ -159,15 +159,15 @@ function getTitle (data) {
   return title;
 }
 
-function getColumn (data, indexStart) {
-  var count = 0;
-  var index = data.lastIndexOf('<tr', indexStart);
+function getColumn(data, indexStart) {
+  let count = 0;
+  let index = data.lastIndexOf('<tr', indexStart);
 
   while (index > 0 && index <= indexStart) {
-    var indexTd = data.indexOf('<td', index);
-    var indexTh = data.indexOf('<th', index);
+    let indexTd = data.indexOf('<td', index);
+    let indexTh = data.indexOf('<th', index);
 
-    var index = Math.min(indexTh, indexTd);
+    index = Math.min(indexTh, indexTd);
 
     if (index <= indexStart) {
       count += 1;
@@ -179,19 +179,19 @@ function getColumn (data, indexStart) {
   return count;
 }
 
-function getRoles (data) {
-  var roles = [];
+function getRoles(data) {
+  let roles = [];
 
-  var indexStart = data.indexOf('<code>', 0);
-  var indexEnd = data.indexOf('</code>', indexStart);
+  let indexStart = data.indexOf('<code>', 0);
+  let indexEnd = data.indexOf('</code>', indexStart);
 
   while (indexStart > 1 && indexEnd > 1) {
-    code = data.substring(indexStart + 6, indexEnd).trim();
+    let code = data.substring(indexStart + 6, indexEnd).trim();
 
-    for (var i = 0; i < ariaRoles.length; i++) {
+    for (let i = 0; i < ariaRoles.length; i++) {
       if ((getColumn(data, indexStart) === 1) &&
-          (code == ariaRoles[i]) &&
-          (roles.indexOf(ariaRoles[i]) < 0)) {
+        (code == ariaRoles[i]) &&
+        (roles.indexOf(ariaRoles[i]) < 0)) {
         roles.push(ariaRoles[i]);
       }
     }
@@ -206,19 +206,19 @@ function getRoles (data) {
   return roles;
 }
 
-function getPropertiesAndStates (data) {
-  var propertiesAndStates = [];
+function getPropertiesAndStates(data) {
+  let propertiesAndStates = [];
 
-  var indexStart = data.indexOf('<code>', 0);
-  var indexEnd = data.indexOf('</code>', indexStart);
+  let indexStart = data.indexOf('<code>', 0);
+  let indexEnd = data.indexOf('</code>', indexStart);
 
   while (indexStart > 1 && indexEnd > 1) {
-    code = data.substring(indexStart + 6, indexEnd);
+    let code = data.substring(indexStart + 6, indexEnd);
 
-    for (var i = 0; i < ariaPropertiesAndStates.length; i++) {
+    for (let i = 0; i < ariaPropertiesAndStates.length; i++) {
       if ((getColumn(data, indexStart) === 2) &&
-          (code.indexOf(ariaPropertiesAndStates[i]) >= 0) &&
-          (propertiesAndStates.indexOf(ariaPropertiesAndStates[i]) < 0)) {
+        (code.indexOf(ariaPropertiesAndStates[i]) >= 0) &&
+        (propertiesAndStates.indexOf(ariaPropertiesAndStates[i]) < 0)) {
         propertiesAndStates.push(ariaPropertiesAndStates[i]);
       }
     }
@@ -233,9 +233,9 @@ function getPropertiesAndStates (data) {
   return propertiesAndStates;
 }
 
-function addExampleToRoles (roles, example) {
-  for (var i = 0; i < roles.length; i++) {
-    var role = roles[i];
+function addExampleToRoles(roles, example) {
+  for (let i = 0; i < roles.length; i++) {
+    let role = roles[i];
 
     if (role === '') {
       continue;
@@ -248,10 +248,10 @@ function addExampleToRoles (roles, example) {
   }
 }
 
-function addExampleToPropertiesAndStates (props, example) {
+function addExampleToPropertiesAndStates(props, example) {
 
-  for (var i = 0; i < props.length; i++) {
-    var prop = props[i];
+  for (let i = 0; i < props.length; i++) {
+    let prop = props[i];
 
     if (prop === '') {
       continue;
@@ -264,50 +264,49 @@ function addExampleToPropertiesAndStates (props, example) {
   }
 }
 
-function addLandmarkRole (landmark, hasLabel, title, ref) {
-  var example = {};
-
+function addLandmarkRole(landmark, hasLabel, title, ref) {
+  let example = {};
   example.title = title;
   example.ref = ref;
   addExampleToRoles(landmark, example);
   if (hasLabel) {
-    addExampleToPropertiesAndStates([ 'aria-labelledby' ], example);
+    addExampleToPropertiesAndStates(['aria-labelledby'], example);
   }
 }
 
-var count = 0;
+function findHTMLFiles(dir) {
+  let count = 0;
+  fs.readdirSync(dir).forEach(function (file) {
+    let newPath = path.resolve(dir, file);
 
-function findHTMLFiles (path) {
-  fs.readdirSync(path).forEach(function (file) {
-    var newPath = path + '/' + file;
-
-    var stats = fs.statSync(newPath);
+    let stats = fs.statSync(newPath);
 
     if (stats.isDirectory()) {
       findHTMLFiles(newPath);
     }
 
     if (stats.isFile() &&
-        (newPath.indexOf('.html') > 0) &&
-        (newPath.indexOf('index.html') < 0) &&
-        (newPath.indexOf('landmark') < 0)) {
+      (newPath.indexOf('.html') > 0) &&
+      (newPath.indexOf('index.html') < 0) &&
+      (newPath.indexOf('landmark') < 0)) {
       count += 1;
 
-      var data = fs.readFileSync(newPath, 'utf8');
+      let data = fs.readFileSync(newPath, 'utf8');
 
-      var ref = newPath;
-      var title = getTitle(data);
-      var roles = getRoles(data);
-      var props = getPropertiesAndStates(data);
+      let ref = newPath.replace(exampleFilePath.replace('index.html', ''), '');
+      let title = getTitle(data);
+      let roles = getRoles(data);
+      let props = getPropertiesAndStates(data);
 
       console.log('\nFile ' + count + ': ' + ref);
       console.log('Title  ' + count + ': ' + title);
       console.log('Roles  ' + count + ': ' + roles);
       console.log('Props  ' + count + ': ' + props);
 
-      var example = {};
+      let example = {};
 
       example.title = title;
+      console.log(`html ref: ${ref}`)
       example.ref = ref;
 
       addExampleToRoles(roles, example);
@@ -315,74 +314,88 @@ function findHTMLFiles (path) {
       addExampleToPropertiesAndStates(props, example);
     }
   });
-};
+}
 
-findHTMLFiles(examplesDirectory);
+
+findHTMLFiles(path.join(__dirname, '..', 'examples'));
 
 // Add landmark examples, since they are a different format
 
-addLandmarkRole([ 'banner' ], false, 'Banner Landmark', examplesDirectory + 'landmarks/banner.html');
-addLandmarkRole([ 'complementary' ], true, 'Complementary Landmark', examplesDirectory + 'landmarks/complementary.html');
-addLandmarkRole([ 'contentinfo' ], false, 'Contentinfo Landmark', examplesDirectory + 'landmarks/contentinfo.html');
-addLandmarkRole([ 'form' ], true, 'Form Landmark', examplesDirectory + 'landmarks/form.html');
-addLandmarkRole([ 'main' ], true, 'Main Landmark', examplesDirectory + 'landmarks/main.html');
-addLandmarkRole([ 'navigation' ], true, 'Navigation Landmark', examplesDirectory + 'landmarks/navigation.html');
-addLandmarkRole([ 'region' ], true, 'Region Landmark', examplesDirectory + 'landmarks/region.html');
-addLandmarkRole([ 'search' ], true, 'Search Landmark', examplesDirectory + 'landmarks/search.html');
+addLandmarkRole(['banner'], false, 'Banner Landmark', 'landmarks/banner.html');
+addLandmarkRole(['complementary'], true, 'Complementary Landmark', 'landmarks/complementary.html');
+addLandmarkRole(['contentinfo'], false, 'Contentinfo Landmark', 'landmarks/contentinfo.html');
+addLandmarkRole(['form'], true, 'Form Landmark', 'landmarks/form.html');
+addLandmarkRole(['main'], true, 'Main Landmark', 'landmarks/main.html');
+addLandmarkRole(['navigation'], true, 'Navigation Landmark', 'landmarks/navigation.html');
+addLandmarkRole(['region'], true, 'Region Landmark', 'landmarks/region.html');
+addLandmarkRole(['search'], true, 'Search Landmark', 'landmarks/search.html');
 
-var exampleIndexFile = fs.readFileSync(fileNameTemplate, function (err) {
+let exampleIndexFile = fs.readFileSync(path.join(__dirname, 'reference-tables.template'), function (err) {
   console.log('Error reading aria index:', err);
 });
 
-var sorted = [];
+let sorted = [];
 
-for (role in indexOfRoles) {
+for (let role in indexOfRoles) {
   sorted.push(role);
 }
 
 sorted.sort();
 
-var html = sorted.reduce(function (set,role) {
-  var examples = indexOfRoles[role];
+function exampleListItem(item) {
+  return `
+                <li><a href="${item.ref}">${item.title}</a></li>`;
+}
 
-  var examplesHTML = '';
+let html = sorted.reduce(function (set, role) {
+  let examples = indexOfRoles[role];
+
+  let examplesHTML = '';
   if (examples.length === 1) {
-    examplesHTML = '    <a href="' + examples[0].ref + '">' + examples[0].title + '</a>';
+    examplesHTML = `<a href="${examples[0].ref}">${examples[0].title}</a>`;
+  } else {
+    examplesHTML = `
+              <ul>${examples.map(exampleListItem).join('')}
+              </ul>\n            `;
   }
-  else {
-    function exampleListItem (item) { return '      <li><a href="' + item.ref + '">' + item.title + '</a></li>';};
-    examplesHTML = '    <ul>' + examples.map(exampleListItem).join('\n') + '</ul>';
-  }
-  return set + '<tr>\n  <td><code>' + role + '</code></td>\n  <td>' + examplesHTML + '</td>\n</tr>';
+  return `${set}
+          <tr>
+            <td><code>${role}</code></td>
+            <td>${examplesHTML}</td>
+          </tr>`;
 }, '');
 
 exampleIndexFile = replaceSection('examples_by_role_tbody', exampleIndexFile, html);
 
 sorted = [];
 
-for (prop in indexOfPropertiesAndStates) {
+for (let prop in indexOfPropertiesAndStates) {
   sorted.push(prop);
 }
 
 sorted.sort();
 
-html = sorted.reduce(function (set,prop) {
-  var examples = indexOfPropertiesAndStates[prop];
+html = sorted.reduce(function (set, prop) {
+  let examples = indexOfPropertiesAndStates[prop];
 
-  var examplesHTML = '';
+  let examplesHTML = '';
   if (examples.length === 1) {
-    examplesHTML = '<a href="' + examples[0].ref + '">' + examples[0].title + '</a>';
+    examplesHTML = `<a href="${examples[0].ref}">${examples[0].title}</a>`;
+  } else {
+    examplesHTML = `
+              <ul>${examples.map(exampleListItem).join('')}
+              </ul>\n            `;
   }
-  else {
-    function exampleListItem (item) { return '      <li><a href="' + item.ref + '">' + item.title + '</a></li>';};
-    examplesHTML = '    <ul>' + examples.map(exampleListItem).join('\n') + '</ul>';
-  }
-  return set + '<tr>\n  <td><code>' + prop + '</code></td>\n  <td>' + examplesHTML + '</td>\n</tr>';
+  return `${set}
+          <tr>
+            <td><code>${prop}</code></td>
+            <td>${examplesHTML}</td>
+          </tr>`;
 }, '');
 
 exampleIndexFile = replaceSection('examples_by_props_tbody', exampleIndexFile, html);
 
-fs.writeFile(fileNameIndex, exampleIndexFile, function (err) {
+fs.writeFile(exampleFilePath, exampleIndexFile, function (err) {
   if (err) {
     console.log('Error saving updated aria practices:', err);
   }
