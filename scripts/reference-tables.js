@@ -10,6 +10,11 @@ const fs = require('fs');
 const path = require('path');
 
 const exampleFilePath = path.join(__dirname, '..', 'examples', 'index.html');
+const exampleTemplatePath = path.join(__dirname, 'reference-tables.template');
+
+let exampleIndexFile = fs.readFileSync(exampleTemplatePath, function (err) {
+  console.log('Error reading aria index:', err);
+});
 
 const ariaRoles = [
   'application',
@@ -141,22 +146,18 @@ function replaceSection(id, content, newContent) {
 
     console.log('Replacing at: ' + indexStart + ' .... ' + indexEnd);
 
-    content = content.slice(0, indexStart) + newContent + content.slice(indexEnd);
+    return content.slice(0, indexStart) + newContent + content.slice(indexEnd);
   }
-
   return content;
 }
 
 function getTitle(data) {
-  let title = data.substring(data.indexOf('<title>') + 7, data.indexOf('</title>'));
-
-  title = title.split('|');
-
-  title = title[0].replace('Examples', '');
-  title = title.replace('Example of', '');
-  title = title.replace('Example', '');
-
-  return title;
+  return data.substring(data.indexOf('<title>') + 7, data.indexOf('</title>'))
+          .split('|')[0]
+          .replace('Examples', '')
+          .replace('Example of', '')
+          .replace('Example', '')
+          .trim();
 }
 
 function getColumn(data, indexStart) {
@@ -249,7 +250,6 @@ function addExampleToRoles(roles, example) {
 }
 
 function addExampleToPropertiesAndStates(props, example) {
-
   for (let i = 0; i < props.length; i++) {
     let prop = props[i];
 
@@ -265,9 +265,11 @@ function addExampleToPropertiesAndStates(props, example) {
 }
 
 function addLandmarkRole(landmark, hasLabel, title, ref) {
-  let example = {};
-  example.title = title;
-  example.ref = ref;
+  let example = {
+    title: title,
+    ref: ref
+  };
+
   addExampleToRoles(landmark, example);
   if (hasLabel) {
     addExampleToPropertiesAndStates(['aria-labelledby'], example);
@@ -303,11 +305,10 @@ function findHTMLFiles(dir) {
       console.log('Roles  ' + count + ': ' + roles);
       console.log('Props  ' + count + ': ' + props);
 
-      let example = {};
-
-      example.title = title;
-      console.log(`html ref: ${ref}`)
-      example.ref = ref;
+      let example = {
+        title: title,
+        ref: ref
+      };
 
       addExampleToRoles(roles, example);
 
@@ -320,7 +321,6 @@ function findHTMLFiles(dir) {
 findHTMLFiles(path.join(__dirname, '..', 'examples'));
 
 // Add landmark examples, since they are a different format
-
 addLandmarkRole(['banner'], false, 'Banner Landmark', 'landmarks/banner.html');
 addLandmarkRole(['complementary'], true, 'Complementary Landmark', 'landmarks/complementary.html');
 addLandmarkRole(['contentinfo'], false, 'Contentinfo Landmark', 'landmarks/contentinfo.html');
@@ -329,10 +329,6 @@ addLandmarkRole(['main'], true, 'Main Landmark', 'landmarks/main.html');
 addLandmarkRole(['navigation'], true, 'Navigation Landmark', 'landmarks/navigation.html');
 addLandmarkRole(['region'], true, 'Region Landmark', 'landmarks/region.html');
 addLandmarkRole(['search'], true, 'Search Landmark', 'landmarks/search.html');
-
-let exampleIndexFile = fs.readFileSync(path.join(__dirname, 'reference-tables.template'), function (err) {
-  console.log('Error reading aria index:', err);
-});
 
 let sorted = [];
 
@@ -347,7 +343,7 @@ function exampleListItem(item) {
                 <li><a href="${item.ref}">${item.title}</a></li>`;
 }
 
-let html = sorted.reduce(function (set, role) {
+let examplesByRole = sorted.reduce(function (set, role) {
   let examples = indexOfRoles[role];
 
   let examplesHTML = '';
@@ -365,7 +361,7 @@ let html = sorted.reduce(function (set, role) {
           </tr>`;
 }, '');
 
-exampleIndexFile = replaceSection('examples_by_role_tbody', exampleIndexFile, html);
+exampleIndexFile = replaceSection('examples_by_role_tbody', exampleIndexFile, examplesByRole);
 
 sorted = [];
 
@@ -375,7 +371,7 @@ for (let prop in indexOfPropertiesAndStates) {
 
 sorted.sort();
 
-html = sorted.reduce(function (set, prop) {
+let examplesByProps = sorted.reduce(function (set, prop) {
   let examples = indexOfPropertiesAndStates[prop];
 
   let examplesHTML = '';
@@ -393,7 +389,7 @@ html = sorted.reduce(function (set, prop) {
           </tr>`;
 }, '');
 
-exampleIndexFile = replaceSection('examples_by_props_tbody', exampleIndexFile, html);
+exampleIndexFile = replaceSection('examples_by_props_tbody', exampleIndexFile, examplesByProps);
 
 fs.writeFile(exampleFilePath, exampleIndexFile, function (err) {
   if (err) {
