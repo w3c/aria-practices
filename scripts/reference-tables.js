@@ -132,8 +132,8 @@ const ariaPropertiesAndStates = [
   'aria-valuetext'
 ];
 
-let indexOfRoles = [];
-let indexOfPropertiesAndStates = [];
+let indexOfRoles = {};
+let indexOfPropertiesAndStates = {};
 
 console.log('Generating index...');
 
@@ -297,20 +297,14 @@ addLandmarkRole(['navigation'], true, 'Navigation Landmark', 'landmarks/navigati
 addLandmarkRole(['region'], true, 'Region Landmark', 'landmarks/region.html');
 addLandmarkRole(['search'], true, 'Search Landmark', 'landmarks/search.html');
 
-let sorted = [];
-
-for (let role in indexOfRoles) {
-  sorted.push(role);
-}
-
-sorted.sort();
-
 function exampleListItem(item) {
   return `
                 <li><a href="${item.ref}">${item.title}</a></li>`;
 }
 
-let examplesByRole = sorted.reduce(function (set, role) {
+let sortedRoles = Object.getOwnPropertyNames(indexOfRoles).sort();
+
+let examplesByRole = sortedRoles.reduce(function (set, role) {
   let examples = indexOfRoles[role];
 
   let examplesHTML = '';
@@ -330,15 +324,10 @@ let examplesByRole = sorted.reduce(function (set, role) {
 
 exampleIndexFile = replaceSection('examples_by_role_tbody', exampleIndexFile, examplesByRole);
 
-sorted = [];
+let sortedPropertiesAndStates = Object.getOwnPropertyNames(indexOfPropertiesAndStates)
+                                      .sort();
 
-for (let prop in indexOfPropertiesAndStates) {
-  sorted.push(prop);
-}
-
-sorted.sort();
-
-let examplesByProps = sorted.reduce(function (set, prop) {
+let examplesByProps = sortedPropertiesAndStates.reduce(function (set, prop) {
   let examples = indexOfPropertiesAndStates[prop];
 
   let examplesHTML = '';
