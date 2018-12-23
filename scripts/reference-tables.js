@@ -9,6 +9,7 @@
 const fs = require('fs');
 const path = require('path');
 const glob = require('glob');
+const cheerio = require('cheerio');
 
 const exampleFilePath = path.join(__dirname, '..', 'examples', 'index.html');
 const exampleTemplatePath = path.join(__dirname, 'reference-tables.template');
@@ -16,6 +17,8 @@ const exampleTemplatePath = path.join(__dirname, 'reference-tables.template');
 let output = fs.readFileSync(exampleTemplatePath, function (err) {
   console.log('Error reading aria index:', err);
 });
+
+const $ = cheerio.load(output);
 
 const ariaRoles = [
   'application',
@@ -136,21 +139,6 @@ let indexOfRoles = {};
 let indexOfPropertiesAndStates = {};
 
 console.log('Generating index...');
-
-function replaceSection(id, content, newContent) {
-  let indexStart = content.indexOf(id);
-  let indexEnd;
-
-  if (indexStart > 0) {
-    indexStart = content.indexOf('>', indexStart) + 1;
-    indexEnd = indexStart + 1;
-
-    console.log('Replacing at: ' + indexStart + ' .... ' + indexEnd);
-
-    return content.slice(0, indexStart) + newContent + content.slice(indexEnd);
-  }
-  return content;
-}
 
 function getColumn(data, indexStart) {
   let count = 0;
@@ -322,7 +310,7 @@ let examplesByRole = sortedRoles.reduce(function (set, role) {
           </tr>`;
 }, '');
 
-output = replaceSection('examples_by_role_tbody', output, examplesByRole);
+$('#examples_by_role_tbody').html(examplesByRole);
 
 let sortedPropertiesAndStates = Object.getOwnPropertyNames(indexOfPropertiesAndStates)
                                       .sort();
@@ -345,9 +333,14 @@ let examplesByProps = sortedPropertiesAndStates.reduce(function (set, prop) {
           </tr>`;
 }, '');
 
-output = replaceSection('examples_by_props_tbody', output, examplesByProps);
+$('#examples_by_props_tbody').html(examplesByProps);
 
-fs.writeFile(exampleFilePath, output, function (err) {
+// cheeio seems to fold the doctype lines despite the template
+const result = $.html()
+                  .replace('<!DOCTYPE html>', '<!DOCTYPE html>\n')
+                  .replace('<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">', '<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">\n')
+
+fs.writeFile(exampleFilePath, result, function (err) {
   if (err) {
     console.log('Error saving updated aria practices:', err);
   }
