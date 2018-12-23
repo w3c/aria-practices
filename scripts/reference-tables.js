@@ -13,7 +13,7 @@ const glob = require('glob');
 const exampleFilePath = path.join(__dirname, '..', 'examples', 'index.html');
 const exampleTemplatePath = path.join(__dirname, 'reference-tables.template');
 
-let exampleIndexFile = fs.readFileSync(exampleTemplatePath, function (err) {
+let output = fs.readFileSync(exampleTemplatePath, function (err) {
   console.log('Error reading aria index:', err);
 });
 
@@ -322,7 +322,7 @@ let examplesByRole = sortedRoles.reduce(function (set, role) {
           </tr>`;
 }, '');
 
-exampleIndexFile = replaceSection('examples_by_role_tbody', exampleIndexFile, examplesByRole);
+output = replaceSection('examples_by_role_tbody', output, examplesByRole);
 
 let sortedPropertiesAndStates = Object.getOwnPropertyNames(indexOfPropertiesAndStates)
                                       .sort();
@@ -345,9 +345,9 @@ let examplesByProps = sortedPropertiesAndStates.reduce(function (set, prop) {
           </tr>`;
 }, '');
 
-exampleIndexFile = replaceSection('examples_by_props_tbody', exampleIndexFile, examplesByProps);
+output = replaceSection('examples_by_props_tbody', output, examplesByProps);
 
-fs.writeFile(exampleFilePath, exampleIndexFile, function (err) {
+fs.writeFile(exampleFilePath, output, function (err) {
   if (err) {
     console.log('Error saving updated aria practices:', err);
   }
