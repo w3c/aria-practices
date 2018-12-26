@@ -247,13 +247,12 @@
                   The button becomes visible when it receives keyboard focus.
                 </td>
               </tr>
-              <tr>
+              <tr data-test-id="carousel-enter-or-space-toggle">
                 <th><kbd>Enter</kbd> or <kbd>Space</kbd></th>
                 <td>
                   <ul>
                     <li>Activating the button will toggle the auto rotation of slides in the carousel.</li>
                     <li>The purpose is to help screen reader users know there is a way to pause the auto rotation of images when they are in review mode before they get to the rotating content (e.g. not stopping the images may cause screen reader to move reading back to the top of the page when they are reading content that becomes hidden).</li>
-                    <li></li>
                   </ul>
                 </td>
               </tr>
@@ -271,7 +270,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr data-test-id="carousel-key-enter-or-space">
+              <tr data-test-id="carousel-key-enter-or-space-move">
                 <th><kbd>Enter</kbd> or <kbd>Space</kbd></th>
                 <td>
                   Moves content to the next or previous slide in the image carousel.
@@ -313,7 +312,7 @@
                   </ul>
                 </td>
               </tr>
-              <tr data-test-id="landmark-aria-label">
+              <tr data-test-id="carousel-region-aria-label">
                 <td></td>
                 <th scope="row">
                   <code>aria-label=<q>Image Carousel</q></code>
@@ -323,7 +322,7 @@
                 </td>
                 <td>Provides a label that describes the carousel region.</td>
               </tr>
-              <tr data-test-id="carousel-group">
+              <tr data-test-id="carousel-group-role">
                 <th scope="row">
                   <code>group</code>
                 </th>
@@ -348,7 +347,7 @@
                 </td>
                 <td>Identifies the group as a <q>slide</q> content.</td>
               </tr>
-              <tr data-test-id="carousel-aria-label">
+              <tr data-test-id="carousel-aria-label-number-of-slide">
                 <td></td>
                 <th scope="row">
                   <code>aria-label=<q><em>N</em> of 6</q></code>
@@ -430,7 +429,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr data-test-id="carousel-button-role">
+              <tr data-test-id="carousel-button-role-start-pause">
                 <th scope="row">
                   <code>button</code>
                 </th>
@@ -463,7 +462,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr data-test-id="carousel-button-role">
+              <tr data-test-id="carousel-button-role-overrides-link">
                 <th scope="row">
                   <code>button</code>
                 </th>
@@ -478,7 +477,7 @@
                   </ul>
                 </td>
               </tr>
-              <tr data-test-id="carousel-aria-label">
+              <tr data-test-id="carousel-aria-label-next-previous">
                 <td></td>
                 <th scope="row">
                   <code>aria-label=<q><em>name</em></q></code>
