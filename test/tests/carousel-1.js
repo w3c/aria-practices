@@ -12,9 +12,7 @@ const assertTabOrder = require('../util/assertTabOrder');
 const exampleFile = 'carousel/carousel-1/carousel-1.html';
 
 const ex = {
-  pauseSelector: '#ex1 .pause',
-  nextSelector: '#ex1 .next',
-  previousSelector: '#ex1 .previous',
+  previousNextButtonSelector: '#ex1 .carousel-control',
   landmarkSelector: '#myCarousel'
 };
 
@@ -42,13 +40,29 @@ const waitAndCheckAriaSelected = async function (t, index) {
 
 // Attributes
 
-ariaTest('Carousel 1: pause button has aria-pressed', exampleFile, 'pause-aria-pressed', async (t) => {
-  t.plan(1);
-  await assertAttributeValues(t, ex.pauseSelector, 'aria-pressed', 'false');
-});
 
-ariaTest('Carousel 1: section has aria-label', exampleFile, 'landmark-aria-label', async (t) => {
+ariaTest('Carousel 1: section has aria-label', exampleFile, 'carousel-region-role', async (t) => {
   t.plan(1);
   await assertAriaLabelExists(t, ex.landmarkSelector);
 });
 
+
+ariaTest('Carousel 1: previous and next buttons have role button', exampleFile, 'carousel-button-role-overrides-link', async (t) => {
+  t.plan(1);
+  await assertAriaRoles(t, 'myCarousel', 'button', 2, 'a');
+});
+
+ariaTest('Carousel 1: slide containers have role group', exampleFile, 'carousel-group-role', async (t) => {
+  t.plan(1);
+  await assertAriaRoles(t, 'myCarousel', 'group', 6, 'div');
+});
+
+ariaTest('Carousel 1: previous and next buttons have aria-label', exampleFile, 'carousel-aria-label-next-previous', async (t) => {
+  t.plan(1);
+  await assertAriaLabelExists(t, ex.previousNextButtonSelector);
+});
+
+ariaTest('Carousel 1: previous and next buttons have aria-controls', exampleFile, 'carousel-aria-controls', async (t) => {
+  t.plan(1);
+  await assertAriaControls(t, ex.previousNextButtonSelector);
+});
