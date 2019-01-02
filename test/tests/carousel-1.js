@@ -5,15 +5,18 @@ const { By, Key } = require('selenium-webdriver');
 const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAriaControls = require('../util/assertAriaControls');
 const assertAriaLabelledby = require('../util/assertAriaLabelledby');
+const assertAriaDescribedby = require('../util/assertAriaDescribedby');
 const assertAriaLabelExists = require('../util/assertAriaLabelExists');
 const assertAriaRoles = require('../util/assertAriaRoles');
 const assertTabOrder = require('../util/assertTabOrder');
 
+
 const exampleFile = 'carousel/carousel-1/carousel-1.html';
 
 const ex = {
+  landmarkSelector: '#myCarousel',
   previousNextButtonSelector: '#ex1 .carousel-control',
-  landmarkSelector: '#myCarousel'
+  slideSelector: '#ex1 .carousel-item'
 };
 
 const openTabAtIndex = async function (t, index) {
@@ -40,7 +43,6 @@ const waitAndCheckAriaSelected = async function (t, index) {
 
 // Attributes
 
-
 ariaTest('Carousel 1: section has aria-label', exampleFile, 'carousel-region-role', async (t) => {
   t.plan(1);
   await assertAriaLabelExists(t, ex.landmarkSelector);
@@ -52,11 +54,6 @@ ariaTest('Carousel 1: previous and next buttons have role button', exampleFile, 
   await assertAriaRoles(t, 'myCarousel', 'button', 2, 'a');
 });
 
-ariaTest('Carousel 1: slide containers have role group', exampleFile, 'carousel-group-role', async (t) => {
-  t.plan(1);
-  await assertAriaRoles(t, 'myCarousel', 'group', 6, 'div');
-});
-
 ariaTest('Carousel 1: previous and next buttons have aria-label', exampleFile, 'carousel-aria-label-next-previous', async (t) => {
   t.plan(1);
   await assertAriaLabelExists(t, ex.previousNextButtonSelector);
@@ -65,4 +62,19 @@ ariaTest('Carousel 1: previous and next buttons have aria-label', exampleFile, '
 ariaTest('Carousel 1: previous and next buttons have aria-controls', exampleFile, 'carousel-aria-controls', async (t) => {
   t.plan(1);
   await assertAriaControls(t, ex.previousNextButtonSelector);
+});
+
+ariaTest('Carousel 1: slide containers have role group', exampleFile, 'carousel-group-role', async (t) => {
+  t.plan(1);
+  await assertAriaRoles(t, 'myCarousel', 'group', 6, 'div');
+});
+
+ariaTest('Carousel 1: slide containers have aria-label', exampleFile, 'carousel-aria-label-number-of-slide', async (t) => {
+  t.plan(1);
+  await assertAriaLabelExists(t, ex.slideSelector);
+});
+
+ariaTest('Carousel 1: slide containers have aria-describedby', exampleFile, 'carousel-aria-describedby', async (t) => {
+  t.plan(1);
+  await assertAriaDescribedby(t, ex.slideSelector);
 });
