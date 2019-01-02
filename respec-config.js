@@ -118,16 +118,22 @@ var respecConfig = {
     'REC': 'https://www.w3.org/TR/wai-aria/'
   },
   accNameURLs: {
-    'ED': 'https://w3c.github.io/aria/accname-aam/accname-aam.html',
+    'ED': 'https://w3c.github.io/accname/',
     'WD': 'https://www.w3.org/TR/accname-aam-1.1/',
     'FPWD': 'https://www.w3.org/TR/accname-aam-1.1/',
     'REC': 'https://www.w3.org/TR/accname-aam-1.1/'
   },
   coreMappingURLs: {
-    'ED': 'https://w3c.github.io/aria/core-aam/core-aam.html',
+    'ED': 'https://w3c.github.io/core-aam/',
     'WD': 'https://www.w3.org/TR/core-aam-1.1/',
     'FPWD': 'https://www.w3.org/TR/core-aam-1.1/',
     'REC': 'https://www.w3.org/TR/core-aam-1.1/'
+  },
+  htmlMappingURLs: {
+    'ED': 'https://w3c.github.io/html-aam/',
+    'WD': 'https://www.w3.org/TR/html-aam-1.0/',
+    'FPWD': 'https://www.w3.org/TR/html-aam-1.0/',
+    'REC': 'https://www.w3.org/TR/html-aam-1.0/'
   },
 
   // alternateFormats: [
