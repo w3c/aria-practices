@@ -53,7 +53,7 @@
       <h2 id="ex_label">Example</h2>
       <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
       <div id="ex1">
-        <label id="ex1-label" class="combobox-label">
+        <label for="ex1-input" id="ex1-label" class="combobox-label">
           Fruits and vegetables
         </label>
         <div class="combobox-wrapper">
@@ -65,7 +65,6 @@
             <input type="text"
               aria-autocomplete="list"
               aria-controls="ex1-grid"
-              aria-labelledby="ex1-label"
               id="ex1-input">
           </div>
           <div
@@ -95,15 +94,15 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr data-test-id="textbox-key-down-arrow">
             <th><kbd>Down Arrow</kbd></th>
             <td>If the grid is displayed, moves focus to the first suggested value.</td>
           </tr>
-          <tr>
+          <tr data-test-id="textbox-key-up-arrow">
             <th><kbd>Up Arrow</kbd></th>
             <td>If the grid is displayed, moves focus to the last suggested value.</td>
           </tr>
-          <tr>
+          <tr data-test-id="textbox-key-escape">
             <th><kbd>Escape</kbd></th>
             <td>
               <ul>
@@ -112,7 +111,7 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="standard-single-line-editing-keys">
             <th>Standard single line text editing keys</th>
             <td>
               <ul>
@@ -138,7 +137,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr data-test-id="popup-key-enter">
             <th><kbd>Enter</kbd></th>
             <td>
               <ul>
@@ -148,7 +147,7 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="popup-key-escape">
             <th><kbd>Escape</kbd></th>
             <td>
               <ul>
@@ -158,7 +157,7 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="popup-key-down-arrow">
             <th><kbd>Down Arrow</kbd></th>
             <td>
               <ul>
@@ -168,7 +167,7 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="popup-key-up-arrow">
             <th><kbd>Up Arrow</kbd></th>
             <td>
               <ul>
@@ -178,7 +177,7 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="popup-key-right-arrow">
             <th><kbd>Right Arrow</kbd></th>
             <td>
               <ul>
@@ -188,7 +187,7 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="popup-key-left-arrow">
             <th><kbd>Left Arrow</kbd></th>
             <td>
               <ul>
@@ -198,15 +197,15 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="popup-key-home">
             <th><kbd>Home</kbd></th>
             <td>Moves focus to the textbox and places the editing cursor at the beginning of the field.</td>
           </tr>
-          <tr>
+          <tr data-test-id="popup-key-end">
             <th><kbd>End</kbd></th>
             <td>Moves focus to the textbox and places the editing cursor at the end of the field.</td>
           </tr>
-          <tr>
+          <tr data-test-id="popup-key-char">
             <th>Printable Characters</th>
             <td>
               <ul>
@@ -237,7 +236,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr data-test-id="combobox-role">
             <th scope="row">
               <code>combobox</code>
             </th>
@@ -246,11 +245,16 @@
             <td>
               <ul>
                 <li>Identifies the element as a combobox.</li>
-                <li>Note: The primary difference between the ARIA 1.0 pattern and the ARIA 1.1 pattern is the placement of the <code>combobox</code> role.</li>
+                <li>Note:
+                  <ul>
+                    <li>Unlike this ARIA 1.1 combobox, an ARIA 1.0 pattern would have the <code>combobox</code> role on the textbox input instead of a parent container of the textbox.</li>
+                    <li>The ARIA 1.1 pattern demonstrated on this page enables screen reader users to perceive both the input and the popup when using reading mode (see note below about aria-owns).</li>
+                  </ul>
+                </li>
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="combobox-aria-haspopup">
             <td></td>
             <th scope="row">
               <code>aria-haspopup=<q>grid</q></code>
@@ -258,15 +262,20 @@
             <td><code>div</code></td>
             <td>Indicates that the combobox can popup a <code>grid</code> to suggest values.</td>
           </tr>
-          <tr>
+          <tr data-test-id="combobox-aria-owns">
             <td></td>
             <th scope="row">
               <code>aria-owns=<q>IDREF</q></code>
             </th>
             <td><code>div</code></td>
-            <td>Identifies the element that serves as the grid popup.</td>
+            <td>
+              <ul>
+                <li>Refers to the element that serves as the grid popup.</li>
+                <li>Tells browsers to arrange the screen reader reading order so the grid, when it is visible,  immediately follows the other elements inside the combobox, regardless of where the grid element is in the DOM.</li>
+              </ul>
+            </td>
           </tr>
-          <tr>
+          <tr data-test-id="combobox-aria-expanded">
             <td></td>
             <th scope="row">
               <code>aria-expanded=<q>false</q></code>
@@ -274,7 +283,7 @@
             <td><code>div</code></td>
             <td>Indicates that the popup element <strong>is not</strong> displayed.</td>
           </tr>
-          <tr>
+          <tr data-test-id="combobox-aria-expanded">
             <td></td>
             <th scope="row">
               <code>aria-expanded=<q>true</q></code>
@@ -295,15 +304,20 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr data-test-id="textbox-id">
             <td></td>
             <th scope="row">
-              <code>aria-labelledby=<q>IDREF</q></code>
+              <code>id="string"</code>
             </th>
             <td><code>input[type="text"]</code></td>
-            <td>Provides a label for the textbox element of the combobox.</td>
+            <td>
+              <ul>
+                <li>Referenced by <code>for</code> attribute of <code>label</code> element to provide an accessible label.</li>
+                <li>Recommended labeling method for HTML input elements so clicking label focuses input.</li>
+              </ul>
+            </td>
           </tr>
-          <tr>
+          <tr data-test-id="textbox-aria-autocomplete">
             <td></td>
             <th scope="row">
               <code>aria-autocomplete=<q>list</q></code>
@@ -311,7 +325,7 @@
             <td><code>input[type="text"]</code></td>
             <td>Indicates that the autocomplete behavior of the text input is to suggest a list of possible values in a popup.</td>
           </tr>
-          <tr>
+          <tr data-test-id="textbox-aria-controls">
             <td></td>
             <th scope="row">
               <code>aria-controls=<q>IDREF</q></code>
@@ -320,11 +334,16 @@
             <td>
               <ul>
                 <li>Identifies the popup element that lists suggested values.</li>
-                <li>Note: In the ARIA 1.0 combobox pattern, the textbox uses <code>aria-owns</code> instead of <code>aria-controls</code>.</li>
+                <li>Note:
+                  <ul>
+                    <li>In the ARIA 1.0 combobox pattern, the textbox has <code>aria-owns</code> instead of <code>aria-controls</code>.</li>
+                    <li>In this ARIA 1.1 pattern, <code>aria-owns</code> is instead on the parent container so the popup element is a sibling of the textbox instead of a child of the textbox, making it perceivable by screen reader users as an element adjacent to the textbox when using a reading cursor or touch interface.</li> 
+                  </ul>
+                </li>
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="textbox-aria-activedescendant">
             <td></td>
             <th scope="row">
               <code>aria-activedescendant=<q>IDREF</q></code>
@@ -355,7 +374,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr data-test-id="grid-role">
             <th scope="row">
               <code>grid</code>
             </th>
@@ -365,7 +384,7 @@
             </td>
             <td>Identifies the element as a <code>grid</code>.</td>
           </tr>
-          <tr>
+          <tr data-test-id="grid-aria-labelledby">
             <td></td>
             <th scope="row">
               <code>aria-labelledby=<q>IDREF</q></code>
@@ -373,7 +392,7 @@
             <td><code>div</code></td>
             <td>Provides a label for the <code>grid</code> element of the combobox.</td>
           </tr>
-          <tr>
+          <tr data-test-id="row-role">
             <th scope="row">
               <code>row</code>
             </th>
@@ -381,7 +400,7 @@
             <td><code>div</code></td>
             <td>Identifies the element containing all the cells for a row.</td>
           </tr>
-          <tr>
+          <tr data-test-id="row-aria-selected">
             <td></td>
             <th scope="row">
               <code>aria-selected=<q>true</q></code>
@@ -394,7 +413,7 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="gridcell-role">
             <th scope="row"><code>gridcell</code></th>
             <td></td>
             <td><code>div</code></td>

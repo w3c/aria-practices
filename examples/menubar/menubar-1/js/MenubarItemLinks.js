@@ -104,6 +104,9 @@ MenubarItem.prototype.handleKeydown = function (event) {
       this.popupMenu.close(true);
       break;
 
+    case this.keyCode.ESC:
+      this.popupMenu.close(true);
+      break;
 
     default:
       if (isPrintableCharacter(char)) {
