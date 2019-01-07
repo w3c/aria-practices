@@ -46,7 +46,7 @@
         <h2 id="ex_label">Example</h2>
         <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
         <div id="ex1">
-            <section id="myCarousel" class="carousel slide" aria-label="Image carousel">
+            <section id="myCarousel" class="carousel slide" aria-roledescription="carousel" aria-label="Highlighted television shows">
               <button class="pause">Pause Carousel</button>
 
               <div class="carousel-inner" aria-live="off">
@@ -312,15 +312,25 @@
                   </ul>
                 </td>
               </tr>
-              <tr data-test-id="carousel-region-aria-label">
+              <tr data-test-id="carousel-region-aria-roledescription">
                 <td></td>
                 <th scope="row">
-                  <code>aria-label=<q>Image Carousel</q></code>
+                  <code>aria-roledescription=<q>carousel</q></code>
                 </th>
                 <td>
                   <code>section</code>
                 </td>
-                <td>Provides a label that describes the carousel region.</td>
+                <td>Identifies the region as <q>carousel</q> content.</td>
+              </tr>
+              <tr data-test-id="carousel-region-aria-label">
+                <td></td>
+                <th scope="row">
+                  <code>aria-label=<q>Highlighted television shows</q></code>
+                </th>
+                <td>
+                  <code>section</code>
+                </td>
+                <td>Provides a label that describes the content in the carousel region.</td>
               </tr>
               <tr data-test-id="carousel-group-role">
                 <th scope="row">
