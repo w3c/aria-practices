@@ -19,27 +19,6 @@ const ex = {
   slideSelector: '#ex1 .carousel-item'
 };
 
-const openTabAtIndex = async function (t, index) {
-  const tabs = await t.context.session.findElements(By.css(ex.tabSelector));
-  await tabs[index].click();
-};
-
-const waitAndCheckFocus = async function (t, selector, index) {
-  return t.context.session.wait(async function () {
-    return t.context.session.executeScript(function () {
-      const [selector, index] = arguments;
-      let items = document.querySelectorAll(selector);
-      return items[index] === document.activeElement;
-    }, selector, index);
-  }, t.context.waitTime, 'Timeout waiting for document.activeElement to become item at index ' + index + ' of elements selected by: ' + selector);
-};
-
-const waitAndCheckAriaSelected = async function (t, index) {
-  return t.context.session.wait(async function () {
-    const tabs = await t.context.session.findElements(By.css(ex.tabSelector));
-    return (await tabs[index].getAttribute('aria-selected')) === 'true';
-  }, t.context.waitTime, 'Timeout waiting for aria-selected to be set to true.');
-};
 
 // Attributes
 
