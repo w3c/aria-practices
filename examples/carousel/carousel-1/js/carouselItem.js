@@ -10,8 +10,6 @@
 *
 */
 var CarouselItem = function (domNode, carouselObj) {
-  console.log('[CarouselItem]: ' + domNode);
-
   this.domNode = domNode;
   this.carousel = carouselObj;
 };

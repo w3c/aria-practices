@@ -23,7 +23,8 @@ var Carousel = function (domNode) {
   this.pauseButton = null;
 
   this.rotate = true;
-  this.isPaused = false;
+  this.hasFocus = false;
+  this.hasHover = false;
   this.isStopped = false;
   this.timeInterval = 5000;
 };
@@ -148,14 +149,15 @@ Carousel.prototype.rotateSlides = function () {
 };
 
 Carousel.prototype.startRotation = function () {
-  if (!this.isPaused && !this.isStopped) {
+  console.log('hasHover: ' + this.hasHover + ' hasFocus: ' + this.hasFocus + ' isStopped: ' + this.isStopped);
+  if (!this.hasHover && !this.hasFocus && !this.isStopped) {
     this.rotate = true;
     this.liveRegionNode.setAttribute('aria-live', 'off');
     this.pauseButton.innerHTML = 'Stop Rotation';
     this.pauseButton.disabled = false;
   }
   else {
-    this.stopRotation(this.isPaused);
+    this.stopRotation(this.hasPaused || this.hasFocus);
   }
 };
 
@@ -163,9 +165,7 @@ Carousel.prototype.stopRotation = function (disable) {
   if (typeof disable !== 'boolean') {
     disable = false;
   }
-
   this.pauseButton.disabled = disable;
-
   this.rotate = false;
   this.liveRegionNode.setAttribute('aria-live', 'polite');
   this.pauseButton.innerHTML = 'Start Rotation';
@@ -191,12 +191,12 @@ Carousel.prototype.handleImageLinkBlur = function () {
 };
 
 Carousel.prototype.handleMouseOver = function () {
-  this.isPaused = true;
+  this.hasHover = true;
   this.stopRotation(true);
 };
 
 Carousel.prototype.handleMouseOut = function () {
-  this.isPaused = false;
+  this.hasHover = false;
   this.startRotation();
 };
 
