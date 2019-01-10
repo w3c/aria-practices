@@ -52,12 +52,13 @@
 }
 
 
-.carousel .carousel-inner .carousel-image a {
-  display: block;
+.carousel .carousel-items {
+  border: solid 2px transparent;
 }
 
-.carousel .carousel-inner .carousel-image a:focus {
-  border: solid 2px #005A9C;
+.carousel .carousel-items.focus {
+  border-color: white;
+  outline: solid 2px #005A9C;
 }
 
 .carousel .carousel-inner .carousel-image a img {

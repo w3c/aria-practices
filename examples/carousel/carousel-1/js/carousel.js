@@ -23,12 +23,15 @@ var Carousel = function (domNode) {
   this.pauseButton = null;
 
   this.rotate = true;
-  this.hasFocus = null;
+  this.isPaused = false;
+  this.isStopped = false;
   this.timeInterval = 5000;
 };
 
 Carousel.prototype.init = function () {
-  this.liveRegionNode = this.domNode.querySelector('.carousel-inner');
+
+  this.liveRegionNode = this.domNode.querySelector('.carousel-items');
+
   var items = this.domNode.querySelectorAll('.carousel-item');
 
   for (var i = 0; i < items.length; i++) {
@@ -42,6 +45,14 @@ Carousel.prototype.init = function () {
       this.currentDomNode = item.domNode;
     }
     this.lastItem = item;
+
+    var imageLinks = items[i].querySelectorAll('.carousel-image a');
+
+    if (imageLinks && imageLinks[0]) {
+      imageLinks[0].addEventListener('focus', this.handleImageLinkFocus.bind(this));
+      imageLinks[0].addEventListener('blur', this.handleImageLinkBlur.bind(this));
+    }
+
   }
 
   // Next Slide and Previous Slide Buttons
@@ -65,9 +76,8 @@ Carousel.prototype.init = function () {
     button.init();
   }
 
-  this.carouselContainer = this.domNode.parentNode.parentNode;
-  this.carouselContainer.addEventListener('mouseover', this.handleMouseOver.bind(this));
-  this.carouselContainer.addEventListener('mouseout', this.handleMouseOut.bind(this));
+  this.domNode.addEventListener('mouseover', this.handleMouseOver.bind(this));
+  this.domNode.addEventListener('mouseout', this.handleMouseOut.bind(this));
 
   // Start rotation
   setTimeout(this.rotateSlides.bind(this), this.timeInterval);
@@ -137,38 +147,56 @@ Carousel.prototype.rotateSlides = function () {
   setTimeout(this.rotateSlides.bind(this), this.timeInterval);
 };
 
-Carousel.prototype.startRotation = function (force) {
-  if (!this.hasFocus && !this.hasHover) {
+Carousel.prototype.startRotation = function () {
+  if (!this.isPaused && !this.isStopped) {
     this.rotate = true;
     this.liveRegionNode.setAttribute('aria-live', 'off');
+    this.pauseButton.innerHTML = 'Stop Rotation';
+    this.pauseButton.disabled = false;
   }
   else {
-    this.stopRotation();
+    this.stopRotation(this.isPaused);
   }
 };
 
-Carousel.prototype.stopRotation = function () {
+Carousel.prototype.stopRotation = function (disable) {
+  if (typeof disable !== 'boolean') {
+    disable = false;
+  }
+
+  this.pauseButton.disabled = disable;
+
   this.rotate = false;
   this.liveRegionNode.setAttribute('aria-live', 'polite');
+  this.pauseButton.innerHTML = 'Start Rotation';
 };
 
 Carousel.prototype.toggleRotation = function () {
-  if ((this.pauseButton.innerHTML.toLowerCase().indexOf('pause') >= 0)) {
-    this.pauseButton.innerHTML = 'Start Rotation';
-    this.stopRotation();
+  if (this.isStopped) {
+    this.isStopped = false;
+    this.startRotation();
   }
   else {
-    this.pauseButton.innerHTML = 'Pause Rotation';
-    this.startRotation();
-    this.hasFocus = false;
+    this.isStopped = true;
+    this.stopRotation();
   }
+};
+
+Carousel.prototype.handleImageLinkFocus = function () {
+  this.liveRegionNode.classList.add('focus');
+};
+
+Carousel.prototype.handleImageLinkBlur = function () {
+  this.liveRegionNode.classList.remove('focus');
 };
 
 Carousel.prototype.handleMouseOver = function () {
-  this.stopRotation();
+  this.isPaused = true;
+  this.stopRotation(true);
 };
 
 Carousel.prototype.handleMouseOut = function () {
+  this.isPaused = false;
   this.startRotation();
 };
 

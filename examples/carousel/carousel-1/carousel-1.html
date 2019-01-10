@@ -47,14 +47,14 @@
         <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
         <div id="ex1">
             <section id="myCarousel" class="carousel slide" aria-roledescription="carousel" aria-label="Highlighted television shows">
-              <button class="pause">Pause Carousel</button>
+              <button class="pause">Stop Carousel</button>
 
-              <div class="carousel-inner" aria-live="off">
+              <div class="carousel-inner">
 
                 <a class="previous carousel-control"
                    role="button"
                    tabindex="0"
-                   aria-controls="myCarousel"
+                   aria-controls="myCarousel-items"
                    aria-label="Previous Slide">
                   <svg width="30" height="30" version="1.1" xmlns="http://www.w3.org/2000/svg">
                     <polygon points="30 0 30 30 0 15"
@@ -65,7 +65,7 @@
                 <a class="next carousel-control"
                    role="button"
                    tabindex="0"
-                   aria-controls="myCarousel"
+                   aria-controls="myCarousel-items"
                    aria-label="Next Slide">
                   <svg width="30" height="30" version="1.1" xmlns="http://www.w3.org/2000/svg">
                     <polygon points="0 0 30 15 0 30"
@@ -73,134 +73,138 @@
                   </svg>
                 </a>
 
-                <div class="carousel-item active" role="group" aria-roledescription="slide" aria-label="1 of 6" aria-describedby="carousel-label-1">
+                <div id="myCarousel-items" class="carousel-items" aria-live="off">
 
-                  <div class="carousel-image">
-                    <a href="#">
-                      <img src="images/amsterdamslide__800x600.jpg" alt="Walking Tour in Amsterdam" />
-                    </a>
-                  </div>
+                  <div class="carousel-item active" role="group" aria-roledescription="slide" aria-label="1 of 6" aria-describedby="carousel-label-1">
 
-                  <div class="carousel-caption">
-
-                    <h2>
-                      <a href="#" id="carousel-label-1">
-                         Dynamic Europe: Amsterdam, Prague, Berlin
+                    <div class="carousel-image">
+                      <a href="#">
+                        <img src="images/amsterdamslide__800x600.jpg" alt="Walking Tour in Amsterdam" />
                       </a>
-                    </h2>
-
-                    <div class="hidden-xs hidden-sm">
-                      <p>7 pm Tuesday, March 3, on TV</p>
                     </div>
-                  </div>  <!-- .carousel-caption -->
-                </div>   <!-- .item -->
 
-                <div class="carousel-item" role="group" aria-roledescription="slide" aria-label="2 of 6" aria-describedby="carousel-label-2">
+                    <div class="carousel-caption">
 
-                  <div class="carousel-image">
-                    <a href="#">
-                      <img src="images/lands-endslide__800x600.jpg" alt="Land&#039;s End in Cornwall"/>
-                    </a>
-                  </div>
+                      <h2>
+                        <a href="#" id="carousel-label-1">
+                           Dynamic Europe: Amsterdam, Prague, Berlin
+                        </a>
+                      </h2>
 
-                  <div class="carousel-caption">
+                      <div class="hidden-xs hidden-sm">
+                        <p>7 pm Tuesday, March 3, on TV</p>
+                      </div>
+                    </div>  <!-- .carousel-caption -->
+                  </div>   <!-- .item -->
 
-                    <h2>
-                      <a href="#" id="carousel-label-2">
-                        Travel to Southwest England and Paris
+                  <div class="carousel-item" role="group" aria-roledescription="slide" aria-label="2 of 6" aria-describedby="carousel-label-2">
+
+                    <div class="carousel-image">
+                      <a href="#">
+                        <img src="images/lands-endslide__800x600.jpg" alt="Land&#039;s End in Cornwall"/>
                       </a>
-                    </h2>
-
-                    <div>
-                      <p>Sept. 14 to Sept. 24 or 27</p>
                     </div>
-                  </div>  <!-- .carousel-caption -->
-                </div>   <!-- .item -->
 
-                <div class="carousel-item" role="group" aria-roledescription="slide" aria-label="3 of 6" aria-describedby="carousel-label-3">
+                    <div class="carousel-caption">
 
-                  <div class="carousel-image">
-                    <a href="#">
-                      <img src="images/trustslide-2__800x600.jpg" alt="Mom and daughter play Daniel Tiger game on notebook computer."/>
-                    </a>
-                  </div>
+                      <h2>
+                        <a href="#" id="carousel-label-2">
+                          Travel to Southwest England and Paris
+                        </a>
+                      </h2>
 
-                  <div class="carousel-caption">
+                      <div>
+                        <p>Sept. 14 to Sept. 24 or 27</p>
+                      </div>
+                    </div>  <!-- .carousel-caption -->
+                  </div>   <!-- .item -->
 
-                    <h2>
-                      <a href="#" id="carousel-label-3">
-                        Survey confirms that TV  is America&#8217;s most trusted institution
+                  <div class="carousel-item" role="group" aria-roledescription="slide" aria-label="3 of 6" aria-describedby="carousel-label-3">
+
+                    <div class="carousel-image">
+                      <a href="#">
+                        <img src="images/trustslide-2__800x600.jpg" alt="Mom and daughter play Daniel Tiger game on notebook computer."/>
                       </a>
-                    </h2>
-
-                    <div>
-
                     </div>
-                  </div>  <!-- .carousel-caption -->
-                </div>   <!-- .item -->
 
-                <div class="carousel-item" role="group" aria-roledescription="slide" aria-label="4 of 6" aria-describedby="carousel-label-4">
+                    <div class="carousel-caption">
 
-                  <div class="carousel-image">
-                    <a href="#">
-                      <img src="images/foyleswarslide__800x600.jpg" alt="A man in a suit and fedora and a woman with coiffed hair look sternly into the camera."/>
-                    </a>
-                  </div>
+                      <h2>
+                        <a href="#" id="carousel-label-3">
+                          Survey confirms that TV  is America&#8217;s most trusted institution
+                        </a>
+                      </h2>
 
-                  <div class="carousel-caption">
+                      <div>
 
-                    <h2>
-                      <a href="#" id="carousel-label-4">
-                        Foyle&#8217;s War Revisited
+                      </div>
+                    </div>  <!-- .carousel-caption -->
+                  </div>   <!-- .item -->
+
+                  <div class="carousel-item" role="group" aria-roledescription="slide" aria-label="4 of 6" aria-describedby="carousel-label-4">
+
+                    <div class="carousel-image">
+                      <a href="#">
+                        <img src="images/foyleswarslide__800x600.jpg" alt="A man in a suit and fedora and a woman with coiffed hair look sternly into the camera."/>
                       </a>
-                    </h2>
-
-                    <div>
-                      <p>8 pm Sunday, March 8, on TV: Sneak peak at the final season.</p>
                     </div>
-                  </div>  <!-- .carousel-caption -->
-                </div>   <!-- .item -->
 
-                <div class="carousel-item" role="group" aria-roledescription="slide" aria-label="5 of 6" aria-describedby="carousel-label-5">
+                    <div class="carousel-caption">
 
-                  <div class="carousel-image">
-                      <img src="images/britcomdavidslide__800x600.jpg" alt="British flag with WILL-TV host David Thiel."/>
-                  </div>
+                      <h2>
+                        <a href="#" id="carousel-label-4">
+                          Foyle&#8217;s War Revisited
+                        </a>
+                      </h2>
 
-                  <div class="carousel-caption">
+                      <div>
+                        <p>8 pm Sunday, March 8, on TV: Sneak peak at the final season.</p>
+                      </div>
+                    </div>  <!-- .carousel-caption -->
+                  </div>   <!-- .item -->
 
-                    <h2>
-                      <a href="#" id="carousel-label-5">
-                        Great Britain Vote: 7 pm Sat.
+                  <div class="carousel-item" role="group" aria-roledescription="slide" aria-label="5 of 6" aria-describedby="carousel-label-5">
+
+                    <div class="carousel-image">
+                        <img src="images/britcomdavidslide__800x600.jpg" alt="British flag with WILL-TV host David Thiel."/>
+                    </div>
+
+                    <div class="carousel-caption">
+
+                      <h2>
+                        <a href="#" id="carousel-label-5">
+                          Great Britain Vote: 7 pm Sat.
+                        </a>
+                      </h2>
+
+                      <div>
+                      </div>
+                    </div>  <!-- .carousel-caption -->
+                  </div>   <!-- .item -->
+
+                  <div class="carousel-item" role="group" aria-roledescription="slide" aria-label="6 of 6" aria-describedby="carousel-label-6">
+
+                    <div class="carousel-image">
+                      <a href="#">
+                        <img src="images/mag800-2__800x600.jpg" alt="Mid-American Gardener panelists on the set" />
                       </a>
-                    </h2>
-
-                    <div>
                     </div>
-                  </div>  <!-- .carousel-caption -->
-                </div>   <!-- .item -->
 
-                <div class="carousel-item" role="group" aria-roledescription="slide" aria-label="6 of 6" aria-describedby="carousel-label-6">
+                    <div class="carousel-caption">
 
-                  <div class="carousel-image">
-                    <a href="#">
-                      <img src="images/mag800-2__800x600.jpg" alt="Mid-American Gardener panelists on the set" />
-                    </a>
-                  </div>
+                      <h2>
+                        <a href="#" id="carousel-label-6">
+                          Mid-American Gardener: Thursdays at 7 pm
+                        </a>
+                      </h2>
 
-                  <div class="carousel-caption">
+                      <div class="hidden-xs hidden-sm">
+                        <p>Watch the latest episodes.</p>
+                      </div>
+                    </div>  <!-- .carousel-caption -->
+                  </div>   <!-- .item -->
 
-                    <h2>
-                      <a href="#" id="carousel-label-6">
-                        Mid-American Gardener: Thursdays at 7 pm
-                      </a>
-                    </h2>
-
-                    <div class="hidden-xs hidden-sm">
-                      <p>Watch the latest episodes.</p>
-                    </div>
-                  </div>  <!-- .carousel-caption -->
-                </div>   <!-- .item -->
+                </div>
 
 
               </div> <!-- carousel-inner -->
@@ -213,7 +217,7 @@
           </div>
         <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
       </section>
-      
+
       <section>
         <h2>Accessibility Features</h2>
         <ul>
