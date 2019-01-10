@@ -221,25 +221,36 @@
       <section>
         <h2>Accessibility Features</h2>
         <ul>
-          <li>To stop automatic rotation:
+          <li>Automatic rotation of slides in the carousel can be easily controlled by any user.
             <ul>
-              <li>Mouse users can move the mouse over the carousel content.</li>
-              <li>Keyboard users can use <kbd>Tab</kbd> to move focus into the carousel.</li>
               <li>
-                Screen reader users using a reading cursor that does not move the mouse or keyboard focus can activate a button that stops rotation.
-                This rotation control bbutton is located off screen when it does not have keyboard focus, and it is the first item in the reading order inside the carousel region.
-                Thus, when reading the page sequentially, the button label informs users of the subsequent automatic changes to content that can interfere with their ability to read and provides an opportunity to stop them.
+                Hovering the mouse over any carousel content pauses automatic rotation.
+                Automatic rotation resumes when the mouse moves away from the carousel unless another condition, such as keyboard focus,  that prevents rotation has been triggered.
+              </li>
+              <li>
+                Moving keyboard focus to any of the carousel content, including the next and previous slide elements, pauses automatic rotation.
+                Automatic rotation resumes when keyboard focus moves out of the carousel content unles another condition, such as mouse hover,  that prevents rotation has been triggered.
+              </li>
+              <li>The carousel also contains a rotation control button that can stop and start automatic rotation.
+                <ul>
+                  <li>The rotation control button is the first element in the screen reader reading order.</li>
+                  <li>The button is hidden off-screen when it does not have keyboard focus, and becomes visible when users move focus to it with <kbd>Tab</kbd>.</li>
+                  <li>
+                    When not visible, the button is positioned off-screen, instead of being hidden with <code>display:none</code>, so it is always available to screen reader users.
+                    This is an important aspect of supporting users of screen readers that do not move the mouse or keyboard focus as the user is reading.
+                  </li>
+                  <li>If the carousel is rotating, the button is labeled "Stop Automatic Slide Show", informing screen reader users that the slides are changing in addition to providing a way to stop the changes.</li>
+                  <li>If the carousel is not rotating, the button is labeled "Start Automatic Slide Show."</li>
+                  <li>If a user has activated the button to stop the show, the rotation will only restart if the button is activated. Moving keyboard focus or the mouse out of the carousel will not restart rotation.</li>
+                  <li>If keyboard focus is inside the carousel, or if the mouse is hovering over the carousel, the button is disabled; it cannot be used to start rotation.</li>
+                </ul>
               </li>
             </ul>
           </li>
-          <li>To resume automatic rotation:
-            <ul>
-              <li>As long as the off-screen stop button has not been activated, the Automatic rotation restarts when the mouse pointer and keyboard focus are outside the carousel.</li>
-              <li>Activate the start rotation button.</li>
-            </ul>
           </li>
           <li>
-            To improve readability of the caption text and content, background contrast is improved by decreasing the transparency of the caption area.   This improves the color contrast radio of the white text, especially when light colored image are used in the background.
+            To improve readability of the caption text and content, the transparency of the caption area is decreased when the mouse hovers over the carousel content.
+            This improves the color contrast ratio of the white text, especially when light colored images are present in the background.
           </li>
         </ul>
       </section>
