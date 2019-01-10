@@ -149,15 +149,11 @@ Carousel.prototype.rotateSlides = function () {
 };
 
 Carousel.prototype.startRotation = function () {
-  console.log('hasHover: ' + this.hasHover + ' hasFocus: ' + this.hasFocus + ' isStopped: ' + this.isStopped);
   if (!this.hasHover && !this.hasFocus && !this.isStopped) {
     this.rotate = true;
     this.liveRegionNode.setAttribute('aria-live', 'off');
     this.pauseButton.innerHTML = 'Stop Rotation';
     this.pauseButton.disabled = false;
-  }
-  else {
-    this.stopRotation(this.hasPaused || this.hasFocus);
   }
 };
 

@@ -79,7 +79,7 @@ CarouselButton.prototype.handleClick = function (event) {
 CarouselButton.prototype.handleFocus = function (event) {
   this.carousel.hasFocus = true;
   this.domNode.classList.add('focus');
-  this.carousel.stopRotation(true);
+  this.carousel.stopRotation();
 };
 
 CarouselButton.prototype.handleBlur = function (event) {
