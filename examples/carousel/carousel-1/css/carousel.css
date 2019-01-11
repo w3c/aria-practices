@@ -143,7 +143,8 @@
   outline: 1px solid #005A9C;
 }
 
-.carousel a.carousel-control:focus svg polygon {
+.carousel a.carousel-control:focus svg polygon,
+.carousel a.carousel-control:hover svg polygon {
   opacity: 1.0;
 }
 
@@ -153,7 +154,8 @@
   background-image: linear-gradient(to right,rgba(0,0,0,.5) 0,rgba(0,0,0,.0001) 100%);
 }
 
-.carousel a.carousel-control.previous:focus {
+.carousel a.carousel-control.previous:focus,
+.carousel a.carousel-control.previous:hover {
   bottom: 0;
   width: 15%;
   background-image: linear-gradient(to right,rgba(0,0,0,.7) 0,rgba(0,0,0,.0001) 100%);
@@ -166,10 +168,11 @@
   background-image: linear-gradient(to right,rgba(0,0,0,.0001) 0,rgba(0,0,0,.5) 100%);
 }
 
-.carousel a.carousel-control.next:focus {
+.carousel a.carousel-control.next:focus,
+.carousel a.carousel-control.next:hover {
   right: 0;
   bottom: 0;
   width: 15%;
   background-image: linear-gradient(to right,rgba(0,0,0,.0001) 0,rgba(0,0,0,.7) 100%);
 }
->>>>>>> carousel-v2
+
