@@ -85,11 +85,11 @@
 
                     <div class="carousel-caption">
 
-                      <h2>
+                      <h3>
                         <a href="#" id="carousel-label-1">
                            Dynamic Europe: Amsterdam, Prague, Berlin
                         </a>
-                      </h2>
+                      </h3>
 
                       <div class="hidden-xs hidden-sm">
                         <p>7 pm Tuesday, March 3, on TV</p>
@@ -107,11 +107,11 @@
 
                     <div class="carousel-caption">
 
-                      <h2>
+                      <h3>
                         <a href="#" id="carousel-label-2">
                           Travel to Southwest England and Paris
                         </a>
-                      </h2>
+                      </h3>
 
                       <div>
                         <p>Sept. 14 to Sept. 24 or 27</p>
@@ -129,11 +129,11 @@
 
                     <div class="carousel-caption">
 
-                      <h2>
+                      <h3>
                         <a href="#" id="carousel-label-3">
                           Survey confirms that TV  is America&#8217;s most trusted institution
                         </a>
-                      </h2>
+                      </h3>
 
                       <div>
 
@@ -151,11 +151,11 @@
 
                     <div class="carousel-caption">
 
-                      <h2>
+                      <h3>
                         <a href="#" id="carousel-label-4">
                           Foyle&#8217;s War Revisited
                         </a>
-                      </h2>
+                      </h3>
 
                       <div>
                         <p>8 pm Sunday, March 8, on TV: Sneak peak at the final season.</p>
@@ -171,11 +171,11 @@
 
                     <div class="carousel-caption">
 
-                      <h2>
+                      <h3>
                         <a href="#" id="carousel-label-5">
                           Great Britain Vote: 7 pm Sat.
                         </a>
-                      </h2>
+                      </h3>
 
                       <div>
                       </div>
@@ -192,11 +192,11 @@
 
                     <div class="carousel-caption">
 
-                      <h2>
+                      <h3>
                         <a href="#" id="carousel-label-6">
                           Mid-American Gardener: Thursdays at 7 pm
                         </a>
-                      </h2>
+                      </h3>
 
                       <div class="hidden-xs hidden-sm">
                         <p>Watch the latest episodes.</p>
@@ -425,7 +425,7 @@
                   <code>aria-live=<q>off</q></code>
                 </th>
                 <td>
-                  <code>div.carousel-inner</code>
+                  <code>div.carousel-items</code>
                 </td>
                 <td>
                   <ul>
@@ -440,7 +440,7 @@
                   <code>aria-live=<q>polite</q></code>
                 </th>
                 <td>
-                  <code>div.carousel-inner</code>
+                  <code>div.carousel-items</code>
                 </td>
                 <td>
                   <ul>
@@ -479,6 +479,22 @@
                     <li>Accessible name comes from the text content of the button.</li>
                     <li>When the <em>action</em> of the button is to stop rotation the text content (e.g. accessible name) of the button is <q>Pause Rotation</q>.</li>
                     <li>When the <em>action</em> of the button is to restart rotation of the slides the text content (e.g. accessible name) of the button is <q>Start Rotation</q>.
+                  </ul>
+                </td>
+              </tr>
+              <tr data-test-id="carousel-button-pause-disabled">
+                <td></td>
+                <th scope="row">
+                  <code>aria-disabled=<q>true</q></code>
+                </th>
+                <td>
+                  <code>button</code>
+                </td>
+                <td>
+                  <ul>
+                    <li>When a pointer is hovering over the carousel or focus is on any element in the carousel the auto rotation of the slides is paused and <code>aria-disabled</code> attribute is set to <code>true</code>.</li>
+                    <li><code>aria-disabled</code> is used instead of the <code>button.disabled</code> property so that the button is not removed from the tab order of the page.</li>
+                    <li>When the hover or focus is removed from the carousel the <code>aria-disabled</code> attribute is removed from the button.</li>
                   </ul>
                 </td>
               </tr>

@@ -33,8 +33,7 @@
     border: thin solid outset;
 }
 
-.carousel button[aria-pressed=true].pause {
-    border-style: inset;
+.carousel button[aria-disabled=true] {
     color: #666;
 }
 
@@ -51,21 +50,19 @@
   right: -20px;
 }
 
-
 .carousel .carousel-items {
   border: solid 2px transparent;
 }
 
 .carousel .carousel-items.focus {
   border-color: white;
-  outline: solid 2px #005A9C;
+  outline: solid 3px #005A9C;
 }
 
 .carousel .carousel-inner .carousel-image a img {
   height: 100%;
   width: 100%;
 }
-
 
 .carousel .carousel-inner .carousel-caption a {
   text-decoration: underline;
@@ -78,7 +75,7 @@
   outline-offset: 1px;
 }
 
-.carousel .carousel-inner .carousel-caption h2 a {
+.carousel .carousel-inner .carousel-caption h3 a {
   color: #fff;
   font-weight: 600;
 }

@@ -22,8 +22,8 @@ var Carousel = function (domNode) {
   this.currentItem = null;
   this.pauseButton = null;
 
-  this.playLabel = 'Play Slides';
-  this.stopLabel = 'Stop Slides';
+  this.startLabel = 'Start automatic slide show';
+  this.stopLabel = 'Stop automatic slide show';
 
   this.rotate = true;
   this.hasFocus = false;
@@ -157,20 +157,31 @@ Carousel.prototype.startRotation = function () {
     this.liveRegionNode.setAttribute('aria-live', 'off');
     this.pauseButton.innerHTML = this.stopLabel;
   }
-  this.pauseButton.disabled = this.hasHover | this.hasFocus;
+  this.disablePauseButton();
 };
 
 Carousel.prototype.stopRotation = function () {
-  this.pauseButton.disabled = this.hasHover | this.hasFocus;
   this.rotate = false;
   this.liveRegionNode.setAttribute('aria-live', 'polite');
   this.pauseButton.innerHTML = this.startLabel;
+  this.disablePauseButton();
+};
+
+Carousel.prototype.disablePauseButton = function () {
+  if (this.hasHover || this.hasFocus) {
+    this.pauseButton.setAttribute('aria-disabled', 'true');
+  }
+  else {
+    this.pauseButton.removeAttribute('aria-disabled');
+  }
 };
 
 Carousel.prototype.toggleRotation = function () {
   if (this.isStopped) {
-    this.isStopped = false;
-    this.startRotation();
+    if (this.pauseButton.getAttribute('aria-disabled') !== 'true') {
+      this.isStopped = false;
+      this.startRotation();
+    }
   }
   else {
     this.isStopped = true;
