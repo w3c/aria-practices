@@ -229,7 +229,7 @@
               </li>
               <li>
                 Moving keyboard focus to any of the carousel content, including the next and previous slide elements, pauses automatic rotation.
-                Automatic rotation resumes when keyboard focus moves out of the carousel content unles another condition, such as mouse hover,  that prevents rotation has been triggered.
+                Automatic rotation resumes when keyboard focus moves out of the carousel content unless another condition, such as mouse hover,  that prevents rotation has been triggered.
               </li>
               <li>The carousel also contains a rotation control button that can stop and start automatic rotation.
                 <ul>
@@ -239,7 +239,7 @@
                     When not visible, the button is positioned off-screen, instead of being hidden with <code>display:none</code>, so it is always available to screen reader users.
                     This is an important aspect of supporting users of screen readers that do not move the mouse or keyboard focus as the user is reading.
                   </li>
-                  <li>If the carousel is rotating, the button is labeled "Stop Automatic Slide Show", informing screen reader users that the slides are changing in addition to providing a way to stop the changes.</li>
+                  <li>If the carousel is rotating, the button is labeled "Stop Automatic Slide Show," informing screen reader users that the slides are changing in addition to providing a way to stop the changes.</li>
                   <li>If the carousel is not rotating, the button is labeled "Start Automatic Slide Show."</li>
                   <li>If a user has activated the button to stop the show, the rotation will only restart if the button is activated. Moving keyboard focus or the mouse out of the carousel will not restart rotation.</li>
                   <li>If keyboard focus is inside the carousel, or if the mouse is hovering over the carousel, the button is disabled; it cannot be used to start rotation.</li>
@@ -271,7 +271,7 @@
                 <td>
                   <ul>
                     <li>Moves focus through interactive elements in the carousel.</li>
-                    <li>Rotation control, previous slide , and next slide buttons precede the slide content in the <kbd>Tab</kbd> sequence.</li>
+                    <li>Rotation control, previous slide, and next slide buttons precede the slide content in the <kbd>Tab</kbd> sequence.</li>
                     <li>The rotation control button moves on screen when it receives keyboard focus and off screen when it is not focused.</li>
                     <li>Off-screen positioning allows it to be available to screen reader users when not focused.</li>
                   </ul>
@@ -343,7 +343,7 @@
               </td>
               <td>
                 <ul>
-                  <li>Informs assistive technologies to identify the element as a &quot;carousel&quot; rather than a &quot;region&quot;.</li>
+                  <li>Informs assistive technologies to identify the element as a &quot;carousel&quot; rather than a &quot;region.&quot;</li>
                   <li>Effects how the assistive technology renders the role but does not effect functionality, such as commands for navigating to landmark regions.</li>
                 </ul>
               </td>
@@ -415,7 +415,7 @@
               </td>
               <td>
                 <ul>
-                  <li>Informs assistive technologies to identify the element as a &quot;slide&quot; rather than a &quot;group&quot;.</li>
+                  <li>Informs assistive technologies to identify the element as a &quot;slide&quot; rather than a &quot;group.&quot;</li>
                   <li>Effects how the assistive technology renders the role but does not remove any assistive technology functions related to <code>group</code> elements.</li>
                 </ul>
               </td>
@@ -456,7 +456,7 @@
                 <td>
                   <ul>
                     <li>Automatic rotation is stopped and the rotation control button is disabled, preventing the user from resuming automatic rotation, when a pointer is hovering over the carousel or any element in the carousel has keyboard focus.</li>
-                    <li>The <code>aria-disabled</code> is used instead of the <code>HTML <code>disabled</code> attribute to keep the button in the <kbd>Tab</kbd> sequence.</li>
+                    <li>The <code>aria-disabled</code> is used instead of the HTML <code>disabled</code> attribute to keep the button in the <kbd>Tab</kbd> sequence.</li>
                     <li>If hover or focus is removed from the carousel, the <code>aria-disabled</code> attribute is removed from the button.</li>
                   </ul>
                 </td>
