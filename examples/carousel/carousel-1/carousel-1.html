@@ -257,8 +257,8 @@
       <section>
         <h2 id="kbd_label">Keyboard Support</h2>
         <section>
-          <h3 id="kbd_label_2">Pause Slide Rotation Button</h3>
-          <table aria-labelledby="kbd_label_2" class="def">
+          <h3 id="kbd_label_2">Rotation Control Button</h3>
+          <table aria-labelledby="kbd_label_2 kbd_label" class="def">
             <thead>
               <tr>
                 <th>Key</th>
@@ -269,25 +269,25 @@
               <tr data-test-id="carousel-key-tab">
                 <th><kbd>Tab</kbd></th>
                 <td>
-                  The button becomes visible when it receives keyboard focus.
+                  <ul>
+                    <li>Moves focus through interactive elements in the carousel.</li>
+                    <li>Rotation control, previous slide , and next slide buttons precede the slide content in the <kbd>Tab</kbd> sequence.</li>
+                    <li>The rotation control button moves on screen when it receives keyboard focus and off screen when it is not focused.</li>
+                    <li>Off-screen positioning allows it to be available to screen reader users when not focused.</li>
+                  </ul>
                 </td>
               </tr>
               <tr data-test-id="carousel-enter-or-space-toggle">
                 <th><kbd>Enter</kbd> or <kbd>Space</kbd></th>
-                <td>
-                  <ul>
-                    <li>Activating the button will toggle the auto rotation of slides in the carousel.</li>
-                    <li>The purpose is to help screen reader users know there is a way to pause the auto rotation of images when they are in review mode before they get to the rotating content (e.g. not stopping the images may cause screen reader to move reading back to the top of the page when they are reading content that becomes hidden).</li>
-                  </ul>
-                </td>
+                <td>Toggle the auto rotation of slides in the carousel.</td>
               </tr>
             </tbody>
           </table>
         </section>
 
         <section>
-          <h3 id="kbd_label_3">Next/Previous Slide Buttons</h3>
-          <table aria-labelledby="kbd_label_3" class="def">
+          <h3 id="kbd_label_3">Next and Previous Slide Buttons</h3>
+          <table aria-labelledby="kbd_label_3 kbd_label" class="def">
             <thead>
               <tr>
                 <th>Key</th>
@@ -296,129 +296,69 @@
             </thead>
             <tbody>
               <tr data-test-id="carousel-key-enter-or-space-move">
-                <th><kbd>Enter</kbd> or <kbd>Space</kbd></th>
+                <th><kbd>Enter</kbd><br><kbd>Space</kbd></th>
                 <td>
-                  Moves content to the next or previous slide in the image carousel.
+                  Display next or previous slide in the carousel.
                 </td>
               </tr>
             </tbody>
           </table>
         </section>
-
       </section>
 
       <section>
         <h2 id="rps_label">Role, Property, State, and Tabindex  Attributes</h2>
-
-        <section>
-          <h3 id="rps_label_1">Carousel Regions and Groups</h3>
-          <table aria-labelledby="rps_label_1" class="data attributes">
-            <thead>
-              <tr>
-                <th scope="col">Role</th>
-                <th scope="col">Attribute</th>
-                <th scope="col">Element</th>
-                <th scope="col">Usage</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr data-test-id="carousel-region-role">
-                <th scope="row">
-                  <code>region</code>
-                </th>
-                <td></td>
-                <td>
-                  <code>section</code>
-                </td>
-                <td>
-                  <ul>
-                    <li>The <code>region</code> landmark is defined by a <code>section</code> element with a accessible name.</li>
-                    <li>The accessible name of the <code>region</code> landmark is defined using the <code>aria-label</code> attribute.</li>
-                  </ul>
-                </td>
-              </tr>
-              <tr data-test-id="carousel-region-aria-roledescription">
-                <td></td>
-                <th scope="row">
-                  <code>aria-roledescription=<q>carousel</q></code>
-                </th>
-                <td>
-                  <code>section</code>
-                </td>
-                <td>Identifies the region as <q>carousel</q> content.</td>
-              </tr>
-              <tr data-test-id="carousel-region-aria-label">
-                <td></td>
-                <th scope="row">
-                  <code>aria-label=<q>Highlighted television shows</q></code>
-                </th>
-                <td>
-                  <code>section</code>
-                </td>
-                <td>Provides a label that describes the content in the carousel region.</td>
-              </tr>
-              <tr data-test-id="carousel-group-role">
-                <th scope="row">
-                  <code>group</code>
-                </th>
-                <td></td>
-                <td>
-                  <code>div.carousel-item</code>
-                </td>
-                <td>
-                  <ul>
-                    <li>The <code>group</code> role is used to defined a set of related content, in this case the content of the individual slides.</li>
-                    <li>The accessible name of the <code>region</code> landmark is defined using the <code>aria-label</code> attribute.</li>
-                  </ul>
-                </td>
-              </tr>
-              <tr data-test-id="carousel-aria-roledescription">
-                <td></td>
-                <th scope="row">
-                  <code>aria-roledescription=<q>slide</q></code>
-                </th>
-                <td>
-                  <code>div.carousel-item</code>
-                </td>
-                <td>Identifies the group as a <q>slide</q> content.</td>
-              </tr>
-              <tr data-test-id="carousel-aria-label-number-of-slide">
-                <td></td>
-                <th scope="row">
-                  <code>aria-label=<q><em>N</em> of 6</q></code>
-                </th>
-                <td>
-                  <code>div.carousel-item</code>
-                </td>
-                <td>Identifies the number of the slide in the group of 6 slides.</td>
-              </tr>
-              <tr data-test-id="carousel-aria-describedby">
-                <td></td>
-                <th scope="row">
-                  <code>aria-describedby=<q>IDREF</q></code>
-                </th>
-                <td>
-                  <code>div.carousel-item</code>
-                </td>
-                <td>Provides additional information about the group by pointing to the content of the slide.</td>
-              </tr>
-            </tbody>
-          </table>
-        </section>
-
-        <section>
-          <h3 id="rps_label_2">Live Region</h3>
-          <table aria-labelledby="rps_label_2" class="data attributes">
-            <thead>
-              <tr>
-                <th scope="col">Role</th>
-                <th scope="col">Attribute</th>
-                <th scope="col">Element</th>
-                <th scope="col">Usage</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr data-test-id="carousel-aria-live-off">
+        <table aria-labelledby="rps_label" class="data attributes">
+          <thead>
+            <tr>
+              <th scope="col">Role</th>
+              <th scope="col">Attribute</th>
+              <th scope="col">Element</th>
+              <th scope="col">Usage</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr data-test-id="carousel-region-role">
+              <th scope="row">
+                <code>region</code>
+              </th>
+              <td></td>
+              <td>
+                <code>section</code>
+              </td>
+              <td>
+                <ul>
+                  <li>Role <code>region</code> is implied for any <code>section</code> element that has an accessible name.</li>
+                  <li>Defines the carousel and its controls as a land mark region.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr data-test-id="carousel-region-aria-roledescription">
+              <td></td>
+              <th scope="row">
+                <code>aria-roledescription="carousel"</code>
+              </th>
+              <td>
+                <code>section</code>
+              </td>
+              <td>
+                <ul>
+                  <li>Informs assistive technologies to identify the element as a &quot;carousel&quot; rather than a &quot;region&quot;.</li>
+                  <li>Effects how the assistive technology renders the role but does not effect functionality, such as commands for navigating to landmark regions.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr data-test-id="carousel-region-aria-label">
+              <td></td>
+              <th scope="row">
+                <code>aria-label="Highlighted television shows"</code>
+              </th>
+              <td>
+                <code>section</code>
+              </td>
+              <td>Provides a label that describes the content in the carousel region.</td>
+            </tr>
+            <tr data-test-id="carousel-aria-live-off">
                 <td></td>
                 <th scope="row">
                   <code>aria-live=<q>off</q></code>
@@ -428,8 +368,9 @@
                 </td>
                 <td>
                   <ul>
-                    <li>Identifies the container element of all the slides as a live region.</li>
-                    <li>When the slides are auto-rotating the live region is <em>disabled</em> by setting the <code>aria-live</code> attribute to <code><q>off</q></code>.</li>
+                    <li>Applied to a <code>div</code> element that contains all the slides.</li>
+                                         <li>Identifies the container element as a live region that is in the &quot;off&quot; state, meaning assistive technology users are not informed about changes to the region.</li>
+                    <li>The live region is off when the carousel is automatically rotating.</li>
                   </ul>
                 </td>
               </tr>
@@ -443,77 +384,84 @@
                 </td>
                 <td>
                   <ul>
-                    <li>When the images auto-rotating of images is paused or one of the interactive elements within the carousel has focus the live region is <em>enabled</em> using <code>aria-live</code> attribute set to <code><q>polite</q></code>.</li>
-                    <li>When the live region is enabled the content of a new slide can be automatically read by screen readers.</li>
+                    <li>Applied to a <code>div</code> element that contains all the slides.</li>
+                                         <li>Identifies the container element as a live region in the &quot;polite&quot; state, meaning assistive technology users are informed about changes to the region at the next available opportunity.</li>
+                    <li>This causes screen readers to automatically announce the content of slides when the next and previous slide buttons are activated.</li>
                   </ul>
                 </td>
               </tr>
-            </tbody>
-          </table>
-        </section>
-
-        <section>
-          <h3 id="rps_label_3">Start/Pause Slide Rotation</h3>
-          <table aria-labelledby="rps_label_3" class="data attributes">
-            <thead>
-              <tr>
-                <th scope="col">Role</th>
-                <th scope="col">Attribute</th>
-                <th scope="col">Element</th>
-                <th scope="col">Usage</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr data-test-id="carousel-button-role-start-pause">
-                <th scope="row">
-                  <code>button</code>
-                </th>
+            <tr data-test-id="carousel-group-role">
+              <th scope="row">
+                <code>group</code>
+              </th>
+              <td></td>
+              <td>
+                <code>div.carousel-item</code>
+              </td>
+              <td>
+                <ul>
+                  <li>Applied to each of the elements that contains the content of a single slide.</li>
+                  <li>Enables assistive technology users to perceive the boundaries of a slide.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr data-test-id="carousel-group-aria-roledescription">
+              <td></td>
+              <th scope="row">
+                <code>aria-roledescription="slide"</code>
+              </th>
+              <td>
+                <code>div.carousel-item</code>
+              </td>
+              <td>
+                <ul>
+                  <li>Informs assistive technologies to identify the element as a &quot;slide&quot; rather than a &quot;group&quot;.</li>
+                  <li>Effects how the assistive technology renders the role but does not remove any assistive technology functions related to <code>group</code> elements.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr data-test-id="carousel-group-aria-label">
+              <td></td>
+              <th scope="row">
+                <code>aria-label="<em>N</em> of 6"</code>
+              </th>
+              <td>
+                <code>div.carousel-item</code>
+              </td>
+              <td>
+                <ul>
+                  <li>Provides each slide with a distinct label that helps the user understand which of the 6 slides is displayed.</li>
+                  <li>Note: Normally, including set position and size information in an accessible name is not appropriate. An exception is helpful in this implementation because group elements do not support <code>aria-setsize</code> or <code>aria-posinset</code>.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr data-test-id="carousel-group-aria-describedby">
+              <td></td>
+              <th scope="row">
+                <code>aria-describedby="IDREF"</code>
+              </th>
+              <td>
+                <code>div.carousel-item</code>
+              </td>
+              <td>Provides additional information about the group by pointing to the content of the slide.</td>
+            </tr>
+              <tr data-test-id="carousel-button-start-disabled">
                 <td></td>
+                <th scope="row">
+                  <code>aria-disabled="true"</code>
+                </th>
                 <td>
                   <code>button</code>
                 </td>
                 <td>
                   <ul>
-                    <li>The default role for the <code>button</code> element is <code>button</code> role.</li>
-                    <li>Accessible name comes from the text content of the button.</li>
-                    <li>When the <em>action</em> of the button is to stop rotation the text content (e.g. accessible name) of the button is <q>Pause Rotation</q>.</li>
-                    <li>When the <em>action</em> of the button is to restart rotation of the slides the text content (e.g. accessible name) of the button is <q>Start Rotation</q>.
+                    <li>Automatic rotation is stopped and the rotation control button is disabled, preventing the user from resuming automatic rotation, when a pointer is hovering over the carousel or any element in the carousel has keyboard focus.</li>
+                    <li>The <code>aria-disabled</code> is used instead of the <code>HTML <code>disabled</code> attribute to keep the button in the <kbd>Tab</kbd> sequence.</li>
+                    <li>If hover or focus is removed from the carousel, the <code>aria-disabled</code> attribute is removed from the button.</li>
                   </ul>
                 </td>
               </tr>
-              <tr data-test-id="carousel-button-pause-disabled">
-                <td></td>
-                <th scope="row">
-                  <code>aria-disabled=<q>true</q></code>
-                </th>
-                <td>
-                  <code>button</code>
-                </td>
-                <td>
-                  <ul>
-                    <li>When a pointer is hovering over the carousel or focus is on any element in the carousel the auto rotation of the slides is paused and <code>aria-disabled</code> attribute is set to <code>true</code>.</li>
-                    <li><code>aria-disabled</code> is used instead of the <code>button.disabled</code> property so that the button is not removed from the tab order of the page.</li>
-                    <li>When the hover or focus is removed from the carousel the <code>aria-disabled</code> attribute is removed from the button.</li>
-                  </ul>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </section>
-
-        <section>
-          <h3 id="rps_label_4">Next/Previous Slide Buttons</h3>
-          <table aria-labelledby="rps_label_4" class="data attributes">
-            <thead>
-              <tr>
-                <th scope="col">Role</th>
-                <th scope="col">Attribute</th>
-                <th scope="col">Element</th>
-                <th scope="col">Usage</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr data-test-id="carousel-button-role-overrides-link">
+              <tr data-test-id="carousel-button-role-link">
                 <th scope="row">
                   <code>button</code>
                 </th>
@@ -521,27 +469,22 @@
                 <td>
                   <code>a</code>
                 </td>
-                <td>
-                  <ul>
-                    <li>Overrides the default role of <code>link</code> with <code>button</code> role.</li>
-                    <li>Accessible name is defined using <code>aria-label</code>.</li>
-                  </ul>
-                </td>
+                <td>Identifies the element as a <code>button</code>.</td>
               </tr>
-              <tr data-test-id="carousel-aria-label-next-previous">
+              <tr data-test-id="carousel-button-aria-label-next-previous">
                 <td></td>
                 <th scope="row">
-                  <code>aria-label=<q><em>name</em></q></code>
+                  <code>aria-label="LABEL_STRING"</code>
                 </th>
                 <td>
                   <code>a</code>
                 </td>
                 <td>Defines the accessible name for the next and previous slide buttons.</td>
               </tr>
-              <tr data-test-id="carousel-aria-controls">
+              <tr data-test-id="carousel-button-aria-controls">
                 <td></td>
                 <th scope="row">
-                  <code>aria-controls=<q>IDREF</q></code>
+                  <code>aria-controls="IDREF"</code>
                 </th>
                 <td>
                   <code>a</code>
@@ -549,13 +492,12 @@
                 <td>
                   <ul>
                     <li>Identifies the content on the page that the button controls.</li>
-                    <li>Relationship can be used by screen readers to provide navigation to the controlled content.</li>
+                    <li>Refers to the <code>div</code> that contains all the slides.</li> 
                   </ul>
                 </td>
               </tr>
             </tbody>
           </table>
-        </section>
       </section>
 
       <section>
@@ -583,7 +525,6 @@
     </main>
 
     <nav>
-      <!--  Update the pattern_ID parameter of this link to refer to the APG design pattern section related to this example.  -->
       <a href="../../../#carousel">Carousel Pattern in WAI-ARIA Authoring Practices 1.1</a>
     </nav>
 
