@@ -76,8 +76,8 @@ Carousel.prototype.init = function () {
   this.pauseButton = this.domNode.parentNode.parentNode.querySelector('button.pause');
   if (this.pauseButton) {
     var button = new PauseButton(this.pauseButton, this);
-
     button.init();
+    this.pauseButton.innerHTML = this.stopLabel;
   }
 
   this.domNode.addEventListener('mouseover', this.handleMouseOver.bind(this));
