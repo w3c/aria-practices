@@ -22,6 +22,9 @@ var Carousel = function (domNode) {
   this.currentItem = null;
   this.pauseButton = null;
 
+  this.playLabel = 'Play Slides';
+  this.stopLabel = 'Stop Slides';
+
   this.rotate = true;
   this.hasFocus = false;
   this.hasHover = false;
@@ -152,19 +155,16 @@ Carousel.prototype.startRotation = function () {
   if (!this.hasHover && !this.hasFocus && !this.isStopped) {
     this.rotate = true;
     this.liveRegionNode.setAttribute('aria-live', 'off');
-    this.pauseButton.innerHTML = 'Stop Rotation';
-    this.pauseButton.disabled = false;
+    this.pauseButton.innerHTML = this.stopLabel;
   }
+  this.pauseButton.disabled = this.hasHover | this.hasFocus;
 };
 
-Carousel.prototype.stopRotation = function (disable) {
-  if (typeof disable !== 'boolean') {
-    disable = false;
-  }
-  this.pauseButton.disabled = disable;
+Carousel.prototype.stopRotation = function () {
+  this.pauseButton.disabled = this.hasHover | this.hasFocus;
   this.rotate = false;
   this.liveRegionNode.setAttribute('aria-live', 'polite');
-  this.pauseButton.innerHTML = 'Start Rotation';
+  this.pauseButton.innerHTML = this.startLabel;
 };
 
 Carousel.prototype.toggleRotation = function () {
@@ -188,7 +188,7 @@ Carousel.prototype.handleImageLinkBlur = function () {
 
 Carousel.prototype.handleMouseOver = function () {
   this.hasHover = true;
-  this.stopRotation(true);
+  this.stopRotation();
 };
 
 Carousel.prototype.handleMouseOut = function () {
