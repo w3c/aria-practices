@@ -2672,16 +2672,23 @@
         Grouping controls into toolbars can also be an effective way of reducing the number of tab stops in the keyboard interface.
       </p>
       <p>To optimize the benefit of toolbar widgets:</p>
-      <ol>
-        <li>Implement focus management so the keyboard tab sequence includes one stop for the toolbar and arrow keys move focus among the controls in the toolbar.</li>
-        <li>Avoid including controls that require arrow keys to operate, such as textbox or radio group. If unavoidable, include only one such control and make it the last element .</li>
+      <ul>
+        <li>
+          Implement focus management so the keyboard tab sequence includes one stop for the toolbar and arrow keys move focus among the controls in the toolbar.
+          <ul>
+            <li>In horizontal toolbars, <kbd>Left Arrow</kbd> and <kbd>Right Arrow</kbd> navigate among controls. <kbd>Up Arrow</kbd> and <kbd>Down Arrow</kbd> can duplicate <kbd>Left Arrow</kbd> and <kbd>Right Arrow</kbd>, respectively, or can be reserved for operating controls, such as spin buttons that require vertical arrow keys to operate.</li>
+            <li>In vertical toolbars, <kbd>Up Arrow</kbd> and <kbd>Down Arrow</kbd> navigate among controls. <kbd>Left Arrow</kbd> and <kbd>Right Arrow</kbd> can duplicate <kbd>Up Arrow</kbd> and <kbd>Down Arrow</kbd>, respectively, or can be reserved for operating controls, such as horizontal sliders that require horizontal arrow keys to operate.</li>
+            <li>In toolbars with multiple rows of controls, <kbd>Left Arrow</kbd> and <kbd>Right Arrow</kbd> can provide navigation that wraps from row to row, leaving the option of reserving vertical arrow keys for operating controls.</li>
+          </ul>
+        </li>
+        <li>Avoid including controls whose operation requires the pair of arrow keys used for toolbar navigation. If unavoidable, include only one such control and make it the last element in the toolbar. For example, in a horzontal toolbar, a textbox could be included as the last element.</li>
         <li>Use toolbar as a grouping element only if the group contains 3 or more controls.</li>
-      </ol>
+      </ul>
       <section class="notoc">
         <h4>Example</h4>
         <p>
           <a href="examples/toolbar/toolbar.html">Toolbar Example</a>:
-          A toolbar that uses roving tabindex to manage focus and contains several buttons, including  a menu button.
+          A toolbar that uses roving tabindex to manage focus and contains several types of controls, including toggle buttons, radio buttons, a menu button, a spin button, a checkbox, and a link.
         </p>
       </section>
       <section class="notoc">
