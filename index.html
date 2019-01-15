@@ -1193,6 +1193,11 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     <section class="widget" id="carousel">
       <h3 id="x3-6-carousel-slide-show-or-image-rotator"><span class="secno">3.6 </span>Carousel (Slide Show or Image Rotator)<a class="self-link" aria-label="§" href="#carousel"></a></h3>
       <p>
+        <strong>NOTE:</strong> This is a new pattern as of the January 2019 release of <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Authoring Practices 1.1.
+        Please provide feedback in
+        <a href="https://github.com/w3c/aria-practices/issues/970">issue 970.</a>
+      </p>
+      <p>
         A carousel presents a set of items, referred to as slides, by sequentially displaying a subset of one or more slides.
         Typically, one slide is displayed at a time, and users can activate a next or previous slide control that hides the current slide and "rotates" the next or previous slide into view.
         In some implementations, rotation automatically starts when the page loads, and it may also automatically stop once all the slides have been displayed.
@@ -1219,8 +1224,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <section class="notoc">
         <h4 id="example-3">Example<a class="self-link" aria-label="§" href="#carousel"></a></h4>
         <p>
-          Development of an example for this pattern is tracked by 
-          <a href="https://github.com/w3c/aria-practices/issues/458">issue 458.</a>
+          <a href="examples/carousel/carousel-1/carousel-1.html">Auto-Rotating Image Carousel Example:</a> A basic image carousel that demonstrates the accessibility features necessary for carousels that rotate automatically on page load. 
         </p>
       </section>
       
@@ -3380,24 +3384,33 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         Grouping controls into toolbars can also be an effective way of reducing the number of tab stops in the keyboard interface.
       </p>
       <p>To optimize the benefit of toolbar widgets:</p>
-      <ol>
-        <li>Implement focus management so the keyboard tab sequence includes one stop for the toolbar and arrow keys move focus among the controls in the toolbar.</li>
-        <li>Avoid including controls that require arrow keys to operate, such as textbox or radio group. If unavoidable, include only one such control and make it the last element .</li>
+      <ul>
+        <li>
+          Implement focus management so the keyboard tab sequence includes one stop for the toolbar and arrow keys move focus among the controls in the toolbar.
+          <ul>
+            <li>In horizontal toolbars, <kbd>Left Arrow</kbd> and <kbd>Right Arrow</kbd> navigate among controls. <kbd>Up Arrow</kbd> and <kbd>Down Arrow</kbd> can duplicate <kbd>Left Arrow</kbd> and <kbd>Right Arrow</kbd>, respectively, or can be reserved for operating controls, such as spin buttons that require vertical arrow keys to operate.</li>
+            <li>In vertical toolbars, <kbd>Up Arrow</kbd> and <kbd>Down Arrow</kbd> navigate among controls. <kbd>Left Arrow</kbd> and <kbd>Right Arrow</kbd> can duplicate <kbd>Up Arrow</kbd> and <kbd>Down Arrow</kbd>, respectively, or can be reserved for operating controls, such as horizontal sliders that require horizontal arrow keys to operate.</li>
+            <li>In toolbars with multiple rows of controls, <kbd>Left Arrow</kbd> and <kbd>Right Arrow</kbd> can provide navigation that wraps from row to row, leaving the option of reserving vertical arrow keys for operating controls.</li>
+          </ul>
+        </li>
+        <li>Avoid including controls whose operation requires the pair of arrow keys used for toolbar navigation. If unavoidable, include only one such control and make it the last element in the toolbar. For example, in a horzontal toolbar, a textbox could be included as the last element.</li>
         <li>Use toolbar as a grouping element only if the group contains 3 or more controls.</li>
-      </ol>
+      </ul>
       <section class="notoc">
         <h4 id="example-8">Example<a class="self-link" aria-label="§" href="#toolbar"></a></h4>
         <p>
           <a href="examples/toolbar/toolbar.html">Toolbar Example</a>:
-          A toolbar that uses roving tabindex to manage focus and contains several buttons, including  a menu button.
+          A toolbar that uses roving tabindex to manage focus and contains several types of controls, including toggle buttons, radio buttons, a menu button, a spin button, a checkbox, and a link.
         </p>
       </section>
       <section class="notoc">
         <h4 id="keyboard-interaction-20">Keyboard Interaction<a class="self-link" aria-label="§" href="#toolbar"></a></h4>
         <ul>
-          <li>
-            When the toolbar receives focus, focus is set on the first control that is not disabled.
-            Optionally, if the toolbar has previously contained focus, focus is set on the control that last had focus.
+          <li><kbd>Tab</kbd> and <kbd>Shift + Tab</kbd>: Move focus into and out of the toolbar. When focus moves into a toolbar:
+            <ul>
+              <li>If focus is moving into the toolbar for the first time, focus is set on the first control that is not disabled.</li>
+              <li>If the toolbar has previously contained focus, focus is optionally set on the control that last had focus. Otherwise, it is set on the first control that is not disabled.</li>
+            </ul>
           </li>
           <li>For a horizontal toolbar (the default):
             <ul>
