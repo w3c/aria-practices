@@ -4989,6 +4989,47 @@
 
     <section id="change_log" class="appendix">
       <h3>Change History</h3>
+      
+      <section id="change_log_2019_january" class="appendix">
+        <h4>Changes in January 2019 Publication of Note Release 3</h4>
+        <ul>
+          <li>Major additions and revisions:
+            <ul>
+              <li>Added indexes that allow lookup of examples by role, state, or property.</li>
+              <li>Added a carousel design pattern and example implementation.</li>
+              <li>Revised radio group pattern to accommodate radio groups nested in toolbars: left and right arrow keys do not change the checked state and can move focus outside the group.</li>
+              <li>Redesigned toolbar example to demonstrate an editor toolbar that includes a nested radio group, toggle buttons, menu button, spin button, checkbox, and link. Also fixed several bugs.</li>
+              <li>Restructured the accordion example to use HTML heading elements containing HTML button elements.</li>
+              <li>Added a regression test framework and suite of regression tests that test all documented keyboard behaviors, roles, states, and properties for each example implementation of a pattern.</li>
+            </ul>
+          </li>
+          <li>Minor revisions of guidance or implementation were made to the following design patterns and examples:
+            <ul>
+              <li>Alert dialog example: Replaced lorem ipsum placeholder with text that describes actions that trigger the alert dialog and alert message.</li>
+              <li>Button Example: Button activation now happens on keyup for space key and aria-hidden was removed from child svg.</li>
+              <li>Legacy Combobox examples: Fixed enter key documentation, made Up Arrow set activedescendant to last match in list, corrected up arrow documentation for the textbox.</li>
+              <li>Dialog Examples: Fixed IE11 incompatibility in role validity check.</li>
+              <li>Single-select listbox example: Fix a bug with aria-selected.</li>
+              <li>Grid Examples: Fixed how event listeners were cleaned up.</li>
+              <li>Menubar Examples: Applied role="none" where missing from elements in menubar and changed visual design to better distinguish between menuitemradio and meuitemcheckbox elements.</li>
+              <li>Radio Group Example: Fixed documentation of elements used in attributes table.</li>
+              <li>Spin Button Pattern: Added aria-invalid guidance for values outside allowed range.</li>
+              <li>Toolbar Pattern: Clarified keyboard guidance for Tab and Shift+Tab and revised description to remove guidance that conflicted with updated radio group pattern.</li>
+            </ul>
+          </li>
+        </ul>
+        <p>Also see:</p>
+        <ul>
+          <li>
+            <a href="https://github.com/w3c/aria-practices/milestone/3?closed=1">The APG 1.1 Release 3 Milestone</a>:
+            which lists the GitHub issues that document discussions and reviews of changes included in the January 2019 publication.
+          </li>
+          <li>
+            <a href="https://github.com/w3c/aria-practices/wiki/Change-Log-for-January-2019-APG-1.1-Note-Release-3">Detailed change log with links to all commits that are new in the January 2019 publication  since the July 2018 publication.</a>
+          </li>
+        </ul>
+      </section>
+      
       <section id="change_log_2018_july" class="appendix">
         <h4>Changes in July 2018 Publication of Note Release 2</h4>
         <ul>
@@ -5026,7 +5067,7 @@
             which lists the GitHub issues that document discussions and reviews of changes included in the July 2018 publication.
           </li>
           <li>
-            <a href="https://github.com/w3c/aria-practices/wiki/Change-Log-for-July-2018-APG-1.1-Note-Release-2">Detailed change log with links to all commits that are new in the July 2018 publication  since the December 2017 working draft.</a>
+            <a href="https://github.com/w3c/aria-practices/wiki/Change-Log-for-July-2018-APG-1.1-Note-Release-2">Detailed change log with links to all commits that are new in the July 2018 publication  since the December 2017 publication of the Note.</a>
           </li>
         </ul>
       </section>
