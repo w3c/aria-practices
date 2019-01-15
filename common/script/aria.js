@@ -480,8 +480,8 @@ require(["core/pubsubhub"], function( respecEvents ) {
                                 // Some subroles have required properties which are also required by the superclass.
                                 // Example: The checked state of radio, which is also required by superclass checkbox.
                                 // We only want to include these one time, so filter out the subroles.
-                                children = jQuery.grep(children, function(subrole) {
-                                    return jQuery.inArray(subrole, propList[item.name].roles) == -1;
+                                children = $.grep(children, function(subrole) {
+                                    return $.inArray(subrole, propList[item.name].roles) == -1;
                                 });
                                 $.merge(myList, children);
                             });
