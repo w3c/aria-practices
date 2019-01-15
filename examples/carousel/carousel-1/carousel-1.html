@@ -31,8 +31,9 @@
     <main>
       <h1>Auto-Rotating Image Carousel Example</h1>
       <p>
-        Comments on this example are tracked in
-        <a href="https://github.com/w3c/aria-practices/issues/458">issue 458.</a>
+        <strong>NOTE:</strong> This is a new example as of the January 2019 release of WAI-ARIA Authoring Practices 1.1.
+        Please provide feedback in
+        <a href="https://github.com/w3c/aria-practices/issues/968">issue 968.</a>
       </p>
       <p>
         The following example implementation of the
@@ -445,8 +446,9 @@
                 </td>
                 <td>
                   <ul>
-                    <li>Automatic rotation is stopped and the rotation control button is disabled, preventing the user from resuming automatic rotation, when a pointer is hovering over the carousel or any element in the carousel has keyboard focus.</li>
-                    <li>The <code>aria-disabled</code> is used instead of the HTML <code>disabled</code> attribute to keep the button in the <kbd>Tab</kbd> sequence.</li>
+                    <li>Applied to the automatic rotation control button when rotation is stopped and conditions that prevent automatic rotation are present.</li>
+                    <li>The button is disabled when a pointer is hovering over the carousel or any element in the carousel has keyboard focus.</li>
+                    <li>The <code>aria-disabled</code> state is used instead of the HTML <code>disabled</code> attribute to keep the button in the <kbd>Tab</kbd> sequence.</li>
                     <li>If hover or focus is removed from the carousel, the <code>aria-disabled</code> attribute is removed from the button.</li>
                   </ul>
                 </td>
