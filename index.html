@@ -2714,34 +2714,81 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
       <section class="notoc">
         <h4 id="keyboard-interaction-13">Keyboard Interaction<a class="self-link" aria-label="§" href="#radiobutton"></a></h4>
-        <ul>
-          <li>
-            When a radio group receives focus:
-            <ul>
-              <li>If a radio button is checked, focus is set on the checked button.</li>
-              <li>If none of the radio buttons are checked, focus is set on the first radio
-                button in the group.</li>
-            </ul>
-          </li>
-          <li>
-							<kbd>Space</kbd>: checks the focused radio button if it is not already checked. </li>
-          <li>
-            <kbd>Right Arrow</kbd> and <kbd>Down Arrow</kbd>: move focus to the next radio button in
-            the group, uncheck the previously focused button, and check the newly focused button. If
-            focus is on the last button, focus moves to the first button.
-          </li>
-          <li>
-            <kbd>Left Arrow</kbd> and <kbd>Up Arrow</kbd>: move focus to the previous radio button
-            in the group, uncheck the previously focused button, and check the newly focused button.
-            If focus is on the first button, focus moves to the last button.
-          </li>
-        </ul>
-        <div class="note" id="issue-container-generatedID-19"><div role="heading" class="note-title marker" id="h-note-19" aria-level="5"><span>Note</span></div><p class="">
-          The initial focus behavior described above differs slightly from the behavior
-          provided by some browsers for native HTML radio groups. In some browsers, if none of the
-          radio buttons are selected, moving focus into the radio group with <kbd>Shift+Tab</kbd> will place focus on the last radio button
-          instead of the first radio button.
-        </p></div>
+        <section class="notoc">
+          <h5 id="for-radio-groups-not-contained-in-a-toolbar">For Radio Groups Not Contained in a Toolbar<a class="self-link" aria-label="§" href="#radiobutton"></a></h5>
+          <p>
+            This section describes the keyboard interaction implemented for most radio groups.
+            For the special case of a radio group nested inside a <a href="#toolbar">toolbar</a>, use the keyboard interaction described in the following section.
+          </p>
+          <ul>
+            <li>
+              <kbd>Tab</kbd> and <kbd>Shift + Tab</kbd>:
+              Move focus into and out of the radio group. 
+              When focus moves into a radio group :
+              <ul>
+                <li>If a radio button is checked, focus is set on the checked button.</li>
+                <li>If none of the radio buttons are checked, focus is set on the first radio
+                  button in the group.</li>
+              </ul>
+            </li>
+            <li><kbd>Space</kbd>: checks the focused radio button if it is not already checked.</li>
+            <li>
+              <kbd>Right Arrow</kbd> and <kbd>Down Arrow</kbd>: move focus to the next radio button in
+              the group, uncheck the previously focused button, and check the newly focused button. If
+              focus is on the last button, focus moves to the first button.
+            </li>
+            <li>
+              <kbd>Left Arrow</kbd> and <kbd>Up Arrow</kbd>: move focus to the previous radio button
+              in the group, uncheck the previously focused button, and check the newly focused button.
+              If focus is on the first button, focus moves to the last button.
+            </li>
+          </ul>
+          <div class="note" id="issue-container-generatedID-19"><div role="heading" class="note-title marker" id="h-note-19" aria-level="6"><span>Note</span></div><p class="">
+            The initial focus behavior described above differs slightly from the behavior
+            provided by some browsers for native HTML radio groups. In some browsers, if none of the
+            radio buttons are selected, moving focus into the radio group with <kbd>Shift+Tab</kbd> will place focus on the last radio button
+            instead of the first radio button.
+          </p></div>
+        </section>
+        <section class="notoc">
+          <h5 id="for-radio-group-contained-in-a-toolbar">For Radio Group Contained in a Toolbar<a class="self-link" aria-label="§" href="#radiobutton"></a></h5>
+          <p>
+            Because arrow keys are used to navigate among elements of a toolbar and the <kbd>Tab</kbd> key moves focus in and out of a toolbar, when a radio group is nested inside a toolbar, the keyboard interaction of the radio group is slightly different from that of a radio group that is not inside of a toolbar.
+            For instance, users need to be able to navigate among all toolbar elements, including the radio buttons, without changing which radio button is checked.
+            So, when navigating through a radio group in a toolbar with arrow keys, the button that is checked does not change.
+            The keyboard interaction of a radio group nested in a toolbar is as follows.
+          </p>
+          <ul>
+            <li><kbd>Space</kbd>: If the focused radio button is not checked, unchecks the currently checked radio button and checks the focused radio button. Otherwise, does nothing.</li>
+            <li><kbd>Enter</kbd> (optional): If the focused radio button is not checked, unchecks the currently checked radio button and checks the focused radio button. Otherwise, does nothing.</li>
+            <li><kbd>Right Arrow</kbd>:
+              <ul>
+                <li>When focus is on a radio button and that radio button is <strong>not</strong> the last radio button in the radio group, moves focus to the next radio button.</li>
+                <li>When focus is on the last radio button in the radio group and that radio button is <strong>not</strong> the last element in the toolbar, moves focus to the next element in the toolbar.</li>
+                <li>When focus is on the last radio button in the radio group and that radio button is also the last element in the toolbar, moves focus to the first element in the toolbar.</li>
+              </ul>
+            </li>
+            <li><kbd>Left Arrow</kbd>:
+              <ul>
+                <li>When focus is on a radio button and that radio button is <strong>not</strong> the first radio button in the radio group, moves focus to the previous radio button.</li>
+                <li>When focus is on the first radio button in the radio group and that radio button is <strong>not</strong> the first element in the toolbar, moves focus to the previous element in the toolbar.</li>
+                <li>When focus is on the first radio button in the radio group and that radio button is also the first element in the toolbar, moves focus to the last element in the toolbar.</li>
+              </ul>
+            </li>
+            <li>
+              <kbd>Down Arrow</kbd> (optional): Moves focus to the next radio button in the radio group.
+              If focus is on the last radio button in the radio group, moves focus to the first radio button in the group.
+            </li>
+            <li>
+              <kbd>Up Arrow</kbd> (optional): Moves focus to the previous radio button in the radio group.
+              If focus is on the first radio button in the radio group, moves focus to the last radio button in the group.
+            </li>
+          </ul>
+          <div class="note" id="issue-container-generatedID-20"><div role="heading" class="note-title marker" id="h-note-20" aria-level="6"><span>Note</span></div><p class="">
+            Radio buttons in a toolbar are frequently styled in a manner that appears more like toggle buttons.
+            For an example, See the <a href="examples/toolbar/toolbar.html">Simple Editor Toolbar Example</a>
+          </p></div>
+        </section>
       </section>
 
       <section class="notoc">
@@ -2817,7 +2864,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <li><kbd>Page Up</kbd> (Optional): Increment the slider by an amount larger than the step change made by <kbd>Up Arrow</kbd>.</li>
           <li><kbd>Page Down</kbd> (Optional): Decrement the slider by an amount larger than the step change made by <kbd>Down Arrow</kbd>.</li>
         </ul>
-        <div class="note" id="issue-container-generatedID-20"><div role="heading" class="note-title marker" id="h-note-20" aria-level="5"><span>Note</span></div><ol class="">
+        <div class="note" id="issue-container-generatedID-21"><div role="heading" class="note-title marker" id="h-note-21" aria-level="5"><span>Note</span></div><ol class="">
           <li>Focus is placed on the slider (the visual object that the mouse user would move, also known as the thumb.</li>
           <li>In some circumstances, reversing the direction of the value change for the keys specified above, e.g., having <kbd>Up Arrow</kbd> decrease the value, could create a more intuitive experience.</li>
         </ol></div>
@@ -2947,7 +2994,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             </ul>
           </li>
         </ul>
-        <div class="note" id="issue-container-generatedID-21"><div role="heading" class="note-title marker" id="h-note-21" aria-level="5"><span>Note</span></div><ol class="">
+        <div class="note" id="issue-container-generatedID-22"><div role="heading" class="note-title marker" id="h-note-22" aria-level="5"><span>Note</span></div><ol class="">
           <li>Focus remains on the text field during operation.</li>
           <li>Standard single line text editing keys appropriate for the device platform:
             <ol>
@@ -3003,7 +3050,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         Since a table is not a widget, each widget contained in a table is a separate stop in the page tab sequence.
         If the number of widgets is large, replacing the table with a grid can dramatically reduce the length of the page tab sequence because a grid is a composite widget that can contain other widgets.
       </p>
-      <div class="note" id="issue-container-generatedID-22"><div role="heading" class="note-title marker" id="h-note-22" aria-level="4"><span>Note</span></div><p class="">
+      <div class="note" id="issue-container-generatedID-23"><div role="heading" class="note-title marker" id="h-note-23" aria-level="4"><span>Note</span></div><p class="">
         As with other <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> roles that have a native host language equivalent,
         authors are strongly encouraged to use a native HTML <code>table</code> element whenever possible.
         This is especially important with role <code>table</code> because it is a new feature of <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> 1.1.
@@ -3044,7 +3091,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           </li>
           <li>If the table includes cells that span multiple rows or multiple columns, then <a href="https://w3c.github.io/aria/#aria-rowspan" class="property-reference">aria-rowspan</a> or <a href="https://w3c.github.io/aria/#aria-colspan" class="property-reference">aria-colspan</a> is applied as described in <a href="#gridAndTableProperties">grid and table properties</a>.</li>
         </ul>
-        <div class="note" id="issue-container-generatedID-23"><div role="heading" class="note-title marker" id="h-note-23" aria-level="5"><span>Note</span></div><p class="">
+        <div class="note" id="issue-container-generatedID-24"><div role="heading" class="note-title marker" id="h-note-24" aria-level="5"><span>Note</span></div><p class="">
           If rows or cells are included in a table via <a href="https://w3c.github.io/aria/#aria-owns" class="property-reference">aria-owns</a>,
           they will be presented to assistive technologies after the DOM descendants of the <code>table</code> element unless the DOM descendants are also included in the <code>aria-owns</code> attribute.
         </p></div>
@@ -3122,7 +3169,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             </ul>
           </li>
         </ul>
-        <div class="note" id="issue-container-generatedID-24"><div role="heading" class="note-title marker" id="h-note-24" aria-level="5"><span>Note</span></div><ol class="">
+        <div class="note" id="issue-container-generatedID-25"><div role="heading" class="note-title marker" id="h-note-25" aria-level="5"><span>Note</span></div><ol class="">
           <li>
             It is recommended that tabs activate automatically when they receive focus as long as their associated tab panels are displayed without noticeable latency.
             This typically requires tab panel content to be preloaded.
@@ -3197,7 +3244,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <li><kbd>Home</kbd> (Optional): Moves focus to first element.</li>
           <li><kbd>End</kbd> (Optional): Moves focus to last element.</li>
         </ul>
-        <div class="note" id="issue-container-generatedID-25"><div role="heading" class="note-title marker" id="h-note-25" aria-level="5"><span>Note</span></div><ol class="">
+        <div class="note" id="issue-container-generatedID-26"><div role="heading" class="note-title marker" id="h-note-26" aria-level="5"><span>Note</span></div><ol class="">
           <li>If the items in a toolbar are arranged vertically:
             <ol>
               <li><kbd>Down Arrow</kbd> performs as <kbd>Right Arrow</kbd> is described above. </li>
@@ -3252,7 +3299,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <section class="notoc">
         <h4 id="keyboard-interaction-20">Keyboard Interaction<a class="self-link" aria-label="§" href="#tooltip"></a></h4>
         <p><kbd>Escape</kbd>: Dismisses the Tooltip.</p>
-        <div class="note" id="issue-container-generatedID-26"><div role="heading" class="note-title marker" id="h-note-26" aria-level="5"><span>Note</span></div><ol class="">
+        <div class="note" id="issue-container-generatedID-27"><div role="heading" class="note-title marker" id="h-note-27" aria-level="5"><span>Note</span></div><ol class="">
           <li>Focus stays on the triggering element while the tooltip is displayed.</li>
           <li>
             If the tooltip is invoked when the trigger element   receives focus, then it is dismissed when it no longer has focus (onBlur).
@@ -3400,7 +3447,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             </ul>
           </li>
         </ul>
-        <div class="note" id="issue-container-generatedID-27"><div role="heading" class="note-title marker" id="h-note-27" aria-level="5"><span>Note</span></div><ol class="">
+        <div class="note" id="issue-container-generatedID-28"><div role="heading" class="note-title marker" id="h-note-28" aria-level="5"><span>Note</span></div><ol class="">
           <li>DOM focus (the active element) is functionally distinct from the selected state. For more details, see <a href="#kbd_focus_vs_selection">this description of differences between focus and selection.</a></li>
           <li>
             The <code>tree</code> role supports the <a class="property-reference" href="https://w3c.github.io/aria/#aria-activedescendant">aria-activedescendant</a> property,
@@ -3454,7 +3501,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             The default value of <code>aria-orientation</code> for a tree is <code>vertical</code>.
           </li>
         </ul>
-        <div class="note" id="issue-container-generatedID-28"><div role="heading" class="note-title marker" id="h-note-28" aria-level="5"><span>Note</span></div><p class="">
+        <div class="note" id="issue-container-generatedID-29"><div role="heading" class="note-title marker" id="h-note-29" aria-level="5"><span>Note</span></div><p class="">
           If <a href="https://w3c.github.io/aria/#aria-owns" class="property-reference">aria-owns</a> is set on the tree container to include elements that are not DOM children of the container,
           those elements will appear in the reading order in the sequence they are referenced and after any items that are DOM children.
           Scripts that manage focus need to ensure the visual focus order matches this assistive technology reading order.
@@ -3464,7 +3511,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
     <section class="widget" id="treegrid">
       <h3 id="x3-25-treegrid"><span class="secno">3.25 </span>Treegrid<a class="self-link" aria-label="§" href="#treegrid"></a></h3>
-      <div class="ednote" id="issue-container-generatedID-29"><div role="heading" class="ednote-title marker" id="h-ednote" aria-level="4"><span>Editor's note</span></div><p class="">
+      <div class="ednote" id="issue-container-generatedID-30"><div role="heading" class="ednote-title marker" id="h-ednote" aria-level="4"><span>Editor's note</span></div><p class="">
         This pattern is new in APG 1.1 Release 2.
         Please provide feedback in
         <a href="https://github.com/w3c/aria-practices/issues/793">issue 793.</a>
@@ -3583,7 +3630,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
               </ul>
           </li>
         </ul>
-        <div class="note" id="issue-container-generatedID-30"><div role="heading" class="note-title marker" id="h-note-29" aria-level="5"><span>Note</span></div><ul class="">
+        <div class="note" id="issue-container-generatedID-31"><div role="heading" class="note-title marker" id="h-note-30" aria-level="5"><span>Note</span></div><ul class="">
           <li>
             When the above <code>treegrid</code> navigation keys move focus, whether the focus is set on an element inside the cell or on the cell depends on cell content.
             See <a href="#gridNav_focus">Whether to Focus on a Cell or an Element Inside It</a>.
@@ -3640,7 +3687,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             </ul>
           </li>
         </ul>
-        <div class="note" id="issue-container-generatedID-31"><div role="heading" class="note-title marker" id="h-note-30" aria-level="5"><span>Note</span></div><p class="">See <a href="#kbd_common_conventions" class="sec-ref"><span class="secno">5.8</span> <span class="sec-title">Key Assignment Conventions for Common Functions</span></a> for cut, copy, and paste key assignments.</p></div>
+        <div class="note" id="issue-container-generatedID-32"><div role="heading" class="note-title marker" id="h-note-31" aria-level="5"><span>Note</span></div><p class="">See <a href="#kbd_common_conventions" class="sec-ref"><span class="secno">5.8</span> <span class="sec-title">Key Assignment Conventions for Common Functions</span></a> for cut, copy, and paste key assignments.</p></div>
       </section>
 
       <section id="treegrid_roles_states_props" class="notoc">
@@ -3689,7 +3736,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           </li>
           <li>If the treegrid includes cells that span multiple rows or multiple columns, and if the <code>treegrid</code> role is NOT applied to an HTML <code>table</code> element, then <a href="https://w3c.github.io/aria/#aria-rowspan" class="property-reference">aria-rowspan</a> or <a href="https://w3c.github.io/aria/#aria-colspan" class="property-reference">aria-colspan</a> is applied as described in <a href="#gridAndTableProperties">grid and table properties</a>.</li>
         </ul>
-        <div class="note" id="issue-container-generatedID-32"><div role="heading" class="note-title marker" id="h-note-31" aria-level="5"><span>Note</span></div><ul class="">
+        <div class="note" id="issue-container-generatedID-33"><div role="heading" class="note-title marker" id="h-note-32" aria-level="5"><span>Note</span></div><ul class="">
           <li>
             A <code>treegrid</code> built from an HTML <code>table</code> that includes cells that span multiple rows or columns must use HTML <code>rowspan</code> and <code>colspan</code> and must not use <code>aria-rowspan</code> or <code>aria-colspan</code>.
           </li>
@@ -3747,7 +3794,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <li><kbd>End</kbd> (Optional): Moves splitter to the position that gives the primary pane its largest allowed size. This may completely collapse the secondary pane.</li>
           <li><kbd>F6</kbd> (Optional): Cycle through window   panes.</li>
         </ul>
-        <div class="note" id="issue-container-generatedID-33"><div role="heading" class="note-title marker" id="h-note-32" aria-level="5"><span>Note</span></div><p class="">A fixed size splitter omits implementation of the arrow keys.</p></div>
+        <div class="note" id="issue-container-generatedID-34"><div role="heading" class="note-title marker" id="h-note-33" aria-level="5"><span>Note</span></div><p class="">A fixed size splitter omits implementation of the arrow keys.</p></div>
       </section>
       <section class="notoc">
         <h4 id="wai-aria-roles-states-and-properties-24"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<a class="self-link" aria-label="§" href="#windowsplitter"></a></h4>
@@ -4733,7 +4780,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           And, given the vast array of operating system, browser, and assistive technology keys, it is almost impossible to be certain conflicts do not exist.
           So it is also important to employ strategies that mitigate the impact of conflicts whether they are intentional or unknown.
         </p>
-        <div class="note" id="issue-container-generatedID-34"><div role="heading" class="note-title marker" id="h-note-33" aria-level="5"><span>Note</span></div><p class="">
+        <div class="note" id="issue-container-generatedID-35"><div role="heading" class="note-title marker" id="h-note-34" aria-level="5"><span>Note</span></div><p class="">
           In the following sections, <kbd>meta</kbd> key refers to the <kbd>Windows</kbd> key on Windows-compatible keyboards and the <kbd>Command</kbd> key on MacOS-compatible keyboards.
         </p></div>
         <section id="kbd_shortcuts_assignments_opsys_conflicts">
