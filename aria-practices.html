@@ -2694,9 +2694,11 @@
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
         <ul>
-          <li>
-            When the toolbar receives focus, focus is set on the first control that is not disabled.
-            Optionally, if the toolbar has previously contained focus, focus is set on the control that last had focus.
+          <li><kbd>Tab</kbd> and <kbd>Shift + Tab</kbd>: Move focus into and out of the toolbar. When focus moves into a toolbar:
+            <ul>
+              <li>If focus is moving into the toolbar for the first time, focus is set on the first control that is not disabled.</li>
+              <li>If the toolbar has previously contained focus, focus is optionally set on the control that last had focus. Otherwise, it is set on the first control that is not disabled.</li>
+            </ul>
           </li>
           <li>For a horizontal toolbar (the default):
             <ul>
