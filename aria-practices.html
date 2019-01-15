@@ -2002,34 +2002,81 @@
 
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
-        <ul>
-          <li>
-            When a radio group receives focus:
-            <ul>
-              <li>If a radio button is checked, focus is set on the checked button.</li>
-              <li>If none of the radio buttons are checked, focus is set on the first radio
-                button in the group.</li>
-            </ul>
-          </li>
-          <li>
-							<kbd>Space</kbd>: checks the focused radio button if it is not already checked. </li>
-          <li>
-            <kbd>Right Arrow</kbd> and <kbd>Down Arrow</kbd>: move focus to the next radio button in
-            the group, uncheck the previously focused button, and check the newly focused button. If
-            focus is on the last button, focus moves to the first button.
-          </li>
-          <li>
-            <kbd>Left Arrow</kbd> and <kbd>Up Arrow</kbd>: move focus to the previous radio button
-            in the group, uncheck the previously focused button, and check the newly focused button.
-            If focus is on the first button, focus moves to the last button.
-          </li>
-        </ul>
-        <p class="note">
-          The initial focus behavior described above differs slightly from the behavior
-          provided by some browsers for native HTML radio groups. In some browsers, if none of the
-          radio buttons are selected, moving focus into the radio group with <kbd>Shift+Tab</kbd> will place focus on the last radio button
-          instead of the first radio button.
-        </p>
+        <section class="notoc">
+          <h5>For Radio Groups Not Contained in a Toolbar</h5>
+          <p>
+            This section describes the keyboard interaction implemented for most radio groups.
+            For the special case of a radio group nested inside a <a href="#toolbar">toolbar</a>, use the keyboard interaction described in the following section.
+          </p>
+          <ul>
+            <li>
+              <kbd>Tab</kbd> and <kbd>Shift + Tab</kbd>:
+              Move focus into and out of the radio group. 
+              When focus moves into a radio group :
+              <ul>
+                <li>If a radio button is checked, focus is set on the checked button.</li>
+                <li>If none of the radio buttons are checked, focus is set on the first radio
+                  button in the group.</li>
+              </ul>
+            </li>
+            <li><kbd>Space</kbd>: checks the focused radio button if it is not already checked.</li>
+            <li>
+              <kbd>Right Arrow</kbd> and <kbd>Down Arrow</kbd>: move focus to the next radio button in
+              the group, uncheck the previously focused button, and check the newly focused button. If
+              focus is on the last button, focus moves to the first button.
+            </li>
+            <li>
+              <kbd>Left Arrow</kbd> and <kbd>Up Arrow</kbd>: move focus to the previous radio button
+              in the group, uncheck the previously focused button, and check the newly focused button.
+              If focus is on the first button, focus moves to the last button.
+            </li>
+          </ul>
+          <p class="note">
+            The initial focus behavior described above differs slightly from the behavior
+            provided by some browsers for native HTML radio groups. In some browsers, if none of the
+            radio buttons are selected, moving focus into the radio group with <kbd>Shift+Tab</kbd> will place focus on the last radio button
+            instead of the first radio button.
+          </p>
+        </section>
+        <section class="notoc">
+          <h5>For Radio Group Contained in a Toolbar</h5>
+          <p>
+            Because arrow keys are used to navigate among elements of a toolbar and the <kbd>Tab</kbd> key moves focus in and out of a toolbar, when a radio group is nested inside a toolbar, the keyboard interaction of the radio group is slightly different from that of a radio group that is not inside of a toolbar.
+            For instance, users need to be able to navigate among all toolbar elements, including the radio buttons, without changing which radio button is checked.
+            So, when navigating through a radio group in a toolbar with arrow keys, the button that is checked does not change.
+            The keyboard interaction of a radio group nested in a toolbar is as follows.
+          </p>
+          <ul>
+            <li><kbd>Space</kbd>: If the focused radio button is not checked, unchecks the currently checked radio button and checks the focused radio button. Otherwise, does nothing.</li>
+            <li><kbd>Enter</kbd> (optional): If the focused radio button is not checked, unchecks the currently checked radio button and checks the focused radio button. Otherwise, does nothing.</li>
+            <li><kbd>Right Arrow</kbd>:
+              <ul>
+                <li>When focus is on a radio button and that radio button is <strong>not</strong> the last radio button in the radio group, moves focus to the next radio button.</li>
+                <li>When focus is on the last radio button in the radio group and that radio button is <strong>not</strong> the last element in the toolbar, moves focus to the next element in the toolbar.</li>
+                <li>When focus is on the last radio button in the radio group and that radio button is also the last element in the toolbar, moves focus to the first element in the toolbar.</li>
+              </ul>
+            </li>
+            <li><kbd>Left Arrow</kbd>:
+              <ul>
+                <li>When focus is on a radio button and that radio button is <strong>not</strong> the first radio button in the radio group, moves focus to the previous radio button.</li>
+                <li>When focus is on the first radio button in the radio group and that radio button is <strong>not</strong> the first element in the toolbar, moves focus to the previous element in the toolbar.</li>
+                <li>When focus is on the first radio button in the radio group and that radio button is also the first element in the toolbar, moves focus to the last element in the toolbar.</li>
+              </ul>
+            </li>
+            <li>
+              <kbd>Down Arrow</kbd> (optional): Moves focus to the next radio button in the radio group.
+              If focus is on the last radio button in the radio group, moves focus to the first radio button in the group.
+            </li>
+            <li>
+              <kbd>Up Arrow</kbd> (optional): Moves focus to the previous radio button in the radio group.
+              If focus is on the first radio button in the radio group, moves focus to the last radio button in the group.
+            </li>
+          </ul>
+          <p class="note">
+            Radio buttons in a toolbar are frequently styled in a manner that appears more like toggle buttons.
+            For an example, See the <a href="examples/toolbar/toolbar.html">Simple Editor Toolbar Example</a>
+          </p>
+        </section>
       </section>
 
       <section class="notoc">
