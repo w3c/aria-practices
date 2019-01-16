@@ -7,7 +7,7 @@ require(["core/pubsubhub"], function(respecEvents) {
     respecEvents.sub('end', function(message) {
     	if (message === 'core/link-to-dfn') {
     		document.querySelectorAll("div.head dt").forEach(function(node){
-    			if (node.textContent == "Authors:") node.textContent = "Platform Mapping Maintainers:";
+                       if (node.textContent.trim() == "Authors:") node.textContent = "Platform Mapping Maintainers:";
     		});
     	}
 	})
