@@ -65,7 +65,7 @@ var respecConfig = {
     mailto: 'cooper@w3.org',
     company: 'W3C',
     companyURI: 'https://www.w3.org/',
-    w3cid: 34017,
+    w3cid: 34017
   }],
   formerEditors: [{
     name: 'Joseph Scheuhammer',
