@@ -72,21 +72,21 @@ var respecConfig = {
     company: 'Inclusive Design Research Centre, OCAD University',
     companyURI: 'http://idrc.ocad.ca/',
     w3cid: 42279,
-    note: "Editor until October 2014"
+    note: 'Editor until October 2014'
   }, {
     name: 'Lisa Pappas',
     company: 'SAS',
     companyURI: 'http://www.sas.com/',
     w3cid: 41725,
-    note: "Editor until October 2009"
+    note: 'Editor until October 2009'
   }, {
     name: 'Rich Schwerdtfeger',
     company: 'IBM Corporation',
     companyURI: 'http://ibm.com/',
     w3cid: 2460,
-    note: "Editor until October 2014"
+    note: 'Editor until October 2014'
   }],
-  
+
   // Authors, add as many as you like.
   // This is optional, uncomment if you have authors as well as editors.
   // Same format and requirements as editors.
