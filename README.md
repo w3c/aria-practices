@@ -52,7 +52,7 @@ npm run lint:html
 
 #### CSS
 
-CSS is validated by [stylelint](https://stylelint.io/) using the[stylelint-config-standard](https://github.com/stylelint/stylelint-config-standard) ruleset.
+CSS is validated by [stylelint](https://stylelint.io/) using the [stylelint-config-standard](https://github.com/stylelint/stylelint-config-standard) ruleset.
 
 **NOTE**: on commit, stylelint will be run on staged CSS files. If errors are found that can be [automatically fixed with the --fix flag](https://stylelint.io/user-guide/cli/#autofixing-errors), they will be fixed and the changes committed.
 
