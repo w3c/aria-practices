@@ -177,6 +177,7 @@ ComboboxList.prototype.handleKeydown = function (event) {
       break;
 
     case this.keyCode.UP:
+
       if (this.listbox.hasOptions()) {
         if (this.listbox.hasFocus || (this.isBoth && this.option)) {
           this.setOption(this.listbox.getPreviousItem(this.option), true);
@@ -186,8 +187,8 @@ ComboboxList.prototype.handleKeydown = function (event) {
           if (!altKey) {
             this.setOption(this.listbox.getLastItem(), true);
           }
-          this.setVisualFocusListbox();
         }
+        this.setVisualFocusListbox();
       }
       flag = true;
       break;

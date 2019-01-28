@@ -225,7 +225,7 @@ while in the second example, they may select multiple options before activating 
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr data-test-id="key-down-arrow">
           <th><kbd>Down Arrow</kbd></th>
           <td>
           <ul>
@@ -234,7 +234,7 @@ while in the second example, they may select multiple options before activating 
           </ul>
           </td>
         </tr>
-        <tr>
+        <tr data-test-id="key-up-arrow">
           <th><kbd>Up Arrow</kbd></th>
           <td>
             <ul>
@@ -243,7 +243,7 @@ while in the second example, they may select multiple options before activating 
             </ul>
           </td>
         </tr>
-        <tr>
+        <tr data-test-id="key-home">
           <th><kbd>Home</kbd></th>
           <td>
             <ul>
@@ -252,7 +252,7 @@ while in the second example, they may select multiple options before activating 
           </ul>
           </td>
         </tr>
-        <tr>
+        <tr data-test-id="key-end">
           <th><kbd>End</kbd></th>
           <td>
             <ul>
@@ -272,27 +272,27 @@ while in the second example, they may select multiple options before activating 
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr data-test-id="key-space">
           <th><kbd>Space</kbd></th>
           <td>changes the selection state of the focused option .</td>
         </tr>
-        <tr>
+        <tr data-test-id="key-shift-down-arrow">
           <th><kbd>Shift + Down Arrow</kbd></th>
           <td>Moves focus to and selects the next option.</td>
         </tr>
-        <tr>
+        <tr data-test-id="key-shift-up-arrow">
           <th><kbd>Shift + Up Arrow</kbd></th>
           <td>Moves focus to and selects the previous option.</td>
         </tr>
-        <tr>
+        <tr data-test-id="key-control-shift-home">
           <th><kbd>Control + Shift + Home</kbd></th>
           <td>Selects from the focused option to the beginning of the list.</td>
         </tr>
-        <tr>
+        <tr data-test-id="key-control-shift-end">
           <th><kbd>Control + Shift + End</kbd></th>
           <td>Selects from the focused option to the end of the list.</td>
         </tr>
-        <tr>
+        <tr data-test-id="key-control-a">
           <th><kbd>Control + A</kbd></th>
           <td>selects all options in the list. If all options are selected, unselects all options.</td>
         </tr>
@@ -317,25 +317,25 @@ while in the second example, they may select multiple options before activating 
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr data-test-id="listbox-role">
           <th scope="row"><code>listbox</code></th>
           <td></td>
           <td><code>ul</code></td>
           <td>Identifies the focusable element that has listbox behaviors and contains the listbox options. </td>
         </tr>
-        <tr>
+        <tr data-test-id="listbox-aria-labelledby">
           <td></td>
           <th scope="row"><code>aria-labelledby=&quot;ID_REF&quot;</code></th>
           <td><code>ul</code></td>
           <td>Applied to the element with the listbox role, it refers to the span containing its label.</td>
         </tr>
-        <tr>
+        <tr data-test-id="listbox-tabindex">
           <td></td>
           <th scope="row"><code>tabindex=&quot;0&quot;</code></th>
           <td><code>ul</code></td>
           <td>Applied to the element with the listbox role, it puts the listbox in the tab sequence.</td>
         </tr>
-        <tr>
+        <tr data-test-id="listbox-aria-multiselectable">
           <td></td>
           <th scope="row"><code>aria-multiselectable=&quot;true&quot;</code></th>
           <td><code>ul</code></td>
@@ -347,7 +347,7 @@ while in the second example, they may select multiple options before activating 
             </ul>
           </td>
         </tr>
-        <tr>
+        <tr data-test-id="listbox-aria-activedescendant">
           <td></td>
           <th scope="row"><code>aria-activedescendant=&quot;ID_REF&quot;</code></th>
           <td><code>ul</code></td>
@@ -360,13 +360,13 @@ while in the second example, they may select multiple options before activating 
             </ul>
           </td>
         </tr>
-        <tr>
+        <tr data-test-id="option-role">
           <th scope="row"><code>role=&quot;option&quot;</code></th>
           <td></td>
           <td><code>li</code></td>
           <td>Identifies each selectable element containing the name of an option.</td>
         </tr>
-        <tr>
+        <tr data-test-id="option-aria-selected">
           <td></td>
           <th scope="row"><code>aria-selected=&quot;true&quot;</code></th>
           <td><code>li</code></td>
@@ -379,7 +379,7 @@ while in the second example, they may select multiple options before activating 
             </ul>
           </td>
         </tr>
-        <tr>
+        <tr data-test-id="option-aria-selected">
           <td></td>
           <th><code>aria-selected=&quot;false&quot;</code></th>
           <td><code>li</code></td>

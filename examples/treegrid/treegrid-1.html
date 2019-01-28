@@ -213,7 +213,7 @@ document.addEventListener('DOMContentLoaded', function () {
         </tr>
       </thead>
       <tbody>
-      <tr>
+      <tr data-test-id="key-right-arrow">
         <th scope="row">
           <kbd>Right Arrow</kbd>
         </th>
@@ -226,7 +226,7 @@ document.addEventListener('DOMContentLoaded', function () {
           </ul>
         </td>
       </tr>
-      <tr>
+      <tr data-test-id="key-left-arrow">
         <th scope="row">
           <kbd>Left Arrow</kbd>
         </th>
@@ -239,7 +239,7 @@ document.addEventListener('DOMContentLoaded', function () {
           </ul>
         </td>
       </tr>
-      <tr>
+      <tr data-test-id="key-down-arrow">
         <th scope="row">
           <kbd>Down Arrow</kbd>
         </th>
@@ -250,7 +250,7 @@ document.addEventListener('DOMContentLoaded', function () {
           </ul>
         </td>
       </tr>
-      <tr>
+      <tr data-test-id="key-up-arrow">
         <th scope="row">
           <kbd>Up Arrow</kbd>
         </th>
@@ -261,7 +261,7 @@ document.addEventListener('DOMContentLoaded', function () {
           </ul>
         </td>
       </tr>
-      <tr>
+      <tr data-test-id="key-tab">
         <th scope="row">
           <kbd>Tab</kbd>
         </th>
@@ -272,7 +272,7 @@ document.addEventListener('DOMContentLoaded', function () {
           </ul>
         </td>
       </tr>
-      <tr>
+      <tr data-test-id="key-shift-tab">
         <th scope="row">
           <kbd>Shift + Tab</kbd>
         </th>
@@ -283,7 +283,7 @@ document.addEventListener('DOMContentLoaded', function () {
           </ul>
         </td>
       </tr>
-      <tr>
+      <tr data-test-id="key-home">
         <th scope="row">
           <kbd>Home</kbd>
         </th>
@@ -294,7 +294,7 @@ document.addEventListener('DOMContentLoaded', function () {
           </ul>
         </td>
       </tr>
-      <tr>
+      <tr data-test-id="key-end">
         <th scope="row">
           <kbd>End</kbd>
         </th>
@@ -305,7 +305,7 @@ document.addEventListener('DOMContentLoaded', function () {
           </ul>
         </td>
       </tr>
-      <tr>
+      <tr data-test-id="key-control-home">
         <th scope="row">
           <kbd>Control + Home</kbd>
         </th>
@@ -316,7 +316,7 @@ document.addEventListener('DOMContentLoaded', function () {
           </ul>
         </td>
       </tr>
-      <tr>
+      <tr data-test-id="key-control-end">
         <th scope="row">
           <kbd>Control + End</kbd>
         </th>
@@ -327,7 +327,7 @@ document.addEventListener('DOMContentLoaded', function () {
           </ul>
         </td>
       </tr>
-      <tr>
+      <tr data-test-id="key-enter">
         <th scope="row">
           <kbd>Enter</kbd>
         </th>
@@ -354,20 +354,20 @@ document.addEventListener('DOMContentLoaded', function () {
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr data-test-id="treegrid-role">
           <th scope="row"><code>treegrid</code></th>
           <td></td>
           <td><code>table</code></td>
           <td>Identifies the element as a <code>treegrid</code>.</td>
         </tr>
-        <tr>
+        <tr data-test-id="treegrid-aria-label">
           <td>
           </td>
           <th scope="row"><code>aria-label="Inbox"</code></th>
           <td><code>table</code></td>
           <td>Provides an accessible name for the <code>treegrid</code>.</td>
         </tr>
-        <tr>
+        <tr data-test-id="row-role">
           <th scope="row"><code>row</code></th>
           <td></td>
           <td><code>tr</code></td>
@@ -378,7 +378,7 @@ document.addEventListener('DOMContentLoaded', function () {
             </ul>
           </td>
         </tr>
-        <tr>
+        <tr data-test-id="row-tabindex">
           <td></td>
           <th scope="row"><code>tabindex="-1"</code></th>
           <td><code>tr</code> or <code>td</code></td>
@@ -389,7 +389,7 @@ document.addEventListener('DOMContentLoaded', function () {
              </ul>
           </td>
         </tr>
-        <tr>
+        <tr data-test-id="row-tabindex">
           <td></td>
           <th scope="row"><code>tabindex="0"</code></th>
           <td><code>tr</code> or <code>td</code></td>
@@ -405,7 +405,7 @@ document.addEventListener('DOMContentLoaded', function () {
              </ul>
           </td>
         </tr>
-        <tr>
+        <tr data-test-id="row-aria-expanded">
           <td>
           </td>
           <th scope="row"><code>aria-expanded="false"</code></th>
@@ -419,7 +419,7 @@ document.addEventListener('DOMContentLoaded', function () {
             </ul>
           </td>
         </tr>
-        <tr>
+        <tr data-test-id="row-aria-expanded">
           <td>
           </td>
           <th scope="row"><code>aria-expanded="true"</code></th>
@@ -433,7 +433,7 @@ document.addEventListener('DOMContentLoaded', function () {
             </ul>
           </td>
         </tr>
-        <tr>
+        <tr data-test-id="row-aria-level">
           <td>
           </td>
           <th scope="row"><code>aria-level="<em>number</em>"</code></th>
@@ -446,7 +446,7 @@ document.addEventListener('DOMContentLoaded', function () {
             </ul>
           </td>
         </tr>
-        <tr>
+        <tr data-test-id="row-aria-setsize">
           <td>
           </td>
           <th scope="row"><code>aria-setsize="<em>number</em>"</code></th>
@@ -455,7 +455,7 @@ document.addEventListener('DOMContentLoaded', function () {
             Defines the number of rows in the set of rows that are in the same branch and at the same level within the hierarchy.
           </td>
         </tr>
-        <tr>
+        <tr data-test-id="row-aria-posinset">
           <td>
           </td>
           <th scope="row"><code>aria-posinset="<em>number</em>"</code></th>
@@ -467,7 +467,7 @@ document.addEventListener('DOMContentLoaded', function () {
             </ul>
           </td>
         </tr>
-        <tr>
+        <tr data-test-id="gridcell-role">
           <th scope="row"><code>gridcell</code></th>
           <td></td>
           <td><code>td</code></td>
