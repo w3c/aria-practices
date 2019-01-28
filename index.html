@@ -1,4 +1,4 @@
-<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><meta charset="utf-8"><meta name="generator" content="ReSpec 24.2.0"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><style>/* --- ISSUES/NOTES --- */
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><meta charset="utf-8"><meta name="generator" content="ReSpec 24.2.3"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><style>/* --- ISSUES/NOTES --- */
 div.issue-title, div.note-title , div.ednote-title, div.warning-title {
     padding-right:  1em;
     min-width: 7.5em;
@@ -14,8 +14,8 @@ div.note, div.issue, div.ednote, div.warning {
     margin-top: 1em;
     margin-bottom: 1em;
 }
-.note > p:first-child, .ednote > p:first-child, .issue > p:first-child, .warning > p:first-child { margin-top: 0 }
-.issue, .note, .ednote, .warning {
+.warning > p:first-child { margin-top: 0 }
+.warning {
     padding: .5em;
     border-left-width: .5em;
     border-left-style: solid;
@@ -26,7 +26,7 @@ div.issue, div.note , div.ednote,  div.warning {
     position: relative;
     clear: both;
 }
-span.note, span.ednote, span.issue, span.warning { padding: .1em .5em .15em; }
+span.warning { padding: .1em .5em .15em; }
 
 .issue {
     border-color: #e05252;
@@ -34,11 +34,6 @@ span.note, span.ednote, span.issue, span.warning { padding: .1em .5em .15em; }
 }
 .issue.closed span.issue-number {
     text-decoration: line-through;
-}
-
-.note, .ednote {
-    border-color: #52e052;
-    background: #e9fbe9;
 }
 
 .warning {
@@ -488,35 +483,22 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       "name": "Joseph Scheuhammer",
       "company": "Inclusive Design Research Centre, OCAD University",
       "companyURI": "http://idrc.ocad.ca/",
-      "w3cid": 42279
+      "w3cid": 42279,
+      "note": "Editor until October 2014"
     },
     {
       "name": "Lisa Pappas",
       "company": "SAS",
       "companyURI": "http://www.sas.com/",
-      "w3cid": 41725
+      "w3cid": 41725,
+      "note": "Editor until October 2009"
     },
     {
       "name": "Rich Schwerdtfeger",
       "company": "IBM Corporation",
       "companyURI": "http://ibm.com/",
-      "w3cid": 2460
-    }
-  ],
-  "authors": [
-    {
-      "name": "Jon Gunderson",
-      "mailto": "jongund@illinois.edu",
-      "company": "University of Illinois at Urbana-Champaign",
-      "companyURI": "https://illinois.edu/",
-      "w3cid": 3226
-    },
-    {
-      "name": "Matt King",
-      "mailto": "mck@fb.com",
-      "company": "Facebook",
-      "companyURI": "http://www.facebook.com/",
-      "w3cid": 44582
+      "w3cid": 2460,
+      "note": "Editor until October 2014"
     }
   ],
   "ariaSpecURLs": {
@@ -588,9 +570,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   "preProcess": [
     null
   ],
-  "publishDate": "2019-01-15",
-  "publishISODate": "2019-01-15T00:00:00.000Z",
-  "generatedSubtitle": "Editor's Draft 15 January 2019"
+  "publishDate": "2019-01-28",
+  "publishISODate": "2019-01-28T00:00:00.000Z",
+  "generatedSubtitle": "Editor's Draft 28 January 2019"
 }</script><meta name="description" content="This document provides readers with an understanding of how to use WAI-ARIA 1.1 [WAI-ARIA] to create accessible rich internet applications.
       It describes considerations that might not be evident to most authors from the WAI-ARIA specification alone and recommends approaches to make widgets, navigation, and behaviors accessible using WAI-ARIA roles, states, and properties.
       This document is directed primarily to Web application developers, but the guidance is also useful for user agent and assistive technology developers."></head>
@@ -599,7 +581,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       
       <h2>
         <abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft
-        <time class="dt-published" datetime="2019-01-15">15 January 2019</time>
+        <time class="dt-published" datetime="2019-01-28">28 January 2019</time>
       </h2>
       <dl>
         <dt>This version:</dt><dd>
@@ -630,39 +612,29 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                   Former editors:
                 </dt><dd class="p-author h-card vcard" data-editor-id="42279"><span class="p-name fn">Joseph Scheuhammer</span>
             (Inclusive Design Research Centre, OCAD University)
-          </dd><dd class="p-author h-card vcard" data-editor-id="41725"><span class="p-name fn">Lisa Pappas</span>
+           (Editor until October 2014)</dd><dd class="p-author h-card vcard" data-editor-id="41725"><span class="p-name fn">Lisa Pappas</span>
             (SAS)
-          </dd><dd class="p-author h-card vcard" data-editor-id="2460"><span class="p-name fn">Rich Schwerdtfeger</span>
+           (Editor until October 2009)</dd><dd class="p-author h-card vcard" data-editor-id="2460"><span class="p-name fn">Rich Schwerdtfeger</span>
             (IBM Corporation)
-          </dd>
-        <dt>
-                  Authors:
-                </dt><dd class="p-author h-card vcard" data-editor-id="3226"><a class="ed_mailto u-email email p-name" href="mailto:jongund@illinois.edu">Jon Gunderson</a>
-            (University of Illinois at Urbana-Champaign)
-          </dd><dd class="p-author h-card vcard" data-editor-id="44582"><a class="ed_mailto u-email email p-name" href="mailto:mck@fb.com">Matt King</a>
-            (Facebook)
-          </dd>
+           (Editor until October 2014)</dd>
+        
         
       </dl>
       
       
       
       <p class="copyright">
-                        <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a>
-                        ©
-                        2015-2019
-                        
-                        <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="https://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>,
-                        <a href="https://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="https://www.keio.ac.jp/">Keio</a>,
-                        <a href="http://ev.buaa.edu.cn/">Beihang</a>).
-                        
-                        <abbr title="World Wide Web Consortium">W3C</abbr>
-                        <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
-                        <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a>
-                        and
-                        <a rel="license" href="https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document">permissive document license</a>
-                        rules apply.
-                      </p>
+      <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a>
+      ©
+      2015-2019
+      
+      <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="https://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>,
+      <a href="https://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="https://www.keio.ac.jp/">Keio</a>,
+      <a href="http://ev.buaa.edu.cn/">Beihang</a>). 
+      <abbr title="World Wide Web Consortium">W3C</abbr> <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Legal_Disclaimer">liability</a>,
+      <a href="https://www.w3.org/Consortium/Legal/ipr-notice#W3C_Trademarks">trademark</a> and <a rel="license" href="https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document">permissive document license</a> rules
+      apply.
+    </p>
       <hr title="Separator for header">
     </div>
   <section id="abstract" class="introductory"><h2>Abstract</h2>
@@ -705,64 +677,55 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       (<a href="http://lists.w3.org/Archives/Public/public-aria/">comment archive</a>).
     </p>
   <p>
-                                              This document was published by
-                                              the <a href="https://www.w3.org/WAI/ARIA/">Accessible Rich Internet Applications Working Group</a> as an
-                                              Editor's Draft.
-                                              
-                                            </p><p>
-                                                      
-                                                      Comments regarding this document are welcome.
-                                                              Please send them
-                                                              to
-                                                              <a href="mailto:public-aria@w3.org">public-aria@w3.org</a>
-                                                              (<a href="https://lists.w3.org/Archives/Public/public-aria/">archives</a>).
-                                                            
-                                                    </p><p>
-                                              Publication as an
-                                              Editor's Draft does not imply
-                                              endorsement by the <abbr title="World Wide Web Consortium">W3C</abbr> Membership.
-                                              This is a draft document and may
-                                              be updated, replaced or obsoleted
-                                              by other documents at any time. It
-                                              is inappropriate to cite this
-                                              document as other than work in
-                                              progress.
-                                            </p><p>
-                                      
-                                              This document was produced by
-                                              a group
-                                              operating under the
-                                              <a href="https://www.w3.org/Consortium/Patent-Policy/"><abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>.
-                                            
-                                      
-                                      
-                                                      <abbr title="World Wide Web Consortium">W3C</abbr> maintains a
-                                                      <a rel="disclosure" href="https://www.w3.org/2004/01/pp-impl/83726/status">public list of any
-                                                        patent disclosures</a>
-                                              made in connection with the
-                                              deliverables of
-                                              the group; that page also includes
-                                              instructions for disclosing a
-                                              patent. An individual who has
-                                              actual knowledge of a patent which
-                                              the individual believes contains
-                                              <a href="https://www.w3.org/Consortium/Patent-Policy/#def-essential">Essential Claim(s)</a>
-                                              must disclose the information in
-                                              accordance with
-                                              <a href="https://www.w3.org/Consortium/Patent-Policy/#sec-Disclosure">section 6 of the <abbr title="World Wide Web Consortium">W3C</abbr> Patent
-                                                Policy</a>.
-                                            
-                                      
-                                    </p><p>
-                                      This document is governed by the
-                                      <a id="w3c_process_revision" href="https://www.w3.org/2018/Process-20180201/">1 February 2018 <abbr title="World Wide Web Consortium">W3C</abbr> Process Document</a>.
-                                    </p></section><nav id="toc"><h2 class="introductory" id="table-of-contents">Table of Contents</h2><ol class="toc"><li class="tocline"><a class="tocxref" href="#intro"><span class="secno">1. </span>Introduction</a></li><li class="tocline"><a class="tocxref" href="#read_me_first"><span class="secno">2. </span>Read Me First</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#no_aria_better_bad_aria"><span class="secno">2.1 </span>No ARIA is better than Bad ARIA</a></li><li class="tocline"><a class="tocxref" href="#browser_and_AT_support"><span class="secno">2.2 </span>Browser and Assistive Technology Support</a></li><li class="tocline"><a class="tocxref" href="#mobile_and_touch_support"><span class="secno">2.3 </span>Mobile and Touch Support</a></li></ol></li><li class="tocline"><a class="tocxref" href="#aria_ex"><span class="secno">3. </span>Design Patterns and Widgets</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#accordion"><span class="secno">3.1 </span>Accordion (Sections With Show/Hide Functionality)</a></li><li class="tocline"><a class="tocxref" href="#alert"><span class="secno">3.2 </span>Alert</a></li><li class="tocline"><a class="tocxref" href="#alertdialog"><span class="secno">3.3 </span>Alert and Message Dialogs</a></li><li class="tocline"><a class="tocxref" href="#breadcrumb"><span class="secno">3.4 </span>Breadcrumb</a></li><li class="tocline"><a class="tocxref" href="#button"><span class="secno">3.5 </span>Button</a></li><li class="tocline"><a class="tocxref" href="#carousel"><span class="secno">3.6 </span>Carousel (Slide Show or Image Rotator)</a></li><li class="tocline"><a class="tocxref" href="#checkbox"><span class="secno">3.7 </span>Checkbox</a></li><li class="tocline"><a class="tocxref" href="#combobox"><span class="secno">3.8 </span>Combo Box</a></li><li class="tocline"><a class="tocxref" href="#dialog_modal"><span class="secno">3.9 </span>Dialog (Modal)</a></li><li class="tocline"><a class="tocxref" href="#disclosure"><span class="secno">3.10 </span>Disclosure (Show/Hide)</a></li><li class="tocline"><a class="tocxref" href="#feed"><span class="secno">3.11 </span>Feed</a></li><li class="tocline"><a class="tocxref" href="#grid"><span class="secno">3.12 </span>Grids : Interactive Tabular Data and Layout Containers</a></li><li class="tocline"><a class="tocxref" href="#link"><span class="secno">3.13 </span>Link</a></li><li class="tocline"><a class="tocxref" href="#Listbox"><span class="secno">3.14 </span>Listbox</a></li><li class="tocline"><a class="tocxref" href="#menu"><span class="secno">3.15 </span>Menu or Menu bar</a></li><li class="tocline"><a class="tocxref" href="#menubutton"><span class="secno">3.16 </span>Menu Button</a></li><li class="tocline"><a class="tocxref" href="#radiobutton"><span class="secno">3.17 </span>Radio Group</a></li><li class="tocline"><a class="tocxref" href="#slider"><span class="secno">3.18 </span>Slider</a></li><li class="tocline"><a class="tocxref" href="#slidertwothumb"><span class="secno">3.19 </span>Slider (Multi-Thumb)</a></li><li class="tocline"><a class="tocxref" href="#spinbutton"><span class="secno">3.20 </span>Spinbutton</a></li><li class="tocline"><a class="tocxref" href="#table"><span class="secno">3.21 </span>Table</a></li><li class="tocline"><a class="tocxref" href="#tabpanel"><span class="secno">3.22 </span>Tabs</a></li><li class="tocline"><a class="tocxref" href="#toolbar"><span class="secno">3.23 </span>Toolbar</a></li><li class="tocline"><a class="tocxref" href="#tooltip"><span class="secno">3.24 </span>Tooltip Widget</a></li><li class="tocline"><a class="tocxref" href="#TreeView"><span class="secno">3.25 </span>Tree View</a></li><li class="tocline"><a class="tocxref" href="#treegrid"><span class="secno">3.26 </span>Treegrid</a></li><li class="tocline"><a class="tocxref" href="#windowsplitter"><span class="secno">3.27 </span>Window Splitter</a></li></ol></li><li class="tocline"><a class="tocxref" href="#aria_landmark"><span class="secno">4. </span>Landmark Regions</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#html5-sectioning-elements"><span class="secno">4.1 </span>HTML5 Sectioning Elements</a></li><li class="tocline"><a class="tocxref" href="#general-principles-of-landmark-design"><span class="secno">4.2 </span>General Principles of Landmark Design</a></li><li class="tocline"><a class="tocxref" href="#landmark-roles"><span class="secno">4.3 </span>Landmark Roles</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#aria_lh_banner"><span class="secno">4.3.1 </span>Banner</a></li><li class="tocline"><a class="tocxref" href="#aria_lh_complementary"><span class="secno">4.3.2 </span>Complementary</a></li><li class="tocline"><a class="tocxref" href="#aria_lh_contentinfo"><span class="secno">4.3.3 </span>Contentinfo</a></li><li class="tocline"><a class="tocxref" href="#aria_lh_form"><span class="secno">4.3.4 </span>Form</a></li><li class="tocline"><a class="tocxref" href="#aria_lh_main"><span class="secno">4.3.5 </span>Main</a></li><li class="tocline"><a class="tocxref" href="#aria_lh_navigation"><span class="secno">4.3.6 </span>Navigation</a></li><li class="tocline"><a class="tocxref" href="#aria_lh_region"><span class="secno">4.3.7 </span>Region</a></li><li class="tocline"><a class="tocxref" href="#aria_lh_search"><span class="secno">4.3.8 </span>Search</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#keyboard"><span class="secno">5. </span>Developing a Keyboard Interface</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#kbd_generalnav"><span class="secno">5.1 </span>Fundamental Keyboard Navigation Conventions</a></li><li class="tocline"><a class="tocxref" href="#kbd_focus_discernable_predictable"><span class="secno">5.2 </span>Discernible and Predictable Keyboard Focus</a></li><li class="tocline"><a class="tocxref" href="#kbd_focus_vs_selection"><span class="secno">5.3 </span>Focus VS Selection and the Perception of Dual Focus</a></li><li class="tocline"><a class="tocxref" href="#kbd_selection_follows_focus"><span class="secno">5.4 </span>Deciding When to Make Selection Automatically Follow Focus</a></li><li class="tocline"><a class="tocxref" href="#kbd_general_between"><span class="secno">5.5 </span>Keyboard Navigation Between Components (The Tab Sequence)</a></li><li class="tocline"><a class="tocxref" href="#kbd_general_within"><span class="secno">5.6 </span> Keyboard Navigation Inside Components</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#kbd_roving_tabindex"><span class="secno">5.6.1 </span>Managing Focus Within Components Using a Roving tabindex</a></li><li class="tocline"><a class="tocxref" href="#kbd_focus_activedescendant"><span class="secno">5.6.2 </span>Managing Focus in Composites Using aria-activedescendant</a></li></ol></li><li class="tocline"><a class="tocxref" href="#kbd_disabled_controls"><span class="secno">5.7 </span>Focusability of disabled controls</a></li><li class="tocline"><a class="tocxref" href="#kbd_common_conventions"><span class="secno">5.8 </span>Key Assignment Conventions for Common Functions</a></li><li class="tocline"><a class="tocxref" href="#kbd_shortcuts"><span class="secno">5.9 </span>Keyboard Shortcuts</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_behavior_design"><span class="secno">5.9.1 </span>Designing the Scope and Behavior of Keyboard Shortcuts</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_design_basic"><span class="secno">5.9.1.1 </span>Ensure Basic Access Via Navigation </a></li><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_design_choose_behavior"><span class="secno">5.9.1.2 </span>Choose Appropriate Shortcut Behavior</a></li><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_design_where"><span class="secno">5.9.1.3 </span>Choose Where to Add Shortcuts </a></li></ol></li><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_assigning"><span class="secno">5.9.2 </span>Assigning Keyboard Shortcuts</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_assignments_opsys_conflicts"><span class="secno">5.9.2.1 </span>Operating System Key Conflicts</a></li><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_assignments_assistivetech_conflicts"><span class="secno">5.9.2.2 </span>Assistive Technology Key Conflicts</a></li><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_assignments_browser_conflicts"><span class="secno">5.9.2.3 </span>Browser Key Conflicts</a></li><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_assignments_intentional_conflicts"><span class="secno">5.9.2.4 </span>Intentional Key Conflicts</a></li></ol></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#gridAndTableProperties"><span class="secno">6. </span>Grid and Table Properties</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#gridAndTableProperties_rows"><span class="secno">6.1 </span>Using <code>aria-rowcount</code> and <code>aria-rowindex</code></a></li><li class="tocline"><a class="tocxref" href="#gridAndTableProperties_cols"><span class="secno">6.2 </span>Using <code>aria-colcount</code> and <code>aria-colindex</code></a><ol class="toc"><li class="tocline"><a class="tocxref" href="#gridAndTableProperties_cols_contiguous"><span class="secno">6.2.1 </span>Using <code>aria-colindex</code> When Column Indicies Are Contiguous</a></li><li class="tocline"><a class="tocxref" href="#gridAndTableProperties_cols_noncontiguous"><span class="secno">6.2.2 </span>Using <code>aria-colindex</code> When Column Indicies Are Not Contiguous</a></li></ol></li><li class="tocline"><a class="tocxref" href="#gridAndTableProperties_spans"><span class="secno">6.3 </span>Defining cell spans using <code>aria-colspan</code> and <code>aria-rowspan</code></a></li><li class="tocline"><a class="tocxref" href="#gridAndTableProperties_sort"><span class="secno">6.4 </span>Indicating sort order with <code>aria-sort</code></a></li></ol></li><li class="tocline"><a class="tocxref" href="#presentation_role"><span class="secno">7. </span>Intentionally Hiding Semantics with the <code>presentation</code> Role</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#presentation_role_effects"><span class="secno">7.1 </span>
+                              This document was published by the <a href="https://www.w3.org/WAI/ARIA/">Accessible Rich Internet Applications Working Group</a> as
+                              an Editor's Draft.
+                              
+                            </p><p>
+      
+      Comments regarding this document are welcome.
+              Please send them to
+              <a href="mailto:public-aria@w3.org">public-aria@w3.org</a>
+              (<a href="https://lists.w3.org/Archives/Public/public-aria/">archives</a>).
+            
+    </p><p>
+                              Publication as an Editor's Draft
+                              does not imply endorsement by the <abbr title="World Wide Web Consortium">W3C</abbr> Membership.
+                              This is a draft document and may be updated,
+                              replaced or obsoleted by other documents at any
+                              time. It is inappropriate to cite this document as
+                              other than work in progress.
+                            </p><p>
+                      
+                              This document was produced by
+                              a group
+                              operating under the
+                              <a href="https://www.w3.org/Consortium/Patent-Policy/"><abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>.
+                            
+                      
+                      
+                                      <abbr title="World Wide Web Consortium">W3C</abbr> maintains a
+                                      <a rel="disclosure" href="https://www.w3.org/2004/01/pp-impl/83726/status">public list of any patent
+                                        disclosures</a>
+                              made in connection with the deliverables of
+                              the group; that page also includes
+                              instructions for disclosing a patent. An
+                              individual who has actual knowledge of a patent
+                              which the individual believes contains
+                              <a href="https://www.w3.org/Consortium/Patent-Policy/#def-essential">Essential Claim(s)</a>
+                              must disclose the information in accordance with
+                              <a href="https://www.w3.org/Consortium/Patent-Policy/#sec-Disclosure">section 6 of the <abbr title="World Wide Web Consortium">W3C</abbr> Patent Policy</a>.
+                            
+                      
+                    </p><p>
+                      This document is governed by the
+                      <a id="w3c_process_revision" href="https://www.w3.org/2018/Process-20180201/">1 February 2018 <abbr title="World Wide Web Consortium">W3C</abbr> Process Document</a>.
+                    </p></section><nav id="toc"><h2 class="introductory" id="table-of-contents">Table of Contents</h2><ol class="toc"><li class="tocline"><a class="tocxref" href="#intro"><span class="secno">1. </span>Introduction</a></li><li class="tocline"><a class="tocxref" href="#read_me_first"><span class="secno">2. </span>Read Me First</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#no_aria_better_bad_aria"><span class="secno">2.1 </span>No ARIA is better than Bad ARIA</a></li><li class="tocline"><a class="tocxref" href="#browser_and_AT_support"><span class="secno">2.2 </span>Browser and Assistive Technology Support</a></li><li class="tocline"><a class="tocxref" href="#mobile_and_touch_support"><span class="secno">2.3 </span>Mobile and Touch Support</a></li></ol></li><li class="tocline"><a class="tocxref" href="#aria_ex"><span class="secno">3. </span>Design Patterns and Widgets</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#accordion"><span class="secno">3.1 </span>Accordion (Sections With Show/Hide Functionality)</a></li><li class="tocline"><a class="tocxref" href="#alert"><span class="secno">3.2 </span>Alert</a></li><li class="tocline"><a class="tocxref" href="#alertdialog"><span class="secno">3.3 </span>Alert and Message Dialogs</a></li><li class="tocline"><a class="tocxref" href="#breadcrumb"><span class="secno">3.4 </span>Breadcrumb</a></li><li class="tocline"><a class="tocxref" href="#button"><span class="secno">3.5 </span>Button</a></li><li class="tocline"><a class="tocxref" href="#carousel"><span class="secno">3.6 </span>Carousel (Slide Show or Image Rotator)</a></li><li class="tocline"><a class="tocxref" href="#checkbox"><span class="secno">3.7 </span>Checkbox</a></li><li class="tocline"><a class="tocxref" href="#combobox"><span class="secno">3.8 </span>Combo Box</a></li><li class="tocline"><a class="tocxref" href="#dialog_modal"><span class="secno">3.9 </span>Dialog (Modal)</a></li><li class="tocline"><a class="tocxref" href="#disclosure"><span class="secno">3.10 </span>Disclosure (Show/Hide)</a></li><li class="tocline"><a class="tocxref" href="#feed"><span class="secno">3.11 </span>Feed</a></li><li class="tocline"><a class="tocxref" href="#grid"><span class="secno">3.12 </span>Grids : Interactive Tabular Data and Layout Containers</a></li><li class="tocline"><a class="tocxref" href="#link"><span class="secno">3.13 </span>Link</a></li><li class="tocline"><a class="tocxref" href="#Listbox"><span class="secno">3.14 </span>Listbox</a></li><li class="tocline"><a class="tocxref" href="#menu"><span class="secno">3.15 </span>Menu or Menu bar</a></li><li class="tocline"><a class="tocxref" href="#menubutton"><span class="secno">3.16 </span>Menu Button</a></li><li class="tocline"><a class="tocxref" href="#radiobutton"><span class="secno">3.17 </span>Radio Group</a></li><li class="tocline"><a class="tocxref" href="#slider"><span class="secno">3.18 </span>Slider</a></li><li class="tocline"><a class="tocxref" href="#slidertwothumb"><span class="secno">3.19 </span>Slider (Multi-Thumb)</a></li><li class="tocline"><a class="tocxref" href="#spinbutton"><span class="secno">3.20 </span>Spinbutton</a></li><li class="tocline"><a class="tocxref" href="#table"><span class="secno">3.21 </span>Table</a></li><li class="tocline"><a class="tocxref" href="#tabpanel"><span class="secno">3.22 </span>Tabs</a></li><li class="tocline"><a class="tocxref" href="#toolbar"><span class="secno">3.23 </span>Toolbar</a></li><li class="tocline"><a class="tocxref" href="#tooltip"><span class="secno">3.24 </span>Tooltip Widget</a></li><li class="tocline"><a class="tocxref" href="#TreeView"><span class="secno">3.25 </span>Tree View</a></li><li class="tocline"><a class="tocxref" href="#treegrid"><span class="secno">3.26 </span>Treegrid</a></li><li class="tocline"><a class="tocxref" href="#windowsplitter"><span class="secno">3.27 </span>Window Splitter</a></li></ol></li><li class="tocline"><a class="tocxref" href="#aria_landmark"><span class="secno">4. </span>Landmark Regions</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#html5-sectioning-elements"><span class="secno">4.1 </span>HTML5 Sectioning Elements</a></li><li class="tocline"><a class="tocxref" href="#general-principles-of-landmark-design"><span class="secno">4.2 </span>General Principles of Landmark Design</a></li><li class="tocline"><a class="tocxref" href="#landmark-roles"><span class="secno">4.3 </span>Landmark Roles</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#aria_lh_banner"><span class="secno">4.3.1 </span>Banner</a></li><li class="tocline"><a class="tocxref" href="#aria_lh_complementary"><span class="secno">4.3.2 </span>Complementary</a></li><li class="tocline"><a class="tocxref" href="#aria_lh_contentinfo"><span class="secno">4.3.3 </span>Contentinfo</a></li><li class="tocline"><a class="tocxref" href="#aria_lh_form"><span class="secno">4.3.4 </span>Form</a></li><li class="tocline"><a class="tocxref" href="#aria_lh_main"><span class="secno">4.3.5 </span>Main</a></li><li class="tocline"><a class="tocxref" href="#aria_lh_navigation"><span class="secno">4.3.6 </span>Navigation</a></li><li class="tocline"><a class="tocxref" href="#aria_lh_region"><span class="secno">4.3.7 </span>Region</a></li><li class="tocline"><a class="tocxref" href="#aria_lh_search"><span class="secno">4.3.8 </span>Search</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#keyboard"><span class="secno">5. </span>Developing a Keyboard Interface</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#kbd_generalnav"><span class="secno">5.1 </span>Fundamental Keyboard Navigation Conventions</a></li><li class="tocline"><a class="tocxref" href="#kbd_focus_discernable_predictable"><span class="secno">5.2 </span>Discernible and Predictable Keyboard Focus</a></li><li class="tocline"><a class="tocxref" href="#kbd_focus_vs_selection"><span class="secno">5.3 </span>Focus VS Selection and the Perception of Dual Focus</a></li><li class="tocline"><a class="tocxref" href="#kbd_selection_follows_focus"><span class="secno">5.4 </span>Deciding When to Make Selection Automatically Follow Focus</a></li><li class="tocline"><a class="tocxref" href="#kbd_general_between"><span class="secno">5.5 </span>Keyboard Navigation Between Components (The Tab Sequence)</a></li><li class="tocline"><a class="tocxref" href="#kbd_general_within"><span class="secno">5.6 </span> Keyboard Navigation Inside Components</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#kbd_roving_tabindex"><span class="secno">5.6.1 </span>Managing Focus Within Components Using a Roving tabindex</a></li><li class="tocline"><a class="tocxref" href="#kbd_focus_activedescendant"><span class="secno">5.6.2 </span>Managing Focus in Composites Using aria-activedescendant</a></li></ol></li><li class="tocline"><a class="tocxref" href="#kbd_disabled_controls"><span class="secno">5.7 </span>Focusability of disabled controls</a></li><li class="tocline"><a class="tocxref" href="#kbd_common_conventions"><span class="secno">5.8 </span>Key Assignment Conventions for Common Functions</a></li><li class="tocline"><a class="tocxref" href="#kbd_shortcuts"><span class="secno">5.9 </span>Keyboard Shortcuts</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_behavior_design"><span class="secno">5.9.1 </span>Designing the Scope and Behavior of Keyboard Shortcuts</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_design_basic"><span class="secno">5.9.1.1 </span>Ensure Basic Access Via Navigation </a></li><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_design_choose_behavior"><span class="secno">5.9.1.2 </span>Choose Appropriate Shortcut Behavior</a></li><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_design_where"><span class="secno">5.9.1.3 </span>Choose Where to Add Shortcuts </a></li></ol></li><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_assigning"><span class="secno">5.9.2 </span>Assigning Keyboard Shortcuts</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_assignments_opsys_conflicts"><span class="secno">5.9.2.1 </span>Operating System Key Conflicts</a></li><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_assignments_assistivetech_conflicts"><span class="secno">5.9.2.2 </span>Assistive Technology Key Conflicts</a></li><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_assignments_browser_conflicts"><span class="secno">5.9.2.3 </span>Browser Key Conflicts</a></li><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_assignments_intentional_conflicts"><span class="secno">5.9.2.4 </span>Intentional Key Conflicts</a></li></ol></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#gridAndTableProperties"><span class="secno">6. </span>Grid and Table Properties</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#gridAndTableProperties_rows"><span class="secno">6.1 </span>Using <code>aria-rowcount</code> and <code>aria-rowindex</code></a></li><li class="tocline"><a class="tocxref" href="#gridAndTableProperties_cols"><span class="secno">6.2 </span>Using <code>aria-colcount</code> and <code>aria-colindex</code></a><ol class="toc"><li class="tocline"><a class="tocxref" href="#gridAndTableProperties_cols_contiguous"><span class="secno">6.2.1 </span>Using <code>aria-colindex</code> When Column Indicies Are Contiguous</a></li><li class="tocline"><a class="tocxref" href="#gridAndTableProperties_cols_noncontiguous"><span class="secno">6.2.2 </span>Using <code>aria-colindex</code> When Column Indicies Are Not Contiguous</a></li></ol></li><li class="tocline"><a class="tocxref" href="#gridAndTableProperties_spans"><span class="secno">6.3 </span>Defining cell spans using <code>aria-colspan</code> and <code>aria-rowspan</code></a></li><li class="tocline"><a class="tocxref" href="#gridAndTableProperties_sort"><span class="secno">6.4 </span>Indicating sort order with <code>aria-sort</code></a></li></ol></li><li class="tocline"><a class="tocxref" href="#presentation_role"><span class="secno">7. </span>Intentionally Hiding Semantics with the <code>presentation</code> Role</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#presentation_role_effects"><span class="secno">7.1 </span>
         Effects of Role <code>presentation</code>
       </a></li><li class="tocline"><a class="tocxref" href="#presentation_role_ignored"><span class="secno">7.2 </span>
         Conditions That Cause Role <code>presentation</code> to be Ignored
       </a></li><li class="tocline"><a class="tocxref" href="#presentation_role_examples"><span class="secno">7.3 </span>
         Example Demonstrating Effects of the <code>presentation</code> Role
-      </a></li></ol></li><li class="tocline"><a class="tocxref" href="#children_presentational"><span class="secno">8. </span>Roles That Automatically Hide Semantics by Making Their Descendants Presentational</a></li><li class="tocline"><a class="tocxref" href="#appendices"><span class="secno">A. </span>Appendices</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#indexes"><span class="secno">A.1 </span>Indexes</a></li><li class="tocline"><a class="tocxref" href="#change_log"><span class="secno">A.2 </span>Change History</a></li><li class="tocline"><a class="tocxref" href="#acknowledgements"><span class="secno">A.3 </span>Acknowledgments</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#ack_group"><span class="secno">A.3.1 </span>Participants active in the ARIA WG at the time of publication</a></li><li class="tocline"><a class="tocxref" href="#ack_others"><span class="secno">A.3.2 </span>Other ARIA contributors, commenters, and previously active participants</a></li><li class="tocline"><a class="tocxref" href="#ack_funders"><span class="secno">A.3.3 </span>Enabling funders</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#references"><span class="secno">B. </span>References</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#normative-references"><span class="secno">B.1 </span>Normative references</a></li></ol></li></ol></nav>
+      </a></li></ol></li><li class="tocline"><a class="tocxref" href="#children_presentational"><span class="secno">8. </span>Roles That Automatically Hide Semantics by Making Their Descendants Presentational</a></li><li class="tocline"><a class="tocxref" href="#indexes"><span class="secno">A. </span>Indexes</a></li><li class="tocline"><a class="tocxref" href="#change_log"><span class="secno">B. </span>Change History</a></li><li class="tocline"><a class="tocxref" href="#acknowledgements"><span class="secno">C. </span>Acknowledgements</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#major-contributors-to-version-1-1"><span class="secno">C.1 </span>Major Contributors to Version 1.1</a></li><li class="tocline"><a class="tocxref" href="#participants-active-in-the-aria-authoring-practices-task-force"><span class="secno">C.2 </span>Participants active in the ARIA Authoring Practices Task Force</a></li><li class="tocline"><a class="tocxref" href="#other-commenters-and-contributors-to-version-1-1"><span class="secno">C.3 </span>Other commenters and contributors to Version 1.1</a></li><li class="tocline"><a class="tocxref" href="#ack_funders"><span class="secno">C.4 </span>Enabling funders</a></li></ol></li><li class="tocline"><a class="tocxref" href="#references"><span class="secno">D. </span>References</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#normative-references"><span class="secno">D.1 </span>Normative references</a></li></ol></li></ol></nav>
 
   <section id="intro">
     <!--OddPage--><h2 id="x1-introduction"><span class="secno">1. </span>Introduction<a class="self-link" aria-label="§" href="#intro"></a></h2>
@@ -3688,7 +3651,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
     <section class="widget" id="treegrid">
       <h3 id="x3-26-treegrid"><span class="secno">3.26 </span>Treegrid<a class="self-link" aria-label="§" href="#treegrid"></a></h3>
-      <div class="ednote" id="issue-container-generatedID-30"><div role="heading" class="ednote-title marker" id="h-ednote" aria-level="4"><span>Editor's note</span></div><p class="">
+      <div class="note" id="issue-container-generatedID-30"><div role="heading" class="ednote-title marker" id="h-ednote" aria-level="4"><span>Editor's note</span></div><p class="">
         This pattern is new in APG 1.1 Release 2.
         Please provide feedback in
         <a href="https://github.com/w3c/aria-practices/issues/793">issue 793.</a>
@@ -5677,11 +5640,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     </p>
   </section>
 
-  <section id="appendices" class="appendix">
-    <!--OddPage--><h2 id="a-appendices"><span class="secno">A. </span>Appendices<a class="self-link" aria-label="§" href="#appendices"></a></h2>
-    
-    <section id="indexes">
-      <h3 id="a-1-indexes"><span class="secno">A.1 </span>Indexes<a class="self-link" aria-label="§" href="#indexes"></a></h3>
+    <section id="indexes" class="appendix">
+      <!--OddPage--><h2 id="a-indexes"><span class="secno">A. </span>Indexes<a class="self-link" aria-label="§" href="#indexes"></a></h2>
       <ul>
         <li><a href="examples/#examples_by_role_label">Design Pattern Examples by Role</a></li>
         <li><a href="examples/#examples_by_props_label">Design Pattern Examples by Properties and States</a> </li>
@@ -5689,218 +5649,88 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     </section>
 
     <section id="change_log" class="appendix">
-      <h3 id="a-2-change-history"><span class="secno">A.2 </span>Change History<a class="self-link" aria-label="§" href="#change_log"></a></h3>
+      <!--OddPage--><h2 id="b-change-history"><span class="secno">B. </span>Change History<a class="self-link" aria-label="§" href="#change_log"></a></h2>
       <p>Change history is maintained in a separate version-specific branch.</p>
     </section>
-
-    <section class="appendix informative section" id="acknowledgements">
-	<h3 id="a-3-acknowledgments"><span class="secno">A.3 </span>Acknowledgments<a class="self-link" aria-label="§" href="#acknowledgements"></a></h3><p><em>This section is non-normative.</em></p>
-	<p>The following people contributed to the development of this document.</p>
-	<section class="section" id="ack_group">
-		<h4 id="a-3-1-participants-active-in-the-aria-wg-at-the-time-of-publication"><span class="secno">A.3.1 </span>Participants active in the ARIA WG at the time of publication<a class="self-link" aria-label="§" href="#ack_group"></a></h4>
-		<ul>
-			<li>Ann Abbott (Invited Expert)</li>
-			<li>Irfan Ali (Educational Testing Service)</li>
-			<li>Amelia Bellamy-Royds (Invited Expert)</li>
-			<li>Michiel Bijl (Invited Expert)</li>
-			<li>David Bolter (Mozilla Foundation)</li>
-			<li>Bogdan Brinza (Microsoft Corporation)</li>
-			<li>Shari Butler (Pearson plc)</li>
-			<li>Thaddeus Cambron (Invited Expert)</li>
-			<li>Michael Cooper (<abbr title="World Wide Web Consortium">W3C</abbr> Staff)</li>
-			<li>James Craig (Apple Inc.) </li>
-			<li>Joanmarie Diggs (Igalia)</li>
-			<li>John Foliot (Deque Systems, Inc.)</li>
-			<li>Bryan Garaventa (SSB BART Group)</li>
-			<li>Matt Garrish (DAISY Consortium)</li>
-			<li>Becky Gibson (Invited Expert)</li>
-			<li>Glen Gordon (The Paciello Group, LLC)</li>
-			<li>Jon Gunderson (University of Illinois at Urbana-Champaign)</li>
-			<li>Matthew King (Facebook)</li>
-			<li>JaEun Jemma Ku (University of Illinois at Urbana-Champaign)</li>
-			<li>Charles LaPierre (Benetech)</li>
-			<li>Aaron Leventhal (Google, Inc.)</li>
-			<li>Dominic Mazzoni (Google, Inc.)</li>
-			<li>Shane McCarron (Invited Expert, Aptest)</li>
-			<li>Jan McSorley (Pearson plc)</li>
-			<li>James Nurthen (Oracle Corporation) </li>
-			<li>Ian Pouncey (The Paciello Group, LLC)</li>
-			<li>Ruoxi Ran (<abbr title="World Wide Web Consortium">W3C</abbr> Staff)</li>
-			<li>Janina Sajka (Invited Expert, The Linux Foundation)</li>
-			<li>Stefan Schnabel (SAP SE) </li>
-			<li>Lisa Seeman-Kestenbaum (Invited Expert) </li>
-			<li>Tzviya Siegman (Wiley)</li>
-			<li>Alexander Surkov (Mozilla Foundation)</li>
-			<li>Job van Achterberg (Invited Expert)</li>
-			<li>Evan Yamanishi (W. W. Norton)</li>
-			<li>Jason White (Educational Testing Service)</li>
-		</ul>
-  </section>
-	<section class="section" id="ack_others">
-		<h4 id="a-3-2-other-aria-contributors-commenters-and-previously-active-participants"><span class="secno">A.3.2 </span>Other ARIA contributors, commenters, and previously active participants<a class="self-link" aria-label="§" href="#ack_others"></a></h4>
-		<ul>
-			<li>Shadi Abou-Zahra (<abbr title="World Wide Web Consortium">W3C</abbr>)</li>
-			<li>Jim Allan (TSB)</li>
-			<li>Jonny Axelsson (Opera Software)</li>
-			<li>David Baron (Mozilla Foundation)</li>
-			<li>Art Barstow (Nokia Corporation)</li>
-			<li>Simon Bates</li>
-			<li>Christy Blew (University of Illinois at Urbana-Champaign)</li>
-			<li>Chris Blouch (AOL)</li>
-			<li>Judy Brewer (<abbr title="World Wide Web Consortium">W3C</abbr>/<abbr title="Massachusetts Institute of Technology">MIT</abbr>)</li>
-			<li>Mark Birbeck (Sidewinder Labs)</li>
-			<li>Sally Cain (Royal National Institute of Blind People (RNIB))</li>
-			<li>Gerardo Capiel (Benetech)</li>
-			<li>Ben Caldwell (Trace)</li>
-			<li>Sofia Celic-Li</li>
-			<li>Jaesik Chang (Samsung Electronics Co., Ltd.)</li>
-			<li>Alex Qiang Chen (University of Manchester)</li>
-			<li>Charles Chen (Google, Inc.)</li>
-			<li>Christian Cohrs</li>
-			<li>Deborah Dahl</li>
-			<li>Erik Dahlström (Opera Software)</li>
-			<li>Dimitar Denev (Frauenhofer Gesellschaft)</li>
-			<li>Micah Dubinko (Invited Expert)</li>
-			<li>Mandana Eibegger</li>
-			<li>Beth Epperson (Websense)</li>
-			<li>Fred Esch (IBM Corporation)</li>
-			<li>Donald Evans (AOL)</li>
-			<li>Steve Faulkner (The Paciello Group, LLC) </li>
-			<li>Chris Fleizach (Apple Inc.)</li>
-			<li>Kelly Ford (Microsoft Corporation)</li>
-			<li>Geoff Freed (Invited Expert, NCAM)</li>
-			<li>Christopher Gallelo (Microsoft Corporation)</li>
-			<li>Billy Gregory (The Paciello Group, LLC)</li>
-			<li>Karl Groves (The Paciello Group, LLC)</li>
-			<li>Birkir Gunnarsson (Deque Systems, Inc.)</li>
-			<li>Kentarou Fukuda (IBM Corporation)</li>
-			<li>Bryan Garaventa</li>
-			<li>Guido Geloso</li>
-			<li>Ali Ghassemi</li>
-			<!--<li>Becky Gibson (IBM)</li>-->
-			<li>Alfred S. Gilman</li>
-			<li>Andres Gonzalez (Adobe Systems Inc.)</li>
-			<li>Scott González (JQuery Foundation)</li>
-			<li>James Graham</li>
-			<li>Georgios Grigoriadis (SAP AG)</li>
-			<li>Jeff Grimes (Oracle)</li>
-			<li>Loretta Guarino Reid (Google, Inc.)</li>
-			<li>Markus Gylling (DAISY Consortium)</li>
-			<li>Markku Hakkinen (Educational Testing Service)</li>
-			<li>Katie Haritos-Shea (Knowbility)</li>
-			<li>Barbara Hartel</li>
-			<li>James Hawkins (Google, Inc.)</li>
-			<li>Benjamin Hawkes-Lewis</li>
-			<li>Sean Hayes (Microsoft Corporation)</li>
-			<li>Mona Heath (University of Illinois at Urbana-Champaign)</li>
-			<li>Jan Heck</li>
-			<li>Shawn Henry</li>
-			<li>Tina Homboe</li>
-			<li>Nicholas Hoyt</li>
-			<li>John Hrvatin (Microsoft Corporation)</li>
-			<li>Takahiro Inada</li>
-			<li>Masayasu Ishikawa (<abbr title="World Wide Web Consortium">W3C</abbr>)</li>
-			<li>Jim Jewitt</li>
-			<li>Kenny Johar (Microsoft Corporation)</li>
-			<li>Shilpi Kapoor (BarrierBreak Technologies)</li>
-			<li>Masahiko Kaneko (Microsoft Corporation)</li>
-			<li>Marjolein Katsma</li>
-			<li>Susann Keohane (IBM Corporation)</li>
-			<li>George Kerscher (International Digital Publishing Forum)</li>
-			<li>Jason Kiss (Department of Internal Affairs, New Zealand Government)</li>
-			<li>Todd Kloots</li>
-			<li>Jamie Knight (British Broadcasting Corporation)</li>
-			<li>Johannes Koch</li>
-			<li>Gerard K. Cohen</li>
-			<li>Sam Kuper</li>
-			<li>Earl Johnson (Sun)</li>
-			<li>Jael Kurz</li>
-			<li>Rajesh Lal (Nokia Corporation)</li>
-			<li>Diego La Monica (International Webmasters Association / HTML Writers Guild (IWA-HWG))</li>
-			<!--<li>Aaron Leventhal (IBM Corporation)</li>-->
-			<li>Gez Lemon (International Webmasters Association / HTML Writers Guild (IWA-HWG))</li>
-			<li>Alex Li (SAP)</li>
-			<li>Chris Lilley</li>
-			<li>Thomas Logan (HiSoftware Inc.)</li>
-			<li>Brian Loh</li>
-			<li>William Loughborough (Invited Expert)</li>
-			<li>Linda Mao (Microsoft)</li>
-			<li>David MacDonald (Invited Expert, CanAdapt Solutions Inc.)</li>
-			<li>Carolyn MacLeod</li>
-			<li>Anders Markussen (Opera Software)</li>
-			<li>Krzysztof Maczyński </li>
-			<li>Matthew May (Adobe Systems Inc.)</li>
-			<li>Mark McCarthy</li>
-			<li>Charles McCathie Nevile (Yandex)</li>
-			<li>Heather Migliorisi (Invited Expert)</li>
-			<li>Mary Jo Mueller (IBM Corporation)</li>
-			<li>Alexandre Morgaut (4D)</li>
-			<li>Ann Navarro (Invited Expert)</li>
-			<li>Joshue O Connor (Invited Expert, CFIT)</li>
-			<li>Artur Ortega (Microsoft Corporation)</li>
-			<li>Sailesh Panchang (Deque)</li>
-			<li>Lisa Pappas (Society for Technical Communication (STC))</li>
-			<li>Marta Pawlowlska (Samsung Electronics Co., Ltd.)</li>
-			<li>Dave Pawson (RNIB)</li>
-			<li>Steven Pemberton (CWI Amsterdam)</li>
-			<li>Simon Pieters (Opera Software)</li>
-			<li>Jean-Bernard Piot (4D)</li>
-			<li>David Poehlman, Simon Pieters (Opera Software)</li>
-			<li>Sarah Pulis (Media Access Australia)</li>
-			<li>T.V. Raman (Google, Inc.)</li>
-			<li>Jan Richards</li>
-			<li>Gregory Rosmaita (Invited Expert)</li>
-			<li>Tony Ross (Microsoft Corporation)</li>
-			<li>Alex Russell (Dojo Foundation) (</li>
-			<li>Mark Sadecki (Invited Expert)</li>
-			<li>Mario Sánchez Prada (Samsung Electronics Co., Ltd. and Gnome Foundation)</li>
-			<li>Martin Schaus (SAP AG)</li>
-			<li>Doug Schepers (<abbr title="World Wide Web Consortium">W3C</abbr>)</li>
-			<li>Cynthia Shelly (Microsoft Corporation) </li>
-			<li>Joseph Scheuhammer (Invited Expert, Inclusive Design Research Centre, OCAD University) </li>
-			<li>Matthias Schmitt </li>
-			<li>Richard Schwerdtfeger (IBM, Knowbility)</li>
-			<li>Marc Silbey (Microsoft Corporation)</li>
-			<li>Leif Halvard Sili</li>
-			<li>Henri Sivonen (Mozilla)</li>
-			<li>Michael Smith (<abbr title="World Wide Web Consortium">W3C</abbr>)</li>
-			<li>Andi Snow-Weaver (IBM Corporation)</li>
-			<li>Ville Skyttä </li>
-			<li>Henny Swan (BBC)</li>
-			<li>Neil Soiffer (Design Science)</li>
-			<li>Vitaly Sourikov</li>
-			<li>Mike Squillace (IBM)</li>
-			<li>Maciej Stachowiak (Apple Inc.)</li>
-			<li>Christophe Strobbe</li>
-			<li>Suzanne Taylor (Pearson plc)</li>
-			<li>Terrill Thompson</li>
-			<li>David Todd</li>
-			<li>Gregg Vanderheiden (Invited Expert, Trace)</li>
-			<li>Anne van Kesteren</li>
-			<li>Léonie Watson (The Paciello Group, LLC)</li>
-			<li>Wen He (Tencent)</li>
-			<li>Wu Wei (<abbr title="World Wide Web Consortium">W3C</abbr> / RITT)</li>
-			<li>Ryan Williams (Oracle)</li>
-			<li>Tom Wlodkowski</li>
-			<li>Sam White (Apple Inc.)</li>
-			<li>Marco Zehe (Mozilla Foundation)</li>
-			<li>Gottfried Zimmermann (Invited Expert, Access Technologies Group)</li>
-		</ul>
-	</section>
-	<section class="section" id="ack_funders">
-		<h4 id="a-3-3-enabling-funders"><span class="secno">A.3.3 </span>Enabling funders<a class="self-link" aria-label="§" href="#ack_funders"></a></h4>
-		<p>This publication has been funded in part with U.S. Federal funds from the Department of Education, National Institute on Disability, Independent Living, and Rehabilitation Research (NIDILRR), initially under contract number ED-OSE-10-C-0067 and currently under contract number HHSP23301500054C. The content of this publication does not necessarily reflect the views or policies of the U.S. Department of Education, nor does mention of trade names, commercial products, or organizations imply endorsement by the U.S. Government.</p>
-	</section>
+    
+    <section id="acknowledgements" class="appendix">
+      <!--OddPage--><h2 id="c-acknowledgements"><span class="secno">C. </span>Acknowledgements<a class="self-link" aria-label="§" href="#acknowledgements"></a></h2>
+      <section id="major-contributors-to-version-1-1">
+        <h3 id="c-1-major-contributors-to-version-1-1"><span class="secno">C.1 </span>Major Contributors to Version 1.1<a class="self-link" aria-label="§" href="#major-contributors-to-version-1-1"></a></h3>
+        <p>
+          While <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Authoring Practices 1.1 is the work of the entire Authoring Practices Task Force and also benefits from many people throughout the open source community who both contribute significant work and provide valuable feedback,
+          special thanks goes to the following people who provided distinctly large portions of the content and code in version 1.1.
+        </p>
+        <ul>
+          <li>Jon Gunderson and Nicholas Hoyt  of the Division of Disability Resources and Education Services at the University of Illinois Urbana/Champaign and the students Max Foltz,  Sulaiman Sanaullah, Mark McCarthy, and Jinyuan Zhou for their contributions to the development of many of the design pattern examples.</li>
+          <li>Valerie Young of Bocoup and her sponsor, Facebook, for development of the example test framework and regressions tests for more than 50 examples.</li>
+        </ul>
+      </section>
+    	<section id="participants-active-in-the-aria-authoring-practices-task-force">
+    		<h3 id="c-2-participants-active-in-the-aria-authoring-practices-task-force"><span class="secno">C.2 </span>Participants active in the ARIA Authoring Practices Task Force<a class="self-link" aria-label="§" href="#participants-active-in-the-aria-authoring-practices-task-force"></a></h3>
+    		<ul>
+    			<li>Ann Abbott (Invited Expert)</li>
+    			<li>Shirisha Belusani (Microsoft Corporation)</li>
+    			<li>Curt Bellew (Oracle)</li>
+    			<li>Michiel Bijl (Invited Expert)</li>
+    			<li>Michael Cooper (<abbr title="World Wide Web Consortium">W3C</abbr>)</li>
+    			<li>Bryan Garaventa (Level Access)</li>
+    			<li>Jon Gunderson (University of Illinois at Urbana-Champaign)</li>
+    			<li>Hans Hillen (The Paciello Group, LLC)</li>
+    			<li>Matt King (Facebook)</li>
+    			<li>Jaeun Ku (University of Illinois at Urbana-Champaign)</li>
+    			<li>Aaron Leventhal (Google)</li>
+    			<li>Mark McCarthy (University of Illinois at Urbana-Champaign)</li>
+    			<li>James Nurthen (Adobe)</li>
+    			<li>Evan Yamanishi (W. W. Norton)</li>
+    			<li>Valerie Young (Bocoup)</li>
+    		</ul>
+    	</section>
+    	<section id="other-commenters-and-contributors-to-version-1-1">
+    		<h3 id="c-3-other-commenters-and-contributors-to-version-1-1"><span class="secno">C.3 </span>Other commenters and contributors to Version 1.1<a class="self-link" aria-label="§" href="#other-commenters-and-contributors-to-version-1-1"></a></h3>
+    		<ul>
+    			<li>Vyacheslav Aristov</li>
+    			<li>J. Renée Beach</li>
+    			<li>Kasper Christensen</li>
+    			<li>Gerard K. Cohen</li>
+    			<li>Anne-Gaelle Colom</li>
+    			<li>Kevin Coughlin</li>
+    			<li>Cameron Cundiff</li>
+    			<li>Manish Dahamiwal</li>
+    			<li>Gilmore Davidson</li>
+    			<li>Boris Dušek</li>
+    			<li>Michael Fairchild</li>
+    			<li>Jeremy Felt</li>
+    			<li>Rob Fentress</li>
+    			<li>Geppy</li>
+    			<li>Tatiana Iskandar</li>
+    			<li>Patrick Lauke</li>
+    			<li>Marek Lewandowski</li>
+    			<li>Carolyn MacLeod</li>
+    			<li>Dan Matthew</li>
+    			<li>Shane McCarron</li>
+    			<li>Victor Meyer</li>
+    			<li>Jonathan Neal</li>
+    			<li>Philipp Rudloff</li>
+    			<li>Joseph Scheuhammer</li>
+    			<li>Nick Schonni</li>
+    			<li>thomascorthals</li>
+    			<li>Christopher Tryens</li>
+    		</ul>
+    	</section>
+    	<section class="section" id="ack_funders">
+	<h3 id="c-4-enabling-funders"><span class="secno">C.4 </span>Enabling funders<a class="self-link" aria-label="§" href="#ack_funders"></a></h3>
+	<p>This publication has been funded in part with U.S. Federal funds from the Department of Education, National Institute on Disability, Independent Living, and Rehabilitation Research (NIDILRR), initially under contract number ED-OSE-10-C-0067 and currently under contract number HHSP23301500054C. The content of this publication does not necessarily reflect the views or policies of the U.S. Department of Education, nor does mention of trade names, commercial products, or organizations imply endorsement by the U.S. Government.</p>
 </section>
 
-  </section>
+    </section>
 
 
 <section id="references" class="appendix">
-      <!--OddPage--><h2 id="b-references"><span class="secno">B. </span>References<a class="self-link" aria-label="§" href="#references"></a></h2>
+      <!--OddPage--><h2 id="d-references"><span class="secno">D. </span>References<a class="self-link" aria-label="§" href="#references"></a></h2>
       
     <section id="normative-references">
-        <h3 id="b-1-normative-references"><span class="secno">B.1 </span>Normative references<a class="self-link" aria-label="§" href="#normative-references"></a></h3>
+        <h3 id="d-1-normative-references"><span class="secno">D.1 </span>Normative references<a class="self-link" aria-label="§" href="#normative-references"></a></h3>
       <dl class="bibliography">
-        <dt id="bib-html-aam">[HTML-AAM]</dt><dd><a href="https://www.w3.org/TR/html-aam-1.0/"><cite>HTML Accessibility API Mappings 1.0</cite></a>. Steve Faulkner; Alexander Surkov; Scott O'Hara; Bogdan Brinza; Jason Kiss; Cynthia Shelly. W3C. 14 December 2018. W3C Working Draft. URL: <a href="https://www.w3.org/TR/html-aam-1.0/">https://www.w3.org/TR/html-aam-1.0/</a></dd><dt id="bib-wai-aria">[WAI-ARIA]</dt><dd><a href="https://www.w3.org/TR/wai-aria-1.1/"><cite>Accessible Rich Internet Applications (WAI-ARIA) 1.1</cite></a>. Joanmarie Diggs; Shane McCarron; Michael Cooper; Richard Schwerdtfeger; James Craig. W3C. 14 December 2017. W3C Recommendation. URL: <a href="https://www.w3.org/TR/wai-aria-1.1/">https://www.w3.org/TR/wai-aria-1.1/</a></dd>
+        <dt id="bib-html-aam">[HTML-AAM]</dt><dd><a href="https://www.w3.org/TR/html-aam-1.0/"><cite>HTML Accessibility API Mappings 1.0</cite></a>. Steve Faulkner; Alexander Surkov; Scott O'Hara; Bogdan Brinza; Jason Kiss; Cynthia Shelly. W3C. 24 January 2019. W3C Working Draft. URL: <a href="https://www.w3.org/TR/html-aam-1.0/">https://www.w3.org/TR/html-aam-1.0/</a></dd><dt id="bib-wai-aria">[WAI-ARIA]</dt><dd><a href="https://www.w3.org/TR/wai-aria-1.1/"><cite>Accessible Rich Internet Applications (WAI-ARIA) 1.1</cite></a>. Joanmarie Diggs; Shane McCarron; Michael Cooper; Richard Schwerdtfeger; James Craig. W3C. 14 December 2017. W3C Recommendation. URL: <a href="https://www.w3.org/TR/wai-aria-1.1/">https://www.w3.org/TR/wai-aria-1.1/</a></dd>
       </dl></section></section><p role="navigation" id="back-to-top"><a href="#title"><abbr title="Back to Top">↑</abbr></a></p><script src="https://www.w3.org/scripts/TR/2016/fixup.js"></script></body></html>
