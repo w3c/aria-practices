@@ -10,14 +10,22 @@
 <script src="../../js/examples.js"></script>
 <script src="../../js/highlight.pack.js"></script>
 <script src="../../js/app.js"></script>
-<script src="../../js/utils.js" type="text/javascript"></script>
+<script src="../../js/utils.js"></script>
 
 <!--  js and css for this example. -->
 <link href="css/combobox-1.1.css" rel="stylesheet">
-<script src="js/listbox-combobox.js" type="text/javascript"></script>
-<script src="js/listbox-combo-example.js" type="text/javascript"></script>
+<script src="js/listbox-combobox.js"></script>
+<script src="js/listbox-combo-example.js"></script>
 </head>
 <body>
+  <nav aria-label="Related Links" class="feedback">
+    <ul>
+      <li><a href="../../../#browser_and_AT_support">Browser and Assistive Technology Support</a></li>
+      <li><a href="https://github.com/w3c/aria-practices/issues/new">Report Issue</a></li>
+      <li><a href="https://github.com/w3c/aria-practices/projects/7">Related Issues</a></li>
+      <li><a href="../../../#combobox">Design Pattern</a></li>
+    </ul>
+  </nav>
   <main>
     <h1>ARIA 1.1 Combobox with Listbox Popup Examples</h1>
     <p>
@@ -38,13 +46,13 @@
       <li><a href="../aria1.0pattern/combobox-autocomplete-list.html">ARIA 1.0 Combobox with List Autocomplete</a>: A combobox that demonstrates the autocomplete behavior known as <q>list with manual selection</q> and uses the ARIA 1.0 implementation pattern.</li>
       <li><a href="../aria1.0pattern/combobox-autocomplete-none.html">ARIA 1.0 Combobox Without Autocomplete</a>: A combo box that demonstrates the behavior associated with <code>aria-autocomplete=none</code> and uses the ARIA 1.0 implementation pattern.</li>
     </ul>
-  
+
     <section>
       <h2 id="ex_label">Examples</h2>
       <h3 id="ex1_label">Example 1: List Autocomplete with Manual Selection</h3>
       <div role="separator" id="ex1_start_sep" aria-labelledby="ex1_start_sep ex1_label" aria-label="Start of"></div>
       <div id="ex1">
-        <label id="ex1-label" class="combobox-label">
+        <label for="ex1-input" id="ex1-label" class="combobox-label">
           Choice 1 Fruit or Vegetable
         </label>
         <div class="combobox-wrapper">
@@ -56,7 +64,6 @@
             <input type="text"
               aria-autocomplete="list"
               aria-controls="ex1-listbox"
-              aria-labelledby="ex1-label"
               id="ex1-input">
           </div>
           <ul
@@ -85,7 +92,7 @@
           Choice 2 Fruit or Vegetable
         </label>
         <div class="combobox-wrapper">
-          <div role="combobox" 
+          <div role="combobox"
             aria-expanded="false"
             aria-owns="ex2-listbox"
             aria-haspopup="listbox"
@@ -162,8 +169,8 @@
     <section>
       <h2 id="kbd_label">Keyboard Support</h2>
       <p>
-      The example comboboxes on this page implement the following keyboard interface. 
-        Other variations and options for the keyboard interface are described in the  
+      The example comboboxes on this page implement the following keyboard interface.
+        Other variations and options for the keyboard interface are described in the
         <a href="../../../#combobox_kbd_interaction">Keyboard Interaction section of the combobox design pattern.</a>
       </p>
       <h3 id="kbd_label_textbox">Textbox</h3>
@@ -175,7 +182,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr data-test-id="textbox-key-down-arrow">
             <th><kbd>Down Arrow</kbd></th>
             <td>
               <ul>
@@ -185,20 +192,20 @@
                     <li>Examples 2 and 3: Moves focus to the second suggested value. Note that the first value is automatically selected.</li>
                   </ul>
                 </li>
-                <li>If the listbox is not displayed, in example 3 only, opens the listbox and moves focus to the first value.</li>           
+                <li>If the listbox is not displayed, in example 3 only, opens the listbox and moves focus to the first value.</li>
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="textbox-key-up-arrow">
             <th><kbd>Up Arrow</kbd></th>
             <td>
               <ul>
                 <li>If the listbox is displayed, moves focus to the last suggested value.</li>
-                <li>If the listbox is not displayed, in example 3 only, opens the listbox and moves focus to the last value.</li>           
+                <li>If the listbox is not displayed, in example 3 only, opens the listbox and moves focus to the last value.</li>
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="key-enter">
             <th><kbd>Enter</kbd></th>
             <td>
               <ul>
@@ -212,7 +219,7 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="textbox-key-escape">
             <th><kbd>Escape</kbd></th>
             <td>
               <ul>
@@ -221,8 +228,8 @@
               </ul>
             </td>
           </tr>
-          <tr>
-            <th><li>Standard single line text editing keys</th>
+          <tr data-test-id="standard-single-line-editing-keys">
+            <th>Standard single line text editing keys</th>
             <td>
               <ul>
                 <li>Keys used for cursor movement and text manipulation, such as <kbd>Delete</kbd> and <kbd>Shift + Right Arrow</kbd>.</li>
@@ -236,7 +243,7 @@
       <p>
         <strong>NOTE:</strong> When visual focus is in the listbox, DOM focus remains on the textbox and the value of <code>aria-activedescendant</code> on the textbox is set to a value that refers to the listbox option that is visually indicated as focused.
         Where the following descriptions of keyboard commands mention focus, they are referring to the visual focus indicator.
-        For more information about this focus management technique, see 
+        For more information about this focus management technique, see
         <a href="../../../#kbd_focus_activedescendant">Using aria-activedescendant to Manage Focus.</a>
       </p>
       <table aria-labelledby="kbd_label_listbox kbd_label" class="def">
@@ -247,7 +254,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr data-test-id="key-enter">
             <th><kbd>Enter</kbd></th>
             <td>
               <ul>
@@ -257,7 +264,7 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="listbox-key-escape">
             <th><kbd>Escape</kbd></th>
             <td>
               <ul>
@@ -267,7 +274,7 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="listbox-key-down-arrow">
             <th><kbd>Down Arrow</kbd></th>
             <td>
               <ul>
@@ -277,7 +284,7 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="listbox-key-up-arrow">
             <th><kbd>Up Arrow</kbd></th>
             <td>
               <ul>
@@ -287,23 +294,23 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="listbox-key-right-arrow">
             <th><kbd>Right Arrow</kbd></th>
             <td>Moves focus to the textbox and moves the editing cursor one character to the right.</td>
           </tr>
-          <tr>
+          <tr data-test-id="listbox-key-left-arrow">
             <th><kbd>Left Arrow</kbd></th>
-            <td>Moves focus to the textbox and moves the editing cursor one character to the leftt.</td>
+            <td>Moves focus to the textbox and moves the editing cursor one character to the left.</td>
           </tr>
-          <tr>
+          <tr data-test-id="listbox-key-home">
             <th><kbd>Home</kbd></th>
             <td>Moves focus to the textbox and places the editing cursor at the beginning of the field.</td>
           </tr>
-          <tr>
+          <tr data-test-id="listbox-key-end">
             <th><kbd>End</kbd></th>
             <td>Moves focus to the textbox and places the editing cursor at the end of the field.</td>
           </tr>
-          <tr>
+          <tr data-test-id="listbox-characters">
             <th>Printable Characters</th>
             <td>
               <ul>
@@ -319,8 +326,8 @@
     <section>
       <h2 id="rps_label">Role, Property, State, and Tabindex Attributes</h2>
       <p>
-        The example comboboxes on this page implement the following ARIA roles, states, and properties. 
-        Information about other ways of applying ARIA roles, states, and properties is available in the    
+        The example comboboxes on this page implement the following ARIA roles, states, and properties.
+        Information about other ways of applying ARIA roles, states, and properties is available in the
         <a href="../../../#combobox_roles_states_props">Roles, States, and Properties section of the combobox design pattern.</a>
       </p>
       <h3 id="rps_label_combobox">Combobox Container</h3>
@@ -334,20 +341,25 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr data-test-id="combobox-role">
             <th scope="row">
               <code>combobox</code>
             </th>
             <td></td>
-            <td><code>div</</code></td>
+            <td><code>div</code></td>
             <td>
               <ul>
                 <li>Identifies the element as a combobox.</li>
-                <li>Note: The primary difference between the ARIA 1.0 pattern and the ARIA 1.1 pattern is the placement of the <code>combobox</code> role.</li>
+                <li>Note:
+                  <ul>
+                    <li>Unlike this ARIA 1.1 combobox, an ARIA 1.0 pattern would have the <code>combobox</code> role on the textbox input instead of a parent container of the textbox.</li>
+                    <li>The ARIA 1.1 pattern demonstrated on this page enables screen reader users to perceive both the input and the popup when using reading mode (see note below about aria-owns).</li>
+                  </ul>
+                </li>
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="aria-haspopup">
             <td></td>
             <th scope="row">
               <code>aria-haspopup=<q>listbox</q></code>
@@ -360,15 +372,20 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="aria-owns">
             <td></td>
             <th scope="row">
               <code>aria-owns=<q>IDREF</q></code>
             </th>
             <td><code>div</code></td>
-            <td>Identifies the element that serves as the listbox popup.</td>
+            <td>
+              <ul>
+                <li>Refers to the element that serves as the listbox popup.</li>
+                <li>Tells browsers to arrange the screen reader reading order so the listbox, when it is visible,  immediately follows the other elements inside the combobox, regardless of where the listbox element is in the DOM.</li>
+              </ul>
+            </td>
           </tr>
-          <tr>
+          <tr data-test-id="aria-expanded">
             <td></td>
             <th scope="row">
               <code>aria-expanded=<q>false</q></code>
@@ -376,7 +393,7 @@
             <td><code>div</code></td>
             <td>Indicates that the popup element <strong>is not</strong> displayed.</td>
           </tr>
-          <tr>
+          <tr data-test-id="aria-expanded">
             <td></td>
             <th scope="row">
               <code>aria-expanded=<q>true</q></code>
@@ -397,15 +414,20 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr data-test-id="textbox-id">
             <td></td>
             <th scope="row">
-              <code>aria-labelledby=<q>IDREF</q></code>
+              <code>id="string"</code>
             </th>
             <td><code>input[type="text"]</code></td>
-            <td>Provides a label for the textbox element of the combobox.</td>
+            <td>
+              <ul>
+                <li>Referenced by <code>for</code> attribute of <code>label</code> element to provide an accessible label.</li>
+                <li>Recommended labeling method for HTML input elements so clicking label focuses input.</li>
+              </ul>
+            </td>
           </tr>
-          <tr>
+          <tr data-test-id="aria-autocomplete-list">
             <td></td>
             <th scope="row">
               <code>aria-autocomplete=<q>list</q></code>
@@ -413,7 +435,7 @@
             <td><code>input[type="text"]</code></td>
             <td>Examples 1 and 2: Indicates that the autocomplete behavior of the text input is to suggest a list of possible values in a popup and that the suggestions are related to the string that is present in the textbox.</td>
           </tr>
-          <tr>
+          <tr data-test-id="aria-autocomplete-both">
             <td></td>
             <th scope="row">
               <code>aria-autocomplete=<q>both</q></code>
@@ -421,7 +443,7 @@
             <td><code>input[type="text"]</code></td>
             <td>Example 3: Indicates that the autocomplete behavior of the text input is to both show an inline completion string and suggest a list of possible values in a popup where the suggestions are related to the string that is present in the textbox.</td>
           </tr>
-          <tr>
+          <tr data-test-id="textbox-aria-controls">
             <td></td>
             <th scope="row">
               <code>aria-controls=<q>IDREF</q></code>
@@ -430,11 +452,16 @@
             <td>
               <ul>
                 <li>Identifies the popup element that lists suggested values.</li>
-                <li>Note: In the ARIA 1.0 combobox pattern, the textbox uses <code>aria-owns</code> instead of <code>aria-controls</code>.</li>
+                <li>Note:
+                  <ul>
+                    <li>In the ARIA 1.0 combobox pattern, the textbox has <code>aria-owns</code> instead of <code>aria-controls</code>.</li>
+                    <li>In this ARIA 1.1 pattern, <code>aria-owns</code> is instead on the parent container so the popup element is a sibling of the textbox instead of a child of the textbox, making it perceivable by screen reader users as an element adjacent to the textbox when using a reading cursor or touch interface.</li>
+                  </ul>
+                </li>
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="textbox-aria-activedescendant">
             <td></td>
             <th scope="row">
               <code>aria-activedescendant=<q>IDREF</q></code>
@@ -446,7 +473,7 @@
                 <li>When navigation keys, such as <kbd>Down Arrow</kbd>, are pressed, the JavaScript changes the value.</li>
                 <li>Enables assistive technologies to know which element the application regards as focused while DOM focus remains on the <code>input</code> element.</li>
                 <li>
-                  For more information about this focus management technique, see 
+                  For more information about this focus management technique, see
                   <a href="../../../#kbd_focus_activedescendant">Using aria-activedescendant to Manage Focus.</a>
                 </li>
               </ul>
@@ -457,7 +484,7 @@
       <h3 id="rps_label_listbox">Listbox Popup</h3>
       <table aria-labelledby="rps_label_listbox rps_label" class="data attributes">
         <thead>
-          <tr>
+          <tr data-test-id="">
             <th scope="col">Role</th>
             <th scope="col">Attribute</th>
             <th scope="col">Element</th>
@@ -465,7 +492,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr data-test-id="listbox-role">
             <th scope="row">
               <code>listbox</code>
             </th>
@@ -475,7 +502,7 @@
             </td>
             <td>Identifies the <code>ul</code> element as a <code>listbox</code>.</td>
           </tr>
-          <tr>
+          <tr data-test-id="listbox-aria-labelledby">
             <td></td>
             <th scope="row">
               <code>aria-labelledby=<q>IDREF</q></code>
@@ -483,7 +510,7 @@
             <td><code>ul</code></td>
             <td>Provides a label for the <code>listbox</code> element of the combobox.</td>
           </tr>
-          <tr>
+          <tr data-test-id="option-role">
             <th scope="row">
               <code>option</code>
             </th>
@@ -496,7 +523,7 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="option-aria-selected">
             <td></td>
             <th scope="row">
               <code>aria-selected=<q>true</q></code>
@@ -518,8 +545,8 @@
       <h2>Javascript and CSS Source Code</h2>
       <ul>
         <li>CSS: <a href="css/combobox-1.1.css" type="tex/css">combobox-1.1.css</a></li>
-        <li>Javascript: <a href="js/listbox-combobox.js" type="text/javascript">listbox-combobox.js</a></li>
-        <li>Javascript: <a href="js/listbox-combo-example.js" type="text/javascript">listbox-combo-example.js</a></li>
+        <li>Javascript: <a href="js/listbox-combobox.js">listbox-combobox.js</a></li>
+        <li>Javascript: <a href="js/listbox-combo-example.js">listbox-combo-example.js</a></li>
       </ul>
     </section>
 

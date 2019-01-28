@@ -20,6 +20,14 @@
 </head>
 
 <body>
+  <nav aria-label="Related Links" class="feedback">
+      <ul>
+        <li><a href="../../../#browser_and_AT_support">Browser and Assistive Technology Support</a></li>
+        <li><a href="https://github.com/w3c/aria-practices/issues/new">Report Issue</a></li>
+        <li><a href="https://github.com/w3c/aria-practices/projects/5">Related Issues</a></li>
+        <li><a href="../../../#menu">Design Pattern</a></li>
+      </ul>
+    </nav>
   <main>
   <h1>Navigation Menubar Example</h1>
   <p>
@@ -42,7 +50,7 @@
     <div id="ex1">
       <nav aria-label="Mythical University">
         <ul id="menubar1" role="menubar" aria-label="Mythical University">
-          <li>
+          <li role="none">
             <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">About</a>
             <ul role="menu" aria-label="About">
               <li role="none">
@@ -65,7 +73,7 @@
                   </li>
                 </ul>
               </li>
-              <li>
+              <li role="none">
                 <a role="menuitem" href="#" aria-haspopup="true" aria-expanded="false">Campus
                   Tours</a>
                 <ul role="menu" aria-label="Campus Tours">
@@ -82,7 +90,7 @@
               </li>
             </ul>
           </li>
-          <li>
+          <li role="none">
             <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">Admissions</a>
             <ul role="menu" aria-label="Admissions">
               <li role="none">
@@ -117,7 +125,7 @@
               </li>
             </ul>
           </li>
-          <li>
+          <li role="none">
             <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">Academics</a>
             <ul role="menu" aria-label="Academics">
               <li role="none">
@@ -143,7 +151,7 @@
                 <a role="menuitem" href="mb-academics.html#academic">Academic Calendar</a>
               </li>
               <li role="none">
-                <a role="menuitem" href="mb-academics.html#tanscripts">Transscripts</a>
+                <a role="menuitem" href="mb-academics.html#tanscripts">Transcripts</a>
               </li>
             </ul>
           </li>
@@ -178,13 +186,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr data-test-id="menubar-space-or-enter">
           <th>
             <kbd>Space</kbd><br><kbd>Enter</kbd>
           </th>
           <td>Opens submenu and moves focus to first item in the submenu.</td>
         </tr>
-        <tr>
+        <tr data-test-id="menubar-right-arrow">
           <th>
             <kbd>Right Arrow</kbd>
           </th>
@@ -195,7 +203,7 @@
             </ul>
           </td>
         </tr>
-        <tr>
+        <tr data-test-id="menubar-left-arrow">
           <th>
             <kbd>Left Arrow</kbd>
           </th>
@@ -206,31 +214,31 @@
             </ul>
           </td>
         </tr>
-        <tr>
+        <tr data-test-id="menubar-down-arrow">
           <th>
             <kbd>Down Arrow</kbd>
           </th>
           <td>Opens submenu and moves focus to first item in the submenu.</td>
         </tr>
-        <tr>
+        <tr data-test-id="menubar-up-arrow">
           <th>
             <kbd>Up Arrow</kbd>
           </th>
           <td>Opens submenu and moves focus to last item in the submenu.</td>
         </tr>
-        <tr>
+        <tr data-test-id="menubar-home">
           <th>
             <kbd>Home</kbd>
           </th>
           <td>Moves focus to first item in the menubar.</td>
         </tr>
-        <tr>
+        <tr data-test-id="menubar-end">
           <th>
             <kbd>End</kbd>
           </th>
           <td>Moves focus to last item in the menubar.</td>
         </tr>
-        <tr>
+        <tr data-test-id="menubar-character">
           <th>
             <kbd>Character</kbd>
           </th>
@@ -252,7 +260,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr data-test-id="submenu-space-or-enter">
           <th>
             <kbd>Space</kbd><br><kbd>Enter</kbd>
           </th>
@@ -263,7 +271,7 @@
             </ul>
           </td>
         </tr>
-        <tr>
+        <tr data-test-id="submenu-escape">
           <th>
             <kbd>Escape</kbd>
           </th>
@@ -274,7 +282,7 @@
             </ul>
           </td>
         </tr>
-        <tr>
+        <tr data-test-id="submenu-right-arrow">
           <th>
             <kbd>Right Arrow</kbd>
           </th>
@@ -291,7 +299,7 @@
             </ul>
           </td>
         </tr>
-        <tr>
+        <tr data-test-id="submenu-left-arrow">
           <th>
             <kbd>Left Arrow</kbd>
           </th>
@@ -307,7 +315,7 @@
             </ul>
           </td>
         </tr>
-        <tr>
+        <tr data-test-id="submenu-down-arrow">
           <th>
             <kbd>Down Arrow</kbd>
           </th>
@@ -318,7 +326,7 @@
             </ul>
           </td>
         </tr>
-        <tr>
+        <tr data-test-id="submenu-up-arrow">
           <th>
             <kbd>Up Arrow</kbd>
           </th>
@@ -329,19 +337,19 @@
             </ul>
           </td>
         </tr>
-        <tr>
+        <tr data-test-id="submenu-home">
           <th>
             <kbd>Home</kbd>
           </th>
           <td>Moves focus to the first item in the submenu.</td>
         </tr>
-        <tr>
+        <tr data-test-id="submenu-end">
           <th>
             <kbd>End</kbd>
           </th>
           <td>Moves focus to the last item in the submenu.</td>
         </tr>
-        <tr>
+        <tr data-test-id="submenu-character">
           <th>
             <kbd>Character</kbd>
           </th>
@@ -369,7 +377,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr data-test-id="menubar-role">
           <th>
             <code>menubar</code>
           </th>
@@ -384,7 +392,7 @@
             </ul>
           </td>
         </tr>
-        <tr>
+        <tr data-test-id="menubar-aria-label">
           <td></td>
           <th>
             <code>aria-label=&quot;<em>string</em>&quot;
@@ -396,14 +404,14 @@
           <td>
             <ul>
               <li>
-                Defines an acessible name for the <code>menubar</code>.
+                Defines an accessible name for the <code>menubar</code>.
               </li>
               <li>Helps assistive technology users understand the purpose of the menubar and
                 distinguish it from any other menubars or similar elements on the page.</li>
             </ul>
           </td>
         </tr>
-        <tr>
+        <tr data-test-id="menuitem-role">
           <th>
             <code>menuitem</code>
           </th>
@@ -418,7 +426,7 @@
             </ul>
           </td>
         </tr>
-        <tr>
+        <tr data-test-id="menuitem-tabindex">
           <td></td>
           <th>
             <code>tabindex=&quot;-1&quot;</code>
@@ -430,7 +438,7 @@
             Makes the <code>a</code> element keyboard focusable, but <strong>not</strong> part of the tab sequence.
           </td>
         </tr>
-        <tr>
+        <tr data-test-id="menuitem-tabindex">
           <td></td>
           <th>
             <code>tabindex=&quot;0&quot;</code>
@@ -447,7 +455,7 @@
             </ul>
           </td>
         </tr>
-        <tr>
+        <tr data-test-id="menuitem-aria-haspopup">
           <td></td>
           <th>
             <code>aria-haspopup=&quot;true&quot;</code>
@@ -457,7 +465,7 @@
           </td>
           <td>Indicates the menuitem has a submenu.</td>
         </tr>
-        <tr>
+        <tr data-test-id="menuitem-aria-expanded">
           <td></td>
           <th>
             <code>aria-expanded=&quot;true&quot;</code>
@@ -465,9 +473,9 @@
           <td>
             <code>a</code>
           </td>
-          <td>Indicates the submenu is open. (<strong>See note below.</strong>)</td>
+          <td>Indicates the submenu is open.</td>
         </tr>
-        <tr>
+        <tr data-test-id="menuitem-aria-expanded">
           <td></td>
           <th>
             <code>aria-expanded=&quot;false&quot;</code>
@@ -475,9 +483,9 @@
           <td>
             <code>a</code>
           </td>
-          <td>Indicates the submenu is closed. (<strong>See note below.</strong>)</td>
+          <td>Indicates the submenu is closed.</td>
         </tr>
-        <tr>
+        <tr data-test-id="none-role">
           <th>
             <code>none</code>
           </th>
@@ -505,7 +513,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr data-test-id="menu-role">
           <th>
             <code>menu</code>
           </th>
@@ -515,7 +523,7 @@
           </td>
           <td>Identifies the element as a menu container for a set of menu items.</td>
         </tr>
-        <tr>
+        <tr data-test-id="menu-aria-label">
           <td></td>
           <th>
             <code>aria-label=&quot;<em>string</em>&quot;
@@ -527,14 +535,14 @@
           <td>
             <ul>
               <li>
-                Defines an acessible name for the <code>menu</code>.
+                Defines an accessible name for the <code>menu</code>.
               </li>
               <li>Helps assistive technology users understand the purpose of the menu and
                 distinguish it from any other menu or similar elements (e.g. menubar) on the page.</li>
             </ul>
           </td>
         </tr>
-        <tr>
+        <tr data-test-id="sub-menuitem-role">
           <th>
             <code>menuitem</code>
           </th>
@@ -549,7 +557,7 @@
             </ul>
           </td>
         </tr>
-        <tr>
+        <tr data-test-id="sub-menuitem-tabindex">
           <td></td>
           <th>
             <code>tabindex=&quot;-1&quot;</code>
@@ -559,7 +567,7 @@
           </td>
           <td>Keeps the <code>a</code> element focusable but removes it from the <kbd>Tab</kbd> sequence.</td>
         </tr>
-        <tr>
+        <tr data-test-id="sub-menuitem-aria-haspopup">
           <td></td>
           <th>
             <code>aria-haspopup=&quot;true&quot;</code>
@@ -569,7 +577,7 @@
           </td>
           <td>Indicates the menu item has a submenu.</td>
         </tr>
-        <tr>
+        <tr data-test-id="sub-menuitem-aria-expanded">
           <td></td>
           <th>
             <code>aria-expanded=&quot;true&quot;</code>
@@ -577,9 +585,9 @@
           <td>
             <code>a</code>
           </td>
-          <td>Indicates the submenu is open. (<strong>See note below.</strong>)</td>
+          <td>Indicates the submenu is open.</td>
         </tr>
-        <tr>
+        <tr data-test-id="sub-menuitem-aria-expanded">
           <td></td>
           <th>
             <code>aria-expanded=&quot;false&quot;</code>
@@ -587,9 +595,9 @@
           <td>
             <code>a</code>
           </td>
-          <td>Indicates the submenu is closed. (<strong>See note below.</strong>)</td>
+          <td>Indicates the submenu is closed.</td>
         </tr>
-        <tr>
+        <tr data-test-id="sub-none-role">
           <th>
             <code>none</code>
           </th>
@@ -606,15 +614,6 @@
         </tr>
       </tbody>
     </table>
-    <h3>Note</h3>
-    <p>
-      Currently, using aria-expanded on elements with role menuitem triggers HTML validation errors because the ARIA specification does not yet support doing so.
-      The ARIA working group plans to resolve this issue in the next version of the specification.
-      Until a version of ARIA that resolves
-      <a href="https://github.com/w3c/aria/issues/454">the issue</a>
-      becomes a W3C recommendation, it is safe to ignore these validation errors.
-      Alternatively, since only a few browser and assistive technology combinations exploit this feature of the pattern, it can be omitted from implementations.
-    </p>
   </section>
 
   <section>

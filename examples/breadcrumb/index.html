@@ -14,6 +14,14 @@
     <link href="css/breadcrumb.css" rel="stylesheet">
   </head>
   <body>
+  <nav aria-label="Related Links" class="feedback">
+    <ul>
+      <li><a href="../../#browser_and_AT_support">Browser and Assistive Technology Support</a></li>
+      <li><a href="https://github.com/w3c/aria-practices/issues/new">Report Issue</a></li>
+      <li><a href="https://github.com/w3c/aria-practices/projects/21">Related Issues</a></li>
+      <li><a href="../../#breadcrumb">Design Pattern</a></li>
+    </ul>
+  </nav>
     <main>
     <h1>Breadcrumb Example</h1>
     <p>The following example demonstrates the <a href="../../#breadcrumb">breadcrumb design pattern</a>.</p>
@@ -75,7 +83,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr data-test-id="aria-label">
             <td></td>
             <th scope="row">
               <code>aria-label=<q>Breadcrumb</q></code>
@@ -87,7 +95,7 @@
               Provides a label that describes the type of navigation provided in the <code>nav</code> element.
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="aria-current">
             <td></td>
             <th scope="row">
               <code>aria-current=<q>page</q></code>

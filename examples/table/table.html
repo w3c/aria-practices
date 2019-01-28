@@ -15,12 +15,19 @@
 <link href="css/table.css" rel="stylesheet">
 </head>
 <body>
+  <nav aria-label="Related Links" class="feedback">
+    <ul>
+      <li><a href="../../#browser_and_AT_support">Browser and Assistive Technology Support</a></li>
+      <li><a href="https://github.com/w3c/aria-practices/issues/new">Report Issue</a></li>
+      <li><a href="https://github.com/w3c/aria-practices/projects/16">Related Issues</a></li>
+      <li><a href="../../#table">Design Pattern</a></li>
+    </ul>
+  </nav>
   <main>
   <h1>Table Example</h1>
   <p>
-    <strong>NOTE:</strong> This example page is not complete and is not yet ready for review.
-    Work on this page is tracked in
-    <a href="https://github.com/w3c/aria-practices/issues/242">issue 242.</a>
+    <strong>NOTE:</strong> Please provide feedback on this example page in
+    <a href="https://github.com/w3c/aria-practices/issues/566">issue 566.</a>
   </p>
   <p>
     The below example illustrates an implementation of the WAI-ARIA
@@ -61,6 +68,18 @@
             <span role="cell">Acme, Inc.</span>
             <span role="cell">123 Broad St.</span>
           </div>
+          <div role="row">
+            <span role="cell">Ralph</span>
+            <span role="cell">Jefferson</span>
+            <span role="cell">XYZ, Inc.</span>
+            <span role="cell">456 Main St.</span>
+          </div>
+          <div role="row">
+            <span role="cell">Nancy</span>
+            <span role="cell">Jensen</span>
+            <span role="cell">XYZ, Inc.</span>
+            <span role="cell">456 Main St.</span>
+          </div>
         </div>
       </div>
     </div>
@@ -84,13 +103,13 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
+        <tr data-test-id="table-role">
           <th scope="row"><code>table</code></th>
           <td></td>
           <td><code>div</code></td>
           <td>Identifies the element containing the table structure.</td>
         </tr>
-        <tr>
+        <tr data-test-id="table-aria-label">
           <td></td>
           <th scope="row">
             <code>aria-label=&quot;Students&quot;</code>
@@ -98,7 +117,7 @@
           <td><code>div</code></td>
           <td>Provides an accessible name for the table.</td>
         </tr>
-        <tr>
+        <tr data-test-id="table-aria-describedby">
           <td></td>
           <th scope="row">
             <code>aria-describedby=&quot;IDREF&quot;</code>
@@ -106,7 +125,7 @@
           <td><code>div</code></td>
           <td>Refers to the element that serves as the caption for the table.</td>
         </tr>
-        <tr>
+        <tr data-test-id="rowgroup-role">
           <th scope="row"><code>rowgroup</code></th>
           <td></td>
           <td><code>div</code></td>
@@ -117,19 +136,19 @@
             </ul>
           </td>
         </tr>
-        <tr>
+        <tr data-test-id="row-role">
           <th scope="row"><code>row</code></th>
           <td></td>
           <td><code>div</code></td>
           <td>Identifies each element that contains the cells for a row.</td>
         </tr>
-        <tr>
+        <tr data-test-id="columnheader-role">
           <th scope="row"><code>columnheader</code></th>
           <td></td>
           <td><code>span</code></td>
           <td>Identifies elements that serve as a cell containing a column label.</td>
         </tr>
-        <tr>
+        <tr data-test-id="cell-role">
           <th scope="row"><code>cell</code></th>
           <td></td>
           <td><code>span</code></td>

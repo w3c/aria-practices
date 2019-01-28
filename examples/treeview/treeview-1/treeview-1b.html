@@ -17,6 +17,14 @@
     <script type="text/javascript" src="js/treeitemClick.js"></script>
   </head>
   <body>
+    <nav aria-label="Related Links" class="feedback">
+      <ul>
+        <li><a href="../../../#browser_and_AT_support">Browser and Assistive Technology Support</a></li>
+        <li><a href="https://github.com/w3c/aria-practices/issues/new">Report Issue</a></li>
+        <li><a href="https://github.com/w3c/aria-practices/projects/17">Related Issues</a></li>
+        <li><a href="../../../#TreeView">Design Pattern</a></li>
+      </ul>
+    </nav>
     <main>
       <h1>File Directory Treeview Example Using Declared Properties</h1>
       <p>
@@ -416,7 +424,7 @@
       <section>
         <h2>Terms Used to Describe Trees</h2>
         <p>
-          A tree item that can be expanded to reveal child items is called a parrent node.
+          A tree item that can be expanded to reveal child items is called a parent node.
           It is a closed node when the children are hidden and an open node when it is expanded.
           An end node does not have any children.
           For a complete list of terms and definitions, see the
@@ -434,7 +442,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr data-test-id="key-enter-or-space">
               <th><kbd>Enter</kbd><br>or <kbd>Space</kbd></th>
               <td>
                 <ul>
@@ -443,7 +451,7 @@
                 </ul>
               </td>
             </tr>
-            <tr>
+            <tr data-test-id="key-down-arrow">
               <th><kbd>Down arrow</kbd></th>
               <td>
                 <ul>
@@ -452,7 +460,7 @@
                 </ul>
               </td>
             </tr>
-            <tr>
+            <tr data-test-id="key-up-arrow">
               <th><kbd>Up arrow</kbd></th>
               <td>
                 <ul>
@@ -461,7 +469,7 @@
                 </ul>
               </td>
             </tr>
-            <tr>
+            <tr data-test-id="key-right-arrow">
               <th><kbd>Right Arrow</kbd></th>
               <td>
                 <ul>
@@ -471,7 +479,7 @@
                 </ul>
               </td>
             </tr>
-            <tr>
+            <tr data-test-id="key-left-arrow">
               <th><kbd>Left Arrow</kbd></th>
               <td>
                 <ul>
@@ -481,15 +489,15 @@
                 </ul>
               </td>
             </tr>
-            <tr>
+            <tr data-test-id="key-home">
               <th><kbd>Home</kbd></th>
               <td>Moves focus to first node without opening or closing a node.</td>
             </tr>
-            <tr>
+            <tr data-test-id="key-end">
               <th><kbd>End</kbd></th>
               <td>Moves focus to the last node that can be focused without expanding any nodes that are closed.</td>
             </tr>
-            <tr>
+            <tr data-test-id="key-character">
               <th><kbd>a-z, A-Z</kbd></th>
               <td>
                 <ul>
@@ -499,7 +507,7 @@
                 </ul>
               </td>
             </tr>
-            <tr>
+            <tr data-test-id="key-asterisk">
               <th>
                 <kbd>*</kbd> (asterisk)
               </th>
@@ -526,7 +534,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr data-test-id="tree-role">
               <th scope="row"><code>tree</code></th>
               <td></td>
               <td><code>ul</code></td>
@@ -534,26 +542,26 @@
                 <ul>
                   <li>Identifies the <code>ul</code> element as a <code>tree</code> widget.</li>
                   <li>
-                    Because focus movement in the tree is managed with a 
-                    <a href="../../../#kbd_roving_tabindex">roving tabindex</a>, 
+                    Because focus movement in the tree is managed with a
+                    <a href="../../../#kbd_roving_tabindex">roving tabindex</a>,
                     the <code>tree</code> container does not need a <code>tabindex</code> attribute.
                   </li>
                 </ul>
               </td>
             </tr>
-            <tr>
+            <tr data-test-id="tree-arialabelledby">
               <td></td>
               <th scope="row"><code>aria-labelledby=&quot;IDREF&quot;</code></th>
               <td><code>ul</code></td>
               <td>Refers to the heading element that contains the label that identifies the purpose of the <code>tree</code>.</td>
             </tr>
-            <tr>
+            <tr data-test-id="treeitem-role">
               <th scope="row"><code>treeitem</code></th>
               <td></td>
               <td><code>li</code></td>
               <td>Identifies the  element as a <code>treeitem</code>.</td>
             </tr>
-            <tr>
+            <tr data-test-id="treeitem-tabindex">
               <td></td>
               <th scope="row"><code>tabindex=&quot;-1&quot;</code></th>
               <td><code>li</code></td>
@@ -564,7 +572,7 @@
                  </ul>
               </td>
             </tr>
-            <tr>
+            <tr data-test-id="treeitem-tabindex">
               <td></td>
               <th scope="row"><code>tabindex=&quot;0&quot;</code></th>
               <td><code>li</code></td>
@@ -580,7 +588,7 @@
                  </ul>
               </td>
             </tr>
-            <tr>
+            <tr data-test-id="treeitem-aria-expanded">
               <td></td>
               <th scope="row"><code>aria-expanded=&quot;false&quot;</code></th>
               <td><code>li</code></td>
@@ -588,11 +596,11 @@
                 <ul>
                   <li>Applied only to <code>treeitem</code> elements that are parent nodes, i.e., they contain a <code>ul</code> with the <code>group</code> role.</li>
                   <li>Indicates the parent node is closed, i.e., the descendant elements are <strong>not</strong> visible.</li>
-                  <li>The visual indication of the collapsed state is synchronized by a CSS attribute selecter.</li>
+                  <li>The visual indication of the collapsed state is synchronized by a CSS attribute selector.</li>
                 </ul>
               </td>
             </tr>
-            <tr>
+            <tr data-test-id="treeitem-aria-expanded">
               <td></td>
               <th scope="row"><code>aria-expanded=&quot;true&quot;</code></th>
               <td><code>li</code></td>
@@ -600,17 +608,17 @@
               <ul>
                   <li>Applied only to <code>treeitem</code> elements that are parent nodes, i.e., they contain a <code>ul</code> with the <code>group</code> role.</li>
                   <li>Indicates the parent node is open, i.e., the descendant elements <strong>are</strong> visible.</li>
-                  <li>The visual indication of the expanded state is synchronized by a CSS attribute selecter.</li>
+                  <li>The visual indication of the expanded state is synchronized by a CSS attribute selector.</li>
                 </ul>
               </td>
             </tr>
-            <tr>
+            <tr data-test-id="treeitem-aria-setsize">
               <td></td>
               <th scope="row"><code>aria-setsize=&quot;<em>number</em>&quot;</code></th>
               <td><code>li</code></td>
               <td>Defines the number of <code>treeitem</code> elements in the set of <code>treeitem</code> elements that are in the same branch and at the same level within the hierarchy.</td>
             </tr>
-            <tr>
+            <tr data-test-id="treeitem-aria-posinset">
               <td></td>
               <th scope="row"><code>aria-posinset=&quot;<em>number</em>&quot;</code></th>
               <td><code>li</code></td>
@@ -621,7 +629,7 @@
                 </ul>
               </td>
             </tr>
-            <tr>
+            <tr data-test-id="treeitem-aria-level">
               <td></td>
               <th scope="row"><code>aria-level=&quot;<em>number</em>&quot;</code></th>
               <td><code>li</code></td>
@@ -633,7 +641,7 @@
                 </ul>
               </td>
             </tr>
-            <tr>
+            <tr data-test-id="role-group">
               <th scope="row"><code>group</code></th>
               <td></td>
               <td><code>ul</code></td>

@@ -19,6 +19,14 @@
 <script src="js/listboxOption.js" type="text/javascript"></script>
 </head>
 <body>
+  <nav aria-label="Related Links" class="feedback">
+    <ul>
+      <li><a href="../../../#browser_and_AT_support">Browser and Assistive Technology Support</a></li>
+      <li><a href="https://github.com/w3c/aria-practices/issues/new">Report Issue</a></li>
+      <li><a href="https://github.com/w3c/aria-practices/projects/7">Related Issues</a></li>
+      <li><a href="../../../#combobox">Design Pattern</a></li>
+    </ul>
+  </nav>
   <main>
     <h1>Legacy ARIA 1.0 Combobox without Autocomplete Example</h1>
     <p>
@@ -92,7 +100,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr data-test-id="textbox-key-down-arrow">
             <th><kbd>Down Arrow</kbd></th>
             <td>
               <ul>
@@ -101,7 +109,7 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="textbox-key-up-arrow">
             <th><kbd>Up Arrow</kbd></th>
             <td>
               <ul>
@@ -110,7 +118,7 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="textbox-key-enter">
             <th><kbd>Enter</kbd></th>
             <td>
               <ul>
@@ -119,12 +127,12 @@
               </ul>
             </td>
           </tr>
-          <tr>
-            <th><li>Standard single line text editing keys</th>
+          <tr data-test-id="standard-single-line-editing-keys">
+            <th>Standard single line text editing keys</th>
             <td>
               <ul>
                 <li>Keys used for cursor movement and text manipulation, such as <kbd>Delete</kbd> and <kbd>Shift + Right Arrow</kbd>.</li>
-                <li>An HTML <code>input</code> with <code>type=<q>text</q></code> is used for the textbox so the browser will provide platform-specific editing keys.</li>
+                <li>An HTML <code>input</code> with <code>type="text"</code> is used for the textbox so the browser will provide platform-specific editing keys.</li>
               </ul>
             </td>
           </tr>
@@ -145,7 +153,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr data-test-id="listbox-key-enter">
             <th><kbd>Enter</kbd></th>
             <td>
               <ul>
@@ -155,7 +163,7 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="listbox-key-escape">
             <th><kbd>Escape</kbd></th>
             <td>
               <ul>
@@ -165,7 +173,7 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="listbox-key-down-arrow">
             <th><kbd>Down Arrow</kbd></th>
             <td>
               <ul>
@@ -175,7 +183,7 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="listbox-key-up-arrow">
             <th><kbd>Up Arrow</kbd></th>
             <td>
               <ul>
@@ -185,23 +193,23 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="listbox-key-right-arrow">
             <th><kbd>Right Arrow</kbd></th>
             <td>Moves visual focus to the textbox and moves the editing cursor one character to the right.</td>
           </tr>
-          <tr>
+          <tr data-test-id="listbox-key-left-arrow">
             <th><kbd>Left Arrow</kbd></th>
-            <td>Moves visual focus to the textbox and moves the editing cursor one character to the leftt.</td>
+            <td>Moves visual focus to the textbox and moves the editing cursor one character to the left.</td>
           </tr>
-          <tr>
+          <tr data-test-id="listbox-key-home">
             <th><kbd>Home</kbd></th>
             <td>Moves visual focus to the textbox and places the editing cursor at the beginning of the field.</td>
           </tr>
-          <tr>
+          <tr data-test-id="listbox-key-end">
             <th><kbd>End</kbd></th>
             <td>Moves visual focus to the textbox and places the editing cursor at the end of the field.</td>
           </tr>
-          <tr>
+          <tr data-test-id="listbox-key-char">
             <th>Printable Characters</th>
             <td>
               <ul>
@@ -232,7 +240,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr data-test-id="combobox-role">
             <th scope="row">
               <code>combobox</code>
             </th>
@@ -245,26 +253,26 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="combobox-aria-autocomplete">
             <td></td>
             <th scope="row">
-              <code>aria-autocomplete=<q>none</q></code>
+              <code>aria-autocomplete="none"</code>
             </th>
             <td><code>input[type="text"]</code></td>
             <td>Indicates that the suggestions in the combobox popup are not values that complete the current textbox input.</td>
           </tr>
-          <tr>
+          <tr data-test-id="combobox-aria-haspopup">
             <td></td>
             <th scope="row">
-              <code>aria-haspopup=<q>true</q></code>
+              <code>aria-haspopup="true"</code>
             </th>
             <td><code>input[type="text"]</code></td>
             <td>Indicates that the combobox can popup another element to suggest values.</td>
           </tr>
-          <tr>
+          <tr data-test-id="combobox-aria-owns">
             <td></td>
             <th scope="row">
-              <code>aria-owns=<q>#IDREF</q></code>
+              <code>aria-owns="#IDREF"</code>
             </th>
             <td><code>input[type="text"]</code></td>
             <td>
@@ -274,26 +282,26 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="combobox-aria-expanded">
             <td></td>
             <th scope="row">
-              <code>aria-expanded=<q>false</q></code>
+              <code>aria-expanded="false"</code>
             </th>
             <td><code>input[type="text"]</code></td>
             <td>Indicates that the popup element <strong>is not</strong> displayed.</td>
           </tr>
-          <tr>
+          <tr data-test-id="combobox-aria-expanded">
             <td></td>
             <th scope="row">
-              <code>aria-expanded=<q>true</q></code>
+              <code>aria-expanded="true"</code>
             </th>
             <td><code>input[type="text"]</code></td>
             <td>Indicates that the popup element <strong>is</strong> displayed.</td>
           </tr>
-          <tr>
+          <tr data-test-id="combobox-aria-activedescendant">
             <td></td>
             <th scope="row">
-              <code>aria-activedescendant=<q>IDREF</q></code>
+              <code>aria-activedescendant="IDREF"</code>
             </th>
             <td><code>input[type="text"]</code></td>
             <td>
@@ -321,7 +329,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr data-test-id="listbox-role">
             <th scope="row">
               <code>listbox</code>
             </th>
@@ -331,15 +339,15 @@
             </td>
             <td>Identifies the <code>ul</code> element as a <code>listbox</code>.</td>
           </tr>
-          <tr>
+          <tr data-test-id="listbox-aria-label">
             <td></td>
             <th scope="row">
-              <code>aria-label=<q>Previous Searches<q></code>
+              <code>aria-label="Previous Searches"</code>
             </th>
             <td><code>ul</code></td>
             <td>Provides a label for the <code>listbox</code>.</td>
           </tr>
-          <tr>
+          <tr data-test-id="option-role">
             <th scope="row">
               <code>option</code>
             </th>
@@ -352,10 +360,10 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="option-aria-selected">
             <td></td>
             <th scope="row">
-              <code>aria-selected=<q>true</q></code>
+              <code>aria-selected="true"</code>
             </th>
             <td><code>li</code></td>
             <td>

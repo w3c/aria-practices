@@ -15,6 +15,14 @@
     <link href="../css/tabs.css" rel="stylesheet">
   </head>
   <body>
+    <nav aria-label="Related Links" class="feedback">
+      <ul>
+        <li><a href="../../../#browser_and_AT_support">Browser and Assistive Technology Support</a></li>
+        <li><a href="https://github.com/w3c/aria-practices/issues/new">Report Issue</a></li>
+        <li><a href="https://github.com/w3c/aria-practices/projects/11">Related Issues</a></li>
+        <li><a href="../../../#tabpanel">Design Pattern</a></li>
+      </ul>
+    </nav>  
     <main>
       <h1>Example of Tabs with Automatic Activation</h1>
       <p>
@@ -74,7 +82,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr data-test-id="key-tab">
               <th><kbd>Tab</kbd></th>
               <td>
                 <ul>
@@ -83,7 +91,7 @@
                 </ul>
               </td>
             </tr>
-            <tr>
+            <tr data-test-id="key-right-arrow">
               <th><kbd>Right Arrow</kbd></th>
               <td>
                 <ul>
@@ -93,7 +101,7 @@
                 </ul>
               </td>
             </tr>
-            <tr>
+            <tr data-test-id="key-left-arrow">
               <th><kbd>Left Arrow</kbd></th>
               <td>
                 <ul>
@@ -103,15 +111,15 @@
                 </ul>
               </td>
             </tr>
-            <tr>
+            <tr data-test-id="key-home">
               <th><kbd>Home</kbd></th>
               <td>Moves focus to the first tab and activates it.</td>
             </tr>
-            <tr>
+            <tr data-test-id="key-end">
               <th><kbd>End</kbd></th>
               <td>Moves focus to the last tab and activates it.</td>
             </tr>
-            <tr>
+            <tr data-test-id="key-delete">
               <th><kbd>Delete</kbd></th>
               <td>When focus is on the <q>Joke</q> tab, removes the tab from the tab list and places focus on the previous tab.</td>
             </tr>
@@ -131,7 +139,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr data-test-id="tablist-role">
               <th scope="row">
                 <code>tablist</code>
               </th>
@@ -141,7 +149,7 @@
               </td>
               <td>Indicates that the element serves as a container for a set of tabs.</td>
             </tr>
-            <tr>
+            <tr data-test-id="tablist-aria-label">
               <td></td>
               <th scope="row">
                 <code>aria-label=<q>Entertainment</q></code>
@@ -151,7 +159,7 @@
               </td>
               <td>Provides a label that describes the purpose of the set of tabs.</td>
             </tr>
-            <tr>
+            <tr data-test-id="tab-role">
               <th scope="row">
                 <code>tab</code>
               </th>
@@ -172,7 +180,7 @@
                 </ul>
               </td>
             </tr>
-            <tr>
+            <tr data-test-id="tab-aria-selected">
               <td></td>
               <th scope="row">
                 <code>aria-selected=<q>true</q></code>
@@ -187,7 +195,7 @@
                 </ul>
               </td>
             </tr>
-            <tr>
+            <tr data-test-id="tab-aria-selected">
               <td></td>
               <th scope="row">
                 <code>aria-selected=<q>false</q></code>
@@ -205,7 +213,7 @@
                 </ul>
               </td>
             </tr>
-            <tr>
+            <tr data-test-id="tab-tabindex">
               <td></td>
               <th scope="row">
                 <code>tabindex=<q>-1</q></code>
@@ -222,7 +230,7 @@
                 </ul>
               </td>
             </tr>
-            <tr>
+            <tr data-test-id="tab-aria-control">
               <td></td>
               <th scope="row">
                 <code>aria-controls=<q>IDREF</q></code>
@@ -234,7 +242,7 @@
                 Refers to the <code>tabpanel</code> element associated with the tab.
               </td>
             </tr>
-            <tr>
+            <tr data-test-id="tabpanel-role">
               <th scope="row">
                 <code>tabpanel</code>
               </th>
@@ -251,7 +259,7 @@
                 </ul>
               </td>
             </tr>
-            <tr>
+            <tr data-test-id="tabpanel-aria-labelledby">
               <td></td>
               <th scope="row">
                 <code>aria-labelledby=<q>IDREF</q></code>
@@ -268,7 +276,7 @@
                 </ul>
               </td>
             </tr>
-            <tr>
+            <tr data-test-id="tabpanel-tabindex">
               <td></td>
               <th scope="row">
                 <code>tabindex=<q>0</q></code>

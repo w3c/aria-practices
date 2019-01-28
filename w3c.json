@@ -1,10 +1,8 @@
 {
-  "group": 32212,
+  "group": 83726,
   "contacts": [
-    {
-      "github": "michael-n-cooper",
-      "w3c": "cooper"
-    }
+    "michael-n-cooper"
   ],
-  "policy": "restricted" 
+  "policy": "restricted",
+  "repo-type": "note"
 }
