@@ -71,30 +71,20 @@ var respecConfig = {
     name: 'Joseph Scheuhammer',
     company: 'Inclusive Design Research Centre, OCAD University',
     companyURI: 'http://idrc.ocad.ca/',
-    w3cid: 42279
+    w3cid: 42279,
+    note: 'Editor until October 2014'
   }, {
     name: 'Lisa Pappas',
     company: 'SAS',
     companyURI: 'http://www.sas.com/',
-    w3cid: 41725
+    w3cid: 41725,
+    note: 'Editor until October 2009'
   }, {
     name: 'Rich Schwerdtfeger',
     company: 'IBM Corporation',
     companyURI: 'http://ibm.com/',
-    w3cid: 2460
-  }],
-  authors: [{
-    name: 'Jon Gunderson',
-    mailto: 'jongund@illinois.edu',
-    company: 'University of Illinois at Urbana-Champaign',
-    companyURI: 'https://illinois.edu/',
-    w3cid: 3226
-  }, {
-    name: 'Matt King',
-    mailto: 'mck@fb.com',
-    company: 'Facebook',
-    companyURI: 'http://www.facebook.com/',
-    w3cid: 44582
+    w3cid: 2460,
+    note: 'Editor until October 2014'
   }],
 
   // Authors, add as many as you like.
