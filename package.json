@@ -11,6 +11,8 @@
     "lint": "npm run lint:es && npm run lint:css",
     "lint:css": "stylelint **/*.css",
     "lint:es": "eslint .",
+    "lint:js": "npm run lint:es",
+    "lint:html": "npm run vnu-jar",
     "regression": "ava test/tests",
     "regression-report": "node test/util/report",
     "test": "npm run lint && npm run vnu-jar && npm run regression",
