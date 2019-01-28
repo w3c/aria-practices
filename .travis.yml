@@ -24,9 +24,6 @@ jobs:
       name: CSS Linting
       script: npm run lint:css
     - stage: Test
-      name: CSS Linting
-      script: npm run lint:css
-    - stage: Test
       name: JS Linting
       script: npm run lint:es
     - stage: Test
