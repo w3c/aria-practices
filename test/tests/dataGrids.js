@@ -36,9 +36,6 @@ const ex = {
 };
 
 const checkFocusOnOrInCell = async function (t, gridSelector, rowIndex, columnIndex) {
-  t.log('check focus: ' + gridSelector + ' tr:nth-of-type(' + rowIndex +
-        ') td:nth-of-type(' + columnIndex + ')');
-
   return t.context.session.executeScript(function () {
     const [gridSelector, rowIndex, columnIndex] = arguments;
 
@@ -68,9 +65,6 @@ const sendKeyToGridcell = async function (t, gridSelector, rowIndex, columnIndex
 
   let selector = gridSelector + ' tr:nth-of-type(' + rowIndex +
         ') td:nth-of-type(' + columnIndex + ')';
-
-  t.log(selector);
-  t.log(await t.context.session.findElement(By.css(selector)).isDisplayed());
 
   // If the element has "tabindex", send KEY here
   const cellElement = await t.context.session.findElement(By.css(selector));

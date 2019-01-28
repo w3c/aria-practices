@@ -36,7 +36,7 @@ ariaTest('role="checkbox" element exists', exampleFile, 'checkbox-role', async (
   await assertAriaRoles(t, 'ex1', 'checkbox', '1', 'div');
 });
 
-ariaTest('"tabindex" on checkbox element', exampleFile, 'checkbox-aria-controls', async (t) => {
+ariaTest('"tabindex" on checkbox element', exampleFile, 'checkbox-tabindex', async (t) => {
   t.plan(1);
   await assertAttributeValues(t, ex.checkboxSelector, 'tabindex', '0');
 });

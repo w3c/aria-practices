@@ -62,6 +62,10 @@ aria.Grid = function (gridNode) {
 
   this.keysIndicator = document.getElementById('arrow-keys-indicator');
 
+  aria.Utils.bindMethods(this,
+    'checkFocusChange', 'checkPageChange', 'checkRestructureGrid',
+    'delegateButtonHandler', 'focusClickedCell', 'restructureGrid',
+    'showKeysIndicator', 'hideKeysIndicator');
   this.setupFocusGrid();
   this.setFocusPointer(0, 0);
 
@@ -143,9 +147,9 @@ aria.Grid.prototype.setFocusPointer = function (row, col) {
   }
 
   this.grid[row][col]
-    .removeEventListener('focus', this.showKeysIndicator.bind(this));
+    .removeEventListener('focus', this.showKeysIndicator);
   this.grid[row][col]
-    .removeEventListener('blur', this.hideKeysIndicator.bind(this));
+    .removeEventListener('blur', this.hideKeysIndicator);
 
   // Disable navigation if focused on an input
   this.navigationDisabled = aria.Utils.matches(this.grid[row][col], 'input');
@@ -155,9 +159,9 @@ aria.Grid.prototype.setFocusPointer = function (row, col) {
   this.focusedCol = col;
 
   this.grid[row][col]
-    .addEventListener('focus', this.showKeysIndicator.bind(this));
+    .addEventListener('focus', this.showKeysIndicator);
   this.grid[row][col]
-    .addEventListener('blur', this.hideKeysIndicator.bind(this));
+    .addEventListener('blur', this.hideKeysIndicator);
 
   return true;
 };
@@ -206,23 +210,23 @@ aria.Grid.prototype.isHidden = function (row, col) {
  *  Clean up grid events
  */
 aria.Grid.prototype.clearEvents = function () {
-  this.gridNode.removeEventListener('keydown', this.checkFocusChange.bind(this));
-  this.gridNode.removeEventListener('keydown', this.delegateButtonHandler.bind(this));
-  this.gridNode.removeEventListener('click', this.focusClickedCell.bind(this));
-  this.gridNode.removeEventListener('click', this.delegateButtonHandler.bind(this));
+  this.gridNode.removeEventListener('keydown', this.checkFocusChange);
+  this.gridNode.removeEventListener('keydown', this.delegateButtonHandler);
+  this.gridNode.removeEventListener('click', this.focusClickedCell);
+  this.gridNode.removeEventListener('click', this.delegateButtonHandler);
 
   if (this.paginationEnabled) {
-    this.gridNode.removeEventListener('keydown', this.checkPageChange.bind(this));
+    this.gridNode.removeEventListener('keydown', this.checkPageChange);
   }
 
   if (this.shouldRestructure) {
-    window.removeEventListener('resize', this.checkRestructureGrid.bind(this));
+    window.removeEventListener('resize', this.checkRestructureGrid);
   }
 
   this.grid[this.focusedRow][this.focusedCol]
-    .removeEventListener('focus', this.showKeysIndicator.bind(this));
+    .removeEventListener('focus', this.showKeysIndicator);
   this.grid[this.focusedRow][this.focusedCol]
-    .removeEventListener('blur', this.hideKeysIndicator.bind(this));
+    .removeEventListener('blur', this.hideKeysIndicator);
 };
 
 /**
@@ -232,17 +236,17 @@ aria.Grid.prototype.clearEvents = function () {
 aria.Grid.prototype.registerEvents = function () {
   this.clearEvents();
 
-  this.gridNode.addEventListener('keydown', this.checkFocusChange.bind(this));
-  this.gridNode.addEventListener('keydown', this.delegateButtonHandler.bind(this));
-  this.gridNode.addEventListener('click', this.focusClickedCell.bind(this));
-  this.gridNode.addEventListener('click', this.delegateButtonHandler.bind(this));
+  this.gridNode.addEventListener('keydown', this.checkFocusChange);
+  this.gridNode.addEventListener('keydown', this.delegateButtonHandler);
+  this.gridNode.addEventListener('click', this.focusClickedCell);
+  this.gridNode.addEventListener('click', this.delegateButtonHandler);
 
   if (this.paginationEnabled) {
-    this.gridNode.addEventListener('keydown', this.checkPageChange.bind(this));
+    this.gridNode.addEventListener('keydown', this.checkPageChange);
   }
 
   if (this.shouldRestructure) {
-    window.addEventListener('resize', this.checkRestructureGrid.bind(this));
+    window.addEventListener('resize', this.checkRestructureGrid);
   }
 };
 
@@ -697,7 +701,7 @@ aria.Grid.prototype.checkRestructureGrid = function () {
 
   this.waitingToRestructure = true;
 
-  setTimeout(this.restructureGrid.bind(this), 300);
+  setTimeout(this.restructureGrid, 300);
 };
 
 /**
