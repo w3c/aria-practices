@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/w3c/aria-practices.svg?branch=master)](https://travis-ci.org/w3c/aria-practices)
+[![Build Status](https://travis-ci.com/w3c/aria-practices.svg?branch=master)](https://travis-ci.com/w3c/aria-practices)
 
 # WAI-ARIA: Authoring Practices Guide
 

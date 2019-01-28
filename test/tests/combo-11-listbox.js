@@ -842,6 +842,7 @@ ariaTest('Test enter key press with focus on textbox',
 
 ariaTest('Test escape key press with focus on textbox',
   exampleFile, 'textbox-key-escape', async (t) => {
+    t.plan(6);
 
     for (let exId in pageExamples) {
       let ex =  pageExamples[exId];
@@ -868,6 +869,7 @@ ariaTest('Test escape key press with focus on textbox',
 
 ariaTest('Test escape key press with focus on textbox',
   exampleFile, 'listbox-key-escape', async (t) => {
+    t.plan(6);
 
     for (let exId in pageExamples) {
       let ex =  pageExamples[exId];
@@ -895,12 +897,12 @@ ariaTest('Test escape key press with focus on textbox',
 
 ariaTest('left arrow from focus on list puts focus on listbox and moves cursor right',
   exampleFile, 'listbox-key-left-arrow', async (t) => {
+    t.plan(6);
 
     for (let exId in pageExamples) {
       let ex =  pageExamples[exId];
 
-      // Send key "a" then key "ARROW_DOWN" to put the focus on the listbox,
-      // then key ESCAPE to the textbox
+      // Send key "a" then key "ARROW_DOWN" to put the focus on the listbox
       const textbox = t.context.session.findElement(By.css(ex.textboxSelector));
       await textbox.sendKeys('a', Key.ARROW_DOWN);
 
@@ -923,16 +925,16 @@ ariaTest('left arrow from focus on list puts focus on listbox and moves cursor r
 
 ariaTest('Right arrow from focus on list puts focus on listbox',
   exampleFile, 'listbox-key-right-arrow', async (t) => {
+    t.plan(6);
 
     for (let exId in pageExamples) {
       let ex =  pageExamples[exId];
 
       // Send key "a" then key "ARROW_DOWN" to put the focus on the listbox,
-      // then key ESCAPE to the textbox
       const textbox = t.context.session.findElement(By.css(ex.textboxSelector));
       await textbox.sendKeys('a', Key.ARROW_DOWN);
 
-      // Send key "RIGHT_ARROW"
+      // Send key "ARROW_RIGHT"
       await textbox.sendKeys(Key.ARROW_RIGHT);
 
       t.true(
@@ -950,16 +952,16 @@ ariaTest('Right arrow from focus on list puts focus on listbox',
 
 ariaTest('Home arrow from focus on list puts focus on listbox',
   exampleFile, 'listbox-key-home', async (t) => {
+    t.plan(6);
 
     for (let exId in pageExamples) {
       let ex =  pageExamples[exId];
 
       // Send key "a" then key "ARROW_DOWN" to put the focus on the listbox,
-      // then key ESCAPE to the textbox
       const textbox = t.context.session.findElement(By.css(ex.textboxSelector));
       await textbox.sendKeys('a', Key.ARROW_DOWN);
 
-      // Send key "ARROW_HOME"
+      // Send key "HOME"
       await textbox.sendKeys(Key.HOME);
 
       t.true(
@@ -970,23 +972,23 @@ ariaTest('Home arrow from focus on list puts focus on listbox',
       t.is(
         await textbox.getAttribute('aria-activedescendant'),
         '',
-        'Focus should be on the textbox after one ARROW_HOME key',
+        'Focus should be on the textbox after one HOME key',
       );
     }
   });
 
 ariaTest('End arrow from focus on list puts focus on listbox',
   exampleFile, 'listbox-key-end', async (t) => {
+    t.plan(6);
 
     for (let exId in pageExamples) {
       let ex =  pageExamples[exId];
 
-      // Send key "a" then key "ARROW_DOWN" to put the focus on the listbox,
-      // then key ESCAPE to the textbox
+      // Send key "a" then key "ARROW_DOWN" to put the focus on the listbox
       const textbox = t.context.session.findElement(By.css(ex.textboxSelector));
       await textbox.sendKeys('a', Key.ARROW_DOWN);
 
-      // Send key "END_ARROW"
+      // Send key "END"
       await textbox.sendKeys(Key.END);
 
       t.true(
@@ -997,8 +999,42 @@ ariaTest('End arrow from focus on list puts focus on listbox',
       t.is(
         await textbox.getAttribute('aria-activedescendant'),
         '',
-        'Focus should be on the textbox after on ARROW_END key',
+        'Focus should be on the textbox after one END key',
       );
     }
+  });
+
+ariaTest('Typing characters while focus is on list puts focus on listbox',
+  exampleFile, 'listbox-characters', async (t) => {
+    t.plan(6);
+
+    for (let exId in pageExamples) {
+      let ex =  pageExamples[exId];
+
+      // Send key "z" then key "ARROW_DOWN" to put the focus on the listbox
+      const textbox = t.context.session.findElement(By.css(ex.textboxSelector));
+      await textbox.sendKeys('Z', Key.ARROW_DOWN);
+
+      // Then send "z" again
+      await textbox.sendKeys('Z');
+
+      t.is(
+        await textbox.getAttribute('value'),
+        'ZZ',
+        'Focus should be on the textbox after sending a character key',
+      );
+
+      t.is(
+        await textbox.getAttribute('aria-activedescendant'),
+        '',
+        'Focus should be on the textbox after sending a character key',
+      );
+    }
+  });
+
+ariaTest.failing('Expected behavior for all other standard single line editing keys',
+  exampleFile, 'standard-single-line-editing-keys', async (t) => {
+    t.plan(1);
+    t.fail();
   });
 

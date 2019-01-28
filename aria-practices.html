@@ -26,7 +26,7 @@
       of the
       <a href="https://www.w3.org/WAI/">Web Accessibility Initiative</a>.
       It supports the
-      <a href="" class="specref">WAI-ARIA 1.1</a> [<cite><a href="#bib-WAI-ARIA" class="bibref">WAI-ARIA</a></cite>]
+      <a href="" class="specref">WAI-ARIA 1.1</a> [[WAI-ARIA]]
       specification, providing detailed advice and examples beyond what would be appropriate to a technical specification but which are important to understand the specification.
     </p>
     <p> This draft includes only a portion of content planned for WAI-ARIA Authoring Practices 1.1. To see plans for the complete guide, review the <a href="https://github.com/w3c/aria-practices/milestones?direction=asc&amp;sort=due_date&amp;state=open">Authoring Practices Milestone Plan</a>. </p>
@@ -477,7 +477,175 @@
         </ul>
       </section>
     </section>
+    
+    <section class="widget" id="carousel">
+      <h3>Carousel (Slide Show or Image Rotator)</h3>
+      <p>
+        <strong>NOTE:</strong> This is a new pattern as of the January 2019 release of WAI-ARIA Authoring Practices 1.1.
+        Please provide feedback in
+        <a href="https://github.com/w3c/aria-practices/issues/970">issue 970.</a>
+      </p>
+      <p>
+        A carousel presents a set of items, referred to as slides, by sequentially displaying a subset of one or more slides.
+        Typically, one slide is displayed at a time, and users can activate a next or previous slide control that hides the current slide and &quot;rotates&quot; the next or previous slide into view.
+        In some implementations, rotation automatically starts when the page loads, and it may also automatically stop once all the slides have been displayed.
+        While a slide may contain any type of content, image carousels where each slide contains nothing more than a single image are common.
+      </p>
+      <p>
+        Ensuring all users can easily control and are not adversely effected by slide rotation is an essential aspect of making carousels accessible.
+        For instance, the screen reader experience can be confusing and disorienting if slides that are not visible on screen are incorrectly hidden, e.g., displayed off-screen.
+        Similarly, if slides rotate automatically and a screen reader user is not aware of the rotation, the user may read an element on slide one, execute the screen reader command for next element, and, instead of hearing the next element on slide one,  hear an element from slide 2 without any knowledge that the element just announced is from an entirely new context.
+      </p>
+      <p>Features needed to provide sufficient rotation control include:</p>
+      <ul>
+        <li>Buttons for displaying the previous and next slides.</li>
+        <li>Optionally, a control, or group of controls, for choosing a specific slide to display. For example, slide picker controls can be marked up as tabs in a tablist with the slide represented by a tabpanel element.</li>
+        <li>If the carousel can automatically rotate, it also:
+          <ul>
+            <li>Has a button for stopping and restarting rotation. This is particularly important for supporting assistive technologies operating in a mode that does not move either keyboard focus or the mouse.</li>
+            <li>Stops rotating when keyboard focus enters the carousel. It does not restart unless the user explicitly requests it to do so.</li>
+            <li>Stops rotating whenever the mouse is hovering over the carousel.</li>
+          </ul>
+        </li>
+      </ul>
 
+      <section class="notoc">
+        <h4>Example</h4>
+        <p>
+          <a href="examples/carousel/carousel-1/carousel-1.html">Auto-Rotating Image Carousel Example:</a> A basic image carousel that demonstrates the accessibility features necessary for carousels that rotate automatically on page load. 
+        </p>
+      </section>
+      
+      <section class="notoc">
+        <h4>Terms</h4>
+        <p>The following terms are used to describe components of a carousel.</p>
+        <dl>
+          <dt>Slide</dt>
+          <dd>A single content container within a set of content containers that hold the content to be presented by the carousel.</dd>
+          <dt>Rotation Control</dt>
+          <dd>An interactive element that stops and starts automatic slide rotation.</dd>
+          <dt>Next Slide Control</dt>
+          <dd>An interactive element, often styled as an arrow,  that displays the next slide in the rotation sequence.</dd>
+          <dt>Previous Slide Control</dt>
+          <dd>An interactive element, often styled as an arrow,  that displays the previous slide in the rotation sequence.</dd>
+          <dt>Slide Picker Controls</dt>
+          <dd>A group of elements, often styled as small dots, that enable the user to pick a specific slide in the rotation sequence to display.</dd>
+        </dl>
+      </section>
+
+      <section class="notoc">
+        <h4>Keyboard Interaction</h4>
+        <ul>
+          <li>
+            If the carousel has an auto-rotate feature, automatic slide rotation stops when any element in the carousel receives keyboard focus.
+            It does not resume unless the user activates the rotation control.
+          </li>
+          <li><kbd>Tab</kbd> and <kbd>Shift + Tab</kbd>: Move focus through the interactive elements of the carousel as specified by the page tab sequence -- scripting for <kbd>Tab</kbd> is not necessary.</li>
+          <li>
+            Button elements implement the keyboard interaction defined in the <a href="#button">button pattern</a>.
+            Note: Activating the rotation control, next slide, and previous slide do not move focus, so users may easily repetitively activate them as many times as desired.
+          </li>
+          <li>If present, the rotation control is the first element in the <kbd>Tab</kbd> sequence inside the carousel. It is essential that it precede the rotating content so it can be easily located.</li>
+          <li>If tab elements are used for slide picker controls, they implement the keyboard interaction defined in the <a href="#tabpanel">Tabs Pattern.</a></li>
+        </ul>
+      </section>
+
+      <section class="notoc">
+        <h4>WAI-ARIA Roles, States, and Properties</h4>
+        <p>This section describes the element composition for three styles of carousels:</p>
+        <ul>
+          <li>Basic: Has rotation, previous slide, and next slide controls but no slide picker controls.</li>
+          <li>Tabbed: Has basic controls plus a single tab stop for slide picker controls implemented using the <a href="#tabpanel">tabs pattern.</a></li>
+          <li>Grouped: Has basic controls plus a series of tab stops in a group of slide picker controls where each control implements the <a href="#button">button pattern.</a> Because each slide selector button adds an element to the page tab sequence, this style is the least friendly for keyboard users.</li>
+        </ul>
+        <h5>Basic carousel elements</h5>
+        <ul>
+          <li>
+            A carousel container element that encompasses all components of the carousel,  including both carousel controls and slides,
+            has either role <a href="#region" class="role-reference">region</a>
+            or role <a href="#group" class="role-reference">group.</a>
+            The most appropriate role for the carousel container depends on the information architecture of the page.
+            See the <a href="#aria_landmark">landmark regions guidance</a> to determine whether the carousel warrants being designated as a landmark region.
+          </li>
+          <li>The carousel container has the <a href="#aria-roledescription" class="property-reference">aria-roledescription</a> property set to <code>carousel</code>.</li>
+          <li>
+            If the carousel has a visible label, its accessible label is provided by the property
+            <a href="#aria-labelledby" class="property-reference" >aria-labelledby</a> on the carousel container set to the ID of the element containing the visible label.
+            Otherwise, an accessible label is provided by the property <a href="#aria-label" class="property-reference">aria-label</a> set on the carousel container.
+            Note that since the <code>aria-roledescription</code> is set to &quot;carousel&quot;, the label does not contain the word &quot;carousel&quot;.
+          </li>
+          <li>The rotation control, next slide control, and previous slide control are either native button elements (recommended) or implement the <a href="#button">button pattern</a>.</li>
+          <li>
+            The rotation control has an accessible label provided by either its inner text or <a href="#aria-label" class="property-reference">aria-label</a>.
+            The label changes to match the action the button will perform, e.g., &quot;Stop slide rotation&quot; or &quot;Start slide rotation&quot;.
+            A label that changes when the button is activated clearly communicates both that slide content can change automatically and when it is doing so. 
+            Note that since the label changes, the rotation control does not have any states, e.g., <code>aria-pressed</code>, specified.
+          </li>
+          <li>Each slide container has role <a href="#group" class="role-reference">group</a> with the property <a href="aria-roledescription" class="property-reference">aria-roledescription</a> set to <code>slide</code>.</li>
+          <li>Each slide has an accessible name:
+            <ul>
+              <li>
+                If a slide has a visible label, its accessible label is provided by the property
+                <a href="#aria-labelledby" class="property-reference" >aria-labelledby</a>
+                on the slide container set to the ID of the element containing the visible label.
+              </li>
+              <li>
+                Otherwise, an accessible label is provided by the property
+                <a href="#aria-label" class="property-reference">aria-label</a>
+                set on the slide container.
+              </li>
+              <li>
+                If unique names that identify the slide content are not available, a number and set size can serve as a meaningful alternative, e.g., &quot;3 of 10&quot;.
+                Note: Normally, including set position and size information in an accessible name is not appropriate.
+                An exception is helpful in this implementation because group elements do not support <a href="#aria-setsize" class="property-reference">aria-setsize</a> or <a href="#aria-posinset" class="property-reference">aria-posinset</a>.
+                The tabbed carousel implementation pattern does not have this limitation.
+              </li>
+              <li>Note that since the <code>aria-roledescription</code> is set to &quot;slide&quot;, the label does not contain the word &quot;slide.&quot;</li>
+            </ul>
+          </li>
+          <li>
+            Optionally, an element wrapping the set of slide elements has <a href="#aria-atomic" class="property-reference">aria-atomic</a> set to <code>false</code>
+            and <a href="#aria-live" class="property-reference">aria-live</a> set to:
+            <ul>
+              <li><code>off</code>: if the carousel is automatically rotating.
+              <li><code>polite</code>: if the carousel is <strong>NOT</strong> automatically rotating.
+            </ul>
+          </li>
+        </ul>
+        <h5>Tabbed Carousel Elements</h5>
+        <p>The structure of a tabbed carousel is the same as a basic carousel except that:</p>
+        <ul>
+          <li>
+            Each slide container has role <a href="#tabpanel" class="role-reference">tabpanel</a> in lieu of <code>group</code>,
+            and it does not have the <code>aria-roledescription</code> property.
+          </li>
+          <li>It has slide picker controls implemented using the <a href="#tabpanel">tabs pattern</a> where:
+            <ul>
+              <li>Each control is a <code>tab</code> element, so activating a tab displays the slide associated with that tab.</li>
+              <li>The accessible name of each <code>tab</code> indicates which slide it will display by including the name or number of the slide, e.g., &quot;Slide 3&quot;. Slide names are preferable if each slide has a unique name.</li>
+              <li>The set of controls is grouped in a <code>tablist</code> element with an accessible name provided by the value of <a href="#aria-label" class="property-reference">aria-label</a> that identifies the purpose of the tabs, e.g., &quot;Choose slide to display.&quot;</li>
+              <li>The <code>tab</code>, <code>tablist</code>, and <code>tabpanel</code> implement the properties specified in the <a href="#tabpanel">tabs pattern</a>.</li>
+            </ul>
+          </li>
+        </ul>
+        <h5>Grouped Carousel Elements</h5>
+        <p>A grouped carousel has the same structure as a basic carousel, but it also includes slide picker controls where:</p>
+        <ul>
+          <li>The set of slide picker controls is contained in an element with role <a href="#group" class="role-reference">group</a>.</li>
+          <li>The group containing the picker controls has an accessible label provided by the value of <a href="#aria-label" class="property-reference">aria-label</a> that identifies the purpose of the controls, e.g., &quot;Choose slide to display.&quot;</li>
+          <li>Each picker control is a native button element (recommended) or implements the <a href="#button">button pattern.</a></li>
+          <li>
+            The accessible name of each picker button matches the name of the slide it displays.
+            One technique for accomplishing this is to set <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> to a value that references the slide <code>group</code> element.
+          </li>
+          <li>
+            The picker button representing the currently displayed slide has the property <a href="#aria-disabled" class="property-reference">aria-disabled</a> set to <code>true</code>.
+            Note: <code>aria-disabled</code> is preferable to the HTML <code>disabled</code> attribute because this is a circumstance where screen reader users benefit from the disabled button being included in the page <kbd>Tab</kbd> sequence.
+          </li>
+        </ul>
+      </section>
+    </section>
+    
     <section class="widget" id="checkbox">
       <h3>Checkbox</h3>
       <p>WAI-ARIA supports two types of <a href="#checkbox" class="role-reference">checkbox</a> widgets:</p>
@@ -2002,34 +2170,81 @@
 
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
-        <ul>
-          <li>
-            When a radio group receives focus:
-            <ul>
-              <li>If a radio button is checked, focus is set on the checked button.</li>
-              <li>If none of the radio buttons are checked, focus is set on the first radio
-                button in the group.</li>
-            </ul>
-          </li>
-          <li>
-							<kbd>Space</kbd>: checks the focused radio button if it is not already checked. </li>
-          <li>
-            <kbd>Right Arrow</kbd> and <kbd>Down Arrow</kbd>: move focus to the next radio button in
-            the group, uncheck the previously focused button, and check the newly focused button. If
-            focus is on the last button, focus moves to the first button.
-          </li>
-          <li>
-            <kbd>Left Arrow</kbd> and <kbd>Up Arrow</kbd>: move focus to the previous radio button
-            in the group, uncheck the previously focused button, and check the newly focused button.
-            If focus is on the first button, focus moves to the last button.
-          </li>
-        </ul>
-        <p class="note">
-          The initial focus behavior described above differs slightly from the behavior
-          provided by some browsers for native HTML radio groups. In some browsers, if none of the
-          radio buttons are selected, moving focus into the radio group with <kbd>Shift+Tab</kbd> will place focus on the last radio button
-          instead of the first radio button.
-        </p>
+        <section class="notoc">
+          <h5>For Radio Groups Not Contained in a Toolbar</h5>
+          <p>
+            This section describes the keyboard interaction implemented for most radio groups.
+            For the special case of a radio group nested inside a <a href="#toolbar">toolbar</a>, use the keyboard interaction described in the following section.
+          </p>
+          <ul>
+            <li>
+              <kbd>Tab</kbd> and <kbd>Shift + Tab</kbd>:
+              Move focus into and out of the radio group. 
+              When focus moves into a radio group :
+              <ul>
+                <li>If a radio button is checked, focus is set on the checked button.</li>
+                <li>If none of the radio buttons are checked, focus is set on the first radio
+                  button in the group.</li>
+              </ul>
+            </li>
+            <li><kbd>Space</kbd>: checks the focused radio button if it is not already checked.</li>
+            <li>
+              <kbd>Right Arrow</kbd> and <kbd>Down Arrow</kbd>: move focus to the next radio button in
+              the group, uncheck the previously focused button, and check the newly focused button. If
+              focus is on the last button, focus moves to the first button.
+            </li>
+            <li>
+              <kbd>Left Arrow</kbd> and <kbd>Up Arrow</kbd>: move focus to the previous radio button
+              in the group, uncheck the previously focused button, and check the newly focused button.
+              If focus is on the first button, focus moves to the last button.
+            </li>
+          </ul>
+          <p class="note">
+            The initial focus behavior described above differs slightly from the behavior
+            provided by some browsers for native HTML radio groups. In some browsers, if none of the
+            radio buttons are selected, moving focus into the radio group with <kbd>Shift+Tab</kbd> will place focus on the last radio button
+            instead of the first radio button.
+          </p>
+        </section>
+        <section class="notoc">
+          <h5>For Radio Group Contained in a Toolbar</h5>
+          <p>
+            Because arrow keys are used to navigate among elements of a toolbar and the <kbd>Tab</kbd> key moves focus in and out of a toolbar, when a radio group is nested inside a toolbar, the keyboard interaction of the radio group is slightly different from that of a radio group that is not inside of a toolbar.
+            For instance, users need to be able to navigate among all toolbar elements, including the radio buttons, without changing which radio button is checked.
+            So, when navigating through a radio group in a toolbar with arrow keys, the button that is checked does not change.
+            The keyboard interaction of a radio group nested in a toolbar is as follows.
+          </p>
+          <ul>
+            <li><kbd>Space</kbd>: If the focused radio button is not checked, unchecks the currently checked radio button and checks the focused radio button. Otherwise, does nothing.</li>
+            <li><kbd>Enter</kbd> (optional): If the focused radio button is not checked, unchecks the currently checked radio button and checks the focused radio button. Otherwise, does nothing.</li>
+            <li><kbd>Right Arrow</kbd>:
+              <ul>
+                <li>When focus is on a radio button and that radio button is <strong>not</strong> the last radio button in the radio group, moves focus to the next radio button.</li>
+                <li>When focus is on the last radio button in the radio group and that radio button is <strong>not</strong> the last element in the toolbar, moves focus to the next element in the toolbar.</li>
+                <li>When focus is on the last radio button in the radio group and that radio button is also the last element in the toolbar, moves focus to the first element in the toolbar.</li>
+              </ul>
+            </li>
+            <li><kbd>Left Arrow</kbd>:
+              <ul>
+                <li>When focus is on a radio button and that radio button is <strong>not</strong> the first radio button in the radio group, moves focus to the previous radio button.</li>
+                <li>When focus is on the first radio button in the radio group and that radio button is <strong>not</strong> the first element in the toolbar, moves focus to the previous element in the toolbar.</li>
+                <li>When focus is on the first radio button in the radio group and that radio button is also the first element in the toolbar, moves focus to the last element in the toolbar.</li>
+              </ul>
+            </li>
+            <li>
+              <kbd>Down Arrow</kbd> (optional): Moves focus to the next radio button in the radio group.
+              If focus is on the last radio button in the radio group, moves focus to the first radio button in the group.
+            </li>
+            <li>
+              <kbd>Up Arrow</kbd> (optional): Moves focus to the previous radio button in the radio group.
+              If focus is on the first radio button in the radio group, moves focus to the last radio button in the group.
+            </li>
+          </ul>
+          <p class="note">
+            Radio buttons in a toolbar are frequently styled in a manner that appears more like toggle buttons.
+            For an example, See the <a href="examples/toolbar/toolbar.html">Simple Editor Toolbar Example</a>
+          </p>
+        </section>
       </section>
 
       <section class="notoc">
@@ -2457,24 +2672,33 @@
         Grouping controls into toolbars can also be an effective way of reducing the number of tab stops in the keyboard interface.
       </p>
       <p>To optimize the benefit of toolbar widgets:</p>
-      <ol>
-        <li>Implement focus management so the keyboard tab sequence includes one stop for the toolbar and arrow keys move focus among the controls in the toolbar.</li>
-        <li>Avoid including controls that require arrow keys to operate, such as textbox or radio group. If unavoidable, include only one such control and make it the last element .</li>
+      <ul>
+        <li>
+          Implement focus management so the keyboard tab sequence includes one stop for the toolbar and arrow keys move focus among the controls in the toolbar.
+          <ul>
+            <li>In horizontal toolbars, <kbd>Left Arrow</kbd> and <kbd>Right Arrow</kbd> navigate among controls. <kbd>Up Arrow</kbd> and <kbd>Down Arrow</kbd> can duplicate <kbd>Left Arrow</kbd> and <kbd>Right Arrow</kbd>, respectively, or can be reserved for operating controls, such as spin buttons that require vertical arrow keys to operate.</li>
+            <li>In vertical toolbars, <kbd>Up Arrow</kbd> and <kbd>Down Arrow</kbd> navigate among controls. <kbd>Left Arrow</kbd> and <kbd>Right Arrow</kbd> can duplicate <kbd>Up Arrow</kbd> and <kbd>Down Arrow</kbd>, respectively, or can be reserved for operating controls, such as horizontal sliders that require horizontal arrow keys to operate.</li>
+            <li>In toolbars with multiple rows of controls, <kbd>Left Arrow</kbd> and <kbd>Right Arrow</kbd> can provide navigation that wraps from row to row, leaving the option of reserving vertical arrow keys for operating controls.</li>
+          </ul>
+        </li>
+        <li>Avoid including controls whose operation requires the pair of arrow keys used for toolbar navigation. If unavoidable, include only one such control and make it the last element in the toolbar. For example, in a horzontal toolbar, a textbox could be included as the last element.</li>
         <li>Use toolbar as a grouping element only if the group contains 3 or more controls.</li>
-      </ol>
+      </ul>
       <section class="notoc">
         <h4>Example</h4>
         <p>
           <a href="examples/toolbar/toolbar.html">Toolbar Example</a>:
-          A toolbar that uses roving tabindex to manage focus and contains several buttons, including  a menu button.
+          A toolbar that uses roving tabindex to manage focus and contains several types of controls, including toggle buttons, radio buttons, a menu button, a spin button, a checkbox, and a link.
         </p>
       </section>
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
         <ul>
-          <li>
-            When the toolbar receives focus, focus is set on the first control that is not disabled.
-            Optionally, if the toolbar has previously contained focus, focus is set on the control that last had focus.
+          <li><kbd>Tab</kbd> and <kbd>Shift + Tab</kbd>: Move focus into and out of the toolbar. When focus moves into a toolbar:
+            <ul>
+              <li>If focus is moving into the toolbar for the first time, focus is set on the first control that is not disabled.</li>
+              <li>If the toolbar has previously contained focus, focus is optionally set on the control that last had focus. Otherwise, it is set on the first control that is not disabled.</li>
+            </ul>
           </li>
           <li>For a horizontal toolbar (the default):
             <ul>
@@ -3204,7 +3428,7 @@
             <li>The HTML5 <code>header</code> element defines a <code>banner</code> landmark when its context is the <code>body</code> element.</li>
 
             <li>
-              The HTML5 <code>header</code> element is not considered a <code>banner</code> landmark when it is descendant of any of following elements (see <a href="http://w3c.github.io/aria/html-aam/html-aam.html">HTML Accessibility Mappings</a>):
+              The HTML5 <code>header</code> element is not considered a <code>banner</code> landmark when it is descendant of any of following elements (see <a href="" class="html-mapping">HTML Accessibility Mappings</a> [[HTML-AAM]]):
               <ul>
                 <li><code>article</code></li>
                 <li><code>aside</code></li>
@@ -3284,7 +3508,7 @@
             <li>The HTML5 <code>footer</code> element defines a <code>contentinfo</code> landmark when its context is the <code>body</code> element.</li>
 
             <li>
-              The HTML5 <code>footer</code> element is not considered a <code>contentinfo</code> landmark when it is descendant of any of following elements (see <a href="http://w3c.github.io/aria/html-aam/html-aam.html">HTML Accessibility Mappings</a>):
+              The HTML5 <code>footer</code> element is not considered a <code>contentinfo</code> landmark when it is descendant of any of following elements (see <a href="" class="html-mapping">HTML Accessibility Mappings</a> [[HTML-AAM]]):
               <ul>
                 <li><code>article</code></li>
                 <li><code>aside</code></li>
@@ -4752,15 +4976,85 @@
     </p>
   </section>
 
-  <section id="appendices" class="appendix">
-    <h2>Appendices</h2>
-
-    <section id="change_log" class="appendix">
-      <h3>Change History</h3>
-      <p>Change history is maintained in a separate version-specific branch.</p>
+    <section id="indexes" class="appendix">
+      <h2>Indexes</h2>
+      <ul>
+        <li><a href="examples/#examples_by_role_label">Design Pattern Examples by Role</a></li>
+        <li><a href="examples/#examples_by_props_label">Design Pattern Examples by Properties and States</a> </li>
+      </ul>
     </section>
 
-    <div data-include='common/acknowledgements.html' data-include-replace='true'></div>
-  </section>
+    <section id="change_log" class="appendix">
+      <h2>Change History</h2>
+      <p>Change history is maintained in a separate version-specific branch.</p>
+    </section>
+    
+    <section id="acknowledgements" class="appendix">
+      <h2>Acknowledgements</h2>
+      <section>
+        <h3>Major Contributors to Version 1.1</h3>
+        <p>
+          While WAI-ARIA Authoring Practices 1.1 is the work of the entire Authoring Practices Task Force and also benefits from many people throughout the open source community who both contribute significant work and provide valuable feedback,
+          special thanks goes to the following people who provided distinctly large portions of the content and code in version 1.1.
+        </p>
+        <ul>
+          <li>Jon Gunderson and Nicholas Hoyt  of the Division of Disability Resources and Education Services at the University of Illinois Urbana/Champaign and the students Max Foltz,  Sulaiman Sanaullah, Mark McCarthy, and Jinyuan Zhou for their contributions to the development of many of the design pattern examples.</li>
+          <li>Valerie Young of Bocoup and her sponsor, Facebook, for development of the example test framework and regressions tests for more than 50 examples.</li>
+        </ul>
+      </section>
+    	<section>
+    		<h3>Participants active in the ARIA Authoring Practices Task Force</h3>
+    		<ul>
+    			<li>Ann Abbott (Invited Expert)</li>
+    			<li>Shirisha Belusani (Microsoft Corporation)</li>
+    			<li>Curt Bellew (Oracle)</li>
+    			<li>Michiel Bijl (Invited Expert)</li>
+    			<li>Michael Cooper (W3C)</li>
+    			<li>Bryan Garaventa (Level Access)</li>
+    			<li>Jon Gunderson (University of Illinois at Urbana-Champaign)</li>
+    			<li>Hans Hillen (The Paciello Group, LLC)</li>
+    			<li>Matt King (Facebook)</li>
+    			<li>Jaeun Ku (University of Illinois at Urbana-Champaign)</li>
+    			<li>Aaron Leventhal (Google)</li>
+    			<li>Mark McCarthy (University of Illinois at Urbana-Champaign)</li>
+    			<li>James Nurthen (Adobe)</li>
+    			<li>Evan Yamanishi (W. W. Norton)</li>
+    			<li>Valerie Young (Bocoup)</li>
+    		</ul>
+    	</section>
+    	<section>
+    		<h3>Other commenters and contributors to Version 1.1</h3>
+    		<ul>
+    			<li>Vyacheslav Aristov</li>
+    			<li>J. Renée Beach</li>
+    			<li>Kasper Christensen</li>
+    			<li>Gerard K. Cohen</li>
+    			<li>Anne-Gaelle Colom</li>
+    			<li>Kevin Coughlin</li>
+    			<li>Cameron Cundiff</li>
+    			<li>Manish Dahamiwal</li>
+    			<li>Gilmore Davidson</li>
+    			<li>Boris Dušek</li>
+    			<li>Michael Fairchild</li>
+    			<li>Jeremy Felt</li>
+    			<li>Rob Fentress</li>
+    			<li>Geppy</li>
+    			<li>Tatiana Iskandar</li>
+    			<li>Patrick Lauke</li>
+    			<li>Marek Lewandowski</li>
+    			<li>Carolyn MacLeod</li>
+    			<li>Dan Matthew</li>
+    			<li>Shane McCarron</li>
+    			<li>Victor Meyer</li>
+    			<li>Jonathan Neal</li>
+    			<li>Philipp Rudloff</li>
+    			<li>Joseph Scheuhammer</li>
+    			<li>Nick Schonni</li>
+    			<li>thomascorthals</li>
+    			<li>Christopher Tryens</li>
+    		</ul>
+    	</section>
+    	<div data-include='common/acknowledgements/funders.html' data-include-replace='true'></div>
+    </section>
 </body>
 </html>
