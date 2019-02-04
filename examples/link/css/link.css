@@ -8,10 +8,10 @@
 [role="link"]:focus,
 [role="link"]:hover::before,
 [role="link"]:focus::before {
-  color:#000;
+  color: #000;
   cursor: pointer;
-  outline: .2em solid hsl(219, 63%, 44%);
-  outline-offset: .2em;
+  outline: 0.2em solid hsl(219, 63%, 44%);
+  outline-offset: 0.2em;
 }
 
 [role="link"].link3:hover,
@@ -22,6 +22,6 @@
 [role="link"].link3::before {
   display: block;
   content: url('../images/w3c-logo.png');
-  width:153px;
-  height:104px;
+  width: 153px;
+  height: 104px;
 }
