@@ -24,7 +24,7 @@ ul.checkboxes {
   width: 14px;
   height: 14px;
   border: 1px solid hsl(0, 0%, 66%);
-  border-radius: .2em;
+  border-radius: 0.2em;
   background-image: linear-gradient(to bottom, hsl(300, 3%, 93%), #fff 30%);
 }
 
@@ -50,10 +50,10 @@ ul.checkboxes {
 [role="checkbox"][aria-checked="mixed"]:active::after,
 [role="checkbox"][aria-checked="true"]::after {
   display: block;
-  width: .25em;
-  height: .4em;
+  width: 0.25em;
+  height: 0.4em;
   border: solid #fff;
-  border-width: 0 .125em .125em 0;
+  border-width: 0 0.125em 0.125em 0;
   transform: translateY(-65%) translateX(-50%) rotate(45deg);
 }
 
@@ -72,6 +72,6 @@ ul.checkboxes {
   box-sizing: content-box;
   border-color: hsl(216, 94%, 73%);
   border-width: 3px;
-  border-radius: calc(.2em + 3px);
+  border-radius: calc(0.2em + 3px);
   box-shadow: inset 0 0 0 1px hsl(216, 80%, 50%);
 }

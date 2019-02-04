@@ -1,7 +1,7 @@
 [role="button"] {
   display: inline-block;
   position: relative;
-  padding: .4em .7em;
+  padding: 0.4em 0.7em;
   border: 1px solid hsl(213, 71%, 49%);
   border-radius: 5px;
   box-shadow: 0 1px 2px hsl(216, 27%, 55%);
@@ -25,12 +25,14 @@
 [role="button"]:focus::before {
   position: absolute;
   z-index: -1;
+
   /* button border width - outline width - offset */
   top: calc(-1px - 3px - 3px);
   right: calc(-1px - 3px - 3px);
   bottom: calc(-1px - 3px - 3px);
   left: calc(-1px - 3px - 3px);
   border: 3px solid hsl(213, 71%, 49%);
+
   /* button border radius + outline width + offset */
   border-radius: calc(5px + 3px + 3px);
   content: '';
@@ -58,8 +60,8 @@
 }
 
 [role="button"][aria-pressed="true"] {
-  padding-top: .5em;
-  padding-bottom: .3em;
+  padding-top: 0.5em;
+  padding-bottom: 0.3em;
   border-color: hsl(261, 71%, 49%);
   background-color: hsl(261, 82%, 31%);
   background-image: linear-gradient(to bottom, hsl(261, 82%, 63%), hsl(261, 82%, 57%));
@@ -78,7 +80,7 @@
 }
 
 [role="button"] svg {
-  margin: .15em auto -.15em;
+  margin: 0.15em auto -0.15em;
   height: 1em;
   width: 1em;
   pointer-events: none;
