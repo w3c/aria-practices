@@ -21,8 +21,11 @@ jobs:
       name: Regression Tests Coverage Report
       script: node test/util/report.js
     - stage: Test
+      name: CSS Linting
+      script: npm run lint:css
+    - stage: Test
       name: JS Linting
-      script: npm run lint
+      script: npm run lint:es
     - stage: Test
       name: HTML Linting
       script: npm run vnu-jar

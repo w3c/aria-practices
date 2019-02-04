@@ -6,7 +6,6 @@ div.aria-widget-slider {
   padding-bottom: 1em;
 }
 
-
 div.rail-label {
   padding-right: 0.5em;
   text-align: right;
@@ -29,7 +28,7 @@ div.aria-widget-slider .rail {
   float: left;
 }
 
-div.aria-widget-slider img[role="slider"]  {
+div.aria-widget-slider img[role="slider"] {
   position: absolute;
   padding: 0;
   margin: 0;
@@ -47,5 +46,3 @@ div.aria-widget-slider img[role="slider"]:hover {
 div.aria-widget-slider .rail.focus {
   background-color: #aaa;
 }
-
-
