@@ -1,5 +1,5 @@
 
-/*.carousel*/
+/* .carousel */
 .carousel-item {
   display: none;
   max-height: 400px;
@@ -10,10 +10,10 @@
 }
 
 .carousel .carousel-item.active {
-    display: block;
+  display: block;
 }
 
-/* More like bootstrap, less accessible*/
+/* More like bootstrap, less accessible */
 
 .carousel .carousel-inner {
   max-width: 900px;
@@ -21,28 +21,28 @@
 }
 
 .carousel button.pause {
-    display: block;
-    font-size: 20px;
-    width: auto;
-    left: -300em;
-    margin-bottom: 10px;
-    height: auto;
-    position: relative;
-    top: 5px;
-    right: -20px;
-    border: thin solid outset;
+  display: block;
+  font-size: 20px;
+  width: auto;
+  left: -300em;
+  margin-bottom: 10px;
+  height: auto;
+  position: relative;
+  top: 5px;
+  right: -20px;
+  border: thin solid outset;
 }
 
 .carousel button[aria-disabled=true] {
-    color: #666;
+  color: #666;
 }
 
-.carousel button.pause:focus{
+.carousel button.pause:focus {
   display: block;
   position: relative;
   font-size: 20px;
   width: auto;
-  left: 0px;
+  left: 0;
   margin-bottom: 10px;
   height: auto;
   position: relative;
@@ -56,7 +56,7 @@
 
 .carousel .carousel-items.focus {
   border-color: white;
-  outline: solid 3px #005A9C;
+  outline: solid 3px #005a9c;
 }
 
 .carousel .carousel-inner .carousel-image a img {
@@ -71,7 +71,7 @@
 
 .carousel .carousel-inner .carousel-caption a:focus,
 .carousel .carousel-inner .carousel-caption a:hover {
-  outline: solid 2px #FFF;
+  outline: solid 2px #fff;
   outline-offset: 1px;
 }
 
@@ -91,7 +91,7 @@
   left: 0;
   padding: 3% 3% 50px;
   right: 0;
-  text-shadow: none
+  text-shadow: none;
 }
 
 .carousel:hover .carousel-inner .carousel-caption,
@@ -102,13 +102,13 @@
 .carousel .carousel-caption {
   position: absolute;
   right: 15%;
-  bottom: 0px;
+  bottom: 0;
   left: 15%;
   padding-top: 20px;
   padding-bottom: 20px;
   color: #fff;
   text-align: center;
-  text-shadow: 0 1px 2px rgba(0,0,0,.6);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
 }
 
 .carousel .carousel-inner,
@@ -125,7 +125,7 @@
   font-weight: bold;
   color: #fff;
   text-align: center;
-  text-shadow: 0 1px 2px rgba(0,0,0,.6);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
 }
 
 .carousel a.carousel-control svg {
@@ -139,33 +139,33 @@
 }
 
 .carousel a.carousel-control:focus {
-  border: 3px solid #FFF;
-  outline: 1px solid #005A9C;
+  border: 3px solid #fff;
+  outline: 1px solid #005a9c;
 }
 
 .carousel a.carousel-control:focus svg polygon,
 .carousel a.carousel-control:hover svg polygon {
-  opacity: 1.0;
+  opacity: 1;
 }
 
 .carousel a.carousel-control.previous {
   bottom: 0;
   width: 15%;
-  background-image: linear-gradient(to right,rgba(0,0,0,.5) 0,rgba(0,0,0,.0001) 100%);
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5) 0, rgba(0, 0, 0, 0.0001) 100%);
 }
 
 .carousel a.carousel-control.previous:focus,
 .carousel a.carousel-control.previous:hover {
   bottom: 0;
   width: 15%;
-  background-image: linear-gradient(to right,rgba(0,0,0,.7) 0,rgba(0,0,0,.0001) 100%);
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7) 0, rgba(0, 0, 0, 0.0001) 100%);
 }
 
 .carousel a.carousel-control.next {
   right: 0;
   bottom: 0;
   width: 15%;
-  background-image: linear-gradient(to right,rgba(0,0,0,.0001) 0,rgba(0,0,0,.5) 100%);
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.0001) 0, rgba(0, 0, 0, 0.5) 100%);
 }
 
 .carousel a.carousel-control.next:focus,
@@ -173,6 +173,6 @@
   right: 0;
   bottom: 0;
   width: 15%;
-  background-image: linear-gradient(to right,rgba(0,0,0,.0001) 0,rgba(0,0,0,.7) 100%);
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.0001) 0, rgba(0, 0, 0, 0.7) 100%);
 }
 
