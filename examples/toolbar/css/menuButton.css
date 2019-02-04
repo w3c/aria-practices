@@ -11,7 +11,6 @@
   display: none;
   position: absolute;
   margin: 0;
-  padding: 0;
   z-index: 1;
 }
 
@@ -58,4 +57,3 @@
 [role='toolbar'] .menu-popup [role="menu"] [role="menuitemradio"]:focus {
   border-color: #005a9c;
 }
-

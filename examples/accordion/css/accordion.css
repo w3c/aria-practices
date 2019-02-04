@@ -10,10 +10,14 @@
   border-color: hsl(216, 94%, 73%);
 }
 
+.Accordion h3 {
+  margin: 0;
+  padding: 0;
+}
+
 .Accordion.focus h3 {
   background-color: hsl(0, 0%, 97%);
 }
-
 
 .Accordion > * + * {
   border-top: 1px solid hsl(0, 0%, 82%);
@@ -33,18 +37,17 @@
   outline: none;
 }
 
-.Accordion h3 {
-  margin: 0;
-  padding: 0;
+.Accordion-trigger:focus,
+.Accordion-trigger:hover {
+  background: hsl(216, 94%, 94%);
 }
 
 .Accordion *:first-child .Accordion-trigger {
   border-radius: 5px 5px 0 0;
 }
 
-.Accordion-trigger:focus,
-.Accordion-trigger:hover {
-  background: hsl(216, 94%, 94%);
+button {
+  border-style: none;
 }
 
 .Accordion button::-moz-focus-inner {
@@ -93,10 +96,6 @@
 /* For Edge bug https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/4806035/ */
 .Accordion-panel[hidden] {
   display: none;
-}
-
-button {
-  border-style: none;
 }
 
 fieldset {

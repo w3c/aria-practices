@@ -31,7 +31,6 @@ ul[role="menubar"] ul[role="menu"] {
   padding: 0;
 }
 
-
 ul[role="menubar"] ul[role="group"] {
   margin: 0;
   padding: 0;
@@ -60,17 +59,11 @@ ul[role="menubar"] ul li[role="separator"] {
   width: 8em;
 }
 
-
 ul[role="menubar"] [role="separator"] {
   padding-top: 0.15em;
   background-image: url('../images/separator.png');
   background-position: center;
   background-repeat: repeat-x;
-}
-
-ul[role="menubar"]:not(.focus) [role="menuitem"]:hover {
-  background-color: #444;
-  color: white;
 }
 
 ul[role="menubar"] [role="menuitem"]:focus,
@@ -79,6 +72,11 @@ ul[role="menubar"] [role="menuitem"][aria-expanded="true"] {
   color: white;
   border: 2px solid black;
   outline: none;
+}
+
+ul[role="menubar"]:not(.focus) [role="menuitem"]:hover {
+  background-color: #444;
+  color: white;
 }
 
 ul[role="menubar"] [role="menu"] [role="menuitem"]:focus,
@@ -104,7 +102,6 @@ ul[role="menubar"] [role="menuitemradio"][aria-checked='true']::before {
   content: url('../images/dot-brown.png');
   padding-right: 0.3em;
 }
-
 
 /*
 * Text area styles
