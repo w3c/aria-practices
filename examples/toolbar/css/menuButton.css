@@ -1,35 +1,59 @@
-button {
-  cursor: pointer;
-  font-size: 110%;
+[role='toolbar'] .menu-popup {
+  position: relative;
 }
 
-.menu-wrapper {
-  position: relative
-}
-
-ul[role="menu"] {
+[role='toolbar'] .menu-popup [role="menu"] {
+  padding: 0;
+  width: 9.5em;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  background-color: white;
   display: none;
   position: absolute;
   margin: 0;
-  padding: 0;
   z-index: 1;
 }
 
-ul[role="menu"] li {
+[role='toolbar'] .menu-popup [role="menu"].focus {
+  border-color: #005a9c;
+}
+
+[role='toolbar'] .menu-popup [role="menu"] li {
+  padding: 0;
+  margin: 0;
+  display: block;
+  text-align: left;
   list-style: none;
 }
 
-[role="menu"] {
+[role='toolbar'] .menu-popup [role="menu"] [role="menuitemradio"] {
   padding: 0;
-  width: 8em;
-  border: thin solid black;
-  background-color: #EEEEEE;
-}
-[role="menuitem"] {
-  padding: 0.25em;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 2px;
+  padding-right: 2px;
+  outline: 0;
+  border: none;
+  border-radius: 0;
 }
 
-[role="menuitem"]:focus,
-[role="menuitem"]:hover {
-  background-color: #FFFFFF;
+[role='toolbar'] .menu-popup [role="menu"] [role="menuitemradio"]::before {
+  content: url('../images/menuitemradio-unchecked.svg');
+}
+
+[role='toolbar'] .menu-popup [role="menu"] [role="menuitemradio"][aria-checked="true"]::before {
+  content: url('../images/menuitemradio-checked.svg');
+}
+
+[role='toolbar'] .menu-popup [role="menu"] [role="menuitemradio"]:focus,
+[role='toolbar'] .menu-popup [role="menu"] [role="menuitemradio"]:hover {
+  background: rgb(226, 239, 255);
+  border-top: 1px solid #005a9c;
+  border-bottom: 1px solid #005a9c;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+[role='toolbar'] .menu-popup [role="menu"] [role="menuitemradio"]:focus {
+  border-color: #005a9c;
 }

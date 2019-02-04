@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/w3c/aria-practices.svg?branch=master)](https://travis-ci.org/w3c/aria-practices)
+[![Build Status](https://travis-ci.com/w3c/aria-practices.svg?branch=master)](https://travis-ci.com/w3c/aria-practices)
 
 # WAI-ARIA: Authoring Practices Guide
 
@@ -29,25 +29,50 @@ Note: Please feel free to ask questions either through an issue or on the [Autho
 
 ### Code conformance
 
-* All HTML should validate in the NU HTML Validator. Exceptions to this rule are warnings and errors related to future ARIA features that are not yet implemented.
-* To keep code in this repository consistent:
-    * Read the [code guide](https://github.com/w3c/aria-practices/wiki/Code-Guide)
-    * Use a text editor that supports [EditorConfig](http://editorconfig.org/).
-    * Make sure All code tests clean with ESLint.
+This repository utilizes [linting](https://en.wikipedia.org/wiki/Lint_%28software%29) tools to do static code analysis and ensure consistent code quality across HTML, CSS, and JavaScript. Each linting tool and respective code standards are documented below and in the [code guide](https://github.com/w3c/aria-practices/wiki/Code-Guide).
 
-### Running ESLint, the pluggable linting utility for JavaScript and JSX
+Pull requests that contain linting errors will not be merged until the errors are resolved. To make this easier, you can install and run the tools locally before pushing code. Also note that the tools for CSS and JavaScript will automatically fix many issues if you have them installed locally. To install these tools:
 
-[ESLint](http://eslint.org/) is an automated code style checker. We use it to
-ensure common code styling practices in this repository.
-Pull requests with ESLint errors will not be merged.
+1. Make sure that you have [Node.js](https://nodejs.org/en/) installed, which comes with [node package manager (npm)](https://www.npmjs.com/get-npm)
+1. Open the directory that contains your `aria-practices` repository in a terminal
+1. Run `npm install`
 
-### Setup ESLint so you can run it locally
+It is also highly recommended that you use a code editor that supports these tools and [EditorConfig](http://editorconfig.org/).
 
-1. If you do not already have node.js installed, go to the [node installer](https://nodejs.org/en/download/)
-1. When you install Node, NPM is included.
-1. In a terminal window from the directory that contains the `aria-practices`
-repository, run `npm install`.
-A successful install will display a tree of installed packages.
+#### HTML
+
+HTML is validated against the [NU HTML Validator](https://github.com/validator/validator).
+Should a warning or error occur because a future ARIA feature is not yet implemented, it will be added to the [the .vnurc file](.vnurc), allowing the error to pass through.
+
+Run locally:
+
+```sh
+npm run lint:html
+```
+
+#### CSS
+
+CSS is validated by [stylelint](https://stylelint.io/) using the [stylelint-config-standard](https://github.com/stylelint/stylelint-config-standard) ruleset.
+
+**NOTE**: on commit, stylelint will be run on staged CSS files. If errors are found that can be [automatically fixed with the --fix flag](https://stylelint.io/user-guide/cli/#autofixing-errors), they will be fixed and the changes committed.
+
+Run locally:
+
+```sh
+npm run lint:css
+```
+
+#### JavaScript
+
+JavaScript is validated by [ESLint](http://eslint.org/), using [our own config](.eslintrc.json).
+
+**NOTE**: on commit, eslint will be run on staged CSS files. If errors are found that can be [automatically fixed with the --fix flag](https://eslint.org/docs/user-guide/command-line-interface#fixing-problems), they will be fixed and the changes committed.
+
+Run locally:
+
+```sh
+npm run lint:js
+```
 
 ### Test and fix your code
 
@@ -64,7 +89,7 @@ fix an error, satisfy the change that the violation indicates.
 For example, here is an error for an invalid variable name style. Variables must
 follow a camelCase convention.
 
-```
+```sh
 /Users/user1/Documents/github/aria-practices/examples/slider/js/text-slider.js
   19:8  error  Identifier 'value_nodes' is not in camel case  camelcase
 ```

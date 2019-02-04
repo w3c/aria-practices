@@ -1,49 +1,130 @@
-.annotate {
-		color: #366ED4;
-	  font-style: italic;
+[role="toolbar"] {
+  border: 2px solid transparent;
+  border-radius: 5px;
+  padding: 6px;
+  height: 44px;
+  width: 1050px;
+  background-color: #ececea;
 }
 
-.toolbar {
-		border-left: 1px solid #aaa;
-		margin-top: 10px;
-		font-size: 0;
+[role="toolbar"].focus {
+  border-color: #005a9c;
+  border-width: 3px;
+  padding: 5px;
 }
 
-.toolbar-item {
-    display: inline-block;
-    padding: 0.5em 1em;
-
-		background: #eee;
-    border: 1px solid #aaa;
-		border-left: none;
-		color: blue;
-		font-size: 16px;
-		line-height: 1.5em;
-		vertical-align: top;
+[role="toolbar"] .group {
+  padding: 0.25em;
+  display: block;
+  float: left;
 }
 
-.toolbar-item.selected {
-		background-color: #ccc;
-		color: black;
-	  font-weight: bold;
+[role="toolbar"] .group:not(:first-child) {
+  margin-left: 0.75em;
 }
 
-.menu-wrapper {
-	display: inline-block;
-	font-size: 16px;
+[role="toolbar"] button,
+[role="toolbar"] [role="radio"],
+[role="toolbar"] label,
+[role="toolbar"] .spinbutton,
+[role="toolbar"] a,
+[role="toolbar"] .input {
+  border: 1px solid rgb(255, 255, 255);
+  outline: none;
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 5px;
+  text-align: center;
+  background: rgb(255, 255, 255);
+  color: #222428;
+  font-size: 14px;
+  line-height: 1.5em;
+  margin-right: 0.25em;
 }
 
-.menu-button {
-	padding-right: 2.5em;
-	position: relative;
+[role="toolbar"] button[aria-pressed="true"],
+[role="toolbar"] [role="radio"][aria-checked="true"] {
+  border-color: #555;
+  font-weight: bold;
+  background-color: #f4f4f4;
 }
 
-.menu-button::after {
-	content: " ";
-	border-left: 0.4em solid transparent;
-	border-right: 0.4em solid transparent;
-	border-top: 0.4em solid black;
-  position: absolute;
-  right: 1em;
-  top: 1.1em;
+[role="toolbar"] button[aria-disabled="true"] {
+  color: #889;
+  cursor: not-allowed;
+}
+
+[role="toolbar"] button[aria-disabled="true"]:focus {
+  border-color: #005a9c;
+}
+
+[role="toolbar"] button::-moz-focus-inner {
+  border: 0;
+}
+
+[role="toolbar"] button:focus,
+[role="toolbar"] [role="radio"]:focus,
+[role="toolbar"] .spinbutton:focus,
+[role="toolbar"] .focus,
+[role="toolbar"] a:focus {
+  border-width: 2px;
+  border-color: #005a9c;
+  background: rgb(226, 239, 255);
+  padding: 5px 11px;
+}
+
+[role="toolbar"] button:hover,
+[role="toolbar"] [role="radio"]:hover,
+[role="toolbar"] .spinbutton:hover,
+[role="toolbar"] label.input:hover,
+[role="toolbar"] a:hover {
+  border-color: #005a9c;
+  background: rgb(226, 239, 255);
+}
+
+[role="toolbar"] [role="spinbutton"] .value,
+[role="toolbar"] [role="spinbutton"] .increase,
+[role="toolbar"] [role="spinbutton"] .decrease {
+  width: 60px;
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+[role="toolbar"] button[aria-haspopup] span {
+  float: right;
+}
+
+[role="toolbar"] button[aria-haspopup] span::after {
+  content: url(../images/pulldown-icon.svg);
+}
+
+[role="toolbar"] button[aria-haspopup]:focus span::after {
+  content: url(../images/pulldown-icon-focus.svg);
+}
+
+[role="toolbar"] [role="spinbutton"] .increase,
+[role="toolbar"] [role="spinbutton"] .decrease {
+  width: 20px;
+  border: 1px solid #ececea;
+  border-radius: 3px;
+  background-color: #ececea;
+}
+
+[role="toolbar"] [role="spinbutton"] .increase:hover,
+[role="toolbar"] [role="spinbutton"] .decrease:hover,
+[role="toolbar"] [role="spinbutton"]:focus .increase,
+[role="toolbar"] [role="spinbutton"]:focus .decrease {
+  fill: #005a9c;
+  border-color: #005a9c;
+}
+
+textarea {
+  width: 990px;
+  padding: 0.25em;
+  border: 2px solid black;
+  height: 400px;
+  font-size: 14pt;
+  font-family: sans-serif;
+  border-radius: 5px;
 }
