@@ -24,8 +24,7 @@ ul[role="listbox"] li[role="option"] {
   border-color: #348ccb;
 }
 
-
-[role="listbox"] [role="option"]{
+[role="listbox"] [role="option"] {
   display: block;
   margin: 0.25em;
   padding: 0;
@@ -59,4 +58,3 @@ input:hover {
 [role="listbox"] li[role="option"]:hover {
   background-color: #c2ddef;
 }
-

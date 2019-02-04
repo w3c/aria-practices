@@ -4,7 +4,7 @@ button {
 }
 
 .menu-wrapper {
-  position: relative
+  position: relative;
 }
 
 ul[role="menu"] {
@@ -23,13 +23,14 @@ ul[role="menu"] li {
   padding: 0;
   width: 8em;
   border: thin solid black;
-  background-color: #EEEEEE;
+  background-color: #eee;
 }
+
 [role="menuitem"] {
   padding: 0.25em;
 }
 
 [role="menuitem"]:focus,
 [role="menuitem"]:hover {
-  background-color: #FFFFFF;
+  background-color: #fff;
 }

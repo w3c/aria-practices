@@ -16,30 +16,29 @@ div.aria-widget-text-slider .rail {
   height: 4px;
 }
 
-div.aria-widget-text-slider .thumb  {
+div.aria-widget-text-slider .thumb {
   border: 1px solid #888;
-  border-top-color:  #666;
+  border-top-color: #666;
   border-left-color: #666;
-  background-color: #DDD;
+  background-color: #ddd;
   position: relative;
 }
 
-div.aria-widget-text-slider .rail .thumb.focus, 
+div.aria-widget-text-slider .rail .thumb.focus,
 div.aria-widget-text-slider .rail .thumb:hover {
   outline: 2px solid #888;
-  background-color: #E0CB52;
+  background-color: #e0cb52;
 }
 
 div.aria-widget-text-slider .rail.focus {
-  background-color: #AAA;
+  background-color: #aaa;
 }
 
-div.aria-widget-text-slider div.value  {
+div.aria-widget-text-slider div.value {
   text-align: center;
   display: block;
   position: absolute;
 }
-
 
 div.aria-widget-text-slider label {
   display: block;
@@ -47,4 +46,3 @@ div.aria-widget-text-slider label {
   margin-bottom: 0.5em;
   font-weight: bold;
 }
-

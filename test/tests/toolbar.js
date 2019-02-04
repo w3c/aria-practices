@@ -12,15 +12,14 @@ const exampleFile = 'toolbar/toolbar.html';
 const ex = {
   toolbarSelector: '#ex1 [role="toolbar"]',
   toolbarLabel: 'Example Toolbar',
-  toolSelector: '#ex1 [role="button"]',
-  menuSelector: '#ex1 button',
+  itemSelector: '#ex1 .item',
+  buttonSelector: '#ex1 button',
+  menuSelector: '#ex1 button[aria-haspopup]',
+  spinSelector: '#ex1 [role="spinbutton"]',
+  checkboxSelector: '#ex1 .item',
+  linkSelector: '#ex1 [href]',
   allToolSelectors: [
-    '#ex1 [role="button"]:nth-of-type(1)',
-    '#ex1 [role="button"]:nth-of-type(2)',
-    '#ex1 [role="button"]:nth-of-type(3)',
-    '#ex1 [role="button"]:nth-of-type(4)',
-    '#ex1 [role="button"]:nth-of-type(5)',
-    '#ex1 button'
+    '#ex1 .item'
   ],
   tabbaleItemBeforeToolbarSelector: '[href="../../#toolbar"]',
   tabbaleItemAfterToolbarSelector: '[href="../../#kbd_roving_tabindex"]'
@@ -67,35 +66,38 @@ const waitAndCheckTabindex = async function (t, selector) {
 
 // Attributes
 
-ariaTest('role="toolbar" element', exampleFile, 'toolbar-role', async (t) => {
+ariaTest('Toolbar element has role="toolbar"', exampleFile, 'toolbar-role', async (t) => {
   t.plan(1);
   await assertAriaRoles(t, 'ex1', 'toolbar', '1', 'div');
 });
 
 // Test fails from bug in example: fix in issue 847 on w3c/aria-practices
-ariaTest.failing('"aria-label" on toolbar element', exampleFile, 'toolbar-aria-label', async (t) => {
+ariaTest('Toolbar element has "aria-label"', exampleFile, 'toolbar-aria-label', async (t) => {
   t.plan(1);
   await assertAriaLabelExists(t, ex.toolbarSelector);
 });
 
-ariaTest('role="button elements', exampleFile, 'button-role', async (t) => {
+ariaTest('Toolbar items support roving tabindex on toolbar items (Part 1)', exampleFile, 'toolbar-item-tabindex', async (t) => {
   t.plan(1);
-  await assertAriaRoles(t, 'ex1', 'button', '5', 'div');
+
+  // Test all the toolbar items with roving tab index
+  await assertRovingTabindex(t, ex.itemSelector, Key.ARROW_RIGHT);
+
 });
 
-ariaTest('roving tabindex on button elements', exampleFile, 'button-tabindex', async (t) => {
-  t.plan(3);
+/*
+ariaTest('Toolbar items support roving tabindex on toolbar items (Part 2)', exampleFile, 'toolbar-item-tabindex', async (t) => {
+  t.plan(1);
 
-  // Test all the role="button" elements with roving tab index
-  await assertRovingTabindex(t, ex.toolSelector, Key.ARROW_RIGHT);
+  // Test the last element in the toolbox, which is a native "link" element
+  await clickAndWait(t, ex.linkSelector);
 
-  // Test the last element in the toolbox, which is a native "button" element
-  await clickAndWait(t, ex.menuSelector);
-
-  await assertAttributeValues(t, ex.toolSelector, 'tabindex', '-1');
-  await assertAttributeValues(t, ex.menuSelector, 'tabindex', '0');
+//  await assertAttributeValues(t, ex.spinSelector, 'tabindex', '-1');
+  await assertAttributeValues(t, ex.checkboxSelector, 'tabindex', '-1');
+//  await assertAttributeValues(t, ex.linkSelector, 'tabindex', '0');
 });
 
+/*
 // Test pending fix bug in example: fix in issue 847 on w3c/aria-practices
 ariaTest.failing('"aria-disabled" on button elements', exampleFile, 'button-aria-disabled', async (t) => {
   t.fail();
@@ -278,3 +280,4 @@ ariaTest.failing('key END moves focus', exampleFile, 'key-end', async (t) => {
     );
   }
 });
+*/

@@ -30,7 +30,7 @@ module.exports = async function assertRovingTabindex (t, elementsSelector, key) 
       assert.equal(
         await elements[el].getAttribute('tabindex'),
         tabindex,
-        'focus is on element ' + tabableEl + ' of elements "' + elementsSelector +
+        'focus is on element ' + tabableEl + ' of ' + elements.length + ' elements "' + elementsSelector +
           '", therefore tabindex on element ' + el + ' should be "' + tabindex
       );
     }

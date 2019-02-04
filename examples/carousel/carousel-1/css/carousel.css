@@ -1,0 +1,176 @@
+
+/* .carousel */
+.carousel-item {
+  display: none;
+  max-height: 400px;
+  max-width: 900px;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.carousel .carousel-item.active {
+  display: block;
+}
+
+/* More like bootstrap, less accessible */
+
+.carousel .carousel-inner {
+  max-width: 900px;
+  position: relative;
+}
+
+.carousel button.pause {
+  display: block;
+  font-size: 20px;
+  width: auto;
+  left: -300em;
+  margin-bottom: 10px;
+  height: auto;
+  position: relative;
+  top: 5px;
+  right: -20px;
+  border: thin solid outset;
+}
+
+.carousel button[aria-disabled=true] {
+  color: #666;
+}
+
+.carousel button.pause:focus {
+  display: block;
+  position: relative;
+  font-size: 20px;
+  width: auto;
+  left: 0;
+  margin-bottom: 10px;
+  height: auto;
+  top: 5px;
+  right: -20px;
+}
+
+.carousel .carousel-items {
+  border: solid 2px transparent;
+}
+
+.carousel .carousel-items.focus {
+  border-color: white;
+  outline: solid 3px #005a9c;
+}
+
+.carousel .carousel-inner .carousel-image a img {
+  height: 100%;
+  width: 100%;
+}
+
+.carousel .carousel-inner .carousel-caption a {
+  text-decoration: underline;
+  border: none;
+}
+
+.carousel .carousel-inner .carousel-caption h3 a {
+  color: #fff;
+  font-weight: 600;
+}
+
+.carousel .carousel-inner .carousel-caption a:focus,
+.carousel .carousel-inner .carousel-caption a:hover {
+  outline: solid 2px #fff;
+  outline-offset: 1px;
+}
+
+.carousel .carousel-inner .carousel-caption p {
+  font-size: 1em;
+  line-height: 1.5;
+  margin-bottom: 0;
+}
+
+.carousel .carousel-caption {
+  position: absolute;
+  right: 15%;
+  bottom: 0;
+  left: 15%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+.carousel .carousel-inner .carousel-caption {
+  bottom: 0;
+  left: 0;
+  padding: 3% 3% 50px;
+  right: 0;
+  text-shadow: none;
+}
+
+.carousel:hover .carousel-inner .carousel-caption,
+.carousel .carousel-item.focus .carousel-caption {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.carousel .carousel-inner,
+.carousel .carousel-item,
+.carousel .carousel-slide {
+  max-height: 400px;
+}
+
+.carousel .carousel-control {
+  position: absolute;
+  top: 0;
+  z-index: 10;
+  font-size: 200%;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+.carousel a.carousel-control svg {
+  position: relative;
+  display: inline-block;
+  top: 45%;
+}
+
+.carousel a.carousel-control svg polygon {
+  opacity: 0.7;
+}
+
+.carousel a.carousel-control:focus {
+  border: 3px solid #fff;
+  outline: 1px solid #005a9c;
+}
+
+.carousel a.carousel-control:focus svg polygon,
+.carousel a.carousel-control:hover svg polygon {
+  opacity: 1;
+}
+
+.carousel a.carousel-control.previous {
+  bottom: 0;
+  width: 15%;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5) 0, rgba(0, 0, 0, 0.0001) 100%);
+}
+
+.carousel a.carousel-control.previous:focus,
+.carousel a.carousel-control.previous:hover {
+  bottom: 0;
+  width: 15%;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7) 0, rgba(0, 0, 0, 0.0001) 100%);
+}
+
+.carousel a.carousel-control.next {
+  right: 0;
+  bottom: 0;
+  width: 15%;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.0001) 0, rgba(0, 0, 0, 0.5) 100%);
+}
+
+.carousel a.carousel-control.next:focus,
+.carousel a.carousel-control.next:hover {
+  right: 0;
+  bottom: 0;
+  width: 15%;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.0001) 0, rgba(0, 0, 0, 0.7) 100%);
+}
