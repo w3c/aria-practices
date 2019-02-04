@@ -1,180 +1,179 @@
 body {
-    font-size: large;
+  font-size: large;
 }
 
-h1, 
+h1,
 h2,
 h3 {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 h1 {
-    font-size: 1.75em;
-    margin-bottom: 0.125em;
+  font-size: 1.75em;
+  margin-bottom: 0.125em;
 }
 
 h2 {
-    font-size: 1.35em;
-    margin-bottom: 0.25em;
+  font-size: 1.35em;
+  margin-bottom: 0.25em;
 }
 
 h3 {
-    margin-top: 2em;
-    font-size: 1.15em;
+  margin-top: 2em;
+  font-size: 1.15em;
+}
+
+img {
+  max-width: 100%;
 }
 
 header {
-    margin-bottom: 1em;
+  margin-bottom: 1em;
 }
 
 header img {
-    height: 4em;   
-    margin: 0;
-    padding: 0;
+  height: 4em;
+  margin: 0;
+  padding: 0;
 }
 
 header h1 {
-    padding-top: 0.125em;
-    margin-bottom: 0;
-    font-size: 2em;
+  padding-top: 0.125em;
+  margin-bottom: 0;
+  font-size: 2em;
 }
 
 main {
-    margin-bottom: 5em;
+  margin-bottom: 5em;
+}
+
+.code {
+  font-family: courier, monospace;
+  background: #f0f0f0;
 }
 
 main p {
-    margin-bottom: 1em;
+  margin-bottom: 1em;
 }
 
 main ul {
-    margin-left :0;
-    padding-left: 1em;
-    margin-bottom: 1em;
+  margin-left: 0;
+  padding-left: 1em;
+  margin-bottom: 1em;
 }
 
 main li,
 aside li {
-    padding-bottom: 0.25em;
-}
-
-main ul.nav-tabs li {
-    padding-bottom: 0;
-}
-
-main p a {
-    text-decoration: underline;
-}
-
-aside a {
-    text-decoration: underline;
-}
-
-main [role="tabpanel"] > p,
-main [role="tabpanel"] > ul {
-    margin-top: 0.5em;
-}
-
-main [role="tabpanel"] > h3 + p {
-    margin-top: 0;
-}
-
-main .code {
-    margin-top: 0.5em;
-    margin-bottom: 2em;
-    padding: 1em;
-}
-
-main .nav-tabs > li > a {
-    background-color: #EEEEEE;
-}
-
-nav {
-    margin: 0;
-    margin-bottom: 1em;
+  padding-bottom: 0.25em;
 }
 
 nav li {
-    margin-top: 0.45em;
-    border: solid thin #337ab7;
-    border-top-left-radius: 6px;
-    border-bottom-left-radius: 6px;
-    border-top-right-radius: 6px;
-    border-bottom-right-radius: 6px;
+  margin-top: 0.45em;
+  border: solid thin #337ab7;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
 }
 
-section[aria-labelledby] {
-    margin-bottom: 4em;
+main ul.nav-tabs li {
+  padding-bottom: 0;
 }
 
-section[aria-labelledby] p {
-    padding-bottom: 0;
-    margin-bottom: 0;
+aside a {
+  text-decoration: underline;
 }
 
-aside {
-    margin: 0;
-    padding: 0;
-    padding: 0.5em;
-    margin-top: 0.5em;
-    margin-bottom: 1em;
-    background-color: #F4F4F4;
-    margin-right: 12em;
-    width: 100%;
-    border-top-left-radius: 6px;
-    border-bottom-left-radius: 6px;
-    border-top-right-radius: 6px;
-    border-bottom-right-radius: 6px;
-}
-
-aside h2 {
-    margin: 0;
-    padding: 0;
-}
-
-aside ul {
-    margin: 0;
-    padding: 0;
-    margin-left: 1.15em;
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-}
-
-header .inst {
-    margin: 0;
-    padding: 0;
-    font-size: 90%;
-    font-style: italic;
-}
-
-header button {
-    margin: 0;
-    text-align: center;
-    margin: 0.25em;
-    margin-left: -.125em;
-}
-
-aside .note {
-    font-size: 90%;
-    font-style: italic;
+main p a {
+  text-decoration: underline;
 }
 
 a:focus,
 a:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
-.code {
-  font-family: courier, monosapce;
-  background: #F0F0F0;
+aside ul {
+  margin: 0;
+  padding: 0;
+  margin-left: 1.15em;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+main [role="tabpanel"] > p,
+main [role="tabpanel"] > ul {
+  margin-top: 0.5em;
+}
+
+section[aria-labelledby] p {
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+main [role="tabpanel"] > h3 + p {
+  margin-top: 0;
+}
+
+main .code {
+  margin-top: 0.5em;
+  margin-bottom: 2em;
+  padding: 1em;
+}
+
+main .nav-tabs > li > a {
+  background-color: #eee;
+}
+
+nav {
+  margin: 0;
+  margin-bottom: 1em;
+}
+
+section[aria-labelledby] {
+  margin-bottom: 4em;
+}
+
+aside {
+  margin: 0;
+  padding: 0;
+  padding: 0.5em;
+  margin-top: 0.5em;
+  margin-bottom: 1em;
+  background-color: #f4f4f4;
+  margin-right: 12em;
+  width: 100%;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+
+aside h2 {
+  margin: 0;
+  padding: 0;
+}
+
+header .inst {
+  margin: 0;
+  padding: 0;
+  font-size: 90%;
+  font-style: italic;
+}
+
+header button {
+  margin: 0.25em;
+  text-align: center;
+  margin-left: -0.125em;
+}
+
+aside .note {
+  font-size: 90%;
+  font-style: italic;
 }
 
 form {
-    margin-top: 2em;
-    margin-bottom: 2em;
-}
-
-img {
-    max-width: 100%;
+  margin-top: 2em;
+  margin-bottom: 2em;
 }

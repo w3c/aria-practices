@@ -1,5 +1,6 @@
 /* Style for syntax highlighting */
 @import url("github.css");
+
 body:not(.toc-inline) {
   padding-right: 1.5em;
   padding-left: 1.5em;
@@ -17,7 +18,7 @@ pre code:not(.hljs),
 .sourcecode:not(.hljs) {
   margin: 1em 0;
   padding: 1em;
-  border-radius: .2em;
+  border-radius: 0.2em;
   overflow: auto;
   background: hsl(24, 20%, 95%);
 }
@@ -25,17 +26,17 @@ pre code:not(.hljs),
 /* Style all kbd elements that are not in table headers */
 :not(th) > kbd {
   display: inline-block;
-  padding: .1em .3em;
+  padding: 0.1em 0.3em;
   color: #555;
   vertical-align: middle;
   background-color: #fcfcfc;
   border: solid 1px #ccc;
   border-bottom-color: #bbb;
-  border-radius: .2em;
-  box-shadow: inset 0 -1px 0 #bbb
+  border-radius: 0.2em;
+  box-shadow: inset 0 -1px 0 #bbb;
 }
 
 table.data.attributes tbody th,
 table.data.attributes tbody td {
-    border: 1px solid silver;
+  border: 1px solid silver;
 }

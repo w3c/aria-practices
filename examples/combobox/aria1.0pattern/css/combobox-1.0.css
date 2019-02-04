@@ -1,6 +1,6 @@
-.annotate{
-	font-style: italic;
-	color: #366ED4;
+.annotate {
+  font-style: italic;
+  color: #366ed4;
 }
 
 .combobox-list {
@@ -25,7 +25,6 @@
   outline-color: #348ccb;
 }
 
-
 .combobox-list .group button {
   margin: 0;
   padding: 0 0.125em 0 0.125em;
@@ -35,4 +34,3 @@
   font-size: 85%;
   background-color: #eee;
 }
-
