@@ -25,7 +25,7 @@ ul[role="listbox"] li[role="option"] {
 }
 
 
-[role="listbox"] [role="option"]{
+[role="listbox"] [role="option"] {
   display: block;
   margin: 0.25em;
   padding: 0;
