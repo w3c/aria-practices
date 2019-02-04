@@ -15,27 +15,26 @@ div.aria-widget-vertical-slider .rail {
   width: 4px;
 }
 
-div.aria-widget-vertical-slider .thumb  {
+div.aria-widget-vertical-slider .thumb {
   border: 1px solid #888;
-  border-top-color:  #666;
+  border-top-color: #666;
   border-left-color: #666;
-  background-color: #DDD;
+  background-color: #ddd;
   position: relative;
 }
 
-div.aria-widget-vertical-slider .rail .thumb.focus, 
+div.aria-widget-vertical-slider .rail .thumb.focus,
 div.aria-widget-vertical-slider .rail .thumb:hover {
   outline: 2px solid #888;
-  background-color: #E0CB52;
+  background-color: #e0cb52;
 }
 
 div.aria-widget-vertical-slider .rail.focus {
-  background-color: #AAA;
+  background-color: #aaa;
 }
 
-
 div.aria-widget-vertical-slider .label,
-div.aria-widget-vertical-slider .value  {
+div.aria-widget-vertical-slider .value {
   margin-top: 0.5em;
   margin-bottom: 0.5em;
   text-align: center;
@@ -50,5 +49,3 @@ div.aria-widget-vertical-slider .label {
 #id_kbd {
   clear: both;
 }
-
-
