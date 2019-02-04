@@ -15,6 +15,13 @@ div.oaa-element-overlay > div {
   pointer-events: auto;
 }
 
+div.oaa-message-dialog > div {
+  margin: 0;
+  padding: 10px 8px 12px;
+  font-size: 14px;
+  line-height: 150%;
+}
+
 div.oaa-element-overlay > div:hover {
   cursor: grab;
   cursor: -moz-grab;
@@ -47,13 +54,6 @@ div.oaa-message-dialog > h2 {
   color: inherit;
   font-family: inherit;
   font-size: 22px;
-}
-
-div.oaa-message-dialog > div {
-  margin: 0;
-  padding: 10px 8px 12px;
-  font-size: 14px;
-  line-height: 150%;
 }
 
 div.oaa-message-dialog > div ul {

@@ -50,13 +50,13 @@
 }
 
 [role="gridcell"],
- [role="gridcell"] [tabindex] {
+[role="gridcell"] [tabindex] {
   display: inline-block;
   position: relative;
 }
 
 [role="gridcell"]:focus,
- [role="gridcell"] *:focus {
+[role="gridcell"] *:focus {
   outline: #005a9c;
   outline-style: dotted;
   outline-width: 3px;
@@ -73,7 +73,7 @@
 }
 
 .grid-nux::after,
- .grid-nux::before {
+.grid-nux::before {
   bottom: 100%;
   left: 20px;
   border: solid transparent;

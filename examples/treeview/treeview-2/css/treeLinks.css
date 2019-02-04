@@ -45,9 +45,8 @@ ul[role="tree"] a {
 [role="treeitem"] span {
   width: 16em;
   margin: 0;
-  padding: 0;
-  border: 2px transparent solid;
   padding: 0.125em;
+  border: 2px transparent solid;
   display: block;
 }
 
@@ -67,4 +66,3 @@ ul[role="tree"] a {
 [role="treeitem"] span.hover {
   background-color: #ddd;
 }
-

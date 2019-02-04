@@ -11,7 +11,7 @@
 }
 
 .left-area,
- .right-area {
+.right-area {
   box-sizing: border-box;
   display: inline-block;
   font-size: 14px;
