@@ -1,46 +1,32 @@
-// Run the load function after all resources are loaded.
-window.onload = load;
-
-const keys = {
-  space: 32
-};
-
-function load() {
-  // Create an array of all the switches on the page.
-  // The query looks for elements with a role attribute that starts with "switch".
-  let HTMLSwitches = [].slice.call(document.querySelectorAll('[role^=switch]'));
-
-  // Add an event listener to all the switches.
-  for (let HTMLSwitch of HTMLSwitches) {
-    HTMLSwitch.addEventListener('click', activateSwitch);
-    HTMLSwitch.addEventListener('keydown', HTMLSwitchKeyHandler);
+class Switch {
+  constructor (element) {
+    this.element = element
+    this.bindEvents()
+    console.log('switch')
   }
-};
 
-function HTMLSwitchKeyHandler (event) {
-  let switchEl = this;
-  let key = event.keyCode;
-
-  // If space is pressed activate the switch.
-  if (key === keys.space) {
-    event.preventDefault();
-    activateSwitch(event, this);
+  bindEvents () {
+    this.element.addEventListener('click', () => this.toggleStatus())
+    this.element.addEventListener('keydown', event => this.onKeydown(event))
   }
-};
 
-function activateSwitch (event, eventTarget) {
-  let switchEl = eventTarget;
-
-  // If no element is provided set it 'this'.
-  if (eventTarget === undefined) {
-    switchEl = this;
+  onKeydown(event) {
+    // Only do something when space or return is pressed
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault()
+      this.toggleStatus()
+    }
   }
-  
-  // Get the current state for the switch.
-  let currentState = switchEl.getAttribute('aria-checked');
-  // Invert the state.
-  let newState = (currentState === "false" ? "true" : "false");
 
-  // Set the new state.
-  switchEl.setAttribute('aria-checked', newState);
-};
+  // Switch state of a switch, hah, see what I did there, right…
+  toggleStatus() {
+    const currentState = this.element.getAttribute('aria-checked') === 'true'
+    const newState = String(!currentState)
+
+    this.element.setAttribute('aria-checked', newState)
+  }
+}
+
+// Initialize the Switch component on all matching DOM nodes
+Array.from(document.querySelectorAll('[role^=switch]'))
+    .forEach(element => new Switch(element))

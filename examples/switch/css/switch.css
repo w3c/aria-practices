@@ -1,4 +1,74 @@
-body {
+:root {
+  --toggle-circle-size: 1.5rem;
+  --toggle-spacing: 0.125rem;
+  --toggle-height: calc(var(--toggle-circle-size) + calc(2 * var(--toggle-spacing)));
+  --toggle-width: calc(2 * calc(var(--toggle-circle-size) + var(--toggle-spacing)));
+  --toggle-border-radius: calc(var(--toggle-height) / 2);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+[role^="switch"] {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  outline: none;
+  user-select: none;
+  max-width: 15em;
+}
+
+[role^="switch"] span:first-child {
+  width: 100%;
+}
+
+[role^="switch"] span:last-child {
+  display: block;
+  flex-shrink: 0;
+  padding: var(--toggle-spacing);
+  width: var(--toggle-width);
+  height: var(--toggle-height);
+  border-radius: var(--toggle-border-radius);
+  background: #ccc;
+  transition: background-color cubic-bezier(0.23, 1, 0.32, 1) .4s;
+}
+
+[role^="switch"] span:last-child::before {
+  display: block;
+  width: var(--toggle-circle-size);
+  height: var(--toggle-circle-size);
+  border-radius: 50%;
+  background: #fff;
+  transition: transform cubic-bezier(0.23, 1, 0.32, 1) .4s;
+  content: '';
+}
+
+[role^="switch"][aria-checked="true"] span:last-child {
+  background: #22AB34;
+}
+
+[role^="switch"][aria-checked="true"] span:last-child::before {
+  transform: translateX(var(--toggle-circle-size));
+}
+
+[role^="switch"]:focus span:last-child {
+  box-shadow:
+    0 0 0 1px #fff,
+    0 0 0 3px hsl(205, 75%, 76%);
+}
+
+[role^="switch"] + [role^="switch"] {
+  margin-top: 1em;
+}
+
+
+/* body {
     font-family: sans-serif;
 }
 
@@ -9,8 +79,10 @@ body {
 *::before,
 *::after {
     box-sizing: inherit;
-}
+} */
 
+
+/*
 [role^=switch] {
     display: inline-block;
     margin-top: .5em;
@@ -30,7 +102,6 @@ body {
     border-radius: 3px;
     vertical-align: middle;
     background: hsl(240, 25%, 98%);
-    /* overflow: hidden; */
 }
 
 [role^=switch][aria-checked="true"] span {
@@ -76,4 +147,4 @@ body {
 
 [role^=switch][aria-checked="true"]:focus span::after {
     /* border-color: hsl(137, 29%, 49%); */
-}
+/*}
