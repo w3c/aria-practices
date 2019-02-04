@@ -7,8 +7,12 @@
     "example": "examples"
   },
   "scripts": {
-    "fix": "eslint --fix .",
-    "lint": "eslint .",
+    "fix": "npm run lint:es -- --fix && npm run lint:css -- --fix",
+    "lint": "npm run lint:es && npm run lint:css && npm run vnu-jar",
+    "lint:css": "stylelint **/*.css",
+    "lint:es": "eslint .",
+    "lint:js": "npm run lint:es",
+    "lint:html": "npm run vnu-jar",
     "regression": "ava test/tests",
     "regression-report": "node test/util/report",
     "test": "npm run lint && npm run vnu-jar && npm run regression",
