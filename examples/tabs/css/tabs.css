@@ -4,17 +4,17 @@
 }
 
 [role="tablist"] {
-  margin: 0 0 -.1em;
+  margin: 0 0 -0.1em;
   overflow: visible;
 }
 
 [role="tab"] {
   position: relative;
   margin: 0;
-  padding: .3em .5em .4em;
+  padding: 0.3em 0.5em 0.4em;
   border: 1px solid hsl(219, 1%, 72%);
-  border-radius: .2em .2em 0 0;
-  box-shadow: 0 0 .2em hsl(219, 1%, 72%);
+  border-radius: 0.2em 0.2em 0 0;
+  box-shadow: 0 0 0.2em hsl(219, 1%, 72%);
   overflow: visible;
   font-family: inherit;
   font-size: inherit;
@@ -49,7 +49,7 @@
   bottom: -1px;
   right: 0;
   left: 0;
-  height: .3em;
+  height: 0.3em;
   background: hsl(220, 43%, 99%);
   box-shadow: none;
   content: '';
@@ -71,17 +71,16 @@
 [role="tabpanel"] {
   position: relative;
   z-index: 2;
-  padding: .5em .5em .7em;
+  padding: 0.5em 0.5em 0.7em;
   border: 1px solid hsl(219, 1%, 72%);
-  border-radius: 0 .2em .2em .2em;
-  box-shadow: 0 0 .2em hsl(219, 1%, 72%);
+  border-radius: 0 0.2em 0.2em 0.2em;
+  box-shadow: 0 0 0.2em hsl(219, 1%, 72%);
   background: hsl(220, 43%, 99%);
-
 }
 
 [role="tabpanel"]:focus {
   border-color: hsl(20, 96%, 48%);
-  box-shadow: 0 0 .2em hsl(20, 96%, 48%);
+  box-shadow: 0 0 0.2em hsl(20, 96%, 48%);
   outline: 0;
 }
 

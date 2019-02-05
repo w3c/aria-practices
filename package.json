@@ -7,8 +7,12 @@
     "example": "examples"
   },
   "scripts": {
-    "fix": "eslint --fix .",
-    "lint": "eslint .",
+    "fix": "npm run lint:es -- --fix && npm run lint:css -- --fix",
+    "lint": "npm run lint:es && npm run lint:css && npm run vnu-jar",
+    "lint:css": "stylelint **/*.css",
+    "lint:es": "eslint .",
+    "lint:js": "npm run lint:es",
+    "lint:html": "npm run vnu-jar",
     "regression": "ava test/tests",
     "regression-report": "node test/util/report",
     "test": "npm run lint && npm run vnu-jar && npm run regression",
@@ -29,7 +33,26 @@
     "cheerio": "^1.0.0-rc.2",
     "eslint": "^4.19.1",
     "geckodriver": "^1.11.0",
+    "husky": "^1.2.0",
+    "lint-staged": "^8.1.0",
     "selenium-webdriver": "^4.0.0-alpha.1",
+    "stylelint": "^9.8.0",
+    "stylelint-config-standard": "^18.2.0",
     "vnu-jar": "^18.7.23"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.css": [
+      "stylelint --fix",
+      "git add"
+    ],
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ]
   }
 }
