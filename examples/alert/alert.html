@@ -30,6 +30,10 @@
       The below example demonstrates the <a href="../../#alert">design pattern for alert</a>.
       Activating the <q>Trigger Alert</q> button causes a message to be inserted into the example alert element.
     </p>
+    <p>Similar examples include:</p>
+    <ul>
+      <li><a href="../dialog-modal/alertdialog.html">Alert Dialog Example</a>: A confirmation prompt that demonstrates an alert dialog.</li>
+    </ul>
     <section>
       <h2 id="ex_label">Example</h2>
       <p>
@@ -75,13 +79,13 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr data-test-id="alert-role">
             <th scope="row"><code>alert</code></th>
             <td></td>
             <td><code>div</code></td>
             <td>Identifies the element as the container where alert content will be added or updated.</td>
           </tr>
-          <tr>
+          <tr data-test-id="test-not-required">
             <td></td>
             <th scope="row"><code>aria-live=<q>assertive</q></code></th>
             <td>Implicit on <code>div</code></td>
@@ -92,7 +96,7 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="test-not-required">
             <td></td>
             <th scope="row"><code>aria-atomic=<q>true</q></code></th>
             <td>Implicit on <code>div</code></td>

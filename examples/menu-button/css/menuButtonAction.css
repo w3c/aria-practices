@@ -6,24 +6,22 @@
   font-size: 110%;
 }
 
-
 ul[role="menu"] {
   margin: 0;
   padding: 0;
   position: absolute;
   font-size: 110%;
-
   list-style: none;
-  background-color: #EEEEEE;
+  background-color: #eee;
   display: none;
 }
 
-ul[role="menu"] li[role="menuitem"]{
+ul[role="menu"] li[role="menuitem"] {
   display: block;
   padding: 0.25em;
   padding-left: 0.5em;
   padding-right: 0.5em;
-  background-color: #EEEEEE;
+  background-color: #eee;
   width: 4em;
 }
 
@@ -38,13 +36,12 @@ input:hover {
 
 input:focus,
 input:hover {
-  background-color: #EEEEEE;
+  background-color: #eee;
 }
 
 ul[role="menu"] li[role="menuitem"]:focus,
 ul[role="menu"] li[role="menuitem"].focus,
-ul[role="menu"] li[role="menuitem"]:hover{
+ul[role="menu"] li[role="menuitem"]:hover {
   background-color: black;
   color: white;
 }
-
