@@ -335,7 +335,7 @@ DatePicker.prototype.close = function (node) {
 
   this.dialogNode.style.display = 'none';
   this.comboboxNode.setAttribute('aria-expanded','false');
-  this.buttonNode.focus();
+  this.inputNode.focus();
 };
 
 
@@ -666,6 +666,7 @@ DatePicker.prototype.moveFocusToNextWeek = function () {
 };
 
 DatePicker.prototype.moveFocusToPreviousDay = function () {
+
   this.day--;
   if (this.day < 0) {
     this.moveToPreviousMonth();
@@ -681,6 +682,30 @@ DatePicker.prototype.moveFocusToPreviousWeek = function () {
     this.moveToPreviousMonth();
   }
   this.setFocusDay();
+};
+
+DatePicker.prototype.moveFocusToFirstDayOfWeek = function () {
+
+  this.day = this.day - this.currentDay.column;
+
+  if (this.day < 0) {
+    this.day = this.daysInLastMonth + this.day;
+    this.moveToPreviousMonth();
+  }
+  this.setFocusDay();
+
+};
+
+DatePicker.prototype.moveFocusToLastDayOfWeek = function () {
+
+  this.day = this.day + ( 6 - this.currentDay.column);
+
+  if (this.daysInCurrentMonth <= this.day) {
+    this.day = this.day - this.daysInCurrentMonth;
+    this.moveToNextMonth();
+  }
+  this.setFocusDay();
+
 };
 
 DatePicker.prototype.setTextboxDate = function () {

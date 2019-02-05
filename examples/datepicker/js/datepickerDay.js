@@ -123,6 +123,17 @@ DatePickerDay.prototype.handleKeyDown = function (event) {
       this.datepicker.setFocusDay();
       flag = true;
       break;
+
+    case this.keyCode.HOME:
+      this.datepicker.moveFocusToFirstDayOfWeek();
+      flag = true;
+      break;
+
+    case this.keyCode.END:
+      this.datepicker.moveFocusToLastDayOfWeek();
+      flag = true;
+      break;
+
   }
 
   if (flag) {

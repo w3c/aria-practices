@@ -255,7 +255,7 @@
         <tbody>
             <tr>
               <th><kbd>ESC</kbd></th>
-              <td>Close the dialog and move focus back to the calendar button.</td>
+              <td>Close the dialog and move focus back to the date textbox.</td>
             </tr>
             <tr>
               <th><kbd>TAB</kbd></th>
@@ -313,7 +313,7 @@
               <th><kbd>Space</kbd>,<br><kbd>Return</kbd></th>
               <td>
                 <ul>
-                  <li>Select the date, close the dialog box and move focus to the calendar button.</li>
+                  <li>Select the date, close the dialog box and move focus to the date textbox.</li>
                   <li>Focus is moved to calendar button for compatibility with mobile browsers.</li>
                 </ul>
               </td>
@@ -333,6 +333,14 @@
           <tr>
             <th><kbd>Left Arrow</kbd></th>
             <td>Move the focus to the previous day.</td>
+          </tr>
+          <tr>
+            <th><kbd>Home</kbd></th>
+            <td>Move the focus to the first day (e.g Sunday) of the current week.</td>
+          </tr>
+          <tr>
+            <th><kbd>End</kbd></th>
+            <td>Move the focus to the last day (e.g. Saturday) of the current week.</td>
           </tr>
           <tr>
             <th><kbd>PageUp</kbd></th>
@@ -505,7 +513,7 @@
               <td><code>button</code></td>
               <td>
                 <ul>
-                  <li>The button provides a means to return focus from the dialog box for mobile browsers.</li>
+                  <li>The button provides a means to open the calendar dialog box using the mouse or touch.</li>
                   <li>Accessible name comes from <code>aria-label</code> attribute.</li>
                   <li>Button is removed from tab order of the page, since the dialog can be opened from the textbox with the keyboard.</li>
                 </ul>
