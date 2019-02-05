@@ -235,7 +235,7 @@
               <td>
                 <ul>
                   <li>Toggles calendar dialog.</li>
-                  <li>NOTE: This button has been removed from <code>tab</code> order of the page by setting <code>tabindex=-1</code>, since the calendar dialog can be opened using the keyboard in the textbox (e.g. down arrow key).</li>
+                  <li>NOTE: This button has been removed from <code>tab</code> order of the page by setting <code>tabindex=-1</code>, since the calendar dialog can be opened using the keyboard in the date input (e.g. down arrow key).</li>
                 </ul>
               </td>
             </tr>
@@ -255,7 +255,7 @@
         <tbody>
             <tr>
               <th><kbd>ESC</kbd></th>
-              <td>Close the dialog and move focus back to the date textbox.</td>
+              <td>Close the dialog and move focus back to the date input.</td>
             </tr>
             <tr>
               <th><kbd>TAB</kbd></th>
@@ -310,13 +310,13 @@
         </thead>
         <tbody>
           <tr>
-              <th><kbd>Space</kbd>,<br><kbd>Return</kbd></th>
-              <td>
-                <ul>
-                  <li>Select the date, close the dialog box and move focus to the date textbox.</li>
-                  <li>Focus is moved to calendar button for compatibility with mobile browsers.</li>
-                </ul>
-              </td>
+            <th><kbd>Space</kbd>,<br><kbd>Return</kbd></th>
+            <td>
+              <ul>
+                <li>Select the date, close the dialog box and move focus to the date input.</li>
+                <li>The value of the date input is updated with the selected date.</li>
+              </ul>
+          </td>
           </tr>
           <tr>
             <th><kbd>Up Arrow</kbd></th>
@@ -390,9 +390,10 @@
             <th><kbd>ESC</kbd></th>
             <td>
               <ul>
-                <li>Close the dialog and move focus back to calendar button.</li>
-                <li>Focus is move to calendar button for compatibility with mobile browsers.</li>
-            </ul></td>
+                <li>Close the dialog and move focus back to date input.</li>
+                <li>The value of the date texbox is not updated.</li>
+              </ul>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -412,8 +413,8 @@
               <th> <kbd>Space</kbd>,<br> <kbd>Return</kbd></th>
               <td>
                 <ul>
-                    <li>The Cancel button closes the calendar dialog, moves focus to calendar button, does not update date in date input.</li>
-                    <li>The OK button closes the calendar dialog, moves focus to calendar button, does update date in date input.</li>
+                    <li>The Cancel button closes the calendar dialog, moves focus to date input, does not update date in date input.</li>
+                    <li>The OK button closes the calendar dialog, moves focus to date input, does update date in date input.</li>
                 </ul>
               </td>
             </tr>
@@ -515,7 +516,7 @@
                 <ul>
                   <li>The button provides a means to open the calendar dialog box using the mouse or touch.</li>
                   <li>Accessible name comes from <code>aria-label</code> attribute.</li>
-                  <li>Button is removed from tab order of the page, since the dialog can be opened from the textbox with the keyboard.</li>
+                  <li>Button is removed from tab order of the page, since the dialog can be opened from the date input with the keyboard.</li>
                 </ul>
               </td>
             </tr>
@@ -771,8 +772,8 @@
                     <td><code>td > button</code></td>
                     <td>
                       <ul>
-                        <li>Identifies the currently selected date in the textbox.</li>
-                        <li>The <code>aria-selected</code> attribute is only set on the button representing the date in the textbox, all other buttons do not have an <code>aria-selected</code> attribute.</li>
+                        <li>Identifies the currently selected date in the date input.</li>
+                        <li>The <code>aria-selected</code> attribute is only set on the button representing the date in the date input, all other buttons do not have an <code>aria-selected</code> attribute.</li>
                       </ul>
                     </td>
                   </tr>
