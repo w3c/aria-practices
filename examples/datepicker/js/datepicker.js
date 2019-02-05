@@ -327,9 +327,6 @@ DatePicker.prototype.open = function () {
   this.dialogNode.style.display = 'block';
   this.comboboxNode.setAttribute('aria-expanded', 'true');
   this.getDateInput();
-  console.log(" Year: " + this.year);
-  console.log("Month: " + this.month);
-  console.log("  Day: " + this.day);
   this.updateGrid();
   this.setFocusDay();
 };
