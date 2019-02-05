@@ -26,7 +26,7 @@ var DatePicker = function (comboboxNode, inputNode,buttonNode,dialogNode) {
 
   this.year  = date.getFullYear();
   this.month = date.getMonth();
-  this.day   = date.getDate() - 1;
+  this.day   = date.getDate() - 1;    
 
   this.daysInCurrentMonth = this.getDaysInMonth();
   this.daysInLastMonth = this.getDaysInLastMonth();

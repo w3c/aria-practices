@@ -1,4 +1,4 @@
-var DateInput = function (domNode,buttonNode, datepicker) {
+var DateInput = function (domNode, buttonNode, datepicker) {
   this.domNode = domNode;
   this.buttonNode = buttonNode;
   this.datepicker = datepicker;
@@ -33,14 +33,21 @@ DateInput.prototype.handleKeyDown = function (event) {
   function isPrintableCharacter (str) {
     return str.length === 1 && str.match(/\S/);
   }
+
   switch (event.keyCode) {
+
     case this.keyCode.DOWN:
       this.datepicker.open();
       flag = true;
       break;
+
     case this.keyCode.ESC:
       this.datepicker.close();
+
+    default:
+      break;  
   }
+
   if (flag) {
     event.stopPropagation();
     event.preventDefault();
