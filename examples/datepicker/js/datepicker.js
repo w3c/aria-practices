@@ -326,7 +326,11 @@ DatePicker.prototype.open = function () {
 
   this.dialogNode.style.display = 'block';
   this.comboboxNode.setAttribute('aria-expanded', 'true');
-  this.getTextboxDate();
+  this.getDateInput();
+  console.log(" Year: " + this.year);
+  console.log("Month: " + this.month);
+  console.log("  Day: " + this.day);
+  this.updateGrid();
   this.setFocusDay();
 };
 
@@ -712,14 +716,14 @@ DatePicker.prototype.setTextboxDate = function () {
   this.inputNode.value = (this.month + 1) + '/' + (this.day + 1) + '/' + this.year;
 };
 
-DatePicker.prototype.getTextboxDate = function () {
+DatePicker.prototype.getDateInput = function () {
 
   var parts = this.inputNode.value.split('/');
 
   if ((parts.length === 3) &&
-      !isNaN(parts[0]) &&
-      !isNaN(parts[1]) &&
-      !isNaN(parts[2])) {
+      Number.isInteger(parseInt(parts[0])) &&
+      Number.isInteger(parseInt(parts[1])) &&
+      Number.isInteger(parseInt(parts[2]))) {
     this.month = parseInt(parts[0])-1;
     this.day = parseInt(parts[1])-1;
     this.year = parseInt(parts[2]);
@@ -732,7 +736,6 @@ DatePicker.prototype.getTextboxDate = function () {
     this.month = date.getMonth();
     this.day   = date.getDate()-1;
   }
-
 
   this.daysInCurrentMonth = this.getDaysInMonth();
   this.daysInLastMonth = this.getDaysInLastMonth();
