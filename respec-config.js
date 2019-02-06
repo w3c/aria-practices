@@ -18,7 +18,7 @@ var respecConfig = {
 
   // If you wish the publication date to be other than today,
   // set publishDate.
-  publishDate: "2019-02-06",
+  publishDate: "2019-02-07",
   copyrightStart: '2015',
 
   // If there is a previously published draft, uncomment this
