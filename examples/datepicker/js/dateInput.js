@@ -25,7 +25,6 @@ DateInput.prototype.init = function () {
   this.buttonNode.addEventListener('keydown', this.handleButtonKeyDown.bind(this));
 };
 
-
 DateInput.prototype.handleKeyDown = function (event) {
   var tgt = event.currentTarget,
     char = event.key,
@@ -45,7 +44,7 @@ DateInput.prototype.handleKeyDown = function (event) {
       this.datepicker.close();
 
     default:
-      break;  
+      break;
   }
 
   if (flag) {

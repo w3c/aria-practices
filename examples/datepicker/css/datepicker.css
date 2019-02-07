@@ -1,64 +1,63 @@
-.datepicker{
-  margin-top:1em;
+.datepicker {
+  margin-top: 1em;
 }
 
 .datepicker button.icon {
-  border-style:none;
-  text-align:left;
-  background-color:white;
+  border-style: none;
+  text-align: left;
+  background-color: white;
 }
 
 .datepicker .date label {
-  display:inline;
+  display: inline;
 }
 
 .datepicker input {
-  margin-top:1em;
-  width:20%;
+  margin-top: 1em;
+  width: 20%;
 }
 
 .datepickerDialog {
-  width:45%;
-  clear:both;
-  display:none;
-  border:3px solid hsl(216, 80%, 55%);
-  margin-top:1em;
-  border-radius:5px;
-  padding:0;
+  width: 45%;
+  clear: both;
+  display: none;
+  border: 3px solid hsl(216, 80%, 55%);
+  margin-top: 1em;
+  border-radius: 5px;
+  padding: 0;
 }
-
-.datepickerDialog button::-moz-focus-inner {
-  border:0;
-}
-
 
 .header {
-  cursor:default;
-  background-color:hsl(216, 80%, 55%);
-  padding:7px;
-  font-weight:bold;
-  text-transform:uppercase;
+  cursor: default;
+  background-color: hsl(216, 80%, 55%);
+  padding: 7px;
+  font-weight: bold;
+  text-transform: uppercase;
   color: white;
   display: flex;
   justify-content: space-around;
 }
 
-.header button {
-  border-style:none;
-  background:transparent;
+.header span {
+  display: inline-block;
 }
 
-.header span {
-  display:inline-block;
+.header button {
+  border-style: none;
+  background: transparent;
+}
+
+.datepickerDialog button::-moz-focus-inner {
+  border: 0;
 }
 
 .prevYear,
 .prevMonth,
 .nextMonth,
 .nextYear {
-  padding:4px;
-  width:24px;
-  height:24px;
+  padding: 4px;
+  width: 24px;
+  height: 24px;
   color: white;
 }
 
@@ -73,31 +72,31 @@
 }
 
 .dialogButtonGroup {
-  text-align:right;
-  margin-top:1em;
-  margin-bottom:1em;
-  margin-right:1em;
+  text-align: right;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-right: 1em;
 }
 
 .dialogButton {
-  padding:5px;
-  margin-left:1em;
-  width:5em;
+  padding: 5px;
+  margin-left: 1em;
+  width: 5em;
   background-color: hsl(216, 80%, 92%);
-  font-size:0.85em;
-  color:black;
+  font-size: 0.85em;
+  color: black;
   outline: none;
   border: 1px solid hsl(216, 80%, 92%);
-  border-radius:5px;
+  border-radius: 5px;
 }
 
-.dialogButton:focus  {
+.dialogButton:focus {
   padding: 4px;
   border: 2px solid black;
 }
 
 .fa-calendar-alt {
-  color:hsl(216, 89%, 72%);
+  color: hsl(216, 89%, 72%);
 }
 
 .datepicker .monthYear {
@@ -107,52 +106,52 @@
 }
 
 table.dates {
-  width:100%;
-  padding-left:1em;
-  padding-right:1em;
-  padding-top:1em;
+  width: 100%;
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-top: 1em;
 }
 
 table.dates th,
-table.dates td{
-  text-align:center;
+table.dates td {
+  text-align: center;
 }
 
 .dateRow {
-  border:1px solid black;
+  border: 1px solid black;
 }
 
 .dateCell {
-  outline:0;
-  border:0;
-  padding:0;
-  margin:0;
+  outline: 0;
+  border: 0;
+  padding: 0;
+  margin: 0;
   height: 40px;
-  width:40px;
+  width: 40px;
 }
 
 .dateButton {
-  padding:0;
-  margin:0;
+  padding: 0;
+  margin: 0;
   line-height: inherit;
-  height:100%;
+  height: 100%;
   width: 100%;
-  border: 1px solid #EEE;
-  border-radius:5px;
+  border: 1px solid #eee;
+  border-radius: 5px;
   font-size: 15px;
-  background: #EEE;
+  background: #eee;
 }
 
 .dateButton:focus,
 .dateButton:hover {
-  padding:0;
-  background-color:hsl(216, 80%, 92%);
+  padding: 0;
+  background-color: hsl(216, 80%, 92%);
 }
 
 .dateButton:focus {
   border-width: 2px;
   border-color: rgb(100, 100, 100);
-  outline:0;
+  outline: 0;
 }
 
 .dateButton[aria-selected] {
@@ -160,7 +159,7 @@ table.dates td{
 }
 
 .dateButton[tabindex="0"] {
-  background-color:hsl(216, 80%, 92%);
+  background-color: hsl(216, 80%, 92%);
 }
 
 .disabled {
@@ -170,9 +169,7 @@ table.dates td{
 
 .dateButton:disabled {
   color: #777;
-  background-color: #FFF;
+  background-color: #fff;
   border: none;
   cursor: not-allowed;
 }
-
-
