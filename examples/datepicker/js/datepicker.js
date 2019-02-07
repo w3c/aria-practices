@@ -244,13 +244,13 @@ DatePicker.prototype.setFocusDay = function (flag) {
 
   var day = this.day;
   var month = this.month;
-  var currentDay = this.currentDay;
+  var cd = this.currentDay;
 
   this.days.forEach(function (d) {
     if ((d.day == day) &&
         (d.month == month)) {
       d.domNode.setAttribute('tabindex', '0');
-      currentDay = d;
+      cd = d;
       if (flag) {
         d.domNode.focus();
       }
@@ -259,6 +259,8 @@ DatePicker.prototype.setFocusDay = function (flag) {
       d.domNode.setAttribute('tabindex', '-1');
     }
   });
+
+  this.currentDay = cd;
 
 };
 
