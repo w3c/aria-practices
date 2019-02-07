@@ -55,6 +55,14 @@
     "*.js": [
       "eslint --fix",
       "git add"
+    ],
+    "*.md": [
+      "eclint fix",
+      "git add"
+    ],
+    "*.html": [
+      "eclint fix",
+      "git add"
     ]
   }
 }
