@@ -11,17 +11,37 @@
 # Set to false if aria repo gets one.
 root = true
 
-
-# Unix-style newlines with a newline ending every file
-[*]
+[*.{html,css,js}]
 charset = "utf-8"
 end_of_line = lf
 insert_final_newline = true
 trim_trailing_whitespace = true
-
-[*.{html,css,js}]
 indent_style = space
 indent_size = 2
+block_comment_start = /*
+block_comment = *
+block_comment_end = */
 
 [*.md]
+charset = "utf-8"
+end_of_line = lf
+insert_final_newline = true
 trim_trailing_whitespace = false
+
+# Ignore third party content
+[{/common/**,/examples/landmarks/js/visua11y.js,/examples/landmarks/css/bootstrap.css,/examples/landmarks/css/bootstrap-accessibility.css,/examples/menubar/menubar-1/images/separator.paint}]
+charset = unset
+end_of_line = unset
+insert_final_newline = unset
+trim_trailing_whitespace = unset
+indent_style = unset
+indent_size = unset
+
+# Ignore minfied files
+[*.{min.js,pack.js}]
+charset = unset
+end_of_line = unset
+insert_final_newline = unset
+trim_trailing_whitespace = unset
+indent_style = unset
+indent_size = unset

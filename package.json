@@ -7,9 +7,10 @@
     "example": "examples"
   },
   "scripts": {
-    "fix": "npm run lint:es -- --fix && npm run lint:css -- --fix",
-    "lint": "npm run lint:es && npm run lint:css && npm run vnu-jar",
+    "fix": "npm run lint:es -- --fix && npm run lint:css -- --fix && eclint fix .",
+    "lint": "npm run lint:es && npm run lint:css && npm run vnu-jar && npm run lint:ec",
     "lint:css": "stylelint **/*.css",
+    "lint:ec": "eclint check \"**/*.{js,html,css,md}\"",
     "lint:es": "eslint .",
     "lint:js": "npm run lint:es",
     "lint:html": "npm run vnu-jar",
@@ -31,6 +32,7 @@
   "devDependencies": {
     "ava": "^0.25.0",
     "cheerio": "^1.0.0-rc.2",
+    "eclint": "^2.8.1",
     "eslint": "^4.19.1",
     "geckodriver": "^1.11.0",
     "husky": "^1.2.0",

@@ -28,16 +28,9 @@ jobs:
     - stage: Test
       name: HTML Linting
       script: npm run vnu-jar
-
     - stage: Test
-      name: AVA Regression Tests
-      script: ava -c 1 test/tests
-      env: TEST_WAIT_TIME=1000
-    - stage: Test
-      name: Regression Tests Coverage Report
-      script: node test/util/report.js
-      env: ALLOW_FAILURE=true
-
+      name: EditorConfig Linting
+      script: npm run lint:ec
     - stage: Deploy
       if: branch = master AND type != pull_request
       script: skip
