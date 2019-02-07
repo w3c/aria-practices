@@ -45,11 +45,12 @@
     <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
     <div id="example">
 
-      <div class="datepicker"
+      <div id="myDatepicker"
+           class="datepicker"
            role="combobox"
            aria-expanded="false"
            aria-haspopup="dialog"
-           aria-owns="id-datepicker-1"
+           aria-owns="myDatepickerDialog"
            aria-label="Date">
 
         <div class="date">
@@ -70,7 +71,7 @@
           </button>
         </div>
 
-        <div id="id-datepicker-1"
+        <div id="myDatepickerDialog"
              class="datepickerDialog"
              role="dialog"
              aria-labelledby="id-dialog-label">
@@ -109,7 +110,9 @@
 
           </div>
 
-          <table class="dates"
+          <table
+            id="myDatepickerGrid"
+            class="dates"
             role="grid"
             aria-labelledby="id-dialog-label">
             <thead>
@@ -437,7 +440,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr data-test-id="combobox-role">
             <th scope="row"><code>role=<q>combobox</q></code></th>
             <td></td>
             <td><code>div</code></td>
@@ -448,7 +451,7 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="combobox-aria-label">
             <td></td>
             <th scope="row"><code>aria-label=<q>Date</q></code></th>
             <td><code>button</code></td>
