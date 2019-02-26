@@ -20,6 +20,7 @@ jobs:
     - stage: Test
       name: Regression Tests Coverage Report
       script: node test/util/report.js
+      env: ALLOW_FAILURE=true
     - stage: Test
       name: CSS Linting
       script: npm run lint:css
@@ -39,6 +40,9 @@ jobs:
         script: /tmp/deploy/travis-deploy.sh
         on:
           branch: master
+  allow_failures:
+    - env: ALLOW_FAILURE=true
+  fast_finish: true
 
 env:
   - TEST_WAIT_TIME=1000
