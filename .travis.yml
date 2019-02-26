@@ -10,7 +10,6 @@ git:
   depth: 3
 
 stages:
-- Lint
 - Test
 - Deploy
 
@@ -20,13 +19,13 @@ jobs:
     - env: ALLOW_FAILURE=true
 
   include:
-    - stage: Lint
+    - stage: Test
       name: CSS Linting
       script: npm run lint:css
-    - stage: Lint
+    - stage: Test
       name: JS Linting
       script: npm run lint:es
-    - stage: Lint
+    - stage: Test
       name: HTML Linting
       script: npm run vnu-jar
 
