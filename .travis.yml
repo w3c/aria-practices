@@ -17,6 +17,7 @@ jobs:
     - stage: Test
       name: AVA Regression Tests
       script: ava -c 1 test/tests
+      env: TEST_WAIT_TIME=1000
     - stage: Test
       name: Regression Tests Coverage Report
       script: node test/util/report.js
@@ -43,6 +44,3 @@ jobs:
   allow_failures:
     - env: ALLOW_FAILURE=true
   fast_finish: true
-
-env:
-  - TEST_WAIT_TIME=1000
