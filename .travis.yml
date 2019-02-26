@@ -10,8 +10,10 @@ git:
   depth: 3
 
 stages:
+- Lint
 - Test
 - Deploy
+
 jobs:
   include:
     - stage: Test
@@ -22,13 +24,13 @@ jobs:
       name: Regression Tests Coverage Report
       script: node test/util/report.js
       env: ALLOW_FAILURE=true
-    - stage: Test
+    - stage: Lint
       name: CSS Linting
       script: npm run lint:css
-    - stage: Test
+    - stage: Lint
       name: JS Linting
       script: npm run lint:es
-    - stage: Test
+    - stage: Lint
       name: HTML Linting
       script: npm run vnu-jar
     - stage: Deploy
