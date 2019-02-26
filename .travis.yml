@@ -15,15 +15,11 @@ stages:
 - Deploy
 
 jobs:
+  fast_finish: true
+  allow_failures:
+    - env: ALLOW_FAILURE=true
+
   include:
-    - stage: Test
-      name: AVA Regression Tests
-      script: ava -c 1 test/tests
-      env: TEST_WAIT_TIME=1000
-    - stage: Test
-      name: Regression Tests Coverage Report
-      script: node test/util/report.js
-      env: ALLOW_FAILURE=true
     - stage: Lint
       name: CSS Linting
       script: npm run lint:css
@@ -33,6 +29,16 @@ jobs:
     - stage: Lint
       name: HTML Linting
       script: npm run vnu-jar
+
+    - stage: Test
+      name: AVA Regression Tests
+      script: ava -c 1 test/tests
+      env: TEST_WAIT_TIME=1000
+    - stage: Test
+      name: Regression Tests Coverage Report
+      script: node test/util/report.js
+      env: ALLOW_FAILURE=true
+
     - stage: Deploy
       if: branch = master AND type != pull_request
       script: skip
@@ -43,6 +49,3 @@ jobs:
         script: /tmp/deploy/travis-deploy.sh
         on:
           branch: master
-  allow_failures:
-    - env: ALLOW_FAILURE=true
-  fast_finish: true
