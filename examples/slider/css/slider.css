@@ -16,26 +16,26 @@ div.aria-widget-slider .rail {
   height: 4px;
 }
 
-div.aria-widget-slider .thumb  {
+div.aria-widget-slider .thumb {
   border: 1px solid #888;
-  border-top-color:  #666;
+  border-top-color: #666;
   border-left-color: #666;
-  background-color: #DDD;
+  background-color: #ddd;
   position: relative;
 }
 
-div.aria-widget-slider .rail .thumb.focus, 
+div.aria-widget-slider .rail .thumb.focus,
 div.aria-widget-slider .rail .thumb:hover {
   outline: 2px solid #888;
-  background-color: #DEF;
+  background-color: #def;
 }
 
 div.aria-widget-slider .rail.focus {
-  background-color: #AAA;
+  background-color: #aaa;
 }
 
-div.aria-widget-slider .value  {
-  width:      2em;
+div.aria-widget-slider .value {
+  width: 2em;
   text-align: right;
   position: absolute;
 }
@@ -47,13 +47,13 @@ label {
 }
 
 #idColorBox {
-	width: 200px;
-	height: 200px;
-	border: black solid medium;
-	text-align: center;
-	padding: 0.25em;
+  width: 200px;
+  height: 200px;
+  border: black solid medium;
+  text-align: center;
+  padding: 0.25em;
 }
 
 #idColorInfo {
-	padding-top: 5px;
+  padding-top: 5px;
 }
