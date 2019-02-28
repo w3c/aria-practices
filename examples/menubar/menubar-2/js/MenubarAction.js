@@ -1,23 +1,23 @@
 /*
-*   This content is licensed according to the W3C Software License at
-*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
-*
-*   File:   MenubarAction.js
-*
-*   Desc:   Menubar widget that implements ARIA Authoring Practices
-*/
+ *   This content is licensed according to the W3C Software License at
+ *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+ *
+ *   File:   MenubarAction.js
+ *
+ *   Desc:   Menubar widget that implements ARIA Authoring Practices
+ */
 
 /*
-*   @constructor MenubarAction
-*
-*   @desc
-*       Wrapper object for a menubar
-*
-*   @param domNode
-*       The DOM element node that serves as the menubar container.
-*       Each child element of domNode that represents a menubaritem
-*       must be an A element.
-*/
+ *   @constructor MenubarAction
+ *
+ *   @desc
+ *       Wrapper object for a menubar
+ *
+ *   @param domNode
+ *       The DOM element node that serves as the menubar container.
+ *       Each child element of domNode that represents a menubaritem
+ *       must be an A element.
+ */
 var MenubarAction = function (domNode) {
   var msgPrefix = 'Menubar constructor argument domNode ';
 
@@ -51,13 +51,13 @@ var MenubarAction = function (domNode) {
 };
 
 /*
-*   @method MenubarAction.prototype.init
-*
-*   @desc
-*       Adds ARIA role to the menubar node
-*       Traverse menubar children for A elements to configure each A element as an ARIA menuitem
-*       and populate menuitems array. Initialize firstItem and lastItem properties.
-*/
+ *   @method MenubarAction.prototype.init
+ *
+ *   @desc
+ *       Adds ARIA role to the menubar node
+ *       Traverse menubar children for A elements to configure each A element as an ARIA menuitem
+ *       and populate menuitems array. Initialize firstItem and lastItem properties.
+ */
 MenubarAction.prototype.init = function (actionManager) {
   var menubarItem, menuElement, textContent, numItems;
 
@@ -205,4 +205,3 @@ MenubarAction.prototype.handleFocusout = function (event) {
   // remove styling hook for hover on menubar item
   this.domNode.classList.remove('focus');
 };
-

@@ -1,35 +1,35 @@
 /*
-*   This content is licensed according to the W3C Software License at
-*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
-*
-*   File:   PopupMenuActionActivedescendant.js
-*
-*   Desc:   Popup menu widget that implements ARIA Authoring Practices
-*/
+ *   This content is licensed according to the W3C Software License at
+ *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+ *
+ *   File:   PopupMenuActionActivedescendant.js
+ *
+ *   Desc:   Popup menu widget that implements ARIA Authoring Practices
+ */
 
 /*
-*   @constructor PopupMenuActionActivedescendant
-*
-*   @desc
-*       Wrapper object for a simple popup menu (without nested submenus)
-*
-*   @param domNode
-*       The DOM element node that serves as the popup menu container. Each
-*       child element of domNode that represents a menuitem must have a
-*       'role' attribute with value 'menuitem'.
-*
-*   @param controllerObj
-*       The object that is a wrapper for the DOM element that controls the
-*       menu, e.g. a button element, with an 'aria-controls' attribute that
-*       references this menu's domNode. See MenuButton.js
-*
-*       The controller object is expected to have the following properties:
-*       1. domNode: The controller object's DOM element node, needed for
-*          retrieving positioning information.
-*       2. hasHover: boolean that indicates whether the controller object's
-*          domNode has responded to a mouseover event with no subsequent
-*          mouseout event having occurred.
-*/
+ *   @constructor PopupMenuActionActivedescendant
+ *
+ *   @desc
+ *       Wrapper object for a simple popup menu (without nested submenus)
+ *
+ *   @param domNode
+ *       The DOM element node that serves as the popup menu container. Each
+ *       child element of domNode that represents a menuitem must have a
+ *       'role' attribute with value 'menuitem'.
+ *
+ *   @param controllerObj
+ *       The object that is a wrapper for the DOM element that controls the
+ *       menu, e.g. a button element, with an 'aria-controls' attribute that
+ *       references this menu's domNode. See MenuButton.js
+ *
+ *       The controller object is expected to have the following properties:
+ *       1. domNode: The controller object's DOM element node, needed for
+ *          retrieving positioning information.
+ *       2. hasHover: boolean that indicates whether the controller object's
+ *          domNode has responded to a mouseover event with no subsequent
+ *          mouseout event having occurred.
+ */
 var PopupMenuActionActivedescendant = function (domNode, controllerObj) {
   var elementChildren,
     msgPrefix = 'PopupMenu constructor argument domNode ';
@@ -86,13 +86,13 @@ var PopupMenuActionActivedescendant = function (domNode, controllerObj) {
 };
 
 /*
-*   @method PopupMenuActionActivedescendant.prototype.init
-*
-*   @desc
-*       Add domNode event listeners for mouseover and mouseout. Traverse
-*       domNode children to configure each menuitem and populate menuitems
-*       array. Initialize firstItem and lastItem properties.
-*/
+ *   @method PopupMenuActionActivedescendant.prototype.init
+ *
+ *   @desc
+ *       Add domNode event listeners for mouseover and mouseout. Traverse
+ *       domNode children to configure each menuitem and populate menuitems
+ *       array. Initialize firstItem and lastItem properties.
+ */
 PopupMenuActionActivedescendant.prototype.init = function () {
   var childElement, menuElement, firstChildElement, menuItem, textContent, label;
 

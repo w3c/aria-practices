@@ -35,5 +35,3 @@ ariaTest('aria-current element should exist on relevent link', exampleFile, 'ari
     'attribute "aria-current" should be found on a link'
   );
 });
-
-

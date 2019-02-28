@@ -515,4 +515,3 @@ function TreeGrid (treegridElem, doAllowRowFocus, doStartRowFocus) {
   window.addEventListener(window.onfocusin ? 'focusin' : 'focus',
     onFocusIn, true);
 }
-

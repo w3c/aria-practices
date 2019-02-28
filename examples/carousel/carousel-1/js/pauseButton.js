@@ -1,9 +1,9 @@
 /*
-*   File:   pasueButton.js
-*
-*   Desc:   Implements the pause button for the carousel widget
-*
-*/
+ *   File:   pasueButton.js
+ *
+ *   Desc:   Implements the pause button for the carousel widget
+ *
+ */
 
 var PauseButton = function (domNode, carouselObj) {
   this.domNode = domNode;

@@ -1,28 +1,28 @@
 /*
-*   This content is licensed according to the W3C Software License at
-*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
-*
-*   File:   MenubarItemAction.js
-*
-*   Desc:   Menubar Menuitem widget that implements ARIA Authoring Practices
-*/
+ *   This content is licensed according to the W3C Software License at
+ *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+ *
+ *   File:   MenubarItemAction.js
+ *
+ *   Desc:   Menubar Menuitem widget that implements ARIA Authoring Practices
+ */
 
 /*
-*   @constructor MenubarItemAction
-*
-*   @desc
-*       Object that configures menubar item elements by setting tabIndex
-*       and registering itself to handle pertinent events.
-*
-*   @param domNode
-*       The DOM element node that serves as the menubar item container.
-*       The menubarObj is responsible for checking that it has
-*       requisite metadata, e.g. role="menuitem".
-*
-*   @param menubarObj
-*       The MenubarAction object that is a delegate for the menubar DOM element
-*       that contains the menubar item element.
-*/
+ *   @constructor MenubarItemAction
+ *
+ *   @desc
+ *       Object that configures menubar item elements by setting tabIndex
+ *       and registering itself to handle pertinent events.
+ *
+ *   @param domNode
+ *       The DOM element node that serves as the menubar item container.
+ *       The menubarObj is responsible for checking that it has
+ *       requisite metadata, e.g. role="menuitem".
+ *
+ *   @param menubarObj
+ *       The MenubarAction object that is a delegate for the menubar DOM element
+ *       that contains the menubar item element.
+ */
 var MenubarItemAction = function (domNode, menubarObj) {
 
   this.menubar = menubarObj;

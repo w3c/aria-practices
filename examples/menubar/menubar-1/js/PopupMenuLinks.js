@@ -1,7 +1,7 @@
 /*
-*   This content is licensed according to the W3C Software License at
-*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
-*/
+ *   This content is licensed according to the W3C Software License at
+ *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+ */
 var PopupMenu = function (domNode, controllerObj) {
   var elementChildren,
     msgPrefix = 'PopupMenu constructor argument domNode ';
@@ -40,13 +40,13 @@ var PopupMenu = function (domNode, controllerObj) {
 };
 
 /*
-*   @method PopupMenu.prototype.init
-*
-*   @desc
-*       Add domNode event listeners for mouseover and mouseout. Traverse
-*       domNode children to configure each menuitem and populate menuitems
-*       array. Initialize firstItem and lastItem properties.
-*/
+ *   @method PopupMenu.prototype.init
+ *
+ *   @desc
+ *       Add domNode event listeners for mouseover and mouseout. Traverse
+ *       domNode children to configure each menuitem and populate menuitems
+ *       array. Initialize firstItem and lastItem properties.
+ */
 PopupMenu.prototype.init = function () {
   var childElement, menuElement, menuItem, textContent, numItems, label;
 

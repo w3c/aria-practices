@@ -1,9 +1,9 @@
 /*
-*   This content is licensed according to the W3C Software License at
-*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
-*
-*   File:   FontMenu.js
-*/
+ *   This content is licensed according to the W3C Software License at
+ *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+ *
+ *   File:   FontMenu.js
+ */
 
 var FontMenu = function (domNode, controllerObj) {
   var elementChildren,
@@ -45,13 +45,13 @@ var FontMenu = function (domNode, controllerObj) {
 };
 
 /*
-*   @method FontMenu.prototype.init
-*
-*   @desc
-*       Add domNode event listeners for mouseover and mouseout. Traverse
-*       domNode children to configure each menuitem and populate menuitems
-*       array. Initialize firstItem and lastItem properties.
-*/
+ *   @method FontMenu.prototype.init
+ *
+ *   @desc
+ *       Add domNode event listeners for mouseover and mouseout. Traverse
+ *       domNode children to configure each menuitem and populate menuitems
+ *       array. Initialize firstItem and lastItem properties.
+ */
 FontMenu.prototype.init = function () {
   var menuitemElements, menuitemElement, menuItem, textContent, numItems;
 

@@ -1,11 +1,11 @@
 /*
-*   This content is licensed according to the W3C Software License at
-*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
-*
-*   File:   TextStyling.js
-*
-*   Desc:   Styling functions for changing the style of an item
-*/
+ *   This content is licensed according to the W3C Software License at
+ *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+ *
+ *   File:   TextStyling.js
+ *
+ *   Desc:   Styling functions for changing the style of an item
+ */
 
 var StyleManager = function (id) {
   this.node = document.getElementById(id);

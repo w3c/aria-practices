@@ -1,7 +1,7 @@
 /*
-*   This content is licensed according to the W3C Software License at
-*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
-*/
+ *   This content is licensed according to the W3C Software License at
+ *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+ */
 
 /**
  * @namespace aria
@@ -187,30 +187,30 @@ aria.FeedDisplay.prototype.renderItemData = function (itemData) {
 
   if (itemData.image) {
     itemContent += '<div class="restaurant-image">' +
-                   itemData.image +
-                   '</div>';
+                  itemData.image +
+                  '</div>';
   }
 
   itemContent += '<div class="restaurant-name" ' +
-                 'id="' + restaurantID + '">' +
-                 itemData.name +
-                 '</div>';
+                'id="' + restaurantID + '">' +
+                itemData.name +
+                '</div>';
 
   if (itemData.rating) {
     var ratingID = 'restaurant-rating-' + this.feedSize;
     itemContent += '<div class="restaurant-rating" id="' + ratingID + '">' +
-                   '<img class="restaurant-star-img" ' +
-                   'alt="' + itemData.rating + ' stars" ' +
-                   'src="imgs/rating-' + itemData.rating + '.png" />' +
-                   '</div>';
+                  '<img class="restaurant-star-img" ' +
+                  'alt="' + itemData.rating + ' stars" ' +
+                  'src="imgs/rating-' + itemData.rating + '.png" />' +
+                  '</div>';
     describedbyIDs.push(ratingID);
   }
 
   if (itemData.type) {
     var typeID = 'restaurant-type-' + this.feedSize;
     itemContent += '<div class="restaurant-type" id="' + typeID + '">' +
-                   itemData.type +
-                   '</div>';
+                  itemData.type +
+                  '</div>';
     describedbyIDs.push(typeID);
   }
 
@@ -226,20 +226,20 @@ aria.FeedDisplay.prototype.renderItemData = function (itemData) {
 
   if (itemData.street) {
     locationContent += '<div class="restaurant-street">' +
-                   itemData.street +
-                   '</div>';
+                  itemData.street +
+                  '</div>';
   }
 
   if (itemData.citystate) {
     locationContent += '<div class="restaurant-citystate">' +
-                   itemData.citystate +
-                   '</div>';
+                  itemData.citystate +
+                  '</div>';
   }
 
   if (itemData.phone) {
     locationContent += '<div class="restaurant-phone">' +
-                   itemData.phone +
-                   '</div>';
+                  itemData.phone +
+                  '</div>';
   }
 
   locationBlock.innerHTML = locationContent;

@@ -1037,4 +1037,3 @@ ariaTest.failing('Expected behavior for all other standard single line editing k
     t.plan(1);
     t.fail();
   });
-

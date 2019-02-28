@@ -1,14 +1,14 @@
 /*
-*   File:   carouselButton.js
-*
-*   Desc:   Carousel Button widget that implements ARIA Authoring Practices
-*/
+ *   File:   carouselButton.js
+ *
+ *   Desc:   Carousel Button widget that implements ARIA Authoring Practices
+ */
 
 /*
-*   @constructor CarouselButton
-*
-*
-*/
+ *   @constructor CarouselButton
+ *
+ *
+ */
 var CarouselButton = function (domNode, carouselObj) {
   this.domNode = domNode;
 

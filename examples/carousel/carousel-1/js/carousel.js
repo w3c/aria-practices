@@ -1,15 +1,15 @@
 /*
-*   File:   Carousel.js
-*
-*   Desc:   Carousel widget that implements ARIA Authoring Practices
-*
-*/
+ *   File:   Carousel.js
+ *
+ *   Desc:   Carousel widget that implements ARIA Authoring Practices
+ *
+ */
 
 /*
-*   @constructor CarouselTablist
-*
-*
-*/
+ *   @constructor CarouselTablist
+ *
+ *
+ */
 var Carousel = function (domNode) {
   this.domNode = domNode;
 
@@ -217,4 +217,3 @@ window.addEventListener('load', function (event) {
     carousel.init();
   }
 }, false);
-
