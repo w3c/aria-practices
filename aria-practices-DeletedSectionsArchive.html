@@ -1250,7 +1250,7 @@
       <p class="ednote">Commented out link to conference paper, which a) was broken, and b) we should have more canonical references than conference papers for things like this.</p>
       <p>For our toolbar, we have chosen to have the toolbar manage the focus for its children and through the use of the <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a> property. We have also chosen to have the toolbar receive focus based on the tab order by using <code>tabindex</code>. In order to use <a class="property-reference" href="#aria-activedescendant">aria-activedescendant</a>, each focusable descendant must have an assigned ID. </p>
       <pre class="example highlight"> &lt;head&gt;
- &lt;script&gt;
+  &lt;script&gt;
     &#8230;
     function optionKeyEvent(event)
       {
@@ -1752,10 +1752,10 @@ an inert preparation prescribed more for the mental relief of the patient than f
 &lt;/p&gt;</pre>
         <p>The following is an example using a definition list:</p>
         <pre class="example highlight">&lt;dl&gt;
- &lt;dt id="anathema"&gt;anthema&lt;/dt&gt;
- &lt;dd role="definition" aria-labelledby="anathema"&gt;a ban or curse solemnly pronounced by ecclesiastical authority and accompanied by
+  &lt;dt id="anathema"&gt;anthema&lt;/dt&gt;
+  &lt;dd role="definition" aria-labelledby="anathema"&gt;a ban or curse solemnly pronounced by ecclesiastical authority and accompanied by
 excommunication&lt;/dd&gt;
- &lt;dd role="definition" aria-labelledby="anathema"&gt;a vigorous denunciation : cursor&lt;/dd&gt;
+  &lt;dd role="definition" aria-labelledby="anathema"&gt;a vigorous denunciation : cursor&lt;/dd&gt;
 &lt;dt id="homily"&gt;homily&lt;/dt&gt;
 &lt;dd role="definition" aria-labelledby="homily"&gt;a usually short sermon&lt;/dd&gt;
 
@@ -2166,7 +2166,7 @@ return you back to the main page&lt;/div&gt;</pre>
       <p>In addition to WAI-ARIA role and state information, for a document element,
 an assistive technology needs to convey its context. In
 the case of a <span class="role-reference">treeitem</span>, it is important to know the parent (container),
- which may provide a folder depth and the number of siblings in the folder. This containment hierarchy can often be determined by
+which may provide a folder depth and the number of siblings in the folder. This containment hierarchy can often be determined by
 the DOM tree, as it provides parent, siblings, and children for a given
 document element. That said, the DOM hierarchy is rigid and non cyclical in
 that each node may only have one parent. In some situations, a child
@@ -2727,7 +2727,7 @@ field. </p>
   <p>Similarly:</p>
   <p><code>
 &lt;i&gt;f&lt;/i&gt;(&lt;i&gt;x&lt;/i&gt;)
- = &lt;i&gt;x&lt;/i&gt;&lt;sup&gt;2&lt;/sup&gt; + &lt;i&gt;x&lt;/i&gt; - 2
+= &lt;i&gt;x&lt;/i&gt;&lt;sup&gt;2&lt;/sup&gt; + &lt;i&gt;x&lt;/i&gt; - 2
 </code></p>
   <p>Accessible example of the same function, using the math role, appropriate label, and MathML rendering: </p>
     <p class="ednote">Todo: add aria-label here also</p>
@@ -3277,7 +3277,7 @@ field. </p>
 .
 &lt;div id="leftnav"&gt;
 &lt;h2 class="nav" id="leftnav_label"&gt;Career Center Services&lt;/h2&gt;
- &lt;ul title="Career Center Services" role="navigation" aria-labelledby="leftnav_label"&gt;
+&lt;ul title="Career Center Services" role="navigation" aria-labelledby="leftnav_label"&gt;
   &lt;li&gt;&lt;a href="http://www.uiuc.edu/"&gt;Career Home&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href="http://www.uiuc.edu/"&gt;Career Counseling&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href="http://www.uiuc.edu/"&gt;Pre-Health Advising&lt;/a&gt;&lt;/li&gt;
@@ -3285,7 +3285,7 @@ field. </p>
   &lt;li&gt;&lt;a href="http://www.uiuc.edu/"&gt;Workshops&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href="http://www.uiuc.edu/"&gt;Resource Center&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href="http://www.uiuc.edu/"&gt;Question Board/FAQ&lt;/a&gt;&lt;/li&gt;
- &lt;/ul&gt;
+&lt;/ul&gt;
 
 ...
 

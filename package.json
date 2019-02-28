@@ -7,7 +7,7 @@
     "example": "examples"
   },
   "scripts": {
-    "fix": "npm run lint:es -- --fix && npm run lint:css -- --fix && eclint fix .",
+    "fix": "npm run lint:es -- --fix && npm run lint:css -- --fix && eclint fix \"**/*.{js,html,css,md}\"",
     "lint": "npm run lint:es && npm run lint:css && npm run vnu-jar && npm run lint:ec",
     "lint:css": "stylelint **/*.css",
     "lint:ec": "eclint check \"**/*.{js,html,css,md}\"",
