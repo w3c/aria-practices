@@ -1074,6 +1074,43 @@
       </section>
     </section>
 
+    <section class="widget" id="date_picker">
+      <h3>Date Pickers</h3>
+      <p>A date picker provides a means for a user to pick a valid date, range of dates, or enter a valid date manually. The following are different types of date picker features: 
+      </p>
+        <ul>
+          <li>A textbox that validates date formats.
+            <ul>
+              <li>Provide a means for indicating correct format using one of the following techniques.
+                <ul>
+                  <li>Use the <code>placeholder</code> attribute provide the correct format.</li>
+                  <li>When the textbox receives focus, use a popup tooltip that is referenced by <code>aria-describedby</code> attribute.</li>
+                </ul>
+              </li>
+              <li>Validate textbox contents using one of the following techniques:
+                <ul>
+                  <li>When focus leaves the textbox, feedback is immediately provided and, if incorrect, the <code>aria-invalid</code> attribute is set to <code>true</code> and <code>aria-describedby</code> points to the error message.</li>
+                </ul>
+              </li>
+            </ul>
+          <li>A modal dialog with a grid of dates.</li>
+          <li>A set of select boxes for month, day, and year.</li>
+          <li>A set of spin buttons, typically one for each month, day, and year.</li>
+          <li>A slider to select a minumum and maximum date range.</li>
+        </ul>
+        <p></p>
+
+      </p>
+
+      <section class="notoc">
+        <h4>Example</h4>
+        <p><a href="examples/#">Date Picker Example</a></p>
+      </section>
+
+    </section>
+
+
+
     <section class="widget" id="dialog_modal">
       <h3>Dialog (Modal)</h3>
       <p>
