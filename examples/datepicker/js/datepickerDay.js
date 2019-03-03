@@ -62,7 +62,7 @@ DatePickerDay.prototype.handleKeyDown = function (event) {
   switch (event.keyCode) {
 
     case this.keyCode.ESC:
-      this.datepicker.close();
+      this.datepicker.hide();
       break;
 
     case this.keyCode.TAB:
@@ -76,7 +76,7 @@ DatePickerDay.prototype.handleKeyDown = function (event) {
     case this.keyCode.RETURN:
     case this.keyCode.SPACE:
       this.datepicker.setTextboxDate();
-      this.datepicker.close();
+      this.datepicker.hide();
       flag = true;
       break;
 

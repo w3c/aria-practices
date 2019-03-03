@@ -3,9 +3,8 @@
 var DatePicker = function (comboboxNode, inputNode, buttonNode, dialogNode) {
   this.months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-  this.comboboxNode = comboboxNode;
-  this.inputNode = inputNode;
-  this.buttonNode = buttonNode;
+  this.dateInput = new DateInput(comboboxNode, inputNode, buttonNode, this);
+
   this.dialogNode = dialogNode;
 
   this.MonthYearNode = dialogNode.querySelector('.monthYear');
@@ -39,6 +38,8 @@ var DatePicker = function (comboboxNode, inputNode, buttonNode, dialogNode) {
 
   this.handleDocumentClick;
 
+  this.hasFocusFlag = false;
+
   this.keyCode = Object.freeze({
     'TAB': 9,
     'RETURN': 13,
@@ -58,8 +59,7 @@ var DatePicker = function (comboboxNode, inputNode, buttonNode, dialogNode) {
 
 DatePicker.prototype.init = function () {
 
-  var di = new DateInput(this.inputNode, this.buttonNode, this);
-  di.init();
+  this.dateInput.init();
 
   this.okButtonNode.addEventListener('click', this.handleOkButton.bind(this));
   this.okButtonNode.addEventListener('keydown', this.handleOkButton.bind(this));
@@ -242,26 +242,20 @@ DatePicker.prototype.setFocusDay = function (flag) {
     flag = true;
   }
 
-  var day = this.day;
-  var month = this.month;
-  var cd = this.currentDay;
-
-  this.days.forEach(function (d) {
-    if ((d.day == day) &&
-        (d.month == month)) {
-      d.domNode.setAttribute('tabindex', '0');
-      cd = d;
+  function checkDay (d) {
+    d.domNode.setAttribute('tabindex', '-1');
+    if ((d.day == this.day) &&
+        (d.month == this.month)) {
+      this.currentDay = d;
       if (flag) {
+        this.hasFocusFlag = true;
         d.domNode.focus();
+        d.domNode.setAttribute('tabindex', '0');
       }
     }
-    else {
-      d.domNode.setAttribute('tabindex', '-1');
-    }
-  });
+  }
 
-  this.currentDay = cd;
-
+  this.days.forEach(checkDay.bind(this));
 };
 
 DatePicker.prototype.updateDate = function (year, month, day) {
@@ -333,23 +327,34 @@ DatePicker.prototype.getDaysInMonth = function (year, month) {
 
 };
 
-DatePicker.prototype.open = function () {
+DatePicker.prototype.show = function () {
   this.handleDocumentClick = this.handleDocumentClick.bind(this);
   document.addEventListener('click', this.handleDocumentClick, true);
 
   this.dialogNode.style.display = 'block';
-  this.comboboxNode.setAttribute('aria-expanded', 'true');
+  this.dateInput.setAriaExpanded(true);
   this.getDateInput();
   this.updateGrid();
-  this.setFocusDay();
+//  this.setFocusDay();
 };
 
-DatePicker.prototype.close = function (node) {
+DatePicker.prototype.hasFocus = function () {
+  return this.hasFocusFlag;
+};
+
+DatePicker.prototype.hide = function (ignore) {
+
+  if (typeof ignore !== 'boolean') {
+    ignore = true;
+  }
+
   document.removeEventListener('click', this.handleDocumentClick, true);
 
   this.dialogNode.style.display = 'none';
-  this.comboboxNode.setAttribute('aria-expanded', 'false');
-  this.inputNode.focus();
+  this.dateInput.setAriaExpanded(false);
+  this.hasFocusFlag = false;
+  this.dateInput.ignoreFocusEvent = ignore;
+  this.dateInput.focus();
 };
 
 DatePicker.prototype.handleDocumentClick = function (event) {
@@ -372,7 +377,7 @@ DatePicker.prototype.handleOkButton = function (event) {
 
           this.setTextboxDate();
 
-          this.close();
+          this.hide();
           flag = true;
           break;
 
@@ -384,7 +389,7 @@ DatePicker.prototype.handleOkButton = function (event) {
           break;
 
         case this.keyCode.ESC:
-          this.close();
+          this.hide();
           flag = true;
           break;
 
@@ -396,7 +401,7 @@ DatePicker.prototype.handleOkButton = function (event) {
 
     case 'click':
       this.setTextboxDate();
-      this.close();
+      this.hide();
       flag = true;
       break;
 
@@ -419,12 +424,12 @@ DatePicker.prototype.handleCancelButton = function (event) {
       switch (event.keyCode) {
         case this.keyCode.RETURN:
         case this.keyCode.SPACE:
-          this.close();
+          this.hide();
           flag = true;
           break;
 
         case this.keyCode.ESC:
-          this.close();
+          this.hide();
           flag = true;
           break;
 
@@ -435,7 +440,7 @@ DatePicker.prototype.handleCancelButton = function (event) {
       break;
 
     case 'click':
-      this.close();
+      this.hide();
       flag = true;
       break;
 
@@ -460,7 +465,7 @@ DatePicker.prototype.handleNextYearButton = function (event) {
 
       switch (event.keyCode) {
         case this.keyCode.ESC:
-          this.close();
+          this.hide();
           flag = true;
           break;
 
@@ -518,7 +523,7 @@ DatePicker.prototype.handlePreviousYearButton = function (event) {
           break;
 
         case this.keyCode.ESC:
-          this.close();
+          this.hide();
           flag = true;
           break;
 
@@ -555,7 +560,7 @@ DatePicker.prototype.handleNextMonthButton = function (event) {
 
       switch (event.keyCode) {
         case this.keyCode.ESC:
-          this.close();
+          this.hide();
           flag = true;
           break;
 
@@ -597,7 +602,7 @@ DatePicker.prototype.handlePreviousMonthButton = function (event) {
 
       switch (event.keyCode) {
         case this.keyCode.ESC:
-          this.close();
+          this.hide();
           flag = true;
           break;
 
@@ -721,12 +726,12 @@ DatePicker.prototype.moveFocusToLastDayOfWeek = function () {
 };
 
 DatePicker.prototype.setTextboxDate = function () {
-  this.inputNode.value = (this.month + 1) + '/' + (this.day + 1) + '/' + this.year;
+  this.dateInput.setDate(this.month, this.day, this.year);
 };
 
 DatePicker.prototype.getDateInput = function () {
 
-  var parts = this.inputNode.value.split('/');
+  var parts = this.dateInput.getDate().split('/');
 
   if ((parts.length === 3) &&
       Number.isInteger(parseInt(parts[0])) &&
