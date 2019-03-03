@@ -1,7 +1,8 @@
-var DateInput = function (comboboxNode, inputNode, buttonNode, datepicker) {
+var DateInput = function (comboboxNode, inputNode, buttonNode, messageNode, datepicker) {
   this.comboboxNode = comboboxNode;
   this.inputNode    = inputNode;
   this.buttonNode   = buttonNode;
+  this.messageNode  = messageNode;
   this.datepicker   = datepicker;
 
   this.ignoreBlurEvent = false;
@@ -24,12 +25,15 @@ var DateInput = function (comboboxNode, inputNode, buttonNode, datepicker) {
 
 DateInput.prototype.init = function () {
   this.inputNode.addEventListener('keydown', this.handleKeyDown.bind(this));
-  this.inputNode.addEventListener('touch', this.handleTouch.bind(this));
   this.inputNode.addEventListener('focus', this.handleFocus.bind(this));
   this.inputNode.addEventListener('blur', this.handleBlur.bind(this));
+  this.inputNode.addEventListener('click', this.handleButtonClick.bind(this));
 
   this.buttonNode.addEventListener('click', this.handleButtonClick.bind(this));
+  this.buttonNode.addEventListener('touch', this.handleTouch.bind(this));
   this.buttonNode.addEventListener('keydown', this.handleButtonKeyDown.bind(this));
+
+  this.setMessage('');
 };
 
 DateInput.prototype.handleKeyDown = function (event) {
@@ -79,10 +83,9 @@ DateInput.prototype.handleTouch = function (event) {
 };
 
 DateInput.prototype.handleFocus = function () {
-  console.log('[handleFocus][ignoreFocusEvent]: ' + this.ignoreFocusEvent);
-  console.log('[handleFocus][    isCollapsed]: ' + this.isCollapsed());
   if (!this.ignoreFocusEvent && this.isCollapsed()) {
     this.datepicker.show();
+    this.setMessage('Use the down arrow key to move focus to the datepicker grid.');
   }
 
   this.ignoreFocusEvent = false;
@@ -91,19 +94,18 @@ DateInput.prototype.handleFocus = function () {
 
 
 DateInput.prototype.handleBlur = function () {
-  console.log('[handleBlur][ignoreBlurEvent]: ' + this.ignoreBlurEvent);
   if (!this.ignoreBlurEvent) {
     this.datepicker.hide(false);
+    this.setMessage('');
   }
   this.ignoreBlurEvent = false;
 };
 
 DateInput.prototype.handleButtonClick = function () {
-  if (this.inputNode.getAttribute('aria-expanded') === 'true') {
-    this.datepicker.hide(false);
-  }
-  else {
+  if (this.isCollapsed()) {
+    this.ignoreBlurEvent = true;
     this.datepicker.show();
+    this.datepicker.setFocusDay();
   }
 };
 
@@ -160,3 +162,8 @@ DateInput.prototype.getDate = function () {
   return this.inputNode.value;
 };
 
+DateInput.prototype.setMessage = function (str) {
+  if (this.messageNode) {
+    this.messageNode.textContent = str;
+  }
+};

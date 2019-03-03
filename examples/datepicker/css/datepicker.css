@@ -173,3 +173,9 @@ table.dates td {
   border: none;
   cursor: not-allowed;
 }
+
+.datepicker .message {
+  position: absolute;
+  top: 1em;
+  left: 1em;
+}

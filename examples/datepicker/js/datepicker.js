@@ -1,9 +1,9 @@
 
 
-var DatePicker = function (comboboxNode, inputNode, buttonNode, dialogNode) {
+var DatePicker = function (comboboxNode, inputNode, buttonNode, dialogNode, messageNode) {
   this.months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-  this.dateInput = new DateInput(comboboxNode, inputNode, buttonNode, this);
+  this.dateInput = new DateInput(comboboxNode, inputNode, buttonNode, messageNode, this);
 
   this.dialogNode = dialogNode;
 
@@ -242,12 +242,18 @@ DatePicker.prototype.setFocusDay = function (flag) {
     flag = true;
   }
 
+  this.dateInput.setMessage('');
+
   function checkDay (d) {
     d.domNode.setAttribute('tabindex', '-1');
     if ((d.day == this.day) &&
         (d.month == this.month)) {
       this.currentDay = d;
       if (flag) {
+        if (!this.hasFocusFlag) {
+          this.dateInput.setMessage('Use the cursor keys to navigate the date picker grid.');
+        }
+
         this.hasFocusFlag = true;
         d.domNode.focus();
         d.domNode.setAttribute('tabindex', '0');
@@ -335,7 +341,6 @@ DatePicker.prototype.show = function () {
   this.dateInput.setAriaExpanded(true);
   this.getDateInput();
   this.updateGrid();
-//  this.setFocusDay();
 };
 
 DatePicker.prototype.hasFocus = function () {
@@ -358,7 +363,7 @@ DatePicker.prototype.hide = function (ignore) {
 };
 
 DatePicker.prototype.handleDocumentClick = function (event) {
-  if (!this.dialogNode.contains(event.target)) {
+  if (this.hasFocus() && !this.dialogNode.contains(event.target)) {
     this.setFocusDay();
     event.stopPropagation();
     event.preventDefault();
@@ -766,8 +771,9 @@ window.addEventListener('load' , function () {
   datePickers.forEach(function (dp) {
     var dpInput = dp.querySelector('input');
     var dpButton = dp.querySelector('button');
+    var dpMessage = dp.querySelector('.message');
     var dpDialog = document.getElementById(dp.getAttribute('aria-owns'));
-    var datePicker = new DatePicker(dp, dpInput, dpButton, dpDialog);
+    var datePicker = new DatePicker(dp, dpInput, dpButton, dpDialog, dpMessage);
     datePicker.init();
   });
 
