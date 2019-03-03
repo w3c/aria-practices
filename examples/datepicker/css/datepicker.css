@@ -9,7 +9,7 @@
 }
 
 .datepicker .date label {
-  display: inline;
+  display: block;
 }
 
 .datepicker input {
