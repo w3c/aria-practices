@@ -176,6 +176,6 @@ table.dates td {
 
 .datepicker .message {
   position: absolute;
-  top: 1em;
-  left: 1em;
+  top: -30em;
+  left: -300em;
 }
