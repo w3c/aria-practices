@@ -144,7 +144,11 @@ DatePickerDay.prototype.handleKeyDown = function (event) {
 };
 
 DatePickerDay.prototype.handleClick = function (event) {
+  console.log('[DatePickerDay][handleClick]');
   this.datepicker.day = this.day;
+  if (!this.datepicker.dateInput.hasFocus()) {
+    this.datepicker.dateInput.ignoreBlurEvent = true;
+  }
   this.datepicker.setFocusDay();
 
   event.stopPropagation();

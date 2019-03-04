@@ -6,6 +6,7 @@ var DateInput = function (comboboxNode, inputNode, buttonNode, messageNode, date
   this.datepicker   = datepicker;
 
   this.ignoreBlurEvent = false;
+  this.hasFocusFlag = false;
 
   this.keyCode = Object.freeze({
     'TAB': 9,
@@ -88,6 +89,7 @@ DateInput.prototype.handleFocus = function () {
     this.setMessage('Use the down arrow key to move focus to the datepicker grid.');
   }
 
+  this.hasFocusFlag = true;
   this.ignoreFocusEvent = false;
 
 };
@@ -98,6 +100,7 @@ DateInput.prototype.handleBlur = function () {
     this.datepicker.hide(false);
     this.setMessage('');
   }
+  this.hasFocusFlag = false;
   this.ignoreBlurEvent = false;
 };
 
@@ -163,7 +166,9 @@ DateInput.prototype.getDate = function () {
 };
 
 DateInput.prototype.setMessage = function (str) {
-  if (this.messageNode) {
-    this.messageNode.textContent = str;
-  }
+  return this.messageNode.textContent = str;
+};
+
+DateInput.prototype.hasFocus = function () {
+  return this.hasFocusflag;
 };

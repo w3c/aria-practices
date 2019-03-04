@@ -242,6 +242,9 @@ DatePicker.prototype.setFocusDay = function (flag) {
     flag = true;
   }
 
+  console.log('[DatePicker][setFocusDay][flag]: ' + flag);
+  console.log('[DatePicker][setFocusDay][hasFocusFlag]: ' + this.hasFocusFlag);
+
   this.dateInput.setMessage('');
 
   function checkDay (d) {
@@ -257,6 +260,7 @@ DatePicker.prototype.setFocusDay = function (flag) {
         this.hasFocusFlag = true;
         d.domNode.focus();
         d.domNode.setAttribute('tabindex', '0');
+        console.log('[DatePicker][setFocusDay][hasFocusFlag]: ' + this.hasFocusFlag);
       }
     }
   }
@@ -363,6 +367,7 @@ DatePicker.prototype.hide = function (ignore) {
 };
 
 DatePicker.prototype.handleDocumentClick = function (event) {
+  console.log('[DatePicker][handleDocumentClick][hasFocus]: ' + this.hasFocus());
   if (this.hasFocus() && !this.dialogNode.contains(event.target)) {
     this.setFocusDay();
     event.stopPropagation();
