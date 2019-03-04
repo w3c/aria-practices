@@ -45,8 +45,6 @@ The following roles get the label from the contents by default:
 
 * rowheader
 
-* sectionhead
-
 * switch
 
 * tab
@@ -86,11 +84,53 @@ In the following example, a close button contains an "X" and is given the label 
 ```
 
 
+Other roles do not get the label from the contents of the element. In these cases, an author-provided label does not override the element’s contents, but augments it. Examples of such roles are (note that this is not a complete list):
+
+* alertdialog
+
+* application
+
+* article
+
+* banner
+
+* complementary
+
+* navigation
+
+* radiogroup
+
+* search
+
+* status
+
+For example, the navigation landmark could be labeled with the purpose of the landmark. In the following snippet, a breadcrumbs navigation is labeled using the aria-label attribute.
+
+```
+<div role="navigation" aria-label="Breadcrumbs">
+ You are here:
+  <a href="/">Home</a> &gt;
+  <a href="/books/">Books</a> &gt;
+  <a>Children's books</a>
+</div>
+```
+
+
 ### Accessible name calculation
 
-aria-label vs aria-labelledby
+User agents follow the accessible name calculation algorithm to get the label for an element.
 
-aria-placeholder, placeholder, title
+The following attributes are considered when calculating the accessible name, in this order:
+
+1. aria-labelledby
+
+2. aria-label (with some exceptions)
+
+3. Host-language specific attributes or elements (e.g. the title attribute in HTML)
+
+4. In some cases, for widgets that have a value, that value.
+
+5. If the element’s role allows name from content, the element’s contents.
 
 ## Descriptions
 
