@@ -1,19 +1,25 @@
 Labeling and Describing
 
-## Labels
+## Introduction
 
-A label is used as the accessible name for an element.
+An accessible name is a name or a label used to identify the element for users of assistive technology. For example, a button’s accessible name can be "OK".
 
-For elements with certain roles, the label is taken from the element’s contents by default. This can be overridden with a label from the author by using the aria-labelledby or aria-label attributes. If the label from the element’s contents is appropriate, then it should not be overridden with those attributes.
+An accessible description complements the accessible name with a description. An accessible description is always optional, and if present it does not need to be as brief as an accessible name.
 
-In the following example, a link (with default role "link") gets its label from the element’s contents.
+## Accessible name
+
+### Name from content by default
+
+For elements with certain roles, the accessible name is taken from the element’s contents by default. In the following example, a link (with default role "link") gets its accessible name from the element’s contents (“Home”).
 
 ```
 <a href="/">Home</a>
 ```
 
 
-The following roles get the label from the contents by default:
+The accessible name can be set explicitly by using the aria-labelledby or aria-label attributes. If the accessible name from the element’s contents is already good, then don’t use the aria-labelledby or aria-label attributes.
+
+The following roles get the accessible name from the contents by default:
 
 * button
 
@@ -53,9 +59,9 @@ The following roles get the label from the contents by default:
 
 * treeitem
 
-If the element’s contents is not appropriate as a label, but there is an element that can be used as the label, then authors should use the aria-labelledby attribute.
+If the element’s contents is not appropriate as a label, but there is an element that can be used as the label, then use the aria-labelledby attribute.
 
-In the following example, an element with the "switch" role is labelled by a previous sibling element.
+In the following example, an element with the "switch" role is labeled by a previous sibling element.
 
 ```
 <span id="night-mode-label">Night mode</span>
@@ -63,28 +69,40 @@ In the following example, an element with the "switch" role is labelled by a pre
 ```
 
 
-In some cases the combination of the element’s contents and another element would be appropriate as a label. In such situations, the aria-labelledby should be used and reference both the element itself and the other element.
+Because a span element is used for the switch control, the HTML label element cannot be used to label it, since it only works with HTML elements that are form controls. However, the switch role can be used on an input element with type="checkbox”, and then HTML label can be used.
 
-In the following example, a "read more" link is labelled by the element itself and the article’s heading, resulting in “Read more… 7 ways you can help save the bees”.
+```
+<label for="night-mode">Night mode</label>
+<input type="checkbox" role="switch" id="night-mode">
+```
+
+
+In some cases, the combination of the element’s contents and another element would be appropriate as an accessible name. In such situations, use the aria-labelledby and reference both the element itself and the other element.
+
+In the following example, a "read more" link is labeled by the element itself and the article’s heading, resulting in “Read more… 7 ways you can help save the bees”.
 
 ```
 <h2 id="bees-heading">7 ways you can help save the bees</h2>
 <p>Bees are disappearing rapidly.
 Here are seven things you can do to help.</p>
-<p><a id="bees-read-more aria-labelledby="bees-read-more bees-heading"">Read more...</a></p>
+<p><a id="bees-read-more aria-labelledby="bees-read-more bees-heading">Read more...</a></p>
 ```
 
 
-If there is no visible label that is appropriate, authors should use the aria-label attribute to set the label for the element.
+If there is no content that is appropriate to use as the accessible name, use the aria-label attribute to set the label for the element directly.
 
-In the following example, a close button contains an "X" and is given the label “Close” using the aria-label attribute.
+In the following example, a close button contains an "X" and is given the accessible name “Close” using the aria-label attribute.
 
 ```
 <button type="button" aria-label="Close">X</button>
 ```
 
 
-Other roles do not get the label from the contents of the element. In these cases, an author-provided label does not override the element’s contents, but augments it. Examples of such roles are (note that this is not a complete list):
+### Name from author only
+
+Some roles do not get the accessible name from the contents of the element. An accessible name set with the aria-labelledby or aria-label attributes does not override the contents of such elements.
+
+Examples of such roles are (note that this is not a complete list):
 
 * alertdialog
 
@@ -104,7 +122,7 @@ Other roles do not get the label from the contents of the element. In these case
 
 * status
 
-For example, the navigation landmark could be labeled with the purpose of the landmark. In the following snippet, a breadcrumbs navigation is labeled using the aria-label attribute.
+For example, the navigation landmark could be labeled with the purpose of the landmark. In the following snippet, a breadcrumbs navigation region is labeled using the aria-label attribute.
 
 ```
 <div role="navigation" aria-label="Breadcrumbs">
@@ -116,21 +134,65 @@ For example, the navigation landmark could be labeled with the purpose of the la
 ```
 
 
+Alternatively, this can use the HTML nav element, which has the "navigation" role by default:
+
+```
+<nav aria-label="Breadcrumbs">
+ You are here:
+  <a href="/">Home</a> &gt;
+  <a href="/books/">Books</a> &gt;
+  <a>Children's books</a>
+</nav>
+```
+
+
 ### Accessible name calculation
 
-User agents follow the accessible name calculation algorithm to get the label for an element.
+User agents follow the accessible name calculation algorithm to get the label for an element. This is defined in [https://w3c.github.io/accname/](https://w3c.github.io/accname/) and [https://w3c.github.io/html-aam/](https://w3c.github.io/html-aam/) for HTML.
 
-The following attributes are considered when calculating the accessible name, in this order:
+The aria-labelledby attribute is used first, then the aria-label attribute, then host-language-specific attributes or elements (e.g., the alt attribute on HTML img) or, for roles that can take the name from content, the element’s contents.
 
-1. aria-labelledby
+For example, an img element with just a src attribute has no accessible name (don’t do this):
 
-2. aria-label (with some exceptions)
+```
+<img src="photo.jpg">
+```
 
-3. Host-language specific attributes or elements (e.g. the title attribute in HTML)
 
-4. In some cases, for widgets that have a value, that value.
+If there is a title attribute, then that is used as the accessible name:
 
-5. If the element’s role allows name from content, the element’s contents.
+```
+<img src="photo.jpg" title="The Queen, holding a pigeon.">
+```
+
+
+If there is also an alt attribute, then that is used as the accessible name, and the title attribute is instead used as the accessible description:
+
+```
+<img src="photo.jpg" alt="The Queen, holding a pigeon."
+     title="Photo: Established Depiction">
+```
+
+
+If there is also an aria-label attribute, then that overrides the alt attribute:
+
+```
+<img src="photo.jpg" aria-label="The Queen, holding a pigeon."
+     title="Photo: Established Depiction"
+     alt="Sorry, this image failed to load.">
+```
+
+
+If there is also an aria-labelledby attribute, that wins over the other attributes (don’t do this):
+
+```
+<img src="photo.jpg" aria-label="This is ignored."
+     title="Photo: Established Depiction"
+     alt="Sorry, this image failed to load."
+     aria-labelledby="the-queen">
+<span id="the-queen">The Queen, holding a pigeon.</span>
+```
+
 
 ## Descriptions
 
