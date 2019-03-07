@@ -477,7 +477,7 @@
         </ul>
       </section>
     </section>
-    
+
     <section class="widget" id="carousel">
       <h3>Carousel (Slide Show or Image Rotator)</h3>
       <p>
@@ -512,10 +512,10 @@
       <section class="notoc">
         <h4>Example</h4>
         <p>
-          <a href="examples/carousel/carousel-1/carousel-1.html">Auto-Rotating Image Carousel Example:</a> A basic image carousel that demonstrates the accessibility features necessary for carousels that rotate automatically on page load. 
+          <a href="examples/carousel/carousel-1/carousel-1.html">Auto-Rotating Image Carousel Example:</a> A basic image carousel that demonstrates the accessibility features necessary for carousels that rotate automatically on page load.
         </p>
       </section>
-      
+
       <section class="notoc">
         <h4>Terms</h4>
         <p>The following terms are used to describe components of a carousel.</p>
@@ -578,7 +578,7 @@
           <li>
             The rotation control has an accessible label provided by either its inner text or <a href="#aria-label" class="property-reference">aria-label</a>.
             The label changes to match the action the button will perform, e.g., &quot;Stop slide rotation&quot; or &quot;Start slide rotation&quot;.
-            A label that changes when the button is activated clearly communicates both that slide content can change automatically and when it is doing so. 
+            A label that changes when the button is activated clearly communicates both that slide content can change automatically and when it is doing so.
             Note that since the label changes, the rotation control does not have any states, e.g., <code>aria-pressed</code>, specified.
           </li>
           <li>Each slide container has role <a href="#group" class="role-reference">group</a> with the property <a href="#aria-roledescription" class="property-reference">aria-roledescription</a> set to <code>slide</code>.</li>
@@ -645,7 +645,7 @@
         </ul>
       </section>
     </section>
-    
+
     <section class="widget" id="checkbox">
       <h3>Checkbox</h3>
       <p>WAI-ARIA supports two types of <a href="#checkbox" class="role-reference">checkbox</a> widgets:</p>
@@ -1076,40 +1076,62 @@
 
     <section class="widget" id="date_picker">
       <h3>Date Pickers</h3>
-      <p>A date picker provides a means for a user to pick a valid date, range of dates, or enter a valid date manually. The following are different types of date picker features: 
+      <p>A date picker provides a means for a user to pick a valid date, range of dates, or enter a valid date manually. The following are different types of date picker features:
       </p>
         <ul>
-          <li>A textbox that validates date formats.
+          <li>A Combobox that validates date formats.
             <ul>
               <li>Provide a means for indicating correct format using one of the following techniques.
                 <ul>
                   <li>Use the <code>placeholder</code> attribute provide the correct format.</li>
-                  <li>When the textbox receives focus, use a popup tooltip that is referenced by <code>aria-describedby</code> attribute.</li>
+                  <li>When the Combobox receives focus, use a popup tooltip that is referenced by <code>aria-describedby</code> attribute.</li>
                 </ul>
               </li>
-              <li>Validate textbox contents using one of the following techniques:
+              <li>Validate Combobox contents using one of the following techniques:
                 <ul>
                   <li>When focus leaves the textbox, feedback is immediately provided and, if incorrect, the <code>aria-invalid</code> attribute is set to <code>true</code> and <code>aria-describedby</code> points to the error message.</li>
                 </ul>
               </li>
             </ul>
           <li>A modal dialog with a grid of dates.</li>
+          <ul>
+            <li>The dialog is displayed when the textfield recieves focus.</li>
+            <li>When using a touch device:</li>
+            <ul>
+              <li>Display the dialog when:</li>
+            <ul>
+              <li>The text field receives keyboard focus.</li>
+              <li>The text field or down icon is touched.</li>
+              <ul class="note">
+                <li>If the text field is touched when the dialog is not open, only open the dialog, DO NOT focus the text field. If the text field is touched when the dialog is open, focus the text field. This should prevent unwanted display of the keyboard.</li>
+              </ul>
+              <li>The text field or down icon is clicked with a mouse. Clicking the text field should, as is normally expected, focus the text field.</li>
+            </ul>
+            <li>Close the dialog when:</li>
+            <ul>
+              <li><kbd>Escape</kbd> is pressed and focus is either in the dialog or in the text field.</li>
+              <li>Focus is in the text field and <kbd>Tab</kbd> or <kbd>Shift+Tab</kbd> is pressed.</li>
+              <li>The dialog cancel button is clicked or touched.</li>
+              <li>The dialog is open and the down arrow icon is clicked or touched.</li>
+            </ul>
+          </ul>
+            <li>When date is chosen from the dialog, focus returns to the edit field.
+          </ul>
+          <li>Move keyboard focus into the dialog when:</li>
+          <ul>
+            <li>Focus is in the text field and <kbd>Up</kbd> or <kbd>Down</kbd> arrow is pressed.</li>
+            <li>The user clicks or touches in the dialog.</li>
+          </ul>
           <li>A set of select boxes for month, day, and year.</li>
           <li>A set of spin buttons, typically one for each month, day, and year.</li>
           <li>A slider to select a minumum and maximum date range.</li>
         </ul>
-        <p></p>
-
-      </p>
 
       <section class="notoc">
         <h4>Example</h4>
         <p><a href="examples/#">Date Picker Example</a></p>
       </section>
-
     </section>
-
-
 
     <section class="widget" id="dialog_modal">
       <h3>Dialog (Modal)</h3>
@@ -2216,7 +2238,7 @@
           <ul>
             <li>
               <kbd>Tab</kbd> and <kbd>Shift + Tab</kbd>:
-              Move focus into and out of the radio group. 
+              Move focus into and out of the radio group.
               When focus moves into a radio group :
               <ul>
                 <li>If a radio button is checked, focus is set on the checked button.</li>
@@ -5025,7 +5047,7 @@
       <h2>Change History</h2>
       <p>Change history is maintained in a separate version-specific branch.</p>
     </section>
-    
+
     <section id="acknowledgements" class="appendix">
       <h2>Acknowledgements</h2>
       <section>
