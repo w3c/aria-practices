@@ -1079,53 +1079,55 @@
       <p>A date picker provides a means for a user to pick a valid date, range of dates, or enter a valid date manually. The following are different types of date picker features:
       </p>
         <ul>
-          <li>A Combobox that validates date formats.
+          <li>A combobox that validates date formats.
             <ul>
               <li>Provide a means for indicating correct format using one of the following techniques.
                 <ul>
                   <li>Use the <code>placeholder</code> attribute provide the correct format.</li>
-                  <li>When the Combobox receives focus, use a popup tooltip that is referenced by <code>aria-describedby</code> attribute.</li>
+                  <p class="note">Keep the date format suggestion in the placeholder while the user is typing or, if not possible, use a floating label with format suggestion.</p>
+                  <li>When the combobox receives focus, use a popup tooltip that is referenced by <code>aria-describedby</code> attribute.</li>
                 </ul>
               </li>
-              <li>Validate Combobox contents using one of the following techniques:
+              <li>Validate combobox contents using one of the following techniques:
                 <ul>
-                  <li>When focus leaves the textbox, feedback is immediately provided and, if incorrect, the <code>aria-invalid</code> attribute is set to <code>true</code> and <code>aria-describedby</code> points to the error message.</li>
+                  <li>When focus leaves the combobox, feedback is immediately provided and, if incorrect, the <code>aria-invalid</code> attribute is set to <code>true</code> and <code>aria-describedby</code> points to the error message.</li>
                 </ul>
               </li>
             </ul>
           <li>A modal dialog with a grid of dates.</li>
           <ul>
-            <li>The dialog is displayed when the textfield recieves focus.</li>
+            <li>The dialog is displayed when the text field recieves focus.</li>
             <li>When using a touch device:</li>
             <ul>
-              <li>Display the dialog when:</li>
-            <ul>
-              <li>The text field receives keyboard focus.</li>
-              <li>The text field or down icon is touched.</li>
-              <p class="note">
+              <li>The dialog displays when:</li>
+              <ul>
+                <li>The text field receives keyboard focus.</li>
+                <li>The text field or down icon is touched.</li>
+                <p class="note">
                 If the text field is touched when the dialog is not open, only open the dialog, DO NOT focus the text field. If the text field is touched when the dialog is open, focus the text field. This should prevent unwanted display of the keyboard.
-              </p>
-              <li>The text field or down icon is clicked with a mouse. Clicking the text field should, as is normally expected, focus the text field.</li>
+                </p>
+                <li>The text field or down icon is clicked with a mouse. Clicking the text field should, as is normally expected, focus the text field.</li>
               </ul>
             </ul>
-            <li>Close the dialog when:</li>
+            <li>The dialog closes when:</li>
             <ul>
               <li><kbd>Escape</kbd> is pressed and focus is either in the dialog or in the text field.</li>
-              <li>Focus is in the text field and <kbd>Tab</kbd> or <kbd>Shift+Tab</kbd> is pressed.</li>
+              <li>Focus is in the text field and <kbd>Tab</kbd> or <kbd>Shift + Tab</kbd> is pressed.</li>
               <li>The dialog cancel button is clicked or touched.</li>
               <li>The dialog is open and the down arrow icon is clicked or touched.</li>
             </ul>
           </ul>
             <li>When date is chosen from the dialog, focus returns to the edit field.
           </ul>
-          <li>Move keyboard focus into the dialog when:</li>
+          <li>Keyboard focus moves into the dialog when:</li>
           <ul>
             <li>Focus is in the text field and <kbd>Up Arrow</kbd> or <kbd>Down Arrow</kbd> is pressed.</li>
             <li>The user clicks or touches in the dialog.</li>
           </ul>
-          <li>A set of select boxes for month, day, and year.</li>
-          <li>A set of spin buttons, typically one for each month, day, and year.</li>
-          <li>A slider to select a minumum and maximum date range.</li>
+          <li>A set of <code>select</code> boxes for month, day, and year.</li>
+          <li>A set of spinbuttons, typically one for each month, day, and year.</li>
+          <p class="note">Ensure proper labels are used if using numbers for selection. e.g. "January" vs. "1" for month. This can be done using <code>aria-label</code>.</p>
+          <li>A <a href="https://w3c.github.io/aria/#slider">slider</a> to select a minumum and maximum date range.</li>
         </ul>
 
       <section class="notoc">
