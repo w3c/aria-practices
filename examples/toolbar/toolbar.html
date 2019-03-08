@@ -57,7 +57,8 @@
                 aria-pressed="false"
                 aria-label="bold"
                 value="bold"
-                tabindex="0">
+                tabindex="0"
+                title="Bold">
               <span class="fas fa-bold"></span>
             </button>
             <button
@@ -65,7 +66,8 @@
                 aria-label="Italic"
                 aria-pressed="false"
                 value="italic"
-                tabindex="-1">
+                tabindex="-1"
+                title="Italic">
               <span class="fas fa-italic"></span>
             </button>
             <button
@@ -73,7 +75,8 @@
                 aria-label="Underline"
                 aria-pressed="false"
                 value="underline"
-                tabindex="-1">
+                tabindex="-1"
+                title="Underline">
               <span class="fas fa-underline"></span>
             </button>
           </div>
@@ -85,7 +88,8 @@
                 class="item align-left"
                 aria-label="Text align left"
                 aria-checked="true"
-                tabindex="-1">
+                tabindex="-1"
+                title="Left align">
               <span class="fas fa-align-left"></span>
             </button>
             <button
@@ -93,7 +97,8 @@
                 class="item align-center"
                 aria-label="Text align center"
                 aria-checked="false"
-                tabindex="-1">
+                tabindex="-1"
+                title="Center align">
               <span class="fas fa-align-center"></span>
             </button>
             <button
@@ -101,7 +106,8 @@
                 class="item align-right"
                 aria-label="Text align right"
                 aria-checked="false"
-                tabindex="-1">
+                tabindex="-1"
+                title="Right align">
               <span class="fas fa-align-right"></span>
             </button>
           </div>
@@ -135,7 +141,7 @@
               class="item menu-button"
               tabindex="-1"
               aria-label="Font: Sans-serif"
-              style="text-align: left; width: 140px; font-family: sans-serif">
+              style="text-align: left; width: 140px; font-family: sans-serif" title="Font">
               SANS-SERIF
               <span></span>
             </button>
@@ -156,7 +162,8 @@
                   aria-valuetext="14pt"
                   aria-valuemin="8"
                   aria-valuemax="40"
-                  aria-label="Font size in points">
+                  aria-label="Font size in points"
+                  title="Font size">
               <span class="value">14pt</span>
               <span class="increase">
                 <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12">
@@ -172,7 +179,7 @@
           </div>
 
           <div class="group">
-            <label class="input"><input id="checkbox" class="item nightmode" type="checkbox" tabindex="-1"> Night Mode</label>
+            <label class="input" title="Editing Mode"><input id="checkbox" class="item nightmode" type="checkbox" tabindex="-1"> Night Mode</label>
             <a id="link" class="item link" href="help.html" tabindex="-1" title="Opens help document in a new window">Help</a>
           </div>
       </div>
@@ -203,7 +210,7 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
         When any of the cut, copy and paste buttons are disabled they remain focusable to ensure screen reader users are aware of their presence.
         For additional guidance, see <a href="../../#kbd_disabled_controls">Focusability of disabled controls.</a>
       </li>
-      <li><kbd>Left Arrow</kbd> and <kbd>Right Arrow</kbd> navigate among elements in the toolbar so <kbd>Up Arrow</kbd> and <kbd>Down Arrow</kbd> are available to: 
+      <li><kbd>Left Arrow</kbd> and <kbd>Right Arrow</kbd> navigate among elements in the toolbar so <kbd>Up Arrow</kbd> and <kbd>Down Arrow</kbd> are available to:
         <ul>
           <li>Navigate among radios in the text alignment group. For instance, <kbd>Down Arrow</kbd> moves focus from last to first member in the group.</li>
           <li>Open the font menu button, which can also be opened with <kbd>Enter</kbd>.</li>
@@ -215,7 +222,7 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
     <ul>
       <li>
         When the toolbar has focus, the container element border is highlighted,
-        helping indicate that the container supports directional navigation with the arrow keys. 
+        helping indicate that the container supports directional navigation with the arrow keys.
       </li>
       <li>
         When a toolbar item has focus, its border is highlighted and the background color of the button also changes.
@@ -683,7 +690,7 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
             <td>
               <ul>
                 <li>Indicates the radio button is checked, i.e., the type of alignment currently applied to the text area.</li>
-                <li>Only one radio button in the group has <code>aria-checked</code> set to <code>true</code> at any given time.</li> 
+                <li>Only one radio button in the group has <code>aria-checked</code> set to <code>true</code> at any given time.</li>
               </ul>
             </td>
           </tr>
@@ -694,7 +701,7 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
             <td>
               <ul>
                 <li>Indicates the radio button is <strong>NOT</strong> checked.</li>
-                <li>All radio buttons in the group, except for one,  have <code>aria-checked</code> set to <code>false</code>.</li> 
+                <li>All radio buttons in the group, except for one,  have <code>aria-checked</code> set to <code>false</code>.</li>
               </ul>
             </td>
           </tr>
