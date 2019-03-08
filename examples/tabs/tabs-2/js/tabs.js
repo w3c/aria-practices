@@ -27,7 +27,7 @@
     space: 32
   };
 
-  // Add or substract depenign on key pressed
+  // Add or substract depending on key pressed
   var direction = {
     37: -1,
     38: -1,
@@ -125,7 +125,7 @@
   };
 
   // Either focus the next, previous, first, or last tab
-  // depening on key pressed
+  // depending on key pressed
   function switchTabOnArrowPress (event) {
     var pressed = event.keyCode;
 
