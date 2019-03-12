@@ -223,12 +223,50 @@ In this example, the label for the button is computed by first following the `ar
 
 ## Descriptions
 
-aria-describedby
+An element can be given an accessible description using the `aria-describedby` attribute or the `aria-details` attribute.
 
-aria-details
+The `aria-describedby` attribute works similarly to the `aria-labelledby` attribute. For example, a button could be described by a later paragraph.
 
-aria-roledescription
+```
+<button aria-describedby="trash-desc">Move to trash</button>
+...
+<p id="trash-desc">Items in the trash
+will be permanently removed after 30 days.</p>
+```
+
+
+This description will be presented to the user as plain text. For example, if the description contains an HTML `img` element, a text equivalent of the image is computed.
+
+```
+<button>Move to <img src="bin.svg" alt="trash"></button>
+...
+<p id="trash-desc">Items in <img src="bin.svg" alt="the trash">
+will be permanently removed after 30 days.</p>
+```
+
+
+In some cases, a plain text description is insufficient. The `aria-details` attribute can be used in such situations. In this example, a text field for a passenger’s name (when booking a flight) has a description that is a list of three items, and contains a link to an external document with further details.
+
+```
+<ul id="full-name-desc">
+ <li>The passenger's name must match the name in their passport.</li>
+ <li>The name must consist of only characters in the A-Z range.</li>
+ <li><a href="faq.html#name">What if the name in the passport contains other characters?</a></li> 
+</ul>
+<fieldset>
+ <legend>Passenger 1 (adult)</legend>
+ <p><label>Full name
+  <input name="full-name" aria-details="full-name-desc">
+ </label></p>
+ ...
+</fieldset>
+```
+
+
+If both `aria-details` and `aria-describedby` are specified on an element, only the `aria-details` attribute is used. This can be useful in order to provide a fallback for user agents that don’t support `aria-details`.
 
 ### Accessible description calculation
 
-aria-describedby, aria-details, aria-placeholder?, placeholder, title
+Like the accessible name calculation, the accessible description calculation produces a plain text string for an element. This algorithm is not used for the `aria-details` attribute.
+
+TODO ...
