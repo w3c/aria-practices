@@ -221,6 +221,17 @@ In this example, the label for the button is computed by first following the `ar
 </div>
 ```
 
+It is also possible to reference an element using `aria-labelledby` even if that element is hidden. In the following example, the `span` element could be styled with CSS `display: none` and the `nav` element would still have the label "You are here:".
+
+```
+<nav aria-labelledby="breadcrumbs-label">
+ <span id="breadcrumbs-label">You are here:</span>
+  <a href="/">Home</a> &gt;
+  <a href="/books/">Books</a> &gt;
+  <a>Children's books</a>
+</nav>
+```
+
 ## Descriptions
 
 An element can be given an accessible description using the `aria-describedby` attribute or the `aria-details` attribute.
@@ -238,7 +249,9 @@ will be permanently removed after 30 days.</p>
 This description will be presented to the user as plain text. For example, if the description contains an HTML `img` element, a text equivalent of the image is computed.
 
 ```
-<button>Move to <img src="bin.svg" alt="trash"></button>
+<button aria-describedby="trash-desc">
+ Move to <img src="bin.svg" alt="trash">
+</button>
 ...
 <p id="trash-desc">Items in <img src="bin.svg" alt="the trash">
 will be permanently removed after 30 days.</p>
@@ -267,6 +280,19 @@ If both `aria-details` and `aria-describedby` are specified on an element, only 
 
 ### Accessible description calculation
 
-Like the accessible name calculation, the accessible description calculation produces a plain text string for an element. This algorithm is not used for the `aria-details` attribute.
+Like the accessible name calculation (see the earlier section), the accessible description calculation produces a plain text string for an element. This algorithm is not used for the `aria-details` attribute.
 
-TODO ...
+The accessible description calculation algorithm is the same algorithm as the accessible name calculation algorithm, but it branches off in some places depending on whether a name or a description is being calculated. In particular, when collecting an accessible description, the algorithm uses `aria-describedby` instead of `aria-labelledby`.
+
+As with `aria-labelledby`, it is possible to reference an element using `aria-describedby` even if that element is hidden.
+
+For example, a text field in a form could have a description that is hidden by default, but can be revealed on request using a disclosure widget. The description could also be referenced from the text field directly with `aria-describedby`. The accessible description for the `input` element is "Your username is the name that you use to log in to this service.".
+
+```
+<label for="username">Username</label>
+<input id="username" name="username" aria-describedby="username-desc">
+<button aria-expanded="false" aria-controls="username-desc" aria-label="Help about username">?</button>
+<p id="username-desc" hidden>
+ Your username is the name that you use to log in to this service.
+</p>
+```
