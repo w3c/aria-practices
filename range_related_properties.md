@@ -5,13 +5,13 @@ The range related properties are used to fully present and describe an element w
 The range properties can also be used to fully present and describe an element whose value can be one of a list of non-numeric values. In this scenario, all possible text values of the element will be programmatically mapped to numbers within the numeric range.
 
 These attributes are used with the following roles:
-* slider
-* spinbutton
-* progressbar
-* meter
-* scrollbar
+* `slider`
+* `spinbutton`
+* `progressbar`
+* `meter`
+* `scrollbar`
 
-These proprieties are also used for the separator role, but only if the element is focusable.
+These proprieties are also used for the `separator` role, but only if the element is focusable.
 
 Range Related Property Table
 
@@ -34,9 +34,9 @@ The attribute `aria-valuenow` is used to inform assistive technologies of the cu
 
 When the element's values are contained within a range but those values are not numeric (such as "small", "medium" and "large"), `aria-valuetext` is used to surface the text value to assistive technologies. Only use `aria-valuetext` when `aria-valuenow` does not have meaning for the user because using `aria-valuetext` will prevent assistive technologies from communicating `aria-valuenow`.
 
-## slider Role
+## `slider` Role
 
-`aria-valuenow`, `aria-valuemin` and `aria-valuemax` are all required attributes for the slider role. `aria-valuetext` can be used when appropriate. Detailed description of the slider role can be found in the slider design pattern and slider (multi-thumb) design pattern.
+`aria-valuenow`, `aria-valuemin` and `aria-valuemax` are all required attributes for the `slider` role. `aria-valuetext` can be used when appropriate. Detailed description of the `slider` role can be found in the [slider design pattern](https://w3c.github.io/aria-practices/#slider) and [slider (multi-thumb) design pattern](https://w3c.github.io/aria-practices/#slidertwothumb).
 
 ### Example with numeric range
 
@@ -74,9 +74,9 @@ This example is a fan control. The `aria-valuenow` value is "1", which is not me
 
 ```
 
-## spinbutton Role
+## `spinbutton` Role
 
-`aria-valuenow`, `aria-valuemin` and `aria-valuemax` are all required attributes for the spinbutton role. `aria-valuetext` can be used when appropriate.
+`aria-valuenow`, `aria-valuemin` and `aria-valuemax` are all required attributes for the `spinbutton` role. `aria-valuetext` can be used when appropriate.
 
 This example sets the price of paperclips in cents.
 
@@ -101,13 +101,11 @@ $<output id="price" aria-labelledby="paperclip-label">0.50</output>
 ```
 
 
-## progressbar Role
+## `progressbar` Role
 
-`aria-valuenow`, `aria-valuemin` and `aria-valuemax` are not required attributes for the progressbar role, however, but the attributes might be necessary for communicating the state of a progress bar to assistive technologies.
+`aria-valuenow`, `aria-valuemin` and `aria-valuemax` are not required attributes for the `progressbar` role, however, but the attributes might be necessary for communicating the state of a progress bar to assistive technologies.
 
-### Example: progressbar
-
-This is an example of a progressbar represent by an SVG. The range properties are necessary to full explain the widget to assistive technologies.
+This is an example of a progress bar represent by an SVG. The range properties are necessary to full explain the widget to assistive technologies.
 
 ```
 <div for="loadstatus">Loading:
@@ -127,9 +125,9 @@ The progress bar example can be made using the native HTML progress element.
 <progress id="loadstatus" max="100" value="33"></progress>
 ```
 
-## scrollbar Role
+## `scrollbar` Role
 
-`aria-valuenow`, `aria-valuemin` and aria-value max are all required attributes for the scrollbar role. The value of `aria-valuenow` will generally be exposed as a percentage between `aria-valuemin` and `aria-valuemax` calculated by assistive technologies.
+`aria-valuenow`, `aria-valuemin` and `aria-valuemax` are all required attributes for the `scrollbar` role. The value of `aria-valuenow` will generally be exposed as a percentage between `aria-valuemin` and `aria-valuemax` calculated by assistive technologies.
 
 ```
 <div id="pi">
