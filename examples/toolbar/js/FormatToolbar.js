@@ -44,6 +44,15 @@ FormatToolbar.prototype.init = function () {
   this.textarea.addEventListener('mouseup', this.selectTextContent.bind(this));
   this.textarea.addEventListener('keyup', this.selectTextContent.bind(this));
 
+
+  this.domNode.addEventListener('focus', function (event) {
+    event.target.classList.add('focus');
+  });
+
+  this.domNode.addEventListener('blur', function (event) {
+    event.target.classList.remove('focus');
+  });
+
   this.selected = this.textarea.selectText;
 
   this.copyButton  = this.domNode.querySelector('.copy');
