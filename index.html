@@ -1,31 +1,13 @@
-<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><meta charset="utf-8"><meta name="generator" content="ReSpec 24.4.1"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><style>/* --- ISSUES/NOTES --- */
-div.issue-title, div.note-title , div.ednote-title, div.warning-title {
-    padding-right:  1em;
-    min-width: 7.5em;
-    color: #b9ab2d;
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><meta charset="utf-8"><meta name="generator" content="ReSpec 24.5.1"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><style>/* --- ISSUES/NOTES --- */
+.issue-label {
+    text-transform: initial;
 }
-div.issue-title { color: #e05252; }
-div.note-title, div.ednote-title { color: #2b2; }
-div.warning-title { color: #f22; }
-div.note-title span, div.ednote-title span, div.warning-title span {
-    text-transform: uppercase;
-}
-div.issue-title span { text-transform: none; }
-div.note, div.issue, div.ednote, div.warning {
-    margin-top: 1em;
-    margin-bottom: 1em;
-}
+
 .warning > p:first-child { margin-top: 0 }
 .warning {
     padding: .5em;
     border-left-width: .5em;
     border-left-style: solid;
-}
-div.issue, div.note , div.ednote,  div.warning {
-    padding: 1em 1.2em 0.5em;
-    margin: 1em 0;
-    position: relative;
-    clear: both;
 }
 span.warning { padding: .1em .5em .15em; }
 
@@ -324,7 +306,12 @@ h6>a.self-link::before {
     display: none;
   }
 }
-</style><style>/*
+</style>
+  
+  
+  
+  <link href="common/css/common.css" rel="stylesheet" type="text/css">
+<link rel="canonical" href="https://www.w3.org/TR/wai-aria-practices-1.1/"><style>/*
 
 github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
@@ -423,12 +410,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 .hljs-strong {
   font-weight: bold;
 }
-</style>
-  
-  
-  
-  <link href="common/css/common.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/W3C-ED"><link rel="canonical" href="https://www.w3.org/TR/wai-aria-practices-1.1/"><script id="initialUserConfig" type="application/json">{
+</style><script id="initialUserConfig" type="application/json">{
   "doRDFa": "1.1",
   "includePermalinks": true,
   "permalinkEdge": true,
@@ -463,7 +445,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       "w3cid": 37155
     },
     {
-      "name": "Michiel Bijl",
+      "name": "Zoë Bijl",
       "company": "Invited Expert",
       "w3cid": 74040
     },
@@ -568,18 +550,18 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   "preProcess": [
     null
   ],
-  "publishDate": "2019-02-28",
-  "publishISODate": "2019-02-28T00:00:00.000Z",
-  "generatedSubtitle": "Editor's Draft 28 February 2019"
+  "publishDate": "2019-03-20",
+  "publishISODate": "2019-03-20T00:00:00.000Z",
+  "generatedSubtitle": "Editor's Draft 20 March 2019"
 }</script><meta name="description" content="This document provides readers with an understanding of how to use WAI-ARIA 1.1 [WAI-ARIA] to create accessible rich internet applications.
       It describes considerations that might not be evident to most authors from the WAI-ARIA specification alone and recommends approaches to make widgets, navigation, and behaviors accessible using WAI-ARIA roles, states, and properties.
-      This document is directed primarily to Web application developers, but the guidance is also useful for user agent and assistive technology developers."></head>
+      This document is directed primarily to Web application developers, but the guidance is also useful for user agent and assistive technology developers."><link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/W3C-ED"></head>
 <body class="h-entry informative"><div class="head">
       <a href="https://www.w3.org/" class="logo"><img alt="W3C" width="72" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C"></a> <h1 id="title" class="title p-name"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Authoring Practices 1.1</h1>
       
       <h2>
         <abbr title="World Wide Web Consortium">W3C</abbr> Editor's Draft
-        <time class="dt-published" datetime="2019-02-28">28 February 2019</time>
+        <time class="dt-published" datetime="2019-03-20">20 March 2019</time>
       </h2>
       <dl>
         <dt>This version:</dt><dd>
@@ -601,7 +583,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             (University of Illinois)
           </dd><dd class="p-author h-card vcard" data-editor-id="37155"><a class="ed_mailto u-email email p-name" href="mailto:nurthen@adobe.com">James Nurthen</a>
             (Adobe)
-          </dd><dd class="p-author h-card vcard" data-editor-id="74040"><span class="p-name fn">Michiel Bijl</span>
+          </dd><dd class="p-author h-card vcard" data-editor-id="74040"><span class="p-name fn">Zoë Bijl</span>
             (Invited Expert)
           </dd><dd class="p-author h-card vcard" data-editor-id="34017"><a class="ed_mailto u-email email p-name" href="mailto:cooper@w3.org">Michael Cooper</a>
             (<abbr title="World Wide Web Consortium">W3C</abbr>)
@@ -714,7 +696,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
                   
                 </p><p>
                   This document is governed by the
-                  <a id="w3c_process_revision" href="https://www.w3.org/2018/Process-20180201/">1 February 2018 <abbr title="World Wide Web Consortium">W3C</abbr> Process Document</a>.
+                  <a id="w3c_process_revision" href="https://www.w3.org/2019/Process-20190301/">1 March 2019 <abbr title="World Wide Web Consortium">W3C</abbr> Process Document</a>.
                 </p></section><nav id="toc"><h2 class="introductory" id="table-of-contents">Table of Contents</h2><ol class="toc"><li class="tocline"><a class="tocxref" href="#intro"><span class="secno">1. </span>Introduction</a></li><li class="tocline"><a class="tocxref" href="#read_me_first"><span class="secno">2. </span>Read Me First</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#no_aria_better_bad_aria"><span class="secno">2.1 </span>No ARIA is better than Bad ARIA</a></li><li class="tocline"><a class="tocxref" href="#browser_and_AT_support"><span class="secno">2.2 </span>Browser and Assistive Technology Support</a></li><li class="tocline"><a class="tocxref" href="#mobile_and_touch_support"><span class="secno">2.3 </span>Mobile and Touch Support</a></li></ol></li><li class="tocline"><a class="tocxref" href="#aria_ex"><span class="secno">3. </span>Design Patterns and Widgets</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#accordion"><span class="secno">3.1 </span>Accordion (Sections With Show/Hide Functionality)</a></li><li class="tocline"><a class="tocxref" href="#alert"><span class="secno">3.2 </span>Alert</a></li><li class="tocline"><a class="tocxref" href="#alertdialog"><span class="secno">3.3 </span>Alert and Message Dialogs</a></li><li class="tocline"><a class="tocxref" href="#breadcrumb"><span class="secno">3.4 </span>Breadcrumb</a></li><li class="tocline"><a class="tocxref" href="#button"><span class="secno">3.5 </span>Button</a></li><li class="tocline"><a class="tocxref" href="#carousel"><span class="secno">3.6 </span>Carousel (Slide Show or Image Rotator)</a></li><li class="tocline"><a class="tocxref" href="#checkbox"><span class="secno">3.7 </span>Checkbox</a></li><li class="tocline"><a class="tocxref" href="#combobox"><span class="secno">3.8 </span>Combo Box</a></li><li class="tocline"><a class="tocxref" href="#dialog_modal"><span class="secno">3.9 </span>Dialog (Modal)</a></li><li class="tocline"><a class="tocxref" href="#disclosure"><span class="secno">3.10 </span>Disclosure (Show/Hide)</a></li><li class="tocline"><a class="tocxref" href="#feed"><span class="secno">3.11 </span>Feed</a></li><li class="tocline"><a class="tocxref" href="#grid"><span class="secno">3.12 </span>Grids : Interactive Tabular Data and Layout Containers</a></li><li class="tocline"><a class="tocxref" href="#link"><span class="secno">3.13 </span>Link</a></li><li class="tocline"><a class="tocxref" href="#Listbox"><span class="secno">3.14 </span>Listbox</a></li><li class="tocline"><a class="tocxref" href="#menu"><span class="secno">3.15 </span>Menu or Menu bar</a></li><li class="tocline"><a class="tocxref" href="#menubutton"><span class="secno">3.16 </span>Menu Button</a></li><li class="tocline"><a class="tocxref" href="#radiobutton"><span class="secno">3.17 </span>Radio Group</a></li><li class="tocline"><a class="tocxref" href="#slider"><span class="secno">3.18 </span>Slider</a></li><li class="tocline"><a class="tocxref" href="#slidertwothumb"><span class="secno">3.19 </span>Slider (Multi-Thumb)</a></li><li class="tocline"><a class="tocxref" href="#spinbutton"><span class="secno">3.20 </span>Spinbutton</a></li><li class="tocline"><a class="tocxref" href="#table"><span class="secno">3.21 </span>Table</a></li><li class="tocline"><a class="tocxref" href="#tabpanel"><span class="secno">3.22 </span>Tabs</a></li><li class="tocline"><a class="tocxref" href="#toolbar"><span class="secno">3.23 </span>Toolbar</a></li><li class="tocline"><a class="tocxref" href="#tooltip"><span class="secno">3.24 </span>Tooltip Widget</a></li><li class="tocline"><a class="tocxref" href="#TreeView"><span class="secno">3.25 </span>Tree View</a></li><li class="tocline"><a class="tocxref" href="#treegrid"><span class="secno">3.26 </span>Treegrid</a></li><li class="tocline"><a class="tocxref" href="#windowsplitter"><span class="secno">3.27 </span>Window Splitter</a></li></ol></li><li class="tocline"><a class="tocxref" href="#aria_landmark"><span class="secno">4. </span>Landmark Regions</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#html5-sectioning-elements"><span class="secno">4.1 </span>HTML5 Sectioning Elements</a></li><li class="tocline"><a class="tocxref" href="#general-principles-of-landmark-design"><span class="secno">4.2 </span>General Principles of Landmark Design</a></li><li class="tocline"><a class="tocxref" href="#landmark-roles"><span class="secno">4.3 </span>Landmark Roles</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#aria_lh_banner"><span class="secno">4.3.1 </span>Banner</a></li><li class="tocline"><a class="tocxref" href="#aria_lh_complementary"><span class="secno">4.3.2 </span>Complementary</a></li><li class="tocline"><a class="tocxref" href="#aria_lh_contentinfo"><span class="secno">4.3.3 </span>Contentinfo</a></li><li class="tocline"><a class="tocxref" href="#aria_lh_form"><span class="secno">4.3.4 </span>Form</a></li><li class="tocline"><a class="tocxref" href="#aria_lh_main"><span class="secno">4.3.5 </span>Main</a></li><li class="tocline"><a class="tocxref" href="#aria_lh_navigation"><span class="secno">4.3.6 </span>Navigation</a></li><li class="tocline"><a class="tocxref" href="#aria_lh_region"><span class="secno">4.3.7 </span>Region</a></li><li class="tocline"><a class="tocxref" href="#aria_lh_search"><span class="secno">4.3.8 </span>Search</a></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#keyboard"><span class="secno">5. </span>Developing a Keyboard Interface</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#kbd_generalnav"><span class="secno">5.1 </span>Fundamental Keyboard Navigation Conventions</a></li><li class="tocline"><a class="tocxref" href="#kbd_focus_discernable_predictable"><span class="secno">5.2 </span>Discernible and Predictable Keyboard Focus</a></li><li class="tocline"><a class="tocxref" href="#kbd_focus_vs_selection"><span class="secno">5.3 </span>Focus VS Selection and the Perception of Dual Focus</a></li><li class="tocline"><a class="tocxref" href="#kbd_selection_follows_focus"><span class="secno">5.4 </span>Deciding When to Make Selection Automatically Follow Focus</a></li><li class="tocline"><a class="tocxref" href="#kbd_general_between"><span class="secno">5.5 </span>Keyboard Navigation Between Components (The Tab Sequence)</a></li><li class="tocline"><a class="tocxref" href="#kbd_general_within"><span class="secno">5.6 </span> Keyboard Navigation Inside Components</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#kbd_roving_tabindex"><span class="secno">5.6.1 </span>Managing Focus Within Components Using a Roving tabindex</a></li><li class="tocline"><a class="tocxref" href="#kbd_focus_activedescendant"><span class="secno">5.6.2 </span>Managing Focus in Composites Using aria-activedescendant</a></li></ol></li><li class="tocline"><a class="tocxref" href="#kbd_disabled_controls"><span class="secno">5.7 </span>Focusability of disabled controls</a></li><li class="tocline"><a class="tocxref" href="#kbd_common_conventions"><span class="secno">5.8 </span>Key Assignment Conventions for Common Functions</a></li><li class="tocline"><a class="tocxref" href="#kbd_shortcuts"><span class="secno">5.9 </span>Keyboard Shortcuts</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_behavior_design"><span class="secno">5.9.1 </span>Designing the Scope and Behavior of Keyboard Shortcuts</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_design_basic"><span class="secno">5.9.1.1 </span>Ensure Basic Access Via Navigation </a></li><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_design_choose_behavior"><span class="secno">5.9.1.2 </span>Choose Appropriate Shortcut Behavior</a></li><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_design_where"><span class="secno">5.9.1.3 </span>Choose Where to Add Shortcuts </a></li></ol></li><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_assigning"><span class="secno">5.9.2 </span>Assigning Keyboard Shortcuts</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_assignments_opsys_conflicts"><span class="secno">5.9.2.1 </span>Operating System Key Conflicts</a></li><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_assignments_assistivetech_conflicts"><span class="secno">5.9.2.2 </span>Assistive Technology Key Conflicts</a></li><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_assignments_browser_conflicts"><span class="secno">5.9.2.3 </span>Browser Key Conflicts</a></li><li class="tocline"><a class="tocxref" href="#kbd_shortcuts_assignments_intentional_conflicts"><span class="secno">5.9.2.4 </span>Intentional Key Conflicts</a></li></ol></li></ol></li></ol></li><li class="tocline"><a class="tocxref" href="#gridAndTableProperties"><span class="secno">6. </span>Grid and Table Properties</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#gridAndTableProperties_rows"><span class="secno">6.1 </span>Using <code>aria-rowcount</code> and <code>aria-rowindex</code></a></li><li class="tocline"><a class="tocxref" href="#gridAndTableProperties_cols"><span class="secno">6.2 </span>Using <code>aria-colcount</code> and <code>aria-colindex</code></a><ol class="toc"><li class="tocline"><a class="tocxref" href="#gridAndTableProperties_cols_contiguous"><span class="secno">6.2.1 </span>Using <code>aria-colindex</code> When Column Indicies Are Contiguous</a></li><li class="tocline"><a class="tocxref" href="#gridAndTableProperties_cols_noncontiguous"><span class="secno">6.2.2 </span>Using <code>aria-colindex</code> When Column Indicies Are Not Contiguous</a></li></ol></li><li class="tocline"><a class="tocxref" href="#gridAndTableProperties_spans"><span class="secno">6.3 </span>Defining cell spans using <code>aria-colspan</code> and <code>aria-rowspan</code></a></li><li class="tocline"><a class="tocxref" href="#gridAndTableProperties_sort"><span class="secno">6.4 </span>Indicating sort order with <code>aria-sort</code></a></li></ol></li><li class="tocline"><a class="tocxref" href="#presentation_role"><span class="secno">7. </span>Intentionally Hiding Semantics with the <code>presentation</code> Role</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#presentation_role_effects"><span class="secno">7.1 </span>
         Effects of Role <code>presentation</code>
       </a></li><li class="tocline"><a class="tocxref" href="#presentation_role_ignored"><span class="secno">7.2 </span>
@@ -756,9 +738,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <p>Before using ARIA or any of the guidance in this document, please take time to understand the following two essential principles.</p>
       <h4 id="principle-1-a-role-is-a-promise">Principle 1: A role is a promise<a class="self-link" aria-label="§" href="#no_aria_better_bad_aria"></a></h4>
       <p>This code:</p>
-      <pre aria-busy="false" class="hljs xml">
+      <pre><code aria-busy="false" class="hljs xml">
         <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"button"</span>&gt;</span>Place Order<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-          </pre>
+          </code></pre>
       <p>
         Is a promise that the author of that <code>&lt;div&gt;</code> has also incorporated JavaScript that provides the keyboard interactions expected for a button.
         Unlike HTML input elements, ARIA roles do not cause browsers to provide keyboard behaviors or styling.
@@ -771,14 +753,14 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         From the perspective of assistive technologies, ARIA gives authors the ability to dress up HTML and SVG elements with critical accessibility semantics that the assistive technologies would not otherwise be able to reliably derive.
       </p>
       <p>Some of ARIA is like a cloak; it covers up, or overrides, the original semantics or content.</p>
-      <pre aria-busy="false" class="hljs xml">
+      <pre><code aria-busy="false" class="hljs xml">
         <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"menuitem"</span>&gt;</span>Assistive tech users perceive this element as an item in a menu, not a link.<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">aria-label</span>=<span class="hljs-string">"Assistive tech users can only perceive the contents of this aria-label, not the link text"</span>&gt;</span>Link Text<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
-</pre>
+</code></pre>
       <p>On the other hand, some uses of ARIA are more like suspenders or belts; they add meaning that provides essential support to the original content.</p>
-      <pre aria-busy="false" class="hljs xml">
+      <pre><code aria-busy="false" class="hljs xml">
         <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">aria-pressed</span>=<span class="hljs-string">"false"</span>&gt;</span>Mute<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-      </pre>
+      </code></pre>
       <p>
         This is the power of ARIA.
         It enables authors to describe nearly any user interface component in ways that assistive technologies can reliably interpret, thus making components accessible to assistive technology users.
@@ -787,7 +769,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         This is also the danger of ARIA.
         Authors can inadvertently override accessibility semantics.
       </p>
-      <pre aria-busy="false" class="hljs xml">
+      <pre><code aria-busy="false" class="hljs xml">
   <span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"log"</span>&gt;</span>
     <span class="hljs-comment">&lt;!--
       Table that assistive technology users will not perceive as a table.
@@ -800,7 +782,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"uri2"</span>&gt;</span>nav link 2<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
     <span class="hljs-comment">&lt;!-- ERROR! Previous list items are not in a list! --&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
-</pre>
+</code></pre>
     </section>
     <section id="browser_and_AT_support">
       <h3 id="x2-2-browser-and-assistive-technology-support"><span class="secno">2.2 </span>Browser and Assistive Technology Support<a class="self-link" aria-label="§" href="#browser_and_AT_support"></a></h3>
@@ -5096,7 +5078,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <p>
         The following code demonstrates the use of <code>aria-rowcount</code> and <code>aria-rowindex</code> properties on a table containing a hypothetical class list.
       </p>
-      <pre aria-busy="false" class="hljs xml">
+      <pre><code aria-busy="false" class="hljs xml">
   <span class="hljs-comment">&lt;!--
     aria-rowcount tells assistive technologies the actual size of the grid
     is 463 rows even though only 4 rows are present in the markup.
@@ -5152,7 +5134,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">tbody</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
-</pre>
+</code></pre>
     </section>
     <section id="gridAndTableProperties_cols">
       <h3 id="x6-2-using-aria-colcount-and-aria-colindex"><span class="secno">6.2 </span>Using <code>aria-colcount</code> and <code>aria-colindex</code><a class="self-link" aria-label="§" href="#gridAndTableProperties_cols"></a></h3>
@@ -5193,7 +5175,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           The following code shows a grid with 16 columns, of which columns 2 through 5 are displayed to the user.
           Because the set of columns is contiguous, <code>aria-colindex</code> can be placed on each row.
         </p>
-        <pre aria-busy="false" class="hljs xml">        
+        <pre>        <code aria-busy="false" class="hljs xml">
 <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"grid"</span> <span class="hljs-attr">aria-colcount</span>=<span class="hljs-string">"16"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"rowgroup"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"row"</span> <span class="hljs-attr">aria-colindex</span>=<span class="hljs-string">"2"</span>&gt;</span>
@@ -5219,7 +5201,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
    …
   <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-</pre>
+</code></pre>
       </section>
       <section id="gridAndTableProperties_cols_noncontiguous">
         <h4 id="x6-2-2-using-aria-colindex-when-column-indicies-are-not-contiguous"><span class="secno">6.2.2 </span>Using <code>aria-colindex</code> When Column Indicies Are Not Contiguous<a class="self-link" aria-label="§" href="#gridAndTableProperties_cols_noncontiguous"></a></h4>
@@ -5229,7 +5211,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           In this example, the first two columns with the student name are shown, but the score columns have been scrolled to show columns 10 through 13.
           Columns 3 through 9 are not visible so are not in the DOM.
         </p>
-        <pre aria-busy="false" class="hljs xml">
+        <pre><code aria-busy="false" class="hljs xml">
   <span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"grid"</span> <span class="hljs-attr">aria-rowcount</span>=<span class="hljs-string">"463"</span> <span class="hljs-attr">aria-colcount</span>=<span class="hljs-string">"13"</span>&gt;</span>
     aria-label="Student grades for history 101"
     <span class="hljs-comment">&lt;!--
@@ -5286,7 +5268,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">tbody</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
-</pre>
+</code></pre>
       </section>
     </section>
     <section id="gridAndTableProperties_spans">
@@ -5311,7 +5293,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         The first two columns have headers that span both rows of the header.
         The subsequent 6 columns are grouped into 3 pairs with headers in the first row that each span two columns.
       </p>
-      <pre aria-busy="false" class="hljs xml">
+      <pre><code aria-busy="false" class="hljs xml">
   <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"grid"</span> <span class="hljs-attr">aria-rowcount</span>=<span class="hljs-string">"463"</span>&gt;</span>
     aria-label="Student grades for history 101"
     <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"rowgroup"</span>&gt;</span>
@@ -5369,7 +5351,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-</pre>
+</code></pre>
       <p>
         <strong>Note:</strong> When using HTML <code>table</code> elements,
         use the native semantics of the <code>th</code> and <code>td</code> elements to define row and column spans
@@ -5416,7 +5398,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         Thus, there is limited value to applying <code>aria-sort</code> with a value other than <code>none</code> to more than one column or row.
       </p>
       <p>The following example grid uses <code>aria-sort</code> to indicate the rows are sorted from the highest "Quiz 2" score to the lowest "Quiz 2" score.</p>
-      <pre aria-busy="false" class="hljs xml">
+      <pre><code aria-busy="false" class="hljs xml">
   <span class="hljs-tag">&lt;<span class="hljs-name">table</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"grid"</span> <span class="hljs-attr">aria-rowcount</span>=<span class="hljs-string">"463"</span> <span class="hljs-attr">aria-colcount</span>=<span class="hljs-string">"13"</span>
     <span class="hljs-attr">aria-label</span>=<span class="hljs-string">"Student grades for history 101"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">thead</span>&gt;</span>
@@ -5464,7 +5446,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <span class="hljs-tag">&lt;/<span class="hljs-name">tr</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">tbody</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">table</span>&gt;</span>
-</pre>
+</code></pre>
 
 
     </section>
@@ -5485,7 +5467,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
     <p>
       For example, consider a tabs widget built using an HTML <code>ul</code> element.
     </p>
-    <pre aria-busy="false" class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"tablist"</span>&gt;</span>
+    <pre aria-busy="false"><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"tablist"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"presentation"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"tab"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Tab 1<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
@@ -5495,7 +5477,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   <span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"presentation"</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"tab"</span> <span class="hljs-attr">href</span>=<span class="hljs-string">"#"</span>&gt;</span>Tab 3<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span></code></pre>
     <p>
       Because the list is declared to be a tablist, the list items are not in a list context. It
       could confuse users if an assistive technology were to render those list items. Applying role
@@ -5566,14 +5548,14 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         Example Demonstrating Effects of the <code>presentation</code> Role
       <a class="self-link" aria-label="§" href="#presentation_role_examples"></a></h3>
       <p>This code:</p>
-      <pre aria-busy="false" class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"presentation"</span>&gt;</span>
+      <pre aria-busy="false"><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">ul</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"presentation"</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>Date of birth:<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
   <span class="hljs-tag">&lt;<span class="hljs-name">li</span>&gt;</span>January 1, 3456<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span></pre>
+<span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span></code></pre>
       <p>when parsed by a browser, is equivalent to the following from the perspective of a screen reader or other assistive technology that relies on the browser's accessibility tree:
       </p>
-      <pre aria-busy="false" class="hljs javascript">&lt;div&gt;<span class="hljs-built_in">Date</span> <span class="hljs-keyword">of</span> birth:<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
-  &lt;div&gt;January <span class="hljs-number">1</span>, <span class="hljs-number">3456</span>&lt;<span class="hljs-regexp">/div&gt;</span></pre>
+      <pre aria-busy="false"><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>Date of birth:<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>January 1, 3456<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
     </section>
   </section>
 
@@ -5604,17 +5586,17 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <li>tab</li>
     </ul>
     <p>For instance, consider the following tab element, which contains a heading.</p>
-    <pre aria-busy="false" class="hljs javascript">&lt;li role=<span class="hljs-string">"tab"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>Title of My Tab<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span></span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span></pre>
+    <pre aria-busy="false"><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"tab"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>Title of My Tab<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></code></pre>
     <p>
       Because <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> requires descendants of tab to be presentational,
       the following code is equivalent.
     </p>
-    <pre aria-busy="false" class="hljs javascript">&lt;li role=<span class="hljs-string">"tab"</span>&gt;<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">h3</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"presentation"</span>&gt;</span>Title of My Tab<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span></span><span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></span></pre>
+    <pre aria-busy="false"><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"tab"</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">h3</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"presentation"</span>&gt;</span>Title of My Tab<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></code></pre>
     <p>
       And, from the perspective of anyone using a technology that relies on an accessibility API, such as a screen reader,
       the heading does not exist since the previous code is equivalent to the following.
     </p>
-    <pre aria-busy="false" class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"tab"</span>&gt;</span>Title of My Tab<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></pre>
+    <pre aria-busy="false"><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">li</span> <span class="hljs-attr">role</span>=<span class="hljs-string">"tab"</span>&gt;</span>Title of My Tab<span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span></code></pre>
     <p>
       See the
       <a href="#presentation_role">
