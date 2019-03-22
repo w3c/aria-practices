@@ -30,7 +30,7 @@ DateInput.prototype.init = function () {
   this.inputNode.addEventListener('keydown', this.handleKeyDown.bind(this));
   this.inputNode.addEventListener('focus', this.handleFocus.bind(this));
   this.inputNode.addEventListener('blur', this.handleBlur.bind(this));
-  this.inputNode.addEventListener('click', this.handleButtonClick.bind(this));
+  this.inputNode.addEventListener('click', this.handleClick.bind(this));
 
   this.buttonNode.addEventListener('click', this.handleButtonClick.bind(this));
   this.buttonNode.addEventListener('touch', this.handleTouch.bind(this));
@@ -115,12 +115,20 @@ DateInput.prototype.handleBlur = function () {
   this.ignoreBlurEvent = false;
 };
 
+DateInput.prototype.handleClick = function () {
+  this.ignoreBlurEvent = true;
+  this.datepicker.show();
+  this.inputNode.focus();
+  event.stopPropagation();
+  event.preventDefault();
+};
+
 DateInput.prototype.handleButtonClick = function () {
-  if (this.isCollapsed()) {
-    this.ignoreBlurEvent = true;
-    this.datepicker.show();
-    this.datepicker.setFocusDay();
-  }
+  this.ignoreBlurEvent = true;
+  this.datepicker.show();
+  this.datepicker.setFocusDay();
+  event.stopPropagation();
+  event.preventDefault();
 };
 
 DateInput.prototype.handleButtonKeyDown = function (event) {
