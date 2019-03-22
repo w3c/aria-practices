@@ -116,8 +116,14 @@ DateInput.prototype.handleBlur = function () {
 };
 
 DateInput.prototype.handleClick = function () {
-  this.ignoreBlurEvent = true;
-  this.datepicker.show();
+  if (this.isCollapsed()) {
+    this.ignoreBlurEvent = true;
+    this.datepicker.show();
+  }
+  else {
+    this.ignoreFocusEvent = true;
+    this.datepicker.hide();
+  }
   this.inputNode.focus();
   event.stopPropagation();
   event.preventDefault();
