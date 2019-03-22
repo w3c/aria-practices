@@ -149,7 +149,8 @@ DatePickerDay.prototype.handleClick = function (event) {
   if (!this.datepicker.dateInput.hasFocus()) {
     this.datepicker.dateInput.ignoreBlurEvent = true;
   }
-  this.datepicker.setFocusDay();
+  this.datepicker.setTextboxDate();
+  this.datepicker.hide();
 
   event.stopPropagation();
   event.preventDefault();

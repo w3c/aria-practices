@@ -260,7 +260,6 @@ DatePicker.prototype.setFocusDay = function (flag) {
         this.hasFocusFlag = true;
         d.domNode.focus();
         d.domNode.setAttribute('tabindex', '0');
-        console.log('[DatePicker][setFocusDay][hasFocusFlag]: ' + this.hasFocusFlag);
       }
     }
   }
