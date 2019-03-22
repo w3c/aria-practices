@@ -7,7 +7,10 @@ var DateInput = function (comboboxNode, inputNode, buttonNode, messageNode, date
 
   this.datepicker   = datepicker;
 
+  this.ignoreFocusEvent = false;
   this.ignoreBlurEvent = false;
+  this.lastEventFocus = false;
+
   this.hasFocusFlag = false;
 
   this.keyCode = Object.freeze({
@@ -33,12 +36,16 @@ DateInput.prototype.init = function () {
   this.inputNode.addEventListener('click', this.handleClick.bind(this));
 
   this.buttonNode.addEventListener('click', this.handleButtonClick.bind(this));
-  this.buttonNode.addEventListener('touch', this.handleTouch.bind(this));
+  this.buttonNode.addEventListener('touchstart', this.handleTouchStart.bind(this));
   this.buttonNode.addEventListener('keydown', this.handleButtonKeyDown.bind(this));
 
   if (this.inputNode.nextElementSibling &&
       this.inputNode.nextElementSibling.tagName.toLowerCase() == 'img') {
     this.imageNode = this.inputNode.nextElementSibling;
+  }
+
+  if (this.imageNode) {
+    this.imageNode.addEventListener('click', this.handleClick.bind(this));
   }
 
   this.setMessage('');
@@ -81,7 +88,7 @@ DateInput.prototype.handleKeyDown = function (event) {
   }
 };
 
-DateInput.prototype.handleTouch = function (event) {
+DateInput.prototype.handleTouchStart = function (event) {
   if (this.isCollapsed()) {
     this.showDownArrow();
     this.datepicker.show();
@@ -91,13 +98,14 @@ DateInput.prototype.handleTouch = function (event) {
   }
 };
 
-DateInput.prototype.handleFocus = function () {
+DateInput.prototype.handleFocus = function (event) {
   if (!this.ignoreFocusEvent && this.isCollapsed()) {
     this.datepicker.show();
     this.setMessage('Use the down arrow key to move focus to the datepicker grid.');
   }
   this.showDownArrow();
 
+  this.lastEventFocus = true;
   this.hasFocusFlag = true;
   this.ignoreFocusEvent = false;
 
@@ -105,31 +113,38 @@ DateInput.prototype.handleFocus = function () {
 
 
 DateInput.prototype.handleBlur = function () {
+  console.log('[DateInput][handleBlur]');
   if (!this.ignoreBlurEvent) {
     this.datepicker.hide(false);
     this.setMessage('');
   }
   this.hideDownArrow();
 
+  this.lastEventFocus = false;
   this.hasFocusFlag = false;
   this.ignoreBlurEvent = false;
 };
 
-DateInput.prototype.handleClick = function () {
+DateInput.prototype.handleClick = function (event) {
+  console.log('[DateInput][handleClick]');
+  if (this.lastEventFocus) {
+    this.lastEventFocus = false;
+    return;
+  }
+
   if (this.isCollapsed()) {
-    this.ignoreBlurEvent = true;
     this.datepicker.show();
   }
   else {
     this.ignoreFocusEvent = true;
     this.datepicker.hide();
   }
-  this.inputNode.focus();
-  event.stopPropagation();
-  event.preventDefault();
+
+  this.lastEventFocus = false;
+
 };
 
-DateInput.prototype.handleButtonClick = function () {
+DateInput.prototype.handleButtonClick = function (event) {
   this.ignoreBlurEvent = true;
   this.datepicker.show();
   this.datepicker.setFocusDay();
