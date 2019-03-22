@@ -3,6 +3,8 @@ var DateInput = function (comboboxNode, inputNode, buttonNode, messageNode, date
   this.inputNode    = inputNode;
   this.buttonNode   = buttonNode;
   this.messageNode  = messageNode;
+  this.imageNode    = false;
+
   this.datepicker   = datepicker;
 
   this.ignoreBlurEvent = false;
@@ -33,6 +35,11 @@ DateInput.prototype.init = function () {
   this.buttonNode.addEventListener('click', this.handleButtonClick.bind(this));
   this.buttonNode.addEventListener('touch', this.handleTouch.bind(this));
   this.buttonNode.addEventListener('keydown', this.handleButtonKeyDown.bind(this));
+
+  if (this.inputNode.nextElementSibling &&
+      this.inputNode.nextElementSibling.tagName.toLowerCase() == 'img') {
+    this.imageNode = this.inputNode.nextElementSibling;
+  }
 
   this.setMessage('');
 };
@@ -76,6 +83,7 @@ DateInput.prototype.handleKeyDown = function (event) {
 
 DateInput.prototype.handleTouch = function (event) {
   if (this.isCollapsed()) {
+    this.showDownArrow();
     this.datepicker.show();
     event.stopPropagation();
     event.preventDefault();
@@ -88,6 +96,7 @@ DateInput.prototype.handleFocus = function () {
     this.datepicker.show();
     this.setMessage('Use the down arrow key to move focus to the datepicker grid.');
   }
+  this.showDownArrow();
 
   this.hasFocusFlag = true;
   this.ignoreFocusEvent = false;
@@ -100,6 +109,8 @@ DateInput.prototype.handleBlur = function () {
     this.datepicker.hide(false);
     this.setMessage('');
   }
+  this.hideDownArrow();
+
   this.hasFocusFlag = false;
   this.ignoreBlurEvent = false;
 };
@@ -171,4 +182,18 @@ DateInput.prototype.setMessage = function (str) {
 
 DateInput.prototype.hasFocus = function () {
   return this.hasFocusflag;
+};
+
+DateInput.prototype.showDownArrow = function () {
+  console.log('[showDownArrow]: ' + this.imageNode);
+  if (this.imageNode) {
+    this.imageNode.style.visibility = 'visible';
+  }
+};
+
+DateInput.prototype.hideDownArrow = function () {
+  console.log('[hideDownArrow]: ' + this.imageNode);
+  if (this.imageNode) {
+    this.imageNode.style.visibility = 'hidden';
+  }
 };
