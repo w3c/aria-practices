@@ -15,6 +15,7 @@ const exampleFile = 'carousel/carousel-1/carousel-1.html';
 
 const ex = {
   landmarkSelector: '#myCarousel',
+  buttonSelector: '#ex1 button',
   previousNextButtonSelector: '#ex1 .carousel-control',
   slideContainerSelector: '#ex1 .carousel-items',
   slideSelector: '#ex1 .carousel-item'
@@ -35,14 +36,9 @@ ariaTest('Carousel 1: section has aria-roledescription set to carousel', example
   await assertAttributeValues(t, ex.landmarkSelector, 'aria-roledescription', 'carousel');
 });
 
-ariaTest('Carousel 1: previous and next buttons have role button', exampleFile, 'carousel-button-role-link', async (t) => {
+ariaTest('Carousel 1: pause, previous and next buttons have aria-label', exampleFile, 'carousel-button-aria-label', async (t) => {
   t.plan(1);
-  await assertAriaRoles(t, 'myCarousel', 'button', 2, 'a');
-});
-
-ariaTest('Carousel 1: previous and next buttons have aria-label', exampleFile, 'carousel-button-aria-label-next-previous', async (t) => {
-  t.plan(1);
-  await assertAriaLabelExists(t, ex.previousNextButtonSelector);
+  await assertAriaLabelExists(t, ex.buttonSelector);
 });
 
 ariaTest('Carousel 1: previous and next buttons have aria-controls', exampleFile, 'carousel-button-aria-controls', async (t) => {
