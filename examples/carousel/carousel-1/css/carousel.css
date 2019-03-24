@@ -20,6 +20,35 @@
   position: relative;
 }
 
+.carousel button.pause {
+  display: block;
+  font-size: 20px;
+  width: auto;
+  left: -300em;
+  margin-bottom: 10px;
+  height: auto;
+  position: relative;
+  top: 5px;
+  right: -20px;
+  border: thin solid outset;
+}
+
+.carousel button[aria-disabled=true] {
+  color: #666;
+}
+
+.carousel button.pause:focus {
+  display: block;
+  position: relative;
+  font-size: 20px;
+  width: auto;
+  left: 0;
+  margin-bottom: 10px;
+  height: auto;
+  top: 5px;
+  right: -20px;
+}
+
 .carousel .carousel-items {
   border: solid 2px transparent;
 }
@@ -87,173 +116,61 @@
   max-height: 400px;
 }
 
-/* Next and Previous Slide Controls */
-
 .carousel .carousel-control {
   position: absolute;
   top: 0;
   z-index: 10;
-  background-color: transparent;
+  font-size: 200%;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
 }
 
-.carousel .carousel-control svg {
+.carousel a.carousel-control svg {
   position: relative;
   display: inline-block;
   top: 45%;
 }
 
-.carousel .carousel-control svg polygon {
+.carousel a.carousel-control svg polygon {
   opacity: 0.7;
 }
 
-.carousel .carousel-control svg circle {
-  opacity: 0;
+.carousel a.carousel-control:focus {
+  border: 3px solid #fff;
+  outline: 1px solid #005a9c;
 }
 
-.carousel .carousel-control.previous {
-  left: 0;
+.carousel a.carousel-control:focus svg polygon,
+.carousel a.carousel-control:hover svg polygon {
+  opacity: 1;
+}
+
+.carousel a.carousel-control.previous {
   bottom: 0;
   width: 15%;
-  border: none;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5) 0, rgba(0, 0, 0, 0.0001) 100%);
 }
 
-.carousel .carousel-control.next {
+.carousel a.carousel-control.previous:focus,
+.carousel a.carousel-control.previous:hover {
+  bottom: 0;
+  width: 15%;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7) 0, rgba(0, 0, 0, 0.0001) 100%);
+}
+
+.carousel a.carousel-control.next {
   right: 0;
   bottom: 0;
   width: 15%;
-  border: none;
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.0001) 0, rgba(0, 0, 0, 0.5) 100%);
 }
 
-.carousel .carousel-control.previous:focus,
-.carousel .carousel-control.previous:hover {
-  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.7) 0, rgba(0, 0, 0, 0.0001) 100%);
-  outline: none;
-}
-
-.carousel .carousel-control.next:focus,
-.carousel .carousel-control.next:hover {
+.carousel a.carousel-control.next:focus,
+.carousel a.carousel-control.next:hover {
+  right: 0;
+  bottom: 0;
+  width: 15%;
   background-image: linear-gradient(to right, rgba(0, 0, 0, 0.0001) 0, rgba(0, 0, 0, 0.7) 100%);
-  outline: none;
-}
-
-/* Pause Control */
-
-.carousel .carousel-pause {
-  position: absolute;
-  left: 45%;
-  z-index: 10;
-  background-color: transparent;
-  border: none;
-  outline: none;
-}
-
-.carousel .carousel-pause svg circle {
-  stroke: black;
-  opacity: 0.1;
-  fill: black;
-}
-
-.carousel .carousel-pause.pause svg polygon {
-  opacity: 0.7;
-}
-
-.carousel .carousel-pause.pause svg polygon.pause {
-  stroke: white;
-  fill: white;
-}
-
-.carousel .carousel-pause.pause svg polygon.play,
-.carousel .carousel-pause.pause svg polygon.disabled {
-  stroke: transparent;
-  fill: transparent;
-}
-
-.carousel .carousel-pause.play svg polygon.pause,
-.carousel .carousel-pause.play svg polygon.disabled {
-  stroke: transparent;
-  fill: transparent;
-}
-
-.carousel .carousel-pause.play svg polygon.play {
-  stroke: white;
-  fill: white;
-}
-
-.carousel .carousel-pause[aria-disabled=true] svg polygon.pause,
-.carousel .carousel-pause[aria-disabled=true] svg polygon.play {
-  stroke: transparent;
-  fill: transparent;
-}
-
-.carousel .carousel-pause[aria-disabled=true] svg polygon.disabled {
-  stroke: white;
-  fill: white;
-}
-
-.carousel .carousel-pause[aria-disabled=true] svg circle.outer,
-.carousel .carousel-pause[aria-disabled=true] svg circle.inner {
-  opacity: 0.1;
-  stroke: black;
-  fill: black;
-}
-
-.carousel .carousel-pause[aria-disabled=true] svg polygon {
-  opacity: 0.7;
-}
-
-/* Common focus styling for svg buttons */
-
-.carousel .carousel-pause:focus svg polygon,
-.carousel .carousel-pause:hover svg polygon,
-.carousel .carousel-control:focus svg polygon,
-.carousel .carousel-control:hover svg polygon {
-  opacity: 1;
-  stroke: white;
-  fill: white;
-}
-
-.carousel .carousel-pause:focus svg circle.inner,
-.carousel .carousel-control:focus svg circle.inner {
-  stroke: white;
-  opacity: 1;
-  fill: #005a9c;
-}
-
-.carousel .carousel-pause:hover svg circle.outer,
-.carousel .carousel-pause:hover svg circle.inner,
-.carousel .carousel-control:hover svg circle.outer,
-.carousel .carousel-control:hover svg circle.inner {
-  stroke: #005a9c;
-  opacity: 1;
-  fill: #005a9c;
-}
-
-.carousel .carousel-pause:focus svg circle.outer,
-.carousel .carousel-pause:hover svg circle.outer,
-.carousel .carousel-control:focus svg circle.outer,
-.carousel .carousel-control:hover svg circle.outer,
-.carousel .carousel-pause[aria-disabled=true]:focus svg circle.outer,
-.carousel .carousel-pause[aria-disabled=true]:hover svg circle.outer {
-  stroke: #005a9c;
-  opacity: 1;
-}
-
-.carousel .carousel-pause[aria-disabled=true]:focus svg circle.inner {
-  stroke: white;
-  opacity: 1;
-  fill: #005a9c;
-}
-
-.carousel .carousel-pause[aria-disabled=true]:focus svg polygon.disabled,
-.carousel .carousel-pause[aria-disabled=true]:hover svg polygon.disabled {
-  opacity: 0.7;
-  stroke: white;
-  fill: white;
-}
-
-.carousel .carousel-pause[aria-disabled=true]:hover svg circle.outer,
-.carousel .carousel-pause[aria-disabled=true]:hover svg circle.inner {
-  stroke: #005a9c;
-  opacity: 0.7;
-  fill: #005a9c;
 }

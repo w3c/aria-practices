@@ -48,31 +48,54 @@
         <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
         <div id="ex1">
             <section id="myCarousel" class="carousel slide" aria-roledescription="carousel" aria-label="Highlighted television shows">
-              <button class="pause">Stop Carousel</button>
 
               <div class="carousel-inner">
 
-                <a class="previous carousel-control"
-                   role="button"
-                   tabindex="0"
+                <button class="carousel-pause" aria-label="pause">
+                  <svg width="60" height="60" version="1.1" xmlns="http://www.w3.org/2000/svg">
+
+                    <circle class="outer" cx="30" cy="30" r="28" stroke-width="1" stroke="black"/>
+
+                    <circle class="inner" cx="30" cy="30" r="25" stroke-width="4"/>
+
+                    <polygon class="pause" points="23 18 23 40"
+                        stroke="white" fill="white" stroke-width="8" />
+
+                    <polygon class="pause" points="37 18 37 40"
+                        stroke="white" fill="white" stroke-width="8" />
+
+                    <polygon class="play" points="22 20 22 40 43 28"
+                        stroke="transparent" fill="transparent" stroke-width="2" />
+
+                    <polygon class="disabled" points="24 24 24 34 36 34 36 24 24 24"
+                        stroke="transparent" fill="trasparent" stroke-width="8" />
+
+                  </svg>
+                </button>
+
+
+                <button class="previous carousel-control"
                    aria-controls="myCarousel-items"
                    aria-label="Previous Slide">
-                  <svg width="30" height="30" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                    <polygon points="30 0 30 30 0 15"
+                  <svg width="60" height="60" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <circle class="outer" cx="30" cy="30" r="28" stroke-width="1" stroke="#005a9c"/>
+                    <circle class="inner" cx="30" cy="30" r="25" stroke="white" stroke-width="4" fill="black"/>
+                    <polygon points="40 18 40 42 15 30"
                         stroke="white" fill="white" stroke-width="2"/>
                   </svg>
-                </a>
+                </button>
 
-                <a class="next carousel-control"
-                   role="button"
+                <button class="next carousel-control"
                    tabindex="0"
                    aria-controls="myCarousel-items"
                    aria-label="Next Slide">
-                  <svg width="30" height="30" version="1.1" xmlns="http://www.w3.org/2000/svg">
-                    <polygon points="0 0 30 15 0 30"
+                  <svg width="60" height="60" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <circle class="outer" cx="30" cy="30" r="28" stroke-width="1" stroke="#005a9c"/>
+                    <circle class="inner" cx="30" cy="30" r="25" stroke="white" stroke-width="4" fill="black"/>
+                    <polygon points="20 18 20 42 45 30"
                         stroke="white" fill="white" stroke-width="2"/>
                   </svg>
-                </a>
+                </button>
 
                 <div id="myCarousel-items" class="carousel-items" aria-live="off">
 
@@ -436,6 +459,31 @@
                 </ul>
               </td>
             </tr>
+              <tr data-test-id="carousel-button-aria-label">
+                <td></td>
+                <th scope="row">
+                  <code>aria-label="LABEL_STRING"</code>
+                </th>
+                <td>
+                  <code>button</code>
+                </td>
+                <td>Defines the accessible name for the pause auto-rotation button and the next and previous slide buttons.</td>
+              </tr>
+              <tr data-test-id="carousel-button-aria-controls">
+                <td></td>
+                <th scope="row">
+                  <code>aria-controls="IDREF"</code>
+                </th>
+                <td>
+                  <code>button</code>
+                </td>
+                <td>
+                  <ul>
+                    <li>Identifies the content on the page that the button controls.</li>
+                    <li>Refers to the <code>div</code> that contains all the slides.</li>
+                  </ul>
+                </td>
+              </tr>
             <tr data-test-id="carousel-button-start-disabled">
                 <td></td>
                 <th scope="row">
@@ -450,41 +498,6 @@
                     <li>The button is disabled when a pointer is hovering over the carousel or any element in the carousel has keyboard focus.</li>
                     <li>The <code>aria-disabled</code> state is used instead of the HTML <code>disabled</code> attribute to keep the button in the <kbd>Tab</kbd> sequence.</li>
                     <li>If hover or focus is removed from the carousel, the <code>aria-disabled</code> attribute is removed from the button.</li>
-                  </ul>
-                </td>
-              </tr>
-              <tr data-test-id="carousel-button-role-link">
-                <th scope="row">
-                  <code>button</code>
-                </th>
-                <td></td>
-                <td>
-                  <code>a</code>
-                </td>
-                <td>Identifies the element as a <code>button</code>.</td>
-              </tr>
-              <tr data-test-id="carousel-button-aria-label-next-previous">
-                <td></td>
-                <th scope="row">
-                  <code>aria-label="LABEL_STRING"</code>
-                </th>
-                <td>
-                  <code>a</code>
-                </td>
-                <td>Defines the accessible name for the next and previous slide buttons.</td>
-              </tr>
-              <tr data-test-id="carousel-button-aria-controls">
-                <td></td>
-                <th scope="row">
-                  <code>aria-controls="IDREF"</code>
-                </th>
-                <td>
-                  <code>a</code>
-                </td>
-                <td>
-                  <ul>
-                    <li>Identifies the content on the page that the button controls.</li>
-                    <li>Refers to the <code>div</code> that contains all the slides.</li>
                   </ul>
                 </td>
               </tr>
