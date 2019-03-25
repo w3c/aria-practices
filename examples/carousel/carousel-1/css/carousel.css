@@ -36,7 +36,17 @@
 
 .carousel .carousel-inner .carousel-caption a {
   text-decoration: underline;
-  border: none;
+}
+
+.carousel .carousel-inner .carousel-caption a,
+.carousel .carousel-inner .carousel-caption span.contrast {
+  display: inline-block;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding-left: 0.25em;
+  padding-right: 0.25em;
+  border-radius: 5px;
+  border: 2px solid transparent;
+  margin: 0;
 }
 
 .carousel .carousel-inner .carousel-caption h3 a {
@@ -44,10 +54,16 @@
   font-weight: 600;
 }
 
-.carousel .carousel-inner .carousel-caption a:focus,
-.carousel .carousel-inner .carousel-caption a:hover {
-  outline: solid 2px #fff;
-  outline-offset: 1px;
+.carousel .carousel-inner .carousel-caption a:hover,
+.carousel .carousel-inner .carousel-caption span.contrast:hover {
+  background-color: rgba(0, 0, 0, 1);
+  margin: 0;
+}
+
+.carousel .carousel-inner .carousel-caption a:focus {
+  background-color: rgba(0, 0, 0, 1);
+  border-color: #fff;
+  margin: 0;
 }
 
 .carousel .carousel-inner .carousel-caption p {
@@ -56,7 +72,7 @@
   margin-bottom: 0;
 }
 
-.carousel .carousel-caption {
+.carousel .carousel-inner .carousel-caption {
   position: absolute;
   right: 15%;
   bottom: 0;
@@ -65,20 +81,6 @@
   padding-bottom: 20px;
   color: #fff;
   text-align: center;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
-}
-
-.carousel .carousel-inner .carousel-caption {
-  bottom: 0;
-  left: 0;
-  padding: 3% 3% 50px;
-  right: 0;
-  text-shadow: none;
-}
-
-.carousel:hover .carousel-inner .carousel-caption,
-.carousel .carousel-item.focus .carousel-caption {
-  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .carousel .carousel-inner,
@@ -92,14 +94,11 @@
 .carousel .carousel-control {
   position: absolute;
   top: 0;
+  bottom: 0;
   z-index: 10;
   background-color: transparent;
-}
-
-.carousel .carousel-control svg {
-  position: relative;
-  display: inline-block;
-  top: 45%;
+  width: 15%;
+  border: 1px solid red;
 }
 
 .carousel .carousel-control svg polygon {
@@ -112,16 +111,10 @@
 
 .carousel .carousel-control.previous {
   left: 0;
-  bottom: 0;
-  width: 15%;
-  border: none;
 }
 
 .carousel .carousel-control.next {
   right: 0;
-  bottom: 0;
-  width: 15%;
-  border: none;
 }
 
 .carousel .carousel-control.previous:focus,
