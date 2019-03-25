@@ -41,7 +41,7 @@
 .carousel .carousel-inner .carousel-caption a,
 .carousel .carousel-inner .carousel-caption span.contrast {
   display: inline-block;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.65);
   padding-left: 0.25em;
   padding-right: 0.25em;
   border-radius: 5px;
@@ -98,6 +98,7 @@
   z-index: 10;
   background-color: transparent;
   width: 15%;
+  border: none;
 }
 
 .carousel .carousel-control svg polygon {
