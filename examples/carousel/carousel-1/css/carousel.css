@@ -174,8 +174,7 @@
 
 .carousel .carousel-pause[aria-disabled=true] svg polygon.pause,
 .carousel .carousel-pause[aria-disabled=true] svg polygon.play {
-  stroke: transparent;
-  fill: transparent;
+  opacity: 0.7;
 }
 
 .carousel .carousel-pause[aria-disabled=true] svg polygon.disabled {

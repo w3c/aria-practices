@@ -149,27 +149,7 @@ Carousel.prototype.rotateSlides = function () {
   setTimeout(this.rotateSlides.bind(this), this.timeInterval);
 };
 
-Carousel.prototype.startRotation = function () {
-  if (!this.hasHover && !this.hasFocus && !this.isStopped) {
-    this.rotate = true;
-    this.liveRegionNode.setAttribute('aria-live', 'off');
-    this.pauseButton.setAttribute('aria-label', this.pauseLabel);
-    this.pauseButton.classList.remove('play');
-    this.pauseButton.classList.add('pause');
-  }
-  this.disablePauseButton();
-};
-
-Carousel.prototype.stopRotation = function () {
-  this.rotate = false;
-  this.liveRegionNode.setAttribute('aria-live', 'polite');
-  this.pauseButton.setAttribute('aria-label', this.playLabel);
-  this.pauseButton.classList.remove('pause');
-  this.pauseButton.classList.add('play');
-  this.disablePauseButton();
-};
-
-Carousel.prototype.disablePauseButton = function () {
+Carousel.prototype.updatePauseButtonDisabledState = function () {
   if (this.hasHover || this.hasFocus) {
     this.pauseButton.setAttribute('aria-disabled', 'true');
   }
@@ -178,16 +158,41 @@ Carousel.prototype.disablePauseButton = function () {
   }
 };
 
+Carousel.prototype.updateRotation = function () {
+
+  if (!this.hasHover && !this.hasFocus && !this.isStopped) {
+    this.rotate = true;
+  }
+  else {
+    this.rotate = false;
+  }
+
+  if (this.isStopped) {
+    this.liveRegionNode.setAttribute('aria-live', 'off');
+    this.pauseButton.setAttribute('aria-label', this.playLabel);
+    this.pauseButton.classList.remove('pause');
+    this.pauseButton.classList.add('play');
+  }
+  else {
+    this.liveRegionNode.setAttribute('aria-live', 'polite');
+    this.pauseButton.setAttribute('aria-label', this.pauseLabel);
+    this.pauseButton.classList.remove('play');
+    this.pauseButton.classList.add('pause');
+  }
+
+  this.updatePauseButtonDisabledState();
+};
+
 Carousel.prototype.toggleRotation = function () {
   if (this.isStopped) {
     if (this.pauseButton.getAttribute('aria-disabled') !== 'true') {
       this.isStopped = false;
-      this.startRotation();
+      this.updateRotation();
     }
   }
   else {
     this.isStopped = true;
-    this.stopRotation();
+    this.updateRotation();
   }
 };
 
@@ -199,14 +204,16 @@ Carousel.prototype.handleImageLinkBlur = function () {
   this.liveRegionNode.classList.remove('focus');
 };
 
-Carousel.prototype.handleMouseOver = function () {
-  this.hasHover = true;
-  this.stopRotation();
+Carousel.prototype.handleMouseOver = function (event) {
+  if (!this.pauseButton.contains(event.target)) {
+    this.hasHover = true;
+  }
+  this.updateRotation();
 };
 
 Carousel.prototype.handleMouseOut = function () {
   this.hasHover = false;
-  this.startRotation();
+  this.updateRotation();
 };
 
 /* Initialize Carousel Tablists */
