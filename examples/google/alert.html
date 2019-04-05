@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Alert Blueprint</title>
+    <script>
+      /** @type {!Element} The button that triggers the alert. */
+      let buttonEl;
+
+      /** @type {!Element} The alert span. */
+      let alertEl;
+
+      function init() {
+        buttonEl = document.getElementById('button');
+        alertEl = document.querySelector('[role=alert]');
+        setEventListeners();
+      }
+
+      function setEventListeners() {
+        buttonEl.addEventListener('click', handleButtonClick, false);
+      }
+
+      /**
+       * Toggles the button state by click, space, and enter.
+       * @param {!Event} e
+       */
+      function handleButtonClick(e) {
+        if (alertEl.hasAttribute('hidden')) {
+          alertEl.removeAttribute('hidden');
+          buttonEl.innerText = 'Hide Alert';
+        } else {
+          alertEl.setAttribute('hidden', '');
+          buttonEl.innerText = 'Show Alert';
+        }
+      }
+
+      window.addEventListener('load', init, false);
+    </script>
+  </head>
+  <body>
+    <button id="button">Show Alert</button>
+    <span role="alert" hidden>The British are coming!</span>
+  </body>
+</html>
