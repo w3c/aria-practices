@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Log Blueprint</title>
+    <script>
+      /** @type {!Element} The log. */
+      let logEl;
+
+      /** @type {number} The log text list index. */
+      let logTextIndex = 1;
+
+      /** @type {!Array<string>} The list of possible log text. */
+      const logText = ['Hello', 'Goodbye', 'How are you?', 'Thank you'];
+
+      /** Sets up a log that updates every 3 seconds. */
+      function init() {
+        logEl = document.getElementById('log');
+        setInterval(updateLog, 3000);
+      }
+
+      /** Appends text to the log. */
+      function updateLog() {
+        logEl.appendChild(document.createElement('br'));
+        logEl.appendChild(document.createTextNode(logText[logTextIndex++]));
+        if (logTextIndex === logText.length) {
+          logTextIndex = 0;
+        }
+      }
+
+      window.addEventListener('load', init, false);
+    </script>
+  </head>
+  <body>
+    <div id="logLabel">Chat</div>
+    <div aria-labelledby="logLabel" role="log" id="log">Hello</div>
+  </body>
+</html>

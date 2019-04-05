@@ -1,0 +1,29 @@
+<html lang="en">
+  <head>
+    <title>Status Blueprint</title>
+    <script>
+      /** @type {!Element} The status. */
+      let statusEl;
+
+      /** Set up a status that updates automatically. */
+      function init() {
+        statusEl = document.getElementById('status');
+        setInterval(updateStatus, 3000);
+      }
+
+      /** Updates the status text. */
+      function updateStatus() {
+        if (statusEl.innerText === 'Gosling') {
+          statusEl.innerText = 'Goose';
+        } else {
+          statusEl.innerText = 'Gosling';
+        }
+      }
+
+      window.addEventListener('load', init, false);
+    </script>
+  </head>
+  <body>
+    <div role="status" id="status">Gosling</div>
+  </body>
+</html>
