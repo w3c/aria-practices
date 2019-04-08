@@ -35,12 +35,6 @@ DateInput.prototype.init = function () {
   this.inputNode.addEventListener('blur', this.handleBlur.bind(this));
   this.inputNode.addEventListener('click', this.handleClick.bind(this));
 
-  var downArrowNode = this.inputNode.nextElementSibling;
-
-  if (downArrowNode) {
-    downArrowNode.addEventListener('click', this.handleClick.bind(this));
-  }
-
   this.buttonNode.addEventListener('click', this.handleButtonClick.bind(this));
   this.buttonNode.addEventListener('touchstart', this.handleTouchStart.bind(this));
   this.buttonNode.addEventListener('keydown', this.handleButtonKeyDown.bind(this));
