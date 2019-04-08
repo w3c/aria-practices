@@ -119,7 +119,6 @@ DateInput.prototype.handleFocus = function (event) {
 
 
 DateInput.prototype.handleBlur = function () {
-  console.log('[DateInput][handleBlur]');
   if (!this.ignoreBlurEvent) {
     this.datepicker.hide(false);
     this.setMessage('');
@@ -132,7 +131,6 @@ DateInput.prototype.handleBlur = function () {
 };
 
 DateInput.prototype.handleClick = function (event) {
-  console.log('[DateInput][handleClick]');
   if (this.lastEventFocus) {
     this.lastEventFocus = false;
     return;
