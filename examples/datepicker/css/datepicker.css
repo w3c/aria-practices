@@ -2,10 +2,19 @@
   margin-top: 1em;
 }
 
+.datepicker .downarrow {
+  content: url('../images/down-arrow-gray.png');
+  position: relative;
+  left: -20px;
+}
+
 .datepicker button.icon {
   border-style: none;
   text-align: left;
   background-color: white;
+  position: relative;
+  left: -20px;
+  top: 4px;
 }
 
 .datepicker .date label {
