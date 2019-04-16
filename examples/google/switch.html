@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Switch Blueprint</title>
+    <style>
+      #switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+        cursor: pointer;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+      }
+
+      #switch:before {
+        position: absolute;
+        content: '';
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: #fff;
+        -webkit-transition: .4s;
+        transition: .4s;
+      }
+
+      #switch[aria-checked='true']{
+        background-color: #2196f3;
+      }
+
+      #switch[aria-checked='true']:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+      }
+
+      #switch:focus {
+        box-shadow: 0 0 1px #2196f3;
+      }
+    </style>
+    <script>
+      /** @type {!Element} The switch. */
+      let switchEl;
+
+      function init() {
+        switchEl = document.getElementById('switch');
+        setEventListeners();
+      }
+
+      function setEventListeners() {
+        switchEl.addEventListener('click', handleSwitchClick, false);
+        switchEl.addEventListener('keyup', handleSwitchClick, false);
+      }
+
+      /**
+       * Toggles checked state of switch when activated by click or space.
+       * @param {!Event} e
+       */
+      function handleSwitchClick(e) {
+        const isSpaceBar = (e.key === ' ' ||
+            e.key === 'Spacebar'); // Edge
+        if (e.type === 'click' ||
+            (e.type === 'keyup' && isSpaceBar)) {
+          if (switchEl.getAttribute('aria-checked') === 'true') {
+            switchEl.setAttribute('aria-checked', 'false');
+          } else {
+            switchEl.setAttribute('aria-checked', 'true');
+          }
+        }
+      }
+
+      window.addEventListener('load', init, false);
+    </script>
+  </head>
+  <body>
+    <span id="switchLabel">Switch a thing</span>
+    <div role="switch" tabindex="0" aria-checked="false"
+        aria-labelledby="switchLabel" id="switch"></div>
+  </body>
+</html>
