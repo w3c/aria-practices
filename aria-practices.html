@@ -1078,10 +1078,10 @@
       <h3>Date Pickers</h3>
       <p>A date picker provides a means for a user to pick a valid date, range of dates, or enter a valid date manually. The following are different types of date picker features:
       </p>
-      <section>
+      <section class="notoc">
         <!-- 1st section: Textbox validation -->
         <h4>Date format and validation</h4>
-        <p>When a date picker includes a textbox, the preferred date format and error feedback on invalid or improperly formatted date should be made available to the user.<p>
+        <p>When a date picker includes a textbox, the preferred date format and error feedback must be made available to the user.<p>
         <ul>
           <li>Provide a means for indicating correct format using one of the following techniques.
             <ul>
@@ -1092,50 +1092,88 @@
             </li>
             <li>Validate combobox contents using one of the following techniques:
               <ul>
-                <li>When focus leaves the combobox, feedback is immediately provided and, if incorrect, the <code>aria-invalid</code> attribute is set to <code>true</code> and <code>aria-describedby</code> points to the error message.</li>
+                <li>When focus leaves the combobox, feedback is immediately provided and, if invalid, the <code>aria-invalid</code> attribute is set to <code>true</code> and <code>aria-describedby</code> points to the error message.</li>
               </ul>
             </li>
           </ul>
       </section>
-      <section>
-        <h4>Combobox</h4>
-        <p>A date picker combobox is a text box with a popup dialog box with a grid of dates, or a popup list of dates. See the <a href="#combobox">combobox design pattern</a> for more information.</p>
-          <ul>
-          <li>A modal dialog with a grid of dates.</li>
-          <ul>
-            <li>The dialog is displayed when the text field recieves focus.</li>
-            <li>When using a touch device:</li>
-            <ul>
-              <li>The dialog displays when:</li>
-              <ul>
-                <li>The text field receives keyboard focus.</li>
-                <li>The text field or down icon is touched.</li>
-                <p class="note">
-                If the text field is touched when the dialog is not open, only open the dialog, DO NOT focus the text field. If the text field is touched when the dialog is open, focus the text field. This should prevent unwanted display of the keyboard.
-                </p>
-                <li>The text field or down icon is clicked with a mouse. Clicking the text field should, as is normally expected, focus the text field.</li>
-              </ul>
-            </ul>
-            <li>The dialog closes when:</li>
-            <ul>
-              <li><kbd>Escape</kbd> is pressed and focus is either in the dialog or in the text field.</li>
-              <li>Focus is in the text field and <kbd>Tab</kbd> or <kbd>Shift + Tab</kbd> is pressed.</li>
-              <li>The dialog cancel button is clicked or touched.</li>
-              <li>The dialog is open and the down arrow icon is clicked or touched.</li>
-            </ul>
-          </ul>
-            <li>When date is chosen from the dialog, focus returns to the edit field.
-          </ul>
-          <li>Keyboard focus moves into the dialog when:</li>
-          <ul>
-            <li>Focus is in the text field and <kbd>Up Arrow</kbd> or <kbd>Down Arrow</kbd> is pressed.</li>
-            <li>The user clicks or touches in the dialog.</li>
-          </ul>
-          <li>A set of <code>select</code> boxes for month, day, and year.</li>
-          <li>A set of spinbuttons, typically one for each month, day, and year.</li>
-          <p class="note">Ensure proper labels are used if using numbers for selection. e.g. "January" vs. "1" for month. This can be done using <code>aria-label</code>.</p>
-          <li>A <a href="https://w3c.github.io/aria/#slider">slider</a> to select a minumum and maximum date range.</li>
+
+      <section class="notoc">
+        <h4>Calendar Grid</h4>
+        <p>A calendar grid is typically used with a <a href="#combobox">combobox</a> and <a href="#menubutton">menu button</a> design patterns to pick a date for a related textbox. The calendar grid is usually contained within a <a href="#dialog_modal">modal dialog box.</a></p>
+
+        <h5>Calendar Grid Keyboard Interaction</h5>
+        <p>
+          The following keys provide calendar grid navigation by moving focus among the dates in the grid.
+          Implementations of a calendar grid make these key commands available when a date in the calendar grid has received focus, e.g., after a user has moved focus to the grid from the textbox of a combobox or a menu button.
+        </p>
+        <ul>
+          <li>
+            <kbd>Right Arrow</kbd>: Moves focus to the next date.
+            If the next date is in the next month, the calendar grid updates to the next month.
+          </li>
+          <li>so on and so forth</li>
+          <li><kbd>Left Arrow</kbd>: Moves focus one cell to the left. If focus is on the left-most cell in the row, focus does not move.</li>
+          <li><kbd>Down Arrow</kbd>: Moves focus one cell down. If focus is on the bottom cell in the column, focus does not move.</li>
+          <li><kbd>Up Arrow</kbd>: Moves focus one cell Up. If focus is on the top cell in the column, focus does not move.</li>
+          <li><kbd>Page Down next prev month</kbd>: Moves focus down an author-determined number of rows, typically scrolling so the bottom row in the currently visible set of rows becomes one of the first visible rows. If focus is in the last row of the grid, focus does not move.</li>
+          <li><kbd>Page Up</kbd>: Moves focus up an author-determined number of rows, typically scrolling so the top row in the currently visible set of rows becomes one of the last visible rows. If focus is in the first row of the grid, focus does not move.</li> shift pageup/down, next prev year
+          <li><kbd>Home</kbd>: moves focus to the first cell in the row that contains focus.</li> sunday
+          <li><kbd>End</kbd>: moves focus to the last cell in the row that contains focus.</li> saturday
+          enter or space selects the current date and closes the dialog box
         </ul>
+      </section>
+
+      <section class="notoc">
+        <h4>Select Boxes</h4>
+        <li>A set of <code>select</code> boxes for month, day, and year.</li>
+      </section>
+
+      <section class="notoc">
+        <h4>Spin Buttons</h4>
+        <li>A set of spinbuttons, typically one for each month, day, and year.</li>
+        <p class="note">Ensure proper labels are used if using numbers for selection. e.g. "January" vs. "1" for month. This can be done using <code>aria-label</code>.</p>
+      </section>
+
+      <section class="notoc">
+        <h4>Sliders</h4>
+        <li>A <a href="https://w3c.github.io/aria/#slider">slider</a> to select a minumum and maximum date range.</li>
+      </section>
+
+      <section>
+        <h4>Stuff that should be someplace else</h4>
+        <ul>
+        <li>A modal dialog with a grid of dates.</li>
+        <ul>
+          <li>The dialog is displayed when the text field recieves focus.</li>
+          <li>When using a touch device:</li>
+          <ul>
+            <li>The dialog displays when:</li>
+            <ul>
+              <li>The text field receives keyboard focus.</li>
+              <li>The text field or down icon is touched.</li>
+              <p class="note">
+                If the text field is touched when the dialog is not open, only open the dialog, DO NOT focus the text field. If the text field is touched when the dialog is open, focus the text field. This should prevent unwanted display of the keyboard.
+              </p>
+              <li>The text field or down icon is clicked with a mouse. Clicking the text field should, as is normally expected, focus the text field.</li>
+            </ul>
+          </ul>
+          <li>The dialog closes when:</li>
+          <ul>
+            <li><kbd>Escape</kbd> is pressed and focus is either in the dialog or in the text field.</li>
+            <li>Focus is in the text field and <kbd>Tab</kbd> or <kbd>Shift + Tab</kbd> is pressed.</li>
+            <li>The dialog cancel button is clicked or touched.</li>
+            <li>The dialog is open and the down arrow icon is clicked or touched.</li>
+          </ul>
+        </ul>
+          <li>When date is chosen from the dialog, focus returns to the edit field.
+        </ul>
+        <li>Keyboard focus moves into the dialog when:</li>
+        <ul>
+          <li>Focus is in the text field and <kbd>Up Arrow</kbd> or <kbd>Down Arrow</kbd> is pressed.</li>
+          <li>The user clicks or touches in the dialog.</li>
+        </ul>
+      </section>
 
       <section class="notoc">
         <h4>Example</h4>
