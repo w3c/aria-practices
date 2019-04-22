@@ -37,4 +37,3 @@ module.exports = async function assertTabOrder (t, tabOrderSelectors) {
 
   t.pass();
 };
-

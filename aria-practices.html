@@ -477,7 +477,7 @@
         </ul>
       </section>
     </section>
-    
+
     <section class="widget" id="carousel">
       <h3>Carousel (Slide Show or Image Rotator)</h3>
       <p>
@@ -512,10 +512,10 @@
       <section class="notoc">
         <h4>Example</h4>
         <p>
-          <a href="examples/carousel/carousel-1/carousel-1.html">Auto-Rotating Image Carousel Example:</a> A basic image carousel that demonstrates the accessibility features necessary for carousels that rotate automatically on page load. 
+          <a href="examples/carousel/carousel-1/carousel-1.html">Auto-Rotating Image Carousel Example:</a> A basic image carousel that demonstrates the accessibility features necessary for carousels that rotate automatically on page load.
         </p>
       </section>
-      
+
       <section class="notoc">
         <h4>Terms</h4>
         <p>The following terms are used to describe components of a carousel.</p>
@@ -578,7 +578,7 @@
           <li>
             The rotation control has an accessible label provided by either its inner text or <a href="#aria-label" class="property-reference">aria-label</a>.
             The label changes to match the action the button will perform, e.g., &quot;Stop slide rotation&quot; or &quot;Start slide rotation&quot;.
-            A label that changes when the button is activated clearly communicates both that slide content can change automatically and when it is doing so. 
+            A label that changes when the button is activated clearly communicates both that slide content can change automatically and when it is doing so.
             Note that since the label changes, the rotation control does not have any states, e.g., <code>aria-pressed</code>, specified.
           </li>
           <li>Each slide container has role <a href="#group" class="role-reference">group</a> with the property <a href="#aria-roledescription" class="property-reference">aria-roledescription</a> set to <code>slide</code>.</li>
@@ -645,7 +645,7 @@
         </ul>
       </section>
     </section>
-    
+
     <section class="widget" id="checkbox">
       <h3>Checkbox</h3>
       <p>WAI-ARIA supports two types of <a href="#checkbox" class="role-reference">checkbox</a> widgets:</p>
@@ -758,7 +758,7 @@
         <li>
           <strong>List autocomplete with automatic selection:</strong> When the popup is triggered, it presents suggested values that complete or logically correspond to the characters typed in the textbox,
           and the first suggestion is automatically highlighted as selected.
-           The automatically selected suggestion becomes the value of the textbox when the combobox loses focus unless the user chooses a different suggestion or changes the character string in the textbox.
+          The automatically selected suggestion becomes the value of the textbox when the combobox loses focus unless the user chooses a different suggestion or changes the character string in the textbox.
         </li>
         <li>
           <strong>List with inline autocomplete:</strong> This is the same as list with automatic selection with one additional feature.
@@ -951,14 +951,14 @@
               <li>When focus is on a open node, moves focus to the first child node and selects it if it is selectable.</li>
               <li>When focus is on an end node, does nothing.</li>
             </ul>
-           </li>
+          </li>
           <li><kbd>Left arrow</kbd>:
             <ul>
               <li>When focus is on an open node, closes the node.</li>
               <li>When focus is on a child node that is also either an end node or a closed node, moves focus to its parent node and selects it if it is selectable.</li>
               <li>When focus is on a root node that is also either an end node or a closed node, does nothing.</li>
             </ul>
-           </li>
+          </li>
           <li><kbd>Down Arrow</kbd>: Moves focus to the next node that is focusable without opening or closing a node and selects it if it is selectable.</li>
           <li><kbd>Up Arrow</kbd>: Moves focus to the previous node that is focusable without opening or closing a node and selects it if it is selectable.</li>
           <li><kbd>Home</kbd>: Moves focus to the first node in the tree without opening or closing a node and selects it if it is selectable.</li>
@@ -1264,8 +1264,8 @@
       <p>
         For example, a product page on a shopping site may have a related products section that displays five products at a time.
         As the user scrolls,  more products are requested  and loaded into the DOM.
-         While a static design might include a next button for loading five more products, a dynamic implementation that automatically loads more data as the user scrolls simplifies the user experience and reduces the inertia associated with viewing more than the first five product suggestions.
-         But, unfortunately when web pages load content dynamically based on scroll events, it can cause usability and interoperability difficulties for users of assistive technologies.
+        While a static design might include a next button for loading five more products, a dynamic implementation that automatically loads more data as the user scrolls simplifies the user experience and reduces the inertia associated with viewing more than the first five product suggestions.
+        But, unfortunately when web pages load content dynamically based on scroll events, it can cause usability and interoperability difficulties for users of assistive technologies.
       </p>
       <p>
         The feed pattern enables reliable assistive technology reading mode interaction by establishing the following interoperability agreement between the web page and assistive technologies:
@@ -1327,7 +1327,7 @@
               <li>
                 Users move focus into the nested feed from the content of the containing article with <kbd>Tab</kbd>.
                 This may be slow if the article contains a significant number of links, buttons, or other widgets.
-               </li>
+              </li>
               <li>Provide a key for moving focus from the elements in the containing article to the first item in the nested feed, e.g., <kbd>Alt + Page Down</kbd>.</li>
               <li>To continue reading the outer feed, <kbd>Control + End</kbd> moves focus to the next article in the outer feed.</li>
             </ul>
@@ -1732,7 +1732,7 @@
       <p>
         A <a href="#link" class="role-reference">link</a> widget provides an interactive reference to a resource.
         The target resource can be either external or local, i.e., either outside or within the current page or application.
-       </p>
+      </p>
       <p class="note">
         Authors are strongly encouraged to use a native host language link element, such as an HTML
         <code>&lt;A&gt;</code> element with an <code>href</code> attribute. As with other WAI-ARIA
@@ -1819,8 +1819,8 @@
           </li>
           <li><kbd>Down Arrow</kbd>: Moves focus to the next option. Optionally, in a single-select listbox, selection may also move with focus.</li>
           <li><kbd>Up Arrow</kbd>: Moves focus to the previous option. Optionally, in a single-select listbox, selection may also move with focus.</li>
-           <li><kbd>Home</kbd> (Optional): Moves focus to first option. Optionally, in a single-select listbox, selection may also move with focus. Supporting this key is strongly recommended for lists with more than five options.</li>
-           <li><kbd>End</kbd> (Optional): Moves focus to last option. Optionally, in a single-select listbox, selection may also move with focus. Supporting this key is strongly recommended for lists with more than five options.</li>
+          <li><kbd>Home</kbd> (Optional): Moves focus to first option. Optionally, in a single-select listbox, selection may also move with focus. Supporting this key is strongly recommended for lists with more than five options.</li>
+          <li><kbd>End</kbd> (Optional): Moves focus to last option. Optionally, in a single-select listbox, selection may also move with focus. Supporting this key is strongly recommended for lists with more than five options.</li>
           <li>Type-ahead is recommended for all listboxes, especially those with more than seven options:
             <ul>
               <li>Type a character: focus moves to the next item with a name that starts with the typed character.</li>
@@ -2179,7 +2179,7 @@
           <ul>
             <li>
               <kbd>Tab</kbd> and <kbd>Shift + Tab</kbd>:
-              Move focus into and out of the radio group. 
+              Move focus into and out of the radio group.
               When focus moves into a radio group :
               <ul>
                 <li>If a radio button is checked, focus is set on the checked button.</li>
@@ -2618,7 +2618,7 @@
                 sets focus on the tab following the tab that was closed, and optionally activates the newly focused tab. If there is not a tab that followed the tab that was deleted,
                 e.g., the deleted tab was the right-most tab in a left-to-right horizontal tab list,
                 sets focus on and optionally activates the tab that preceded the deleted tab.
-                 If the application allows all tabs to be deleted, and the user deletes the last remaining tab in the tab list,
+                If the application allows all tabs to be deleted, and the user deletes the last remaining tab in the tab list,
                 the application moves focus to another element that provides a logical work flow.
                 As an alternative to <kbd>Delete</kbd>, or in addition to supporting <kbd>Delete</kbd>, the delete function is available in a context menu.
               </li>
@@ -2861,14 +2861,14 @@
               <li>When focus is on a open node, moves focus to the first child node.</li>
               <li>When focus is on an end node, does nothing.</li>
             </ul>
-           </li>
+          </li>
           <li><kbd>Left arrow</kbd>:
             <ul>
               <li>When focus is on an open node, closes the node.</li>
               <li>When focus is on a child node that is also either an end node or a closed node, moves focus to its parent node.</li>
               <li>When focus is on a root node that is also either an end node or a closed node, does nothing.</li>
             </ul>
-           </li>
+          </li>
           <li><kbd>Down Arrow</kbd>: Moves focus to the next node that is focusable without opening or closing a node.</li>
           <li><kbd>Up Arrow</kbd>: Moves focus to the previous node that is focusable without opening or closing a node.</li>
           <li><kbd>Home</kbd>: Moves focus to the first node in the tree without opening or closing a node.</li>
@@ -3061,35 +3061,35 @@
           </li>
           <li>
             <kbd>Page Up</kbd>:
-             <ul>
+            <ul>
                 <li>If focus is on a row, moves focus up an author-determined number of rows, typically scrolling so the top row in the currently visible set of rows becomes one of the last visible rows. If focus is in the first row, focus does not move.</li>
                 <li>If focus is on a cell, moves focus up an author-determined number of cells, typically scrolling so the top row in the currently visible set of rows becomes one of the last visible rows. If focus is in the first row, focus does not move.</li>
               </ul>
           </li>
           <li>
             <kbd>Home</kbd>:
-             <ul>
+            <ul>
                 <li>If focus is on a row, moves focus to the first row.  If focus is in the first row, focus does not move.</li>
                 <li>If focus is on a cell, moves focus to the first cell in the row. If focus is in the first cell of the row, focus does not move.</li>
               </ul>
           </li>
           <li>
             <kbd>End</kbd>:
-             <ul>
+            <ul>
                 <li>If focus is on a row, moves focus to the last row.  If focus is in the last row, focus does not move.</li>
                 <li>If focus is on a cell, moves focus to the last cell in the row. If focus is in the last cell of the row, focus does not move.</li>
               </ul>
           </li>
           <li>
             <kbd>Control + Home</kbd>:
-             <ul>
+            <ul>
                 <li>If focus is on a row, moves focus to the first row.  If focus is in the first row, focus does not move.</li>
                 <li>If focus is on a cell, moves focus to the first cell in the column. If focus is in the first row, focus does not move.</li>
               </ul>
           </li>
           <li>
             <kbd>Control + End</kbd>:
-             <ul>
+            <ul>
                 <li>If focus is on a row, moves focus to the last row.  If focus is in the last row, focus does not move.</li>
                 <li>If focus is on a cell, moves focus to the last cell in the column. If focus is in the last row, focus does not move.</li>
               </ul>
@@ -3211,7 +3211,7 @@
           </li>
         </ul>
       </section>
-   </section>
+  </section>
 
     <section class="widget" id="windowsplitter">
       <h3>Window Splitter</h3>
@@ -4204,7 +4204,7 @@
             </li>
 
             <li> Activate an element without moving focus when the target context of the function is the context that contains the focus. This behavior is most common for command buttons and for functions associated with elements that are not visible, such as a "Save" option that is accessible via a menu. For example, if the focus is on an option in a listbox and a toolbar contains buttons for moving and removing options, it is most beneficial to keep focus in the listbox when the user presses a key shortcut for one of the buttons in the toolbar. This behavior can be particularly important for screen reader users because it provides confirmation of the action performed and makes performing multiple commands more efficient. For instance, when a screen reader user presses the shortcut for the "Up" button, the user will be able to hear the new position of the option in the list since it still has the focus. Similarly, when the user presses the shortcut for deleting an option, the user can
-								hear the next option in the list and immediately decide whether to press the delete shortcut again. </li>
+                hear the next option in the list and immediately decide whether to press the delete shortcut again. </li>
 
             <li>
               Move focus and activate when the target of the shortcut has a single function and the context of that function is the same as the target.
@@ -4549,7 +4549,7 @@
       &lt;span role="gridcell"&gt;Acme, Inc.&lt;/span&gt;
       &lt;span role="gridcell"&gt;123 Broad St.&lt;/span&gt;
     &lt;/div&gt;
-   &#8230;
+  &#8230;
   &lt;/div&gt;
 &lt;/div&gt;
 </code>
@@ -4893,7 +4893,7 @@
         Conditions That Cause Role <code>presentation</code> to be Ignored
       </h3>
       <p>
-         Browsers ignore <code>role=&quot;presentation&quot;</code>, and it therefore has no effect, if either of the following are true about the element to which it is applied:</p>
+        Browsers ignore <code>role=&quot;presentation&quot;</code>, and it therefore has no effect, if either of the following are true about the element to which it is applied:</p>
           <ul>
             <li>The element is focusable, e.g. it is natively focusable like an HTML link or input , or it has a <code>tabindex</code> attribute.</li>
             <li>
@@ -4988,7 +4988,7 @@
       <h2>Change History</h2>
       <p>Change history is maintained in a separate version-specific branch.</p>
     </section>
-    
+
     <section id="acknowledgements" class="appendix">
       <h2>Acknowledgements</h2>
       <section>
@@ -5002,59 +5002,59 @@
           <li>Valerie Young of Bocoup and her sponsor, Facebook, for development of the example test framework and regressions tests for more than 50 examples.</li>
         </ul>
       </section>
-    	<section>
-    		<h3>Participants active in the ARIA Authoring Practices Task Force</h3>
-    		<ul>
-    			<li>Ann Abbott (Invited Expert)</li>
-    			<li>Shirisha Balusani (Microsoft Corporation)</li>
-    			<li>Curt Bellew (Oracle)</li>
-    			<li>Michiel Bijl (Invited Expert)</li>
-    			<li>Michael Cooper (W3C)</li>
-    			<li>Bryan Garaventa (Level Access)</li>
-    			<li>Jon Gunderson (University of Illinois at Urbana-Champaign)</li>
-    			<li>Hans Hillen (The Paciello Group, LLC)</li>
-    			<li>Matt King (Facebook)</li>
-    			<li>Jaeun Ku (University of Illinois at Urbana-Champaign)</li>
-    			<li>Aaron Leventhal (Google)</li>
-    			<li>Mark McCarthy (University of Illinois at Urbana-Champaign)</li>
-    			<li>James Nurthen (Adobe)</li>
-    			<li>Evan Yamanishi (W. W. Norton)</li>
-    			<li>Valerie Young (Bocoup)</li>
-    		</ul>
-    	</section>
-    	<section>
-    		<h3>Other commenters and contributors to Version 1.1</h3>
-    		<ul>
-    			<li>Vyacheslav Aristov</li>
-    			<li>J. Renée Beach</li>
-    			<li>Kasper Christensen</li>
-    			<li>Gerard K. Cohen</li>
-    			<li>Anne-Gaelle Colom</li>
-    			<li>Kevin Coughlin</li>
-    			<li>Cameron Cundiff</li>
-    			<li>Manish Dahamiwal</li>
-    			<li>Gilmore Davidson</li>
-    			<li>Boris Dušek</li>
-    			<li>Michael Fairchild</li>
-    			<li>Jeremy Felt</li>
-    			<li>Rob Fentress</li>
-    			<li>Geppy</li>
-    			<li>Tatiana Iskandar</li>
-    			<li>Patrick Lauke</li>
-    			<li>Marek Lewandowski</li>
-    			<li>Carolyn MacLeod</li>
-    			<li>Dan Matthew</li>
-    			<li>Shane McCarron</li>
-    			<li>Victor Meyer</li>
-    			<li>Jonathan Neal</li>
-    			<li>Philipp Rudloff</li>
-    			<li>Joseph Scheuhammer</li>
-    			<li>Nick Schonni</li>
-    			<li>thomascorthals</li>
-    			<li>Christopher Tryens</li>
-    		</ul>
-    	</section>
-    	<div data-include='common/acknowledgements/funders.html' data-include-replace='true'></div>
+      <section>
+        <h3>Participants active in the ARIA Authoring Practices Task Force</h3>
+        <ul>
+          <li>Ann Abbott (Invited Expert)</li>
+          <li>Shirisha Belusani (Microsoft Corporation)</li>
+          <li>Curt Bellew (Oracle)</li>
+          <li>Michiel Bijl (Invited Expert)</li>
+          <li>Michael Cooper (W3C)</li>
+          <li>Bryan Garaventa (Level Access)</li>
+          <li>Jon Gunderson (University of Illinois at Urbana-Champaign)</li>
+          <li>Hans Hillen (The Paciello Group, LLC)</li>
+          <li>Matt King (Facebook)</li>
+          <li>Jaeun Ku (University of Illinois at Urbana-Champaign)</li>
+          <li>Aaron Leventhal (Google)</li>
+          <li>Mark McCarthy (University of Illinois at Urbana-Champaign)</li>
+          <li>James Nurthen (Adobe)</li>
+          <li>Evan Yamanishi (W. W. Norton)</li>
+          <li>Valerie Young (Bocoup)</li>
+        </ul>
+      </section>
+      <section>
+        <h3>Other commenters and contributors to Version 1.1</h3>
+        <ul>
+          <li>Vyacheslav Aristov</li>
+          <li>J. Renée Beach</li>
+          <li>Kasper Christensen</li>
+          <li>Gerard K. Cohen</li>
+          <li>Anne-Gaelle Colom</li>
+          <li>Kevin Coughlin</li>
+          <li>Cameron Cundiff</li>
+          <li>Manish Dahamiwal</li>
+          <li>Gilmore Davidson</li>
+          <li>Boris Dušek</li>
+          <li>Michael Fairchild</li>
+          <li>Jeremy Felt</li>
+          <li>Rob Fentress</li>
+          <li>Geppy</li>
+          <li>Tatiana Iskandar</li>
+          <li>Patrick Lauke</li>
+          <li>Marek Lewandowski</li>
+          <li>Carolyn MacLeod</li>
+          <li>Dan Matthew</li>
+          <li>Shane McCarron</li>
+          <li>Victor Meyer</li>
+          <li>Jonathan Neal</li>
+          <li>Philipp Rudloff</li>
+          <li>Joseph Scheuhammer</li>
+          <li>Nick Schonni</li>
+          <li>thomascorthals</li>
+          <li>Christopher Tryens</li>
+        </ul>
+      </section>
+      <div data-include='common/acknowledgements/funders.html' data-include-replace='true'></div>
     </section>
 </body>
 </html>

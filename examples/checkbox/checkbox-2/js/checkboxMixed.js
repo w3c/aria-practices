@@ -1,18 +1,18 @@
 /*
-*   This content is licensed according to the W3C Software License at
-*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
-*
-*   File:   CheckboxMixed.js
-*
-*   Desc:   CheckboxMixed widget that implements ARIA Authoring Practices
-*           for a menu of links
-*/
+ *   This content is licensed according to the W3C Software License at
+ *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+ *
+ *   File:   CheckboxMixed.js
+ *
+ *   Desc:   CheckboxMixed widget that implements ARIA Authoring Practices
+ *           for a menu of links
+ */
 
 /*
-*   @constructor CheckboxMixed
-*
-*
-*/
+ *   @constructor CheckboxMixed
+ *
+ *
+ */
 var CheckboxMixed = function (domNode) {
 
   this.domNode = domNode;
@@ -156,4 +156,3 @@ CheckboxMixed.prototype.handleFocus = function (event) {
 CheckboxMixed.prototype.handleBlur = function (event) {
   this.domNode.classList.remove('focus');
 };
-

@@ -1,7 +1,7 @@
 /*
-*   This content is licensed according to the W3C Software License at
-*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
-*/
+ *   This content is licensed according to the W3C Software License at
+ *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+ */
 var Listbox = function (domNode, comboboxObj) {
   var elementChildren,
     msgPrefix = 'Listbox constructor argument domNode ';
@@ -38,13 +38,13 @@ var Listbox = function (domNode, comboboxObj) {
 };
 
 /*
-*   @method Listbox.prototype.init
-*
-*   @desc
-*       Add domNode event listeners for mouseover and mouseout. Traverse
-*       domNode children to configure each option and populate.options
-*       array. Initialize firstOption and lastOption properties.
-*/
+ *   @method Listbox.prototype.init
+ *
+ *   @desc
+ *       Add domNode event listeners for mouseover and mouseout. Traverse
+ *       domNode children to configure each option and populate.options
+ *       array. Initialize firstOption and lastOption properties.
+ */
 Listbox.prototype.init = function () {
   var childElement, optionElement, optionElements, firstChildElement, option, textContent, numItems;
 
@@ -222,5 +222,3 @@ Listbox.prototype.close = function (force) {
     this.combobox.setActiveDescendant(false);
   }
 };
-
-

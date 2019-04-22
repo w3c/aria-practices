@@ -369,4 +369,3 @@ ariaTest.failing('key control+A selects all options', exampleFile, 'key-control-
   t.plan(1);
   t.fail();
 });
-

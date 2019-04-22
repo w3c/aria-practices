@@ -73,4 +73,3 @@ ariaTest('Carousel 1: slides have aria-roledescription set to slide', exampleFil
   // check the aria-roledescrption set to carousel
   await assertAttributeValues(t, ex.slideSelector, 'aria-roledescription', 'slide');
 });
-

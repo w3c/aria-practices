@@ -1,9 +1,9 @@
 /*
-*   This content is licensed according to the W3C Software License at
-*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
-*
-*   File:   SpinButton.js
-*/
+ *   This content is licensed according to the W3C Software License at
+ *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+ *
+ *   File:   SpinButton.js
+ */
 
 // Create SpinButton that contains value, valuemin, valuemax, and valuenow
 var SpinButton = function (domNode, toolbar)  {

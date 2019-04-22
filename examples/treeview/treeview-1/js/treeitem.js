@@ -1,23 +1,23 @@
 /*
-*   This content is licensed according to the W3C Software License at
-*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
-*
-*   File:   Treeitem.js
-*
-*   Desc:   Treeitem widget that implements ARIA Authoring Practices
-*           for a tree being used as a file viewer
-*/
+ *   This content is licensed according to the W3C Software License at
+ *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+ *
+ *   File:   Treeitem.js
+ *
+ *   Desc:   Treeitem widget that implements ARIA Authoring Practices
+ *           for a tree being used as a file viewer
+ */
 
 /*
-*   @constructor
-*
-*   @desc
-*       Treeitem object for representing the state and user interactions for a
-*       treeItem widget
-*
-*   @param node
-*       An element with the role=tree attribute
-*/
+ *   @constructor
+ *
+ *   @desc
+ *       Treeitem object for representing the state and user interactions for a
+ *       treeItem widget
+ *
+ *   @param node
+ *       An element with the role=tree attribute
+ */
 
 var Treeitem = function (node, treeObj, group) {
 

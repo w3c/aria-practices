@@ -1,9 +1,9 @@
 /*
-*   This content is licensed according to the W3C Software License at
-*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
-*
-*   JS code for the button design pattern
-*/
+ *   This content is licensed according to the W3C Software License at
+ *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+ *
+ *   JS code for the button design pattern
+ */
 
 var ICON_MUTE_URL = 'images/mute.svg#icon-mute';
 var ICON_SOUND_URL = 'images/mute.svg#icon-sound';

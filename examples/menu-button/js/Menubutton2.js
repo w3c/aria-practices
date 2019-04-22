@@ -1,33 +1,33 @@
 /*
-*   This content is licensed according to the W3C Software License at
-*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
-*
-*   File:   Menubutton.js
-*
-*   Desc:   Menubutton Menuitem widget that implements ARIA Authoring Practices
-*/
+ *   This content is licensed according to the W3C Software License at
+ *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+ *
+ *   File:   Menubutton.js
+ *
+ *   Desc:   Menubutton Menuitem widget that implements ARIA Authoring Practices
+ */
 
 /*
-*   @constructor MenubuttonItem
-*
-*   @desc
-*       Object that configures menu item elements by setting tabIndex
-*       and registering itself to handle pertinent events.
-*
-*       While menuitem elements handle many keydown events, as well as
-*       focus and blur events, they do not maintain any state variables,
-*       delegating those responsibilities to its associated menu object.
-*
-*       Consequently, it is only necessary to create one instance of
-*       MenubuttonItem from within the menu object; its configure method
-*       can then be called on each menuitem element.
-*
-*   @param domNode
-*       The DOM element node that serves as the menu item container.
-*       The menuObj PopupMenu is responsible for checking that it has
-*       requisite metadata, e.g. role="menuitem".
-*
-*/
+ *   @constructor MenubuttonItem
+ *
+ *   @desc
+ *       Object that configures menu item elements by setting tabIndex
+ *       and registering itself to handle pertinent events.
+ *
+ *       While menuitem elements handle many keydown events, as well as
+ *       focus and blur events, they do not maintain any state variables,
+ *       delegating those responsibilities to its associated menu object.
+ *
+ *       Consequently, it is only necessary to create one instance of
+ *       MenubuttonItem from within the menu object; its configure method
+ *       can then be called on each menuitem element.
+ *
+ *   @param domNode
+ *       The DOM element node that serves as the menu item container.
+ *       The menuObj PopupMenu is responsible for checking that it has
+ *       requisite metadata, e.g. role="menuitem".
+ *
+ */
 var Menubutton = function (domNode) {
 
   this.domNode   = domNode;

@@ -1,19 +1,19 @@
 /*
-*   This content is licensed according to the W3C Software License at
-*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
-*
-*   File:   Checkbox.js
-*
-*   Desc:   Checkbox widget that implements ARIA Authoring Practices
-*           for a menu of links
-*
-*/
+ *   This content is licensed according to the W3C Software License at
+ *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+ *
+ *   File:   Checkbox.js
+ *
+ *   Desc:   Checkbox widget that implements ARIA Authoring Practices
+ *           for a menu of links
+ *
+ */
 
 /*
-*   @constructor Checkbox
-*
-*
-*/
+ *   @constructor Checkbox
+ *
+ *
+ */
 var Checkbox = function (domNode) {
 
   this.domNode = domNode;
@@ -81,4 +81,3 @@ Checkbox.prototype.handleFocus = function (event) {
 Checkbox.prototype.handleBlur = function (event) {
   this.domNode.classList.remove('focus');
 };
-

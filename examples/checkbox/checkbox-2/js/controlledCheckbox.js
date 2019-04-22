@@ -1,18 +1,18 @@
 /*
-*   This content is licensed according to the W3C Software License at
-*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
-*
-*   File:   controlledCheckbox.js
-*
-*   Desc:   ControlledCheckbox widget that implements ARIA Authoring Practices
-*           for a mixed checkbox
-*/
+ *   This content is licensed according to the W3C Software License at
+ *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+ *
+ *   File:   controlledCheckbox.js
+ *
+ *   Desc:   ControlledCheckbox widget that implements ARIA Authoring Practices
+ *           for a mixed checkbox
+ */
 
 /*
-*   @constructor ControlledCheckbox
-*
-*
-*/
+ *   @constructor ControlledCheckbox
+ *
+ *
+ */
 var ControlledCheckbox = function (domNode, controllerObj) {
 
   this.domNode = domNode;
@@ -103,4 +103,3 @@ ControlledCheckbox.prototype.handleKeyup = function (event) {
 ControlledCheckbox.prototype.handleClick = function (event) {
   this.lastState = this.isChecked();
 };
-

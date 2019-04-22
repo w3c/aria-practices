@@ -41,4 +41,3 @@ module.exports = async function assertRovingTabindex (t, elementsSelector, key) 
 
   t.pass();
 };
-

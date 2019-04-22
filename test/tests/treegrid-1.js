@@ -715,4 +715,3 @@ ariaTest.failing('ENTER actives interactive items item', exampleFile, 'key-enter
     'Sending "enter" to a link within the gridcell should activate the link'
   );
 });
-

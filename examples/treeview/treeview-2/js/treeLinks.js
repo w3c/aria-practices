@@ -1,12 +1,12 @@
 /*
-*   This content is licensed according to the W3C Software License at
-*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
-*
-*   File:   TreeLinks.js
-*
-*   Desc:   Tree widget that implements ARIA Authoring Practices
-*           for a tree being used as a file viewer
-*/
+ *   This content is licensed according to the W3C Software License at
+ *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+ *
+ *   File:   TreeLinks.js
+ *
+ *   Desc:   Tree widget that implements ARIA Authoring Practices
+ *           for a tree being used as a file viewer
+ */
 
 /**
  * ARIA Treeview example
@@ -26,15 +26,15 @@ window.addEventListener('load', function () {
 });
 
 /*
-*   @constructor
-*
-*   @desc
-*       Tree item object for representing the state and user interactions for a
-*       tree widget
-*
-*   @param node
-*       An element with the role=tree attribute
-*/
+ *   @constructor
+ *
+ *   @desc
+ *       Tree item object for representing the state and user interactions for a
+ *       tree widget
+ *
+ *   @param node
+ *       An element with the role=tree attribute
+ */
 
 var TreeLinks = function (node) {
   // Check whether node is a DOM element

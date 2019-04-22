@@ -1,27 +1,27 @@
 /*
-*   This content is licensed according to the W3C Software License at
-*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
-*
-*   File:   MenuItem.js
-*
-*   Desc:   Popup Menu Menuitem widget that implements ARIA Authoring Practices
-*/
+ *   This content is licensed according to the W3C Software License at
+ *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+ *
+ *   File:   MenuItem.js
+ *
+ *   Desc:   Popup Menu Menuitem widget that implements ARIA Authoring Practices
+ */
 
 /*
-*   @constructor MenuItem
-*
-*   @desc
-*       Wrapper object for a simple menu item in a popup menu
-*
-*   @param domNode
-*       The DOM element node that serves as the menu item container.
-*       The menuObj PopupMenu is responsible for checking that it has
-*       requisite metadata, e.g. role="menuitem".
-*
-*   @param menuObj
-*       The object that is a wrapper for the PopupMenu DOM element that
-*       contains the menu item DOM element. See PopupMenuAction.js
-*/
+ *   @constructor MenuItem
+ *
+ *   @desc
+ *       Wrapper object for a simple menu item in a popup menu
+ *
+ *   @param domNode
+ *       The DOM element node that serves as the menu item container.
+ *       The menuObj PopupMenu is responsible for checking that it has
+ *       requisite metadata, e.g. role="menuitem".
+ *
+ *   @param menuObj
+ *       The object that is a wrapper for the PopupMenu DOM element that
+ *       contains the menu item DOM element. See PopupMenuAction.js
+ */
 var PopupMenuItem = function (domNode, popupMenuObj) {
 
   this.domNode   = domNode;

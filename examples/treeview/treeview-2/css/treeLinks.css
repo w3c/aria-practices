@@ -51,7 +51,7 @@ ul[role="tree"] a {
 }
 
 /* disable default keyboard focus styling for treeitems
-   Keyboard focus is styled with the following CSS */
+  Keyboard focus is styled with the following CSS */
 [role="treeitem"]:focus {
   outline: 0;
 }

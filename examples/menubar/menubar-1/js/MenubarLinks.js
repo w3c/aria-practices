@@ -1,7 +1,7 @@
 /*
-*   This content is licensed according to the W3C Software License at
-*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
-*/
+ *   This content is licensed according to the W3C Software License at
+ *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+ */
 
 var Menubar = function (domNode) {
   var elementChildren,
@@ -42,13 +42,13 @@ var Menubar = function (domNode) {
 };
 
 /*
-*   @method Menubar.prototype.init
-*
-*   @desc
-*       Adds ARIA role to the menubar node
-*       Traverse menubar children for A elements to configure each A element as a ARIA menuitem
-*       and populate menuitems array. Initialize firstItem and lastItem properties.
-*/
+ *   @method Menubar.prototype.init
+ *
+ *   @desc
+ *       Adds ARIA role to the menubar node
+ *       Traverse menubar children for A elements to configure each A element as a ARIA menuitem
+ *       and populate menuitems array. Initialize firstItem and lastItem properties.
+ */
 Menubar.prototype.init = function () {
   var menubarItem, childElement, menuElement, textContent, numItems;
 
@@ -177,4 +177,3 @@ Menubar.prototype.getIndexFirstChars = function (startIndex, char) {
   }
   return -1;
 };
-

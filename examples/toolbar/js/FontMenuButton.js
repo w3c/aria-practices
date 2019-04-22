@@ -1,9 +1,9 @@
 /*
-*   This content is licensed according to the W3C Software License at
-*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
-*
-*   File:   FontMenuButton.js
-*/
+ *   This content is licensed according to the W3C Software License at
+ *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+ *
+ *   File:   FontMenuButton.js
+ */
 
 
 FontMenuButton = function (node, toolbar, toolbarItem) {
@@ -80,4 +80,3 @@ FontMenuButton.prototype.setFontFamily = function (font) {
   this.domNode.setAttribute('aria-label', 'Font: ' + font);
   this.toolbar.activateItem(this);
 };
-

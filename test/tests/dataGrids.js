@@ -754,4 +754,3 @@ ariaTest('Control+end moves focus', exampleFile, 'key-control-end', async (t) =>
     }
   }
 });
-

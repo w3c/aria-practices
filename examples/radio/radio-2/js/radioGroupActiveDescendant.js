@@ -1,22 +1,22 @@
 /*
-*   This content is licensed according to the W3C Software License at
-*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
-*
-*   File:   radioGroup.js
-*
-*   Desc:   Radio group widget using aria-activedescendant that implements ARIA Authoring Practices
-*/
+ *   This content is licensed according to the W3C Software License at
+ *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+ *
+ *   File:   radioGroup.js
+ *
+ *   Desc:   Radio group widget using aria-activedescendant that implements ARIA Authoring Practices
+ */
 
 /*
-*   @constructor radioGroupActiveDescendent
-*
-*   @desc
-*       Wrapper for ARIA radiogroup control using ARIA active-descendant.  Any descendant
-*       element with role=radio will be included in this radiogroup as a radiobutton2.
-*
-*   @param domNode
-*       The DOM element node that serves as the radiogroup container.
-*/
+ *   @constructor radioGroupActiveDescendent
+ *
+ *   @desc
+ *       Wrapper for ARIA radiogroup control using ARIA active-descendant.  Any descendant
+ *       element with role=radio will be included in this radiogroup as a radiobutton2.
+ *
+ *   @param domNode
+ *       The DOM element node that serves as the radiogroup container.
+ */
 var RadioGroup = function (domNode) {
 
   this.domNode   = domNode;

@@ -104,8 +104,8 @@ ul[role="menubar"] [role="menuitemradio"][aria-checked='true']::before {
 }
 
 /*
-* Text area styles
-*/
+ * Text area styles
+ */
 .italic {
   font-style: italic;
 }

@@ -1,14 +1,14 @@
 /*
-*   File:   CarouselItem.js
-*
-*   Desc:   Carousel Tab widget that implements ARIA Authoring Practices
-*/
+ *   File:   CarouselItem.js
+ *
+ *   Desc:   Carousel Tab widget that implements ARIA Authoring Practices
+ */
 
 /*
-*   @constructor CarouselItem
-*
-*
-*/
+ *   @constructor CarouselItem
+ *
+ *
+ */
 var CarouselItem = function (domNode, carouselObj) {
   this.domNode = domNode;
   this.carousel = carouselObj;

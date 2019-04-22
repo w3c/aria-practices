@@ -225,4 +225,3 @@ ariaTest('CONTROL+END moves focus out of feed', exampleFile, 'key-control-end', 
 ariaTest.failing('key home moves focus out of feed', exampleFile, 'key-control-home', async (t) => {
   t.fail();
 });
-
