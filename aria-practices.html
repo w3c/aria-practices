@@ -1078,22 +1078,29 @@
       <h3>Date Pickers</h3>
       <p>A date picker provides a means for a user to pick a valid date, range of dates, or enter a valid date manually. The following are different types of date picker features:
       </p>
+      <section>
+        <!-- 1st section: Textbox validation -->
+        <h4>Date format and validation</h4>
+        <p>When a date picker includes a textbox, the preferred date format and error feedback on invalid or improperly formatted date should be made available to the user.<p>
         <ul>
-          <li>A combobox that validates date formats.
+          <li>Provide a means for indicating correct format using one of the following techniques.
             <ul>
-              <li>Provide a means for indicating correct format using one of the following techniques.
-                <ul>
-                  <li>Use the <code>placeholder</code> attribute provide the correct format.</li>
-                  <p class="note">Keep the date format suggestion in the placeholder while the user is typing or, if not possible, use a floating label with format suggestion.</p>
-                  <li>When the combobox receives focus, use a popup tooltip that is referenced by <code>aria-describedby</code> attribute.</li>
-                </ul>
-              </li>
-              <li>Validate combobox contents using one of the following techniques:
-                <ul>
-                  <li>When focus leaves the combobox, feedback is immediately provided and, if incorrect, the <code>aria-invalid</code> attribute is set to <code>true</code> and <code>aria-describedby</code> points to the error message.</li>
-                </ul>
-              </li>
-            </ul>
+              <li>Use the <code>placeholder</code> attribute provide the correct format.</li>
+                <p class="note">Keep the date format suggestion in the placeholder while the user is typing or, if not possible, use a floating label with format suggestion.</p>
+                <li>When the combobox receives focus, use a popup tooltip that is referenced by <code>aria-describedby</code> attribute.</li>
+              </ul>
+            </li>
+            <li>Validate combobox contents using one of the following techniques:
+              <ul>
+                <li>When focus leaves the combobox, feedback is immediately provided and, if incorrect, the <code>aria-invalid</code> attribute is set to <code>true</code> and <code>aria-describedby</code> points to the error message.</li>
+              </ul>
+            </li>
+          </ul>
+      </section>
+      <section>
+        <h4>Combobox</h4>
+        <p>A date picker combobox is a text box with a popup dialog box with a grid of dates, or a popup list of dates. See the <a href="#combobox">combobox design pattern</a> for more information.</p>
+          <ul>
           <li>A modal dialog with a grid of dates.</li>
           <ul>
             <li>The dialog is displayed when the text field recieves focus.</li>
