@@ -1113,35 +1113,38 @@
             If the next date is in the next month, the calendar grid updates to the next month.
           </li>
           <li>so on and so forth</li>
-          <li><kbd>Left Arrow</kbd>: Moves focus one cell to the left. If focus is on the left-most cell in the row, focus does not move.</li>
-          <li><kbd>Down Arrow</kbd>: Moves focus one cell down. If focus is on the bottom cell in the column, focus does not move.</li>
-          <li><kbd>Up Arrow</kbd>: Moves focus one cell Up. If focus is on the top cell in the column, focus does not move.</li>
-          <li><kbd>Page Down next prev month</kbd>: Moves focus down an author-determined number of rows, typically scrolling so the bottom row in the currently visible set of rows becomes one of the first visible rows. If focus is in the last row of the grid, focus does not move.</li>
-          <li><kbd>Page Up</kbd>: Moves focus up an author-determined number of rows, typically scrolling so the top row in the currently visible set of rows becomes one of the last visible rows. If focus is in the first row of the grid, focus does not move.</li> shift pageup/down, next prev year
-          <li><kbd>Home</kbd>: moves focus to the first cell in the row that contains focus.</li> sunday
-          <li><kbd>End</kbd>: moves focus to the last cell in the row that contains focus.</li> saturday
-          enter or space selects the current date and closes the dialog box
+          <li><kbd>Left Arrow</kbd>: Moves focus to the previouss date. If the previous date is in the previous month, the calendar grid updates to the previous month.</li>
+          <li><kbd>Down Arrow</kbd>: Moves focus to the next week. If the next week is in the next month, the calendar grid updates to the next month.</li>
+          <li><kbd>Up Arrow</kbd>: Moves focus to the previous week. If the previous week is in the previous month, the calendar grid updates to the previous month.</li>
+          <li><kbd>Page Down</kbd>: Updates the calendar grid to the previous month.</li>
+          <li><kbd>Page Up</kbd>:Updates the calendar grid to the next month.</li>
+          <li><kbd>Shift Page Up</kbd>:Updates the calendar grid to the next year.</li>
+          <li><kbd>Shift Page Up</kbd>:Updates the calendar grid to the previous month.</li>
+          <li><kbd>Home</kbd>: Moves focus to first day of the current week.</li>
+          <li><kbd>End</kbd>: Moves focus to the last day of the current week.</li>
+          <li><kbd>Enter</kbd> or <kbd>Space</kbd>: Selects the current date and closes the dialog box.</li>
         </ul>
       </section>
 
       <section class="notoc">
         <h4>Select Boxes</h4>
-        <li>A set of <code>select</code> boxes for month, day, and year.</li>
+        <li>A set of <a href="#listbox">selectboxes</a> for month, day, and year.</li>
+        <li>Feedback: should this be listboxes?</li>
       </section>
 
       <section class="notoc">
-        <h4>Spin Buttons</h4>
-        <li>A set of spinbuttons, typically one for each month, day, and year.</li>
+        <h4>Spinbuttons</h4>
+        <li>A set of <a href="#spinbutton">spinbuttons</a>, typically one for each month, day, and year.</li>
         <p class="note">Ensure proper labels are used if using numbers for selection. e.g. "January" vs. "1" for month. This can be done using <code>aria-label</code>.</p>
       </section>
 
       <section class="notoc">
         <h4>Sliders</h4>
-        <li>A <a href="https://w3c.github.io/aria/#slider">slider</a> to select a minumum and maximum date range.</li>
+        <li>A <a href="#slider">slider</a> to select a minumum and maximum date range.</li>
       </section>
 
-      <section>
-        <h4>Stuff that should be someplace else</h4>
+      <section class="notoc">
+        <h4>Stuff That Should Probably be Someplace Else - Feedback Welcome</h4>
         <ul>
         <li>A modal dialog with a grid of dates.</li>
         <ul>
