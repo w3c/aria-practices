@@ -1,30 +1,36 @@
 # Range Related Properties
 
-The range related properties are used to fully present and describe an element whose value can be one of a range of values to assistive technologies. These properties communicate the maximum and minimum values for the element and the element's current value.
-
-The range properties can also be used to fully present and describe an element whose value can be one of a list of non-numeric values. In this scenario, all possible text values of the element will be programmatically mapped to numbers within the numeric range.
-
-These attributes are used with the following roles:
-* `slider`
-* `spinbutton`
-* `progressbar`
-* `meter`
-* `scrollbar`
-
-These proprieties are also used for the `separator` role, but only if the element is focusable.
-
-Range Related Property Table
+ARIA provides the following four properties for communicating on the attributes of a range widget:
 
 | Property | Definition |
 | --- | --- |
 | `aria-valuemin` | Defines the minimum value in the range. |
 | `aria-valuemax` | Defines the maximum value in the range. |
-| `aria-valuenow` | Defines the value of the element. This value is always a number between `aria-valuemin` and `aria-valuemax`. |
+| `aria-valuenow` | Defines the value of the element. This value is a number between `aria-valuemin` and `aria-valuemax` (if they are present). |
 | `aria-valuetext` | Defines a description of the value of the element. |
+
+The range related properties are used to describe an element whose value can be one of a range of values to assistive technologies. These properties communicate the maximum and minimum values for the element and the element's current value.
+
+The range properties can also be used to describe an element whose value can be one of a list of non-numeric values. In this scenario, all possible text values of the element will be programmatically mapped to numbers within the numeric range by the author.
+
+These attributes are used with the following roles:
+
+* `slider`
+* `spinbutton`
+* `progressbar`
+* `meter`
+* `scrollbar`
+* `separator` (if the element is focusable)
 
 ## Using `aria-valuemin` and `aria-valuemax`
 
-When an element's possible values are contained within a known range, the attributes `aria-valuemin` and `aria-valuemax` are used to inform assistive technologies of the minimum and maximum values of the range. When using these properties, always set `aria-valuemin` to the lowest value of the range.
+When an element's possible values are contained within a known range, the attributes `aria-valuemin` and `aria-valuemax` are used to inform assistive technologies of the minimum and maximum values of the range. When using these properties, set `aria-valuemin` to the lowest value of the range and `aria-valuemax` to the greatest value.
+
+When the range is unknown, omit both `aria-valuemin` and `aria-valuemax`. An example of such a widget is an indeterminate progress bar.
+
+```
+<progress>Loading...</progress>
+```
 
 ## Using `aria-valuenow`
 
@@ -38,9 +44,7 @@ When the element's values are contained within a range but those values are not 
 
 `aria-valuenow`, `aria-valuemin` and `aria-valuemax` are all required attributes for the `slider` role. `aria-valuetext` can be used when appropriate. Detailed description of the `slider` role can be found in the [slider design pattern](https://w3c.github.io/aria-practices/#slider) and [slider (multi-thumb) design pattern](https://w3c.github.io/aria-practices/#slidertwothumb).
 
-### Example with numeric range
-
-This example is a temperature controller. `aria-valuetext` is not be used as the number value in `aria-valuenow` is meaningful to the user.
+The following example is a temperature controller. `aria-valuetext` is not be used as the number value in `aria-valuenow` is meaningful to the user.
 
 ```
 <div class="rail">
@@ -57,9 +61,7 @@ The slider example above can be made using the HTML input type=range element.
 <input type="range" min="50" value="68" max="100" aria-label="Temperature (F)">
 ```
 
-### Example with `aria-valuetext`
-
-This example is a fan control. The `aria-valuenow` value is "1", which is not meaningful to the user. The assistive technology will surface the value of `aria-valuetext` ("low") instead.
+The following example is a fan control. The `aria-valuenow` value is "1", which is not meaningful to the user. The assistive technology will surface the value of `aria-valuetext` ("low") instead.
 
 ```
 <div class="rail">
@@ -88,7 +90,7 @@ This example sets the price of paperclips in cents.
 </div>
 ```
 
-The slider example above can be made using the native HTML input type="number" element. 
+The slider example above can be made using the native HTML input type="number" element.
 
 ```
 <input type="number" min="0.01" value="0.5" max="2" aria-labelledby="paperclip-label">
@@ -99,7 +101,6 @@ $<output id="price" aria-labelledby="paperclip-label">0.50</output>
 ```
 <label>Price per paperclip: $<input type="number" min="0.01" value="0.5" max="2" step="0.01"></label>
 ```
-
 
 ## `progressbar` Role
 
