@@ -8,22 +8,24 @@ An accessible description complements the label with a description. An accessibl
 
 ## Labels
 
-There are two different ways to get the label for an element, depending on the element’s role.
+There are two different kinds of labels, depending on the element’s role. The difference is both in how the label is computed for the element, and how the element is represented to assistive technologies.
 
-* Implicit label by default
+* Label that represents the element. The label is taken from the element's contents, unless `aria-labelledby` or `aria-label` attributes are used. Only the label is represented to users of assistive tecnologies.
 
-* Explicit label only
+* Label that augments the element. The label is not taken from the element's contents (by default). A label can be set using `aria-labelledby` or `aria-label`. The label will augment the element; both the label and the element's contents are exposed to users of assistive technology.
 
-### Implicit label by default
 
-For elements with certain roles, the label is taken from the element’s contents by default. In the following example, a link (with default role `link`) gets its label from the element’s contents ("Home").
+### Label that represents the element
+
+For elements with certain roles, the label is taken from the element’s contents by default, and the label will represent the element when communicated to assistive technologies. In the following example, a link (with default role `link`) gets its label from the element’s contents ("Home").
 
 ```
 <a href="/">Home</a>
 ```
 
+This could be rendered to assistive technology as "link, Home"; the role and the label, not not repeating the content ("link, Home, Home").
 
-The label also can be set explicitly by using the `aria-labelledby` or `aria-label` attributes. If the implicit label (from the element’s contents) is already good, then don’t use the `aria-labelledby` or `aria-label` attributes.
+The label also can be set explicitly by using the `aria-labelledby` or `aria-label` attributes. If the label from the element’s contents is already good, then don’t use the `aria-labelledby` or `aria-label` attributes.
 
 The following roles get the label from the contents by default:
 
@@ -104,9 +106,9 @@ In the following example, a close button contains an "X" and is given the label 
 ```
 
 
-### Explicit label only
+### Label that augments the element
 
-Some roles do not get the label from the contents of the element; a label can only be set explicitly using the `aria-labelledby` or `aria-label` attributes. An explicit label does not override the contents of such elements.
+Some roles do not get the label from the contents of the element; a label can only be set explicitly using the `aria-labelledby` or `aria-label` attributes. For elements with these roles, a label augments the element, but does not override the contents.
 
 Examples of such roles are (note that this is not a complete list):
 
@@ -152,11 +154,11 @@ User agents attempt to formulate labels for elements by walking through a list o
 
 3. If the label is still empty, then host-language-specific attributes or elements (e.g., the `alt` attribute on HTML `img`) are used if present.
 
-4. If the label is still empty, then for roles that can take implicit label by default, the element’s contents.
+4. If the label is still empty, then for roles that can take label from the element's content, the element’s contents.
 
 5. Finally, if the label is still empty, then host-langauge-specific tooltip attributes or elements (e.g., the `title` attribute in HTML) are used if present.
 
-Steps 1-2 are explicit label, and steps 3-5 are implicit label. The final step is a fallback mechanism. Generally when labelling an element, use one of the non-fallback mechanisms.
+The final step is a fallback mechanism. Generally when labelling an element, use one of the non-fallback mechanisms.
 
 For example, for the HTML `input` element, the `placeholder` attribute is used as a fallback labeling mechanism if nothing else results in a label. For an `input` element, it is better to use a `label` element, since it does not disappear visually when the user focuses the form control.
 
@@ -264,7 +266,7 @@ In some cases, a plain text description is insufficient. The `aria-details` attr
 <ul id="full-name-desc">
  <li>The passenger's name must match the name in their passport.</li>
  <li>The name must consist of only characters in the A-Z range.</li>
- <li><a href="faq.html#name">What if the name in the passport contains other characters?</a></li> 
+ <li><a href="faq.html#name">What if the name in the passport contains other characters?</a></li>
 </ul>
 <fieldset>
  <legend>Passenger 1 (adult)</legend>
