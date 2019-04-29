@@ -4,7 +4,9 @@ var DatePicker = function (comboboxNode, inputNode, buttonNode, dialogNode, mess
   this.months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
   this.dateInput = new DateInput(comboboxNode, inputNode, buttonNode, messageNode, this);
-
+  this.comboboxNode = comboboxNode;
+  this.inputNode = inputNode;
+  this.buttonNode = buttonNode;
   this.dialogNode = dialogNode;
 
   this.MonthYearNode = dialogNode.querySelector('.monthYear');
@@ -77,6 +79,8 @@ DatePicker.prototype.init = function () {
   this.prevYearNode.addEventListener('keydown', this.handlePreviousYearButton.bind(this));
   this.nextYearNode.addEventListener('keydown', this.handleNextYearButton.bind(this));
 
+  document.addEventListener('click', this.handleDocumentClick.bind(this), true);
+
   // Create Grid of Dates
 
   this.tbodyNode.innerHTML = '';
@@ -144,7 +148,7 @@ DatePicker.prototype.updateGrid = function (year, month) {
     this.days[i].updateDay(true, lastYear, lastMonth, daysInLastMonth);
   }
 
-  for (var i = 0; i < this.daysInCurrentMonth; i++) {
+  for (i = 0; i < this.daysInCurrentMonth; i++) {
     var dpDay = this.days[dayOfWeek + i];
     dpDay.updateDay(false, year, month, i);
     if ((this.selectedDay.getFullYear() === year) &&
@@ -164,7 +168,7 @@ DatePicker.prototype.updateGrid = function (year, month) {
     this.showLastRow();
   }
 
-  for (var i = 0; i < remainingButtons; i++) {
+  for (i = 0; i < remainingButtons; i++) {
     this.days[dayOfWeek + this.daysInCurrentMonth + i].updateDay(true, nextYear, nextMonth, i);
   }
 
@@ -311,18 +315,15 @@ DatePicker.prototype.getDaysInMonth = function (year, month) {
     case 9:
     case 11:
       return 31;
-      break;
 
     case 1:
       return (((this.yearIndex % 4 === 0) && (this.yearIndex % 100 !== 0) && (this.yearIndex % 400 === 0)) ? 29 : 28);
-      break;
 
     case 3:
     case 5:
     case 8:
     case 10:
       return 30;
-      break;
 
     default:
       break;
@@ -334,8 +335,6 @@ DatePicker.prototype.getDaysInMonth = function (year, month) {
 };
 
 DatePicker.prototype.show = function () {
-  this.handleDocumentClick = this.handleDocumentClick.bind(this);
-  document.addEventListener('click', this.handleDocumentClick, true);
 
   this.dialogNode.style.display = 'block';
   this.dateInput.setAriaExpanded(true);
@@ -348,13 +347,15 @@ DatePicker.prototype.hasFocus = function () {
   return this.hasFocusFlag;
 };
 
+DatePicker.prototype.isOpen = function () {
+  return this.dateInput.getAriaExpanded();;
+};
+
 DatePicker.prototype.hide = function (ignore) {
 
   if (typeof ignore !== 'boolean') {
     ignore = true;
   }
-
-  document.removeEventListener('click', this.handleDocumentClick, true);
 
   this.dialogNode.style.display = 'none';
   this.dateInput.setAriaExpanded(false);
@@ -365,10 +366,14 @@ DatePicker.prototype.hide = function (ignore) {
 };
 
 DatePicker.prototype.handleDocumentClick = function (event) {
-  if (this.hasFocus() &&
+  console.log('[DateInput][handleDocumentClick]: ' + event.target.tagName);
+  console.log('[DateInput][handleDocumentClick][isOpen]: ' + this.isOpen());
+
+  if (this.isOpen() &&
     !this.dialogNode.contains(event.target) &&
+    !this.buttonNode.contains(event.target) &&
     (this.dateInput.inputNode !== event.target)) {
-    this.setFocusDay();
+    this.hide();
     event.stopPropagation();
     event.preventDefault();
   }

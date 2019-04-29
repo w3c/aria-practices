@@ -52,12 +52,7 @@ DateInput.prototype.init = function () {
 };
 
 DateInput.prototype.handleKeyDown = function (event) {
-  var tgt = event.currentTarget,
-    char = event.key,
-    flag = false;
-  function isPrintableCharacter (str) {
-    return str.length === 1 && str.match(/\S/);
-  }
+  var flag = false;
 
   switch (event.keyCode) {
 
@@ -89,16 +84,25 @@ DateInput.prototype.handleKeyDown = function (event) {
 };
 
 DateInput.prototype.handleTouchStart = function (event) {
-  if (this.isCollapsed()) {
-    this.showDownArrow();
-    this.datepicker.show();
-    event.stopPropagation();
-    event.preventDefault();
-    return false;
+
+  console.log('[handleTouchStart][length]: ' + event.targetTouches.length);
+
+  if (event.targetTouches.length === 1) {
+    console.log('[handleTouchStart][tagName]: ' + event.targetTouches[0].target.tagName);
+    if (this.comboboxNode.contains(event.targetTouches[0].target)) {
+      if (this.isCollapsed()) {
+        this.showDownArrow();
+        this.datepicker.show();
+        event.stopPropagation();
+        event.preventDefault();
+        return false;
+      }
+    }
   }
 };
 
-DateInput.prototype.handleFocus = function (event) {
+DateInput.prototype.handleFocus = function () {
+  console.log('[DateInput][handleFocus]')
   if (!this.ignoreFocusEvent && this.isCollapsed()) {
     this.datepicker.show();
     this.setMessage('Use the down arrow key to move focus to the datepicker grid.');
@@ -125,6 +129,7 @@ DateInput.prototype.handleBlur = function () {
 };
 
 DateInput.prototype.handleClick = function (event) {
+  console.log('[DateInput][handleClick]: ' + event.target.tagName);
   if (this.lastEventFocus) {
     this.lastEventFocus = false;
     return;
@@ -151,9 +156,8 @@ DateInput.prototype.handleButtonClick = function (event) {
 };
 
 DateInput.prototype.handleButtonKeyDown = function (event) {
-  var tgt = event.currentTarget,
-    char = event.key,
-    flag = false;
+
+  var flag = false;
 
   switch (event.keyCode) {
     case this.keyCode.RETURN:
@@ -169,7 +173,6 @@ DateInput.prototype.handleButtonKeyDown = function (event) {
     event.stopPropagation();
     event.preventDefault();
   }
-
 };
 
 DateInput.prototype.focus = function () {
@@ -180,15 +183,17 @@ DateInput.prototype.setAriaExpanded = function (flag) {
 
   if (flag) {
     this.comboboxNode.setAttribute('aria-expanded', 'true');
-    this.inputNode.setAttribute('aria-expanded', 'true');
     this.buttonNode.setAttribute('aria-expanded', 'true');
   }
   else {
     this.comboboxNode.setAttribute('aria-expanded', 'false');
-    this.inputNode.setAttribute('aria-expanded', 'false');
     this.buttonNode.setAttribute('aria-expanded', 'false');
   }
 
+};
+
+DateInput.prototype.getAriaExpanded = function () {
+  return this.comboboxNode.getAttribute('aria-expanded') === 'true';
 };
 
 DateInput.prototype.isCollapsed = function () {
@@ -212,14 +217,12 @@ DateInput.prototype.hasFocus = function () {
 };
 
 DateInput.prototype.showDownArrow = function () {
-  console.log('[showDownArrow]: ' + this.imageNode);
   if (this.imageNode) {
     this.imageNode.style.visibility = 'visible';
   }
 };
 
 DateInput.prototype.hideDownArrow = function () {
-  console.log('[hideDownArrow]: ' + this.imageNode);
   if (this.imageNode) {
     this.imageNode.style.visibility = 'hidden';
   }
