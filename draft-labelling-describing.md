@@ -1,10 +1,17 @@
-Labeling and Describing
+﻿Labeling and Describing
 
-## Introduction
+## Providing Accessible Names and Descriptions
 
-A label, also known as accessible name, is a name or a label used to identify the element for users of assistive technology. For example, a button’s label can be "OK".
+Providing elements with accessible names, and where appropriate, accessible descriptions is one of the most fundamental and important responsibilities authors have when developing accessible web experiences. While doing it well is not typically difficult, technical mistakes that have devistating impact are common. After providing some basic information about accessible names and descriptions, this section provides guidance for using the following ARIA properties:
 
-An accessible description complements the label with a description. An accessible description is always optional, and if present it does not need to be as brief as a label.
+
+### Accessible Name and Description Basics
+
+An accessible name is a short string, typically 1 to 3 words,  associated with an element that provides users of assistive technologies with a label for the element. For example, a button’s label may be "OK". The label serves two primary purposes:
+1. Convey the purpose or intent of the element.
+2. Distinguish it from other elements on the page.
+
+An accessible description is also a string provided to assistive technologies that complements the label. For example, it might describe format and length requirements for an input field. Assistive technologies present descriptions differently from labels. For instance, a screen reader may announce a description of an element last after the label, role, value (if it is an input), and any relevant states or properties.
 
 ## Labels
 
@@ -144,6 +151,7 @@ For example, the `navigation` landmark could be labeled with the purpose of the 
 
 ### Accessible name calculation
 
+Because authors have so many different ways of specifying accessible names and descriptions, browsers implement a fairly complex algorithm for calculating the name and description of an element.
 User agents follow the accessible name calculation algorithm to get the label for an element. This is defined in [https://w3c.github.io/accname/](https://w3c.github.io/accname/) and [https://w3c.github.io/html-aam/](https://w3c.github.io/html-aam/) for HTML.
 
 User agents attempt to formulate labels for elements by walking through a list of potential naming methods and use the first that generates a name. The algorithm is roughly like this:
