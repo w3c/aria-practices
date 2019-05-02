@@ -1,4 +1,4 @@
-<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><meta charset="utf-8"><meta name="generator" content="ReSpec 24.17.0"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><style>/* --- ISSUES/NOTES --- */
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US"><head><meta charset="utf-8"><meta name="generator" content="ReSpec 24.21.1"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><style>/* --- ISSUES/NOTES --- */
 .issue-label {
     text-transform: initial;
 }
@@ -458,6 +458,50 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 .hljs-strong {
   font-weight: bold;
 }
+</style><style>var {
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+}
+
+var[data-type]::before,
+var[data-type]::after {
+  position: absolute;
+  left: 50%;
+  top: -6px;
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none;
+}
+
+/* the triangle or arrow or caret or whatever */
+var[data-type]::before {
+  content: "";
+  transform: translateX(-50%);
+  border-width: 4px 6px 0 6px;
+  border-style: solid;
+  border-color: transparent;
+  border-top-color: #000;
+}
+
+/* actual text */
+var[data-type]::after {
+  content: attr(data-type);
+  transform: translateX(-50%) translateY(-100%);
+  background: #000;
+  text-align: center;
+  /* additional styling */
+  font-family: "Dank Mono", "Fira Code", monospace;
+  font-style: normal;
+  padding: 6px;
+  border-radius: 3px;
+  color: #daca88;
+}
+
+var[data-type]:hover::after,
+var[data-type]:hover::before {
+  opacity: 1;
+}
 </style><script id="initialUserConfig" type="application/json">{
   "doRDFa": "1.1",
   "includePermalinks": true,
@@ -598,9 +642,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
   "preProcess": [
     null
   ],
-  "publishDate": "2019-04-18",
-  "publishISODate": "2019-04-18T00:00:00.000Z",
-  "generatedSubtitle": "Editor's Draft 18 April 2019"
+  "publishDate": "2019-05-02",
+  "publishISODate": "2019-05-02T00:00:00.000Z",
+  "generatedSubtitle": "Editor's Draft 02 May 2019"
 }</script><meta name="description" content="This document provides readers with an understanding of how to use WAI-ARIA 1.1 [WAI-ARIA] to create accessible rich internet applications.
       It describes considerations that might not be evident to most authors from the WAI-ARIA specification alone and recommends approaches to make widgets, navigation, and behaviors accessible using WAI-ARIA roles, states, and properties.
       This document is directed primarily to Web application developers, but the guidance is also useful for user agent and assistive technology developers."><link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/W3C-ED"></head>
@@ -609,7 +653,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       
       <h2>
         W3C Editor's Draft
-        <time class="dt-published" datetime="2019-04-18">18 April 2019</time>
+        <time class="dt-published" datetime="2019-05-02">02 May 2019</time>
       </h2>
       <dl>
         <dt>This version:</dt><dd>
@@ -879,11 +923,11 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         And, in some cases, a snippet of the hidden content may also be visually persistent.
       </p>
       <section class="notoc">
-        <h4 id="example">Example<a class="self-link" aria-label="§" href="#accordion"></a></h4>
+        <h4 id="example">Example<a class="self-link" aria-label="§" href="#example"></a></h4>
         <p><a href="examples/accordion/accordion.html">Accordion Example</a>: demonstrates a form divided into three sections using an accordion to show one section at a time. </p>
       </section>
       <section class="notoc">
-        <h4 id="keyboard-interaction">Keyboard Interaction<a class="self-link" aria-label="§" href="#accordion"></a></h4>
+        <h4 id="keyboard-interaction">Keyboard Interaction<a class="self-link" aria-label="§" href="#keyboard-interaction"></a></h4>
         <ul>
           <li>
             <kbd>Enter</kbd> or <kbd>Space</kbd>:
@@ -917,7 +961,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </ul>
       </section>
       <section class="notoc">
-        <h4 id="wai-aria-roles-states-and-properties"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties:<a class="self-link" aria-label="§" href="#accordion"></a></h4>
+        <h4 id="wai-aria-roles-states-and-properties"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties:<a class="self-link" aria-label="§" href="#wai-aria-roles-states-and-properties"></a></h4>
         <ul>
           <li>
             The title of each accordion header is contained in an element with role <a href="https://w3c.github.io/aria/#button" class="role-reference">button</a>.
@@ -984,17 +1028,17 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </p>
 
       <section class="notoc">
-        <h4 id="example-0">Example<a class="self-link" aria-label="§" href="#alert"></a></h4>
+        <h4 id="example-0">Example<a class="self-link" aria-label="§" href="#example-0"></a></h4>
         <p><a href="examples/alert/alert.html">Alert Example</a></p>
       </section>
 
       <section class="notoc">
-        <h4 id="keyboard-interaction-0">Keyboard Interaction<a class="self-link" aria-label="§" href="#alert"></a></h4>
+        <h4 id="keyboard-interaction-0">Keyboard Interaction<a class="self-link" aria-label="§" href="#keyboard-interaction-0"></a></h4>
         <p>An alert (<abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> live region) does not require any keyboard interaction.</p>
       </section>
 
       <section class="notoc">
-        <h4 id="wai-aria-roles-states-and-properties-0"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<a class="self-link" aria-label="§" href="#alert"></a></h4>
+        <h4 id="wai-aria-roles-states-and-properties-0"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<a class="self-link" aria-label="§" href="#wai-aria-roles-states-and-properties-0"></a></h4>
         <p>The widget has a role of <a class="role-reference" href="https://w3c.github.io/aria/#alert">alert</a>.</p>
       </section>
     </section>
@@ -1010,16 +1054,16 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </p>
 
       <section class="notoc">
-        <h4 id="example-1">Example<a class="self-link" aria-label="§" href="#alertdialog"></a></h4>
+        <h4 id="example-1">Example<a class="self-link" aria-label="§" href="#example-1"></a></h4>
         <p><a href="examples/dialog-modal/alertdialog.html">Alert Dialog Example</a>: A confirmation prompt that demonstrates an alert dialog.</p>
       </section>
 
       <section class="notoc">
-        <h4 id="keyboard-interaction-1">Keyboard Interaction<a class="self-link" aria-label="§" href="#alertdialog"></a></h4>
+        <h4 id="keyboard-interaction-1">Keyboard Interaction<a class="self-link" aria-label="§" href="#keyboard-interaction-1"></a></h4>
         <p>See the keyboard interaction section for the <a href="#dialog_modal">modal dialog pattern</a>.</p>
       </section>
       <section class="notoc">
-          <h4 id="wai-aria-roles-states-and-properties-1"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<a class="self-link" aria-label="§" href="#alertdialog"></a></h4>
+          <h4 id="wai-aria-roles-states-and-properties-1"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<a class="self-link" aria-label="§" href="#wai-aria-roles-states-and-properties-1"></a></h4>
           <ul>
               <li>
                   The element that contains all elements of the dialog, including the alert
@@ -1060,17 +1104,17 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </p>
 
       <section class="notoc">
-        <h4 id="example-2">Example<a class="self-link" aria-label="§" href="#breadcrumb"></a></h4>
+        <h4 id="example-2">Example<a class="self-link" aria-label="§" href="#example-2"></a></h4>
         <p><a href="examples/breadcrumb/index.html">Breadcrumb design pattern example</a></p>
       </section>
 
       <section class="notoc">
-        <h4 id="keyboard-interaction-2">Keyboard Interaction<a class="self-link" aria-label="§" href="#breadcrumb"></a></h4>
+        <h4 id="keyboard-interaction-2">Keyboard Interaction<a class="self-link" aria-label="§" href="#keyboard-interaction-2"></a></h4>
         <p>Not applicable.</p>
       </section>
 
       <section class="notoc">
-        <h4 id="wai-aria-roles-states-and-properties-2"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<a class="self-link" aria-label="§" href="#breadcrumb"></a></h4>
+        <h4 id="wai-aria-roles-states-and-properties-2"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<a class="self-link" aria-label="§" href="#wai-aria-roles-states-and-properties-2"></a></h4>
         <ul>
           <li>Breadcrumb trail is contained within a navigation landmark region.</li>
           <li>The landmark region is labeled via <a href="https://w3c.github.io/aria/#aria-label" class="property-reference">aria-label</a> or <a href="https://w3c.github.io/aria/#aria-labelledby" class="property-reference">aria-labelledby</a>.</li>
@@ -1109,12 +1153,12 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </p></div>
 
       <section class="notoc">
-        <h4 id="examples">Examples<a class="self-link" aria-label="§" href="#button"></a></h4>
+        <h4 id="examples">Examples<a class="self-link" aria-label="§" href="#examples"></a></h4>
         <p><a href="examples/button/button.html">Button Examples</a>: Examples of clickable HTML <code>div</code> and <code>span</code> elements made into accessible command and toggle buttons.</p>
       </section>
 
       <section class="notoc">
-        <h4 id="keyboard-interaction-3">Keyboard Interaction<a class="self-link" aria-label="§" href="#button"></a></h4>
+        <h4 id="keyboard-interaction-3">Keyboard Interaction<a class="self-link" aria-label="§" href="#keyboard-interaction-3"></a></h4>
         <p>When the button has focus:</p>
         <ul>
           <li>
@@ -1156,7 +1200,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </section>
 
       <section class="notoc">
-        <h4 id="wai-aria-roles-states-and-properties-3"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<a class="self-link" aria-label="§" href="#button"></a></h4>
+        <h4 id="wai-aria-roles-states-and-properties-3"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<a class="self-link" aria-label="§" href="#wai-aria-roles-states-and-properties-3"></a></h4>
         <ul>
           <li>The button has role of <a class="role-reference" href="https://w3c.github.io/aria/#button">button</a>.</li>
           <li>
@@ -1206,14 +1250,14 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </ul>
 
       <section class="notoc">
-        <h4 id="example-3">Example<a class="self-link" aria-label="§" href="#carousel"></a></h4>
+        <h4 id="example-3">Example<a class="self-link" aria-label="§" href="#example-3"></a></h4>
         <p>
           <a href="examples/carousel/carousel-1/carousel-1.html">Auto-Rotating Image Carousel Example:</a> A basic image carousel that demonstrates the accessibility features necessary for carousels that rotate automatically on page load. 
         </p>
       </section>
       
       <section class="notoc">
-        <h4 id="terms">Terms<a class="self-link" aria-label="§" href="#carousel"></a></h4>
+        <h4 id="terms">Terms<a class="self-link" aria-label="§" href="#terms"></a></h4>
         <p>The following terms are used to describe components of a carousel.</p>
         <dl>
           <dt>Slide</dt>
@@ -1230,7 +1274,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </section>
 
       <section class="notoc">
-        <h4 id="keyboard-interaction-4">Keyboard Interaction<a class="self-link" aria-label="§" href="#carousel"></a></h4>
+        <h4 id="keyboard-interaction-4">Keyboard Interaction<a class="self-link" aria-label="§" href="#keyboard-interaction-4"></a></h4>
         <ul>
           <li>
             If the carousel has an auto-rotate feature, automatic slide rotation stops when any element in the carousel receives keyboard focus.
@@ -1247,14 +1291,14 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </section>
 
       <section class="notoc">
-        <h4 id="wai-aria-roles-states-and-properties-4"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<a class="self-link" aria-label="§" href="#carousel"></a></h4>
+        <h4 id="wai-aria-roles-states-and-properties-4"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<a class="self-link" aria-label="§" href="#wai-aria-roles-states-and-properties-4"></a></h4>
         <p>This section describes the element composition for three styles of carousels:</p>
         <ul>
           <li>Basic: Has rotation, previous slide, and next slide controls but no slide picker controls.</li>
           <li>Tabbed: Has basic controls plus a single tab stop for slide picker controls implemented using the <a href="#tabpanel">tabs pattern.</a></li>
           <li>Grouped: Has basic controls plus a series of tab stops in a group of slide picker controls where each control implements the <a href="#button">button pattern.</a> Because each slide selector button adds an element to the page tab sequence, this style is the least friendly for keyboard users.</li>
         </ul>
-        <h5 id="basic-carousel-elements">Basic carousel elements<a class="self-link" aria-label="§" href="#carousel"></a></h5>
+        <h5 id="basic-carousel-elements">Basic carousel elements<a class="self-link" aria-label="§" href="#basic-carousel-elements"></a></h5>
         <ul>
           <li>
             A carousel container element that encompasses all components of the carousel,  including both carousel controls and slides,
@@ -1308,7 +1352,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             </li></ul>
           </li>
         </ul>
-        <h5 id="tabbed-carousel-elements">Tabbed Carousel Elements<a class="self-link" aria-label="§" href="#carousel"></a></h5>
+        <h5 id="tabbed-carousel-elements">Tabbed Carousel Elements<a class="self-link" aria-label="§" href="#tabbed-carousel-elements"></a></h5>
         <p>The structure of a tabbed carousel is the same as a basic carousel except that:</p>
         <ul>
           <li>
@@ -1324,7 +1368,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             </ul>
           </li>
         </ul>
-        <h5 id="grouped-carousel-elements">Grouped Carousel Elements<a class="self-link" aria-label="§" href="#carousel"></a></h5>
+        <h5 id="grouped-carousel-elements">Grouped Carousel Elements<a class="self-link" aria-label="§" href="#grouped-carousel-elements"></a></h5>
         <p>A grouped carousel has the same structure as a basic carousel, but it also includes slide picker controls where:</p>
         <ul>
           <li>The set of slide picker controls is contained in an element with role <a href="https://w3c.github.io/aria/#group" class="role-reference">group</a>.</li>
@@ -1369,7 +1413,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </ul>
 
       <section class="notoc">
-        <h4 id="examples-0">Examples<a class="self-link" aria-label="§" href="#checkbox"></a></h4>
+        <h4 id="examples-0">Examples<a class="self-link" aria-label="§" href="#examples-0"></a></h4>
         <ul>
           <li>
             <a href="examples/checkbox/checkbox-1/checkbox-1.html">Simple Two-State Checkbox Example</a>: Demonstrates a simple 2-state checkbox.
@@ -1382,12 +1426,12 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </section>
 
       <section class="notoc">
-        <h4 id="keyboard-interaction-5">Keyboard Interaction<a class="self-link" aria-label="§" href="#checkbox"></a></h4>
+        <h4 id="keyboard-interaction-5">Keyboard Interaction<a class="self-link" aria-label="§" href="#keyboard-interaction-5"></a></h4>
         <p>When the checkbox has focus, pressing the <kbd>Space</kbd> key changes the state of the checkbox.</p>
       </section>
 
       <section class="notoc">
-        <h4 id="wai-aria-roles-states-and-properties-5"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<a class="self-link" aria-label="§" href="#checkbox"></a></h4>
+        <h4 id="wai-aria-roles-states-and-properties-5"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<a class="self-link" aria-label="§" href="#wai-aria-roles-states-and-properties-5"></a></h4>
         <ul>
           <li>The checkbox has role <a href="https://w3c.github.io/aria/#checkbox" class="role-reference">checkbox</a>.</li>
           <li>
@@ -1484,7 +1528,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </p></div>
 
       <section class="notoc">
-        <h4 id="examples-1">Examples<a class="self-link" aria-label="§" href="#combobox"></a></h4>
+        <h4 id="examples-1">Examples<a class="self-link" aria-label="§" href="#examples-1"></a></h4>
         <ul>
           <li><a href="examples/combobox/aria1.1pattern/listbox-combo.html">Examples of ARIA 1.1 Combobox with Listbox Popup</a>: Comboboxes that demonstrate the various forms of autocomplete behavior using a listbox popup and use the ARIA 1.1 implementation pattern.</li>
           <li><a href="examples/combobox/aria1.1pattern/grid-combo.html">Example of ARIA 1.1 Combobox with Grid Popup</a>: A combobox that presents suggestions in a grid, enabling users to navigate descriptive information about each suggestion.</li>
@@ -1495,12 +1539,12 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </section>
 
       <section class="notoc">
-        <h4 id="keyboard-interaction-6">Keyboard Interaction<a class="self-link" aria-label="§" href="#combobox"></a></h4>
+        <h4 id="keyboard-interaction-6">Keyboard Interaction<a class="self-link" aria-label="§" href="#keyboard-interaction-6"></a></h4>
         <ul>
           <li><kbd>Tab</kbd>: The textbox is in the page <kbd>Tab</kbd> sequence.</li>
           <li>Note: The popup indicator icon or button (if present), the popup, and the popup descendants are excluded from the page <kbd>Tab</kbd> sequence. </li>
         </ul>
-        <h5 id="textbox-keyboard-interaction">Textbox Keyboard Interaction<a class="self-link" aria-label="§" href="#combobox"></a></h5>
+        <h5 id="textbox-keyboard-interaction">Textbox Keyboard Interaction<a class="self-link" aria-label="§" href="#textbox-keyboard-interaction"></a></h5>
         <p>When focus is in the textbox:</p>
         <ul>
           <li><kbd>Down Arrow</kbd>: If the popup is available, moves focus into the popup:
@@ -1532,7 +1576,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <li>The most robust approach for providing text editing functions is to rely on browsers, which  supply them for HTML inputs with type text and for elements with the <code>contenteditable</code> HTML attribute.</li>
           <li><strong>IMPORTANT:</strong> Be sure that JavaScript does not interfere with browser-provided text editing functions by capturing key events for the keys used to perform them.</li>
         </ol>
-        <h5 id="listbox-popup-keyboard-interaction">Listbox Popup Keyboard Interaction<a class="self-link" aria-label="§" href="#combobox"></a></h5>
+        <h5 id="listbox-popup-keyboard-interaction">Listbox Popup Keyboard Interaction<a class="self-link" aria-label="§" href="#listbox-popup-keyboard-interaction"></a></h5>
         <p>When focus is in a listbox popup:</p>
         <ul>
           <li><kbd>Enter</kbd>: Accepts the focused option in the listbox by closing the popup and placing the accepted value in the textbox with the input cursor at the end of the value.</li>
@@ -1557,7 +1601,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           <li>DOM Focus is maintained on the combobox textbox and the assistive technology focus is moved within the listbox using <code>aria-activedescendant</code> as described in <a href="#kbd_focus_activedescendant">Managing Focus in Composites Using aria-activedescendant.</a></li>
           <li>Selection follows focus in the listbox; the listbox allows only one suggested value to be selected at a time for the textbox value.</li>
         </ol></div>
-        <h5 id="grid-popup-keyboard-interaction">Grid Popup Keyboard Interaction<a class="self-link" aria-label="§" href="#combobox"></a></h5>
+        <h5 id="grid-popup-keyboard-interaction">Grid Popup Keyboard Interaction<a class="self-link" aria-label="§" href="#grid-popup-keyboard-interaction"></a></h5>
         <p>
           In a grid popup, each suggested value may be represented by either a single cell or an entire row.
           See notes below for how this aspect of grid design effects the keyboard interaction design and the way that selection moves in response to focus movements.
@@ -1631,7 +1675,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             </ol>
           </li>
         </ol></div>
-        <h5 id="tree-popup-keyboard-interaction">Tree Popup Keyboard Interaction<a class="self-link" aria-label="§" href="#combobox"></a></h5>
+        <h5 id="tree-popup-keyboard-interaction">Tree Popup Keyboard Interaction<a class="self-link" aria-label="§" href="#tree-popup-keyboard-interaction"></a></h5>
         <p>
           In some implementations of tree popups, some or all parent nodes may serve as suggestion category labels so may not be selectable values.
           See notes below for how this aspect of the design effects the way selection moves in response to focus movements.
@@ -1679,7 +1723,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             </ol>
           </li>
         </ol></div>
-        <h5 id="dialog-popup-keyboard-interaction">Dialog Popup Keyboard Interaction<a class="self-link" aria-label="§" href="#combobox"></a></h5>
+        <h5 id="dialog-popup-keyboard-interaction">Dialog Popup Keyboard Interaction<a class="self-link" aria-label="§" href="#dialog-popup-keyboard-interaction"></a></h5>
         <p>When focus is in a dialog popup:</p>
         <ul>
           <li>There are two ways to close the popup and return focus to the textbox:
@@ -1699,7 +1743,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </section>
 
       <section class="notoc">
-        <h4 id="wai-aria-roles-states-and-properties-6"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<a class="self-link" aria-label="§" href="#combobox"></a></h4>
+        <h4 id="wai-aria-roles-states-and-properties-6"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<a class="self-link" aria-label="§" href="#wai-aria-roles-states-and-properties-6"></a></h4>
         <p>
           The role, state, and property guidance where the ARIA 1.1 and ARIA 1.0 patterns differ is listed first.
           The subsequent guidance applies to both patterns.
@@ -1791,12 +1835,12 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </p>
 
       <section class="notoc">
-        <h4 id="example-4">Example<a class="self-link" aria-label="§" href="#dialog_modal"></a></h4>
+        <h4 id="example-4">Example<a class="self-link" aria-label="§" href="#example-4"></a></h4>
         <p><a href="examples/dialog-modal/dialog.html">Modal Dialog Example</a></p>
       </section>
 
       <section class="notoc">
-        <h4 id="keyboard-interaction-7">Keyboard Interaction<a class="self-link" aria-label="§" href="#dialog_modal"></a></h4>
+        <h4 id="keyboard-interaction-7">Keyboard Interaction<a class="self-link" aria-label="§" href="#keyboard-interaction-7"></a></h4>
         <p>In the following description, the term <q>tabbable element</q> refers to any element with a <code>tabindex</code> value of zero or greater. Note that values greater than 0 are strongly discouraged.</p>
         <ul>
           <li>When a dialog opens, focus moves to an element inside the dialog. See notes below regarding initial focus placement.</li>
@@ -1908,7 +1952,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </p>
 
       <section class="notoc">
-        <h4 id="examples-2">Examples<a class="self-link" aria-label="§" href="#disclosure"></a></h4>
+        <h4 id="examples-2">Examples<a class="self-link" aria-label="§" href="#examples-2"></a></h4>
         <ul>
           <li><a href="examples/disclosure/disclosure-img-long-description.html">Disclosure (Show/Hide) of Image Description</a></li>
           <li><a href="examples/disclosure/disclosure-faq.html">Disclosure (Show/Hide) of Answers to Frequently Asked Questions</a></li>
@@ -1916,7 +1960,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </section>
 
       <section class="notoc">
-        <h4 id="keyboard-interaction-8">Keyboard Interaction<a class="self-link" aria-label="§" href="#disclosure"></a></h4>
+        <h4 id="keyboard-interaction-8">Keyboard Interaction<a class="self-link" aria-label="§" href="#keyboard-interaction-8"></a></h4>
         <p>When the disclosure control has focus:</p>
         <ul>
           <li><kbd>Enter</kbd>: activates the disclosure control and toggles the visibility of the disclosure content.</li>
@@ -1925,7 +1969,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </section>
 
       <section class="notoc">
-        <h4 id="wai-aria-roles-states-and-properties-8"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<a class="self-link" aria-label="§" href="#disclosure"></a></h4>
+        <h4 id="wai-aria-roles-states-and-properties-8"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<a class="self-link" aria-label="§" href="#wai-aria-roles-states-and-properties-8"></a></h4>
         <ul>
           <li>The element that shows and hides the content has role <a href="https://w3c.github.io/aria/#button" class="role-reference">button</a>.</li>
           <li>
@@ -1993,14 +2037,14 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </p>
 
       <section class="notoc">
-        <h4 id="example-5">Example<a class="self-link" aria-label="§" href="#feed"></a></h4>
+        <h4 id="example-5">Example<a class="self-link" aria-label="§" href="#example-5"></a></h4>
         <p>
         <a href="examples/feed/feed.html">Example Implementation of Feed Pattern</a>
         </p>
       </section>
 
       <section class="notoc">
-        <h4 id="keyboard-interaction-9">Keyboard Interaction<a class="self-link" aria-label="§" href="#feed"></a></h4>
+        <h4 id="keyboard-interaction-9">Keyboard Interaction<a class="self-link" aria-label="§" href="#keyboard-interaction-9"></a></h4>
         <p>
           The feed pattern is not based on a desktop GUI widget so the <code>feed</code> role is not associated with any well-established keyboard conventions.
           Supporting the following, or a similar,  interface is recommended.
@@ -2033,7 +2077,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </section>
 
       <section class="notoc">
-        <h4 id="wai-aria-roles-states-and-properties-9"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<a class="self-link" aria-label="§" href="#feed"></a></h4>
+        <h4 id="wai-aria-roles-states-and-properties-9"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<a class="self-link" aria-label="§" href="#wai-aria-roles-states-and-properties-9"></a></h4>
         <ul>
           <li>The element that contains the set of feed articles has role <a href="https://w3c.github.io/aria/#feed" class="role-reference">feed</a>.</li>
           <li>
@@ -2111,7 +2155,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </p>
 
       <section class="notoc">
-        <h4 id="examples-3">Examples<a class="self-link" aria-label="§" href="#grid"></a></h4>
+        <h4 id="examples-3">Examples<a class="self-link" aria-label="§" href="#examples-3"></a></h4>
         <ul>
           <li><a href="examples/grid/LayoutGrids.html">Layout Grid Examples</a>: Three example implementations of grids that are used to lay out widgets, including a collection of navigation links, a message recipients list, and a set of search results.</li>
           <li><a href="examples/grid/dataGrids.html">Data Grid Examples</a>: Three example implementations of grid that include features relevant to presenting tabular information, such as content editing, sort, and column hiding.</li>
@@ -2135,7 +2179,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           So, screen reader users may unknowingly overlook elements contained in a grid that are either not focusable or not used to label a column or row.
         </p>
         <section class="notoc">
-          <h5 id="keyboard-interaction-for-data-grids">Keyboard Interaction For Data Grids<a class="self-link" aria-label="§" href="#dataGrid"></a></h5>
+          <h5 id="keyboard-interaction-for-data-grids">Keyboard Interaction For Data Grids<a class="self-link" aria-label="§" href="#keyboard-interaction-for-data-grids"></a></h5>
           <p>
             The following keys provide grid navigation by moving focus among cells of the grid.
             Implementations of grid make these key commands available when an element in the grid has received focus, e.g., after a user has moved focus to the grid with <kbd>Tab</kbd>.
@@ -2203,7 +2247,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         <p> Because arrow keys are used to move focus inside of a <code>grid</code>, a <code>grid</code> is both easier to build and use if the components it contains do not require the arrow keys to operate. If a cell contains an element like a <a href="#Listbox">listbox</a>, then an extra key command to focus and activate the listbox is needed as well as a command for restoring the grid navigation functionality. Approaches to supporting this need are described in the section on <a href="#gridNav_inside">Editing and Navigating Inside a Cell</a>. </p>
 
         <section class="notoc">
-          <h5 id="keyboard-interaction-for-layout-grids">Keyboard Interaction For Layout Grids<a class="self-link" aria-label="§" href="#layoutGrid"></a></h5>
+          <h5 id="keyboard-interaction-for-layout-grids">Keyboard Interaction For Layout Grids<a class="self-link" aria-label="§" href="#keyboard-interaction-for-layout-grids"></a></h5>
           <p>
             The following keys provide grid navigation by moving focus among cells of the grid.
             Implementations of grid make these key commands available when an element in the grid has received focus, e.g., after a user has moved focus to the grid with <kbd>Tab</kbd>.
@@ -2439,12 +2483,12 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </p></div>
 
       <section class="notoc">
-        <h4 id="examples-4">Examples<a class="self-link" aria-label="§" href="#link"></a></h4>
+        <h4 id="examples-4">Examples<a class="self-link" aria-label="§" href="#examples-4"></a></h4>
         <p><a href="examples/link/link.html">Link Examples</a>: Link widgets constructed from HTML <code>span</code> and <code>img</code> elements.</p>
       </section>
 
       <section class="notoc">
-        <h4 id="keyboard-interaction-10">Keyboard Interaction<a class="self-link" aria-label="§" href="#link"></a></h4>
+        <h4 id="keyboard-interaction-10">Keyboard Interaction<a class="self-link" aria-label="§" href="#keyboard-interaction-10"></a></h4>
         <ul>
           <li><kbd>Enter</kbd>: Executes the link and moves focus to the link target.</li>
           <li><kbd>Shift + F10</kbd> (Optional): Opens a context menu for the link.</li>
@@ -2452,7 +2496,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </section>
 
       <section class="notoc">
-        <h4 id="wai-aria-roles-states-and-properties-11"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<a class="self-link" aria-label="§" href="#link"></a></h4>
+        <h4 id="wai-aria-roles-states-and-properties-11"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<a class="self-link" aria-label="§" href="#wai-aria-roles-states-and-properties-11"></a></h4>
         <p>
             The element containing the link text or graphic has role of <a href="https://w3c.github.io/aria/#link" class="role-reference">link</a>.
         </p>
@@ -2489,7 +2533,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </p>
 
       <section class="notoc">
-        <h4 id="examples-5">Examples<a class="self-link" aria-label="§" href="#Listbox"></a></h4>
+        <h4 id="examples-5">Examples<a class="self-link" aria-label="§" href="#examples-5"></a></h4>
         <ul>
           <li><a href="examples/listbox/listbox-scrollable.html">Scrollable Listbox Example</a>: Single-select listbox that scrolls to reveal more options, similar to HTML <code>select</code> with <code>size</code> attribute greater than one.</li>
           <li><a href="examples/listbox/listbox-collapsible.html">Collapsible Dropdown Listbox Example</a>: Single-select collapsible listbox that expands when activated, similar to HTML <code>select</code> with the attribute <code>size="1"</code>.</li>
@@ -2618,7 +2662,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <p>A common convention for indicating that a menu item launches a dialog box is to append "…" (ellipsis) to the menu item label, e.g., "Save as …".</p>
 
       <section class="notoc">
-        <h4 id="examples-6">Examples<a class="self-link" aria-label="§" href="#menu"></a></h4>
+        <h4 id="examples-6">Examples<a class="self-link" aria-label="§" href="#examples-6"></a></h4>
         <ul>
           <li><a href="examples/menubar/menubar-1/menubar-1.html">Navigation Menubar Example</a>: Demonstrates a menubar that provides site navigation.</li>
           <li><a href="examples/menubar/menubar-2/menubar-2.html">Editor Menubar Example</a>: Demonstrates menu radios and menu checkboxes in submenus of a menubar that provides text formatting commands for a text field.</li>
@@ -2626,7 +2670,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </section>
 
       <section class="notoc">
-        <h4 id="keyboard-interaction-12">Keyboard Interaction<a class="self-link" aria-label="§" href="#menu"></a></h4>
+        <h4 id="keyboard-interaction-12">Keyboard Interaction<a class="self-link" aria-label="§" href="#keyboard-interaction-12"></a></h4>
         <p>
           The following description of keyboard behaviors assumes:</p>
           <ol>
@@ -2737,7 +2781,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </section>
 
       <section class="notoc">
-        <h4 id="wai-aria-roles-states-and-properties-13"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<a class="self-link" aria-label="§" href="#menu"></a></h4>
+        <h4 id="wai-aria-roles-states-and-properties-13"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<a class="self-link" aria-label="§" href="#wai-aria-roles-states-and-properties-13"></a></h4>
         <ul>
           <li>A menu is a container of items that represent choices. The element serving as the menu has a role of either <a href="https://w3c.github.io/aria/#menu" class="role-reference">menu</a> or   <a href="https://w3c.github.io/aria/#menubar" class="role-reference">menubar</a>. </li>
           <li>The items contained in a menu are child elements of the containing menu or menubar and have any of the following roles:
@@ -2798,7 +2842,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       <p>A menu button is a <a href="#button">button</a> that opens a <a href="#menu">menu</a>. It is often styled as a typical push button with a downward pointing arrow or triangle to hint that activating the button will display a menu.</p>
 
       <section class="notoc">
-        <h4 id="examples-7">Examples<a class="self-link" aria-label="§" href="#menubutton"></a></h4>
+        <h4 id="examples-7">Examples<a class="self-link" aria-label="§" href="#examples-7"></a></h4>
         <ul>
           <li><a href="examples/menu-button/menu-button-links.html">Navigation Menu Button</a>: A menu button made from an HTML <code>a</code> element that opens a menu of items that behave as links.</li>
           <li><a href="examples/menu-button/menu-button-actions.html">Action Menu Button Example Using element.focus()</a>: A menu button made from an HTML <code>button</code> element that opens a menu of actions or commands where focus in the menu is managed using <code>element.focus()</code>.</li>
@@ -2807,7 +2851,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </section>
 
       <section class="notoc">
-        <h4 id="keyboard-interaction-13">Keyboard Interaction<a class="self-link" aria-label="§" href="#menubutton"></a></h4>
+        <h4 id="keyboard-interaction-13">Keyboard Interaction<a class="self-link" aria-label="§" href="#keyboard-interaction-13"></a></h4>
         <ul>
           <li>With focus on the button:
             <ul>
@@ -2822,7 +2866,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </section>
 
       <section class="notoc">
-        <h4 id="wai-aria-roles-states-and-properties-14"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<a class="self-link" aria-label="§" href="#menubutton"></a></h4>
+        <h4 id="wai-aria-roles-states-and-properties-14"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<a class="self-link" aria-label="§" href="#wai-aria-roles-states-and-properties-14"></a></h4>
         <ul>
           <li>The element that opens the menu has role <a href="https://w3c.github.io/aria/#button" class="role-reference">button</a>.</li>
           <li>The element with role <code>button</code> has <a href="https://w3c.github.io/aria/#aria-haspopup" class="property-reference">aria-haspopup</a> set to either <code>menu</code> or <code>true</code>.</li>
@@ -2857,7 +2901,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </p>
 
       <section class="notoc">
-        <h4 id="examples-8">Examples<a class="self-link" aria-label="§" href="#radiobutton"></a></h4>
+        <h4 id="examples-8">Examples<a class="self-link" aria-label="§" href="#examples-8"></a></h4>
         <ul>
           <li><a href="examples/radio/radio-1/radio-1.html">Radio Group Example Using Roving tabindex</a></li>
           <li><a href="examples/radio/radio-2/radio-2.html">Radio Group Example Using aria-activedescendant</a></li>
@@ -2865,9 +2909,9 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </section>
 
       <section class="notoc">
-        <h4 id="keyboard-interaction-14">Keyboard Interaction<a class="self-link" aria-label="§" href="#radiobutton"></a></h4>
+        <h4 id="keyboard-interaction-14">Keyboard Interaction<a class="self-link" aria-label="§" href="#keyboard-interaction-14"></a></h4>
         <section class="notoc">
-          <h5 id="for-radio-groups-not-contained-in-a-toolbar">For Radio Groups Not Contained in a Toolbar<a class="self-link" aria-label="§" href="#radiobutton"></a></h5>
+          <h5 id="for-radio-groups-not-contained-in-a-toolbar">For Radio Groups Not Contained in a Toolbar<a class="self-link" aria-label="§" href="#for-radio-groups-not-contained-in-a-toolbar"></a></h5>
           <p>
             This section describes the keyboard interaction implemented for most radio groups.
             For the special case of a radio group nested inside a <a href="#toolbar">toolbar</a>, use the keyboard interaction described in the following section.
@@ -2903,7 +2947,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
           </p></div>
         </section>
         <section class="notoc">
-          <h5 id="for-radio-group-contained-in-a-toolbar">For Radio Group Contained in a Toolbar<a class="self-link" aria-label="§" href="#radiobutton"></a></h5>
+          <h5 id="for-radio-group-contained-in-a-toolbar">For Radio Group Contained in a Toolbar<a class="self-link" aria-label="§" href="#for-radio-group-contained-in-a-toolbar"></a></h5>
           <p>
             Because arrow keys are used to navigate among elements of a toolbar and the <kbd>Tab</kbd> key moves focus in and out of a toolbar, when a radio group is nested inside a toolbar, the keyboard interaction of the radio group is slightly different from that of a radio group that is not inside of a toolbar.
             For instance, users need to be able to navigate among all toolbar elements, including the radio buttons, without changing which radio button is checked.
@@ -2944,7 +2988,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </section>
 
       <section class="notoc">
-        <h4 id="wai-aria-roles-states-and-properties-15"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<a class="self-link" aria-label="§" href="#radiobutton"></a></h4>
+        <h4 id="wai-aria-roles-states-and-properties-15"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<a class="self-link" aria-label="§" href="#wai-aria-roles-states-and-properties-15"></a></h4>
         <ul>
           <li>
             The radio buttons are contained in or owned by an element with role
@@ -2997,7 +3041,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </p>
 
       <section class="notoc">
-        <h4 id="examples-9">Examples<a class="self-link" aria-label="§" href="#slider"></a></h4>
+        <h4 id="examples-9">Examples<a class="self-link" aria-label="§" href="#examples-9"></a></h4>
         <ul>
           <li><a href="examples/slider/slider-1.html">Horizontal Slider Examples</a>: Demonstrates using three horizontally aligned sliders to make a color picker.</li>
           <li><a href="examples/slider/slider-2.html">Slider Examples with aria-orientation and aria-valuetext</a>: Three thermostat control sliders that demonstrate using aria-orientation and aria-valuetext.</li>
@@ -3060,7 +3104,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </p>
 
       <section class="notoc">
-        <h4 id="example-6">Example<a class="self-link" aria-label="§" href="#slidertwothumb"></a></h4>
+        <h4 id="example-6">Example<a class="self-link" aria-label="§" href="#example-6"></a></h4>
         <p><a href="examples/slider/multithumb-slider.html">Multi-Thumb Slider Examples</a>: Demonstrates two-thumb sliders for picking price ranges for an airline flight and hotel reservation.</p>
       </section>
 
@@ -3076,7 +3120,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </section>
 
       <section class="notoc">
-        <h4 id="wai-aria-roles-states-and-properties-17"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<a class="self-link" aria-label="§" href="#slidertwothumb"></a></h4>
+        <h4 id="wai-aria-roles-states-and-properties-17"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<a class="self-link" aria-label="§" href="#wai-aria-roles-states-and-properties-17"></a></h4>
         <ul>
           <li>Each element serving as a focusable slider thumb has role <a class="role-reference" href="https://w3c.github.io/aria/#slider">slider</a>.</li>
           <li>Each slider element has the <a class="property-reference" href="https://w3c.github.io/aria/#aria-valuenow">aria-valuenow</a> property set to a decimal value representing the current value of the slider.</li>
@@ -3119,7 +3163,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </p>
 
       <section class="notoc">
-        <h4 id="example-7">Example<a class="self-link" aria-label="§" href="#spinbutton"></a></h4>
+        <h4 id="example-7">Example<a class="self-link" aria-label="§" href="#example-7"></a></h4>
         <p>
           Work to develop a spinbutton example is tracked by
           <a href="https://github.com/w3c/aria-practices/issues/125">issue 125.</a>
@@ -3127,7 +3171,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </section>
 
       <section class="notoc">
-        <h4 id="keyboard-interaction-17">Keyboard Interaction<a class="self-link" aria-label="§" href="#spinbutton"></a></h4>
+        <h4 id="keyboard-interaction-17">Keyboard Interaction<a class="self-link" aria-label="§" href="#keyboard-interaction-17"></a></h4>
         <ul>
           <li><kbd>Up Arrow</kbd>: Increases the value.</li>
           <li><kbd>Down Arrow</kbd>: Decreases the value.</li>
@@ -3160,7 +3204,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </section>
 
       <section class="notoc">
-        <h4 id="wai-aria-roles-states-and-properties-18"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<a class="self-link" aria-label="§" href="#spinbutton"></a></h4>
+        <h4 id="wai-aria-roles-states-and-properties-18"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<a class="self-link" aria-label="§" href="#wai-aria-roles-states-and-properties-18"></a></h4>
         <ul>
           <li>
             The focusable element serving as the spinbutton has role <a class="role-reference" href="https://w3c.github.io/aria/#spinbutton">spinbutton</a>.
@@ -3209,11 +3253,11 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         It is thus advisable to test implementations thoroughly with each browser and assistive technology combination that could be used by the target audience.
       </p></div>
       <section class="notoc">
-        <h4 id="examples-10">Examples<a class="self-link" aria-label="§" href="#table"></a></h4>
+        <h4 id="examples-10">Examples<a class="self-link" aria-label="§" href="#examples-10"></a></h4>
         <p><a href="examples/table/table.html">Table Example</a>: ARIA table made using HTML <code>div</code> and <code>span</code> elements.</p>
       </section>
       <section class="notoc">
-        <h4 id="keyboard-interaction-18">Keyboard Interaction<a class="self-link" aria-label="§" href="#table"></a></h4>
+        <h4 id="keyboard-interaction-18">Keyboard Interaction<a class="self-link" aria-label="§" href="#keyboard-interaction-18"></a></h4>
         <p>Not applicable.</p>
       </section>
       <section id="table_roles_states_props" class="notoc">
@@ -3274,7 +3318,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </p>
 
       <section class="notoc">
-        <h4 id="examples-11">Examples<a class="self-link" aria-label="§" href="#tabpanel"></a></h4>
+        <h4 id="examples-11">Examples<a class="self-link" aria-label="§" href="#examples-11"></a></h4>
         <ul>
           <li><a href="examples/tabs/tabs-1/tabs.html">Tabs With Automatic Activation</a>: A tabs widget where tabs are automatically activated and their panel is displayed when they receive focus.</li>
           <li><a href="examples/tabs/tabs-2/tabs.html">Tabs With Manual Activation</a>: A tabs widget where users activate a tab and display its panel by pressing <kbd>Space</kbd> or <kbd>Enter</kbd>.</li>
@@ -3282,7 +3326,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </section>
 
       <section class="notoc">
-        <h4 id="keyboard-interaction-19">Keyboard Interaction<a class="self-link" aria-label="§" href="#tabpanel"></a></h4>
+        <h4 id="keyboard-interaction-19">Keyboard Interaction<a class="self-link" aria-label="§" href="#keyboard-interaction-19"></a></h4>
         <p>For the tab list:</p>
         <ul>
           <li>
@@ -3339,7 +3383,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </ol></div>
       </section>
       <section class="notoc">
-        <h4 id="wai-aria-roles-states-and-properties-20"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<a class="self-link" aria-label="§" href="#tabpanel"></a></h4>
+        <h4 id="wai-aria-roles-states-and-properties-20"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<a class="self-link" aria-label="§" href="#wai-aria-roles-states-and-properties-20"></a></h4>
         <ul>
         <li>The element that serves as the container for the set of tabs has role  <a class="role-reference" href="https://w3c.github.io/aria/#tablist">tablist</a>. </li>
         <li>Each element that serves as a tab has role <a class="role-reference" href="https://w3c.github.io/aria/#tab">tab</a> and is contained within the element with role <code>tablist</code>.</li>
@@ -3381,14 +3425,14 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         <li>Use toolbar as a grouping element only if the group contains 3 or more controls.</li>
       </ul>
       <section class="notoc">
-        <h4 id="example-8">Example<a class="self-link" aria-label="§" href="#toolbar"></a></h4>
+        <h4 id="example-8">Example<a class="self-link" aria-label="§" href="#example-8"></a></h4>
         <p>
           <a href="examples/toolbar/toolbar.html">Toolbar Example</a>:
           A toolbar that uses roving tabindex to manage focus and contains several types of controls, including toggle buttons, radio buttons, a menu button, a spin button, a checkbox, and a link.
         </p>
       </section>
       <section class="notoc">
-        <h4 id="keyboard-interaction-20">Keyboard Interaction<a class="self-link" aria-label="§" href="#toolbar"></a></h4>
+        <h4 id="keyboard-interaction-20">Keyboard Interaction<a class="self-link" aria-label="§" href="#keyboard-interaction-20"></a></h4>
         <ul>
           <li><kbd>Tab</kbd> and <kbd>Shift + Tab</kbd>: Move focus into and out of the toolbar. When focus moves into a toolbar:
             <ul>
@@ -3421,7 +3465,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </ol></div>
       </section>
       <section class="notoc">
-        <h4 id="wai-aria-roles-states-and-properties-21"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<a class="self-link" aria-label="§" href="#toolbar"></a></h4>
+        <h4 id="wai-aria-roles-states-and-properties-21"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<a class="self-link" aria-label="§" href="#wai-aria-roles-states-and-properties-21"></a></h4>
         <ul>
           <li>The element that serves as the toolbar container has role <a class="role-reference" href="https://w3c.github.io/aria/#toolbar">toolbar</a>.  </li>
           <li>
@@ -3451,14 +3495,14 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         A hover that contains focusable elements can be made using a non-modal dialog.
       </p>
       <section class="notoc">
-        <h4 id="example-9">Example<a class="self-link" aria-label="§" href="#tooltip"></a></h4>
+        <h4 id="example-9">Example<a class="self-link" aria-label="§" href="#example-9"></a></h4>
         <p>
           Work to develop a tooltip example is tracked by
           <a href="https://github.com/w3c/aria-practices/issues/127">issue 127.</a>
         </p>
       </section>
       <section class="notoc">
-        <h4 id="keyboard-interaction-21">Keyboard Interaction<a class="self-link" aria-label="§" href="#tooltip"></a></h4>
+        <h4 id="keyboard-interaction-21">Keyboard Interaction<a class="self-link" aria-label="§" href="#keyboard-interaction-21"></a></h4>
         <p><kbd>Escape</kbd>: Dismisses the Tooltip.</p>
         <div class="note" role="note" id="issue-container-generatedID-27"><div role="heading" class="note-title marker" id="h-note-27" aria-level="5"><span>Note</span></div><ol class="">
           <li>Focus stays on the triggering element while the tooltip is displayed.</li>
@@ -3469,7 +3513,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </ol></div>
       </section>
       <section class="notoc">
-        <h4 id="wai-aria-roles-states-and-properties-22"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<a class="self-link" aria-label="§" href="#tooltip"></a></h4>
+        <h4 id="wai-aria-roles-states-and-properties-22"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<a class="self-link" aria-label="§" href="#wai-aria-roles-states-and-properties-22"></a></h4>
         <ul>
           <li>The element that serves as the tooltip container has role <a href="https://w3c.github.io/aria/#tooltip" class="role-reference">tooltip</a>.</li>
           <li>The element that triggers the tooltip references the tooltip element with <a href="https://w3c.github.io/aria/#aria-describedby" class="property-reference">aria-describedby</a>.</li>
@@ -3514,7 +3558,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </p>
 
       <section class="notoc">
-        <h4 id="examples-12">Examples<a class="self-link" aria-label="§" href="#TreeView"></a></h4>
+        <h4 id="examples-12">Examples<a class="self-link" aria-label="§" href="#examples-12"></a></h4>
         <ul>
           <li>
             <a href="examples/treeview/treeview-1/treeview-1a.html">File Directory Treeview Example Using Computed Properties</a>:
@@ -3536,7 +3580,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </section>
 
       <section class="notoc">
-        <h4 id="keyboard-interaction-22">Keyboard Interaction<a class="self-link" aria-label="§" href="#TreeView"></a></h4>
+        <h4 id="keyboard-interaction-22">Keyboard Interaction<a class="self-link" aria-label="§" href="#keyboard-interaction-22"></a></h4>
         <p>For a vertically oriented tree:</p>
         <ul>
           <li> When a single-select tree receives focus:
@@ -3699,7 +3743,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </p>
 
       <section class="notoc">
-        <h4 id="examples-13">Examples<a class="self-link" aria-label="§" href="#treegrid"></a></h4>
+        <h4 id="examples-13">Examples<a class="self-link" aria-label="§" href="#examples-13"></a></h4>
         <ul>
           <li>
             <a href="examples/treegrid/treegrid-1.html">E-mail Inbox <code>treegrid</code> Example</a>: A treegrid for navigating an e-mail inbox that demonstrates three keyboard navigation models -- rows first, cells first, and cells only.
@@ -3708,7 +3752,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
       </section>
 
       <section class="notoc">
-        <h4 id="keyboard-interaction-23">Keyboard Interaction<a class="self-link" aria-label="§" href="#treegrid"></a></h4>
+        <h4 id="keyboard-interaction-23">Keyboard Interaction<a class="self-link" aria-label="§" href="#keyboard-interaction-23"></a></h4>
         <p>
           The following keys provide <code>treegrid</code> navigation by moving focus among rows and cells of the grid.
           Implementations of <code>treegrid</code> make these key commands available when an element in the grid has received focus, e.g., after a user has moved focus to the grid with <kbd>Tab</kbd>.
@@ -3937,14 +3981,14 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         Note that the term "primary pane" does not describe the importance or purpose of content inside the pane.
       </p>
       <section class="notoc">
-        <h4 id="example-10">Example<a class="self-link" aria-label="§" href="#windowsplitter"></a></h4>
+        <h4 id="example-10">Example<a class="self-link" aria-label="§" href="#example-10"></a></h4>
         <p>
           Work to develop an example window splitter widget is tracked by
           <a href="https://github.com/w3c/aria-practices/issues/130">issue 130.</a>
         </p>
       </section>
       <section class="notoc">
-        <h4 id="keyboard-interaction-24">Keyboard Interaction<a class="self-link" aria-label="§" href="#windowsplitter"></a></h4>
+        <h4 id="keyboard-interaction-24">Keyboard Interaction<a class="self-link" aria-label="§" href="#keyboard-interaction-24"></a></h4>
         <ul>
           <li><kbd>Left Arrow</kbd>: Moves a vertical splitter to the left.</li>
           <li><kbd>Right Arrow</kbd>: Moves a vertical splitter to the right.</li>
@@ -3958,7 +4002,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         <div class="note" role="note" id="issue-container-generatedID-34"><div role="heading" class="note-title marker" id="h-note-33" aria-level="5"><span>Note</span></div><p class="">A fixed size splitter omits implementation of the arrow keys.</p></div>
       </section>
       <section class="notoc">
-        <h4 id="wai-aria-roles-states-and-properties-25"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<a class="self-link" aria-label="§" href="#windowsplitter"></a></h4>
+        <h4 id="wai-aria-roles-states-and-properties-25"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<a class="self-link" aria-label="§" href="#wai-aria-roles-states-and-properties-25"></a></h4>
         <ul>
           <li>The element that serves as the focusable splitter has role <a href="https://w3c.github.io/aria/#separator" class="role-reference">separator</a>.</li>
           <li>The separator element has the <a class="property-reference" href="https://w3c.github.io/aria/#aria-valuenow">aria-valuenow</a> property set to a decimal value representing the current position of the separator.</li>
@@ -4119,7 +4163,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </ul>
 
         <section class="notoc">
-          <h5 id="html5-techniques">HTML5 Techniques<a class="self-link" aria-label="§" href="#aria_lh_banner"></a></h5>
+          <h5 id="html5-techniques">HTML5 Techniques<a class="self-link" aria-label="§" href="#html5-techniques"></a></h5>
           <ul>
             <li>The HTML5 <code>header</code> element defines a <code>banner</code> landmark when its context is the <code>body</code> element.</li>
 
@@ -4135,13 +4179,13 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             </li>
           </ul>
 
-          <h5 id="aria-techniques">ARIA Techniques<a class="self-link" aria-label="§" href="#aria_lh_banner"></a></h5>
+          <h5 id="aria-techniques">ARIA Techniques<a class="self-link" aria-label="§" href="#aria-techniques"></a></h5>
 
           <p>If the HTML5 <code>header</code> element technique is not being used, a <code>role="banner"</code> attribute should be used to define a <code>banner</code> landmark.</p>
         </section>
 
         <section class="notoc">
-          <h5 id="examples-14">Examples<a class="self-link" aria-label="§" href="#aria_lh_banner"></a></h5>
+          <h5 id="examples-14">Examples<a class="self-link" aria-label="§" href="#examples-14"></a></h5>
 
           <p><a href="examples/landmarks/banner.html">Banner Landmark Example</a></p>
         </section>
@@ -4163,17 +4207,17 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </ul>
 
         <section class="notoc">
-          <h5 id="html5-technique">HTML5 Technique<a class="self-link" aria-label="§" href="#aria_lh_complementary"></a></h5>
+          <h5 id="html5-technique">HTML5 Technique<a class="self-link" aria-label="§" href="#html5-technique"></a></h5>
 
           <p>Use the HTML5 <code>aside</code> element to define a <code>complementary</code> landmark.</p>
 
-          <h5 id="aria-technique">ARIA Technique<a class="self-link" aria-label="§" href="#aria_lh_complementary"></a></h5>
+          <h5 id="aria-technique">ARIA Technique<a class="self-link" aria-label="§" href="#aria-technique"></a></h5>
 
           <p>If the HTML5 <code>aside</code> element technique is not being used, use a <code>role="complementary"</code> attribute to define a <code>complementary</code> landmark.</p>
         </section>
 
         <section class="notoc">
-          <h5 id="examples-15">Examples<a class="self-link" aria-label="§" href="#aria_lh_complementary"></a></h5>
+          <h5 id="examples-15">Examples<a class="self-link" aria-label="§" href="#examples-15"></a></h5>
 
           <p><a href="examples/landmarks/complementary.html">Complementary Landmark Example</a></p>
         </section>
@@ -4198,7 +4242,7 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
         <section class="notoc">
 
-          <h5 id="html5-techniques-0">HTML5 Techniques<a class="self-link" aria-label="§" href="#aria_lh_contentinfo"></a></h5>
+          <h5 id="html5-techniques-0">HTML5 Techniques<a class="self-link" aria-label="§" href="#html5-techniques-0"></a></h5>
 
           <ul>
             <li>The HTML5 <code>footer</code> element defines a <code>contentinfo</code> landmark when its context is the <code>body</code> element.</li>
@@ -4215,13 +4259,13 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
             </li>
           </ul>
 
-          <h5 id="aria-technique-0">ARIA Technique<a class="self-link" aria-label="§" href="#aria_lh_contentinfo"></a></h5>
+          <h5 id="aria-technique-0">ARIA Technique<a class="self-link" aria-label="§" href="#aria-technique-0"></a></h5>
 
           <p>If the HTML5 <code>footer</code> element technique is not being used, a <code>role="contentinfo"</code> attribute should be used to define a <code>contentinfo</code> landmark.</p>
         </section>
 
         <section class="notoc">
-          <h5 id="examples-16">Examples<a class="self-link" aria-label="§" href="#aria_lh_contentinfo"></a></h5>
+          <h5 id="examples-16">Examples<a class="self-link" aria-label="§" href="#examples-16"></a></h5>
           <p><a href="examples/landmarks/contentinfo.html">Contentinfo Landmark Example</a></p>
         </section>
       </section>
@@ -4256,17 +4300,17 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </ul>
 
         <section class="notoc">
-          <h5 id="html5-techniques-1">HTML5 Techniques<a class="self-link" aria-label="§" href="#aria_lh_form"></a></h5>
+          <h5 id="html5-techniques-1">HTML5 Techniques<a class="self-link" aria-label="§" href="#html5-techniques-1"></a></h5>
 
           <p>The HTML5 <code>form</code> element defines a <code>form</code> landmark when it has an accessible name (e.g. <code>aria-labelledby</code>, <code>aria-label</code> or <code>title</code>).</p>
 
-          <h5 id="aria-technique-1">ARIA Technique<a class="self-link" aria-label="§" href="#aria_lh_form"></a></h5>
+          <h5 id="aria-technique-1">ARIA Technique<a class="self-link" aria-label="§" href="#aria-technique-1"></a></h5>
 
           <p>Use the <code>role="form"</code> to identify a region of the page; do not use it to identify every form field.</p>
         </section>
 
         <section class="notoc">
-          <h5 id="examples-17">Examples<a class="self-link" aria-label="§" href="#aria_lh_form"></a></h5>
+          <h5 id="examples-17">Examples<a class="self-link" aria-label="§" href="#examples-17"></a></h5>
 
           <p><a href="examples/landmarks/form.html">Form Landmark Example</a></p>
         </section>
@@ -4289,17 +4333,17 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </ul>
 
         <section class="notoc">
-          <h5 id="html5-technique-0">HTML5 Technique<a class="self-link" aria-label="§" href="#aria_lh_main"></a></h5>
+          <h5 id="html5-technique-0">HTML5 Technique<a class="self-link" aria-label="§" href="#html5-technique-0"></a></h5>
 
           <p>Use the HTML5 <code>main</code> element to define a <code>main</code> landmark.</p>
 
-          <h5 id="aria-technique-2">ARIA Technique<a class="self-link" aria-label="§" href="#aria_lh_main"></a></h5>
+          <h5 id="aria-technique-2">ARIA Technique<a class="self-link" aria-label="§" href="#aria-technique-2"></a></h5>
 
           <p>If the HTML5 <code>main</code> element technique is not being used, use a <code>role="main"</code> attribute to define a <code>main</code> landmark.</p>
         </section>
 
         <section class="notoc">
-          <h5 id="examples-18">Examples<a class="self-link" aria-label="§" href="#aria_lh_main"></a></h5>
+          <h5 id="examples-18">Examples<a class="self-link" aria-label="§" href="#examples-18"></a></h5>
 
           <p><a href="examples/landmarks/main.html">Main Landmark Example</a></p>
         </section>
@@ -4317,18 +4361,18 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </ul>
 
         <section class="notoc">
-          <h5 id="html5-technique-1">HTML5 Technique<a class="self-link" aria-label="§" href="#aria_lh_navigation"></a></h5>
+          <h5 id="html5-technique-1">HTML5 Technique<a class="self-link" aria-label="§" href="#html5-technique-1"></a></h5>
 
           <p>Use the HTML5 <code>nav</code> element to define a <code>navigation</code> landmark.</p>
 
-          <h5 id="aria-technique-3">ARIA Technique<a class="self-link" aria-label="§" href="#aria_lh_navigation"></a></h5>
+          <h5 id="aria-technique-3">ARIA Technique<a class="self-link" aria-label="§" href="#aria-technique-3"></a></h5>
 
           <p>If the HTML5 <code>nav</code> element technique is not being used, use a <code>role="navigation"</code> attribute to define a <code>navigation</code> landmark.</p>
 
         </section>
 
         <section class="notoc">
-          <h5 id="examples-19">Examples<a class="self-link" aria-label="§" href="#aria_lh_navigation"></a></h5>
+          <h5 id="examples-19">Examples<a class="self-link" aria-label="§" href="#examples-19"></a></h5>
 
           <p><a href="examples/landmarks/navigation.html">Navigation Landmark Example</a></p>
         </section>
@@ -4348,17 +4392,17 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </ul>
 
         <section class="notoc">
-          <h5 id="html5-technique-2">HTML5 Technique<a class="self-link" aria-label="§" href="#aria_lh_region"></a></h5>
+          <h5 id="html5-technique-2">HTML5 Technique<a class="self-link" aria-label="§" href="#html5-technique-2"></a></h5>
 
           <p>The HTML5 <code>section</code> element defines a <code>region</code> landmark when it has an accessible name (e.g. <code>aria-labelledby</code>, <code>aria-label</code> or <code>title</code>).</p>
 
-          <h5 id="aria-technique-4">ARIA Technique<a class="self-link" aria-label="§" href="#aria_lh_region"></a></h5>
+          <h5 id="aria-technique-4">ARIA Technique<a class="self-link" aria-label="§" href="#aria-technique-4"></a></h5>
 
           <p>If the HTML5 <code>section</code> element technique is not being used, use a <code>role="region"</code> attribute to define a <code>region</code> landmark.</p>
         </section>
 
         <section class="notoc">
-          <h5 id="examples-20">Examples<a class="self-link" aria-label="§" href="#aria_lh_region"></a></h5>
+          <h5 id="examples-20">Examples<a class="self-link" aria-label="§" href="#examples-20"></a></h5>
 
           <p><a href="examples/landmarks/region.html">Region Landmark Example</a></p>
         </section>
@@ -4376,16 +4420,16 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
         </ul>
 
         <section class="notoc">
-          <h5 id="html5-technique-3">HTML5 Technique<a class="self-link" aria-label="§" href="#aria_lh_search"></a></h5>
+          <h5 id="html5-technique-3">HTML5 Technique<a class="self-link" aria-label="§" href="#html5-technique-3"></a></h5>
           <p>There is no HTML5 element that defines a <code>search</code> landmark.</p>
 
-          <h5 id="aria-technique-5">ARIA Technique<a class="self-link" aria-label="§" href="#aria_lh_search"></a></h5>
+          <h5 id="aria-technique-5">ARIA Technique<a class="self-link" aria-label="§" href="#aria-technique-5"></a></h5>
 
           <p>The <code>role="search"</code> attribute defines a <code>search</code> landmark.</p>
         </section>
 
         <section class="notoc">
-          <h5 id="examples-21">Examples<a class="self-link" aria-label="§" href="#aria_lh_search"></a></h5>
+          <h5 id="examples-21">Examples<a class="self-link" aria-label="§" href="#examples-21"></a></h5>
 
           <p><a href="examples/landmarks/search.html">Search Landmark Example</a></p>
         </section>
