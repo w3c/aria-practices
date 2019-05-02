@@ -3,8 +3,12 @@
 var DatePicker = function (comboboxNode, inputNode, buttonNode, dialogNode, messageNode) {
   this.months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-  this.dateInput = new DateInput(comboboxNode, inputNode, buttonNode, messageNode, this);
-  this.comboboxNode = comboboxNode;
+  if (comboboxNode) {
+    this.dateInput = new ComboboxInput(comboboxNode, inputNode, buttonNode, messageNode, this);
+  }
+  else {
+    this.dateInput = new MenuButtonInput(inputNode, buttonNode, messageNode, this);
+  }
   this.inputNode = inputNode;
   this.buttonNode = buttonNode;
   this.dialogNode = dialogNode;
@@ -241,6 +245,7 @@ DatePicker.prototype.showLastRow = function () {
 };
 
 DatePicker.prototype.setFocusDay = function (flag) {
+  console.log('[DatePicker][setFocusDay]');
 
   if (typeof flag !== 'boolean') {
     flag = true;
@@ -259,6 +264,7 @@ DatePicker.prototype.setFocusDay = function (flag) {
         }
 
         this.hasFocusFlag = true;
+        console.log('[DatePicker][setFocusDay][focus]');
         d.domNode.focus();
         d.domNode.setAttribute('tabindex', '0');
       }
@@ -366,7 +372,8 @@ DatePicker.prototype.hide = function (ignore) {
 };
 
 DatePicker.prototype.handleDocumentClick = function (event) {
-  console.log('[DateInput][handleDocumentClick]: ' + event.target.tagName);
+  console.log('[DateInput][handleDocumentClick][target]: ' + (event.target !== this.dateInput.inputNode));
+  console.log('[DateInput][handleDocumentClick][contains]: ' + this.dialogNode.contains(event.target));
   console.log('[DateInput][handleDocumentClick][isOpen]: ' + this.isOpen());
 
   if (this.isOpen() &&
@@ -771,20 +778,5 @@ DatePicker.prototype.getDateInput = function () {
 
 };
 
-// Initialize date picker
 
-window.addEventListener('load' , function () {
-
-  var datePickers = document.querySelectorAll('.datepicker');
-
-  datePickers.forEach(function (dp) {
-    var dpInput = dp.querySelector('input');
-    var dpButton = dp.querySelector('button');
-    var dpMessage = dp.querySelector('.message');
-    var dpDialog = document.getElementById(dp.getAttribute('aria-owns'));
-    var datePicker = new DatePicker(dp, dpInput, dpButton, dpDialog, dpMessage);
-    datePicker.init();
-  });
-
-});
 
