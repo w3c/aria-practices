@@ -27,9 +27,14 @@ ariaTest('Combobox: has role', exampleFile, 'combobox-role', async (t) => {
   await assertAriaRoles(t, 'example', 'combobox', 1, 'div');
 });
 
-ariaTest('Combobox: has aria-label', exampleFile, 'combobox-aria-label', async (t) => {
+ariaTest('Combobox: has aria-labelledby', exampleFile, 'combobox-aria-labelledby', async (t) => {
   t.plan(1);
-  await assertAriaLabelExists(t, ex.comboboxSelector);
+  await assertAriaLabelledby(t, ex.comboboxSelector);
+});
+
+ariaTest('Combobox: has aria-haspopup set to "dialog"', exampleFile, 'combobox-aria-haspopup', async (t) => {
+  t.plan(1);
+  await assertAttributeValues(t, ex.menubuttonSelector, 'aria-haspopup', 'dialog');
 });
 
 

@@ -2,10 +2,17 @@
   margin-top: 1em;
 }
 
-.datepicker .downarrow {
+.datepicker button[aria-expanded] + span.arrow {
   content: url('../images/down-arrow-gray.png');
   position: relative;
-  left: -20px;
+  left: -60px;
+}
+
+.datepicker button[aria-expanded=true] + span.arrow {
+  content: url('../images/up-arrow-gray.png');
+  position: relative;
+  top: 3px;
+  left: -60px;
 }
 
 .datepicker button.icon {
@@ -13,7 +20,7 @@
   text-align: left;
   background-color: white;
   position: relative;
-  left: -20px;
+  left: -2px;
   top: 4px;
 }
 

@@ -1,4 +1,9 @@
-
+/*
+*   This content is licensed according to the W3C Software License at
+*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+*
+*   File:   datepicker.js
+*/
 
 var DatePicker = function (comboboxNode, inputNode, buttonNode, dialogNode, messageNode) {
   this.months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -373,12 +378,11 @@ DatePicker.prototype.hide = function (ignore) {
 
 DatePicker.prototype.handleDocumentClick = function (event) {
   console.log('[DateInput][handleDocumentClick][target]: ' + (event.target !== this.dateInput.inputNode));
-  console.log('[DateInput][handleDocumentClick][contains]: ' + this.dialogNode.contains(event.target));
-  console.log('[DateInput][handleDocumentClick][isOpen]: ' + this.isOpen());
 
   if (this.isOpen() &&
     !this.dialogNode.contains(event.target) &&
     !this.buttonNode.contains(event.target) &&
+    (this.imageNode !== event.target) &&
     (this.dateInput.inputNode !== event.target)) {
     this.hide();
     event.stopPropagation();

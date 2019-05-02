@@ -1,3 +1,10 @@
+/*
+*   This content is licensed according to the W3C Software License at
+*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+*
+*   File:   datepicker-combobox.js
+*/
+
 var ComboboxInput = function (comboboxNode, inputNode, buttonNode, messageNode, datepicker) {
   this.comboboxNode = comboboxNode;
   this.inputNode    = inputNode;
@@ -38,8 +45,8 @@ ComboboxInput.prototype.init = function () {
   this.buttonNode.addEventListener('touchstart', this.handleTouchStart.bind(this));
   this.buttonNode.addEventListener('keydown', this.handleButtonKeyDown.bind(this));
 
-  if (this.inputNode.nextElementSibling &&
-      this.inputNode.nextElementSibling.tagName.toLowerCase() == 'img') {
+  if (this.buttonNode.nextElementSibling &&
+      this.button Node.nextElementSibling.classList.contains('arrow')) {
     this.imageNode = this.inputNode.nextElementSibling;
   }
 
@@ -88,7 +95,6 @@ ComboboxInput.prototype.handleTouchStart = function (event) {
   if (event.targetTouches.length === 1) {
     if (this.comboboxNode.contains(event.targetTouches[0].target)) {
       if (this.isCollapsed()) {
-        this.showDownArrow();
         this.datepicker.show();
         event.stopPropagation();
         event.preventDefault();
@@ -101,10 +107,9 @@ ComboboxInput.prototype.handleTouchStart = function (event) {
 ComboboxInput.prototype.handleFocus = function () {
   console.log('[ComboboxInput][handleFocus][hasFocus]: ' + this.hasFocusFlag);
   if (!this.ignoreFocusEvent && this.isCollapsed()) {
-    setTimeout(this.datepicker.show.bind(this.datepicker), 200);
+    setTimeout(this.datepicker.show.bind(this.datepicker), 100);
     this.setMessage('Use the down arrow key to move focus to the datepicker grid.');
   }
-  this.showDownArrow();
 
   this.hasFocusFlag = true;
   this.ignoreFocusEvent = false;
@@ -117,7 +122,6 @@ ComboboxInput.prototype.handleBlur = function () {
     this.datepicker.hide(false);
     this.setMessage('');
   }
-  this.hideDownArrow();
 
   this.hasFocusFlag = false;
   this.ignoreBlurEvent = false;
@@ -129,7 +133,6 @@ ComboboxInput.prototype.handleClick = function (event) {
   console.log('[ComboboxInput][handleClick][isCollapsed]: ' + this.isCollapsed());
 
   if (this.isCollapsed()) {
-    this.ignoreBlurEvent = true;
     this.datepicker.show();
   }
   else {
@@ -210,18 +213,6 @@ ComboboxInput.prototype.setMessage = function (str) {
 
 ComboboxInput.prototype.hasFocus = function () {
   return this.hasFocusFlag;
-};
-
-ComboboxInput.prototype.showDownArrow = function () {
-  if (this.imageNode) {
-    this.imageNode.style.visibility = 'visible';
-  }
-};
-
-ComboboxInput.prototype.hideDownArrow = function () {
-  if (this.imageNode) {
-    this.imageNode.style.visibility = 'hidden';
-  }
 };
 
 // Initialize combobox date picker

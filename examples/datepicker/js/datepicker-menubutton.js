@@ -1,3 +1,10 @@
+/*
+*   This content is licensed according to the W3C Software License at
+*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+*
+*   File:   datepicker-menubutton.js
+*/
+
 var MenuButtonInput = function (inputNode, buttonNode, messageNode, datepicker) {
   this.inputNode    = inputNode;
   this.buttonNode   = buttonNode;
@@ -8,7 +15,6 @@ var MenuButtonInput = function (inputNode, buttonNode, messageNode, datepicker) 
 
   this.ignoreFocusEvent = false;
   this.ignoreBlurEvent = false;
-  this.lastEventFocus = false;
 
   this.hasFocusFlag = false;
 
@@ -35,10 +41,10 @@ MenuButtonInput.prototype.init = function () {
 
   this.buttonNode.addEventListener('click', this.handleButtonClick.bind(this));
   this.buttonNode.addEventListener('touchstart', this.handleTouchStart.bind(this));
-  this.buttonNode.addEventListener('keydown', this.handleButtonKeyDown.bind(this));
+  this.buttonNode.addEventListener('keydown', this.handleKeyDown.bind(this));
 
-  if (this.inputNode.nextElementSibling &&
-      this.inputNode.nextElementSibling.tagName.toLowerCase() == 'img') {
+  if (this.buttonNode.nextElementSibling &&
+      this.buttonNode.nextElementSibling.classList.contains('arrow')) {
     this.imageNode = this.inputNode.nextElementSibling;
   }
 
@@ -87,7 +93,6 @@ MenuButtonInput.prototype.handleTouchStart = function (event) {
     console.log('[handleTouchStart][tagName]: ' + event.targetTouches[0].target.tagName);
     if (this.comboboxNode.contains(event.targetTouches[0].target)) {
       if (this.isCollapsed()) {
-        this.showDownArrow();
         this.datepicker.show();
         event.stopPropagation();
         event.preventDefault();
@@ -100,11 +105,9 @@ MenuButtonInput.prototype.handleTouchStart = function (event) {
 MenuButtonInput.prototype.handleFocus = function () {
   console.log('[MenuButtonInput][handleFocus]')
   if (!this.ignoreFocusEvent && this.isCollapsed()) {
-    this.setMessage('Use the down arrow key to move focus to the datepicker grid.');
+    this.setMessage('Use the down arrow key or the following change date button to move focus to the datepicker grid.');
   }
-  this.showDownArrow();
 
-  this.lastEventFocus = true;
   this.hasFocusFlag = true;
   this.ignoreFocusEvent = false;
 
@@ -115,19 +118,12 @@ MenuButtonInput.prototype.handleBlur = function () {
   if (!this.ignoreBlurEvent) {
     this.setMessage('');
   }
-  this.hideDownArrow();
-
-  this.lastEventFocus = false;
   this.hasFocusFlag = false;
   this.ignoreBlurEvent = false;
 };
 
 MenuButtonInput.prototype.handleClick = function (event) {
   console.log('[MenuButtonInput][handleClick]: ' + event.target.tagName);
-  if (this.lastEventFocus) {
-    this.lastEventFocus = false;
-    return;
-  }
 
   if (this.isCollapsed()) {
     this.datepicker.show();
@@ -136,8 +132,6 @@ MenuButtonInput.prototype.handleClick = function (event) {
     this.ignoreFocusEvent = true;
     this.datepicker.hide();
   }
-
-  this.lastEventFocus = false;
 
 };
 
@@ -152,25 +146,6 @@ MenuButtonInput.prototype.handleButtonClick = function (event) {
   }
 };
 
-MenuButtonInput.prototype.handleButtonKeyDown = function (event) {
-
-  var flag = false;
-
-  switch (event.keyCode) {
-    case this.keyCode.RETURN:
-    case this.keyCode.SPACE:
-      this.handleButtonClick();
-      this.ignoreBlurEvent = true;
-      this.setFocusDay();
-      flag = true;
-      break;
-  }
-
-  if (flag) {
-    event.stopPropagation();
-    event.preventDefault();
-  }
-};
 
 MenuButtonInput.prototype.focus = function () {
   this.inputNode.focus();
@@ -218,18 +193,6 @@ MenuButtonInput.prototype.setMessage = function (str) {
 
 MenuButtonInput.prototype.hasFocus = function () {
   return this.hasFocusflag;
-};
-
-MenuButtonInput.prototype.showDownArrow = function () {
-  if (this.imageNode) {
-    this.imageNode.style.visibility = 'visible';
-  }
-};
-
-MenuButtonInput.prototype.hideDownArrow = function () {
-  if (this.imageNode) {
-    this.imageNode.style.visibility = 'hidden';
-  }
 };
 
 // Initialize menu button date picker
