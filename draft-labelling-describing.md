@@ -2,7 +2,7 @@
 
 ## Providing Accessible Names and Descriptions
 
-Providing elements with accessible names, and where appropriate, accessible descriptions is one of the most fundamental and important responsibilities authors have when developing accessible web experiences. While doing it well is not typically difficult, technical mistakes that have devistating impact are common. After providing some basic information about accessible names and descriptions, this section provides guidance for using the following ARIA properties:
+Providing elements with accessible names, and where appropriate, accessible descriptions is one of the most fundamental and important responsibilities authors have when developing accessible web experiences. While doing it well is not typically difficult, technical mistakes that can have devistating impacts are unfortunately common. After providing some basic information about accessible names and descriptions, this section provides guidance for using the following ARIA attributes:
 
 
 ### Accessible Name and Description Basics

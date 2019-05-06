@@ -3697,41 +3697,121 @@
     </section>
   </section>
 
-  <section id="labeling-describing">
-    <h2>Labeling and describing</h2>
+  <section id="names_and_descriptions">
+    <h2>Providing Accessible Names and Descriptions</h2>
+    <p>
+      Providing elements with accessible names, and where appropriate, accessible descriptions is one of the most fundamental and important responsibilities authors have when developing accessible web experiences.
+      While doing so is straight forward for most elements, technical mistakes that can have devistating impacts on users of assistive technologies are easy to make and unfortunately common.
+      To help authors provide effective and reliable accessible names and descriptions, this section explains their purpose, when authors need to provide them, how browsers assemble them, and rules for coding and composing them.
+      It then provides guidance for effectively employing the following naming and describing techniques and WAI-ARIA properties:
+    </p>
+    <ul>
+      <li>Naming with child content.</li>
+      <li>Naming by encapsulation with a label.</li>
+      <li>Naming with a String Attribute Via <code>aria-label</code>.</li>
+      <li>Naming by Referencing Content with <code>aria-labelledby</code>.</li>
+      <li>Naming with Legends and Captions.</li>
+      <li>Fallback Names Derived from Titles and Placeholders.</li>
+      <li>Describing by referencing content with <code>aria-describedby</code>.</li>
+      <li>Describing by referencing content with <code>aria-details</code>.</li>
+      <li>Fallback descriptions Derived from Titles and Placeholders.</li>
+    </ul>
 
-    <section>
-      <h3>Introduction</h3>
-
-      <p>A label, also known as accessible name, is a name or a label used to identify the element for users of assistive technology. For example, a button’s label can be "OK".</p>
-
-      <p>An accessible description complements the label with a description. An accessible description is always optional, and if present it does not need to be as brief as a label.</p>
+    <section id="names_and_descriptions_definition">
+      <h3>What ARE Accessible Names and Descriptions?</h3>
+      <p>
+        An accessible name is a short string, typically 1 to 3 words,  that authors associate with an element to provide users of assistive technologies with a label for the element.
+        For example, an input field might have an accessible name of &quot;User ID&quot; or a button might be named &quot;Submit&quot;.
+      </p>
+      <p>An accessible name serves two primary purposes:</p>
+      <ol>
+        <li>Convey the purpose or intent of the element.</li>
+        <li>Distinguish it from other elements on the page.</li>
+      </ol>
+      <p>
+        Both the WAI-ARIA specification and WCAG require all focusable, interactive elements to have an accessible name.
+        In addition dialogs and some structural containers, such as <a href="#table" class="role-reference">tables</a> and <a href="#region" class="role-reference">regions</a>, are required to have a name.  
+        Many other elements can be named, but whether a name will enhance the accessible experience is determined by various characteristics of the surrounding context.
+        Finally, there are some elements where providing an accessible name is technically possible but not advisable.
+        The <a href="#naming_role_guidance">Accessible Name Guidance by Role</a> section lists naming requirements and guidelines for every ARIA role. 
+      </p>
+      <p>
+        An accessible description is also an author-provided string that is rendered by assistive technologies.
+        Authors supply a description when there is a need to associate additional information with an element, such as instructions or format requirements for an input field.
+        Because they are usually significantly longer than names, assistive technologies present descriptions differently from names and other element attributes.
+        For instance, a screen reader may announce a description of an element after its name, role, value (if it is an input), and any relevant states or properties.
+      </p>
     </section>
-
-    <section>
-      <h3>Labels</h3>
-
+    
+    <section id="names_and_descriptions_derivation">
+      <h3>How Are Name and Description Strings Derived?</h3>
+      <p>
+        Because there are several elements and attributes for specifying text to include in an accessible name or description string, and because they can be combined in a practically endless number of ways, browsers have to implement a fairly complex algorithm for assembling the strings.
+The section on <a href="#name_calculation">accessible name calculation</a> provides a detailed explanation of the algorithm.
+However, most authors do not need a detailed understanding of the algorithm since nearly all elements can be named or described by implementing the coding patterns described in the <a href="#naming_techniques">naming techniques section</a> and following the guidance provided by the <a href="#naming_cardinal_rules">cardinal rules for naming.</a>
+      </p>
+    </section>
+    
+    <section id="naming_cardinal_rules">
+      <h3>Cardinal Rules of Naming</h3>
+      
+      <section>
+        <h4>Rule 1: Heed Warnings and Test Thoroughly</h4>
+        <p>
+          because the <code>aria-label</code> and <code>aria-labelledby</code> attributes override content contained in some elementss, they can block assistive technology access to some on-screen text.
+          Thus
+          , to both serve an optimal experience and avoid potentially disasterous mistakes, it is essential to understand when and how these two attributes override element text.
+        </p>
       <p>There are two different kinds of labels, depending on the element’s role. The difference is both in how the label is computed for the element, and how the element is represented to assistive technologies.</p>
-
       <ul>
         <li>Label that represents the element. The label is taken from the element's contents, unless `aria-labelledby` or `aria-label` attributes are used. Only the label is represented to users of assistive technologies.</li>
-
         <li>Label that augments the element. The label is not taken from the element's contents (by default). A label can be set using `aria-labelledby` or `aria-label`. The label will augment the element; both the label and the element's contents are exposed to users of assistive technology.</li>
       </ul>
-
+        
+      </section>
+      
       <section>
-        <h4>Label that represents the element</h4>
-
+        <h4>Rule 2: Prefer Visible Text</h4>
+        <p>
+          When a user interface includes visible text that could be used to provide an appropriate accessible name, using the visible text for the accessible name simplifies maintenance, prevents bugs, and reduces language translation requirements, which leads to a more robust accessible experience.
+          The naming techniques described in the sections below emphasize techniques for utilizing on-screen text.
+        </p>
+      </section>
+      
+      <section>
+        <h4>Rule 3: Prefer Native Techniques</h4>
+        <p>That is, in HTML documents, prefer HTML naming techniques, such as the HTML label element.</p>
+      </section>
+      <section>
+        <h4>Rule 4: Avoid Browser Fallback</h4>
+        <p>
+          Talk about how fallbacks can be less robust because of potential implementation inconsistency.
+          title and placeholder
+        </p>
+      </section>
+      
+      <section>
+        <h4>Rule 5: Compose Brief, Useful Names</h4>
+        <p>
+          Mention some good properties of names, such as uniqueness, brevity, and clarity.
+          Refer user to section on best practices for composing effective accessible names.
+          Example practice: Do NOT include a WAI-ARIA role name in the accessible name. For example, do not include the word &quot;button&quot; in the name of a button or the word &quot;navigation&quot; in the name of a navigation region.
+        </p>
+      </section>
+    </section>
+      
+    <section id="naming_techniques">
+      <h3>Naming Techniques</h3>
+      
+      <section>
+        <h4>Naming with Child Content</h4>
         <p>For elements with certain roles, the label is taken from the element’s contents by default, and the label will represent the element when communicated to assistive technologies. In the following example, a link (with default role `link`) gets its label from the element’s contents ("Home").</p>
 
         <pre><code>&lt;a href="/">Home&lt;/a></code></pre>
 
         <p>This could be rendered to assistive technology as "link, Home"; the role and the label, not not repeating the content ("link, Home, Home").</p>
-
-        <p>The label also can be set explicitly by using the `aria-labelledby` or `aria-label` attributes. If the label from the element’s contents is already good, then don’t use the `aria-labelledby` or `aria-label` attributes.</p>
-
+        
         <p>The following roles get the label from the contents by default:</p>
-
         <ul>
           <li>`button`</li>
           <li>`cell`</li>
@@ -3753,7 +3833,18 @@
           <li>`tooltip`</li>
           <li>`treeitem`</li>
         </ul>
+      </section>
+      
+      <section>
+        <h4>Naming with a String Attribute Via <code>aria-label</code></h4>
+        <p>If there is no content that is appropriate to use as the label, then use the `aria-label` attribute to set the label for the element directly.</p>
 
+        <p>In the following example, a close button contains an "X" and is given the label “Close” using the `aria-label` attribute.</p>
+
+        <pre><code>&lt;button type="button" aria-label="Close">X&lt;/button></code></pre>
+      </section>
+      <section>
+        <h4>Naming with Referenced Content Via <code>aria-labeledby</code></h4>
         <p>If the element’s contents are not appropriate as a label, but there is an element that can be used as the label, then use the `aria-labelledby` attribute.</p>
 
         <p>In the following example, an element with the "switch" role is labeled by a previous sibling element.</p>
@@ -3761,12 +3852,10 @@
         <pre><code>&lt;span id="night-mode-label">Night mode&lt;/span>
 &lt;span role="switch" aria-checked="false" tabindex="0" aria-labelledby="night-mode-label">&lt;/span></code></pre>
 
-
         <p>Because a `span` element is used for the switch control, the HTML `label` element cannot be used to label it, since it only works with HTML elements that are form controls. However, the `switch` role can be used on an `input` element with `type="checkbox”`, and then HTML `label` can be used.</p>
 
         <pre><code>&lt;label for="night-mode">Night mode&lt;/label>
 &lt;input type="checkbox" role="switch" id="night-mode"></code></pre>
-
 
         <p>In some cases, the combination of the element’s contents and another element would be appropriate as a label. In such situations, use the `aria-labelledby` and reference both the element itself and the other element.</p>
 
@@ -3776,13 +3865,6 @@
 &lt;p>Bees are disappearing rapidly.
 Here are seven things you can do to help.&lt;/p>
 &lt;p>&lt;a id="bees-read-more" aria-labelledby="bees-read-more bees-heading">Read more...&lt;/a>&lt;/p></code></pre>
-
-        <p>If there is no content that is appropriate to use as the label, then use the `aria-label` attribute to set the label for the element directly.</p>
-
-        <p>In the following example, a close button contains an "X" and is given the label “Close” using the `aria-label` attribute.</p>
-
-        <pre><code>&lt;button type="button" aria-label="Close">X&lt;/button></code></pre>
-
       </section>
 
       <section>
@@ -3814,140 +3896,157 @@ Here are seven things you can do to help.&lt;/p>
  &lt;a>Children's books&lt;/a>
 &lt;/nav></code></pre>
       </section>
+    </section>
+    
+    <section id="nameing_effectively">
+      <h3>Composing Effective and User-friendly Accessible Names</h3>
+      <p>Todo: Write a section that describes how to make good names, i.e., brief, descriptive, unique, front-loaded, no role names, etc.</p>
+    </section>
+    
+    <section id="naming_role_guidance">
+      <h3>Accessible Name Guidance by Role</h3>
+      <p>Todo: build a table with every concrete role with columns for:</p>
+      <ul>
+        <li>role</li>
+        <li>Name Required?: with values of always, sometimes, or never</li>
+        <li>Named by Content?: values of Yes or No</li>
+        <li>Guidance: Explains sometimes and never for name required. Provides warning if named from content.</li> 
+      </ul>
+    </section>
+    
+    <section id="name_calculation">
+      <h3>Accessible name calculation</h3>
+      <p>User agents follow the accessible name calculation algorithm to get the label for an element. This is defined in [https://w3c.github.io/accname/](https://w3c.github.io/accname/) and [https://w3c.github.io/html-aam/](https://w3c.github.io/html-aam/) for HTML.</p>
+      <p>User agents attempt to formulate labels for elements by walking through a list of potential naming methods and use the first that generates a name. The algorithm is roughly like this:</p>
+      <ol>
+        <li>First, the `aria-labelledby` attribute is used if present.</li>
+        <li>If the label is still empty, the `aria-label` attribute is used if present.</li>
+        <li>If the label is still empty, then host-language-specific attributes or elements (e.g., the `alt` attribute on HTML `img`) are used if present.</li>
+        <li>If the label is still empty, then for roles that can take label from the element's content, the element’s contents.</li>
+        <li>Finally, if the label is still empty, then host-langauge-specific tooltip attributes or elements (e.g., the `title` attribute in HTML) are used if present.</li>
+      </ol>
+
+      <p>The final step is a fallback mechanism. Generally when labelling an element, use one of the non-fallback mechanisms.</p>
+
+      <p>For example, for the HTML `input` element, the `placeholder` attribute is used as a fallback labeling mechanism if nothing else results in a label. For an `input` element, it is better to use a `label` element, since it does not disappear visually when the user focuses the form control.</p>
 
       <section>
-        <h4>Accessible name calculation</h4>
+        <h4>Examples of non-recursive accessible name calculation</h4>
 
-        <p>User agents follow the accessible name calculation algorithm to get the label for an element. This is defined in [https://w3c.github.io/accname/](https://w3c.github.io/accname/) and [https://w3c.github.io/html-aam/](https://w3c.github.io/html-aam/) for HTML.</p>
+        <p>For example, an img element with just a src attribute has no label (don’t do this):</p>
 
-        <p>User agents attempt to formulate labels for elements by walking through a list of potential naming methods and use the first that generates a name. The algorithm is roughly like this:</p>
+        <pre><code>&lt;img src="photo.jpg"></code></pre>
 
-        <ol>
-          <li>First, the `aria-labelledby` attribute is used if present.</li>
-          <li>If the label is still empty, the `aria-label` attribute is used if present.</li>
-          <li>If the label is still empty, then host-language-specific attributes or elements (e.g., the `alt` attribute on HTML `img`) are used if present.</li>
-          <li>If the label is still empty, then for roles that can take label from the element's content, the element’s contents.</li>
-          <li>Finally, if the label is still empty, then host-langauge-specific tooltip attributes or elements (e.g., the `title` attribute in HTML) are used if present.</li>
-        </ol>
+        <p>If there is a `title` attribute, then that is used as the label (fallback mechanism; generally avoid doing this):</p>
 
-        <p>The final step is a fallback mechanism. Generally when labelling an element, use one of the non-fallback mechanisms.</p>
+        <pre><code>&lt;img src="photo.jpg" title="The Queen, holding a pigeon."></code></pre>
 
-        <p>For example, for the HTML `input` element, the `placeholder` attribute is used as a fallback labeling mechanism if nothing else results in a label. For an `input` element, it is better to use a `label` element, since it does not disappear visually when the user focuses the form control.</p>
+        <p>If there is also an `alt` attribute (using `alt` for images is recommended), then that is used as the label, and the `title` attribute is instead used as the accessible description:</p>
+
+        <pre><code>&lt;img src="photo.jpg" alt="The Queen, holding a pigeon." title="Photo: Rex Features"></code></pre>
+
+        <p>If there is also an `aria-label` attribute, then that overrides the `alt` attribute:</p>
+
+        <pre><code>&lt;img src="photo.jpg" aria-label="The Queen, holding a pigeon." title="Photo: Rex Features"
+   alt="Sorry, this image failed to load."></code></pre>
+
+        <p>If there is also an `aria-labelledby` attribute, that wins over the other attributes (the `aria-label` attribute ought to be removed if it is not used):</p>
+
+        <pre><code>&lt;img src="photo.jpg" aria-label="This is ignored." title="Photo: Established Depiction"
+   alt="Sorry, this image failed to load." aria-labelledby="the-queen">
+  &lt;span id="the-queen">The Queen, holding a pigeon.&lt;/span></code></pre>
+        </section>
 
         <section>
-          <h4>Examples of non-recursive accessible name calculation</h4>
+          <h4>Examples of recursive accessible name calculation</h4>
 
-          <p>For example, an img element with just a src attribute has no label (don’t do this):</p>
+          <p>The accessible name calculation algorithm will be invoked recursively when necessary. An `aria-labelledby` reference causes the algorithm to be invoked recursively, and when computing an accessible name from content the algorithm is invoked recursively for each child node.</p>
 
-          <pre><code>&lt;img src="photo.jpg"></code></pre>
+          <p>In this example, the label for the button is computed by recursing into each child node, resulting in "Move to trash".</p>
 
-          <p>If there is a `title` attribute, then that is used as the label (fallback mechanism; generally avoid doing this):</p>
+          <pre><code>&lt;button>Move to &lt;img src="bin.svg" alt="trash">&lt;/button></code></pre>
 
-          <pre><code>&lt;img src="photo.jpg" title="The Queen, holding a pigeon."></code></pre>
+          <p>When following an `aria-labelledby` reference, the algorithm avoids following the same reference twice in order to not end up in infinite loops.</p>
 
-          <p>If there is also an `alt` attribute (using `alt` for images is recommended), then that is used as the label, and the `title` attribute is instead used as the accessible description:</p>
+          <p>In this example, the label for the button is computed by first following the `aria-labelledby` reference to the parent element, and then computing the label for that element from the child nodes, first visiting the `button` element again but ignoring the `aria-labelledby` reference and instead using the `aria-label` attribute, and then visiting the next child (the text node). The resulting label is "Remove meeting: Daily status report".</p>
 
-          <pre><code>&lt;img src="photo.jpg" alt="The Queen, holding a pigeon." title="Photo: Rex Features"></code></pre>
+          <pre><code>&lt;div id="meeting-1">
+  &lt;button aria-labelledby="meeting-1"
+      aria-label="Remove meeting:">X&lt;/button>
+      Daily status report
+  &lt;/div></code></pre>
 
-          <p>If there is also an `aria-label` attribute, then that overrides the `alt` attribute:</p>
+          <p>It is also possible to reference an element using `aria-labelledby` even if that element is hidden. In the following example, the `span` element could be styled with CSS `display: none` and the `nav` element would still have the label "You are here:".</p>
 
-          <pre><code>&lt;img src="photo.jpg" aria-label="The Queen, holding a pigeon." title="Photo: Rex Features"
-     alt="Sorry, this image failed to load."></code></pre>
-
-          <p>If there is also an `aria-labelledby` attribute, that wins over the other attributes (the `aria-label` attribute ought to be removed if it is not used):</p>
-
-          <pre><code>&lt;img src="photo.jpg" aria-label="This is ignored." title="Photo: Established Depiction"
-     alt="Sorry, this image failed to load." aria-labelledby="the-queen">
-&lt;span id="the-queen">The Queen, holding a pigeon.&lt;/span></code></pre>
-          </section>
-
-          <section>
-            <h5>Examples of recursive accessible name calculation</h5>
-
-            <p>The accessible name calculation algorithm will be invoked recursively when necessary. An `aria-labelledby` reference causes the algorithm to be invoked recursively, and when computing an accessible name from content the algorithm is invoked recursively for each child node.</p>
-
-            <p>In this example, the label for the button is computed by recursing into each child node, resulting in "Move to trash".</p>
-
-            <pre><code>&lt;button>Move to &lt;img src="bin.svg" alt="trash">&lt;/button></code></pre>
-
-            <p>When following an `aria-labelledby` reference, the algorithm avoids following the same reference twice in order to not end up in infinite loops.</p>
-
-            <p>In this example, the label for the button is computed by first following the `aria-labelledby` reference to the parent element, and then computing the label for that element from the child nodes, first visiting the `button` element again but ignoring the `aria-labelledby` reference and instead using the `aria-label` attribute, and then visiting the next child (the text node). The resulting label is "Remove meeting: Daily status report".</p>
-
-            <pre><code>&lt;div id="meeting-1">
- &lt;button aria-labelledby="meeting-1"
-         aria-label="Remove meeting:">X&lt;/button>
-  Daily status report
-&lt;/div></code></pre>
-
-            <p>It is also possible to reference an element using `aria-labelledby` even if that element is hidden. In the following example, the `span` element could be styled with CSS `display: none` and the `nav` element would still have the label "You are here:".</p>
-
-            <pre><code>&lt;nav aria-labelledby="breadcrumbs-label">
- &lt;span id="breadcrumbs-label">You are here:&lt;/span>
- &lt;a href="/">Home&lt;/a> &amp;gt;
- &lt;a href="/books/">Books&lt;/a> &amp;gt;
- &lt;a>Children's books&lt;/a>
-&lt;/nav></code></pre>
-        </section>
+          <pre><code>&lt;nav aria-labelledby="breadcrumbs-label">
+  &lt;span id="breadcrumbs-label">You are here:&lt;/span>
+    &lt;a href="/">Home&lt;/a> &amp;gt;
+    &lt;a href="/books/">Books&lt;/a> &amp;gt;
+    &lt;a>Children's books&lt;/a>
+  &lt;/nav></code></pre>
+      </section>
+    </section>
+    
+    <section id="describing_techniques">
+      <h3>Describing Techniques</h3>
+      
+      <section>
+        <h4>Describing by referencing content with <code>aria-describedby</code></h4>
+        <p>The `aria-describedby` attribute works similarly to the `aria-labelledby` attribute. For example, a button could be described by a later paragraph.</p>
+  
+        <pre><code>&lt;button aria-describedby="trash-desc">Move to trash&lt;/button>
+          ...
+          &lt;p id="trash-desc">Items in the trash
+          will be permanently removed after 30 days.&lt;/p></code></pre>
+  
+        <p>This description will be presented to the user as plain text. For example, if the description contains an HTML `img` element, a text equivalent of the image is computed.</p>
+  
+        <pre><code>&lt;button aria-describedby="trash-desc">
+          Move to &lt;img src="bin.svg" alt="trash">
+          &lt;/button>
+          ...
+          &lt;p id="trash-desc">Items in &lt;img src="bin.svg" alt="the trash">
+          will be permanently removed after 30 days.&lt;/p></code></pre>
+      </section>
+    
+      <section>
+        <h4>Describing by referencing content with <code>aria-details</code>></h4>
+        <p>In some cases, a plain text description is insufficient. The `aria-details` attribute can be used in such situations. In this example, a text field for a passenger’s name (when booking a flight) has a description that is a list of three items, and contains a link to an external document with further details.</p>
+  
+        <pre><code>&lt;ul id="full-name-desc">
+          &lt;li>The passenger's name must match the name in their passport.&lt;/li>
+          &lt;li>The name must consist of only characters in the A-Z range.&lt;/li>
+          &lt;li>&lt;a href="faq.html#name">What if the name in the passport contains other characters?&lt;/a>&lt;/li>
+          &lt;/ul>
+          &lt;fieldset>
+          &lt;legend>Passenger 1 (adult)&lt;/legend>
+          &lt;p>&lt;label>Full name
+          &lt;input name="full-name" aria-details="full-name-desc">
+          &lt;/label>&lt;/p>
+          ...
+          &lt;/fieldset></code></pre>
+  
+        <p>If both `aria-details` and `aria-describedby` are specified on an element, only the `aria-details` attribute is used. This can be useful in order to provide a fallback for user agents that don’t support `aria-details`.</p>
       </section>
     </section>
 
-    <section>
-      <h3>Descriptions</h3>
+    <section id="description_calculation">
+      <h4>Accessible description calculation</h4>
 
-      <p>An element can be given an accessible description using the `aria-describedby` attribute or the `aria-details` attribute.</p>
+      <p>Like the accessible name calculation (see the earlier section), the accessible description calculation produces a plain text string for an element. This algorithm is not used for the `aria-details` attribute.</p>
 
-      <p>The `aria-describedby` attribute works similarly to the `aria-labelledby` attribute. For example, a button could be described by a later paragraph.</p>
+      <p>The accessible description calculation algorithm is the same algorithm as the accessible name calculation algorithm, but it branches off in some places depending on whether a name or a description is being calculated. In particular, when collecting an accessible description, the algorithm uses `aria-describedby` instead of `aria-labelledby`.</p>
 
-      <pre><code>&lt;button aria-describedby="trash-desc">Move to trash&lt;/button>
-...
-&lt;p id="trash-desc">Items in the trash
-will be permanently removed after 30 days.&lt;/p></code></pre>
+      <p>As with `aria-labelledby`, it is possible to reference an element using `aria-describedby` even if that element is hidden.</p>
 
-      <p>This description will be presented to the user as plain text. For example, if the description contains an HTML `img` element, a text equivalent of the image is computed.</p>
+      <p>For example, a text field in a form could have a description that is hidden by default, but can be revealed on request using a disclosure widget. The description could also be referenced from the text field directly with `aria-describedby`. The accessible description for the `input` element is "Your username is the name that you use to log in to this service.".</p>
 
-      <pre><code>&lt;button aria-describedby="trash-desc">
- Move to &lt;img src="bin.svg" alt="trash">
-&lt;/button>
-...
-&lt;p id="trash-desc">Items in &lt;img src="bin.svg" alt="the trash">
-will be permanently removed after 30 days.&lt;/p></code></pre>
-
-      <p>In some cases, a plain text description is insufficient. The `aria-details` attribute can be used in such situations. In this example, a text field for a passenger’s name (when booking a flight) has a description that is a list of three items, and contains a link to an external document with further details.</p>
-
-      <pre><code>&lt;ul id="full-name-desc">
- &lt;li>The passenger's name must match the name in their passport.&lt;/li>
- &lt;li>The name must consist of only characters in the A-Z range.&lt;/li>
- &lt;li>&lt;a href="faq.html#name">What if the name in the passport contains other characters?&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;fieldset>
- &lt;legend>Passenger 1 (adult)&lt;/legend>
- &lt;p>&lt;label>Full name
-  &lt;input name="full-name" aria-details="full-name-desc">
- &lt;/label>&lt;/p>
- ...
-&lt;/fieldset></code></pre>
-
-      <p>If both `aria-details` and `aria-describedby` are specified on an element, only the `aria-details` attribute is used. This can be useful in order to provide a fallback for user agents that don’t support `aria-details`.</p>
-
-      <section>
-        <h4>Accessible description calculation</h4>
-
-        <p>Like the accessible name calculation (see the earlier section), the accessible description calculation produces a plain text string for an element. This algorithm is not used for the `aria-details` attribute.</p>
-
-        <p>The accessible description calculation algorithm is the same algorithm as the accessible name calculation algorithm, but it branches off in some places depending on whether a name or a description is being calculated. In particular, when collecting an accessible description, the algorithm uses `aria-describedby` instead of `aria-labelledby`.</p>
-
-        <p>As with `aria-labelledby`, it is possible to reference an element using `aria-describedby` even if that element is hidden.</p>
-
-        <p>For example, a text field in a form could have a description that is hidden by default, but can be revealed on request using a disclosure widget. The description could also be referenced from the text field directly with `aria-describedby`. The accessible description for the `input` element is "Your username is the name that you use to log in to this service.".</p>
-
-        <pre><code>&lt;label for="username">Username&lt;/label>
-&lt;input id="username" name="username" aria-describedby="username-desc">
-&lt;button aria-expanded="false" aria-controls="username-desc" aria-label="Help about username">?&lt;/button>
-&lt;p id="username-desc" hidden>
- Your username is the name that you use to log in to this service.
-&lt;/p></code></pre>
-      </section>
+      <pre><code>&lt;label for="username">Username&lt;/label>
+        &lt;input id="username" name="username" aria-describedby="username-desc">
+        &lt;button aria-expanded="false" aria-controls="username-desc" aria-label="Help about username">?&lt;/button>
+        &lt;p id="username-desc" hidden>
+        Your username is the name that you use to log in to this service.
+        &lt;/p></code></pre>
     </section>
   </section>
 
