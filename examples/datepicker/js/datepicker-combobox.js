@@ -46,7 +46,7 @@ ComboboxInput.prototype.init = function () {
   this.buttonNode.addEventListener('keydown', this.handleButtonKeyDown.bind(this));
 
   if (this.buttonNode.nextElementSibling &&
-      this.button Node.nextElementSibling.classList.contains('arrow')) {
+      this.buttonNode.nextElementSibling.classList.contains('arrow')) {
     this.imageNode = this.inputNode.nextElementSibling;
   }
 
@@ -105,9 +105,9 @@ ComboboxInput.prototype.handleTouchStart = function (event) {
 };
 
 ComboboxInput.prototype.handleFocus = function () {
-  console.log('[ComboboxInput][handleFocus][hasFocus]: ' + this.hasFocusFlag);
+  console.log('[ComboboxInput][handleFocus][ignoreFocusEvent]: ' + this.ignoreFocusEvent);
   if (!this.ignoreFocusEvent && this.isCollapsed()) {
-    setTimeout(this.datepicker.show.bind(this.datepicker), 100);
+    this.datepicker.show();
     this.setMessage('Use the down arrow key to move focus to the datepicker grid.');
   }
 
@@ -117,7 +117,7 @@ ComboboxInput.prototype.handleFocus = function () {
 };
 
 ComboboxInput.prototype.handleBlur = function () {
-  console.log('[ComboboxInput][handleBlur]');
+  console.log('[ComboboxInput][handleBlur][ignoreBlurEvent]: ' + this.ignoreBlurEvent);
   if (!this.ignoreBlurEvent) {
     this.datepicker.hide(false);
     this.setMessage('');

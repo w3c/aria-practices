@@ -88,7 +88,13 @@ DatePicker.prototype.init = function () {
   this.prevYearNode.addEventListener('keydown', this.handlePreviousYearButton.bind(this));
   this.nextYearNode.addEventListener('keydown', this.handleNextYearButton.bind(this));
 
-  document.addEventListener('click', this.handleDocumentClick.bind(this), true);
+  document.body.addEventListener('mousedown', this.handleBackgroundMouseDown.bind(this), true);
+
+
+  if (!this.backgroundNode) {
+    this.backgroundNode = document.createElement('div');
+    document.body.appendChild(this.backgroundNode);
+  }
 
   // Create Grid of Dates
 
@@ -348,18 +354,34 @@ DatePicker.prototype.getDaysInMonth = function (year, month) {
 DatePicker.prototype.show = function () {
 
   this.dialogNode.style.display = 'block';
-  this.dateInput.setAriaExpanded(true);
+  this.dialogNode.style.zIndex = 2;
 
+/*
+  this.backgroundNode.style.display = 'block';
+  this.backgroundNode.style.position = 'static';
+  this.backgroundNode.style.zIndex = 4;
+
+
+  this.backgroundNode.style.backgroundColor = '#444';
+  this.backgroundNode.style.opacity = '0.5';
+  this.backgroundNode.style.width = '100%';
+
+  var bottom = this.backgroundNode.style.top;
+  this.backgroundNode.style.position = 'absolute';
+  this.backgroundNode.style.top = '0';
+  this.backgroundNode.style.left = '0';
+  this.backgroundNode.style.bottom = bottom;
+*/
+
+  this.dateInput.setAriaExpanded(true);
   this.getDateInput();
   this.updateGrid();
-};
 
-DatePicker.prototype.hasFocus = function () {
   return this.hasFocusFlag;
 };
 
 DatePicker.prototype.isOpen = function () {
-  return this.dateInput.getAriaExpanded();;
+  return this.dateInput.getAriaExpanded();
 };
 
 DatePicker.prototype.hide = function (ignore) {
@@ -368,6 +390,8 @@ DatePicker.prototype.hide = function (ignore) {
     ignore = true;
   }
 
+  this.backgroundNode.style.display = '1px';
+  this.backgroundNode.style.width = '1px';
   this.dialogNode.style.display = 'none';
   this.dateInput.setAriaExpanded(false);
 
@@ -376,14 +400,11 @@ DatePicker.prototype.hide = function (ignore) {
   this.dateInput.focus();
 };
 
-DatePicker.prototype.handleDocumentClick = function (event) {
-  console.log('[DateInput][handleDocumentClick][target]: ' + (event.target !== this.dateInput.inputNode));
+DatePicker.prototype.handleBackgroundMouseDown = function (event) {
+  console.log('[DatePicker][handleBackgroundMouseDown][isOpen]: ' + this.isOpen());
 
-  if (this.isOpen() &&
-    !this.dialogNode.contains(event.target) &&
-    !this.buttonNode.contains(event.target) &&
-    (this.imageNode !== event.target) &&
-    (this.dateInput.inputNode !== event.target)) {
+  if (this.isOpen()) {
+    this.dateInput.ignoreFocusEvent = true;
     this.hide();
     event.stopPropagation();
     event.preventDefault();
