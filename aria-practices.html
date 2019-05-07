@@ -3746,9 +3746,9 @@
     <section id="names_and_descriptions_derivation">
       <h3>How Are Name and Description Strings Derived?</h3>
       <p>
-        Because there are several elements and attributes for specifying text to include in an accessible name or description string, and because they can be combined in a practically endless number of ways, browsers have to implement a fairly complex algorithm for assembling the strings.
-The section on <a href="#name_calculation">accessible name calculation</a> provides a detailed explanation of the algorithm.
-However, most authors do not need a detailed understanding of the algorithm since nearly all elements can be named or described by implementing the coding patterns described in the <a href="#naming_techniques">naming techniques section</a> and following the guidance provided by the <a href="#naming_cardinal_rules">cardinal rules for naming.</a>
+        Because there are several elements and attributes for specifying text to include in an accessible name or description string, and because they can be combined in a practically endless number of ways, browsers implement fairly complex algorithms for assembling the strings.
+The sections on <a href="#name_calculation">accessible name calculation</a> and <a href="#description_calculation">accessible description calculation</a> provide detailed explanations of the algorithms.
+However, most authors do not need detailed understanding of the algorithms since nearly all circumstances where a name or description is useful are supported by the coding patterns described in the <a href="#naming_techniques">naming techniques</a> and <a href="#describing_techniques">describing techniques</a> sections.
       </p>
     </section>
     
@@ -3758,44 +3758,46 @@ However, most authors do not need a detailed understanding of the algorithm sinc
       <section>
         <h4>Rule 1: Heed Warnings and Test Thoroughly</h4>
         <p>
-          because the <code>aria-label</code> and <code>aria-labelledby</code> attributes override content contained in some elementss, they can block assistive technology access to some on-screen text.
-          Thus
-          , to both serve an optimal experience and avoid potentially disasterous mistakes, it is essential to understand when and how these two attributes override element text.
+          Several of the naming techniques include notes that warn against coding patterns that may appear logical at first glance but are either prohibitted by the ARIA specification or fall into gray space that is not yet fully specified.
+          These patterns may even yield desired names in some browsers.
+          However, it is unlikely they will provide consistent results across browsers, especially over time as work to improve the consistency of name calculation across browsers progresses.
         </p>
-      <p>There are two different kinds of labels, depending on the element’s role. The difference is both in how the label is computed for the element, and how the element is represented to assistive technologies.</p>
-      <ul>
-        <li>Label that represents the element. The label is taken from the element's contents, unless `aria-labelledby` or `aria-label` attributes are used. Only the label is represented to users of assistive technologies.</li>
-        <li>Label that augments the element. The label is not taken from the element's contents (by default). A label can be set using `aria-labelledby` or `aria-label`. The label will augment the element; both the label and the element's contents are exposed to users of assistive technology.</li>
-      </ul>
-        
+        <p>
+          In addition to heeding the warnings provided in the naming techniques, it is difficult to over emphasize the importance of testing to ensure that names browsers calculate match expectations.
+        </p>
       </section>
       
       <section>
         <h4>Rule 2: Prefer Visible Text</h4>
         <p>
-          When a user interface includes visible text that could be used to provide an appropriate accessible name, using the visible text for the accessible name simplifies maintenance, prevents bugs, and reduces language translation requirements, which leads to a more robust accessible experience.
-          The naming techniques described in the sections below emphasize techniques for utilizing on-screen text.
+          When a user interface includes visible text that could be used to provide an appropriate accessible name, using the visible text for the accessible name simplifies maintenance, prevents bugs, and reduces language translation requirements.
+          When names are generated from text that exists only in markup and is never displayed visually, there is a greater likelihood that accessible names are not updated when the user interface design or content are changed.  
         </p>
       </section>
       
       <section>
         <h4>Rule 3: Prefer Native Techniques</h4>
-        <p>That is, in HTML documents, prefer HTML naming techniques, such as the HTML label element.</p>
+        <p>
+          In HTML documents, whenever possible, rely on HTML naming techniques, such as the HTML label element.
+          While less flexible, their simplicity and reliance on visible text help ensure robust accessible experiences. 
+        </p>
       </section>
+      
       <section>
         <h4>Rule 4: Avoid Browser Fallback</h4>
         <p>
-          Talk about how fallbacks can be less robust because of potential implementation inconsistency.
-          title and placeholder
+          When authors do not specify an accessible name using an element or attribute that is intended for naming, browsers attempt to help assistive technology users by resorting to fall back methods for generating a name.
+          For example, the HTML title and placeholder attributes are used as last resort sources for accessible names.
+          Because the purpose of these attributes is not naming, their content typically yields low quality accessible names that are not effective.
         </p>
       </section>
       
       <section>
         <h4>Rule 5: Compose Brief, Useful Names</h4>
         <p>
-          Mention some good properties of names, such as uniqueness, brevity, and clarity.
-          Refer user to section on best practices for composing effective accessible names.
-          Example practice: Do NOT include a WAI-ARIA role name in the accessible name. For example, do not include the word &quot;button&quot; in the name of a button or the word &quot;navigation&quot; in the name of a navigation region.
+          In the same way that visually crowded screens reduce usability, excessively long or insufficiently distinct and descriptive accessible names can make a user interface very difficult, or even impossible, to use for someone who relies on a non-visual form of the user interface.
+          In other words, for a web experience to accessible, the names must be effective. 
+          <a href="#naming_effectively">Composing Effective and User-friendly Accessible Names</a>
         </p>
       </section>
     </section>
@@ -3837,6 +3839,15 @@ However, most authors do not need a detailed understanding of the algorithm sinc
       
       <section>
         <h4>Naming with a String Attribute Via <code>aria-label</code></h4>
+        <p>
+          because the <code>aria-label</code> and <code>aria-labelledby</code> attributes override content contained in some elementss, they can block assistive technology access to some on-screen text.
+          Thus, to both serve an optimal experience and avoid potentially disasterous mistakes, it is essential to understand when and how these two attributes override element text.
+        </p>
+      <p>There are two different kinds of labels, depending on the element’s role. The difference is both in how the label is computed for the element, and how the element is represented to assistive technologies.</p>
+      <ul>
+        <li>Label that represents the element. The label is taken from the element's contents, unless `aria-labelledby` or `aria-label` attributes are used. Only the label is represented to users of assistive technologies.</li>
+        <li>Label that augments the element. The label is not taken from the element's contents (by default). A label can be set using `aria-labelledby` or `aria-label`. The label will augment the element; both the label and the element's contents are exposed to users of assistive technology.</li>
+      </ul>
         <p>If there is no content that is appropriate to use as the label, then use the `aria-label` attribute to set the label for the element directly.</p>
 
         <p>In the following example, a close button contains an "X" and is given the label “Close” using the `aria-label` attribute.</p>
@@ -3898,9 +3909,10 @@ Here are seven things you can do to help.&lt;/p>
       </section>
     </section>
     
-    <section id="nameing_effectively">
+    <section id="naming_effectively">
       <h3>Composing Effective and User-friendly Accessible Names</h3>
       <p>Todo: Write a section that describes how to make good names, i.e., brief, descriptive, unique, front-loaded, no role names, etc.</p>
+      <p>Example practice: Do NOT include a WAI-ARIA role name in the accessible name. For example, do not include the word &quot;button&quot; in the name of a button or the word &quot;navigation&quot; in the name of a navigation region.</p>
     </section>
     
     <section id="naming_role_guidance">
