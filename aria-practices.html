@@ -3723,10 +3723,10 @@
         An accessible name is a short string, typically 1 to 3 words,  that authors associate with an element to provide users of assistive technologies with a label for the element.
         For example, an input field might have an accessible name of &quot;User ID&quot; or a button might be named &quot;Submit&quot;.
       </p>
-      <p>An accessible name serves two primary purposes:</p>
+      <p>An accessible name serves two primary purposes for users of assistive technologies, such as screen readers:</p>
       <ol>
         <li>Convey the purpose or intent of the element.</li>
-        <li>Distinguish it from other elements on the page.</li>
+        <li>Distinguishes an element from other elements on the page.</li>
       </ol>
       <p>
         Both the WAI-ARIA specification and WCAG require all focusable, interactive elements to have an accessible name.
@@ -3758,8 +3758,8 @@ However, most authors do not need detailed understanding of the algorithms since
       <section>
         <h4>Rule 1: Heed Warnings and Test Thoroughly</h4>
         <p>
-          Several of the naming techniques include notes that warn against coding patterns that may appear logical at first glance but are either prohibitted by the ARIA specification or fall into gray space that is not yet fully specified.
-          These patterns may even yield desired names in some browsers.
+          Several of the below <a href="#naming_techniques">naming techniques</a> include notes that warn against specific coding patterns that are either prohibitted by the ARIA specification or fall into gray space that is not yet fully specified.
+          Some of these prohibitted or ambiguous patterns may appear logical and even yield desired names in some browsers.
           However, it is unlikely they will provide consistent results across browsers, especially over time as work to improve the consistency of name calculation across browsers progresses.
         </p>
         <p>
@@ -3787,7 +3787,7 @@ However, most authors do not need detailed understanding of the algorithms since
         <h4>Rule 4: Avoid Browser Fallback</h4>
         <p>
           When authors do not specify an accessible name using an element or attribute that is intended for naming, browsers attempt to help assistive technology users by resorting to fall back methods for generating a name.
-          For example, the HTML title and placeholder attributes are used as last resort sources for accessible names.
+          For example, the HTML title and placeholder attributes are used as last resort sources of content for accessible names.
           Because the purpose of these attributes is not naming, their content typically yields low quality accessible names that are not effective.
         </p>
       </section>
@@ -3797,7 +3797,7 @@ However, most authors do not need detailed understanding of the algorithms since
         <p>
           In the same way that visually crowded screens reduce usability, excessively long or insufficiently distinct and descriptive accessible names can make a user interface very difficult, or even impossible, to use for someone who relies on a non-visual form of the user interface.
           In other words, for a web experience to accessible, the names must be effective. 
-          <a href="#naming_effectively">Composing Effective and User-friendly Accessible Names</a>
+          The below section on <a href="#naming_effectively">Composing Effective and User-friendly Accessible Names</a> provides guidance for striking an effective balance between brevity and descriptiveness.
         </p>
       </section>
     </section>
@@ -3813,7 +3813,7 @@ However, most authors do not need detailed understanding of the algorithms since
 
         <p>This could be rendered to assistive technology as "link, Home"; the role and the label, not not repeating the content ("link, Home, Home").</p>
         
-        <p>The following roles get the label from the contents by default:</p>
+        <p>Elements having one of the following roles are, by default, named by the content they contain:</p>
         <ul>
           <li>`button`</li>
           <li>`cell`</li>
@@ -3828,7 +3828,6 @@ However, most authors do not need detailed understanding of the algorithms since
           <li>`option`</li>
           <li>`radio`</li>
           <li>`row`</li>
-          <li>`rowgroup`</li>
           <li>`rowheader`</li>
           <li>`switch`</li>
           <li>`tab`</li>
