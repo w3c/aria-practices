@@ -1014,11 +1014,6 @@
               <li>The element that serves as the combobox container has role <a href="#combobox" class="role-reference">combobox</a>.</li>
               <li>The element with role <code>combobox</code> contains or owns a textbox element that has either role <a href="#textbox" class="role-reference">textbox</a> or role <a href="#searchbox" class="role-reference">searchbox</a>.</li>
               <li>When the combobox popup is visible, the combobox element contains or owns an element that has role <a href="#listbox" class="role-reference">listbox</a>, <a href="#tree" class="role-reference">tree</a>, <a href="#grid" class="role-reference">grid</a>, or <a href="#dialog" class="role-reference">dialog</a>.</li>
-              <li>
-                If the combobox popup has a role other than <code>listbox</code>, the element with role <code>combobox</code> has <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set to a value that corresponds to the popup type.
-                That is, <code>aria-haspopup</code> is set to <code>grid</code>, <code>tree</code>, or <code>dialog</code>.
-                Note that elements with role <code>combobox</code> have an implicit <code>aria-haspopup</code> value of <code>listbox</code>.
-              </li>
               <li>When the combobox popup is visible, the textbox element has <a href="#aria-controls" class="property-reference">aria-controls</a> set to a value that refers to the combobox popup element.</li>
             </ul>
           </li>
@@ -1026,10 +1021,6 @@
             <ul>
               <li>The element that serves as the textbox has role <a href="#combobox" class="role-reference">combobox</a>.</li>
               <li>When the combobox popup is visible, the element with role combobox has <a href="#aria-owns" class="property-reference">aria-owns</a> set to a value that refers to an element with role <a href="#listbox" class="role-reference">listbox</a>.</li>
-              <li>
-                the element with role <code>combobox</code> has a value for <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> of <code>listbox</code>.
-                Note that elements with role <code>combobox</code> have an implicit <code>aria-haspopup</code> value of <code>listbox</code>.
-              </li>
             </ul>
           </li>
           <li>
@@ -1042,6 +1033,11 @@
             Note that elements with role <code>combobox</code> have a default value for <code>aria-expanded</code> of <code>false</code>.
           </li>
           <li>When a combobox receives focus, DOM focus is placed on the textbox element.</li>
+          <li>
+            If the combobox popup has a role other than <code>listbox</code>, the element with role <code>combobox</code> has <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set to a value that corresponds to the popup type.
+            That is, <code>aria-haspopup</code> is set to <code>grid</code>, <code>tree</code>, or <code>dialog</code>.
+            Note that elements with role <code>combobox</code> have an implicit <code>aria-haspopup</code> value of <code>listbox</code>.
+          </li>
           <li>When a descendant of  a listbox, grid, or tree popup is focused, DOM focus remains on the textbox and the textbox has <a href="#aria-activedescendant" class="property-reference">aria-activedescendant</a> set to a value that refers to the focused element within the popup.</li>
           <li>In a combobox with a listbox, grid, or tree popup, when a suggested value is visually indicated as the currently selected value, the <code>option</code>, <code>gridcell</code>, <code>row</code>, or <code>treeitem</code> containing that value has <a href="#aria-selected" class="state-reference">aria-selected</a> set to <code>true</code>.</li>
           <li>
