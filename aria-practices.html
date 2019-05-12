@@ -3807,7 +3807,7 @@ However, most authors do not need detailed understanding of the algorithms since
       <section id="naming_techniques">
         <h4>Naming Techniques</h4>
         
-        <section>
+        <section id="naming_with_child_content">
           <h5>Naming with Child Content</h5>
           <p>
             There are certain elements that get their name from the content they contain.
@@ -3849,24 +3849,45 @@ However, most authors do not need detailed understanding of the algorithms since
           </p>
         </section>
         
-        <section>
+        <section id="naming_with_aria-label">
           <h5>Naming with a String Attribute Via <code>aria-label</code></h5>
           <p>
-            because the <code>aria-label</code> and <code>aria-labelledby</code> attributes override content contained in some elementss, they can block assistive technology access to some on-screen text.
-            Thus, to both serve an optimal experience and avoid potentially disasterous mistakes, it is essential to understand when and how these two attributes override element text.
+            The <a href="#aria-label" class="property-reference">aria-label</a> attribute enables authors to specify a string that will name an element.
+            For example, the name of the following button is &quot;Close&quot;.
           </p>
-        <p>There are two different kinds of labels, depending on the element’s role. The difference is both in how the label is computed for the element, and how the element is represented to assistive technologies.</p>
-        <ul>
-          <li>Label that represents the element. The label is taken from the element's contents, unless `aria-labelledby` or `aria-label` attributes are used. Only the label is represented to users of assistive technologies.</li>
-          <li>Label that augments the element. The label is not taken from the element's contents (by default). A label can be set using `aria-labelledby` or `aria-label`. The label will augment the element; both the label and the element's contents are exposed to users of assistive technology.</li>
-        </ul>
-          <p>If there is no content that is appropriate to use as the label, then use the `aria-label` attribute to set the label for the element directly.</p>
-  
-          <p>In the following example, a close button contains an "X" and is given the label “Close” using the `aria-label` attribute.</p>
-  
           <pre><code>&lt;button type="button" aria-label="Close">X&lt;/button></code></pre>
+          <p>
+            The <code>aria-label</code> attribute is useful when there is no visible text content that will serve as an appropriate accessible name.
+          </p>
+          <p>
+            The <code>aria-label</code> attribute effects assistive technology users in one of two different ways, depending on the role of the element to which it is applied.
+            When applied to an element with one of the roles that supports <a href="#naming_with_child_content">naming from child content</a>, <code>aria-label</code> hides descendant content from assistive technology users and replaces the content with the value of <code>aria-label</code>.
+            However, when applied to nearly any other type of element, assistive technologies will render both the value of aria-label and the content of the element.
+            For example, the name of the following navigation region is &quot;Product&quot;.
+          </p>
+          <pre><code>
+          &lt;nav aria-label=&quot;Product&quot;&gt;
+            &lt;!-- list of navigation links to product pages --&gt;
+          &lt;/nav&gt;
+          </code></pre>
+          <p>
+            When encountering this navigation region, a screen reader user will hear the name and role of the element, e.g., &quot;Product navigation region&quot;, and then be able to read through the links contained in the region.
+          </p>
+          <div class="note">
+            <p>Warnings!</p>
+            <ol>
+              <li>There are certain types of elements that should not be named with <code>aria-label</code>. They are identified in the table in section <a href="#naming_role_guidance">Accessible Name Guidance by Role</a>.</li>
+              <li>
+            If <code>aria-label</code> is applied to an element with one of the roles that supports <a href="#naming_with_child_content">naming from child content</a>, text content contained in the element and its descendants is hidden from assistive technology users.
+            It is strongly recommended to avoid using this attribute to override content of one of these elements except in rare circumstances where hiding content from assistive technology users is beneficial.
+          </li>
+              <li>Because the value of <code>aria-label</code> is not rendered visually, testing with assistive technologies to ensure the expected name is presented to users is particularly important.</li>
+              <li>When a user interface is translated into multiple languages, ensure that <code>aria-lable</code> values are translated.</li>
+            </ol>
+          </div>
         </section>
-        <section>
+        
+        <section id="naming_with_aria-labelledby">
           <h5>Naming with Referenced Content Via <code>aria-labeledby</code></h5>
           <p>If the element’s contents are not appropriate as a label, but there is an element that can be used as the label, then use the `aria-labelledby` attribute.</p>
   
@@ -3889,7 +3910,7 @@ However, most authors do not need detailed understanding of the algorithms since
   Here are seven things you can do to help.&lt;/p>
   &lt;p>&lt;a id="bees-read-more" aria-labelledby="bees-read-more bees-heading">Read more...&lt;/a>&lt;/p></code></pre>
         </section>
-  
+        
         <section>
           <h5>Label that augments the element</h5>
   
