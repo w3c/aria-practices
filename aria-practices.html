@@ -3726,7 +3726,7 @@
       <p>An accessible name serves two primary purposes for users of assistive technologies, such as screen readers:</p>
       <ol>
         <li>Convey the purpose or intent of the element.</li>
-        <li>Distinguishes an element from other elements on the page.</li>
+        <li>Distinguish the element from other elements on the page.</li>
       </ol>
       <p>
         Both the WAI-ARIA specification and WCAG require all focusable, interactive elements to have an accessible name.
@@ -3842,8 +3842,8 @@ However, most authors do not need detailed understanding of the algorithms since
             <li>tooltip</li>
             <li>treeitem</li>
           </ul>
-          <p class="note">
-            WARNING! If an element with one of the above roles is named by using <code>aria-label</code> or <code>aria-labelledby</code>, text content contained in the element and its descendants is hidden from assistive technology users unless the descendant content is referenced by <code>aria-labelledby</code>.
+          <p class="warning">
+            If an element with one of the above roles is named by using <code>aria-label</code> or <code>aria-labelledby</code>, text content contained in the element and its descendants is hidden from assistive technology users unless the descendant content is referenced by <code>aria-labelledby</code>.
             It is strongly recommended to avoid using either of these attributes to override content of one of the above elements except in rare circumstances where hiding content from assistive technology users is beneficial.
             In addition, in situations where visible content is hidden from assistive technology users by use of one of these attributes, thorough testing with assistive technologies is particularly important.
           </p>
@@ -3873,72 +3873,71 @@ However, most authors do not need detailed understanding of the algorithms since
           <p>
             When encountering this navigation region, a screen reader user will hear the name and role of the element, e.g., &quot;Product navigation region&quot;, and then be able to read through the links contained in the region.
           </p>
-          <div class="note">
-            <p>Warnings!</p>
-            <ol>
-              <li>There are certain types of elements that should not be named with <code>aria-label</code>. They are identified in the table in section <a href="#naming_role_guidance">Accessible Name Guidance by Role</a>.</li>
-              <li>
-            If <code>aria-label</code> is applied to an element with one of the roles that supports <a href="#naming_with_child_content">naming from child content</a>, text content contained in the element and its descendants is hidden from assistive technology users.
-            It is strongly recommended to avoid using this attribute to override content of one of these elements except in rare circumstances where hiding content from assistive technology users is beneficial.
-          </li>
-              <li>Because the value of <code>aria-label</code> is not rendered visually, testing with assistive technologies to ensure the expected name is presented to users is particularly important.</li>
-              <li>When a user interface is translated into multiple languages, ensure that <code>aria-lable</code> values are translated.</li>
-            </ol>
-          </div>
+          <ol class="warning">
+            <li>
+          If <code>aria-label</code> is applied to an element with one of the roles that supports <a href="#naming_with_child_content">naming from child content</a>, text content contained in the element and its descendants is hidden from assistive technology users.
+          It is strongly recommended to avoid using this attribute to override content of one of these elements except in rare circumstances where hiding content from assistive technology users is beneficial.
+        </li>
+        <li>There are certain types of elements, such as paragraphs and list items, that should not be named with <code>aria-label</code>. They are identified in the table in section <a href="#naming_role_guidance">Accessible Name Guidance by Role</a>.</li>
+            <li>Because the value of <code>aria-label</code> is not rendered visually, testing with assistive technologies to ensure the expected name is presented to users is particularly important.</li>
+            <li>When a user interface is translated into multiple languages, ensure that <code>aria-lable</code> values are translated.</li>
+          </ol>
         </section>
         
         <section id="naming_with_aria-labelledby">
           <h5>Naming with Referenced Content Via <code>aria-labeledby</code></h5>
-          <p>If the element’s contents are not appropriate as a label, but there is an element that can be used as the label, then use the `aria-labelledby` attribute.</p>
-  
-          <p>In the following example, an element with the "switch" role is labeled by a previous sibling element.</p>
-  
-          <pre><code>&lt;span id="night-mode-label">Night mode&lt;/span>
-  &lt;span role="switch" aria-checked="false" tabindex="0" aria-labelledby="night-mode-label">&lt;/span></code></pre>
-  
-          <p>Because a `span` element is used for the switch control, the HTML `label` element cannot be used to label it, since it only works with HTML elements that are form controls. However, the `switch` role can be used on an `input` element with `type="checkbox”`, and then HTML `label` can be used.</p>
-  
-          <pre><code>&lt;label for="night-mode">Night mode&lt;/label>
-  &lt;input type="checkbox" role="switch" id="night-mode"></code></pre>
-  
-          <p>In some cases, the combination of the element’s contents and another element would be appropriate as a label. In such situations, use the `aria-labelledby` and reference both the element itself and the other element.</p>
-  
-          <p>In the following example, a "read more" link is labeled by the element itself and the article’s heading, resulting in “Read more… 7 ways you can help save the bees”.</p>
-  
-          <pre><code>&lt;h2 id="bees-heading">7 ways you can help save the bees&lt;/h2>
-  &lt;p>Bees are disappearing rapidly.
-  Here are seven things you can do to help.&lt;/p>
-  &lt;p>&lt;a id="bees-read-more" aria-labelledby="bees-read-more bees-heading">Read more...&lt;/a>&lt;/p></code></pre>
-        </section>
-        
-        <section>
-          <h5>Label that augments the element</h5>
-  
-          <p>Some roles do not get the label from the contents of the element; a label can only be set explicitly using the `aria-labelledby` or `aria-label` attributes. For elements with these roles, a label augments the element, but does not override the contents.</p>
-  
-          <p>Examples of such roles are (note that this is not a complete list):</p>
-  
-          <ul>
-            <li>`alertdialog`</li>
-            <li>`application`</li>
-            <li>`article`</li>
-            <li>`banner`</li>
-            <li>`complementary`</li>
-            <li>`navigation`</li>
-            <li>`radiogroup`</li>
-            <li>`search`</li>
-            <li>`status`</li>
-          </ul>
-  
-          <p>For example, the `navigation` landmark could be labeled with the purpose of the landmark. In the following snippet, a "breadcrumbs"
-    navigation region is labeled explicitly using the `aria-labelledby` attribute. The HTML `nav` element has the `navigation` role by default.</p>
-  
-          <pre><code>&lt;nav aria-labelledby="breadcrumbs-label">
-   &lt;span id="breadcrumbs-label">You are here:&lt;/span>
-   &lt;a href="/">Home&lt;/a> &amp;gt;
-   &lt;a href="/books/">Books&lt;/a> &amp;gt;
-   &lt;a>Children's books&lt;/a>
-  &lt;/nav></code></pre>
+          <p>
+            The <a href="#aria-labelledby" class="property-reference">aria-labelledby property</a> enables authors to reference other elements on the page to define an accessible name.
+            For example, the following switch is named by the text content of a previous sibling element.
+          </p>
+          <pre><code>
+  &lt;span id="night-mode-label">Night mode&lt;/span&gt;
+  &lt;span role="switch" aria-checked="false" tabindex="0" aria-labelledby="night-mode-label">&lt;/span&gt;
+          </code></pre>
+          <p>
+            Note that while using <code>aria-labelledby</code> is similar in this situation to using an HTML <code>label</code> element with the <code>for</code> attribute, one significant difference is that browsers do not automatically make clicking on the label activate the element; that is an author responsibility.
+            However, HTML <code>label</code> cannot be used to label a <code>span</code> element.
+            Fortunately, an HTML <code>input</code with <code>type="checkbox"</code> allows the ARIA <code>switch</code> role, so when feasible, using the following approach creates a more robust solution.
+          </p>
+          <pre><code>
+  &lt;label for="night-mode">Night mode&lt;/label>
+  &lt;input type="checkbox" role="switch" id="night-mode">
+          </code></pre>
+  <p>The <code>aria-labelledby</code> property is useful in a wide variety of situations because:</p>
+  <ul>
+    <li>It has the highest precedence when browsers calculate accessible names, i.e., it overrides names from child content and all other naming attributes, such as <code>aria-label</code>.</li>
+    <li>It can concatenate content from multiple elements into a single name string.</li>
+    <li>It incorporates content from elements regardless of their visibility, i.e., it even includes content from elements with <code>display:none</code> or <code>visibility:hidden</code> in the calculated name string.</li>
+    <li>It incorporates the value of input elements, i.e., if it references a textbox, the value of the textbox is included in the calculated name string.</li>
+  </ul>
+          <p>
+            In some cases, the most effective name for an element is its own content combined with the content of another element.
+            Because <code>aria-labelledby</code> has highest precedence in name calculation, in those situations, it is possible to use <code>aria-labelledby</code> to reference both the element itself and the other element.
+            In the following example, the &quot;read more&quot; link is named by the element itself and the article’s heading, resulting in a name of &quot;Read more... 7 ways you can help save the bees&quot;.
+          </p>
+          <pre><code>
+  &lt;h2 id="bees-heading"&gt;7 ways you can help save the bees&lt;/h2&gt;
+  &lt;p&gt;Bees are disappearing rapidly. Here are seven things you can do to help.&lt;/p&gt;
+  &lt;p&gt;&lt;a id="bees-read-more" aria-labelledby="bees-read-more bees-heading"&gt;Read more...&lt;/a&gt;&lt;/p&gt;
+          </code></pre>
+          <p>
+            When multiple elements are referenced, the text content of the referenced elements will be concatenated in the order they are listed in the attribute value.
+            In addition, browsers will trim leading and trailing white space and separate the content from each element with a single space.
+          </p>
+          <p>
+            To-do: add one or two more simple but realistic examples to show reference to hidden elements and inputs, perhaps also highlighting how browsers handle spacing.
+            Short examples, 3 lines of code or less, are preferrable.
+          </p>
+          <ol class="warning">
+            <li>The <code>aria-labelledby</code> property cannot be chained, i.e., if an element with <code>aria-labelled by</code> references another element that also has <code>aria-labelledby</code>, the <code>aria-labelledby</code> attribute on the referenced element will be ignored.</li>
+            <li>The <code>aria-labelledby</code> property cannot be applied to the descendant of an element that supports naming from content. For example, most browsers will ignore the aria-labelledby attribute in this link: <code>&lt;a href="/"&gt;&lt;span aria-labelledby="elem1"&gt;&lt;/span&gt;&lt;a&gt;</code>.</li>
+            <li>There are certain types of elements, such as paragraphs and list items,  that should not be named with <code>aria-labelledby</code>. They are identified in the table in section <a href="#naming_role_guidance">Accessible Name Guidance by Role</a>.</li>
+            <li>
+          If <code>aria-labelledby</code> is applied to an element with one of the roles that supports <a href="#naming_with_child_content">naming from child content</a>, text content contained in the element and its descendants is hidden from assistive technology users unless it is also referenced by <code>aria-labelledby</code>.
+          It is strongly recommended to avoid using this attribute to override content of one of these elements except in rare circumstances where hiding content from assistive technology users is beneficial.
+        </li>
+            <li>Because calculating the name of an element with <code>aria-labelledby</code> can be complex and reference hidden content, testing with assistive technologies to ensure the expected name is presented to users is particularly important.</li>
+          </ol>
         </section>
       </section>
       
@@ -3953,9 +3952,9 @@ However, most authors do not need detailed understanding of the algorithms since
         <p>Todo: build a table with every concrete role with columns for:</p>
         <ul>
           <li>role</li>
-          <li>Name Required?: with values of always, sometimes, or never</li>
+          <li>Name Required?: with values of always, usually, sometimes, or never</li>
           <li>Named by Content?: values of Yes or No</li>
-          <li>Guidance: Explains sometimes and never for name required. Provides warning if named from content.</li> 
+          <li>Guidance: Explains usually, sometimes and never for name required. Provides warning if named from content.</li> 
         </ul>
       </section>
       
