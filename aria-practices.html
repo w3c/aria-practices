@@ -3809,33 +3809,44 @@ However, most authors do not need detailed understanding of the algorithms since
         
         <section>
           <h5>Naming with Child Content</h5>
-          <p>For elements with certain roles, the label is taken from the element’s contents by default, and the label will represent the element when communicated to assistive technologies. In the following example, a link (with default role `link`) gets its label from the element’s contents ("Home").</p>
-  
+          <p>
+            There are certain elements that get their name from the content they contain.
+            For example, the following link is named &quot;Home&quot;.
+          </p>
+          
           <pre><code>&lt;a href="/">Home&lt;/a></code></pre>
   
-          <p>This could be rendered to assistive technology as "link, Home"; the role and the label, not not repeating the content ("link, Home, Home").</p>
-          
-          <p>Elements having one of the following roles are, by default, named by the content they contain:</p>
+          <p>
+            When assistive technologies render an element, such as a link or button,  that gets its accessible name from its content, the accessible name is the only content the user can perceive for that element. 
+            This is in contrast to other elements, such as text fields or tables,  where the accessible name is a label that is presented along with the value or content of the element.
+            For instance, the accessible name of a table can be derived from a caption element, and assistive technologies render both the caption and all other content contained inside the table.
+          </p>
+          <p>Elements having one of the following roles are, by default, named by a string calculated from all their descendant content:</p>
           <ul>
-            <li>`button`</li>
-            <li>`cell`</li>
-            <li>`checkbox`</li>
-            <li>`columnheader`</li>
-            <li>`gridcell`</li>
-            <li>`heading`</li>
-            <li>`link`</li>
-            <li>`menuitem`</li>
-            <li>`menuitemcheckbox`</li>
-            <li>`menuitemradio`</li>
-            <li>`option`</li>
-            <li>`radio`</li>
-            <li>`row`</li>
-            <li>`rowheader`</li>
-            <li>`switch`</li>
-            <li>`tab`</li>
-            <li>`tooltip`</li>
-            <li>`treeitem`</li>
+            <li>button</li>
+            <li>cell</li>
+            <li>checkbox</li>
+            <li>columnheader</li>
+            <li>gridcell</li>
+            <li>heading</li>
+            <li>link</li>
+            <li>menuitem</li>
+            <li>menuitemcheckbox</li>
+            <li>menuitemradio</li>
+            <li>option</li>
+            <li>radio</li>
+            <li>row</li>
+            <li>rowheader</li>
+            <li>switch</li>
+            <li>tab</li>
+            <li>tooltip</li>
+            <li>treeitem</li>
           </ul>
+          <p class="note">
+            WARNING! If an element with one of the above roles is named by using <code>aria-label</code> or <code>aria-labelledby</code>, text content contained in the element and its descendants is hidden from assistive technology users unless the descendant content is referenced by <code>aria-labelledby</code>.
+            It is strongly recommended to avoid using either of these attributes to override content of one of the above elements except in rare circumstances where hiding content from assistive technology users is beneficial.
+            In addition, in situations where visible content is hidden from assistive technology users by use of one of these attributes, thorough testing with assistive technologies is particularly important.
+          </p>
         </section>
         
         <section>
