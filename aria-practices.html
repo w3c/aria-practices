@@ -3707,9 +3707,9 @@
     </p>
     <ul>
       <li>Naming with child content.</li>
-      <li>Naming by encapsulation with a label.</li>
       <li>Naming with a String Attribute Via <code>aria-label</code>.</li>
       <li>Naming by Referencing Content with <code>aria-labelledby</code>.</li>
+      <li>Naming by encapsulation with a label.</li>
       <li>Naming with Legends and Captions.</li>
       <li>Fallback Names Derived from Titles and Placeholders.</li>
       <li>Describing by referencing content with <code>aria-describedby</code>.</li>
@@ -3757,7 +3757,7 @@ However, most authors do not need detailed understanding of the algorithms since
       <section id="naming_cardinal_rules">
         <h4>Cardinal Rules of Naming</h4>
         
-        <section>
+        <section id="naming_rule_heed_warnings">
           <h5>Rule 1: Heed Warnings and Test Thoroughly</h5>
           <p>
             Several of the below <a href="#naming_techniques">naming techniques</a> include notes that warn against specific coding patterns that are either prohibitted by the ARIA specification or fall into gray space that is not yet fully specified.
@@ -3769,7 +3769,7 @@ However, most authors do not need detailed understanding of the algorithms since
           </p>
         </section>
         
-        <section>
+        <section id="naming_rule_visible_text">
           <h5>Rule 2: Prefer Visible Text</h5>
           <p>
             When a user interface includes visible text that could be used to provide an appropriate accessible name, using the visible text for the accessible name simplifies maintenance, prevents bugs, and reduces language translation requirements.
@@ -3777,7 +3777,7 @@ However, most authors do not need detailed understanding of the algorithms since
           </p>
         </section>
         
-        <section>
+        <section id="naming_rule_native_techniques">
           <h5>Rule 3: Prefer Native Techniques</h5>
           <p>
             In HTML documents, whenever possible, rely on HTML naming techniques, such as the HTML label element.
@@ -3785,7 +3785,7 @@ However, most authors do not need detailed understanding of the algorithms since
           </p>
         </section>
         
-        <section>
+        <section id="naming_rule_avoid_fallback">
           <h5>Rule 4: Avoid Browser Fallback</h5>
           <p>
             When authors do not specify an accessible name using an element or attribute that is intended for naming, browsers attempt to help assistive technology users by resorting to fall back methods for generating a name.
@@ -3794,11 +3794,11 @@ However, most authors do not need detailed understanding of the algorithms since
           </p>
         </section>
         
-        <section>
+        <section id="naming_rule_brief_names">
           <h5>Rule 5: Compose Brief, Useful Names</h5>
           <p>
             In the same way that visually crowded screens reduce usability, excessively long or insufficiently distinct and descriptive accessible names can make a user interface very difficult, or even impossible, to use for someone who relies on a non-visual form of the user interface.
-            In other words, for a web experience to accessible, the names must be effective. 
+            In other words, for a web experience to be accessible, the names must be effective. 
             The below section on <a href="#naming_effectively">Composing Effective and User-friendly Accessible Names</a> provides guidance for striking an effective balance between brevity and descriptiveness.
           </p>
         </section>
@@ -3938,6 +3938,21 @@ However, most authors do not need detailed understanding of the algorithms since
         </li>
             <li>Because calculating the name of an element with <code>aria-labelledby</code> can be complex and reference hidden content, testing with assistive technologies to ensure the expected name is presented to users is particularly important.</li>
           </ol>
+        </section>
+        
+        <section id="naming_with_labels">
+          <h5>Naming by Encapsulation with a Label</h5>
+          <p>Todo: write this section. Note that we could describe the ARIA label role, but state that it is not supported until ARIA 1.2 is a recommendation So, in this version, we should talk about the HTML technique first.</p>
+        </section>
+        
+        <section id="naming_with_legends_and_captions">
+          <h5>Naming with Legends and Captions</h5>
+          <p>Todo: write this section. Note that we could describe the ARIA legend role, but state that it is not supported until ARIA 1.2 is a recommendation So, in this version, we should talk about the HTML technique first.</p>
+        </section>
+        
+        <section id="naming_with_fallback">
+          <h5>Fallback Names Derived from Titles and Placeholders</h5>
+          <p>Todo: write this section. Needs to cover title, placeholder, and aria-placeholder.</p>
         </section>
       </section>
       
