@@ -34,12 +34,14 @@ var Carousel = function (domNode) {
 
 Carousel.prototype.init = function () {
 
+  var elems, elem, button, items, item, imageLinks, i;
+
   this.liveRegionNode = this.domNode.querySelector('.carousel-items');
 
-  var items = this.domNode.querySelectorAll('.carousel-item');
+  items = this.domNode.querySelectorAll('.carousel-item');
 
-  for (var i = 0; i < items.length; i++) {
-    var item = new CarouselItem(items[i], this);
+  for (i = 0; i < items.length; i++) {
+    item = new CarouselItem(items[i], this);
 
     item.init();
     this.items.push(item);
@@ -50,7 +52,7 @@ Carousel.prototype.init = function () {
     }
     this.lastItem = item;
 
-    var imageLinks = items[i].querySelectorAll('.carousel-image a');
+    imageLinks = items[i].querySelectorAll('.carousel-image a');
 
     if (imageLinks && imageLinks[0]) {
       imageLinks[0].addEventListener('focus', this.handleImageLinkFocus.bind(this));
@@ -59,24 +61,27 @@ Carousel.prototype.init = function () {
 
   }
 
-  // Next Slide and Previous Slide Buttons
+  // Pause, Next Slide and Previous Slide Buttons
 
-  var elems = document.querySelectorAll('.carousel .carousel-control');
+  elems = document.querySelectorAll('.carousel .controls button');
 
-  for (var i = 0; i < elems.length; i++) {
-    var button = new CarouselButton(elems[i], this);
+  for (i = 0; i < elems.length; i++) {
+    elem = elems[i];
+
+    if (elem.classList.contains('rotation')) {
+      button = new PauseButton(elem, this);
+      this.pauseButton = elem;
+      this.pauseButton.classList.add('pause');
+      this.pauseButton.setAttribute('aria-label', this.pauseLabel);
+    }
+    else {
+      button = new CarouselButton(elem, this);
+    }
+
     button.init();
   }
 
   this.currentItem = this.firstItem;
-
-  this.pauseButton = this.domNode.parentNode.parentNode.querySelector('button.carousel-pause');
-  if (this.pauseButton) {
-    var button = new PauseButton(this.pauseButton, this);
-    button.init();
-    this.pauseButton.setAttribute('aria-label', this.pauseLabel);
-    this.pauseButton.classList.add('pause');
-  }
 
   this.domNode.addEventListener('mouseover', this.handleMouseOver.bind(this));
   this.domNode.addEventListener('mouseout', this.handleMouseOut.bind(this));
