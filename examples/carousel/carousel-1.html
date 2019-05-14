@@ -238,36 +238,41 @@
 
       <section>
         <h2>Accessibility Features</h2>
+
+        <h3>Pausing Automatic Slide Rotation</h3>
+        <p>Pausing the automatic rotation of slides is important for people using screen readeers, since moving the reading cursor into the auto-rotating content will be disorienting.   When the cursor is in content that is unexpectantly hidden the screen reader moves the reading cursor back to the top of the page.   This sudden jump will be difficult for the screen reader user to understand.   People with low vision and leanring disabilities that effect visual processing or reading also benefit from being able to stop the rotation of the images by giving them more time and control to explore the image and read the slide captions.</p>
+
+        <p>The following features are included in this example to pause the rotation:</p>
+
         <ul>
-          <li>Automatic rotation of slides in the carousel can be easily controlled by any user.
-            <ul>
-              <li>
-                Hovering the mouse over any carousel content pauses automatic rotation.
-                Automatic rotation resumes when the mouse moves away from the carousel unless another condition, such as keyboard focus,  that prevents rotation has been triggered.
-              </li>
-              <li>
-                Moving keyboard focus to any of the carousel content, including the next and previous slide elements, pauses automatic rotation.
-                Automatic rotation resumes when keyboard focus moves out of the carousel content unless another condition, such as mouse hover,  that prevents rotation has been triggered.
-              </li>
-              <li>The carousel also contains a rotation control button that can stop and start automatic rotation.
-                <ul>
-                  <li>The rotation control button is the first element in the screen reader reading order.</li>
-                  <li>The button is hidden off-screen when it does not have keyboard focus, and becomes visible when users move focus to it with <kbd>Tab</kbd>.</li>
-                  <li>
-                    When not visible, the button is positioned off-screen, instead of being hidden with <code>display:none</code>, so it is always available to screen reader users.
-                    This ensures the rotation control is accessible to people using a screen reader that does not move the mouse or keyboard focus when the user is moving its reading cursor.
-                  </li>
-                  <li>If the carousel is rotating, the button is labeled "Stop Automatic Slide Show," informing screen reader users that the slides are changing in addition to providing a way to stop the changes.</li>
-                  <li>If the carousel is not rotating, the button is labeled "Start Automatic Slide Show."</li>
-                  <li>If a user has activated the button to stop the show, the rotation will only restart if the button is activated. Moving keyboard focus or the mouse out of the carousel will not restart rotation.</li>
-                  <li>If keyboard focus is inside the carousel, or if the mouse is hovering over the carousel, the button is disabled; it cannot be used to start rotation.</li>
-                </ul>
-              </li>
-            </ul>
+          <li>
+            Hovering the mouse over any carousel content pauses automatic rotation.
+            Automatic rotation resumes when the mouse moves away from the carousel unless another condition, such as keyboard focus,  that prevents rotation has been triggered.
           </li>
           <li>
-            To improve readability of the caption text and content, the transparency of the caption area is decreased when the mouse hovers over the carousel content.
-            This improves the color contrast ratio of the white text, especially when light colored images are present in the background.
+            Moving keyboard focus to any of the carousel content, including the next and previous slide elements, pauses automatic rotation.
+            Automatic rotation resumes when keyboard focus moves out of the carousel content unless another condition, such as mouse hover,  that prevents rotation has been triggered.
+          </li>
+          <li>The carousel also contains a rotation control button that can stop and start automatic rotation.
+            <ul>
+              <li>The rotation control button is the first element in the screen reader reading order.</li>
+              <li>The pause button is always visible so sighted users can also benefit from stoping the auto-rotation of images.</li>
+              <li>If the carousel is rotating, the button is labeled "Stop Automatic Slide Show," informing screen reader users that the slides are changing in addition to providing a way to stop the changes.</li>
+              <li>If the carousel is not rotating, the button is labeled "Start Automatic Slide Show."</li>
+              <li>If a user has activated the button to stop the show, the rotation will only restart if the button is activated. Moving keyboard focus or the mouse out of the carousel will not restart rotation.</li>
+              <li>If keyboard focus is inside the carousel, or if the mouse is hovering over the carousel, the button is disabled; it cannot be used to start rotation.</li>
+            </ul>
+          </li>
+        </ul>
+
+        <h3>Color Contrast of Text and Rotation Controls</h3>
+
+        <ul>
+          <li>
+            To improve the identification of the pause, next and previous slide buttons when they are visually rendered over the carousel images, the buttons have forground and background color that meet the WCAG 2.1 color contrast requirements.  SVG images are user to make the focus styling highly visible when a control receives keyboard focus.
+          </li>
+          <li>
+            To improve readability of the caption text and content, the transparency of the caption area is decreased to to meet the WCAG 2.1 color contrast requirements.
           </li>
         </ul>
       </section>
