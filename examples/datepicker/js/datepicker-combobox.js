@@ -6,11 +6,14 @@
 */
 
 var ComboboxInput = function (comboboxNode, inputNode, buttonNode, messageNode, datepicker) {
+
   this.comboboxNode = comboboxNode;
   this.inputNode    = inputNode;
   this.buttonNode   = buttonNode;
   this.messageNode  = messageNode;
-  this.imageNode    = false;
+
+  this.arrowUpNode = comboboxNode.querySelector('.arrow.up');
+  this.arrowDownNode = comboboxNode.querySelector('.arrow.down');
 
   this.datepicker = datepicker;
 
@@ -39,20 +42,19 @@ ComboboxInput.prototype.init = function () {
   this.inputNode.addEventListener('keydown', this.handleKeyDown.bind(this));
   this.inputNode.addEventListener('focus', this.handleFocus.bind(this));
   this.inputNode.addEventListener('blur', this.handleBlur.bind(this));
-  this.inputNode.addEventListener('click', this.handleClick.bind(this));
+  this.inputNode.addEventListener('mouseDown', this.handleMouseDown.bind(this));
 
-  this.buttonNode.addEventListener('click', this.handleButtonClick.bind(this));
+  this.buttonNode.addEventListener('mousedown', this.handleButtonMouseDown.bind(this));
+  this.buttonNode.addEventListener('mouseup', this.handleButtonMouseUp.bind(this));
+
+  this.arrowUpNode.addEventListener('mousedown', this.handleButtonMouseDown.bind(this));
+  this.arrowUpNode.addEventListener('mouseup', this.handleButtonMouseUp.bind(this));
+
+  this.arrowDownNode.addEventListener('mousedown', this.handleButtonMouseDown.bind(this));
+  this.arrowDownNode.addEventListener('mouseup', this.handleButtonMouseUp.bind(this));
+
   this.buttonNode.addEventListener('touchstart', this.handleTouchStart.bind(this));
   this.buttonNode.addEventListener('keydown', this.handleButtonKeyDown.bind(this));
-
-  if (this.buttonNode.nextElementSibling &&
-      this.buttonNode.nextElementSibling.classList.contains('arrow')) {
-    this.imageNode = this.inputNode.nextElementSibling;
-  }
-
-  if (this.imageNode) {
-    this.imageNode.addEventListener('click', this.handleClick.bind(this));
-  }
 
   this.setMessage('');
 };
@@ -106,7 +108,12 @@ ComboboxInput.prototype.handleTouchStart = function (event) {
 
 ComboboxInput.prototype.handleFocus = function () {
   console.log('[ComboboxInput][handleFocus][ignoreFocusEvent]: ' + this.ignoreFocusEvent);
-  if (!this.ignoreFocusEvent && this.isCollapsed()) {
+  console.log('[ComboboxInput][handleFocus][isMouseDownOnBackground]: ' + this.datepicker.isMouseDownOnBackground);
+
+  if (!this.datepicker.isMouseDownOnBackground &&
+      !this.isMouseDownOnButton &&
+      !this.ignoreFocusEvent &&
+      this.isCollapsed()) {
     this.datepicker.show();
     this.setMessage('Use the down arrow key to move focus to the datepicker grid.');
   }
@@ -118,7 +125,11 @@ ComboboxInput.prototype.handleFocus = function () {
 
 ComboboxInput.prototype.handleBlur = function () {
   console.log('[ComboboxInput][handleBlur][ignoreBlurEvent]: ' + this.ignoreBlurEvent);
-  if (!this.ignoreBlurEvent) {
+  console.log('[ComboboxInput][handleBlur][isMouseDownOnBackground]: ' + this.datepicker.isMouseDownOnBackground);
+
+  if (!this.datepicker.isMouseDownOnBackground &&
+      !this.isMouseDownOnButton &&
+      !this.ignoreBlurEvent) {
     this.datepicker.hide(false);
     this.setMessage('');
   }
@@ -127,10 +138,18 @@ ComboboxInput.prototype.handleBlur = function () {
   this.ignoreBlurEvent = false;
 };
 
-ComboboxInput.prototype.handleClick = function (event) {
-  console.log('[ComboboxInput][handleClick]: ' + event.target.tagName);
-  console.log('[ComboboxInput][handleClick][hasFocus]: ' + this.hasFocus());
-  console.log('[ComboboxInput][handleClick][isCollapsed]: ' + this.isCollapsed());
+ComboboxInput.prototype.setFocus = function () {
+  this.inputNode.focus();
+};
+
+ComboboxInput.prototype.hasFocus = function () {
+  return this.hasFocusFlag;
+};
+
+ComboboxInput.prototype.handleMouseDown = function (event) {
+  console.log('[ComboboxInput][handleMouseDown]: ' + event.target.tagName + '.' +  event.target.className);
+  console.log('[ComboboxInput][handleMouseDown][hasFocus]: ' + this.hasFocus());
+  console.log('[ComboboxInput][handleMouseDown][isCollapsed]: ' + this.isCollapsed());
 
   if (this.isCollapsed()) {
     this.datepicker.show();
@@ -145,15 +164,36 @@ ComboboxInput.prototype.handleClick = function (event) {
 
 };
 
-ComboboxInput.prototype.handleButtonClick = function (event) {
-  this.ignoreBlurEvent = true;
-  this.datepicker.show();
-  this.datepicker.setFocusDay();
+ComboboxInput.prototype.handleButtonMouseDown = function (event) {
+  console.log('[ComboboxInput][handleButtonMouseDown]');
+  console.log('[ComboboxInput][handleButtonMouseDown][hasFocusFlag]: ' + this.hasFocusFlag);
 
-  if (event) {
-    event.stopPropagation();
-    event.preventDefault();
+  this.isMouseDownOnButton = true;
+
+  if (this.isCollapsed()) {
+
+    if (this.hasFocusFlag) {
+      this.ignoreBlurEvent = true;
+    }
+
+    this.datepicker.show();
+    this.datepicker.setFocusDay();
   }
+  else {
+    this.ignoreFocusEvent = true;
+    this.datepicker.hide();
+  }
+
+  event.stopPropagation();
+  event.preventDefault();
+};
+
+ComboboxInput.prototype.handleButtonMouseUp = function (event) {
+  console.log('[ComboboxInput][handleButtonMouseUp]');
+  this.isMouseDownOnButton = false;
+
+  event.stopPropagation();
+  event.preventDefault();
 };
 
 ComboboxInput.prototype.handleButtonKeyDown = function (event) {
@@ -172,10 +212,6 @@ ComboboxInput.prototype.handleButtonKeyDown = function (event) {
     event.stopPropagation();
     event.preventDefault();
   }
-};
-
-ComboboxInput.prototype.focus = function () {
-  this.inputNode.focus();
 };
 
 ComboboxInput.prototype.setAriaExpanded = function (flag) {
@@ -211,23 +247,4 @@ ComboboxInput.prototype.setMessage = function (str) {
   return this.messageNode.textContent = str;
 };
 
-ComboboxInput.prototype.hasFocus = function () {
-  return this.hasFocusFlag;
-};
 
-// Initialize combobox date picker
-
-window.addEventListener('load' , function () {
-
-  var datePickers = document.querySelectorAll('[role=combobox].datepicker');
-
-  datePickers.forEach(function (dp) {
-    var dpInput = dp.querySelector('input');
-    var dpButton = dp.querySelector('button');
-    var dpMessage = dp.querySelector('.message');
-    var dpDialog = dp.querySelector('[role=dialog]');
-    var datePicker = new DatePicker(dp, dpInput, dpButton, dpDialog, dpMessage);
-    datePicker.init();
-  });
-
-});

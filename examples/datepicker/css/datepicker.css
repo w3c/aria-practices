@@ -2,34 +2,43 @@
   margin-top: 1em;
 }
 
-.datepicker button[aria-expanded] + span.arrow {
-  content: url('../images/down-arrow-gray.png');
-  position: relative;
-  left: -60px;
-}
-
-.datepicker button[aria-expanded=true] + span.arrow {
-  content: url('../images/up-arrow-gray.png');
-  position: relative;
-  top: 3px;
-  left: -60px;
-}
 
 .datepicker button.icon {
   border-style: none;
   text-align: left;
   background-color: white;
   position: relative;
-  left: -2px;
-  top: 4px;
+  left: -25px;
+  top: 3px;
 }
 
-.datepicker .date label {
-  display: block;
+.datepicker span.arrow {
+  margin: 0;
+  padding: 0;
+  display: none;
+  background: transparent;
+}
+
+.datepicker span.arrow svg polygon {
+  stroke: gray;
+  stroke-width: 1px;
+  fill: gray;
+}
+
+.datepicker[aria-expanded=false] span.arrow.up {
+  display: inline-block;
+  position: relative;
+  left: -23px;
+}
+
+.datepicker[aria-expanded=true] span.arrow.down {
+  display: inline-block;
+  position: relative;
+  left: -23px;
 }
 
 .datepicker input {
-  margin-top: 1em;
+  margin: 0;
   width: 20%;
 }
 

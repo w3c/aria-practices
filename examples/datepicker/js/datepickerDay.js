@@ -36,7 +36,7 @@ var DatePickerDay = function (domNode, datepicker, index, row, column) {
 
 DatePickerDay.prototype.init = function () {
   this.domNode.setAttribute('tabindex', '-1');
-  this.domNode.addEventListener('click', this.handleClick.bind(this));
+  this.domNode.addEventListener('mousedown', this.handleMouseDown.bind(this));
   this.domNode.addEventListener('keydown', this.handleKeyDown.bind(this));
 
   this.domNode.innerHTML = '-1';
@@ -150,8 +150,8 @@ DatePickerDay.prototype.handleKeyDown = function (event) {
 
 };
 
-DatePickerDay.prototype.handleClick = function (event) {
-  console.log('[DatePickerDay][handleClick]');
+DatePickerDay.prototype.handleMouseDown = function (event) {
+  console.log('[DatePickerDay][handleMouseDown]');
   this.datepicker.day = this.day;
   if (!this.datepicker.dateInput.hasFocus()) {
     this.datepicker.dateInput.ignoreBlurEvent = true;
