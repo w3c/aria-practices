@@ -49,8 +49,6 @@ var DatePicker = function (comboboxNode) {
 
   this.currentDay = null;
 
-  this.handleDocumentClick;
-
   this.hasFocusFlag = false;
   this.isMouseDownOnBackground = false;
 
@@ -94,12 +92,6 @@ DatePicker.prototype.init = function () {
 
   document.body.addEventListener('mousedown', this.handleBackgroundMouseDown.bind(this), true);
   document.body.addEventListener('mouseup', this.handleBackgroundMouseUp.bind(this), true);
-
-
-  if (!this.backgroundNode) {
-    this.backgroundNode = document.createElement('div');
-    document.body.appendChild(this.backgroundNode);
-  }
 
   // Create Grid of Dates
 
@@ -378,8 +370,6 @@ DatePicker.prototype.hide = function (ignore) {
     ignore = true;
   }
 
-  this.backgroundNode.style.display = '1px';
-  this.backgroundNode.style.width = '1px';
   this.dialogNode.style.display = 'none';
   this.dateInput.setAriaExpanded(false);
 
