@@ -169,6 +169,14 @@ var roleInfo = {
 		],
 		"localprops": []
 	},
+	"blockquote": {
+		"name": "blockquote",
+		"fragID": "blockquote",
+		"parentRoles": [
+			"section"
+		],
+		"localprops": []
+	},
 	"button": {
 		"name": "button",
 		"fragID": "button",
@@ -177,16 +185,24 @@ var roleInfo = {
 		],
 		"localprops": [
 			{
-				"is": "property",
+				"is": "state",
 				"name": "aria-expanded",
 				"required": false
 			},
 			{
-				"is": "property",
+				"is": "state",
 				"name": "aria-pressed",
 				"required": false
 			}
 		]
+	},
+	"caption": {
+		"name": "caption",
+		"fragID": "caption",
+		"parentRoles": [
+			"section"
+		],
+		"localprops": []
 	},
 	"cell": {
 		"name": "cell",
@@ -795,6 +811,14 @@ var roleInfo = {
 	"definition": {
 		"name": "definition",
 		"fragID": "definition",
+		"parentRoles": [
+			"section"
+		],
+		"localprops": []
+	},
+	"deletion": {
+		"name": "deletion",
+		"fragID": "deletion",
 		"parentRoles": [
 			"section"
 		],
@@ -1900,6 +1924,22 @@ var roleInfo = {
 			}
 		]
 	},
+	"insertion": {
+		"name": "insertion",
+		"fragID": "insertion",
+		"parentRoles": [
+			"section"
+		],
+		"localprops": []
+	},
+	"label": {
+		"name": "label",
+		"fragID": "label",
+		"parentRoles": [
+			"section"
+		],
+		"localprops": []
+	},
 	"landmark": {
 		"name": "landmark",
 		"fragID": "landmark",
@@ -2020,6 +2060,14 @@ var roleInfo = {
 			}
 		]
 	},
+	"legend": {
+		"name": "legend",
+		"fragID": "legend",
+		"parentRoles": [
+			"section"
+		],
+		"localprops": []
+	},
 	"link": {
 		"name": "link",
 		"fragID": "link",
@@ -2028,7 +2076,7 @@ var roleInfo = {
 		],
 		"localprops": [
 			{
-				"is": "property",
+				"is": "state",
 				"name": "aria-expanded",
 				"required": false
 			}
@@ -2361,6 +2409,30 @@ var roleInfo = {
 		],
 		"localprops": []
 	},
+	"meter": {
+		"name": "meter",
+		"fragID": "meter",
+		"parentRoles": [
+			"range"
+		],
+		"localprops": [
+			{
+				"is": "property",
+				"name": "aria-valuemax",
+				"required": true
+			},
+			{
+				"is": "property",
+				"name": "aria-valuemin",
+				"required": true
+			},
+			{
+				"is": "property",
+				"name": "aria-valuenow",
+				"required": true
+			}
+		]
+	},
 	"menu": {
 		"name": "menu",
 		"fragID": "menu",
@@ -2617,6 +2689,11 @@ var roleInfo = {
 		],
 		"localprops": [
 			{
+				"is": "state",
+				"name": "aria-expanded",
+				"required": false
+			},
+			{
 				"is": "property",
 				"name": "aria-posinset",
 				"required": false
@@ -2628,6 +2705,11 @@ var roleInfo = {
 			}
 		],
 		"allprops": [
+			{
+				"is": "state",
+				"name": "aria-expanded",
+				"required": false
+			},
 			{
 				"is": "property",
 				"name": "aria-posinset",
@@ -2870,6 +2952,11 @@ var roleInfo = {
 				"required": false
 			},
 			{
+				"is": "state",
+				"name": "aria-expanded",
+				"required": false
+			},
+			{
 				"is": "property",
 				"name": "aria-posinset",
 				"required": false
@@ -3030,7 +3117,7 @@ var roleInfo = {
 				"required": true
 			},
 			{
-				"is": "property",
+				"is": "state",
 				"name": "aria-checked",
 				"required": false
 			},
@@ -3052,7 +3139,7 @@ var roleInfo = {
 				"required": true
 			},
 			{
-				"is": "property",
+				"is": "state",
 				"name": "aria-checked",
 				"required": false
 			},
@@ -3173,29 +3260,13 @@ var roleInfo = {
 			}
 		]
 	},
-	"password": {
-		"name": "password",
-		"fragID": "password",
+	"paragraph": {
+		"name": "paragraph",
+		"fragID": "paragraph",
 		"parentRoles": [
-			"input"
+			"section"
 		],
-		"localprops": [
-			{
-				"is": "property",
-				"name": "aria-placeholder",
-				"required": false
-			},
-			{
-				"is": "property",
-				"name": "aria-readonly",
-				"required": false
-			},
-			{
-				"is": "property",
-				"name": "aria-required",
-				"required": false
-			}
-		]
+		"localprops": []
 	},
 	"presentation": {
 		"name": "presentation",
@@ -3210,7 +3281,7 @@ var roleInfo = {
 		"fragID": "progressbar",
 		"parentRoles": [
 			"range",
-			"status"
+			"widget"
 		],
 		"localprops": []
 	},
@@ -3383,7 +3454,7 @@ var roleInfo = {
 		"name": "range",
 		"fragID": "range",
 		"parentRoles": [
-			"widget"
+			"structure"
 		],
 		"localprops": [
 			{
@@ -3782,7 +3853,17 @@ var roleInfo = {
 			},
 			{
 				"is": "property",
+				"name": "aria-posinset",
+				"required": false
+			},
+			{
+				"is": "property",
 				"name": "aria-rowindex",
+				"required": false
+			},
+			{
+				"is": "property",
+				"name": "aria-setsize",
 				"required": false
 			},
 			{
@@ -3820,7 +3901,8 @@ var roleInfo = {
 		"name": "scrollbar",
 		"fragID": "scrollbar",
 		"parentRoles": [
-			"range"
+			"range",
+			"widget"
 		],
 		"localprops": [
 			{
@@ -4369,17 +4451,33 @@ var roleInfo = {
 		"name": "separator",
 		"fragID": "separator",
 		"parentRoles": [
-			"structure"
+			"structure",
+			"widget"
 		],
 		"localprops": [
 			{
-				"is": "state",
-				"name": "aria-expanded",
-				"required": false
+				"is": "property",
+				"name": "aria-valuemax",
+				"required": true
+			},
+			{
+				"is": "property",
+				"name": "aria-valuemin",
+				"required": true
+			},
+			{
+				"is": "property",
+				"name": "aria-valuenow",
+				"required": true
 			},
 			{
 				"is": "property",
 				"name": "aria-orientation",
+				"required": false
+			},
+			{
+				"is": "property",
+				"name": "aria-valuetext",
 				"required": false
 			}
 		]
@@ -4423,25 +4521,11 @@ var roleInfo = {
 		"name": "spinbutton",
 		"fragID": "spinbutton",
 		"parentRoles": [
+			"composite",
 			"input",
 			"range"
 		],
 		"localprops": [
-			{
-				"is": "property",
-				"name": "aria-valuemax",
-				"required": true
-			},
-			{
-				"is": "property",
-				"name": "aria-valuemin",
-				"required": true
-			},
-			{
-				"is": "property",
-				"name": "aria-valuenow",
-				"required": true
-			},
 			{
 				"is": "property",
 				"name": "aria-readonly",
@@ -4450,6 +4534,26 @@ var roleInfo = {
 			{
 				"is": "property",
 				"name": "aria-required",
+				"required": false
+			},
+			{
+				"is": "property",
+				"name": "aria-valuemax",
+				"required": false
+			},
+			{
+				"is": "property",
+				"name": "aria-valuemin",
+				"required": false
+			},
+			{
+				"is": "property",
+				"name": "aria-valuenow",
+				"required": false
+			},
+			{
+				"is": "property",
+				"name": "aria-valuetext",
 				"required": false
 			}
 		]
@@ -4688,6 +4792,22 @@ var roleInfo = {
 				"required": false
 			}
 		]
+	},
+	"subscript": {
+		"name": "subscript",
+		"fragID": "subscript",
+		"parentRoles": [
+			"section"
+		],
+		"localprops": []
+	},
+	"superscript": {
+		"name": "superscript",
+		"fragID": "superscript",
+		"parentRoles": [
+			"section"
+		],
+		"localprops": []
 	},
 	"switch": {
 		"name": "switch",
@@ -5084,6 +5204,14 @@ var roleInfo = {
 				"required": false
 			}
 		]
+	},
+	"time": {
+		"name": "time",
+		"fragID": "time",
+		"parentRoles": [
+			"section"
+		],
+		"localprops": []
 	},
 	"timer": {
 		"name": "timer",
@@ -5646,4 +5774,3 @@ var roleInfo = {
 		]
 	}
 }
-
