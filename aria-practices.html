@@ -3803,7 +3803,7 @@ However, most authors do not need detailed understanding of the algorithms since
         </section>
 
         <section id="naming_rule_brief_names">
-          <h5>Rule 5: Compose Brief, Useful Names</h5>
+        <h5>Rule 5: Compose Brief, Useful Names</h5>
           <p>
             Similar to how visually crowded screens and ambiguous icons reduce usability, excessively long, insufficiently distinct, or unclear  accessible names can make a user interface very difficult, or even impossible, to use for someone who relies on a non-visual form of the user interface.
             In other words, for a web experience to be accessible, its accessible names must be effective.
@@ -3937,7 +3937,7 @@ However, most authors do not need detailed understanding of the algorithms since
             Short examples, 3 lines of code or less, are preferrable.
           </p>
           <ol class="warning">
-            <li>The <code>aria-labelledby</code> property cannot be chained, i.e., if an element with <code>aria-labelled by</code> references another element that also has <code>aria-labelledby</code>, the <code>aria-labelledby</code> attribute on the referenced element will be ignored.</li>
+            <li>The <code>aria-labelledby</code> property cannot be chained, i.e., if an element with <code>aria-labelledby</code> references another element that also has <code>aria-labelledby</code>, the <code>aria-labelledby</code> attribute on the referenced element will be ignored.</li>
             <li>The <code>aria-labelledby</code> property cannot be applied to the descendant of an element that supports naming from content. For example, most browsers will ignore the aria-labelledby attribute in this link: <code>&lt;a href="/"&gt;&lt;span aria-labelledby="elem1"&gt;&lt;/span&gt;&lt;a&gt;</code>.</li>
             <li>There are certain types of elements, such as paragraphs and list items,  that should not be named with <code>aria-labelledby</code>. They are identified in the table in section <a href="#naming_role_guidance">Accessible Name Guidance by Role</a>.</li>
             <li>
