@@ -3974,9 +3974,9 @@ However, most authors do not need detailed understanding of the algorithms since
       </section>
 
       <section id="naming_role_guidance">
-        <h4>Accessible Name Guidance by Role</h4>
-        <p>To-do: build a table with every concrete role with columns for:</p>
-        <table>
+        <h4 id="naming_role_guidance_heading">Accessible Name Guidance by Role</h4>
+        <p>The following table </p>
+        <table aria-labelledby="naming_role_guidance_heading">
          <tr>
           <th>role</th>
           <th>Name Required<!-- with values of always, usually, sometimes, or never--></th>
@@ -3984,409 +3984,409 @@ However, most authors do not need detailed understanding of the algorithms since
           <th>Guidance<!-- Explains usually, sometimes and never for name required. Provides warning if named from content.--></th>
          </tr>
 							  <tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#alert"><code>alert</code></a></td>
+										<td><a href="#alert"><code>alert</code></a></td>
 										<td>Sometimes</td>
 										<td>No</td>
 										<td>A name can sometimes be useful to know what kind of alert it is.</td>
 									</tr>
 									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#alertdialog"><code>alertdialog</code></a></td>
+										<td><a href="#alertdialog"><code>alertdialog</code></a></td>
 										<td>Always</td>
 										<td>No</td>
 										<td>guidance</td>
 									</tr>
 									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#application"><code>application</code></a></td>
+										<td><a href="#application"><code>application</code></a></td>
 										<td>Always</td>
 										<td>No</td>
 										<td>guidance</td>
 									</tr>
 									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#article"><code>article</code></a></td>
+										<td><a href="#article"><code>article</code></a></td>
 										<td>namerequired</td>
 										<td>No</td>
 										<td>guidance</td>
 									</tr>
 									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#banner"><code>banner</code></a></td>
+										<td><a href="#banner"><code>banner</code></a></td>
 										<td>namerequired</td>
 										<td>No</td>
 										<td>guidance</td>
 									</tr>
 									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#button"><code>button</code></a></td>
-										<td>Always</td>
-										<td>Yes</td>
-										<td>guidance</td>
-									</tr>
-									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#cell"><code>cell</code></a></td>
-										<td>namerequired</td>
-										<td>Yes</td>
-										<td>guidance</td>
-									</tr>
-									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#checkbox"><code>checkbox</code></a></td>
+										<td><a href="#button"><code>button</code></a></td>
 										<td>Always</td>
 										<td>Yes</td>
 										<td>guidance</td>
 									</tr>
 									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#columnheader"><code>columnheader</code></a></td>
+										<td><a href="#cell"><code>cell</code></a></td>
+										<td>namerequired</td>
+										<td>Yes</td>
+										<td>guidance</td>
+									</tr>
+									<tr>
+										<td><a href="#checkbox"><code>checkbox</code></a></td>
 										<td>Always</td>
 										<td>Yes</td>
 										<td>guidance</td>
 									</tr>
 									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#combobox"><code>combobox</code></a></td>
-										<td>Always</td>
-										<td>No</td>
-										<td>guidance</td>
-									</tr>
-									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#complementary"><code>complementary</code></a></td>
-										<td>namerequired</td>
-										<td>No</td>
-										<td>guidance</td>
-									</tr>
-									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#contentinfo"><code>contentinfo</code></a></td>
-										<td>namerequired</td>
-										<td>No</td>
-										<td>guidance</td>
-									</tr>
-									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#definition"><code>definition</code></a></td>
-										<td>namerequired</td>
-										<td>No</td>
-										<td>guidance</td>
-									</tr>
-									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#dialog"><code>dialog</code></a></td>
-										<td>Always</td>
-										<td>No</td>
-										<td>guidance</td>
-									</tr>
-									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#directory"><code>directory</code></a></td>
-										<td>namerequired</td>
-										<td>No</td>
-										<td>guidance</td>
-									</tr>
-									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#document"><code>document</code></a></td>
-										<td>namerequired</td>
-										<td>No</td>
-										<td>guidance</td>
-									</tr>
-									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#feed"><code>feed</code></a></td>
-										<td>namerequired</td>
-										<td>No</td>
-										<td>guidance</td>
-									</tr>
-									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#figure"><code>figure</code></a></td>
-										<td>namerequired</td>
-										<td>No</td>
-										<td>guidance</td>
-									</tr>
-									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#form"><code>form</code></a></td>
-										<td>namerequired</td>
-										<td>No</td>
-										<td>guidance</td>
-									</tr>
-									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#grid"><code>grid</code></a></td>
-										<td>Always</td>
-										<td>No</td>
-										<td>guidance</td>
-									</tr>
-									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#gridcell"><code>gridcell</code></a></td>
+										<td><a href="#columnheader"><code>columnheader</code></a></td>
 										<td>Always</td>
 										<td>Yes</td>
 										<td>guidance</td>
 									</tr>
 									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#group"><code>group</code></a></td>
+										<td><a href="#combobox"><code>combobox</code></a></td>
+										<td>Always</td>
+										<td>No</td>
+										<td>guidance</td>
+									</tr>
+									<tr>
+										<td><a href="#complementary"><code>complementary</code></a></td>
 										<td>namerequired</td>
 										<td>No</td>
 										<td>guidance</td>
 									</tr>
 									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#heading"><code>heading</code></a></td>
+										<td><a href="#contentinfo"><code>contentinfo</code></a></td>
+										<td>namerequired</td>
+										<td>No</td>
+										<td>guidance</td>
+									</tr>
+									<tr>
+										<td><a href="#definition"><code>definition</code></a></td>
+										<td>namerequired</td>
+										<td>No</td>
+										<td>guidance</td>
+									</tr>
+									<tr>
+										<td><a href="#dialog"><code>dialog</code></a></td>
+										<td>Always</td>
+										<td>No</td>
+										<td>guidance</td>
+									</tr>
+									<tr>
+										<td><a href="#directory"><code>directory</code></a></td>
+										<td>namerequired</td>
+										<td>No</td>
+										<td>guidance</td>
+									</tr>
+									<tr>
+										<td><a href="#document"><code>document</code></a></td>
+										<td>namerequired</td>
+										<td>No</td>
+										<td>guidance</td>
+									</tr>
+									<tr>
+										<td><a href="#feed"><code>feed</code></a></td>
+										<td>namerequired</td>
+										<td>No</td>
+										<td>guidance</td>
+									</tr>
+									<tr>
+										<td><a href="#figure"><code>figure</code></a></td>
+										<td>namerequired</td>
+										<td>No</td>
+										<td>guidance</td>
+									</tr>
+									<tr>
+										<td><a href="#form"><code>form</code></a></td>
+										<td>namerequired</td>
+										<td>No</td>
+										<td>guidance</td>
+									</tr>
+									<tr>
+										<td><a href="#grid"><code>grid</code></a></td>
+										<td>Always</td>
+										<td>No</td>
+										<td>guidance</td>
+									</tr>
+									<tr>
+										<td><a href="#gridcell"><code>gridcell</code></a></td>
 										<td>Always</td>
 										<td>Yes</td>
 										<td>guidance</td>
 									</tr>
 									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#img"><code>img</code></a></td>
-										<td>Always</td>
+										<td><a href="#group"><code>group</code></a></td>
+										<td>namerequired</td>
 										<td>No</td>
 										<td>guidance</td>
 									</tr>
 									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#link"><code>link</code></a></td>
+										<td><a href="#heading"><code>heading</code></a></td>
 										<td>Always</td>
 										<td>Yes</td>
 										<td>guidance</td>
 									</tr>
 									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#list"><code>list</code></a></td>
-										<td>namerequired</td>
-										<td>No</td>
-										<td>guidance</td>
-									</tr>
-									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#listbox"><code>listbox</code></a></td>
+										<td><a href="#img"><code>img</code></a></td>
 										<td>Always</td>
 										<td>No</td>
 										<td>guidance</td>
 									</tr>
 									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#listitem"><code>listitem</code></a></td>
-										<td>namerequired</td>
-										<td>No</td>
-										<td>guidance</td>
-									</tr>
-									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#log"><code>log</code></a></td>
-										<td>Always</td>
-										<td>No</td>
-										<td>guidance</td>
-									</tr>
-									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#main"><code>main</code></a></td>
-										<td>namerequired</td>
-										<td>No</td>
-										<td>guidance</td>
-									</tr>
-									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#marquee"><code>marquee</code></a></td>
-										<td>Always</td>
-										<td>No</td>
-										<td>guidance</td>
-									</tr>
-									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#math"><code>math</code></a></td>
-										<td>namerequired</td>
-										<td>No</td>
-										<td>guidance</td>
-									</tr>
-									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#menu"><code>menu</code></a></td>
-										<td>namerequired</td>
-										<td>No</td>
-										<td>guidance</td>
-									</tr>
-									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#menubar"><code>menubar</code></a></td>
-										<td>namerequired</td>
-										<td>No</td>
-										<td>guidance</td>
-									</tr>
-									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#menuitem"><code>menuitem</code></a></td>
+										<td><a href="#link"><code>link</code></a></td>
 										<td>Always</td>
 										<td>Yes</td>
 										<td>guidance</td>
 									</tr>
 									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#menuitemcheckbox"><code>menuitemcheckbox</code></a></td>
-										<td>Always</td>
-										<td>Yes</td>
-										<td>guidance</td>
-									</tr>
-									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#menuitemradio"><code>menuitemradio</code></a></td>
-										<td>Always</td>
-										<td>Yes</td>
-										<td>guidance</td>
-									</tr>
-									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#navigation"><code>navigation</code></a></td>
+										<td><a href="#list"><code>list</code></a></td>
 										<td>namerequired</td>
 										<td>No</td>
 										<td>guidance</td>
 									</tr>
 									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#none"><code>none</code></a>, <a href="https://www.w3.org/TR/wai-aria-1.1/#presentation"><code>presentation</code></a></td>
+										<td><a href="#listbox"><code>listbox</code></a></td>
+										<td>Always</td>
+										<td>No</td>
+										<td>guidance</td>
+									</tr>
+									<tr>
+										<td><a href="#listitem"><code>listitem</code></a></td>
+										<td>namerequired</td>
+										<td>No</td>
+										<td>guidance</td>
+									</tr>
+									<tr>
+										<td><a href="#log"><code>log</code></a></td>
+										<td>Always</td>
+										<td>No</td>
+										<td>guidance</td>
+									</tr>
+									<tr>
+										<td><a href="#main"><code>main</code></a></td>
+										<td>namerequired</td>
+										<td>No</td>
+										<td>guidance</td>
+									</tr>
+									<tr>
+										<td><a href="#marquee"><code>marquee</code></a></td>
+										<td>Always</td>
+										<td>No</td>
+										<td>guidance</td>
+									</tr>
+									<tr>
+										<td><a href="#math"><code>math</code></a></td>
+										<td>namerequired</td>
+										<td>No</td>
+										<td>guidance</td>
+									</tr>
+									<tr>
+										<td><a href="#menu"><code>menu</code></a></td>
+										<td>namerequired</td>
+										<td>No</td>
+										<td>guidance</td>
+									</tr>
+									<tr>
+										<td><a href="#menubar"><code>menubar</code></a></td>
+										<td>namerequired</td>
+										<td>No</td>
+										<td>guidance</td>
+									</tr>
+									<tr>
+										<td><a href="#menuitem"><code>menuitem</code></a></td>
+										<td>Always</td>
+										<td>Yes</td>
+										<td>guidance</td>
+									</tr>
+									<tr>
+										<td><a href="#menuitemcheckbox"><code>menuitemcheckbox</code></a></td>
+										<td>Always</td>
+										<td>Yes</td>
+										<td>guidance</td>
+									</tr>
+									<tr>
+										<td><a href="#menuitemradio"><code>menuitemradio</code></a></td>
+										<td>Always</td>
+										<td>Yes</td>
+										<td>guidance</td>
+									</tr>
+									<tr>
+										<td><a href="#navigation"><code>navigation</code></a></td>
+										<td>namerequired</td>
+										<td>No</td>
+										<td>guidance</td>
+									</tr>
+									<tr>
+										<td><a href="#none"><code>none</code></a>, <a href="#presentation"><code>presentation</code></a></td>
 										<td>Never</td>
 										<td>No</td>
 										<td></td>
 									</tr>
 									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#note"><code>note</code></a></td>
+										<td><a href="#note"><code>note</code></a></td>
 										<td>namerequired</td>
 										<td>No</td>
 										<td>guidance</td>
 									</tr>
 									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#option"><code>option</code></a></td>
+										<td><a href="#option"><code>option</code></a></td>
 										<td>Always</td>
 										<td>Yes</td>
 										<td>guidance</td>
 									</tr>
 									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#progressbar"><code>progressbar</code></a></td>
+										<td><a href="#progressbar"><code>progressbar</code></a></td>
 										<td>Always</td>
 										<td>No</td>
 										<td>guidance</td>
 									</tr>
 									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#radio"><code>radio</code></a></td>
-										<td>Always</td>
-										<td>Yes</td>
-										<td>guidance</td>
-									</tr>
-									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#radiogroup"><code>radiogroup</code></a></td>
-										<td>Always</td>
-										<td>No</td>
-										<td>guidance</td>
-									</tr>
-									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#region"><code>region</code></a></td>
-										<td>Always</td>
-										<td>No</td>
-										<td>guidance</td>
-									</tr>
-									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#row"><code>row</code></a></td>
-										<td>namerequired</td>
-										<td>Yes</td>
-										<td>guidance</td>
-									</tr>
-									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#rowgroup"><code>rowgroup</code></a></td>
-										<td>namerequired</td>
-										<td>Yes</td>
-										<td>guidance</td>
-									</tr>
-									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#rowheader"><code>rowheader</code></a></td>
+										<td><a href="#radio"><code>radio</code></a></td>
 										<td>Always</td>
 										<td>Yes</td>
 										<td>guidance</td>
 									</tr>
 									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#scrollbar"><code>scrollbar</code></a></td>
+										<td><a href="#radiogroup"><code>radiogroup</code></a></td>
 										<td>Always</td>
 										<td>No</td>
 										<td>guidance</td>
 									</tr>
 									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#search"><code>search</code></a></td>
-										<td>namerequired</td>
-										<td>No</td>
-										<td>guidance</td>
-									</tr>
-									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#searchbox"><code>searchbox</code></a></td>
+										<td><a href="#region"><code>region</code></a></td>
 										<td>Always</td>
 										<td>No</td>
 										<td>guidance</td>
 									</tr>
 									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#separator"><code>separator</code></a></td>
-										<td>namerequired</td>
-										<td>No</td>
-										<td>guidance</td>
-									</tr>
-									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#slider"><code>slider</code></a></td>
-										<td>Always</td>
-										<td>No</td>
-										<td>guidance</td>
-									</tr>
-									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#spinbutton"><code>spinbutton</code></a></td>
-										<td>Always</td>
-										<td>No</td>
-										<td>guidance</td>
-									</tr>
-									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#status"><code>status</code></a></td>
-										<td>namerequired</td>
-										<td>No</td>
-										<td>guidance</td>
-									</tr>
-									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#switch"><code>switch</code></a></td>
-										<td>Always</td>
-										<td>Yes</td>
-										<td>guidance</td>
-									</tr>
-									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#tab"><code>tab</code></a></td>
+										<td><a href="#row"><code>row</code></a></td>
 										<td>namerequired</td>
 										<td>Yes</td>
 										<td>guidance</td>
 									</tr>
 									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#table"><code>table</code></a></td>
-										<td>Always</td>
-										<td>No</td>
-										<td>guidance</td>
-									</tr>
-									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#tablist"><code>tablist</code></a></td>
+										<td><a href="#rowgroup"><code>rowgroup</code></a></td>
 										<td>namerequired</td>
-										<td>No</td>
+										<td>Yes</td>
 										<td>guidance</td>
 									</tr>
 									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#tabpanel"><code>tabpanel</code></a></td>
-										<td>Always</td>
-										<td>No</td>
-										<td>guidance</td>
-									</tr>
-									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#term"><code>term</code></a></td>
-										<td>namerequired</td>
-										<td>No</td>
-										<td>guidance</td>
-									</tr>
-									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#textbox"><code>textbox</code></a></td>
-										<td>Always</td>
-										<td>No</td>
-										<td>guidance</td>
-									</tr>
-									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#timer"><code>timer</code></a></td>
-										<td>Always</td>
-										<td>No</td>
-										<td>guidance</td>
-									</tr>
-									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#toolbar"><code>toolbar</code></a></td>
-										<td>namerequired</td>
-										<td>No</td>
-										<td>guidance</td>
-									</tr>
-									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#tooltip"><code>tooltip</code></a></td>
+										<td><a href="#rowheader"><code>rowheader</code></a></td>
 										<td>Always</td>
 										<td>Yes</td>
 										<td>guidance</td>
 									</tr>
 									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#tree"><code>tree</code></a></td>
-										<td>Always</td>
-										<td>Yes</td>
-										<td>guidance</td>
-									</tr>
-									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#treegrid"><code>treegrid</code></a></td>
+										<td><a href="#scrollbar"><code>scrollbar</code></a></td>
 										<td>Always</td>
 										<td>No</td>
 										<td>guidance</td>
 									</tr>
 									<tr>
-										<td><a href="https://www.w3.org/TR/wai-aria-1.1/#treeitem"><code>treeitem</code></a></td>
+										<td><a href="#search"><code>search</code></a></td>
+										<td>namerequired</td>
+										<td>No</td>
+										<td>guidance</td>
+									</tr>
+									<tr>
+										<td><a href="#searchbox"><code>searchbox</code></a></td>
+										<td>Always</td>
+										<td>No</td>
+										<td>guidance</td>
+									</tr>
+									<tr>
+										<td><a href="#separator"><code>separator</code></a></td>
+										<td>namerequired</td>
+										<td>No</td>
+										<td>guidance</td>
+									</tr>
+									<tr>
+										<td><a href="#slider"><code>slider</code></a></td>
+										<td>Always</td>
+										<td>No</td>
+										<td>guidance</td>
+									</tr>
+									<tr>
+										<td><a href="#spinbutton"><code>spinbutton</code></a></td>
+										<td>Always</td>
+										<td>No</td>
+										<td>guidance</td>
+									</tr>
+									<tr>
+										<td><a href="#status"><code>status</code></a></td>
+										<td>namerequired</td>
+										<td>No</td>
+										<td>guidance</td>
+									</tr>
+									<tr>
+										<td><a href="#switch"><code>switch</code></a></td>
+										<td>Always</td>
+										<td>Yes</td>
+										<td>guidance</td>
+									</tr>
+									<tr>
+										<td><a href="#tab"><code>tab</code></a></td>
+										<td>namerequired</td>
+										<td>Yes</td>
+										<td>guidance</td>
+									</tr>
+									<tr>
+										<td><a href="#table"><code>table</code></a></td>
+										<td>Always</td>
+										<td>No</td>
+										<td>guidance</td>
+									</tr>
+									<tr>
+										<td><a href="#tablist"><code>tablist</code></a></td>
+										<td>namerequired</td>
+										<td>No</td>
+										<td>guidance</td>
+									</tr>
+									<tr>
+										<td><a href="#tabpanel"><code>tabpanel</code></a></td>
+										<td>Always</td>
+										<td>No</td>
+										<td>guidance</td>
+									</tr>
+									<tr>
+										<td><a href="#term"><code>term</code></a></td>
+										<td>namerequired</td>
+										<td>No</td>
+										<td>guidance</td>
+									</tr>
+									<tr>
+										<td><a href="#textbox"><code>textbox</code></a></td>
+										<td>Always</td>
+										<td>No</td>
+										<td>guidance</td>
+									</tr>
+									<tr>
+										<td><a href="#timer"><code>timer</code></a></td>
+										<td>Always</td>
+										<td>No</td>
+										<td>guidance</td>
+									</tr>
+									<tr>
+										<td><a href="#toolbar"><code>toolbar</code></a></td>
+										<td>namerequired</td>
+										<td>No</td>
+										<td>guidance</td>
+									</tr>
+									<tr>
+										<td><a href="#tooltip"><code>tooltip</code></a></td>
+										<td>Always</td>
+										<td>Yes</td>
+										<td>guidance</td>
+									</tr>
+									<tr>
+										<td><a href="#tree"><code>tree</code></a></td>
+										<td>Always</td>
+										<td>Yes</td>
+										<td>guidance</td>
+									</tr>
+									<tr>
+										<td><a href="#treegrid"><code>treegrid</code></a></td>
+										<td>Always</td>
+										<td>No</td>
+										<td>guidance</td>
+									</tr>
+									<tr>
+										<td><a href="#treeitem"><code>treeitem</code></a></td>
 										<td>Always</td>
 										<td>Yes</td>
 										<td>guidance</td>
