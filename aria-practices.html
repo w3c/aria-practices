@@ -3982,13 +3982,13 @@ However, most authors do not need detailed understanding of the algorithms since
         <table aria-labelledby="naming_role_guidance_heading">
          <tr>
           <th>role</th>
-          <th>Name Required<!-- with values of always, usually, sometimes, or never--></th>
-          <th>Named by Content<!-- values of Yes or No--></th>
-          <th>Guidance<!-- Explains usually, sometimes and never for name required. Provides warning if named from content.--></th>
+          <th>Provide Name?<!-- with values of Always, Recommended, Optional, or Never--></th>
+          <th>Content Can Name<!-- values of Yes or No--></th>
+          <th>Guidance<!-- Explains Recommended, Optional, Never for name provision. Provides warning if can be named from content.--></th>
          </tr>
 							  <tr>
 										<td><a href="#alert" class="role-reference"><code>alert</code></a></td>
-										<td>Sometimes</td>
+										<td>Optional</td>
 										<td>No</td>
 										<td>To-do: can we think of a circumstance where naming an alert would serve a useful purpose? Are there any assistive technologies that would render the boundaries of an alert container or have a way to render the name?</td>
 									</tr>
@@ -4002,19 +4002,19 @@ However, most authors do not need detailed understanding of the algorithms since
 										<td><a href="#application" class="role-reference"><code>application</code></a></td>
 										<td>Always</td>
 										<td>No</td>
-										<td></td>
+                    <td>Named using <code>aria-labelledby</code> if a visible title is present, otherwise with <code>aria-label</code>.</td>
 									</tr>
 									<tr>
 										<td><a href="#article" class="role-reference"><code>article</code></a></td>
-										<td>Usually</td>
+										<td>Recommended</td>
 										<td>No</td>
 										<td>Named using <code>aria-labelledby</code> if a visible title is present, otherwise with <code>aria-label</code></td>
 									</tr>
 									<tr>
 										<td><a href="#banner" class="role-reference"><code>banner</code></a></td>
-										<td>Sometimes</td>
+										<td>Optional</td>
 										<td>No</td>
-										<td>Only necessary in the rare circumstances where two banner landmark regions are present on the same page. It is otherwise optional.</td>
+										<td>Necessary in the uncommon circumstance where two banner landmark regions are present on the same page. It is otherwise optional.</td>
 									</tr>
 									<tr>
 										<td><a href="#button" class="role-reference"><code>button</code></a></td>
@@ -4044,11 +4044,11 @@ However, most authors do not need detailed understanding of the algorithms since
 										<td><a href="#combobox" class="role-reference"><code>combobox</code></a></td>
 										<td>Always</td>
 										<td>No</td>
-										<td>guidance</td>
+                    <td>Named using <code>aria-labelledby</code> if a visible title is present, otherwise with <code>aria-label</code>.</td>
 									</tr>
 									<tr>
 										<td><a href="#complementary" class="role-reference"><code>complementary</code></a></td>
-										<td>namerequired</td>
+										<td>Optional</td>
 										<td>No</td>
 										<td>guidance</td>
 									</tr>
