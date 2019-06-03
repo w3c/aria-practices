@@ -1,0 +1,56 @@
+.disclosure-nav {
+  background-color: #eee;
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+}
+
+.disclosure-nav ul {
+  background-color: #eee;
+  border: 1px solid #630;
+  border-radius: 0 0 4px 4px;
+  display: block;
+  list-style-type: none;
+  margin: 0;
+  min-width: 200px;
+  padding: 0;
+  position: absolute;
+}
+
+.disclosure-nav li {
+  margin: 0;
+}
+
+.disclosure-nav ul a {
+  border: 0;
+  color: #000;
+  display: block;
+  margin: 0;
+  padding: 0.5em 1em;
+}
+
+.disclosure-nav ul a:hover,
+.disclosure-nav ul a:focus {
+  background-color: #000;
+  color: #fff;
+}
+
+.disclosure-nav button {
+  border: 1px solid transparent;
+  display: inline-block;
+  padding: 1em;
+}
+
+.disclosure-nav li + li button {
+  border-left-color: #ccc;
+}
+
+.disclosure-nav button:focus {
+  border-color: #630;
+  box-shadow: inset 0 0 4px 0 #630;
+}
+
+.disclosure-nav button[aria-expanded=true] {
+  background-color: #630;
+  color: #fff;
+}
