@@ -3986,14 +3986,30 @@ However, most authors do not need detailed understanding of the algorithms since
         <h4><span id="naming_role_guidance_heading">Accessible Name Guidance by Role</span></h4>
         <p>
           Certain elements always require a name, others may usually or sometimes require a name, and still others should never be named.   
-          The following table provides requirements, allowed techniques, and guidance for each ARIA role. 
+          The table below lists all ARIA roles and provides the following information for each :
         </p>
+        <dl>
+          <dt>When to Name:</dt>
+          <dd>
+            This column contains <q>Always</q>, <q>Usually</q>, <q>Sometimes</q>, or <q>Never</q>.
+            If the value is <q>Always</q>, the ARIA specification requires authors to provide a name, and a missing name will trigger accessibility validators to flag a violation.
+            The guidance column includes an explanation of the other values.
+          </dd>
+          <dt>Content Can Name</dt>
+          <dd>
+            This column contains <q>Yes</q> or <q>No</q>.
+            If the value is <q>Yes</q>, browsers will calculate a name for elements with that role from the text of all descendant content unless <code>aria-label</code> or <code>aria-labelledby</code> is used to override the content. 
+            It is strongly recommended to avoid using <code>aria-label</code> or <code>aria-labelledby</code> on elements having one of the roles where this column contains <q>Yes</q> except in rare circumstances where hiding descendant content of the element from assistive technology users is beneficial.
+          </dd>
+          <dt>Guidance:</dt>
+          <dd>Provides information to help determine if providing a name is beneficial, and if so, identifies any recommended techniques.</dd>
+        </dl>
         <table aria-labelledby="naming_role_guidance_heading">
          <tr>
           <th>role</th>
-          <th>Provide Name?<!-- with values of Always, Recommended, Optional, or Never--></th>
-          <th>Content Can Name<!-- values of Yes or No--></th>
-          <th>Guidance<!-- Explains Recommended, Optional, Never for name provision. Provides warning if can be named from content.--></th>
+          <th>When to Name</th>
+          <th>Content Can Name</th>
+          <th>Guidance</th>
          </tr>
 							  <tr>
 										<td><a href="#alert" class="role-reference"><code>alert</code></a></td>
