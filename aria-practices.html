@@ -4055,7 +4055,7 @@ However, most authors do not need detailed understanding of the algorithms since
          </tr>
 							  <tr>
 										<td><a href="#alert" class="role-reference"><code>alert</code></a></td>
-										<td>Optional</td>
+										<td>Sometimes</td>
 										<td>No</td>
 										<td>To-do: can we think of a circumstance where naming an alert would serve a useful purpose? Are there any assistive technologies that would render the boundaries of an alert container or have a way to render the name?</td>
 									</tr>
@@ -4073,39 +4073,71 @@ However, most authors do not need detailed understanding of the algorithms since
 									</tr>
 									<tr>
 										<td><a href="#article" class="role-reference"><code>article</code></a></td>
-										<td>Recommended</td>
+										<td>Usually</td>
 										<td>No</td>
-										<td>Named using <code>aria-labelledby</code> if a visible title is present, otherwise with <code>aria-label</code></td>
+										<td>
+                      <ul>
+                        <li>Recommended to distinguish articles from one another; helps users when navigating among articles.</li> 
+                        <li>Named using <code>aria-labelledby</code> if a visible title is present, otherwise with <code>aria-label</code>.</li>
+                      </ul>
+                    </td>
 									</tr>
 									<tr>
 										<td><a href="#banner" class="role-reference"><code>banner</code></a></td>
-										<td>Optional</td>
+										<td>Sometimes</td>
 										<td>No</td>
-										<td>Necessary in the uncommon circumstance where two banner landmark regions are present on the same page. It is otherwise optional.</td>
+										<td>
+                      <ul>
+                        <li>Necessary in the uncommon circumstance where two banner landmark regions are present on the same page. It is otherwise optional.</li>
+                        <li>Named using <code>aria-labelledby</code> if a visible title is present, otherwise with <code>aria-label</code>.</li>
+                      </ul>
+                    </td>
 									</tr>
 									<tr>
 										<td><a href="#button" class="role-reference"><code>button</code></a></td>
 										<td>Always</td>
 										<td>Yes</td>
-										<td></td>
+										<td>
+                      <ul>
+                        <li>Warning! Using <code>aria-label</code> or <code>aria-labelledby</code> will hide descendant content from assistive technologies.</li>
+                        <li>Ideally named by visible, descendant content.</li>
+                      </ul>
+                    </td>
 									</tr>
 									<tr>
 										<td><a href="#cell" class="role-reference"><code>cell</code></a></td>
-										<td>namerequired</td>
+										<td>Always</td>
 										<td>Yes</td>
-										<td>guidance</td>
+										<td>
+                      <ul>
+                        <li>Warning! Using <code>aria-label</code> or <code>aria-labelledby</code> will hide descendant content from assistive technologies.</li>
+                        <li>Ideally named by visible, descendant content.</li>
+                        <li>Note that associated row or column headers do not name a cell; a cell's name is its content. Headers are complementary information.</li>
+                      </ul>
+                    </td>
 									</tr>
 									<tr>
 										<td><a href="#checkbox" class="role-reference"><code>checkbox</code></a></td>
 										<td>Always</td>
 										<td>Yes</td>
-										<td>guidance</td>
+										<td>
+                      <ul>
+                        <li>Warning! Using <code>aria-label</code> or <code>aria-labelledby</code> will hide any descendant content from assistive technologies.</li>
+                        <li>If based on HTML <code>type="checkbox"</code>, ideally named with a <code>label</code> element.</li>
+                        <li>Otherwise, often named referencing visible content via <code>aria-labelledby</code>.</li>
+                      </ul>
+                    </td>
 									</tr>
 									<tr>
 										<td><a href="#columnheader" class="role-reference"><code>columnheader</code></a></td>
 										<td>Always</td>
 										<td>Yes</td>
-										<td>guidance</td>
+										<td>
+                      <ul>
+                        <li>Warning! Using <code>aria-label</code> or <code>aria-labelledby</code> will hide descendant content from assistive technologies.</li>
+                        <li>Ideally named by visible, descendant content.</li>
+                      </ul>
+                    </td>
 									</tr>
 									<tr>
 										<td><a href="#combobox" class="role-reference"><code>combobox</code></a></td>
@@ -4115,15 +4147,26 @@ However, most authors do not need detailed understanding of the algorithms since
 									</tr>
 									<tr>
 										<td><a href="#complementary" class="role-reference"><code>complementary</code></a></td>
-										<td>Optional</td>
+										<td>Usually</td>
 										<td>No</td>
-										<td>guidance</td>
+										<td>
+                      <ul>
+                        <li>Naming is necessary when two complementary landmark regions are present on the same page.</li>
+                        <li>naming  is recommended even when one complementary region is present to help users understand the purpose of the region's content when navigating among landmark regions.</li>
+                        <li>Named using <code>aria-labelledby</code> if a visible title is present, otherwise with <code>aria-label</code>.</li>
+                      </ul>
+                    </td>
 									</tr>
 									<tr>
 										<td><a href="#contentinfo" class="role-reference"><code>contentinfo</code></a></td>
-										<td>namerequired</td>
+										<td>Sometimes</td>
 										<td>No</td>
-										<td>guidance</td>
+										<td>
+                      <ul>
+                        <li>Necessary in the uncommon circumstance where two contentinfo landmark regions are present on the same page. It is otherwise optional.</li>
+                        <li>Named using <code>aria-labelledby</code> if a visible title is present, otherwise with <code>aria-label</code>.</li>
+                      </ul>
+                    </td>
 									</tr>
 									<tr>
 										<td><a href="#definition" class="role-reference"><code>definition</code></a></td>
