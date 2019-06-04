@@ -3711,7 +3711,7 @@
           <li>Naming with child content.</li>
           <li>Naming with a string attribute via <code>aria-label</code>.</li>
           <li>Naming by referencing content with <code>aria-labelledby</code>.</li>
-          <li>Naming by encapsulation with a label.</li>
+          <li>Naming with the label element.</li>
           <li>Naming with legends and captions.</li>
           <li>Fallback names derived from titles and placeholders.</li>
         </ul>
@@ -3949,19 +3949,24 @@ However, most authors do not need detailed understanding of the algorithms since
         </section>
 
         <section id="naming_with_labels">
-          <h5>Naming by Encapsulation with a Label</h5>
-          <p>
-            To-do: write this section. This version WILL NOT include the new ARIA 1.2 label role.
-            The 1.2 label role will be added after the July release of APG 1.1 R4.
-            So, in this version, we should talk about the HTML technique.
-            Specifically illustrate Form element labeling, and refer back to cardinal rule 2: prefer visible text, and rule 3: prefer native techniques.
-          </p>
+          <h5>Naming with the Label Element</h5>
+          <p>The HTML <code>label</code> element allows authors to give a form control a label, and have the two be programmatically associated so that assistive technologies can render the label when the user interacts with the form control.</p>
+          <p>For example, the purpose of a checkbox without a label would be unclear. If there's text next to the checkbox, visual users can understand the purpose, but users of assistive technology will only experience a checkbox without a label when interacting with the checkbox. Using the <code>label</code> element gives the checkbox a label and allows all users to access the label easily.</p>
+          <pre><code>&lt;label>
+ &lt;input type="checkbox" name="subscribe">
+ subscribe to our newsletter
+&lt;/label></code></pre>
+          <p>The form control can also be associated with the label by using the `for` attribute on the `label` element. This allows the label and the form control to have different parents in the DOM, but requires adding an `id` attribute to the form control, which can be error-prone. When possible, use encapsulation instead of the `for` attribute.</p>
+          <pre><code>&lt;input type="checkbox" name="subscribe" id="subscribe_checkbox">
+&lt;label for="subscribe_checkbox">subscribe to our newsletter&lt;/label></code></pre>
+          <p>Using the <code>label</code> element satisfies <a href="#naming_rule_visible_text">Rule 2: Prefer Visible Text</a> and <a href="#naming_rule_native_techniques">Rule 3: Prefer Native Techniques</a>.</p>
+          <p>Another advantage of the <code>label</code> element is that clicking the label focuses or activates the associated form control, as if the form control had been clicked. This increases the hit area for the form control.</p>
         </section>
 
         <section id="naming_with_legends_and_captions">
           <h5>Naming with Legends and Captions</h5>
           <p>
-            To-do: write this section. 
+            To-do: write this section.
             This version will not include the ARIA 1.2 legend role; it will be added in a version after the APG 1.1 R4 release in July.
             Specifically illustrate Form element labeling, and refer back to cardinal rule 2: prefer visible text, and rule 3: prefer native techniques.
           </p>
@@ -3985,7 +3990,7 @@ However, most authors do not need detailed understanding of the algorithms since
       <section id="naming_role_guidance">
         <h4><span id="naming_role_guidance_heading">Accessible Name Guidance by Role</span></h4>
         <p>
-          Certain elements always require a name, others may usually or sometimes require a name, and still others should never be named.   
+          Certain elements always require a name, others may usually or sometimes require a name, and still others should never be named.
           The table below lists all ARIA roles and provides the following information for each :
         </p>
         <dl>
@@ -3998,7 +4003,7 @@ However, most authors do not need detailed understanding of the algorithms since
           <dt>Content Can Name</dt>
           <dd>
             This column contains <q>Yes</q> or <q>No</q>.
-            If the value is <q>Yes</q>, browsers will calculate a name for elements with that role from the text of all descendant content unless <code>aria-label</code> or <code>aria-labelledby</code> is used to override the content. 
+            If the value is <q>Yes</q>, browsers will calculate a name for elements with that role from the text of all descendant content unless <code>aria-label</code> or <code>aria-labelledby</code> is used to override the content.
             It is strongly recommended to avoid using <code>aria-label</code> or <code>aria-labelledby</code> on elements having one of the roles where this column contains <q>Yes</q> except in rare circumstances where hiding descendant content of the element from assistive technology users is beneficial.
           </dd>
           <dt>Guidance:</dt>
