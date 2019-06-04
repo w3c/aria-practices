@@ -126,6 +126,19 @@ FormatToolbarItem.prototype.enable = function () {
   this.domNode.removeAttribute('aria-disabled');
 };
 
+FormatToolbarItem.prototype.showTooltip = function () {
+  if (this.tooltipNode) {
+    this.tooltipNode.classList.add('show');
+  }
+};
+
+FormatToolbarItem.prototype.hideTooltip = function () {
+  if (this.tooltipNode) {
+    this.tooltipNode.classList.remove('show');
+  }
+};
+
+
 // Events
 
 FormatToolbarItem.prototype.handleBlur = function (event) {
@@ -134,10 +147,7 @@ FormatToolbarItem.prototype.handleBlur = function (event) {
   if (this.domNode.classList.contains('nightmode')) {
     this.domNode.parentNode.classList.remove('focus');
   }
-
-  if (this.tooltipNode) {
-    this.tooltipNode.classList.remove('show');
-  }
+  this.hideTooltip();
 };
 
 FormatToolbarItem.prototype.handleFocus = function (event) {
@@ -146,11 +156,7 @@ FormatToolbarItem.prototype.handleFocus = function (event) {
   if (this.domNode.classList.contains('nightmode')) {
     this.domNode.parentNode.classList.add('focus');
   }
-
-  if (this.tooltipNode) {
-    this.tooltipNode.classList.add('show');
-  }
-
+  this.showTooltip();
 };
 
 FormatToolbarItem.prototype.handleKeyDown = function (event) {
@@ -202,7 +208,7 @@ FormatToolbarItem.prototype.handleKeyDown = function (event) {
         flag = true;
       }
       break;
-    case this.keyCode.DOWN:
+      case this.keyCode.DOWN:
       if (this.buttonAction === 'align') {
         if (this.domNode.classList.contains('align-right')) {
           this.toolbar.setFocusToFirstAlignItem();
@@ -212,6 +218,9 @@ FormatToolbarItem.prototype.handleKeyDown = function (event) {
         }
         flag = true;
       }
+      break;
+    case this.keyCode.ESC:
+      this.hideTooltip();
       break;
     default:
       break;
