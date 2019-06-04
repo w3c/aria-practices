@@ -11,6 +11,8 @@ FormatToolbarItem = function (domNode, toolbar) {
   this.buttonAction = '';
   this.value = '';
   this.tooltipNode = null;
+  this.hasHover = false;
+  this.tooltipDelay = 800;
 
 
   this.keyCode = Object.freeze({
@@ -34,6 +36,8 @@ FormatToolbarItem.prototype.init = function () {
   this.domNode.addEventListener('click', this.handleClick.bind(this));
   this.domNode.addEventListener('focus', this.handleFocus.bind(this));
   this.domNode.addEventListener('blur', this.handleBlur.bind(this));
+  this.domNode.addEventListener('mouseover', this.handleMouseOver.bind(this));
+  this.domNode.addEventListener('mouseleave', this.handleMouseOut.bind(this));
 
   if (this.domNode.classList.contains('bold')) {
     this.buttonAction = 'bold';
@@ -84,13 +88,12 @@ FormatToolbarItem.prototype.init = function () {
   }
   // Initialize any tooltips
 
-  this.tooltipNode = this.domNode.querySelector('[role="tooltip"]');
+  this.tooltipNode = this.domNode.querySelector('.label-tooltip');
   if (this.tooltipNode) {
-    var width = 7 * this.tooltipNode.textContent.length;
+    var width = 8 * this.tooltipNode.textContent.length;
     this.tooltipNode.style.width = width + 'px';
     this.tooltipNode.style.left = -1 * ((width - this.domNode.offsetWidth) / 2) - 5 + 'px';
   }
-
 
 };
 
@@ -128,12 +131,13 @@ FormatToolbarItem.prototype.enable = function () {
 
 FormatToolbarItem.prototype.showTooltip = function () {
   if (this.tooltipNode) {
+    this.toolbar.hideTooltips();
     this.tooltipNode.classList.add('show');
   }
 };
 
 FormatToolbarItem.prototype.hideTooltip = function () {
-  if (this.tooltipNode) {
+  if (this.tooltipNode && !this.hasHover) {
     this.tooltipNode.classList.remove('show');
   }
 };
@@ -147,7 +151,6 @@ FormatToolbarItem.prototype.handleBlur = function (event) {
   if (this.domNode.classList.contains('nightmode')) {
     this.domNode.parentNode.classList.remove('focus');
   }
-  this.hideTooltip();
 };
 
 FormatToolbarItem.prototype.handleFocus = function (event) {
@@ -156,7 +159,16 @@ FormatToolbarItem.prototype.handleFocus = function (event) {
   if (this.domNode.classList.contains('nightmode')) {
     this.domNode.parentNode.classList.add('focus');
   }
+};
+
+FormatToolbarItem.prototype.handleMouseOut = function (event) {
+  this.hasHover = false;
+  setTimeout(this.hideTooltip.bind(this), this.tooltipDelay);
+};
+
+FormatToolbarItem.prototype.handleMouseOver = function (event) {
   this.showTooltip();
+  this.hasHover = true;
 };
 
 FormatToolbarItem.prototype.handleKeyDown = function (event) {

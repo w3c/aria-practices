@@ -321,6 +321,12 @@ FormatToolbar.prototype.setFocusToLast = function (currentItem) {
   this.setFocusItem(this.lastItem);
 };
 
+FormatToolbar.prototype.hideTooltips = function () {
+  var tps = this.domNode.querySelectorAll('button .label-tooltip');
+  tps.forEach(function(tp) {tp.classList.remove('show')});
+};
+
+
 
 // Initialize toolbars
 

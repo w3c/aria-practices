@@ -57,24 +57,24 @@
                 aria-pressed="false"
                 value="bold"
                 tabindex="0">
-              <span class="fas fa-bold"></span>
-              <div role="tooltip">Bold</div>
+              <span class="fas fa-bold" aria-hidden="true"></span>
+              <div class="label-tooltip">Bold</div>
             </button>
             <button
                 class="item italic tooltip"
                 aria-pressed="false"
                 value="italic"
                 tabindex="-1">
-              <span class="fas fa-italic"></span>
-              <div role="tooltip">Italic</div>
+              <span class="fas fa-italic" aria-hidden="true"></span>
+              <div class="label-tooltip">Italic</div>
             </button>
             <button
                 class="item underline tooltip"
                 aria-pressed="false"
                 value="underline"
                 tabindex="-1">
-              <span class="fas fa-underline"></span>
-              <div role="tooltip">Underline</div>
+              <span class="fas fa-underline" aria-hidden="true"></span>
+              <div class="label-tooltip">Underline</div>
             </button>
           </div>
           <div class="group"
@@ -85,45 +85,42 @@
                 class="item align-left tooltip"
                 aria-checked="true"
                 tabindex="-1">
-              <span class="fas fa-align-left"></span>
-              <div role="tooltip">Text Align Left</div>
+              <span class="fas fa-align-left" aria-hidden="true"></span>
+              <div class="label-tooltip">Text Align Left</div>
             </button>
             <button
                 role="radio"
                 class="item align-center tooltip"
                 aria-checked="false"
                 tabindex="-1">
-              <span class="fas fa-align-center"></span>
-              <div role="tooltip">Text Align Center</div>
+              <span class="fas fa-align-center" aria-hidden="true"></span>
+              <div class="label-tooltip">Text Align Center</div>
             </button>
             <button
                 role="radio"
                 class="item align-right tooltip"
                 aria-checked="false"
                 tabindex="-1">
-              <span class="fas fa-align-right"></span>
-              <div role="tooltip">Text Align Right</div>
+              <span class="fas fa-align-right" aria-hidden="true"></span>
+              <div class="label-tooltip">Text Align Right</div>
             </button>
           </div>
           <div class="group">
             <button
                 class="item copy"
                 aria-disabled="true"
-                title="Copy selected text from textarea"
                 tabindex="-1">
               Copy
             </button>
             <button
                 class="item paste"
                 aria-disabled="true"
-                title="Paste last copied or cut text to textarea"
                 tabindex="-1">
                 Paste
             </button>
             <button
                 class="item cut"
                 aria-disabled="true"
-                title="Cut selected text from textarea"
                 tabindex="-1">
                 Cut
             </button>
@@ -173,7 +170,7 @@
 
           <div class="group">
             <label class="input"><input id="checkbox" class="item nightmode" type="checkbox" tabindex="-1"> Night Mode</label>
-            <a id="link" class="item link" href="help.html" tabindex="-1" title="Opens help document in a new window">Help</a>
+            <a id="link" class="item link" href="help.html" tabindex="-1">Help</a>
           </div>
       </div>
       <label for="textarea1" class="hidden">Text Sample</label><br>
@@ -219,6 +216,18 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
       </li>
       <li>
         When a toolbar item has focus, its border is highlighted and the background color of the button also changes.
+      </li>
+    </ul>
+    <h3>Tooltips</h3>
+    <ul>
+      <li>
+        When the bold, italic, underline or the text align buttons receive focus or the mouse overs over the button a tooltip appears above the button.
+      </li>
+      <li>
+        The tooltip remains visible when the pointer hovers over the tooltip content.
+      </li>
+      <li>
+        When a button has focus, the tooltip can be hidden using the <kbd>ESC</kbd> key.
       </li>
     </ul>
   </section>
@@ -626,7 +635,7 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
             <td>
               <ul>
                 <li>The default role of a <code>button</code> element is button.</li>
-                <li>The accessible name comes from the child text content of the button element, and in this case the text content of the <code>div[role=<q>tooltip</q>]</code> element.</li>
+                <li>The accessible name comes from the child text content of the <code>button</code> element.</li>
               </ul>
             </td>
           </tr>
@@ -641,16 +650,6 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
             <th scope="row"><code>aria-pressed=<q>false</q></code></th>
             <td><code>button</code></td>
             <td>Indicates the button is a toggle and that the styling controlled by the button has <strong>NOT</strong> been applied.</td>
-          </tr>
-          <tr data-test-id="toolbar-button-tooltip">
-            <td scope="row"><code>tooltip</code></td>
-            <th></th>
-            <td><code>div</code></td>
-            <td>
-              <ul>
-                <li>Identifies popup content used as a tooltip for the button.</li>
-                <li>In this example the text content of the tooltip is also used as the accessible name for the button element.</li>
-            </td>
           </tr>
         </tbody>
       </table>
@@ -692,8 +691,8 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
             <td><code>button</code></td>
             <td>
               <ul>
-                <li>Identifies the <code>button</code> element  as a <code>radio</code> element.</li>
-                <li>The accessible name comes from the child text content of the button element, and in this case the text content of the <code>div[role=<q>tooltip</q>]</code> element.</li>
+                <li>Identifies the <code>button</code> element  as a <code>radio</code> button.</li>
+                <li>The accessible name comes from the child text content of the <code>button</code> element.</li>
               </ul>
             </td>
           </tr>
@@ -717,16 +716,6 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
                 <li>Indicates the radio button is <strong>NOT</strong> checked.</li>
                 <li>All radio buttons in the group, except for one,  have <code>aria-checked</code> set to <code>false</code>.</li>
               </ul>
-            </td>
-          </tr>
-          <tr data-test-id="toolbar-radio-tooltip">
-            <td scope="row"><code>tooltip</code></td>
-            <th></th>
-            <td><code>div</code></td>
-            <td>
-              <ul>
-                <li>Identifies popup content used as a tooltip for the radio button.</li>
-                <li>In this example the text content of the tooltip is also used as the accessible name for the radio button.</li>
             </td>
           </tr>
         </tbody>

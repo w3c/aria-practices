@@ -46,7 +46,7 @@
   position: relative;
 }
 
-[role="toolbar"] button [role="tooltip"] {
+[role="toolbar"] button .label-tooltip {
   display: block;
   width: initial;
   border: 1px solid white;
@@ -59,8 +59,9 @@
   font-weight: normal;
 }
 
-[role="toolbar"] button.tooltip:hover [role="tooltip"],
-[role="toolbar"] button [role="tooltip"].show {
+[role="toolbar"] button.tooltip:focus .label-tooltip,
+[role="toolbar"] button.tooltip .label-tooltip:hover,
+[role="toolbar"] button .label-tooltip.show {
   text-align: center;
   top: -2.5em;
 }
