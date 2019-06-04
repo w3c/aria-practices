@@ -3983,8 +3983,43 @@ However, most authors do not need detailed understanding of the algorithms since
 
       <section id="naming_effectively">
         <h4>Composing Effective and User-friendly Accessible Names</h4>
-        <p>To-do: Write a section that describes how to make good names, i.e., brief, descriptive, unique, front-loaded, no role names, etc.</p>
-        <p>Example practice: Do NOT include a WAI-ARIA role name in the accessible name. For example, do not include the word &quot;button&quot; in the name of a button or the word &quot;navigation&quot; in the name of a navigation region.</p>
+        <p>
+          For assistive technology users, especially screen reader users, the quality of accessible names is one of the most  significant contributors to usability.
+          Names that do not provide enough information reduce users' effectiveness while names that are too long reduce efficiency.
+          And, names that are difficult to understand reduce effectiveness, efficiency, and enjoyment.
+        </p>
+        <p>The following guidelines provide a starting point for crafting user friendly names.</p>
+        <ul>
+          <li>
+            Convey function or purpose, not form.
+            For example, if an icon that looks like the letter <q>X</q> closes a dialog, name it <q>Close</q>, not <q>X</q>.
+            Similarly, if a set of navigation links in the left side bar navigate among the product pages in a shopping site, name the navigation region <q>Product</q>, not <q>Left</q>.
+          </li>
+          <li>
+            Put the most distinguishing and important words first.
+            Often, for interactive elements that perform an action, this means a verb is the first word.
+            For instance, if a list of contacts displays a separate set of edit, delete, and more actions buttons for each contact, <q>Actions for John Doe</q> is better than <q>John Doe actions</q> because it distinguishes the actions menu button from the other buttons as well from the element that opens John Doe's contact card.
+          </li>
+          <li>
+            Be concise. For many elements, one to three words is sufficient.
+            Only add more words when necessary.
+            
+          </li>
+          <li>
+            Do NOT include a WAI-ARIA role name in the accessible name.
+            For example, do not include the word "button" in the name of a button or the word "navigation" in the name of a navigation region.
+            Doing so would create duplicate screen reader output since screen readers convey the role of an element in addition to its name.
+          </li>
+          <li>
+            Create unique names for elements with the same role unless the elements are actually identical.
+            For example, ensure every link on a page has a different name except in cases where multiple links have the same target.
+            Similarly, give every navigation region on a page a different name unless there are regions with exactly identical content that perform exactly identical navigation functions.
+          </li>
+          <li>
+            Start names with a capital letter; it helps some screen readers speak them with appropriate inflection.
+            And, do nott end names with a period; they are not sentences.
+          </li>
+        </ul>
       </section>
 
       <section id="naming_role_guidance">
