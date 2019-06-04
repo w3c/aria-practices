@@ -4033,7 +4033,9 @@ However, most authors do not need detailed understanding of the algorithms since
           <dd>
             This column contains <q>Always</q>, <q>Usually</q>, <q>Sometimes</q>, or <q>Never</q>.
             If the value is <q>Always</q>, the ARIA specification requires authors to provide a name, and a missing name will trigger accessibility validators to flag a violation.
-            The guidance column includes an explanation of the other values.
+            If the value is <q>Usually</q>, providing a name is strongly recommended. 
+            If the value is <q>Sometimes</q>, naming is optional and may even be discouraged; the guidance column may provide additional explanation.
+            And, if the value is <q>Never</q>, naming is strongly discouraged even if it is technically permitted. This generally means that assistive technologies are unlikely to present a name even if provided. 
           </dd>
           <dt>Content Can Name</dt>
           <dd>
