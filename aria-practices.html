@@ -3921,7 +3921,7 @@ However, most authors do not need detailed understanding of the algorithms since
           <p>
             In some cases, the most effective name for an element is its own content combined with the content of another element.
             Because <code>aria-labelledby</code> has highest precedence in name calculation, in those situations, it is possible to use <code>aria-labelledby</code> to reference both the element itself and the other element.
-            In the following example, the &quot;read more&quot; link is named by the element itself and the article’s heading, resulting in a name of &quot;Read more... 7 ways you can help save the bees&quot;.
+            In the following example, the &quot;read more&quot; link is named by the element itself and the article’s heading, resulting in a name for the link of &quot;Read more... 7 ways you can help save the bees&quot;.
           </p>
           <pre><code>
   &lt;h2 id="bees-heading"&gt;7 ways you can help save the bees&lt;/h2&gt;
@@ -3929,16 +3929,16 @@ However, most authors do not need detailed understanding of the algorithms since
   &lt;p&gt;&lt;a id="bees-read-more" aria-labelledby="bees-read-more bees-heading"&gt;Read more...&lt;/a&gt;&lt;/p&gt;
           </code></pre>
           <p>
-            When multiple elements are referenced, the text content of the referenced elements will be concatenated in the order they are listed in the attribute value.
-            In addition, browsers will trim leading and trailing white space and separate the content from each element with a single space.
+            When multiple elements are referenced by <code>aria-labelledby</code>, text content from each referenced element is concatenated in the order specified in the <code>aria-labeledby</code> value.
+            If an element is referenced more than one time, only the first reference is processed.
+            When concatenating content from multiple elements, browsers trim leading and trailing white space and separate content from each element with a single space.
           </p>
           <p>
-            To-do: add one or two more simple but realistic examples to show reference to hidden elements and inputs, perhaps also highlighting how browsers handle spacing.
-            Short examples, 3 lines of code or less, are preferrable.
+            To-do: add example to show reference to hidden elements and an input that demonstrates spacing between strings from referenced elements.
           </p>
           <ol class="warning">
             <li>The <code>aria-labelledby</code> property cannot be chained, i.e., if an element with <code>aria-labelledby</code> references another element that also has <code>aria-labelledby</code>, the <code>aria-labelledby</code> attribute on the referenced element will be ignored.</li>
-            <li>The <code>aria-labelledby</code> property cannot be applied to the descendant of an element that supports naming from content. For example, most browsers will ignore the aria-labelledby attribute in this link: <code>&lt;a href="/"&gt;&lt;span aria-labelledby="elem1"&gt;&lt;/span&gt;&lt;a&gt;</code>.</li>
+            <li>If an element is referenced by <code>aria-labelledby</code> more than one time during a name calculation, the second and any subsequent references will be ignored.</li>
             <li>There are certain types of elements, such as paragraphs and list items,  that should not be named with <code>aria-labelledby</code>. They are identified in the table in section <a href="#naming_role_guidance">Accessible Name Guidance by Role</a>.</li>
             <li>
           If <code>aria-labelledby</code> is applied to an element with one of the roles that supports <a href="#naming_with_child_content">naming from child content</a>, text content contained in the element and its descendants is hidden from assistive technology users unless it is also referenced by <code>aria-labelledby</code>.
