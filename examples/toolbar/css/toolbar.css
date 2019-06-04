@@ -42,6 +42,29 @@
   margin-right: 0.25em;
 }
 
+[role="toolbar"] button.tooltip {
+  position: relative;
+}
+
+[role="toolbar"] button [role="tooltip"] {
+  display: block;
+  width: initial;
+  border: 1px solid white;
+  padding: 2px 4px;
+  border-radius: 5px;
+  position: absolute;
+  top: -30000em;
+  background-color: black;
+  color: white;
+  font-weight: normal;
+}
+
+[role="toolbar"] button.tooltip:hover [role="tooltip"],
+[role="toolbar"] button [role="tooltip"].show {
+  text-align: center;
+  top: -2.5em;
+}
+
 [role="toolbar"] button[aria-pressed="true"],
 [role="toolbar"] [role="radio"][aria-checked="true"] {
   border-color: #555;

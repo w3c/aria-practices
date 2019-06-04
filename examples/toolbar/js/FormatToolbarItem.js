@@ -10,6 +10,7 @@ FormatToolbarItem = function (domNode, toolbar) {
   this.toolbar = toolbar;
   this.buttonAction = '';
   this.value = '';
+  this.tooltipNode = null;
 
 
   this.keyCode = Object.freeze({
@@ -81,6 +82,16 @@ FormatToolbarItem.prototype.init = function () {
   if (this.domNode.classList.contains('spinbutton')) {
     this.buttonAction = 'changeFontSize';
   }
+  // Initialize any tooltips
+
+  this.tooltipNode = this.domNode.querySelector('[role="tooltip"]');
+  if (this.tooltipNode) {
+    var width = 7 * this.tooltipNode.textContent.length;
+    this.tooltipNode.style.width = width + 'px';
+    this.tooltipNode.style.left = -1 * ((width - this.domNode.offsetWidth) / 2) - 5 + 'px';
+  }
+
+
 };
 
 FormatToolbarItem.prototype.isPressed = function () {
@@ -123,6 +134,10 @@ FormatToolbarItem.prototype.handleBlur = function (event) {
   if (this.domNode.classList.contains('nightmode')) {
     this.domNode.parentNode.classList.remove('focus');
   }
+
+  if (this.tooltipNode) {
+    this.tooltipNode.classList.remove('show');
+  }
 };
 
 FormatToolbarItem.prototype.handleFocus = function (event) {
@@ -130,6 +145,10 @@ FormatToolbarItem.prototype.handleFocus = function (event) {
 
   if (this.domNode.classList.contains('nightmode')) {
     this.domNode.parentNode.classList.add('focus');
+  }
+
+  if (this.tooltipNode) {
+    this.tooltipNode.classList.add('show');
   }
 
 };

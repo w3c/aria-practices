@@ -53,28 +53,28 @@
       <div class="format" role="toolbar" aria-label="Text Formatting" aria-controls="textarea1">
           <div class="group characteristics">
             <button
-                class="item bold"
+                class="item bold tooltip"
                 aria-pressed="false"
-                aria-label="bold"
                 value="bold"
                 tabindex="0">
               <span class="fas fa-bold"></span>
+              <div role="tooltip">Bold</div>
             </button>
             <button
-                class="item italic"
-                aria-label="Italic"
+                class="item italic tooltip"
                 aria-pressed="false"
                 value="italic"
                 tabindex="-1">
               <span class="fas fa-italic"></span>
+              <div role="tooltip">Italic</div>
             </button>
             <button
-                class="item underline"
-                aria-label="Underline"
+                class="item underline tooltip"
                 aria-pressed="false"
                 value="underline"
                 tabindex="-1">
               <span class="fas fa-underline"></span>
+              <div role="tooltip">Underline</div>
             </button>
           </div>
           <div class="group"
@@ -82,27 +82,27 @@
                aria-label="Text Alignment">
             <button
                 role="radio"
-                class="item align-left"
-                aria-label="Text align left"
+                class="item align-left tooltip"
                 aria-checked="true"
                 tabindex="-1">
               <span class="fas fa-align-left"></span>
+              <div role="tooltip">Text Align Left</div>
             </button>
             <button
                 role="radio"
-                class="item align-center"
-                aria-label="Text align center"
+                class="item align-center tooltip"
                 aria-checked="false"
                 tabindex="-1">
               <span class="fas fa-align-center"></span>
+              <div role="tooltip">Text Align Center</div>
             </button>
             <button
                 role="radio"
-                class="item align-right"
-                aria-label="Text align right"
+                class="item align-right tooltip"
                 aria-checked="false"
                 tabindex="-1">
               <span class="fas fa-align-right"></span>
+              <div role="tooltip">Text Align Right</div>
             </button>
           </div>
           <div class="group">
@@ -203,7 +203,7 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
         When any of the cut, copy and paste buttons are disabled they remain focusable to ensure screen reader users are aware of their presence.
         For additional guidance, see <a href="../../#kbd_disabled_controls">Focusability of disabled controls.</a>
       </li>
-      <li><kbd>Left Arrow</kbd> and <kbd>Right Arrow</kbd> navigate among elements in the toolbar so <kbd>Up Arrow</kbd> and <kbd>Down Arrow</kbd> are available to: 
+      <li><kbd>Left Arrow</kbd> and <kbd>Right Arrow</kbd> navigate among elements in the toolbar so <kbd>Up Arrow</kbd> and <kbd>Down Arrow</kbd> are available to:
         <ul>
           <li>Navigate among radios in the text alignment group. For instance, <kbd>Down Arrow</kbd> moves focus from last to first member in the group.</li>
           <li>Open the font menu button, which can also be opened with <kbd>Enter</kbd>.</li>
@@ -215,7 +215,7 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
     <ul>
       <li>
         When the toolbar has focus, the container element border is highlighted,
-        helping indicate that the container supports directional navigation with the arrow keys. 
+        helping indicate that the container supports directional navigation with the arrow keys.
       </li>
       <li>
         When a toolbar item has focus, its border is highlighted and the background color of the button also changes.
@@ -608,13 +608,13 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
         </thead>
         <tbody>
           <tr data-test-id="toolbar-button-aria-label">
-            <td></td>
-            <th scope="row"><code>aria-label="LABEL_STRING"</code></th>
+            <td scope="row"><code>button</code></td>
+            <th></th>
             <td><code>button</code></td>
             <td>
               <ul>
-                <li>Provides an accessible name.</li>
-                <li>Used because the button does not contain text content that can serve as a label.</li>
+                <li>The default role of a <code>button</code> element is button.</li>
+                <li>The accessible name comes from the child text content of the button element, and in this case the text content of the <code>div[role=<q>tooltip</q>]</code> element.</li>
               </ul>
             </td>
           </tr>
@@ -629,6 +629,16 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
             <th scope="row"><code>aria-pressed=<q>false</q></code></th>
             <td><code>button</code></td>
             <td>Indicates the button is a toggle and that the styling controlled by the button has <strong>NOT</strong> been applied.</td>
+          </tr>
+          <tr data-test-id="toolbar-button-tooltip">
+            <td scope="row"><code>tooltip</code></td>
+            <th></th>
+            <td><code>div</code></td>
+            <td>
+              <ul>
+                <li>Identifies popup content used as a tooltip for the button.</li>
+                <li>In this example the text content of the tooltip is also used as the accessible name for the button element.</li>
+            </td>
           </tr>
         </tbody>
       </table>
@@ -668,13 +678,12 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
             <th scope="row"><code>radio</code></th>
             <td></td>
             <td><code>button</code></td>
-            <td>Identifies the <code>button</code> element  as a <code>radio</code> element.</td>
-          </tr>
-          <tr data-test-id="toolbar-radio-aria-label">
-            <td></td>
-            <th scope="row"><code>aria-label="ALIGNMENT_NAME_STRING"</code></th>
-            <td><code>button</code></td>
-            <td>Provides an accessible name for the radio button that indicates the type of text alignment it performs.</td>
+            <td>
+              <ul>
+                <li>Identifies the <code>button</code> element  as a <code>radio</code> element.</li>
+                <li>The accessible name comes from the child text content of the button element, and in this case the text content of the <code>div[role=<q>tooltip</q>]</code> element.</li>
+              </ul>
+            </td>
           </tr>
           <tr data-test-id="toolbar-radio-aria-checked">
             <td></td>
@@ -683,7 +692,7 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
             <td>
               <ul>
                 <li>Indicates the radio button is checked, i.e., the type of alignment currently applied to the text area.</li>
-                <li>Only one radio button in the group has <code>aria-checked</code> set to <code>true</code> at any given time.</li> 
+                <li>Only one radio button in the group has <code>aria-checked</code> set to <code>true</code> at any given time.</li>
               </ul>
             </td>
           </tr>
@@ -694,8 +703,18 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
             <td>
               <ul>
                 <li>Indicates the radio button is <strong>NOT</strong> checked.</li>
-                <li>All radio buttons in the group, except for one,  have <code>aria-checked</code> set to <code>false</code>.</li> 
+                <li>All radio buttons in the group, except for one,  have <code>aria-checked</code> set to <code>false</code>.</li>
               </ul>
+            </td>
+          </tr>
+          <tr data-test-id="toolbar-radio-tooltip">
+            <td scope="row"><code>tooltip</code></td>
+            <th></th>
+            <td><code>div</code></td>
+            <td>
+              <ul>
+                <li>Identifies popup content used as a tooltip for the radio button.</li>
+                <li>In this example the text content of the tooltip is also used as the accessible name for the radio button.</li>
             </td>
           </tr>
         </tbody>
