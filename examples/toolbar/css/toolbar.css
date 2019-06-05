@@ -49,7 +49,7 @@
 [role="toolbar"] button .label-tooltip {
   display: block;
   width: initial;
-  border: 1px solid white;
+  border: 2px solid white;
   padding: 2px 4px;
   border-radius: 5px;
   position: absolute;
@@ -64,6 +64,32 @@
   text-align: center;
   top: -2.5em;
 }
+
+[role="toolbar"] button .label-tooltip:after,
+[role="toolbar"] button .label-tooltip:before {
+  top: 100%;
+  left: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+[role="toolbar"] button .label-tooltip:after {
+  border-color: rgba(0, 0, 0, 0);
+  border-top-color: #000000;
+  border-width: 10px;
+  margin-left: -10px;
+}
+[role="toolbar"] button .label-tooltip:before {
+  border-color: rgba(255, 255, 255, 0);
+  border-top-color: #fff;
+  border-width: 12px;
+  margin-left: -12px;
+}
+
 
 [role="toolbar"] button[aria-pressed="true"],
 [role="toolbar"] [role="radio"][aria-checked="true"] {
