@@ -28,6 +28,7 @@ var RadioGroup = function (domNode) {
 
   this.keyCode = Object.freeze({
     'TAB': 9,
+    'RETURN': 13,
     'SPACE': 32,
     'LEFT': 37,
     'UP': 38,
