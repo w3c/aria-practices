@@ -3711,8 +3711,9 @@
           <li>Naming with child content.</li>
           <li>Naming with a string attribute via <code>aria-label</code>.</li>
           <li>Naming by referencing content with <code>aria-labelledby</code>.</li>
-          <li>Naming with the label element.</li>
-          <li>Naming with legends and captions.</li>
+          <li>Naming form controls with the label element.</li>
+          <li>Naming fieldsets with the legend element.</li>
+          <li>Naming tables and figures with captions.</li>
           <li>Fallback names derived from titles and placeholders.</li>
         </ul>
       </li>
@@ -3949,7 +3950,7 @@ However, most authors do not need detailed understanding of the algorithms since
         </section>
 
         <section id="naming_with_labels">
-          <h5>Naming with the Label Element</h5>
+          <h5>Naming Form Controls with the Label Element</h5>
           <p>The HTML <code>label</code> element allows authors to give a form control a label, and have the two be programmatically associated so that assistive technologies can render the label when the user interacts with the form control.</p>
           <p>For example, the purpose of a checkbox without a label would be unclear. If there's text next to the checkbox, visual users can understand the purpose, but users of assistive technology will only experience a checkbox without a label when interacting with the checkbox. Using the <code>label</code> element gives the checkbox a label and allows all users to access the label easily.</p>
           <pre><code>&lt;label>
@@ -3963,13 +3964,35 @@ However, most authors do not need detailed understanding of the algorithms since
           <p>Another advantage of the <code>label</code> element is that clicking the label focuses or activates the associated form control, as if the form control had been clicked. This increases the hit area for the form control.</p>
         </section>
 
-        <section id="naming_with_legends_and_captions">
-          <h5>Naming with Legends and Captions</h5>
-          <p>
-            To-do: write this section.
-            This version will not include the ARIA 1.2 legend role; it will be added in a version after the APG 1.1 R4 release in July.
-            Specifically illustrate Form element labeling, and refer back to cardinal rule 2: prefer visible text, and rule 3: prefer native techniques.
-          </p>
+        <section id="naming_with_legends">
+          <h5>Naming Fieldsets with the Legend Element</h5>
+          <p>Multiple form controls can be grouped together to make the form easier to navigate. The HTML <code>fieldset</code> element can be used to group form controls, and the <code>legend</code> element gives the group a name.</p>
+          <p>This is particularly useful for questions with multiple choices; without associating the question with the options with markup, users of assistive technology might only access the answers and miss out on the question.</p>
+          <p>For example, a group of radio buttons can be grouped together in a <code>fieldset</code>, where the <code>legend</code> element labels the group for the radio buttons.</p>
+          <pre><code>&lt;fieldset>
+ &lt;legend>Select your starter class&lt;/legend>
+ &lt;label>&lt;input name="starter-class" value="green"> Green&lt;/label>
+ &lt;label>&lt;input name="starter-class" value="red"> Red&lt;/label>
+ &lt;label>&lt;input name="starter-class" value="blue"> Blue&lt;/label>
+&lt;/fieldset></code></pre>
+          <p>Related form fields can also be grouped using <code>fieldset</code> and <code>legend</code> even when they are not multiple choices for one question. This is useful for users to be able to navigate the form group-by-group.</p>
+          <pre><code>&lt;fieldset>
+ &lt;legend>Shipping address&lt;/legend>
+ &lt;p>&lt;label>Full name &lt;input name="name" required>&lt;/label>&lt;/p>
+ &lt;p>&lt;label>Address line 1 &lt;input name="address-1" required>&lt;/label>&lt;/p>
+ &lt;p>&lt;label>Address line 2 &lt;input name="address-2">&lt;/label>&lt;/p>
+ ...
+&lt;/fieldset>
+&lt;fieldset>
+ &lt;legend>Billing address&lt;/legend>
+ ...
+&lt;/fieldset></code></pre>
+          <p>Using the <code>legend</code> element to name a <code>fieldset</code> element satisfies <a href="#naming_rule_visible_text">Rule 2: Prefer Visible Text</a> and <a href="#naming_rule_native_techniques">Rule 3: Prefer Native Techniques</a>.</p>
+        </section>
+
+        <section id="naming_with_captions">
+          <h5>Naming Tables and Figures with Captions</h5>
+          <p>To-do: write this section.</p>
         </section>
 
         <section id="naming_with_fallback">
