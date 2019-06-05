@@ -6,18 +6,18 @@
 */
 
 
-var DisclosureMenu = function(domNode) {
+var DisclosureMenu = function (domNode) {
   this.rootNode = domNode;
   this.triggerNodes = [];
   this.controlledNodes = [];
   this.openIndex = null;
-}
+};
 
-DisclosureMenu.prototype.init = function() {
-  const buttons = this.rootNode.querySelectorAll('button[aria-expanded][aria-controls]');
+DisclosureMenu.prototype.init = function () {
+  var buttons = this.rootNode.querySelectorAll('button[aria-expanded][aria-controls]');
   for (var i = 0; i < buttons.length; i++) {
-    const button = buttons[i];
-    const menu = button.parentNode.querySelector('ul');
+    var button = buttons[i];
+    var menu = button.parentNode.querySelector('ul');
     if (menu) {
       // save ref to button and controlled menu
       this.triggerNodes.push(button);
@@ -35,15 +35,15 @@ DisclosureMenu.prototype.init = function() {
   }
 
   this.rootNode.addEventListener('focusout', this.handleBlur.bind(this));
-}
+};
 
-DisclosureMenu.prototype.toggleMenu = function(domNode, show) {
+DisclosureMenu.prototype.toggleMenu = function (domNode, show) {
   if (domNode) {
     domNode.style.display = show ? 'block' : 'none';
   }
-}
+};
 
-DisclosureMenu.prototype.toggleExpand = function(index, expanded) {
+DisclosureMenu.prototype.toggleExpand = function (index, expanded) {
   // close open menu, if applicable
   if (this.openIndex !== index) {
     this.toggleExpand(this.openIndex, false);
@@ -55,17 +55,17 @@ DisclosureMenu.prototype.toggleExpand = function(index, expanded) {
     this.triggerNodes[index].setAttribute('aria-expanded', expanded);
     this.toggleMenu(this.controlledNodes[index], expanded);
   }
-}
+};
 
 /* Event Handlers */
-DisclosureMenu.prototype.handleBlur = function(event) {
-  const menuContainsFocus = this.rootNode.contains(event.relatedTarget);
+DisclosureMenu.prototype.handleBlur = function (event) {
+  var menuContainsFocus = this.rootNode.contains(event.relatedTarget);
   if (!menuContainsFocus && this.openIndex !== null) {
     this.toggleExpand(this.openIndex, false);
   }
-}
+};
 
-DisclosureMenu.prototype.handleButtonKeyDown = function(event) {
+DisclosureMenu.prototype.handleButtonKeyDown = function (event) {
   switch (event.key) {
     case 'Escape':
       if (this.openIndex !== null) {
@@ -75,18 +75,18 @@ DisclosureMenu.prototype.handleButtonKeyDown = function(event) {
     case 'ArrowUp':
     case 'ArrowLeft':
       event.preventDefault();
-      const activeIndex = this.triggerNodes.indexOf(document.activeElement);
+      var activeIndex = this.triggerNodes.indexOf(document.activeElement);
       if (activeIndex > -1) {
-        const prevIndex = Math.max(0, activeIndex - 1);
+        var prevIndex = Math.max(0, activeIndex - 1);
         this.triggerNodes[prevIndex].focus();
       }
       break;
     case 'ArrowDown':
     case 'ArrowRight':
       event.preventDefault();
-      const activeButtonIndex = this.triggerNodes.indexOf(document.activeElement);
+      var activeButtonIndex = this.triggerNodes.indexOf(document.activeElement);
       if (activeButtonIndex > -1) {
-        const nextIndex = Math.min(this.triggerNodes.length - 1, activeButtonIndex + 1);
+        var nextIndex = Math.min(this.triggerNodes.length - 1, activeButtonIndex + 1);
         this.triggerNodes[nextIndex].focus();
       }
       break;
@@ -99,21 +99,21 @@ DisclosureMenu.prototype.handleButtonKeyDown = function(event) {
       this.triggerNodes[this.triggerNodes.length - 1].focus();
       break;
   }
-}
+};
 
-DisclosureMenu.prototype.handleButtonClick = function(event) {
-  const button = event.target;
-  const buttonIndex = this.triggerNodes.indexOf(button);
-  const buttonExpanded = button.getAttribute('aria-expanded') === 'true';
+DisclosureMenu.prototype.handleButtonClick = function (event) {
+  var button = event.target;
+  var buttonIndex = this.triggerNodes.indexOf(button);
+  var buttonExpanded = button.getAttribute('aria-expanded') === 'true';
   this.toggleExpand(buttonIndex, !buttonExpanded);
-}
+};
 
-DisclosureMenu.prototype.handleMenuKeyDown = function(event) {
+DisclosureMenu.prototype.handleMenuKeyDown = function (event) {
   if (event.key === 'Escape' && this.openIndex !== null) {
     this.triggerNodes[this.openIndex].focus();
     this.toggleExpand(this.openIndex, false);
   }
-}
+};
 
 /* Initialize Disclosure Menus */
 
