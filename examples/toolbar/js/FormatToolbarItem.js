@@ -151,6 +151,7 @@ FormatToolbarItem.prototype.handleBlur = function (event) {
   if (this.domNode.classList.contains('nightmode')) {
     this.domNode.parentNode.classList.remove('focus');
   }
+  this.hideTooltip();
 };
 
 FormatToolbarItem.prototype.handleFocus = function (event) {
@@ -159,6 +160,7 @@ FormatToolbarItem.prototype.handleFocus = function (event) {
   if (this.domNode.classList.contains('nightmode')) {
     this.domNode.parentNode.classList.add('focus');
   }
+  this.showTooltip();
 };
 
 FormatToolbarItem.prototype.handleMouseOut = function (event) {

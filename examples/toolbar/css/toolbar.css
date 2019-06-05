@@ -59,7 +59,6 @@
   font-weight: normal;
 }
 
-[role="toolbar"] button.tooltip:focus .label-tooltip,
 [role="toolbar"] button.tooltip .label-tooltip:hover,
 [role="toolbar"] button .label-tooltip.show {
   text-align: center;
