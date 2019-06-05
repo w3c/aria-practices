@@ -93,9 +93,6 @@ FormatToolbarItem.prototype.init = function () {
     var width = 8 * this.tooltipNode.textContent.length;
     this.tooltipNode.style.width = width + 'px';
     this.tooltipNode.style.left = -1 * ((width - this.domNode.offsetWidth) / 2) - 5 + 'px';
-
-    var node = document.createElement('div');
-    this.tooltipNode.appendChild(node);
   }
 
 };
