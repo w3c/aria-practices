@@ -3701,7 +3701,7 @@
     <h2>Providing Accessible Names and Descriptions</h2>
     <p>
       Providing elements with accessible names, and where appropriate, accessible descriptions is one of the most fundamental and important responsibilities authors have when developing accessible web experiences.
-      While doing so is straight forward for most elements, technical mistakes that can have devastating impacts on users of assistive technologies are easy to make and unfortunately common.
+      While doing so is straightforward for most elements, technical mistakes that can have devastating impacts on users of assistive technologies are easy to make and unfortunately common.
       To help authors provide effective and reliable accessible names and descriptions, this section explains their purpose, when authors need to provide them, how browsers assemble them, and rules for coding and composing them.
       It also provides guidance for effectively employing the following naming and describing techniques and WAI-ARIA properties:
     </p>
@@ -3748,7 +3748,7 @@
         An accessible description is also an author-provided string that is rendered by assistive technologies.
         Authors supply a description when there is a need to associate additional information with an element, such as instructions or format requirements for an input field.
         Because they are usually significantly longer than names, assistive technologies present descriptions differently from names and other element attributes.
-        For instance, a screen reader may announce a description of an element after its name, role, value (if it is an input), and any relevant states or properties.
+        For instance, a screen reader may announce a description of an element after its name, role, value (if any), and relevant states or properties.
       </p>
     </section>
 
@@ -3769,8 +3769,8 @@ However, most authors do not need detailed understanding of the algorithms since
         <section id="naming_rule_heed_warnings">
           <h5>Rule 1: Heed Warnings and Test Thoroughly</h5>
           <p>
-            Several of the below <a href="#naming_techniques">naming techniques</a> include notes that warn against specific coding patterns that are either prohibitted by the ARIA specification or fall into gray space that is not yet fully specified.
-            Some of these prohibitted or ambiguous patterns may appear logical and even yield desired names in some browsers.
+            Several of the <a href="#naming_techniques">naming techniques</a> below include notes that warn against specific coding patterns that are either prohibited by the ARIA specification or fall into gray space that is not yet fully specified.
+            Some of these prohibited or ambiguous patterns may appear logical and even yield desired names in some browsers.
             However, it is unlikely they will provide consistent results across browsers, especially over time as work to improve the consistency of name calculation across browsers progresses.
           </p>
           <p>
@@ -3782,14 +3782,19 @@ However, most authors do not need detailed understanding of the algorithms since
           <h5>Rule 2: Prefer Visible Text</h5>
           <p>
             When a user interface includes visible text that could be used to provide an appropriate accessible name, using the visible text for the accessible name simplifies maintenance, prevents bugs, and reduces language translation requirements.
-            When names are generated from text that exists only in markup and is never displayed visually, there is a greater likelihood that accessible names are not updated when the user interface design or content are changed.
+            When names are generated from text that exists only in markup and is never displayed visually, there is a greater likelihood that accessible names will not be updated when the user interface design or content are changed.
+          </p>
+          <p>
+            If an interactive element, such as an input field or button ,  does not have a visually persistent text label, consider adjusting the design to include one.
+            In addition to serving as a more robust source for an accessible name, visible text labels enhance accessibility for many people with disabilities who do not use assistive technologies that present invisible accessible names.
+            In most circumstances, visible text labels also make the user interface easier to understand for all users.
           </p>
         </section>
 
         <section id="naming_rule_native_techniques">
           <h5>Rule 3: Prefer Native Techniques</h5>
           <p>
-            In HTML documents, whenever possible, rely on HTML naming techniques, such as the HTML label element.
+            In HTML documents, whenever possible, rely on HTML naming techniques, such as the HTML <code>label</code> element, <code>alt</code> attribute for images, <code>caption</code> element for tables, etc.
             While less flexible, their simplicity and reliance on visible text help ensure robust accessible experiences.
           </p>
         </section>
@@ -3797,7 +3802,7 @@ However, most authors do not need detailed understanding of the algorithms since
         <section id="naming_rule_avoid_fallback">
           <h5>Rule 4: Avoid Browser Fallback</h5>
           <p>
-            When authors do not specify an accessible name using an element or attribute that is intended for naming, browsers attempt to help assistive technology users by resorting to fall back methods for generating a name.
+            When authors do not specify an accessible name using an element or attribute that is intended for naming, browsers attempt to help assistive technology users by resorting to fallback methods for generating a name.
             For example, the HTML title and placeholder attributes are used as last resort sources of content for accessible names.
             Because the purpose of these attributes is not naming, their content typically yields low quality accessible names that are not effective.
           </p>
@@ -3808,7 +3813,7 @@ However, most authors do not need detailed understanding of the algorithms since
           <p>
             Similar to how visually crowded screens and ambiguous icons reduce usability, excessively long, insufficiently distinct, or unclear  accessible names can make a user interface very difficult, or even impossible, to use for someone who relies on a non-visual form of the user interface.
             In other words, for a web experience to be accessible, its accessible names must be effective.
-            The below section on <a href="#naming_effectively">Composing Effective and User-friendly Accessible Names</a> provides guidance for balancing brevity and clarity.
+            The section on <a href="#naming_effectively">Composing Effective and User-friendly Accessible Names</a> provides guidance for balancing brevity and clarity.
           </p>
         </section>
       </section>
@@ -3826,8 +3831,8 @@ However, most authors do not need detailed understanding of the algorithms since
           <pre><code>&lt;a href="/">Home&lt;/a></code></pre>
 
           <p>
-            When assistive technologies render an element, such as a link or button,  that gets its accessible name from its content, the accessible name is the only content the user can perceive for that element.
-            This is in contrast to other elements, such as text fields or tables,  where the accessible name is a label that is presented along with the value or content of the element.
+            When assistive technologies render an element that gets its accessible name from its content, such as a link or button, the accessible name is the only content the user can perceive for that element.
+            This is in contrast to other elements, such as text fields or tables,  where the accessible name is a label that is presented in addition to the value or content of the element.
             For instance, the accessible name of a table can be derived from a caption element, and assistive technologies render both the caption and all other content contained inside the table.
           </p>
           <p>Elements having one of the following roles are, by default, named by a string calculated from all their descendant content:</p>
@@ -3852,7 +3857,7 @@ However, most authors do not need detailed understanding of the algorithms since
             <li>treeitem</li>
           </ul>
           <p class="warning">
-            If an element with one of the above roles is named by using <code>aria-label</code> or <code>aria-labelledby</code>, text content contained in the element and its descendants is hidden from assistive technology users unless the descendant content is referenced by <code>aria-labelledby</code>.
+            If an element with one of the above roles is named by using <code>aria-label</code> or <code>aria-labelledby</code>, content contained in the element and its descendants is hidden from assistive technology users unless the descendant content is referenced by <code>aria-labelledby</code>.
             It is strongly recommended to avoid using either of these attributes to override content of one of the above elements except in rare circumstances where hiding content from assistive technology users is beneficial.
             In addition, in situations where visible content is hidden from assistive technology users by use of one of these attributes, thorough testing with assistive technologies is particularly important.
           </p>
@@ -3861,33 +3866,33 @@ However, most authors do not need detailed understanding of the algorithms since
         <section id="naming_with_aria-label">
           <h5>Naming with a String Attribute Via <code>aria-label</code></h5>
           <p>
-            The <a href="#aria-label" class="property-reference">aria-label</a> attribute enables authors to specify a string that will name an element.
+            The <a href="#aria-label" class="property-reference">aria-label</a> property enables authors to specify a string that will name an element.
             For example, the name of the following button is &quot;Close&quot;.
           </p>
           <pre><code>&lt;button type="button" aria-label="Close">X&lt;/button></code></pre>
           <p>
-            The <code>aria-label</code> attribute is useful when there is no visible text content that will serve as an appropriate accessible name.
+            The <code>aria-label</code> property is useful when there is no visible text content that will serve as an appropriate accessible name.
           </p>
           <p>
-            The <code>aria-label</code> attribute affects assistive technology users in one of two different ways, depending on the role of the element to which it is applied.
-            When applied to an element with one of the roles that supports <a href="#naming_with_child_content">naming from child content</a>, <code>aria-label</code> hides descendant content from assistive technology users and replaces the content with the value of <code>aria-label</code>.
-            However, when applied to nearly any other type of element, assistive technologies will render both the value of aria-label and the content of the element.
+            The <code>aria-label</code> property affects assistive technology users in one of two different ways, depending on the role of the element to which it is applied.
+            When applied to an element with one of the roles that supports <a href="#naming_with_child_content">naming from child content</a>, <code>aria-label</code> hides descendant content from assistive technology users and replaces it with the value of <code>aria-label</code>.
+            However, when applied to nearly any other type of element, assistive technologies will render both the value of <code>aria-label</code> and the content of the element.
             For example, the name of the following navigation region is &quot;Product&quot;.
           </p>
           <pre><code>
-          &lt;nav aria-label=&quot;Product&quot;&gt;
-            &lt;!-- list of navigation links to product pages --&gt;
-          &lt;/nav&gt;
+  &lt;nav aria-label=&quot;Product&quot;&gt;
+    &lt;!-- list of navigation links to product pages --&gt;
+  &lt;/nav&gt;
           </code></pre>
           <p>
             When encountering this navigation region, a screen reader user will hear the name and role of the element, e.g., &quot;Product navigation region&quot;, and then be able to read through the links contained in the region.
           </p>
           <ol class="warning">
             <li>
-          If <code>aria-label</code> is applied to an element with one of the roles that supports <a href="#naming_with_child_content">naming from child content</a>, text content contained in the element and its descendants is hidden from assistive technology users.
-          It is strongly recommended to avoid using this attribute to override content of one of these elements except in rare circumstances where hiding content from assistive technology users is beneficial.
+          If <code>aria-label</code> is applied to an element with one of the roles that supports <a href="#naming_with_child_content">naming from child content</a>, content contained in the element and its descendants is hidden from assistive technology users.
+          It is strongly recommended to avoid using <code>aria-label</code> to override content of one of these elements except in rare circumstances where hiding content from assistive technology users is beneficial.
         </li>
-        <li>There are certain types of elements, such as paragraphs and list items, that should not be named with <code>aria-label</code>. They are identified in the table in section <a href="#naming_role_guidance">Accessible Name Guidance by Role</a>.</li>
+        <li>There are certain types of elements, such as paragraphs and list items, that should not be named with <code>aria-label</code>. They are identified in the table in the <a href="#naming_role_guidance">Accessible Name Guidance by Role</a> section.</li>
             <li>Because the value of <code>aria-label</code> is not rendered visually, testing with assistive technologies to ensure the expected name is presented to users is particularly important.</li>
             <li>When a user interface is translated into multiple languages, ensure that <code>aria-label</code> values are translated.</li>
           </ol>
@@ -3922,7 +3927,7 @@ However, most authors do not need detailed understanding of the algorithms since
           <p>
             In some cases, the most effective name for an element is its own content combined with the content of another element.
             Because <code>aria-labelledby</code> has highest precedence in name calculation, in those situations, it is possible to use <code>aria-labelledby</code> to reference both the element itself and the other element.
-            In the following example, the &quot;read more&quot; link is named by the element itself and the article’s heading, resulting in a name for the link of &quot;Read more... 7 ways you can help save the bees&quot;.
+            In the following example, the &quot;Read more...&quot; link is named by the element itself and the article’s heading, resulting in a name for the link of &quot;Read more... 7 ways you can help save the bees&quot;.
           </p>
           <pre><code>
   &lt;h2 id="bees-heading"&gt;7 ways you can help save the bees&lt;/h2&gt;
@@ -3940,9 +3945,9 @@ However, most authors do not need detailed understanding of the algorithms since
           <ol class="warning">
             <li>The <code>aria-labelledby</code> property cannot be chained, i.e., if an element with <code>aria-labelledby</code> references another element that also has <code>aria-labelledby</code>, the <code>aria-labelledby</code> attribute on the referenced element will be ignored.</li>
             <li>If an element is referenced by <code>aria-labelledby</code> more than one time during a name calculation, the second and any subsequent references will be ignored.</li>
-            <li>There are certain types of elements, such as paragraphs and list items,  that should not be named with <code>aria-labelledby</code>. They are identified in the table in section <a href="#naming_role_guidance">Accessible Name Guidance by Role</a>.</li>
+            <li>There are certain types of elements, such as paragraphs and list items,  that should not be named with <code>aria-labelledby</code>. They are identified in the table in the <a href="#naming_role_guidance">Accessible Name Guidance by Role</a> section.</li>
             <li>
-          If <code>aria-labelledby</code> is applied to an element with one of the roles that supports <a href="#naming_with_child_content">naming from child content</a>, text content contained in the element and its descendants is hidden from assistive technology users unless it is also referenced by <code>aria-labelledby</code>.
+          If <code>aria-labelledby</code> is applied to an element with one of the roles that supports <a href="#naming_with_child_content">naming from child content</a>, content contained in the element and its descendants is hidden from assistive technology users unless it is also referenced by <code>aria-labelledby</code>.
           It is strongly recommended to avoid using this attribute to override content of one of these elements except in rare circumstances where hiding content from assistive technology users is beneficial.
         </li>
             <li>Because calculating the name of an element with <code>aria-labelledby</code> can be complex and reference hidden content, testing with assistive technologies to ensure the expected name is presented to users is particularly important.</li>
@@ -3999,7 +4004,7 @@ However, most authors do not need detailed understanding of the algorithms since
           <h5>Fallback Names Derived from Titles and Placeholders</h5>
           <p>To-do: finish writing this section. Needs to cover title, placeholder, and aria-placeholder.</p>
           <p>
-            For the HTML `input` element, the `placeholder` attribute is used as a fallback labeling mechanism if nothing else results in a label. For an `input` element, it is better to use a `label` element, since it does not disappear visually when the user focuses the form control.
+            For the HTML <code>input</code> element, the <code>placeholder</code> attribute is used as a fallback labeling mechanism if nothing else results in a label. For an <code>input</code> element, it is better to use a <code>label</code> element, since it does not disappear visually when the user focuses the form control.
           </p>
         </section>
       </section>
@@ -4026,11 +4031,10 @@ However, most authors do not need detailed understanding of the algorithms since
           <li>
             Be concise. For many elements, one to three words is sufficient.
             Only add more words when necessary.
-            
           </li>
           <li>
             Do NOT include a WAI-ARIA role name in the accessible name.
-            For example, do not include the word "button" in the name of a button or the word "navigation" in the name of a navigation region.
+            For example, do not include the word <q>button</q> in the name of a button, the word <q>image</q> in the name of an image, or the word <q>navigation</q> in the name of a navigation region.
             Doing so would create duplicate screen reader output since screen readers convey the role of an element in addition to its name.
           </li>
           <li>
@@ -4540,8 +4544,8 @@ However, most authors do not need detailed understanding of the algorithms since
         </p>
         <p>To-do: make the steps related to HTML elements and attributes in the following list more specific so readers can see the precedence of any specific element or attribute.</p>
         <ol>
-          <li>The <code>aria-labelledby</code> attribute is used if present.</li>
-          <li>If the name is still empty, the <code>aria-label</code> attribute is used if present.</li>
+          <li>The <code>aria-labelledby</code> property is used if present.</li>
+          <li>If the name is still empty, the <code>aria-label</code> property is used if present.</li>
           <li>If the name is still empty, then host-language-specific attributes or elements (e.g., <code>alt</code> attribute on HTML <code>img</code>) are used if present.</li>
           <li>If the name is still empty, then for elements with a role that supports naming from child content, the content of the element is used.</li>
           <li>Finally, if the name is still empty, then other fallback host-language-specific tooltip attributes or elements (e.g., the <code>title</code> attribute in HTML) are used if present.</li>
@@ -4551,13 +4555,14 @@ However, most authors do not need detailed understanding of the algorithms since
         </p>
         <p>
           When calculating a name from content, the user agent walks through all descendant nodes.
-          And, when following <code>aria-labelledby references</code>, it similarly walks the tree of each referenced element.
+          And, when following <code>aria-labelledby</code> references, it similarly walks the tree of each referenced element.
           Thus, the naming algorithm is recursive.
           The following two sections provide non-recursive and recursive examples of how the algorithm works.
         </p>
 
         <section id="name_calculation_non-recursive_ex">
           <h5>Examples of non-recursive accessible name calculation</h5>
+          <p>To-do: replace this img example with input type text example.</p>
           <p>Consider an <code>img</code> element that has only an <code>src</code> attribute and so does not have an accessible name (do not do this):</p>
           <pre><code>&lt;img src="photo.jpg"></code></pre>
           <p>If there is a <code>title</code> attribute, then it serves as a naming falback mechanism (avoid doing this):</p>
@@ -4583,19 +4588,20 @@ However, most authors do not need detailed understanding of the algorithms since
             <h5>Examples of recursive accessible name calculation</h5>
             <p>The accessible name calculation algorithm will be invoked recursively when necessary. An `aria-labelledby` reference causes the algorithm to be invoked recursively, and when computing an accessible name from content the algorithm is invoked recursively for each child node.</p>
 
-            <p>In this example, the label for the button is computed by recursing into each child node, resulting in "Move to trash".</p>
+            <p>In this example, the label for the button is computed by recursing into each child node, resulting in <q>Move to trash</q>.</p>
 
             <pre><code>&lt;button>Move to &lt;img src="bin.svg" alt="trash">&lt;/button></code></pre>
 
-            <p>When following an `aria-labelledby` reference, the algorithm avoids following the same reference twice in order to not end up in infinite loops.</p>
+            <p>When following an <code>aria-labelledby</code> reference, the algorithm avoids following the same reference twice to avoid infinite loops.</p>
 
-            <p>In this example, the label for the button is computed by first following the `aria-labelledby` reference to the parent element, and then computing the label for that element from the child nodes, first visiting the `button` element again but ignoring the `aria-labelledby` reference and instead using the `aria-label` attribute, and then visiting the next child (the text node). The resulting label is "Remove meeting: Daily status report".</p>
+            <p>In this example, the label for the button is computed by first following the <code>aria-labelledby</code> reference to the parent element, and then computing the label for that element from the child nodes, first visiting the <code>button</code> element again but ignoring the <code>aria-labelledby</code> reference and instead using the <code>aria-label</code>, and then visiting the next child (the text node). The resulting label is <q>Remove meeting: Daily status report</q>.</p>
 
-            <pre><code>&lt;div id="meeting-1">
-    &lt;button aria-labelledby="meeting-1"
-        aria-label="Remove meeting:">X&lt;/button>
-        Daily status report
-    &lt;/div></code></pre>
+            <pre><code>
+  &lt;div id="meeting-1">
+    &lt;button aria-labelledby="meeting-1" aria-label="Remove meeting:">X&lt;/button>
+    Daily status report
+  &lt;/div>
+  </code></pre>
         </section>
       </section>
     </section>
@@ -4604,60 +4610,83 @@ However, most authors do not need detailed understanding of the algorithms since
       <h3>Accessible Descriptions</h3>
       <section id="describing_techniques">
         <h4>Describing Techniques</h4>
-
-        <section>
+        <section id="describing_with_aria-describedby">
           <h5>Describing by referencing content with <code>aria-describedby</code></h5>
-          <p>The `aria-describedby` attribute works similarly to the `aria-labelledby` attribute. For example, a button could be described by a later paragraph.</p>
+          <p>
+            The <code>aria-describedby</code> property works similarly to the <code>aria-labelledby</code> property.
+            For example, a button could be described by a sibling paragraph.
+          </p>
 
-          <pre><code>&lt;button aria-describedby="trash-desc">Move to trash&lt;/button>
-            ...
-            &lt;p id="trash-desc">Items in the trash
-            will be permanently removed after 30 days.&lt;/p></code></pre>
+          <pre><code>
+  &lt;button aria-describedby="trash-desc">Move to trash&lt;/button>
+  ...
+  &lt;p id="trash-desc">Items in the trash will be permanently removed after 30 days.&lt;/p>
+          </code></pre>
 
-          <p>This description will be presented to the user as plain text. For example, if the description contains an HTML `img` element, a text equivalent of the image is computed.</p>
+          <p>This description will be presented to the user as plain text. For example, if the description contains an HTML <code>img</code> element, a text equivalent of the image is computed.</p>
 
-          <pre><code>&lt;button aria-describedby="trash-desc">
-            Move to &lt;img src="bin.svg" alt="trash">
-            &lt;/button>
-            ...
-            &lt;p id="trash-desc">Items in &lt;img src="bin.svg" alt="the trash">
-            will be permanently removed after 30 days.&lt;/p></code></pre>
+          <pre><code>
+  &lt;button aria-describedby="trash-desc"> Move to &lt;img src="bin.svg" alt="trash">&lt;/button>
+  ...
+  &lt;p id="trash-desc">Items in &lt;img src="bin.svg" alt="the trash"> will be permanently removed after 30 days.&lt;/p>
+          </code></pre>
+          <p>
+            As with <code>aria-labelledby</code>, it is possible to reference an element using <code>aria-describedby</code> even if that element is hidden.
+            For example, a text field in a form could have a description that is hidden by default, but can be revealed on request using a disclosure widget.
+            The description could also be referenced from the text field directly with <code>aria-describedby</code>.
+            In the following example, the accessible description for the <code>input</code> element is <q>Your username is the name that you use to log in to this service.</q>
+          </p>
+
+          <pre><code>
+  &lt;label for="username">Username&lt;/label>
+  &lt;input id="username" name="username" aria-describedby="username-desc">
+  &lt;button aria-expanded="false" aria-controls="username-desc" aria-label="Help about username">?&lt;/button>
+  &lt;p id="username-desc" hidden>
+    Your username is the name that you use to log in to this service.
+  &lt;/p>
+          </code></pre>
         </section>
 
-        <section>
+        <section id="describing_with_aria-describedby">
           <h5>Describing by referencing content with <code>aria-details</code></h5>
-          <p>In some cases, a plain text description is insufficient. The `aria-details` attribute can be used in such situations. In this example, a text field for a passenger’s name (when booking a flight) has a description that is a list of three items, and contains a link to an external document with further details.</p>
+          <p>
+            In some cases, a plain text description is insufficient.
+            The <a href="#aria-details" class="property-reference">aria-details</a> property can be used in such situations.
+            In the following example, a text field for a passenger’s name (when booking a flight) has a description that is a list of three items, and contains a link to an external document with further details.
+          </p>
 
-          <pre><code>&lt;ul id="full-name-desc">
-            &lt;li>The passenger's name must match the name in their passport.&lt;/li>
-            &lt;li>The name must consist of only characters in the A-Z range.&lt;/li>
-            &lt;li>&lt;a href="faq.html#name">What if the name in the passport contains other characters?&lt;/a>&lt;/li>
-            &lt;/ul>
-            &lt;fieldset>
-            &lt;legend>Passenger 1 (adult)&lt;/legend>
-            &lt;p>&lt;label>Full name
-            &lt;input name="full-name" aria-details="full-name-desc">
-            &lt;/label>&lt;/p>
-            ...
-            &lt;/fieldset></code></pre>
+          <pre><code>
+  &lt;ul id="full-name-desc">
+    &lt;li>The passenger's name must match the name in their passport.&lt;/li>
+    &lt;li>The name must consist of only characters in the A-Z range.&lt;/li>
+    &lt;li>&lt;a href="faq.html#name">What if the name in the passport contains other characters?&lt;/a>&lt;/li>
+  &lt;/ul>
+  &lt;fieldset>
+    &lt;legend>Passenger 1 (adult)&lt;/legend>
+    &lt;p>
+      &lt;label>Full name &lt;input name="full-name" aria-details="full-name-desc">&lt;/label>
+    &lt;/p>
+    ...
+  &lt;/fieldset>
+          </code></pre>
 
-          <p>If both `aria-details` and `aria-describedby` are specified on an element, only the `aria-details` attribute is used. This can be useful in order to provide a fallback for user agents that don’t support `aria-details`.</p>
+          <p>
+            If both <code>aria-details</code> and <code>aria-describedby</code> are specified on an element, browsers ignore the <code>aria-describedby</code> value when calculating the accessible description.
+            Specifying both is potentially useful if there is a need to provide a fallback description for browsers and assistive technologies that do not yet support <code>aria-details</code>.
+          </p>
         </section>
       </section>
 
       <section id="description_calculation">
         <h4>Accessible description calculation</h4>
-        <p>Like the accessible name calculation (see the earlier section), the accessible description calculation produces a plain text string for an element. This algorithm is not used for the `aria-details` attribute.</p>
-        <p>The accessible description calculation algorithm is the same algorithm as the accessible name calculation algorithm, but it branches off in some places depending on whether a name or a description is being calculated. In particular, when collecting an accessible description, the algorithm uses `aria-describedby` instead of `aria-labelledby`.</p>
-        <p>As with `aria-labelledby`, it is possible to reference an element using `aria-describedby` even if that element is hidden.</p>
-        <p>For example, a text field in a form could have a description that is hidden by default, but can be revealed on request using a disclosure widget. The description could also be referenced from the text field directly with `aria-describedby`. The accessible description for the `input` element is "Your username is the name that you use to log in to this service.".</p>
-
-        <pre><code>&lt;label for="username">Username&lt;/label>
-          &lt;input id="username" name="username" aria-describedby="username-desc">
-          &lt;button aria-expanded="false" aria-controls="username-desc" aria-label="Help about username">?&lt;/button>
-          &lt;p id="username-desc" hidden>
-          Your username is the name that you use to log in to this service.
-          &lt;/p></code></pre>
+        <p>
+          Like the <a href="#name_calculation">accessible name calculation</a>, the accessible description calculation produces a text string.
+          However, there is one exception: when an element is described using the <code>aria-details/</code> property the assistive technology is provided with a reference.
+        </p>
+        <p>
+          The accessible description calculation algorithm is the same as the accessible name calculation algorithm except for a few branch points that depend on whether a name or description is being calculated.
+          In particular, when accumulating text for an accessible description, the algorithm uses <code>aria-describedby</code> instead of <code>aria-labelledby</code>.
+        </p>
       </section>
     </section>
   </section>
