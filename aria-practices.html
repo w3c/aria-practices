@@ -4009,7 +4009,7 @@ However, most authors do not need detailed understanding of the algorithms since
   &lt;/fieldset>
           </code></pre>
           <p>
-            Other types of related form fields can also be grouped using <code>fieldset</code> and <code>legend</code>. 
+            Other types of related form fields can also be grouped using <code>fieldset</code> and <code>legend</code>.
             This helps users navigate the form group-by-group.
           </p>
           <pre><code>
@@ -4030,7 +4030,35 @@ However, most authors do not need detailed understanding of the algorithms since
 
         <section id="naming_with_captions">
           <h5>Naming Tables and Figures with Captions</h5>
-          <p>To-do: write this section.</p>
+          <p>Tables and figures often have a caption to explain what the table of figure is about, how to read them, and sometimes giving them numbers to be able to refer to them in surrounding prose. This can help users navigate and understand the content better. This is generally useful for all users, but especially for users of assistive technologies.</p>
+          <p>In HTML, the <code>table</code> element marks up a data table, and can be provided with a caption using the <code>caption</code> element.</p>
+          <pre><code>&lt;table>
+ &lt;caption>Special opening hours&lt;/caption>
+ &lt;tr>&lt;td>30 May &lt;td>Closed
+ &lt;tr>&lt;td>6 June &lt;td>11:00-16:00
+&lt;/table></code></pre>
+          <p>The following example gives the table a number ("Table 1") so it can be referenced. [[?CALORIC-RESTRICTION]]</p>
+          <pre><code>&lt;table>
+ &lt;caption>Table 1. Traditional dietary intake of Okinawans and other Japanese circa 1950&lt;/caption>
+ &lt;thead>
+  &lt;tr>
+   &lt;th>
+   &lt;th>Okinawa, 1949
+   &lt;th>Japan, 1950
+ &lt;tbody>
+  &lt;tr>
+   &lt;th>Total calories
+   &lt;td>1785
+   &lt;td>2068
+
+  [...]
+
+&lt;/table></code></pre>
+          <p>Similarly, the HTML <code>figure</code> element can be given a caption using the <code>figcaption</code> element. The caption can appear before or after the figure, but it is more common for figures to have the caption after.</p>
+          <pre><code>&lt;figure>
+ &lt;img alt="Painting of a person walking in a desert." src="Hole_JesusalDesierto.jpg">
+ &lt;figcaption>Jesus entering the desert as imagined by William Hole, 1908&lt;/figcaption>
+&lt;/figure></code></pre>
         </section>
 
         <section id="naming_with_fallback">
@@ -4093,9 +4121,9 @@ However, most authors do not need detailed understanding of the algorithms since
           <dd>
             This column contains <q>Always</q>, <q>Usually</q>, <q>Sometimes</q>, or <q>Never</q>.
             If the value is <q>Always</q>, the ARIA specification requires authors to provide a name, and a missing name will trigger accessibility validators to flag a violation.
-            If the value is <q>Usually</q>, providing a name is strongly recommended. 
+            If the value is <q>Usually</q>, providing a name is strongly recommended.
             If the value is <q>Sometimes</q>, naming is optional and may even be discouraged; the guidance column may provide additional explanation.
-            And, if the value is <q>Never</q>, naming is strongly discouraged even if it is technically permitted. This generally means that assistive technologies are unlikely to present a name even if provided. 
+            And, if the value is <q>Never</q>, naming is strongly discouraged even if it is technically permitted. This generally means that assistive technologies are unlikely to present a name even if provided.
           </dd>
           <dt>Content Can Name</dt>
           <dd>
@@ -4137,7 +4165,7 @@ However, most authors do not need detailed understanding of the algorithms since
 										<td>No</td>
 										<td>
                       <ul>
-                        <li>Recommended to distinguish articles from one another; helps users when navigating among articles.</li> 
+                        <li>Recommended to distinguish articles from one another; helps users when navigating among articles.</li>
                         <li>Named using <code>aria-labelledby</code> if a visible title is present, otherwise with <code>aria-label</code>.</li>
                       </ul>
                     </td>
@@ -4663,7 +4691,7 @@ However, most authors do not need detailed understanding of the algorithms since
   ...
   &lt;p id="trash-desc">Items in &lt;img src="bin.svg" alt="the trash"> will be permanently removed after 30 days.&lt;/p>
           </code></pre>
-          
+
           <p>
             As with <code>aria-labelledby</code>, it is possible to reference an element using <code>aria-describedby</code> even if that element is hidden.
             For example, a text field in a form could have a description that is hidden by default, but can be revealed on request using a disclosure widget.
@@ -4709,7 +4737,7 @@ However, most authors do not need detailed understanding of the algorithms since
             Specifying both is potentially useful if there is a need to provide a fallback description for browsers and assistive technologies that do not yet support <code>aria-details</code>.
           </p>
         </section>
-        
+
         <section id="describing_with_fallback">
           <h5>Fallback Descriptions Derived from Titles and Placeholders</h5>
           <p>To-do: write this section.</p>
