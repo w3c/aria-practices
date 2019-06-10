@@ -3721,6 +3721,7 @@
         <ul>
           <li>Describing by referencing content with <code>aria-describedby</code>.</li>
           <li>Describing by referencing content with <code>aria-details</code>.</li>
+          <li>Describing tables and figures with captions.</li>
           <li>Fallback descriptions derived from titles and placeholders.</li>
         </ul>
       </li>
@@ -4736,6 +4737,11 @@ However, most authors do not need detailed understanding of the algorithms since
             If both <code>aria-details</code> and <code>aria-describedby</code> are specified on an element, browsers ignore the <code>aria-describedby</code> value when calculating the accessible description.
             Specifying both is potentially useful if there is a need to provide a fallback description for browsers and assistive technologies that do not yet support <code>aria-details</code>.
           </p>
+        </section>
+        
+        <section id="describing_with_captions">
+          <h5>Describing Tables and Figures with Captions</h5>
+          <p>To-do: write this section. Include example of a table labeled by a heading via aria-labelledby so the caption becomes a description.</p>
         </section>
 
         <section id="describing_with_fallback">
