@@ -3935,7 +3935,7 @@ However, most authors do not need detailed understanding of the algorithms since
   &lt;p&gt;&lt;a id="bees-read-more" aria-labelledby="bees-read-more bees-heading"&gt;Read more...&lt;/a&gt;&lt;/p&gt;
           </code></pre>
           <p>
-            When multiple elements are referenced by <code>aria-labelledby</code>, text content from each referenced element is concatenated in the order specified in the <code>aria-labeledby</code> value.
+            When multiple elements are referenced by <code>aria-labelledby</code>, text content from each referenced element is concatenated in the order specified in the <code>aria-labelledby</code> value.
             If an element is referenced more than one time, only the first reference is processed.
             When concatenating content from multiple elements, browsers trim leading and trailing white space and separate content from each element with a single space.
           </p>
@@ -4538,11 +4538,11 @@ However, most authors do not need detailed understanding of the algorithms since
       <section id="name_calculation">
         <h4>Accessible name calculation</h4>
         <p>
-          User agents formulate an accessible name string for an element by walking through a list of potential naming methods and using the first that generates a name.
+          User agents construct an accessible name string for an element by walking through a list of potential naming methods and using the first that generates a name.
           The algorithm they follow is defined in the <a href="" class="accname">accessible name specification</a>.
           It is roughly like the following:
         </p>
-        <p>To-do: make the steps related to HTML elements and attributes in the following list more specific so readers can see the precedence of any specific element or attribute.</p>
+        <p>To-do: Add a specific step for each HTML element and attribute in the following list so readers can see the precedence of any specific element or attribute.</p>
         <ol>
           <li>The <code>aria-labelledby</code> property is used if present.</li>
           <li>If the name is still empty, the <code>aria-label</code> property is used if present.</li>
@@ -4623,13 +4623,14 @@ However, most authors do not need detailed understanding of the algorithms since
   &lt;p id="trash-desc">Items in the trash will be permanently removed after 30 days.&lt;/p>
           </code></pre>
 
-          <p>This description will be presented to the user as plain text. For example, if the description contains an HTML <code>img</code> element, a text equivalent of the image is computed.</p>
+          <p>Descriptions are reduced to text strings. For example, if the description contains an HTML <code>img</code> element, a text equivalent of the image is computed.</p>
 
           <pre><code>
   &lt;button aria-describedby="trash-desc"> Move to &lt;img src="bin.svg" alt="trash">&lt;/button>
   ...
   &lt;p id="trash-desc">Items in &lt;img src="bin.svg" alt="the trash"> will be permanently removed after 30 days.&lt;/p>
           </code></pre>
+          
           <p>
             As with <code>aria-labelledby</code>, it is possible to reference an element using <code>aria-describedby</code> even if that element is hidden.
             For example, a text field in a form could have a description that is hidden by default, but can be revealed on request using a disclosure widget.
@@ -4647,7 +4648,7 @@ However, most authors do not need detailed understanding of the algorithms since
           </code></pre>
         </section>
 
-        <section id="describing_with_aria-describedby">
+        <section id="describing_with_aria-details">
           <h5>Describing by referencing content with <code>aria-details</code></h5>
           <p>
             In some cases, a plain text description is insufficient.
@@ -4687,6 +4688,7 @@ However, most authors do not need detailed understanding of the algorithms since
           The accessible description calculation algorithm is the same as the accessible name calculation algorithm except for a few branch points that depend on whether a name or description is being calculated.
           In particular, when accumulating text for an accessible description, the algorithm uses <code>aria-describedby</code> instead of <code>aria-labelledby</code>.
         </p>
+        <p>To-do: Provide a step-by-step summary of the description calculation algorithm.</p>
       </section>
     </section>
   </section>
