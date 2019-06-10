@@ -3990,27 +3990,41 @@ However, most authors do not need detailed understanding of the algorithms since
 
         <section id="naming_with_legends">
           <h5>Naming Fieldsets with the Legend Element</h5>
-          <p>Multiple form controls can be grouped together to make the form easier to navigate. The HTML <code>fieldset</code> element can be used to group form controls, and the <code>legend</code> element gives the group a name.</p>
-          <p>This is particularly useful for questions with multiple choices; without associating the question with the options with markup, users of assistive technology might only access the answers and miss out on the question.</p>
+          <p>
+            The HTML <code>fieldset</code> element can be used to group form controls, which can make forms easier to navigate.
+            The <code>legend</code> element can be used to give the group a name.
+          </p>
+          <p>
+            This grouping technique is particularly useful for presenting multiple choice questions.
+            It enables authors to associate a question with a group of answers.
+            If a question is not programmatically associated with its answer options, assistive technology users could access the answers without being aware of the question.
+          </p>
           <p>For example, a group of radio buttons can be grouped together in a <code>fieldset</code>, where the <code>legend</code> element labels the group for the radio buttons.</p>
-          <pre><code>&lt;fieldset>
- &lt;legend>Select your starter class&lt;/legend>
- &lt;label>&lt;input name="starter-class" value="green"> Green&lt;/label>
- &lt;label>&lt;input name="starter-class" value="red"> Red&lt;/label>
- &lt;label>&lt;input name="starter-class" value="blue"> Blue&lt;/label>
-&lt;/fieldset></code></pre>
-          <p>Related form fields can also be grouped using <code>fieldset</code> and <code>legend</code> even when they are not multiple choices for one question. This is useful for users to be able to navigate the form group-by-group.</p>
-          <pre><code>&lt;fieldset>
- &lt;legend>Shipping address&lt;/legend>
- &lt;p>&lt;label>Full name &lt;input name="name" required>&lt;/label>&lt;/p>
- &lt;p>&lt;label>Address line 1 &lt;input name="address-1" required>&lt;/label>&lt;/p>
- &lt;p>&lt;label>Address line 2 &lt;input name="address-2">&lt;/label>&lt;/p>
- ...
-&lt;/fieldset>
-&lt;fieldset>
- &lt;legend>Billing address&lt;/legend>
- ...
-&lt;/fieldset></code></pre>
+          <pre><code>
+  &lt;fieldset>
+    &lt;legend>Select your starter class&lt;/legend>
+    &lt;label>&lt;input name="starter-class" value="green"> Green&lt;/label>
+    &lt;label>&lt;input name="starter-class" value="red"> Red&lt;/label>
+    &lt;label>&lt;input name="starter-class" value="blue"> Blue&lt;/label>
+  &lt;/fieldset>
+          </code></pre>
+          <p>
+            Other types of related form fields can also be grouped using <code>fieldset</code> and <code>legend</code>. 
+            This helps users navigate the form group-by-group.
+          </p>
+          <pre><code>
+  &lt;fieldset>
+    &lt;legend>Shipping address&lt;/legend>
+    &lt;p>&lt;label>Full name &lt;input name="name" required>&lt;/label>&lt;/p>
+    &lt;p>&lt;label>Address line 1 &lt;input name="address-1" required>&lt;/label>&lt;/p>
+    &lt;p>&lt;label>Address line 2 &lt;input name="address-2">&lt;/label>&lt;/p>
+    ...
+  &lt;/fieldset>
+  &lt;fieldset>
+    &lt;legend>Billing address&lt;/legend>
+    ...
+  &lt;/fieldset>
+          </code></pre>
           <p>Using the <code>legend</code> element to name a <code>fieldset</code> element satisfies <a href="#naming_rule_visible_text">Rule 2: Prefer Visible Text</a> and <a href="#naming_rule_native_techniques">Rule 3: Prefer Native Techniques</a>.</p>
         </section>
 
