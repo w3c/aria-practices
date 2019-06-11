@@ -4031,6 +4031,7 @@ However, most authors do not need detailed understanding of the algorithms since
 
         <section id="naming_with_captions">
           <h5>Naming Tables and Figures with Captions</h5>
+          <p>The accessible name for the HTML <code>table</code> and <code>figure</code> elements can be derived from a child <code>caption</code> or <code>figcaption</code> element, respectively.</p>
           <p>Tables and figures often have a caption to explain what the table of figure is about, how to read them, and sometimes giving them numbers to be able to refer to them in surrounding prose. This can help users navigate and understand the content better. This is generally useful for all users, but especially for users of assistive technologies.</p>
           <p>In HTML, the <code>table</code> element marks up a data table, and can be provided with a caption using the <code>caption</code> element.</p>
           <pre><code>&lt;table>
@@ -4064,10 +4065,25 @@ However, most authors do not need detailed understanding of the algorithms since
 
         <section id="naming_with_fallback">
           <h5>Fallback Names Derived from Titles and Placeholders</h5>
-          <p>To-do: finish writing this section. Needs to cover title, placeholder, and aria-placeholder.</p>
-          <p>
-            For the HTML <code>input</code> element, the <code>placeholder</code> attribute is used as a fallback labeling mechanism if nothing else results in a label. For an <code>input</code> element, it is better to use a <code>label</code> element, since it does not disappear visually when the user focuses the form control.
-          </p>
+          <p>When an accessible name is not provided using one of the primary techniques (e.g., the <code>aria-label</code> or <code>aria-labelledby</code> attributes), or native markup techniques (e.g., the HTML <code>label</code> element, or the <code>alt</code> attribute of the HTML <code>img</code> element), an accessible name can be derived from some other attributes as a fallback mechanism.</p>
+
+          <p>Any HTML element can have a <code>title</code> attribute specified. The <code>title</code> attribute is used as the element's fallback accessible name.</p>
+
+          <p>For example, a <code>fieldset</code> element without a <code>legend</code> element child, but with a <code>title</code> attribute, gets its accessible name from the <code>title</code> attribute.</p>
+
+          <pre><code>&lt;fieldset title="Select your starter class">
+    &lt;label>&lt;input name="starter-class" value="green"> Green&lt;/label>
+    &lt;label>&lt;input name="starter-class" value="red"> Red&lt;/label>
+    &lt;label>&lt;input name="starter-class" value="blue"> Blue&lt;/label>
+   &lt;/fieldset></code></pre>
+
+          <p>For the HTML <code>input</code> and <code>textarea</code> elements, the <code>placeholder</code> attribute is used as a fallback labeling mechanism if nothing else (including the <code>title</code> attribute) results in a label. It is better to use a <code>label</code> element, since it does not disappear visually when the user focuses the form control.</p>
+
+          <pre><code>&lt;!-- Using a &lt;label> is recommended -->
+&lt;label>Search &lt;input type=search name=q>&lt;/label>
+
+&lt;!-- A placeholder is used as fallback -->
+&lt;input type=search name=q placeholder="Search"></code></pre>
         </section>
       </section>
 
@@ -4740,7 +4756,7 @@ However, most authors do not need detailed understanding of the algorithms since
             Specifying both is potentially useful if there is a need to provide a fallback description for browsers and assistive technologies that do not yet support <code>aria-details</code>.
           </p>
         </section>
-        
+
         <section id="describing_with_captions">
           <h5>Describing Tables and Figures with Captions</h5>
           <p>To-do: write this section. Include example of a table labeled by a heading via aria-labelledby so the caption becomes a description.</p>
