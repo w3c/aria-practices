@@ -105,6 +105,7 @@ DisclosureMenu.prototype.handleButtonKeyDown = function (event) {
 
   // move focus into the open menu if the current menu is open
   else if (this.useArrowKeys && this.openIndex === targetButtonIndex && event.key === 'ArrowDown') {
+    event.preventDefault();
     this.controlledNodes[this.openIndex].querySelector('a').focus();
   }
 
