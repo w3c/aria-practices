@@ -3974,7 +3974,7 @@ However, most authors do not need detailed understanding of the algorithms since
           </code></pre>
           <p>
             A form control can also be associated with a label by using the <code>for</code> attribute on the <code>label</code> element.
-            This allows the label and the form control to have different parents in the DOM, but requires adding an <code>id</code> attribute to the form control, which can be error-prone.
+            This allows the label and the form control to be siblings or have different parents in the DOM, but requires adding an <code>id</code> attribute to the form control, which can be error-prone.
             When possible, use the above encapsulation technique for association instead of the following <code>for</code> attribute technique.
           </p>
           <pre><code>
@@ -4088,7 +4088,9 @@ However, most authors do not need detailed understanding of the algorithms since
           <li>
             Put the most distinguishing and important words first.
             Often, for interactive elements that perform an action, this means a verb is the first word.
-            For instance, if a list of contacts displays a separate set of edit, delete, and more actions buttons for each contact, <q>Actions for John Doe</q> is better than <q>John Doe actions</q> because it distinguishes the actions menu button from the other buttons as well from the element that opens John Doe's contact card.
+            For instance, if a list of contacts displays <q>Edit</q>, <q>Delete</q>, and <q>Actions</q> buttons for each contact,
+            then <q>Edit John Doe</q>, <q>Delete John Doe</q>, and <q>Actions for John Doe</q> would be better accessible names than <q>John Doe edit</q>, <q>John Doe delete</q>, and <q>John Doe actions</q>.
+            By placing the verb first in the name, screen reader users can more easily and quickly distinguish the buttons from one another as well as from the element that opens the contact card for John Doe.
           </li>
           <li>
             Be concise. For many elements, one to three words is sufficient.
@@ -4101,12 +4103,12 @@ However, most authors do not need detailed understanding of the algorithms since
           </li>
           <li>
             Create unique names for elements with the same role unless the elements are actually identical.
-            For example, ensure every link on a page has a different name except in cases where multiple links have the same target.
-            Similarly, give every navigation region on a page a different name unless there are regions with exactly identical content that perform exactly identical navigation functions.
+            For example, ensure every link on a page has a different name except in cases where multiple links reference the same location.
+            Similarly, give every navigation region on a page a different name unless there are regions with identical content that performs identical navigation functions.
           </li>
           <li>
             Start names with a capital letter; it helps some screen readers speak them with appropriate inflection.
-            And, do nott end names with a period; they are not sentences.
+            Do not end names with a period; they are not sentences.
           </li>
         </ul>
       </section>
