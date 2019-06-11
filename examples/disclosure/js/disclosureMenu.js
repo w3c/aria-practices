@@ -11,6 +11,7 @@ var DisclosureMenu = function (domNode) {
   this.triggerNodes = [];
   this.controlledNodes = [];
   this.openIndex = null;
+  this.useArrowKeys = true;
 };
 
 DisclosureMenu.prototype.init = function () {
@@ -57,6 +58,35 @@ DisclosureMenu.prototype.toggleExpand = function (index, expanded) {
   }
 };
 
+DisclosureMenu.prototype.controlFocusByKey = function (keyboardEvent, nodeList, currentIndex) {
+  switch (keyboardEvent.key) {
+    case 'ArrowUp':
+    case 'ArrowLeft':
+      keyboardEvent.preventDefault();
+      if (currentIndex > -1) {
+        var prevIndex = Math.max(0, currentIndex - 1);
+        nodeList[prevIndex].focus();
+      }
+      break;
+    case 'ArrowDown':
+    case 'ArrowRight':
+      keyboardEvent.preventDefault();
+      if (currentIndex > -1) {
+        var nextIndex = Math.min(nodeList.length - 1, currentIndex + 1);
+        nodeList[nextIndex].focus();
+      }
+      break;
+    case 'Home':
+      keyboardEvent.preventDefault();
+      nodeList[0].focus();
+      break;
+    case 'End':
+      keyboardEvent.preventDefault();
+      nodeList[nodeList.length - 1].focus();
+      break;
+  }
+};
+
 /* Event Handlers */
 DisclosureMenu.prototype.handleBlur = function (event) {
   var menuContainsFocus = this.rootNode.contains(event.relatedTarget);
@@ -66,38 +96,21 @@ DisclosureMenu.prototype.handleBlur = function (event) {
 };
 
 DisclosureMenu.prototype.handleButtonKeyDown = function (event) {
-  switch (event.key) {
-    case 'Escape':
-      if (this.openIndex !== null) {
-        this.toggleExpand(this.openIndex, false);
-      }
-      break;
-    case 'ArrowUp':
-    case 'ArrowLeft':
-      event.preventDefault();
-      var activeIndex = this.triggerNodes.indexOf(document.activeElement);
-      if (activeIndex > -1) {
-        var prevIndex = Math.max(0, activeIndex - 1);
-        this.triggerNodes[prevIndex].focus();
-      }
-      break;
-    case 'ArrowDown':
-    case 'ArrowRight':
-      event.preventDefault();
-      var activeButtonIndex = this.triggerNodes.indexOf(document.activeElement);
-      if (activeButtonIndex > -1) {
-        var nextIndex = Math.min(this.triggerNodes.length - 1, activeButtonIndex + 1);
-        this.triggerNodes[nextIndex].focus();
-      }
-      break;
-    case 'Home':
-      event.preventDefault();
-      this.triggerNodes[0].focus();
-      break;
-    case 'End':
-      event.preventDefault();
-      this.triggerNodes[this.triggerNodes.length - 1].focus();
-      break;
+  var targetButtonIndex = this.triggerNodes.indexOf(document.activeElement);
+
+  // close on escape
+  if (event.key === 'Escape') {
+    this.toggleExpand(this.openIndex, false);
+  }
+
+  // move focus into the open menu if the current menu is open
+  else if (this.useArrowKeys && this.openIndex === targetButtonIndex && event.key === 'ArrowDown') {
+    this.controlledNodes[this.openIndex].querySelector('a').focus();
+  }
+
+  // handle arrow key navigation between top-level buttons, if set
+  else if (this.useArrowKeys) {
+    this.controlFocusByKey(event, this.triggerNodes, targetButtonIndex);
   }
 };
 
@@ -109,19 +122,47 @@ DisclosureMenu.prototype.handleButtonClick = function (event) {
 };
 
 DisclosureMenu.prototype.handleMenuKeyDown = function (event) {
-  if (event.key === 'Escape' && this.openIndex !== null) {
+  if (this.openIndex === null) {
+    return;
+  }
+
+  var menuLinks = Array.prototype.slice.call(this.controlledNodes[this.openIndex].querySelectorAll('a'));
+  var currentIndex = menuLinks.indexOf(document.activeElement);
+
+  // close on escape
+  if (event.key === 'Escape') {
     this.triggerNodes[this.openIndex].focus();
     this.toggleExpand(this.openIndex, false);
   }
+
+  // handle arrow key navigation within menu links, if set
+  else if (this.useArrowKeys) {
+    this.controlFocusByKey(event, menuLinks, currentIndex);
+  }
+};
+
+// switch on/off arrow key navigation
+DisclosureMenu.prototype.updateKeyControls = function (useArrowKeys) {
+  this.useArrowKeys = useArrowKeys;
 };
 
 /* Initialize Disclosure Menus */
 
 window.addEventListener('load', function (event) {
-  var menus =  document.querySelectorAll('.disclosure-nav');
+  var menus = document.querySelectorAll('.disclosure-nav');
+  var disclosureMenus = [];
 
   for (var i = 0; i < menus.length; i++) {
-    var menu = new DisclosureMenu(menus[i]);
-    menu.init();
+    disclosureMenus[i] = new DisclosureMenu(menus[i]);
+    disclosureMenus[i].init();
   }
+
+  // listen to arrow key checkbox
+  var arrowKeySwitch = this.document.getElementById('arrow-behavior-switch');
+  arrowKeySwitch.addEventListener('change', function (event) {
+    var checked = arrowKeySwitch.checked;
+    for (var i = 0; i < disclosureMenus.length; i++) {
+      disclosureMenus[i].updateKeyControls(checked);
+    }
+  });
 }, false);
