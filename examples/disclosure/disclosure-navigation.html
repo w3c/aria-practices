@@ -42,6 +42,10 @@
     <h2 id="ex_label">Example</h2>
     <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of" ></div>
     <div id="ex1">
+      <label for="arrow-behavior-switch">
+        <input type="checkbox" id="arrow-behavior-switch" checked>
+        Include arrow key navigation
+      </label>
       <nav aria-label="Mythical University">
         <ul class="disclosure-nav">
           <li>
@@ -136,6 +140,18 @@
       <li>
         Escape pressed when focus is within the navigation menu closes any open dropdown menus. Moving focus out of the navigation region also closes open dropdowns.
       </li>
+      <li>
+        Arrow key support prevents the default page scroll behavior when focus is on the disclosure menu.
+      </li>
+      <li>
+        Arrow keys and home/end provide an alternative interaction pattern for users that may prefer it, but do not replace the default tab navigation.
+      </li>
+      <li>
+        Arrow key navigation is primarily for the benefit of keyboard users who are not running a screen reader; screen readers will usually intercept the arrow keys and not pass them to the page.
+      </li>
+      <li>
+        More complex examples of dropdown menus may need to revisit arrow key behavior if the menus collapse into a different orientation at certain breakpoints.
+      </li>
     </ol>
   </section>
 
@@ -177,7 +193,7 @@
         </tr>
         <tr data-test-id="key-arrows">
           <th>
-            <kbd>Arrow keys</kbd>
+            <kbd>Arrow keys (optional)</kbd>
           </th>
           <td>
               Moves focus between the top-level disclosure buttons.
@@ -185,7 +201,7 @@
         </tr>
         <tr data-test-id="key-home-end">
           <th>
-            <kbd>Home / End</kbd>
+            <kbd>Home / End (optional)</kbd>
           </th>
           <td>
               Moves focus to the first or last disclosure button
