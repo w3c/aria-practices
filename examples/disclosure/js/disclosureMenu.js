@@ -159,11 +159,21 @@ window.addEventListener('load', function (event) {
   }
 
   // listen to arrow key checkbox
-  var arrowKeySwitch = this.document.getElementById('arrow-behavior-switch');
+  var arrowKeySwitch = document.getElementById('arrow-behavior-switch');
   arrowKeySwitch.addEventListener('change', function (event) {
     var checked = arrowKeySwitch.checked;
     for (var i = 0; i < disclosureMenus.length; i++) {
       disclosureMenus[i].updateKeyControls(checked);
     }
   });
+
+  // fake link behavior
+  var links = document.querySelectorAll('[href="#mythical-page-content"]');
+  var examplePageHeading = document.getElementById('mythical-page-heading');
+  for (var i = 0; i < links.length; i++) {
+    links[i].addEventListener('click', function (event) {
+      var pageTitle = event.target.innerText;
+      examplePageHeading.innerText = pageTitle;
+    });
+  }
 }, false);
