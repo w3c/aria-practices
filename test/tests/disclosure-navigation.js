@@ -10,17 +10,17 @@ const assertHasFocus = require('../util/assertHasFocus');
 const exampleFile = 'disclosure/disclosure-navigation.html';
 
 const ex = {
-  buttonSelector: '#ex1 button',
-  menuSelector: '#ex1 .disclosure-nav > li > ul',
+  buttonSelector: '#exTest button',
+  menuSelector: '#exTest > li > ul',
   buttonSelectors: [
-    '#ex1 li:nth-child(1) button',
-    '#ex1 li:nth-child(2) button',
-    '#ex1 li:nth-child(3) button'
+    '#exTest > li:nth-child(1) button',
+    '#exTest > li:nth-child(2) button',
+    '#exTest > li:nth-child(3) button'
   ],
   menuSelectors: [
-    '#ex1 li:nth-child(1) ul',
-    '#ex1 li:nth-child(2) ul',
-    '#ex1 li:nth-child(3) ul'
+    '#exTest > li:nth-child(1) ul',
+    '#exTest > li:nth-child(2) ul',
+    '#exTest > li:nth-child(3) ul'
   ]
 };
 
@@ -124,12 +124,15 @@ ariaTest('key ESCAPE closes dropdown', exampleFile, 'key-escape', async (t) => {
 });
 
 ariaTest('arrow keys move focus between disclosure buttons', exampleFile, 'key-arrows', async (t) => {
-  t.plan(6);
+  t.plan(8);
 
   const buttons = await t.context.session.findElements(By.css(ex.buttonSelector));
 
   await buttons[0].sendKeys(Key.ARROW_RIGHT);
   await assertHasFocus(t, ex.buttonSelectors[1], 'right arrow moves focus from first to second button');
+
+  await buttons[0].sendKeys(Key.ARROW_DOWN);
+  await assertHasFocus(t, ex.buttonSelectors[1], 'down arrow moves focus from first to second button');
 
   await buttons[1].sendKeys(Key.ARROW_RIGHT);
   await assertHasFocus(t, ex.buttonSelectors[2], 'right arrow moves focus from second to third button');
@@ -143,8 +146,28 @@ ariaTest('arrow keys move focus between disclosure buttons', exampleFile, 'key-a
   await buttons[1].sendKeys(Key.ARROW_LEFT);
   await assertHasFocus(t, ex.buttonSelectors[0], 'left arrow moves focus from second to first button');
 
+  await buttons[1].sendKeys(Key.ARROW_UP);
+  await assertHasFocus(t, ex.buttonSelectors[0], 'up arrow moves focus from second to first button');
+
   await buttons[2].sendKeys(Key.ARROW_LEFT);
   await assertHasFocus(t, ex.buttonSelectors[1], 'left arrow moves focus from third to second button');
+});
+
+ariaTest('down arrow moves focus from button to open menu', exampleFile, 'key-arrows', async (t) => {
+  t.plan(2);
+
+  const buttons = await t.context.session.findElements(By.css(ex.buttonSelector));
+  const menu = await t.context.session.findElement(By.css(ex.menuSelectors[0]));
+
+  // open menu
+  await buttons[0].click();
+  await menu.isDisplayed();
+
+  await buttons[0].sendKeys(Key.ARROW_DOWN);
+  await assertHasFocus(t, `${ex.menuSelectors[0]} li:first-child a`, 'down arrow moves focus to open menu');
+
+  await buttons[1].sendKeys(Key.ARROW_DOWN);
+  await assertHasFocus(t, ex.buttonSelectors[2], 'down arrow moves focus to next button if active button\'s menu is closed');
 });
 
 ariaTest('home and end move focus to first and last buttons', exampleFile, 'key-home-end', async (t) => {
@@ -157,4 +180,50 @@ ariaTest('home and end move focus to first and last buttons', exampleFile, 'key-
 
   await buttons[0].sendKeys(Key.END);
   await assertHasFocus(t, ex.buttonSelectors[2], 'end key moves focus to last button');
+});
+
+ariaTest('arrow keys move focus between open menu links', exampleFile, 'key-arrows', async (t) => {
+  t.plan(6);
+
+  const button = await t.context.session.findElement(By.css(ex.buttonSelectors[0]));
+  const menu = await t.context.session.findElement(By.css(ex.menuSelectors[0]));
+  const menuLinks = await t.context.session.findElements(By.css(`${ex.menuSelectors[0]} a`));
+
+  await button.click();
+  await menu.isDisplayed();
+
+  await menuLinks[0].sendKeys(Key.ARROW_DOWN);
+  await assertHasFocus(t, `${ex.menuSelectors[0]} li:nth-child(2) a`, 'down arrow moves focus from first to second link');
+
+  await menuLinks[0].sendKeys(Key.ARROW_RIGHT);
+  await assertHasFocus(t, `${ex.menuSelectors[0]} li:nth-child(2) a`, 'right arrow moves focus from first to second link');
+
+  await menuLinks[2].sendKeys(Key.ARROW_DOWN);
+  await assertHasFocus(t, `${ex.menuSelectors[0]} li:last-child a`, 'down arrow does not move focus from last link');
+
+  await menuLinks[0].sendKeys(Key.ARROW_UP);
+  await assertHasFocus(t, `${ex.menuSelectors[0]} li:nth-child(1) a`, 'up arrow does not move focus from first link');
+
+  await menuLinks[1].sendKeys(Key.ARROW_LEFT);
+  await assertHasFocus(t, `${ex.menuSelectors[0]} li:nth-child(1) a`, 'left arrow moves focus from second to first link');
+
+  await menuLinks[1].sendKeys(Key.ARROW_UP);
+  await assertHasFocus(t, `${ex.menuSelectors[0]} li:nth-child(1) a`, 'up arrow moves focus from second to first link');
+});
+
+ariaTest('home and end move focus to first and last open menu link', exampleFile, 'key-home-end', async (t) => {
+  t.plan(2);
+
+  const button = await t.context.session.findElement(By.css(ex.buttonSelectors[0]));
+  const menu = await t.context.session.findElement(By.css(ex.menuSelectors[0]));
+  const menuLinks = await t.context.session.findElements(By.css(`${ex.menuSelectors[0]} a`));
+
+  await button.click();
+  await menu.isDisplayed();
+
+  await menuLinks[1].sendKeys(Key.HOME);
+  await assertHasFocus(t, `${ex.menuSelectors[0]} li:nth-child(1) a`, 'home key moves focus to first link');
+
+  await menuLinks[0].sendKeys(Key.END);
+  await assertHasFocus(t, `${ex.menuSelectors[0]} li:last-child a`, 'end key moves focus to last link');
 });
