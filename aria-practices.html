@@ -4651,26 +4651,48 @@ However, most authors do not need detailed understanding of the algorithms since
 
         <section id="name_calculation_non-recursive_ex">
           <h5>Examples of non-recursive accessible name calculation</h5>
-          <p>To-do: replace this img example with input type text example.</p>
-          <p>Consider an <code>img</code> element that has only an <code>src</code> attribute and so does not have an accessible name (do not do this):</p>
-          <pre><code>&lt;img src="photo.jpg"></code></pre>
-          <p>If there is a <code>title</code> attribute, then it serves as a naming falback mechanism (avoid doing this):</p>
-          <pre><code>&lt;img src="photo.jpg" title="The Queen, holding a pigeon."></code></pre>
+          <p>Consider an <code>input</code> element that has no associated <code>label</code> element and only a <code>name</code> attribute and so does not have an accessible name (do not do this):</p>
+          <pre><code>&lt;input name="code"></code></pre>
+          <p>If there is a <code>placeholder</code> attribute, then it serves as a naming falback mechanism (avoid doing this):</p>
 
-          <p>If there is also an `alt` attribute (using `alt` for images is recommended), then that is used as the label, and the `title` attribute is instead used as the accessible description:</p>
+          <pre><code>&lt;input name="code"
+       placeholder="One-time code"></code></pre>
 
-          <pre><code>&lt;img src="photo.jpg" alt="The Queen, holding a pigeon." title="Photo: Rex Features"></code></pre>
+          <p>If there is also a <code>title</code> attribute, then it is used as the accessible name instead of <code>placeholder</code>, but it is still a fallback (avoid doing this):</p>
 
-          <p>If there is also an `aria-label` attribute, then that overrides the `alt` attribute:</p>
+          <pre><code>&lt;input name="code"
+       placeholder="123456"
+       title="One-time code"></code></pre>
 
-          <pre><code>&lt;img src="photo.jpg" aria-label="The Queen, holding a pigeon." title="Photo: Rex Features"
-     alt="Sorry, this image failed to load."></code></pre>
+          <p>If there is also an <code>label</code> element (recommended), then that is used as the accessible name, and the <code>title</code> attribute is instead used as the accessible description:</p>
 
-          <p>If there is also an `aria-labelledby` attribute, that wins over the other attributes (the `aria-label` attribute ought to be removed if it is not used):</p>
+          <pre><code>&lt;label>One-time code
+ &lt;input name="code"
+        placeholder="123456"
+        title="Get your code from the app.">
+&lt;/label></code></pre>
 
-          <pre><code>&lt;img src="photo.jpg" aria-label="This is ignored." title="Photo: Established Depiction"
-     alt="Sorry, this image failed to load." aria-labelledby="the-queen">
-    &lt;span id="the-queen">The Queen, holding a pigeon.&lt;/span></code></pre>
+          <p>If there is also an <code>aria-label</code> attribute, then that overrides the <code>label</code> element:</p>
+
+          <pre><code>&lt;label>Code
+ &lt;input name="code"
+        aria-label="One-time code"
+        placeholder="123456"
+        title="Get your code from the app.">
+&lt;/label></code></pre>
+
+          <p>If there is also an <code>aria-labelledby</code> attribute, that wins over the other elements and attributes (the <code>aria-label</code> attribute ought to be removed if it is not used):</p>
+
+          <pre><code>&lt;p>Please fill in your &lt;span id="code-label">one-time code&lt;/span> to log in.&lt;/p>
+&lt;p>
+ &lt;label>Code
+  &lt;input name="code"
+         aria-labelledby="code-label"
+         aria-label="This is ignored"
+         placeholder="123456"
+         title="Get your code from the app.">
+ &lt;/label>
+&lt;/p></code></pre>
           </section>
 
           <section id="name_calculation_recursive_ex">
