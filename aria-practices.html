@@ -4633,11 +4633,58 @@ However, most authors do not need detailed understanding of the algorithms since
         </p>
         <p>To-do: Add a specific step for each HTML element and attribute in the following list so readers can see the precedence of any specific element or attribute.</p>
         <ol>
-          <li>The <code>aria-labelledby</code> property is used if present.</li>
-          <li>If the name is still empty, the <code>aria-label</code> property is used if present.</li>
-          <li>If the name is still empty, then host-language-specific attributes or elements (e.g., <code>alt</code> attribute on HTML <code>img</code>) are used if present.</li>
-          <li>If the name is still empty, then for elements with a role that supports naming from child content, the content of the element is used.</li>
-          <li>Finally, if the name is still empty, then other fallback host-language-specific tooltip attributes or elements (e.g., the <code>title</code> attribute in HTML) are used if present.</li>
+          <li><p>The <code>aria-labelledby</code> property is used if present.</p></li>
+          <li><p>If the name is still empty, the <code>aria-label</code> property is used if present.</p></li>
+          <li>
+            <p>If the name is still empty, then host-language-specific attributes or elements are used if present. For HTML, these are, depending on the element:</p>
+            <dl class="switch">
+              <dt><code>input</code> whose <code>type</code> attribute is in the Button, Submit Button, or Reset Button state</dt>
+              <dd>The <code>value</code> attribute.</dd>
+
+              <dt><code>input</code> whose <code>type</code> attribute is in the Image Button state</dt>
+              <dt><code>img</code></dt>
+              <dd>The <code>alt</code> attribute. </dd>
+
+              <dt><code>fieldset</code></dt>
+              <dd>The first child <code>legend</code> element.</dd>
+
+              <dt>Other form elements (to-do: see <a href="https://github.com/w3c/html-aam/issues/210">html-aam issue 210</a>)</dt>
+              <dd>The associated <code>label</code> element(s).</dd>
+
+              <dt><code>figure</code></dt>
+              <dd>The first child <code>figcaption</code> element.</dd>
+
+              <dt><code>table</code></dt>
+              <dd>The first child <code>caption</code> element.</dd>
+
+              <dt><code>area</code></dt>
+              <dd>The <code>alt</code> attribute.</dd>
+            </dl>
+          </li>
+          <li><p>If the name is still empty, then for elements with a role that supports naming from child content, the content of the element is used.</p></li>
+          <li>
+            <p>Finally, if the name is still empty, then other fallback host-language-specific attributes or elements are used if present. For HTML, these are, depending on the element:</p>
+            <dl class="switch">
+              <dt><code>input</code> whose <code>type</code> attribute is in the Text, Password, Search, Telephone, or URL states</dt>
+              <dt><code>textarea</code></dt>
+              <dd>The <code>title</code> attribute. Otherwise, the <code>placeholder</code> attribute.</dd>
+
+              <dt><code>input</code> whose <code>type</code> attribute is in the Submit Button state</dt>
+              <dd>A localized string of the word "submit".</dd>
+
+              <dt><code>input</code> whose <code>type</code> attribute is in the Reset Button state</dt>
+              <dd>A localized string of the word "reset".</dd>
+
+              <dt><code>input</code> whose <code>type</code> attribute is in the Image Button state</dt>
+              <dd>The <code>title</code> attribute. Otherwise, a localized string of the phrase "Submit Query". (To-do: see <a href="https://github.com/w3c/html-aam/issues/211">html-aam issue 211</a>)</dd>
+
+              <dt><code>summary</code></dt>
+              <dd>The word "Details". (To-do: see <a href="https://github.com/w3c/html-aam/issues/212">html-aam issue 212</a>)</dd>
+
+              <dt>Other elements</dt>
+              <dd>The <code>title</code> attribute.</dd>
+            </dl>
+          </li>
         </ol>
         <p>
           The final step is a fallback mechanism. Generally when labelling an element, use one of the non-fallback mechanisms.
