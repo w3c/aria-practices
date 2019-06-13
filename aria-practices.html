@@ -4074,9 +4074,9 @@ However, most authors do not need detailed understanding of the algorithms since
 
         <section id="naming_with_fallback">
           <h5>Fallback Names Derived from Titles and Placeholders</h5>
-          <p>When an accessible name is not provided using one of the primary techniques (e.g., the <code>aria-label</code> or <code>aria-labelledby</code> attributes), or native markup techniques (e.g., the HTML <code>label</code> element, or the <code>alt</code> attribute of the HTML <code>img</code> element), an accessible name can be derived from some other attributes as a fallback mechanism.</p>
+          <p>When an accessible name is not provided using one of the primary techniques (e.g., the <code>aria-label</code> or <code>aria-labelledby</code> attributes), or native markup techniques (e.g., the HTML <code>label</code> element, or the <code>alt</code> attribute of the HTML <code>img</code> element), an accessible name can be derived from some other attributes as a fallback mechanism. In general, prefer the explicit labeling techniques described above over fallback techniques described in this section.</p>
 
-          <p>Any HTML element can have a <code>title</code> attribute specified. The <code>title</code> attribute is used as the element's fallback accessible name.</p>
+          <p>Any HTML element can have a <code>title</code> attribute specified. The <code>title</code> attribute is used as the element's fallback accessible name. The <code>title</code> attribute is commonly presented visually as a tooltip when the user hovers over the element with a pointing device, which is not particularly discoverable, and is also not accessible to visual users without a pointing device.</p>
 
           <p>For example, a <code>fieldset</code> element without a <code>legend</code> element child, but with a <code>title</code> attribute, gets its accessible name from the <code>title</code> attribute.</p>
 
