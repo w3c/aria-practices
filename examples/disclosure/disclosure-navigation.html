@@ -31,7 +31,7 @@
   <p>
     The following example demonstrates using the
     <a href="../../#disclosure">disclosure design pattern</a>
-    used to create a dropdown navigation menu.
+    to create a dropdown navigation menu.
   </p>
   <p>Similar examples include:</p>
   <ul>
@@ -134,9 +134,6 @@
         Since this disclosure example is being used as a navigation menu, the entire control is wrapped in a navigation landmark. Each disclosure button / container pair is contained within a list item so that the number of top-level items is semantically available.
       </li>
       <li>
-        The visual indication of expanded and collapsed states is synchronized with the value of <code>aria-expanded</code> using a CSS attribute selector and <code>:before</code> pseudo element that generates an image with the <code>content</code> property.
-      </li>
-      <li>
         Arrow keys supplement, but do not replace, tabbing between the top-level disclosure buttons. Home and End likewise allow jumping to the first and last button.
       </li>
       <li>
@@ -146,13 +143,7 @@
         Arrow key support prevents the default page scroll behavior when focus is on the disclosure menu.
       </li>
       <li>
-        Arrow keys and home/end provide an alternative interaction pattern for users that may prefer it, but do not replace the default tab navigation.
-      </li>
-      <li>
         Arrow key navigation is primarily for the benefit of keyboard users who are not running a screen reader; screen readers will usually intercept the arrow keys and not pass them to the page.
-      </li>
-      <li>
-        More complex examples of dropdown menus may need to revisit arrow key behavior if the menus collapse into a different orientation at certain breakpoints.
       </li>
     </ol>
   </section>
@@ -172,7 +163,7 @@
             <kbd>Tab</kbd>
           </th>
           <td>
-              Moves keyboard focus between top-level buttons, and into any open menu.
+              Moves keyboard focus between top-level buttons, and into and then through any open menu.
           </td>
         </tr>
         <tr data-test-id="key-enter-space">
@@ -256,8 +247,8 @@
                 attribute.
               </li>
               <li>
-                The visual indicator of the show/hide state is created using CSS <code>:before</code> pseudo element and <code>content</code> property
-                so the image is reliably rendered in high contrast mode of operating systems and browsers.
+                The visual indicator of the show/hide state is created using CSS <code>::after</code> pseudo element border styles
+                so the caret is reliably rendered in high contrast mode of operating systems and browsers.
               </li>
             </ul>
           </td>
