@@ -4639,6 +4639,7 @@ However, most authors do not need detailed understanding of the algorithms since
 
               <dt><code>input</code> whose <code>type</code> attribute is in the Image Button state</dt>
               <dt><code>img</code></dt>
+              <dt><code>area</code></dt>
               <dd>The <code>alt</code> attribute. </dd>
 
               <dt><code>fieldset</code></dt>
@@ -4846,13 +4847,36 @@ However, most authors do not need detailed understanding of the algorithms since
         <h4>Accessible description calculation</h4>
         <p>
           Like the <a href="#name_calculation">accessible name calculation</a>, the accessible description calculation produces a text string.
-          However, there is one exception: when an element is described using the <code>aria-details/</code> property the assistive technology is provided with a reference.
+          However, there is one exception: when an element is described using the <code>aria-details</code> attribute the assistive technology is provided with a reference instead of constructing a flattened string.
         </p>
         <p>
           The accessible description calculation algorithm is the same as the accessible name calculation algorithm except for a few branch points that depend on whether a name or description is being calculated.
           In particular, when accumulating text for an accessible description, the algorithm uses <code>aria-describedby</code> instead of <code>aria-labelledby</code>.
         </p>
-        <p>To-do: Provide a step-by-step summary of the description calculation algorithm.</p>
+        <p>
+          When <code>aria-details</code> is <em>not</em> used, user agents construct an accessible description string for an element by walking through a list of potential description methods and using the first that generates a description.
+          The algorithm they follow is defined in the <a href="" class="accname">accessible name specification</a>.
+          It is roughly like the following:
+        </p>
+        <ol>
+          <li><p>The <code>aria-describedby</code> property is used if present.</p></li>
+          <li>
+            <p>If the description is still empty, then host-language-specific attributes or elements are used if present, if it wasn't already used as the accessible name. For HTML, these are, depending on the element:</p>
+            <dl class="switch">
+              <dt><code>input</code> whose <code>type</code> attribute is in the Button, Submit Button, or Reset Button state</dt>
+              <dd>The <code>value</code> attribute.</dd>
+
+              <dt><code>summary</code></dt>
+              <dd>The element's subtree.</dd>
+
+              <dt><code>table</code></dt>
+              <dd>The first child <code>caption</code> element.</dd>
+            </dl>
+          </li>
+          <li>
+            <p>Finally, if the description is still empty, then other host-language-specific attributes or elements are used if present, if it wasn't already used for the accessible name. For HTML, this is the <code>title</code> attribute.</p>
+          </li>
+        </ol>
       </section>
     </section>
   </section>
