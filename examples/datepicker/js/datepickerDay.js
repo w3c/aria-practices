@@ -44,12 +44,17 @@ DatePickerDay.prototype.init = function () {
 };
 
 DatePickerDay.prototype.isDisabled = function () {
-  return this.domNode.disabled;
+  return this.domNode.classList.contains('disabled');
 };
 
 DatePickerDay.prototype.updateDay = function (disable, year, month, day) {
 
-  this.domNode.disabled = disable;
+  if (disable) {
+    this.domNode.classList.add('disabled');
+  }
+  else {
+    this.domNode.classList.remove('disabled');
+  }
 
   this.year = year;
   this.month = month;
@@ -153,11 +158,17 @@ DatePickerDay.prototype.handleKeyDown = function (event) {
 DatePickerDay.prototype.handleMouseDown = function (event) {
   console.log('[DatePickerDay][handleMouseDown]');
   this.datepicker.day = this.day;
-  if (!this.datepicker.dateInput.hasFocus()) {
-    this.datepicker.dateInput.ignoreBlurEvent = true;
+
+  if (this.isDisabled()) {
+    this.datepicker.moveToDay(this.day, this.month, this.year);
   }
-  this.datepicker.setTextboxDate();
-  this.datepicker.hide();
+  else {
+    if (!this.datepicker.dateInput.hasFocus()) {
+      this.datepicker.dateInput.ignoreBlurEvent = true;
+    }
+    this.datepicker.setTextboxDate();
+    this.datepicker.hide();
+  }
 
   event.stopPropagation();
   event.preventDefault();

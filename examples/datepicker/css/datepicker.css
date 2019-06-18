@@ -189,8 +189,11 @@ table.dates td {
 }
 
 .disabled {
-  cursor: not-allowed;
   color: #afafaf;
+}
+
+.disabled:hover {
+  color: black;
 }
 
 .dateButton:disabled {

@@ -700,6 +700,14 @@ DatePicker.prototype.moveToNextMonth = function () {
   this.updateGrid();
 };
 
+DatePicker.prototype.moveToDay = function (day, month, year) {
+  this.day   = day;
+  this.month = month;
+  this.year  = year;
+  this.updateGrid();
+  this.setFocusDay();
+};
+
 DatePicker.prototype.moveFocusToNextDay = function () {
 
   this.day++;
