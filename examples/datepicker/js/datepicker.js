@@ -378,10 +378,12 @@ DatePicker.prototype.hide = function (ignore) {
 };
 
 DatePicker.prototype.handleBackgroundMouseDown = function (event) {
+  console.log('[DatePicker][handleBackgroundMouseDown]');
   if (!this.inputNode.parentNode.contains(event.target) &&
       !this.dialogNode.contains(event.target)) {
 
     this.isMouseDownOnBackground = true;
+    console.log('[DatePicker][handleBackgroundMouseDown][isMouseDownOnBackground]: ' + this.isMouseDownOnBackground);
 
     if (this.isOpen()) {
       this.hide();
@@ -513,6 +515,9 @@ DatePicker.prototype.handleNextYearButton = function (event) {
       break;
 
     case 'click':
+      if (!this.hasFocusFlag) {
+        this.dateInput.ignoreBlurEvent = true;
+      }
       this.moveToNextYear();
       this.adjustCurrentDay(onFirstRow, onLastRow);
       this.setFocusDay(false);
@@ -566,6 +571,9 @@ DatePicker.prototype.handlePreviousYearButton = function (event) {
       break;
 
     case 'click':
+      if (!this.hasFocusFlag) {
+        this.dateInput.ignoreBlurEvent = true;
+      }
       this.moveToPreviousYear();
       this.adjustCurrentDay(onFirstRow, onLastRow);
       this.setFocusDay(false);
@@ -608,6 +616,9 @@ DatePicker.prototype.handleNextMonthButton = function (event) {
       break;
 
     case 'click':
+      if (!this.hasFocusFlag) {
+        this.dateInput.ignoreBlurEvent = true;
+      }
       this.moveToNextMonth();
       this.adjustCurrentDay(onFirstRow, onLastRow);
       this.setFocusDay(false);
@@ -650,6 +661,9 @@ DatePicker.prototype.handlePreviousMonthButton = function (event) {
       break;
 
     case 'click':
+      if (!this.hasFocusFlag) {
+        this.dateInput.ignoreBlurEvent = true;
+      }
       this.moveToPreviousMonth();
       this.adjustCurrentDay(onFirstRow, onLastRow);
       this.setFocusDay(false);
