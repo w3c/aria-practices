@@ -10,14 +10,14 @@ FormatToolbarItem = function (domNode, toolbar) {
   this.toolbar = toolbar;
   this.buttonAction = '';
   this.value = '';
-  this.tooltipNode = null;
+  this.popupLabelNode = null;
   this.hasHover = false;
-  this.tooltipDelay = 800;
+  this.popupLabelDelay = 800;
 
 
   this.keyCode = Object.freeze({
     'TAB': 9,
-    'RETURN': 13,
+    'ENTER': 13,
     'ESC': 27,
     'SPACE': 32,
     'PAGEUP': 33,
@@ -37,7 +37,10 @@ FormatToolbarItem.prototype.init = function () {
   this.domNode.addEventListener('focus', this.handleFocus.bind(this));
   this.domNode.addEventListener('blur', this.handleBlur.bind(this));
   this.domNode.addEventListener('mouseover', this.handleMouseOver.bind(this));
-  this.domNode.addEventListener('mouseleave', this.handleMouseOut.bind(this));
+  this.domNode.addEventListener('mouseleave', this.handleMouseLeave.bind(this));
+
+  document.body.addEventListener('keydown', this.handleHideAllPopupLabels.bind(this));
+
 
   if (this.domNode.classList.contains('bold')) {
     this.buttonAction = 'bold';
@@ -86,13 +89,13 @@ FormatToolbarItem.prototype.init = function () {
   if (this.domNode.classList.contains('spinbutton')) {
     this.buttonAction = 'changeFontSize';
   }
-  // Initialize any tooltips
+  // Initialize any popup label
 
-  this.tooltipNode = this.domNode.querySelector('.label-tooltip');
-  if (this.tooltipNode) {
-    var width = 8 * this.tooltipNode.textContent.length;
-    this.tooltipNode.style.width = width + 'px';
-    this.tooltipNode.style.left = -1 * ((width - this.domNode.offsetWidth) / 2) - 5 + 'px';
+  this.popupLabelNode = this.domNode.querySelector('.popup-label');
+  if (this.popupLabelNode) {
+    var width = 8 * this.popupLabelNode.textContent.length;
+    this.popupLabelNode.style.width = width + 'px';
+    this.popupLabelNode.style.left = -1 * ((width - this.domNode.offsetWidth) / 2) - 5 + 'px';
   }
 
 };
@@ -129,21 +132,37 @@ FormatToolbarItem.prototype.enable = function () {
   this.domNode.removeAttribute('aria-disabled');
 };
 
-FormatToolbarItem.prototype.showTooltip = function () {
-  if (this.tooltipNode) {
-    this.toolbar.hideTooltips();
-    this.tooltipNode.classList.add('show');
+FormatToolbarItem.prototype.showPopupLabel = function () {
+  if (this.popupLabelNode) {
+    this.toolbar.hidePopupLabels();
+    this.popupLabelNode.classList.add('show');
   }
 };
 
-FormatToolbarItem.prototype.hideTooltip = function () {
-  if (this.tooltipNode && !this.hasHover) {
-    this.tooltipNode.classList.remove('show');
+FormatToolbarItem.prototype.hidePopupLabel = function () {
+  if (this.popupLabelNode && !this.hasHover) {
+    this.popupLabelNode.classList.remove('show');
   }
 };
 
 
 // Events
+
+FormatToolbarItem.prototype.handleHideAllPopupLabels = function (event) {
+
+  switch (event.keyCode) {
+
+    case this.keyCode.ESC:
+      this.toolbar.hidePopupLabels();
+      break;
+
+    default:
+      break;
+  }
+
+
+};
+
 
 FormatToolbarItem.prototype.handleBlur = function (event) {
   this.toolbar.domNode.classList.remove('focus');
@@ -151,7 +170,7 @@ FormatToolbarItem.prototype.handleBlur = function (event) {
   if (this.domNode.classList.contains('nightmode')) {
     this.domNode.parentNode.classList.remove('focus');
   }
-  this.hideTooltip();
+  this.hidePopupLabel();
 };
 
 FormatToolbarItem.prototype.handleFocus = function (event) {
@@ -160,16 +179,16 @@ FormatToolbarItem.prototype.handleFocus = function (event) {
   if (this.domNode.classList.contains('nightmode')) {
     this.domNode.parentNode.classList.add('focus');
   }
-  this.showTooltip();
+  this.showPopupLabel();
 };
 
-FormatToolbarItem.prototype.handleMouseOut = function (event) {
+FormatToolbarItem.prototype.handleMouseLeave = function (event) {
   this.hasHover = false;
-  setTimeout(this.hideTooltip.bind(this), this.tooltipDelay);
+  setTimeout(this.hidePopupLabel.bind(this), this.popupLabelDelay);
 };
 
 FormatToolbarItem.prototype.handleMouseOver = function (event) {
-  this.showTooltip();
+  this.showPopupLabel();
   this.hasHover = true;
 };
 
@@ -178,7 +197,7 @@ FormatToolbarItem.prototype.handleKeyDown = function (event) {
 
   switch (event.keyCode) {
 
-    case this.keyCode.RETURN:
+    case this.keyCode.ENTER:
     case this.keyCode.SPACE:
       if ((this.buttonAction !== '') &&
         (this.buttonAction !== 'bold') &&
@@ -232,9 +251,6 @@ FormatToolbarItem.prototype.handleKeyDown = function (event) {
         }
         flag = true;
       }
-      break;
-    case this.keyCode.ESC:
-      this.hideTooltip();
       break;
     default:
       break;

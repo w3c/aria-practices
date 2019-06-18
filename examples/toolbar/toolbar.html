@@ -53,28 +53,28 @@
       <div class="format" role="toolbar" aria-label="Text Formatting" aria-controls="textarea1">
           <div class="group characteristics">
             <button
-                class="item bold tooltip"
+                class="item bold popup"
                 aria-pressed="false"
                 value="bold"
                 tabindex="0">
               <span class="fas fa-bold" aria-hidden="true"></span>
-              <div class="label-tooltip">Bold</div>
+              <div class="popup-label">Bold</div>
             </button>
             <button
-                class="item italic tooltip"
+                class="item italic popup"
                 aria-pressed="false"
                 value="italic"
                 tabindex="-1">
               <span class="fas fa-italic" aria-hidden="true"></span>
-              <div class="label-tooltip">Italic</div>
+              <div class="popup-label">Italic</div>
             </button>
             <button
-                class="item underline tooltip"
+                class="item underline popup"
                 aria-pressed="false"
                 value="underline"
                 tabindex="-1">
               <span class="fas fa-underline" aria-hidden="true"></span>
-              <div class="label-tooltip">Underline</div>
+              <div class="popup-label">Underline</div>
             </button>
           </div>
           <div class="group"
@@ -82,27 +82,27 @@
                aria-label="Text Alignment">
             <button
                 role="radio"
-                class="item align-left tooltip"
+                class="item align-left popup"
                 aria-checked="true"
                 tabindex="-1">
               <span class="fas fa-align-left" aria-hidden="true"></span>
-              <div class="label-tooltip">Text Align Left</div>
+              <div class="popup-label">Text Align Left</div>
             </button>
             <button
                 role="radio"
-                class="item align-center tooltip"
+                class="item align-center popup"
                 aria-checked="false"
                 tabindex="-1">
               <span class="fas fa-align-center" aria-hidden="true"></span>
-              <div class="label-tooltip">Text Align Center</div>
+              <div class="popup-label">Text Align Center</div>
             </button>
             <button
                 role="radio"
-                class="item align-right tooltip"
+                class="item align-right popup"
                 aria-checked="false"
                 tabindex="-1">
               <span class="fas fa-align-right" aria-hidden="true"></span>
-              <div class="label-tooltip">Text Align Right</div>
+              <div class="popup-label">Text Align Right</div>
             </button>
           </div>
           <div class="group">
@@ -218,16 +218,19 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
         When a toolbar item has focus, its border is highlighted and the background color of the button also changes.
       </li>
     </ul>
-    <h3>Tooltips</h3>
+    <h3>Popup Label</h3>
     <ul>
       <li>
-        When the bold, italic, underline or the text align buttons receive focus or the mouse overs over the button a tooltip appears above the button.
+        When the bold, italic, underline or the text align buttons receive focus or the mouse overs over the button a popup appears above the button with a text label for the button.
       </li>
       <li>
-        The tooltip remains visible when the pointer hovers over the tooltip content.
+        The popup label remains visible when the pointer hovers over the label content.
       </li>
       <li>
-        When a button has focus, the tooltip can be hidden using the <kbd>ESC</kbd> key.
+       The popup label can be hidden at any time using the <kbd>ESC</kbd> key.
+      </li>
+      <li>
+       This popup label implements the requirements of <a href="https://www.w3.org/TR/WCAG21/#content-on-hover-or-focus">WCAG Success Criterion 1.4.13 Content on Hover or Focus</a>.
       </li>
     </ul>
   </section>
@@ -283,6 +286,12 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
             <th><kbd>End</kbd></th>
             <td>Moves focus to the last control.</td>
           </tr>
+          <tr data-test-id="toolbar-toggle-esc">
+            <th><kbd>ESC</kbd></th>
+            <td>
+              Hides any visible popup label for a button.
+            </td>
+          </tr>
         </tbody>
       </table>
     </section>
@@ -301,12 +310,6 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
           <tr data-test-id="toolbar-toggle-enter-or-space">
             <th><kbd>Enter</kbd><br><kbd>Space</kbd></th>
             <td>Toggle the pressed state of the button.</td>
-          </tr>
-          <tr data-test-id="toolbar-toggle-esc">
-            <th><kbd>ESC</kbd></th>
-            <td>
-              Hides tooltip.
-            </td>
           </tr>
         </tbody>
       </table>
@@ -356,12 +359,6 @@ But, in a larger sense, we can not dedicate, we can not consecrate, we can not h
                 <li>Moves focus to the previous radio button.</li>
                 <li>If the radio button has focus, focus moves to the last radio button.</li>
               </ul>
-            </td>
-          </tr>
-          <tr data-test-id="toolbar-radio-esc">
-            <th><kbd>ESC</kbd></th>
-            <td>
-              Hides tooltip.
             </td>
           </tr>
         </tbody>

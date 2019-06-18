@@ -42,11 +42,11 @@
   margin-right: 0.25em;
 }
 
-[role="toolbar"] button.tooltip {
+[role="toolbar"] button.popup {
   position: relative;
 }
 
-[role="toolbar"] button .label-tooltip {
+[role="toolbar"] button .popup-label {
   display: block;
   width: initial;
   border: 2px solid white;
@@ -59,14 +59,13 @@
   font-weight: normal;
 }
 
-[role="toolbar"] button.tooltip .label-tooltip:hover,
-[role="toolbar"] button .label-tooltip.show {
+[role="toolbar"] button .popup-label.show {
   text-align: center;
   top: -2.5em;
 }
 
-[role="toolbar"] button .label-tooltip:after,
-[role="toolbar"] button .label-tooltip:before {
+[role="toolbar"] button .popup-label:after,
+[role="toolbar"] button .popup-label:before {
   top: 100%;
   left: 50%;
   border: solid transparent;
@@ -77,13 +76,13 @@
   pointer-events: none;
 }
 
-[role="toolbar"] button .label-tooltip:after {
+[role="toolbar"] button .popup-label:after {
   border-color: rgba(0, 0, 0, 0);
   border-top-color: #000000;
   border-width: 10px;
   margin-left: -10px;
 }
-[role="toolbar"] button .label-tooltip:before {
+[role="toolbar"] button .popup-label:before {
   border-color: rgba(255, 255, 255, 0);
   border-top-color: #fff;
   border-width: 12px;
