@@ -201,7 +201,7 @@
     <h2>Accessibility Features</h2>
     <p>There are three main featues of the menu button date picker example:</p>
     <ul>
-      <li>Textbox: Holds the value of the selected date and can open the date picker dialog box.</li>
+      <li>Date Textbox: Holds the value of the selected date.</li>
       <li>Calendar Button: Opens the datepicker dialog box.</li>
       <li>Date Picker Dialog Box: Displays a grid of dates for the user to select from and provide additional buttons to change the month and year of dates shown in the grid.</li>
     </ul>
@@ -209,19 +209,17 @@
     <p>The <code>textbox</code> has the accessible name of <q>Date</q> and <code>button</code> has the accessible name of <q>Calendar<q>.</p>
 
 
-    <h3>Textbox</h3>
+    <h3>Date Textbox</h3>
 
     <ul>
       <li>Contains the date value.</li>
-      <li>Opens and closes the date picker dialog box through keyboard, click and touch events.</li>
-      <li>A live region provides information on how to open the date picker dialog when textbox receives focus (e.g. using <kbd>down arrow</kbd> key).</li>
-      <li>To support people who are sighted in understanding the <kbd>down arrow</kbd> key opens the date picker dialog box, a down arrow icon appears in the <code>textbox</code> when the <code>textbox</code> receives keyboard focus and the down arrow icon is removed when the <code>textbox</code> does not have keyboard focus.</li>
     </ul>
 
-    <h3>Change Date Button</h3>
+    <h3>Calendar Button</h3>
 
     <ul>
       <li>Opens and closes the date picker dialog box through keyboard and click events.</li>
+      <li>A live region provides information on how to open the date picker dialog when textbox receives focus (e.g. using <kbd>down arrow</kbd> key).</li>
       <li>The accessible name of the button is updated when a date is selected to include the current date.</li>
       <li>The <code>title</code> attribute describes the relationship between the <code>button</code> and the <code>textbox</code>.</li>
     </ul>
@@ -243,30 +241,7 @@
     <h2 id="kbd_label">Keyboard Support</h2>
 
     <section>
-      <h3 id="kbd_label_1">Textbox</h3>
-      <table aria-labelledby="kbd_label_1 kbd_label" class="def">
-        <thead>
-          <tr>
-            <th>Key</th>
-            <th>Function</th>
-          </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th><kbd>Down Arrow</kbd></th>
-                <td>
-                  <ul>
-                    <li>Open the date picker dialog.</li>
-                    <li>Move focus to current date.</li>
-                </ul>
-              </td>
-            </tr>
-        </tbody>
-      </table>
-    </section>
-
-    <section>
-      <h3 id="kbd_label_2">Change Date Button</h3>
+      <h3 id="kbd_label_2">Calendar Button</h3>
       <table aria-labelledby="kbd_label_2 kbd_label" class="def">
         <thead>
           <tr>
@@ -300,7 +275,7 @@
         <tbody>
             <tr>
               <th><kbd>ESC</kbd></th>
-              <td>Close the dialog and move focus back to the date input.</td>
+              <td>Close the dialog and move focus back to the calendar button.</td>
             </tr>
             <tr>
               <th><kbd>TAB</kbd></th>
@@ -358,7 +333,7 @@
             <th><kbd>Space</kbd>,<br><kbd>Return</kbd></th>
             <td>
               <ul>
-                <li>Select the date, close the dialog box and move focus to the date input.</li>
+                <li>Select the date, close the dialog box and move focus to the calendar button.</li>
                 <li>The value of the date input is updated with the selected date in the from the selected date in the date grid.</li>
               </ul>
           </td>
@@ -435,7 +410,7 @@
             <th><kbd>ESC</kbd></th>
             <td>
               <ul>
-                <li>Close the dialog and move focus back to date input.</li>
+                <li>Close the dialog and move focus back to calendar button.</li>
                 <li>The value of the date texbox is not updated.</li>
               </ul>
             </td>
@@ -458,8 +433,8 @@
               <th> <kbd>Space</kbd>,<br> <kbd>Return</kbd></th>
               <td>
                 <ul>
-                    <li>The Cancel button closes the date picker dialog, moves focus to date input, does not update date in date input.</li>
-                    <li>The OK button closes the date picker dialog, moves focus to date input, does update date in date input.</li>
+                    <li>The Cancel button closes the date picker dialog, moves focus to calendar button, does not update date in date input.</li>
+                    <li>The OK button closes the date picker dialog, moves focus to calendar button, does update date in date input.</li>
                 </ul>
               </td>
             </tr>
@@ -471,43 +446,9 @@
   <section>
     <h2 id="rps_label">Role, Property, State, and Tabindex  Attributes</h2>
 
-    <section>
-      <h3 id="rps_label_textbox">Textbox</h3>
-      <table aria-labelledby="rps_label_textbox rps_label" class="data attributes">
-        <thead>
-          <tr>
-            <th scope="col">Role</th>
-            <th scope="col">Attribute</th>
-            <th scope="col">Element</th>
-            <th scope="col">Usage</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row"><code>textbox</code></th>
-            <td></td>
-            <td><code>input</code></td>
-            <td>
-              <ul>
-                <li>The <code>input</code> element with no <code>type</code> attribute has the default role of <code>textbox</code>.</li>
-                <li>Accessible name comes from a <code>label</code> element using the <code>for</code> attribute.</li>
-              </ul>
-            </td>
-          </tr>
-          <tr data-test-id="textbox-aria-autocomplete">
-            <td></td>
-            <th scope="row"><code>aria-autocomplete=<q>none</q></code></th>
-            <td><code>input</code></td>
-            <td>
-              <code>aria-autocomplete=<q>none</q></code> the textbox does not support autocompletion when text is entered.
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
 
     <section>
-        <h3 id="rps_label_2">Change Date Button</h3>
+        <h3 id="rps_label_2">Calendar Button</h3>
         <table aria-labelledby="rps_label_2 rps_label" class="data attributes">
           <thead>
             <tr>
@@ -526,30 +467,29 @@
                 <ul>
                   <li>The <code>button</code> has the default role of <code>button</code>.</li>
                   <li>Accessible name comes from <code>aria-label</code> attribute.</li>
-                  <li>Button is removed from tab order of the page, since the dialog can be opened from the date input with the keyboard.</li>
                 </ul>
               </td>
             </tr>
-            <tr data-test-id="change-date-button-aria-label">
+            <tr data-test-id="calendar-button-aria-label">
               <td></td>
               <th scope="row"><code>aria-label=<q><em>String</em></q></code></th>
               <td><code>button</code></td>
               <td>
                 <ul>
-                  <li>The initial value of accessible name is <q>Change Date</q>.</li>
+                  <li>The initial value of accessible name is <q>Calendar</q>.</li>
                   <li>When user selected date, the accessible name will update to current date.</li>
                 </ul>
               </td>
             </tr>
-            <tr data-test-id="change-date-button-aria-haspopup">
+            <tr data-test-id="calendar-button-aria-haspopup">
               <td></td>
               <th scope="row"><code>aria-haspopup=<q>dialog</q></code></th>
               <td><code>button</code></td>
               <td>
-                Identifies the button as a <code>menu button</code> and follws the meu button design pattern.
+                Identifies the button as a <code>menu button</code> and follows the menu button design pattern.
               </td>
             </tr>
-            <tr data-test-id="change-date-button-aria-expanded">
+            <tr data-test-id="calendar-button-aria-expanded">
               <td></td>
               <th scope="row"><code>aria-expanded=<q>true</q></code></th>
               <td><code>button</code></td>
@@ -560,20 +500,20 @@
                 </ul>
               </td>
             </tr>
-            <tr data-test-id="change-date-aria-controls">
+            <tr data-test-id="calendar-aria-controls">
               <td></td>
               <th scope="row"><code>aria-controls=<q>IDREF</q></code></th>
               <td><code>button</code></td>
               <td>
-                Provides a reference to a screen reader for direct navigation to the dialog box.
+                Provides a reference to a screen reader for direct navigation to the date picker dialog box.
               </td>
             </tr>
-            <tr data-test-id="change-date-title">
+            <tr data-test-id="calendar-aria-describedby">
               <td></td>
-              <th scope="row"><code>title=<q><em>string</em></q></code></th>
+              <th scope="row"><code>aria-describedby=<q>IDREF</q></code></th>
               <td><code>button</code></td>
               <td>
-                Provides a description of the relationship textbox and menu button, basically the button allows you to choose a new date using a date picker.
+                Provides a description to the user that calendar button is used to change the value of the textbox.
               </td>
             </tr>
           </tbody>
@@ -739,16 +679,6 @@
                       The default role for a <code>th[scope="col"]</code> element is <code>columnheader</code>.
                     </td>
                   </tr>
-                  <tr>
-                    <td></td>
-                    <th scope="row"><code>aira-label=<q><em>String</em></q></code></th>
-                    <td><code>th</code></td>
-                    <td>
-                      <ul>
-                        <li>Define the accessible name as a day of week for column headers.</li>
-                      </ul>
-                    </td>
-                 </tr>
                   <tr>
                     <th scope="row"><code>gridcell</code></th>
                     <td></td>

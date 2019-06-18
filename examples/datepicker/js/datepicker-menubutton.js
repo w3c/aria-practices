@@ -132,7 +132,7 @@ MenuButtonInput.prototype.handleButtonClick = function (event) {
 
 
 MenuButtonInput.prototype.setFocus = function () {
-  this.inputNode.focus();
+  this.buttonNode.focus();
 };
 
 MenuButtonInput.prototype.setAriaExpanded = function (flag) {
