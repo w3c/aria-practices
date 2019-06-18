@@ -3722,7 +3722,7 @@
           <li>Describing by referencing content with <code>aria-describedby</code>.</li>
           <li>Describing by referencing content with <code>aria-details</code>.</li>
           <li>Describing tables and figures with captions.</li>
-          <li>Fallback descriptions derived from titles and placeholders.</li>
+          <li>Descriptions derived from titles.</li>
         </ul>
       </li>
     </ul>
@@ -4862,9 +4862,23 @@ However, most authors do not need detailed understanding of the algorithms since
 &lt;/figure></code></pre>
          </section>
 
-        <section id="describing_with_fallback">
-          <h5>Fallback Descriptions Derived from Titles and Placeholders</h5>
-          <p>To-do: write this section.</p>
+        <section id="describing_with_title">
+          <h5>Descriptions Derived from Titles</h5>
+          <p>If the <code>aria-details</code> attribute is not used, and an accessible description was not provided using the <code>aria-describedby</code> attribute or one of the primary host-language-specific attributes or elements (e.g., the <code>caption</code> element for <code>table</code>), then, for HTML, if the element has a <code>title</code> attribute, that is used as the accessible description.</p>
+          <p>A visible description together with <code>aria-describedby</code> or <code>aria-details</code> is generally recommended. If a description that is not visible is desired, then the <code>title</code> attribute can be used, for any HTML element that can have an accessible description.</p>
+          <p>Note that the <code>title</code> attribute might not be accessible to some users, in particular sighted users not using a screen reader and not using a pointing device that supports hover (e.g., a mouse).</p>
+          <p>For example, an <code>input</code> element with input constrained using the <code>pattern</code> attribute can use the <code>title</code> attribute to describe what the expected input is.</p>
+          <pre><code>&lt;label> Part number:
+ &lt;input pattern="[0-9][A-Z]{3}" name="part"
+        title="A part number is a digit followed by three uppercase letters."/>
+&lt;/label></code></pre>
+          <p>The <code>title</code> attribute in this case can be shown to the user as a tooltip when the user hovers or focuses the control, but also as part of the error message when the user agent validates the form, if the <code>input</code> element's value doesn't match the <code>pattern</code>.</p>
+          <p>As another example, a link can use the <code>title</code> attribute to describe the link in more detail.</p>
+          <pre><code>&lt;a href="http://twitter.com/W3C"
+   title="Follow W3C on Twitter">
+   &lt;img src="/2008/site/images/Twitter_bird_logo_2012.svg"
+        alt="Twitter" class="social-icon" height="40" />
+  &lt;/a></code></pre>
         </section>
       </section>
 
