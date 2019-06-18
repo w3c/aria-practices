@@ -3944,12 +3944,9 @@ However, most authors do not need detailed understanding of the algorithms since
             If an element is referenced more than one time, only the first reference is processed.
             When concatenating content from multiple elements, browsers trim leading and trailing white space and separate content from each element with a single space.
           </p>
-          <pre><code>&lt;section role="alert" aria-labelledby="alert-title alert-code">
- &lt;h2 id="alert-title">Alert&lt;/h2>
- &lt;p id="alert-code">code: red&lt;/p>
- &lt;p>We're out of peanuts.&lt;/p>
-&lt;/section></code></pre>
-          <p>In the above example, the accessible name of the alert will be "Alert code: red", with a space between "alert" and "code", and not "Alertcode: red".</p>
+          <pre><code>&lt;button id="download-button" aria-labelledby="download-button download-details">Download&lt;/button>
+&lt;span id="download-details">PDF, 2.4 MB&lt;/span></code></pre>
+          <p>In the above example, the accessible name of the alert will be "Download PDF, 2.4 MB", with a space between "Download" and "PDF", and not "DownloadPDF, 2.4 MB".</p>
           <ol class="warning">
             <li>The <code>aria-labelledby</code> property cannot be chained, i.e., if an element with <code>aria-labelledby</code> references another element that also has <code>aria-labelledby</code>, the <code>aria-labelledby</code> attribute on the referenced element will be ignored.</li>
             <li>If an element is referenced by <code>aria-labelledby</code> more than one time during a name calculation, the second and any subsequent references will be ignored.</li>
@@ -4631,7 +4628,6 @@ However, most authors do not need detailed understanding of the algorithms since
           The algorithm they follow is defined in the <a href="" class="accname">accessible name specification</a>.
           It is roughly like the following:
         </p>
-        <p>To-do: Add a specific step for each HTML element and attribute in the following list so readers can see the precedence of any specific element or attribute.</p>
         <ol>
           <li><p>The <code>aria-labelledby</code> property is used if present.</p></li>
           <li><p>If the name is still empty, the <code>aria-label</code> property is used if present.</p></li>
