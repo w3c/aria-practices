@@ -4834,8 +4834,33 @@ However, most authors do not need detailed understanding of the algorithms since
 
         <section id="describing_with_captions">
           <h5>Describing Tables and Figures with Captions</h5>
-          <p>To-do: write this section. Include example of a table labeled by a heading via aria-labelledby so the caption becomes a description.</p>
-        </section>
+          <p>In HTML, a <code>table</code> element can get its accessible description from the child <code>caption</code> element, if that wasn't used as the accessible name.</p>
+          <p>For example, a preceding heading might be appropriate as an accessible name for a table, and the <code>caption</code> element can contain a longer description of the table and how the table is laid out. In such a situation, the <code>aria-labelledby</code> attribute can be used on the <code>table</code> to set the accessible name to that of the heading.</p>
+          <pre><code>&lt;h2 id="events-heading">Upcoming events&lt;/h2>
+&lt;table aria-labelledby="events-heading">
+ &lt;caption>
+  Calendar of upcoming events, weeks 27 through 31, with each week starting with
+  Monday. The first column is the week number.
+ &lt;/caption>
+ &lt;tr>&lt;th>Week&lt;th>Monday&lt;th>Tuesday&lt;th>Wednesday&lt;th>Thursday&lt;th>Friday&lt;Saturday&lt;Sunday
+ &lt;tr>&lt;td>27&lt;td>&lt;td>&lt;td>&lt;td>&lt;td>&lt;td>&lt;td>
+ &lt;tr>&lt;td>28&lt;td>&lt;td>&lt;td>&lt;td>&lt;td>&lt;td>&lt;td>&lt;a href="/events/9856">Crown Princess's birthday&lt;/a>
+ &lt;tr>&lt;td>29&lt;td>&lt;td>&lt;td>&lt;td>&lt;td>&lt;td>&lt;td>
+ &lt;tr>&lt;td>30&lt;td>&lt;td>&lt;td>&lt;td>&lt;td>&lt;td>&lt;td>
+ &lt;tr>&lt;td>31&lt;td>&lt;td>&lt;td>&lt;td>&lt;td>&lt;td>&lt;td>
+&lt;/table></code></pre>
+          <p>The HTML <code>figure</code> element can get its accessible <em>name</em> from its <code>figcaption</code> element, but it will not be used as the accessible <em>description</em>, even if it was not used as the accessible name. If the <code>figcaption</code> element is appropriate as an accessible description, and the accessible name is set using <code>aria-labelledby</code> or <code>aria-label</code>, then the <code>figcaption</code> can be explicitly set as the accessible description using the <code>aria-describedby</code> attribute.</p>
+          <pre><code>&lt;h2 id="neutron">Neutron&lt;/h2>
+&lt;figure aria-labelledby="neutron" aria-describedby="neutron-caption">
+ &lt;img src="neutron.svg" alt="Within the neutron are three quarks (blue 'u',
+ red 'd', green 'd') that are interconnected.">
+ &lt;figcaption id="neutron-caption">
+  The quark content of the neutron. The color assignment of individual quarks is
+  arbitrary, but all three colors must be present. Forces between quarks are
+  mediated by gluons.
+ &lt;/figcaption>
+&lt;/figure></code></pre>
+         </section>
 
         <section id="describing_with_fallback">
           <h5>Fallback Descriptions Derived from Titles and Placeholders</h5>
