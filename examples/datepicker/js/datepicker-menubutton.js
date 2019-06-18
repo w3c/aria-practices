@@ -35,22 +35,10 @@ var MenuButtonInput = function (inputNode, buttonNode, messageNode, datepicker) 
 };
 
 MenuButtonInput.prototype.init = function () {
-  this.inputNode.addEventListener('keydown', this.handleKeyDown.bind(this));
-  this.inputNode.addEventListener('focus', this.handleFocus.bind(this));
-  this.inputNode.addEventListener('blur', this.handleBlur.bind(this));
 
   this.buttonNode.addEventListener('click', this.handleButtonClick.bind(this));
   this.buttonNode.addEventListener('touchstart', this.handleTouchStart.bind(this));
   this.buttonNode.addEventListener('keydown', this.handleKeyDown.bind(this));
-
-  if (this.buttonNode.nextElementSibling &&
-      this.buttonNode.nextElementSibling.classList.contains('arrow')) {
-    this.imageNode = this.inputNode.nextElementSibling;
-  }
-
-  if (this.imageNode) {
-    this.imageNode.addEventListener('click', this.handleClick.bind(this));
-  }
 
   this.setMessage('');
 };
@@ -61,6 +49,7 @@ MenuButtonInput.prototype.handleKeyDown = function (event) {
   switch (event.keyCode) {
 
     case this.keyCode.DOWN:
+    case this.keyCode.RETURN:
       this.datepicker.show();
       this.ignoreBlurEvent = true;
       this.datepicker.setFocusDay();
@@ -70,11 +59,6 @@ MenuButtonInput.prototype.handleKeyDown = function (event) {
     case this.keyCode.ESC:
       this.datepicker.hide(false);
       flag = true;
-      break;
-
-    case this.keyCode.TAB:
-      this.ignoreBlurEvent = true;
-      this.datepicker.hide(false);
       break;
 
     default:
@@ -147,7 +131,7 @@ MenuButtonInput.prototype.handleButtonClick = function (event) {
 };
 
 
-MenuButtonInput.prototype.focus = function () {
+MenuButtonInput.prototype.setFocus = function () {
   this.inputNode.focus();
 };
 
@@ -202,11 +186,12 @@ window.addEventListener('load' , function () {
   var datePickers = document.querySelectorAll('.datepicker');
 
   datePickers.forEach(function (dp) {
-    var dpInput = dp.querySelector('input');
-    var dpButton = dp.querySelector('button');
-    var dpMessage = dp.querySelector('.message');
-    var dpDialog = dp.querySelector('[role=dialog]');
-    var datePicker = new DatePicker(null, dpInput, dpButton, dpDialog, dpMessage);
+    var inputNode   = dp.querySelector('input');
+    var buttonNode  = dp.querySelector('button');
+    var messageNode = dp.querySelector('.message');
+    var dialogNode  = dp.querySelector('[role=dialog]');
+
+    var datePicker = new DatePicker(null, inputNode, buttonNode, messageNode, dialogNode);
     datePicker.init();
   });
 

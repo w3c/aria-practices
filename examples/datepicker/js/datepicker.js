@@ -5,19 +5,19 @@
 *   File:   datepicker.js
 */
 
-var DatePicker = function (comboboxNode) {
+var DatePicker = function (comboboxNode, inputNode, buttonNode, messageNode, dialogNode) {
   this.months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-  this.inputNode   = comboboxNode.querySelector('input');
-  this.buttonNode  = comboboxNode.querySelector('button');
-  this.messageNode = comboboxNode.querySelector('.message');
-  this.dialogNode  = comboboxNode.querySelector('[role=dialog]');
+  this.inputNode   = inputNode;
+  this.buttonNode  = buttonNode;
+  this.messageNode = messageNode;
+  this.dialogNode  = dialogNode;
 
   if (comboboxNode) {
     this.dateInput = new ComboboxInput(comboboxNode, this.inputNode, this.buttonNode, this.messageNode, this);
   }
   else {
-    this.dateInput = new MenuButtonInput(inputNode, this.buttonNode, this.messageNode, this);
+    this.dateInput = new MenuButtonInput(this.inputNode, this.buttonNode, this.messageNode, this);
   }
 
   this.MonthYearNode = this.dialogNode.querySelector('.monthYear');
@@ -253,7 +253,6 @@ DatePicker.prototype.showLastRow = function () {
 };
 
 DatePicker.prototype.setFocusDay = function (flag) {
-  console.log('[DatePicker][setFocusDay]');
 
   if (typeof flag !== 'boolean') {
     flag = true;
@@ -266,15 +265,15 @@ DatePicker.prototype.setFocusDay = function (flag) {
     if ((d.day == this.day) &&
         (d.month == this.month)) {
       this.currentDay = d;
+      d.domNode.setAttribute('tabindex', '0');
+
       if (flag) {
         if (!this.hasFocusFlag) {
           this.dateInput.setMessage('Use the cursor keys to navigate the date picker grid.');
         }
 
         this.hasFocusFlag = true;
-        console.log('[DatePicker][setFocusDay][focus]');
         d.domNode.focus();
-        d.domNode.setAttribute('tabindex', '0');
       }
     }
   }
@@ -379,15 +378,10 @@ DatePicker.prototype.hide = function (ignore) {
 };
 
 DatePicker.prototype.handleBackgroundMouseDown = function (event) {
-  console.log('');
-  console.log('[DatePicker][handleBackgroundMouseDown]');
-  console.log('[DatePicker][handleBackgroundMouseDown][isMouseDownOnBackground][A]: ' + this.isMouseDownOnBackground);
-
   if (!this.inputNode.parentNode.contains(event.target) &&
       !this.dialogNode.contains(event.target)) {
 
     this.isMouseDownOnBackground = true;
-    console.log('[DatePicker][handleBackgroundMouseDown][isMouseDownOnBackground][B]: ' + this.isMouseDownOnBackground);
 
     if (this.isOpen()) {
       this.hide();
@@ -803,15 +797,4 @@ DatePicker.prototype.getDateInput = function () {
 
 };
 
-// Initialize combobox date picker
 
-window.addEventListener('load' , function () {
-
-  var datePickers = document.querySelectorAll('[role=combobox].datepicker');
-
-  datePickers.forEach(function (dp) {
-    var datePicker = new DatePicker(dp);
-    datePicker.init();
-  });
-
-});

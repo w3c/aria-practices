@@ -65,6 +65,7 @@ ComboboxInput.prototype.handleKeyDown = function (event) {
   switch (event.keyCode) {
 
     case this.keyCode.DOWN:
+    case this.keyCode.RETURN:
       this.datepicker.show();
       this.ignoreBlurEvent = true;
       this.datepicker.setFocusDay();
@@ -247,4 +248,20 @@ ComboboxInput.prototype.setMessage = function (str) {
   return this.messageNode.textContent = str;
 };
 
+// Initialize combobox date picker
 
+window.addEventListener('load' , function () {
+
+  var datePickers = document.querySelectorAll('[role=combobox].datepicker');
+
+  datePickers.forEach(function (dp) {
+    var inputNode   = dp.querySelector('input');
+    var buttonNode  = dp.querySelector('button');
+    var messageNode = dp.querySelector('.message');
+    var dialogNode  = dp.querySelector('[role=dialog]');
+
+    var datePicker = new DatePicker(dp, inputNode, buttonNode, messageNode, dialogNode);
+    datePicker.init();
+  });
+
+});

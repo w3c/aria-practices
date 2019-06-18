@@ -12,6 +12,10 @@
   top: 3px;
 }
 
+.datepicker button.menubutton.icon {
+  left: -4px;
+}
+
 .datepicker span.arrow {
   margin: 0;
   padding: 0;

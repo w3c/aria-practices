@@ -56,17 +56,17 @@
                 id="id-texbox-1"
                 aria-autocomplete="none">
 
-          <button class="icon"
+          <button class="menubutton icon"
             aria-label="Calendar"
             aria-haspopup="true"
             aria-expanded="false"
             aria-controls="id-datepicker-1"
-            title="Change date in previous textbox"
+            aria-describedby="id-datepicker-1-button-desc"
             >
             <span class="fa fa-calendar-alt fa-2x"></span>
           </button>
 
-          <span class="arrow"></span>
+          <div id="id-datepicker-1-button-desc" class="sr-only">Opens datepicker dialog for previous date textbox</div>
 
         </div>
 
@@ -108,7 +108,6 @@
               aria-controls="id-dialog-label">
               <span class="fas fa-angle-double-right fa-lg"></span>
             </button>
-
           </div>
 
           <table
@@ -118,13 +117,13 @@
             aria-labelledby="id-dialog-label">
             <thead>
               <tr>
-                <th scope="col" aria-label="Sunday">Su</th>
-                <th scope="col" aria-label="Monday">Mo</th>
-                <th scope="col" aria-label="Tuesday">Tu</th>
-                <th scope="col" aria-label="Wednesday">We</th>
-                <th scope="col" aria-label="Thursday">Th</th>
-                <th scope="col" aria-label="Friday">Fr</th>
-                <th scope="col" aria-label="Saturday">Sa</th>
+                <th scope="col" abbr="Sunday">Su</th>
+                <th scope="col" abbr="Monday">Mo</th>
+                <th scope="col" abbr="Tuesday">Tu</th>
+                <th scope="col" abbr="Wednesday">We</th>
+                <th scope="col" abbr="Thursday">Th</th>
+                <th scope="col" abbr="Friday">Fr</th>
+                <th scope="col" abbr="Saturday">Sa</th>
               </tr>
             </thead>
 
