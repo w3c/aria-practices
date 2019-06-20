@@ -2,141 +2,153 @@
 *   This content is licensed according to the W3C Software License at
 *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
 *
-*   File:   datepicker-DateSpinButton.js
+*   File:   datepicker-spinbuttons.js
 */
 
-var DateSpinButton = function (domNode, toolbar)  {
+var DatePickerSpinButtons = function (domNode)  {
 
   this.domNode = domNode;
-  this.toolbar = toolbar;
+  this.monthNode = domNode.querySelector('.spinbutton.month');
+  this.dayNode = domNode.querySelector('.spinbutton.day');
+  this.yearNode = domNode.querySelector('.spinbutton.year');
 
-  this.valueDomNode = domNode.querySelector('.value');
-  this.increaseDomNode = domNode.querySelector('.increase');
-  this.decreaseDomNode = domNode.querySelector('.decrease');
+  this.valuesMonth = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
-  this.valueMin  = 8;
-  this.valueMax  = 40;
-  this.valueNow  = 12;
-  this.valueText = this.valueNow + ' Point';
-
-  this.keyCode = Object.freeze({
-    'UP': 38,
-    'DOWN': 40,
-    'PAGEUP': 33,
-    'PAGEDOWN': 34,
-    'END': 35,
-    'HOME': 36
-  });
 };
 
 // Initialize slider
-DateSpinButton.prototype.init = function () {
+DatePickerSpinButtons.prototype.init = function () {
 
-  if (this.domNode.getAttribute('aria-valuemin')) {
-    this.valueMin = parseInt((this.domNode.getAttribute('aria-valuemin')));
-  }
+  this.spinbuttonDay = new SpinButtonDate(this.dayNode, null, this.updateDay.bind(this));
+  this.spinbuttonDay.init();
 
-  if (this.domNode.getAttribute('aria-valuemax')) {
-    this.valueMax = parseInt((this.domNode.getAttribute('aria-valuemax')));
-  }
+  this.spinbuttonMonth = new SpinButtonDate(this.monthNode, this.valuesMonth, this.updateMonth.bind(this));
+  this.spinbuttonMonth.init();
 
-  if (this.domNode.getAttribute('aria-valuenow')) {
-    this.valueNow = parseInt((this.domNode.getAttribute('aria-valuenow')));
-  }
+  this.spinbuttonYear = new SpinButtonDate(this.yearNode, null, this.updateYear.bind(this));
+  this.spinbuttonYear.init();
+  this.spinbuttonYear.noWrap();
 
-  this.setValue(this.valueNow);
+  this.minYear = this.spinbuttonYear.getValueMin();
+  this.maxYear = this.spinbuttonYear.getValueMax();
 
-  this.domNode.addEventListener('keydown',    this.handleKeyDown.bind(this));
+  this.day = this.spinbuttonDay.getValue();
+  this.month = this.spinbuttonMonth.getValue();
+  this.year = this.spinbuttonYear.getValue();
+  this.daysInMonth = this.getDaysInMonth(this.year, this.month);
 
-  this.increaseDomNode.addEventListener('click', this.handleIncreaseClick.bind(this));
-  this.decreaseDomNode.addEventListener('click', this.handleDecreaseClick.bind(this));
-
+  this.updateSpinButtons();
 };
 
-DateSpinButton.prototype.setValue = function (value) {
+DatePickerSpinButtons.prototype.getDaysInMonth = function (year, month) {
 
-  if (value > this.valueMax) {
-    value = this.valueMax;
+  if (typeof year !== 'number') {
+    year = this.year;
   }
 
-  if (value < this.valueMin) {
-    value = this.valueMin;
+  if (typeof month !== 'number') {
+    month = this.month;
   }
 
-  this.valueNow  = value;
-  this.valueText = value + ' Point';
+  switch (month) {
 
-  this.domNode.setAttribute('aria-valuenow', this.valueNow);
-  this.domNode.setAttribute('aria-valuetext', this.valueText);
+    case 0:
+    case 2:
+    case 4:
+    case 6:
+    case 7:
+    case 9:
+    case 11:
+      return 31;
 
-  if (this.valueDomNode) {
-    this.valueDomNode.innerHTML = this.valueText;
-  }
+    case 1:
+      return (((this.yearIndex % 4 === 0) && (this.yearIndex % 100 !== 0) && (this.yearIndex % 400 === 0)) ? 29 : 28);
 
-  this.toolbar.changeFontSize(value);
-
-};
-
-DateSpinButton.prototype.handleKeyDown = function (event) {
-
-  var flag = false;
-
-  switch (event.keyCode) {
-    case this.keyCode.DOWN:
-      this.setValue(this.valueNow - 1);
-      flag = true;
-      break;
-
-    case this.keyCode.UP:
-      this.setValue(this.valueNow + 1);
-      flag = true;
-      break;
-
-    case this.keyCode.PAGEDOWN:
-      this.setValue(this.valueNow - 5);
-      flag = true;
-      break;
-
-    case this.keyCode.PAGEUP:
-      this.setValue(this.valueNow + 5);
-      flag = true;
-      break;
-
-    case this.keyCode.HOME:
-      this.setValue(this.valueMin);
-      flag = true;
-      break;
-
-    case this.keyCode.END:
-      this.setValue(this.valueMax);
-      flag = true;
-      break;
+    case 3:
+    case 5:
+    case 8:
+    case 10:
+      return 30;
 
     default:
       break;
+
   }
 
-  if (flag) {
-    event.preventDefault();
-    event.stopPropagation();
+  return -1;
+
+};
+
+DatePickerSpinButtons.prototype.updateDay = function (day) {
+  this.day = day;
+  this.updateSpinButtons();
+};
+
+DatePickerSpinButtons.prototype.updateMonth = function (month) {
+  this.month = month;
+  this.updateSpinButtons();
+};
+
+DatePickerSpinButtons.prototype.updateYear = function (year) {
+  this.year = year;
+  this.updateSpinButtons();
+};
+
+DatePickerSpinButtons.prototype.updatePreviousDayMonthAndYear = function () {
+  this.previousYear = this.year-1;
+
+  this.previousMonth = this.month ? this.month - 1 : 11;
+
+  this.previousDay = this.day - 1;
+  if (this.previousDay < 1) {
+    this.previousDay = this.getDaysInMonth(this.year, this.month);
+  }
+};
+
+DatePickerSpinButtons.prototype.updateNextDayMonthAndYear = function () {
+  this.nextYear = this.year+1;
+  this.nextMonth = this.month >= 11 ? 0 : this.month + 1;
+
+  this.nextDay = this.day + 1;
+  var maxDay = this.getDaysInMonth(this.year, this.month);
+  if (this.nextDay > maxDay) {
+    this.nextDay = 1;
+  }
+};
+
+DatePickerSpinButtons.prototype.updateSpinButtons = function () {
+
+  this.daysInMonth = this.getDaysInMonth(this.year, this.month);
+  this.spinbuttonDay.setValueMax(this.daysInMonth);
+  if (this.day > this.daysInMonth) {
+    this.spinbuttonDay.setValue(this.daysInMonth);
+    return;
   }
 
-};
+  this.updatePreviousDayMonthAndYear();
+  this.updateNextDayMonthAndYear();
 
-DateSpinButton.prototype.handleIncreaseClick = function (event) {
+  this.spinbuttonDay.setPreviousValue(this.previousDay);
+  this.spinbuttonMonth.setPreviousValue(this.previousMonth);
+  this.spinbuttonYear.setPreviousValue(this.previousYear);
 
-  this.setValue(this.valueNow + 1);
+  this.spinbuttonDay.setNextValue(this.nextDay);
+  this.spinbuttonMonth.setNextValue(this.nextMonth);
+  this.spinbuttonYear.setNextValue(this.nextYear);
 
-  event.preventDefault();
-  event.stopPropagation();
 
-};
-
-DateSpinButton.prototype.handleDecreaseClick = function (event) {
-
-  this.setValue(this.valueNow - 1);
-
-  event.preventDefault();
-  event.stopPropagation();
 
 };
+
+// Initialize menu button date picker
+
+window.addEventListener('load' , function () {
+
+  var dpsbs = document.querySelectorAll('.datepicker-spinbuttons');
+
+  dpsbs.forEach(function (dpsb) {
+    var datepicker = new DatePickerSpinButtons(dpsb);
+    datepicker.init();
+  });
+
+});
