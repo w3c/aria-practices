@@ -26,11 +26,7 @@ These attributes are used with the following roles:
 
 When an element's possible values are contained within a known range, the attributes `aria-valuemin` and `aria-valuemax` are used to inform assistive technologies of the minimum and maximum values of the range. When using these properties, set `aria-valuemin` to the lowest value of the range and `aria-valuemax` to the greatest value.
 
-When the range is unknown, omit both `aria-valuemin` and `aria-valuemax`. An example of such a widget is an indeterminate progress bar.
-
-```
-<progress>Loading...</progress>
-```
+When the range is unknown, omit both `aria-valuemin` and `aria-valuemax`. See an example of a indeterminate range element [indeterminate progress bar]().
 
 ## Using `aria-valuenow`
 
@@ -109,8 +105,8 @@ $<output id="price" aria-labelledby="paperclip-label">0.50</output>
 This is an example of a progress bar represent by an SVG. The range properties are necessary to full explain the widget to assistive technologies.
 
 ```
-<div for="loadstatus">Loading:
-  <span role="progressbar" id="loadstatus" aria-valuemin="0" aria-valuenow="33" aria-valuemax="100" >
+<div>Loading:
+  <span role="progressbar" aria-valuemin="0" aria-valuenow="33" aria-valuemax="100" >
     <svg width="100" height="10">
       <rect x="0" y="0" height="10" width="100" stroke="black" fill="none"/>
       <rect x="0" y="0" height="10" width="33" fill="green" />
@@ -119,12 +115,19 @@ This is an example of a progress bar represent by an SVG. The range properties a
 </div>
 ```
 
+To represent an indeterminate progress bar where the value range is unknown, omit the `aria-valuemin`, `aria-valuemax`, and `aria-valuenow` attributes.
+
+```
+<img role="progressbar" src="spinner.gif" alt="Loading...">
+```
+
 The progress bar example can be made using the native HTML progress element.
 
 ```
 <label for="loadstatus">Loading:</label>
 <progress id="loadstatus" max="100" value="33"></progress>
 ```
+
 
 ## `scrollbar` Role
 
@@ -146,3 +149,5 @@ The progress bar example can be made using the native HTML progress element.
   </div>
 </div>
 ```
+
+If `aria-valuemin` and `aria-valuemax` are omitted, then the browser will use the default values of 0 and 100, respectively.
