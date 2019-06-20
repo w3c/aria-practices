@@ -145,11 +145,21 @@
         <tbody>
           <tr data-test-id="spinbutton-down-arrow">
             <th><kbd>Down Arrow</kbd></th>
-            <td>Decreases the spin button value by 1 item.</td>
+            <td>
+              <ul>
+                <li>Decreases the spin button value by 1 item.</li>
+                <li>When on the spin button for day is on the first day of the month, the value is set to the last day.</li>
+                <li>When on the spin button for month is on <q>January</q>, the value is set to <q>December</q>.</li>
+              </ul>
+            </td>
           </tr>
           <tr data-test-id="spinbutton-up-arrow">
             <th><kbd>Up Arrow</kbd></th>
-            <td>Increases the spin button value by 1 item.</td>
+              <ul>
+                <li>Increases the spin button value by 1 item.</li>
+                <li>When on the spin button for day is on the last day of the month, the value is set to the first day.</li>
+                <li>When on the spin button for month is on <q>December</q>, the value is set to <q>January</q>.</li>
+              </ul>
           </tr>
           <tr data-test-id="spinbutton-page-down">
             <th><kbd>Page Down</kbd></th>
