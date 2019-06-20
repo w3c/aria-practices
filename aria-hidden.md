@@ -1,4 +1,4 @@
-== 7. Accessibility tree
+## 7. Accessibility tree
 
 Browsers use a so-called accessibility tree to communicate the representation of web content with assistive technologies. See the [Core Accessibility API Mappings](https://w3c.github.io/core-aam/#dfn-accessibility-tree) specification for further information about accessibility trees.
 
@@ -24,7 +24,7 @@ The accessibility tree does not include the `head` or `title` elements, because 
 
 CSS and ARIA can be used to control what is included in the accessibility tree, which is discussed in the following sections.
 
-== 8. Excluding subtrees from the accessibility tree
+## 8. Excluding subtrees from the accessibility tree
 
 An element that is hidden, either by default or by the author using CSS (in particular `display: none` and `visibility: hidden`), or using the HTML `hidden` attribute (which by default maps to CSS `display: none`), is not included in the accessibility tree. Its descendants are also not included. The element is hidden from all users, both visually and from assistive technologies.
 
