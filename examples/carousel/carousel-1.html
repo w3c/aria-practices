@@ -12,7 +12,15 @@
     <script src="../js/app.js"></script>
 
     <!--  js and css for this example. -->
-    <link rel="stylesheet" href="css/carousel-1.css">
+    <script type="text/javascript">
+      var stylesheet = 'css/carousel-1.css';
+      if (location.href.indexOf('moreaccessible') > 0) {
+        console.log('loaded more accessible');
+        stylesheet = 'css/carousel-1-more-accessible.css';
+      }
+      document.write('<link rel="stylesheet" type="text/css" href="' + stylesheet + '">')
+    </script>
+
     <script src="js/carousel.js" type="text/javascript"></script>
     <script src="js/carouselItem.js" type="text/javascript"></script>
     <script src="js/carouselButtons.js" type="text/javascript"></script>
@@ -44,16 +52,25 @@
       </p>
 
       <section>
+        <h2>Rendering Options</h2>
+        <ul>
+          <li><a href="carousel-1.html">Carousel controls and captions over image</a>, this option is not as accessible since the controls are more difficult to find and the captions are more difficult to read when they are over the rotating images.</li>
+          <li><a href="carousel-1.html?moreaccessible">Carousel controls and captions above and below the image</a>, this option is the preferred method since the controls are easier to find and the captions are easier to read.</li>
+        </ul>
+      </section>
+
+      <section>
         <h2 id="ex_label">Example</h2>
         <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
         <div id="ex1">
-            <section id="myCarousel" class="carousel slide" aria-roledescription="carousel" aria-label="Highlighted television shows">
+            <section id="myCarousel" class="carousel" aria-roledescription="carousel" aria-label="Highlighted television shows">
 
               <div class="carousel-inner">
 
                 <div class="controls">
 
-                  <button class="rotation pause" aria-label="Stop automatic slide show">
+                  <button class="rotation pause"
+                          aria-label="Stop automatic slide show">
                     <svg width="42" height="34" version="1.1" xmlns="http://www.w3.org/2000/svg">
                       <rect class="background" x="2" y="2" rx="5" ry="5" width="38" height="24"/>
                       <rect class="border" x="4" y="4" rx="5" ry="5" width="34" height="20"/>

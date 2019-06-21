@@ -1,6 +1,11 @@
 
 /* .carousel */
-.carousel-item {
+
+.carousel .carousel-inner {
+  position: relative;
+}
+
+.carousel .carousel-item {
   display: none;
   max-height: 400px;
   max-width: 900px;
@@ -15,11 +20,6 @@
 
 /* More like bootstrap, less accessible */
 
-.carousel .carousel-inner {
-  max-width: 900px;
-  position: relative;
-}
-
 .carousel .carousel-items {
   border: solid 2px transparent;
 }
@@ -29,17 +29,17 @@
   outline: solid 3px #005a9c;
 }
 
-.carousel .carousel-inner .carousel-image a img {
+.carousel .carousel-item .carousel-image a img {
   height: 100%;
   width: 100%;
 }
 
-.carousel .carousel-inner .carousel-caption a {
+.carousel .carousel-item .carousel-caption a {
   text-decoration: underline;
 }
 
-.carousel .carousel-inner .carousel-caption a,
-.carousel .carousel-inner .carousel-caption span.contrast {
+.carousel .carousel-item .carousel-caption a,
+.carousel .carousel-item .carousel-caption span.contrast {
   display: inline-block;
   background-color: rgba(0, 0, 0, 0.65);
   padding-left: 0.25em;
@@ -49,30 +49,30 @@
   margin: 0;
 }
 
-.carousel .carousel-inner .carousel-caption h3 a {
+.carousel .carousel-item .carousel-caption h3 a {
   color: #fff;
   font-weight: 600;
 }
 
-.carousel .carousel-inner .carousel-caption a:hover,
-.carousel .carousel-inner .carousel-caption span.contrast:hover {
+.carousel .carousel-item .carousel-caption a:hover,
+.carousel .carousel-item .carousel-caption span.contrast:hover {
   background-color: rgba(0, 0, 0, 1);
   margin: 0;
 }
 
-.carousel .carousel-inner .carousel-caption a:focus {
+.carousel .carousel-item .carousel-caption a:focus {
   background-color: rgba(0, 0, 0, 1);
   border-color: #fff;
   margin: 0;
 }
 
-.carousel .carousel-inner .carousel-caption p {
+.carousel .carousel-item .carousel-caption p {
   font-size: 1em;
   line-height: 1.5;
   margin-bottom: 0;
 }
 
-.carousel .carousel-inner .carousel-caption {
+.carousel .carousel-item .carousel-caption {
   position: absolute;
   right: 15%;
   bottom: 0;
@@ -83,11 +83,6 @@
   text-align: center;
 }
 
-.carousel .carousel-inner,
-.carousel .carousel-item,
-.carousel .carousel-slide {
-  max-height: 400px;
-}
 
 /* Shared CSS for Pause, Next and Previous Slide Controls */
 
@@ -183,4 +178,3 @@
 .carousel .controls button[aria-disabled=true]:focus rect.border {
   stroke: white;
 }
-
