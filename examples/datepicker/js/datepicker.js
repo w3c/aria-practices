@@ -812,10 +812,9 @@ DatePicker.prototype.getDateInput = function () {
 
 };
 
-DatePicker.prototype.getButtonLabel = function () {
+DatePicker.prototype.getDateForButtonLabel = function () {
   this.selectedDay = new Date(this.year, this.month, this.day + 1);
-  var label = 'Calendar, current date is ';
-  label += this.dayLabels[this.selectedDay.getDay()];
+  var label = this.dayLabels[this.selectedDay.getDay()];
   label += ' ' + this.monthLabels[this.selectedDay.getMonth()];
   label += ' ' + (this.selectedDay.getDate());
   label += ', ' + this.selectedDay.getFullYear();

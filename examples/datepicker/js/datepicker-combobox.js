@@ -132,6 +132,7 @@ ComboboxInput.prototype.handleBlur = function () {
 };
 
 ComboboxInput.prototype.setFocus = function () {
+  this.buttonNode.setAttribute('aria-label', 'Date, current date is ' + this.datepicker.getDateForButtonLabel())
   this.inputNode.focus();
 };
 

@@ -99,7 +99,7 @@ MenuButtonInput.prototype.handleClick = function (event) {
 
 
 MenuButtonInput.prototype.setFocus = function () {
-  this.buttonNode.setAttribute('aria-label', this.datepicker.getButtonLabel())
+  this.buttonNode.setAttribute('aria-label', 'Calendar, current date is ' + this.datepicker.getDateForButtonLabel())
   this.buttonNode.focus();
 };
 
