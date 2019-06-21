@@ -93,8 +93,6 @@ ComboboxInput.prototype.handleKeyDown = function (event) {
 };
 
 ComboboxInput.prototype.handleTouchStart = function (event) {
-  console.log('[handleTouchStart][length]: ' + event.targetTouches.length);
-
   if (event.targetTouches.length === 1) {
     if (this.comboboxNode.contains(event.targetTouches[0].target)) {
       if (this.isCollapsed()) {
@@ -108,9 +106,6 @@ ComboboxInput.prototype.handleTouchStart = function (event) {
 };
 
 ComboboxInput.prototype.handleFocus = function () {
-  console.log('[ComboboxInput][handleFocus][ignoreFocusEvent]: ' + this.ignoreFocusEvent);
-  console.log('[ComboboxInput][handleFocus][isMouseDownOnBackground]: ' + this.datepicker.isMouseDownOnBackground);
-
   if (!this.datepicker.isMouseDownOnBackground &&
       !this.isMouseDownOnButton &&
       !this.ignoreFocusEvent &&
@@ -125,9 +120,6 @@ ComboboxInput.prototype.handleFocus = function () {
 };
 
 ComboboxInput.prototype.handleBlur = function () {
-  console.log('[ComboboxInput][handleBlur][ignoreBlurEvent]: ' + this.ignoreBlurEvent);
-  console.log('[ComboboxInput][handleBlur][isMouseDownOnBackground]: ' + this.datepicker.isMouseDownOnBackground);
-
   if (!this.datepicker.isMouseDownOnBackground &&
       !this.isMouseDownOnButton &&
       !this.ignoreBlurEvent) {
@@ -148,10 +140,6 @@ ComboboxInput.prototype.hasFocus = function () {
 };
 
 ComboboxInput.prototype.handleMouseDown = function (event) {
-  console.log('[ComboboxInput][handleMouseDown]: ' + event.target.tagName + '.' +  event.target.className);
-  console.log('[ComboboxInput][handleMouseDown][hasFocus]: ' + this.hasFocus());
-  console.log('[ComboboxInput][handleMouseDown][isCollapsed]: ' + this.isCollapsed());
-
   if (this.isCollapsed()) {
     this.datepicker.show();
   }
@@ -166,9 +154,6 @@ ComboboxInput.prototype.handleMouseDown = function (event) {
 };
 
 ComboboxInput.prototype.handleButtonMouseDown = function (event) {
-  console.log('[ComboboxInput][handleButtonMouseDown]');
-  console.log('[ComboboxInput][handleButtonMouseDown][hasFocusFlag]: ' + this.hasFocusFlag);
-
   this.isMouseDownOnButton = true;
 
   if (this.isCollapsed()) {

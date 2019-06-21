@@ -20,7 +20,7 @@ var MenuButtonInput = function (inputNode, buttonNode, messageNode, datepicker) 
 
   this.keyCode = Object.freeze({
     'TAB': 9,
-    'RETURN': 13,
+    'ENTER': 13,
     'ESC': 27,
     'SPACE': 32,
     'PAGEUP': 33,
@@ -36,9 +36,12 @@ var MenuButtonInput = function (inputNode, buttonNode, messageNode, datepicker) 
 
 MenuButtonInput.prototype.init = function () {
 
-  this.buttonNode.addEventListener('click', this.handleButtonClick.bind(this));
-  this.buttonNode.addEventListener('touchstart', this.handleTouchStart.bind(this));
+  this.buttonNode.addEventListener('click', this.handleClick.bind(this));
   this.buttonNode.addEventListener('keydown', this.handleKeyDown.bind(this));
+
+  this.buttonNode.addEventListener('focus', this.handleFocus.bind(this));
+  this.buttonNode.addEventListener('blur', this.handleBlur.bind(this));
+
 
   this.setMessage('');
 };
@@ -49,9 +52,8 @@ MenuButtonInput.prototype.handleKeyDown = function (event) {
   switch (event.keyCode) {
 
     case this.keyCode.DOWN:
-    case this.keyCode.RETURN:
+    case this.keyCode.ENTER:
       this.datepicker.show();
-      this.ignoreBlurEvent = true;
       this.datepicker.setFocusDay();
       flag = true;
       break;
@@ -71,67 +73,33 @@ MenuButtonInput.prototype.handleKeyDown = function (event) {
   }
 };
 
-MenuButtonInput.prototype.handleTouchStart = function (event) {
-
-  if (event.targetTouches.length === 1) {
-    console.log('[handleTouchStart][tagName]: ' + event.targetTouches[0].target.tagName);
-    if (this.comboboxNode.contains(event.targetTouches[0].target)) {
-      if (this.isCollapsed()) {
-        this.datepicker.show();
-        event.stopPropagation();
-        event.preventDefault();
-        return false;
-      }
-    }
-  }
-};
-
 MenuButtonInput.prototype.handleFocus = function () {
-  console.log('[MenuButtonInput][handleFocus]')
-  if (!this.ignoreFocusEvent && this.isCollapsed()) {
+  if (this.isCollapsed()) {
     this.setMessage('Use the down arrow key or the following change date button to move focus to the datepicker grid.');
   }
-
-  this.hasFocusFlag = true;
-  this.ignoreFocusEvent = false;
-
 };
 
-
 MenuButtonInput.prototype.handleBlur = function () {
-  if (!this.ignoreBlurEvent) {
-    this.setMessage('');
-  }
-  this.hasFocusFlag = false;
-  this.ignoreBlurEvent = false;
+  this.setMessage('');
 };
 
 MenuButtonInput.prototype.handleClick = function (event) {
-  console.log('[MenuButtonInput][handleClick]: ' + event.target.tagName);
 
   if (this.isCollapsed()) {
     this.datepicker.show();
   }
   else {
-    this.ignoreFocusEvent = true;
     this.datepicker.hide();
   }
 
-};
+  event.stopPropagation();
+  event.preventDefault();
 
-MenuButtonInput.prototype.handleButtonClick = function (event) {
-  this.ignoreBlurEvent = true;
-  this.datepicker.show();
-  this.datepicker.setFocusDay();
-
-  if (event) {
-    event.stopPropagation();
-    event.preventDefault();
-  }
 };
 
 
 MenuButtonInput.prototype.setFocus = function () {
+  this.buttonNode.setAttribute('aria-label', this.datepicker.getButtonLabel())
   this.buttonNode.focus();
 };
 

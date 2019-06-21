@@ -20,7 +20,7 @@ var DatePickerDay = function (domNode, datepicker, index, row, column) {
 
   this.keyCode = Object.freeze({
     'TAB': 9,
-    'RETURN': 13,
+    'ENTER': 13,
     'ESC': 27,
     'SPACE': 32,
     'PAGEUP': 33,
@@ -85,7 +85,7 @@ DatePickerDay.prototype.handleKeyDown = function (event) {
       flag = true;
       break;
 
-    case this.keyCode.RETURN:
+    case this.keyCode.ENTER:
     case this.keyCode.SPACE:
       this.datepicker.setTextboxDate();
       this.datepicker.hide();
@@ -156,7 +156,6 @@ DatePickerDay.prototype.handleKeyDown = function (event) {
 };
 
 DatePickerDay.prototype.handleMouseDown = function (event) {
-  console.log('[DatePickerDay][handleMouseDown]');
   this.datepicker.day = this.day;
 
   if (this.isDisabled()) {

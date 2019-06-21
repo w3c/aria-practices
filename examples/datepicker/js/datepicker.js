@@ -6,7 +6,8 @@
 */
 
 var DatePicker = function (comboboxNode, inputNode, buttonNode, messageNode, dialogNode) {
-  this.months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  this.dayLabels = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  this.monthLabels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
   this.inputNode   = inputNode;
   this.buttonNode  = buttonNode;
@@ -54,7 +55,7 @@ var DatePicker = function (comboboxNode, inputNode, buttonNode, messageNode, dia
 
   this.keyCode = Object.freeze({
     'TAB': 9,
-    'RETURN': 13,
+    'ENTER': 13,
     'ESC': 27,
     'SPACE': 32,
     'PAGEUP': 33,
@@ -131,7 +132,7 @@ DatePicker.prototype.updateGrid = function (year, month) {
     month = this.month;
   }
 
-  this.MonthYearNode.innerHTML = this.months[month] + ' ' + year;
+  this.MonthYearNode.innerHTML = this.monthLabels[month] + ' ' + year;
 
   this.daysInCurrentMonth = this.getDaysInMonth(year, month);
 
@@ -406,7 +407,7 @@ DatePicker.prototype.handleOkButton = function (event) {
     case 'keydown':
 
       switch (event.keyCode) {
-        case this.keyCode.RETURN:
+        case this.keyCode.ENTER:
         case this.keyCode.SPACE:
 
           this.setTextboxDate();
@@ -456,7 +457,7 @@ DatePicker.prototype.handleCancelButton = function (event) {
     case 'keydown':
 
       switch (event.keyCode) {
-        case this.keyCode.RETURN:
+        case this.keyCode.ENTER:
         case this.keyCode.SPACE:
           this.hide();
           flag = true;
@@ -503,7 +504,7 @@ DatePicker.prototype.handleNextYearButton = function (event) {
           flag = true;
           break;
 
-        case this.keyCode.RETURN:
+        case this.keyCode.ENTER:
         case this.keyCode.SPACE:
           this.moveToNextYear();
           this.adjustCurrentDay(onFirstRow, onLastRow);
@@ -544,7 +545,7 @@ DatePicker.prototype.handlePreviousYearButton = function (event) {
 
       switch (event.keyCode) {
 
-        case this.keyCode.RETURN:
+        case this.keyCode.ENTER:
         case this.keyCode.SPACE:
           this.moveToPreviousYear();
           this.adjustCurrentDay(onFirstRow, onLastRow);
@@ -604,7 +605,7 @@ DatePicker.prototype.handleNextMonthButton = function (event) {
           flag = true;
           break;
 
-        case this.keyCode.RETURN:
+        case this.keyCode.ENTER:
         case this.keyCode.SPACE:
           this.moveToNextMonth();
           this.adjustCurrentDay(onFirstRow, onLastRow);
@@ -649,7 +650,7 @@ DatePicker.prototype.handlePreviousMonthButton = function (event) {
           flag = true;
           break;
 
-        case this.keyCode.RETURN:
+        case this.keyCode.ENTER:
         case this.keyCode.SPACE:
           this.moveToPreviousMonth();
           this.adjustCurrentDay(onFirstRow, onLastRow);
@@ -811,4 +812,13 @@ DatePicker.prototype.getDateInput = function () {
 
 };
 
+DatePicker.prototype.getButtonLabel = function () {
+  this.selectedDay = new Date(this.year, this.month, this.day + 1);
+  var label = 'Calendar, current date is ';
+  label += this.dayLabels[this.selectedDay.getDay()];
+  label += ' ' + this.monthLabels[this.selectedDay.getMonth()];
+  label += ' ' + (this.selectedDay.getDate());
+  label += ', ' + this.selectedDay.getFullYear();
+  return label;
+};
 

@@ -2,7 +2,6 @@
   margin-top: 1em;
 }
 
-
 .datepicker-spinbuttons .day {
   width: 2em;
 }
@@ -15,15 +14,38 @@
   width: 3em;
 }
 
-
 .datepicker-spinbuttons .spinbutton {
   float: left;
   text-align: center;
 }
 
+.datepicker-spinbuttons .spinbutton:first-child {
+  border-left: 4px;
+}
+
+.datepicker-spinbuttons .spinbutton:last-child {
+  border-right: 4px;
+}
+
 .datepicker-spinbuttons .spinbutton .previous,
 .datepicker-spinbuttons .spinbutton .next {
-  color: gray;
+  color: #666;
+}
+
+.datepicker-spinbuttons .spinbutton:focus  {
+  outline: 2px solid #005A9C;
+}
+
+.datepicker-spinbuttons .spinbutton:focus,
+.datepicker-spinbuttons .spinbutton:hover {
+  color: #444;
+  background-color: #EEE;
+}
+
+.datepicker-spinbuttons .spinbutton:focus .value,
+.datepicker-spinbuttons .spinbutton:hover .value {
+  background-color: #FFF;
+  color: black;
 }
 
 .datepicker-spinbuttons .spinbutton .previous {
@@ -33,7 +55,6 @@
 .datepicker-spinbuttons .spinbutton .next {
   border-top: 1px solid black;
 }
-
 
 .datepicker-spinbuttons .spinbutton .decrease svg polygon,
 .datepicker-spinbuttons .spinbutton .increase svg polygon {
