@@ -4540,7 +4540,13 @@ However, most authors do not need detailed understanding of the algorithms since
             <tr>
               <td><a href="#rowheader" class="role-reference"><code>rowheader</code></a></td>
               <td>Required <strong>Only If</strong> Content Insufficient</td>
-              <td>To-do: similar to columnheader</td>
+              <td>
+                <ul>
+                  <li>Warning! Using <code>aria-label</code> or <code>aria-labelledby</code> will hide descendant content from assistive technologies.</li>
+                  <li>Ideally named by visible, descendant content.</li>
+                  <li>If the <code>rowheader</code> role is implied from an HTML <code>th</code>, the HTML <code>abbr</code> attribute can be used to specify an abbreviated version of the name that is only announced when screen readers are reading an associated <code>cell</code> within the <code>table</code>, <code>grid</code>, or <code>treegrid</code>.</li>
+                </ul>
+              </td>
             </tr>
             <tr>
               <td><a href="#scrollbar" class="role-reference"><code>scrollbar</code></a></td>
