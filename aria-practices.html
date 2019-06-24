@@ -1386,7 +1386,7 @@
       <h3>Grids : Interactive Tabular Data and Layout Containers</h3>
 
       <p>
-        A <a href="#grid" class="role-reference">grid</a> widget is a container that enables users to navigate the information or interactive elements it contains using directional navigation keys, such as arrow keys, <kbd>Home</kbd> , and <kbd>End</kbd>.
+        A <a href="#grid" class="role-reference">grid</a> widget is a container that enables users to navigate the information or interactive elements it contains using directional navigation keys, such as arrow keys, <kbd>Home</kbd>, and <kbd>End</kbd>.
         As a generic container widget that offers flexible keyboard navigation, it can serve a wide variety of needs.
         It can be used for purposes as simple as grouping a collection of checkboxes or navigation links or as complex as creating a full-featured spreadsheet application.
         While the words &quot;row&quot; and &quot;column&quot; are used in the names of WAI-ARIA attributes and by assistive technologies when describing and presenting the logical structure of elements with the <code>grid</code> role, using the <code>grid</code> role on an element does not necessarily imply that its visual presentation is tabular.
@@ -1834,7 +1834,7 @@
             <ul>
               <li>Recommended selection model -- holding modifier keys is not necessary:
                 <ul>
-                  <li><kbd>Space</kbd>: changes the selection state of the focused option .</li>
+                  <li><kbd>Space</kbd>: changes the selection state of the focused option.</li>
                   <li><kbd>Shift + Down Arrow</kbd> (Optional): Moves focus to and toggles the selected state of the next option.</li>
                   <li><kbd>Shift + Up Arrow</kbd> (Optional): Moves focus to and toggles the selected state of the previous option.</li>
                   <li><kbd>Shift + Space</kbd> (Optional): Selects contiguous items from the most recently selected item to the focused item.</li>
@@ -2252,13 +2252,11 @@
         <ul>
           <li>
             The radio buttons are contained in or owned by an element with role
-            <a href="#radiogroup" class="role-reference">radiogroup</a>
-            .
+            <a href="#radiogroup" class="role-reference">radiogroup</a>.
           </li>
           <li>
             Each radio button element has role
-            <a href="#radio" class="role-reference">radio</a>
-            .
+            <a href="#radio" class="role-reference">radio</a>.
           </li>
           <li>
             If a radio button is checked, the <code>radio</code> element has
@@ -2270,17 +2268,15 @@
           <li>
             Each <code>radio</code> element is labeled by its content, has a visible label
             referenced by
-            <a href="#aria-labelledby" class="property-reference">aria-labelledby</a>
-            , or has a label specified with
-            <a href="#aria-label" class="property-reference">aria-label</a>
-            .
+            <a href="#aria-labelledby" class="property-reference">aria-labelledby</a>,
+            or has a label specified with
+            <a href="#aria-label" class="property-reference">aria-label</a>.
           </li>
           <li>
             The <code>radiogroup</code> element has a visible label referenced by
             <a href="#aria-labelledby" class="property-reference">aria-labelledby</a>
             or has a label specified with
-            <a href="#aria-label" class="property-reference">aria-label</a>
-            .
+            <a href="#aria-label" class="property-reference">aria-label</a>.
           </li>
           <li>
             If elements providing additional information about either the radio group or each radio
@@ -2590,7 +2586,7 @@
         <p>For the tab list:</p>
         <ul>
           <li>
-            <kbd>Tab</kbd>: When focus moves into the tab list, places focus on the active <code>tab</code> element .
+            <kbd>Tab</kbd>: When focus moves into the tab list, places focus on the active <code>tab</code> element.
             When the tab list contains the focus, moves focus to the next element in the page tab sequence outside the tablist, which is typically either the first focusable element inside the tab panel or the tab panel itself.
           </li>
           <li>When focus is on a tab element in a horizontal tab list:
@@ -3267,7 +3263,7 @@
           <li>The element that serves as the focusable splitter has role <a href="#separator" class="role-reference">separator</a>.</li>
           <li>The separator element has the <a class="property-reference" href="#aria-valuenow">aria-valuenow</a> property set to a decimal value representing the current position of the separator.</li>
           <li>The separator element has the <a class="property-reference" href="#aria-valuemin">aria-valuemin</a> property set to a decimal value that represents the position where the primary pane has its minimum size. This is typically <code>0</code>.</li>
-          <li>The separator element has the <a class="property-reference" href="#aria-valuemax">aria-valuemax</a> property set to a decimal value that represents the position where the primary pane has its maximum size . This is typically <code>100</code>.</li>
+          <li>The separator element has the <a class="property-reference" href="#aria-valuemax">aria-valuemax</a> property set to a decimal value that represents the position where the primary pane has its maximum size. This is typically <code>100</code>.</li>
           <li>
             If the primary pane has a visible label, it is referenced by
             <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> on the separator element.
@@ -3786,7 +3782,7 @@ However, most authors do not need detailed understanding of the algorithms since
             When names are generated from text that exists only in markup and is never displayed visually, there is a greater likelihood that accessible names will not be updated when the user interface design or content are changed.
           </p>
           <p>
-            If an interactive element, such as an input field or button ,  does not have a visually persistent text label, consider adjusting the design to include one.
+            If an interactive element, such as an input field or button, does not have a visually persistent text label, consider adjusting the design to include one.
             In addition to serving as a more robust source for an accessible name, visible text labels enhance accessibility for many people with disabilities who do not use assistive technologies that present invisible accessible names.
             In most circumstances, visible text labels also make the user interface easier to understand for all users.
           </p>
@@ -4142,9 +4138,9 @@ However, most authors do not need detailed understanding of the algorithms since
           The table below lists all ARIA roles and provides the following information for each :
         </p>
         <dl>
-          <dt>Necessaty of Naming</dt>
+          <dt>Necessity of Naming</dt>
           <dd>
-            Indicates how necessary it is for authors to add a naming attribute or element to supplement or override the content of an element with the specified role.
+            Indicates how necessity it is for authors to add a naming attribute or element to supplement or override the content of an element with the specified role.
             This column may include one of the following values:
             <ul>
               <li>
@@ -4166,7 +4162,7 @@ However, most authors do not need detailed understanding of the algorithms since
         <table aria-labelledby="naming_role_guidance_heading">
           <tr>
             <th>role</th>
-            <th>Necessaty of Naming</th>
+            <th>Necessity of Naming</th>
             <th>Guidance</th>
           </tr>
           <tr>
@@ -5552,7 +5548,7 @@ However, most authors do not need detailed understanding of the algorithms since
         <section id="kbd_shortcuts_design_where">
           <h5>Choose Where to Add Shortcuts </h5>
           <p>Work to draft content for this section is tracked in <a href="https://github.com/w3c/aria-practices/issues/219">issue 219.</a></p>
-          <p> The first goal when designing a keyboard interface is simple, efficient, and intuitive operation with only basic keyboard navigation support. If basic operation of a keyboard interface is inefficient , attempting to compensate for fundamental design issues, such as suboptimal layout or command structure, by implementing keyboard shortcuts will not likely reduce user frustration. The practical implication of this is that, in most well-designed user interfaces, the percentage of functionality that needs to be accessible via a keyboard shortcut in order to create optimal usability is not very high. In many simple user interfaces, keyboard shortcuts can be entirely superfluous. And, in user interfaces with too many keyboard shortcuts, the excess shortcuts create cognitive load that make the most useful ones more difficult to remember. </p>
+          <p>The first goal when designing a keyboard interface is simple, efficient, and intuitive operation with only basic keyboard navigation support. If basic operation of a keyboard interface is inefficient, attempting to compensate for fundamental design issues, such as suboptimal layout or command structure, by implementing keyboard shortcuts will not likely reduce user frustration. The practical implication of this is that, in most well-designed user interfaces, the percentage of functionality that needs to be accessible via a keyboard shortcut in order to create optimal usability is not very high. In many simple user interfaces, keyboard shortcuts can be entirely superfluous. And, in user interfaces with too many keyboard shortcuts, the excess shortcuts create cognitive load that make the most useful ones more difficult to remember. </p>
           <p>Consider the following when deciding where to assign keyboard shortcuts: </p>
 
           <ol>
@@ -6155,8 +6151,8 @@ However, most authors do not need detailed understanding of the algorithms since
       <a href="#presentation" class="role-reference">presentation</a>
       role, which declares that an element is being used only for presentation and therefore does
       not have any accessibility semantics. The ARIA 1.1 specification also includes role
-      <a href="#none" class="role-reference">none</a>
-      , which serves as a synonym for <code>presentation</code>.
+      <a href="#none" class="role-reference">none</a>,
+      which serves as a synonym for <code>presentation</code>.
     </p>
     <p>
       For example, consider a tabs widget built using an HTML <code>ul</code> element.
@@ -6231,11 +6227,11 @@ However, most authors do not need detailed understanding of the algorithms since
       <p>
          Browsers ignore <code>role=&quot;presentation&quot;</code>, and it therefore has no effect, if either of the following are true about the element to which it is applied:</p>
           <ul>
-            <li>The element is focusable, e.g. it is natively focusable like an HTML link or input , or it has a <code>tabindex</code> attribute.</li>
+            <li>The element is focusable, e.g. it is natively focusable like an HTML link or input, or it has a <code>tabindex</code> attribute.</li>
             <li>
               The element has any of the
-              <a href="#global_states" class="specref">twenty-one global ARIA states and properties</a>
-              , e.g., <code>aria-label</code>.
+              <a href="#global_states" class="specref">twenty-one global ARIA states and properties</a>,
+              e.g., <code>aria-label</code>.
             </li>
           </ul>
     </section>
