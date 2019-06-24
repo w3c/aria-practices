@@ -3942,7 +3942,7 @@ However, most authors do not need detailed understanding of the algorithms since
           </p>
           <pre><code>&lt;button id="download-button" aria-labelledby="download-button download-details">Download&lt;/button>
 &lt;span id="download-details">PDF, 2.4 MB&lt;/span></code></pre>
-          <p>In the above example, the accessible name of the alert will be "Download PDF, 2.4 MB", with a space between "Download" and "PDF", and not "DownloadPDF, 2.4 MB".</p>
+          <p>In the above example, the accessible name of the button will be "Download PDF, 2.4 MB", with a space between "Download" and "PDF", and not "DownloadPDF, 2.4 MB".</p>
           <ol class="warning">
             <li>The <code>aria-labelledby</code> property cannot be chained, i.e., if an element with <code>aria-labelledby</code> references another element that also has <code>aria-labelledby</code>, the <code>aria-labelledby</code> attribute on the referenced element will be ignored.</li>
             <li>If an element is referenced by <code>aria-labelledby</code> more than one time during a name calculation, the second and any subsequent references will be ignored.</li>
