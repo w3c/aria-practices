@@ -67,7 +67,16 @@ SpinButtonDate.prototype.getValue = function () {
   return this.valueNow;
 };
 
-SpinButtonDate.prototype.setValue = function (value) {
+SpinButtonDate.prototype.getValueText = function () {
+  return this.valueText;
+};
+
+
+SpinButtonDate.prototype.setValue = function (value, flag) {
+
+  if (typeof flag !== 'boolean') {
+    flag = true;
+  }
 
   if (value > this.valueMax) {
     if (this.wrap) {
@@ -102,17 +111,23 @@ SpinButtonDate.prototype.setValue = function (value) {
 
   this.valueNode.innerHTML = this.valueText;
 
-  if (this.callback) {
+  if (flag, this.callback) {
     this.callback(this.valueNow);
   }
 
 };
 
-SpinButtonDate.prototype.getValueMin = function (value) {
+SpinButtonDate.prototype.setValueText = function (value) {
+  this.valueText = value;
+  this.domNode.setAttribute('aria-valuetext', value);
+};
+
+
+SpinButtonDate.prototype.getValueMin = function () {
   return parseInt(this.domNode.getAttribute('aria-valuemin'));
 };
 
-SpinButtonDate.prototype.getValueMax = function (value) {
+SpinButtonDate.prototype.getValueMax = function () {
   return parseInt(this.domNode.getAttribute('aria-valuemax'));
 };
 
