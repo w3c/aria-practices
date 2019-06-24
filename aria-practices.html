@@ -4461,12 +4461,24 @@ However, most authors do not need detailed understanding of the algorithms since
             <tr>
               <td><a href="#menuitemcheckbox" class="role-reference"><code>menuitemcheckbox</code></a></td>
               <td>Required <strong>Only If</strong> Content Insufficient</td>
-              <td>guidance</td>
+              <td>
+                <ul>
+                  <li>Warning! Using <code>aria-label</code> or <code>aria-labelledby</code> will hide any descendant content from assistive technologies.</li>
+                  <li>Use the element's contents as the accessible name if possible. Otherwise, use <code>aria-labelledby</code>.</li>
+                  <li>See the <a href="#menu">Menu or Menu bar Design Pattern</a>.</li>
+                </ul>
+              </td>
             </tr>
             <tr>
               <td><a href="#menuitemradio" class="role-reference"><code>menuitemradio</code></a></td>
               <td>Required <strong>Only If</strong> Content Insufficient</td>
-              <td>guidance</td>
+              <td>
+                <ul>
+                  <li>Warning! Using <code>aria-label</code> or <code>aria-labelledby</code> will hide any descendant content from assistive technologies.</li>
+                  <li>Use the element's contents as the accessible name if possible. Otherwise, use <code>aria-labelledby</code>.</li>
+                  <li>See the <a href="#menu">Menu or Menu bar Design Pattern</a>.</li>
+                </ul>
+              </td>
             </tr>
             <tr>
               <td><a href="#navigation" class="role-reference"><code>navigation</code></a></td>
@@ -4507,7 +4519,13 @@ However, most authors do not need detailed understanding of the algorithms since
             <tr>
               <td><a href="#radio" class="role-reference"><code>radio</code></a></td>
               <td>Required <strong>Only If</strong> Content Insufficient</td>
-              <td>guidance</td>
+              <td>
+                <ul>
+                  <li>Warning! Using <code>aria-label</code> or <code>aria-labelledby</code> will hide any descendant content from assistive technologies.</li>
+                  <li>If based on HTML <code>type="checkbox"</code>, use a <code>label</code> element.</li>
+                  <li>Otherwise, reference visible content via <code>aria-labelledby</code>.</li>
+                </ul>
+              </td>
             </tr>
             <tr>
               <td><a href="#radiogroup" class="role-reference"><code>radiogroup</code></a></td>
@@ -4586,7 +4604,13 @@ However, most authors do not need detailed understanding of the algorithms since
             <tr>
               <td><a href="#switch" class="role-reference"><code>switch</code></a></td>
               <td>Required <strong>Only If</strong> Content Insufficient</td>
-              <td>To-do: similar to checkbox</td>
+              <td>
+                <ul>
+                  <li>Warning! Using <code>aria-label</code> or <code>aria-labelledby</code> will hide any descendant content from assistive technologies.</li>
+                  <li>If based on HTML <code>type="checkbox"</code>, use a <code>label</code> element.</li>
+                  <li>Otherwise, reference visible content via <code>aria-labelledby</code>.</li>
+                </ul>
+              </td>
             </tr>
             <tr>
               <td><a href="#tab" class="role-reference"><code>tab</code></a></td>
