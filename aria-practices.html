@@ -4291,17 +4291,22 @@ However, most authors do not need detailed understanding of the algorithms since
             <tr>
               <td><a href="#dialog" class="role-reference"><code>dialog</code></a></td>
               <td>Required</td>
-              <td>To-do: similar to alertdialog</td>
+              <td>Use <code>aria-labelledby</code> if a visible title is present, otherwise use <code>aria-label</code>.</td>
             </tr>
             <tr>
               <td><a href="#directory" class="role-reference"><code>directory</code></a></td>
               <td>Discretionary</td>
-              <td>To-do: probably similar to complementary</td>
+              <td>
+                <ul>
+                  <li>Naming can help users understand the purpose of the directory.</li>
+                  <li>Use <code>aria-labelledby</code> if a visible title is present, otherwise use <code>aria-label</code>.</li>
+                </ul>
+              </td>
             </tr>
             <tr>
               <td><a href="#document" class="role-reference"><code>document</code></a></td>
-              <td>Discretionary</td>
-              <td>To-do: write guidance; techniques similar to complementary.</td>
+              <td>Do Not Name</td>
+              <td>The <code>document</code> role is used to hint to the assistive technology to switch back to "reading mode" within an <code>application</code> or widget. That element should have a name.</td>
             </tr>
             <tr>
               <td><a href="#feed" class="role-reference"><code>feed</code></a></td>
