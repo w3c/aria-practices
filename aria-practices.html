@@ -4247,7 +4247,7 @@ However, most authors do not need detailed understanding of the algorithms since
                 <ul>
                   <li>Warning! Using <code>aria-label</code> or <code>aria-labelledby</code> will hide descendant content from assistive technologies.</li>
                   <li>Ideally named by visible, descendant content.</li>
-                  <li>If the <code>columnheader</code> role is implied from an HTML <code>th</code>, the HTML <code>abbr</code> attribute can be used to specify an abbreviated version of the name that is only announced when screen readers are reading an associated <code>cell</code> within the <code>table</code>, <code>grid</code>, or <code>treegrid</code>.</li> 
+                  <li>If the <code>columnheader</code> role is implied from an HTML <code>th</code>, the HTML <code>abbr</code> attribute can be used to specify an abbreviated version of the name that is only announced when screen readers are reading an associated <code>cell</code> within the <code>table</code>, <code>grid</code>, or <code>treegrid</code>.</li>
                 </ul>
               </td>
             </tr>
@@ -4256,7 +4256,7 @@ However, most authors do not need detailed understanding of the algorithms since
               <td>Required</td>
               <td>
                 <ul>
-                  <li>If the <code>combobox</code> role is applied to an HTML <code>input</code>, may be named with an HTML <code>label</code> element.</li>
+                  <li>If the <code>combobox</code> role is applied to an HTML <code>select</code> or <code>input</code> element, can be named with an HTML <code>label</code> element.</li>
                   <li>Otherwise use <code>aria-labelledby</code> if a visible title is present.</li>
                   <li>Use <code>aria-label</code> if a visible label is not present.</li>
                 </ul>
@@ -4499,7 +4499,7 @@ However, most authors do not need detailed understanding of the algorithms since
               </td>
               <td>
                 When <code>row</code> elements are focusable in a <a href="#treegrid">treegrid</a>, screen readers announce the entire contents of a row when navigating by row.
-                This is typically the most appropriate behavior. 
+                This is typically the most appropriate behavior.
                 However, in some circumstances, it could be beneficial to change the order in which cells are announced or exclude announcement of certain cells by using <code>aria-labelledby</code> to specify which cells to announce.
               </td>
             </tr>
