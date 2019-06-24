@@ -4364,8 +4364,15 @@ However, most authors do not need detailed understanding of the algorithms since
             </tr>
             <tr>
               <td><a href="#group" class="role-reference"><code>group</code></a></td>
-              <td>To-do: lookup requirement</td>
-              <td>To-do: write guidance</td>
+              <td>Discretionary</td>
+              <td>
+                <ul>
+                  <li>When using the HTML <code>fieldset</code> element, the accessible name can be derived from the <code>legend</code> element.</li>
+                  <li>When using the HTML <code>details</code> element, do not provide an accessible name for this element. The user interacts with the <code>summary</code> element, and that can derive its accessible name from its contents.</li>
+                  <li>When using the HTML <code>optgroup</code> element, use the <code>label</code> attribute.</li>
+                  <li>Otherwise, use <code>aria-labelledby</code> if a visible title is present, otherwise use <code>aria-label</code>.</li>
+                </ul>
+              </td>
             </tr>
             <tr>
               <td><a href="#heading" class="role-reference"><code>heading</code></a></td>
