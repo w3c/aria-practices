@@ -4429,11 +4429,12 @@ However, most authors do not need detailed understanding of the algorithms since
             </tr>
             <tr>
               <td><a href="#menu" class="role-reference"><code>menu</code></a></td>
-              <td>Discretionary</td>
+              <td>Recommended</td>
               <td>
                 <ul>
-                  <li>Recommended to distinguish articles from one another; helps users when navigating among articles.</li>
-                  <li>Use <code>aria-labelledby</code> if a visible title is present, otherwise use <code>aria-label</code>.</li>
+                  <li>Use <code>aria-labelledby</code> to refer to the menuitem or button that controls this element's display.</li>
+                  <li>Otherwise, use <code>aria-label</code>.</li>
+                  <li>See the <a href="#menu">Menu or Menu bar Design Pattern</a>.</li>
                 </ul>
               </td>
             </tr>
@@ -4449,6 +4450,7 @@ However, most authors do not need detailed understanding of the algorithms since
                     Since a <code>menubar</code> element is displayed persistently, a name on the <code>menubar</code> can serve that same purpose.
                   </li>
                   <li>Use <code>aria-labelledby</code> if a visible title is present, otherwise use <code>aria-label</code>.</li>
+                  <li>See the <a href="#menu">Menu or Menu bar Design Pattern</a>.</li>
                 </ul>
               </td>
             </tr>
@@ -4456,6 +4458,11 @@ However, most authors do not need detailed understanding of the algorithms since
               <td><a href="#menuitem" class="role-reference"><code>menuitem</code></a></td>
               <td>Required <strong>Only If</strong> Content Insufficient</td>
               <td>
+                <ul>
+                  <li>Warning! Using <code>aria-label</code> or <code>aria-labelledby</code> will hide any descendant content from assistive technologies.</li>
+                  <li>Ideally named by visible, descendant content.</li>
+                  <li>See the <a href="#menu">Menu or Menu bar Design Pattern</a>.</li>
+                </ul>
               </td>
             </tr>
             <tr>
