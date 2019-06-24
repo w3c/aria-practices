@@ -8,6 +8,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const glob = require('glob');
 
 const exampleFilePath = path.join(__dirname, '..', 'examples', 'index.html');
 const exampleTemplatePath = path.join(__dirname, 'reference-tables.template');
@@ -151,15 +152,6 @@ function replaceSection(id, content, newContent) {
   return content;
 }
 
-function getTitle(data) {
-  return data.substring(data.indexOf('<title>') + 7, data.indexOf('</title>'))
-          .split('|')[0]
-          .replace('Examples', '')
-          .replace('Example of', '')
-          .replace('Example', '')
-          .trim();
-}
-
 function getColumn(data, indexStart) {
   let count = 0;
   let index = data.lastIndexOf('<tr', indexStart);
@@ -276,49 +268,24 @@ function addLandmarkRole(landmark, hasLabel, title, ref) {
   }
 }
 
-function findHTMLFiles(dir) {
-  let count = 0;
-  fs.readdirSync(dir).forEach(function (file) {
-    let newPath = path.resolve(dir, file);
+glob.sync('examples/!(landmarks)/**/!(index).html', {cwd: path.join(__dirname, '..'), nodir: true}).forEach(function (file) {
+  let data = fs.readFileSync(file, 'utf8');
+  let ref = file.replace('examples/', '');
+  let title = data.substring(data.indexOf('<title>') + 7, data.indexOf('</title>'))
+                  .split('|')[0]
+                  .replace('Examples', '')
+                  .replace('Example of', '')
+                  .replace('Example', '')
+                  .trim();
 
-    let stats = fs.statSync(newPath);
+  let example = {
+    title: title,
+    ref: ref
+  };
 
-    if (stats.isDirectory()) {
-      findHTMLFiles(newPath);
-    }
-
-    if (stats.isFile() &&
-      (newPath.indexOf('.html') > 0) &&
-      (newPath.indexOf('index.html') < 0) &&
-      (newPath.indexOf('landmark') < 0)) {
-      count += 1;
-
-      let data = fs.readFileSync(newPath, 'utf8');
-
-      let ref = newPath.replace(exampleFilePath.replace('index.html', ''), '');
-      let title = getTitle(data);
-      let roles = getRoles(data);
-      let props = getPropertiesAndStates(data);
-
-      console.log('\nFile ' + count + ': ' + ref);
-      console.log('Title  ' + count + ': ' + title);
-      console.log('Roles  ' + count + ': ' + roles);
-      console.log('Props  ' + count + ': ' + props);
-
-      let example = {
-        title: title,
-        ref: ref
-      };
-
-      addExampleToRoles(roles, example);
-
-      addExampleToPropertiesAndStates(props, example);
-    }
-  });
-}
-
-
-findHTMLFiles(path.join(__dirname, '..', 'examples'));
+  addExampleToRoles(getRoles(data), example);
+  addExampleToPropertiesAndStates(getPropertiesAndStates(data), example);
+});
 
 // Add landmark examples, since they are a different format
 addLandmarkRole(['banner'], false, 'Banner Landmark', 'landmarks/banner.html');
