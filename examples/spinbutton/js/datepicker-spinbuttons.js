@@ -5,13 +5,18 @@
 *   File:   datepicker-spinbuttons.js
 */
 
+/* global SpinButtonDate */
+
 var DatePickerSpinButtons = function (domNode)  {
 
   this.domNode = domNode;
   this.monthNode = domNode.querySelector('.spinbutton.month');
   this.dayNode = domNode.querySelector('.spinbutton.day');
   this.yearNode = domNode.querySelector('.spinbutton.year');
+  this.dateNode = domNode.querySelector('.date');
 
+  this.valuesWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  this.valuesDay = ['', 'first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth', 'tenth', 'eleventh', 'twelfth', 'thirteenth', 'fourteen', 'fifteenth', 'sixteenth', 'seveneenth', 'eighteenth', 'nineteenth', 'twentieth', 'twenty first', 'twenty second', 'twenty third', 'twenty fourth', 'twenty fifth', 'twenty sixth', 'twenty seventh', 'twenty eighth', 'twenty ninth', 'thirtieth', 'thirty first'];
   this.valuesMonth = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
 };
@@ -32,10 +37,16 @@ DatePickerSpinButtons.prototype.init = function () {
   this.minYear = this.spinbuttonYear.getValueMin();
   this.maxYear = this.spinbuttonYear.getValueMax();
 
-  this.day = this.spinbuttonDay.getValue();
-  this.month = this.spinbuttonMonth.getValue();
-  this.year = this.spinbuttonYear.getValue();
+  this.currentDate = new Date();
+
+  this.day = this.currentDate.getDate();
+  this.month = this.currentDate.getMonth();
+  this.year = this.currentDate.getFullYear();
   this.daysInMonth = this.getDaysInMonth(this.year, this.month);
+
+  this.spinbuttonDay.setValue(this.day, false);
+  this.spinbuttonMonth.setValue(this.month, false);
+  this.spinbuttonYear.setValue(this.year, false);
 
   this.updateSpinButtons();
 };
@@ -128,6 +139,8 @@ DatePickerSpinButtons.prototype.updateSpinButtons = function () {
   this.updatePreviousDayMonthAndYear();
   this.updateNextDayMonthAndYear();
 
+  this.spinbuttonDay.setValueText(this.valuesDay[this.day]);
+
   this.spinbuttonDay.setPreviousValue(this.previousDay);
   this.spinbuttonMonth.setPreviousValue(this.previousMonth);
   this.spinbuttonYear.setPreviousValue(this.previousYear);
@@ -135,6 +148,10 @@ DatePickerSpinButtons.prototype.updateSpinButtons = function () {
   this.spinbuttonDay.setNextValue(this.nextDay);
   this.spinbuttonMonth.setNextValue(this.nextMonth);
   this.spinbuttonYear.setNextValue(this.nextYear);
+
+  this.currentDate = new Date(this.year + '-' + (this.month + 1) + '-' + this.day);
+
+  this.dateNode.innerHTML = '; ' + this.valuesWeek[this.currentDate.getDay()] + ', ' + this.spinbuttonMonth.getValueText() + ' ' + this.spinbuttonDay.getValueText() + ', ' + this.spinbuttonYear.getValue();
 
 
 };

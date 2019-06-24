@@ -45,14 +45,16 @@
 
       <div class="datepicker-spinbuttons"
            role="group"
-           aria-labelledby="myDatepickerLabel">
+           aria-labelledby="myDatepickerLabel myDatepickerDate">
 
            <h3 id="myDatepickerLabel">Date</h3>
+           <div class="sr-only date" id="myDatepickerDate">Friday, June 30th, 2019</div>
 
         <div  class="day spinbutton"
               role="spinbutton"
               tabindex="0"
               aria-valuenow="1"
+              aria-valuetext="first"
               aria-valuemin="1"
               aria-valuemax="31"
               aria-label="Day">
@@ -122,11 +124,14 @@
 
   <section>
     <h2>Accessibility Features</h2>
-    <p>There are three main featues of the spin button date picker example:</p>
+    <p>The accessibility featues of the spin button date picker example:</p>
     <ul>
-      <li>Day, month and year are separate spin buttons</li>
-      <li>The increase and decrease events are the <code>div</code> element containing the impages of the up and odwn arrows, making the effective target area larger for changing the value of a spin button.</li>
-      <li>Focusing a spin button increases the size of the increase and decrease bttons to make the element with focus easier to find and to track focus changes.</li>
+      <li>Day, month and year are separate spin buttons, each with their own tab stop.</li>
+      <li>A off screen <code>div</code> element is used to include the current date in the accessible name for the element with the <code>group</code> role.  The group label is typically read by the screen reader when focus or the virtual cursor moves to one of the spin controls.</li>
+      <li>The day spin button uses <code>aria-valuetext</code> to properly pronounce the day. e.g. first, second, third ...</li>
+      <ii>The month spin button uses <code>aria-valuetext</code> to properly pronounce the month instead of the numeric value. e.g. January, February, ...</li>
+      <li>The increase and decrease events are the <code>div</code> element containing the images of the up and odwn arrows, making the effective target area larger for changing the value of a spin button with a mouse or other pointing device.</li>
+      <li>Focusing a spin button increases the size of the increase and decrease bttons to make the element with focus easier to identify and to track focus changes.</li>
     </ul>
   </section>
   <section>
@@ -217,7 +222,7 @@
             <td></td>
             <th scope="row"><code>aria-labelledy="<em>IDREF</em>"</code></th>
             <td><code>div</code></td>
-            <td>The IDREF identifies the element with the visible text defining the accessible name for the group of spin buttons, i.e. "Date".</td>
+            <td>The IDREF identifies the element with the visible text defining the accessible name for the group of spin buttons, i.e. "Date" and an off screen <code>div</code> element that contains the current date represented by the spin buttons.</td>
           </tr>
           <tr data-test-id="spinbutton-role">
             <th scope="row"><code>spinbutton</code></th>
