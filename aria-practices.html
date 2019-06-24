@@ -4354,7 +4354,13 @@ However, most authors do not need detailed understanding of the algorithms since
             <tr>
               <td><a href="#gridcell" class="role-reference"><code>gridcell</code></a></td>
               <td>Required <strong>Only If</strong> Content Insufficient</td>
-              <td>To-do: write guidance similar to cell</td>
+              <td>
+                <ul>
+                  <li>Warning! Using <code>aria-label</code> or <code>aria-labelledby</code> will hide descendant content from assistive technologies.</li>
+                  <li>Ideally named by visible, descendant content.</li>
+                  <li>Note that associated row or column headers do not name a cell; a cell's name is its content. Headers are complementary information.</li>
+                </ul>
+              </td>
             </tr>
             <tr>
               <td><a href="#group" class="role-reference"><code>group</code></a></td>
