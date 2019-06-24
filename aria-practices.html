@@ -377,7 +377,7 @@
         <h4>WAI-ARIA Roles, States, and Properties</h4>
         <ul>
           <li>Breadcrumb trail is contained within a navigation landmark region.</li>
-          <li>The landmark region is labeled via <a href="#aria-label" class="property-reference">aria-label</a> or <a href="#aria-labelledby" class="property-reference">aria-labelledby</a>.</li>
+          <li>The landmark region is labelled via <a href="#aria-label" class="property-reference">aria-label</a> or <a href="#aria-labelledby" class="property-reference">aria-labelledby</a>.</li>
           <li>
             The link to the current page has <a href="#aria-current" class="property-reference">aria-current</a> set to <code>page</code>.
             If the element representing the current page is not a link, aria-current is optional.
@@ -397,7 +397,7 @@
         <li>
           Toggle button: A two-state button that can be either off (not pressed) or on (pressed).
           To tell assistive technologies that a button is a toggle button, specify a value for the attribute <a href="#aria-pressed" class="state-reference">aria-pressed</a>.
-          For example, a button labeled mute in an audio player could indicate that sound is muted by setting the pressed state true.
+          For example, a button labelled mute in an audio player could indicate that sound is muted by setting the pressed state true.
           <strong>Important:</strong> it is critical the label on a toggle does not change when its state changes.
           In this example, when the pressed state is true, the label remains &quot;Mute&quot; so a screen reader would say something like &quot;Mute toggle button pressed&quot;.
           Alternatively, if the design were to call for the button label to change from &quot;Mute&quot; to &quot;Unmute,&quot; the aria-pressed attribute would not be needed.
@@ -1045,7 +1045,7 @@
           <li>When a descendant of  a listbox, grid, or tree popup is focused, DOM focus remains on the textbox and the textbox has <a href="#aria-activedescendant" class="property-reference">aria-activedescendant</a> set to a value that refers to the focused element within the popup.</li>
           <li>In a combobox with a listbox, grid, or tree popup, when a suggested value is visually indicated as the currently selected value, the <code>option</code>, <code>gridcell</code>, <code>row</code>, or <code>treeitem</code> containing that value has <a href="#aria-selected" class="state-reference">aria-selected</a> set to <code>true</code>.</li>
           <li>
-            If the combobox has a visible label, the element with role combobox has <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> set to a value that refers to the labeling element.
+            If the combobox has a visible label, the element with role combobox has <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> set to a value that refers to the labelling element.
             Otherwise, the combobox element has a label provided by <a href="#aria-label" class="property-reference">aria-label</a>.
           </li>
           <li>The textbox element has <a href="#aria-autocomplete" class="property-reference">aria-autocomplete</a> set to a value that corresponds to its autocomplete behavior:
@@ -1496,7 +1496,7 @@
         </p>
 
         <p>
-          Unlike grids used to present data, A <code>grid</code> used for layout does not necessarily have header cells for labeling rows or columns and might contain only a single row or a single column.
+          Unlike grids used to present data, A <code>grid</code> used for layout does not necessarily have header cells for labelling rows or columns and might contain only a single row or a single column.
           Even if it has multiple rows and columns, it may present a single, logically homogenous set of elements.
           For example, a list of recipients for a message may be a grid where each cell contains a link that represents a recipient.
           The grid may initially have a single row but then wrap into multiple rows as recipients are added.
@@ -1689,7 +1689,7 @@
             </ul>
           </li>
           <li>
-            If there is an element in the user interface that serves as a label for the grid, <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> is set on the grid element with a value that refers to the labeling element.
+            If there is an element in the user interface that serves as a label for the grid, <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> is set on the grid element with a value that refers to the labelling element.
             Otherwise, a label is specified for the grid element using <a href="#aria-label" class="property-reference">aria-label</a>.
           </li>
           <li>If the grid has a caption or description, <a href="#aria-describedby" class="property-reference">aria-describedby</a> is set on the grid element with a value referring to the element containing the description.</li>
@@ -2072,7 +2072,7 @@
           <li>Items in a menu may be divided into groups by placing an element with a role of <a href="#separator" class="role-reference">separator</a> between groups. For example, this technique should be used when a menu contains a set of <a href="#menuitemradio" class="role-reference">menuitemradio</a> items. </li>
           <li>All <a href="#separator" class="role-reference">separators</a> should have <a href="#aria-orientation" class="property-reference">aria-orientation</a> consistent with the separator's orientation. </li>
           <li>
-            If a menubar has a visible label, the element with role <code>menubar</code> has <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> set to a value that refers to the labeling element.
+            If a menubar has a visible label, the element with role <code>menubar</code> has <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> set to a value that refers to the labelling element.
             Otherwise, the menubar element has a label provided by <a href="#aria-label" class="property-reference">aria-label</a>.
           </li>
           <li>
@@ -2266,7 +2266,7 @@
             set to <code>false</code>.
           </li>
           <li>
-            Each <code>radio</code> element is labeled by its content, has a visible label
+            Each <code>radio</code> element is labelled by its content, has a visible label
             referenced by
             <a href="#aria-labelledby" class="property-reference">aria-labelledby</a>,
             or has a label specified with
@@ -2529,7 +2529,7 @@
             </ul>
           </li>
           <li>
-            If there is an element in the user interface that serves as a label for the table, <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> is set on the table element with a value that refers to the labeling element.
+            If there is an element in the user interface that serves as a label for the table, <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> is set on the table element with a value that refers to the labelling element.
             Otherwise, a label is specified for the table element using <a href="#aria-label" class="property-reference">aria-label</a>.
           </li>
           <li>If the table has a caption or description, <a href="#aria-describedby" class="property-reference">aria-describedby</a> is set on the table element with a value referring to the element containing the description.</li>
@@ -2645,7 +2645,7 @@
         <li>Each element that serves as a tab has role <a class="role-reference" href="#tab">tab</a> and is contained within the element with role <code>tablist</code>.</li>
           <li>Each element that contains the content panel for a <code>tab</code> has role <a class="role-reference" href="#tabpanel">tabpanel</a>.</li>
           <li>
-            If the tab list has a visible label, the element with role <code>tablist</code> has <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> set to a value that refers to the labeling element.
+            If the tab list has a visible label, the element with role <code>tablist</code> has <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> set to a value that refers to the labelling element.
             Otherwise, the <code>tablist</code> element has a label provided by <a href="#aria-label" class="property-reference">aria-label</a>.
           </li>
           <li>Each element with role <code>tab</code> has the property <a href="#aria-controls" class="property-reference">aria-controls</a> referring to its associated <code>tabpanel</code> element.</li>
@@ -3178,7 +3178,7 @@
           </ul>
           </li>
           <li>
-            If there is an element in the user interface that serves as a label for the treegrid, <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> is set on the grid element with a value that refers to the labeling element.
+            If there is an element in the user interface that serves as a label for the treegrid, <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> is set on the grid element with a value that refers to the labelling element.
             Otherwise, a label is specified for the grid element using <a href="#aria-label" class="property-reference">aria-label</a>.
           </li>
           <li>If the treegrid has a caption or description, <a href="#aria-describedby" class="property-reference">aria-describedby</a> is set on the grid element with a value referring to the element containing the description.</li>
@@ -3229,7 +3229,7 @@
       </p>
       <p>
         For example, consider a book reading application with a primary pane for the table of contents and a secondary pane that displays content from a section of the book.
-        The two panes are divided by a vertical splitter labeled &quot;Table of Contents&quot;.
+        The two panes are divided by a vertical splitter labelled &quot;Table of Contents&quot;.
         When the table of contents pane has its maximum size, the splitter has a value of <code>100</code>,
         and when the table of contents is completely collapsed, the splitter has a value of <code>0</code>.
       </p>
@@ -3280,7 +3280,7 @@
     <h2>Landmark Regions</h2>
     <p>
       ARIA landmark roles provide a powerful way to identify the organization and structure of a web page.
-      By classifying and labeling sections of a page, they enable structural information that is conveyed visually through layout to be represented programmatically.
+      By classifying and labelling sections of a page, they enable structural information that is conveyed visually through layout to be represented programmatically.
       Screen readers exploit landmark roles to provide keyboard navigation to important sections of a page.
       Landmark regions can also be used as targets for &quot;skip links&quot; and by browser extensions to enhanced keyboard navigation.
     </p>
@@ -3378,7 +3378,7 @@
         <li>
           If a specific landmark role is used more than once on a page, provide each instance of that landmark with a unique label.
           There is one rare circumstance where providing the same label to multiple instances of a landmark can be beneficial: the content and purpose of each instance is identical.
-          For example, a large search results table has two sets of identical pagination controls -- one above and one below the table, so each set is in a navigation region labeled <q>Search Results</q>.
+          For example, a large search results table has two sets of identical pagination controls -- one above and one below the table, so each set is in a navigation region labelled <q>Search Results</q>.
           In this case, adding extra information to the label that distinguishes the two instances may be more distracting than helpful.
         </li>
 
@@ -3964,7 +3964,7 @@ However, most authors do not need detailed understanding of the algorithms since
           <p>
             For example, text displayed adjacent to a checkbox may be visually associated with the checkbox, so it is understood as the checkbox label by users who can perceive that visual association.
             However, unless the text is programmatically associated with the checkbox, assistive technology users will experience a checkbox without a label.
-            Wrapping the checkbox and the labeling text in a <code>label</code> element as follows gives the checkbox an accessible name.
+            Wrapping the checkbox and the labelling text in a <code>label</code> element as follows gives the checkbox an accessible name.
           </p>
           <pre><code>
   &lt;label>
@@ -3984,7 +3984,7 @@ However, most authors do not need detailed understanding of the algorithms since
           <p>
             Using the <code>label</code> element is an effective technique for satisfying <a href="#naming_rule_visible_text">Rule 2: Prefer Visible Text</a>.
             It also satisfies <a href="#naming_rule_native_techniques">Rule 3: Prefer Native Techniques</a>.
-            Native HTML labels offer an important usability and accessibility advantage over ARIA labeling techniques: browsers automatically make clicking the label equivalent to clicking the form control.
+            Native HTML labels offer an important usability and accessibility advantage over ARIA labelling techniques: browsers automatically make clicking the label equivalent to clicking the form control.
             This increases the hit area of the form control.
           </p>
         </section>
@@ -4067,7 +4067,7 @@ However, most authors do not need detailed understanding of the algorithms since
 
         <section id="naming_with_fallback">
           <h5>Fallback Names Derived from Titles and Placeholders</h5>
-          <p>When an accessible name is not provided using one of the primary techniques (e.g., the <code>aria-label</code> or <code>aria-labelledby</code> attributes), or native markup techniques (e.g., the HTML <code>label</code> element, or the <code>alt</code> attribute of the HTML <code>img</code> element), an accessible name can be derived from some other attributes as a fallback mechanism. In general, prefer the explicit labeling techniques described above over fallback techniques described in this section.</p>
+          <p>When an accessible name is not provided using one of the primary techniques (e.g., the <code>aria-label</code> or <code>aria-labelledby</code> attributes), or native markup techniques (e.g., the HTML <code>label</code> element, or the <code>alt</code> attribute of the HTML <code>img</code> element), an accessible name can be derived from some other attributes as a fallback mechanism. In general, prefer the explicit labelling techniques described above over fallback techniques described in this section.</p>
 
           <p>Any HTML element can have a <code>title</code> attribute specified. The <code>title</code> attribute is used as the element's fallback accessible name. The <code>title</code> attribute is commonly presented visually as a tooltip when the user hovers over the element with a pointing device, which is not particularly discoverable, and is also not accessible to visual users without a pointing device.</p>
 
@@ -4079,7 +4079,7 @@ However, most authors do not need detailed understanding of the algorithms since
     &lt;label>&lt;input name="starter-class" value="blue"> Blue&lt;/label>
    &lt;/fieldset></code></pre>
 
-          <p>For the HTML <code>input</code> and <code>textarea</code> elements, the <code>placeholder</code> attribute is used as a fallback labeling mechanism if nothing else (including the <code>title</code> attribute) results in a label. It is better to use a <code>label</code> element, since it does not disappear visually when the user focuses the form control.</p>
+          <p>For the HTML <code>input</code> and <code>textarea</code> elements, the <code>placeholder</code> attribute is used as a fallback labelling mechanism if nothing else (including the <code>title</code> attribute) results in a label. It is better to use a <code>label</code> element, since it does not disappear visually when the user focuses the form control.</p>
 
           <pre><code>&lt;!-- Using a &lt;label> is recommended -->
 &lt;label>Search &lt;input type=search name=q>&lt;/label>
