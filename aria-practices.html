@@ -4344,7 +4344,12 @@ However, most authors do not need detailed understanding of the algorithms since
             <tr>
               <td><a href="#grid" class="role-reference"><code>grid</code></a></td>
               <td>Required</td>
-              <td>To-do: write guidance similar to combobox except instead of label, uses caption if made from an HTML table. Include note that caption becomes a description if aria-label or aria-labelledby are used.</td>
+              <td>
+                <ul>
+                  <li>If the <code>grid</code> is applied to an HTML <code>table</code> element, then the accessible name can be derived from the table's <code>caption</code> element.</li>
+                  <li>Otherwise, use <code>aria-labelledby</code> if a visible title is present, otherwise use <code>aria-label</code>.</li>
+                </ul>
+              </td>
             </tr>
             <tr>
               <td><a href="#gridcell" class="role-reference"><code>gridcell</code></a></td>
@@ -4677,17 +4682,34 @@ However, most authors do not need detailed understanding of the algorithms since
             <tr>
               <td><a href="#tree" class="role-reference"><code>tree</code></a></td>
               <td>Required</td>
-              <td>guidance</td>
+              <td>
+                <ul>
+                  <li>Use <code>aria-labelledby</code> if a visible title is present, otherwise use <code>aria-label</code>.</li>
+                  <li>See the <a href="#TreeView">Tree View Design Pattern</a>.</li>
+                </ul>
+              </td>
             </tr>
             <tr>
               <td><a href="#treegrid" class="role-reference"><code>treegrid</code></a></td>
               <td>Required</td>
-              <td>guidance</td>
+              <td>
+                <ul>
+                  <li>If the <code>treegrid</code> is applied to an HTML <code>table</code> element, then the accessible name can be derived from the table's <code>caption</code> element.</li>
+                  <li>Otherwise, use <code>aria-labelledby</code> if a visible title is present, otherwise use <code>aria-label</code>.</li>
+                  <li>See the <a href="#treegrid">Treegrid Design Pattern</a>.</li>
+                </ul>
+              </td>
             </tr>
             <tr>
               <td><a href="#treeitem" class="role-reference"><code>treeitem</code></a></td>
               <td>Required <strong>Only If</strong> Content Insufficient</td>
-              <td>To-do: similar to menuitem</td>
+              <td>
+                <ul>
+                  <li>Warning! Using <code>aria-label</code> or <code>aria-labelledby</code> will hide any descendant content from assistive technologies.</li>
+                  <li>Ideally named by visible, descendant content.</li>
+                  <li>See the <a href="#TreeView">Tree View Design Pattern</a>.</li>
+                </ul>
+              </td>
             </tr>
         </table>
       </section>
