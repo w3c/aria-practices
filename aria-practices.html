@@ -3995,11 +3995,6 @@ However, most authors do not need detailed understanding of the algorithms since
             The HTML <code>fieldset</code> element can be used to group form controls, which can make forms easier to navigate.
             The <code>legend</code> element can be used to give the group a name.
           </p>
-          <p>
-            This grouping technique is particularly useful for presenting multiple choice questions.
-            It enables authors to associate a question with a group of answers.
-            If a question is not programmatically associated with its answer options, assistive technology users could access the answers without being aware of the question.
-          </p>
           <p>For example, a group of radio buttons can be grouped together in a <code>fieldset</code>, where the <code>legend</code> element labels the group for the radio buttons.</p>
           <pre><code>
   &lt;fieldset>
@@ -4009,6 +4004,11 @@ However, most authors do not need detailed understanding of the algorithms since
     &lt;label>&lt;input name="starter-class" value="blue"> Blue&lt;/label>
   &lt;/fieldset>
           </code></pre>
+          <p>
+            This grouping technique is particularly useful for presenting multiple choice questions.
+            It enables authors to associate a question with a group of answers.
+            If a question is not programmatically associated with its answer options, assistive technology users could access the answers without being aware of the question.
+          </p>
           <p>
             Other types of related form fields can also be grouped using <code>fieldset</code> and <code>legend</code>.
             This helps users navigate the form group-by-group.
