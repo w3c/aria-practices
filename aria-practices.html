@@ -4321,8 +4321,14 @@ However, most authors do not need detailed understanding of the algorithms since
             </tr>
             <tr>
               <td><a href="#figure" class="role-reference"><code>figure</code></a></td>
-              <td>To-do: lookup requirement</td>
-              <td>To-do: write guidance</td>
+              <td>Recommended</td>
+              <td>
+                <ul>
+                  <li>For HTML, use the <code>figure</code> and <code>figcaption</code> elements. The <code>figcaption</code> will serve as the accessible name for the <code>figure</code>. See the <a href="#naming_with_captions">Naming Tables and Figures with Captions</a> section.</li>
+                  <li>When not using HTML, or when retrofitting legacy HTML, use the <code>aria-labelledby</code> on the figure, pointing to the figure's caption.</li>
+                  <li>If there is no visible caption, <code>aria-label</code> can be used.</li>
+                </ul>
+              </td>
             </tr>
             <tr>
               <td><a href="#form" class="role-reference"><code>form</code></a></td>
