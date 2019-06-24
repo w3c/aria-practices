@@ -4814,7 +4814,7 @@ However, most authors do not need detailed understanding of the algorithms since
        placeholder="123456"
        title="One-time code"></code></pre>
 
-          <p>If there is also an <code>label</code> element (recommended), then that is used as the accessible name, and the <code>title</code> attribute is instead used as the accessible description:</p>
+          <p>If there is also a <code>label</code> element (recommended), then that is used as the accessible name, and the <code>title</code> attribute is instead used as the accessible description:</p>
 
           <pre><code>&lt;label>One-time code
  &lt;input name="code"
@@ -4822,7 +4822,7 @@ However, most authors do not need detailed understanding of the algorithms since
         title="Get your code from the app.">
 &lt;/label></code></pre>
 
-          <p>If there is also an <code>aria-label</code> attribute, then that overrides the <code>label</code> element:</p>
+          <p>If there is also an <code>aria-label</code> attribute (not recommended unless it adds clarity for assistive technology users), then that becomes the accessible name, overriding the <code>label</code> element:</p>
 
           <pre><code>&lt;label>Code
  &lt;input name="code"
