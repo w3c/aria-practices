@@ -4257,7 +4257,7 @@ However, most authors do not need detailed understanding of the algorithms since
               <td>
                 <ul>
                   <li>If the <code>combobox</code> role is applied to an HTML <code>select</code> or <code>input</code> element, can be named with an HTML <code>label</code> element.</li>
-                  <li>Otherwise use <code>aria-labelledby</code> if a visible title is present.</li>
+                  <li>Otherwise use <code>aria-labelledby</code> if a visible label is present.</li>
                   <li>Use <code>aria-label</code> if a visible label is not present.</li>
                 </ul>
               </td>
@@ -4406,7 +4406,14 @@ However, most authors do not need detailed understanding of the algorithms since
             <tr>
               <td><a href="#listbox" class="role-reference"><code>listbox</code></a></td>
               <td>Required</td>
-              <td>To-do: write guidance similar to combobox except that HTML select replaces input</td>
+              <td>
+                <ul>
+                  <li>If the <code>listbox</code> role is applied to an HTML <code>select</code> element (with the <code>multiple</code> attribute or a <code>size</code> attribute having a value greater than 1), can be named with an HTML <code>label</code> element.</li>
+                  <li>Otherwise use <code>aria-labelledby</code> if a visible label is present.</li>
+                  <li>Use <code>aria-label</code> if a visible label is not present.</li>
+                  <li>See the <a href="#Listbox">Listbox Design Pattern</a>.</li>
+                </ul>
+              </td>
             </tr>
             <tr>
               <td><a href="#listitem" class="role-reference"><code>listitem</code></a></td>
