@@ -53,7 +53,7 @@ Equivalent (and preferred) HTML:
 
 ## `listitem` role
 
-The `aria-level` attribute can be used on elements with `listitem` role to represent list subitems. For example, to quote a item in a nested to-do list, use the 'aria-level' attribute on the list items. 
+The `aria-level` attribute can be used on elements with `listitem` role to represent list subitems when the structure of the DOM tree does not imply the intended level of nesting. For example, to quote a item in a nested to-do list, use the 'aria-level' attribute on the list items. 
 
 ```
 <blockquote>
@@ -66,7 +66,23 @@ The `aria-level` attribute can be used on elements with `listitem` role to repre
 
 ## `treeitem` role
 
-The attribute `aria-level` can be used on elements with role `treeitem` to explicitly set the level of items within the [Tree View Design Pattern](https://www.w3.org/TR/wai-aria-practices-1.1/#TreeView).
+The attribute `aria-level` can be used on elements with role `treeitem` to explicitly set the level of items within the [Tree View Design Pattern](https://www.w3.org/TR/wai-aria-practices-1.1/#TreeView). 
+
+The computed `aria-level` of a `treeitem` within a tree is based on the number of 'group' role elements in the ancestor chain between the treeitem and the tree role, where the top level `treeitems` are `aria-level` 1. To override the `aria-level` calculated from the number of `group` role parents, set `aria-level` explictly.
+
+```
+<ul role='tree'>
+  <li role='treeitem' aria-level='1'>
+    What color should we make the bikeshed?
+    <button>Show 98 hidden replies</button>
+    <ul role='group'>
+      <li role='treeitem' aria-level='100'>
+        I disagree with all 98 people who have replied before me, it should be rainbow colored.
+      </li>
+    </ul>
+  </li>
+</ul>
+```
 
 TODO: Example of appropriate use.
 
