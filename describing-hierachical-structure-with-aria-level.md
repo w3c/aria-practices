@@ -68,7 +68,11 @@ The `aria-level` attribute can be used on elements with `listitem` role to repre
 
 The attribute `aria-level` can be used on elements with role `treeitem` to explicitly set the level of items within the [Tree View Design Pattern](https://www.w3.org/TR/wai-aria-practices-1.1/#TreeView). 
 
-The computed `aria-level` of a `treeitem` within a tree is based on the number of 'group' role elements in the ancestor chain between the treeitem and the tree role, where the top level `treeitems` are `aria-level` 1. To override the `aria-level` calculated from the number of `group` role parents, set `aria-level` explictly.
+The computed `aria-level` of a `treeitem` within a tree is based on the number of 'group' role elements in the ancestor chain between the treeitem and the tree role, where the top level `treeitems` are `aria-level` 1.
+
+TODO: Add an example of calculated aria-levels.
+
+To override the `aria-level` calculated from the number of `group` role parents, set `aria-level` explictly.
 
 ```
 <ul role='tree'>
@@ -83,8 +87,6 @@ The computed `aria-level` of a `treeitem` within a tree is based on the number o
   </li>
 </ul>
 ```
-
-TODO: Example of appropriate use.
 
 ### Remediation Uses Cases
 
