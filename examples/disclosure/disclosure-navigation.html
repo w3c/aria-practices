@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>Disclosure Navigation Menu Example | WAI-ARIA Authoring
+<title>Disclosure Navigation Example | WAI-ARIA Authoring
   Practices 1.1</title>
 
   <!--  Core js and css shared by all examples; do not modify when using this template. -->
@@ -27,11 +27,11 @@
     </ul>
   </nav>
   <main>
-  <h1>Example Disclosure (Show/Hide) for Navigation Menu</h1>
+  <h1>Example Disclosure (Show/Hide) for Navigation</h1>
   <p>
     The following example demonstrates using the
     <a href="../../#disclosure">disclosure design pattern</a>
-    to create a dropdown navigation menu.
+    to create a dropdown navigation bar.
   </p>
   <p>Similar examples include:</p>
   <ul>
@@ -131,19 +131,23 @@
     <h2>Accessibility Features</h2>
     <ol>
       <li>
-        Since this disclosure example is being used as a navigation menu, the entire control is wrapped in a navigation landmark. Each disclosure button / container pair is contained within a list item so that the number of top-level items is semantically available.
+        Since this disclosure example is being used as navigation, the entire control is wrapped in a navigation landmark. Each disclosure button / container pair is contained within a list item so that the number of top-level items is semantically available.
       </li>
       <li>
         Arrow keys supplement, but do not replace, tabbing between the top-level disclosure buttons. Home and End likewise allow jumping to the first and last button.
       </li>
       <li>
-        Escape pressed when focus is within the navigation menu closes any open dropdown menus. Moving focus out of the navigation region also closes open dropdowns. Implementing the escape key behavior is necessary to meet the WCAG 2.1 <a href="https://www.w3.org/WAI/WCAG21/Understanding/content-on-hover-or-focus.html">1.4.13: Content on Hover or Focus</a> criterion.
+        Escape pressed when focus is within the navigation region closes any open dropdowns. Moving focus out of the navigation region also closes open dropdowns. Implementing the escape key behavior is necessary to meet the WCAG 2.1 <a href="https://www.w3.org/WAI/WCAG21/Understanding/content-on-hover-or-focus.html">1.4.13: Content on Hover or Focus</a> criterion.
       </li>
       <li>
-        Arrow key support prevents the default page scroll behavior when focus is on the disclosure menu.
+        Arrow key support prevents the default page scroll behavior when focus is on the disclosure dropdown.
       </li>
       <li>
         Arrow key navigation is primarily for the benefit of keyboard users who are not running a screen reader; screen readers will usually intercept the arrow keys and not pass them to the page.
+      </li>
+      <li>
+        The visual indicator of the show/hide state is created using CSS <code>::after</code> pseudo element border styles
+        so the caret is reliably rendered in high contrast mode of operating systems and browsers.
       </li>
     </ol>
   </section>
@@ -163,7 +167,7 @@
             <kbd>Tab</kbd>
           </th>
           <td>
-              Moves keyboard focus between top-level buttons, and into and then through any open menu.
+              Moves keyboard focus between top-level buttons, and into and then through the links in any open dropdown.
           </td>
         </tr>
         <tr data-test-id="key-enter-space">
@@ -172,8 +176,7 @@
             <kbd>Enter</kbd>
           </th>
           <td>
-              Activates the disclosure button,
-              which toggles the visibility of the dropdown menu.
+              Activates the disclosure button, which toggles the visibility of the dropdown.
           </td>
         </tr>
         <tr data-test-id="key-escape">
@@ -181,7 +184,7 @@
             <kbd>Escape</kbd>
           </th>
           <td>
-              Closes the open dropdown menu.
+              Closes the open dropdown.
           </td>
         </tr>
         <tr data-test-id="key-arrows">
@@ -189,7 +192,7 @@
             <kbd>Arrow keys (optional)</kbd>
           </th>
           <td>
-              Moves focus between the top-level disclosure buttons and between open dropdown menu links.
+              Moves focus between the top-level disclosure buttons and between open dropdown links.
           </td>
         </tr>
         <tr data-test-id="key-home-end">
@@ -197,7 +200,7 @@
             <kbd>Home / End (optional)</kbd>
           </th>
           <td>
-              Moves focus to the first or last disclosure button, or first or last open menu links.
+              Moves focus to the first or last disclosure button, or first or last open dropdown's links.
           </td>
         </tr>
       </tbody>
@@ -225,7 +228,7 @@
             <code>button</code>
           </td>
           <td>
-                The disclosure button controls visibility of the container identified by the <code>IDREF</code> value.
+            The disclosure button controls visibility of the container identified by the <code>IDREF</code> value.
           </td>
         </tr>
         <tr data-test-id="button-aria-expanded">
@@ -246,10 +249,6 @@
                 used to synchronize the visual states with the value of the <code>aria-expanded</code>
                 attribute.
               </li>
-              <li>
-                The visual indicator of the show/hide state is created using CSS <code>::after</code> pseudo element border styles
-                so the caret is reliably rendered in high contrast mode of operating systems and browsers.
-              </li>
             </ul>
           </td>
         </tr>
@@ -262,7 +261,7 @@
             <code>button</code>
           </td>
           <td>
-          <ul>
+            <ul>
               <li>
                 Indicates that the container controlled by the disclosure button is <em>visible</em>.
               </li>
@@ -270,10 +269,6 @@
                 CSS attribute selectors (e.g. <code>[aria-expanded=&quot;true&quot;]</code>) are
                 used to synchronize the visual states with the value of the <code>aria-expanded</code>
                 attribute.
-              </li>
-              <li>
-                The visual indicator of the show/hide state is created using CSS <code>:before</code> pseudo element and <code>content</code> property
-                so the image is reliably rendered in high contrast mode of operating systems and browsers.
               </li>
             </ul>
           </td>
@@ -309,8 +304,7 @@
   </section>
   </main>
   <nav>
-    <a href="../../#disclosure">Disclosure (Show/Hide) Design Pattern in WAI-ARIA Authoring
-      Practices 1.1</a>
+    <a href="../../#disclosure">Disclosure (Show/Hide) Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
   </nav>
 </body>
 </html>
