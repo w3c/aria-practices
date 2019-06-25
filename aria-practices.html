@@ -4557,7 +4557,13 @@ However, most authors do not need detailed understanding of the algorithms since
             <tr>
               <td><a href="#progressbar" class="role-reference"><code>progressbar</code></a></td>
               <td>Required</td>
-              <td>guidance</td>
+              <td>
+                <ul>
+                  <li>If the <code>progressbar</code> role is applied to an HTML <code>progress</code> element, can be named with an HTML <code>label</code> element.</li>
+                  <li>Otherwise use <code>aria-labelledby</code> if a visible label is present.</li>
+                  <li>Use <code>aria-label</code> if a visible label is not present.</li>
+                </ul>
+              </td>
             </tr>
             <tr>
               <td><a href="#radio" class="role-reference"><code>radio</code></a></td>
