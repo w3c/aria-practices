@@ -4541,7 +4541,13 @@ However, most authors do not need detailed understanding of the algorithms since
             <tr>
               <td><a href="#option" class="role-reference"><code>option</code></a></td>
               <td>Required <strong>Only If</strong> Content Insufficient</td>
-              <td>guidance</td>
+              <td>
+                <ul>
+                  <li>Warning! Using <code>aria-label</code> or <code>aria-labelledby</code> will hide any descendant content from assistive technologies.</li>
+                  <li>Ideally named by visible, descendant content.</li>
+                  <li>See the <a href="#combobox">Combo Box Design Pattern</a>.</li>
+                </ul>
+              </td>
             </tr>
             <tr>
               <td><a href="#presentation" class="role-reference"><code>presentation</code></a></td>
