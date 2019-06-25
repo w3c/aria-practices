@@ -4301,8 +4301,12 @@ However, most authors do not need detailed understanding of the algorithms since
             </tr>
             <tr>
               <td><a href="#document" class="role-reference"><code>document</code></a></td>
-              <td>Do Not Name</td>
-              <td>The <code>document</code> role is used to hint to the assistive technology to switch back to "reading mode" within an <code>application</code> or widget. That element should have a name.</td>
+              <td>Discretionary</td>
+              <td>
+                Elements with the <code>document</code> role are contained within an element with the <code>application</code> element, which is required to have a name.
+                Typically, the name of the <code>application</code> element will provide sufficient context and identity for the <code>document</code> element.
+                Because the <code>application</code> element is used only to create unusual, custom widgets, careful assessment is necessary to determine whether or not adding an accessible name is beneficial.
+              </td>
             </tr>
             <tr>
               <td><a href="#feed" class="role-reference"><code>feed</code></a></td>
