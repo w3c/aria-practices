@@ -6,7 +6,7 @@
 */
 
 
-var DisclosureMenu = function (domNode) {
+var DisclosureNav = function (domNode) {
   this.rootNode = domNode;
   this.triggerNodes = [];
   this.controlledNodes = [];
@@ -14,7 +14,7 @@ var DisclosureMenu = function (domNode) {
   this.useArrowKeys = true;
 };
 
-DisclosureMenu.prototype.init = function () {
+DisclosureNav.prototype.init = function () {
   var buttons = this.rootNode.querySelectorAll('button[aria-expanded][aria-controls]');
   for (var i = 0; i < buttons.length; i++) {
     var button = buttons[i];
@@ -38,13 +38,13 @@ DisclosureMenu.prototype.init = function () {
   this.rootNode.addEventListener('focusout', this.handleBlur.bind(this));
 };
 
-DisclosureMenu.prototype.toggleMenu = function (domNode, show) {
+DisclosureNav.prototype.toggleMenu = function (domNode, show) {
   if (domNode) {
     domNode.style.display = show ? 'block' : 'none';
   }
 };
 
-DisclosureMenu.prototype.toggleExpand = function (index, expanded) {
+DisclosureNav.prototype.toggleExpand = function (index, expanded) {
   // close open menu, if applicable
   if (this.openIndex !== index) {
     this.toggleExpand(this.openIndex, false);
@@ -58,7 +58,7 @@ DisclosureMenu.prototype.toggleExpand = function (index, expanded) {
   }
 };
 
-DisclosureMenu.prototype.controlFocusByKey = function (keyboardEvent, nodeList, currentIndex) {
+DisclosureNav.prototype.controlFocusByKey = function (keyboardEvent, nodeList, currentIndex) {
   switch (keyboardEvent.key) {
     case 'ArrowUp':
     case 'ArrowLeft':
@@ -88,14 +88,14 @@ DisclosureMenu.prototype.controlFocusByKey = function (keyboardEvent, nodeList, 
 };
 
 /* Event Handlers */
-DisclosureMenu.prototype.handleBlur = function (event) {
+DisclosureNav.prototype.handleBlur = function (event) {
   var menuContainsFocus = this.rootNode.contains(event.relatedTarget);
   if (!menuContainsFocus && this.openIndex !== null) {
     this.toggleExpand(this.openIndex, false);
   }
 };
 
-DisclosureMenu.prototype.handleButtonKeyDown = function (event) {
+DisclosureNav.prototype.handleButtonKeyDown = function (event) {
   var targetButtonIndex = this.triggerNodes.indexOf(document.activeElement);
 
   // close on escape
@@ -115,14 +115,14 @@ DisclosureMenu.prototype.handleButtonKeyDown = function (event) {
   }
 };
 
-DisclosureMenu.prototype.handleButtonClick = function (event) {
+DisclosureNav.prototype.handleButtonClick = function (event) {
   var button = event.target;
   var buttonIndex = this.triggerNodes.indexOf(button);
   var buttonExpanded = button.getAttribute('aria-expanded') === 'true';
   this.toggleExpand(buttonIndex, !buttonExpanded);
 };
 
-DisclosureMenu.prototype.handleMenuKeyDown = function (event) {
+DisclosureNav.prototype.handleMenuKeyDown = function (event) {
   if (this.openIndex === null) {
     return;
   }
@@ -143,7 +143,7 @@ DisclosureMenu.prototype.handleMenuKeyDown = function (event) {
 };
 
 // switch on/off arrow key navigation
-DisclosureMenu.prototype.updateKeyControls = function (useArrowKeys) {
+DisclosureNav.prototype.updateKeyControls = function (useArrowKeys) {
   this.useArrowKeys = useArrowKeys;
 };
 
@@ -154,7 +154,7 @@ window.addEventListener('load', function (event) {
   var disclosureMenus = [];
 
   for (var i = 0; i < menus.length; i++) {
-    disclosureMenus[i] = new DisclosureMenu(menus[i]);
+    disclosureMenus[i] = new DisclosureNav(menus[i]);
     disclosureMenus[i].init();
   }
 
@@ -174,6 +174,12 @@ window.addEventListener('load', function (event) {
     links[i].addEventListener('click', function (event) {
       var pageTitle = event.target.innerText;
       examplePageHeading.innerText = pageTitle;
+
+      // handle aria-current
+      for (var n = 0; n < links.length; n++) {
+        links[n].removeAttribute('aria-current');
+      }
+      this.setAttribute('aria-current', 'page');
     });
   }
 }, false);
