@@ -3906,7 +3906,7 @@ However, most authors do not need detailed understanding of the algorithms since
   &lt;span role="switch" aria-checked="false" tabindex="0" aria-labelledby="night-mode-label">&lt;/span&gt;
           </code></pre>
           <p>
-            Note that while using <code>aria-labelledby</code> is similar in this situation to using an HTML <code>label</code> element with the <code>for</code> attribute, one significant difference is that browsers do not automatically make clicking on the labelling element activate the labelled element; that is an author responsibility.
+            Note that while using <code>aria-labelledby</code> is similar in this situation to using an HTML <code>label</code> element with the <code>for</code> attribute, one significant difference is that browsers do not automatically make clicking on the labeling element activate the labeled element; that is an author responsibility.
             However, HTML <code>label</code> cannot be used to label a <code>span</code> element.
             Fortunately, an HTML <code>input</code> with <code>type="checkbox"</code> allows the ARIA <code>switch</code> role, so when feasible, using the following approach creates a more robust solution.
           </p>
@@ -3964,7 +3964,7 @@ However, most authors do not need detailed understanding of the algorithms since
           <p>
             For example, text displayed adjacent to a checkbox may be visually associated with the checkbox, so it is understood as the checkbox label by users who can perceive that visual association.
             However, unless the text is programmatically associated with the checkbox, assistive technology users will experience a checkbox without a label.
-            Wrapping the checkbox and the labelling text in a <code>label</code> element as follows gives the checkbox an accessible name.
+            Wrapping the checkbox and the labeling text in a <code>label</code> element as follows gives the checkbox an accessible name.
           </p>
           <pre><code>
   &lt;label>
@@ -3984,7 +3984,7 @@ However, most authors do not need detailed understanding of the algorithms since
           <p>
             Using the <code>label</code> element is an effective technique for satisfying <a href="#naming_rule_visible_text">Rule 2: Prefer Visible Text</a>.
             It also satisfies <a href="#naming_rule_native_techniques">Rule 3: Prefer Native Techniques</a>.
-            Native HTML labels offer an important usability and accessibility advantage over ARIA labelling techniques: browsers automatically make clicking the label equivalent to clicking the form control.
+            Native HTML labels offer an important usability and accessibility advantage over ARIA labeling techniques: browsers automatically make clicking the label equivalent to clicking the form control.
             This increases the hit area of the form control.
           </p>
         </section>
@@ -4067,7 +4067,7 @@ However, most authors do not need detailed understanding of the algorithms since
 
         <section id="naming_with_fallback">
           <h5>Fallback Names Derived from Titles and Placeholders</h5>
-          <p>When an accessible name is not provided using one of the primary techniques (e.g., the <code>aria-label</code> or <code>aria-labelledby</code> attributes), or native markup techniques (e.g., the HTML <code>label</code> element, or the <code>alt</code> attribute of the HTML <code>img</code> element), an accessible name can be derived from some other attributes as a fallback mechanism. In general, prefer the explicit labelling techniques described above over fallback techniques described in this section.</p>
+          <p>When an accessible name is not provided using one of the primary techniques (e.g., the <code>aria-label</code> or <code>aria-labelledby</code> attributes), or native markup techniques (e.g., the HTML <code>label</code> element, or the <code>alt</code> attribute of the HTML <code>img</code> element), an accessible name can be derived from some other attributes as a fallback mechanism. In general, prefer the explicit labeling techniques described above over fallback techniques described in this section.</p>
 
           <p>Any HTML element can have a <code>title</code> attribute specified. The <code>title</code> attribute is used as the element's fallback accessible name. The <code>title</code> attribute is commonly presented visually as a tooltip when the user hovers over the element with a pointing device, which is not particularly discoverable, and is also not accessible to visual users without a pointing device.</p>
 
@@ -4079,7 +4079,7 @@ However, most authors do not need detailed understanding of the algorithms since
     &lt;label>&lt;input name="starter-class" value="blue"> Blue&lt;/label>
    &lt;/fieldset></code></pre>
 
-          <p>For the HTML <code>input</code> and <code>textarea</code> elements, the <code>placeholder</code> attribute is used as a fallback labelling mechanism if nothing else (including the <code>title</code> attribute) results in a label. It is better to use a <code>label</code> element, since it does not disappear visually when the user focuses the form control.</p>
+          <p>For the HTML <code>input</code> and <code>textarea</code> elements, the <code>placeholder</code> attribute is used as a fallback labeling mechanism if nothing else (including the <code>title</code> attribute) results in a label. It is better to use a <code>label</code> element, since it does not disappear visually when the user focuses the form control.</p>
 
           <pre><code>&lt;!-- Using a &lt;label> is recommended -->
 &lt;label>Search &lt;input type=search name=q>&lt;/label>
@@ -4790,7 +4790,7 @@ However, most authors do not need detailed understanding of the algorithms since
           </li>
         </ol>
         <p>
-          The final step is a fallback mechanism. Generally when labelling an element, use one of the non-fallback mechanisms.
+          The final step is a fallback mechanism. Generally when labeling an element, use one of the non-fallback mechanisms.
         </p>
         <p>
           When calculating a name from content, the user agent walks through all descendant nodes.
@@ -4847,7 +4847,7 @@ However, most authors do not need detailed understanding of the algorithms since
 
           <section id="name_calculation_recursive_ex">
             <h5>Examples of recursive accessible name calculation</h5>
-            <p>The accessible name calculation algorithm will be invoked recursively when necessary. An `aria-labelledby` reference causes the algorithm to be invoked recursively, and when computing an accessible name from content the algorithm is invoked recursively for each child node.</p>
+            <p>The accessible name calculation algorithm will be invoked recursively when necessary. An <code>aria-labelledby</code> reference causes the algorithm to be invoked recursively, and when computing an accessible name from content the algorithm is invoked recursively for each child node.</p>
 
             <p>In this example, the label for the button is computed by recursing into each child node, resulting in <q>Move to trash</q>.</p>
 
