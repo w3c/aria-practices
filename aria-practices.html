@@ -4530,8 +4530,13 @@ However, most authors do not need detailed understanding of the algorithms since
             </tr>
             <tr>
               <td><a href="#note" class="role-reference"><code>note</code></a></td>
-              <td>namerequired</td>
-              <td>guidance</td>
+              <td>Discretionary</td>
+              <td>
+                <ul>
+                  <li>Naming is optional, but can help screen reader users understand the context and purpose of the note.</li>
+                  <li>Named using <code>aria-labelledby</code> if a visible title is present, otherwise with <code>aria-label</code>.</li>
+                </ul>
+              </td>
             </tr>
             <tr>
               <td><a href="#option" class="role-reference"><code>option</code></a></td>
