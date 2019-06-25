@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>Date Picker Example Using Menu Button| WAI-ARIA Authoring Practices 1.1</title>
+<title>Date Picker Dialog Example | WAI-ARIA Authoring Practices 1.1</title>
 
 <!--  Core js and css shared by all examples; do not modify when using this template. -->
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
@@ -16,7 +16,7 @@
 <link href="css/datepicker.css" rel="stylesheet">
 <script src="js/datepickerDay.js" type="text/javascript"></script>
 <script src="js/datepicker.js" type="text/javascript"></script>
-<script src="js/datepicker-menubutton.js" type="text/javascript"></script>
+<script src="js/datepicker-button.js" type="text/javascript"></script>
 </head>
 <body>
   <nav aria-label="Related Links" class="feedback">
@@ -24,18 +24,18 @@
       <li><a href="../../#browser_and_AT_support">Browser and Assistive Technology Support</a></li>
       <li><a href="https://github.com/w3c/aria-practices/issues/new">Report Issue</a></li>
       <li><a href="https://github.com/w3c/aria-practices/projects/14">Related Issues</a></li>
-      <li><a href="../../#menubutton">Design Pattern</a></li>
+      <li><a href="../../#dialog-modal">Design Pattern</a></li>
     </ul>
   </nav>
   <main>
-    <h1>Date Picker Example Using Menu Button</h1>
+    <h1>Date Picker Dialog Example</h1>
     <p>
       <strong>NOTE:</strong> This example page is work in progress.
       Please provide feedback in
-      <a href="https://github.com/w3c/aria-practices/issues/34">issue 34.</a>
+      <a href="https://github.com/w3c/aria-practices/issues/1046">issue 1046.</a>
     </p>
     <p>
-      The date picker is an example of the <a href="../../#menubutton"><code>Menu Button</code> design pattern</a> that opens a dialog box.
+      The date picker example below implements the <a href="../../#dialog-modal">dialog design pattern</a>.
       The date picker dialog box in this example is opened when keyboard focus is moved to the calendar button and a <kbd>space</kbd>, <kbd>return</kbd>, <kbd>down arrow</kbd> key pressed or clicking on the calendar button.
       The date picker dialog uses a <code>grid</code> pattern to show and select a date using the cursor keys.  Additional buttons in the dialog box can be used for changing the month and year shown in the grid.
     </p>
@@ -199,7 +199,7 @@
 
   <section>
     <h2>Accessibility Features</h2>
-    <p>There are three main featues of the menu button date picker example:</p>
+    <p>There are three main features of the dialog date picker example:</p>
     <ul>
       <li>Date Textbox: Holds the value of the selected date.</li>
       <li>Calendar Button: Opens the datepicker dialog box.</li>
@@ -752,7 +752,7 @@
       <li>
         Javascript:
         <ul>
-          <li><a href="js/datepicker-menubutton.js" type="text/javascript">menubutton.js</a></li>
+          <li><a href="js/datepicker-button.js" type="text/javascript">datepicker-button.js</a></li>
           <li><a href="js/datepicker.js" type="text/javascript">datepicker.js</a></li>
           <li><a href="js/datepickerDay.js" type="text/javascript">datepickerDay.js</a></li>
         </ul>
