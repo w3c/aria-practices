@@ -337,12 +337,12 @@
                           A value for
                           <a href="#aria-labelledby" class="property-reference">aria-labelledby</a>
                           that refers to the element containing the title of the dialog if the
-                          dialog has a visible title.
+                          dialog has a visible label.
                       </li>
                       <li>
                           A value for
                           <a href="#aria-label" class="property-reference">aria-label</a>
-                          if the dialog does not have a visible title.
+                          if the dialog does not have a visible label.
                       </li>
                   </ul>
               </li>
@@ -1341,7 +1341,7 @@
         <ul>
           <li>The element that contains the set of feed articles has role <a href="#feed" class="role-reference">feed</a>.</li>
           <li>
-            If the feed has a visible title, the <code>feed</code> element has <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> referring to the element containing the title.
+            If the feed has a visible label, the <code>feed</code> element has <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> referring to the element containing the title.
             Otherwise, the <code>feed</code> element has a label specified with <a href="#aria-label" class="property-reference">aria-label</a>.
           </li>
           <li>
@@ -4177,12 +4177,12 @@ However, most authors do not need detailed understanding of the algorithms since
             <tr>
               <td><a href="#alertdialog" class="role-reference"><code>alertdialog</code></a></td>
               <td>Required</td>
-              <td>Use <code>aria-labelledby</code> if a visible title is present, otherwise use <code>aria-label</code>.</td>
+              <td>Use <code>aria-labelledby</code> if a visible label is present, otherwise use <code>aria-label</code>.</td>
           </tr>
             <tr>
               <td><a href="#application" class="role-reference"><code>application</code></a></td>
               <td>Required</td>
-              <td>Use <code>aria-labelledby</code> if a visible title is present, otherwise use <code>aria-label</code>.</td>
+              <td>Use <code>aria-labelledby</code> if a visible label is present, otherwise use <code>aria-label</code>.</td>
             </tr>
             <tr>
               <td><a href="#article" class="role-reference"><code>article</code></a></td>
@@ -4190,7 +4190,7 @@ However, most authors do not need detailed understanding of the algorithms since
               <td>
                 <ul>
                   <li>Recommended to distinguish articles from one another; helps users when navigating among articles.</li>
-                  <li>Use <code>aria-labelledby</code> if a visible title is present, otherwise use <code>aria-label</code>.</li>
+                  <li>Use <code>aria-labelledby</code> if a visible label is present, otherwise use <code>aria-label</code>.</li>
                 </ul>
               </td>
             </tr>
@@ -4200,7 +4200,7 @@ However, most authors do not need detailed understanding of the algorithms since
               <td>
                 <ul>
                   <li>Necessary in the uncommon circumstance where two banner landmark regions are present on the same page. It is otherwise optional.</li>
-                  <li>Named using <code>aria-labelledby</code> if a visible title is present, otherwise with <code>aria-label</code>.</li>
+                  <li>Named using <code>aria-labelledby</code> if a visible label is present, otherwise with <code>aria-label</code>.</li>
                   <li>See the <a href="#aria_lh_banner">Banner Landmark Role</a>.</li>
                 </ul>
               </td>
@@ -4266,7 +4266,7 @@ However, most authors do not need detailed understanding of the algorithms since
                 <ul>
                   <li>Naming is necessary when two complementary landmark regions are present on the same page.</li>
                   <li>Naming is recommended even when one complementary region is present to help users understand the purpose of the region's content when navigating among landmark regions.</li>
-                  <li>Use <code>aria-labelledby</code> if a visible title is present, otherwise use <code>aria-label</code>.</li>
+                  <li>Use <code>aria-labelledby</code> if a visible label is present, otherwise use <code>aria-label</code>.</li>
                   <li>See the <a href="#aria_lh_complementary">Complementary Landmark Role</a>.</li>
                 </ul>
               </td>
@@ -4277,7 +4277,7 @@ However, most authors do not need detailed understanding of the algorithms since
               <td>
                 <ul>
                   <li>Necessary in the uncommon circumstance where two contentinfo landmark regions are present on the same page. It is otherwise optional.</li>
-                  <li>Named using <code>aria-labelledby</code> if a visible title is present, otherwise with <code>aria-label</code>.</li>
+                  <li>Named using <code>aria-labelledby</code> if a visible label is present, otherwise with <code>aria-label</code>.</li>
                 </ul>
               </td>
             </tr>
@@ -4289,7 +4289,7 @@ However, most authors do not need detailed understanding of the algorithms since
             <tr>
               <td><a href="#dialog" class="role-reference"><code>dialog</code></a></td>
               <td>Required</td>
-              <td>Use <code>aria-labelledby</code> if a visible title is present, otherwise use <code>aria-label</code>.</td>
+              <td>Use <code>aria-labelledby</code> if a visible label is present, otherwise use <code>aria-label</code>.</td>
             </tr>
             <tr>
               <td><a href="#directory" class="role-reference"><code>directory</code></a></td>
@@ -4297,7 +4297,7 @@ However, most authors do not need detailed understanding of the algorithms since
               <td>
                 <ul>
                   <li>Naming can help users understand the purpose of the directory.</li>
-                  <li>Use <code>aria-labelledby</code> if a visible title is present, otherwise use <code>aria-label</code>.</li>
+                  <li>Use <code>aria-labelledby</code> if a visible label is present, otherwise use <code>aria-label</code>.</li>
                 </ul>
               </td>
             </tr>
@@ -4316,7 +4316,7 @@ However, most authors do not need detailed understanding of the algorithms since
               <td>
                 <ul>
                   <li>Helps screen reader users understand the context and purpose of the feed.</li>
-                  <li>Use <code>aria-labelledby</code> if a visible title is present, otherwise use <code>aria-label</code>.</li>
+                  <li>Use <code>aria-labelledby</code> if a visible label is present, otherwise use <code>aria-label</code>.</li>
                   <li>See the <a href="#feed">Feed Design Pattern</a>.</li>
                 </ul>
               </td>
@@ -4338,7 +4338,7 @@ However, most authors do not need detailed understanding of the algorithms since
               <td>
                 <ul>
                   <li>Helps screen reader users understand the context and purpose of the form landmark.</li>
-                  <li>Use <code>aria-labelledby</code> if a visible title is present, otherwise use <code>aria-label</code>.</li>
+                  <li>Use <code>aria-labelledby</code> if a visible label is present, otherwise use <code>aria-label</code>.</li>
                   <li>See the <a href="#aria_lh_form">Form Landmark Role</a>.</li>
                 </ul>
               </td>
@@ -4349,7 +4349,7 @@ However, most authors do not need detailed understanding of the algorithms since
               <td>
                 <ul>
                   <li>If the <code>grid</code> is applied to an HTML <code>table</code> element, then the accessible name can be derived from the table's <code>caption</code> element.</li>
-                  <li>Otherwise, use <code>aria-labelledby</code> if a visible title is present, otherwise use <code>aria-label</code>.</li>
+                  <li>Otherwise, use <code>aria-labelledby</code> if a visible label is present, otherwise use <code>aria-label</code>.</li>
                 </ul>
               </td>
             </tr>
@@ -4372,7 +4372,7 @@ However, most authors do not need detailed understanding of the algorithms since
                   <li>When using the HTML <code>fieldset</code> element, the accessible name can be derived from the <code>legend</code> element.</li>
                   <li>When using the HTML <code>details</code> element, do not provide an accessible name for this element. The user interacts with the <code>summary</code> element, and that can derive its accessible name from its contents.</li>
                   <li>When using the HTML <code>optgroup</code> element, use the <code>label</code> attribute.</li>
-                  <li>Otherwise, use <code>aria-labelledby</code> if a visible title is present, otherwise use <code>aria-label</code>.</li>
+                  <li>Otherwise, use <code>aria-labelledby</code> if a visible label is present, otherwise use <code>aria-label</code>.</li>
                 </ul>
               </td>
             </tr>
@@ -4408,7 +4408,7 @@ However, most authors do not need detailed understanding of the algorithms since
                 <ul>
                   <li>Potentially beneficial for users of screen readers that support both list names and navigation among lists on a page.</li>
                   <li>Potentially a source of distracting or undesirable screen reader verbosity, especially if nested within a named container, such as a navigation region.</li>
-                  <li>Can be named using <code>aria-labelledby</code> if a visible title is present, otherwise with <code>aria-label</code>.</li>
+                  <li>Can be named using <code>aria-labelledby</code> if a visible label is present, otherwise with <code>aria-label</code>.</li>
                 </ul>
               </td>
             </tr>
@@ -4432,7 +4432,7 @@ However, most authors do not need detailed understanding of the algorithms since
             <tr>
               <td><a href="#log" class="role-reference"><code>log</code></a></td>
               <td>Required</td>
-              <td>Use <code>aria-labelledby</code> if a visible title is present, otherwise use <code>aria-label</code>.</td>
+              <td>Use <code>aria-labelledby</code> if a visible label is present, otherwise use <code>aria-label</code>.</td>
             </tr>
             <tr>
               <td><a href="#main" class="role-reference"><code>main</code></a></td>
@@ -4440,7 +4440,7 @@ However, most authors do not need detailed understanding of the algorithms since
               <td>
                 <ul>
                   <li>Potentially helpful for orienting assistive technology users, especially in single-page applications where main content changes happen without generating a page load event.</li>
-                  <li>Can be named using <code>aria-labelledby</code> if a visible title is present, otherwise with <code>aria-label</code>.</li>
+                  <li>Can be named using <code>aria-labelledby</code> if a visible label is present, otherwise with <code>aria-label</code>.</li>
                   <li>See the <a href="#aria_lh_main">Main Landmark Role</a>.</li>
                 </ul>
               </td>
@@ -4448,7 +4448,7 @@ However, most authors do not need detailed understanding of the algorithms since
             <tr>
               <td><a href="#marquee" class="role-reference"><code>marquee</code></a></td>
               <td>Required</td>
-              <td>Use <code>aria-labelledby</code> if a visible title is present, otherwise use <code>aria-label</code>.</td>
+              <td>Use <code>aria-labelledby</code> if a visible label is present, otherwise use <code>aria-label</code>.</td>
             </tr>
             <tr>
               <td><a href="#math" class="role-reference"><code>math</code></a></td>
@@ -4477,7 +4477,7 @@ However, most authors do not need detailed understanding of the algorithms since
                     The name of a <code>button</code> that opens a <code>menu</code> conveys the purpose of the menu it opens.
                     Since a <code>menubar</code> element is displayed persistently, a name on the <code>menubar</code> can serve that same purpose.
                   </li>
-                  <li>Use <code>aria-labelledby</code> if a visible title is present, otherwise use <code>aria-label</code>.</li>
+                  <li>Use <code>aria-labelledby</code> if a visible label is present, otherwise use <code>aria-label</code>.</li>
                   <li>See the <a href="#menu">Menu or Menu bar Design Pattern</a>.</li>
                 </ul>
               </td>
@@ -4521,7 +4521,7 @@ However, most authors do not need detailed understanding of the algorithms since
               <td>
                 <ul>
                   <li>Helps screen reader users understand the context and purpose of the navigation landmark.</li>
-                  <li>Use <code>aria-labelledby</code> if a visible title is present, otherwise use <code>aria-label</code>.</li>
+                  <li>Use <code>aria-labelledby</code> if a visible label is present, otherwise use <code>aria-label</code>.</li>
                   <li>See the <a href="#aria_lh_navigation">Navigation Landmark Role</a>.</li>
                 </ul>
               </td>
@@ -4537,7 +4537,7 @@ However, most authors do not need detailed understanding of the algorithms since
               <td>
                 <ul>
                   <li>Naming is optional, but can help screen reader users understand the context and purpose of the note.</li>
-                  <li>Named using <code>aria-labelledby</code> if a visible title is present, otherwise with <code>aria-label</code>.</li>
+                  <li>Named using <code>aria-labelledby</code> if a visible label is present, otherwise with <code>aria-label</code>.</li>
                 </ul>
               </td>
             </tr>
@@ -4585,7 +4585,7 @@ However, most authors do not need detailed understanding of the algorithms since
               <td>
                 <ul>
                   <li>Recommended to label a group of <code>radio</code> buttons.</li>
-                  <li>Use <code>aria-labelledby</code> if a visible title is present, otherwise use <code>aria-label</code>.</li>
+                  <li>Use <code>aria-labelledby</code> if a visible label is present, otherwise use <code>aria-label</code>.</li>
                   <li>See the <a href="#radiobutton">Radio Group Design Pattern</a>.</li>
                 </ul>
 
@@ -4598,7 +4598,7 @@ However, most authors do not need detailed understanding of the algorithms since
               <td>
                 <ul>
                   <li>Helps screen reader users understand the context and purpose of the landmark.</li>
-                  <li>Use <code>aria-labelledby</code> if a visible title is present, otherwise use <code>aria-label</code>.</li>
+                  <li>Use <code>aria-labelledby</code> if a visible label is present, otherwise use <code>aria-label</code>.</li>
                   <li>See the <a href="#aria_lh_region">Region Landmark Role</a>.</li>
                 </ul>
             </td>
@@ -4619,7 +4619,7 @@ However, most authors do not need detailed understanding of the algorithms since
             <tr>
               <td><a href="#rowgroup" class="role-reference"><code>rowgroup</code></a></td>
               <td>Do Not Name</td>
-              <td>To-do: guidance</td>
+              <td>Not supported by assistive technologies.</td>
             </tr>
             <tr>
               <td><a href="#rowheader" class="role-reference"><code>rowheader</code></a></td>
@@ -4643,7 +4643,7 @@ However, most authors do not need detailed understanding of the algorithms since
               <td>
                 <ul>
                   <li>Helps screen reader users understand the context and purpose of the search landmark.</li>
-                  <li>Named using <code>aria-labelledby</code> if a visible title is present, otherwise with <code>aria-label</code>.</li>
+                  <li>Named using <code>aria-labelledby</code> if a visible label is present, otherwise with <code>aria-label</code>.</li>
                   <li>See the <a href="aria_lh_search">Search Landmark Role</a>.</li>
                 </ul>
               </td>
@@ -4718,7 +4718,7 @@ However, most authors do not need detailed understanding of the algorithms since
               <td>
                 <ul>
                   <li>Helps screen reader users understand the context and purpose of the tablist.</li>
-                  <li>Use <code>aria-labelledby</code> if a visible title is present, otherwise use <code>aria-label</code>.</li>
+                  <li>Use <code>aria-labelledby</code> if a visible label is present, otherwise use <code>aria-label</code>.</li>
                   <li>See the <a href="#carousel">Carousel Design Pattenr</a> and <a href="#tabpanel">Tabs Design Pattern</a>.</li>
                 </ul>
               </td>
@@ -4774,7 +4774,7 @@ However, most authors do not need detailed understanding of the algorithms since
               <td>Required</td>
               <td>
                 <ul>
-                  <li>Use <code>aria-labelledby</code> if a visible title is present, otherwise use <code>aria-label</code>.</li>
+                  <li>Use <code>aria-labelledby</code> if a visible label is present, otherwise use <code>aria-label</code>.</li>
                   <li>See the <a href="#TreeView">Tree View Design Pattern</a>.</li>
                 </ul>
               </td>
@@ -4785,7 +4785,7 @@ However, most authors do not need detailed understanding of the algorithms since
               <td>
                 <ul>
                   <li>If the <code>treegrid</code> is applied to an HTML <code>table</code> element, then the accessible name can be derived from the table's <code>caption</code> element.</li>
-                  <li>Otherwise, use <code>aria-labelledby</code> if a visible title is present, otherwise use <code>aria-label</code>.</li>
+                  <li>Otherwise, use <code>aria-labelledby</code> if a visible label is present, otherwise use <code>aria-label</code>.</li>
                   <li>See the <a href="#treegrid">Treegrid Design Pattern</a>.</li>
                 </ul>
               </td>
