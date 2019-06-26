@@ -4651,7 +4651,13 @@ However, most authors do not need detailed understanding of the algorithms since
             <tr>
               <td><a href="#searchbox" class="role-reference"><code>searchbox</code></a></td>
               <td>Required</td>
-              <td>guidance</td>
+              <td>
+                <ul>
+                  <li>If the <code>searchbox</code> role is applied to an HTML <code>input</code> element, can be named with an HTML <code>label</code> element.</li>
+                  <li>Otherwise use <code>aria-labelledby</code> if a visible label is present.</li>
+                  <li>Use <code>aria-label</code> if a visible label is not present.</li>
+                </ul>
+              </td>
             </tr>
             <tr>
               <td><a href="#separator" class="role-reference"><code>separator</code></a></td>
@@ -4717,7 +4723,13 @@ However, most authors do not need detailed understanding of the algorithms since
             <tr>
               <td><a href="#textbox" class="role-reference"><code>textbox</code></a></td>
               <td>Required</td>
-              <td>guidance</td>
+              <td>
+                <ul>
+                  <li>If the <code>textbox</code> role is applied to an HTML <code>input</code> or <code>textarea</code> element, can be named with an HTML <code>label</code> element.</li>
+                  <li>Otherwise use <code>aria-labelledby</code> if a visible label is present.</li>
+                  <li>Use <code>aria-label</code> if a visible label is not present.</li>
+                </ul>
+              </td>
             </tr>
             <tr>
               <td><a href="#timer" class="role-reference"><code>timer</code></a></td>
