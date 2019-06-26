@@ -181,4 +181,3 @@ For example, a stock ticker that is crawling across the screen could use `role="
  <p>Banana $12.30 +0.09</p>
 </div>
 ```
-```
