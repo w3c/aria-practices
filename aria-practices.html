@@ -4427,7 +4427,7 @@ However, most authors do not need detailed understanding of the algorithms since
             <tr>
               <td><a href="#listitem" class="role-reference"><code>listitem</code></a></td>
               <td>Do Not Name</td>
-              <td>Not supported by assistive technologies; it is necessary to include all relevant content within the list item.</td>
+              <td>Not supported by assistive technologies; it is necessary to include relevant content within the list item.</td>
             </tr>
             <tr>
               <td><a href="#log" class="role-reference"><code>log</code></a></td>
@@ -4489,6 +4489,7 @@ However, most authors do not need detailed understanding of the algorithms since
                 <ul>
                   <li>Warning! Using <code>aria-label</code> or <code>aria-labelledby</code> will hide any descendant content from assistive technologies.</li>
                   <li>Ideally named by visible, descendant content.</li>
+                  <li>Note: content contained within a child <code>menu</code> is automatically excluded from the accessible name calculation.</li>
                   <li>See the <a href="#menu">Menu or Menu bar Design Pattern</a>.</li>
                 </ul>
               </td>
@@ -4831,6 +4832,7 @@ However, most authors do not need detailed understanding of the algorithms since
                 <ul>
                   <li>Warning! Using <code>aria-label</code> or <code>aria-labelledby</code> will hide any descendant content from assistive technologies.</li>
                   <li>Ideally named by visible, descendant content.</li>
+                  <li>Note: content contained within a child <code>group</code> is automatically excluded from the accessible name calculation.</li>
                   <li>See the <a href="#TreeView">Tree View Design Pattern</a>.</li>
                 </ul>
               </td>
