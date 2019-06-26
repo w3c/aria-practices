@@ -4703,7 +4703,14 @@ However, most authors do not need detailed understanding of the algorithms since
             <tr>
               <td><a href="#table" class="role-reference"><code>table</code></a></td>
               <td>Required</td>
-              <td>guidance</td>
+              <td>
+                <ul>
+                  <li>If using HTML <code>table</code> element, use the <code>caption</code> element.</li>
+                  <li>Otherwise use <code>aria-labelledby</code> if a visible label is present.</li>
+                  <li>Use <code>aria-label</code> if a visible label is not present.</li>
+                  <li>See the <a href="#table">Table Design Pattern</a>.</li>
+                </ul>
+              </td>
             </tr>
             <tr>
               <td><a href="#tablist" class="role-reference"><code>tablist</code></a></td>
