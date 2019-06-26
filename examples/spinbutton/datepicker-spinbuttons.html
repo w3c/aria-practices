@@ -43,7 +43,8 @@
     <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
     <div id="example">
 
-      <div class="datepicker-spinbuttons"
+      <div id="example-group"
+           class="datepicker-spinbuttons"
            role="group"
            aria-labelledby="myDatepickerLabel myDatepickerDate">
 
@@ -58,15 +59,15 @@
               aria-valuemin="1"
               aria-valuemax="31"
               aria-label="Day">
-          <div class="decrease">
+          <div class="decrease" aria-hidden="true">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
                 <polygon points="2,18 18,18 10,4"></polygon>
             </svg>
           </div>
-          <div class="previous">30</div>
+          <div class="previous" aria-hidden="true">30</div>
           <div class="value">1</div>
-          <div class="next">2</div>
-          <div class="increase">
+          <div class="next" aria-hidden="true">2</div>
+          <div class="increase" aria-hidden="true">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
               <polygon points="2,4 18,4 10,18"></polygon>
             </svg>
@@ -76,20 +77,20 @@
         <div  class="month spinbutton"
               role="spinbutton"
               tabindex="0"
-              aria-valuenow="11"
+              aria-valuenow="5"
               aria-valuetext="June"
-              aria-valuemin="1"
-              aria-valuemax="12"
+              aria-valuemin="0"
+              aria-valuemax="11"
               aria-label="Month">
-          <div class="decrease">
+          <div class="decrease" aria-hidden="true">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
                 <polygon points="2,18 18,18 10,4"></polygon>
             </svg>
           </div>
-          <div class="previous">May</div>
+          <div class="previous" aria-hidden="true">May</div>
           <div class="value">June</div>
-          <div class="next">July</div>
-          <div class="increase">
+          <div class="next" aria-hidden="true">July</div>
+          <div class="increase" aria-hidden="true">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
               <polygon points="2,4 18,4 10,18"></polygon>
             </svg>
@@ -103,15 +104,15 @@
               aria-valuemin="2019"
               aria-valuemax="2040"
               aria-label="Year">
-          <div class="decrease">
+          <div class="decrease" aria-hidden="true">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
-                <polygon class="decrease" points="2,18 18,18 10,4"></polygon>
+                <polygon points="2,18 18,18 10,4"></polygon>
             </svg>
           </div>
-          <div class="previous">2018</div>
+          <div class="previous" aria-hidden="true">2018</div>
           <div class="value">2019</div>
-          <div class="next">2020</div>
-          <div class="increase">
+          <div class="next" aria-hidden="true">2020</div>
+          <div class="increase" aria-hidden="true">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
               <polygon points="2,4 18,4 10,18"></polygon>
             </svg>
@@ -263,13 +264,13 @@
               </ul>
             </td>
           </tr>
-          <tr data-test-id="toolbar-spinbutton-aria-valuemin">
+          <tr data-test-id="spinbutton-aria-valuemin">
             <td></td>
             <th scope="row"><code>aria-valuemin="8"</code></th>
             <td><code>div</code></td>
             <td>Indicates the minimum allowed value for the spin button.</td>
           </tr>
-          <tr data-test-id="toolbar-spinbutton-aria-valuemax">
+          <tr data-test-id="spinbutton-aria-valuemax">
             <td></td>
             <th scope="row"><code>aria-valuemax="40"</code></th>
             <td><code>div</code></td>
@@ -278,6 +279,23 @@
                 <li>Indicates the maximum allowed value for the spin button.</li>
                 <li>For the spin button for days, the maximum value is updated to reflect the number of days in the current month.</li>
               </ul>
+            </td>
+          </tr>
+          <tr data-test-id="spinbutton-aria-hidden">
+            <td></td>
+            <th scope="row"><code>aria-hidden="true"</code></th>
+            <td>
+              <ul>
+                <li><code>div > .increase</code></li>
+                <li><code>div > .next</code></li>
+                <li><code>div > .previous</code></li>
+                <li><code>div > .decrease</code></li>
+              </ul>
+            </td>
+            <td>
+              <ul>
+                <li>Hides the SVG images used for the increase and decrease buttons from screen readers, since they are not operable by the keyboard.</li>
+                <li>Hides the visible text for the next and previous values from screen readers, since the information would be confusing without any context to screen reader users.  Only the current value needs to be visible to screen readers.</li>
             </td>
           </tr>
         </tbody>
