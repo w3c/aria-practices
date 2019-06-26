@@ -4676,17 +4676,35 @@ However, most authors do not need detailed understanding of the algorithms since
             <tr>
               <td><a href="#slider" class="role-reference"><code>slider</code></a></td>
               <td>Required</td>
-              <td>guidance</td>
+              <td>
+                <ul>
+                  <li>If the <code>slider</code> role is applied to an HTML <code>input</code> element, can be named with an HTML <code>label</code> element.</li>
+                  <li>Otherwise use <code>aria-labelledby</code> if a visible label is present.</li>
+                  <li>Use <code>aria-label</code> if a visible label is not present.</li>
+                  <li>See the <a href="#slider">Slider Widget</a> and <a href="#slidertwothumb">Slider (Multi-Thumb) Widget</a> sections.</li>
+                </ul>
+              </td>
             </tr>
             <tr>
               <td><a href="#spinbutton" class="role-reference"><code>spinbutton</code></a></td>
               <td>Required</td>
-              <td>guidance</td>
+              <td>
+                <ul>
+                  <li>If the <code>textbox</code> role is applied to an HTML <code>input</code> element, can be named with an HTML <code>label</code> element.</li>
+                  <li>Otherwise use <code>aria-labelledby</code> if a visible label is present.</li>
+                  <li>Use <code>aria-label</code> if a visible label is not present.</li>
+                  <li>See the <a href="#spinbutton">Spinbutton Widget</a> section.</li>
+                </ul>
+              </td>
             </tr>
             <tr>
               <td><a href="#status" class="role-reference"><code>status</code></a></td>
-              <td>namerequired</td>
-              <td>guidance</td>
+              <td>Discretionary</td>
+              <td>
+                Some screen readers announce the name of a status element before announcing the content of the status element.
+                Thus, <code>aria-label</code> provides a method for prefacing the visible content of a status element with text that is not displayed as part of the status element.
+                Using <code>aria-label</code> is functionally equivalent to providing off-screen text in the contents of the status element, except off-screen text would be announced by screen readers that do not support <code>aria-label</code> on <code>status</code> elements.
+              </td>
             </tr>
             <tr>
               <td><a href="#switch" class="role-reference"><code>switch</code></a></td>
