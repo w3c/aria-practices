@@ -4522,7 +4522,7 @@ However, most authors do not need detailed understanding of the algorithms since
                 <ul>
                   <li>Helps screen reader users understand the context and purpose of the navigation landmark.</li>
                   <li>Use <code>aria-labelledby</code> if a visible label is present, otherwise use <code>aria-label</code>.</li>
-                  <li>See the <a href="#aria_lh_navigation">Navigation Landmark Role</a>.</li>
+                  <li>See the <a href="#aria_lh_navigation">Navigation Landmark</a> section.</li>
                 </ul>
               </td>
             </tr>
@@ -4584,12 +4584,10 @@ However, most authors do not need detailed understanding of the algorithms since
               <td>Required</td>
               <td>
                 <ul>
-                  <li>Recommended to label a group of <code>radio</code> buttons.</li>
+                  <li>Recommended to help assistive technology users to understand the purpose of the of the group of <code>radio</code> buttons.</li>
                   <li>Use <code>aria-labelledby</code> if a visible label is present, otherwise use <code>aria-label</code>.</li>
                   <li>See the <a href="#radiobutton">Radio Group Design Pattern</a>.</li>
                 </ul>
-
-                To-do: What's the relationship between fieldset and radiogroup?
               </td>
             </tr>
             <tr>
@@ -4634,8 +4632,13 @@ However, most authors do not need detailed understanding of the algorithms since
             </tr>
             <tr>
               <td><a href="#scrollbar" class="role-reference"><code>scrollbar</code></a></td>
-              <td>Do Not Name</td>
-              <td>Use <code>aria-controls</code> to indicate which element the scrollbar controls.</td>
+              <td>Discretionary</td>
+              <td>
+                <ul>
+                  <li>Naming is optional, but can potentially help screen reader users understand the purpose of the scrollbar. The purpose is also conveyed using the <code>aria-control</code> attribute, which is required for <code>scrollbar</code>.</li>
+                  <li>Named using <code>aria-labelledby</code> if a visible label is present, otherwise with <code>aria-label</code>.</li>
+                </ul>
+              </td>
             </tr>
             <tr>
               <td><a href="#search" class="role-reference"><code>search</code></a></td>
