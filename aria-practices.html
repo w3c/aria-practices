@@ -4903,11 +4903,31 @@ However, most authors do not need detailed understanding of the algorithms since
           The final step is a fallback mechanism. Generally when labeling an element, use one of the non-fallback mechanisms.
         </p>
         <p>
-          When calculating a name from content, the user agent walks through all descendant nodes.
+          When calculating a name from content, the user agent walks through all descendant nodes (except as noted below).
           And, when following references in an <code>aria-labelledby</code> attribute, it similarly walks the tree of each referenced element.
           Thus, the naming algorithm is recursive.
           The following two sections provide non-recursive and recursive examples of how the algorithm works.
         </p>
+        <p>When calculating a name from content for the <code>treeitem</code> role, descendant content of child <code>group</code> elements are not included.</p>
+        <pre><code>&lt;ul role="tree">
+  &lt;li role="treeitem">Fruits
+    &lt;ul role="group">
+      &lt;li role="treeitem">Apples&lt;/li>
+      &lt;li role="treeitem">Bananas&lt;/li>
+      &lt;li role="treeitem">Oranges&lt;/li>
+    &lt;/ul>
+  &lt;/li>
+&lt;/ul></code></pre>
+        <p>When calculating a name from content for the <code>treeitem</code> role, descendant content of child <code>menu</code> elements are not included.</p>
+        <pre><code>&lt;ul role="menu">
+  &lt;li role="menuitem">Fruits
+    &lt;ul role="menu">
+      &lt;li role="menuitem">Apples&lt;/li>
+      &lt;li role="menuitem">Bananas&lt;/li>
+      &lt;li role="menuitem">Oranges&lt;/li>
+    &lt;/ul>
+  &lt;/li>
+&lt;/ul></code></pre>
 
         <section id="name_calculation_non-recursive_ex">
           <h5>Examples of non-recursive accessible name calculation</h5>
