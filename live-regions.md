@@ -126,7 +126,8 @@ The default value for `aria-live` is `polite`.
 For example, a chat log would be an appropriate use case for the `log` role.
 
 ```
-<div role="log">
+<h1 id="irc-log">IRC Log</h1>
+<div role="log" aria-labelledby="irc-log">
  <p>[10:26] &lt;Charl> ok let's test it and see if it works</p>
  <p>[10:59] &lt;hsivonen> morning</p>
 </div>
@@ -161,8 +162,8 @@ Update the text content of the element to the current time measurement when it c
 For example, a countdown to New Year could use `role="timer"`.
 
 ```
-<h1>New Year Countdown</h1>
-<p role="timer">2 minutes, 51 seconds</p>
+<h1 id="newyear">New Year Countdown</h1>
+<p role="timer" aria-labelledby="newyear">2 minutes, 51 seconds</p>
 ```
 
 ### `marquee`
@@ -172,3 +173,12 @@ The `marquee` role indicates non-essential information that changes frequently.
 The default value of `aria-live` value of `off`.
 
 For example, a stock ticker that is crawling across the screen could use `role="marquee"`.
+
+```
+<div role="marquee" aria-label="Stocks">
+ <p>Goosoft $8.24 +0.36</p>
+ <p>Microle $35.60 &minus;0.78</p>
+ <p>Banana $12.30 +0.09</p>
+</div>
+```
+```
