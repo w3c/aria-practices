@@ -8,8 +8,8 @@ The `aria-level` attribute can be used on the following roles:
 * `heading`
 * `listitem`
 * `row`
-* `tablist`
-* `grid`
+* `tablist` (not recommended)
+* `grid` (not recommended)
 
 ## `heading` Role
 
@@ -88,23 +88,34 @@ To override the `aria-level` calculated from the number of `group` role parents,
 </ul>
 ```
 
-### Remediation Uses Cases
-
-TODO: Are there remediation uses case for this role and attribute?
-
 ## `row` Role
 
-The attribute `aria-level` can be used on an element with role `row` to describe nesting of rows, as is explained in the [treegrid pattern](https://www.w3.org/TR/wai-aria-practices-1.1/#treegrid). 
+The `aria-level` attribute can be used on an element with `row` role to describe nesting of rows in a `treegrid`, as is explained in the [treegrid pattern](https://www.w3.org/TR/wai-aria-practices-1.1/#treegrid). In this example, the DOM tree does not represent the heirachical relationship between rows. Each email is in a `tr` element, which are siblings in the DOM tree, therefore `aria-level` is necessary to communicate that the emails form a tree structure.
+
+```
+<table role='treegrid'>
+  <tr>
+    <th>From:</th>
+    <th>Subject:</th>
+  </tr>
+  <tr aria-level='1'>
+    <td>Laura</td>
+    <td>We should definately cover the bikeshed in rainbows.</td>
+  </tr>
+  <tr aria-level='2'>
+    <td>Fred</td>
+    <td>Re: We should definately cover the bikeshed in rainbows.</td>
+  </tr>
+</table>
+```
+
+Do not use `aria-level` on rows that are in a `grid` or a `table` because only rows in a `treegrid` table are expected to have a heirachical relationship.
 
 ## `tablist` Role
 
-The attribute `aria-level` can be used on elements with role `tablist` to represent nested tabs.
-
-TODO: Issue [#915 on ARIA](https://github.com/w3c/aria/issues/915)
+The attribute `aria-level` can be used on elements with role `tablist` to represent nested tabs but it is not recommended.
 
 ## `grid` Role
 
-The attribute `aria-level` can be used on elements with role `grid` to represent nested grids.
-
-TODO: Issue [#915 on ARIA](https://github.com/w3c/aria/issues/915)
+The attribute `aria-level` can be used on elements with role `grid` to represent nested grids but it is not recommended.
 
