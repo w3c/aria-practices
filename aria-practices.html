@@ -3920,11 +3920,13 @@ However, most authors do not need detailed understanding of the algorithms since
     <li><p>It can concatenate content from multiple elements into a single name string.</p></li>
     <li>
       <p>It incorporates content from elements regardless of their visibility, i.e., it even includes content from elements with the HTML <code>hidden</code> attribute, CSS <code>display: none</code>, or CSS <code>visibility: hidden</code> in the calculated name string.</p>
-      <pre><code>&lt;span id="night-mode-label" hidden>Night mode&lt;/span>
-  &lt;input type="checkbox" role="switch" aria-labelledby="night-mode-label"></code></pre>
     </li>
     <li><p>It incorporates the value of input elements, i.e., if it references a textbox, the value of the textbox is included in the calculated name string.</p></li>
   </ul>
+  <p>An example of referencing a hidden element with <code>aria-labelledby</code> could be a label for a night switch control:</p>
+      <pre><code>&lt;span id="night-mode-label" hidden>Night mode&lt;/span>
+  &lt;input type="checkbox" role="switch" aria-labelledby="night-mode-label"></code></pre>
+
           <p>
             In some cases, the most effective name for an element is its own content combined with the content of another element.
             Because <code>aria-labelledby</code> has highest precedence in name calculation, in those situations, it is possible to use <code>aria-labelledby</code> to reference both the element itself and the other element.
