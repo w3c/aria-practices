@@ -4579,7 +4579,15 @@ However, most authors do not need detailed understanding of the algorithms since
             <tr>
               <td><a href="#radiogroup" class="role-reference"><code>radiogroup</code></a></td>
               <td>Required</td>
-              <td>guidance</td>
+              <td>
+                <ul>
+                  <li>Recommended to label a group of <code>radio</code> buttons.</li>
+                  <li>Use <code>aria-labelledby</code> if a visible title is present, otherwise use <code>aria-label</code>.</li>
+                  <li>See the <a href="#radiobutton">Radio Group Design Pattern</a>.</li>
+                </ul>
+
+                To-do: What's the relationship between fieldset and radiogroup?
+              </td>
             </tr>
             <tr>
               <td><a href="#region" class="role-reference"><code>region</code></a></td>
