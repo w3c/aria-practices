@@ -67,8 +67,9 @@ The `aria-level` attribute can be used on elements with `listitem` role to repre
 
 The attribute `aria-level` can be used on elements with role `treeitem` to explicitly set the level of items within the [Tree View Design Pattern](https://www.w3.org/TR/wai-aria-practices-1.1/#TreeView). 
 
-The computed `aria-level` of a `treeitem` within a tree is based on the number of 'group' role elements in the ancestor chain between the treeitem and the tree role, where the top level `treeitems` are `aria-level` 1. In the following example of a discussion board with nested replies, the question "What color should we paint the bike shed" has an implicit `aria-level='1'`. The first reply has an implicit `aria-level='2'`, the the response to that first reply has an implicit `aria-level='3'`.
+The computed `aria-level` of a `treeitem` within a tree is based on the number of 'group' role elements in the ancestor chain between the treeitem and the tree role, where the top level `treeitems` are `aria-level` 1. In the following example of a discussion board with nested replies, the top level post "What color should we paint the bike shed?" has an implicit `aria-level='1'`. The first reply has an implicit `aria-level='2'`, the the response to that first reply has an implicit `aria-level='3'`.
 
+```
 <ul role='tree'>
   <li role='treeitem'>
     What color should we paint the bike shed?
@@ -84,6 +85,7 @@ The computed `aria-level` of a `treeitem` within a tree is based on the number o
     </ul>
   </li>
 </ul>
+```
 
 To override the `aria-level` calculated from the number of `group` role parents, set `aria-level` explicitly. Setting `aria-level` explictly might be necessary if only part of a tree is loaded and the implicity calculations cannot account for the missing part of the tree.
 
