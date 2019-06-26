@@ -4664,8 +4664,14 @@ However, most authors do not need detailed understanding of the algorithms since
             </tr>
             <tr>
               <td><a href="#separator" class="role-reference"><code>separator</code></a></td>
-              <td>namerequired</td>
-              <td>guidance</td>
+              <td>Discretionary</td>
+              <td>
+                <ul>
+                  <li>Recommended if there are more than one focusable <code>separator</code> elements on the page.</li>
+                  <li>Can help assistive technology users understand the purpose of the separator.</li>
+                  <li>Named using <code>aria-labelledby</code> if a visible label is present, otherwise with <code>aria-label</code>.</li>
+                </ul>
+              </td>
             </tr>
             <tr>
               <td><a href="#slider" class="role-reference"><code>slider</code></a></td>
