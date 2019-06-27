@@ -2,13 +2,13 @@
 *   This content is licensed according to the W3C Software License at
 *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
 *
-*   File:   nonmodal-datepicker.js
+*   File:   datepicker.js
 */
 
-import CalendarButtonInput from 'calendar-button.js';
-import DatePickerDay from 'datepickerDay.js';
+var CalendarButtonInput = CalendarButtonInput || {};
+var DatePickerDay = DatePickerDay || {};
 
-var NonModalDatePicker = function (inputNode, buttonNode, messageNode, dialogNode) {
+var DatePicker = function (inputNode, buttonNode, messageNode, dialogNode) {
   this.dayLabels = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   this.monthLabels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
@@ -68,7 +68,7 @@ var NonModalDatePicker = function (inputNode, buttonNode, messageNode, dialogNod
 
 };
 
-NonModalDatePicker.prototype.init = function () {
+DatePicker.prototype.init = function () {
 
   this.dateInput.init();
 
@@ -118,7 +118,7 @@ NonModalDatePicker.prototype.init = function () {
   this.setFocusDay();
 };
 
-NonModalDatePicker.prototype.updateGrid = function (year, month) {
+DatePicker.prototype.updateGrid = function (year, month) {
 
   var i;
 
@@ -185,14 +185,14 @@ NonModalDatePicker.prototype.updateGrid = function (year, month) {
 
 };
 
-NonModalDatePicker.prototype.onFirstRow = function () {
+DatePicker.prototype.onFirstRow = function () {
   var cd = this.currentDay;
   var flag = cd.row === 0;
   flag = flag || ((cd.row === 1) && this.days[cd.index - 7].isDisabled());
   return flag;
 };
 
-NonModalDatePicker.prototype.onLastRow = function () {
+DatePicker.prototype.onLastRow = function () {
   var cd = this.currentDay;
   var flag = cd.row === 5;
   flag = flag || ((cd.row === 3) && this.days[cd.index + 7].isDisabled());
@@ -202,7 +202,7 @@ NonModalDatePicker.prototype.onLastRow = function () {
 
 
 // If after updating the grid the current day is on a disabled button move it to an enabled button in the same column
-NonModalDatePicker.prototype.adjustCurrentDay = function (onFirstRow, onLastRow) {
+DatePicker.prototype.adjustCurrentDay = function (onFirstRow, onLastRow) {
   var cd = this.currentDay;
 
   if (typeof onFirstRow !== 'boolean') {
@@ -243,15 +243,15 @@ NonModalDatePicker.prototype.adjustCurrentDay = function (onFirstRow, onLastRow)
   }
 };
 
-NonModalDatePicker.prototype.hideLastRow = function () {
+DatePicker.prototype.hideLastRow = function () {
   this.lastRowNode.style.visibility = 'hidden';
 };
 
-NonModalDatePicker.prototype.showLastRow = function () {
+DatePicker.prototype.showLastRow = function () {
   this.lastRowNode.style.visibility = 'visible';
 };
 
-NonModalDatePicker.prototype.setFocusDay = function (flag) {
+DatePicker.prototype.setFocusDay = function (flag) {
 
   if (typeof flag !== 'boolean') {
     flag = true;
@@ -280,13 +280,13 @@ NonModalDatePicker.prototype.setFocusDay = function (flag) {
   this.days.forEach(checkDay.bind(this));
 };
 
-NonModalDatePicker.prototype.updateDate = function (year, month, day) {
+DatePicker.prototype.updateDate = function (year, month, day) {
   this.year = year;
   this.month = month;
   this.day = day;
 };
 
-NonModalDatePicker.prototype.getDaysInLastMonth = function (year, month) {
+DatePicker.prototype.getDaysInLastMonth = function (year, month) {
 
   if (typeof year !== 'number') {
     year = this.year;
@@ -307,7 +307,7 @@ NonModalDatePicker.prototype.getDaysInLastMonth = function (year, month) {
 
 };
 
-NonModalDatePicker.prototype.getDaysInMonth = function (year, month) {
+DatePicker.prototype.getDaysInMonth = function (year, month) {
 
   if (typeof year !== 'number') {
     year = this.year;
@@ -346,7 +346,7 @@ NonModalDatePicker.prototype.getDaysInMonth = function (year, month) {
 
 };
 
-NonModalDatePicker.prototype.show = function () {
+DatePicker.prototype.show = function () {
 
   this.dialogNode.style.display = 'block';
   this.dialogNode.style.zIndex = 2;
@@ -358,11 +358,11 @@ NonModalDatePicker.prototype.show = function () {
   return this.hasFocusFlag;
 };
 
-NonModalDatePicker.prototype.isOpen = function () {
+DatePicker.prototype.isOpen = function () {
   return this.dateInput.getAriaExpanded();
 };
 
-NonModalDatePicker.prototype.hide = function (ignore) {
+DatePicker.prototype.hide = function (ignore) {
 
   if (typeof ignore !== 'boolean') {
     ignore = true;
@@ -376,12 +376,11 @@ NonModalDatePicker.prototype.hide = function (ignore) {
   this.dateInput.setFocus();
 };
 
-NonModalDatePicker.prototype.handleBackgroundMouseDown = function (event) {
+DatePicker.prototype.handleBackgroundMouseDown = function (event) {
   if (!this.inputNode.parentNode.contains(event.target) &&
       !this.dialogNode.contains(event.target)) {
 
     this.isMouseDownOnBackground = true;
-    console.log('[NonModalDatePicker][handleBackgroundMouseDown][isMouseDownOnBackground]: ' + this.isMouseDownOnBackground);
 
     if (this.isOpen()) {
       this.hide();
@@ -391,12 +390,12 @@ NonModalDatePicker.prototype.handleBackgroundMouseDown = function (event) {
   }
 };
 
-NonModalDatePicker.prototype.handleBackgroundMouseUp = function () {
+DatePicker.prototype.handleBackgroundMouseUp = function () {
   this.isMouseDownOnBackground = false;
 };
 
 
-NonModalDatePicker.prototype.handleOkButton = function (event) {
+DatePicker.prototype.handleOkButton = function (event) {
   var flag = false;
 
   switch (event.type) {
@@ -446,7 +445,7 @@ NonModalDatePicker.prototype.handleOkButton = function (event) {
   }
 };
 
-NonModalDatePicker.prototype.handleCancelButton = function (event) {
+DatePicker.prototype.handleCancelButton = function (event) {
   var flag = false;
 
   switch (event.type) {
@@ -485,7 +484,7 @@ NonModalDatePicker.prototype.handleCancelButton = function (event) {
   }
 };
 
-NonModalDatePicker.prototype.handleNextYearButton = function (event) {
+DatePicker.prototype.handleNextYearButton = function (event) {
   var flag = false;
   var onFirstRow = this.onFirstRow();
   var onLastRow = this.onLastRow();
@@ -530,7 +529,7 @@ NonModalDatePicker.prototype.handleNextYearButton = function (event) {
   }
 };
 
-NonModalDatePicker.prototype.handlePreviousYearButton = function (event) {
+DatePicker.prototype.handlePreviousYearButton = function (event) {
   var flag = false;
   var onFirstRow = this.onFirstRow();
   var onLastRow = this.onLastRow();
@@ -586,7 +585,7 @@ NonModalDatePicker.prototype.handlePreviousYearButton = function (event) {
   }
 };
 
-NonModalDatePicker.prototype.handleNextMonthButton = function (event) {
+DatePicker.prototype.handleNextMonthButton = function (event) {
   var flag = false;
   var onFirstRow = this.onFirstRow();
   var onLastRow = this.onLastRow();
@@ -631,7 +630,7 @@ NonModalDatePicker.prototype.handleNextMonthButton = function (event) {
   }
 };
 
-NonModalDatePicker.prototype.handlePreviousMonthButton = function (event) {
+DatePicker.prototype.handlePreviousMonthButton = function (event) {
   var flag = false;
   var onFirstRow = this.onFirstRow();
   var onLastRow = this.onLastRow();
@@ -677,17 +676,17 @@ NonModalDatePicker.prototype.handlePreviousMonthButton = function (event) {
   }
 };
 
-NonModalDatePicker.prototype.moveToNextYear = function () {
+DatePicker.prototype.moveToNextYear = function () {
   this.year++;
   this.updateGrid();
 };
 
-NonModalDatePicker.prototype.moveToPreviousYear = function () {
+DatePicker.prototype.moveToPreviousYear = function () {
   this.year--;
   this.updateGrid();
 };
 
-NonModalDatePicker.prototype.moveToPreviousMonth = function () {
+DatePicker.prototype.moveToPreviousMonth = function () {
   this.month--;
   if (this.month < 0) {
     this.month = 11;
@@ -696,7 +695,7 @@ NonModalDatePicker.prototype.moveToPreviousMonth = function () {
   this.updateGrid();
 };
 
-NonModalDatePicker.prototype.moveToNextMonth = function () {
+DatePicker.prototype.moveToNextMonth = function () {
   this.month++;
   if (this.month > 11) {
     this.month = 0;
@@ -705,7 +704,7 @@ NonModalDatePicker.prototype.moveToNextMonth = function () {
   this.updateGrid();
 };
 
-NonModalDatePicker.prototype.moveToDay = function (day, month, year) {
+DatePicker.prototype.moveToDay = function (day, month, year) {
   this.day   = day;
   this.month = month;
   this.year  = year;
@@ -713,7 +712,7 @@ NonModalDatePicker.prototype.moveToDay = function (day, month, year) {
   this.setFocusDay();
 };
 
-NonModalDatePicker.prototype.moveFocusToNextDay = function () {
+DatePicker.prototype.moveFocusToNextDay = function () {
 
   this.day++;
   if (this.daysInCurrentMonth <= this.day) {
@@ -723,7 +722,7 @@ NonModalDatePicker.prototype.moveFocusToNextDay = function () {
   this.setFocusDay();
 };
 
-NonModalDatePicker.prototype.moveFocusToNextWeek = function () {
+DatePicker.prototype.moveFocusToNextWeek = function () {
 
   this.day += 7;
   if (this.daysInCurrentMonth <= this.day) {
@@ -733,7 +732,7 @@ NonModalDatePicker.prototype.moveFocusToNextWeek = function () {
   this.setFocusDay();
 };
 
-NonModalDatePicker.prototype.moveFocusToPreviousDay = function () {
+DatePicker.prototype.moveFocusToPreviousDay = function () {
 
   this.day--;
   if (this.day < 0) {
@@ -743,7 +742,7 @@ NonModalDatePicker.prototype.moveFocusToPreviousDay = function () {
   this.setFocusDay();
 };
 
-NonModalDatePicker.prototype.moveFocusToPreviousWeek = function () {
+DatePicker.prototype.moveFocusToPreviousWeek = function () {
   this.day -= 7;
   if (this.day < 0) {
     this.day = this.daysInLastMonth + this.day;
@@ -752,7 +751,7 @@ NonModalDatePicker.prototype.moveFocusToPreviousWeek = function () {
   this.setFocusDay();
 };
 
-NonModalDatePicker.prototype.moveFocusToFirstDayOfWeek = function () {
+DatePicker.prototype.moveFocusToFirstDayOfWeek = function () {
 
   this.day = this.day - this.currentDay.column;
 
@@ -764,7 +763,7 @@ NonModalDatePicker.prototype.moveFocusToFirstDayOfWeek = function () {
 
 };
 
-NonModalDatePicker.prototype.moveFocusToLastDayOfWeek = function () {
+DatePicker.prototype.moveFocusToLastDayOfWeek = function () {
 
   this.day = this.day + (6 - this.currentDay.column);
 
@@ -776,11 +775,11 @@ NonModalDatePicker.prototype.moveFocusToLastDayOfWeek = function () {
 
 };
 
-NonModalDatePicker.prototype.setTextboxDate = function () {
+DatePicker.prototype.setTextboxDate = function () {
   this.dateInput.setDate(this.month, this.day, this.year);
 };
 
-NonModalDatePicker.prototype.getDateInput = function () {
+DatePicker.prototype.getDateInput = function () {
 
   var parts = this.dateInput.getDate().split('/');
 
@@ -808,7 +807,7 @@ NonModalDatePicker.prototype.getDateInput = function () {
 
 };
 
-NonModalDatePicker.prototype.getDateForButtonLabel = function () {
+DatePicker.prototype.getDateForButtonLabel = function () {
   this.selectedDay = new Date(this.year, this.month, this.day + 1);
   var label = this.dayLabels[this.selectedDay.getDay()];
   label += ' ' + this.monthLabels[this.selectedDay.getMonth()];

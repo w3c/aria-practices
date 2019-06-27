@@ -173,3 +173,5 @@ DatePickerDay.prototype.handleMouseDown = function (event) {
   event.preventDefault();
 
 };
+
+

@@ -2,8 +2,10 @@
 *   This content is licensed according to the W3C Software License at
 *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
 *
-*   File:   datepicker-menubutton.js
+*   File:   calendar-button.js
 */
+
+var DatePicker = DatePicker || {};
 
 var CalendarButtonInput = function (inputNode, buttonNode, messageNode, datepicker) {
   this.inputNode    = inputNode;
@@ -159,8 +161,10 @@ window.addEventListener('load' , function () {
     var messageNode = dp.querySelector('.message');
     var dialogNode  = dp.querySelector('[role=dialog]');
 
-    var datePicker = new NonModalDatePicker(inputNode, buttonNode, messageNode, dialogNode);
+    var datePicker = new DatePicker(inputNode, buttonNode, messageNode, dialogNode);
     datePicker.init();
   });
 
 });
+
+
