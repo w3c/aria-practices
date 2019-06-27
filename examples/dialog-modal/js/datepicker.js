@@ -377,7 +377,7 @@ DatePicker.prototype.hide = function (ignore) {
 };
 
 DatePicker.prototype.handleBackgroundMouseDown = function (event) {
-  if (!this.inputNode.parentNode.contains(event.target) &&
+  if (!this.buttonNode.contains(event.target) &&
       !this.dialogNode.contains(event.target)) {
 
     this.isMouseDownOnBackground = true;

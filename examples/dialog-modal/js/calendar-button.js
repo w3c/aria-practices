@@ -44,7 +44,6 @@ CalendarButtonInput.prototype.init = function () {
   this.buttonNode.addEventListener('focus', this.handleFocus.bind(this));
   this.buttonNode.addEventListener('blur', this.handleBlur.bind(this));
 
-
   this.setMessage('');
 };
 
@@ -85,8 +84,7 @@ CalendarButtonInput.prototype.handleBlur = function () {
   this.setMessage('');
 };
 
-CalendarButtonInput.prototype.handleClick = function (event) {
-
+CalendarButtonInput.prototype.handleClick = function () {
   if (this.isCollapsed()) {
     this.datepicker.show();
   }
@@ -106,26 +104,15 @@ CalendarButtonInput.prototype.setFocus = function () {
 };
 
 CalendarButtonInput.prototype.setAriaExpanded = function (flag) {
-
   if (flag) {
-    if (this.comboboxNode) {
-      this.comboboxNode.setAttribute('aria-expanded', 'true');
-    }
     this.buttonNode.setAttribute('aria-expanded', 'true');
   }
   else {
-    if (this.comboboxNode) {
-      this.comboboxNode.setAttribute('aria-expanded', 'false');
-    }
     this.buttonNode.setAttribute('aria-expanded', 'false');
   }
-
 };
 
 CalendarButtonInput.prototype.getAriaExpanded = function () {
-  if (this.comboboxNode) {
-    return this.comboboxNode.getAttribute('aria-expanded') === 'true';
-  }
   return this.buttonNode.getAttribute('aria-expanded') === 'true';
 };
 

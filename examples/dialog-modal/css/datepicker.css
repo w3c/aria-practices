@@ -1,5 +1,6 @@
 .datepicker {
   margin-top: 1em;
+  position: relative;
 }
 
 .datepicker button.icon {
@@ -7,7 +8,7 @@
   text-align: left;
   background-color: white;
   position: relative;
-  left: -25px;
+  left: -4px;
   top: 3px;
 }
 
@@ -18,30 +19,13 @@
   background: transparent;
 }
 
-.datepicker span.arrow svg polygon {
-  stroke: gray;
-  stroke-width: 1px;
-  fill: gray;
-}
-
-.datepicker[aria-expanded=false] span.arrow.up {
-  display: inline-block;
-  position: relative;
-  left: -23px;
-}
-
-.datepicker[aria-expanded=true] span.arrow.down {
-  display: inline-block;
-  position: relative;
-  left: -23px;
-}
-
 .datepicker input {
   margin: 0;
   width: 20%;
 }
 
 .datepickerDialog {
+  position: absolute;
   width: 45%;
   clear: both;
   display: none;
