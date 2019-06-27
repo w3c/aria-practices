@@ -3832,7 +3832,7 @@ However, most authors do not need detailed understanding of the algorithms since
             This is in contrast to other elements, such as text fields or tables,  where the accessible name is a label that is presented in addition to the value or content of the element.
             For instance, the accessible name of a table can be derived from a caption element, and assistive technologies render both the caption and all other content contained inside the table.
           </p>
-          <p>Elements having one of the following roles are, by default, named by a string calculated from all their descendant content:</p>
+          <p>Elements having one of the following roles are, by default, named by a string calculated from their descendant content:</p>
           <ul>
             <li>button</li>
             <li>cell</li>
@@ -3841,7 +3841,7 @@ However, most authors do not need detailed understanding of the algorithms since
             <li>gridcell</li>
             <li>heading</li>
             <li>link</li>
-            <li>menuitem</li>
+            <li>menuitem (content contained in a child <code>menu</code> element is excluded.)</li>
             <li>menuitemcheckbox</li>
             <li>menuitemradio</li>
             <li>option</li>
@@ -3851,10 +3851,26 @@ However, most authors do not need detailed understanding of the algorithms since
             <li>switch</li>
             <li>tab</li>
             <li>tooltip</li>
-            <li>treeitem</li>
+            <li>treeitem (content included in a child <code>group</code> element is excluded.)</li>
           </ul>
+          <p>
+            When calculating a name from content for an element, user agents recursively walk through each of its descendant elements, calculate a name string for each descendant, and concatenate the resulting strings.
+            In two special cases, certain descendants are ignored: <code>group</code> descendants of <code>treeitem</code> elements and <code>menu</code> descendants of <code>menuitem</code> elements are omitted from the calculation.
+            For example, in the following <code>tree</code>, the name of the first tree item is <q>Fruits</q>; <q>Apples</q>, <q>Bananas</q>, and <q>Oranges</q> are omitted.
+          </p>
+        <pre><code>
+&lt;ul role="tree">
+  &lt;li role="treeitem">Fruits
+    &lt;ul role="group">
+      &lt;li role="treeitem">Apples&lt;/li>
+      &lt;li role="treeitem">Bananas&lt;/li>
+      &lt;li role="treeitem">Oranges&lt;/li>
+    &lt;/ul>
+  &lt;/li>
+&lt;/ul>
+          </code></pre>
           <p class="warning">
-            If an element with one of the above roles is named by using <code>aria-label</code> or <code>aria-labelledby</code>, content contained in the element and its descendants is hidden from assistive technology users unless the descendant content is referenced by <code>aria-labelledby</code>.
+            If an element with one of the above roles that supports naming from child content is named by using <code>aria-label</code> or <code>aria-labelledby</code>, content contained in the element and its descendants is hidden from assistive technology users unless the descendant content is referenced by <code>aria-labelledby</code>.
             It is strongly recommended to avoid using either of these attributes to override content of one of the above elements except in rare circumstances where hiding content from assistive technology users is beneficial.
             In addition, in situations where visible content is hidden from assistive technology users by use of one of these attributes, thorough testing with assistive technologies is particularly important.
           </p>
@@ -3994,10 +4010,9 @@ However, most authors do not need detailed understanding of the algorithms since
         <section id="naming_with_legends">
           <h5>Naming Fieldsets with the Legend Element</h5>
           <p>
-            The HTML <code>fieldset</code> element can be used to group form controls, which can make forms easier to navigate.
-            The <code>legend</code> element can be used to give the group a name.
+            The HTML <code>fieldset</code> element can be used to group form controls, and the <code>legend</code> element can be used to give the group a name.
+            For example, a group of radio buttons can be grouped together in a <code>fieldset</code>, where the <code>legend</code> element labels the group for the radio buttons.
           </p>
-          <p>For example, a group of radio buttons can be grouped together in a <code>fieldset</code>, where the <code>legend</code> element labels the group for the radio buttons.</p>
           <pre><code>
   &lt;fieldset>
     &lt;legend>Select your starter class&lt;/legend>
@@ -4009,11 +4024,10 @@ However, most authors do not need detailed understanding of the algorithms since
           <p>
             This grouping technique is particularly useful for presenting multiple choice questions.
             It enables authors to associate a question with a group of answers.
-            If a question is not programmatically associated with its answer options, assistive technology users could access the answers without being aware of the question.
+            If a question is not programmatically associated with its answer options, assistive technology users may access the answers without being aware of the question.
           </p>
           <p>
-            Other types of related form fields can also be grouped using <code>fieldset</code> and <code>legend</code>.
-            This helps users navigate the form group-by-group.
+            Similar benefits can be gained from grouping and naming other types of related form fields using <code>fieldset</code> and <code>legend</code>.
           </p>
           <pre><code>
   &lt;fieldset>
@@ -4069,9 +4083,16 @@ However, most authors do not need detailed understanding of the algorithms since
 
         <section id="naming_with_fallback">
           <h5>Fallback Names Derived from Titles and Placeholders</h5>
-          <p>When an accessible name is not provided using one of the primary techniques (e.g., the <code>aria-label</code> or <code>aria-labelledby</code> attributes), or native markup techniques (e.g., the HTML <code>label</code> element, or the <code>alt</code> attribute of the HTML <code>img</code> element), an accessible name can be derived from some other attributes as a fallback mechanism. In general, prefer the explicit labeling techniques described above over fallback techniques described in this section.</p>
+          <p>
+            When an accessible name is not provided using one of the primary techniques (e.g., the <code>aria-label</code> or <code>aria-labelledby</code> attributes), or native markup techniques (e.g., the HTML <code>label</code> element, or the <code>alt</code> attribute of the HTML <code>img</code> element), browsers calculate an accessible name from other attributes as a fallback mechanism.
+            It is recommended authors prefer the explicit labeling techniques described above over fallback techniques described in this section.
+          </p>
 
-          <p>Any HTML element can have a <code>title</code> attribute specified. The <code>title</code> attribute is used as the element's fallback accessible name. The <code>title</code> attribute is commonly presented visually as a tooltip when the user hovers over the element with a pointing device, which is not particularly discoverable, and is also not accessible to visual users without a pointing device.</p>
+          <p>
+            Any HTML element can have a <code>title</code> attribute specified.
+            The <code>title</code> attribute may be used as the element's fallback accessible name.
+            The <code>title</code> attribute is commonly presented visually as a tooltip when the user hovers over the element with a pointing device, which is not particularly discoverable, and is also not accessible to visual users without a pointing device.
+          </p>
 
           <p>For example, a <code>fieldset</code> element without a <code>legend</code> element child, but with a <code>title</code> attribute, gets its accessible name from the <code>title</code> attribute.</p>
 
@@ -4081,7 +4102,10 @@ However, most authors do not need detailed understanding of the algorithms since
     &lt;label>&lt;input name="starter-class" value="blue"> Blue&lt;/label>
    &lt;/fieldset></code></pre>
 
-          <p>For the HTML <code>input</code> and <code>textarea</code> elements, the <code>placeholder</code> attribute is used as a fallback labeling mechanism if nothing else (including the <code>title</code> attribute) results in a label. It is better to use a <code>label</code> element, since it does not disappear visually when the user focuses the form control.</p>
+          <p>
+            For the HTML <code>input</code> and <code>textarea</code> elements, the <code>placeholder</code> attribute is used as a fallback labeling mechanism if nothing else (including the <code>title</code> attribute) results in a label.
+            It is better to use a <code>label</code> element, since it does not disappear visually when the user focuses the form control.
+          </p>
 
           <pre><code>&lt;!-- Using a &lt;label> is recommended -->
 &lt;label>Search &lt;input type=search name=q>&lt;/label>
@@ -4203,7 +4227,7 @@ However, most authors do not need detailed understanding of the algorithms since
                 <ul>
                   <li>Necessary in the uncommon circumstance where two banner landmark regions are present on the same page. It is otherwise optional.</li>
                   <li>Named using <code>aria-labelledby</code> if a visible label is present, otherwise with <code>aria-label</code>.</li>
-                  <li>See the <a href="#aria_lh_banner">Banner Landmark Role</a>.</li>
+                  <li>See the <a href="#aria_lh_banner">Banner Landmark</a> section.</li>
                 </ul>
               </td>
             </tr>
@@ -4269,7 +4293,7 @@ However, most authors do not need detailed understanding of the algorithms since
                   <li>Naming is necessary when two complementary landmark regions are present on the same page.</li>
                   <li>Naming is recommended even when one complementary region is present to help users understand the purpose of the region's content when navigating among landmark regions.</li>
                   <li>Use <code>aria-labelledby</code> if a visible label is present, otherwise use <code>aria-label</code>.</li>
-                  <li>See the <a href="#aria_lh_complementary">Complementary Landmark Role</a>.</li>
+                  <li>See the <a href="#aria_lh_complementary">Complementary Landmark</a> section.</li>
                 </ul>
               </td>
             </tr>
@@ -4341,7 +4365,7 @@ However, most authors do not need detailed understanding of the algorithms since
                 <ul>
                   <li>Helps screen reader users understand the context and purpose of the form landmark.</li>
                   <li>Use <code>aria-labelledby</code> if a visible label is present, otherwise use <code>aria-label</code>.</li>
-                  <li>See the <a href="#aria_lh_form">Form Landmark Role</a>.</li>
+                  <li>See the <a href="#aria_lh_form">Form Landmark</a> section.</li>
                 </ul>
               </td>
             </tr>
@@ -4443,7 +4467,7 @@ However, most authors do not need detailed understanding of the algorithms since
                 <ul>
                   <li>Potentially helpful for orienting assistive technology users, especially in single-page applications where main content changes happen without generating a page load event.</li>
                   <li>Can be named using <code>aria-labelledby</code> if a visible label is present, otherwise with <code>aria-label</code>.</li>
-                  <li>See the <a href="#aria_lh_main">Main Landmark Role</a>.</li>
+                  <li>See the <a href="#aria_lh_main">Main Landmark</a> section.</li>
                 </ul>
               </td>
             </tr>
@@ -4455,7 +4479,13 @@ However, most authors do not need detailed understanding of the algorithms since
             <tr>
               <td><a href="#math" class="role-reference"><code>math</code></a></td>
               <td>Recommended</td>
-              <td>To-do: write guidance; probably similar to complementary. See issue <a href="https://github.com/w3c/aria-practices/issues/26">#26</a>.</td>
+              <td>
+                <ul>
+                  <li>If the <code>math</code> element has only presentational children and the accessible name is intended to convey the mathematical expression, use <code>aria-label</code> to provide a string that represents the expression.</li>
+                  <li>If the <code>math</code> element contains navigable content that conveys the mathematical expression and a visible label for the expression is present, use <code>aria-labelledby</code>.</li> 
+                  <li>Otherwise, use a<code>aria-label</code> to name the expression, e.g., <code>aria-label="Pythagorean Theorem"</code>.</li>
+                </ul>
+              </td>
             </tr>
             <tr>
               <td><a href="#menu" class="role-reference"><code>menu</code></a></td>
@@ -4587,7 +4617,7 @@ However, most authors do not need detailed understanding of the algorithms since
               <td>Required</td>
               <td>
                 <ul>
-                  <li>Recommended to help assistive technology users to understand the purpose of the of the group of <code>radio</code> buttons.</li>
+                  <li>Recommended to help assistive technology users understand the purpose of the group of <code>radio</code> buttons.</li>
                   <li>Use <code>aria-labelledby</code> if a visible label is present, otherwise use <code>aria-label</code>.</li>
                   <li>See the <a href="#radiobutton">Radio Group Design Pattern</a>.</li>
                 </ul>
@@ -4609,7 +4639,7 @@ However, most authors do not need detailed understanding of the algorithms since
               <td>
                 Required <strong>Only If</strong> Content Insufficient
                 <strong>AND</strong> descendant of a <code>treegrid</code>
-                <strong>AND</strong> the row is focusable.
+                <strong>AND</strong> the row is focusable
               </td>
               <td>
                 When <code>row</code> elements are focusable in a <a href="#treegrid">treegrid</a>, screen readers announce the entire contents of a row when navigating by row.
@@ -4638,7 +4668,7 @@ However, most authors do not need detailed understanding of the algorithms since
               <td>Discretionary</td>
               <td>
                 <ul>
-                  <li>Naming is optional, but can potentially help screen reader users understand the purpose of the scrollbar. The purpose is also conveyed using the <code>aria-control</code> attribute, which is required for <code>scrollbar</code>.</li>
+                  <li>Naming is optional, but can potentially help screen reader users understand the purpose of the scrollbar. The purpose is also conveyed using the <code>aria-controls</code> attribute, which is required for <code>scrollbar</code>.</li>
                   <li>Named using <code>aria-labelledby</code> if a visible label is present, otherwise with <code>aria-label</code>.</li>
                 </ul>
               </td>
@@ -4670,7 +4700,7 @@ However, most authors do not need detailed understanding of the algorithms since
               <td>Discretionary</td>
               <td>
                 <ul>
-                  <li>Recommended if there are more than one focusable <code>separator</code> elements on the page.</li>
+                  <li>Recommended if there is more than one focusable <code>separator</code> element on the page.</li>
                   <li>Can help assistive technology users understand the purpose of the separator.</li>
                   <li>Named using <code>aria-labelledby</code> if a visible label is present, otherwise with <code>aria-label</code>.</li>
                 </ul>
@@ -4684,7 +4714,7 @@ However, most authors do not need detailed understanding of the algorithms since
                   <li>If the <code>slider</code> role is applied to an HTML <code>input</code> element, can be named with an HTML <code>label</code> element.</li>
                   <li>Otherwise use <code>aria-labelledby</code> if a visible label is present.</li>
                   <li>Use <code>aria-label</code> if a visible label is not present.</li>
-                  <li>See the <a href="#slider">Slider Widget</a> and <a href="#slidertwothumb">Slider (Multi-Thumb) Widget</a> sections.</li>
+                  <li>See the <a href="#slider">Slider Design Pattern</a> and the <a href="#slidertwothumb">Slider (Multi-Thumb) Design Pattern</a>.</li>
                 </ul>
               </td>
             </tr>
@@ -4696,7 +4726,7 @@ However, most authors do not need detailed understanding of the algorithms since
                   <li>If the <code>textbox</code> role is applied to an HTML <code>input</code> element, can be named with an HTML <code>label</code> element.</li>
                   <li>Otherwise use <code>aria-labelledby</code> if a visible label is present.</li>
                   <li>Use <code>aria-label</code> if a visible label is not present.</li>
-                  <li>See the <a href="#spinbutton">Spinbutton Widget</a> section.</li>
+                  <li>See the <a href="#spinbutton">Spinbutton Design Pattern</a>.</li>
                 </ul>
               </td>
             </tr>
@@ -4789,7 +4819,7 @@ However, most authors do not need detailed understanding of the algorithms since
               <td>Recommended</td>
               <td>
                 <ul>
-                  <li>If there are more than one <code>toolbar</code> elements on the page, naming is required.</li>
+                  <li>If there is more than one <code>toolbar</code> element on the page, naming is required.</li>
                   <li>Helps assistive technology users to understand the purpose of the toolbar, even when there is only one toolbar on the page.</li>
                   <li>Use <code>aria-labelledby</code> if a visible label is present, otherwise use <code>aria-label</code>.</li>
                   <li>See the <a href="#toolbar">Toolbar Pattern</a>.</li>
@@ -4905,13 +4935,17 @@ However, most authors do not need detailed understanding of the algorithms since
           The final step is a fallback mechanism. Generally when labeling an element, use one of the non-fallback mechanisms.
         </p>
         <p>
-          When calculating a name from content, the user agent walks through all descendant nodes (except as noted below).
+          When calculating a name from content, the user agent walks through all descendant nodes except in the cases of <code>treeitem</code> and <code>menuitem</code> as described below.
           And, when following references in an <code>aria-labelledby</code> attribute, it similarly walks the tree of each referenced element.
           Thus, the naming algorithm is recursive.
-          The following two sections provide non-recursive and recursive examples of how the algorithm works.
+          The following two sections explain non-recursive and recursive examples of how the algorithm works.
         </p>
-        <p>When calculating a name from content for the <code>treeitem</code> role, descendant content of child <code>group</code> elements are not included.</p>
-        <pre><code>&lt;ul role="tree">
+        <p>
+          When calculating a name from content for the <code>treeitem</code> role, descendant content of child <code>group</code> elements are not included.
+          For example, in the following <code>tree</code>, the name of the first tree item is <q>Fruits</q>; <q>Apples</q>, <q>Bananas</q>, and <q>Oranges</q> are automatically omitted.
+        </p>
+        <pre><code>
+&lt;ul role="tree">
   &lt;li role="treeitem">Fruits
     &lt;ul role="group">
       &lt;li role="treeitem">Apples&lt;/li>
@@ -4919,9 +4953,14 @@ However, most authors do not need detailed understanding of the algorithms since
       &lt;li role="treeitem">Oranges&lt;/li>
     &lt;/ul>
   &lt;/li>
-&lt;/ul></code></pre>
-        <p>When calculating a name from content for the <code>treeitem</code> role, descendant content of child <code>menu</code> elements are not included.</p>
-        <pre><code>&lt;ul role="menu">
+&lt;/ul>
+        </code></pre>
+        <p>
+          Similarly, when calculating a name from content for the <code>menuitem</code> role, descendant content of child <code>menu</code> elements are not included.
+          So, the name of the first parent <code>menuitem</code> in the following <code>menu</code> is <q>Fruits</q>.
+        </p>
+        <pre><code>
+&lt;ul role="menu">
   &lt;li role="menuitem">Fruits
     &lt;ul role="menu">
       &lt;li role="menuitem">Apples&lt;/li>
@@ -4929,7 +4968,8 @@ However, most authors do not need detailed understanding of the algorithms since
       &lt;li role="menuitem">Oranges&lt;/li>
     &lt;/ul>
   &lt;/li>
-&lt;/ul></code></pre>
+&lt;/ul>
+        </code></pre>
 
         <section id="name_calculation_non-recursive_ex">
           <h5>Examples of non-recursive accessible name calculation</h5>
