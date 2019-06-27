@@ -5,7 +5,7 @@
 *   File:   datepicker-menubutton.js
 */
 
-var MenuButtonInput = function (inputNode, buttonNode, messageNode, datepicker) {
+var CalendarButtonInput = function (inputNode, buttonNode, messageNode, datepicker) {
   this.inputNode    = inputNode;
   this.buttonNode   = buttonNode;
   this.messageNode  = messageNode;
@@ -34,7 +34,7 @@ var MenuButtonInput = function (inputNode, buttonNode, messageNode, datepicker) 
   });
 };
 
-MenuButtonInput.prototype.init = function () {
+CalendarButtonInput.prototype.init = function () {
 
   this.buttonNode.addEventListener('click', this.handleClick.bind(this));
   this.buttonNode.addEventListener('keydown', this.handleKeyDown.bind(this));
@@ -46,7 +46,7 @@ MenuButtonInput.prototype.init = function () {
   this.setMessage('');
 };
 
-MenuButtonInput.prototype.handleKeyDown = function (event) {
+CalendarButtonInput.prototype.handleKeyDown = function (event) {
   var flag = false;
 
   switch (event.keyCode) {
@@ -73,17 +73,17 @@ MenuButtonInput.prototype.handleKeyDown = function (event) {
   }
 };
 
-MenuButtonInput.prototype.handleFocus = function () {
+CalendarButtonInput.prototype.handleFocus = function () {
   if (this.isCollapsed()) {
     this.setMessage('Use the down arrow key or the following change date button to move focus to the datepicker grid.');
   }
 };
 
-MenuButtonInput.prototype.handleBlur = function () {
+CalendarButtonInput.prototype.handleBlur = function () {
   this.setMessage('');
 };
 
-MenuButtonInput.prototype.handleClick = function (event) {
+CalendarButtonInput.prototype.handleClick = function (event) {
 
   if (this.isCollapsed()) {
     this.datepicker.show();
@@ -98,12 +98,12 @@ MenuButtonInput.prototype.handleClick = function (event) {
 };
 
 
-MenuButtonInput.prototype.setFocus = function () {
+CalendarButtonInput.prototype.setFocus = function () {
   this.buttonNode.setAttribute('aria-label', 'Calendar, current date is ' + this.datepicker.getDateForButtonLabel());
   this.buttonNode.focus();
 };
 
-MenuButtonInput.prototype.setAriaExpanded = function (flag) {
+CalendarButtonInput.prototype.setAriaExpanded = function (flag) {
 
   if (flag) {
     if (this.comboboxNode) {
@@ -120,30 +120,30 @@ MenuButtonInput.prototype.setAriaExpanded = function (flag) {
 
 };
 
-MenuButtonInput.prototype.getAriaExpanded = function () {
+CalendarButtonInput.prototype.getAriaExpanded = function () {
   if (this.comboboxNode) {
     return this.comboboxNode.getAttribute('aria-expanded') === 'true';
   }
   return this.buttonNode.getAttribute('aria-expanded') === 'true';
 };
 
-MenuButtonInput.prototype.isCollapsed = function () {
+CalendarButtonInput.prototype.isCollapsed = function () {
   return this.inputNode.getAttribute('aria-expanded') !== 'true';
 };
 
-MenuButtonInput.prototype.setDate = function (month, day, year) {
+CalendarButtonInput.prototype.setDate = function (month, day, year) {
   this.inputNode.value = (month + 1) + '/' + (day + 1) + '/' + year;
 };
 
-MenuButtonInput.prototype.getDate = function () {
+CalendarButtonInput.prototype.getDate = function () {
   return this.inputNode.value;
 };
 
-MenuButtonInput.prototype.setMessage = function (str) {
+CalendarButtonInput.prototype.setMessage = function (str) {
   return this.messageNode.textContent = str;
 };
 
-MenuButtonInput.prototype.hasFocus = function () {
+CalendarButtonInput.prototype.hasFocus = function () {
   return this.hasFocusflag;
 };
 
@@ -159,7 +159,7 @@ window.addEventListener('load' , function () {
     var messageNode = dp.querySelector('.message');
     var dialogNode  = dp.querySelector('[role=dialog]');
 
-    var datePicker = new DatePicker(null, inputNode, buttonNode, messageNode, dialogNode);
+    var datePicker = new NonModalDatePicker(inputNode, buttonNode, messageNode, dialogNode);
     datePicker.init();
   });
 

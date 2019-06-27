@@ -2,10 +2,13 @@
 *   This content is licensed according to the W3C Software License at
 *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
 *
-*   File:   datepicker.js
+*   File:   nonmodal-datepicker.js
 */
 
-var DatePicker = function (comboboxNode, inputNode, buttonNode, messageNode, dialogNode) {
+import CalendarButtonInput from 'calendar-button.js';
+import DatePickerDay from 'datepickerDay.js';
+
+var NonModalDatePicker = function (inputNode, buttonNode, messageNode, dialogNode) {
   this.dayLabels = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   this.monthLabels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
@@ -14,12 +17,7 @@ var DatePicker = function (comboboxNode, inputNode, buttonNode, messageNode, dia
   this.messageNode = messageNode;
   this.dialogNode  = dialogNode;
 
-  if (comboboxNode) {
-    this.dateInput = new ComboboxInput(comboboxNode, this.inputNode, this.buttonNode, this.messageNode, this);
-  }
-  else {
-    this.dateInput = new MenuButtonInput(this.inputNode, this.buttonNode, this.messageNode, this);
-  }
+  this.dateInput = new CalendarButtonInput(this.inputNode, this.buttonNode, this.messageNode, this);
 
   this.MonthYearNode = this.dialogNode.querySelector('.monthYear');
 
@@ -70,7 +68,7 @@ var DatePicker = function (comboboxNode, inputNode, buttonNode, messageNode, dia
 
 };
 
-DatePicker.prototype.init = function () {
+NonModalDatePicker.prototype.init = function () {
 
   this.dateInput.init();
 
@@ -120,7 +118,7 @@ DatePicker.prototype.init = function () {
   this.setFocusDay();
 };
 
-DatePicker.prototype.updateGrid = function (year, month) {
+NonModalDatePicker.prototype.updateGrid = function (year, month) {
 
   var i;
 
@@ -187,14 +185,14 @@ DatePicker.prototype.updateGrid = function (year, month) {
 
 };
 
-DatePicker.prototype.onFirstRow = function () {
+NonModalDatePicker.prototype.onFirstRow = function () {
   var cd = this.currentDay;
   var flag = cd.row === 0;
   flag = flag || ((cd.row === 1) && this.days[cd.index - 7].isDisabled());
   return flag;
 };
 
-DatePicker.prototype.onLastRow = function () {
+NonModalDatePicker.prototype.onLastRow = function () {
   var cd = this.currentDay;
   var flag = cd.row === 5;
   flag = flag || ((cd.row === 3) && this.days[cd.index + 7].isDisabled());
@@ -204,7 +202,7 @@ DatePicker.prototype.onLastRow = function () {
 
 
 // If after updating the grid the current day is on a disabled button move it to an enabled button in the same column
-DatePicker.prototype.adjustCurrentDay = function (onFirstRow, onLastRow) {
+NonModalDatePicker.prototype.adjustCurrentDay = function (onFirstRow, onLastRow) {
   var cd = this.currentDay;
 
   if (typeof onFirstRow !== 'boolean') {
@@ -245,15 +243,15 @@ DatePicker.prototype.adjustCurrentDay = function (onFirstRow, onLastRow) {
   }
 };
 
-DatePicker.prototype.hideLastRow = function () {
+NonModalDatePicker.prototype.hideLastRow = function () {
   this.lastRowNode.style.visibility = 'hidden';
 };
 
-DatePicker.prototype.showLastRow = function () {
+NonModalDatePicker.prototype.showLastRow = function () {
   this.lastRowNode.style.visibility = 'visible';
 };
 
-DatePicker.prototype.setFocusDay = function (flag) {
+NonModalDatePicker.prototype.setFocusDay = function (flag) {
 
   if (typeof flag !== 'boolean') {
     flag = true;
@@ -282,13 +280,13 @@ DatePicker.prototype.setFocusDay = function (flag) {
   this.days.forEach(checkDay.bind(this));
 };
 
-DatePicker.prototype.updateDate = function (year, month, day) {
+NonModalDatePicker.prototype.updateDate = function (year, month, day) {
   this.year = year;
   this.month = month;
   this.day = day;
 };
 
-DatePicker.prototype.getDaysInLastMonth = function (year, month) {
+NonModalDatePicker.prototype.getDaysInLastMonth = function (year, month) {
 
   if (typeof year !== 'number') {
     year = this.year;
@@ -309,7 +307,7 @@ DatePicker.prototype.getDaysInLastMonth = function (year, month) {
 
 };
 
-DatePicker.prototype.getDaysInMonth = function (year, month) {
+NonModalDatePicker.prototype.getDaysInMonth = function (year, month) {
 
   if (typeof year !== 'number') {
     year = this.year;
@@ -348,7 +346,7 @@ DatePicker.prototype.getDaysInMonth = function (year, month) {
 
 };
 
-DatePicker.prototype.show = function () {
+NonModalDatePicker.prototype.show = function () {
 
   this.dialogNode.style.display = 'block';
   this.dialogNode.style.zIndex = 2;
@@ -360,11 +358,11 @@ DatePicker.prototype.show = function () {
   return this.hasFocusFlag;
 };
 
-DatePicker.prototype.isOpen = function () {
+NonModalDatePicker.prototype.isOpen = function () {
   return this.dateInput.getAriaExpanded();
 };
 
-DatePicker.prototype.hide = function (ignore) {
+NonModalDatePicker.prototype.hide = function (ignore) {
 
   if (typeof ignore !== 'boolean') {
     ignore = true;
@@ -378,13 +376,12 @@ DatePicker.prototype.hide = function (ignore) {
   this.dateInput.setFocus();
 };
 
-DatePicker.prototype.handleBackgroundMouseDown = function (event) {
-  console.log('[DatePicker][handleBackgroundMouseDown]');
+NonModalDatePicker.prototype.handleBackgroundMouseDown = function (event) {
   if (!this.inputNode.parentNode.contains(event.target) &&
       !this.dialogNode.contains(event.target)) {
 
     this.isMouseDownOnBackground = true;
-    console.log('[DatePicker][handleBackgroundMouseDown][isMouseDownOnBackground]: ' + this.isMouseDownOnBackground);
+    console.log('[NonModalDatePicker][handleBackgroundMouseDown][isMouseDownOnBackground]: ' + this.isMouseDownOnBackground);
 
     if (this.isOpen()) {
       this.hide();
@@ -394,13 +391,12 @@ DatePicker.prototype.handleBackgroundMouseDown = function (event) {
   }
 };
 
-DatePicker.prototype.handleBackgroundMouseUp = function (event) {
-  console.log('[DatePicker][handleBackgroundMouseUp]');
+NonModalDatePicker.prototype.handleBackgroundMouseUp = function () {
   this.isMouseDownOnBackground = false;
 };
 
 
-DatePicker.prototype.handleOkButton = function (event) {
+NonModalDatePicker.prototype.handleOkButton = function (event) {
   var flag = false;
 
   switch (event.type) {
@@ -450,7 +446,7 @@ DatePicker.prototype.handleOkButton = function (event) {
   }
 };
 
-DatePicker.prototype.handleCancelButton = function (event) {
+NonModalDatePicker.prototype.handleCancelButton = function (event) {
   var flag = false;
 
   switch (event.type) {
@@ -489,7 +485,7 @@ DatePicker.prototype.handleCancelButton = function (event) {
   }
 };
 
-DatePicker.prototype.handleNextYearButton = function (event) {
+NonModalDatePicker.prototype.handleNextYearButton = function (event) {
   var flag = false;
   var onFirstRow = this.onFirstRow();
   var onLastRow = this.onLastRow();
@@ -534,7 +530,7 @@ DatePicker.prototype.handleNextYearButton = function (event) {
   }
 };
 
-DatePicker.prototype.handlePreviousYearButton = function (event) {
+NonModalDatePicker.prototype.handlePreviousYearButton = function (event) {
   var flag = false;
   var onFirstRow = this.onFirstRow();
   var onLastRow = this.onLastRow();
@@ -590,7 +586,7 @@ DatePicker.prototype.handlePreviousYearButton = function (event) {
   }
 };
 
-DatePicker.prototype.handleNextMonthButton = function (event) {
+NonModalDatePicker.prototype.handleNextMonthButton = function (event) {
   var flag = false;
   var onFirstRow = this.onFirstRow();
   var onLastRow = this.onLastRow();
@@ -635,7 +631,7 @@ DatePicker.prototype.handleNextMonthButton = function (event) {
   }
 };
 
-DatePicker.prototype.handlePreviousMonthButton = function (event) {
+NonModalDatePicker.prototype.handlePreviousMonthButton = function (event) {
   var flag = false;
   var onFirstRow = this.onFirstRow();
   var onLastRow = this.onLastRow();
@@ -681,17 +677,17 @@ DatePicker.prototype.handlePreviousMonthButton = function (event) {
   }
 };
 
-DatePicker.prototype.moveToNextYear = function () {
+NonModalDatePicker.prototype.moveToNextYear = function () {
   this.year++;
   this.updateGrid();
 };
 
-DatePicker.prototype.moveToPreviousYear = function () {
+NonModalDatePicker.prototype.moveToPreviousYear = function () {
   this.year--;
   this.updateGrid();
 };
 
-DatePicker.prototype.moveToPreviousMonth = function () {
+NonModalDatePicker.prototype.moveToPreviousMonth = function () {
   this.month--;
   if (this.month < 0) {
     this.month = 11;
@@ -700,7 +696,7 @@ DatePicker.prototype.moveToPreviousMonth = function () {
   this.updateGrid();
 };
 
-DatePicker.prototype.moveToNextMonth = function () {
+NonModalDatePicker.prototype.moveToNextMonth = function () {
   this.month++;
   if (this.month > 11) {
     this.month = 0;
@@ -709,7 +705,7 @@ DatePicker.prototype.moveToNextMonth = function () {
   this.updateGrid();
 };
 
-DatePicker.prototype.moveToDay = function (day, month, year) {
+NonModalDatePicker.prototype.moveToDay = function (day, month, year) {
   this.day   = day;
   this.month = month;
   this.year  = year;
@@ -717,7 +713,7 @@ DatePicker.prototype.moveToDay = function (day, month, year) {
   this.setFocusDay();
 };
 
-DatePicker.prototype.moveFocusToNextDay = function () {
+NonModalDatePicker.prototype.moveFocusToNextDay = function () {
 
   this.day++;
   if (this.daysInCurrentMonth <= this.day) {
@@ -727,7 +723,7 @@ DatePicker.prototype.moveFocusToNextDay = function () {
   this.setFocusDay();
 };
 
-DatePicker.prototype.moveFocusToNextWeek = function () {
+NonModalDatePicker.prototype.moveFocusToNextWeek = function () {
 
   this.day += 7;
   if (this.daysInCurrentMonth <= this.day) {
@@ -737,7 +733,7 @@ DatePicker.prototype.moveFocusToNextWeek = function () {
   this.setFocusDay();
 };
 
-DatePicker.prototype.moveFocusToPreviousDay = function () {
+NonModalDatePicker.prototype.moveFocusToPreviousDay = function () {
 
   this.day--;
   if (this.day < 0) {
@@ -747,7 +743,7 @@ DatePicker.prototype.moveFocusToPreviousDay = function () {
   this.setFocusDay();
 };
 
-DatePicker.prototype.moveFocusToPreviousWeek = function () {
+NonModalDatePicker.prototype.moveFocusToPreviousWeek = function () {
   this.day -= 7;
   if (this.day < 0) {
     this.day = this.daysInLastMonth + this.day;
@@ -756,7 +752,7 @@ DatePicker.prototype.moveFocusToPreviousWeek = function () {
   this.setFocusDay();
 };
 
-DatePicker.prototype.moveFocusToFirstDayOfWeek = function () {
+NonModalDatePicker.prototype.moveFocusToFirstDayOfWeek = function () {
 
   this.day = this.day - this.currentDay.column;
 
@@ -768,7 +764,7 @@ DatePicker.prototype.moveFocusToFirstDayOfWeek = function () {
 
 };
 
-DatePicker.prototype.moveFocusToLastDayOfWeek = function () {
+NonModalDatePicker.prototype.moveFocusToLastDayOfWeek = function () {
 
   this.day = this.day + (6 - this.currentDay.column);
 
@@ -780,11 +776,11 @@ DatePicker.prototype.moveFocusToLastDayOfWeek = function () {
 
 };
 
-DatePicker.prototype.setTextboxDate = function () {
+NonModalDatePicker.prototype.setTextboxDate = function () {
   this.dateInput.setDate(this.month, this.day, this.year);
 };
 
-DatePicker.prototype.getDateInput = function () {
+NonModalDatePicker.prototype.getDateInput = function () {
 
   var parts = this.dateInput.getDate().split('/');
 
@@ -812,7 +808,7 @@ DatePicker.prototype.getDateInput = function () {
 
 };
 
-DatePicker.prototype.getDateForButtonLabel = function () {
+NonModalDatePicker.prototype.getDateForButtonLabel = function () {
   this.selectedDay = new Date(this.year, this.month, this.day + 1);
   var label = this.dayLabels[this.selectedDay.getDay()];
   label += ' ' + this.monthLabels[this.selectedDay.getMonth()];

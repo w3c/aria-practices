@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>Date Picker Dialog Example | WAI-ARIA Authoring Practices 1.1</title>
+<title>Date Picker Non-Modal Dialog Example | WAI-ARIA Authoring Practices 1.1</title>
 
 <!--  Core js and css shared by all examples; do not modify when using this template. -->
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
@@ -15,8 +15,8 @@
 
 <link href="css/datepicker.css" rel="stylesheet">
 <script src="js/datepickerDay.js" type="text/javascript"></script>
-<script src="js/datepicker.js" type="text/javascript"></script>
-<script src="js/datepicker-button.js" type="text/javascript"></script>
+<script src="js/nonmodal-datepicker.js" type="text/javascript"></script>
+<script src="js/calendar-button.js" type="text/javascript"></script>
 </head>
 <body>
   <nav aria-label="Related Links" class="feedback">
@@ -28,16 +28,16 @@
     </ul>
   </nav>
   <main>
-    <h1>Date Picker Dialog Example</h1>
+    <h1>Date Picker Non-Modal Dialog Example</h1>
     <p>
       <strong>NOTE:</strong> This example page is work in progress.
       Please provide feedback in
       <a href="https://github.com/w3c/aria-practices/issues/1046">issue 1046.</a>
     </p>
     <p>
-      The date picker example below implements the <a href="../../#dialog-modal">dialog design pattern</a>.
+      The date picker example below implements the <a href="../../#dialog-modal">non-modal dialog design pattern</a>.
       The date picker dialog box in this example is opened when keyboard focus is moved to the calendar button and a <kbd>space</kbd>, <kbd>return</kbd>, <kbd>down arrow</kbd> key pressed or clicking on the calendar button.
-      The date picker dialog uses a <code>grid</code> pattern to show and select a date using the cursor keys.  Additional buttons in the dialog box can be used for changing the month and year shown in the grid.
+      The non-modal dialog appears on activation of the button and can be closed using the OK or Cancel button.   The date picker dialog uses a <code>grid</code> pattern to show and select a date using the cursor keys.  Additional buttons in the dialog box can be used for changing the month and year shown in the grid.
     </p>
   <section>
     <h2 id="ex_label">Example</h2>
@@ -56,9 +56,8 @@
                 id="id-texbox-1"
                 aria-autocomplete="none">
 
-          <button class="menubutton icon"
+          <button class="icon"
             aria-label="Calendar"
-            aria-haspopup="true"
             aria-expanded="false"
             aria-controls="id-datepicker-1"
             aria-describedby="id-datepicker-1-button-desc"
@@ -75,6 +74,7 @@
         <div id="id-datepicker-1"
              class="datepickerDialog"
              role="dialog"
+             aria-modal="false"
              aria-labelledby="id-dialog-label">
 
           <div class="header">
@@ -481,14 +481,6 @@
                 </ul>
               </td>
             </tr>
-            <tr data-test-id="calendar-button-aria-haspopup">
-              <td></td>
-              <th scope="row"><code>aria-haspopup=<q>dialog</q></code></th>
-              <td><code>button</code></td>
-              <td>
-                Identifies the button as a <code>menu button</code> and follows the menu button design pattern.
-              </td>
-            </tr>
             <tr data-test-id="calendar-button-aria-expanded">
               <td></td>
               <th scope="row"><code>aria-expanded=<q>true</q></code></th>
@@ -500,7 +492,7 @@
                 </ul>
               </td>
             </tr>
-            <tr data-test-id="calendar-aria-controls">
+            <tr data-test-id="calendar-button-aria-controls">
               <td></td>
               <th scope="row"><code>aria-controls=<q>IDREF</q></code></th>
               <td><code>button</code></td>
@@ -508,7 +500,7 @@
                 Provides a reference to a screen reader for direct navigation to the date picker dialog box.
               </td>
             </tr>
-            <tr data-test-id="calendar-aria-describedby">
+            <tr data-test-id="calendar-button-aria-describedby">
               <td></td>
               <th scope="row"><code>aria-describedby=<q>IDREF</q></code></th>
               <td><code>button</code></td>
@@ -532,7 +524,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr data-test-id="date-picker-dialog-role">
+              <tr data-test-id="datepicker-dialog-role">
                 <th scope="row"><code>dialog</code></th>
                 <td></td>
                 <td>
@@ -545,15 +537,15 @@
                   </ul>
                 </td>
               </tr>
-              <tr data-test-id="date-picker-dialog-aria-modal">
+              <tr data-test-id="datepicker-dialog-aria-modal">
                 <td></td>
-                <th scope="row"><code>aria-modal=<q>true</q></code></th>
+                <th scope="row"><code>aria-modal=<q>false</q></code></th>
                 <td><code>div</code></td>
                 <td>
-                  Identifies that dialog box as a modal dialog box.
+                  Identifies that dialog box as a non-modal dialog box.
                 </td>
               </tr>
-              <tr data-test-id="date-picker-dialog-aria-labelledby">
+              <tr data-test-id="datepicker-dialog-aria-labelledby">
                 <td></td>
                 <th scope="row"><code>aria-labelledby=<q>IDREFS</q></code></th>
                 <td><code>div</code></td>
@@ -590,7 +582,7 @@
                     </ul>
                   </td>
                 </tr>
-                <tr data-test-id="date-picker-change-date-button-aria-controls">
+                <tr data-test-id="datepicker-change-date-button-aria-controls">
                     <td></td>
                     <th scope="row"><code>aria-controls=<q>IDREF</q></code></th>
                     <td><code>button</code></td>
@@ -598,7 +590,7 @@
                       Provide a reference for screen reader to navigate to the date grid.
                     </td>
                 </tr>
-                <tr data-test-id="date-picker-change-date-button-aria-label">
+                <tr data-test-id="datepicker-change-date-button-aria-label">
                     <td></td>
                     <th scope="row"><code>aria-label=<q><em>String</em></q></code></th>
                     <td><code>button</code></td>
@@ -606,7 +598,7 @@
                       Defines the accessible name of the button (e.g. "Next Year").
                     </td>
                 </tr>
-                <tr data-test-id="date-picker-change-date-button-role-status">
+                <tr data-test-id="datepicker-change-date-button-role-status">
                     <th scope="row"><code>status</code></th>
                     <td></td>
                     <td>
@@ -635,7 +627,7 @@
                 </tr>
               </thead>
               <tbody>
-                  <tr data-test-id="date-picker-calendar-grid-role">
+                  <tr data-test-id="datepicker-calendar-grid-role">
                     <th scope="row"><code>grid</code></th>
                     <td></td>
                     <td>
@@ -752,8 +744,8 @@
       <li>
         Javascript:
         <ul>
-          <li><a href="js/datepicker-button.js" type="text/javascript">datepicker-button.js</a></li>
-          <li><a href="js/datepicker.js" type="text/javascript">datepicker.js</a></li>
+          <li><a href="js/calendar-button.js" type="text/javascript">calendar-button.js</a></li>
+          <li><a href="js/nonmodal-datepicker.js" type="text/javascript">nonmodal-datepicker.js</a></li>
           <li><a href="js/datepickerDay.js" type="text/javascript">datepickerDay.js</a></li>
         </ul>
       </li>
