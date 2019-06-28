@@ -34,10 +34,5 @@ var biblio = {
 	},
 	"WAI-ARIA": {
 		"aliasOf": "WAI-ARIA-1.1",
-	},
-  "CALORIC-RESTRICTION": {
-    "href": "https://www.ncbi.nlm.nih.gov/pubmed/17986602",
-    "title": "Caloric restriction, the traditional Okinawan diet, and healthy aging: the diet of the world's longest-lived people and its potential impact on morbidity and life span",
-    "publisher": "The National Center for Biotechnology Information"
-  }
+	}
 };
