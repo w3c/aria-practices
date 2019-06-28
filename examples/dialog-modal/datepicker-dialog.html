@@ -59,6 +59,7 @@
           <button class="icon"
             aria-label="Calendar"
             aria-expanded="false"
+            aria-haspopup="dialog"
             aria-controls="id-datepicker-1"
             aria-describedby="id-datepicker-1-button-desc"
             >
@@ -479,6 +480,14 @@
                   <li>The initial value of accessible name is <q>Calendar</q>.</li>
                   <li>When user selected date, the accessible name will update to current date.</li>
                 </ul>
+              </td>
+            </tr>
+            <tr data-test-id="calendar-button-aria-haspopup">
+              <td></td>
+              <th scope="row"><code>aria-haspopup=<q>dialog</q></code></th>
+              <td><code>button</code></td>
+              <td>
+                Identifies the button opening a dialog box.
               </td>
             </tr>
             <tr data-test-id="calendar-button-aria-expanded">
