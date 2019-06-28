@@ -201,8 +201,7 @@ ariaTest('"aria-expanded" attribute on menubar menuitem', exampleFile, 'menuitem
   }
 });
 
-// This test is failing due to a bug reported in issue: https://github.com/w3c/aria-practices/issues/906
-ariaTest.failing('Test for role="none" on menubar li', exampleFile, 'none-role', async (t) => {
+ariaTest('Test for role="none" on menubar li', exampleFile, 'none-role', async (t) => {
   t.plan(3);
 
   const liElements = await t.context.session.findElements(By.css(ex.menubarSelector + '>li'));
