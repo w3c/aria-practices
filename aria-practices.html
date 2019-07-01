@@ -2354,8 +2354,8 @@
         with two or more thumbs that each set a value in a group of related values.
         For example, in a product search, a two-thumb slider could be used to enable users to set the minimum and maximum price limits for the search.
         In many two-thumb sliders, the thumbs are not allowed to pass one another, such as when the slider sets the minimum and maximum values for a range.
-        For example, in a price range selector, the maxmimum value of the thumb that sets the lower end of the range is limited by the current value of the thumb that sets the upper end of the range.
-        Conversly the minimum value of the upper end thumb is limited by the current value of the lower end thumb.
+        For example, in a price range selector, the maximum value of the thumb that sets the lower end of the range is limited by the current value of the thumb that sets the upper end of the range.
+        Conversely, the minimum value of the upper end thumb is limited by the current value of the lower end thumb.
         However, in some multi-thumb sliders, each thumb sets a value that does not depend on the other thumb values.
       </p>
 
@@ -2677,7 +2677,7 @@
             <li>In toolbars with multiple rows of controls, <kbd>Left Arrow</kbd> and <kbd>Right Arrow</kbd> can provide navigation that wraps from row to row, leaving the option of reserving vertical arrow keys for operating controls.</li>
           </ul>
         </li>
-        <li>Avoid including controls whose operation requires the pair of arrow keys used for toolbar navigation. If unavoidable, include only one such control and make it the last element in the toolbar. For example, in a horzontal toolbar, a textbox could be included as the last element.</li>
+        <li>Avoid including controls whose operation requires the pair of arrow keys used for toolbar navigation. If unavoidable, include only one such control and make it the last element in the toolbar. For example, in a horizontal toolbar, a textbox could be included as the last element.</li>
         <li>Use toolbar as a grouping element only if the group contains 3 or more controls.</li>
       </ul>
       <section class="notoc">
@@ -6022,7 +6022,7 @@ However, most authors do not need detailed understanding of the algorithms since
         For example, specifying an invalid value for <code>aria-colindex</code> or setting it on some but not all cells in a row, could cause screen reader table reading functions to skip cells or simply stop functioning.
       </p>
       <section id="gridAndTableProperties_cols_contiguous">
-        <h4>Using <code>aria-colindex</code> When Column Indicies Are Contiguous</h4>
+        <h4>Using <code>aria-colindex</code> When Column Indices Are Contiguous</h4>
         <p>
           When all the cells in a row have column index numbers that are consecutive integers,
           <code>aria-colindex</code> can be set on the row element with a value equal to the index number of the first column in the set.
@@ -6063,7 +6063,7 @@ However, most authors do not need detailed understanding of the algorithms since
 </pre>
       </section>
       <section id="gridAndTableProperties_cols_noncontiguous">
-        <h4>Using <code>aria-colindex</code> When Column Indicies Are Not Contiguous</h4>
+        <h4>Using <code>aria-colindex</code> When Column Indices Are Not Contiguous</h4>
         <p>
           When the cells in a row have column index numbers that are not consecutive integers, <code>aria-colindex</code> needs to be set on each cell in the row.
           The following example shows a grid for an online grade book where the first two columns contain a student name and subsequent columns contain scores.
@@ -6386,7 +6386,7 @@ However, most authors do not need detailed understanding of the algorithms since
             <li> If <code>presentation</code> is applied to a <code>ul</code> or <code>ol</code> element, each child <code>li</code> element inherits the <code>presentation</code> role because ARIA requires the <code>listitem</code> elements to have the parent <code>list</code> element. So, the <code>li</code> elements are not exposed to assistive technologies, but elements contained inside of those <code>li</code> elements, including nested lists, are visible to assistive technologies. </li>
             <li>
               Similarly, if <code>presentation</code> is applied to a <code>table</code> element,
-              the descendant <code>caption</code>, <code>thead</code>, <code>tbody</code>, <code>tfooter</code>,
+              the descendant <code>caption</code>, <code>thead</code>, <code>tbody</code>, <code>tfoot</code>,
               <code>tr</code>, <code>th</code>, and <code>td</code>
               elements inherit role <code>presentation</code> and are thus not exposed to assistive technologies.
               But, elements inside of the <code>th</code> and <code>td</code> elements, including nested tables,  are exposed to assistive technologies.
