@@ -4091,7 +4091,8 @@ However, most authors do not need detailed understanding of the algorithms since
           <h5>Fallback Names Derived from Titles and Placeholders</h5>
           <p>
             When an accessible name is not provided using one of the primary techniques (e.g., the <code>aria-label</code> or <code>aria-labelledby</code> attributes), or native markup techniques (e.g., the HTML <code>label</code> element, or the <code>alt</code> attribute of the HTML <code>img</code> element), browsers calculate an accessible name from other attributes as a fallback mechanism.
-            It is recommended authors prefer the explicit labeling techniques described above over fallback techniques described in this section.
+            Because the attributes used in fallback name calculation are not intended for naming, they typically yield low quality accessible names that are not effective.
+So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fallback</a>, prefer the explicit labeling techniques described above over fallback techniques described in this section.
           </p>
 
           <p>
