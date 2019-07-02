@@ -52,7 +52,7 @@ CalendarButtonInput.prototype.handleKeyDown = function (event) {
 
   switch (event.keyCode) {
 
-    case this.keyCode.DOWN:
+    case this.keyCode.SPACE:
     case this.keyCode.ENTER:
       this.datepicker.show();
       this.datepicker.setFocusDay();
@@ -87,6 +87,7 @@ CalendarButtonInput.prototype.handleBlur = function () {
 CalendarButtonInput.prototype.handleClick = function () {
   if (this.isCollapsed()) {
     this.datepicker.show();
+    this.datepicker.setFocusDay();
   }
   else {
     this.datepicker.hide();
@@ -99,7 +100,7 @@ CalendarButtonInput.prototype.handleClick = function () {
 
 
 CalendarButtonInput.prototype.setFocus = function () {
-  this.buttonNode.setAttribute('aria-label', 'Calendar, current date is ' + this.datepicker.getDateForButtonLabel());
+  this.setLabel('current date is ' + this.datepicker.getDateForButtonLabel());
   this.buttonNode.focus();
 };
 
@@ -127,6 +128,11 @@ CalendarButtonInput.prototype.setDate = function (month, day, year) {
 CalendarButtonInput.prototype.getDate = function () {
   return this.inputNode.value;
 };
+
+CalendarButtonInput.prototype.setLabel = function (str) {
+  this.buttonNode.setAttribute('aria-label', 'Calendar, ' + str);
+};
+
 
 CalendarButtonInput.prototype.setMessage = function (str) {
   return this.messageNode.textContent = str;

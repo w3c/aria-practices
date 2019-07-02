@@ -36,7 +36,7 @@
     </p>
     <p>
       The date picker example below implements the <a href="../../#dialog-modal">dialog design pattern</a>.
-      The date picker dialog box in this example is opened when keyboard focus is moved to the calendar button and a <kbd>space</kbd>, <kbd>return</kbd>, <kbd>down arrow</kbd> key pressed or clicking on the calendar button.
+      The date picker dialog box in this example is opened when keyboard focus is moved to the calendar button and a <kbd>space</kbd> or <kbd>return</kbd> key pressed or clicking on the calendar button.
       The dialog appears on activation of the button and can be closed using the OK or Cancel button.   The date picker dialog uses a <code>grid</code> pattern to show and select a date using the cursor keys.  Additional buttons in the dialog box can be used for changing the month and year shown in the grid.
     </p>
   <section>
@@ -53,7 +53,7 @@
 
           <input type="text"
                 placeholder="mm/dd/yyyy"
-                id="id-texbox-1"
+                id="id-textbox-1"
                 aria-autocomplete="none">
 
           <button class="icon"
@@ -66,7 +66,7 @@
             <span class="fa fa-calendar-alt fa-2x"></span>
           </button>
 
-          <div id="id-datepicker-1-button-desc" class="sr-only">Opens datepicker dialog for previous date textbox</div>
+          <div id="id-datepicker-1-button-desc" hidden>Opens datepicker dialog for previous date textbox</div>
 
         </div>
 
