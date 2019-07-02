@@ -100,7 +100,7 @@ CalendarButtonInput.prototype.handleClick = function () {
 
 
 CalendarButtonInput.prototype.setFocus = function () {
-  this.setLabel('current date is ' + this.datepicker.getDateForButtonLabel());
+  this.setLabel('selected date is ' + this.datepicker.getDateForButtonLabel());
   this.buttonNode.focus();
 };
 

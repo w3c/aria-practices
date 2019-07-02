@@ -64,6 +64,18 @@ DatePickerDay.prototype.updateDay = function (disable, year, month, day) {
   this.domNode.setAttribute('tabindex', '-1');
   this.domNode.removeAttribute('aria-selected');
 
+  var d = (day + 1).toString();
+  if (day < 9) {
+    d = '0' + d;
+  }
+
+  var m = (month + 1).toString();
+  if (month < 9) {
+    m = '0' + m;
+  }
+
+  this.domNode.setAttribute('data-date', year + '-' + m + '-' + d);
+
 };
 
 DatePickerDay.prototype.handleKeyDown = function (event) {
