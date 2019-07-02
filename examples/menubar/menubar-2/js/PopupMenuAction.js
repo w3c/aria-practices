@@ -100,7 +100,7 @@ PopupMenuAction.prototype.init = function () {
 
 PopupMenuAction.prototype.updateMenuStates = function () {
 
-  var item = this.domNode.querySelector('[rel="font-larger"]');
+  var item = this.domNode.querySelector('[data-option="font-larger"]');
   if (item) {
     if (this.actionManager.isMaxFontSize()) {
       item.setAttribute('aria-disabled', 'true');
@@ -110,7 +110,7 @@ PopupMenuAction.prototype.updateMenuStates = function () {
     }
   }
 
-  var item = this.domNode.querySelector('[rel="font-smaller"]');
+  var item = this.domNode.querySelector('[data-option="font-smaller"]');
   if (item) {
     if (this.actionManager.isMinFontSize()) {
       item.setAttribute('aria-disabled', 'true');
@@ -123,7 +123,7 @@ PopupMenuAction.prototype.updateMenuStates = function () {
   // Update the radio buttons for font, in case they were updated using the larger
   // smaller font menu items
 
-  var rbs = this.domNode.querySelectorAll('[rel="font-size"] [role=menuitemradio]');
+  var rbs = this.domNode.querySelectorAll('[data-option="font-size"] [role=menuitemradio]');
 
   for (var i = 0; i < rbs.length; i++) {
     var rb = rbs[i];
