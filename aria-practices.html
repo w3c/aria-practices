@@ -3864,8 +3864,7 @@ However, most authors do not need detailed understanding of the algorithms since
             In two special cases, certain descendants are ignored: <code>group</code> descendants of <code>treeitem</code> elements and <code>menu</code> descendants of <code>menuitem</code> elements are omitted from the calculation.
             For example, in the following <code>tree</code>, the name of the first tree item is <q>Fruits</q>; <q>Apples</q>, <q>Bananas</q>, and <q>Oranges</q> are omitted.
           </p>
-        <pre><code>
-&lt;ul role="tree">
+        <pre><code>&lt;ul role="tree">
   &lt;li role="treeitem">Fruits
     &lt;ul role="group">
       &lt;li role="treeitem">Apples&lt;/li>
@@ -3873,8 +3872,7 @@ However, most authors do not need detailed understanding of the algorithms since
       &lt;li role="treeitem">Oranges&lt;/li>
     &lt;/ul>
   &lt;/li>
-&lt;/ul>
-          </code></pre>
+&lt;/ul></code></pre>
           <p class="warning">
             If an element with one of the above roles that supports naming from child content is named by using <code>aria-label</code> or <code>aria-labelledby</code>, content contained in the element and its descendants is hidden from assistive technology users unless the descendant content is referenced by <code>aria-labelledby</code>.
             It is strongly recommended to avoid using either of these attributes to override content of one of the above elements except in rare circumstances where hiding content from assistive technology users is beneficial.
@@ -3898,11 +3896,9 @@ However, most authors do not need detailed understanding of the algorithms since
             However, when applied to nearly any other type of element, assistive technologies will render both the value of <code>aria-label</code> and the content of the element.
             For example, the name of the following navigation region is &quot;Product&quot;.
           </p>
-          <pre><code>
-  &lt;nav aria-label=&quot;Product&quot;&gt;
-    &lt;!-- list of navigation links to product pages --&gt;
-  &lt;/nav&gt;
-          </code></pre>
+          <pre><code>&lt;nav aria-label=&quot;Product&quot;&gt;
+  &lt;!-- list of navigation links to product pages --&gt;
+&lt;/nav&gt;</code></pre>
           <p>
             When encountering this navigation region, a screen reader user will hear the name and role of the element, e.g., &quot;Product navigation region&quot;, and then be able to read through the links contained in the region.
           </p>
@@ -3923,19 +3919,15 @@ However, most authors do not need detailed understanding of the algorithms since
             The <a href="#aria-labelledby" class="property-reference">aria-labelledby property</a> enables authors to reference other elements on the page to define an accessible name.
             For example, the following switch is named by the text content of a previous sibling element.
           </p>
-          <pre><code>
-  &lt;span id="night-mode-label">Night mode&lt;/span&gt;
-  &lt;span role="switch" aria-checked="false" tabindex="0" aria-labelledby="night-mode-label">&lt;/span&gt;
-          </code></pre>
+          <pre><code>&lt;span id="night-mode-label">Night mode&lt;/span&gt;
+&lt;span role="switch" aria-checked="false" tabindex="0" aria-labelledby="night-mode-label">&lt;/span&gt;</code></pre>
           <p>
             Note that while using <code>aria-labelledby</code> is similar in this situation to using an HTML <code>label</code> element with the <code>for</code> attribute, one significant difference is that browsers do not automatically make clicking on the labeling element activate the labeled element; that is an author responsibility.
             However, HTML <code>label</code> cannot be used to label a <code>span</code> element.
             Fortunately, an HTML <code>input</code> with <code>type="checkbox"</code> allows the ARIA <code>switch</code> role, so when feasible, using the following approach creates a more robust solution.
           </p>
-          <pre><code>
-  &lt;label for="night-mode">Night mode&lt;/label>
-  &lt;input type="checkbox" role="switch" id="night-mode">
-          </code></pre>
+          <pre><code>&lt;label for="night-mode">Night mode&lt;/label>
+&lt;input type="checkbox" role="switch" id="night-mode"></code></pre>
   <p>The <code>aria-labelledby</code> property is useful in a wide variety of situations because:</p>
   <ul>
     <li><p>It has the highest precedence when browsers calculate accessible names, i.e., it overrides names from child content and all other naming attributes, including <code>aria-label</code>.</p></li>
@@ -3947,18 +3939,16 @@ However, most authors do not need detailed understanding of the algorithms since
   </ul>
   <p>An example of referencing a hidden element with <code>aria-labelledby</code> could be a label for a night switch control:</p>
       <pre><code>&lt;span id="night-mode-label" hidden>Night mode&lt;/span>
-  &lt;input type="checkbox" role="switch" aria-labelledby="night-mode-label"></code></pre>
+&lt;input type="checkbox" role="switch" aria-labelledby="night-mode-label"></code></pre>
 
           <p>
             In some cases, the most effective name for an element is its own content combined with the content of another element.
             Because <code>aria-labelledby</code> has highest precedence in name calculation, in those situations, it is possible to use <code>aria-labelledby</code> to reference both the element itself and the other element.
             In the following example, the &quot;Read more...&quot; link is named by the element itself and the article’s heading, resulting in a name for the link of &quot;Read more... 7 ways you can help save the bees&quot;.
           </p>
-          <pre><code>
-  &lt;h2 id="bees-heading"&gt;7 ways you can help save the bees&lt;/h2&gt;
-  &lt;p&gt;Bees are disappearing rapidly. Here are seven things you can do to help.&lt;/p&gt;
-  &lt;p&gt;&lt;a id="bees-read-more" aria-labelledby="bees-read-more bees-heading"&gt;Read more...&lt;/a&gt;&lt;/p&gt;
-          </code></pre>
+          <pre><code>&lt;h2 id="bees-heading"&gt;7 ways you can help save the bees&lt;/h2&gt;
+&lt;p&gt;Bees are disappearing rapidly. Here are seven things you can do to help.&lt;/p&gt;
+&lt;p&gt;&lt;a id="bees-read-more" aria-labelledby="bees-read-more bees-heading"&gt;Read more...&lt;/a&gt;&lt;/p&gt;</code></pre>
           <p>
             When multiple elements are referenced by <code>aria-labelledby</code>, text content from each referenced element is concatenated in the order specified in the <code>aria-labelledby</code> value.
             If an element is referenced more than one time, only the first reference is processed.
@@ -3990,21 +3980,17 @@ However, most authors do not need detailed understanding of the algorithms since
             However, unless the text is programmatically associated with the checkbox, assistive technology users will experience a checkbox without a label.
             Wrapping the checkbox and the labeling text in a <code>label</code> element as follows gives the checkbox an accessible name.
           </p>
-          <pre><code>
-  &lt;label>
-    &lt;input type="checkbox" name="subscribe">
-    subscribe to our newsletter
-  &lt;/label>
-          </code></pre>
+          <pre><code>&lt;label>
+  &lt;input type="checkbox" name="subscribe">
+  subscribe to our newsletter
+&lt;/label></code></pre>
           <p>
             A form control can also be associated with a label by using the <code>for</code> attribute on the <code>label</code> element.
             This allows the label and the form control to be siblings or have different parents in the DOM, but requires adding an <code>id</code> attribute to the form control, which can be error-prone.
             When possible, use the above encapsulation technique for association instead of the following <code>for</code> attribute technique.
           </p>
-          <pre><code>
-  &lt;input type="checkbox" name="subscribe" id="subscribe_checkbox">
-  &lt;label for="subscribe_checkbox">subscribe to our newsletter&lt;/label>
-          </code></pre>
+          <pre><code>&lt;input type="checkbox" name="subscribe" id="subscribe_checkbox">
+&lt;label for="subscribe_checkbox">subscribe to our newsletter&lt;/label></code></pre>
           <p>
             Using the <code>label</code> element is an effective technique for satisfying <a href="#naming_rule_visible_text">Rule 2: Prefer Visible Text</a>.
             It also satisfies <a href="#naming_rule_native_techniques">Rule 3: Prefer Native Techniques</a>.
@@ -4019,14 +4005,12 @@ However, most authors do not need detailed understanding of the algorithms since
             The HTML <code>fieldset</code> element can be used to group form controls, and the <code>legend</code> element can be used to give the group a name.
             For example, a group of radio buttons can be grouped together in a <code>fieldset</code>, where the <code>legend</code> element labels the group for the radio buttons.
           </p>
-          <pre><code>
-  &lt;fieldset>
-    &lt;legend>Select your starter class&lt;/legend>
-    &lt;label>&lt;input name="starter-class" value="green"> Green&lt;/label>
-    &lt;label>&lt;input name="starter-class" value="red"> Red&lt;/label>
-    &lt;label>&lt;input name="starter-class" value="blue"> Blue&lt;/label>
-  &lt;/fieldset>
-          </code></pre>
+          <pre><code>&lt;fieldset>
+  &lt;legend>Select your starter class&lt;/legend>
+  &lt;label>&lt;input type="radio" name="starter-class" value="green"> Green&lt;/label>
+  &lt;label>&lt;input type="radio" name="starter-class" value="red"> Red&lt;/label>
+  &lt;label>&lt;input type="radio" name="starter-class" value="blue"> Blue&lt;/label>
+&lt;/fieldset></code></pre>
           <p>
             This grouping technique is particularly useful for presenting multiple choice questions.
             It enables authors to associate a question with a group of answers.
@@ -4035,19 +4019,17 @@ However, most authors do not need detailed understanding of the algorithms since
           <p>
             Similar benefits can be gained from grouping and naming other types of related form fields using <code>fieldset</code> and <code>legend</code>.
           </p>
-          <pre><code>
-  &lt;fieldset>
-    &lt;legend>Shipping address&lt;/legend>
-    &lt;p>&lt;label>Full name &lt;input name="name" required>&lt;/label>&lt;/p>
-    &lt;p>&lt;label>Address line 1 &lt;input name="address-1" required>&lt;/label>&lt;/p>
-    &lt;p>&lt;label>Address line 2 &lt;input name="address-2">&lt;/label>&lt;/p>
-    ...
-  &lt;/fieldset>
-  &lt;fieldset>
-    &lt;legend>Billing address&lt;/legend>
-    ...
-  &lt;/fieldset>
-          </code></pre>
+          <pre><code>&lt;fieldset>
+  &lt;legend>Shipping address&lt;/legend>
+  &lt;p>&lt;label>Full name &lt;input name="name" required>&lt;/label>&lt;/p>
+  &lt;p>&lt;label>Address line 1 &lt;input name="address-1" required>&lt;/label>&lt;/p>
+  &lt;p>&lt;label>Address line 2 &lt;input name="address-2">&lt;/label>&lt;/p>
+  ...
+&lt;/fieldset>
+&lt;fieldset>
+  &lt;legend>Billing address&lt;/legend>
+  ...
+&lt;/fieldset></code></pre>
           <p>Using the <code>legend</code> element to name a <code>fieldset</code> element satisfies <a href="#naming_rule_visible_text">Rule 2: Prefer Visible Text</a> and <a href="#naming_rule_native_techniques">Rule 3: Prefer Native Techniques</a>.</p>
         </section>
 
@@ -4105,10 +4087,10 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
           <p>For example, a <code>fieldset</code> element without a <code>legend</code> element child, but with a <code>title</code> attribute, gets its accessible name from the <code>title</code> attribute.</p>
 
           <pre><code>&lt;fieldset title="Select your starter class">
-    &lt;label>&lt;input name="starter-class" value="green"> Green&lt;/label>
-    &lt;label>&lt;input name="starter-class" value="red"> Red&lt;/label>
-    &lt;label>&lt;input name="starter-class" value="blue"> Blue&lt;/label>
-   &lt;/fieldset></code></pre>
+  &lt;label>&lt;input type="radio" name="starter-class" value="green"> Green&lt;/label>
+  &lt;label>&lt;input type="radio" name="starter-class" value="red"> Red&lt;/label>
+  &lt;label>&lt;input type="radio" name="starter-class" value="blue"> Blue&lt;/label>
+&lt;/fieldset></code></pre>
 
           <p>
             For the HTML <code>input</code> and <code>textarea</code> elements, the <code>placeholder</code> attribute is used as a fallback labeling mechanism if nothing else (including the <code>title</code> attribute) results in a label.
@@ -4952,8 +4934,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
           When calculating a name from content for the <code>treeitem</code> role, descendant content of child <code>group</code> elements are not included.
           For example, in the following <code>tree</code>, the name of the first tree item is <q>Fruits</q>; <q>Apples</q>, <q>Bananas</q>, and <q>Oranges</q> are automatically omitted.
         </p>
-        <pre><code>
-&lt;ul role="tree">
+        <pre><code>&lt;ul role="tree">
   &lt;li role="treeitem">Fruits
     &lt;ul role="group">
       &lt;li role="treeitem">Apples&lt;/li>
@@ -4961,14 +4942,12 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
       &lt;li role="treeitem">Oranges&lt;/li>
     &lt;/ul>
   &lt;/li>
-&lt;/ul>
-        </code></pre>
+&lt;/ul></code></pre>
         <p>
           Similarly, when calculating a name from content for the <code>menuitem</code> role, descendant content of child <code>menu</code> elements are not included.
           So, the name of the first parent <code>menuitem</code> in the following <code>menu</code> is <q>Fruits</q>.
         </p>
-        <pre><code>
-&lt;ul role="menu">
+        <pre><code>&lt;ul role="menu">
   &lt;li role="menuitem">Fruits
     &lt;ul role="menu">
       &lt;li role="menuitem">Apples&lt;/li>
@@ -4976,8 +4955,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
       &lt;li role="menuitem">Oranges&lt;/li>
     &lt;/ul>
   &lt;/li>
-&lt;/ul>
-        </code></pre>
+&lt;/ul></code></pre>
 
         <section id="name_calculation_non-recursive_ex">
           <h5>Examples of non-recursive accessible name calculation</h5>
@@ -5037,12 +5015,10 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
 
             <p>In this example, the label for the button is computed by first following the <code>aria-labelledby</code> reference to the parent element, and then computing the label for that element from the child nodes, first visiting the <code>button</code> element again but ignoring the <code>aria-labelledby</code> reference and instead using the <code>aria-label</code>, and then visiting the next child (the text node). The resulting label is <q>Remove meeting: Daily status report</q>.</p>
 
-            <pre><code>
-  &lt;div id="meeting-1">
-    &lt;button aria-labelledby="meeting-1" aria-label="Remove meeting:">X&lt;/button>
-    Daily status report
-  &lt;/div>
-  </code></pre>
+            <pre><code>&lt;div id="meeting-1">
+  &lt;button aria-labelledby="meeting-1" aria-label="Remove meeting:">X&lt;/button>
+  Daily status report
+&lt;/div></code></pre>
         </section>
       </section>
     </section>
@@ -5058,19 +5034,15 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
             For example, a button could be described by a sibling paragraph.
           </p>
 
-          <pre><code>
-  &lt;button aria-describedby="trash-desc">Move to trash&lt;/button>
-  ...
-  &lt;p id="trash-desc">Items in the trash will be permanently removed after 30 days.&lt;/p>
-          </code></pre>
+          <pre><code>&lt;button aria-describedby="trash-desc">Move to trash&lt;/button>
+...
+&lt;p id="trash-desc">Items in the trash will be permanently removed after 30 days.&lt;/p></code></pre>
 
           <p>Descriptions are reduced to text strings. For example, if the description contains an HTML <code>img</code> element, a text equivalent of the image is computed.</p>
 
-          <pre><code>
-  &lt;button aria-describedby="trash-desc"> Move to &lt;img src="bin.svg" alt="trash">&lt;/button>
-  ...
-  &lt;p id="trash-desc">Items in &lt;img src="bin.svg" alt="the trash"> will be permanently removed after 30 days.&lt;/p>
-          </code></pre>
+          <pre><code>&lt;button aria-describedby="trash-desc"> Move to &lt;img src="bin.svg" alt="trash">&lt;/button>
+...
+&lt;p id="trash-desc">Items in &lt;img src="bin.svg" alt="the trash"> will be permanently removed after 30 days.&lt;/p></code></pre>
 
           <p>
             As with <code>aria-labelledby</code>, it is possible to reference an element using <code>aria-describedby</code> even if that element is hidden.
@@ -5079,14 +5051,12 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
             In the following example, the accessible description for the <code>input</code> element is <q>Your username is the name that you use to log in to this service.</q>
           </p>
 
-          <pre><code>
-  &lt;label for="username">Username&lt;/label>
-  &lt;input id="username" name="username" aria-describedby="username-desc">
-  &lt;button aria-expanded="false" aria-controls="username-desc" aria-label="Help about username">?&lt;/button>
-  &lt;p id="username-desc" hidden>
-    Your username is the name that you use to log in to this service.
-  &lt;/p>
-          </code></pre>
+          <pre><code>&lt;label for="username">Username&lt;/label>
+&lt;input id="username" name="username" aria-describedby="username-desc">
+&lt;button aria-expanded="false" aria-controls="username-desc" aria-label="Help about username">?&lt;/button>
+&lt;p id="username-desc" hidden>
+  Your username is the name that you use to log in to this service.
+&lt;/p></code></pre>
         </section>
 
         <section id="describing_with_aria-details">
@@ -5097,20 +5067,18 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
             In the following example, a text field for a passenger’s name (when booking a flight) has a description that is a list of three items, and contains a link to an external document with further details.
           </p>
 
-          <pre><code>
-  &lt;ul id="full-name-desc">
-    &lt;li>The passenger's name must match the name in their passport.&lt;/li>
-    &lt;li>The name must consist of only characters in the A-Z range.&lt;/li>
-    &lt;li>&lt;a href="faq.html#name">What if the name in the passport contains other characters?&lt;/a>&lt;/li>
-  &lt;/ul>
-  &lt;fieldset>
-    &lt;legend>Passenger 1 (adult)&lt;/legend>
-    &lt;p>
-      &lt;label>Full name &lt;input name="full-name" aria-details="full-name-desc">&lt;/label>
-    &lt;/p>
-    ...
-  &lt;/fieldset>
-          </code></pre>
+          <pre><code>&lt;ul id="full-name-desc">
+  &lt;li>The passenger's name must match the name in their passport.&lt;/li>
+  &lt;li>The name must consist of only characters in the A-Z range.&lt;/li>
+  &lt;li>&lt;a href="faq.html#name">What if the name in the passport contains other characters?&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;fieldset>
+  &lt;legend>Passenger 1 (adult)&lt;/legend>
+  &lt;p>
+    &lt;label>Full name &lt;input name="full-name" aria-details="full-name-desc">&lt;/label>
+  &lt;/p>
+  ...
+&lt;/fieldset></code></pre>
 
           <p>
             If both <code>aria-details</code> and <code>aria-describedby</code> are specified on an element, browsers ignore the <code>aria-describedby</code> value when calculating the accessible description.
@@ -5128,7 +5096,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
   Calendar of upcoming events, weeks 27 through 31, with each week starting with
   Monday. The first column is the week number.
  &lt;/caption>
- &lt;tr>&lt;th>Week&lt;th>Monday&lt;th>Tuesday&lt;th>Wednesday&lt;th>Thursday&lt;th>Friday&lt;Saturday&lt;Sunday
+ &lt;tr>&lt;th>Week&lt;th>Monday&lt;th>Tuesday&lt;th>Wednesday&lt;th>Thursday&lt;th>Friday&lt;th>Saturday&lt;th>Sunday
  &lt;tr>&lt;td>27&lt;td>&lt;td>&lt;td>&lt;td>&lt;td>&lt;td>&lt;td>
  &lt;tr>&lt;td>28&lt;td>&lt;td>&lt;td>&lt;td>&lt;td>&lt;td>&lt;td>&lt;a href="/events/9856">Crown Princess's birthday&lt;/a>
  &lt;tr>&lt;td>29&lt;td>&lt;td>&lt;td>&lt;td>&lt;td>&lt;td>&lt;td>
@@ -5164,7 +5132,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
    title="Follow W3C on Twitter">
    &lt;img src="/2008/site/images/Twitter_bird_logo_2012.svg"
         alt="Twitter" class="social-icon" height="40" />
-  &lt;/a></code></pre>
+&lt;/a></code></pre>
         </section>
       </section>
 
