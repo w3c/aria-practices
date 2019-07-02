@@ -7,6 +7,7 @@ const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAriaControls = require('../util/assertAriaControls');
 const assertAriaLabelExists = require('../util/assertAriaLabelExists');
 const assertAriaRoles = require('../util/assertAriaRoles');
+const assertTabOrder = require('../util/assertTabOrder');
 
 const exampleFile = 'carousel/carousel-1.html';
 
@@ -17,7 +18,15 @@ const ex = {
   previousButtonSelector: '#ex1 .previous',
   nextButtonSelector: '#ex1 .next',
   slideContainerSelector: '#ex1 .carousel-items',
-  slideSelector: '#ex1 .carousel-item'
+  slideSelector: '#ex1 .carousel-item',
+  allFocusableItems: [
+    '#ex1 button:first-of-type',
+    '#ex1 .previous',
+    '#ex1 .next',
+    '#ex1 .active .carousel-image a',
+    '#ex1 .active .carousel-caption a'
+  ],
+  activeCarouselItem: '#ex1 .active'
 };
 
 
@@ -108,4 +117,149 @@ ariaTest('Pause button uses aria-disabled', exampleFile, 'carousel-button-start-
   // Move to focus to pause button, and the aria-disabled should change to false
   await t.context.session.findElement(By.css(ex.previousButtonSelector)).sendKeys(Key.chord(Key.SHIFT, Key.TAB));
   await assertAttributeDNE(t, ex.pausePlayButtonSelector, 'aria-disabled');
+});
+
+// Keyboard interaction
+
+ariaTest('TAB moves key through buttons', exampleFile, 'carousel-key-tab', async (t) => {
+  t.plan(1);
+
+  await assertTabOrder(t, ex.allFocusableItems);
+});
+
+ariaTest('ENTER pause and start carousel motion', exampleFile, 'carousel-enter-or-space-toggle', async (t) => {
+  t.plan(2);
+
+  let activeElement = await t.context.session.findElement(By.css(ex.activeCarouselItem)).getAttribute('aria-label');
+
+  await t.context.session.findElement(By.css(ex.pausePlayButtonSelector)).sendKeys(Key.ENTER);
+  // Move focus from widget
+  await t.context.session.findElement(By.css(ex.pausePlayButtonSelector)).sendKeys(Key.chord(Key.SHIFT, Key.TAB));
+
+  let compareWithNextElement = await t.context.session.wait(async function () {
+    let newActiveElement = await t.context.session.findElement(By.css(ex.activeCarouselItem)).getAttribute('aria-label');
+    return activeElement === newActiveElement;
+  }, t.context.WaitTime);
+
+  t.true(
+    compareWithNextElement,
+    'The active elements should stay the same when the pause button has been sent ENTER'
+  );
+
+  await t.context.session.findElement(By.css(ex.pausePlayButtonSelector)).sendKeys(Key.ENTER);
+  // Move focus from widget
+  await t.context.session.findElement(By.css(ex.pausePlayButtonSelector)).sendKeys(Key.chord(Key.SHIFT, Key.TAB));
+
+  compareWithNextElement = await t.context.session.wait(async function () {
+    let newActiveElement = await t.context.session.findElement(By.css(ex.activeCarouselItem)).getAttribute('aria-label');
+    return activeElement !== newActiveElement;
+  }, t.context.WaitTime);
+
+  t.true(
+    compareWithNextElement,
+    'The active elements should change when the play button has been sent ENTER'
+  );
+
+});
+
+
+ariaTest('SPACE pause and start carousel motion', exampleFile, 'carousel-enter-or-space-toggle', async (t) => {
+  t.plan(2);
+
+  let activeElement = await t.context.session.findElement(By.css(ex.activeCarouselItem)).getAttribute('aria-label');
+
+  await t.context.session.findElement(By.css(ex.pausePlayButtonSelector)).sendKeys(Key.SPACE);
+  // Move focus from widget
+  await t.context.session.findElement(By.css(ex.pausePlayButtonSelector)).sendKeys(Key.chord(Key.SHIFT, Key.TAB));
+
+  let compareWithNextElement = await t.context.session.wait(async function () {
+    let newActiveElement = await t.context.session.findElement(By.css(ex.activeCarouselItem)).getAttribute('aria-label');
+    return activeElement === newActiveElement;
+  }, t.context.WaitTime);
+
+  t.true(
+    compareWithNextElement,
+    'The active elements should stay the same when the pause button has been sent SPACE'
+  );
+
+  await t.context.session.findElement(By.css(ex.pausePlayButtonSelector)).sendKeys(Key.SPACE);
+  // Move focus from widget
+  await t.context.session.findElement(By.css(ex.pausePlayButtonSelector)).sendKeys(Key.chord(Key.SHIFT, Key.TAB));
+
+  compareWithNextElement = await t.context.session.wait(async function () {
+    let newActiveElement = await t.context.session.findElement(By.css(ex.activeCarouselItem)).getAttribute('aria-label');
+    return activeElement !== newActiveElement;
+  }, t.context.WaitTime);
+
+  t.true(
+    compareWithNextElement,
+    'The active elements should change when the play button has been sent SPACE'
+  );
+});
+
+
+ariaTest('SPACE on previous and next', exampleFile, 'carousel-key-enter-or-space-move', async (t) => {
+  t.plan(2);
+
+  let activeElement = await t.context.session.findElement(By.css(ex.activeCarouselItem))
+    .getAttribute('aria-label');
+
+  await t.context.session.findElement(By.css(ex.previousButtonSelector)).sendKeys(Key.SPACE);
+
+  let compareWithNextElement = await t.context.session.wait(async function () {
+    let newActiveElement = await t.context.session.findElement(By.css(ex.activeCarouselItem))
+      .getAttribute('aria-label');
+    return activeElement !== newActiveElement;
+  }, t.context.WaitTime);
+
+  t.true(
+    compareWithNextElement,
+    'After sending SPACE to previous button, the carousel should show a different element'
+  );
+
+  await t.context.session.findElement(By.css(ex.nextButtonSelector)).sendKeys(Key.SPACE);
+
+  compareWithNextElement = await t.context.session.wait(async function () {
+    let newActiveElement = await t.context.session.findElement(By.css(ex.activeCarouselItem))
+      .getAttribute('aria-label');
+    return activeElement === newActiveElement;
+  }, t.context.WaitTime);
+
+  t.true(
+    compareWithNextElement,
+    'After sending SPACE to previous button then SPACE to next button, the carousel should show the first carousel item'
+  );
+});
+
+ariaTest('ENTER on previous and next', exampleFile, 'carousel-key-enter-or-space-move', async (t) => {
+  t.plan(2);
+
+  let activeElement = await t.context.session.findElement(By.css(ex.activeCarouselItem))
+    .getAttribute('aria-label');
+
+  await t.context.session.findElement(By.css(ex.previousButtonSelector)).sendKeys(Key.ENTER);
+
+  let compareWithNextElement = await t.context.session.wait(async function () {
+    let newActiveElement = await t.context.session.findElement(By.css(ex.activeCarouselItem))
+      .getAttribute('aria-label');
+    return activeElement !== newActiveElement;
+  }, t.context.WaitTime);
+
+  t.true(
+    compareWithNextElement,
+    'After sending ENTER to previous button, the carousel should show a different element'
+  );
+
+  await t.context.session.findElement(By.css(ex.nextButtonSelector)).sendKeys(Key.ENTER);
+
+  compareWithNextElement = await t.context.session.wait(async function () {
+    let newActiveElement = await t.context.session.findElement(By.css(ex.activeCarouselItem))
+      .getAttribute('aria-label');
+    return activeElement === newActiveElement;
+  }, t.context.WaitTime);
+
+  t.true(
+    compareWithNextElement,
+    'After sending ENTER to previous button then ENTER to next button, the carousel should show the first carousel item'
+  );
 });
