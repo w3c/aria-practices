@@ -45,3 +45,12 @@ ariaTest('"aria-describedby" attribute on button', exampleFile, 'calendar-button
   t.plan(1);
   await assertAttributeValues(t,  ex.buttonSelector, 'aria-describedby', 'id-datepicker-1-button-desc');
 });
+
+// Dialog Tests
+
+ariaTest('role="dialog" attribute on div', exampleFile, 'datepicker-dialog-role', async (t) => {
+  t.plan(1);
+  await assertAriaRoles(t, 'example', 'dialog', 1, 'div');
+});
+
+
