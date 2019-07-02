@@ -151,7 +151,7 @@ DatePickerSpinButtons.prototype.updateSpinButtons = function () {
 
   this.currentDate = new Date(this.year + '-' + (this.month + 1) + '-' + this.day);
 
-  this.dateNode.innerHTML = '; ' + this.valuesWeek[this.currentDate.getDay()] + ', ' + this.spinbuttonMonth.getValueText() + ' ' + this.spinbuttonDay.getValueText() + ', ' + this.spinbuttonYear.getValue();
+  this.dateNode.innerHTML = 'current value is ' + this.valuesWeek[this.currentDate.getDay()] + ', ' + this.spinbuttonMonth.getValueText() + ' ' + this.spinbuttonDay.getValueText() + ', ' + this.spinbuttonYear.getValue();
 
 
 };
