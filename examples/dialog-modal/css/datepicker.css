@@ -61,6 +61,8 @@
   display: inline-block;
   font-size: 1em;
   color: white;
+  text-transform: none;
+  font-weight: bold;
 }
 
 .datepicker .header button {

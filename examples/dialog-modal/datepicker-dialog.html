@@ -61,7 +61,6 @@
           <button class="icon"
             aria-label="Choose Date"
             aria-expanded="false"
-            aria-haspopup="dialog"
             aria-describedby="id-datepicker-1-button-desc"
             >
             <span class="fa fa-calendar-alt fa-2x"></span>
@@ -204,7 +203,7 @@
     <p>There are three main features of the dialog date picker example:</p>
     <ul>
       <li>Date Textbox: Holds the value of the selected date.</li>
-      <li>Calendar Button: Opens the datepicker dialog box for selecting a date.</li>
+      <li>Choose Date Button: Opens the datepicker dialog box for selecting a date.</li>
       <li>Date Picker Dialog Box: Displays a grid of dates for the user to select from and provides additional buttons to change the month and year of dates shown in the grid.</li>
     </ul>
 
@@ -216,7 +215,7 @@
       <li>Contains the selected date value.</li>
     </ul>
 
-    <h3>Calendar Button</h3>
+    <h3>Choose Date Button</h3>
 
     <ul>
       <li>Opens and closes the date picker dialog box through keyboard and click events.</li>
@@ -241,7 +240,7 @@
     <h2 id="kbd_label">Keyboard Support</h2>
 
     <section>
-      <h3 id="kbd_label_2">Calendar Button</h3>
+      <h3 id="kbd_label_2">Choose Date Button</h3>
       <table aria-labelledby="kbd_label_2 kbd_label" class="def">
         <thead>
           <tr>
@@ -300,7 +299,7 @@
     </section>
 
     <section>
-      <h3 id="kbd_label_4">Date Picker Dialog: Calendar Buttons</h3>
+      <h3 id="kbd_label_4">Date Picker Dialog: Month/Year Buttons</h3>
       <table aria-labelledby="kbd_label_4 kbd_label" class="def">
         <thead>
           <tr>
@@ -448,7 +447,7 @@
 
 
     <section>
-        <h3 id="rps_label_2">Calendar Button</h3>
+        <h3 id="rps_label_2">Choose Date Button</h3>
         <table aria-labelledby="rps_label_2 rps_label" class="data attributes">
           <thead>
             <tr>
@@ -479,14 +478,6 @@
                   <li>The initial value of accessible name is <q>Calendar</q>.</li>
                   <li>When user selected date, the accessible name will update to current date.</li>
                 </ul>
-              </td>
-            </tr>
-            <tr data-test-id="calendar-button-aria-haspopup">
-              <td></td>
-              <th scope="row"><code>aria-haspopup=<q>dialog</q></code></th>
-              <td><code>button</code></td>
-              <td>
-                Identifies the button opening a dialog box.
               </td>
             </tr>
             <tr data-test-id="calendar-button-aria-expanded">
