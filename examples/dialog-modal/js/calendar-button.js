@@ -14,25 +14,18 @@ var CalendarButtonInput = function (inputNode, buttonNode, datepicker) {
 
   this.datepicker = datepicker;
 
+  this.defaultLabel = 'Choose Date';
+
   this.keyCode = Object.freeze({
-    'TAB': 9,
     'ENTER': 13,
-    'ESC': 27,
-    'SPACE': 32,
-    'PAGEUP': 33,
-    'PAGEDOWN': 34,
-    'END': 35,
-    'HOME': 36,
-    'LEFT': 37,
-    'UP': 38,
-    'RIGHT': 39,
-    'DOWN': 40
+    'SPACE': 32
   });
 };
 
 CalendarButtonInput.prototype.init = function () {
   this.buttonNode.addEventListener('click', this.handleClick.bind(this));
   this.buttonNode.addEventListener('keydown', this.handleKeyDown.bind(this));
+  this.buttonNode.addEventListener('focus', this.handleFocus.bind(this));
 };
 
 CalendarButtonInput.prototype.handleKeyDown = function (event) {
@@ -44,11 +37,6 @@ CalendarButtonInput.prototype.handleKeyDown = function (event) {
     case this.keyCode.ENTER:
       this.datepicker.show();
       this.datepicker.setFocusDay();
-      flag = true;
-      break;
-
-    case this.keyCode.ESC:
-      this.datepicker.hide(false);
       flag = true;
       break;
 
@@ -77,11 +65,13 @@ CalendarButtonInput.prototype.handleClick = function () {
 };
 
 CalendarButtonInput.prototype.setLabel = function (str) {
-  this.buttonNode.setAttribute('aria-label', 'Calendar, ' + str);
+  if (typeof str === 'string' && str.length) {
+    str = ', ' + str;
+  }
+  this.buttonNode.setAttribute('aria-label', this.defaultLabel + str);
 };
 
 CalendarButtonInput.prototype.setFocus = function () {
-  this.setLabel('selected date is ' + this.datepicker.getDateForButtonLabel());
   this.buttonNode.focus();
 };
 
@@ -94,12 +84,12 @@ CalendarButtonInput.prototype.setAriaExpanded = function (flag) {
   }
 };
 
-CalendarButtonInput.prototype.getAriaExpanded = function () {
+CalendarButtonInput.prototype.isExpanded = function () {
   return this.buttonNode.getAttribute('aria-expanded') === 'true';
 };
 
 CalendarButtonInput.prototype.isCollapsed = function () {
-  return this.inputNode.getAttribute('aria-expanded') !== 'true';
+  return this.buttonNode.getAttribute('aria-expanded') !== 'true';
 };
 
 CalendarButtonInput.prototype.setDate = function (month, day, year) {
@@ -110,8 +100,32 @@ CalendarButtonInput.prototype.getDate = function () {
   return this.inputNode.value;
 };
 
-CalendarButtonInput.prototype.hasFocus = function () {
-  return this.hasFocusflag;
+CalendarButtonInput.prototype.getDateLabel = function () {
+
+  var label = '';
+
+  var parts = this.inputNode.value.split('/');
+
+  if ((parts.length === 3) &&
+      Number.isInteger(parseInt(parts[0])) &&
+      Number.isInteger(parseInt(parts[1])) &&
+      Number.isInteger(parseInt(parts[2]))) {
+    var month = parseInt(parts[0]) - 1;
+    var day = parseInt(parts[1]);
+    var year = parseInt(parts[2]);
+
+    label = this.datepicker.getDateForButtonLabel(year, month, day);
+  }
+
+  return label;
+};
+
+CalendarButtonInput.prototype.handleFocus = function () {
+  var dateLabel = this.getDateLabel();
+
+  if (dateLabel) {
+    this.setLabel('selected date is ' + dateLabel);
+  }
 };
 
 // Initialize menu button date picker

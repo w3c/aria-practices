@@ -13,6 +13,7 @@ var DatePicker = function (inputNode, buttonNode, dialogNode) {
   this.monthLabels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
   this.messageCursorKeys = 'Cursor keys can navigate dates';
+  this.lastMessage = '';
 
   this.inputNode   = inputNode;
   this.buttonNode  = buttonNode;
@@ -352,7 +353,7 @@ DatePicker.prototype.show = function () {
 };
 
 DatePicker.prototype.isOpen = function () {
-  return this.dateInput.getAriaExpanded();
+  return this.dateInput.isExpanded();
 };
 
 DatePicker.prototype.hide = function () {
@@ -801,7 +802,15 @@ DatePicker.prototype.getDateForButtonLabel = function (year, month, day) {
 };
 
 DatePicker.prototype.setMessage = function (str) {
-  return this.messageNode.textContent = str;
+
+  function setMessageDelayed () {
+    this.messageNode.textContent = str;
+  }
+
+  if (str !== this.lastMessage) {
+    setTimeout(setMessageDelayed.bind(this), 200);
+    this.lastMessage = str;
+  }
 };
 
 
