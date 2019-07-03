@@ -17,8 +17,6 @@ PauseButton.prototype.init = function () {
 
 /* EVENT HANDLERS */
 
-PauseButton.prototype.handleClick = function (event) {
-  console.log('handleClick');
+PauseButton.prototype.handleClick = function () {
   this.carousel.toggleRotation();
 };
-

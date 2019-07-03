@@ -14,9 +14,7 @@
   display: block;
 }
 
-
 /* More like bootstrap, less accessible */
-
 
 /* Shared CSS for Pause, Next and Previous Slide Controls */
 
@@ -26,8 +24,8 @@
   width: 100%;
   position: relative;
   height: 36px;
-  background-color: #EEE;
-  border: 4px solid #EEE;
+  background-color: #eee;
+  border: 4px solid #eee;
   border-radius: 5px 5px 0 0;
 }
 
@@ -65,20 +63,13 @@
   stroke-width: 2px;
 }
 
-.carousel .controls button[aria-disabled=true] svg rect.background,
-.carousel .controls button[aria-disabled=true] svg rect.border {
-  opacity: 1;
-  stroke: #555;
-  fill: #555;
-}
-
 /* Next and Previous Slide Controls */
 
 .carousel .controls button svg polygon {
   stroke: white;
   fill: white;
   stroke-width: 2;
-  opacity: 1.0;
+  opacity: 1;
 }
 
 .carousel .controls button.rotation svg polygon.pause {
@@ -99,12 +90,6 @@
   stroke: white;
 }
 
-.carousel .controls button.rotation.pause[aria-disabled=true] svg polygon.pause,
-.carousel .controls button.rotation.play[aria-disabled=true] svg polygon.play {
-  fill: #ddd;
-  stroke: #ddd;
-}
-
 /* Common focus styling for svg buttons */
 
 .carousel .controls button:focus rect.background,
@@ -113,11 +98,10 @@
 .carousel .controls button:hover rect.border {
   fill: #005a9c;
   stroke: #005a9c;
-  opacity: 1.0;
+  opacity: 1;
 }
 
-.carousel .controls button:focus rect.border,
-.carousel .controls button[aria-disabled=true]:focus rect.border {
+.carousel .controls button:focus rect.border {
   stroke: white;
 }
 
@@ -125,10 +109,9 @@
 
 .carousel .carousel-items {
   width: 100%;
-  background-color: #EEE;
-  border: solid 4px #EEE;
+  background-color: #eee;
+  border: solid 4px #eee;
   border-radius: 0 0 5px 5px;
-
 }
 
 .carousel .carousel-items.focus {
@@ -165,7 +148,7 @@
 
 .carousel .carousel-item .carousel-caption a {
   display: inline-block;
-  background-color: rgba(0, 0, 0, 0.0);
+  background-color: rgba(0, 0, 0, 0);
   padding-left: 0.25em;
   padding-right: 0.25em;
   padding-top: 0.125em;
@@ -200,4 +183,3 @@
   margin: 0;
   padding: 0;
 }
-

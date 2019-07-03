@@ -154,51 +154,42 @@ Carousel.prototype.rotateSlides = function () {
   setTimeout(this.rotateSlides.bind(this), this.timeInterval);
 };
 
-Carousel.prototype.updatePauseButtonDisabledState = function () {
-  if (this.hasHover || this.hasFocus) {
-    this.pauseButton.setAttribute('aria-disabled', 'true');
-  }
-  else {
-    this.pauseButton.removeAttribute('aria-disabled');
-  }
-};
-
 Carousel.prototype.updateRotation = function () {
 
   if (!this.hasHover && !this.hasFocus && !this.isStopped) {
     this.rotate = true;
+    this.liveRegionNode.setAttribute('aria-live', 'off');
   }
   else {
     this.rotate = false;
+    this.liveRegionNode.setAttribute('aria-live', 'polite');
   }
 
   if (this.isStopped) {
-    this.liveRegionNode.setAttribute('aria-live', 'off');
     this.pauseButton.setAttribute('aria-label', this.playLabel);
     this.pauseButton.classList.remove('pause');
     this.pauseButton.classList.add('play');
   }
   else {
-    this.liveRegionNode.setAttribute('aria-live', 'polite');
     this.pauseButton.setAttribute('aria-label', this.pauseLabel);
     this.pauseButton.classList.remove('play');
     this.pauseButton.classList.add('pause');
   }
 
-  this.updatePauseButtonDisabledState();
 };
 
 Carousel.prototype.toggleRotation = function () {
   if (this.isStopped) {
-    if (this.pauseButton.getAttribute('aria-disabled') !== 'true') {
+    if (!this.hasHover && !this.hasFocus) {
       this.isStopped = false;
-      this.updateRotation();
     }
   }
   else {
     this.isStopped = true;
-    this.updateRotation();
   }
+
+  this.updateRotation();
+
 };
 
 Carousel.prototype.handleImageLinkFocus = function () {
@@ -223,7 +214,7 @@ Carousel.prototype.handleMouseOut = function () {
 
 /* Initialize Carousel Tablists */
 
-window.addEventListener('load', function (event) {
+window.addEventListener('load', function () {
   var carousels = document.querySelectorAll('.carousel');
 
   for (var i = 0; i < carousels.length; i++) {

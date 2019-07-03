@@ -83,7 +83,6 @@
   text-align: center;
 }
 
-
 /* Shared CSS for Pause, Next and Previous Slide Controls */
 
 .carousel .controls button {
@@ -109,20 +108,13 @@
   stroke-width: 2px;
 }
 
-.carousel .controls button[aria-disabled=true] svg rect.background,
-.carousel .controls button[aria-disabled=true] svg rect.border {
-  opacity: 1;
-  stroke: #555;
-  fill: #555;
-}
-
 /* Next and Previous Slide Controls */
 
 .carousel .controls button svg polygon {
   stroke: white;
   fill: white;
   stroke-width: 2;
-  opacity: 1.0;
+  opacity: 1;
 }
 
 .carousel .controls button.previous {
@@ -157,12 +149,6 @@
   stroke: white;
 }
 
-.carousel .controls button.rotation.pause[aria-disabled=true] svg polygon.pause,
-.carousel .controls button.rotation.play[aria-disabled=true] svg polygon.play {
-  fill: #ddd;
-  stroke: #ddd;
-}
-
 /* Common focus styling for svg buttons */
 
 .carousel .controls button:focus rect.background,
@@ -171,10 +157,9 @@
 .carousel .controls button:hover rect.border {
   fill: #005a9c;
   stroke: #005a9c;
-  opacity: 1.0;
+  opacity: 1;
 }
 
-.carousel .controls button:focus rect.border,
-.carousel .controls button[aria-disabled=true]:focus rect.border {
+.carousel .controls button:focus rect.border {
   stroke: white;
 }
