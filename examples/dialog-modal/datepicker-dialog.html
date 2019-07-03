@@ -187,9 +187,9 @@
             <button class="dialogButton" value="ok">OK</button>
           </div>
 
-        <div class="message" role="status">
-
-        </div>
+          <div class="message" role="status">
+            Test
+          </div>
 
         </div>
       </div>
@@ -203,12 +203,11 @@
     <p>There are three main features of the dialog date picker example:</p>
     <ul>
       <li>Date Textbox: Holds the value of the selected date.</li>
-      <li>Calendar Button: Opens the datepicker dialog box.</li>
-      <li>Date Picker Dialog Box: Displays a grid of dates for the user to select from and provide additional buttons to change the month and year of dates shown in the grid.</li>
+      <li>Calendar Button: Opens the datepicker dialog box for selecting a date.</li>
+      <li>Date Picker Dialog Box: Displays a grid of dates for the user to select from and provides additional buttons to change the month and year of dates shown in the grid.</li>
     </ul>
 
     <p>The <code>textbox</code> has the accessible name of <q>Date</q> and <code>button</code> has the accessible name of <q>Calendar<q>.</p>
-
 
     <h3>Date Textbox</h3>
 
@@ -220,22 +219,21 @@
 
     <ul>
       <li>Opens and closes the date picker dialog box through keyboard and click events.</li>
-      <li>A live region provides information on how to open the date picker dialog when textbox receives focus (e.g. using <kbd>down arrow</kbd> key).</li>
-      <li>The accessible name of the button is updated when a date is selected to include the current date.</li>
-      <li>The <code>title</code> attribute describes the relationship between the <code>button</code> and the <code>textbox</code>.</li>
+      <li>When the click event opens the date picker, it also moves keyboard focus to the selected date in the date picker dialog.</li>
+      <li>The accessible name of the button is updated when a date is selected to include the selected date.</li>
     </ul>
 
     <h3>Date Picker Dialog</h3>
 
     <ul>
+      <li>The date picker dialog is opened using the calendar button.</li>
       <li>The date picker dialog is a modal dialog box for selecting a date from a grid of dates for a particular month and year.</li>
-      <li>Additional buttons and keyboard commands are used to change month and year.</li>
+      <li>The month/year buttons and keyboard commands within the grid of dates can be used to change month and year.</li>
       <li>A live region announces changes in the month and year.</li>
-      <li>The dialog is opened through keyboard commands in the textbox or clicking on the change date button.</li>
+      <li>A live region announces information on using the cursor keys to navigate the grid of dates, when one of the dates in the grid receives focus. The cursor information is also visible at the bottom of the dialog box.</li>
     </ul>
 
   </section>
-
 
 
   <section>

@@ -38,6 +38,7 @@ DatePickerDay.prototype.init = function () {
   this.domNode.setAttribute('tabindex', '-1');
   this.domNode.addEventListener('mousedown', this.handleMouseDown.bind(this));
   this.domNode.addEventListener('keydown', this.handleKeyDown.bind(this));
+  this.domNode.addEventListener('focus', this.handleFocus.bind(this));
 
   this.domNode.innerHTML = '-1';
 
@@ -94,6 +95,7 @@ DatePickerDay.prototype.handleKeyDown = function (event) {
       if (event.shiftKey) {
         this.datepicker.nextYearNode.focus();
       }
+      this.datepicker.setMessage('');
       flag = true;
       break;
 
@@ -174,9 +176,6 @@ DatePickerDay.prototype.handleMouseDown = function (event) {
     this.datepicker.moveToDay(this.day, this.month, this.year);
   }
   else {
-    if (!this.datepicker.dateInput.hasFocus()) {
-      this.datepicker.dateInput.ignoreBlurEvent = true;
-    }
     this.datepicker.setTextboxDate();
     this.datepicker.hide();
   }
@@ -186,4 +185,7 @@ DatePickerDay.prototype.handleMouseDown = function (event) {
 
 };
 
+DatePickerDay.prototype.handleFocus = function () {
+  this.datepicker.setMessage(this.datepicker.messageCursorKeys);
+};
 

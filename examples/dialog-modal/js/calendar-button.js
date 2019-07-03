@@ -7,18 +7,12 @@
 
 var DatePicker = DatePicker || {};
 
-var CalendarButtonInput = function (inputNode, buttonNode, messageNode, datepicker) {
+var CalendarButtonInput = function (inputNode, buttonNode, datepicker) {
   this.inputNode    = inputNode;
   this.buttonNode   = buttonNode;
-  this.messageNode  = messageNode;
   this.imageNode    = false;
 
   this.datepicker = datepicker;
-
-  this.ignoreFocusEvent = false;
-  this.ignoreBlurEvent = false;
-
-  this.hasFocusFlag = false;
 
   this.keyCode = Object.freeze({
     'TAB': 9,
@@ -37,14 +31,8 @@ var CalendarButtonInput = function (inputNode, buttonNode, messageNode, datepick
 };
 
 CalendarButtonInput.prototype.init = function () {
-
   this.buttonNode.addEventListener('click', this.handleClick.bind(this));
   this.buttonNode.addEventListener('keydown', this.handleKeyDown.bind(this));
-
-  this.buttonNode.addEventListener('focus', this.handleFocus.bind(this));
-  this.buttonNode.addEventListener('blur', this.handleBlur.bind(this));
-
-  this.setMessage('');
 };
 
 CalendarButtonInput.prototype.handleKeyDown = function (event) {
@@ -74,16 +62,6 @@ CalendarButtonInput.prototype.handleKeyDown = function (event) {
   }
 };
 
-CalendarButtonInput.prototype.handleFocus = function () {
-  if (this.isCollapsed()) {
-    this.setMessage('Use the down arrow key or the following change date button to move focus to the datepicker grid.');
-  }
-};
-
-CalendarButtonInput.prototype.handleBlur = function () {
-  this.setMessage('');
-};
-
 CalendarButtonInput.prototype.handleClick = function () {
   if (this.isCollapsed()) {
     this.datepicker.show();
@@ -98,6 +76,9 @@ CalendarButtonInput.prototype.handleClick = function () {
 
 };
 
+CalendarButtonInput.prototype.setLabel = function (str) {
+  this.buttonNode.setAttribute('aria-label', 'Calendar, ' + str);
+};
 
 CalendarButtonInput.prototype.setFocus = function () {
   this.setLabel('selected date is ' + this.datepicker.getDateForButtonLabel());
@@ -129,15 +110,6 @@ CalendarButtonInput.prototype.getDate = function () {
   return this.inputNode.value;
 };
 
-CalendarButtonInput.prototype.setLabel = function (str) {
-  this.buttonNode.setAttribute('aria-label', 'Calendar, ' + str);
-};
-
-
-CalendarButtonInput.prototype.setMessage = function (str) {
-  return this.messageNode.textContent = str;
-};
-
 CalendarButtonInput.prototype.hasFocus = function () {
   return this.hasFocusflag;
 };
@@ -151,10 +123,9 @@ window.addEventListener('load' , function () {
   datePickers.forEach(function (dp) {
     var inputNode   = dp.querySelector('input');
     var buttonNode  = dp.querySelector('button');
-    var messageNode = dp.querySelector('.message');
     var dialogNode  = dp.querySelector('[role=dialog]');
 
-    var datePicker = new DatePicker(inputNode, buttonNode, messageNode, dialogNode);
+    var datePicker = new DatePicker(inputNode, buttonNode, dialogNode);
     datePicker.init();
   });
 

@@ -114,15 +114,15 @@
   text-align: center;
 }
 
-table.dates {
+.datepicker table.dates {
   width: 100%;
   padding-left: 1em;
   padding-right: 1em;
   padding-top: 1em;
 }
 
-table.dates th,
-table.dates td {
+.datepicker table.dates th,
+.datepicker table.dates td {
   text-align: center;
 }
 
@@ -187,7 +187,9 @@ table.dates td {
 }
 
 .datepicker .message {
-  position: absolute;
-  top: -30em;
-  left: -300em;
+  padding-top: 0.25em;
+  padding-left: 1em;
+  height: 1.75em;
+  background: hsl(216, 80%, 55%);
+  color: white;
 }
