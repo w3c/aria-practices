@@ -26,24 +26,9 @@ ariaTest('"aria-label" attribute on button', exampleFile, 'calendar-button-aria-
   await assertAriaLabelExists(t,  ex.buttonSelector);
 });
 
-ariaTest('"aria-haspopup" attribute on button', exampleFile, 'calendar-button-aria-haspopup', async (t) => {
-  t.plan(1);
-  await assertAttributeValues(t,  ex.buttonSelector, 'aria-haspopup', 'dialog');
-});
-
 ariaTest('"aria-expanded" attribute on button', exampleFile, 'calendar-button-aria-label', async (t) => {
   t.plan(1);
   await assertAttributeValues(t,  ex.buttonSelector, 'aria-expanded', 'false');
-});
-
-ariaTest('"aria-controls" attribute on button', exampleFile, 'calendar-button-aria-controls', async (t) => {
-  t.plan(1);
-  await assertAttributeValues(t,  ex.buttonSelector, 'aria-controls', 'id-datepicker-1');
-});
-
-ariaTest('"aria-describedby" attribute on button', exampleFile, 'calendar-button-aria-describedby', async (t) => {
-  t.plan(1);
-  await assertAttributeValues(t,  ex.buttonSelector, 'aria-describedby', 'id-datepicker-1-button-desc');
 });
 
 // Dialog Tests
