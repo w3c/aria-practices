@@ -4,12 +4,20 @@
 }
 
 .datepicker button.icon {
-  border-style: none;
+  padding: 4px;
+  margin: 0;
+  border: transparent 2px solid;
+  border-radius: 5px;
   text-align: left;
   background-color: white;
   position: relative;
   left: -4px;
   top: 3px;
+}
+
+.datepicker button.icon:focus {
+  outline: none;
+  border-color: hsl(216, 80%, 55%);
 }
 
 .datepicker span.arrow {
