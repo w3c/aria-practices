@@ -54,7 +54,7 @@
       <ul id="menubar1" role="menubar" aria-label="Text Formatting">
         <li role="none">
           <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">Font</a>
-          <ul role="menu" rel="font-family" aria-label="Font" >
+          <ul role="menu" data-option="font-family" aria-label="Font" >
             <li role="menuitemradio" aria-checked="true">Sans-serif</li>
             <li role="menuitemradio" aria-checked="false">Serif</li>
             <li role="menuitemradio" aria-checked="false">Monospace</li>
@@ -64,11 +64,11 @@
         <li role="none">
           <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">Style/Color</a>
           <ul role="menu" aria-label="Style/Color">
-            <li role="menuitemcheckbox" rel="font-bold" aria-checked="false">Bold</li>
-            <li role="menuitemcheckbox" rel="font-italic" aria-checked="false">Italic</li>
+            <li role="menuitemcheckbox" data-option="font-bold" aria-checked="false">Bold</li>
+            <li role="menuitemcheckbox" data-option="font-italic" aria-checked="false">Italic</li>
             <li role="separator"></li>
             <li>
-              <ul role="group" rel="font-color" aria-label="Text Color">
+              <ul role="group" data-option="font-color" aria-label="Text Color">
                 <li role="menuitemradio" aria-checked="true">Black</li>
                 <li role="menuitemradio" aria-checked="false">Blue</li>
                 <li role="menuitemradio" aria-checked="false">Red</li>
@@ -76,7 +76,7 @@
               </ul>
             <li role="separator"></li>
             <li>
-              <ul role="group" rel="text-decoration" aria-label="Text Decoration">
+              <ul role="group" data-option="text-decoration" aria-label="Text Decoration">
                 <li role="menuitemradio" aria-checked="true">None</li>
                 <li role="menuitemradio" aria-checked="false">Overline</li>
                 <li role="menuitemradio" aria-checked="false">Line-through</li>
@@ -87,7 +87,7 @@
 
         <li role="none">
           <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">Text Align</a>
-          <ul role="menu" rel="text-align" aria-label="Text Align">
+          <ul role="menu" data-option="text-align" aria-label="Text Align">
             <li role="menuitemradio" aria-checked="true">Left</li>
             <li role="menuitemradio" aria-checked="false">Center</li>
             <li role="menuitemradio" aria-checked="false">Right</li>
@@ -98,11 +98,11 @@
         <li role="none">
           <a role="menuitem" aria-haspopup="true" aria-expanded="false" href="#">Size</a>
           <ul role="menu" aria-label="Size" >
-            <li role="menuitem" rel="font-smaller" aria-disabled="false">Smaller</li>
-            <li role="menuitem" rel="font-larger"  aria-disabled="false">Larger</li>
+            <li role="menuitem" data-option="font-smaller" aria-disabled="false">Smaller</li>
+            <li role="menuitem" data-option="font-larger"  aria-disabled="false">Larger</li>
             <li role="separator"></li>
             <li>
-              <ul role="group" rel="font-size" aria-label="Font Sizes">
+              <ul role="group" data-option="font-size" aria-label="Font Sizes">
                 <li role="menuitemradio" aria-checked="false">X-Small</li>
                 <li role="menuitemradio" aria-checked="false">Small</li>
                 <li role="menuitemradio" aria-checked="true">Medium</li>
