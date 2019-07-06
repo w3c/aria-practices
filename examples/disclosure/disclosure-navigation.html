@@ -41,14 +41,20 @@
     <li><a href="disclosure-img-long-description.html">Example Disclosure (Show/Hide) for an Image Description</a></li>
     <li><a href="../menubar/menubar-1/menubar-1.html">Navigation Menubar Example</a></li> 
   </ul>
+  <h2>Example Usage Options</h2>
+  <p>
+    This example demonstrates two different ways of implementing keyboard support.
+    Toggle between them with the following checkbox.
+  </p>
+  <label for="arrow-behavior-switch">
+    <input type="checkbox" id="arrow-behavior-switch" checked>
+    Include optional support for arrow keys, <kbd>Home</kbd>, and <kbd>End</kbd> for navigation among links
+  </label>
+  
   <section>
     <h2 id="ex_label">Example</h2>
     <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of" ></div>
     <div id="ex1">
-      <label for="arrow-behavior-switch">
-        <input type="checkbox" id="arrow-behavior-switch" checked>
-        Include arrow key navigation
-      </label>
       <nav aria-label="Mythical University">
         <ul id="exTest" class="disclosure-nav">
           <li>
