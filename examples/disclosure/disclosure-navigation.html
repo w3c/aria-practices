@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>Disclosure Pattern for Navigation Menu Example | WAI-ARIA Authoring
+<title>Example Disclosure for Navigation Menus | WAI-ARIA Authoring
   Practices 1.1</title>
 
   <!--  Core js and css shared by all examples; do not modify when using this template. -->
@@ -27,26 +27,34 @@
     </ul>
   </nav>
   <main>
-  <h1>Disclosure Pattern for Navigation Menus</h1>
+  <h1>Example Disclosure for Navigation Menus</h1>
   <p>
     The following example demonstrates using the
     <a href="../../#disclosure">disclosure design pattern</a>
-    to create a dropdown navigation bar.
+    to show and hide dropdown lists of links in a navigation bar for a mythical university web site.
+    Each disclosure button represents a section of the web site, and expanding it shows a list of links to pages within that section.
   </p>
-  <p>Note: although this pattern uses the word "menu" in the colloquial sense to refer to a set of navigation links, it does not use a menu role.</p>
+  <p><strong>Note:</strong> Although this example uses the word <q>menu</q> in the colloquial sense to refer to a set of navigation links, it does not use the WAI-ARIA <code>menu</code> role.</p>
   <p>Similar examples include:</p>
   <ul>
     <li><a href="disclosure-faq.html">Example Disclosure (Show/Hide) for Answers to Frequently Asked Questions</a></li>
     <li><a href="disclosure-img-long-description.html">Example Disclosure (Show/Hide) for an Image Description</a></li>
+    <li><a href="../menubar/menubar-1/menubar-1.html">Navigation Menubar Example</a></li> 
   </ul>
+  <h2>Example Usage Options</h2>
+  <p>
+    This example demonstrates two different ways of implementing keyboard support.
+    Toggle between them with the following checkbox.
+  </p>
+  <label for="arrow-behavior-switch">
+    <input type="checkbox" id="arrow-behavior-switch" checked>
+    Include optional support for arrow keys, <kbd>Home</kbd>, and <kbd>End</kbd> 
+  </label>
+  
   <section>
     <h2 id="ex_label">Example</h2>
     <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of" ></div>
     <div id="ex1">
-      <label for="arrow-behavior-switch">
-        <input type="checkbox" id="arrow-behavior-switch" checked>
-        Include arrow key navigation
-      </label>
       <nav aria-label="Mythical University">
         <ul id="exTest" class="disclosure-nav">
           <li>
@@ -131,24 +139,30 @@
   <section>
     <h2>Accessibility Features</h2>
     <ol>
+      <li>Since this set of disclosure buttons controls visibility of navigation links for the mythical university web site, the list that contains them is wrapped in a navigation landmark named <q>Mythical University</q>.</li>
       <li>
-        Since this disclosure example is being used as navigation, the entire control is wrapped in a navigation landmark. Each disclosure button / container pair is contained within a list item so that the number of top-level items is semantically available.
+        The semantics of the list structure communicates the hierarchy of the navigation system to assistive technology users.
+        The top-level set of three buttons is in a list of three items, and the set of links controlled by each button is contained within a list nested inside the item with the controlling button.
       </li>
       <li>
-        Arrow keys supplement, but do not replace, tabbing between the top-level disclosure buttons. Home and End likewise allow jumping to the first and last button.
+        If a dropdown is open and focus is inside the navigation region, pressing <kbd>Esc</kbd> will close the dropdown.
+        Moving focus out of the navigation region also closes an open dropdown.
+        Implementing this <kbd>Esc</kbd> behavior is necessary to meet the WCAG 2.1 <a href="https://www.w3.org/WAI/WCAG21/Understanding/content-on-hover-or-focus.html">1.4.13: Content on Hover or Focus</a> criterion.
       </li>
-      <li>
-        Escape pressed when focus is within the navigation region closes any open dropdowns. Moving focus out of the navigation region also closes open dropdowns. Implementing the escape key behavior is necessary to meet the WCAG 2.1 <a href="https://www.w3.org/WAI/WCAG21/Understanding/content-on-hover-or-focus.html">1.4.13: Content on Hover or Focus</a> criterion.
-      </li>
-      <li>
-        Arrow key support prevents the default page scroll behavior when focus is on the disclosure dropdown.
-      </li>
-      <li>
-        Arrow key navigation is primarily for the benefit of keyboard users who are not running a screen reader; screen readers will usually intercept the arrow keys and not pass them to the page.
-      </li>
-      <li>
-        The visual indicator of the show/hide state is created using CSS <code>::after</code> pseudo element border styles
-        so the caret is reliably rendered in high contrast mode of operating systems and browsers.
+      <li>The visual indicator of the show/hide state is created using CSS <code>::after</code> pseudo element border styles so the caret is reliably rendered in high contrast mode of operating systems and browsers.</li>
+      <li>Optional navigation keys (Arrow keys, <kbd>Home</kbd>, and <kbd>End</kbd>):
+        <ol>
+          <li>Implementing the optional arrow key support prevents the default page scroll behavior when focus is contained within the navigation region.</li>
+          <li>
+            Optional navigation key support is primarily for the benefit of keyboard users who are not running a screen reader.
+            When interacting with this example, screen readers usually intercept these navigation keys and do not pass them to the page because focus is not inside a widget that triggers screen reader interaction mode.
+            That is, the screen reader stays in reading mode.
+          </li>
+          <li>
+            If implemented, the optional navigation keys supplement, but do not replace, tabbing among buttons and links.
+            Because screen readers typically stay in reading mode when interacting with this example, <kbd>Tab</kbd> is expected to navigate among interactive elements even if theoptional navigation keys are supported.
+          </li>
+        </ol>
       </li>
     </ol>
   </section>
@@ -165,43 +179,82 @@
       <tbody>
         <tr data-test-id="key-tab">
           <th>
-            <kbd>Tab</kbd>
+            <kbd>Tab</kbd><br>
+            <kbd>Shift + Tab</kbd>
           </th>
-          <td>
-              Moves keyboard focus between top-level buttons, and into and then through the links in any open dropdown.
-          </td>
+          <td>Move keyboard focus among top-level buttons, and if a dropdown is open, into and through links in the dropdown.</td>
         </tr>
         <tr data-test-id="key-enter-space">
           <th>
-            <kbd>Space</kbd> or <br />
+            <kbd>Space</kbd> or <br>
             <kbd>Enter</kbd>
           </th>
           <td>
-              Activates the disclosure button, which toggles the visibility of the dropdown.
+            <ul>
+              <li>If focus is on a disclosure button, activates the button, which toggles the visibility of the dropdown.</li>
+              <li>If focus is on a link:
+                <ul>
+                  <li>If any link has <code>aria-current</code> set, removes it.</li>
+                  <li>Sets <code>aria-current="page"</code> on the focused link.</li>
+                  <li>Activates the focused link.</li>
+                </ul>
+              </li>
+            </ul>
           </td>
         </tr>
         <tr data-test-id="key-escape">
           <th>
             <kbd>Escape</kbd>
           </th>
+          <td>If a dropdown is open, closes it and sets focus on the button that controls that dropdown.</td>
+        </tr>
+        <tr data-test-id="key-arrows">
+          <th>
+            <kbd>Down Arrow</kbd> or <br>
+            <kbd>Right Arrow</kbd><br>
+            (Optional)
+          </th>
           <td>
-              Closes the open dropdown.
+            <ul>
+              <li>If focus is on a button and its dropdown is collapsed, and it is not the last button, moves focus to the next button.</li>
+              <li>if focus is on a button and its dropdown is expanded, moves focus to the first link in the dropdown.</li>
+              <li>If focus is on a link, and it is not the last link, moves focus to the next link.</li>
+            </ul>
           </td>
         </tr>
         <tr data-test-id="key-arrows">
           <th>
-            <kbd>Arrow keys (optional)</kbd>
+            <kbd>Up Arrow</kbd> or <br>
+            <kbd>Left Arrow</kbd><br>
+            (Optional)
           </th>
           <td>
-              Moves focus between the top-level disclosure buttons and between open dropdown links.
+            <ul>
+              <li>If focus is on a button, and it is not the first button, moves focus to the previous button.</li>
+              <li>If focus is on a link, and it is not the first link,  moves focus to the previous link.</li>
+            </ul>
           </td>
         </tr>
         <tr data-test-id="key-home-end">
           <th>
-            <kbd>Home / End (optional)</kbd>
+            <kbd>Home</kbd> (Optional)
           </th>
           <td>
-              Moves focus to the first or last disclosure button, or first or last open dropdown's links.
+          <ul>
+              <li>If focus is on a button, and it is not the first button, moves focus to the first button.</li>
+              <li>If focus is on a link, and it is not the first link, moves focus to the first link.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr data-test-id="key-home-end">
+          <th>
+            <kbd>End</kbd> (Optional)
+          </th>
+          <td>
+          <ul>
+              <li>If focus is on a button, and it is not the last button, moves focus to the last button.</li>
+              <li>If focus is on a link, and it is not the last link, moves focus to the last link.</li>
+            </ul>
           </td>
         </tr>
       </tbody>
@@ -223,7 +276,7 @@
         <tr data-test-id="button-aria-controls">
           <td></td>
           <th scope="row">
-            <code>aria-controls=&quot;IDREF&quot;</code>
+            <code>aria-controls="IDREF"</code>
           </th>
           <td>
             <code>button</code>
@@ -235,7 +288,7 @@
         <tr data-test-id="button-aria-expanded">
           <td></td>
           <th scope="row">
-            <code>aria-expanded=&quot;false&quot;</code>
+            <code>aria-expanded="false"</code>
           </th>
           <td>
             <code>button</code>
@@ -246,7 +299,7 @@
                 Indicates that the container controlled by the disclosure button is <em>hidden</em>.
               </li>
               <li>
-                CSS attribute selectors (e.g. <code>[aria-expanded=&quot;false&quot;]</code>) are
+                CSS attribute selectors (e.g. <code>[aria-expanded="false"]</code>) are
                 used to synchronize the visual states with the value of the <code>aria-expanded</code>
                 attribute.
               </li>
@@ -256,7 +309,7 @@
         <tr data-test-id="button-aria-expanded">
           <td></td>
           <th scope="row">
-            <code>aria-expanded=&quot;true&quot;</code>
+            <code>aria-expanded="true"</code>
           </th>
           <td>
             <code>button</code>
@@ -267,12 +320,22 @@
                 Indicates that the container controlled by the disclosure button is <em>visible</em>.
               </li>
               <li>
-                CSS attribute selectors (e.g. <code>[aria-expanded=&quot;true&quot;]</code>) are
+                CSS attribute selectors (e.g. <code>[aria-expanded="true"]</code>) are
                 used to synchronize the visual states with the value of the <code>aria-expanded</code>
                 attribute.
               </li>
             </ul>
           </td>
+        </tr>
+        <tr data-test-id="link-aria-current">
+          <td></td>
+          <th scope="row">
+            <code>aria-current="page"</code>
+          </th>
+          <td>
+            <code>a</code>
+          </td>
+          <td>Indicates that the page referenced by the link is currently displayed.</td>
         </tr>
       </tbody>
     </table>
