@@ -5,12 +5,12 @@
 *   File:   datepicker-combobox.js
 */
 
-var ComboboxInput = function (comboboxNode, inputNode, buttonNode, messageNode, datepicker) {
+var ComboboxInput = function (comboboxNode, inputNode, buttonNode, datepicker) {
 
   this.comboboxNode = comboboxNode;
   this.inputNode    = inputNode;
   this.buttonNode   = buttonNode;
-  this.messageNode  = messageNode;
+  this.messageNode  = comboboxNode.querySelector('[hidden].message');
 
   this.arrowUpNode = comboboxNode.querySelector('.arrow.up');
   this.arrowDownNode = comboboxNode.querySelector('.arrow.down');
@@ -176,7 +176,6 @@ ComboboxInput.prototype.handleButtonMouseDown = function (event) {
 };
 
 ComboboxInput.prototype.handleButtonMouseUp = function (event) {
-  console.log('[ComboboxInput][handleButtonMouseUp]');
   this.isMouseDownOnButton = false;
 
   event.stopPropagation();
@@ -184,6 +183,7 @@ ComboboxInput.prototype.handleButtonMouseUp = function (event) {
 };
 
 ComboboxInput.prototype.handleButtonKeyDown = function (event) {
+  var flag = false;
 
   switch (event.keyCode) {
     case this.keyCode.RETURN:
@@ -243,11 +243,10 @@ window.addEventListener('load' , function () {
   datePickers.forEach(function (dp) {
     var inputNode   = dp.querySelector('input');
     var buttonNode  = dp.querySelector('button');
-    var messageNode = dp.querySelector('.message');
     var dialogNode  = dp.querySelector('[role=dialog]');
 
-    var datePicker = new DatePicker(dp, inputNode, buttonNode, messageNode, dialogNode);
-    datePicker.init();
+    var dpc = new DatePickerCombobox(dp, inputNode, buttonNode, dialogNode);
+    dpc.init();
   });
 
 });

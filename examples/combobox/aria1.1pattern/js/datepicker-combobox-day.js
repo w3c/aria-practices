@@ -5,7 +5,7 @@
 *   File:   datepickerDay.js
 */
 
-var DatePickerDay = function (domNode, datepicker, index, row, column) {
+var DatePickerComboboxDay = function (domNode, datepicker, index, row, column) {
 
   this.index = index;
   this.row = row;
@@ -34,7 +34,7 @@ var DatePickerDay = function (domNode, datepicker, index, row, column) {
   });
 };
 
-DatePickerDay.prototype.init = function () {
+DatePickerComboboxDay.prototype.init = function () {
   this.domNode.setAttribute('tabindex', '-1');
   this.domNode.addEventListener('mousedown', this.handleMouseDown.bind(this));
   this.domNode.addEventListener('keydown', this.handleKeyDown.bind(this));
@@ -43,11 +43,11 @@ DatePickerDay.prototype.init = function () {
 
 };
 
-DatePickerDay.prototype.isDisabled = function () {
+DatePickerComboboxDay.prototype.isDisabled = function () {
   return this.domNode.classList.contains('disabled');
 };
 
-DatePickerDay.prototype.updateDay = function (disable, year, month, day) {
+DatePickerComboboxDay.prototype.updateDay = function (disable, year, month, day) {
 
   if (disable) {
     this.domNode.classList.add('disabled');
@@ -66,7 +66,7 @@ DatePickerDay.prototype.updateDay = function (disable, year, month, day) {
 
 };
 
-DatePickerDay.prototype.handleKeyDown = function (event) {
+DatePickerComboboxDay.prototype.handleKeyDown = function (event) {
   var flag = false;
   var onFirstRow = this.datepicker.onFirstRow();
   var onLastRow = this.datepicker.onLastRow();
@@ -155,7 +155,7 @@ DatePickerDay.prototype.handleKeyDown = function (event) {
 
 };
 
-DatePickerDay.prototype.handleMouseDown = function (event) {
+DatePickerComboboxDay.prototype.handleMouseDown = function (event) {
   this.datepicker.day = this.day;
 
   if (this.isDisabled()) {
