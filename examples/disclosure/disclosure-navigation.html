@@ -155,7 +155,8 @@
           <li>Implementing the optional arrow key support prevents the default page scroll behavior when focus is contained within the navigation region.</li>
           <li>
             Optional navigation key support is primarily for the benefit of keyboard users who are not running a screen reader.
-            When interacting with this example, screen readers usually intercept these navigation keys and do not pass them to the page because focus is not inside a widget that triggers their interaction mode.
+            When interacting with this example, screen readers usually intercept these navigation keys and do not pass them to the page because focus is not inside a widget that triggers screen reader interaction mode.
+            That is, the screen reader stays in reading mode.
           </li>
           <li>
             If implemented, the optional navigation keys supplement, but do not replace, tabbing among buttons and links.
@@ -178,43 +179,82 @@
       <tbody>
         <tr data-test-id="key-tab">
           <th>
-            <kbd>Tab</kbd>
+            <kbd>Tab</kbd><br>
+            <kbd>Shift + Tab</kbd>
           </th>
-          <td>
-              Moves keyboard focus between top-level buttons, and into and then through the links in any open dropdown.
-          </td>
+          <td>Move keyboard focus among top-level buttons, and if a dropdown is open, into and through links in the dropdown.</td>
         </tr>
         <tr data-test-id="key-enter-space">
           <th>
-            <kbd>Space</kbd> or <br />
+            <kbd>Space</kbd> or <br>
             <kbd>Enter</kbd>
           </th>
           <td>
-              Activates the disclosure button, which toggles the visibility of the dropdown.
+            <ul>
+              <li>If focus is on a disclosure button, activates the button, which toggles the visibility of the dropdown.</li>
+              <li>If focus is on a link:
+                <ul>
+                  <li>If any link has <code>aria-current</code> set, removes it.</li>
+                  <li>Sets <code>aria-current="page"</code> on the focused link.</li>
+                  <li>Activates the focused link.</li>
+                </ul>
+              </li>
+            </ul>
           </td>
         </tr>
         <tr data-test-id="key-escape">
           <th>
             <kbd>Escape</kbd>
           </th>
+          <td>If a dropdown is open, closes it and sets focus on the button that controls that dropdown.</td>
+        </tr>
+        <tr data-test-id="key-arrows">
+          <th>
+            <kbd>Down Arrow</kbd> or <br>
+            <kbd>Right Arrow</kbd><br>
+            (Optional)
+          </th>
           <td>
-              Closes the open dropdown.
+            <ul>
+              <li>If focus is on a button and its dropdown is collapsed, and it is not the last button, moves focus to the next button.</li>
+              <li>if focus is on a button and its dropdown is expanded, moves focus to the first link in the dropdown.</li>
+              <li>If focus is on a link, and it is not the last link, moves focus to the next link.</li>
+            </ul>
           </td>
         </tr>
         <tr data-test-id="key-arrows">
           <th>
-            <kbd>Arrow keys (optional)</kbd>
+            <kbd>Up Arrow</kbd> or <br>
+            <kbd>Left Arrow</kbd><br>
+            (Optional)
           </th>
           <td>
-              Moves focus between the top-level disclosure buttons and between open dropdown links.
+            <ul>
+              <li>If focus is on a button, and it is not the first button, moves focus to the previous button.</li>
+              <li>If focus is on a link, and it is not the first link,  moves focus to the previous link.</li>
+            </ul>
           </td>
         </tr>
         <tr data-test-id="key-home-end">
           <th>
-            <kbd>Home / End (optional)</kbd>
+            <kbd>Home</kbd> (Optional)
           </th>
           <td>
-              Moves focus to the first or last disclosure button, or first or last open dropdown's links.
+          <ul>
+              <li>If focus is on a button, and it is not the first button, moves focus to the first button.</li>
+              <li>If focus is on a link, and it is not the first link, moves focus to the first link.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr data-test-id="key-home-end">
+          <th>
+            <kbd>End</kbd> (Optional)
+          </th>
+          <td>
+          <ul>
+              <li>If focus is on a button, and it is not the last button, moves focus to the last button.</li>
+              <li>If focus is on a link, and it is not the last link, moves focus to the last link.</li>
+            </ul>
           </td>
         </tr>
       </tbody>
