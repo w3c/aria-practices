@@ -139,24 +139,29 @@
   <section>
     <h2>Accessibility Features</h2>
     <ol>
+      <li>Since this set of disclosure buttons controls visibility of navigation links for the mythical university web site, the list that contains them is wrapped in a navigation landmark named <q>Mythical University</q>.</li>
       <li>
-        Since this disclosure example is being used as navigation, the entire control is wrapped in a navigation landmark. Each disclosure button / container pair is contained within a list item so that the number of top-level items is semantically available.
+        The semantics of the list structure communicates the hierarchy of the navigation system to assistive technology users.
+        The top-level set of three buttons is in a list of three items, and the set of links controlled by each button is contained within a list nested inside the item with the controlling button.
       </li>
       <li>
-        Arrow keys supplement, but do not replace, tabbing between the top-level disclosure buttons. Home and End likewise allow jumping to the first and last button.
+        If a dropdown is open and focus is inside the navigation region, pressing <kbd>Esc</kbd> will close the dropdown.
+        Moving focus out of the navigation region also closes an open dropdown.
+        Implementing this <kbd>Esc</kbd> behavior is necessary to meet the WCAG 2.1 <a href="https://www.w3.org/WAI/WCAG21/Understanding/content-on-hover-or-focus.html">1.4.13: Content on Hover or Focus</a> criterion.
       </li>
-      <li>
-        Escape pressed when focus is within the navigation region closes any open dropdowns. Moving focus out of the navigation region also closes open dropdowns. Implementing the escape key behavior is necessary to meet the WCAG 2.1 <a href="https://www.w3.org/WAI/WCAG21/Understanding/content-on-hover-or-focus.html">1.4.13: Content on Hover or Focus</a> criterion.
-      </li>
-      <li>
-        Arrow key support prevents the default page scroll behavior when focus is on the disclosure dropdown.
-      </li>
-      <li>
-        Arrow key navigation is primarily for the benefit of keyboard users who are not running a screen reader; screen readers will usually intercept the arrow keys and not pass them to the page.
-      </li>
-      <li>
-        The visual indicator of the show/hide state is created using CSS <code>::after</code> pseudo element border styles
-        so the caret is reliably rendered in high contrast mode of operating systems and browsers.
+      <li>The visual indicator of the show/hide state is created using CSS <code>::after</code> pseudo element border styles so the caret is reliably rendered in high contrast mode of operating systems and browsers.</li>
+      <li>Optional navigation keys (Arrow keys, <kbd>Home</kbd>, and <kbd>End</kbd>):
+        <ol>
+          <li>Implementing the optional arrow key support prevents the default page scroll behavior when focus is contained within the navigation region.</li>
+          <li>
+            Optional navigation key support is primarily for the benefit of keyboard users who are not running a screen reader.
+            When interacting with this example, screen readers usually intercept these navigation keys and do not pass them to the page because focus is not inside a widget that triggers their interaction mode.
+          </li>
+          <li>
+            If implemented, the optional navigation keys supplement, but do not replace, tabbing among buttons and links.
+            Because screen readers typically stay in reading mode when interacting with this example, <kbd>Tab</kbd> is expected to navigate among interactive elements even if theoptional navigation keys are supported.
+          </li>
+        </ol>
       </li>
     </ol>
   </section>
