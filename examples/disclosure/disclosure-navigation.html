@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Disclosure Pattern for Navigation Menu Example | WAI-ARIA Authoring
+  Practices 1.1</title>
+
+  <!--  Core js and css shared by all examples; do not modify when using this template. -->
+  <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
+  <link rel="stylesheet" href="../css/core.css">
+  <script src="../js/examples.js"></script>
+  <script src="../js/highlight.pack.js"></script>
+  <script src="../js/app.js"></script>
+
+  <!--  js and css for the disclosure example. -->
+  <link href="css/disclosure-navigation.css" rel="stylesheet">
+  <script src="js/disclosureMenu.js" type="text/javascript"></script>
+
+</head>
+<body>
+  <nav aria-label="Related Links" class="feedback">
+    <ul>
+      <li><a href="../../#browser_and_AT_support">Browser and Assistive Technology Support</a></li>
+      <li><a href="https://github.com/w3c/aria-practices/issues/new">Report Issue</a></li>
+      <li><a href="https://github.com/w3c/aria-practices/projects/14">Related Issues</a></li>
+      <li><a href="../../#disclosure">Design Pattern</a></li>
+    </ul>
+  </nav>
+  <main>
+  <h1>Disclosure Pattern for Navigation Menus</h1>
+  <p>
+    The following example demonstrates using the
+    <a href="../../#disclosure">disclosure design pattern</a>
+    to create a dropdown navigation bar.
+  </p>
+  <p>Note: although this pattern uses the word "menu" in the colloquial sense to refer to a set of navigation links, it does not use a menu role.</p>
+  <p>Similar examples include:</p>
+  <ul>
+    <li><a href="disclosure-faq.html">Example Disclosure (Show/Hide) for Answers to Frequently Asked Questions</a></li>
+    <li><a href="disclosure-img-long-description.html">Example Disclosure (Show/Hide) for an Image Description</a></li>
+  </ul>
+  <section>
+    <h2 id="ex_label">Example</h2>
+    <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of" ></div>
+    <div id="ex1">
+      <label for="arrow-behavior-switch">
+        <input type="checkbox" id="arrow-behavior-switch" checked>
+        Include arrow key navigation
+      </label>
+      <nav aria-label="Mythical University">
+        <ul id="exTest" class="disclosure-nav">
+          <li>
+            <button aria-expanded="true" aria-controls="id_about_menu">About</button>
+            <ul id="id_about_menu">
+              <li>
+                <a href="#mythical-page-content">Overview</a>
+              </li>
+              <li>
+                <a href="#mythical-page-content">Administration</a>
+              </li>
+              <li>
+                <a href="#mythical-page-content">Facts</a>
+              </li>
+              <li>
+                <a href="#mythical-page-content">Campus Tours</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <button aria-expanded="true" aria-controls="id_admissions_menu">Admissions</button>
+            <ul id="id_admissions_menu">
+              <li>
+                <a href="#mythical-page-content">Apply</a>
+              </li>
+              <li>
+                <a href="#mythical-page-content">Tuition</a>
+              </li>
+              <li>
+                <a href="#mythical-page-content">Sign Up</a>
+              </li>
+              <li>
+                <a href="#mythical-page-content">Visit</a>
+              </li>
+              <li>
+                <a href="#mythical-page-content">Photo Tour</a>
+              </li>
+              <li>
+                <a href="#mythical-page-content">Connect</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <button aria-expanded="true" aria-controls="id_academics_menu">Academics</button>
+            <ul id="id_academics_menu">
+              <li>
+                <a href="#mythical-page-content">Colleges &amp; Schools</a>
+              </li>
+              <li>
+                <a href="#mythical-page-content">Programs of Study</a>
+              </li>
+              <li>
+                <a href="#mythical-page-content">Honors Programs</a>
+              </li>
+              <li>
+                <a href="#mythical-page-content">Online Courses</a>
+              </li>
+              <li>
+                <a href="#mythical-page-content">Course Explorer</a>
+              </li>
+              <li>
+                <a href="#mythical-page-content">Register for Class</a>
+              </li>
+              <li>
+                <a href="#mythical-page-content">Academic Calendar</a>
+              </li>
+              <li>
+                <a href="#mythical-page-content">Transcripts</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <div id="mythical-page-content" class="disclosure-pagecontent" tabindex="-1" role="region" aria-label="Mythical University sample page content">
+        <h3 id="mythical-page-heading">Mythical University</h3>
+        <p>Sample content section. Activating a link above will update and navigate to this region.</p>
+      </div>
+    </div>
+    <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
+  </section>
+
+  <section>
+    <h2>Accessibility Features</h2>
+    <ol>
+      <li>
+        Since this disclosure example is being used as navigation, the entire control is wrapped in a navigation landmark. Each disclosure button / container pair is contained within a list item so that the number of top-level items is semantically available.
+      </li>
+      <li>
+        Arrow keys supplement, but do not replace, tabbing between the top-level disclosure buttons. Home and End likewise allow jumping to the first and last button.
+      </li>
+      <li>
+        Escape pressed when focus is within the navigation region closes any open dropdowns. Moving focus out of the navigation region also closes open dropdowns. Implementing the escape key behavior is necessary to meet the WCAG 2.1 <a href="https://www.w3.org/WAI/WCAG21/Understanding/content-on-hover-or-focus.html">1.4.13: Content on Hover or Focus</a> criterion.
+      </li>
+      <li>
+        Arrow key support prevents the default page scroll behavior when focus is on the disclosure dropdown.
+      </li>
+      <li>
+        Arrow key navigation is primarily for the benefit of keyboard users who are not running a screen reader; screen readers will usually intercept the arrow keys and not pass them to the page.
+      </li>
+      <li>
+        The visual indicator of the show/hide state is created using CSS <code>::after</code> pseudo element border styles
+        so the caret is reliably rendered in high contrast mode of operating systems and browsers.
+      </li>
+    </ol>
+  </section>
+
+  <section>
+    <h2 id="kbd_label">Keyboard Support</h2>
+    <table aria-labelledby="kbd_label" class="def">
+      <thead>
+        <tr>
+          <th>Key</th>
+          <th>Function</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-test-id="key-tab">
+          <th>
+            <kbd>Tab</kbd>
+          </th>
+          <td>
+              Moves keyboard focus between top-level buttons, and into and then through the links in any open dropdown.
+          </td>
+        </tr>
+        <tr data-test-id="key-enter-space">
+          <th>
+            <kbd>Space</kbd> or <br />
+            <kbd>Enter</kbd>
+          </th>
+          <td>
+              Activates the disclosure button, which toggles the visibility of the dropdown.
+          </td>
+        </tr>
+        <tr data-test-id="key-escape">
+          <th>
+            <kbd>Escape</kbd>
+          </th>
+          <td>
+              Closes the open dropdown.
+          </td>
+        </tr>
+        <tr data-test-id="key-arrows">
+          <th>
+            <kbd>Arrow keys (optional)</kbd>
+          </th>
+          <td>
+              Moves focus between the top-level disclosure buttons and between open dropdown links.
+          </td>
+        </tr>
+        <tr data-test-id="key-home-end">
+          <th>
+            <kbd>Home / End (optional)</kbd>
+          </th>
+          <td>
+              Moves focus to the first or last disclosure button, or first or last open dropdown's links.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2 id="rps_label">Role, Property, State, and Tabindex Attributes</h2>
+    <table aria-labelledby="rps_label" class="data attributes">
+      <thead>
+        <tr>
+          <th scope="col">Role</th>
+          <th scope="col">Attribute</th>
+          <th scope="col">Element</th>
+          <th scope="col">Usage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr data-test-id="button-aria-controls">
+          <td></td>
+          <th scope="row">
+            <code>aria-controls=&quot;IDREF&quot;</code>
+          </th>
+          <td>
+            <code>button</code>
+          </td>
+          <td>
+            The disclosure button controls visibility of the container identified by the <code>IDREF</code> value.
+          </td>
+        </tr>
+        <tr data-test-id="button-aria-expanded">
+          <td></td>
+          <th scope="row">
+            <code>aria-expanded=&quot;false&quot;</code>
+          </th>
+          <td>
+            <code>button</code>
+          </td>
+          <td>
+            <ul>
+              <li>
+                Indicates that the container controlled by the disclosure button is <em>hidden</em>.
+              </li>
+              <li>
+                CSS attribute selectors (e.g. <code>[aria-expanded=&quot;false&quot;]</code>) are
+                used to synchronize the visual states with the value of the <code>aria-expanded</code>
+                attribute.
+              </li>
+            </ul>
+          </td>
+        </tr>
+        <tr data-test-id="button-aria-expanded">
+          <td></td>
+          <th scope="row">
+            <code>aria-expanded=&quot;true&quot;</code>
+          </th>
+          <td>
+            <code>button</code>
+          </td>
+          <td>
+            <ul>
+              <li>
+                Indicates that the container controlled by the disclosure button is <em>visible</em>.
+              </li>
+              <li>
+                CSS attribute selectors (e.g. <code>[aria-expanded=&quot;true&quot;]</code>) are
+                used to synchronize the visual states with the value of the <code>aria-expanded</code>
+                attribute.
+              </li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Javascript and CSS Source Code</h2>
+    <!--  After the js and css files are named with the name of this example, change the href and text of the following 2 links to refer to the appropriate js and css files.  -->
+    <ul>
+      <li>
+        CSS:
+        <a href="css/disclosure-navigation.css" type="tex/css">disclosure-navigation.css</a>
+      </li>
+      <li>
+        Javascript:
+        <a href="js/disclosureMenu.js" type="text/javascript">disclosureMenu.js</a>
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h2 id="sc1_label">HTML Source Code</h2>
+    <div role="separator" id="sc1_start_sep" aria-labelledby="sc1_start_sep sc1_label" aria-label="Start of" ></div>
+    <pre><code id="sc1"></code></pre>
+    <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of" ></div>
+    <script>
+      sourceCode.add('sc1', 'ex1');
+      sourceCode.make();
+    </script>
+  </section>
+  </main>
+  <nav>
+    <a href="../../#disclosure">Disclosure (Show/Hide) Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
+  </nav>
+</body>
+</html>
