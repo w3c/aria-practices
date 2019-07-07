@@ -2,8 +2,11 @@
 *   This content is licensed according to the W3C Software License at
 *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
 *
-*   File:   datepicker.js
+*   File:   datepicker-combobox-dialog.js
 */
+
+var ComboboxInput = ComboboxInput || {};
+var DatePickerComboboxDay = DatePickerComboboxDay || {};
 
 var DatePickerCombobox = function (comboboxNode, inputNode, buttonNode, dialogNode) {
   this.dayLabels = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
@@ -11,8 +14,11 @@ var DatePickerCombobox = function (comboboxNode, inputNode, buttonNode, dialogNo
 
   this.inputNode   = inputNode;
   this.buttonNode  = buttonNode;
-  this.messageNode = dialogNode.querySelector('.message');
   this.dialogNode  = dialogNode;
+  this.messageNode = dialogNode.querySelector('.message');
+
+  this.messageCursorKeys = 'Cursor keys can navigate dates';
+  this.lastMessage = '';
 
   this.dateInput = new ComboboxInput(comboboxNode, this.inputNode, this.buttonNode, this);
 
@@ -360,6 +366,8 @@ DatePickerCombobox.prototype.isOpen = function () {
 };
 
 DatePickerCombobox.prototype.hide = function (ignore) {
+
+  this.setMessage('');
 
   if (typeof ignore !== 'boolean') {
     ignore = true;
@@ -813,3 +821,14 @@ DatePickerCombobox.prototype.getDateForButtonLabel = function () {
   return label;
 };
 
+DatePickerCombobox.prototype.setMessage = function (str) {
+
+  function setMessageDelayed () {
+    this.messageNode.textContent = str;
+  }
+
+  if (str !== this.lastMessage) {
+    setTimeout(setMessageDelayed.bind(this), 200);
+    this.lastMessage = str;
+  }
+};

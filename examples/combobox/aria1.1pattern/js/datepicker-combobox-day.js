@@ -2,7 +2,7 @@
 *   This content is licensed according to the W3C Software License at
 *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
 *
-*   File:   datepickerDay.js
+*   File:   datepicker-combobox-day.js
 */
 
 var DatePickerComboboxDay = function (domNode, datepicker, index, row, column) {
@@ -38,6 +38,7 @@ DatePickerComboboxDay.prototype.init = function () {
   this.domNode.setAttribute('tabindex', '-1');
   this.domNode.addEventListener('mousedown', this.handleMouseDown.bind(this));
   this.domNode.addEventListener('keydown', this.handleKeyDown.bind(this));
+  this.domNode.addEventListener('focus', this.handleFocus.bind(this));
 
   this.domNode.innerHTML = '-1';
 
@@ -82,6 +83,9 @@ DatePickerComboboxDay.prototype.handleKeyDown = function (event) {
       if (event.shiftKey) {
         this.datepicker.nextYearNode.focus();
       }
+
+      this.datepicker.setMessage('');
+
       flag = true;
       break;
 
@@ -172,4 +176,8 @@ DatePickerComboboxDay.prototype.handleMouseDown = function (event) {
   event.stopPropagation();
   event.preventDefault();
 
+};
+
+DatePickerComboboxDay.prototype.handleFocus = function () {
+  this.datepicker.setMessage(this.datepicker.messageCursorKeys);
 };
