@@ -252,6 +252,7 @@
       <li>The date picker dialog is a modal dialog box for selecting a date from a grid of dates for a particular month and year.</li>
       <li>Additional buttons and keyboard commands are used to change month and year.</li>
       <li>A live region announces changes in the month and year.</li>
+      <li>A live region announces the use of cursor keys when a date in the gird of dates gets focus.  The message is also visible at the bottom dialog box to provide the same information to keyboard users.</li>
       <li>The dialog is opened through keyboard commands in the textbox or clicking on the change date button.</li>
     </ul>
 
@@ -607,15 +608,18 @@
               Provides a reference to the screen reader for direct navigation to the dialog box.
             </td>
           </tr>
-          <tr data-test-id="textbox-status">
-            <td scope="row"><code>status</td>
+          <tr data-test-id="textbox-aria-live">
             <th></th>
+            <td scope="row"><code>aria-live=<q>polite</q></td>
             <td><code>div</code></td>
             <td>
               <ul>
-                <li>This <code>div</code> is rendered off screen for providing keyboard help information to screen reader users on how to open the date picker dialog.</li>
+                <li>Provides keyboard help information to screen reader users on how to open the date picker dialog.</li>
                 <li>When the <code>textbox</code> receives keyboard focus the content of the <code>div</code> element is updated to provide information on using the <kbd>down arrow</kbd> key to open the date picker dialog.</li>
                 <li>When the <code>textbox</code> looses keyboard focus the content of the <code>div</code> is cleared, so that the message will be repeated to screen reader users each time the <code>textbox</code> received focus.</li>
+                <li>The content is updated with a little delay after the focus event to help screen readers wait to speak the message after the focus change information.</li>
+                <li>The use of the <code>polite</code> value means the screen reader will not interrupt other speech to announce the change in month and/or year.</li>
+                <li>This <code>div</code> is hidden using CSS <code>display=<q>none</q></code> so it is not visible in graphical renderings</div>
               </ul>
             </td>
           </tr>
@@ -722,6 +726,21 @@
                   Defines the accessible name for the dialog box.
                 </td>
               </tr>
+              <tr data-test-id="textbox-aria-live">
+                <th></th>
+                <td scope="row"><code>aria-live=<q>polite</q></td>
+                <td><code>div</code></td>
+                <td>
+                  <ul>
+                    <li>Provides keyboard help information to screen reader users on using the cursor keys to navigate the grid of dates.</li>
+                    <li>When the <code>textbox</code> receives keyboard focus the content of the <code>div</code> element is updated to provide information on using the <kbd>down arrow</kbd> key to open the date picker dialog.</li>
+                    <li>When the <code>textbox</code> looses keyboard focus the content of the <code>div</code> is cleared, so that the message will be repeated to screen reader users each time the <code>textbox</code> received focus.</li>
+                    <li>The content is updated with a little delay after the focus event to help screen readers wait to speak the message after the focus change information.</li>
+                    <li>The use of the <code>polite</code> value means the screen reader will not interrupt other speech to announce the change in month and/or year.</li>
+                    <li>This <code>div</code> is hidden using CSS <code>display=<q>none</q></code> so it is not visible in graphical renderings</div>
+                  </ul>
+                </td>
+              </tr>
             </tbody>
           </table>
         </section>
@@ -767,16 +786,16 @@
                       Defines the accessible name of the button (e.g. "Next Year").
                     </td>
                 </tr>
-                <tr data-test-id="date-picker-calendar-button-role-status">
-                    <th scope="row"><code>status</code></th>
+                <tr data-test-id="date-picker-calendar-button-aria-polite">
                     <td></td>
+                    <th scope="row"><code>aria-live=<q>polite</q></code></th>
                     <td>
-                      <code>span</code>
+                      <code>h2</code>
                     </td>
                     <td>
                       <ul>
                         <li>When the month and/or year changes the content of the <code>span</code> element is updated.</li>
-                        <li>Identifies the <code>span</code> element that contains the current month and year as a <code>polite</code> live region.</li>
+                        <li>The use of the <code>polite</code> value means the screen reader will not interrupt other speech to announce the change in month and/or year.</li>
                       </ul>
                     </td>
                   </tr>
