@@ -11,10 +11,6 @@
   top: 3px;
 }
 
-.datepicker button.icon {
-  left: -4px;
-}
-
 .datepicker span.arrow {
   margin: 0;
   padding: 0;
@@ -40,45 +36,14 @@
   left: -23px;
 }
 
-.datepicker input {
+.datepicker .datepicker input {
   margin: 0;
   width: 20%;
 }
 
-.datepickerDialog {
-  width: 45%;
-  clear: both;
-  display: none;
-  border: 3px solid hsl(216, 80%, 55%);
-  margin-top: 1em;
-  border-radius: 5px;
-  padding: 0;
-  background-color: #fff;
-}
-
-.header {
-  cursor: default;
-  background-color: hsl(216, 80%, 55%);
-  padding: 7px;
-  font-weight: bold;
-  text-transform: uppercase;
-  color: white;
-  display: flex;
-  justify-content: space-around;
-}
-
-.header span {
-  display: inline-block;
-}
-
-.header button {
-  border-style: none;
-  background: transparent;
-}
-
 .datepicker .datepickerDialog {
+  width: auto;
   position: absolute;
-  width: 45%;
   clear: both;
   display: none;
   border: 3px solid hsl(216, 80%, 55%);
@@ -189,10 +154,6 @@
 }
 
 .datepicker .dateCell {
-  outline: 0;
-  border: 0;
-  padding: 0;
-  margin: 0;
   height: 40px;
   width: 40px;
 }
@@ -205,6 +166,7 @@
   width: 100%;
   border: 1px solid #eee;
   border-radius: 5px;
+  outline: none;
   font-size: 15px;
   background: #eee;
 }
