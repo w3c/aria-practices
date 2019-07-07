@@ -206,7 +206,11 @@
   cursor: not-allowed;
 }
 
-.datepicker .message {
+.datepicker .comboboxMessage {
+  display: none;
+}
+
+.datepicker .dialogMessage {
   padding-top: 0.25em;
   padding-left: 1em;
   height: 1.75em;

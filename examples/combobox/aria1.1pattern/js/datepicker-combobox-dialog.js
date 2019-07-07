@@ -15,7 +15,7 @@ var DatePickerCombobox = function (comboboxNode, inputNode, buttonNode, dialogNo
   this.inputNode   = inputNode;
   this.buttonNode  = buttonNode;
   this.dialogNode  = dialogNode;
-  this.messageNode = dialogNode.querySelector('.message');
+  this.messageNode = dialogNode.querySelector('.dialogMessage');
 
   this.messageCursorKeys = 'Cursor keys can navigate dates';
   this.lastMessage = '';
@@ -270,10 +270,6 @@ DatePickerCombobox.prototype.setFocusDay = function (flag) {
       d.domNode.setAttribute('tabindex', '0');
 
       if (flag) {
-        if (!this.hasFocusFlag) {
-          this.dateInput.setMessage('Use the cursor keys to navigate the date picker grid.');
-        }
-
         this.hasFocusFlag = true;
         d.domNode.focus();
       }

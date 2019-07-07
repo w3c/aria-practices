@@ -5,12 +5,14 @@
 *   File:   datepicker-combobox.js
 */
 
+var DatePickerCombobox = DatePickerCombobox || {};
+
 var ComboboxInput = function (comboboxNode, inputNode, buttonNode, datepicker) {
 
   this.comboboxNode = comboboxNode;
   this.inputNode    = inputNode;
   this.buttonNode   = buttonNode;
-  this.messageNode  = comboboxNode.querySelector('[hidden].message');
+  this.messageNode  = comboboxNode.querySelector('.comboboxMessage');
 
   this.arrowUpNode = comboboxNode.querySelector('.arrow.up');
   this.arrowDownNode = comboboxNode.querySelector('.arrow.down');
@@ -21,6 +23,8 @@ var ComboboxInput = function (comboboxNode, inputNode, buttonNode, datepicker) {
   this.ignoreBlurEvent = false;
 
   this.hasFocusFlag = false;
+
+  this.messageOpenDialogKeys = 'Use the down arrow key to move focus to the datepicker grid.';
 
   this.keyCode = Object.freeze({
     'TAB': 9,
@@ -80,6 +84,7 @@ ComboboxInput.prototype.handleKeyDown = function (event) {
     case this.keyCode.TAB:
       this.ignoreBlurEvent = true;
       this.datepicker.hide(false);
+      this.setMessage('');
       break;
 
     default:
@@ -110,8 +115,8 @@ ComboboxInput.prototype.handleFocus = function () {
       !this.isMouseDownOnButton &&
       !this.ignoreFocusEvent &&
       this.isCollapsed()) {
+    this.setMessage(this.messageOpenDialogKeys);
     this.datepicker.show();
-    this.setMessage('Use the down arrow key to move focus to the datepicker grid.');
   }
 
   this.hasFocusFlag = true;
@@ -231,7 +236,15 @@ ComboboxInput.prototype.getDate = function () {
 };
 
 ComboboxInput.prototype.setMessage = function (str) {
-  return this.messageNode.textContent = str;
+
+  function setMessageDelayed () {
+    this.messageNode.textContent = str;
+  }
+
+  if (str !== this.lastMessage) {
+    setTimeout(setMessageDelayed.bind(this), 200);
+    this.lastMessage = str;
+  }
 };
 
 // Initialize combobox date picker
