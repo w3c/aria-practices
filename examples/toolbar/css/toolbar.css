@@ -64,8 +64,8 @@
   top: -2.5em;
 }
 
-[role="toolbar"] button .popup-label:after,
-[role="toolbar"] button .popup-label:before {
+[role="toolbar"] button .popup-label::after,
+[role="toolbar"] button .popup-label::before {
   top: 100%;
   left: 50%;
   border: solid transparent;
@@ -76,19 +76,19 @@
   pointer-events: none;
 }
 
-[role="toolbar"] button .popup-label:after {
+[role="toolbar"] button .popup-label::after {
   border-color: rgba(0, 0, 0, 0);
-  border-top-color: #000000;
+  border-top-color: #000;
   border-width: 10px;
   margin-left: -10px;
 }
-[role="toolbar"] button .popup-label:before {
+
+[role="toolbar"] button .popup-label::before {
   border-color: rgba(255, 255, 255, 0);
   border-top-color: #fff;
   border-width: 12px;
   margin-left: -12px;
 }
-
 
 [role="toolbar"] button[aria-pressed="true"],
 [role="toolbar"] [role="radio"][aria-checked="true"] {
