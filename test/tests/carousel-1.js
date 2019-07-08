@@ -64,13 +64,13 @@ ariaTest('slide container have aria-live initially set to off', exampleFile, 'ca
   await assertAttributeValues(t, ex.slideContainerSelector, 'aria-live', 'off');
 
   // Focus on the widget, and aria-selected should change to 'polite'
-  await t.context.session.findElement(By.css(ex.nextButtonSelector)).click();
+  await t.context.session.findElement(By.css(ex.nextButtonSelector)).sendKeys(Key.ENTER);
+
   await assertAttributeValues(t, ex.slideContainerSelector, 'aria-live', 'polite');
 
   // Move focus off the widget, and the aria-selected should change to 'off' again
-  await t.context.session.executeScript(function () {
-    return document.querySelector('a').focus();
-  });
+  await t.context.session.findElement(By.css(ex.nextButtonSelector)).sendKeys(Key.chord(Key.SHIFT, Key.TAB));
+  await t.context.session.findElement(By.css(ex.pausePlayButtonSelector)).sendKeys(Key.chord(Key.SHIFT, Key.TAB));
   await assertAttributeValues(t, ex.slideContainerSelector, 'aria-live', 'off');
 
   // Click the pause button, and the aria-selected should change to 'polite' again
