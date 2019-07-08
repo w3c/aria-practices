@@ -249,7 +249,7 @@
           </tr>
         </thead>
         <tbody>
-            <tr>
+            <tr data-test-id="button-space-return-down-arrow">
                 <th><kbd>space</kbd>, <kbd>return</kbd> and <kbd>Down Arrow</kbd></th>
                 <td>
                   <ul>
@@ -272,11 +272,11 @@
           </tr>
         </thead>
         <tbody>
-            <tr>
+            <tr data-test-id="dialog-esc">
               <th><kbd>ESC</kbd></th>
               <td>Close the dialog and move focus back to the calendar button.</td>
             </tr>
-            <tr>
+            <tr data-test-id="dialog-tab">
               <th><kbd>TAB</kbd></th>
               <td>
                 <ul>
@@ -285,7 +285,7 @@
                 </ul>
               </td>
             </tr>
-            <tr>
+            <tr data-test-id="dialog-shift-tab">
               <th><kbd>Shift</kbd> + <br><kbd>TAB</kbd></th>
               <td>
                 <ul>
@@ -308,7 +308,7 @@
           </tr>
         </thead>
         <tbody>
-            <tr>
+            <tr data-test-id="month-year-button-space-return">
               <th><kbd>Space</kbd>,<br> <kbd>Return</kbd></th>
               <td>
                 Change the month and/or year for selecting a date from the grid or dates.
@@ -328,7 +328,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr data-test-id="grid-space-return">
             <th><kbd>Space</kbd>,<br><kbd>Return</kbd></th>
             <td>
               <ul>
@@ -337,31 +337,31 @@
               </ul>
           </td>
           </tr>
-          <tr>
+          <tr data-test-id="grid-up-arrow">
             <th><kbd>Up Arrow</kbd></th>
             <td>Move the focus to the same day of the previous week.</td>
           </tr>
-          <tr>
+          <tr data-test-id="grid-down-arrow">
             <th><kbd>Down Arrow</kbd></th>
             <td>Move the focus to the same day of the next week.</td>
           </tr>
-          <tr>
+          <tr data-test-id="grid-right-arrow">
             <th><kbd>Right Arrow</kbd></th>
             <td>Move the focus to the next day.</td>
           </tr>
-          <tr>
+          <tr data-test-id="grid-left-arrow">
             <th><kbd>Left Arrow</kbd></th>
             <td>Move the focus to the previous day.</td>
           </tr>
-          <tr>
+          <tr data-test-id="grid-home">
             <th><kbd>Home</kbd></th>
             <td>Move the focus to the first day (e.g Sunday) of the current week.</td>
           </tr>
-          <tr>
+          <tr data-test-id="grid-end">
             <th><kbd>End</kbd></th>
             <td>Move the focus to the last day (e.g. Saturday) of the current week.</td>
           </tr>
-          <tr>
+          <tr data-test-id="grid-pageup">
             <th><kbd>PageUp</kbd></th>
             <td>
               <ul>
@@ -370,7 +370,7 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="grid-shift=pageup">
             <th><kbd>Shift</kbd>+<br> <kbd>PageUp</kbd></th>
             <td>
               <ul>
@@ -379,7 +379,7 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="grid-pagedown">
             <th><kbd>PageDown</kbd></th>
             <td>
               <ul>
@@ -388,7 +388,7 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="grid-shift-pagedown">
             <th><kbd>Shift</kbd>+<br> <kbd>PageDown</kbd></th>
             <td>
               <ul>
@@ -397,15 +397,15 @@
               </ul>
             </td>
           </tr>
-          <tr>
+          <tr data-test-id="dialog-tab">
             <th><kbd>TAB</kbd></th>
             <td>Move focus to next button inside the dialog.</td>
           </tr>
-          <tr>
+          <tr data-test-id="dialog-shift-tab">
             <th><kbd>Shift</kbd> +<br> <kbd>TAB</kbd></th>
             <td>Move focus to previous button inside the dialog.</td>
           </tr>
-          <tr>
+          <tr data-test-id="dialog-esc">
             <th><kbd>ESC</kbd></th>
             <td>
               <ul>
@@ -428,7 +428,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr data-test-id="okay-cancel-button-space-return">
               <th> <kbd>Space</kbd>,<br> <kbd>Return</kbd></th>
               <td>
                 <ul>
@@ -458,7 +458,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <tr data-test-id="test-not-required">
               <th scope="row"><code>button</code></th>
               <td></td>
               <td><code>button</code></td>
@@ -507,7 +507,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr data-test-id="datepicker-dialog-role">
+              <tr data-test-id="dialog-role">
                 <th scope="row"><code>dialog</code></th>
                 <td></td>
                 <td>
@@ -520,7 +520,7 @@
                   </ul>
                 </td>
               </tr>
-              <tr data-test-id="datepicker-dialog-aria-modal">
+              <tr data-test-id="dialog-aria-modal">
                 <td></td>
                 <th scope="row"><code>aria-modal=<q>true</q></code></th>
                 <td><code>div</code></td>
@@ -528,7 +528,7 @@
                   Identifies that dialog box as a modal dialog box.
                 </td>
               </tr>
-              <tr data-test-id="datepicker-dialog-aria-labelledby">
+              <tr data-test-id="dialog-aria-labelledby">
                 <td></td>
                 <th scope="row"><code>aria-labelledby=<q>IDREFS</q></code></th>
                 <td><code>div</code></td>
@@ -536,9 +536,9 @@
                   Defines the accessible name for the dialog box.
                 </td>
               </tr>
-              <tr data-test-id="datepicker-dialog-aria-live">
+              <tr data-test-id="dialog-aria-live">
                 <th></th>
-                <td scope="row"><code>aria-live=<q>polite</q></code></td>
+                <th scope="row"><code>aria-live=<q>polite</q></code></th>
                 <td><code>div</code></td>
                 <td>
                   <ul>
@@ -563,7 +563,7 @@
               </tr>
             </thead>
             <tbody>
-                <tr>
+                <tr data-test-id="test-not-required">
                   <th scope="row"><code>button</code></th>
                   <td></td>
                   <td>
@@ -576,7 +576,7 @@
                     </ul>
                   </td>
                 </tr>
-                <tr data-test-id="datepicker-change-date-button-aria-controls">
+                <tr data-test-id="change-date-button-aria-controls">
                     <td></td>
                     <th scope="row"><code>aria-controls=<q>IDREF</q></code></th>
                     <td><code>button</code></td>
@@ -584,7 +584,7 @@
                       Provide a reference for screen reader to navigate to the date grid.
                     </td>
                 </tr>
-                <tr data-test-id="datepicker-change-date-button-aria-label">
+                <tr data-test-id="change-date-button-aria-label">
                     <td></td>
                     <th scope="row"><code>aria-label=<q><em>String</em></q></code></th>
                     <td><code>button</code></td>
@@ -592,9 +592,9 @@
                       Defines the accessible name of the button (e.g. "Next Year").
                     </td>
                 </tr>
-                <tr data-test-id="datepicker-change-date-aria-live">
+                <tr data-test-id="change-date-aria-live">
                     <th></th>
-                    <td scope="row"><code>aria-live=<q>polite</q></code></td>
+                    <th scope="row"><code>aria-live=<q>polite</q></code></th>
                     <td>
                       <code>h2</code>
                     </td>
@@ -621,7 +621,7 @@
                 </tr>
               </thead>
               <tbody>
-                  <tr data-test-id="datepicker-calendar-grid-role">
+                  <tr data-test-id="grid-role">
                     <th scope="row"><code>grid</code></th>
                     <td></td>
                     <td>
@@ -635,9 +635,9 @@
                       </ul>
                     </td>
                   </tr>
-                  <tr>
+                  <tr data-test-id="grid-aria-labelledby">
                     <td></td>
-                    <th scope="row"><code>aira-labelledby=<q>IDREF</q></code></th>
+                    <th scope="row"><code>aria-labelledby=<q>IDREF</q></code></th>
                     <td><code>table</code></td>
                     <td>
                       <ul>
@@ -645,7 +645,7 @@
                       </ul>
                     </td>
                   </tr>
-                  <tr>
+                  <tr data-test-id="test-not-required">
                     <th scope="row"><code>row</code></th>
                     <td></td>
                     <td>
@@ -655,7 +655,7 @@
                       The <code>tr</code> element has a default role of row.
                     </td>
                   </tr>
-                  <tr>
+                  <tr data-test-id="test-not-required">
                     <th scope="row"><code>columnheader</code></th>
                     <td></td>
                     <td>
@@ -665,7 +665,7 @@
                       The default role for a <code>th[scope="col"]</code> element is <code>columnheader</code>.
                     </td>
                   </tr>
-                  <tr>
+                  <tr data-test-id="test-not-required">
                     <th scope="row"><code>gridcell</code></th>
                     <td></td>
                     <td>
@@ -675,7 +675,7 @@
                       Since the <code>table</code> element has a <code>grid</code> role, all descendant <code>td</code> elements will have the role of <code>gridcell</code>.
                     </td>
                   </tr>
-                  <tr>
+                  <tr data-test-id="test-not-required">
                     <th scope="row"><code>button</code></th>
                     <td></td>
                     <td>
@@ -688,7 +688,7 @@
                       </ul>
                     </td>
                   </tr>
-                  <tr>
+                  <tr data-test-id="gridcell-button-tabindex">
                     <td></td>
                     <th scope="row">
                       <code>tabindex=<q>0</q></code>
@@ -700,7 +700,7 @@
                       Identify the currently selected date and make it part of tab sequence of the dialog box.
                     </td>
                   </tr>
-                  <tr>
+                  <tr data-test-id="gridcell-button-tabindex">
                     <td></td>
                     <th scope="row">
                       <code>tabindex=<q>-1</q></code>
@@ -712,7 +712,7 @@
                       Exclude the button from tab sequence to support grid cell navigation.
                     </td>
                   </tr>
-                  <tr>
+                  <tr data-test-id="gridcell-button-aria-selected">
                     <td></td>
                     <th scope="row"><code>aria-selected=<q>true</q></code></th>
                     <td><code>td > button</code></td>
