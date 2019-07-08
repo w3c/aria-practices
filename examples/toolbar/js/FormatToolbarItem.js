@@ -241,7 +241,7 @@ FormatToolbarItem.prototype.handleKeyDown = function (event) {
         flag = true;
       }
       break;
-      case this.keyCode.DOWN:
+    case this.keyCode.DOWN:
       if (this.buttonAction === 'align') {
         if (this.domNode.classList.contains('align-right')) {
           this.toolbar.setFocusToFirstAlignItem();
