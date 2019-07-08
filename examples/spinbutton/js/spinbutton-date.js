@@ -107,7 +107,10 @@ SpinButtonDate.prototype.setValue = function (value, flag) {
   }
 
   this.domNode.setAttribute('aria-valuenow', this.valueNow);
-  this.domNode.setAttribute('aria-valuetext', this.valueText);
+
+  if (this.values) {
+    this.domNode.setAttribute('aria-valuetext', this.valueText);
+  }
 
   this.valueNode.innerHTML = this.valueText;
 
