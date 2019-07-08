@@ -67,8 +67,10 @@ ariaTest('slide container have aria-live initially set to off', exampleFile, 'ca
   await t.context.session.findElement(By.css(ex.nextButtonSelector)).click();
   await assertAttributeValues(t, ex.slideContainerSelector, 'aria-live', 'polite');
 
-  // Move focus off the widget, and the aria-selected should change to 'off' agains
-  await t.context.session.findElement(By.css('#ex_label')).click();
+  // Move focus off the widget, and the aria-selected should change to 'off' again
+  await t.context.session.executeScript(function () {
+    return document.querySelector('a').focus();
+  });
   await assertAttributeValues(t, ex.slideContainerSelector, 'aria-live', 'off');
 
   // Click the pause button, and the aria-selected should change to 'polite' again
@@ -102,21 +104,6 @@ ariaTest('slides have aria-roledescription set to slide', exampleFile, 'carousel
 
   // check the aria-roledescrption set to carousel
   await assertAttributeValues(t, ex.slideSelector, 'aria-roledescription', 'slide');
-});
-
-ariaTest('Pause button uses aria-disabled', exampleFile, 'carousel-button-start-disabled', async (t) => {
-  t.plan(3);
-
-  // On page load, `aria-disabled` is not present on pause button
-  await assertAttributeDNE(t, ex.pausePlayButtonSelector, 'aria-disabled');
-
-  // Focus on the widget, and aria-disabled should change to true
-  await t.context.session.findElement(By.css(ex.previousButtonSelector)).click();
-  await assertAttributeValues(t, ex.pausePlayButtonSelector, 'aria-disabled', 'true');
-
-  // Move to focus to pause button, and the aria-disabled should change to false
-  await t.context.session.findElement(By.css(ex.previousButtonSelector)).sendKeys(Key.chord(Key.SHIFT, Key.TAB));
-  await assertAttributeDNE(t, ex.pausePlayButtonSelector, 'aria-disabled');
 });
 
 // Keyboard interaction
