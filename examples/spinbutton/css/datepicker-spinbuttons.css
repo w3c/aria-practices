@@ -68,13 +68,13 @@
   top: 4px;
 }
 
-.datepicker-spinbuttons .spinbutton .decrease:hover svg polygon,
-.datepicker-spinbuttons .spinbutton .increase:hover svg polygon {
+.datepicker-spinbuttons .spinbutton:focus svg polygon {
   fill: #005a9c;
   stroke: #005a9c;
 }
 
-.datepicker-spinbuttons .spinbutton:focus svg polygon {
+.datepicker-spinbuttons .spinbutton .decrease:hover svg polygon,
+.datepicker-spinbuttons .spinbutton .increase:hover svg polygon {
   fill: #005a9c;
   stroke: #005a9c;
 }
@@ -82,4 +82,3 @@
 div[role="separator"] {
   clear: both;
 }
-

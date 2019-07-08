@@ -130,7 +130,7 @@
       <li>Day, month and year are separate spin buttons, each with their own tab stop.</li>
       <li>A off screen <code>div</code> element is used to include the current date in the accessible name for the element with the <code>group</code> role.  The group label is typically read by the screen reader when focus or the virtual cursor moves to one of the spin controls.</li>
       <li>The day spin button uses <code>aria-valuetext</code> to properly pronounce the day. e.g. first, second, third ...</li>
-      <ii>The month spin button uses <code>aria-valuetext</code> to properly pronounce the month instead of the numeric value. e.g. January, February, ...</li>
+      <li>The month spin button uses <code>aria-valuetext</code> to properly pronounce the month instead of the numeric value. e.g. January, February, ...</li>
       <li>The increase and decrease events are the <code>div</code> element containing the images of the up and odwn arrows, making the effective target area larger for changing the value of a spin button with a mouse or other pointing device.</li>
       <li>Focusing a spin button increases the size of the increase and decrease bttons to make the element with focus easier to identify and to track focus changes.</li>
     </ul>
@@ -296,6 +296,7 @@
               <ul>
                 <li>Hides the SVG images used for the increase and decrease buttons from screen readers, since they are not operable by the keyboard.</li>
                 <li>Hides the visible text for the next and previous values from screen readers, since the information would be confusing without any context to screen reader users.  Only the current value needs to be visible to screen readers.</li>
+              </ul>
             </td>
           </tr>
         </tbody>
