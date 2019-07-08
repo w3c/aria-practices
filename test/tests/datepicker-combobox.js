@@ -10,8 +10,7 @@ const assertAriaLabelExists = require('../util/assertAriaLabelExists');
 const assertAriaRoles = require('../util/assertAriaRoles');
 const assertTabOrder = require('../util/assertTabOrder');
 
-
-const exampleFile = 'datepicker/datepicker.html';
+const exampleFile = 'combobox/aria1.1pattern/datepicker-combobox.html';
 
 const ex = {
   comboboxSelector: '#myDatepicker',
@@ -34,7 +33,21 @@ ariaTest('Combobox: has aria-labelledby', exampleFile, 'combobox-aria-labelledby
 
 ariaTest('Combobox: has aria-haspopup set to "dialog"', exampleFile, 'combobox-aria-haspopup', async (t) => {
   t.plan(1);
-  await assertAttributeValues(t, ex.menubuttonSelector, 'aria-haspopup', 'dialog');
+  await assertAttributeValues(t, ex.comboboxSelector, 'aria-haspopup', 'dialog');
 });
 
+ariaTest('Combobox: has aria-owns set to "myDatepickerDialog"', exampleFile, 'combobox-aria-owns', async (t) => {
+  t.plan(1);
+  await assertAttributeValues(t, ex.comboboxSelector, 'aria-owns', 'myDatepickerDialog');
+});
+
+ariaTest('Combobox: has aria-labelledby set to "id-label-1"', exampleFile, 'combobox-aria-labelledby', async (t) => {
+  t.plan(1);
+  await assertAttributeValues(t, ex.comboboxSelector, 'aria-labelledby', 'id-label-1');
+});
+
+ariaTest('Combobox: Initially aria-expanded set to "false"', exampleFile, 'combobox-aria-expanded', async (t) => {
+  t.plan(1);
+  await assertAttributeValues(t, ex.comboboxSelector, 'aria-expanded', 'false');
+});
 
