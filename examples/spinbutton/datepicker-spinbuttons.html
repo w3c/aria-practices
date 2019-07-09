@@ -52,71 +52,83 @@
            <div class="date" hidden id="myDatepickerDate">current value is Friday, June 30th, 2019</div>
 
         <div  class="day spinbutton"
-              role="spinbutton"
-              tabindex="0"
-              aria-valuenow="1"
-              aria-valuetext="first"
-              aria-valuemin="1"
-              aria-valuemax="31"
-              aria-label="Day">
-          <div class="decrease" aria-hidden="true">
+>         <button class="decrease"
+                tabindex="-1"
+                aria-label="previous day">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
                 <polygon points="2,18 18,18 10,4"></polygon>
             </svg>
-          </div>
-          <div class="previous" aria-hidden="true">30</div>
-          <div class="value">1</div>
+          </button>
+          <div  class="previous" aria-hidden="true">30</div>
+          <div  role="spinbutton"
+                tabindex="0"
+                aria-valuenow="1"
+                aria-valuetext="first"
+                aria-valuemin="1"
+                aria-valuemax="31"
+                aria-label="Day">1</div>
           <div class="next" aria-hidden="true">2</div>
-          <div class="increase" aria-hidden="true">
+          <button class="increase"
+                tabindex="-1"
+                aria-label="next day">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
               <polygon points="2,4 18,4 10,18"></polygon>
             </svg>
-          </div>
+          </button>
         </div>
 
-        <div  class="month spinbutton"
-              role="spinbutton"
-              tabindex="0"
-              aria-valuenow="5"
-              aria-valuetext="June"
-              aria-valuemin="0"
-              aria-valuemax="11"
-              aria-label="Month">
-          <div class="decrease" aria-hidden="true">
+        <div  class="month spinbutton">
+          <button class="decrease"
+                tabindex="-1"
+                aria-label="previous month">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
                 <polygon points="2,18 18,18 10,4"></polygon>
             </svg>
-          </div>
-          <div class="previous" aria-hidden="true">May</div>
-          <div class="value">June</div>
+          </button>
+          <div  class="previous" aria-hidden="true">May</div>
+          <div  role="spinbutton"
+                tabindex="0"
+                aria-valuenow="5"
+                aria-valuetext="June"
+                aria-valuemin="0"
+                aria-valuemax="11"
+                aria-label="Month">June</div>
           <div class="next" aria-hidden="true">July</div>
-          <div class="increase" aria-hidden="true">
+          <button class="increase"
+                tabindex="-1"
+                aria-label="next month">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
               <polygon points="2,4 18,4 10,18"></polygon>
             </svg>
-          </div>
+          </button>
         </div>
 
-        <div  class="year spinbutton"
-              role="spinbutton"
-              tabindex="0"
-              aria-valuenow="2019"
-              aria-valuemin="2019"
-              aria-valuemax="2040"
-              aria-label="Year">
-          <div class="decrease" aria-hidden="true">
+        <div  class="year spinbutton">
+          <button class="decrease"
+                tabindex="-1"
+                aria-label="previous year">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
                 <polygon points="2,18 18,18 10,4"></polygon>
             </svg>
-          </div>
+          </button>
           <div class="previous" aria-hidden="true">2018</div>
-          <div class="value">2019</div>
-          <div class="next" aria-hidden="true">2020</div>
-          <div class="increase" aria-hidden="true">
+            <div  role="spinbutton"
+                  tabindex="0"
+                  aria-valuenow="2019"
+                  aria-valuemin="2019"
+                  aria-valuemax="2040"
+                  aria-label="Year">2019</div>
+          <div class="next"
+                role="button"
+                tabindex="-1"
+                aria-label="next year">2020</div>
+          <button class="increase"
+                tabindex="-1"
+                aria-label="next year">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
               <polygon points="2,4 18,4 10,18"></polygon>
             </svg>
-          </div>
+          </button>
         </div>
       </div>
     </div>
@@ -132,7 +144,8 @@
       <li>The day spin button uses <code>aria-valuetext</code> to properly pronounce the day. e.g. first, second, third ...</li>
       <li>The month spin button uses <code>aria-valuetext</code> to properly pronounce the month instead of the numeric value. e.g. January, February, ...</li>
       <li>The increase and decrease events are the <code>div</code> element containing the images of the up and odwn arrows, making the effective target area larger for changing the value of a spin button with a mouse or other pointing device.</li>
-      <li>Focusing a spin button increases the size of the increase and decrease bttons to make the element with focus easier to identify and to track focus changes.</li>
+      <li>Focusing a spin button increases the size of the increase and decrease buttons to make the element with focus easier to identify and to track focus changes.</li>
+      <li>The increase and decrease buttons are used to support touch device accessibility and are removed from tab order using <code>tabindex="-1"</code>.</li>
     </ul>
   </section>
   <section>
@@ -225,6 +238,32 @@
             <td><code>div</code></td>
             <td>The IDREF identifies the element with the visible text defining the accessible name for the group of spin buttons, i.e. "Date" and an off screen <code>div</code> element that contains the current date represented by the spin buttons.</td>
           </tr>
+          <tr>
+            <th scope="row"><code>button</code></th>
+            <td></td>
+            <td><code>button</code></td>
+            <td>
+              <ul>
+                <li>The button element has the default role of <code>button</code>.</li>
+                <li>The buttons are used to increase or decrease values of the spin button using touch devices.</li>
+                <li>The accessible name comes from the <code>aria-label</code> attribute.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr data-test-id="button-aria-label">
+            <td></td>
+            <th scope="row"><code>aria-label="<em>name</em>"</code></th>
+            <td><code>button</code></td>
+            <td>Defines the accessible name for each increase and descrease button (e.g. <q>next day</q>, <q>previous day</q>, <q>next month</q>, <q>previous month</q>, <q>next year</q> and <q>previous year</q>).</td>
+          </tr>
+          <tr data-test-id="button-tabindex">
+            <td></td>
+            <th scope="row"><code>tabindex="-1"</code></th>
+            <td><code>button</code></td>
+            <td>
+              Setting <code>tabindex="-1</code> takes the decrement and increment button out of tab order, but they can still be accessed though touch events to change the value of the spin buttons.
+            </td>
+          </tr>
           <tr data-test-id="spinbutton-role">
             <th scope="row"><code>spinbutton</code></th>
             <td></td>
@@ -287,17 +326,12 @@
             <th scope="row"><code>aria-hidden="true"</code></th>
             <td>
               <ul>
-                <li><code>div > .increase</code></li>
                 <li><code>div > .next</code></li>
                 <li><code>div > .previous</code></li>
-                <li><code>div > .decrease</code></li>
               </ul>
             </td>
             <td>
-              <ul>
-                <li>Hides the SVG images used for the increase and decrease buttons from screen readers, since they are not operable by the keyboard.</li>
-                <li>Hides the visible text for the next and previous values from screen readers, since the information would be confusing without any context to screen reader users.  Only the current value needs to be visible to screen readers.</li>
-              </ul>
+              Hides the visible text for the next and previous values from screen readers, since the information would be confusing without any context to screen reader users.  Only the current value needs to be visible to screen readers.
             </td>
           </tr>
         </tbody>

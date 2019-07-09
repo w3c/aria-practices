@@ -75,20 +75,20 @@ const ex = {
   dayNow: d.getDate().toString(),
   dayText: valuesDay[d.getDate()],
 
-  yearHiddenIncreaseSelector: '#example [role="spinbutton"].year .increase',
-  yearHiddenDecreaseSelector: '#example [role="spinbutton"].year .decrease',
-  yearHiddenPreviousSelector: '#example [role="spinbutton"].year .previous',
-  yearHiddenNextSelector: '#example [role="spinbutton"].year .next',
+  yearIncreaseSelector: '#example .spinbutton.year .increase',
+  yearDecreaseSelector: '#example .spinbutton.year .decrease',
+  yearHiddenPreviousSelector: '#example .spinbutton.year .previous',
+  yearHiddenNextSelector: '#example .spinbutton.year .next',
 
-  monthHiddenIncreaseSelector: '#example [role="spinbutton"].month .increase',
-  monthHiddenDecreaseSelector: '#example [role="spinbutton"].month .decrease',
-  monthHiddenPreviousSelector: '#example [role="spinbutton"].month .previous',
-  monthHiddenNextSelector: '#example [role="spinbutton"].month .next',
+  monthIncreaseSelector: '#example .spinbutton.month .increase',
+  monthDecreaseSelector: '#example .spinbutton.month .decrease',
+  monthHiddenPreviousSelector: '#example .spinbutton.month .previous',
+  monthHiddenNextSelector: '#example .spinbutton.month .next',
 
-  dayHiddenIncreaseSelector: '#example [role="spinbutton"].day .increase',
-  dayHiddenDecreaseSelector: '#example [role="spinbutton"].day .decrease',
-  dayHiddenPreviousSelector: '#example [role="spinbutton"].day .previous',
-  dayHiddenNextSelector: '#example [role="spinbutton"].day .next'
+  dayIncreaseSelector: '#example .spinbutton.day .increase',
+  dayDecreaseSelector: '#example .spinbutton.day .decrease',
+  dayHiddenPreviousSelector: '#example .spinbutton.day .previous',
+  dayHiddenNextSelector: '#example .spinbutton.day .next'
 };
 
 // Attributes
@@ -138,20 +138,26 @@ ariaTest('"aria-valuetext" reflects spin button value as a text string', example
   await assertAttributeValues(t, ex.monthSelector, 'aria-valuetext', ex.monthText);
 });
 
+ariaTest('"aria-label" provides accessible name to screen reader users', exampleFile, 'button-aria-label', async (t) => {
+  t.plan(6);
+  await assertAttributeValues(t, ex.dayIncreaseSelector, 'aria-label', 'next day');
+  await assertAttributeValues(t, ex.dayDecreaseSelector, 'aria-label', 'previous day');
+
+  await assertAttributeValues(t, ex.monthIncreaseSelector, 'aria-label', 'next month');
+  await assertAttributeValues(t, ex.monthDecreaseSelector, 'aria-label', 'previous month');
+
+  await assertAttributeValues(t, ex.yearIncreaseSelector, 'aria-label', 'next year');
+  await assertAttributeValues(t, ex.yearDecreaseSelector, 'aria-label', 'previous year');
+});
+
 ariaTest('"aria-hidden" hides decorative and redundant content form screen reader users', exampleFile, 'spinbutton-aria-hidden', async (t) => {
-  t.plan(12);
-  await assertAttributeValues(t, ex.dayHiddenIncreaseSelector, 'aria-hidden', 'true');
-  await assertAttributeValues(t, ex.dayHiddenDecreaseSelector, 'aria-hidden', 'true');
+  t.plan(6);
   await assertAttributeValues(t, ex.dayHiddenPreviousSelector, 'aria-hidden', 'true');
   await assertAttributeValues(t, ex.dayHiddenNextSelector, 'aria-hidden', 'true');
 
-  await assertAttributeValues(t, ex.monthHiddenIncreaseSelector, 'aria-hidden', 'true');
-  await assertAttributeValues(t, ex.monthHiddenDecreaseSelector, 'aria-hidden', 'true');
   await assertAttributeValues(t, ex.monthHiddenPreviousSelector, 'aria-hidden', 'true');
   await assertAttributeValues(t, ex.monthHiddenNextSelector, 'aria-hidden', 'true');
 
-  await assertAttributeValues(t, ex.yearHiddenIncreaseSelector, 'aria-hidden', 'true');
-  await assertAttributeValues(t, ex.yearHiddenDecreaseSelector, 'aria-hidden', 'true');
   await assertAttributeValues(t, ex.yearHiddenPreviousSelector, 'aria-hidden', 'true');
   await assertAttributeValues(t, ex.yearHiddenNextSelector, 'aria-hidden', 'true');
 });
