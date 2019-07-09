@@ -155,8 +155,8 @@
           <li>Implementing the optional arrow key support prevents the default page scroll behavior when focus is contained within the navigation region.</li>
           <li>
             Optional navigation key support is primarily for the benefit of keyboard users who are not running a screen reader.
-            When interacting with this example, screen readers usually intercept these navigation keys and do not pass them to the page because focus is not inside a widget that triggers screen reader interaction mode.
-            That is, the screen reader stays in reading mode.
+            Screen readers that have both reading and interaction modes intercept these navigation keys and do not pass them to the page when the screen reader is in reading mode.
+            When interacting with this example, such screen readers are typically in reading mode because this example does not use a widget role that triggers screen reader interaction mode.
           </li>
           <li>
             If implemented, the optional navigation keys supplement, but do not replace, tabbing among buttons and links.
