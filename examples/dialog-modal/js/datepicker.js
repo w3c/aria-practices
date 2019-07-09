@@ -352,7 +352,7 @@ DatePicker.prototype.show = function () {
 };
 
 DatePicker.prototype.isOpen = function () {
-  return this.dialogNode.style.display !== 'none';
+  return window.getComputedStyle(this.dialogNode).display !== 'none';
 };
 
 DatePicker.prototype.hide = function () {
