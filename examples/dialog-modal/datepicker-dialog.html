@@ -526,7 +526,7 @@
                 <td>
                   <ul>
                     <li>A live region to display information about the keyboard commands to navigate the grid of dates.</li>
-                    <li>The display of the information is slightly delayed so the screen reader reads it after information related to the change of focus in the date.</li>
+                    <li>The display of the information is slightly delayed so the screen reader reads it after information related to the change of focus.</li>
                   </ul>
                 </td>
               </tr>
@@ -575,8 +575,8 @@
                     </td>
                     <td>
                       <ul>
-                        <li>When the month and/or year changes the content of the <code>span</code> element is updated.</li>
-                        <li>Identifies the <code>span</code> element that contains the month and year of the grid of dates as a <code>polite</code> live region.</li>
+                        <li>When the month and/or year changes the content of the <code>h2</code> element is updated.</li>
+                        <li>Identifies the <code>h2</code> element that contains the month and year of the grid of dates as a <code>polite</code> live region.</li>
                       </ul>
                     </td>
                   </tr>
@@ -637,7 +637,10 @@
                       <code>th</code>
                     </td>
                     <td>
-                      The default role for a <code>th[scope="col"]</code> element is <code>columnheader</code>.
+                      <ul>
+                        <li>The default role for a <code>th[scope="col"]</code> element is <code>columnheader</code>.</li>
+                        <li>The <code>abbr</code> attribute is used to provide the full spelling of the day of week to assistive technologies.</li>
+                      </ul>
                     </td>
                   </tr>
                   <tr data-test-id="test-not-required">
