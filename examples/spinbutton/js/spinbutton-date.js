@@ -14,7 +14,8 @@ var SpinButtonDate = function (domNode, values, callback)  {
 
   var initialValue = domNode.getAttribute('aria-valuetext');
 
-  this.valueNode = domNode.querySelector('.value');
+  this.spinbuttonNode = domNode.querySelector('[role="spinbutton');
+
   this.previousValueNode = domNode.querySelector('.previous');
   this.nextValueNode = domNode.querySelector('.next');
 
@@ -53,7 +54,9 @@ var SpinButtonDate = function (domNode, values, callback)  {
 // Initialize slider
 SpinButtonDate.prototype.init = function () {
 
-  this.domNode.addEventListener('keydown',    this.handleKeyDown.bind(this));
+  this.spinbuttonNode.addEventListener('keydown', this.handleKeyDown.bind(this));
+  this.spinbuttonNode.addEventListener('focus',   this.handleFocus.bind(this));
+  this.spinbuttonNode.addEventListener('blur',    this.handleBlur.bind(this));
 
   this.increaseNode.addEventListener('click', this.handleIncreaseClick.bind(this));
   this.decreaseNode.addEventListener('click', this.handleDecreaseClick.bind(this));
@@ -106,13 +109,13 @@ SpinButtonDate.prototype.setValue = function (value, flag) {
     }
   }
 
-  this.domNode.setAttribute('aria-valuenow', this.valueNow);
+  this.spinbuttonNode.setAttribute('aria-valuenow', this.valueNow);
 
   if (this.values) {
-    this.domNode.setAttribute('aria-valuetext', this.valueText);
+    this.spinbuttonNode.setAttribute('aria-valuetext', this.valueText);
   }
 
-  this.valueNode.innerHTML = this.valueText;
+  this.spinbuttonNode.innerHTML = this.valueText;
 
   if (flag, this.callback) {
     this.callback(this.valueNow);
@@ -122,20 +125,20 @@ SpinButtonDate.prototype.setValue = function (value, flag) {
 
 SpinButtonDate.prototype.setValueText = function (value) {
   this.valueText = value;
-  this.domNode.setAttribute('aria-valuetext', value);
+  this.spinbuttonNode.setAttribute('aria-valuetext', value);
 };
 
 
 SpinButtonDate.prototype.getValueMin = function () {
-  return parseInt(this.domNode.getAttribute('aria-valuemin'));
+  return parseInt(this.spinbuttonNode.getAttribute('aria-valuemin'));
 };
 
 SpinButtonDate.prototype.getValueMax = function () {
-  return parseInt(this.domNode.getAttribute('aria-valuemax'));
+  return parseInt(this.spinbuttonNode.getAttribute('aria-valuemax'));
 };
 
 SpinButtonDate.prototype.setValueMax = function (value) {
-  this.domNode.setAttribute('aria-valuemax', value);
+  this.spinbuttonNode.setAttribute('aria-valuemax', value);
   this.valueMax = value;
 };
 
@@ -219,6 +222,14 @@ SpinButtonDate.prototype.handleKeyDown = function (event) {
     event.stopPropagation();
   }
 
+};
+
+SpinButtonDate.prototype.handleFocus = function () {
+  this.domNode.classList.add('focus');
+};
+
+SpinButtonDate.prototype.handleBlur = function () {
+  this.domNode.classList.remove('focus');
 };
 
 SpinButtonDate.prototype.handleIncreaseClick = function (event) {

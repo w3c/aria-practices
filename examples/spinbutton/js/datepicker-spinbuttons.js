@@ -15,8 +15,6 @@ var DatePickerSpinButtons = function (domNode)  {
   this.yearNode = domNode.querySelector('.spinbutton.year');
   this.dateNode = domNode.querySelector('.date');
 
-  this.dateNode = domNode.querySelector('.date');
-
   this.valuesWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   this.valuesDay = ['', 'first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth', 'tenth', 'eleventh', 'twelfth', 'thirteenth', 'fourteen', 'fifteenth', 'sixteenth', 'seveneenth', 'eighteenth', 'nineteenth', 'twentieth', 'twenty first', 'twenty second', 'twenty third', 'twenty fourth', 'twenty fifth', 'twenty sixth', 'twenty seventh', 'twenty eighth', 'twenty ninth', 'thirtieth', 'thirty first'];
   this.valuesMonth = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
