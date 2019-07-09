@@ -51,7 +51,7 @@ CalendarButtonInput.prototype.handleKeyDown = function (event) {
 };
 
 CalendarButtonInput.prototype.handleClick = function () {
-  if (this.isCollapsed()) {
+  if (!this.datepicker.isOpen()) {
     this.datepicker.show();
     this.datepicker.setFocusDay();
   }
@@ -73,23 +73,6 @@ CalendarButtonInput.prototype.setLabel = function (str) {
 
 CalendarButtonInput.prototype.setFocus = function () {
   this.buttonNode.focus();
-};
-
-CalendarButtonInput.prototype.setAriaExpanded = function (flag) {
-  if (flag) {
-    this.buttonNode.setAttribute('aria-expanded', 'true');
-  }
-  else {
-    this.buttonNode.setAttribute('aria-expanded', 'false');
-  }
-};
-
-CalendarButtonInput.prototype.isExpanded = function () {
-  return this.buttonNode.getAttribute('aria-expanded') === 'true';
-};
-
-CalendarButtonInput.prototype.isCollapsed = function () {
-  return this.buttonNode.getAttribute('aria-expanded') !== 'true';
 };
 
 CalendarButtonInput.prototype.setDate = function (month, day, year) {

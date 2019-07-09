@@ -346,14 +346,13 @@ DatePicker.prototype.show = function () {
   this.dialogNode.style.display = 'block';
   this.dialogNode.style.zIndex = 2;
 
-  this.dateInput.setAriaExpanded(true);
   this.getDateInput();
   this.updateGrid();
 
 };
 
 DatePicker.prototype.isOpen = function () {
-  return this.dateInput.isExpanded();
+  return this.dialogNode.style.display !== 'none';
 };
 
 DatePicker.prototype.hide = function () {
@@ -361,7 +360,6 @@ DatePicker.prototype.hide = function () {
   this.setMessage('');
 
   this.dialogNode.style.display = 'none';
-  this.dateInput.setAriaExpanded(false);
 
   this.hasFocusFlag = false;
   this.dateInput.setFocus();
