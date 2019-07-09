@@ -10,7 +10,7 @@ const assertAriaLabelExists = require('../util/assertAriaLabelExists');
 const assertAriaRoles = require('../util/assertAriaRoles');
 const assertTabOrder = require('../util/assertTabOrder');
 
-const exampleFile = 'combobox/aria1.1pattern/datepicker-combobox.html';
+const exampleFile = 'combobox/aria1.1pattern/combo-11-datepicker.html';
 
 const ex = {
   comboboxSelector: '#myDatepicker',
