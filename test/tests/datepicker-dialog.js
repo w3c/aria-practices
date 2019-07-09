@@ -33,7 +33,7 @@ ariaTest('"aria-expanded" attribute on button', exampleFile, 'calendar-button-ar
 
 // Dialog Tests
 
-ariaTest('role="dialog" attribute on div', exampleFile, 'datepicker-dialog-role', async (t) => {
+ariaTest('role="dialog" attribute on div', exampleFile, 'dialog-role', async (t) => {
   t.plan(1);
   await assertAriaRoles(t, 'example', 'dialog', 1, 'div');
 });

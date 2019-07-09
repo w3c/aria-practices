@@ -61,7 +61,6 @@
           <button class="icon"
             aria-label="Choose Date"
             aria-expanded="false"
-            aria-describedby="id-datepicker-1-button-desc"
             >
             <span class="fa fa-calendar-alt fa-2x"></span>
           </button>
@@ -78,13 +77,11 @@
 
             <button class="prevYear"
               aria-label="previous year"
-              aria-controls="id-dialog-label">
               <span class="fas fa-angle-double-left fa-lg"></span>
             </button>
 
             <button class="prevMonth"
               aria-label="previous month"
-              aria-controls="id-dialog-label">
               <span class="fas fa-angle-left fa-lg"></span>
             </button>
 
@@ -96,13 +93,11 @@
 
             <button class="nextMonth"
               aria-label="next month"
-              aria-controls="id-dialog-label">
               <span class="fas fa-angle-right fa-lg"></span>
             </button>
 
             <button class="nextYear"
               aria-label="next year"
-              aria-controls="id-dialog-label">
               <span class="fas fa-angle-double-right fa-lg"></span>
             </button>
           </div>
@@ -250,7 +245,7 @@
         </thead>
         <tbody>
             <tr data-test-id="button-space-return-down-arrow">
-                <th><kbd>space</kbd>, <kbd>return</kbd> and <kbd>Down Arrow</kbd></th>
+                <th><kbd>space</kbd> and <kbd>return</kbd></th>
                 <td>
                   <ul>
                     <li>Open the date picker dialog.</li>
@@ -575,14 +570,6 @@
                       <li>The accessible name comes from the <code>aria-label</code> attribute.</li>
                     </ul>
                   </td>
-                </tr>
-                <tr data-test-id="change-date-button-aria-controls">
-                    <td></td>
-                    <th scope="row"><code>aria-controls=<q>IDREF</q></code></th>
-                    <td><code>button</code></td>
-                    <td>
-                      Provide a reference for screen reader to navigate to the date grid.
-                    </td>
                 </tr>
                 <tr data-test-id="change-date-button-aria-label">
                     <td></td>
