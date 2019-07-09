@@ -220,7 +220,7 @@
     <h3>Date Picker Dialog</h3>
 
     <ul>
-      <li>The date picker dialog is opened using the calendar button.</li>
+      <li>The date picker dialog is opened using the <q>Choose Date</q> button.</li>
       <li>The date picker dialog is a modal dialog box for selecting a date from a grid of dates for a particular month and year.</li>
       <li>The month/year buttons and keyboard commands within the grid of dates can be used to change month and year.</li>
       <li>A live region announces changes in the month and year.</li>
@@ -244,11 +244,11 @@
         </thead>
         <tbody>
             <tr data-test-id="button-space-return-down-arrow">
-                <th><kbd>space</kbd> and <kbd>return</kbd></th>
+                <th><kbd>Space</kbd>,<br> <kbd>Return</kbd></th>
                 <td>
                   <ul>
                     <li>Open the date picker dialog.</li>
-                    <li>Move focus to current date.</li>
+                    <li>Move focus to selected date, if no date has been selected the current date is used.</li>
                 </ul>
               </td>
             </tr>
@@ -268,7 +268,7 @@
         <tbody>
             <tr data-test-id="dialog-esc">
               <th><kbd>ESC</kbd></th>
-              <td>Close the dialog and move focus back to the calendar button.</td>
+              <td>Close the dialog and move focus back to the <q>Choose Date</q> button.</td>
             </tr>
             <tr data-test-id="dialog-tab">
               <th><kbd>TAB</kbd></th>
@@ -326,7 +326,7 @@
             <th><kbd>Space</kbd>,<br><kbd>Return</kbd></th>
             <td>
               <ul>
-                <li>Select the date, close the dialog box and move focus to the calendar button.</li>
+                <li>Select the date, close the dialog box and move focus to the <q>Choose Date</q> button.</li>
                 <li>The value of the date input is updated with the selected date in the from the selected date in the date grid.</li>
               </ul>
           </td>
@@ -403,7 +403,7 @@
             <th><kbd>ESC</kbd></th>
             <td>
               <ul>
-                <li>Close the dialog and move focus back to calendar button.</li>
+                <li>Close the dialog and move focus back to <q>Choose Date</q> button.</li>
                 <li>The value of the date texbox is not updated.</li>
               </ul>
             </td>
@@ -413,7 +413,7 @@
     </section>
 
     <section>
-        <h3 id="kbd_label_6">Date Picker Buttons (OK and Cancel)</h3>
+        <h3 id="kbd_label_6">Date Picker Dialog: OK and Cancel Buttons</h3>
         <table aria-labelledby="kbd_label_6 kbd_label" class="def">
           <thead>
             <tr>
@@ -426,8 +426,8 @@
               <th> <kbd>Space</kbd>,<br> <kbd>Return</kbd></th>
               <td>
                 <ul>
-                    <li>The Cancel button closes the date picker dialog, moves focus to calendar button, does not update date in date input.</li>
-                    <li>The OK button closes the date picker dialog, moves focus to calendar button, does update date in date input.</li>
+                    <li>The Cancel button closes the date picker dialog, moves focus to <q>Choose Date</q> button, does not update date in date input.</li>
+                    <li>The OK button closes the date picker dialog, moves focus to <q>Choose Date</q> button, does update date in date input.</li>
                 </ul>
               </td>
             </tr>
@@ -469,8 +469,8 @@
               <td><code>button</code></td>
               <td>
                 <ul>
-                  <li>The initial value of accessible name is <q>Calendar</q>.</li>
-                  <li>When user selected date, the accessible name will update to current date.</li>
+                  <li>The initial value of accessible name is <q>Choose Date</q>.</li>
+                  <li>When user selected date, the accessible name will update to also include the selected date.</li>
                 </ul>
               </td>
             </tr>
@@ -576,7 +576,7 @@
                     <td>
                       <ul>
                         <li>When the month and/or year changes the content of the <code>span</code> element is updated.</li>
-                        <li>Identifies the <code>span</code> element that contains the current month and year as a <code>polite</code> live region.</li>
+                        <li>Identifies the <code>span</code> element that contains the month and year of the grid of dates as a <code>polite</code> live region.</li>
                       </ul>
                     </td>
                   </tr>
@@ -616,7 +616,7 @@
                     <td><code>table</code></td>
                     <td>
                       <ul>
-                        <li>Define the accessible name for the <code>grid</code> using current month and year.</li>
+                        <li>Define the accessible name for the <code>grid</code> using month and year for the gird of dates.</li>
                       </ul>
                     </td>
                   </tr>
@@ -672,7 +672,7 @@
                       <code>td > button</code>
                     </td>
                     <td>
-                      Identify the currently selected date and make it part of tab sequence of the dialog box.
+                      Identify the selected date and make it part of tab sequence of the dialog box.
                     </td>
                   </tr>
                   <tr data-test-id="gridcell-button-tabindex">
@@ -693,7 +693,7 @@
                     <td><code>td > button</code></td>
                     <td>
                       <ul>
-                        <li>Identifies the currently selected date in the date input.</li>
+                        <li>Identifies the selected date in the date input.</li>
                         <li>The <code>aria-selected</code> attribute is only set on the button representing the date in the date input, all other buttons do not have an <code>aria-selected</code> attribute.</li>
                       </ul>
                     </td>
