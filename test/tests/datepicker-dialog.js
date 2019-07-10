@@ -135,7 +135,7 @@ ariaTest('Roving tab index on dates in gridcell', exampleFile, 'gridcell-button-
 // This test failed due to issue: https://github.com/w3c/aria-practices/issues/1072
 // If you fix it, please remove ".failing"
 ariaTest.failing('aria-selected on selected date', exampleFile, 'gridcell-button-aria-selected', async (t) => {
-  t.plan(1);
+  t.plan(5);
 
   await t.context.session.findElement(By.css(ex.buttonSelector)).click();
   await assertAttributeDNE(t, ex.allDateButtons, 'aria-selected');
