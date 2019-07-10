@@ -136,7 +136,16 @@ ariaTest('"aria-valuetext" reflects spin button value as a text string', example
   await assertAttributeValues(t, ex.monthSelector, 'aria-valuetext', ex.monthText);
 });
 
-ariaTest('"aria-label" provides accessible name to screen reader users', exampleFile, 'button-aria-label', async (t) => {
+ariaTest('"aria-label" provides accessible name for the spin buttons to screen reader users', exampleFile, 'spinbutton-aria-label', async (t) => {
+  t.plan(3);
+
+  await assertAttributeValues(t, ex.daySelector, 'aria-label', 'Day');
+  await assertAttributeValues(t, ex.monthSelector, 'aria-label', 'Month');
+  await assertAttributeValues(t, ex.yearSelector, 'aria-label', 'Year');
+
+});
+
+ariaTest('"aria-label" provides accessible name for the previous and next buttons to screen reader users', exampleFile, 'button-aria-label', async (t) => {
   t.plan(6);
   await assertAttributeValues(t, ex.dayIncreaseSelector, 'aria-label', 'next day');
   await assertAttributeValues(t, ex.dayDecreaseSelector, 'aria-label', 'previous day');
@@ -159,6 +168,5 @@ ariaTest('"aria-hidden" hides decorative and redundant content form screen reade
   await assertAttributeValues(t, ex.yearHiddenPreviousSelector, 'aria-hidden', 'true');
   await assertAttributeValues(t, ex.yearHiddenNextSelector, 'aria-hidden', 'true');
 });
-
 
 
