@@ -12,6 +12,9 @@ const assertTabOrder = require('../util/assertTabOrder');
 
 const exampleFile = 'dialog-modal/datepicker-dialog.html';
 
+let today = new Date();
+let todayDataDate = today.toISOString().split('T')[0];
+
 const ex = {
   dialogSelector: '#example [role="dialog"]',
   inputSelector: '#example input',
@@ -24,7 +27,17 @@ const ex = {
   currentMonthDateButtons: '#example [role="dialog"] button.dateButton:not(.disabled)',
   allDateButtons: '#example [role="dialog"] button.dateButton',
   jan12019Button: '#example [role="dialog"] button[data-date="2019-01-01"]',
-  jan22019Button: '#example [role="dialog"] button[data-date="2019-01-02"]'
+  jan22019Button: '#example [role="dialog"] button[data-date="2019-01-02"]',
+  todayButton: `#example [role="dialog"] button[data-date="${todayDataDate}"]`,
+  allFocusableElementsInDialog: [
+    `#example [role="dialog"] button[data-date="${todayDataDate}"]`,
+    '#example [role="dialog"] button[value="cancel"]',
+    '#example [role="dialog"] button[value="ok"]',
+    '#example [role="dialog"] button.prevYear',
+    '#example [role="dialog"] button.prevMonth',
+    '#example [role="dialog"] button.nextMonth',
+    '#example [role="dialog"] button.nextYear'
+  ]
 };
 
 const clickFirstOfMonth = async function (t) {
@@ -51,6 +64,15 @@ const setDateToJanFirst2019 = async function (t) {
     const inputSelector = arguments[0];
     document.querySelector(inputSelector).value = '1/1/2019';
   }, ex.inputSelector);
+};
+
+const focusMatchesElement = async function (t, selector) {
+  return t.context.session.wait(async function () {
+    return t.context.session.executeScript(function () {
+      selector = arguments[0];
+      return document.activeElement === document.querySelector(selector);
+    }, selector);
+  }, t.context.WaitTime);
 };
 
 
@@ -173,17 +195,92 @@ ariaTest.failing('aria-selected on selected date', exampleFile, 'gridcell-button
 
 // Keyboard
 
-// ariaTest('', exampleFile, 'button-space-return-down-arrow', async (t) => {
-// });
+ariaTest('ENTER to open datepicker', exampleFile, 'button-space-return-down-arrow', async (t) => {
+  let chooseDateButton = await t.context.session.findElement(By.css(ex.buttonSelector));
+  chooseDateButton.sendKeys(Key.ENTER);
 
-// ariaTest('', exampleFile, 'dialog-esc', async (t) => {
-// });
+  t.not(
+    await t.context.session.findElement(By.css(ex.dialogSelector)).getCssValue('display'),
+    'none',
+    'After sending ENTER to the "choose date" button, the calendar dialog should open'
+  );
+});
 
-// ariaTest('', exampleFile, 'dialog-tab', async (t) => {
-// });
+ariaTest('SPACE to open datepicker', exampleFile, 'button-space-return-down-arrow', async (t) => {
+  let chooseDateButton = await t.context.session.findElement(By.css(ex.buttonSelector));
+  chooseDateButton.sendKeys(Key.SPACE);
 
-// ariaTest('', exampleFile, 'dialog-shift-tab', async (t) => {
-// });
+  t.not(
+    await t.context.session.findElement(By.css(ex.dialogSelector)).getCssValue('display'),
+    'none',
+    'After sending SPACE to the "choose date" button, the calendar dialog should open'
+  );
+});
+
+ariaTest('Sending key ESC when focus is in dialog closes dialog', exampleFile, 'dialog-esc', async (t) => {
+  t.plan(14);
+
+  let chooseDateButton = await t.context.session.findElement(By.css(ex.buttonSelector));
+
+  for (let i = 0; i < ex.allFocusableElementsInDialog.length; i++) {
+
+    await chooseDateButton.click();
+    let el = t.context.session.findElement(By.css(ex.allFocusableElementsInDialog[i]));
+    await el.sendKeys(Key.ESCAPE);
+
+    t.is(
+      await t.context.session.findElement(By.css(ex.dialogSelector)).getCssValue('display'),
+      'none',
+      'After sending ESC to element "' + ex.allFocusableElementsInDialog[i] + '" in the dialog, the calendar dialog should close'
+    );
+
+    t.is(
+      await t.context.session.findElement(By.css(ex.inputSelector)).getAttribute('value'),
+      '',
+      'After sending ESC to element "' + ex.allFocusableElementsInDialog[i] + '" in the dialog, no date should be selected'
+    );
+  }
+});
+
+ariaTest('Tab should go through all tabbable items, then repear', exampleFile, 'dialog-tab', async (t) => {
+  t.plan(8);
+
+  await t.context.session.findElement(By.css(ex.buttonSelector)).click();
+
+  for (let itemSelector of ex.allFocusableElementsInDialog) {
+    t.true(
+      await focusMatchesElement(t, itemSelector),
+      'Focus should be on: ' + itemSelector
+    );
+
+    await t.context.session.findElement(By.css(itemSelector)).sendKeys(Key.TAB);
+  }
+
+  t.true(
+    await focusMatchesElement(t, ex.allFocusableElementsInDialog[0]),
+    'After tabbing through all items, focus should return to: ' + ex.allFocusableElementsInDialog[0]
+  );
+});
+
+ariaTest('', exampleFile, 'dialog-shift-tab', async (t) => {
+  t.plan(7);
+
+  await t.context.session.findElement(By.css(ex.buttonSelector)).click();
+
+  await t.context.session.findElement(By.css(ex.allFocusableElementsInDialog[0]))
+    .sendKeys(Key.chord(Key.SHIFT, Key.TAB));
+
+  let lastIndex = ex.allFocusableElementsInDialog.length - 1;
+  for (let i = lastIndex; i >= 0; i--) {
+    t.true(
+      await focusMatchesElement(t, ex.allFocusableElementsInDialog[i]),
+      'Focus should be on: ' + ex.allFocusableElementsInDialog[i]
+    );
+
+    await t.context.session.findElement(By.css(ex.allFocusableElementsInDialog[i]))
+      .sendKeys(Key.chord(Key.SHIFT, Key.TAB));
+  }
+});
 
 // ariaTest('', exampleFile, 'month-year-button-space-return', async (t) => {
 // });
