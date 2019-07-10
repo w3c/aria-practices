@@ -58,18 +58,18 @@ const ex = {
   groupSelector: '#example [role="group"]',
   spinbuttonSelector: '#example [role="spinbutton"]',
 
-  yearSelector: '#example [role="spinbutton"].year',
+  yearSelector: '#example .spinbutton.year [role="spinbutton"]',
   yearMin: '2019',
   yearMax: '2040',
   yearNow: d.getFullYear().toString(),
 
-  monthSelector: '#example [role="spinbutton"].month',
+  monthSelector: '#example .spinbutton.month [role="spinbutton"]',
   monthMin: '0',
   monthMax: '11',
   monthNow: d.getMonth().toString(),
   monthText: valuesMonth[d.getMonth()],
 
-  daySelector: '#example [role="spinbutton"].day',
+  daySelector: '#example .spinbutton.day [role="spinbutton"]',
   dayMin: '1',
   dayMax: getDaysInMonth(d.getFullYear(), d.getMonth()).toString(),
   dayNow: d.getDate().toString(),
@@ -108,7 +108,6 @@ ariaTest('role="spinbutton" on div element', exampleFile, 'spinbutton-role', asy
   await assertAriaRoles(t, 'example', 'spinbutton', '3', 'div');
 });
 
-
 ariaTest('"aria-valuemax" represetns the minimum value on spinbuttons', exampleFile, 'spinbutton-aria-valuemax', async (t) => {
   t.plan(3);
   await assertAttributeValues(t, ex.daySelector, 'aria-valuemax', ex.dayMax);
@@ -122,7 +121,6 @@ ariaTest('"aria-valuemin" represents the maximum value on spinbuttons', exampleF
   await assertAttributeValues(t, ex.monthSelector, 'aria-valuemin', ex.monthMin);
   await assertAttributeValues(t, ex.yearSelector, 'aria-valuemin', ex.yearMin);
 });
-
 
 ariaTest('"aria-valuenow" reflects spinbutton value as a number', exampleFile, 'spinbutton-aria-valuenow', async (t) => {
   t.plan(3);
@@ -161,5 +159,6 @@ ariaTest('"aria-hidden" hides decorative and redundant content form screen reade
   await assertAttributeValues(t, ex.yearHiddenPreviousSelector, 'aria-hidden', 'true');
   await assertAttributeValues(t, ex.yearHiddenNextSelector, 'aria-hidden', 'true');
 });
+
 
 
