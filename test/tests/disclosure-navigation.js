@@ -12,6 +12,7 @@ const exampleFile = 'disclosure/disclosure-navigation.html';
 const ex = {
   buttonSelector: '#exTest button',
   menuSelector: '#exTest > li > ul',
+  linkSelector: '#exTest > li > ul a',
   buttonSelectors: [
     '#exTest > li:nth-child(1) button',
     '#exTest > li:nth-child(2) button',
@@ -28,13 +29,13 @@ const ex = {
 
 ariaTest('"aria-controls" attribute on button', exampleFile, 'button-aria-controls', async (t) => {
   t.plan(1);
-  await assertAriaControls(t, ex.buttonSelectors[0]);
+  await assertAriaControls(t, ex.buttonSelector);
 });
 
 ariaTest('"aria-expanded" attribute on button', exampleFile, 'button-aria-expanded', async (t) => {
   t.plan(7);
 
-  await assertAttributeValues(t, ex.buttonSelectors[0], 'aria-expanded', 'false');
+  await assertAttributeValues(t, ex.buttonSelector, 'aria-expanded', 'false');
 
   let buttons = await t.context.session.findElements(By.css(ex.buttonSelector));
   let menus = await t.context.session.findElements(By.css(ex.menuSelector));
@@ -46,6 +47,40 @@ ariaTest('"aria-expanded" attribute on button', exampleFile, 'button-aria-expand
     );
     await assertAttributeValues(t, ex.buttonSelectors[i], 'aria-expanded', 'true');
   }
+});
+
+ariaTest('"aria-current" attribute on links', exampleFile, 'link-aria-current', async (t) => {
+  t.plan(36);
+
+  const buttons = await t.context.session.findElements(By.css(ex.buttonSelector));
+  const menus = await t.context.session.findElements(By.css(ex.menuSelector));
+
+  for (let b = 0; b < buttons.length; b++) {
+    const links = await menus[b].findElements(By.css('a'));
+
+    for (let l = 0; l < links.length; l++) {
+
+      await buttons[b].click();
+      await links[l].click();
+
+      t.is(
+        await links[l].getAttribute('aria-current'),
+        'page',
+        'after clicking link at index ' + l + ' on menu ' + b + 'aria-current should be set to page'
+      );
+
+      let ariaCurrentLinks = await t.context.session.findElements(
+        By.css(`${ex.linkSelector}[aria-current="page"]`)
+      );
+
+      t.is(
+        ariaCurrentLinks.length,
+        1,
+        'after clicking link at index ' + l + ' on menu ' + b + ', only one link should have aria-current set'
+      );
+    }
+  }
+
 });
 
 // Keys
