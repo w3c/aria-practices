@@ -84,7 +84,6 @@ CalendarButtonInput.prototype.getDate = function () {
 };
 
 CalendarButtonInput.prototype.getDateLabel = function () {
-
   var label = '';
 
   var parts = this.inputNode.value.split('/');
@@ -108,6 +107,9 @@ CalendarButtonInput.prototype.handleFocus = function () {
 
   if (dateLabel) {
     this.setLabel('selected date is ' + dateLabel);
+  }
+  else {
+    this.setLabel('');
   }
 };
 
