@@ -142,7 +142,7 @@ ariaTest.failing('aria-selected on selected date', exampleFile, 'gridcell-button
 
   await setDateToJanFirst2019(t);
   await t.context.session.findElement(By.css(ex.buttonSelector)).click();
-  await assertAriaAttributeValue(t, ex.jan12019Button, 'aria-selected', true);
+  await assertAttributeValues(t, ex.jan12019Button, 'aria-selected', true);
 
   let selectedButtons = await t.context.session.findElements(
     By.css(`${ex.allDateButtons}[aria-selected="true"]`)
@@ -156,7 +156,7 @@ ariaTest.failing('aria-selected on selected date', exampleFile, 'gridcell-button
 
   await t.context.session.findElement(By.css(ex.jan22019Button)).click();
   await t.context.session.findElement(By.css(ex.buttonSelector)).click();
-  await assertAriaAttributeValue(t, ex.jan22019Button, 'aria-selected', true);
+  await assertAttributeValues(t, ex.jan22019Button, 'aria-selected', true);
 
   selectedButtons = await t.context.session.findElements(
     By.css(`${ex.allDateButtons}[aria-selected="true"]`)
