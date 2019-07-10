@@ -42,8 +42,8 @@
   background-color: #eee;
 }
 
-.datepicker-spinbuttons .spinbutton.focus .value,
-.datepicker-spinbuttons .spinbutton:hover .value {
+.datepicker-spinbuttons .spinbutton.focus [role="spinbutton"],
+.datepicker-spinbuttons .spinbutton:hover [role="spinbutton"] {
   background-color: #fff;
   color: black;
 }
@@ -62,7 +62,6 @@
   border: none;
   background-color: transparent;
 }
-
 
 .datepicker-spinbuttons .spinbutton .decrease svg polygon,
 .datepicker-spinbuttons .spinbutton .increase svg polygon {
