@@ -204,11 +204,10 @@
   <section>
     <h2 id="rps_label">Role, Property, State, and Tabindex  Attributes</h2>
 
-
     <section>
-      <h3 id="rps_label_7">Spin Button (Day, Month and Year)</h3>
-      <p>The spin button for changing day, month and year use the following ARIA attributes described in the <a href="../../#spinbutton">spin button design pattern.</a></p>
-      <table aria-labelledby="rps_label_7 rps_label" class="data attributes">
+      <h3 id="rps_label_1">Group</h3>
+      <p>The grouping role provides a means to identify the selected date to users of assistive technologies and to identify the three spin buttons as part of the same group of controls.</p>
+      <table aria-labelledby="rps_label_1 rps_label" class="data attributes">
         <thead>
           <tr>
             <th scope="col">Role</th>
@@ -224,7 +223,7 @@
             <td><code>div</code></td>
             <td>
               <ul>
-                <li>Identifies the group of spin buttons for defining a date.</li>
+                <li>Identifies the group of spin buttons for defining a date (e.g. day, month  and year).</li>
                 <li>The accessible name comes from the <code>aria-labelledby</code> attribute.</li>
               </ul>
             </td>
@@ -233,34 +232,32 @@
             <td></td>
             <th scope="row"><code>aria-labelledy="<em>IDREF</em>"</code></th>
             <td><code>div</code></td>
-            <td>The IDREF identifies the element with the visible text defining the accessible name for the group of spin buttons, i.e. "Date" and an off screen <code>div</code> element that contains the current date represented by the spin buttons.</td>
-          </tr>
-          <tr>
-            <th scope="row"><code>button</code></th>
-            <td></td>
-            <td><code>button</code></td>
             <td>
               <ul>
-                <li>The button element has the default role of <code>button</code>.</li>
-                <li>The buttons are used to increase or decrease values of the spin button using touch devices.</li>
-                <li>The accessible name comes from the <code>aria-label</code> attribute.</li>
+                <li>The IDREF identifies the element with the visible text defining the accessible name for the group of spin buttons, i.e. "Date".</li>
+                <li>A hidden <code>div</code> element is used to provides the accessible name content.</li>
+                <li>The label is updated to contain the selected date represented by the day, month and year spin buttons.</li>
               </ul>
             </td>
           </tr>
-          <tr data-test-id="button-aria-label">
-            <td></td>
-            <th scope="row"><code>aria-label="<em>name</em>"</code></th>
-            <td><code>button</code></td>
-            <td>Defines the accessible name for each increase and descrease button (e.g. <q>next day</q>, <q>previous day</q>, <q>next month</q>, <q>previous month</q>, <q>next year</q> and <q>previous year</q>).</td>
+        </tbody>
+      </table>
+    </section>
+
+
+    <section>
+      <h3 id="rps_label_2">Spin Button (Day, Month and Year)</h3>
+      <p>The spin button for changing day, month and year use the following ARIA attributes described in the <a href="../../#spinbutton">spin button design pattern.</a></p>
+      <table aria-labelledby="rps_label_2 rps_label" class="data attributes">
+        <thead>
+          <tr>
+            <th scope="col">Role</th>
+            <th scope="col">Attribute</th>
+            <th scope="col">Element</th>
+            <th scope="col">Usage</th>
           </tr>
-          <tr data-test-id="button-tabindex">
-            <td></td>
-            <th scope="row"><code>tabindex="-1"</code></th>
-            <td><code>button</code></td>
-            <td>
-              Setting <code>tabindex="-1</code> takes the decrement and increment button out of tab order, but they can still be accessed though touch events to change the value of the spin buttons.
-            </td>
-          </tr>
+        </thead>
+        <tbody>
           <tr data-test-id="spinbutton-role">
             <th scope="row"><code>spinbutton</code></th>
             <td></td>
@@ -334,6 +331,38 @@
         </tbody>
       </table>
     </section>
+
+    <section>
+      <h3 id="rps_label_3">Increment and Decrement Buttons (Day, Month and Year)</h3>
+      <p>Each spin button has a corresponding increment and decrement buttons for supporting accessibility on touch devices.   The buttons are not part of the tab order of the page or respond to keyboard commands, but still need to be described to assistive technologies.</p>
+      <table aria-labelledby="rps_label_3 rps_label" class="data attributes">
+        <thead>
+          <tr>
+            <th scope="col">Role</th>
+            <th scope="col">Attribute</th>
+            <th scope="col">Element</th>
+            <th scope="col">Usage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-test-id="button-aria-label">
+            <td></td>
+            <th scope="row"><code>aria-label="<em>name</em>"</code></th>
+            <td><code>button</code></td>
+            <td>Defines the accessible name for each increase and descrease button (e.g. <q>next day</q>, <q>previous day</q>, <q>next month</q>, <q>previous month</q>, <q>next year</q> and <q>previous year</q>).</td>
+          </tr>
+          <tr data-test-id="button-tabindex">
+            <td></td>
+            <th scope="row"><code>tabindex="-1"</code></th>
+            <td><code>button</code></td>
+            <td>
+              Setting <code>tabindex="-1</code> takes the decrement and increment buttons out of the tab order of the page, but they can still be accessed though pointer and touch events to change the value of the spin buttons.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
   </section>
 
   <section>

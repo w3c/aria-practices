@@ -145,6 +145,18 @@ ariaTest('"aria-label" provides accessible name for the spin buttons to screen r
 
 });
 
+ariaTest('"tabindex=-1" removes previous and next from the tab order of the page', exampleFile, 'button-tabindex', async (t) => {
+  t.plan(6);
+  await assertAttributeValues(t, ex.dayIncreaseSelector, 'tabindex', '-1');
+  await assertAttributeValues(t, ex.dayDecreaseSelector, 'tabindex', '-1');
+
+  await assertAttributeValues(t, ex.monthIncreaseSelector, 'tabindex', '-1');
+  await assertAttributeValues(t, ex.monthDecreaseSelector, 'tabindex', '-1');
+
+  await assertAttributeValues(t, ex.yearIncreaseSelector, 'tabindex', '-1');
+  await assertAttributeValues(t, ex.yearDecreaseSelector, 'tabindex', '-1');
+});
+
 ariaTest('"aria-label" provides accessible name for the previous and next buttons to screen reader users', exampleFile, 'button-aria-label', async (t) => {
   t.plan(6);
   await assertAttributeValues(t, ex.dayIncreaseSelector, 'aria-label', 'next day');
