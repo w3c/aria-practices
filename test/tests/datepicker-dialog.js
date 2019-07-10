@@ -3,6 +3,7 @@
 const { ariaTest } = require('..');
 const { By, Key } = require('selenium-webdriver');
 const assertAttributeValues = require('../util/assertAttributeValues');
+const assertAttributeDNE = require('../util/assertAttributeDNE');
 const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertAriaLabelExists = require('../util/assertAriaLabelExists');
 const assertAriaRoles = require('../util/assertAriaRoles');
@@ -21,7 +22,9 @@ const ex = {
   gridcellSelector: '#example [role="gridcell"]',
   controlButtons: '#example [role="dialog"] .header button',
   currentMonthDateButtons: '#example [role="dialog"] button.dateButton:not(.disabled)',
-  allDateButtons: '#example [role="dialog"] button.dateButton'
+  allDateButtons: '#example [role="dialog"] button.dateButton',
+  jan12019Button: '#example [role="dialog"] button[data-date="2019-01-01"]',
+  jan22019Button: '#example [role="dialog"] button[data-date="2019-01-02"]'
 };
 
 const clickFirstOfMonth = async function (t) {
@@ -44,12 +47,10 @@ const clickToday = async function (t) {
 
 const setDateToJanFirst2019 = async function (t) {
   await t.context.session.findElement(By.css(ex.inputSelector)).click();
-  await t.context.session.executeScript(function () {
+  return t.context.session.executeScript(function () {
     const inputSelector = arguments[0];
     document.querySelector(inputSelector).value = '1/1/2019';
   }, ex.inputSelector);
-
-  return t.context.session.findElement(By.css(ex.buttonSelector)).click();
 };
 
 
@@ -103,7 +104,8 @@ ariaTest('aria-labelledby on grid element', exampleFile, 'grid-aria-labelledby',
 });
 
 ariaTest('Roving tab index on dates in gridcell', exampleFile, 'gridcell-button-tabindex', async (t) => {
-  let daysInJan = await setDateToJanFirst2019(t);
+  await setDateToJanFirst2019(t);
+  await t.context.session.findElement(By.css(ex.buttonSelector)).click();
 
   let focusableButtons = await t.context.session.findElements(By.css(ex.currentMonthDateButtons));
   let allButtons = await t.context.session.findElements(By.css(ex.allDateButtons));
@@ -130,9 +132,41 @@ ariaTest('Roving tab index on dates in gridcell', exampleFile, 'gridcell-button-
   }
 });
 
-// ariaTest('', exampleFile, 'gridcell-button-aria-selected', async (t) => {
+ariaTest.failing('aria-selected on selected date', exampleFile, 'gridcell-button-aria-selected', async (t) => {
+  t.plan(1);
 
-// });
+  await t.context.session.findElement(By.css(ex.buttonSelector)).click();
+  await assertAttributeDNE(t, ex.allDateButtons, 'aria-selected');
+
+  await setDateToJanFirst2019(t);
+  await t.context.session.findElement(By.css(ex.buttonSelector)).click();
+  await assertAriaAttributeValue(t, ex.jan12019Button, 'aria-selected', true);
+
+  let selectedButtons = await t.context.session.findElements(
+    By.css(`${ex.allDateButtons}[aria-selected="true"]`)
+  );
+
+  t.is(
+    selectedButtons.length,
+    1,
+    'after setting date in box, only one button should have aria-selected'
+  );
+
+  await t.context.session.findElement(By.css(ex.jan22019Button)).click();
+  await t.context.session.findElement(By.css(ex.buttonSelector)).click();
+  await assertAriaAttributeValue(t, ex.jan22019Button, 'aria-selected', true);
+
+  selectedButtons = await t.context.session.findElements(
+    By.css(`${ex.allDateButtons}[aria-selected="true"]`)
+  );
+
+  t.is(
+    selectedButtons.length,
+    1,
+    'after clicking a date and re-opening datepicker, only one button should have aria-selected'
+  );
+
+});
 
 
 // Keyboard
