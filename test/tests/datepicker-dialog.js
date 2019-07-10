@@ -13,22 +13,51 @@ const exampleFile = 'dialog-modal/datepicker-dialog.html';
 
 const ex = {
   dialogSelector: '#example [role="dialog"]',
+  inputSelector: '#example input',
   buttonSelector: '#example button.icon',
   statusSelector: '#example [role="status"]',
+  messageSelector: '#example .message',
   gridSelector: '#example [role="grid"]',
-  gridcellSelector: '#example [role="gridcell"]'
+  gridcellSelector: '#example [role="gridcell"]',
+  controlButtons: '#example [role="dialog"] .header button',
+  currentMonthDateButtons: '#example [role="dialog"] button.dateButton:not(.disabled)',
+  allDateButtons: '#example [role="dialog"] button.dateButton'
 };
+
+const clickFirstOfMonth = async function (t) {
+  let today = new Date();
+  today.setUTCHours(0,0,0,0);
+
+  let firstOfMonth = new Date(today);
+  firstOfMonth.setDate(1);
+  let firstOfMonthString = today.toISOString().split('T')[0];
+
+  return t.context.session.findElement(By.css(`[data-date=${firstOfMonthString}]`)).click();
+};
+
+const clickToday = async function (t) {
+  let today = new Date();
+  today.setUTCHours(0,0,0,0);
+  let todayString = today.toISOString().split('T')[0];
+  return t.context.session.findElement(By.css(`[data-date=${todayString}]`)).click();
+};
+
+const setDateToJanFirst2019 = async function (t) {
+  await t.context.session.findElement(By.css(ex.inputSelector)).click();
+  await t.context.session.executeScript(function () {
+    const inputSelector = arguments[0];
+    document.querySelector(inputSelector).value = '1/1/2019';
+  }, ex.inputSelector);
+
+  return t.context.session.findElement(By.css(ex.buttonSelector)).click();
+};
+
 
 // Button Tests
 
 ariaTest('"aria-label" attribute on button', exampleFile, 'calendar-button-aria-label', async (t) => {
   t.plan(1);
   await assertAriaLabelExists(t,  ex.buttonSelector);
-});
-
-ariaTest('"aria-expanded" attribute on button', exampleFile, 'calendar-button-aria-label', async (t) => {
-  t.plan(1);
-  await assertAttributeValues(t,  ex.buttonSelector, 'aria-expanded', 'false');
 });
 
 // Dialog Tests
@@ -38,4 +67,123 @@ ariaTest('role="dialog" attribute on div', exampleFile, 'dialog-role', async (t)
   await assertAriaRoles(t, 'example', 'dialog', 1, 'div');
 });
 
+ariaTest('aria-modal="true" on modal', exampleFile, 'dialog-aria-modal', async (t) => {
+  t.plan(1);
+  await assertAttributeValues(t, ex.dialogSelector, 'aria-modal', 'true');
+});
 
+ariaTest('aria-labelledby exist on dialog', exampleFile, 'dialog-aria-labelledby', async (t) => {
+  t.plan(1);
+  await assertAriaLabelledby(t, ex.dialogSelector);
+});
+
+ariaTest('aria-live="polite" on keyboard support message', exampleFile, 'dialog-aria-live', async (t) => {
+  t.plan(1);
+  await assertAttributeValues(t, ex.messageSelector, 'aria-live', 'polite');
+});
+
+ariaTest('"aria-label" exists on control buttons', exampleFile, 'change-date-button-aria-label', async (t) => {
+  t.plan(1);
+  await assertAriaLabelExists(t, ex.controlButtons);
+});
+
+ariaTest('aria-live="polite" on dialog header', exampleFile, 'change-date-aria-live', async (t) => {
+  t.plan(1);
+  await assertAttributeValues(t, `${ex.dialogSelector} h2`, 'aria-live', 'polite');
+});
+
+ariaTest('grid role on table element', exampleFile, 'grid-role', async (t) => {
+  t.plan(1);
+  await assertAriaRoles(t, 'example', 'grid', 1, 'table');
+});
+
+ariaTest('aria-labelledby on grid element', exampleFile, 'grid-aria-labelledby', async (t) => {
+  t.plan(1);
+  await assertAriaLabelledby(t, ex.gridSelector);
+});
+
+ariaTest('Roving tab index on dates in gridcell', exampleFile, 'gridcell-button-tabindex', async (t) => {
+  let daysInJan = await setDateToJanFirst2019(t);
+
+  let focusableButtons = await t.context.session.findElements(By.css(ex.currentMonthDateButtons));
+  let allButtons = await t.context.session.findElements(By.css(ex.allDateButtons));
+
+  // test only one element has tabindex="0"
+  for (let tabableEl = 0; tabableEl < 30; tabableEl++) {
+    let dateSelected = await focusableButtons[tabableEl].getText();
+
+    for (let el = 0; el < allButtons.length; el++) {
+      let date = await allButtons[el].getText();
+      let disabled = (await allButtons[el].getAttribute('class')).includes('disabled');
+      let tabindex = dateSelected === date && !disabled ? '0' : '-1';
+
+      t.is(
+        await allButtons[el].getAttribute('tabindex'),
+        tabindex,
+        'focus is on day ' + (tabableEl + 1) + ' therefore the button number ' +
+           el + ' should have tab index set to: ' + tabindex
+      );
+    }
+
+    // Send the tabindex="0" element the appropriate key to switch focus to the next element
+    await focusableButtons[tabableEl].sendKeys(Key.ARROW_RIGHT);
+  }
+});
+
+// ariaTest('', exampleFile, 'gridcell-button-aria-selected', async (t) => {
+
+// });
+
+
+// Keyboard
+
+// ariaTest('', exampleFile, 'button-space-return-down-arrow', async (t) => {
+// });
+
+// ariaTest('', exampleFile, 'dialog-esc', async (t) => {
+// });
+
+// ariaTest('', exampleFile, 'dialog-tab', async (t) => {
+// });
+
+// ariaTest('', exampleFile, 'dialog-shift-tab', async (t) => {
+// });
+
+// ariaTest('', exampleFile, 'month-year-button-space-return', async (t) => {
+// });
+
+// ariaTest('', exampleFile, 'grid-space-return', async (t) => {
+// });
+
+// ariaTest('', exampleFile, 'grid-up-arrow', async (t) => {
+// });
+
+// ariaTest('', exampleFile, 'grid-down-arrow', async (t) => {
+// });
+
+// ariaTest('', exampleFile, 'grid-right-arrow', async (t) => {
+// });
+
+// ariaTest('', exampleFile, 'grid-left-arrow', async (t) => {
+// });
+
+// ariaTest('', exampleFile, 'grid-home', async (t) => {
+// });
+
+// ariaTest('', exampleFile, 'grid-end', async (t) => {
+// });
+
+// ariaTest('', exampleFile, 'grid-pageup', async (t) => {
+// });
+
+// ariaTest('', exampleFile, 'grid-shift=pageup', async (t) => {
+// });
+
+// ariaTest('', exampleFile, 'grid-pagedown', async (t) => {
+// });
+
+// ariaTest('', exampleFile, 'grid-shift-pagedown', async (t) => {
+// });
+
+// ariaTest('', exampleFile, 'okay-cancel-button-space-return', async (t) => {
+// });
