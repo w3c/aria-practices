@@ -160,7 +160,7 @@
           </li>
           <li>
             If implemented, the optional navigation keys supplement, but do not replace, tabbing among buttons and links.
-            Because screen readers typically stay in reading mode when interacting with this example, <kbd>Tab</kbd> is expected to navigate among interactive elements even if theoptional navigation keys are supported.
+            This is because the buttons and links are not contained by an element with a widget role, such as <code>grid</code>, that is expected to occupy only one stop in the page <kbd>Tab</kbd> sequence and manage focus for all its descendants.
           </li>
         </ol>
       </li>
