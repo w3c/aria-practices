@@ -75,8 +75,8 @@ CalendarButtonInput.prototype.setFocus = function () {
   this.buttonNode.focus();
 };
 
-CalendarButtonInput.prototype.setDate = function (month, day, year) {
-  this.inputNode.value = (month + 1) + '/' + day + '/' + year;
+CalendarButtonInput.prototype.setDate = function (day) {
+  this.inputNode.value = (day.getMonth() + 1) + '/' + day.getDate() + '/' + day.getFullYear();
 };
 
 CalendarButtonInput.prototype.getDate = function () {
