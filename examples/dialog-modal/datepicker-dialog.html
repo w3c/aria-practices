@@ -421,12 +421,12 @@
           <tbody>
             <tr data-test-id="calendar-button-aria-label">
               <td></td>
-              <th scope="row"><code>aria-label=<q><em>String</em></q></code></th>
+              <th scope="row"><code>aria-label="String"</code></th>
               <td><code>button</code></td>
               <td>
                 <ul>
                   <li>The initial value of accessible name is <q>Choose Date</q>.</li>
-                  <li>When user selected date, the accessible name will update to also include the selected date.</li>
+                  <li>When users select a date, the accessible name is updated to also include the selected date.</li>
                 </ul>
               </td>
             </tr>
@@ -452,37 +452,28 @@
                 <td>
                   <code>div</code>
                 </td>
-                <td>
-                  <ul>
-                    <li>Identifies <code>div</code> element as a dialog box container.</li>
-                    <li>The accessible name comes from the <code>aria-labelledby</code> attribute.</li>
-                  </ul>
-                </td>
+                <td>Identifies the element as a dialog .</td>
               </tr>
               <tr data-test-id="dialog-aria-modal">
                 <td></td>
-                <th scope="row"><code>aria-modal=<q>true</q></code></th>
+                <th scope="row"><code>aria-modal="true"</code></th>
                 <td><code>div</code></td>
-                <td>
-                  Identifies that dialog box as a modal dialog box.
-                </td>
+                <td>Indicates the dialog is modal.</td>
               </tr>
               <tr data-test-id="dialog-aria-labelledby">
                 <td></td>
-                <th scope="row"><code>aria-labelledby=<q>IDREFS</q></code></th>
+                <th scope="row"><code>aria-labelledby="IDREF"</code></th>
                 <td><code>div</code></td>
-                <td>
-                  Defines the accessible name for the dialog box.
-                </td>
+                <td>Refers to the heading containing the currently displayed month and year, which defines the accessible name for the dialog.</td>
               </tr>
               <tr data-test-id="dialog-aria-live">
                 <th></th>
-                <th scope="row"><code>aria-live=<q>polite</q></code></th>
+                <th scope="row"><code>aria-live="polite"</code></th>
                 <td><code>div</code></td>
                 <td>
                   <ul>
-                    <li>A live region to display information about the keyboard commands to navigate the grid of dates.</li>
-                    <li>The display of the information is slightly delayed so the screen reader reads it after information related to the change of focus.</li>
+                    <li>Indicates the element that displays information about keyboard commands for navigating the grid should be automatically announced by screen readers.</li>
+                    <li>The script slightly delays display of the information so screen readers are more likely to read it after information related to change of focus.</li>
                   </ul>
                 </td>
               </tr>
@@ -504,22 +495,20 @@
             <tbody>
                 <tr data-test-id="change-date-button-aria-label">
                     <td></td>
-                    <th scope="row"><code>aria-label=<q><em>String</em></q></code></th>
+                    <th scope="row"><code>aria-label="String"</code></th>
                     <td><code>button</code></td>
-                    <td>
-                      Defines the accessible name of the button (e.g. "Next Year").
-                    </td>
+                    <td>Defines the accessible name of the button (e.g. <q>Next Year</q>).</td>
                 </tr>
                 <tr data-test-id="change-date-aria-live">
                     <th></th>
-                    <th scope="row"><code>aria-live=<q>polite</q></code></th>
+                    <th scope="row"><code>aria-live="polite"</code></th>
                     <td>
                       <code>h2</code>
                     </td>
                     <td>
                       <ul>
                         <li>When the month and/or year changes the content of the <code>h2</code> element is updated.</li>
-                        <li>Identifies the <code>h2</code> element that contains the month and year of the grid of dates as a <code>polite</code> live region.</li>
+                        <li>Indicates the <code>h2</code> should be automatically announced by screen readers.</li>
                       </ul>
                     </td>
                   </tr>
@@ -527,126 +516,94 @@
           </table>
         </section>
 
-        <section>
-            <h3 id="rps_label_5">Date Picker Dialog: Date Grid</h3>
-            <table aria-labelledby="rps_label_5 rps_label" class="data attributes">
-              <thead>
-                <tr>
-                  <th scope="col">Role</th>
-                  <th scope="col">Attribute</th>
-                  <th scope="col">Element</th>
-                  <th scope="col">Usage</th>
-                </tr>
-              </thead>
-              <tbody>
-                  <tr data-test-id="grid-role">
-                    <th scope="row"><code>grid</code></th>
-                    <td></td>
-                    <td>
-                      <code>table</code>
-                    </td>
-                    <td>
-                      <ul>
-                        <li>Identifies the <code>table</code> element serving as the <code>grid</code> widget container.</li>
-                        <li>The accessible name comes from the <code>aria-labelledby</code> attribute.</li>
-                        <li>Since the <code>grid</code> role is applied to a <code>table</code> element, the <code>row</code>, <code>colheader</code>, and <code>gridcell</code> roles do not need to be specified because they are implied by <code>tr</code>, <code>th</code>, and <code>td</code> tags.</li>
-                      </ul>
-                    </td>
-                  </tr>
-                  <tr data-test-id="grid-aria-labelledby">
-                    <td></td>
-                    <th scope="row"><code>aria-labelledby=<q>IDREF</q></code></th>
-                    <td><code>table</code></td>
-                    <td>
-                      <ul>
-                        <li>Define the accessible name for the <code>grid</code> using month and year for the gird of dates.</li>
-                      </ul>
-                    </td>
-                  </tr>
-                  <tr data-test-id="test-not-required">
-                    <th scope="row"><code>row</code></th>
-                    <td></td>
-                    <td>
-                      <code>tr</code>
-                    </td>
-                    <td>
-                      The <code>tr</code> element has a default role of row.
-                    </td>
-                  </tr>
-                  <tr data-test-id="test-not-required">
-                    <th scope="row"><code>columnheader</code></th>
-                    <td></td>
-                    <td>
-                      <code>th</code>
-                    </td>
-                    <td>
-                      <ul>
-                        <li>The default role for a <code>th[scope="col"]</code> element is <code>columnheader</code>.</li>
-                        <li>The <code>abbr</code> attribute is used to provide the full spelling of the day of week to assistive technologies.</li>
-                      </ul>
-                    </td>
-                  </tr>
-                  <tr data-test-id="test-not-required">
-                    <th scope="row"><code>gridcell</code></th>
-                    <td></td>
-                    <td>
-                      <code>td</code>
-                    </td>
-                    <td>
-                      Since the <code>table</code> element has a <code>grid</code> role, all descendant <code>td</code> elements will have the role of <code>gridcell</code>.
-                    </td>
-                  </tr>
-                  <tr data-test-id="test-not-required">
-                    <th scope="row"><code>button</code></th>
-                    <td></td>
-                    <td>
-                      <code>td > button</code>
-                    </td>
-                    <td>
-                      <ul>
-                        <li>The <code>button</code> element is used to identify the dates in calendar <code>grid</code> and are a child of the <code>gridcell</code>.</li>
-                        <li>Accessible name for the button is the date which is defined by the text content of the <code>button</code> element.</li>
-                      </ul>
-                    </td>
-                  </tr>
-                  <tr data-test-id="gridcell-button-tabindex">
-                    <td></td>
-                    <th scope="row">
-                      <code>tabindex=<q>0</q></code>
-                    </th>
-                    <td>
-                      <code>td > button</code>
-                    </td>
-                    <td>
-                      Identify the selected date and make it part of tab sequence of the dialog box.
-                    </td>
-                  </tr>
-                  <tr data-test-id="gridcell-button-tabindex">
-                    <td></td>
-                    <th scope="row">
-                      <code>tabindex=<q>-1</q></code>
-                    </th>
-                    <td>
-                      <code>td > button</code>
-                    </td>
-                    <td>
-                      Exclude the button from tab sequence to support grid cell navigation.
-                    </td>
-                  </tr>
-                  <tr data-test-id="gridcell-button-aria-selected">
-                    <td></td>
-                    <th scope="row"><code>aria-selected=<q>true</q></code></th>
-                    <td><code>td > button</code></td>
-                    <td>
-                      <ul>
-                        <li>Identifies the selected date in the date input.</li>
-                        <li>The <code>aria-selected</code> attribute is only set on the button representing the date in the date input, all other buttons do not have an <code>aria-selected</code> attribute.</li>
-                      </ul>
-                    </td>
-                  </tr>
-              </tbody>
-            </table>
-          </section>
+    <section>
+      <h3 id="rps_label_5">Date Picker Dialog: Date Grid</h3>
+      <table aria-labelledby="rps_label_5 rps_label" class="data attributes">
+        <thead>
+          <tr>
+            <th scope="col">Role</th>
+            <th scope="col">Attribute</th>
+            <th scope="col">Element</th>
+            <th scope="col">Usage</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr data-test-id="grid-role">
+              <th scope="row"><code>grid</code></th>
+              <td></td>
+              <td>
+                <code>table</code>
+              </td>
+              <td>
+                <ul>
+                  <li>Identifies the <code>table</code> element as a <code>grid</code> widget.</li>
+                  <li>Since the <code>grid</code> role is applied to a <code>table</code> element, the <code>row</code>, <code>colheader</code>, and <code>gridcell</code> roles do not need to be specified because they are implied by <code>tr</code>, <code>th</code>, and <code>td</code> tags.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr data-test-id="grid-aria-labelledby">
+              <td></td>
+              <th scope="row"><code>aria-labelledby=<q>IDREF</q></code></th>
+              <td><code>table</code></td>
+              <td>
+                <ul>
+                  <li>Define the accessible name for the <code>grid</code> using the <code>h2</code> that shows the month and year of the dates displayed in the grid.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr data-test-id="gridcell-button-tabindex">
+              <td></td>
+              <th scope="row">
+                <code>tabindex="0"</code>
+              </th>
+              <td>
+                <code>button</code>
+              </td>
+              <td>
+                <ul>
+                  <li>Makes the button focusable and includes it in the dialog <kbd>Tab</kbd> sequence.</li>
+                  <li>Set dynamically by the JavaScript when the element is to be included in the dialog <kbd>Tab</kbd> sequence.</li>
+                  <li>At any given time, only one button within the grid is in the dialog <kbd>Tab</kbd> sequence.</li>
+                  <li>This approach to managing focus is described in the section on <a href="../../#kbd_roving_tabindex">roving tabindex</a>.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr data-test-id="gridcell-button-tabindex">
+              <td></td>
+              <th scope="row">
+                <code>tabindex="-1"</code>
+              </th>
+              <td>
+                <code>button</code>
+              </td>
+              <td>
+                <ul>
+                  <li>Makes the button focusable and excludes it from the dialog <kbd>Tab</kbd> sequence.</li>
+                  <li>Changed dynamically to <code>0</code> by the JavaScript when the button is to be included in the dialog <kbd>Tab</kbd> sequence.</li>
+                  <li>At any given time, only one button within the grid is in the dialog <kbd>Tab</kbd> sequence.</li>
+                  <li>This approach to managing focus is described in the section on <a href="../../#kbd_roving_tabindex">roving tabindex</a>.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr data-test-id="gridcell-button-aria-selected">
+              <td></td>
+              <th scope="row"><code>aria-selected="true"</code></th>
+              <td><code>button</code></td>
+              <td>
+                <ul>
+                  <li>Identifies the button for the currently selected date, i.e., the date value  present in the date input.</li>
+                  <li>Only set on the button representing the currently selected date, no other buttons have <code>aria-selected</code> specified.</li>
+                </ul>
+              </td>
+            </tr>
+        </tbody>
+      </table>
+      <p>
+        <strong>Note:</strong> Since the names of the days of the week in the column headers are abbreviated to two characters, they may be difficult to understand when announced by a screen reader.
+        An alternative column header name can be provided to screen readers by applying the <code>abbr</code> attribute to the <code>th</code> elements.
+        So, each <code>th</code> element includes a <code>abbr</code> attribute containing the full spelling of the name of the day for that column.
+      </p>
+    </section>
   </section>
 
   <section>
