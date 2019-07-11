@@ -221,11 +221,14 @@
         </thead>
         <tbody>
             <tr data-test-id="button-space-return-down-arrow">
-                <th><kbd>Space</kbd>,<br> <kbd>Return</kbd></th>
+                <th><kbd>Space</kbd>,<br><kbd>Enter</kbd></th>
                 <td>
                   <ul>
                     <li>Open the date picker dialog.</li>
-                    <li>Move focus to selected date, if no date has been selected the current date is used.</li>
+                    <li>
+                      Move focus to selected date, i.e., the date displayed in the date input text field.
+                      If no date has been selected, places focus on the current date.
+                    </li>
                 </ul>
               </td>
             </tr>
@@ -245,23 +248,25 @@
         <tbody>
             <tr data-test-id="dialog-esc">
               <th><kbd>ESC</kbd></th>
-              <td>Close the dialog and move focus back to the <q>Choose Date</q> button.</td>
+              <td>Closes the dialog and returns focus to the <q>Choose Date</q> button.</td>
             </tr>
             <tr data-test-id="dialog-tab">
-              <th><kbd>TAB</kbd></th>
+              <th><kbd>Tab</kbd></th>
               <td>
                 <ul>
-                  <li>Move focus to next button or grid inside the dialog.</li>
-                  <li>If on the last button (i.e. OK Button), moves button to the first button (i.e. Previous Year Button).</li>
+                  <li>Moves focus to next element in the dialog <kbd>Tab</kbd> sequence.</li>
+                  <li>Note that, as specified in the <a href="../../#grid">grid design pattern</a>, only one button in the calendar grid is in the <kbd>Tab</kbd> sequence.</li>
+                  <li>If focus is on the last button (i.e., <q>OK</q>), moves focus to the first button (i.e. <q>Previous Year</q>).</li>
                 </ul>
               </td>
             </tr>
             <tr data-test-id="dialog-shift-tab">
-              <th><kbd>Shift</kbd> + <br><kbd>TAB</kbd></th>
+              <th><kbd>Shift + Tab</kbd></th>
               <td>
                 <ul>
-                  <li>Move focus to previous button or grid inside the dialog.</li>
-                  <li>If on the first button (i.e. Previous Year Button), moves button to the first button (i.e. OK Button).</li>
+                  <li>Moves focus to previous element in the dialog <kbd>Tab</kbd> sequence.</li>
+                  <li>Note that, as specified in the <a href="../../#grid">grid design pattern</a>, only one button in the calendar grid is in the <kbd>Tab</kbd> sequence.</li>
+                  <li>If focus is on the first button (i.e., <q>Previous Year</q>), moves focus to the last button (i.e. <q>OK</q>).</li>
                 </ul>
               </td>
             </tr>
@@ -280,9 +285,9 @@
         </thead>
         <tbody>
             <tr data-test-id="month-year-button-space-return">
-              <th><kbd>Space</kbd>,<br> <kbd>Return</kbd></th>
+              <th><kbd>Space</kbd>,<br><kbd>Enter</kbd></th>
               <td>
-                Change the month and/or year for selecting a date from the grid or dates.
+                Change the month and/or year displayed in the calendar grid.
               </td>
             </tr>
         </tbody>
@@ -300,88 +305,72 @@
         </thead>
         <tbody>
           <tr data-test-id="grid-space-return">
-            <th><kbd>Space</kbd>,<br><kbd>Return</kbd></th>
+            <th><kbd>Space</kbd>,<br><kbd>Enter</kbd></th>
             <td>
               <ul>
-                <li>Select the date, close the dialog box and move focus to the <q>Choose Date</q> button.</li>
-                <li>The value of the date input is updated with the selected date in the from the selected date in the date grid.</li>
+                <li>Select the date, close the dialog, and move focus to the <q>Choose Date</q> button.</li>
+                <li>Update the value of the <q>Date</q> input with the selected date.</li>
+                <li>Update the accessible name of the <q>Choose Date</q> button to include the selected date.</li>
               </ul>
           </td>
           </tr>
           <tr data-test-id="grid-up-arrow">
             <th><kbd>Up Arrow</kbd></th>
-            <td>Move the focus to the same day of the previous week.</td>
+            <td>Moves focus to the same day of the previous week.</td>
           </tr>
           <tr data-test-id="grid-down-arrow">
             <th><kbd>Down Arrow</kbd></th>
-            <td>Move the focus to the same day of the next week.</td>
+            <td>Moves focus to the same day of the next week.</td>
           </tr>
           <tr data-test-id="grid-right-arrow">
             <th><kbd>Right Arrow</kbd></th>
-            <td>Move the focus to the next day.</td>
+            <td>Moves focus to the next day.</td>
           </tr>
           <tr data-test-id="grid-left-arrow">
             <th><kbd>Left Arrow</kbd></th>
-            <td>Move the focus to the previous day.</td>
+            <td>Moves focus to the previous day.</td>
           </tr>
           <tr data-test-id="grid-home">
             <th><kbd>Home</kbd></th>
-            <td>Move the focus to the first day (e.g Sunday) of the current week.</td>
+            <td>Moves focus to the first day (e.g Sunday) of the current week.</td>
           </tr>
           <tr data-test-id="grid-end">
             <th><kbd>End</kbd></th>
-            <td>Move the focus to the last day (e.g. Saturday) of the current week.</td>
+            <td>Moves focus to the last day (e.g. Saturday) of the current week.</td>
           </tr>
           <tr data-test-id="grid-pageup">
-            <th><kbd>PageUp</kbd></th>
+            <th><kbd>Page Up</kbd></th>
             <td>
               <ul>
-                <li>Change the gird of dates to the previous month.</li>
-                <li>The focus will be on the same day of that week, if it does not exist, then it will move the focus to the same day of previous or next week</li>
+                <li>Changes the grid of dates to the previous month.</li>
+                <li>Sets focus on the same day of the same week. If that day does not exist, then moves focus to the same day of the previous or next week.</li>
               </ul>
             </td>
           </tr>
           <tr data-test-id="grid-shift=pageup">
-            <th><kbd>Shift</kbd>+<br> <kbd>PageUp</kbd></th>
+            <th><kbd>Shift + Page Up</kbd></th>
             <td>
               <ul>
-                <li>Change the grid of dates to the previous Year.</li>
-                <li>The focus will be on the same day of that week, if it does not exist, then it will move the focus to the same day of previous or next week</li>
+                <li>Changes the grid of dates to the previous Year.</li>
+                <li>Sets focus on the same day of the same week. If that day does not exist, then moves focus to the same day of the previous or next week.</li>
               </ul>
             </td>
           </tr>
           <tr data-test-id="grid-pagedown">
-            <th><kbd>PageDown</kbd></th>
+            <th><kbd>Page Down</kbd></th>
             <td>
               <ul>
-                <li>Change the grid of dates to the next month.</li>
-                <li>The focus will be on the same day of that week, if it does not exist, then it will move the focus to the same day of previous or next week</li>
+                <li>Changes the grid of dates to the next month.</li>
+                <li>Sets focus on the same day of the same week. If that day does not exist, then moves focus to the same day of the previous or next week.</li>
               </ul>
             </td>
           </tr>
           <tr data-test-id="grid-shift-pagedown">
-            <th><kbd>Shift</kbd>+<br> <kbd>PageDown</kbd></th>
+            <th><kbd>Shift + Page Down</kbd></th>
             <td>
               <ul>
-                <li>Change the grid of dates to the next Year.</li>
-                <li>The focus will be on the same day of that week, if it does not exist, then it will move the focus to the same day of previous or next week</li>
-              </ul>
-            </td>
-          </tr>
-          <tr data-test-id="dialog-tab">
-            <th><kbd>TAB</kbd></th>
-            <td>Move focus to next button inside the dialog.</td>
-          </tr>
-          <tr data-test-id="dialog-shift-tab">
-            <th><kbd>Shift</kbd> +<br> <kbd>TAB</kbd></th>
-            <td>Move focus to previous button inside the dialog.</td>
-          </tr>
-          <tr data-test-id="dialog-esc">
-            <th><kbd>ESC</kbd></th>
-            <td>
-              <ul>
-                <li>Close the dialog and move focus back to <q>Choose Date</q> button.</li>
-                <li>The value of the date texbox is not updated.</li>
+                <li>Changes the grid of dates to the next Year.</li>
+                <li>Sets focus on the same day of the same week. If that day does not exist, then moves focus to the same day of the previous or next week.</li>
               </ul>
             </td>
           </tr>
@@ -400,11 +389,12 @@
           </thead>
           <tbody>
             <tr data-test-id="okay-cancel-button-space-return">
-              <th> <kbd>Space</kbd>,<br> <kbd>Return</kbd></th>
+              <th> <kbd>Space</kbd>,<br><kbd>enter</kbd></th>
               <td>
+                Activates the button:
                 <ul>
-                    <li>The Cancel button closes the date picker dialog, moves focus to <q>Choose Date</q> button, does not update date in date input.</li>
-                    <li>The OK button closes the date picker dialog, moves focus to <q>Choose Date</q> button, does update date in date input.</li>
+                    <li><q>Cancel</q>: Closes the dialog, moves focus to <q>Choose Date</q> button, does not update date in date input.</li>
+                    <li><q>OK</q>: Closes the dialog, moves focus to <q>Choose Date</q> button, updates date in date input.</li>
                 </ul>
               </td>
             </tr>
