@@ -22,8 +22,8 @@ var Carousel = function (domNode) {
   this.currentItem = null;
   this.pauseButton = null;
 
-  this.startLabel = 'Start automatic slide show';
-  this.stopLabel = 'Stop automatic slide show';
+  this.playLabel = 'Start automatic slide show';
+  this.pauseLabel = 'Stop automatic slide show';
 
   this.rotate = true;
   this.hasFocus = false;
@@ -34,12 +34,14 @@ var Carousel = function (domNode) {
 
 Carousel.prototype.init = function () {
 
+  var elems, elem, button, items, item, imageLinks, i;
+
   this.liveRegionNode = this.domNode.querySelector('.carousel-items');
 
-  var items = this.domNode.querySelectorAll('.carousel-item');
+  items = this.domNode.querySelectorAll('.carousel-item');
 
-  for (var i = 0; i < items.length; i++) {
-    var item = new CarouselItem(items[i], this);
+  for (i = 0; i < items.length; i++) {
+    item = new CarouselItem(items[i], this);
 
     item.init();
     this.items.push(item);
@@ -50,7 +52,7 @@ Carousel.prototype.init = function () {
     }
     this.lastItem = item;
 
-    var imageLinks = items[i].querySelectorAll('.carousel-image a');
+    imageLinks = items[i].querySelectorAll('.carousel-image a');
 
     if (imageLinks && imageLinks[0]) {
       imageLinks[0].addEventListener('focus', this.handleImageLinkFocus.bind(this));
@@ -59,26 +61,27 @@ Carousel.prototype.init = function () {
 
   }
 
-  // Next Slide and Previous Slide Buttons
+  // Pause, Next Slide and Previous Slide Buttons
 
-  var elems = document.querySelectorAll('.carousel a.carousel-control');
+  elems = document.querySelectorAll('.carousel .controls button');
 
-  for (var i = 0; i < elems.length; i++) {
-    if (elems[i].tagName.toLowerCase() == 'a') {
-      var button = new CarouselButton(elems[i], this);
+  for (i = 0; i < elems.length; i++) {
+    elem = elems[i];
 
-      button.init();
+    if (elem.classList.contains('rotation')) {
+      button = new PauseButton(elem, this);
+      this.pauseButton = elem;
+      this.pauseButton.classList.add('pause');
+      this.pauseButton.setAttribute('aria-label', this.pauseLabel);
     }
+    else {
+      button = new CarouselButton(elem, this);
+    }
+
+    button.init();
   }
 
   this.currentItem = this.firstItem;
-
-  this.pauseButton = this.domNode.parentNode.parentNode.querySelector('button.pause');
-  if (this.pauseButton) {
-    var button = new PauseButton(this.pauseButton, this);
-    button.init();
-    this.pauseButton.innerHTML = this.stopLabel;
-  }
 
   this.domNode.addEventListener('mouseover', this.handleMouseOver.bind(this));
   this.domNode.addEventListener('mouseout', this.handleMouseOut.bind(this));
@@ -151,42 +154,42 @@ Carousel.prototype.rotateSlides = function () {
   setTimeout(this.rotateSlides.bind(this), this.timeInterval);
 };
 
-Carousel.prototype.startRotation = function () {
+Carousel.prototype.updateRotation = function () {
+
   if (!this.hasHover && !this.hasFocus && !this.isStopped) {
     this.rotate = true;
     this.liveRegionNode.setAttribute('aria-live', 'off');
-    this.pauseButton.innerHTML = this.stopLabel;
-  }
-  this.disablePauseButton();
-};
-
-Carousel.prototype.stopRotation = function () {
-  this.rotate = false;
-  this.liveRegionNode.setAttribute('aria-live', 'polite');
-  this.pauseButton.innerHTML = this.startLabel;
-  this.disablePauseButton();
-};
-
-Carousel.prototype.disablePauseButton = function () {
-  if (this.hasHover || this.hasFocus) {
-    this.pauseButton.setAttribute('aria-disabled', 'true');
   }
   else {
-    this.pauseButton.removeAttribute('aria-disabled');
+    this.rotate = false;
+    this.liveRegionNode.setAttribute('aria-live', 'polite');
   }
+
+  if (this.isStopped) {
+    this.pauseButton.setAttribute('aria-label', this.playLabel);
+    this.pauseButton.classList.remove('pause');
+    this.pauseButton.classList.add('play');
+  }
+  else {
+    this.pauseButton.setAttribute('aria-label', this.pauseLabel);
+    this.pauseButton.classList.remove('play');
+    this.pauseButton.classList.add('pause');
+  }
+
 };
 
 Carousel.prototype.toggleRotation = function () {
   if (this.isStopped) {
-    if (this.pauseButton.getAttribute('aria-disabled') !== 'true') {
+    if (!this.hasHover && !this.hasFocus) {
       this.isStopped = false;
-      this.startRotation();
     }
   }
   else {
     this.isStopped = true;
-    this.stopRotation();
   }
+
+  this.updateRotation();
+
 };
 
 Carousel.prototype.handleImageLinkFocus = function () {
@@ -197,19 +200,21 @@ Carousel.prototype.handleImageLinkBlur = function () {
   this.liveRegionNode.classList.remove('focus');
 };
 
-Carousel.prototype.handleMouseOver = function () {
-  this.hasHover = true;
-  this.stopRotation();
+Carousel.prototype.handleMouseOver = function (event) {
+  if (!this.pauseButton.contains(event.target)) {
+    this.hasHover = true;
+  }
+  this.updateRotation();
 };
 
 Carousel.prototype.handleMouseOut = function () {
   this.hasHover = false;
-  this.startRotation();
+  this.updateRotation();
 };
 
 /* Initialize Carousel Tablists */
 
-window.addEventListener('load', function (event) {
+window.addEventListener('load', function () {
   var carousels = document.querySelectorAll('.carousel');
 
   for (var i = 0; i < carousels.length; i++) {
