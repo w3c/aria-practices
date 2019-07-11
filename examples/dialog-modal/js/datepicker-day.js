@@ -11,11 +11,7 @@ var DatePickerDay = function (domNode, datepicker, index, row, column) {
   this.row = row;
   this.column = column;
 
-  this.date = new Date();
-
-  this.year = -1;
-  this.month = -1;
-  this.day = -1;
+  this.day = new Date();
 
   this.domNode = domNode;
   this.datepicker = datepicker;
@@ -50,7 +46,7 @@ DatePickerDay.prototype.isDisabled = function () {
   return this.domNode.classList.contains('disabled');
 };
 
-DatePickerDay.prototype.updateDay = function (disable, year, month, day) {
+DatePickerDay.prototype.updateDay = function (disable, day) {
 
   if (disable) {
     this.domNode.classList.add('disabled');
@@ -59,32 +55,28 @@ DatePickerDay.prototype.updateDay = function (disable, year, month, day) {
     this.domNode.classList.remove('disabled');
   }
 
-  this.year = year;
-  this.month = month;
-  this.day = day;
+  this.day = new Date(day);
 
-  this.domNode.innerHTML = day;
+  this.domNode.innerHTML = this.day.getDate();
   this.domNode.setAttribute('tabindex', '-1');
   this.domNode.removeAttribute('aria-selected');
 
-  var d = day.toString();
-  if (day < 9) {
+  var d = this.day.getDate().toString();
+  if (this.day.getDate() < 9) {
     d = '0' + d;
   }
 
-  var m = (month + 1).toString();
-  if (month < 9) {
+  var m = this.day.getMonth() + 1;
+  if (this.day.getMonth() < 9) {
     m = '0' + m;
   }
 
-  this.domNode.setAttribute('data-date', year + '-' + m + '-' + d);
+  this.domNode.setAttribute('data-date', this.day.getFullYear() + '-' + m + '-' + d);
 
 };
 
 DatePickerDay.prototype.handleKeyDown = function (event) {
   var flag = false;
-  var onFirstRow = this.datepicker.onFirstRow();
-  var onLastRow = this.datepicker.onLastRow();
 
   switch (event.keyCode) {
 
@@ -103,7 +95,7 @@ DatePickerDay.prototype.handleKeyDown = function (event) {
 
     case this.keyCode.ENTER:
     case this.keyCode.SPACE:
-      this.datepicker.setTextboxDate();
+      this.datepicker.setTextboxDate(this.day);
       this.datepicker.hide();
       flag = true;
       break;
@@ -135,8 +127,6 @@ DatePickerDay.prototype.handleKeyDown = function (event) {
       else {
         this.datepicker.moveToPreviousMonth();
       }
-      this.datepicker.adjustCurrentDay(onFirstRow, onLastRow);
-      this.datepicker.setFocusDay();
       flag = true;
       break;
 
@@ -147,8 +137,6 @@ DatePickerDay.prototype.handleKeyDown = function (event) {
       else {
         this.datepicker.moveToNextMonth();
       }
-      this.datepicker.adjustCurrentDay(onFirstRow, onLastRow);
-      this.datepicker.setFocusDay();
       flag = true;
       break;
 
@@ -161,7 +149,6 @@ DatePickerDay.prototype.handleKeyDown = function (event) {
       this.datepicker.moveFocusToLastDayOfWeek();
       flag = true;
       break;
-
   }
 
   if (flag) {
@@ -172,13 +159,12 @@ DatePickerDay.prototype.handleKeyDown = function (event) {
 };
 
 DatePickerDay.prototype.handleMouseDown = function (event) {
-  this.datepicker.day = this.day;
 
   if (this.isDisabled()) {
-    this.datepicker.moveToDay(this.day, this.month, this.year);
+    this.datepicker.moveFocusToDay(this.date);
   }
   else {
-    this.datepicker.setTextboxDate();
+    this.datepicker.setTextboxDate(this.day);
     this.datepicker.hide();
   }
 
