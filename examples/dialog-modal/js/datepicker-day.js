@@ -11,6 +11,8 @@ var DatePickerDay = function (domNode, datepicker, index, row, column) {
   this.row = row;
   this.column = column;
 
+  this.date = new Date();
+
   this.year = -1;
   this.month = -1;
   this.day = -1;
@@ -61,11 +63,11 @@ DatePickerDay.prototype.updateDay = function (disable, year, month, day) {
   this.month = month;
   this.day = day;
 
-  this.domNode.innerHTML = day + 1;
+  this.domNode.innerHTML = day;
   this.domNode.setAttribute('tabindex', '-1');
   this.domNode.removeAttribute('aria-selected');
 
-  var d = (day + 1).toString();
+  var d = day.toString();
   if (day < 9) {
     d = '0' + d;
   }

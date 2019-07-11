@@ -40,7 +40,7 @@ var DatePicker = function (inputNode, buttonNode, dialogNode) {
 
   this.year = date.getFullYear();
   this.month = date.getMonth();
-  this.day = date.getDate() - 1;
+  this.day = date.getDate();
 
   this.daysInCurrentMonth = this.getDaysInMonth();
   this.daysInLastMonth = this.getDaysInLastMonth();
@@ -157,12 +157,12 @@ DatePicker.prototype.updateGrid = function (year, month) {
   var dayOfWeek = firstDayOfMonth.getDay();
 
   for (i = dayOfWeek - 1; i >= 0; i--) {
-    daysInLastMonth--;
     this.days[i].updateDay(true, lastYear, lastMonth, daysInLastMonth);
+    daysInLastMonth--;
   }
 
-  for (i = 0; i < this.daysInCurrentMonth; i++) {
-    var dpDay = this.days[dayOfWeek + i];
+  for (i = 1; i <= this.daysInCurrentMonth; i++) {
+    var dpDay = this.days[dayOfWeek + i - 1];
     dpDay.updateDay(false, year, month, i);
     if ((this.selectedDay.getFullYear() === year) &&
         (this.selectedDay.getMonth() === month) &&
@@ -181,8 +181,8 @@ DatePicker.prototype.updateGrid = function (year, month) {
     this.showLastRow();
   }
 
-  for (i = 0; i < remainingButtons; i++) {
-    this.days[dayOfWeek + this.daysInCurrentMonth + i].updateDay(true, nextYear, nextMonth, i);
+  for (i = 1; i <= remainingButtons; i++) {
+    this.days[dayOfWeek + this.daysInCurrentMonth + i - 1].updateDay(true, nextYear, nextMonth, i);
   }
 
 };
@@ -692,8 +692,8 @@ DatePicker.prototype.moveToDay = function (day, month, year) {
 DatePicker.prototype.moveFocusToNextDay = function () {
 
   this.day++;
-  if (this.daysInCurrentMonth <= this.day) {
-    this.day = 0;
+  if (this.daysInCurrentMonth < this.day) {
+    this.day = 1;
     this.moveToNextMonth();
   }
   this.setFocusDay();
@@ -712,16 +712,16 @@ DatePicker.prototype.moveFocusToNextWeek = function () {
 DatePicker.prototype.moveFocusToPreviousDay = function () {
 
   this.day--;
-  if (this.day < 0) {
+  if (this.day < 1) {
     this.moveToPreviousMonth();
-    this.day = this.daysInCurrentMonth - 1;
+    this.day = this.daysInCurrentMonth;
   }
   this.setFocusDay();
 };
 
 DatePicker.prototype.moveFocusToPreviousWeek = function () {
   this.day -= 7;
-  if (this.day < 0) {
+  if (this.day < 1) {
     this.day = this.daysInLastMonth + this.day;
     this.moveToPreviousMonth();
   }
@@ -732,7 +732,7 @@ DatePicker.prototype.moveFocusToFirstDayOfWeek = function () {
 
   this.day = this.day - this.currentDay.column;
 
-  if (this.day < 0) {
+  if (this.day < 1) {
     this.day = this.daysInLastMonth + this.day;
     this.moveToPreviousMonth();
   }
@@ -744,7 +744,7 @@ DatePicker.prototype.moveFocusToLastDayOfWeek = function () {
 
   this.day = this.day + (6 - this.currentDay.column);
 
-  if (this.daysInCurrentMonth <= this.day) {
+  if (this.daysInCurrentMonth < this.day) {
     this.day = this.day - this.daysInCurrentMonth;
     this.moveToNextMonth();
   }
@@ -765,8 +765,10 @@ DatePicker.prototype.getDateInput = function () {
       Number.isInteger(parseInt(parts[1])) &&
       Number.isInteger(parseInt(parts[2]))) {
     this.month = parseInt(parts[0]) - 1;
-    this.day = parseInt(parts[1]) - 1;
+    this.day = parseInt(parts[1]);
     this.year = parseInt(parts[2]);
+
+    this.selectedDay = new Date(this.year, this.month, this.day);
   }
   else {
     // If not a valid date (MM/DD/YY) initialize with todays date
@@ -774,13 +776,14 @@ DatePicker.prototype.getDateInput = function () {
 
     this.year = date.getFullYear();
     this.month = date.getMonth();
-    this.day = date.getDate() - 1;
+    this.day = date.getDate();
+
+    this.selectedDay = new Date(0,0,1);
   }
 
   this.daysInCurrentMonth = this.getDaysInMonth();
   this.daysInLastMonth = this.getDaysInLastMonth();
 
-  this.selectedDay = new Date(this.year, this.month, this.day);
 
 };
 
