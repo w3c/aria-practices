@@ -156,7 +156,7 @@ ariaTest('Roving tab index on dates in gridcell', exampleFile, 'gridcell-button-
 
 // This test failed due to issue: https://github.com/w3c/aria-practices/issues/1072
 // If you fix it, please remove ".failing"
-ariaTest.failing('aria-selected on selected date', exampleFile, 'gridcell-button-aria-selected', async (t) => {
+ariaTest('aria-selected on selected date', exampleFile, 'gridcell-button-aria-selected', async (t) => {
   t.plan(5);
 
   await t.context.session.findElement(By.css(ex.buttonSelector)).click();
@@ -164,7 +164,7 @@ ariaTest.failing('aria-selected on selected date', exampleFile, 'gridcell-button
 
   await setDateToJanFirst2019(t);
   await t.context.session.findElement(By.css(ex.buttonSelector)).click();
-  await assertAttributeValues(t, ex.jan12019Button, 'aria-selected', true);
+  await assertAttributeValues(t, ex.jan12019Button, 'aria-selected', 'true');
 
   let selectedButtons = await t.context.session.findElements(
     By.css(`${ex.allDateButtons}[aria-selected="true"]`)
@@ -178,7 +178,7 @@ ariaTest.failing('aria-selected on selected date', exampleFile, 'gridcell-button
 
   await t.context.session.findElement(By.css(ex.jan22019Button)).click();
   await t.context.session.findElement(By.css(ex.buttonSelector)).click();
-  await assertAttributeValues(t, ex.jan22019Button, 'aria-selected', true);
+  await assertAttributeValues(t, ex.jan22019Button, 'aria-selected', 'true');
 
   selectedButtons = await t.context.session.findElements(
     By.css(`${ex.allDateButtons}[aria-selected="true"]`)
