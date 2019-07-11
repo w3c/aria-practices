@@ -3721,7 +3721,6 @@
       <li>Describing:
         <ul>
           <li>Describing by referencing content with <code>aria-describedby</code>.</li>
-          <li>Describing by referencing content with <code>aria-details</code>.</li>
           <li>Describing tables and figures with captions.</li>
           <li>Descriptions derived from titles.</li>
         </ul>
@@ -5084,33 +5083,6 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
 &lt;/p></code></pre>
         </section>
 
-        <section id="describing_with_aria-details">
-          <h5>Describing by referencing content with <code>aria-details</code></h5>
-          <p>
-            In some cases, a plain text description is insufficient.
-            The <a href="#aria-details" class="property-reference">aria-details</a> property can be used in such situations.
-            In the following example, a text field for a passenger’s name (when booking a flight) has a description that is a list of three items, and contains a link to an external document with further details.
-          </p>
-
-          <pre><code>&lt;ul id="full-name-desc">
-  &lt;li>The passenger's name must match the name in their passport.&lt;/li>
-  &lt;li>The name must consist of only characters in the A-Z range.&lt;/li>
-  &lt;li>&lt;a href="faq.html#name">What if the name in the passport contains other characters?&lt;/a>&lt;/li>
-&lt;/ul>
-&lt;fieldset>
-  &lt;legend>Passenger 1 (adult)&lt;/legend>
-  &lt;p>
-    &lt;label>Full name &lt;input name="full-name" aria-details="full-name-desc">&lt;/label>
-  &lt;/p>
-  ...
-&lt;/fieldset></code></pre>
-
-          <p>
-            If both <code>aria-details</code> and <code>aria-describedby</code> are specified on an element, browsers ignore the <code>aria-describedby</code> value when calculating the accessible description.
-            Specifying both is potentially useful if there is a need to provide a fallback description for browsers and assistive technologies that do not yet support <code>aria-details</code>.
-          </p>
-        </section>
-
         <section id="describing_with_captions">
           <h5>Describing Tables and Figures with Captions</h5>
           <p>
@@ -5146,8 +5118,8 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
 
         <section id="describing_with_title">
           <h5>Descriptions Derived from Titles</h5>
-          <p>If the <code>aria-details</code> attribute is not used, and an accessible description was not provided using the <code>aria-describedby</code> attribute or one of the primary host-language-specific attributes or elements (e.g., the <code>caption</code> element for <code>table</code>), then, for HTML, if the element has a <code>title</code> attribute, that is used as the accessible description.</p>
-          <p>A visible description together with <code>aria-describedby</code> or <code>aria-details</code> is generally recommended. If a description that is not visible is desired, then the <code>title</code> attribute can be used, for any HTML element that can have an accessible description.</p>
+          <p>If an accessible description was not provided using the <code>aria-describedby</code> attribute or one of the primary host-language-specific attributes or elements (e.g., the <code>caption</code> element for <code>table</code>), then, for HTML, if the element has a <code>title</code> attribute, that is used as the accessible description.</p>
+          <p>A visible description together with <code>aria-describedby</code> is generally recommended. If a description that is not visible is desired, then the <code>title</code> attribute can be used, for any HTML element that can have an accessible description.</p>
           <p>Note that the <code>title</code> attribute might not be accessible to some users, in particular sighted users not using a screen reader and not using a pointing device that supports hover (e.g., a mouse).</p>
           <p>For example, an <code>input</code> element with input constrained using the <code>pattern</code> attribute can use the <code>title</code> attribute to describe what the expected input is.</p>
           <pre><code>&lt;label> Part number:
@@ -5168,14 +5140,13 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
         <h4>Accessible description calculation</h4>
         <p>
           Like the <a href="#name_calculation">accessible name calculation</a>, the accessible description calculation produces a text string.
-          However, there is one exception: when an element is described using the <code>aria-details</code> attribute the assistive technology is provided with a reference instead of constructing a flattened string.
         </p>
         <p>
           The accessible description calculation algorithm is the same as the accessible name calculation algorithm except for a few branch points that depend on whether a name or description is being calculated.
           In particular, when accumulating text for an accessible description, the algorithm uses <code>aria-describedby</code> instead of <code>aria-labelledby</code>.
         </p>
         <p>
-          When <code>aria-details</code> is <em>not</em> used, user agents construct an accessible description string for an element by walking through a list of potential description methods and using the first that generates a description.
+          User agents construct an accessible description string for an element by walking through a list of potential description methods and using the first that generates a description.
           The algorithm they follow is defined in the <a href="" class="accname">accessible name specification</a>.
           It is roughly like the following:
         </p>
