@@ -41,8 +41,6 @@ var DatePicker = function (inputNode, buttonNode, dialogNode) {
   this.focusDay = new Date();
   this.selectedDay = new Date(0,0,1);
 
-  this.currentDay = null;
-
   this.isMouseDownOnBackground = false;
 
   this.keyCode = Object.freeze({
@@ -128,7 +126,9 @@ DatePicker.prototype.updateGrid = function () {
   for (i = 0; i < this.days.length; i++) {
     flag = d.getMonth() != fd.getMonth();
     this.days[i].updateDay(flag, d);
-    if (d == this.selectedDay) {
+    if ((d.getFullYear() == this.selectedDay.getFullYear()) &&
+        (d.getMonth() == this.selectedDay.getMonth()) &&
+        (d.getDate() == this.selectedDay.getDate())) {
       this.days[i].domNode.setAttribute('aria-selected', 'true');
     }
     d.setDate(d.getDate() + 1);
@@ -161,7 +161,6 @@ DatePicker.prototype.setFocusDay = function (flag) {
     if ((d.day.getDate()  == fd.getDate()) &&
         (d.day.getMonth() == fd.getMonth()) &&
         (d.day.getFullYear() == fd.getFullYear())) {
-      this.currentDay = d;
       d.domNode.setAttribute('tabindex', '0');
       if (flag) {
         d.domNode.focus();
