@@ -136,16 +136,16 @@
       <ul>
         <li>
           The three spin buttons are wrapped in a group to help assistive technology users understand that all three elements together represent a date.
-          The group is named by a hidden <code>div</code> that includes a date string that reflects the current settings of the three spin buttons.
+          The accessible name for the group includes a hidden <code>div</code> that contains a date string that reflects the current values of the three spin buttons.
           This enables screen reader users to easily perceive the date represented by the three buttons without having to navigate to all three buttons and remember the value of each one; it is the screen reader user equivalent to seeing the date at a glance.
         </li>
         <li>The day spin button uses <code>aria-valuetext</code> to properly pronounce the day. e.g. first, second, third ...</li>
         <li>The month spin button uses <code>aria-valuetext</code> to properly pronounce the month instead of the numeric value. e.g. January, February, ...</li>
-        <li>The increase and decrease events are the <code>div</code> element containing the images of the up and down arrows, making the effective target area larger for changing the value of a spin button with a mouse or other pointing device.</li>
+        <li>On hover, the up and down arrow images enlarge slightly, enlarging the effective target area for increasing or decreasing the spin button value.</li>
         <li>Focusing a spin button enlarges the increase and decrease buttons to make perceiving keyboard focus easier.</li>
         <li>
           The increase and decrease buttons are not contained within the <code>div</code> with role <code>spinbutton</code> so they can be separately focusable by users of touch screen readers.
-          However, they are excluded from the page <kbd>Tab</kbd> sequence with <code>tabindex="-1"</code>.
+          However, they are excluded from the page <kbd>Tab</kbd> sequence with <code>tabindex="-1"</code> because they are redundant with the arrow key support provided to keyboard users.
         </li>
       </ul>
     </section>
