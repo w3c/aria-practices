@@ -133,17 +133,23 @@
 
     <section>
       <h2>Accessibility Features</h2>
-      <p>The accessibility featues of the spin button date picker example:</p>
       <ul>
-        <li>Day, month and year are separate spin buttons, each with their own tab stop.</li>
-        <li>A off screen <code>div</code> element is used to include the current date in the accessible name for the element with the <code>group</code> role.  The group label is typically read by the screen reader when focus or the virtual cursor moves to one of the spin controls.</li>
+        <li>
+          The three spin buttons are wrapped in a group to help assistive technology users understand that all three elements together represent a date.
+          The group is named by a hidden <code>div</code> that includes a date string that reflects the current settings of the three spin buttons.
+          This enables screen reader users to easily perceive the date represented by the three buttons without having to navigate to all three buttons and remember the value of each one; it is the screen reader user equivalent to seeing the date at a glance.
+        </li>
         <li>The day spin button uses <code>aria-valuetext</code> to properly pronounce the day. e.g. first, second, third ...</li>
         <li>The month spin button uses <code>aria-valuetext</code> to properly pronounce the month instead of the numeric value. e.g. January, February, ...</li>
-        <li>The increase and decrease events are the <code>div</code> element containing the images of the up and odwn arrows, making the effective target area larger for changing the value of a spin button with a mouse or other pointing device.</li>
-        <li>Focusing a spin button increases the size of the increase and decrease buttons to make the element with focus easier to identify and to track focus changes.</li>
-        <li>The increase and decrease buttons are used to support touch device accessibility and are removed from tab order using <code>tabindex="-1"</code>.</li>
+        <li>The increase and decrease events are the <code>div</code> element containing the images of the up and down arrows, making the effective target area larger for changing the value of a spin button with a mouse or other pointing device.</li>
+        <li>Focusing a spin button enlarges the increase and decrease buttons to make perceiving keyboard focus easier.</li>
+        <li>
+          The increase and decrease buttons are not contained within the <code>div</code> with role <code>spinbutton</code> so they can be separately focusable by users of touch screen readers.
+          However, they are excluded from the page <kbd>Tab</kbd> sequence with <code>tabindex="-1"</code>.
+        </li>
       </ul>
     </section>
+    
   <section>
     <h2 id="kbd_label">Keyboard Support</h2>
 
