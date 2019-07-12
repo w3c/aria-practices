@@ -32,100 +32,104 @@
       The following example uses the <a href="../../#spinbutton">Spin Button Design Pattern</a> to implement a date picker.
       It includes three spin buttons: one for setting the day, a second for month, and a third for year.
     </p>
-  <section>
-    <h2 id="ex_label">Example</h2>
-
-    <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
-    <div id="example">
-
-      <div id="example-group"
-           class="datepicker-spinbuttons"
-           role="group"
-           aria-labelledby="myDatepickerLabel myDatepickerDate">
-
-           <h3 id="myDatepickerLabel">Date</h3>
-           <div class="date" hidden id="myDatepickerDate">current value is Friday, June 30th, 2019</div>
-
-        <div  class="day spinbutton"
->         <button class="decrease"
-                tabindex="-1"
-                aria-label="previous day">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
-                <polygon points="2,18 18,18 10,4"></polygon>
-            </svg>
-          </button>
-          <div  class="previous" aria-hidden="true">30</div>
-          <div  role="spinbutton"
-                tabindex="0"
-                aria-valuenow="1"
-                aria-valuetext="first"
-                aria-valuemin="1"
-                aria-valuemax="31"
-                aria-label="Day">1</div>
-          <div class="next" aria-hidden="true">2</div>
-          <button class="increase"
-                tabindex="-1"
-                aria-label="next day">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
-              <polygon points="2,4 18,4 10,18"></polygon>
-            </svg>
-          </button>
-        </div>
-
-        <div  class="month spinbutton">
-          <button class="decrease"
-                tabindex="-1"
-                aria-label="previous month">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
-                <polygon points="2,18 18,18 10,4"></polygon>
-            </svg>
-          </button>
-          <div  class="previous" aria-hidden="true">May</div>
-          <div  role="spinbutton"
-                tabindex="0"
-                aria-valuenow="5"
-                aria-valuetext="June"
-                aria-valuemin="0"
-                aria-valuemax="11"
-                aria-label="Month">June</div>
-          <div class="next" aria-hidden="true">July</div>
-          <button class="increase"
-                tabindex="-1"
-                aria-label="next month">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
-              <polygon points="2,4 18,4 10,18"></polygon>
-            </svg>
-          </button>
-        </div>
-
-        <div  class="year spinbutton">
-          <button class="decrease"
-                tabindex="-1"
-                aria-label="previous year">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
-                <polygon points="2,18 18,18 10,4"></polygon>
-            </svg>
-          </button>
-          <div class="previous" aria-hidden="true">2018</div>
+    <p>Similar examples include:</p>
+    <ul>
+      <li><a href="../toolbar/toolbar.html">Toolbar Example</a>: A toolbar that contains a spin button for setting font size.</li>
+      <li><a href="../dialog-modal/datepicker-dialog.html">Date Picker Dialog Example</a>: Demonstrates a dialog containing a calendar grid for choosing a date.</li>
+    </ul>
+    <section>
+      <h2 id="ex_label">Example</h2>
+      <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
+      <div id="example">
+  
+        <div id="example-group"
+             class="datepicker-spinbuttons"
+             role="group"
+             aria-labelledby="myDatepickerLabel myDatepickerDate">
+  
+             <h3 id="myDatepickerLabel">Date</h3>
+             <div class="date" hidden id="myDatepickerDate">current value is Friday, June 30th, 2019</div>
+  
+          <div  class="day spinbutton"
+  >         <button class="decrease"
+                  tabindex="-1"
+                  aria-label="previous day">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
+                  <polygon points="2,18 18,18 10,4"></polygon>
+              </svg>
+            </button>
+            <div  class="previous" aria-hidden="true">30</div>
             <div  role="spinbutton"
                   tabindex="0"
-                  aria-valuenow="2019"
-                  aria-valuemin="2019"
-                  aria-valuemax="2040"
-                  aria-label="Year">2019</div>
-          <div class="next" aria-hidden="true">2020</div>
-          <button class="increase"
-                tabindex="-1"
-                aria-label="next year">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
-              <polygon points="2,4 18,4 10,18"></polygon>
-            </svg>
-          </button>
+                  aria-valuenow="1"
+                  aria-valuetext="first"
+                  aria-valuemin="1"
+                  aria-valuemax="31"
+                  aria-label="Day">1</div>
+            <div class="next" aria-hidden="true">2</div>
+            <button class="increase"
+                  tabindex="-1"
+                  aria-label="next day">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
+                <polygon points="2,4 18,4 10,18"></polygon>
+              </svg>
+            </button>
+          </div>
+  
+          <div  class="month spinbutton">
+            <button class="decrease"
+                  tabindex="-1"
+                  aria-label="previous month">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
+                  <polygon points="2,18 18,18 10,4"></polygon>
+              </svg>
+            </button>
+            <div  class="previous" aria-hidden="true">May</div>
+            <div  role="spinbutton"
+                  tabindex="0"
+                  aria-valuenow="5"
+                  aria-valuetext="June"
+                  aria-valuemin="0"
+                  aria-valuemax="11"
+                  aria-label="Month">June</div>
+            <div class="next" aria-hidden="true">July</div>
+            <button class="increase"
+                  tabindex="-1"
+                  aria-label="next month">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
+                <polygon points="2,4 18,4 10,18"></polygon>
+              </svg>
+            </button>
+          </div>
+  
+          <div  class="year spinbutton">
+            <button class="decrease"
+                  tabindex="-1"
+                  aria-label="previous year">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
+                  <polygon points="2,18 18,18 10,4"></polygon>
+              </svg>
+            </button>
+            <div class="previous" aria-hidden="true">2018</div>
+              <div  role="spinbutton"
+                    tabindex="0"
+                    aria-valuenow="2019"
+                    aria-valuemin="2019"
+                    aria-valuemax="2040"
+                    aria-label="Year">2019</div>
+            <div class="next" aria-hidden="true">2020</div>
+            <button class="increase"
+                  tabindex="-1"
+                  aria-label="next year">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20">
+                <polygon points="2,4 18,4 10,18"></polygon>
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
-    </div>
-    <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
-  </section>
+      <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
+    </section>
 
   <section>
     <h2>Accessibility Features</h2>
