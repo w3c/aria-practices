@@ -29,7 +29,7 @@ var FontMenuItem = function (domNode, fontMenu) {
 
   this.keyCode = Object.freeze({
     'TAB': 9,
-    'RETURN': 13,
+    'ENTER': 13,
     'ESC': 27,
     'SPACE': 32,
     'PAGEUP': 33,
@@ -86,7 +86,7 @@ FontMenuItem.prototype.handleKeydown = function (event) {
 
     switch (event.keyCode) {
       case this.keyCode.SPACE:
-      case this.keyCode.RETURN:
+      case this.keyCode.ENTER:
         this.handleClick(event);
         flag = true;
         break;

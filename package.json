@@ -15,7 +15,7 @@
     "lint:html": "npm run vnu-jar",
     "regression": "ava test/tests",
     "regression-report": "node test/util/report",
-    "test": "npm run lint && npm run vnu-jar && npm run regression",
+    "test": "npm run lint && npm run regression",
     "vnu-jar": "java -jar node_modules/vnu-jar/build/dist/vnu.jar --errors-only --filterfile .vnurc --no-langdetect --skip-non-html *.html examples/"
   },
   "repository": {
