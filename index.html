@@ -3712,11 +3712,6 @@ var[data-type]:hover::before {
 
     <section class="widget" id="treegrid">
       <h3 id="x3-26-treegrid"><bdi class="secno">3.26 </bdi>Treegrid<a class="self-link" aria-label="§" href="#treegrid"></a></h3>
-      <div class="note" id="issue-container-generatedID-30"><div role="heading" class="ednote-title marker" id="h-ednote" aria-level="4"><span>Editor's note</span></div><p class="">
-        This pattern is new in APG 1.1 Release 2.
-        Please provide feedback in
-        <a href="https://github.com/w3c/aria-practices/issues/793">issue 793.</a>
-      </p></div>
         <p>
           A <a href="https://w3c.github.io/aria/#treegrid" class="role-reference">treegrid</a> widget presents a hierarchical data grid consisting of tabular information that is editable or interactive.
           Any row in the hierarchy may have child rows, and rows with children may be expanded or collapsed to show or hide the children.
@@ -3831,7 +3826,7 @@ var[data-type]:hover::before {
               </ul>
           </li>
         </ul>
-        <div class="note" role="note" id="issue-container-generatedID-31"><div role="heading" class="note-title marker" id="h-note-30" aria-level="5"><span>Note</span></div><ul class="">
+        <div class="note" role="note" id="issue-container-generatedID-30"><div role="heading" class="note-title marker" id="h-note-30" aria-level="5"><span>Note</span></div><ul class="">
           <li>
             When the above <code>treegrid</code> navigation keys move focus, whether the focus is set on an element inside the cell or on the cell depends on cell content.
             See <a href="#gridNav_focus">Whether to Focus on a Cell or an Element Inside It</a>.
@@ -3888,7 +3883,7 @@ var[data-type]:hover::before {
             </ul>
           </li>
         </ul>
-        <div class="note" role="note" id="issue-container-generatedID-32"><div role="heading" class="note-title marker" id="h-note-31" aria-level="5"><span>Note</span></div><p class="">See <a href="#kbd_common_conventions" class="sec-ref">§&nbsp;<bdi class="secno">6.8 </bdi>Key Assignment Conventions for Common Functions</a> for cut, copy, and paste key assignments.</p></div>
+        <div class="note" role="note" id="issue-container-generatedID-31"><div role="heading" class="note-title marker" id="h-note-31" aria-level="5"><span>Note</span></div><p class="">See <a href="#kbd_common_conventions" class="sec-ref">§&nbsp;<bdi class="secno">6.8 </bdi>Key Assignment Conventions for Common Functions</a> for cut, copy, and paste key assignments.</p></div>
       </section>
 
       <section id="treegrid_roles_states_props" class="notoc">
@@ -3937,7 +3932,7 @@ var[data-type]:hover::before {
           </li>
           <li>If the treegrid includes cells that span multiple rows or multiple columns, and if the <code>treegrid</code> role is NOT applied to an HTML <code>table</code> element, then <a href="https://w3c.github.io/aria/#aria-rowspan" class="property-reference">aria-rowspan</a> or <a href="https://w3c.github.io/aria/#aria-colspan" class="property-reference">aria-colspan</a> is applied as described in <a href="#gridAndTableProperties">grid and table properties</a>.</li>
         </ul>
-        <div class="note" role="note" id="issue-container-generatedID-33"><div role="heading" class="note-title marker" id="h-note-32" aria-level="5"><span>Note</span></div><ul class="">
+        <div class="note" role="note" id="issue-container-generatedID-32"><div role="heading" class="note-title marker" id="h-note-32" aria-level="5"><span>Note</span></div><ul class="">
           <li>
             A <code>treegrid</code> built from an HTML <code>table</code> that includes cells that span multiple rows or columns must use HTML <code>rowspan</code> and <code>colspan</code> and must not use <code>aria-rowspan</code> or <code>aria-colspan</code>.
           </li>
@@ -3995,7 +3990,7 @@ var[data-type]:hover::before {
           <li><kbd>End</kbd> (Optional): Moves splitter to the position that gives the primary pane its largest allowed size. This may completely collapse the secondary pane.</li>
           <li><kbd>F6</kbd> (Optional): Cycle through window   panes.</li>
         </ul>
-        <div class="note" role="note" id="issue-container-generatedID-34"><div role="heading" class="note-title marker" id="h-note-33" aria-level="5"><span>Note</span></div><p class="">A fixed size splitter omits implementation of the arrow keys.</p></div>
+        <div class="note" role="note" id="issue-container-generatedID-33"><div role="heading" class="note-title marker" id="h-note-33" aria-level="5"><span>Note</span></div><p class="">A fixed size splitter omits implementation of the arrow keys.</p></div>
       </section>
       <section class="notoc">
         <h4 id="wai-aria-roles-states-and-properties-25"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Roles, States, and Properties<a class="self-link" aria-label="§" href="#wai-aria-roles-states-and-properties-25"></a></h4>
@@ -4614,7 +4609,7 @@ However, most authors do not need such detailed understanding of the algorithms 
     <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">li</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">ul</span>&gt;</span></code></pre>
-          <div class="warning" id="issue-container-generatedID-35"><div role="heading" class="warning-title marker" id="h-warning" aria-level="6"><span>Warning</span></div><p class="">
+          <div class="warning" id="issue-container-generatedID-34"><div role="heading" class="warning-title marker" id="h-warning" aria-level="6"><span>Warning</span></div><p class="">
             If an element with one of the above roles that supports naming from child content is named by using <code>aria-label</code> or <code>aria-labelledby</code>, content contained in the element and its descendants is hidden from assistive technology users unless the descendant content is referenced by <code>aria-labelledby</code>.
             It is strongly recommended to avoid using either of these attributes to override content of one of the above elements except in rare circumstances where hiding content from assistive technology users is beneficial.
             In addition, in situations where visible content is hidden from assistive technology users by use of one of these attributes, thorough testing with assistive technologies is particularly important.
@@ -4643,7 +4638,7 @@ However, most authors do not need such detailed understanding of the algorithms 
           <p>
             When encountering this navigation region, a screen reader user will hear the name and role of the element, e.g., "Product navigation region", and then be able to read through the links contained in the region.
           </p>
-          <div class="warning" id="issue-container-generatedID-36"><div role="heading" class="warning-title marker" id="h-warning-0" aria-level="6"><span>Warning</span></div><ol class="">
+          <div class="warning" id="issue-container-generatedID-35"><div role="heading" class="warning-title marker" id="h-warning-0" aria-level="6"><span>Warning</span></div><ol class="">
             <li>
           If <code>aria-label</code> is applied to an element with one of the roles that supports <a href="#naming_with_child_content">naming from child content</a>, content contained in the element and its descendants is hidden from assistive technology users.
           It is strongly recommended to avoid using <code>aria-label</code> to override content of one of these elements except in rare circumstances where hiding content from assistive technology users is beneficial.
@@ -4698,7 +4693,7 @@ However, most authors do not need such detailed understanding of the algorithms 
           <pre><code aria-busy="false" class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"download-button"</span> <span class="hljs-attr">aria-labelledby</span>=<span class="hljs-string">"download-button download-details"</span>&gt;</span>Download<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">id</span>=<span class="hljs-string">"download-details"</span>&gt;</span>PDF, 2.4 MB<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></code></pre>
           <p>In the above example, the accessible name of the button will be "Download PDF, 2.4 MB", with a space between "Download" and "PDF", and not "DownloadPDF, 2.4 MB".</p>
-          <div class="warning" id="issue-container-generatedID-37"><div role="heading" class="warning-title marker" id="h-warning-1" aria-level="6"><span>Warning</span></div><ol class="">
+          <div class="warning" id="issue-container-generatedID-36"><div role="heading" class="warning-title marker" id="h-warning-1" aria-level="6"><span>Warning</span></div><ol class="">
             <li>The <code>aria-labelledby</code> property cannot be chained, i.e., if an element with <code>aria-labelledby</code> references another element that also has <code>aria-labelledby</code>, the <code>aria-labelledby</code> attribute on the referenced element will be ignored.</li>
             <li>If an element is referenced by <code>aria-labelledby</code> more than one time during a name calculation, the second and any subsequent references will be ignored.</li>
             <li>There are certain types of elements, such as paragraphs and list items,  that should not be named with <code>aria-labelledby</code>. They are identified in the table in the <a href="#naming_role_guidance">Accessible Name Guidance by Role</a> section.</li>
@@ -6456,7 +6451,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
           And, given the vast array of operating system, browser, and assistive technology keys, it is almost impossible to be certain conflicts do not exist.
           So it is also important to employ strategies that mitigate the impact of conflicts whether they are intentional or unknown.
         </p>
-        <div class="note" role="note" id="issue-container-generatedID-38"><div role="heading" class="note-title marker" id="h-note-34" aria-level="5"><span>Note</span></div><p class="">
+        <div class="note" role="note" id="issue-container-generatedID-37"><div role="heading" class="note-title marker" id="h-note-34" aria-level="5"><span>Note</span></div><p class="">
           In the following sections, <kbd>meta</kbd> key refers to the <kbd>Windows</kbd> key on Windows-compatible keyboards and the <kbd>Command</kbd> key on MacOS-compatible keyboards.
         </p></div>
         <section id="kbd_shortcuts_assignments_opsys_conflicts">
