@@ -75,7 +75,7 @@ const ariaRoles = [
   'separator',
   'slider',
   'spinbutton',
-  'satus',
+  'status',
   'switch',
   'tab',
   'table',
