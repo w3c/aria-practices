@@ -21,6 +21,8 @@ let output = fs.readFileSync(exampleTemplatePath, function (err) {
 const $ = cheerio.load(output);
 
 const ariaRoles = [
+  'alert',
+  'alertdialog',
   'application',
   'article',
   'banner',
@@ -32,6 +34,7 @@ const ariaRoles = [
   'complementary',
   'contentinfo',
   'definition',
+  'dialog',
   'directory',
   'document',
   'feed',
@@ -46,7 +49,9 @@ const ariaRoles = [
   'list',
   'listbox',
   'listitem',
+  'log',
   'main',
+  'marquee',
   'math',
   'menu',
   'menubar',
@@ -70,6 +75,7 @@ const ariaRoles = [
   'separator',
   'slider',
   'spinbutton',
+  'satus',
   'switch',
   'tab',
   'table',
@@ -77,6 +83,7 @@ const ariaRoles = [
   'tabpanel',
   'term',
   'textbox',
+  'timer',
   'toolbar',
   'tooltip',
   'tree',
