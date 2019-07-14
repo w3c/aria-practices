@@ -59,14 +59,14 @@ MenuItem.prototype.activateMenuitem = function (node) {
 
   var role  = node.getAttribute('role');
   var value = node.textContent;
-  var option = node.getAttribute('rel');
+  var option = node.getAttribute('data-option');
   var item;
   // flag is used to signal whether a menu should close or not
   // i.e. don't close if checkbox or radio menuitem is toggled
   var flag = true;
 
   if (typeof option !== 'string') {
-    option = node.parentNode.getAttribute('rel');
+    option = node.parentNode.getAttribute('data-option');
   }
 
   if (role === 'menuitem') {

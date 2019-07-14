@@ -33,7 +33,6 @@ var CarouselButton = function (domNode, carouselObj) {
 };
 
 CarouselButton.prototype.init = function () {
-  this.domNode.addEventListener('keydown', this.handleKeydown.bind(this));
   this.domNode.addEventListener('click', this.handleClick.bind(this));
   this.domNode.addEventListener('focus', this.handleFocus.bind(this));
   this.domNode.addEventListener('blur', this.handleBlur.bind(this));
@@ -51,26 +50,6 @@ CarouselButton.prototype.changeItem = function () {
 
 /* EVENT HANDLERS */
 
-CarouselButton.prototype.handleKeydown = function (event) {
-  var flag = false;
-
-  switch (event.keyCode) {
-    case this.keyCode.SPACE:
-    case this.keyCode.RETURN:
-      this.changeItem();
-      this.domNode.focus();
-      flag = true;
-      break;
-
-    default:
-      break;
-  }
-
-  if (flag) {
-    event.stopPropagation();
-    event.preventDefault();
-  }
-};
 
 CarouselButton.prototype.handleClick = function (event) {
   this.changeItem();
@@ -79,11 +58,11 @@ CarouselButton.prototype.handleClick = function (event) {
 CarouselButton.prototype.handleFocus = function (event) {
   this.carousel.hasFocus = true;
   this.domNode.classList.add('focus');
-  this.carousel.stopRotation();
+  this.carousel.updateRotation();
 };
 
 CarouselButton.prototype.handleBlur = function (event) {
   this.carousel.hasFocus = false;
   this.domNode.classList.remove('focus');
-  this.carousel.startRotation();
+  this.carousel.updateRotation();
 };
