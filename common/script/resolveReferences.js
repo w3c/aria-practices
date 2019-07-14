@@ -197,7 +197,8 @@ function updateReferences(base) {
 }
 
 // We should be able to remove terms that are not actually
-// referenced from the common definitions
+// referenced from the common definitions. This array is
+// indexed with the element ids of the dfn tags to be pruned.
 var termNames = [] ;
 
 function restrictReferences(utils, content) {
@@ -224,7 +225,8 @@ function restrictReferences(utils, content) {
 // New logic: If the reference is within a 'dl' element of
 // class 'termlist', and if the target of that reference is
 // also within a 'dl' element of class 'termlist', then
-// consider it an internal reference and ignore it.
+// consider it an internal reference and ignore it -- assuming
+// it is not part of another included term.
 
 require(["core/pubsubhub"], function(respecEvents) {
     "use strict";
@@ -236,8 +238,14 @@ require(["core/pubsubhub"], function(respecEvents) {
                 var t = $item.attr('href');
                 if ( $item.closest('dl.termlist').length ) {
                     if ( $(t).closest('dl.termlist').length ) {
-                        // do nothing
-                        return;
+                        // Figure out the id of the glossary term which holds this
+                        // internal reference and see if it will be pruned (i.e.
+                        // is in the termNames array). If it is, we can ignore
+                        // this particular internal reference.
+                        var dfn = $item.closest('dd').prev().find('dfn');
+                        var parentTermId = dfn.makeID('dfn', dfn.getDfnTitles[0]);
+                        if (termNames[parentTermId])
+                            return;
                     }
                 }
                 var r = t.replace(/^#/,"") ;

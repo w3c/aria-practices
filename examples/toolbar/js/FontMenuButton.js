@@ -17,7 +17,7 @@ FontMenuButton = function (node, toolbar, toolbarItem) {
 
   this.keyCode = Object.freeze({
     'TAB': 9,
-    'RETURN': 13,
+    'ENTER': 13,
     'ESC': 27,
     'SPACE': 32,
     'UP': 38,
@@ -46,7 +46,7 @@ FontMenuButton.prototype.handleKeyDown = function (event) {
 
   switch (event.keyCode) {
     case this.keyCode.SPACE:
-    case this.keyCode.RETURN:
+    case this.keyCode.ENTER:
     case this.keyCode.DOWN:
     case this.keyCode.UP:
       this.fontMenu.open();
