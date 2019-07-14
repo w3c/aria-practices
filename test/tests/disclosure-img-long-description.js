@@ -4,7 +4,6 @@ const { ariaTest } = require('..');
 const { By, Key } = require('selenium-webdriver');
 const assertAriaControls = require('../util/assertAriaControls');
 const assertAttributeValues = require('../util/assertAttributeValues');
-const assertTabOrder = require('../util/assertTabOrder');
 
 const exampleFile = 'disclosure/disclosure-img-long-description.html';
 

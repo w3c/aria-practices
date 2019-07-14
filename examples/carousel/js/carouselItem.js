@@ -32,11 +32,11 @@ CarouselItem.prototype.show = function () {
 CarouselItem.prototype.handleFocusIn = function (event) {
   this.domNode.classList.add('focus');
   this.carousel.hasFocus = true;
-  this.carousel.stopRotation();
+  this.carousel.updateRotation();
 };
 
 CarouselItem.prototype.handleFocusOut = function (event) {
   this.domNode.classList.remove('focus');
   this.carousel.hasFocus = false;
-  this.carousel.startRotation();
+  this.carousel.updateRotation();
 };
