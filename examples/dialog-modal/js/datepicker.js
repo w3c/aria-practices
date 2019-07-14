@@ -121,7 +121,9 @@ DatePicker.prototype.updateGrid = function () {
   var daysInMonth = new Date(fd.getFullYear(), fd.getMonth() + 1, 0).getDate();
   var dayOfWeek = firstDayOfMonth.getDay();
 
-  var d = new Date(firstDayOfMonth - dayOfWeek);
+  firstDayOfMonth.setDate(firstDayOfMonth.getDate() - dayOfWeek);
+
+  var d = new Date(firstDayOfMonth);
 
   for (i = 0; i < this.days.length; i++) {
     flag = d.getMonth() != fd.getMonth();
@@ -134,8 +136,11 @@ DatePicker.prototype.updateGrid = function () {
     d.setDate(d.getDate() + 1);
   }
 
-  if (dayOfWeek + daysInMonth < 35) {
+  if ((dayOfWeek + daysInMonth) < 36) {
     this.hideLastRow();
+  }
+  else {
+    this.showLastRow();
   }
 
 };
