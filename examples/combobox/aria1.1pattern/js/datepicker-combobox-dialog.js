@@ -36,12 +36,6 @@ var DatePickerCombobox = function (comboboxNode, inputNode, buttonNode, dialogNo
 
   this.lastRowNode = null;
 
-  var date = new Date();
-
-  this.year = date.getFullYear();
-  this.month = date.getMonth();
-  this.day = date.getDate() - 1;
-
   this.days = [];
 
   this.focusDay = new Date();
