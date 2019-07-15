@@ -120,6 +120,17 @@ DatePickerCombobox.prototype.init = function () {
   this.setFocusDay();
 };
 
+DatePickerCombobox.prototype.isSameDay = function (day1, day2) {
+  return (day1.getFullYear() == day2.getFullYear()) &&
+        (day1.getMonth() == day2.getMonth()) &&
+        (day1.getDate() == day2.getDate());
+};
+
+DatePickerCombobox.prototype.isNotSameMonth = function (day1, day2) {
+  return (day1.getFullYear() != day2.getFullYear()) ||
+        (day1.getMonth() != day2.getMonth());
+};
+
 DatePickerCombobox.prototype.updateGrid = function () {
 
   var i, flag;
@@ -138,9 +149,7 @@ DatePickerCombobox.prototype.updateGrid = function () {
   for (i = 0; i < this.days.length; i++) {
     flag = d.getMonth() != fd.getMonth();
     this.days[i].updateDay(flag, d);
-    if ((d.getFullYear() == this.selectedDay.getFullYear()) &&
-        (d.getMonth() == this.selectedDay.getMonth()) &&
-        (d.getDate() == this.selectedDay.getDate())) {
+    if (this.isSameDay(d, this.selectedDay)) {
       this.days[i].domNode.setAttribute('aria-selected', 'true');
     }
     d.setDate(d.getDate() + 1);
@@ -173,9 +182,7 @@ DatePickerCombobox.prototype.setFocusDay = function (flag) {
 
   function checkDay (d) {
     d.domNode.setAttribute('tabindex', '-1');
-    if ((d.day.getDate()  == fd.getDate()) &&
-        (d.day.getMonth() == fd.getMonth()) &&
-        (d.day.getFullYear() == fd.getFullYear())) {
+    if (this.isSameDay(d.day, fd)) {
       d.domNode.setAttribute('tabindex', '0');
       if (flag) {
         d.domNode.focus();
@@ -189,8 +196,7 @@ DatePickerCombobox.prototype.setFocusDay = function (flag) {
 DatePickerCombobox.prototype.updateDate = function (day) {
   var d = this.focusDay;
   this.focusDay = day;
-  if ((d.getMonth() !== day.getMonth()) ||
-      (d.getFullYear() !== day.getFullYear())) {
+  if (this.isNotSameMonth(d, day)) {
     this.updateGrid();
     this.setFocusDay();
   }
@@ -531,15 +537,6 @@ DatePickerCombobox.prototype.moveToNextYear = function () {
 
 DatePickerCombobox.prototype.moveToPreviousYear = function () {
   this.focusDay.setFullYear(this.focusDay.getFullYear() - 1);
-  this.updateGrid();
-};
-
-DatePickerCombobox.prototype.moveToPreviousMonth = function () {
-  this.month--;
-  if (this.month < 0) {
-    this.month = 11;
-    this.year--;
-  }
   this.updateGrid();
 };
 
