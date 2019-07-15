@@ -11,9 +11,7 @@ var DatePickerComboboxDay = function (domNode, datepicker, index, row, column) {
   this.row = row;
   this.column = column;
 
-  this.year = -1;
-  this.month = -1;
-  this.day = -1;
+ this.day = new Date();
 
   this.domNode = domNode;
   this.datepicker = datepicker;
@@ -48,7 +46,7 @@ DatePickerComboboxDay.prototype.isDisabled = function () {
   return this.domNode.classList.contains('disabled');
 };
 
-DatePickerComboboxDay.prototype.updateDay = function (disable, year, month, day) {
+DatePickerComboboxDay.prototype.updateDay = function (disable, day) {
 
   if (disable) {
     this.domNode.classList.add('disabled');
@@ -57,20 +55,28 @@ DatePickerComboboxDay.prototype.updateDay = function (disable, year, month, day)
     this.domNode.classList.remove('disabled');
   }
 
-  this.year = year;
-  this.month = month;
-  this.day = day;
+  this.day = new Date(day);
 
-  this.domNode.innerHTML = day + 1;
+  this.domNode.innerHTML = this.day.getDate();
   this.domNode.setAttribute('tabindex', '-1');
   this.domNode.removeAttribute('aria-selected');
+
+  var d = this.day.getDate().toString();
+  if (this.day.getDate() < 9) {
+    d = '0' + d;
+  }
+
+  var m = this.day.getMonth() + 1;
+  if (this.day.getMonth() < 9) {
+    m = '0' + m;
+  }
+
+  this.domNode.setAttribute('data-date', this.day.getFullYear() + '-' + m + '-' + d);
 
 };
 
 DatePickerComboboxDay.prototype.handleKeyDown = function (event) {
   var flag = false;
-  var onFirstRow = this.datepicker.onFirstRow();
-  var onLastRow = this.datepicker.onLastRow();
 
   switch (event.keyCode) {
 
@@ -123,7 +129,6 @@ DatePickerComboboxDay.prototype.handleKeyDown = function (event) {
       else {
         this.datepicker.moveToPreviousMonth();
       }
-      this.datepicker.adjustCurrentDay(onFirstRow, onLastRow);
       this.datepicker.setFocusDay();
       flag = true;
       break;
@@ -135,7 +140,6 @@ DatePickerComboboxDay.prototype.handleKeyDown = function (event) {
       else {
         this.datepicker.moveToNextMonth();
       }
-      this.datepicker.adjustCurrentDay(onFirstRow, onLastRow);
       this.datepicker.setFocusDay();
       flag = true;
       break;
@@ -163,13 +167,10 @@ DatePickerComboboxDay.prototype.handleMouseDown = function (event) {
   this.datepicker.day = this.day;
 
   if (this.isDisabled()) {
-    this.datepicker.moveToDay(this.day, this.month, this.year);
+    this.datepicker.moveFocusToDay(this.day);
   }
   else {
-    if (!this.datepicker.dateInput.hasFocus()) {
-      this.datepicker.dateInput.ignoreBlurEvent = true;
-    }
-    this.datepicker.setTextboxDate();
+    this.datepicker.setTextboxDate(this.day);
     this.datepicker.hide();
   }
 

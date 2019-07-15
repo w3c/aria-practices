@@ -227,8 +227,8 @@ ComboboxInput.prototype.isCollapsed = function () {
   return this.comboboxNode.getAttribute('aria-expanded') !== 'true';
 };
 
-ComboboxInput.prototype.setDate = function (month, day, year) {
-  this.inputNode.value = (month + 1) + '/' + (day + 1) + '/' + year;
+ComboboxInput.prototype.setDate = function (day) {
+  this.inputNode.value = (day.getMonth() + 1) + '/' + day.getDate() + '/' + day.getFullYear();
 };
 
 ComboboxInput.prototype.getDate = function () {
