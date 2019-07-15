@@ -555,8 +555,7 @@ DatePickerCombobox.prototype.moveFocusToDay = function (day) {
 
   this.focusDay = day;
 
-  if ((d.getMonth() != this.focusDay.getMonth()) ||
-      (d.getYear() != this.focusDay.getYear())) {
+  if (this.isNotSameMonth(d, this.focusDay)) {
     this.updateGrid();
   }
   this.setFocusDay();
