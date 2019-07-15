@@ -62,7 +62,7 @@ DatePickerDay.prototype.updateDay = function (disable, day) {
   this.domNode.removeAttribute('aria-selected');
 
   var d = this.day.getDate().toString();
-  if (this.day.getDate() < 9) {
+  if (this.day.getDate() <= 9) {
     d = '0' + d;
   }
 
