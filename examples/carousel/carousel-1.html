@@ -19,6 +19,16 @@
         stylesheet = 'css/carousel-1-more-accessible.css';
       }
       document.write('<link rel="stylesheet" type="text/css" href="' + stylesheet + '">')
+
+      window.addEventListener('load', function () {
+        if (location.href.indexOf('moreaccessible') > 0) {
+          document.getElementById('idMoreAccessible').setAttribute('aria-current', 'page');
+        }
+        else {
+          document.getElementById('idLessAccessible').setAttribute('aria-current', 'page');
+        }
+      });
+
     </script>
 
     <script src="js/carousel.js" type="text/javascript"></script>
@@ -49,8 +59,8 @@
       <section>
         <h2>Example View Options</h2>
         <ul>
-          <li><a href="carousel-1.html">Carousel controls and captions displayed on image</a>: This option is less accessible than the other option because the controls are harder to perceive and captions are more difficult to read with rotating images behind them.</li>
-          <li><a href="carousel-1.html?moreaccessible">Carousel controls and captions displayed above and below the image</a>: This option is preferable because controls and captions are easier to perceive.</li>
+          <li><a id="idLessAccessible" href="carousel-1.html">Carousel controls and captions displayed on image</a>: This option is less accessible than the other option because the controls are harder to perceive and captions are more difficult to read with rotating images behind them.</li>
+          <li><a id="idMoreAccessible" href="carousel-1.html?moreaccessible">Carousel controls and captions displayed above and below the image</a>: This option is preferable because controls and captions are easier to perceive.</li>
         </ul>
       </section>
 
