@@ -127,6 +127,7 @@ DatePickerDay.prototype.handleKeyDown = function (event) {
       else {
         this.datepicker.moveToPreviousMonth();
       }
+      this.datepicker.setFocusDay();
       flag = true;
       break;
 
@@ -137,6 +138,7 @@ DatePickerDay.prototype.handleKeyDown = function (event) {
       else {
         this.datepicker.moveToNextMonth();
       }
+      this.datepicker.setFocusDay();
       flag = true;
       break;
 
@@ -155,7 +157,6 @@ DatePickerDay.prototype.handleKeyDown = function (event) {
     event.stopPropagation();
     event.preventDefault();
   }
-
 };
 
 DatePickerDay.prototype.handleMouseDown = function (event) {
