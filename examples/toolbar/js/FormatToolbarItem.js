@@ -10,11 +10,14 @@ FormatToolbarItem = function (domNode, toolbar) {
   this.toolbar = toolbar;
   this.buttonAction = '';
   this.value = '';
+  this.popupLabelNode = null;
+  this.hasHover = false;
+  this.popupLabelDelay = 800;
 
 
   this.keyCode = Object.freeze({
     'TAB': 9,
-    'RETURN': 13,
+    'ENTER': 13,
     'ESC': 27,
     'SPACE': 32,
     'PAGEUP': 33,
@@ -33,6 +36,11 @@ FormatToolbarItem.prototype.init = function () {
   this.domNode.addEventListener('click', this.handleClick.bind(this));
   this.domNode.addEventListener('focus', this.handleFocus.bind(this));
   this.domNode.addEventListener('blur', this.handleBlur.bind(this));
+  this.domNode.addEventListener('mouseover', this.handleMouseOver.bind(this));
+  this.domNode.addEventListener('mouseleave', this.handleMouseLeave.bind(this));
+
+  document.body.addEventListener('keydown', this.handleHideAllPopupLabels.bind(this));
+
 
   if (this.domNode.classList.contains('bold')) {
     this.buttonAction = 'bold';
@@ -81,6 +89,15 @@ FormatToolbarItem.prototype.init = function () {
   if (this.domNode.classList.contains('spinbutton')) {
     this.buttonAction = 'changeFontSize';
   }
+  // Initialize any popup label
+
+  this.popupLabelNode = this.domNode.querySelector('.popup-label');
+  if (this.popupLabelNode) {
+    var width = 8 * this.popupLabelNode.textContent.length;
+    this.popupLabelNode.style.width = width + 'px';
+    this.popupLabelNode.style.left = -1 * ((width - this.domNode.offsetWidth) / 2) - 5 + 'px';
+  }
+
 };
 
 FormatToolbarItem.prototype.isPressed = function () {
@@ -115,7 +132,37 @@ FormatToolbarItem.prototype.enable = function () {
   this.domNode.removeAttribute('aria-disabled');
 };
 
+FormatToolbarItem.prototype.showPopupLabel = function () {
+  if (this.popupLabelNode) {
+    this.toolbar.hidePopupLabels();
+    this.popupLabelNode.classList.add('show');
+  }
+};
+
+FormatToolbarItem.prototype.hidePopupLabel = function () {
+  if (this.popupLabelNode && !this.hasHover) {
+    this.popupLabelNode.classList.remove('show');
+  }
+};
+
+
 // Events
+
+FormatToolbarItem.prototype.handleHideAllPopupLabels = function (event) {
+
+  switch (event.keyCode) {
+
+    case this.keyCode.ESC:
+      this.toolbar.hidePopupLabels();
+      break;
+
+    default:
+      break;
+  }
+
+
+};
+
 
 FormatToolbarItem.prototype.handleBlur = function (event) {
   this.toolbar.domNode.classList.remove('focus');
@@ -123,6 +170,7 @@ FormatToolbarItem.prototype.handleBlur = function (event) {
   if (this.domNode.classList.contains('nightmode')) {
     this.domNode.parentNode.classList.remove('focus');
   }
+  this.hidePopupLabel();
 };
 
 FormatToolbarItem.prototype.handleFocus = function (event) {
@@ -131,7 +179,17 @@ FormatToolbarItem.prototype.handleFocus = function (event) {
   if (this.domNode.classList.contains('nightmode')) {
     this.domNode.parentNode.classList.add('focus');
   }
+  this.showPopupLabel();
+};
 
+FormatToolbarItem.prototype.handleMouseLeave = function (event) {
+  this.hasHover = false;
+  setTimeout(this.hidePopupLabel.bind(this), this.popupLabelDelay);
+};
+
+FormatToolbarItem.prototype.handleMouseOver = function (event) {
+  this.showPopupLabel();
+  this.hasHover = true;
 };
 
 FormatToolbarItem.prototype.handleKeyDown = function (event) {
@@ -139,7 +197,7 @@ FormatToolbarItem.prototype.handleKeyDown = function (event) {
 
   switch (event.keyCode) {
 
-    case this.keyCode.RETURN:
+    case this.keyCode.ENTER:
     case this.keyCode.SPACE:
       if ((this.buttonAction !== '') &&
         (this.buttonAction !== 'bold') &&
