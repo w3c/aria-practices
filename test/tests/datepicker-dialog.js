@@ -347,8 +347,70 @@ ariaTest('ENTER to buttons change calendar and date in focus', exampleFile, 'mon
     day.toISOString().split('T')[0],
     'After selected next month button, then next year button date, then previous month button, then previous year button, date should be ' + day.toISOString().split('T')[0] + ' but found: ' + dayInFocus
   );
+});
 
-  // TODO: Test SPACE
+// This test is failing due to: https://github.com/w3c/aria-practices/issues/1098
+// If you fix the issue, please remove ".failing"
+ariaTest.failing('SPACE to buttons change calendar and date in focus', exampleFile, 'month-year-button-space-return', async (t) => {
+  t.plan(4);
+
+  await t.context.session.findElement(By.css(ex.buttonSelector)).click();
+  // By default, focus will be on todays date.
+  let day = new Date();
+
+  // send space to next month button
+
+  await t.context.session.findElement(By.css(ex.nextMonthButton)).sendKeys(Key.SPACE);
+  day.setMonth(day.getMonth() + 1);
+  let dayInFocus = await t.context.session
+    .findElement(By.css(ex.currentlyFocusedButton))
+    .getAttribute('data-date');
+
+  t.is(
+    dayInFocus,
+    day.toISOString().split('T')[0],
+    'After selected next month button, date should be ' + day.toISOString().split('T')[0] + ' but found: ' + dayInFocus
+  );
+
+  // send space to next year button
+  await t.context.session.findElement(By.css(ex.nextYearButton)).sendKeys(Key.SPACE);
+  day.setFullYear(day.getFullYear() + 1);
+  dayInFocus = await t.context.session
+    .findElement(By.css(ex.currentlyFocusedButton))
+    .getAttribute('data-date');
+
+  t.is(
+    dayInFocus,
+    day.toISOString().split('T')[0],
+    'After selected next month button, then next year button date should be ' + day.toISOString().split('T')[0] + ' but found: ' + dayInFocus
+  );
+
+  // Send space to previous month button
+  await t.context.session.findElement(By.css(ex.prevMonthButton)).sendKeys(Key.SPACE);
+  day.setMonth(day.getMonth() - 1);
+  dayInFocus = await t.context.session
+    .findElement(By.css(ex.currentlyFocusedButton))
+    .getAttribute('data-date');
+
+  t.is(
+    dayInFocus,
+    day.toISOString().split('T')[0],
+    'After selected next month button, then next year button date, then previous month button, date should be ' + day.toISOString().split('T')[0] + ' but found: ' + dayInFocus
+  );
+
+  // Send space to previous year button
+
+  await t.context.session.findElement(By.css(ex.prevYearButton)).sendKeys(Key.SPACE);
+  day.setFullYear(day.getFullYear() - 1);
+  dayInFocus = await t.context.session
+    .findElement(By.css(ex.currentlyFocusedButton))
+    .getAttribute('data-date');
+
+  t.is(
+    dayInFocus,
+    day.toISOString().split('T')[0],
+    'After selected next month button, then next year button date, then previous month button, then previous year button, date should be ' + day.toISOString().split('T')[0] + ' but found: ' + dayInFocus
+  );
 });
 
 ariaTest('SPACE or RETURN selects date in focus', exampleFile, 'grid-space-return', async (t) => {
@@ -584,7 +646,7 @@ ariaTest('Sending SHIFT+PAGE DOWN moves focus back by year', exampleFile, 'grid-
   );
 });
 
-ariaTest('ENTER and SPACE on cancel button does not select date', exampleFile, 'okay-cancel-button-space-return', async (t) => {
+ariaTest('ENTER on cancel button does not select date', exampleFile, 'okay-cancel-button-space-return', async (t) => {
 
   t.plan(4);
 
@@ -615,11 +677,44 @@ ariaTest('ENTER and SPACE on cancel button does not select date', exampleFile, '
     'none',
     'After sending ENTER to the "cancel" button, the calendar dialog should close'
   );
-
-  // TODO: Test SPACE
 });
 
-ariaTest('ENTER and SPACE on ok button does selects date', exampleFile, 'okay-cancel-button-space-return', async (t) => {
+// This test is failing due to: https://github.com/w3c/aria-practices/issues/1098
+// If you fix the issue, please remove ".failing"
+ariaTest.failing('SPACE on cancel button does not select date', exampleFile, 'okay-cancel-button-space-return', async (t) => {
+
+  t.plan(4);
+
+  await t.context.session.findElement(By.css(ex.buttonSelector)).click();
+  await t.context.session.findElement(By.css(ex.cancelButton)).sendKeys(Key.SPACE);
+  t.is(
+    await t.context.session.findElement(By.css(ex.inputSelector)).getAttribute('value'),
+    '',
+    'SPACE sent to cancel should not set a date'
+  );
+  t.is(
+    await t.context.session.findElement(By.css(ex.dialogSelector)).getCssValue('display'),
+    'none',
+    'After sending SPACE to the "cancel" button, the calendar dialog should close'
+  );
+
+  await setDateToJanFirst2019(t);
+  await t.context.session.findElement(By.css(ex.buttonSelector)).click();
+  await t.context.session.findElement(By.css(ex.currentlyFocusedButton)).sendKeys(Key.ARROW_RIGHT);
+  await t.context.session.findElement(By.css(ex.cancelButton)).sendKeys(Key.SPACE);
+  t.is(
+    await t.context.session.findElement(By.css(ex.inputSelector)).getAttribute('value'),
+    '1/1/2019',
+    'SPACE send to cancel should not change date'
+  );
+  t.is(
+    await t.context.session.findElement(By.css(ex.dialogSelector)).getCssValue('display'),
+    'none',
+    'After sending SPACE to the "cancel" button, the calendar dialog should close'
+  );
+});
+
+ariaTest('ENTER on ok button does selects date', exampleFile, 'okay-cancel-button-space-return', async (t) => {
 
   t.plan(4);
 
@@ -652,7 +747,41 @@ ariaTest('ENTER and SPACE on ok button does selects date', exampleFile, 'okay-ca
     'none',
     'After sending ENTER to the "cancel" button, the calendar dialog should close'
   );
-
-  // TODO: Test SPACE
 });
 
+// This test is failing due to: https://github.com/w3c/aria-practices/issues/1098
+// If you fix the issue, please remove ".failing"
+ariaTest.failing('SPACE on ok button does selects date', exampleFile, 'okay-cancel-button-space-return', async (t) => {
+
+  t.plan(4);
+
+  let day = new Date();
+
+  await t.context.session.findElement(By.css(ex.buttonSelector)).click();
+  await t.context.session.findElement(By.css(ex.okButton)).sendKeys(Key.SPACE);
+  t.is(
+    await t.context.session.findElement(By.css(ex.inputSelector)).getAttribute('value'),
+    `${day.getMonth() + 1}/${day.getDate()}/${day.getFullYear()}`,
+    'SPACE sent to ok button should set a date'
+  );
+  t.is(
+    await t.context.session.findElement(By.css(ex.dialogSelector)).getCssValue('display'),
+    'none',
+    'After sending SPACE to the "ok" button, the calendar dialog should close'
+  );
+
+  await setDateToJanFirst2019(t);
+  await t.context.session.findElement(By.css(ex.buttonSelector)).click();
+  await t.context.session.findElement(By.css(ex.currentlyFocusedButton)).sendKeys(Key.ARROW_RIGHT);
+  await t.context.session.findElement(By.css(ex.okButton)).sendKeys(Key.SPACE);
+  t.is(
+    await t.context.session.findElement(By.css(ex.inputSelector)).getAttribute('value'),
+    '1/2/2019',
+    'SPACE send to ok should not change date to Jan 2nd'
+  );
+  t.is(
+    await t.context.session.findElement(By.css(ex.dialogSelector)).getCssValue('display'),
+    'none',
+    'After sending SPACE to the "cancel" button, the calendar dialog should close'
+  );
+});
