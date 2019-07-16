@@ -91,7 +91,6 @@ DatePickerCombobox.prototype.init = function () {
   // Create Grid of Dates
 
   this.tbodyNode.innerHTML = '';
-  var index = 0;
   for (var i = 0; i < 6; i++) {
     var row = this.tbodyNode.insertRow(i);
     this.lastRowNode = row;
@@ -103,10 +102,9 @@ DatePickerCombobox.prototype.init = function () {
       cellButton.classList.add('dateButton');
       cell.appendChild(cellButton);
       row.appendChild(cell);
-      var dpDay = new DatePickerComboboxDay(cellButton, this, index, i, j);
+      var dpDay = new DatePickerComboboxDay(cellButton, this);
       dpDay.init();
       this.days.push(dpDay);
-      index++;
     }
   }
 
@@ -172,11 +170,9 @@ DatePickerCombobox.prototype.setFocusDay = function (flag) {
     flag = true;
   }
 
-  var fd = this.focusDay;
-
   function checkDay (d) {
     d.domNode.setAttribute('tabindex', '-1');
-    if (this.isSameDay(d.day, fd)) {
+    if (this.isSameDay(d.day, this.focusDay)) {
       d.domNode.setAttribute('tabindex', '0');
       if (flag) {
         d.domNode.focus();

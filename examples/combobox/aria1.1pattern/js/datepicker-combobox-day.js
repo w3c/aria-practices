@@ -5,13 +5,9 @@
 *   File:   datepicker-combobox-day.js
 */
 
-var DatePickerComboboxDay = function (domNode, datepicker, index, row, column) {
+var DatePickerComboboxDay = function (domNode, datepicker) {
 
-  this.index = index;
-  this.row = row;
-  this.column = column;
-
- this.day = new Date();
+  this.day = new Date();
 
   this.domNode = domNode;
   this.datepicker = datepicker;
