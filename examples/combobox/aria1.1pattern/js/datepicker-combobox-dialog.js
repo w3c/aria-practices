@@ -217,7 +217,7 @@ DatePickerCombobox.prototype.show = function () {
 };
 
 DatePickerCombobox.prototype.isOpen = function () {
-  return this.dateInput.getAriaExpanded();
+  return this.dateInput.isOpen();
 };
 
 DatePickerCombobox.prototype.hide = function (ignore) {

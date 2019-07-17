@@ -222,7 +222,7 @@ ComboboxInput.prototype.setAriaExpanded = function (flag) {
 
 };
 
-ComboboxInput.prototype.getAriaExpanded = function () {
+ComboboxInput.prototype.isOpen = function () {
   return this.comboboxNode.getAttribute('aria-expanded') === 'true';
 };
 
