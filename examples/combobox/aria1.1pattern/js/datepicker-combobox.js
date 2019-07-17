@@ -215,11 +215,9 @@ ComboboxInput.prototype.setAriaExpanded = function (flag) {
 
   if (flag) {
     this.comboboxNode.setAttribute('aria-expanded', 'true');
-    this.buttonNode.setAttribute('aria-expanded', 'true');
   }
   else {
     this.comboboxNode.setAttribute('aria-expanded', 'false');
-    this.buttonNode.setAttribute('aria-expanded', 'false');
   }
 
 };
