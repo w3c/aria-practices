@@ -24,6 +24,7 @@ var ComboboxInput = function (comboboxNode, inputNode, buttonNode, datepicker) {
 
   this.hasFocusFlag = false;
 
+  this.defaultButtonLabel = 'Choose Date';
   this.messageOpenDialogKeys = 'Use the down arrow key to move focus to the datepicker grid.';
 
   this.keyCode = Object.freeze({
@@ -133,12 +134,15 @@ ComboboxInput.prototype.handleBlur = function () {
     this.setMessage('');
   }
 
+  this.setButtonLabel();
+
   this.hasFocusFlag = false;
   this.ignoreBlurEvent = false;
 };
 
+
 ComboboxInput.prototype.setFocus = function () {
-  this.buttonNode.setAttribute('aria-label', 'Date, current date is ' + this.datepicker.getDateForButtonLabel());
+  this.setButtonLabel();
   this.inputNode.focus();
 };
 
@@ -246,6 +250,37 @@ ComboboxInput.prototype.setMessage = function (str) {
     setTimeout(setMessageDelayed.bind(this), 200);
     this.lastMessage = str;
   }
+};
+
+ComboboxInput.prototype.getDateLabel = function () {
+  var label = '';
+
+  var parts = this.inputNode.value.split('/');
+
+  if ((parts.length === 3) &&
+      Number.isInteger(parseInt(parts[0])) &&
+      Number.isInteger(parseInt(parts[1])) &&
+      Number.isInteger(parseInt(parts[2]))) {
+    var month = parseInt(parts[0]) - 1;
+    var day = parseInt(parts[1]);
+    var year = parseInt(parts[2]);
+
+    label = this.datepicker.getDateForButtonLabel(year, month, day);
+  }
+
+  return label;
+};
+
+
+ComboboxInput.prototype.setButtonLabel = function () {
+  var str = this.defaultButtonLabel;
+  var dateLabel = this.getDateLabel();
+
+  if (dateLabel) {
+    str = this.defaultButtonLabel + ', selected date is ' + dateLabel;
+  }
+
+  this.buttonNode.setAttribute('aria-label', str);
 };
 
 // Initialize combobox date picker
