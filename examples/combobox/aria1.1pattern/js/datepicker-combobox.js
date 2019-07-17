@@ -48,6 +48,7 @@ ComboboxInput.prototype.init = function () {
   this.inputNode.addEventListener('blur', this.handleBlur.bind(this));
   this.inputNode.addEventListener('mouseDown', this.handleMouseDown.bind(this));
 
+  this.buttonNode.addEventListener('keydown', this.handleKeyDown.bind(this));
   this.buttonNode.addEventListener('mousedown', this.handleButtonMouseDown.bind(this));
   this.buttonNode.addEventListener('mouseup', this.handleButtonMouseUp.bind(this));
 
