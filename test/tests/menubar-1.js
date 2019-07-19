@@ -440,7 +440,7 @@ ariaTest('Key ARROW_RIGHT moves focus to next menubar item',
 
     for (let menuIndex = ex.numMenus - 1; menuIndex > 0; menuIndex--) {
 
-    // Send the ARROW_LEFT key
+      // Send the ARROW_LEFT key
       await menubaritems[menuIndex].sendKeys(Key.ARROW_LEFT);
 
       // Test the focus is on the previous menuitem
@@ -460,7 +460,7 @@ ariaTest('Key ARROW_UP opens submenu, focus on last item',
     const menus = await t.context.session.findElements(By.css(ex.menuSelector));
     for (let menuIndex = 0; menuIndex < ex.numMenus; menuIndex++) {
 
-    // Send the ENTER key
+      // Send the ENTER key
       await menubaritems[menuIndex].sendKeys(Key.UP);
 
       // Test that the submenu is displayed
@@ -488,7 +488,7 @@ ariaTest('Key ARROW_DOWN opens submenu, focus on first item',
     const menus = await t.context.session.findElements(By.css(ex.menuSelector));
     for (let menuIndex = 0; menuIndex < ex.numMenus; menuIndex++) {
 
-    // Send the ENTER key
+      // Send the ENTER key
       await menubaritems[menuIndex].sendKeys(Key.DOWN);
 
       // Test that the submenu is displayed

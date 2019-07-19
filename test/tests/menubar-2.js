@@ -447,7 +447,7 @@ ariaTest('Text "aria-checked" appropriately set on role="menitemradio"',
 
     for (let grouping of ex.radioItemGroupings) {
 
-    // Reveal the elements in the dropdown
+      // Reveal the elements in the dropdown
       await menus[grouping.menuIndex].sendKeys(Key.ARROW_DOWN);
 
       const items = await t.context.session.findElements(By.css(grouping.itemsSelector));
@@ -587,7 +587,7 @@ ariaTest('Key ARROW_RIGHT moves focus to next menubar item',
 
     for (let menuIndex = ex.numMenus - 1; menuIndex > 0; menuIndex--) {
 
-    // Send the ARROW_LEFT key
+      // Send the ARROW_LEFT key
       await menuitems[menuIndex].sendKeys(Key.ARROW_LEFT);
 
       // Test the focus is on the previous menuitem
@@ -607,7 +607,7 @@ ariaTest('Key ARROW_UP opens submenu, focus on last item',
     const submenus = await t.context.session.findElements(By.css(ex.submenuSelector));
     for (let menuIndex = 0; menuIndex < ex.numMenus; menuIndex++) {
 
-    // Send the ENTER key
+      // Send the ENTER key
       await menuitems[menuIndex].sendKeys(Key.UP);
 
       // Test that the submenu is displayed
@@ -635,7 +635,7 @@ ariaTest('Key ARROW_DOWN opens submenu, focus on first item',
     const submenus = await t.context.session.findElements(By.css(ex.submenuSelector));
     for (let menuIndex = 0; menuIndex < ex.numMenus; menuIndex++) {
 
-    // Send the ENTER key
+      // Send the ENTER key
       await menuitems[menuIndex].sendKeys(Key.DOWN);
 
       // Test that the submenu is displayed
@@ -714,7 +714,7 @@ ariaTest('Character sends to menubar changes focus in menubar',
     const menuitems = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
     for (let test of charIndexTest) {
 
-    // Send character to menuitem
+      // Send character to menuitem
       await menuitems[test.sendIndex].sendKeys(test.sendChar);
 
       // Test that the focus switches to the appropriate menuitem
@@ -873,7 +873,7 @@ ariaTest('ARROW_RIGHT to submenu closes submenu and opens next',
     for (let menuIndex = 0; menuIndex < ex.numMenus; menuIndex++) {
       for (let itemIndex = 0; itemIndex < ex.numSubmenuItems[menuIndex]; itemIndex++) {
 
-      // Open the submenu
+        // Open the submenu
         await menuitems[menuIndex].sendKeys(Key.ENTER);
 
         const items = await t.context.session.findElements(By.css(ex.allSubmenuItems[menuIndex]));
@@ -1048,13 +1048,13 @@ ariaTest('Character sends to menubar changes focus in menubar',
     const menuitems = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
     for (let menuIndex = 0; menuIndex < ex.numMenus; menuIndex++) {
 
-    // Open the dropdown
+      // Open the dropdown
       await menuitems[menuIndex].sendKeys(Key.ARROW_DOWN);
       const items = await t.context.session.findElements(By.css(ex.allSubmenuItems[menuIndex]));
 
       for (let test of charIndexTest[menuIndex]) {
 
-      // Send character to menuitem
+        // Send character to menuitem
         const itemText = await items[test.sendIndex].getText();
         await items[test.sendIndex].sendKeys(test.sendChar);
 
