@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if ! git diff --name-only $TRAVIS_COMMIT_RANGE | grep -qP '(test/|examples/)'
+if ! git diff --name-only $TRAVIS_COMMIT_RANGE | grep -qP '(test/|examples/|package\.json)'
 then
   echo "Examples files were not updated, not running example regression tests."
   exit
