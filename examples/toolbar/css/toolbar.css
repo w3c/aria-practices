@@ -42,6 +42,54 @@
   margin-right: 0.25em;
 }
 
+[role="toolbar"] button.popup {
+  position: relative;
+}
+
+[role="toolbar"] button .popup-label {
+  display: block;
+  width: initial;
+  border: 1px solid white;
+  padding: 2px 4px;
+  border-radius: 5px;
+  position: absolute;
+  top: -30000em;
+  background-color: black;
+  color: white;
+  font-weight: normal;
+}
+
+[role="toolbar"] button .popup-label.show {
+  text-align: center;
+  top: -2.5em;
+}
+
+[role="toolbar"] button .popup-label::after,
+[role="toolbar"] button .popup-label::before {
+  top: 100%;
+  left: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+[role="toolbar"] button .popup-label::after {
+  border-color: rgba(0, 0, 0, 0);
+  border-top-color: #000;
+  border-width: 10px;
+  margin-left: -10px;
+}
+
+[role="toolbar"] button .popup-label::before {
+  border-color: rgba(255, 255, 255, 0);
+  border-top-color: #fff;
+  border-width: 12px;
+  margin-left: -12px;
+}
+
 [role="toolbar"] button[aria-pressed="true"],
 [role="toolbar"] [role="radio"][aria-checked="true"] {
   border-color: #555;

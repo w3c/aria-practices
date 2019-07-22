@@ -56,7 +56,7 @@ var respecConfig = {
     companyURI: 'http://www.adobe.com/',
     w3cid: 37155
   }, {
-    name: 'Michiel Bijl',
+    name: 'Zoë Bijl',
     company: 'Invited Expert',
     w3cid: 74040
   }, {
