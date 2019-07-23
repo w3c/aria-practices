@@ -1,0 +1,185 @@
+/* .carousel */
+
+.carouselTablist .carousel-inner {
+  display: static;
+}
+
+.carouselTablist .carousel-item {
+  display: none;
+  max-width: 900px;
+  width: 100%;
+}
+
+.carouselTablist .carousel-item.active {
+  display: block;
+}
+
+/* More like bootstrap, less accessible */
+
+/* Shared CSS for Pause, Next and Previous Slide Controls */
+
+.carouselTablist .controls {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  position: relative;
+  height: 36px;
+  background-color: #eee;
+  border: 4px solid #eee;
+  border-radius: 5px 5px 0 0;
+}
+
+.carouselTablist .controls button {
+  position: absolute;
+  top: 6px;
+  display: block;
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+.carouselTablist .controls button.previous {
+  right: 58px;
+}
+
+.carouselTablist .controls button.next {
+  right: 4px;
+}
+
+.carouselTablist .controls button.rotation {
+  left: 4px;
+}
+
+.carouselTablist .controls button svg rect.background {
+  stroke: black;
+  fill: black;
+  stroke-width: 1px;
+  opacity: 0.8;
+}
+
+.carouselTablist .controls button svg rect.border {
+  fill: transparent;
+  stroke: transparent;
+  stroke-width: 2px;
+}
+
+/* Next and Previous Slide Controls */
+
+.carouselTablist .controls button svg polygon {
+  stroke: white;
+  fill: white;
+  stroke-width: 2;
+  opacity: 1;
+}
+
+.carouselTablist .controls button.rotation svg polygon.pause {
+  stroke-width: 4;
+  fill: transparent;
+  stroke: transparent;
+}
+
+.carouselTablist .controls button.rotation svg polygon.play {
+  stroke-width: 1;
+  fill: transparent;
+  stroke: transparent;
+}
+
+.carouselTablist .controls button.rotation.pause svg polygon.pause,
+.carouselTablist .controls button.rotation.play svg polygon.play {
+  fill: white;
+  stroke: white;
+}
+
+/* Common focus styling for svg buttons */
+
+.carouselTablist .controls button:focus rect.background,
+.carouselTablist .controls button:hover rect.background,
+.carouselTablist .controls button:focus rect.border,
+.carouselTablist .controls button:hover rect.border {
+  fill: #005a9c;
+  stroke: #005a9c;
+  opacity: 1;
+}
+
+.carouselTablist .controls button:focus rect.border {
+  stroke: white;
+}
+
+/* Caption Positioning */
+
+.carouselTablist .carousel-items {
+  width: 100%;
+  background-color: #eee;
+  border: solid 4px #eee;
+  border-radius: 0 0 5px 5px;
+}
+
+.carouselTablist .carousel-items.focus {
+  border-color: #005a9c;
+}
+
+.carouselTablist .carousel-item .carousel-image {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.carouselTablist .carousel-item .carousel-image a {
+  margin: 0;
+  padding: 0;
+}
+
+.carouselTablist .carousel-item .carousel-image a img {
+  margin: 0;
+  padding: 0;
+  display: block;
+  overflow: hidden;
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.carouselTablist .carousel-item .carousel-caption {
+  margin: 0;
+  padding: 0.5em;
+  width: 100%;
+  height: 3em;
+  text-align: center;
+}
+
+.carouselTablist .carousel-item .carousel-caption a {
+  display: inline-block;
+  background-color: rgba(0, 0, 0, 0);
+  padding-left: 0.25em;
+  padding-right: 0.25em;
+  padding-top: 0.125em;
+  padding-bottom: 0.125em;
+  border-radius: 5px;
+  border: 2px solid transparent;
+  margin: 0;
+  text-decoration: underline;
+}
+
+.carouselTablist .carousel-item .carousel-caption h3 {
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+}
+
+.carouselTablist .carousel-item .carousel-caption h3 a {
+  color: black;
+}
+
+.carouselTablist .carousel-item .carousel-caption a:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.carouselTablist .carousel-item .carousel-caption a:focus {
+  border-color: #005a9c;
+  background-color: rgba(0, 0, 0, 0.1);
+  outline: none;
+}
+
+.carouselTablist .carousel-item .carousel-caption p {
+  margin: 0;
+  padding: 0;
+}
