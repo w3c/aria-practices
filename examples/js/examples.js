@@ -33,6 +33,8 @@ var VOID_ELEMENTS = ['area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input',
 aria.widget.SourceCode = function () {
   this.location = new Array();
   this.code = new Array();
+  this.cssJsFiles = new Array();
+  this.fiddleForms = new Array();
 };
 
 /**
@@ -41,9 +43,11 @@ aria.widget.SourceCode = function () {
  * @method add
  * @memberof aria.widget.SourceCode
  */
-aria.widget.SourceCode.prototype.add = function (locationId, codeId) {
+aria.widget.SourceCode.prototype.add = function (locationId, codeId, cssJsFilesId, fiddleFormId) {
   this.location[this.location.length] = locationId;
   this.code[this.code.length] = codeId;
+  this.cssJsFiles[this.cssJsFiles.length] = cssJsFilesId;
+  this.fiddleForms[this.fiddleForms.length] = fiddleFormId;
 };
 
 /**
@@ -63,6 +67,28 @@ aria.widget.SourceCode.prototype.make = function () {
     // Remove unnecessary `<br>` element.
     if (sourceCodeNode.innerHTML.startsWith('<br>')) {
       sourceCodeNode.innerHTML = sourceCodeNode.innerHTML.replace('<br>', '');
+    }
+
+    if (this.cssJsFiles[i]) {
+      var cssJsFilesId = this.cssJsFiles[i];
+      var htmlInput = '#' + this.fiddleForms[i] + ' input[name="html"]';
+      var cssInput = '#' + this.fiddleForms[i] + ' input[name="css"]';
+      var jsInput = '#' + this.fiddleForms[i] + ' input[name="js"]';
+
+      document.querySelector(htmlInput).value = '<head><base href="' + location.href + '"></head>\n' + document.getElementById(this.code[i]).innerHTML;
+
+      // Get file content of the other files necessary for this particular example
+      $('#' + cssJsFilesId + ' a').each(function () {
+        var href = this.href;
+        $.get(href, function (fileContent) {
+          if (href.indexOf('css') != -1) {
+            document.querySelector(cssInput).value += fileContent;
+          }
+          if (href.indexOf('js') != -1) {
+            document.querySelector(jsInput).value += fileContent;
+          }
+        });
+      });
     }
   }
 };
