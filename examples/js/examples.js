@@ -35,6 +35,8 @@ var VOID_ELEMENTS = ['area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input',
 aria.widget.SourceCode = function () {
   this.location = new Array();
   this.code = new Array();
+  this.editCode = new Array();
+  this.resources = new Array();
 };
 
 /**
@@ -43,9 +45,11 @@ aria.widget.SourceCode = function () {
  * @method add
  * @memberof aria.widget.SourceCode
  */
-aria.widget.SourceCode.prototype.add = function (locationId, codeId) {
+aria.widget.SourceCode.prototype.add = function (locationId, codeId, editCodeId, cssJsFilesId) {
   this.location[this.location.length] = locationId;
   this.code[this.code.length] = codeId;
+  this.editCode[this.editCode.length] = editCodeId;
+  this.resources[this.resources.length] = cssJsFilesId;
 };
 
 /**
@@ -65,6 +69,34 @@ aria.widget.SourceCode.prototype.make = function () {
     // Remove unnecessary `<br>` element.
     if (sourceCodeNode.innerHTML.startsWith('<br>')) {
       sourceCodeNode.innerHTML = sourceCodeNode.innerHTML.replace('<br>', '');
+    }
+
+    if (this.editCode[i]) {
+      var editCodeInput = this.editCode[i];
+
+      var postJson = {
+        html: document.getElementById(this.code[i]).innerHTML,
+        css: '',
+        js: '',
+        head: '<base href="' + location.href + '">'
+      };
+
+      var getCssJsFilePromises = $('#' + this.resources[i] + ' a').map(function () {
+        var href = this.href;
+
+        return $.get(href).then(function (fileContent) {
+          if (href.indexOf('css') !== -1) {
+            postJson.css = postJson.css.concat(fileContent);
+          }
+          if (href.indexOf('js') !== -1) {
+            postJson.js = postJson.js.concat(fileContent);
+          }
+        });
+      });
+
+      $.when.apply($, getCssJsFilePromises).then(function () {
+        document.getElementById(editCodeInput).value = JSON.stringify(postJson);
+      });
     }
   }
 };
