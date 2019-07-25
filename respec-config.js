@@ -108,29 +108,16 @@ var respecConfig = {
     'REC': 'https://www.w3.org/TR/wai-aria/'
   },
   accNameURLs: {
-<<<<<<< HEAD
-    'ED': 'https://w3c.github.io/aria/accname-aam/accname-aam.html',
-    'WD': 'https://www.w3.org/TR/accname-aam-1.2/',
-    'FPWD': 'https://www.w3.org/TR/accname-aam-1.2/',
-    'REC': 'https://www.w3.org/TR/accname-aam-1.2/'
-  },
-  coreMappingURLs: {
-    'ED': 'https://w3c.github.io/aria/core-aam/core-aam.html',
-    'WD': 'https://www.w3.org/TR/core-aam-1.2/',
-    'FPWD': 'https://www.w3.org/TR/core-aam-1.2/',
-    'REC': 'https://www.w3.org/TR/core-aam-1.2/'
-=======
     'ED': 'https://w3c.github.io/accname/',
-    'WD': 'https://www.w3.org/TR/accname-aam-1.1/',
-    'FPWD': 'https://www.w3.org/TR/accname-aam-1.1/',
-    'REC': 'https://www.w3.org/TR/accname-aam-1.1/'
+    'WD': 'https://www.w3.org/TR/accname-1.2/',
+    'FPWD': 'https://www.w3.org/TR/accname-1.2/',
+    'REC': 'https://www.w3.org/TR/accname/'
   },
   coreMappingURLs: {
     'ED': 'https://w3c.github.io/core-aam/',
-    'WD': 'https://www.w3.org/TR/core-aam-1.1/',
-    'FPWD': 'https://www.w3.org/TR/core-aam-1.1/',
-    'REC': 'https://www.w3.org/TR/core-aam-1.1/'
->>>>>>> master
+    'WD': 'https://www.w3.org/TR/core-aam-1.2/',
+    'FPWD': 'https://www.w3.org/TR/core-aam-1.2/',
+    'REC': 'https://www.w3.org/TR/core-aam/'
   },
   htmlMappingURLs: {
     'ED': 'https://w3c.github.io/html-aam/',
