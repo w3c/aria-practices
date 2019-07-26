@@ -30,7 +30,7 @@ then
   done
 fi
 
-AVACMD="ava -t -c 1 test/tests ${ARGS}"
+AVACMD="npm run regression -- -t -c 1 test/tests ${ARGS}"
 echo "$ $AVACMD"
 
 $AVACMD
