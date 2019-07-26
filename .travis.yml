@@ -38,7 +38,7 @@ jobs:
           echo "Examples files were not updated, not running example regression tests."
           exit
         fi
-      script: ava -c 1 test/tests
+      script: ava -c 1 test/tests/*.js
       env: TEST_WAIT_TIME=1000
     - stage: Test
       name: Regression Tests Coverage Report
