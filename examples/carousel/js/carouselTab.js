@@ -28,6 +28,7 @@ var CarouselTab = function (domNode, carouselObj, tabpanelObj) {
 
 CarouselTab.prototype.init = function () {
   this.domNode.addEventListener('keydown', this.handleKeydown.bind(this));
+  this.domNode.addEventListener('click', this.handleClick.bind(this));
   this.domNode.addEventListener('focus', this.handleFocus.bind(this));
   this.domNode.addEventListener('blur', this.handleBlur.bind(this));
 };
@@ -88,6 +89,10 @@ CarouselTab.prototype.handleKeydown = function (event) {
     event.stopPropagation();
     event.preventDefault();
   }
+};
+
+CarouselTab.prototype.handleClick = function () {
+  this.carousel.setSelectedTab(this, true);
 };
 
 CarouselTab.prototype.handleFocus = function () {

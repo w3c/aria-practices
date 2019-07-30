@@ -1,10 +1,11 @@
+
 /* .carousel */
 
 .carouselTablist .carousel-inner {
   display: static;
 }
 
-.carouselTablist .carousel-item {
+.carousel .carousel-item {
   display: none;
   max-width: 900px;
   width: 100%;
@@ -14,11 +15,9 @@
   display: block;
 }
 
-/* More like bootstrap, less accessible */
+/* Shared CSS for Pause and Tab Controls */
 
-/* Shared CSS for Pause, Next and Previous Slide Controls */
-
-.carouselTablist .controls {
+.carousel .controls {
   margin: 0;
   padding: 0;
   width: 100%;
@@ -29,47 +28,29 @@
   border-radius: 5px 5px 0 0;
 }
 
-.carouselTablist .controls button {
+/* Pause Control */
+
+.carouselTablist .controls button.rotation {
+  padding: 0;
   position: absolute;
-  top: 6px;
-  display: block;
   background-color: transparent;
   border: none;
   outline: none;
-}
-
-.carouselTablist .controls button.previous {
-  right: 58px;
-}
-
-.carouselTablist .controls button.next {
-  right: 4px;
-}
-
-.carouselTablist .controls button.rotation {
-  left: 4px;
+  top: 0;
+  left: 6px;
 }
 
 .carouselTablist .controls button svg rect.background {
   stroke: black;
   fill: black;
   stroke-width: 1px;
-  opacity: 0.8;
+  opacity: 0.6;
 }
 
 .carouselTablist .controls button svg rect.border {
   fill: transparent;
   stroke: transparent;
   stroke-width: 2px;
-}
-
-/* Next and Previous Slide Controls */
-
-.carouselTablist .controls button svg polygon {
-  stroke: white;
-  fill: white;
-  stroke-width: 2;
-  opacity: 1;
 }
 
 .carouselTablist .controls button.rotation svg polygon.pause {
@@ -90,55 +71,101 @@
   stroke: white;
 }
 
-/* Common focus styling for svg buttons */
-
-.carouselTablist .controls button:focus rect.background,
-.carouselTablist .controls button:hover rect.background,
-.carouselTablist .controls button:focus rect.border,
-.carouselTablist .controls button:hover rect.border {
+.carouselTablist .controls button.rotation:focus rect.background,
+.carouselTablist .controls button.rotation:hover rect.background,
+.carouselTablist .controls button.rotation:focus rect.border,
+.carouselTablist .controls button.rotation:hover rect.border {
   fill: #005a9c;
   stroke: #005a9c;
   opacity: 1;
 }
 
-.carouselTablist .controls button:focus rect.border {
+.carouselTablist .controls button.rotation:focus rect.border {
   stroke: white;
 }
 
-/* Caption Positioning */
+/* Shared CSS for Tabs */
+
+.carouselTablist [role="tablist"] {
+  text-align: center;
+}
+
+.carouselTablist [role="tablist"] .border {
+  display: inline-block;
+  border: 2px transparent solid;
+  border-radius: 15px;
+  height: 30px;
+  background-color: transparent;
+}
+
+.carouselTablist [role="tablist"] .focus {
+  border-color: white;
+  background-color: #005a9c;
+}
+
+.carouselTablist [role="tab"] {
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  width: 34px;
+}
+
+.carouselTablist [role="tab"] circle.border {
+  display: none;
+  z-index: 12;
+}
+
+.carouselTablist [role="tab"] circle.tab {
+  z-index: 16;
+}
+
+.carouselTablist [role="tab"] circle.tab-background {
+  stroke: black;
+  fill: black;
+  stroke-width: 2px;
+  opacity: 0.6;
+  z-index: 14;
+}
+
+.carouselTablist [role="tab"] circle.tab,
+.carouselTablist [role="tab"] circle.border {
+  stroke: white;
+  fill: transparent;
+  stroke-width: 2px;
+}
+
+.carouselTablist [role="tab"][aria-selected="true"] circle.tab {
+  fill: white;
+}
+
+.carouselTablist [role="tab"]:focus circle.border {
+  display: block;
+}
+
+.carouselTablist [role="tablist"] .focus circle.tab-background {
+  stroke: #005a9c;
+  fill: #005a9c;
+}
+
+/* More like bootstrap, less accessible */
 
 .carouselTablist .carousel-items {
-  width: 100%;
-  background-color: #eee;
-  border: solid 4px #eee;
-  border-radius: 0 0 5px 5px;
+  border: solid 2px transparent;
 }
 
 .carouselTablist .carousel-items.focus {
-  border-color: #005a9c;
-}
-
-.carouselTablist .carousel-item .carousel-image {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-}
-
-.carouselTablist .carousel-item .carousel-image a {
-  margin: 0;
-  padding: 0;
+  border-color: white;
+  outline: solid 3px #005a9c;
 }
 
 .carouselTablist .carousel-item .carousel-image a img {
-  margin: 0;
-  padding: 0;
-  display: block;
-  overflow: hidden;
-  max-height: 100%;
-  max-width: 100%;
+  height: 100%;
+  width: 100%;
 }
 
-.carouselTablist .carousel-item .carousel-caption {
+.carousel .carousel-item .carousel-caption {
   margin: 0;
   padding: 0.5em;
   width: 100%;
@@ -146,7 +173,7 @@
   text-align: center;
 }
 
-.carouselTablist .carousel-item .carousel-caption a {
+.carousel .carousel-item .carousel-caption a {
   display: inline-block;
   background-color: rgba(0, 0, 0, 0);
   padding-left: 0.25em;
@@ -159,27 +186,27 @@
   text-decoration: underline;
 }
 
-.carouselTablist .carousel-item .carousel-caption h3 {
+.carousel .carousel-item .carousel-caption h3 {
   margin: 0;
   padding: 0;
   font-weight: bold;
 }
 
-.carouselTablist .carousel-item .carousel-caption h3 a {
+.carousel .carousel-item .carousel-caption h3 a {
   color: black;
 }
 
-.carouselTablist .carousel-item .carousel-caption a:hover {
+.carousel .carousel-item .carousel-caption a:hover {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-.carouselTablist .carousel-item .carousel-caption a:focus {
+.carousel .carousel-item .carousel-caption a:focus {
   border-color: #005a9c;
   background-color: rgba(0, 0, 0, 0.1);
   outline: none;
 }
 
-.carouselTablist .carousel-item .carousel-caption p {
+.carousel .carousel-item .carousel-caption p {
   margin: 0;
   padding: 0;
 }
