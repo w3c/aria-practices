@@ -158,7 +158,11 @@
 
                 <div id="myCarousel-items" class="carousel-items" aria-live="off">
 
-                  <div class="carousel-item active" id="carousel-item-1" role="tabpanel" aria-label="1 of 6">
+                  <div class="carousel-item active"
+                       id="carousel-item-1"
+                       role="tabpanel"
+                       aria-roledescription="slide"
+                       aria-label="1 of 6">
 
                     <div class="carousel-image">
                       <a href="#">
@@ -180,7 +184,11 @@
                     </div>  <!-- .carousel-caption -->
                   </div>   <!-- .item -->
 
-                  <div class="carousel-item"  id="carousel-item-2" role="tabpanel" aria-label="2 of 6">
+                  <div class="carousel-item"
+                       id="carousel-item-2"
+                       role="tabpanel"
+                       aria-roledescription="slide"
+                       aria-label="2 of 6">
 
                     <div class="carousel-image">
                       <a href="#">
@@ -202,7 +210,11 @@
                     </div>  <!-- .carousel-caption -->
                   </div>   <!-- .item -->
 
-                  <div class="carousel-item"  id="carousel-item-3" role="tabpanel" aria-label="3 of 6">
+                  <div class="carousel-item"
+                      id="carousel-item-3"
+                       role="tabpanel"
+                       aria-roledescription="slide"
+                       aria-label="3 of 6">
 
                     <div class="carousel-image">
                       <a href="#">
@@ -224,7 +236,11 @@
                     </div>  <!-- .carousel-caption -->
                   </div>   <!-- .item -->
 
-                  <div class="carousel-item"  id="carousel-item-4" role="tabpanel" aria-label="4 of 6">
+                  <div class="carousel-item"
+                       id="carousel-item-4"
+                       role="tabpanel"
+                       aria-roledescription="slide"
+                       aria-label="4 of 6">
 
                     <div class="carousel-image">
                       <a href="#">
@@ -246,7 +262,11 @@
                     </div>  <!-- .carousel-caption -->
                   </div>   <!-- .item -->
 
-                  <div class="carousel-item" id="carousel-item-5" role="tabpanel" aria-label="5 of 6">
+                  <div class="carousel-item"
+                       id="carousel-item-5"
+                       role="tabpanel"
+                       aria-roledescription="slide"
+                       aria-label="5 of 6">
 
                     <div class="carousel-image">
                         <img src="images/britcomdavidslide__800x600.jpg" alt="British flag with WILL-TV host David Thiel."/>
@@ -265,7 +285,11 @@
                     </div>  <!-- .carousel-caption -->
                   </div>   <!-- .item -->
 
-                  <div class="carousel-item" id="carousel-item-6" role="tabpanel" aria-label="6 of 6">
+                  <div class="carousel-item"
+                       id="carousel-item-6"
+                       role="tabpanel"
+                       aria-roledescription="slide"
+                       aria-label="6 of 6">
 
                     <div class="carousel-image">
                       <a href="#">
@@ -383,8 +407,8 @@
         </section>
 
         <section>
-          <h3 id="kbd_label_3">Next and Previous Slide Buttons</h3>
-          <table aria-labelledby="kbd_label_3 kbd_label" class="def">
+          <h3 id="kbd_label_3">Tabs</h3>
+          <table aria-labelledby="kbd_label_3" class="def">
             <thead>
               <tr>
                 <th>Key</th>
@@ -392,11 +416,42 @@
               </tr>
             </thead>
             <tbody>
-              <tr data-test-id="carousel-key-enter-or-space-move">
-                <th><kbd>Enter</kbd><br><kbd>Space</kbd></th>
+              <tr data-test-id="key-tab">
+                <th><kbd>Tab</kbd></th>
                 <td>
-                  Display next or previous slide in the carousel.
+                  <ul>
+                    <li>When focus moves into the <code>tablist</code>, places focus on the active <code>tab</code> element. Each slide in the carousel is controlled by a <code>tab</code>.</li>
+                    <li>When the tab list contains the focus, moves focus to the next element in the <kbd>tab</kbd> sequence, which is a link in the currently shown slide.</li>
+                  </ul>
                 </td>
+              </tr>
+              <tr data-test-id="key-right-arrow">
+                <th><kbd>Right Arrow</kbd></th>
+                <td>
+                  <ul>
+                    <li>Moves focus to the next tab.</li>
+                    <li>If focus is on the last tab, moves focus to the first tab.</li>
+                    <li>Shows the slide associated with the newly focused tab.</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr data-test-id="key-left-arrow">
+                <th><kbd>Left Arrow</kbd></th>
+                <td>
+                  <ul>
+                    <li>Moves focus to the previous tab.</li>
+                    <li>If focus is on the first tab, moves focus to the last tab.</li>
+                    <li>Shows the slide associated with the newly focused tab.</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr data-test-id="key-home">
+                <th><kbd>Home</kbd></th>
+                <td>Moves focus to the first tab and shows the first slide.</td>
+              </tr>
+              <tr data-test-id="key-end">
+                <th><kbd>End</kbd></th>
+                <td>Moves focus to the last tab and shows the last slide.</td>
               </tr>
             </tbody>
           </table>
@@ -415,7 +470,6 @@
             </tr>
           </thead>
           <tbody>
-            <tr data-test-id="carousel-region-role">
               <th scope="row">
                 <code>region</code>
               </th>
@@ -487,87 +541,147 @@
                   </ul>
                 </td>
               </tr>
-            <tr data-test-id="carousel-group-role">
+            <tr data-test-id="carousel-tablist-role">
               <th scope="row">
-                <code>group</code>
+                <code>tablist</code>
               </th>
               <td></td>
               <td>
-                <code>div.carousel-item</code>
+                <code>div</code>
+              </td>
+              <td>Indicates that the element serves as a container for a set of tabs.</td>
+            </tr>
+            <tr data-test-id="carousel-tab-role">
+              <th scope="row">
+                <code>tab</code>
+              </th>
+              <td></td>
+              <td>
+                <code>button</code>
               </td>
               <td>
                 <ul>
-                  <li>Applied to each of the elements that contains the content of a single slide.</li>
-                  <li>Enables assistive technology users to perceive the boundaries of a slide.</li>
+                  <li>Indicates the element serves as a tab control.</li>
+                  <li>
+                    When focused, is automatically activated, causing its associated <code>tabpanel</code> (e.g. slide) to be displayed.
+                  </li>
                 </ul>
               </td>
             </tr>
-            <tr data-test-id="carousel-group-aria-roledescription">
+            <tr data-test-id="tab-aria-selected">
               <td></td>
               <th scope="row">
-                <code>aria-roledescription="slide"</code>
+                <code>aria-selected=<q>true</q></code>
               </th>
               <td>
-                <code>div.carousel-item</code>
+                <code>button</code>
               </td>
               <td>
                 <ul>
-                  <li>Informs assistive technologies to identify the element as a &quot;slide&quot; rather than a &quot;group.&quot;</li>
-                  <li>Effects how the assistive technology renders the role but does not remove any assistive technology functions related to <code>group</code> elements.</li>
+                  <li>Indicates the tab control is activated and its associated panel is displayed.</li>
+                  <li>Set when a tab receives focus.</li>
                 </ul>
               </td>
             </tr>
-            <tr data-test-id="carousel-group-aria-label">
+            <tr data-test-id="tab-aria-selected">
               <td></td>
               <th scope="row">
-                <code>aria-label="<em>N</em> of 6"</code>
+                <code>aria-selected=<q>false</q></code>
               </th>
               <td>
-                <code>div.carousel-item</code>
+                <code>button</code>
               </td>
               <td>
                 <ul>
-                  <li>Provides each slide with a distinct label that helps the user understand which of the 6 slides is displayed.</li>
-                  <li>Note: Normally, including set position and size information in an accessible name is not appropriate. An exception is helpful in this implementation because group elements do not support <code>aria-setsize</code> or <code>aria-posinset</code>.</li>
+                  <li>
+                    Indicates the tab control is not active and its associated panel is <strong>NOT</strong>
+                    displayed.
+                  </li>
+                  <li>Set for all tab elements in the tab set except the focused tab.</li>
                 </ul>
               </td>
             </tr>
-              <tr data-test-id="carousel-button-aria-label">
-                <td></td>
-                <th scope="row">
-                  <code>aria-label="LABEL_STRING"</code>
-                </th>
-                <td>
-                  <code>button</code>
-                </td>
-                <td>Defines the accessible name for the pause auto-rotation button and the next and previous slide buttons.</td>
-              </tr>
-              <tr data-test-id="carousel-button-aria-controls">
-                <td></td>
-                <th scope="row">
-                  <code>aria-controls="IDREF"</code>
-                </th>
-                <td>
-                  <code>button</code>
-                </td>
-                <td>
-                  <ul>
-                    <li>Identifies the content on the page that the button controls.</li>
-                    <li>Refers to the <code>div</code> that contains all the slides.</li>
-                  </ul>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+            <tr data-test-id="tab-tabindex">
+              <td></td>
+              <th scope="row">
+                <code>tabindex=<q>-1</q></code>
+              </th>
+              <td>
+                <code>button</code>
+              </td>
+              <td>
+                <ul>
+                  <li>Removes the element from the page <kbd>Tab</kbd> sequence.</li>
+                  <li>Set when a tab is not selected so that only the selected tab is in the page <kbd>Tab</kbd> sequence.</li>
+                  <li>Since an HTML <code>button</code> element is used for the tab, it is not necessary to set <code>tabindex=<q>0</q></code> on the selected (active) tab element.</li>
+                  <li>This approach to managing focus is described in the section on <a href="../../../#kbd_roving_tabindex">roving tabindex</a>.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr data-test-id="tab-aria-control">
+              <td></td>
+              <th scope="row">
+                <code>aria-controls=<q>IDREF</q></code>
+              </th>
+              <td>
+                <code>button</code>
+              </td>
+              <td>
+                Refers to the <code>tabpanel</code> element associated with the tab.
+              </td>
+            </tr>
+            <tr data-test-id="tabpanel-role">
+              <th scope="row">
+                <code>tabpanel</code>
+              </th>
+              <td></td>
+              <td>
+                <code>div</code>
+              </td>
+              <td>
+                <ul>
+                  <li>Indicates the element serves as a container for the slide content.</li>
+                  <li>
+                    Is hidden unless its associated <code>tab</code> control is activated.
+                  </li>
+                </ul>
+              </td>
+            </tr>
+            <tr data-test-id="tabpanel-role-description">
+              <td></td>
+              <th scope="row">
+                <code>aria-roledescription=<q>slide</q></code>
+              </th>
+              <td>
+                <code>div</code>
+              </td>
+              <td>
+                Provides a additional information that tab panel represents a slide in the carousel.
+              </td>
+            </tr>
+            <tr data-test-id="tabpanel-aria-label">
+              <td></td>
+              <th scope="row">
+                <code>aria-label=<q>Slide X of Y</q></code>
+              </th>
+              <td>
+                <code>div</code>
+              </td>
+              <td>
+                Provides an accessible name for the tab panel by indicating what position the slide is in the set of slides.
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </section>
 
       <section>
         <h2>Javascript and CSS Source Code</h2>
         <ul>
-          <li>CSS: <a href="css/carousel-1.css" type="text/css">carousel-1.css</a></li>
-          <li>Javascript: <a href="js/carousel.js" type="text/javascript">carousel.js</a></li>
-          <li>Javascript: <a href="js/carouselItem.js" type="text/javascript">carouselItem.js</a></li>
-          <li>Javascript: <a href="js/carouselButtons.js" type="text/javascript">carouselButtons.js</a></li>
+          <li>CSS: <a href="css/carousel-2-tablist.css" type="text/css">carousel-2-tablist.css</a></li>
+          <li>Javascript: <a href="js/carouselTablist.js" type="text/javascript">carouselTablist.js</a></li>
+          <li>Javascript: <a href="js/carouselTab.js" type="text/javascript">carouselTab.js</a></li>
+          <li>Javascript: <a href="js/carouselTabpanel.js" type="text/javascript">carouselTabpanel.js</a></li>
           <li>Javascript: <a href="js/pauseButton.js" type="text/javascript">pauseButton.js</a></li>
         </ul>
       </section>
