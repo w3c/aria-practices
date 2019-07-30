@@ -362,16 +362,20 @@
         </p>
         <ul>
           <li>
-            When the rotation control, next slide,  and previous slide buttons are rendered on top of the carousel images, the buttons have forground and background colors that meet WCAG 2.1 color contrast requirements.
+            When the tabs conrolling the rendering of slides are on top of the carousel images, the tabs have forground and background colors that meet WCAG 2.1 color contrast requirements.
             In addition, the focus styling uses SVG images that make the focus indicator highly visible when a control receives keyboard focus.
           </li>
           <li>The transparency of the caption area is decreased so the caption text meets the WCAG 2.1 color contrast requirements.</li>
         </ul>
+        <h3>Focus Styling of the Tabs</h3>
+        <p>
+        When a tab receives focus the tablist is also highlighted with a border to provide an affordance to the user that the cursor keys should be bused to move focus between the tabs.
+        </p>
         <h3>Screen Reader Announcement of Slide Changes</h3>
         <p>
           When automatic rotation is turned off, the carousel slide content is included in a live region.
           This makes it easier for screen reader users to scan through the carousel slides.
-          When screen reader users activate the next or previous slide button , the new slide content is announced, giving users immediate feedback that helps them determine whether or not to interact with the content.
+          When screen reader users activate a new tab, the new slide content is announced, giving users immediate feedback that helps them determine whether or not to interact with the content.
           Very importantly, if automatic rotation is turned on, the live region is disabled.
           If it were not, the page would be come unusable as announcements of the continuously changing content constantly interrupt anything else the user is reading.
         </p>
