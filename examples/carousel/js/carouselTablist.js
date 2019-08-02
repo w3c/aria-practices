@@ -166,6 +166,11 @@ CarouselTablist.prototype.rotateSlides = function () {
 
 CarouselTablist.prototype.updateRotation = function () {
 
+  // Pause rotation when keyboard focus enters the carousel
+  if (this.hasFocus) {
+    this.isStopped = true;
+  }
+
   if (!this.hasHover && !this.hasFocus && !this.isStopped) {
     this.rotate = true;
     this.liveRegionNode.setAttribute('aria-live', 'off');

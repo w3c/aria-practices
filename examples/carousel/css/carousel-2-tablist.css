@@ -5,21 +5,6 @@
   position: relative;
 }
 
-.carouselTablist .carousel-item {
-  display: none;
-  max-height: 400px;
-  max-width: 900px;
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-}
-
-.carouselTablist .carousel-item.active {
-  display: block;
-}
-
-/* More like bootstrap, less accessible */
-
 .carouselTablist .carousel-items {
   border: solid 2px transparent;
 }
@@ -29,17 +14,32 @@
   outline: solid 3px #005a9c;
 }
 
-.carouselTablist .carousel-item .carousel-image a img {
+.carouselTablist [role=tabpanel] {
+  display: none;
+  max-height: 400px;
+  max-width: 900px;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.carouselTablist [role=tabpanel].active {
+  display: block;
+}
+
+/* More like bootstrap, less accessible */
+
+.carouselTablist [role=tabpanel] .carousel-image a img {
   height: 100%;
   width: 100%;
 }
 
-.carouselTablist .carousel-item .carousel-caption a {
+.carouselTablist [role=tabpanel] .carousel-caption a {
   text-decoration: underline;
 }
 
-.carouselTablist .carousel-item .carousel-caption a,
-.carouselTablist .carousel-item .carousel-caption span.contrast {
+.carouselTablist [role=tabpanel] .carousel-caption a,
+.carouselTablist [role=tabpanel] .carousel-caption span.contrast {
   display: inline-block;
   background-color: rgba(0, 0, 0, 0.65);
   padding-left: 0.25em;
@@ -49,30 +49,30 @@
   margin: 0;
 }
 
-.carouselTablist .carousel-item .carousel-caption h3 a {
+.carouselTablist [role=tabpanel] .carousel-caption h3 a {
   color: #fff;
   font-weight: 600;
 }
 
-.carouselTablist .carousel-item .carousel-caption a:hover,
-.carouselTablist .carousel-item .carousel-caption span.contrast:hover {
+.carouselTablist [role=tabpanel] .carousel-caption a:hover,
+.carouselTablist [role=tabpanel] .carousel-caption span.contrast:hover {
   background-color: rgba(0, 0, 0, 1);
   margin: 0;
 }
 
-.carouselTablist .carousel-item .carousel-caption a:focus {
+.carouselTablist [role=tabpanel] .carousel-caption a:focus {
   background-color: rgba(0, 0, 0, 1);
   border-color: #fff;
   margin: 0;
 }
 
-.carouselTablist .carousel-item .carousel-caption p {
+.carouselTablist [role=tabpanel] .carousel-caption p {
   font-size: 1em;
   line-height: 1.5;
   margin-bottom: 0;
 }
 
-.carouselTablist .carousel-item .carousel-caption {
+.carouselTablist [role=tabpanel] .carousel-caption {
   position: absolute;
   right: 15%;
   bottom: 0;
@@ -101,6 +101,7 @@
   outline: none;
   top: 0;
   left: 6px;
+  z-index: 10;
 }
 
 .carouselTablist .controls button svg rect.background {
@@ -150,14 +151,16 @@
 /* Shared CSS for Tabs */
 
 .carouselTablist [role="tablist"] {
+  position: relative;
+  top: -2px;
   text-align: center;
 }
 
 .carouselTablist [role="tablist"] .border {
   display: inline-block;
   border: 2px transparent solid;
-  border-radius: 15px;
-  height: 30px;
+  border-radius: 13px;
+  height: 26px;
   background-color: transparent;
 }
 
@@ -167,6 +170,8 @@
 }
 
 .carouselTablist [role="tab"] {
+  position: relative;
+  top: -2px;
   padding: 0;
   margin: 0;
   background-color: transparent;
@@ -205,9 +210,24 @@
 
 .carouselTablist [role="tab"]:focus circle.border {
   display: block;
+  fill: #005a9c;
+  stroke: #005a9c;
 }
 
 .carouselTablist [role="tablist"] .focus circle.tab-background {
   stroke: #005a9c;
   fill: #005a9c;
+}
+
+.carouselTablist [role="tab"]:hover circle.tab-background {
+  fill: white;
+  stroke: white;
+  opacity: 1;
+}
+
+.carouselTablist [role="tab"]:hover circle.border,
+.carouselTablist [role="tab"]:hover circle.tab {
+  fill: #005a9c;
+  stroke: #005a9c;
+  opacity: 1;
 }
