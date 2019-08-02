@@ -18,7 +18,18 @@
         console.log('loaded more accessible');
         stylesheet = 'css/carousel-2-tablist-more-accessible.css';
       }
+
       document.write('<link rel="stylesheet" type="text/css" href="' + stylesheet + '">')
+
+      window.addEventListener('load', function () {
+        if (location.href.indexOf('moreaccessible') > 0) {
+          document.getElementById('id_link_more_accessible').setAttribute('aria-current', 'page');
+        }
+        else {
+          document.getElementById('id_link_less_accessible').setAttribute('aria-current', 'page');
+        }
+      });
+
     </script>
 
     <script src="js/carouselTab.js" type="text/javascript"></script>
@@ -53,8 +64,8 @@
       <section>
         <h2>Example View Options</h2>
         <ul>
-          <li><a href="carousel-2-tablist.html">Tablist carousel controls and captions displayed on image</a>: This option is less accessible than the other option because the controls are harder to perceive and captions are more difficult to read with rotating images behind them.</li>
-          <li><a href="carousel-2-tablist.html?moreaccessible">Tablist carousel controls and captions displayed above and below the image</a>: This option is preferable because controls and captions are easier to perceive.</li>
+          <li><a id="id_link_less_accessible" href="carousel-2-tablist.html">Tablist carousel controls and captions displayed on image</a>: This option is less accessible than the other option because the controls are harder to perceive and captions are more difficult to read with rotating images behind them.</li>
+          <li><a id="id_link_more_accessible" href="carousel-2-tablist.html?moreaccessible">Tablist carousel controls and captions displayed above and below the image</a>: This option is preferable because controls and captions are easier to perceive.</li>
         </ul>
       </section>
 
