@@ -148,6 +148,8 @@ ariaTest('aria-labelledby on grid element', exampleFile, 'grid-aria-labelledby',
   await assertAriaLabelledby(t, ex.gridSelector);
 });
 
+/*
+
 ariaTest('Roving tab index on dates in gridcell', exampleFile, 'gridcell-button-tabindex', async (t) => {
   await setDateToJanFirst2019(t);
   await t.context.session.findElement(By.css(ex.buttonSelector)).click();
@@ -176,6 +178,8 @@ ariaTest('Roving tab index on dates in gridcell', exampleFile, 'gridcell-button-
     await focusableButtons[tabableEl].sendKeys(Key.ARROW_RIGHT);
   }
 });
+
+
 
 // This test failed due to issue: https://github.com/w3c/aria-practices/issues/1072
 // If you fix it, please remove ".failing"
@@ -304,3 +308,5 @@ ariaTest('', exampleFile, 'dialog-shift-tab', async (t) => {
       .sendKeys(Key.chord(Key.SHIFT, Key.TAB));
   }
 });
+
+*/

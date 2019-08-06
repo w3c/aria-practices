@@ -46,6 +46,8 @@ DatepickerComboboxDay.prototype.updateDay = function (disable, day, selected) {
 
   this.day = new Date(day);
   this.domNode.setAttribute('data-date', this.day.getFullYear() + '-' + m + '-' + d);
+  this.domNode.setAttribute('tabindex', '-1');
+  this.domNode.removeAttribute('aria-selected');
 
   if (disable) {
     this.domNode.classList.add('disabled');
@@ -66,11 +68,9 @@ DatepickerComboboxDay.prototype.updateDay = function (disable, day, selected) {
 
     if (selected) {
       this.domNode.setAttribute('aria-selected', 'true');
+      this.domNode.setAttribute('tabindex', '0');
     }
   }
-
-  this.domNode.setAttribute('tabindex', '-1');
-  this.domNode.removeAttribute('aria-selected');
 
 
 };
