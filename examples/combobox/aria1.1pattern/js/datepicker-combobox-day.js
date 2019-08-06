@@ -45,6 +45,7 @@ DatepickerComboboxDay.prototype.isDisabled = function () {
 DatepickerComboboxDay.prototype.updateDay = function (disable, day, selected) {
 
   this.day = new Date(day);
+  this.domNode.setAttribute('data-date', this.day.getFullYear() + '-' + m + '-' + d);
 
   if (disable) {
     this.domNode.classList.add('disabled');
@@ -62,8 +63,6 @@ DatepickerComboboxDay.prototype.updateDay = function (disable, day, selected) {
     if (this.day.getMonth() < 9) {
       m = '0' + m;
     }
-
-    this.domNode.setAttribute('data-date', this.day.getFullYear() + '-' + m + '-' + d);
 
     if (selected) {
       this.domNode.setAttribute('aria-selected', 'true');

@@ -16,7 +16,7 @@ let today = new Date();
 let todayDataDate = today.toISOString().split('T')[0];
 
 const ex = {
-  comboboxSelector: '#myDatepicker',
+  comboboxSelector: '#example [role=combobox]',
   dialogSelector: '#example [role="dialog"]',
   inputSelector: '#example input',
   buttonSelector: '#example button.icon',
@@ -78,32 +78,22 @@ const focusMatchesElement = async function (t, selector) {
 
 // Attributes
 
-ariaTest('Combobox: has role', exampleFile, 'combobox-role', async (t) => {
+ariaTest('Combobox: has role', exampleFile, 'textbox-role', async (t) => {
   t.plan(1);
-  await assertAriaRoles(t, 'example', 'combobox', 1, 'div');
+  await assertAriaRoles(t, 'example', 'combobox', 1, 'input');
 });
 
-ariaTest('Combobox: has aria-labelledby', exampleFile, 'combobox-aria-labelledby', async (t) => {
-  t.plan(1);
-  await assertAriaLabelledby(t, ex.comboboxSelector);
-});
-
-ariaTest('Combobox: has aria-haspopup set to "dialog"', exampleFile, 'combobox-aria-haspopup', async (t) => {
+ariaTest('Combobox: has aria-haspopup set to "dialog"', exampleFile, 'textbox-aria-haspopup', async (t) => {
   t.plan(1);
   await assertAttributeValues(t, ex.comboboxSelector, 'aria-haspopup', 'dialog');
 });
 
-ariaTest('Combobox: has aria-owns set to "myDatepickerDialog"', exampleFile, 'combobox-aria-owns', async (t) => {
+ariaTest('Combobox: has aria-contorls set to "id-dialog-1"', exampleFile, 'textbox-aria-controls', async (t) => {
   t.plan(1);
-  await assertAttributeValues(t, ex.comboboxSelector, 'aria-owns', 'myDatepickerDialog');
+  await assertAttributeValues(t, ex.comboboxSelector, 'aria-controls', 'id-dialog-1');
 });
 
-ariaTest('Combobox: has aria-labelledby set to "id-label-1"', exampleFile, 'combobox-aria-labelledby', async (t) => {
-  t.plan(1);
-  await assertAttributeValues(t, ex.comboboxSelector, 'aria-labelledby', 'id-label-1');
-});
-
-ariaTest('Combobox: Initially aria-expanded set to "false"', exampleFile, 'combobox-aria-expanded', async (t) => {
+ariaTest('Combobox: Initially aria-expanded set to "false"', exampleFile, 'textbox-aria-expanded', async (t) => {
   t.plan(1);
   await assertAttributeValues(t, ex.comboboxSelector, 'aria-expanded', 'false');
 });
