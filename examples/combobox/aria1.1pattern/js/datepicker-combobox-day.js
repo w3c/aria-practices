@@ -5,7 +5,7 @@
 *   File:   datepicker-combobox-day.js
 */
 
-var DatePickerComboboxDay = function (domNode, datepicker) {
+var DatepickerComboboxDay = function (domNode, datepicker) {
 
   this.day = new Date();
 
@@ -28,7 +28,7 @@ var DatePickerComboboxDay = function (domNode, datepicker) {
   });
 };
 
-DatePickerComboboxDay.prototype.init = function () {
+DatepickerComboboxDay.prototype.init = function () {
   this.domNode.setAttribute('tabindex', '-1');
   this.domNode.addEventListener('mousedown', this.handleMouseDown.bind(this));
   this.domNode.addEventListener('keydown', this.handleKeyDown.bind(this));
@@ -38,40 +38,45 @@ DatePickerComboboxDay.prototype.init = function () {
 
 };
 
-DatePickerComboboxDay.prototype.isDisabled = function () {
+DatepickerComboboxDay.prototype.isDisabled = function () {
   return this.domNode.classList.contains('disabled');
 };
 
-DatePickerComboboxDay.prototype.updateDay = function (disable, day) {
-
-  if (disable) {
-    this.domNode.classList.add('disabled');
-  }
-  else {
-    this.domNode.classList.remove('disabled');
-  }
+DatepickerComboboxDay.prototype.updateDay = function (disable, day, selected) {
 
   this.day = new Date(day);
 
-  this.domNode.innerHTML = this.day.getDate();
+  if (disable) {
+    this.domNode.classList.add('disabled');
+    this.domNode.innerHTML = '';
+  }
+  else {
+    this.domNode.classList.remove('disabled');
+    this.domNode.innerHTML = this.day.getDate();
+    var d = this.day.getDate().toString();
+    if (this.day.getDate() < 9) {
+      d = '0' + d;
+    }
+
+    var m = this.day.getMonth() + 1;
+    if (this.day.getMonth() < 9) {
+      m = '0' + m;
+    }
+
+    this.domNode.setAttribute('data-date', this.day.getFullYear() + '-' + m + '-' + d);
+
+    if (selected) {
+      this.domNode.setAttribute('aria-selected', 'true');
+    }
+  }
+
   this.domNode.setAttribute('tabindex', '-1');
   this.domNode.removeAttribute('aria-selected');
 
-  var d = this.day.getDate().toString();
-  if (this.day.getDate() < 9) {
-    d = '0' + d;
-  }
-
-  var m = this.day.getMonth() + 1;
-  if (this.day.getMonth() < 9) {
-    m = '0' + m;
-  }
-
-  this.domNode.setAttribute('data-date', this.day.getFullYear() + '-' + m + '-' + d);
 
 };
 
-DatePickerComboboxDay.prototype.handleKeyDown = function (event) {
+DatepickerComboboxDay.prototype.handleKeyDown = function (event) {
   var flag = false;
 
   switch (event.keyCode) {
@@ -159,13 +164,10 @@ DatePickerComboboxDay.prototype.handleKeyDown = function (event) {
 
 };
 
-DatePickerComboboxDay.prototype.handleMouseDown = function (event) {
+DatepickerComboboxDay.prototype.handleMouseDown = function (event) {
   this.datepicker.day = this.day;
 
-  if (this.isDisabled()) {
-    this.datepicker.moveFocusToDay(this.day);
-  }
-  else {
+  if (!this.isDisabled()) {
     this.datepicker.setTextboxDate(this.day);
     this.datepicker.hide();
   }
@@ -175,6 +177,6 @@ DatePickerComboboxDay.prototype.handleMouseDown = function (event) {
 
 };
 
-DatePickerComboboxDay.prototype.handleFocus = function () {
+DatepickerComboboxDay.prototype.handleFocus = function () {
   this.datepicker.setMessage(this.datepicker.messageCursorKeys);
 };

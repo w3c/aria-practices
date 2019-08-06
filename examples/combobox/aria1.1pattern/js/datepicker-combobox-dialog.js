@@ -6,9 +6,9 @@
 */
 
 var ComboboxInput = ComboboxInput || {};
-var DatePickerComboboxDay = DatePickerComboboxDay || {};
+var DatepickerComboboxDay = DatepickerComboboxDay || {};
 
-var DatePickerCombobox = function (comboboxNode, inputNode, buttonNode, dialogNode) {
+var DatepickerComboboxDialog = function (datepickerNode, inputNode, buttonNode, dialogNode) {
   this.dayLabels = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   this.monthLabels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
@@ -20,7 +20,7 @@ var DatePickerCombobox = function (comboboxNode, inputNode, buttonNode, dialogNo
   this.messageCursorKeys = 'Cursor keys can navigate dates';
   this.lastMessage = '';
 
-  this.dateInput = new ComboboxInput(comboboxNode, this.inputNode, this.buttonNode, this);
+  this.dateInput = new ComboboxInput(datepickerNode, this.inputNode, this.buttonNode, this);
 
   this.MonthYearNode = this.dialogNode.querySelector('.monthYear');
 
@@ -64,7 +64,7 @@ var DatePickerCombobox = function (comboboxNode, inputNode, buttonNode, dialogNo
 
 };
 
-DatePickerCombobox.prototype.init = function () {
+DatepickerComboboxDialog.prototype.init = function () {
 
   this.dateInput.init();
 
@@ -102,7 +102,7 @@ DatePickerCombobox.prototype.init = function () {
       cellButton.classList.add('dateButton');
       cell.appendChild(cellButton);
       row.appendChild(cell);
-      var dpDay = new DatePickerComboboxDay(cellButton, this);
+      var dpDay = new DatepickerComboboxDay(cellButton, this);
       dpDay.init();
       this.days.push(dpDay);
     }
@@ -112,18 +112,18 @@ DatePickerCombobox.prototype.init = function () {
   this.setFocusDay();
 };
 
-DatePickerCombobox.prototype.isSameDay = function (day1, day2) {
+DatepickerComboboxDialog.prototype.isSameDay = function (day1, day2) {
   return (day1.getFullYear() == day2.getFullYear()) &&
         (day1.getMonth() == day2.getMonth()) &&
         (day1.getDate() == day2.getDate());
 };
 
-DatePickerCombobox.prototype.isNotSameMonth = function (day1, day2) {
+DatepickerComboboxDialog.prototype.isNotSameMonth = function (day1, day2) {
   return (day1.getFullYear() != day2.getFullYear()) ||
         (day1.getMonth() != day2.getMonth());
 };
 
-DatePickerCombobox.prototype.updateGrid = function () {
+DatepickerComboboxDialog.prototype.updateGrid = function () {
 
   var i, flag;
   var fd = this.focusDay;
@@ -140,10 +140,7 @@ DatePickerCombobox.prototype.updateGrid = function () {
 
   for (i = 0; i < this.days.length; i++) {
     flag = d.getMonth() != fd.getMonth();
-    this.days[i].updateDay(flag, d);
-    if (this.isSameDay(d, this.selectedDay)) {
-      this.days[i].domNode.setAttribute('aria-selected', 'true');
-    }
+    this.days[i].updateDay(flag, d, this.isSameDay(d, this.selectedDay));
     d.setDate(d.getDate() + 1);
   }
 
@@ -156,15 +153,15 @@ DatePickerCombobox.prototype.updateGrid = function () {
 
 };
 
-DatePickerCombobox.prototype.hideLastRow = function () {
+DatepickerComboboxDialog.prototype.hideLastRow = function () {
   this.lastRowNode.style.visibility = 'hidden';
 };
 
-DatePickerCombobox.prototype.showLastRow = function () {
+DatepickerComboboxDialog.prototype.showLastRow = function () {
   this.lastRowNode.style.visibility = 'visible';
 };
 
-DatePickerCombobox.prototype.setFocusDay = function (flag) {
+DatepickerComboboxDialog.prototype.setFocusDay = function (flag) {
 
   if (typeof flag !== 'boolean') {
     flag = true;
@@ -183,7 +180,7 @@ DatePickerCombobox.prototype.setFocusDay = function (flag) {
   this.days.forEach(checkDay.bind(this));
 };
 
-DatePickerCombobox.prototype.updateDate = function (day) {
+DatepickerComboboxDialog.prototype.updateDate = function (day) {
   var d = this.focusDay;
   this.focusDay = day;
   if (this.isNotSameMonth(d, day)) {
@@ -192,19 +189,19 @@ DatePickerCombobox.prototype.updateDate = function (day) {
   }
 };
 
-DatePickerCombobox.prototype.getDaysInLastMonth = function () {
+DatepickerComboboxDialog.prototype.getDaysInLastMonth = function () {
   var fd = this.focusDay;
   var lastDayOfMonth = new Date(fd.getFullYear(), fd.getMonth(), 0);
   return lastDayOfMonth.getDate();
 };
 
-DatePickerCombobox.prototype.getDaysInMonth = function () {
+DatepickerComboboxDialog.prototype.getDaysInMonth = function () {
   var fd = this.focusDay;
   var lastDayOfMonth = new Date(fd.getFullYear(), fd.getMonth() + 1, 0);
   return lastDayOfMonth.getDate();
 };
 
-DatePickerCombobox.prototype.show = function () {
+DatepickerComboboxDialog.prototype.show = function () {
 
   this.dialogNode.style.display = 'block';
   this.dialogNode.style.zIndex = 2;
@@ -216,11 +213,11 @@ DatePickerCombobox.prototype.show = function () {
   return this.hasFocusFlag;
 };
 
-DatePickerCombobox.prototype.isOpen = function () {
+DatepickerComboboxDialog.prototype.isOpen = function () {
   return this.dateInput.isOpen();
 };
 
-DatePickerCombobox.prototype.hide = function (ignore) {
+DatepickerComboboxDialog.prototype.hide = function (ignore) {
 
   this.setMessage('');
 
@@ -236,7 +233,7 @@ DatePickerCombobox.prototype.hide = function (ignore) {
   this.dateInput.setFocus();
 };
 
-DatePickerCombobox.prototype.handleBackgroundMouseDown = function (event) {
+DatepickerComboboxDialog.prototype.handleBackgroundMouseDown = function (event) {
   if (!this.inputNode.parentNode.contains(event.target) &&
       !this.dialogNode.contains(event.target)) {
 
@@ -250,12 +247,12 @@ DatePickerCombobox.prototype.handleBackgroundMouseDown = function (event) {
   }
 };
 
-DatePickerCombobox.prototype.handleBackgroundMouseUp = function () {
+DatepickerComboboxDialog.prototype.handleBackgroundMouseUp = function () {
   this.isMouseDownOnBackground = false;
 };
 
 
-DatePickerCombobox.prototype.handleOkButton = function (event) {
+DatepickerComboboxDialog.prototype.handleOkButton = function (event) {
   var flag = false;
 
   switch (event.type) {
@@ -305,7 +302,7 @@ DatePickerCombobox.prototype.handleOkButton = function (event) {
   }
 };
 
-DatePickerCombobox.prototype.handleCancelButton = function (event) {
+DatepickerComboboxDialog.prototype.handleCancelButton = function (event) {
   var flag = false;
 
   switch (event.type) {
@@ -344,7 +341,7 @@ DatePickerCombobox.prototype.handleCancelButton = function (event) {
   }
 };
 
-DatePickerCombobox.prototype.handleNextYearButton = function (event) {
+DatepickerComboboxDialog.prototype.handleNextYearButton = function (event) {
   var flag = false;
 
   switch (event.type) {
@@ -385,7 +382,7 @@ DatePickerCombobox.prototype.handleNextYearButton = function (event) {
   }
 };
 
-DatePickerCombobox.prototype.handlePreviousYearButton = function (event) {
+DatepickerComboboxDialog.prototype.handlePreviousYearButton = function (event) {
   var flag = false;
 
   switch (event.type) {
@@ -437,7 +434,7 @@ DatePickerCombobox.prototype.handlePreviousYearButton = function (event) {
   }
 };
 
-DatePickerCombobox.prototype.handleNextMonthButton = function (event) {
+DatepickerComboboxDialog.prototype.handleNextMonthButton = function (event) {
   var flag = false;
 
   switch (event.type) {
@@ -478,7 +475,7 @@ DatePickerCombobox.prototype.handleNextMonthButton = function (event) {
   }
 };
 
-DatePickerCombobox.prototype.handlePreviousMonthButton = function (event) {
+DatepickerComboboxDialog.prototype.handlePreviousMonthButton = function (event) {
   var flag = false;
 
   switch (event.type) {
@@ -520,27 +517,27 @@ DatePickerCombobox.prototype.handlePreviousMonthButton = function (event) {
   }
 };
 
-DatePickerCombobox.prototype.moveToNextYear = function () {
+DatepickerComboboxDialog.prototype.moveToNextYear = function () {
   this.focusDay.setFullYear(this.focusDay.getFullYear() + 1);
   this.updateGrid();
 };
 
-DatePickerCombobox.prototype.moveToPreviousYear = function () {
+DatepickerComboboxDialog.prototype.moveToPreviousYear = function () {
   this.focusDay.setFullYear(this.focusDay.getFullYear() - 1);
   this.updateGrid();
 };
 
-DatePickerCombobox.prototype.moveToNextMonth = function () {
+DatepickerComboboxDialog.prototype.moveToNextMonth = function () {
   this.focusDay.setMonth(this.focusDay.getMonth() + 1);
   this.updateGrid();
 };
 
-DatePickerCombobox.prototype.moveToPreviousMonth = function () {
+DatepickerComboboxDialog.prototype.moveToPreviousMonth = function () {
   this.focusDay.setMonth(this.focusDay.getMonth() - 1);
   this.updateGrid();
 };
 
-DatePickerCombobox.prototype.moveFocusToDay = function (day) {
+DatepickerComboboxDialog.prototype.moveFocusToDay = function (day) {
   var d = this.focusDay;
 
   this.focusDay = day;
@@ -551,43 +548,43 @@ DatePickerCombobox.prototype.moveFocusToDay = function (day) {
   this.setFocusDay();
 };
 
-DatePickerCombobox.prototype.moveFocusToNextDay = function () {
+DatepickerComboboxDialog.prototype.moveFocusToNextDay = function () {
   var d = new Date(this.focusDay);
   d.setDate(d.getDate() + 1);
   this.moveFocusToDay(d);
 };
 
-DatePickerCombobox.prototype.moveFocusToNextWeek = function () {
+DatepickerComboboxDialog.prototype.moveFocusToNextWeek = function () {
   var d = new Date(this.focusDay);
   d.setDate(d.getDate() + 7);
   this.moveFocusToDay(d);
 };
 
-DatePickerCombobox.prototype.moveFocusToPreviousDay = function () {
+DatepickerComboboxDialog.prototype.moveFocusToPreviousDay = function () {
   var d = new Date(this.focusDay);
   d.setDate(d.getDate() - 1);
   this.moveFocusToDay(d);
 };
 
-DatePickerCombobox.prototype.moveFocusToPreviousWeek = function () {
+DatepickerComboboxDialog.prototype.moveFocusToPreviousWeek = function () {
   var d = new Date(this.focusDay);
   d.setDate(d.getDate() - 7);
   this.moveFocusToDay(d);
 };
 
-DatePickerCombobox.prototype.moveFocusToFirstDayOfWeek = function () {
+DatepickerComboboxDialog.prototype.moveFocusToFirstDayOfWeek = function () {
   var d = new Date(this.focusDay);
   d.setDate(d.getDate() - d.getDay());
   this.moveFocusToDay(d);
 };
 
-DatePickerCombobox.prototype.moveFocusToLastDayOfWeek = function () {
+DatepickerComboboxDialog.prototype.moveFocusToLastDayOfWeek = function () {
   var d = new Date(this.focusDay);
   d.setDate(d.getDate() + (6 - d.getDay()));
   this.moveFocusToDay(d);
 };
 
-DatePickerCombobox.prototype.setTextboxDate = function (day) {
+DatepickerComboboxDialog.prototype.setTextboxDate = function (day) {
   if (day) {
     this.dateInput.setDate(day);
   }
@@ -596,7 +593,7 @@ DatePickerCombobox.prototype.setTextboxDate = function (day) {
   }
 };
 
-DatePickerCombobox.prototype.getDateInput = function () {
+DatepickerComboboxDialog.prototype.getDateInput = function () {
 
   var parts = this.dateInput.getDate().split('/');
 
@@ -615,7 +612,7 @@ DatePickerCombobox.prototype.getDateInput = function () {
 
 };
 
-DatePickerCombobox.prototype.getDateForButtonLabel = function (year, month, day) {
+DatepickerComboboxDialog.prototype.getDateForButtonLabel = function (year, month, day) {
   if (typeof year !== 'number' || typeof month !== 'number' || typeof day !== 'number') {
     this.selectedDay = this.focusDay;
   }
@@ -630,7 +627,7 @@ DatePickerCombobox.prototype.getDateForButtonLabel = function (year, month, day)
   return label;
 };
 
-DatePickerCombobox.prototype.setMessage = function (str) {
+DatepickerComboboxDialog.prototype.setMessage = function (str) {
 
   function setMessageDelayed () {
     this.messageNode.textContent = str;

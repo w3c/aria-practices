@@ -1,8 +1,8 @@
-.datepicker {
+.datepickerCombobox {
   margin-top: 1em;
 }
 
-.datepicker button.icon {
+.datepickerCombobox button.icon {
   border-style: none;
   text-align: left;
   background-color: white;
@@ -11,37 +11,32 @@
   top: 3px;
 }
 
-.datepicker span.arrow {
+.datepickerCombobox span.arrow {
   margin: 0;
   padding: 0;
   display: none;
   background: transparent;
 }
 
-.datepicker span.arrow svg polygon {
+.datepickerCombobox span.arrow svg polygon {
   stroke: gray;
   stroke-width: 1px;
   fill: gray;
 }
 
-.datepicker[aria-expanded=false] span.arrow.up {
+.datepickerCombobox span.arrow.up.show {
   display: inline-block;
   position: relative;
   left: -23px;
 }
 
-.datepicker[aria-expanded=true] span.arrow.down {
+.datepickerCombobox span.arrow.down.show {
   display: inline-block;
   position: relative;
   left: -23px;
 }
 
-.datepicker .datepicker input {
-  margin: 0;
-  width: 20%;
-}
-
-.datepicker .datepickerDialog {
+.datepickerCombobox .datepickerDialog {
   width: auto;
   position: absolute;
   clear: both;
@@ -53,7 +48,7 @@
   background-color: #fff;
 }
 
-.datepicker .header {
+.datepickerCombobox .header {
   cursor: default;
   background-color: hsl(216, 80%, 55%);
   padding: 7px;
@@ -64,7 +59,7 @@
   justify-content: space-around;
 }
 
-.datepicker .header h2 {
+.datepickerCombobox .header h2 {
   margin: 0;
   padding: 0;
   display: inline-block;
@@ -74,43 +69,43 @@
   font-weight: bold;
 }
 
-.datepicker .header button {
+.datepickerCombobox .header button {
   border-style: none;
   background: transparent;
 }
 
-.datepicker .datepickerDialog button::-moz-focus-inner {
+.datepickerCombobox .datepickerDialog button::-moz-focus-inner {
   border: 0;
 }
 
-.datepicker .prevYear,
-.datepicker .prevMonth,
-.datepicker .nextMonth,
-.datepicker .nextYear {
+.datepickerCombobox .prevYear,
+.datepickerCombobox .prevMonth,
+.datepickerCombobox .nextMonth,
+.datepickerCombobox .nextYear {
   padding: 4px;
   width: 24px;
   height: 24px;
   color: white;
 }
 
-.datepicker .prevYear:focus,
-.datepicker .prevMonth:focus,
-.datepicker .nextMonth:focus,
-.datepicker .nextYear:focus {
+.datepickerCombobox .prevYear:focus,
+.datepickerCombobox .prevMonth:focus,
+.datepickerCombobox .nextMonth:focus,
+.datepickerCombobox .nextYear:focus {
   padding: 2px;
   border: 2px solid white;
   border-radius: 4px;
   outline: 0;
 }
 
-.datepicker .dialogButtonGroup {
+.datepickerCombobox .dialogButtonGroup {
   text-align: right;
   margin-top: 1em;
   margin-bottom: 1em;
   margin-right: 1em;
 }
 
-.datepicker .dialogButton {
+.datepickerCombobox .dialogButton {
   padding: 5px;
   margin-left: 1em;
   width: 5em;
@@ -122,43 +117,43 @@
   border-radius: 5px;
 }
 
-.datepicker .dialogButton:focus {
+.datepickerCombobox .dialogButton:focus {
   padding: 4px;
   border: 2px solid black;
 }
 
-.datepicker .fa-calendar-alt {
+.datepickerCombobox .fa-calendar-alt {
   color: hsl(216, 89%, 72%);
 }
 
-.datepicker .monthYear {
+.datepickerCombobox .monthYear {
   display: inline-block;
   width: 12em;
   text-align: center;
 }
 
-.datepicker table.dates {
+.datepickerCombobox table.dates {
   width: 100%;
   padding-left: 1em;
   padding-right: 1em;
   padding-top: 1em;
 }
 
-.datepicker table.dates th,
-.datepicker table.dates td {
+.datepickerCombobox table.dates th,
+.datepickerCombobox table.dates td {
   text-align: center;
 }
 
-.datepicker .dateRow {
+.datepickerCombobox .dateRow {
   border: 1px solid black;
 }
 
-.datepicker .dateCell {
+.datepickerCombobox .dateCell {
   height: 40px;
   width: 40px;
 }
 
-.datepicker .dateButton {
+.datepickerCombobox .dateButton {
   padding: 0;
   margin: 0;
   line-height: inherit;
@@ -171,46 +166,41 @@
   background: #eee;
 }
 
-.datepicker .dateButton:focus,
-.datepicker .dateButton:hover {
+.datepickerCombobox .dateButton:focus,
+.datepickerCombobox .dateButton:hover {
   padding: 0;
   background-color: hsl(216, 80%, 92%);
 }
 
-.datepicker .dateButton:focus {
+.datepickerCombobox .dateButton:focus {
   border-width: 2px;
   border-color: rgb(100, 100, 100);
   outline: 0;
 }
 
-.datepicker .dateButton[aria-selected] {
+.datepickerCombobox .dateButton[aria-selected] {
   border-color: rgb(100, 100, 100);
 }
 
-.datepicker .dateButton[tabindex="0"] {
+.datepickerCombobox .dateButton[tabindex="0"] {
   background-color: hsl(216, 80%, 92%);
 }
 
-.datepicker .disabled {
-  color: #afafaf;
+.datepickerCombobox .dateButton.disabled {
+  background-color: transparent;
+  border-color: transparent;
 }
 
-.datepicker .disabled:hover {
-  color: black;
+.datepickerCombobox .dateButton.disabled:hover {
+  background-color: transparent;
+  border-color: transparent;
 }
 
-.datepicker .dateButton:disabled {
-  color: #777;
-  background-color: #fff;
-  border: none;
-  cursor: not-allowed;
-}
-
-.datepicker .comboboxMessage {
+.datepickerCombobox .comboboxMessage {
   display: none;
 }
 
-.datepicker .dialogMessage {
+.datepickerCombobox .dialogMessage {
   padding-top: 0.25em;
   padding-left: 1em;
   height: 1.75em;

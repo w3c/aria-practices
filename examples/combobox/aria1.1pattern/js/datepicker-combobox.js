@@ -5,17 +5,17 @@
 *   File:   datepicker-combobox.js
 */
 
-var DatePickerCombobox = DatePickerCombobox || {};
+var DatepickerComboboxDialog = DatepickerComboboxDialog || {};
 
-var ComboboxInput = function (comboboxNode, inputNode, buttonNode, datepicker) {
+var ComboboxInput = function (datepickerNode, inputNode, buttonNode, datepicker) {
 
-  this.comboboxNode = comboboxNode;
+  this.datepickerNode = datepickerNode;
   this.inputNode    = inputNode;
   this.buttonNode   = buttonNode;
-  this.messageNode  = comboboxNode.querySelector('.comboboxMessage');
+  this.messageNode  = this.datepickerNode.querySelector('.comboboxMessage');
 
-  this.arrowUpNode = comboboxNode.querySelector('.arrow.up');
-  this.arrowDownNode = comboboxNode.querySelector('.arrow.down');
+  this.arrowUpNode = this.datepickerNode.querySelector('.arrow.up');
+  this.arrowDownNode = this.datepickerNode.querySelector('.arrow.down');
 
   this.datepicker = datepicker;
 
@@ -101,7 +101,7 @@ ComboboxInput.prototype.handleKeyDown = function (event) {
 
 ComboboxInput.prototype.handleTouchStart = function (event) {
   if (event.targetTouches.length === 1) {
-    if (this.comboboxNode.contains(event.targetTouches[0].target)) {
+    if (this.datepickerNode.contains(event.targetTouches[0].target)) {
       if (this.isCollapsed()) {
         this.datepicker.show();
         event.stopPropagation();
@@ -213,21 +213,26 @@ ComboboxInput.prototype.handleButtonKeyDown = function (event) {
 
 ComboboxInput.prototype.setAriaExpanded = function (flag) {
 
+  this.arrowUpNode.classList.remove('show');
+  this.arrowDownNode.classList.remove('show');
+
   if (flag) {
-    this.comboboxNode.setAttribute('aria-expanded', 'true');
+    this.inputNode.setAttribute('aria-expanded', 'true');
+    this.arrowUpNode.classList.add('show');
   }
   else {
-    this.comboboxNode.setAttribute('aria-expanded', 'false');
+    this.inputNode.setAttribute('aria-expanded', 'false');
+    this.arrowDownNode.classList.add('show');
   }
 
 };
 
 ComboboxInput.prototype.isOpen = function () {
-  return this.comboboxNode.getAttribute('aria-expanded') === 'true';
+  return this.inputNode.getAttribute('aria-expanded') === 'true';
 };
 
 ComboboxInput.prototype.isCollapsed = function () {
-  return this.comboboxNode.getAttribute('aria-expanded') !== 'true';
+  return this.inputNode.getAttribute('aria-expanded') !== 'true';
 };
 
 ComboboxInput.prototype.setDate = function (day) {
@@ -285,14 +290,14 @@ ComboboxInput.prototype.setButtonLabel = function () {
 
 window.addEventListener('load' , function () {
 
-  var datePickers = document.querySelectorAll('[role=combobox].datepicker');
+  var datePickers = document.querySelectorAll('.datepickerCombobox');
 
   datePickers.forEach(function (dp) {
     var inputNode   = dp.querySelector('input');
     var buttonNode  = dp.querySelector('button');
     var dialogNode  = dp.querySelector('[role=dialog]');
 
-    var dpc = new DatePickerCombobox(dp, inputNode, buttonNode, dialogNode);
+    var dpc = new DatepickerComboboxDialog(dp, inputNode, buttonNode, dialogNode);
     dpc.init();
   });
 

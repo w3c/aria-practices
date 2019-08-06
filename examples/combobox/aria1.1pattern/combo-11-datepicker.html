@@ -46,12 +46,7 @@
     <div id="example">
 
       <div id="myDatepicker"
-           class="datepicker"
-           role="combobox"
-           aria-expanded="false"
-           aria-haspopup="dialog"
-           aria-owns="myDatepickerDialog"
-           aria-labelledby="id-label-1">
+           class="datepickerCombobox">
 
         <div class="date">
           <label id="id-label-1"
@@ -61,7 +56,10 @@
                 placeholder="mm/dd/yyyy"
                 id="id-textbox-1"
                 aria-autocomplete="none"
-                aria-controls="id-datepicker-1">
+                role="combobox"
+                aria-expanded="false"
+                aria-haspopup="dialog"
+                aria-controls="id-dialog-1">
 
           <span class="arrow up">
             <svg width="18" height="18">
@@ -69,7 +67,7 @@
             </svg>
           </span>
 
-          <span class="arrow down">
+          <span class="arrow down show">
             <svg width="18" height="18">
               <polygon points="4,9 14,9 9,16" style="fill:gray;stroke:gray;stroke-width:1" />
             </svg>
@@ -86,7 +84,7 @@
 
         <div class="comboboxMessage" aria-live="polite"></div>
 
-        <div id="myDatepickerDialog"
+        <div id="id-dialog-1"
              class="datepickerDialog"
              role="dialog"
              aria-modal="true"
@@ -95,12 +93,12 @@
           <div class="header">
 
             <button class="prevYear"
-              aria-label="previous year"
+              aria-label="previous year">
               <span class="fas fa-angle-double-left fa-lg"></span>
             </button>
 
             <button class="prevMonth"
-              aria-label="previous month"
+              aria-label="previous month">
               <span class="fas fa-angle-left fa-lg"></span>
             </button>
 
@@ -111,12 +109,12 @@
             </h2>
 
             <button class="nextMonth"
-              aria-label="next month"
+              aria-label="next month">
               <span class="fas fa-angle-right fa-lg"></span>
             </button>
 
             <button class="nextYear"
-              aria-label="next year"
+              aria-label="next year">
               <span class="fas fa-angle-double-right fa-lg"></span>
             </button>
 
@@ -141,12 +139,12 @@
 
             <tbody>
               <tr>
-                <td class="dateCell"><button class="dateButton" tabindex="-1" disabled>25</button></td>
-                <td class="dateCell"><button class="dateButton" tabindex="-1" disabled>26</button></td>
-                <td class="dateCell"><button class="dateButton" tabindex="-1" disabled>27</button></td>
-                <td class="dateCell"><button class="dateButton" tabindex="-1" disabled>28</button></td>
-                <td class="dateCell"><button class="dateButton" tabindex="-1" disabled>29</button></td>
-                <td class="dateCell"><button class="dateButton" tabindex="-1" disabled>30</button></td>
+                <td class="dateCell"><button class="dateButton disabled" tabindex="-1"></button></td>
+                <td class="dateCell"><button class="dateButton disabled" tabindex="-1"></button></td>
+                <td class="dateCell"><button class="dateButton disabled" tabindex="-1"></button></td>
+                <td class="dateCell"><button class="dateButton disabled" tabindex="-1"></button></td>
+                <td class="dateCell"><button class="dateButton disabled" tabindex="-1"></button></td>
+                <td class="dateCell"><button class="dateButton disabled" tabindex="-1"></button></td>
                 <td class="dateCell"><button class="dateButton" tabindex="-1">1</button></td>
               </tr>
               <tr>
@@ -491,7 +489,7 @@
     <h2 id="rps_label">Role, Property, State, and Tabindex  Attributes</h2>
 
     <section>
-      <h3 id="rps_label_combobox">Combobox</h3>
+      <h3 id="rps_label_combobox">Textbox</h3>
       <table aria-labelledby="rps_label_combobox rps_label" class="data attributes">
         <thead>
           <tr>
@@ -505,21 +503,15 @@
           <tr data-test-id="combobox-role">
             <th scope="row"><code>role=<q>combobox</q></code></th>
             <td></td>
-            <td><code>div</code></td>
+            <td><code>input</code></td>
             <td>
-              Identifes the element as a combobox.
+              Identifes the <code>input</code> element as a combobox.
             </td>
-          </tr>
-          <tr data-test-id="combobox-aria-labelledby">
-            <td></td>
-            <th scope="row"><code>aria-labelledby=<q>IDREF</q></code></th>
-            <td><code>div</code></td>
-            <td>Refers to the label containing the word <q>Date</q>, which also defines the accessible name for the <code>input</code> element.</td>
           </tr>
           <tr data-test-id="combobox-aria-haspopup">
             <td></td>
             <th scope="row"><code>aria-haspopup=<q>dialog</q></code></th>
-            <td><code>div</code></td>
+            <td><code>input</code></td>
             <td>
               Identifies the combobox opens a dialog box.
             </td>
@@ -527,7 +519,7 @@
           <tr data-test-id="combobox-aria-expanded">
             <td></td>
             <th scope="row"><code>aria-expanded=<q>false</q></code></th>
-            <td><code>div</code></td>
+            <td><code>input</code></td>
             <td>
               <code>aria-expanded=<q>false</q></code> when the date picker dialog box is closed.
             </td>
@@ -535,39 +527,11 @@
           <tr>
             <td></td>
             <th scope="row"><code>aria-expanded=<q>true</q></code></th>
-            <td><code>div</code></td>
+            <td><code>input</code></td>
             <td>
               <code>aria-expanded=<q>true</q></code> when the date picker dialog box is open.
             </td>
           </tr>
-          <tr data-test-id="combobox-aria-owns">
-            <td></td>
-            <th scope="row"><code>aria-owns=<q>IDREF</q></code></th>
-            <td><code>div</code></td>
-            <td>
-              <ul>
-                <li>Refers to the element that serves as the dialog box.</li>
-                <li>Tells browsers to arrange the screen reader reading order so the dialog box, when it is visible, immediately follows the other elements inside the combobox, regardless of where the dialog element is in the DOM.</li>
-              </ul>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-
-
-    <section>
-      <h3 id="rps_label_textbox">Textbox</h3>
-      <table aria-labelledby="rps_label_textbox rps_label" class="data attributes">
-        <thead>
-          <tr>
-            <th scope="col">Role</th>
-            <th scope="col">Attribute</th>
-            <th scope="col">Element</th>
-            <th scope="col">Usage</th>
-          </tr>
-        </thead>
-        <tbody>
           <tr data-test-id="textbox-aria-autocomplete">
             <td></td>
             <th scope="row"><code>aria-autocomplete=<q>none</q></code></th>
