@@ -144,21 +144,6 @@ DatepickerComboboxDialog.prototype.updateGrid = function () {
     d.setDate(d.getDate() + 1);
   }
 
-  if ((dayOfWeek + daysInMonth) < 36) {
-    this.hideLastRow();
-  }
-  else {
-    this.showLastRow();
-  }
-
-};
-
-DatepickerComboboxDialog.prototype.hideLastRow = function () {
-  this.lastRowNode.style.visibility = 'hidden';
-};
-
-DatepickerComboboxDialog.prototype.showLastRow = function () {
-  this.lastRowNode.style.visibility = 'visible';
 };
 
 DatepickerComboboxDialog.prototype.setFocusDay = function (flag) {

@@ -180,7 +180,6 @@ ariaTest('Roving tab index on dates in gridcell', exampleFile, 'gridcell-button-
 });
 
 
-
 // This test failed due to issue: https://github.com/w3c/aria-practices/issues/1072
 // If you fix it, please remove ".failing"
 ariaTest('aria-selected on selected date', exampleFile, 'gridcell-button-aria-selected', async (t) => {
