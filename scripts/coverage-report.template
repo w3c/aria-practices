@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <title>ARIA Roles, Properties and States used in Examples| WAI-ARIA Authoring Practices 1.1</title>
+  <title>ARIA Roles, Properties and States used in Examples| WAI-ARIA Authoring Practices</title>
   <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
   <link rel="stylesheet" href="css/core.css">
   <script src="js/examples.js"></script>
@@ -12,7 +12,7 @@
 </head>
 <body>
   <nav aria-label="ARIA Practices">
-    <a href="../">WAI-ARIA Authoring Practices 1.1</a>
+    <a href="../">WAI-ARIA Authoring Practices</a>
   </nav>
   <main>
     <h1>ARIA Roles, Properties and States used in Examples</h1>
@@ -20,9 +20,7 @@
 
 
     <p>
-      This page includes the following indexes of example implementations based on roles, properties and states
-      <a href="../#aria_ex">ARIA design patterns</a> included in
-      <a href="../">WAI-ARIA Authoring Practices 1.1.</a>
+      This page includes information on number of examples in the <a href="../">WAI-ARIA Authoring Practices</a> for each ARIA role, property and state.</a>
     </p>
     <ul>
       <li><a href="#csv_files">CSV Files of Role, Properties and States Coverage</a></li>
@@ -111,7 +109,7 @@
     </section>
 
   <nav aria-label="ARIA Practices">
-    <a href="../">WAI-ARIA Authoring Practices 1.1</a>
+    <a href="../">WAI-ARIA Authoring Practices</a>
   </nav>
 </body>
 </html>
