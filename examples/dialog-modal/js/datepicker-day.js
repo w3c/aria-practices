@@ -48,18 +48,7 @@ DatePickerDay.prototype.isDisabled = function () {
 
 DatePickerDay.prototype.updateDay = function (disable, day) {
 
-  if (disable) {
-    this.domNode.classList.add('disabled');
-  }
-  else {
-    this.domNode.classList.remove('disabled');
-  }
-
   this.day = new Date(day);
-
-  this.domNode.innerHTML = this.day.getDate();
-  this.domNode.setAttribute('tabindex', '-1');
-  this.domNode.removeAttribute('aria-selected');
 
   var d = this.day.getDate().toString();
   if (this.day.getDate() < 9) {
@@ -71,7 +60,18 @@ DatePickerDay.prototype.updateDay = function (disable, day) {
     m = '0' + m;
   }
 
+  this.domNode.setAttribute('tabindex', '-1');
+  this.domNode.removeAttribute('aria-selected');
   this.domNode.setAttribute('data-date', this.day.getFullYear() + '-' + m + '-' + d);
+
+  if (disable) {
+    this.domNode.classList.add('disabled');
+    this.domNode.innerHTML = '';
+  }
+  else {
+    this.domNode.classList.remove('disabled');
+    this.domNode.innerHTML = this.day.getDate();
+  }
 
 };
 

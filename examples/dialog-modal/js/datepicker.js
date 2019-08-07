@@ -110,6 +110,17 @@ DatePicker.prototype.init = function () {
   this.setFocusDay();
 };
 
+DatePicker.prototype.isSameDay = function (day1, day2) {
+  return (day1.getFullYear() == day2.getFullYear()) &&
+        (day1.getMonth() == day2.getMonth()) &&
+        (day1.getDate() == day2.getDate());
+};
+
+DatePicker.prototype.isNotSameMonth = function (day1, day2) {
+  return (day1.getFullYear() != day2.getFullYear()) ||
+        (day1.getMonth() != day2.getMonth());
+};
+
 DatePicker.prototype.updateGrid = function () {
 
   var i, flag;
@@ -118,7 +129,6 @@ DatePicker.prototype.updateGrid = function () {
   this.MonthYearNode.innerHTML = this.monthLabels[fd.getMonth()] + ' ' + fd.getFullYear();
 
   var firstDayOfMonth = new Date(fd.getFullYear(), fd.getMonth(), 1);
-  var daysInMonth = new Date(fd.getFullYear(), fd.getMonth() + 1, 0).getDate();
   var dayOfWeek = firstDayOfMonth.getDay();
 
   firstDayOfMonth.setDate(firstDayOfMonth.getDate() - dayOfWeek);
@@ -127,30 +137,9 @@ DatePicker.prototype.updateGrid = function () {
 
   for (i = 0; i < this.days.length; i++) {
     flag = d.getMonth() != fd.getMonth();
-    this.days[i].updateDay(flag, d);
-    if ((d.getFullYear() == this.selectedDay.getFullYear()) &&
-        (d.getMonth() == this.selectedDay.getMonth()) &&
-        (d.getDate() == this.selectedDay.getDate())) {
-      this.days[i].domNode.setAttribute('aria-selected', 'true');
-    }
+    this.days[i].updateDay(flag, d, this.isSameDay(d, this.selectedDay));
     d.setDate(d.getDate() + 1);
   }
-
-  if ((dayOfWeek + daysInMonth) < 36) {
-    this.hideLastRow();
-  }
-  else {
-    this.showLastRow();
-  }
-
-};
-
-DatePicker.prototype.hideLastRow = function () {
-  this.lastRowNode.style.visibility = 'hidden';
-};
-
-DatePicker.prototype.showLastRow = function () {
-  this.lastRowNode.style.visibility = 'visible';
 };
 
 DatePicker.prototype.setFocusDay = function (flag) {

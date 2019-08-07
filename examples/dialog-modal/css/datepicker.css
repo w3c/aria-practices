@@ -186,18 +186,7 @@
 }
 
 .datepicker .disabled {
-  color: #afafaf;
-}
-
-.datepicker .disabled:hover {
-  color: black;
-}
-
-.datepicker .dateButton:disabled {
-  color: #777;
-  background-color: #fff;
-  border: none;
-  cursor: not-allowed;
+  visibility: hidden;
 }
 
 .datepicker .message {
