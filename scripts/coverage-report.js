@@ -306,10 +306,15 @@ function exampleListItem(item) {
 
 let sortedRoles = Object.getOwnPropertyNames(indexOfRoles).sort();
 
+let countNoExamples = 0;
+let countOneExample = 0;
+let countMoreThanOneExample = 0;
+
 let RoleWithNoExamples = sortedRoles.reduce(function (set, role) {
   let examples = indexOfRoles[role];
 
   if (examples.length === 0) {
+    countNoExamples += 1;
     return `${set}
             <li><code>${role}</code></li>`;
   }
@@ -325,6 +330,7 @@ let RoleWithOneExample = sortedRoles.reduce(function (set, role) {
 
   let examplesHTML = '';
   if (examples.length === 1) {
+    countOneExample += 1;
     examplesHTML = `<a href="${examples[0].ref}">${examples[0].title}</a>`;
     return `${set}
           <tr>
@@ -344,6 +350,7 @@ let RoleWithMoreThanOneExample = sortedRoles.reduce(function (set, role) {
 
   let examplesHTML = '';
   if (examples.length > 1) {
+    countMoreThanOneExample += 1;
     examplesHTML = `
               <ul>${examples.map(exampleListItem).join('')}
               </ul>\n            `;
@@ -359,15 +366,24 @@ let RoleWithMoreThanOneExample = sortedRoles.reduce(function (set, role) {
 
 $('#roles_with_more_than_one_tbody').html(RoleWithMoreThanOneExample);
 
+$('#roles_with_no_examples_count').html(countNoExamples.toString());
+$('#roles_with_one_example_count').html(countOneExample.toString());
+$('#roles_with_more_than_one_examples_count').html(countMoreThanOneExample.toString());
+
 // Properties and States
 
 let sortedPropertiesAndStates = Object.getOwnPropertyNames(indexOfPropertiesAndStates)
                                       .sort();
 
+countNoExamples = 0;
+countOneExample = 0;
+countMoreThanOneExample = 0;
+
 let PropsWithNoExamples = sortedPropertiesAndStates.reduce(function (set, prop) {
   let examples = indexOfPropertiesAndStates[prop];
 
   if (examples.length === 0) {
+    countNoExamples += 1;
     return `${set}
             <li><code>${prop}</code></li>`;
   }
@@ -377,13 +393,14 @@ let PropsWithNoExamples = sortedPropertiesAndStates.reduce(function (set, prop) 
 }, '');
 
 $('#props_with_no_examples_ul').html(PropsWithNoExamples);
-
+$('#props_with_no_examples_count').html(countNoExamples.toString());
 
 let PropsWithOneExample = sortedPropertiesAndStates.reduce(function (set, prop) {
   let examples = indexOfPropertiesAndStates[prop];
 
   let examplesHTML = '';
   if (examples.length === 1) {
+    countOneExample += 1;
     examplesHTML = `<a href="${examples[0].ref}">${examples[0].title}</a>`;
     return `${set}
           <tr>
@@ -397,12 +414,14 @@ let PropsWithOneExample = sortedPropertiesAndStates.reduce(function (set, prop) 
 }, '');
 
 $('#props_with_one_example_tbody').html(PropsWithOneExample);
+$('#props_with_one_example_count').html(countOneExample.toString());
 
 let PropsWithMoreThanOneExample = sortedPropertiesAndStates.reduce(function (set, prop) {
   let examples = indexOfPropertiesAndStates[prop];
 
   let examplesHTML = '';
   if (examples.length > 1) {
+    countMoreThanOneExample += 1;
     examplesHTML = `
               <ul>${examples.map(exampleListItem).join('')}
               </ul>\n            `;
@@ -418,6 +437,9 @@ let PropsWithMoreThanOneExample = sortedPropertiesAndStates.reduce(function (set
 }, '');
 
 $('#props_with_more_than_one_tbody').html(PropsWithMoreThanOneExample);
+$('#props_with_more_than_one_examples_count').html(countMoreThanOneExample.toString());
+
+
 
 // cheeio seems to fold the doctype lines despite the template
 const result = $.html()
@@ -429,6 +451,7 @@ fs.writeFile(exampleFilePath, result, function (err) {
     console.log('Error saving updated aria practices:', err);
   }
 });
+
 
 // Output CSV files
 

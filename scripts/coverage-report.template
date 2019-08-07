@@ -41,13 +41,13 @@
     </section>
 
     <section id="roles_with_no_examples">
-      <h2 id="roles_with_no_examples_label">Roles with No Examples</h2>
+      <h2 id="roles_with_no_examples_label">Roles with No Examples (<span id="roles_with_no_examples_count"></span>)</h2>
       <ul id="roles_with_no_examples_ul">
       </ul>
     </section>
 
     <section id="roles_with_one_example">
-      <h2 id="roles_with_one_example_label">Roles with One Example</h2>
+      <h2 id="roles_with_one_example_label">Roles with One Example (<span id="roles_with_one_example_count"></span>)</h2>
       <table aria-labelledby="roles_with_one_example_label" class="data attributes">
         <thead>
           <tr>
@@ -61,7 +61,7 @@
     </section>
 
     <section id="roles_with_more_than_one_example">
-      <h2 id="roles_with_more_than_one_label">Roles with More than One Example</h2>
+      <h2 id="roles_with_more_than_one_label">Roles with More than One Example (<span id="roles_with_more_than_one_examples_count"></span>)</h2>
       <table aria-labelledby="roles_with_more_than_one_label" class="data attributes">
         <thead>
           <tr>
@@ -75,13 +75,13 @@
     </section>
 
     <section id="props_with_no_examples">
-      <h2 id="props_with_no_examples_label">Properties and States with No Examples</h2>
+      <h2 id="props_with_no_examples_label">Properties and States with No Examples (<span id="props_with_no_examples_count"></span>)</h2>
       <ul id="props_with_no_examples_ul">
       </ul>
     </section>
 
     <section id="props_with_one_example">
-      <h2 id="props_with_one_example_label">Properties and States with One Example</h2>
+      <h2 id="props_with_one_example_label">Properties and States with One Example (<span id="props_with_one_example_count"></span>)</h2>
       <table aria-labelledby="props_with_one_example_label" class="data attributes">
         <thead>
           <tr>
@@ -95,7 +95,7 @@
     </section>
 
     <section id="props_with_more_than_one_example">
-      <h2 id="props_with_more_than_one_label">Properties and States with More than One Example</h2>
+      <h2 id="props_with_more_than_one_label">Properties and States with More than One Example (<span id="props_with_more_than_one_examples_count"></span>)</h2>
       <table aria-labelledby="props_with_more_than_one_label" class="data attributes">
         <thead>
           <tr>
