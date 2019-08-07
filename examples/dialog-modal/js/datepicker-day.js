@@ -46,7 +46,7 @@ DatePickerDay.prototype.isDisabled = function () {
   return this.domNode.classList.contains('disabled');
 };
 
-DatePickerDay.prototype.updateDay = function (disable, day) {
+DatePickerDay.prototype.updateDay = function (disable, day, selected) {
 
   this.day = new Date(day);
 
@@ -71,6 +71,10 @@ DatePickerDay.prototype.updateDay = function (disable, day) {
   else {
     this.domNode.classList.remove('disabled');
     this.domNode.innerHTML = this.day.getDate();
+    if (selected) {
+      this.domNode.setAttribute('aria-selected', 'true');
+      this.domNode.setAttribute('tabindex', '0');
+    }
   }
 
 };
