@@ -151,10 +151,9 @@ DatePicker.prototype.setFocusDay = function (flag) {
   var fd = this.focusDay;
 
   function checkDay (d) {
+
     d.domNode.setAttribute('tabindex', '-1');
-    if ((d.day.getDate()  == fd.getDate()) &&
-        (d.day.getMonth() == fd.getMonth()) &&
-        (d.day.getFullYear() == fd.getFullYear())) {
+    if (this.isSameDay(d.day, fd)) {
       d.domNode.setAttribute('tabindex', '0');
       if (flag) {
         d.domNode.focus();
@@ -162,29 +161,17 @@ DatePicker.prototype.setFocusDay = function (flag) {
     }
   }
 
+
   this.days.forEach(checkDay.bind(this));
 };
 
 DatePicker.prototype.updateDay = function (day) {
   var d = this.focusDay;
   this.focusDay = day;
-  if ((d.getMonth() !== day.getMonth()) ||
-      (d.getFullYear() !== day.getFullYear())) {
+  if (this.isNotSameMonth(d, day)) {
     this.updateGrid();
     this.setFocusDay();
   }
-};
-
-DatePicker.prototype.getDaysInLastMonth = function () {
-  var fd = this.focusDay;
-  var lastDayOfMonth = new Date(fd.getFullYear(), fd.getMonth(), 0);
-  return lastDayOfMonth.getDate();
-};
-
-DatePicker.prototype.getDaysInMonth = function () {
-  var fd = this.focusDay;
-  var lastDayOfMonth = new Date(fd.getFullYear(), fd.getMonth() + 1, 0);
-  return lastDayOfMonth.getDate();
 };
 
 DatePicker.prototype.show = function () {

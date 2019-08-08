@@ -165,10 +165,7 @@ DatePickerDay.prototype.handleKeyDown = function (event) {
 
 DatePickerDay.prototype.handleMouseDown = function (event) {
 
-  if (this.isDisabled()) {
-    this.datepicker.moveFocusToDay(this.day);
-  }
-  else {
+  if (!this.isDisabled()) {
     this.datepicker.setTextboxDate(this.day);
     this.datepicker.hide();
   }
