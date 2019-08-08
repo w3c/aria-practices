@@ -187,13 +187,7 @@
 }
 
 .datepickerCombobox .dateButton.disabled {
-  background-color: transparent;
-  border-color: transparent;
-}
-
-.datepickerCombobox .dateButton.disabled:hover {
-  background-color: transparent;
-  border-color: transparent;
+  visibility: hidden;
 }
 
 .datepickerCombobox .comboboxMessage {
