@@ -41,9 +41,6 @@ var DatepickerComboboxDialog = function (datepickerNode, inputNode, buttonNode, 
   this.focusDay = new Date();
   this.selectedDay = new Date(0,0,1);
 
-  this.daysInCurrentMonth = this.getDaysInMonth();
-  this.daysInLastMonth = this.getDaysInLastMonth();
-
   this.hasFocusFlag = false;
   this.isMouseDownOnBackground = false;
 
@@ -131,7 +128,6 @@ DatepickerComboboxDialog.prototype.updateGrid = function () {
   this.MonthYearNode.innerHTML = this.monthLabels[fd.getMonth()] + ' ' + fd.getFullYear();
 
   var firstDayOfMonth = new Date(fd.getFullYear(), fd.getMonth(), 1);
-  var daysInMonth = new Date(fd.getFullYear(), fd.getMonth() + 1, 0).getDate();
   var dayOfWeek = firstDayOfMonth.getDay();
 
   firstDayOfMonth.setDate(firstDayOfMonth.getDate() - dayOfWeek);
@@ -172,18 +168,6 @@ DatepickerComboboxDialog.prototype.updateDate = function (day) {
     this.updateGrid();
     this.setFocusDay();
   }
-};
-
-DatepickerComboboxDialog.prototype.getDaysInLastMonth = function () {
-  var fd = this.focusDay;
-  var lastDayOfMonth = new Date(fd.getFullYear(), fd.getMonth(), 0);
-  return lastDayOfMonth.getDate();
-};
-
-DatepickerComboboxDialog.prototype.getDaysInMonth = function () {
-  var fd = this.focusDay;
-  var lastDayOfMonth = new Date(fd.getFullYear(), fd.getMonth() + 1, 0);
-  return lastDayOfMonth.getDate();
 };
 
 DatepickerComboboxDialog.prototype.show = function () {
