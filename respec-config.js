@@ -5,7 +5,7 @@ var respecConfig = {
   permalinkEdge: true,
   permalinkHide: false,
   // Specification status (e.g., WD, LC, NOTE, etc.). If in doubt use ED.
-  specStatus: 'NOTE',
+  specStatus: 'WG-NOTE',
   // crEnd: "2012-04-30",
   // perEnd: "2013-07-23",
   // publishDate: "2013-08-22",
@@ -25,7 +25,7 @@ var respecConfig = {
   // and set its YYYY-MM-DD date and its maturity status.
   //
   previousPublishDate:  "2019-02-07",
-  previousMaturity:  "NOTE",
+  previousMaturity:  "WG-NOTE",
   // prevRecURI: "",
   // previousDiffURI: "",
 
@@ -106,28 +106,28 @@ var respecConfig = {
     'FPWD': 'https://www.w3.org/TR/wai-aria-1.1/',
     'WD': 'https://www.w3.org/TR/wai-aria-1.1/',
     'REC': 'https://www.w3.org/TR/wai-aria/',
-    'NOTE': 'https://www.w3.org/TR/wai-aria-1.1/'
+    'WG-NOTE': 'https://www.w3.org/TR/wai-aria-1.1/'
   },
   accNameURLs: {
     'ED': 'https://w3c.github.io/accname/',
     'WD': 'https://www.w3.org/TR/accname-aam-1.1/',
     'FPWD': 'https://www.w3.org/TR/accname-aam-1.1/',
     'REC': 'https://www.w3.org/TR/accname-aam-1.1/',
-    'NOTE': 'https://www.w3.org/TR/accname-aam-1.1/'
+    'WG-NOTE': 'https://www.w3.org/TR/accname-aam-1.1/'
   },
   coreMappingURLs: {
     'ED': 'https://w3c.github.io/core-aam/',
     'WD': 'https://www.w3.org/TR/core-aam-1.1/',
     'FPWD': 'https://www.w3.org/TR/core-aam-1.1/',
     'REC': 'https://www.w3.org/TR/core-aam-1.1/',
-    'NOTE': 'https://www.w3.org/TR/core-aam-1.1/'
+    'WG-NOTE': 'https://www.w3.org/TR/core-aam-1.1/'
   },
   htmlMappingURLs: {
     'ED': 'https://w3c.github.io/html-aam/',
     'WD': 'https://www.w3.org/TR/html-aam-1.0/',
     'FPWD': 'https://www.w3.org/TR/html-aam-1.0/',
     'REC': 'https://www.w3.org/TR/html-aam-1.0/',
-    'NOTE': 'https://www.w3.org/TR/html-aam-1.0/'
+    'WG-NOTE': 'https://www.w3.org/TR/html-aam-1.0/'
   },
 
   // alternateFormats: [
