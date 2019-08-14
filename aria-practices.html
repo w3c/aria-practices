@@ -479,7 +479,7 @@
     </section>
 
     <section class="widget" id="carousel">
-      <h3>Carousel (Slide Show or Image Rotator)</h3>
+      <h3  data-aria-roles="group tablist"  data-aria-props="aria-live aria-roledescription">Carousel (Slide Show or Image Rotator)</h3>
       <p>
         A carousel presents a set of items, referred to as slides, by sequentially displaying a subset of one or more slides.
         Typically, one slide is displayed at a time, and users can activate a next or previous slide control that hides the current slide and &quot;rotates&quot; the next or previous slide into view.
@@ -1382,7 +1382,7 @@
     </section>
 
     <section class="widget" id="grid">
-      <h3>Grids : Interactive Tabular Data and Layout Containers</h3>
+      <h3 data-aria-roles="grid gridcell row columnheader rowheader">Grids : Interactive Tabular Data and Layout Containers</h3>
 
       <p>
         A <a href="#grid" class="role-reference">grid</a> widget is a container that enables users to navigate the information or interactive elements it contains using directional navigation keys, such as arrow keys, <kbd>Home</kbd>, and <kbd>End</kbd>.
@@ -3742,7 +3742,7 @@
          For example, a switch button named <q>Mute Conversation</q> in the <q>off</q> state could be announced as <q>Mute Conversation switch button off</q>.
         Because descriptions are optional strings that are usually significantly longer than names, they are presented last, sometimes after a slight delay.
         For example, <q>Mute Conversation Switch button off, Silences alerts and notifications about activity in this conversation.</q>
-        To reduce verbosity, some screen readers do not announce descriptions by default but instead inform users of their presence so that users can press a key that will announce the description. 
+        To reduce verbosity, some screen readers do not announce descriptions by default but instead inform users of their presence so that users can press a key that will announce the description.
       </p>
     </section>
 
@@ -4074,7 +4074,7 @@ However, most authors do not need such detailed understanding of the algorithms 
 &lt;/figure></code></pre>
           <p>
             Like with <code>table</code> elements, if a <code>figure</code> is not named using <code>aria-label</code> or <code>aria-labelledby</code>, the content of the <code>figcaption</code> element will be used as the accessible name.
-            However unlike <code>table</code> elements, if the <code>figcaption</code> element is not used for the name, it does not become an accessible description unless it is referenced by <code>aria-describedby</code>. 
+            However unlike <code>table</code> elements, if the <code>figcaption</code> element is not used for the name, it does not become an accessible description unless it is referenced by <code>aria-describedby</code>.
             Nevertheless, assistive technologies will render the content of a <code>figcaption</code> regardless of whether it is used as a name, description, or neither.
           </p>
           <p>Using the <code>caption</code> element to name a <code>table</code> element, or a <code>figcaption</code> element to name a <code>figure</code> element, satisfies <a href="#naming_rule_visible_text">Rule 2: Prefer Visible Text</a> and <a href="#naming_rule_native_techniques">Rule 3: Prefer Native Techniques</a>.</p>
@@ -5796,7 +5796,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
   </section>
 
   <section id="gridAndTableProperties">
-    <h2>Grid and Table Properties</h2>
+    <h2 data-aria-roles="table grid treegrid">Grid and Table Properties</h2>
     <p>
       To fully present and describe a grid or table, in addition to parsing the headers, rows, and cells using the roles described in the
       <a href="#grid">grid pattern</a> or <a href="#table">table pattern</a>,

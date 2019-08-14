@@ -70,6 +70,7 @@ const ariaRoles = [
   'progressbar',
   'radio',
   'radiogroup',
+  'region',
   'row',
   'rowgroup',
   'rowheader',
@@ -109,11 +110,11 @@ const ariaPropertiesAndStates = [
   'aria-describedby',
   'aria-details',
   'aria-disabled',
-  'aria-dropeffect',
+//  'aria-dropeffect',
   'aria-errormessage',
   'aria-expanded',
   'aria-flowto',
-  'aria-grabbed',
+//  'aria-grabbed',
   'aria-haspopup',
   'aria-hidden',
   'aria-invalid',
@@ -146,11 +147,17 @@ const ariaPropertiesAndStates = [
   'aria-valuetext'
 ];
 
-let indexOfRoles = {};
-ariaRoles.forEach(function(role) { indexOfRoles[role] = []});
+let indexOfRolesInExamples = {};
+ariaRoles.forEach(function(role) { indexOfRolesInExamples[role] = []});
 
-let indexOfPropertiesAndStates = {};
-ariaPropertiesAndStates.forEach(function(prop) { indexOfPropertiesAndStates[prop] = []});
+let indexOfRolesInGuidance = {};
+ariaRoles.forEach(function(role) { indexOfRolesInGuidance[role] = []});
+
+let indexOfPropertiesAndStatesInExamples = {};
+ariaPropertiesAndStates.forEach(function(prop) { indexOfPropertiesAndStatesInExamples[prop] = []});
+
+let indexOfPropertiesAndStatesInGuidance = {};
+ariaPropertiesAndStates.forEach(function(prop) { indexOfPropertiesAndStatesInGuidance[prop] = []});
 
 console.log('Generating index...');
 
@@ -174,7 +181,7 @@ function getColumn(data, indexStart) {
   return count;
 }
 
-function getRoles(data) {
+function getRolesFromExample(data) {
   let roles = [];
 
   let indexStart = data.indexOf('<code>', 0);
@@ -201,7 +208,7 @@ function getRoles(data) {
   return roles;
 }
 
-function getPropertiesAndStates(data) {
+function getPropertiesAndStatesFromExample(data) {
   let propertiesAndStates = [];
 
   let indexStart = data.indexOf('<code>', 0);
@@ -236,10 +243,10 @@ function addExampleToRoles(roles, example) {
       continue;
     }
 
-    if (!indexOfRoles[role]) {
-      indexOfRoles[role] = [];
+    if (!indexOfRolesInExamples[role]) {
+      indexOfRolesInExamples[role] = [];
     }
-    indexOfRoles[role].push(example);
+    indexOfRolesInExamples[role].push(example);
   }
 }
 
@@ -251,10 +258,10 @@ function addExampleToPropertiesAndStates(props, example) {
       continue;
     }
 
-    if (!indexOfPropertiesAndStates[prop]) {
-      indexOfPropertiesAndStates[prop] = [];
+    if (!indexOfPropertiesAndStatesInExamples[prop]) {
+      indexOfPropertiesAndStatesInExamples[prop] = [];
     }
-    indexOfPropertiesAndStates[prop].push(example);
+    indexOfPropertiesAndStatesInExamples[prop].push(example);
   }
 }
 
@@ -270,6 +277,7 @@ function addLandmarkRole(landmark, hasLabel, title, ref) {
   }
 }
 
+// Index roles, properties and states used in examples
 glob.sync('examples/!(landmarks)/**/!(index).html', {cwd: path.join(__dirname, '..'), nodir: true}).forEach(function (file) {
   let data = fs.readFileSync(file, 'utf8');
   let ref = file.replace('examples/', '../examples/');
@@ -285,35 +293,234 @@ glob.sync('examples/!(landmarks)/**/!(index).html', {cwd: path.join(__dirname, '
     ref: ref
   };
 
-  addExampleToRoles(getRoles(data), example);
-  addExampleToPropertiesAndStates(getPropertiesAndStates(data), example);
+  addExampleToRoles(getRolesFromExample(data), example);
+  addExampleToPropertiesAndStates(getPropertiesAndStatesFromExample(data), example);
 });
+
+// Index roles, properties and states used in guidance
+
+function getClosestId(data, index) {
+  let id = '';
+  let indexStart = data.lastIndexOf('id="', index);
+  let indexEnd = data.indexOf('"', indexStart + 4);
+
+  if (indexStart >= 0 && indexEnd >= 0) {
+    id = data.substring(indexStart + 4, indexEnd);
+  }
+
+  return id;
+}
+
+function addGuidanceToRole(role, url, label, id) {
+
+  let r = {};
+  r.title = label;
+  r.ref = url + '#' + id;
+
+  if (!indexOfRolesInGuidance[role]) {
+    indexOfRolesInGuidance[role] = [];
+  }
+  indexOfRolesInGuidance[role].push(r);
+}
+
+function addGuidanceToPropertyOrState(prop, url, label, id) {
+  let r = {};
+  r.title = label;
+  r.ref = url + '#' + id;
+
+  if (!indexOfPropertiesAndStatesInGuidance[prop]) {
+    indexOfPropertiesAndStatesInGuidance[prop] = [];
+  }
+  indexOfPropertiesAndStatesInGuidance[prop].push(r);
+}
+
+function getHeaderContent(data, index) {
+
+  let content = '';
+
+  let indexStart = data.indexOf('>', index);
+  let indexEnd   = data.indexOf('</h', indexStart);
+
+  if (indexStart > 1 && indexEnd > 1) {
+    content = data.substring(indexStart + 1, indexEnd).trim();
+
+    content = content.replace('<code>', ' ');
+    content = content.replace('</code>', ' ');
+  }
+
+  return content;
+}
+
+
+function getRolesPropertiesAndStatesFromHeaders(data, url) {
+
+  function getRolesPropertiesAndStatesFromHeader(level) {
+
+    let indexStart = data.indexOf('<h' + level + '>', 0);
+    let indexEnd = data.indexOf('</h'+ level + '>', indexStart);
+
+    while (indexStart > 1 && indexEnd > 1) {
+      let content = getHeaderContent(data, indexStart);
+
+      let contentItems = content.toLowerCase().split(' ');
+
+      ariaRoles.forEach(function(role) {
+        if (contentItems.indexOf(role) >= 0) {
+          console.log('h' + level + ': ' + role + ', ' + content);
+          addGuidanceToRole(role, url, content, getClosestId(data, indexStart));
+        }
+      });
+
+      ariaPropertiesAndStates.forEach(function(prop) {
+        if (contentItems.indexOf(prop) >= 0) {
+          console.log('h' + level + ': ' + prop + ', ' + content);
+          addGuidanceToPropertyOrState(prop, url, content , getClosestId(data, indexStart));
+        }
+      });
+
+      indexStart = data.indexOf('<h' + level + '>', indexEnd);
+
+      if (indexStart > 0) {
+        indexEnd = data.indexOf('</h'+ level + '>', indexStart);
+      }
+    }
+
+  }
+
+  getRolesPropertiesAndStatesFromHeader(2);
+  getRolesPropertiesAndStatesFromHeader(3);
+  getRolesPropertiesAndStatesFromHeader(4);
+  getRolesPropertiesAndStatesFromHeader(5);
+  getRolesPropertiesAndStatesFromHeader(6);
+
+}
+
+
+function getRolesFromDataAttributesOnHeaders(data, url) {
+
+  let indexStart = data.indexOf('data-aria-roles="', 0);
+  let indexEnd = data.indexOf('"', indexStart + 17);
+
+  while (indexStart > 1 && indexEnd > 1) {
+
+    let content = getHeaderContent(data, indexStart);
+
+    let roles = data.substring(indexStart + 17, indexEnd).trim().toLowerCase();
+
+    roles = roles.split(' ');
+
+    ariaRoles.forEach(function(role) {
+      if (roles.indexOf(role) >= 0) {
+        console.log('data: ' + role + ', ' + content);
+        addGuidanceToRole(role, url, content+ ' (D)', getClosestId(data, indexStart));
+      }
+    });
+
+    indexStart = data.indexOf('data-aria-roles="', indexEnd);
+
+    if (indexStart > 0) {
+      indexEnd = data.indexOf('"', indexStart + 17);
+    }
+  }
+
+}
+
+function getPropertiesAndStatesFromDataAttributesOnHeaders(data, url) {
+
+  let indexStart = data.indexOf('data-aria-props="', 0);
+  let indexEnd = data.indexOf('"', indexStart + 17);
+
+  while (indexStart > 1 && indexEnd > 1) {
+
+    let content = getHeaderContent(data, indexStart);
+
+    let props = data.substring(indexStart + 17, indexEnd).trim().toLowerCase();
+
+    props = props.split(' ');
+
+    ariaPropertiesAndStates.forEach(function(prop) {
+      if (props.indexOf(prop) >= 0) {
+        console.log('data: ' + prop + ', ' + content);
+        addGuidanceToPropertyOrState(prop, url, content+ ' (D)', getClosestId(data, indexStart));
+      }
+    });
+
+    indexStart = data.indexOf('data-aria-props="', indexEnd);
+
+    if (indexStart > 0) {
+      indexEnd = data.indexOf('"', indexStart + 17);
+    }
+  }
+
+}
+function getRolesPropertiesAndStatesFromGuidance(data, url) {
+  getRolesPropertiesAndStatesFromHeaders(data, url);
+  getRolesFromDataAttributesOnHeaders(data, url);
+  getPropertiesAndStatesFromDataAttributesOnHeaders(data, url);
+}
+
+let data = fs.readFileSync(path.join(__dirname, '../aria-practices.html'), 'utf8');
+
+getRolesPropertiesAndStatesFromGuidance(data, '../aria-practices.html');
+
 
 // Add landmark examples, since they are a different format
 addLandmarkRole(['banner'], false, 'Banner Landmark', '../examples/landmarks/banner.html');
-addLandmarkRole(['complementary'], true, 'Complementary Landmark', '../examples/landmarks/complementary.html');
-addLandmarkRole(['contentinfo'], false, 'Contentinfo Landmark', '../examples/landmarks/contentinfo.html');
-addLandmarkRole(['form'], true, 'Form Landmark', '../examples/landmarks/form.html');
-addLandmarkRole(['main'], true, 'Main Landmark', '../examples/landmarks/main.html');
-addLandmarkRole(['navigation'], true, 'Navigation Landmark', '../examples/landmarks/navigation.html');
-addLandmarkRole(['region'], true, 'Region Landmark', '../examples/landmarks/region.html');
-addLandmarkRole(['search'], true, 'Search Landmark', '../examples/landmarks/search.html');
+addGuidanceToRole('banner', '../aria-practices.html', 'Banner', 'aria_lh_banner');
 
-function exampleListItem(item) {
+addLandmarkRole(['complementary'], true, 'Complementary Landmark', '../examples/landmarks/complementary.html');
+addGuidanceToRole('complementary', '../aria-practices.html', 'Complementary', 'aria_lh_complemtary');
+
+addLandmarkRole(['contentinfo'], false, 'Contentinfo Landmark', '../examples/landmarks/contentinfo.html');
+addGuidanceToRole('contentinfo', '../aria-practices.html', 'Contentinfo', 'aria_lh_contentinfo');
+
+addLandmarkRole(['form'], true, 'Form Landmark', '../examples/landmarks/form.html');
+addGuidanceToRole('form', '../aria-practices.html', 'Form', 'aria_lh_form');
+
+addLandmarkRole(['main'], true, 'Main Landmark', '../examples/landmarks/main.html');
+addGuidanceToRole('main', '../aria-practices.html', 'Main', 'aria_lh_main');
+
+addLandmarkRole(['navigation'], true, 'Navigation Landmark', '../examples/landmarks/navigation.html');
+addGuidanceToRole('navigation', '../aria-practices.html', 'Navigation', 'aria_lh_navigation');
+
+addLandmarkRole(['region'], true, 'Region Landmark', '../examples/landmarks/region.html');
+addGuidanceToRole('region', '../aria-practices.html', 'Region', 'aria_lh_region');
+
+addLandmarkRole(['search'], true, 'Search Landmark', '../examples/landmarks/search.html');
+addGuidanceToRole('search', '../aria-practices.html', 'Search', 'aria_lh_search');
+
+function getListItem(item) {
   return `
-                <li><a href="${item.ref}">${item.title}</a></li>`;
+        <li><a href="${item.ref}">${item.title}</a></li>`;
 }
 
-let sortedRoles = Object.getOwnPropertyNames(indexOfRoles).sort();
+function getListHTML(list) {
+  let html = '<abbr title="none" style="color: gray">-</abbr>';
+
+  if (list.length === 1) {
+    html = `<a href="${list[0].ref}">${list[0].title}</a>\n`;
+  }
+  else {
+    if (list.length > 1) {
+    html = `<ul>${list.map(getListItem).join('')}
+            </ul>\n`;
+    }
+  }
+
+  return html;
+}
+
+let sortedRoles = Object.getOwnPropertyNames(indexOfRolesInExamples).sort();
 
 let countNoExamples = 0;
 let countOneExample = 0;
 let countMoreThanOneExample = 0;
 
 let RoleWithNoExamples = sortedRoles.reduce(function (set, role) {
-  let examples = indexOfRoles[role];
+  let examples = indexOfRolesInExamples[role];
+  let guidance = indexOfRolesInGuidance[role];
 
-  if (examples.length === 0) {
+  if (examples.length === 0 && guidance.length == 0) {
     countNoExamples += 1;
     return `${set}
             <li><code>${role}</code></li>`;
@@ -326,16 +533,18 @@ let RoleWithNoExamples = sortedRoles.reduce(function (set, role) {
 $('#roles_with_no_examples_ul').html(RoleWithNoExamples);
 
 let RoleWithOneExample = sortedRoles.reduce(function (set, role) {
-  let examples = indexOfRoles[role];
+  let examples = indexOfRolesInExamples[role];
+  let guidance = indexOfRolesInGuidance[role];
 
-  let examplesHTML = '';
-  if (examples.length === 1) {
+  if ((examples.length === 1 && guidance.length === 0) ||
+      (examples.length === 0 && guidance.length === 1) ||
+      (examples.length === 1 && guidance.length === 1)) {
     countOneExample += 1;
-    examplesHTML = `<a href="${examples[0].ref}">${examples[0].title}</a>`;
     return `${set}
           <tr>
             <td><code>${role}</code></td>
-            <td>${examplesHTML}</td>
+            <td>${getListHTML(guidance)}</td>
+            <td>${getListHTML(examples)}</td>
           </tr>`;
   }
 
@@ -346,18 +555,16 @@ let RoleWithOneExample = sortedRoles.reduce(function (set, role) {
 $('#roles_with_one_example_tbody').html(RoleWithOneExample);
 
 let RoleWithMoreThanOneExample = sortedRoles.reduce(function (set, role) {
-  let examples = indexOfRoles[role];
+  let examples = indexOfRolesInExamples[role];
+  let guidance = indexOfRolesInGuidance[role];
 
-  let examplesHTML = '';
-  if (examples.length > 1) {
+  if (examples.length > 1 || guidance.length > 1) {
     countMoreThanOneExample += 1;
-    examplesHTML = `
-              <ul>${examples.map(exampleListItem).join('')}
-              </ul>\n            `;
     return `${set}
           <tr>
-            <td><code>${role}</code> (${examples.length})</td>
-            <td>${examplesHTML}</td>
+            <td><code>${role}</code></td>
+            <td>${getListHTML(guidance)}</td>
+            <td>${getListHTML(examples)}</td>
           </tr>`;
   }
 
@@ -372,7 +579,7 @@ $('#roles_with_more_than_one_examples_count').html(countMoreThanOneExample.toStr
 
 // Properties and States
 
-let sortedPropertiesAndStates = Object.getOwnPropertyNames(indexOfPropertiesAndStates)
+let sortedPropertiesAndStates = Object.getOwnPropertyNames(indexOfPropertiesAndStatesInExamples)
                                       .sort();
 
 countNoExamples = 0;
@@ -380,9 +587,10 @@ countOneExample = 0;
 countMoreThanOneExample = 0;
 
 let PropsWithNoExamples = sortedPropertiesAndStates.reduce(function (set, prop) {
-  let examples = indexOfPropertiesAndStates[prop];
+  let examples = indexOfPropertiesAndStatesInExamples[prop];
+  let guidance = indexOfPropertiesAndStatesInGuidance[prop];
 
-  if (examples.length === 0) {
+  if (examples.length === 0 && guidance.length === 0) {
     countNoExamples += 1;
     return `${set}
             <li><code>${prop}</code></li>`;
@@ -396,16 +604,18 @@ $('#props_with_no_examples_ul').html(PropsWithNoExamples);
 $('#props_with_no_examples_count').html(countNoExamples.toString());
 
 let PropsWithOneExample = sortedPropertiesAndStates.reduce(function (set, prop) {
-  let examples = indexOfPropertiesAndStates[prop];
+  let examples = indexOfPropertiesAndStatesInExamples[prop];
+  let guidance = indexOfPropertiesAndStatesInGuidance[prop];
 
-  let examplesHTML = '';
-  if (examples.length === 1) {
+  if ((examples.length === 1 && guidance.length === 0) ||
+      (examples.length === 0 && guidance.length === 1) ||
+      (examples.length === 1 && guidance.length === 1)) {
     countOneExample += 1;
-    examplesHTML = `<a href="${examples[0].ref}">${examples[0].title}</a>`;
     return `${set}
           <tr>
             <td><code>${prop}</code></td>
-            <td>${examplesHTML}</td>
+            <td>${getListHTML(guidance)}</td>
+            <td>${getListHTML(examples)}</td>
           </tr>`;
   }
 
@@ -417,18 +627,17 @@ $('#props_with_one_example_tbody').html(PropsWithOneExample);
 $('#props_with_one_example_count').html(countOneExample.toString());
 
 let PropsWithMoreThanOneExample = sortedPropertiesAndStates.reduce(function (set, prop) {
-  let examples = indexOfPropertiesAndStates[prop];
+  let examples = indexOfPropertiesAndStatesInExamples[prop];
+  let guidance = indexOfPropertiesAndStatesInGuidance[prop];
 
-  let examplesHTML = '';
-  if (examples.length > 1) {
+  if ((examples.length > 1 || guidance.length > 1)) {
     countMoreThanOneExample += 1;
-    examplesHTML = `
-              <ul>${examples.map(exampleListItem).join('')}
-              </ul>\n            `;
+
     return `${set}
           <tr>
-            <td><code>${prop}</code> (${examples.length})</td>
-            <td>${examplesHTML}</td>
+            <td><code>${prop}</code></td>
+            <td>${getListHTML(guidance)}</td>
+            <td>${getListHTML(examples)}</td>
           </tr>`;
   }
 
@@ -455,12 +664,15 @@ fs.writeFile(exampleFilePath, result, function (err) {
 
 // Output CSV files
 
-let roles = sortedRoles.reduce(function (line, role) {
-  let examples = indexOfRoles[role];
+let roles = '"Role","Guidance","Examples","References"\n'
+roles += sortedRoles.reduce(function (line, role) {
+  let examples = indexOfRolesInExamples[role];
+  let guidance = indexOfRolesInGuidance[role];
 
-  let csvExampleTitles = examples.reduce(function (set, example) { return `${set},"${example.title}"`}, '');
+  let csvExampleTitles = examples.reduce(function (set, e) { return `${set},"E: ${e.title}"`}, '');
+  let csvGuidanceTitles = guidance.reduce(function (set, g) { return `${set},"G: ${g.title}"`}, '');
 
-  return `${line}"${role}","${examples.length}"${csvExampleTitles}\n`;
+  return `${line}"${role}","${guidance.length}","${examples.length}"${csvGuidanceTitles}${csvExampleTitles}\n`;
 }, '');
 
 fs.writeFile(csvRoleFilePath, roles, (err) => {
@@ -471,12 +683,15 @@ fs.writeFile(csvRoleFilePath, roles, (err) => {
   //file written successfully
 })
 
-let props = sortedPropertiesAndStates.reduce(function (line, prop) {
-  let examples = indexOfPropertiesAndStates[prop];
+let props = '"Property or State","Guidance","Examples","References"\n'
+props += sortedPropertiesAndStates.reduce(function (line, prop) {
+  let examples = indexOfPropertiesAndStatesInExamples[prop];
+  let guidance = indexOfPropertiesAndStatesInGuidance[prop];
 
-  let csvExampleTitles = examples.reduce(function (set, example) { return `${set},"${example.title}"`}, '');
+  let csvExampleTitles = examples.reduce(function (set, e) { return `${set},"E: ${e.title}"`}, '');
+  let csvGuidanceTitles = guidance.reduce(function (set, g) { return `${set},"G: ${g.title}"`}, '');
 
-  return `${line}"${prop}","${examples.length}"${csvExampleTitles}\n`;
+  return `${line}"${prop}","${guidance.length}","${examples.length}"${csvGuidanceTitles}${csvExampleTitles}\n`;
 
 }, '');
 
