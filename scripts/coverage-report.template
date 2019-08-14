@@ -3,7 +3,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <title>ARIA Roles, Properties and States used in Examples| WAI-ARIA Authoring Practices</title>
+  <title>ARIA Roles, Properties and States Referenced in Guidance and Examples | WAI-ARIA Authoring Practices</title>
   <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
   <link rel="stylesheet" href="css/core.css">
   <script src="js/examples.js"></script>
@@ -15,10 +15,10 @@
     <a href="../">WAI-ARIA Authoring Practices</a>
   </nav>
   <main>
-    <h1>ARIA Roles, Properties and States used in Examples</h1>
+    <h1>ARIA Roles, Properties and States Referenced in Guidance and Examples</h1>
 
     <p>
-      This page includes information on number of examples in the <a href="../">WAI-ARIA Authoring Practices</a> for each ARIA role, property and state.</a>  The guidance column is determined
+      This page includes information on number of guidance and examples references in the <a href="../">WAI-ARIA Authoring Practices</a> for each ARIA role, property and state.</a>  The guidance column is determined
       by either the role, property or state being in the text content of a heading (e.g. <code>h2</code>-<code>h6</code>) or through the use of <code>
       data-aria-roles</code> or <code>data-aria-props</code> attributes on any heading within the practices.  The <code>data-aria-roles</code> or <code>data-aria-props</code> attributes should contain a space separated list of values.  The use of the data attribute overrides the identification of roles, properties or states from the text content of a heading.  The suffix <strong>"(D)"</strong> indicates a reference came from a data attribute, otherwise the reference came from the text content of a heading.</p>
     </p>
