@@ -344,8 +344,8 @@ function getHeaderContent(data, index) {
   if (indexStart > 1 && indexEnd > 1) {
     content = data.substring(indexStart + 1, indexEnd).trim();
 
-    content = content.replace('<code>', ' ');
-    content = content.replace('</code>', ' ');
+    content = content.replace(/<code>/g, ' ');
+    content = content.replace(/<\/code>/g, ' ');
   }
 
   return content;
@@ -669,8 +669,8 @@ roles += sortedRoles.reduce(function (line, role) {
   let examples = indexOfRolesInExamples[role];
   let guidance = indexOfRolesInGuidance[role];
 
-  let csvExampleTitles = examples.reduce(function (set, e) { return `${set},"E: ${e.title}"`}, '');
-  let csvGuidanceTitles = guidance.reduce(function (set, g) { return `${set},"G: ${g.title}"`}, '');
+  let csvExampleTitles = examples.reduce(function (set, e) { return `${set},"Example: ${e.title}"`}, '');
+  let csvGuidanceTitles = guidance.reduce(function (set, g) { return `${set},"Guidance: ${g.title}"`}, '');
 
   return `${line}"${role}","${guidance.length}","${examples.length}"${csvGuidanceTitles}${csvExampleTitles}\n`;
 }, '');
@@ -688,8 +688,8 @@ props += sortedPropertiesAndStates.reduce(function (line, prop) {
   let examples = indexOfPropertiesAndStatesInExamples[prop];
   let guidance = indexOfPropertiesAndStatesInGuidance[prop];
 
-  let csvExampleTitles = examples.reduce(function (set, e) { return `${set},"E: ${e.title}"`}, '');
-  let csvGuidanceTitles = guidance.reduce(function (set, g) { return `${set},"G: ${g.title}"`}, '');
+  let csvExampleTitles = examples.reduce(function (set, e) { return `${set},"Example: ${e.title}"`}, '');
+  let csvGuidanceTitles = guidance.reduce(function (set, g) { return `${set},"Guidance: ${g.title}"`}, '');
 
   return `${line}"${prop}","${guidance.length}","${examples.length}"${csvGuidanceTitles}${csvExampleTitles}\n`;
 
