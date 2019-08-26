@@ -57,7 +57,7 @@ DatepickerComboboxDay.prototype.updateDay = function (disable, day, selected) {
     this.domNode.classList.remove('disabled');
     this.domNode.innerHTML = this.day.getDate();
     var d = this.day.getDate().toString();
-    if (this.day.getDate() < 9) {
+    if (this.day.getDate() < 10) {
       d = '0' + d;
     }
 
