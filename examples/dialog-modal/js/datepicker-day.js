@@ -62,7 +62,7 @@ DatePickerDay.prototype.updateDay = function (disable, day) {
   this.domNode.removeAttribute('aria-selected');
 
   var d = this.day.getDate().toString();
-  if (this.day.getDate() < 9) {
+  if (this.day.getDate() <= 9) {
     d = '0' + d;
   }
 
@@ -127,6 +127,7 @@ DatePickerDay.prototype.handleKeyDown = function (event) {
       else {
         this.datepicker.moveToPreviousMonth();
       }
+      this.datepicker.setFocusDay();
       flag = true;
       break;
 
@@ -137,6 +138,7 @@ DatePickerDay.prototype.handleKeyDown = function (event) {
       else {
         this.datepicker.moveToNextMonth();
       }
+      this.datepicker.setFocusDay();
       flag = true;
       break;
 
@@ -155,7 +157,6 @@ DatePickerDay.prototype.handleKeyDown = function (event) {
     event.stopPropagation();
     event.preventDefault();
   }
-
 };
 
 DatePickerDay.prototype.handleMouseDown = function (event) {
