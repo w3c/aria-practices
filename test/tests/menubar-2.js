@@ -397,7 +397,7 @@ ariaTest('Test role="separator" exists', exampleFile, 'separator-role', async (t
 
 ariaTest('Test role="group" exists', exampleFile, 'group-role', async (t) => {
   t.plan(1);
-  await assertAriaRoles(t, 'ex1', 'group', 3, 'ul');
+  await assertAriaRoles(t, 'ex1', 'group', 4, 'ul');
 });
 
 ariaTest('Test aria-label on group', exampleFile, 'group-aria-label', async (t) => {
