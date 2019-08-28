@@ -132,7 +132,7 @@ ariaTest('"Carousel 2: aria-selected" set on role="tab"', exampleFile, 'tab-aria
 
 
 ariaTest('Carousel 2: "tabindex" on role="tab"', exampleFile, 'tab-tabindex', async (t) => {
-  t.plan(ex.tabCount*ex.tabCount);
+  t.plan(ex.tabCount * ex.tabCount);
 
   let tabs = await t.context.session.findElements(By.css(ex.tabSelector));
   for (let selectedEl = 0; selectedEl < tabs.length; selectedEl++) {
@@ -144,13 +144,17 @@ ariaTest('Carousel 2: "tabindex" on role="tab"', exampleFile, 'tab-tabindex', as
 
       // The open tab should have tabindex of 0
       if (el === selectedEl) {
-        t.is(
-          await tabs[el].getAttribute('tabindex'),
-          '0',
-          'Tab at index ' + selectedEl + ' is selected, therefore, tab at index ' +
-            el + ' should have tabindex="0"'
-        );
-      }
+        const tabindexExists = await t.context.session.executeScript(async function () {
+          const [selector, el] = arguments;
+          let tabs = document.querySelectorAll(selector);
+          return tabs[el].hasAttribute('tabindex');
+        }, ex.tabSelector, el);
+
+        t.false(
+          tabindexExists,
+          'Tab at index ' + selectedEl + ' is selected, therefore, that tab should not ' +
+            'have the "tabindex" attribute'
+        );      }
 
       // Unopened tabs should have tabindex="-1"
       else {

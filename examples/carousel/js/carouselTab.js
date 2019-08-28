@@ -36,7 +36,7 @@ CarouselTab.prototype.init = function () {
 CarouselTab.prototype.hideTabpanel = function () {
   this.domNode.setAttribute('aria-selected', 'false');
   this.tabpanel.hide();
-  this.domNode.tabIndex = -1;
+  this.domNode.setAttribute('tabindex', '-1');
 };
 
 CarouselTab.prototype.showTabpanel = function (moveFocus) {
@@ -45,7 +45,7 @@ CarouselTab.prototype.showTabpanel = function (moveFocus) {
   }
 
   this.domNode.setAttribute('aria-selected', 'true');
-  this.domNode.tabIndex = 0;
+  this.domNode.removeAttribute('tabindex');
   this.tabpanel.show();
   if (moveFocus) {
     this.domNode.focus();
