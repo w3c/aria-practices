@@ -62,15 +62,15 @@ ariaTest('Carousel 2: rotation button has aria-label that is updated based on pa
 
   let rotationButtonEl = await t.context.session.findElement(By.css(ex.rotationSelector));
 
-  // Send ENTER and wait for change of 'aria-label'
-  await rotationButtonEl.sendKeys(Key.ENTER);
+  // Send SPACE key and wait for change of 'aria-label'
+  await rotationButtonEl.sendKeys(Key.SPACE);
   await t.context.session.wait(async function () {
     return rotationButtonEl.getAttribute('aria-label') !== ex.rotationLabelPlaying;
   }, t.context.waitTime, 'Timeout waiting for rotation button\'s aria-label to change');
 
   await assertAttributeValues(t, ex.rotationSelector, 'aria-label', ex.rotationLabelPaused);
 
-  // Send SPACE and wait for change of 'aria-label'
+  // Send ENTER key and wait for change of 'aria-label'
   await rotationButtonEl.sendKeys(Key.ENTER);
   await t.context.session.wait(async function () {
     return rotationButtonEl.getAttribute('aria-label') !== ex.rotationLabelPaused;
@@ -154,7 +154,8 @@ ariaTest('Carousel 2: "tabindex" on role="tab"', exampleFile, 'tab-tabindex', as
           tabindexExists,
           'Tab at index ' + selectedEl + ' is selected, therefore, that tab should not ' +
             'have the "tabindex" attribute'
-        );      }
+        );
+      }
 
       // Unopened tabs should have tabindex="-1"
       else {
