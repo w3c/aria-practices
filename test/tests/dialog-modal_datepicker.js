@@ -349,9 +349,7 @@ ariaTest('ENTER to buttons change calendar and date in focus', exampleFile, 'mon
   );
 });
 
-// This test is failing due to: https://github.com/w3c/aria-practices/issues/1098
-// If you fix the issue, please remove ".failing"
-ariaTest.failing('SPACE to buttons change calendar and date in focus', exampleFile, 'month-year-button-space-return', async (t) => {
+ariaTest('SPACE to buttons change calendar and date in focus', exampleFile, 'month-year-button-space-return', async (t) => {
   t.plan(4);
 
   await t.context.session.findElement(By.css(ex.buttonSelector)).click();
@@ -679,9 +677,7 @@ ariaTest('ENTER on cancel button does not select date', exampleFile, 'okay-cance
   );
 });
 
-// This test is failing due to: https://github.com/w3c/aria-practices/issues/1098
-// If you fix the issue, please remove ".failing"
-ariaTest.failing('SPACE on cancel button does not select date', exampleFile, 'okay-cancel-button-space-return', async (t) => {
+ariaTest('SPACE on cancel button does not select date', exampleFile, 'okay-cancel-button-space-return', async (t) => {
 
   t.plan(4);
 
@@ -749,9 +745,7 @@ ariaTest('ENTER on ok button does selects date', exampleFile, 'okay-cancel-butto
   );
 });
 
-// This test is failing due to: https://github.com/w3c/aria-practices/issues/1098
-// If you fix the issue, please remove ".failing"
-ariaTest.failing('SPACE on ok button does selects date', exampleFile, 'okay-cancel-button-space-return', async (t) => {
+ariaTest('SPACE on ok button does selects date', exampleFile, 'okay-cancel-button-space-return', async (t) => {
 
   t.plan(4);
 
