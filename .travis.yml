@@ -31,14 +31,7 @@ jobs:
 
     - stage: Test
       name: AVA Regression Tests
-      before_install:
-      - |
-        if ! git diff --name-only $TRAVIS_COMMIT_RANGE | grep -qE '(test/|examples/)'
-        then
-          echo "Examples files were not updated, not running example regression tests."
-          exit
-        fi
-      script: ava -c 1 test/tests
+      script: scripts/regression-tests.sh
       env: TEST_WAIT_TIME=1000
     - stage: Test
       name: Regression Tests Coverage Report
