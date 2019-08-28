@@ -9,12 +9,6 @@
   border: solid 2px transparent;
 }
 
-.carouselTablist .carousel-items.focus,
-.carouselTablist [role=tabpanel]:focus {
-  border-color: white;
-  outline: solid 3px #005a9c;
-}
-
 .carouselTablist [role=tabpanel] {
   display: none;
   max-height: 400px;
@@ -22,6 +16,12 @@
   position: relative;
   overflow: hidden;
   width: 100%;
+}
+
+.carouselTablist .carousel-items.focus,
+.carouselTablist [role=tabpanel]:focus {
+  border-color: white;
+  outline: solid 3px #005a9c;
 }
 
 .carouselTablist [role=tabpanel].active {
