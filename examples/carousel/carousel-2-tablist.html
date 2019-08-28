@@ -397,8 +397,8 @@
       <section>
         <h2 id="kbd_label">Keyboard Support</h2>
         <section>
-          <h3 id="kbd_label_2">Rotation Control Button</h3>
-          <table aria-labelledby="kbd_label_2 kbd_label" class="def">
+          <h3 id="kbd_label_1">Rotation Control Button</h3>
+          <table aria-labelledby="kbd_label_1 kbd_label" class="def">
             <thead>
               <tr>
                 <th>Key</th>
@@ -406,16 +406,16 @@
               </tr>
             </thead>
             <tbody>
-              <tr data-test-id="carousel-key-tab">
+              <tr data-test-id="rotation-key-tab">
                 <th><kbd>Tab</kbd></th>
                 <td>
                   <ul>
                     <li>Moves focus through interactive elements in the carousel.</li>
-                    <li>Rotation control, previous slide, and next slide buttons precede the slide content in the <kbd>Tab</kbd> sequence.</li>
+                    <li>Rotation control and tablist buttons precede the slide content in the <kbd>Tab</kbd> sequence.</li>
                   </ul>
                 </td>
               </tr>
-              <tr data-test-id="carousel-enter-or-space-toggle">
+              <tr data-test-id="rotation-enter-or-space-toggle">
                 <th><kbd>Enter</kbd> or <kbd>Space</kbd></th>
                 <td>Toggle the auto rotation of slides in the carousel.</td>
               </tr>
@@ -424,8 +424,8 @@
         </section>
 
         <section>
-          <h3 id="kbd_label_3">Tabs</h3>
-          <table aria-labelledby="kbd_label_3" class="def">
+          <h3 id="kbd_label_2">Tabs</h3>
+          <table aria-labelledby="kbd_label_2" class="def">
             <thead>
               <tr>
                 <th>Key</th>
@@ -477,220 +477,254 @@
 
       <section>
         <h2 id="rps_label">Role, Property, State, and Tabindex  Attributes</h2>
-        <table aria-labelledby="rps_label" class="data attributes">
-          <thead>
-            <tr>
-              <th scope="col">Role</th>
-              <th scope="col">Attribute</th>
-              <th scope="col">Element</th>
-              <th scope="col">Usage</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">
-                <code>region</code>
-              </th>
-              <td></td>
-              <td>
-                <code>section</code>
-              </td>
-              <td>
-                <ul>
-                  <li>Role <code>region</code> is implied for any <code>section</code> element that has an accessible name.</li>
-                  <li>Defines the carousel and its controls as a land mark region.</li>
-                </ul>
-              </td>
-            </tr>
-            <tr data-test-id="carousel-region-aria-roledescription">
-              <td></td>
-              <th scope="row">
-                <code>aria-roledescription="carousel"</code>
-              </th>
-              <td>
-                <code>section</code>
-              </td>
-              <td>
-                <ul>
-                  <li>Informs assistive technologies to identify the element as a &quot;carousel&quot; rather than a &quot;region.&quot;</li>
-                  <li>Effects how the assistive technology renders the role but does not effect functionality, such as commands for navigating to landmark regions.</li>
-                </ul>
-              </td>
-            </tr>
-            <tr data-test-id="carousel-region-aria-label">
-              <td></td>
-              <th scope="row">
-                <code>aria-label="Highlighted television shows"</code>
-              </th>
-              <td>
-                <code>section</code>
-              </td>
-              <td>Provides a label that describes the content in the carousel region.</td>
-            </tr>
-            <tr data-test-id="carousel-aria-live">
+        <section>
+          <h3 id="rps_label_1">Rotation Control</h3>
+          <table aria-labelledby="rps_label_1 rps_label" class="data attributes">
+            <thead>
+              <tr>
+                <th scope="col">Role</th>
+                <th scope="col">Attribute</th>
+                <th scope="col">Element</th>
+                <th scope="col">Usage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr data-test-id="rotation-aria-label">
                 <td></td>
                 <th scope="row">
-                  <code>aria-live=<q>off</q></code>
+                  <code>aria-label</code>
                 </th>
                 <td>
-                  <code>div.carousel-items</code>
+                  <code>button</code>
+                </td>
+                <td>
+                  The accessible name is updated when the rotation is paused or palying to reflect the current action the button will perform:
+                  <ul>
+                    <li>Paused: "Start automatic slide show".</li>
+                    <li>Playing: "Stop automatic slide show".</li>
+                  </ul>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+        <section>
+          <h3 id="rps_label_2">Tabs</h3>
+          <table aria-labelledby="rps_label_2 rps_label" class="data attributes">
+            <thead>
+              <tr>
+                <th scope="col">Role</th>
+                <th scope="col">Attribute</th>
+                <th scope="col">Element</th>
+                <th scope="col">Usage</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">
+                  <code>region</code>
+                </th>
+                <td></td>
+                <td>
+                  <code>section</code>
                 </td>
                 <td>
                   <ul>
-                    <li>Applied to a <code>div</code> element that contains all the slides.</li>
-                                         <li>Identifies the container element as a live region that is in the &quot;off&quot; state, meaning assistive technology users are not informed about changes to the region.</li>
-                    <li>The live region is off when the carousel is automatically rotating.</li>
+                    <li>Role <code>region</code> is implied for any <code>section</code> element that has an accessible name.</li>
+                    <li>Defines the carousel and its controls as a land mark region.</li>
                   </ul>
                 </td>
+              </tr>
+              <tr data-test-id="carousel-region-aria-roledescription">
+                <td></td>
+                <th scope="row">
+                  <code>aria-roledescription="carousel"</code>
+                </th>
+                <td>
+                  <code>section</code>
+                </td>
+                <td>
+                  <ul>
+                    <li>Informs assistive technologies to identify the element as a &quot;carousel&quot; rather than a &quot;region.&quot;</li>
+                    <li>Effects how the assistive technology renders the role but does not effect functionality, such as commands for navigating to landmark regions.</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr data-test-id="carousel-region-aria-label">
+                <td></td>
+                <th scope="row">
+                  <code>aria-label="Highlighted television shows"</code>
+                </th>
+                <td>
+                  <code>section</code>
+                </td>
+                <td>Provides a label that describes the content in the carousel region.</td>
               </tr>
               <tr data-test-id="carousel-aria-live">
-                <td></td>
+                  <td></td>
+                  <th scope="row">
+                    <code>aria-live=<q>off</q></code>
+                  </th>
+                  <td>
+                    <code>div.carousel-items</code>
+                  </td>
+                  <td>
+                    <ul>
+                      <li>Applied to a <code>div</code> element that contains all the slides.</li>
+                                           <li>Identifies the container element as a live region that is in the &quot;off&quot; state, meaning assistive technology users are not informed about changes to the region.</li>
+                      <li>The live region is off when the carousel is automatically rotating.</li>
+                    </ul>
+                  </td>
+                </tr>
+                <tr data-test-id="carousel-aria-live">
+                  <td></td>
+                  <th scope="row">
+                    <code>aria-live=<q>polite</q></code>
+                  </th>
+                  <td>
+                    <code>div.carousel-items</code>
+                  </td>
+                  <td>
+                    <ul>
+                      <li>Applied to a <code>div</code> element that contains all the slides.</li>
+                                           <li>Identifies the container element as a live region in the &quot;polite&quot; state, meaning assistive technology users are informed about changes to the region at the next available opportunity.</li>
+                      <li>This causes screen readers to automatically announce the content of slides when the next and previous slide buttons are activated.</li>
+                    </ul>
+                  </td>
+                </tr>
+              <tr data-test-id="carousel-tablist-role">
                 <th scope="row">
-                  <code>aria-live=<q>polite</q></code>
+                  <code>tablist</code>
                 </th>
+                <td></td>
                 <td>
-                  <code>div.carousel-items</code>
+                  <code>div</code>
+                </td>
+                <td>Indicates that the element serves as a container for a set of tabs.</td>
+              </tr>
+              <tr data-test-id="carousel-tab-role">
+                <th scope="row">
+                  <code>tab</code>
+                </th>
+                <td></td>
+                <td>
+                  <code>button</code>
                 </td>
                 <td>
                   <ul>
-                    <li>Applied to a <code>div</code> element that contains all the slides.</li>
-                                         <li>Identifies the container element as a live region in the &quot;polite&quot; state, meaning assistive technology users are informed about changes to the region at the next available opportunity.</li>
-                    <li>This causes screen readers to automatically announce the content of slides when the next and previous slide buttons are activated.</li>
+                    <li>Indicates the element serves as a tab control.</li>
+                    <li>
+                      When focused, is automatically activated, causing its associated <code>tabpanel</code> (e.g. slide) to be displayed.
+                    </li>
                   </ul>
                 </td>
               </tr>
-            <tr data-test-id="carousel-tablist-role">
-              <th scope="row">
-                <code>tablist</code>
-              </th>
-              <td></td>
-              <td>
-                <code>div</code>
-              </td>
-              <td>Indicates that the element serves as a container for a set of tabs.</td>
-            </tr>
-            <tr data-test-id="carousel-tab-role">
-              <th scope="row">
-                <code>tab</code>
-              </th>
-              <td></td>
-              <td>
-                <code>button</code>
-              </td>
-              <td>
-                <ul>
-                  <li>Indicates the element serves as a tab control.</li>
-                  <li>
-                    When focused, is automatically activated, causing its associated <code>tabpanel</code> (e.g. slide) to be displayed.
-                  </li>
-                </ul>
-              </td>
-            </tr>
-            <tr data-test-id="tab-aria-selected">
-              <td></td>
-              <th scope="row">
-                <code>aria-selected=<q>true</q></code>
-              </th>
-              <td>
-                <code>button</code>
-              </td>
-              <td>
-                <ul>
-                  <li>Indicates the tab control is activated and its associated panel is displayed.</li>
-                  <li>Set when a tab receives focus.</li>
-                </ul>
-              </td>
-            </tr>
-            <tr data-test-id="tab-aria-selected">
-              <td></td>
-              <th scope="row">
-                <code>aria-selected=<q>false</q></code>
-              </th>
-              <td>
-                <code>button</code>
-              </td>
-              <td>
-                <ul>
-                  <li>
-                    Indicates the tab control is not active and its associated panel is <strong>NOT</strong>
-                    displayed.
-                  </li>
-                  <li>Set for all tab elements in the tab set except the focused tab.</li>
-                </ul>
-              </td>
-            </tr>
-            <tr data-test-id="tab-tabindex">
-              <td></td>
-              <th scope="row">
-                <code>tabindex=<q>-1</q></code>
-              </th>
-              <td>
-                <code>button</code>
-              </td>
-              <td>
-                <ul>
-                  <li>Removes the element from the page <kbd>Tab</kbd> sequence.</li>
-                  <li>Set when a tab is not selected so that only the selected tab is in the page <kbd>Tab</kbd> sequence.</li>
-                  <li>Since an HTML <code>button</code> element is used for the tab, it is not necessary to set <code>tabindex=<q>0</q></code> on the selected (active) tab element.</li>
-                  <li>This approach to managing focus is described in the section on <a href="../../../#kbd_roving_tabindex">roving tabindex</a>.</li>
-                </ul>
-              </td>
-            </tr>
-            <tr data-test-id="tab-aria-control">
-              <td></td>
-              <th scope="row">
-                <code>aria-controls=<q>IDREF</q></code>
-              </th>
-              <td>
-                <code>button</code>
-              </td>
-              <td>
-                Refers to the <code>tabpanel</code> element associated with the tab.
-              </td>
-            </tr>
-            <tr data-test-id="tabpanel-role">
-              <th scope="row">
-                <code>tabpanel</code>
-              </th>
-              <td></td>
-              <td>
-                <code>div</code>
-              </td>
-              <td>
-                <ul>
-                  <li>Indicates the element serves as a container for the slide content.</li>
-                  <li>
-                    Is hidden unless its associated <code>tab</code> control is activated.
-                  </li>
-                </ul>
-              </td>
-            </tr>
-            <tr data-test-id="tabpanel-role-description">
-              <td></td>
-              <th scope="row">
-                <code>aria-roledescription=<q>slide</q></code>
-              </th>
-              <td>
-                <code>div</code>
-              </td>
-              <td>
-                Provides a additional information that tab panel represents a slide in the carousel.
-              </td>
-            </tr>
-            <tr data-test-id="tabpanel-aria-label">
-              <td></td>
-              <th scope="row">
-                <code>aria-label=<q>Slide X of Y</q></code>
-              </th>
-              <td>
-                <code>div</code>
-              </td>
-              <td>
-                Provides an accessible name for the tab panel by indicating what position the slide is in the set of slides.
-              </td>
-            </tr>
-          </tbody>
-        </table>
+              <tr data-test-id="tab-aria-selected">
+                <td></td>
+                <th scope="row">
+                  <code>aria-selected=<q>true</q></code>
+                </th>
+                <td>
+                  <code>button</code>
+                </td>
+                <td>
+                  <ul>
+                    <li>Indicates the tab control is activated and its associated panel is displayed.</li>
+                    <li>Set when a tab receives focus.</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr data-test-id="tab-aria-selected">
+                <td></td>
+                <th scope="row">
+                  <code>aria-selected=<q>false</q></code>
+                </th>
+                <td>
+                  <code>button</code>
+                </td>
+                <td>
+                  <ul>
+                    <li>
+                      Indicates the tab control is not active and its associated panel is <strong>NOT</strong>
+                      displayed.
+                    </li>
+                    <li>Set for all tab elements in the tab set except the focused tab.</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr data-test-id="tab-tabindex">
+                <td></td>
+                <th scope="row">
+                  <code>tabindex=<q>-1</q></code>
+                </th>
+                <td>
+                  <code>button</code>
+                </td>
+                <td>
+                  <ul>
+                    <li>Removes the element from the page <kbd>Tab</kbd> sequence.</li>
+                    <li>Set when a tab is not selected so that only the selected tab is in the page <kbd>Tab</kbd> sequence.</li>
+                    <li>Since an HTML <code>button</code> element is used for the tab, it is not necessary to set <code>tabindex=<q>0</q></code> on the selected (active) tab element.</li>
+                    <li>This approach to managing focus is described in the section on <a href="../../../#kbd_roving_tabindex">roving tabindex</a>.</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr data-test-id="tab-aria-control">
+                <td></td>
+                <th scope="row">
+                  <code>aria-controls=<q>IDREF</q></code>
+                </th>
+                <td>
+                  <code>button</code>
+                </td>
+                <td>
+                  Refers to the <code>tabpanel</code> element associated with the tab.
+                </td>
+              </tr>
+              <tr data-test-id="tabpanel-role">
+                <th scope="row">
+                  <code>tabpanel</code>
+                </th>
+                <td></td>
+                <td>
+                  <code>div</code>
+                </td>
+                <td>
+                  <ul>
+                    <li>Indicates the element serves as a container for the slide content.</li>
+                    <li>
+                      Is hidden unless its associated <code>tab</code> control is activated.
+                    </li>
+                  </ul>
+                </td>
+              </tr>
+              <tr data-test-id="tabpanel-role-description">
+                <td></td>
+                <th scope="row">
+                  <code>aria-roledescription=<q>slide</q></code>
+                </th>
+                <td>
+                  <code>div</code>
+                </td>
+                <td>
+                  Provides a additional information that tab panel represents a slide in the carousel.
+                </td>
+              </tr>
+              <tr data-test-id="tabpanel-aria-label">
+                <td></td>
+                <th scope="row">
+                  <code>aria-label=<q>Slide X of Y</q></code>
+                </th>
+                <td>
+                  <code>div</code>
+                </td>
+                <td>
+                  Provides an accessible name for the tab panel by indicating what position the slide is in the set of slides.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
       </section>
 
       <section>

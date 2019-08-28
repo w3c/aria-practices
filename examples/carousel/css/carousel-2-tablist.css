@@ -161,7 +161,7 @@
   border: 2px transparent solid;
   border-radius: 13px;
   height: 26px;
-  background-color: transparent;
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 .carouselTablist [role="tablist"] .focus {
