@@ -226,7 +226,6 @@ DatePicker.prototype.handleOkButton = function (event) {
 
       switch (event.keyCode) {
         case this.keyCode.ENTER:
-        case this.keyCode.SPACE:
 
           this.setTextboxDate();
 
@@ -276,7 +275,6 @@ DatePicker.prototype.handleCancelButton = function (event) {
 
       switch (event.keyCode) {
         case this.keyCode.ENTER:
-        case this.keyCode.SPACE:
           this.hide();
           flag = true;
           break;
@@ -321,7 +319,6 @@ DatePicker.prototype.handleNextYearButton = function (event) {
           break;
 
         case this.keyCode.ENTER:
-        case this.keyCode.SPACE:
           this.moveToNextYear();
           this.setFocusDay(false);
           flag = true;
@@ -355,7 +352,6 @@ DatePicker.prototype.handlePreviousYearButton = function (event) {
       switch (event.keyCode) {
 
         case this.keyCode.ENTER:
-        case this.keyCode.SPACE:
           this.moveToPreviousYear();
           this.setFocusDay(false);
           flag = true;
@@ -408,7 +404,6 @@ DatePicker.prototype.handleNextMonthButton = function (event) {
           break;
 
         case this.keyCode.ENTER:
-        case this.keyCode.SPACE:
           this.moveToNextMonth();
           this.setFocusDay(false);
           flag = true;
@@ -446,7 +441,6 @@ DatePicker.prototype.handlePreviousMonthButton = function (event) {
           break;
 
         case this.keyCode.ENTER:
-        case this.keyCode.SPACE:
           this.moveToPreviousMonth();
           this.setFocusDay(false);
           flag = true;
