@@ -21,10 +21,12 @@ CarouselTabpanel.prototype.init = function () {
 
 CarouselTabpanel.prototype.hide = function () {
   this.domNode.classList.remove('active');
+  this.domNode.removeAttribute('tabindex');
 };
 
 CarouselTabpanel.prototype.show = function () {
   this.domNode.classList.add('active');
+  this.domNode.setAttribute('tabindex', '0');
 };
 
 /* EVENT HANDLERS */

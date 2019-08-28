@@ -9,7 +9,8 @@
   border: solid 2px transparent;
 }
 
-.carouselTablist .carousel-items.focus {
+.carouselTablist .carousel-items.focus,
+.carouselTablist [role=tabpanel]:focus {
   border-color: white;
   outline: solid 3px #005a9c;
 }

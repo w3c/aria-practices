@@ -94,10 +94,13 @@
                     </svg>
                   </button>
 
-                  <div role="tablist">
+                  <div role="tablist"
+                       aria-label="Slides">
                     <div class="border">
-                      <button role="tab"
+                      <button id="carousel-tab-1"
+                              role="tab"
                               tabindex="0"
+                              aria-controls="carousel-item-1"
                               aria-label="Slide 1"
                               aria-selected="true"
                               aria-controls="carousel-item-1">
@@ -107,8 +110,10 @@
                           <circle class="tab" cx="16" cy="15" r="6" />
                         </svg>
                       </button>
-                      <button role="tab"
+                      <button id="carousel-tab-2"
+                              role="tab"
                               tabindex="-1"
+                              aria-controls="carousel-item-2"
                               aria-label="Slide 2"
                               aria-selected="false"
                               aria-controls="carousel-item-2">
@@ -118,8 +123,10 @@
                           <circle class="tab" cx="16" cy="15" r="6" />
                         </svg>
                       </button>
-                      <button role="tab"
+                      <button id="carousel-tab-3"
+                              role="tab"
                               tabindex="-1"
+                              aria-controls="carousel-item-3"
                               aria-label="Slide 3"
                               aria-selected="false"
                               aria-controls="carousel-item-3">
@@ -129,8 +136,10 @@
                           <circle class="tab" cx="16" cy="15" r="6" />
                         </svg>
                       </button>
-                      <button role="tab"
+                      <button id="carousel-tab-4"
+                              role="tab"
                               tabindex="-1"
+                              aria-controls="carousel-item-4"
                               aria-label="Slide 4"
                               aria-selected="false"
                               aria-controls="carousel-item-4">
@@ -140,8 +149,10 @@
                           <circle class="tab" cx="16" cy="15" r="6" />
                         </svg>
                       </button>
-                      <button role="tab"
+                      <button id="carousel-tab-5"
+                              role="tab"
                               tabindex="-1"
+                              aria-controls="carousel-item-5"
                               aria-label="Slide 5"
                               aria-selected="false"
                               aria-controls="carousel-item-5">
@@ -151,9 +162,11 @@
                           <circle class="tab" cx="16" cy="15" r="6" />
                         </svg>
                       </button>
-                      <button role="tab"
+                      <button id="carousel-tab-6"
+                              role="tab"
                               tabindex="-1"
                               aria-label="Slide 6"
+                              aria-controls="carousel-item-6"
                               aria-selected="false"
                               aria-controls="carousel-item-6">
                         <svg width="34" height="34" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -172,6 +185,7 @@
                   <div class="carousel-item active"
                        id="carousel-item-1"
                        role="tabpanel"
+                       tabindex="0"
                        aria-roledescription="slide"
                        aria-label="1 of 6">
 
@@ -198,6 +212,7 @@
                   <div class="carousel-item"
                        id="carousel-item-2"
                        role="tabpanel"
+                       tabindex="0"
                        aria-roledescription="slide"
                        aria-label="2 of 6">
 
@@ -224,6 +239,7 @@
                   <div class="carousel-item"
                       id="carousel-item-3"
                        role="tabpanel"
+                       tabindex="0"
                        aria-roledescription="slide"
                        aria-label="3 of 6">
 
@@ -250,6 +266,7 @@
                   <div class="carousel-item"
                        id="carousel-item-4"
                        role="tabpanel"
+                       tabindex="0"
                        aria-roledescription="slide"
                        aria-label="4 of 6">
 
@@ -276,6 +293,7 @@
                   <div class="carousel-item"
                        id="carousel-item-5"
                        role="tabpanel"
+                       tabindex="0"
                        aria-roledescription="slide"
                        aria-label="5 of 6">
 
@@ -301,6 +319,7 @@
                   <div class="carousel-item"
                        id="carousel-item-6"
                        role="tabpanel"
+                       tabindex="0"
                        aria-roledescription="slide"
                        aria-label="6 of 6">
 
@@ -561,38 +580,38 @@
                 <td>Provides a label that describes the content in the carousel region.</td>
               </tr>
               <tr data-test-id="carousel-aria-live">
-                  <td></td>
-                  <th scope="row">
-                    <code>aria-live=<q>off</q></code>
-                  </th>
-                  <td>
-                    <code>div.carousel-items</code>
-                  </td>
-                  <td>
-                    <ul>
-                      <li>Applied to a <code>div</code> element that contains all the slides.</li>
-                                           <li>Identifies the container element as a live region that is in the &quot;off&quot; state, meaning assistive technology users are not informed about changes to the region.</li>
-                      <li>The live region is off when the carousel is automatically rotating.</li>
-                    </ul>
-                  </td>
-                </tr>
-                <tr data-test-id="carousel-aria-live">
-                  <td></td>
-                  <th scope="row">
-                    <code>aria-live=<q>polite</q></code>
-                  </th>
-                  <td>
-                    <code>div.carousel-items</code>
-                  </td>
-                  <td>
-                    <ul>
-                      <li>Applied to a <code>div</code> element that contains all the slides.</li>
-                                           <li>Identifies the container element as a live region in the &quot;polite&quot; state, meaning assistive technology users are informed about changes to the region at the next available opportunity.</li>
-                      <li>This causes screen readers to automatically announce the content of slides when the next and previous slide buttons are activated.</li>
-                    </ul>
-                  </td>
-                </tr>
-              <tr data-test-id="carousel-tablist-role">
+                <td></td>
+                <th scope="row">
+                  <code>aria-live=<q>off</q></code>
+                </th>
+                <td>
+                  <code>div.carousel-items</code>
+                </td>
+                <td>
+                  <ul>
+                    <li>Applied to a <code>div</code> element that contains all the slides.</li>
+                                         <li>Identifies the container element as a live region that is in the &quot;off&quot; state, meaning assistive technology users are not informed about changes to the region.</li>
+                    <li>The live region is off when the carousel is automatically rotating.</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr data-test-id="carousel-aria-live">
+                <td></td>
+                <th scope="row">
+                  <code>aria-live=<q>polite</q></code>
+                </th>
+                <td>
+                  <code>div.carousel-items</code>
+                </td>
+                <td>
+                  <ul>
+                    <li>Applied to a <code>div</code> element that contains all the slides.</li>
+                                         <li>Identifies the container element as a live region in the &quot;polite&quot; state, meaning assistive technology users are informed about changes to the region at the next available opportunity.</li>
+                    <li>This causes screen readers to automatically announce the content of slides when the next and previous slide buttons are activated.</li>
+                  </ul>
+                </td>
+              </tr>
+              <tr data-test-id="tablist-role">
                 <th scope="row">
                   <code>tablist</code>
                 </th>
@@ -602,7 +621,17 @@
                 </td>
                 <td>Indicates that the element serves as a container for a set of tabs.</td>
               </tr>
-              <tr data-test-id="carousel-tab-role">
+              <tr data-test-id="tablist-aria-label">
+                <td></td>
+                <th scope="row">
+                  <code>aria-label="Slides"</code>
+                </th>
+                <td>
+                  <code>div</code>
+                </td>
+                <td>Provides an accessible name for the tablist.</td>
+              </tr>
+              <tr data-test-id="tab-role">
                 <th scope="row">
                   <code>tab</code>
                 </th>
@@ -669,7 +698,7 @@
                   </ul>
                 </td>
               </tr>
-              <tr data-test-id="tab-aria-control">
+              <tr data-test-id="tab-aria-controls">
                 <td></td>
                 <th scope="row">
                   <code>aria-controls=<q>IDREF</q></code>
@@ -698,7 +727,22 @@
                   </ul>
                 </td>
               </tr>
-              <tr data-test-id="tabpanel-role-description">
+            <tr data-test-id="tabpanel-tabindex">
+              <td></td>
+              <th scope="row">
+                <code>tabindex=<q>0</q></code>
+              </th>
+              <td>
+                <code>div</code>
+              </td>
+              <td>
+                <ul>
+                  <li>Puts the tabpanel in the page <kbd>Tab</kbd> sequence.</li>
+                  <li>Facilitates movement to panel content for assistive technology users.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr data-test-id="tabpanel-roledescription">
                 <td></td>
                 <th scope="row">
                   <code>aria-roledescription=<q>slide</q></code>
