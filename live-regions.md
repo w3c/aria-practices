@@ -153,6 +153,16 @@ For example, the search result summary example above could use `role="status"` i
 </form>
 ```
 
+The HTML `output` element has the `status` role by default. The `output` element is defined to represent the result of a calculation performed by the application, or the result of a user action. The result of a user search is thus appropriate use of the `output` element:
+
+```
+<form role="search" aria-labelledby="search">
+ <h2 id="search">Search</h2>
+ <label>Search query: <input type="search" name="q" oninput="updateSearch(event)"></label>
+ <output id="search-result-status"></output>
+</form>
+```
+
 ### `timer`
 
 The `timer` role is a numerical counter which indicates an amount of elapsed time from a start point, or the time remaining until an end point.
