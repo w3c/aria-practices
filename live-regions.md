@@ -42,9 +42,9 @@ Dynamic content changes in a live region is sometimes significant, and sometimes
 
 The `aria-relevant` attribute can be used to inform assistive technologies about which kinds of changes are relevant to inform users about. It takes a list of keywords, with the following meanings:
 
-* `additions`: Element node additions
-* `text`: Text or text alternative additions
-* `removals`: Text content, text alternative, or element node removals
+* `additions`: Element nodes are added to the accessibility tree within the live region.
+* `text`: Text content or a text alternative is added to any descendant in the accessibility tree of the live region.
+* `removals`: Text content, a text alternative, or an element node within the live region is removed from the accessibility tree.
 * `all`: Synonym to `additions removals text`
 
 If `aria-relevant` is not specified, then the value of the closest ancestor element with an `aria-relevant` attribute is used. Specifying the `aria-relevant` attribute on an element overrides any value specified on an ancestor element. If there is no ancestor element with an `aria-relevant` attribute, the default value `additions text` is used.
@@ -60,6 +60,8 @@ For example, a list of online contacts could use `aria-live="all"`:
 </div>
 ```
 When a contact comes online, it is added to the list, and users of assistive technology are informed of the addition without disrupting their current task. Similarly when a user goes offline. If a contact changes their display name, the text change would also be announced.
+
+Note that additions and removals in the accessibility tree can happen due to changes to the DOM tree or changes to the applied CSS. For example, changing the CSS `display` property to `none` causes the element to be removed from the accessibility tree. See the <a href="#accessibility-tree">Accessibility tree</a> section for more details.
 
 ### `aria-atomic`
 
