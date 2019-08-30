@@ -6411,6 +6411,38 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
 
   </section>
 
+  <section id="accessibility_tree">
+    <h2>Accessibility tree</h2>
+    <p>Browsers use a so-called accessibility tree to communicate the representation of web content with assistive technologies. See the <a href="https://w3c.github.io/core-aam/#dfn-accessibility-tree">Core Accessibility API Mappings</a> specification for further information about accessibility trees.</p>
+    <p>The accessibility tree is based on information in the DOM tree and information in CSS. For example, text in the DOM tree can also be in the accessibility tree. CSS generated content is not part of the DOM tree, but can be part of the accessibility tree.</p>
+    <p>For example, given the HTML document</p>
+    <pre><code>&lt;!doctype html&gt;
+&lt;html&gt;
+ &lt;head&gt;
+  &lt;title&gt;Cookie policy&lt;/title&gt;
+ &lt;/head&gt;
+ &lt;body&gt;
+  &lt;p&gt;Cookies are delicious delicacies. &lt;button&gt;OK&lt;/button&gt;&lt;/p&gt;
+ &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+    <p>The DOM tree includes element nodes closely resembling the markup, with a root <code>html</code> element that has two element children <code>head</code> and <code>body</code>, and so on.</p>
+    <p>The accessibility tree does not include the <code>head</code> or <code>title</code> elements, because the <code>head</code> element is hidden by default. The paragraph is included in the accessibility tree, with a text child node &quot;Cookies are delicious delicacies. &quot; and a child <code>button</code> element node, whose accessible name is &quot;OK&quot;.</p>
+    <p>CSS and ARIA can be used to control what is included in the accessibility tree, which is discussed in the following sections.</p>
+  </section>
+
+  <section id="excluding_subtrees_from_the_accessibility_tree">
+    <h2>Excluding subtrees from the accessibility tree</h2>
+    <p>An element that is hidden, either by default or by the author using CSS (in particular <code>display: none</code> and <code>visibility: hidden</code>), or using the HTML <code>hidden</code> attribute (which by default maps to CSS <code>display: none</code>), is not included in the accessibility tree. Its descendants are also not included. The element is hidden from all users, both visually and from assistive technologies.</p>
+    <p>For example, a <a href="#disclosure">disclosure</a> shows and hides content, and that content is intended to be hidden for all users, and could use CSS <code>display: none</code> or the HTML <code>hidden</code> attribute.</p>
+    <p>Using <code>aria-hidden</code> with the value <code>true</code> excludes the element and its descendants from the accessibility tree, just like hidden elements, but such elements are <em>not</em> hidden visually. The descendants are excluded from the accessibility tree even if an element in the excluded subtree sets <code>aria-hidden</code> to <code>false</code>.</p>
+    <p><code>aria-hidden</code> can be used to hide decorative or redundant content from screen readers, for example an inline SVG icon.</p>
+    <pre><code>&lt;a href=&quot;/&quot;&gt;
+ &lt;svg aria-hidden=&quot;true&quot;&gt;...&lt;/svg&gt;
+ Home
+&lt;/a&gt;</code></pre>
+  <p class="warning">Only use <code>aria-hidden=&quot;true&quot;</code> when hiding content from only assistive technologies improves the user experience of assistive technologies.</p>
+  </section>
+
   <section id="presentation_role">
     <h2>Intentionally Hiding Semantics with the <code>presentation</code> Role</h2>
     <p>
