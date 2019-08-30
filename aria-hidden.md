@@ -20,7 +20,7 @@ For example, given the HTML document
 
 The DOM tree includes element nodes closely resembling the markup, with a root `html` element that has two element children `head` and `body`, and so on.
 
-The accessibility tree does not include the `head` or `title` elements, because the `head` element is hidden by default. The paragraph is included in the accessibility tree, with a text node child "Cookies are delicious delicacies. " and a `button` node, whose accessible name is "OK".
+The accessibility tree does not include the `head` or `title` elements, because the `head` element is hidden by default. The paragraph is included in the accessibility tree, with a text child node "Cookies are delicious delicacies. " and a child `button` element node, whose accessible name is "OK".
 
 CSS and ARIA can be used to control what is included in the accessibility tree, which is discussed in the following sections.
 
@@ -30,7 +30,7 @@ An element that is hidden, either by default or by the author using CSS (in part
 
 For example, a [disclosure](#disclosure) shows and hides content, and that content is intended to be hidden for all users, and could use CSS `display: none` or the HTML `hidden` attribute.
 
-Using `aria-hidden` with the value `true` excludes the element and its descendants from the accessibility tree, just like hidden elements, but such elements are *not* hidden visually. The descendants are excluded from the accessibility tree even if an element in the exluded subtree sets `aria-hidden` to `false`.
+Using `aria-hidden` with the value `true` excludes the element and its descendants from the accessibility tree, just like hidden elements, but such elements are *not* hidden visually. The descendants are excluded from the accessibility tree even if an element in the excluded subtree sets `aria-hidden` to `false`.
 
 `aria-hidden` can be used to hide decorative or redundant content from screen readers, for example an inline SVG icon.
 
@@ -41,4 +41,4 @@ Using `aria-hidden` with the value `true` excludes the element and its descendan
 </a>
 ```
 
-Warning. Only use `aria-hidden="true"` when hiding content from only assistive technologies improves the experience for users of assistive technologies.
+Warning. Only use `aria-hidden="true"` when hiding content from only assistive technologies improves the user experience of assistive technologies.
