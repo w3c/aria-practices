@@ -14,7 +14,7 @@ var SpinButtonDate = function (domNode, values, callback)  {
 
   var initialValue = domNode.getAttribute('aria-valuetext');
 
-  this.spinbuttonNode = domNode.querySelector('[role="spinbutton');
+  this.spinbuttonNode = domNode.querySelector('[role="spinbutton"]');
 
   this.previousValueNode = domNode.querySelector('.previous');
   this.nextValueNode = domNode.querySelector('.next');
