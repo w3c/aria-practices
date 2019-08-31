@@ -643,7 +643,7 @@ var[data-type]:hover::before {
 }</script><meta name="description" content="This document provides readers with an understanding of how to use WAI-ARIA 1.1 [WAI-ARIA] to create accessible rich internet applications.
       It describes considerations that might not be evident to most authors from the WAI-ARIA specification alone and recommends approaches to make widgets, navigation, and behaviors accessible using WAI-ARIA roles, states, and properties.
       This document is directed primarily to Web application developers, but the guidance is also useful for user agent and assistive technology developers."><link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/W3C-ED"></head>
-<body class="h-entry informative toc-inline"><div class="head">
+<body class="h-entry informative"><div class="head">
       <a class="logo" href="https://www.w3.org/"><img alt="W3C" width="72" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C"></a> <h1 id="title" class="title p-name">WAI-ARIA Authoring Practices 1.1</h1>
       
       <h2>
@@ -1544,7 +1544,7 @@ var[data-type]:hover::before {
             </ul>
           </li>
           <li><kbd>Up Arrow</kbd> (Optional): If the popup is available, places focus on the last focusable element in the popup.</li>
-          <li><kbd>Escape</kbd>: Dismisses the popup if it is visible. Optionally, clears the textbox.</li>
+          <li><kbd>Escape</kbd>: Dismisses the popup if it is visible. Optionally, if the popup is hidden before <kbd>Escape</kbd> is pressed, clears the textbox.</li>
           <li>
             <kbd>Enter</kbd>: If an autocomplete suggestion is automatically selected, accepts the suggestion either by placing the input cursor at the end of the accepted value in the textbox or by performing a default action on the value.
             For example, in a messaging application, the default action may be to add the accepted value to a list of message recipients and then clear the textbox so the user can add another recipient.
