@@ -174,7 +174,7 @@ ComboboxInput.prototype.handleButtonMouseDown = function (event) {
     }
 
     this.datepicker.show();
-    this.datepicker.setFocusDay();
+    this.datepicker.setFocusDay(true);
   }
   else {
     this.ignoreFocusEvent = true;

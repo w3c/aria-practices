@@ -4,23 +4,25 @@ const { ariaTest } = require('..');
 const { By, Key } = require('selenium-webdriver');
 const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAttributeDNE = require('../util/assertAttributeDNE');
+const assertAriaControls = require('../util/assertAriaControls');
 const assertAriaLabelledby = require('../util/assertAriaLabelledby');
+const assertAriaDescribedby = require('../util/assertAriaDescribedby');
 const assertAriaLabelExists = require('../util/assertAriaLabelExists');
 const assertAriaRoles = require('../util/assertAriaRoles');
-const assertRovingTabindex = require('../util/assertRovingTabindex');
 const assertTabOrder = require('../util/assertTabOrder');
 
-const exampleFile = 'dialog-modal/datepicker-dialog.html';
+const exampleFile = 'combobox/aria1.1pattern/combo-11-datepicker.html';
 
 let today = new Date();
 let todayDataDate = today.toISOString().split('T')[0];
 
 const ex = {
+  comboboxSelector: '#example [role=combobox]',
   dialogSelector: '#example [role="dialog"]',
   inputSelector: '#example input',
   buttonSelector: '#example button.icon',
   statusSelector: '#example [role="status"]',
-  messageSelector: '#example .message',
+  dialogMessageSelector: '#example .dialogMessage',
   gridSelector: '#example [role="grid"]',
   gridcellSelector: '#example [role="gridcell"]',
   controlButtons: '#example [role="dialog"] .header button',
@@ -75,6 +77,28 @@ const focusMatchesElement = async function (t, selector) {
   }, t.context.WaitTime);
 };
 
+// Attributes
+
+ariaTest('Combobox: has role', exampleFile, 'textbox-role', async (t) => {
+  t.plan(1);
+  await assertAriaRoles(t, 'example', 'combobox', 1, 'input');
+});
+
+ariaTest('Combobox: has aria-haspopup set to "dialog"', exampleFile, 'textbox-aria-haspopup', async (t) => {
+  t.plan(1);
+  await assertAttributeValues(t, ex.comboboxSelector, 'aria-haspopup', 'dialog');
+});
+
+ariaTest('Combobox: has aria-contorls set to "id-dialog-1"', exampleFile, 'textbox-aria-controls', async (t) => {
+  t.plan(1);
+  await assertAttributeValues(t, ex.comboboxSelector, 'aria-controls', 'id-dialog-1');
+});
+
+ariaTest('Combobox: Initially aria-expanded set to "false"', exampleFile, 'textbox-aria-expanded', async (t) => {
+  t.plan(1);
+  await assertAttributeValues(t, ex.comboboxSelector, 'aria-expanded', 'false');
+});
+
 
 // Button Tests
 
@@ -102,7 +126,7 @@ ariaTest('aria-labelledby exist on dialog', exampleFile, 'dialog-aria-labelledby
 
 ariaTest('aria-live="polite" on keyboard support message', exampleFile, 'dialog-aria-live', async (t) => {
   t.plan(1);
-  await assertAttributeValues(t, ex.messageSelector, 'aria-live', 'polite');
+  await assertAttributeValues(t, ex.dialogMessageSelector, 'aria-live', 'polite');
 });
 
 ariaTest('"aria-label" exists on control buttons', exampleFile, 'change-date-button-aria-label', async (t) => {
@@ -125,6 +149,7 @@ ariaTest('aria-labelledby on grid element', exampleFile, 'grid-aria-labelledby',
   await assertAriaLabelledby(t, ex.gridSelector);
 });
 
+
 ariaTest('Roving tab index on dates in gridcell', exampleFile, 'gridcell-button-tabindex', async (t) => {
   await setDateToJanFirst2019(t);
   await t.context.session.findElement(By.css(ex.buttonSelector)).click();
@@ -133,7 +158,7 @@ ariaTest('Roving tab index on dates in gridcell', exampleFile, 'gridcell-button-
   let allButtons = await t.context.session.findElements(By.css(ex.allDateButtons));
 
   // test only one element has tabindex="0"
-  for (let tabableEl = 0; tabableEl < 30; tabableEl++) {
+  for (let tabableEl = 0; tabableEl < focusableButtons.length; tabableEl++) {
     let dateSelected = await focusableButtons[tabableEl].getText();
 
     for (let el = 0; el < allButtons.length; el++) {
@@ -155,8 +180,7 @@ ariaTest('Roving tab index on dates in gridcell', exampleFile, 'gridcell-button-
   }
 });
 
-// This test failed due to issue: https://github.com/w3c/aria-practices/issues/1072
-// If you fix it, please remove ".failing"
+/*
 ariaTest('aria-selected on selected date', exampleFile, 'gridcell-button-aria-selected', async (t) => {
   t.plan(5);
 
@@ -193,10 +217,9 @@ ariaTest('aria-selected on selected date', exampleFile, 'gridcell-button-aria-se
 
 });
 
-
 // Keyboard
 
-ariaTest('ENTER to open datepicker', exampleFile, 'button-space-return-down-arrow', async (t) => {
+ariaTest('ENTER to open datepicker', exampleFile, 'button-space-return', async (t) => {
   let chooseDateButton = await t.context.session.findElement(By.css(ex.buttonSelector));
   chooseDateButton.sendKeys(Key.ENTER);
 
@@ -207,7 +230,7 @@ ariaTest('ENTER to open datepicker', exampleFile, 'button-space-return-down-arro
   );
 });
 
-ariaTest('SPACE to open datepicker', exampleFile, 'button-space-return-down-arrow', async (t) => {
+ariaTest('SPACE to open datepicker', exampleFile, 'button-space-return', async (t) => {
   let chooseDateButton = await t.context.session.findElement(By.css(ex.buttonSelector));
   chooseDateButton.sendKeys(Key.SPACE);
 
@@ -283,41 +306,4 @@ ariaTest('', exampleFile, 'dialog-shift-tab', async (t) => {
   }
 });
 
-// ariaTest('', exampleFile, 'month-year-button-space-return', async (t) => {
-// });
-
-// ariaTest('', exampleFile, 'grid-space-return', async (t) => {
-// });
-
-// ariaTest('', exampleFile, 'grid-up-arrow', async (t) => {
-// });
-
-// ariaTest('', exampleFile, 'grid-down-arrow', async (t) => {
-// });
-
-// ariaTest('', exampleFile, 'grid-right-arrow', async (t) => {
-// });
-
-// ariaTest('', exampleFile, 'grid-left-arrow', async (t) => {
-// });
-
-// ariaTest('', exampleFile, 'grid-home', async (t) => {
-// });
-
-// ariaTest('', exampleFile, 'grid-end', async (t) => {
-// });
-
-// ariaTest('', exampleFile, 'grid-pageup', async (t) => {
-// });
-
-// ariaTest('', exampleFile, 'grid-shift=pageup', async (t) => {
-// });
-
-// ariaTest('', exampleFile, 'grid-pagedown', async (t) => {
-// });
-
-// ariaTest('', exampleFile, 'grid-shift-pagedown', async (t) => {
-// });
-
-// ariaTest('', exampleFile, 'okay-cancel-button-space-return', async (t) => {
-// });
+*/

@@ -45,34 +45,30 @@ DatepickerComboboxDay.prototype.isDisabled = function () {
 DatepickerComboboxDay.prototype.updateDay = function (disable, day, selected) {
 
   this.day = new Date(day);
+  var d = this.day.getDate().toString();
+  if (this.day.getDate() < 10) {
+    d = '0' + d;
+  }
+
+  var m = this.day.getMonth() + 1;
+  if (this.day.getMonth() < 9) {
+    m = '0' + m;
+  }
+  this.domNode.innerHTML = this.day.getDate();
   this.domNode.setAttribute('data-date', this.day.getFullYear() + '-' + m + '-' + d);
   this.domNode.setAttribute('tabindex', '-1');
   this.domNode.removeAttribute('aria-selected');
 
   if (disable) {
     this.domNode.classList.add('disabled');
-    this.domNode.innerHTML = '';
   }
   else {
     this.domNode.classList.remove('disabled');
-    this.domNode.innerHTML = this.day.getDate();
-    var d = this.day.getDate().toString();
-    if (this.day.getDate() < 10) {
-      d = '0' + d;
-    }
-
-    var m = this.day.getMonth() + 1;
-    if (this.day.getMonth() < 9) {
-      m = '0' + m;
-    }
-
     if (selected) {
       this.domNode.setAttribute('aria-selected', 'true');
       this.domNode.setAttribute('tabindex', '0');
     }
   }
-
-
 };
 
 DatepickerComboboxDay.prototype.handleKeyDown = function (event) {
