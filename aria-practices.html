@@ -6413,8 +6413,8 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
 
   <section id="accessibility_tree">
     <h2>Accessibility tree</h2>
-    <p>Browsers use a so-called accessibility tree to communicate the representation of web content with assistive technologies. See the <a href="https://w3c.github.io/core-aam/#dfn-accessibility-tree">Core Accessibility API Mappings</a> specification for further information about accessibility trees.</p>
-    <p>The accessibility tree is based on information in the DOM tree and information in CSS. For example, text in the DOM tree can also be in the accessibility tree. CSS generated content is not part of the DOM tree, but can be part of the accessibility tree.</p>
+    <p>Browsers construct an accessibility tree to communicate the representation of web content with assistive technologies. See the <a href="https://w3c.github.io/core-aam/#dfn-accessibility-tree">Core Accessibility API Mappings</a> specification for further information about accessibility trees.</p>
+    <p>The accessibility tree is based on information in the DOM tree (including ARIA) and information in CSS. For example, text in the DOM tree can also be in the accessibility tree. CSS generated content is not part of the DOM tree, but can be part of the accessibility tree.</p>
     <p>For example, given the HTML document</p>
     <pre><code>&lt;!doctype html&gt;
 &lt;html&gt;
