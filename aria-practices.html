@@ -3742,7 +3742,7 @@
          For example, a switch button named <q>Mute Conversation</q> in the <q>off</q> state could be announced as <q>Mute Conversation switch button off</q>.
         Because descriptions are optional strings that are usually significantly longer than names, they are presented last, sometimes after a slight delay.
         For example, <q>Mute Conversation Switch button off, Silences alerts and notifications about activity in this conversation.</q>
-        To reduce verbosity, some screen readers do not announce descriptions by default but instead inform users of their presence so that users can press a key that will announce the description. 
+        To reduce verbosity, some screen readers do not announce descriptions by default but instead inform users of their presence so that users can press a key that will announce the description.
       </p>
     </section>
 
@@ -4074,7 +4074,7 @@ However, most authors do not need such detailed understanding of the algorithms 
 &lt;/figure></code></pre>
           <p>
             Like with <code>table</code> elements, if a <code>figure</code> is not named using <code>aria-label</code> or <code>aria-labelledby</code>, the content of the <code>figcaption</code> element will be used as the accessible name.
-            However unlike <code>table</code> elements, if the <code>figcaption</code> element is not used for the name, it does not become an accessible description unless it is referenced by <code>aria-describedby</code>. 
+            However unlike <code>table</code> elements, if the <code>figcaption</code> element is not used for the name, it does not become an accessible description unless it is referenced by <code>aria-describedby</code>.
             Nevertheless, assistive technologies will render the content of a <code>figcaption</code> regardless of whether it is used as a name, description, or neither.
           </p>
           <p>Using the <code>caption</code> element to name a <code>table</code> element, or a <code>figcaption</code> element to name a <code>figure</code> element, satisfies <a href="#naming_rule_visible_text">Rule 2: Prefer Visible Text</a> and <a href="#naming_rule_native_techniques">Rule 3: Prefer Native Techniques</a>.</p>
@@ -6281,7 +6281,11 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
 
   <section id="aria-level">
     <h2>Describing Hierarchical Structure with <code>aria-level</code></h2>
-    <p>When elements have a hierarchical relationship, such as headers of sections or data in tree structures, <code>aria-level</code> is used to communicate the hierarchy between elements to assistive technologies. The value of <code>aria-level</code> is numeric, with <code>1</code> indicating the top level of the structure. The number increases for each level of nesting.</p>
+    <p>
+      When elements have a hierarchical relationship, such as headers of sections or data in tree structures, <code>aria-level</code> is used to communicate the hierarchy between elements to assistive technologies.
+      The value of <code>aria-level</code> is numeric, with <code>1</code> indicating the top level of the structure.
+      The number increases for each level of nesting.
+    </p>
     <p>Do not use <code>aria-level</code> when the DOM structure already accurately represents the elements' hierarchical relationships.</p>
     <p>The <code>aria-level</code> attribute can be used on the following roles:</p>
     <ul>
@@ -6293,8 +6297,14 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
     </ul>
     <section id="aria-level_heading_role">
       <h3><code>heading</code> Role</h3>
-      <p>Used together, the <code>aria-level</code> attribute and <code>heading</code> role will be treated the same by assistive technologies as the native HTML header elements: <code>h1</code>, <code>h2</code>, <code>h3</code>, <code>h4</code>, <code>h5</code> and <code>h6</code>. Do not use attribute <code>aria-level</code> and <code>heading</code> when a native HTML element can be used.</p>
-      <p>This example uses the <code>heading</code> role and <code>aria-level</code> attribute to communicate levels of headings for a graph created with an SVG. The headings "Deciduous Trees" and "Evergreen Trees" are both subheadings to "Total Trees".</p>
+      <p>
+        Used together, the <code>aria-level</code> attribute and <code>heading</code> role will be treated the same by assistive technologies as the native HTML header elements: <code>h1</code>, <code>h2</code>, <code>h3</code>, <code>h4</code>, <code>h5</code> and <code>h6</code>.
+        Do not use attribute <code>aria-level</code> and <code>heading</code> when a native HTML element can be used.
+      </p>
+      <p>
+        This example uses the <code>heading</code> role and <code>aria-level</code> attribute to communicate levels of headings for a graph created with an SVG.
+        The headings "Deciduous Trees" and "Evergreen Trees" are both subheadings to "Total Trees".
+      </p>
       <pre><code>&lt;svg width="1000" height="1000"&gt;
   &lt;text x="10" y="10" role="header" aria-level="1"&gt;Total Trees:&lt;/text&gt;
   &lt;text x="10" y="100" role="header" aria-level="2"&gt;Deciduous Trees:&lt;/text&gt;
@@ -6305,7 +6315,10 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
 
       <section id="aria-level_heading_role_remediation">
         <h4>Remediation Uses Cases</h4>
-        <p>In rare scenarios, legacy code cannot be converted to using HTML header elements. In these cases, the <code>aria-level</code> attribute and the <code>heading</code> role can be added to the website's header elements to communicate to assitive technologies that those elements should be treated like a native HTML section heading element.</p>
+        <p>
+          In rare scenarios, legacy code cannot be converted to using HTML header elements.
+          In these cases, the <code>aria-level</code> attribute and the <code>heading</code> role can be added to the website's header elements to communicate to assitive technologies that those elements should be treated like a native HTML section heading element.
+        </p>
         <p>For example, "Definition of a Room" is a subsection of "Housing Specification":</p>
         <pre><code>&lt;div role="heading" aria-level="1" class="header-big"&gt;Housing Specification&lt;/div&gt;
 &lt;div role="section" aria-labelledby="room-definition"&gt;
@@ -6325,7 +6338,10 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
 
     <section id="aria-level_listitem_role">
       <h3><code>listitem</code> role</h3>
-      <p>The <code>aria-level</code> attribute can be used on elements with <code>listitem</code> role to represent list subitems when the structure of the DOM tree does not imply the intended level of nesting. For example, to quote a item in a nested to-do list, use the 'aria-level' attribute on the list items.</p>
+      <p>
+        The <code>aria-level</code> attribute can be used on elements with <code>listitem</code> role to represent list subitems when the structure of the DOM tree does not imply the intended level of nesting.
+        For example, to quote a item in a nested to-do list, use the 'aria-level' attribute on the list items.
+      </p>
       <pre><code>&lt;blockquote&gt;
 &lt;ul&gt;
   &lt;li aria-level="2"&gt;Wash Dishes&lt;/li&gt;
@@ -6338,7 +6354,11 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
     <section id="aria-level_treeitem_role">
       <h3><code>treeitem</code> role</h3>
       <p>The attribute <code>aria-level</code> can be used on elements with role <code>treeitem</code> to explicitly set the level of items within the <a href="#TreeView">Tree View Design Pattern</a>.</p>
-      <p>The computed <code>aria-level</code> of a <code>treeitem</code> within a tree is based on the number of 'group' role elements in the ancestor chain between the treeitem and the tree role, where the top level <code>treeitems</code> are <code>aria-level</code> 1. In the following example of a discussion board with nested replies, the top level post "What color should we paint the bike shed?" has an implicit <code>aria-level='1'</code>. The first reply has an implicit <code>aria-level='2'</code>, the response to that first reply has an implicit <code>aria-level='3'</code>.</p>
+      <p>
+        The computed <code>aria-level</code> of a <code>treeitem</code> within a tree is based on the number of 'group' role elements in the ancestor chain between the treeitem and the tree role, where the top level <code>treeitems</code> are <code>aria-level</code> 1.
+        In the following example of a discussion board with nested replies, the top level post "What color should we paint the bike shed?" has an implicit <code>aria-level='1'</code>.
+        The first reply has an implicit <code>aria-level='2'</code>, the response to that first reply has an implicit <code>aria-level='3'</code>.
+      </p>
       <pre><code>&lt;ul role='tree'&gt;
   &lt;li role='treeitem'&gt;
   What color should we paint the bike shed?
@@ -6372,7 +6392,11 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
 
     <section id="aria-level_row_role">
       <h3><code>row</code> Role</h3>
-      <p>The <code>aria-level</code> attribute can be used on an element with <code>row</code> role to describe nesting of rows in a <code>treegrid</code>, as is explained in the <a href="#treegrid">treegrid pattern</a>. In this example, the DOM tree does not represent the hierarchical relationship between rows. Each email is in a <code>tr</code> element, which are siblings in the DOM tree, therefore <code>aria-level</code> is necessary to communicate that the emails form a tree structure.</p>
+      <p>
+        The <code>aria-level</code> attribute can be used on an element with <code>row</code> role to describe nesting of rows in a <code>treegrid</code>, as is explained in the <a href="#treegrid">treegrid pattern</a>.
+        In this example, the DOM tree does not represent the hierarchical relationship between rows.
+        Each email is in a <code>tr</code> element, which are siblings in the DOM tree, therefore <code>aria-level</code> is necessary to communicate that the emails form a tree structure.
+      </p>
       <pre><code>&lt;table role='treegrid'&gt;
   &lt;tr&gt;
   &lt;th&gt;From:&lt;/th&gt;
