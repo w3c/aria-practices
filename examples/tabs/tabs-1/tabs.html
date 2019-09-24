@@ -22,7 +22,7 @@
         <li><a href="https://github.com/w3c/aria-practices/projects/11">Related Issues</a></li>
         <li><a href="../../../#tabpanel">Design Pattern</a></li>
       </ul>
-    </nav>  
+    </nav>
     <main>
       <h1>Example of Tabs with Automatic Activation</h1>
       <p>
@@ -42,9 +42,9 @@
         <div id="ex1">
           <div class="tabs">
             <div role="tablist" aria-label="Entertainment">
-              <button role="tab" aria-selected="true" aria-controls="nils-tab" id="nils">Nils Frahm</button>
-              <button role="tab" aria-selected="false" aria-controls="agnes-tab" id="agnes" tabindex="-1">Agnes Obel</button>
-              <button role="tab" aria-selected="false" aria-controls="complexcomplex" id="complex" tabindex="-1" data-deletable>Joke</button>
+              <button type="button" role="tab" aria-selected="true" aria-controls="nils-tab" id="nils">Nils Frahm</button>
+              <button type="button" role="tab" aria-selected="false" aria-controls="agnes-tab" id="agnes" tabindex="-1">Agnes Obel</button>
+              <button type="button" role="tab" aria-selected="false" aria-controls="complexcomplex" id="complex" tabindex="-1" data-deletable>Joke</button>
             </div>
 
             <div tabindex="0" role="tabpanel" id="nils-tab" aria-labelledby="nils">
