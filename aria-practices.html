@@ -2150,6 +2150,37 @@
       </section>
     </section>
 
+    <section class="widget" id="meter">
+      <h3>Meter</h3>
+      <p>
+        An <a class="role-reference" href="#meter">meter</a> is an element that allows authors to define a scalar value within known minimum and maximum limits.
+      </p>
+      <p class="note">
+        The <code>meter</code> widget should not be used to indicate progress, such as loading or percent completion of a task. For that, use the <a href="#progressbar" class="role-reference">progressbar</a> role instead.
+      </p>
+
+      <!-- <section class="notoc">
+        <h4>Example</h4>
+        <p>TODO: add example link</p>
+      </section> -->
+
+      <section class="notoc">
+        <h4>Keyboard Interaction</h4>
+        <p>A meter does not require any keyboard interaction.</p>
+      </section>
+
+      <section class="notoc">
+        <h4>WAI-ARIA Roles, States, and Properties</h4>
+        <ul>
+          <li>The widget has a role of <a class="role-reference" href="#meter">meter</a>.</li>
+          <li>The meter element has <a class="property-reference" href="#aria-valuenow">aria-valuenow</a> set to a decimal value between <code>aria-valuemin</code> and <code>aria-valuemax</code> representing the current value of the meter.</li>
+          <li>The meter element has <a class="property-reference" href="#aria-valuemin">aria-valuemin</a> set to a decimal value less than or equal to <code>aria-valuemax</code>.</li>
+          <li>The meter element has <a class="property-reference" href="#aria-valuemax">aria-valuemax</a> set to a decimal value greater than or equal to <code>aria-valuemin</code>.</li>
+          <li>If the meter has a visible label, it is referenced by <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> on the meter element. Otherwise, the meter element has a label provided by <a href="#aria-label" class="property-reference">aria-label</a>.</li>
+        </ul>
+      </section>
+    </section>
+
     <section class="widget" id="radiobutton">
       <h3>Radio Group</h3>
       <p>
