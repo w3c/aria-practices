@@ -9,6 +9,7 @@ const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertAriaDescribedby = require('../util/assertAriaDescribedby');
 const assertAriaLabelExists = require('../util/assertAriaLabelExists');
 const assertAriaRoles = require('../util/assertAriaRoles');
+const assertRovingTabindex = require('../util/assertRovingTabindex');
 const assertTabOrder = require('../util/assertTabOrder');
 
 const exampleFile = 'combobox/aria1.1pattern/combo-11-datepicker.html';
@@ -158,7 +159,7 @@ ariaTest('Roving tab index on dates in gridcell', exampleFile, 'gridcell-button-
   let allButtons = await t.context.session.findElements(By.css(ex.allDateButtons));
 
   // test only one element has tabindex="0"
-  for (let tabableEl = 0; tabableEl < focusableButtons.length; tabableEl++) {
+  for (let tabableEl = 0; tabableEl < focusableButton.length; tabableEl++) {
     let dateSelected = await focusableButtons[tabableEl].getText();
 
     for (let el = 0; el < allButtons.length; el++) {
