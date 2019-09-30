@@ -275,6 +275,7 @@ ariaTest('Test tabindex="-1" for all submenu role="menuitem"s',
   });
 
 
+/*
 ariaTest.failing('Test aria-disabled="false" for all submenu role="menuitem"s',
   exampleFile, 'submenu-menuitem-aria-disabled', async (t) => {
     t.plan(3);
@@ -314,6 +315,7 @@ ariaTest.failing('Test aria-disabled="false" for all submenu role="menuitem"s',
       'The second menuitem in the last dropdown should become disabled after multiple \'ENTER\' keys sent'
     );
   });
+*/
 
 ariaTest('Test for role="menuitemcheckbox" on li', exampleFile, 'menuitemcheckbox-role', async (t) => {
   t.plan(3);
