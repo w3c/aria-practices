@@ -1,8 +1,8 @@
 
 [role=meter] {
   position: relative;
-  border: 4px solid black;
-  height: 20px;
+  border: 5px solid black;
+  height: 40px;
   width: 200px;
 }
 
