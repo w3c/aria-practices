@@ -275,8 +275,8 @@ ariaTest('Test tabindex="-1" for all submenu role="menuitem"s',
   });
 
 
-/*
-ariaTest.failing('Test aria-disabled="false" for all submenu role="menuitem"s',
+
+ariaTest('Test aria-disabled="false" for all submenu role="menuitem"s',
   exampleFile, 'submenu-menuitem-aria-disabled', async (t) => {
     t.plan(3);
 
@@ -288,6 +288,21 @@ ariaTest.failing('Test aria-disabled="false" for all submenu role="menuitem"s',
 
     // Select the first item in the list until it is disabled
     const disabledFirstItem = await t.context.session.wait(async function () {
+      await menus[3].sendKeys(Key.ARROW_DOWN);
+      await menuitem[0].sendKeys(Key.ENTER);
+
+      await menus[3].sendKeys(Key.ARROW_DOWN);
+      await menuitem[0].sendKeys(Key.ENTER);
+
+      await menus[3].sendKeys(Key.ARROW_DOWN);
+      await menuitem[0].sendKeys(Key.ENTER);
+
+      await menus[3].sendKeys(Key.ARROW_DOWN);
+      await menuitem[0].sendKeys(Key.ENTER);
+
+      await menus[3].sendKeys(Key.ARROW_DOWN);
+      await menuitem[0].sendKeys(Key.ENTER);
+
       await menus[3].sendKeys(Key.ARROW_DOWN);
       await menuitem[0].sendKeys(Key.ENTER);
 
@@ -306,6 +321,26 @@ ariaTest.failing('Test aria-disabled="false" for all submenu role="menuitem"s',
       await menuitem[0].sendKeys(Key.ARROW_DOWN);
       await menuitem[1].sendKeys(Key.ENTER);
 
+      await menus[3].sendKeys(Key.ARROW_DOWN);
+      await menuitem[0].sendKeys(Key.ARROW_DOWN);
+      await menuitem[1].sendKeys(Key.ENTER);
+
+      await menus[3].sendKeys(Key.ARROW_DOWN);
+      await menuitem[0].sendKeys(Key.ARROW_DOWN);
+      await menuitem[1].sendKeys(Key.ENTER);
+
+      await menus[3].sendKeys(Key.ARROW_DOWN);
+      await menuitem[0].sendKeys(Key.ARROW_DOWN);
+      await menuitem[1].sendKeys(Key.ENTER);
+
+      await menus[3].sendKeys(Key.ARROW_DOWN);
+      await menuitem[0].sendKeys(Key.ARROW_DOWN);
+      await menuitem[1].sendKeys(Key.ENTER);
+
+      await menus[3].sendKeys(Key.ARROW_DOWN);
+      await menuitem[0].sendKeys(Key.ARROW_DOWN);
+      await menuitem[1].sendKeys(Key.ENTER);
+
       return await menuitem[1].getAttribute('aria-disabled') === 'true';
     }, t.context.waitTime, 'Timeout trying to disable the second item in the last menu by sending multiple clicks');
 
@@ -315,7 +350,6 @@ ariaTest.failing('Test aria-disabled="false" for all submenu role="menuitem"s',
       'The second menuitem in the last dropdown should become disabled after multiple \'ENTER\' keys sent'
     );
   });
-*/
 
 ariaTest('Test for role="menuitemcheckbox" on li', exampleFile, 'menuitemcheckbox-role', async (t) => {
   t.plan(3);
