@@ -27,7 +27,7 @@
 </nav>
 <main>
   <h1> Meter Example</h1>
-  The following meter example demonstrates the <a href="">meter design pattern</a>.
+  The following meter example demonstrates the <a href="../../#meter">meter design pattern</a>.
 
   <section>
     <h2 id="ex_label">Example</h2>
@@ -36,8 +36,9 @@
 
     <div id="example">
       <p>This meter changes its value randomly every 5 seconds.</p>
-      <div role="meter" tabindex="0" aria-valuenow="90" aria-valuemin="0" aria-valuemax="128"
-        aria-label="CPU Usage">
+      <h3 id="cpu_usage_label">Central Processing Unit(CPU) Usage</h3>
+      <div role="meter" aria-valuenow="90" aria-valuemin="0" aria-valuemax="128"
+        aria-labelledby ="cpu_usage_label">
         <div id="fill"></div>
       </div>
     </div>
@@ -103,9 +104,9 @@
                   </ul>
                 </td>
               </tr>
-              <tr data-test-id="meter-aria-label">
+              <tr data-test-id="meter-aria-labelledby">
                   <td></td>
-                  <th scope="row"><code>aria-label</code></th>
+                  <th scope="row"><code>aria-labelledby</code></th>
                   <td><code>div</code></td>
                   <td>
                     <ul>
