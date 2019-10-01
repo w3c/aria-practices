@@ -274,8 +274,6 @@ ariaTest('Test tabindex="-1" for all submenu role="menuitem"s',
     await assertAttributeValues(t, ex.submenuMenuitemSelector, 'tabindex', '-1');
   });
 
-
-
 ariaTest('Test aria-disabled="false" for all submenu role="menuitem"s',
   exampleFile, 'submenu-menuitem-aria-disabled', async (t) => {
     t.plan(3);
