@@ -125,10 +125,10 @@ aria.Listbox.prototype.checkKeyPress = function (evt) {
       }
 
       if (key === aria.KeyCode.UP) {
-        nextItem = nextItem.previousElementSibling;
+        nextItem = this.findPreviousOption(nextItem);
       }
       else {
-        nextItem = nextItem.nextElementSibling;
+        nextItem = this.findNextOption(nextItem);
       }
 
       if (nextItem) {
@@ -227,6 +227,32 @@ aria.Listbox.prototype.findItemToFocus = function (key) {
     );
   }
   return nextMatch;
+};
+
+/* Return the next listbox option, if it exists; otherwise, returns null */
+aria.Listbox.prototype.findNextOption = function (currentOption) {
+  var allOptions = Array.prototype.slice.call(this.listboxNode.querySelectorAll('[role="option"]')); // get options array
+  var currentOptionIndex = allOptions.indexOf(currentOption);
+  var nextOption = null;
+
+  if (currentOptionIndex > -1 && currentOptionIndex < allOptions.length - 1) {
+    nextOption = allOptions[currentOptionIndex + 1];
+  }
+
+  return nextOption;
+};
+
+/* Return the previous listbox option, if it exists; otherwise, returns null */
+aria.Listbox.prototype.findPreviousOption = function (currentOption) {
+  var allOptions = Array.prototype.slice.call(this.listboxNode.querySelectorAll('[role="option"]')); // get options array
+  var currentOptionIndex = allOptions.indexOf(currentOption);
+  var previousOption = null;
+
+  if (currentOptionIndex > -1 && currentOptionIndex > 0) {
+    previousOption = allOptions[currentOptionIndex - 1];
+  }
+
+  return previousOption;
 };
 
 aria.Listbox.prototype.clearKeysSoFarAfterDelay = function () {
@@ -457,14 +483,12 @@ aria.Listbox.prototype.clearActiveDescendant = function () {
  *  item is already at the top of the list.
  */
 aria.Listbox.prototype.moveUpItems = function () {
-  var previousItem;
-
   if (!this.activeDescendant) {
     return;
   }
 
-  currentItem = document.getElementById(this.activeDescendant);
-  previousItem = currentItem.previousElementSibling;
+  var currentItem = document.getElementById(this.activeDescendant);
+  var previousItem = currentItem.previousElementSibling;
 
   if (previousItem) {
     this.listboxNode.insertBefore(currentItem, previousItem);
@@ -480,14 +504,12 @@ aria.Listbox.prototype.moveUpItems = function () {
  *  the item is already at the end of the list.
  */
 aria.Listbox.prototype.moveDownItems = function () {
-  var nextItem;
-
   if (!this.activeDescendant) {
     return;
   }
 
-  currentItem = document.getElementById(this.activeDescendant);
-  nextItem = currentItem.nextElementSibling;
+  var currentItem = document.getElementById(this.activeDescendant);
+  var nextItem = currentItem.nextElementSibling;
 
   if (nextItem) {
     this.listboxNode.insertBefore(nextItem, currentItem);

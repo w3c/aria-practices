@@ -34,6 +34,13 @@
   border: 1px solid #aaa;
 }
 
+[role="group"] > [role="presentation"] {
+  background-color: #ccc;
+  font-weight: bold;
+  padding: 0 0.5em;
+  line-height: 2;
+}
+
 [role="option"] {
   display: block;
   padding: 0 1em 0 1.5em;
