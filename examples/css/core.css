@@ -62,7 +62,7 @@ table.data.attributes tbody td {
   margin-left: 1em;
 }
 
-form[action^="https://codepen.io/"] button {
+.example-header button {
   display: inline-block;
   position: relative;
   padding: 0.4em 0.7em;
@@ -76,18 +76,18 @@ form[action^="https://codepen.io/"] button {
   background-image: linear-gradient(to bottom, hsl(216, 82%, 53%), hsl(216, 82%, 47%));
 }
 
-form[action^="https://codepen.io/"] button:hover {
+.example-header button:hover {
   border-color: hsl(213, 71%, 29%);
   background-color: hsl(216, 82%, 31%);
   background-image: linear-gradient(to bottom, hsl(216, 82%, 33%), hsl(216, 82%, 27%));
   cursor: default;
 }
 
-form[action^="https://codepen.io/"] button:focus {
+.example-header button:focus {
   outline: none;
 }
 
-form[action^="https://codepen.io/"] button:focus::before {
+.example-header button:focus::before {
   position: absolute;
   z-index: -1;
 
@@ -103,7 +103,7 @@ form[action^="https://codepen.io/"] button:focus::before {
   content: '';
 }
 
-form[action^="https://codepen.io/"] button:active {
+.example-header button:active {
   border-color: hsl(213, 71%, 49%);
   background-color: hsl(216, 82%, 31%);
   background-image: linear-gradient(to bottom, hsl(216, 82%, 53%), hsl(216, 82%, 47%));
