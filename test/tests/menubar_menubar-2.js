@@ -282,71 +282,35 @@ ariaTest('Test aria-disabled="false" for all submenu role="menuitem"s',
     await assertAttributeValues(t, ex.submenuMenuitemSelector, 'aria-disabled', 'false');
 
     const menus = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
-    const menuitem = await t.context.session.findElements(By.css(ex.submenuMenuitemSelector));
+    const sizeMenu = await t.context.session.findElement(By.css('[aria-label="Size"]'));
+    const menuitems = await sizeMenu.findElements(By.css('[role="menuitem"]'));
+    const menuItemRadios = await sizeMenu.findElements(By.css('[role="menuitemradio"]'));
 
-    // Select the first item in the list until it is disabled
-    const disabledFirstItem = await t.context.session.wait(async function () {
-      await menus[3].sendKeys(Key.ARROW_DOWN);
-      await menuitem[0].sendKeys(Key.ENTER);
+    // select X-Small size
+    await menus[3].sendKeys(Key.ARROW_DOWN);
+    await menuItemRadios[0].sendKeys(Key.ENTER);
 
-      await menus[3].sendKeys(Key.ARROW_DOWN);
-      await menuitem[0].sendKeys(Key.ENTER);
-
-      await menus[3].sendKeys(Key.ARROW_DOWN);
-      await menuitem[0].sendKeys(Key.ENTER);
-
-      await menus[3].sendKeys(Key.ARROW_DOWN);
-      await menuitem[0].sendKeys(Key.ENTER);
-
-      await menus[3].sendKeys(Key.ARROW_DOWN);
-      await menuitem[0].sendKeys(Key.ENTER);
-
-      await menus[3].sendKeys(Key.ARROW_DOWN);
-      await menuitem[0].sendKeys(Key.ENTER);
-
-      return await menuitem[0].getAttribute('aria-disabled') === 'true';
-    }, t.context.waitTime, 'Timeout trying to disable the first item in the last menu by sending multiple clicks');
+    const disabledFirstItem = await menuitems[0].getAttribute('aria-disabled');
 
     // Test that the item was successfully disabled
     t.true(
-      disabledFirstItem,
-      'The first menuitem in the last dropdown should become disabled after multiple \'ENTER\' keys sent'
+      disabledFirstItem === 'true',
+      'The first menuitem in the last dropdown should become disabled after X-Small is selected'
     );
 
-    // Select the second item in the list until it is disabled
-    const disabledSecondItem = await t.context.session.wait(async function () {
-      await menus[3].sendKeys(Key.ARROW_DOWN);
-      await menuitem[0].sendKeys(Key.ARROW_DOWN);
-      await menuitem[1].sendKeys(Key.ENTER);
+    // Select the X-Large size
+    await menus[3].sendKeys(Key.ARROW_DOWN);
+    await menuItemRadios[menuItemRadios.length - 1].sendKeys(Key.ENTER);
 
-      await menus[3].sendKeys(Key.ARROW_DOWN);
-      await menuitem[0].sendKeys(Key.ARROW_DOWN);
-      await menuitem[1].sendKeys(Key.ENTER);
-
-      await menus[3].sendKeys(Key.ARROW_DOWN);
-      await menuitem[0].sendKeys(Key.ARROW_DOWN);
-      await menuitem[1].sendKeys(Key.ENTER);
-
-      await menus[3].sendKeys(Key.ARROW_DOWN);
-      await menuitem[0].sendKeys(Key.ARROW_DOWN);
-      await menuitem[1].sendKeys(Key.ENTER);
-
-      await menus[3].sendKeys(Key.ARROW_DOWN);
-      await menuitem[0].sendKeys(Key.ARROW_DOWN);
-      await menuitem[1].sendKeys(Key.ENTER);
-
-      await menus[3].sendKeys(Key.ARROW_DOWN);
-      await menuitem[0].sendKeys(Key.ARROW_DOWN);
-      await menuitem[1].sendKeys(Key.ENTER);
-
-      return await menuitem[1].getAttribute('aria-disabled') === 'true';
-    }, t.context.waitTime, 'Timeout trying to disable the second item in the last menu by sending multiple clicks');
+    const disabledSecondItem = await menuitems[1].getAttribute('aria-disabled');
 
     // Test that the item was successfully disabled
     t.true(
-      disabledSecondItem,
-      'The second menuitem in the last dropdown should become disabled after multiple \'ENTER\' keys sent'
+      disabledSecondItem === 'true',
+      'The second menuitem in the last dropdown should become disabled after X-Large is selected'
     );
+
+
   });
 
 ariaTest('Test for role="menuitemcheckbox" on li', exampleFile, 'menuitemcheckbox-role', async (t) => {
