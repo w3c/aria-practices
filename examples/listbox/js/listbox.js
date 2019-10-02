@@ -49,8 +49,6 @@ aria.Listbox.prototype.setupFocus = function () {
   if (this.activeDescendant) {
     return;
   }
-
-  // this.focusFirstItem();
 };
 
 /**
