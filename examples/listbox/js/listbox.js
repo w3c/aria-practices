@@ -369,8 +369,8 @@ aria.Listbox.prototype.focusItem = function (element) {
 /**
  * Check if the selected option is in view, and scroll if not
  */
-aria.Listbox.prototype.updateScroll = function() {
-  const selectedOption = document.getElementById(this.activeDescendant);
+aria.Listbox.prototype.updateScroll = function () {
+  var selectedOption = document.getElementById(this.activeDescendant);
   if (selectedOption && this.listboxNode.scrollHeight > this.listboxNode.clientHeight) {
     var scrollBottom = this.listboxNode.clientHeight + this.listboxNode.scrollTop;
     var elementBottom = selectedOption.offsetTop + selectedOption.offsetHeight;
@@ -381,7 +381,7 @@ aria.Listbox.prototype.updateScroll = function() {
       this.listboxNode.scrollTop = selectedOption.offsetTop;
     }
   }
-}
+};
 
 /**
  * @desc

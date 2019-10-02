@@ -19,7 +19,7 @@ const ex = {
 // Attributes
 
 ariaTest('role="listbox" on ul element', exampleFile, 'listbox-role', async (t) => {
-  await assertAriaRoles(t, 'ex', 'listbox', 1, 'ul');
+  await assertAriaRoles(t, 'ex', 'listbox', 1, 'div');
 });
 
 ariaTest('"aria-labelledby" on listbox element', exampleFile, 'listbox-aria-labelledby', async (t) => {
@@ -47,8 +47,8 @@ ariaTest('aria-activedescendant on listbox element', exampleFile, 'listbox-aria-
   );
 });
 
-ariaTest('role="group" on div elements', exampleFile, 'group-role', async (t) => {
-  await assertAriaRoles(t, 'ex', 'group', 3, 'div');
+ariaTest('role="group" on ul elements', exampleFile, 'group-role', async (t) => {
+  await assertAriaRoles(t, 'ex', 'group', 3, 'ul');
 });
 
 ariaTest('"aria-labelledby" on group elements', exampleFile, 'group-aria-labelledby', async (t) => {
@@ -82,7 +82,7 @@ ariaTest('DOWN ARROW moves focus', exampleFile, 'key-down-arrow', async (t) => {
   await assertAriaSelectedAndActivedescendant(t, ex.listboxSelector, ex.optionSelector, 2);
 });
 
-ariaTest('DOWN ARROW does not wrap to top of listbox', exampleFile, 'key-down-arrow', async(t) => {
+ariaTest('DOWN ARROW does not wrap to top of listbox', exampleFile, 'key-down-arrow', async (t) => {
   const listbox = await t.context.session.findElement(By.css(ex.listboxSelector));
   const options = await t.context.session.findElements(By.css(ex.optionSelector));
 
@@ -152,7 +152,7 @@ ariaTest('UP ARROW moves focus', exampleFile, 'key-up-arrow', async (t) => {
   await assertAriaSelectedAndActivedescendant(t, ex.listboxSelector, ex.optionSelector, 0);
 });
 
-ariaTest('UP ARROW does not wrap to bottom of listbox', exampleFile, 'key-up-arrow', async(t) => {
+ariaTest('UP ARROW does not wrap to bottom of listbox', exampleFile, 'key-up-arrow', async (t) => {
   const listbox = await t.context.session.findElement(By.css(ex.listboxSelector));
 
   // click the first option

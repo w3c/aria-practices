@@ -44,28 +44,28 @@
       <div class="listbox-area">
         <div class="left-area">
           <span id="ss_elem">Choose your animal sidekick</span>
-          <ul id="ss_elem_list" tabindex="0" role="listbox" aria-labelledby="ss_elem">
-            <div role="group" aria-labelledby="cat1">
-              <div role="presentation" id="cat1">Land</div>
+          <div id="ss_elem_list" tabindex="0" role="listbox" aria-labelledby="ss_elem">
+            <ul role="group" aria-labelledby="cat1">
+              <li role="presentation" id="cat1">Land</li>
               <li id="ss_elem_1" role="option">Cat</li>
               <li id="ss_elem_2" role="option">Dog</li>
               <li id="ss_elem_3" role="option">Tiger</li>
               <li id="ss_elem_4" role="option">Reindeer</li>
               <li id="ss_elem_5" role="option">Raccoon</li>
-            </div>
-            <div role="group" aria-labelledby="cat2">
-              <div role="presentation" id="cat2">Water</div>
+            </ul>
+            <ul role="group" aria-labelledby="cat2">
+              <li role="presentation" id="cat2">Water</li>
               <li id="ss_elem_6" role="option">Dolphin</li>
               <li id="ss_elem_7" role="option">Flounder</li>
               <li id="ss_elem_8" role="option">Eel</li>
-            </div>
-            <div role="group" aria-labelledby="cat3">
-              <div role="presentation" id="cat3">Air</div>
+            </ul>
+            <ul role="group" aria-labelledby="cat3">
+              <li role="presentation" id="cat3">Air</li>
               <li id="ss_elem_9" role="option">Falcon</li>
               <li id="ss_elem_10" role="option">Winged Horse</li>
               <li id="ss_elem_11" role="option">Owl</li>
-            </div>
-          </ul>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -148,25 +148,25 @@
         <tr data-test-id="listbox-role">
           <th scope="row"><code>listbox</code></th>
           <td></td>
-          <td><code>ul</code></td>
+          <td><code>div</code></td>
           <td>Identifies the focusable element that has listbox behaviors and contains the listbox options. </td>
         </tr>
         <tr data-test-id="listbox-aria-labelledby">
           <td></td>
           <th scope="row"><code>aria-labelledby=&quot;ID_REF&quot;</code></th>
-          <td><code>ul</code></td>
+          <td><code>div</code></td>
           <td>Refers to the element containing the listbox label.</td>
         </tr>
         <tr data-test-id="listbox-tabindex">
           <td></td>
           <th scope="row"><code>tabindex=&quot;0&quot;</code></th>
-          <td><code>ul</code></td>
+          <td><code>div</code></td>
           <td>Includes the listbox in the page tab sequence.</td>
         </tr>
         <tr data-test-id="listbox-aria-activedescendant">
           <td></td>
           <th scope="row"><code>aria-activedescendant=&quot;ID_REF&quot;</code></th>
-          <td><code>ul</code></td>
+          <td><code>div</code></td>
           <td>
             <ul>
               <li>Tells assistive technologies which of the options, if any, is visually indicated as having keyboard focus.</li>
@@ -178,13 +178,13 @@
         <tr data-test-id="group-role">
           <th scope="row"><code>role=&quot;group&quot;</code></th>
           <td></td>
-          <td><code>div</code></td>
+          <td><code>ul</code></td>
           <td>Identifies a group of related options</td>
         </tr>
         <tr data-test-id="group-aria-labelledby">
           <td></td>
           <th scope="row"><code>aria-labelledby=&quot;ID_REF&quot;</code></th>
-          <td><code>div</code></td>
+          <td><code>ul</code></td>
           <td>Refers to the element containing the option group label.</td>
         </tr>
         <tr data-test-id="option-role">
