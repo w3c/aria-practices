@@ -211,11 +211,12 @@ aria.Listbox.prototype.checkKeyPress = function (evt) {
 aria.Listbox.prototype.findItemToFocus = function (key) {
   var itemList = this.listboxNode.querySelectorAll('[role="option"]');
   var character = String.fromCharCode(key);
+  var searchIndex = 0;
 
   if (!this.keysSoFar) {
     for (var i = 0; i < itemList.length; i++) {
       if (itemList[i].getAttribute('id') == this.activeDescendant) {
-        this.searchIndex = i;
+        searchIndex = i;
       }
     }
   }
@@ -224,14 +225,14 @@ aria.Listbox.prototype.findItemToFocus = function (key) {
 
   var nextMatch = this.findMatchInRange(
     itemList,
-    this.searchIndex + 1,
+    searchIndex + 1,
     itemList.length
   );
   if (!nextMatch) {
     nextMatch = this.findMatchInRange(
       itemList,
       0,
-      this.searchIndex
+      searchIndex
     );
   }
   return nextMatch;
