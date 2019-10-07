@@ -12,7 +12,7 @@
 }
 
 .Accordion.focus {
-  border-color: hsl(216, 94%, 73%);
+  border-color: hsl(216, 94%, 43%);
 }
 
 .Accordion.focus h3 {
@@ -42,6 +42,10 @@
   background: hsl(216, 94%, 94%);
 }
 
+.Accordion-trigger:focus {
+  outline: 4px solid transparent;
+}
+
 .Accordion *:first-child .Accordion-trigger {
   border-radius: 5px 5px 0 0;
 }
@@ -64,7 +68,7 @@ button {
 }
 
 .Accordion-trigger:focus .Accordion-title {
-  border-color: hsl(216, 94%, 73%);
+  border-color: hsl(216, 94%, 43%);
 }
 
 .Accordion-icon {
