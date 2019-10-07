@@ -1,7 +1,7 @@
 .Accordion {
   margin: 0;
   padding: 0;
-  border: 2px solid hsl(0, 0%, 82%);
+  border: 2px solid hsl(0, 0%, 52%);
   border-radius: 7px;
   width: 20em;
 }
@@ -20,7 +20,7 @@
 }
 
 .Accordion > * + * {
-  border-top: 1px solid hsl(0, 0%, 82%);
+  border-top: 1px solid hsl(0, 0%, 52%);
 }
 
 .Accordion-trigger {
@@ -68,7 +68,7 @@ button {
 }
 
 .Accordion-icon {
-  border: solid hsl(0, 0%, 62%);
+  border: solid currentColor;
   border-width: 0 2px 2px 0;
   height: 0.5rem;
   pointer-events: none;
@@ -81,7 +81,7 @@ button {
 
 .Accordion-trigger:focus .Accordion-icon,
 .Accordion-trigger:hover .Accordion-icon {
-  border-color: hsl(216, 94%, 73%);
+  border-color: hsl(216, 94%, 43%);
 }
 
 .Accordion-trigger[aria-expanded="true"] .Accordion-icon {
