@@ -27,7 +27,7 @@
     space: 32
   };
 
-  // Add or substract depenign on key pressed
+  // Add or subtract depending on key pressed
   var direction = {
     37: -1,
     38: -1,
@@ -125,7 +125,7 @@
   };
 
   // Either focus the next, previous, first, or last tab
-  // depening on key pressed
+  // depending on key pressed
   function switchTabOnArrowPress (event) {
     var pressed = event.keyCode;
 
@@ -160,8 +160,8 @@
     // Get the value of aria-controls (which is an ID)
     var controls = tab.getAttribute('aria-controls');
 
-    // Remove hidden attribute from tab panel to make it visible
-    document.getElementById(controls).removeAttribute('hidden');
+    // Remove is-hidden class from tab panel to make it visible
+    document.getElementById(controls).classList.remove('is-hidden');
 
     // Set focus when required
     if (setFocus) {
@@ -177,7 +177,7 @@
     };
 
     for (p = 0; p < panels.length; p++) {
-      panels[p].setAttribute('hidden', 'hidden');
+      panels[p].classList.add('is-hidden');
     };
   };
 

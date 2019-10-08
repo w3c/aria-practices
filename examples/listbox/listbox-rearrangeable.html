@@ -29,10 +29,6 @@
   <main>
   <h1>Example Listboxes with Rearrangeable Options</h1>
   <p>
-    <strong>NOTE:</strong> Please provide feedback on this example in
-    <a href="https://github.com/w3c/aria-practices/issues/468">issue 468.</a>
-  </p>
-  <p>
     The following two example implementations of the
     <a href="../../#Listbox">design pattern for listbox</a>
     demonstrate differences between single-select and multi-select functionality.
@@ -68,16 +64,16 @@ while in the second example, they may select multiple options before activating 
               <li id="ss_opt10" role="option">Access to major highways</li>
             </ul>
             <div role="toolbar" aria-label="Actions" class="toolbar">
-              <button id="ex1-up" class="toolbar-item selected" aria-keyshortcuts="Alt+ArrowUp" aria-disabled="true">Up</button>
-              <button id="ex1-down" class="toolbar-item" tabindex="-1" aria-keyshortcuts="Alt+ArrowDown" aria-disabled="true">Down</button>
-              <button id="ex1-delete" class="toolbar-item move-right-btn" tabindex="-1" aria-keyshortcuts="Alt+ArrowRight Delete" aria-disabled="true">Not Important</button>
+              <button type="button" id="ex1-up" class="toolbar-item selected" aria-keyshortcuts="Alt+ArrowUp" aria-disabled="true">Up</button>
+              <button type="button" id="ex1-down" class="toolbar-item" tabindex="-1" aria-keyshortcuts="Alt+ArrowDown" aria-disabled="true">Down</button>
+              <button type="button" id="ex1-delete" class="toolbar-item move-right-btn" tabindex="-1" aria-keyshortcuts="Alt+ArrowRight Delete" aria-disabled="true">Not Important</button>
             </div>
           </div>
           <div class="right-area">
             <span id="ss_unimp_l">Unimportant Features:</span>
             <ul id="ss_unimp_list" tabindex="0" role="listbox" aria-labelledby="ss_unimp_l" aria-activedescendant="">
             </ul>
-            <button id="ex1-add" class="move-left-btn" aria-keyshortcuts="Alt+ArrowLeft Enter" aria-disabled="true">Important</button>
+            <button type="button" id="ex1-add" class="move-left-btn" aria-keyshortcuts="Alt+ArrowLeft Enter" aria-disabled="true">Important</button>
           </div>
           <div class="offscreen">Last change: <span aria-live="polite" id="ss_live_region"></span></div>
         </div>
@@ -131,7 +127,7 @@ while in the second example, they may select multiple options before activating 
               <li id="ms_opt9" role="option" aria-selected="false">Advanced waste recycling system</li>
               <li id="ms_opt10" role="option" aria-selected="false">Turbo vertical take-off capability</li>
             </ul>
-            <button id="ex2-add" class="move-right-btn" aria-keyshortcuts="Alt+ArrowRight Enter" aria-disabled="true">Add</button>
+            <button type="button" id="ex2-add" class="move-right-btn" aria-keyshortcuts="Alt+ArrowRight Enter" aria-disabled="true">Add</button>
           </div>
           <div class="right-area">
             <span id="ms_ch_l">Upgrades you have chosen:</span>
@@ -143,7 +139,7 @@ while in the second example, they may select multiple options before activating 
               aria-activedescendant=""
               aria-multiselectable="true">
             </ul>
-            <button id="ex2-delete" class="move-left-btn" aria-keyshortcuts="Alt+ArrowLeft Delete" aria-disabled="true">Remove</button>
+            <button type="button" id="ex2-delete" class="move-left-btn" aria-keyshortcuts="Alt+ArrowLeft Delete" aria-disabled="true">Remove</button>
           </div>
           <div class="offscreen">Last change: <span aria-live="polite" id="ms_live_region"></span></div>
         </div>
