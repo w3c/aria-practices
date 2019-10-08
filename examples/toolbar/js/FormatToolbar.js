@@ -104,7 +104,7 @@ FormatToolbar.prototype.updateDisable = function (copyButton, cutButton, pasteBu
 };
 
 FormatToolbar.prototype.selectText = function (start, end, textarea) {
-  if (typeof(textarea.selectionStart != undefined)) {
+  if (typeof textarea.selectionStart !== "undefined") {
     textarea.focus();
     textarea.selectionStart = start;
     textarea.selectionEnd = end;
