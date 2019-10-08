@@ -5807,6 +5807,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
       <li>Whether any columns or rows are hidden, e.g., columns 1 through 3 and  5 through 8 are visible but column 4 is hidden.</li>
       <li>Whether a cell spans multiple rows or columns.</li>
       <li>Whether and how data is sorted.</li>
+      <li>How to communicate cell position, e.g., <q>row 2, column 2</q> or <q>row 2, column B</q> (like in most spread sheets).
     </ul>
     <p>
       Browsers automatically populate their accessibility tree with the number of rows and columns in a grid or table based on the rendered DOM.
@@ -5841,6 +5842,10 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
           </td>
         </tr>
         <tr>
+          <th><code>aria-colindextext</code></th>
+          <td>Defines a human readable text alternative of aria-colindex .</td>
+        </tr>
+        <tr>
           <th><code>aria-rowindex</code></th>
           <td>
             <ul>
@@ -5848,6 +5853,10 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
               <li><strong>Note:</strong> Numbering starts with 1, not 0.</li>
             </ul>
           </td>
+        </tr>
+        <tr>
+          <th><code>aria-rowindextext</code></th>
+          <td>Defines a human readable text alternative of aria-rowindex .</td>
         </tr>
         <tr>
           <th><code>aria-colspan</code></th>
