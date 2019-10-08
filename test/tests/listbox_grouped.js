@@ -191,3 +191,35 @@ ariaTest('HOME moves focus', exampleFile, 'key-home', async (t) => {
   await listbox.sendKeys(Key.HOME);
   await assertAriaSelectedAndActivedescendant(t, ex.listboxSelector, ex.optionSelector, 0);
 });
+
+ariaTest('END scrolls listbox option into view', exampleFile, 'key-end', async (t) => {
+  const listbox = await t.context.session.findElement(By.css(ex.listboxSelector));
+  const options = await t.context.session.findElements(By.css(ex.optionSelector));
+
+  let listboxBounds = await listbox.getRect();
+  let optionBounds = await options[options.length - 1].getRect();
+
+  t.true(listboxBounds.y + listboxBounds.height - optionBounds.y < 0, 'last option is not initially displayed');
+
+  await listbox.sendKeys(Key.END);
+  listboxBounds = await listbox.getRect();
+  optionBounds = await options[options.length - 1].getRect();
+
+  t.true(listboxBounds.y + listboxBounds.height - optionBounds.y >= 0, 'last option is in view after end key');
+});
+
+ariaTest('Click scrolls listbox option into view', exampleFile, 'key-end', async (t) => {
+  const listbox = await t.context.session.findElement(By.css(ex.listboxSelector));
+  const options = await t.context.session.findElements(By.css(ex.optionSelector));
+
+  let listboxBounds = await listbox.getRect();
+  let optionBounds = await options[options.length - 1].getRect();
+
+  t.true(listboxBounds.y + listboxBounds.height - optionBounds.y < 0, 'last option is not initially displayed');
+
+  await options[options.length - 1].click();
+  listboxBounds = await listbox.getRect();
+  optionBounds = await options[options.length - 1].getRect();
+
+  t.true(listboxBounds.y + listboxBounds.height - optionBounds.y >= 0, 'last option is in view after click');
+});

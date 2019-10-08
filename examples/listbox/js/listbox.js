@@ -298,6 +298,7 @@ aria.Listbox.prototype.checkClickItem = function (evt) {
   if (evt.target.getAttribute('role') === 'option') {
     this.focusItem(evt.target);
     this.toggleSelectItem(evt.target);
+    this.updateScroll();
   }
 };
 
