@@ -286,7 +286,9 @@ PopupMenuActionActivedescendant.prototype.setFocusToNextItem = function () {
 };
 
 PopupMenuActionActivedescendant.prototype.setFocusByFirstCharacter = function (char) {
-  var start, index, char = char.toLowerCase();
+  var start, index;
+
+  char = char.toLowerCase();
 
   // Get start index for search based on position of currentItem
   start = this.menuitems.indexOf(this.currentItem) + 1;

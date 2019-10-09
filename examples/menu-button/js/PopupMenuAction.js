@@ -180,7 +180,9 @@ PopupMenuAction.prototype.setFocusToNextItem = function (currentItem) {
 };
 
 PopupMenuAction.prototype.setFocusByFirstCharacter = function (currentItem, char) {
-  var start, index, char = char.toLowerCase();
+  var start, index;
+
+  char = char.toLowerCase();
 
   // Get start index for search based on position of currentItem
   start = this.menuitems.indexOf(currentItem) + 1;

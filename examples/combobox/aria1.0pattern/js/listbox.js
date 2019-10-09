@@ -65,7 +65,7 @@ Listbox.prototype.init = function () {
     optionElement = optionElements[i];
 
     if (!optionElement.firstElementChild && optionElement.getAttribute('role') != 'separator') {
-      option = new Option(optionElement, this);
+      option = new ListboxOption(optionElement, this);
       option.init();
       this.allOptions.push(option);
     }
