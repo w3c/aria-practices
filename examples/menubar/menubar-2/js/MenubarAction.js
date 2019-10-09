@@ -22,7 +22,7 @@ var MenubarAction = function (domNode) {
   var msgPrefix = 'Menubar constructor argument domNode ';
 
   // Check whether domNode is a DOM element
-  if (!domNode instanceof Element) {
+  if (!(domNode instanceof Element)) {
     throw new TypeError(msgPrefix + 'is not a DOM Element.');
   }
 

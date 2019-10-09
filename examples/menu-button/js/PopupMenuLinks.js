@@ -35,7 +35,7 @@ var PopupMenuLinks = function (domNode, controllerObj) {
     msgPrefix = 'PopupMenuLinks constructor argument domNode ';
 
   // Check whether domNode is a DOM element
-  if (!domNode instanceof Element) {
+  if (!(domNode instanceof Element)) {
     throw new TypeError(msgPrefix + 'is not a DOM Element.');
   }
 
