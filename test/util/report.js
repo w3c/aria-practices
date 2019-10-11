@@ -107,7 +107,7 @@ const processDocumentationInExampleFiles = function (exampleFiles, exampleCovera
       let $row = $(this);
       let dataTestId = $row.attr('data-test-id');
 
-      if (dataTestId === ignoredDataTestId) { return; };
+      if (dataTestId === ignoredDataTestId) { return; }
 
       if (dataTestId !== undefined) {
         dataTestIds.add(dataTestId);
@@ -122,7 +122,7 @@ const processDocumentationInExampleFiles = function (exampleFiles, exampleCovera
       let $row = $(this);
       let dataTestId = $row.attr('data-test-id');
 
-      if (dataTestId === ignoredDataTestId) { return; };
+      if (dataTestId === ignoredDataTestId) { return; }
 
       if (dataTestId !== undefined) {
         dataTestIds.add(dataTestId);
