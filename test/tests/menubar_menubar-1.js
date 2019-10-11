@@ -446,7 +446,7 @@ ariaTest('Key ARROW_RIGHT moves focus to next menubar item',
       // Test the focus is on the previous menuitem
       t.true(
         await checkFocus(t, ex.menubarMenuitemSelector, menuIndex - 1),
-        'Sending key "ARROW_RIGHT" to menuitem ' + menuIndex + ' should move focus to menuitem ' + menuIndex - 1
+        'Sending key "ARROW_RIGHT" to menuitem ' + menuIndex + ' should move focus to menuitem ' + (menuIndex - 1)
       );
     }
   });
