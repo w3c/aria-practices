@@ -189,7 +189,7 @@ VSlider.prototype.handleMouseDown = function (event) {
 
   };
 
-    // bind a mousemove event handler to move pointer
+  // bind a mousemove event handler to move pointer
   document.addEventListener('mousemove', handleMouseMove);
 
   // bind a mouseup event handler to stop tracking mouse movements
