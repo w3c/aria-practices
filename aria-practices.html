@@ -4178,6 +4178,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
               <li>Recommended: Providing a name is strongly recommended.</li>
               <li>Discretionary: Naming is either optional or, in the circumstances described in the guidance column, is discouraged.</li>
               <li>Do Not Name: Naming is strongly discouraged even if it is technically permitted; often assistive technologies do not render a name even if provided.</li>
+              <li>Prohibited: Naming is not allowed. If the author supplies a name it is an author error.</li>
             </ul>
           </dd>
           <dt>Guidance:</dt>
@@ -4245,6 +4246,11 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
               </td>
             </tr>
             <tr>
+              <td><a href="#caption" class="role-reference"><code>caption</code></a></td>
+              <td>Prohibited</td>
+              <td></td>              
+            </tr>
+            <tr>
               <td><a href="#cell" class="role-reference"><code>cell</code></a></td>
               <td>Required <strong>Only If</strong> Content Insufficient</td>
               <td>
@@ -4267,6 +4273,11 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
                 </ul>
               </td>
             </tr>
+            <tr>
+              <td><a href="#code" class="role-reference"><code>code</code></a></td>
+              <td>Prohibited</td>
+              <td></td>              
+            </tr>            
             <tr>
               <td><a href="#columnheader" class="role-reference"><code>columnheader</code></a></td>
               <td>Required <strong>Only If</strong> Content Insufficient</td>
@@ -4310,12 +4321,17 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
                   <li>Named using <code>aria-labelledby</code> if a visible label is present, otherwise with <code>aria-label</code>.</li>
                 </ul>
               </td>
-            </tr>
+            </tr>         
             <tr>
               <td><a href="#definition" class="role-reference"><code>definition</code></a></td>
               <td>Recommended</td>
               <td>Reference the term being defined with <code>role="term"</code>, using <code>aria-labelledby</code>.</td>
             </tr>
+            <tr>
+              <td><a href="#deletion" class="role-reference"><code>deletion</code></a></td>
+              <td>Prohibited</td>
+              <td></td>              
+            </tr>               
             <tr>
               <td><a href="#dialog" class="role-reference"><code>dialog</code></a></td>
               <td>Required</td>
@@ -4340,6 +4356,11 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
                 Because the <code>application</code> element is used only to create unusual, custom widgets, careful assessment is necessary to determine whether or not adding an accessible name is beneficial.
               </td>
             </tr>
+            <tr>
+              <td><a href="#emphasis" class="role-reference"><code>emphasis</code></a></td>
+              <td>Prohibited</td>
+              <td></td>              
+            </tr>               
             <tr>
               <td><a href="#feed" class="role-reference"><code>feed</code></a></td>
               <td>Recommended</td>
@@ -4373,6 +4394,11 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
                 </ul>
               </td>
             </tr>
+            <tr>
+              <td><a href="#generic" class="role-reference"><code>generic</code></a></td>
+              <td>Prohibited</td>
+              <td></td>              
+            </tr>               
             <tr>
               <td><a href="#grid" class="role-reference"><code>grid</code></a></td>
               <td>Required</td>
@@ -4417,6 +4443,11 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
                 </ul>
               </td>
             </tr>
+            <tr>
+              <td><a href="#insertion" class="role-reference"><code>insertion</code></a></td>
+              <td>Prohibited</td>
+              <td></td>              
+            </tr>               
             <tr>
               <td><a href="#img" class="role-reference"><code>img</code></a></td>
               <td>Required</td>
@@ -4591,8 +4622,13 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
               </td>
             </tr>
             <tr>
+              <td><a href="#paragraph" class="role-reference"><code>paragraph</code></a></td>
+              <td>Prohibited</td>
+              <td></td>              
+            </tr>               
+            <tr>
               <td><a href="#presentation" class="role-reference"><code>presentation</code></a></td>
-              <td>Do Not Name</td>
+              <td>Prohibited</td>
               <td>An element with <code>role="presentation"</code> is not part of the accessibility tree (except in error cases). Do not use <code>aria-labelledby</code> or <code>aria-label</code>.</td>
             </tr>
             <tr>
@@ -4744,6 +4780,21 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
                 Using <code>aria-label</code> is functionally equivalent to providing off-screen text in the contents of the status element, except off-screen text would be announced by screen readers that do not support <code>aria-label</code> on <code>status</code> elements.
               </td>
             </tr>
+            <tr>
+              <td><a href="#strong" class="role-reference"><code>strong</code></a></td>
+              <td>Prohibited</td>
+              <td></td>              
+            </tr>  
+            <tr>
+              <td><a href="#subscript" class="role-reference"><code>subscript</code></a></td>
+              <td>Prohibited</td>
+              <td></td>              
+            </tr>   
+            <tr>
+              <td><a href="#superscript" class="role-reference"><code>superscript</code></a></td>
+              <td>Prohibited</td>
+              <td></td>              
+            </tr>                                        
             <tr>
               <td><a href="#switch" class="role-reference"><code>switch</code></a></td>
               <td>Required <strong>Only If</strong> Content Insufficient</td>
