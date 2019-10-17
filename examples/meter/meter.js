@@ -1,32 +1,130 @@
-/** @type {!Element} Meter element. */
-let meterEl;
-/** @type {!Element} Element visually filling the meter. */
-let visualFillEl;
-/** @type {number} Minimum value. */
-let minUsage;
-/** @type {number} Maximum value. */
-let maxUsage;
-/** @type {number} Current value. */
-let usage;
+var Meter = function (element) {
+  this.rootEl = element;
 
-/** Set the value randomly between the minimum and maximum. */
-function randomizeUsage() {
-  const range = maxUsage - minUsage;
-  usage = Math.floor((Math.random() * range) + minUsage);
-  meterEl.setAttribute('aria-valuenow', usage);
-  render();
-}
-function render() {
-  const asPercentage = (100 * usage) / (maxUsage - minUsage);
-  visualFillEl.style.width = asPercentage + '%';
-}
-function init() {
-  meterEl = document.querySelector('[role=meter]');
-  visualFillEl = document.getElementById('fill');
-  minUsage = Number(meterEl.getAttribute('aria-valuemin'));
-  maxUsage = Number(meterEl.getAttribute('aria-valuemax'));
-  usage = Number(meterEl.getAttribute('aria-valuenow'));
-  render();
-  setInterval(randomizeUsage, 5000);
-}
-window.addEventListener('load', init, false);
+  // create fill
+  this.fillEl = this._createFill();
+  this.rootEl.appendChild(this.fillEl);
+
+  // set up min, max, and current value
+  var min = element.getAttribute('aria-valuemin');
+  var max = element.getAttribute('aria-valuemax');
+  var value = element.getAttribute('aria-valuenow');
+  this._update(parseFloat(min), parseFloat(max), parseFloat(value));
+};
+
+/* Private methods */
+
+// returns an HTMLElement to be used as the fill
+Meter.prototype._createFill = function () {
+  var element = document.createElement('div');
+  element.classList.add('fill');
+  return element;
+};
+
+// returns a number representing a percentage between 0 - 100
+Meter.prototype._calculatePercentFill = function (min, max, value) {
+  if (typeof min !== 'number' || typeof max !== 'number' || typeof value !== 'number') {
+    return 0;
+  }
+
+  return 100 * value / (max - min);
+};
+
+// returns an hsl color string between red and green
+Meter.prototype._getColorValue = function (percent) {
+  // red is 0deg, green is 120deg in hsl
+  // if percent is 100, hue should be red, and if percent is 0, hue should be green
+  var hue = (percent / 100) * (0 - 120) + 120;
+
+  // also scale lightness slightly, so green is darker (just looks better)
+  var lightness = (percent / 100) * (50 - 30) + 20;
+
+  return 'hsl(' + hue + ', 100%, ' + lightness + '%)';
+};
+
+// no return value; updates the meter element
+Meter.prototype._update = function (min, max, value) {
+  // update fill width
+  if (min !== this.min || max !== this.max || value !== this.value) {
+    var percentFill = this._calculatePercentFill(min, max, value);
+    this.fillEl.style.width = percentFill + '%';
+    this.fillEl.style.backgroundColor = this._getColorValue(percentFill);
+  }
+
+  // update aria attributes
+  if (min !== this.min) {
+    this.min = min;
+    this.rootEl.setAttribute('aria-valuemin', min + '');
+  }
+
+  if (max !== this.max) {
+    this.max = max;
+    this.rootEl.setAttribute('aria-valuemax', max + '');
+  }
+
+  if (value !== this.value) {
+    this.value = value;
+    this.rootEl.setAttribute('aria-valuenow', value + '');
+  }
+};
+
+/* Public methods */
+
+// no return value; modifies the meter element based on a new value
+Meter.prototype.setValue = function (value) {
+  if (typeof value !== 'number') {
+    value = parseFloat(value);
+  }
+
+  if (!isNaN(value)) {
+    this._update(this.min, this.max, value);
+  }
+};
+
+/* Code for example page */
+
+window.addEventListener('load', function () {
+  // helper function to randomize example meter value
+  function getRandomValue (min, max) {
+    var range = max - min;
+    return Math.floor((Math.random() * range) + min);
+  }
+
+  // init meters
+  var meterEls = document.querySelectorAll('[role=meter]');
+  var meters = [];
+  Array.prototype.slice.call(meterEls).forEach(function (meterEl) {
+    meters.push(new Meter(meterEl));
+  });
+
+  // randomly update meter values
+
+  // returns an id for setInterval
+  function playMeters () {
+    return window.setInterval(function () {
+      meters.forEach(function (meter) {
+        meter.setValue(Math.random() * 100);
+      });
+    }, 5000);
+  }
+
+  // start meters
+  var updateInterval = playMeters();
+
+  // play/pause meter updates
+  var playButton = document.querySelector('.play-meters');
+  playButton.addEventListener('click', function () {
+    var isPaused = playButton.classList.contains('paused');
+
+    if (isPaused) {
+      updateInterval = playMeters();
+      playButton.classList.remove('paused');
+      playButton.innerHTML = 'Pause Updates';
+    }
+    else {
+      clearInterval(updateInterval);
+      playButton.classList.add('paused');
+      playButton.innerHTML = 'Start Updates';
+    }
+  });
+});

@@ -7,9 +7,10 @@
   width: 200px;
 }
 
-#fill {
+.fill {
   box-sizing: border-box;
   height: 100%;
   border-radius: 3px;
-  border: 20px solid black;
+  background-color: black;
+  outline: 3px solid black;
 }

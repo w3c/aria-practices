@@ -35,12 +35,12 @@
     <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
 
     <div id="example">
-      <p>This meter changes its value randomly every 5 seconds.</p>
+      <p>This meter changes its value randomly every 5 seconds, with an option to pause changes.</p>
       <h3 id="cpu_usage_label">Central Processing Unit (CPU) Usage</h3>
-      <div role="meter" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"
-        aria-labelledby ="cpu_usage_label">
-        <div id="fill"></div>
-      </div>
+      <p>
+        <button type="button" class="play-meters">Pause Updates</button>
+      </p>
+      <div role="meter" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" aria-labelledby ="cpu_usage_label"></div>
     </div>
     <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
   </section>
