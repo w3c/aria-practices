@@ -54,13 +54,11 @@ table.data.attributes tbody td {
   hyphens: manual;
 }
 
-.example-header h2,
-.example-header h3 {
+.example-header > :first-child {
   margin: 0;
 }
 
-.example-header h2 + *,
-.example-header h3 + * {
+.example-header > :first-child + * {
   margin-left: 1em;
 }
 
