@@ -1,13 +1,15 @@
 
 [role=meter] {
-  position: relative;
-  border: 5px solid black;
+  padding: 2px;
+  border: 2px solid black;
+  border-radius: 5px;
   height: 40px;
   width: 200px;
 }
 
 #fill {
-  position: absolute;
+  box-sizing: border-box;
   height: 100%;
-  background-color: black;
+  border-radius: 3px;
+  border: 20px solid black;
 }
