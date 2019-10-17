@@ -109,7 +109,7 @@ fieldset {
 }
 
 input {
-  border: 1px solid hsl(0, 0%, 62%);
+  border: 1px solid hsl(0, 0%, 42%);
   border-radius: 0.3em;
   display: block;
   font-size: inherit;
