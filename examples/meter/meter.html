@@ -13,7 +13,7 @@
 
 <!-- CSS and JS for this example. -->
 <link rel="stylesheet" href="css/meter.css">
-<script src="meter.js" type="text/javascript"></script>
+<script src="js/meter.js" type="text/javascript"></script>
 
 </head>
 <body>
@@ -40,7 +40,7 @@
       <p>
         <button type="button" class="play-meters">Pause Updates</button>
       </p>
-      <div role="meter" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" aria-labelledby ="cpu_usage_label"></div>
+      <div role="meter" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" aria-labelledby="cpu_usage_label"></div>
     </div>
     <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
   </section>
@@ -74,46 +74,46 @@
             </ul>
           </td>
         </tr>
-          <tr data-test-id="meter-aria-valuemin">
-              <td></td>
-              <th scope="row"><code>aria-valuemin="NUMBER"</code></th>
-              <td><code>div</code></td>
-              <td>
-                <ul>
-                  <li>Specifies a numeric value that is the minimum value the meter can have.</li>
-                </ul>
-              </td>
-            </tr>
-            <tr data-test-id="meter-aria-vlauemax">
-                <td></td>
-                <th scope="row"><code>aria-valuemax="NUMBER"</code></th>
-                <td><code>div</code></td>
-                <td>
-                  <ul>
-                    <li>Specifies a numeric value that is the maximum value the meter can have.</li>
-                  </ul>
-                </td>
-            </tr>
-            <tr data-test-id="meter-aria-valuenow">
-                <td></td>
-                <th scope="row"><code>aria-valuenow="NUMBER"</code></th>
-                <td><code>div</code></td>
-                <td>
-                  <ul>
-                    <li>A numeric value that is the current value of the meter</li>
-                  </ul>
-                </td>
-              </tr>
-              <tr data-test-id="meter-aria-labelledby">
-                  <td></td>
-                  <th scope="row"><code>aria-labelledby</code></th>
-                  <td><code>div</code></td>
-                  <td>
-                    <ul>
-                      <li>Identifies the accessible name for the <code>meter</code> widget.</li>
-                    </ul>
-                  </td>
-              </tr>
+        <tr data-test-id="meter-aria-valuemin">
+          <td></td>
+          <th scope="row"><code>aria-valuemin="NUMBER"</code></th>
+          <td><code>div</code></td>
+          <td>
+            <ul>
+              <li>Specifies a numeric value that is the minimum value the meter can have.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr data-test-id="meter-aria-valuemax">
+          <td></td>
+          <th scope="row"><code>aria-valuemax="NUMBER"</code></th>
+          <td><code>div</code></td>
+          <td>
+            <ul>
+              <li>Specifies a numeric value that is the maximum value the meter can have.</li>
+            </ul>
+          </td>
+        </tr>
+        <tr data-test-id="meter-aria-valuenow">
+          <td></td>
+          <th scope="row"><code>aria-valuenow="NUMBER"</code></th>
+          <td><code>div</code></td>
+          <td>
+            <ul>
+              <li>A numeric value that is the current value of the meter</li>
+            </ul>
+          </td>
+        </tr>
+        <tr data-test-id="meter-aria-labelledby">
+          <td></td>
+          <th scope="row"><code>aria-labelledby</code></th>
+          <td><code>div</code></td>
+          <td>
+            <ul>
+              <li>Identifies the accessible name for the <code>meter</code> widget.</li>
+            </ul>
+          </td>
+        </tr>
       </tbody>
     </table>
   </section>

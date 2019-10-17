@@ -27,7 +27,7 @@ Meter.prototype._calculatePercentFill = function (min, max, value) {
     return 0;
   }
 
-  return 100 * value / (max - min);
+  return 100 * (value - min) / (max - min);
 };
 
 // returns an hsl color string between red and green
@@ -36,10 +36,7 @@ Meter.prototype._getColorValue = function (percent) {
   // if percent is 100, hue should be red, and if percent is 0, hue should be green
   var hue = (percent / 100) * (0 - 120) + 120;
 
-  // also scale lightness slightly, so green is darker (just looks better)
-  var lightness = (percent / 100) * (50 - 30) + 20;
-
-  return 'hsl(' + hue + ', 100%, ' + lightness + '%)';
+  return 'hsl(' + hue + ', 100%, 40%)';
 };
 
 // no return value; updates the meter element

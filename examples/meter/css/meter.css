@@ -12,5 +12,5 @@
   height: 100%;
   border-radius: 3px;
   background-color: black;
-  outline: 3px solid black;
+  border: 2px solid black;
 }
