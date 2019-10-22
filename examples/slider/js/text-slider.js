@@ -208,7 +208,7 @@ TSlider.prototype.handleClick = function (event) {
 // Initialise TSliders on the page
 window.addEventListener('load', function () {
 
-  var sliders = document.querySelectorAll('.aria-widget-text-slider [role=slider]');;
+  var sliders = document.querySelectorAll('.aria-widget-text-slider [role=slider]');
 
   for (var i = 0; i < sliders.length; i++) {
     var s = new TSlider(sliders[i]);

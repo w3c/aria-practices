@@ -48,7 +48,7 @@ Slider.prototype.init = function () {
   }
   else {
     this.railMin = parseInt((this.domNode.getAttribute('aria-valuemin')));
-  };
+  }
 
   if (this.domNode.nextElementSibling) {
     this.maxDomNode = this.domNode.nextElementSibling;
@@ -232,7 +232,7 @@ Slider.prototype.handleMouseDown = function (event) {
 // Initialise Sliders on the page
 window.addEventListener('load', function () {
 
-  var sliders = document.querySelectorAll('[role=slider]');;
+  var sliders = document.querySelectorAll('[role=slider]');
 
   for (var i = 0; i < sliders.length; i++) {
     var s = new Slider(sliders[i]);
