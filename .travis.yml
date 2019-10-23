@@ -1,7 +1,7 @@
 language: node_js
 
 node_js:
-  - "lts"
+  - "lts/*"
 
 addons:
   firefox: "60.0.2"
