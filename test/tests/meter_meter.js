@@ -3,12 +3,13 @@
 const { ariaTest } = require('..');
 const { By } = require('selenium-webdriver');
 const assertAriaLabelledby = require('../util/assertAriaLabelledby');
+const assertAriaRoles = require('../util/assertAriaRoles');
 
 const exampleFile = 'meter/meter.html';
 
 const ex = {
   meterSelector: '#example [role="meter"]',
-  fillSelector: '#example [role="meter"] > div'
+  fillSelector: '#example [role="meter"] > svg'
 };
 
 // Attributes
