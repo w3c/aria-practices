@@ -12,6 +12,9 @@ const ex = {
 };
 
 // Attributes
+ariaTest('role="meter" element exists', exampleFile, 'meter-role', async (t) => {
+  await assertAriaRoles(t, 'example', 'meter', '1', 'div');
+});
 
 ariaTest('"aria-labelledby" attribute', exampleFile, 'meter-aria-labelledby', async (t) => {
   await assertAriaLabelledby(t,  ex.meterSelector);

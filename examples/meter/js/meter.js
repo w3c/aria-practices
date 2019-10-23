@@ -1,9 +1,6 @@
 var Meter = function (element) {
   this.rootEl = element;
-
-  // create fill
-  this.fillEl = this._createFill();
-  this.rootEl.appendChild(this.fillEl);
+  this.fillEl = element.querySelector('.fill');
 
   // set up min, max, and current value
   var min = element.getAttribute('aria-valuemin');
@@ -13,13 +10,6 @@ var Meter = function (element) {
 };
 
 /* Private methods */
-
-// returns an HTMLElement to be used as the fill
-Meter.prototype._createFill = function () {
-  var element = document.createElement('div');
-  element.classList.add('fill');
-  return element;
-};
 
 // returns a number representing a percentage between 0 - 100
 Meter.prototype._calculatePercentFill = function (min, max, value) {
@@ -45,7 +35,7 @@ Meter.prototype._update = function (min, max, value) {
   if (min !== this.min || max !== this.max || value !== this.value) {
     var percentFill = this._calculatePercentFill(min, max, value);
     this.fillEl.style.width = percentFill + '%';
-    this.fillEl.style.backgroundColor = this._getColorValue(percentFill);
+    this.fillEl.style.color = this._getColorValue(percentFill);
   }
 
   // update aria attributes
