@@ -14,7 +14,7 @@ const assert = require('assert');
  */
 module.exports = async function assertAriaSelectedAndActivedescendant (t, activedescendantSelector, optionsSelector, index) {
 
-  // Confirm the option at index index has aria-selected set to true
+  // Confirm the option at the index has aria-selected set to true
 
   const options = await t.context.session
     .findElements(By.css(optionsSelector));
