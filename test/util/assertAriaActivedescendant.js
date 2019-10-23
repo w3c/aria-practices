@@ -14,7 +14,7 @@ const assert = require('assert');
  */
 module.exports = async function assertAriaSelectedAndActivedescendant (t, activedescendantSelector, optionsSelector, index) {
 
-  // Confrirm aria-activedescendant refers to the correct option
+  // Confirm aria-activedescendant refers to the correct option
 
   const options = await t.context.session
     .findElements(By.css(optionsSelector));

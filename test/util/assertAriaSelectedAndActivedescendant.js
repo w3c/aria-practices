@@ -25,7 +25,7 @@ module.exports = async function assertAriaSelectedAndActivedescendant (t, active
     'aria-selected should be on item at index ' + index + ' for items: ' + optionsSelector
   );
 
-  // Confrirm aria-activedescendant refers to the correct option
+  // Confirm aria-activedescendant refers to the correct option
 
   const optionId = await options[index].getAttribute('id');
 
