@@ -4,7 +4,7 @@ const { By } = require('selenium-webdriver');
 const assert = require('assert');
 
 /**
- * Confirm the the value of an attribute on an element.
+ * Confirm the value of an attribute on an element.
  *
  * @param {obj} t                  - ava execution object
  * @param {String} elementSelector - the element to check
