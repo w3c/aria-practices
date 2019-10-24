@@ -4493,8 +4493,12 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
             </tr>
             <tr>
               <td><a href="#log" class="role-reference"><code>log</code></a></td>
-              <td>Required</td>
-              <td>Use <code>aria-labelledby</code> if a visible label is present, otherwise use <code>aria-label</code>.</td>
+              <td>Discretionary</td>
+              <td>
+                Some screen readers announce the name of a log element before announcing the content of the log element.
+                Thus, <code>aria-label</code> provides a method for prefacing the visible content of a log element with text that is not displayed as part of the log element.
+                Using <code>aria-label</code> is functionally equivalent to providing off-screen text in the contents of the log element, except off-screen text would be announced by screen readers that do not support <code>aria-label</code> on <code>log</code> elements.
+              </td>
             </tr>
             <tr>
               <td><a href="#main" class="role-reference"><code>main</code></a></td>
@@ -4867,8 +4871,12 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
             </tr>
             <tr>
               <td><a href="#timer" class="role-reference"><code>timer</code></a></td>
-              <td>Required</td>
-              <td>Use <code>aria-labelledby</code> if a visible label is present, otherwise use <code>aria-label</code>.</td>
+              <td>Discretionary</td>
+              <td>
+                Some screen readers announce the name of a timer element before announcing the content of the timer element.
+                Thus, <code>aria-label</code> provides a method for prefacing the visible content of a timer element with text that is not displayed as part of the timer element.
+                Using <code>aria-label</code> is functionally equivalent to providing off-screen text in the contents of the timer element, except off-screen text would be announced by screen readers that do not support <code>aria-label</code> on <code>timer</code> elements.
+              </td>
             </tr>
             <tr>
               <td><a href="#toolbar" class="role-reference"><code>toolbar</code></a></td>
