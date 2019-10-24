@@ -4174,11 +4174,11 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
                 If <code>aria-label</code> or <code>aria-labelledby</code> is applied, content contained in the element and its descendants is hidden from assistive technology users unless it is also referenced by <code>aria-labelledby</code>.
                 Avoid hiding descendant content except in the rare circumstances where doing so benefits assistive technology users.
               </li>
-              <li>Required: The ARIA specification requires authors to provide a name; a missing name triggers accessibility validators to flag a violation.</li>
+              <li>Required: The ARIA specification requires authors to provide a name; a missing name causes accessibility validators to report an error.</li>
               <li>Recommended: Providing a name is strongly recommended.</li>
               <li>Discretionary: Naming is either optional or, in the circumstances described in the guidance column, is discouraged.</li>
               <li>Do Not Name: Naming is strongly discouraged even if it is technically permitted; often assistive technologies do not render a name even if provided.</li>
-              <li>Prohibited: Naming is not allowed. If the author supplies a name it is an author error.</li>
+              <li>Prohibited: The ARIA specification does not permit the element to be named; If a name is specified, accessibility validators will report an error.</li>
             </ul>
           </dd>
           <dt>Guidance:</dt>
