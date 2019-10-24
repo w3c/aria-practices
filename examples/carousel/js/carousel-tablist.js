@@ -6,61 +6,56 @@
 */
 
 class CarouselTablist {
-  domNode = null;
-
-  tabNodes = [];
-  tabpanelNodes = [];
-
-  firstTabNode = null;
-  lastTabNode = null;
-  currentTabNode = null;
-
-  liveRegionNode = null;
-  pauseButton = null;
-
-  playLabel = 'Start automatic slide show';
-  pauseLabel = 'Stop automatic slide show';
-
-  rotate = true;
-  hasFocus = false;
-  hasHover = false;
-  isStopped = false;
-  timeInterval = 5000;
 
   constructor (node) {
 
     this.domNode = node;
+
+    this.tabNodes = [];
+    this.tabpanelNodes = [];
+
+    this.firstTabNode = null;
+    this.lastTabNode = null;
+    this.currentTabNode = null;
+
+    this.liveRegionNode = null;
+    this.pauseButton = null;
+
+    this.playLabel = 'Start automatic slide show';
+    this.pauseLabel = 'Stop automatic slide show';
+
+    this.rotate = true;
+    this.hasFocus = false;
+    this.hasHover = false;
+    this.isStopped = false;
+    this.timeInterval = 5000;
 
     this.liveRegionNode = this.domNode.querySelector('.carousel-items');
 
     // initialize tabs
 
     var nodes = node.querySelectorAll('[role="tab"]');
-    console.log(this.tabNodes.length);
 
-    for(let i = 0; i < nodes.length; i++) {
-      var node = nodes[i];
-      console.log(node.tagName);
+    for (let i = 0; i < nodes.length; i++) {
+      var n = nodes[i];
 
-      this.tabNodes.push(node);
+      this.tabNodes.push(n);
 
       if (!this.firstTabNode) {
-        this.firstTabNode = node;
-        this.currentTabNode = node;
+        this.firstTabNode = n;
+        this.currentTabNode = n;
       }
 
-      this.lastTabNode = node;
+      this.lastTabNode = n;
 
-      node.addEventListener('keydown', this.handleTabKeydown.bind(this));
-      node.addEventListener('click', this.handleTabClick.bind(this));
-      node.addEventListener('focus', this.handleTabFocus.bind(this));
-      node.addEventListener('blur', this.handleTabBlur.bind(this));
+      n.addEventListener('keydown', this.handleTabKeydown.bind(this));
+      n.addEventListener('click', this.handleTabClick.bind(this));
+      n.addEventListener('focus', this.handleTabFocus.bind(this));
+      n.addEventListener('blur', this.handleTabBlur.bind(this));
 
       // initialize tabpanels
 
-      var tabpanelNode = document.getElementById(node.getAttribute('aria-controls'));
-
-      console.log(tabpanelNode.tagName);
+      var tabpanelNode = document.getElementById(n.getAttribute('aria-controls'));
 
       if (tabpanelNode) {
         this.tabpanelNodes.push(tabpanelNode);
@@ -68,7 +63,7 @@ class CarouselTablist {
         tabpanelNode.addEventListener('focusin', this.handleTabpanelFocusIn.bind(this));
         tabpanelNode.addEventListener('focusout', this.handleTabpanelFocusOut.bind(this));
 
-        var imageLink = tabpanelDomNode.querySelector('.carousel-image a');
+        var imageLink = tabpanelNode.querySelector('.carousel-image a');
 
         if (imageLink) {
           imageLink.addEventListener('focus', this.handleImageLinkFocus.bind(this));
@@ -78,14 +73,13 @@ class CarouselTablist {
       }
       else {
         this.tabpanelNodes.push(null);
-        console.log('ERROR: missing tabpanel')
       }
 
     }
 
     // Pause Button
 
-    var elem = document.querySelector('.carouselTablist .controls button.rotation');
+    var elem = document.querySelector('.carousel-tablist .controls button.rotation');
     if (elem) {
       this.pauseButton = elem;
       this.pauseButton.classList.add('pause');
@@ -101,12 +95,12 @@ class CarouselTablist {
 
   }
 
-  getTabpanelNode(tabNode) {
+  getTabpanelNode (tabNode) {
     var index = this.tabNodes.indexOf(tabNode);
     return this.tabpanelNodes[index];
   }
 
-  hideTabpanel = function (tabNode) {
+  hideTabpanel (tabNode) {
     tabNode.setAttribute('aria-selected', 'false');
     tabNode.setAttribute('tabindex', '-1');
 
@@ -118,7 +112,7 @@ class CarouselTablist {
     }
   }
 
-  showTabpanel = function (tabNode, moveFocus) {
+  showTabpanel (tabNode, moveFocus) {
     if (typeof moveFocus !== 'boolean') {
       moveFocus = false;
     }
@@ -138,20 +132,20 @@ class CarouselTablist {
     }
   }
 
-  setSelectedTab = function (newTab, moveFocus) {
+  setSelectedTab (newTab, moveFocus) {
     if (typeof moveFocus != 'boolean') {
       moveFocus = false;
     }
 
-    for (let i = 0; i < this.tabNodes.length; i++ ) {
+    for (let i = 0; i < this.tabNodes.length; i++) {
       this.hideTabpanel(this.tabNodes[i]);
-    };
+    }
 
     this.currentTabNode = newTab;
     this.showTabpanel(newTab, moveFocus);
-  };
+  }
 
-  setSelectedToPreviousTab = function (currentTabNode, moveFocus) {
+  setSelectedToPreviousTab (currentTabNode, moveFocus) {
     if (typeof moveFocus != 'boolean') {
       moveFocus = false;
     }
@@ -169,9 +163,9 @@ class CarouselTablist {
       index = this.tabNodes.indexOf(currentTabNode);
       this.setSelectedTab(this.tabNodes[index - 1], moveFocus);
     }
-  };
+  }
 
-  setSelectedToNextTab = function (currentTabNode, moveFocus) {
+  setSelectedToNextTab (currentTabNode, moveFocus) {
     if (typeof moveFocus != 'boolean') {
       moveFocus = false;
     }
@@ -189,30 +183,30 @@ class CarouselTablist {
       index = this.tabNodes.indexOf(currentTabNode);
       this.setSelectedTab(this.tabNodes[index + 1], moveFocus);
     }
-  };
+  }
 
-  setSelectedTofirstTabNode = function (moveFocus) {
+  setSelectedTofirstTabNode (moveFocus) {
     if (typeof moveFocus != 'boolean') {
       moveFocus = false;
     }
     this.setSelectedTab(this.firstTabNode, moveFocus);
-  };
+  }
 
-  setSelectedTolastTabNode = function (moveFocus) {
+  setSelectedTolastTabNode (moveFocus) {
     if (typeof moveFocus != 'boolean') {
       moveFocus = false;
     }
     this.setSelectedTab(this.lastTabNode, moveFocus);
-  };
+  }
 
-  rotateSlides = function () {
+  rotateSlides () {
     if (this.rotate) {
       this.setSelectedToNextTab();
     }
     setTimeout(this.rotateSlides.bind(this), this.timeInterval);
-  };
+  }
 
-  updateRotation = function () {
+  updateRotation () {
 
     // Pause rotation when keyboard focus enters the carousel
     if (this.hasFocus) {
@@ -239,9 +233,9 @@ class CarouselTablist {
       this.pauseButton.classList.add('pause');
     }
 
-  };
+  }
 
-  toggleRotation = function () {
+  toggleRotation () {
     if (this.isStopped) {
       if (!this.hasHover && !this.hasFocus) {
         this.isStopped = false;
@@ -257,35 +251,35 @@ class CarouselTablist {
 
   /* Event Handlers */
 
-  handleImageLinkFocus = function () {
+  handleImageLinkFocus () {
     this.liveRegionNode.classList.add('focus');
   }
 
-  handleImageLinkBlur = function () {
+  handleImageLinkBlur () {
     this.liveRegionNode.classList.remove('focus');
   }
 
-  handleMouseOver = function (event) {
+  handleMouseOver (event) {
     if (!this.pauseButton.contains(event.target)) {
       this.hasHover = true;
     }
     this.updateRotation();
   }
 
-  handleMouseOut = function () {
+  handleMouseOut () {
     this.hasHover = false;
     this.updateRotation();
   }
 
   /* EVENT HANDLERS */
 
-  handlePauseButtonClick = function () {
+  handlePauseButtonClick () {
     this.toggleRotation();
   }
 
   /* Event Handlers for Tabs*/
 
-  handleTabKeydown = function (event) {
+  handleTabKeydown (event) {
     var flag = false;
 
     switch (event.key) {
@@ -320,17 +314,17 @@ class CarouselTablist {
     }
   }
 
-  handleTabClick = function (event) {
+  handleTabClick (event) {
     this.setSelectedTab(event.currentTarget, true);
   }
 
-  handleTabFocus = function (event) {
+  handleTabFocus (event) {
     event.currentTarget.parentNode.classList.add('focus');
     this.hasFocus = true;
     this.updateRotation();
   }
 
-  handleTabBlur = function (event) {
+  handleTabBlur (event) {
     event.currentTarget.parentNode.classList.remove('focus');
     this.hasFocus = false;
 
@@ -340,13 +334,13 @@ class CarouselTablist {
 
   /* Event Handlers for Tabpanels*/
 
-  handleTabpanelFocusIn = function (event) {
+  handleTabpanelFocusIn (event) {
     event.currentTarget.classList.add('focus');
     this.hasFocus = true;
     this.updateRotation();
   }
 
-  handleTabpanelFocusOut = function (event) {
+  handleTabpanelFocusOut (event) {
     event.currentTarget.classList.remove('focus');
     this.hasFocus = false;
     this.updateRotation();
@@ -359,10 +353,10 @@ class CarouselTablist {
 
 
 window.addEventListener('load', function () {
-  var carousels = document.querySelectorAll('.carouselTablist');
+  var carousels = document.querySelectorAll('.carousel-tablist');
 
-  carousels.forEach(function(node) {
-    var c = new CarouselTablist(node);
+  carousels.forEach(function (node) {
+    new CarouselTablist(node);
   });
 }, false);
 

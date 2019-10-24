@@ -13,10 +13,10 @@
 
     <!--  js and css for this example. -->
     <script type="text/javascript">
-      var stylesheet = 'css/carousel-2-tablist.css';
+      var stylesheet = 'css/carousel-tablist.css';
       if (location.href.indexOf('moreaccessible') > 0) {
         console.log('loaded more accessible');
-        stylesheet = 'css/carousel-2-tablist-more-accessible.css';
+        stylesheet = 'css/carousel-tablist-more-accessible.css';
       }
 
       document.write('<link rel="stylesheet" type="text/css" href="' + stylesheet + '">')
@@ -32,10 +32,7 @@
 
     </script>
 
-    <script src="js/carouselTab.js" type="text/javascript"></script>
-    <script src="js/carouselTabpanel.js" type="text/javascript"></script>
-    <script src="js/carouselTablist.js" type="text/javascript"></script>
-    <script src="js/pauseButton.js" type="text/javascript"></script>
+    <script src="js/carousel-tablist.js" type="text/javascript"></script>
 
   </head>
   <body>
@@ -73,7 +70,7 @@
         <h2 id="ex_label">Example</h2>
         <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
         <div id="ex1">
-            <section id="myCarousel" class="carouselTablist" aria-roledescription="carousel" aria-label="Highlighted television shows">
+            <section id="myCarousel" class="carousel-tablist" aria-roledescription="carousel" aria-label="Highlighted television shows">
 
               <div class="carousel-inner">
 
@@ -767,11 +764,8 @@
       <section>
         <h2>Javascript and CSS Source Code</h2>
         <ul>
-          <li>CSS: <a href="css/carousel-2-tablist.css" type="text/css">carousel-2-tablist.css</a></li>
-          <li>Javascript: <a href="js/carouselTablist.js" type="text/javascript">carouselTablist.js</a></li>
-          <li>Javascript: <a href="js/carouselTab.js" type="text/javascript">carouselTab.js</a></li>
-          <li>Javascript: <a href="js/carouselTabpanel.js" type="text/javascript">carouselTabpanel.js</a></li>
-          <li>Javascript: <a href="js/pauseButton.js" type="text/javascript">pauseButton.js</a></li>
+          <li>CSS: <a href="css/carousel-tablist.css" type="text/css">carousel-tablist.css</a></li>
+          <li>Javascript: <a href="js/carousel-tablist.js" type="text/javascript">carousel-tablist.js</a></li>
         </ul>
       </section>
 
