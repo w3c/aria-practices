@@ -74,8 +74,14 @@ aria.widget.SourceCode.prototype.make = function () {
     if (this.editCode[i]) {
       var editCodeInput = this.editCode[i];
 
+      // Correct the indentation for the example html
+      var indentedExampleHtml = document.getElementById(this.code[i]).innerHTML;
+      indentedExampleHtml = indentedExampleHtml.replace(/^\n+/, '');
+      var indentation = indentedExampleHtml.match(/^\s+/)[0];
+      var exampleHtml = indentedExampleHtml.replace(new RegExp('^' + indentation, 'gm'), '');
+
       var postJson = {
-        html: document.getElementById(this.code[i]).innerHTML,
+        html: exampleHtml,
         css: '',
         js: '',
         head: '<base href="' + location.href + '">'
