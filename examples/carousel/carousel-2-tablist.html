@@ -62,7 +62,7 @@
         <h2>Example View Options</h2>
         <ul>
           <li><a id="id_link_less_accessible" href="carousel-2-tablist.html">Tablist carousel controls and captions displayed on image</a>: This option is less accessible than the other option because the controls are harder to perceive and captions are more difficult to read with rotating images behind them.</li>
-          <li><a id="id_link_more_accessible" href="carousel-2-tablist.html?moreaccessible">Tablist carousel controls and captions displayed above and below the image</a>: This option is preferable because controls and captions are easier to perceive.</li>
+          <li><a id="id_link_more_accessible" href="carousel-2-tablist.html?moreaccessible">Tablist carousel controls and captions displayed above and below the image</a>: This option is preferable because controls and captions are easier to perceive, especially for people with visual impairments.</li>
         </ul>
       </section>
 
@@ -390,9 +390,10 @@
           <li>The transparency of the caption area is decreased so the caption text meets the WCAG 2.1 color contrast requirements.</li>
         </ul>
         <h3>Focus Styling of the Tablist and Tabs</h3>
-        <p>
-        When a tab receives focus the tablist is also highlighted with a border to provide an affordance to the user that the cursor keys should be bused to move focus between the tabs.
-        </p>
+        <ul>
+          <li>When a tab receives focus the tablist is also highlighted with a border to provide an affordance to the user that the cursor keys should be bused to move focus between the tabs.</li>
+          <li>The CSS border width used for focus styling is changed from 0 to 2 pixels when the control receives focus to support visibility of the focus change in high contrast operating system settings.</li>
+        </ul>
         <h3>Screen Reader Announcement of Slide Changes</h3>
         <p>
           When automatic rotation is turned off, the carousel slide content is included in a live region.
@@ -765,6 +766,7 @@
         <h2>Javascript and CSS Source Code</h2>
         <ul>
           <li>CSS: <a href="css/carousel-tablist.css" type="text/css">carousel-tablist.css</a></li>
+          <li>CSS: <a href="css/carousel-tablist-more-accessible.css" type="text/css">carousel-tablist-more-accessible.css</a></li>
           <li>Javascript: <a href="js/carousel-tablist.js" type="text/javascript">carousel-tablist.js</a></li>
         </ul>
       </section>
