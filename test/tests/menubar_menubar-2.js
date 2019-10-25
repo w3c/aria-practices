@@ -274,7 +274,6 @@ ariaTest('Test tabindex="-1" for all submenu role="menuitem"s',
     await assertAttributeValues(t, ex.submenuMenuitemSelector, 'tabindex', '-1');
   });
 
-
 ariaTest('Test aria-disabled="false" for all submenu role="menuitem"s',
   exampleFile, 'submenu-menuitem-aria-disabled', async (t) => {
     t.plan(3);
@@ -283,36 +282,35 @@ ariaTest('Test aria-disabled="false" for all submenu role="menuitem"s',
     await assertAttributeValues(t, ex.submenuMenuitemSelector, 'aria-disabled', 'false');
 
     const menus = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
-    const menuitem = await t.context.session.findElements(By.css(ex.submenuMenuitemSelector));
+    const sizeMenu = await t.context.session.findElement(By.css('[aria-label="Size"]'));
+    const menuitems = await sizeMenu.findElements(By.css('[role="menuitem"]'));
+    const menuItemRadios = await sizeMenu.findElements(By.css('[role="menuitemradio"]'));
 
-    // Select the first item in the list until it is disabled
-    const disabledFirstItem = await t.context.session.wait(async function () {
-      await menus[3].sendKeys(Key.ARROW_DOWN);
-      await menuitem[0].sendKeys(Key.ENTER);
+    // select X-Small size
+    await menus[3].sendKeys(Key.ARROW_DOWN);
+    await menuItemRadios[0].sendKeys(Key.ENTER);
 
-      return await menuitem[0].getAttribute('aria-disabled') === 'true';
-    }, t.context.waitTime, 'Timeout trying to disable the first item in the last menu by sending multiple clicks');
-
-    // Test that the item was successfully disabled
-    t.true(
-      disabledFirstItem,
-      'The first menuitem in the last dropdown should become disabled after multiple \'ENTER\' keys sent'
-    );
-
-    // Select the second item in the list until it is disabled
-    const disabledSecondItem = await t.context.session.wait(async function () {
-      await menus[3].sendKeys(Key.ARROW_DOWN);
-      await menuitem[0].sendKeys(Key.ARROW_DOWN);
-      await menuitem[1].sendKeys(Key.ENTER);
-
-      return await menuitem[1].getAttribute('aria-disabled') === 'true';
-    }, t.context.waitTime, 'Timeout trying to disable the second item in the last menu by sending multiple clicks');
+    const disabledFirstItem = await menuitems[0].getAttribute('aria-disabled');
 
     // Test that the item was successfully disabled
     t.true(
-      disabledSecondItem,
-      'The second menuitem in the last dropdown should become disabled after multiple \'ENTER\' keys sent'
+      disabledFirstItem === 'true',
+      'The first menuitem in the last dropdown should become disabled after X-Small is selected'
     );
+
+    // Select the X-Large size
+    await menus[3].sendKeys(Key.ARROW_DOWN);
+    await menuItemRadios[menuItemRadios.length - 1].sendKeys(Key.ENTER);
+
+    const disabledSecondItem = await menuitems[1].getAttribute('aria-disabled');
+
+    // Test that the item was successfully disabled
+    t.true(
+      disabledSecondItem === 'true',
+      'The second menuitem in the last dropdown should become disabled after X-Large is selected'
+    );
+
+
   });
 
 ariaTest('Test for role="menuitemcheckbox" on li', exampleFile, 'menuitemcheckbox-role', async (t) => {
@@ -397,7 +395,7 @@ ariaTest('Test role="separator" exists', exampleFile, 'separator-role', async (t
 
 ariaTest('Test role="group" exists', exampleFile, 'group-role', async (t) => {
   t.plan(1);
-  await assertAriaRoles(t, 'ex1', 'group', 3, 'ul');
+  await assertAriaRoles(t, 'ex1', 'group', 4, 'ul');
 });
 
 ariaTest('Test aria-label on group', exampleFile, 'group-aria-label', async (t) => {
@@ -447,7 +445,7 @@ ariaTest('Text "aria-checked" appropriately set on role="menitemradio"',
 
     for (let grouping of ex.radioItemGroupings) {
 
-    // Reveal the elements in the dropdown
+      // Reveal the elements in the dropdown
       await menus[grouping.menuIndex].sendKeys(Key.ARROW_DOWN);
 
       const items = await t.context.session.findElements(By.css(grouping.itemsSelector));
@@ -587,13 +585,13 @@ ariaTest('Key ARROW_RIGHT moves focus to next menubar item',
 
     for (let menuIndex = ex.numMenus - 1; menuIndex > 0; menuIndex--) {
 
-    // Send the ARROW_LEFT key
+      // Send the ARROW_LEFT key
       await menuitems[menuIndex].sendKeys(Key.ARROW_LEFT);
 
       // Test the focus is on the previous menuitem
       t.true(
         await checkFocus(t, ex.menubarMenuitemSelector, menuIndex - 1),
-        'Sending key "ARROW_RIGHT" to menuitem ' + menuIndex + ' should move focus to menuitem ' + menuIndex - 1
+        'Sending key "ARROW_RIGHT" to menuitem ' + menuIndex + ' should move focus to menuitem ' + (menuIndex - 1)
       );
     }
   });
@@ -607,7 +605,7 @@ ariaTest('Key ARROW_UP opens submenu, focus on last item',
     const submenus = await t.context.session.findElements(By.css(ex.submenuSelector));
     for (let menuIndex = 0; menuIndex < ex.numMenus; menuIndex++) {
 
-    // Send the ENTER key
+      // Send the ENTER key
       await menuitems[menuIndex].sendKeys(Key.UP);
 
       // Test that the submenu is displayed
@@ -635,7 +633,7 @@ ariaTest('Key ARROW_DOWN opens submenu, focus on first item',
     const submenus = await t.context.session.findElements(By.css(ex.submenuSelector));
     for (let menuIndex = 0; menuIndex < ex.numMenus; menuIndex++) {
 
-    // Send the ENTER key
+      // Send the ENTER key
       await menuitems[menuIndex].sendKeys(Key.DOWN);
 
       // Test that the submenu is displayed
@@ -714,7 +712,7 @@ ariaTest('Character sends to menubar changes focus in menubar',
     const menuitems = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
     for (let test of charIndexTest) {
 
-    // Send character to menuitem
+      // Send character to menuitem
       await menuitems[test.sendIndex].sendKeys(test.sendChar);
 
       // Test that the focus switches to the appropriate menuitem
@@ -873,7 +871,7 @@ ariaTest('ARROW_RIGHT to submenu closes submenu and opens next',
     for (let menuIndex = 0; menuIndex < ex.numMenus; menuIndex++) {
       for (let itemIndex = 0; itemIndex < ex.numSubmenuItems[menuIndex]; itemIndex++) {
 
-      // Open the submenu
+        // Open the submenu
         await menuitems[menuIndex].sendKeys(Key.ENTER);
 
         const items = await t.context.session.findElements(By.css(ex.allSubmenuItems[menuIndex]));
@@ -1048,13 +1046,13 @@ ariaTest('Character sends to menubar changes focus in menubar',
     const menuitems = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
     for (let menuIndex = 0; menuIndex < ex.numMenus; menuIndex++) {
 
-    // Open the dropdown
+      // Open the dropdown
       await menuitems[menuIndex].sendKeys(Key.ARROW_DOWN);
       const items = await t.context.session.findElements(By.css(ex.allSubmenuItems[menuIndex]));
 
       for (let test of charIndexTest[menuIndex]) {
 
-      // Send character to menuitem
+        // Send character to menuitem
         const itemText = await items[test.sendIndex].getText();
         await items[test.sendIndex].sendKeys(test.sendChar);
 

@@ -708,7 +708,7 @@ ariaTest.failing('ENTER actives interactive items item', exampleFile, 'key-enter
 
   await t.context.session.findElement(By.css(selector)).sendKeys(Key.ENTER);
 
-  // Test the the URL is updated.
+  // Test that the URL is updated.
   t.is(
     await t.context.session.getCurrentUrl(),
     newUrl,
