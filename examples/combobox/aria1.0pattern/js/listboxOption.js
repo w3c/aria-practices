@@ -2,7 +2,7 @@
 *   This content is licensed according to the W3C Software License at
 *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
 */
-var Option = function (domNode, listboxObj) {
+var ListboxOption = function (domNode, listboxObj) {
 
   this.domNode = domNode;
   this.listbox = listboxObj;
@@ -11,7 +11,7 @@ var Option = function (domNode, listboxObj) {
 
 };
 
-Option.prototype.init = function () {
+ListboxOption.prototype.init = function () {
 
   if (!this.domNode.getAttribute('role')) {
     this.domNode.setAttribute('role', 'option');
@@ -25,18 +25,18 @@ Option.prototype.init = function () {
 
 /* EVENT HANDLERS */
 
-Option.prototype.handleClick = function (event) {
+ListboxOption.prototype.handleClick = function (event) {
   this.listbox.setOption(this);
   this.listbox.close(true);
 };
 
-Option.prototype.handleMouseover = function (event) {
+ListboxOption.prototype.handleMouseover = function (event) {
   this.listbox.hasHover = true;
   this.listbox.open();
 
 };
 
-Option.prototype.handleMouseout = function (event) {
+ListboxOption.prototype.handleMouseout = function (event) {
   this.listbox.hasHover = false;
   setTimeout(this.listbox.close.bind(this.listbox, false), 300);
 };
