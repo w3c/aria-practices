@@ -1,22 +1,22 @@
 .annotate {
-  font-style: italic;
   color: #366ed4;
+  font-style: italic;
 }
 
 .listbox-area {
   padding: 20px;
-  background: #eee;
   border: 1px solid #aaa;
   font-size: 0;
+  background: #eee;
 }
 
 .left-area,
 .right-area {
-  box-sizing: border-box;
   display: inline-block;
+  width: 50%;
+  box-sizing: border-box;
   font-size: 14px;
   vertical-align: top;
-  width: 50%;
 }
 
 .left-area {
@@ -28,30 +28,30 @@
 }
 
 [role="listbox"] {
-  min-height: 18em;
   padding: 0;
-  background: white;
+  min-height: 18em;
   border: 1px solid #aaa;
+  background: white;
 }
 
 [role="group"] {
-  padding: 0;
   margin: 0;
+  padding: 0;
 }
 
 [role="group"] > [role="presentation"] {
-  background-color: #ccc;
   display: block;
-  padding: 0 0.5em;
   margin: 0;
+  padding: 0 0.5em;
   font-weight: bold;
   line-height: 2;
+  background-color: #ccc;
 }
 
 [role="option"] {
+  position: relative;
   display: block;
   padding: 0 1em 0 1.5em;
-  position: relative;
   line-height: 1.8em;
 }
 
@@ -60,9 +60,9 @@
 }
 
 [role="option"][aria-selected="true"]::before {
-  content: '✓';
   position: absolute;
   left: 0.5em;
+  content: "✓";
 }
 
 button {
@@ -74,84 +74,84 @@ button[aria-disabled="true"] {
 }
 
 .move-right-btn {
-  padding-right: 20px;
   position: relative;
+  padding-right: 20px;
 }
 
 .move-right-btn::after {
-  content: ' ';
-  height: 10px;
-  width: 12px;
-  background-image: url('../imgs/Arrows-Right-icon.png');
-  background-position: center right;
   position: absolute;
-  right: 2px;
   top: 6px;
+  right: 2px;
+  width: 12px;
+  height: 10px;
+  content: "";
+  background-image: url("../imgs/Arrows-Right-icon.png");
+  background-position: center right;
 }
 
 .move-left-btn {
-  padding-left: 20px;
   position: relative;
+  padding-left: 20px;
 }
 
 .move-left-btn::after {
-  content: ' ';
-  height: 10px;
-  width: 12px;
-  background-image: url('../imgs/Arrows-Left-icon.png');
-  background-position: center left;
   position: absolute;
   left: 2px;
   top: 6px;
+  width: 12px;
+  height: 10px;
+  content: "";
+  background-image: url("../imgs/Arrows-Left-icon.png");
+  background-position: center left;
 }
 
 #ss_elem_list {
+  position: relative;
   max-height: 18em;
   overflow-y: auto;
-  position: relative;
 }
 
 #exp_button {
+  position: relative;
+  padding: 5px 10px;
+  width: 150px;
   border-radius: 0;
   font-size: 16px;
   text-align: left;
-  padding: 5px 10px;
-  width: 150px;
-  position: relative;
 }
 
 #exp_button::after {
-  width: 0;
-  height: 0;
-  border-left: 8px solid transparent;
-  border-right: 8px solid transparent;
-  border-top: 8px solid #aaa;
-  content: " ";
   position: absolute;
   right: 5px;
   top: 10px;
+  width: 0;
+  height: 0;
+  border-top: 8px solid #aaa;
+  border-right: 8px solid transparent;
+  border-left: 8px solid transparent;
+  content: "";
 }
 
 #exp_button[aria-expanded="true"]::after {
-  width: 0;
-  height: 0;
-  border-left: 8px solid transparent;
-  border-right: 8px solid transparent;
-  border-top: 0;
-  border-bottom: 8px solid #aaa;
-  content: " ";
   position: absolute;
   right: 5px;
   top: 10px;
+  width: 0;
+  height: 0;
+  border-top: 0;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid #aaa;
+  border-left: 8px solid transparent;
+  content: " ";
 }
 
 #exp_elem_list {
-  border-top: 0;
-  max-height: 10em;
-  overflow-y: auto;
   position: absolute;
   margin: 0;
   width: 148px;
+  max-height: 10em;
+  border-top: 0;
+  overflow-y: auto;
 }
 
 .hidden {
@@ -172,12 +172,12 @@ button[aria-disabled="true"] {
 }
 
 .offscreen {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
   clip: rect(1px 1px 1px 1px);
   clip: rect(1px, 1px, 1px, 1px);
   font-size: 14px;
-  height: 1px;
-  overflow: hidden;
-  position: absolute;
   white-space: nowrap;
-  width: 1px;
 }
