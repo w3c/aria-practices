@@ -1,33 +1,15 @@
-.annotate {
-  color: #366ed4;
-  font-style: italic;
-}
-
 .listbox-area {
+  display: grid;
+  grid-gap: 2em;
+  grid-template-columns: repeat(2, 1fr);
   padding: 20px;
   border: 1px solid #aaa;
-  font-size: 0;
+  border-radius: 4px;
   background: #eee;
 }
 
-.left-area,
-.right-area {
-  display: inline-block;
-  width: 50%;
-  box-sizing: border-box;
-  font-size: 14px;
-  vertical-align: top;
-}
-
-.left-area {
-  padding-right: 10px;
-}
-
-.right-area {
-  padding-left: 10px;
-}
-
 [role="listbox"] {
+  margin: 1em 0;
   padding: 0;
   min-height: 18em;
   border: 1px solid #aaa;
@@ -66,7 +48,7 @@
 }
 
 button {
-  font-size: 16px;
+  font-size: inherit;
 }
 
 button[aria-disabled="true"] {
@@ -154,21 +136,26 @@ button[aria-disabled="true"] {
   overflow-y: auto;
 }
 
-.hidden {
-  display: none;
+[role="toolbar"] {
+  display: flex;
 }
 
-.toolbar {
-  font-size: 0;
-}
-
-.toolbar-item {
+[role="toolbar"] > * {
   border: 1px solid #aaa;
   background: #ccc;
 }
 
-.toolbar-item[aria-disabled="false"]:focus {
+[role="toolbar"] > [aria-disabled="false"]:focus {
   background-color: #eee;
+}
+
+.annotate {
+  color: #366ed4;
+  font-style: italic;
+}
+
+.hidden {
+  display: none;
 }
 
 .offscreen {
