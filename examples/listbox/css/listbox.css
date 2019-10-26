@@ -16,6 +16,12 @@
   background: white;
 }
 
+[role="listbox"]#ss_elem_list {
+  position: relative;
+  max-height: 18em;
+  overflow-y: auto;
+}
+
 [role="listbox"] + *,
 .listbox-label + * {
   margin-top: 1em;
@@ -52,34 +58,11 @@
   content: "✓";
 }
 
-button {
-  font-size: inherit;
-}
-
-button[aria-disabled="true"] {
-  opacity: 0.5;
-}
-
-.move-right-btn::after {
-  content: " →";
-}
-
-.move-left-btn::before {
-  content: "← ";
-}
-
-#ss_elem_list {
-  position: relative;
-  max-height: 18em;
-  overflow-y: auto;
-}
-
 button[aria-haspopup="listbox"] {
   position: relative;
   padding: 5px 10px;
   width: 150px;
   border-radius: 0;
-  font-size: 16px;
   text-align: left;
 }
 
@@ -127,6 +110,22 @@ button[aria-haspopup="listbox"] + [role="listbox"] {
 
 [role="toolbar"] > [aria-disabled="false"]:focus {
   background-color: #eee;
+}
+
+button {
+  font-size: inherit;
+}
+
+button[aria-disabled="true"] {
+  opacity: 0.5;
+}
+
+.move-right-btn::after {
+  content: " →";
+}
+
+.move-left-btn::before {
+  content: "← ";
 }
 
 .annotate {
