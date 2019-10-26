@@ -9,11 +9,16 @@
 }
 
 [role="listbox"] {
-  margin: 1em 0;
+  margin: 1em 0 0;
   padding: 0;
   min-height: 18em;
   border: 1px solid #aaa;
   background: white;
+}
+
+[role="listbox"] + *,
+.listbox-label + * {
+  margin-top: 1em;
 }
 
 [role="group"] {
@@ -55,36 +60,12 @@ button[aria-disabled="true"] {
   opacity: 0.5;
 }
 
-.move-right-btn {
-  position: relative;
-  padding-right: 20px;
-}
-
 .move-right-btn::after {
-  position: absolute;
-  top: 6px;
-  right: 2px;
-  width: 12px;
-  height: 10px;
-  content: "";
-  background-image: url("../imgs/Arrows-Right-icon.png");
-  background-position: center right;
+  content: " →";
 }
 
-.move-left-btn {
-  position: relative;
-  padding-left: 20px;
-}
-
-.move-left-btn::after {
-  position: absolute;
-  left: 2px;
-  top: 6px;
-  width: 12px;
-  height: 10px;
-  content: "";
-  background-image: url("../imgs/Arrows-Left-icon.png");
-  background-position: center left;
+.move-left-btn::before {
+  content: "← ";
 }
 
 #ss_elem_list {
@@ -93,7 +74,7 @@ button[aria-disabled="true"] {
   overflow-y: auto;
 }
 
-#exp_button {
+button[aria-haspopup="listbox"] {
   position: relative;
   padding: 5px 10px;
   width: 150px;
@@ -102,35 +83,34 @@ button[aria-disabled="true"] {
   text-align: left;
 }
 
-#exp_button::after {
+button[aria-haspopup="listbox"]::after {
   position: absolute;
   right: 5px;
   top: 10px;
   width: 0;
   height: 0;
-  border-top: 8px solid #aaa;
-  border-right: 8px solid transparent;
-  border-left: 8px solid transparent;
+  border: 8px solid transparent;
+  border-top-color: currentColor;
+  border-bottom: 0;
   content: "";
 }
 
-#exp_button[aria-expanded="true"]::after {
+button[aria-haspopup="listbox"][aria-expanded="true"]::after {
   position: absolute;
   right: 5px;
   top: 10px;
   width: 0;
   height: 0;
+  border: 8px solid transparent;
   border-top: 0;
-  border-right: 8px solid transparent;
-  border-bottom: 8px solid #aaa;
-  border-left: 8px solid transparent;
-  content: " ";
+  border-bottom-color: currentColor;
+  content: "";
 }
 
-#exp_elem_list {
+button[aria-haspopup="listbox"] + [role="listbox"] {
   position: absolute;
   margin: 0;
-  width: 148px;
+  width: 9.5em;
   max-height: 10em;
   border-top: 0;
   overflow-y: auto;
