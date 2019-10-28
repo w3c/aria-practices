@@ -4236,6 +4236,16 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
               </td>
             </tr>
             <tr>
+              <td><a href="#blockquote" class="role-reference"><code>blockquote</code></a></td>
+              <td>Discretionary</td>
+              <td>
+                <ul>
+                  <li>Naming is optional, but can potentially help screen reader users understand the context and purpose of the quote.</li>
+                  <li>Named using <code>aria-labelledby</code> if a visible label is present, otherwise with <code>aria-label</code>.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
               <td><a href="#button" class="role-reference"><code>button</code></a></td>
               <td>Required <strong>Only If</strong> Content Insufficient</td>
               <td>
@@ -4589,6 +4599,17 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
               </td>
             </tr>
             <tr>
+              <td><a href="#meter" class="role-reference"><code>meter</code></a></td>
+              <td>Required</td>
+              <td>
+                <ul>
+                  <li>If the <code>meter</code> role is applied to an HTML <code>meter</code> element, can be named with an HTML <code>label</code> element.</li>
+                  <li>Otherwise use <code>aria-labelledby</code> if a visible label is present.</li>
+                  <li>Use <code>aria-label</code> if a visible label is not present.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
               <td><a href="#navigation" class="role-reference"><code>navigation</code></a></td>
               <td>Recommended</td>
               <td>
@@ -4866,6 +4887,16 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
                   <li>If the <code>textbox</code> role is applied to an HTML <code>input</code> or <code>textarea</code> element, can be named with an HTML <code>label</code> element.</li>
                   <li>Otherwise use <code>aria-labelledby</code> if a visible label is present.</li>
                   <li>Use <code>aria-label</code> if a visible label is not present.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td><a href="#blockquote" class="role-reference"><code>time</code></a></td>
+              <td>Discretionary</td>
+              <td>
+                <ul>
+                  <li>Naming is optional, but can potentially help screen reader users understand the context and purpose of the given specific point in time.</li>
+                  <li>Named using <code>aria-labelledby</code> if a visible label is present, otherwise with <code>aria-label</code>.</li>
                 </ul>
               </td>
             </tr>
@@ -6464,6 +6495,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
       <li>button</li>
       <li>checkbox</li>
       <li>img</li>
+      <li>meter</li>
       <li>math</li>
       <li>menuitemcheckbox</li>
       <li>menuitemradio</li>
