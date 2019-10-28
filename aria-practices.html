@@ -6818,9 +6818,8 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
     <ul>
       <li><code>heading</code></li>
       <li><code>listitem</code></li>
+      <li><code>treeitem</code></li>
       <li><code>row</code></li>
-      <li><code>tablist</code> (not recommended)</li>
-      <li><code>grid</code> (not recommended)</li>
     </ul>
     <section id="aria-level_heading_role">
       <h3><code>heading</code> Role</h3>
@@ -6920,11 +6919,6 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
 &lt;/table&gt;
 </code></pre>
       <p>Do not use <code>aria-level</code> on rows that are in a <code>grid</code> or a <code>table</code> because only rows in a <code>treegrid</code> table are expected to have a hierarchical relationship.</p>
-    </section>
-
-    <section id="aria-level_grid_role">
-      <h3><code>grid</code> Role</h3>
-      <p>The attribute <code>aria-level</code> can be used on elements with role <code>grid</code> to represent nested grids but it is not recommended.</p>
     </section>
   </section>
 
