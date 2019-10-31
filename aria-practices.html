@@ -4239,10 +4239,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
               <td><a href="#blockquote" class="role-reference"><code>blockquote</code></a></td>
               <td>Discretionary</td>
               <td>
-                <ul>
-                  <li>Naming is optional, but can potentially help screen reader users understand the context and purpose of the quote.</li>
-                  <li>Named using <code>aria-labelledby</code> if a visible label is present, otherwise with <code>aria-label</code>.</li>
-                </ul>
+                If a visible label is present, associating it with the blockquote by using <code>aria-labelledby</code> could benefit some assistive technology users.
               </td>
             </tr>
             <tr>
@@ -4892,13 +4889,8 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
             </tr>
             <tr>
               <td><a href="#time" class="role-reference"><code>time</code></a></td>
-              <td>Discretionary</td>
-              <td>
-                <ul>
-                  <li>Naming is optional, but can potentially help screen reader users understand the context and purpose of the given specific point in time.</li>
-                  <li>Named using <code>aria-labelledby</code> if a visible label is present, otherwise with <code>aria-label</code>.</li>
-                </ul>
-              </td>
+              <td>Do Not Name</td>
+              <td>Not supported by assistive technologies.</td>
             </tr>
             <tr>
               <td><a href="#timer" class="role-reference"><code>timer</code></a></td>
