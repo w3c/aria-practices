@@ -1,10 +1,3 @@
-Issue for this section: https://github.com/w3c/aria-practices/issues/254
-
-Related issues:
-https://github.com/w3c/aria/issues/1008
-https://github.com/w3c/aria/issues/681#issuecomment-506703445
-
-
 ## Communicating Widget States
 
 ARIA can represent several different widgets, and these widgets can have different states,
@@ -14,15 +7,6 @@ HTML also has built-in widgets and similar states.
 When using HTML widgets that have built-in ways to represent these states,
 do not use ARIA states.
 Only use the HTML attributes.
-
-For example, the `textarea` element can be marked as read-only using the `readonly` attribute.
-
-```
-<label>
- Address
- <textarea readonly></textaera>
-</label>
-```
 
 This section covers what ARIA's widget states are,
 which roles support each state,
@@ -200,21 +184,68 @@ TODO
 
 ### `aria-disabled`
 
-TODO
+The `aria-disabled` state indicates that an element is disabled,
+so it is not editable or operable.
+
+Usually, disabled elements are not focusable,
+including descendants of the element.
+
+Use CSS to change the appearance of disabled controls,
+so that it is clear for visual users that the element is disabled.
+
+The `aria-disabled` state is supported on the following roles:
+
+* `application`
+* `button`
+* `composite` (including subclass roles `grid`, `combobox`, `listbox`, `menu`, `menubar`, `radiogroup`, `select`, `tablist`, `tree`, `treegrid`)
+* `gridcell` (including subclass roles `columnheader` and `rowheader`)
+* `group` (including subclass roles `row`, `toolbar`)
+* `input` (including subclass roles `checkbox`, `menuitemcheckbox`, `menuitemradio`, `option`, `radio`, `searchbox`, `slider`, `spinbutton`, `switch`, `textbox`, `treeitem`)
+* `link`
+* `menuitem`
+* `scrollbar`
+* `separator`
+* `tab`
+
+In HTML, most built-in widgets can be disabled by using the `disabled` attribute.
+There is no need to also use `aria-disabled` in such cases.
+
+See the following design patterns for examples:
+
+* [Accordion (Sections With Show/Hide Functionality)](#accordion)
+* [Menu or Menu bar](#menu)
+* [Toolbar](#toolbar)
 
 ### `aria-readonly`
 
+The `aria-readonly` state indicates whether an element allows its value to be changed.
 
-HTML equivalents:
+* `true`: the element does not allow its value to be changed, but is otherwise operable.
+* `false`: the element allows the value to be changed.
+
+The `aria-readonly` attribute is supported for these roles:
+
+* `checkbox` (including the subclass roles `menuitemcheckbox` and `switch`)
+* `combobox`
+* `grid` (including the subclass role `treegrid`)
+* `gridcell` (including the subclass roles `columnheader` and `rowheader`)
+* `listbox`
+* `radiogroup`
+* `slider`
+* `spinbutton`
+* `textbox` (including the subclass roles `searchbox`)
+* `menuitemradio`
+
+When an element is readonly, it should still be focusable and allow text selection,
+only not allow editing or otherwise changing the value or state of the element.
+
+HTML has the `readonly` attribute for the `input` and `textarea` elements.
+When using those elements, use the `readonly` attribute instead of `aria-readonly`.
+For example:
 
 ```
-<input readonly>
-<input disabled>
-<input type=checkbox checked>
-<input type=checkbox>.indeterminate = true; <-> aria-checked = undefined
-```
-
-Push button can be implemented as:
-```
-<button> + aria-pressed, -webkit-appearance: none; for easier styling
+<label>
+ Address
+ <textarea readonly></textaera>
+</label>
 ```
