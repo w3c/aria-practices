@@ -24,8 +24,9 @@ For example, the `textarea` element can be marked as read-only using the `readon
 </label>
 ```
 
-This section covers what these states are,
-how the ARIA states map to HTML's built-in widgets' states,
+This section covers what ARIA's widget states are,
+which roles support each state,
+how the ARIA states map to HTML's built-in widget states,
 and how to use them.
 
 ### `aria-selected`
@@ -101,6 +102,16 @@ to indicate which tab is active in a tab panel.
 
 See the [Tabs](#tabpanel) design pattern for examples.
 
+#### HTML elements that support selection
+
+The HTML `select` element allows selection of either a single item
+or multiple items, depending on the attributes on the `select` element.
+
+Default selection can be specified with the `selected` attribute on the `option` element.
+
+The user can change the selection, but this is not represented with any attributes.
+Instead, there are DOM APIs to read and mutate the selection state from script.
+
 ### `aria-checked`
 
 The `aria-checked` attribute indicates whether the element is checked.
@@ -132,6 +143,8 @@ A checkbox can support a third `mixed` state.
 For example, if there is a group of checkboxes and one checkbox allows checking or unchecking the entire group,
 that checkbox can be in the `mixed` state if the group of checkboxes have some checked and some unchecked.
 
+See the [Checkbox](#checkbox) design pattern for examples.
+
 #### `option`
 
 The `option` role and the subclass `treeitem` role support `aria-checked`, but require the `aria-selected` state.
@@ -140,15 +153,46 @@ See the previous section on `aria-selected` for examples of when it can be appro
 
 #### `radio`
 
-`aria-checked` is a required state for the `radio` and `menuitemradio` roles. TODO
+`aria-checked` is a required state for the `radio` and `menuitemradio` roles.
+
+A radio button usually participates in a group of radio buttons,
+where checking one radio button unchecks the other radio buttons in the group.
+
+Use `aria-checked="true"` on the radio button that is checked,
+and `aria-checked="false"` on the other radio buttons in the group.
+
+See the [Radio Group](#radiobutton) design pattern for examples.
 
 #### `switch`
 
-TODO
+A switch control is similar to a checkbox.
+It does not support the `mixed` state,
+and it is said to be "on" or "off" rather than "checked" or "unchecked".
+However, the `aria-checked` attribute is still used to indicate its state.
+
+Use `aria-checked="true"` to indicate that the switch is on.
+Use `aria-checked="false"` to indicate that the switch is off.
+
+HTML does not (yet) have a native switch control.
 
 ### `aria-pressed`
 
-The `button` role TODO
+The `button` role can represent a toggle button by using the `aria-pressed` attribute.
+When the `aria-pressed` attribute is present and has a non-empty value,
+the button is a toggle button.
+A toggle button is a two-state button, either pressed or unpressed.
+
+The `true` value indicates that the button is pressed, and
+the `false` value indicates that the button is unpressed.
+
+HTML does not have a native way to represent toggle buttons,
+but `aria-pressed` can be used with the HTML `button` element.
+
+```html
+<button aria-pressed="false">Mute</button>
+```
+
+See the [Button](#button) design pattern for examples.
 
 ### `aria-expanded`
 
