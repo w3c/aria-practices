@@ -3,9 +3,6 @@ language: node_js
 node_js:
   - "lts/*"
 
-addons:
-  firefox: "60.0.2"
-
 git:
   depth: 3
 
@@ -31,6 +28,8 @@ jobs:
 
     - stage: Test
       name: AVA Regression Tests
+      addons:
+        firefox: latest
       script: scripts/regression-tests.sh
       env: TEST_WAIT_TIME=1000
     - stage: Test
