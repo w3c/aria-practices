@@ -6812,7 +6812,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
   
   <section id="aria-level">
     <h2>Describing Hierarchical Structure with <code>aria-level</code></h2>
-    <p>When elements have a hierarchical relationship, such as headers of sections or data in tree structures, <code>aria-level</code> is used to communicate the hierarchy between elements to assistive technologies. The value of <code>aria-level</code> is numeric, with <code>1</code> indicating the top level of the structure. The number increases for each level of nesting.</p>
+    <p>When elements have a hierarchical relationship, such as section headings or data in tree structures, <code>aria-level</code> is used to communicate the hierarchy between elements to assistive technologies. The value of <code>aria-level</code> is numeric, with <code>1</code> indicating the top level of the structure. The number increases for each level of nesting.</p>
     <p>Do not use <code>aria-level</code> when the DOM structure already accurately represents the elements' hierarchical relationships. For example, a nested <code>ul</code> list structure does not need explicit <code>aria-level</code>.</p>
     <p>The <code>aria-level</code> attribute can be used on the following roles:</p>
     <ul>
@@ -6826,29 +6826,25 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
       <p>Used together, the <code>aria-level</code> attribute and <code>heading</code> role will be treated the same by assistive technologies as the native HTML heading elements: <code>h1</code>, <code>h2</code>, <code>h3</code>, <code>h4</code>, <code>h5</code> and <code>h6</code>. Do not use the <code>aria-level</code> attribute and the <code>heading</code> role when a native HTML element can be used.</p>
       <p>This example uses the <code>heading</code> role and <code>aria-level</code> attribute to communicate levels of headings for a graph created with an SVG. The headings "Deciduous Trees" and "Evergreen Trees" are both subheadings to "Total Trees".</p>
       <pre><code>&lt;svg width="1000" height="1000"&gt;
-  &lt;text x="10" y="10" role="header" aria-level="1"&gt;Total Trees:&lt;/text&gt;
-  &lt;text x="10" y="100" role="header" aria-level="2"&gt;Deciduous Trees:&lt;/text&gt;
-  &lt;text x="10" y="200" role="header" aria-level="2"&gt;Evergreen Trees:&lt;/text&gt;
+  &lt;text x="10" y="10" role="heading" aria-level="1"&gt;Total Trees:&lt;/text&gt;
+  &lt;text x="10" y="100" role="heading" aria-level="2"&gt;Deciduous Trees:&lt;/text&gt;
+  &lt;text x="10" y="200" role="heading" aria-level="2"&gt;Evergreen Trees:&lt;/text&gt;
   ...
 &lt;/svg&gt;
 </code></pre>
 
       <section id="aria-level_heading_role_remediation">
         <h4>Remediation Uses Cases</h4>
-        <p>In rare scenarios, legacy code cannot be converted to using HTML header elements. In these cases, the <code>aria-level</code> attribute and the <code>heading</code> role can be added to the web site's heading elements to communicate to assistive technologies that those elements should be treated like a native HTML section heading element.</p>
+        <p>In rare scenarios, legacy code cannot be converted to using HTML heading elements. In these cases, the <code>aria-level</code> attribute and the <code>heading</code> role can be added to the web site's heading elements to communicate to assistive technologies that those elements should be treated like a native HTML section heading element.</p>
         <p>For example, "Definition of a Room" is a subsection of "Housing Specification":</p>
-        <pre><code>&lt;div role="heading" aria-level="1" class="header-big"&gt;Housing Specification&lt;/div&gt;
-&lt;div role="section" aria-labelledby="room-definition"&gt;
-  &lt;div role="heading" aria-level="2" id="room-definition" class="header-small"&gt;Definition of a Room&lt;/div&gt;
-  ...
-&lt;/div&gt;
+        <pre><code>&lt;div role="heading" aria-level="1" class="heading-big"&gt;Housing Specification&lt;/div&gt;
+&lt;div role="heading" aria-level="2" id="room-definition" class="heading-small"&gt;Definition of a Room&lt;/div&gt;
+...
 </code></pre>
         <p>Equivalent (and preferred) HTML:</p>
         <pre><code>&lt;h1&gt;Housing Specification&lt;/h1&gt;
-&lt;section aria-labelledby="room-definition"&gt;
-  &lt;h2 id="room-definition"&gt;Definition of a Room&lt;/h2&gt;
-  ...
-&lt;/section&gt;
+&lt;h2 id="room-definition"&gt;Definition of a Room&lt;/h2&gt;
+...
 </code></pre>
       </section>
     </section>
