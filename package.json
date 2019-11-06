@@ -30,15 +30,15 @@
   "homepage": "https://github.com/w3c/aria-practices#readme",
   "devDependencies": {
     "ava": "^0.25.0",
-    "cheerio": "^1.0.0-rc.2",
+    "cheerio": "^1.0.0-rc.3",
     "eslint": "^4.19.1",
-    "geckodriver": "^1.11.0",
+    "geckodriver": "^1.19.1",
     "husky": "^1.2.0",
-    "lint-staged": "^8.1.0",
-    "selenium-webdriver": "^4.0.0-alpha.1",
+    "lint-staged": "^8.2.1",
+    "selenium-webdriver": "^4.0.0-alpha.5",
     "stylelint": "^9.8.0",
-    "stylelint-config-standard": "^18.2.0",
-    "vnu-jar": "^18.7.23"
+    "stylelint-config-standard": "^18.3.0",
+    "vnu-jar": "^18.12.18"
   },
   "husky": {
     "hooks": {
@@ -54,5 +54,8 @@
       "eslint --fix",
       "git add"
     ]
+  },
+  "dependencies": {
+    "npm": "^6.13.0"
   }
 }

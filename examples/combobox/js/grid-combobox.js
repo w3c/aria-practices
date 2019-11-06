@@ -21,12 +21,10 @@
  *  array of results.
  */
 aria.GridCombobox = function (
-  comboboxNode,
   input,
   grid,
   searchFn
 ) {
-  this.combobox = comboboxNode;
   this.input = input;
   this.grid = grid;
   this.searchFn = searchFn;
@@ -42,14 +40,21 @@ aria.GridCombobox = function (
 };
 
 aria.GridCombobox.prototype.setupEvents = function () {
-  document.body.addEventListener('click', this.checkHide.bind(this));
-  this.input.addEventListener('keyup', this.checkKey.bind(this));
-  this.input.addEventListener('keydown', this.setActiveItem.bind(this));
-  this.input.addEventListener('focus', this.checkShow.bind(this));
-  this.grid.addEventListener('click', this.clickItem.bind(this));
+  document.body.addEventListener('click', this.handleBodyClick.bind(this));
+  this.input.addEventListener('keyup', this.handleInputKeyUp.bind(this));
+  this.input.addEventListener('keydown', this.handleInputKeyDown.bind(this));
+  this.input.addEventListener('focus', this.handleInputFocus.bind(this));
+  this.grid.addEventListener('click', this.handleGridClick.bind(this));
 };
 
-aria.GridCombobox.prototype.checkKey = function (evt) {
+aria.GridCombobox.prototype.handleBodyClick = function (evt) {
+  if (evt.target === this.input || this.grid.contains(evt.target)) {
+    return;
+  }
+  this.hideResults();
+};
+
+aria.GridCombobox.prototype.handleInputKeyUp = function (evt) {
   var key = evt.which || evt.keyCode;
 
   switch (key) {
@@ -71,67 +76,8 @@ aria.GridCombobox.prototype.checkKey = function (evt) {
   }
 };
 
-aria.GridCombobox.prototype.updateResults = function () {
-  var searchString = this.input.value;
-  var results = this.searchFn(searchString);
 
-  this.hideResults();
-
-  if (!searchString) {
-    results = [];
-  }
-
-  if (results.length) {
-    for (var row = 0; row < results.length; row++) {
-      var resultRow = document.createElement('div');
-      resultRow.className = 'result-row';
-      resultRow.setAttribute('role', 'row');
-      resultRow.setAttribute('id', 'result-row-' + row);
-      for (var col = 0; col < results[row].length; col++) {
-        var resultCell = document.createElement('div');
-        resultCell.className = 'result-cell';
-        resultCell.setAttribute('role', 'gridcell');
-        resultCell.setAttribute('id', 'result-item-' + row + 'x' + col);
-        resultCell.innerText = results[row][col];
-        resultRow.appendChild(resultCell);
-      }
-      this.grid.appendChild(resultRow);
-    }
-    aria.Utils.removeClass(this.grid, 'hidden');
-    this.combobox.setAttribute('aria-expanded', 'true');
-    this.rowsCount = results.length;
-    this.colsCount = results.length ? results[0].length : 0;
-    this.shown = true;
-  }
-};
-
-aria.GridCombobox.prototype.getRowIndex = function (key) {
-  var activeRowIndex = this.activeRowIndex;
-
-  switch (key) {
-    case aria.KeyCode.UP:
-    case aria.KeyCode.LEFT:
-      if (activeRowIndex <= 0) {
-        activeRowIndex = this.rowsCount - 1;
-      }
-      else {
-        activeRowIndex--;
-      }
-      break;
-    case aria.KeyCode.DOWN:
-    case aria.KeyCode.RIGHT:
-      if (activeRowIndex === -1 || activeRowIndex >= this.rowsCount - 1) {
-        activeRowIndex = 0;
-      }
-      else {
-        activeRowIndex++;
-      }
-  }
-
-  return activeRowIndex;
-};
-
-aria.GridCombobox.prototype.setActiveItem = function (evt) {
+aria.GridCombobox.prototype.handleInputKeyDown = function (evt) {
   var key = evt.which || evt.keyCode;
   var activeRowIndex = this.activeRowIndex;
   var activeColIndex = this.activeColIndex;
@@ -238,11 +184,11 @@ aria.GridCombobox.prototype.setActiveItem = function (evt) {
   }
 };
 
-aria.GridCombobox.prototype.getItemAt = function (rowIndex, colIndex) {
-  return document.getElementById('result-item-' + rowIndex + 'x' + colIndex);
+aria.GridCombobox.prototype.handleInputFocus = function (evt) {
+  this.updateResults();
 };
 
-aria.GridCombobox.prototype.clickItem = function (evt) {
+aria.GridCombobox.prototype.handleGridClick = function (evt) {
   if (!evt.target) {
     return;
   }
@@ -262,22 +208,77 @@ aria.GridCombobox.prototype.clickItem = function (evt) {
   this.selectItem(selectItem);
 };
 
+aria.GridCombobox.prototype.updateResults = function () {
+  var searchString = this.input.value;
+  var results = this.searchFn(searchString);
+
+  this.hideResults();
+
+  if (!searchString) {
+    results = [];
+  }
+
+  if (results.length) {
+    for (var row = 0; row < results.length; row++) {
+      var resultRow = document.createElement('div');
+      resultRow.className = 'result-row';
+      resultRow.setAttribute('role', 'row');
+      resultRow.setAttribute('id', 'result-row-' + row);
+      for (var col = 0; col < results[row].length; col++) {
+        var resultCell = document.createElement('div');
+        resultCell.className = 'result-cell';
+        resultCell.setAttribute('role', 'gridcell');
+        resultCell.setAttribute('id', 'result-item-' + row + 'x' + col);
+        resultCell.innerText = results[row][col];
+        resultRow.appendChild(resultCell);
+      }
+      this.grid.appendChild(resultRow);
+    }
+    aria.Utils.removeClass(this.grid, 'hidden');
+    this.input.setAttribute('aria-expanded', 'true');
+    this.rowsCount = results.length;
+    this.colsCount = results.length ? results[0].length : 0;
+    this.shown = true;
+  }
+};
+
+aria.GridCombobox.prototype.getRowIndex = function (key) {
+  var activeRowIndex = this.activeRowIndex;
+
+  switch (key) {
+    case aria.KeyCode.UP:
+    case aria.KeyCode.LEFT:
+      if (activeRowIndex <= 0) {
+        activeRowIndex = this.rowsCount - 1;
+      }
+      else {
+        activeRowIndex--;
+      }
+      break;
+    case aria.KeyCode.DOWN:
+    case aria.KeyCode.RIGHT:
+      if (activeRowIndex === -1 || activeRowIndex >= this.rowsCount - 1) {
+        activeRowIndex = 0;
+      }
+      else {
+        activeRowIndex++;
+      }
+  }
+
+  return activeRowIndex;
+};
+
+
+aria.GridCombobox.prototype.getItemAt = function (rowIndex, colIndex) {
+  return document.getElementById('result-item-' + rowIndex + 'x' + colIndex);
+};
+
+
 aria.GridCombobox.prototype.selectItem = function (item) {
   if (item) {
     this.input.value = item.innerText;
     this.hideResults();
   }
-};
-
-aria.GridCombobox.prototype.checkShow = function (evt) {
-  this.updateResults();
-};
-
-aria.GridCombobox.prototype.checkHide = function (evt) {
-  if (evt.target === this.input || this.combobox.contains(evt.target)) {
-    return;
-  }
-  this.hideResults();
 };
 
 aria.GridCombobox.prototype.hideResults = function () {
@@ -287,7 +288,7 @@ aria.GridCombobox.prototype.hideResults = function () {
   this.activeColIndex = 0;
   this.grid.innerHTML = '';
   aria.Utils.addClass(this.grid, 'hidden');
-  this.combobox.setAttribute('aria-expanded', 'false');
+  this.input.setAttribute('aria-expanded', 'false');
   this.rowsCount = 0;
   this.colsCount = 0;
   this.input.setAttribute(
