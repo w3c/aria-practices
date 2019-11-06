@@ -4277,6 +4277,13 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
               </td>
             </tr>
             <tr>
+              <td><a href="#blockquote" class="role-reference"><code>blockquote</code></a></td>
+              <td>Discretionary</td>
+              <td>
+                If a visible label is present, associating it with the blockquote by using <code>aria-labelledby</code> could benefit some assistive technology users.
+              </td>
+            </tr>
+            <tr>
               <td><a href="#button" class="role-reference"><code>button</code></a></td>
               <td>Required <strong>Only If</strong> Content Insufficient</td>
               <td>
@@ -4530,7 +4537,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
             <tr>
               <td><a href="#listitem" class="role-reference"><code>listitem</code></a></td>
               <td>Do Not Name</td>
-              <td>Not supported by assistive technologies; it is necessary to include relevant content within the list item.</td>
+              <td>Naming is not supported by assistive technologies; it is necessary to include relevant content within the list item.</td>
             </tr>
             <tr>
               <td><a href="#log" class="role-reference"><code>log</code></a></td>
@@ -4626,6 +4633,17 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
                   <li>Warning! Using <code>aria-label</code> or <code>aria-labelledby</code> will hide any descendant content from assistive technologies.</li>
                   <li>Ideally named by visible, descendant content.</li>
                   <li>See the <a href="#menu">Menu or Menu bar Design Pattern</a>.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td><a href="#meter" class="role-reference"><code>meter</code></a></td>
+              <td>Required</td>
+              <td>
+                <ul>
+                  <li>If based on an HTML <code>meter</code> element, can be named with an HTML <code>label</code> element.</li>
+                  <li>Otherwise use <code>aria-labelledby</code> if a visible label is present.</li>
+                  <li>Use <code>aria-label</code> if a visible label is not present.</li>
                 </ul>
               </td>
             </tr>
@@ -4736,7 +4754,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
             <tr>
               <td><a href="#rowgroup" class="role-reference"><code>rowgroup</code></a></td>
               <td>Do Not Name</td>
-              <td>Not supported by assistive technologies.</td>
+              <td>Naming is not supported by assistive technologies.</td>
             </tr>
             <tr>
               <td><a href="#rowheader" class="role-reference"><code>rowheader</code></a></td>
@@ -4909,6 +4927,11 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
                   <li>Use <code>aria-label</code> if a visible label is not present.</li>
                 </ul>
               </td>
+            </tr>
+            <tr>
+              <td><a href="#time" class="role-reference"><code>time</code></a></td>
+              <td>Do Not Name</td>
+              <td>Naming is not supported by assistive technologies.</td>
             </tr>
             <tr>
               <td><a href="#timer" class="role-reference"><code>timer</code></a></td>
@@ -6505,6 +6528,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
       <li>button</li>
       <li>checkbox</li>
       <li>img</li>
+      <li>meter</li>
       <li>math</li>
       <li>menuitemcheckbox</li>
       <li>menuitemradio</li>
