@@ -41,6 +41,7 @@ ariaTest('"tabindex" on checkbox element', exampleFile, 'checkbox-tabindex', asy
   await assertAttributeValues(t, ex.checkboxSelector, 'tabindex', '0');
 });
 
+/*
 ariaTest('"aria-controls" ', exampleFile, 'checkbox-aria-controls', async (t) => {
   t.plan(5);
 
@@ -227,3 +228,4 @@ ariaTest('key SPACE selects or unselects checkbox', exampleFile, 'key-space', as
     'After sending SPACE to the checkbox in a uncheck state, 1 condiments should be selected via: ' + ex.checkedCondsSelector
   );
 });
+*/
