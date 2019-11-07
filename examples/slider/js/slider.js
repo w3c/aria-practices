@@ -170,7 +170,7 @@ Slider.prototype.handleBlur = function (event) {
 // Initialise Sliders on the page
 window.addEventListener('load', function () {
 
-  var sliders = document.querySelectorAll('[role=slider]');;
+  var sliders = document.querySelectorAll('[role=slider]');
 
   for (var i = 0; i < sliders.length; i++) {
     var s = new Slider(sliders[i]);
@@ -200,7 +200,7 @@ Slider.prototype.handleMouseDown = function (event) {
 
   };
 
-    // bind a mousemove event handler to move pointer
+  // bind a mousemove event handler to move pointer
   document.addEventListener('mousemove', handleMouseMove);
 
   // bind a mouseup event handler to stop tracking mouse movements

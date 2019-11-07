@@ -172,8 +172,11 @@ require(["core/pubsubhub"], function( respecEvents ) {
                     propList[title] = { is: type, title: title, name: content, desc: desc, roles: [] };
                     var abstract = container.querySelector("." + type + "-applicability");
                     if ((abstract.textContent || abstract.innerText) === "All elements of the base markup") {
-                        globalSP.push({ is: type, title: title, name: content, desc: desc });
-                    }
+                        globalSP.push({ is: type, title: title, name: content, desc: desc, prohibited: false });
+                    } 
+                    else if ((abstract.textContent || abstract.innerText) === "All elements of the base markup except for some roles or elements that prohibit its use") {
+                        globalSP.push({ is: type, title: title, name: content, desc: desc, prohibited: true });
+                    } 
                     
                     // the rdef is gone.  if we are in a div, convert that div to a section
 
@@ -223,6 +226,9 @@ require(["core/pubsubhub"], function( respecEvents ) {
                         } else {
                             globalSPIndex += "<pref>" + lItem.name + "</pref>";
                         }
+                        if (lItem.prohibited) {
+                            globalSPIndex += " (Except where prohibited)";
+                        }
                         globalSPIndex += "</li>\n";
                     }
                     parentNode = document.querySelector("#global_states");
@@ -259,6 +265,9 @@ require(["core/pubsubhub"], function( respecEvents ) {
                 var roleIndex = "";
                 var fromAuthor = "";
                 var fromContent = "";
+                var fromEncapsulation = "";
+                var fromLegend = "";
+                var fromProhibited = "";
 
                 $.each(document.querySelectorAll("rdef"), function(i,item) {
                     var container = item.parentNode;
@@ -310,7 +319,7 @@ require(["core/pubsubhub"], function( respecEvents ) {
                     }
                     // are there supported states / properties in this role?  
                     var attrs = [];
-                    $.each(container.querySelectorAll(".role-properties, .role-required-properties"), function(i, node) {
+                    $.each(container.querySelectorAll(".role-properties, .role-required-properties, .role-disallowed"), function(i, node) {
                         if (node && ((node.textContent && node.textContent.length !== 1) || (node.innerText && node.innerText.length !== 1))) {
                             // looks like we do
                             $.each(node.querySelectorAll("pref,sref"), function(i, item) {
@@ -319,11 +328,10 @@ require(["core/pubsubhub"], function( respecEvents ) {
                                     name = item.textContent || item.innerText;
                                 }
                                 var type = (item.localName === "pref" ? "property" : "state");
-                                var req = false;
-                                if ($(node).hasClass("role-required-properties") ) {
-                                    req = true;
-                                }
-                                attrs.push( { is: type, name: name, required: req } );
+                                var req = $(node).hasClass("role-required-properties");
+                                var dis = $(node).hasClass("role-disallowed");
+                                attrs.push( { is: type, name: name, required: req, disallowed: dis } );                                
+                                
                                 // remember that the state or property is
                                 // referenced by this role
                                 propList[name].roles.push(title);
@@ -341,22 +349,21 @@ require(["core/pubsubhub"], function( respecEvents ) {
                                 req = " (name required)";
                             }
 
-                            if ($(node).find("li").length) {
-                                // there is a list; put it in both lists
+                            if (node.textContent.indexOf("author") !== -1) {
                                 fromAuthor += "<li><a href=\"#" + pnID + "\" class=\"role-reference\"><code>" + content + "</code></a>" + req + "</li>";
-                                if (!isAbstract) {
-                                    fromContent += "<li><a href=\"#" + pnID + "\" class=\"role-reference\"><code>" + content + "</code></a>" + "</li>";
-                                }
-                            } else {
-                                // it is a text node; use that
-                                if (node.textContent.indexOf("author") !== -1) {
-                                    fromAuthor += "<li><a href=\"#" + pnID + "\" class=\"role-reference\"><code>" + content + "</code></a>" + req + "</li>";
-                                } else if (node.textContent.indexOf("content") !== -1) {
-                                    if (!isAbstract) {
-                                        fromContent += "<li><a href=\"#" + pnID + "\" class=\"role-reference\"><code>" + content + "</code></a>" + "</li>";
-                                    }
-                                }
+                            } 
+                            if (!isAbstract && node.textContent.indexOf("content") !== -1) {
+                                fromContent += "<li><a href=\"#" + pnID + "\" class=\"role-reference\"><code>" + content + "</code></a>" + "</li>";
                             }
+                            if (node.textContent.indexOf("prohibited") !== -1) {
+                                fromProhibited += "<li><a href=\"#" + pnID + "\" class=\"role-reference\"><code>" + content + "</code></a>" + req + "</li>";
+                            }
+                            if (node.textContent.indexOf("encapsulation") !== -1) {
+                                fromEncapsulation += "<li><a href=\"#" + pnID + "\" class=\"role-reference\"><code>" + content + "</code></a>" + req + "</li>"; 
+                            }
+                            if (node.textContent.indexOf("legend") !== -1) {
+                                fromLegend += "<li><a href=\"#" + pnID + "\" class=\"role-reference\"><code>" + content + "</code></a>" + req + "</li>";
+                            }               
                         });
                     }
                     if (container.nodeName.toLowerCase() == "div") {
@@ -535,6 +542,35 @@ require(["core/pubsubhub"], function( respecEvents ) {
                         parentNode.replaceChild(list, node);
                     }
 
+                    node = document.getElementById("index_fromencapsulation");
+                    if (node) {
+                        parentNode = node.parentNode;
+                        list = document.createElement("ul");
+                        list.id = "index_fromencapsulation";
+                        list.className = "compact";
+                        list.innerHTML = fromEncapsulation;
+                        parentNode.replaceChild(list, node);
+                    }
+
+                    node = document.getElementById("index_fromlegend");
+                    if (node) {
+                        parentNode = node.parentNode;
+                        list = document.createElement("ul");
+                        list.id = "index_fromlegend";
+                        list.className = "compact";
+                        list.innerHTML = fromLegend;
+                        parentNode.replaceChild(list, node);
+                    }
+
+                    node = document.getElementById("index_fromprohibited");
+                    if (node) {
+                        parentNode = node.parentNode;
+                        list = document.createElement("ul");
+                        list.id = "index_fromprohibited";
+                        list.className = "compact";
+                        list.innerHTML = fromProhibited;
+                        parentNode.replaceChild(list, node);
+                    }
                     // assuming we found some parent roles, update those parents with their children
                     for (var i=0; i < subRoles.length; i++) {
                         var item = subRoles[subRoles[i]];

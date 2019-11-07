@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>Layout Grid Examples | WAI-ARIA Authoring Practices 1.1</title>
+<title>Layout Grid Examples | WAI-ARIA Authoring Practices 1.2</title>
 
 <!--  Core js and css shared by all examples; do not modify when using this template. -->
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
@@ -65,7 +65,7 @@
             <span role="gridcell" class="list-link"><a tabindex="-1" href="https://www.w3.org/TR/core-aam-1.1/">Core Accessibility API Mappings 1.1</a></span>
             <span role="gridcell" class="list-link"><a tabindex="-1" href="https://www.w3.org/WAI/intro/aria.php">WAI-ARIA Overview</a></span>
             <span role="gridcell" class="list-link"><a tabindex="-1" href="https://www.w3.org/WAI/intro/wcag">WCAG Overview</a></span>
-            <span role="gridcell" class="list-link"><a tabindex="-1" href="https://www.w3.org/TR/html5/">HTML 5 Specification</a></span>
+            <span role="gridcell" class="list-link"><a tabindex="-1" href="https://html.spec.whatwg.org/">HTML Specification</a></span>
             <span role="gridcell" class="list-link"><a tabindex="-1" href="https://www.w3.org/TR/SVG2/">SVG 2 Specification</a></span>
           </div>
         </div>
@@ -157,7 +157,7 @@
 
           <div id="recipient-form">
             <input id="add-recipient-input" type="text" aria-label="Add Recipient" placeholder="New Recipient Name">
-            <button id="add-recipient-button">Add</button>
+            <button type="button" id="add-recipient-button">Add</button>
             <div class="accessible_elem">
               Last change to recipient list:
               <span aria-live="polite" aria-relevant="text" id="form-action-text"></span>
@@ -372,8 +372,8 @@
         </div>
 
         <div class="ex3_pagination">
-          <button disabled id="ex3_pageup_button">Previous</button>
-          <button id="ex3_pagedown_button">Next</button>
+          <button type="button" disabled id="ex3_pageup_button">Previous</button>
+          <button type="button" id="ex3_pagedown_button">Next</button>
         </div>
       </div>
       <div role="separator" id="ex3_end_sep" aria-labelledby="ex3_end_sep ex3_label" aria-label="End of"></div>
@@ -417,7 +417,7 @@
       <dt>Whether focus can wrap to the first row in the next column or the last row in the previous column when <kbd>Down Arrow</kbd> and <kbd>Up Arrow</kbd> are pressed:</dt>
       <dd>
         The only condition where this wrapping is appropriate is when every cell in the grid belongs to a single logical set.
-        In other words, if presentation of all elements in a single row is logically equivalent to presenting the same elements in an arbetrary number of rows and columns,
+        In other words, if presentation of all elements in a single row is logically equivalent to presenting the same elements in an arbitrary number of rows and columns,
         then it is appropriate for <kbd>Down Arrow</kbd> and <kbd>Up Arrow</kbd> to behave as if all cells are in a single column.
         For instance, in example 1, all cells contain a navigation link.
         That set of six links could be presented in a single row, a single column, or divided into two rows of three or three rows of two; all these  presentations would be logically equivalent.
@@ -450,7 +450,7 @@
     <p>
       <strong>NOTE:</strong> The following table describes keyboard commands that move focus among grid cells.
       In the examples on this page, some cells contain a single focusable widget, and if a cell contains a widget, the cell is not focusable; the widget receives focus instead of the cell.
-      So, when a description says a command moves focus to a cell, the command may either focus the cell or a widget inside the cell.     
+      So, when a description says a command moves focus to a cell, the command may either focus the cell or a widget inside the cell.
     </p>
     <table aria-labelledby="kbd_label" class="def">
       <thead>
@@ -731,7 +731,7 @@
   </main>
   <nav>
     <!--  Update the pattern_ID parameter of this link to refer to the APG design pattern section related to this example.  -->
-    <a href="../../#grid">Grid Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
+    <a href="../../#grid">Grid Design Pattern in WAI-ARIA Authoring Practices 1.2</a>
   </nav>
 </body>
 </html>

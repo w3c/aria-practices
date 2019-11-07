@@ -26,7 +26,7 @@ const ignoreFiles = fs.readFileSync(ignoreExampleFiles)
 
 /**
  * Recursively find all example pages, saves to exampleFiles global
- * obect.
+ * object.
  *
  * @param {String} currentDirPath - root example directory
  */
@@ -107,7 +107,7 @@ const processDocumentationInExampleFiles = function (exampleFiles, exampleCovera
       let $row = $(this);
       let dataTestId = $row.attr('data-test-id');
 
-      if (dataTestId === ignoredDataTestId) { return; };
+      if (dataTestId === ignoredDataTestId) { return; }
 
       if (dataTestId !== undefined) {
         dataTestIds.add(dataTestId);
@@ -122,7 +122,7 @@ const processDocumentationInExampleFiles = function (exampleFiles, exampleCovera
       let $row = $(this);
       let dataTestId = $row.attr('data-test-id');
 
-      if (dataTestId === ignoredDataTestId) { return; };
+      if (dataTestId === ignoredDataTestId) { return; }
 
       if (dataTestId !== undefined) {
         dataTestIds.add(dataTestId);
@@ -154,14 +154,28 @@ const processDocumentationInExampleFiles = function (exampleFiles, exampleCovera
 const getRegressionTestCoverage = function (exampleCoverage) {
   process.env.REGRESSION_COVERAGE_REPORT = 1;
 
+  const allTestFiles = [];
+  fs.readdirSync(testsPath).forEach(function (testfile) {
+    allTestFiles.push(path.join(testsPath, testfile));
+  });
+
   const cmd = path.resolve(__dirname, '..', '..', 'node_modules', 'ava', 'cli.js');
-  const cmdargs = [testsPath, '--tap', '-c', '1'];
+  const cmdargs = [...allTestFiles, '--tap', '-c', '1'];
 
   const output = spawnSync(cmd, cmdargs);
   const avaResults = output.stdout.toString();
+  const avaError = output.stderr.toString();
+
+  if (avaError) {
+    console.log('AVA error with following message, exiting script.\n\n');
+    console.log(avaError);
+    process.exitCode = 1;
+    process.exit();
+  }
 
   let testRegex = /^# (\S+) [>›] (\S+\.html) \[data-test-id="(\S+)"\]/gm;
   let matchResults;
+  // eslint-disable-next-line no-cond-assign
   while (matchResults = testRegex.exec(avaResults)) {
     let example = matchResults[2];
     let dataTestId = matchResults[3];
@@ -234,9 +248,21 @@ for (let example in exampleCoverage) {
   }
 }
 
-console.log('\nExamples without regression tests:\n');
+
+let badFileNames = [];
+fs.readdirSync(testsPath).forEach(function (testFile) {
+
+  let dirName = testFile.split('_')[0];
+  let dir = path.join(examplePath, dirName);
+
+  if (!fs.existsSync(dir) || !fs.statSync(dir).isDirectory()) {
+    badFileNames.push([testFile, dir]);
+  }
+});
+
+console.log('\nExamples without any regression tests:\n');
 console.log(examplesWithNoTestsReport || 'None found.\n');
-console.log('\nExamples missing regression tests:\n');
+console.log('\nExamples missing some regression tests:\n');
 console.log(examplesMissingSomeTestsReport || 'None found.\n');
 console.log('\nExamples documentation table rows without data-test-ids:\n');
 console.log(missingTestIdsReport || 'None found.\n');
@@ -248,7 +274,16 @@ console.log('  ' + examplesMissingSomeTests + ' example pages are missing approx
             missingTestIds + ' out of approximately ' + totalTestIds + ' tests.\n');
 
 if (examplesMissingSomeTests) {
-  console.log('ERROR:\n\n  Please write missing tests for this report to pass.\n');
+  console.log('ERROR - missing tests:\n\n  Please write missing tests for this report to pass.\n');
+  process.exitCode = 1;
+}
 
+if (badFileNames.length) {
+  console.log('ERROR - bad file names:\n\n  Some test files do not follow the correct naming convention. Test file names should begin with the root parent directory of example being tested followed by an underscore (\'_\'). Please correct the following bad test file(s):\n');
+
+  for (let file of badFileNames) {
+    console.log('  ' + file[0]);
+  }
+  console.log('\n');
   process.exitCode = 1;
 }

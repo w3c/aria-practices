@@ -71,9 +71,9 @@ FormatToolbar.prototype.init = function () {
     this.toolbarItems.push(toolbarItem);
   }
 
-  var spinButtons = this.domNode.querySelectorAll('[role=spinbutton]');;
+  var spinButtons = this.domNode.querySelectorAll('[role=spinbutton]');
 
-  for (var i = 0; i < spinButtons.length; i++) {
+  for (i = 0; i < spinButtons.length; i++) {
     var s = new SpinButton(spinButtons[i], this);
     s.init();
   }
@@ -104,7 +104,7 @@ FormatToolbar.prototype.updateDisable = function (copyButton, cutButton, pasteBu
 };
 
 FormatToolbar.prototype.selectText = function (start, end, textarea) {
-  if (typeof(textarea.selectionStart != undefined)) {
+  if (typeof textarea.selectionStart !== "undefined") {
     textarea.focus();
     textarea.selectionStart = start;
     textarea.selectionEnd = end;
@@ -319,6 +319,11 @@ FormatToolbar.prototype.setFocusToFirst = function (currentItem) {
 
 FormatToolbar.prototype.setFocusToLast = function (currentItem) {
   this.setFocusItem(this.lastItem);
+};
+
+FormatToolbar.prototype.hidePopupLabels = function () {
+  var tps = this.domNode.querySelectorAll('button .popup-label');
+  tps.forEach(function (tp) {tp.classList.remove('show');});
 };
 
 
