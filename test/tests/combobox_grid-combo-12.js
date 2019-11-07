@@ -49,7 +49,7 @@ ariaTest('Test for role="combobox"', exampleFile, 'textbox-role', async (t) => {
   t.plan(1);
   await assertAriaRoles(t, 'ex1', 'combobox', '1', 'input');
 });
-/*
+
 ariaTest('"aria-haspopup"=grid on textbox element', exampleFile, 'textbox-aria-haspopup', async (t) => {
   t.plan(1);
   await assertAttributeValues(t, ex.textboxSelector, 'aria-haspopup', 'grid');
@@ -760,4 +760,3 @@ ariaTest.failing('Expected behavior for all other standard single line editing k
     t.fail();
   });
 
-*/
