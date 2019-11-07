@@ -8,7 +8,7 @@ var Menubar = function (domNode) {
     msgPrefix = 'Menubar constructor argument menubarNode ';
 
   // Check whether menubarNode is a DOM element
-  if (!domNode instanceof Element) {
+  if (!(domNode instanceof Element)) {
     throw new TypeError(msgPrefix + 'is not a DOM Element.');
   }
 
@@ -58,7 +58,7 @@ Menubar.prototype.init = function () {
   elem = this.domNode.firstElementChild;
 
   while (elem) {
-    var menuElement = elem.firstElementChild;
+    menuElement = elem.firstElementChild;
 
     if (elem && menuElement && menuElement.tagName === 'A') {
       menubarItem = new MenubarItem(menuElement, this);
@@ -146,8 +146,10 @@ Menubar.prototype.setFocusToNextItem = function (currentItem) {
 };
 
 Menubar.prototype.setFocusByFirstCharacter = function (currentItem, char) {
-  var start, index, char = char.toLowerCase();
+  var start, index;
   var flag = currentItem.domNode.getAttribute('aria-expanded') === 'true';
+
+  char = char.toLowerCase();
 
   // Get start index for search based on position of currentItem
   start = this.menubarItems.indexOf(currentItem) + 1;

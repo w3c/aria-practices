@@ -147,7 +147,7 @@ let indexOfPropertiesAndStates = {};
 
 console.log('Generating index...');
 
-function getColumn(data, indexStart) {
+function getColumn (data, indexStart) {
   let count = 0;
   let index = data.lastIndexOf('<tr', indexStart);
 
@@ -167,7 +167,7 @@ function getColumn(data, indexStart) {
   return count;
 }
 
-function getRoles(data) {
+function getRoles (data) {
   let roles = [];
 
   let indexStart = data.indexOf('<code>', 0);
@@ -194,7 +194,7 @@ function getRoles(data) {
   return roles;
 }
 
-function getPropertiesAndStates(data) {
+function getPropertiesAndStates (data) {
   let propertiesAndStates = [];
 
   let indexStart = data.indexOf('<code>', 0);
@@ -221,7 +221,7 @@ function getPropertiesAndStates(data) {
   return propertiesAndStates;
 }
 
-function addExampleToRoles(roles, example) {
+function addExampleToRoles (roles, example) {
   for (let i = 0; i < roles.length; i++) {
     let role = roles[i];
 
@@ -236,7 +236,7 @@ function addExampleToRoles(roles, example) {
   }
 }
 
-function addExampleToPropertiesAndStates(props, example) {
+function addExampleToPropertiesAndStates (props, example) {
   for (let i = 0; i < props.length; i++) {
     let prop = props[i];
 
@@ -251,7 +251,7 @@ function addExampleToPropertiesAndStates(props, example) {
   }
 }
 
-function addLandmarkRole(landmark, hasLabel, title, ref) {
+function addLandmarkRole (landmark, hasLabel, title, ref) {
   let example = {
     title: title,
     ref: ref
@@ -259,7 +259,7 @@ function addLandmarkRole(landmark, hasLabel, title, ref) {
 
   addExampleToRoles(landmark, example);
   if (hasLabel) {
-    addExampleToPropertiesAndStates(['aria-labelledby'], example);
+    addExampleToPropertiesAndStates([ 'aria-labelledby' ], example);
   }
 }
 
@@ -267,11 +267,11 @@ glob.sync('examples/!(landmarks)/**/!(index).html', {cwd: path.join(__dirname, '
   let data = fs.readFileSync(file, 'utf8');
   let ref = file.replace('examples/', '');
   let title = data.substring(data.indexOf('<title>') + 7, data.indexOf('</title>'))
-                  .split('|')[0]
-                  .replace('Examples', '')
-                  .replace('Example of', '')
-                  .replace('Example', '')
-                  .trim();
+    .split('|')[0]
+    .replace('Examples', '')
+    .replace('Example of', '')
+    .replace('Example', '')
+    .trim();
 
   let example = {
     title: title,
@@ -283,16 +283,16 @@ glob.sync('examples/!(landmarks)/**/!(index).html', {cwd: path.join(__dirname, '
 });
 
 // Add landmark examples, since they are a different format
-addLandmarkRole(['banner'], false, 'Banner Landmark', 'landmarks/banner.html');
-addLandmarkRole(['complementary'], true, 'Complementary Landmark', 'landmarks/complementary.html');
-addLandmarkRole(['contentinfo'], false, 'Contentinfo Landmark', 'landmarks/contentinfo.html');
-addLandmarkRole(['form'], true, 'Form Landmark', 'landmarks/form.html');
-addLandmarkRole(['main'], true, 'Main Landmark', 'landmarks/main.html');
-addLandmarkRole(['navigation'], true, 'Navigation Landmark', 'landmarks/navigation.html');
-addLandmarkRole(['region'], true, 'Region Landmark', 'landmarks/region.html');
-addLandmarkRole(['search'], true, 'Search Landmark', 'landmarks/search.html');
+addLandmarkRole([ 'banner' ], false, 'Banner Landmark', 'landmarks/banner.html');
+addLandmarkRole([ 'complementary' ], true, 'Complementary Landmark', 'landmarks/complementary.html');
+addLandmarkRole([ 'contentinfo' ], false, 'Contentinfo Landmark', 'landmarks/contentinfo.html');
+addLandmarkRole([ 'form' ], true, 'Form Landmark', 'landmarks/form.html');
+addLandmarkRole([ 'main' ], true, 'Main Landmark', 'landmarks/main.html');
+addLandmarkRole([ 'navigation' ], true, 'Navigation Landmark', 'landmarks/navigation.html');
+addLandmarkRole([ 'region' ], true, 'Region Landmark', 'landmarks/region.html');
+addLandmarkRole([ 'search' ], true, 'Search Landmark', 'landmarks/search.html');
 
-function exampleListItem(item) {
+function exampleListItem (item) {
   return `
                 <li><a href="${item.ref}">${item.title}</a></li>`;
 }
@@ -305,7 +305,8 @@ let examplesByRole = sortedRoles.reduce(function (set, role) {
   let examplesHTML = '';
   if (examples.length === 1) {
     examplesHTML = `<a href="${examples[0].ref}">${examples[0].title}</a>`;
-  } else {
+  }
+  else {
     examplesHTML = `
               <ul>${examples.map(exampleListItem).join('')}
               </ul>\n            `;
@@ -320,7 +321,7 @@ let examplesByRole = sortedRoles.reduce(function (set, role) {
 $('#examples_by_role_tbody').html(examplesByRole);
 
 let sortedPropertiesAndStates = Object.getOwnPropertyNames(indexOfPropertiesAndStates)
-                                      .sort();
+  .sort();
 
 let examplesByProps = sortedPropertiesAndStates.reduce(function (set, prop) {
   let examples = indexOfPropertiesAndStates[prop];
@@ -328,7 +329,8 @@ let examplesByProps = sortedPropertiesAndStates.reduce(function (set, prop) {
   let examplesHTML = '';
   if (examples.length === 1) {
     examplesHTML = `<a href="${examples[0].ref}">${examples[0].title}</a>`;
-  } else {
+  }
+  else {
     examplesHTML = `
               <ul>${examples.map(exampleListItem).join('')}
               </ul>\n            `;
@@ -344,8 +346,8 @@ $('#examples_by_props_tbody').html(examplesByProps);
 
 // cheeio seems to fold the doctype lines despite the template
 const result = $.html()
-                  .replace('<!DOCTYPE html>', '<!DOCTYPE html>\n')
-                  .replace('<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">', '<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">\n')
+  .replace('<!DOCTYPE html>', '<!DOCTYPE html>\n')
+  .replace('<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">', '<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">\n');
 
 fs.writeFile(exampleFilePath, result, function (err) {
   if (err) {

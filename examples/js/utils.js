@@ -39,7 +39,9 @@ aria.Utils.matches = function (element, selector) {
       function (s) {
         var matches = element.parentNode.querySelectorAll(s);
         var i = matches.length;
-        while (--i >= 0 && matches.item(i) !== this) {}
+        while (--i >= 0 && matches.item(i) !== this) {
+          // empty
+        }
         return i > -1;
       };
   }

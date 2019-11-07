@@ -58,7 +58,7 @@ ariaTest('Test "alt" attribute exists',
 
     for (let i = 0; i < pageExamples.length; i++) {
       let ex = pageExamples[i];
-      if (!ex.hasOwnProperty('alt')) {
+      if (!Object.prototype.hasOwnProperty.call(ex, 'alt')) {
         continue;
       }
       let linkLocator = By.css(ex.linkSelector);
@@ -80,7 +80,7 @@ ariaTest('Test "aria-label" attribute exists',
     for (let i = 0; i < pageExamples.length; i++) {
 
       let ex = pageExamples[i];
-      if (!ex.hasOwnProperty('ariaLabel')) {
+      if (!Object.prototype.hasOwnProperty.call(ex, 'ariaLabel')) {
         continue;
       }
 
