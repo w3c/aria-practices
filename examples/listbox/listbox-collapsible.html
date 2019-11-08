@@ -40,6 +40,7 @@
   <ul>
     <li><a href="listbox-scrollable.html">Scrollable Listbox Example</a>: Single-select listbox that scrolls to reveal more options, similar to HTML <code>select</code> with <code>size</code> attribute greater than one.</li>
     <li><a href="listbox-rearrangeable.html">Example Listboxes with Rearrangeable Options</a>: Examples of both single-select and multi-select listboxes with accompanying toolbars where options can be added, moved, and removed.</li>
+    <li><a href="listbox-grouped.html">Listbox Example with Grouped Options</a>: Single-select listbox with grouped options, similar to an HTML <code>select</code> with <code>optgroup</code> children.</li>
   </ul>
   <section>
     <h2 id="ex_label">Example</h2>
@@ -48,7 +49,7 @@
       <p>Choose your favorite transuranic element (actinide or transactinide).</p>
       <div class="listbox-area">
         <div class="left-area">
-          <span id="exp_elem">Choose an element:</span>
+          <span id="exp_elem" class="listbox-label">Choose an element:</span>
           <div id="exp_wrapper">
             <button type="button" aria-haspopup="listbox" aria-labelledby="exp_elem exp_button" id="exp_button">Neptunium</button>
             <ul id="exp_elem_list" tabindex="-1" role="listbox" aria-labelledby="exp_elem" class="hidden">

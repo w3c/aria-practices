@@ -66,6 +66,7 @@ aria.GridCombobox.prototype.checkKey = function (evt) {
         evt.preventDefault();
         return;
       }
+      // fall through
     default:
       this.updateResults();
   }
