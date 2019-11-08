@@ -81,11 +81,13 @@ const _ariaTest = (desc, page, testId, body, failing) => {
     t.context.url = url;
     await t.context.session.get(url);
 
-    const assert = require('assert');
-    assert(
-      (await t.context.session.findElements(By.css(selector))).length,
-      'Cannot find behavior description for this test in example page:' + testId
-    );
+    if (testId !== 'test-additional-behavior') {
+      const assert = require('assert');
+      assert(
+        (await t.context.session.findElements(By.css(selector))).length,
+        'Cannot find behavior description for this test in example page:' + testId
+      );
+    }
 
     return body.apply(this, arguments);
   });
