@@ -1,6 +1,6 @@
 var respecConfig = {
   // Embed RDFa data in the output.
-  doRDFa: '1.1',
+  doRDFa: '1.2',
   includePermalinks: true,
   permalinkEdge: true,
   permalinkHide: false,
@@ -14,12 +14,12 @@ var respecConfig = {
   license: 'w3c-software-doc',
 
   // The specifications short name, as in http://www.w3.org/TR/short-name/
-  shortName: 'wai-aria-practices-1.1',
+  shortName: 'wai-aria-practices-1.2',
 
   // If you wish the publication date to be other than today,
   // set publishDate.
   // publishDate: "2009-08-06",
-  copyrightStart: '2015',
+  copyrightStart: '2018',
 
   // If there is a previously published draft, uncomment this
   // and set its YYYY-MM-DD date and its maturity status.
@@ -30,7 +30,7 @@ var respecConfig = {
   // previousDiffURI: "",
 
   // If there a publicly available Editors Draft, this is the link
-  edDraftURI: 'https://w3c.github.io/aria-practices/',
+  edDraftURI: 'https://rawgit.com/w3c/aria-practices/apg-1.2/aria-practices.html',
 
   // If this is a LCWD, uncomment and set the end of its review period
   // lcEnd: "2012-02-21",
@@ -103,21 +103,21 @@ var respecConfig = {
   // Spec URLs
   ariaSpecURLs: {
     'ED': 'https://w3c.github.io/aria/',
-    'FPWD': 'https://www.w3.org/TR/wai-aria-1.1/',
-    'WD': 'https://www.w3.org/TR/wai-aria-1.1/',
+    'FPWD': 'https://www.w3.org/TR/wai-aria-1.2/',
+    'WD': 'https://www.w3.org/TR/wai-aria-1.2/',
     'REC': 'https://www.w3.org/TR/wai-aria/'
   },
   accNameURLs: {
     'ED': 'https://w3c.github.io/accname/',
-    'WD': 'https://www.w3.org/TR/accname-aam-1.1/',
-    'FPWD': 'https://www.w3.org/TR/accname-aam-1.1/',
-    'REC': 'https://www.w3.org/TR/accname-aam-1.1/'
+    'WD': 'https://www.w3.org/TR/accname-1.2/',
+    'FPWD': 'https://www.w3.org/TR/accname-1.2/',
+    'REC': 'https://www.w3.org/TR/accname/'
   },
   coreMappingURLs: {
     'ED': 'https://w3c.github.io/core-aam/',
-    'WD': 'https://www.w3.org/TR/core-aam-1.1/',
-    'FPWD': 'https://www.w3.org/TR/core-aam-1.1/',
-    'REC': 'https://www.w3.org/TR/core-aam-1.1/'
+    'WD': 'https://www.w3.org/TR/core-aam-1.2/',
+    'FPWD': 'https://www.w3.org/TR/core-aam-1.2/',
+    'REC': 'https://www.w3.org/TR/core-aam/'
   },
   htmlMappingURLs: {
     'ED': 'https://w3c.github.io/html-aam/',
