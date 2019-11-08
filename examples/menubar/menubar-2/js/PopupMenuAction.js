@@ -32,7 +32,7 @@ var PopupMenuAction = function (domNode, controllerObj, actionManager) {
     msgPrefix = 'PopupMenu constructor argument domNode ';
 
   // Check whether domNode is a DOM element
-  if (!domNode instanceof Element) {
+  if (!(domNode instanceof Element)) {
     throw new TypeError(msgPrefix + 'is not a DOM Element.');
   }
 
@@ -100,7 +100,7 @@ PopupMenuAction.prototype.init = function () {
 
 PopupMenuAction.prototype.updateMenuStates = function () {
 
-  var item = this.domNode.querySelector('[rel="font-larger"]');
+  var item = this.domNode.querySelector('[data-option="font-larger"]');
   if (item) {
     if (this.actionManager.isMaxFontSize()) {
       item.setAttribute('aria-disabled', 'true');
@@ -110,7 +110,7 @@ PopupMenuAction.prototype.updateMenuStates = function () {
     }
   }
 
-  var item = this.domNode.querySelector('[rel="font-smaller"]');
+  item = this.domNode.querySelector('[data-option="font-smaller"]');
   if (item) {
     if (this.actionManager.isMinFontSize()) {
       item.setAttribute('aria-disabled', 'true');
@@ -123,7 +123,7 @@ PopupMenuAction.prototype.updateMenuStates = function () {
   // Update the radio buttons for font, in case they were updated using the larger
   // smaller font menu items
 
-  var rbs = this.domNode.querySelectorAll('[rel="font-size"] [role=menuitemradio]');
+  var rbs = this.domNode.querySelectorAll('[data-option="font-size"] [role=menuitemradio]');
 
   for (var i = 0; i < rbs.length; i++) {
     var rb = rbs[i];
@@ -192,7 +192,9 @@ PopupMenuAction.prototype.setFocusToNextItem = function (currentItem) {
 };
 
 PopupMenuAction.prototype.setFocusByFirstCharacter = function (currentItem, char) {
-  var start, index, char = char.toLowerCase();
+  var start, index;
+
+  char = char.toLowerCase();
 
   // Get start index for search based on position of currentItem
   start = this.menuitems.indexOf(currentItem) + 1;
