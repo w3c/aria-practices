@@ -67,10 +67,10 @@ aria.GridCombobox.prototype.handleInputKeyUp = function (evt) {
     case aria.KeyCode.LEFT:
     case aria.KeyCode.RIGHT:
       if (this.gridFocused) {
-        console.log('grid focused');
         evt.preventDefault();
         return;
       }
+      break;
     default:
       this.updateResults();
   }
