@@ -7,10 +7,9 @@ const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAttributeDNE = require('../util/assertAttributeDNE');
 const assertAriaRoles = require('../util/assertAriaRoles');
 
-const exampleFile = 'combobox/aria1.1pattern/grid-combo.html';
+const exampleFile = 'combobox/grid-combo.html';
 
 const ex = {
-  comboboxSelector: '#ex1 [role="combobox"]',
   labelSelector: '#ex1 label',
   textboxSelector: '#ex1 input[type="text"]',
   gridSelector: '#ex1 [role="grid"]',
@@ -46,55 +45,32 @@ const gridcellId = (row, column) => {
 };
 
 // Attributes
-ariaTest('Test for role="combobox"', exampleFile, 'combobox-role', async (t) => {
+ariaTest('Test for role="combobox"', exampleFile, 'textbox-role', async (t) => {
   t.plan(1);
-  await assertAriaRoles(t, 'ex1', 'combobox', '1', 'div');
+  await assertAriaRoles(t, 'ex1', 'combobox', '1', 'input');
 });
 
-ariaTest('"aria-haspopup"=grid on combobox element', exampleFile, 'combobox-aria-haspopup', async (t) => {
+ariaTest('"aria-haspopup"=grid on textbox element', exampleFile, 'textbox-aria-haspopup', async (t) => {
   t.plan(1);
-  await assertAttributeValues(t, ex.comboboxSelector, 'aria-haspopup', 'grid');
+  await assertAttributeValues(t, ex.textboxSelector, 'aria-haspopup', 'grid');
 });
 
-ariaTest('"aria-owns" attribute on combobox element', exampleFile, 'combobox-aria-owns', async (t) => {
-  t.plan(2);
-
-  const popupId = await t.context.session
-    .findElement(By.css(ex.comboboxSelector))
-    .getAttribute('aria-owns');
-
-  t.truthy(
-    popupId,
-    '"aria-owns" attribute should exist on: ' + ex.comboboxSelector
-  );
-
-  const popupElements = await t.context.session
-    .findElement(By.id('ex1'))
-    .findElements(By.id(popupId));
-
-  t.is(
-    popupElements.length,
-    1,
-    'There should be a element with id "' + popupId + '" as referenced by the aria-owns attribute'
-  );
-});
-
-ariaTest('"aria-expanded" on combobox element', exampleFile, 'combobox-aria-expanded', async (t) => {
+ariaTest('"aria-expanded" on textbox element', exampleFile, 'textbox-aria-expanded', async (t) => {
   t.plan(4);
 
-  const combobox = await t.context.session.findElement(By.css(ex.comboboxSelector));
+  const textbox = await t.context.session.findElement(By.css(ex.textboxSelector));
 
   // Check that aria-expanded is false and the grid is not visible before interacting
 
   t.is(
-    await combobox.getAttribute('aria-expanded'),
+    await textbox.getAttribute('aria-expanded'),
     'false',
-    'combobox element should have attribute "aria-expanded" set to false by default.'
+    'textbox element should have attribute "aria-expanded" set to false by default.'
   );
 
   const popupId = await t.context.session
-    .findElement(By.css(ex.comboboxSelector))
-    .getAttribute('aria-owns');
+    .findElement(By.css(ex.textboxSelector))
+    .getAttribute('aria-controls');
 
   const popupElement = await t.context.session
     .findElement(By.id('ex1'))
@@ -114,9 +90,9 @@ ariaTest('"aria-expanded" on combobox element', exampleFile, 'combobox-aria-expa
   // Check that aria-expanded is true and the grid is visible
 
   t.is(
-    await combobox.getAttribute('aria-expanded'),
+    await textbox.getAttribute('aria-expanded'),
     'true',
-    'combobox element should have attribute "aria-expand" set to true after typing.'
+    'textbox element should have attribute "aria-expand" set to true after typing.'
   );
 
   t.true(
@@ -175,7 +151,7 @@ ariaTest('"aria-controls" attribute on grid element', exampleFile, 'textbox-aria
   );
 });
 
-ariaTest('"aria-activedescendant" on combobox element', exampleFile, 'textbox-aria-activedescendant', async (t) => {
+ariaTest('"aria-activedescendant" on textbox element', exampleFile, 'textbox-aria-activedescendant', async (t) => {
   t.plan(1);
   await assertAttributeValues(t, ex.textboxSelector, 'aria-activedescendant', null);
 });
@@ -504,7 +480,7 @@ ariaTest('Test enter key press with focus on grid',
 
     // Confirm that the grid is closed
 
-    await assertAttributeValues(t, ex.comboboxSelector, 'aria-expanded', 'false');
+    await assertAttributeValues(t, ex.textboxSelector, 'aria-expanded', 'false');
 
     // Confirm that the value of the textbox is now set to the first option
 
@@ -537,7 +513,7 @@ ariaTest('Test escape key press with focus on textbox',
     );
 
     // Confirm the grid is closed and the textboxed is cleared
-    await assertAttributeValues(t, ex.comboboxSelector, 'aria-expanded', 'false');
+    await assertAttributeValues(t, ex.textboxSelector, 'aria-expanded', 'false');
     t.is(
       await t.context.session
         .findElement(By.css(ex.textboxSelector))
@@ -576,7 +552,7 @@ ariaTest.failing('Test escape key press with focus on popup',
     );
 
     // Confirm the grid is closed and the textboxed is cleared
-    await assertAttributeValues(t, ex.comboboxSelector, 'aria-expanded', 'false');
+    await assertAttributeValues(t, ex.textboxSelector, 'aria-expanded', 'false');
 
     t.is(
       await t.context.session
