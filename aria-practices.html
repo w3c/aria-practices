@@ -6660,9 +6660,13 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
 
   <section id="change_log" class="appendix">
     <h2>Change History</h2>
-    <section id="change_log_2017_december" class="appendix">
-      <h3>Changes from version 1.1</h3>
-      <p>Detailed change history will be provided in a subsequent working draft.</p>
+    
+    <section id="change_log_2019_november" class="appendix">
+      <h3>Changes in November 2019 publication of the 3rd working draft of version 1.2</h3>
+      <p>
+        APG 1.1 supported ARIA 1.1, and this version, APG 1.2, supports ARIA 1.2.
+        The following changes have been made to APG 1.1 in order to make this draft of APG 1.2.
+      </p>
       <p>Also see:</p>
       <ul>
         <li>
@@ -6670,6 +6674,245 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
           which lists the GitHub issues that document discussions and reviews of changes included in the December 2017 publication.
         </li>
         <li>Link to a github wiki page of commit history goes here.</li>
+      </ul>
+    </section>
+    
+    <section id="change_log_2019_july" class="appendix">
+      <h4>Changes in July 2019 Publication of Note Release 4</h4>
+      <ul>
+        <li>Major additions and revisions:
+          <ul>
+            <li>
+              Added section providing guidance on coding and composing accessible names and descriptions.
+              This section comprehensively covers ARIA and HTML naming and describing techniques as well as specific guidance for every ARIA role.
+            </li>
+            <li>Added example of a site navigation bar (<q>menu system</q>) with dropdown lists of links coded using the disclosure pattern.</li>
+            <li>
+              Added an example of a date picker based on the dialog and grid patterns.
+              A modal dialog contains a calendar grid that presents buttons for each day of a month.
+            </li>
+            <li> Added an example of a date picker that uses three spin buttons for day, month, and year.</li>
+            <li>
+              Image Carousel Example: Updated the example so that the rotation control is always visible instead of only being visible for keyboard users who move focus into the carousel region.
+              Also changed the controls so they are implemented with HTML button elements instead of links with the <code>button</code> role.
+            </li>
+            <li>Toolbar Example: Added popup text labels for icons that are displayed on both hover and focus.</li>
+          </ul>
+        </li>
+        <li>Minor revisions of guidance or implementation were made to the following design patterns and examples:
+          <ul>
+            <li>Editor Menubar Example: Updated example so that meta data used by the scripts is specified using <code>data-</code> attributes instead of with <code>rel</code> attributes.</li>
+            <li>Radio Group with Active Descendant Example: Removed unused keycodes and fixed linting issues.</li>
+          </ul>
+        </li>
+      </ul>
+      <p>Also see:</p>
+      <ul>
+        <li>
+          <a href="https://github.com/w3c/aria-practices/milestone/8">The APG 1.1 Release 4 Milestone</a>:
+          which lists the GitHub issues that document discussions and reviews of changes included in the July 2019 publication.
+        </li>
+        <li>
+          <a href="https://github.com/w3c/aria-practices/wiki/Change-Log-for-July-2019-APG-1.1-Note-Release-4">Detailed change log with links to all commits that are new in the July 2019 publication  since the January 2019 publication.</a>
+        </li>
+      </ul>
+    </section>
+    
+    <section id="change_log_2019_january" class="appendix">
+      <h4>Changes in January 2019 Publication of Note Release 3</h4>
+      <ul>
+        <li>Major additions and revisions:
+          <ul>
+            <li>Added indexes that allow lookup of examples by role, state, or property.</li>
+            <li>Added a carousel design pattern and example implementation.</li>
+            <li>Revised radio group pattern to accommodate radio groups nested in toolbars: left and right arrow keys do not change the checked state and can move focus outside the group.</li>
+            <li>Redesigned toolbar example to demonstrate an editor toolbar that includes a nested radio group, toggle buttons, menu button, spin button, checkbox, and link. Also fixed several bugs.</li>
+            <li>Restructured the accordion example to use HTML heading elements containing HTML button elements.</li>
+            <li>Added a regression test framework and suite of regression tests that test all documented keyboard behaviors, roles, states, and properties for each example implementation of a pattern.</li>
+          </ul>
+        </li>
+        <li>Minor revisions of guidance or implementation were made to the following design patterns and examples:
+          <ul>
+            <li>Alert dialog example: Replaced lorem ipsum placeholder with text that describes actions that trigger the alert dialog and alert message.</li>
+            <li>Button Example: Button activation now happens on keyup for space key and aria-hidden was removed from child svg.</li>
+            <li>Legacy Combobox examples: Fixed enter key documentation, made Up Arrow set activedescendant to last match in list, corrected up arrow documentation for the textbox.</li>
+            <li>Dialog Examples: Fixed IE11 incompatibility in role validity check.</li>
+            <li>Single-select listbox example: Fix a bug with aria-selected.</li>
+            <li>Grid Examples: Fixed how event listeners were cleaned up.</li>
+            <li>Menubar Examples: Applied role="none" where missing from elements in menubar and changed visual design to better distinguish between menuitemradio and meuitemcheckbox elements.</li>
+            <li>Radio Group Example: Fixed documentation of elements used in attributes table.</li>
+            <li>Spin Button Pattern: Added aria-invalid guidance for values outside allowed range.</li>
+            <li>Toolbar Pattern: Clarified keyboard guidance for Tab and Shift+Tab and revised description to remove guidance that conflicted with updated radio group pattern.</li>
+          </ul>
+        </li>
+      </ul>
+      <p>Also see:</p>
+      <ul>
+        <li>
+          <a href="https://github.com/w3c/aria-practices/milestone/3?closed=1">The APG 1.1 Release 3 Milestone</a>:
+          which lists the GitHub issues that document discussions and reviews of changes included in the January 2019 publication.
+        </li>
+        <li>
+          <a href="https://github.com/w3c/aria-practices/wiki/Change-Log-for-January-2019-APG-1.1-Note-Release-3">Detailed change log with links to all commits that are new in the January 2019 publication  since the July 2018 publication.</a>
+        </li>
+      </ul>
+    </section>
+    
+    <section id="change_log_2018_july" class="appendix">
+      <h4>Changes in July 2018 Publication of Note Release 2</h4>
+      <ul>
+        <li>
+          Added the following:
+          <ul>
+            <li>Treegrid design pattern and example</li>
+            <li>Alert dialog example</li>
+          </ul>
+        </li>
+        <li>Significant revisions of guidance or implementation were made to the following design patterns and examples:
+          <ul>
+            <li>Accordion pattern and example, including removing two optional key commands from the pattern.</li>
+            <li>Checkbox example bug fixes</li>
+            <li>ARIA 1.0 Combobox example, including escape key behavior</li>
+            <li>ARIA 1.1 Combobox example labeling</li>
+            <li>Modal dialog example, primarily code refactoring when adding alert dialog</li>
+            <li>Grid pattern, including guidance on column selection</li>
+            <li>Listbox examples</li>
+            <li>Menu pattern, including guidance on menu/submenu structure</li>
+            <li>editor menubar example, including significant improvement to mouse behaviors.</li>
+            <li>Menu button example bug fixes</li>
+            <li>Navigation menubar example bug fixes</li>
+            <li>Radio group example styling</li>
+            <li>Tabs pattern, including labeling guidance</li>
+            <li>Tree view pattern, including multi-select guidance</li>
+            <li>Tree view example bug fixes</li>
+          </ul>
+        </li>
+      </ul>
+      <p>Also see:</p>
+      <ul>
+        <li>
+          <a href="https://github.com/w3c/aria-practices/milestone/1?closed=1">The APG 1.1 Release 2 Milestone</a>:
+          which lists the GitHub issues that document discussions and reviews of changes included in the July 2018 publication.
+        </li>
+        <li>
+          <a href="https://github.com/w3c/aria-practices/wiki/Change-Log-for-July-2018-APG-1.1-Note-Release-2">Detailed change log with links to all commits that are new in the July 2018 publication  since the December 2017 publication of the Note.</a>
+        </li>
+      </ul>
+    </section>
+    <section id="change_log_2017_december" class="appendix">
+      <h4>Changes in December 2017 Publication as Note</h4>
+      <ul>
+        <li>
+          Added the following:
+          <ul>
+            <li>Read Me First section</li>
+            <li>Combobox pattern</li>
+            <li>Combobox examples: 3 ARIA 1.0 style and 4 ARIA 1.1 style</li>
+            <li>Disclosure pattern</li>
+            <li>Feed example display page</li>
+            <li>Grid and table properties guidance section</li>
+            <li>Collapsible dropdown listbox example</li>
+            <li>Multi-thumb slider examples</li>
+            <li>Table pattern and example</li>
+          </ul>
+        </li>
+        <li>The top of each example page now includes a set of four related links to:
+          <ul>
+            <li><Q>Browser and Assistive Technology Support</Q> section of <q>Read Me First</q></li>
+            <li><q>Report Issue</q> page in the Github repository</li>
+            <li><q>Related Issues</q> listed in the Github project for the example</li>
+            <li><q>Design Pattern</q> section that applies to the example</li>
+          </ul>
+        </li>
+        <li>All Javascript and CSS files used by the examples include the correct license and copyright statements.</li>
+        <li>Significant revisions of guidance and implementation were made to the following sections, design patterns, and examples:
+          <ul>
+            <li>Introduction</li>
+            <li>Keyboard guidance for Mac OS</li>
+            <li>Accordion example</li>
+            <li>Mixed checkbox examples</li>
+            <li>Scrollable layout grid example</li>
+            <li>Listbox examples</li>
+            <li>Modal dialog example</li>
+            <li>editor menubar example</li>
+            <li>Navigation menubar example</li>
+            <li>Menu button examples</li>
+            <li>Spinbutton pattern</li>
+            <li>Toolbar example</li>
+            <li>Tree view examples</li>
+          </ul>
+        </li>
+      </ul>
+      <p>Also see:</p>
+      <ul>
+        <li>
+          <a href="https://github.com/w3c/aria-practices/milestone/6">1.1 APG Release 1 milestone,</a>
+          which lists the GitHub issues that document discussions and reviews of changes included in the December 2017 publication.
+        </li>
+        <li>
+          <a href="https://github.com/w3c/aria-practices/wiki/Change-Log-for-December-2017-Note-Release-1">Detailed change log with links to all commits that are new in the December 2017 publication as a Note since the June 2017 working draft.</a>
+        </li>
+      </ul>
+    </section>
+    <section id="change_log_2017_june" class="appendix">
+      <h4>Changes in June 2017 Working Draft</h4>
+      <ul>
+        <li>
+          Added the following:
+          <ul>
+            <li>Modal dialog example</li>
+            <li>Disclosure design pattern</li>
+            <li>Example disclosure for FAQ</li>
+            <li>Example disclosure for image description</li>
+            <li>Draft of feed pattern</li>
+            <li>Example feed implementation</li>
+            <li>Example of menu button using aria-activedescendant</li>
+            <li>Example of tabs with manual activation</li>
+          </ul>
+        </li>
+        <li>Design pattern section: moved examples subsection of each design pattern to be
+          the first subsection.</li>
+        <li>
+          Across all example pages:
+          <ul>
+            <li>Improved visual design of tables that document keyboard implementation,
+              roles, states, and properties.</li>
+            <li>Improved consistency of editorial style.</li>
+          </ul>
+        </li>
+        <li>
+          Significant revisions of guidance and implementation were made to the following design
+          patterns and example pages:
+          <ul>
+            <li>Accordion example</li>
+            <li>Alert example</li>
+            <li>Breadcrumb example</li>
+            <li>Button example</li>
+            <li>Checkbox examples</li>
+            <li>Dialog (modal) design pattern</li>
+            <li>Grid examples</li>
+            <li>Landmark examples</li>
+            <li>Link example</li>
+            <li>Listbox example</li>
+            <li>Menubar examples</li>
+            <li>Menu button examples</li>
+            <li>Radio group example</li>
+            <li>Slider design pattern</li>
+            <li>Slider example</li>
+            <li>Example of tabs with automatic activation</li>
+            <li>Tree view examples</li>
+          </ul>
+        </li>
+      </ul>
+      <p>Also see:</p>
+      <ul>
+        <li>
+          <a href="https://github.com/w3c/aria-practices/issues?q=is%3Aclosed+is%3Aissue+milestone%3A%22Jan+2017+Clean+Up%22+sort%3Aupdated-asc">January 2017 Clean Up Milestone</a>,
+          which lists the GitHub issues that document discussions and reviews of changes included in the June 2017 working draft.
+        </li>
+        <li>
+          <a href="https://github.com/w3c/aria-practices/wiki/Change-Log-for-June-2017-Working-Draft">Detailed change log with links to all commits that are new in the June 2017 working draft.</a>
+        </li>
       </ul>
     </section>
   </section>
