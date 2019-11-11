@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en-US" xml:lang="en-US">
 <head>
   <meta charset="utf-8" />
-  <title>WAI-ARIA Authoring Practices 1.1</title>
+  <title>WAI-ARIA Authoring Practices 1.2</title>
   <script src="https://www.w3.org/Tools/respec/respec-w3c-common" class="remove"></script>
   <script src="common/script/resolveReferences.js" class="remove"></script>
   <script src="common/biblio.js" class="remove"></script>
@@ -12,7 +12,7 @@
 <body>
   <section id="abstract">
     <p>
-      This document provides readers with an understanding of how to use <cite><a href="https://www.w3.org/TR/wai-aria-1.1/"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> 1.1</a></cite> [[WAI-ARIA]] to create accessible rich internet applications.
+      This document provides readers with an understanding of how to use <cite><a href="https://www.w3.org/TR/wai-aria-1.2/"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> 1.2</a></cite> [[WAI-ARIA]] to create accessible rich internet applications.
       It describes considerations that might not be evident to most authors from the WAI-ARIA specification alone and recommends approaches to make widgets, navigation, and behaviors accessible using WAI-ARIA roles, states, and properties.
       This document is directed primarily to Web application developers, but the guidance is also useful for user agent and assistive technology developers.
     </p>
@@ -26,10 +26,10 @@
       of the
       <a href="https://www.w3.org/WAI/">Web Accessibility Initiative</a>.
       It supports the
-      <a href="" class="specref">WAI-ARIA 1.1</a> [[WAI-ARIA]]
+      <a href="" class="specref">WAI-ARIA 1.2</a> [<cite><a href="#bib-WAI-ARIA" class="bibref">WAI-ARIA</a></cite>]
       specification, providing detailed advice and examples beyond what would be appropriate to a technical specification but which are important to understand the specification.
     </p>
-    <p> This draft includes only a portion of content planned for WAI-ARIA Authoring Practices 1.1. To see plans for the complete guide, review the <a href="https://github.com/w3c/aria-practices/milestones?direction=asc&amp;sort=due_date&amp;state=open">Authoring Practices Milestone Plan</a>. </p>
+    <p> This draft includes only a portion of content planned for WAI-ARIA Authoring Practices 1.2. To see plans for the complete guide, review the <a href="https://github.com/w3c/aria-practices/milestones?direction=asc&amp;sort=due_date&amp;state=open">Authoring Practices Milestone Plan</a>. </p>
     <p>
       Feedback on the  information provided here is essential to the ultimate success of Rich Internet Applications that afford full access to their information and operations.
       The Accessible Rich Internet Applications Working Group asks in particular:
@@ -46,7 +46,7 @@
       To comment,
       <a href="https://github.com/w3c/aria-practices/issues/">file an issue in the <abbr title="World Wide Web Consortium">W3C</abbr> ARIA Practices GitHub repository</a>,
       or if that is not possible, send email to
-      <a href="mailto:public-aria@w3.org?subject=Comment%20on%20WAI-ARIA%20Practices%201.1">public-aria@w3.org</a>
+      <a href="mailto:public-aria@w3.org?subject=Comment%20on%20WAI-ARIA%20Practices%201.2">public-aria@w3.org</a>
       (<a href="http://lists.w3.org/Archives/Public/public-aria/">comment archive</a>).
     </p>
   </section>
@@ -56,7 +56,7 @@
     <p>This section is <em>informative.</em></p>
     <p>
       WAI-ARIA Authoring Practices is a guide for understanding how to use
-      <cite><a href="https://www.w3.org/TR/wai-aria-1.1/">WAI-ARIA 1.1</a></cite> to create an accessible Rich Internet Application.
+      <cite><a href="https://www.w3.org/TR/wai-aria-1.2/">WAI-ARIA 1.2</a></cite> to create an accessible Rich Internet Application.
       It provides guidance on the appropriate application of WAI-ARIA, describes recommended WAI-ARIA usage patterns, and explains concepts behind them.
     </p>
     <p>
@@ -136,7 +136,7 @@
       <h3>Browser and Assistive Technology Support</h3>
       <p>
         <strong>Testing assistive technology interoperability is essential before using code from this guide in production.</strong>
-        Because the purpose of this guide is to illustrate appropriate use of ARIA 1.1 as defined in the ARIA specification, the design patterns, reference examples, and sample code intentionally <strong>do not</strong> describe and implement coding techniques for working around problems caused by gaps in support for ARIA 1.1 in browsers and assistive technologies.
+        Because the purpose of this guide is to illustrate appropriate use of ARIA 1.2 as defined in the ARIA specification, the design patterns, reference examples, and sample code intentionally <strong>do not</strong> describe and implement coding techniques for working around problems caused by gaps in support for ARIA 1.2 in browsers and assistive technologies.
         It is thus advisable to test implementations thoroughly with each browser and assistive technology combination that is relevant within a target audience.
       </p>
       <p>
@@ -146,7 +146,7 @@
       <p>
         Except in cases where the ARIA Working Group and other contributors have overlooked an error,
         examples in this guide that do not function well in a particular browser or with a specific assistive technology are demonstrating browser or assistive technology bugs.
-        Browser and assistive technology developers can thus utilize code in this guide to help assess the quality of their support for ARIA 1.1.
+        Browser and assistive technology developers can thus utilize code in this guide to help assess the quality of their support for ARIA 1.2.
       </p>
     </section>
     <section id="mobile_and_touch_support">
@@ -294,7 +294,7 @@
 
       <section class="notoc">
         <h4>Keyboard Interaction</h4>
-        <p>An alert (WAI-ARIA live region) does not require any keyboard interaction.</p>
+        <p>Not applicable.</p>
       </section>
 
       <section class="notoc">
@@ -414,7 +414,10 @@
 
       <section class="notoc">
         <h4>Examples</h4>
-        <p><a href="examples/button/button.html">Button Examples</a>: Examples of clickable HTML <code>div</code> and <code>span</code> elements made into accessible command and toggle buttons.</p>
+        <ul>
+          <li><a href="examples/button/button.html">Button Examples</a>: Examples of clickable HTML <code>div</code> and <code>span</code> elements made into accessible command and toggle buttons.</li>
+          <li><a href="examples/button/button_idl.html">Button Examples (IDL)</a>: Examples of clickable HTML <code>div</code> and <code>span</code> elements made into accessible command and toggle buttons. This example uses the <a class="specref" href="#idl-interface">IDL Interface</a>.</li>
+        </ul>
       </section>
 
       <section class="notoc">
@@ -2151,6 +2154,47 @@
       </section>
     </section>
 
+    <section class="widget" id="meter">
+      <h3>Meter</h3>
+      <p>
+        A <a class="role-reference" href="#meter">meter</a> is a graphical display of a numeric value that varies within a defined range.
+        For example, a meter could be used to depict a device's current battery percentage or a car's fuel level.
+      </p>
+      <ul class="note">
+        <li>A <code>meter</code> should not be used to represent a value like the current world population since it does not have a meaningful maximum limit.</li>
+        <li>
+          The <code>meter</code> should not be used to indicate progress, such as loading or percent completion of a task.
+          To communicate progress, use the <a href="#progressbar" class="role-reference">progressbar</a> role instead.
+        </li>
+      </ul>
+        
+      <section class="notoc">
+        <h4>Example</h4>
+        <p><a href="examples/meter/meter.html">Meter Example</a></p>
+      </section>
+
+      <section class="notoc">
+        <h4>Keyboard Interaction</h4>
+        <p>Not applicable.</p>
+      </section>
+
+      <section class="notoc">
+        <h4>WAI-ARIA Roles, States, and Properties</h4>
+        <ul>
+          <li>The element serving as the meter has a role of <a class="role-reference" href="#meter">meter</a>.</li>
+          <li>The meter has <a class="property-reference" href="#aria-valuenow">aria-valuenow</a> set to a decimal value between <code>aria-valuemin</code> and <code>aria-valuemax</code> representing the current value of the meter.</li>
+          <li>The meter has <a class="property-reference" href="#aria-valuemin">aria-valuemin</a> set to a decimal value less than <code>aria-valuemax</code>.</li>
+          <li>The meter has <a class="property-reference" href="#aria-valuemax">aria-valuemax</a> set to a decimal value greater than <code>aria-valuemin</code>.</li>
+          <li>
+            Assistive technologies often present <code>aria-valuenow</code> as a percentage.
+            If conveying the value of the meter only in terms of a percentage would not be user friendly, the <a class="property-reference" href="#aria-valuetext">aria-valuetext</a> property is set to a string that makes the meter value understandable.
+            For example, a battery meter value might be conveyed as <code>aria-valuetext="50% (6 hours) remaining"</code>.
+          </li>
+          <li>If the meter has a visible label, it is referenced by <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> on the element with role <code>meter</code>. Otherwise, the element with role <code>meter</code> has a label provided by <a href="#aria-label" class="property-reference">aria-label</a>.</li>
+        </ul>
+      </section>
+    </section>
+
     <section class="widget" id="radiobutton">
       <h3>Radio Group</h3>
       <p>
@@ -3395,7 +3439,7 @@
         <h4 class="widget-name">Banner</h4>
 
         <p>
-          A <a href="https://www.w3.org/TR/wai-aria-1.1/#banner"><code>banner</code></a> landmark identifies site-oriented content at the beginning of each page within a website. Site-oriented content typically includes things such as the logo or identity
+          A <a class="role-reference" href="#banner"><code>banner</code></a> landmark identifies site-oriented content at the beginning of each page within a website. Site-oriented content typically includes things such as the logo or identity
           of the site sponsor, and site-specific search tool. A banner usually appears at the top of the page and typically spans the full width.
         </p>
 
@@ -3443,7 +3487,7 @@
       <section id="aria_lh_complementary">
         <h4 class="widget-name">Complementary</h4>
 
-        <p>A <a href="https://www.w3.org/TR/wai-aria-1.1/#complementary"><code>complementary</code></a> landmark is a supporting section of the document, designed to be complementary to the main content at a similar level in the DOM hierarchy, but remains meaningful
+        <p>A <a class="role-reference" href="#complementary"><code>complementary</code></a> landmark is a supporting section of the document, designed to be complementary to the main content at a similar level in the DOM hierarchy, but remains meaningful
           when separated from the main content.</p>
 
         <ul>
@@ -3474,7 +3518,7 @@
       <section id="aria_lh_contentinfo">
         <h4 class="widget-name">Contentinfo</h4>
 
-        <p>A <a href="https://www.w3.org/TR/wai-aria-1.1/#contentinfo"><code>contentinfo</code></a> landmark is a way to identify common information at the bottom of each page within a website, typically called the &quot;footer&quot; of the page, including information
+        <p>A <a class="role-reference" href="#contentinfo"><code>contentinfo</code></a> landmark is a way to identify common information at the bottom of each page within a website, typically called the &quot;footer&quot; of the page, including information
           such as copyrights and links to privacy and accessibility statements.</p>
 
         <ul>
@@ -3521,7 +3565,7 @@
       <section id="aria_lh_form">
         <h4 class="widget-name">Form</h4>
 
-        <p>A <a href="https://www.w3.org/TR/wai-aria-1.1/#form"><code>form</code></a> landmark identifies a region that contains a collection of items and objects that, as a whole, combine to create a form when no other named landmark is appropriate (e.g. main
+        <p>A <a class="role-reference" href="#form"><code>form</code></a> landmark identifies a region that contains a collection of items and objects that, as a whole, combine to create a form when no other named landmark is appropriate (e.g. main
           or search).</p>
 
         <ul>
@@ -3567,7 +3611,7 @@
       <section id="aria_lh_main">
         <h4 class="widget-name">Main</h4>
 
-        <p>A <a href="https://www.w3.org/TR/wai-aria-1.1/#main"><code>main</code></a> landmark identifies the primary content of the page.</p>
+        <p>A <a class="role-reference" href="#main"><code>main</code></a> landmark identifies the primary content of the page.</p>
 
         <ul>
           <li>Each page should have one <code>main</code> landmark.</li>
@@ -3600,7 +3644,7 @@
       <section id="aria_lh_navigation">
         <h4 class="widget-name">Navigation</h4>
 
-        <p><a href="https://www.w3.org/TR/wai-aria-1.1/#navigation"><code>Navigation</code></a> landmarks provide a way to identify groups (e.g. lists) of links that are intended to be used for website or page content navigation.</p>
+        <p><a class="role-reference" href="#navigation"><code>Navigation</code></a> landmarks provide a way to identify groups (e.g. lists) of links that are intended to be used for website or page content navigation.</p>
 
         <ul>
           <li>If a page includes more than one <code>navigation</code> landmark, each should have a unique label (see <a href="#aria_lh_step3">Step 3</a> above).</li>
@@ -3629,7 +3673,7 @@
       <section id="aria_lh_region">
         <h4 class="widget-name">Region</h4>
 
-        <p>A <a href="https://www.w3.org/TR/wai-aria-1.1/#region"><code>region</code></a> landmark is a perceivable section of the page containing content that is sufficiently important for users to be able to navigate to the section.</p>
+        <p>A <a class="role-reference" href="#region"><code>region</code></a> landmark is a perceivable section of the page containing content that is sufficiently important for users to be able to navigate to the section.</p>
 
         <ul>
           <li>A <code>region</code> landmark must have a label.</li>
@@ -3659,7 +3703,7 @@
       <section id="aria_lh_search">
         <h4 class="widget-name">Search</h4>
 
-        <p>A <a href="https://www.w3.org/TR/wai-aria-1.1/#search"><code>search</code></a> landmark contains a collection of items and objects that, as a whole, combine to create search functionality.</p>
+        <p>A <a class="role-reference" href="#search"><code>search</code></a> landmark contains a collection of items and objects that, as a whole, combine to create search functionality.</p>
 
         <ul>
           <li>Use the <code>search</code> landmark instead of the <code>form</code> landmark when the form is used for search functionality.</li>
@@ -4237,6 +4281,13 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
               </td>
             </tr>
             <tr>
+              <td><a href="#blockquote" class="role-reference"><code>blockquote</code></a></td>
+              <td>Discretionary</td>
+              <td>
+                If a visible label is present, associating it with the blockquote by using <code>aria-labelledby</code> could benefit some assistive technology users.
+              </td>
+            </tr>
+            <tr>
               <td><a href="#button" class="role-reference"><code>button</code></a></td>
               <td>Required <strong>Only If</strong> Content Insufficient</td>
               <td>
@@ -4490,7 +4541,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
             <tr>
               <td><a href="#listitem" class="role-reference"><code>listitem</code></a></td>
               <td>Do Not Name</td>
-              <td>Not supported by assistive technologies; it is necessary to include relevant content within the list item.</td>
+              <td>Naming is not supported by assistive technologies; it is necessary to include relevant content within the list item.</td>
             </tr>
             <tr>
               <td><a href="#log" class="role-reference"><code>log</code></a></td>
@@ -4586,6 +4637,17 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
                   <li>Warning! Using <code>aria-label</code> or <code>aria-labelledby</code> will hide any descendant content from assistive technologies.</li>
                   <li>Ideally named by visible, descendant content.</li>
                   <li>See the <a href="#menu">Menu or Menu bar Design Pattern</a>.</li>
+                </ul>
+              </td>
+            </tr>
+            <tr>
+              <td><a href="#meter" class="role-reference"><code>meter</code></a></td>
+              <td>Required</td>
+              <td>
+                <ul>
+                  <li>If based on an HTML <code>meter</code> element, can be named with an HTML <code>label</code> element.</li>
+                  <li>Otherwise use <code>aria-labelledby</code> if a visible label is present.</li>
+                  <li>Use <code>aria-label</code> if a visible label is not present.</li>
                 </ul>
               </td>
             </tr>
@@ -4696,7 +4758,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
             <tr>
               <td><a href="#rowgroup" class="role-reference"><code>rowgroup</code></a></td>
               <td>Do Not Name</td>
-              <td>Not supported by assistive technologies.</td>
+              <td>Naming is not supported by assistive technologies.</td>
             </tr>
             <tr>
               <td><a href="#rowheader" class="role-reference"><code>rowheader</code></a></td>
@@ -4869,6 +4931,11 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
                   <li>Use <code>aria-label</code> if a visible label is not present.</li>
                 </ul>
               </td>
+            </tr>
+            <tr>
+              <td><a href="#time" class="role-reference"><code>time</code></a></td>
+              <td>Do Not Name</td>
+              <td>Naming is not supported by assistive technologies.</td>
             </tr>
             <tr>
               <td><a href="#timer" class="role-reference"><code>timer</code></a></td>
@@ -6465,7 +6532,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
       <li>button</li>
       <li>checkbox</li>
       <li>img</li>
-      <li>math</li>
+      <li>meter</li>
       <li>menuitemcheckbox</li>
       <li>menuitemradio</li>
       <li>option</li>
@@ -6504,92 +6571,176 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
     </p>
   </section>
 
-    <section id="indexes" class="appendix">
-      <h2>Indexes</h2>
+  <section id="structural_roles">
+    <h2>Structural Roles</h2>
+    <p>
+      <strong>NOTE:</strong> This is a new section.
+      Please provide feedback in
+      <a href="https://github.com/w3c/aria-practices/issues/739">issue 739.</a>
+    </p>
+    <p>
+      ARIA provides a set of roles that convey the accessibility semantics of structures on a page.
+      These roles express the meaning that is conveyed by the layout and appearance of elements that organize and structure content, such as headings, lists, and tables.
+    </p>
+    <p>
+      some host languages, such as HTML, include elements that express the same  semantics as an ARIA role. 
+      For instance, the HTML <code>&lt;p&gt;</code> element is mapped to accessibility APIs in exactly the same way as <code>&lt;div role="paragraph"&gt;</code>.
+      The ARIA and HTML specifications refer to this mapping of HTML elements to ARIA attributes as implied semantics, i.e., the implied ARIA role of the HTML <code>&lt;p&gt;</code> element is <code>paragraph</code>.
+    </p>
+    <p>
+      When developing HTML, it is important to use native HTML elements where ever possible. 
+      Do not use an ARIA role or property if it is possible to use an HTML element that has equivalent semantics.
+      Circumstances where it is appropriate to use ARIA attributes instead of equivalent HTML are:
+    </p>
+    <ol>
+      <li>When the HTML element cannot be styled in a way that meets visual design requirements.</li>
+      <li>When testing reveals that browsers or assistive technologies provide better support for the ARIA equivalent.</li>
+      <li>When remediating or retrofitting legacy content and altering the underlying DOM to use the HTML would be cost prohibitive.</li>
+      <li>When building a web component to compose a <a href="https://html.spec.whatwg.org/multipage/#custom-elements">custom element</a> and the element being extended  does not convey the appropriate or sufficient accessibility semantics.</li>
+    </ol>
+    <p>The following table lists all structural roles defined in ARIA 1.2.</p>
+    <table class="widget-features">
+      <caption>ARIA structural roles</caption>
+      <thead>
+        <tr>
+          <th>ARIA Role</th>
+          <th>HTML Equivalent</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><th>application</th><td>No equivalent element</td></tr>
+        <tr><th>article</th><td>article</td></tr>
+        <tr><th>associationlist</th><td>dl</td></tr>
+        <tr><th>associationlistitemkey</th><td>dt</td></tr>
+        <tr><th>associationlistitemvalue</th><td>dd</td></tr>
+        <tr><th>blockquote</th><td>blockquote</td></tr>
+        <tr><th>caption</th><td>caption</td></tr>
+        <tr><th>cell</th><td>td</td></tr>
+        <tr><th>code</th><td>code</td></tr>
+        <tr><th>columnheader</th><td>th</td></tr>
+        <tr><th>definition</th><td>dd</td></tr>
+        <tr><th>deletion</th><td>del</td></tr>
+        <tr><th>directory</th><td>No equivalent element</td></tr>
+        <tr><th>document</th><td>No equivalent element</td></tr>
+        <tr><th>emphasis</th><td>em</td></tr>
+        <tr><th>feed</th><td>No equivalent element</td></tr>
+        <tr><th>figure</th><td>figure</td></tr>
+        <tr><th>generic</th><td>div, span</td></tr>
+        <tr><th>group</th><td>No equivalent element</td></tr>
+        <tr><th>heading with aria-level="N" where N is 1, 2, 3, 4, 5, or 6</th><td>h1, h2, h3, h4, h5, h6</td></tr>
+        <tr><th>insertion</th><td>ins</td></tr>
+        <tr><th>img</th><td>img</td></tr>
+        <tr><th>list</th><td>ul, ol</td></tr>
+        <tr><th>listitem</th><td>li</td></tr>
+        <tr><th>math</th><td>No equivalent element</td></tr>
+        <tr><th>none</th><td>No equivalent element</td></tr>
+        <tr><th>note</th><td>No equivalent element</td></tr>
+        <tr><th>presentation</th><td>No equivalent element</td></tr>
+        <tr><th>paragraph</th><td>p</td></tr>
+        <tr><th>row</th><td>tr</td></tr>
+        <tr><th>rowgroup</th><td>tbody, thead, tfoot</td></tr>
+        <tr><th>rowheader</th><td>th</td></tr>
+        <tr><th>separator (when not focusable)</th><td>hr</td></tr>
+        <tr><th>strong</th><td>strong</td></tr>
+        <tr><th>subscript</th><td>sub</td></tr>
+        <tr><th>superscript</th><td>sup</td></tr>
+        <tr><th>table</th><td>table</td></tr>
+        <tr><th>term</th><td>dfn</td></tr>    
+        <tr><th>time</th><td>time</td></tr>
+        <tr><th>toolbar</th><td>No equivalent element</td></tr>
+        <tr><th>tooltip</th><td>No equivalent element</td></tr>
+      </tbody>
+    </table>
+  </section>
+  
+  <section id="indexes" class="appendix">
+    <h2>Indexes</h2>
+    <ul>
+      <li><a href="examples/#examples_by_role_label">Design Pattern Examples by Role</a></li>
+      <li><a href="examples/#examples_by_props_label">Design Pattern Examples by Properties and States</a> </li>
+    </ul>
+  </section>
+
+  <section id="change_log" class="appendix">
+    <h2>Change History</h2>
+    <p>Change history is maintained in a separate version-specific branch.</p>
+  </section>
+
+  <section id="acknowledgements" class="appendix">
+    <h2>Acknowledgements</h2>
+    <section>
+      <h3>Major Contributors to Version 1.1</h3>
+      <p>
+        While WAI-ARIA Authoring Practices 1.1 is the work of the entire Authoring Practices Task Force and also benefits from many people throughout the open source community who both contribute significant work and provide valuable feedback,
+        special thanks goes to the following people who provided distinctly large portions of the content and code in version 1.1.
+      </p>
       <ul>
-        <li><a href="examples/#examples_by_role_label">Design Pattern Examples by Role</a></li>
-        <li><a href="examples/#examples_by_props_label">Design Pattern Examples by Properties and States</a> </li>
+        <li>Jon Gunderson and Nicholas Hoyt  of the Division of Disability Resources and Education Services at the University of Illinois Urbana/Champaign and the students Max Foltz,  Sulaiman Sanaullah, Mark McCarthy, and Jinyuan Zhou for their contributions to the development of many of the design pattern examples.</li>
+        <li>Valerie Young of Bocoup and her sponsor, Facebook, for development of the example test framework and regressions tests for more than 50 examples.</li>
+        <li>Simon Pieters of Bocoup and his sponsor, Facebook, for authoring of significant guidance sections, including comprehensive treatment of the topic of accessible names and descriptions.</li>
       </ul>
     </section>
-
-    <section id="change_log" class="appendix">
-      <h2>Change History</h2>
-      <p>Change history is maintained in a separate version-specific branch.</p>
-    </section>
-
-    <section id="acknowledgements" class="appendix">
-      <h2>Acknowledgements</h2>
-      <section>
-        <h3>Major Contributors to Version 1.1</h3>
-        <p>
-          While WAI-ARIA Authoring Practices 1.1 is the work of the entire Authoring Practices Task Force and also benefits from many people throughout the open source community who both contribute significant work and provide valuable feedback,
-          special thanks goes to the following people who provided distinctly large portions of the content and code in version 1.1.
-        </p>
-        <ul>
-          <li>Jon Gunderson and Nicholas Hoyt  of the Division of Disability Resources and Education Services at the University of Illinois Urbana/Champaign and the students Max Foltz,  Sulaiman Sanaullah, Mark McCarthy, and Jinyuan Zhou for their contributions to the development of many of the design pattern examples.</li>
-          <li>Valerie Young of Bocoup and her sponsor, Facebook, for development of the example test framework and regressions tests for more than 50 examples.</li>
-          <li>Simon Pieters of Bocoup and his sponsor, Facebook, for authoring of significant guidance sections, including comprehensive treatment of the topic of accessible names and descriptions.</li>
-        </ul>
-      </section>
-    	<section>
-    		<h3>Participants active in the ARIA Authoring Practices Task Force</h3>
-    		<ul>
-    			<li>Ann Abbott (Invited Expert)</li>
-    			<li>Shirisha Balusani (Microsoft Corporation)</li>
-          <li>Dorothy Bass (Wells Fargo Bank N.A.)</li>
-    			<li>Curt Bellew (Oracle)</li>
-    			<li>Zoë Bijl (Invited Expert)</li>
-    			<li>Michael Cooper (W3C)</li>
-    			<li>Bryan Garaventa (Level Access)</li>
-    			<li>Jon Gunderson (University of Illinois at Urbana-Champaign)</li>
-          <li>Jesse Hausler(Salesforce)</li>
-          <li>Sarah Higley (Microsoft Corporation)</li>
-    			<li>Hans Hillen (The Paciello Group, LLC)</li>
-    			<li>Matt King (Facebook)</li>
-    			<li>Jaeun Ku (University of Illinois at Urbana-Champaign)</li>
-    			<li>Aaron Leventhal (Google)</li>
-          <li>Carolyn MacLeod (IBM Corporation)</li>
-    			<li>Mark McCarthy (University of Illinois at Urbana-Champaign)</li>
-    			<li>James Nurthen (Adobe)</li>
-          <li>Scott O'Hara (The Paciello Group, LLC)</li>
-          <li>Simon Pieters (Bocoup)</li>
-          <li>Scott Vinkle (Shopify)</li>
-    			<li>Evan Yamanishi (W. W. Norton)</li>
-    			<li>Valerie Young (Bocoup)</li>
-    		</ul>
-    	</section>
-    	<section>
-    		<h3>Other commenters and contributors to Version 1.1</h3>
-    		<ul>
-    			<li>Vyacheslav Aristov</li>
-    			<li>J. Renée Beach</li>
-    			<li>Kasper Christensen</li>
-    			<li>Gerard K. Cohen</li>
-    			<li>Anne-Gaelle Colom</li>
-    			<li>Kevin Coughlin</li>
-    			<li>Cameron Cundiff</li>
-    			<li>Manish Dahamiwal</li>
-    			<li>Gilmore Davidson</li>
-    			<li>Boris Dušek</li>
-    			<li>Michael Fairchild</li>
-    			<li>Jeremy Felt</li>
-    			<li>Rob Fentress</li>
-    			<li>Geppy</li>
-    			<li>Tatiana Iskandar</li>
-    			<li>Patrick Lauke</li>
-    			<li>Marek Lewandowski</li>
-    			<li>Dan Matthew</li>
-    			<li>Shane McCarron</li>
-    			<li>Victor Meyer</li>
-    			<li>Jonathan Neal</li>
-    			<li>Philipp Rudloff</li>
-    			<li>Joseph Scheuhammer</li>
-    			<li>Nick Schonning</li>
-    			<li>thomascorthals</li>
-    			<li>Christopher Tryens</li>
-    		</ul>
-    	</section>
-    	<div data-include='common/acknowledgements/funders.html' data-include-replace='true'></div>
-    </section>
+  	<section>
+  		<h3>Participants active in the ARIA Authoring Practices Task Force</h3>
+  		<ul>
+  			<li>Ann Abbott (Invited Expert)</li>
+  			<li>Shirisha Balusani (Microsoft Corporation)</li>
+        <li>Dorothy Bass (Wells Fargo Bank N.A.)</li>
+  			<li>Curt Bellew (Oracle)</li>
+  			<li>Zoë Bijl (Invited Expert)</li>
+  			<li>Michael Cooper (W3C)</li>
+  			<li>Bryan Garaventa (Level Access)</li>
+  			<li>Jon Gunderson (University of Illinois at Urbana-Champaign)</li>
+        <li>Jesse Hausler(Salesforce)</li>
+        <li>Sarah Higley (Microsoft Corporation)</li>
+  			<li>Hans Hillen (The Paciello Group, LLC)</li>
+  			<li>Matt King (Facebook)</li>
+  			<li>Jaeun Ku (University of Illinois at Urbana-Champaign)</li>
+  			<li>Aaron Leventhal (Google)</li>
+        <li>Carolyn MacLeod (IBM Corporation)</li>
+  			<li>Mark McCarthy (University of Illinois at Urbana-Champaign)</li>
+  			<li>James Nurthen (Adobe)</li>
+        <li>Scott O'Hara (The Paciello Group, LLC)</li>
+        <li>Simon Pieters (Bocoup)</li>
+        <li>Scott Vinkle (Shopify)</li>
+  			<li>Evan Yamanishi (W. W. Norton)</li>
+  			<li>Valerie Young (Bocoup)</li>
+  		</ul>
+  	</section>
+  	<section>
+  		<h3>Other commenters and contributors to Version 1.1</h3>
+  		<ul>
+  			<li>Vyacheslav Aristov</li>
+  			<li>J. Renée Beach</li>
+  			<li>Kasper Christensen</li>
+  			<li>Gerard K. Cohen</li>
+  			<li>Anne-Gaelle Colom</li>
+  			<li>Kevin Coughlin</li>
+  			<li>Cameron Cundiff</li>
+  			<li>Manish Dahamiwal</li>
+  			<li>Gilmore Davidson</li>
+  			<li>Boris Dušek</li>
+  			<li>Michael Fairchild</li>
+  			<li>Jeremy Felt</li>
+  			<li>Rob Fentress</li>
+  			<li>Geppy</li>
+  			<li>Tatiana Iskandar</li>
+  			<li>Patrick Lauke</li>
+  			<li>Marek Lewandowski</li>
+  			<li>Dan Matthew</li>
+  			<li>Shane McCarron</li>
+  			<li>Victor Meyer</li>
+  			<li>Jonathan Neal</li>
+  			<li>Philipp Rudloff</li>
+  			<li>Joseph Scheuhammer</li>
+  			<li>Nick Schonning</li>
+  			<li>thomascorthals</li>
+  			<li>Christopher Tryens</li>
+  		</ul>
+  	</section>
+    
+  	<div data-include='common/acknowledgements/funders.html' data-include-replace='true'></div>
+    
+  </section>
 </body>
 </html>
