@@ -6875,36 +6875,22 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
     <section id="aria-level_treeitem_role">
       <h3>Using <code>aria-level</code> for the <code>treeitem</code> Role</h3>
       <p>In some implementations of the <a href="#TreeView">Tree View Design Pattern</a>, authors might need to explicitly declare the <code>aria-level</code> attribute.</p>
-      <p>The computed <code>aria-level</code> of a <code>treeitem</code> within a tree is based on the number of <code>group</code> role elements in the ancestor chain between the <code>treeitem</code> and the <code>tree</code> role, where the top-level <code>treeitem</code>s are <code>aria-level</code> 1. In the following example of a discussion board with nested replies, the top-level post "What color should we paint the bike shed?" has an implicit <code>aria-level='1'</code>. The first reply has an implicit <code>aria-level='2'</code>, the response to that first reply has an implicit <code>aria-level='3'</code>.</p>
-      <pre><code>&lt;ul role='tree'&gt;
-  &lt;li role='treeitem'&gt;
-  What color should we paint the bike shed?
-  &lt;ul role='group'&gt;
-    &lt;li role='treeitem''&gt;
-    Green.
-    &lt;ul role='group'&gt;
-      &lt;li role='treeitem'&gt;
-      Green is boring, let's do purple.
-      &lt;/li&gt;
-    &lt;/ul&gt;
-    &lt;/li&gt;
-  &lt;/ul&gt;
-  &lt;/li&gt;
+      <p>The computed <code>aria-level</code> of a <code>treeitem</code> within a tree is based on the number of <code>group</code> role elements in the ancestor chain between the <code>treeitem</code> and the <code>tree</code> role, where the top-level <code>treeitem</code>s are <code>aria-level</code> 1.</p>
+      <p>
+        The following example shows a File Directory where a nested folder "report-1" is being viewed.
+        The parent folder "Reports" is at the top-level in the directory structure,
+        and the "report-1" folder is level 2,
+        so the files within that folder are level 3,
+        even though only these files are currently being viewed.
+      </p>
+      <pre><code>&lt;h3 id="tree_label">Viewing: report-1&lt;/h3>
+&lt;ul role='tree' aria-labelledby='tree_label'&gt;
+  &lt;li role="treeitem" class="doc" aria-level="3">report-1A.docx&lt;/li>
+  &lt;li role="treeitem" class="doc" aria-level="3">report-1B.docx&lt;/li>
+  &lt;li role="treeitem" class="doc" aria-level="3">report-1C.docx&lt;/li>
 &lt;/ul&gt;
 </code></pre>
-      <p>To override the <code>aria-level</code> calculated from the number of <code>group</code> role parents, set <code>aria-level</code> explicitly. Setting <code>aria-level</code> explicitly might be necessary if only part of a tree is loaded and the implicit calculations cannot account for the missing part of the tree.</p>
-      <pre><code>&lt;ul role='tree'&gt;
-  &lt;li role='treeitem' aria-level='1'&gt;
-  What color should we paint the bike shed?
-  &lt;button&gt;Show 98 hidden replies&lt;/button&gt;
-  &lt;ul role='group'&gt;
-    &lt;li role='treeitem' aria-level='100'&gt;
-    I disagree with all 98 people who have replied before me, it should be rainbow colored.
-    &lt;/li&gt;
-  &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-</code></pre>
+       <p class="note">See the <a href="#TreeView">Tree View Design Pattern</a> for how this example handles focus and keyboard navigation.</p>
     </section>
 
     <section id="aria-level_row_role">
