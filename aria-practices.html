@@ -6851,14 +6851,25 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
 
     <section id="aria-level_listitem_role">
       <h3>Using <code>aria-level</code> for the <code>listitem</code> Role</h3>
-      <p>The <code>aria-level</code> attribute can be used on elements with <code>listitem</code> role to represent list subitems when the structure of the DOM tree does not imply the intended level of nesting. This is a rare scenario, however. For example, consider that you want to <em>quote</em> a single item from a large nested to-do list. Instead of using nested <code>ul</code> elements until the right level of nesting is reached, the <code>aria-level</code> attribute on the list item can be used, as follows:</p>
-      <pre><code>&lt;blockquote&gt;
-&lt;ul&gt;
-  &lt;li aria-level="2"&gt;Wash Dishes&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;I can do this item, but I can't do the other clean up items.&lt;/p&gt;
+      <p>
+        The <code>aria-level</code> attribute can be used on elements with <code>listitem</code> role to represent list subitems when the structure of the DOM tree does not imply the intended level of nesting.
+        This is a rare scenario, however.
+        For example, consider a subset of a Table of Contents that only covers the current chapter,
+        and omits the top-level item (the chapter).
+        The first list item is semantically a second-level item.
+        This can be indicated using <code>aria-level</code>, as follows:
+      </p>
+      <pre><code>&lt;h1>Preface&lt;/h1>
+&lt;h2>Table of Contents&lt;/h2>
+&lt;ul>
+  &lt;li aria-level="2">&lt;a href="#intended-audience">Intended audience&lt;/a>&lt;/li>
+  ...
+&lt;/ul>
+&lt;h2 id="intended-audience">Intended audience&lt;/h2>
+...
 </code></pre>
+
+      <p class="note">The HTML <code>li</code> element uses the <code>listitem</code> role by default.</p>
     </section>
 
     <section id="aria-level_treeitem_role">
