@@ -63,7 +63,7 @@ input.task-list-item-checkbox {
 }
 </style>
   
-  <title>WAI-ARIA Authoring Practices 1.1</title>
+  <title>WAI-ARIA Authoring Practices 1.2</title>
   <style id="respec-mainstyle">/*****************************************************************
  * ReSpec 3 CSS
  * Robin Berjon - http://berjon.com/
@@ -357,7 +357,7 @@ h6 > a.self-link::before {
   
   
   <link href="common/css/common.css" rel="stylesheet" type="text/css">
-<link rel="canonical" href="https://www.w3.org/TR/wai-aria-practices-1.1/"><style>/*
+<link rel="canonical" href="https://www.w3.org/TR/wai-aria-practices-1.2/"><style>/*
 
 github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
@@ -502,7 +502,7 @@ var[data-type]:hover::before {
   opacity: 1;
 }
 </style><script id="initialUserConfig" type="application/json">{
-  "doRDFa": "1.1",
+  "doRDFa": "1.2",
   "includePermalinks": true,
   "permalinkEdge": true,
   "permalinkHide": false,
@@ -510,8 +510,8 @@ var[data-type]:hover::before {
   "noRecTrack": true,
   "diffTool": "http://www.aptest.com/standards/htmldiff/htmldiff.pl",
   "license": "w3c-software-doc",
-  "shortName": "wai-aria-practices-1.1",
-  "copyrightStart": "2015",
+  "shortName": "wai-aria-practices-1.2",
+  "copyrightStart": "2018",
   "edDraftURI": "https://w3c.github.io/aria-practices/",
   "editors": [
     {
@@ -574,21 +574,21 @@ var[data-type]:hover::before {
   ],
   "ariaSpecURLs": {
     "ED": "https://w3c.github.io/aria/",
-    "FPWD": "https://www.w3.org/TR/wai-aria-1.1/",
-    "WD": "https://www.w3.org/TR/wai-aria-1.1/",
+    "FPWD": "https://www.w3.org/TR/wai-aria-1.2/",
+    "WD": "https://www.w3.org/TR/wai-aria-1.2/",
     "REC": "https://www.w3.org/TR/wai-aria/"
   },
   "accNameURLs": {
     "ED": "https://w3c.github.io/accname/",
-    "WD": "https://www.w3.org/TR/accname-aam-1.1/",
-    "FPWD": "https://www.w3.org/TR/accname-aam-1.1/",
-    "REC": "https://www.w3.org/TR/accname-aam-1.1/"
+    "WD": "https://www.w3.org/TR/accname-1.2/",
+    "FPWD": "https://www.w3.org/TR/accname-1.2/",
+    "REC": "https://www.w3.org/TR/accname/"
   },
   "coreMappingURLs": {
     "ED": "https://w3c.github.io/core-aam/",
-    "WD": "https://www.w3.org/TR/core-aam-1.1/",
-    "FPWD": "https://www.w3.org/TR/core-aam-1.1/",
-    "REC": "https://www.w3.org/TR/core-aam-1.1/"
+    "WD": "https://www.w3.org/TR/core-aam-1.2/",
+    "FPWD": "https://www.w3.org/TR/core-aam-1.2/",
+    "REC": "https://www.w3.org/TR/core-aam/"
   },
   "htmlMappingURLs": {
     "ED": "https://w3c.github.io/html-aam/",
@@ -641,24 +641,24 @@ var[data-type]:hover::before {
   "preProcess": [
     null
   ],
-  "publishDate": "2019-11-08",
-  "publishISODate": "2019-11-08T00:00:00.000Z",
-  "generatedSubtitle": "Editor's Draft 08 November 2019"
-}</script><meta name="description" content="This document provides readers with an understanding of how to use WAI-ARIA 1.1 [WAI-ARIA] to create accessible rich internet applications.
+  "publishDate": "2019-11-11",
+  "publishISODate": "2019-11-11T00:00:00.000Z",
+  "generatedSubtitle": "Editor's Draft 11 November 2019"
+}</script><meta name="description" content="This document provides readers with an understanding of how to use WAI-ARIA 1.2 [WAI-ARIA] to create accessible rich internet applications.
       It describes considerations that might not be evident to most authors from the WAI-ARIA specification alone and recommends approaches to make widgets, navigation, and behaviors accessible using WAI-ARIA roles, states, and properties.
       This document is directed primarily to Web application developers, but the guidance is also useful for user agent and assistive technology developers."><link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/W3C-ED"></head>
 <body class="h-entry informative"><div class="head">
-      <a class="logo" href="https://www.w3.org/"><img alt="W3C" width="72" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C"></a> <h1 id="title" class="title p-name">WAI-ARIA Authoring Practices 1.1</h1>
+      <a class="logo" href="https://www.w3.org/"><img alt="W3C" width="72" height="48" src="https://www.w3.org/StyleSheets/TR/2016/logos/W3C"></a> <h1 id="title" class="title p-name">WAI-ARIA Authoring Practices 1.2</h1>
       
       <h2>
         W3C Editor's Draft
-        <time class="dt-published" datetime="2019-11-08">08 November 2019</time>
+        <time class="dt-published" datetime="2019-11-11">11 November 2019</time>
       </h2>
       <dl>
         <dt>This version:</dt><dd>
                 <a class="u-url" href="https://w3c.github.io/aria-practices/">https://w3c.github.io/aria-practices/</a>
               </dd><dt>Latest published version:</dt><dd>
-                <a href="https://www.w3.org/TR/wai-aria-practices-1.1/">https://www.w3.org/TR/wai-aria-practices-1.1/</a>
+                <a href="https://www.w3.org/TR/wai-aria-practices-1.2/">https://www.w3.org/TR/wai-aria-practices-1.2/</a>
               </dd>
         <dt>Latest editor's draft:</dt><dd><a href="https://w3c.github.io/aria-practices/">https://w3c.github.io/aria-practices/</a></dd>
         
@@ -697,7 +697,7 @@ var[data-type]:hover::before {
       <p class="copyright">
       <a href="https://www.w3.org/Consortium/Legal/ipr-notice#Copyright">Copyright</a>
       ©
-      2015-2019
+      2018-2019
       
       <a href="https://www.w3.org/"><abbr title="World Wide Web Consortium">W3C</abbr></a><sup>®</sup> (<a href="https://www.csail.mit.edu/"><abbr title="Massachusetts Institute of Technology">MIT</abbr></a>,
       <a href="https://www.ercim.eu/"><abbr title="European Research Consortium for Informatics and Mathematics">ERCIM</abbr></a>, <a href="https://www.keio.ac.jp/">Keio</a>,
@@ -710,7 +710,7 @@ var[data-type]:hover::before {
     </div>
   <section id="abstract" class="introductory"><h2>Abstract</h2>
     <p>
-      This document provides readers with an understanding of how to use <cite><a href="https://www.w3.org/TR/wai-aria-1.1/"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> 1.1</a></cite> [<cite><a class="bibref" href="#bib-wai-aria" title="Accessible Rich Internet Applications (WAI-ARIA) 1.1" data-link-type="biblio">WAI-ARIA</a></cite>] to create accessible rich internet applications.
+      This document provides readers with an understanding of how to use <cite><a href="https://www.w3.org/TR/wai-aria-1.2/"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> 1.2</a></cite> [<cite><a class="bibref" href="#bib-wai-aria" title="Accessible Rich Internet Applications (WAI-ARIA) 1.1" data-link-type="biblio">WAI-ARIA</a></cite>] to create accessible rich internet applications.
       It describes considerations that might not be evident to most authors from the <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> specification alone and recommends approaches to make widgets, navigation, and behaviors accessible using <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> roles, states, and properties.
       This document is directed primarily to Web application developers, but the guidance is also useful for user agent and assistive technology developers.
     </p>
@@ -724,10 +724,10 @@ var[data-type]:hover::before {
       of the
       <a href="https://www.w3.org/WAI/">Web Accessibility Initiative</a>.
       It supports the
-      <a href="https://w3c.github.io/aria/" class="specref"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> 1.1</a> [<cite><a class="bibref" href="#bib-wai-aria" title="Accessible Rich Internet Applications (WAI-ARIA) 1.1" data-link-type="biblio">WAI-ARIA</a></cite>]
+      <a href="https://w3c.github.io/aria/" class="specref"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> 1.2</a> [<cite><a href="#bib-WAI-ARIA" class="bibref"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr></a></cite>]
       specification, providing detailed advice and examples beyond what would be appropriate to a technical specification but which are important to understand the specification.
     </p>
-    <p> This draft includes only a portion of content planned for <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Authoring Practices 1.1. To see plans for the complete guide, review the <a href="https://github.com/w3c/aria-practices/milestones?direction=asc&amp;sort=due_date&amp;state=open">Authoring Practices Milestone Plan</a>. </p>
+    <p> This draft includes only a portion of content planned for <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Authoring Practices 1.2. To see plans for the complete guide, review the <a href="https://github.com/w3c/aria-practices/milestones?direction=asc&amp;sort=due_date&amp;state=open">Authoring Practices Milestone Plan</a>. </p>
     <p>
       Feedback on the  information provided here is essential to the ultimate success of Rich Internet Applications that afford full access to their information and operations.
       The Accessible Rich Internet Applications Working Group asks in particular:
@@ -744,7 +744,7 @@ var[data-type]:hover::before {
       To comment,
       <a href="https://github.com/w3c/aria-practices/issues/">file an issue in the <abbr title="World Wide Web Consortium">W3C</abbr> ARIA Practices GitHub repository</a>,
       or if that is not possible, send email to
-      <a href="mailto:public-aria@w3.org?subject=Comment%20on%20WAI-ARIA%20Practices%201.1">public-aria@w3.org</a>
+      <a href="mailto:public-aria@w3.org?subject=Comment%20on%20WAI-ARIA%20Practices%201.2">public-aria@w3.org</a>
       (<a href="http://lists.w3.org/Archives/Public/public-aria/">comment archive</a>).
     </p>
   <p>
@@ -790,14 +790,14 @@ var[data-type]:hover::before {
         Conditions That Cause Role <code>presentation</code> to be Ignored
       </a></li><li class="tocline"><a class="tocxref" href="#presentation_role_examples"><bdi class="secno">8.3 </bdi>
         Example Demonstrating Effects of the <code>presentation</code> Role
-      </a></li></ol></li><li class="tocline"><a class="tocxref" href="#children_presentational"><bdi class="secno">9. </bdi>Roles That Automatically Hide Semantics by Making Their Descendants Presentational</a></li><li class="tocline"><a class="tocxref" href="#indexes"><bdi class="secno">A. </bdi>Indexes</a></li><li class="tocline"><a class="tocxref" href="#change_log"><bdi class="secno">B. </bdi>Change History</a></li><li class="tocline"><a class="tocxref" href="#acknowledgements"><bdi class="secno">C. </bdi>Acknowledgements</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#major-contributors-to-version-1-1"><bdi class="secno">C.1 </bdi>Major Contributors to Version 1.1</a></li><li class="tocline"><a class="tocxref" href="#participants-active-in-the-aria-authoring-practices-task-force"><bdi class="secno">C.2 </bdi>Participants active in the ARIA Authoring Practices Task Force</a></li><li class="tocline"><a class="tocxref" href="#other-commenters-and-contributors-to-version-1-1"><bdi class="secno">C.3 </bdi>Other commenters and contributors to Version 1.1</a></li><li class="tocline"><a class="tocxref" href="#ack_funders"><bdi class="secno">C.4 </bdi>Enabling funders</a></li></ol></li><li class="tocline"><a class="tocxref" href="#references"><bdi class="secno">D. </bdi>References</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#informative-references"><bdi class="secno">D.1 </bdi>Informative references</a></li></ol></li></ol></nav>
+      </a></li></ol></li><li class="tocline"><a class="tocxref" href="#children_presentational"><bdi class="secno">9. </bdi>Roles That Automatically Hide Semantics by Making Their Descendants Presentational</a></li><li class="tocline"><a class="tocxref" href="#structural_roles"><bdi class="secno">10. </bdi>Structural Roles</a></li><li class="tocline"><a class="tocxref" href="#indexes"><bdi class="secno">A. </bdi>Indexes</a></li><li class="tocline"><a class="tocxref" href="#change_log"><bdi class="secno">B. </bdi>Change History</a></li><li class="tocline"><a class="tocxref" href="#acknowledgements"><bdi class="secno">C. </bdi>Acknowledgements</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#major-contributors-to-version-1-1"><bdi class="secno">C.1 </bdi>Major Contributors to Version 1.1</a></li><li class="tocline"><a class="tocxref" href="#participants-active-in-the-aria-authoring-practices-task-force"><bdi class="secno">C.2 </bdi>Participants active in the ARIA Authoring Practices Task Force</a></li><li class="tocline"><a class="tocxref" href="#other-commenters-and-contributors-to-version-1-1"><bdi class="secno">C.3 </bdi>Other commenters and contributors to Version 1.1</a></li><li class="tocline"><a class="tocxref" href="#ack_funders"><bdi class="secno">C.4 </bdi>Enabling funders</a></li></ol></li><li class="tocline"><a class="tocxref" href="#references"><bdi class="secno">D. </bdi>References</a><ol class="toc"><li class="tocline"><a class="tocxref" href="#informative-references"><bdi class="secno">D.1 </bdi>Informative references</a></li></ol></li></ol></nav>
 
   <section id="intro">
     <h2 id="x1-introduction"><bdi class="secno">1. </bdi>Introduction<a class="self-link" aria-label="§" href="#intro"></a></h2>
     <p>This section is <em>informative.</em></p>
     <p>
       <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> Authoring Practices is a guide for understanding how to use
-      <cite><a href="https://www.w3.org/TR/wai-aria-1.1/"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> 1.1</a></cite> to create an accessible Rich Internet Application.
+      <cite><a href="https://www.w3.org/TR/wai-aria-1.2/"><abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> 1.2</a></cite> to create an accessible Rich Internet Application.
       It provides guidance on the appropriate application of <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr>, describes recommended <abbr title="Accessible Rich Internet Applications">WAI-ARIA</abbr> usage patterns, and explains concepts behind them.
     </p>
     <p>
@@ -875,7 +875,7 @@ var[data-type]:hover::before {
       <h3 id="x2-2-browser-and-assistive-technology-support"><bdi class="secno">2.2 </bdi>Browser and Assistive Technology Support<a class="self-link" aria-label="§" href="#browser_and_AT_support"></a></h3>
       <p>
         <strong>Testing assistive technology interoperability is essential before using code from this guide in production.</strong>
-        Because the purpose of this guide is to illustrate appropriate use of ARIA 1.1 as defined in the ARIA specification, the design patterns, reference examples, and sample code intentionally <strong>do not</strong> describe and implement coding techniques for working around problems caused by gaps in support for ARIA 1.1 in browsers and assistive technologies.
+        Because the purpose of this guide is to illustrate appropriate use of ARIA 1.2 as defined in the ARIA specification, the design patterns, reference examples, and sample code intentionally <strong>do not</strong> describe and implement coding techniques for working around problems caused by gaps in support for ARIA 1.2 in browsers and assistive technologies.
         It is thus advisable to test implementations thoroughly with each browser and assistive technology combination that is relevant within a target audience.
       </p>
       <p>
@@ -885,7 +885,7 @@ var[data-type]:hover::before {
       <p>
         Except in cases where the ARIA Working Group and other contributors have overlooked an error,
         examples in this guide that do not function well in a particular browser or with a specific assistive technology are demonstrating browser or assistive technology bugs.
-        Browser and assistive technology developers can thus utilize code in this guide to help assess the quality of their support for ARIA 1.1.
+        Browser and assistive technology developers can thus utilize code in this guide to help assess the quality of their support for ARIA 1.2.
       </p>
     </section>
     <section id="mobile_and_touch_support">
@@ -1153,7 +1153,10 @@ var[data-type]:hover::before {
 
       <section class="notoc">
         <h4 id="examples">Examples<a class="self-link" aria-label="§" href="#examples"></a></h4>
-        <p><a href="examples/button/button.html">Button Examples</a>: Examples of clickable HTML <code>div</code> and <code>span</code> elements made into accessible command and toggle buttons.</p>
+        <ul>
+          <li><a href="examples/button/button.html">Button Examples</a>: Examples of clickable HTML <code>div</code> and <code>span</code> elements made into accessible command and toggle buttons.</li>
+          <li><a href="examples/button/button_idl.html">Button Examples (IDL)</a>: Examples of clickable HTML <code>div</code> and <code>span</code> elements made into accessible command and toggle buttons. This example uses the <a class="specref" href="https://w3c.github.io/aria/#idl-interface">IDL Interface</a>.</li>
+        </ul>
       </section>
 
       <section class="notoc">
@@ -2648,6 +2651,7 @@ var[data-type]:hover::before {
       <h3 id="x3-15-menu-or-menu-bar"><bdi class="secno">3.15 </bdi>Menu or Menu bar<a class="self-link" aria-label="§" href="#menu"></a></h3>
       <p>
         A <a href="https://w3c.github.io/aria/#menu" class="role-reference">menu</a> is a widget that offers a list of choices to the user, such as a set of actions or functions.
+        Menu widgets behave like native operating system menus, such as the menus that pull down from the menubars commonly found at the top of many desktop application windows.
         A menu is usually opened, or made visible, by activating a <a href="#menubutton">menu button</a>, choosing an item in a menu that opens a sub menu, or by invoking a command, such as <kbd>Shift + F10</kbd> in Windows, that opens a context specific menu.
         When a user activates a choice in a menu, the menu usually closes unless the choice opened a submenu.
       </p>
@@ -4174,7 +4178,7 @@ var[data-type]:hover::before {
         <h4 class="widget-name" id="x4-3-1-banner"><bdi class="secno">4.3.1 </bdi>Banner<a class="self-link" aria-label="§" href="#aria_lh_banner"></a></h4>
 
         <p>
-          A <a href="https://www.w3.org/TR/wai-aria-1.1/#banner"><code>banner</code></a> landmark identifies site-oriented content at the beginning of each page within a website. Site-oriented content typically includes things such as the logo or identity
+          A <a class="role-reference" href="https://w3c.github.io/aria/#banner"><code>banner</code></a> landmark identifies site-oriented content at the beginning of each page within a website. Site-oriented content typically includes things such as the logo or identity
           of the site sponsor, and site-specific search tool. A banner usually appears at the top of the page and typically spans the full width.
         </p>
 
@@ -4222,7 +4226,7 @@ var[data-type]:hover::before {
       <section id="aria_lh_complementary">
         <h4 class="widget-name" id="x4-3-2-complementary"><bdi class="secno">4.3.2 </bdi>Complementary<a class="self-link" aria-label="§" href="#aria_lh_complementary"></a></h4>
 
-        <p>A <a href="https://www.w3.org/TR/wai-aria-1.1/#complementary"><code>complementary</code></a> landmark is a supporting section of the document, designed to be complementary to the main content at a similar level in the DOM hierarchy, but remains meaningful
+        <p>A <a class="role-reference" href="https://w3c.github.io/aria/#complementary"><code>complementary</code></a> landmark is a supporting section of the document, designed to be complementary to the main content at a similar level in the DOM hierarchy, but remains meaningful
           when separated from the main content.</p>
 
         <ul>
@@ -4253,7 +4257,7 @@ var[data-type]:hover::before {
       <section id="aria_lh_contentinfo">
         <h4 class="widget-name" id="x4-3-3-contentinfo"><bdi class="secno">4.3.3 </bdi>Contentinfo<a class="self-link" aria-label="§" href="#aria_lh_contentinfo"></a></h4>
 
-        <p>A <a href="https://www.w3.org/TR/wai-aria-1.1/#contentinfo"><code>contentinfo</code></a> landmark is a way to identify common information at the bottom of each page within a website, typically called the "footer" of the page, including information
+        <p>A <a class="role-reference" href="https://w3c.github.io/aria/#contentinfo"><code>contentinfo</code></a> landmark is a way to identify common information at the bottom of each page within a website, typically called the "footer" of the page, including information
           such as copyrights and links to privacy and accessibility statements.</p>
 
         <ul>
@@ -4300,7 +4304,7 @@ var[data-type]:hover::before {
       <section id="aria_lh_form">
         <h4 class="widget-name" id="x4-3-4-form"><bdi class="secno">4.3.4 </bdi>Form<a class="self-link" aria-label="§" href="#aria_lh_form"></a></h4>
 
-        <p>A <a href="https://www.w3.org/TR/wai-aria-1.1/#form"><code>form</code></a> landmark identifies a region that contains a collection of items and objects that, as a whole, combine to create a form when no other named landmark is appropriate (e.g. main
+        <p>A <a class="role-reference" href="https://w3c.github.io/aria/#form"><code>form</code></a> landmark identifies a region that contains a collection of items and objects that, as a whole, combine to create a form when no other named landmark is appropriate (e.g. main
           or search).</p>
 
         <ul>
@@ -4346,7 +4350,7 @@ var[data-type]:hover::before {
       <section id="aria_lh_main">
         <h4 class="widget-name" id="x4-3-5-main"><bdi class="secno">4.3.5 </bdi>Main<a class="self-link" aria-label="§" href="#aria_lh_main"></a></h4>
 
-        <p>A <a href="https://www.w3.org/TR/wai-aria-1.1/#main"><code>main</code></a> landmark identifies the primary content of the page.</p>
+        <p>A <a class="role-reference" href="https://w3c.github.io/aria/#main"><code>main</code></a> landmark identifies the primary content of the page.</p>
 
         <ul>
           <li>Each page should have one <code>main</code> landmark.</li>
@@ -4379,7 +4383,7 @@ var[data-type]:hover::before {
       <section id="aria_lh_navigation">
         <h4 class="widget-name" id="x4-3-6-navigation"><bdi class="secno">4.3.6 </bdi>Navigation<a class="self-link" aria-label="§" href="#aria_lh_navigation"></a></h4>
 
-        <p><a href="https://www.w3.org/TR/wai-aria-1.1/#navigation"><code>Navigation</code></a> landmarks provide a way to identify groups (e.g. lists) of links that are intended to be used for website or page content navigation.</p>
+        <p><a class="role-reference" href="https://w3c.github.io/aria/#navigation"><code>Navigation</code></a> landmarks provide a way to identify groups (e.g. lists) of links that are intended to be used for website or page content navigation.</p>
 
         <ul>
           <li>If a page includes more than one <code>navigation</code> landmark, each should have a unique label (see <a href="#aria_lh_step3">Step 3</a> above).</li>
@@ -4408,7 +4412,7 @@ var[data-type]:hover::before {
       <section id="aria_lh_region">
         <h4 class="widget-name" id="x4-3-7-region"><bdi class="secno">4.3.7 </bdi>Region<a class="self-link" aria-label="§" href="#aria_lh_region"></a></h4>
 
-        <p>A <a href="https://www.w3.org/TR/wai-aria-1.1/#region"><code>region</code></a> landmark is a perceivable section of the page containing content that is sufficiently important for users to be able to navigate to the section.</p>
+        <p>A <a class="role-reference" href="https://w3c.github.io/aria/#region"><code>region</code></a> landmark is a perceivable section of the page containing content that is sufficiently important for users to be able to navigate to the section.</p>
 
         <ul>
           <li>A <code>region</code> landmark must have a label.</li>
@@ -4438,7 +4442,7 @@ var[data-type]:hover::before {
       <section id="aria_lh_search">
         <h4 class="widget-name" id="x4-3-8-search"><bdi class="secno">4.3.8 </bdi>Search<a class="self-link" aria-label="§" href="#aria_lh_search"></a></h4>
 
-        <p>A <a href="https://www.w3.org/TR/wai-aria-1.1/#search"><code>search</code></a> landmark contains a collection of items and objects that, as a whole, combine to create search functionality.</p>
+        <p>A <a class="role-reference" href="https://w3c.github.io/aria/#search"><code>search</code></a> landmark contains a collection of items and objects that, as a whole, combine to create search functionality.</p>
 
         <ul>
           <li>Use the <code>search</code> landmark instead of the <code>form</code> landmark when the form is used for search functionality.</li>
@@ -7252,7 +7256,6 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
       <li>checkbox</li>
       <li>img</li>
       <li>meter</li>
-      <li>math</li>
       <li>menuitemcheckbox</li>
       <li>menuitemradio</li>
       <li>option</li>
@@ -7285,6 +7288,88 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
     </p>
   </section>
 
+  <section id="structural_roles">
+    <h2 id="x10-structural-roles"><bdi class="secno">10. </bdi>Structural Roles<a class="self-link" aria-label="§" href="#structural_roles"></a></h2>
+    <p>
+      <strong>NOTE:</strong> This is a new section.
+      Please provide feedback in
+      <a href="https://github.com/w3c/aria-practices/issues/739">issue 739.</a>
+    </p>
+    <p>
+      ARIA provides a set of roles that convey the accessibility semantics of structures on a page.
+      These roles express the meaning that is conveyed by the layout and appearance of elements that organize and structure content, such as headings, lists, and tables.
+    </p>
+    <p>
+      some host languages, such as HTML, include elements that express the same  semantics as an ARIA role. 
+      For instance, the HTML <code>&lt;p&gt;</code> element is mapped to accessibility APIs in exactly the same way as <code>&lt;div role="paragraph"&gt;</code>.
+      The ARIA and HTML specifications refer to this mapping of HTML elements to ARIA attributes as implied semantics, i.e., the implied ARIA role of the HTML <code>&lt;p&gt;</code> element is <code>paragraph</code>.
+    </p>
+    <p>
+      When developing HTML, it is important to use native HTML elements where ever possible. 
+      Do not use an ARIA role or property if it is possible to use an HTML element that has equivalent semantics.
+      Circumstances where it is appropriate to use ARIA attributes instead of equivalent HTML are:
+    </p>
+    <ol>
+      <li>When the HTML element cannot be styled in a way that meets visual design requirements.</li>
+      <li>When testing reveals that browsers or assistive technologies provide better support for the ARIA equivalent.</li>
+      <li>When remediating or retrofitting legacy content and altering the underlying DOM to use the HTML would be cost prohibitive.</li>
+      <li>When building a web component to compose a <a href="https://html.spec.whatwg.org/multipage/#custom-elements">custom element</a> and the element being extended  does not convey the appropriate or sufficient accessibility semantics.</li>
+    </ol>
+    <p>The following table lists all structural roles defined in ARIA 1.2.</p>
+    <table class="widget-features">
+      <caption>ARIA structural roles</caption>
+      <thead>
+        <tr>
+          <th>ARIA Role</th>
+          <th>HTML Equivalent</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><th>application</th><td>No equivalent element</td></tr>
+        <tr><th>article</th><td>article</td></tr>
+        <tr><th>associationlist</th><td>dl</td></tr>
+        <tr><th>associationlistitemkey</th><td>dt</td></tr>
+        <tr><th>associationlistitemvalue</th><td>dd</td></tr>
+        <tr><th>blockquote</th><td>blockquote</td></tr>
+        <tr><th>caption</th><td>caption</td></tr>
+        <tr><th>cell</th><td>td</td></tr>
+        <tr><th>code</th><td>code</td></tr>
+        <tr><th>columnheader</th><td>th</td></tr>
+        <tr><th>definition</th><td>dd</td></tr>
+        <tr><th>deletion</th><td>del</td></tr>
+        <tr><th>directory</th><td>No equivalent element</td></tr>
+        <tr><th>document</th><td>No equivalent element</td></tr>
+        <tr><th>emphasis</th><td>em</td></tr>
+        <tr><th>feed</th><td>No equivalent element</td></tr>
+        <tr><th>figure</th><td>figure</td></tr>
+        <tr><th>generic</th><td>div, span</td></tr>
+        <tr><th>group</th><td>No equivalent element</td></tr>
+        <tr><th>heading with aria-level="N" where N is 1, 2, 3, 4, 5, or 6</th><td>h1, h2, h3, h4, h5, h6</td></tr>
+        <tr><th>insertion</th><td>ins</td></tr>
+        <tr><th>img</th><td>img</td></tr>
+        <tr><th>list</th><td>ul, ol</td></tr>
+        <tr><th>listitem</th><td>li</td></tr>
+        <tr><th>math</th><td>No equivalent element</td></tr>
+        <tr><th>none</th><td>No equivalent element</td></tr>
+        <tr><th>note</th><td>No equivalent element</td></tr>
+        <tr><th>presentation</th><td>No equivalent element</td></tr>
+        <tr><th>paragraph</th><td>p</td></tr>
+        <tr><th>row</th><td>tr</td></tr>
+        <tr><th>rowgroup</th><td>tbody, thead, tfoot</td></tr>
+        <tr><th>rowheader</th><td>th</td></tr>
+        <tr><th>separator (when not focusable)</th><td>hr</td></tr>
+        <tr><th>strong</th><td>strong</td></tr>
+        <tr><th>subscript</th><td>sub</td></tr>
+        <tr><th>superscript</th><td>sup</td></tr>
+        <tr><th>table</th><td>table</td></tr>
+        <tr><th>term</th><td>dfn</td></tr>    
+        <tr><th>time</th><td>time</td></tr>
+        <tr><th>toolbar</th><td>No equivalent element</td></tr>
+        <tr><th>tooltip</th><td>No equivalent element</td></tr>
+      </tbody>
+    </table>
+  </section>
+  
   <section id="indexes" class="appendix">
     <h2 id="a-indexes"><bdi class="secno">A. </bdi>Indexes<a class="self-link" aria-label="§" href="#indexes"></a></h2>
     <ul>
