@@ -712,15 +712,22 @@
     <section class="widget" id="combobox">
       <h3>Combo Box</h3>
       <p>
-        A <a href="#combobox" class="role-reference">combobox</a> is a widget that controls a pop-up element for helping users set the value of the combobox.
-        The combobox can either be editable, where the user can type and also select a suggested value,
-        or be non-editable, where the user can only select one of the values provided in the popup.
+        A <a href="#combobox" class="role-reference">combobox</a> is an input widget that controls a pop-up element that helps users choose its value.
+        In some implementations, the pop-up presents allowed values, while in others, the values in the pop-up are suggestions, and users can input values that are not presented in the pop-up.
         The popup may be a <a href="#Listbox">listbox</a>,
         <a href="#grid">grid</a>,
         <a href="#TreeView">tree</a>, or
         <a href="#dialog_modal">dialog.</a>
         Many implementations also include a third optional element -- a graphical button adjacent to the combobox, indicating the availability of the popup.
         Activating the button displays the popup if suggestions are available.
+      </p>
+      <p>
+        The combobox pattern supports several optional behaviors.
+        The one that most shapes interaction is text input.   
+        Some combobox implementations allow users to type and edit text in the combobox and others do not.
+        If a combobox does not support text input, it is referred to as select-only, meaning the only way users can set a value is by selecting a value in the pop-up.
+        If a combobox supports text input, it is referred to as editable.
+        An editable combobox may either allow users to input any arbitrary value, or it may restrict its value to a discrete set of allowed values, in which case typing input serves to filter suggestions presented in the pop-up.
       </p>
       <p>The popup is hidden by default, and the conditions that trigger its display are specific to each implementation. Some possible popup display conditions include:</p>
       <ul>
