@@ -222,7 +222,7 @@
       <p>
         The example comboboxes on this page implement the following ARIA roles, states, and properties.
         Information about other ways of applying ARIA roles, states, and properties is available in the
-        <a href="../../../#combobox_roles_states_props">Roles, States, and Properties section of the combobox design pattern.</a>
+        <a href="../../#combobox_roles_states_props">Roles, States, and Properties section of the combobox design pattern.</a>
       </p>
       <h3 id="rps_label_textbox">Textbox</h3>
       <table aria-labelledby="rps_label_textbox rps_label" class="data attributes">
@@ -235,45 +235,39 @@
           </tr>
         </thead>
         <tbody>
-          <tr data-test-id="textbox-role">
+          <tr data-test-id="combobox-role">
             <th scope="row">
               <code>combobox</code>
             </th>
             <td></td>
             <td><code>input[type="text"]</code></td>
-            <td>
-              <ul>
-                <li>Identifies the element as a combobox.</li>
-                <li>Note: Unlike this ARIA 1.2 combobox, an ARIA 1.1 pattern would have the <code>combobox</code> role on a container element of the textbox input instead of the textbox itself.</ul>
-                </li>
-              </ul>
-            </td>
+            <td>Identifies the element as a combobox.</td>
           </tr>
-          <tr data-test-id="textbox-aria-haspopup">
+          <tr data-test-id="combobox-aria-haspopup">
             <td></td>
             <th scope="row">
-              <code>aria-haspopup=<q>grid</q></code>
+              <code>aria-haspopup="grid"</code>
             </th>
             <td><code>input[type="text"]</code></td>
             <td>Indicates that the combobox can popup a <code>grid</code> to suggest values.</td>
           </tr>
-          <tr data-test-id="textbox-aria-expanded">
+          <tr data-test-id="combobox-aria-expanded">
             <td></td>
             <th scope="row">
-              <code>aria-expanded=<q>false</q></code>
+              <code>aria-expanded="false"</code>
             </th>
             <td><code>input[type="text"]</code></td>
             <td>Indicates that the popup element <strong>is not</strong> displayed.</td>
           </tr>
-          <tr data-test-id="textbox-aria-expanded">
+          <tr data-test-id="combobox-aria-expanded">
             <td></td>
             <th scope="row">
-              <code>aria-expanded=<q>true</q></code>
+              <code>aria-expanded="true"</code>
             </th>
             <td><code>input[type="text"]</code></td>
             <td>Indicates that the popup element <strong>is</strong> displayed.</td>
           </tr>
-          <tr data-test-id="textbox-id">
+          <tr data-test-id="combobox-id">
             <td></td>
             <th scope="row">
               <code>id="string"</code>
@@ -281,41 +275,31 @@
             <td><code>input[type="text"]</code></td>
             <td>
               <ul>
-                <li>Referenced by <code>for</code> attribute of <code>label</code> element to provide an accessible label.</li>
-                <li>Recommended labeling method for HTML input elements so clicking label focuses input.</li>
+                <li>Referenced by <code>for</code> attribute of <code>label</code> element to provide an accessible name.</li>
+                <li>Recommended naming method for HTML input elements because clicking label focuses input.</li>
               </ul>
             </td>
           </tr>
-          <tr data-test-id="textbox-aria-autocomplete">
+          <tr data-test-id="combobox-aria-autocomplete">
             <td></td>
             <th scope="row">
-              <code>aria-autocomplete=<q>list</q></code>
+              <code>aria-autocomplete="list"</code>
             </th>
             <td><code>input[type="text"]</code></td>
-            <td>Indicates that the autocomplete behavior of the text input is to suggest a list of possible values in a popup.</td>
+            <td>Indicates that the autocomplete behavior of the input is to suggest a list of possible values in a popup.</td>
           </tr>
-          <tr data-test-id="textbox-aria-controls">
+          <tr data-test-id="combobox-aria-controls">
             <td></td>
             <th scope="row">
-              <code>aria-controls=<q>IDREF</q></code>
+              <code>aria-controls="IDREF"</code>
             </th>
             <td><code>input[type="text"]</code></td>
-            <td>
-              <ul>
-                <li>Identifies the popup element that lists suggested values.</li>
-                <li>Note:
-                  <ul>
-                    <li>In the ARIA 1.0 combobox pattern, the textbox has <code>aria-owns</code> instead of <code>aria-controls</code>.</li>
-                    <li>In this ARIA 1.1 pattern, <code>aria-owns</code> is instead on the parent container so the popup element is a sibling of the textbox instead of a child of the textbox, making it perceivable by screen reader users as an element adjacent to the textbox when using a reading cursor or touch interface.</li>
-                  </ul>
-                </li>
-              </ul>
-            </td>
+            <td>Identifies the popup element that lists suggested values.</td>
           </tr>
-          <tr data-test-id="textbox-aria-activedescendant">
+          <tr data-test-id="combobox-aria-activedescendant">
             <td></td>
             <th scope="row">
-              <code>aria-activedescendant=<q>IDREF</q></code>
+              <code>aria-activedescendant="IDREF"</code>
             </th>
             <td><code>input[type="text"]</code></td>
             <td>
@@ -325,7 +309,7 @@
                 <li>Enables assistive technologies to know which element the application regards as focused while DOM focus remains on the <code>input</code> element.</li>
                 <li>
                   For more information about this focus management technique, see
-                  <a href="../../../#kbd_focus_activedescendant">Using aria-activedescendant to Manage Focus.</a>
+                  <a href="../../#kbd_focus_activedescendant">Using aria-activedescendant to Manage Focus.</a>
                 </li>
               </ul>
             </td>
@@ -356,10 +340,10 @@
           <tr data-test-id="grid-aria-labelledby">
             <td></td>
             <th scope="row">
-              <code>aria-labelledby=<q>IDREF</q></code>
+              <code>aria-labelledby="IDREF"</code>
             </th>
             <td><code>div</code></td>
-            <td>Provides a label for the <code>grid</code> element of the combobox.</td>
+            <td>Provides a label for the <code>grid</code> element controlled by the combobox.</td>
           </tr>
           <tr data-test-id="row-role">
             <th scope="row">
@@ -372,7 +356,7 @@
           <tr data-test-id="row-aria-selected">
             <td></td>
             <th scope="row">
-              <code>aria-selected=<q>true</q></code>
+              <code>aria-selected="true"</code>
             </th>
             <td><code>div</code></td>
             <td>
