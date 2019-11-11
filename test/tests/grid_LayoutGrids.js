@@ -51,7 +51,7 @@ const focusOnOrInCell = async function (t, cellElement, focusable) {
 };
 
 const findColIndex = function () {
-  const el = document.activeElement;
+  let el = document.activeElement;
   while (!el.hasAttribute('aria-colindex')) {
     el = el.parent;
   }

@@ -154,14 +154,28 @@ const processDocumentationInExampleFiles = function (exampleFiles, exampleCovera
 const getRegressionTestCoverage = function (exampleCoverage) {
   process.env.REGRESSION_COVERAGE_REPORT = 1;
 
+  const allTestFiles = [];
+  fs.readdirSync(testsPath).forEach(function (testfile) {
+    allTestFiles.push(path.join(testsPath, testfile));
+  });
+
   const cmd = path.resolve(__dirname, '..', '..', 'node_modules', 'ava', 'cli.js');
-  const cmdargs = [testsPath, '--tap', '-c', '1'];
+  const cmdargs = [...allTestFiles, '--tap', '-c', '1'];
 
   const output = spawnSync(cmd, cmdargs);
   const avaResults = output.stdout.toString();
+  const avaError = output.stderr.toString();
+
+  if (avaError) {
+    console.log('AVA error with following message, exiting script.\n\n');
+    console.log(avaError);
+    process.exitCode = 1;
+    process.exit();
+  }
 
   let testRegex = /^# (\S+) [>›] (\S+\.html) \[data-test-id="(\S+)"\]/gm;
   let matchResults;
+  // eslint-disable-next-line no-cond-assign
   while (matchResults = testRegex.exec(avaResults)) {
     let example = matchResults[2];
     let dataTestId = matchResults[3];
@@ -246,9 +260,9 @@ fs.readdirSync(testsPath).forEach(function (testFile) {
   }
 });
 
-console.log('\nExamples without regression tests:\n');
+console.log('\nExamples without any regression tests:\n');
 console.log(examplesWithNoTestsReport || 'None found.\n');
-console.log('\nExamples missing regression tests:\n');
+console.log('\nExamples missing some regression tests:\n');
 console.log(examplesMissingSomeTestsReport || 'None found.\n');
 console.log('\nExamples documentation table rows without data-test-ids:\n');
 console.log(missingTestIdsReport || 'None found.\n');

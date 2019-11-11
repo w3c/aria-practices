@@ -189,7 +189,7 @@ VSlider.prototype.handleMouseDown = function (event) {
 
   };
 
-    // bind a mousemove event handler to move pointer
+  // bind a mousemove event handler to move pointer
   document.addEventListener('mousemove', handleMouseMove);
 
   // bind a mouseup event handler to stop tracking mouse movements
@@ -218,7 +218,7 @@ VSlider.prototype.handleClick = function (event) {
 // Initialise VSliders on the page
 window.addEventListener('load', function () {
 
-  var sliders = document.querySelectorAll('.aria-widget-vertical-slider [role=slider]');;
+  var sliders = document.querySelectorAll('.aria-widget-vertical-slider [role=slider]');
 
   for (var i = 0; i < sliders.length; i++) {
     var s = new VSlider(sliders[i]);

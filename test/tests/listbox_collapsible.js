@@ -85,18 +85,21 @@ ariaTest('tabindex="0" on listbox element', exampleFile, 'listbox-tabindex', asy
 });
 
 ariaTest('aria-activedescendant on listbox element', exampleFile, 'listbox-aria-activedescendant', async (t) => {
-  t.plan(1);
-
   // Put the focus on the listbox by clicking the button
   await t.context.session.findElement(By.css(ex.buttonSelector)).click();
 
-  let options = await t.context.session.findElements(By.css(ex.optionSelector));
-  let optionId = await options[0].getAttribute('id');
+  const listbox = await t.context.session.findElement(By.css(ex.listboxSelector));
+  const options = await t.context.session.findElements(By.css(ex.optionSelector));
+  const optionId = await options[0].getAttribute('id');
+
+  // no active descendant is expected until arrow keys are used
+  t.is(await listbox.getAttribute('aria-activedescendant'), null, 'activedescendant not set on open click');
+
+  // active descendant set to first item on down arrow
+  await listbox.sendKeys(Key.DOWN);
 
   t.is(
-    await t.context.session
-      .findElement(By.css(ex.listboxSelector))
-      .getAttribute('aria-activedescendant'),
+    await listbox.getAttribute('aria-activedescendant'),
     optionId,
     'aria-activedescendant should be set to ' + optionId + ' for items: ' + ex.listboxSelector
   );
@@ -112,8 +115,8 @@ ariaTest('"aria-selected" on option elements', exampleFile, 'option-aria-selecte
 
   await assertAttributeDNE(t, ex.optionSelector, 'aria-selected');
 
-  // Put the focus on the listbox by clicking the button
-  await t.context.session.findElement(By.css(ex.buttonSelector)).click();
+  // Put the focus on the listbox with arrow down
+  await t.context.session.findElement(By.css(ex.buttonSelector)).sendKeys(Key.DOWN);
 
   await assertAttributeValues(t, ex.optionSelector + ':nth-child(1)', 'aria-selected', 'true');
 });
@@ -123,8 +126,6 @@ ariaTest('"aria-selected" on option elements', exampleFile, 'option-aria-selecte
 
 
 ariaTest('ENTER opens and closes listbox', exampleFile, 'key-enter', async (t) => {
-  t.plan(4);
-
   let button = await t.context.session.findElement(By.css(ex.buttonSelector));
   let listbox = await t.context.session.findElement(By.css(ex.listboxSelector));
   let buttonSelectedElement = await button.getText();
@@ -136,15 +137,8 @@ ariaTest('ENTER opens and closes listbox', exampleFile, 'key-enter', async (t) =
     'After sending ENTER to the button element, the listbox should open'
   );
 
-  t.is(
-    await t.context.session.findElement(
-      By.css(ex.optionSelector + '[aria-selected="true"]')
-    ).getText(),
-    buttonSelectedElement,
-    'The automatically selected option in the listbox should match the text on the button'
-  );
-
   // Send down arrow to change the selection
+  await listbox.sendKeys(Key.ARROW_DOWN);
   await listbox.sendKeys(Key.ARROW_DOWN);
 
   let newSelectedText = await t.context.session.findElement(
@@ -224,13 +218,15 @@ ariaTest('DOWN ARROW opens listbox and moves focus', exampleFile, 'key-down-arro
     await checkFocus(t, ex.listboxSelector),
     'listbox element should have focus after sending DOWN ARROW to button'
   );
-  await assertAriaSelectedAndActivedescendant(t, ex.listboxSelector, ex.optionSelector, 1);
+
+  // Confirm first option is selected
+  await assertAriaSelectedAndActivedescendant(t, ex.listboxSelector, ex.optionSelector, 0);
 
   // Sending the key down arrow will put focus on the item at index 1
   const listbox = await t.context.session.findElement(By.css(ex.listboxSelector));
   await listbox.sendKeys(Key.ARROW_DOWN);
 
-  await assertAriaSelectedAndActivedescendant(t, ex.listboxSelector, ex.optionSelector, 2);
+  await assertAriaSelectedAndActivedescendant(t, ex.listboxSelector, ex.optionSelector, 1);
 
   // The selection does not wrap to beginning of list if keydown arrow is sent more times
   // then their are options
