@@ -5,7 +5,6 @@
   },
   "rules": {
     "no-unused-vars": 0,
-    "no-undef": 0,
-    "no-fallthrough": 0
+    "no-undef": 0
   }
 }
