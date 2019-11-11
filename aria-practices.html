@@ -6814,6 +6814,21 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
     <h2>Describing Hierarchical Structure with <code>aria-level</code></h2>
     <p>When elements have a hierarchical relationship, such as section headings or data in tree structures, <code>aria-level</code> is used to communicate the hierarchy between elements to assistive technologies. The value of <code>aria-level</code> is numeric, with <code>1</code> indicating the top level of the structure. The number increases for each level of nesting.</p>
     <p>Do not use <code>aria-level</code> when the DOM structure already accurately represents the elements' hierarchical relationships. For example, a nested <code>ul</code> list structure does not need explicit <code>aria-level</code>.</p>
+    <pre><code>
+&lt;ul>
+  &lt;li>This is level 1
+    &lt;ul>
+      &lt;li>This is level 2&lt;/li>
+      &lt;li>This is level 2
+        &lt;ul>
+          &lt;li>This is level 3&lt;/li>
+        &lt;/ul>
+      &lt;/li>
+    &lt;/ul>
+  &lt;/li>
+  &lt;li>This is level 1&lt;/li>
+&lt;/ul>
+</code></pre>
     <p>The <code>aria-level</code> attribute can be used on the following roles:</p>
     <ul>
       <li><code>heading</code></li>
