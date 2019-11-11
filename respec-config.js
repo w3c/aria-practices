@@ -30,7 +30,7 @@ var respecConfig = {
   // previousDiffURI: "",
 
   // If there a publicly available Editors Draft, this is the link
-  edDraftURI: 'https://rawgit.com/w3c/aria-practices/apg-1.2/aria-practices.html',
+  edDraftURI: 'https://w3c.github.io/aria-practices/',
 
   // If this is a LCWD, uncomment and set the end of its review period
   // lcEnd: "2012-02-21",
