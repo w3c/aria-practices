@@ -1020,13 +1020,17 @@
       <section class="notoc">
         <h4>WAI-ARIA Roles, States, and Properties</h4>
         <ul>
+          <li>The element that serves as an input and displays the combobox value has role <a href="#combobox" class="role-reference">combobox</a>.</li>
+          <li>
+            The combobox element has <a href="#aria-controls" class="property-reference">aria-controls</a> set to a value that refers to the element that serves as the popup.
+            Note that <code>aria-controls</code> only needs to be set when the popup is visible. However, it is valid to reference an element that is not visible. 
+          </li>
           <li>The popup is an element that has role <a href="#listbox" class="role-reference">listbox</a>, <a href="#tree" class="role-reference">tree</a>, <a href="#grid" class="role-reference">grid</a>, or <a href="#dialog" class="role-reference">dialog</a>.</li>
           <li>
             If the popup has a role other than <code>listbox</code>, the element with role <code>combobox</code> has <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set to a value that corresponds to the popup type.
             That is, <code>aria-haspopup</code> is set to <code>grid</code>, <code>tree</code>, or <code>dialog</code>.
             Note that elements with role <code>combobox</code> have an implicit <code>aria-haspopup</code> value of <code>listbox</code>.
           </li>
-          <li>The combobox element has <a href="#aria-controls" class="property-reference">aria-controls</a> set to a value that refers to the popup element.</li>
           <li>
             If the combobox element is editable, it has a value for <a href="#aria-multiline" class="property-reference">aria-multiline</a> of <code>false</code>.
             Note that the default value of <code>aria-multiline</code> is <code>false</code>.
@@ -1040,15 +1044,14 @@
           <li>When a descendant of a listbox, grid, or tree popup is focused, DOM focus remains on the combobox and the combobox has <a href="#aria-activedescendant" class="property-reference">aria-activedescendant</a> set to a value that refers to the focused element within the popup.</li>
           <li>For a combobox that controls a listbox, grid, or tree popup, when a suggested value is visually indicated as the currently selected value, the <code>option</code>, <code>gridcell</code>, <code>row</code>, or <code>treeitem</code> containing that value has <a href="#aria-selected" class="state-reference">aria-selected</a> set to <code>true</code>.</li>
           <li>
-            If there is a visible label and the combobox element is an HTML element that can be labelled using the HTML <code>label</code> element (e.g., the <code>input</code> element),
-            use the <code>label</code> element.
-            Otherwise, if there is a visible label, the combobox element has <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> set to a value that refers to the labelling element.
+            If the combobox has a visible label and the combobox element is an HTML element that can be labelled using the HTML <code>label</code> element (e.g., the <code>input</code> element), it is labeled using the <code>label</code> element.
+            Otherwise, if it has a visible label, the combobox element has <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> set to a value that refers to the labelling element.
             Otherwise, the combobox element has a label provided by <a href="#aria-label" class="property-reference">aria-label</a>.
           </li>
           <li>The combobox element has <a href="#aria-autocomplete" class="property-reference">aria-autocomplete</a> set to a value that corresponds to its autocomplete behavior:
             <ul>
               <li><code>none</code>: When the popup is displayed, the suggested values it contains are the same regardless of the characters typed in the combobox.</li>
-              <li><code>list</code>: When the popup is triggered, it presents suggested values that complete or logically correspond to the characters typed in the combobox.</li>
+              <li><code>list</code>: When the popup is triggered, it presents suggested values. If the combobox is editable,  the values complete or logically correspond to the characters typed in the combobox.</li>
               <li>
                 <code>both</code>: When the popup is triggered, it presents suggested values that complete or logically correspond to the characters typed in the combobox.
                 In addition, the portion of the selected suggestion that has not been typed by the user, known as the <q>completion string</q>, appears inline after the input cursor in the combobox.
@@ -1057,22 +1060,23 @@
             </ul>
           </li>
         </ul>
-        <ol class="note">
-          <li>When referring to the roles, states, and properties documentation for the below list of patterns used for popups, keep in mind that a combobox is a single-select widget where selection always follows focus in the popup.</li>
-          <li>The roles, states, and properties for popup elements are defined in their respective design patterns:
-            <ul>
-              <li><a href="#listbox_roles_states_props">Listbox Roles, States, and Properties</a></li>
-              <li><a href="#grid_roles_states_props">Grid Roles, States, and Properties</a></li>
-              <li><a href="#tree_roles_states_props">Tree Roles, States, and Properties</a></li>
-              <li><a href="#dialog_roles_states_props">Dialog Roles, States, and Properties</a></li>
-            </ul>
-          </li>
-        </ol>
-        <p class="note">
-          In ARIA 1.0, the combobox role used <a href="#aria-owns" class="property-reference">aria-owns</a> instead of <a href="#aria-controls" class="property-reference">aria-controls</a>.
-          While user agents might support <a href="#aria-owns" class="property-reference">aria-owns</a> for backwards compatibility with legacy content,
-          authors are encouraged to only use <a href="#aria-controls" class="property-reference">aria-controls</a> as suggested above.
-        </p>
+        <div class="note">
+          <ol>
+            <li>
+              In ARIA 1.0, the combobox referenced its popup with <a href="#aria-owns" class="property-reference">aria-owns</a> instead of <a href="#aria-controls" class="property-reference">aria-controls</a>.
+              While user agents might support comboboxes with <a href="#aria-owns" class="property-reference">aria-owns</a> for backwards compatibility with legacy content, it is strongly recommended that authors use <a href="#aria-controls" class="property-reference">aria-controls</a>.
+            </li>
+            <li>When referring to the roles, states, and properties documentation for the below list of patterns used for popups, keep in mind that a combobox is a single-select widget where selection always follows focus in the popup.</li>
+            <li>The roles, states, and properties for popup elements are defined in their respective design patterns:
+              <ul>
+                <li><a href="#listbox_roles_states_props">Listbox Roles, States, and Properties</a></li>
+                <li><a href="#grid_roles_states_props">Grid Roles, States, and Properties</a></li>
+                <li><a href="#tree_roles_states_props">Tree Roles, States, and Properties</a></li>
+                <li><a href="#dialog_roles_states_props">Dialog Roles, States, and Properties</a></li>
+              </ul>
+            </li>
+          </ol>
+        </div>
       </section>
     </section>
 
