@@ -778,12 +778,14 @@
         the popup may close and, if present, the inline completion string disappears.
       </p>
       <p>
-        Two other widgets that are also visually compact and enable users to choose one value from a set of discrete values are <a href="#Listbox">listbox</a> and <a href="#menubutton">menu button</a>.
-        One feature that distinguishes combobox from both listbox and menu button is that its value can be presented in an editable field, which gives users the ability to select some or all of the value for copying to the clipboard.
-        Comboboxes and menu buttons can be implemented so users can navigate and explore the set of allowed values in a combobox popup or menu and then decide to revert to the value the widget had before navigating by pressing <kbd>escape</kbd>.
-        In contrast, navigating a listbox immediately changes its value, and escape does not provide an undo mechanism.
+        Two other widgets that are also visually compact and enable users to make a single choice from a set of discrete choices are <a href="#Listbox">listbox</a> and <a href="#menubutton">menu button</a>.
+        One feature that distinguishes combobox from both listbox and menu button is that the user's choice can be presented as a value in an editable field, which gives users the ability to select some or all of the value for copying to the clipboard.
+        Comboboxes and menu buttons can be implemented so users can explore the set of allowed choices without losing a previously made choice.
+        That is, users can navigate the set of available choices in a combobox popup or menu and then press <kbd>escape</kbd>, which closes the popup or menu without changing previous input.
+        In contrast, navigating among options in a single-select listbox immediately changes its value, and <kbd>Escape</kbd> does not provide an undo mechanism.
         Comboboxes and listboxes can be marked as required with <code>aria-required="true"</code>, and they have an accessible name that is distinct from their value.
-        However, a menu button cannot be marked required, and while it has an accessible name, it does not have a separate value so both the name and value need to be conveyed via the accessible name.
+        Thus, when assistive technology users focus either a combobox or listbox in its default state, they can perceive both a name and value for the widget.
+        However, a menu button cannot be marked required, and while it has an accessible name, it does not have a value so is not suitable for conveying the user's choice in its collapsed state.
       </p>
 
       <section class="notoc">
