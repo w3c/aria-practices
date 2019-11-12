@@ -826,19 +826,21 @@
           <li>If the combobox is editable, it supports standard single line text editing keys appropriate for the device platform (see note below).</li>
           <li><kbd>Alt + Down Arrow</kbd> (Optional): If the popup is available but not displayed, displays the popup without moving focus.</li>
           <li><kbd>Alt + Up Arrow</kbd> (Optional): If the popup is displayed:
-            <ol>
+            <ul>
               <li>If the popup contains focus, returns focus to the combobox.</li>
               <li>Closes the popup.</li>
-            </ol>
+            </ul>
           </li>
         </ul>
-        <p class="note">Standard single line text editing keys appropriate for the device platform:</p>
-        <ol>
-          <li>include keys for input, cursor movement, selection, and text manipulation.</li>
-          <li>Standard key assignments for editing functions depend on the device operating system.</li>
-          <li>The most robust approach for providing text editing functions is to rely on browsers, which  supply them for HTML inputs with type text and for elements with the <code>contenteditable</code> HTML attribute.</li>
-          <li><strong>IMPORTANT:</strong> Ensure JavaScript does not interfere with browser-provided text editing functions by capturing key events for the keys used to perform them.</li>
-        </ol>
+        <div class="note">
+          <p>Standard single line text editing keys appropriate for the device platform:</p>
+          <ol>
+            <li>include keys for input, cursor movement, selection, and text manipulation.</li>
+            <li>Standard key assignments for editing functions depend on the device operating system.</li>
+            <li>The most robust approach for providing text editing functions is to rely on browsers, which  supply them for HTML inputs with type text and for elements with the <code>contenteditable</code> HTML attribute.</li>
+            <li><strong>IMPORTANT:</strong> Ensure JavaScript does not interfere with browser-provided text editing functions by capturing key events for the keys used to perform them.</li>
+          </ol>
+        </div>
         <h5>Listbox Popup Keyboard Interaction</h5>
         <p>When focus is in a listbox popup:</p>
         <ul>
