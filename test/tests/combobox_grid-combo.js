@@ -583,7 +583,7 @@ ariaTest('left arrow from focus on list puts focus on grid and moves cursor righ
     t.is(
       focusedId,
       gridcellId(lastrow,1),
-      'After left arrow sent to pop-up, aria-activedescendant should be set to the last row, last gricell: ' + gridcellId(lastrow, 1)
+      'After left arrow sent to popup, aria-activedescendant should be set to the last row, last gricell: ' + gridcellId(lastrow, 1)
     );
 
     var focusedElementClasses = await t.context.session.findElement(By.id(gridcellId(lastrow,1)))
@@ -632,7 +632,7 @@ ariaTest('Right arrow from focus on list puts focus on grid',
     t.is(
       focusedId,
       gridcellId(0,1),
-      'After right arrow sent to pop-up, aria-activedescendant should be set to the first row second gridcell element: ' + gridcellId(0, 1)
+      'After right arrow sent to popup, aria-activedescendant should be set to the first row second gridcell element: ' + gridcellId(0, 1)
     );
 
     var focusedElementClasses = await t.context.session.findElement(By.id(gridcellId(0,1)))

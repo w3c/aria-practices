@@ -713,7 +713,7 @@
       <h3>Combobox</h3>
       <p>
         A <a href="#combobox" class="role-reference">combobox</a> is an input widget with an associated popup that enables users to select a value for the combobox from a collection of possible values.
-        In some implementations, the pop-up presents allowed values, while in other implementations, the popup presents suggested values , and users may either select one of the suggestions or type a value.
+        In some implementations, the popup presents allowed values, while in other implementations, the popup presents suggested values , and users may either select one of the suggestions or type a value.
         The popup may be a <a href="#Listbox">listbox</a>,
         <a href="#grid">grid</a>,
         <a href="#TreeView">tree</a>, or
@@ -725,16 +725,16 @@
         The combobox pattern supports several optional behaviors.
         The one that most shapes interaction is text input.
         Some comboboxes allow users to type and edit text in the combobox and others do not.
-        If a combobox does not support text input, it is referred to as select-only, meaning the only way users can set a value is by selecting a value in the pop-up.
+        If a combobox does not support text input, it is referred to as select-only, meaning the only way users can set a value is by selecting a value in the popup.
         For example, in some browsers, an HTML <code>select</code> element with <code>size="1"</code> is presented to assistive technologies as a combobox.
         Alternatively, if a combobox supports text input, it is referred to as editable.
-        An editable combobox may either allow users to input any arbitrary value, or it may restrict its value to a discrete set of allowed values, in which case typing input serves to filter suggestions presented in the pop-up.
+        An editable combobox may either allow users to input any arbitrary value, or it may restrict its value to a discrete set of allowed values, in which case typing input serves to filter suggestions presented in the popup.
       </p>
-      <p>The popup is hidden by default, i.e., the default state is collapsed. The conditions that trigger expansion -- display of the pop-up --are specific to each implementation. Some possible conditions that trigger expansion include:</p>
+      <p>The popup is hidden by default, i.e., the default state is collapsed. The conditions that trigger expansion -- display of the popup --are specific to each implementation. Some possible conditions that trigger expansion include:</p>
       <ul>
         <li>It is displayed when the <kbd>Down Arrow</kbd> key is pressed or the <q>Open</q> button is activated. Optionally, if the combobox is editable and contains a string that does not match an allowed value, expansion does not occur.</li>
         <li>It is displayed when the combobox receives focus even if the combobox is editable and empty.</li>
-        <li>If the combobox is editable, the pop-up is displayed only if a certain number of characters are typed in the combobox and those characters match some portion of one of the suggested values.</li>
+        <li>If the combobox is editable, the popup is displayed only if a certain number of characters are typed in the combobox and those characters match some portion of one of the suggested values.</li>
         <li>If the combobox is editable, it is displayed if the value of the combobox is altered in a way that creates one or more partial matches to a suggested value.</li>
       </ul>
       <p>Combobox widgets are useful for acquiring user input in either of two scenarios:</p>
@@ -1945,7 +1945,7 @@
           <ol>
             <li>Focusable elements, which may have role <code>menuitem</code>, <code>menuitemradio</code>, or <code>menuitemcheckbox</code>, are referred to as items.</li>
             <li>If a behavior applies to only certain types of items, e.g., <code>menuitem</code> elements, the specific role name is used.</li>
-            <li>Submenus, also known as pop-up menus,  are elements with role <code>menu</code>.</li>
+            <li>Submenus, also known as popup menus,  are elements with role <code>menu</code>.</li>
             <li>Except where noted, menus opened from a menubutton behave the same as menus opened from a menubar.</li>
           </ol>
         <ul>
@@ -2649,7 +2649,7 @@
               <li><kbd>Space or Enter</kbd>: Activates the tab if it was not activated automatically on focus.</li>
               <li><kbd>Home</kbd> (Optional): Moves focus to the first tab. Optionally, activates the newly focused tab (See note below).</li>
               <li><kbd>End</kbd> (Optional): Moves focus to the last tab. Optionally, activates the newly focused tab (See note below).</li>
-              <li><kbd>Shift + F10</kbd>: If the tab has an associated pop-up menu, opens the menu. </li>
+              <li><kbd>Shift + F10</kbd>: If the tab has an associated popup menu, opens the menu. </li>
               <li>
                 <kbd>Delete</kbd> (Optional): If deletion is allowed, deletes (closes) the current tab element and its associated tab panel,
                 sets focus on the tab following the tab that was closed, and optionally activates the newly focused tab. If there is not a tab that followed the tab that was deleted,
@@ -2692,7 +2692,7 @@
           <li>Each element with role <code>tab</code> has the property <a href="#aria-controls" class="property-reference">aria-controls</a> referring to its associated <code>tabpanel</code> element.</li>
           <li>The active <code>tab</code> element has the state <a href="#aria-selected" class="state-reference">aria-selected</a> set to <code>true</code> and all other <code>tab</code> elements have it set to <code>false</code>.</li>
           <li>Each element with role <code>tabpanel</code> has the property <a href="#aria-labelledby" class="property-reference">aria-labelledby</a> referring to its associated <code>tab</code> element. </li>
-          <li>If a <code>tab</code> element has a pop-up menu, it has the property <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set to either <code>menu</code> or <code>true</code>. </li>
+          <li>If a <code>tab</code> element has a popup menu, it has the property <a href="#aria-haspopup" class="property-reference">aria-haspopup</a> set to either <code>menu</code> or <code>true</code>. </li>
           <li>
             If the <code>tablist</code> element is vertically oriented, it has the property <a href="#aria-orientation" class="property-reference">aria-orientation</a> set to <code>vertical</code>.
             The default value of <code>aria-orientation</code> for a <code>tablist</code> element is <code>horizontal</code>.
