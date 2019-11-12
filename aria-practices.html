@@ -875,11 +875,8 @@
           See notes below for how this aspect of grid design effects the keyboard interaction design and the way that selection moves in response to focus movements.
         </p>
         <ul>
-          <li><kbd>Enter</kbd>: Accepts the currently selected suggested value by closing the popup and placing the selected value in the combobox with the input cursor at the end of the value.</li>
-          <li><kbd>Escape</kbd>: Closes the popup and returns focus to the combobox. Optionally, clears the contents of the combobox.</li>
-          <li>Any printable character: Returns the focus to the combobox without closing the popup and types the character.</li>
-          <li><kbd>Backspace</kbd> (Optional): Returns focus to the combobox and deletes the character prior to the cursor.</li>
-          <li><kbd>Delete</kbd> (Optional): Returns focus to the combobox, removes the selected state if a suggestion was selected, and removes the inline autocomplete string if present.</li>
+          <li><kbd>Enter</kbd>: Accepts the currently selected suggested value by closing the popup and placing the selected value in the combobox, and if the combobox is editable, placing the input cursor at the end of the value.</li>
+          <li><kbd>Escape</kbd>: Closes the popup and returns focus to the combobox. Optionally, if the combobox is editable, clears the contents of the combobox.</li>
           <li>
             <kbd>Right Arrow</kbd>: Moves focus one cell to the right.
             Optionally, if focus is on the right-most cell in the row, focus may move to the first cell in the following row.
@@ -909,17 +906,20 @@
           <li><kbd>Home</kbd> (Optional): <strong>Either:</strong>
             <ul>
               <li> Moves focus to the first cell in the row that contains focus. Or, if the grid has fewer than three cells per row or multiple suggested values per row, focus may move to the first cell in the grid.</li>
-              <li>Returns focus to the combobox and places the cursor on the first character.</li>
+              <li>If the combobox is editable, returns focus to the combobox and places the cursor on the first character.</li>
             </ul>
           </li>
           <li><kbd>End</kbd> (Optional): <strong>Either:</strong>
             <ul>
               <li> Moves focus to the last cell in the row that contains focus. Or, if the grid has fewer than three cells per row or multiple suggested values per row, focus may move to the last cell in the grid.</li>
-              <li>Returns focus to the combobox and places the cursor after the last character.</li>
+              <li>If the combobox is editable, returns focus to the combobox and places the cursor after the last character.</li>
             </ul>
           </li>
           <li><kbd>Control + Home</kbd> (optional): moves focus to the first row.</li>
           <li><kbd>Control + End</kbd> (Optional): moves focus to the last row.</li>
+          <li>Any printable character: If the combobox is editable, returns the focus to the combobox without closing the popup and types the character.</li>
+          <li><kbd>Backspace</kbd> (Optional): If the combobox is editable, returns focus to the combobox and deletes the character prior to the cursor.</li>
+          <li><kbd>Delete</kbd> (Optional): If the combobox is editable, returns focus to the combobox, removes the selected state if a suggestion was selected, and removes the inline autocomplete string if present.</li>
         </ul>
         <ol class="note">
           <li>DOM Focus is maintained on the combobox and the assistive technology focus is moved within the grid using <code>aria-activedescendant</code> as described in <a href="#kbd_focus_activedescendant">Managing Focus in Composites Using aria-activedescendant.</a></li>
