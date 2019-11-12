@@ -712,44 +712,44 @@
     <section class="widget" id="combobox">
       <h3>Combo Box</h3>
       <p>
-        A <a href="#combobox" class="role-reference">combobox</a> is an input widget that controls a pop-up element that helps users choose its value.
-        In some implementations, the pop-up presents allowed values, while in others, the values in the pop-up are suggestions, and users can input values that are not presented in the pop-up.
+        A <a href="#combobox" class="role-reference">combobox</a> is an input widget with an associated popup that enables users to select a value for the combobox from a collection of possible values.
+        In some implementations, the pop-up presents allowed values, while in other implementations, the popup presents suggested values , and users may either select one of the suggestions or type a value.
         The popup may be a <a href="#Listbox">listbox</a>,
         <a href="#grid">grid</a>,
         <a href="#TreeView">tree</a>, or
         <a href="#dialog_modal">dialog.</a>
-        Many implementations also include a third optional element -- a graphical button adjacent to the combobox, indicating the availability of the popup.
-        Activating this <q>Open</q> button displays the popup if suggestions are available.
+        Many implementations also include a third optional element -- a graphical <q>Open</q> button adjacent to the combobox, which indicates availability of the popup.
+        Activating the <q>Open</q> button displays the popup if suggestions are available.
       </p>
       <p>
         The combobox pattern supports several optional behaviors.
         The one that most shapes interaction is text input.   
-        Some combobox implementations allow users to type and edit text in the combobox and others do not.
+        Some comboboxes allow users to type and edit text in the combobox and others do not.
         If a combobox does not support text input, it is referred to as select-only, meaning the only way users can set a value is by selecting a value in the pop-up.
-        For example, in some browsers, an HTML <code>select</code> with <code>size="1"</code> is presented as a combobox.
+        For example, in some browsers, an HTML <code>select</code> element with <code>size="1"</code> is presented to assistive technologies as a combobox.
         Alternatively, if a combobox supports text input, it is referred to as editable.
         An editable combobox may either allow users to input any arbitrary value, or it may restrict its value to a discrete set of allowed values, in which case typing input serves to filter suggestions presented in the pop-up.
       </p>
-      <p>The popup is hidden by default, i.e., the combobox is said to be collapsed. The conditions that trigger display of the pop-up are specific to each implementation. Some possible popup display conditions include:</p>
+      <p>The popup is hidden by default, i.e., the default state is collapsed. The conditions that trigger expansion -- display of the pop-up --are specific to each implementation. Some possible conditions that trigger expansion include:</p>
       <ul>
+        <li>It is displayed when the <kbd>Down Arrow</kbd> key is pressed or the <q>Open</q> button is activated. Optionally, if the combobox is editable and contains a string that does not match an allowed value, expansion does not occur.</li>
+        <li>It is displayed when the combobox receives focus even if the combobox is editable and empty.</li>
         <li>If the combobox is editable, the pop-up is displayed only if a certain number of characters are typed in the combobox and those characters match some portion of one of the suggested values.</li>
-        <li>It is displayed as soon as the combobox is focused, even if the combobox is empty.</li>
-        <li>It is displayed when the <kbd>Down Arrow</kbd> key is pressed or the <q>Open</q> button is activated, optionally with a dependency on the content of the combobox if it is editable.</li>
         <li>If the combobox is editable, it is displayed if the value of the combobox is altered in a way that creates one or more partial matches to a suggested value.</li>
       </ul>
-      <p>Combobox widgets are useful for acquiring user input in one of two types of scenarios:</p>
+      <p>Combobox widgets are useful for acquiring user input in either of two scenarios:</p>
       <ol>
         <li>
-          A value must be chosen from a predefined set of allowed values, e.g., a location field must contain a valid location name.
+          The value must be one of a predefined set of allowed values, e.g., a location field must contain a valid location name.
           Note that the listbox and menu button patterns are also useful in this scenario; differences between combobox and alternative patterns are described below.
         </li>
         <li>
-          An arbitrary value is needed, but it is advantageous to suggest possible values to the user.
+          An arbitrary value is allowed, but it is advantageous to suggest possible values to users.
           For example, a search field may suggest similar or previous searches to save the user time.
         </li>
       </ol>
       <p>
-        The nature of the suggested values and the way the suggestions are presented is called the autocomplete behavior.
+        The nature of possible values presented by a popup and the way they are presented is called the autocomplete behavior.
         Comboboxes can have one of four forms of autocomplete:
       </p>
       <ol>
