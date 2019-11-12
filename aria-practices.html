@@ -842,7 +842,7 @@
         <h5>Listbox Popup Keyboard Interaction</h5>
         <p>When focus is in a listbox popup:</p>
         <ul>
-          <li><kbd>Enter</kbd>: Accepts the focused option in the listbox  by closing the popup, placing the accepted value in the combobox, and if the combobox is editable,  places the input cursor at the end of the value.</li>
+          <li><kbd>Enter</kbd>: Accepts the focused option in the listbox  by closing the popup, placing the accepted value in the combobox, and if the combobox is editable,  placing the input cursor at the end of the value.</li>
           <li><kbd>Escape</kbd>: Closes the popup and returns focus to the combobox. Optionally, if the combobox is editable, clears the contents of the combobox.</li>
           <li><kbd>Down Arrow</kbd>: Moves focus to and selects the next option. If focus is on the last option, either returns focus to the combobox or does nothing.</li>
           <li><kbd>Up Arrow</kbd>: Moves focus to and selects the previous option. If focus is on the first option, either returns focus to the combobox or does nothing.</li>
@@ -875,7 +875,7 @@
           See notes below for how this aspect of grid design effects the keyboard interaction design and the way that selection moves in response to focus movements.
         </p>
         <ul>
-          <li><kbd>Enter</kbd>: Accepts the currently selected suggested value by closing the popup and placing the selected value in the combobox, and if the combobox is editable, placing the input cursor at the end of the value.</li>
+          <li><kbd>Enter</kbd>: Accepts the currently selected suggested value by closing the popup, placing the selected value in the combobox, and if the combobox is editable, placing the input cursor at the end of the value.</li>
           <li><kbd>Escape</kbd>: Closes the popup and returns focus to the combobox. Optionally, if the combobox is editable, clears the contents of the combobox.</li>
           <li>
             <kbd>Right Arrow</kbd>: Moves focus one cell to the right.
@@ -950,9 +950,8 @@
         </p>
         <p>When focus is in a vertically oriented tree popup:</p>
         <ul>
-          <li><kbd>Enter</kbd>: Accepts the currently selected suggested value by closing the popup and placing the selected value in the combobox with the input cursor at the end of the value.</li>
+          <li><kbd>Enter</kbd>: Accepts the currently selected suggested value by closing the popup, placing the selected value in the combobox, and if the combobox is editable, placing the input cursor at the end of the value.</li>
           <li><kbd>Escape</kbd>: Closes the popup and returns focus to the combobox. Optionally, clears the contents of the combobox.</li>
-          <li>Any printable character: Returns the focus to the combobox without closing the popup and types the character.</li>
           <li><kbd>Right arrow</kbd>:
             <ul>
               <li>When focus is on a closed node, opens the node; focus and selection do not move.</li>
@@ -971,6 +970,12 @@
           <li><kbd>Up Arrow</kbd>: Moves focus to the previous node that is focusable without opening or closing a node and selects it if it is selectable.</li>
           <li><kbd>Home</kbd>: Moves focus to the first node in the tree without opening or closing a node and selects it if it is selectable.</li>
           <li><kbd>End</kbd>: Moves focus to the last node in the tree that is focusable without opening a node and selects it if it is selectable.</li>
+          <li>Any printable character:
+            <ul>
+              <li>If the combobox is editable, returns the focus to the combobox without closing the popup and types the character.</li>
+              <li>Otherwise, moves focus to the next suggested value with a name that starts with the characters typed.</li>
+            </ul>
+          </li>
         </ul>
         <ol class="note">
         <li>DOM Focus is maintained on the combobox and the assistive technology focus is moved within the tree using <code>aria-activedescendant</code> as described in <a href="#kbd_focus_activedescendant">Managing Focus in Composites Using aria-activedescendant.</a></li>
@@ -984,7 +989,7 @@
               <li>In either case, focus is visually distinct from selection so users can readily see if a value is selected or not.</li>
             </ul>
         </li>
-          <li>If the nodes in a tree are arranged horizontally:
+          <li>If a tree has <a href="aria-orientation" class="property-reference">aria-orientation</a> and the nodes in a tree are arranged horizontally:
             <ol>
               <li><kbd>Down Arrow</kbd> performs as <kbd>Right Arrow</kbd> is described above, and vice versa.</li>
               <li><kbd>Up Arrow</kbd> performs as <kbd>Left Arrow</kbd> is described above, and vice versa.</li>
