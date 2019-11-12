@@ -719,33 +719,33 @@
         <a href="#TreeView">tree</a>, or
         <a href="#dialog_modal">dialog.</a>
         Many implementations also include a third optional element -- a graphical button adjacent to the combobox, indicating the availability of the popup.
-        Activating the button displays the popup if suggestions are available.
+        Activating this <q>Open</q> button displays the popup if suggestions are available.
       </p>
       <p>
         The combobox pattern supports several optional behaviors.
         The one that most shapes interaction is text input.   
         Some combobox implementations allow users to type and edit text in the combobox and others do not.
         If a combobox does not support text input, it is referred to as select-only, meaning the only way users can set a value is by selecting a value in the pop-up.
-        If a combobox supports text input, it is referred to as editable.
+        For example, in some browsers, an HTML <code>select</code> with <code>size="1"</code> is presented as a combobox.
+        Alternatively, if a combobox supports text input, it is referred to as editable.
         An editable combobox may either allow users to input any arbitrary value, or it may restrict its value to a discrete set of allowed values, in which case typing input serves to filter suggestions presented in the pop-up.
       </p>
-      <p>The popup is hidden by default, and the conditions that trigger its display are specific to each implementation. Some possible popup display conditions include:</p>
+      <p>The popup is hidden by default, i.e., the combobox is said to be collapsed. The conditions that trigger display of the pop-up are specific to each implementation. Some possible popup display conditions include:</p>
       <ul>
-        <li>It is displayed only if a certain number of characters are typed in the combobox and those characters match some portion of one of the suggested values.</li>
+        <li>If the combobox is editable, the pop-up is displayed only if a certain number of characters are typed in the combobox and those characters match some portion of one of the suggested values.</li>
         <li>It is displayed as soon as the combobox is focused, even if the combobox is empty.</li>
-        <li>It is displayed when the <kbd>Down Arrow</kbd> key is pressed or the <q>show</q> button is activated, possibly with a dependency on the content of the combobox.</li>
-        <li>It is displayed if the value of the combobox is altered in a way that creates one or more partial matches to a suggested value.</li>
+        <li>It is displayed when the <kbd>Down Arrow</kbd> key is pressed or the <q>Open</q> button is activated, optionally with a dependency on the content of the combobox if it is editable.</li>
+        <li>If the combobox is editable, it is displayed if the value of the combobox is altered in a way that creates one or more partial matches to a suggested value.</li>
       </ul>
-      <p>Combobox widgets are useful for setting the value in one of two types of scenarios:</p>
+      <p>Combobox widgets are useful for acquiring user input in one of two types of scenarios:</p>
       <ol>
         <li>
-          The value for the combobox must be chosen from a predefined set of allowed values,
-          e.g., a location field must contain a valid location name.
+          A value must be chosen from a predefined set of allowed values, e.g., a location field must contain a valid location name.
           Note that the listbox and menu button patterns are also useful in this scenario; differences between combobox and alternative patterns are described below.
         </li>
         <li>
-          The combobox may contain any arbitrary value, but it is advantageous to suggest possible values to the user,
-          e.g., a search field may suggest similar or previous searches to save the user time.
+          An arbitrary value is needed, but it is advantageous to suggest possible values to the user.
+          For example, a search field may suggest similar or previous searches to save the user time.
         </li>
       </ol>
       <p>
@@ -754,15 +754,15 @@
       </p>
       <ol>
         <li>
-          <strong>No autocomplete:</strong> When the popup is triggered, the suggested values it contains are the same regardless of the characters typed in the combobox.
+          <strong>No autocomplete:</strong> The combobox is editable, and  when the popup is triggered, the suggested values it contains are the same regardless of the characters typed in the combobox.
           For example, the popup suggests a set of recently entered values, and the suggestions  do not change as the user types.
         </li>
         <li>
-          <strong>List autocomplete with manual selection:</strong> When the popup is triggered, it presents suggested values that complete or logically correspond to the characters typed in the combobox.
+          <strong>List autocomplete with manual selection:</strong> When the popup is triggered, it presents suggested values. If the combobox is editable,  the suggested values complete or logically correspond to the characters typed in the combobox.
           The character string the user has typed will become the value of the combobox unless the user selects a value in the popup.
         </li>
         <li>
-          <strong>List autocomplete with automatic selection:</strong> When the popup is triggered, it presents suggested values that complete or logically correspond to the characters typed in the combobox,
+          <strong>List autocomplete with automatic selection:</strong> The combobox is editable, and when the popup is triggered, it presents suggested values that complete or logically correspond to the characters typed in the combobox,
           and the first suggestion is automatically highlighted as selected.
           The automatically selected suggestion becomes the value of the combobox when the combobox loses focus unless the user chooses a different suggestion or changes the character string in the combobox.
         </li>
@@ -773,17 +773,17 @@
         </li>
       </ol>
       <p>
-        With any form of list autocomplete, the popup may appear and disappear as the user types.
+        If a combobox is editable and has any form of list autocomplete, the popup may appear and disappear as the user types.
         For example, if the user types a two character string that triggers five suggestions to be displayed but then types a third character that forms a string that does not have any matching suggestions,
         the popup may close and, if present, the inline completion string disappears.
       </p>
       <p>
-        When constructing a widget that is both visually compact and enables users to choose one value from a set of discrete values, often either a <a href="#Listbox">listbox</a> or <a href="#menubutton">menu button</a> is simpler to implement and use.
-        One feature that combobox supports that distinguishes it from both listbox and menu button is that the value of the combobox can be presented in an editable field.
-        Thus, the combobox gives users one function that both listbox and menu button lack, namely the ability to select some or all of the value for copying to the clipboard.
-        One feature that distinguishes both combobox and menu button widgets from listbox widgets is their ability to provide an undo mechanism.
-        In many implementations, users can navigate the set of allowed values in a combobox or menu and then decide to revert to the value the widget had before navigating by pressing <kbd>escape</kbd>.
+        Two other widdgets that are also visually compact and enable users to choose one value from a set of discrete values are <a href="#Listbox">listbox</a> and <a href="#menubutton">menu button</a>.
+        One feature that distinguishes combobox from both listbox and menu button is that its value can be presented in an editable field, which gives users the ability to select some or all of the value for copying to the clipboard.
+        Comboboxes and menu buttons can be implemented so users can navigate and explore the set of allowed values in a combobox popup or menu and then decide to revert to the value the widget had before navigating by pressing <kbd>escape</kbd>.
         In contrast, navigating a listbox immediately changes its value, and escape does not provide an undo mechanism.
+        Comboboxes and listboxes can be marked as required with <code>aria-required="true"</code>, and they have an accessible name that is distinct from their value. 
+        However, a menu button cannot be marked required, and while it has an accessible name, it does not have a separate value so both the name and value need to be conveyed via the accessible name.
       </p>
 
       <section class="notoc">
