@@ -116,6 +116,10 @@ The `aria-checked` attribute is supported for these roles:
 
 However, the `mixed` value is only supported for the `checkbox` and `menuitemcheckbox` roles.
 
+In HTML, the `<input type="checkbox">` element where the `indeterminate` IDL attribute is set to `true`
+is by default mapped to `aria-checked="mixed"`.
+There is no way to represent `indeterminate` declaratively with markup in HTML.
+
 #### `checkbox`
 
 `aria-checked` is a required state for the `checkbox` and `menuitemcheckbox` roles.
