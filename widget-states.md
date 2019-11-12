@@ -59,7 +59,7 @@ When an item is selected, specify `aria-selected="true"`.
 When an item is not selected, specify `aria-selected="false"`;
 do not omit the attribute.
 
-See the [Combo Box](#combobox) and the [Listbox](#Listbox) design patterns for examples.
+See the [Combobox](#combobox) and the [Listbox](#Listbox) design patterns for examples.
 
 The `option` role and the subclass role `treeitem` support both `aria-selected` and `aria-checked`.
 In most cases, using only `aria-selected` is the right choice.
@@ -77,7 +77,7 @@ and also allow checking and unchecking them to indicate which steps are active.
 The `row` role within a `grid`, `table` or `treegrid` element supports the `aria-selected` state.
 
 See the [ARIA 1.1 Combobox with Grid Popup Example](examples/combobox/aria1.1pattern/grid-combo.html)
-of the [Combo Box](#combobox) design pattern.
+of the [Combobox](#combobox) design pattern.
 
 #### `tab`
 
