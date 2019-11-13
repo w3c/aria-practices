@@ -234,11 +234,10 @@ ariaTest('Test up key press with focus on textbox',
   });
 
 
-// This test fails due to bug: https://github.com/w3c/aria-practices/issues/821
-ariaTest.failing('Test up key press with focus on listbox',
+ariaTest('Test up key press with focus on listbox',
   exampleFile, 'listbox-key-up-arrow', async (t) => {
 
-    t.plan(3);
+    t.plan(4);
 
     // Send 'a' to text box, then send ARROW_UP to textbox to textbox to put focus in textbox
     // Up arrow should move selection to the last item in the list
@@ -246,8 +245,13 @@ ariaTest.failing('Test up key press with focus on listbox',
       .findElement(By.css(ex.textboxSelector))
       .sendKeys('a', Key.ARROW_UP);
 
+    // Account for race condition
+    await waitForFocusChange(t, ex.textboxSelector, '');
+    await assertAriaSelectedAndActivedescendant(t, ex.textboxSelector, ex.optionsSelector, ex.numAOptions-1);
+
     // Test that ARROW_UP moves active descendant focus up one item in the listbox
-    for (let index = ex.numAOptions - 1; index > 0 ; index--) {
+    for (let index = ex.numAOptions - 2; index > 0 ; index--) {
+
       let oldfocus = await t.context.session
         .findElement(By.css(ex.textboxSelector))
         .getAttribute('aria-activedescendant');
