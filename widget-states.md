@@ -184,7 +184,17 @@ See the [Button](#button) design pattern for examples.
 
 ### `aria-expanded`
 
-TODO
+The `aria-expanded` state is used in these design patterns:
+
+* [Accordion](#accordion)
+* [Combobox](#combobox)
+* [Disclosure](#disclosure)
+* [Listbox](#listbox)
+* [Menubar](#menu)
+* [Menu Button](#menubutton)
+* [Toolbar](#toolbar)
+* [Treegrid](#treegrid)
+* [Tree View](#TreeView)
 
 ### `aria-disabled`
 
