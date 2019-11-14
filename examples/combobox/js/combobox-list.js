@@ -222,8 +222,7 @@ ComboboxList.prototype.handleKeydown = function (event) {
 };
 
 ComboboxList.prototype.handleKeyup = function (event) {
-  var tgt = event.currentTarget,
-    flag = false,
+  var flag = false,
     option = false,
     char = event.key;
 
@@ -276,49 +275,76 @@ ComboboxList.prototype.handleKeyup = function (event) {
         this.setVisualFocusTextbox();
         this.listbox.setCurrentOptionStyle(false);
         flag = true;
+
+        if (this.isList || this.isBoth) {
+          option = this.listbox.filterOptions(this.filter, this.option);
+          if (option) {
+            if (this.listbox.isClosed() && this.domNode.value.length) {
+              this.listbox.open();
+            }
+    
+            if (option.textComparison.indexOf(this.domNode.value.toLowerCase()) === 0) {
+              this.option = option;
+              if (this.isBoth || this.listbox.hasFocus) {
+                this.listbox.setCurrentOptionStyle(option);
+                if (this.isBoth && isPrintableCharacter(char)) {
+                  this.setOption(option);
+                }
+              }
+            }
+            else {
+              this.option = false;
+              this.listbox.setCurrentOptionStyle(false);
+            }
+          }
+          else {
+            this.listbox.close();
+            this.option = false;
+            this.setActiveDescendant(false);
+          }
+        }
+        else if (this.domNode.value.length) {
+          this.listbox.open();
+        }
       }
 
       break;
   }
 
-  if (event.keyCode !== this.keyCode.RETURN) {
+  // if (event.keyCode !== this.keyCode.RETURN) {
 
-    if (this.isList || this.isBoth) {
-      option = this.listbox.filterOptions(this.filter, this.option);
-      if (option) {
-        if (this.listbox.isClosed()) {
-          if (this.domNode.value.length) {
-            this.listbox.open();
-          }
-        }
+  //   if (this.isList || this.isBoth) {
+  //     option = this.listbox.filterOptions(this.filter, this.option);
+  //     if (option) {
+  //       if (this.listbox.isClosed() && this.domNode.value.length) {
+  //         this.listbox.open();
+  //       }
 
-        if (option.textComparison.indexOf(this.domNode.value.toLowerCase()) === 0) {
-          this.option = option;
-          if (this.isBoth || this.listbox.hasFocus) {
-            this.listbox.setCurrentOptionStyle(option);
-            if (this.isBoth && isPrintableCharacter(char)) {
-              this.setOption(option);
-            }
-          }
-        }
-        else {
-          this.option = false;
-          this.listbox.setCurrentOptionStyle(false);
-        }
-      }
-      else {
-        this.listbox.close();
-        this.option = false;
-        this.setActiveDescendant(false);
-      }
-    }
-    else {
-      if (this.domNode.value.length) {
-        this.listbox.open();
-      }
-    }
+  //       if (option.textComparison.indexOf(this.domNode.value.toLowerCase()) === 0) {
+  //         this.option = option;
+  //         if (this.isBoth || this.listbox.hasFocus) {
+  //           this.listbox.setCurrentOptionStyle(option);
+  //           if (this.isBoth && isPrintableCharacter(char)) {
+  //             this.setOption(option);
+  //           }
+  //         }
+  //       }
+  //       else {
+  //         this.option = false;
+  //         this.listbox.setCurrentOptionStyle(false);
+  //       }
+  //     }
+  //     else {
+  //       this.listbox.close();
+  //       this.option = false;
+  //       this.setActiveDescendant(false);
+  //     }
+  //   }
+  //   else if (this.domNode.value.length) {
+  //     this.listbox.open();
+  //   }
 
-  }
+  // }
 
 
   if (flag) {
