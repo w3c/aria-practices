@@ -117,13 +117,13 @@ ComboboxList.prototype.setOption = function (option, flag) {
 ComboboxList.prototype.setVisualFocusTextbox = function () {
   this.listbox.domNode.classList.remove('focus');
   this.listbox.hasFocus = false;
-  this.domNode.classList.add('focus');
+  this.domNode.parentNode.classList.add('focus'); // set the focus class to the parent for easier styling
   this.hasFocus = true;
   this.setActiveDescendant(false);
 };
 
 ComboboxList.prototype.setVisualFocusListbox = function () {
-  this.domNode.classList.remove('focus');
+  this.domNode.parentNode.classList.remove('focus');
   this.hasFocus = false;
   this.listbox.domNode.classList.add('focus');
   this.listbox.hasFocus = true;
@@ -131,7 +131,7 @@ ComboboxList.prototype.setVisualFocusListbox = function () {
 };
 
 ComboboxList.prototype.removeVisualFocusAll = function () {
-  this.domNode.classList.remove('focus');
+  this.domNode.parentNode.classList.remove('focus');
   this.hasFocus = false;
   this.listbox.domNode.classList.remove('focus');
   this.listbox.hasFocus = true;

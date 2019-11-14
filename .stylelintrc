@@ -1,0 +1,5 @@
+{
+  "rules": {
+    "media-feature-name-whitelist": ["forced-colors", "-ms-high-contrast"]
+  }
+}
