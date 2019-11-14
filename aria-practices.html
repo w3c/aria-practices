@@ -971,8 +971,8 @@
            </li>
           <li><kbd>Down Arrow</kbd>: Moves focus to the next node that is focusable without opening or closing a node and selects it if it is selectable.</li>
           <li><kbd>Up Arrow</kbd>: Moves focus to the previous node that is focusable without opening or closing a node and selects it if it is selectable.</li>
-          <li><kbd>Home</kbd>: Moves focus to the first node in the tree without opening or closing a node and selects it if it is selectable.</li>
-          <li><kbd>End</kbd>: Moves focus to the last node in the tree that is focusable without opening a node and selects it if it is selectable.</li>
+          <li><kbd>Home</kbd>: Moves focus to the first focusable node in the tree without opening or closing a node and selects it if it is selectable.</li>
+          <li><kbd>End</kbd>: Moves focus to the last focusable node in the tree without opening or closing a node and selects it if it is selectable.</li>
           <li>Any printable character:
             <ul>
               <li>If the combobox is editable, returns the focus to the combobox without closing the popup and types the character.</li>
@@ -1067,7 +1067,7 @@
               In ARIA 1.0, the combobox referenced its popup with <a href="#aria-owns" class="property-reference">aria-owns</a> instead of <a href="#aria-controls" class="property-reference">aria-controls</a>.
               While user agents might support comboboxes with <a href="#aria-owns" class="property-reference">aria-owns</a> for backwards compatibility with legacy content, it is strongly recommended that authors use <a href="#aria-controls" class="property-reference">aria-controls</a>.
             </li>
-            <li>When referring to the roles, states, and properties documentation for the below list of patterns used for popups, keep in mind that a combobox is a single-select widget where selection always follows focus in the popup.</li>
+            <li>When referring to the roles, states, and properties documentation for the below list of patterns used for popups, keep in mind that a combobox is a single-select widget where selection follows focus in the popup.</li>
             <li>The roles, states, and properties for popup elements are defined in their respective design patterns:
               <ul>
                 <li><a href="#listbox_roles_states_props">Listbox Roles, States, and Properties</a></li>
