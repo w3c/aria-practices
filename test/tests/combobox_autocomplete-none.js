@@ -49,11 +49,6 @@ ariaTest('"aria-autocomplete" on comboxbox element', exampleFile, 'combobox-aria
   await assertAttributeValues(t, ex.textboxSelector, 'aria-autocomplete', 'none');
 });
 
-ariaTest('"aria-haspopup" on combobox element', exampleFile, 'combobox-aria-haspopup', async (t) => {
-  t.plan(1);
-  await assertAttributeValues(t, ex.textboxSelector, 'aria-haspopup', 'true');
-});
-
 ariaTest('"aria-controls" attribute on combobox element', exampleFile, 'combobox-aria-controls', async (t) => {
   t.plan(2);
 
