@@ -8,7 +8,7 @@ const assertAriaLabelExists = require('../util/assertAriaLabelExists');
 const assertAriaRoles = require('../util/assertAriaRoles');
 const assertAriaSelectedAndActivedescendant = require('../util/assertAriaSelectedAndActivedescendant');
 
-const exampleFile = 'combobox/aria1.0pattern/combobox-autocomplete-list.html';
+const exampleFile = 'combobox/combobox-autocomplete-list.html';
 
 const ex = {
   textboxSelector: '#ex1 input[type="text"]',
@@ -49,21 +49,16 @@ ariaTest('"aria-autocomplete" on comboxbox element', exampleFile, 'combobox-aria
   await assertAttributeValues(t, ex.textboxSelector, 'aria-autocomplete', 'list');
 });
 
-ariaTest('"aria-haspopup" on combobox element', exampleFile, 'combobox-aria-haspopup', async (t) => {
-  t.plan(1);
-  await assertAttributeValues(t, ex.textboxSelector, 'aria-haspopup', 'true');
-});
-
-ariaTest('"aria-owns" attribute on combobox element', exampleFile, 'combobox-aria-owns', async (t) => {
+ariaTest('"aria-controls" attribute on combobox element', exampleFile, 'combobox-aria-controls', async (t) => {
   t.plan(2);
 
   const popupId = await t.context.session
     .findElement(By.css(ex.textboxSelector))
-    .getAttribute('aria-owns');
+    .getAttribute('aria-controls');
 
   t.truthy(
     popupId,
-    '"aria-owns" attribute should exist on: ' + ex.textboxSelector
+    '"aria-controls" attribute should exist on: ' + ex.textboxSelector
   );
 
   const popupElements = await t.context.session
@@ -73,7 +68,7 @@ ariaTest('"aria-owns" attribute on combobox element', exampleFile, 'combobox-ari
   t.is(
     popupElements.length,
     1,
-    'There should be a element with id "' + popupId + '" as referenced by the aria-owns attribute'
+    'There should be a element with id "' + popupId + '" as referenced by the aria-controls attribute'
   );
 });
 
@@ -92,7 +87,7 @@ ariaTest('"aria-expanded" on combobox element', exampleFile, 'combobox-aria-expa
 
   const popupId = await t.context.session
     .findElement(By.css(ex.textboxSelector))
-    .getAttribute('aria-owns');
+    .getAttribute('aria-controls');
 
   const popupElement = await t.context.session
     .findElement(By.id('ex1'))
