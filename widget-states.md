@@ -184,6 +184,24 @@ See the [Button](#button) design pattern for examples.
 
 ### `aria-expanded`
 
+The `aria-expanded` attribute informs assistive technology users that an interactive element can be expanded,
+meaning it owns or controls another element that can be collapsed or expanded.
+
+For example, a button can toggle the visibility of some content, as in an accordion.
+
+```html
+<h2><button aria-controls="spoiler" aria-expanded="false">Spoil the end</button></h2>
+<div id="spoiler">
+ <p>Ultimately, all starts burn out and the black holes evaporate from Hawking radiation,
+ and the universe reaches maximum entropy.</p>
+</div>
+```
+
+Clicking the button shows or hides the "spoiler" element with JavaScript,
+and also changes the value of `aria-expanded` to `true` when showing,
+and `false` when hiding.
+Users of assistive technology would know from focusing the button whether it is collapsed or expanded.
+
 The `aria-expanded` state is used in these design patterns:
 
 * [Accordion](#accordion)
