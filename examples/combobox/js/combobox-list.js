@@ -57,7 +57,7 @@ ComboboxList.prototype.init = function () {
 
   // initialize pop up menus
 
-  var listbox = document.getElementById(this.domNode.getAttribute('aria-owns'));
+  var listbox = document.getElementById(this.domNode.getAttribute('aria-controls'));
 
   if (listbox) {
     this.listbox = new Listbox(listbox, this);
@@ -117,13 +117,13 @@ ComboboxList.prototype.setOption = function (option, flag) {
 ComboboxList.prototype.setVisualFocusTextbox = function () {
   this.listbox.domNode.classList.remove('focus');
   this.listbox.hasFocus = false;
-  this.domNode.classList.add('focus');
+  this.domNode.parentNode.classList.add('focus'); // set the focus class to the parent for easier styling
   this.hasFocus = true;
   this.setActiveDescendant(false);
 };
 
 ComboboxList.prototype.setVisualFocusListbox = function () {
-  this.domNode.classList.remove('focus');
+  this.domNode.parentNode.classList.remove('focus');
   this.hasFocus = false;
   this.listbox.domNode.classList.add('focus');
   this.listbox.hasFocus = true;
@@ -131,7 +131,7 @@ ComboboxList.prototype.setVisualFocusListbox = function () {
 };
 
 ComboboxList.prototype.removeVisualFocusAll = function () {
-  this.domNode.classList.remove('focus');
+  this.domNode.parentNode.classList.remove('focus');
   this.hasFocus = false;
   this.listbox.domNode.classList.remove('focus');
   this.listbox.hasFocus = true;
@@ -222,8 +222,7 @@ ComboboxList.prototype.handleKeydown = function (event) {
 };
 
 ComboboxList.prototype.handleKeyup = function (event) {
-  var tgt = event.currentTarget,
-    flag = false,
+  var flag = false,
     option = false,
     char = event.key;
 
@@ -276,49 +275,76 @@ ComboboxList.prototype.handleKeyup = function (event) {
         this.setVisualFocusTextbox();
         this.listbox.setCurrentOptionStyle(false);
         flag = true;
+
+        if (this.isList || this.isBoth) {
+          option = this.listbox.filterOptions(this.filter, this.option);
+          if (option) {
+            if (this.listbox.isClosed() && this.domNode.value.length) {
+              this.listbox.open();
+            }
+    
+            if (option.textComparison.indexOf(this.domNode.value.toLowerCase()) === 0) {
+              this.option = option;
+              if (this.isBoth || this.listbox.hasFocus) {
+                this.listbox.setCurrentOptionStyle(option);
+                if (this.isBoth && isPrintableCharacter(char)) {
+                  this.setOption(option);
+                }
+              }
+            }
+            else {
+              this.option = false;
+              this.listbox.setCurrentOptionStyle(false);
+            }
+          }
+          else {
+            this.listbox.close();
+            this.option = false;
+            this.setActiveDescendant(false);
+          }
+        }
+        else if (this.domNode.value.length) {
+          this.listbox.open();
+        }
       }
 
       break;
   }
 
-  if (event.keyCode !== this.keyCode.RETURN) {
+  // if (event.keyCode !== this.keyCode.RETURN) {
 
-    if (this.isList || this.isBoth) {
-      option = this.listbox.filterOptions(this.filter, this.option);
-      if (option) {
-        if (this.listbox.isClosed()) {
-          if (this.domNode.value.length) {
-            this.listbox.open();
-          }
-        }
+  //   if (this.isList || this.isBoth) {
+  //     option = this.listbox.filterOptions(this.filter, this.option);
+  //     if (option) {
+  //       if (this.listbox.isClosed() && this.domNode.value.length) {
+  //         this.listbox.open();
+  //       }
 
-        if (option.textComparison.indexOf(this.domNode.value.toLowerCase()) === 0) {
-          this.option = option;
-          if (this.isBoth || this.listbox.hasFocus) {
-            this.listbox.setCurrentOptionStyle(option);
-            if (this.isBoth && isPrintableCharacter(char)) {
-              this.setOption(option);
-            }
-          }
-        }
-        else {
-          this.option = false;
-          this.listbox.setCurrentOptionStyle(false);
-        }
-      }
-      else {
-        this.listbox.close();
-        this.option = false;
-        this.setActiveDescendant(false);
-      }
-    }
-    else {
-      if (this.domNode.value.length) {
-        this.listbox.open();
-      }
-    }
+  //       if (option.textComparison.indexOf(this.domNode.value.toLowerCase()) === 0) {
+  //         this.option = option;
+  //         if (this.isBoth || this.listbox.hasFocus) {
+  //           this.listbox.setCurrentOptionStyle(option);
+  //           if (this.isBoth && isPrintableCharacter(char)) {
+  //             this.setOption(option);
+  //           }
+  //         }
+  //       }
+  //       else {
+  //         this.option = false;
+  //         this.listbox.setCurrentOptionStyle(false);
+  //       }
+  //     }
+  //     else {
+  //       this.listbox.close();
+  //       this.option = false;
+  //       this.setActiveDescendant(false);
+  //     }
+  //   }
+  //   else if (this.domNode.value.length) {
+  //     this.listbox.open();
+  //   }
 
-  }
+  // }
 
 
   if (flag) {

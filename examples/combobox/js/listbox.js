@@ -81,8 +81,7 @@ Listbox.prototype.filterOptions = function (filter, currentOption) {
     filter = '';
   }
 
-  var firstMatch = false,
-    i,
+  var i,
     option,
     textContent,
     numItems;

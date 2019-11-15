@@ -2,68 +2,61 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>Legacy ARIA 1.0 Combobox With List Autocomplete Example | WAI-ARIA Authoring Practices 1.2</title>
+<title>Editable Combobox With Both List and Inline Autocomplete Example | WAI-ARIA Authoring Practices 1.2</title>
 
 <!--  Core js and css shared by all examples; do not modify when using this template. -->
 <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
-<link rel="stylesheet" href="../../css/core.css">
-<script src="../../js/examples.js"></script>
-<script src="../../js/highlight.pack.js"></script>
-<script src="../../js/app.js"></script>
+<link rel="stylesheet" href="../css/core.css">
+<script type="text/javascript" src="../js/examples.js"></script>
+<script type="text/javascript" src="../js/highlight.pack.js"></script>
+<script type="text/javascript" src="../js/app.js"></script>
 
 <!--  js and css for this example. -->
-<link href="css/combobox-1.0.css" rel="stylesheet">
-<link  href="css/listbox.css"     rel="stylesheet">
-<script src="js/combobox-1.0-list.js"  type="text/javascript"></script>
-<script src="js/listbox.js"       type="text/javascript"></script>
-<script src="js/listboxOption.js" type="text/javascript"></script>
+<link rel="stylesheet" href="css/combobox.css">
+<script type="text/javascript" src="js/combobox-list.js"></script>
+<script type="text/javascript" src="js/listbox.js"></script>
+<script type="text/javascript" src="js/listboxOption.js"></script>
 </head>
 <body>
   <nav aria-label="Related Links" class="feedback">
     <ul>
-      <li><a href="../../../#browser_and_AT_support">Browser and Assistive Technology Support</a></li>
+      <li><a href="../../#browser_and_AT_support">Browser and Assistive Technology Support</a></li>
       <li><a href="https://github.com/w3c/aria-practices/issues/new">Report Issue</a></li>
       <li><a href="https://github.com/w3c/aria-practices/projects/7">Related Issues</a></li>
-      <li><a href="../../../#combobox">Design Pattern</a></li>
+      <li><a href="../../#combobox">Design Pattern</a></li>
     </ul>
   </nav>
   <main>
-    <h1>Legacy ARIA 1.0 Combobox With List Autocomplete Example</h1>
-    <p>
-      <strong>NOTE:</strong> Please provide feedback on this example page in
-      <a href="https://github.com/w3c/aria-practices/issues/554">issue 554.</a>
-    </p>
+    <h1>Editable Combobox With Both List and Inline Autocomplete Example</h1>
     <p>
       The below combobox for choosing the name of a US state or territory demonstrates the
-      <a href="../../../#combobox">ARIA 1.0 design pattern for combobox.</a>
+      <a href="../../#combobox">design pattern for combobox.</a>
       The design pattern describes four types of autocomplete behavior.
-      This example illustrates the autocomplete behavior known as list autocomplete with manual selection.
-      If the user types one or more characters in the edit box and the typed characters match the beginning of the name of one or more states or territories, a listbox popup appears containing the matching names.
-      When the listbox appears, a suggested name is not automatically selected.
-      Thus, after typing, if the user tabs or clicks out of the combobox without choosing a value from the listbox, the typed string becomes the value of the combobox.
+      This example illustrates the autocomplete behavior referred to in the pattern as list with inline completion.
+      If the user types one or more characters in the edit box and the typed characters match the beginning of the name of one or more states or territories,
+      a listbox popup appears containing the matching names, and the first match is automatically selected.
+      In addition, the portion of the selected suggestion that has not been typed by the user, a completion string, appears inline after the input cursor in the textbox.
+      The automatically selected suggestion becomes the value of the textbox when the combobox loses focus unless the user chooses a different suggestion or changes the character string in the textbox.
       Note that this implementation enables users to input the name of a state or territory, but it does not prevent input of any other arbitrary value.
     </p>
     <p>Similar examples include:</p>
     <ul>
-      <li><a href="combobox-autocomplete-both.html">ARIA 1.0 Combobox with Both List and Inline Autocomplete</a>: A combobox that demonstrates the autocomplete behavior known as <q>list with inline autocomplete</q> and uses the ARIA 1.0 implementation pattern.</li>
-      <li><a href="combobox-autocomplete-none.html">ARIA 1.0 Combobox Without Autocomplete</a>: A combo box that demonstrates the behavior associated with <code>aria-autocomplete=none</code> and uses the ARIA 1.0 implementation pattern.</li>
-      <li><a href="../aria1.1pattern/listbox-combo.html">ARIA 1.1 Combobox with Listbox Popup</a>: Comboboxes that demonstrate the various forms of autocomplete behavior using a listbox popup and use the ARIA 1.1 implementation pattern.</li>
-      <li><a href="../aria1.1pattern/grid-combo.html">ARIA 1.1 Combobox with Grid Popup</a>: A combobox that presents suggestions in a grid, enabling users to navigate descriptive information about each suggestion.</li>
+      <li><a href="combobox-autocomplete-list.html">Editable Combobox with List Autocomplete</a>: An editable combobox that demonstrates the autocomplete behavior known as <q>list with manual selection</q>.</li>
+      <li><a href="combobox-autocomplete-none.html">Editable Combobox Without Autocomplete</a>: An editable combobox that demonstrates the behavior associated with <code>aria-autocomplete=none</code>.</li>
+      <li><a href="grid-combo.html">Editable Combobox with Grid Popup</a>: An editable combobox that presents suggestions in a grid, enabling users to navigate descriptive information about each suggestion.</li>
     </ul>
-
     <section>
       <h2 id="ex_label">Example</h2>
       <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
       <div id="ex1">
-        <div class="combobox-list">
-          <label for="cb1-input">State</label>
+        <label for="cb1-input">State</label>
+        <div class="combobox combobox-list">
           <div class="group">
-            <input id="cb1-input" class="cb_edit" type="text" role="combobox" aria-autocomplete="list"
-              aria-expanded="false" aria-haspopup="true" aria-owns="cb1-listbox"
-            />
-            <button type="button" id="cb1-button" tabindex="-1" aria-label="Open">&#9661;</button>
+            <input id="cb1-input" class="cb_edit" type="text" role="combobox" aria-autocomplete="both"
+              aria-expanded="false" aria-controls="lb1">
+            <button type="button" id="cb1-button" aria-label="Open" tabindex="-1">&#9660;</button>
           </div>
-          <ul id="cb1-listbox" role="listbox" aria-label="States">
+          <ul id="lb1" role="listbox" aria-label="States">
             <li id="lb1-al" role="option">Alabama</li>
             <li id="lb1-ak" role="option">Alaska</li>
             <li id="lb1-as" role="option">American Samoa</li>
@@ -123,7 +116,7 @@
           </ul>
         </div>
       </div>
-    <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
+      <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
     </section>
 
     <section>
@@ -131,7 +124,7 @@
       <p>
       The example combobox on this page implements the following keyboard interface.
         Other variations and options for the keyboard interface are described in the
-        <a href="../../../#combobox_kbd_interaction">Keyboard Interaction section of the combobox design pattern.</a>
+        <a href="../../#combobox_kbd_interaction">Keyboard Interaction section of the combobox design pattern.</a>
       </p>
       <h3 id="kbd_label_textbox">Textbox</h3>
       <table aria-labelledby="kbd_label_textbox kbd_label" class="def">
@@ -146,7 +139,7 @@
             <th><kbd>Down Arrow</kbd></th>
             <td>
               <ul>
-                <li>If the textbox is not empty and the listbox is displayed, moves visual focus to the first suggested value.</li>
+                <li>If the listbox is displayed and a suggestion is selected, moves visual focus to the next suggested value.</li>
                 <li>If the textbox is empty and the listbox is not displayed, opens the listbox and moves visual focus to the first option.</li>
                 <li>In both cases DOM focus remains on the textbox.</li>
               </ul>
@@ -156,7 +149,7 @@
             <th><kbd>Up Arrow</kbd></th>
             <td>
               <ul>
-                <li>If the textbox is not empty and the listbox is displayed, moves visual focus to the last suggested value.</li>
+                <li>If the listbox is displayed and a suggestion is selected, moves visual focus to the last suggested value.</li>
                 <li>If the textbox is empty, first opens the listbox if it is not already displayed and then moves visual focus to the last option.</li>
                 <li>In both cases DOM focus remains on the textbox.</li>
               </ul>
@@ -164,7 +157,12 @@
           </tr>
           <tr data-test-id="textbox-key-enter">
             <th><kbd>Enter</kbd></th>
-            <td>Closes the listbox.</td>
+            <td>
+              <ul>
+                <li>Sets the textbox value to the content of the selected option.</li>
+                <li>Closes the listbox.</li>
+              </ul>
+            </td>
           </tr>
           <tr data-test-id="textbox-key-escape">
             <th><kbd>Escape</kbd></th>
@@ -191,7 +189,7 @@
         <strong>NOTE:</strong> When visual focus is in the listbox, DOM focus remains on the textbox and the value of <code>aria-activedescendant</code> on the textbox is set to a value that refers to the listbox option that is visually indicated as focused.
         Where the following descriptions of keyboard commands mention focus, they are referring to the visual focus indicator.
         For more information about this focus management technique, see
-        <a href="../../../#kbd_focus_activedescendant">Using aria-activedescendant to Manage Focus.</a>
+        <a href="../../#kbd_focus_activedescendant">Using aria-activedescendant to Manage Focus.</a>
       </p>
       <table aria-labelledby="kbd_label_listbox kbd_label" class="def">
         <thead>
@@ -257,7 +255,7 @@
             <th><kbd>End</kbd></th>
             <td>Moves visual focus to the textbox and places the editing cursor at the end of the field.</td>
           </tr>
-          <tr data-test-id="listbox-key-char">
+          <tr data-test-id="listbox-characters">
             <th>Printable Characters</th>
             <td>
               <ul>
@@ -275,7 +273,7 @@
       <p>
         The example combobox on this page implements the following ARIA roles, states, and properties.
         Information about other ways of applying ARIA roles, states, and properties is available in the
-        <a href="../../../#combobox_roles_states_props">Roles, States, and Properties section of the combobox design pattern.</a>
+        <a href="../../#combobox_roles_states_props">Roles, States, and Properties section of the combobox design pattern.</a>
       </p>
       <h3 id="rps_label_textbox">Textbox</h3>
       <table aria-labelledby="rps_label_textbox rps_label" class="data attributes">
@@ -294,41 +292,23 @@
             </th>
             <td></td>
             <td><code>input[type="text"]</code></td>
-            <td>
-              <ul>
-                <li>Identifies the input as a combobox.</li>
-                <li>Note: The primary difference between the ARIA 1.0 pattern and the ARIA 1.1 pattern is the placement of the <code>combobox</code> role.</li>
-              </ul>
-            </td>
+            <td>Identifies the input as a combobox.</td>
           </tr>
           <tr data-test-id="combobox-aria-autocomplete">
             <td></td>
             <th scope="row">
-              <code>aria-autocomplete="list"</code>
+              <code>aria-autocomplete="both"</code>
             </th>
             <td><code>input[type="text"]</code></td>
-            <td>Indicates that the autocomplete behavior of the text input is to suggest a list of possible values in a popup and that the suggestions are related to the string that is present in the textbox.</td>
+            <td>Indicates that the autocomplete behavior of the text input is to both show an inline completion string and suggest a list of possible values in a popup where the suggestions are related to the string that is present in the textbox.</td>
           </tr>
-          <tr data-test-id="combobox-aria-haspopup">
+          <tr data-test-id="combobox-aria-controls">
             <td></td>
             <th scope="row">
-              <code>aria-haspopup="true"</code>
+              <code>aria-controls="#IDREF"</code>
             </th>
             <td><code>input[type="text"]</code></td>
-            <td>Indicates that the combobox can popup another element to suggest values.</td>
-          </tr>
-          <tr data-test-id="combobox-aria-owns">
-            <td></td>
-            <th scope="row">
-              <code>aria-owns="#IDREF"</code>
-            </th>
-            <td><code>input[type="text"]</code></td>
-            <td>
-              <ul>
-                <li>Identifies the element that serves as the popup.</li>
-                <li>Note: In the ARIA 1.1 combobox pattern, the combobox uses <code>aria-controls</code> instead of <code>aria-owns</code>.</li>
-              </ul>
-            </td>
+            <td>Identifies the element that serves as the popup.</td>
           </tr>
           <tr data-test-id="combobox-aria-expanded">
             <td></td>
@@ -359,7 +339,7 @@
                 <li>Enables assistive technologies to know which element the application regards as focused while DOM focus remains on the <code>input</code> element.</li>
                 <li>
                   For more information about this focus management technique, see
-                  <a href="../../../#kbd_focus_activedescendant">Using aria-activedescendant to Manage Focus.</a>
+                  <a href="../../#kbd_focus_activedescendant">Using aria-activedescendant to Manage Focus.</a>
                 </li>
               </ul>
             </td>
@@ -417,7 +397,7 @@
             <td>
               <ul>
                 <li>Specified on an option in the listbox when it is visually highlighted as selected.</li>
-                <li>Occurs only when an option in the list is referenced by <code>aria-activedescendant</code>.</li>
+                <li>Occurs when an option in the list is referenced by <code>aria-activedescendant</code> and when focus is in the textbox and the first option is automatically selected.</li>
               </ul>
             </td>
           </tr>
@@ -430,7 +410,7 @@
       <ul>
         <li>
           CSS:
-          <a href="css/combobox-1.0.css" type="text/css">combobox-1.0.css</a>
+          <a href="css/combobox.css" type="text/css">combobox.css</a>
         </li>
         <li>
           CSS:
@@ -438,7 +418,7 @@
         </li>
         <li>
           Javascript:
-          <a href="js/combobox-1.0-list.js" type="text/javascript">combobox-1.0-list.js</a>
+          <a href="js/combobox-list.js" type="text/javascript">combobox-list.js</a>
         </li>
         <li>
           Javascript:
@@ -458,6 +438,10 @@
         <code id="sc1"></code>
       </pre>
       <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of"></div>
+      <!--
+        The following script will show the reader the HTML source for the example that is in the div with ID 'ex1'.
+        It renders the HTML in the preceding pre element with ID 'sc1'.
+        -->
       <script>
         sourceCode.add('sc1', 'ex1');
         sourceCode.make();
@@ -465,7 +449,7 @@
     </section>
   </main>
   <nav>
-    <a href="../../../#combobox">Combobox Design Pattern in WAI-ARIA Authoring Practices 1.2</a>
+    <a href="../../#combobox">Combobox Design Pattern in WAI-ARIA Authoring Practices 1.2</a>
   </nav>
 </body>
 </html>
