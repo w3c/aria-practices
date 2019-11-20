@@ -33,7 +33,6 @@ const ex = {
   allFocusableItems: [
     '#ex1 button:first-of-type',
     '#ex1 [role="tab"][aria-selected=true]',
-    '#ex1 .active',
     '#ex1 .active .carousel-image a',
     '#ex1 .active .carousel-caption a'
   ],
@@ -233,6 +232,7 @@ ariaTest('slide container have aria-live initially set to off', exampleFile, 'ca
   await t.context.session.findElement(By.css(ex.pausePlayButtonSelector)).click();
   await assertAttributeValues(t, ex.slideContainerSelector, 'aria-live', 'polite');
 });
+
 
 // Keys
 
