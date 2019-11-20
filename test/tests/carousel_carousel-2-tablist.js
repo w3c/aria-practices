@@ -196,11 +196,6 @@ ariaTest('"aria-label" attribute on role="tabpanel" elements', exampleFile, 'tab
   await assertAriaLabelExists(t, ex.tabpanelSelector);
 });
 
-ariaTest('tabindex="0" on role="tabpanel" elements', exampleFile, 'tabpanel-tabindex', async (t) => {
-  t.plan(1);
-  await assertAttributeValues(t, ex.tabpanelSelector, 'tabindex', '0');
-});
-
 ariaTest('aria-roledescription="slide" on role="tabpanel" elements', exampleFile, 'tabpanel-roledescription', async (t) => {
   t.plan(1);
   await assertAttributeValues(t, ex.tabpanelSelector, 'aria-roledescription', 'slide');

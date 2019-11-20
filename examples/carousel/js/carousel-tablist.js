@@ -60,6 +60,7 @@ class CarouselTablist {
       if (tabpanelNode) {
         this.tabpanelNodes.push(tabpanelNode);
 
+        // support stopping rotation when any element receives focus in the tabpanel
         tabpanelNode.addEventListener('focusin', this.handleTabpanelFocusIn.bind(this));
         tabpanelNode.addEventListener('focusout', this.handleTabpanelFocusOut.bind(this));
 
@@ -108,7 +109,6 @@ class CarouselTablist {
 
     if (tabpanelNode) {
       tabpanelNode.classList.remove('active');
-      tabpanelNode.removeAttribute('tabindex');
     }
   }
 
@@ -124,7 +124,6 @@ class CarouselTablist {
 
     if (tabpanelNode) {
       tabpanelNode.classList.add('active');
-      tabpanelNode.setAttribute('tabindex', '0');
     }
 
     if (moveFocus) {
@@ -327,7 +326,6 @@ class CarouselTablist {
   handleTabBlur (event) {
     event.currentTarget.parentNode.classList.remove('focus');
     this.hasFocus = false;
-
     this.updateRotation();
   }
 
@@ -335,13 +333,11 @@ class CarouselTablist {
   /* Event Handlers for Tabpanels*/
 
   handleTabpanelFocusIn (event) {
-    event.currentTarget.classList.add('focus');
     this.hasFocus = true;
     this.updateRotation();
   }
 
   handleTabpanelFocusOut (event) {
-    event.currentTarget.classList.remove('focus');
     this.hasFocus = false;
     this.updateRotation();
   }
