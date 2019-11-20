@@ -23,12 +23,12 @@ const ex = {
   tabCount: 6,
   tabTabOrder: [
     // tab id, tabpanel id
-    ['#carousel-tab-1', '#carousel-item-1'],
-    ['#carousel-tab-2', '#carousel-item-2'],
-    ['#carousel-tab-3', '#carousel-item-3'],
-    ['#carousel-tab-4', '#carousel-item-4'],
-    ['#carousel-tab-5', '#carousel-item-5'],
-    ['#carousel-tab-6', '#carousel-item-6']
+    ['#carousel-tab-1', '#carousel-image-1'],
+    ['#carousel-tab-2', '#carousel-image-2'],
+    ['#carousel-tab-3', '#carousel-image-3'],
+    ['#carousel-tab-4', '#carousel-image-4'],
+    ['#carousel-tab-5', '#carousel-image-5'],
+    ['#carousel-tab-6', '#carousel-image-6']
   ],
   allFocusableItems: [
     '#ex1 button:first-of-type',
