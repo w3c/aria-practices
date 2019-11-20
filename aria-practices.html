@@ -1024,7 +1024,7 @@
           <li>The element that serves as an input and displays the combobox value has role <a href="#combobox" class="role-reference">combobox</a>.</li>
           <li>
             The combobox element has <a href="#aria-controls" class="property-reference">aria-controls</a> set to a value that refers to the element that serves as the popup.
-            Note that <code>aria-controls</code> only needs to be set when the popup is visible. However, it is valid to reference an element that is not visible. 
+            Note that <code>aria-controls</code> only needs to be set when the popup is visible. However, it is valid to reference an element that is not visible.
           </li>
           <li>The popup is an element that has role <a href="#listbox" class="role-reference">listbox</a>, <a href="#tree" class="role-reference">tree</a>, <a href="#grid" class="role-reference">grid</a>, or <a href="#dialog" class="role-reference">dialog</a>.</li>
           <li>
@@ -2632,8 +2632,12 @@
         <p>For the tab list:</p>
         <ul>
           <li>
-            <kbd>Tab</kbd>: When focus moves into the tab list, places focus on the active <code>tab</code> element.
-            When the tab list contains the focus, moves focus to the next element in the page tab sequence outside the tablist, which is typically either the first focusable element inside the tab panel or the tab panel itself.
+            <kbd>Tab</kbd>:
+            <ul>
+              <li>When focus moves into the tab list, places focus on the active <code>tab</code> element.</li>
+              <li>When the tab list contains the focus, moves focus to the next element in the page tab sequence outside the tablist, which is typically either the first focusable element inside the tab panel or the tab panel itself.</li>
+              <li>When the first element contained within a <code>tabpanel</code> element is not focusable, it should set <code>tabindex="0"</code> to make it part of the tab sequence.</li>
+            </ul>
           </li>
           <li>When focus is on a tab element in a horizontal tab list:
             <ul>
