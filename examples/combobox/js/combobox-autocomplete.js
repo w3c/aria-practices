@@ -1,0 +1,542 @@
+/*
+*   This content is licensed according to the W3C Software License at
+*   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
+*/
+var ComboboxAutocomplete = function (comboboxNode, buttonNode, listboxNode) {
+
+  this.comboboxNode = comboboxNode;
+  this.buttonNode   = buttonNode;
+  this.listboxNode  = listboxNode;
+
+  this.comboboxHasFocus = false;
+  this.listboxHasFocus = false;
+
+  this.hasHover = false;
+
+  this.isNone = false;
+  this.isList = false;
+  this.isBoth = false;
+
+  this.allOptions = [];
+
+  this.option   = null;
+  this.firstOption  = null;
+  this.lastOption   = null;
+
+  this.filteredOptions = [];
+  this.filter   = '';
+
+  this.firstChars   = [];
+
+  this.keyCode = Object.freeze({
+    'BACKSPACE': 8,
+    'TAB': 9,
+    'RETURN': 13,
+    'ESC': 27,
+    'SPACE': 32,
+    'PAGEUP': 33,
+    'PAGEDOWN': 34,
+    'END': 35,
+    'HOME': 36,
+    'LEFT': 37,
+    'UP': 38,
+    'RIGHT': 39,
+    'DOWN': 40
+  });
+};
+
+ComboboxAutocomplete.prototype.init = function () {
+
+  var autocomplete = this.comboboxNode.getAttribute('aria-autocomplete');
+
+  if (typeof autocomplete === 'string') {
+    autocomplete = autocomplete.toLowerCase();
+    this.isNone  = autocomplete === 'none';
+    this.isList  = autocomplete === 'list';
+    this.isBoth  = autocomplete === 'both';
+  }
+  else {
+    // default value of autocomplete
+    this.isNone = true;
+  }
+
+  this.comboboxNode.addEventListener('keydown', this.handleComboboxKeyDown.bind(this));
+  this.comboboxNode.addEventListener('keyup',   this.handleComboboxKeyUp.bind(this));
+  this.comboboxNode.addEventListener('click',   this.handleComboboxClick.bind(this));
+  this.comboboxNode.addEventListener('focus',   this.handleComboboxFocus.bind(this));
+  this.comboboxNode.addEventListener('blur',    this.handleComboboxBlur.bind(this));
+
+  // initialize pop up menu
+
+  this.listboxNode.addEventListener('mouseover', this.handleListboxMouseover.bind(this));
+  this.listboxNode.addEventListener('mouseout',  this.handleListboxMouseout.bind(this));
+
+  // Traverse the element children of domNode: configure each with
+  // option role behavior and store reference in.options array.
+  var nodes = this.listboxNode.getElementsByTagName('LI');
+
+  for (var i = 0; i < nodes.length; i++) {
+    var node = nodes[i];
+    this.allOptions.push(node);
+
+    node.textComparison = node.textContent.toLowerCase();
+
+    node.addEventListener('click',      this.handleOptionClick.bind(this));
+    node.addEventListener('mouseover',  this.handleOptionMouseover.bind(this));
+    node.addEventListener('mouseout',   this.handleOptionMouseout.bind(this));
+
+  }
+
+  this.filterOptions('');
+
+  // Open Button
+
+  var button = this.comboboxNode.nextElementSibling;
+
+  if (button && button.tagName === 'BUTTON') {
+    button.addEventListener('click', this.handleButtonClick.bind(this));
+  }
+
+};
+
+ComboboxAutocomplete.prototype.setActiveDescendant = function (option) {
+  if (option && this.listboxHasFocus) {
+    this.comboboxNode.setAttribute('aria-activedescendant', option.id);
+  }
+  else {
+    this.comboboxNode.setAttribute('aria-activedescendant', '');
+  }
+};
+
+ComboboxAutocomplete.prototype.setValue = function (value) {
+  this.filter = value;
+  this.comboboxNode.value = this.filter;
+  this.comboboxNode.setSelectionRange(this.filter.length,this.filter.length);
+  if (this.isList || this.isBoth) {
+    this.filterOptions(this.filter, this.option);
+  }
+};
+
+ComboboxAutocomplete.prototype.setOption = function (option, flag) {
+  if (typeof flag !== 'boolean') {
+    flag = false;
+  }
+
+  if (option) {
+    this.option = option;
+    this.setCurrentOptionStyle(this.option);
+    this.setActiveDescendant(this.option);
+
+    if (this.isBoth) {
+      this.comboboxNode.value = this.option.textContent;
+      if (flag) {
+        this.comboboxNode.setSelectionRange(this.option.textContent.length,this.option.textContent.length);
+      }
+      else {
+        this.comboboxNode.setSelectionRange(this.filter.length,this.option.textContent.length);
+      }
+    }
+  }
+};
+
+ComboboxAutocomplete.prototype.setVisualFocusCombobox = function () {
+  this.listboxNode.classList.remove('focus');
+  this.comboboxNode.parentNode.classList.add('focus'); // set the focus class to the parent for easier styling
+  this.comboboxHasFocus = true;
+  this.listboxHasFocus = false;
+  this.setActiveDescendant(false);
+};
+
+ComboboxAutocomplete.prototype.setVisualFocusListbox = function () {
+  this.comboboxNode.parentNode.classList.remove('focus');
+  this.comboboxHasFocus = false;
+  this.listboxHasFocus = true;
+  this.listboxNode.classList.add('focus');
+  this.setActiveDescendant(this.option);
+};
+
+ComboboxAutocomplete.prototype.removeVisualFocusAll = function () {
+  this.comboboxNode.parentNode.classList.remove('focus');
+  this.comboboxHasFocus = false;
+  this.listboxHasFocus = false;
+  this.listboxNode.classList.remove('focus');
+  this.option = false;
+  this.setActiveDescendant(false);
+};
+
+// ComboboxAutocomplete Events
+
+ComboboxAutocomplete.prototype.filterOptions = function (filter, currentOption) {
+
+  if (typeof filter !== 'string') {
+    filter = '';
+  }
+
+  filter = filter.toLowerCase();
+
+  this.filteredOptions    = [];
+  this.firstChars = [];
+  this.listboxNode.innerHTML = '';
+
+  for (var i = 0; i < this.allOptions.length; i++) {
+    var option = this.allOptions[i];
+    if (filter.length === 0 || option.textComparison.indexOf(filter) === 0) {
+      this.filteredOptions.push(option);
+      var textContent = option.textContent.trim();
+      this.firstChars.push(textContent.substring(0, 1).toLowerCase());
+      this.listboxNode.appendChild(option);
+    }
+  }
+
+  // Use populated options array to initialize firstOption and lastOption.
+  var numItems = this.filteredOptions.length;
+  if (numItems > 0) {
+    this.firstOption = this.filteredOptions[0];
+    this.lastOption  = this.filteredOptions[numItems - 1];
+
+    if (currentOption && this.filteredOptions.indexOf(currentOption) >= 0) {
+      option = currentOption;
+    }
+    else {
+      option = this.firstOption;
+    }
+  }
+  else {
+    this.firstOption = false;
+    option = false;
+    this.lastOption  = false;
+  }
+
+  return option;
+};
+
+ComboboxAutocomplete.prototype.setCurrentOptionStyle = function (option) {
+
+  for (var i = 0; i < this.filteredOptions.length; i++) {
+    var opt = this.filteredOptions[i];
+    if (opt === option) {
+      opt.setAttribute('aria-selected', 'true');
+      this.listboxNode.scrollTop = opt.offsetTop;
+    }
+    else {
+      opt.removeAttribute('aria-selected');
+    }
+  }
+};
+
+ComboboxAutocomplete.prototype.getPreviousOption = function (currentOption) {
+  var index;
+
+  if (currentOption !== this.firstOption) {
+    index = this.filteredOptions.indexOf(currentOption);
+    return this.filteredOptions[index - 1];
+  }
+  return this.lastOption;
+};
+
+ComboboxAutocomplete.prototype.getNextOption = function (currentOption) {
+  var index;
+
+  if (currentOption !== this.lastOption) {
+    index = this.filteredOptions.indexOf(currentOption);
+    return this.filteredOptions[index + 1];
+  }
+  return this.firstOption;
+};
+
+/* MENU DISPLAY METHODS */
+
+ComboboxAutocomplete.prototype.doesOptionHaveFocus = function () {
+  return this.combobocNode.getAttribute('aria-activedescendant') !== '';
+};
+
+ComboboxAutocomplete.prototype.isOpen = function () {
+  return this.listboxNode.style.display === 'block';
+};
+
+ComboboxAutocomplete.prototype.isClosed = function () {
+  return this.listboxNode.style.display !== 'block';
+};
+
+ComboboxAutocomplete.prototype.hasOptions = function () {
+  return this.filteredOptions.length;
+};
+
+ComboboxAutocomplete.prototype.open = function () {
+  this.listboxNode.style.display = 'block';
+  this.comboboxNode.setAttribute('aria-expanded', 'true');
+  this.buttonNode.classList.add('open');
+};
+
+ComboboxAutocomplete.prototype.close = function (force) {
+  if (typeof force !== 'boolean') {
+    force = false;
+  }
+
+  if (force || (!this.comboboxHasFocus && !this.listboxHasFocus && !this.hasHover)) {
+    this.setCurrentOptionStyle(false);
+    this.listboxNode.style.display = 'none';
+    this.comboboxNode.setAttribute('aria-expanded', 'false');
+    this.buttonNode.classList.remove('open');
+    this.setActiveDescendant(false);
+  }
+};
+
+/* combobox Events */
+
+ComboboxAutocomplete.prototype.handleComboboxKeyDown = function (event) {
+  var flag = false,
+    char = event.key,
+    altKey   = event.altKey;
+
+  if (event.ctrlKey || event.shiftKey) {
+    return;
+  }
+
+  switch (event.keyCode) {
+
+    case this.keyCode.RETURN:
+      if ((this.listboxHasFocus || this.isBoth) && this.option) {
+        this.setValue(this.option.textContent);
+      }
+      this.close(true);
+      flag = true;
+      break;
+
+    case this.keyCode.DOWN:
+      if (this.filteredOptions.length > 0) {
+        if (this.listboxHasFocus || (this.isBoth && this.option)) {
+          this.setOption(this.getNextOption(this.option), true);
+        }
+        else {
+          this.open();
+          if (!altKey) {
+            this.setOption(this.firstOption, true);
+          }
+        }
+        this.setVisualFocusListbox();
+      }
+      flag = true;
+      break;
+
+    case this.keyCode.UP:
+
+      if (this.hasOptions()) {
+        if (this.listboxHasFocus || (this.isBoth && this.option)) {
+          this.setOption(this.getPreviousOption(this.option), true);
+        }
+        else {
+          this.open();
+          if (!altKey) {
+            this.setOption(this.lastOption, true);
+          }
+        }
+        this.setVisualFocusListbox();
+      }
+      flag = true;
+      break;
+
+    case this.keyCode.ESC:
+      this.close(true);
+      this.setVisualFocusCombobox();
+      this.option = false;
+      flag = true;
+      break;
+
+    case this.keyCode.TAB:
+      this.close(true);
+      if (this.listboxHasFocus) {
+        if (this.option) {
+          this.setValue(this.option.textContent);
+        }
+      }
+      break;
+
+    default:
+      break;
+  }
+
+  if (flag) {
+    event.stopPropagation();
+    event.preventDefault();
+  }
+
+};
+
+ComboboxAutocomplete.prototype.handleComboboxKeyUp = function (event) {
+  var flag = false,
+    option = false,
+    char = event.key;
+
+  function isPrintableCharacter (str) {
+    return str.length === 1 && str.match(/\S/);
+  }
+
+  if (isPrintableCharacter(char)) {
+    this.filter += char;
+  }
+
+  // this is for the case when a selection in the textbox has been deleted
+  if (this.comboboxNode.value.length < this.filter.length) {
+    this.filter = this.comboboxNode.value;
+    this.option = false;
+  }
+
+  if (event.keyCode === this.keyCode.ESC) {
+    return;
+  }
+
+  switch (event.keyCode) {
+
+    case this.keyCode.BACKSPACE:
+      this.setValue(this.comboboxNode.value);
+      this.setVisualFocusCombobox();
+      this.setCurrentOptionStyle(false);
+      this.option = false;
+      flag = true;
+      break;
+
+    case this.keyCode.LEFT:
+    case this.keyCode.RIGHT:
+    case this.keyCode.HOME:
+    case this.keyCode.END:
+      if (this.isBoth) {
+        this.filter = this.comboboxNode.value;
+      }
+      else {
+        this.option = false;
+        this.setCurrentOptionStyle(false);
+      }
+
+      this.setVisualFocusCombobox();
+      flag = true;
+      break;
+
+    default:
+      if (isPrintableCharacter(char)) {
+        this.setVisualFocusCombobox();
+        this.setCurrentOptionStyle(false);
+        flag = true;
+
+        if (this.isList || this.isBoth) {
+          option = this.filterOptions(this.filter, this.option);
+          if (option) {
+            if (this.isClosed() && this.comboboxNode.value.length) {
+              this.open();
+            }
+
+            if (option.textComparison.indexOf(this.comboboxNode.value.toLowerCase()) === 0) {
+              this.option = option;
+              if (this.isBoth || this.listboxHasFocus) {
+                this.setCurrentOptionStyle(option);
+                if (this.isBoth && isPrintableCharacter(char)) {
+                  this.setOption(option);
+                }
+              }
+            }
+            else {
+              this.option = false;
+              this.setCurrentOptionStyle(false);
+            }
+          }
+          else {
+            this.close();
+            this.option = false;
+            this.setActiveDescendant(false);
+          }
+        }
+        else if (this.comboboxNode.value.length) {
+          this.open();
+        }
+      }
+
+      break;
+  }
+
+  if (flag) {
+    event.stopPropagation();
+    event.preventDefault();
+  }
+
+};
+
+ComboboxAutocomplete.prototype.handleComboboxClick = function (event) {
+  if (this.isOpen()) {
+    this.close(true);
+  }
+  else {
+    this.open();
+  }
+};
+
+ComboboxAutocomplete.prototype.handleComboboxFocus = function (event) {
+  this.setVisualFocusCombobox();
+  this.option = false;
+  this.setCurrentOptionStyle(null);
+};
+
+ComboboxAutocomplete.prototype.handleComboboxBlur = function (event) {
+  this.comboboxHasFocus = false;
+  this.setCurrentOptionStyle(null);
+  this.removeVisualFocusAll();
+  setTimeout(this.close.bind(this, false), 300);
+};
+
+ComboboxAutocomplete.prototype.handleButtonClick = function (event) {
+  if (this.isOpen()) {
+    this.close(true);
+  }
+  else {
+    this.open();
+  }
+  this.comboboxNode.focus();
+  this.setVisualFocusCombobox();
+};
+
+
+/* Listbox Events */
+
+ComboboxAutocomplete.prototype.handleListboxMouseover = function (event) {
+  this.hasHover = true;
+};
+
+ComboboxAutocomplete.prototype.handleListboxMouseout = function (event) {
+  this.hasHover = false;
+  setTimeout(this.close.bind(this, false), 300);
+};
+
+// Listbox Option Events
+
+ComboboxAutocomplete.prototype.handleOptionClick = function (event) {
+  this.setOption(event.target);
+  this.close(true);
+};
+
+ComboboxAutocomplete.prototype.handleOptionMouseover = function (event) {
+  this.hasHover = true;
+  this.open();
+
+};
+
+ComboboxAutocomplete.prototype.handleOptionMouseout = function (event) {
+  this.hasHover = false;
+  setTimeout(this.close.bind(this, false), 300);
+};
+
+
+// Initialize comboboxes
+
+window.addEventListener('load', function () {
+
+  var comboboxes = document.querySelectorAll('.combobox-list');
+
+  for (var i = 0; i < comboboxes.length; i++) {
+    var combobox = comboboxes[i];
+    var comboboxNode = combobox.querySelector('input');
+    var buttonNode   = combobox.querySelector('button');
+    var listboxNode  = combobox.querySelector('[role="listbox"]');
+    var cba = new ComboboxAutocomplete(comboboxNode, buttonNode, listboxNode);
+    cba.init();
+  }
+
+});

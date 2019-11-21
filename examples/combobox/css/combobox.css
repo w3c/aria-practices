@@ -33,9 +33,29 @@
   font-size: 70%;
 }
 
+.combobox .group button .down {
+  display: block;
+}
+
+.combobox .group button .up {
+  display: none;
+}
+
+.combobox .group button.open .down {
+  display: none;
+}
+
+.combobox .group button.open .up {
+  display: block;
+}
+
 .combobox .group.focus {
   outline: 2px solid black;
   outline-offset: 1px;
+}
+
+.combobox .group.focus input {
+  background-color: #DEF;
 }
 
 ul[role="listbox"] {
@@ -58,18 +78,21 @@ ul[role="listbox"] {
 }
 
 ul[role="listbox"] li[role="option"] {
-  border-top: 1px solid transparent;
-  border-bottom: 1px solid transparent;
   display: block;
+  padding-left: 2px;
+  padding-top: 2px;
+  padding-bottom: 2px;
   margin: 0;
-  padding: 0.1em 0.3em;
 }
 
 /* focus and hover styling */
 
 [role="listbox"].focus [role="option"][aria-selected="true"] {
   background-color: #DEF;
-  border-color: #8CCBF2;
+  padding-top: 0;
+  padding-bottom: 0;
+  border-top: 2px solid #8CCBF2;
+  border-bottom: 2px solid #8CCBF2;
 }
 
 @media (forced-colors: active), (-ms-high-contrast: active) {

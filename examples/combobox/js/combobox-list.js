@@ -282,7 +282,7 @@ ComboboxList.prototype.handleKeyup = function (event) {
             if (this.listbox.isClosed() && this.domNode.value.length) {
               this.listbox.open();
             }
-    
+
             if (option.textComparison.indexOf(this.domNode.value.toLowerCase()) === 0) {
               this.option = option;
               if (this.isBoth || this.listbox.hasFocus) {
