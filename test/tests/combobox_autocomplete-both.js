@@ -337,7 +337,7 @@ ariaTest('Test enter key press with focus on listbox',
 
   });
 
-ariaTest('Test escape key press with focus on textbox',
+ariaTest('Test single escape key press with focus on textbox',
   exampleFile, 'textbox-key-escape', async (t) => {
     t.plan(2);
 
@@ -355,6 +355,29 @@ ariaTest('Test escape key press with focus on textbox',
         .findElement(By.css(ex.textboxSelector))
         .getAttribute('value'),
       'Alabama',
+      'In key press "ESCAPE" should result in first option in textbox'
+    );
+
+  });
+
+ariaTest('Test double escape key press with focus on textbox',
+  exampleFile, 'textbox-key-escape', async (t) => {
+    t.plan(2);
+
+    // Send key "a", then key ESCAPE to the textbox
+
+    await t.context.session
+      .findElement(By.css(ex.textboxSelector))
+      .sendKeys('a', Key.ESCAPE, Key.ESCAPE);
+
+    // Confirm the listbox is closed and the textboxed is clearedx
+
+    await assertAttributeValues(t, ex.textboxSelector, 'aria-expanded', 'false');
+    t.is(
+      await t.context.session
+        .findElement(By.css(ex.textboxSelector))
+        .getAttribute('value'),
+      '',
       'In key press "ESCAPE" should result in first option in textbox'
     );
 

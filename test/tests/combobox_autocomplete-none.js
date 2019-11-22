@@ -361,6 +361,30 @@ ariaTest('Test escape key press with focus on textbox',
       await t.context.session
         .findElement(By.css(ex.textboxSelector))
         .getAttribute('value'),
+      'a',
+      'In listbox key press "ESCAPE" should result in first option in textbox'
+    );
+
+  });
+
+ariaTest('Test double escape key press with focus on textbox',
+  exampleFile, 'listbox-key-escape', async (t) => {
+    t.plan(2);
+
+    // Send key "a" then key "ARROW_DOWN to put the focus on the listbox,
+    // then key ESCAPE to the textbox
+
+    await t.context.session
+      .findElement(By.css(ex.textboxSelector))
+      .sendKeys('a', Key.ARROW_DOWN, Key.ESCAPE, Key.ESCAPE);
+
+    // Confirm the listbox is closed and the textboxed is cleared
+
+    await assertAttributeValues(t, ex.textboxSelector, 'aria-expanded', 'false');
+    t.is(
+      await t.context.session
+        .findElement(By.css(ex.textboxSelector))
+        .getAttribute('value'),
       '',
       'In listbox key press "ESCAPE" should result in first option in textbox'
     );
