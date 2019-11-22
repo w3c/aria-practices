@@ -339,6 +339,7 @@ ComboboxAutocomplete.prototype.handleComboboxKeyDown = function (event) {
       }
       else {
         this.setValue('');
+        this.comboboxNode.value = '';
       }
       this.option = false;
       flag = true;
@@ -352,6 +353,18 @@ ComboboxAutocomplete.prototype.handleComboboxKeyDown = function (event) {
         }
       }
       break;
+
+    case this.keyCode.HOME:
+      this.comboboxNode.setSelectionRange(0,0);
+      flag = true;
+      break;
+
+    case this.keyCode.END:
+      var length = this.comboboxNode.value.length;
+      this.comboboxNode.setSelectionRange(length,length);
+      flag = true;
+      break;
+
 
     default:
       break;
@@ -408,7 +421,6 @@ ComboboxAutocomplete.prototype.handleComboboxKeyUp = function (event) {
         this.option = false;
         this.setCurrentOptionStyle(false);
       }
-
       this.setVisualFocusCombobox();
       flag = true;
       break;

@@ -354,7 +354,7 @@ ariaTest('Test escape key press with focus on textbox',
       await t.context.session
         .findElement(By.css(ex.textboxSelector))
         .getAttribute('value'),
-      '',
+      'Alabama',
       'In key press "ESCAPE" should result in first option in textbox'
     );
 
@@ -378,7 +378,7 @@ ariaTest('Test escape key press with focus on textbox',
       await t.context.session
         .findElement(By.css(ex.textboxSelector))
         .getAttribute('value'),
-      '',
+      'Alaska',
       'In listbox key press "ESCAPE" should result in first option in textbox'
     );
 

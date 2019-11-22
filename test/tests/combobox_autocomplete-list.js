@@ -352,7 +352,7 @@ ariaTest('Test escape key press with focus on textbox',
 
     await t.context.session
       .findElement(By.css(ex.textboxSelector))
-      .sendKeys('a', Key.ESCAPE);
+      .sendKeys('a', Key.ESCAPE, Key.ESCAPE);
 
     // Confirm the listbox is closed and the textboxed is cleared
 
@@ -385,7 +385,7 @@ ariaTest('Test escape key press with focus on textbox',
       await t.context.session
         .findElement(By.css(ex.textboxSelector))
         .getAttribute('value'),
-      '',
+      'a',
       'In listbox key press "ESCAPE" should result in first option in textbox'
     );
 
