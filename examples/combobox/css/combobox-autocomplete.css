@@ -30,7 +30,11 @@
   width: 1.25rem;
   border-left: none;
   outline: none;
-  font-size: 70%;
+  position: relative;
+}
+
+.combobox .group button .arrow {
+  top:;
 }
 
 .combobox .group button .down {

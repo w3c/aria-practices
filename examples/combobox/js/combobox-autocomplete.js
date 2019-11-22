@@ -26,8 +26,6 @@ var ComboboxAutocomplete = function (comboboxNode, buttonNode, listboxNode) {
   this.filteredOptions = [];
   this.filter   = '';
 
-  this.firstChars   = [];
-
   this.keyCode = Object.freeze({
     'BACKSPACE': 8,
     'TAB': 9,
@@ -175,7 +173,6 @@ ComboboxAutocomplete.prototype.filterOptions = function (filter, currentOption) 
   filter = filter.toLowerCase();
 
   this.filteredOptions    = [];
-  this.firstChars = [];
   this.listboxNode.innerHTML = '';
 
   for (var i = 0; i < this.allOptions.length; i++) {
@@ -183,7 +180,6 @@ ComboboxAutocomplete.prototype.filterOptions = function (filter, currentOption) 
     if (filter.length === 0 || option.textComparison.indexOf(filter) === 0) {
       this.filteredOptions.push(option);
       var textContent = option.textContent.trim();
-      this.firstChars.push(textContent.substring(0, 1).toLowerCase());
       this.listboxNode.appendChild(option);
     }
   }
@@ -337,8 +333,13 @@ ComboboxAutocomplete.prototype.handleComboboxKeyDown = function (event) {
       break;
 
     case this.keyCode.ESC:
-      this.close(true);
-      this.setVisualFocusCombobox();
+      if (this.isOpen()) {
+        this.close(true);
+        this.setVisualFocusCombobox();
+      }
+      else {
+        this.setValue('');
+      }
       this.option = false;
       flag = true;
       break;
