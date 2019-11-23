@@ -126,13 +126,6 @@ MenubarItemAction.prototype.handleKeydown = function (event) {
       flag = true;
       break;
 
-    case this.keyCode.ESC:
-      if (this.popupMenu) {
-        this.popupMenu.close();
-      }
-      flag = true;
-      break;
-
     default:
       if (isPrintableCharacter(char)) {
         this.menubar.setFocusByFirstCharacter(this, char);

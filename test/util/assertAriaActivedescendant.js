@@ -9,12 +9,12 @@ const assert = require('assert');
  *
  * @param {obj} t                  - ava execution object
  * @param {String} activedescendantSelector - selector for element with aria-activeDescendant set
- * @param {String} optionsSelector - selector to select list of canidate elements for focus
+ * @param {String} optionsSelector - selector to select list of candidate elements for focus
  * @param {Number} index           - index of element in list returned by optionsSelector with focus
  */
 module.exports = async function assertAriaSelectedAndActivedescendant (t, activedescendantSelector, optionsSelector, index) {
 
-  // Confrirm aria-activedescendant refers to the correct option
+  // Confirm aria-activedescendant refers to the correct option
 
   const options = await t.context.session
     .findElements(By.css(optionsSelector));
