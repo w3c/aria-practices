@@ -25,22 +25,6 @@ var ComboboxAutocomplete = function (comboboxNode, buttonNode, listboxNode) {
 
   this.filteredOptions = [];
   this.filter   = '';
-
-  this.keyCode = Object.freeze({
-    'BACKSPACE': 8,
-    'TAB': 9,
-    'RETURN': 13,
-    'ESC': 27,
-    'SPACE': 32,
-    'PAGEUP': 33,
-    'PAGEDOWN': 34,
-    'END': 35,
-    'HOME': 36,
-    'LEFT': 37,
-    'UP': 38,
-    'RIGHT': 39,
-    'DOWN': 40
-  });
 };
 
 ComboboxAutocomplete.prototype.init = function () {
@@ -289,17 +273,19 @@ ComboboxAutocomplete.prototype.handleComboboxKeyDown = function (event) {
     return;
   }
 
-  switch (event.keyCode) {
+  switch (event.key) {
 
-    case this.keyCode.RETURN:
+    case "Enter":
       if ((this.listboxHasFocus || this.isBoth) && this.option) {
         this.setValue(this.option.textContent);
       }
       this.close(true);
+      this.setVisualFocusCombobox();
       flag = true;
       break;
 
-    case this.keyCode.DOWN:
+    case "Down":
+    case "ArrowDown":
       if (this.filteredOptions.length > 0) {
         if (this.listboxHasFocus || (this.isBoth && this.option)) {
           this.setOption(this.getNextOption(this.option), true);
@@ -315,7 +301,8 @@ ComboboxAutocomplete.prototype.handleComboboxKeyDown = function (event) {
       flag = true;
       break;
 
-    case this.keyCode.UP:
+    case "Up":
+    case "ArrowUp":
 
       if (this.hasOptions()) {
         if (this.listboxHasFocus || (this.isBoth && this.option)) {
@@ -332,7 +319,8 @@ ComboboxAutocomplete.prototype.handleComboboxKeyDown = function (event) {
       flag = true;
       break;
 
-    case this.keyCode.ESC:
+    case "Esc":
+    case "Escape":
       if (this.isOpen()) {
         this.close(true);
         this.setVisualFocusCombobox();
@@ -345,7 +333,7 @@ ComboboxAutocomplete.prototype.handleComboboxKeyDown = function (event) {
       flag = true;
       break;
 
-    case this.keyCode.TAB:
+    case "Tab":
       this.close(true);
       if (this.listboxHasFocus) {
         if (this.option) {
@@ -354,12 +342,12 @@ ComboboxAutocomplete.prototype.handleComboboxKeyDown = function (event) {
       }
       break;
 
-    case this.keyCode.HOME:
+    case "Home":
       this.comboboxNode.setSelectionRange(0,0);
       flag = true;
       break;
 
-    case this.keyCode.END:
+    case "End":
       var length = this.comboboxNode.value.length;
       this.comboboxNode.setSelectionRange(length,length);
       flag = true;
@@ -396,13 +384,13 @@ ComboboxAutocomplete.prototype.handleComboboxKeyUp = function (event) {
     this.option = false;
   }
 
-  if (event.keyCode === this.keyCode.ESC) {
+  if (event.key === "Escape" || event.key === "Esc") {
     return;
   }
 
-  switch (event.keyCode) {
+  switch (event.key) {
 
-    case this.keyCode.BACKSPACE:
+    case "Backspace":
       this.setValue(this.comboboxNode.value);
       this.setVisualFocusCombobox();
       this.setCurrentOptionStyle(false);
@@ -410,10 +398,12 @@ ComboboxAutocomplete.prototype.handleComboboxKeyUp = function (event) {
       flag = true;
       break;
 
-    case this.keyCode.LEFT:
-    case this.keyCode.RIGHT:
-    case this.keyCode.HOME:
-    case this.keyCode.END:
+    case "Left":
+    case "ArrowLeft":
+    case "Right":
+    case "ArrowRight":
+    case "Home":
+    case "End":
       if (this.isBoth) {
         this.filter = this.comboboxNode.value;
       }
