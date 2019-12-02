@@ -8,8 +8,8 @@ var ComboboxAutocomplete = function (comboboxNode, buttonNode, listboxNode) {
   this.buttonNode   = buttonNode;
   this.listboxNode  = listboxNode;
 
-  this.comboboxHasFocus = false;
-  this.listboxHasFocus = false;
+  this.comboboxHasVisualFocus = false;
+  this.listboxHasVisualFocus = false;
 
   this.hasHover = false;
 
@@ -82,7 +82,7 @@ ComboboxAutocomplete.prototype.init = function () {
 };
 
 ComboboxAutocomplete.prototype.setActiveDescendant = function (option) {
-  if (option && this.listboxHasFocus) {
+  if (option && this.listboxHasVisualFocus) {
     this.comboboxNode.setAttribute('aria-activedescendant', option.id);
   }
   else {
@@ -124,23 +124,23 @@ ComboboxAutocomplete.prototype.setOption = function (option, flag) {
 ComboboxAutocomplete.prototype.setVisualFocusCombobox = function () {
   this.listboxNode.classList.remove('focus');
   this.comboboxNode.parentNode.classList.add('focus'); // set the focus class to the parent for easier styling
-  this.comboboxHasFocus = true;
-  this.listboxHasFocus = false;
+  this.comboboxHasVisualFocus = true;
+  this.listboxHasVisualFocus = false;
   this.setActiveDescendant(false);
 };
 
 ComboboxAutocomplete.prototype.setVisualFocusListbox = function () {
   this.comboboxNode.parentNode.classList.remove('focus');
-  this.comboboxHasFocus = false;
-  this.listboxHasFocus = true;
+  this.comboboxHasVisualFocus = false;
+  this.listboxHasVisualFocus = true;
   this.listboxNode.classList.add('focus');
   this.setActiveDescendant(this.option);
 };
 
 ComboboxAutocomplete.prototype.removeVisualFocusAll = function () {
   this.comboboxNode.parentNode.classList.remove('focus');
-  this.comboboxHasFocus = false;
-  this.listboxHasFocus = false;
+  this.comboboxHasVisualFocus = false;
+  this.listboxHasVisualFocus = false;
   this.listboxNode.classList.remove('focus');
   this.option = false;
   this.setActiveDescendant(false);
@@ -253,7 +253,7 @@ ComboboxAutocomplete.prototype.close = function (force) {
     force = false;
   }
 
-  if (force || (!this.comboboxHasFocus && !this.listboxHasFocus && !this.hasHover)) {
+  if (force || (!this.comboboxHasVisualFocus && !this.listboxHasVisualFocus && !this.hasHover)) {
     this.setCurrentOptionStyle(false);
     this.listboxNode.style.display = 'none';
     this.comboboxNode.setAttribute('aria-expanded', 'false');
@@ -276,10 +276,10 @@ ComboboxAutocomplete.prototype.handleComboboxKeyDown = function (event) {
   switch (event.key) {
 
     case "Enter":
-      if ((this.listboxHasFocus || this.isBoth) && this.option) {
+      if (this.listboxHasVisualFocus) {
         this.setValue(this.option.textContent);
+        this.close(true);
       }
-      this.close(true);
       this.setVisualFocusCombobox();
       flag = true;
       break;
@@ -287,7 +287,7 @@ ComboboxAutocomplete.prototype.handleComboboxKeyDown = function (event) {
     case "Down":
     case "ArrowDown":
       if (this.filteredOptions.length > 0) {
-        if (this.listboxHasFocus || (this.isBoth && this.option)) {
+        if (this.listboxHasVisualFocus) {
           this.setOption(this.getNextOption(this.option), true);
         }
         else {
@@ -305,7 +305,7 @@ ComboboxAutocomplete.prototype.handleComboboxKeyDown = function (event) {
     case "ArrowUp":
 
       if (this.hasOptions()) {
-        if (this.listboxHasFocus || (this.isBoth && this.option)) {
+        if (this.listboxHasVisualFocus) {
           this.setOption(this.getPreviousOption(this.option), true);
         }
         else {
@@ -335,7 +335,7 @@ ComboboxAutocomplete.prototype.handleComboboxKeyDown = function (event) {
 
     case "Tab":
       this.close(true);
-      if (this.listboxHasFocus) {
+      if (this.listboxHasVisualFocus) {
         if (this.option) {
           this.setValue(this.option.textContent);
         }
@@ -430,7 +430,7 @@ ComboboxAutocomplete.prototype.handleComboboxKeyUp = function (event) {
 
             if (option.textComparison.indexOf(this.comboboxNode.value.toLowerCase()) === 0) {
               this.option = option;
-              if (this.isBoth || this.listboxHasFocus) {
+              if (this.isBoth || this.listboxHasVisualFocus) {
                 this.setCurrentOptionStyle(option);
                 if (this.isBoth && isPrintableCharacter(char)) {
                   this.setOption(option);
@@ -479,7 +479,7 @@ ComboboxAutocomplete.prototype.handleComboboxFocus = function (event) {
 };
 
 ComboboxAutocomplete.prototype.handleComboboxBlur = function (event) {
-  this.comboboxHasFocus = false;
+  this.comboboxHasVisualFocus = false;
   this.setCurrentOptionStyle(null);
   this.removeVisualFocusAll();
   setTimeout(this.close.bind(this, false), 300);
