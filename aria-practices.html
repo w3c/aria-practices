@@ -6907,14 +6907,16 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
 
     <section id="aria-level_treeitem_role">
       <h3>Using <code>aria-level</code> with the <code>treeitem</code> Role</h3>
-      <p>In some implementations of the <a href="#TreeView">Tree View Design Pattern</a>, authors might need to explicitly declare the <code>aria-level</code> attribute.</p>
-      <p>The computed <code>aria-level</code> of a <code>treeitem</code> within a tree is based on the number of <code>group</code> role elements in the ancestor chain between the <code>treeitem</code> and the <code>tree</code> role, where the top-level <code>treeitem</code>s are <code>aria-level</code> 1.</p>
+      <p>
+        As with <code>listitem</code> elements, browsers automatically compute an <code>aria-level</code> value for elements with role <code>treeitem</code>.
+        The computed level for a <code>treeitem</code> element is based on the number of <code>group</code> elements in the ancestor chain between that <code>treeitem</code> and the element with role <code>tree</code>.
+        The top-level <code>treeitem</code> elements, which are immediate descendants of the <code>tree</code> with no intervening <code>group</code>, have <code>aria-level</code> of <code>1</code>.
+        However, in some implementations of the <a href="#TreeView">Tree View Design Pattern</a>, it is necessary to explicitly declare the <code>aria-level</code>.
+      </p>
       <p>
         The following example shows a File Directory where a nested folder "report-1" is being viewed.
-        The parent folder "Reports" is at the top-level in the directory structure,
-        and the "report-1" folder is level 2,
-        so the files within that folder are level 3,
-        even though only these files are currently being viewed.
+        The parent folder "Reports" is at the top-level in the directory structure, and the "report-1" folder is level 2.
+        The files within the "report-1" folder are thus level 3, even though only these files are currently being viewed.
       </p>
       <pre><code>&lt;h3 id="tree_label">Viewing: report-1&lt;/h3>
 &lt;ul role='tree' aria-labelledby='tree_label'&gt;
