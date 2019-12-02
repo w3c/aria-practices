@@ -6845,7 +6845,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
       <li><code>row</code> (if in a <code>treegrid</code>)</li>
     </ul>
     <section id="aria-level_heading_role">
-      <h3>Using <code>aria-level</code> for the <code>heading</code> Role</h3>
+      <h3>Using <code>aria-level</code> with the <code>heading</code> Role</h3>
       <p>Used together, the <code>aria-level</code> attribute and <code>heading</code> role will be treated the same by assistive technologies as the native HTML heading elements: <code>h1</code>, <code>h2</code>, <code>h3</code>, <code>h4</code>, <code>h5</code> and <code>h6</code>. Do not use the <code>aria-level</code> attribute and the <code>heading</code> role when a native HTML element can be used.</p>
       <p>This example uses the <code>heading</code> role and <code>aria-level</code> attribute to communicate levels of headings for a graph created with an SVG. The headings "Deciduous Trees" and "Evergreen Trees" are both subheadings to "Total Trees".</p>
       <pre><code>&lt;svg width="1000" height="1000"&gt;
@@ -6873,7 +6873,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
     </section>
 
     <section id="aria-level_listitem_role">
-      <h3>Using <code>aria-level</code> for the <code>listitem</code> Role</h3>
+      <h3>Using <code>aria-level</code> with the <code>listitem</code> Role</h3>
       <p>
         The <code>aria-level</code> attribute can be used on elements with <code>listitem</code> role to represent list subitems when the structure of the DOM tree does not imply the intended level of nesting.
         This is a rare scenario, however.
@@ -6896,7 +6896,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
     </section>
 
     <section id="aria-level_treeitem_role">
-      <h3>Using <code>aria-level</code> for the <code>treeitem</code> Role</h3>
+      <h3>Using <code>aria-level</code> with the <code>treeitem</code> Role</h3>
       <p>In some implementations of the <a href="#TreeView">Tree View Design Pattern</a>, authors might need to explicitly declare the <code>aria-level</code> attribute.</p>
       <p>The computed <code>aria-level</code> of a <code>treeitem</code> within a tree is based on the number of <code>group</code> role elements in the ancestor chain between the <code>treeitem</code> and the <code>tree</code> role, where the top-level <code>treeitem</code>s are <code>aria-level</code> 1.</p>
       <p>
@@ -6917,7 +6917,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
     </section>
 
     <section id="aria-level_row_role">
-      <h3>Using <code>aria-level</code> for the <code>row</code> Role</h3>
+      <h3>Using <code>aria-level</code> with the <code>row</code> Role</h3>
       <p>The <code>aria-level</code> attribute can be used on an element with <code>row</code> role to describe nesting of rows in a <code>treegrid</code>, as is explained in the <a href="#treegrid">treegrid pattern</a>. In this example, the DOM tree does not represent the hierarchical relationship between rows. Each email is in a <code>tr</code> element, which are siblings in the DOM tree, therefore <code>aria-level</code> is necessary to communicate that the emails form a tree structure.</p>
       <pre><code>&lt;table role='treegrid'&gt;
   &lt;tr&gt;
