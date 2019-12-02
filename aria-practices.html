@@ -6817,7 +6817,11 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
       The value of <code>aria-level</code> is numeric, with <code>1</code> indicating the top level of the structure.
       The number increases for each level of nesting.
     </p>
-    <p>Do not use <code>aria-level</code> when the DOM structure already accurately represents the elements' hierarchical relationships. For example, a nested <code>ul</code> list structure does not need explicit <code>aria-level</code>.</p>
+    <p>
+      Whenever possible, browsers automatically calculate <code>aria-level</code> from the DOM structure.
+      Do not override browser calculations by specifying <code>aria-level</code> if the DOM structure already accurately represents the elements' hierarchical relationships.
+      For example, the following nested <code>ul</code> list structure does not need explicit declarations of <code>aria-level</code>.
+    </p>
     <pre><code>
 &lt;ul>
   &lt;li>This is level 1
@@ -6833,7 +6837,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
   &lt;li>This is level 1&lt;/li>
 &lt;/ul>
 </code></pre>
-    <p>The <code>aria-level</code> attribute can be used on the following roles:</p>
+    <p>The <code>aria-level</code> property is supported on elements with the following roles:</p>
     <ul>
       <li><code>heading</code></li>
       <li><code>listitem</code></li>
