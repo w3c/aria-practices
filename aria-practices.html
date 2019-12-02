@@ -6863,9 +6863,12 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
 </code></pre>
 
       <section id="aria-level_heading_role_remediation">
-        <h4>Remediation Uses Cases for <code>aria-level</code></h4>
-        <p>In rare scenarios, legacy code cannot be converted to using HTML heading elements. In these cases, the <code>aria-level</code> attribute and the <code>heading</code> role can be added to the web site's heading elements to communicate to assistive technologies that those elements should be treated like a native HTML section heading element.</p>
-        <p>For example, "Definition of a Room" is a subsection of "Housing Specification":</p>
+        <h4>Remediation Use Cases for Headings</h4>
+        <p>
+          In rare scenarios, legacy code cannot be converted to use HTML heading elements.
+          In these cases, the <code>aria-level</code> property and the <code>heading</code> role can be added to elements that assistive technologies should treat like native HTML heading elements.
+        </p>
+        <p>For example, in the following code, this technique is used to specify that "Definition of a Room" is the heading of a subsection of the section titled "Housing Specification":</p>
         <pre><code>&lt;div role="heading" aria-level="1" class="heading-big"&gt;Housing Specification&lt;/div&gt;
 &lt;div role="heading" aria-level="2" id="room-definition" class="heading-small"&gt;Definition of a Room&lt;/div&gt;
 ...
