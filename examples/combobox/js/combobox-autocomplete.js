@@ -294,9 +294,9 @@ ComboboxAutocomplete.prototype.handleComboboxKeyDown = function (event) {
           this.open();
           if (!altKey) {
             this.setOption(this.firstOption, true);
+            this.setVisualFocusListbox();
           }
         }
-        this.setVisualFocusListbox();
       }
       flag = true;
       break;
@@ -312,9 +312,9 @@ ComboboxAutocomplete.prototype.handleComboboxKeyDown = function (event) {
           this.open();
           if (!altKey) {
             this.setOption(this.lastOption, true);
+            this.setVisualFocusListbox();
           }
         }
-        this.setVisualFocusListbox();
       }
       flag = true;
       break;
