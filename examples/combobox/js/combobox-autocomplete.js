@@ -278,8 +278,8 @@ ComboboxAutocomplete.prototype.handleComboboxKeyDown = function (event) {
     case "Enter":
       if (this.listboxHasVisualFocus) {
         this.setValue(this.option.textContent);
-        this.close(true);
       }
+      this.close(true);
       this.setVisualFocusCombobox();
       flag = true;
       break;
