@@ -6813,7 +6813,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
   <section id="aria-level">
     <h2>Describing Hierarchical Structure with <code>aria-level</code></h2>
     <p>
-      When elements have a hierarchical relationship, such as headings on nested sections or data in tree structures, <a href="#aria-level" class="property-reference">aria-level</a> is used to communicate an element's level within the hierarchy to assistive technologies.
+      When elements have a hierarchical relationship, such as headings of nested sections or data in tree structures, <a href="#aria-level" class="property-reference">aria-level</a> is used to communicate an element's level within the hierarchy to assistive technologies.
       The value of <code>aria-level</code> is numeric, with <code>1</code> indicating the top level of the structure.
       The number increases for each level of nesting.
     </p>
@@ -6884,12 +6884,13 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
     <section id="aria-level_listitem_role">
       <h3>Using <code>aria-level</code> with the <code>listitem</code> Role</h3>
       <p>
-        The <code>aria-level</code> attribute can be used on elements with <code>listitem</code> role to represent list subitems when the structure of the DOM tree does not imply the intended level of nesting.
-        This is a rare scenario, however.
-        For example, consider a subset of a Table of Contents that only covers the current chapter,
-        and omits the top-level item (the chapter).
-        The first list item is semantically a second-level item.
-        This can be indicated using <code>aria-level</code>, as follows:
+        Browsers automatically calculate the value of <code>aria-level</code> for elements with the <code>listitem</code> role.
+        However, in rare scenarios where the structure of the DOM tree does not represent the correct level of nesting, <code>aria-level</code> can be specified on elements with role <code>listitem</code> to override the value computed by the browser with the correct level.
+      </p>
+      <p>
+        For example, consider the following subset of a table of contents that includes only items within the current chapter and omits the top-level item (the chapter).
+        In this case, the first list item is semantically a second-level item.
+        This can be indicated using <code>aria-level</code> as follows:
       </p>
       <pre><code>&lt;h1>Preface&lt;/h1>
 &lt;h2>Table of Contents&lt;/h2>
@@ -6901,7 +6902,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
 ...
 </code></pre>
 
-      <p class="note">The HTML <code>li</code> element uses the <code>listitem</code> role by default.</p>
+      <p class="note">The implied (or default) role of an HTML <code>li</code> element is <code>listitem</code>.</p>
     </section>
 
     <section id="aria-level_treeitem_role">
