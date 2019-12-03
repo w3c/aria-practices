@@ -287,12 +287,16 @@ ComboboxAutocomplete.prototype.handleComboboxKeyDown = function (event) {
     case "Down":
     case "ArrowDown":
       if (this.filteredOptions.length > 0) {
-        if (this.listboxHasVisualFocus) {
-          this.setOption(this.getNextOption(this.option), true);
+        if (altKey) {
+          this.open();
         }
         else {
           this.open();
-          if (!altKey) {
+          if (this.listboxHasVisualFocus || (this.isBoth && this.filteredOptions.length > 1)) {
+            this.setOption(this.getNextOption(this.option), true);
+            this.setVisualFocusListbox();
+          }
+          else {
             this.setOption(this.firstOption, true);
             this.setVisualFocusListbox();
           }

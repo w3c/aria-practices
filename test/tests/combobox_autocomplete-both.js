@@ -14,7 +14,8 @@ const ex = {
   listboxSelector: '#ex1 [role="listbox"]',
   optionsSelector: '#ex1 [role="option"]',
   numAOptions: 5,
-  numCharFirstAOption: 6
+  numCharFirstAOption: 7,
+  secondAOption: 'Alaska'
 
 };
 
@@ -148,7 +149,6 @@ ariaTest('"aria-selected" attribute on options element', exampleFile, 'option-ar
   await assertAttributeValues(t, ex.optionsSelector + ':nth-of-type(1)', 'aria-selected', 'true');
 });
 
-
 // Keys
 
 ariaTest('Test down key press with focus on textbox',
@@ -174,6 +174,7 @@ ariaTest('Test down key press with focus on textbox',
     await assertAriaSelectedAndActivedescendant(t, ex.textboxSelector, ex.optionsSelector, 0);
 
   });
+
 
 ariaTest('Test down key press with focus on list',
   exampleFile, 'listbox-key-down-arrow', async (t) => {
@@ -310,7 +311,7 @@ ariaTest('Test enter key press with focus on listbox',
       .findElement(By.css(ex.textboxSelector))
       .sendKeys('a', Key.ARROW_DOWN);
 
-    // Get the value of the second option in the listbox
+    // Get the value of the first option in the listbox
 
     const secondOption = await(await t.context.session.findElements(By.css(ex.optionsSelector)))[1]
       .getText();
@@ -336,6 +337,7 @@ ariaTest('Test enter key press with focus on listbox',
     );
 
   });
+
 
 ariaTest('Test single escape key press with focus on textbox',
   exampleFile, 'textbox-key-escape', async (t) => {
@@ -401,8 +403,8 @@ ariaTest('Test escape key press with focus on textbox',
       await t.context.session
         .findElement(By.css(ex.textboxSelector))
         .getAttribute('value'),
-      'Alaska',
-      'In listbox key press "ESCAPE" should result in first option in textbox'
+      ex.secondAOption,
+      'In listbox key press "ESCAPE" should result in second option in textbox'
     );
 
   });
@@ -419,8 +421,8 @@ ariaTest('left arrow from focus on list puts focus on listbox and moves cursor r
     await textbox.sendKeys(Key.ARROW_LEFT);
 
     t.true(
-      await confirmCursorIndex(t, ex.textboxSelector, ex.numCharFirstAOption - 1),
-      'Cursor should be at index ' + (ex.numCharFirstAOption - 1) + ' after one ARROW_LEFT key'
+      await confirmCursorIndex(t, ex.textboxSelector, ex.secondAOption.length - 1),
+      'Cursor should be at index ' + (ex.secondAOption.length - 1) + ' after one ARROW_LEFT key'
     );
 
     t.is(
@@ -443,8 +445,8 @@ ariaTest('Right arrow from focus on list puts focus on listbox',
     await textbox.sendKeys(Key.ARROW_RIGHT);
 
     t.true(
-      await confirmCursorIndex(t, ex.textboxSelector, ex.numCharFirstAOption),
-      'Cursor should be at index ' + ex.numCharFirstAOption + ' after one ARROW_RIGHT key'
+      await confirmCursorIndex(t, ex.textboxSelector, ex.secondAOption.length),
+      'Cursor should be at index ' + ex.secondAOption.length + ' after one ARROW_RIGHT key'
     );
 
     t.is(
@@ -489,8 +491,8 @@ ariaTest('End from focus on list puts focus on listbox',
     await textbox.sendKeys(Key.END);
 
     t.true(
-      await confirmCursorIndex(t, ex.textboxSelector, ex.numCharFirstAOption),
-      'Cursor should be at index ' + ex.numCharFirstAOption + ' after one ARROW_END key'
+      await confirmCursorIndex(t, ex.textboxSelector, ex.secondAOption.length),
+      'Cursor should be at index ' + ex.secondAOption.length + ' after one ARROW_END key'
     );
 
     t.is(
@@ -534,4 +536,3 @@ ariaTest.failing('Expected behavior for all other standard single line editing k
     t.plan(1);
     t.fail();
   });
-
