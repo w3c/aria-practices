@@ -6490,8 +6490,9 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
 
     <section id="range_related_properties_using_aria-valuenow">
       <h2>Using <code>aria-valuenow</code></h2>
-      <p>The <code>aria-valuenow</code> property is used to inform assistive technologies of the current value of an element. When <code>aria-valuemin</code> and <code>aria-valuemax</code> are specified, set <code>aria-valuenow</code> to a numeric value that is within the range define by <code>aria-valuemin</code> and <code>aria-valuemax</code>.</p>
-      <p>For indeterminate ranges, such as indeterminate process bars, omit the <code>aria-valuenow</code> property.</p>
+      <p>The <code>aria-valuenow</code> property is used to inform assistive technologies of the current value of an element. When <code>aria-valuemin</code> and <code>aria-valuemax</code> are specified, and the value is known, set <code>aria-valuenow</code> to a numeric value that is within the range define by <code>aria-valuemin</code> and <code>aria-valuemax</code>.</p>
+      <p>When the value is unknown, omit the <code>aria-valuenow</code> property.</p>
+      <p>The <code>aria-valuenow</code> property is required for the <code>scrollbar</code>, <code>separator</code> (if the element is focusable), and <code>slider</code> roles.</p>
     </section>
 
     <section id="range_related_properties_using_aria-valuetext">
