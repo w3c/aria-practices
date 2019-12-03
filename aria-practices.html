@@ -6470,9 +6470,15 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
       <h3>Using <code>aria-valuemin</code> and <code>aria-valuemax</code></h3>
       <p>When an element's possible values are contained within a known range, the attributes <code>aria-valuemin</code> and <code>aria-valuemax</code> are used to inform assistive technologies of the minimum and maximum values of the range. When using these properties, set <code>aria-valuemin</code> to the lowest value of the range and <code>aria-valuemax</code> to the greatest value.</p>
       <p>When the range is unknown, omit both <code>aria-valuemin</code> and <code>aria-valuemax</code>. An example of an indeterminate range element is an indeterminate progress bar, covered in the <a href="#range_related_properties_progressbar_role"><code>progressbar</code> Role</a> section below.</p>
-      <h2 id="using-aria-valuenow">Using <code>aria-valuenow</code></h2>
+    </section>
+
+    <section id="range_related_properties_using_aria-valuenow">
+      <h2>Using <code>aria-valuenow</code></h2>
       <p>The attribute <code>aria-valuenow</code> is used to inform assistive technologies of the current value of an element. When <code>aria-valuemin</code> and <code>aria-valuemax</code> are specified, set <code>aria-valuenow</code> to a numeric value that is within the range define by <code>aria-valuemin</code> and <code>aria-valuemax</code>.</p>
-      <h2 id="using-aria-valuetext">Using <code>aria-valuetext</code></h2>
+    </section>
+
+    <section id="range_related_properties_using_aria-valuetext">
+      <h2>Using <code>aria-valuetext</code></h2>
       <p>When the element&#39;s values are contained within a range but those values are not numeric (such as "small", "medium" and "large"), <code>aria-valuetext</code> is used to surface the text value to assistive technologies. Only use <code>aria-valuetext</code> when <code>aria-valuenow</code> does not have meaning for the user because using <code>aria-valuetext</code> will prevent assistive technologies from communicating <code>aria-valuenow</code>.</p>
     </section>
 
@@ -6485,7 +6491,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
        aria-label="Temperature (F)" tabindex="0"&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
-      <p>The slider example above can be made using the HTML input type=range element.</p>
+      <p>The slider example above can be made using the HTML <code>&lt;input type="range"></code> element.</p>
       <pre><code>&lt;input type="range" min="50" value="68" max="100" aria-label="Temperature (F)"&gt;
       </code></pre><p>The following example is a fan control. The <code>aria-valuenow</code> value is "1", which is not meaningful to the user. The assistive technology will surface the value of <code>aria-valuetext</code> ("low") instead.</p>
       <pre><code>&lt;div class="rail"&gt;
@@ -6508,7 +6514,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
   &lt;button id="raise-price"&gt;Raise&lt;/button&gt;
   Price per paperclip: $&lt;span id="price"&gt;0.50&lt;/span&gt;
 &lt;/div&gt;</code></pre>
-      <p>The slider example above can be made using the native HTML input type="number" element.</p>
+      <p>The slider example above can be made using the native HTML <code>&lt;input type="number"></code> element.</p>
       <pre><code>&lt;input type="number" min="0.01" value="0.5" max="2" aria-labelledby="paperclip-label"&gt;
 &lt;span id="paperclip-label"&gt;Price per paperclip&lt;/span&gt;:
 $&lt;output id="price" aria-labelledby="paperclip-label"&gt;0.50&lt;/output&gt;</code></pre>
@@ -6529,7 +6535,7 @@ $&lt;output id="price" aria-labelledby="paperclip-label"&gt;0.50&lt;/output&gt;<
 &lt;/div&gt;</code></pre>
       <p>To represent an indeterminate progress bar where the value range is unknown, omit the <code>aria-valuemin</code>, <code>aria-valuemax</code>, and <code>aria-valuenow</code> attributes.</p>
       <pre><code>&lt;img role="progressbar" src="spinner.gif" alt="Loading..."&gt;</code></pre>
-      <p>The progress bar example can be made using the native HTML progress element.</p>
+      <p>The progress bar example can be made using the native HTML <code>progress</code> element.</p>
       <pre><code>&lt;label for="loadstatus"&gt;Loading:&lt;/label&gt;
 &lt;progress id="loadstatus" max="100" value="33"&gt;&lt;/progress&gt;
       </code></pre>
