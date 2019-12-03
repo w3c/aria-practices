@@ -157,6 +157,24 @@ ariaTest('"aria-selected" attribute on options element', exampleFile, 'option-ar
 
 // Keys
 
+ariaTest('Test alt + down key press with focus on textbox',
+  exampleFile, 'textbox-key-alt-down-arrow', async (t) => {
+
+    t.plan(1);
+
+    // Send ARROW_DOWN to the textbox
+    await t.context.session
+      .findElement(By.css(ex.textboxSelector))
+      .sendKeys(Key.ALT, Key.ARROW_DOWN);
+
+    // Check that the listbox is displayed
+    t.true(
+      await t.context.session.findElement(By.css(ex.listboxSelector)).isDisplayed(),
+      'In example the list box should display after ALT + ARROW_DOWN keypress'
+    );
+
+  });
+
 ariaTest('Test down key press with focus on textbox',
   exampleFile, 'textbox-key-down-arrow', async (t) => {
 
