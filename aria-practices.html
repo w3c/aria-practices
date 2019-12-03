@@ -6427,8 +6427,15 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
 
   <section id="range_related_properties">
     <h2>Communicating Value for Range Widgets</h2>
-    <p>A range widget is a widget that can have a value within a range of possible values.</p>
-    <p>ARIA provides the following four properties for communicating on the attributes of a range widget:</p>
+
+    <p>
+      A range widget is a widget that can have a value within a range of possible values.
+    </p>
+
+    <p>
+      ARIA provides the following four properties for communicating on the attributes of a range widget:
+    </p>
+
     <table>
       <thead>
         <tr>
@@ -6455,10 +6462,21 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
         </tr>
       </tbody>
     </table>
-    <p>The range related properties are used to describe an element whose value can be one of a range of values to assistive technologies. These properties communicate the maximum and minimum values for the element and the element's current value.</p>
-    <p>The range properties can also be used to describe an element whose value can be one of a list of non-numeric values. In this scenario, all possible text values of the element will be programmatically mapped to numbers within the numeric range by the author.</p>
 
-    <p>These attributes are used with the following roles:</p>
+    <p>
+      The range related properties are used to describe an element whose value can be one of a range of values to assistive technologies.
+      These properties communicate the maximum and minimum values for the element and the element's current value.
+    </p>
+
+    <p>
+      The range properties can also be used to describe an element whose value can be one of a list of non-numeric values.
+      In this scenario, all possible text values of the element will be programmatically mapped to numbers within the numeric range by the author.
+    </p>
+
+    <p>
+      These attributes are used with the following roles:
+    </p>
+
     <ul>
       <li><code>slider</code></li>
       <li><code>spinbutton</code></li>
@@ -6470,40 +6488,110 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
 
     <section id="range_related_properties_using_aria-valuemin_and_aria-valuemax">
       <h3>Using <code>aria-valuemin</code> and <code>aria-valuemax</code></h3>
-      <p>When an element's possible values are contained within a known range, the attributes <code>aria-valuemin</code> and <code>aria-valuemax</code> are used to inform assistive technologies of the minimum and maximum values of the range. When using these properties, set <code>aria-valuemin</code> to the lowest value of the range and <code>aria-valuemax</code> to the greatest value.</p>
-      <p>When the range is unknown, omit both <code>aria-valuemin</code> and <code>aria-valuemax</code>. An example of an indeterminate range element is an indeterminate progress bar, covered in the <a href="#range_related_properties_progressbar_role"><code>progressbar</code> Role</a> section below.</p>
-      <p>For the different roles where these properties are allowed, some properties are required, and some have default values, as shown in the following table:</p>
+
+      <p>
+        When an element's possible values are contained within a known range, the attributes <code>aria-valuemin</code> and <code>aria-valuemax</code> are used to inform assistive technologies of the minimum and maximum values of the range.
+        When using these properties, set <code>aria-valuemin</code> to the lowest value of the range and <code>aria-valuemax</code> to the greatest value.
+      </p>
+
+      <p>
+        When the range is unknown, omit both <code>aria-valuemin</code> and <code>aria-valuemax</code>.
+        An example of an indeterminate range element is an indeterminate progress bar, covered in the <a href="#range_related_properties_progressbar_role"><code>progressbar</code> Role</a> section below.
+      </p>
+
+      <p>
+        For the different roles where these properties are allowed, some properties are required, and some have default values, as shown in the following table:
+      </p>
+
       <table>
         <thead>
-          <tr><th>Role</th><th>Default <code>aria-valuemin</code></th><th>Default <code>aria-valuemax</code></th><th>Required?</th></tr>
+          <tr>
+            <th>Role</th>
+            <th>Default <code>aria-valuemin</code></th>
+            <th>Default <code>aria-valuemax</code></th>
+            <th>Required?</th>
+          </tr>
         </thead>
         <tbody>
-          <tr><td><code>slider</code></td><td>0</td><td>100</td><td>No</td></tr>
-          <tr><td><code>spinbutton</code></td><td>none</td><td>none</td><td>No</td></tr>
-          <tr><td><code>progressbar</code></td><td>0</td><td>100</td><td>No</td></tr>
-          <tr><td><code>meter</code></td><td>none</td><td>none</td><td>Yes</td></tr>
-          <tr><td><code>scrollbar</code></td><td>0</td><td>100</td><td>No</td></tr>
-          <tr><td><code>separator</code></td><td>0</td><td>100</td><td>No</td></tr>
+          <tr>
+            <td><code>slider</code></td>
+            <td>0</td>
+            <td>100</td>
+            <td>No</td>
+          </tr>
+          <tr>
+            <td><code>spinbutton</code></td>
+            <td>none</td>
+            <td>none</td>
+            <td>No</td>
+          </tr>
+          <tr>
+            <td><code>progressbar</code></td>
+            <td>0</td>
+            <td>100</td>
+            <td>No</td>
+          </tr>
+          <tr>
+            <td><code>meter</code></td>
+            <td>none</td>
+            <td>none</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <td><code>scrollbar</code></td>
+            <td>0</td>
+            <td>100</td>
+            <td>No</td>
+          </tr>
+          <tr>
+            <td><code>separator</code></td>
+            <td>0</td>
+            <td>100</td>
+            <td>No</td>
+          </tr>
         </tbody>
       </table>
     </section>
 
     <section id="range_related_properties_using_aria-valuenow">
       <h2>Using <code>aria-valuenow</code></h2>
-      <p>The <code>aria-valuenow</code> property is used to inform assistive technologies of the current value of an element. When <code>aria-valuemin</code> and <code>aria-valuemax</code> are specified, and the value is known, set <code>aria-valuenow</code> to a numeric value that is within the range define by <code>aria-valuemin</code> and <code>aria-valuemax</code>.</p>
-      <p>When the value is unknown, omit the <code>aria-valuenow</code> property.</p>
-      <p>The <code>aria-valuenow</code> property is required for the <code>scrollbar</code>, <code>separator</code> (if the element is focusable), and <code>slider</code> roles.</p>
+
+      <p>
+        The <code>aria-valuenow</code> property is used to inform assistive technologies of the current value of an element.
+        When <code>aria-valuemin</code> and <code>aria-valuemax</code> are specified, and the value is known,
+        set <code>aria-valuenow</code> to a numeric value that is within the range define by <code>aria-valuemin</code> and <code>aria-valuemax</code>.
+      </p>
+
+      <p>
+        When the value is unknown, omit the <code>aria-valuenow</code> property.
+      </p>
+
+      <p>
+        The <code>aria-valuenow</code> property is required for the <code>scrollbar</code>, <code>separator</code> (if the element is focusable), and <code>slider</code> roles.
+      </p>
     </section>
 
     <section id="range_related_properties_using_aria-valuetext">
       <h2>Using <code>aria-valuetext</code></h2>
-      <p>When the element&#39;s values are contained within a range but those values are not numeric (such as "small", "medium" and "large"), <code>aria-valuetext</code> is used to surface the text value to assistive technologies. Only use <code>aria-valuetext</code> when <code>aria-valuenow</code> does not have meaning for the user because using <code>aria-valuetext</code> will prevent assistive technologies from communicating <code>aria-valuenow</code>.</p>
+
+      <p>
+        When the element's values are contained within a range but those values are not numeric (such as "small", "medium" and "large"),
+        <code>aria-valuetext</code> is used to surface the text value to assistive technologies.
+        Only use <code>aria-valuetext</code> when <code>aria-valuenow</code> does not have meaning for the user because using <code>aria-valuetext</code> will prevent assistive technologies from communicating <code>aria-valuenow</code>.
+      </p>
     </section>
 
     <section id="range_related_properties_slider_role">
       <h3>Range properties with sliders</h3>
-      <p><code>aria-valuenow</code>, <code>aria-valuemin</code> and <code>aria-valuemax</code> are all required attributes for the <code>slider</code> role. <code>aria-valuetext</code> can be used when appropriate. Detailed description of the <code>slider</code> role can be found in the <a href="#slider">slider design pattern</a> and <a href="#slidertwothumb">slider (multi-thumb) design pattern</a>.</p>
-      <p>The following example is a temperature controller. <code>aria-valuetext</code> is not be used as the number value in <code>aria-valuenow</code> is meaningful to the user.</p>
+      <p>
+        The <code>aria-valuenow</code>, <code>aria-valuemin</code> and <code>aria-valuemax</code> properties are all required for the <code>slider</code> role.
+        The <code>aria-valuetext</code> property can be used when appropriate.
+        Detailed description of the <code>slider</code> role can be found in the <a href="#slider">slider design pattern</a> and <a href="#slidertwothumb">slider (multi-thumb) design pattern</a>.
+      </p>
+      <p>
+        The following example is a temperature controller.
+        <code>aria-valuetext</code> is not be used as the number value in <code>aria-valuenow</code> is meaningful to the user.
+      </p>
       <pre><code>&lt;div class="rail"&gt;
   &lt;div id="thumb" role="slider" aria-valuemin="50" aria-valuenow="68" aria-valuemax="100"
        aria-label="Temperature (F)" tabindex="0"&gt;
@@ -6525,14 +6613,26 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
 
     <section id="range_related_properties_spinbutton_role">
       <h3>Range properties with spin buttons</h3>
-      <p><code>aria-valuenow</code>, <code>aria-valuemin</code> and <code>aria-valuemax</code> are all required attributes for the <code>spinbutton</code> role. <code>aria-valuetext</code> can be used when appropriate.</p>
-      <p>This example sets the price of paperclips in cents.</p>
+
+      <p>
+        The <code>aria-valuenow</code>, <code>aria-valuemin</code> and <code>aria-valuemax</code> properties are all required for the <code>spinbutton</code> role.
+        <code>aria-valuetext</code> can be used when appropriate.
+      </p>
+
+      <p>
+        This example sets the price of paperclips in cents.
+      </p>
+
       <pre><code>&lt;div role="spinbutton" aria-valuemin="1" aria-valuenow="50" aria-valuemax="200" tabindex="0"&gt;
   &lt;button id="lower-price"&gt;Lower&lt;/button&gt;
   &lt;button id="raise-price"&gt;Raise&lt;/button&gt;
   Price per paperclip: $&lt;span id="price"&gt;0.50&lt;/span&gt;
 &lt;/div&gt;</code></pre>
-      <p>The slider example above can be made using the native HTML <code>&lt;input type="number"></code> element.</p>
+
+      <p>
+        The slider example above can be made using the native HTML <code>&lt;input type="number"></code> element.
+      </p>
+
       <pre><code>&lt;input type="number" min="0.01" value="0.5" max="2" aria-labelledby="paperclip-label"&gt;
 &lt;span id="paperclip-label"&gt;Price per paperclip&lt;/span&gt;:
 $&lt;output id="price" aria-labelledby="paperclip-label"&gt;0.50&lt;/output&gt;</code></pre>
@@ -6541,8 +6641,16 @@ $&lt;output id="price" aria-labelledby="paperclip-label"&gt;0.50&lt;/output&gt;<
 
     <section id="range_related_properties_progressbar_role">
       <h3>Range properties with progress bars</h3>
-      <p><code>aria-valuenow</code>, <code>aria-valuemin</code> and <code>aria-valuemax</code> are not required attributes for the <code>progressbar</code> role, however, but the attributes might be necessary for communicating the state of a progress bar to assistive technologies.</p>
-      <p>This is an example of a progress bar represent by an SVG. The range properties are necessary to full explain the widget to assistive technologies.</p>
+
+      <p>
+        The <code>aria-valuenow</code>, <code>aria-valuemin</code> and <code>aria-valuemax</code> properties are not required for the <code>progressbar</code> role, but the properties might be necessary for communicating the state of a progress bar to assistive technologies.
+      </p>
+
+      <p>
+        This is an example of a progress bar represent by an SVG.
+        The range properties are necessary to full explain the widget to assistive technologies.
+      </p>
+
       <pre><code>&lt;div&gt;Loading:
   &lt;span role="progressbar" aria-valuemin="0" aria-valuenow="33" aria-valuemax="100" &gt;
     &lt;svg width="100" height="10"&gt;
@@ -6551,9 +6659,18 @@ $&lt;output id="price" aria-labelledby="paperclip-label"&gt;0.50&lt;/output&gt;<
     &lt;/svg&gt;
   &lt;/span&gt;
 &lt;/div&gt;</code></pre>
-      <p>To represent an indeterminate progress bar where the value range is unknown, omit the <code>aria-valuemin</code>, <code>aria-valuemax</code>, and <code>aria-valuenow</code> attributes.</p>
+
+      <p>
+        To represent an indeterminate progress bar where the value range is unknown,
+        omit the <code>aria-valuemin</code>, <code>aria-valuemax</code>, and <code>aria-valuenow</code> attributes.
+      </p>
+
       <pre><code>&lt;img role="progressbar" src="spinner.gif" alt="Loading..."&gt;</code></pre>
-      <p>The progress bar example can be made using the native HTML <code>progress</code> element.</p>
+
+      <p>
+        The progress bar example can also be made using the native HTML <code>progress</code> element.
+      </p>
+
       <pre><code>&lt;label for="loadstatus"&gt;Loading:&lt;/label&gt;
 &lt;progress id="loadstatus" max="100" value="33"&gt;&lt;/progress&gt;
       </code></pre>
@@ -6561,7 +6678,12 @@ $&lt;output id="price" aria-labelledby="paperclip-label"&gt;0.50&lt;/output&gt;<
 
     <section id="range_related_properties_scrollbar_role">
       <h3>Range properties with scrollbars</h3>
-      <p><code>aria-valuenow</code>, <code>aria-valuemin</code> and <code>aria-valuemax</code> are all required attributes for the <code>scrollbar</code> role. The value of <code>aria-valuenow</code> will generally be exposed as a percentage between <code>aria-valuemin</code> and <code>aria-valuemax</code> calculated by assistive technologies.</p>
+
+      <p>
+        The <code>aria-valuenow</code>, <code>aria-valuemin</code> and <code>aria-valuemax</code> properties are all required for the <code>scrollbar</code> role.
+        The value of <code>aria-valuenow</code> will generally be exposed as a percentage between <code>aria-valuemin</code> and <code>aria-valuemax</code> calculated by assistive technologies.
+      </p>
+
       <pre><code>&lt;div id="pi"&gt;
 3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679
 &lt;/div&gt;
@@ -6576,7 +6698,10 @@ $&lt;output id="price" aria-labelledby="paperclip-label"&gt;0.50&lt;/output&gt;<
     aria-valuenow="25"&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
-      <p>If <code>aria-valuemin</code> and <code>aria-valuemax</code> are omitted, then the browser will use the default values of 0 and 100, respectively.</p>
+
+      <p>
+        If <code>aria-valuemin</code> and <code>aria-valuemax</code> are omitted, then the browser will use the default values of 0 and 100, respectively.
+      </p>
     </section>
   </section>
 
