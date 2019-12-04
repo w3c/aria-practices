@@ -6926,6 +6926,24 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
 </code></pre>
 
       <p class="note">The implied (or default) role of an HTML <code>li</code> element is <code>listitem</code>.</p>
+
+      <p>
+        The <code>aria-level</code> property can also be used in conjuction with the <code>aria-posinset</code> and <code>aria-setsize</code> properties.
+        For example, when showing a subset of a long list, but it is still useful to communicate the original position and number of items in the list.
+      </p>
+
+      <div class="example">
+        <p>This is an example is a list of potential search categories:</p>
+
+        <pre><code>&lt;h1>Subject Search Terms&lt;/h1>
+&lt;ul>
+  &lt;li aria-level="1" aria-posinset="5" aria-setsize="21">Life Sciences&lt;/li>
+  &lt;li aria-level="2" aria-posinset="1" aria-setsize="10">Andrology&lt;/li>
+  &lt;li aria-level="2" aria-posinset="2" aria-setsize="10">Animal Physiology&lt;/li>
+  &lt;li aria-level="2" aria-posinset="3" aria-setsize="10">Biochemistry&lt;/li>
+  &lt;li aria-level="2" aria-posinset="4" aria-setsize="10">Bioinformatices&lt;/li>
+&lt;/ul></code></pre>
+      </div>
     </section>
 
     <section id="aria-level_treeitem_role">
