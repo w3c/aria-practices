@@ -6496,7 +6496,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
 
       <p>
         When the range is unknown, omit both <code>aria-valuemin</code> and <code>aria-valuemax</code>.
-        An example of an indeterminate range element is a spin button that doesn't have any minimum or maximum value.
+        An example of a range element with undefined range is a spin button that doesn't have any minimum or maximum value.
         See the the <a href="#range_related_properties_spinbutton_role">Range properties with spin buttons</a> section below.
       </p>
 
@@ -6620,7 +6620,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
 
       <p>
         To represent an indeterminate progress bar where the value range is unknown,
-        omit the <code>aria-valuemin</code>, <code>aria-valuemax</code>, and <code>aria-valuenow</code> attributes.
+        omit the <code>aria-valuenow</code> attribute.
       </p>
 
       <pre><code>&lt;img role="progressbar" src="spinner.gif" alt="Loading..."&gt;</code></pre>
