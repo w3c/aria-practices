@@ -60,7 +60,8 @@ The `aria-selected` attribute is supported in these widgets:
 Widget             | Roles in the widget where `aria-selected` applies
 -------------------|-------------------
 `grid`, `treegrid` | `row`, `gridcell`, `columnheader`, `rowheader`
-`listbox`, `tree`  | `option`, `treeitem`
+`listbox`          | `option`
+`tree`             | `treeitem`
 `tablist`          | `tab`
 
 #### Selecting rows and cells in `grid` and `treegrid`
