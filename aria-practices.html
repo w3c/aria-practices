@@ -6577,9 +6577,23 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
 
       <p>
         When the element's values are contained within a range but those values are not numeric (such as "small", "medium" and "large"),
+        or they are numeric but there is more information than just the number,
         <code>aria-valuetext</code> is used to surface the text value to assistive technologies.
         Only use <code>aria-valuetext</code> when <code>aria-valuenow</code> does not have meaning for the user because using <code>aria-valuetext</code> will prevent assistive technologies from communicating <code>aria-valuenow</code>.
       </p>
+
+      <div class="example">
+        <p>
+          For example, for a battery indicator, it would be useful to know how many minutes are remaining, in addition to how many percent charge is remaining.
+        </p>
+
+        <pre><code>&lt;p>
+  &lt;span id="battery-label">Battery&lt;/span>
+  &lt;span role="meter" aria-labelledby="battery-label"
+        aria-valuemin="0" aria-valuenow="5" aria-valuemax="100"
+        aria-valuetext="5%, 18 minutes remaining.">&lt;/span>
+&lt;/p></code></pre>
+      </div>
     </section>
 
 
