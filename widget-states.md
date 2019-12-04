@@ -96,6 +96,9 @@ For example, a `tree` widget to represent a changeable sequence of steps,
 could allow selection in order to rearrange a set of steps,
 and also allow checking and unchecking them to indicate which steps are active.
 
+A further difference between selected and checked is that `aria-selected` is either selected or not selected,
+whereas `aria-checked` supports a three states (`true`, `false`, and `mixed`).
+
 #### Selecting tabs in a tablist
 
 The `tab` role in a `tablist` element supports the `aria-selected` state,
