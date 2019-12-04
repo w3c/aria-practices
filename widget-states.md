@@ -225,15 +225,17 @@ Users of assistive technology would know from focusing the button whether it is 
 
 The `aria-expanded` state is used in these design patterns:
 
-* [Accordion](#accordion)
-* [Combobox](#combobox)
-* [Disclosure](#disclosure)
-* [Listbox](#listbox)
-* [Menubar](#menu)
-* [Menu Button](#menubutton)
-* [Toolbar](#toolbar)
-* [Treegrid](#treegrid)
-* [Tree View](#TreeView)
+Design pattern             | Description
+---------------------------|-------------
+[Accordion](#accordion)    | A section With show/hide functionality
+[Combobox](#combobox)      | An input widget with an associated popup
+[Disclosure](#disclosure)  | A button that controls visibility of a section of content
+[Listbox](#listbox)        | A list of options
+[Menubar](#menu)           | A list of choices or actions
+[Menu Button](#menubutton) | A button that opens a menu
+[Toolbar](#toolbar)        | A set of controls
+[Treegrid](#treegrid)      | A hierarchical data grid consisting of tabular information that is editable or interactive
+[Tree View](#TreeView)     | A hierarchical list, possibly where items can be collapsed
 
 ### `aria-disabled`
 
