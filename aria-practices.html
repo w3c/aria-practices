@@ -6496,7 +6496,8 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
 
       <p>
         When the range is unknown, omit both <code>aria-valuemin</code> and <code>aria-valuemax</code>.
-        An example of an indeterminate range element is an indeterminate progress bar, covered in the <a href="#range_related_properties_progressbar_role"><code>progressbar</code> Role</a> section below.
+        An example of an indeterminate range element is a spin button that doesn't have any minimum or maximum value.
+        See the the <a href="#range_related_properties_spinbutton_role">Range properties with spin buttons</a> section below.
       </p>
 
       <p>
@@ -6689,6 +6690,14 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
         This example sets the price of paperclips in cents.
       </p>
 
+      <pre><code>&lt;div role="spinbutton" aria-valuenow="50" tabindex="0"&gt;
+  &lt;button id="lower-price"&gt;Lower&lt;/button&gt;
+  &lt;button id="raise-price"&gt;Raise&lt;/button&gt;
+  Price per paperclip: $&lt;span id="price"&gt;0.50&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+
+      <p>If there is a minimum and maximum value, set the <code>aria-valuemin</code> and <code>aria-valuemax</code> properties.</p>
+
       <pre><code>&lt;div role="spinbutton" aria-valuemin="1" aria-valuenow="50" aria-valuemax="200" tabindex="0"&gt;
   &lt;button id="lower-price"&gt;Lower&lt;/button&gt;
   &lt;button id="raise-price"&gt;Raise&lt;/button&gt;
@@ -6696,7 +6705,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
 &lt;/div&gt;</code></pre>
 
       <p>
-        The slider example above can be made using the native HTML <code>&lt;input type="number"></code> element.
+        The spin button example above can be made using the native HTML <code>&lt;input type="number"></code> element.
       </p>
 
       <pre><code>&lt;input type="number" min="0.01" value="0.5" max="2" aria-labelledby="paperclip-label"&gt;
