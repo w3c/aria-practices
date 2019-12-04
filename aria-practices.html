@@ -6478,12 +6478,12 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
     </p>
 
     <ul>
-      <li><code>slider</code></li>
-      <li><code>spinbutton</code></li>
-      <li><code>progressbar</code></li>
       <li><code>meter</code></li>
+      <li><code>progressbar</code></li>
       <li><code>scrollbar</code></li>
       <li><code>separator</code> (if the element is focusable)</li>
+      <li><code>slider</code></li>
+      <li><code>spinbutton</code></li>
     </ul>
 
     <section id="range_related_properties_using_aria-valuemin_and_aria-valuemax">
@@ -6514,28 +6514,16 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
         </thead>
         <tbody>
           <tr>
-            <td><code>slider</code></td>
-            <td>0</td>
-            <td>100</td>
-            <td>No</td>
-          </tr>
-          <tr>
-            <td><code>spinbutton</code></td>
+            <td><code>meter</code></td>
             <td>no default</td>
             <td>no default</td>
-            <td>No</td>
+            <td>Yes</td>
           </tr>
           <tr>
             <td><code>progressbar</code></td>
             <td>0</td>
             <td>100</td>
             <td>No</td>
-          </tr>
-          <tr>
-            <td><code>meter</code></td>
-            <td>no default</td>
-            <td>no default</td>
-            <td>Yes</td>
           </tr>
           <tr>
             <td><code>scrollbar</code></td>
@@ -6547,6 +6535,18 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
             <td><code>separator</code></td>
             <td>0</td>
             <td>100</td>
+            <td>No</td>
+          </tr>
+          <tr>
+            <td><code>slider</code></td>
+            <td>0</td>
+            <td>100</td>
+            <td>No</td>
+          </tr>
+          <tr>
+            <td><code>spinbutton</code></td>
+            <td>no default</td>
+            <td>no default</td>
             <td>No</td>
           </tr>
         </tbody>
@@ -6581,63 +6581,6 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
       </p>
     </section>
 
-    <section id="range_related_properties_slider_role">
-      <h3>Range properties with sliders</h3>
-      <p>
-        The <code>aria-valuenow</code>, <code>aria-valuemin</code> and <code>aria-valuemax</code> properties are all required for the <code>slider</code> role.
-        The <code>aria-valuetext</code> property can be used when appropriate.
-        Detailed description of the <code>slider</code> role can be found in the <a href="#slider">slider design pattern</a> and <a href="#slidertwothumb">slider (multi-thumb) design pattern</a>.
-      </p>
-      <p>
-        The following example is a temperature controller.
-        <code>aria-valuetext</code> is not be used as the number value in <code>aria-valuenow</code> is meaningful to the user.
-      </p>
-      <pre><code>&lt;div class="rail"&gt;
-  &lt;div id="thumb" role="slider" aria-valuemin="50" aria-valuenow="68" aria-valuemax="100"
-       aria-label="Temperature (F)" tabindex="0"&gt;
-  &lt;/div&gt;
-&lt;/div&gt;</code></pre>
-      <p>The slider example above can be made using the HTML <code>&lt;input type="range"></code> element.</p>
-      <pre><code>&lt;input type="range" min="50" value="68" max="100" aria-label="Temperature (F)"&gt;
-      </code></pre><p>The following example is a fan control. The <code>aria-valuenow</code> value is "1", which is not meaningful to the user. The assistive technology will surface the value of <code>aria-valuetext</code> ("low") instead.</p>
-      <pre><code>&lt;div class="rail"&gt;
-  &lt;div id="thumb" role="slider" aria-valuemin="0" aria-valuenow="1" aria-valuemax="3"
-       aria-valuetext="low" aria-label="Fan speed" tabindex="0" &gt;
-  &lt;/div&gt;
-  &lt;div class="value"&gt; Off &lt;/div&gt;
-  &lt;div class="value"&gt; Low &lt;/div&gt;
-  &lt;div class="value"&gt; Medium &lt;/div&gt;
-  &lt;div class="value"&gt; High &lt;/div&gt;
-&lt;/div&gt;</code></pre>
-    </section>
-
-    <section id="range_related_properties_spinbutton_role">
-      <h3>Range properties with spin buttons</h3>
-
-      <p>
-        The <code>aria-valuenow</code>, <code>aria-valuemin</code> and <code>aria-valuemax</code> properties are not required for the <code>spinbutton</code> role.
-        <code>aria-valuetext</code> can be used when appropriate.
-      </p>
-
-      <p>
-        This example sets the price of paperclips in cents.
-      </p>
-
-      <pre><code>&lt;div role="spinbutton" aria-valuemin="1" aria-valuenow="50" aria-valuemax="200" tabindex="0"&gt;
-  &lt;button id="lower-price"&gt;Lower&lt;/button&gt;
-  &lt;button id="raise-price"&gt;Raise&lt;/button&gt;
-  Price per paperclip: $&lt;span id="price"&gt;0.50&lt;/span&gt;
-&lt;/div&gt;</code></pre>
-
-      <p>
-        The slider example above can be made using the native HTML <code>&lt;input type="number"></code> element.
-      </p>
-
-      <pre><code>&lt;input type="number" min="0.01" value="0.5" max="2" aria-labelledby="paperclip-label"&gt;
-&lt;span id="paperclip-label"&gt;Price per paperclip&lt;/span&gt;:
-$&lt;output id="price" aria-labelledby="paperclip-label"&gt;0.50&lt;/output&gt;</code></pre>
-      <pre><code>&lt;label&gt;Price per paperclip: $&lt;input type="number" min="0.01" value="0.5" max="2" step="0.01"&gt;&lt;/label&gt;</code></pre>
-    </section>
 
     <section id="range_related_properties_progressbar_role">
       <h3>Range properties with progress bars</h3>
@@ -6702,6 +6645,64 @@ $&lt;output id="price" aria-labelledby="paperclip-label"&gt;0.50&lt;/output&gt;<
       <p>
         If <code>aria-valuemin</code> and <code>aria-valuemax</code> are omitted, then the browser will use the default values of 0 and 100, respectively.
       </p>
+    </section>
+
+    <section id="range_related_properties_slider_role">
+      <h3>Range properties with sliders</h3>
+      <p>
+        The <code>aria-valuenow</code>, <code>aria-valuemin</code> and <code>aria-valuemax</code> properties are all required for the <code>slider</code> role.
+        The <code>aria-valuetext</code> property can be used when appropriate.
+        Detailed description of the <code>slider</code> role can be found in the <a href="#slider">slider design pattern</a> and <a href="#slidertwothumb">slider (multi-thumb) design pattern</a>.
+      </p>
+      <p>
+        The following example is a temperature controller.
+        <code>aria-valuetext</code> is not be used as the number value in <code>aria-valuenow</code> is meaningful to the user.
+      </p>
+      <pre><code>&lt;div class="rail"&gt;
+  &lt;div id="thumb" role="slider" aria-valuemin="50" aria-valuenow="68" aria-valuemax="100"
+       aria-label="Temperature (F)" tabindex="0"&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      <p>The slider example above can be made using the HTML <code>&lt;input type="range"></code> element.</p>
+      <pre><code>&lt;input type="range" min="50" value="68" max="100" aria-label="Temperature (F)"&gt;
+      </code></pre><p>The following example is a fan control. The <code>aria-valuenow</code> value is "1", which is not meaningful to the user. The assistive technology will surface the value of <code>aria-valuetext</code> ("low") instead.</p>
+      <pre><code>&lt;div class="rail"&gt;
+  &lt;div id="thumb" role="slider" aria-valuemin="0" aria-valuenow="1" aria-valuemax="3"
+       aria-valuetext="low" aria-label="Fan speed" tabindex="0" &gt;
+  &lt;/div&gt;
+  &lt;div class="value"&gt; Off &lt;/div&gt;
+  &lt;div class="value"&gt; Low &lt;/div&gt;
+  &lt;div class="value"&gt; Medium &lt;/div&gt;
+  &lt;div class="value"&gt; High &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+    </section>
+
+    <section id="range_related_properties_spinbutton_role">
+      <h3>Range properties with spin buttons</h3>
+
+      <p>
+        The <code>aria-valuenow</code>, <code>aria-valuemin</code> and <code>aria-valuemax</code> properties are not required for the <code>spinbutton</code> role.
+        <code>aria-valuetext</code> can be used when appropriate.
+      </p>
+
+      <p>
+        This example sets the price of paperclips in cents.
+      </p>
+
+      <pre><code>&lt;div role="spinbutton" aria-valuemin="1" aria-valuenow="50" aria-valuemax="200" tabindex="0"&gt;
+  &lt;button id="lower-price"&gt;Lower&lt;/button&gt;
+  &lt;button id="raise-price"&gt;Raise&lt;/button&gt;
+  Price per paperclip: $&lt;span id="price"&gt;0.50&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+
+      <p>
+        The slider example above can be made using the native HTML <code>&lt;input type="number"></code> element.
+      </p>
+
+      <pre><code>&lt;input type="number" min="0.01" value="0.5" max="2" aria-labelledby="paperclip-label"&gt;
+&lt;span id="paperclip-label"&gt;Price per paperclip&lt;/span&gt;:
+$&lt;output id="price" aria-labelledby="paperclip-label"&gt;0.50&lt;/output&gt;</code></pre>
+      <pre><code>&lt;label&gt;Price per paperclip: $&lt;input type="number" min="0.01" value="0.5" max="2" step="0.01"&gt;&lt;/label&gt;</code></pre>
     </section>
   </section>
 
