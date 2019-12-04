@@ -6862,22 +6862,45 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
 &lt;/svg&gt;
 </code></pre>
 
+      <p class="note">
+        Note that <code>aria-level</code> values greater than 6 for headings are not currently supported by all assistive technologies.
+      </p>
+
       <section id="aria-level_heading_role_remediation">
         <h4>Remediation Use Cases for Headings</h4>
         <p>
           In rare scenarios, legacy code cannot be converted to use HTML heading elements.
           In these cases, the <code>aria-level</code> property and the <code>heading</code> role can be added to elements that assistive technologies should treat like native HTML heading elements.
         </p>
-        <p>For example, in the following code, this technique is used to specify that "Definition of a Room" is the heading of a subsection of the section titled "Housing Specification":</p>
-        <pre><code>&lt;div role="heading" aria-level="1" class="heading-big"&gt;Housing Specification&lt;/div&gt;
+        <div class="example">
+          <p>
+            For example, consider the following markup as the starting point.
+            It does not follow best practice and is not accessible.
+            We assume in this example the constraint that elements and class names can't be changed, but ARIA attributes can be added.
+          </p>
+
+          <pre><code>&lt;div class="heading-big"&gt;Housing Specification&lt;/div&gt;
+&lt;div id="room-definition" class="heading-small"&gt;Definition of a Room&lt;/div&gt;
+...</code></pre>
+
+          <p>
+            By adding the <code>role</code> and <code>aria-level</code> attributes, we specify that "Definition of a Room" is the heading of a subsection of the section titled "Housing Specification":
+          </p>
+
+          <pre><code>&lt;div role="heading" aria-level="1" class="heading-big"&gt;Housing Specification&lt;/div&gt;
 &lt;div role="heading" aria-level="2" id="room-definition" class="heading-small"&gt;Definition of a Room&lt;/div&gt;
 ...
 </code></pre>
-        <p>Equivalent (and preferred) HTML:</p>
-        <pre><code>&lt;h1&gt;Housing Specification&lt;/h1&gt;
+
+          <p>
+            If the original markup <em>could</em> be changed arbitrarily, the equivalent and preferred HTML would be:
+          </p>
+
+          <pre><code>&lt;h1&gt;Housing Specification&lt;/h1&gt;
 &lt;h2 id="room-definition"&gt;Definition of a Room&lt;/h2&gt;
 ...
 </code></pre>
+        </div>
       </section>
     </section>
 
