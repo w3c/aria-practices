@@ -126,13 +126,11 @@ The `aria-checked` attribute allows these values:
 
 The `aria-checked` attribute is supported for these roles:
 
-* `checkbox`
-* `menuitemcheckbox`
+* `checkbox`, `menuitemcheckbox`
+* `radio`, `menuitemradio`
+* `switch`
 * `option` (in a `listbox`)
 * `treeitem` (in a `tree`)
-* `radio`
-* `menuitemradio`
-* `switch`
 
 However, the `mixed` value is only supported for the `checkbox` and `menuitemcheckbox` roles.
 
@@ -152,12 +150,6 @@ For example, if there is a group of checkboxes and one checkbox allows checking 
 that checkbox can be in the `mixed` state if the group of checkboxes have some checked and some unchecked.
 
 See the [Checkbox](#checkbox) design pattern for examples.
-
-#### Checking options in listboxes and treeitems in trees
-
-The `option` role and the subclass `treeitem` role support `aria-checked`, but require the `aria-selected` state.
-
-See the previous section on `aria-selected` for examples of when it can be appropriate to use `aria-checked`.
 
 #### Checking radio buttons
 
@@ -182,6 +174,12 @@ Use `aria-checked="true"` to indicate that the switch is on.
 Use `aria-checked="false"` to indicate that the switch is off.
 
 HTML does not (yet) have a native switch control.
+
+#### Checking options in listboxes and treeitems in trees
+
+The `option` role and the subclass `treeitem` role support `aria-checked`, but require the `aria-selected` state.
+
+See the previous section on `aria-selected` for examples of when it can be appropriate to use `aria-checked`.
 
 ### `aria-pressed`
 
