@@ -26,6 +26,10 @@ which roles support each state,
 how the ARIA states map to HTML's built-in widget states,
 and how to use them.
 
+Note: The `aria-hidden` state is discussed in a separate section. TODO link
+
+Note: The `aria-invalid` state is not yet covered in this document, but is planned to be part of a section about forms.
+
 ### `aria-selected`
 
 The `aria-selected` attribute indicates whether the element is selected.
