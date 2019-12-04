@@ -76,7 +76,7 @@ The `row` role within a `grid`, `table` or `treegrid` element supports the `aria
 See the [ARIA 1.1 Combobox with Grid Popup Example](examples/combobox/aria1.1pattern/grid-combo.html)
 of the [Combobox](#combobox) design pattern.
 
-#### Selecting options in listboxes and trees
+#### Selecting options in listboxes and treeitems in trees
 
 `aria-selected` is a required state for the `option` role in a `listbox` element.
 When an item is selected, specify `aria-selected="true"`.
@@ -126,9 +126,12 @@ The `aria-checked` attribute allows these values:
 
 The `aria-checked` attribute is supported for these roles:
 
-* `checkbox` (including the subclass role `menuitemcheckbox`)
-* `option` (including the subclass role `treeitem`)
-* `radio` (including the subclass role `menuitemradio`)
+* `checkbox`
+* `menuitemcheckbox`
+* `option` (in a `listbox`)
+* `treeitem` (in a `tree`)
+* `radio`
+* `menuitemradio`
 * `switch`
 
 However, the `mixed` value is only supported for the `checkbox` and `menuitemcheckbox` roles.
@@ -137,7 +140,7 @@ In HTML, the `<input type="checkbox">` element where the `indeterminate` IDL att
 is by default mapped to `aria-checked="mixed"`.
 There is no way to represent `indeterminate` declaratively with markup in HTML.
 
-#### `checkbox`
+#### Checking checkboxes
 
 `aria-checked` is a required state for the `checkbox` and `menuitemcheckbox` roles.
 
@@ -150,13 +153,13 @@ that checkbox can be in the `mixed` state if the group of checkboxes have some c
 
 See the [Checkbox](#checkbox) design pattern for examples.
 
-#### `option`
+#### Checking options in listboxes and treeitems in trees
 
 The `option` role and the subclass `treeitem` role support `aria-checked`, but require the `aria-selected` state.
 
 See the previous section on `aria-selected` for examples of when it can be appropriate to use `aria-checked`.
 
-#### `radio`
+#### Checking radio buttons
 
 `aria-checked` is a required state for the `radio` and `menuitemradio` roles.
 
@@ -168,7 +171,7 @@ and `aria-checked="false"` on the other radio buttons in the group.
 
 See the [Radio Group](#radiobutton) design pattern for examples.
 
-#### `switch`
+#### Toggling a switch
 
 A switch control is similar to a checkbox.
 It does not support the `mixed` state,
