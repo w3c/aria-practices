@@ -67,9 +67,9 @@ ul[role="listbox"] {
 
 ul[role="listbox"] li[role="option"] {
   display: block;
-  padding-left: 2px;
-  padding-top: 2px;
-  padding-bottom: 2px;
+  padding-left: 0.3em;
+  padding-top: 0.2em;
+  padding-bottom: 0.2em;
   margin: 0;
 }
 
@@ -79,8 +79,8 @@ ul[role="listbox"] li[role="option"] {
   background-color: #DEF;
   padding-top: 0;
   padding-bottom: 0;
-  border-top: 2px solid #8CCBF2;
-  border-bottom: 2px solid #8CCBF2;
+  border-top: 0.2em solid #8CCBF2;
+  border-bottom: 0.2em solid #8CCBF2;
 }
 
 @media (forced-colors: active), (-ms-high-contrast: active) {
