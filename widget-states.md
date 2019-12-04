@@ -1,12 +1,25 @@
 ## Communicating Widget States
 
-ARIA can represent several different widgets, and these widgets can have different states,
-for example in response to user interaction with the widget.
+ARIA can represent several different widgets, and these widgets can have a variety of states,
+such as an option being selected,
+a checkbox being checked or unchecked,
+or an accordion being expanded or collapsed.
+
+The following table summarizes the states discussed in this section.
+
+State           | Description | HTML equivalent
+----------------|-------------|----------------
+`aria-selected` | the element is chosen for further operation | `selected` IDL attribute on `option`
+`aria-checked`  | the element is checked, unchecked, or mixed state | `checked` IDL attribute on `input`
+`aria-pressed`  | for toggle buttons: pressed or unpressed | None
+`aria-expanded` | an element owned or controlled by this element can be expanded or collapsed | None
+`aria-disabled` | the element is not editable or operable | `disabled` content attribute on form controls
+`aria-readonly` | the element is not editable, but is operable | `readonly` content attribute on `input` and `textarea`
 
 HTML also has built-in widgets and similar states.
 When using HTML widgets that have built-in ways to represent these states,
 do not use ARIA states.
-Only use the HTML attributes.
+Only use the HTML attributes or APIs.
 
 This section covers what ARIA's widget states are,
 which roles support each state,
@@ -192,7 +205,7 @@ For example, a button can toggle the visibility of some content, as in an accord
 ```html
 <h2><button aria-controls="spoiler" aria-expanded="false">Spoil the end</button></h2>
 <div id="spoiler">
- <p>Ultimately, all starts burn out and the black holes evaporate from Hawking radiation,
+ <p>Ultimately, all stars burn out and the black holes evaporate from Hawking radiation,
  and the universe reaches maximum entropy.</p>
 </div>
 ```
