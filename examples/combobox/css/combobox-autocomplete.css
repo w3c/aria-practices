@@ -16,6 +16,7 @@
   margin: 0;
   vertical-align: bottom;
   border: 1px solid gray;
+  position: relative;
 }
 
 .combobox .group input {
@@ -30,11 +31,6 @@
   width: 1.25rem;
   border-left: none;
   outline: none;
-  position: relative;
-}
-
-.combobox .group button .arrow {
-  top:;
 }
 
 .combobox .group button .down {
@@ -50,7 +46,7 @@
 }
 
 .combobox .group button.open .up {
-  display: block;
+  display: inline-block;
 }
 
 .combobox .group.focus {

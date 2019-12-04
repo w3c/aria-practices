@@ -69,7 +69,7 @@ ComboboxAutocomplete.prototype.init = function () {
 
   }
 
-  this.filterOptions('');
+  this.filterOptions();
 
   // Open Button
 
@@ -95,7 +95,7 @@ ComboboxAutocomplete.prototype.setValue = function (value) {
   this.comboboxNode.value = this.filter;
   this.comboboxNode.setSelectionRange(this.filter.length,this.filter.length);
   if (this.isList || this.isBoth) {
-    this.filterOptions(this.filter, this.option);
+    this.filterOptions();
   }
 };
 
@@ -148,13 +148,10 @@ ComboboxAutocomplete.prototype.removeVisualFocusAll = function () {
 
 // ComboboxAutocomplete Events
 
-ComboboxAutocomplete.prototype.filterOptions = function (filter, currentOption) {
+ComboboxAutocomplete.prototype.filterOptions = function () {
 
-  if (typeof filter !== 'string') {
-    filter = '';
-  }
-
-  filter = filter.toLowerCase();
+  var currentOption = this.option;
+  var filter = this.filter.toLowerCase();
 
   this.filteredOptions    = [];
   this.listboxNode.innerHTML = '';
@@ -327,6 +324,8 @@ ComboboxAutocomplete.prototype.handleComboboxKeyDown = function (event) {
     case "Escape":
       if (this.isOpen()) {
         this.close(true);
+        this.filter = this.comboboxNode.value;
+        this.filterOptions();
         this.setVisualFocusCombobox();
       }
       else {
@@ -426,7 +425,7 @@ ComboboxAutocomplete.prototype.handleComboboxKeyUp = function (event) {
         flag = true;
 
         if (this.isList || this.isBoth) {
-          option = this.filterOptions(this.filter, this.option);
+          option = this.filterOptions();
           if (option) {
             if (this.isClosed() && this.comboboxNode.value.length) {
               this.open();
@@ -477,6 +476,8 @@ ComboboxAutocomplete.prototype.handleComboboxClick = function (event) {
 };
 
 ComboboxAutocomplete.prototype.handleComboboxFocus = function (event) {
+  this.filter = this.comboboxNode.value;
+  this.filterOptions();
   this.setVisualFocusCombobox();
   this.option = false;
   this.setCurrentOptionStyle(null);
