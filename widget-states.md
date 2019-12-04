@@ -281,15 +281,15 @@ The `aria-readonly` state indicates whether an element allows its value to be ch
 
 The `aria-readonly` attribute is supported for these roles:
 
-* `checkbox` (including the subclass roles `menuitemcheckbox` and `switch`)
+* `checkbox`, `menuitemcheckbox`, `switch`
 * `combobox`
-* `grid` (including the subclass role `treegrid`)
-* `gridcell` (including the subclass roles `columnheader` and `rowheader`)
+* `grid`, `treegrid`
+* `gridcell`, `columnheader`, `rowheader`
 * `listbox`
 * `radiogroup`
 * `slider`
 * `spinbutton`
-* `textbox` (including the subclass roles `searchbox`)
+* `textbox`, `searchbox`
 * `menuitemradio`
 
 When an element is readonly, it should still be focusable and allow text selection,
