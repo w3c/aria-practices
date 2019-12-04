@@ -7,7 +7,7 @@ var Listbox = function (domNode, comboboxObj) {
     msgPrefix = 'Listbox constructor argument domNode ';
 
   // Check whether domNode is a DOM element
-  if (!domNode instanceof Element) {
+  if (!(domNode instanceof Element)) {
     throw new TypeError(msgPrefix + 'is not a DOM Element.');
   }
 
@@ -65,7 +65,7 @@ Listbox.prototype.init = function () {
     optionElement = optionElements[i];
 
     if (!optionElement.firstElementChild && optionElement.getAttribute('role') != 'separator') {
-      option = new Option(optionElement, this);
+      option = new ListboxOption(optionElement, this);
       option.init();
       this.allOptions.push(option);
     }
@@ -81,8 +81,7 @@ Listbox.prototype.filterOptions = function (filter, currentOption) {
     filter = '';
   }
 
-  var firstMatch = false,
-    i,
+  var i,
     option,
     textContent,
     numItems;

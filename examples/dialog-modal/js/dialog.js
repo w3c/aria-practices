@@ -70,6 +70,7 @@ aria.Utils = aria.Utils || {};
       element.focus();
     }
     catch (e) {
+      // continue regardless of error
     }
     aria.Utils.IgnoreUtilFocusChanges = false;
     return (document.activeElement === element);

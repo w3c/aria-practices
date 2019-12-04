@@ -35,10 +35,10 @@ var SpinButtonDate = function (domNode, values, callback)  {
     }
   }
   else {
-    this.valueMin  = parseInt(domNode.getAttribute('aria-valuemin'));
-    this.valueMax  = parseInt(domNode.getAttribute('aria-valuemax'));
-    this.valueNow  = parseInt(domNode.getAttribute('aria-valuenow'));
-    this.valueText = domNode.getAttribute('aria-valuenow');
+    this.valueMin  = parseInt(this.spinbuttonNode.getAttribute('aria-valuemin'));
+    this.valueMax  = parseInt(this.spinbuttonNode.getAttribute('aria-valuemax'));
+    this.valueNow  = parseInt(this.spinbuttonNode.getAttribute('aria-valuenow'));
+    this.valueText = this.spinbuttonNode.getAttribute('aria-valuenow');
   }
 
   this.keyCode = Object.freeze({

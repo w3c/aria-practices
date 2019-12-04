@@ -7,7 +7,7 @@ const assertAriaLabelExists = require('../util/assertAriaLabelExists');
 const assertAriaRoles = require('../util/assertAriaRoles');
 const assertAriaSelectedAndActivedescendant = require('../util/assertAriaSelectedAndActivedescendant');
 
-const exampleFile = 'combobox/aria1.0pattern/combobox-autocomplete-both.html';
+const exampleFile = 'combobox/combobox-autocomplete-both.html';
 
 const ex = {
   textboxSelector: '#ex1 input[type="text"]',
@@ -36,6 +36,7 @@ const confirmCursorIndex = async (t, selector, cursorIndex) => {
 };
 
 // Attributes
+
 ariaTest('Test for role="combobox"', exampleFile, 'combobox-role', async (t) => {
   t.plan(1);
   await assertAriaRoles(t, 'ex1', 'combobox', '1', 'input');
@@ -46,21 +47,16 @@ ariaTest('"aria-autocomplete" on comboxbox element', exampleFile, 'combobox-aria
   await assertAttributeValues(t, ex.textboxSelector, 'aria-autocomplete', 'both');
 });
 
-ariaTest('"aria-haspopup" on combobox element', exampleFile, 'combobox-aria-haspopup', async (t) => {
-  t.plan(1);
-  await assertAttributeValues(t, ex.textboxSelector, 'aria-haspopup', 'true');
-});
-
-ariaTest('"aria-owns" attribute on combobox element', exampleFile, 'combobox-aria-owns', async (t) => {
+ariaTest('"aria-controls" attribute on combobox element', exampleFile, 'combobox-aria-controls', async (t) => {
   t.plan(2);
 
   const popupId = await t.context.session
     .findElement(By.css(ex.textboxSelector))
-    .getAttribute('aria-owns');
+    .getAttribute('aria-controls');
 
   t.truthy(
     popupId,
-    '"aria-owns" attribute should exist on: ' + ex.textboxSelector
+    '"aria-controls" attribute should exist on: ' + ex.textboxSelector
   );
 
   const popupElements = await t.context.session
@@ -70,7 +66,7 @@ ariaTest('"aria-owns" attribute on combobox element', exampleFile, 'combobox-ari
   t.is(
     popupElements.length,
     1,
-    'There should be a element with id "' + popupId + '" as referenced by the aria-owns attribute'
+    'There should be a element with id "' + popupId + '" as referenced by the aria-controls attribute'
   );
 });
 
@@ -89,7 +85,7 @@ ariaTest('"aria-expanded" on combobox element', exampleFile, 'combobox-aria-expa
 
   const popupId = await t.context.session
     .findElement(By.css(ex.textboxSelector))
-    .getAttribute('aria-owns');
+    .getAttribute('aria-controls');
 
   const popupElement = await t.context.session
     .findElement(By.id('ex1'))
@@ -233,11 +229,10 @@ ariaTest('Test up key press with focus on textbox',
   });
 
 
-// This test fails due to bug: https://github.com/w3c/aria-practices/issues/821
-ariaTest.failing('Test up key press with focus on listbox',
+ariaTest('Test up key press with focus on listbox',
   exampleFile, 'listbox-key-up-arrow', async (t) => {
 
-    t.plan(3);
+    t.plan(4);
 
     // Send 'a' to text box, then send ARROW_UP to textbox to textbox to put focus in textbox
     // Up arrow should move selection to the last item in the list
@@ -245,8 +240,13 @@ ariaTest.failing('Test up key press with focus on listbox',
       .findElement(By.css(ex.textboxSelector))
       .sendKeys('a', Key.ARROW_UP);
 
+    // Account for race condition
+    await waitForFocusChange(t, ex.textboxSelector, '');
+    await assertAriaSelectedAndActivedescendant(t, ex.textboxSelector, ex.optionsSelector, ex.numAOptions-1);
+
     // Test that ARROW_UP moves active descendant focus up one item in the listbox
-    for (let index = ex.numAOptions - 1; index > 0 ; index--) {
+    for (let index = ex.numAOptions - 2; index > 0 ; index--) {
+
       let oldfocus = await t.context.session
         .findElement(By.css(ex.textboxSelector))
         .getAttribute('aria-activedescendant');

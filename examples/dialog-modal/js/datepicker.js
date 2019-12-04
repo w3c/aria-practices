@@ -97,6 +97,7 @@ DatePicker.prototype.init = function () {
       cell.classList.add('dateCell');
       var cellButton = document.createElement('button');
       cellButton.classList.add('dateButton');
+      cellButton.setAttribute('type', 'button');
       cell.appendChild(cellButton);
       row.appendChild(cell);
       var dpDay = new DatePickerDay(cellButton, this, index, i, j);
