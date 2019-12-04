@@ -295,6 +295,9 @@ The `aria-readonly` attribute is supported for these roles:
 When an element is readonly, it should still be focusable and allow text selection,
 only not allow editing or otherwise changing the value or state of the element.
 
+When `aria-readonly` is applied to a `grid` or `treegrid`, the value is propagated to all `gridcells` in the widget.
+Each `gridcell` can override this propagation by setting `aria-readonly` on the `gridcell`. See the [Grid Design Pattern](#grid) for examples.
+
 HTML has the `readonly` attribute for the `input` and `textarea` elements.
 When using those elements, use the `readonly` attribute instead of `aria-readonly`.
 For example:
