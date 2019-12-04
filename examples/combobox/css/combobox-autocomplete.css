@@ -58,7 +58,7 @@ ul[role="listbox"] {
   box-sizing: border-box;
   border: 1px gray solid;
   border-top: none;
-  max-height: 12em;
+  max-height: 11.4em;
   width: 12rem;
   overflow: scroll;
   overflow-x: hidden;

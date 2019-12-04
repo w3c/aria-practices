@@ -193,7 +193,12 @@ ComboboxAutocomplete.prototype.setCurrentOptionStyle = function (option) {
     var opt = this.filteredOptions[i];
     if (opt === option) {
       opt.setAttribute('aria-selected', 'true');
-      this.listboxNode.scrollTop = opt.offsetTop;
+      while ((this.listboxNode.scrollTop + this.listboxNode.offsetHeight) < (opt.offsetTop + opt.offsetHeight)) {
+        this.listboxNode.scrollTop = this.listboxNode.scrollTop + opt.offsetHeight;
+      }
+      while (this.listboxNode.scrollTop > (opt.offsetTop + 2)) {
+        this.listboxNode.scrollTop = this.listboxNode.scrollTop - opt.offsetHeight;
+      }
     }
     else {
       opt.removeAttribute('aria-selected');
