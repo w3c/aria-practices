@@ -33,20 +33,8 @@
   outline: none;
 }
 
-.combobox .group button .down {
-  display: block;
-}
-
-.combobox .group button .up {
-  display: none;
-}
-
-.combobox .group button.open .down {
-  display: none;
-}
-
-.combobox .group button.open .up {
-  display: inline-block;
+.combobox .group button.open svg {
+  transform: rotate(180deg);
 }
 
 .combobox .group.focus {
