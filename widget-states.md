@@ -239,11 +239,12 @@ Design pattern             | Description
 
 ### `aria-disabled`
 
-The `aria-disabled` state indicates that an element is disabled,
-so it is not editable or operable.
+The `aria-disabled` state indicates that the element is not editable or operable.
 
 Usually, disabled elements are not focusable,
 including descendants of the element.
+However, in some composite widgets, it can be desirable to keep some elements focusable.
+See the [Focusability of disabled controls](#kbd_disabled_controls) section.
 
 Use CSS to change the appearance of disabled controls,
 so that it is clear for visual users that the element is disabled.
