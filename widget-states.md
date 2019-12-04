@@ -32,7 +32,7 @@ Note: The `aria-invalid` state is not yet covered in this document, but is plann
 
 ### `aria-selected`
 
-The `aria-selected` attribute indicates whether the element is selected.
+The `aria-selected` attribute indicates whether the element is chosen for futher operation.
 Some widgets or parts of widgets can be selected.
 A widget might allow only a single selection,
 or can allow multiple items to be selected.
@@ -55,21 +55,27 @@ or using a different modifier key (e.g. Command or Control) while pressing arrow
 However, these paradigms might vary depending on what kind of widget it is,
 and the conventions might be different depending on the kind of device and host operating system.
 
-The `aria-selected` attribute is supported for these roles:
+The `aria-selected` attribute is supported in these widgets:
 
-* `gridcell` (including the subclass roles `columnheader` and `rowheader`)
-* `option` (including the subclass role `treeitem`)
-* `row`
-* `tab`
+Widget             | Roles in the widget where `aria-selected` applies
+-------------------|-------------------
+`grid`, `treegrid` | `row`, `gridcell`, `columnheader`, `rowheader`
+`listbox`, `tree`  | `option`, `treeitem`
+`tablist`          | `tab`
 
-#### `gridcell`
+#### Selecting rows and cells in `grid` and `treegrid`
 
 A `gridcell` in a `grid` or `treegrid` supports the `aria-selected` state.
 The widget could support selecting one or multiple cells.
 
 TODO example.
 
-#### `option`
+The `row` role within a `grid`, `table` or `treegrid` element supports the `aria-selected` state.
+
+See the [ARIA 1.1 Combobox with Grid Popup Example](examples/combobox/aria1.1pattern/grid-combo.html)
+of the [Combobox](#combobox) design pattern.
+
+#### Selecting options in listboxes and trees
 
 `aria-selected` is a required state for the `option` role in a `listbox` element.
 When an item is selected, specify `aria-selected="true"`.
@@ -89,14 +95,7 @@ For example, a `tree` widget to represent a changeable sequence of steps,
 could allow selection in order to rearrange a set of steps,
 and also allow checking and unchecking them to indicate which steps are active.
 
-#### `row`
-
-The `row` role within a `grid`, `table` or `treegrid` element supports the `aria-selected` state.
-
-See the [ARIA 1.1 Combobox with Grid Popup Example](examples/combobox/aria1.1pattern/grid-combo.html)
-of the [Combobox](#combobox) design pattern.
-
-#### `tab`
+#### Selecting tabs in a tablist
 
 The `tab` role in a `tablist` element supports the `aria-selected` state,
 to indicate which tab is active in a tab panel.
