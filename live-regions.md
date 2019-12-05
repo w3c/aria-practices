@@ -157,40 +157,15 @@ The HTML `output` element has the `status` role by default. The `output` element
 </form>
 ```
 
-### Live Region Role `timer`
+### Live Region Role `timer` and `marquee`
 
-TODO update to discourage use.
+Usage of the `timer` and `marquee` roles is discouraged.
 
-The `timer` role is a numerical counter which indicates an amount of elapsed time from a start point, or the time remaining until an end point.
+The `timer` role is a numerical counter which indicates an amount of elapsed time from a start point, or the time remaining until an end point. The `timer` role is a subclass of the `status` role. The default value of `aria-live` value of `off`.
 
-The `timer` role is a subclass of the `status` role. The default value of `aria-live` value of `off`.
+The `marquee` role indicates non-essential information that changes frequently. The default value of `aria-live` value of `off`.
 
-Update the text content of the element to the current time measurement when it changes.
-
-For example, a countdown to New Year could use `role="timer"`.
-
-```
-<h1 id="newyear">New Year Countdown</h1>
-<p role="timer" aria-labelledby="newyear">2 minutes, 51 seconds</p>
-```
-
-### Live Region Role `marquee`
-
-TODO update to discourage use.
-
-The `marquee` role indicates non-essential information that changes frequently.
-
-The default value of `aria-live` value of `off`.
-
-For example, a stock ticker that is crawling across the screen could use `role="marquee"`.
-
-```
-<div role="marquee" aria-label="Stocks">
- <p>Goosoft $8.24 +0.36</p>
- <p>Microle $35.60 &minus;0.78</p>
- <p>Banana $12.30 +0.09</p>
-</div>
-```
+Note: [Issue 1104 for the ARIA specification] proposes deprecating these roles.
 
 # Defer Exposing Content Updates using `aria-busy`
 
