@@ -183,6 +183,10 @@ For example, a stock ticker that is crawling across the screen could use `role="
 
 Sometimes, it takes some time for a script to update the content of a live region or a widget. For example, it could be waiting on a network response. In order to avoid rendering half-baked content to users of assistive technology, the `aria-busy` attribute can be set to `true` while the content is being updated, and then to `false` when it is done.
 
+The ARIA specification allows, but does not require, assistive technologies to wait until `aria-busy` is changed to `false` before exposing content changes to the user. So assistive technologies are allowed to ignore the `aria-busy` attribute.
+
+For assistive technologies that honor the `aria-busy` attribute, one possible implementation strategy is to not announce any content for elements when `aria-busy` is set to `true`. Therefore, it is important that the attribute is changed back to `false` when the content ought to be available to the user. For example, when the update is complete, but also when there is an error, or if the update is aborted. Otherwise, content could be left inaccessible to assistive technology users.
+
 Consider the search form from the earlier example in the [Live Resions](#live-regions) section. When the user starts typing a new search into the search field, the script would update the search results live region, and maybe update multiple times as new search results appear, but it would be a better experience for users of assistive technology to only be notified when the new search is complete.
 
 ```
@@ -196,9 +200,13 @@ async function updateSearch(event) {
   const statusElement = document.getElementById('search-result-status');
   statusElement.ariaBusy = 'true';
   statusElement.textContent = 'Searching...';
-  const results = await getSearchResults(event.target.value);
+  try {
+    const results = await getSearchResults(event.target.value);
+    statusElement.textContent = `${results.length} result(s) found.`;
+  } catch (ex) {
+    statusElement.textContent = "There was an error when searching. Please try again.";
+  }
   statusElement.ariaBusy = 'false';
-  statusElement.textContent = `${results.length} result(s) found.`;
   showResults(results);
 }
 </script>
