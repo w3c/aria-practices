@@ -7,17 +7,17 @@ or an accordion being expanded or collapsed.
 
 The following table summarizes the states discussed in this section.
 
-State           | Description | HTML equivalent
+State           | Description | HTML attribute for similar concept
 ----------------|-------------|----------------
-`aria-selected` | the element is chosen for further operation | `selected` IDL attribute on `option`
-`aria-checked`  | the element is checked, unchecked, or mixed state | `checked` IDL attribute on `input`
+`aria-selected` | the element is chosen for further operation | `selected` attribute on `option`
+`aria-checked`  | the element is checked, unchecked, or mixed state | `checked` attribute on `input`
 `aria-pressed`  | for toggle buttons: pressed or unpressed | None
 `aria-expanded` | an element owned or controlled by this element can be expanded or collapsed | None
-`aria-disabled` | the element is not editable or operable | `disabled` content attribute on form controls
-`aria-readonly` | the element is not editable, but is operable | `readonly` content attribute on `input` and `textarea`
+`aria-disabled` | the element is not editable or operable | `disabled` attribute on form controls
+`aria-readonly` | the element is not editable, but is operable | `readonly` attribute on `input` and `textarea`
 
-HTML also has built-in widgets and similar states.
-When using HTML widgets that have built-in ways to represent these states,
+HTML also has built-in form controls with similar states.
+When using HTML form controls that have built-in ways to represent these states,
 do not use ARIA states.
 Only use the HTML attributes or APIs.
 
@@ -32,7 +32,7 @@ Note: The `aria-invalid` state is not yet covered in this document, but is plann
 
 ### `aria-selected`
 
-The `aria-selected` attribute indicates whether the element is chosen for futher operation.
+The `aria-selected` attribute indicates whether the element is chosen for further operation.
 Some widgets or parts of widgets can be selected.
 A widget might allow only a single selection,
 or can allow multiple items to be selected.
