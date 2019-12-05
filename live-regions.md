@@ -8,6 +8,13 @@ Examples of live regions are a chat log and an error message. However, different
 
 ARIA has the following attributes mark up live regions.
 
+State/property  | Description
+----------------|------------
+`aria-live`     | Enables a live region.
+`aria-atomic`   | Indicates what content to announce.
+`aria-relevant` | Indicates which content changes are relevant.
+`aria-busy`     | Defers content updates. Not specific to live regions. See the [next section](#aria-busy).
+
 ### Enable Live Regions with `aria-live`
 
 The `aria-live` attribute indicates that an element is a live region. Some roles implicitly set `aria-live`; this is discussed in a later section.
@@ -91,6 +98,12 @@ TODO
 ## Special Case Live Regions
 
 The roles listed below implicitly set the `aria-live` attribute to indicate that it is a live region. When using these roles, the `aria-live` attribute can be omitted, or it can be specified to change the value from the default.
+
+* `alert`
+* `log`
+* `status`
+* `timer`
+* `marquee`
 
 ### Live Region Role `alert`
 
