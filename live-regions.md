@@ -8,7 +8,7 @@ Examples of live regions are a chat log and an error message. However, different
 
 ARIA has the following attributes mark up live regions.
 
-### `aria-live`
+### Enable Live Regions with `aria-live`
 
 The `aria-live` attribute indicates that an element is a live region. Some roles implicitly set `aria-live`; this is discussed in a later section.
 
@@ -36,7 +36,28 @@ async function updateSearch(event) {
 </script>
 ```
 
-### `aria-relevant`
+### Indicate What Content to Announce with `aria-atomic`
+
+The `aria-atomic` attribute takes the values "true" and "false". The attribute can also be omitted.
+
+When this attribute is set to `true`, assistive technologies will render the element as a whole, and not just parts that have been changed.
+
+When this attribute is set to `false`, assistive technologies will only render the changes (as per `aria-relevant`) to the user.
+
+When this attribute is omitted, the user agent will use the closest ancestor that has `aria-atomic` set to `true` or `false`, or if there is no such ancestor, `false`.
+
+For example, consider a clock that can be set to notify the user of the current time at a regular interval. Without `aria-atomic`, the assistive technology might only notify the changed components, rather than the full time.
+
+```
+<div id="clock" role="region" aria-live="polite" aria-atomic="true">
+ The time is
+ <span>16</span>:<span>34</span>:<span>05</span>
+</div>
+```
+
+### Indicate Which Content Changes are Relevant with `aria-relevant`
+
+TODO update this to recommend only the default value.
 
 Dynamic content changes in a live region is sometimes significant, and sometimes not, depending on the kind of live region. For example, a disappearing old message in a chat log is not significant, and users do not need to be informed of the removal. However, for a list of online contacts, a disappearing contact is significant (it indicates that the contact is no longer online).
 
@@ -63,55 +84,15 @@ When a contact comes online, it is added to the list, and users of assistive tec
 
 Note that additions and removals in the accessibility tree can happen due to changes to the DOM tree or changes to the applied CSS. For example, changing the CSS `display` property to `none` causes the element to be removed from the accessibility tree. See the <a href="#accessibility-tree">Accessibility tree</a> section for more details.
 
-### `aria-atomic`
+### Triggering Live Regions
 
-The `aria-atomic` attribute takes the values "true" and "false". The attribute can also be omitted.
-
-When this attribute is set to `true`, assistive technologies will render the element as a whole, and not just parts that have been changed.
-
-When this attribute is set to `false`, assistive technologies will only render the changes (as per `aria-relevant`) to the user.
-
-When this attribute is omitted, the user agent will use the closest ancestor that has `aria-atomic` set to `true` or `false`, or if there is no such ancestor, `false`.
-
-For example, consider a clock that can be set to notify the user of the current time at a regular interval. Without `aria-atomic`, the assistive technology might only notify the changed components, rather than the full time.
-
-```
-<div id="clock" role="region" aria-live="polite" aria-atomic="true">
- The time is
- <span>16</span>:<span>34</span>:<span>05</span>
-</div>
-```
-
-### `aria-busy`
-
-Sometimes, it takes some time for a script to update the content of a live region. For example, it could be waiting on a network response. In order to avoid rendering half-baked content to users of assistive technology, the `aria-busy` attribute can be set to `true` while the content is being updated, and then to `false` when it is done.
-
-Consider again the search form from the earlier example. When the user starts typing a new search into the search field, the script would update the search results live region, and maybe update multiple times as new search results appear, but it would be a better experience for users of assistive technology to only be notified when the new search is complete.
-
-```
-<form role="search" aria-labelledby="search">
- <h2 id="search">Search</h2>
- <label>Search query: <input type="search" name="q" oninput="updateSearch(event)"></label>
- <div id="search-result-status" role="region" aria-live="polite"></div>
-</form>
-<script>
-async function updateSearch(event) {
-  const statusElement = document.getElementById('search-result-status');
-  statusElement.ariaBusy = 'true';
-  statusElement.textContent = 'Searching...';
-  const results = await getSearchResults(event.target.value);
-  statusElement.ariaBusy = 'false';
-  statusElement.textContent = `${results.length} result(s) found.`;
-  showResults(results);
-}
-</script>
-```
+TODO
 
 ## Special Case Live Regions
 
 The roles listed below implicitly set the `aria-live` attribute to indicate that it is a live region. When using these roles, the `aria-live` attribute can be omitted, or it can be specified to change the value from the default.
 
-### `alert`
+### Live Region Role `alert`
 
 The `alert` role indicates important, usually time-sensitive, information. Use this role when focus is not moved to the message, and the user is not expected to close the message. For an alert dialog that can be closed, the the `alertdialog` role instead.
 
@@ -119,7 +100,7 @@ The default value for `aria-live` is `assertive`. The default value for `aria-at
 
 See the [Alert design pattern](#alert) and the related [Alert Example](https://w3c.github.io/aria-practices/examples/alert/alert.html).
 
-### `log`
+### Live Region Role `log`
 
 The `log` role indicates that new information is added in meaningful order and old information might disappear.
 
@@ -135,7 +116,7 @@ For example, a chat log would be an appropriate use case for the `log` role.
 </div>
 ```
 
-### `status`
+### Live Region Role `status`
 
 The `status` role indicates that content is advisory information for the user but is not important enough to justify an `alert`, often but not necessarily presented as a status bar.
 
@@ -163,7 +144,9 @@ The HTML `output` element has the `status` role by default. The `output` element
 </form>
 ```
 
-### `timer`
+### Live Region Role `timer`
+
+TODO update to discourage use.
 
 The `timer` role is a numerical counter which indicates an amount of elapsed time from a start point, or the time remaining until an end point.
 
@@ -178,7 +161,9 @@ For example, a countdown to New Year could use `role="timer"`.
 <p role="timer" aria-labelledby="newyear">2 minutes, 51 seconds</p>
 ```
 
-### `marquee`
+### Live Region Role `marquee`
+
+TODO update to discourage use.
 
 The `marquee` role indicates non-essential information that changes frequently.
 
@@ -193,3 +178,30 @@ For example, a stock ticker that is crawling across the screen could use `role="
  <p>Banana $12.30 +0.09</p>
 </div>
 ```
+
+# Defer Exposing Content Updates using `aria-busy`
+
+Sometimes, it takes some time for a script to update the content of a live region or a widget. For example, it could be waiting on a network response. In order to avoid rendering half-baked content to users of assistive technology, the `aria-busy` attribute can be set to `true` while the content is being updated, and then to `false` when it is done.
+
+Consider the search form from the earlier example in the [Live Resions](#live-regions) section. When the user starts typing a new search into the search field, the script would update the search results live region, and maybe update multiple times as new search results appear, but it would be a better experience for users of assistive technology to only be notified when the new search is complete.
+
+```
+<form role="search" aria-labelledby="search">
+ <h2 id="search">Search</h2>
+ <label>Search query: <input type="search" name="q" oninput="updateSearch(event)"></label>
+ <div id="search-result-status" role="region" aria-live="polite"></div>
+</form>
+<script>
+async function updateSearch(event) {
+  const statusElement = document.getElementById('search-result-status');
+  statusElement.ariaBusy = 'true';
+  statusElement.textContent = 'Searching...';
+  const results = await getSearchResults(event.target.value);
+  statusElement.ariaBusy = 'false';
+  statusElement.textContent = `${results.length} result(s) found.`;
+  showResults(results);
+}
+</script>
+```
+
+TODO link to Feed design pattern
