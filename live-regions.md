@@ -213,4 +213,4 @@ async function updateSearch(event) {
 </script>
 ```
 
-TODO link to Feed design pattern
+The [Feed Design Pattern](#feed) uses `aria-busy` in its example. A feed is a section of a page that automatically loads new sections of content as the user scrolls. While the feed is loading new content, `aria-busy` is set to `true` on the feed.
