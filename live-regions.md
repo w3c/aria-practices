@@ -200,15 +200,16 @@ async function updateSearch(event) {
   const statusElement = document.getElementById('search-result-status');
   statusElement.ariaBusy = 'true';
   statusElement.textContent = 'Searching...';
+  let results = null;
   try {
-    const results = await getSearchResults(event.target.value);
+    results = await getSearchResults(event.target.value);
     statusElement.textContent = `${results.length} result(s) found.`;
   } catch (ex) {
     statusElement.textContent = "There was an error when searching. Please try again.";
   }
   statusElement.ariaBusy = 'false';
   showResults(results);
-}
+  }
 </script>
 ```
 
