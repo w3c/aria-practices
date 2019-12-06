@@ -6440,7 +6440,10 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
  Home
 &lt;/a&gt;</code></pre>
       <p class="note">The <code>focusable="false"</code> attribute is included to work around a bug in Internet Explorer, where <code>svg</code> elements are focusable by default.</p>
-      <p class="warning">Only use <code>aria-hidden=&quot;true&quot;</code> to hide content from assistive technologies if it improves the experience for assistive technology users.</p>
+      <p class="warning">
+        Only use <code>aria-hidden=&quot;true&quot;</code> to hide content from assistive technologies if it improves the experience for assistive technology users.
+        Do not use <code>aria-hidden=&quot;true&quot;</code> on interactive elements.
+      </p>
     </section>
 
     <section id="presentation_role">
