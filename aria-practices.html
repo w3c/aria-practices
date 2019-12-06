@@ -6415,7 +6415,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
     <h2>Accessibility tree</h2>
     <p>Browsers construct an accessibility tree to communicate the representation of web content with assistive technologies. See the <a href="https://w3c.github.io/core-aam/#dfn-accessibility-tree">Core Accessibility API Mappings</a> specification for further information about accessibility trees.</p>
     <p>The accessibility tree is based on information in the DOM tree (including ARIA) and information in CSS. For example, text in the DOM tree can also be in the accessibility tree. CSS generated content is not part of the DOM tree, but can be part of the accessibility tree.</p>
-    <p>For example, given the HTML document</p>
+    <p>For example, given the HTML document:</p>
     <pre><code>&lt;!doctype html&gt;
 &lt;html&gt;
  &lt;head&gt;
@@ -6426,7 +6426,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
  &lt;/body&gt;
 &lt;/html&gt;</code></pre>
     <p>The DOM tree includes element nodes closely resembling the markup, with a root <code>html</code> element that has two element children <code>head</code> and <code>body</code>, and so on.</p>
-    <p>The accessibility tree does not include the <code>head</code> or <code>title</code> elements, because the <code>head</code> element is hidden by default. The paragraph is included in the accessibility tree, with a text child node &quot;Cookies are delicious delicacies. &quot; and a child <code>button</code> element node, whose accessible name is &quot;OK&quot;.</p>
+    <p>The accessibility tree does not include the <code>head</code> or <code>title</code> elements, because the <code>head</code> element is hidden by default. The paragraph is included in the accessibility tree, with a text child node &quot;Cookies are delicious delicacies.&quot; and a child <code>button</code> element node, whose accessible name is &quot;OK&quot;.</p>
     <p>CSS and ARIA can be used to control what is included in the accessibility tree, which is discussed in the following sections.</p>
   </section>
 
@@ -6440,8 +6440,8 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
  &lt;svg aria-hidden=&quot;true&quot; focusable="false"&gt;...&lt;/svg&gt;
  Home
 &lt;/a&gt;</code></pre>
-    <p class="note">The <code>focusable="false"</code> attribute is included to work around a bug in some versions of Internet Explorer, where <code>svg</code> elements are focusable by default.</p>
-    <p class="warning">Only use <code>aria-hidden=&quot;true&quot;</code> when hiding content from only assistive technologies improves the user experience of assistive technologies.</p>
+    <p class="note">The <code>focusable="false"</code> attribute is included to work around a bug in Internet Explorer, where <code>svg</code> elements are focusable by default.</p>
+    <p class="warning">Only use <code>aria-hidden=&quot;true&quot;</code> to hide content from assistive technologies if it improves the experience for assistive technology users.</p>
   </section>
 
   <section id="presentation_role">
