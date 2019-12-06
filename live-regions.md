@@ -64,10 +64,6 @@ For example, consider a clock that can be set to notify the user of the current 
 
 ### Indicate Which Content Changes are Relevant with `aria-relevant`
 
-TODO update this to recommend only the default value.
-
-Dynamic content changes in a live region is sometimes significant, and sometimes not, depending on the kind of live region. For example, a disappearing old message in a chat log is not significant, and users do not need to be informed of the removal. However, for a list of online contacts, a disappearing contact is significant (it indicates that the contact is no longer online).
-
 The `aria-relevant` attribute can be used to inform assistive technologies about which kinds of changes are relevant to inform users about. It takes a list of keywords, with the following meanings:
 
 * `additions`: Element nodes are added to the accessibility tree within the live region.
@@ -77,23 +73,33 @@ The `aria-relevant` attribute can be used to inform assistive technologies about
 
 If `aria-relevant` is not specified, then the value of the closest ancestor element with an `aria-relevant` attribute is used. Specifying the `aria-relevant` attribute on an element overrides any value specified on an ancestor element. If there is no ancestor element with an `aria-relevant` attribute, the default value `additions text` is used.
 
-For example, a list of online contacts could use `aria-live="all"`:
+For example, a disappearing old message in a chat log is not significant, and users do not need to be informed of the removal. 
+However, for a list of online contacts, a disappearing contact is significant (it indicates that the contact is no longer online).
+Instead of announcing the removal of something, it is often better to add new content that tells the user what happened.
+For example, "Alice is now offline" is clearer than "Alice" or "Removed, Alice".
+Therefore, avoid using `removals` or `all`.
+
+For example, a list of online contacts:
 
 ```
-<div role="region" aria-live="polite" aria-relevant="all" aria-labelledby="contacts">
+<div role="region" aria-live="polite" aria-labelledby="contacts">
  <h1 id="contacts">Contacts</h1>
  <ul>
-  <li><a href="/contacts/alice">Alice</a></li>
+  <li aria-atomic="true"><a href="/contacts/alice">Alice</a> is now online</li>
  </ul>
 </div>
 ```
-When a contact comes online, it is added to the list, and users of assistive technology are informed of the addition without disrupting their current task. Similarly when a user goes offline. If a contact changes their display name, the text change would also be announced.
 
-Note that additions and removals in the accessibility tree can happen due to changes to the DOM tree or changes to the applied CSS. For example, changing the CSS `display` property to `none` causes the element to be removed from the accessibility tree. See the <a href="#accessibility-tree">Accessibility tree</a> section for more details.
+When a contact comes online, it is added to the list, and users of assistive technology are informed of the addition without disrupting their current task. To communicate what happened, the text is "Alice is now online", rather than only "Alice".
+
+Similarly when a user goes offline, the text could be changed to "Alice is now offline", and then be hidden from the list after a timeout.
+
+If a contact changes their display name, the text change would also be announced: "Alice has changed their name to 4liz".
+After a timeout, the text "Alice has changed their name to " could be removed, without causing a new announcement.
 
 ### Triggering Live Regions
 
-TODO
+Additions and removals in the accessibility tree can happen due to changes to the DOM tree or changes to the applied CSS. For example, changing the CSS `display` property to `none` causes the element to be removed from the accessibility tree. See the <a href="#accessibility-tree">Accessibility tree</a> section for more details.
 
 ## Special Case Live Regions
 
