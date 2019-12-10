@@ -6475,22 +6475,15 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
 
     <section id="range_related_properties_using_aria-valuemin_and_aria-valuemax">
       <h3>Using <code>aria-valuemin</code> and <code>aria-valuemax</code></h3>
-
       <p>
-        When an element's possible values are contained within a known range, the attributes <code>aria-valuemin</code> and <code>aria-valuemax</code> are used to inform assistive technologies of the minimum and maximum values of the range.
-        When using these properties, set <code>aria-valuemin</code> to the lowest value of the range and <code>aria-valuemax</code> to the greatest value.
+        When the value of a range widget is constrained to known limits, the <code>aria-valuemin</code> and <code>aria-valuemax</code> properties are used to inform assistive technologies of the minimum and maximum values of the range.
+        For some widgets, assistive technologies use this information to present the current value as a percentage.
+        When using these properties, set <code>aria-valuemin</code> to the lowest value allowed for the widget and <code>aria-valuemax</code> to the highest allowed value.
+        If a range widget represents a value that does not have known limits, omit both <code>aria-valuemin</code> and <code>aria-valuemax</code>.
       </p>
-
       <p>
-        When the range is unknown, omit both <code>aria-valuemin</code> and <code>aria-valuemax</code>.
-        An example of a range element with undefined range is a spin button that doesn't have any minimum or maximum value.
-        See the the <a href="#range_related_properties_spinbutton_role">Range properties with spin buttons</a> section below.
+        The range widget roles have the following default values and requirements for <code>aria-valuemin</code> and <code>aria-valuemax</code>.
       </p>
-
-      <p>
-        For the different roles where these properties are allowed, some properties are required, and some have default values, as shown in the following table:
-      </p>
-
       <table>
         <thead>
           <tr>
@@ -6502,37 +6495,37 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
         </thead>
         <tbody>
           <tr>
-            <td><code>meter</code></td>
+            <th><code>meter</code></th>
             <td>no default</td>
             <td>no default</td>
             <td>Yes</td>
           </tr>
           <tr>
-            <td><code>progressbar</code></td>
+            <th><code>progressbar</code></th>
             <td>0</td>
             <td>100</td>
             <td>No</td>
           </tr>
           <tr>
-            <td><code>scrollbar</code></td>
+            <th><code>scrollbar</code></th>
             <td>0</td>
             <td>100</td>
             <td>No</td>
           </tr>
           <tr>
-            <td><code>separator</code></td>
+            <th><code>separator</code></th>
             <td>0</td>
             <td>100</td>
             <td>No</td>
           </tr>
           <tr>
-            <td><code>slider</code></td>
+            <th><code>slider</code></th>
             <td>0</td>
             <td>100</td>
             <td>No</td>
           </tr>
           <tr>
-            <td><code>spinbutton</code></td>
+            <th><code>spinbutton</code></th>
             <td>no default</td>
             <td>no default</td>
             <td>No</td>
