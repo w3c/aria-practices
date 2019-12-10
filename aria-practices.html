@@ -6427,16 +6427,20 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
 
   <section id="range_related_properties">
     <h2>Communicating Value and Limits of Range Widgets</h2>
-
     <p>
-      ARIA includes five widget roles defined as ranges, which means they communicate a numeric value, typically within defined limits.
-      For example, a spin button for choosing a day within the month of January would allow integer values from 1 to 31. 
+      ARIA defines the following widget roles as ranges, which means they communicate a numeric value, typically within defined limits.
     </p>
-
+    <ul>
+      <li><code>meter</code></li>
+      <li><code>progressbar</code></li>
+      <li><code>scrollbar</code></li>
+      <li><code>separator</code> (if the element is focusable)</li>
+      <li><code>slider</code></li>
+      <li><code>spinbutton</code></li>
+    </ul>
     <p>
-      ARIA provides the following four properties for communicating the attributes of a range widget:
+      This section describes considerations for using the following four properties that communicate characteristics of a range widget:
     </p>
-
     <table>
       <thead>
         <tr>
@@ -6463,19 +6467,6 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
         </tr>
       </tbody>
     </table>
-
-    <p>
-      These properties are supported by the following roles:
-    </p>
-
-    <ul>
-      <li><code>meter</code></li>
-      <li><code>progressbar</code></li>
-      <li><code>scrollbar</code></li>
-      <li><code>separator</code> (if the element is focusable)</li>
-      <li><code>slider</code></li>
-      <li><code>spinbutton</code></li>
-    </ul>
 
     <section id="range_related_properties_using_aria-valuemin_and_aria-valuemax">
       <h3>Using <code>aria-valuemin</code> and <code>aria-valuemax</code></h3>
