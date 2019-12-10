@@ -6428,7 +6428,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
   <section id="range_related_properties">
     <h2>Communicating Value and Limits of Range Widgets</h2>
     <p>
-      ARIA defines the following widget roles as ranges, which means they communicate a numeric value, typically within defined limits.
+      ARIA defines the following roles as range widgets, which means they communicate a value that is typically numeric and is constrained to defined limits.
     </p>
     <ul>
       <li><code>meter</code></li>
@@ -6438,6 +6438,11 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
       <li><code>slider</code></li>
       <li><code>spinbutton</code></li>
     </ul>
+    <p>
+      For example, a spin button for choosing a day within the month of January would allow integer values that range from 1 to 31.
+      In some cases, the value is represented numericaly, but is not presented as a number to users.
+      For instance, a spin button for choosing a day of the week could support values from 1 to 7 but they could be presented to the user as day names, e.g., "Monday", "Tuesday", etc.
+    </p>
     <p>
       This section describes considerations for using the following four properties that communicate characteristics of a range widget:
     </p>
