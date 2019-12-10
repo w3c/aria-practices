@@ -6426,14 +6426,15 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
   </section>
 
   <section id="range_related_properties">
-    <h2>Communicating Value for Range Widgets</h2>
+    <h2>Communicating Value and Limits of Range Widgets</h2>
 
     <p>
-      A range widget is a widget that can have a value within a range of possible values.
+      ARIA includes five widget roles defined as ranges, which means they communicate a numeric value, typically within defined limits.
+      For example, a spin button for choosing a day within the month of January would allow integer values from 1 to 31. 
     </p>
 
     <p>
-      ARIA provides the following four properties for communicating on the attributes of a range widget:
+      ARIA provides the following four properties for communicating the attributes of a range widget:
     </p>
 
     <table>
@@ -6445,36 +6446,26 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
       </thead>
       <tbody>
         <tr>
-          <td><code>aria-valuemin</code></td>
-          <td>Defines the minimum value in the range.</td>
+          <th><code>aria-valuemin</code></th>
+          <td>Defines the minimum value of the range.</td>
         </tr>
         <tr>
-          <td><code>aria-valuemax</code></td>
-          <td>Defines the maximum value in the range.</td>
+          <th><code>aria-valuemax</code></th>
+          <td>Defines the maximum value of the range.</td>
         </tr>
         <tr>
-          <td><code>aria-valuenow</code></td>
-          <td>Defines the value of the element. This value is a number between <code>aria-valuemin</code> and <code>aria-valuemax</code> (if they are present).</td>
+          <th><code>aria-valuenow</code></th>
+          <td>Defines the value of the element. This value is a number greater than or equal to <code>aria-valuemin</code> and less than or equal to <code>aria-valuemax</code> (if they are specified).</td>
         </tr>
         <tr>
-          <td><code>aria-valuetext</code></td>
-          <td>Defines a description of the value of the element.</td>
+          <th><code>aria-valuetext</code></th>
+          <td>When a numeric value is not sufficiently descriptive, this can be used to define a description of the value of the element.</td>
         </tr>
       </tbody>
     </table>
 
     <p>
-      The range related properties are used to describe an element whose value can be one of a range of values to assistive technologies.
-      These properties communicate the maximum and minimum values for the element and the element's current value.
-    </p>
-
-    <p>
-      The range properties can also be used to describe an element whose value can be one of a list of non-numeric values.
-      In this scenario, all possible text values of the element will be programmatically mapped to numbers within the numeric range by the author.
-    </p>
-
-    <p>
-      These attributes are used with the following roles:
+      These properties are supported by the following roles:
     </p>
 
     <ul>
