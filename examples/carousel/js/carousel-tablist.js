@@ -34,7 +34,7 @@ var CarouselTablist = function (node) {
 
   var nodes = node.querySelectorAll('[role="tab"]');
 
-  for (let i = 0; i < nodes.length; i++) {
+  for (var i = 0; i < nodes.length; i++) {
     var n = nodes[i];
 
     this.tabNodes.push(n);
@@ -134,7 +134,7 @@ CarouselTablist.prototype.setSelectedTab = function (newTab, moveFocus) {
     moveFocus = false;
   }
 
-  for (let i = 0; i < this.tabNodes.length; i++) {
+  for (var i = 0; i < this.tabNodes.length; i++) {
     this.hideTabpanel(this.tabNodes[i]);
   }
 
