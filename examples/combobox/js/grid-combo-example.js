@@ -90,7 +90,6 @@ function searchVeggies (searchString) {
  */
 window.addEventListener('load', function () {
   var ex1Combobox = new aria.GridCombobox(
-    document.getElementById('ex1-combobox'),
     document.getElementById('ex1-input'),
     document.getElementById('ex1-grid'),
     searchVeggies
