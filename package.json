@@ -55,5 +55,10 @@
       "eslint --fix",
       "git add"
     ]
+  },
+  "ava": {
+    "files": [
+      "test/tests/*"
+    ]
   }
 }
