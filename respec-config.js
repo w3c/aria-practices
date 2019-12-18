@@ -5,7 +5,7 @@ var respecConfig = {
   permalinkEdge: true,
   permalinkHide: false,
   // Specification status (e.g., WD, LC, NOTE, etc.). If in doubt use ED.
-  specStatus: 'ED',
+  specStatus: 'WD',
   // crEnd: "2012-04-30",
   // perEnd: "2013-07-23",
   // publishDate: "2013-08-22",
@@ -24,8 +24,8 @@ var respecConfig = {
   // If there is a previously published draft, uncomment this
   // and set its YYYY-MM-DD date and its maturity status.
   //
-  // previousPublishDate:  "",
-  // previousMaturity:  "",
+  previousPublishDate:  "2018-12-18",
+  previousMaturity:  "WD",
   // prevRecURI: "",
   // previousDiffURI: "",
 
