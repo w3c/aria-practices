@@ -237,3 +237,7 @@
   stroke: #005a9c;
   opacity: 1;
 }
+
+.carousel-tablist [role="tab"][aria-selected="true"]:hover circle.tab {
+  fill: white;
+}

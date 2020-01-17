@@ -1,6 +1,10 @@
 
 /* .carousel-tablist */
 
+.carousel-tablist {
+  background-color: #eee;
+}
+
 .carousel-tablist .carousel-inner {
   position: relative;
 }
@@ -233,4 +237,8 @@
   fill: #005a9c;
   stroke: #005a9c;
   opacity: 1;
+}
+
+.carousel-tablist [role="tab"][aria-selected="true"]:hover circle.tab {
+  fill: white;
 }
