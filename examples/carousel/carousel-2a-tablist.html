@@ -11,38 +11,11 @@
     <script src="../js/highlight.pack.js"></script>
     <script src="../js/app.js"></script>
 
-    <link rel="stylesheet" href="css/carousel-2-tablist.css">
+    <link rel="stylesheet" href="css/carousel-2a-tablist.css">
     <script src="js/carousel-tablist.js" type="text/javascript"></script>
 
-    <script>
-
-      window.addEventListener('load', function() {
-        var tablists = document.querySelectorAll('.carousel-tablist');
-
-        for (var i = 0; i < tablists.length; i++) {
-          var tablist = tablists[i].querySelector('[role=tablist]');
-          var items   = tablists[i].querySelector('.carousel-items');
-          width1 = tablist.getBoundingClientRect().width;
-          width2 = items.getBoundingClientRect().width;
-          tablist.style.left = (((width2-width1)/2) - 30) +'px';
-        }
-      });
-
-      window.addEventListener('resize', function () {
-        var tablists = document.querySelectorAll('.carousel-tablist');
-
-        for (var i = 0; i < tablists.length; i++) {
-          var tablist = tablists[i].querySelector('[role=tablist]');
-          var items   = tablists[i].querySelector('.carousel-items');
-          width1 = tablist.getBoundingClientRect().width;
-          width2 = items.getBoundingClientRect().width;
-          tablist.style.left = (((width2-width1)/2) - 30) +'px';
-        }
-      });
-
-    </script>
-
-  </head>  <body>
+  </head>
+  <body>
     <nav aria-label="Related Links" class="feedback">
       <ul>
         <li><a href="../../#browser_and_AT_support">Browser and Assistive Technology Support</a></li>
@@ -50,8 +23,10 @@
         <li><a href="https://github.com/w3c/aria-practices/projects/10">Related Issues</a></li>
         <li><a href="../../#carousel">Design Pattern</a></li>
       </ul>
-    </na
-    centerTablist(controls, items);v
+    </nav>
+    <main>
+      <h1>Example of Image Carousel with Automatically Rotating Images using a Tablist</h1>
+        <p>
           Comments on this example are tracked in
           <a href="https://github.com/w3c/aria-practices/pull/1120">Pull request 1120.</a>
         </p>
@@ -66,8 +41,8 @@
       <section>
         <h2>Example View Options</h2>
         <ul>
-          <li><a href="carousel-2-tablist.html" aria-current="page">Tablist carousel controls and captions displayed on image</a>: This option is less accessible than the following option because the controls are harder to perceive and captions are more difficult to read with rotating images behind them.</li>
-          <li><a href="carousel-2a-tablist.html?moreaccessible">Tablist carousel controls and captions displayed above and below the image</a>: This option is preferable because controls and captions are easier to perceive, especially for people with visual impairments.</li>
+          <li><a href="carousel-2-tablist.html">Tablist carousel controls and captions displayed on image</a>: This option is less accessible than the following option because the controls are harder to perceive and captions are more difficult to read with rotating images behind them.</li>
+          <li><a href="carousel-2a-tablist.html" aria-current="page">Tablist carousel controls and captions displayed above and below the image</a>: This option is preferable because controls and captions are easier to perceive, especially for people with visual impairments.</li>
         </ul>
       </section>
 
