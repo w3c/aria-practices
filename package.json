@@ -29,7 +29,7 @@
   },
   "homepage": "https://github.com/w3c/aria-practices#readme",
   "devDependencies": {
-    "ava": "^2.2.0",
+    "ava": "^3.0.0",
     "cheerio": "^1.0.0-rc.2",
     "eslint": "^6.0.1",
     "geckodriver": "^1.19.1",
