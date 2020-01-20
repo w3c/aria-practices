@@ -110,7 +110,7 @@ CarouselTablist.prototype.centerTablistControls = function () {
   width1 = this.tablistNode.getBoundingClientRect().width;
   width2 = this.containerNode.getBoundingClientRect().width;
   width3 = this.pauseButtonNode.getBoundingClientRect().width;
-  this.tablistNode.style.left = ((width2-width1)/2) - width3 +'px';
+  this.tablistNode.style.left = (((width2-width1)/2) - (3*width3/2)) +'px';
 }
 
 
