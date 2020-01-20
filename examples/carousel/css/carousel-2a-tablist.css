@@ -158,8 +158,6 @@
 /* Shared CSS for Tabs */
 
 .carousel-tablist [role="tablist"] {
-  position: relative;
-  top: 4px;
   text-align: center;
 }
 
@@ -169,6 +167,8 @@
   border-radius: 13px;
   height: 26px;
   background-color: transparent;
+  position: relative;
+  top: 4px;
 }
 
 .carousel-tablist [role="tablist"] .focus {

@@ -9,6 +9,9 @@ var CarouselTablist = function (node) {
 
   this.domNode = node;
 
+  this.tablistNode = node.querySelector('[role=tablist]');
+  this.containerNode = node.querySelector('.carousel-items');
+
   this.tabNodes = [];
   this.tabpanelNodes = [];
 
@@ -17,7 +20,7 @@ var CarouselTablist = function (node) {
   this.currentTabNode = null;
 
   this.liveRegionNode = null;
-  this.pauseButton = null;
+  this.pauseButtonNode = null;
 
   this.playLabel = 'Start automatic slide show';
   this.pauseLabel = 'Stop automatic slide show';
@@ -29,6 +32,8 @@ var CarouselTablist = function (node) {
   this.timeInterval = 5000;
 
   this.liveRegionNode = node.querySelector('.carousel-items');
+
+  // initialize Centering of tab controls
 
   // initialize tabs
 
@@ -80,19 +85,34 @@ var CarouselTablist = function (node) {
 
   var elem = document.querySelector('.carousel-tablist .controls button.rotation');
   if (elem) {
-    this.pauseButton = elem;
-    this.pauseButton.classList.add('pause');
-    this.pauseButton.setAttribute('aria-label', this.pauseLabel);
-    this.pauseButton.addEventListener('click', this.handlePauseButtonClick.bind(this));
+    this.pauseButtonNode = elem;
+    this.pauseButtonNode.classList.add('pause');
+    this.pauseButtonNode.setAttribute('aria-label', this.pauseLabel);
+    this.pauseButtonNode.addEventListener('click', this.handlePauseButtonClick.bind(this));
   }
 
   this.domNode.addEventListener('mouseover', this.handleMouseOver.bind(this));
   this.domNode.addEventListener('mouseout', this.handleMouseOut.bind(this));
 
+  // Center Tablist Controls
+
+  if (this.tablistNode.style.textAlign != 'center') {
+    this.centerTablistControls();
+    window.addEventListener('resize', this.centerTablistControls.bind(this));
+  }
+
   // Start rotation
   setTimeout(this.rotateSlides.bind(this), this.timeInterval);
 
 }
+
+CarouselTablist.prototype.centerTablistControls = function () {
+  width1 = this.tablistNode.getBoundingClientRect().width;
+  width2 = this.containerNode.getBoundingClientRect().width;
+  width3 = this.pauseButtonNode.getBoundingClientRect().width;
+  this.tablistNode.style.left = ((width2-width1)/2) - width3 +'px';
+}
+
 
 CarouselTablist.prototype.getTabpanelNode = function (tabNode) {
   var index = this.tabNodes.indexOf(tabNode);
@@ -220,14 +240,14 @@ CarouselTablist.prototype.updateRotation = function () {
   }
 
   if (this.isStopped) {
-    this.pauseButton.setAttribute('aria-label', this.playLabel);
-    this.pauseButton.classList.remove('pause');
-    this.pauseButton.classList.add('play');
+    this.pauseButtonNode.setAttribute('aria-label', this.playLabel);
+    this.pauseButtonNode.classList.remove('pause');
+    this.pauseButtonNode.classList.add('play');
   }
   else {
-    this.pauseButton.setAttribute('aria-label', this.pauseLabel);
-    this.pauseButton.classList.remove('play');
-    this.pauseButton.classList.add('pause');
+    this.pauseButtonNode.setAttribute('aria-label', this.pauseLabel);
+    this.pauseButtonNode.classList.remove('play');
+    this.pauseButtonNode.classList.add('pause');
   }
 
 
@@ -258,7 +278,7 @@ CarouselTablist.prototype.handleImageLinkBlur = function () {
 }
 
 CarouselTablist.prototype.handleMouseOver = function (event) {
-  if (!this.pauseButton.contains(event.target)) {
+  if (!this.pauseButtonNode.contains(event.target)) {
     this.hasHover = true;
   }
   this.updateRotation();
