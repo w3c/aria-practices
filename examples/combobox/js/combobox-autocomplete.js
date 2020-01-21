@@ -108,9 +108,9 @@ ComboboxAutocomplete.prototype.setOption = function (option, flag) {
     this.option = option;
     this.setCurrentOptionStyle(this.option);
     this.setActiveDescendant(this.option);
+    this.comboboxNode.value = this.option.textContent;
 
     if (this.isBoth) {
-      this.comboboxNode.value = this.option.textContent;
       if (flag) {
         this.comboboxNode.setSelectionRange(this.option.textContent.length,this.option.textContent.length);
       }
