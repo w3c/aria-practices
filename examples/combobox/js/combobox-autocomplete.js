@@ -94,9 +94,7 @@ ComboboxAutocomplete.prototype.setValue = function (value) {
   this.filter = value;
   this.comboboxNode.value = this.filter;
   this.comboboxNode.setSelectionRange(this.filter.length,this.filter.length);
-  if (this.isList || this.isBoth) {
-    this.filterOptions();
-  }
+  this.filterOptions();
 };
 
 ComboboxAutocomplete.prototype.setOption = function (option, flag) {
@@ -149,6 +147,11 @@ ComboboxAutocomplete.prototype.removeVisualFocusAll = function () {
 // ComboboxAutocomplete Events
 
 ComboboxAutocomplete.prototype.filterOptions = function () {
+
+  // do not filter any options if autocomplete is none
+  if (this.isNone) {
+    this.filter = '';
+  }
 
   var currentOption = this.option;
   var filter = this.filter.toLowerCase();
