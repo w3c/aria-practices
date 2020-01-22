@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<title>Button Examples (IDL Version) | WAI-ARIA Authoring Practices 1.2</title>
+
+  <!-- Core JS and CSS shared by all examples. Do not modify when using this template. -->
+  <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
+  <link rel="stylesheet" href="../css/core.css">
+  <script src="../js/examples.js"></script>
+  <script src="../js/highlight.pack.js"></script>
+  <script src="../js/app.js"></script>
+
+  <!-- CSS and JS for this example. -->
+  <link rel="stylesheet" href="css/button.css">
+  <script src="js/button_idl.js"></script>
+</head>
+<body>
+  <nav aria-label="Related Links" class="feedback">
+    <ul>
+      <li><a href="../../#browser_and_AT_support">Browser and Assistive Technology Support</a></li>
+      <li><a href="https://github.com/w3c/aria-practices/issues/new">Report Issue</a></li>
+      <li><a href="https://github.com/w3c/aria-practices/projects/14">Related Issues</a></li>
+      <li><a href="../../#button">Design Pattern</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <h1>Button Examples (IDL Version)</h1>
+    <p>
+      The following examples of the <a href="../../#button">button design pattern</a> demonstrate a new JavaScript syntax for coding ARIA attributes.
+    </p>
+    <p>
+      The JavaScript for the example buttons on this page uses the <a href="https://www.w3.org/TR/wai-aria-1.2/#idl-interface">IDL Interface defined in ARIA 1.2</a>.
+      The purpose of these examples is to illustrate how to use IDL for ARIA Attribute Reflection and provide a test case for browser and assistive technology interoperability.
+      Specifically, the <code>role</code> and <code>ariaPressed</code> attributes are accessed using dot notation instead of <code>setAttribute()</code> and <code>getAttribute()</code>.
+      In all other respects, these examples are identical to the <a href="button.html">Button Examples</a>.
+    </p>
+
+    <section>
+      <h2 id="ex_label">Example</h2>
+
+      <p>
+        <strong>IMPORTANT:</strong> This example uses features of the draft ARIA 1.2 specification. As a draft specification, it is subject to change. Support provided by browsers or assistive technologies is experimental.
+      </p>
+      <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>
+
+      <div id="example">
+        <p>This <q>Print</q> action button uses a <code>div</code> element.</p>
+        <div tabindex="0" id="action">Print Page</div>
+
+        <p>This <q>Mute</q> toggle button uses an <code>a</code> element.</p>
+        <a tabindex="0" id="toggle">
+          Mute
+          <svg aria-hidden="true" focusable="false">
+            <use xlink:href="images/mute.svg#icon-sound"></use>
+          </svg>
+        </a>
+      </div>
+
+      <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
+    </section>
+
+    <section>
+      <h2 id="kbd_label">Keyboard Support</h2>
+
+      <table aria-labelledby="kbd_label" class="def">
+        <thead>
+          <tr>
+            <th>Key</th>
+            <th>Function</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-test-id="key-enter">
+            <th><kbd>Enter</kbd></th>
+            <td>Activates the button.</td>
+          </tr>
+          <tr data-test-id="key-space">
+            <th><kbd>Space</kbd></th>
+            <td>Activates the button.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2 id="rps_label">Role, Property, State, and Tabindex Attributes</h2>
+
+      <table aria-labelledby="rps_label" class="data attributes">
+        <thead>
+          <tr>
+            <th scope="col">Role</th>
+            <th scope="col">Attribute</th>
+            <th scope="col">Element</th>
+            <th scope="col">Usage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr data-test-id="button-role">
+            <th scope="row"><code>button</code></th>
+            <td></td>
+            <td>
+              <code>div</code>, <code>a</code>
+            </td>
+            <td>
+              <ul>
+                <li>Set in javascript with <code>element.role = 'button';</code>.</li>
+                <li>Identifies the element as a <code>button</code> widget.</li>
+                <li>Accessible name for the button is defined by the text content of the element.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr data-test-id="button-tabindex">
+            <td></td>
+            <th scope="row">
+              <code>tabindex="0"</code>
+            </th>
+            <td>
+              <code>div</code>, <code>a</code>
+            </td>
+            <td>
+              <ul>
+                <li>Includes the element in the tab sequence.</li>
+                <li>Needed on the <code>a</code> element because it does not have a <code>href</code> attribute.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr data-test-id="button-aria-pressed">
+            <td></td>
+            <th scope="row"><code>aria-pressed="false"</code></th>
+            <td><code>a</code></td>
+            <td>
+              <ul>
+                <li>Set in javascript with <code>button.ariaPressed = 'false';</code>.</li>
+                <li>Identifies the button as a toggle button.</li>
+                <li>Indicates the toggle button is not pressed.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr data-test-id="button-aria-pressed">
+            <td></td>
+            <th scope="row"><code>aria-pressed="true"</code></th>
+            <td><code>a</code></td>
+            <td>
+              <ul>
+                <li>Set in javascript with <code>button.ariaPressed = 'true';</code>.</li>
+                <li>Identifies the button as a toggle button.</li>
+                <li>Indicates the toggle button is pressed.</li>
+              </ul>
+            </td>
+          </tr>
+          <tr data-test-id="svg-aria-hidden">
+            <td></td>
+            <th scope="row"><code>aria-hidden="true"</code></th>
+            <td><code>svg</code></td>
+            <td>Excludes SVG from accessible name calculation for the button.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Javascript and CSS Source Code</h2>
+
+      <ul>
+        <li>
+          CSS:
+          <a href="css/button.css" type="text/css">button.css</a>
+        </li>
+        <li>
+          Javascript:
+          <a href="js/button_idl.js" type="text/javascript">button_idl.js</a>
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 id="sc1_label">HTML Source Code</h2>
+
+      <div role="separator" id="sc1_start_sep" aria-labelledby="sc1_start_sep sc1_label" aria-label="Start of"></div>
+
+      <pre><code id="source1"></code></pre>
+
+      <div role="separator" id="sc1_end_sep" aria-labelledby="sc1_end_sep sc1_label" aria-label="End of"></div>
+
+      <script>
+        sourceCode.add('source1', 'example');
+        sourceCode.make();
+      </script>
+    </section>
+  </main>
+
+  <nav>
+    <a href="../../#button">Button Design Pattern in WAI-ARIA Authoring Practices 1.1</a>
+  </nav>
+</body>
+</html>

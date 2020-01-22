@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Auto-Rotating Image Carousel Example | WAI-ARIA Authoring Practices 1.1</title>
+    <title>Auto-Rotating Image Carousel Example | WAI-ARIA Authoring Practices 1.2</title>
 
     <!--  Core js and css shared by all examples; do not modify when using this template. -->
     <link rel="stylesheet" href="https://www.w3.org/StyleSheets/TR/2016/base.css">
@@ -64,7 +64,7 @@
 
                 <div class="controls">
 
-                  <button class="rotation pause"
+                  <button type="button" class="rotation pause"
                           aria-label="Stop automatic slide show">
                     <svg width="42" height="34" version="1.1" xmlns="http://www.w3.org/2000/svg">
                       <rect class="background" x="2" y="2" rx="5" ry="5" width="38" height="24"/>
@@ -80,7 +80,7 @@
                   </button>
 
 
-                  <button class="previous"
+                  <button type="button" class="previous"
                      aria-controls="myCarousel-items"
                      aria-label="Previous Slide">
                     <svg width="42" height="34" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -90,7 +90,7 @@
                     </svg>
                   </button>
 
-                  <button class="next"
+                  <button type="button" class="next"
                      aria-controls="myCarousel-items"
                      aria-label="Next Slide">
                     <svg width="42" height="34" version="1.1" xmlns="http://www.w3.org/2000/svg">
@@ -285,7 +285,7 @@
         </p>
         <ul>
           <li>
-            When the rotation control, next slide,  and previous slide buttons are rendered on top of the carousel images, the buttons have forground and background colors that meet WCAG 2.1 color contrast requirements.
+            When the rotation control, next slide,  and previous slide buttons are rendered on top of the carousel images, the buttons have foreground and background colors that meet WCAG 2.1 color contrast requirements.
             In addition, the focus styling uses SVG images that make the focus indicator highly visible when a control receives keyboard focus.
           </li>
           <li>The transparency of the caption area is decreased so the caption text meets the WCAG 2.1 color contrast requirements.</li>
@@ -533,7 +533,7 @@
     </main>
 
     <nav>
-      <a href="../../#carousel">Carousel Pattern in WAI-ARIA Authoring Practices 1.1</a>
+      <a href="../../#carousel">Carousel Pattern in WAI-ARIA Authoring Practices 1.2</a>
     </nav>
 
   </body>

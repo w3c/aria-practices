@@ -87,7 +87,7 @@ function PillList (grid, input, submitButton, formUpdateText) {
   this.submitButton.addEventListener('click', this.submitItemForm.bind(this));
   this.grid.gridNode.addEventListener('click', this.checkRemovePill.bind(this));
   this.grid.gridNode.addEventListener('keydown', this.checkRemovePill.bind(this));
-};
+}
 
 PillList.prototype.checkSubmitItem = function (event) {
   var key = event.which || event.keyCode;
