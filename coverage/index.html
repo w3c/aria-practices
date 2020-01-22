@@ -41,7 +41,7 @@
     </section>
 
     <section id="roles_with_no_examples">
-      <h2 id="roles_with_no_examples_label">Roles with No Guidance or Examples (<span id="roles_with_no_examples_count">20</span>)</h2>
+      <h2 id="roles_with_no_examples_label">Roles with No Guidance or Examples (<span id="roles_with_no_examples_count">21</span>)</h2>
       <ul id="roles_with_no_examples_ul">
             <li><code>application</code></li>
             <li><code>definition</code></li>
@@ -62,11 +62,12 @@
             <li><code>status</code></li>
             <li><code>switch</code></li>
             <li><code>term</code></li>
+            <li><code>textbox</code></li>
             <li><code>timer</code></li></ul>
     </section>
 
     <section id="roles_with_one_example">
-      <h2 id="roles_with_one_example_label">Roles with at Least One Guidance or Example (<span id="roles_with_one_example_count">17</span>)</h2>
+      <h2 id="roles_with_one_example_label">Roles with at Least One Guidance or Example (<span id="roles_with_one_example_count">16</span>)</h2>
       <table aria-labelledby="roles_with_one_example_label" class="data attributes">
         <thead>
           <tr>
@@ -176,12 +177,6 @@
 </td>
           </tr>
           <tr>
-            <td><code>textbox</code></td>
-            <td><a href="../aria-practices.html#combobox">Textbox Keyboard Interaction</a>
-</td>
-            <td><abbr title="none" style="color: gray">-</abbr></td>
-          </tr>
-          <tr>
             <td><code>tooltip</code></td>
             <td><a href="../aria-practices.html#tooltip">Tooltip Widget</a>
 </td>
@@ -218,7 +213,10 @@
         <li><a href="../aria-practices.html#menubutton">Menu Button</a></li>
             </ul>
 </td>
-            <td><a href="../examples/button/button.html">Button</a>
+            <td><ul>
+        <li><a href="../examples/button/button_idl.html">Button  (IDL Version)</a></li>
+        <li><a href="../examples/button/button.html">Button</a></li>
+            </ul>
 </td>
           </tr>
           <tr>
@@ -243,13 +241,16 @@
           </tr>
           <tr>
             <td><code>combobox</code></td>
-            <td><abbr title="none" style="color: gray">-</abbr></td>
             <td><ul>
-        <li><a href="../examples/combobox/aria1.0pattern/combobox-autocomplete-both.html">Legacy ARIA 1.0 Combobox With Both List and Inline Autocomplete</a></li>
-        <li><a href="../examples/combobox/aria1.0pattern/combobox-autocomplete-list.html">Legacy ARIA 1.0 Combobox With List Autocomplete</a></li>
-        <li><a href="../examples/combobox/aria1.0pattern/combobox-autocomplete-none.html">Legacy ARIA 1.0 Combobox without Autocomplete</a></li>
-        <li><a href="../examples/combobox/aria1.1pattern/grid-combo.html">ARIA 1.1 Combobox with Grid Popup</a></li>
-        <li><a href="../examples/combobox/aria1.1pattern/listbox-combo.html">ARIA 1.1 Combobox with Listbox Popup</a></li>
+        <li><a href="../aria-practices.html#combobox">Combobox</a></li>
+        <li><a href="../aria-practices.html#combobox">Combobox Keyboard Interaction</a></li>
+            </ul>
+</td>
+            <td><ul>
+        <li><a href="../examples/combobox/combobox-autocomplete-both.html">Editable Combobox With Both List and Inline Autocomplete</a></li>
+        <li><a href="../examples/combobox/combobox-autocomplete-list.html">Editable Combobox With List Autocomplete</a></li>
+        <li><a href="../examples/combobox/combobox-autocomplete-none.html">Editable Combobox without Autocomplete</a></li>
+        <li><a href="../examples/combobox/grid-combo.html">Editable Combobox with Grid Popup</a></li>
             </ul>
 </td>
           </tr>
@@ -285,7 +286,7 @@
             </ul>
 </td>
             <td><ul>
-        <li><a href="../examples/combobox/aria1.1pattern/grid-combo.html">ARIA 1.1 Combobox with Grid Popup</a></li>
+        <li><a href="../examples/combobox/grid-combo.html">Editable Combobox with Grid Popup</a></li>
         <li><a href="../examples/dialog-modal/datepicker-dialog.html">Date Picker Dialog</a></li>
         <li><a href="../examples/grid/dataGrids.html">Data Grid</a></li>
         <li><a href="../examples/grid/LayoutGrids.html">Layout Grid</a></li>
@@ -318,11 +319,11 @@
             </ul>
 </td>
             <td><ul>
-        <li><a href="../examples/combobox/aria1.0pattern/combobox-autocomplete-both.html">Legacy ARIA 1.0 Combobox With Both List and Inline Autocomplete</a></li>
-        <li><a href="../examples/combobox/aria1.0pattern/combobox-autocomplete-list.html">Legacy ARIA 1.0 Combobox With List Autocomplete</a></li>
-        <li><a href="../examples/combobox/aria1.0pattern/combobox-autocomplete-none.html">Legacy ARIA 1.0 Combobox without Autocomplete</a></li>
-        <li><a href="../examples/combobox/aria1.1pattern/listbox-combo.html">ARIA 1.1 Combobox with Listbox Popup</a></li>
+        <li><a href="../examples/combobox/combobox-autocomplete-both.html">Editable Combobox With Both List and Inline Autocomplete</a></li>
+        <li><a href="../examples/combobox/combobox-autocomplete-list.html">Editable Combobox With List Autocomplete</a></li>
+        <li><a href="../examples/combobox/combobox-autocomplete-none.html">Editable Combobox without Autocomplete</a></li>
         <li><a href="../examples/listbox/listbox-collapsible.html">Collapsible Dropdown Listbox</a></li>
+        <li><a href="../examples/listbox/listbox-grouped.html">Listbox  with Grouped Options</a></li>
         <li><a href="../examples/listbox/listbox-rearrangeable.html">Listboxes with Rearrangeable Options</a></li>
         <li><a href="../examples/listbox/listbox-scrollable.html">Scrollable Listbox</a></li>
             </ul>
@@ -400,10 +401,9 @@
             <td><code>option</code></td>
             <td><abbr title="none" style="color: gray">-</abbr></td>
             <td><ul>
-        <li><a href="../examples/combobox/aria1.0pattern/combobox-autocomplete-both.html">Legacy ARIA 1.0 Combobox With Both List and Inline Autocomplete</a></li>
-        <li><a href="../examples/combobox/aria1.0pattern/combobox-autocomplete-list.html">Legacy ARIA 1.0 Combobox With List Autocomplete</a></li>
-        <li><a href="../examples/combobox/aria1.0pattern/combobox-autocomplete-none.html">Legacy ARIA 1.0 Combobox without Autocomplete</a></li>
-        <li><a href="../examples/combobox/aria1.1pattern/listbox-combo.html">ARIA 1.1 Combobox with Listbox Popup</a></li>
+        <li><a href="../examples/combobox/combobox-autocomplete-both.html">Editable Combobox With Both List and Inline Autocomplete</a></li>
+        <li><a href="../examples/combobox/combobox-autocomplete-list.html">Editable Combobox With List Autocomplete</a></li>
+        <li><a href="../examples/combobox/combobox-autocomplete-none.html">Editable Combobox without Autocomplete</a></li>
             </ul>
 </td>
           </tr>
@@ -459,7 +459,7 @@
             <td><a href="../aria-practices.html#grid">Grids : Interactive Tabular Data and Layout Containers (D)</a>
 </td>
             <td><ul>
-        <li><a href="../examples/combobox/aria1.1pattern/grid-combo.html">ARIA 1.1 Combobox with Grid Popup</a></li>
+        <li><a href="../examples/combobox/grid-combo.html">Editable Combobox with Grid Popup</a></li>
         <li><a href="../examples/grid/LayoutGrids.html">Layout Grid</a></li>
         <li><a href="../examples/table/table.html">Table</a></li>
         <li><a href="../examples/treegrid/treegrid-1.html">Treegrid Email Inbox</a></li>
@@ -580,7 +580,7 @@
     </section>
 
     <section id="props_with_no_examples">
-      <h2 id="props_with_no_examples_label">Properties and States with No Guidance or Examples (<span id="props_with_no_examples_count">11</span>)</h2>
+      <h2 id="props_with_no_examples_label">Properties and States with No Guidance or Examples (<span id="props_with_no_examples_count">12</span>)</h2>
       <ul id="props_with_no_examples_ul">
             <li><code>aria-atomic</code></li>
             <li><code>aria-details</code></li>
@@ -589,6 +589,7 @@
             <li><code>aria-invalid</code></li>
             <li><code>aria-keyshortcuts</code></li>
             <li><code>aria-multiline</code></li>
+            <li><code>aria-owns</code></li>
             <li><code>aria-placeholder</code></li>
             <li><code>aria-readonly</code></li>
             <li><code>aria-relevant</code></li>
@@ -667,7 +668,7 @@
     </section>
 
     <section id="props_with_more_than_one_example">
-      <h2 id="props_with_more_than_one_label">Properties and States with More than One Guidance or Example (<span id="props_with_more_than_one_examples_count">26</span>)</h2>
+      <h2 id="props_with_more_than_one_label">Properties and States with More than One Guidance or Example (<span id="props_with_more_than_one_examples_count">25</span>)</h2>
       <table aria-labelledby="props_with_more_than_one_label" class="data attributes">
         <thead>
           <tr>
@@ -682,12 +683,12 @@
             <td><a href="../aria-practices.html#kbd_focus_activedescendant">Managing Focus in Composites Using aria-activedescendant</a>
 </td>
             <td><ul>
-        <li><a href="../examples/combobox/aria1.0pattern/combobox-autocomplete-both.html">Legacy ARIA 1.0 Combobox With Both List and Inline Autocomplete</a></li>
-        <li><a href="../examples/combobox/aria1.0pattern/combobox-autocomplete-list.html">Legacy ARIA 1.0 Combobox With List Autocomplete</a></li>
-        <li><a href="../examples/combobox/aria1.0pattern/combobox-autocomplete-none.html">Legacy ARIA 1.0 Combobox without Autocomplete</a></li>
-        <li><a href="../examples/combobox/aria1.1pattern/grid-combo.html">ARIA 1.1 Combobox with Grid Popup</a></li>
-        <li><a href="../examples/combobox/aria1.1pattern/listbox-combo.html">ARIA 1.1 Combobox with Listbox Popup</a></li>
+        <li><a href="../examples/combobox/combobox-autocomplete-both.html">Editable Combobox With Both List and Inline Autocomplete</a></li>
+        <li><a href="../examples/combobox/combobox-autocomplete-list.html">Editable Combobox With List Autocomplete</a></li>
+        <li><a href="../examples/combobox/combobox-autocomplete-none.html">Editable Combobox without Autocomplete</a></li>
+        <li><a href="../examples/combobox/grid-combo.html">Editable Combobox with Grid Popup</a></li>
         <li><a href="../examples/listbox/listbox-collapsible.html">Collapsible Dropdown Listbox</a></li>
+        <li><a href="../examples/listbox/listbox-grouped.html">Listbox  with Grouped Options</a></li>
         <li><a href="../examples/listbox/listbox-rearrangeable.html">Listboxes with Rearrangeable Options</a></li>
         <li><a href="../examples/listbox/listbox-scrollable.html">Scrollable Listbox</a></li>
         <li><a href="../examples/menu-button/menu-button-actions-active-descendant.html">Actions Menu Button  Using aria-activedescendant</a></li>
@@ -699,11 +700,10 @@
             <td><code>aria-autocomplete</code></td>
             <td><abbr title="none" style="color: gray">-</abbr></td>
             <td><ul>
-        <li><a href="../examples/combobox/aria1.0pattern/combobox-autocomplete-both.html">Legacy ARIA 1.0 Combobox With Both List and Inline Autocomplete</a></li>
-        <li><a href="../examples/combobox/aria1.0pattern/combobox-autocomplete-list.html">Legacy ARIA 1.0 Combobox With List Autocomplete</a></li>
-        <li><a href="../examples/combobox/aria1.0pattern/combobox-autocomplete-none.html">Legacy ARIA 1.0 Combobox without Autocomplete</a></li>
-        <li><a href="../examples/combobox/aria1.1pattern/grid-combo.html">ARIA 1.1 Combobox with Grid Popup</a></li>
-        <li><a href="../examples/combobox/aria1.1pattern/listbox-combo.html">ARIA 1.1 Combobox with Listbox Popup</a></li>
+        <li><a href="../examples/combobox/combobox-autocomplete-both.html">Editable Combobox With Both List and Inline Autocomplete</a></li>
+        <li><a href="../examples/combobox/combobox-autocomplete-list.html">Editable Combobox With List Autocomplete</a></li>
+        <li><a href="../examples/combobox/combobox-autocomplete-none.html">Editable Combobox without Autocomplete</a></li>
+        <li><a href="../examples/combobox/grid-combo.html">Editable Combobox with Grid Popup</a></li>
             </ul>
 </td>
           </tr>
@@ -736,8 +736,10 @@
             <td><ul>
         <li><a href="../examples/accordion/accordion.html">Accordion</a></li>
         <li><a href="../examples/checkbox/checkbox-2/checkbox-2.html">Checkbox  (Mixed-State)</a></li>
-        <li><a href="../examples/combobox/aria1.1pattern/grid-combo.html">ARIA 1.1 Combobox with Grid Popup</a></li>
-        <li><a href="../examples/combobox/aria1.1pattern/listbox-combo.html">ARIA 1.1 Combobox with Listbox Popup</a></li>
+        <li><a href="../examples/combobox/combobox-autocomplete-both.html">Editable Combobox With Both List and Inline Autocomplete</a></li>
+        <li><a href="../examples/combobox/combobox-autocomplete-list.html">Editable Combobox With List Autocomplete</a></li>
+        <li><a href="../examples/combobox/combobox-autocomplete-none.html">Editable Combobox without Autocomplete</a></li>
+        <li><a href="../examples/combobox/grid-combo.html">Editable Combobox with Grid Popup</a></li>
         <li><a href="../examples/disclosure/disclosure-faq.html">Disclosure (Show/Hide) for Answers to Frequently Asked Questions</a></li>
         <li><a href="../examples/disclosure/disclosure-img-long-description.html">Disclosure (Show/Hide) for Image Description</a></li>
         <li><a href="../examples/disclosure/disclosure-navigation.html">Disclosure for Navigation Menus</a></li>
@@ -777,11 +779,10 @@
             <td><abbr title="none" style="color: gray">-</abbr></td>
             <td><ul>
         <li><a href="../examples/accordion/accordion.html">Accordion</a></li>
-        <li><a href="../examples/combobox/aria1.0pattern/combobox-autocomplete-both.html">Legacy ARIA 1.0 Combobox With Both List and Inline Autocomplete</a></li>
-        <li><a href="../examples/combobox/aria1.0pattern/combobox-autocomplete-list.html">Legacy ARIA 1.0 Combobox With List Autocomplete</a></li>
-        <li><a href="../examples/combobox/aria1.0pattern/combobox-autocomplete-none.html">Legacy ARIA 1.0 Combobox without Autocomplete</a></li>
-        <li><a href="../examples/combobox/aria1.1pattern/grid-combo.html">ARIA 1.1 Combobox with Grid Popup</a></li>
-        <li><a href="../examples/combobox/aria1.1pattern/listbox-combo.html">ARIA 1.1 Combobox with Listbox Popup</a></li>
+        <li><a href="../examples/combobox/combobox-autocomplete-both.html">Editable Combobox With Both List and Inline Autocomplete</a></li>
+        <li><a href="../examples/combobox/combobox-autocomplete-list.html">Editable Combobox With List Autocomplete</a></li>
+        <li><a href="../examples/combobox/combobox-autocomplete-none.html">Editable Combobox without Autocomplete</a></li>
+        <li><a href="../examples/combobox/grid-combo.html">Editable Combobox with Grid Popup</a></li>
         <li><a href="../examples/disclosure/disclosure-faq.html">Disclosure (Show/Hide) for Answers to Frequently Asked Questions</a></li>
         <li><a href="../examples/disclosure/disclosure-img-long-description.html">Disclosure (Show/Hide) for Image Description</a></li>
         <li><a href="../examples/disclosure/disclosure-navigation.html">Disclosure for Navigation Menus</a></li>
@@ -804,11 +805,7 @@
             <td><code>aria-haspopup</code></td>
             <td><abbr title="none" style="color: gray">-</abbr></td>
             <td><ul>
-        <li><a href="../examples/combobox/aria1.0pattern/combobox-autocomplete-both.html">Legacy ARIA 1.0 Combobox With Both List and Inline Autocomplete</a></li>
-        <li><a href="../examples/combobox/aria1.0pattern/combobox-autocomplete-list.html">Legacy ARIA 1.0 Combobox With List Autocomplete</a></li>
-        <li><a href="../examples/combobox/aria1.0pattern/combobox-autocomplete-none.html">Legacy ARIA 1.0 Combobox without Autocomplete</a></li>
-        <li><a href="../examples/combobox/aria1.1pattern/grid-combo.html">ARIA 1.1 Combobox with Grid Popup</a></li>
-        <li><a href="../examples/combobox/aria1.1pattern/listbox-combo.html">ARIA 1.1 Combobox with Listbox Popup</a></li>
+        <li><a href="../examples/combobox/grid-combo.html">Editable Combobox with Grid Popup</a></li>
         <li><a href="../examples/listbox/listbox-collapsible.html">Collapsible Dropdown Listbox</a></li>
         <li><a href="../examples/menu-button/menu-button-actions-active-descendant.html">Actions Menu Button  Using aria-activedescendant</a></li>
         <li><a href="../examples/menu-button/menu-button-actions.html">Actions Menu Button  Using element.focus()</a></li>
@@ -836,11 +833,10 @@
             <td><ul>
         <li><a href="../examples/carousel/carousel-1.html">Auto-Rotating Image Carousel</a></li>
         <li><a href="../examples/checkbox/checkbox-1/checkbox-1.html">Checkbox  (Two State)</a></li>
-        <li><a href="../examples/combobox/aria1.0pattern/combobox-autocomplete-both.html">Legacy ARIA 1.0 Combobox With Both List and Inline Autocomplete</a></li>
-        <li><a href="../examples/combobox/aria1.0pattern/combobox-autocomplete-list.html">Legacy ARIA 1.0 Combobox With List Autocomplete</a></li>
-        <li><a href="../examples/combobox/aria1.0pattern/combobox-autocomplete-none.html">Legacy ARIA 1.0 Combobox without Autocomplete</a></li>
-        <li><a href="../examples/combobox/aria1.1pattern/grid-combo.html">ARIA 1.1 Combobox with Grid Popup</a></li>
-        <li><a href="../examples/combobox/aria1.1pattern/listbox-combo.html">ARIA 1.1 Combobox with Listbox Popup</a></li>
+        <li><a href="../examples/combobox/combobox-autocomplete-both.html">Editable Combobox With Both List and Inline Autocomplete</a></li>
+        <li><a href="../examples/combobox/combobox-autocomplete-list.html">Editable Combobox With List Autocomplete</a></li>
+        <li><a href="../examples/combobox/combobox-autocomplete-none.html">Editable Combobox without Autocomplete</a></li>
+        <li><a href="../examples/combobox/grid-combo.html">Editable Combobox with Grid Popup</a></li>
         <li><a href="../examples/dialog-modal/alertdialog.html">Alert Dialog</a></li>
         <li><a href="../examples/dialog-modal/datepicker-dialog.html">Date Picker Dialog</a></li>
         <li><a href="../examples/dialog-modal/dialog.html">Modal Dialog</a></li>
@@ -848,6 +844,7 @@
         <li><a href="../examples/grid/dataGrids.html">Data Grid</a></li>
         <li><a href="../examples/grid/LayoutGrids.html">Layout Grid</a></li>
         <li><a href="../examples/listbox/listbox-collapsible.html">Collapsible Dropdown Listbox</a></li>
+        <li><a href="../examples/listbox/listbox-grouped.html">Listbox  with Grouped Options</a></li>
         <li><a href="../examples/listbox/listbox-rearrangeable.html">Listboxes with Rearrangeable Options</a></li>
         <li><a href="../examples/listbox/listbox-scrollable.html">Scrollable Listbox</a></li>
         <li><a href="../examples/menu-button/menu-button-actions-active-descendant.html">Actions Menu Button  Using aria-activedescendant</a></li>
@@ -876,8 +873,7 @@
 </td>
             <td><ul>
         <li><a href="../examples/checkbox/checkbox-1/checkbox-1.html">Checkbox  (Two State)</a></li>
-        <li><a href="../examples/combobox/aria1.1pattern/grid-combo.html">ARIA 1.1 Combobox with Grid Popup</a></li>
-        <li><a href="../examples/combobox/aria1.1pattern/listbox-combo.html">ARIA 1.1 Combobox with Listbox Popup</a></li>
+        <li><a href="../examples/combobox/grid-combo.html">Editable Combobox with Grid Popup</a></li>
         <li><a href="../examples/dialog-modal/alertdialog.html">Alert Dialog</a></li>
         <li><a href="../examples/dialog-modal/datepicker-dialog.html">Date Picker Dialog</a></li>
         <li><a href="../examples/dialog-modal/dialog.html">Modal Dialog</a></li>
@@ -885,6 +881,7 @@
         <li><a href="../examples/grid/dataGrids.html">Data Grid</a></li>
         <li><a href="../examples/grid/LayoutGrids.html">Layout Grid</a></li>
         <li><a href="../examples/listbox/listbox-collapsible.html">Collapsible Dropdown Listbox</a></li>
+        <li><a href="../examples/listbox/listbox-grouped.html">Listbox  with Grouped Options</a></li>
         <li><a href="../examples/listbox/listbox-rearrangeable.html">Listboxes with Rearrangeable Options</a></li>
         <li><a href="../examples/listbox/listbox-scrollable.html">Scrollable Listbox</a></li>
         <li><a href="../examples/menu-button/menu-button-actions-active-descendant.html">Actions Menu Button  Using aria-activedescendant</a></li>
@@ -940,18 +937,6 @@
 </td>
           </tr>
           <tr>
-            <td><code>aria-owns</code></td>
-            <td><abbr title="none" style="color: gray">-</abbr></td>
-            <td><ul>
-        <li><a href="../examples/combobox/aria1.0pattern/combobox-autocomplete-both.html">Legacy ARIA 1.0 Combobox With Both List and Inline Autocomplete</a></li>
-        <li><a href="../examples/combobox/aria1.0pattern/combobox-autocomplete-list.html">Legacy ARIA 1.0 Combobox With List Autocomplete</a></li>
-        <li><a href="../examples/combobox/aria1.0pattern/combobox-autocomplete-none.html">Legacy ARIA 1.0 Combobox without Autocomplete</a></li>
-        <li><a href="../examples/combobox/aria1.1pattern/grid-combo.html">ARIA 1.1 Combobox with Grid Popup</a></li>
-        <li><a href="../examples/combobox/aria1.1pattern/listbox-combo.html">ARIA 1.1 Combobox with Listbox Popup</a></li>
-            </ul>
-</td>
-          </tr>
-          <tr>
             <td><code>aria-posinset</code></td>
             <td><abbr title="none" style="color: gray">-</abbr></td>
             <td><ul>
@@ -967,6 +952,7 @@
             <td><code>aria-pressed</code></td>
             <td><abbr title="none" style="color: gray">-</abbr></td>
             <td><ul>
+        <li><a href="../examples/button/button_idl.html">Button  (IDL Version)</a></li>
         <li><a href="../examples/button/button.html">Button</a></li>
         <li><a href="../examples/toolbar/toolbar.html">Toolbar</a></li>
             </ul>
@@ -996,7 +982,7 @@
             <td><code>aria-selected</code></td>
             <td><abbr title="none" style="color: gray">-</abbr></td>
             <td><ul>
-        <li><a href="../examples/combobox/aria1.1pattern/grid-combo.html">ARIA 1.1 Combobox with Grid Popup</a></li>
+        <li><a href="../examples/combobox/grid-combo.html">Editable Combobox with Grid Popup</a></li>
         <li><a href="../examples/listbox/listbox-rearrangeable.html">Listboxes with Rearrangeable Options</a></li>
         <li><a href="../examples/tabs/tabs-1/tabs.html">Tabs with Automatic Activation</a></li>
         <li><a href="../examples/tabs/tabs-2/tabs.html">Tabs with Manual Activation</a></li>
@@ -1018,6 +1004,7 @@
             <td><code>aria-valuemax</code></td>
             <td><abbr title="none" style="color: gray">-</abbr></td>
             <td><ul>
+        <li><a href="../examples/meter/meter.html">Meter</a></li>
         <li><a href="../examples/slider/multithumb-slider.html">Horizontal Multi-Thumb Slider</a></li>
         <li><a href="../examples/slider/slider-1.html">Horizontal Slider</a></li>
         <li><a href="../examples/slider/slider-2.html">Slider  with aria-orientation and aria-valuetext</a></li>
@@ -1029,6 +1016,7 @@
             <td><code>aria-valuemin</code></td>
             <td><abbr title="none" style="color: gray">-</abbr></td>
             <td><ul>
+        <li><a href="../examples/meter/meter.html">Meter</a></li>
         <li><a href="../examples/slider/multithumb-slider.html">Horizontal Multi-Thumb Slider</a></li>
         <li><a href="../examples/slider/slider-1.html">Horizontal Slider</a></li>
         <li><a href="../examples/slider/slider-2.html">Slider  with aria-orientation and aria-valuetext</a></li>
@@ -1041,6 +1029,7 @@
             <td><code>aria-valuenow</code></td>
             <td><abbr title="none" style="color: gray">-</abbr></td>
             <td><ul>
+        <li><a href="../examples/meter/meter.html">Meter</a></li>
         <li><a href="../examples/slider/multithumb-slider.html">Horizontal Multi-Thumb Slider</a></li>
         <li><a href="../examples/slider/slider-1.html">Horizontal Slider</a></li>
         <li><a href="../examples/slider/slider-2.html">Slider  with aria-orientation and aria-valuetext</a></li>
