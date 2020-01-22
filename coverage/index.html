@@ -41,7 +41,7 @@
     </section>
 
     <section id="roles_with_no_examples">
-      <h2 id="roles_with_no_examples_label">Roles with No Guidance or Examples (<span id="roles_with_no_examples_count">21</span>)</h2>
+      <h2 id="roles_with_no_examples_label">Roles with No Guidance or Examples (<span id="roles_with_no_examples_count">22</span>)</h2>
       <ul id="roles_with_no_examples_ul">
             <li><code>application</code></li>
             <li><code>definition</code></li>
@@ -57,6 +57,7 @@
             <li><code>math</code></li>
             <li><code>note</code></li>
             <li><code>progressbar</code></li>
+            <li><code>rowheader</code></li>
             <li><code>scrollbar</code></li>
             <li><code>searchbox</code></li>
             <li><code>status</code></li>
@@ -98,8 +99,7 @@
           </tr>
           <tr>
             <td><code>columnheader</code></td>
-            <td><a href="../aria-practices.html#grid">Grids : Interactive Tabular Data and Layout Containers (D)</a>
-</td>
+            <td><abbr title="none" style="color: gray">-</abbr></td>
             <td><a href="../examples/table/table.html">Table</a>
 </td>
           </tr>
@@ -126,8 +126,7 @@
           </tr>
           <tr>
             <td><code>gridcell</code></td>
-            <td><a href="../aria-practices.html#grid">Grids : Interactive Tabular Data and Layout Containers (D)</a>
-</td>
+            <td><abbr title="none" style="color: gray">-</abbr></td>
             <td><a href="../examples/grid/LayoutGrids.html">Layout Grid</a>
 </td>
           </tr>
@@ -158,12 +157,6 @@
 </td>
           </tr>
           <tr>
-            <td><code>rowheader</code></td>
-            <td><a href="../aria-practices.html#grid">Grids : Interactive Tabular Data and Layout Containers (D)</a>
-</td>
-            <td><abbr title="none" style="color: gray">-</abbr></td>
-          </tr>
-          <tr>
             <td><code>search</code></td>
             <td><a href="../aria-practices.html#aria_lh_search">Search</a>
 </td>
@@ -181,12 +174,19 @@
             <td><a href="../aria-practices.html#tooltip">Tooltip Widget</a>
 </td>
             <td><abbr title="none" style="color: gray">-</abbr></td>
+          </tr>
+          <tr>
+            <td><code>treegrid</code></td>
+            <td><a href="../aria-practices.html#treegrid">Treegrid</a>
+</td>
+            <td><a href="../examples/treegrid/treegrid-1.html">Treegrid Email Inbox</a>
+</td>
           </tr></tbody>
       </table>
     </section>
 
     <section id="roles_with_more_than_one_example">
-      <h2 id="roles_with_more_than_one_label">Roles with More than One Guidance or Example (<span id="roles_with_more_than_one_examples_count">32</span>)</h2>
+      <h2 id="roles_with_more_than_one_label">Roles with More than One Guidance or Example (<span id="roles_with_more_than_one_examples_count">31</span>)</h2>
       <table aria-labelledby="roles_with_more_than_one_label" class="data attributes">
         <thead>
           <tr>
@@ -280,9 +280,8 @@
           <tr>
             <td><code>grid</code></td>
             <td><ul>
+        <li><a href="../aria-practices.html#gridAndTableProperties">Grid and Table Properties</a></li>
         <li><a href="../aria-practices.html#combobox">Grid Popup Keyboard Interaction</a></li>
-        <li><a href="../aria-practices.html#grid">Grids : Interactive Tabular Data and Layout Containers (D)</a></li>
-        <li><a href="../aria-practices.html#gridAndTableProperties">Grid and Table Properties (D)</a></li>
             </ul>
 </td>
             <td><ul>
@@ -298,7 +297,6 @@
             <td><ul>
         <li><a href="../aria-practices.html#radiobutton">Radio Group</a></li>
         <li><a href="../aria-practices.html#radiobutton">For Radio Group Contained in a Toolbar</a></li>
-        <li><a href="../aria-practices.html#carousel">Carousel (Slide Show or Image Rotator) (D)</a></li>
             </ul>
 </td>
             <td><ul>
@@ -456,8 +454,7 @@
           </tr>
           <tr>
             <td><code>row</code></td>
-            <td><a href="../aria-practices.html#grid">Grids : Interactive Tabular Data and Layout Containers (D)</a>
-</td>
+            <td><abbr title="none" style="color: gray">-</abbr></td>
             <td><ul>
         <li><a href="../examples/combobox/grid-combo.html">Editable Combobox with Grid Popup</a></li>
         <li><a href="../examples/grid/LayoutGrids.html">Layout Grid</a></li>
@@ -503,8 +500,8 @@
           <tr>
             <td><code>table</code></td>
             <td><ul>
+        <li><a href="../aria-practices.html#gridAndTableProperties">Grid and Table Properties</a></li>
         <li><a href="../aria-practices.html#table">Table</a></li>
-        <li><a href="../aria-practices.html#gridAndTableProperties">Grid and Table Properties (D)</a></li>
             </ul>
 </td>
             <td><a href="../examples/table/table.html">Table</a>
@@ -512,8 +509,7 @@
           </tr>
           <tr>
             <td><code>tablist</code></td>
-            <td><a href="../aria-practices.html#carousel">Carousel (Slide Show or Image Rotator) (D)</a>
-</td>
+            <td><abbr title="none" style="color: gray">-</abbr></td>
             <td><ul>
         <li><a href="../examples/tabs/tabs-1/tabs.html">Tabs with Automatic Activation</a></li>
         <li><a href="../examples/tabs/tabs-2/tabs.html">Tabs with Manual Activation</a></li>
@@ -553,16 +549,6 @@
         <li><a href="../examples/treeview/treeview-2/treeview-2a.html">Navigation Treeview  Using Computed Properties</a></li>
         <li><a href="../examples/treeview/treeview-2/treeview-2b.html">Navigation Treeview  Using Declared Properties</a></li>
             </ul>
-</td>
-          </tr>
-          <tr>
-            <td><code>treegrid</code></td>
-            <td><ul>
-        <li><a href="../aria-practices.html#treegrid">Treegrid</a></li>
-        <li><a href="../aria-practices.html#gridAndTableProperties">Grid and Table Properties (D)</a></li>
-            </ul>
-</td>
-            <td><a href="../examples/treegrid/treegrid-1.html">Treegrid Email Inbox</a>
 </td>
           </tr>
           <tr>
@@ -646,8 +632,7 @@
           </tr>
           <tr>
             <td><code>aria-roledescription</code></td>
-            <td><a href="../aria-practices.html#carousel">Carousel (Slide Show or Image Rotator) (D)</a>
-</td>
+            <td><abbr title="none" style="color: gray">-</abbr></td>
             <td><a href="../examples/carousel/carousel-1.html">Auto-Rotating Image Carousel</a>
 </td>
           </tr>
@@ -918,8 +903,7 @@
           </tr>
           <tr>
             <td><code>aria-live</code></td>
-            <td><a href="../aria-practices.html#carousel">Carousel (Slide Show or Image Rotator) (D)</a>
-</td>
+            <td><abbr title="none" style="color: gray">-</abbr></td>
             <td><ul>
         <li><a href="../examples/alert/alert.html">Alert</a></li>
         <li><a href="../examples/carousel/carousel-1.html">Auto-Rotating Image Carousel</a></li>
