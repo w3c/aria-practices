@@ -367,13 +367,13 @@ ariaTest('Test escape key press with focus on textbox',
     t.plan(2);
 
     // Send key "a" then key "ARROW_DOWN to put the focus on the listbox,
-    // then key ESCAPE to the textbox
+    // then key ESCAPE once to the textbox
 
     await t.context.session
       .findElement(By.css(ex.textboxSelector))
       .sendKeys('a', Key.ARROW_DOWN, Key.ESCAPE);
 
-    // Confirm the listbox is closed and the textboxed is cleared
+    // Confirm the listbox is closed and the textbox is not cleared
 
     await assertAttributeValues(t, ex.textboxSelector, 'aria-expanded', 'false');
     t.is(
@@ -391,13 +391,13 @@ ariaTest('Test double escape key press with focus on textbox',
     t.plan(2);
 
     // Send key "a" then key "ARROW_DOWN to put the focus on the listbox,
-    // then key ESCAPE to the textbox
+    // then key ESCAPE twice to the textbox
 
     await t.context.session
       .findElement(By.css(ex.textboxSelector))
       .sendKeys('a', Key.ARROW_DOWN, Key.ESCAPE, Key.ESCAPE);
 
-    // Confirm the listbox is closed and the textboxed is cleared
+    // Confirm the listbox is closed and the textbox is cleared
 
     await assertAttributeValues(t, ex.textboxSelector, 'aria-expanded', 'false');
     t.is(

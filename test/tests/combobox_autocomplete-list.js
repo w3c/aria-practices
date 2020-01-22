@@ -366,13 +366,13 @@ ariaTest('Test single escape key press with focus on textbox',
   exampleFile, 'textbox-key-escape', async (t) => {
     t.plan(2);
 
-    // Send key "a", then key ESCAPE to the textbox
+    // Send key "a", then key ESCAPE once to the textbox
 
     await t.context.session
       .findElement(By.css(ex.textboxSelector))
       .sendKeys('a', Key.ESCAPE);
 
-    // Confirm the listbox is closed and the textboxed is cleared
+    // Confirm the listbox is closed and the textbox is not cleared
 
     await assertAttributeValues(t, ex.textboxSelector, 'aria-expanded', 'false');
     t.is(
@@ -389,13 +389,13 @@ ariaTest('Test double escape key press with focus on textbox',
   exampleFile, 'textbox-key-escape', async (t) => {
     t.plan(2);
 
-    // Send key "a", then key ESCAPE to the textbox
+    // Send key "a", then key ESCAPE twice to the textbox
 
     await t.context.session
       .findElement(By.css(ex.textboxSelector))
       .sendKeys('a', Key.ESCAPE, Key.ESCAPE);
 
-    // Confirm the listbox is closed and the textboxed is cleared
+    // Confirm the listbox is closed and the textbox is cleared
 
     await assertAttributeValues(t, ex.textboxSelector, 'aria-expanded', 'false');
     t.is(
