@@ -24,6 +24,7 @@ let output = fs.readFileSync(exampleTemplatePath, function (err) {
 
 const $ = cheerio.load(output);
 
+
 const ariaRoles = [
   'alert',
   'alertdialog',
@@ -110,11 +111,11 @@ const ariaPropertiesAndStates = [
   'aria-describedby',
   'aria-details',
   'aria-disabled',
-//  'aria-dropeffect',
+  'aria-dropeffect',
   'aria-errormessage',
   'aria-expanded',
   'aria-flowto',
-//  'aria-grabbed',
+  'aria-grabbed',
   'aria-haspopup',
   'aria-hidden',
   'aria-invalid',
