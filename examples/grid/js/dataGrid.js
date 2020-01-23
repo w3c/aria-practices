@@ -525,8 +525,8 @@ aria.Grid.prototype.handleSort = function (headerNode) {
   var comparator = function (row1, row2) {
     var row1Text = row1.children[columnIndex].innerText;
     var row2Text = row2.children[columnIndex].innerText;
-    var row1Value = parseInt(row1Text.replace(/[^0-9\.]+/g, ''));
-    var row2Value = parseInt(row2Text.replace(/[^0-9\.]+/g, ''));
+    var row1Value = parseInt(row1Text.replace(/[^0-9.]+/g, ''));
+    var row2Value = parseInt(row2Text.replace(/[^0-9.]+/g, ''));
 
     if (sortType === aria.SortType.ASCENDING) {
       return row1Value - row2Value;
