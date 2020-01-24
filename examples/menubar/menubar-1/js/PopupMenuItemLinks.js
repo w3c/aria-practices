@@ -173,6 +173,10 @@ MenuItem.prototype.setExpanded = function (value) {
 MenuItem.prototype.handleClick = function (event) {
   this.menu.setFocusToController();
   this.menu.close(true);
+  if (this.popupMenu) {
+    // prevent scroll to top of page when anchor element is clicked
+    event.preventDefault();
+  }
 };
 
 MenuItem.prototype.handleFocus = function (event) {
