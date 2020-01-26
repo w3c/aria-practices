@@ -385,8 +385,8 @@
         </ul>
         <h3>Color Contrast of Text and Rotation Controls</h3>
         <p>
-          In the view of this carousel where the controls and captions are displayed on top of the image, the background images can cause color contrast for the controls and text to become insufficient.
-          This view includes the following features to meet WCAG 2.1 color contrast requirements:
+          In the view of this carousel where the controls and captions are displayed on top of the image, background images could cause color contrast for the controls and text to become insufficient.
+          However, this view includes the following features to prevent this potential problem and ensure it meets WCAG 2.1 color contrast requirements:
         </p>
         <ul>
           <li>
@@ -397,7 +397,7 @@
         </ul>
         <h3>Focus Styling of the Tablist and Tabs</h3>
         <ul>
-          <li>When a tab receives focus the tablist is also highlighted with a border to provide an affordance to the user that the cursor keys should be bused to move focus between the tabs.</li>
+          <li>When a tab receives focus, the entire tab list is also highlighted with a border as an affordance that indicates to users that arrow keys are used to navigate among controls in the group.</li>
           <li>The CSS border width used for focus styling is changed from 0 to 2 pixels when the control receives focus to support visibility of the focus change in high contrast operating system settings.</li>
         </ul>
         <h3>Screen Reader Announcement of Slide Changes</h3>
@@ -407,6 +407,10 @@
           When screen reader users activate a new tab, the new slide content is announced, giving users immediate feedback that helps them determine whether or not to interact with the content.
           Very importantly, if automatic rotation is turned on, the live region is disabled.
           If it were not, the page would become unusable as announcements of the continuously changing content constantly interrupt anything else the user is reading.
+        </p>
+        <p>
+          Note that making a tab panel live is not recommended for typical tabs.
+          In the carousel use case, where the primary intent is quick, light-weight scanning of content, the live region is used to simulate the type of experience that non-screen reader users have with auto-rotation.
         </p>
       </section>
 
