@@ -4,6 +4,7 @@ const { ariaTest } = require('..');
 const { By, Key } = require('selenium-webdriver');
 const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAriaLabelExists = require('../util/assertAriaLabelExists');
+const assertAttributeNDE    = require('../util/assertAttributeNDE');
 const assertAriaRoles = require('../util/assertAriaRoles');
 const assertAriaSelectedAndActivedescendant = require('../util/assertAriaSelectedAndActivedescendant');
 
@@ -154,7 +155,7 @@ ariaTest('"aria-selected" attribute on options element', exampleFile, 'option-ar
 ariaTest('Test alt + down key press with focus on textbox',
   exampleFile, 'textbox-key-alt-down-arrow', async (t) => {
 
-    t.plan(1);
+    t.plan(2);
 
     // Send ARROW_DOWN to the textbox
     await t.context.session
@@ -167,13 +168,15 @@ ariaTest('Test alt + down key press with focus on textbox',
       'In example the list box should display after ALT + ARROW_DOWN keypress'
     );
 
+    await assertAttributeNDE(t, ex.optionsSelector, 'aria-selected');
+
   });
 
 
 ariaTest('Test down key press with focus on textbox',
   exampleFile, 'textbox-key-down-arrow', async (t) => {
 
-    t.plan(2);
+    t.plan(3);
 
     // Send ARROW_DOWN to the textbox
     await t.context.session
@@ -191,6 +194,9 @@ ariaTest('Test down key press with focus on textbox',
 
     // Check that the active descendent focus is correct
     await assertAriaSelectedAndActivedescendant(t, ex.textboxSelector, ex.optionsSelector, 0);
+
+    // Check if aria-selected is set on first item
+    await assertAttributeValues(t, ex.optionsSelector + ':nth-of-type(1)', 'aria-selected', 'true');
 
   });
 
