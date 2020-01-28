@@ -107,9 +107,9 @@ var CarouselTablist = function (node) {
 }
 
 CarouselTablist.prototype.centerTablistControls = function () {
-  width1 = this.tablistNode.getBoundingClientRect().width;
-  width2 = this.containerNode.getBoundingClientRect().width;
-  width3 = this.pauseButtonNode.getBoundingClientRect().width;
+  var width1 = this.tablistNode.getBoundingClientRect().width;
+  var width2 = this.containerNode.getBoundingClientRect().width;
+  var width3 = this.pauseButtonNode.getBoundingClientRect().width;
   this.tablistNode.style.left = (((width2-width1)/2) - (3*width3/2)) +'px';
 }
 
@@ -210,7 +210,7 @@ CarouselTablist.prototype.setSelectedTofirstTabNode = function (moveFocus) {
 }
 
 CarouselTablist.prototype.setSelectedTolastTabNode = function (moveFocus) {
-  if (typeof moveFocus != 'boolean') {
+  if (typeof moveFocus !== 'boolean') {
     moveFocus = false;
   }
   this.setSelectedTab(this.lastTabNode, moveFocus);
@@ -230,7 +230,7 @@ CarouselTablist.prototype.updateRotation = function () {
     this.isStopped = true;
   }
 
-  if (!this.hasHover && !this.hasFocus && !this.isStopped) {
+  if (!this.hasHover && !this.isStopped) {
     this.rotate = true;
     this.liveRegionNode.setAttribute('aria-live', 'off');
   }
@@ -254,10 +254,8 @@ CarouselTablist.prototype.updateRotation = function () {
 }
 
 CarouselTablist.prototype.toggleRotation = function () {
-  if (this.isStopped) {
-    if (!this.hasHover && !this.hasFocus) {
-      this.isStopped = false;
-    }
+  if (this.isStopped && !this.hasHover && !this.hasFocus) {
+    this.isStopped = false;
   }
   else {
     this.isStopped = true;
