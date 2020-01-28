@@ -181,7 +181,7 @@ ariaTest('Test alt + down key press with focus on textbox',
 ariaTest('Test down key press with focus on textbox',
   exampleFile, 'textbox-key-down-arrow', async (t) => {
 
-    t.plan(3);
+    t.plan(2);
 
     // Send ARROW_DOWN to the textbox
     await t.context.session
@@ -198,9 +198,6 @@ ariaTest('Test down key press with focus on textbox',
 
     // Check that the active descendent focus is correct
     await assertAriaSelectedAndActivedescendant(t, ex.textboxSelector, ex.optionsSelector, 0);
-
-    // Check if aria-selected is set on first item
-    await assertAttributeValues(t, ex.optionsSelector + ':nth-of-type(1)', 'aria-selected', 'true');
 
   });
 
@@ -443,7 +440,7 @@ ariaTest('left arrow from focus on list puts focus on listbox and moves cursor r
     t.plan(2);
 
     // Send key "a" then key "ARROW_DOWN" to put the focus on the listbox
-    const textbox = t.context.session.findElement(By.css(ex.textboxSelector));
+    const textbox = await t.context.session.findElement(By.css(ex.textboxSelector));
     await textbox.sendKeys('a', Key.ARROW_DOWN);
 
     // Send key "ARROW_LEFT"
@@ -467,7 +464,7 @@ ariaTest('Right arrow from focus on list puts focus on listbox',
     t.plan(2);
 
     // Send key "a" then key "ARROW_DOWN" to put the focus on the listbox
-    const textbox = t.context.session.findElement(By.css(ex.textboxSelector));
+    const textbox = await t.context.session.findElement(By.css(ex.textboxSelector));
     await textbox.sendKeys('a', Key.ARROW_DOWN);
 
     // Send key "RIGHT_ARROW"
@@ -490,7 +487,7 @@ ariaTest('Home from focus on list puts focus on listbox and moves cursor',
     t.plan(2);
 
     // Send key "a" then key "ARROW_DOWN" to put the focus on the listbox
-    const textbox = t.context.session.findElement(By.css(ex.textboxSelector));
+    const textbox = await t.context.session.findElement(By.css(ex.textboxSelector));
     await textbox.sendKeys('a', Key.ARROW_DOWN);
 
     // Send key "ARROW_HOME"
@@ -513,7 +510,7 @@ ariaTest('End from focus on list puts focus on listbox',
     t.plan(2);
 
     // Send key "a" then key "ARROW_DOWN" to put the focus on the listbox
-    const textbox = t.context.session.findElement(By.css(ex.textboxSelector));
+    const textbox = await t.context.session.findElement(By.css(ex.textboxSelector));
     await textbox.sendKeys('a', Key.ARROW_DOWN);
 
     // Send key "END_ARROW"
@@ -536,7 +533,7 @@ ariaTest('Sending character keys while focus is on listbox moves focus',
     t.plan(2);
 
     // Send key "ARROW_DOWN" to put the focus on the listbox
-    const textbox = t.context.session.findElement(By.css(ex.textboxSelector));
+    const textbox = await t.context.session.findElement(By.css(ex.textboxSelector));
     await textbox.sendKeys(Key.ARROW_DOWN);
 
     // Send key "a"
@@ -557,9 +554,18 @@ ariaTest('Sending character keys while focus is on listbox moves focus',
 
   });
 
-ariaTest.failing('Expected behavior for all other standard single line editing keys',
+ariaTest('Expected behavior for all other standard single line editing keys',
   exampleFile, 'standard-single-line-editing-keys', async (t) => {
     t.plan(1);
-    t.fail();
+
+    // Send key "a"
+    const textbox = await t.context.session.findElement(By.css(ex.textboxSelector));
+    await textbox.sendKeys('a');
+
+    t.is(
+      (await t.context.session.findElements(By.css(ex.optionsSelector))).length,
+      ex.numAOptions,
+      'Sending standard editing keys should filter results'
+    );
   });
 
