@@ -4,7 +4,7 @@ const { ariaTest } = require('..');
 const { By, Key } = require('selenium-webdriver');
 const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAriaLabelExists = require('../util/assertAriaLabelExists');
-const assertAttributeNDE    = require('../util/assertAttributeNDE');
+const assertAttributeDNE    = require('../util/assertAttributeDNE');
 const assertAriaRoles = require('../util/assertAriaRoles');
 const assertAriaSelectedAndActivedescendant = require('../util/assertAriaSelectedAndActivedescendant');
 
@@ -168,7 +168,7 @@ ariaTest('Test alt + down key press with focus on textbox',
       'In example the list box should display after ALT + ARROW_DOWN keypress'
     );
 
-    await assertAttributeNDE(t, ex.optionsSelector, 'aria-selected');
+    await assertAttributeDNE(t, ex.optionsSelector, 'aria-selected');
 
   });
 
