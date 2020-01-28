@@ -90,6 +90,7 @@
 
 .carousel-tablist [role=tabpanel] .carousel-caption a:focus {
   border-color: #005a9c;
+  outline: 2px dashed transparent;
 }
 
 /* Shared CSS for Pause and Tab Controls */
@@ -163,17 +164,19 @@
 
 .carousel-tablist [role="tablist"] .border {
   display: inline-block;
-  border: 2px transparent solid;
+  border: 0 transparent solid;
   border-radius: 13px;
-  height: 26px;
-  background-color: transparent;
-  position: relative;
-  top: 4px;
+  padding-top: 2px;
+  height: 30px;
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
-.carousel-tablist [role="tablist"] .focus {
+.carousel-tablist [role="tablist"] .border.focus {
+  border-width: 2px;
   border-color: white;
+  padding-top: 0;
   background-color: #005a9c;
+  height: 26px;
 }
 
 .carousel-tablist button[role="tab"] {

@@ -67,6 +67,7 @@
   border-width: 2px;
   background-color: rgba(0, 0, 0, 1);
   border-color: #fff;
+  outline: 2px dashed transparent;
 }
 
 .carousel-tablist [role=tabpanel] .carousel-caption p {
