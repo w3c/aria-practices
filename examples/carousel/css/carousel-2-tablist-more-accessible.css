@@ -163,6 +163,8 @@
 }
 
 .carousel-tablist [role="tablist"] .border {
+  position: relative;
+  top: 5px;
   display: inline-block;
   border: 0 transparent solid;
   border-radius: 13px;
