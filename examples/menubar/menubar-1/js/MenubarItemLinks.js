@@ -125,7 +125,8 @@ MenubarItem.prototype.handleKeydown = function (event) {
 
 MenubarItem.prototype.handleClick = function (event) {
   if (this.popupMenu) {
-    // prevent scroll to top of page when anchor element is clicked
+    // for menuitem with menu, prevent default anchor behavior on click
+    // (which jumps to top of page for href="#" in some browsers)
     event.preventDefault();
   }
 };
