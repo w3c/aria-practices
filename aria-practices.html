@@ -2345,7 +2345,10 @@
         A slider is an input where the user selects a value from within a given range.
         Sliders typically have a slider thumb that can be moved along a bar or track to change the value of the slider.
       </p>
-
+      <p class="warning">
+        Users of touch-based assistive technologies may not be able to fully operate widgets that implement this pattern because APIs for capturing the necessary gestures and commands from assistive technologies are not yet available.
+        Authors should fully test widgets using this pattern with assistive technologies before considering incorporation into production systems.
+      </p>
       <section class="notoc">
         <h4>Examples</h4>
         <ul>
@@ -2407,6 +2410,10 @@
         For example, in a price range selector, the maximum value of the thumb that sets the lower end of the range is limited by the current value of the thumb that sets the upper end of the range.
         Conversely, the minimum value of the upper end thumb is limited by the current value of the lower end thumb.
         However, in some multi-thumb sliders, each thumb sets a value that does not depend on the other thumb values.
+      </p>
+      <p class="warning">
+        Users of touch-based assistive technologies may not be able to fully operate widgets that implement this pattern because APIs for capturing the necessary gestures and commands from assistive technologies are not yet available.
+        Authors should fully test widgets using this pattern with assistive technologies before considering incorporation into production systems.
       </p>
 
       <section class="notoc">
