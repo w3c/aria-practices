@@ -60,9 +60,9 @@
 .carousel-tablist [role=tabpanel] .carousel-caption a {
   display: inline-block;
   margin: 0;
-  padding: 2px;
+  padding: 6px;
   color: black;
-  border: 2px solid transparent;
+  border: none;
   border-radius: 5px;
   text-decoration: underline;
 }
@@ -89,8 +89,9 @@
 }
 
 .carousel-tablist [role=tabpanel] .carousel-caption a:focus {
-  border-color: #005a9c;
-  outline: 2px dashed transparent;
+  padding: 4px;
+  border: 2px solid #005a9c;
+  outline: 2px dotted transparent;
 }
 
 /* Shared CSS for Pause and Tab Controls */
