@@ -104,6 +104,12 @@ var CarouselTablist = function (node) {
   // Start rotation
   setTimeout(this.rotateSlides.bind(this), this.timeInterval);
 
+  // If URL contains text "paused", stop rotation
+  if (location.href.toLowerCase().indexOf('paused') > 0) {
+    this.isStopped = true;
+    this.updateRotation()
+  }
+
 }
 
 CarouselTablist.prototype.centerTablistControls = function () {
