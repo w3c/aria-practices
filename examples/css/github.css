@@ -14,7 +14,8 @@ github.com style (c) Vasily Polovnyov <vast@whiteants.net>
 
 .hljs-comment,
 .hljs-quote {
-  color: #998;
+  /* Original value #998 didn’t pass WCAG AA */
+  color: #717277;
   font-style: italic;
 }
 
