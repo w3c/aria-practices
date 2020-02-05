@@ -110,7 +110,6 @@ aria.Listbox.prototype.checkKeyPress = function (evt) {
       break;
     case aria.KeyCode.UP:
     case aria.KeyCode.DOWN:
-      evt.preventDefault();
 
       if (!this.activeDescendant) {
         // focus first option if no option was previously focused, and perform no other actions
@@ -119,6 +118,7 @@ aria.Listbox.prototype.checkKeyPress = function (evt) {
       }
 
       if (this.moveUpDownEnabled && evt.altKey) {
+        evt.preventDefault();
         if (key === aria.KeyCode.UP) {
           this.moveUpItems();
         }
@@ -137,6 +137,7 @@ aria.Listbox.prototype.checkKeyPress = function (evt) {
 
       if (nextItem) {
         this.focusItem(nextItem);
+        evt.preventDefault();
       }
 
       break;
