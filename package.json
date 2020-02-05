@@ -13,7 +13,7 @@
     "lint:es": "eslint .",
     "lint:js": "npm run lint:es",
     "lint:html": "npm run vnu-jar",
-    "regression": "ava",
+    "regression": "ava --timeout=1m",
     "regression-report": "node test/util/report",
     "test": "npm run lint && npm run regression",
     "vnu-jar": "java -jar node_modules/vnu-jar/build/dist/vnu.jar --errors-only --filterfile .vnurc --no-langdetect --skip-non-html *.html examples/"
@@ -29,7 +29,7 @@
   },
   "homepage": "https://github.com/w3c/aria-practices#readme",
   "devDependencies": {
-    "ava": "^2.2.0",
+    "ava": "^3.0.0",
     "cheerio": "^1.0.0-rc.2",
     "eslint": "^6.0.1",
     "geckodriver": "^1.19.1",
