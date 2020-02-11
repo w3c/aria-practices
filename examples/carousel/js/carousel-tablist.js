@@ -104,10 +104,10 @@ var CarouselTablist = function (node) {
   // Start rotation
   setTimeout(this.rotateSlides.bind(this), this.timeInterval);
 
-  // If URL contains text "paused", stop rotation
+  // If URL contains text "paused", carousel is initially paused
   if (location.href.toLowerCase().indexOf('paused') > 0) {
     this.isStopped = true;
-    this.updateRotation()
+    this.updateRotation();
   }
 
 }
