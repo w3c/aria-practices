@@ -33,6 +33,16 @@
 
 /* More like bootstrap, less accessible */
 
+.carousel-tablist [role=tabpanel] .carousel-caption,
+.carousel-tablist [role=tabpanel] .carousel-image a img {
+  cursor: url('../images/paused-pointer.svg'), auto;
+}
+
+.carousel-tablist [role=tabpanel] .carousel-caption a {
+  cursor: pointer;
+}
+
+
 .carousel-tablist [role=tabpanel] .carousel-image a img {
   height: 100%;
   width: 100%;

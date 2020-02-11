@@ -46,6 +46,15 @@
 
 /* More accessible caption stylinh */
 
+.carousel-tablist [role=tabpanel] .carousel-caption,
+.carousel-tablist [role=tabpanel] .carousel-image a img {
+  cursor: url('../images/paused-pointer.svg'), auto;
+}
+
+.carousel-tablist [role=tabpanel] .carousel-caption a {
+  cursor: pointer;
+}
+
 .carousel-tablist [role=tabpanel] .carousel-caption {
   padding: 0;
   margin: 0;
