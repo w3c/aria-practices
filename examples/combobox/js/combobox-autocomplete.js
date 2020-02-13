@@ -444,7 +444,7 @@ ComboboxAutocomplete.prototype.handleComboboxKeyUp = function (event) {
               this.option = option;
               if (this.isBoth || this.listboxHasVisualFocus) {
                 this.setCurrentOptionStyle(option);
-                if (this.isBoth && isPrintableCharacter(char)) {
+                if (this.isBoth) {
                   this.setOption(option);
                 }
               }
