@@ -165,7 +165,6 @@ ComboboxAutocomplete.prototype.filterOptions = function () {
     var option = this.allOptions[i];
     if (filter.length === 0 || this.getLowercaseContent(option).indexOf(filter) === 0) {
       this.filteredOptions.push(option);
-      var textContent = option.textContent.trim();
       this.listboxNode.appendChild(option);
     }
   }
