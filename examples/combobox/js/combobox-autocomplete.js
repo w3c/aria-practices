@@ -142,7 +142,7 @@ ComboboxAutocomplete.prototype.removeVisualFocusAll = function () {
   this.comboboxHasVisualFocus = false;
   this.listboxHasVisualFocus = false;
   this.listboxNode.classList.remove('focus');
-  this.option = false;
+  this.option = null;
   this.setActiveDescendant(false);
 };
 
@@ -155,6 +155,7 @@ ComboboxAutocomplete.prototype.filterOptions = function () {
     this.filter = '';
   }
 
+  var option = null;
   var currentOption = this.option;
   var filter = this.filter.toLowerCase();
 
@@ -162,7 +163,7 @@ ComboboxAutocomplete.prototype.filterOptions = function () {
   this.listboxNode.innerHTML = '';
 
   for (var i = 0; i < this.allOptions.length; i++) {
-    var option = this.allOptions[i];
+    option = this.allOptions[i];
     if (filter.length === 0 || this.getLowercaseContent(option).indexOf(filter) === 0) {
       this.filteredOptions.push(option);
       this.listboxNode.appendChild(option);
@@ -183,9 +184,9 @@ ComboboxAutocomplete.prototype.filterOptions = function () {
     }
   }
   else {
-    this.firstOption = false;
-    option = false;
-    this.lastOption  = false;
+    this.firstOption = null;
+    option = null;
+    this.lastOption  = null;
   }
 
   return option;
@@ -341,7 +342,7 @@ ComboboxAutocomplete.prototype.handleComboboxKeyDown = function (event) {
         this.setValue('');
         this.comboboxNode.value = '';
       }
-      this.option = false;
+      this.option = null;
       flag = true;
       break;
 
@@ -379,7 +380,7 @@ ComboboxAutocomplete.prototype.handleComboboxKeyDown = function (event) {
 
 ComboboxAutocomplete.prototype.handleComboboxKeyUp = function (event) {
   var flag = false,
-    option = false,
+    option = null,
     char = event.key;
 
   function isPrintableCharacter (str) {
@@ -393,7 +394,7 @@ ComboboxAutocomplete.prototype.handleComboboxKeyUp = function (event) {
   // this is for the case when a selection in the textbox has been deleted
   if (this.comboboxNode.value.length < this.filter.length) {
     this.filter = this.comboboxNode.value;
-    this.option = false;
+    this.option = null;
   }
 
   if (event.key === "Escape" || event.key === "Esc") {
@@ -405,7 +406,7 @@ ComboboxAutocomplete.prototype.handleComboboxKeyUp = function (event) {
     case "Backspace":
       this.setVisualFocusCombobox();
       this.setCurrentOptionStyle(false);
-      this.option = false;
+      this.option = null;
       flag = true;
       break;
 
@@ -419,7 +420,7 @@ ComboboxAutocomplete.prototype.handleComboboxKeyUp = function (event) {
         this.filter = this.comboboxNode.value;
       }
       else {
-        this.option = false;
+        this.option = null;
         this.setCurrentOptionStyle(false);
       }
       this.setVisualFocusCombobox();
@@ -449,13 +450,13 @@ ComboboxAutocomplete.prototype.handleComboboxKeyUp = function (event) {
               }
             }
             else {
-              this.option = false;
+              this.option = null;
               this.setCurrentOptionStyle(false);
             }
           }
           else {
             this.close();
-            this.option = false;
+            this.option = null;
             this.setActiveDescendant(false);
           }
         }
@@ -487,7 +488,7 @@ ComboboxAutocomplete.prototype.handleComboboxFocus = function (event) {
   this.filter = this.comboboxNode.value;
   this.filterOptions();
   this.setVisualFocusCombobox();
-  this.option = false;
+  this.option = null;
   this.setCurrentOptionStyle(null);
 };
 
