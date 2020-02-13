@@ -212,20 +212,16 @@ ComboboxAutocomplete.prototype.setCurrentOptionStyle = function (option) {
 };
 
 ComboboxAutocomplete.prototype.getPreviousOption = function (currentOption) {
-  var index;
-
   if (currentOption !== this.firstOption) {
-    index = this.filteredOptions.indexOf(currentOption);
+    var index = this.filteredOptions.indexOf(currentOption);
     return this.filteredOptions[index - 1];
   }
   return this.lastOption;
 };
 
 ComboboxAutocomplete.prototype.getNextOption = function (currentOption) {
-  var index;
-
   if (currentOption !== this.lastOption) {
-    index = this.filteredOptions.indexOf(currentOption);
+    var index = this.filteredOptions.indexOf(currentOption);
     return this.filteredOptions[index + 1];
   }
   return this.firstOption;
