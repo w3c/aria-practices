@@ -404,7 +404,6 @@ ComboboxAutocomplete.prototype.handleComboboxKeyUp = function (event) {
   switch (event.key) {
 
     case "Backspace":
-      this.setValue(this.comboboxNode.value);
       this.setVisualFocusCombobox();
       this.setCurrentOptionStyle(false);
       this.option = false;
