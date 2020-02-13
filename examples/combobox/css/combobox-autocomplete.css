@@ -6,8 +6,8 @@
   display: inline-flex;
 }
 
-.combobox .group input,
-.combobox .group button {
+.combobox input,
+.combobox button {
   background-color: white;
   color: black;
   box-sizing: border-box;
@@ -19,7 +19,7 @@
   position: relative;
 }
 
-.combobox .group input {
+.combobox input {
   width: 10.75rem;
   border-right: none;
   outline: none;
@@ -27,13 +27,13 @@
   padding: 0.1em 0.3em;
 }
 
-.combobox .group button {
+.combobox button {
   width: 1.25rem;
   border-left: none;
   outline: none;
 }
 
-.combobox .group button.open svg {
+.combobox button.open svg {
   transform: rotate(180deg) translate(0, -1px);
 }
 
@@ -47,13 +47,13 @@
   background-color: #DEF;
 }
 
-.combobox .group svg polygon {
+.combobox polygon {
   fill: gray;
   stroke: gray;
 }
 
-.combobox button.open svg polygon,
-.combobox .group.focus svg polygon {
+.combobox button.open polygon,
+.combobox .group.focus polygon {
   fill: black;
   stroke: black;
 }
