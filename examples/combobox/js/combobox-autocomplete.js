@@ -61,8 +61,6 @@ ComboboxAutocomplete.prototype.init = function () {
     var node = nodes[i];
     this.allOptions.push(node);
 
-    node.textComparison = node.textContent.toLowerCase();
-
     node.addEventListener('click',      this.handleOptionClick.bind(this));
     node.addEventListener('mouseover',  this.handleOptionMouseover.bind(this));
     node.addEventListener('mouseout',   this.handleOptionMouseout.bind(this));
@@ -80,6 +78,10 @@ ComboboxAutocomplete.prototype.init = function () {
   }
 
 };
+
+ComboboxAutocomplete.prototype.getLowercaseContent = function (node) {
+  return node.textContent.toLowerCase();
+}
 
 ComboboxAutocomplete.prototype.setActiveDescendant = function (option) {
   if (option && this.listboxHasVisualFocus) {
@@ -161,7 +163,7 @@ ComboboxAutocomplete.prototype.filterOptions = function () {
 
   for (var i = 0; i < this.allOptions.length; i++) {
     var option = this.allOptions[i];
-    if (filter.length === 0 || option.textComparison.indexOf(filter) === 0) {
+    if (filter.length === 0 || this.getLowercaseContent(option).indexOf(filter) === 0) {
       this.filteredOptions.push(option);
       var textContent = option.textContent.trim();
       this.listboxNode.appendChild(option);
@@ -439,7 +441,7 @@ ComboboxAutocomplete.prototype.handleComboboxKeyUp = function (event) {
               this.open();
             }
 
-            if (option.textComparison.indexOf(this.comboboxNode.value.toLowerCase()) === 0) {
+            if (this.getLowercaseContent(option).indexOf(this.comboboxNode.value.toLowerCase()) === 0) {
               this.option = option;
               if (this.isBoth || this.listboxHasVisualFocus) {
                 this.setCurrentOptionStyle(option);
