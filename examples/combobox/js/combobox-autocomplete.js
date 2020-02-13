@@ -374,16 +374,16 @@ ComboboxAutocomplete.prototype.handleComboboxKeyDown = function (event) {
 
 };
 
+ComboboxAutocomplete.prototype.isPrintableCharacter = function (str) {
+  return str.length === 1 && str.match(/\S/);
+}
+
 ComboboxAutocomplete.prototype.handleComboboxKeyUp = function (event) {
   var flag = false,
     option = null,
     char = event.key;
 
-  function isPrintableCharacter (str) {
-    return str.length === 1 && str.match(/\S/);
-  }
-
-  if (isPrintableCharacter(char)) {
+  if (this.isPrintableCharacter(char)) {
     this.filter += char;
   }
 
@@ -424,7 +424,7 @@ ComboboxAutocomplete.prototype.handleComboboxKeyUp = function (event) {
       break;
 
     default:
-      if (isPrintableCharacter(char)) {
+      if (this.isPrintableCharacter(char)) {
         this.setVisualFocusCombobox();
         this.setCurrentOptionStyle(false);
         flag = true;
