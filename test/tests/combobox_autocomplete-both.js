@@ -149,6 +149,54 @@ ariaTest('"aria-selected" attribute on options element', exampleFile, 'option-ar
   await assertAttributeValues(t, ex.optionsSelector + ':nth-of-type(1)', 'aria-selected', 'true');
 });
 
+ariaTest('"aria-expanded" on button element', exampleFile, 'button-aria-expanded', async (t) => {
+  t.plan(4);
+
+  const button = await t.context.session.findElement(By.css(ex.buttonSelector));
+
+  // Check that aria-expanded is false and the listbox is not visible before interacting
+
+  t.is(
+    await button.getAttribute('aria-expanded'),
+    'false',
+    'button element should have attribute "aria-expanded" set to false by default.'
+  );
+
+  const popupId = await t.context.session
+    .findElement(By.css(ex.textboxSelector))
+    .getAttribute('aria-controls');
+
+  const popupElement = await t.context.session
+    .findElement(By.id('ex1'))
+    .findElement(By.id(popupId));
+
+  t.false(
+    await popupElement.isDisplayed(),
+    'Popup element should not be displayed when \'aria-expanded\' is false\''
+  );
+
+  // Send key "a" to textbox
+
+  await t.context.session
+    .findElement(By.css(ex.textboxSelector))
+    .sendKeys('a');
+
+  // Check that aria-expanded is true and the listbox is visible
+
+  t.is(
+    await button.getAttribute('aria-expanded'),
+    'true',
+    'button element should have attribute "aria-expand" set to true after typing.'
+  );
+
+  t.true(
+    await popupElement.isDisplayed(),
+    'Popup element should be displayed when \'aria-expanded\' is true\''
+  );
+
+});
+
+
 // Keys
 
 ariaTest('Test alt + down key press with focus on textbox',

@@ -33,7 +33,7 @@
   outline: none;
 }
 
-.combobox button.open svg {
+.combobox button[aria-expanded="true"] svg {
   transform: rotate(180deg) translate(0, -1px);
 }
 
