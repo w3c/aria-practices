@@ -391,6 +391,7 @@ ComboboxAutocomplete.prototype.handleComboboxKeyUp = function (event) {
   if (this.comboboxNode.value.length < this.filter.length) {
     this.filter = this.comboboxNode.value;
     this.option = null;
+    this.filterOptions()
   }
 
   if (event.key === "Escape" || event.key === "Esc") {
