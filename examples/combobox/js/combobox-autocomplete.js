@@ -403,7 +403,9 @@ ComboboxAutocomplete.prototype.handleComboboxKeyUp = function (event) {
     case "Backspace":
       this.setVisualFocusCombobox();
       this.setCurrentOptionStyle(false);
+      this.filter = this.comboboxNode.value;
       this.option = null;
+      this.filterOptions()
       flag = true;
       break;
 
