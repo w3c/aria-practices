@@ -14,6 +14,7 @@ const ex = {
   textboxSelector: '#ex1 input[type="text"]',
   listboxSelector: '#ex1 [role="listbox"]',
   optionsSelector: '#ex1 [role="option"]',
+  buttonSelector: '#ex1 button',
   numAOptions: 5,
   secondAOption: 'Alaska'
 
@@ -149,6 +150,29 @@ ariaTest('"aria-selected" attribute on options element', exampleFile, 'option-ar
   await assertAttributeValues(t, ex.optionsSelector + ':nth-of-type(1)', 'aria-selected', 'true');
 });
 
+ariaTest('"aria-controls" attribute on button element', exampleFile, 'button-aria-controls', async (t) => {
+  t.plan(2);
+
+  const popupId = await t.context.session
+    .findElement(By.css(ex.buttonSelector))
+    .getAttribute('aria-controls');
+
+  t.truthy(
+    popupId,
+    '"aria-controls" attribute should exist on: ' + ex.buttonSelector
+  );
+
+  const popupElements = await t.context.session
+    .findElement(By.id('ex1'))
+    .findElements(By.id(popupId));
+
+  t.is(
+    popupElements.length,
+    1,
+    'There should be a element with id "' + popupId + '" as referenced by the aria-controls attribute'
+  );
+});
+
 ariaTest('"aria-expanded" on button element', exampleFile, 'button-aria-expanded', async (t) => {
   t.plan(4);
 
@@ -195,7 +219,6 @@ ariaTest('"aria-expanded" on button element', exampleFile, 'button-aria-expanded
   );
 
 });
-
 
 // Keys
 
