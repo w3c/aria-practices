@@ -47,6 +47,11 @@
   background-color: #def;
 }
 
+.combobox button polygon.outline {
+  stroke: transparent;
+  fill: transparent;
+}
+
 .combobox button[aria-expanded="true"] polygon.outline,
 .combobox .group.focus polygon.outline {
   stroke: white;
