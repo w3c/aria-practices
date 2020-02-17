@@ -155,6 +155,23 @@ ariaTest('"aria-selected" attribute on options element', exampleFile, 'option-ar
   await assertAttributeValues(t, ex.optionsSelector + ':nth-of-type(1)', 'aria-selected', 'true');
 });
 
+ariaTest('Button should have tabindex="-1"', exampleFile, 'button-tabindex', async (t) => {
+  t.plan(1);
+
+  const button = await t.context.session.findElement(By.css(ex.buttonSelector))
+
+  t.is(
+    await button.getAttribute('tabindex'),
+    '-1',
+    'tabindex should be set to "-1" on button'
+  );
+});
+
+ariaTest('"aria-label" attribute on button element', exampleFile, 'button-aria-label', async (t) => {
+  t.plan(1);
+  await assertAriaLabelExists(t, ex.buttonSelector);
+});
+
 ariaTest('"aria-controls" attribute on button element', exampleFile, 'button-aria-controls', async (t) => {
   t.plan(2);
 

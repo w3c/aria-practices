@@ -53,7 +53,7 @@
           <div class="group">
             <input id="cb1-input" class="cb_edit" type="text" role="combobox" aria-autocomplete="list"
               aria-expanded="false" aria-controls="cb1-listbox">
-            <button id="cb1-button" tabindex="-1"  aria-label="State" aria-expanded="false" aria-controls="cb1-listbox">
+            <button id="cb1-button" tabindex="-1"  aria-label="States" aria-expanded="false" aria-controls="cb1-listbox">
               <span class="arrow">
                 <svg width="18" height="16" aria-hidden="true" focusable="false">
                   <polygon points="3,5 15,5 9,13"></polygon>
@@ -272,6 +272,10 @@
           </tr>
         </tbody>
       </table>
+      <h3 id="kbd_label_button">Button</h3>
+      <p>
+        The button has been removed from the tab sequence of the page, but is still focusable by assistive technologies.  The button is especially important for supporting assistive tehcnologies for mobile devices that use touch events to open the list of options.
+      </p>
     </section>
 
     <section>
@@ -434,6 +438,22 @@
           </tr>
         </thead>
         <tbody>
+          <tr data-test-id="button-tabindex">
+            <td></td>
+            <th scope="row">
+              <code>tabindex="-1"</code>
+            </th>
+            <td><code>button</code></td>
+            <td>Removes the button from the tab sequence of the page, since it's keyboard function is redundant with the keyboard operation of the textbox to open the listbox.</td>
+          </tr>
+          <tr data-test-id="button-aria-label">
+            <td></td>
+            <th scope="row">
+              <code>aria-label="States"</code>
+            </th>
+            <td><code>button</code></td>
+            <td>Provides a label for the <code>button</code>.</td>
+          </tr>
           <tr data-test-id="button-aria-controls">
             <td></td>
             <th scope="row">
