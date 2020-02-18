@@ -24,12 +24,12 @@
     </p>
     <ul>
       <li><a href="#csv_files">CSV Files of Role, Properties and States Coverage</a></li>
-      <li><a href="#roles_with_no_examples">Roles with no Guidance or Examples</a></li>
-      <li><a href="#roles_with_one_example">Roles with at Least One Guidance or Example</a></li>
-      <li><a href="#roles_with_more_than_one_example">Roles with More than One Guidance or Example</a></li>
-      <li><a href="#props_with_no_examples">Properties and States with no Examples</a></li>
-      <li><a href="#props_with_one_example">Properties and States with One Examples</a></li>
-      <li><a href="#props_with_more_than_one_example">Properties and States with More than One Example</a></li>
+      <li><a href="#roles_with_no_examples">Roles with no Guidance or Examples (<span class="roles_with_no_examples_count"></span>)</a></li>
+      <li><a href="#roles_with_one_example">Roles with at Least One Guidance or Example (<span class="roles_with_one_example_count"></span>)</a></li>
+      <li><a href="#roles_with_more_than_one_example">Roles with More than One Guidance or Example  (<span class="roles_with_more_than_one_examples_count"></span>)</a></li>
+      <li><a href="#props_with_no_examples">Properties and States with no Examples (<span class="props_with_no_examples_count"></span>)</a></li>
+      <li><a href="#props_with_one_example">Properties and States with One Examples (<span class="props_with_one_example_count"></span>)</a></li>
+      <li><a href="#props_with_more_than_one_example">Properties and States with More than One Example  (<span class="props_with_more_than_one_examples_count"></span>)</a></li>
     </ul>
 
     <section id="csv_files">
@@ -41,13 +41,13 @@
     </section>
 
     <section id="roles_with_no_examples">
-      <h2 id="roles_with_no_examples_label">Roles with No Guidance or Examples (<span id="roles_with_no_examples_count"></span>)</h2>
+      <h2 id="roles_with_no_examples_label">Roles with No Guidance or Examples (<span class="roles_with_no_examples_count"></span>)</h2>
       <ul id="roles_with_no_examples_ul">
       </ul>
     </section>
 
     <section id="roles_with_one_example">
-      <h2 id="roles_with_one_example_label">Roles with at Least One Guidance or Example (<span id="roles_with_one_example_count"></span>)</h2>
+      <h2 id="roles_with_one_example_label">Roles with at Least One Guidance or Example (<span class="roles_with_one_example_count"></span>)</h2>
       <table aria-labelledby="roles_with_one_example_label" class="data attributes">
         <thead>
           <tr>
@@ -62,7 +62,7 @@
     </section>
 
     <section id="roles_with_more_than_one_example">
-      <h2 id="roles_with_more_than_one_label">Roles with More than One Guidance or Example (<span id="roles_with_more_than_one_examples_count"></span>)</h2>
+      <h2 id="roles_with_more_than_one_label">Roles with More than One Guidance or Example (<span class="roles_with_more_than_one_examples_count"></span>)</h2>
       <table aria-labelledby="roles_with_more_than_one_label" class="data attributes">
         <thead>
           <tr>
@@ -77,13 +77,13 @@
     </section>
 
     <section id="props_with_no_examples">
-      <h2 id="props_with_no_examples_label">Properties and States with No Guidance or Examples (<span id="props_with_no_examples_count"></span>)</h2>
+      <h2 id="props_with_no_examples_label">Properties and States with No Guidance or Examples (<span class="props_with_no_examples_count"></span>)</h2>
       <ul id="props_with_no_examples_ul">
       </ul>
     </section>
 
     <section id="props_with_one_example">
-      <h2 id="props_with_one_example_label">Properties and States with at Least One Guidance or Example (<span id="props_with_one_example_count"></span>)</h2>
+      <h2 id="props_with_one_example_label">Properties and States with at Least One Guidance or Example (<span class="props_with_one_example_count"></span>)</h2>
       <table aria-labelledby="props_with_one_example_label" class="data attributes">
         <thead>
           <tr>
@@ -98,7 +98,7 @@
     </section>
 
     <section id="props_with_more_than_one_example">
-      <h2 id="props_with_more_than_one_label">Properties and States with More than One Guidance or Example (<span id="props_with_more_than_one_examples_count"></span>)</h2>
+      <h2 id="props_with_more_than_one_label">Properties and States with More than One Guidance or Example (<span class="props_with_more_than_one_examples_count"></span>)</h2>
       <table aria-labelledby="props_with_more_than_one_label" class="data attributes">
         <thead>
           <tr>

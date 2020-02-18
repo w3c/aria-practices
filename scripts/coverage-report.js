@@ -574,9 +574,9 @@ let RoleWithMoreThanOneExample = sortedRoles.reduce(function (set, role) {
 
 $('#roles_with_more_than_one_tbody').html(RoleWithMoreThanOneExample);
 
-$('#roles_with_no_examples_count').html(countNoExamples.toString());
-$('#roles_with_one_example_count').html(countOneExample.toString());
-$('#roles_with_more_than_one_examples_count').html(countMoreThanOneExample.toString());
+$('.roles_with_no_examples_count').html(countNoExamples.toString());
+$('.roles_with_one_example_count').html(countOneExample.toString());
+$('.roles_with_more_than_one_examples_count').html(countMoreThanOneExample.toString());
 
 // Properties and States
 
@@ -602,7 +602,7 @@ let PropsWithNoExamples = sortedPropertiesAndStates.reduce(function (set, prop) 
 }, '');
 
 $('#props_with_no_examples_ul').html(PropsWithNoExamples);
-$('#props_with_no_examples_count').html(countNoExamples.toString());
+$('.props_with_no_examples_count').html(countNoExamples.toString());
 
 let PropsWithOneExample = sortedPropertiesAndStates.reduce(function (set, prop) {
   let examples = indexOfPropertiesAndStatesInExamples[prop];
@@ -625,7 +625,7 @@ let PropsWithOneExample = sortedPropertiesAndStates.reduce(function (set, prop) 
 }, '');
 
 $('#props_with_one_example_tbody').html(PropsWithOneExample);
-$('#props_with_one_example_count').html(countOneExample.toString());
+$('.props_with_one_example_count').html(countOneExample.toString());
 
 let PropsWithMoreThanOneExample = sortedPropertiesAndStates.reduce(function (set, prop) {
   let examples = indexOfPropertiesAndStatesInExamples[prop];
@@ -647,7 +647,7 @@ let PropsWithMoreThanOneExample = sortedPropertiesAndStates.reduce(function (set
 }, '');
 
 $('#props_with_more_than_one_tbody').html(PropsWithMoreThanOneExample);
-$('#props_with_more_than_one_examples_count').html(countMoreThanOneExample.toString());
+$('.props_with_more_than_one_examples_count').html(countMoreThanOneExample.toString());
 
 
 
