@@ -94,12 +94,16 @@ aria.GridCombobox.prototype.handleInputKeyDown = function (evt) {
       );
     }
     else {
-      this.hideResults();
-      setTimeout((function () {
-        // On Firefox, input does not get cleared here unless wrapped in
-        // a setTimeout
-        this.input.value = '';
-      }).bind(this), 1);
+      if (aria.Utils.hasClass(this.grid, 'hidden')) {
+        setTimeout((function () {
+          // On Firefox, input does not get cleared here unless wrapped in
+          // a setTimeout
+          this.input.value = '';
+        }).bind(this), 1);
+      }
+      else {
+        this.hideResults();
+      }
     }
     return;
   }
