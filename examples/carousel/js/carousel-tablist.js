@@ -94,13 +94,6 @@ var CarouselTablist = function (node) {
   this.domNode.addEventListener('mouseover', this.handleMouseOver.bind(this));
   this.domNode.addEventListener('mouseout', this.handleMouseOut.bind(this));
 
-  // Center Tablist Controls
-
-  if (this.tablistNode.style.textAlign != 'center') {
-    this.centerTablistControls();
-    window.addEventListener('resize', this.centerTablistControls.bind(this));
-  }
-
   // Start rotation
   setTimeout(this.rotateSlides.bind(this), this.timeInterval);
 
@@ -108,6 +101,20 @@ var CarouselTablist = function (node) {
   if (location.href.toLowerCase().indexOf('paused') > 0) {
     this.isStopped = true;
     this.updateRotation();
+  }
+
+  // If URL contains text "noplay", carousel is disabled from autorotation
+  if (location.href.toLowerCase().indexOf('noplay') > 0) {
+    this.isStopped = true;
+    this.updateRotation();
+    this.pauseButtonNode.hidden = true;
+  }
+
+  // Center Tablist Controls
+
+  if (this.tablistNode.style.textAlign != 'center') {
+    this.centerTablistControls();
+    window.addEventListener('resize', this.centerTablistControls.bind(this));
   }
 
 }
@@ -249,11 +256,13 @@ CarouselTablist.prototype.updateRotation = function () {
     this.pauseButtonNode.setAttribute('aria-label', this.playLabel);
     this.pauseButtonNode.classList.remove('pause');
     this.pauseButtonNode.classList.add('play');
+    this.liveRegionNode.classList.remove('playing');
   }
   else {
     this.pauseButtonNode.setAttribute('aria-label', this.pauseLabel);
     this.pauseButtonNode.classList.remove('play');
     this.pauseButtonNode.classList.add('pause');
+    this.liveRegionNode.classList.add('playing');
   }
 
 

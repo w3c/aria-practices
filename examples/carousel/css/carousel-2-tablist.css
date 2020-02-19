@@ -13,7 +13,7 @@
   border: solid 2px transparent;
 }
 
-.carousel-tablist [role=tabpanel] {
+.carousel-tablist .carousel-item {
   display: none;
   max-height: 400px;
   max-width: 900px;
@@ -27,33 +27,33 @@
   outline: solid 3px #005a9c;
 }
 
-.carousel-tablist [role=tabpanel].active {
+.carousel-tablist .carousel-item.active {
   display: block;
 }
 
 /* More like bootstrap, less accessible */
 
-.carousel-tablist [role=tabpanel] .carousel-caption,
-.carousel-tablist [role=tabpanel] .carousel-image a img {
+.carousel-tablist .playing .carousel-item .carousel-caption,
+.carousel-tablist .playing .carousel-item .carousel-image a img {
   cursor: url('../images/paused-pointer.svg'), auto;
 }
 
-.carousel-tablist [role=tabpanel] .carousel-caption a {
+.carousel-tablist .carousel-item .carousel-caption a {
   cursor: pointer;
 }
 
 
-.carousel-tablist [role=tabpanel] .carousel-image a img {
+.carousel-tablist .carousel-item .carousel-image a img {
   height: 100%;
   width: 100%;
 }
 
-.carousel-tablist [role=tabpanel] .carousel-caption a {
+.carousel-tablist .carousel-item .carousel-caption a {
   text-decoration: underline;
 }
 
-.carousel-tablist [role=tabpanel] .carousel-caption a,
-.carousel-tablist [role=tabpanel] .carousel-caption span.contrast {
+.carousel-tablist .carousel-item .carousel-caption a,
+.carousel-tablist .carousel-item .carousel-caption span.contrast {
   margin: 0;
   padding: 6px;
   display: inline-block;
@@ -62,17 +62,17 @@
   border: 0 solid transparent;
 }
 
-.carousel-tablist [role=tabpanel] .carousel-caption h3 a {
+.carousel-tablist .carousel-item .carousel-caption h3 a {
   color: #fff;
   font-weight: 600;
 }
 
-.carousel-tablist [role=tabpanel] .carousel-caption a:hover,
-.carousel-tablist [role=tabpanel] .carousel-caption span.contrast:hover {
+.carousel-tablist .carousel-item .carousel-caption a:hover,
+.carousel-tablist .carousel-item .carousel-caption span.contrast:hover {
   background-color: rgba(0, 0, 0, 1);
 }
 
-.carousel-tablist [role=tabpanel] .carousel-caption a:focus {
+.carousel-tablist .carousel-item .carousel-caption a:focus {
   padding: 4px;
   border-width: 2px;
   background-color: rgba(0, 0, 0, 1);
@@ -80,13 +80,13 @@
   outline: 2px dotted transparent;
 }
 
-.carousel-tablist [role=tabpanel] .carousel-caption p {
+.carousel-tablist .carousel-item .carousel-caption p {
   font-size: 1em;
   line-height: 1.5;
   margin-bottom: 0;
 }
 
-.carousel-tablist [role=tabpanel] .carousel-caption {
+.carousel-tablist .carousel-item .carousel-caption {
   position: absolute;
   right: 15%;
   bottom: 0;

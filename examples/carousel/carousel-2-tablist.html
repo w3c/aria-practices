@@ -68,6 +68,8 @@
         <ul>
           <li><a id="accessible" href="carousel-2-tablist.html">Tablist carousel controls and captions displayed on image</a>: This option is less accessible than the following option because the controls are harder to perceive and captions are more difficult to read with rotating images behind them.</li>
           <li><a id="moreaccessible" href="carousel-2-tablist.html?moreaccessible">Tablist carousel controls and captions displayed above and below the image</a>: This option is preferable because controls and captions are easier to perceive, especially for people with visual impairments.</li>
+          <li><a id="moreaccessible" href="carousel-2-tablist.html?moreaccessiblepaused">Auto-rotation is initially paused</a>: This option supports users with visual impairments and that are distracted by auto rotation, but allows users to start auto rotation using the start/stop button.</li>
+          <li><a id="moreaccessible" href="carousel-2-tablist.html?moreaccessiblenoplay">Auto-rotation is disabled</a>: This option supports users with visual impairments and that are distracted by auto rotation and removes the complexity the start/stop button adds to user interaction.</li>
         </ul>
       </section>
 
@@ -182,7 +184,7 @@
                 </div>
 
 
-                <div id="myCarousel-items" class="carousel-items" aria-live="off">
+                <div id="myCarousel-items" class="carousel-items playing" aria-live="off">
 
                   <div class="carousel-item active"
                        id="carousel-item-1"
