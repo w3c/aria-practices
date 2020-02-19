@@ -26,6 +26,15 @@
         if (location.href.indexOf('moreaccessible') > 0) {
           ac = document.getElementById('moreaccessible');
         }
+
+        if (location.href.indexOf('moreaccessiblepaused') > 0) {
+          ac = document.getElementById('moreaccessiblepaused');
+        }
+
+        if (location.href.indexOf('moreaccessiblenoplay') > 0) {
+          ac = document.getElementById('moreaccessiblenoplay');
+        }
+
         if (ac) {
           ac.setAttribute('aria-current', 'page');
         }
@@ -68,8 +77,8 @@
         <ul>
           <li><a id="accessible" href="carousel-2-tablist.html">Tablist carousel controls and captions displayed on image</a>: This option is less accessible than the following option because the controls are harder to perceive and captions are more difficult to read with rotating images behind them.</li>
           <li><a id="moreaccessible" href="carousel-2-tablist.html?moreaccessible">Tablist carousel controls and captions displayed above and below the image</a>: This option is preferable because controls and captions are easier to perceive, especially for people with visual impairments.</li>
-          <li><a id="moreaccessible" href="carousel-2-tablist.html?moreaccessiblepaused">Auto-rotation is initially paused</a>: This option supports users with visual impairments and that are distracted by auto rotation, but allows users to start auto rotation using the start/stop button.</li>
-          <li><a id="moreaccessible" href="carousel-2-tablist.html?moreaccessiblenoplay">Auto-rotation is disabled</a>: This option supports users with visual impairments and that are distracted by auto rotation and removes the complexity the start/stop button adds to user interaction.</li>
+          <li><a id="moreaccessiblepaused" href="carousel-2-tablist.html?moreaccessiblepaused">Auto-rotation is initially paused</a>: This option supports users with visual impairments and that are distracted by auto rotation, but allows users to start auto rotation using the start/stop button.</li>
+          <li><a id="moreaccessiblenoplay" href="carousel-2-tablist.html?moreaccessiblenoplay">Auto-rotation is disabled</a>: This option supports users with visual impairments and that are distracted by auto rotation and removes the complexity the start/stop button adds to user interaction.</li>
         </ul>
       </section>
 
