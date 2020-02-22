@@ -6571,7 +6571,27 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
       </div>
     </section>
 
+    <section id="range_related_properties_meter_role">
+      <h3>Range properties with meter</h3>
 
+      <p>
+        A meter is a graphical display of a numeric value within a defined range. Therefore, the <code>aria-valuemin</code>, <code>aria-valuenow</code> and <code>aria-valuemax</code> properties are required for the <code>meter</code> role although there are no default values for <code>aria-valuemin</code> and <code>aria-valuemax</code>.
+      </p>
+      
+      <p>This is an example of a meter, which shows the change of Central Processing Unit(CPU) usage. </p>
+
+      <pre><code>&lt;div role="meter" 
+      aria-valuenow="90" 
+      aria-valuemin="0" 
+      aria-valuemax="100" 
+      aria-labelledby="cpu_usage_label"&gt;
+&lt;/div&gt;</code></pre>
+
+      <p>
+        The <code>aria-valuetext</code> property can be set to a string that makes the meter value understandable. For example, a CPU usage meter value might be conveyed as <code>aria-valuetext="90% of CPU is being used"</code>.
+      </p>
+
+    </section>
     <section id="range_related_properties_progressbar_role">
       <h3>Range properties with progress bars</h3>
 
