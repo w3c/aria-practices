@@ -340,33 +340,267 @@ ariaTest('key space selects', exampleFile, 'key-space', async (t) => {
   }
 });
 
-// Bug: https://github.com/w3c/aria-practices/issues/919
-ariaTest.failing('key shift+down arrow moves focus and selects', exampleFile, 'key-shift-down-arrow', async (t) => {
-  t.plan(1);
-  t.fail();
+ariaTest('shift + click selects multiple options', exampleFile, 'key-shift-up-arrow', async (t) => {
+  const listbox = await t.context.session.findElement(By.css(ex[2].listboxSelector));
+  const options = await t.context.session.findElements(By.css(ex[2].optionSelector));
+
+  // Put the focus on the fourth item, and selects item
+  await options[3].click();
+
+  // send shift + click to first option
+  const actions = t.context.session.actions();
+  await actions
+          .keyDown(Key.SHIFT)
+          .click(options[0])
+          .keyUp(Key.SHIFT)
+          .perform();
+  
+  // expect first through fourt option to be selected
+  for (let index = options.length - 1; index >= 0 ; index--) {
+    const selected = await options[index].getAttribute('aria-selected');
+    const shouldBeSelected = index < 4;
+    t.is(
+      selected,
+      `${shouldBeSelected}`,
+      `aria-selected should be ${shouldBeSelected} for option ${index + 1} after using shift + click`
+    );
+  }
 });
 
-// Bug: https://github.com/w3c/aria-practices/issues/919
-ariaTest.failing('key shift+up arrow moves focus and selects', exampleFile, 'key-shift-up-arrow', async (t) => {
-  t.plan(1);
-  t.fail();
+ariaTest('key shift+down arrow moves focus and selects', exampleFile, 'key-shift-down-arrow', async (t) => {
+  const listbox = await t.context.session.findElement(By.css(ex[2].listboxSelector));
+  const options = await t.context.session.findElements(By.css(ex[2].optionSelector));
+
+  // Put the focus on the first item, and selects item
+  await t.context.session.findElement(By.css(ex[2].firstOptionSelector)).click();
+  listbox.sendKeys(Key.chord(Key.SHIFT, Key.ARROW_DOWN));
+
+  // expect first two items to be selected
+  for (let index = options.length - 1; index >= 0 ; index--) {
+    const selected = await options[index].getAttribute('aria-selected');
+    const shouldBeSelected = index < 2;
+    t.is(
+      selected,
+      `${shouldBeSelected}`,
+      `aria-selected should be ${shouldBeSelected} for option ${index + 1} after using shift + down arrow to select first and second options`
+    );
+  }
 });
 
-// Bug: https://github.com/w3c/aria-practices/issues/919
-ariaTest.failing('key control+shift+home moves focus and selects', exampleFile, 'key-control-shift-home', async (t) => {
-  t.plan(1);
-  t.fail();
+ariaTest('key shift+down arrow overwrites previous selection', exampleFile, 'key-shift-down-arrow', async (t) => {
+  const listbox = await t.context.session.findElement(By.css(ex[2].listboxSelector));
+  const options = await t.context.session.findElements(By.css(ex[2].optionSelector));
+
+  // Select first item
+  await t.context.session.findElement(By.css(ex[2].firstOptionSelector)).click();
+
+  // set focus to 3rd item and select
+  await t.context.session.findElement(By.css(`${ex[2].optionSelector}:nth-child(3)`)).click();
+  listbox.sendKeys(Key.chord(Key.SHIFT, Key.ARROW_DOWN));
+
+  // expect only third and fourth items to be selected
+  for (let index = options.length - 1; index >= 0 ; index--) {
+    const selected = await options[index].getAttribute('aria-selected');
+    const shouldBeSelected = index === 2 || index === 3;
+    t.is(
+      selected,
+      `${shouldBeSelected}`,
+      `aria-selected should be ${shouldBeSelected} for option ${index + 1} after using shift + down arrow to select first and second options`
+    );
+  }
 });
 
-// Bug: https://github.com/w3c/aria-practices/issues/919
-ariaTest.failing('key control+shift+end moves focus and selects', exampleFile, 'key-control-shift-end', async (t) => {
-  t.plan(1);
-  t.fail();
+ariaTest('key shift+down arrow cannot move past last option', exampleFile, 'key-shift-down-arrow', async (t) => {
+  const listbox = await t.context.session.findElement(By.css(ex[2].listboxSelector));
+  const options = await t.context.session.findElements(By.css(ex[2].optionSelector));
+
+  // Put the focus on the second to last item, and select item
+  await t.context.session.findElement(By.css(`${ex[2].optionSelector}:nth-child(${options.length - 1})`)).click();
+  await listbox.sendKeys(Key.chord(Key.SHIFT, Key.ARROW_DOWN));
+  await listbox.sendKeys(Key.chord(Key.SHIFT, Key.ARROW_DOWN));
+
+  // expect first two items to be selected
+  for (let index = options.length - 1; index >= 0 ; index--) {
+    const selected = await options[index].getAttribute('aria-selected');
+    const shouldBeSelected = index >= options.length - 2;
+    t.is(
+      selected,
+      `${shouldBeSelected}`,
+      `aria-selected should be ${shouldBeSelected} for option ${index + 1} after using shift + down arrow to select past last option`
+    );
+  }
 });
 
-// Bug: https://github.com/w3c/aria-practices/issues/919
-ariaTest.failing('key control+A selects all options', exampleFile, 'key-control-a', async (t) => {
-  t.plan(1);
-  t.fail();
+ariaTest('key shift+up arrow moves focus and selects', exampleFile, 'key-shift-up-arrow', async (t) => {
+  const listbox = await t.context.session.findElement(By.css(ex[2].listboxSelector));
+  const options = await t.context.session.findElements(By.css(ex[2].optionSelector));
+
+  // Put the focus on the last item, and selects item
+  await t.context.session.findElement(By.css(ex[2].lastOptionSelector)).click();
+  listbox.sendKeys(Key.chord(Key.SHIFT, Key.ARROW_UP));
+
+  // expect last two items to be selected
+  for (let index = options.length - 1; index >= 0 ; index--) {
+    const selected = await options[index].getAttribute('aria-selected');
+    const shouldBeSelected = index >= options.length - 2;
+    t.is(
+      selected,
+      `${shouldBeSelected}`,
+      `aria-selected should be ${shouldBeSelected} for option ${index + 1} after using shift + up arrow to select last and second-to-last options`
+    );
+  }
+});
+
+ariaTest('key shift+up arrow resets previous selection', exampleFile, 'key-shift-up-arrow', async (t) => {
+  const listbox = await t.context.session.findElement(By.css(ex[2].listboxSelector));
+  const options = await t.context.session.findElements(By.css(ex[2].optionSelector));
+
+  // Select first item
+  await t.context.session.findElement(By.css(ex[2].firstOptionSelector)).click();
+
+  // set focus to 3rd item and select
+  await t.context.session.findElement(By.css(`${ex[2].optionSelector}:nth-child(3)`)).click();
+  listbox.sendKeys(Key.chord(Key.SHIFT, Key.ARROW_UP));
+
+  // expect only second and third items to be selected
+  for (let index = options.length - 1; index >= 0 ; index--) {
+    const selected = await options[index].getAttribute('aria-selected');
+    const shouldBeSelected = index === 1 || index === 2;
+    t.is(
+      selected,
+      `${shouldBeSelected}`,
+      `aria-selected should be ${shouldBeSelected} for option ${index + 1} after using shift + up arrow to select third and second options`
+    );
+  }
+});
+
+ariaTest('key shift+up arrow cannot move past first option', exampleFile, 'key-shift-up-arrow', async (t) => {
+  const listbox = await t.context.session.findElement(By.css(ex[2].listboxSelector));
+  const options = await t.context.session.findElements(By.css(ex[2].optionSelector));
+
+  // Put the focus on the second item, and select item
+  await t.context.session.findElement(By.css(`${ex[2].optionSelector}:nth-child(2)`)).click();
+  await listbox.sendKeys(Key.chord(Key.SHIFT, Key.ARROW_UP));
+  await listbox.sendKeys(Key.chord(Key.SHIFT, Key.ARROW_UP));
+
+  // expect first two items to be selected
+  for (let index = options.length - 1; index >= 0 ; index--) {
+    const selected = await options[index].getAttribute('aria-selected');
+    const shouldBeSelected = index <= 1;
+    t.is(
+      selected,
+      `${shouldBeSelected}`,
+      `aria-selected should be ${shouldBeSelected} for option ${index + 1} after using shift + up arrow to select first and second`
+    );
+  }
+});
+
+ariaTest('key control+shift+home moves focus and selects all options', exampleFile, 'key-control-shift-home', async (t) => {
+  const listbox = await t.context.session.findElement(By.css(ex[2].listboxSelector));
+  const options = await t.context.session.findElements(By.css(ex[2].optionSelector));
+
+  // Put the focus on the last item, and selects item
+  await t.context.session.findElement(By.css(ex[2].lastOptionSelector)).click();
+  listbox.sendKeys(Key.chord(Key.SHIFT, Key.CONTROL, Key.HOME));
+
+  for (let index = options.length - 1; index >= 0 ; index--) {
+    const selected = await options[index].getAttribute('aria-selected');
+    t.is(selected, 'true', 'aria-selected should be true for all options after using shift + control + home from last option');
+  }
+});
+
+ariaTest('key control+shift+home moves focus and selects some options', exampleFile, 'key-control-shift-home', async (t) => {
+  const listbox = await t.context.session.findElement(By.css(ex[2].listboxSelector));
+  const options = await t.context.session.findElements(By.css(ex[2].optionSelector));
+
+  // Put the focus on the 5th option, arrow up, then do home
+  await t.context.session.findElement(By.css(`${ex[2].optionSelector}:nth-child(5)`)).click();
+  await listbox.sendKeys(Key.ARROW_UP);
+  await listbox.sendKeys(Key.chord(Key.SHIFT, Key.CONTROL, Key.HOME));
+
+  // expect 1st-4th options to be selected
+  for (let index = options.length - 1; index >= 0 ; index--) {
+    const selected = await options[index].getAttribute('aria-selected');
+    const shouldBeSelected = index < 4;
+    t.is(selected, `${shouldBeSelected}`, 'aria-selected should be true for first through fourth options');
+  }
+});
+
+ariaTest('key shift+home does not change selection', exampleFile, 'key-control-shift-home', async (t) => {
+  const listbox = await t.context.session.findElement(By.css(ex[2].listboxSelector));
+  const options = await t.context.session.findElements(By.css(ex[2].optionSelector));
+
+  // Put the focus on the last option and select it
+  await t.context.session.findElement(By.css(ex[2].lastOptionSelector)).click();
+  await listbox.sendKeys(Key.chord(Key.SHIFT, Key.HOME));
+
+  // expect only last item
+  for (let index = options.length - 1; index >= 0 ; index--) {
+    const selected = await options[index].getAttribute('aria-selected');
+    const shouldBeSelected = index === options.length - 1;
+    t.is(selected, `${shouldBeSelected}`, 'aria-selected should only be true for last option');
+  }
+});
+
+ariaTest('key control+shift+end moves focus and selects all options', exampleFile, 'key-control-shift-end', async (t) => {
+  const listbox = await t.context.session.findElement(By.css(ex[2].listboxSelector));
+  const options = await t.context.session.findElements(By.css(ex[2].optionSelector));
+
+  // Put the focus on the first item, and selects item
+  await t.context.session.findElement(By.css(ex[2].firstOptionSelector)).click();
+  await listbox.sendKeys(Key.chord(Key.SHIFT, Key.CONTROL, Key.END));
+
+  for (let index = options.length - 1; index >= 0 ; index--) {
+    const selected = await options[index].getAttribute('aria-selected');
+    t.is(selected, 'true', 'aria-selected should be true for all options after using shift + control + end from first option');
+  }
+});
+
+ariaTest('key control+shift+end moves focus and selects some options', exampleFile, 'key-control-shift-end', async (t) => {
+  const listbox = await t.context.session.findElement(By.css(ex[2].listboxSelector));
+  const options = await t.context.session.findElements(By.css(ex[2].optionSelector));
+
+  // Put the focus on the 3rd option, arrow down, then do end
+  await t.context.session.findElement(By.css(`${ex[2].optionSelector}:nth-child(3)`)).click();
+  await listbox.sendKeys(Key.ARROW_DOWN);
+  await listbox.sendKeys(Key.chord(Key.SHIFT, Key.CONTROL, Key.END));
+
+  // expect 4th - last options to be selected
+  for (let index = options.length - 1; index >= 0 ; index--) {
+    const selected = await options[index].getAttribute('aria-selected');
+    const shouldBeSelected = index >= 3;
+    t.is(selected, `${shouldBeSelected}`, 'aria-selected should be true for fourth through last options');
+  }
+});
+
+ariaTest('key shift+end does not change selection', exampleFile, 'key-control-shift-end', async (t) => {
+  const listbox = await t.context.session.findElement(By.css(ex[2].listboxSelector));
+  const options = await t.context.session.findElements(By.css(ex[2].optionSelector));
+
+  // Put the focus on the first option and select it
+  await t.context.session.findElement(By.css(ex[2].firstOptionSelector)).click();
+  await listbox.sendKeys(Key.chord(Key.SHIFT, Key.END));
+
+  // expect only first item to be selected
+  for (let index = options.length - 1; index >= 0 ; index--) {
+    const selected = await options[index].getAttribute('aria-selected');
+    const shouldBeSelected = index === 0;
+    t.is(selected, `${shouldBeSelected}`, 'aria-selected should only be true for first option');
+  }
+});
+
+ariaTest('key control+A selects all options', exampleFile, 'key-control-a', async (t) => {
+  const listbox = await t.context.session.findElement(By.css(ex[2].listboxSelector));
+  const options = await t.context.session.findElements(By.css(ex[2].optionSelector));
+
+  // click inside listbox
+  await t.context.session.findElement(By.css(`${ex[2].optionSelector}:nth-child(2)`)).click();
+  await listbox.sendKeys(Key.chord(Key.CONTROL, 'a'));
+
+  // expect all items to be selected
+  for (let index = options.length - 1; index >= 0 ; index--) {
+    const selected = await options[index].getAttribute('aria-selected');
+    t.is(selected, 'true', 'all options should be selected after using control + a');
+  }
 });
 
