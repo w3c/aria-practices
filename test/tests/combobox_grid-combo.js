@@ -161,7 +161,7 @@ ariaTest('role "row" exists within grid element', exampleFile, 'row-role', async
   await t.context.session.findElement(By.css(ex.comboboxSelector)).sendKeys('a', Key.ARROW_DOWN);
 
   let gridEl = await t.context.session.findElement(By.css(ex.gridSelector));
-  let rowElements = t.context.queryElements(t, '[role="row"]', gridEl);
+  let rowElements = await t.context.queryElements(t, '[role="row"]', gridEl);
 
   t.truthy(
     await rowElements.length,
@@ -187,7 +187,7 @@ ariaTest('role "gridcell" exists within row element', exampleFile, 'gridcell-rol
   await t.context.session.findElement(By.css(ex.comboboxSelector)).sendKeys('a', Key.ARROW_DOWN);
 
   let rowElement = await t.context.session.findElement(By.css(ex.rowSelector));
-  let cellElements = t.context.queryElements(t, '[role="gridcell"]', rowElement);
+  let cellElements = await t.context.queryElements(t, '[role="gridcell"]', rowElement);
 
   t.truthy(
     await cellElements.length,
