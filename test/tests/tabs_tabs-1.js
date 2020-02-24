@@ -26,7 +26,7 @@ const ex = {
 };
 
 const openTabAtIndex = async function (t, index) {
-  const tabs = await t.context.session.findElements(By.css(ex.tabSelector));
+  const tabs = await t.context.queryElements(t, ex.tabSelector);
   await tabs[index].click();
 };
 
@@ -42,7 +42,7 @@ const waitAndCheckFocus = async function (t, selector, index) {
 
 const waitAndCheckAriaSelected = async function (t, index) {
   return t.context.session.wait(async function () {
-    const tabs = await t.context.session.findElements(By.css(ex.tabSelector));
+    const tabs = await t.context.queryElements(t, ex.tabSelector);
     return (await tabs[index].getAttribute('aria-selected')) === 'true';
   }, t.context.waitTime, 'Timeout waiting for aria-selected to be set to true.');
 };
@@ -50,25 +50,21 @@ const waitAndCheckAriaSelected = async function (t, index) {
 // Attributes
 
 ariaTest('role="tablist" on div element', exampleFile, 'tablist-role', async (t) => {
-  t.plan(1);
-  await assertAriaRoles(t, 'ex1', 'tablist', '1', 'div');
+    await assertAriaRoles(t, 'ex1', 'tablist', '1', 'div');
 });
 
 ariaTest('"ariaLabel" attribute on role="tablist"', exampleFile, 'tablist-aria-label', async (t) => {
-  t.plan(1);
-  await assertAriaLabelExists(t, ex.tablistSelector);
+    await assertAriaLabelExists(t, ex.tablistSelector);
 });
 
 ariaTest('role="tab" on button elements', exampleFile, 'tab-role', async (t) => {
-  t.plan(1);
-  await assertAriaRoles(t, 'ex1', 'tab', '3', 'button');
+    await assertAriaRoles(t, 'ex1', 'tab', '3', 'button');
 });
 
 ariaTest('"aria-selected" set on role="tab"', exampleFile, 'tab-aria-selected', async (t) => {
-  t.plan(18);
-
-  let tabs = await t.context.session.findElements(By.css(ex.tabSelector));
-  let tabpanels = await t.context.session.findElements(By.css(ex.tabpanelSelector));
+  
+  let tabs = await t.context.queryElements(t, ex.tabSelector);
+  let tabpanels = await t.context.queryElements(t, ex.tabpanelSelector);
 
   for (let selectedEl = 0; selectedEl < tabs.length; selectedEl++) {
 
@@ -99,9 +95,8 @@ ariaTest('"aria-selected" set on role="tab"', exampleFile, 'tab-aria-selected', 
 });
 
 ariaTest('"tabindex" on role="tab"', exampleFile, 'tab-tabindex', async (t) => {
-  t.plan(9);
-
-  let tabs = await t.context.session.findElements(By.css(ex.tabSelector));
+  
+  let tabs = await t.context.queryElements(t, ex.tabSelector);
   for (let selectedEl = 0; selectedEl < tabs.length; selectedEl++) {
 
     // Open the tab
@@ -138,31 +133,26 @@ ariaTest('"tabindex" on role="tab"', exampleFile, 'tab-tabindex', async (t) => {
 });
 
 ariaTest('"aria-control" attribute on role="tab"', exampleFile, 'tab-aria-control', async (t) => {
-  t.plan(1);
-  await assertAriaControls(t, ex.tabSelector);
+    await assertAriaControls(t, ex.tabSelector);
 });
 
 ariaTest('role="tabpanel" on div element', exampleFile, 'tabpanel-role', async (t) => {
-  t.plan(1);
-  await assertAriaRoles(t, 'ex1', 'tabpanel', '3', 'div');
+    await assertAriaRoles(t, 'ex1', 'tabpanel', '3', 'div');
 });
 
 ariaTest('"aria-labelledby" attribute on role="tabpanel" elements', exampleFile, 'tabpanel-aria-labelledby', async (t) => {
-  t.plan(1);
-  await assertAriaLabelledby(t, ex.tabpanelSelector);
+    await assertAriaLabelledby(t, ex.tabpanelSelector);
 });
 
 ariaTest('tabindex="0" on role="tabpanel" elements', exampleFile, 'tabpanel-tabindex', async (t) => {
-  t.plan(1);
-  await assertAttributeValues(t, ex.tabpanelSelector, 'tabindex', '0');
+    await assertAttributeValues(t, ex.tabpanelSelector, 'tabindex', '0');
 });
 
 
 // Keys
 
 ariaTest('TAB key moves focus to open tab and panel', exampleFile, 'key-tab', async (t) => {
-  t.plan(3);
-
+  
   for (let index = 0; index < ex.tabCount; index++) {
     await openTabAtIndex(t, index);
 
@@ -171,13 +161,12 @@ ariaTest('TAB key moves focus to open tab and panel', exampleFile, 'key-tab', as
 });
 
 ariaTest('ARROW_RIGHT key moves focus and activates tab', exampleFile, 'key-right-arrow', async (t) => {
-  t.plan(9);
-
+  
   // Put focus on first tab
   await openTabAtIndex(t, 0);
 
-  const tabs = await t.context.session.findElements(By.css(ex.tabSelector));
-  const tabpanels = await t.context.session.findElements(By.css(ex.tabpanelSelector));
+  const tabs = await t.context.queryElements(t, ex.tabSelector);
+  const tabpanels = await t.context.queryElements(t, ex.tabpanelSelector);
   for (let index = 0; index < tabs.length - 1; index++) {
 
     // Send the arrow right key to move focus
@@ -219,10 +208,9 @@ ariaTest('ARROW_RIGHT key moves focus and activates tab', exampleFile, 'key-righ
 });
 
 ariaTest('ARROW_LEFT key moves focus and activates tab', exampleFile, 'key-left-arrow', async (t) => {
-  t.plan(9);
-
-  const tabs = await t.context.session.findElements(By.css(ex.tabSelector));
-  const tabpanels = await t.context.session.findElements(By.css(ex.tabpanelSelector));
+  
+  const tabs = await t.context.queryElements(t, ex.tabSelector);
+  const tabpanels = await t.context.queryElements(t, ex.tabpanelSelector);
 
   // Put focus on first tab
   await openTabAtIndex(t, 0);
@@ -268,10 +256,9 @@ ariaTest('ARROW_LEFT key moves focus and activates tab', exampleFile, 'key-left-
 
 ariaTest('HOME key moves focus and selects tab', exampleFile, 'key-home', async (t) => {
 
-  t.plan(9);
-
-  const tabs = await t.context.session.findElements(By.css(ex.tabSelector));
-  const tabpanels = await t.context.session.findElements(By.css(ex.tabpanelSelector));
+  
+  const tabs = await t.context.queryElements(t, ex.tabSelector);
+  const tabpanels = await t.context.queryElements(t, ex.tabpanelSelector);
   for (let index = 0; index < tabs.length; index++) {
 
     // Put focus on the tab
@@ -297,10 +284,9 @@ ariaTest('HOME key moves focus and selects tab', exampleFile, 'key-home', async 
 });
 
 ariaTest('END key moves focus and selects tab', exampleFile, 'key-end', async (t) => {
-  t.plan(9);
-
-  const tabs = await t.context.session.findElements(By.css(ex.tabSelector));
-  const tabpanels = await t.context.session.findElements(By.css(ex.tabpanelSelector));
+  
+  const tabs = await t.context.queryElements(t, ex.tabSelector);
+  const tabpanels = await t.context.queryElements(t, ex.tabpanelSelector);
   for (let index = 0; index < tabs.length; index++) {
 
     // Put focus on the tab
@@ -326,9 +312,8 @@ ariaTest('END key moves focus and selects tab', exampleFile, 'key-end', async (t
 });
 
 ariaTest('DELETE key removes third tab', exampleFile, 'key-delete', async (t) => {
-  t.plan(4);
-
-  let tabs = await t.context.session.findElements(By.css(ex.tabSelector));
+  
+  let tabs = await t.context.queryElements(t, ex.tabSelector);
 
   // Put focus on the first tab
   await openTabAtIndex(t, 0);
@@ -337,7 +322,7 @@ ariaTest('DELETE key removes third tab', exampleFile, 'key-delete', async (t) =>
   await tabs[0].sendKeys(Key.DELETE);
 
   t.is(
-    (await t.context.session.findElements(By.css(ex.tabSelector))).length,
+    (await t.context.queryElements(t, ex.tabSelector)).length,
     3,
     'Sending DELETE to first tab should not change number of tabs'
   );
@@ -349,7 +334,7 @@ ariaTest('DELETE key removes third tab', exampleFile, 'key-delete', async (t) =>
   await tabs[1].sendKeys(Key.DELETE);
 
   t.is(
-    (await t.context.session.findElements(By.css(ex.tabSelector))).length,
+    (await t.context.queryElements(t, ex.tabSelector)).length,
     3,
     'Sending DELETE to second tab should not change number of tabs'
   );
@@ -361,7 +346,7 @@ ariaTest('DELETE key removes third tab', exampleFile, 'key-delete', async (t) =>
   await tabs[2].sendKeys(Key.DELETE);
 
   t.is(
-    (await t.context.session.findElements(By.css(ex.tabSelector))).length,
+    (await t.context.queryElements(t, ex.tabSelector)).length,
     2,
     'Sending DELETE to third tab should change number of tabs'
   );

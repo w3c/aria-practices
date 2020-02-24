@@ -56,9 +56,8 @@ const uncheckAllSelectedByDefault = async function (t) {
 // Attributes
 
 ariaTest('element h3 exists', exampleFile, 'h3', async (t) => {
-  t.plan(2);
-
-  let header = await t.context.session.findElements(By.css('#ex1 h3'));
+  
+  let header = await t.context.queryElements(t, '#ex1 h3');
 
   t.is(
     header.length,
@@ -74,22 +73,19 @@ ariaTest('element h3 exists', exampleFile, 'h3', async (t) => {
 });
 
 ariaTest('role="group" element exists', exampleFile, 'group-role', async (t) => {
-  t.plan(1);
-  await assertAriaRoles(t, 'ex1', 'group', '1', 'div');
+    await assertAriaRoles(t, 'ex1', 'group', '1', 'div');
 });
 
 ariaTest('"aria-labelledby" on group element', exampleFile, 'group-aria-labelledby', async (t) => {
-  t.plan(1);
-  await assertAriaLabelledby(t, ex.groupSelector);
+    await assertAriaLabelledby(t, ex.groupSelector);
 });
 
 ariaTest('role="checkbox" elements exist', exampleFile, 'checkbox-role', async (t) => {
-  t.plan(5);
-  await assertAriaRoles(t, 'ex1', 'checkbox', '4', 'div');
+    await assertAriaRoles(t, 'ex1', 'checkbox', '4', 'div');
 
   // Test that each checkbox has an accessible name
   // In this case, the accessible name is the text within the div
-  let checkboxes = await t.context.session.findElements(By.css(ex.checkboxSelector));
+  let checkboxes = await t.context.queryElements(t, ex.checkboxSelector);
 
   for (let index = 0; index < checkboxes.length; index++) {
     let text = await checkboxes[index].getText();
@@ -101,13 +97,11 @@ ariaTest('role="checkbox" elements exist', exampleFile, 'checkbox-role', async (
 });
 
 ariaTest('tabindex="0" for checkbox elements', exampleFile, 'checkbox-tabindex', async (t) => {
-  t.plan(1);
-  await assertAttributeValues(t, ex.checkboxSelector, 'tabindex', '0');
+    await assertAttributeValues(t, ex.checkboxSelector, 'tabindex', '0');
 });
 
 ariaTest('"aria-checked" on checkbox element', exampleFile, 'checkbox-aria-checked', async (t) => {
-  t.plan(10);
-
+  
   await uncheckAllSelectedByDefault(t);
 
   // check the aria-checked attribute is false to begin
@@ -122,7 +116,7 @@ ariaTest('"aria-checked" on checkbox element', exampleFile, 'checkbox-aria-check
   }
 
   // Click all checkboxes to select them
-  let checkboxes = await t.context.session.findElements(By.css(ex.checkboxSelector));
+  let checkboxes = await t.context.queryElements(t, ex.checkboxSelector);
   for (let checkbox of checkboxes) {
     await checkbox.click();
   }
@@ -140,14 +134,12 @@ ariaTest('"aria-checked" on checkbox element', exampleFile, 'checkbox-aria-check
 });
 
 ariaTest('key TAB moves focus between checkboxes', exampleFile, 'key-tab', async (t) => {
-  t.plan(1);
-
+  
   await assertTabOrder(t, ex.checkboxes);
 });
 
 ariaTest('key SPACE selects or unselects checkbox', exampleFile, 'key-space', async (t) => {
-  t.plan(16);
-
+  
   await uncheckAllSelectedByDefault(t);
 
   for (let checkboxSelector of ex.checkboxes) {

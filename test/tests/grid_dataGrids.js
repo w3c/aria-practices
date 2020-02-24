@@ -86,33 +86,28 @@ const scrollToEndOfExample3 = async function (t) {
 // Attributes
 
 ariaTest('Test for role="grid"', exampleFile, 'grid-role', async (t) => {
-  t.plan(3);
-  await assertAriaRoles(t, 'ex1', 'grid', '1', 'table');
+    await assertAriaRoles(t, 'ex1', 'grid', '1', 'table');
   await assertAriaRoles(t, 'ex2', 'grid', '1', 'table');
   await assertAriaRoles(t, 'ex3', 'grid', '1', 'table');
 });
 
 ariaTest('aria-labelledby attribute on all examples', exampleFile, 'aria-labelledby', async (t) => {
-  t.plan(3);
-  await assertAriaLabelledby(t, ex[1].gridSelector);
+    await assertAriaLabelledby(t, ex[1].gridSelector);
   await assertAriaLabelledby(t, ex[2].gridSelector);
   await assertAriaLabelledby(t, ex[3].gridSelector);
 });
 
 ariaTest('aria-rowcount attribute in example 3', exampleFile, 'aria-rowcount', async (t) => {
-  t.plan(1);
-  await assertAttributeValues(t, ex[3].gridSelector, 'aria-rowcount', '16');
+    await assertAttributeValues(t, ex[3].gridSelector, 'aria-rowcount', '16');
 });
 
 ariaTest('aria-colcount attribute in example 3', exampleFile, 'aria-colcount', async (t) => {
-  t.plan(1);
-  await assertAttributeValues(t, ex[3].gridSelector, 'aria-colcount', '6');
+    await assertAttributeValues(t, ex[3].gridSelector, 'aria-colcount', '6');
 });
 
 ariaTest('aria-rowindex attribute in example 3', exampleFile, 'aria-rowindex', async (t) => {
-  t.plan(16);
-
-  let rows = await t.context.session.findElements(By.css(ex[3].rowSelector));
+  
+  let rows = await t.context.queryElements(t, ex[3].rowSelector);
 
   let index = 1;
   for (let row of rows) {
@@ -127,10 +122,10 @@ ariaTest('aria-rowindex attribute in example 3', exampleFile, 'aria-rowindex', a
 
 ariaTest('aria-colindex attribute in example 3', exampleFile, 'aria-colindex', async (t) => {
 
-  let rows = await t.context.session.findElements(By.css(ex[3].rowSelector));
+  let rows = await t.context.queryElements(t, ex[3].rowSelector);
 
   // Check all the headers
-  let items = await rows.shift().findElements(By.css('th'));
+  let items = await t.context.queryElements(t, 'th', rows.shift());
   let index = 1;
   for (let item of items) {
     t.is(
@@ -143,7 +138,7 @@ ariaTest('aria-colindex attribute in example 3', exampleFile, 'aria-colindex', a
 
   // Check all the grid items
   for (let row of rows) {
-    let items = await row.findElements(By.css('td'));
+    let items = await t.context.queryElements(t, 'td', row);
 
     let index = 1;
     for (let item of items) {
@@ -158,8 +153,7 @@ ariaTest('aria-colindex attribute in example 3', exampleFile, 'aria-colindex', a
 });
 
 ariaTest('aria-sort set appropriately in example 2', exampleFile, 'aria-sort', async (t) => {
-  t.plan(8);
-
+  
   let dateHeader = await t.context.session.findElement(By.css(ex[2].dateHeaderSelector));
   let dateButton = dateHeader.findElement(By.css('[role="button"]'));
 
@@ -222,8 +216,7 @@ ariaTest('aria-sort set appropriately in example 2', exampleFile, 'aria-sort', a
 // Keys
 
 ariaTest('Right arrow moves focus, example 1 and 2', exampleFile, 'key-right-arrow', async (t) => {
-  t.plan(39);
-
+  
   // Examples 1 and 2
   for (let example of [1,2]) {
     const gridSelector = ex[example].gridSelector;
@@ -257,8 +250,7 @@ ariaTest('Right arrow moves focus, example 1 and 2', exampleFile, 'key-right-arr
 });
 
 ariaTest('Right arrow moves focus, example 3', exampleFile, 'key-right-arrow', async (t) => {
-  t.plan(90);
-
+  
   let gridSelector = ex[3].gridSelector;
   let lastColumn = ex[3].lastColumn;
   let lastRow = ex[3].lastRow;
@@ -268,7 +260,7 @@ ariaTest('Right arrow moves focus, example 3', exampleFile, 'key-right-arrow', a
   for (let rowIndex = 2; rowIndex <= lastRow; rowIndex++) {
 
     // If the row is not displayed, send page down to the last rows first element
-    let rows = (await t.context.session.findElements(By.css(rowSelector)));
+    let rows = (await t.context.queryElements(t, rowSelector));
     if (!(await rows[rowIndex - 1].isDisplayed())) {
       let previousRowCell = rows[rowIndex - 2].findElement(By.css('td'));
       await previousRowCell.sendKeys(Key.PAGE_DOWN);
@@ -304,7 +296,7 @@ ariaTest('Right arrow moves focus, example 3', exampleFile, 'key-right-arrow', a
   for (let rowIndex = 2; rowIndex <= lastRow; rowIndex++) {
 
     // If the row is not displayed, send page down to the last rows first element
-    let rows = (await t.context.session.findElements(By.css(rowSelector)));
+    let rows = (await t.context.queryElements(t, rowSelector));
     if (!(await rows[rowIndex - 1].isDisplayed())) {
       let previousRowCell = rows[rowIndex - 2].findElement(By.css('td'));
       await previousRowCell.sendKeys(Key.PAGE_DOWN);
@@ -333,8 +325,7 @@ ariaTest('Right arrow moves focus, example 3', exampleFile, 'key-right-arrow', a
 });
 
 ariaTest('Left arrow moves focus, example 1 and 2', exampleFile, 'key-left-arrow', async (t) => {
-  t.plan(39);
-
+  
   // Examples 1 and 2
   for (let example of [1,2]) {
     const gridSelector = ex[example].gridSelector;
@@ -368,8 +359,7 @@ ariaTest('Left arrow moves focus, example 1 and 2', exampleFile, 'key-left-arrow
 });
 
 ariaTest('left arrow moves focus, example 3', exampleFile, 'key-left-arrow', async (t) => {
-  t.plan(90);
-
+  
   let gridSelector = ex[3].gridSelector;
   let lastColumn = ex[3].lastColumn;
   let lastRow = ex[3].lastRow;
@@ -379,7 +369,7 @@ ariaTest('left arrow moves focus, example 3', exampleFile, 'key-left-arrow', asy
   for (let rowIndex = 2; rowIndex <= lastRow; rowIndex++) {
 
     // If the row is not displayed, send page down to the last rows first element
-    let rows = (await t.context.session.findElements(By.css(rowSelector)));
+    let rows = (await t.context.queryElements(t, rowSelector));
     if (!(await rows[rowIndex - 1].isDisplayed())) {
       let previousRowCell = rows[rowIndex - 2].findElement(By.css('td'));
       await previousRowCell.sendKeys(Key.PAGE_DOWN);
@@ -415,7 +405,7 @@ ariaTest('left arrow moves focus, example 3', exampleFile, 'key-left-arrow', asy
   for (let rowIndex = 2; rowIndex <= lastRow; rowIndex++) {
 
     // If the row is not displayed, send page down to the last rows first element
-    let rows = (await t.context.session.findElements(By.css(rowSelector)));
+    let rows = (await t.context.queryElements(t, rowSelector));
     if (!(await rows[rowIndex - 1].isDisplayed())) {
       let previousRowCell = rows[rowIndex - 2].findElement(By.css('td'));
       await previousRowCell.sendKeys(Key.PAGE_DOWN);
@@ -444,8 +434,7 @@ ariaTest('left arrow moves focus, example 3', exampleFile, 'key-left-arrow', asy
 });
 
 ariaTest('Key down moves focus, examples 1,2,3', exampleFile, 'key-down-arrow', async (t) => {
-  t.plan(28);
-
+  
   // Examples 1 and 2 and 3
   for (let example of [1,2,3]) {
     const gridSelector = ex[example].gridSelector;
@@ -481,8 +470,7 @@ ariaTest('Key down moves focus, examples 1,2,3', exampleFile, 'key-down-arrow', 
 });
 
 ariaTest('Key up moves focus, examples 1,2,3', exampleFile, 'key-up-arrow', async (t) => {
-  t.plan(28);
-
+  
   // Examples 1 and 2 and 3
   for (let example of [1,2,3]) {
     const gridSelector = ex[example].gridSelector;
@@ -589,8 +577,7 @@ ariaTest('Page up moves focus in example 3', exampleFile, 'key-page-up', async (
 });
 
 ariaTest('Home key moves focus', exampleFile, 'key-home', async (t) => {
-  t.plan(28);
-
+  
   // Examples 1 and 2 and 3
   for (let example of [1,2,3]) {
     const gridSelector = ex[example].gridSelector;
@@ -605,7 +592,7 @@ ariaTest('Home key moves focus', exampleFile, 'key-home', async (t) => {
 
       // If the row is not displayed, send page down to the last rows first element
       if (example === 3) {
-        let rows = (await t.context.session.findElements(By.css(rowSelector)));
+        let rows = (await t.context.queryElements(t, rowSelector));
         if (!(await rows[rowIndex - 1].isDisplayed())) {
           let previousRowCell = rows[rowIndex - 2].findElement(By.css('td'));
           await previousRowCell.sendKeys(Key.PAGE_DOWN);
@@ -630,8 +617,7 @@ ariaTest('Home key moves focus', exampleFile, 'key-home', async (t) => {
 });
 
 ariaTest('End key moves focus', exampleFile, 'key-end', async (t) => {
-  t.plan(28);
-
+  
   // Examples 1 and 2 and 3
   for (let example of [1,2,3]) {
     const gridSelector = ex[example].gridSelector;
@@ -646,7 +632,7 @@ ariaTest('End key moves focus', exampleFile, 'key-end', async (t) => {
 
       // If the row is not displayed, send page down to the last rows first element
       if (example === 3) {
-        let rows = (await t.context.session.findElements(By.css(rowSelector)));
+        let rows = (await t.context.queryElements(t, rowSelector));
         if (!(await rows[rowIndex - 1].isDisplayed())) {
           let previousRowCell = rows[rowIndex - 2].findElement(By.css('td'));
           await previousRowCell.sendKeys(Key.PAGE_DOWN);
@@ -671,8 +657,7 @@ ariaTest('End key moves focus', exampleFile, 'key-end', async (t) => {
 });
 
 ariaTest('Control+home moves focus', exampleFile, 'key-control-home', async (t) => {
-  t.plan(28);
-
+  
   // Examples 1, 2, and 3
   for (let example of [1,2,3]) {
     const gridSelector = ex[example].gridSelector;
@@ -713,8 +698,7 @@ ariaTest('Control+home moves focus', exampleFile, 'key-control-home', async (t) 
 });
 
 ariaTest('Control+end moves focus', exampleFile, 'key-control-end', async (t) => {
-  t.plan(28);
-
+  
   // Examples 1, 2, and 3
   for (let example of [1,2,3]) {
     const gridSelector = ex[example].gridSelector;

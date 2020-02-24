@@ -23,7 +23,7 @@ const ex = {
 };
 
 const uncheckAllConds = async function (t) {
-  const checkboxes = await t.context.session.findElements(By.css(ex.checkedCondsSelector));
+  const checkboxes = await t.context.queryElements(t, ex.checkedCondsSelector);
   for (let checkbox of checkboxes) {
     await checkbox.click();
   }
@@ -32,18 +32,15 @@ const uncheckAllConds = async function (t) {
 // Attributes
 
 ariaTest('role="checkbox" element exists', exampleFile, 'checkbox-role', async (t) => {
-  t.plan(1);
-  await assertAriaRoles(t, 'ex1', 'checkbox', '1', 'div');
+    await assertAriaRoles(t, 'ex1', 'checkbox', '1', 'div');
 });
 
 ariaTest('"tabindex" on checkbox element', exampleFile, 'checkbox-tabindex', async (t) => {
-  t.plan(1);
-  await assertAttributeValues(t, ex.checkboxSelector, 'tabindex', '0');
+    await assertAttributeValues(t, ex.checkboxSelector, 'tabindex', '0');
 });
 
 ariaTest('"aria-controls" ', exampleFile, 'checkbox-aria-controls', async (t) => {
-  t.plan(5);
-
+  
   const checkbox = await t.context.session.findElement(By.css(ex.checkboxSelector));
   const controls = (await checkbox.getAttribute('aria-controls')).split(' ');
 
@@ -63,8 +60,7 @@ ariaTest('"aria-controls" ', exampleFile, 'checkbox-aria-controls', async (t) =>
 });
 
 ariaTest('"aria-checked" on checkbox element', exampleFile, 'checkbox-aria-checked-false', async (t) => {
-  t.plan(3);
-
+  
   await uncheckAllConds(t);
   let checkbox = t.context.session.findElement(By.css(ex.checkboxSelector));
 
@@ -94,13 +90,12 @@ ariaTest('"aria-checked" on checkbox element', exampleFile, 'checkbox-aria-check
 });
 
 ariaTest('"aria-checked" on checkbox element', exampleFile, 'checkbox-aria-checked-mixed', async (t) => {
-  t.plan(3);
-
+  
   await uncheckAllConds(t);
   let checkbox = t.context.session.findElement(By.css(ex.checkboxSelector));
 
   // Check one box
-  const condiments = await t.context.session.findElements(By.css(ex.condimentsSelector));
+  const condiments = await t.context.queryElements(t, ex.condimentsSelector);
   await condiments[0].click();
 
   t.is(
@@ -122,20 +117,19 @@ ariaTest('"aria-checked" on checkbox element', exampleFile, 'checkbox-aria-check
   );
 
   t.is(
-    (await t.context.session.findElements(By.css(ex.checkedCondsSelector))).length,
+    (await t.context.queryElements(t, ex.checkedCondsSelector)).length,
     1,
     '1 condiments should be selected via: ' + ex.checkedCondsSelector
   );
 });
 
 ariaTest('"aria-checked" on checkbox element', exampleFile, 'checkbox-aria-checked-true', async (t) => {
-  t.plan(3);
-
+  
   await uncheckAllConds(t);
   let checkbox = t.context.session.findElement(By.css(ex.checkboxSelector));
 
   // Check the all boxes
-  const condiments = await t.context.session.findElements(By.css(ex.condimentsSelector));
+  const condiments = await t.context.queryElements(t, ex.condimentsSelector);
   for (let cond of condiments) {
     await cond.click();
   }
@@ -158,24 +152,22 @@ ariaTest('"aria-checked" on checkbox element', exampleFile, 'checkbox-aria-check
   );
 
   t.is(
-    (await t.context.session.findElements(By.css(ex.checkedCondsSelector))).length,
+    (await t.context.queryElements(t, ex.checkedCondsSelector)).length,
     ex.numCondiments,
     ex.numCondiments + ' condiments should be selected via: ' + ex.checkedCondsSelector
   );
 });
 
 ariaTest('key TAB moves focus between checkboxes', exampleFile, 'key-tab', async (t) => {
-  t.plan(1);
-
+  
   await assertTabOrder(t, ex.allCheckboxes);
 });
 
 ariaTest('key SPACE selects or unselects checkbox', exampleFile, 'key-space', async (t) => {
-  t.plan(6);
-
+  
   // Check one box
   await uncheckAllConds(t);
-  const condiments = await t.context.session.findElements(By.css(ex.condimentsSelector));
+  const condiments = await t.context.queryElements(t, ex.condimentsSelector);
   await condiments[0].click();
 
   // Send SPACE key to checkbox to change state
@@ -190,7 +182,7 @@ ariaTest('key SPACE selects or unselects checkbox', exampleFile, 'key-space', as
   );
 
   t.is(
-    (await t.context.session.findElements(By.css(ex.checkedCondsSelector))).length,
+    (await t.context.queryElements(t, ex.checkedCondsSelector)).length,
     ex.numCondiments,
     'After sending SPACE to the checkbox in a mixed state, ' + ex.numCondiments + ' condiments should be selected via: ' + ex.checkedCondsSelector
   );
@@ -222,7 +214,7 @@ ariaTest('key SPACE selects or unselects checkbox', exampleFile, 'key-space', as
   );
 
   t.is(
-    (await t.context.session.findElements(By.css(ex.checkedCondsSelector))).length,
+    (await t.context.queryElements(t, ex.checkedCondsSelector)).length,
     1,
     'After sending SPACE to the checkbox in a uncheck state, 1 condiments should be selected via: ' + ex.checkedCondsSelector
   );

@@ -11,7 +11,7 @@ const assert = require('assert');
  */
 
 module.exports = async function assertAriaDescribedby (t, elementSelector) {
-  const elements = await t.context.session.findElements(By.css(elementSelector));
+  const elements = await t.context.queryElements(t, elementSelector);
 
   assert.ok(
     elements.length,
