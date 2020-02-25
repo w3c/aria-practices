@@ -604,3 +604,47 @@ ariaTest('key control+A selects all options', exampleFile, 'key-control-a', asyn
   }
 });
 
+ariaTest('A without control performs default focus move', exampleFile, 'key-control-a', async (t) => {
+  const listbox = await t.context.session.findElement(By.css(ex[2].listboxSelector));
+  const options = await t.context.session.findElements(By.css(ex[2].optionSelector));
+  
+  // get index of first option that begin with a
+  const matchingOptions = [];
+  for (let index = 0; index < options.length; index++) {
+    const optionText = await options[index].getText();
+    if (optionText && optionText[0].toLowerCase() === 'a') {
+      matchingOptions.push(options[index]);
+    }
+  }
+  const matchingIndex = matchingOptions.length ? options.indexOf(matchingOptions[0]) : null;
+
+  // click inside listbox
+  await t.context.session.findElement(By.css(ex[2].firstOptionSelector)).click();
+  await listbox.sendKeys('a');
+
+  await assertAriaActivedescendant(t, ex[2].listboxSelector, ex[2].optionSelector, matchingIndex);
+
+  // expect only first item to be selected
+  for (let index = options.length - 1; index >= 1 ; index--) {
+    const selected = await options[index].getAttribute('aria-selected');
+    t.is(selected, 'false', 'a character alone should not select options');
+  }
+});
+
+ariaTest('Control + A performs no action on single select listbox', exampleFile, 'key-control-a', async (t) => {
+  const listbox = await t.context.session.findElement(By.css(ex[1].listboxSelector));
+  const options = await t.context.session.findElements(By.css(ex[1].optionSelector));
+
+  // click inside listbox
+  await t.context.session.findElement(By.css(ex[1].firstOptionSelector)).click();
+  await listbox.sendKeys(Key.chord(Key.CONTROL, 'a'));
+
+  await assertAriaActivedescendant(t, ex[1].listboxSelector, ex[1].optionSelector, 0);
+
+  // expect only first item to be selected
+  for (let index = options.length - 1; index >= 1 ; index--) {
+    const selected = await options[index].getAttribute('aria-selected');
+    t.is(selected, null, 'control + a should not affect single select listbox');
+  }
+});
+
