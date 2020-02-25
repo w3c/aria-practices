@@ -220,11 +220,12 @@ aria.Listbox.prototype.checkKeyPress = function (evt) {
       break;
     case 65:
       // handle control + A
-      if (evt.ctrlKey) {
+      if (this.multiselectable && evt.ctrlKey) {
         evt.preventDefault();
         this.selectRange(0, allOptions.length - 1);
+        break;
       }
-      break;
+      // fall through
     default:
       var itemToFocus = this.findItemToFocus(key);
       if (itemToFocus) {
