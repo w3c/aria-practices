@@ -3,7 +3,7 @@
   hljs.initHighlightingOnLoad();
 
   // Add support notice to all examples
-  fetch('../../js/notice.html')
+  fetch('/examples/js/notice.html')
   .then(function(response) {
     return response.text()
   })
@@ -13,7 +13,6 @@
   })
   .then(function(templateResponse) {
     var templateFragment = templateResponse.getElementById('support-notice')
-    
     return document.importNode(templateFragment.content, true)
   })
   .then(function(fragment) {
