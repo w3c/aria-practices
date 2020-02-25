@@ -2,13 +2,21 @@
   // Load syntax highlighting
   hljs.initHighlightingOnLoad();
 
-
-  fetch('notice.html')
-    .then((response) => {
-      console.log(response.getElementById('support-notice'))
-    })
-
-  let exampleHeader = document.getElementById('ex_label')
-  let template = document.importNode('notice.html#support-notice', true)
-  console.log('loaded', template, exampleHeader)
+  // Add support notice to all examples
+  fetch('../../js/notice.html')
+  .then(function(response) {
+    return response.text()
+  })
+  .then(function(html) {
+    var parser = new DOMParser()
+    return parser.parseFromString(html, "text/html")
+  })
+  .then(function(templateResponse) {
+    var templateFragment = templateResponse.getElementById('support-notice')
+    
+    return document.importNode(templateFragment.content, true)
+  })
+  .then(function(fragment) {
+    document.getElementById('ex_label').append(fragment)
+  })
 }());
