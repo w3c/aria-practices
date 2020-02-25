@@ -16,6 +16,7 @@
     return document.importNode(templateFragment.content, true)
   })
   .then(function(fragment) {
-    document.getElementById('ex_label').append(fragment)
+    var exLabel = document.getElementById('ex_label')
+    exLabel.parentNode.insertBefore(fragment, exLabel.nextSibling)
   })
 }());
