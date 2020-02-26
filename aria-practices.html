@@ -6580,7 +6580,8 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
       
       <p>This is an example of a meter, which shows the current Central Processing Unit (CPU) usage. </p>
 
-      <pre><code>&lt;div role="meter" 
+      <pre><code>&lt;span id="cpu_usage_label">CPU usage&lt;/span>
+&lt;div role="meter" 
       aria-valuenow="90" 
       aria-valuemin="0" 
       aria-valuemax="100" 
