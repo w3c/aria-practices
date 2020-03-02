@@ -701,7 +701,7 @@ ComboboxDatePicker.prototype.setDateForButtonLabel = function (year, month, day)
   label += ' ' + this.monthLabels[this.selectedDay.getMonth()];
   label += ' ' + (this.selectedDay.getDate());
   label += ', ' + this.selectedDay.getFullYear();
-  return label;
+  this.buttonNode.setAttribute('aria-label', label);
 };
 
 ComboboxDatePicker.prototype.setMessage = function (str) {
