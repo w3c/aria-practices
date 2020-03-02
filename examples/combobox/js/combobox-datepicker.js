@@ -8,6 +8,7 @@
 var ComboboxDatePickerDay = ComboboxDatePickerDay || {};
 
 var ComboboxDatePicker = function (cdp) {
+  this.buttonLabel = 'Date';
   this.dayLabels = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   this.monthLabels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
@@ -40,20 +41,14 @@ var ComboboxDatePicker = function (cdp) {
 
   this.isMouseDownOnBackground = false;
 
-  this.comboboxHasFocus = false;
-  this.dialogHasFocus = false;
-
 };
 
 ComboboxDatePicker.prototype.init = function () {
 
   this.comboboxNode.addEventListener('keydown', this.handleComboboxKeyDown.bind(this));
-  this.comboboxNode.addEventListener('keyup',   this.handleComboboxKeyUp.bind(this));
-  this.comboboxNode.addEventListener('click',   this.handleComboboxClick.bind(this));
-  this.comboboxNode.addEventListener('focus',   this.handleComboboxFocus.bind(this));
-  this.comboboxNode.addEventListener('blur',    this.handleComboboxBlur.bind(this));
+  this.comboboxNode.addEventListener('mouseup',   this.handleComboboxMouseUp.bind(this));
 
-  this.buttonNode.addEventListener('click',   this.handleButtonClick.bind(this));
+  this.buttonNode.addEventListener('mouseup',   this.handleButtonMouseUp.bind(this));
 
   this.okButtonNode.addEventListener('click', this.handleOkButton.bind(this));
   this.okButtonNode.addEventListener('keydown', this.handleOkButton.bind(this));
@@ -71,7 +66,6 @@ ComboboxDatePicker.prototype.init = function () {
   this.prevYearNode.addEventListener('keydown', this.handlePreviousYearButton.bind(this));
   this.nextYearNode.addEventListener('keydown', this.handleNextYearButton.bind(this));
 
-  document.body.addEventListener('mousedown', this.handleBackgroundMouseDown.bind(this), true);
   document.body.addEventListener('mouseup', this.handleBackgroundMouseUp.bind(this), true);
 
   // Create Grid of Dates
@@ -84,11 +78,17 @@ ComboboxDatePicker.prototype.init = function () {
       var cell = document.createElement('td');
       var cellButton = document.createElement('button');
       cellButton.setAttribute('type', 'button');
+
+      cellButton.setAttribute('tabindex', '-1');
+      cellButton.addEventListener('click', this.handleDayClick.bind(this));
+      cellButton.addEventListener('keydown', this.handleDayKeyDown.bind(this));
+      cellButton.addEventListener('focus', this.handleDayFocus.bind(this));
+
+      cellButton.innerHTML = '-1';
+
       cell.appendChild(cellButton);
       row.appendChild(cell);
-      var dpDay = new ComboboxDatePickerDay(cellButton, this);
-      dpDay.init();
-      this.days.push(dpDay);
+      this.days.push(cellButton);
     }
   }
 
@@ -123,8 +123,18 @@ ComboboxDatePicker.prototype.updateGrid = function () {
 
   for (i = 0; i < this.days.length; i++) {
     flag = d.getMonth() != fd.getMonth();
-    this.days[i].updateDay(flag, d, this.isSameDay(d, this.selectedDay));
+    this.updateDate(this.days[i], flag, d, this.isSameDay(d, this.selectedDay));
     d.setDate(d.getDate() + 1);
+
+    // Hide last row if all disabled dates
+    if (i === 35) {
+      if (flag) {
+        this.lastRowNode.style.visibility = 'hidden';
+      }
+      else {
+        this.lastRowNode.style.visibility = 'visible';
+      }
+    }
   }
 };
 
@@ -135,15 +145,17 @@ ComboboxDatePicker.prototype.setFocusDay = function (flag) {
   }
 
   var fd = this.focusDay;
+  var getDayFromDomNode = this.getDayFromDomNode;
 
-  function checkDay (d) {
+  function checkDay (domNode) {
 
-    d.domNode.setAttribute('tabindex', '-1');
-    if (this.isSameDay(d.day, fd)) {
-      d.domNode.setAttribute('tabindex', '0');
+    var d = getDayFromDomNode(domNode);
+
+    domNode.setAttribute('tabindex', '-1');
+    if (this.isSameDay(d, fd)) {
+      domNode.setAttribute('tabindex', '0');
       if (flag) {
-        d.domNode.focus();
-        this.dialogHasFocus = true;
+        domNode.focus();
       }
     }
   }
@@ -163,7 +175,6 @@ ComboboxDatePicker.prototype.updateDay = function (day) {
 };
 
 ComboboxDatePicker.prototype.open = function () {
-
   this.dialogNode.style.display = 'block';
   this.dialogNode.style.zIndex = 2;
 
@@ -178,11 +189,6 @@ ComboboxDatePicker.prototype.isOpen = function () {
 };
 
 ComboboxDatePicker.prototype.close = function (flag) {
-
-  console.log('[close][            flag]: ' + flag);
-  console.log('[close][comboboxHasFocus]: ' + this.comboboxHasFocus);
-  console.log('[close][  dialogHasFocus]: ' + this.dialogHasFocus);
-
   if (typeof flag !== 'boolean') {
     // Default is to move focus to combobox
     flag = true;
@@ -190,35 +196,13 @@ ComboboxDatePicker.prototype.close = function (flag) {
 
   this.setMessage('');
   this.dialogNode.style.display = 'none';
-  this.dialogHasFocus = false;
   this.comboboxNode.setAttribute('aria-expanded', 'false')
-  this.buttonNode.setAttribute('aria-expanded', 'flase')
+  this.buttonNode.setAttribute('aria-expanded', 'false')
 
   if (flag) {
     this.comboboxNode.focus();
   }
 };
-
-ComboboxDatePicker.prototype.handleBackgroundMouseDown = function (event) {
-
-  if (!this.comboboxNode.contains(event.target) &&
-      !this.buttonNode.contains(event.target) &&
-      !this.dialogNode.contains(event.target)) {
-
-    this.isMouseDownOnBackground = true;
-
-    if (this.isOpen()) {
-      this.close(false);
-      event.stopPropagation();
-      event.preventDefault();
-    }
-  }
-};
-
-ComboboxDatePicker.prototype.handleBackgroundMouseUp = function () {
-  this.isMouseDownOnBackground = false;
-};
-
 
 ComboboxDatePicker.prototype.handleOkButton = function (event) {
   var flag = false;
@@ -530,20 +514,158 @@ ComboboxDatePicker.prototype.moveFocusToLastDayOfWeek = function () {
   this.moveFocusToDay(d);
 };
 
-ComboboxDatePicker.prototype.setComboboxDate = function (day) {
+// Day methods
 
-  var d = '0-0-0';
+ComboboxDatePicker.prototype.isDayDisabled = function (domNode) {
+  return domNode.classList.contains('disabled');
+};
 
-  if (day) {
-    d = day.domNode.getAttribute('data-date');
+ComboboxDatePicker.prototype.getDayFromDomNode = function (domNode) {
+  var parts = domNode.getAttribute('data-date').split('-');
+  return new Date(parts[0], parseInt(parts[1])-1, parts[2]);
+};
+
+ComboboxDatePicker.prototype.updateDate = function (domNode, disable, day, selected) {
+
+  var d = day.getDate().toString();
+  if (day.getDate() <= 9) {
+    d = '0' + d;
+  }
+
+  var m = day.getMonth() + 1;
+  if (day.getMonth() < 9) {
+    m = '0' + m;
+  }
+
+  domNode.setAttribute('tabindex', '-1');
+  domNode.removeAttribute('aria-selected');
+  domNode.setAttribute('data-date', day.getFullYear() + '-' + m + '-' + d);
+
+  if (disable) {
+    domNode.classList.add('disabled');
+    domNode.innerHTML = '';
   }
   else {
-    d = this.focusDay.domNode.getAttribute('data-date');
+    domNode.classList.remove('disabled');
+    domNode.innerHTML = day.getDate();
+    if (selected) {
+      domNode.setAttribute('aria-selected', 'true');
+      domNode.setAttribute('tabindex', '0');
+    }
   }
 
-  var parts = d.split('-');
+};
 
-  this.comboboxNode.value = parts[1] + '/' + parts[2] + '/' + parts[0];
+ComboboxDatePicker.prototype.handleDayKeyDown = function (event) {
+  var flag = false;
+
+  switch (event.key) {
+
+    case "Esc":
+    case "Escape":
+      this.close();
+      break;
+
+    case "Tab":
+      this.cancelButtonNode.focus();
+      if (event.shiftKey) {
+        this.nextYearNode.focus();
+      }
+      this.setMessage('');
+      flag = true;
+      break;
+
+    case "Right":
+    case "ArrowRight":
+      this.moveFocusToNextDay();
+      flag = true;
+      break;
+
+    case "Left":
+    case "ArrowLeft":
+      this.moveFocusToPreviousDay();
+      flag = true;
+      break;
+
+    case "Down":
+    case "ArrowDown":
+      this.moveFocusToNextWeek();
+      flag = true;
+      break;
+
+    case "Up":
+    case "ArrowUp":
+      this.moveFocusToPreviousWeek();
+      flag = true;
+      break;
+
+    case "PageUp":
+      if (event.shiftKey) {
+        this.moveToPreviousYear();
+      }
+      else {
+        this.moveToPreviousMonth();
+      }
+      this.setFocusDay();
+      flag = true;
+      break;
+
+    case "PageDown":
+      if (event.shiftKey) {
+        this.moveToNextYear();
+      }
+      else {
+        this.moveToNextMonth();
+      }
+      this.setFocusDay();
+      flag = true;
+      break;
+
+    case "Home":
+      this.moveFocusToFirstDayOfWeek();
+      flag = true;
+      break;
+
+    case "End":
+      this.moveFocusToLastDayOfWeek();
+      flag = true;
+      break;
+  }
+
+  if (flag) {
+    event.stopPropagation();
+    event.preventDefault();
+  }
+};
+
+ComboboxDatePicker.prototype.handleDayClick = function (event) {
+
+  if (!this.isDayDisabled(event.currentTarget)) {
+    this.setComboboxDate(event.currentTarget);
+    this.close();
+  }
+
+  event.stopPropagation();
+  event.preventDefault();
+
+};
+
+ComboboxDatePicker.prototype.handleDayFocus = function () {
+  this.setMessage(this.messageCursorKeys);
+};
+
+// Combobox methods
+
+ComboboxDatePicker.prototype.setComboboxDate = function (domNode) {
+
+  var d = this.focusDay;
+
+  if (domNode) {
+    d = this.getDayFromDomNode(domNode);
+  }
+
+  this.comboboxNode.value = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear();
+  this.setDateForButtonLabel(d.getFullYear(), d.getMonth(), d.getDate());
 
 };
 
@@ -566,7 +688,7 @@ ComboboxDatePicker.prototype.getDateFromCombobox = function () {
 
 };
 
-ComboboxDatePicker.prototype.getDateForButtonLabel = function (year, month, day) {
+ComboboxDatePicker.prototype.setDateForButtonLabel = function (year, month, day) {
   if (typeof year !== 'number' || typeof month !== 'number' || typeof day !== 'number') {
     this.selectedDay = this.focusDay;
   }
@@ -574,7 +696,8 @@ ComboboxDatePicker.prototype.getDateForButtonLabel = function (year, month, day)
     this.selectedDay = new Date(year, month, day);
   }
 
-  var label = this.dayLabels[this.selectedDay.getDay()];
+  var label = this.buttonLabel;
+  label += ', ' + this.dayLabels[this.selectedDay.getDay()];
   label += ' ' + this.monthLabels[this.selectedDay.getMonth()];
   label += ' ' + (this.selectedDay.getDate());
   label += ', ' + this.selectedDay.getFullYear();
@@ -594,12 +717,10 @@ ComboboxDatePicker.prototype.setMessage = function (str) {
 };
 
 ComboboxDatePicker.prototype.setFocusCombobox = function () {
-  this.dialogHasFocus = false;
   this.comboboxNode.focus();
 };
 
 ComboboxDatePicker.prototype.handleComboboxKeyDown = function (event) {
-  console.log('[handleComboboxKeyDown]');
   var flag = false,
     char = event.key,
     altKey   = event.altKey;
@@ -646,56 +767,19 @@ ComboboxDatePicker.prototype.handleComboboxKeyDown = function (event) {
 
 };
 
-ComboboxDatePicker.prototype.handleComboboxKeyUp = function (event) {
-  var flag = false,
-    option = null,
-    char = event.key;
-
-  if (event.key === "Escape" || event.key === "Esc") {
-    return;
-  }
-
-  switch (event.key) {
-
-    case "Enter":
-    case "Left":
-    case "ArrowLeft":
-    case "Right":
-    case "ArrowRight":
-    case "Home":
-    case "End":
-      break;
-
-    default:
-      break;
-  }
-
-  if (flag) {
-    event.stopPropagation();
-    event.preventDefault();
-  }
-
-};
-
-ComboboxDatePicker.prototype.handleComboboxClick = function (event) {
-  console.log('[handleComboboxClick]');
+ComboboxDatePicker.prototype.handleComboboxMouseUp = function (event) {
   if (this.isOpen()) {
     this.close(false);
   }
   else {
     this.open();
   }
+
+  event.stopPropagation();
+  event.preventDefault();
 };
 
-ComboboxDatePicker.prototype.handleComboboxFocus = function (event) {
-  this.comboboxHasFocus = true;
-};
-
-ComboboxDatePicker.prototype.handleComboboxBlur = function (event) {
-  this.comboboxHasFocus = false;
-};
-
-ComboboxDatePicker.prototype.handleButtonClick = function (event) {
+ComboboxDatePicker.prototype.handleButtonMouseUp = function (event) {
   if (this.isOpen()) {
     this.close();
   }
@@ -703,9 +787,23 @@ ComboboxDatePicker.prototype.handleButtonClick = function (event) {
     this.open();
     this.setFocusCombobox();
   }
+
+  event.stopPropagation();
+  event.preventDefault();
 };
 
+ComboboxDatePicker.prototype.handleBackgroundMouseUp = function (event) {
+  if (!this.comboboxNode.contains(event.target) &&
+      !this.buttonNode.contains(event.target) &&
+      !this.dialogNode.contains(event.target)) {
 
+    if (this.isOpen()) {
+      this.close(false);
+      event.stopPropagation();
+      event.preventDefault();
+    }
+  }
+};
 
 // Initialize menu button date picker
 

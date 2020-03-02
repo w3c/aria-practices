@@ -12,34 +12,31 @@ const assertAriaRoles = require('../util/assertAriaRoles');
 const assertRovingTabindex = require('../util/assertRovingTabindex');
 const assertTabOrder = require('../util/assertTabOrder');
 
-const exampleFile = 'combobox/aria1.1pattern/combo-11-datepicker.html';
+const exampleFile = 'combobox/combobox-datepicker.html';
 
 let today = new Date();
 let todayDataDate = today.toISOString().split('T')[0];
 
 const ex = {
-  comboboxSelector: '#example [role=combobox]',
-  dialogSelector: '#example [role="dialog"]',
-  inputSelector: '#example input',
-  buttonSelector: '#example button.icon',
-  statusSelector: '#example [role="status"]',
-  dialogMessageSelector: '#example .dialogMessage',
-  gridSelector: '#example [role="grid"]',
-  gridcellSelector: '#example [role="gridcell"]',
-  controlButtons: '#example [role="dialog"] .header button',
-  currentMonthDateButtons: '#example [role="dialog"] button.dateButton:not(.disabled)',
-  allDateButtons: '#example [role="dialog"] button.dateButton',
-  jan12019Button: '#example [role="dialog"] button[data-date="2019-01-01"]',
-  jan22019Button: '#example [role="dialog"] button[data-date="2019-01-02"]',
-  todayButton: `#example [role="dialog"] button[data-date="${todayDataDate}"]`,
+  comboboxSelector: '#ex1 .group input',
+  buttonSelector: '#ex1 .group button',
+  dialogSelector: '#ex1 [role="dialog"]',
+  dialogMessageSelector: '#ex1 .dialog-message',
+  gridSelector: '#ex1 [role="grid"]',
+  controlButtons: '#ex1 [role="dialog"] .header button',
+  currentMonthDateButtons: '#ex1 [role="dialog"] .dates button:not(.disabled)',
+  allDateButtons: '#ex1 [role="dialog"] .dates button',
+  jan12019Button: '#ex1 [role="dialog"] button[data-date="2019-01-01"]',
+  jan22019Button: '#ex1 [role="dialog"] button[data-date="2019-01-02"]',
+  todayButton: `#ex1 [role="dialog"] button[data-date="${todayDataDate}"]`,
   allFocusableElementsInDialog: [
-    `#example [role="dialog"] button[data-date="${todayDataDate}"]`,
-    '#example [role="dialog"] button[value="cancel"]',
-    '#example [role="dialog"] button[value="ok"]',
-    '#example [role="dialog"] button.prevYear',
-    '#example [role="dialog"] button.prevMonth',
-    '#example [role="dialog"] button.nextMonth',
-    '#example [role="dialog"] button.nextYear'
+    `#ex1 [role="dialog"] button[data-date="${todayDataDate}"]`,
+    '#ex1 [role="dialog"] button[value="cancel"]',
+    '#ex1 [role="dialog"] button[value="ok"]',
+    '#ex1 [role="dialog"] button.prevYear',
+    '#ex1 [role="dialog"] button.prevMonth',
+    '#ex1 [role="dialog"] button.nextMonth',
+    '#ex1 [role="dialog"] button.nextYear'
   ]
 };
 
@@ -62,11 +59,11 @@ const clickToday = async function (t) {
 };
 
 const setDateToJanFirst2019 = async function (t) {
-  await t.context.session.findElement(By.css(ex.inputSelector)).click();
+  await t.context.session.findElement(By.css(ex.comboboxSelector)).click();
   return t.context.session.executeScript(function () {
     const inputSelector = arguments[0];
     document.querySelector(inputSelector).value = '1/1/2019';
-  }, ex.inputSelector);
+  }, ex.comboboxSelector);
 };
 
 const focusMatchesElement = async function (t, selector) {
@@ -82,7 +79,7 @@ const focusMatchesElement = async function (t, selector) {
 
 ariaTest('Combobox: has role', exampleFile, 'textbox-role', async (t) => {
   t.plan(1);
-  await assertAriaRoles(t, 'example', 'combobox', 1, 'input');
+  await assertAriaRoles(t, 'ex1', 'combobox', 1, 'input');
 });
 
 ariaTest('Combobox: has aria-haspopup set to "dialog"', exampleFile, 'textbox-aria-haspopup', async (t) => {
@@ -92,7 +89,7 @@ ariaTest('Combobox: has aria-haspopup set to "dialog"', exampleFile, 'textbox-ar
 
 ariaTest('Combobox: has aria-contorls set to "id-dialog-1"', exampleFile, 'textbox-aria-controls', async (t) => {
   t.plan(1);
-  await assertAttributeValues(t, ex.comboboxSelector, 'aria-controls', 'id-dialog-1');
+  await assertAttributeValues(t, ex.comboboxSelector, 'aria-controls', 'cb-dialog-1');
 });
 
 ariaTest('Combobox: Initially aria-expanded set to "false"', exampleFile, 'textbox-aria-expanded', async (t) => {
@@ -103,16 +100,32 @@ ariaTest('Combobox: Initially aria-expanded set to "false"', exampleFile, 'textb
 
 // Button Tests
 
-ariaTest('"aria-label" attribute on button', exampleFile, 'calendar-button-aria-label', async (t) => {
+ariaTest('Button: "aria-label" attribute', exampleFile, 'calendar-button-aria-label', async (t) => {
   t.plan(1);
   await assertAriaLabelExists(t,  ex.buttonSelector);
 });
+
+ariaTest('Button: has aria-haspopup set to "dialog"', exampleFile, 'textbox-aria-haspopup', async (t) => {
+  t.plan(1);
+  await assertAttributeValues(t, ex.buttonSelector, 'aria-haspopup', 'dialog');
+});
+
+ariaTest('Button: has aria-contorls set to "id-dialog-1"', exampleFile, 'textbox-aria-controls', async (t) => {
+  t.plan(1);
+  await assertAttributeValues(t, ex.buttonSelector, 'aria-controls', 'cb-dialog-1');
+});
+
+ariaTest('Button: Initially aria-expanded set to "false"', exampleFile, 'textbox-aria-expanded', async (t) => {
+  t.plan(1);
+  await assertAttributeValues(t, ex.buttonSelector, 'aria-expanded', 'false');
+});
+
 
 // Dialog Tests
 
 ariaTest('role="dialog" attribute on div', exampleFile, 'dialog-role', async (t) => {
   t.plan(1);
-  await assertAriaRoles(t, 'example', 'dialog', 1, 'div');
+  await assertAriaRoles(t, 'ex1', 'dialog', 1, 'div');
 });
 
 ariaTest('aria-modal="true" on modal', exampleFile, 'dialog-aria-modal', async (t) => {
@@ -130,19 +143,19 @@ ariaTest('aria-live="polite" on keyboard support message', exampleFile, 'dialog-
   await assertAttributeValues(t, ex.dialogMessageSelector, 'aria-live', 'polite');
 });
 
-ariaTest('"aria-label" exists on control buttons', exampleFile, 'change-date-button-aria-label', async (t) => {
+ariaTest('"aria-label" exists on control buttons', exampleFile, 'calendar-navigation-button-aria-label', async (t) => {
   t.plan(1);
-  await assertAriaLabelExists(t, ex.controlButtons);
+  await assertAriaLabelExists(t,  ex.buttonSelector);
 });
 
-ariaTest('aria-live="polite" on dialog header', exampleFile, 'change-date-aria-live', async (t) => {
+ariaTest('aria-live="polite" on dialog header', exampleFile, 'calendar-navigation-aria-live', async (t) => {
   t.plan(1);
   await assertAttributeValues(t, `${ex.dialogSelector} h2`, 'aria-live', 'polite');
 });
 
 ariaTest('grid role on table element', exampleFile, 'grid-role', async (t) => {
   t.plan(1);
-  await assertAriaRoles(t, 'example', 'grid', 1, 'table');
+  await assertAriaRoles(t, 'ex1', 'grid', 1, 'table');
 });
 
 ariaTest('aria-labelledby on grid element', exampleFile, 'grid-aria-labelledby', async (t) => {
@@ -153,13 +166,15 @@ ariaTest('aria-labelledby on grid element', exampleFile, 'grid-aria-labelledby',
 
 ariaTest('Roving tab index on dates in gridcell', exampleFile, 'gridcell-button-tabindex', async (t) => {
   await setDateToJanFirst2019(t);
+
+  await t.context.session.findElement(By.css(ex.buttonSelector)).click();
   await t.context.session.findElement(By.css(ex.buttonSelector)).click();
 
   let focusableButtons = await t.context.session.findElements(By.css(ex.currentMonthDateButtons));
   let allButtons = await t.context.session.findElements(By.css(ex.allDateButtons));
 
   // test only one element has tabindex="0"
-  for (let tabableEl = 0; tabableEl < focusableButton.length; tabableEl++) {
+  for (let tabableEl = 0; tabableEl < focusableButtons.length; tabableEl++) {
     let dateSelected = await focusableButtons[tabableEl].getText();
 
     for (let el = 0; el < allButtons.length; el++) {
@@ -260,7 +275,7 @@ ariaTest('Sending key ESC when focus is in dialog closes dialog', exampleFile, '
     );
 
     t.is(
-      await t.context.session.findElement(By.css(ex.inputSelector)).getAttribute('value'),
+      await t.context.session.findElement(By.css(ex.comboboxSelector)).getAttribute('value'),
       '',
       'After sending ESC to element "' + ex.allFocusableElementsInDialog[i] + '" in the dialog, no date should be selected'
     );

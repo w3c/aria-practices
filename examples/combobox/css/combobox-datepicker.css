@@ -121,7 +121,7 @@
   margin-right: 1em;
 }
 
-.combobox-datepicker .dates button {
+.combobox-datepicker .dialog-ok-cancel-group button {
   padding: 5px;
   margin-left: 1em;
   width: 5em;
@@ -205,7 +205,7 @@
 }
 
 
-.combobox-datepicker .message {
+.combobox-datepicker .dialog-message {
   padding-top: 0.25em;
   padding-left: 1em;
   height: 1.75em;
