@@ -1,0 +1,214 @@
+.combobox-datepicker {
+  margin-top: 1em;
+  position: relative;
+}
+
+.combobox-datepicker .group input {
+  margin: 0;
+  width: 20%;
+}
+
+.combobox-datepicker .group button {
+  height: 19px;
+  width: 21px;
+  border: 1px solid #CCC;
+  border-left: none;
+  outline: none;
+  position: relative;
+  top: 2px;
+  left: -5px;
+}
+
+.combobox-datepicker .group button svg {
+  position: relative;
+  left: -7px;
+}
+
+.combobox-datepicker .group button[aria-expanded="true"] svg {
+  transform: rotate(180deg) translate(0, -1px);
+}
+
+.combobox-datepicker .group.focus {
+  outline: 2px solid black;
+  outline-offset: 1px;
+}
+
+.combobox-datepicker .group.focus input,
+.combobox-datepicker .group.focus button {
+  background-color: #DEF;
+}
+
+.combobox-datepicker .group polygon {
+  fill: gray;
+  stroke: gray;
+}
+
+.combobox-datepicker .group button.open polygon,
+.combobox-datepicker .group.focus polygon {
+  fill: black;
+  stroke: black;
+}
+
+.combobox-datepicker .dialog {
+  position: absolute;
+  width: 320px;
+  clear: both;
+  border: 3px solid hsl(216, 80%, 51%);
+  margin-top: 1em;
+  border-radius: 5px;
+  padding: 0;
+  background-color: #fff;
+}
+
+.combobox-datepicker .header {
+  cursor: default;
+  background-color: hsl(216, 80%, 51%);
+  padding: 7px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+}
+
+.combobox-datepicker .dialog h2 {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+  font-size: 1em;
+  color: white;
+  text-transform: none;
+  font-weight: bold;
+}
+
+.combobox-datepicker .dialog button {
+  border-style: none;
+  background: transparent;
+}
+
+.combobox-datepicker .dialog button::-moz-focus-inner {
+  border: 0;
+}
+
+.combobox-datepicker .dates {
+  width: 320px;
+}
+
+.combobox-datepicker .prev-year,
+.combobox-datepicker .prev-month,
+.combobox-datepicker .next-month,
+.combobox-datepicker .next-year {
+  padding: 4px;
+  width: 24px;
+  height: 24px;
+  color: white;
+}
+
+.combobox-datepicker .prev-year:focus,
+.combobox-datepicker .prev-month:focus,
+.combobox-datepicker .next-month:focus,
+.combobox-datepicker .next-year:focus {
+  padding: 2px;
+  border: 2px solid white;
+  border-radius: 4px;
+  outline: 0;
+}
+
+.combobox-datepicker .dialog-ok-cancel-group {
+  text-align: right;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-right: 1em;
+}
+
+.combobox-datepicker .dates button {
+  padding: 5px;
+  margin-left: 1em;
+  width: 5em;
+  background-color: hsl(216, 80%, 92%);
+  font-size: 0.85em;
+  color: black;
+  outline: none;
+  border: 1px solid hsl(216, 80%, 92%);
+  border-radius: 5px;
+}
+
+.combobox-datepicker .dialog-button:focus {
+  padding: 4px;
+  border: 2px solid black;
+}
+
+.combobox-datepicker .fa-calendar-alt {
+  color: hsl(216, 89%, 51%);
+}
+
+.combobox-datepicker .month-year {
+  display: inline-block;
+  width: 12em;
+  text-align: center;
+}
+
+.combobox-datepicker .dates {
+  padding-left: 1em;
+  padding-right: 1em;
+  padding-top: 1em;
+}
+
+.combobox-datepicker .dates th,
+.combobox-datepicker .dates td {
+  text-align: center;
+}
+
+.combobox-datepicker .dates tr {
+  border: 1px solid black;
+}
+
+.combobox-datepicker .dates td {
+  outline: 0;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  height: 40px;
+  width: 40px;
+}
+
+.combobox-datepicker .dates button {
+  padding: 0;
+  margin: 0;
+  line-height: inherit;
+  height: 100%;
+  width: 100%;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  font-size: 15px;
+  background: #eee;
+}
+
+.combobox-datepicker .dates button:focus,
+.combobox-datepicker .dates button:hover {
+  padding: 0;
+  background-color: hsl(216, 80%, 92%);
+}
+
+.combobox-datepicker .dates button:focus {
+  border-width: 2px;
+  border-color: rgb(100, 100, 100);
+  outline: 0;
+}
+
+.combobox-datepicker .dates button[aria-selected] {
+  border-color: rgb(100, 100, 100);
+}
+
+.combobox-datepicker .dates button[tabindex="0"] {
+  background-color: hsl(216, 80%, 92%);
+}
+
+
+.combobox-datepicker .message {
+  padding-top: 0.25em;
+  padding-left: 1em;
+  height: 1.75em;
+  background: hsl(216, 80%, 51%);
+  color: white;
+}
