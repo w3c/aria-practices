@@ -6440,7 +6440,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
     </ul>
     <p>
       For example, a spin button for choosing a day within the month of January would allow integer values that range from 1 to 31.
-      In some cases, the value is represented numericaly, but is not presented as a number to users.
+      In some cases, the value is represented numerically, but is not presented as a number to users.
       For instance, a spin button for choosing a day of the week could support values from 1 to 7 but they could be presented to the user as day names, e.g., "Monday", "Tuesday", etc.
     </p>
     <p>
@@ -6473,8 +6473,8 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
       </tbody>
     </table>
 
-    <section id="range_related_properties_using_aria-valuemin_and_aria-valuemax">
-      <h3>Using <code>aria-valuemin</code> and <code>aria-valuemax</code></h3>
+    <section id="range_related_properties_using_aria-valuemin_aria-valuemax_and_aria-valuenow">
+      <h2>Using <code>aria-valuemin</code>, <code>aria-valuemax</code> and <code>aria-valuenow</code></h2>
       <p>
         When the value of a range widget is constrained to known limits, the <code>aria-valuemin</code> and <code>aria-valuemax</code> properties are used to inform assistive technologies of the minimum and maximum values of the range.
         For some widgets, assistive technologies use this information to present the current value as a percentage.
@@ -6482,69 +6482,91 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
         If a range widget represents a value that does not have known limits, omit both <code>aria-valuemin</code> and <code>aria-valuemax</code>.
       </p>
       <p>
-        The range widget roles have the following default values and requirements for <code>aria-valuemin</code> and <code>aria-valuemax</code>.
-      </p>
-      <table>
-        <thead>
-          <tr>
-            <th>Role</th>
-            <th>Default <code>aria-valuemin</code></th>
-            <th>Default <code>aria-valuemax</code></th>
-            <th>Are <code>aria-valuemin</code> and <code>aria-valuemax</code> required?</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th><code>meter</code></th>
-            <td>no default</td>
-            <td>no default</td>
-            <td>Yes</td>
-          </tr>
-          <tr>
-            <th><code>progressbar</code></th>
-            <td>0</td>
-            <td>100</td>
-            <td>No</td>
-          </tr>
-          <tr>
-            <th><code>scrollbar</code></th>
-            <td>0</td>
-            <td>100</td>
-            <td>No</td>
-          </tr>
-          <tr>
-            <th><code>separator</code></th>
-            <td>0</td>
-            <td>100</td>
-            <td>No</td>
-          </tr>
-          <tr>
-            <th><code>slider</code></th>
-            <td>0</td>
-            <td>100</td>
-            <td>No</td>
-          </tr>
-          <tr>
-            <th><code>spinbutton</code></th>
-            <td>no default</td>
-            <td>no default</td>
-            <td>No</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-
-    <section id="range_related_properties_using_aria-valuenow">
-      <h2>Using <code>aria-valuenow</code></h2>
-      <p>
         The <code>aria-valuenow</code> property is used to inform assistive technologies of the current value of a range widget.
         If a range widget has a known value, set <code>aria-valuenow</code> to that value.
         Otherwise, omit the <code>aria-valuenow</code> property.
         If <code>aria-valuemin</code> and <code>aria-valuemax</code> are specified, ensure the value of <code>aria-valuenow</code> falls within the defined range.
+        The <code>aria-valuenow</code> property is required for the <code>meter</code>, <code>scrollbar</code>, <code>separator</code> (if the element is focusable), and <code>slider</code> roles.
       </p>
       <p>
-        The <code>aria-valuenow</code> property is required for the <code>scrollbar</code>, <code>separator</code> (if the element is focusable), and <code>slider</code> roles.
+        The range widget roles have the following default values and requirements for <code>aria-valuemin</code>, <code>aria-valuemax</code> and <code>aria-valuenow</code>.
       </p>
+      <table>
+        <thead>
+          <col>
+          <colgroup span="3"></colgroup>
+          <colgroup span="3"></colgroup>
+          <tr>
+            <th rowspan="2">Role</th>
+            <th colspan="3">Default Values</th>
+            <th colspan="3">Required</th>
+          </tr>
+          <tr>
+            <th scope="col"><code>aria-valuemin</code></th>
+            <th scope="col"><code>aria-valuemax</code></th>
+            <th scope="col"><code>aria-valuenow</code></th>
+            <th scope="col"><code>aria-valuemin</code></th>
+            <th scope="col"><code>aria-valuemax</code></th>
+            <th scope="col"><code>aria-valuenow</code></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row"><code>meter</code></th>
+            <td>0</td>
+            <td>100</td>
+            <td>None</td>
+            <td>No</td>
+            <td>No</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <th scope="row"><code>progressbar</code></th>
+            <td>0</td>
+            <td>100</td>
+            <td>None</td>
+            <td>No</td>
+            <td>No</td>
+            <td>No</td>
+          </tr>
+          <tr>
+            <th scope="row"><code>scrollbar</code></th>
+            <td>0</td>
+            <td>100</td>
+            <td>None</td>
+            <td>No</td>
+            <td>No</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <th scope="row"><code>separator</code> <small>(if focusable)</small></th>
+            <td>0</td>
+            <td>100</td>
+            <td>None</td>
+            <td>No</td>
+            <td>No</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <th scope="row"><code>slider</code></th>
+            <td>0</td>
+            <td>100</td>
+            <td>None</td>
+            <td>No</td>
+            <td>No</td>
+            <td>Yes</td>
+          </tr>
+          <tr>
+            <th scope="row"><code>spinbutton</code></th>
+            <td>None</td>
+            <td>None</td>
+            <td>None</td>
+            <td>No</td>
+            <td>No</td>
+            <td>No</td>
+          </tr>
+        </tbody>
+      </table>
     </section>
 
     <section id="range_related_properties_using_aria-valuetext">
