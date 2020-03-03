@@ -3,20 +3,49 @@
   position: relative;
 }
 
-.combobox-datepicker .group input {
-  margin: 0;
-  width: 20%;
+.combobox-datepicker .group {
+  display: inline-flex;
 }
 
-.combobox-datepicker .group button {
-  height: 19px;
-  width: 21px;
-  border: 1px solid #CCC;
+.combobox-datepicker label {
+  display: block;
+}
+
+.combobox-datepicker input,
+.combobox-datepicker button {
+  background-color: white;
+  color: black;
+  box-sizing: border-box;
+  height: 1.75rem;
+  padding: 0;
+  margin: 0;
+  vertical-align: bottom;
+  border: 1px solid gray;
+  position: relative;
+}
+
+.combobox-datepicker input {
+  width: 10.75rem;
+  border-right: none;
+  outline: none;
+  font-size: 87.5%;
+  padding: 0.1em 0.3em;
+}
+
+.combobox-datepicker button {
+  width: 1.25rem;
   border-left: none;
   outline: none;
-  position: relative;
-  top: 2px;
-  left: -5px;
+}
+
+.combobox-datepicker .group.focus {
+  outline: 2px solid black;
+  outline-offset: 1px;
+}
+
+.combobox-datepicker .group.focus input,
+.combobox-datepicker .group.focus button {
+  background-color: #DEF;
 }
 
 .combobox-datepicker .group button svg {
@@ -164,43 +193,34 @@
 }
 
 .combobox-datepicker .dates td {
-  outline: 0;
-  border: 0;
-  padding: 0;
-  margin: 0;
-  height: 40px;
-  width: 40px;
-}
-
-.combobox-datepicker .dates button {
-  padding: 0;
+  padding: 1px;
   margin: 0;
   line-height: inherit;
-  height: 100%;
-  width: 100%;
+  height: 40px;
+  width: 40px;
   border: 1px solid #eee;
   border-radius: 5px;
   font-size: 15px;
   background: #eee;
 }
 
-.combobox-datepicker .dates button:focus,
-.combobox-datepicker .dates button:hover {
+.combobox-datepicker .dates td:focus,
+.combobox-datepicker .dates td:hover {
   padding: 0;
   background-color: hsl(216, 80%, 92%);
 }
 
-.combobox-datepicker .dates button:focus {
+.combobox-datepicker .dates td:focus {
   border-width: 2px;
   border-color: rgb(100, 100, 100);
   outline: 0;
 }
 
-.combobox-datepicker .dates button[aria-selected] {
+.combobox-datepicker .dates td[aria-selected] {
   border-color: rgb(100, 100, 100);
 }
 
-.combobox-datepicker .dates button[tabindex="0"] {
+.combobox-datepicker .dates td[tabindex="0"] {
   background-color: hsl(216, 80%, 92%);
 }
 

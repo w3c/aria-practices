@@ -24,13 +24,13 @@ const ex = {
   dialogMessageSelector: '#ex1 .dialog-message',
   gridSelector: '#ex1 [role="grid"]',
   controlButtons: '#ex1 [role="dialog"] .header button',
-  currentMonthDateButtons: '#ex1 [role="dialog"] .dates button:not(.disabled)',
-  allDateButtons: '#ex1 [role="dialog"] .dates button',
-  jan12019Button: '#ex1 [role="dialog"] button[data-date="2019-01-01"]',
-  jan22019Button: '#ex1 [role="dialog"] button[data-date="2019-01-02"]',
-  todayButton: `#ex1 [role="dialog"] button[data-date="${todayDataDate}"]`,
+  currentMonthDateButtons: '#ex1 [role="dialog"] .dates td:not(.disabled)',
+  allDateButtons: '#ex1 [role="dialog"] .dates td',
+  jan12019Button: '#ex1 [role="dialog"] .dates [data-date="2019-01-01"]',
+  jan22019Button: '#ex1 [role="dialog"] .dates [data-date="2019-01-02"]',
+  todayButton: `#ex1 [role="dialog"] .dates [data-date="${todayDataDate}"]`,
   allFocusableElementsInDialog: [
-    `#ex1 [role="dialog"] button[data-date="${todayDataDate}"]`,
+    `#ex1 [role="dialog"] td[data-date="${todayDataDate}"]`,
     '#ex1 [role="dialog"] button[value="cancel"]',
     '#ex1 [role="dialog"] button[value="ok"]',
     '#ex1 [role="dialog"] button.prevYear',
@@ -164,7 +164,7 @@ ariaTest('aria-labelledby on grid element', exampleFile, 'grid-aria-labelledby',
 });
 
 
-ariaTest('Roving tab index on dates in gridcell', exampleFile, 'gridcell-button-tabindex', async (t) => {
+ariaTest('Roving tab index on dates in gridcell', exampleFile, 'gridcell-tabindex', async (t) => {
   await setDateToJanFirst2019(t);
 
   await t.context.session.findElement(By.css(ex.buttonSelector)).click();
