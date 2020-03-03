@@ -23,7 +23,8 @@ window.addEventListener('load', function () {
       var treeitem = event.currentTarget;
       var label = treeitem.getAttribute('aria-label');
       if (!label) {
-        label = treeitem.innerHTML;
+        var child = treeitem.firstElementChild;
+        label = child ? child.innerText : treeitem.innerText;
       }
 
       document.getElementById('last_action').value = label.trim();

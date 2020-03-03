@@ -33,6 +33,7 @@ MenubarItem.prototype.init = function () {
   this.domNode.tabIndex = -1;
 
   this.domNode.addEventListener('keydown', this.handleKeydown.bind(this));
+  this.domNode.addEventListener('click', this.handleClick.bind(this));
   this.domNode.addEventListener('focus', this.handleFocus.bind(this));
   this.domNode.addEventListener('blur', this.handleBlur.bind(this));
   this.domNode.addEventListener('mouseover', this.handleMouseover.bind(this));
@@ -118,6 +119,14 @@ MenubarItem.prototype.handleKeydown = function (event) {
 
   if (flag) {
     event.stopPropagation();
+    event.preventDefault();
+  }
+};
+
+MenubarItem.prototype.handleClick = function (event) {
+  if (this.popupMenu) {
+    // for menuitem with menu, prevent default anchor behavior on click
+    // (which jumps to top of page for href="#" in some browsers)
     event.preventDefault();
   }
 };

@@ -173,6 +173,11 @@ MenuItem.prototype.setExpanded = function (value) {
 MenuItem.prototype.handleClick = function (event) {
   this.menu.setFocusToController();
   this.menu.close(true);
+  if (this.popupMenu) {
+    // for menuitem with menu, prevent default anchor behavior on click
+    // (which jumps to top of page for href="#" in some browsers)
+    event.preventDefault();
+  }
 };
 
 MenuItem.prototype.handleFocus = function (event) {

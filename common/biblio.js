@@ -26,6 +26,14 @@ var biblio = {
 	"HTML-AAM": {
 		"aliasOf": "HTML-AAM-1.0",
 	},
+        "MathML-Core": {
+		"href": "https://mathml-refresh.github.io/mathml-core/",
+		"title": "MathML Core",
+                "authors": [
+                    "David Carlisle",
+                    "Frédéric Wang"
+		]
+	},
 	"SVG-AAM": {
 		"aliasOf": "SVG-AAM-1.0",
 	},

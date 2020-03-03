@@ -1805,6 +1805,7 @@
           <li><a href="examples/listbox/listbox-scrollable.html">Scrollable Listbox Example</a>: Single-select listbox that scrolls to reveal more options, similar to HTML <code>select</code> with <code>size</code> attribute greater than one.</li>
           <li><a href="examples/listbox/listbox-collapsible.html">Collapsible Dropdown Listbox Example</a>: Single-select collapsible listbox that expands when activated, similar to HTML <code>select</code> with the attribute <code>size=&quot;1&quot;</code>.</li>
           <li><a href="examples/listbox/listbox-rearrangeable.html">Example Listboxes with Rearrangeable Options</a>: Examples of both single-select and multi-select listboxes with accompanying toolbars where options can be added, moved, and removed.</li>
+          <li><a href="examples/listbox/listbox-grouped.html">Listbox Example with Grouped Options</a>: Single-select listbox with grouped options, similar to an HTML <code>select</code> with <code>optgroup</code> children.</li>
         </ul>
       </section>
 
@@ -2344,7 +2345,10 @@
         A slider is an input where the user selects a value from within a given range.
         Sliders typically have a slider thumb that can be moved along a bar or track to change the value of the slider.
       </p>
-
+      <p class="warning">
+        Users of touch-based assistive technologies may not be able to fully operate widgets that implement this pattern because APIs for capturing the necessary gestures and commands from assistive technologies are not yet available.
+        Authors should fully test widgets using this pattern with assistive technologies before considering incorporation into production systems.
+      </p>
       <section class="notoc">
         <h4>Examples</h4>
         <ul>
@@ -2406,6 +2410,10 @@
         For example, in a price range selector, the maximum value of the thumb that sets the lower end of the range is limited by the current value of the thumb that sets the upper end of the range.
         Conversely, the minimum value of the upper end thumb is limited by the current value of the lower end thumb.
         However, in some multi-thumb sliders, each thumb sets a value that does not depend on the other thumb values.
+      </p>
+      <p class="warning">
+        Users of touch-based assistive technologies may not be able to fully operate widgets that implement this pattern because APIs for capturing the necessary gestures and commands from assistive technologies are not yet available.
+        Authors should fully test widgets using this pattern with assistive technologies before considering incorporation into production systems.
       </p>
 
       <section class="notoc">
