@@ -218,7 +218,7 @@ ariaTest('"aria-expanded" on button element', exampleFile, 'button-aria-expanded
 
   t.false(
     await popupElement.isDisplayed(),
-    'Popup element should not be displayed when \'aria-expanded\' is false\''
+    'Popup element should not be displayed when \'aria-expanded\' is \'false\''
   );
 
   // Send key "a" to textbox
@@ -237,7 +237,7 @@ ariaTest('"aria-expanded" on button element', exampleFile, 'button-aria-expanded
 
   t.true(
     await popupElement.isDisplayed(),
-    'Popup element should be displayed when \'aria-expanded\' is true\''
+    'Popup element should be displayed when \'aria-expanded\' is \'true\''
   );
 
 });
@@ -636,4 +636,3 @@ ariaTest('Expected behavior for all other standard single line editing keys',
       'Sending standard editing keys should NOT filter results'
     );
   });
-
