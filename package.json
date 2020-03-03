@@ -8,11 +8,12 @@
   },
   "scripts": {
     "fix": "npm run lint:es -- --fix && npm run lint:css -- --fix",
-    "lint": "npm run lint:es && npm run lint:css && npm run vnu-jar",
+    "lint": "npm run lint:es && npm run lint:css && npm run vnu-jar && npm run lint:spelling",
     "lint:css": "stylelint **/*.css",
     "lint:es": "eslint .",
     "lint:js": "npm run lint:es",
     "lint:html": "npm run vnu-jar",
+    "lint:spelling": "cspell \"examples/**/*.html\" \"aria-practices.html\"",
     "regression": "ava --timeout=1m",
     "regression-report": "node test/util/report",
     "test": "npm run lint && npm run regression",
@@ -31,6 +32,7 @@
   "devDependencies": {
     "ava": "^3.0.0",
     "cheerio": "^1.0.0-rc.2",
+    "cspell": "^4.0.30",
     "eslint": "^6.0.1",
     "geckodriver": "^1.19.1",
     "glob": "^7.1.4",
