@@ -151,8 +151,10 @@ ComboboxDatePicker.prototype.setFocusDay = function (flag) {
     var d = getDayFromDataDateAttribute(domNode);
 
     domNode.setAttribute('tabindex', '-1');
+    domNode.removeAttribute('aria-selected');
     if (this.isSameDay(d, fd)) {
       domNode.setAttribute('tabindex', '0');
+      domNode.setAttribute('aria-selected', 'true');
       if (flag) {
         domNode.focus();
       }
