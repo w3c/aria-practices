@@ -220,7 +220,7 @@ aria.Listbox.prototype.checkKeyPress = function (evt) {
       break;
     case 65:
       // handle control + A
-      if (this.multiselectable && evt.ctrlKey) {
+      if (this.multiselectable && (evt.ctrlKey || evt.metaKey)) {
         evt.preventDefault();
         this.selectRange(0, allOptions.length - 1);
         break;
@@ -269,7 +269,7 @@ aria.Listbox.prototype.findItemToFocus = function (key) {
   return nextMatch;
 };
 
-/* Return the index of the passed elemnt within the passed array, or null if not found */
+/* Return the index of the passed element within the passed array, or null if not found */
 aria.Listbox.prototype.getElementIndex = function (option, options) {
   var allOptions = Array.prototype.slice.call(options); // convert to array
   var optionIndex = allOptions.indexOf(option);
