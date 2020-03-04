@@ -48,11 +48,6 @@
   background-color: #DEF;
 }
 
-.combobox-datepicker .group button svg {
-  position: relative;
-  left: -7px;
-}
-
 .combobox-datepicker .group button[aria-expanded="true"] svg {
   transform: rotate(180deg) translate(0, -1px);
 }
@@ -69,13 +64,13 @@
 
 .combobox-datepicker .group polygon {
   fill: gray;
-  stroke: gray;
+  stroke: transparent;
 }
 
-.combobox-datepicker .group button.open polygon,
+.combobox-datepicker .group button[aria-expanded="true"] polygon,
 .combobox-datepicker .group.focus polygon {
   fill: black;
-  stroke: black;
+  stroke: white;
 }
 
 .combobox-datepicker .dialog {
