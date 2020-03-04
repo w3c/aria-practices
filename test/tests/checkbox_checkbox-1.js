@@ -56,7 +56,7 @@ const uncheckAllSelectedByDefault = async function (t) {
 // Attributes
 
 ariaTest('element h3 exists', exampleFile, 'h3', async (t) => {
-  
+
   let header = await t.context.queryElements(t, '#ex1 h3');
 
   t.is(
@@ -101,7 +101,7 @@ ariaTest('tabindex="0" for checkbox elements', exampleFile, 'checkbox-tabindex',
 });
 
 ariaTest('"aria-checked" on checkbox element', exampleFile, 'checkbox-aria-checked', async (t) => {
-  
+
   await uncheckAllSelectedByDefault(t);
 
   // check the aria-checked attribute is false to begin
@@ -134,12 +134,12 @@ ariaTest('"aria-checked" on checkbox element', exampleFile, 'checkbox-aria-check
 });
 
 ariaTest('key TAB moves focus between checkboxes', exampleFile, 'key-tab', async (t) => {
-  
+
   await assertTabOrder(t, ex.checkboxes);
 });
 
 ariaTest('key SPACE selects or unselects checkbox', exampleFile, 'key-space', async (t) => {
-  
+
   await uncheckAllSelectedByDefault(t);
 
   for (let checkboxSelector of ex.checkboxes) {

@@ -1,3 +1,5 @@
+/* eslint no-restricted-properties: 0 */
+
 'use strict';
 
 const { ariaTest } = require('..');
@@ -48,7 +50,7 @@ ariaTest('"aria-autocomplete" on comboxbox element', exampleFile, 'combobox-aria
 });
 
 ariaTest('"aria-controls" attribute on combobox element', exampleFile, 'combobox-aria-controls', async (t) => {
-  
+
   const popupId = await t.context.session
     .findElement(By.css(ex.textboxSelector))
     .getAttribute('aria-controls');
@@ -68,7 +70,7 @@ ariaTest('"aria-controls" attribute on combobox element', exampleFile, 'combobox
 });
 
 ariaTest('"aria-expanded" on combobox element', exampleFile, 'combobox-aria-expanded', async (t) => {
-  
+
   const combobox = await t.context.session.findElement(By.css(ex.textboxSelector));
 
   // Check that aria-expanded is false and the listbox is not visible before interacting
@@ -126,14 +128,14 @@ ariaTest('"aria-label" attribute on listbox element', exampleFile, 'listbox-aria
 });
 
 ariaTest('role "option" on lu elements', exampleFile, 'option-role', async (t) => {
-  
+
   // Send arrow down to reveal all options
   await t.context.session.findElement(By.css(ex.textboxSelector)).sendKeys(Key.ARROW_DOWN);
   await assertAriaRoles(t, 'ex1', 'option', '56', 'li');
 });
 
 ariaTest('"aria-selected" attribute on options element', exampleFile, 'option-aria-selected', async (t) => {
-  
+
   // Send key "a"
   await t.context.session.findElement(By.css(ex.textboxSelector)).sendKeys('a');
   await assertAttributeValues(t, ex.optionsSelector + ':nth-of-type(1)', 'aria-selected', 'true');
@@ -223,7 +225,7 @@ ariaTest('"aria-expanded" on button element', exampleFile, 'button-aria-expanded
 ariaTest('Test alt + down key press with focus on textbox',
   exampleFile, 'textbox-key-alt-down-arrow', async (t) => {
 
-    
+
     // Send ARROW_DOWN to the textbox
     await t.context.session
       .findElement(By.css(ex.textboxSelector))
@@ -243,7 +245,7 @@ ariaTest('Test alt + down key press with focus on textbox',
 ariaTest('Test down key press with focus on textbox',
   exampleFile, 'textbox-key-down-arrow', async (t) => {
 
-    
+
     // Send ARROW_DOWN to the textbox
     await t.context.session
       .findElement(By.css(ex.textboxSelector))
@@ -267,7 +269,7 @@ ariaTest('Test down key press with focus on textbox',
 ariaTest('Test down key press with focus on list',
   exampleFile, 'listbox-key-down-arrow', async (t) => {
 
-    
+
     // Send 'a' to text box, then send ARROW_DOWN to textbox to set focus on listbox
     await t.context.session
       .findElement(By.css(ex.textboxSelector))
@@ -295,7 +297,7 @@ ariaTest('Test down key press with focus on list',
 ariaTest('Test up key press with focus on textbox',
   exampleFile, 'textbox-key-up-arrow', async (t) => {
 
-    
+
     // Send ARROW_UP to the textbox
     await t.context.session
       .findElement(By.css(ex.textboxSelector))
@@ -319,7 +321,7 @@ ariaTest('Test up key press with focus on textbox',
 ariaTest('Test up key press with focus on listbox',
   exampleFile, 'listbox-key-up-arrow', async (t) => {
 
-    
+
     // Send 'a' to text box, then send ARROW_UP to textbox to textbox to put focus in textbox
     // Up arrow should move selection to the last item in the list
     await t.context.session
@@ -352,7 +354,7 @@ ariaTest('Test up key press with focus on listbox',
 ariaTest('Test enter key press with focus on textbox',
   exampleFile, 'textbox-key-enter', async (t) => {
 
-    
+
     // Send key "a" to the textbox
 
     await t.context.session
@@ -387,7 +389,7 @@ ariaTest('Test enter key press with focus on textbox',
 ariaTest('Test enter key press with focus on listbox',
   exampleFile, 'listbox-key-enter', async (t) => {
 
-    
+
     // Send key "a" to the textbox, then two ARROW_DOWNS
 
     await t.context.session
@@ -424,7 +426,7 @@ ariaTest('Test enter key press with focus on listbox',
 
 ariaTest('Test single escape key press with focus on textbox',
   exampleFile, 'textbox-key-escape', async (t) => {
-    
+
     // Send key "a", then key ESCAPE once to the textbox
 
     await t.context.session
@@ -446,7 +448,7 @@ ariaTest('Test single escape key press with focus on textbox',
 
 ariaTest('Test double escape key press with focus on textbox',
   exampleFile, 'textbox-key-escape', async (t) => {
-    
+
     // Send key "a", then key ESCAPE twice to the textbox
 
     await t.context.session
@@ -468,7 +470,7 @@ ariaTest('Test double escape key press with focus on textbox',
 
 ariaTest('Test escape key press with focus on textbox',
   exampleFile, 'listbox-key-escape', async (t) => {
-    
+
     // Send key "a" then key "ARROW_DOWN to put the focus on the listbox,
     // then key ESCAPE to the textbox
 
@@ -491,7 +493,7 @@ ariaTest('Test escape key press with focus on textbox',
 
 ariaTest('left arrow from focus on list puts focus on listbox and moves cursor right',
   exampleFile, 'listbox-key-left-arrow', async (t) => {
-    
+
     // Send key "a" then key "ARROW_DOWN" to put the focus on the listbox
     const textbox = await t.context.session.findElement(By.css(ex.textboxSelector));
     await textbox.sendKeys('a', Key.ARROW_DOWN);
@@ -514,7 +516,7 @@ ariaTest('left arrow from focus on list puts focus on listbox and moves cursor r
 
 ariaTest('Right arrow from focus on list puts focus on listbox',
   exampleFile, 'listbox-key-right-arrow', async (t) => {
-    
+
     // Send key "a" then key "ARROW_DOWN" to put the focus on the listbox
     const textbox = await t.context.session.findElement(By.css(ex.textboxSelector));
     await textbox.sendKeys('a', Key.ARROW_DOWN);
@@ -536,7 +538,7 @@ ariaTest('Right arrow from focus on list puts focus on listbox',
 
 ariaTest('Home from focus on list puts focus on listbox and moves cursor',
   exampleFile, 'listbox-key-home', async (t) => {
-    
+
     // Send key "a" then key "ARROW_DOWN" to put the focus on the listbox
     const textbox = await t.context.session.findElement(By.css(ex.textboxSelector));
     await textbox.sendKeys('a', Key.ARROW_DOWN);
@@ -558,7 +560,7 @@ ariaTest('Home from focus on list puts focus on listbox and moves cursor',
 
 ariaTest('End from focus on list puts focus on listbox',
   exampleFile, 'listbox-key-end', async (t) => {
-    
+
     // Send key "a" then key "ARROW_DOWN" to put the focus on the listbox
     const textbox = await t.context.session.findElement(By.css(ex.textboxSelector));
     await textbox.sendKeys('a', Key.ARROW_DOWN);
@@ -580,7 +582,7 @@ ariaTest('End from focus on list puts focus on listbox',
 
 ariaTest('Sending character keys while focus is on listbox moves focus',
   exampleFile, 'listbox-characters', async (t) => {
-    
+
     // Send key "ARROW_DOWN" to put the focus on the listbox
     const textbox = await t.context.session.findElement(By.css(ex.textboxSelector));
     await textbox.sendKeys(Key.ARROW_DOWN);
@@ -608,7 +610,7 @@ ariaTest('Sending character keys while focus is on listbox moves focus',
 
 ariaTest('Expected behavior for all other standard single line editing keys',
   exampleFile, 'standard-single-line-editing-keys', async (t) => {
-    
+
     // Send key "a"
     const textbox = await t.context.session.findElement(By.css(ex.textboxSelector));
     await textbox.sendKeys('a');

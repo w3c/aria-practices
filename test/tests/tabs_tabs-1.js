@@ -1,3 +1,5 @@
+/* eslint no-restricted-properties: 0 */
+
 'use strict';
 
 const { ariaTest } = require('..');
@@ -62,7 +64,7 @@ ariaTest('role="tab" on button elements', exampleFile, 'tab-role', async (t) => 
 });
 
 ariaTest('"aria-selected" set on role="tab"', exampleFile, 'tab-aria-selected', async (t) => {
-  
+
   let tabs = await t.context.queryElements(t, ex.tabSelector);
   let tabpanels = await t.context.queryElements(t, ex.tabpanelSelector);
 
@@ -95,7 +97,7 @@ ariaTest('"aria-selected" set on role="tab"', exampleFile, 'tab-aria-selected', 
 });
 
 ariaTest('"tabindex" on role="tab"', exampleFile, 'tab-tabindex', async (t) => {
-  
+
   let tabs = await t.context.queryElements(t, ex.tabSelector);
   for (let selectedEl = 0; selectedEl < tabs.length; selectedEl++) {
 
@@ -152,7 +154,7 @@ ariaTest('tabindex="0" on role="tabpanel" elements', exampleFile, 'tabpanel-tabi
 // Keys
 
 ariaTest('TAB key moves focus to open tab and panel', exampleFile, 'key-tab', async (t) => {
-  
+
   for (let index = 0; index < ex.tabCount; index++) {
     await openTabAtIndex(t, index);
 
@@ -161,7 +163,7 @@ ariaTest('TAB key moves focus to open tab and panel', exampleFile, 'key-tab', as
 });
 
 ariaTest('ARROW_RIGHT key moves focus and activates tab', exampleFile, 'key-right-arrow', async (t) => {
-  
+
   // Put focus on first tab
   await openTabAtIndex(t, 0);
 
@@ -208,7 +210,7 @@ ariaTest('ARROW_RIGHT key moves focus and activates tab', exampleFile, 'key-righ
 });
 
 ariaTest('ARROW_LEFT key moves focus and activates tab', exampleFile, 'key-left-arrow', async (t) => {
-  
+
   const tabs = await t.context.queryElements(t, ex.tabSelector);
   const tabpanels = await t.context.queryElements(t, ex.tabpanelSelector);
 
@@ -256,7 +258,7 @@ ariaTest('ARROW_LEFT key moves focus and activates tab', exampleFile, 'key-left-
 
 ariaTest('HOME key moves focus and selects tab', exampleFile, 'key-home', async (t) => {
 
-  
+
   const tabs = await t.context.queryElements(t, ex.tabSelector);
   const tabpanels = await t.context.queryElements(t, ex.tabpanelSelector);
   for (let index = 0; index < tabs.length; index++) {
@@ -284,7 +286,7 @@ ariaTest('HOME key moves focus and selects tab', exampleFile, 'key-home', async 
 });
 
 ariaTest('END key moves focus and selects tab', exampleFile, 'key-end', async (t) => {
-  
+
   const tabs = await t.context.queryElements(t, ex.tabSelector);
   const tabpanels = await t.context.queryElements(t, ex.tabpanelSelector);
   for (let index = 0; index < tabs.length; index++) {
@@ -312,7 +314,7 @@ ariaTest('END key moves focus and selects tab', exampleFile, 'key-end', async (t
 });
 
 ariaTest('DELETE key removes third tab', exampleFile, 'key-delete', async (t) => {
-  
+
   let tabs = await t.context.queryElements(t, ex.tabSelector);
 
   // Put focus on the first tab

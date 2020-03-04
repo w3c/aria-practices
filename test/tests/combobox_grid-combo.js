@@ -1,3 +1,5 @@
+/* eslint no-restricted-properties: 0 */
+
 'use strict';
 
 const { ariaTest } = require('..');
@@ -54,7 +56,7 @@ ariaTest('"aria-haspopup"=grid on combobox element', exampleFile, 'combobox-aria
 });
 
 ariaTest('"aria-expanded" on combobox element', exampleFile, 'combobox-aria-expanded', async (t) => {
-  
+
   const combobox = await t.context.session.findElement(By.css(ex.comboboxSelector));
 
   // Check that aria-expanded is false and the grid is not visible before interacting
@@ -99,7 +101,7 @@ ariaTest('"aria-expanded" on combobox element', exampleFile, 'combobox-aria-expa
 });
 
 ariaTest('"id" attribute on texbox used to discover accessible name', exampleFile, 'combobox-id', async (t) => {
-  
+
   const labelForTextboxId = await t.context.session
     .findElement(By.css(ex.labelSelector))
     .getAttribute('for');
@@ -124,7 +126,7 @@ ariaTest('"aria-autocomplete" on grid element', exampleFile, 'combobox-aria-auto
 });
 
 ariaTest('"aria-controls" attribute on grid element', exampleFile, 'combobox-aria-controls', async (t) => {
-  
+
   const popupId = await t.context.session
     .findElement(By.css(ex.comboboxSelector))
     .getAttribute('aria-controls');
@@ -156,7 +158,7 @@ ariaTest('"aria-labelledby" attribute on grid element', exampleFile, 'grid-aria-
 });
 
 ariaTest('role "row" exists within grid element', exampleFile, 'row-role', async (t) => {
-  
+
   // Send key "a" then arrow down to reveal all options
   await t.context.session.findElement(By.css(ex.comboboxSelector)).sendKeys('a', Key.ARROW_DOWN);
 
@@ -171,7 +173,7 @@ ariaTest('role "row" exists within grid element', exampleFile, 'row-role', async
 
 // This test fails due to bug: https://github.com/w3c/aria-practices/issues/859
 ariaTest.failing('"aria-selected" attribute on row element', exampleFile, 'row-aria-selected', async (t) => {
-  
+
   // Send key "a"
   await t.context.session.findElement(By.css(ex.comboboxSelector)).sendKeys('a');
   await assertAttributeDNE(t, ex.rowSelector + ':nth-of-type(1)', 'aria-selected');
@@ -182,7 +184,7 @@ ariaTest.failing('"aria-selected" attribute on row element', exampleFile, 'row-a
 });
 
 ariaTest('role "gridcell" exists within row element', exampleFile, 'gridcell-role', async (t) => {
-  
+
   // Send key "a" then arrow down to reveal all options
   await t.context.session.findElement(By.css(ex.comboboxSelector)).sendKeys('a', Key.ARROW_DOWN);
 
@@ -201,7 +203,7 @@ ariaTest('role "gridcell" exists within row element', exampleFile, 'gridcell-rol
 ariaTest('Test down key press with focus on combobox',
   exampleFile, 'popup-key-down-arrow', async (t) => {
 
-    
+
     // Send ARROW_DOWN to the combobox
     await t.context.session
       .findElement(By.css(ex.comboboxSelector))
@@ -250,7 +252,7 @@ ariaTest('Test down key press with focus on combobox',
 ariaTest('Test down key press with focus on list',
   exampleFile, 'popup-key-down-arrow', async (t) => {
 
-    
+
     // Send 'a' to text box, then send ARROW_DOWN to combobox to set focus on grid
     await t.context.session
       .findElement(By.css(ex.comboboxSelector))
@@ -321,7 +323,7 @@ ariaTest('Test down key press with focus on list',
 ariaTest('Test up key press with focus on combobox',
   exampleFile, 'popup-key-up-arrow', async (t) => {
 
-    
+
     // Send ARROW_UP to the combobox
     await t.context.session
       .findElement(By.css(ex.comboboxSelector))
@@ -370,7 +372,7 @@ ariaTest('Test up key press with focus on combobox',
 ariaTest('Test up key press with focus on grid',
   exampleFile, 'popup-key-up-arrow', async (t) => {
 
-    
+
     // Send 'a' to text box, then send ARROW_UP to combobox to put focus in combobox
     // Up arrow should move selection to the last item in the list
     await t.context.session
@@ -442,7 +444,7 @@ ariaTest('Test up key press with focus on grid',
 ariaTest('Test enter key press with focus on grid',
   exampleFile, 'popup-key-enter', async (t) => {
 
-    
+
     // Send key "a" to the combobox, then key ARROW_DOWN to select the first item
 
     await t.context.session
@@ -522,7 +524,7 @@ ariaTest('Test double escape key press with focus on combobox',
 
 ariaTest('Test escape key press with focus on popup',
   exampleFile, 'popup-key-escape', async (t) => {
-    
+
     // Send key "a" then key "ARROW_DOWN to put the focus on the grid,
     // then key ESCAPE to the combobox
 
@@ -560,7 +562,7 @@ ariaTest('Test escape key press with focus on popup',
 
 ariaTest('left arrow from focus on list puts focus on grid and moves cursor right',
   exampleFile, 'popup-key-left-arrow', async (t) => {
-    
+
     // Send key "a" then key "ARROW_DOWN" to put the focus on the grid
     const combobox = t.context.session.findElement(By.css(ex.comboboxSelector));
     await combobox.sendKeys('a', Key.ARROW_DOWN);
@@ -610,7 +612,7 @@ ariaTest('left arrow from focus on list puts focus on grid and moves cursor righ
 
 ariaTest('Right arrow from focus on list puts focus on grid',
   exampleFile, 'popup-key-right-arrow', async (t) => {
-    
+
     // Send key "a" then key "ARROW_DOWN" to put the focus on the grid
     const combobox = t.context.session.findElement(By.css(ex.comboboxSelector));
     await combobox.sendKeys('a', Key.ARROW_DOWN);
@@ -676,7 +678,7 @@ ariaTest('Right arrow from focus on list puts focus on grid',
 
 ariaTest('Home from focus on list puts focus on grid and moves cursor',
   exampleFile, 'popup-key-home', async (t) => {
-    
+
     // Send key "a" then key "ARROW_DOWN" to put the focus on the grid
     const combobox = t.context.session.findElement(By.css(ex.comboboxSelector));
     await combobox.sendKeys('a', Key.ARROW_DOWN);
@@ -698,7 +700,7 @@ ariaTest('Home from focus on list puts focus on grid and moves cursor',
 
 ariaTest('End from focus on list puts focus on grid',
   exampleFile, 'popup-key-end', async (t) => {
-    
+
     // Send key "a" then key "ARROW_DOWN" to put the focus on the grid
     const combobox = t.context.session.findElement(By.css(ex.comboboxSelector));
     await combobox.sendKeys('a', Key.ARROW_DOWN);
@@ -720,7 +722,7 @@ ariaTest('End from focus on list puts focus on grid',
 
 ariaTest('Sending character keys while focus is on grid moves focus',
   exampleFile, 'popup-key-char', async (t) => {
-    
+
     // Send key "ARROW_DOWN" to put the focus on the grid
     const combobox = t.context.session.findElement(By.css(ex.comboboxSelector));
     await combobox.sendKeys(Key.ARROW_DOWN);

@@ -1,3 +1,5 @@
+/* eslint no-restricted-properties: 0 */
+
 'use strict';
 
 const { ariaTest } = require('..');
@@ -116,7 +118,7 @@ const exampleInitialized = async function (t, exId) {
 ariaTest('Test "role=grid" attribute exists',
   'grid/LayoutGrids.html', 'grid-role', async (t) => {
 
-    
+
     for (let exId in pageExamples) {
       const ex = pageExamples[exId];
       const gridLocator = By.css(ex.gridSelector);
@@ -132,7 +134,7 @@ ariaTest('Test "role=grid" attribute exists',
 ariaTest('Test "aria-labelledby" attribute exists',
   'grid/LayoutGrids.html', 'aria-labelledby', async (t) => {
 
-    
+
     for (let exId in pageExamples) {
       const ex = pageExamples[exId];
 
@@ -143,7 +145,7 @@ ariaTest('Test "aria-labelledby" attribute exists',
 ariaTest('Test "aria-rowcount" attribute exists',
   'grid/LayoutGrids.html', 'aria-rowcount', async (t) => {
 
-    
+
     // This test only applies to example 3
     const gridSelector = '#ex3 [role="grid"]';
     const gridLocator = By.css(gridSelector);
@@ -169,7 +171,7 @@ ariaTest('Test "aria-rowcount" attribute exists',
 ariaTest('Test "role=row" attribute exists',
   'grid/LayoutGrids.html', 'row-role', async (t) => {
 
-    
+
     for (let exId in pageExamples) {
       const ex = pageExamples[exId];
 
@@ -187,7 +189,7 @@ ariaTest('Test "role=row" attribute exists',
 ariaTest('test "aria-rowindex" attribute exists',
   'grid/LayoutGrids.html', 'aria-rowindex', async (t) => {
 
-    
+
     // This test only applies to example 3
     const gridSelector = '#ex3 [role="grid"]';
     const gridLocator = By.css(gridSelector);
@@ -209,7 +211,7 @@ ariaTest('test "aria-rowindex" attribute exists',
 ariaTest('Test "role=gridcell" attribute exists',
   'grid/LayoutGrids.html', 'gridcell-role', async (t) => {
 
-    
+
     for (let exId in pageExamples) {
       const ex = pageExamples[exId];
       const gridLocator = By.css(ex.gridSelector);
@@ -279,7 +281,7 @@ ariaTest('Test "tabindex" appropriately set',
 // Keys
 
 ariaTest('Right arrow key moves focus', 'grid/LayoutGrids.html', 'key-right-arrow', async (t) => {
-  
+
   for (let [exId, ex] of Object.entries(pageExamples)) {
     const gridcellElements = await t.context.queryElements(t, ex.gridcellSelector);
 
@@ -318,7 +320,7 @@ ariaTest('Right arrow key moves focus', 'grid/LayoutGrids.html', 'key-right-arro
 });
 
 ariaTest('Left arrow key moves focus', 'grid/LayoutGrids.html', 'key-left-arrow', async (t) => {
-  
+
   for (let [exId, ex] of Object.entries(pageExamples)) {
 
     if (exId == 'ex3') {
@@ -367,7 +369,7 @@ ariaTest('Left arrow key moves focus', 'grid/LayoutGrids.html', 'key-left-arrow'
 });
 
 ariaTest('Down arrow key moves focus', 'grid/LayoutGrids.html', 'key-down-arrow', async (t) => {
-  
+
   const cellSelectors = {
     ex1: '#ex1 [role="gridcell"]',
     ex2: '#ex2 [role="row"] [role="gridcell"]:first-of-type',
@@ -414,7 +416,7 @@ ariaTest('Down arrow key moves focus', 'grid/LayoutGrids.html', 'key-down-arrow'
 });
 
 ariaTest('Up arrow key moves focus', 'grid/LayoutGrids.html', 'key-up-arrow', async (t) => {
-  
+
   const cellSelectors = [
     ['ex1', '#ex1 [role="gridcell"]', 'a'],
     ['ex2', '#ex2 [role="row"] [role="gridcell"]:first-of-type', 'a'],
@@ -470,7 +472,7 @@ ariaTest('Up arrow key moves focus', 'grid/LayoutGrids.html', 'key-up-arrow', as
 });
 
 ariaTest('PageDown key moves focus', 'grid/LayoutGrids.html', 'key-page-down', async (t) => {
-  
+
   const ex = pageExamples.ex3;
   const cellSelectors = [
     ['first', '#ex3 [role="row"] [role="gridcell"]:nth-child(1)', 'a'],
@@ -525,7 +527,7 @@ ariaTest('PageDown key moves focus', 'grid/LayoutGrids.html', 'key-page-down', a
 });
 
 ariaTest('PageUp key moves focus', 'grid/LayoutGrids.html', 'key-page-up', async (t) => {
-  
+
   const ex = pageExamples.ex3;
   const cellSelectors = [
     ['first', '#ex3 [role="row"] [role="gridcell"]:nth-child(1)', 'a'],
@@ -589,7 +591,7 @@ ariaTest('PageUp key moves focus', 'grid/LayoutGrids.html', 'key-page-up', async
 });
 
 ariaTest('Home key moves focus', 'grid/LayoutGrids.html', 'key-home', async (t) => {
-  
+
   const firstElementInFirstRowText = {
     ex1: 'ARIA 1.1 Specification',
     ex2: 'Recipient Name 1',
@@ -628,7 +630,7 @@ ariaTest('Home key moves focus', 'grid/LayoutGrids.html', 'key-home', async (t) 
 });
 
 ariaTest('End key moves focus', 'grid/LayoutGrids.html', 'key-end', async (t) => {
-  
+
   const lastElementInFirstRowText = {
     ex1: 'SVG 2 Specification',
     ex2: 'X',
@@ -660,7 +662,7 @@ ariaTest('End key moves focus', 'grid/LayoutGrids.html', 'key-end', async (t) =>
 });
 
 ariaTest('control+home keys moves focus', 'grid/LayoutGrids.html', 'key-control-home', async (t) => {
-  
+
   const firstElementInFirstRowText = {
     ex1: 'ARIA 1.1 Specification',
     ex2: 'Recipient Name 1',
@@ -699,7 +701,7 @@ ariaTest('control+home keys moves focus', 'grid/LayoutGrids.html', 'key-control-
 
 
 ariaTest('Control+end keys moves focus', 'grid/LayoutGrids.html', 'key-control-end', async (t) => {
-  
+
   const lastElementInFirstRowText = {
     ex1: 'SVG 2 Specification',
     ex2: 'X',

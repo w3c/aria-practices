@@ -1,3 +1,5 @@
+/* eslint no-restricted-properties: 0 */
+
 'use strict';
 
 const { ariaTest } = require('..');
@@ -40,7 +42,7 @@ ariaTest('"tabindex" on checkbox element', exampleFile, 'checkbox-tabindex', asy
 });
 
 ariaTest('"aria-controls" ', exampleFile, 'checkbox-aria-controls', async (t) => {
-  
+
   const checkbox = await t.context.session.findElement(By.css(ex.checkboxSelector));
   const controls = (await checkbox.getAttribute('aria-controls')).split(' ');
 
@@ -60,7 +62,7 @@ ariaTest('"aria-controls" ', exampleFile, 'checkbox-aria-controls', async (t) =>
 });
 
 ariaTest('"aria-checked" on checkbox element', exampleFile, 'checkbox-aria-checked-false', async (t) => {
-  
+
   await uncheckAllConds(t);
   let checkbox = t.context.session.findElement(By.css(ex.checkboxSelector));
 
@@ -90,7 +92,7 @@ ariaTest('"aria-checked" on checkbox element', exampleFile, 'checkbox-aria-check
 });
 
 ariaTest('"aria-checked" on checkbox element', exampleFile, 'checkbox-aria-checked-mixed', async (t) => {
-  
+
   await uncheckAllConds(t);
   let checkbox = t.context.session.findElement(By.css(ex.checkboxSelector));
 
@@ -124,7 +126,7 @@ ariaTest('"aria-checked" on checkbox element', exampleFile, 'checkbox-aria-check
 });
 
 ariaTest('"aria-checked" on checkbox element', exampleFile, 'checkbox-aria-checked-true', async (t) => {
-  
+
   await uncheckAllConds(t);
   let checkbox = t.context.session.findElement(By.css(ex.checkboxSelector));
 
@@ -159,12 +161,12 @@ ariaTest('"aria-checked" on checkbox element', exampleFile, 'checkbox-aria-check
 });
 
 ariaTest('key TAB moves focus between checkboxes', exampleFile, 'key-tab', async (t) => {
-  
+
   await assertTabOrder(t, ex.allCheckboxes);
 });
 
 ariaTest('key SPACE selects or unselects checkbox', exampleFile, 'key-space', async (t) => {
-  
+
   // Check one box
   await uncheckAllConds(t);
   const condiments = await t.context.queryElements(t, ex.condimentsSelector);
