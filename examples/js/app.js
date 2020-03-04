@@ -8,7 +8,7 @@
   function addSupportNotice() {
     // Expected outcome '../js/app.js' OR '../../js/app.js'
     var scriptSource = document.querySelector('[src$="app.js"]').getAttribute('src')
-    // Cut off the 'app.js' part so we know where to grab our template
+    // Split off the 'app.js' part so we know where to fetch our template
     var jsPath = scriptSource.split('app.js')[0]
     // Append the template filename to the path
     var fetchSource = jsPath + 'notice.html'
