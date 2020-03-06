@@ -544,7 +544,7 @@ ariaTest('Test double escape key press with focus on combobox',
 
 
 // This test fails due to bug: https://github.com/w3c/aria-practices/issues/860
-ariaTest.failing('Test escape key press with focus on popup',
+ariaTest('Test escape key press with focus on popup',
   exampleFile, 'popup-key-escape', async (t) => {
     t.plan(2);
 
