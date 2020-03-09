@@ -1,4 +1,4 @@
-var biblio = {
+respecConfig.localBiblio = {
 
 	"ACCNAME-AAM": {
 		"aliasOf": "ACCNAME-AAM-1.1",

@@ -248,7 +248,7 @@ ComboboxAutocomplete.prototype.hasOptions = function () {
 ComboboxAutocomplete.prototype.open = function () {
   this.listboxNode.style.display = 'block';
   this.comboboxNode.setAttribute('aria-expanded', 'true');
-  this.buttonNode.classList.add('open');
+  this.buttonNode.setAttribute('aria-expanded', 'true');
 };
 
 ComboboxAutocomplete.prototype.close = function (force) {
@@ -260,7 +260,7 @@ ComboboxAutocomplete.prototype.close = function (force) {
     this.setCurrentOptionStyle(false);
     this.listboxNode.style.display = 'none';
     this.comboboxNode.setAttribute('aria-expanded', 'false');
-    this.buttonNode.classList.remove('open');
+    this.buttonNode.setAttribute('aria-expanded', 'false');
     this.setActiveDescendant(false);
   }
 };
