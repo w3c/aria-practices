@@ -248,7 +248,7 @@ ComboboxAutocomplete.prototype.hasOptions = function () {
 ComboboxAutocomplete.prototype.open = function () {
   this.listboxNode.style.display = 'block';
   this.comboboxNode.setAttribute('aria-expanded', 'true');
-  this.buttonNode.classList.add('open');
+  this.buttonNode.setAttribute('aria-expanded', 'true');
 };
 
 ComboboxAutocomplete.prototype.close = function (force) {
@@ -260,7 +260,7 @@ ComboboxAutocomplete.prototype.close = function (force) {
     this.setCurrentOptionStyle(false);
     this.listboxNode.style.display = 'none';
     this.comboboxNode.setAttribute('aria-expanded', 'false');
-    this.buttonNode.classList.remove('open');
+    this.buttonNode.setAttribute('aria-expanded', 'false');
     this.setActiveDescendant(false);
   }
 };
@@ -391,6 +391,7 @@ ComboboxAutocomplete.prototype.handleComboboxKeyUp = function (event) {
   if (this.comboboxNode.value.length < this.filter.length) {
     this.filter = this.comboboxNode.value;
     this.option = null;
+    this.filterOptions()
   }
 
   if (event.key === "Escape" || event.key === "Esc") {
@@ -402,7 +403,9 @@ ComboboxAutocomplete.prototype.handleComboboxKeyUp = function (event) {
     case "Backspace":
       this.setVisualFocusCombobox();
       this.setCurrentOptionStyle(false);
+      this.filter = this.comboboxNode.value;
       this.option = null;
+      this.filterOptions()
       flag = true;
       break;
 
