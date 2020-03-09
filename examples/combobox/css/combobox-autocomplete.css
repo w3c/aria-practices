@@ -33,7 +33,7 @@
   outline: none;
 }
 
-.combobox button.open svg {
+.combobox button[aria-expanded="true"] svg {
   transform: rotate(180deg) translate(0, -1px);
 }
 
@@ -44,16 +44,27 @@
 
 .combobox .group.focus input,
 .combobox .group.focus button {
-  background-color: #DEF;
+  background-color: #def;
 }
 
-.combobox polygon {
+.combobox button polygon.outline {
+  stroke: transparent;
+  fill: transparent;
+}
+
+.combobox button[aria-expanded="true"] polygon.outline,
+.combobox .group.focus polygon.outline {
+  stroke: white;
+  fill: white;
+}
+
+.combobox polygon.arrow {
   fill: gray;
   stroke: gray;
 }
 
-.combobox button.open polygon,
-.combobox .group.focus polygon {
+.combobox button[aria-expanded="true"] polygon.arrow,
+.combobox .group.focus polygon.arrow {
   fill: black;
   stroke: black;
 }
@@ -88,11 +99,11 @@ ul[role="listbox"] li[role="option"] {
 /* focus and hover styling */
 
 [role="listbox"].focus [role="option"][aria-selected="true"] {
-  background-color: #DEF;
+  background-color: #def;
   padding-top: 0;
   padding-bottom: 0;
-  border-top: 0.2em solid #8CCBF2;
-  border-bottom: 0.2em solid #8CCBF2;
+  border-top: 0.2em solid #8ccbf2;
+  border-bottom: 0.2em solid #8ccbf2;
 }
 
 @media (forced-colors: active), (-ms-high-contrast: active) {
@@ -100,10 +111,10 @@ ul[role="listbox"] li[role="option"] {
     -ms-high-contrast-adjust: none; /* disable the backgrounds that Edge puts behind text */
     background-color: highlight;
     color: highlighttext;
-    border-color: currentcolor;
+    border-color: currentColor;
   }
 }
 
 [role="listbox"] li[role="option"]:hover {
-  background-color: #DEF;
+  background-color: #def;
 }
