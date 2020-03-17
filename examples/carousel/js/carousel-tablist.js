@@ -26,7 +26,7 @@ var CarouselTablist = function (node) {
   this.forcePlay = false; // set once the user activates the play/pause button
   this.playState = true; // state of the play/pause button
   this.rotate = true; // state of rotation
-  this.timeInterval = 5000; // length of slide rotation in ms
+  this.timeInterval = 1000; // length of slide rotation in ms
   this.currentIndex = 0; // index of current slide
   this.slideTimeout = null; // save reference to setTimeout
 
@@ -90,14 +90,16 @@ var CarouselTablist = function (node) {
 
   // If URL contains text "paused", carousel is initially paused
   if (location.href.toLowerCase().indexOf('paused') > 0) {
-    this.isStopped = true;
+    this.playState = false;
     this.updateRotation();
+    this.updatePlayState(false);
   }
 
   // If URL contains text "noplay", carousel is disabled from autorotation
   if (location.href.toLowerCase().indexOf('noplay') > 0) {
-    this.isStopped = true;
+    this.playState = false;
     this.updateRotation();
+    this.updatePlayState(false);
     this.pauseButtonNode.hidden = true;
   }
 
@@ -188,7 +190,8 @@ CarouselTablist.prototype.rotateSlides = function (changeSlide = true) {
 
 CarouselTablist.prototype.resetTimeout = function() {
   clearTimeout(this.slideTimeout);
-  this.rotateSlides(false);
+  this.rotate = false;
+  this.updateRotation();
 }
 
 CarouselTablist.prototype.updateRotation = function() {
@@ -211,24 +214,17 @@ CarouselTablist.prototype.updatePlayState = function (play) {
   this.playState = play;
   this.updateRotation();
 
-  // if (!this.hasHover && !this.isStopped) {
-  //   this.rotate = true;
-  //   this.liveRegionNode.setAttribute('aria-live', 'off');
-  // }
-  // else {
-  //   this.rotate = false;
-  //   this.liveRegionNode.setAttribute('aria-live', 'polite');
-  // }
-
   if (!play) {
     this.pauseButtonNode.setAttribute('aria-label', this.playLabel);
     this.pauseButtonNode.classList.remove('pause');
     this.pauseButtonNode.classList.add('play');
+    this.liveRegionNode.setAttribute('aria-live', 'polite');
   }
   else {
     this.pauseButtonNode.setAttribute('aria-label', this.pauseLabel);
     this.pauseButtonNode.classList.remove('play');
     this.pauseButtonNode.classList.add('pause');
+    this.liveRegionNode.setAttribute('aria-live', 'off');
   }
 }
 
