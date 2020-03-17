@@ -46,11 +46,6 @@
 
 /* More accessible caption stylinh */
 
-.carousel-tablist .playing .carousel-item .carousel-caption,
-.carousel-tablist .playing .carousel-item .carousel-image a img {
-  cursor: url('../images/paused-pointer.svg'), auto;
-}
-
 .carousel-tablist .carousel-item .carousel-caption a {
   cursor: pointer;
 }
@@ -172,7 +167,7 @@
   text-align: center;
 }
 
-.carousel-tablist [role="tablist"] .border {
+.carousel-tablist [role="tablist"] {
   position: relative;
   top: 5px;
   display: inline-block;
@@ -183,7 +178,7 @@
   background-color: rgba(0, 0, 0, 0.2);
 }
 
-.carousel-tablist [role="tablist"] .border.focus {
+.carousel-tablist [role="tablist"].focus {
   border-width: 2px;
   border-color: white;
   padding-top: 0;

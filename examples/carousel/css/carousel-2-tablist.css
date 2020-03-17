@@ -33,11 +33,6 @@
 
 /* More like bootstrap, less accessible */
 
-.carousel-tablist .playing .carousel-item .carousel-caption,
-.carousel-tablist .playing .carousel-item .carousel-image a img {
-  cursor: url('../images/paused-pointer.svg'), auto;
-}
-
 .carousel-tablist .carousel-item .carousel-caption a {
   cursor: pointer;
 }
@@ -108,7 +103,7 @@
 
 /* SVG Controls */
 
-.carousel-tablist .controls button.rotation {
+.carousel-tablist .rotation {
   padding: 0;
   background-color: transparent;
   border: none;
@@ -116,47 +111,46 @@
   z-index: 10;
 }
 
-.carousel-tablist .controls button svg rect.background {
+.carousel-tablist .svg-play .background {
   stroke: black;
   fill: black;
   stroke-width: 1px;
   opacity: 0.6;
 }
 
-.carousel-tablist .controls button svg rect.border {
+.carousel-tablist .svg-play .border {
   fill: transparent;
   stroke: transparent;
   stroke-width: 2px;
 }
 
-.carousel-tablist .controls button.rotation svg polygon.pause {
+.carousel-tablist .svg-play .pause {
   stroke-width: 4;
   fill: transparent;
   stroke: transparent;
 }
 
-.carousel-tablist .controls button.rotation svg polygon.play {
+.carousel-tablist .svg-play .play {
   stroke-width: 1;
   fill: transparent;
   stroke: transparent;
 }
 
-.carousel-tablist .controls button.rotation.pause svg polygon.pause,
-.carousel-tablist .controls button.rotation.play svg polygon.play {
+.carousel-tablist .pause .svg-play .pause,
+.carousel-tablist .play .svg-play .play {
   fill: white;
   stroke: white;
 }
 
-.carousel-tablist .controls button.rotation:focus rect.background,
-.carousel-tablist .controls button.rotation:hover rect.background,
-.carousel-tablist .controls button.rotation:focus rect.border,
-.carousel-tablist .controls button.rotation:hover rect.border {
+.carousel-tablist .rotation:focus .svg-play .background,
+.carousel-tablist .rotation:hover .svg-play .background,
+.carousel-tablist .rotation:hover .svg-play .border {
   fill: #005a9c;
   stroke: #005a9c;
   opacity: 1;
 }
 
-.carousel-tablist .controls button.rotation:focus rect.border {
+.carousel-tablist .rotation:focus .svg-play .border {
   stroke: white;
 }
 
@@ -166,10 +160,6 @@
   position: relative;
   float: right;
   top: -2px;
-}
-
-.carousel-tablist [role="tablist"] .border {
-  display: inline-block;
   border: 0 transparent solid;
   border-radius: 13px;
   padding-top: 2px;
@@ -177,7 +167,7 @@
   background-color: rgba(0, 0, 0, 0.2);
 }
 
-.carousel-tablist [role="tablist"] .border.focus {
+.carousel-tablist [role="tablist"].focus {
   border-width: 2px;
   border-color: white;
   padding-top: 0;
@@ -230,7 +220,7 @@
   stroke: #005a9c;
 }
 
-.carousel-tablist [role="tablist"] .focus circle.tab-background {
+.carousel-tablist [role="tablist"].focus circle.tab-background {
   stroke: #005a9c;
   fill: #005a9c;
 }

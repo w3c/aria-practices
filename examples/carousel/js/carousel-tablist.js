@@ -7,6 +7,7 @@
 
 var CarouselTablist = function (node) {
 
+  /* DOM properties */
   this.domNode = node;
 
   this.tablistNode = node.querySelector('[role=tablist]');
@@ -15,27 +16,26 @@ var CarouselTablist = function (node) {
   this.tabNodes = [];
   this.tabpanelNodes = [];
 
-  this.firstTabNode = null;
-  this.lastTabNode = null;
-  this.currentTabNode = null;
-
-  this.liveRegionNode = null;
+  this.liveRegionNode = node.querySelector('.carousel-items');
   this.pauseButtonNode = null;
 
   this.playLabel = 'Start automatic slide show';
   this.pauseLabel = 'Stop automatic slide show';
 
-  this.rotate = true;
-  this.hasFocus = false;
-  this.hasHover = false;
-  this.isStopped = false;
-  this.timeInterval = 5000;
-
-  this.liveRegionNode = node.querySelector('.carousel-items');
+  /* State properties */
+  this.forcePlay = false; // set once the user activates the play/pause button
+  this.playState = true; // state of the play/pause button
+  this.rotate = true; // state of rotation
+  this.timeInterval = 5000; // length of slide rotation in ms
+  this.currentIndex = 0; // index of current slide
+  this.slideTimeout = null; // save reference to setTimeout
 
   // initialize Centering of tab controls
 
   // initialize tabs
+
+  this.tablistNode.addEventListener('focusin', this.handleTabFocus.bind(this));
+  this.tablistNode.addEventListener('focusout', this.handleTabBlur.bind(this));
 
   var nodes = node.querySelectorAll('[role="tab"]');
 
@@ -44,17 +44,8 @@ var CarouselTablist = function (node) {
 
     this.tabNodes.push(n);
 
-    if (!this.firstTabNode) {
-      this.firstTabNode = n;
-      this.currentTabNode = n;
-    }
-
-    this.lastTabNode = n;
-
     n.addEventListener('keydown', this.handleTabKeydown.bind(this));
     n.addEventListener('click', this.handleTabClick.bind(this));
-    n.addEventListener('focus', this.handleTabFocus.bind(this));
-    n.addEventListener('blur', this.handleTabBlur.bind(this));
 
     // initialize tabpanels
 
@@ -95,7 +86,7 @@ var CarouselTablist = function (node) {
   this.domNode.addEventListener('mouseout', this.handleMouseOut.bind(this));
 
   // Start rotation
-  setTimeout(this.rotateSlides.bind(this), this.timeInterval);
+  this.rotateSlides(false);
 
   // If URL contains text "paused", carousel is initially paused
   if (location.href.toLowerCase().indexOf('paused') > 0) {
@@ -126,35 +117,27 @@ CarouselTablist.prototype.centerTablistControls = function () {
   this.tablistNode.style.left = (((width2-width1)/2) - (3*width3/2)) +'px';
 }
 
+CarouselTablist.prototype.hideTabpanel = function (index) {
+  var tabNode = this.tabNodes[index];
+  var panelNode = this.tabpanelNodes[index];
 
-CarouselTablist.prototype.getTabpanelNode = function (tabNode) {
-  var index = this.tabNodes.indexOf(tabNode);
-  return this.tabpanelNodes[index];
-}
-
-CarouselTablist.prototype.hideTabpanel = function (tabNode) {
   tabNode.setAttribute('aria-selected', 'false');
   tabNode.setAttribute('tabindex', '-1');
 
-  var tabpanelNode = this.getTabpanelNode(tabNode);
-
-  if (tabpanelNode) {
-    tabpanelNode.classList.remove('active');
+  if (panelNode) {
+    panelNode.classList.remove('active');
   }
 }
 
-CarouselTablist.prototype.showTabpanel = function (tabNode, moveFocus) {
-  if (typeof moveFocus !== 'boolean') {
-    moveFocus = false;
-  }
+CarouselTablist.prototype.showTabpanel = function (index, moveFocus = false) {
+  var tabNode = this.tabNodes[index];
+  var panelNode = this.tabpanelNodes[index];
 
   tabNode.setAttribute('aria-selected', 'true');
   tabNode.removeAttribute('tabindex');
 
-  var tabpanelNode = this.getTabpanelNode(tabNode);
-
-  if (tabpanelNode) {
-    tabpanelNode.classList.add('active');
+  if (panelNode) {
+    panelNode.classList.add('active');
   }
 
   if (moveFocus) {
@@ -162,122 +145,91 @@ CarouselTablist.prototype.showTabpanel = function (tabNode, moveFocus) {
   }
 }
 
-CarouselTablist.prototype.setSelectedTab = function (newTab, moveFocus) {
-  if (typeof moveFocus != 'boolean') {
-    moveFocus = false;
+CarouselTablist.prototype.setSelectedTab = function (index, moveFocus) {
+  if (index === this.currentIndex) {
+    return;
   }
+  this.currentIndex = index;
 
   for (var i = 0; i < this.tabNodes.length; i++) {
-    this.hideTabpanel(this.tabNodes[i]);
+    this.hideTabpanel(i);
   }
 
-  this.currentTabNode = newTab;
-  this.showTabpanel(newTab, moveFocus);
+  this.showTabpanel(index, moveFocus);
 }
 
-CarouselTablist.prototype.setSelectedToPreviousTab = function (currentTabNode, moveFocus) {
-  if (typeof moveFocus != 'boolean') {
-    moveFocus = false;
+CarouselTablist.prototype.setSelectedToPreviousTab = function (moveFocus) {
+  var nextIndex = this.currentIndex - 1;
+
+  if (nextIndex < 0) {
+    nextIndex = this.tabNodes.length - 1;
   }
 
-  var index;
-
-  if (typeof currentTabNode !== 'object') {
-    currentTabNode = this.currentTabNode;
-  }
-
-  if (currentTabNode === this.firstTabNode) {
-    this.setSelectedTab(this.lastTabNode, moveFocus);
-  }
-  else {
-    index = this.tabNodes.indexOf(currentTabNode);
-    this.setSelectedTab(this.tabNodes[index - 1], moveFocus);
-  }
+  this.setSelectedTab(nextIndex, moveFocus);
 }
 
-CarouselTablist.prototype.setSelectedToNextTab = function (currentTabNode, moveFocus) {
-  if (typeof moveFocus != 'boolean') {
-    moveFocus = false;
+CarouselTablist.prototype.setSelectedToNextTab = function (moveFocus) {
+  var nextIndex = this.currentIndex + 1;
+
+  if (nextIndex >= this.tabNodes.length) {
+    nextIndex = 0;
   }
 
-  var index;
-
-  if (typeof currentTabNode !== 'object') {
-    currentTabNode = this.currentTabNode;
-  }
-
-  if (currentTabNode === this.lastTabNode) {
-    this.setSelectedTab(this.firstTabNode, moveFocus);
-  }
-  else {
-    index = this.tabNodes.indexOf(currentTabNode);
-    this.setSelectedTab(this.tabNodes[index + 1], moveFocus);
-  }
+  this.setSelectedTab(nextIndex, moveFocus);
 }
 
-CarouselTablist.prototype.setSelectedTofirstTabNode = function (moveFocus) {
-  if (typeof moveFocus != 'boolean') {
-    moveFocus = false;
-  }
-  this.setSelectedTab(this.firstTabNode, moveFocus);
-}
-
-CarouselTablist.prototype.setSelectedTolastTabNode = function (moveFocus) {
-  if (typeof moveFocus !== 'boolean') {
-    moveFocus = false;
-  }
-  this.setSelectedTab(this.lastTabNode, moveFocus);
-}
-
-CarouselTablist.prototype.rotateSlides = function () {
-  if (this.rotate) {
+CarouselTablist.prototype.rotateSlides = function (changeSlide = true) {
+  if (changeSlide) {
     this.setSelectedToNextTab();
   }
-  setTimeout(this.rotateSlides.bind(this), this.timeInterval);
+
+  this.slideTimeout = setTimeout(this.rotateSlides.bind(this), this.timeInterval);
 }
 
-CarouselTablist.prototype.updateRotation = function () {
+CarouselTablist.prototype.resetTimeout = function() {
+  clearTimeout(this.slideTimeout);
+  this.rotateSlides(false);
+}
 
-  // Pause rotation when keyboard focus enters the carousel
-  if (this.hasFocus) {
-    this.isStopped = true;
+CarouselTablist.prototype.updateRotation = function() {
+  var shouldRotate = !this.hasFocus && !this.hasHover && this.playState;
+  if (shouldRotate === this.rotate) {
+    return;
   }
 
-  if (!this.hasHover && !this.isStopped) {
-    this.rotate = true;
-    this.liveRegionNode.setAttribute('aria-live', 'off');
+  this.rotate = shouldRotate;
+
+  if (shouldRotate) {
+    this.rotateSlides(false);
   }
   else {
-    this.rotate = false;
-    this.liveRegionNode.setAttribute('aria-live', 'polite');
+    clearTimeout(this.slideTimeout);
   }
+}
 
-  if (this.isStopped) {
+CarouselTablist.prototype.updatePlayState = function (play) {
+  this.playState = play;
+  this.updateRotation();
+
+  // if (!this.hasHover && !this.isStopped) {
+  //   this.rotate = true;
+  //   this.liveRegionNode.setAttribute('aria-live', 'off');
+  // }
+  // else {
+  //   this.rotate = false;
+  //   this.liveRegionNode.setAttribute('aria-live', 'polite');
+  // }
+
+  if (!play) {
     this.pauseButtonNode.setAttribute('aria-label', this.playLabel);
     this.pauseButtonNode.classList.remove('pause');
     this.pauseButtonNode.classList.add('play');
-    this.liveRegionNode.classList.remove('playing');
   }
   else {
     this.pauseButtonNode.setAttribute('aria-label', this.pauseLabel);
     this.pauseButtonNode.classList.remove('play');
     this.pauseButtonNode.classList.add('pause');
-    this.liveRegionNode.classList.add('playing');
   }
-
-
-}
-
-CarouselTablist.prototype.toggleRotation = function () {
-  if (this.isStopped && !this.hasHover && !this.hasFocus) {
-    this.isStopped = false;
-  }
-  else {
-    this.isStopped = true;
-  }
-
-  this.updateRotation();
-
 }
 
   /* Event Handlers */
@@ -291,21 +243,26 @@ CarouselTablist.prototype.handleImageLinkBlur = function () {
 }
 
 CarouselTablist.prototype.handleMouseOver = function (event) {
-  if (!this.pauseButtonNode.contains(event.target)) {
-    this.hasHover = true;
+  if (!this.forcePlay) {
+    if (!this.pauseButtonNode.contains(event.target)) {
+      this.hasHover = true;
+    }
+    this.updateRotation();
   }
-  this.updateRotation();
 }
 
 CarouselTablist.prototype.handleMouseOut = function () {
-  this.hasHover = false;
-  this.updateRotation();
+  if (!this.forcePlay) {
+    this.hasHover = false;
+    this.updateRotation();
+  }
 }
 
   /* EVENT HANDLERS */
 
 CarouselTablist.prototype.handlePauseButtonClick = function () {
-  this.toggleRotation();
+  this.forcePlay = true;
+  this.updatePlayState(!this.playState);
 }
 
   /* Event Handlers for Tabs*/
@@ -316,22 +273,26 @@ CarouselTablist.prototype.handleTabKeydown = function (event) {
   switch (event.key) {
 
     case 'ArrowRight':
-      this.setSelectedToNextTab(event.currentTarget, true);
+      this.setSelectedToNextTab(true);
+      this.resetTimeout();
       flag = true;
       break;
 
     case 'ArrowLeft':
-      this.setSelectedToPreviousTab(event.currentTarget, true);
+      this.setSelectedToPreviousTab(true);
+      this.resetTimeout();
       flag = true;
       break;
 
     case 'Home':
-      this.setSelectedTofirstTabNode(true);
+      this.setSelectedTab(0, true);
+      this.resetTimeout();
       flag = true;
       break;
 
     case 'End':
-      this.setSelectedTolastTabNode(true);
+      this.setSelectedTab(this.tabNodes.length - 1, true);
+      this.resetTimeout();
       flag = true;
       break;
 
@@ -346,30 +307,38 @@ CarouselTablist.prototype.handleTabKeydown = function (event) {
 }
 
 CarouselTablist.prototype.handleTabClick = function (event) {
-  this.setSelectedTab(event.currentTarget, true);
+  var index = this.tabNodes.indexOf(event.currentTarget);
+  this.setSelectedTab(index, true);
+  this.resetTimeout();
 }
 
-CarouselTablist.prototype.handleTabFocus = function (event) {
-  event.currentTarget.parentNode.classList.add('focus');
-  this.hasFocus = true;
-  this.updateRotation();
+CarouselTablist.prototype.handleTabFocus = function () {
+  this.tablistNode.classList.add('focus');
+
+  if (!this.forcePlay) {
+    this.hasFocus = true;
+    this.updateRotation();
+  }
 }
 
-CarouselTablist.prototype.handleTabBlur = function (event) {
-  event.currentTarget.parentNode.classList.remove('focus');
-  this.hasFocus = false;
-  this.updateRotation();
+CarouselTablist.prototype.handleTabBlur = function () {
+  this.tablistNode.classList.remove('focus');
+
+  if (!this.forcePlay) {
+    this.hasFocus = false;
+    this.updateRotation();
+  }
 }
 
 
   /* Event Handlers for Tabpanels*/
 
-CarouselTablist.prototype.handleTabpanelFocusIn = function (event) {
+CarouselTablist.prototype.handleTabpanelFocusIn = function () {
   this.hasFocus = true;
   this.updateRotation();
 }
 
-CarouselTablist.prototype.handleTabpanelFocusOut = function (event) {
+CarouselTablist.prototype.handleTabpanelFocusOut = function () {
   this.hasFocus = false;
   this.updateRotation();
 }
