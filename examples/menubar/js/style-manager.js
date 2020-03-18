@@ -111,6 +111,10 @@ StyleManager.prototype.isMaxFontSize = function () {
   return this.fontSize === 'x-large';
 };
 
+StyleManager.prototype.getFontSize = function () {
+  return this.fontSize;
+};
+
 StyleManager.prototype.setOption = function (option, value) {
 
   option = option.toLowerCase();
