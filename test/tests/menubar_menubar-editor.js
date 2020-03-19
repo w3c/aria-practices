@@ -482,7 +482,7 @@ ariaTest('Key SPACE open submenu', exampleFile, 'menubar-key-space-and-enter', a
   
   const menuitems = await t.context.queryElements(t, ex.menubarMenuitemSelector);
   const submenus = await t.context.queryElements(t, ex.submenuSelector);
-  for (let menuIndex = 0; menuIndex < ex.numMenus; menuIndex++) {
+  for (let menuIndex = 1; menuIndex < ex.numMenus; menuIndex++) {
 
     // Send the SPACE key
     await menuitems[menuIndex].sendKeys(Key.SPACE);
