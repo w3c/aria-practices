@@ -50,6 +50,7 @@ MenubarEditor.prototype.getMenuitems = function(domNode) {
 
       switch (role) {
         case 'menu':
+          node.tabIndex = -1;
           initMenu(node);
           flag = false;
           break;
@@ -116,7 +117,9 @@ MenubarEditor.prototype.initMenu = function (menu) {
     menuitem.addEventListener('mouseover', this.handleMenuitemMouseover.bind(this));
 
     if( !this.firstMenuitem[menuId]) {
-      menuitem.tabIndex = 0;
+      if (this.hasPopup(menuitem)) {
+        menuitem.tabIndex = 0;
+      }
       this.firstMenuitem[menuId] = menuitem;
     }
     this.lastMenuitem[menuId] = menuitem;
@@ -131,10 +134,6 @@ MenubarEditor.prototype.setFocusToMenuitem = function (menuId, newMenuitem, curr
   if (typeof currentMenuitem !== 'object') {
     currentMenuitem = false;
   }
-
-  this.menuitemGroups[menuId].forEach(function(item) {
-    item.tabIndex = -1;
-  });
 
   if (currentMenuitem &&
       this.hasPopup(currentMenuitem) &&
@@ -155,7 +154,14 @@ MenubarEditor.prototype.setFocusToMenuitem = function (menuId, newMenuitem, curr
     }
   }
 
-  newMenuitem.tabIndex = 0;
+  if (this.hasPopup(newMenuitem)) {
+    this.menuitemGroups[menuId].forEach(function(item) {
+      item.tabIndex = -1;
+    });
+
+    newMenuitem.tabIndex = 0;
+  }
+
   newMenuitem.focus();
 
 };
@@ -616,6 +622,14 @@ MenubarEditor.prototype.handleKeydown = function (event) {
       if (this.menuOrientation[menuId] === 'vertical') {
         this.setFocusToPreviousMenuitem(menuId, tgt);
         flag = true;
+      }
+      else {
+        if (this.hasPopup(tgt)) {
+          this.openPopups = true;
+          popupMenuId = this.openPopup(tgt);
+          this.setFocusToLastMenuitem(popupMenuId);
+          flag = true;
+        }
       }
       break;
 
