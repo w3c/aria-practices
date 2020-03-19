@@ -11,7 +11,6 @@ var MenubarEditor = function (domNode, actionManager) {
 
   this.domNode = domNode;
   this.actionManager = actionManager;
-  this.isMouseDownOnBackground = false;
 
   this.menuitemGroups = {};
   this.menuOrientation = {};
@@ -27,7 +26,6 @@ var MenubarEditor = function (domNode, actionManager) {
   domNode.addEventListener('focusout', this.handleMenubarFocusout.bind(this));
 
   window.addEventListener('mousedown', this.handleBackgroundMousedown.bind(this), true);
-  window.addEventListener('mouseup', this.handleBackgroundMouseup.bind(this), true);
 };
 
 MenubarEditor.prototype.getMenuitems = function(domNode) {
@@ -372,7 +370,9 @@ MenubarEditor.prototype.toggleCheckbox = function(menuitem) {
 MenubarEditor.prototype.setRadioButton = function(menuitem) {
   var groupId = this.getGroupId(menuitem);
   var radiogroupItems = this.menuitemGroups[groupId];
-  radiogroupItems.forEach( item => item.setAttribute('aria-checked', 'false'));
+  radiogroupItems.forEach( function (item) {
+    item.setAttribute('aria-checked', 'false')
+  });
   menuitem.setAttribute('aria-checked', 'true');
   return menuitem.textContent;
 };
@@ -432,7 +432,7 @@ MenubarEditor.prototype.openPopup = function (menuitem) {
 
   // set CSS properties
   popupMenu.style.position = 'absolute';
-  popupMenu.style.top = (rect.height - 1) + 'px';
+  popupMenu.style.top = (rect.height + 1) + 'px';
   popupMenu.style.left = '0px';
   popupMenu.style.zIndex = 100;
   popupMenu.style.display = 'block';
@@ -502,15 +502,9 @@ MenubarEditor.prototype.handleMenubarFocusout = function (event) {
 
 MenubarEditor.prototype.handleBackgroundMousedown = function (event) {
   if (!this.domNode.contains(event.target)) {
-    this.isMouseDownOnBackground = true;
     this.closePopupAll();
   }
 };
-
-MenubarEditor.prototype.handleBackgroundMouseup = function () {
-  this.isMouseDownOnBackground = false;
-};
-
 
 MenubarEditor.prototype.handleKeydown = function (event) {
   var tgt = event.currentTarget,
