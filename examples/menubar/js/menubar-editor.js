@@ -521,6 +521,7 @@ MenubarEditor.prototype.handleKeydown = function (event) {
   console.log('[handleMenubarKeydown][key]: ' + key);
   console.log('[handleMenubarKeydown][menuId]: ' + menuId);
 
+  // This fixes a problem with regression tests using Key.SPACE
   if (event.keyCode === 32) {
     key = ' ';
   }
