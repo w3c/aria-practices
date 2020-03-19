@@ -57,14 +57,17 @@ ul[role="menubar"] [role="separator"] {
   padding: 6px;
   background-color: #eee;
   border: 0px solid #eee;
-  border-radius: 5px;
   color: black;
 }
 
-ul[role="menubar"] ul li[role="menuitem"],
-ul[role="menubar"] ul li[role="menuitemcheckbox"],
-ul[role="menubar"] ul li[role="menuitemradio"],
-ul[role="menubar"] ul li[role="separator"] {
+ul[role="menubar"] a[role="menuitem"] {
+  border-radius: 5px;
+}
+
+ul[role="menubar"] [role="menu"] [role="menuitem"],
+ul[role="menubar"] [role="menu"] [role="menuitemcheckbox"],
+ul[role="menubar"] [role="menu"] [role="menuitemradio"],
+ul[role="menubar"] [role="menu"] [role="separator"] {
   padding-left: 27px;
   width: 8em;
 }
