@@ -82,8 +82,8 @@ ul[role="menubar"] [role="menuitem"]:focus {
 }
 
 ul[role="menubar"] [role="menuitem"][aria-expanded="true"] {
-  padding: 3px;
-  border: 3px solid #034575;
+  padding: 4px;
+  border: 2px solid #034575;
 }
 
 ul[role="menubar"] [role="menuitem"]:hover {
