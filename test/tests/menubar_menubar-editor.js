@@ -488,12 +488,12 @@ ariaTest('Key SPACE open submenu', exampleFile, 'menubar-key-space-and-enter', a
     await menuitems[menuIndex].sendKeys(Key.SPACE);
 
     // Test that the submenu is displayed
-    t.fail(
+    t.true(
       await submenus[menuIndex].isDisplayed(),
       'Sending key "SPACE" to menuitem ' + menuIndex + ' in menubar should display submenu'
     );
 
-    t.fail(
+    t.true(
       await checkFocus(t,  ex.allSubmenuItems[menuIndex], 0),
       'Sending key "SPACE" to menuitem ' + menuIndex + ' in menubar should send focus to the first element in the submenu'
     );

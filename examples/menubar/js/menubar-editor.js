@@ -521,6 +521,10 @@ MenubarEditor.prototype.handleKeydown = function (event) {
   console.log('[handleMenubarKeydown][key]: ' + key);
   console.log('[handleMenubarKeydown][menuId]: ' + menuId);
 
+  if (event.keyCode === 32) {
+    key = ' ';
+  }
+
   switch (key) {
     case ' ':
     case 'Enter':
