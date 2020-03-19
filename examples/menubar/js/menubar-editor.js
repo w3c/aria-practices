@@ -524,8 +524,8 @@ MenubarEditor.prototype.handleKeydown = function (event) {
     option,
     value;
 
-//  console.log('[handleMenubarKeydown][key]: ' + key);
-//  console.log('[handleMenubarKeydown][menuId]: ' + menuId);
+  console.log('[handleMenubarKeydown][key]: ' + key);
+  console.log('[handleMenubarKeydown][menuId]: ' + menuId);
 
   switch (key) {
     case ' ':
