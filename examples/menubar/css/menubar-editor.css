@@ -65,12 +65,12 @@ ul[role="menubar"] ul li[role="menuitem"],
 ul[role="menubar"] ul li[role="menuitemcheckbox"],
 ul[role="menubar"] ul li[role="menuitemradio"],
 ul[role="menubar"] ul li[role="separator"] {
-  padding-left: 1.5em;
+  padding-left: 27px;
   width: 8em;
 }
 
 ul[role="menubar"] [role="separator"] {
-  padding-top: 0.15em;
+  padding-top: 3px;
   background-image: url('../images/separator.png');
   background-position: center;
   background-repeat: repeat-x;
