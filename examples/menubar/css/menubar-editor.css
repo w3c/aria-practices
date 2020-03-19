@@ -2,10 +2,17 @@ ul[role="menubar"] {
   margin: 0;
   margin-top: 0.5em;
   margin-bottom: 0.5em;
-  padding: 0.25em;
+  padding: 8px;
   font-size: 110%;
   list-style: none;
   background-color: #eee;
+  border: #eee solid 0px;
+  border-radius: 5px;
+}
+
+ul[role="menubar"].focus {
+  padding: 5px;
+  border: #034575 solid 3px;
 }
 
 ul[role="menubar"] li {
@@ -45,9 +52,12 @@ ul[role="menubar"] [role="menuitem"],
 ul[role="menubar"] [role="menuitemcheckbox"],
 ul[role="menubar"] [role="menuitemradio"],
 ul[role="menubar"] [role="separator"] {
-  padding: 0.25em;
+  margin-left: 0.25em;
+  margin-right: 0.25em;
+  padding: 6px;
   background-color: #eee;
-  border: 2px solid #eee;
+  border: 0px solid #eee;
+  border-radius: 5px;
   color: black;
 }
 
@@ -66,41 +76,52 @@ ul[role="menubar"] [role="separator"] {
   background-repeat: repeat-x;
 }
 
-ul[role="menubar"] [role="menuitem"]:focus,
+ul[role="menubar"] [role="menuitem"]:focus {
+  padding: 3px;
+  border: 3px solid #034575;
+}
+
 ul[role="menubar"] [role="menuitem"][aria-expanded="true"] {
-  background-color: black;
-  color: white;
-  border: 2px solid black;
-  outline: none;
+  padding: 3px;
+  border: 3px solid #034575;
 }
 
-ul[role="menubar"]:not(.focus) [role="menuitem"]:hover {
-  background-color: #444;
-  color: white;
+ul[role="menubar"] [role="menuitem"]:hover {
+  padding: 3px;
+  border: 3px solid #034575;
 }
 
-ul[role="menubar"] [role="menu"] [role="menuitem"]:focus,
-ul[role="menubar"] [role="menu"] [role="menuitemcheckbox"]:focus,
-ul[role="menubar"] [role="menu"] [role="menuitemradio"]:focus {
-  background-color: black;
-  color: white;
-  outline: none;
+ul[role="menubar"] [role="menu"] [role="menuitem"]:hover,
+ul[role="menubar"] [role="menu"] [role="menuitem"]:focus {
+  padding: 3px;
+  padding-left: 24px;
+  border: 3px solid #034575;
 }
 
-ul[role="menubar"] [role="menuitemcheckbox"][aria-checked='true'],
-ul[role="menubar"] [role="menuitemradio"][aria-checked='true'] {
-  padding-left: 0.5em;
-  padding-right: 1.25em;
+ul[role="menubar"] [role="menu"] [aria-checked='false']:hover,
+ul[role="menubar"] [role="menu"] [aria-checked='false']:focus {
+  padding: 3px;
+  padding-left: 24px;
+  border: 3px solid #034575;
 }
 
-ul[role="menubar"] [role="menuitemcheckbox"][aria-checked='true']::before {
-  content: url('../images/check-brown.png');
-  padding-right: 0.3em;
+ul[role="menubar"] [role="menu"] [aria-checked='true'] {
+  padding: 6px;
+  padding-left: 12px;
+  padding-right: 18px;
 }
 
-ul[role="menubar"] [role="menuitemradio"][aria-checked='true']::before {
+ul[role="menubar"] [role="menu"] [aria-checked='true']:hover,
+ul[role="menubar"] [role="menu"] [aria-checked='true']:focus {
+  padding: 3px;
+  padding-left: 9px;
+  padding-right: 18px;
+  border: 3px solid #034575;
+}
+
+ul[role="menubar"]  [role="menu"] [aria-checked='true']::before {
   content: url('../images/dot-brown.png');
-  padding-right: 0.3em;
+  padding-right: 5px;
 }
 
 /*
