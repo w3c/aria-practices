@@ -15,6 +15,7 @@ var MenubarNavigation = function (domNode, actionManager) {
   this.menuitemGroups = {};
   this.menuOrientation = {};
   this.isPopup = {};
+  this.isPopout = {};
   this.openPopups = false;
 
   this.firstChars = {}; // see Menubar init method
@@ -32,11 +33,10 @@ MenubarNavigation.prototype.getMenuitems = function(domNode) {
   var nodes = [];
 
   var initMenu = this.initMenu.bind(this);
-  var getGroupId = this.getGroupId.bind(this);
   var menuitemGroups = this.menuitemGroups;
 
-  function findMenuitems(node, group) {
-    var role, flag, groupId;
+  function findMenuitems(node) {
+    var role, flag;
 
     while (node) {
       flag = true;
@@ -53,18 +53,8 @@ MenubarNavigation.prototype.getMenuitems = function(domNode) {
           flag = false;
           break;
 
-        case 'group':
-          groupId = getGroupId(node);
-          menuitemGroups[groupId] = [];
-          break;
-
         case 'menuitem':
-        case 'menuitemradio':
-        case 'menuitemcheckbox':
           nodes.push(node);
-          if (group) {
-            group.push(node);
-          }
           break;
 
         default:
@@ -72,14 +62,14 @@ MenubarNavigation.prototype.getMenuitems = function(domNode) {
       }
 
       if (flag && node.firstElementChild) {
-        findMenuitems(node.firstElementChild, menuitemGroups[groupId]);
+        findMenuitems(node.firstElementChild);
       }
 
       node = node.nextElementSibling;
     }
   }
 
-  findMenuitems(domNode.firstElementChild, false);
+  findMenuitems(domNode.firstElementChild);
 
   return nodes;
 };
@@ -276,53 +266,6 @@ MenubarNavigation.prototype.getMenuOrientation = function(node) {
   return orientation;
 };
 
-MenubarNavigation.prototype.getDataOption = function(node) {
-
-  var option = false;
-  var hasOption = node.hasAttribute('data-option');
-  var role = node.hasAttribute('role');
-
-  if (!hasOption) {
-
-    while (node && !hasOption &&
-         (role !== 'menu') &&
-         (role !== 'menubar')) {
-      node = node.parentNode;
-      if (node) {
-        role = node.getAttribute('role');
-        hasOption = node.hasAttribute('data-option');
-      }
-    }
-  }
-
-  if (node) {
-    option = node.getAttribute('data-option');
-  }
-
-  return option;
-};
-
-MenubarNavigation.prototype.getGroupId = function(node) {
-
-  var id = false;
-  var role = node.getAttribute('role');
-
-  while (node && (role !== 'group') &&
-         (role !== 'menu') &&
-         (role !== 'menubar')) {
-    node = node.parentNode;
-    if (node) {
-      role = node.getAttribute('role');
-    }
- }
-
-  if (node) {
-    id = role + '-' + this.getIdFromAriaLabel(node);
-  }
-
-  return id;
-};
-
 MenubarNavigation.prototype.getMenuId = function(node) {
 
   var id = false;
@@ -357,69 +300,6 @@ MenubarNavigation.prototype.getMenu = function(menuitem) {
 
   return menu;
 };
-
-MenubarNavigation.prototype.toggleCheckbox = function(menuitem) {
-  if (menuitem.getAttribute('aria-checked') === 'true') {
-    menuitem.setAttribute('aria-checked', 'false');
-    return false;
-  }
-  menuitem.setAttribute('aria-checked', 'true');
-  return true;
-};
-
-MenubarNavigation.prototype.setRadioButton = function(menuitem) {
-  var groupId = this.getGroupId(menuitem);
-  var radiogroupItems = this.menuitemGroups[groupId];
-  radiogroupItems.forEach( function (item) {
-    item.setAttribute('aria-checked', 'false')
-  });
-  menuitem.setAttribute('aria-checked', 'true');
-  return menuitem.textContent;
-};
-
-MenubarNavigation.prototype.updateFontSizeMenu = function(menuId) {
-
-  var fontSizeMenuitems = this.menuitemGroups[menuId];
-  var currentValue = this.actionManager.getFontSize();
-
-  for (var i = 0; i < fontSizeMenuitems.length; i++) {
-    var mi = fontSizeMenuitems[i];
-    var dataOption = mi.getAttribute('data-option');
-    var value = mi.textContent.trim().toLowerCase();
-
-    switch (dataOption) {
-      case 'font-smaller':
-        if (currentValue === 'x-small') {
-          mi.setAttribute('aria-disabled', 'true');
-        }
-        else {
-          mi.removeAttribute('aria-disabled');
-        }
-        break;
-
-      case 'font-larger':
-        if (currentValue === 'x-large') {
-          mi.setAttribute('aria-disabled', 'true');
-        }
-        else {
-          mi.removeAttribute('aria-disabled');
-        }
-        break;
-
-      default:
-        if (currentValue === value) {
-          mi.setAttribute('aria-checked', 'true');
-        }
-        else {
-          mi.setAttribute('aria-checked', 'false');
-        }
-        break;
-
-    }
-  }
-
-
-}
 
 // Popup menu methods
 
@@ -536,29 +416,14 @@ MenubarNavigation.prototype.handleKeydown = function (event) {
       }
       else {
         role = tgt.getAttribute('role');
-        option = this.getDataOption(tgt);
         switch(role) {
           case 'menuitem':
-            this.actionManager.setOption(option, tgt.textContent);
-            break;
-
-          case 'menuitemcheckbox':
-            value = this.toggleCheckbox(tgt);
-            this.actionManager.setOption(option, value);
-            break;
-
-          case 'menuitemradio':
-            value = this.setRadioButton(tgt);
-            this.actionManager.setOption(option, value);
             break;
 
           default:
             break;
         }
 
-        if (this.getMenuId(tgt) === 'menu-size') {
-          this.updateFontSizeMenu('menu-size');
-        }
         this.openPopups = false;
         this.closePopup(tgt);
       }
