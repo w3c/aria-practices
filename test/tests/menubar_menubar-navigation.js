@@ -7,7 +7,7 @@ const assertAriaLabelExists = require('../util/assertAriaLabelExists');
 const assertAriaRoles = require('../util/assertAriaRoles');
 const assertRovingTabindex = require('../util/assertRovingTabindex');
 
-const exampleFile = 'menubar/menubar-1/menubar-1.html';
+const exampleFile = 'menubar/menubar-navigation.html';
 
 const ex = {
   // menubar selector
