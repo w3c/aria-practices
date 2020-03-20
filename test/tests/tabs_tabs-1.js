@@ -9,6 +9,7 @@ const assertAriaControls = require('../util/assertAriaControls');
 const assertAriaLabelledby = require('../util/assertAriaLabelledby');
 const assertAriaLabelExists = require('../util/assertAriaLabelExists');
 const assertAriaRoles = require('../util/assertAriaRoles');
+const assertNoElements = require('../util/assertNoElements');
 const assertTabOrder = require('../util/assertTabOrder');
 
 const exampleFile = 'tabs/tabs-1/tabs.html';
@@ -353,10 +354,5 @@ ariaTest('DELETE key removes third tab', exampleFile, 'key-delete', async (t) =>
     'Sending DELETE to third tab should change number of tabs'
   );
 
-  t.is(
-    (await t.context.session.findElements(By.id(ex.deletableId))).length,
-    0,
-    'Sending DELETE to third tab should have delete tab with id: ' + ex.deletableId
-  );
-
+  assertNoElements(t, `#${ex.deletableId}`, `Sending DELETE to third tab should have delete tab with id: ${ex.deletableId}`);
 });

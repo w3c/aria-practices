@@ -7,6 +7,7 @@ const { By, Key } = require('selenium-webdriver');
 const assertAttributeValues = require('../util/assertAttributeValues');
 const assertAriaRoles = require('../util/assertAriaRoles');
 const assertTabOrder = require('../util/assertTabOrder');
+const assertNoElements = require('../util/assertNoElements');
 
 const exampleFile = 'checkbox/checkbox-2/checkbox-2.html';
 
@@ -54,7 +55,7 @@ ariaTest('"aria-controls" ', exampleFile, 'checkbox-aria-controls', async (t) =>
 
   for (let id of controls) {
     t.is(
-      (await t.context.session.findElements(By.id(id))).length,
+      (await t.context.queryElements(t, `#${id}`)).length,
       1,
       'An element with id ' + id + ' should exist'
     );
@@ -83,12 +84,7 @@ ariaTest('"aria-checked" on checkbox element', exampleFile, 'checkbox-aria-check
     'The control checkbox should have attribute aria-checked = "false" after clicking checkbox twice (with no parially checked state)'
   );
 
-  t.is(
-    (await t.context.session.findElements(By.css(ex.checkedCondsSelector))).length,
-    0,
-    'No condiments should be selected via: ' + ex.checkedCondsSelector
-  );
-
+  assertNoElements(t, ex.checkedCondsSelector, 'No condiments should be selected via: ' + ex.checkedCondsSelector);
 });
 
 ariaTest('"aria-checked" on checkbox element', exampleFile, 'checkbox-aria-checked-mixed', async (t) => {
@@ -199,11 +195,7 @@ ariaTest('key SPACE selects or unselects checkbox', exampleFile, 'key-space', as
     'After sending SPACE to the checkbox in a all-checked state, aria-checked should equal "false"'
   );
 
-  t.is(
-    (await t.context.session.findElements(By.css(ex.checkedCondsSelector))).length,
-    0,
-    'After sending SPACE to the checkbox in a check state, 0 condiments should be selected via: ' + ex.checkedCondsSelector
-  );
+  assertNoElements(t, ex.checkedCondsSelector, 'After sending SPACE to the checkbox in a check state, 0 condiments should be selected via: ' + ex.checkedCondsSelector);
 
   // Send SPACE key to checkbox to change state
   await checkbox.sendKeys(Key.SPACE);

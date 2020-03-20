@@ -121,10 +121,9 @@ ariaTest('Test "role=grid" attribute exists',
 
     for (let exId in pageExamples) {
       const ex = pageExamples[exId];
-      const gridLocator = By.css(ex.gridSelector);
 
       t.is(
-        (await t.context.session.findElements(gridLocator)).length,
+        (await t.context.queryElements(t, ex.gridSelector)).length,
         1,
         'One "role=grid" element should be found by selector: ' + ex.gridSelector
       );

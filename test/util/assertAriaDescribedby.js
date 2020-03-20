@@ -50,8 +50,7 @@ module.exports = async function assertAriaDescribedby (t, elementSelector) {
         return el.innerText;
       }, descriptionId);
 
-      let descriptionImage = await t.context.session.findElement(By.id(descriptionId))
-        .findElements(By.css('img'));
+      let descriptionImage = await t.context.queryElements(t, `#${descriptionId}`);
 
       assert.ok(
         descriptionText || descriptionImage.length,

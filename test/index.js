@@ -88,7 +88,7 @@ const _ariaTest = (desc, page, testId, body, failing) => {
     if (testId !== 'test-additional-behavior') {
       const assert = require('assert');
       assert(
-        (await t.context.session.findElements(By.css(selector))).length,
+        (await t.context.queryElements(t, selector)).length,
         'Cannot find behavior description for this test in example page:' + testId
       );
     }
