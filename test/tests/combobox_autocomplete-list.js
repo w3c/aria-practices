@@ -1,5 +1,3 @@
-/* eslint no-restricted-properties: 0 */
-
 'use strict';
 
 const { ariaTest } = require('..');
