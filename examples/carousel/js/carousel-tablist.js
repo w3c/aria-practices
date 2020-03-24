@@ -26,7 +26,7 @@ var CarouselTablist = function (node) {
   this.forcePlay = false; // set once the user activates the play/pause button
   this.playState = true; // state of the play/pause button
   this.rotate = true; // state of rotation
-  this.timeInterval = 1000; // length of slide rotation in ms
+  this.timeInterval = 5000; // length of slide rotation in ms
   this.currentIndex = 0; // index of current slide
   this.slideTimeout = null; // save reference to setTimeout
 
