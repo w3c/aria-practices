@@ -35,6 +35,9 @@ MenubarEditor.prototype.getMenuitems = function(domNode) {
   var getGroupId = this.getGroupId.bind(this);
   var menuitemGroups = this.menuitemGroups;
 
+  var handleMenuMouseover =  this.handleMenuMouseover.bind(this);
+  var handleMenuMouseout  = this.handleMenuMouseout.bind(this);
+
   function findMenuitems(node, group) {
     var role, flag, groupId;
 
@@ -49,6 +52,8 @@ MenubarEditor.prototype.getMenuitems = function(domNode) {
       switch (role) {
         case 'menu':
           node.tabIndex = -1;
+          node.addEventListener('mouseover', handleMenuMouseover);
+          node.addEventListener('mouseout', handleMenuMouseout);
           initMenu(node);
           flag = false;
           break;
@@ -113,6 +118,9 @@ MenubarEditor.prototype.initMenu = function (menu) {
     menuitem.addEventListener('keydown', this.handleKeydown.bind(this));
     menuitem.addEventListener('click', this.handleMenuitemClick.bind(this));
     menuitem.addEventListener('mouseover', this.handleMenuitemMouseover.bind(this));
+
+    menuitem.addEventListener('mouseover', this.handleMenuitemMouseover.bind(this));
+    menuitem.addEventListener('mouseout', this.handleMenuitemMouseout.bind(this));
 
     if( !this.firstMenuitem[menuId]) {
       if (this.hasPopup(menuitem)) {
@@ -480,6 +488,21 @@ MenubarEditor.prototype.closePopupAll = function () {
 
 };
 
+MenubarEditor.prototype.closePopupHover = function () {
+
+  var menus = this.domNode.querySelectorAll('[role="menu');
+
+  for (var i = 0; i < menus.length; i++) {
+    var menu = menus[i];
+    var focus = menu.parentNode.querySelector('.item');
+    var hover = menu.classList.contains('hover');
+    if (!focus && !hover) {
+       menu.style.display = 'none';
+       menu.previousElementSibling.setAttribute('aria-expanded', 'false');
+    }
+  }
+};
+
 MenubarEditor.prototype.hasPopup = function (menuitem) {
   return menuitem.getAttribute('aria-haspopup') === 'true';
 };
@@ -715,16 +738,67 @@ MenubarEditor.prototype.handleMenuitemClick = function (event) {
 };
 
 MenubarEditor.prototype.handleMenuitemMouseover = function (event) {
-  var tgt = event.currentTarget;
+  var tgt = event.currentTarget,
+    menuId,
+    menu;
 
-  if (this.hasPopup(tgt) && this.openPopups) {
-    if (!this.isOpen(tgt)) {
-      this.closePopupAll();
-      this.openPopups = true;
-      this.openPopup(tgt);
-    }
+  if (this.hasPopup(tgt)) {
+    menuId = this.getMenuId(tgt);
+    menu = this.getMenu(tgt);
+    this.openPopup(menuId, tgt);
+    tgt.nextElementSibling.classList.add('hover');
   }
 };
+
+MenubarEditor.prototype.handleMenuitemMouseout = function (event) {
+  var tgt = event.currentTarget,
+    menuId,
+    menu;
+
+  if (this.hasPopup(tgt)) {
+    menuId = this.getMenuId(tgt);
+    menu = this.getMenu(tgt);
+    tgt.nextElementSibling.classList.remove('hover');
+  }
+
+  var closePopupHover = this.closePopupHover.bind(this);
+  setTimeout(function(){ closePopupHover() }, 400);
+};
+
+MenubarEditor.prototype.handleMenuMouseover = function (event) {
+  var menu = event.currentTarget,
+    menuId;
+
+  while( menu) {
+    menu.classList.add('hover');
+    if (menu.previousElementSibling) {
+      menu = this.getMenu(menu.previousElementSibling);
+    }
+    else {
+      menu = false;
+    }
+  }
+
+  var closePopupHover = this.closePopupHover.bind(this);
+  setTimeout(function(){ closePopupHover() }, 500);
+};
+
+MenubarEditor.prototype.handleMenuMouseout = function (event) {
+  var tgt = event.currentTarget;
+  var menu = this.getMenu(tgt);
+  menu.classList.remove('hover');
+
+  var menus = menu.querySelectorAll('[role="menu"]');
+
+  for (var i = 0; i < menus.length; i++) {
+    menus[i].classList.remove('hover');
+  }
+
+  var closePopupHover = this.closePopupHover.bind(this);
+  setTimeout(function(){ closePopupHover() }, 400);
+
+};
+
 
 // Initialize menubar editor
 

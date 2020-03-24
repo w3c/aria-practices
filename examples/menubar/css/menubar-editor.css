@@ -10,11 +10,6 @@ ul[role="menubar"] {
   border-radius: 5px;
 }
 
-ul[role="menubar"].focus {
-  padding: 5px;
-  border: #034575 solid 3px;
-}
-
 ul[role="menubar"] li {
   margin: 0;
   padding: 0;
@@ -79,33 +74,9 @@ ul[role="menubar"] [role="separator"] {
   background-repeat: repeat-x;
 }
 
-ul[role="menubar"] [role="menuitem"]:focus {
-  padding: 3px;
-  border: 3px solid #034575;
-}
-
 ul[role="menubar"] [role="menuitem"][aria-expanded="true"] {
   padding: 4px;
   border: 2px solid #034575;
-}
-
-ul[role="menubar"] [role="menuitem"]:hover {
-  padding: 3px;
-  border: 3px solid #034575;
-}
-
-ul[role="menubar"] [role="menu"] [role="menuitem"]:hover,
-ul[role="menubar"] [role="menu"] [role="menuitem"]:focus {
-  padding: 3px;
-  padding-left: 24px;
-  border: 3px solid #034575;
-}
-
-ul[role="menubar"] [role="menu"] [aria-checked='false']:hover,
-ul[role="menubar"] [role="menu"] [aria-checked='false']:focus {
-  padding: 3px;
-  padding-left: 24px;
-  border: 3px solid #034575;
 }
 
 ul[role="menubar"] [role="menu"] [aria-checked='true'] {
@@ -114,18 +85,77 @@ ul[role="menubar"] [role="menu"] [aria-checked='true'] {
   padding-right: 18px;
 }
 
-ul[role="menubar"] [role="menu"] [aria-checked='true']:hover,
-ul[role="menubar"] [role="menu"] [aria-checked='true']:focus {
-  padding: 3px;
-  padding-left: 9px;
-  padding-right: 18px;
-  border: 3px solid #034575;
-}
-
 ul[role="menubar"]  [role="menu"] [aria-checked='true']::before {
   content: url('../images/dot-brown.png');
   padding-right: 5px;
 }
+
+/* focus styling */
+
+ul[role="menubar"].focus {
+  padding: 6px;
+  border: #034575 solid 2px;
+}
+
+ul[role="menubar"].focus.item {
+  padding: 5px;
+  border: #034575 solid 3px;
+}
+
+ul[role="menubar"].focus [role="menu"] {
+  padding: 8px 5px;
+  border: 1px solid #034575;
+  border-radius: 5px;
+  background-color: #eee;
+}
+
+ul[role="menubar"] [role="menu"].hover  {
+  padding: 9px 6px;
+  border: 0px solid #034575;
+  border-radius: 5px;
+  background-color: #eee;
+}
+
+ul[role="menubar"].focus [role="menu"].item  {
+  padding: 6px 3px;
+  border: 3px solid #034575;
+  border-radius: 5px;
+  background-color: #eee;
+}
+
+ul[role="menubar"] [role="menuitem"]:focus,
+ul[role="menubar"] [role="menuitemcheckbox"]:focus,
+ul[role="menubar"] [role="menuitemradio"]:focus {
+  padding: 2px;
+  border: 4px dotted #034575;
+  outline: none;
+}
+
+ul[role="menubar"] [role="menu"] [role="menuitem"]:focus,
+ul[role="menubar"] [role="menu"] [role="menuitemcheckbox"]:focus,
+ul[role="menubar"] [role="menu"] [role="menuitemradio"]:focus {
+  padding-left: 23px;
+}
+
+ul[role="menubar"] [role="menu"] [role="menuitem"][aria-checked='true']:focus,
+ul[role="menubar"] [role="menu"] [role="menuitemcheckbox"][aria-checked='true']:focus,
+ul[role="menubar"] [role="menu"] [role="menuitemradio"][aria-checked='true']:focus {
+  padding-left: 5px;
+}
+
+ul[role="menubar"] [role="menuitem"]:hover,
+ul[role="menubar"] [role="menuitemcheckbox"]:hover,
+ul[role="menubar"] [role="menuitemradio"]:hover {
+  padding: 4px;
+  border: 2px solid #034575;
+}
+
+ul[role="menubar"] [role="menu"] [role="menuitem"]:hover,
+ul[role="menubar"] [role="menu"] [role="menuitemcheckbox"]:hover,
+ul[role="menubar"] [role="menu"] [role="menuitemradio"]:hover {
+  padding-left: 23px;
+}
+
 
 /*
 * Text area styles
