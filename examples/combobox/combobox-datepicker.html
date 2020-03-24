@@ -380,13 +380,23 @@
           </tr>
         </thead>
         <tbody>
-          <tr data-test-id="grid-space-return">
-            <th><kbd>Space</kbd>,<br><kbd>Enter</kbd></th>
+          <tr data-test-id="grid-space">
+            <th><kbd>Space</kbd></th>
             <td>
               <ul>
-                <li>Select the date, close the dialog, and move focus to the <q>Choose Date</q> button.</li>
+                <li>Select the date.</li>
                 <li>Update the value of the <q>Date</q> input with the selected date.</li>
                 <li>Update the accessible name of the <q>Choose Date</q> button to include the selected date.</li>
+              </ul>
+          </td>
+          <tr data-test-id="grid-return">
+            <th><kbd>Enter</kbd></th>
+            <td>
+              <ul>
+                <li>Select the date.</li>
+                <li>Update the value of the <q>Date</q> input with the selected date.</li>
+                <li>Update the accessible name of the <q>Choose Date</q> button to include the selected date.</li>
+                <li>Close the dialog, and move focus to the combobox.</li>
               </ul>
           </td>
           </tr>
@@ -469,8 +479,8 @@
               <td>
                 Activates the button:
                 <ul>
-                    <li><q>Cancel</q>: Closes the dialog, moves focus to <q>Date Textbox</q> button, does not update date in date textbox.</li>
-                    <li><q>OK</q>: Closes the dialog, moves focus to <q>Date Textbox</q> button, updates date in date textbox.</li>
+                    <li><q>Cancel</q>: Closes the dialog, moves focus to combobox, does not update date in date textbox.</li>
+                    <li><q>OK</q>: Closes the dialog, moves focus to combobox, updates date in date textbox.</li>
                 </ul>
               </td>
             </tr>

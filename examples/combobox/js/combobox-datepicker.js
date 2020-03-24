@@ -92,7 +92,7 @@ ComboboxDatePicker.prototype.init = function () {
   }
 
   this.updateGrid();
-  this.close();
+  this.close(false);
 };
 
 ComboboxDatePicker.prototype.isSameDay = function (day1, day2) {
@@ -555,6 +555,19 @@ ComboboxDatePicker.prototype.updateDate = function (domNode, disable, day, selec
 
 };
 
+ComboboxDatePicker.prototype.updateSelected = function (domNode) {
+  for (i = 0; i < this.days.length; i++) {
+    var day = this.days[i];
+    if (day  === domNode) {
+      day.setAttribute('aria-selected', 'true');
+    }
+    else {
+      day.removeAttribute('aria-selected');
+    }
+  }
+};
+
+
 ComboboxDatePicker.prototype.handleDayKeyDown = function (event) {
   var flag = false;
 
@@ -565,8 +578,13 @@ ComboboxDatePicker.prototype.handleDayKeyDown = function (event) {
       this.close();
       break;
 
+    case " ":
+      this.updateSelected(event.currentTarget);
+      this.setComboboxDate(event.currentTarget);
+      flag = true;
+      break;
+
     case "Enter":
-    case "Space":
       this.setComboboxDate(event.currentTarget);
       this.close();
       break;
