@@ -410,7 +410,7 @@ MenubarNavigation.prototype.isOpen = function (menuitem) {
   return menuitem.getAttribute('aria-expanded') === 'true';
 };
 
-MenubarNavigation.prototype.isMenubar = function (menuiId) {
+MenubarNavigation.prototype.isMenubar = function (menuId) {
   return !this.isPopup[menuId] && !this.isPopout[menuId];
 };
 
@@ -673,7 +673,7 @@ MenubarNavigation.prototype.handleMenuMouseout = function (event) {
 
   var closePopupHover = this.closePopupHover.bind(this);
   setTimeout(function(){ closePopupHover() }, 400);
- 
+
 };
 
 // Initialize menubar editor
