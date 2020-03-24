@@ -159,6 +159,8 @@
   <section>
     <h2>Accessibility Features</h2>
     <ol>
+      <li>To support high contrast settings the keyboard focus is highlighted by adding and removing a dashed border around the menu item with keyboard focus.</li>
+      <li>When any menu item receives focus a border is added to the menubar or menu container to provide a visual afforance to use the cursor keys to navigate the menu items.</li>
       <li>Since the menubar presents a site navigation system, it is wrapped in a navigation region implemented with a <code>nav</code> element that has an <code>aria-label</code> that matches the label on the menubar.</li>
       <li>The down arrow and right arrow icons are made compatible with high contrast mode and hidden from screen readers by using the CSS <code>content</code> property to render images.</li>
     </ol>
@@ -240,7 +242,8 @@
         </tr>
       </tbody>
     </table>
-<h3 id="kbd2_label">Submenu</h3>
+
+    <h3 id="kbd2_label">Submenu</h3>
     <table aria-labelledby="kbd2_label kbd_label" class="def">
       <thead>
         <tr>
@@ -255,8 +258,17 @@
           </th>
           <td>
             <ul>
-              <li>Activates menu item, causing the link to be activated.</li>
-              <li>NOTE: the links go to dummy pages; use the browser go-back function to return to this menubar example page.</li>
+              <li>If the menuitem is a link:
+                <ul>
+                  <li>Activates menu item, causing the link to be activated.</li>
+                  <li>NOTE: the links go to dummy pages; use the browser go-back function to return to this menubar example page.</li>
+                </ul>
+              </li>
+              <li>If the menuitem has a popup menu:
+                <ul>
+                  <li>Opens submenu and moves focus to first item in the submenu.</li>
+                </ul>
+              </li>
             </ul>
           </td>
         </tr>
