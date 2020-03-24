@@ -1,42 +1,19 @@
 ul[role="menubar"] {
-  margin: 10px;
-  padding: 10px;
+  margin: 0;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  padding: 8px;
   font-size: 110%;
   list-style: none;
   background-color: #eee;
-}
-
-ul[role="menubar"] [role="menuitem"],
-ul[role="menubar"] [role="separator"] {
-  padding: 0.25em;
-  background-color: #eee;
-  border: 2px solid #eee;
-}
-
-ul[role="menubar"] [role="separator"] {
-  padding-top: 0.15em;
-  background-image: url('../images/separator.png');
-  background-position: center;
-  background-repeat: repeat-x;
-}
-
-ul[role="menubar"] [role="menuitem"]:focus,
-ul[role="menubar"] [role="menuitem"]:hover,
-ul[role="menubar"] [role="separator"]:focus,
-ul[role="menubar"] [role="separator"]:hover {
-  background-color: black;
-  color: white;
-}
-
-ul[role="menubar"] a[role="menuitem"] {
-  text-decoration: none;
-  color: black;
+  border: #eee solid 0px;
+  border-radius: 5px;
 }
 
 ul[role="menubar"] li {
-  list-style: none;
   margin: 0;
   padding: 0;
+  list-style: none;
 }
 
 ul[role="menubar"] > li {
@@ -44,26 +21,101 @@ ul[role="menubar"] > li {
   position: relative;
 }
 
-ul[role="menubar"] > li > a::after {
+ul[role="menubar"] > li > [role="menuitem"]::after {
   content: url('../images/down-arrow-brown.png');
   padding-left: 0.25em;
 }
 
-ul[role="menubar"] ul[role="menu"] {
+ul[role="menubar"] [role="menu"] {
   display: none;
   position: absolute;
-  top: -2px;
-  left: 0;
   margin: 0;
   padding: 0;
 }
 
-ul[role="menubar"] ul[role="menu"] li a {
-  display: block;
-  width: 10em;
+ul[role="menubar"] [role="group"] {
+  margin: 0;
+  padding: 0;
 }
 
-ul[role="menubar"] ul[role="menu"] a[aria-haspopup="true"]::after {
+ul[role="menubar"] [role="menuitem"],
+ul[role="menubar"] [role="separator"] {
+  margin: 3px;
+  padding: 6px;
+  background-color: #eee;
+  border: 0px solid #eee;
+  color: black;
+  border-radius: 5px;
+}
+
+ul[role="menubar"] [role="menu"] [role="menuitem"],
+ul[role="menubar"] [role="menu"] [role="separator"] {
+  display: block;
+  width: 12em;
+}
+
+ul[role="menubar"] [role="menu"]  {
+  display: none;
+}
+
+
+ul[role="menubar"] [role="separator"] {
+  padding-top: 3px;
+  background-image: url('../images/separator.png');
+  background-position: center;
+  background-repeat: repeat-x;
+}
+
+ul[role="menubar"] [role="menuitem"][aria-expanded="true"] {
+  padding: 4px;
+  border: 2px solid #034575;
+}
+
+ul[role="menubar"] [role="menu"] [role="menuitem"][aria-haspopup="true"]::after {
   content: url('../images/right-arrow-brown.png');
   padding-right: 2em;
+}
+
+/* focus styling */
+
+ul[role="menubar"].focus {
+  padding: 6px;
+  border: #034575 solid 2px;
+}
+
+ul[role="menubar"].focus.item {
+  padding: 5px;
+  border: #034575 solid 3px;
+}
+
+ul[role="menubar"].focus [role="menu"] {
+  padding: 8px 5px;
+  border: 1px solid #034575;
+  border-radius: 5px;
+  background-color: #eee;
+}
+
+ul[role="menubar"] [role="menu"].hover  {
+  padding: 9px 6px;
+  border: 0px solid #034575;
+  border-radius: 5px;
+  background-color: #eee;
+}
+
+ul[role="menubar"].focus [role="menu"].item  {
+  padding: 6px 3px;
+  border: 3px solid #034575;
+  border-radius: 5px;
+  background-color: #eee;
+}
+
+ul[role="menubar"] [role="menuitem"]:focus {
+  padding: 2px;
+  border: 4px dotted #034575;
+  outline: none;
+}
+
+ul[role="menubar"] [role="menuitem"]:hover {
+  padding: 4px;
+  border: 2px solid #034575;
 }
