@@ -47,16 +47,11 @@ ul[role="menubar"] [role="menuitem"],
 ul[role="menubar"] [role="menuitemcheckbox"],
 ul[role="menubar"] [role="menuitemradio"],
 ul[role="menubar"] [role="separator"] {
-  margin-left: 0.25em;
-  margin-right: 0.25em;
   padding: 6px;
   background-color: #eee;
   border: 0px solid #eee;
-  color: black;
-}
-
-ul[role="menubar"] a[role="menuitem"] {
   border-radius: 5px;
+  color: black;
 }
 
 ul[role="menubar"] [role="menu"] [role="menuitem"],
@@ -81,7 +76,7 @@ ul[role="menubar"] [role="menuitem"][aria-expanded="true"] {
 
 ul[role="menubar"] [role="menu"] [aria-checked='true'] {
   padding: 6px;
-  padding-left: 12px;
+  padding-left: 10px;
   padding-right: 18px;
 }
 
@@ -90,7 +85,7 @@ ul[role="menubar"]  [role="menu"] [aria-checked='true']::before {
   padding-right: 5px;
 }
 
-/* focus styling */
+/* focus and hover styling */
 
 ul[role="menubar"].focus {
   padding: 6px;
@@ -105,13 +100,6 @@ ul[role="menubar"].focus.item {
 ul[role="menubar"].focus [role="menu"] {
   padding: 8px 5px;
   border: 1px solid #034575;
-  border-radius: 5px;
-  background-color: #eee;
-}
-
-ul[role="menubar"] [role="menu"].hover  {
-  padding: 9px 6px;
-  border: 0px solid #034575;
   border-radius: 5px;
   background-color: #eee;
 }
@@ -131,6 +119,14 @@ ul[role="menubar"] [role="menuitemradio"]:focus {
   outline: none;
 }
 
+
+ul[role="menubar"] [role="menuitem"]:hover,
+ul[role="menubar"] [role="menuitemcheckbox"]:hover,
+ul[role="menubar"] [role="menuitemradio"]:hover {
+  padding: 4px;
+  border: 2px solid #034575;
+}
+
 ul[role="menubar"] [role="menu"] [role="menuitem"]:focus,
 ul[role="menubar"] [role="menu"] [role="menuitemcheckbox"]:focus,
 ul[role="menubar"] [role="menu"] [role="menuitemradio"]:focus {
@@ -140,22 +136,23 @@ ul[role="menubar"] [role="menu"] [role="menuitemradio"]:focus {
 ul[role="menubar"] [role="menu"] [role="menuitem"][aria-checked='true']:focus,
 ul[role="menubar"] [role="menu"] [role="menuitemcheckbox"][aria-checked='true']:focus,
 ul[role="menubar"] [role="menu"] [role="menuitemradio"][aria-checked='true']:focus {
-  padding-left: 5px;
-}
-
-ul[role="menubar"] [role="menuitem"]:hover,
-ul[role="menubar"] [role="menuitemcheckbox"]:hover,
-ul[role="menubar"] [role="menuitemradio"]:hover {
-  padding: 4px;
-  border: 2px solid #034575;
+  padding-left: 6px;
+  padding-right: 18px;
 }
 
 ul[role="menubar"] [role="menu"] [role="menuitem"]:hover,
 ul[role="menubar"] [role="menu"] [role="menuitemcheckbox"]:hover,
 ul[role="menubar"] [role="menu"] [role="menuitemradio"]:hover {
-  padding-left: 23px;
+  padding-left: 25px;
 }
 
+
+ul[role="menubar"] [role="menu"] [role="menuitem"][aria-checked='true']:hover,
+ul[role="menubar"] [role="menu"] [role="menuitemcheckbox"][aria-checked='true']:hover,
+ul[role="menubar"] [role="menu"] [role="menuitemradio"][aria-checked='true']:hover {
+  padding-left: 8px;
+  padding-right: 18px;
+}
 
 /*
 * Text area styles
