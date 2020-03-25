@@ -117,7 +117,9 @@ MenubarEditor.prototype.initMenu = function (menu) {
 
     menuitem.addEventListener('keydown', this.handleKeydown.bind(this));
     menuitem.addEventListener('click', this.handleMenuitemClick.bind(this));
-    menuitem.addEventListener('mouseover', this.handleMenuitemMouseover.bind(this));
+
+    menuitem.addEventListener('focus', this.handleMenuitemFocus.bind(this));
+    menuitem.addEventListener('blur', this.handleMenuitemBlur.bind(this));
 
     menuitem.addEventListener('mouseover', this.handleMenuitemMouseover.bind(this));
     menuitem.addEventListener('mouseout', this.handleMenuitemMouseout.bind(this));
@@ -541,9 +543,6 @@ MenubarEditor.prototype.handleKeydown = function (event) {
     option,
     value;
 
-  console.log('[handleMenubarKeydown][key]: ' + key);
-  console.log('[handleMenubarKeydown][menuId]: ' + menuId);
-
   // This fixes a problem with regression tests using Key.SPACE
   if (event.keyCode === 32) {
     key = ' ';
@@ -686,6 +685,17 @@ MenubarEditor.prototype.handleKeydown = function (event) {
   }
 };
 
+
+MenubarEditor.prototype.handleMenuitemFocus = function (event) {
+  var menu = this.getMenu(event.target);
+  menu.classList.add('item');
+};
+
+MenubarEditor.prototype.handleMenuitemBlur = function (event) {
+  var menu = this.getMenu(event.target);
+  menu.classList.remove('item');
+};
+
 MenubarEditor.prototype.handleMenuitemClick = function (event) {
   var tgt = event.currentTarget,
   role,
@@ -738,14 +748,10 @@ MenubarEditor.prototype.handleMenuitemClick = function (event) {
 };
 
 MenubarEditor.prototype.handleMenuitemMouseover = function (event) {
-  var tgt = event.currentTarget,
-    menuId,
-    menu;
+  var tgt = event.currentTarget;
 
   if (this.hasPopup(tgt)) {
-    menuId = this.getMenuId(tgt);
-    menu = this.getMenu(tgt);
-    this.openPopup(menuId, tgt);
+    this.openPopup(tgt);
     tgt.nextElementSibling.classList.add('hover');
   }
 };
