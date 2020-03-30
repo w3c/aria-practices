@@ -11,66 +11,43 @@
   display: block;
 }
 
-.datepicker input,
-.datepicker button {
-  background-color: white;
-  color: black;
-  box-sizing: border-box;
-  height: 1.75rem;
+.datepicker input {
   padding: 0;
   margin: 0;
-  vertical-align: bottom;
+  height: 1.5em;
+  background-color: white;
+  color: black;
   border: 1px solid gray;
+}
+
+.datepicker button.icon {
+  margin: 0;
+  margin-left: 10px;
+  padding: 3px;
+  margin: 0;
+  border: 0px solid #005a9c;
+  background-color: white;
+  border-radius: 5px;
   position: relative;
+  left: 5px;
+  top: -4px;
 }
 
-.datepicker input {
-  width: 10.75rem;
-  border-right: none;
+.datepicker .fa-calendar-alt {
+    color: hsl(216, 89%, 51%);
+}
+
+.datepicker button.icon:focus {
   outline: none;
-  font-size: 87.5%;
-  padding: 0.1em 0.3em;
-}
-
-.datepicker button {
-  width: 1.25rem;
-  border-left: none;
-  outline: none;
-}
-
-.datepicker .group.focus {
-  outline: 2px solid black;
-  outline-offset: 1px;
-}
-
-.datepicker .group.focus input,
-.datepicker .group.focus button {
+  padding: 1px;
+  border-width: 2px;
   background-color: #DEF;
 }
 
-.datepicker.group button[aria-expanded="true"] svg {
-  transform: rotate(180deg) translate(0, -1px);
-}
-
-.datepicker .group.focus {
-  outline: 2px solid black;
-  outline-offset: 1px;
-}
-
-.datepicker .group.focus input,
-.datepicker .group.focus button {
+.datepicker input:focus {
   background-color: #DEF;
-}
-
-.datepicker .group polygon {
-  fill: gray;
-  stroke: transparent;
-}
-
-.datepicker .group button[aria-expanded="true"] polygon,
-.datepicker .group.focus polygon {
-  fill: black;
-  stroke: white;
+  outline: 2px solid #005a9c;
+  outline-offset: 1px;
 }
 
 .datepicker-dialog {

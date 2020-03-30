@@ -13,7 +13,7 @@ var DatePickerDialog = function (cdp) {
   this.messageCursorKeys = 'Cursor keys can navigate dates';
   this.lastMessage = '';
 
-  this.comboboxNode   = cdp.querySelector('input[type="text"');
+  this.textboxNode   = cdp.querySelector('input[type="text"');
   this.buttonNode     = cdp.querySelector('.group button');
   this.dialogNode     = cdp.querySelector('[role="dialog"]');
   this.messageNode    = this.dialogNode.querySelector('.dialog-message');
@@ -45,11 +45,7 @@ var DatePickerDialog = function (cdp) {
 
 DatePickerDialog.prototype.init = function () {
 
-  this.comboboxNode.addEventListener('keydown', this.handleComboboxKeyDown.bind(this));
-  this.comboboxNode.addEventListener('mouseup',   this.handleComboboxMouseUp.bind(this));
-  this.comboboxNode.addEventListener('focus',   this.handleComboboxFocus.bind(this));
-  this.comboboxNode.addEventListener('blur',   this.handleComboboxBlur.bind(this));
-
+  this.buttonNode.addEventListener('keydown',   this.handleButtonKeydown.bind(this));
   this.buttonNode.addEventListener('mouseup',   this.handleButtonMouseUp.bind(this));
 
   this.okButtonNode.addEventListener('click', this.handleOkButton.bind(this));
@@ -177,9 +173,9 @@ DatePickerDialog.prototype.open = function () {
   this.dialogNode.style.display = 'block';
   this.dialogNode.style.zIndex = 2;
 
-  this.comboboxNode.setAttribute('aria-expanded', 'true')
+  this.textboxNode.setAttribute('aria-expanded', 'true')
   this.buttonNode.setAttribute('aria-expanded', 'true')
-  this.getDateFromCombobox();
+  this.getDateFromTextbox();
   this.updateGrid();
 };
 
@@ -195,11 +191,11 @@ DatePickerDialog.prototype.close = function (flag) {
 
   this.setMessage('');
   this.dialogNode.style.display = 'none';
-  this.comboboxNode.setAttribute('aria-expanded', 'false')
+  this.textboxNode.setAttribute('aria-expanded', 'false')
   this.buttonNode.setAttribute('aria-expanded', 'false')
 
   if (flag) {
-    this.comboboxNode.focus();
+    this.buttonNode.focus();
   }
 };
 
@@ -230,7 +226,7 @@ DatePickerDialog.prototype.handleOkButton = function (event) {
       break;
 
     case 'click':
-      this.setComboboxDate();
+      this.setTextboxDate();
       this.close();
       flag = true;
       break;
@@ -555,12 +551,20 @@ DatePickerDialog.prototype.updateDate = function (domNode, disable, day, selecte
 
 };
 
+DatePickerDialog.prototype.updateSelected = function (domNode) {
+  for (i = 0; i < this.days.length; i++) {
+    var day = this.days[i];
+    if (day  === domNode) {
+      day.setAttribute('aria-selected', 'true');
+    }
+    else {
+      day.removeAttribute('aria-selected');
+    }
+  }
+};
+
 DatePickerDialog.prototype.handleDayKeyDown = function (event) {
   var flag = false;
-
-  if (event.keyCode === 32) {
-    event.key = " ";
-  }
 
   switch (event.key) {
 
@@ -570,12 +574,13 @@ DatePickerDialog.prototype.handleDayKeyDown = function (event) {
       break;
 
     case " ":
-      this.setComboboxDate(event.currentTarget);
+      this.updateSelected(event.currentTarget);
+      this.setTextboxDate(event.currentTarget);
       flag = true;
       break;
 
     case "Enter":
-      this.setComboboxDate(event.currentTarget);
+      this.setTextboxDate(event.currentTarget);
       this.close();
       break;
 
@@ -654,7 +659,7 @@ DatePickerDialog.prototype.handleDayKeyDown = function (event) {
 DatePickerDialog.prototype.handleDayClick = function (event) {
 
   if (!this.isDayDisabled(event.currentTarget)) {
-    this.setComboboxDate(event.currentTarget);
+    this.setTextboxDate(event.currentTarget);
     this.close();
   }
 
@@ -667,9 +672,9 @@ DatePickerDialog.prototype.handleDayFocus = function () {
   this.setMessage(this.messageCursorKeys);
 };
 
-// Combobox methods
+// Textbox methods
 
-DatePickerDialog.prototype.setComboboxDate = function (domNode) {
+DatePickerDialog.prototype.setTextboxDate = function (domNode) {
 
   var d = this.focusDay;
 
@@ -677,14 +682,14 @@ DatePickerDialog.prototype.setComboboxDate = function (domNode) {
     d = this.getDayFromDataDateAttribute(domNode);
   }
 
-  this.comboboxNode.value = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear();
+  this.textboxNode.value = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear();
   this.setDateForButtonLabel(d.getFullYear(), d.getMonth(), d.getDate());
 
 };
 
-DatePickerDialog.prototype.getDateFromCombobox = function () {
+DatePickerDialog.prototype.getDateFromTextbox = function () {
 
-  var parts = this.comboboxNode.value.split('/');
+  var parts = this.textboxNode.value.split('/');
 
   if ((parts.length === 3) &&
       Number.isInteger(parseInt(parts[0])) &&
@@ -729,67 +734,16 @@ DatePickerDialog.prototype.setMessage = function (str) {
   }
 };
 
-DatePickerDialog.prototype.setFocusCombobox = function () {
-  this.comboboxNode.focus();
-};
+DatePickerDialog.prototype.handleButtonKeydown = function (event) {
 
-DatePickerDialog.prototype.handleComboboxKeyDown = function (event) {
-  var flag = false,
-    char = event.key,
-    altKey   = event.altKey;
+  if (event.key === 'Enter' || event.key == ' ') {
+    this.open();
+    this.setFocusDay();
 
-  if (event.ctrlKey || event.shiftKey) {
-    return;
-  }
-
-  switch (event.key) {
-
-    case "Enter":
-    case "Down":
-    case "ArrowDown":
-      this.open();
-      this.setFocusDay();
-      flag = true;
-      break;
-
-    case "Esc":
-    case "Escape":
-      if (this.isOpen()) {
-        this.close(false);
-      }
-      else {
-        this.comboboxNode.value = '';
-      }
-      this.option = null;
-      flag = true;
-      break;
-
-    case "Tab":
-      this.close(false);
-      break;
-
-
-    default:
-      break;
-  }
-
-  if (flag) {
     event.stopPropagation();
     event.preventDefault();
   }
 
-};
-
-DatePickerDialog.prototype.handleComboboxMouseUp = function (event) {
-  if (this.isOpen()) {
-    this.close(false);
-  }
-  else {
-    this.open();
-  }
-
-  event.stopPropagation();
-  event.preventDefault();
 };
 
 DatePickerDialog.prototype.handleButtonMouseUp = function (event) {
@@ -798,23 +752,15 @@ DatePickerDialog.prototype.handleButtonMouseUp = function (event) {
   }
   else {
     this.open();
-    this.setFocusCombobox();
+    this.setFocusDay();
   }
 
   event.stopPropagation();
   event.preventDefault();
 };
 
-DatePickerDialog.prototype.handleComboboxFocus = function (event) {
-  event.currentTarget.parentNode.classList.add('focus');
-};
-
-DatePickerDialog.prototype.handleComboboxBlur = function (event) {
-  event.currentTarget.parentNode.classList.remove('focus');
-};
-
 DatePickerDialog.prototype.handleBackgroundMouseUp = function (event) {
-  if (!this.comboboxNode.contains(event.target) &&
+  if (!this.textboxNode.contains(event.target) &&
       !this.buttonNode.contains(event.target) &&
       !this.dialogNode.contains(event.target)) {
 
