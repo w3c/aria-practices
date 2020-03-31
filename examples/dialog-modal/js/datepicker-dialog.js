@@ -2,10 +2,10 @@
 *   This content is licensed according to the W3C Software License at
 *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
 *
-*   File:   DatePickerDialog.js
+*   File:   MenuButtonDatePicker.js
 */
 
-var DatePickerDialog = function (cdp) {
+var MenuButtonDatePicker = function (cdp) {
   this.buttonLabel = 'Date';
   this.dayLabels = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
   this.monthLabels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -43,7 +43,9 @@ var DatePickerDialog = function (cdp) {
 
 };
 
-DatePickerDialog.prototype.init = function () {
+MenuButtonDatePicker.prototype.init = function () {
+
+  this.textboxNode.addEventListener('mouseup',   this.handleTextboxMouseUp.bind(this));
 
   this.buttonNode.addEventListener('keydown',   this.handleButtonKeydown.bind(this));
   this.buttonNode.addEventListener('mouseup',   this.handleButtonMouseUp.bind(this));
@@ -91,18 +93,18 @@ DatePickerDialog.prototype.init = function () {
   this.close();
 };
 
-DatePickerDialog.prototype.isSameDay = function (day1, day2) {
+MenuButtonDatePicker.prototype.isSameDay = function (day1, day2) {
   return (day1.getFullYear() == day2.getFullYear()) &&
         (day1.getMonth() == day2.getMonth()) &&
         (day1.getDate() == day2.getDate());
 };
 
-DatePickerDialog.prototype.isNotSameMonth = function (day1, day2) {
+MenuButtonDatePicker.prototype.isNotSameMonth = function (day1, day2) {
   return (day1.getFullYear() != day2.getFullYear()) ||
         (day1.getMonth() != day2.getMonth());
 };
 
-DatePickerDialog.prototype.updateGrid = function () {
+MenuButtonDatePicker.prototype.updateGrid = function () {
 
   var i, flag;
   var fd = this.focusDay;
@@ -133,7 +135,7 @@ DatePickerDialog.prototype.updateGrid = function () {
   }
 };
 
-DatePickerDialog.prototype.setFocusDay = function (flag) {
+MenuButtonDatePicker.prototype.setFocusDay = function (flag) {
 
   if (typeof flag !== 'boolean') {
     flag = true;
@@ -160,7 +162,7 @@ DatePickerDialog.prototype.setFocusDay = function (flag) {
 
 };
 
-DatePickerDialog.prototype.updateDay = function (day) {
+MenuButtonDatePicker.prototype.updateDay = function (day) {
   var d = this.focusDay;
   this.focusDay = day;
   if (this.isNotSameMonth(d, day)) {
@@ -169,7 +171,7 @@ DatePickerDialog.prototype.updateDay = function (day) {
   }
 };
 
-DatePickerDialog.prototype.open = function () {
+MenuButtonDatePicker.prototype.open = function () {
   this.dialogNode.style.display = 'block';
   this.dialogNode.style.zIndex = 2;
 
@@ -179,11 +181,11 @@ DatePickerDialog.prototype.open = function () {
   this.updateGrid();
 };
 
-DatePickerDialog.prototype.isOpen = function () {
+MenuButtonDatePicker.prototype.isOpen = function () {
   return window.getComputedStyle(this.dialogNode).display !== 'none';
 };
 
-DatePickerDialog.prototype.close = function (flag) {
+MenuButtonDatePicker.prototype.close = function (flag) {
   if (typeof flag !== 'boolean') {
     // Default is to move focus to combobox
     flag = true;
@@ -199,7 +201,195 @@ DatePickerDialog.prototype.close = function (flag) {
   }
 };
 
-DatePickerDialog.prototype.handleOkButton = function (event) {
+MenuButtonDatePicker.prototype.moveFocusToDay = function (day) {
+  var d = this.focusDay;
+
+  this.focusDay = day;
+
+  if ((d.getMonth() != this.focusDay.getMonth()) ||
+      (d.getYear() != this.focusDay.getYear())) {
+    this.updateGrid();
+  }
+  this.setFocusDay();
+};
+
+
+MenuButtonDatePicker.prototype.moveToNextYear = function () {
+  this.focusDay.setFullYear(this.focusDay.getFullYear() + 1);
+  this.updateGrid();
+};
+
+MenuButtonDatePicker.prototype.moveToPreviousYear = function () {
+  this.focusDay.setFullYear(this.focusDay.getFullYear() - 1);
+  this.updateGrid();
+};
+
+MenuButtonDatePicker.prototype.moveToNextMonth = function () {
+  this.focusDay.setMonth(this.focusDay.getMonth() + 1);
+  this.updateGrid();
+};
+
+MenuButtonDatePicker.prototype.moveToPreviousMonth = function () {
+  this.focusDay.setMonth(this.focusDay.getMonth() - 1);
+  this.updateGrid();
+};
+
+MenuButtonDatePicker.prototype.moveFocusToNextDay = function () {
+  var d = new Date(this.focusDay);
+  d.setDate(d.getDate() + 1);
+  this.moveFocusToDay(d);
+};
+
+MenuButtonDatePicker.prototype.moveFocusToNextWeek = function () {
+  var d = new Date(this.focusDay);
+  d.setDate(d.getDate() + 7);
+  this.moveFocusToDay(d);
+};
+
+MenuButtonDatePicker.prototype.moveFocusToPreviousDay = function () {
+  var d = new Date(this.focusDay);
+  d.setDate(d.getDate() - 1);
+  this.moveFocusToDay(d);
+};
+
+MenuButtonDatePicker.prototype.moveFocusToPreviousWeek = function () {
+  var d = new Date(this.focusDay);
+  d.setDate(d.getDate() - 7);
+  this.moveFocusToDay(d);
+};
+
+MenuButtonDatePicker.prototype.moveFocusToFirstDayOfWeek = function () {
+  var d = new Date(this.focusDay);
+  d.setDate(d.getDate() - d.getDay());
+  this.moveFocusToDay(d);
+};
+
+MenuButtonDatePicker.prototype.moveFocusToLastDayOfWeek = function () {
+  var d = new Date(this.focusDay);
+  d.setDate(d.getDate() + (6 - d.getDay()));
+  this.moveFocusToDay(d);
+};
+
+// Day methods
+
+MenuButtonDatePicker.prototype.isDayDisabled = function (domNode) {
+  return domNode.classList.contains('disabled');
+};
+
+MenuButtonDatePicker.prototype.getDayFromDataDateAttribute = function (domNode) {
+  var parts = domNode.getAttribute('data-date').split('-');
+  return new Date(parts[0], parseInt(parts[1])-1, parts[2]);
+};
+
+MenuButtonDatePicker.prototype.updateDate = function (domNode, disable, day, selected) {
+
+  var d = day.getDate().toString();
+  if (day.getDate() <= 9) {
+    d = '0' + d;
+  }
+
+  var m = day.getMonth() + 1;
+  if (day.getMonth() < 9) {
+    m = '0' + m;
+  }
+
+  domNode.setAttribute('tabindex', '-1');
+  domNode.removeAttribute('aria-selected');
+  domNode.setAttribute('data-date', day.getFullYear() + '-' + m + '-' + d);
+
+  if (disable) {
+    domNode.classList.add('disabled');
+    domNode.innerHTML = '';
+  }
+  else {
+    domNode.classList.remove('disabled');
+    domNode.innerHTML = day.getDate();
+    if (selected) {
+      domNode.setAttribute('aria-selected', 'true');
+      domNode.setAttribute('tabindex', '0');
+    }
+  }
+
+};
+
+MenuButtonDatePicker.prototype.updateSelected = function (domNode) {
+  for (i = 0; i < this.days.length; i++) {
+    var day = this.days[i];
+    if (day  === domNode) {
+      day.setAttribute('aria-selected', 'true');
+    }
+    else {
+      day.removeAttribute('aria-selected');
+    }
+  }
+};
+
+// Textbox methods
+
+MenuButtonDatePicker.prototype.setTextboxDate = function (domNode) {
+
+  var d = this.focusDay;
+
+  if (domNode) {
+    d = this.getDayFromDataDateAttribute(domNode);
+  }
+
+  this.textboxNode.value = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear();
+  this.setDateForButtonLabel(d.getFullYear(), d.getMonth(), d.getDate());
+
+};
+
+MenuButtonDatePicker.prototype.getDateFromTextbox = function () {
+
+  var parts = this.textboxNode.value.split('/');
+
+  if ((parts.length === 3) &&
+      Number.isInteger(parseInt(parts[0])) &&
+      Number.isInteger(parseInt(parts[1])) &&
+      Number.isInteger(parseInt(parts[2]))) {
+    this.focusDay = new Date(parseInt(parts[2]), parseInt(parts[0]) - 1, parseInt(parts[1]));
+    this.selectedDay = new Date(this.focusDay);
+  }
+  else {
+    // If not a valid date (MM/DD/YY) initialize with todays date
+    this.focusDay = new Date();
+    this.selectedDay = new Date(0,0,1);
+  }
+
+};
+
+MenuButtonDatePicker.prototype.setDateForButtonLabel = function (year, month, day) {
+  if (typeof year !== 'number' || typeof month !== 'number' || typeof day !== 'number') {
+    this.selectedDay = this.focusDay;
+  }
+  else {
+    this.selectedDay = new Date(year, month, day);
+  }
+
+  var label = this.buttonLabel;
+  label += ', ' + this.dayLabels[this.selectedDay.getDay()];
+  label += ' ' + this.monthLabels[this.selectedDay.getMonth()];
+  label += ' ' + (this.selectedDay.getDate());
+  label += ', ' + this.selectedDay.getFullYear();
+  this.buttonNode.setAttribute('aria-label', label);
+};
+
+MenuButtonDatePicker.prototype.setMessage = function (str) {
+
+  function setMessageDelayed () {
+    this.messageNode.textContent = str;
+  }
+
+  if (str !== this.lastMessage) {
+    setTimeout(setMessageDelayed.bind(this), 200);
+    this.lastMessage = str;
+  }
+};
+
+// Event handlers
+
+
+MenuButtonDatePicker.prototype.handleOkButton = function (event) {
   var flag = false;
 
   switch (event.type) {
@@ -241,7 +431,7 @@ DatePickerDialog.prototype.handleOkButton = function (event) {
   }
 };
 
-DatePickerDialog.prototype.handleCancelButton = function (event) {
+MenuButtonDatePicker.prototype.handleCancelButton = function (event) {
   var flag = false;
 
   switch (event.type) {
@@ -276,7 +466,7 @@ DatePickerDialog.prototype.handleCancelButton = function (event) {
   }
 };
 
-DatePickerDialog.prototype.handleNextYearButton = function (event) {
+MenuButtonDatePicker.prototype.handleNextYearButton = function (event) {
   var flag = false;
 
   switch (event.type) {
@@ -314,7 +504,7 @@ DatePickerDialog.prototype.handleNextYearButton = function (event) {
   }
 };
 
-DatePickerDialog.prototype.handlePreviousYearButton = function (event) {
+MenuButtonDatePicker.prototype.handlePreviousYearButton = function (event) {
   var flag = false;
 
   switch (event.type) {
@@ -363,7 +553,7 @@ DatePickerDialog.prototype.handlePreviousYearButton = function (event) {
   }
 };
 
-DatePickerDialog.prototype.handleNextMonthButton = function (event) {
+MenuButtonDatePicker.prototype.handleNextMonthButton = function (event) {
   var flag = false;
 
   switch (event.type) {
@@ -401,7 +591,7 @@ DatePickerDialog.prototype.handleNextMonthButton = function (event) {
   }
 };
 
-DatePickerDialog.prototype.handlePreviousMonthButton = function (event) {
+MenuButtonDatePicker.prototype.handlePreviousMonthButton = function (event) {
   var flag = false;
 
   switch (event.type) {
@@ -440,131 +630,13 @@ DatePickerDialog.prototype.handlePreviousMonthButton = function (event) {
   }
 };
 
-DatePickerDialog.prototype.moveFocusToDay = function (day) {
-  var d = this.focusDay;
-
-  this.focusDay = day;
-
-  if ((d.getMonth() != this.focusDay.getMonth()) ||
-      (d.getYear() != this.focusDay.getYear())) {
-    this.updateGrid();
-  }
-  this.setFocusDay();
-};
-
-
-DatePickerDialog.prototype.moveToNextYear = function () {
-  this.focusDay.setFullYear(this.focusDay.getFullYear() + 1);
-  this.updateGrid();
-};
-
-DatePickerDialog.prototype.moveToPreviousYear = function () {
-  this.focusDay.setFullYear(this.focusDay.getFullYear() - 1);
-  this.updateGrid();
-};
-
-DatePickerDialog.prototype.moveToNextMonth = function () {
-  this.focusDay.setMonth(this.focusDay.getMonth() + 1);
-  this.updateGrid();
-};
-
-DatePickerDialog.prototype.moveToPreviousMonth = function () {
-  this.focusDay.setMonth(this.focusDay.getMonth() - 1);
-  this.updateGrid();
-};
-
-DatePickerDialog.prototype.moveFocusToNextDay = function () {
-  var d = new Date(this.focusDay);
-  d.setDate(d.getDate() + 1);
-  this.moveFocusToDay(d);
-};
-
-DatePickerDialog.prototype.moveFocusToNextWeek = function () {
-  var d = new Date(this.focusDay);
-  d.setDate(d.getDate() + 7);
-  this.moveFocusToDay(d);
-};
-
-DatePickerDialog.prototype.moveFocusToPreviousDay = function () {
-  var d = new Date(this.focusDay);
-  d.setDate(d.getDate() - 1);
-  this.moveFocusToDay(d);
-};
-
-DatePickerDialog.prototype.moveFocusToPreviousWeek = function () {
-  var d = new Date(this.focusDay);
-  d.setDate(d.getDate() - 7);
-  this.moveFocusToDay(d);
-};
-
-DatePickerDialog.prototype.moveFocusToFirstDayOfWeek = function () {
-  var d = new Date(this.focusDay);
-  d.setDate(d.getDate() - d.getDay());
-  this.moveFocusToDay(d);
-};
-
-DatePickerDialog.prototype.moveFocusToLastDayOfWeek = function () {
-  var d = new Date(this.focusDay);
-  d.setDate(d.getDate() + (6 - d.getDay()));
-  this.moveFocusToDay(d);
-};
-
-// Day methods
-
-DatePickerDialog.prototype.isDayDisabled = function (domNode) {
-  return domNode.classList.contains('disabled');
-};
-
-DatePickerDialog.prototype.getDayFromDataDateAttribute = function (domNode) {
-  var parts = domNode.getAttribute('data-date').split('-');
-  return new Date(parts[0], parseInt(parts[1])-1, parts[2]);
-};
-
-DatePickerDialog.prototype.updateDate = function (domNode, disable, day, selected) {
-
-  var d = day.getDate().toString();
-  if (day.getDate() <= 9) {
-    d = '0' + d;
-  }
-
-  var m = day.getMonth() + 1;
-  if (day.getMonth() < 9) {
-    m = '0' + m;
-  }
-
-  domNode.setAttribute('tabindex', '-1');
-  domNode.removeAttribute('aria-selected');
-  domNode.setAttribute('data-date', day.getFullYear() + '-' + m + '-' + d);
-
-  if (disable) {
-    domNode.classList.add('disabled');
-    domNode.innerHTML = '';
-  }
-  else {
-    domNode.classList.remove('disabled');
-    domNode.innerHTML = day.getDate();
-    if (selected) {
-      domNode.setAttribute('aria-selected', 'true');
-      domNode.setAttribute('tabindex', '0');
-    }
-  }
-
-};
-
-DatePickerDialog.prototype.updateSelected = function (domNode) {
-  for (i = 0; i < this.days.length; i++) {
-    var day = this.days[i];
-    if (day  === domNode) {
-      day.setAttribute('aria-selected', 'true');
-    }
-    else {
-      day.removeAttribute('aria-selected');
-    }
-  }
-};
-
-DatePickerDialog.prototype.handleDayKeyDown = function (event) {
+MenuButtonDatePicker.prototype.handleDayKeyDown = function (event) {
   var flag = false;
+
+  // fix bug in rgression code
+  if (event.keyCode === 32) {
+    event.key = " ";
+  }
 
   switch (event.key) {
 
@@ -656,7 +728,7 @@ DatePickerDialog.prototype.handleDayKeyDown = function (event) {
   }
 };
 
-DatePickerDialog.prototype.handleDayClick = function (event) {
+MenuButtonDatePicker.prototype.handleDayClick = function (event) {
 
   if (!this.isDayDisabled(event.currentTarget)) {
     this.setTextboxDate(event.currentTarget);
@@ -668,75 +740,17 @@ DatePickerDialog.prototype.handleDayClick = function (event) {
 
 };
 
-DatePickerDialog.prototype.handleDayFocus = function () {
+MenuButtonDatePicker.prototype.handleDayFocus = function () {
   this.setMessage(this.messageCursorKeys);
 };
 
-// Textbox methods
+MenuButtonDatePicker.prototype.handleButtonKeydown = function (event) {
 
-DatePickerDialog.prototype.setTextboxDate = function (domNode) {
-
-  var d = this.focusDay;
-
-  if (domNode) {
-    d = this.getDayFromDataDateAttribute(domNode);
-  }
-
-  this.textboxNode.value = (d.getMonth() + 1) + '/' + d.getDate() + '/' + d.getFullYear();
-  this.setDateForButtonLabel(d.getFullYear(), d.getMonth(), d.getDate());
-
-};
-
-DatePickerDialog.prototype.getDateFromTextbox = function () {
-
-  var parts = this.textboxNode.value.split('/');
-
-  if ((parts.length === 3) &&
-      Number.isInteger(parseInt(parts[0])) &&
-      Number.isInteger(parseInt(parts[1])) &&
-      Number.isInteger(parseInt(parts[2]))) {
-    this.focusDay = new Date(parseInt(parts[2]), parseInt(parts[0]) - 1, parseInt(parts[1]));
-    this.selectedDay = new Date(this.focusDay);
-  }
-  else {
-    // If not a valid date (MM/DD/YY) initialize with todays date
-    this.focusDay = new Date();
-    this.selectedDay = new Date(0,0,1);
-  }
-
-};
-
-DatePickerDialog.prototype.setDateForButtonLabel = function (year, month, day) {
-  if (typeof year !== 'number' || typeof month !== 'number' || typeof day !== 'number') {
-    this.selectedDay = this.focusDay;
-  }
-  else {
-    this.selectedDay = new Date(year, month, day);
-  }
-
-  var label = this.buttonLabel;
-  label += ', ' + this.dayLabels[this.selectedDay.getDay()];
-  label += ' ' + this.monthLabels[this.selectedDay.getMonth()];
-  label += ' ' + (this.selectedDay.getDate());
-  label += ', ' + this.selectedDay.getFullYear();
-  this.buttonNode.setAttribute('aria-label', label);
-};
-
-DatePickerDialog.prototype.setMessage = function (str) {
-
-  function setMessageDelayed () {
-    this.messageNode.textContent = str;
-  }
-
-  if (str !== this.lastMessage) {
-    setTimeout(setMessageDelayed.bind(this), 200);
-    this.lastMessage = str;
-  }
-};
-
-DatePickerDialog.prototype.handleButtonKeydown = function (event) {
-
-  if (event.key === 'Enter' || event.key == ' ') {
+  if ((event.key === "Enter") ||
+      (event.key == "Down")  ||
+      (event.key == "ArrowDown")  ||
+      (event.key == " ") ||
+      (event.keyCode == 32)) {
     this.open();
     this.setFocusDay();
 
@@ -746,7 +760,7 @@ DatePickerDialog.prototype.handleButtonKeydown = function (event) {
 
 };
 
-DatePickerDialog.prototype.handleButtonMouseUp = function (event) {
+MenuButtonDatePicker.prototype.handleButtonMouseUp = function (event) {
   if (this.isOpen()) {
     this.close();
   }
@@ -759,7 +773,17 @@ DatePickerDialog.prototype.handleButtonMouseUp = function (event) {
   event.preventDefault();
 };
 
-DatePickerDialog.prototype.handleBackgroundMouseUp = function (event) {
+
+MenuButtonDatePicker.prototype.handleTextboxMouseUp = function (event) {
+  if (this.isOpen()) {
+    this.close();
+    this.textboxNode.focus();
+  }
+
+  event.stopPropagation();
+  event.preventDefault();
+};
+MenuButtonDatePicker.prototype.handleBackgroundMouseUp = function (event) {
   if (!this.textboxNode.contains(event.target) &&
       !this.buttonNode.contains(event.target) &&
       !this.dialogNode.contains(event.target)) {
@@ -779,7 +803,7 @@ window.addEventListener('load' , function () {
   var datePickers = document.querySelectorAll('.datepicker');
 
   datePickers.forEach(function (dp) {
-    var datePicker = new DatePickerDialog(dp);
+    var datePicker = new MenuButtonDatePicker(dp);
   });
 
 });

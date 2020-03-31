@@ -19,30 +19,29 @@ const ex = {
   dialogSelector: '#example [role="dialog"]',
   inputSelector: '#example input',
   buttonSelector: '#example button.icon',
-  statusSelector: '#example [role="status"]',
-  messageSelector: '#example .message',
-  gridSelector: '#example [role="grid"]',
-  gridcellSelector: '#example [role="gridcell"]',
+  messageSelector: '#example .dialog-message',
   controlButtons: '#example [role="dialog"] .header button',
-  currentMonthDateButtons: '#example [role="dialog"] button.dateButton:not(.disabled)',
-  allDateButtons: '#example [role="dialog"] button.dateButton',
-  jan12019Button: '#example [role="dialog"] button[data-date="2019-01-01"]',
-  jan22019Button: '#example [role="dialog"] button[data-date="2019-01-02"]',
-  todayButton: `#example [role="dialog"] button[data-date="${todayDataDate}"]`,
-  currentlyFocusedButton: '#example [role="dialog"] button[tabindex=\'0\']',
+  gridSelector: '#example [role="dialog"] table.dates',
+  gridcellSelector: '#example [role="dialog"] table.dates td',
+  currentMonthDateButtons: '#example table.dates td:not(.disabled)',
+  allDateButtons: '#example [role="dialog"] table.dates td',
+  jan12019Button: '#example [role="dialog"] table.dates td[data-date="2019-01-01"]',
+  jan22019Button: '#example [role="dialog"] table.dates td[data-date="2019-01-02"]',
+  todayButton: `#example [role="dialog"] table.dates td[data-date="${todayDataDate}"]`,
+  currentlyFocusedButton: '#example [role="dialog"] [tabindex=\'0\']',
   allFocusableElementsInDialog: [
-    `#example [role="dialog"] button[data-date="${todayDataDate}"]`,
+    `#example [role="dialog"] td[data-date="${todayDataDate}"]`,
     '#example [role="dialog"] button[value="cancel"]',
     '#example [role="dialog"] button[value="ok"]',
-    '#example [role="dialog"] button.prevYear',
-    '#example [role="dialog"] button.prevMonth',
-    '#example [role="dialog"] button.nextMonth',
-    '#example [role="dialog"] button.nextYear'
+    '#example [role="dialog"] button.prev-year',
+    '#example [role="dialog"] button.prev-month',
+    '#example [role="dialog"] button.next-month',
+    '#example [role="dialog"] button.next-year'
   ],
-  prevMonthButton: '#example button.prevMonth',
-  prevYearButton: '#example button.prevYear',
-  nextMonthButton: '#example button.nextMonth',
-  nextYearButton: '#example button.nextYear',
+  prevMonthButton: '#example [role="dialog"] button.prev-month',
+  prevYearButton: '#example [role="dialog"] button.prev-year',
+  nextMonthButton: '#example [role="dialog"] button.next-month',
+  nextYearButton: '#example [role="dialog"] button.next-year',
   cancelButton: '#example [role="dialog"] button[value="cancel"]',
   okButton: '#example [role="dialog"] button[value="ok"]'
 };
@@ -211,6 +210,17 @@ ariaTest('ENTER to open datepicker', exampleFile, 'button-space-return-down-arro
   );
 });
 
+ariaTest('DOWN ARROW to open datepicker', exampleFile, 'button-space-return-down-arrow', async (t) => {
+  let chooseDateButton = await t.context.session.findElement(By.css(ex.buttonSelector));
+  chooseDateButton.sendKeys(Key.ARROW_DOWN);
+
+  t.not(
+    await t.context.session.findElement(By.css(ex.dialogSelector)).getCssValue('display'),
+    'none',
+    'After sending DOWN ARROW to the "choose date" button, the calendar dialog should open'
+  );
+});
+
 ariaTest('SPACE to open datepicker', exampleFile, 'button-space-return-down-arrow', async (t) => {
   let chooseDateButton = await t.context.session.findElement(By.css(ex.buttonSelector));
   chooseDateButton.sendKeys(Key.SPACE);
@@ -229,7 +239,7 @@ ariaTest('Sending key ESC when focus is in dialog closes dialog', exampleFile, '
 
   for (let i = 0; i < ex.allFocusableElementsInDialog.length; i++) {
 
-    await chooseDateButton.click();
+    await chooseDateButton.sendKeys(Key.ENTER);
     let el = t.context.session.findElement(By.css(ex.allFocusableElementsInDialog[i]));
     await el.sendKeys(Key.ESCAPE);
 
