@@ -495,37 +495,55 @@ ariaTest('Test enter key press with focus on grid',
   });
 
 ariaTest('Test escape key press with focus on combobox',
-  exampleFile, 'popup-key-escape', async (t) => {
+  exampleFile, 'textbox-key-escape', async (t) => {
     t.plan(2);
 
-    // Send key "a", then key ESCAPE to the combobox
+    // Send key "a" then key "ARROW_DOWN to put the focus on the listbox,
+    // then key ESCAPE to the textbox
+
     await t.context.session
       .findElement(By.css(ex.comboboxSelector))
       .sendKeys('a', Key.ESCAPE);
 
-    // Wait for gridbox to close
-    await t.context.session.wait(
-      async function () {
-        return !(await t.context.session.findElement(By.css(ex.gridSelector)).isDisplayed());
-      },
-      t.context.waitTime,
-      'Timeout waiting for gridbox to close afer escape'
+    // Confirm the listbox is closed and the textbox is cleared
+
+    await assertAttributeValues(t, ex.comboboxSelector, 'aria-expanded', 'false');
+    t.is(
+      await t.context.session
+        .findElement(By.css(ex.comboboxSelector))
+        .getAttribute('value'),
+      'a',
+      'In listbox key press "ESCAPE" should result in "a" in textbox'
     );
 
-    // Confirm the grid is closed and the comboboxed is cleared
+  });
+
+
+ariaTest('Test double escape key press with focus on combobox',
+  exampleFile, 'textbox-key-escape', async (t) => {
+    t.plan(2);
+
+    // Send key "a", then key ESCAPE twice to the textbox
+
+    await t.context.session
+      .findElement(By.css(ex.comboboxSelector))
+      .sendKeys('a', Key.ESCAPE, Key.ESCAPE);
+
+    // Confirm the listbox is closed and the textbox is cleared
+
     await assertAttributeValues(t, ex.comboboxSelector, 'aria-expanded', 'false');
     t.is(
       await t.context.session
         .findElement(By.css(ex.comboboxSelector))
         .getAttribute('value'),
       '',
-      'In key press "ESCAPE" should result in clearing of the combobox'
+      'In key press "ESCAPE" should result in clearing the textbox'
     );
 
   });
 
-// This test fails due to bug: https://github.com/w3c/aria-practices/issues/860
-ariaTest.failing('Test escape key press with focus on popup',
+
+ariaTest('Test escape key press with focus on popup',
   exampleFile, 'popup-key-escape', async (t) => {
     t.plan(2);
 
@@ -558,8 +576,8 @@ ariaTest.failing('Test escape key press with focus on popup',
       await t.context.session
         .findElement(By.css(ex.comboboxSelector))
         .getAttribute('value'),
-      '',
-      'In grid key press "ESCAPE" should result in clearing of the combobox'
+      'a',
+      'In grid key press "ESCAPE" should result the "a" in the combobox'
     );
 
   });
