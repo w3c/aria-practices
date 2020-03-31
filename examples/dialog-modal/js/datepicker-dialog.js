@@ -635,7 +635,9 @@ MenuButtonDatePicker.prototype.handleDayKeyDown = function (event) {
 
   // fix bug in rgression code
   if (event.keyCode === 32) {
-    event.key = " ";
+    this.updateSelected(event.currentTarget);
+    this.setTextboxDate(event.currentTarget);
+    flag = true;
   }
 
   switch (event.key) {
