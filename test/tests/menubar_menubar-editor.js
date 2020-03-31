@@ -485,7 +485,7 @@ ariaTest('Key SPACE open submenu', exampleFile, 'menubar-key-space-and-enter', a
   for (let menuIndex = 0; menuIndex < ex.numMenus; menuIndex++) {
 
     // Send the SPACE key
-    await menuitems[menuIndex].sendKeys(Key.SPACE);
+    await menuitems[menuIndex].sendKeys(' ');
 
     // Test that the submenu is displayed
     t.true(
