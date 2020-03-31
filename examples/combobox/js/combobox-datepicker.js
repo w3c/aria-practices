@@ -50,6 +50,7 @@ ComboboxDatePicker.prototype.init = function () {
   this.comboboxNode.addEventListener('focus',   this.handleComboboxFocus.bind(this));
   this.comboboxNode.addEventListener('blur',   this.handleComboboxBlur.bind(this));
 
+  this.buttonNode.addEventListener('keydown',   this.handleButtonKeyDown.bind(this));
   this.buttonNode.addEventListener('mouseup',   this.handleButtonMouseUp.bind(this));
 
   this.okButtonNode.addEventListener('click', this.handleOkButton.bind(this));
@@ -802,6 +803,25 @@ ComboboxDatePicker.prototype.handleComboboxMouseUp = function (event) {
   event.preventDefault();
 };
 
+ComboboxDatePicker.prototype.handleComboboxFocus = function (event) {
+  event.currentTarget.parentNode.classList.add('focus');
+};
+
+ComboboxDatePicker.prototype.handleComboboxBlur = function (event) {
+  event.currentTarget.parentNode.classList.remove('focus');
+};
+
+ComboboxDatePicker.prototype.handleButtonKeyDown = function (event) {
+
+  if (event.key === "Enter" || event.key === " ") {
+    this.open();
+    this.setFocusDay();
+
+    event.stopPropagation();
+    event.preventDefault();
+  }
+};
+
 ComboboxDatePicker.prototype.handleButtonMouseUp = function (event) {
   if (this.isOpen()) {
     this.close();
@@ -813,14 +833,6 @@ ComboboxDatePicker.prototype.handleButtonMouseUp = function (event) {
 
   event.stopPropagation();
   event.preventDefault();
-};
-
-ComboboxDatePicker.prototype.handleComboboxFocus = function (event) {
-  event.currentTarget.parentNode.classList.add('focus');
-};
-
-ComboboxDatePicker.prototype.handleComboboxBlur = function (event) {
-  event.currentTarget.parentNode.classList.remove('focus');
 };
 
 ComboboxDatePicker.prototype.handleBackgroundMouseUp = function (event) {
