@@ -221,7 +221,7 @@ ariaTest('DOWN ARROW to open datepicker', exampleFile, 'button-space-return-down
   );
 });
 
-ariaTest('SPACE to open datepicker', exampleFile, 'button-space-return-down-arrow', async (t) => {
+ariaTest.failing('SPACE to open datepicker', exampleFile, 'button-space-return-down-arrow', async (t) => {
   let chooseDateButton = await t.context.session.findElement(By.css(ex.buttonSelector));
   chooseDateButton.sendKeys(Key.SPACE);
 
@@ -359,7 +359,7 @@ ariaTest('ENTER to buttons change calendar and date in focus', exampleFile, 'mon
   );
 });
 
-ariaTest('SPACE to buttons change calendar and date in focus', exampleFile, 'month-year-button-space-return', async (t) => {
+ariaTest.failing('SPACE to buttons change calendar and date in focus', exampleFile, 'month-year-button-space-return', async (t) => {
   t.plan(4);
 
   await t.context.session.findElement(By.css(ex.buttonSelector)).click();
@@ -421,7 +421,7 @@ ariaTest('SPACE to buttons change calendar and date in focus', exampleFile, 'mon
   );
 });
 
-ariaTest('SPACE or RETURN selects date in focus', exampleFile, 'grid-space-return', async (t) => {
+ariaTest.failing('SPACE or RETURN selects date in focus', exampleFile, 'grid-space-return', async (t) => {
   t.plan(2);
 
   // By default, focus will be on todays date.

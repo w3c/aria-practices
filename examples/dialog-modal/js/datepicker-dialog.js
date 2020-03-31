@@ -633,13 +633,6 @@ MenuButtonDatePicker.prototype.handlePreviousMonthButton = function (event) {
 MenuButtonDatePicker.prototype.handleDayKeyDown = function (event) {
   var flag = false;
 
-  // fix bug in rgression code
-  if (event.keyCode === 32) {
-    this.updateSelected(event.currentTarget);
-    this.setTextboxDate(event.currentTarget);
-    flag = true;
-  }
-
   switch (event.key) {
 
     case "Esc":
@@ -751,8 +744,7 @@ MenuButtonDatePicker.prototype.handleButtonKeydown = function (event) {
   if ((event.key === "Enter") ||
       (event.key == "Down")  ||
       (event.key == "ArrowDown")  ||
-      (event.key == " ") ||
-      (event.keyCode == 32)) {
+      (event.key == " ")) {
     this.open();
     this.setFocusDay();
 
