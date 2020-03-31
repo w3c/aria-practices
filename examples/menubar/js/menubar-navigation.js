@@ -461,11 +461,6 @@ MenubarNavigation.prototype.handleKeydown = function (event) {
     option,
     value;
 
-  // This fixes a problem with regression tests using Key.SPACE
-  if (event.keyCode === 32) {
-    key = ' ';
-  }
-
   switch (key) {
     case ' ':
     case 'Enter':

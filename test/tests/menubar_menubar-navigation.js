@@ -374,7 +374,7 @@ ariaTest('Key ENTER open submenu', exampleFile, 'menubar-space-or-enter', async 
 });
 
 
-ariaTest('Key SPACE open submenu', exampleFile, 'menubar-space-or-enter', async (t) => {
+ariaTest.failing('Key SPACE open submenu', exampleFile, 'menubar-space-or-enter', async (t) => {
   t.plan(6);
 
   const menubaritems = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
