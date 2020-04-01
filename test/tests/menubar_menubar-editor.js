@@ -497,7 +497,6 @@ ariaTest('Key ENTER open submenu', exampleFile, 'menubar-key-space-and-enter', a
   }
 });
 
-// failing due to issue 1588
 ariaTest('Key SPACE open submenu', exampleFile, 'menubar-key-space-and-enter', async (t) => {
   t.plan(8);
 
