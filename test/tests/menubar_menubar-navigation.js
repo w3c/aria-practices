@@ -366,7 +366,7 @@ ariaTest.failing('Key SPACE open submenu', exampleFile, 'menubar-space-or-enter'
   for (let menuIndex = 0; menuIndex < ex.numMenus; menuIndex++) {
 
     // Send the SPACE key
-    await menubaritems[menuIndex].sendKeys(Key.SPACE);
+    await menubaritems[menuIndex].sendKeys(' ');
 
     // Test that the submenu is displayed
     t.true(
@@ -629,7 +629,7 @@ ariaTest.failing('SPACE in submenu selects item', exampleFile, 'submenu-space-or
       const itemText = await items[itemIndex].getText();
 
       // send SPACE to the item
-      await items[itemIndex].sendKeys(Key.SPACE);
+      await items[itemIndex].sendKeys(' ');
       await waitForUrlChange(t);
 
       t.not(
@@ -657,7 +657,7 @@ ariaTest.failing('SPACE in submenu selects item', exampleFile, 'submenu-space-or
       // send SPACE to the item we are testing
       const items = await t.context.queryElements(t, submenuMenuitemSelector);
       const itemText = await items[itemIndex].getText();
-      await items[itemIndex].sendKeys(Key.SPACE);
+      await items[itemIndex].sendKeys(' ');
       await waitForUrlChange(t);
 
       t.not(
