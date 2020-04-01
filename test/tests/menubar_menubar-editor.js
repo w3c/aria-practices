@@ -498,7 +498,7 @@ ariaTest('Key ENTER open submenu', exampleFile, 'menubar-key-space-and-enter', a
 });
 
 // failing due to issue 1588
-ariaTest.failing('Key SPACE open submenu', exampleFile, 'menubar-key-space-and-enter', async (t) => {
+ariaTest('Key SPACE open submenu', exampleFile, 'menubar-key-space-and-enter', async (t) => {
   t.plan(8);
 
   const menuitems = await t.context.session.findElements(By.css(ex.menubarMenuitemSelector));
@@ -506,7 +506,7 @@ ariaTest.failing('Key SPACE open submenu', exampleFile, 'menubar-key-space-and-e
   for (let menuIndex = 0; menuIndex < ex.numMenus; menuIndex++) {
 
     // Send the SPACE key
-    await menuitems[menuIndex].sendKeys(Key.SPACE);
+    await menuitems[menuIndex].sendKeys(' ');
 
     // Test that the submenu is displayed
     t.true(
