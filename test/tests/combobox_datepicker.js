@@ -245,9 +245,9 @@ ariaTest('ENTER to open datepicker', exampleFile, 'button-space-return', async (
   );
 });
 
-ariaTest.failing('SPACE to open datepicker', exampleFile, 'button-space-return', async (t) => {
+ariaTest('SPACE to open datepicker', exampleFile, 'button-space-return', async (t) => {
   let chooseDateButton = await t.context.session.findElement(By.css(ex.buttonSelector));
-  chooseDateButton.sendKeys(Key.SPACE);
+  chooseDateButton.sendKeys(' ');
 
   t.not(
     await t.context.session.findElement(By.css(ex.dialogSelector)).getCssValue('display'),
