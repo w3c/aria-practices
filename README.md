@@ -76,6 +76,16 @@ Run locally:
 npm run lint:js
 ```
 
+### Regenerate `examples/index.html`
+
+If you have changed something in `examples/`, the index may need to be regenerated.
+
+Run locally:
+
+```sh
+npm run build
+```
+
 ### Test and fix your code
 
 1. Open a terminal window to the directory that contains the `aria-practices` repository
