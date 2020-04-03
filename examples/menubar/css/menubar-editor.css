@@ -71,7 +71,7 @@ ul[role="menubar"] [role="separator"] {
 
 ul[role="menubar"] [role="menuitem"][aria-expanded="true"] {
   padding: 4px;
-  border: 2px solid #034575;
+  border: 2px dashed #034575;
 }
 
 ul[role="menubar"] [role="menu"] [aria-checked='true'] {

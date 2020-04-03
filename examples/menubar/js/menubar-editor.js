@@ -442,7 +442,7 @@ MenubarEditor.prototype.openPopup = function (menuitem) {
 
   // set CSS properties
   popupMenu.style.position = 'absolute';
-  popupMenu.style.top = (rect.height + 1) + 'px';
+  popupMenu.style.top = rect.height  + 'px';
   popupMenu.style.left = '0px';
   popupMenu.style.zIndex = 100;
   popupMenu.style.display = 'block';
