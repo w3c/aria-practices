@@ -359,7 +359,7 @@ ariaTest('ENTER to buttons change calendar and date in focus', exampleFile, 'mon
   );
 });
 
-ariaTest.failing('SPACE to buttons change calendar and date in focus', exampleFile, 'month-year-button-space-return', async (t) => {
+ariaTest('SPACE to buttons change calendar and date in focus', exampleFile, 'month-year-button-space-return', async (t) => {
   t.plan(4);
 
   await t.context.session.findElement(By.css(ex.buttonSelector)).click();
@@ -421,13 +421,13 @@ ariaTest.failing('SPACE to buttons change calendar and date in focus', exampleFi
   );
 });
 
-ariaTest.failing('SPACE or RETURN selects date in focus', exampleFile, 'grid-space-return', async (t) => {
+ariaTest('SPACE or RETURN selects date in focus', exampleFile, 'grid-space-return', async (t) => {
   t.plan(2);
 
   // By default, focus will be on todays date.
   let day = new Date();
 
-  await t.context.session.findElement(By.css(ex.buttonSelector)).click();
+  await t.context.session.findElement(By.css(ex.buttonSelector)).sendKeys(Key.ENTER);
   await t.context.session.findElement(By.css(ex.todayDay)).sendKeys(Key.ENTER);
   t.is(
     await t.context.session.findElement(By.css(ex.inputSelector)).getAttribute('value'),
@@ -437,7 +437,7 @@ ariaTest.failing('SPACE or RETURN selects date in focus', exampleFile, 'grid-spa
 
   await t.context.session.findElement(By.css(ex.buttonSelector)).click();
   await t.context.session.findElement(By.css(ex.todayDay)).sendKeys(Key.ARROW_RIGHT);
-  await t.context.session.findElement(By.css(ex.currentlyFocusedDay)).sendKeys(Key.SPACE);
+  await t.context.session.findElement(By.css(ex.currentlyFocusedDay)).sendKeys(' ');
   day.setDate(day.getDate() + 1);
   t.is(
     await t.context.session.findElement(By.css(ex.inputSelector)).getAttribute('value'),
