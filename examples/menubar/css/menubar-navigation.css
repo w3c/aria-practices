@@ -68,7 +68,7 @@ ul[role="menubar"] [role="separator"] {
 
 ul[role="menubar"] [role="menuitem"][aria-expanded="true"] {
   padding: 4px;
-  border: 2px solid #034575;
+  border: 2px dashed #034575;
 }
 
 ul[role="menubar"] [role="menu"] [role="menuitem"][aria-haspopup="true"]::after {
@@ -88,16 +88,16 @@ ul[role="menubar"].focus.item {
   border: #034575 solid 3px;
 }
 
-ul[role="menubar"].focus [role="menu"] {
-  padding: 8px 5px;
-  border: 1px solid #034575;
+ul[role="menubar"] [role="menu"].hover  {
+  padding: 9px 6px;
+  border: 0px solid #034575;
   border-radius: 5px;
   background-color: #eee;
 }
 
-ul[role="menubar"] [role="menu"].hover  {
-  padding: 9px 6px;
-  border: 0px solid #034575;
+ul[role="menubar"].focus [role="menu"] {
+  padding: 7px 4px;
+  border: 2px solid #034575;
   border-radius: 5px;
   background-color: #eee;
 }

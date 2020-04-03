@@ -318,7 +318,7 @@ MenubarNavigation.prototype.openPopup = function (menuId, menuitem) {
     popupMenu.parentNode.style.position = 'relative';
     popupMenu.style.display = 'block';
     popupMenu.style.position = 'absolute';
-    popupMenu.style.left = (rect.width + 16) + 'px';
+    popupMenu.style.left = (rect.width + 12) + 'px';
     popupMenu.style.top = '0px';
     popupMenu.style.zIndex = 100;
   }
@@ -326,7 +326,7 @@ MenubarNavigation.prototype.openPopup = function (menuId, menuitem) {
     popupMenu.style.display = 'block';
     popupMenu.style.position = 'absolute';
     popupMenu.style.left = '0px';
-    popupMenu.style.top = (rect.height + 1) + 'px';
+    popupMenu.style.top = rect.height + 'px';
     popupMenu.style.zIndex = 100;
   }
 
