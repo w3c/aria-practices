@@ -6493,21 +6493,14 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
       </p>
       <table>
         <thead>
-          <col>
-          <colgroup span="3"></colgroup>
-          <colgroup span="3"></colgroup>
+
           <tr>
-            <th rowspan="2">Role</th>
-            <th colspan="3">Default Values</th>
-            <th colspan="3">Required</th>
-          </tr>
-          <tr>
-            <th scope="col"><code>aria-valuemin</code></th>
-            <th scope="col"><code>aria-valuemax</code></th>
-            <th scope="col"><code>aria-valuenow</code></th>
-            <th scope="col"><code>aria-valuemin</code></th>
-            <th scope="col"><code>aria-valuemax</code></th>
-            <th scope="col"><code>aria-valuenow</code></th>
+            <th scope="col">Role</th>
+            <th scope="col"><code>aria-valuemin</code><br>(default)</th>
+            <th scope="col"><code>aria-valuemax</code><br>(default)</th>
+            <th scope="col"><code>aria-valuemin</code><br>(required)</th>
+            <th scope="col"><code>aria-valuemax</code><br>(required)</th>
+            <th scope="col"><code>aria-valuenow</code><br>(required)</th>
           </tr>
         </thead>
         <tbody>
@@ -6515,55 +6508,49 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
             <th scope="row"><code>meter</code></th>
             <td>0</td>
             <td>100</td>
-            <td>None</td>
-            <td>No</td>
-            <td>No</td>
-            <td>Yes</td>
+            <td>When minimum value is not 0</td>
+            <td>When minimum value is not 100</td>
+            <td>yes</td>
           </tr>
           <tr>
             <th scope="row"><code>progressbar</code></th>
             <td>0</td>
             <td>100</td>
-            <td>None</td>
-            <td>No</td>
-            <td>No</td>
-            <td>No</td>
+            <td>When minimum value is not 0</td>
+            <td>When minimum value is not 100</td>
+            <td>Yes, unless inderterminate</td>
           </tr>
           <tr>
             <th scope="row"><code>scrollbar</code></th>
             <td>0</td>
             <td>100</td>
-            <td>None</td>
-            <td>No</td>
-            <td>No</td>
+            <td>When minimum value is not 0</td>
+            <td>When minimum value is not 100</td>
             <td>Yes</td>
           </tr>
           <tr>
             <th scope="row"><code>separator</code> <small>(if focusable)</small></th>
             <td>0</td>
             <td>100</td>
-            <td>None</td>
-            <td>No</td>
-            <td>No</td>
+            <td>When minimum value is not 0</td>
+            <td>When minimum value is not 100</td>
             <td>Yes</td>
           </tr>
           <tr>
             <th scope="row"><code>slider</code></th>
             <td>0</td>
             <td>100</td>
-            <td>None</td>
-            <td>No</td>
-            <td>No</td>
+            <td>When minimum value is not 0</td>
+            <td>When minimum value is not 100</td>
             <td>Yes</td>
           </tr>
           <tr>
             <th scope="row"><code>spinbutton</code></th>
             <td>None</td>
             <td>None</td>
-            <td>None</td>
-            <td>No</td>
-            <td>No</td>
-            <td>No</td>
+            <td>minimum value if known</td>
+            <td>maximum value if known</td>
+            <td>Yes, if known</td>
           </tr>
         </tbody>
       </table>
@@ -6597,16 +6584,21 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
       <h3>Range properties with meter</h3>
 
       <p>
-        A meter is a graphical display of a numeric value within a defined range. Therefore, the <code>aria-valuemin</code>, <code>aria-valuenow</code> and <code>aria-valuemax</code> properties are required for the <code>meter</code> role, and they do not have default values.
+      A meter is a graphical display of a numeric value within a defined range.
       </p>
-      
+      <p>The <code>meter</code> role has the default value 0 for <code>aria-valuemin</code>, 100 for <code>aria-valuemax</code>.
+      When the <code>meter</code> role does not provide default range values from 0 to 100, <code>aria-valuemin</code> and <code>aria-valuemax</code> property values are required.
+      Also <code>aria-valuenow</code> range property is required for <code>meter</code>.
+      Detailed description of the <code>meter</code> role can be found in the <a href="#meter">meter design pattern</a>.
+      </p>
+
       <p>This is an example of a meter, which shows the current Central Processing Unit (CPU) usage. </p>
 
       <pre><code>&lt;span id="cpu_usage_label">CPU usage&lt;/span>
-&lt;div role="meter" 
-      aria-valuenow="90" 
-      aria-valuemin="0" 
-      aria-valuemax="100" 
+&lt;div role="meter"
+      aria-valuenow="90"
+      aria-valuemin="0"
+      aria-valuemax="100"
       aria-labelledby="cpu_usage_label"&gt;
 &lt;/div&gt;</code></pre>
 
@@ -6619,9 +6611,11 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
       <h3>Range properties with progress bars</h3>
 
       <p>
-        The <code>aria-valuenow</code>, <code>aria-valuemin</code> and <code>aria-valuemax</code> properties are not required for the <code>progressbar</code> role, but the properties might be necessary for communicating the state of a progress bar to assistive technologies.
+        The <code>aria-valuemin</code> and <code>aria-valuemax</code> properties are required for <code>progressbar</code> role when default values are different from <code>aria-valuemin</code>, 0 and <code>aria-valuemax</code>, 100.
+        The <code>aria-valuenow</code> is also required unless the current value is indeterminate.
       </p>
-
+      <p>The Range properties are necessary for communicating the state of a progress bar to assistive technologies.
+      </p>
       <p>
         This is an example of a progress bar represent by an SVG.
         The range properties are necessary to full explain the widget to assistive technologies.
@@ -6657,7 +6651,11 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
 
       <p>
         The <code>aria-valuenow</code>, <code>aria-valuemin</code> and <code>aria-valuemax</code> properties are all required for the <code>scrollbar</code> role.
-        The value of <code>aria-valuenow</code> will generally be exposed as a percentage between <code>aria-valuemin</code> and <code>aria-valuemax</code> calculated by assistive technologies.
+        If <code>aria-valuemin</code> and <code>aria-valuemax</code> are omitted, then the browser will use the default values of 0 and 100, respectively.
+
+      </p>
+      <p>
+        <code>aria-valuenow</code> will generally be exposed as a percentage between <code>aria-valuemin</code> and <code>aria-valuemax</code> calculated by assistive technologies.
       </p>
 
       <pre><code>&lt;div id="pi"&gt;
@@ -6675,9 +6673,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
 
-      <p>
-        If <code>aria-valuemin</code> and <code>aria-valuemax</code> are omitted, then the browser will use the default values of 0 and 100, respectively.
-      </p>
+
     </section>
 
     <section id="range_related_properties_slider_role">
@@ -6715,7 +6711,8 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
 
       <p>
         The <code>aria-valuenow</code>, <code>aria-valuemin</code> and <code>aria-valuemax</code> properties are not required for the <code>spinbutton</code> role.
-        <code>aria-valuetext</code> can be used when appropriate.
+        <code>aria-valuetext</code> can be used when appropriate. However, <code>aria-valuenow</code>, <code>aria-valuemin</code> and <code>aria-valuemax</code> are required if those values are known.
+        Detailed description of the <code>spin buttons</code> role can be found in the <a href="#spinbutton">spinbutton design pattern</a>.
       </p>
 
       <p>
