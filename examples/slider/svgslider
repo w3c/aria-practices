@@ -1,0 +1,21 @@
+
+
+
+<svg>
+  <rect x="50" y="20" rx="100" ry="10" width="15" height="35"
+  style="fill:gray;stroke:black;stroke-width:5;opacity:0.6" />
+</svg>
+
+
+
+
+
+
+
+
+
+
+<svg>
+  <rect x="0" y="20" rx="10" ry="50" width="300" height="15"
+  style="fill:gray;stroke:black;stroke-width:5;opacity:0.6" />
+</svg>

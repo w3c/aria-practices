@@ -43,88 +43,59 @@
        <h2 id="ex_label">Example</h2>
           <div role="separator" id="ex_start_sep" aria-labelledby="ex_start_sep ex_label" aria-label="Start of"></div>        
           <div id="ex1">
-		  <div>
             <div id="idSliders">
               <div id="idRed" class="label">Red</div>
-              <div class="aria-widget-slider"
-					id="idRedValue"
+              <div class="aria-widget-slider"> 	
+				<div id="idRedValue"
                        role="slider"
                        tabindex="0"
+                       class="thumb"
                        aria-valuemin="0"
                        aria-valuenow="0"
                        aria-valuemax="255"
-                       aria-labelledby="idRed"
-					   
-				<div class= "slider"><svg>
-						<rect class="rail" x="1" y="10" rx="10" ry="50" width="275" height="15"
-						style="fill:gray;stroke:black;stroke-width:5;opacity:0.5" />
-						
-						<rect class="thumb" x="26" y="3" rx="100" ry="10" width="15" height="35"
-						style="fill:snow;stroke:dimgrey;stroke-width:5;opacity:1">
-						
-						<text class="value" x="285" y="25" fill="black">0</text>
-						
-						</svg></div>
-				</div>
-			</div>
-			
-			<div id="idSliders">		 
-				<div id="idGreen" class="label">Green</div>
-			<div class="aria-widget-slider"
-                  id="idGreenValue"
-                       role="slider"
-                       tabindex="0"
-                       aria-valuemin="0"
-                       aria-valuenow="0"
-                       aria-valuemax="255"
-                       aria-labelledby="idGreen"
-					  
-				<div class= "slider"><svg>
-						<rect class="rail" x="3" y="10" rx="10" ry="50" width="275" height="15"
-						style="fill:gray;stroke:black;stroke-width:5;opacity:0.5" />
-						
-						<rect class="thumb" x="5" y="3" rx="100" ry="10" width="15" height="35"
-						style="fill:snow;stroke:dimgrey;stroke-width:5;opacity:1" />
-						
-						<text class="value" x="285" y="25" fill="black">0</text>
-						
-						</svg></div>
-				</div>
-			</div>
-          	<div id="idSliders">
-				<div id="idBlue" class="label">Blue</div>
-				<div class="aria-widget-slider"
-					   id="idBlueValue"
-                       role="slider"
-                       tabindex="0"
-                       aria-valuemin="0"
-                       aria-valuenow="0"
-                       aria-valuemax="255"
-                       aria-labelledby="idBlue"
-					   
-					   <div class= "slider">
-					   <svg>
-							<rect class="rail" x="3" y="10" rx="10" ry="50" width="275" height="15"
-							style="fill:gray;stroke:black;stroke-width:5;opacity:0.5" />
-
-							<rect class="thumb" x="10" y="3" rx="100" ry="10" width="15" height="35"
-							style="fill:snow;stroke:dimgrey;stroke-width:5;opacity:1" />
-							<text class="value" x="285" y="25" fill="black">0</text>
-							
-						</svg>
-						</div>
+                       aria-labelledby="idRed"></div>
                 </div>
-			</div>
-		</div>
-          
-		  
+                <div class="value">0</div>
+              </div>
+
+              <div id="idGreen" class="label">Green</div>
+              <div class="aria-widget-slider">
+                <div class="rail" style="width: 300px">
+                  <div id="idGreenValue"
+                       role="slider"
+                       tabindex="0"
+                       class="thumb"
+                       aria-valuemin="0"
+                       aria-valuenow="0"
+                       aria-valuemax="255"
+                       aria-labelledby="idGreen"></div>
+                </div>
+                <div class="value">0</div>
+              </div>
+
+              <div id="idBlue" class="label">Blue</div>
+              <div class="aria-widget-slider">
+                <div class="rail" style="width: 300px">
+                  <div id="idBlueValue"
+                       role="slider"
+                       tabindex="0"
+                       class="thumb"
+                       aria-valuemin="0"
+                       aria-valuenow="0"
+                       aria-valuemax="255"
+                       aria-labelledby="idBlue"></div>
+                </div>
+                <div class="value">0</div>
+              </div>
+            </div>
 
             <h3>Color Box</h3>
             <div id="idColorInfo">
               <div id="idColorBox"></div>
               <label>Color (HEX): <input type="text" readonly id="idColorValueHex" value=""></label>
               <label>Color (RGB): <input type="text" readonly id="idColorValueRGB" value=""></label>
-            </div>          
+            </div>
+          </div>          
           <div role="separator" id="ex_end_sep" aria-labelledby="ex_end_sep ex_label" aria-label="End of"></div>
     </section>
 

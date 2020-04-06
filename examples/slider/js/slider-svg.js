@@ -11,7 +11,10 @@
 var Slider = function (domNode)  {
 
   this.domNode = domNode;
-  this.railDomNode = domNode.parentNode;
+  this.railNode = domNode.querySelector('.rail');
+  this.thumbNode = domNode.querySelector('.thumb');
+  
+  console.log('Thumb Node: ' + this.thumbNode);
 
   this.valueDomNode = false;
 
@@ -49,39 +52,38 @@ Slider.prototype.init = function () {
     this.valueNow = parseInt((this.domNode.getAttribute('aria-valuenow')));
   }
 
-  this.railWidth = parseInt(this.railDomNode.style.width.slice(0, -2));
+  this.railWidth = parseInt(this.railNode.getBBox().width);
+  
+  console.log('Rail width: ' + this.railWidth);
 
-  this.valueDomNode = this.railDomNode.nextElementSibling;
+  this.valueDomNode = this.domNode.nextElementSibling;
 
   if (this.valueDomNode) {
 
     this.valueDomNode.innerHTML = '0';
-    this.valueDomNode.style.left = (this.railDomNode.offsetLeft + this.railWidth + 10) + 'px';
-    this.valueDomNode.style.top = (this.railDomNode.offsetTop - 8) + 'px';
+    this.valueDomNode.style.left = (this.domNode.offsetLeft + this.railWidth + 10) + 'px';
+    this.valueDomNode.style.top = (this.domNode.offsetTop - 8) + 'px';
   }
 
   if (this.domNode.tabIndex != 0) {
     this.domNode.tabIndex = 0;
   }
 
-  this.domNode.style.width = this.thumbWidth + 'px';
-  this.domNode.style.height = this.thumbHeight + 'px';
-  this.domNode.style.top = (this.thumbHeight / -2) + 'px';
-
-  this.domNode.addEventListener('keydown',    this.handleKeyDown.bind(this));
+  this.domNode.addEventListener('keydown',    this.handleKeyDown.bind(this)); 
   // add onmousedown, move, and onmouseup
   this.domNode.addEventListener('mousedown', this.handleMouseDown.bind(this));
 
   this.domNode.addEventListener('focus',      this.handleFocus.bind(this));
   this.domNode.addEventListener('blur',       this.handleBlur.bind(this));
 
-  this.railDomNode.addEventListener('click', this.handleClick.bind(this));
+  this.railNode.addEventListener('click', this.handleClick.bind(this));
 
   this.moveSliderTo(this.valueNow);
 
 };
 
 Slider.prototype.moveSliderTo = function (value) {
+  console.log('moveSliderTo: ' + value);
 
   if (value > this.valueMax) {
     value = this.valueMax;
@@ -99,7 +101,7 @@ Slider.prototype.moveSliderTo = function (value) {
     (this.valueNow * this.railWidth) / (this.valueMax - this.valueMin)
   ) - (this.thumbWidth / 2);
 
-  this.domNode.style.left = pos + 'px';
+  this.thumbNode.setAttribute('x', pos);
 
   if (this.valueDomNode) {
     this.valueDomNode.innerHTML = this.valueNow.toString();
@@ -159,12 +161,10 @@ Slider.prototype.handleKeyDown = function (event) {
 
 Slider.prototype.handleFocus = function (event) {
   this.domNode.classList.add('focus');
-  this.railDomNode.classList.add('focus');
 };
 
 Slider.prototype.handleBlur = function (event) {
   this.domNode.classList.remove('focus');
-  this.railDomNode.classList.remove('focus');
 };
 
 // Initialise Sliders on the page
