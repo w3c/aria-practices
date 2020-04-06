@@ -6586,9 +6586,9 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
       <p>
       A meter is a graphical display of a numeric value within a defined range.
       </p>
-      <p>The <code>meter</code> role has the default value 0 for <code>aria-valuemin</code>, 100 for <code>aria-valuemax</code>.
-      When the <code>meter</code> role does not provide default range values from 0 to 100, <code>aria-valuemin</code> and <code>aria-valuemax</code> property values are required.
-      Also <code>aria-valuenow</code> range property is required for <code>meter</code>.
+      <p>
+      The <code>meter</code> role has the default value 0 for <code>aria-valuemin</code>, 100 for <code>aria-valuemax</code> and only need to be set when the actual minimum and maximum values are different.
+      The <code>aria-valuenow</code> property is required for <code>meter</code> and the author needs to make sure <code>aria-valuenow</code> is within the minimum and maximum values.
       Detailed description of the <code>meter</code> role can be found in the <a href="#meter">meter design pattern</a>.
       </p>
 
@@ -6596,6 +6596,7 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
 
       <pre><code>&lt;span id="cpu_usage_label">CPU usage&lt;/span>
 &lt;div role="meter"
+    //The CPU usage uses the default values of 0 and 100 for aria-valuemin and aria-valumax
       aria-valuenow="90"
       aria-valuemin="0"
       aria-valuemax="100"
@@ -6605,7 +6606,15 @@ So, As advised by <a href="#naming_rule_avoid_fallback">Rule 4: Avoid Browser Fa
       <p>
         The <code>aria-valuetext</code> property can be set to a string that makes the meter value understandable. For example, a CPU usage meter value might be conveyed as <code>aria-valuetext="90% of CPU is being used"</code>.
       </p>
+      <p>Here is another meter example using a different range, not default values of 0 and 100 for <code>aria-valuemin</code> and <code>aria-valuemax</code>.</p>
 
+      <pre><code>&lt;span id="ph_alkaline_meter_label">Alkaline pH(Power of Hydrogen) Level&lt;/span>
+&lt;div role="meter"
+        aria-valuenow="9"
+        aria-valuemin="7"
+        aria-valuemax="14"
+        aria-labelledby="ph_alkaline_meter_label"&gt;
+&lt;/div&gt;</code></pre>
     </section>
     <section id="range_related_properties_progressbar_role">
       <h3>Range properties with progress bars</h3>
